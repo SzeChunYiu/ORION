@@ -1,0 +1,463 @@
+{
+  "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+  "checks": [
+    {
+      "check": "registry_21_fields",
+      "detail": 21,
+      "passed": true
+    },
+    {
+      "check": "registry_5_bound",
+      "detail": [
+        "adapter.native_parser_binding",
+        "identity.native_entrypoint_bytes",
+        "identity.source_license_bytes",
+        "identity.source_repository_commit",
+        "resources.wallclock"
+      ],
+      "passed": true
+    },
+    {
+      "check": "registry_16_blocking",
+      "detail": [
+        "adapter.isolated_write_surface",
+        "custody.external_protected_scorer",
+        "custody.one_shot_no_feedback_barrier",
+        "custody.protected_panel_freshness",
+        "inputs.candidate_visible_case_bytes",
+        "model_provider.fallbacks",
+        "model_provider.primary",
+        "resources.calls_tokens_usd",
+        "resources.retry_network",
+        "rights.container_and_generated_artifacts",
+        "rights.model_provider_and_services",
+        "rights.task_and_benchmark_content",
+        "runtime.compute",
+        "runtime.container_or_environment",
+        "runtime.dependency_lock",
+        "runtime.task_environment"
+      ],
+      "passed": true
+    },
+    {
+      "check": "native_selector_unsupported",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "registry_not_ready",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "panel_zero_of_six",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "terminal_exact",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "terminal_file_exact",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "source_commit_exact",
+      "detail": "38b2f681e87272cd505c9b2671760fc3729756c2",
+      "passed": true
+    },
+    {
+      "check": "source_tree_exact",
+      "detail": "8b483159e46da54675ee904841f2e8667b2348bc",
+      "passed": true
+    },
+    {
+      "check": "source_worktree_clean",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "tree_manifest_file_count",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "source_file_sha256_validations",
+      "detail": 2122,
+      "passed": true
+    },
+    {
+      "check": "source_total_bytes",
+      "detail": 106818041,
+      "passed": true
+    },
+    {
+      "check": "manifest_commit_tree",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "prior_outcome_prefix_census",
+      "detail": {
+        "cryptographic_hashing_only": true,
+        "entries": [
+          {
+            "git_blob_sha1": "d2e2553de676ab494d9f71fe60ce205ebd0c5c0a",
+            "path": "benchmarks/climate_vector_emergence_benchmark_results.json",
+            "sha256": "a4142fe43c0d4a5f1cc5ef6d3f608b7352f516eab6ccf24bda879f2451b4040a",
+            "size_bytes": 23336
+          },
+          {
+            "git_blob_sha1": "108397896c7557a3a79d6a6095258166c3d833f4",
+            "path": "benchmarks/computational_kuhn_benchmark_results.json",
+            "sha256": "c658e0473ddf2c4750ee23adbf00cc707ff72e26bb9fe767d6130e2c59b0fb93",
+            "size_bytes": 28131
+          },
+          {
+            "git_blob_sha1": "0d402c0a39867f5a213f6f8c4443fb98c69f9542",
+            "path": "benchmarks/cosmic_filter_benchmark_results.json",
+            "sha256": "e52673560d73e9d518e141e6b3095c5c33e768fbc0ddd2abb165891ff0f8574b",
+            "size_bytes": 24601
+          },
+          {
+            "git_blob_sha1": "3c5c52ae62f000b78dd639085f57fde2a11c0eb4",
+            "path": "benchmarks/sound_of_molecules_benchmark_results.json",
+            "sha256": "2ed1881f7e36fb62698fe3cf965fe52a95c800384429124b63fffd90a9ef5866",
+            "size_bytes": 9925
+          },
+          {
+            "git_blob_sha1": "8bd10dd0302ba6f0bab297974109f8d9c1535803",
+            "path": "categoryscienceclaw/HEA/01_art-b84dc4c5d57c616e_HEAFatigueDatabase.json",
+            "sha256": "509b768552eff2fad111e1e8470da0f39df1a007b68ee0197c3c2d5f13c84617",
+            "size_bytes": 316
+          },
+          {
+            "git_blob_sha1": "f893efc597008f306e6b79916e8632682eb4ebaf",
+            "path": "categoryscienceclaw/HEA/02_art-3fe62cab83f5ef43_RejectedThresholdOnlyFCGRModel.json",
+            "sha256": "03eb98d4db213f981ccc84856ba478679440f8f9e96828e67a9ebbbdb88baff0",
+            "size_bytes": 495
+          },
+          {
+            "git_blob_sha1": "03d21cd76033d096f4e4d3dfdcdadb33f73c83fc",
+            "path": "categoryscienceclaw/HEA/03_art-e47ce9cb1ead7a36_TwoAxisDamageToleranceMap.json",
+            "sha256": "92fcce40ad53b0076fb02e23dbb87d200e83a6ddfb4f9420555081e3cc708cad",
+            "size_bytes": 1035
+          },
+          {
+            "git_blob_sha1": "221590a65011673837c1f74cef5a8a39d41f153b",
+            "path": "categoryscienceclaw/HEA/04_art-8698e59abc356fac_HEAFatigueScienceClaim.json",
+            "sha256": "9c19a58ae47b67325d64fd7b4efc7674678d1752ee424fe672d0b476f1e24ba7",
+            "size_bytes": 808
+          },
+          {
+            "git_blob_sha1": "8f4bcb55096955343a396d80e41f236a63e9db5f",
+            "path": "categoryscienceclaw/HEA/ARTIFACTS_README.md",
+            "sha256": "413ed8dbbe41e31b84836895555f5d585e9ee235f4bf44a9b68cf43d9514620b",
+            "size_bytes": 3758
+          },
+          {
+            "git_blob_sha1": "96d991cd2ec7348b2504b21d0458a580c2235b1c",
+            "path": "categoryscienceclaw/HEA/HEA_FCGR_DISCOVERY_TEST.json",
+            "sha256": "86a048183a2c67a9586bfc6726b01b352f21bfa0a866b82ecf418a6c02619af2",
+            "size_bytes": 1118
+          },
+          {
+            "git_blob_sha1": "c3c222d0c31dd18283f4ba929ffe60f4cadb61ef",
+            "path": "categoryscienceclaw/HEA/INVESTIGATION_RESULTS.md",
+            "sha256": "b7b73b12d343c6560056d534675c677ef31c62d98c4e51013d644fdb25ca0f1b",
+            "size_bytes": 1111
+          },
+          {
+            "git_blob_sha1": "390b66dd244f97055ca4f61fa72ebc3c4d85f340",
+            "path": "categoryscienceclaw/HEA/categorical_discovery_graph.json",
+            "sha256": "3620f6e5892d9bafe53e28b5acd25953a6bdad3cae31f20407b97d244f3f4705",
+            "size_bytes": 3373
+          },
+          {
+            "git_blob_sha1": "010dc7d497b92478838a7918bd6ce6e594761a50",
+            "path": "categoryscienceclaw/HEA/hea_fcgr_summary_clean.csv",
+            "sha256": "ab4ed35df530387c547aadfe0b60f169ee2291dea146be5559437dda7398ab53",
+            "size_bytes": 8748
+          }
+        ],
+        "excluded_prefixes": [
+          "benchmarks/",
+          "categoryscienceclaw/HEA/"
+        ],
+        "file_count": 13,
+        "future_candidate_seed_policy": "EXCLUDE_PREFIXES_BEFORE_CANDIDATE_ACCESS",
+        "payload_values_decoded_or_displayed": false,
+        "total_bytes": 106755
+      },
+      "passed": true
+    },
+    {
+      "check": "prior_outcome_payloads_not_decoded",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "tracked_pycache_census",
+      "detail": {
+        "file_count": 374,
+        "payload_values_decoded_or_executed": false,
+        "total_bytes": 3400553
+      },
+      "passed": true
+    },
+    {
+      "check": "archive_sha256_exact",
+      "detail": "2020d5dd69e5118bebccb2e82cf47807c6be6a0eeb75952e910f0bbac98f82be",
+      "passed": true
+    },
+    {
+      "check": "archive_size_exact",
+      "detail": 109045760,
+      "passed": true
+    },
+    {
+      "check": "no_resolved_lock",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "core_9_zero_exact",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "full_112_zero_exact",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "dynamic_dependency_map",
+      "detail": {
+        "failure_behavior": "per-package install failure is logged and execution continues",
+        "installer": "deps/installer.py",
+        "installer_sha256": "db82071745d46c554dd9d879a4777f33ba557ea5ed3ef8eb2994ed741934a728",
+        "package_references": 106,
+        "sha256": "4beee570c450c196d9b562ae2e99c962f12fe1e854d27dba613a04eb5db01373",
+        "skill_keys": 60,
+        "source": "deps/skill_deps.py",
+        "unique_unversioned_package_names": 96
+      },
+      "passed": true
+    },
+    {
+      "check": "dynamic_install_continues_after_failure",
+      "detail": "per-package install failure is logged and execution continues",
+      "passed": true
+    },
+    {
+      "check": "source_license_hash",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "license_metadata_inconsistent",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "skill_rights_census",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "rights_roots_open",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "parser_hash_bound",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "runner_hash_bound",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "native_fallbacks_blocking",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "native_shape_parser_exit_zero",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "native_output_schema_validation",
+      "detail": "1 output validated",
+      "passed": true
+    },
+    {
+      "check": "native_shape_unresolved",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "scientific_payload_not_retained",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "protected_key_refused_before_decode",
+      "detail": "{\"reason\": \"protected/gold/hidden/holdout/final-test key refused before JSON decoding\", \"terminal\": \"INPUT_REFUSED\"}\n",
+      "passed": true
+    },
+    {
+      "check": "runner_refuses_current_registry",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "runner_refusal_exact_count",
+      "detail": {
+        "blocking_field_count": 16,
+        "blocking_fields": [
+          "adapter.isolated_write_surface",
+          "custody.external_protected_scorer",
+          "custody.one_shot_no_feedback_barrier",
+          "custody.protected_panel_freshness",
+          "inputs.candidate_visible_case_bytes",
+          "model_provider.fallbacks",
+          "model_provider.primary",
+          "resources.calls_tokens_usd",
+          "resources.retry_network",
+          "rights.container_and_generated_artifacts",
+          "rights.model_provider_and_services",
+          "rights.task_and_benchmark_content",
+          "runtime.compute",
+          "runtime.container_or_environment",
+          "runtime.dependency_lock",
+          "runtime.task_environment"
+        ],
+        "native_execution": false,
+        "terminal": "EXECUTION_REFUSED_NONBOUND_FIELDS"
+      },
+      "passed": true
+    },
+    {
+      "check": "native_execution_false",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "full_native_smoke_cannot_check",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "readiness_delta_exact",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "performance_superiority_cannot_check",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "v3_and_scienceclaw_boundaries_preserved",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "material_census_exact",
+      "detail": {
+        "core_declarations": 9,
+        "core_exact_pins": 0,
+        "dependency_lock_present": false,
+        "dynamic_skill_dependency_keys": 60,
+        "dynamic_unique_unversioned_packages": 96,
+        "excluded_prior_outcome_prefix_bytes": 106755,
+        "excluded_prior_outcome_prefix_files": 13,
+        "full_declarations": 112,
+        "full_exact_pins": 0,
+        "native_dry_run_is_outcome_free": false,
+        "native_selector_supported": false,
+        "prior_outcome_payload_values_decoded_or_displayed": false,
+        "source_tree_bytes": 106818041,
+        "source_tree_files": 2122,
+        "tracked_pycache_bytes": 3400553,
+        "tracked_pycache_files": 374
+      },
+      "passed": true
+    },
+    {
+      "check": "dry_run_not_outcome_free",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "native_selector_false",
+      "detail": null,
+      "passed": true
+    }
+  ],
+  "field_census": {
+    "blocking": 16,
+    "bound": 5,
+    "execution_ready": false,
+    "native_selector_supported": false,
+    "required": 21
+  },
+  "frozen_at_utc": "2026-08-23T18:49:49Z",
+  "schema_version": "orion.p5.c6.audit-receipt.v4",
+  "scientific_claims": {
+    "native_execution": false,
+    "performance": "CANNOT_CHECK",
+    "prior_outcome_payload_values_decoded_or_displayed": false,
+    "raw_native_singleton_licences": 0,
+    "superiority": "CANNOT_CHECK"
+  },
+  "smoke": {
+    "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+    "fixture": "authored native-shaped scienceclaw-post dry-run draft; not retained",
+    "fixture_is_performance": false,
+    "fixture_is_substantive_p5_case": false,
+    "native_or_model_or_tool_job_executed": false,
+    "parser": {
+      "adapter_terminal": "UNRESOLVED",
+      "native_output_schema_validations": 1,
+      "native_shape_exit_code": 0,
+      "native_terminal": "NATIVE_DRY_RUN_DRAFT_RECORDED",
+      "protected_key_exit_code": 2,
+      "protected_key_refused_before_json_decoding": true,
+      "scientific_payload_values_retained": false
+    },
+    "performance_inference": "FORBIDDEN",
+    "prior_outcome_payload_values_decoded_or_displayed": false,
+    "protected_outcomes_accessed": 0,
+    "runner": {
+      "blocking_field_count": 16,
+      "preflight_exit_code": 3,
+      "terminal": "EXECUTION_REFUSED_NONBOUND_FIELDS"
+    },
+    "schema_version": "orion.p5.c6.outcome-blind-smoke-receipt.v4"
+  },
+  "source": {
+    "archive_sha256": "2020d5dd69e5118bebccb2e82cf47807c6be6a0eeb75952e910f0bbac98f82be",
+    "archive_size_bytes": 109045760,
+    "commit_sha": "38b2f681e87272cd505c9b2671760fc3729756c2",
+    "tree_sha": "8b483159e46da54675ee904841f2e8667b2348bc",
+    "worktree_clean": true
+  },
+  "terminal": "P5_C6_V4_SCIENCECLAW_SOURCE_TREE_DRAFT_PARSER_AND_OUTER_WALLCLOCK_BOUND__NATIVE_SELECTOR_UNSUPPORTED_AND_FALLBACKS_OPEN__SIXTEEN_C6_FIELDS_BLOCKING__PRIOR_OUTCOME_PREFIXES_HASHED_NOT_DECODED__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK",
+  "validation": {
+    "archive_sha256_validations": 1,
+    "checks_failed": 0,
+    "checks_passed": 47,
+    "json_files_parsed": 15,
+    "json_parse_failures": 0,
+    "native_output_schema_validations": 1,
+    "source_file_sha256_validations": 2122
+  }
+}

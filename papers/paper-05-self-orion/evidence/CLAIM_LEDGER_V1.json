@@ -1,127 +1,275 @@
 {
-  "schema_version": "orion.p5.claim-ledger.v1",
-  "paper_id": "P5",
-  "issue": 102,
-  "purpose": "Bind abstract/conclusion/results claims to archived evidence. 21/24 is recomputed from glm-5.2-attribution/results.jsonl. The three residual errors remain errors. Merged successor failure/atom/Jump results are bounded negative/subsumption evidence only. H1–H4 stay CANNOT_CHECK.",
-  "purpose": "Bind abstract/conclusion/results claims to archived evidence. 21/24 is recomputed from glm-5.2-attribution/results.jsonl. The three residual errors remain errors. H1–H4 stay CANNOT_CHECK. Claim sentences were rebound on 2026-08-22 to the wording of the house-style manuscript rewrite: no number, support type, status or supporting artifact moved, only the prose each claim quotes.",
-  "human_readable_view": "evidence/CLAIM_LEDGER_V1.md",
-  "empirical_authority": "CANNOT_CHECK",
-  "peer_review_ready": false,
-  "stale_perfect_score_rejected": true,
   "attribution": {
-    "campaign_id": "p5-glm-5.2-attribution-v1",
     "authority": "DESCRIPTIVE_ONLY",
-    "source": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl",
+    "campaign_id": "p5-glm-5.2-attribution-v1",
     "correct": 21,
-    "total": 24,
     "incorrect": 3,
     "residual_errors": [
-      ["P5-HC-002", "RETRIEVAL_MISS", "REPRESENTATION_GAP"],
-      ["P5-HC-012", "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE", "IMPLEMENTATION_BUG"],
-      ["P5-HC-018", "REPRESENTATION_GAP", "METHOD_BASIS_GAP"]
+      [
+        "P5-HC-002",
+        "RETRIEVAL_MISS",
+        "REPRESENTATION_GAP"
+      ],
+      [
+        "P5-HC-012",
+        "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+        "IMPLEMENTATION_BUG"
+      ],
+      [
+        "P5-HC-018",
+        "REPRESENTATION_GAP",
+        "METHOD_BASIS_GAP"
+      ]
     ],
-    "residual_errors_are_failures": true
+    "residual_errors_are_failures": true,
+    "source": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl",
+    "total": 24
   },
+  "claims": [
+    {
+      "artifact": "evidence/FALSIFIER_V1.md",
+      "claim_id": "P5-C01",
+      "region": "abstract",
+      "sentence": "Local hostile tests exercise registered implementation semantics only.",
+      "status": "SUPPORTED",
+      "support_type": "IMPLEMENTED_CONTRACT"
+    },
+    {
+      "artifact": "protocol/PROTOCOL_V1.json execution_bindings UNBOUND",
+      "claim_id": "P5-C02",
+      "region": "abstract",
+      "sentence": "H1--H4 and governed improvement on protected fresh development tasks remain undetermined because the authority-bearing campaign has not been executed.",
+      "status": "SUPPORTED",
+      "support_type": "EXTERNAL_NOT_EXECUTED"
+    },
+    {
+      "artifact": "evidence/glm-5.2-attribution/results.jsonl",
+      "claim_id": "P5-C03",
+      "region": "abstract",
+      "sentence": "A diagnostic glm-5.2 hidden-cause attribution archive scores 21/24 with three residual errors retained; this does not establish transferable self-improvement.",
+      "status": "SUPPORTED",
+      "support_type": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "artifact": "protocol/P5_RESIDUAL_DISCRIMINATOR_SUCCESSORS_V1.json; THEORY_CLAIM_LEDGER_V2.md P5-S1",
+      "claim_id": "P5-C04",
+      "region": "abstract",
+      "sentence": "P5-RD-01 and P5-RD-03 remain unexecuted.",
+      "status": "SUPPORTED",
+      "support_type": "SUCCESSOR_STATUS_BOUNDARY"
+    },
+    {
+      "artifact": "development/p5-rd02-defects4j-public-factorial-2026-08-23/RESULT_V1.json; development/p5-rd02-defects4j-public-factorial-2026-08-23/RESULT_V2.json; development/p5-rd02-defects4j-public-factorial-2026-08-23/RESULT_V3.json",
+      "claim_id": "P5-C05",
+      "region": "abstract",
+      "sentence": "P5-RD-02 contributes only one public, local, known-fix development cluster and a post-outcome archival audit; it supplies no protected or fresh evidence and does not alter the original error.",
+      "status": "SUPPORTED",
+      "support_type": "LOCAL_PUBLIC_DEVELOPMENT_AND_ARCHIVAL_AUDIT_ONLY"
+    },
+    {
+      "artifact": "development/p5-six-arm-comparator-panel-2026-08-23/P5_SIX_ARM_COMPARATOR_IDENTITY_LEDGER_V2.json; development/p5-six-arm-comparator-panel-2026-08-23/SCIENTIFIC_REPORT.md",
+      "claim_id": "P5-C06",
+      "region": "methods-limitations",
+      "sentence": "The six comparator roles now have exact semantic and primary-source identities, but zero of six has a complete arm-native revision-level execution adapter, matched execution binding or protected scorer, so no comparative outcome is authorized.",
+      "status": "SUPPORTED",
+      "support_type": "SOURCE_IDENTITY_AND_INTERFACE_PREFLIGHT_ONLY"
+    },
+    {
+      "artifact": "evidence/tables/P5-3_cause_confusion.json",
+      "claim_id": "P5-R01",
+      "region": "results",
+      "sentence": "Accuracy is 21/24 = 0.875, with the nominal Wilson score interval given in Table P5-3.",
+      "status": "SUPPORTED",
+      "support_type": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "artifact": "evidence/tables/P5-ATTRIBUTION_RESIDUAL_ERRORS.json",
+      "claim_id": "P5-R02",
+      "region": "results",
+      "sentence": "Three residual errors are retained and are not relabeled as successes: P5-HC-002 (retrieval miss, attributed to a representation gap), P5-HC-012 (environment, dependency or tool failure, attributed to an implementation bug) and P5-HC-018 (representation gap, attributed to a method-basis gap).",
+      "status": "SUPPORTED",
+      "support_type": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "artifact": "evidence/tables/INDEX.json",
+      "claim_id": "P5-R03",
+      "region": "results",
+      "sentence": "Each of the seven tables awaiting a campaign names the measurement it would carry and leaves its result undetermined; no number in them is imputed from the diagnostic accuracy.",
+      "status": "SUPPORTED",
+      "support_type": "EXTERNAL_NOT_EXECUTED"
+    },
+    {
+      "artifact": "protocol/PROTOCOL_V1.json",
+      "claim_id": "P5-H01",
+      "region": "conclusion",
+      "sentence": "Until a campaign executes under complete protected identities and independent verification, transferable protected fresh-task improvement over matched self-edit and self-evolution baselines remains undetermined.",
+      "status": "SUPPORTED",
+      "support_type": "EXTERNAL_NOT_EXECUTED"
+    },
+    {
+      "artifact": "manuscript/sections/10-limitations.tex; evidence/glm-5.2-attribution/results.jsonl",
+      "claim_id": "P5-X01",
+      "region": "limitations",
+      "sentence": "The diagnostic contains 24 fixed constructed cases from one model run, not 24 independent campaigns or a probability sample.",
+      "status": "SUPPORTED",
+      "support_type": "HONEST_BOUNDARY"
+    },
+    {
+      "artifact": "development/p5-six-arm-terminal-adapters-v2-2026-08-23/P5_NATIVE_OUTPUT_FIBRE_THEOREM_V2.json; development/p5-six-arm-terminal-adapters-v2-2026-08-23/P5_TERMINAL_ADAPTER_CONFORMANCE_RECEIPT_V2.json; development/p5-six-arm-terminal-adapters-v2-2026-08-23/P5_V2_RESOURCE_CONFIG_LEDGER.json; development/p5-six-arm-terminal-adapters-v2-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C07",
+      "region": "methods-limitations-conclusion",
+      "sentence": "The prospective six-arm terminal-adapter audit establishes six mixed raw native fibres and zero raw native-status singleton licences; its 90/90 synthetic conformance receipt verifies terminal preservation only, leaves zero of six arms confirmatory-ready, and supplies no H1-H4 or performance authority.",
+      "status": "SUPPORTED",
+      "support_type": "FORMAL_APPLICATION_AND_SYNTHETIC_CONFORMANCE_ONLY"
+    },
+    {
+      "artifact": "development/p5-six-arm-adapter-refinement-v3-2026-08-23/P5_V3_SYNTHETIC_CONFORMANCE_RECEIPT.json; development/p5-six-arm-adapter-refinement-v3-2026-08-23/P5_V3_EXECUTION_BLOCKER_LEDGER.json; development/p5-six-arm-adapter-refinement-v3-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C08",
+      "region": "methods-results-limitations",
+      "sentence": "The V3 refined adapter is total on 231 declared synthetic cases, with 40 typed case records in 20 supported constant fibres, 191 UNRESOLVED, zero raw-native singleton licences and zero conformance failures; exact preflight retains 108 blockers and 0/6 execution-ready.",
+      "status": "SUPPORTED",
+      "support_type": "REFINED_SYNTHETIC_CONTRACT_CONFORMANCE_AND_OUTCOME_FREE_PREFLIGHT_ONLY"
+    },
+    {
+      "artifact": "development/p5-swe-agent-execution-binding-v4-2026-08-23/P5_C1_V4_RESULT.json; development/p5-swe-agent-execution-binding-v4-2026-08-23/P5_C1_V4_FIELD_REGISTRY.json; development/p5-swe-agent-execution-binding-v4-2026-08-23/AUDIT_RECEIPT_V4.json; development/p5-swe-agent-execution-binding-v4-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C09",
+      "region": "abstract-methods-results-limitations-claim-boundary",
+      "sentence": "The outcome-blind C1 SWE-agent V4 binds six additional execution-interface fields, making C1 9/21 bound and 12/21 blocking; at the C1-only snapshot the five unchanged arms left 102 blocker instances and 0/6 ready, while the native parser emitted UNRESOLVED and no comparator/model or outcome was executed.",
+      "status": "SUPPORTED",
+      "support_type": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_EXECUTION_PREFLIGHT_ONLY"
+    },
+    {
+      "artifact": "development/p5-moss-execution-binding-v4-2026-08-23/P5_C2_V4_RESULT.json; development/p5-moss-execution-binding-v4-2026-08-23/P5_C2_V4_FIELD_REGISTRY.json; development/p5-moss-execution-binding-v4-2026-08-23/P5_C2_V4_SOURCE_RIGHTS_MANIFEST.json; development/p5-moss-execution-binding-v4-2026-08-23/AUDIT_RECEIPT_V4.json; development/p5-moss-execution-binding-v4-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C10",
+      "region": "abstract-methods-results-limitations-claim-boundary",
+      "sentence": "The outcome-blind C2 MOSS V4 binds four additional execution-interface fields, making C2 7/21 bound and 14/21 blocking; together with C1 and four unchanged arms the panel has 98 current blocker instances and 0/6 ready, while the authoritative source tree omits the required benchmark/claw-eval runtime and full native execution remains CANNOT_CHECK.",
+      "status": "SUPPORTED",
+      "support_type": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_EXECUTION_PREFLIGHT_ONLY"
+    },
+    {
+      "artifact": "development/p5-dgm-execution-binding-v4-2026-08-23/P5_C3_V4_RESULT.json; development/p5-dgm-execution-binding-v4-2026-08-23/P5_C3_V4_FIELD_REGISTRY.json; development/p5-dgm-execution-binding-v4-2026-08-23/P5_C3_V4_SOURCE_RIGHTS_MANIFEST.json; development/p5-dgm-execution-binding-v4-2026-08-23/AUDIT_RECEIPT_V4.json; development/p5-dgm-execution-binding-v4-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C11",
+      "region": "abstract-methods-results-limitations-claim-boundary",
+      "sentence": "The outcome-blind C3 DGM V4 binds three additional execution-interface fields, making C3 6/21 bound and 15/21 blocking; together with C1, C2 and three unchanged arms the panel has 95 current blocker instances and 0/6 ready. The authoritative source has 23 dependency declarations, zero exact pins and no lockfile; the parser emits UNRESOLVED and no DGM/model/task/benchmark/protected outcome was executed.",
+      "status": "SUPPORTED",
+      "support_type": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_EXECUTION_PREFLIGHT_ONLY"
+    },
+    {
+      "artifact": "development/p5-adias-execution-binding-v4-2026-08-23/P5_C4_V4_RESULT.json; development/p5-adias-execution-binding-v4-2026-08-23/P5_C4_V4_FIELD_REGISTRY.json; development/p5-adias-execution-binding-v4-2026-08-23/P5_C4_V4_SOURCE_RIGHTS_MANIFEST.json; development/p5-adias-execution-binding-v4-2026-08-23/AUDIT_RECEIPT_V4.json; development/p5-adias-execution-binding-v4-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C12",
+      "region": "abstract-methods-results-limitations-claim-boundary",
+      "sentence": "The outcome-blind C4 ADIAS V4 binds three additional execution-interface fields, making C4 6/21 bound and 15/21 blocking; together with C1, C2, C3 and two unchanged arms the panel has 92 current blocker instances and 0/6 ready. Four VCS dependencies remain unpinned, bundled task rights and isolation remain unbound, the parser emits UNRESOLVED, and no ADIAS model/domain/benchmark/task/protected outcome was executed.",
+      "status": "SUPPORTED",
+      "support_type": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_EXECUTION_PREFLIGHT_ONLY"
+    },
+    {
+      "artifact": "development/p5-double-ratchet-execution-binding-v4-2026-08-23/P5_C5_V4_RESULT.json; development/p5-double-ratchet-execution-binding-v4-2026-08-23/P5_C5_V4_FIELD_REGISTRY.json; development/p5-double-ratchet-execution-binding-v4-2026-08-23/P5_C5_V4_SOURCE_RIGHTS_MANIFEST.json; development/p5-double-ratchet-execution-binding-v4-2026-08-23/AUDIT_RECEIPT_V4.json; development/p5-double-ratchet-execution-binding-v4-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C13",
+      "region": "abstract-methods-results-limitations-claim-boundary",
+      "sentence": "The outcome-blind C5 Double Ratchet metric-only V4 binds six additional execution-interface fields, making C5 9/21 bound and 12/21 blocking; together with C1-C4 and unchanged C6 the panel has 86 current blocker instances and 0/6 ready. The official loop regenerates solver outputs and exposes its development-locked metric each round, no P5-native task or external one-shot panel is bound, and no model/benchmark/P5/protected outcome was executed.",
+      "status": "SUPPORTED",
+      "support_type": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_EXECUTION_PREFLIGHT_ONLY"
+    },
+    {
+      "artifact": "development/p5-scienceclaw-execution-binding-v4-2026-08-23/P5_C6_V4_RESULT.json; development/p5-scienceclaw-execution-binding-v4-2026-08-23/P5_C6_V4_FIELD_REGISTRY.json; development/p5-scienceclaw-execution-binding-v4-2026-08-23/P5_C6_V4_SOURCE_RIGHTS_MANIFEST.json; development/p5-scienceclaw-execution-binding-v4-2026-08-23/AUDIT_RECEIPT_V4.json; development/p5-scienceclaw-execution-binding-v4-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C14",
+      "region": "abstract-methods-results-limitations-claim-boundary",
+      "sentence": "The outcome-blind C6 ScienceClaw V4 binds a strict native draft-shape parser and outer wallclock, making C6 5/21 bound and 16/21 blocking; together with C1-C5 the panel has 84 blocker instances and 0/6 ready. The released CLI has no native revision selector and cannot close all fallbacks; no investigation, model, tool, service, benchmark, prior-result payload or protected outcome was executed or decoded.",
+      "status": "SUPPORTED",
+      "support_type": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_EXECUTION_PREFLIGHT_ONLY"
+    },
+    {
+      "artifact": "development/p5-panelwide-root-closure-v5-2026-08-23/P5_PANELWIDE_ROOT_CLOSURE_RESULT_V5.json; development/p5-panelwide-root-closure-v5-2026-08-23/P5_PANELWIDE_BLOCKER_EQUIVALENCE_REGISTRY_V5.json; development/p5-panelwide-root-closure-v5-2026-08-23/P5_PANELWIDE_ROOT_CLOSURE_NEGATIVE_LEDGER_V5.json; development/p5-panelwide-root-closure-v5-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C15",
+      "region": "methods-results-limitations-claim-boundary-reproducibility",
+      "sentence": "The outcome-blind panel-wide V5 audit recomputes 42/126 arm fields bound and 84/126 blocking with 0/6 ready, and compresses the coordination queue from 84 repeated blocker entries to five evidence work packages without creating any new arm-field binding or scientific result; matched exposure remains unbound, C4 audit-receipt reproducibility is determined to fail, and fresh C6 source validation remains CANNOT_CHECK.",
+      "status": "SUPPORTED",
+      "support_type": "OUTCOME_BLIND_ROOT_CAUSE_AND_COORDINATION_CONTRACT_ONLY"
+    },
+    {
+      "artifact": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_COMMON_VISIBLE_CASE_RIGHTS_RESULT_V6.json; development/p5-common-visible-case-rights-v6-2026-08-23/P5_SIX_ARM_SHARED_CORE_ACCEPTANCE_V6.json; development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_RIGHTS_MANIFEST_V6.json; development/p5-common-visible-case-rights-v6-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C16",
+      "region": "abstract-methods-results-limitations-claim-boundary-reproducibility",
+      "sentence": "The P5 V6 common-case successor binds one substantive rights-cleared Lang-1 candidate core to the candidate-visible-case and task-content-rights fields for all six arms, closing 12 shared fields and moving the panel to 54/126 bound and 72/126 blocking with 0/6 ready; all six native task environments and performance authority remain unbound.",
+      "status": "SUPPORTED",
+      "support_type": "PUBLIC_DEVELOPMENT_COMMON_CASE_AND_CONTENT_RIGHTS_BINDING_ONLY"
+    },
+    {
+      "artifact": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_NATIVE_TASK_ENVIRONMENT_RESULT_V7.json; development/p5-native-task-environment-fanout-v7-2026-08-23/P5_SIX_ARM_NATIVE_TASK_ENVIRONMENT_ACCEPTANCE_V7.json; development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C1_TASK_SETUP_V7.sh; development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C1_EFFECTIVE_AGENT_CONFIG_V7.json; development/p5-native-task-environment-fanout-v7-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C17",
+      "region": "abstract-evaluation-results-limitations-claim-boundary-reproducibility",
+      "sentence": "The P5 V7 byte-level fan-out binds C1 exact offline setup and fixed effective configuration, closing one runtime.task_environment field and moving the panel to 55/126 bound and 71/126 blocking with 0/6 ready; five arm-specific environment bundles and all performance authority remain unbound.",
+      "status": "SUPPORTED",
+      "support_type": "OUTCOME_BLIND_BYTE_LEVEL_TASK_ENVIRONMENT_ACCEPTANCE_ONLY"
+    },
+    {
+      "artifact": "development/p5-c3-native-environment-v8-2026-08-23/P5_C3_NATIVE_TASK_ENVIRONMENT_RECEIPT_V8.json; development/p5-c3-native-environment-v8-2026-08-23/P5_C3_NATIVE_TASK_ENVIRONMENT_V8.md; development/p5-c3-native-environment-v8-2026-08-23/VALIDATION_RECEIPT_V8.json",
+      "claim_id": "P5-C18",
+      "region": "abstract-evaluation-results-limitations-claim-boundary-reproducibility",
+      "sentence": "P5 V8 materializes a 69-member candidate-safe C3 seed and excludes 1,595 prior-outcome files, but the unchanged DGM requires the excluded initial/overall_performance state to initialize; C3 remains blocking and the panel stays 55/126 bound, 71/126 blocking and 0/6 ready.",
+      "status": "SUPPORTED",
+      "support_type": "OUTCOME_BLIND_BYTE_POLICY_MATERIALIZATION_AND_NATIVE_INITIALIZATION_STOP_ONLY"
+    },
+    {
+      "artifact": "development/p5-c3-outcome-free-successor-v9-2026-08-23/P5_C3_V9_RESULT.json; development/p5-c3-outcome-free-successor-v9-2026-08-23/P5_C3_V9_INITIALIZATION_IMPOSSIBILITY_WITNESS.json; development/p5-c3-outcome-free-successor-v9-2026-08-23/SHA256SUMS",
+      "claim_id": "P5-C19",
+      "region": "abstract-evaluation-results-limitations-claim-boundary-reproducibility",
+      "sentence": "For exact released DGM commit a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2, every nondegenerate native self-edit route requires prior outcome-indexed parent metadata; restoring outcomes, fabricating scores, removing self-edit action or replacing parent selection cannot lawfully close runtime.task_environment.",
+      "status": "SUPPORTED",
+      "support_type": "STATIC_EXACT_BYTE_AND_AST_SOURCE_INTERFACE_IMPOSSIBILITY_WITNESS_ONLY"
+    },
+    {
+      "claim_id": "P5-C20",
+      "region": "abstract-results-limitations-claim-boundary-reproducibility",
+      "sentence": "Three deliberately separate C2 successors close different obligations: V11 binds runtime.task_environment for an 8/21 successor; V12 binds candidate-visible bytes and task-content rights for a separate 9/21 successor; V13 binds complete scratch-image SBOM, licence and generated-artifact authority for a separate 8/21 successor. These states are non-aggregable and do not modify released MOSS, which remains 7/21 with 14 blockers. Consequently zero of six arms is ready, and no performance, H1-H4 or superiority claim follows.",
+      "artifact": "development/p5-c2-lawful-native-byte-successor-v11-2026-08-24/P5_C2_V11_RESULT.json; development/p5-c2-lawful-native-byte-successor-v12-2026-08-24/P5_C2_V12_RESULT.json; development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/P5_C2_V13_RESULT.json; papers/paper-05-self-orion/evidence/P5_C2_V11_V13_INTEGRATION_AUDIT.json",
+      "support_type": "DISTINCT_SUCCESSOR_BYTE_RIGHTS_AND_RUNTIME_OBLIGATION_CLOSURE_ONLY__NON_AGGREGABLE__NO_PERFORMANCE",
+      "status": "SUPPORTED"
+    },
+    {
+      "claim_id": "P5-C21",
+      "region": "results-attribution-limitations-claim-ledger",
+      "sentence": "On the unchanged public frozen 24-case suite, the V1-control replay reproduces 21/24 with standard macro-F1 0.8726190476190476 while a staged-extraction-plus-deterministic-diagnosis instrument records 24/24 and macro-F1 1.0.",
+      "artifact": "papers/paper-05-self-orion/evidence/glm-5.2-attribution-v2/report.json; papers/paper-05-self-orion/top_tier/P5_RESIDUAL_ERROR_REVIVAL_DISPOSITION_2026-08-24.json",
+      "support_type": "POST_OUTCOME_PUBLIC_SUITE_INSTRUMENT_DIAGNOSIS_ONLY__PREREGISTRATION_CHRONOLOGY_CANNOT_CHECK__NO_FRESH_TRANSFER_OR_MODEL_CAPABILITY_CLAIM",
+      "status": "SUPPORTED"
+    },
+    {
+      "claim_id": "P5-C22",
+      "region": "abstract-methods-results-limitations-claim-boundary-reproducibility",
+      "sentence": "On the frozen 96-case revision-level panel, FULL_T7 records accuracy 0.125, false-broad rate 0, harmful-regression rate 0 and fresh-transfer success 0.125; generic causal diagnosis records 1.0 accuracy/fresh transfer and the random-diagnostic control records 0.8333333333333334. Independent checks agree, but none of seven frozen decision terminals fires.",
+      "artifact": "papers/paper-05-self-orion/evidence/revision-level-v3/CONFIRMATORY_EXECUTION_RESULT_2026-08-24.md; research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json; papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
+      "support_type": "FROZEN_CONSTRUCTED_PANEL_NO_TERMINAL_RESULT__H3_H4_BOUNDED_SECONDARIES_ONLY__NO_GENERAL_SCIENTIFIC_AUTHORITY_OR_SUPERIORITY",
+      "status": "SUPPORTED_BOUNDED_NO_TERMINAL"
+    }
+  ],
+  "empirical_authority": "CANNOT_CHECK",
+  "human_readable_view": "evidence/CLAIM_LEDGER_V1.md",
   "hypotheses": {
     "H1": "CANNOT_CHECK",
     "H2": "CANNOT_CHECK",
     "H3": "CANNOT_CHECK",
     "H4": "CANNOT_CHECK"
   },
+  "issue": 102,
   "live_campaign": {
     "credentials": "UNSET",
     "issue_8_packet_binding": "UNBOUND",
-    "status": "CANNOT_CHECK",
-    "reason": "No live rerun: provider/verifier credentials are absent and the #8 packet subject/evaluator/split bindings remain UNBOUND on origin/main."
+    "reason": "No live rerun: provider/verifier credentials are absent and the #8 packet subject/evaluator/split bindings remain UNBOUND on origin/main.",
+    "status": "CANNOT_CHECK"
   },
-  "claims": [
-    {
-      "claim_id": "P5-C01",
-      "region": "abstract",
-      "sentence": "These results establish implementation and governance semantics only.",
-      "support_type": "IMPLEMENTED_CONTRACT",
-      "status": "SUPPORTED",
-      "artifact": "evidence/FALSIFIER_V1.md"
-    },
-    {
-      "claim_id": "P5-C02",
-      "region": "abstract",
-      "sentence": "Whether governed method evolution improves fresh development outcomes remains undetermined: the prospective campaign that would decide it has not been executed, and an outcome that remains undetermined is reported separately from an outcome determined to be false.",
-      "support_type": "EXTERNAL_NOT_EXECUTED",
-      "status": "SUPPORTED",
-      "artifact": "protocol/PROTOCOL_V1.json execution_bindings UNBOUND"
-    },
-    {
-      "claim_id": "P5-C03",
-      "region": "abstract",
-      "sentence": "A diagnostic glm-5.2 hidden-cause attribution archive scores 21/24 with three residual errors retained; this does not establish transferable self-improvement.",
-      "support_type": "DESCRIPTIVE_ONLY",
-      "status": "SUPPORTED",
-      "artifact": "evidence/glm-5.2-attribution/results.jsonl"
-    },
-    {
-      "claim_id": "P5-C04",
-      "region": "abstract",
-      "sentence": "Merged successor studies narrow failure-memory, broad atom and Jump hypotheses through standard-parent sufficiency, decomposition and strongest-parent equivalence; they do not establish governed self-improvement.",
-      "support_type": "BOUNDED_NEGATIVE_AND_SUBSUMPTION",
-      "status": "SUPPORTED",
-      "artifact": "papers/ADDON_INTEGRATION_MATRIX_2026-08-19.md"
-    },
-    {
-      "claim_id": "P5-R01",
-      "region": "results",
-      "sentence": "Accuracy is 21/24 = 0.875, with the Wilson 95% interval given in Table P5-3.",
-      "support_type": "DESCRIPTIVE_ONLY",
-      "status": "SUPPORTED",
-      "artifact": "evidence/tables/P5-3_cause_confusion.json"
-    },
-    {
-      "claim_id": "P5-R02",
-      "region": "results",
-      "sentence": "Three residual errors are retained and are not relabeled as successes: P5-HC-002 (retrieval miss, attributed to a representation gap), P5-HC-012 (environment, dependency or tool failure, attributed to an implementation bug) and P5-HC-018 (representation gap, attributed to a method-basis gap).",
-      "support_type": "DESCRIPTIVE_ONLY",
-      "status": "SUPPORTED",
-      "artifact": "evidence/tables/P5-ATTRIBUTION_RESIDUAL_ERRORS.json"
-    },
-    {
-      "claim_id": "P5-R03",
-      "region": "results",
-      "sentence": "Each of the seven tables awaiting a campaign names the measurement it would carry and leaves its result undetermined; no number in them is imputed from the diagnostic accuracy.",
-      "support_type": "EXTERNAL_NOT_EXECUTED",
-      "status": "SUPPORTED",
-      "artifact": "evidence/tables/INDEX.json"
-    },
-    {
-      "claim_id": "P5-H01",
-      "region": "conclusion",
-      "sentence": "Until a campaign executes under complete protected identities and independent verification, transferable protected fresh-task improvement over matched self-edit and self-evolution baselines remains undetermined.",
-      "support_type": "EXTERNAL_NOT_EXECUTED",
-      "status": "SUPPORTED",
-      "artifact": "protocol/PROTOCOL_V1.json"
-    },
-    {
-      "claim_id": "P5-X01",
-      "region": "limitations",
-      "sentence": "The archive scores 21/24 on hidden-cause labels; that quantity is a single-model, single-run descriptive accuracy with a wide Wilson interval, and n=24 with one seed cannot support the predeclared five-percentage-point fresh-improvement target or the two-percentage-point harm guard.",
-      "support_type": "HONEST_BOUNDARY",
-      "status": "SUPPORTED",
-      "artifact": "manuscript/sections/10-limitations.tex"
-    },
-    {
-      "claim_id": "P5-X02",
-      "region": "claim_boundary",
-      "sentence": "Scoped failure knowledge is useful but standard parents are sufficient for the tested incremental effect; broad tension/imagination/concept labels decompose; ORION-JUMP ties the verified representation-regime parent on both frozen splits, so Self-ORION records parent subsumption rather than a new generic operator.",
-      "support_type": "MERGED_BOUNDED_NEGATIVE_SUBSUMPTION",
-      "status": "SUPPORTED",
-      "artifact": "development/jump-programme-closure-v1/README.md"
-    },
-    {
-      "claim_id": "P5-X03",
-      "region": "claim_boundary",
-      "sentence": "The #454 receipt programme is frozen but MDA remains CANNOT_CHECK; WorldEvolver and Self-Revising are mechanism-comparator-bound and are not official reproductions.",
-      "support_type": "STRUCTURAL_BINDING_BOUNDARY",
-      "status": "SUPPORTED",
-      "artifact": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json"
-    }
-  ]
+  "paper_id": "P5",
+  "peer_review_ready": false,
+  "purpose": "Bind abstract, methods, results, limitations and conclusion claims to archived evidence. The historical 21/24 diagnostic and three errors remain immutable; the post-outcome 24/24 instrument result is diagnosis-only; the frozen 96-case revision-level execution closes with NO_TERMINAL_UNDER_FROZEN_RULES and no general scientific authority.",
+  "schema_version": "orion.p5.claim-ledger.v1",
+  "stale_perfect_score_rejected": true,
+  "revision_level_v3_confirmatory": {
+    "status": "NO_TERMINAL_UNDER_FROZEN_RULES",
+    "H1": "NO_REGISTERED_TERMINAL",
+    "H2": "NOT_CONFIRMED_AT_SAFETY_FLOOR",
+    "H3": "BOUNDED_PANEL_SECONDARY_CONFIRMED_NO_GENERAL_AUTHORITY",
+    "H4": "BOUNDED_PANEL_SECONDARY_CONFIRMED_NO_GENERAL_AUTHORITY",
+    "grants_scientific_authority": false,
+    "grants_peer_review_ready": false
+  }
 }

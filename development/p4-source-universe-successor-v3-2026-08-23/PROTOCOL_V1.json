@@ -1,0 +1,176 @@
+{
+  "schema_version": "orion.p4.natural-pair-source-universe-successor.v1",
+  "paper_id": "P4",
+  "lane_id": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+  "frozen_at": "2026-08-23T17:08:43+02:00",
+  "protocol_status": "FROZEN_BEFORE_V3_HARVEST",
+  "research_mode": "PUBLIC_DEVELOPMENT_EVIDENCE_ONLY",
+  "outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "write_scope": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p4-source-universe-successor-v3/",
+  "forbidden_write_scope": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover",
+  "predecessors": [
+    {
+      "identity": "P4_NATURAL_PAIR_SOURCE_EXPANSION_FROZEN__ROUTES_R2_TO_R5_UNBOUND",
+      "path": "papers/paper-04-verified-scientific-discovery/protocol/P4_NATURAL_PAIR_SOURCE_EXPANSION_FREEZE_V1.json",
+      "sha256": "8d46e93702ef4f57798bdd6f0bcbd2d2381139c8fa9746290a410874c5d0ffeb"
+    },
+    {
+      "identity": "P4_NATURALISTIC_V2_IDENTITY_COMPLETE__FEASIBILITY_AND_EXTERNAL_PANEL_CANNOT_CHECK",
+      "path": "papers/paper-04-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V2_AMENDMENT.json",
+      "sha256": "fafbdcbbcb27a62b3546f2f82bd82698f52183f6e9fabe69dc64f4435eb5f237"
+    },
+    {
+      "identity": "P4_NATURAL_PAIR_METADATA_SIGNALS_COUNTED__32_CELL_ELIGIBILITY_CANNOT_CHECK",
+      "path": "development/p4-scientific-ascent-2026-08-23/P4_NATURAL_PAIR_METADATA_FEASIBILITY_V1.json",
+      "sha256": "8ee8bc85d524efc0a0d5239a3862b7bfc5cfa81f62ae3afc50fa06ad9e534807"
+    },
+    {
+      "identity": "P4_ZENODO_RELATED_OBJECT_V2_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_PROVIDER",
+      "path": "development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CENSUS_RESULT_V2.json",
+      "sha256": "683c2ec074c04d92276dcd185f3c06750f6e1dd9817310ecd6e879f87f99e62d"
+    },
+    {
+      "identity": "PUBLIC_NATURALISTIC_SOURCE_AUDIT_V1",
+      "path": "development/p4-scientific-ascent-2026-08-23/PUBLIC_NATURALISTIC_SOURCE_AUDIT_V1.md",
+      "sha256": "1a561382c5844f5ea15326597a4c09956ae950c38e11e0ef211f67db9d699684"
+    },
+    {
+      "identity": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1_TRANSPORT_CANNOT_CHECK_HTTP_400",
+      "preservation": "IMMUTABLE_NEGATIVE"
+    }
+  ],
+  "scope": {
+    "domains": [
+      "EARTH_ENVIRONMENT",
+      "LIFE_BIOMEDICAL",
+      "SCIENTIFIC_SOFTWARE",
+      "PHYSICAL_ENGINEERING"
+    ],
+    "mechanisms": [
+      "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "M6_ARTICLE_TO_CODE_RELEASE"
+    ],
+    "cell_count": 8,
+    "quota_per_cell": {
+      "primary": 24,
+      "source_disjoint_replication": 8,
+      "reserve": 16,
+      "total_unique_candidate_units": 48
+    },
+    "no_pooling_across_cells": true,
+    "no_dropping_short_cells": true,
+    "no_post_outcome_fill": true
+  },
+  "discovery_lexicons": {
+    "EARTH_ENVIRONMENT": {
+      "queries": ["climate", "ocean", "atmosphere", "geophysics"],
+      "tokens": ["climate", "ocean", "marine", "atmospher", "weather", "earth", "geolog", "geophys", "hydrolog", "soil", "environment", "planet"]
+    },
+    "LIFE_BIOMEDICAL": {
+      "queries": ["biomedical", "genomics", "ecology", "neuroscience"],
+      "tokens": ["biolog", "biomed", "genom", "gene", "protein", "cell", "ecolog", "species", "neuro", "clinical", "health", "disease"]
+    },
+    "SCIENTIFIC_SOFTWARE": {
+      "queries": ["scientific software", "simulation", "workflow", "reproducibility"],
+      "tokens": ["software", "code", "package", "library", "workflow", "algorithm", "simulation", "model", "computational", "reproducib"]
+    },
+    "PHYSICAL_ENGINEERING": {
+      "queries": ["materials", "physics", "engineering", "energy"],
+      "tokens": ["physics", "physical", "material", "engineer", "mechanic", "electr", "photon", "quantum", "energy", "chemical", "chemistry", "device"]
+    }
+  },
+  "domain_rule": {
+    "method": "case-insensitive token match over provider title, description, keywords, categories and subjects",
+    "minimum_distinct_token_matches": 1,
+    "tie_rule": "CANNOT_CHECK_DOMAIN_AMBIGUOUS",
+    "zero_match_rule": "CANNOT_CHECK_DOMAIN_UNCLASSIFIED",
+    "authority_boundary": "discovery-only until outcome-blind external adjudication"
+  },
+  "provider_freeze": {
+    "DRYAD": {
+      "role": "COUNTABLE_CONTENT_PROVIDER_M5_ONLY",
+      "endpoint": "https://datadryad.org/api/v2/datasets",
+      "requests": {"pages": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "per_page": 100},
+      "ordering": "provider default ordering as captured; no retry-dependent extension",
+      "structured_publication_relation": "relatedWorks[].relationship == primary_article with a DOI identifier",
+      "direct_download": "_links.stash:download.href must be present and use HTTPS",
+      "accepted_object_doi_prefixes": ["10.5061/dryad."],
+      "accepted_licenses": ["CC0-1.0", "https://spdx.org/licenses/CC0-1.0.html"]
+    },
+    "FIGSHARE": {
+      "role": "COUNTABLE_CONTENT_PROVIDER_M5_AND_M6",
+      "search_endpoint": "https://api.figshare.com/v2/articles/search",
+      "full_record_endpoint_template": "https://api.figshare.com/v2/articles/{article_id}",
+      "search_method": "POST",
+      "query_cross_product": "all frozen domain queries x item_type",
+      "item_types": {"3": "M5_ARTICLE_TO_DATA_DOCUMENTATION", "9": "M6_ARTICLE_TO_CODE_RELEASE"},
+      "request_body": {"page": 1, "page_size": 100, "order": "published_date", "order_direction": "desc"},
+      "structured_publication_relation": "resource_doi DOI, or related_materials DOI with relation IsSupplementTo/IsDerivedFrom/References, distinct from the object DOI",
+      "direct_download": "download_disabled != true and at least one files[].download_url HTTPS entry",
+      "mirror_exclusions": ["object DOI prefix 10.5281/zenodo", "resource hosted by another counted provider when Figshare is only a metadata mirror"],
+      "accepted_m5_licenses": ["CC0-1.0", "CC-BY-4.0"],
+      "accepted_m6_licenses": ["MIT", "Apache-2.0", "GPL-2.0-only", "GPL-2.0-or-later", "GPL-3.0-only", "GPL-3.0-or-later", "BSD-2-Clause", "BSD-3-Clause", "MPL-2.0"]
+    },
+    "HARVARD_DATAVERSE": {
+      "role": "COUNTABLE_CONTENT_PROVIDER_M5_ONLY",
+      "search_endpoint": "https://dataverse.harvard.edu/api/search",
+      "full_record_endpoint_template": "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId={persistent_id}",
+      "query_cross_product": "all frozen domain queries",
+      "request_parameters": {"type": "dataset", "per_page": 100, "start": 0},
+      "structured_publication_relation": "citation/publication metadata contains publicationIDType DOI and publicationIDNumber DOI in a provider-defined publication field",
+      "direct_download": "at least one latestVersion.files[].dataFile persistentId or id with restricted == false and storageIdentifier present",
+      "accepted_object_doi_prefixes": ["10.7910/DVN/"],
+      "accepted_licenses": ["CC0-1.0", "CC-BY-4.0"],
+      "citation_only_rule": "citation or title without structured publication DOI is CANNOT_CHECK_PAIR_IDENTITY"
+    },
+    "DATACITE": {
+      "role": "DISCOVERY_AND_CROSS_CHECK_ONLY_NOT_AN_INDEPENDENT_CONTENT_PROVIDER",
+      "endpoint": "https://api.datacite.org/dois",
+      "query_cross_product": "all frozen domain queries x Dataset/Software",
+      "request_parameters": {"relation_type": "IsSupplementTo", "page_size": 100, "page_number": 1},
+      "counting_rule": "never counted without separately captured item-specific rights and direct-download authority from the underlying host",
+      "mirror_rule": "never creates provider disjointness for a DOI already counted at its content host"
+    }
+  },
+  "unit_eligibility": {
+    "all_required": [
+      "unique normalized object concept DOI",
+      "unique normalized linked publication DOI",
+      "provider-structured article relation rather than title or keyword inference",
+      "mechanism-specific exact accepted item license",
+      "at least one unrestricted HTTPS direct-download identity",
+      "content provider is not Zenodo and object is not a provider mirror",
+      "domain is prospectively assigned by the frozen discovery rule",
+      "no duplicate publication DOI within a domain x mechanism cell",
+      "no duplicate object concept DOI within a domain x mechanism cell"
+    ],
+    "not_independent_units": ["files", "versions", "queries", "provider mirrors", "API records for the same object", "metadata aggregators"],
+    "concept_doi_normalization": "lowercase; strip doi:/https://doi.org/; strip terminal .vN for deduplication only; retain exact DOI in evidence",
+    "publication_doi_normalization": "lowercase; strip doi:/https://doi.org/; do not otherwise rewrite",
+    "author_lineage": "normalized sorted author identity signature; missing or ambiguous author identity is CANNOT_CHECK_AUTHOR_LINEAGE",
+    "provider_capture": "one content-host provider family per object; discovery aggregators and mirrors never add a family"
+  },
+  "allocation_gate": {
+    "candidate_pool_gate_per_cell": "at least 48 eligible unique candidate units",
+    "source_disjoint_gate_per_cell": "at least two countable content-provider families and at least 8 units assignable to a replication family disjoint from the primary provider family",
+    "lineage_gate": "primary, replication and reserve allocations have no duplicate publication DOI, concept DOI, exact artifact or normalized author lineage",
+    "adjudication_gate": "all 48 units still require outcome-blind external natural-pair and material-claim adjudication",
+    "positive_terminal": "P4_NATURAL_PAIR_M5_M6_SOURCE_UNIVERSE_READY_FOR_EXTERNAL_ADJUDICATION__OTHER_ROUTES_UNCHANGED",
+    "shortfall_terminal": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+    "rights_terminal": "P4_NATURAL_PAIR_SOURCE_RIGHTS_CANNOT_CHECK",
+    "identity_terminal": "P4_NATURAL_PAIR_SOURCE_IDENTITY_CANNOT_CHECK",
+    "overall_scientific_terminal": "P4_NATURALISTIC_V2_IDENTITY_COMPLETE__FEASIBILITY_AND_EXTERNAL_PANEL_CANNOT_CHECK"
+  },
+  "falsifiable_decision_rule": {
+    "positive_if": "every one of the eight frozen cells passes candidate_pool_gate, source_disjoint_gate, lineage_gate and exact rights/download/relation checks",
+    "shortfall_if": "any cell has fewer than 48 eligible unique units or fewer than 8 source-family-disjoint replication units",
+    "cannot_check_if": "transport incompleteness or ambiguity in rights, relation, provider identity, download authority, domain, or author lineage prevents the relevant gate from being evaluated",
+    "no_compensation": "surplus in any provider, mechanism or domain cannot offset a short cell"
+  },
+  "claim_boundary": {
+    "allowed": ["bounded public-source counts", "exact captured rights/download/relation fields", "remaining deficits", "negative or CANNOT_CHECK terminals"],
+    "forbidden": ["eligible natural pairs without external adjudication", "protected confirmation", "case resolution", "model performance", "ORION superiority", "provider generality", "scientific confirmation"],
+    "manuscript_wording_rule": "write only source-feasibility wording licensed by captured evidence; never widen to performance or confirmation"
+  }
+}

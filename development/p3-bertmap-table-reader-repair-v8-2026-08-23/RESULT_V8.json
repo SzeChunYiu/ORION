@@ -1,0 +1,102 @@
+{
+  "authority": "EXACT_SOURCE_PATCH_AND_OUTCOME_BLIND_SYNTHETIC_LANGUAGE_LEVEL_EXECUTION_ONLY__NOT_DEEPONTO_OR_NATIVE_BERTMAP_EXECUTION",
+  "claim_boundary": {
+    "correctness": "CANNOT_CHECK",
+    "coverage": "CANNOT_CHECK",
+    "harm": "CANNOT_CHECK",
+    "native_smoke": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "source_patch_and_synthetic_language_execution": "BOUND",
+    "superiority": "CANNOT_CHECK",
+    "top_tier_submission_ready": false,
+    "transport": "CANNOT_CHECK"
+  },
+  "evidence": {
+    "language_level_execution_receipt_sha256": "bf5dfaea7e9816260d9dcadd6ad8435dec7b100c3696c8454f36fee719b967cb",
+    "patch_sha256": "412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b",
+    "pinned_mapping_sha256": "9cf0dce1c5bd142e4175f628f8f3267f54ed6deac9f31e165a25b4a073eedff0",
+    "protocol_freeze_receipt_sha256": "3d9f4ead19dc30c9824a797f3d9fa9c0599142536c48f18d819852570641129c",
+    "protocol_sha256": "f52d742746542de3112035c32f1d73b6da3e704b5a269e8699b0ce730d5b27bd",
+    "upstream_license_sha256": "340ebaff716578e1b620521eeb740febbdcb24b8bd0c1de12c37b916aadf4d36"
+  },
+  "exact_repair": {
+    "expression_after": "dp.Score",
+    "expression_before": "dp[\"Score\"]",
+    "full_runtime_rights": "NOT_CLOSED",
+    "original_sha256": "9cf0dce1c5bd142e4175f628f8f3267f54ed6deac9f31e165a25b4a073eedff0",
+    "patch_sha256": "412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b",
+    "repaired_sha256": "d0b3b6cfdee45019783707c4bd623cc76f8325142828cf1e10ebb74ad628d70f",
+    "root_source_rights": "APACHE_2_0_ROOT_SOURCE_AND_NOTICE_BOUND__NOT_LEGAL_ADVICE",
+    "source_commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+    "source_path": "src/deeponto/align/mapping.py",
+    "source_tree": "b499cb5780bbe749f7db44d0bc872d275a2737ea"
+  },
+  "forbidden_operations": {
+    "deeponto_imported": false,
+    "gold_or_reference_opened": false,
+    "jvm_started": false,
+    "model_opened_or_run": false,
+    "ontology_or_benchmark_opened_or_run": false,
+    "paper_data_zip_opened": false,
+    "protected_outcomes_opened": false,
+    "training_prediction_repair_or_scoring": false
+  },
+  "next_discriminator": "Bind a complete content-addressed repaired Python/JVM runtime with component-level rights/SBOM, then run the unchanged no-gold five-artifact smoke; stop if any actual artifact is absent or fails the frozen V7 parser.",
+  "protocol_id": "P3_V8_BERTMAP_PROSPECTIVE_MINIMAL_TABLE_READER_REPAIR",
+  "readiness_delta": {
+    "actual_native_artifacts_present": 0,
+    "actual_native_artifacts_required": 5,
+    "native_smoke_ready_after": "2/3",
+    "native_smoke_ready_before": "2/3",
+    "net_native_smoke_readiness_change": 0,
+    "net_scientific_comparator_readiness_change": 0,
+    "scientific_comparator_ready_after": "0/3",
+    "scientific_comparator_ready_before": "0/3",
+    "table_reader_truthy_threshold_source_defect": "BLOCKING_TO_REPAIRED_AT_EXACT_PATCH_AND_SYNTHETIC_LANGUAGE_LEVEL_BOUNDARY"
+  },
+  "remaining_blockers": [
+    "complete content-addressed DeepOnto Python runtime beyond the V7 constructor-only 26-distribution island",
+    "component-level provenance, rights decisions and SBOM closure for the JVM/JAR layer",
+    "one fresh isolated no-gold native BERTMap run under the exact repaired source producing all five actual parseable artifacts",
+    "independently custodied rights-valid evaluation before correctness, coverage, harm, transport, performance or superiority claims"
+  ],
+  "schema_version": "orion.p3.bertmap-table-reader-repair.result.v8",
+  "scientific_result": {
+    "actual_native_artifacts": "0/5",
+    "actual_native_bertmap_execution": "CANNOT_CHECK__NOT_RUN",
+    "empty_nonreference": "PASS_UNCHANGED",
+    "malformed_stale_prohibited": "5/5 FAIL_CLOSED",
+    "nonempty_falsey_threshold": "PASS_UNCHANGED",
+    "nonempty_truthy_threshold_after": "EXISTING_THRESHOLD_SEMANTICS_EXECUTED",
+    "nonempty_truthy_threshold_before": "TYPEERROR_REPRODUCED",
+    "prospective_protocol_freeze": "PASS",
+    "semantic_ast_boundary": "ONE_FROZEN_ACCESS_CHANGE_ONLY",
+    "synthetic_cases": "8/8 PASS",
+    "v7_parser_synthetic_compatibility": "PASS_INTERFACE_AUTHORITY_ONLY"
+  },
+  "scope_correction": "The V7 statement that any nonempty non-reference table triggers TypeError was too broad: the defective subscript executes only when threshold is truthy.",
+  "semantic_equivalence_boundary": {
+    "ast_equivalent_after_normalizing_only_frozen_access": true,
+    "changed_behavior": "Truthy-threshold comparison now reads the itertuples namedtuple Score attribute and can apply the existing >= threshold rule.",
+    "changed_expression": {
+      "after": "dp.Score",
+      "before": "dp[\"Score\"]"
+    },
+    "unchanged_behavior": [
+      "empty non-reference tables return an empty list",
+      "falsey thresholds short-circuit comparison and retain all rows",
+      "EntityMapping construction, source/target fields, relation and stored score are unchanged",
+      "reference branch text and behavior are unchanged and were not executed",
+      "table acquisition, model behavior, mapping generation, repair algorithms and evaluation are outside this patch"
+    ],
+    "v7_scope_correction": "The V7 statement that any nonempty non-reference table triggers TypeError was too broad: the defective subscript executes only when threshold is truthy."
+  },
+  "terminal": "P3_V8_BERTMAP_TABLE_READER_MINIMAL_REPAIR_SOURCE_HASH_AND_SYNTHETIC_EMPTY_NONEMPTY_EXECUTION_BOUND__MALFORMED_STALE_AND_PROHIBITED_CASES_FAIL_CLOSED__V7_PARSER_SYNTHETIC_COMPATIBILITY_BOUND__NATIVE_SMOKE_AND_SCIENTIFIC_READINESS_UNCHANGED",
+  "v7_compatibility_island": {
+    "boundary": "The pandas language-level harness is not promoted into the V7 26-distribution island or a complete DeepOnto runtime.",
+    "distribution_count": 26,
+    "lock_sha256": "6a31875e9b6315c3a07a58c1cfc401f704d0f1d187f28323d4f49806b0290293",
+    "manifest_sha256": "d02ac442491f92c51aae156cc009cc306fdecedb971c5c07f05854bd44221014",
+    "status": "UNCHANGED_AND_NOT_REEXECUTED__CONSTRUCTOR_ONLY"
+  }
+}

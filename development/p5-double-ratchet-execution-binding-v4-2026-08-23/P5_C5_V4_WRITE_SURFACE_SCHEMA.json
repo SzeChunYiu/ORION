@@ -1,0 +1,76 @@
+{
+  "$id": "https://orion.invalid/p5/v4/c5-double-ratchet-write-audit.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "frozen_policy": {
+    "attempt_reset": "EMPTY RESULTS DIRECTORY AND NEW CONTAINER",
+    "candidate_visible_task_mount": "/input/task READ_ONLY",
+    "capabilities": "DROP_ALL",
+    "egress": "NAMED DENY-BY-DEFAULT NETWORK; IDENTITY STILL UNBOUND",
+    "ephemeral_roots": [
+      "/tmp",
+      "/run/cache"
+    ],
+    "privilege_escalation": "FORBIDDEN",
+    "protected_panel_mounts": "FORBIDDEN",
+    "root_filesystem": "READ_ONLY",
+    "sole_host_writable_root": "/input/source/results",
+    "source_mount": "/input/source READ_ONLY except nested results mount"
+  },
+  "properties": {
+    "arm_id": {
+      "const": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY"
+    },
+    "attempt_id": {
+      "pattern": "^P5C5-[A-Z0-9_.-]+$",
+      "type": "string"
+    },
+    "forbidden_write_attempts": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "fresh_store": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "orion.p5.c5.isolated-write-audit.v4"
+    },
+    "source_tree_sha256_post": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "source_tree_sha256_pre": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "task_tree_sha256_post": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "task_tree_sha256_pre": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "write_paths": {
+      "items": {
+        "pattern": "^results/metric_evo/",
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "arm_id",
+    "attempt_id",
+    "source_tree_sha256_pre",
+    "source_tree_sha256_post",
+    "task_tree_sha256_pre",
+    "task_tree_sha256_post",
+    "write_paths",
+    "forbidden_write_attempts",
+    "fresh_store"
+  ],
+  "title": "P5 C5 evaluator-only isolated write audit",
+  "type": "object"
+}

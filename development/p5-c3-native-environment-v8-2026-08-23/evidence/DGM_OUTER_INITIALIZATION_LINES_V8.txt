@@ -1,0 +1,40 @@
+15: def initialize_run(output_dir, prevrun_dir=None, polyglot=False):
+16:     # Initialize archive
+17:     start_gen_num = 0
+18:     if not prevrun_dir:
+19:         archive = ['initial']
+20:     else:
+21:         # Load previous run's archive
+22:         metadata_path = os.path.join(prevrun_dir, "dgm_metadata.jsonl")
+23:         metadata = load_dgm_metadata(metadata_path, last_only=True)
+24:         archive = metadata['archive']
+25:         start_gen_num = metadata['generation'] + 1
+26: 
+27:     # Copy cached initial version into experiment dir
+28:     initial_folder_name = 'initial' if not polyglot else 'initial_polyglot'
+29:     if not prevrun_dir and not os.path.exists(f"{output_dir}/{initial_folder_name}"):
+30:         if os.path.exists(initial_folder_name):
+31:             os.system(f"cp -r {initial_folder_name}/ {output_dir}/initial")
+32:         else:
+33:             raise RuntimeError("Error: Need to properly configure evaluation results for the initial version.")
+34:     
+35:     return archive, start_gen_num
+50: def choose_selfimproves(output_dir, archive, selfimprove_size, method='random', run_baseline=None, polyglot=False):
+51:     """
+52:     Choose self-improve attempts for the current generation.
+53:     """
+54:     selfimprove_entries = []
+55: 
+56:     # Get parent candidates
+57:     candidates = {}
+58:     for commit in archive:
+59:         try:
+60:             metadata_path = os.path.join(output_dir, commit, "metadata.json")
+61:             metadata = load_json_file(metadata_path)
+62:             candidates[commit] = {
+63:                 'accuracy_score': metadata['overall_performance']['accuracy_score'],
+64:                 'total_unresolved_ids': metadata['overall_performance']['total_unresolved_ids'],
+65:                 'total_emptypatch_ids': metadata['overall_performance']['total_emptypatch_ids'],
+66:                 'total_resolved_ids': metadata['overall_performance']['total_resolved_ids'],
+67:                 'children_count': 0,
+68:             }

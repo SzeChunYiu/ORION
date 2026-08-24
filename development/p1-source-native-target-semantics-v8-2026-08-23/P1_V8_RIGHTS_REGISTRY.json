@@ -1,0 +1,84 @@
+{
+  "captured_at_utc": "2026-08-23T16:42:09.646840+00:00",
+  "inherited_source_taxonomy_rights": [
+    {
+      "authority": "Crossref",
+      "evidence": "Captured pages declare dc:rights CC BY 4.0 and repeat CC BY 4.0 in the footer.",
+      "status": "CHECKED"
+    },
+    {
+      "authority": "NISO",
+      "evidence": "RP-45-2024 states all rights reserved and permits noncommercial reproduction without prior permission only if accurate, sourced, and copyright acknowledged.",
+      "status": "CHECKED_RESTRICTED"
+    },
+    {
+      "authority": "NLM/JATS/MeSH",
+      "evidence": "NLM web policy distinguishes U.S.-government works from contributed or licensed third-party content and assigns responsibility for determining item status to the user. No blanket item-specific license was inferred for JATS/MeSH snapshots.",
+      "status": "CANNOT_CHECK_ITEM_SPECIFIC_APPLICABILITY"
+    },
+    {
+      "authority": "COPE",
+      "evidence": "Both the official URL and DOI route ended at HTTP 403; guidance text and its rights/terms were not retrieved.",
+      "status": "CANNOT_CHECK_TRANSPORT"
+    }
+  ],
+  "inherited_source_taxonomy_terminal": "TAXONOMY_EVIDENCE_CAPTURED_WITH_COPE_TRANSPORT_AND_NLM_ITEM_RIGHTS_CANNOT_CHECK",
+  "registry_id": "P1.V8.PUBLIC.TARGET.SOURCE.RIGHTS",
+  "rights_not_established_for": [
+    "redistribution of the target repository source bodies in this handoff",
+    "publication of substantial copied target text",
+    "derivative relicensing",
+    "owner ratification of target semantics"
+  ],
+  "rights_sufficient_for": [
+    "hash and public-URL provenance",
+    "bounded semantic inspection and conservative paraphrase in this research record",
+    "independent refetch by a reviewer subject to their own rights determination"
+  ],
+  "schema_version": "orion.p1.public-target-source-rights-registry.v8",
+  "target_repository": {
+    "api_license_headers": {
+      "content-type": "application/json; charset=utf-8",
+      "etag": null,
+      "last-modified": null
+    },
+    "applicable_target_corpus_license_file_count": 0,
+    "github_license_endpoint_http_status": 404,
+    "github_license_endpoint_message": "Not Found",
+    "github_repository_license_field": null,
+    "license_file_candidate_count": 6,
+    "license_file_candidates_at_pinned_tree": [
+      {
+        "path": "papers/paper-01-recursive-epistemic-reconstruction/journal_package/LICENSE.md",
+        "scope_status": "SCOPED_TO_OTHER_SUBTREE__NOT_ASSUMED_TO_APPLY_TO_FROZEN_TARGET_CORPUS"
+      },
+      {
+        "path": "papers/paper-02-open-world-scientific-discovery/journal_package/LICENSE.md",
+        "scope_status": "SCOPED_TO_OTHER_SUBTREE__NOT_ASSUMED_TO_APPLY_TO_FROZEN_TARGET_CORPUS"
+      },
+      {
+        "path": "papers/paper-03-global-knowledge-portrait/journal_package/LICENSE.md",
+        "scope_status": "SCOPED_TO_OTHER_SUBTREE__NOT_ASSUMED_TO_APPLY_TO_FROZEN_TARGET_CORPUS"
+      },
+      {
+        "path": "papers/paper-04-verified-scientific-discovery/journal_package/LICENSE.md",
+        "scope_status": "SCOPED_TO_OTHER_SUBTREE__NOT_ASSUMED_TO_APPLY_TO_FROZEN_TARGET_CORPUS"
+      },
+      {
+        "path": "papers/paper-05-self-orion/journal_package/LICENSE.md",
+        "scope_status": "SCOPED_TO_OTHER_SUBTREE__NOT_ASSUMED_TO_APPLY_TO_FROZEN_TARGET_CORPUS"
+      },
+      {
+        "path": "papers/paper-xx-content-bound-math-evaluation/benchmark/corpus/mathlib4_e72c1e277f31/LICENSE",
+        "scope_status": "SCOPED_TO_OTHER_SUBTREE__NOT_ASSUMED_TO_APPLY_TO_FROZEN_TARGET_CORPUS"
+      }
+    ],
+    "public_read_access": true,
+    "repository_visibility": "public",
+    "retention_rule": "No source body is copied into V8; only hashes, byte counts, public URLs, line anchors and conservative paraphrases are retained.",
+    "reuse_or_redistribution_licence_status": "NO_REUSE_LICENCE_FOUND__CANNOT_CHECK_PERMISSION",
+    "semantic_authority_status": "PRIMARY_OWNER_REPOSITORY_PUBLICLY_ACCESSIBLE_AT_IMMUTABLE_COMMIT",
+    "separation_rule": "Semantic provenance and reuse rights are separate. Public visibility and authorship do not supply a reuse licence or owner ratification of missing denotation fields."
+  },
+  "terminal": "P1_V8_PUBLIC_TARGET_READ_ACCESS_AND_PROVENANCE_BOUND__TARGET_REUSE_LICENCE_NOT_FOUND"
+}

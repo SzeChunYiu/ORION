@@ -1,0 +1,1349 @@
+{
+  "finished_at": "2026-08-23T21:33:10.317221+00:00",
+  "protocol_sha256": "09468f0013dda92361a1df480c9c22f4436ffa664e68fec57dc2705491a8178c",
+  "rows": [
+    {
+      "frozen_index": 36,
+      "repository": "jaxionproject/jaxion",
+      "requests": [
+        {
+          "body_bytes": 3647,
+          "body_path": "evidence/36_zenodo_record.body",
+          "body_sha256": "a9f4b5bf8f323c0fe05fbe291f2b03a5b84230448c042b43865f720508399905",
+          "error": null,
+          "final_url": "https://zenodo.org/api/records/21221062",
+          "finished_at": "2026-08-23T21:32:30.612423+00:00",
+          "headers": {
+            "content-length": "3647",
+            "content-type": "application/json",
+            "etag": "\"4\"",
+            "link": "<https://zenodo.org/api/records/21221062> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+            "x-ratelimit-limit": "133",
+            "x-ratelimit-remaining": "131",
+            "x-ratelimit-reset": "1787520811"
+          },
+          "started_at": "2026-08-23T21:32:29.985700+00:00",
+          "status": 200,
+          "url": "https://zenodo.org/api/records/21221061"
+        },
+        {
+          "body_bytes": 6539,
+          "body_path": "evidence/36_github_repo.body",
+          "body_sha256": "312335cd4f88d15fe4d6e36b72d90f342d668c122fa733665395085bf7a55e9d",
+          "error": null,
+          "final_url": "https://api.github.com/repos/jaxionproject/jaxion",
+          "finished_at": "2026-08-23T21:32:31.261041+00:00",
+          "headers": {
+            "Content-Length": "6539",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"66039d205b4bf5b3351e92a3f4b0916049391e568bb5915aaa8827480b61a7b6\"",
+            "Last-Modified": "Thu, 30 Jul 2026 12:31:02 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "47",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:30.872628+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/jaxionproject/jaxion"
+        },
+        {
+          "body_bytes": 5373,
+          "body_path": "evidence/36_github_tags.body",
+          "body_sha256": "abb3585b0bccc5ab82f7d91b925723cbe55daa4a5d64bbb289581749a619184d",
+          "error": null,
+          "final_url": "https://api.github.com/repos/jaxionproject/jaxion/tags?per_page=100",
+          "finished_at": "2026-08-23T21:32:31.869731+00:00",
+          "headers": {
+            "Content-Length": "5373",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"0196c122e9effd9bd0627a53aff0edb45509412c1926d8356e3a3d1042aa9b79\"",
+            "Last-Modified": "Thu, 30 Jul 2026 12:31:02 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "46",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:31.520396+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/jaxionproject/jaxion/tags?per_page=100"
+        },
+        {
+          "body_bytes": 22793,
+          "body_path": "evidence/36_github_releases.body",
+          "body_sha256": "960340cb2abd213686057bf6ec6a2faeeec91069767ccfb3d1df8af4bc12e694",
+          "error": null,
+          "final_url": "https://api.github.com/repos/jaxionproject/jaxion/releases?per_page=100",
+          "finished_at": "2026-08-23T21:32:32.527275+00:00",
+          "headers": {
+            "Content-Length": "22793",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"cef6bee5267da1e00d937a2ed25f8cd394fcfbb9c6fde6057a6adf1a619bb4d1\"",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "45",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:32.129032+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/jaxionproject/jaxion/releases?per_page=100"
+        },
+        {
+          "body_bytes": 19831,
+          "body_path": "evidence/36_crossref.body",
+          "body_sha256": "be6a84632b62c24d751a70ae7e4c0b433b172dcf381a0e051eab2dac13d95ea2",
+          "error": null,
+          "final_url": "https://api.crossref.org/works/10.21105%2Fjoss.09542",
+          "finished_at": "2026-08-23T21:32:33.406890+00:00",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "started_at": "2026-08-23T21:32:32.787490+00:00",
+          "status": 200,
+          "url": "https://api.crossref.org/works/10.21105%2Fjoss.09542"
+        },
+        {
+          "body_bytes": 338,
+          "body_path": "evidence/36_github_ref_0.body",
+          "body_sha256": "3e977285a695e2e252cf75074490bfefff7b4ace08b3fe4093b7b010cf990747",
+          "error": null,
+          "final_url": "https://api.github.com/repos/jaxionproject/jaxion/git/ref/tags/0.0.3",
+          "finished_at": "2026-08-23T21:32:33.949041+00:00",
+          "headers": {
+            "Content-Length": "338",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"d1e63d0d22047b1ad719fcc8c01e898bb1b1bd49aa5e0a821cfec78f507e0ed5\"",
+            "Last-Modified": "Thu, 30 Jul 2026 12:31:02 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "44",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:33.665315+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/jaxionproject/jaxion/git/ref/tags/0.0.3"
+        },
+        {
+          "body_bytes": 1792,
+          "body_path": "evidence/36_github_release_0.body",
+          "body_sha256": "119f71839c4f47bd9f685ddf19f6991f54b0bdfc54c94e3fcfee43cb2bbd7991",
+          "error": null,
+          "final_url": "https://api.github.com/repos/jaxionproject/jaxion/releases/tags/0.0.3",
+          "finished_at": "2026-08-23T21:32:34.454975+00:00",
+          "headers": {
+            "Content-Length": "1792",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"f9937dc0b513c09c19146af91f7d93f5153e8043fbe4e8ff57f15d999a3cebe4\"",
+            "Last-Modified": "Thu, 23 Oct 2025 21:16:15 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "43",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:34.209277+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/jaxionproject/jaxion/releases/tags/0.0.3"
+        },
+        {
+          "body_bytes": 114,
+          "body_path": "evidence/36_github_ref_1.body",
+          "body_sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/jaxionproject/jaxion/git/ref/tags/v0.0.3",
+          "finished_at": "2026-08-23T21:32:34.988255+00:00",
+          "headers": {
+            "Content-Length": "114",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "42",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:34.706002+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/jaxionproject/jaxion/git/ref/tags/v0.0.3"
+        },
+        {
+          "body_bytes": 133,
+          "body_path": "evidence/36_github_release_1.body",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/jaxionproject/jaxion/releases/tags/v0.0.3",
+          "finished_at": "2026-08-23T21:32:35.486436+00:00",
+          "headers": {
+            "Content-Length": "133",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "41",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:35.248534+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/jaxionproject/jaxion/releases/tags/v0.0.3"
+        },
+        {
+          "body_bytes": 105,
+          "body_path": "evidence/36_swh_origin.body",
+          "body_sha256": "b694f661ad5858305a6273c4191bf7d1727f34e7462d37d45ae55457a77271de",
+          "error": "HTTPError:404",
+          "final_url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Fjaxionproject%2Fjaxion/get/",
+          "finished_at": "2026-08-23T21:32:36.050273+00:00",
+          "headers": {
+            "Content-Length": "105",
+            "Content-Type": "application/json",
+            "X-Ratelimit-Limit": "120",
+            "X-Ratelimit-Remaining": "107",
+            "X-Ratelimit-Reset": "1787521470"
+          },
+          "started_at": "2026-08-23T21:32:35.746698+00:00",
+          "status": 404,
+          "url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Fjaxionproject%2Fjaxion/get/"
+        }
+      ],
+      "version": "0.0.3"
+    },
+    {
+      "frozen_index": 91,
+      "repository": "nutritionallungimmunity/pai",
+      "requests": [
+        {
+          "body_bytes": 4793,
+          "body_path": "evidence/91_zenodo_record.body",
+          "body_sha256": "25f58d39a46aeedbf1bdb728507185a5281ac48b860416ca96e347ea7f4c30fe",
+          "error": null,
+          "final_url": "https://zenodo.org/api/records/20171460",
+          "finished_at": "2026-08-23T21:32:36.701295+00:00",
+          "headers": {
+            "content-length": "4793",
+            "content-type": "application/json",
+            "etag": "\"8\"",
+            "link": "<https://zenodo.org/api/records/20171460> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+            "x-ratelimit-limit": "133",
+            "x-ratelimit-remaining": "130",
+            "x-ratelimit-reset": "1787520811"
+          },
+          "started_at": "2026-08-23T21:32:36.302947+00:00",
+          "status": 200,
+          "url": "https://zenodo.org/api/records/20171460"
+        },
+        {
+          "body_bytes": 6888,
+          "body_path": "evidence/91_github_repo.body",
+          "body_sha256": "a175a483a9e9f8a731f57a0a1f18c39ef3d9cf48de0a87009cafba1e439bea4e",
+          "error": null,
+          "final_url": "https://api.github.com/repos/nutritionallungimmunity/pai",
+          "finished_at": "2026-08-23T21:32:37.266829+00:00",
+          "headers": {
+            "Content-Length": "6888",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"c92f6e6db05d9df4206a258e02f98a43ee905334b2d850667bb33bf87e8a1b79\"",
+            "Last-Modified": "Mon, 01 Jun 2026 18:28:11 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "40",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:36.961630+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/nutritionallungimmunity/pai"
+        },
+        {
+          "body_bytes": 438,
+          "body_path": "evidence/91_github_tags.body",
+          "body_sha256": "81dddbe6adb1df034619b87e929922c22375239e259e4a9240593199d49034c5",
+          "error": null,
+          "final_url": "https://api.github.com/repos/nutritionallungimmunity/pai/tags?per_page=100",
+          "finished_at": "2026-08-23T21:32:37.798176+00:00",
+          "headers": {
+            "Content-Length": "438",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"9bbfab929ae7cf466fac11cda76617265b9442e95fba727c87e864ba5c2971c5\"",
+            "Last-Modified": "Mon, 01 Jun 2026 18:28:11 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "39",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:37.525848+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/nutritionallungimmunity/pai/tags?per_page=100"
+        },
+        {
+          "body_bytes": 1863,
+          "body_path": "evidence/91_github_releases.body",
+          "body_sha256": "95040fd764891983594476828b8f010b573f54107348940f13a3c73e4cbf7ccb",
+          "error": null,
+          "final_url": "https://api.github.com/repos/nutritionallungimmunity/pai/releases?per_page=100",
+          "finished_at": "2026-08-23T21:32:38.412910+00:00",
+          "headers": {
+            "Content-Length": "1863",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"0e272ce59c4cb4367eac386dd89c30f30ece79ac9ed94d3eb520333c6a2f7905\"",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "38",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:38.049395+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/nutritionallungimmunity/pai/releases?per_page=100"
+        },
+        {
+          "body_bytes": 12837,
+          "body_path": "evidence/91_crossref.body",
+          "body_sha256": "2b7d3c6ba59993841c86ae5566a2727b862180811b13d016030eec61c338728d",
+          "error": null,
+          "final_url": "https://api.crossref.org/works/10.21105%2Fjoss.10245",
+          "finished_at": "2026-08-23T21:32:39.112634+00:00",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "started_at": "2026-08-23T21:32:38.664586+00:00",
+          "status": 200,
+          "url": "https://api.crossref.org/works/10.21105%2Fjoss.10245"
+        },
+        {
+          "body_bytes": 355,
+          "body_path": "evidence/91_github_ref_0.body",
+          "body_sha256": "f8356eb8a3397bd62fd60f0d859a49d7f13cb9c5e6741612b43997486e2c1ac3",
+          "error": null,
+          "final_url": "https://api.github.com/repos/nutritionallungimmunity/pai/git/ref/tags/v1.0.0",
+          "finished_at": "2026-08-23T21:32:39.648246+00:00",
+          "headers": {
+            "Content-Length": "355",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"1aad8fbbc8c105dae5a1c23b667d494a9845c368163f6bbd4968180f5c27f189\"",
+            "Last-Modified": "Mon, 01 Jun 2026 18:28:11 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "37",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:39.369131+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/nutritionallungimmunity/pai/git/ref/tags/v1.0.0"
+        },
+        {
+          "body_bytes": 1861,
+          "body_path": "evidence/91_github_release_0.body",
+          "body_sha256": "b975917301df5cb06e3a8f5ada391819cc8722c5b885dc1ec80414d7986a2dd8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/nutritionallungimmunity/pai/releases/tags/v1.0.0",
+          "finished_at": "2026-08-23T21:32:40.190962+00:00",
+          "headers": {
+            "Content-Length": "1861",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"6423f24de4a6250ec343042399b7c52f2b097afbb1a2af0ac3615f2ab64845f7\"",
+            "Last-Modified": "Tue, 02 Jun 2026 18:53:03 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "36",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:39.908439+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/nutritionallungimmunity/pai/releases/tags/v1.0.0"
+        },
+        {
+          "body_bytes": 114,
+          "body_path": "evidence/91_github_ref_1.body",
+          "body_sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/nutritionallungimmunity/pai/git/ref/tags/1.0.0",
+          "finished_at": "2026-08-23T21:32:40.708266+00:00",
+          "headers": {
+            "Content-Length": "114",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "35",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:40.449077+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/nutritionallungimmunity/pai/git/ref/tags/1.0.0"
+        },
+        {
+          "body_bytes": 133,
+          "body_path": "evidence/91_github_release_1.body",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/nutritionallungimmunity/pai/releases/tags/1.0.0",
+          "finished_at": "2026-08-23T21:32:41.214173+00:00",
+          "headers": {
+            "Content-Length": "133",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "34",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:40.968479+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/nutritionallungimmunity/pai/releases/tags/1.0.0"
+        },
+        {
+          "body_bytes": 112,
+          "body_path": "evidence/91_swh_origin.body",
+          "body_sha256": "f0b4f513d5eee8cf05e1b9649c3ed0ac424fd858838c8947c3b91c7a6c85ee04",
+          "error": "HTTPError:404",
+          "final_url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Fnutritionallungimmunity%2Fpai/get/",
+          "finished_at": "2026-08-23T21:32:41.681588+00:00",
+          "headers": {
+            "Content-Length": "112",
+            "Content-Type": "application/json",
+            "X-Ratelimit-Limit": "120",
+            "X-Ratelimit-Remaining": "106",
+            "X-Ratelimit-Reset": "1787521470"
+          },
+          "started_at": "2026-08-23T21:32:41.474378+00:00",
+          "status": 404,
+          "url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Fnutritionallungimmunity%2Fpai/get/"
+        }
+      ],
+      "version": "v1.0.0"
+    },
+    {
+      "frozen_index": 133,
+      "repository": "artefactory/woodtapper",
+      "requests": [
+        {
+          "body_bytes": 4804,
+          "body_path": "evidence/133_zenodo_record.body",
+          "body_sha256": "b3b3dfc04411464f801428f0fdd6cf675e014a11d0ecc523357e23453678e4a6",
+          "error": null,
+          "final_url": "https://zenodo.org/api/records/20026885",
+          "finished_at": "2026-08-23T21:32:42.204553+00:00",
+          "headers": {
+            "content-length": "4804",
+            "content-type": "application/json",
+            "etag": "\"4\"",
+            "link": "<https://zenodo.org/api/records/20026885> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+            "x-ratelimit-limit": "133",
+            "x-ratelimit-remaining": "129",
+            "x-ratelimit-reset": "1787520811"
+          },
+          "started_at": "2026-08-23T21:32:41.936597+00:00",
+          "status": 200,
+          "url": "https://zenodo.org/api/records/20026885"
+        },
+        {
+          "body_bytes": 6668,
+          "body_path": "evidence/133_github_repo.body",
+          "body_sha256": "839314b8aacc52276c0b2cf1fde63b0d6ddf16a11a7280b76cc8d99026fd7889",
+          "error": null,
+          "final_url": "https://api.github.com/repos/artefactory/woodtapper",
+          "finished_at": "2026-08-23T21:32:42.759991+00:00",
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"fd43b46d3d873ad7ccaf6be85f92de182b076c3741f770d288f5b100a0e168a4\"",
+            "Last-Modified": "Tue, 18 Aug 2026 09:43:58 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "33",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:42.464992+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/artefactory/woodtapper"
+        },
+        {
+          "body_bytes": 2975,
+          "body_path": "evidence/133_github_tags.body",
+          "body_sha256": "e17c5494e6fd4f92b31355ac78277e1d1ebe92640c199b3760f12a5e9e2bb3a8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/artefactory/woodtapper/tags?per_page=100",
+          "finished_at": "2026-08-23T21:32:43.331637+00:00",
+          "headers": {
+            "Content-Length": "2975",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"f3ade95d164953fc8c19f7130704b63f0210b3b314412d6ffd9ec4bad6be092f\"",
+            "Last-Modified": "Tue, 18 Aug 2026 09:43:58 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "32",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:43.017121+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/artefactory/woodtapper/tags?per_page=100"
+        },
+        {
+          "body_bytes": 16551,
+          "body_path": "evidence/133_github_releases.body",
+          "body_sha256": "67871c75b128f8d1566f4f6e4605f51976f04ab7b9d64aa5ae82700df6fa8b95",
+          "error": null,
+          "final_url": "https://api.github.com/repos/artefactory/woodtapper/releases?per_page=100",
+          "finished_at": "2026-08-23T21:32:44.029048+00:00",
+          "headers": {
+            "Content-Length": "16551",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"3ebe926136f1373d88e00fdeb372f2a75a50f69e5b162fe587fdcb1050aa017c\"",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "31",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:43.589105+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/artefactory/woodtapper/releases?per_page=100"
+        },
+        {
+          "body_bytes": 12999,
+          "body_path": "evidence/133_crossref.body",
+          "body_sha256": "9b9fa10c44bfc37ebb01276114f4237e0c7a1ee5d7d2cff93d646ecd22c8e6c2",
+          "error": null,
+          "final_url": "https://api.crossref.org/works/10.21105%2Fjoss.10112",
+          "finished_at": "2026-08-23T21:32:44.728802+00:00",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "started_at": "2026-08-23T21:32:44.289107+00:00",
+          "status": 200,
+          "url": "https://api.crossref.org/works/10.21105%2Fjoss.10112"
+        },
+        {
+          "body_bytes": 349,
+          "body_path": "evidence/133_github_ref_0.body",
+          "body_sha256": "b0735617c17bae08fa79afd328a69ca01abc48b4d09ba72143ae6352589cca9f",
+          "error": null,
+          "final_url": "https://api.github.com/repos/artefactory/woodtapper/git/ref/tags/v0.0.13",
+          "finished_at": "2026-08-23T21:32:45.376782+00:00",
+          "headers": {
+            "Content-Length": "349",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"25cb986ef211c78fd62fbf5aec8db767df4dbe2a342b597e91591b502cc54063\"",
+            "Last-Modified": "Tue, 18 Aug 2026 09:43:58 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "30",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:44.989026+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/artefactory/woodtapper/git/ref/tags/v0.0.13"
+        },
+        {
+          "body_bytes": 1933,
+          "body_path": "evidence/133_github_release_0.body",
+          "body_sha256": "b71be53313376c4109ea56b526208971fdb3cf38a5858962abfc40718b33131e",
+          "error": null,
+          "final_url": "https://api.github.com/repos/artefactory/woodtapper/releases/tags/v0.0.13",
+          "finished_at": "2026-08-23T21:32:45.899265+00:00",
+          "headers": {
+            "Content-Length": "1933",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"eca85999b4bcb3ec22c9bbf1bd7b1df8efd6a7db21e45653e3f59e0c8753104a\"",
+            "Last-Modified": "Mon, 24 Nov 2025 09:27:49 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "29",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:45.635347+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/artefactory/woodtapper/releases/tags/v0.0.13"
+        },
+        {
+          "body_bytes": 114,
+          "body_path": "evidence/133_github_ref_1.body",
+          "body_sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/artefactory/woodtapper/git/ref/tags/0.0.13",
+          "finished_at": "2026-08-23T21:32:46.453756+00:00",
+          "headers": {
+            "Content-Length": "114",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "28",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:46.159125+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/artefactory/woodtapper/git/ref/tags/0.0.13"
+        },
+        {
+          "body_bytes": 133,
+          "body_path": "evidence/133_github_release_1.body",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/artefactory/woodtapper/releases/tags/0.0.13",
+          "finished_at": "2026-08-23T21:32:46.970234+00:00",
+          "headers": {
+            "Content-Length": "133",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "27",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:46.709089+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/artefactory/woodtapper/releases/tags/0.0.13"
+        },
+        {
+          "body_bytes": 360,
+          "body_path": "evidence/133_swh_origin.body",
+          "body_sha256": "691d83ec7c28694f0759c06b98aa6dcf0ddefc1e4da88b8358462607001524b5",
+          "error": null,
+          "final_url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Fartefactory%2Fwoodtapper/get/",
+          "finished_at": "2026-08-23T21:32:47.471378+00:00",
+          "headers": {
+            "Content-Length": "360",
+            "Content-Type": "application/json",
+            "X-Ratelimit-Limit": "120",
+            "X-Ratelimit-Remaining": "105",
+            "X-Ratelimit-Reset": "1787521470"
+          },
+          "started_at": "2026-08-23T21:32:47.230588+00:00",
+          "status": 200,
+          "url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Fartefactory%2Fwoodtapper/get/"
+        }
+      ],
+      "version": "v0.0.13"
+    },
+    {
+      "frozen_index": 165,
+      "repository": "alek050/databallpy",
+      "requests": [
+        {
+          "body_bytes": 4110,
+          "body_path": "evidence/165_zenodo_record.body",
+          "body_sha256": "f4217b431948d76e908932cef5261a74c54888cd9b380e5e327d555f86cd0eab",
+          "error": null,
+          "final_url": "https://zenodo.org/api/records/19661454",
+          "finished_at": "2026-08-23T21:32:47.990803+00:00",
+          "headers": {
+            "content-length": "4110",
+            "content-type": "application/json",
+            "etag": "\"3\"",
+            "link": "<https://zenodo.org/api/records/19661454> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+            "x-ratelimit-limit": "133",
+            "x-ratelimit-remaining": "128",
+            "x-ratelimit-reset": "1787520811"
+          },
+          "started_at": "2026-08-23T21:32:47.731115+00:00",
+          "status": 200,
+          "url": "https://zenodo.org/api/records/19661454"
+        },
+        {
+          "body_bytes": 5221,
+          "body_path": "evidence/165_github_repo.body",
+          "body_sha256": "1fa7074418d3e76be824bd672fa243a4b65cfba0a2de56f996afbf8048ef3b6b",
+          "error": null,
+          "final_url": "https://api.github.com/repos/alek050/databallpy",
+          "finished_at": "2026-08-23T21:32:48.535530+00:00",
+          "headers": {
+            "Content-Length": "5221",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"b8037aebdf587e967f209b9261839b4e57a79652b9d374693124f4da29875655\"",
+            "Last-Modified": "Sat, 15 Aug 2026 16:36:32 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "24",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:48.249095+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/alek050/databallpy"
+        },
+        {
+          "body_bytes": 9907,
+          "body_path": "evidence/165_github_tags.body",
+          "body_sha256": "c8d17106d15aa48be590e2f9adfbede0ada5a3c91764e185d5b97a62de460cbf",
+          "error": null,
+          "final_url": "https://api.github.com/repos/alek050/databallpy/tags?per_page=100",
+          "finished_at": "2026-08-23T21:32:49.271739+00:00",
+          "headers": {
+            "Content-Length": "9907",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"83254acd4a94f9ca5b5599ae6fc7081d4a2c0ab48e53e8b83397add5e7d09ef4\"",
+            "Last-Modified": "Sat, 15 Aug 2026 16:36:32 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "23",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:48.795715+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/alek050/databallpy/tags?per_page=100"
+        },
+        {
+          "body_bytes": 58594,
+          "body_path": "evidence/165_github_releases.body",
+          "body_sha256": "31b05d1b1c45ae76f04243617bb040b0e3bb996bc27fc89fd56d9f226fa32a95",
+          "error": null,
+          "final_url": "https://api.github.com/repos/alek050/databallpy/releases?per_page=100",
+          "finished_at": "2026-08-23T21:32:49.912465+00:00",
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"dae823e7c462e7e407369b40993369f32ba24c9217766e87a6b56c05c215a23a\"",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "22",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:49.531964+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/alek050/databallpy/releases?per_page=100"
+        },
+        {
+          "body_bytes": 21153,
+          "body_path": "evidence/165_crossref.body",
+          "body_sha256": "6b5de5e53588a18b5a43e8ef916e0c2e0b37062e6c6c1401b652d23b05de4423",
+          "error": null,
+          "final_url": "https://api.crossref.org/works/10.21105%2Fjoss.10223",
+          "finished_at": "2026-08-23T21:32:50.723949+00:00",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "started_at": "2026-08-23T21:32:50.164559+00:00",
+          "status": 200,
+          "url": "https://api.crossref.org/works/10.21105%2Fjoss.10223"
+        },
+        {
+          "body_bytes": 331,
+          "body_path": "evidence/165_github_ref_0.body",
+          "body_sha256": "dd2ce5380b9ae80ba5ae1fae64471aa0a4f98b04ff30fe92920bd64f33c7e66b",
+          "error": null,
+          "final_url": "https://api.github.com/repos/alek050/databallpy/git/ref/tags/v0.7.3",
+          "finished_at": "2026-08-23T21:32:51.260322+00:00",
+          "headers": {
+            "Content-Length": "331",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"31c2fa9884159fec72b2ccb813c046d585850a073e726a893cdccd5846ca5049\"",
+            "Last-Modified": "Sat, 15 Aug 2026 16:36:32 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "21",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:50.977166+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/alek050/databallpy/git/ref/tags/v0.7.3"
+        },
+        {
+          "body_bytes": 7535,
+          "body_path": "evidence/165_github_release_0.body",
+          "body_sha256": "b742b582f68d9c44642b7b01ec42bb281a8a730d2ccfc6df7791dc31a4c80594",
+          "error": null,
+          "final_url": "https://api.github.com/repos/alek050/databallpy/releases/tags/v0.7.3",
+          "finished_at": "2026-08-23T21:32:51.894486+00:00",
+          "headers": {
+            "Content-Length": "7535",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"19bff0fb21b94f94900e84e4bc0e8c809f5d2890012ae956ab9934129dfacbed\"",
+            "Last-Modified": "Mon, 20 Apr 2026 09:45:12 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "20",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:51.519155+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/alek050/databallpy/releases/tags/v0.7.3"
+        },
+        {
+          "body_bytes": 114,
+          "body_path": "evidence/165_github_ref_1.body",
+          "body_sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/alek050/databallpy/git/ref/tags/0.7.3",
+          "finished_at": "2026-08-23T21:32:52.430502+00:00",
+          "headers": {
+            "Content-Length": "114",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "19",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:52.154911+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/alek050/databallpy/git/ref/tags/0.7.3"
+        },
+        {
+          "body_bytes": 133,
+          "body_path": "evidence/165_github_release_1.body",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/alek050/databallpy/releases/tags/0.7.3",
+          "finished_at": "2026-08-23T21:32:52.954915+00:00",
+          "headers": {
+            "Content-Length": "133",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "18",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:52.690822+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/alek050/databallpy/releases/tags/0.7.3"
+        },
+        {
+          "body_bytes": 103,
+          "body_path": "evidence/165_swh_origin.body",
+          "body_sha256": "d52bd8f298f5210c412454915083539d71bf4665572d9119e7fb0f050af4baf8",
+          "error": "HTTPError:404",
+          "final_url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Falek050%2Fdataballpy/get/",
+          "finished_at": "2026-08-23T21:32:53.465964+00:00",
+          "headers": {
+            "Content-Length": "103",
+            "Content-Type": "application/json",
+            "X-Ratelimit-Limit": "120",
+            "X-Ratelimit-Remaining": "104",
+            "X-Ratelimit-Reset": "1787521470"
+          },
+          "started_at": "2026-08-23T21:32:53.209166+00:00",
+          "status": 404,
+          "url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Falek050%2Fdataballpy/get/"
+        }
+      ],
+      "version": "v0.7.3"
+    },
+    {
+      "frozen_index": 185,
+      "repository": "mit-psfc/disruption-py",
+      "requests": [
+        {
+          "body_bytes": 5724,
+          "body_path": "evidence/185_zenodo_record.body",
+          "body_sha256": "60449ad2db0417e13af68d5b33ebd31111c3d3d96296ef4adeda36cba3049f35",
+          "error": null,
+          "final_url": "https://zenodo.org/api/records/19051387",
+          "finished_at": "2026-08-23T21:32:53.999936+00:00",
+          "headers": {
+            "content-length": "5724",
+            "content-type": "application/json",
+            "etag": "\"8\"",
+            "link": "<https://zenodo.org/api/records/19051387> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+            "x-ratelimit-limit": "133",
+            "x-ratelimit-remaining": "127",
+            "x-ratelimit-reset": "1787520811"
+          },
+          "started_at": "2026-08-23T21:32:53.724654+00:00",
+          "status": 200,
+          "url": "https://zenodo.org/api/records/19051387"
+        },
+        {
+          "body_bytes": 6443,
+          "body_path": "evidence/185_github_repo.body",
+          "body_sha256": "21a7c9590759d6a3de60755edf119794e40e235f98708d400123b460b7f25b4f",
+          "error": null,
+          "final_url": "https://api.github.com/repos/mit-psfc/disruption-py",
+          "finished_at": "2026-08-23T21:32:54.553174+00:00",
+          "headers": {
+            "Content-Length": "6443",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"7ae6148a9c5baf0341c6cddf12f5c0e4843b0921ef275c344dcacc821612a9f2\"",
+            "Last-Modified": "Wed, 19 Aug 2026 18:50:24 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "17",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:54.260150+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/mit-psfc/disruption-py"
+        },
+        {
+          "body_bytes": 5403,
+          "body_path": "evidence/185_github_tags.body",
+          "body_sha256": "8d26307b53b97fa8fc5d99841675b89d90b7b4e71a408d208acc6021ec3a4bb2",
+          "error": null,
+          "final_url": "https://api.github.com/repos/mit-psfc/disruption-py/tags?per_page=100",
+          "finished_at": "2026-08-23T21:32:55.171278+00:00",
+          "headers": {
+            "Content-Length": "5403",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"7e82e8ecf6dc57386fd2ca36342e2ce69a9c75c8478d3c59dc7fe3e2f61b0c1b\"",
+            "Last-Modified": "Wed, 19 Aug 2026 18:50:24 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "16",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:54.808092+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/mit-psfc/disruption-py/tags?per_page=100"
+        },
+        {
+          "body_bytes": 22100,
+          "body_path": "evidence/185_github_releases.body",
+          "body_sha256": "002fa72d1a15711852a7994b1051c6714e9ef5f7858e11f89f91894efdc3d10d",
+          "error": null,
+          "final_url": "https://api.github.com/repos/mit-psfc/disruption-py/releases?per_page=100",
+          "finished_at": "2026-08-23T21:32:55.884569+00:00",
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"7f335dbf8bb34c63a4bd532be6843b0a3699bc921a64c49ca77e28e78e92481e\"",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "15",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:55.429129+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/mit-psfc/disruption-py/releases?per_page=100"
+        },
+        {
+          "body_bytes": 21674,
+          "body_path": "evidence/185_crossref.body",
+          "body_sha256": "1d6a7e971a57692c1326f7c91f8ed2ff92a7327f61834c29e77d01cbf218025e",
+          "error": null,
+          "final_url": "https://api.crossref.org/works/10.21105%2Fjoss.09364",
+          "finished_at": "2026-08-23T21:32:56.739916+00:00",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "started_at": "2026-08-23T21:32:56.141439+00:00",
+          "status": 200,
+          "url": "https://api.crossref.org/works/10.21105%2Fjoss.09364"
+        },
+        {
+          "body_bytes": 114,
+          "body_path": "evidence/185_github_ref_0.body",
+          "body_sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/mit-psfc/disruption-py/git/ref/tags/v0.14.0",
+          "finished_at": "2026-08-23T21:32:57.378292+00:00",
+          "headers": {
+            "Content-Length": "114",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "14",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:57.000156+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/mit-psfc/disruption-py/git/ref/tags/v0.14.0"
+        },
+        {
+          "body_bytes": 133,
+          "body_path": "evidence/185_github_release_0.body",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/mit-psfc/disruption-py/releases/tags/v0.14.0",
+          "finished_at": "2026-08-23T21:32:57.915846+00:00",
+          "headers": {
+            "Content-Length": "133",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "13",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:57.629142+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/mit-psfc/disruption-py/releases/tags/v0.14.0"
+        },
+        {
+          "body_bytes": 114,
+          "body_path": "evidence/185_github_ref_1.body",
+          "body_sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/mit-psfc/disruption-py/git/ref/tags/0.14.0",
+          "finished_at": "2026-08-23T21:32:58.466478+00:00",
+          "headers": {
+            "Content-Length": "114",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "12",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:58.176132+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/mit-psfc/disruption-py/git/ref/tags/0.14.0"
+        },
+        {
+          "body_bytes": 133,
+          "body_path": "evidence/185_github_release_1.body",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/mit-psfc/disruption-py/releases/tags/0.14.0",
+          "finished_at": "2026-08-23T21:32:58.987660+00:00",
+          "headers": {
+            "Content-Length": "133",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "11",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:32:58.726664+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/mit-psfc/disruption-py/releases/tags/0.14.0"
+        },
+        {
+          "body_bytes": 107,
+          "body_path": "evidence/185_swh_origin.body",
+          "body_sha256": "9e1af05a6b40635371d321fef307ecfe7fa622c517a916a7dfbdce199bfa5464",
+          "error": "HTTPError:404",
+          "final_url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Fmit-psfc%2Fdisruption-py/get/",
+          "finished_at": "2026-08-23T21:32:59.443532+00:00",
+          "headers": {
+            "Content-Length": "107",
+            "Content-Type": "application/json",
+            "X-Ratelimit-Limit": "120",
+            "X-Ratelimit-Remaining": "103",
+            "X-Ratelimit-Reset": "1787521470"
+          },
+          "started_at": "2026-08-23T21:32:59.247726+00:00",
+          "status": 404,
+          "url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Fmit-psfc%2Fdisruption-py/get/"
+        }
+      ],
+      "version": "v0.14.0"
+    },
+    {
+      "frozen_index": 190,
+      "repository": "ugurdar/datadriftr",
+      "requests": [
+        {
+          "body_bytes": 4035,
+          "body_path": "evidence/190_zenodo_record.body",
+          "body_sha256": "29d07b1d8ec7dc7ecc2a3aaffb42ced5ad9989107b3df5a624eb4764df7e15e9",
+          "error": null,
+          "final_url": "https://zenodo.org/api/records/19335435",
+          "finished_at": "2026-08-23T21:33:00.076468+00:00",
+          "headers": {
+            "content-length": "4035",
+            "content-type": "application/json",
+            "etag": "\"4\"",
+            "link": "<https://zenodo.org/api/records/19335435> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+            "x-ratelimit-limit": "133",
+            "x-ratelimit-remaining": "126",
+            "x-ratelimit-reset": "1787520811"
+          },
+          "started_at": "2026-08-23T21:32:59.703793+00:00",
+          "status": 200,
+          "url": "https://zenodo.org/api/records/19335435"
+        },
+        {
+          "body_bytes": 5122,
+          "body_path": "evidence/190_github_repo.body",
+          "body_sha256": "d77d3138cf31096160b4dd1c6cbdde15d8622245fc57f40512ea10d95f12997d",
+          "error": null,
+          "final_url": "https://api.github.com/repos/ugurdar/datadriftr",
+          "finished_at": "2026-08-23T21:33:00.617577+00:00",
+          "headers": {
+            "Content-Length": "5122",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"5ab56a5e94662a383f97251e389f7877ae71b500ff5f8c147116322c8fac1d4f\"",
+            "Last-Modified": "Sat, 20 Jun 2026 12:48:58 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "10",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:00.329156+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/ugurdar/datadriftr"
+        },
+        {
+          "body_bytes": 411,
+          "body_path": "evidence/190_github_tags.body",
+          "body_sha256": "01a44632743095354ce2883eee550d5e5d104a5e4a6405ad01adc418a4ad445e",
+          "error": null,
+          "final_url": "https://api.github.com/repos/ugurdar/datadriftr/tags?per_page=100",
+          "finished_at": "2026-08-23T21:33:01.230794+00:00",
+          "headers": {
+            "Content-Length": "411",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"47c5358336f551ce9e7207bb380211c7c32a6cdc0fe2e3b5c35a0d54984929f2\"",
+            "Last-Modified": "Sat, 20 Jun 2026 12:48:58 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "9",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:00.877789+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/ugurdar/datadriftr/tags?per_page=100"
+        },
+        {
+          "body_bytes": 1723,
+          "body_path": "evidence/190_github_releases.body",
+          "body_sha256": "9805bf57cf01d844e3e956d61813ede9308a65fd43861cd6481826e1df102044",
+          "error": null,
+          "final_url": "https://api.github.com/repos/ugurdar/datadriftr/releases?per_page=100",
+          "finished_at": "2026-08-23T21:33:01.855523+00:00",
+          "headers": {
+            "Content-Length": "1723",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"78e7293927c0358fa5ed7ab042c75499e9ed57ec2973e117ff0bb7c3344b5222\"",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "8",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:01.490992+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/ugurdar/datadriftr/releases?per_page=100"
+        },
+        {
+          "body_bytes": 8101,
+          "body_path": "evidence/190_crossref.body",
+          "body_sha256": "8a7351b534245495a34006e2aab633a951a805c04c72df39f5b95ae708037729",
+          "error": null,
+          "final_url": "https://api.crossref.org/works/10.21105%2Fjoss.09481",
+          "finished_at": "2026-08-23T21:33:02.515072+00:00",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "started_at": "2026-08-23T21:33:02.114857+00:00",
+          "status": 200,
+          "url": "https://api.crossref.org/works/10.21105%2Fjoss.09481"
+        },
+        {
+          "body_bytes": 114,
+          "body_path": "evidence/190_github_ref_0.body",
+          "body_sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/ugurdar/datadriftr/git/ref/tags/1.1.0",
+          "finished_at": "2026-08-23T21:33:03.151466+00:00",
+          "headers": {
+            "Content-Length": "114",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "6",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:02.775507+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/ugurdar/datadriftr/git/ref/tags/1.1.0"
+        },
+        {
+          "body_bytes": 133,
+          "body_path": "evidence/190_github_release_0.body",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/ugurdar/datadriftr/releases/tags/1.1.0",
+          "finished_at": "2026-08-23T21:33:03.711778+00:00",
+          "headers": {
+            "Content-Length": "133",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "4",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:03.402712+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/ugurdar/datadriftr/releases/tags/1.1.0"
+        },
+        {
+          "body_bytes": 114,
+          "body_path": "evidence/190_github_ref_1.body",
+          "body_sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/ugurdar/datadriftr/git/ref/tags/v1.1.0",
+          "finished_at": "2026-08-23T21:33:04.256037+00:00",
+          "headers": {
+            "Content-Length": "114",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "3",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:03.971974+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/ugurdar/datadriftr/git/ref/tags/v1.1.0"
+        },
+        {
+          "body_bytes": 133,
+          "body_path": "evidence/190_github_release_1.body",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/ugurdar/datadriftr/releases/tags/v1.1.0",
+          "finished_at": "2026-08-23T21:33:04.753499+00:00",
+          "headers": {
+            "Content-Length": "133",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "2",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:04.509164+00:00",
+          "status": 404,
+          "url": "https://api.github.com/repos/ugurdar/datadriftr/releases/tags/v1.1.0"
+        },
+        {
+          "body_bytes": 103,
+          "body_path": "evidence/190_swh_origin.body",
+          "body_sha256": "aea4dfd89920a0c768727fc894b9a02b36d91389c847d61bc2ddf45307c24cbe",
+          "error": "HTTPError:404",
+          "final_url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Fugurdar%2Fdatadriftr/get/",
+          "finished_at": "2026-08-23T21:33:05.215514+00:00",
+          "headers": {
+            "Content-Length": "103",
+            "Content-Type": "application/json",
+            "X-Ratelimit-Limit": "120",
+            "X-Ratelimit-Remaining": "102",
+            "X-Ratelimit-Reset": "1787521470"
+          },
+          "started_at": "2026-08-23T21:33:05.009175+00:00",
+          "status": 404,
+          "url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Fugurdar%2Fdatadriftr/get/"
+        }
+      ],
+      "version": "1.1.0"
+    },
+    {
+      "frozen_index": 199,
+      "repository": "targene/targene-pipeline",
+      "requests": [
+        {
+          "body_bytes": 5027,
+          "body_path": "evidence/199_zenodo_record.body",
+          "body_sha256": "f7feb743cc4cec8e1c7d0a7a7638642c087bb8df764895ecb696d9c70688ceb6",
+          "error": null,
+          "final_url": "https://zenodo.org/api/records/19202203",
+          "finished_at": "2026-08-23T21:33:05.791104+00:00",
+          "headers": {
+            "content-length": "5027",
+            "content-type": "application/json",
+            "etag": "\"3\"",
+            "link": "<https://zenodo.org/api/records/19202203> ; rel=\"linkset\" ; type=\"application/linkset+json\"",
+            "x-ratelimit-limit": "133",
+            "x-ratelimit-remaining": "125",
+            "x-ratelimit-reset": "1787520811"
+          },
+          "started_at": "2026-08-23T21:33:05.466434+00:00",
+          "status": 200,
+          "url": "https://zenodo.org/api/records/19202203"
+        },
+        {
+          "body_bytes": 6354,
+          "body_path": "evidence/199_github_repo.body",
+          "body_sha256": "1bb39687309b2b368c860bca364363a11f13675633047bf1b80e0d00c977a9bc",
+          "error": null,
+          "final_url": "https://api.github.com/repos/targene/targene-pipeline",
+          "finished_at": "2026-08-23T21:33:06.381781+00:00",
+          "headers": {
+            "Content-Length": "6354",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"85a0cd9590661e911c5b291536fd480eeb41fae6ab1fda3507082f3534eed4bb\"",
+            "Last-Modified": "Tue, 12 May 2026 20:05:46 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "1",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:06.049185+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/targene/targene-pipeline"
+        },
+        {
+          "body_bytes": 867,
+          "body_path": "evidence/199_github_tags.body",
+          "body_sha256": "8fb2d819048925a27c0642bdf5c14b48b43115c1bca9556b6f333123b9cb842d",
+          "error": null,
+          "final_url": "https://api.github.com/repos/targene/targene-pipeline/tags?per_page=100",
+          "finished_at": "2026-08-23T21:33:06.979302+00:00",
+          "headers": {
+            "Content-Length": "867",
+            "Content-Type": "application/json; charset=utf-8",
+            "ETag": "W/\"8195d342ccf4e686cfa8847a3641b5e01d8cf2f989ab5b8eb7d926bb4c608aed\"",
+            "Last-Modified": "Tue, 12 May 2026 20:05:46 GMT",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:06.638002+00:00",
+          "status": 200,
+          "url": "https://api.github.com/repos/targene/targene-pipeline/tags?per_page=100"
+        },
+        {
+          "body_bytes": 278,
+          "body_path": "evidence/199_github_releases.body",
+          "body_sha256": "71fcb00e15ae45781f157f190b56b54ed08716bcf242cab6bd68eb2719b0613e",
+          "error": "HTTPError:403",
+          "final_url": "https://api.github.com/repos/targene/targene-pipeline/releases?per_page=100",
+          "finished_at": "2026-08-23T21:33:07.342054+00:00",
+          "headers": {
+            "Content-Length": "278",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:07.239901+00:00",
+          "status": 403,
+          "url": "https://api.github.com/repos/targene/targene-pipeline/releases?per_page=100"
+        },
+        {
+          "body_bytes": 14779,
+          "body_path": "evidence/199_crossref.body",
+          "body_sha256": "0f0fb2768d829013562f6d3ac24d2562bb81bb3278cf5601a2afca4a992f2f44",
+          "error": null,
+          "final_url": "https://api.crossref.org/works/10.21105%2Fjoss.09603",
+          "finished_at": "2026-08-23T21:33:08.146417+00:00",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "started_at": "2026-08-23T21:33:07.602390+00:00",
+          "status": 200,
+          "url": "https://api.crossref.org/works/10.21105%2Fjoss.09603"
+        },
+        {
+          "body_bytes": 278,
+          "body_path": "evidence/199_github_ref_0.body",
+          "body_sha256": "71fcb00e15ae45781f157f190b56b54ed08716bcf242cab6bd68eb2719b0613e",
+          "error": "HTTPError:403",
+          "final_url": "https://api.github.com/repos/targene/targene-pipeline/git/ref/tags/v0.13.4",
+          "finished_at": "2026-08-23T21:33:08.481790+00:00",
+          "headers": {
+            "Content-Length": "278",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:08.397845+00:00",
+          "status": 403,
+          "url": "https://api.github.com/repos/targene/targene-pipeline/git/ref/tags/v0.13.4"
+        },
+        {
+          "body_bytes": 278,
+          "body_path": "evidence/199_github_release_0.body",
+          "body_sha256": "71fcb00e15ae45781f157f190b56b54ed08716bcf242cab6bd68eb2719b0613e",
+          "error": "HTTPError:403",
+          "final_url": "https://api.github.com/repos/targene/targene-pipeline/releases/tags/v0.13.4",
+          "finished_at": "2026-08-23T21:33:08.816726+00:00",
+          "headers": {
+            "Content-Length": "278",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:08.734797+00:00",
+          "status": 403,
+          "url": "https://api.github.com/repos/targene/targene-pipeline/releases/tags/v0.13.4"
+        },
+        {
+          "body_bytes": 278,
+          "body_path": "evidence/199_github_ref_1.body",
+          "body_sha256": "71fcb00e15ae45781f157f190b56b54ed08716bcf242cab6bd68eb2719b0613e",
+          "error": "HTTPError:403",
+          "final_url": "https://api.github.com/repos/targene/targene-pipeline/git/ref/tags/0.13.4",
+          "finished_at": "2026-08-23T21:33:09.246998+00:00",
+          "headers": {
+            "Content-Length": "278",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:09.069220+00:00",
+          "status": 403,
+          "url": "https://api.github.com/repos/targene/targene-pipeline/git/ref/tags/0.13.4"
+        },
+        {
+          "body_bytes": 278,
+          "body_path": "evidence/199_github_release_1.body",
+          "body_sha256": "71fcb00e15ae45781f157f190b56b54ed08716bcf242cab6bd68eb2719b0613e",
+          "error": "HTTPError:403",
+          "final_url": "https://api.github.com/repos/targene/targene-pipeline/releases/tags/0.13.4",
+          "finished_at": "2026-08-23T21:33:09.589664+00:00",
+          "headers": {
+            "Content-Length": "278",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-RateLimit-Limit": "60",
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": "1787524265"
+          },
+          "started_at": "2026-08-23T21:33:09.498565+00:00",
+          "status": 403,
+          "url": "https://api.github.com/repos/targene/targene-pipeline/releases/tags/0.13.4"
+        },
+        {
+          "body_bytes": 109,
+          "body_path": "evidence/199_swh_origin.body",
+          "body_sha256": "543921efb1d5f0afb0b0e4061ae40fc3e2d89e69c4f128e4a23637a1d17d9d0d",
+          "error": "HTTPError:404",
+          "final_url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Ftargene%2Ftargene-pipeline/get/",
+          "finished_at": "2026-08-23T21:33:10.060688+00:00",
+          "headers": {
+            "Content-Length": "109",
+            "Content-Type": "application/json",
+            "X-Ratelimit-Limit": "120",
+            "X-Ratelimit-Remaining": "101",
+            "X-Ratelimit-Reset": "1787521470"
+          },
+          "started_at": "2026-08-23T21:33:09.848818+00:00",
+          "status": 404,
+          "url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2Ftargene%2Ftargene-pipeline/get/"
+        }
+      ],
+      "version": "v0.13.4"
+    }
+  ],
+  "schema_version": "orion.p4.primary-authority-probe.v9"
+}

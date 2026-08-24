@@ -1,0 +1,234 @@
+{
+  "compiler_execution": {
+    "docker_desktop_start_exact_terminal": "Unable to find application named 'Docker'",
+    "executed": false,
+    "initial_docker_pull_exact_terminal": "failed to connect to the docker API at unix:///var/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /var/run/docker.sock: connect: no such file or directory",
+    "initial_docker_pull_returncode": 1,
+    "lawful_disposable_runtime_attempt": {
+      "first_start_terminal": "failed to download cache artifact: exit status 1; error starting vm: error at 'creating and starting': exit status 1",
+      "homebrew_formula": "colima 0.10.3 with lima 2.2.0",
+      "second_start_observation": "VM entered running state but guest SSH/runtime did not become available; colima status returned error retrieving current runtime: empty value; docker API remained unavailable."
+    },
+    "next_contract": "Provider-native signed statement must bind the frozen 106-output manifest SHA-256, tracked JAR SHA-256, full revision/tree, exact compiler and build command; alternatively a new prospective lane may retry this exact frozen image digest in an available linux/arm64 OCI runtime.",
+    "pinned_image": {
+      "license_boundary": "Public Eclipse Temurin OpenJDK image; runtime labels and component/license inventory must be captured in the SBOM.",
+      "manifest_digest": "sha256:38e51c132b7e3bd6c5b131303792ece0a8a6f32ee1039eee2c04a87678760861",
+      "platform": "linux/arm64/v8",
+      "registry": "docker.io/library/eclipse-temurin",
+      "required_runtime_check": "javac -version must print javac 17.0.14 and java -version must identify OpenJDK 17.0.14+7 before compilation",
+      "tag_observed_before_freeze": "17.0.14_7-jdk"
+    },
+    "substitute_compiler_used": false,
+    "terminal": "PINNED_COMPILER_RUNTIME_UNAVAILABLE_NO_BUILD_EXECUTED"
+  },
+  "finished_at": "2026-08-24T06:37:06.032321+00:00",
+  "jar_projection_exact": true,
+  "network_request_count": 10,
+  "protocol_sha256": "9bc43bfae807d3d69ac01696786987e0e7e583421dc0e77d1af3f22ef7bec1dd",
+  "requests": [
+    {
+      "body_bytes": 1469,
+      "body_path": "evidence/github_commits_paipexe.body",
+      "body_sha256": "70227b23a8c56bf708ad8a6f75a8dad3a1c658ec97fbc9afa7211221ff2b1c68",
+      "error": null,
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/commits?path=cpp%2FPAIpp.exe&per_page=100",
+      "finished_at": "2026-08-24T06:37:02.777980+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"bbd7c6095250018885eaf0a92751fdcf43e5a4d837097a5e31b774e12756150b\"",
+        "last-modified": "Wed, 21 Jan 2026 03:58:37 GMT",
+        "x-github-request-id": "FCAE:22A799:5B3233:6E9010:6A8BE68E",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "45",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_commits_paipexe",
+      "started_at": "2026-08-24T06:37:02.374250+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/commits?path=cpp%2FPAIpp.exe&per_page=100"
+    },
+    {
+      "body_bytes": 1469,
+      "body_path": "evidence/github_commits_runsh.body",
+      "body_sha256": "70227b23a8c56bf708ad8a6f75a8dad3a1c658ec97fbc9afa7211221ff2b1c68",
+      "error": null,
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/commits?path=run.sh&per_page=100",
+      "finished_at": "2026-08-24T06:37:03.109116+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"bbd7c6095250018885eaf0a92751fdcf43e5a4d837097a5e31b774e12756150b\"",
+        "last-modified": "Wed, 21 Jan 2026 03:58:37 GMT",
+        "x-github-request-id": "FCAF:3EAB34:5C8A14:6FEAD4:6A8BE68E",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "44",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_commits_runsh",
+      "started_at": "2026-08-24T06:37:02.778140+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/commits?path=run.sh&per_page=100"
+    },
+    {
+      "body_bytes": 1863,
+      "body_path": "evidence/github_releases.body",
+      "body_sha256": "95040fd764891983594476828b8f010b573f54107348940f13a3c73e4cbf7ccb",
+      "error": null,
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/releases?per_page=100",
+      "finished_at": "2026-08-24T06:37:03.406770+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"34e141f24f1dd63a9daa21c649e6dec1d90c705a0422c07cca27a102c12308a8\"",
+        "x-github-request-id": "FCB0:FC696:5FEA0A:734974:6A8BE68F",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "43",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_releases",
+      "started_at": "2026-08-24T06:37:03.109266+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/releases?per_page=100"
+    },
+    {
+      "body_bytes": 126,
+      "body_path": "evidence/github_attestations_zenodo_archive.body",
+      "body_sha256": "8ecae33333826db91507fbc9512eabf6e8e7c9be3c43f6681ca70bff4c028a6d",
+      "error": "HTTPError: 404 Not Found",
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/attestations/sha256:2a94e0ed7e61e18ea4135aa559d6a06a407adcabd84dbbc52ebface6bba5b407",
+      "finished_at": "2026-08-24T06:37:03.798760+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "x-github-request-id": "FCB1:625FE:5CB21C:70124C:6A8BE68F",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "42",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_attestations_zenodo_archive",
+      "started_at": "2026-08-24T06:37:03.406946+00:00",
+      "status": 404,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/attestations/sha256:2a94e0ed7e61e18ea4135aa559d6a06a407adcabd84dbbc52ebface6bba5b407"
+    },
+    {
+      "body_bytes": 126,
+      "body_path": "evidence/github_attestations_paipexe.body",
+      "body_sha256": "8ecae33333826db91507fbc9512eabf6e8e7c9be3c43f6681ca70bff4c028a6d",
+      "error": "HTTPError: 404 Not Found",
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/attestations/sha256:23887c1ec55e689014298c8e276a4bafbfbd3ba9fbbb0e317505f33816c5f4d6",
+      "finished_at": "2026-08-24T06:37:04.153969+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "x-github-request-id": "FCB2:B6A4A:5B66A1:6EC3B0:6A8BE68F",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "41",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_attestations_paipexe",
+      "started_at": "2026-08-24T06:37:03.799422+00:00",
+      "status": 404,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/attestations/sha256:23887c1ec55e689014298c8e276a4bafbfbd3ba9fbbb0e317505f33816c5f4d6"
+    },
+    {
+      "body_bytes": 126,
+      "body_path": "evidence/github_attestations_runsh.body",
+      "body_sha256": "8ecae33333826db91507fbc9512eabf6e8e7c9be3c43f6681ca70bff4c028a6d",
+      "error": "HTTPError: 404 Not Found",
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/attestations/sha256:20464879ee7dfd8db06c1f7978488f8e78c021df6b97df530a86628835ca90d1",
+      "finished_at": "2026-08-24T06:37:04.503701+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "x-github-request-id": "FCB3:278568:60A9B0:740BEC:6A8BE690",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "40",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_attestations_runsh",
+      "started_at": "2026-08-24T06:37:04.154117+00:00",
+      "status": 404,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/attestations/sha256:20464879ee7dfd8db06c1f7978488f8e78c021df6b97df530a86628835ca90d1"
+    },
+    {
+      "body_bytes": 22795,
+      "body_path": "evidence/github_commit_6e7f7b5c8e4502cb3e6f6ee20d30b72ebbe697f5.body",
+      "body_sha256": "409db45f59316f4bb4bce338aae24a3b913596ddba7ce1ce7e3fbe16ed71b263",
+      "error": null,
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/commits/6e7f7b5c8e4502cb3e6f6ee20d30b72ebbe697f5",
+      "finished_at": "2026-08-24T06:37:04.965373+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"4a57e8ddcf331ceef9d258cfbdc2ff95b28911d49932e20ca564f6c9fe8b56e2\"",
+        "last-modified": "Wed, 21 Jan 2026 03:58:37 GMT",
+        "x-github-request-id": "FCB5:1A1C03:586881:6BC679:6A8BE690",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "39",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_commit_6e7f7b5c8e4502cb3e6f6ee20d30b72ebbe697f5",
+      "started_at": "2026-08-24T06:37:04.503868+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/commits/6e7f7b5c8e4502cb3e6f6ee20d30b72ebbe697f5"
+    },
+    {
+      "body_bytes": 100064,
+      "body_path": "evidence/github_tree_4a13829d2090894fa53b2d57be5777616423ba6e.body",
+      "body_sha256": "7243e0248876364da486c7eb5c0de494ac9887be6fd992cd6e30976a562c3b17",
+      "error": null,
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/git/trees/4a13829d2090894fa53b2d57be5777616423ba6e?recursive=1",
+      "finished_at": "2026-08-24T06:37:05.363085+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"1cda635ef6f62c1acff189773cc0232e11ea07425ce65083e7b24afca131b496\"",
+        "last-modified": "Mon, 01 Jun 2026 18:28:11 GMT",
+        "x-github-request-id": "FCB6:43C38:5A9515:6DF416:6A8BE691",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "38",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_tree_4a13829d2090894fa53b2d57be5777616423ba6e",
+      "started_at": "2026-08-24T06:37:04.965607+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/git/trees/4a13829d2090894fa53b2d57be5777616423ba6e?recursive=1"
+    },
+    {
+      "body_bytes": 5787,
+      "body_path": "evidence/github_commit_aa021231cdafb6d74ce9ab5f55f824a3032058a4.body",
+      "body_sha256": "4d3abc2500d9650d3c1645b56fd19795dd108bf29b1e3260cb47ef3b8a1a15bb",
+      "error": null,
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/commits/aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+      "finished_at": "2026-08-24T06:37:05.655753+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"213f8dc46f7ce3a74321738a3e49fc8e4e34828755be3324c5d95cc7be660784\"",
+        "last-modified": "Wed, 13 May 2026 21:03:45 GMT",
+        "x-github-request-id": "FCB7:195FE6:5EB89E:721886:6A8BE691",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "37",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_commit_aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+      "started_at": "2026-08-24T06:37:05.363543+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/commits/aa021231cdafb6d74ce9ab5f55f824a3032058a4"
+    },
+    {
+      "body_bytes": 101737,
+      "body_path": "evidence/github_tree_d5620f3acf4e5a163cfdfdefc2432ebd5709008a.body",
+      "body_sha256": "90d787fdcb330ec79b917122a697a518a0db50561d60d941533638d4e7071008",
+      "error": null,
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/git/trees/d5620f3acf4e5a163cfdfdefc2432ebd5709008a?recursive=1",
+      "finished_at": "2026-08-24T06:37:06.031550+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"8576f416416f3b5dce9cf2d8a36637e7f4d49fce09c00d5338c78f413fad584c\"",
+        "last-modified": "Mon, 01 Jun 2026 18:28:11 GMT",
+        "x-github-request-id": "FCB8:102427:57D278:6B290C:6A8BE691",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "36",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_tree_d5620f3acf4e5a163cfdfdefc2432ebd5709008a",
+      "started_at": "2026-08-24T06:37:05.655957+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/git/trees/d5620f3acf4e5a163cfdfdefc2432ebd5709008a?recursive=1"
+    }
+  ],
+  "schema_version": "orion.p4.exact-edge-build-provenance.v12.probe-receipt"
+}

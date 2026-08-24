@@ -1,0 +1,72 @@
+{
+  "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+  "authority": "OUTCOME_BLIND_C1_PREFLIGHT_AND_ARM_NATIVE_ADAPTER_BINDING_ONLY",
+  "execution_order": [
+    "independent custodian freezes missing candidate case, primary model/service, complete runtime, remaining rights, network/resource enforcement and protected scorer fields",
+    "preflight rejects retry-agent, action-sampler, review-on-submit, open-PR and local-apply configuration for the fixed-agent arm",
+    "validator verifies every required C1 field is BOUND without outcome access",
+    "wrapper copies a read-only seed to an ephemeral task root in a new read-only container",
+    "SWE-agent receives only candidate-visible packet and prospectively frozen configuration",
+    "native parser hashes submission and retains native terminal without class inference",
+    "candidate output is transferred once to external protected custody with no feedback",
+    "external scorer evaluates once; candidate and adaptation custody receive no score or outcome"
+  ],
+  "frozen_at_utc": "2026-08-23T17:30:00Z",
+  "frozen_components": {
+    "compute": {
+      "gpus": 0,
+      "parallelism": 1,
+      "pids_limit": 512,
+      "ram_gib": 4,
+      "vcpus": 1
+    },
+    "dependency_lock": {
+      "packages": 152,
+      "path": "SWE_AGENT_DEPENDENCY_LOCK_V4.uv.lock",
+      "python_request": "3.11",
+      "resolver": "uv 0.11.1",
+      "sha256": "488077a1f953459ee955ef17588dcb0eb3e7b5e42ed3e1ba252c3af96ff573c8"
+    },
+    "fallbacks": [],
+    "isolation_wrapper": {
+      "path": "p5_c1_isolated_runner.py",
+      "sha256": "00de7c33623dc9d9b30c1a059ee95cbc2f1a16bbbef553df9cb3f08b1beb4e1d"
+    },
+    "native_parser": {
+      "path": "p5_c1_native_parser.py",
+      "sha256": "fba94970a47735be47bc71c2c6f99566b343c7526f8516acedb8254b3a2a94c4"
+    },
+    "public_smoke_fixture": {
+      "path": "UPSTREAM_SIMPLE_INSTANCE.yaml",
+      "sha256": "b088b1a7d146afcab66d2c529409066685a2b4d4433ba18df3649aef0c374bd8"
+    },
+    "wallclock_seconds": {
+      "per_case": 3600,
+      "termination_grace": 30,
+      "whole_c1_run": 3600
+    }
+  },
+  "nonclaims": [
+    "No comparator or model was executed.",
+    "The simple fixture is not a P5 confirmatory case.",
+    "A native parser is not an eight-class scientific classifier.",
+    "No performance, preservation, transfer, harm or superiority result is available."
+  ],
+  "predecessors": {
+    "v2_comparator_panel_sha256s": "94ef91058dd6c453296d557129e080ff7918f8d7e09716a1d69ba57d77b5bad1",
+    "v2_identity_ledger": "f6419103024de98d0cf44ee2681399007001eb79c9b830312d501b6045a60583",
+    "v2_resource_ledger": "1e3a450b1561cb2d3a1d556c77ef1688f8894fb2331fcfa334de87a18bd11dfe",
+    "v2_terminal_adapters_sha256s": "bd69cfcb3dda70d4d08c84b6ce35a0cc7e77865627dd48278e07b3f8cd158850",
+    "v3_adapter_refinement_sha256s": "50d1ff72f63093216761c4b47d3ced6de82915967578f33f3296bf41e4f73c4a",
+    "v3_blocker_ledger": "265e3ba834ab7e24c471965f8064542e3f61f74414e0646b22a90fe9ae95c789",
+    "v3_resource_template": "b20b30937dd79a5c318ef2a76abe1db561918c1118416faf5f70d4b952e48340"
+  },
+  "protocol_id": "P5.C1.SWE_AGENT.EXECUTION.BINDING.V4",
+  "schema_version": "orion.p5.c1.swe-agent-execution-binding-protocol.v4",
+  "source_identity": {
+    "commit_sha": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+    "licence": "MIT",
+    "native_entrypoint": "sweagent = sweagent.run.run:main",
+    "repository": "https://github.com/SWE-agent/SWE-agent"
+  }
+}

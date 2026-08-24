@@ -1,0 +1,64 @@
+{
+  "arm_code": "C4",
+  "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+  "arm_or_model_executed": false,
+  "authority": "BYTE_LEVEL_PREFLIGHT_ONLY",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "future_or_planned_bytes_promoted_to_evidence": false,
+  "missing_byte_artifacts": [
+    "P5 LANG-1-compatible ADIAS domain adapter implementation bytes",
+    "domain data/environment bytes for the shared Java repair case",
+    "case-specific task-id/seed/turn/step/evaluation-limit configuration"
+  ],
+  "next_discriminator": "Preregister a separately named ADIAS P5 software-repair domain successor, implement its environment against only the V6 core, and freeze task ID, seed, turns, steps, samples, and all implementation/data hashes while continuing to exclude bundled ADIAS task data.",
+  "observations": [
+    "No ADIAS domain/model job or bundled task data was accessed or executed."
+  ],
+  "predecessor": {
+    "candidate_requirements": {
+      "path": "development/p5-adias-execution-binding-v4-2026-08-23/P5_C4_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json",
+      "sha256": "d5acf695a510228455d16c8eb4996138fb392901beeddb4970876c3107c22d72",
+      "size_bytes": 878
+    },
+    "field_registry": {
+      "path": "development/p5-adias-execution-binding-v4-2026-08-23/P5_C4_V4_FIELD_REGISTRY.json",
+      "sha256": "d54c7c676ffd400faba8bc5d9735b08c5eeff8d717a614784d6cfee04cbe9a98",
+      "size_bytes": 16453
+    }
+  },
+  "residual": "The six retained native ADIAS domains are alfworld, taubench_return, taubench_retail, textcraft, webshop, and scienceworld; none implements the V6 Apache Commons Lang patch task. Choosing one by name or declaring limits without adapter bytes would change task semantics.",
+  "satisfied_criteria": [
+    "shared core identity and rights",
+    "ADIAS source identity, parser, and runner identity",
+    "six retained native-domain names are known"
+  ],
+  "schema_version": "orion.p5.native-task-environment-manifest.v7",
+  "shared_core": {
+    "case_body": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/CASE_BODY_V6.json",
+      "sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+      "size_bytes": 2799
+    },
+    "core_index": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_CORE_INDEX_V6.json",
+      "sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "size_bytes": 2399
+    },
+    "rights_manifest": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_RIGHTS_MANIFEST_V6.json",
+      "sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+      "size_bytes": 4082
+    },
+    "source_archive": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+      "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+      "size_bytes": 681034
+    },
+    "task_specification": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/TASK_SPECIFICATION_V6.md",
+      "sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+      "size_bytes": 1070
+    }
+  },
+  "status": "BLOCKING"
+}

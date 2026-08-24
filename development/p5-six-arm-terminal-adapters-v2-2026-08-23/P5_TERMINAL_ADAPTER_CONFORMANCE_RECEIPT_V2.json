@@ -1,0 +1,833 @@
+{
+  "authority": "SYNTHETIC_FIXTURE_CONFORMANCE_ONLY__NOT_COMPARATOR_PERFORMANCE",
+  "cases_by_arm": {
+    "C1_FIXED_AGENT__SWE_AGENT": 15,
+    "C2_DIRECT_SELF_EDIT__MOSS": 15,
+    "C3_ARCHIVE_BASED_SELF_EDIT__DGM": 15,
+    "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS": 15,
+    "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY": 15,
+    "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW": 15
+  },
+  "comparators_executed": false,
+  "fibre_counterexample_checks": [
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "distinct_latent_classes": [
+        "EVALUATOR_REPAIR",
+        "EXECUTION_REPAIR"
+      ],
+      "mixed_fibre_proved": true,
+      "same_visible_symptom": "patch_produced_and_process_exited_zero"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "distinct_latent_classes": [
+        "REPRESENTATION_REGIME_REPAIR",
+        "WITHIN_CLASS_MODEL_REPAIR"
+      ],
+      "mixed_fibre_proved": true,
+      "same_visible_symptom": "successor_replay_improved"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "distinct_latent_classes": [
+        "EXECUTION_REPAIR",
+        "MODEL_CLASS_EXPANSION"
+      ],
+      "mixed_fibre_proved": true,
+      "same_visible_symptom": "child_selected_as_archive_best"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "distinct_latent_classes": [
+        "EXECUTION_REPAIR",
+        "WITHIN_CLASS_MODEL_REPAIR"
+      ],
+      "mixed_fibre_proved": true,
+      "same_visible_symptom": "profile_issue_open_and_candidate_patch_compiles"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "distinct_latent_classes": [
+        "EVALUATOR_REPAIR",
+        "EVIDENCE_REPAIR"
+      ],
+      "mixed_fibre_proved": true,
+      "same_visible_symptom": "DRAWBACK"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "distinct_latent_classes": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR"
+      ],
+      "mixed_fibre_proved": true,
+      "same_visible_symptom": "open_need_with_valid_typed_artifact"
+    }
+  ],
+  "fixture_sha256": "f27d844c550a55d77f6d14f3e655fbb8c15357d9e4b085d8f1f5ce9409875a05",
+  "interpretation": "All raw same-visible-symptom fibres were mixed and therefore UNRESOLVED. Singleton outputs occurred only in synthetic records with one supported host-validated class certificate and matching single-class write surface; these are interface conformance, not correctness, preservation, transfer, or performance.",
+  "n_cases": 90,
+  "n_failed": 0,
+  "n_fibre_counterexamples": 6,
+  "n_passed": 90,
+  "native_output_examples_accessed": false,
+  "observed_output_counts": {
+    "EVALUATOR_REPAIR": 2,
+    "EVIDENCE_REPAIR": 1,
+    "EXECUTION_REPAIR": 4,
+    "MEASUREMENT_REPAIR": 1,
+    "MODEL_CLASS_EXPANSION": 4,
+    "REPRESENTATION_REGIME_REPAIR": 4,
+    "UNRESOLVED": 70,
+    "WITHIN_CLASS_MODEL_REPAIR": 4
+  },
+  "protocol_id": "P5.SIX_ARM.TERMINAL_PRESERVING.ADAPTERS.V2",
+  "protocol_sha256": "0415e2f01f326a45405e95fd575dd9e11fcf2ddfd06b422fb96673a6bf93558a",
+  "public_or_protected_outcome_rows_accessed": false,
+  "raw_native_symptom_singletons_licensed": 0,
+  "reason_counts": {
+    "CERTIFICATE_WRITE_MISMATCH": 6,
+    "MIXED_FIBRE": 6,
+    "NATIVE_ABSTAIN_PRESERVED": 6,
+    "NATIVE_EMPTY_PRESERVED": 6,
+    "NATIVE_ERROR_PRESERVED": 6,
+    "NATIVE_INVALID_PRESERVED": 6,
+    "NATIVE_PARTIAL_PRESERVED": 6,
+    "NATIVE_TIMEOUT_PRESERVED": 6,
+    "UNIQUE_SUPPORTED_CERTIFIED_FIBRE": 20,
+    "UNSUPPORTED_CLASS": 22
+  },
+  "rows": [
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__MIXED",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "MIXED_FIBRE"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__MIXED",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "MIXED_FIBRE"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__MIXED",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "MIXED_FIBRE"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__MIXED",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "MIXED_FIBRE"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__MIXED",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "MIXED_FIBRE"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__MIXED",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "MIXED_FIBRE"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__POSITIVE__EVIDENCE_REPAIR",
+      "expected": "EVIDENCE_REPAIR",
+      "observed": "EVIDENCE_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__POSITIVE__MEASUREMENT_REPAIR",
+      "expected": "MEASUREMENT_REPAIR",
+      "observed": "MEASUREMENT_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__POSITIVE__WITHIN_CLASS_MODEL_REPAIR",
+      "expected": "WITHIN_CLASS_MODEL_REPAIR",
+      "observed": "WITHIN_CLASS_MODEL_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__POSITIVE__MODEL_CLASS_EXPANSION",
+      "expected": "MODEL_CLASS_EXPANSION",
+      "observed": "MODEL_CLASS_EXPANSION",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__POSITIVE__REPRESENTATION_REGIME_REPAIR",
+      "expected": "REPRESENTATION_REGIME_REPAIR",
+      "observed": "REPRESENTATION_REGIME_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__POSITIVE__EXECUTION_REPAIR",
+      "expected": "EXECUTION_REPAIR",
+      "observed": "EXECUTION_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__POSITIVE__EVALUATOR_REPAIR",
+      "expected": "EVALUATOR_REPAIR",
+      "observed": "EVALUATOR_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__POSITIVE__WITHIN_CLASS_MODEL_REPAIR",
+      "expected": "WITHIN_CLASS_MODEL_REPAIR",
+      "observed": "WITHIN_CLASS_MODEL_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__POSITIVE__MODEL_CLASS_EXPANSION",
+      "expected": "MODEL_CLASS_EXPANSION",
+      "observed": "MODEL_CLASS_EXPANSION",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__POSITIVE__REPRESENTATION_REGIME_REPAIR",
+      "expected": "REPRESENTATION_REGIME_REPAIR",
+      "observed": "REPRESENTATION_REGIME_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__POSITIVE__EXECUTION_REPAIR",
+      "expected": "EXECUTION_REPAIR",
+      "observed": "EXECUTION_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__POSITIVE__WITHIN_CLASS_MODEL_REPAIR",
+      "expected": "WITHIN_CLASS_MODEL_REPAIR",
+      "observed": "WITHIN_CLASS_MODEL_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__POSITIVE__MODEL_CLASS_EXPANSION",
+      "expected": "MODEL_CLASS_EXPANSION",
+      "observed": "MODEL_CLASS_EXPANSION",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__POSITIVE__REPRESENTATION_REGIME_REPAIR",
+      "expected": "REPRESENTATION_REGIME_REPAIR",
+      "observed": "REPRESENTATION_REGIME_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__POSITIVE__EXECUTION_REPAIR",
+      "expected": "EXECUTION_REPAIR",
+      "observed": "EXECUTION_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__POSITIVE__WITHIN_CLASS_MODEL_REPAIR",
+      "expected": "WITHIN_CLASS_MODEL_REPAIR",
+      "observed": "WITHIN_CLASS_MODEL_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__POSITIVE__MODEL_CLASS_EXPANSION",
+      "expected": "MODEL_CLASS_EXPANSION",
+      "observed": "MODEL_CLASS_EXPANSION",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__POSITIVE__REPRESENTATION_REGIME_REPAIR",
+      "expected": "REPRESENTATION_REGIME_REPAIR",
+      "observed": "REPRESENTATION_REGIME_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__POSITIVE__EXECUTION_REPAIR",
+      "expected": "EXECUTION_REPAIR",
+      "observed": "EXECUTION_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__POSITIVE__EVALUATOR_REPAIR",
+      "expected": "EVALUATOR_REPAIR",
+      "observed": "EVALUATOR_REPAIR",
+      "passed": true,
+      "reason": "UNIQUE_SUPPORTED_CERTIFIED_FIBRE"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__UNSUPPORTED__EVIDENCE_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__UNSUPPORTED__MEASUREMENT_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__UNSUPPORTED__EVALUATOR_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__UNSUPPORTED__EVIDENCE_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__UNSUPPORTED__MEASUREMENT_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__UNSUPPORTED__EVALUATOR_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__UNSUPPORTED__EVIDENCE_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__UNSUPPORTED__MEASUREMENT_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__UNSUPPORTED__EVALUATOR_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__UNSUPPORTED__EVIDENCE_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__UNSUPPORTED__MEASUREMENT_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__UNSUPPORTED__WITHIN_CLASS_MODEL_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__UNSUPPORTED__MODEL_CLASS_EXPANSION",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__UNSUPPORTED__REPRESENTATION_REGIME_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__UNSUPPORTED__EXECUTION_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__UNSUPPORTED__EVIDENCE_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__UNSUPPORTED__MEASUREMENT_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__UNSUPPORTED__WITHIN_CLASS_MODEL_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__UNSUPPORTED__MODEL_CLASS_EXPANSION",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__UNSUPPORTED__REPRESENTATION_REGIME_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__UNSUPPORTED__EXECUTION_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__UNSUPPORTED__EVALUATOR_REPAIR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "UNSUPPORTED_CLASS"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__MISMATCH",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "CERTIFICATE_WRITE_MISMATCH"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__MISMATCH",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "CERTIFICATE_WRITE_MISMATCH"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__MISMATCH",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "CERTIFICATE_WRITE_MISMATCH"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__MISMATCH",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "CERTIFICATE_WRITE_MISMATCH"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__MISMATCH",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "CERTIFICATE_WRITE_MISMATCH"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__MISMATCH",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "CERTIFICATE_WRITE_MISMATCH"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__TERMINAL__ERROR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ERROR_PRESERVED"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__TERMINAL__TIMEOUT",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_TIMEOUT_PRESERVED"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__TERMINAL__ABSTAIN",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ABSTAIN_PRESERVED"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__TERMINAL__EMPTY",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_EMPTY_PRESERVED"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__TERMINAL__PARTIAL",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_PARTIAL_PRESERVED"
+    },
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "case_id": "C1_FIXED_AGENT__SWE_AGENT__TERMINAL__INVALID",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_INVALID_PRESERVED"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__TERMINAL__ERROR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ERROR_PRESERVED"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__TERMINAL__TIMEOUT",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_TIMEOUT_PRESERVED"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__TERMINAL__ABSTAIN",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ABSTAIN_PRESERVED"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__TERMINAL__EMPTY",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_EMPTY_PRESERVED"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__TERMINAL__PARTIAL",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_PARTIAL_PRESERVED"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "case_id": "C2_DIRECT_SELF_EDIT__MOSS__TERMINAL__INVALID",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_INVALID_PRESERVED"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__TERMINAL__ERROR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ERROR_PRESERVED"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__TERMINAL__TIMEOUT",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_TIMEOUT_PRESERVED"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__TERMINAL__ABSTAIN",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ABSTAIN_PRESERVED"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__TERMINAL__EMPTY",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_EMPTY_PRESERVED"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__TERMINAL__PARTIAL",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_PARTIAL_PRESERVED"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "case_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM__TERMINAL__INVALID",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_INVALID_PRESERVED"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__TERMINAL__ERROR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ERROR_PRESERVED"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__TERMINAL__TIMEOUT",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_TIMEOUT_PRESERVED"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__TERMINAL__ABSTAIN",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ABSTAIN_PRESERVED"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__TERMINAL__EMPTY",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_EMPTY_PRESERVED"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__TERMINAL__PARTIAL",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_PARTIAL_PRESERVED"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "case_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS__TERMINAL__INVALID",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_INVALID_PRESERVED"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__TERMINAL__ERROR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ERROR_PRESERVED"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__TERMINAL__TIMEOUT",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_TIMEOUT_PRESERVED"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__TERMINAL__ABSTAIN",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ABSTAIN_PRESERVED"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__TERMINAL__EMPTY",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_EMPTY_PRESERVED"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__TERMINAL__PARTIAL",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_PARTIAL_PRESERVED"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "case_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY__TERMINAL__INVALID",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_INVALID_PRESERVED"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__TERMINAL__ERROR",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ERROR_PRESERVED"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__TERMINAL__TIMEOUT",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_TIMEOUT_PRESERVED"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__TERMINAL__ABSTAIN",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_ABSTAIN_PRESERVED"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__TERMINAL__EMPTY",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_EMPTY_PRESERVED"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__TERMINAL__PARTIAL",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_PARTIAL_PRESERVED"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "case_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW__TERMINAL__INVALID",
+      "expected": "UNRESOLVED",
+      "observed": "UNRESOLVED",
+      "passed": true,
+      "reason": "NATIVE_INVALID_PRESERVED"
+    }
+  ],
+  "schema_version": "orion.p5.terminal-adapter-synthetic-conformance-receipt.v2",
+  "singleton_support_counts_by_arm": {
+    "C1_FIXED_AGENT__SWE_AGENT": 7,
+    "C2_DIRECT_SELF_EDIT__MOSS": 4,
+    "C3_ARCHIVE_BASED_SELF_EDIT__DGM": 4,
+    "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS": 4,
+    "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY": 1,
+    "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW": 0
+  },
+  "terminal": "P5_V2_TERMINAL_PRESERVATION_SYNTHETIC_CONFORMANCE_PASS__ZERO_NATIVE_EXAMPLES__ZERO_PERFORMANCE_AUTHORITY"
+}

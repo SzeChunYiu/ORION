@@ -1,0 +1,80 @@
+{
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v10b.protocol",
+  "identity": "P4.M6.JOSS.EXACT.EDGE.LINEAGE.AUTHORITY.V10B",
+  "frozen_at": "2026-08-24T05:49:05Z",
+  "repository_head_at_freeze": "8d47c546591a3c96dc5cf202f7e227d13251221c",
+  "successor_status": {
+    "outcome_informed": true,
+    "reason": "The frozen V10 index-199 discriminator failed because the official source-origin snapshot has no v0.13.4 branch and Software Heritage does not expose revision 0f8b2dbca06a3bb7031de9058ee9882995e04412. V10 then revealed a distinct immutable v0.13.5 revision whose directory identifier equals the checksum-bound Zenodo archive inner directory. This separately named successor freezes the resulting content-identity discriminator before any V10B GitHub codeload or Zenodo archive bytes are downloaded or compared.",
+    "v10_protocol_path": "PROTOCOL_V10.json",
+    "v10_protocol_sha256": "b19145f547b686943ae8c12e9cb63d22557f38f765176cfdb6ce12395df43399",
+    "v10_swh_probe_path": "SWH_CANONICAL_PROBE_RECEIPT_V10.json",
+    "v10_swh_probe_sha256": "952044c1516c8eadf12bd4a9b6a5287e1bdc2018d686d68dc136e0342b2d16d7"
+  },
+  "unit_rule": "Index 199 is the same frozen JOSS publication concept. The later ref, revision, provider responses, archives, files and requests are evidence about that unit, not additional units.",
+  "historical_results_immutable": true,
+  "target": {
+    "frozen_index": 199,
+    "publication_doi": "10.21105/joss.09603",
+    "archive_doi": "10.5281/zenodo.19202203",
+    "publication_version": "v0.13.4",
+    "repository": "targene/targene-pipeline",
+    "zenodo_record_id": 19202203,
+    "zenodo_filename": "TARGENE/targene-pipeline-v0.13.4.zip",
+    "zenodo_declared_md5": "3409352bdc0926acfafc39bf121f4263",
+    "later_source_ref": "refs/tags/v0.13.5",
+    "later_source_revision": "a85df681d29a5cf3406d529144a7c0645e543e61",
+    "exact_directory": "178315b57afafc1f20ab9929b4de893430524c62",
+    "source_origin_snapshot": "4cc32f66bbfae46d9d3ee0bfd210a46619f0e895"
+  },
+  "allowed_authorities": [
+    "Zenodo official record and checksum-bound file API",
+    "GitHub official REST ref and commit APIs, raw-content endpoint and immutable-revision codeload endpoint",
+    "Software Heritage official origin snapshot and revision APIs"
+  ],
+  "predeclared_requests": [
+    "GET https://api.github.com/repos/TARGENE/targene-pipeline/git/ref/tags/v0.13.5",
+    "GET https://api.github.com/repos/TARGENE/targene-pipeline/commits/a85df681d29a5cf3406d529144a7c0645e543e61",
+    "GET https://raw.githubusercontent.com/TARGENE/targene-pipeline/a85df681d29a5cf3406d529144a7c0645e543e61/LICENSE",
+    "GET https://zenodo.org/api/records/19202203",
+    "GET the exact Zenodo file content URL returned for TARGENE/targene-pipeline-v0.13.4.zip",
+    "GET https://codeload.github.com/TARGENE/targene-pipeline/zip/a85df681d29a5cf3406d529144a7c0645e543e61"
+  ],
+  "normalization_and_comparison": {
+    "archive_format": "ZIP only; a non-ZIP response fails closed",
+    "safe_paths": "Reject absolute paths, parent traversal and entries outside exactly one archive root directory.",
+    "root_normalization": "Remove exactly one top-level directory component from every non-directory member independently in each ZIP. Reject any archive with zero or multiple top-level roots.",
+    "included_entries": "All regular files and symbolic links after root removal. Directory entries are structural only and excluded from the manifest.",
+    "manifest_fields": [
+      "normalized_path",
+      "entry_type",
+      "sha256_of_regular_file_bytes_or_symlink_target_bytes",
+      "byte_count",
+      "unix_executable_bit"
+    ],
+    "duplicate_rule": "Reject duplicate normalized paths.",
+    "equality_rule": "Pass only if the two sorted manifests have identical normalized path sets and each corresponding entry has identical type, bytes, byte count and executable-bit state.",
+    "large_payload_rule": "Do not retain the downloaded ZIP bodies in the packet. Retain URL, final URL, HTTP status, headers, byte count, MD5, SHA-256 and exact normalized per-entry manifests."
+  },
+  "closure_conjunction": [
+    "The current GitHub exact v0.13.5 ref resolves directly, or through an annotated-tag object resolved by the official GitHub API, to full revision a85df681d29a5cf3406d529144a7c0645e543e61.",
+    "The official GitHub commit API authenticates that exact full revision in repository TARGENE/targene-pipeline.",
+    "The already captured official Software Heritage source-origin snapshot independently binds refs/tags/v0.13.5 to the same full revision, and its revision record binds that revision to directory 178315b57afafc1f20ab9929b4de893430524c62.",
+    "Zenodo record 19202203 still identifies DOI 10.5281/zenodo.19202203, version v0.13.4, repository TARGENE/targene-pipeline and the exact file name and declared MD5 frozen above.",
+    "The downloaded Zenodo file bytes match the provider-declared MD5.",
+    "The normalized Zenodo archive and immutable GitHub revision codeload manifests are exactly equal under the frozen comparison rule.",
+    "Zenodo declares MIT rights and both exact source/archive LICENSE files are MIT; exact LICENSE-byte equality is reported but is not required if both are unambiguously MIT."
+  ],
+  "closure_scope": "If every conjunction passes, close index 199 only by exact checksum-bound archive-to-provider-native immutable revision content identity. The result does not assert that a85df681d29a5cf3406d529144a7c0645e543e61 is, descends from, or restores the deleted v0.13.4 commit. The version-label difference remains explicit.",
+  "cannot_check": "Any missing, mutable, contradicted, non-200, hash-mismatched, path-unsafe, duplicate, subset-only or metadata-only relation fails the conjunction and leaves index 199 CANNOT_CHECK.",
+  "scientific_boundary": "A source content-identity repair grants no natural-pair eligibility, author-lineage independence, source-disjoint replication, external custody, comparator outcome, performance or superiority authority.",
+  "forbidden": [
+    "reinterpret the failed frozen V10 target-specific discriminator as passing",
+    "identify the later v0.13.5 revision as the deleted v0.13.4 commit",
+    "replace or add a scientific unit",
+    "accept subset, projected, generated or metadata-only equality",
+    "promote source identity into natural-pair, lineage, custody, performance or superiority authority",
+    "modify V9 or earlier evidence",
+    "run pytest or repository CI"
+  ]
+}

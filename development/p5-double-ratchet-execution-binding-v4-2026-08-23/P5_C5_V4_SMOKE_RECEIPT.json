@@ -1,0 +1,37 @@
+{
+  "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+  "cases": [
+    {
+      "id": "S1_SYNTHETIC_GUARDED_SUCCESS",
+      "terminal": "EVALUATOR_REPAIR"
+    },
+    {
+      "id": "S2_TIMEOUT",
+      "terminal": "UNRESOLVED"
+    },
+    {
+      "id": "S3_SOLVER_MUTATION",
+      "terminal": "UNRESOLVED"
+    },
+    {
+      "id": "S4_UNSUPPORTED_INPUT_CLASS",
+      "terminal": "UNRESOLVED"
+    },
+    {
+      "id": "S5_PROTECTED_PANEL_REFUSAL",
+      "terminal": "UNRESOLVED"
+    },
+    {
+      "id": "S6_NAIVE_ARM_REFUSAL",
+      "terminal": "UNRESOLVED"
+    }
+  ],
+  "performance": "CANNOT_CHECK",
+  "protected_outcome_accessed": false,
+  "raw_native_singleton_licences": 0,
+  "schema_version": "orion.p5.c5.double-ratchet-parser-smoke.v4",
+  "substantive_p5_cases": 0,
+  "synthetic_cases": 6,
+  "synthetic_cases_passed": 6,
+  "terminal": "SYNTHETIC_CONFORMANCE_ONLY"
+}

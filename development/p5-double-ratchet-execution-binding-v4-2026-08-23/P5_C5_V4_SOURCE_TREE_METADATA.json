@@ -1,0 +1,49 @@
+{
+  "archive_bytes": 1003520,
+  "archive_sha256": "9426222eefc25878f7e7d1ecd1ff9824c894bc358cb8d5f31ee3c8d4a8db9640",
+  "audit_boundary": "Git tree names, modes and byte counts only for repository-wide census; no benchmark/result payload was opened",
+  "blob_bytes": 888822,
+  "clean_tree": true,
+  "commit_date_utc": "2026-07-29T05:20:31Z",
+  "commit_sha": "0f14e910d361196422d9b938f45280919952d4fd",
+  "commit_signature_status": "N",
+  "dataset_tree_paths": 3,
+  "detached_head": true,
+  "excluded_entrypoints": [
+    "scripts/run_co_evo.py",
+    "scripts/run_skill_evo.py"
+  ],
+  "file_count": 113,
+  "read_only_failures": [],
+  "repository": "https://github.com/amazon-science/Self-Evolving-Agents-Double-Ratchet",
+  "result_payload_paths": 0,
+  "schema_version": "orion.p5.c5.source-tree-metadata.v4",
+  "scratch_clone_read_only": true,
+  "selected_entrypoint": "scripts/run_metric_evo.py",
+  "source_hashes": {
+    "LICENSE": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+    "NOTICE": "5d86be6e681240106316a6763eb0dcb47a8adcb426c19df4693098ceb61bb531",
+    "config/config.py": "6bf780a86a27a99cc102c87a2aa8f9dfd073f087466158f38f80b7aae0159760",
+    "evalratchet/candidates.py": "8c8df0889547ccd33fdea6c4830159d7843501c065a401be671a1b51a3d0bc7e",
+    "evalratchet/data.py": "5ac3b673df79e17a88ec1332d039943712f01724781c73ff789d786ae18be0ea",
+    "evalratchet/evolve.py": "86edd1c9b75e4926b3ebe754fa9cb7e85819c9cf307aed94a53323a71eda8618",
+    "evalratchet/metric_lang.py": "ffbcb7bac2d1e24a8e2576f82344da96ef44fe53a20df00da98f7cc0eae978a4",
+    "evalratchet/ops/mbpp.py": "05b05437f8ff448e02b0525e8e46bc6933a2372af658788caa999fea58bed80e",
+    "evalratchet/storage/metric_store.py": "e859ec13a1e7801788b7314da145f4a67d63970cf6ed9338c6658fb114a9708d",
+    "scripts/_common.py": "a609f1e6c10070e34dd46ca87bc2ee333ae783d45da142ff90012693b927a78f",
+    "scripts/run_metric_evo.py": "fd6a2b776e1f64edb361401451e3e62d50b9caf21d129c3fa5dcbe336116dac0",
+    "vendor/skillevo/engine/solver.py": "089707d2a543c2fcf43be661a058647a0326e5402eb360156ed8baaba9de78ed",
+    "vendor/skillevo/llm/client.py": "71193bbc04b42645f8bbf24fd3a28d180c271d990eccef978dce9380a21783f8",
+    "vendor/skillevo/llm/prompts.py": "08611d2077e44267dbef415e26d514971ee36d268e2938e716d4b12c4eafa8f9"
+  },
+  "stored_split_payload_paths": 0,
+  "top_level_file_counts": {
+    "<root>": 6,
+    "config": 2,
+    "datasets": 3,
+    "evalratchet": 25,
+    "scripts": 16,
+    "vendor": 61
+  },
+  "tree_sha": "3ca13a51b4fb6ff77013d8886023ee852cbf373e"
+}

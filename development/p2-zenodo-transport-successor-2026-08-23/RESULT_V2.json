@@ -1,0 +1,344 @@
+{
+  "active_batch_size": 52,
+  "active_minus_strongest_comparator_recall_at_010": 0.367419212040726,
+  "arms": {
+    "ACTIVE_LOGREG": {
+      "metrics": {
+        "fraction_screened_at_95_recall": 0.2052557374481084,
+        "recall_at_005": 0.4063745019920319,
+        "recall_at_010": 0.7034085878707392,
+        "recall_at_020": 0.9459938025675078,
+        "wss_at_95": 0.7447442625518915
+      },
+      "order_sha256": "ef00a1c9e31aa11379067765b230ca396ffbfc28d488a865ee0c46ac4114110a"
+    },
+    "RANDOM": {
+      "metric_ranges": {
+        "fraction_screened_at_95_recall": {
+          "max": 0.9590741756089919,
+          "min": 0.9371034698832929
+        },
+        "recall_at_005": {
+          "max": 0.05843293492695883,
+          "min": 0.045595396193005754
+        },
+        "recall_at_010": {
+          "max": 0.11243913235945109,
+          "min": 0.09606020362992475
+        },
+        "recall_at_020": {
+          "max": 0.21646746347941567,
+          "min": 0.18503762726870296
+        },
+        "wss_at_95": {
+          "max": 0.012896530116707106,
+          "min": -0.00907417560899193
+        }
+      },
+      "metrics": {
+        "fraction_screened_at_95_recall": 0.9503054750528708,
+        "recall_at_005": 0.051438689685701644,
+        "recall_at_010": 0.10278884462151394,
+        "recall_at_020": 0.20123948649845066,
+        "wss_at_95": -0.00030547505287072953
+      },
+      "runs": [
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9590741756089919,
+            "recall_at_005": 0.045595396193005754,
+            "recall_at_010": 0.09694555112881806,
+            "recall_at_020": 0.199203187250996,
+            "wss_at_95": -0.00907417560899193
+          },
+          "order_sha256": "a56ce05a4c5a7fc7b3d017a9076414e9a0d64e8ad347c32ac75746f3116e39c3",
+          "seed": 20260823
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9560977520169186,
+            "recall_at_005": 0.05843293492695883,
+            "recall_at_010": 0.10579902611775122,
+            "recall_at_020": 0.20938468348826914,
+            "wss_at_95": -0.006097752016918645
+          },
+          "order_sha256": "2d23a95ac3c0f88b126309107cc6f4f66c5b7d074ed118044d99fec456ec8c66",
+          "seed": 20260824
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9502232317694055,
+            "recall_at_005": 0.05533421868083223,
+            "recall_at_010": 0.10270030987162461,
+            "recall_at_020": 0.1961044710048694,
+            "wss_at_95": -0.0002232317694055297
+          },
+          "order_sha256": "2a07e57f03e5775b2c5f66d0e0a2a488f4c0e314d06548a1dde5f68398e01298",
+          "seed": 20260825
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9493616354664369,
+            "recall_at_005": 0.04780876494023904,
+            "recall_at_010": 0.09783089862771138,
+            "recall_at_020": 0.19964586100044268,
+            "wss_at_95": 0.0006383645335630295
+          },
+          "order_sha256": "a7636c923fdf8d1431760c3e854f6f11a110e3f8aa686c7f338dbcc12d137648",
+          "seed": 20260826
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.950144904832772,
+            "recall_at_005": 0.05444887118193891,
+            "recall_at_010": 0.10668437361664453,
+            "recall_at_020": 0.20761398849048252,
+            "wss_at_95": -0.00014490483277207478
+          },
+          "order_sha256": "c50362c4e5edb8ec70b176f3bdc81d8fc3838ca7eaf6e40f3ce6606cdc17bcf4",
+          "seed": 20260827
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9481867314169343,
+            "recall_at_005": 0.04869411243913236,
+            "recall_at_010": 0.09606020362992475,
+            "recall_at_020": 0.18902169101372288,
+            "wss_at_95": 0.0018132685830656303
+          },
+          "order_sha256": "2d2e61686d0d8cc6949f82a9c40b8c8ad290bf63432eeb9092769f52346a361e",
+          "seed": 20260828
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9546487036891987,
+            "recall_at_005": 0.046038069942452416,
+            "recall_at_010": 0.10048694112439133,
+            "recall_at_020": 0.21646746347941567,
+            "wss_at_95": -0.004648703689198785
+          },
+          "order_sha256": "8c515bd8f1c3859414a49fbcc3a989885c2a144080e78a006491108d7e9067ac",
+          "seed": 20260829
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9536304535129632,
+            "recall_at_005": 0.046038069942452416,
+            "recall_at_010": 0.09871624612660469,
+            "recall_at_020": 0.19566179725542276,
+            "wss_at_95": -0.0036304535129632054
+          },
+          "order_sha256": "089fc1f25a58dd45aa44b143fbf94259c954036493dc47d273f6db647663731c",
+          "seed": 20260830
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9521422417169264,
+            "recall_at_005": 0.05312084993359894,
+            "recall_at_010": 0.10314298362107127,
+            "recall_at_020": 0.19654714475431606,
+            "wss_at_95": -0.002142241716926452
+          },
+          "order_sha256": "36c6cd94b51f34fddd644fd42b86ac0b37745b8e508a31087453b4a3f692ba88",
+          "seed": 20260831
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9547270306258322,
+            "recall_at_005": 0.05046480743691899,
+            "recall_at_010": 0.099601593625498,
+            "recall_at_020": 0.2036299247454626,
+            "wss_at_95": -0.00472703062583224
+          },
+          "order_sha256": "ce793958abf7acac73bf6bca6d708d914676273b15a7cabb01d8ab647c83ef3c",
+          "seed": 20260832
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9433304613456568,
+            "recall_at_005": 0.05046480743691899,
+            "recall_at_010": 0.10225763612217796,
+            "recall_at_020": 0.2098273572377158,
+            "wss_at_95": 0.006669538654343166
+          },
+          "order_sha256": "4aaa517a42cfa17cfdb0889c424fb0ddc41c5d75bfc2aee5c6b865fb9413e367",
+          "seed": 20260833
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9530038380198951,
+            "recall_at_005": 0.05046480743691899,
+            "recall_at_010": 0.1018149623727313,
+            "recall_at_020": 0.19743249225320939,
+            "wss_at_95": -0.003003838019895122
+          },
+          "order_sha256": "74077ccd2d48d13b34056f3ec6a77da8712a7e93fec9fa676ff881d310516f7e",
+          "seed": 20260834
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9495574528080207,
+            "recall_at_005": 0.05754758742806552,
+            "recall_at_010": 0.1102257636122178,
+            "recall_at_020": 0.2098273572377158,
+            "wss_at_95": 0.00044254719197922565
+          },
+          "order_sha256": "68c6a795bb7d4665ae8855364673b5bc85e39565ca6e34c91f16b3ecdd6d5f3e",
+          "seed": 20260835
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.952533876400094,
+            "recall_at_005": 0.053563523683045594,
+            "recall_at_010": 0.11243913235945109,
+            "recall_at_020": 0.2036299247454626,
+            "wss_at_95": -0.0025338764000940595
+          },
+          "order_sha256": "78520fe2cdb1da30c280254344b826932835c86c2c39ae3d16f8cc7aa85c845c",
+          "seed": 20260836
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9476776063288165,
+            "recall_at_005": 0.04957945993802568,
+            "recall_at_010": 0.10137228862328464,
+            "recall_at_020": 0.1983178397521027,
+            "wss_at_95": 0.002322393671183476
+          },
+          "order_sha256": "627415bad9c6eb75e2294096da3bd2b20411dc7ffaee6e51d8fe3b2828a4eea0",
+          "seed": 20260837
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.945523615571395,
+            "recall_at_005": 0.05223550243470562,
+            "recall_at_010": 0.10535635236830455,
+            "recall_at_020": 0.20540061974324922,
+            "wss_at_95": 0.004476384428604985
+          },
+          "order_sha256": "f50615fa2e6b3274f790e0633deeb8e3630b09929b1ce6ab71a87c01255610d2",
+          "seed": 20260838
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.949831597086238,
+            "recall_at_005": 0.045595396193005754,
+            "recall_at_010": 0.10004426737494466,
+            "recall_at_020": 0.18503762726870296,
+            "wss_at_95": 0.00016840291376196692
+          },
+          "order_sha256": "6945f3c371ae1e0faa865913153a7d9c81b257c0ac89859d65cdaabc5a112a8d",
+          "seed": 20260839
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9371034698832929,
+            "recall_at_005": 0.05223550243470562,
+            "recall_at_010": 0.10889774236387782,
+            "recall_at_020": 0.2058432934926959,
+            "wss_at_95": 0.012896530116707106
+          },
+          "order_sha256": "6ea83805879d6f990f1c4baae975b3064cb899d0dfd963e3e100ed2001ab49c7",
+          "seed": 20260840
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9554711365238505,
+            "recall_at_005": 0.054891544931385566,
+            "recall_at_010": 0.10270030987162461,
+            "recall_at_020": 0.19566179725542276,
+            "wss_at_95": -0.005471136523850562
+          },
+          "order_sha256": "15c2ddfeb9529796552e9b470d58e51df17ad34573dfe117af24c2ef5bb6aa8d",
+          "seed": 20260841
+        },
+        {
+          "metrics": {
+            "fraction_screened_at_95_recall": 0.9438395864337745,
+            "recall_at_005": 0.056219566179725546,
+            "recall_at_010": 0.10270030987162461,
+            "recall_at_020": 0.20053120849933598,
+            "wss_at_95": 0.006160413566225431
+          },
+          "order_sha256": "72fbc7a55abb216ff0e0b84305c758a3e2aae8167b7536ff1ad7d83a5f2b44ce",
+          "seed": 20260842
+        }
+      ]
+    },
+    "STATIC_SEED_CENTROID": {
+      "metrics": {
+        "fraction_screened_at_95_recall": 0.6769405498550952,
+        "recall_at_005": 0.17751217352810977,
+        "recall_at_010": 0.33598937583001326,
+        "recall_at_020": 0.5604249667994687,
+        "wss_at_95": 0.27305945014490474
+      },
+      "order_sha256": "5ed91a19ffce5fa9c18c35e35f369176228b93ca08348744fb34d3be490dc31c"
+    }
+  },
+  "claim_scope": "ONE_PUBLIC_LABELLED_PHYSIOTHERAPY_SCREENING_POOL_POST_SCHEMA_REPAIR_TRANSPORT_DEVELOPMENT_ONLY",
+  "eligible_records": 25534,
+  "excluded_records": 23275,
+  "forbidden_claims": [
+    "outcome-blind confirmation",
+    "protected labels or independent custody",
+    "multi-world replication",
+    "ORION-specific superiority",
+    "open-world route invention or closure",
+    "generality beyond this one public screening pool",
+    "pre-outcome schema freeze",
+    "confirmation after schema repair"
+  ],
+  "gates": {
+    "G1_BINDING": true,
+    "G2_ABSOLUTE": true,
+    "G3_INCREMENTAL": true,
+    "G4_WORK_SAVING": true,
+    "G5_NO_RANDOM_HARM": true
+  },
+  "implementation_freeze_sha256": "174a475fd820505fd5bc2a6d8cc946b612294901bfceb6c121a23b9a7ef55b6c",
+  "included_records": 2259,
+  "initial_seed_record_identities_sha256": "77e8eee599c1a499ab328b8f0fb0249f337b92a7be8db0d2b486d1a5d10e4c02",
+  "outcome_blind_before_protocol": false,
+  "parse_receipt": {
+    "canonical_class_rows": 25537,
+    "duplicate_identity_excess_rows_excluded": 3,
+    "duplicate_record_identities_after_repair": 0,
+    "eligible_rows": 25534,
+    "excluded_first_raw_line_hash_passed": true,
+    "excluded_first_raw_line_sha256_actual": "c619fb151436f2569165e3e7b8e8421310e8685740dd1be19945c449c8b266d5",
+    "excluded_first_raw_line_sha256_expected": "c619fb151436f2569165e3e7b8e8421310e8685740dd1be19945c449c8b266d5",
+    "excluded_rows": 1,
+    "five_field_post_incident_rows": 25539,
+    "malformed_field_rows": 0,
+    "noncanonical_class_rows_excluded": 2,
+    "total_raw_lines": 25540
+  },
+  "preflight_incident": {
+    "aggregate_or_model_outcomes_observed": false,
+    "excluded_first_raw_line_sha256": "c619fb151436f2569165e3e7b8e8421310e8685740dd1be19945c449c8b266d5",
+    "exposed_rows": 1,
+    "outcome_blind_before_protocol": false
+  },
+  "prevalence": 0.08847027492754758,
+  "protocol_sha256": "b564c9546def95db55ca0c2733d32198112241669e5c0917d48bb878ede27efb",
+  "schema_version": "orion.p2.zenodo-10423427.transport-development.v2",
+  "software": {
+    "numpy": "2.4.4",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.1"
+  },
+  "source_receipt": {
+    "bytes_actual": 53881052,
+    "bytes_expected": 53881052,
+    "bytes_passed": true,
+    "md5_actual": "3d8c9589d8051b26d6f9dff7eaf1865d",
+    "md5_expected": "3d8c9589d8051b26d6f9dff7eaf1865d",
+    "md5_passed": true,
+    "path_basename": "citation_screening_deduplicated_corpus.csv"
+  },
+  "strongest_comparator_at_010": "STATIC_SEED_CENTROID",
+  "terminal": "P2_ZENODO_ACTIVE_ACQUISITION_TRANSPORT_V2_SUPPORTED_ON_ONE_PUBLIC_PHYSIOTHERAPY_POOL",
+  "tfidf_features": 50000
+}

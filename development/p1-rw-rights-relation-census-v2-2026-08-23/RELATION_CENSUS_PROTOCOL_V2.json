@@ -1,0 +1,257 @@
+{
+  "authority": "OUTCOME_BLIND_METADATA_RELATION_AND_RIGHTS_FEASIBILITY_ONLY",
+  "case_text_access_authorized": false,
+  "claim_rules": {
+    "failure_closed": "Any identity, parser, provider, cutoff, rights, ambiguity or sealed-reducer failure is retained as CANNOT_CHECK with a next discriminator.",
+    "positive_content_feasibility": "Allowed only for the exact count of families whose two exact endpoints receive allowlisted article-specific licences through official metadata routes.",
+    "positive_relation_census": "Allowed if the blob/hash/header pass and at least one deduplicated family has an explicit RW original-notice endpoint pair. It licenses only existence and exact prevalence of rights-valid CC0 metadata relations in this pinned source.",
+    "positive_typed_width": "Allowed only if aggregate-only source-native strata each have a nonzero rights-admissible family count. It does not establish a source-native scientific terminal, action gold, responsibility, construct validity, system performance, transport or external authority."
+  },
+  "current_terminal": "P1_RW_RIGHTS_RELATION_CENSUS_V2_FROZEN__EXECUTION_UNDETERMINED",
+  "epmc_query_contract": {
+    "aggregate_only_action_rule": "The RW RetractionNature and ArticleType columns remain forbidden. Europe PMC publication-type membership may be evaluated by a sealed reducer only to output aggregate counts; no identifier-to-type mapping may be emitted or retained. These are provider metadata strata, never scientific terminals or gold.",
+    "forbidden_response_fields": [
+      "title",
+      "authorString",
+      "journalTitle",
+      "abstractText",
+      "fullTextUrlList",
+      "commentCorrectionList",
+      "meshHeadingList",
+      "chemicalList",
+      "keywordList"
+    ],
+    "identity_input_precedence": [
+      "PMID",
+      "DOI"
+    ],
+    "idlist_allowlist": [
+      "hitCount",
+      "version",
+      "request.queryString",
+      "resultList.result.id",
+      "resultList.result.source",
+      "resultList.result.pmcid"
+    ],
+    "missing_or_ambiguous": "CANNOT_CHECK; never infer a type, relation, incompatible right, or negative from absence.",
+    "provider": "Europe PMC REST API v6.9 plus official PMC OA service",
+    "search_parameters": {
+      "cursorMark": "*",
+      "format": "json",
+      "pageSize": 1000,
+      "resultType": "idlist",
+      "synonym": "false"
+    },
+    "source_native_aggregate_strata": [
+      {
+        "id": "EPMC_RETRACTION_NOTICE",
+        "query_clause": "PUB_TYPE:\"Retraction of Publication\""
+      },
+      {
+        "id": "EPMC_CORRECTION_OR_ERRATUM",
+        "query_clause": "(PUB_TYPE:\"Correction\" OR PUB_TYPE:\"Published Erratum\")"
+      },
+      {
+        "id": "EPMC_EXPRESSION_OF_CONCERN",
+        "query_clause": "PUB_TYPE:\"Expression of Concern\""
+      }
+    ]
+  },
+  "exclusion_precedence": [
+    "PINNED_IDENTITY_OR_SCHEMA_FAILURE",
+    "INVALID_RECORD_ID",
+    "RECORD_ID_COLLISION",
+    "MISSING_BOTH_ENDPOINTS",
+    "MISSING_ORIGINAL_ENDPOINT",
+    "MISSING_NOTICE_ENDPOINT",
+    "DUPLICATE_RELATION_KEY"
+  ],
+  "execution_authorized": true,
+  "forbidden_operations": [
+    "open or use any forbidden RW column",
+    "case text, abstract, title, body, citation, filename, URL, supplement or notice narrative access",
+    "causal or responsibility-gold construction",
+    "source-native scientific terminal adjudication",
+    "candidate/comparator/model execution",
+    "protected scoring or outcomes",
+    "model memorization test",
+    "manuscript edit",
+    "pytest, CI, build, Git mutation"
+  ],
+  "frozen_at_utc": "2026-08-23T17:05:29.076324+00:00",
+  "frozen_structural_states": [
+    "EXPLICIT_BOTH_ENDPOINTS",
+    "MISSING_ORIGINAL_ENDPOINT",
+    "MISSING_NOTICE_ENDPOINT",
+    "MISSING_BOTH_ENDPOINTS",
+    "INVALID_RECORD_ID",
+    "DUPLICATE_RELATION_KEY",
+    "RECORD_ID_COLLISION"
+  ],
+  "identity": "P1.RW.CC0.RIGHTS.RELATION.CENSUS.V2",
+  "immutability": {
+    "historical_adverse_results_preserved": true,
+    "positive_reference_absence_is_negative": false,
+    "v1_overall_terminal": "P1_NATURALISTIC_PUBLIC_PANEL_CANNOT_CHECK_RIGHTS_OR_CONSTRUCT_VALIDITY",
+    "v1_terminal_may_be_overwritten": false
+  },
+  "inputs": [
+    {
+      "path": "../p1-naturalistic-transport/P1_SCIENTIFIC_ASCENT_HANDOFF.md",
+      "sha256": "fc92c9da9d8486bb1b1fbbc7dfee1a3b104d0484bb54a7b0ba44c5b8492de9b3"
+    },
+    {
+      "path": "../p1-naturalistic-transport/SOURCE_FEASIBILITY_PROTOCOL_V1.json",
+      "sha256": "1e6888c347dbd5cb41bdeba049c9eb6537d8f5e5b9df3a38d461c9f23a0cc88a"
+    },
+    {
+      "path": "../p1-naturalistic-transport/SOURCE_RIGHTS_AMENDMENT_V1.json",
+      "sha256": "57c45498b57be43075ceb7efb2f90598af53848ba1c8b0c8a7e2ed5b6813f5ff"
+    },
+    {
+      "path": "../p1-naturalistic-transport/rw-README.md",
+      "sha256": "19d1fdb86dd8cd8b1d76afe9f8648309d5b1b66f1eab5920a38775c6eb34a1c6"
+    },
+    {
+      "path": "../p1-naturalistic-transport/crossref-metadata-licensing.html",
+      "sha256": "06a4101a3cc7a9122d65c5deb3da2b6278b7bd80e2c7440473ab1a1b9a5afc5f"
+    },
+    {
+      "path": "../p1-naturalistic-transport/epmc-swagger.json",
+      "sha256": "ed54250e868f7bf6184a3c4f8ad0d0a5c12ef8b0fee9b22d6b9f144939ef6c8c"
+    },
+    {
+      "path": "../p1-naturalistic-transport/epmc-fields.json",
+      "sha256": "07d1bede0b87369e95ba77753ac0be7a1f954f327b45e4ba9fb87bdcd281888d"
+    },
+    {
+      "path": "../p1-naturalistic-transport/pmc-oa-service.html",
+      "sha256": "bbb3ad1c90bd5d4f6186e9a5c278b8fc5950c961233f3d677ad15c9cd419eb05"
+    }
+  ],
+  "model_execution_authorized": false,
+  "normalization": {
+    "doi": "trim ASCII surrounding whitespace; casefold; remove a leading https://doi.org/, http://doi.org/, doi:, or dx.doi.org/ wrapper; admit only a syntactically nonempty 10.<registrant>/<suffix> value without whitespace; blank and case-insensitive unavailable are missing",
+    "endpoint_key_precedence": [
+      "DOI",
+      "PMID"
+    ],
+    "family_key": "original endpoint key; all update rows sharing it form one family",
+    "no_title_author_or_fuzzy_join": true,
+    "pmid": "trim; admit only a strictly positive base-10 integer; blank and 0 are missing",
+    "record_id": "trim; require nonempty; never use as an original-notice endpoint",
+    "relation_key": "ordered tuple (original endpoint key, notice endpoint key)"
+  },
+  "pinned_rw_source": {
+    "commit": "7bb2ced143b764974c53c6c61abfdd2379f5307d",
+    "csv_blob_git_sha1": "40a049f02044fab8286c0304fd296bf1fa2cb8ca",
+    "csv_bytes": 65984968,
+    "csv_sha256": "ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb",
+    "expected_data_rows": 71944,
+    "raw_payload_retention": false,
+    "readme_generation_date": "2026-08-21",
+    "repository": "https://gitlab.com/crossref/retraction-watch-data",
+    "reuse_rights": "CC0 for Retraction Watch database metadata fields only"
+  },
+  "prospective_row_gateway": {
+    "expected_header_from_preexisting_readme": [
+      "Record ID",
+      "Title",
+      "Subject",
+      "Institution",
+      "Journal",
+      "Publisher",
+      "Country",
+      "Author",
+      "URLS",
+      "ArticleType",
+      "RetractionDate",
+      "RetractionDOI",
+      "RetractionPubMedID",
+      "OriginalPaperDate",
+      "OriginalPaperDOI",
+      "OriginalPaperPubMedID",
+      "RetractionNature",
+      "Reason",
+      "Paywalled",
+      "Notes"
+    ],
+    "forbidden_access_terminal": "CANNOT_CHECK_OUTCOME_BLINDNESS_BREACH",
+    "forbidden_categories": [
+      "case text",
+      "names",
+      "affiliations",
+      "journal or publisher labels",
+      "URLs",
+      "article-type/action labels",
+      "update-nature/action labels",
+      "reason or responsibility codes",
+      "paywall outcome",
+      "notes"
+    ],
+    "forbidden_columns": [
+      "Title",
+      "Subject",
+      "Institution",
+      "Journal",
+      "Publisher",
+      "Country",
+      "Author",
+      "URLS",
+      "ArticleType",
+      "RetractionNature",
+      "Reason",
+      "Paywalled",
+      "Notes"
+    ],
+    "gateway_rule": "A deterministic streaming parser may receive the transport bytes required to validate the CSV, but it must never print, persist, aggregate, compare, tokenize, normalize, hash individually, or branch on any forbidden cell. It may materialize only the seven allowlisted fields. Raw CSV and temporary allowlisted row state must be deleted after aggregate receipts are written.",
+    "header_mismatch_terminal": "CANNOT_CHECK_PINNED_SCHEMA_MISMATCH",
+    "opened_before_freeze": false,
+    "semantic_allowlist": [
+      "Record ID",
+      "RetractionDate",
+      "RetractionDOI",
+      "RetractionPubMedID",
+      "OriginalPaperDate",
+      "OriginalPaperDOI",
+      "OriginalPaperPubMedID"
+    ]
+  },
+  "protected_outcome_access_authorized": false,
+  "rights_rules": {
+    "automatic_license_families": [
+      "CC0",
+      "CC BY",
+      "CC BY-SA"
+    ],
+    "content_pair_admission": "A pair is CONTENT_RIGHTS_ADMISSIBLE only if both exact endpoints resolve to PMC OA records and each exact license is CC0, CC BY, or CC BY-SA. ND, NC, custom, missing, ambiguous, nonmatch and provider errors are CANNOT_CHECK or excluded as frozen below; they are never negative evidence about the science.",
+    "epmc_metadata": "Use only official REST/PMC OA metadata routes and retain only identifiers, hit counts, provider version, machine-readable license identifiers and response hashes. No article, abstract, citation, filename, link, body, supplement or notice text may be persisted or inspected.",
+    "not_automatic": [
+      "CC BY-ND",
+      "CC BY-NC",
+      "CC BY-NC-ND",
+      "CC BY-NC-SA",
+      "custom",
+      "missing"
+    ],
+    "rw_relation_metadata": "Every allowlisted RW metadata field is reuse-admissible under the official CC0 binding if and only if the pinned blob identity passes. This does not license linked content."
+  },
+  "schema_version": "orion.p1.rw-rights-relation-census.v2",
+  "scientific_question": "Can the pinned CC0 Retraction Watch metadata backbone and official Europe PMC/PMC metadata routes establish a rights-valid, deduplicated source-family relation census and nonempty source-native notice-type feasibility strata before any case text, scientific terminal adjudication, model outcome, or protected score is opened?",
+  "typed_feasibility_cells": {
+    "cell_measures": [
+      "families_with_explicit_rw_relation",
+      "families_with_both_endpoints_epmc_id_resolved",
+      "families_with_both_endpoints_content_rights_admissible"
+    ],
+    "no_absence_as_negative": true,
+    "publication_type_is_not_gold": true,
+    "scientific_terminal_assignment_forbidden": true,
+    "source_native_strata": [
+      "EPMC_RETRACTION_NOTICE",
+      "EPMC_CORRECTION_OR_ERRATUM",
+      "EPMC_EXPRESSION_OF_CONCERN",
+      "EPMC_OTHER_OR_CANNOT_CHECK"
+    ]
+  }
+}

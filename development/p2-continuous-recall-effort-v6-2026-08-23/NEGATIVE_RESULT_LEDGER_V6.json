@@ -1,0 +1,108 @@
+{
+  "date": "2026-08-23",
+  "entries": [
+    {
+      "consequence": "V5 is not reinterpreted or deleted. CRE20 is new and R@10 remains an unchanged coprimary gate.",
+      "evidence": {
+        "candidate_minus_u4_r10_and_wss95": "negative",
+        "mean_delta_r10": 0.008834277869043594,
+        "reviews": 5,
+        "strictly_positive_reviews": 3,
+        "zero_reviews": 2
+      },
+      "finding": "The preserved V5 learner/balancer transport was adverse at the locked R@10 endpoint.",
+      "id": "N1",
+      "status": "PRESERVED_ADVERSE_RESULT"
+    },
+    {
+      "consequence": "Public availability and Apache-2.0 loader code do not establish data reuse rights; source rejected.",
+      "evidence": "WojciechKusa/systematic-review-datasets commit b30e9739939f52b1e799295138791f1fd5b002a5, csmed/datasets/cs_reviews/cs_reviews.py, _LICENSE = Unknown",
+      "finding": "The public CSMeD cs_reviews loader declares its constituent dataset licence Unknown.",
+      "id": "N2",
+      "status": "REJECTED_RIGHTS_CANNOT_CHECK"
+    },
+    {
+      "consequence": "Not selected for the outcome-unopened V6 family; no claim that CLEF is unusable.",
+      "evidence": "CLEF-TAR/tar commit dbc13d02bb3e2f8ebc90e62ff47f5eb591e5ca20; 2018 Task2 documentation and CSMeD adapter inspection only; no qrel values opened.",
+      "finding": "CLEF TAR provides an MIT repository but requires a separate task/population and PubMed enrichment binding; public task documentation also contains aggregate test-example outputs.",
+      "id": "N3",
+      "status": "NOT_SELECTED_NOT_A_GLOBAL_DEFICIT"
+    },
+    {
+      "consequence": "The row was excluded label-blind before any KIFMS label or model outcome. Final V5 content and PMID overlap are both zero.",
+      "evidence": {
+        "review": "Shoulderdystocia_recurrence",
+        "v5_content_matches": 1,
+        "v5_pmid_matches": 0
+      },
+      "finding": "One provisional KIFMS row matched a V5 raw-work content identity.",
+      "id": "N4",
+      "status": "RESOLVED_BY_PREFROZEN_DISJOINTNESS_RULE"
+    },
+    {
+      "consequence": "All 132 affected rows were excluded from every review before labels; 4,934 final rows remain pairwise disjoint.",
+      "evidence": {
+        "rows_excluded": 132,
+        "shared_content_identities": 65,
+        "shared_pmids": 0
+      },
+      "finding": "Sixty-five content identities appeared in more than one KIFMS review after external exclusion.",
+      "id": "N5",
+      "status": "RESOLVED_BY_SYMMETRIC_PREFROZEN_EXCLUSION"
+    },
+    {
+      "consequence": "Node mutability is not called immutability. V6 binds the exact revision-one API URLs and SHA-256 for every CSV.",
+      "evidence": {
+        "exact_csv_hash_count": 14,
+        "file_revision": 1,
+        "osf_node": "vt3n4",
+        "registration": false
+      },
+      "finding": "The OSF node is public but not a registered immutable OSF registration.",
+      "id": "N6",
+      "status": "FILE_LEVEL_IDENTITY_BOUND_NODE_LEVEL_MUTABILITY_RETAINED"
+    },
+    {
+      "consequence": "Any unmapped value, absent class or failed steward semantics makes the complete V6 experiment CANNOT_CHECK.",
+      "evidence": "Only source headers/schema and title/abstract fields were opened; label values and class counts remain unopened.",
+      "finding": "The public documentation names expert_inclusion but does not independently establish construct validity or class existence in every frozen review.",
+      "id": "N7",
+      "status": "UNRESOLVED_PROTECTED_LABEL_SEMANTICS_AND_CLASS_GATE"
+    },
+    {
+      "consequence": "No confirmatory, superiority or external-execution claim is available; comparative scoring is prohibited in this packet.",
+      "evidence": "All current metadata capture, label-blind preflight and protocol design occurred in the same Codex wave.",
+      "finding": "No independent protected custodian/executor is bound.",
+      "id": "N8",
+      "status": "UNRESOLVED_INDEPENDENT_CUSTODY"
+    },
+    {
+      "consequence": "Performance, harm, work saving and all positive gates remain CANNOT_CHECK.",
+      "evidence": "NO KIFMS LABEL VALUES, CLASS COUNTS, SEEDS, ACTIVE ORDERS, OR CANDIDATE/COMPARATOR OUTCOMES ACCESSED",
+      "finding": "No KIFMS candidate, u4 or factorial ranking outcome has been run or opened.",
+      "id": "N9",
+      "status": "EXECUTION_WITHHELD"
+    },
+    {
+      "consequence": "Zero PMID overlaps are vacuous. Final source disjointness is established by the exact normalized title/abstract content identities, not by a second identifier channel.",
+      "evidence": {
+        "canonical_nonempty_pmids": 0,
+        "empty_pmid_set_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_rows": 5074
+      },
+      "finding": "The KIFMS files expose a pubmed_id header but all 5,074 row values are empty.",
+      "id": "N10",
+      "status": "IDENTIFIER_CHANNEL_ABSENT_CONTENT_DISJOINTNESS_ONLY"
+    },
+    {
+      "consequence": "V6 may claim only exact-arm/endpoint outcomes unopened in this design context, not a globally unstudied or historically sealed family. Source selection independence and confirmatory authority still require an external custodian and explicit disclosure.",
+      "evidence": "Pinned GitHub tree at e056573791bfbdd339fa5ffd628a6443fdf220fb contains simulation metric/plot paths; their metric contents were not opened in V6.",
+      "finding": "The companion KIFMS repository publicly contains historical ASReview simulation artifacts for the same named datasets.",
+      "id": "N11",
+      "status": "PRIOR_PUBLIC_METHOD_ARTIFACTS_DISCLOSED_NO_V6_METRICS_OPENED"
+    }
+  ],
+  "identity": "P2_KIFMS_V6_NEGATIVE_AND_UNRESOLVED_LEDGER",
+  "preservation_rule": "Entries are append-only. Resolved source/population defects remain visible and cannot be removed from later positive reporting.",
+  "terminal": "P2_KIFMS_V6_LAWFUL_EXACT_SOURCE_AND_LABEL_BLIND_DISJOINT_POPULATION_FROZEN__INDEPENDENT_PROTECTED_EXECUTION_CANNOT_CHECK"
+}

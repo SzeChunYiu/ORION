@@ -1,0 +1,34 @@
+{
+  "builder": {
+    "backend": "poetry-core 2.3.2",
+    "command": "python -m build --sdist --no-isolation",
+    "frontend": "build 1.4.2",
+    "source_commit": "dec5c58a3e3970bc6817f33efb615fea11057fce"
+  },
+  "byte_equal": false,
+  "different": [],
+  "finished_at": "2026-08-23T21:35:30.551681+00:00",
+  "inputs": {
+    "rebuilt": {
+      "bytes": 123024,
+      "file_count": 62,
+      "manifest_sha256": "f46441b4911cf37eda4e3e37f58dbe391a528882a42213348916831757a5a763",
+      "path": "built_sdist/disruption_py-0.14.0.tar.gz",
+      "sha256": "20872530b4dba0b3d8aac4cf74cd32bde68bda15de9863245e881d4ca9bd8c39"
+    },
+    "zenodo": {
+      "bytes": 129215,
+      "file_count": 65,
+      "manifest_sha256": "197230e6774b6377680a8f8d0f94ac918357ce0ee8bad16fd198f7fa666af865",
+      "path": "evidence/185_archive.tar.gz",
+      "sha256": "775f92dbcbd6d1523db241494998e4b0867d51a84236feb7accc86b63b033a19"
+    }
+  },
+  "manifest_equal": false,
+  "only_rebuilt": [],
+  "only_zenodo": [
+    "disruption_py/data/cmod_ufo.csv",
+    "disruption_py/data/cmod_vde.csv",
+    "disruption_py/data/hbtep_fastcam.csv"
+  ]
+}

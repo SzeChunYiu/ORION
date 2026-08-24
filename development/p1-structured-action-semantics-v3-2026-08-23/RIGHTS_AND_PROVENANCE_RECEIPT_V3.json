@@ -1,0 +1,91 @@
+{
+  "authority": "REUSE_AND_PROVENANCE_FEASIBILITY_ONLY__NOT_LEGAL_ADVICE_OR_R7_OWNER_AUTHORITY",
+  "boundary": {
+    "article_licence_promoted_to_target_algebra_licence": false,
+    "case_identifiers_retained": false,
+    "factual_aggregate_counts_only": true,
+    "provider_vocabulary_promoted_to_owner_ratification": false,
+    "raw_provider_responses_retained": false
+  },
+  "generated_at": "2026-08-23T18:11:26.900337+00:00",
+  "protocol_sha256": "cd653aec420249d98355478164c95ed6bfd1137e33279529ae06c011bf5114c3",
+  "schema_version": "orion.p1.structured-action-semantics.rights-and-provenance-receipt.v3",
+  "sources": [
+    {
+      "commit": "7bb2ced143b764974c53c6c61abfdd2379f5307d",
+      "csv_rows": 71944,
+      "csv_sha256": "ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb",
+      "evidence": "Crossref licensing table identifies the Retraction Watch database as CC0.",
+      "rights_evidence_sha256": "06a4101a3cc7a9122d65c5deb3da2b6278b7bd80e2c7440473ab1a1b9a5afc5f",
+      "route": "https://gitlab.com/crossref/retraction-watch-data.git",
+      "scope": "Frozen allowlisted database metadata fields only; linked article content and R7 target-algebra rights are not included.",
+      "source_id": "RW_CC0_PINNED",
+      "status": "EXACT_METADATA_REUSE_PASS"
+    },
+    {
+      "exact_endpoint_record_count": 25588,
+      "exact_rights_families": 11602,
+      "exact_rights_relations": 12038,
+      "inherited_result_sha256": "c4edf7fbc2194d2e82cc099a90155b2d9e0ec78718ea63a192afc94bf4c20481",
+      "normalized_license_counts": {
+        "ALLOW_CC0": 50,
+        "ALLOW_CC_BY": 25534,
+        "ALLOW_CC_BY_SA": 4
+      },
+      "provider_version": "6.9",
+      "route": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+      "scope": "Exact allowlisted licences on both article endpoints establish public construction feasibility; they do not license or ratify a new R7 algebra.",
+      "source_id": "EPMC_ARTICLE_ENDPOINT_LICENSE_GATE",
+      "status": "EXACT_ITEM_CONTENT_RIGHTS_PASS_FOR_FROZEN_POOL"
+    },
+    {
+      "evidence_quotes": [
+        "The respective copyright holders retain rights for reproduction, redistribution and reuse.",
+        "Please refer to the license statement in each article for specific terms of use. The license terms are not identical for all the articles."
+      ],
+      "reason": "The page supports article-specific licensing and authorized REST retrieval, but does not bind an exact licence to provider-generated pubType/commentCorrection field values as an R7-owner artifact.",
+      "route": "https://www.europepmc.org/About/Copyright",
+      "source_id": "EPMC_REST_CORE_STRUCTURED_METADATA",
+      "source_sha256": "f52cea9546d9e1459ec16ac4e421a8f25821fdc8a9867225e1b02bc36696c9b5",
+      "status": "CANNOT_CHECK_EXACT_FIELD_VALUE_LICENCE"
+    },
+    {
+      "evidence_quotes": [
+        "Information that is created by or for the US government on this site is within the public domain.",
+        "This site contains resources which incorporate material contributed or licensed by individuals, companies, or organizations that may be protected."
+      ],
+      "reason": "Mixed-provenance warning prevents inferring a field-level unrestricted licence for all contributed PubMed record values.",
+      "route": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+      "source_id": "PUBMED_EFETCH_STRUCTURED_METADATA",
+      "source_sha256": "8ad8f6f186ca51ec73a5fb8935ecfa17b8cbaad300b7025b381898ab72621869",
+      "status": "CANNOT_CHECK_EXACT_FIELD_VALUE_LICENCE"
+    },
+    {
+      "boundary": "Vocabulary enumeration is not per-record owner custody or R7-owner ratification.",
+      "route": "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd",
+      "source_id": "NLM_PUBMED_DTD",
+      "source_sha256": "8c9a3c520259bb79ca87c04021671eb47fd300646aa1813bd884c418217d1573",
+      "status": "OFFICIAL_SCHEMA_EVIDENCE__RIGHTS_SCOPE_CANNOT_CHECK",
+      "use": "Exact RefType vocabulary and interface normalization only."
+    },
+    {
+      "boundary": "The staged page includes third-party software copyright attribution; documentation vocabulary is not R7-owner ratification.",
+      "evidence": "The page defines related-article-type as the type/relationship of a link to another article and documents correction/retraction directionality.",
+      "route": "https://jats.nlm.nih.gov/archiving/tag-library/1.4/attribute/related-article-type.html",
+      "source_id": "NLM_JATS_TAG_LIBRARY",
+      "source_sha256": "915635dc5d23d382b9c00426428d0d69ad924254a843b3149b6e1cbfc82fb07e",
+      "status": "OFFICIAL_VOCABULARY_EVIDENCE__MIXED_PROVENANCE_RIGHTS_CANNOT_CHECK"
+    },
+    {
+      "reason": "No Crossref record values were needed after the two-provider structured census; no result or owner-field claim depends on this route.",
+      "route": "https://api.crossref.org/works/{doi}",
+      "source_id": "CROSSREF_REST_RELATION",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "target_algebra_rights_group": {
+    "counts_as_sufficient_owner_field": false,
+    "reason": "Neither exact item licences nor public-domain/provider documentation supplies all of public_archive_url, reuse_licence_spdx, and licence_text_sha256 for an owner-approved target algebra.",
+    "status": "INSUFFICIENT"
+  }
+}

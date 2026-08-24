@@ -1,0 +1,45 @@
+{
+  "finished_at": "2026-08-23T21:41:04.444099+00:00",
+  "rows": {
+    "199_swh_inner_directory": {
+      "bytes": 5722,
+      "error": null,
+      "final_url": "https://archive.softwareheritage.org/api/1/directory/178315b57afafc1f20ab9929b4de893430524c62/",
+      "sha256": "728456a84a6e85dce3bb2cb349b67cbc5de8c0a2479faa4fa2ada46626c902c9",
+      "status": 200,
+      "url": "https://archive.softwareheritage.org/api/1/directory/178315b57afafc1f20ab9929b4de893430524c62/"
+    },
+    "199_swh_origin_get_query": {
+      "bytes": 107,
+      "error": "HTTPError:404",
+      "final_url": "https://archive.softwareheritage.org/api/1/origin/get/?origin_url=https%3A%2F%2Fgithub.com%2FTARGENE%2Ftargene-pipeline",
+      "sha256": "419a033ae402cfbcf51f373bc4fcf74e9db1e4cdef9c9bf6193fc82cdd9f662d",
+      "status": 404,
+      "url": "https://archive.softwareheritage.org/api/1/origin/get/?origin_url=https%3A%2F%2Fgithub.com%2FTARGENE%2Ftargene-pipeline"
+    },
+    "199_swh_origin_search_full": {
+      "bytes": 565,
+      "error": null,
+      "final_url": "https://archive.softwareheritage.org/api/1/origin/search/https%3A%2F%2Fgithub.com%2FTARGENE%2Ftargene-pipeline/?limit=50",
+      "sha256": "6e2457770e3cbad8e0e51c779556cad0f3b98537061d8d1187c02a1d12eb49a5",
+      "status": 200,
+      "url": "https://archive.softwareheritage.org/api/1/origin/search/https%3A%2F%2Fgithub.com%2FTARGENE%2Ftargene-pipeline/?limit=50"
+    },
+    "199_swh_origin_search_repo": {
+      "bytes": 565,
+      "error": null,
+      "final_url": "https://archive.softwareheritage.org/api/1/origin/search/targene-pipeline/?limit=50",
+      "sha256": "6e2457770e3cbad8e0e51c779556cad0f3b98537061d8d1187c02a1d12eb49a5",
+      "status": 200,
+      "url": "https://archive.softwareheritage.org/api/1/origin/search/targene-pipeline/?limit=50"
+    },
+    "199_swh_visits_query": {
+      "bytes": 442,
+      "error": null,
+      "final_url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2FTARGENE%2Ftargene-pipeline/visits/",
+      "sha256": "4f87f8e93965ea8faae8ab0a49dbb2aacf7b47bff5f4ae593efafb242c1ad479",
+      "status": 200,
+      "url": "https://archive.softwareheritage.org/api/1/origin/https%3A%2F%2Fgithub.com%2FTARGENE%2Ftargene-pipeline/visits/"
+    }
+  }
+}

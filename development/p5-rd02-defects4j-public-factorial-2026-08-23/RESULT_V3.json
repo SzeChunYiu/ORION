@@ -1,0 +1,271 @@
+{
+  "analysis": {
+    "environment_effect": 0.0,
+    "harm_modifier": "NO_ADVERSE_CELL",
+    "implementation_effect": 1.0,
+    "interaction": 0,
+    "primary_terminal": "IMPLEMENTATION_MAIN_EFFECT"
+  },
+  "archival_replay_only": true,
+  "bridge_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "cells": [
+    {
+      "adverse_or_harmful": false,
+      "candidate_level": "C0",
+      "cell_id": "C0E1",
+      "cell_success": false,
+      "checkout": {
+        "command": [
+          "/tmp/p5-rd02-defects4j/defects4j/framework/bin/defects4j",
+          "checkout",
+          "-p",
+          "Lang",
+          "-v",
+          "1b",
+          "-w",
+          "/tmp/p5-rd02-defects4j/factorial-runs-v3/C0E1"
+        ],
+        "elapsed_seconds": 4.5210161209106445,
+        "exit_code": 0,
+        "stderr_path": "V3.C0E1.checkout.stderr.txt",
+        "stderr_sha256": "55538de13a81cf07b978f8ed95536159724a59550b0c9706c4ccda68e4d7742f",
+        "stdout_path": "V3.C0E1.checkout.stdout.txt",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false
+      },
+      "checkout_identity_ok": true,
+      "defects4j_config_sha256": "9f566faf05152c1365d5af98e8815dc6adf386318bf9017ce4b6ac31b6b3a984",
+      "environment_identity_ok": true,
+      "environment_level": "E1",
+      "failing_test_count": 1,
+      "failing_tests": [
+        "org.apache.commons.lang3.math.NumberUtilsTest::TestLang747"
+      ],
+      "failing_tests_path": "/tmp/p5-rd02-defects4j/factorial-runs-v3/C0E1/failing_tests",
+      "failing_tests_sha256": "563ee5a22f3c0452d8431e9c15a730d5d6d2c7c0e08843dbb02cfd0590077bee",
+      "java_binary_sha256": "e561d7ba57da3bb04df5db5da06a7a164811fa3981c1cfaed0516c70f784b301",
+      "java_home": "/tmp/p5-rd02-defects4j/jdk11/Contents/Home",
+      "java_version_registered": "11.0.32+9",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "local_prepared_head": "145d760c62bef4e7b5583e81367571d1c4783bad",
+      "phase_log_paths_distinct": true,
+      "prepared_tree": "eaec8f08f7e0fc2d10a39a6480878a338e1a7090",
+      "registered_trigger_present": true,
+      "test": {
+        "command": [
+          "/tmp/p5-rd02-defects4j/defects4j/framework/bin/defects4j",
+          "test"
+        ],
+        "elapsed_seconds": 27.096935987472534,
+        "exit_code": 0,
+        "stderr_path": "V3.C0E1.test.stderr.txt",
+        "stderr_sha256": "cdb8c5245c063a34668cdbaf812d0bedcc14491ce03336a5e3afbffdebe0261f",
+        "stdout_path": "V3.C0E1.test.stdout.txt",
+        "stdout_sha256": "f4b1f16250d3fb8ba7673c0687dae26aab153de09e6834d26a6d6bc861145907",
+        "timed_out": false
+      },
+      "unexpected_failures": [],
+      "valid_cell": true,
+      "workspace": "/tmp/p5-rd02-defects4j/factorial-runs-v3/C0E1"
+    },
+    {
+      "adverse_or_harmful": false,
+      "candidate_level": "C1",
+      "cell_id": "C1E0",
+      "cell_success": true,
+      "checkout": {
+        "command": [
+          "/tmp/p5-rd02-defects4j/defects4j/framework/bin/defects4j",
+          "checkout",
+          "-p",
+          "Lang",
+          "-v",
+          "1f",
+          "-w",
+          "/tmp/p5-rd02-defects4j/factorial-runs-v3/C1E0"
+        ],
+        "elapsed_seconds": 4.516856908798218,
+        "exit_code": 0,
+        "stderr_path": "V3.C1E0.checkout.stderr.txt",
+        "stderr_sha256": "4b1ab3dfb72d7fb68decb779d2ca6a9b55499658b95194f44bf2bc3902aff43b",
+        "stdout_path": "V3.C1E0.checkout.stdout.txt",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false
+      },
+      "checkout_identity_ok": true,
+      "defects4j_config_sha256": "d9eaa4710bebdc29e3c4d4323344756c135c90032f13b05112583cbae970cc87",
+      "environment_identity_ok": true,
+      "environment_level": "E0",
+      "failing_test_count": 0,
+      "failing_tests": [],
+      "failing_tests_path": "/tmp/p5-rd02-defects4j/factorial-runs-v3/C1E0/failing_tests",
+      "failing_tests_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "java_binary_sha256": "c7ec15111335d5c7ef3c9a3ddcb67642ef3cfbbd8efc98d90b90526628b245b4",
+      "java_home": "/opt/homebrew/Cellar/openjdk@11/11.0.32.1/libexec/openjdk.jdk/Contents/Home",
+      "java_version_registered": "11.0.32.1+0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "local_prepared_head": "f74d889b8523bb545ee34042a635cf516e95d798",
+      "phase_log_paths_distinct": true,
+      "prepared_tree": "5890638f92d023d4bb6df6625508326009924c76",
+      "registered_trigger_present": false,
+      "test": {
+        "command": [
+          "/tmp/p5-rd02-defects4j/defects4j/framework/bin/defects4j",
+          "test"
+        ],
+        "elapsed_seconds": 25.58586597442627,
+        "exit_code": 0,
+        "stderr_path": "V3.C1E0.test.stderr.txt",
+        "stderr_sha256": "cdb8c5245c063a34668cdbaf812d0bedcc14491ce03336a5e3afbffdebe0261f",
+        "stdout_path": "V3.C1E0.test.stdout.txt",
+        "stdout_sha256": "a26a2fdfe16051dbd42f6f7c19a301a2a126b93f5fe42cf8014303231da682e3",
+        "timed_out": false
+      },
+      "unexpected_failures": [],
+      "valid_cell": true,
+      "workspace": "/tmp/p5-rd02-defects4j/factorial-runs-v3/C1E0"
+    },
+    {
+      "adverse_or_harmful": false,
+      "candidate_level": "C0",
+      "cell_id": "C0E0",
+      "cell_success": false,
+      "checkout": {
+        "command": [
+          "/tmp/p5-rd02-defects4j/defects4j/framework/bin/defects4j",
+          "checkout",
+          "-p",
+          "Lang",
+          "-v",
+          "1b",
+          "-w",
+          "/tmp/p5-rd02-defects4j/factorial-runs-v3/C0E0"
+        ],
+        "elapsed_seconds": 4.346464157104492,
+        "exit_code": 0,
+        "stderr_path": "V3.C0E0.checkout.stderr.txt",
+        "stderr_sha256": "9839077362a274d4324992348b2a8c388fc158cc22df484285d129201c1411d8",
+        "stdout_path": "V3.C0E0.checkout.stdout.txt",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false
+      },
+      "checkout_identity_ok": true,
+      "defects4j_config_sha256": "9f566faf05152c1365d5af98e8815dc6adf386318bf9017ce4b6ac31b6b3a984",
+      "environment_identity_ok": true,
+      "environment_level": "E0",
+      "failing_test_count": 1,
+      "failing_tests": [
+        "org.apache.commons.lang3.math.NumberUtilsTest::TestLang747"
+      ],
+      "failing_tests_path": "/tmp/p5-rd02-defects4j/factorial-runs-v3/C0E0/failing_tests",
+      "failing_tests_sha256": "563ee5a22f3c0452d8431e9c15a730d5d6d2c7c0e08843dbb02cfd0590077bee",
+      "java_binary_sha256": "c7ec15111335d5c7ef3c9a3ddcb67642ef3cfbbd8efc98d90b90526628b245b4",
+      "java_home": "/opt/homebrew/Cellar/openjdk@11/11.0.32.1/libexec/openjdk.jdk/Contents/Home",
+      "java_version_registered": "11.0.32.1+0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "local_prepared_head": "67d946978b750b8ef1cd976d813d7a31fcf8557d",
+      "phase_log_paths_distinct": true,
+      "prepared_tree": "eaec8f08f7e0fc2d10a39a6480878a338e1a7090",
+      "registered_trigger_present": true,
+      "test": {
+        "command": [
+          "/tmp/p5-rd02-defects4j/defects4j/framework/bin/defects4j",
+          "test"
+        ],
+        "elapsed_seconds": 25.861797094345093,
+        "exit_code": 0,
+        "stderr_path": "V3.C0E0.test.stderr.txt",
+        "stderr_sha256": "cdb8c5245c063a34668cdbaf812d0bedcc14491ce03336a5e3afbffdebe0261f",
+        "stdout_path": "V3.C0E0.test.stdout.txt",
+        "stdout_sha256": "f4b1f16250d3fb8ba7673c0687dae26aab153de09e6834d26a6d6bc861145907",
+        "timed_out": false
+      },
+      "unexpected_failures": [],
+      "valid_cell": true,
+      "workspace": "/tmp/p5-rd02-defects4j/factorial-runs-v3/C0E0"
+    },
+    {
+      "adverse_or_harmful": false,
+      "candidate_level": "C1",
+      "cell_id": "C1E1",
+      "cell_success": true,
+      "checkout": {
+        "command": [
+          "/tmp/p5-rd02-defects4j/defects4j/framework/bin/defects4j",
+          "checkout",
+          "-p",
+          "Lang",
+          "-v",
+          "1f",
+          "-w",
+          "/tmp/p5-rd02-defects4j/factorial-runs-v3/C1E1"
+        ],
+        "elapsed_seconds": 4.344321012496948,
+        "exit_code": 0,
+        "stderr_path": "V3.C1E1.checkout.stderr.txt",
+        "stderr_sha256": "5215817b134908a3b0eba71c3287064f46c4f4ffadc7b8228fe5bcd444d0935e",
+        "stdout_path": "V3.C1E1.checkout.stdout.txt",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false
+      },
+      "checkout_identity_ok": true,
+      "defects4j_config_sha256": "d9eaa4710bebdc29e3c4d4323344756c135c90032f13b05112583cbae970cc87",
+      "environment_identity_ok": true,
+      "environment_level": "E1",
+      "failing_test_count": 0,
+      "failing_tests": [],
+      "failing_tests_path": "/tmp/p5-rd02-defects4j/factorial-runs-v3/C1E1/failing_tests",
+      "failing_tests_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "java_binary_sha256": "e561d7ba57da3bb04df5db5da06a7a164811fa3981c1cfaed0516c70f784b301",
+      "java_home": "/tmp/p5-rd02-defects4j/jdk11/Contents/Home",
+      "java_version_registered": "11.0.32+9",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "local_prepared_head": "207ee610e62f135a7e8e3a0eb850309571b53cfb",
+      "phase_log_paths_distinct": true,
+      "prepared_tree": "5890638f92d023d4bb6df6625508326009924c76",
+      "registered_trigger_present": false,
+      "test": {
+        "command": [
+          "/tmp/p5-rd02-defects4j/defects4j/framework/bin/defects4j",
+          "test"
+        ],
+        "elapsed_seconds": 26.964612007141113,
+        "exit_code": 0,
+        "stderr_path": "V3.C1E1.test.stderr.txt",
+        "stderr_sha256": "cdb8c5245c063a34668cdbaf812d0bedcc14491ce03336a5e3afbffdebe0261f",
+        "stdout_path": "V3.C1E1.test.stdout.txt",
+        "stdout_sha256": "a26a2fdfe16051dbd42f6f7c19a301a2a126b93f5fe42cf8014303231da682e3",
+        "timed_out": false
+      },
+      "unexpected_failures": [],
+      "valid_cell": true,
+      "workspace": "/tmp/p5-rd02-defects4j/factorial-runs-v3/C1E1"
+    }
+  ],
+  "grants_scientific_authority": false,
+  "h1_h4_status": "CANNOT_CHECK",
+  "n_independent_units": 1,
+  "outcomes_accessed": true,
+  "parent_study_id": "P5-RD-02",
+  "possible_authority": "LOCAL_RIGHTS_BOUND_PUBLIC_DEVELOPMENT_FACTORIAL_ONLY",
+  "predecessor_result_changed": false,
+  "preregistration_path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/PREREGISTRATION_V3.json",
+  "preregistration_sha256": "5cd056ea54357cab9d341b57fa8b4fbd8a063011c4de983aa707e88de6e1959e",
+  "protected_freshness_status": "CANNOT_CHECK",
+  "protected_outcomes_accessed": false,
+  "public_development_only": true,
+  "replay_of": "P5-RD-02.DEFECTS4J.LANG1.V2",
+  "run_order": [
+    "C0E1",
+    "C1E0",
+    "C0E0",
+    "C1E1"
+  ],
+  "runner_sha256": "d3b4580836645b76d06518ac26b7fe73bad926c7a1fe7a8f05513f0b84d933fe",
+  "schema_version": "orion.p5.rd02.public-development-result.v3",
+  "study_id": "P5-RD-02.DEFECTS4J.LANG1.V3",
+  "successor_of": "P5-RD-02.DEFECTS4J.LANG1.V2",
+  "v2_checkout_log_bytes_recovered": false,
+  "v2_outcomes_known_at_freeze": true,
+  "v3_phase_logs_preserved_separately": true
+}

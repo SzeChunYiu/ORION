@@ -1,0 +1,33 @@
+# P5 V6 Recursive Negative Ledger
+
+## V6-N1-SELECTION-NOT-FRESH
+
+- **Cause:** Lang-1 public fix and V2/V3 outcomes were known before V6 construction.
+- **Residual:** The packet is a public-development preflight case, not a fresh or confirmatory case.
+- **Next discriminator:** Freeze a source-disjoint case under independent pre-outcome custody for the final campaign.
+
+## V6-N2-NATIVE-ENVIRONMENTS-ABSENT
+
+- **Cause:** One source/task core does not instantiate six incompatible native interfaces.
+- **Residual:** Six runtime.task_environment fields remain blocking; 0/6 arms are ready.
+- **Next discriminator:** Build six content-addressed native adapters/environments and obtain six byte-level acceptance receipts without adding unlicensed content.
+
+## V6-N3-NATIVE-CONTENT-EXCLUDED
+
+- **Cause:** The packet does not grant rights to bundled arm datasets, benchmarks, skills, issue attachments or generated outputs.
+- **Residual:** Any adapter that reintroduces those bytes reopens rights.task_and_benchmark_content.
+- **Next discriminator:** Keep native content excluded or acquire component-level grants and inventories before use.
+
+## V6-N4-V2-LOG-NEGATIVE-PRESERVED
+
+- **Cause:** The predecessor V2 runner overwrote checkout streams by path collision.
+- **Residual:** Exact V2 checkout-stream preservation remains CANNOT_CHECK; V3 is post-outcome archival replay only.
+- **Next discriminator:** Do not use V2 checkout logs as byte-level evidence; retain V3 only for archival mechanics.
+
+## V6-N5-NO-SCIENTIFIC-OUTCOME
+
+- **Cause:** V6 inventories bytes and rights without executing an arm or evaluator.
+- **Residual:** H1--H4, performance, harm, transfer and superiority remain CANNOT_CHECK.
+- **Next discriminator:** Complete all remaining fields, then run a prospectively frozen independently scored campaign.
+
+Exact terminal: `P5_V6_SUBSTANTIVE_PUBLIC_LANG1_CASE_AND_RIGHTS_CORE_BOUND__TWELVE_SHARED_INPUT_AND_CONTENT_RIGHTS_FIELDS_CLOSED__SIX_NATIVE_TASK_ENVIRONMENTS_BLOCKING__FIFTY_FOUR_OF_ONE_HUNDRED_TWENTY_SIX_FIELDS_BOUND__SEVENTY_TWO_BLOCKING__ZERO_OF_SIX_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK`

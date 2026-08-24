@@ -1,0 +1,2721 @@
+{
+  "adverse_terminals": [
+    "AML_TEST_206_UNPARSABLE_SOURCE_NATIVE_RUNTIME_FAILURE",
+    "PLURAL_TRUTH_OPPORTUNITY_ZERO",
+    "TEMPORAL_CONTEXT_CANNOT_CHECK",
+    "NO_INFERENTIAL_AUTHORITY_ONE_CLUSTER"
+  ],
+  "authority": "PUBLIC_ONE_SEED_FAMILY_DESCRIPTIVE_DEVELOPMENT_ONLY",
+  "candidate_vs_source_native": {
+    "candidate": "P3_CONFLICT_PRESERVING_WRAPPER_V1",
+    "candidate_minus_aml_exact_rate": -0.003710384677431122,
+    "candidate_minus_aml_mean_floor_adjusted_harm": [
+      -0.0054299206593632215,
+      -0.005723231701057388,
+      -0.03904336603751449
+    ],
+    "candidate_minus_aml_unresolved_rate": 0.012187073782392532,
+    "comparator": "AML_V3_2_AUTO_SOURCE_NATIVE"
+  },
+  "current_terminal": "PUBLIC_CANDIDATE_UNIVERSE_INVALID__PUBLIC_NONPROTECTED_ONE_SEED_FAMILY_ONLY",
+  "gates": {
+    "candidate_universe_recall_1_0": false,
+    "one_independent_cluster_only": true,
+    "p3_gold_in_envelope_coverage_1_0": false,
+    "p3_ideal_product_exact_tie": true,
+    "protected_authority": false,
+    "referent_opportunity_nonzero": true
+  },
+  "n_cases": 68187,
+  "n_clusters": 1,
+  "opportunity_receipt": {
+    "OAEI_2004_ZENODO_15827226": {
+      "REFERENT": {
+        "count": 68187,
+        "n_cases_audited": 68187,
+        "status": "PASS_NONZERO"
+      }
+    }
+  },
+  "primary_terminal": "PUBLIC_CANDIDATE_UNIVERSE_INVALID",
+  "protected_and_768_terminal": "CANNOT_CHECK",
+  "protected_evidence": false,
+  "protocol_id": "P3.PUBLIC.OAEI.CONFLICT_PRESERVING.DEV.V2",
+  "schema_version": "orion.p3.oaei-public-development-result.v1",
+  "systems": {
+    "AML_AND_LABEL_FORCED_V1": {
+      "full_census": {
+        "exact_rate": 0.9274055171806943,
+        "f1": 0.4126611957796014,
+        "fn": 983,
+        "fp": 19,
+        "gold_in_envelope_coverage": 0.9866396820508309,
+        "mean_floor_adjusted_harm": [
+          0.02816885916670333,
+          0.029283441125141155,
+          0.0804955490049423
+        ],
+        "n": 68187,
+        "precision": 0.9487870619946092,
+        "recall": 0.2636704119850187,
+        "tn": 62885,
+        "tp": 352,
+        "unresolved_rate": 0.05923416487013654
+      },
+      "per_target": {
+        "102": {
+          "exact_rate": 1.0,
+          "f1": null,
+          "fn": 0,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "n": 2392,
+          "precision": null,
+          "recall": null,
+          "tn": 2392,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "103": {
+          "exact_rate": 0.9844572574580095,
+          "f1": 0.4833333333333333,
+          "fn": 62,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9844572574580095,
+          "mean_floor_adjusted_harm": [
+            0.015542742541990473,
+            0.015542742541990473,
+            0.07771371270995237
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.31868131868131866,
+          "tn": 3898,
+          "tp": 29,
+          "unresolved_rate": 0.0
+        },
+        "104": {
+          "exact_rate": 0.9844572574580095,
+          "f1": 0.4833333333333333,
+          "fn": 62,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9844572574580095,
+          "mean_floor_adjusted_harm": [
+            0.015542742541990473,
+            0.015542742541990473,
+            0.07771371270995237
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.31868131868131866,
+          "tn": 3898,
+          "tp": 29,
+          "unresolved_rate": 0.0
+        },
+        "105": {
+          "exact_rate": 0.996629213483146,
+          "f1": null,
+          "fn": 0,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.996629213483146,
+          "mean_floor_adjusted_harm": [
+            0.0033707865168539327,
+            0.016853932584269662,
+            0.0033707865168539327
+          ],
+          "n": 890,
+          "precision": 0.0,
+          "recall": null,
+          "tn": 887,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "201": {
+          "exact_rate": 0.9773913043478261,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9773913043478261,
+          "mean_floor_adjusted_harm": [
+            0.022608695652173914,
+            0.022608695652173914,
+            0.11304347826086956
+          ],
+          "n": 4025,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 3934,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "202": {
+          "exact_rate": 0.9762835548605682,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9762835548605682,
+          "mean_floor_adjusted_harm": [
+            0.023716445139431847,
+            0.023716445139431847,
+            0.11858222569715923
+          ],
+          "n": 3837,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 3746,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "204": {
+          "exact_rate": 0.9827024316871397,
+          "f1": 0.3893805309734513,
+          "fn": 69,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9827024316871397,
+          "mean_floor_adjusted_harm": [
+            0.017297568312860365,
+            0.017297568312860365,
+            0.08648784156430182
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.24175824175824176,
+          "tn": 3898,
+          "tp": 22,
+          "unresolved_rate": 0.0
+        },
+        "205": {
+          "exact_rate": 0.9783810960281548,
+          "f1": 0.10416666666666666,
+          "fn": 86,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9783810960281548,
+          "mean_floor_adjusted_harm": [
+            0.021618903971845148,
+            0.021618903971845148,
+            0.10809451985922575
+          ],
+          "n": 3978,
+          "precision": 1.0,
+          "recall": 0.054945054945054944,
+          "tn": 3887,
+          "tp": 5,
+          "unresolved_rate": 0.0
+        },
+        "206": {
+          "exact_rate": 0.0,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "n": 4039,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 0,
+          "tp": 0,
+          "unresolved_rate": 1.0
+        },
+        "221": {
+          "exact_rate": 0.9854600150413637,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9854600150413637,
+          "mean_floor_adjusted_harm": [
+            0.014539984958636249,
+            0.014539984958636249,
+            0.07269992479318124
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3898,
+          "tp": 33,
+          "unresolved_rate": 0.0
+        },
+        "222": {
+          "exact_rate": 0.9843953185955787,
+          "f1": 0.47368421052631576,
+          "fn": 59,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.9843953185955787,
+          "mean_floor_adjusted_harm": [
+            0.015604681404421327,
+            0.016644993498049414,
+            0.07698309492847855
+          ],
+          "n": 3845,
+          "precision": 0.9642857142857143,
+          "recall": 0.313953488372093,
+          "tn": 3758,
+          "tp": 27,
+          "unresolved_rate": 0.0
+        },
+        "223": {
+          "exact_rate": 0.9874261764145551,
+          "f1": 0.46774193548387094,
+          "fn": 62,
+          "fp": 4,
+          "gold_in_envelope_coverage": 0.9874261764145551,
+          "mean_floor_adjusted_harm": [
+            0.012573823585444847,
+            0.015622023242522385,
+            0.0598209182701467
+          ],
+          "n": 5249,
+          "precision": 0.8787878787878788,
+          "recall": 0.31868131868131866,
+          "tn": 5154,
+          "tp": 29,
+          "unresolved_rate": 0.0
+        },
+        "224": {
+          "exact_rate": 0.9854600150413637,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9854600150413637,
+          "mean_floor_adjusted_harm": [
+            0.014539984958636249,
+            0.014539984958636249,
+            0.07269992479318124
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3898,
+          "tp": 33,
+          "unresolved_rate": 0.0
+        },
+        "225": {
+          "exact_rate": 0.9852093256455252,
+          "f1": 0.5203252032520326,
+          "fn": 59,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9852093256455252,
+          "mean_floor_adjusted_harm": [
+            0.014790674354474806,
+            0.014790674354474806,
+            0.07395337177237403
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3516483516483517,
+          "tn": 3898,
+          "tp": 32,
+          "unresolved_rate": 0.0
+        },
+        "228": {
+          "exact_rate": 0.9976689976689976,
+          "f1": 0.9354838709677419,
+          "fn": 4,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9976689976689976,
+          "mean_floor_adjusted_harm": [
+            0.002331002331002331,
+            0.002331002331002331,
+            0.011655011655011656
+          ],
+          "n": 1716,
+          "precision": 1.0,
+          "recall": 0.8787878787878788,
+          "tn": 1683,
+          "tp": 29,
+          "unresolved_rate": 0.0
+        },
+        "230": {
+          "exact_rate": 0.9875,
+          "f1": 0.5263157894736842,
+          "fn": 45,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9875,
+          "mean_floor_adjusted_harm": [
+            0.0125,
+            0.0125,
+            0.0625
+          ],
+          "n": 3600,
+          "precision": 1.0,
+          "recall": 0.35714285714285715,
+          "tn": 3530,
+          "tp": 25,
+          "unresolved_rate": 0.0
+        },
+        "301": {
+          "exact_rate": 0.9888429752066116,
+          "f1": 0.4905660377358491,
+          "fn": 26,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.9888429752066116,
+          "mean_floor_adjusted_harm": [
+            0.01115702479338843,
+            0.0128099173553719,
+            0.05413223140495868
+          ],
+          "n": 2420,
+          "precision": 0.9285714285714286,
+          "recall": 0.3333333333333333,
+          "tn": 2380,
+          "tp": 13,
+          "unresolved_rate": 0.0
+        },
+        "302": {
+          "exact_rate": 0.9895890410958904,
+          "f1": 0.4864864864864865,
+          "fn": 17,
+          "fp": 2,
+          "gold_in_envelope_coverage": 0.9895890410958904,
+          "mean_floor_adjusted_harm": [
+            0.010410958904109589,
+            0.014794520547945205,
+            0.04767123287671233
+          ],
+          "n": 1825,
+          "precision": 0.8181818181818182,
+          "recall": 0.34615384615384615,
+          "tn": 1797,
+          "tp": 9,
+          "unresolved_rate": 0.0
+        },
+        "303": {
+          "exact_rate": 0.9952777777777778,
+          "f1": 0.5853658536585367,
+          "fn": 14,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.9952777777777778,
+          "mean_floor_adjusted_harm": [
+            0.004722222222222222,
+            0.008055555555555555,
+            0.020277777777777777
+          ],
+          "n": 3600,
+          "precision": 0.8,
+          "recall": 0.46153846153846156,
+          "tn": 3571,
+          "tp": 12,
+          "unresolved_rate": 0.0
+        },
+        "304": {
+          "exact_rate": 0.988015509340853,
+          "f1": 0.5952380952380952,
+          "fn": 29,
+          "fp": 5,
+          "gold_in_envelope_coverage": 0.988015509340853,
+          "mean_floor_adjusted_harm": [
+            0.011984490659146986,
+            0.01903419104688051,
+            0.05287275290800141
+          ],
+          "n": 2837,
+          "precision": 0.8333333333333334,
+          "recall": 0.46296296296296297,
+          "tn": 2778,
+          "tp": 25,
+          "unresolved_rate": 0.0
+        }
+      }
+    },
+    "AML_OR_LABEL_FORCED_V1": {
+      "full_census": {
+        "exact_rate": 0.9330224236291376,
+        "f1": 0.7560110366574695,
+        "fn": 376,
+        "fp": 243,
+        "gold_in_envelope_coverage": 0.992256588499274,
+        "mean_floor_adjusted_harm": [
+          0.02255195271826008,
+          0.036806869344596475,
+          0.03927068209482746
+        ],
+        "n": 68187,
+        "precision": 0.7978369384359401,
+        "recall": 0.7183520599250937,
+        "tn": 62661,
+        "tp": 959,
+        "unresolved_rate": 0.05923416487013654
+      },
+      "per_target": {
+        "102": {
+          "exact_rate": 1.0,
+          "f1": null,
+          "fn": 0,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "n": 2392,
+          "precision": null,
+          "recall": null,
+          "tn": 2392,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "103": {
+          "exact_rate": 0.9959889696665831,
+          "f1": 0.9191919191919192,
+          "fn": 0,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9959889696665831,
+          "mean_floor_adjusted_harm": [
+            0.004011030333416896,
+            0.02005515166708448,
+            0.004011030333416896
+          ],
+          "n": 3989,
+          "precision": 0.8504672897196262,
+          "recall": 1.0,
+          "tn": 3882,
+          "tp": 91,
+          "unresolved_rate": 0.0
+        },
+        "104": {
+          "exact_rate": 0.9959889696665831,
+          "f1": 0.9191919191919192,
+          "fn": 0,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9959889696665831,
+          "mean_floor_adjusted_harm": [
+            0.004011030333416896,
+            0.02005515166708448,
+            0.004011030333416896
+          ],
+          "n": 3989,
+          "precision": 0.8504672897196262,
+          "recall": 1.0,
+          "tn": 3882,
+          "tp": 91,
+          "unresolved_rate": 0.0
+        },
+        "105": {
+          "exact_rate": 0.9741573033707865,
+          "f1": null,
+          "fn": 0,
+          "fp": 23,
+          "gold_in_envelope_coverage": 0.9741573033707865,
+          "mean_floor_adjusted_harm": [
+            0.025842696629213482,
+            0.12921348314606743,
+            0.025842696629213482
+          ],
+          "n": 890,
+          "precision": 0.0,
+          "recall": null,
+          "tn": 867,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "201": {
+          "exact_rate": 0.977888198757764,
+          "f1": 0.25210084033613445,
+          "fn": 76,
+          "fp": 13,
+          "gold_in_envelope_coverage": 0.977888198757764,
+          "mean_floor_adjusted_harm": [
+            0.022111801242236023,
+            0.03503105590062112,
+            0.09763975155279503
+          ],
+          "n": 4025,
+          "precision": 0.5357142857142857,
+          "recall": 0.16483516483516483,
+          "tn": 3921,
+          "tp": 15,
+          "unresolved_rate": 0.0
+        },
+        "202": {
+          "exact_rate": 0.9739379723742507,
+          "f1": null,
+          "fn": 91,
+          "fp": 9,
+          "gold_in_envelope_coverage": 0.9739379723742507,
+          "mean_floor_adjusted_harm": [
+            0.026062027625749284,
+            0.035444357571019026,
+            0.12092780818347668
+          ],
+          "n": 3837,
+          "precision": 0.0,
+          "recall": 0.0,
+          "tn": 3737,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "204": {
+          "exact_rate": 0.9934820757081976,
+          "f1": 0.8631578947368421,
+          "fn": 9,
+          "fp": 17,
+          "gold_in_envelope_coverage": 0.9934820757081976,
+          "mean_floor_adjusted_harm": [
+            0.006517924291802457,
+            0.023564803208824266,
+            0.015542742541990473
+          ],
+          "n": 3989,
+          "precision": 0.8282828282828283,
+          "recall": 0.9010989010989011,
+          "tn": 3881,
+          "tp": 82,
+          "unresolved_rate": 0.0
+        },
+        "205": {
+          "exact_rate": 0.9826546003016591,
+          "f1": 0.5106382978723404,
+          "fn": 55,
+          "fp": 14,
+          "gold_in_envelope_coverage": 0.9826546003016591,
+          "mean_floor_adjusted_harm": [
+            0.017345399698340876,
+            0.0314228255404726,
+            0.07264957264957266
+          ],
+          "n": 3978,
+          "precision": 0.72,
+          "recall": 0.3956043956043956,
+          "tn": 3873,
+          "tp": 36,
+          "unresolved_rate": 0.0
+        },
+        "206": {
+          "exact_rate": 0.0,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "n": 4039,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 0,
+          "tp": 0,
+          "unresolved_rate": 1.0
+        },
+        "221": {
+          "exact_rate": 0.9959889696665831,
+          "f1": 0.9191919191919192,
+          "fn": 0,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9959889696665831,
+          "mean_floor_adjusted_harm": [
+            0.004011030333416896,
+            0.02005515166708448,
+            0.004011030333416896
+          ],
+          "n": 3989,
+          "precision": 0.8504672897196262,
+          "recall": 1.0,
+          "tn": 3882,
+          "tp": 91,
+          "unresolved_rate": 0.0
+        },
+        "222": {
+          "exact_rate": 0.9955786736020806,
+          "f1": 0.91005291005291,
+          "fn": 0,
+          "fp": 17,
+          "gold_in_envelope_coverage": 0.9955786736020806,
+          "mean_floor_adjusted_harm": [
+            0.004421326397919376,
+            0.022106631989596878,
+            0.004421326397919376
+          ],
+          "n": 3845,
+          "precision": 0.8349514563106796,
+          "recall": 1.0,
+          "tn": 3742,
+          "tp": 86,
+          "unresolved_rate": 0.0
+        },
+        "223": {
+          "exact_rate": 0.9954277005143837,
+          "f1": 0.8787878787878788,
+          "fn": 4,
+          "fp": 20,
+          "gold_in_envelope_coverage": 0.9954277005143837,
+          "mean_floor_adjusted_harm": [
+            0.004572299485616308,
+            0.019813297771004,
+            0.0076204991426938465
+          ],
+          "n": 5249,
+          "precision": 0.8130841121495327,
+          "recall": 0.9560439560439561,
+          "tn": 5138,
+          "tp": 87,
+          "unresolved_rate": 0.0
+        },
+        "224": {
+          "exact_rate": 0.9959889696665831,
+          "f1": 0.9191919191919192,
+          "fn": 0,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9959889696665831,
+          "mean_floor_adjusted_harm": [
+            0.004011030333416896,
+            0.02005515166708448,
+            0.004011030333416896
+          ],
+          "n": 3989,
+          "precision": 0.8504672897196262,
+          "recall": 1.0,
+          "tn": 3882,
+          "tp": 91,
+          "unresolved_rate": 0.0
+        },
+        "225": {
+          "exact_rate": 0.9959889696665831,
+          "f1": 0.9191919191919192,
+          "fn": 0,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9959889696665831,
+          "mean_floor_adjusted_harm": [
+            0.004011030333416896,
+            0.02005515166708448,
+            0.004011030333416896
+          ],
+          "n": 3989,
+          "precision": 0.8504672897196262,
+          "recall": 1.0,
+          "tn": 3882,
+          "tp": 91,
+          "unresolved_rate": 0.0
+        },
+        "228": {
+          "exact_rate": 0.9924242424242424,
+          "f1": 0.8354430379746834,
+          "fn": 0,
+          "fp": 13,
+          "gold_in_envelope_coverage": 0.9924242424242424,
+          "mean_floor_adjusted_harm": [
+            0.007575757575757576,
+            0.03787878787878788,
+            0.007575757575757576
+          ],
+          "n": 1716,
+          "precision": 0.717391304347826,
+          "recall": 1.0,
+          "tn": 1670,
+          "tp": 33,
+          "unresolved_rate": 0.0
+        },
+        "230": {
+          "exact_rate": 0.9955555555555555,
+          "f1": 0.8974358974358974,
+          "fn": 0,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9955555555555555,
+          "mean_floor_adjusted_harm": [
+            0.0044444444444444444,
+            0.022222222222222223,
+            0.0044444444444444444
+          ],
+          "n": 3600,
+          "precision": 0.813953488372093,
+          "recall": 1.0,
+          "tn": 3514,
+          "tp": 70,
+          "unresolved_rate": 0.0
+        },
+        "301": {
+          "exact_rate": 0.9892561983471074,
+          "f1": 0.5185185185185185,
+          "fn": 25,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.9892561983471074,
+          "mean_floor_adjusted_harm": [
+            0.010743801652892562,
+            0.012396694214876033,
+            0.05206611570247934
+          ],
+          "n": 2420,
+          "precision": 0.9333333333333333,
+          "recall": 0.358974358974359,
+          "tn": 2380,
+          "tp": 14,
+          "unresolved_rate": 0.0
+        },
+        "302": {
+          "exact_rate": 0.989041095890411,
+          "f1": 0.4736842105263157,
+          "fn": 17,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.989041095890411,
+          "mean_floor_adjusted_harm": [
+            0.010958904109589041,
+            0.017534246575342465,
+            0.04821917808219178
+          ],
+          "n": 1825,
+          "precision": 0.75,
+          "recall": 0.34615384615384615,
+          "tn": 1796,
+          "tp": 9,
+          "unresolved_rate": 0.0
+        },
+        "303": {
+          "exact_rate": 0.9972222222222222,
+          "f1": 0.8214285714285715,
+          "fn": 3,
+          "fp": 7,
+          "gold_in_envelope_coverage": 0.9972222222222222,
+          "mean_floor_adjusted_harm": [
+            0.002777777777777778,
+            0.010555555555555556,
+            0.006111111111111111
+          ],
+          "n": 3600,
+          "precision": 0.7666666666666667,
+          "recall": 0.8846153846153846,
+          "tn": 3567,
+          "tp": 23,
+          "unresolved_rate": 0.0
+        },
+        "304": {
+          "exact_rate": 0.9947127247091999,
+          "f1": 0.8672566371681415,
+          "fn": 5,
+          "fp": 10,
+          "gold_in_envelope_coverage": 0.9947127247091999,
+          "mean_floor_adjusted_harm": [
+            0.005287275290800141,
+            0.019386676066267185,
+            0.012336975678533662
+          ],
+          "n": 2837,
+          "precision": 0.8305084745762712,
+          "recall": 0.9074074074074074,
+          "tn": 2773,
+          "tp": 49,
+          "unresolved_rate": 0.0
+        }
+      }
+    },
+    "AML_V3_2_AUTO_SOURCE_NATIVE": {
+      "full_census": {
+        "exact_rate": 0.9278308181911508,
+        "f1": 0.4424068767908309,
+        "fn": 949,
+        "fp": 24,
+        "gold_in_envelope_coverage": 0.9870649830612873,
+        "mean_floor_adjusted_harm": [
+          0.02774355815624679,
+          0.029151451156378783,
+          0.07807573291096544
+        ],
+        "n": 68187,
+        "precision": 0.9414634146341463,
+        "recall": 0.2891385767790262,
+        "tn": 62880,
+        "tp": 386,
+        "unresolved_rate": 0.05923416487013654
+      },
+      "per_target": {
+        "102": {
+          "exact_rate": 1.0,
+          "f1": null,
+          "fn": 0,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "n": 2392,
+          "precision": null,
+          "recall": null,
+          "tn": 2392,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "103": {
+          "exact_rate": 0.9854600150413637,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9854600150413637,
+          "mean_floor_adjusted_harm": [
+            0.014539984958636249,
+            0.014539984958636249,
+            0.07269992479318124
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3898,
+          "tp": 33,
+          "unresolved_rate": 0.0
+        },
+        "104": {
+          "exact_rate": 0.9854600150413637,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9854600150413637,
+          "mean_floor_adjusted_harm": [
+            0.014539984958636249,
+            0.014539984958636249,
+            0.07269992479318124
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3898,
+          "tp": 33,
+          "unresolved_rate": 0.0
+        },
+        "105": {
+          "exact_rate": 0.996629213483146,
+          "f1": null,
+          "fn": 0,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.996629213483146,
+          "mean_floor_adjusted_harm": [
+            0.0033707865168539327,
+            0.016853932584269662,
+            0.0033707865168539327
+          ],
+          "n": 890,
+          "precision": 0.0,
+          "recall": null,
+          "tn": 887,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "201": {
+          "exact_rate": 0.977639751552795,
+          "f1": 0.02173913043478261,
+          "fn": 90,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.977639751552795,
+          "mean_floor_adjusted_harm": [
+            0.02236024844720497,
+            0.02236024844720497,
+            0.11180124223602485
+          ],
+          "n": 4025,
+          "precision": 1.0,
+          "recall": 0.01098901098901099,
+          "tn": 3934,
+          "tp": 1,
+          "unresolved_rate": 0.0
+        },
+        "202": {
+          "exact_rate": 0.9762835548605682,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9762835548605682,
+          "mean_floor_adjusted_harm": [
+            0.023716445139431847,
+            0.023716445139431847,
+            0.11858222569715923
+          ],
+          "n": 3837,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 3746,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "204": {
+          "exact_rate": 0.9839558786663324,
+          "f1": 0.4666666666666668,
+          "fn": 63,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.9839558786663324,
+          "mean_floor_adjusted_harm": [
+            0.016044121333667585,
+            0.01704687891702181,
+            0.07921784908498371
+          ],
+          "n": 3989,
+          "precision": 0.9655172413793104,
+          "recall": 0.3076923076923077,
+          "tn": 3897,
+          "tp": 28,
+          "unresolved_rate": 0.0
+        },
+        "205": {
+          "exact_rate": 0.9801407742584213,
+          "f1": 0.23300970873786409,
+          "fn": 79,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9801407742584213,
+          "mean_floor_adjusted_harm": [
+            0.01985922574157868,
+            0.01985922574157868,
+            0.09929612870789341
+          ],
+          "n": 3978,
+          "precision": 1.0,
+          "recall": 0.13186813186813187,
+          "tn": 3887,
+          "tp": 12,
+          "unresolved_rate": 0.0
+        },
+        "206": {
+          "exact_rate": 0.0,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "n": 4039,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 0,
+          "tp": 0,
+          "unresolved_rate": 1.0
+        },
+        "221": {
+          "exact_rate": 0.9854600150413637,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9854600150413637,
+          "mean_floor_adjusted_harm": [
+            0.014539984958636249,
+            0.014539984958636249,
+            0.07269992479318124
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3898,
+          "tp": 33,
+          "unresolved_rate": 0.0
+        },
+        "222": {
+          "exact_rate": 0.9846553966189857,
+          "f1": 0.4869565217391305,
+          "fn": 58,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.9846553966189857,
+          "mean_floor_adjusted_harm": [
+            0.015344603381014304,
+            0.01638491547464239,
+            0.07568270481144343
+          ],
+          "n": 3845,
+          "precision": 0.9655172413793104,
+          "recall": 0.32558139534883723,
+          "tn": 3758,
+          "tp": 28,
+          "unresolved_rate": 0.0
+        },
+        "223": {
+          "exact_rate": 0.9874261764145551,
+          "f1": 0.46774193548387094,
+          "fn": 62,
+          "fp": 4,
+          "gold_in_envelope_coverage": 0.9874261764145551,
+          "mean_floor_adjusted_harm": [
+            0.012573823585444847,
+            0.015622023242522385,
+            0.0598209182701467
+          ],
+          "n": 5249,
+          "precision": 0.8787878787878788,
+          "recall": 0.31868131868131866,
+          "tn": 5154,
+          "tp": 29,
+          "unresolved_rate": 0.0
+        },
+        "224": {
+          "exact_rate": 0.9854600150413637,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9854600150413637,
+          "mean_floor_adjusted_harm": [
+            0.014539984958636249,
+            0.014539984958636249,
+            0.07269992479318124
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3898,
+          "tp": 33,
+          "unresolved_rate": 0.0
+        },
+        "225": {
+          "exact_rate": 0.9854600150413637,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9854600150413637,
+          "mean_floor_adjusted_harm": [
+            0.014539984958636249,
+            0.014539984958636249,
+            0.07269992479318124
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3898,
+          "tp": 33,
+          "unresolved_rate": 0.0
+        },
+        "228": {
+          "exact_rate": 1.0,
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "n": 1716,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 1683,
+          "tp": 33,
+          "unresolved_rate": 0.0
+        },
+        "230": {
+          "exact_rate": 0.9875,
+          "f1": 0.5263157894736842,
+          "fn": 45,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9875,
+          "mean_floor_adjusted_harm": [
+            0.0125,
+            0.0125,
+            0.0625
+          ],
+          "n": 3600,
+          "precision": 1.0,
+          "recall": 0.35714285714285715,
+          "tn": 3530,
+          "tp": 25,
+          "unresolved_rate": 0.0
+        },
+        "301": {
+          "exact_rate": 0.9892561983471074,
+          "f1": 0.5185185185185185,
+          "fn": 25,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.9892561983471074,
+          "mean_floor_adjusted_harm": [
+            0.010743801652892562,
+            0.012396694214876033,
+            0.05206611570247934
+          ],
+          "n": 2420,
+          "precision": 0.9333333333333333,
+          "recall": 0.358974358974359,
+          "tn": 2380,
+          "tp": 14,
+          "unresolved_rate": 0.0
+        },
+        "302": {
+          "exact_rate": 0.989041095890411,
+          "f1": 0.4736842105263157,
+          "fn": 17,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.989041095890411,
+          "mean_floor_adjusted_harm": [
+            0.010958904109589041,
+            0.017534246575342465,
+            0.04821917808219178
+          ],
+          "n": 1825,
+          "precision": 0.75,
+          "recall": 0.34615384615384615,
+          "tn": 1796,
+          "tp": 9,
+          "unresolved_rate": 0.0
+        },
+        "303": {
+          "exact_rate": 0.9952777777777778,
+          "f1": 0.6222222222222222,
+          "fn": 12,
+          "fp": 5,
+          "gold_in_envelope_coverage": 0.9952777777777778,
+          "mean_floor_adjusted_harm": [
+            0.004722222222222222,
+            0.010277777777777778,
+            0.018055555555555554
+          ],
+          "n": 3600,
+          "precision": 0.7368421052631579,
+          "recall": 0.5384615384615384,
+          "tn": 3569,
+          "tp": 14,
+          "unresolved_rate": 0.0
+        },
+        "304": {
+          "exact_rate": 0.9887204793796264,
+          "f1": 0.6363636363636364,
+          "fn": 26,
+          "fp": 6,
+          "gold_in_envelope_coverage": 0.9887204793796264,
+          "mean_floor_adjusted_harm": [
+            0.011279520620373634,
+            0.01973916108565386,
+            0.04793796263658794
+          ],
+          "n": 2837,
+          "precision": 0.8235294117647058,
+          "recall": 0.5185185185185185,
+          "tn": 2777,
+          "tp": 28,
+          "unresolved_rate": 0.0
+        }
+      }
+    },
+    "FLAT_LABEL_EQUALITY_V1": {
+      "full_census": {
+        "exact_rate": 0.990599381113702,
+        "f1": 0.7467404188067958,
+        "fn": 390,
+        "fp": 251,
+        "gold_in_envelope_coverage": 0.990599381113702,
+        "mean_floor_adjusted_harm": [
+          0.009400618886297975,
+          0.024124833179345037,
+          0.03227888013844281
+        ],
+        "n": 68187,
+        "precision": 0.790133779264214,
+        "recall": 0.7078651685393258,
+        "tn": 66601,
+        "tp": 945,
+        "unresolved_rate": 0.0
+      },
+      "per_target": {
+        "102": {
+          "exact_rate": 1.0,
+          "f1": null,
+          "fn": 0,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "n": 2392,
+          "precision": null,
+          "recall": null,
+          "tn": 2392,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "103": {
+          "exact_rate": 0.9949862120832289,
+          "f1": 0.8969072164948453,
+          "fn": 4,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9949862120832289,
+          "mean_floor_adjusted_harm": [
+            0.00501378791677112,
+            0.021057909250438708,
+            0.009024818250188017
+          ],
+          "n": 3989,
+          "precision": 0.8446601941747572,
+          "recall": 0.9560439560439561,
+          "tn": 3882,
+          "tp": 87,
+          "unresolved_rate": 0.0
+        },
+        "104": {
+          "exact_rate": 0.9949862120832289,
+          "f1": 0.8969072164948453,
+          "fn": 4,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9949862120832289,
+          "mean_floor_adjusted_harm": [
+            0.00501378791677112,
+            0.021057909250438708,
+            0.009024818250188017
+          ],
+          "n": 3989,
+          "precision": 0.8446601941747572,
+          "recall": 0.9560439560439561,
+          "tn": 3882,
+          "tp": 87,
+          "unresolved_rate": 0.0
+        },
+        "105": {
+          "exact_rate": 0.9741573033707865,
+          "f1": null,
+          "fn": 0,
+          "fp": 23,
+          "gold_in_envelope_coverage": 0.9741573033707865,
+          "mean_floor_adjusted_harm": [
+            0.025842696629213482,
+            0.12921348314606743,
+            0.025842696629213482
+          ],
+          "n": 890,
+          "precision": 0.0,
+          "recall": null,
+          "tn": 867,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "201": {
+          "exact_rate": 0.977639751552795,
+          "f1": 0.23728813559322035,
+          "fn": 77,
+          "fp": 13,
+          "gold_in_envelope_coverage": 0.977639751552795,
+          "mean_floor_adjusted_harm": [
+            0.02236024844720497,
+            0.03527950310559006,
+            0.09888198757763975
+          ],
+          "n": 4025,
+          "precision": 0.5185185185185185,
+          "recall": 0.15384615384615385,
+          "tn": 3921,
+          "tp": 14,
+          "unresolved_rate": 0.0
+        },
+        "202": {
+          "exact_rate": 0.9739379723742507,
+          "f1": null,
+          "fn": 91,
+          "fp": 9,
+          "gold_in_envelope_coverage": 0.9739379723742507,
+          "mean_floor_adjusted_harm": [
+            0.026062027625749284,
+            0.035444357571019026,
+            0.12092780818347668
+          ],
+          "n": 3837,
+          "precision": 0.0,
+          "recall": 0.0,
+          "tn": 3737,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "204": {
+          "exact_rate": 0.9922286287290047,
+          "f1": 0.8306010928961749,
+          "fn": 15,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9922286287290047,
+          "mean_floor_adjusted_harm": [
+            0.007771371270995237,
+            0.023815492604662824,
+            0.022812735021308598
+          ],
+          "n": 3989,
+          "precision": 0.8260869565217391,
+          "recall": 0.8351648351648352,
+          "tn": 3882,
+          "tp": 76,
+          "unresolved_rate": 0.0
+        },
+        "205": {
+          "exact_rate": 0.9808949220713926,
+          "f1": 0.43283582089552236,
+          "fn": 62,
+          "fp": 14,
+          "gold_in_envelope_coverage": 0.9808949220713926,
+          "mean_floor_adjusted_harm": [
+            0.019105077928607342,
+            0.033182503770739065,
+            0.08144796380090498
+          ],
+          "n": 3978,
+          "precision": 0.6744186046511628,
+          "recall": 0.31868131868131866,
+          "tn": 3873,
+          "tp": 29,
+          "unresolved_rate": 0.0
+        },
+        "206": {
+          "exact_rate": 0.9792027729636048,
+          "f1": 0.32258064516129037,
+          "fn": 71,
+          "fp": 13,
+          "gold_in_envelope_coverage": 0.9792027729636048,
+          "mean_floor_adjusted_harm": [
+            0.02079722703639515,
+            0.03367170091606833,
+            0.09111166130230255
+          ],
+          "n": 4039,
+          "precision": 0.6060606060606061,
+          "recall": 0.21978021978021978,
+          "tn": 3935,
+          "tp": 20,
+          "unresolved_rate": 0.0
+        },
+        "221": {
+          "exact_rate": 0.9959889696665831,
+          "f1": 0.9191919191919192,
+          "fn": 0,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9959889696665831,
+          "mean_floor_adjusted_harm": [
+            0.004011030333416896,
+            0.02005515166708448,
+            0.004011030333416896
+          ],
+          "n": 3989,
+          "precision": 0.8504672897196262,
+          "recall": 1.0,
+          "tn": 3882,
+          "tp": 91,
+          "unresolved_rate": 0.0
+        },
+        "222": {
+          "exact_rate": 0.9953185955786736,
+          "f1": 0.9042553191489361,
+          "fn": 1,
+          "fp": 17,
+          "gold_in_envelope_coverage": 0.9953185955786736,
+          "mean_floor_adjusted_harm": [
+            0.0046814044213263975,
+            0.0223667100130039,
+            0.005721716514954486
+          ],
+          "n": 3845,
+          "precision": 0.8333333333333334,
+          "recall": 0.9883720930232558,
+          "tn": 3742,
+          "tp": 85,
+          "unresolved_rate": 0.0
+        },
+        "223": {
+          "exact_rate": 0.9954277005143837,
+          "f1": 0.8787878787878788,
+          "fn": 4,
+          "fp": 20,
+          "gold_in_envelope_coverage": 0.9954277005143837,
+          "mean_floor_adjusted_harm": [
+            0.004572299485616308,
+            0.019813297771004,
+            0.0076204991426938465
+          ],
+          "n": 5249,
+          "precision": 0.8130841121495327,
+          "recall": 0.9560439560439561,
+          "tn": 5138,
+          "tp": 87,
+          "unresolved_rate": 0.0
+        },
+        "224": {
+          "exact_rate": 0.9959889696665831,
+          "f1": 0.9191919191919192,
+          "fn": 0,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9959889696665831,
+          "mean_floor_adjusted_harm": [
+            0.004011030333416896,
+            0.02005515166708448,
+            0.004011030333416896
+          ],
+          "n": 3989,
+          "precision": 0.8504672897196262,
+          "recall": 1.0,
+          "tn": 3882,
+          "tp": 91,
+          "unresolved_rate": 0.0
+        },
+        "225": {
+          "exact_rate": 0.9957382802707445,
+          "f1": 0.9137055837563451,
+          "fn": 1,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9957382802707445,
+          "mean_floor_adjusted_harm": [
+            0.004261719729255453,
+            0.02030584106292304,
+            0.005264477312609677
+          ],
+          "n": 3989,
+          "precision": 0.8490566037735849,
+          "recall": 0.989010989010989,
+          "tn": 3882,
+          "tp": 90,
+          "unresolved_rate": 0.0
+        },
+        "228": {
+          "exact_rate": 0.9900932400932401,
+          "f1": 0.7733333333333333,
+          "fn": 4,
+          "fp": 13,
+          "gold_in_envelope_coverage": 0.9900932400932401,
+          "mean_floor_adjusted_harm": [
+            0.009906759906759906,
+            0.04020979020979021,
+            0.019230769230769232
+          ],
+          "n": 1716,
+          "precision": 0.6904761904761905,
+          "recall": 0.8787878787878788,
+          "tn": 1670,
+          "tp": 29,
+          "unresolved_rate": 0.0
+        },
+        "230": {
+          "exact_rate": 0.9955555555555555,
+          "f1": 0.8974358974358974,
+          "fn": 0,
+          "fp": 16,
+          "gold_in_envelope_coverage": 0.9955555555555555,
+          "mean_floor_adjusted_harm": [
+            0.0044444444444444444,
+            0.022222222222222223,
+            0.0044444444444444444
+          ],
+          "n": 3600,
+          "precision": 0.813953488372093,
+          "recall": 1.0,
+          "tn": 3514,
+          "tp": 70,
+          "unresolved_rate": 0.0
+        },
+        "301": {
+          "exact_rate": 0.9888429752066116,
+          "f1": 0.4905660377358491,
+          "fn": 26,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.9888429752066116,
+          "mean_floor_adjusted_harm": [
+            0.01115702479338843,
+            0.0128099173553719,
+            0.05413223140495868
+          ],
+          "n": 2420,
+          "precision": 0.9285714285714286,
+          "recall": 0.3333333333333333,
+          "tn": 2380,
+          "tp": 13,
+          "unresolved_rate": 0.0
+        },
+        "302": {
+          "exact_rate": 0.9895890410958904,
+          "f1": 0.4864864864864865,
+          "fn": 17,
+          "fp": 2,
+          "gold_in_envelope_coverage": 0.9895890410958904,
+          "mean_floor_adjusted_harm": [
+            0.010410958904109589,
+            0.014794520547945205,
+            0.04767123287671233
+          ],
+          "n": 1825,
+          "precision": 0.8181818181818182,
+          "recall": 0.34615384615384615,
+          "tn": 1797,
+          "tp": 9,
+          "unresolved_rate": 0.0
+        },
+        "303": {
+          "exact_rate": 0.9972222222222222,
+          "f1": 0.8076923076923077,
+          "fn": 5,
+          "fp": 5,
+          "gold_in_envelope_coverage": 0.9972222222222222,
+          "mean_floor_adjusted_harm": [
+            0.002777777777777778,
+            0.008333333333333333,
+            0.008333333333333333
+          ],
+          "n": 3600,
+          "precision": 0.8076923076923077,
+          "recall": 0.8076923076923077,
+          "tn": 3569,
+          "tp": 21,
+          "unresolved_rate": 0.0
+        },
+        "304": {
+          "exact_rate": 0.9940077546704265,
+          "f1": 0.8440366972477065,
+          "fn": 8,
+          "fp": 9,
+          "gold_in_envelope_coverage": 0.9940077546704265,
+          "mean_floor_adjusted_harm": [
+            0.005992245329573493,
+            0.018681706027493833,
+            0.017271765949947126
+          ],
+          "n": 2837,
+          "precision": 0.8363636363636363,
+          "recall": 0.8518518518518519,
+          "tn": 2774,
+          "tp": 46,
+          "unresolved_rate": 0.0
+        }
+      }
+    },
+    "P3_CONFLICT_PRESERVING_WRAPPER_V1": {
+      "full_census": {
+        "exact_rate": 0.9241204335137196,
+        "f1": 0.4126611957796014,
+        "fn": 983,
+        "fp": 19,
+        "gold_in_envelope_coverage": 0.9955416721662487,
+        "mean_floor_adjusted_harm": [
+          0.02231363749688357,
+          0.023428219455321395,
+          0.03903236687345095
+        ],
+        "n": 68187,
+        "precision": 0.9487870619946092,
+        "recall": 0.2636704119850187,
+        "tn": 62661,
+        "tp": 352,
+        "unresolved_rate": 0.07142123865252907
+      },
+      "per_target": {
+        "102": {
+          "exact_rate": 1.0,
+          "f1": null,
+          "fn": 0,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "n": 2392,
+          "precision": null,
+          "recall": null,
+          "tn": 2392,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "103": {
+          "exact_rate": 0.9804462271245926,
+          "f1": 0.4833333333333333,
+          "fn": 62,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.004888443218851842,
+            0.004888443218851842,
+            0.004888443218851842
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.31868131868131866,
+          "tn": 3882,
+          "tp": 29,
+          "unresolved_rate": 0.01955377287540737
+        },
+        "104": {
+          "exact_rate": 0.9804462271245926,
+          "f1": 0.4833333333333333,
+          "fn": 62,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.004888443218851842,
+            0.004888443218851842,
+            0.004888443218851842
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.31868131868131866,
+          "tn": 3882,
+          "tp": 29,
+          "unresolved_rate": 0.01955377287540737
+        },
+        "105": {
+          "exact_rate": 0.9741573033707865,
+          "f1": null,
+          "fn": 0,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.996629213483146,
+          "mean_floor_adjusted_harm": [
+            0.008988764044943821,
+            0.02247191011235955,
+            0.008988764044943821
+          ],
+          "n": 890,
+          "precision": 0.0,
+          "recall": null,
+          "tn": 867,
+          "tp": 0,
+          "unresolved_rate": 0.02247191011235955
+        },
+        "201": {
+          "exact_rate": 0.9741614906832298,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9811180124223603,
+          "mean_floor_adjusted_harm": [
+            0.02062111801242236,
+            0.02062111801242236,
+            0.09614906832298137
+          ],
+          "n": 4025,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 3921,
+          "tp": 0,
+          "unresolved_rate": 0.006956521739130435
+        },
+        "202": {
+          "exact_rate": 0.9739379723742507,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9762835548605682,
+          "mean_floor_adjusted_harm": [
+            0.024302840761011208,
+            0.024302840761011208,
+            0.1191686213187386
+          ],
+          "n": 3837,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 3737,
+          "tp": 0,
+          "unresolved_rate": 0.0023455824863174357
+        },
+        "204": {
+          "exact_rate": 0.9784407119578842,
+          "f1": 0.3893805309734513,
+          "fn": 69,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.997743795437453,
+          "mean_floor_adjusted_harm": [
+            0.007081975432439208,
+            0.007081975432439208,
+            0.016106793682627223
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.24175824175824176,
+          "tn": 3881,
+          "tp": 22,
+          "unresolved_rate": 0.019303083479568814
+        },
+        "205": {
+          "exact_rate": 0.9748617395676219,
+          "f1": 0.10416666666666666,
+          "fn": 86,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9861739567621921,
+          "mean_floor_adjusted_harm": [
+            0.016654097536450477,
+            0.016654097536450477,
+            0.07195827048768225
+          ],
+          "n": 3978,
+          "precision": 1.0,
+          "recall": 0.054945054945054944,
+          "tn": 3873,
+          "tp": 5,
+          "unresolved_rate": 0.011312217194570135
+        },
+        "206": {
+          "exact_rate": 0.0,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "n": 4039,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 0,
+          "tp": 0,
+          "unresolved_rate": 1.0
+        },
+        "221": {
+          "exact_rate": 0.9814489847079468,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0046377538230132865,
+            0.0046377538230132865,
+            0.0046377538230132865
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3882,
+          "tp": 33,
+          "unresolved_rate": 0.018551015292053146
+        },
+        "222": {
+          "exact_rate": 0.9802340702210663,
+          "f1": 0.47368421052631576,
+          "fn": 59,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.999739921976593,
+          "mean_floor_adjusted_harm": [
+            0.0051365409622886864,
+            0.006176853055916775,
+            0.0051365409622886864
+          ],
+          "n": 3845,
+          "precision": 0.9642857142857143,
+          "recall": 0.313953488372093,
+          "tn": 3742,
+          "tp": 27,
+          "unresolved_rate": 0.01950585175552666
+        },
+        "223": {
+          "exact_rate": 0.9843779767574776,
+          "f1": 0.46774193548387094,
+          "fn": 62,
+          "fp": 4,
+          "gold_in_envelope_coverage": 0.9984759001714613,
+          "mean_floor_adjusted_harm": [
+            0.005048580682034673,
+            0.008096780339112212,
+            0.008096780339112212
+          ],
+          "n": 5249,
+          "precision": 0.8787878787878788,
+          "recall": 0.31868131868131866,
+          "tn": 5138,
+          "tp": 29,
+          "unresolved_rate": 0.014097923413983617
+        },
+        "224": {
+          "exact_rate": 0.9814489847079468,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0046377538230132865,
+            0.0046377538230132865,
+            0.0046377538230132865
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3882,
+          "tp": 33,
+          "unresolved_rate": 0.018551015292053146
+        },
+        "225": {
+          "exact_rate": 0.9811982953121083,
+          "f1": 0.5203252032520326,
+          "fn": 59,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.004700426171972925,
+            0.004700426171972925,
+            0.004700426171972925
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3516483516483517,
+          "tn": 3882,
+          "tp": 32,
+          "unresolved_rate": 0.0188017046878917
+        },
+        "228": {
+          "exact_rate": 0.9900932400932401,
+          "f1": 0.9354838709677419,
+          "fn": 4,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0024766899766899765,
+            0.0024766899766899765,
+            0.0024766899766899765
+          ],
+          "n": 1716,
+          "precision": 1.0,
+          "recall": 0.8787878787878788,
+          "tn": 1670,
+          "tp": 29,
+          "unresolved_rate": 0.009906759906759906
+        },
+        "230": {
+          "exact_rate": 0.9830555555555556,
+          "f1": 0.5263157894736842,
+          "fn": 45,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0042361111111111115,
+            0.0042361111111111115,
+            0.0042361111111111115
+          ],
+          "n": 3600,
+          "precision": 1.0,
+          "recall": 0.35714285714285715,
+          "tn": 3514,
+          "tp": 25,
+          "unresolved_rate": 0.016944444444444446
+        },
+        "301": {
+          "exact_rate": 0.9888429752066116,
+          "f1": 0.4905660377358491,
+          "fn": 26,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.9892561983471074,
+          "mean_floor_adjusted_harm": [
+            0.01084710743801653,
+            0.0125,
+            0.052169421487603305
+          ],
+          "n": 2420,
+          "precision": 0.9285714285714286,
+          "recall": 0.3333333333333333,
+          "tn": 2380,
+          "tp": 13,
+          "unresolved_rate": 0.00041322314049586776
+        },
+        "302": {
+          "exact_rate": 0.989041095890411,
+          "f1": 0.4864864864864865,
+          "fn": 17,
+          "fp": 2,
+          "gold_in_envelope_coverage": 0.9895890410958904,
+          "mean_floor_adjusted_harm": [
+            0.010547945205479452,
+            0.014931506849315069,
+            0.047808219178082194
+          ],
+          "n": 1825,
+          "precision": 0.8181818181818182,
+          "recall": 0.34615384615384615,
+          "tn": 1796,
+          "tp": 9,
+          "unresolved_rate": 0.000547945205479452
+        },
+        "303": {
+          "exact_rate": 0.9941666666666666,
+          "f1": 0.5853658536585367,
+          "fn": 14,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.9983333333333333,
+          "mean_floor_adjusted_harm": [
+            0.0027083333333333334,
+            0.0060416666666666665,
+            0.0060416666666666665
+          ],
+          "n": 3600,
+          "precision": 0.8,
+          "recall": 0.46153846153846156,
+          "tn": 3567,
+          "tp": 12,
+          "unresolved_rate": 0.004166666666666667
+        },
+        "304": {
+          "exact_rate": 0.9862530842439197,
+          "f1": 0.5952380952380952,
+          "fn": 29,
+          "fp": 5,
+          "gold_in_envelope_coverage": 0.9964751498061333,
+          "mean_floor_adjusted_harm": [
+            0.006080366584420162,
+            0.013130066972153683,
+            0.013130066972153683
+          ],
+          "n": 2837,
+          "precision": 0.8333333333333334,
+          "recall": 0.46296296296296297,
+          "tn": 2773,
+          "tp": 25,
+          "unresolved_rate": 0.010222065562213606
+        }
+      }
+    },
+    "P3_INFORMATION_EQUIVALENT_IDEAL_V1": {
+      "full_census": {
+        "exact_rate": 0.9241204335137196,
+        "f1": 0.4126611957796014,
+        "fn": 983,
+        "fp": 19,
+        "gold_in_envelope_coverage": 0.9955416721662487,
+        "mean_floor_adjusted_harm": [
+          0.02231363749688357,
+          0.023428219455321395,
+          0.03903236687345095
+        ],
+        "n": 68187,
+        "precision": 0.9487870619946092,
+        "recall": 0.2636704119850187,
+        "tn": 62661,
+        "tp": 352,
+        "unresolved_rate": 0.07142123865252907
+      },
+      "per_target": {
+        "102": {
+          "exact_rate": 1.0,
+          "f1": null,
+          "fn": 0,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "n": 2392,
+          "precision": null,
+          "recall": null,
+          "tn": 2392,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "103": {
+          "exact_rate": 0.9804462271245926,
+          "f1": 0.4833333333333333,
+          "fn": 62,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.004888443218851842,
+            0.004888443218851842,
+            0.004888443218851842
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.31868131868131866,
+          "tn": 3882,
+          "tp": 29,
+          "unresolved_rate": 0.01955377287540737
+        },
+        "104": {
+          "exact_rate": 0.9804462271245926,
+          "f1": 0.4833333333333333,
+          "fn": 62,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.004888443218851842,
+            0.004888443218851842,
+            0.004888443218851842
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.31868131868131866,
+          "tn": 3882,
+          "tp": 29,
+          "unresolved_rate": 0.01955377287540737
+        },
+        "105": {
+          "exact_rate": 0.9741573033707865,
+          "f1": null,
+          "fn": 0,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.996629213483146,
+          "mean_floor_adjusted_harm": [
+            0.008988764044943821,
+            0.02247191011235955,
+            0.008988764044943821
+          ],
+          "n": 890,
+          "precision": 0.0,
+          "recall": null,
+          "tn": 867,
+          "tp": 0,
+          "unresolved_rate": 0.02247191011235955
+        },
+        "201": {
+          "exact_rate": 0.9741614906832298,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9811180124223603,
+          "mean_floor_adjusted_harm": [
+            0.02062111801242236,
+            0.02062111801242236,
+            0.09614906832298137
+          ],
+          "n": 4025,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 3921,
+          "tp": 0,
+          "unresolved_rate": 0.006956521739130435
+        },
+        "202": {
+          "exact_rate": 0.9739379723742507,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9762835548605682,
+          "mean_floor_adjusted_harm": [
+            0.024302840761011208,
+            0.024302840761011208,
+            0.1191686213187386
+          ],
+          "n": 3837,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 3737,
+          "tp": 0,
+          "unresolved_rate": 0.0023455824863174357
+        },
+        "204": {
+          "exact_rate": 0.9784407119578842,
+          "f1": 0.3893805309734513,
+          "fn": 69,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.997743795437453,
+          "mean_floor_adjusted_harm": [
+            0.007081975432439208,
+            0.007081975432439208,
+            0.016106793682627223
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.24175824175824176,
+          "tn": 3881,
+          "tp": 22,
+          "unresolved_rate": 0.019303083479568814
+        },
+        "205": {
+          "exact_rate": 0.9748617395676219,
+          "f1": 0.10416666666666666,
+          "fn": 86,
+          "fp": 0,
+          "gold_in_envelope_coverage": 0.9861739567621921,
+          "mean_floor_adjusted_harm": [
+            0.016654097536450477,
+            0.016654097536450477,
+            0.07195827048768225
+          ],
+          "n": 3978,
+          "precision": 1.0,
+          "recall": 0.054945054945054944,
+          "tn": 3873,
+          "tp": 5,
+          "unresolved_rate": 0.011312217194570135
+        },
+        "206": {
+          "exact_rate": 0.0,
+          "f1": null,
+          "fn": 91,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "n": 4039,
+          "precision": null,
+          "recall": 0.0,
+          "tn": 0,
+          "tp": 0,
+          "unresolved_rate": 1.0
+        },
+        "221": {
+          "exact_rate": 0.9814489847079468,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0046377538230132865,
+            0.0046377538230132865,
+            0.0046377538230132865
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3882,
+          "tp": 33,
+          "unresolved_rate": 0.018551015292053146
+        },
+        "222": {
+          "exact_rate": 0.9802340702210663,
+          "f1": 0.47368421052631576,
+          "fn": 59,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.999739921976593,
+          "mean_floor_adjusted_harm": [
+            0.0051365409622886864,
+            0.006176853055916775,
+            0.0051365409622886864
+          ],
+          "n": 3845,
+          "precision": 0.9642857142857143,
+          "recall": 0.313953488372093,
+          "tn": 3742,
+          "tp": 27,
+          "unresolved_rate": 0.01950585175552666
+        },
+        "223": {
+          "exact_rate": 0.9843779767574776,
+          "f1": 0.46774193548387094,
+          "fn": 62,
+          "fp": 4,
+          "gold_in_envelope_coverage": 0.9984759001714613,
+          "mean_floor_adjusted_harm": [
+            0.005048580682034673,
+            0.008096780339112212,
+            0.008096780339112212
+          ],
+          "n": 5249,
+          "precision": 0.8787878787878788,
+          "recall": 0.31868131868131866,
+          "tn": 5138,
+          "tp": 29,
+          "unresolved_rate": 0.014097923413983617
+        },
+        "224": {
+          "exact_rate": 0.9814489847079468,
+          "f1": 0.532258064516129,
+          "fn": 58,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0046377538230132865,
+            0.0046377538230132865,
+            0.0046377538230132865
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3626373626373626,
+          "tn": 3882,
+          "tp": 33,
+          "unresolved_rate": 0.018551015292053146
+        },
+        "225": {
+          "exact_rate": 0.9811982953121083,
+          "f1": 0.5203252032520326,
+          "fn": 59,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.004700426171972925,
+            0.004700426171972925,
+            0.004700426171972925
+          ],
+          "n": 3989,
+          "precision": 1.0,
+          "recall": 0.3516483516483517,
+          "tn": 3882,
+          "tp": 32,
+          "unresolved_rate": 0.0188017046878917
+        },
+        "228": {
+          "exact_rate": 0.9900932400932401,
+          "f1": 0.9354838709677419,
+          "fn": 4,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0024766899766899765,
+            0.0024766899766899765,
+            0.0024766899766899765
+          ],
+          "n": 1716,
+          "precision": 1.0,
+          "recall": 0.8787878787878788,
+          "tn": 1670,
+          "tp": 29,
+          "unresolved_rate": 0.009906759906759906
+        },
+        "230": {
+          "exact_rate": 0.9830555555555556,
+          "f1": 0.5263157894736842,
+          "fn": 45,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0042361111111111115,
+            0.0042361111111111115,
+            0.0042361111111111115
+          ],
+          "n": 3600,
+          "precision": 1.0,
+          "recall": 0.35714285714285715,
+          "tn": 3514,
+          "tp": 25,
+          "unresolved_rate": 0.016944444444444446
+        },
+        "301": {
+          "exact_rate": 0.9888429752066116,
+          "f1": 0.4905660377358491,
+          "fn": 26,
+          "fp": 1,
+          "gold_in_envelope_coverage": 0.9892561983471074,
+          "mean_floor_adjusted_harm": [
+            0.01084710743801653,
+            0.0125,
+            0.052169421487603305
+          ],
+          "n": 2420,
+          "precision": 0.9285714285714286,
+          "recall": 0.3333333333333333,
+          "tn": 2380,
+          "tp": 13,
+          "unresolved_rate": 0.00041322314049586776
+        },
+        "302": {
+          "exact_rate": 0.989041095890411,
+          "f1": 0.4864864864864865,
+          "fn": 17,
+          "fp": 2,
+          "gold_in_envelope_coverage": 0.9895890410958904,
+          "mean_floor_adjusted_harm": [
+            0.010547945205479452,
+            0.014931506849315069,
+            0.047808219178082194
+          ],
+          "n": 1825,
+          "precision": 0.8181818181818182,
+          "recall": 0.34615384615384615,
+          "tn": 1796,
+          "tp": 9,
+          "unresolved_rate": 0.000547945205479452
+        },
+        "303": {
+          "exact_rate": 0.9941666666666666,
+          "f1": 0.5853658536585367,
+          "fn": 14,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.9983333333333333,
+          "mean_floor_adjusted_harm": [
+            0.0027083333333333334,
+            0.0060416666666666665,
+            0.0060416666666666665
+          ],
+          "n": 3600,
+          "precision": 0.8,
+          "recall": 0.46153846153846156,
+          "tn": 3567,
+          "tp": 12,
+          "unresolved_rate": 0.004166666666666667
+        },
+        "304": {
+          "exact_rate": 0.9862530842439197,
+          "f1": 0.5952380952380952,
+          "fn": 29,
+          "fp": 5,
+          "gold_in_envelope_coverage": 0.9964751498061333,
+          "mean_floor_adjusted_harm": [
+            0.006080366584420162,
+            0.013130066972153683,
+            0.013130066972153683
+          ],
+          "n": 2837,
+          "precision": 0.8333333333333334,
+          "recall": 0.46296296296296297,
+          "tn": 2773,
+          "tp": 25,
+          "unresolved_rate": 0.010222065562213606
+        }
+      }
+    },
+    "TOKEN_JACCARD_FORCED_V1": {
+      "full_census": {
+        "exact_rate": 0.9897341135407043,
+        "f1": 0.7378277153558053,
+        "fn": 350,
+        "fp": 350,
+        "gold_in_envelope_coverage": 0.9897341135407043,
+        "mean_floor_adjusted_harm": [
+          0.01026588645929576,
+          0.030797659377887282,
+          0.030797659377887282
+        ],
+        "n": 68187,
+        "precision": 0.7378277153558053,
+        "recall": 0.7378277153558053,
+        "tn": 66502,
+        "tp": 985,
+        "unresolved_rate": 0.0
+      },
+      "per_target": {
+        "102": {
+          "exact_rate": 1.0,
+          "f1": null,
+          "fn": 0,
+          "fp": 0,
+          "gold_in_envelope_coverage": 1.0,
+          "mean_floor_adjusted_harm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "n": 2392,
+          "precision": null,
+          "recall": null,
+          "tn": 2392,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "103": {
+          "exact_rate": 0.9929806969165205,
+          "f1": 0.8613861386138614,
+          "fn": 4,
+          "fp": 24,
+          "gold_in_envelope_coverage": 0.9929806969165205,
+          "mean_floor_adjusted_harm": [
+            0.007019303083479569,
+            0.031085485083980947,
+            0.011030333416896465
+          ],
+          "n": 3989,
+          "precision": 0.7837837837837838,
+          "recall": 0.9560439560439561,
+          "tn": 3874,
+          "tp": 87,
+          "unresolved_rate": 0.0
+        },
+        "104": {
+          "exact_rate": 0.9929806969165205,
+          "f1": 0.8613861386138614,
+          "fn": 4,
+          "fp": 24,
+          "gold_in_envelope_coverage": 0.9929806969165205,
+          "mean_floor_adjusted_harm": [
+            0.007019303083479569,
+            0.031085485083980947,
+            0.011030333416896465
+          ],
+          "n": 3989,
+          "precision": 0.7837837837837838,
+          "recall": 0.9560439560439561,
+          "tn": 3874,
+          "tp": 87,
+          "unresolved_rate": 0.0
+        },
+        "105": {
+          "exact_rate": 0.9741573033707865,
+          "f1": null,
+          "fn": 0,
+          "fp": 23,
+          "gold_in_envelope_coverage": 0.9741573033707865,
+          "mean_floor_adjusted_harm": [
+            0.025842696629213482,
+            0.12921348314606743,
+            0.025842696629213482
+          ],
+          "n": 890,
+          "precision": 0.0,
+          "recall": null,
+          "tn": 867,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "201": {
+          "exact_rate": 0.9768944099378882,
+          "f1": 0.256,
+          "fn": 75,
+          "fp": 18,
+          "gold_in_envelope_coverage": 0.9768944099378882,
+          "mean_floor_adjusted_harm": [
+            0.0231055900621118,
+            0.040993788819875775,
+            0.09763975155279503
+          ],
+          "n": 4025,
+          "precision": 0.47058823529411764,
+          "recall": 0.17582417582417584,
+          "tn": 3916,
+          "tp": 16,
+          "unresolved_rate": 0.0
+        },
+        "202": {
+          "exact_rate": 0.9739379723742507,
+          "f1": null,
+          "fn": 91,
+          "fp": 9,
+          "gold_in_envelope_coverage": 0.9739379723742507,
+          "mean_floor_adjusted_harm": [
+            0.026062027625749284,
+            0.035444357571019026,
+            0.12092780818347668
+          ],
+          "n": 3837,
+          "precision": 0.0,
+          "recall": 0.0,
+          "tn": 3737,
+          "tp": 0,
+          "unresolved_rate": 0.0
+        },
+        "204": {
+          "exact_rate": 0.9907244923539734,
+          "f1": 0.8042328042328042,
+          "fn": 15,
+          "fp": 22,
+          "gold_in_envelope_coverage": 0.9907244923539734,
+          "mean_floor_adjusted_harm": [
+            0.009275507646026573,
+            0.031336174479819505,
+            0.024316871396339933
+          ],
+          "n": 3989,
+          "precision": 0.7755102040816326,
+          "recall": 0.8351648351648352,
+          "tn": 3876,
+          "tp": 76,
+          "unresolved_rate": 0.0
+        },
+        "205": {
+          "exact_rate": 0.9793866264454499,
+          "f1": 0.4305555555555556,
+          "fn": 60,
+          "fp": 22,
+          "gold_in_envelope_coverage": 0.9793866264454499,
+          "mean_floor_adjusted_harm": [
+            0.020613373554550025,
+            0.042735042735042736,
+            0.08094519859225742
+          ],
+          "n": 3978,
+          "precision": 0.5849056603773585,
+          "recall": 0.34065934065934067,
+          "tn": 3865,
+          "tp": 31,
+          "unresolved_rate": 0.0
+        },
+        "206": {
+          "exact_rate": 0.9789551869274573,
+          "f1": 0.32,
+          "fn": 71,
+          "fp": 14,
+          "gold_in_envelope_coverage": 0.9789551869274573,
+          "mean_floor_adjusted_harm": [
+            0.021044813072542707,
+            0.03490963109680614,
+            0.0913592473384501
+          ],
+          "n": 4039,
+          "precision": 0.5882352941176471,
+          "recall": 0.21978021978021978,
+          "tn": 3934,
+          "tp": 20,
+          "unresolved_rate": 0.0
+        },
+        "221": {
+          "exact_rate": 0.9944848332915518,
+          "f1": 0.892156862745098,
+          "fn": 0,
+          "fp": 22,
+          "gold_in_envelope_coverage": 0.9944848332915518,
+          "mean_floor_adjusted_harm": [
+            0.0055151667084482325,
+            0.027575833542241163,
+            0.0055151667084482325
+          ],
+          "n": 3989,
+          "precision": 0.8053097345132744,
+          "recall": 1.0,
+          "tn": 3876,
+          "tp": 91,
+          "unresolved_rate": 0.0
+        },
+        "222": {
+          "exact_rate": 0.9940182054616384,
+          "f1": 0.8808290155440415,
+          "fn": 1,
+          "fp": 22,
+          "gold_in_envelope_coverage": 0.9940182054616384,
+          "mean_floor_adjusted_harm": [
+            0.0059817945383615085,
+            0.028868660598179455,
+            0.007022106631989597
+          ],
+          "n": 3845,
+          "precision": 0.794392523364486,
+          "recall": 0.9883720930232558,
+          "tn": 3737,
+          "tp": 85,
+          "unresolved_rate": 0.0
+        },
+        "223": {
+          "exact_rate": 0.9908554010287673,
+          "f1": 0.7837837837837838,
+          "fn": 4,
+          "fp": 44,
+          "gold_in_envelope_coverage": 0.9908554010287673,
+          "mean_floor_adjusted_harm": [
+            0.009144598971232615,
+            0.04267479519908554,
+            0.012192798628310155
+          ],
+          "n": 5249,
+          "precision": 0.6641221374045801,
+          "recall": 0.9560439560439561,
+          "tn": 5114,
+          "tp": 87,
+          "unresolved_rate": 0.0
+        },
+        "224": {
+          "exact_rate": 0.9944848332915518,
+          "f1": 0.892156862745098,
+          "fn": 0,
+          "fp": 22,
+          "gold_in_envelope_coverage": 0.9944848332915518,
+          "mean_floor_adjusted_harm": [
+            0.0055151667084482325,
+            0.027575833542241163,
+            0.0055151667084482325
+          ],
+          "n": 3989,
+          "precision": 0.8053097345132744,
+          "recall": 1.0,
+          "tn": 3876,
+          "tp": 91,
+          "unresolved_rate": 0.0
+        },
+        "225": {
+          "exact_rate": 0.9937327651040361,
+          "f1": 0.8780487804878049,
+          "fn": 1,
+          "fp": 24,
+          "gold_in_envelope_coverage": 0.9937327651040361,
+          "mean_floor_adjusted_harm": [
+            0.006267234895963901,
+            0.03033341689646528,
+            0.0072699924793181245
+          ],
+          "n": 3989,
+          "precision": 0.7894736842105263,
+          "recall": 0.989010989010989,
+          "tn": 3874,
+          "tp": 90,
+          "unresolved_rate": 0.0
+        },
+        "228": {
+          "exact_rate": 0.9877622377622378,
+          "f1": 0.7341772151898734,
+          "fn": 4,
+          "fp": 17,
+          "gold_in_envelope_coverage": 0.9877622377622378,
+          "mean_floor_adjusted_harm": [
+            0.012237762237762238,
+            0.051864801864801864,
+            0.02156177156177156
+          ],
+          "n": 1716,
+          "precision": 0.6304347826086957,
+          "recall": 0.8787878787878788,
+          "tn": 1666,
+          "tp": 29,
+          "unresolved_rate": 0.0
+        },
+        "230": {
+          "exact_rate": 0.9941666666666666,
+          "f1": 0.8695652173913044,
+          "fn": 0,
+          "fp": 21,
+          "gold_in_envelope_coverage": 0.9941666666666666,
+          "mean_floor_adjusted_harm": [
+            0.005833333333333334,
+            0.029166666666666667,
+            0.005833333333333334
+          ],
+          "n": 3600,
+          "precision": 0.7692307692307693,
+          "recall": 1.0,
+          "tn": 3509,
+          "tp": 70,
+          "unresolved_rate": 0.0
+        },
+        "301": {
+          "exact_rate": 0.9971074380165289,
+          "f1": 0.9090909090909091,
+          "fn": 4,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.9971074380165289,
+          "mean_floor_adjusted_harm": [
+            0.002892561983471074,
+            0.007851239669421488,
+            0.009504132231404958
+          ],
+          "n": 2420,
+          "precision": 0.9210526315789473,
+          "recall": 0.8974358974358975,
+          "tn": 2378,
+          "tp": 35,
+          "unresolved_rate": 0.0
+        },
+        "302": {
+          "exact_rate": 0.9950684931506849,
+          "f1": 0.8163265306122449,
+          "fn": 6,
+          "fp": 3,
+          "gold_in_envelope_coverage": 0.9950684931506849,
+          "mean_floor_adjusted_harm": [
+            0.004931506849315068,
+            0.011506849315068493,
+            0.01808219178082192
+          ],
+          "n": 1825,
+          "precision": 0.8695652173913043,
+          "recall": 0.7692307692307693,
+          "tn": 1796,
+          "tp": 20,
+          "unresolved_rate": 0.0
+        },
+        "303": {
+          "exact_rate": 0.9969444444444444,
+          "f1": 0.7924528301886792,
+          "fn": 5,
+          "fp": 6,
+          "gold_in_envelope_coverage": 0.9969444444444444,
+          "mean_floor_adjusted_harm": [
+            0.0030555555555555557,
+            0.009722222222222222,
+            0.008611111111111111
+          ],
+          "n": 3600,
+          "precision": 0.7777777777777778,
+          "recall": 0.8076923076923077,
+          "tn": 3568,
+          "tp": 21,
+          "unresolved_rate": 0.0
+        },
+        "304": {
+          "exact_rate": 0.9947127247091999,
+          "f1": 0.8672566371681415,
+          "fn": 5,
+          "fp": 10,
+          "gold_in_envelope_coverage": 0.9947127247091999,
+          "mean_floor_adjusted_harm": [
+            0.005287275290800141,
+            0.019386676066267185,
+            0.012336975678533662
+          ],
+          "n": 2837,
+          "precision": 0.8305084745762712,
+          "recall": 0.9074074074074074,
+          "tn": 2773,
+          "tp": 49,
+          "unresolved_rate": 0.0
+        }
+      }
+    }
+  }
+}

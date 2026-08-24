@@ -1,0 +1,153 @@
+{
+  "arm_acceptance_criteria": {
+    "C1": [
+      "exact shared source archive/repository identity",
+      "byte-frozen setup specification",
+      "byte-frozen effective default-agent configuration",
+      "retry agent disabled",
+      "action sampler disabled",
+      "review disabled",
+      "open-PR behavior disabled",
+      "native tool/write policy"
+    ],
+    "C2": [
+      "authored/licensed session bytes",
+      "host-issued minimal-class certificate",
+      "evaluator definition bytes",
+      "write-root declaration",
+      "shared core identity"
+    ],
+    "C3": [
+      "exact mutable-agent versus immutable-host tree split",
+      "input-native certificate committed before self-edit",
+      "endpoint policy",
+      "tool policy",
+      "write policy",
+      "excluded outcome prefixes absent from candidate seed",
+      "shared core identity"
+    ],
+    "C4": [
+      "exactly one ADIAS domain/adaptor identity",
+      "visible task id and deterministic seed",
+      "turn, step, and evaluation-sample limits",
+      "environment implementation and data bytes",
+      "bundled ADIAS task data excluded",
+      "shared core identity"
+    ],
+    "C5": [
+      "fixed train membership",
+      "fixed eval-dev membership",
+      "fixed development-only locked-surrogate membership",
+      "frozen solver outputs for every development item",
+      "frozen solver.py bytes",
+      "frozen prompts.py bytes",
+      "development soft anchors",
+      "external input-native certificate",
+      "generated-output rights disposition",
+      "protected final panel absent"
+    ],
+    "C6": [
+      "topic bytes",
+      "allowed source corpus manifest",
+      "allowed skills and exact tool parameters",
+      "filtered source seed bytes",
+      "source-bundled prior-outcome prefixes excluded",
+      "exact profile and reset policy",
+      "no reference answers or protected scores",
+      "shared core identity"
+    ]
+  },
+  "authority": "OUTCOME_BLIND_BYTE_LEVEL_TASK_ENVIRONMENT_ACCEPTANCE_ONLY",
+  "baseline": {
+    "acceptance_sha256": "86d9ccc04f941e7e331ea48a6537f0c3e07768d4c561dd27ce73f1ac655bf92a",
+    "before_blocking": 72,
+    "before_bound": 54,
+    "before_ready_arms": 0,
+    "candidate_visible_core_sha256": "09a2eb17394d7b84c11641b468d14446af955c4c3272557810d861a275c72da7",
+    "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+    "packet_path": "development/p5-common-visible-case-rights-v6-2026-08-23",
+    "r2_before_blocking_instances": 6,
+    "result_sha256": "27c639422568c87ff6b6972dc20e0cad17219c2578f01f1360cd93564dee0242",
+    "rights_manifest_sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3"
+  },
+  "closure_rule": {
+    "accepted_status": "BOUND",
+    "failure_rule": "If any required criterion lacks current byte-level evidence, preserve runtime.task_environment as BLOCKING and record the exact smallest residual.",
+    "failure_status": "BLOCKING",
+    "requirements": [
+      "Every arm-specific criterion is represented by existing bytes or an exact canonical manifest value.",
+      "Every referenced local byte artifact exists at validation and matches its recorded SHA-256.",
+      "Every included task/content component has an explicit rights disposition consistent with the V6 rights manifest.",
+      "No schema, plan, future input, source default, native bundled task, prior outcome, protected score, reference answer, or unexecuted promise is treated as evidence.",
+      "The manifest binds one reproducible candidate-visible task environment without claiming runtime image, provider, custody, execution, performance, or superiority closure."
+    ]
+  },
+  "exclusions": [
+    "manuscript edits",
+    "shared P1-P5 file edits",
+    "V4/V5/V6 packet edits",
+    "pytest",
+    "repository CI",
+    "arm execution",
+    "arm validator reruns",
+    "P5 C4 native validator rerun",
+    "commits"
+  ],
+  "expected_arithmetic": {
+    "after_blocking": "72 - accepted_arm_count",
+    "after_bound": "54 + accepted_arm_count",
+    "r2_after_blocking_instances": "6 - accepted_arm_count",
+    "ready_arms": 0
+  },
+  "field_scope": {
+    "all_other_120_field_instances": "UNCHANGED_FROM_V6",
+    "arm_execution_allowed": false,
+    "benchmark_execution_allowed": false,
+    "model_execution_allowed": false,
+    "only_mutable_field": "runtime.task_environment",
+    "protected_outcome_access_allowed": false
+  },
+  "frozen_at_utc": "2026-08-23T20:21:29Z",
+  "objective": "Adjudicate and, where complete evidence exists, bind only the six V6 runtime.task_environment field instances.",
+  "predecessor_arm_contracts": {
+    "C1": {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "candidate_requirements_sha256": "937c9b09394ef63f21261d90d996838a1d6eac146bcc3c150ab0bf0904f5ed65",
+      "field_registry_sha256": "9c0e99a771ac766930a9b0097c0d1b0f7c2cd8649169ed255c8b347d4c2817c8",
+      "packet_path": "development/p5-swe-agent-execution-binding-v4-2026-08-23"
+    },
+    "C2": {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "candidate_requirements_sha256": "2a89abde2691564cddc22897babf849107965d8c99d841aecab40188a739cd12",
+      "field_registry_sha256": "a7639cbcc51fa14a35eb6a0d25c15759fc66a0cda86e718bcb88fa0a4d36182f",
+      "packet_path": "development/p5-moss-execution-binding-v4-2026-08-23"
+    },
+    "C3": {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "candidate_requirements_sha256": "dd97ec536ff53f7a29c54a1de11583c4fc30613e55b400303ce4d63b74911259",
+      "field_registry_sha256": "7e9b8a3c75429dc004399181f4003c5baa966909a5b01ea3d579824784b1391b",
+      "packet_path": "development/p5-dgm-execution-binding-v4-2026-08-23"
+    },
+    "C4": {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "candidate_requirements_sha256": "d5acf695a510228455d16c8eb4996138fb392901beeddb4970876c3107c22d72",
+      "field_registry_sha256": "d54c7c676ffd400faba8bc5d9735b08c5eeff8d717a614784d6cfee04cbe9a98",
+      "packet_path": "development/p5-adias-execution-binding-v4-2026-08-23"
+    },
+    "C5": {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "candidate_requirements_sha256": "e6805eac1f8c114735026dfb5b58115f539fb9e33b3a1bb500aaa8cf9f8ab958",
+      "field_registry_sha256": "07294be547223840f8142e843f1d83d6c43f2d4f376231586f97a826c2d7cd10",
+      "packet_path": "development/p5-double-ratchet-execution-binding-v4-2026-08-23"
+    },
+    "C6": {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "candidate_requirements_sha256": "4daefdc7358160ca3d43ae461df0456678a54c320c7c1a384f7983fe5813445e",
+      "field_registry_sha256": "3890fe2b53e23a650b452be0080807f4e064410fce176ce13195174ebedccc47",
+      "packet_path": "development/p5-scienceclaw-execution-binding-v4-2026-08-23"
+    }
+  },
+  "protocol_frozen_before_environment_outputs": true,
+  "protocol_id": "P5.NATIVE.TASK.ENVIRONMENT.FANOUT.V7",
+  "schema_version": "orion.p5.native-task-environment-fanout-protocol.v7"
+}

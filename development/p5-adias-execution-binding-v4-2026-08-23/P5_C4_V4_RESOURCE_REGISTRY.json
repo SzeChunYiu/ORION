@@ -1,0 +1,26 @@
+{
+  "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+  "blocking": {
+    "calls_tokens_usd": "no aggregate hard stop or provider reconciliation",
+    "compute": "no end-to-end CPU/RAM/disk/GPU/cgroup enforcement across Docker daemon and children",
+    "retry_network": "no exact endpoint allowlist/offline dependency build"
+  },
+  "schema_version": "orion.p5.c4.resource-registry.v4",
+  "source_defaults_are_not_a_matched_resource_lock": true,
+  "source_observations_not_adopted_as_matched_p5_values": {
+    "source_backoff_max_time_seconds": 600,
+    "source_container_network_mode": "host",
+    "source_container_pids_limit": 256,
+    "source_eval_workers_default": 10,
+    "source_llm_max_tokens_per_call": 16384,
+    "source_meta_exec_timeout_seconds": 21600
+  },
+  "wallclock": {
+    "background_launchers_forbidden": true,
+    "enforcer": "p5_c4_fail_closed_runner.py",
+    "enforcer_sha256": "ef984aafeacc32e99597814b383542202fb5eba67ebf72a0839349230f09260c",
+    "status": "BOUND_PROSPECTIVE_GATE",
+    "termination_grace_seconds": 120,
+    "whole_run_seconds": 21600
+  }
+}

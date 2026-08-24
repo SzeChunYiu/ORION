@@ -1,0 +1,31 @@
+{
+  "builder": {
+    "Cython": "3.2.4",
+    "backend": "setuptools 81.0.0",
+    "command": "python -m build --sdist --no-isolation --skip-dependency-check",
+    "frontend": "build 1.4.2",
+    "numpy": "2.4.4"
+  },
+  "byte_equal": false,
+  "different": [
+    "woodtapper/example_sampling/utils/weights.c",
+    "woodtapper/extract_rules/Splitter/_QuantileSplitter.c"
+  ],
+  "finished_at": "2026-08-23T21:40:10.295276+00:00",
+  "manifest_equal": false,
+  "only_rebuilt": [],
+  "only_zenodo": [],
+  "rebuilt": {
+    "bytes": 367256,
+    "count": 34,
+    "manifest_sha256": "5a7a264d87a0094d13d77b633c55318a9ad0a3313e44f203b66d01ec684f580b",
+    "sha256": "f16fd916b5659ea43e2b6233664bec91d2f5573f3ceabe468dd1643a7f0a3a54"
+  },
+  "source_commit": "7ac6d23d504404c4004faad663f6b889427109e6",
+  "zenodo": {
+    "bytes": 367447,
+    "count": 34,
+    "manifest_sha256": "a54edecc77c64323f20f5f5672e18c691c49cf4e881fda5568eaf633317deb8b",
+    "sha256": "b509f6469b9ff8888195751c811d689559f45e24aeb35bb173b9680c99c8dbf3"
+  }
+}

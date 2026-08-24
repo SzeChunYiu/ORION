@@ -1,0 +1,249 @@
+{
+  "schema_version": "orion.p5.protected-freshness-provider-contract.v1",
+  "contract_id": "P5.PROTECTED_FRESHNESS.PROVIDER.CONTRACT.V1",
+  "successor_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "status": "TEMPLATE_ONLY__NO_PROVIDER_SIGNED__CANNOT_CHECK",
+  "authority": "MINIMUM_SCIENTIFIC_AND_CUSTODY_ACCEPTANCE_CONTRACT__NOT_LEGAL_ADVICE__NOT_AN_EXECUTION_AUTHORIZATION",
+  "outcomes_accessed": false,
+  "provider_identity": "UNBOUND",
+  "provider_contract_sha256": "UNBOUND",
+  "provider_signature_identity": "UNBOUND",
+  "provider_signature": "UNBOUND",
+  "candidate_policy_owner": "UNBOUND",
+  "protected_case_owner": "UNBOUND",
+  "protected_evaluator_owner": "UNBOUND",
+  "fresh_transfer_evaluator_owner": "UNBOUND",
+  "harm_adjudicator_owner": "UNBOUND",
+  "external_result_verifier_owner": "UNBOUND",
+  "separation_rules": [
+    "candidate policy owner must differ from every protected-case, evaluator, harm-adjudicator, and verifier owner",
+    "case authors and gold adjudicators must not implement or tune candidate or comparator policies",
+    "the verifier must be able to authenticate commitments and receipts without candidate write authority",
+    "role labels inside one repository or organization do not by themselves establish independence"
+  ],
+  "required_rights_schedule": {
+    "content_classes": [
+      "repository code and history",
+      "issue or task prose",
+      "comments and review text",
+      "patches and diffs",
+      "tests and hidden tests",
+      "logs and traces",
+      "attachments and images",
+      "datasets and derived fixtures",
+      "containers and every upstream layer",
+      "model inputs and outputs",
+      "fresh-transfer targets",
+      "harm rubrics and adjudication records",
+      "machine-readable result receipts"
+    ],
+    "required_fields_per_root_and_class": [
+      "root identifier",
+      "owner or authority identity",
+      "permission basis and version",
+      "permitted research, processing, retention, and publication uses",
+      "redistribution and quotation restrictions",
+      "privacy, confidentiality, and sensitive-data disposition",
+      "derivative and container-layer obligations",
+      "revocation or expiry conditions",
+      "evidence URI and payload hash",
+      "reviewer identity and timestamp"
+    ],
+    "fail_rule": "Any required class without a compatible root-bound disposition is excluded. A resulting empty preregistered cell is a source-universe negative; cases are not reassigned after outcomes."
+  },
+  "case_authorship_and_freshness": {
+    "case_creation_must_begin_after": "SIGNED_PROTOCOL_AND_COMPARATOR_FREEZE",
+    "genuinely_new_cases_required": true,
+    "published_24_case_suite_reuse_prohibited": true,
+    "public_benchmark_gold_reuse_for_confirmation_prohibited": true,
+    "private_but_historical_is_not_automatically_fresh": true,
+    "required_freshness_receipts": [
+      "case creation and modification timestamps",
+      "pre-outcome task, split, and evaluation epoch commitments",
+      "candidate and comparator access-control lists",
+      "read and write audit logs",
+      "training, tuning, prior-submission, and provider exposure questionnaire",
+      "hashes of every candidate-visible and candidate-hidden field",
+      "proof that candidate-visible packets were derived without hidden labels or outcomes"
+    ],
+    "compromise_terminal": "P5_BRIDGE_CANNOT_CHECK_FRESHNESS_OR_CONTAMINATION"
+  },
+  "case_registry": {
+    "primary_registry_sha256": "UNBOUND",
+    "replication_registry_sha256": "UNBOUND",
+    "primary_final_split_sha256": "UNBOUND",
+    "replication_final_split_sha256": "UNBOUND",
+    "required_case_fields": [
+      "case_id",
+      "wave_id",
+      "domain_id",
+      "revision_class_commitment",
+      "same_symptom_block_id",
+      "global_source_family_id",
+      "candidate_visible_packet_sha256",
+      "protected_payload_commitment",
+      "rights_schedule_entry_ids",
+      "case_author_id",
+      "gold_adjudicator_ids",
+      "eligible_actions and diagnostic costs",
+      "preservation obligations",
+      "fresh-transfer target commitment",
+      "harm rubric commitment",
+      "creation and freeze timestamps"
+    ],
+    "forbidden_candidate_visible_fields": [
+      "revision class label",
+      "protected diagnostic outcomes",
+      "gold patch or gold method revision",
+      "hidden tests and scorer implementation",
+      "fresh-transfer targets",
+      "harm rubric or adjudication",
+      "split allocation beyond the permitted candidate-visible identity"
+    ]
+  },
+  "domain_and_block_contract": {
+    "required_domain_ids": [
+      "BIOMEDICAL_CLINICAL",
+      "LIFE_SCIENCE_EXPERIMENTAL",
+      "EARTH_ENVIRONMENTAL",
+      "PHYSICAL_SCIENCE",
+      "ENGINEERING_ROBOTICS",
+      "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "SOCIAL_BEHAVIORAL_ECONOMIC",
+      "MATHEMATICAL_STATISTICAL_FORMAL"
+    ],
+    "required_revision_classes": [
+      "EVIDENCE_REPAIR",
+      "MEASUREMENT_REPAIR",
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR",
+      "EVALUATOR_REPAIR",
+      "UNRESOLVED"
+    ],
+    "same_symptom_blocks_per_domain_per_wave": 12,
+    "source_disjoint_clusters_per_block": 8,
+    "no_revision_harm_sentinels_per_domain_per_wave": 12,
+    "open_set_route": "OTHER_PROVISIONAL_OR_UNRESOLVED",
+    "block_acceptance": [
+      "candidate-visible symptom equivalence adjudicated before protected responsibility labels are opened",
+      "one globally source-disjoint cluster per revision class",
+      "no candidate-visible class leakage above the preregistered adversarial threshold",
+      "block ID retained in power and outcome analyses"
+    ],
+    "shortfall_terminal": "P5_BRIDGE_SOURCE_UNIVERSE_OR_ONTOLOGY_NEGATIVE"
+  },
+  "comparator_execution_registry": {
+    "required_slot_ids": [
+      "C1_NO_REVISION",
+      "C2_MATCHED_DIRECT_BROAD_SELF_EDIT",
+      "C3_SWE_AGENT_FIXED_ISSUE_SOLVER",
+      "C4_MDA_V3_M_OPEN_MECHANISM_REIMPLEMENTATION",
+      "C5_WORLD_EVOLVER_WORLD_MODEL_MECHANISM_REIMPLEMENTATION",
+      "C6_SCIENCECLAW_REPRESENTATION_REGIME_ADAPTER"
+    ],
+    "registry_sha256": "UNBOUND",
+    "required_fields_per_arm": [
+      "slot and system identity",
+      "official source or declared reimplementation status",
+      "repository, commit, licence, dependency lock, and entrypoint",
+      "model, provider, weights, prompt, tool, and seed identities",
+      "candidate-visible input adapter",
+      "native output and P5 output-terminal map",
+      "information, action, time, token, compute, network, and retry budgets",
+      "error, timeout, invalid, abstain, and unresolved handling",
+      "environment and container digest",
+      "pre-outcome conformance receipt"
+    ],
+    "change_rule": "No arm may be dropped, repaired, retuned, or replaced after protected outcomes. A material change requires a new successor identity and new cases or a prospectively isolated untouched wave."
+  },
+  "subject_execution_registry": {
+    "subject_revision_sha": "UNBOUND",
+    "candidate_policy_sha256": "UNBOUND",
+    "model_and_weights_sha256": "UNBOUND",
+    "provider_and_api_revision": "UNBOUND",
+    "prompt_and_tool_manifest_sha256": "UNBOUND",
+    "dependency_lock_sha256": "UNBOUND",
+    "container_or_environment_sha256": "UNBOUND",
+    "budget_manifest_sha256": "UNBOUND",
+    "seed_schedule_commitment": "UNBOUND",
+    "network_policy_sha256": "UNBOUND",
+    "evaluation_epoch": "UNBOUND"
+  },
+  "evaluator_registry": {
+    "protected_evaluator_source_sha256": "UNBOUND",
+    "protected_evaluator_image_sha256": "UNBOUND",
+    "fresh_transfer_evaluator_source_sha256": "UNBOUND",
+    "fresh_transfer_evaluator_image_sha256": "UNBOUND",
+    "harm_adjudication_protocol_sha256": "UNBOUND",
+    "scorer_schema_sha256": "UNBOUND",
+    "test_registry_commitment": "UNBOUND",
+    "nondeterminism_and_external_service_policy_sha256": "UNBOUND",
+    "retry_and_flake_policy_sha256": "UNBOUND",
+    "required_invariance": "Candidate and all comparators are scored under identical evaluator bytes, environments, epochs, retries, and external-service policy."
+  },
+  "outcome_receipt_contract": {
+    "per_case_fields": [
+      "case and wave identity",
+      "subject or comparator identity",
+      "candidate output digest",
+      "execution environment digest",
+      "start and stop timestamps",
+      "native status including error or timeout",
+      "selected revision class or unresolved terminal",
+      "minimality and excess-revision result",
+      "preservation result",
+      "fresh-transfer result",
+      "harm result",
+      "diagnostic actions and costs",
+      "scorer and evaluator digests",
+      "access-log commitment",
+      "provider signature"
+    ],
+    "aggregate_fields": [
+      "independent-unit counts and exclusions",
+      "all six paired contrasts",
+      "multiplicity correction",
+      "worst-domain and worst-class results",
+      "same-symptom block sensitivity",
+      "sentinel and harm gates",
+      "primary versus replication heterogeneity",
+      "missingness, error, timeout, invalid, null, harmful, interaction, and CANNOT_CHECK counts"
+    ],
+    "raw_result_archive_sha256": "UNBOUND",
+    "signed_result_receipt_sha256": "UNBOUND",
+    "verifier_receipt_sha256": "UNBOUND",
+    "public_redaction_manifest_sha256": "UNBOUND"
+  },
+  "pre_execution_acceptance_gates": [
+    "SIGNED_RIGHTS_SCHEDULE_COMPLETE",
+    "PRIMARY_AND_REPLICATION_REGISTRIES_COMMITTED",
+    "SIX_COMPARATOR_REGISTRY_COMPLETE",
+    "SUBJECT_AND_ALL_RUNTIME_IDENTITIES_COMPLETE",
+    "PROTECTED_AND_FRESH_EVALUATORS_HASHED",
+    "CANDIDATE_EVALUATOR_AND_VERIFIER_CUSTODY_SEPARATED",
+    "ACCESS_LOGGING_ACTIVE",
+    "NO_OUTCOME_ACCESSED",
+    "POWER_RECALCULATED_FOR_FINAL_BLOCK_AND_COMPARATOR_DESIGN",
+    "ISSUE8_PACKET_AND_EXECUTION_REGISTRY_DIVERGENCE_NOT_REUSED"
+  ],
+  "possible_acceptance_terminals": [
+    "PROVIDER_CONTRACT_READY_FOR_IDENTITY_COMPLETE_FREEZE",
+    "PROVIDER_CONTRACT_RIGHTS_NEGATIVE",
+    "PROVIDER_CONTRACT_CELL_SHORTFALL_NEGATIVE",
+    "PROVIDER_CONTRACT_COMPARATOR_UNATTAINABLE",
+    "PROVIDER_CONTRACT_FRESHNESS_COMPROMISED",
+    "PROVIDER_CONTRACT_CUSTODY_OR_INDEPENDENCE_CANNOT_CHECK",
+    "PROVIDER_CONTRACT_RESULT_EXPORT_CANNOT_CHECK"
+  ],
+  "current_blockers": [
+    "provider identity and signature unbound",
+    "rights schedule unbound",
+    "case and split commitments unbound",
+    "all subject, comparator, evaluator, epoch, and environment identities unbound",
+    "access logging and verifier custody unbound",
+    "no provider has committed genuinely new post-freeze eight-class cases"
+  ],
+  "current_terminal": "P5_PROTECTED_PROVIDER_AND_FRESH_TRANSFER_CANNOT_CHECK"
+}

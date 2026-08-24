@@ -1,0 +1,38 @@
+{
+  "acceptance_rules": [
+    "One identical candidate-visible core digest must be accepted by C1--C6.",
+    "Every component must have exact bytes, provenance and a retained licence/notice disposition.",
+    "The fixed tree, fix patch, run outputs, hidden tests, scorer feedback and final-panel identities must be absent.",
+    "All bundled/native arm content is excluded unless separately licensed.",
+    "Native environment, runtime, model, custody and execution fields remain blocking."
+  ],
+  "authority": "OUTCOME_BLIND_PUBLIC_SOURCE_BYTE_RIGHTS_AND_PREFLIGHT_ONLY",
+  "execution_prohibitions": {
+    "arm_executions": 0,
+    "benchmark_executions": 0,
+    "model_executions": 0,
+    "protected_scorer_executions": 0
+  },
+  "frozen_at_utc": "2026-08-23T19:47:41Z",
+  "predecessor_v5_registry": {
+    "before_blocking": 84,
+    "before_bound": 42,
+    "path": "development/p5-panelwide-root-closure-v5-2026-08-23/P5_PANELWIDE_BLOCKER_EQUIVALENCE_REGISTRY_V5.json",
+    "sha256": "63257a4276b5ec52f26e65c12e6a7d414d6d9bdbdb84ce9ccdf6394847e265c7"
+  },
+  "protocol_id": "P5-V6-COMMON-VISIBLE-CASE-RIGHTS",
+  "schema_version": "orion.p5.common-visible-case-rights-protocol.v6",
+  "target": {
+    "arm_count": 6,
+    "equivalence_ids": [
+      "E2_CANDIDATE_VISIBLE_CASE",
+      "E8_TASK_AND_BENCHMARK_CONTENT_RIGHTS"
+    ],
+    "field_paths": [
+      "inputs.candidate_visible_case_bytes",
+      "rights.task_and_benchmark_content"
+    ],
+    "root_id": "R2_COMMON_CASE_RIGHTS_AND_NATIVE_TASK_ADAPTATION",
+    "targeted_field_instances": 12
+  }
+}

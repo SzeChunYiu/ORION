@@ -1,0 +1,211 @@
+{
+  "authority": "PUBLIC_STANDARD_SEMANTICS_PROVENANCE_AND_EXACT_CONSTRUCT_FEASIBILITY_ONLY",
+  "exact_feasibility_theorem": {
+    "name": "Custodian-nondelegation upper bound",
+    "proof_obligation": "Evaluate the custodian/delegation conjunct for each of the twelve unchanged V8 groups and independently recompute the upper bound from the result table.",
+    "scope": "Exact for this frozen registry and source library; not a claim that a future owner-signed algebra is impossible.",
+    "statement": "For a frozen conjunctive registry G, let sufficient(g,S) require source coverage, applicable rights, exact schema coverage, and named-custodian authorship or explicit delegation. If a source library S contains no named-custodian authorship or explicit delegation for g, then sufficient(g,S)=false. Therefore the maximum number of sufficient groups is the count of groups whose custodian conjunct is evidenced, regardless of lexical action-token coverage."
+  },
+  "forbidden_access": [
+    "article titles",
+    "abstracts",
+    "article or notice full text",
+    "case identifiers",
+    "Retraction Watch reasons or notes",
+    "candidate or comparator output",
+    "protected scores",
+    "scientific-action labels",
+    "author blame or responsibility",
+    "case-level action outcomes"
+  ],
+  "frozen_at": "2026-08-23T19:02:34.491964+00:00",
+  "frozen_source_routes": [
+    {
+      "authority_role": "consensus recommended practice publisher",
+      "expected_identity": "NISO RP-45-2024, Communication of Retractions, Removals, and Expressions of Concern",
+      "institution": "National Information Standards Organization",
+      "retention": "digest, HTTP provenance, bounded native tokens and rights statement only",
+      "source_id": "NISO_CREC_RP45_LANDING",
+      "url": "https://www.niso.org/publications/rp-45-2024-crec"
+    },
+    {
+      "authority_role": "consensus recommended practice publisher",
+      "expected_identity": "official NISO RP-45-2024 PDF",
+      "institution": "National Information Standards Organization",
+      "retention": "digest, HTTP provenance, bounded native tokens and rights statement only",
+      "source_id": "NISO_CREC_RP45_PDF",
+      "url": "https://groups.niso.org/higherlogic/ws/public/download/30869/NISO_RP-45-2024_CREC.pdf"
+    },
+    {
+      "authority_role": "DOI registration and Crossmark metadata operator",
+      "expected_identity": "official Crossmark documentation",
+      "institution": "Crossref",
+      "retention": "digest, HTTP provenance, bounded native tokens only",
+      "source_id": "CROSSREF_CROSSMARK",
+      "url": "https://www.crossref.org/documentation/crossmark/"
+    },
+    {
+      "authority_role": "Crossmark policy-page interface operator",
+      "expected_identity": "official Crossmark policy-page documentation",
+      "institution": "Crossref",
+      "retention": "digest, HTTP provenance, bounded native tokens only",
+      "source_id": "CROSSREF_POLICY_PAGE",
+      "url": "https://www.crossref.org/documentation/crossmark/crossmark-policy-page/"
+    },
+    {
+      "authority_role": "DOI metadata relationship schema operator",
+      "expected_identity": "official relationship metadata documentation",
+      "institution": "Crossref",
+      "retention": "digest, HTTP provenance, bounded machine-readable relation tokens only",
+      "source_id": "CROSSREF_RELATIONSHIPS",
+      "url": "https://www.crossref.org/documentation/schema-library/markup-guide-metadata-segments/relationships/"
+    },
+    {
+      "authority_role": "JATS tag-library host",
+      "expected_identity": "JATS Publishing Tag Library 1.4 related-article element",
+      "institution": "US National Library of Medicine",
+      "retention": "digest, HTTP provenance, bounded enumerated related-article-type tokens only",
+      "source_id": "NLM_JATS_RELATED_ARTICLE",
+      "url": "https://jats.nlm.nih.gov/publishing/tag-library/1.4/element/related-article.html"
+    },
+    {
+      "authority_role": "publication-ethics guidance publisher",
+      "expected_identity": "official retraction guidelines landing route",
+      "institution": "Committee on Publication Ethics",
+      "retention": "status and provenance only when access blocked; no workaround",
+      "source_id": "COPE_RETRACTION_GUIDELINES",
+      "url": "https://publicationethics.org/retraction-guidelines"
+    },
+    {
+      "authority_role": "medical-journal recommendation publisher",
+      "expected_identity": "official corrections/retractions/version-control route",
+      "institution": "International Committee of Medical Journal Editors",
+      "retention": "status and provenance only when access blocked or missing; no workaround",
+      "source_id": "ICMJE_CORRECTIONS_ROUTE",
+      "url": "https://www.icmje.org/recommendations/browse/publishing-and-editorial-issues/corrections-retractions-republications-and-version-control.html"
+    }
+  ],
+  "frozen_tests": {
+    "owner_group_sufficiency": {
+      "cannot_check": "Missing public access is the only reason a group does not pass.",
+      "negative": "All twelve fail at least one observed conjunct with no access uncertainty relevant to that failure.",
+      "positive": "One or more of the unchanged twelve groups passes every conjunct.",
+      "rule": "A V8 requirement group is sufficient only when every existing V8 discriminator is met, exact R7 target coverage/exhaustiveness is present where required, applicable reuse rights are bound, and the named required custodian or explicit delegation is evidenced. Partial public-standard analogues contribute zero sufficient groups."
+    },
+    "scaffold_feasibility": {
+      "cannot_check": "Identity or exact bytes cannot be bound for enough sources.",
+      "negative": "Fewer than three independent accessible institutional families expose an explicit native postpublication token.",
+      "positive": "At least three independent institutional source families are byte-bound and expose explicit native postpublication action/status or relation tokens; at least one source distinguishes a content status/action from a linking relation or policy role."
+    },
+    "scientific_action_gold": {
+      "default": "0",
+      "positive": "Only an owner-separated adjudication receipt over eligible cases may create a nonzero count; public standards alone are inadmissible."
+    }
+  },
+  "native_token_gateway": {
+    "allowlisted_case_insensitive_phrases": [
+      "retraction",
+      "retracted",
+      "removal",
+      "removed",
+      "expression of concern",
+      "correction",
+      "corrected",
+      "update",
+      "updated",
+      "withdrawal",
+      "withdrawn",
+      "version of record",
+      "current",
+      "status",
+      "policy",
+      "maintain",
+      "preserve",
+      "notice"
+    ],
+    "allowlisted_relation_tokens": [
+      "is-corrected-by",
+      "corrects",
+      "is-retracted-by",
+      "retracts",
+      "is-updated-by",
+      "updates",
+      "is-version-of",
+      "has-version",
+      "is-replaced-by",
+      "replaces",
+      "addendum",
+      "commentary",
+      "corrected-article",
+      "correction-forward",
+      "retracted-article",
+      "retraction-forward"
+    ],
+    "no_semantic_crosswalk": "A lexical or source-native action/status token is not mapped to any R7 decision or treated as scientific-action gold.",
+    "retention": "For prose sources retain only existence booleans and exact allowlisted terms, not sentences. For schema/tag sources retain exact enumerated tokens and local element/attribute names."
+  },
+  "planned_outputs": [
+    "PROTOCOL_V4.json",
+    "PROTOCOL_FREEZE_RECEIPT_V4.json",
+    "SOURCE_CAPTURE_AND_RIGHTS_RECEIPT_V4.json",
+    "STANDARD_NATIVE_ACTION_ENVELOPE_V4.json",
+    "OWNER_GROUP_FEASIBILITY_V4.json",
+    "CUSTODIAN_NONDELEGATION_THEOREM_V4.md",
+    "CONSTRUCT_VALIDITY_REPORT_V4.md",
+    "CLAIM_BOUNDARY_V4.md",
+    "RESULT_V4.json",
+    "verify_v4.py",
+    "VALIDATION_RECEIPT_V4.json",
+    "SHA256SUMS"
+  ],
+  "predecessors": {
+    "v3_construct_atlas": {
+      "path": "development/p1-structured-action-semantics-v3-2026-08-23/CONSTRUCT_VALIDITY_FAILURE_ATLAS_V3.json",
+      "sha256": "09426f4001c4f387c29629b03046aa92fe2be388937fcf414c3911cb64b47d98"
+    },
+    "v3_owner_feasibility": {
+      "path": "development/p1-structured-action-semantics-v3-2026-08-23/OWNER_FIELD_FEASIBILITY_V3.json",
+      "sha256": "cd01432101da48cd578ceaacfcf668b9dca9252795977ec8683179a243a594bb"
+    },
+    "v3_result": {
+      "path": "development/p1-structured-action-semantics-v3-2026-08-23/RESULT_V3.json",
+      "sha256": "7178052320f85ea112e4b0b78da558fc5a68f7dc3b465a4f7afc9e1915860f2b"
+    },
+    "v8_custodian_registry": {
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_FIELD_CUSTODIAN_REGISTRY.json",
+      "sha256": "42fd386b113802b5b269dada6ab2965503fa5afa020a06e52a25ce667d03dae4"
+    },
+    "v8_owner_schema": {
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+      "sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55"
+    },
+    "v8_result": {
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_RESULT_V8.json",
+      "sha256": "47d1d6b38c96b7046500188c84b3b3cdb6afb1260a9acf87e4731dadd2ed76ed"
+    }
+  },
+  "prohibitions": [
+    "No self-assigned R7 owner identity or delegation",
+    "No host execution or recommendation authority inferred",
+    "No standards-token-to-R7-decision mapping",
+    "No owner ratification or independent review fabricated",
+    "No case/outcome access",
+    "No pytest or repository CI",
+    "No manuscript, ledger, PDF, Git history, commit, push, merge or rebase operation"
+  ],
+  "protocol_id": "P1_V4_PUBLIC_AUTHORITY_NATIVE_POSTPUBLICATION_STANDARD_FEASIBILITY",
+  "readiness_rule": "P1 readiness changes only if scientific-action gold becomes nonzero and all authority, rights, custody and construct gates required by the current readiness matrix are bound. A standards scaffold or exact zero-group upper bound alone cannot change readiness.",
+  "schema_version": "orion.p1.owner-algebra-construct-validity.protocol.v4",
+  "scientific_question": "Can the strongest accessible public authority-native postpublication standards supply a lawful, source-native action/terminal scaffold and, under the unchanged V8 conjunctive custodian rule, make any of the twelve R7 owner-algebra requirement groups sufficient without case text, outcomes, or self-assigned authority?",
+  "source_capture_rule": {
+    "fail_closed": "HTTP non-2xx, identity mismatch, parse failure, or ambiguous semantics is CANNOT_CHECK; never substitute a search snippet or third-party copy.",
+    "method": "One HTTP GET with an identifying research User-Agent, redirects followed, 30 second timeout; record requested URL, final URL, UTC capture time, HTTP status, content type, content length, ETag, Last-Modified and SHA-256 of exact response bytes.",
+    "raw_retention": "No raw HTML or PDF in the final packet. Temporary source bytes must be deleted after hashing and bounded extraction."
+  },
+  "successor_identity": "P1_PUBLIC_POSTPUBLICATION_STANDARD_ENVELOPE_AND_NONDELEGATION_BOUND_V4",
+  "terminal_rules": {
+    "positive_owner_groups": "P1_V4_PUBLIC_POSTPUBLICATION_STANDARD_SCAFFOLD_FEASIBLE__{K}_OF_TWELVE_OWNER_ALGEBRA_GROUPS_SUFFICIENT__SCIENTIFIC_ACTION_GOLD_AND_FULL_CONSTRUCT_VALIDITY_CANNOT_CHECK",
+    "source_failure": "P1_V4_PUBLIC_POSTPUBLICATION_STANDARD_SCAFFOLD_CANNOT_CHECK_SOURCE_CAPTURE__OWNER_ALGEBRA_AND_SCIENTIFIC_ACTION_GOLD_UNCHANGED",
+    "zero_owner_groups": "P1_V4_PUBLIC_POSTPUBLICATION_STANDARD_SCAFFOLD_FEASIBLE__ZERO_OF_TWELVE_OWNER_ALGEBRA_GROUPS_SUFFICIENT__SCIENTIFIC_ACTION_GOLD_AND_CONSTRUCT_VALIDITY_CANNOT_CHECK"
+  }
+}

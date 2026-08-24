@@ -1,0 +1,529 @@
+{
+  "schema_version": "orion.comparator-binding-ledger.v1",
+  "as_of": "2026-08-23",
+  "authority": "Comparator discovery, primary-source/repository binding, licence audit, entrypoint probe, and interface analysis only. No protected outcome was accessed; no scientific superiority claim is authorized.",
+  "status_vocabulary": {
+    "EXECUTED_KEYLESS_FIXTURE": "A documented credential-free fixture completed at the pinned revision; fixture output is conformance only.",
+    "ENTRYPOINT_BOUND_NOT_END_TO_END_EXECUTED": "Repository, licence, and documented entrypoint are bound, but provider/data/compute prerequisites prevented a full run.",
+    "SOURCE_AVAILABLE_RESTRICTED": "Source is public but its repository licence is not verified as OSI-open.",
+    "DATA_OR_BENCHMARK_ONLY": "The public repository supplies data/evaluation or a baseline substrate, not the named comparator implementation.",
+    "CANNOT_CHECK": "Identity, licence, code, or executable semantics are absent or ambiguous."
+  },
+  "protocol_binding_audit": [
+    {
+      "paper_id": "P1",
+      "declared_primary_comparator_count": 9,
+      "identity_status": "PARTIALLY_NAMED_BY_FAMILY",
+      "frozen_slots": [
+        "p1x_static",
+        "greedy_immediate_restoration",
+        "uniform_probing",
+        "cheapest_first_probing",
+        "uncertainty_voi_proxy",
+        "donor_complete",
+        "strongest_runnable_external_or_self_revising_agent",
+        "forced_budget_donor_complete",
+        "matched_schedule_donor_complete"
+      ],
+      "blocker": "The external slot has no exact repo SHA, adapter, model/provider identity, or byte-equivalent interface binding."
+    },
+    {
+      "paper_id": "P2",
+      "declared_primary_comparator_count": 3,
+      "identity_status": "THEORETICAL_B1_B2_B3_DESCRIBED_BUT_EXTERNAL_SLOT_UNBOUND",
+      "frozen_slots": [
+        "B1_donor_complete_available_route_closure",
+        "B2_global_sufficiency_stop",
+        "B3_information_equivalent_product"
+      ],
+      "blocker": "P2_TASK_WORLD_SUCCESSOR_V2 requires a CAPABILITY_MATCHED_EXTERNAL_COMPARATOR but names no exact system/revision/adapter. SIEVE is the strongest runnable paper-linked retrieval candidate found here, not yet a frozen arm."
+    },
+    {
+      "paper_id": "P3",
+      "declared_primary_comparator_count": 4,
+      "identity_status": "COUNT_ONLY_IN_SUCCESSOR_JSON",
+      "frozen_slots": [],
+      "blocker": "P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1 gives a count and multiplicity family but no four comparator identities; live ontology/schema systems therefore remain unbound."
+    },
+    {
+      "paper_id": "P4",
+      "declared_primary_comparator_count": 4,
+      "identity_status": "COUNT_ONLY_FOR_NATURALISTIC_SUCCESSOR",
+      "frozen_slots": [],
+      "blocker": "The naturalistic successor requires CANNOT_CHECK-capable external comparators but freezes no IDs. No audited candidate below exposes the exact native paired terminal required."
+    },
+    {
+      "paper_id": "P5",
+      "declared_primary_comparator_count": 6,
+      "identity_status": "COUNT_CONFLICTS_WITH_THREE_V3_STRUCTURAL_DONORS",
+      "frozen_slots": [
+        "m_open_only",
+        "world_model_revision",
+        "representation_regime_revision"
+      ],
+      "blocker": "P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1 says six fixed comparators without listing them; SELF_ORION_V3 lists only three and all three remain non-official mechanism bindings."
+    }
+  ],
+  "bindings": [
+    {
+      "binding_id": "P1.AGENT_LABORATORY",
+      "papers": [
+        "P1"
+      ],
+      "family": "end_to_end_staged_research_agent",
+      "primary_paper": "arxiv:2501.04227v2",
+      "repository": "https://github.com/SamuelSchmidgall/AgentLaboratory",
+      "repo_head": "d9017d90e329112d2a80b7712f37ee9094d2cd27",
+      "repo_license": "MIT",
+      "paper_repo_relationship": "Author project repository; README links the paper, but the arXiv HTML did not link the repo.",
+      "install_entrypoint": "python -m venv; pip install -r requirements.txt",
+      "run_entrypoint": "python ai_lab_repo.py --yaml-location experiment_configs/MATH_agentlab.yaml",
+      "receives": [
+        "YAML research topic/configuration",
+        "human notes/checkpoints",
+        "model/API credentials",
+        "tool access"
+      ],
+      "emits": [
+        "literature-review artifacts",
+        "experimental code/results",
+        "report/manuscript artifacts",
+        "cost/phase state"
+      ],
+      "native_terminals": [
+        "workflow artifacts and exceptions; no typed minimal-revision or CANNOT_CHECK terminal verified"
+      ],
+      "status": "ENTRYPOINT_BOUND_NOT_END_TO_END_EXECUTED",
+      "why_not_run": "Large pinned dependency stack plus provider credentials; no credential-free fixture documented.",
+      "p1_fit": "Strong OSI-open external end-to-end parent, but not yet adapted to P1 R7 byte-equivalent evidence/actions/budgets."
+    },
+    {
+      "binding_id": "P1.AI_SCIENTIST_V2",
+      "papers": [
+        "P1"
+      ],
+      "family": "progressive_agentic_tree_search",
+      "primary_paper": "arxiv:2504.08066v1",
+      "repository": "https://github.com/SakanaAI/AI-Scientist-v2",
+      "repo_head": "96bd51617cfdbb494a9fc283af00fe090edfae48",
+      "repo_license": "LicenseRef-AI-Scientist-Source-Code-1.0 (Responsible-AI-derived restrictions; GitHub API NOASSERTION)",
+      "paper_repo_relationship": "Directly linked by the primary paper.",
+      "install_entrypoint": "Conda Python 3.11 + CUDA/PyTorch + pip install -r requirements.txt",
+      "run_entrypoint": "python launch_scientist_bfts.py ... after perform_ideation_temp_free.py",
+      "receives": [
+        "topic description or ideas JSON",
+        "optional starting code/dataset reference",
+        "LLM/provider credentials",
+        "Semantic Scholar access"
+      ],
+      "emits": [
+        "hypotheses",
+        "experiment tree/logs",
+        "analysis",
+        "paper draft"
+      ],
+      "native_terminals": [
+        "research artifacts; no responsibility-interface or CANNOT_CHECK terminal verified"
+      ],
+      "status": "SOURCE_AVAILABLE_RESTRICTED",
+      "why_not_run": "Linux/NVIDIA/provider-bound and repository licence is not verified OSI-open.",
+      "p1_fit": "Scientifically strong named parent; cannot satisfy an open-source-only external slot without accepting its restricted licence and building a fair adapter."
+    },
+    {
+      "binding_id": "P2.AUTORESEARCHBENCH",
+      "papers": [
+        "P2"
+      ],
+      "family": "open_ended_scientific_literature_benchmark",
+      "primary_paper": "arxiv:2604.25256v1",
+      "repository": "https://github.com/CherYou/AutoResearchBench",
+      "repo_head": "a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+      "repo_license": "Apache-2.0",
+      "paper_repo_relationship": "Directly linked by the primary paper.",
+      "install_entrypoint": "python3 -m pip install -r requirements.txt",
+      "run_entrypoint": "bash run_inference.sh; bash evaluate/run_evaluate.sh deep|wide ...",
+      "receives": [
+        "benchmark task JSONL",
+        "web/deep-search provider configuration",
+        "model credentials"
+      ],
+      "emits": [
+        "inference JSONL",
+        "Deep accuracy",
+        "Wide IoU/recall evaluation"
+      ],
+      "native_terminals": [
+        "benchmark scores, not acquisition-authority closure decisions"
+      ],
+      "status": "DATA_OR_BENCHMARK_ONLY",
+      "why_not_run": "Provider/model credentials and released task bundle are required; it is an evaluator/world, not the required external comparator."
+    },
+    {
+      "binding_id": "P2.SAGE",
+      "papers": [
+        "P2"
+      ],
+      "family": "deep_research_retrieval_benchmark",
+      "primary_paper": "arxiv:2602.05975v2",
+      "repository": "https://github.com/HughieHu/Sage",
+      "repo_head": "bc62257a13d81ae233ecbd508037614746d2776b",
+      "repo_license": "CANNOT_CHECK_NO_LICENSE_FILE",
+      "paper_repo_relationship": "Directly linked by the primary paper.",
+      "install_entrypoint": null,
+      "run_entrypoint": null,
+      "receives": [
+        "1,200 expert-curated queries and gold paper IDs/titles"
+      ],
+      "emits": [
+        "No runner in repository; README defines Exact Match and Weighted Recall only"
+      ],
+      "native_terminals": [],
+      "status": "DATA_OR_BENCHMARK_ONLY",
+      "why_not_run": "Current head is JSON data plus README only and has no repository licence or executable."
+    },
+    {
+      "binding_id": "P2.SIEVE",
+      "papers": [
+        "P2"
+      ],
+      "family": "structure_aware_boolean_retrieval_agent",
+      "primary_paper": "arxiv:2608.02751v2",
+      "repository": "https://github.com/ielab/skim-search-agent",
+      "repo_head": "4a640296770c39b8274e7678c6de844daea9541c",
+      "repo_license": "Apache-2.0",
+      "paper_repo_relationship": "Directly linked by the primary paper.",
+      "install_entrypoint": "python -m pip install -e .",
+      "run_entrypoint": "python run.py dataset=fixture strategy=sieve_bm25 runs_dir=<path>",
+      "receives": [
+        "question/task",
+        "staged corpus with title/section/body fields",
+        "strategy/model/backend/budget config"
+      ],
+      "emits": [
+        "answer",
+        "retrieved IDs",
+        "query/action/observation trajectory",
+        "rows.jsonl",
+        "results.json with retrieval and cost metrics"
+      ],
+      "native_terminals": [
+        "answer/end/error/timeout mechanics; no global acquisition-authority closure or protected false-inclusion terminal"
+      ],
+      "status": "EXECUTED_KEYLESS_FIXTURE",
+      "probe_receipt": "PROBE_RECEIPTS_2026-08-23.json#SIEVE_FIXTURE",
+      "scientific_boundary": "The stub-policy fixture completed with n=1 and zero errors but zero retrieval score; this proves executable mechanics only, not scientific performance.",
+      "p2_fit": "Best currently verified OSI-open capability-matched retrieval implementation in this lane. Must be frozen as an arm and adapted to identical task worlds/routes/budgets before use."
+    },
+    {
+      "binding_id": "P2.AGENTIR",
+      "papers": [
+        "P2"
+      ],
+      "family": "reasoning_aware_retrieval",
+      "primary_paper": "arxiv:2603.04384v3",
+      "repository": null,
+      "repo_head": null,
+      "repo_license": "CANNOT_CHECK",
+      "paper_repo_relationship": "Primary HTML links model weights but no official code repository.",
+      "install_entrypoint": null,
+      "run_entrypoint": null,
+      "receives": [
+        "query plus agent reasoning trace, per paper"
+      ],
+      "emits": [
+        "retrieval rankings, per paper"
+      ],
+      "native_terminals": [],
+      "status": "CANNOT_CHECK",
+      "why_not_run": "No primary-paper-linked runnable orchestration repository found."
+    },
+    {
+      "binding_id": "P4.PROVENANCE_GUARD",
+      "papers": [
+        "P4"
+      ],
+      "family": "source_aware_mcp_factuality",
+      "primary_paper": "arxiv:2606.18037v2",
+      "repository": "https://github.com/aalvsz/provenanceguard",
+      "repo_head": "cdc10084a9e83a563c9f606f21f9962ff7f10ab0",
+      "repo_license": "CC-BY-NC-SA-4.0 for paper/preview only",
+      "paper_repo_relationship": "Author-named public paper-artifact repo; not linked by primary paper.",
+      "install_entrypoint": null,
+      "run_entrypoint": null,
+      "receives": [
+        "captured MCP traces with stable tool/source IDs and raw outputs, per paper"
+      ],
+      "emits": [
+        "per-claim source/support verdicts",
+        "answer-level allow/block",
+        "optional repaired answer, per paper"
+      ],
+      "native_terminals": [
+        "ALLOW",
+        "BLOCK; no distinct CANNOT_CHECK terminal reported"
+      ],
+      "status": "CANNOT_CHECK",
+      "why_not_run": "Repository README explicitly states reproducible code/data are not released."
+    },
+    {
+      "binding_id": "P4.PROVENAI",
+      "papers": [
+        "P4"
+      ],
+      "family": "provenance_native_trace_and_influence_audit",
+      "primary_paper": "arxiv:2606.26449v1",
+      "repository": "https://github.com/mohammadfaizan6249/ProvenAI",
+      "repo_head": "b43b19c3a5d899415d37ed0b1813a446b990af44",
+      "repo_license": "Apache-2.0",
+      "paper_repo_relationship": "Author-account repository with matching title; primary paper HTML supplies no repo link, so official equivalence is not asserted.",
+      "install_entrypoint": "python -m pip install -e . (full dependency installation not completed in bounded probe); no-deps editable import succeeded",
+      "run_entrypoint": "PYTHONPATH=src python scripts/run_experiment.py --help (verified); staged scripts for prepare/index/generate/audit/ablate/evaluate",
+      "receives": [
+        "dataset-backed MCP resources/traces",
+        "question",
+        "retrieved evidence and citations"
+      ],
+      "emits": [
+        "cited answers",
+        "trace graphs",
+        "citation audit verdict faithful|mixed|over-cited|under-cited",
+        "resource influence labels",
+        "JSON/HTML reports"
+      ],
+      "native_terminals": [
+        "Free-text insufficient-evidence response is prompted, but no typed P4 CANNOT_CHECK terminal is defined"
+      ],
+      "status": "ENTRYPOINT_BOUND_NOT_END_TO_END_EXECUTED",
+      "why_not_run": "Full data/index/model dependency chain was not staged; exact paper-to-repo equivalence remains unconfirmed."
+    },
+    {
+      "binding_id": "P4.ATTRIBUTION_BENCH",
+      "papers": [
+        "P4"
+      ],
+      "family": "automatic_claim_attribution_evaluation",
+      "primary_paper": "arxiv:2402.15089v1",
+      "repository": "https://github.com/OSU-NLP-Group/AttributionBench",
+      "repo_head": "c81e9e114a074b49b08900afed8811799a308cfe",
+      "repo_license": "CANNOT_CHECK_NO_LICENSE_FILE",
+      "paper_repo_relationship": "Directly linked by the primary paper.",
+      "install_entrypoint": "No environment manifest; README commands refer to scripts under subdirectories rather than repository root.",
+      "run_entrypoint": "src/prompting_GPT/run.sh and zsh_scripts/run_inference.sh after manual path/model/key setup",
+      "receives": [
+        "question",
+        "claim/response",
+        "references and citation links"
+      ],
+      "emits": [
+        "binary attributable|not attributable predictions",
+        "accuracy/precision/recall/F1"
+      ],
+      "native_terminals": [
+        "attributable",
+        "not attributable; no CANNOT_CHECK"
+      ],
+      "status": "CANNOT_CHECK",
+      "why_not_run": "No code licence and README entrypoints are not directly executable from the stated root without manual relocation/path repair."
+    },
+    {
+      "binding_id": "P4.FIRE",
+      "papers": [
+        "P4"
+      ],
+      "family": "iterative_retrieval_and_fact_verification",
+      "primary_paper": "arxiv:2411.00784v2",
+      "repository": "https://github.com/mbzuai-nlp/fire",
+      "repo_head": "cd7cb4af8dab00b1ab4bd78197a52e052203873d",
+      "repo_license": "CANNOT_CHECK_NO_LICENSE_FILE",
+      "paper_repo_relationship": "Directly linked by the primary paper.",
+      "install_entrypoint": "pip install -r requirements.txt",
+      "run_entrypoint": "README says python run_fire.py --model gpt-4o-mini --dataset factcheck_bench",
+      "receives": [
+        "atomic claim",
+        "current knowledge",
+        "Serper web search and model credentials"
+      ],
+      "emits": [
+        "binary True|False label and search trace"
+      ],
+      "native_terminals": [
+        "True",
+        "False; insufficiency triggers another search rather than a terminal CANNOT_CHECK"
+      ],
+      "status": "CANNOT_CHECK",
+      "why_not_run": "README-named run_fire.py is absent at pinned head; no licence file."
+    },
+    {
+      "binding_id": "P4.CLAIM_BENCH",
+      "papers": [
+        "P4"
+      ],
+      "family": "scientific_claim_evidence_reasoning",
+      "primary_paper": "arxiv:2506.08235v1",
+      "repository": "https://github.com/shashidharjavaji/CLAIM_BENCH",
+      "repo_head": "6ff4bd31f0f6eaa8fe14da6dd473b6248450a5fa",
+      "repo_license": "CANNOT_CHECK_NO_LICENSE_FILE",
+      "paper_repo_relationship": "Primary paper links historical URL shashidharjavaji/RC_BENCH; live repository is named CLAIM_BENCH and README identifies the paper.",
+      "install_entrypoint": "README lists Python>=3.7, PyQt5, PyMuPDF but no complete environment lock or single runner.",
+      "run_entrypoint": "Separate scripts/notebooks and annotation tool; no unified comparator CLI",
+      "receives": [
+        "full scientific paper/text"
+      ],
+      "emits": [
+        "claim spans",
+        "evidence spans",
+        "conclusion-justification annotations"
+      ],
+      "native_terminals": [
+        "structured annotations; no source-authority or CANNOT_CHECK terminal"
+      ],
+      "status": "CANNOT_CHECK",
+      "why_not_run": "No repository licence and no unified reproducible runner."
+    },
+    {
+      "binding_id": "P4.REWARD_HACKING_AGENTS",
+      "papers": [
+        "P4",
+        "P5"
+      ],
+      "family": "evaluation_integrity_for_code_editing_agents",
+      "primary_paper": "arxiv:2603.11337v1",
+      "repository": "https://github.com/Yonas650/RewardHackingAgents",
+      "repo_head": "9ea7cdc8dde6c89b1ea75e2ba86a61ffff72eb34",
+      "repo_license": "MIT",
+      "paper_repo_relationship": "Directly linked by the primary paper.",
+      "install_entrypoint": "pip install -r requirements.txt; README then python -m rha.runner.grid_runner ...",
+      "run_entrypoint": "python -m rha.runner.grid_runner --config experiments/configs/grid_v2.yaml ...",
+      "receives": [
+        "ML code-editing task/workspace",
+        "agent policy/config",
+        "detector/spec checks"
+      ],
+      "emits": [
+        "episode logs",
+        "aggregated tables/plots",
+        "cheat/detector and task metrics"
+      ],
+      "native_terminals": [
+        "episode/guard outcomes; no P4 exact CANNOT_CHECK or P5 minimal-revision terminal"
+      ],
+      "status": "CANNOT_CHECK",
+      "why_not_run": "At pinned head editable installation fails because setuptools discovers both rha and experiments as top-level packages; requirements omit PyYAML although grid_runner imports yaml. This is a current-head packaging defect, not a scientific result."
+    },
+    {
+      "binding_id": "P5.MDA_AND_NEURONBENCH",
+      "papers": [
+        "P5"
+      ],
+      "family": "m_open_model_class_expansion",
+      "primary_paper": "arxiv:2608.09696v3",
+      "repository": "https://github.com/murphyk/neuronbench",
+      "repo_head": "c354622458c460b419cab821d482c879f0578377",
+      "repo_license": "MIT",
+      "paper_repo_relationship": "Primary MDA paper directly links NeuronBench as a benchmark, not as MDA solver code.",
+      "install_entrypoint": "pip install -e .",
+      "run_entrypoint": "python examples/run_baseline.py --world ca_rebound --stochastic --budget 8 (provider); local injected-client baseline interface also exists",
+      "receives": [
+        "opaque neuron world/problem",
+        "budgeted interventions",
+        "voltage trace and spike-count observations for benchmark agents"
+      ],
+      "emits": [
+        "observed trajectory",
+        "held-out spike/trace forecasts",
+        "forecast MSE"
+      ],
+      "native_terminals": [
+        "benchmark score; no MDA hypothesis-space expand/shrink implementation terminal"
+      ],
+      "status": "DATA_OR_BENCHMARK_ONLY",
+      "probe_receipt": "PROBE_RECEIPTS_2026-08-23.json#NEURONBENCH_STUB_BASELINE",
+      "source_grounding_update": "The old 2026-08-19 ABSTRACT_ONLY blocker is stale: arXiv v3 full HTML is live and specifies predictive-check-triggered M-open expansion, SMC posterior, VoI design, and forecasts. New blocker: the linked repo expressly says benchmark, not solver; no MDA implementation is released.",
+      "p5_fit": "Can bind the M-open semantics from the full primary paper and the NeuronBench world/evaluator, but cannot claim an official or runnable m_open_only MDA comparator."
+    },
+    {
+      "binding_id": "P5.WORLD_EVOLVER",
+      "papers": [
+        "P5"
+      ],
+      "family": "deployment_memory_world_model_revision",
+      "primary_paper": "arxiv:2606.30639v1",
+      "repository": null,
+      "repo_head": null,
+      "repo_license": "CANNOT_CHECK",
+      "paper_repo_relationship": "No official repository link appears in the primary paper; GitHub name search did not yield an author-bound implementation.",
+      "install_entrypoint": null,
+      "run_entrypoint": null,
+      "receives": [
+        "agent trajectories/context and persistent episodic/semantic memory, per paper"
+      ],
+      "emits": [
+        "revised deployment memory/world predictions and planning support, per paper"
+      ],
+      "native_terminals": [],
+      "status": "CANNOT_CHECK",
+      "why_not_run": "Paper-only algorithm; no author-bound code/revision/licence."
+    },
+    {
+      "binding_id": "P5.SELF_REVISING_DISCOVERY_SCIENCECLAW",
+      "papers": [
+        "P5",
+        "P1"
+      ],
+      "family": "typed_artifact_representation_regime_revision",
+      "primary_paper": "arxiv:2606.01444v1",
+      "repository": "https://github.com/lamm-mit/scienceclaw",
+      "repo_head": "38b2f681e87272cd505c9b2671760fc3729756c2 (categoryscienceclaw-mechanics branch; main ab9aba130200e0a7dd4c76dca5cf945169f8c44a)",
+      "repo_license": "Apache-2.0",
+      "paper_repo_relationship": "Primary paper directly links repo and categoryscienceclaw-mechanics branch.",
+      "install_entrypoint": "pip install -r requirements.txt; ./install_scienceclaw_command.sh",
+      "run_entrypoint": "scienceclaw-post --agent <id> --topic <topic> --dry-run; Python run_deep_investigation(...)",
+      "receives": [
+        "topic",
+        "agent capability profile",
+        "typed skill/tool outputs",
+        "artifact DAG/open needs",
+        "optional API services"
+      ],
+      "emits": [
+        "immutable typed artifacts with hashes/parents",
+        "global/per-agent JSONL ledgers",
+        "findings/figures",
+        "open needs and status mutations"
+      ],
+      "native_terminals": [
+        "artifact and need/status records; no verified P5 eight-class minimal-revision selector"
+      ],
+      "status": "ENTRYPOINT_BOUND_NOT_END_TO_END_EXECUTED",
+      "why_not_run": "Framework has broad service/tool prerequisites and is not a drop-in implementation of the P5 comparator contract.",
+      "p5_fit": "Strong source-grounded regime-transition parent and executable substrate; requires a prospectively specified adapter and preservation/fresh-transfer endpoint before comparator use."
+    },
+    {
+      "binding_id": "P4.DEEP_SCIVERIFY",
+      "papers": [
+        "P4"
+      ],
+      "family": "scientific_claim_citation_escalation",
+      "primary_paper": "arxiv:2605.27710v1",
+      "repository": null,
+      "repo_head": null,
+      "repo_license": "CANNOT_CHECK",
+      "paper_repo_relationship": "No official GitHub repository link found in primary paper or exact-name repository search.",
+      "install_entrypoint": null,
+      "run_entrypoint": null,
+      "receives": [
+        "scientific claim and cited abstract/full text, per paper"
+      ],
+      "emits": [
+        "claim-citation alignment judgement with evidence escalation, per paper"
+      ],
+      "native_terminals": [
+        "CANNOT_CHECK capability cannot be verified without code/schema"
+      ],
+      "status": "CANNOT_CHECK",
+      "why_not_run": "No primary-bound implementation."
+    }
+  ],
+  "cross_paper_terminal": "CANNOT_CHECK_FULL_COMPARATOR_FREEZE",
+  "why": "One strong P2 candidate is mechanically runnable, but P1 external adaptation is unbound, P3/P4 successor comparator identities are not frozen, P4 has no exact verified native CANNOT_CHECK panel, and P5 has no runnable official MDA/WorldEvolver comparator plus a six-versus-three identity mismatch."
+}

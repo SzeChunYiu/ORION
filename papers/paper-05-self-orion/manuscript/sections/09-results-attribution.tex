@@ -1,11 +1,272 @@
 \section{Results: the diagnostic attribution archive}
 \label{sec:results}
 
-The only result-bearing archive in this revision is a single-model hidden-cause attribution run over 24 constructed cases, three in each of the eight registered families, produced with the glm-5.2 model. The metrics below are recomputed from the raw per-case records; the sidecar report is checked against those rows and is refused if it disagrees.
+The primary diagnostic archive in this revision is a single-model hidden-cause attribution run over 24 constructed cases, three in each of the eight registered families, produced with the glm-5.2 model. The metrics below are recomputed from the raw per-case records; the sidecar report is checked against those rows and is refused if it disagrees.
 
-Accuracy is 21/24 $= 0.875$, with the Wilson 95\% interval given in Table~\ref{tab:P5-3}. This is a descriptive diagnostic score. It is not protected fresh-task improvement, it is not a matched baseline comparison, and it does not test the primary hypothesis.
+Accuracy is 21/24 $= 0.875$, with the nominal Wilson score interval given in
+Table~\ref{tab:P5-3}. The interval treats the 24 fixed constructed cases as
+Bernoulli units; because they are not a probability sample and come from one
+model run, it is not a population confidence interval. This is a descriptive
+finite-suite diagnostic score, not protected fresh-task improvement, a matched
+baseline comparison, or a test of the primary hypothesis.
 
 Three residual errors are retained and are not relabeled as successes (Table~\ref{tab:P5-residual-errors}). Case P5-HC-002, whose protected cause was a retrieval miss, was attributed to a representation gap at medium confidence; case P5-HC-012, an environment, dependency or tool failure, was attributed to an implementation bug at high confidence; and case P5-HC-018, a representation gap, was attributed to a method-basis gap at high confidence.
+
+Each error now has a distinct successor research identity. P5-RD-01 crosses
+retrieval access with representation regime; P5-RD-02 crosses candidate bytes
+with independently reconstructed environments; and P5-RD-03 crosses
+representation expansion with method-class expansion. Their four cells retain
+main effects, interaction, and joint-null outcomes separately. P5-RD-01 and
+P5-RD-03 have not been executed. P5-RD-02 now has three immutable public-development
+identities; none changes the diagnostic error or contributes corrected
+attribution accuracy.
+
+\idt{P5-RD-02.DEFECTS4J.LANG1.V1} ended \textsf{CANNOT\_CHECK} with
+\idt{HARMFUL_OR_ADVERSE_CELL_PRESENT}. Its registered JDK~17 arm violated
+Defects4J's Java~11 execution contract, and its raw-upstream-tree identity model
+incorrectly rejected the prepared local commits and trees that Defects4J creates
+during checkout. V2 was therefore preregistered as a materially new successor,
+not used to rewrite V1. It replayed the public known fix for Defects4J Lang-1 as
+one public development cluster across two content-addressed Java~11
+distributions. All four V2 cells were valid: the buggy revision failed the
+registered developer test in both environments and the known fixed revision
+passed in both. Thus the registered contrasts were
+\texttt{implementation\_effect}=1.0,
+\texttt{environment\_effect}=0.0 and \texttt{interaction}=0, giving the primary
+terminal \idt{IMPLEMENTATION_MAIN_EFFECT} with the separately retained harm
+modifier \idt{NO_ADVERSE_CELL}.
+These are exact registered contrasts within one source/bug/fix cluster, not an
+estimated population main effect; the two Java distributions and four cells are
+within-cluster conditions rather than independent scientific units.
+
+A direct retention audit then found a provenance limitation in V2. Its runner
+used \texttt{Path.with\_suffix} for both checkout and test phase stems, collapsing
+the two phases to the same stdout/stderr paths in each cell. The retained files
+validate all eight declared test-stream hashes, but none of the eight declared
+checkout-stream hashes; those checkout bytes were overwritten and are not
+recoverable from the V2 archive. This limitation does not rewrite the registered
+V2 cell outcomes or terminal.
+
+Because V2 outcomes were already known, \idt{P5-RD-02.DEFECTS4J.LANG1.V3} was frozen
+as an audit-only archival successor rather than an independent replication. Its
+four cells replayed the same local pattern, while all 16 phase-qualified stream
+files matched their declared hashes and every cell retained four distinct phase
+paths. Its \idt{ARCHIVAL_REPLAY_COMPLETE} terminal means only that this
+successor preserved its own replay logs. It neither recovers the missing V2
+checkout bytes nor adds confirmatory causal, generalization or protected
+authority beyond its own archival-integrity result.
+
+The scientific unit is one public Defects4J Lang-1 source/bug/fix cluster under
+a local evaluator (cluster-level $n=1$), not the four cells, two Java
+distributions, or sixteen V3 phase streams. It is a known-fix replay, not a generated
+repair or a protected campaign, and establishes no population generality,
+independent custody, external independence, promotion authority, protected
+transfer or protected freshness. H1--H4 remain \textsf{CANNOT\_CHECK}, and the
+bridge remains at
+\idt{P5_BRIDGE_PUBLIC_DEVELOPMENT_BOUND__PROTECTED_PROVIDER_AND_SIX_ARM_EXECUTION_CANNOT_CHECK}.
+The three successor studies still serve to test whether registered interventions
+split the mixed revision fibres identified in
+Section~\ref{sec:minimal-revision-theory}; if a protected pair survives every
+registered intervention, the correct output remains \textsf{UNRESOLVED}.
+
+\subsection*{Terminal-adapter interface result}
+
+The V2 source-interface audit supplies a formal result, not a comparator
+outcome. Six prospectively frozen same-visible-symptom pairs show that each raw
+native status fibre contains at least two minimal revision classes; accordingly
+zero raw native symptoms license a singleton class. Its deterministic synthetic
+suite passes 90/90 contract cases, with 70 \texttt{UNRESOLVED} terminals and 20
+certificate/write-surface proposed-action types. The V3 successor does not
+relax that gate: it passes 231/231 declared fictional cases, with 40 records in
+20 supported constant fibres and 191 \texttt{UNRESOLVED}; raw-native licences
+remain zero and ScienceClaw supports no singleton. No comparator, native output
+example, public or protected outcome, or performance table was used. The
+conditional support counts (seven, four, four, four, one, and zero across the
+six fixed arms) describe interface coverage only; the 231 rows are neither
+independent units nor correct-repair observations. The execution ledger retains
+108 blocker instances, 18 per arm. Zero of six remains confirmatory-ready, and
+H1--H4 remain \textsf{CANNOT\_CHECK}.
+
+The later outcome-blind C1 V4 preflight binds six SWE-agent execution fields,
+making C1 9/21 bound and 12/21 blocking. It does not parse a scientific result:
+authored synthetic native-terminal checks all remain
+\texttt{UNRESOLVED} at the revision-class layer, and the isolation wrapper
+refuses execution with all 12 blockers. The other five arms remain unchanged;
+at this C1-only snapshot the merged panel has 102 blocker instances, zero ready
+arms and no performance or superiority observation.
+
+The distinct outcome-blind C2 MOSS V4 preflight binds four fields beyond its
+three prior source identities, making C2 7/21 bound and 14/21 blocking. Its
+schema-v6 parser preserves native status/verdict but emits
+\texttt{UNRESOLVED}; exact host and 1,196-entry OpenClaw locks are retained.
+The complete authoritative tree contains zero \texttt{benchmark/} paths even
+though the native trial runner requires \texttt{benchmark/claw-eval}, so a full
+native smoke is \textsc{CannotCheck}. Updating C2 changes the current panel
+count from 102 to 98 blocker instances, not to a performance observation: zero
+of six remains ready and H1--H4 remain \textsf{CANNOT\_CHECK}.
+
+The distinct C3 DGM V4 preflight binds a closed native patch parser, no
+fallbacks and a 21,600-second outer watchdog, making C3 6/21 bound and 15/21
+blocking. Its 23 requirements declarations contain zero exact pins and are not
+mislabelled as a resolved dependency lock. The synthetic
+\texttt{PATCH\_CAPTURED} fixture retains native completion but maps to
+\texttt{UNRESOLVED}; a protected-key fixture is refused. Replacing C3's 18 V3
+blockers with 15 changes the current panel count from 98 to 95. Zero of six
+remains ready and H1--H4 remain \textsf{CANNOT\_CHECK}; no native DGM, model,
+task, benchmark or protected outcome was run.
+
+The distinct C4 ADIAS V4 preflight binds a hashed report parser, an empty
+fallback/search policy and a 21,600-second foreground watchdog, making C4 6/21
+bound and 15/21 blocking. The 1,578-file source manifest is byte-addressed, but
+four VCS dependencies are unpinned, the mutable host-networked container path
+does not isolate provider keys, and bundled task rights lack component
+licence/NOTICE files under \texttt{data/}. Replacing C4's 18 V3 blockers with
+15 changes the current panel count from 95 to 92. Zero of six remains ready and
+H1--H4 remain \textsf{CANNOT\_CHECK}; no native ADIAS model, task, benchmark or
+protected outcome was run.
+
+The distinct C5 Double Ratchet metric-only V4 preflight binds six fields beyond
+the three source identities, making C5 9/21 bound and 12/21 blocking. Its
+results-only write surface, resource envelope and 46-entry uv lock are
+outcome-blind interface bindings. The official runner nevertheless regenerates
+hosted solver outputs and reports its development-locked metric every round;
+the tree contains no frozen split/result payload and no P5-native task surface.
+Replacing C5's 18 V3 blockers with 12 changes the panel count from 92 to 86.
+Zero of six remains ready and H1--H4 remain \textsf{CANNOT\_CHECK}; no native
+model, benchmark, P5 case, protected panel or performance outcome was run.
+
+The distinct C6 ScienceClaw V4 preflight binds two fields beyond its three
+source identities, making C6 5/21 bound and 16/21 blocking. The strict
+native-shaped draft parser preserves every fibre as \texttt{UNRESOLVED}, and
+an outer process-group wallclock is bound. The released CLI provides no native
+revision selector, nominal dry-run would execute an investigation, and the
+model/tool/reasoning/skill/dependency fallbacks cannot all be disabled.
+Replacing C6's 18 V3 blockers with 16 changes the panel count from 86 to 84.
+Zero of six remains ready and H1--H4 remain \textsf{CANNOT\_CHECK}; no
+ScienceClaw model, tool, service, benchmark, protected outcome or prior-result
+payload was executed or decoded.
+
+The subsequent panel-wide V5 audit changes no arm result. Direct recomputation
+gives 42 bound and 84 blocking field instances out of 126, with zero of six
+arms ready. Fourteen exact blocker equivalence classes collapse into five
+evidence-producing work packages of sizes 25, 18, 18, 15 and eight. This is a
+79-item reduction in the coordination queue (84 to five), not a reduction in
+the 84 scientific blocker instances: V5 creates zero new field bindings and no
+effect estimate. It also exposes an unmatched resource contract despite all
+six wallclock fields being individually bound. Its outcome-blind local
+validator passes 74 checks and re-verifies six parser digests, but those checks
+authorize neither execution nor performance. Fresh packet assurance is not
+uniform: C4's native validator rewrites a temporary-path-dependent audit hash,
+so its frozen audit receipt is determined not to reproduce. The cleaned C6
+packet lacks the \texttt{.source-audit} checkout required by its native
+validator, so fresh C6 source validation remains \textsc{CannotCheck}. Both
+adverse assurance findings are retained rather than suppressed.
+
+The P5 V6 common-case successor is the first material closure produced by that
+root registry. It freezes one complete rights-cleared Lang-1 candidate core and
+six acceptance receipts, creating exactly two new bindings per arm: common
+candidate-visible case bytes and common task/benchmark-content rights. The
+panel therefore moves from 42/126 to 54/126 bound and from 84 to 72 blocking.
+The result does not infer six arm environments from one source archive: all six
+\texttt{runtime.task\_environment} fields remain blocking, zero arm is ready,
+and H1--H4 remain \textsf{CANNOT\_CHECK}. The packet-local validator reports
+741/741 checks and verifies 22 checksum entries without executing a model or
+opening an outcome.
+
+The V7 native-environment fan-out closes one further field without executing
+an arm. Exact offline setup bytes and a fixed effective agent configuration
+bind C1's \texttt{runtime.task\_environment}; the other five receipts remain
+blocking because their arm-specific artifacts do not exist. The aggregate
+census is therefore 55/126 bound and 71/126 blocking, with five R2 instances
+and zero of six arms ready. The packet validator reports one environment bound,
+five blocking, 67 byte references verified and 25 packet files hashed.
+
+The C3 V8/V9 successors close no further field. V8 builds a lawful 69-member
+candidate seed and excludes 1,595 prior-outcome files, but the unchanged native
+initializer requires the excluded \texttt{initial/overall\_performance} state.
+V9's one static exact-byte/AST gate proves that an outcome-free adapter would
+either fabricate performance, restore excluded outcomes, eliminate the
+nondegenerate self-edit action or replace native parent-selection semantics.
+The C3 environment remains blocking, so the aggregate stays 55/126 bound,
+71/126 blocking and 0/6 ready. No DGM, model, benchmark, scorer or outcome is
+executed.
+
+Three later C2 packets test distinct lawful-successor obligations and must not
+be read as a cumulative version chain. V11 binds
+\texttt{runtime.task\_environment} for the separately authored
+\idt{C2_LAWFUL_NATIVE_BYTE_SUCCESSOR__ORION_V11}, yielding 8/21 bound
+and 13 blocking on the C2 V4 count basis. Its six registered public hexadecimal
+classification classes pass the successor gate, but the task and evaluator are
+authored post-outcome development instruments rather than released MOSS or a
+protected panel. V12 separately binds
+\texttt{inputs.candidate\_visible\_case\_bytes} and
+\texttt{rights.task\_and\_benchmark\_content} for
+\idt{C2_SOURCE_NATIVE_VISIBLE_CORE_SUCCESSOR__ORION_V12}, yielding
+9/21 bound and 12 blocking. V12 does not inherit V11's runtime field.
+
+V13 separately closes only
+\texttt{rights.container\_and\_generated\_artifacts} for
+\idt{C2_RIGHTS_CLEARED_SCRATCH_IMAGE_SUCCESSOR__ORION_V13}, yielding
+8/21 bound and 13 blocking. Its exported Linux/arm64 scratch layer contains
+exactly nine regular files and no symlinks. The normalized frozen-rootfs,
+exported-layer, file-level-rights and SPDX~2.3 file sets are identical; full
+Apache-2.0/NOTICE/CC0 bytes and explicit generated-artifact retention,
+disclosure and publication authority accompany the image. The frozen runtime
+receipt records exact stdout \texttt{ORION V13 container pass\string\n}, exit 0, no
+network, read-only rootfs, all capabilities dropped, no-new-privileges and an
+empty container diff. The image was archived, removed from the daemon and the
+ephemeral remote build environment was destroyed.
+
+None of V11--V13 inherits either other state, and their field closures cannot
+be unioned. Released MOSS remains 7/21 bound and 14 blocking, and the separate
+successors do not alter the authoritative 55/126 panel census. Consequently
+0/6 arms remain ready and H1--H4, performance and superiority remain
+\textsf{CANNOT\_CHECK}. No MOSS model, protected case, evaluator, scorer or
+performance outcome was executed by these packets.
+
+\subsection*{Frozen revision-level panel: no registered terminal}
+
+The additive revision-level protocol verified its bound subject, protected
+suite, split, evaluator and baseline identities and then executed ten frozen
+policies on 96 constructed confirmatory cases, with 48 cases in each recorded
+half. FULL\_T7 achieved revision-label accuracy $0.125$, false-broad rate
+$0$, harmful-regression rate $0$ and fresh-transfer success $0.125$. Generic
+causal diagnosis achieved accuracy and fresh-transfer success $1.0$ with zero
+harm, while the random-diagnostic control reached $0.833$ on both measures.
+Direct self-edit had accuracy $0$, false-broad rate $1.0$ and harmful-regression
+rate $0.354$. The independent decision- and execution-layer checks agreed with
+the primary scorer.
+
+None of the seven frozen decision terminals fired. The panel registered two
+expected diagnostics for every hypothesis while the subject policy observed
+one discriminator per bounded session; its responsibility gate therefore kept
+every case unresolved until all modeled discriminators were observed. The
+frozen panel and rules are retained unchanged. Within this panel H3's
+cannot-check blocking and H4's history-blind re-admission check passed, whereas
+H2 was not confirmed because the subject remained at the safety floor. These
+are bounded secondary observations only: the receipt sets
+\texttt{grants\_scientific\_authority=false}, H1 has no registered terminal,
+and no general superiority or peer-review-readiness claim follows.
+
+\subsection*{Post-outcome public-suite instrument diagnosis}
+
+A separate NR-01 instrument study replays the unchanged 24-case public
+hidden-cause suite. Its V1-control arm exactly reproduces 21/24 with standard
+macro-F1 $0.872619$, including errors P5-HC-002, P5-HC-012 and P5-HC-018. A
+staged-extraction-plus-deterministic-diagnosis instrument returns 24/24 with
+standard macro-F1 $1.0$ on that same suite. This is an instrument-stage
+positive, not evidence that a model acquired new attribution capability: the
+requested model was GLM-5.2, the recorded served model was GLM-5.3, and the
+control comparison pins the instrument rather than a model version.
+
+The protocol, rows, report and revival receipt first enter repository history
+together, so independent pre-outcome registration chronology is
+\textsc{CannotCheck}. The suite was already public and frozen, the rows carry
+no signed provider or independent-custody identity, and no blind, fresh or
+source-disjoint transfer was run. The admissible disposition is therefore
+\idt{POST_OUTCOME_PUBLIC_SUITE_INSTRUMENT_DIAGNOSIS_ONLY}. The historical
+21/24 diagnostic remains immutable; H1--H4, protected freshness, comparative
+performance and superiority remain \textsf{CANNOT\_CHECK}.
 
 \input{tables/P5-3_cause_confusion}
 \input{tables/P5-ATTRIBUTION_RESIDUAL_ERRORS}

@@ -1,0 +1,78 @@
+{
+  "$id": "orion.p5.c6.scienceclaw-native-terminal.v4",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adapter_terminal": {
+      "const": "UNRESOLVED"
+    },
+    "arm_id": {
+      "const": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW"
+    },
+    "draft_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "draft_size_bytes": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "investigation_result_key_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "native_exit_status_is_sufficient": {
+      "const": false
+    },
+    "native_terminal": {
+      "const": "NATIVE_DRY_RUN_DRAFT_RECORDED"
+    },
+    "performance_inference": {
+      "const": "FORBIDDEN"
+    },
+    "raw_native_singleton_licences": {
+      "const": 0
+    },
+    "schema_version": {
+      "const": "orion.p5.c6.scienceclaw-native-terminal.v4"
+    },
+    "scientific_payload_values_retained": {
+      "const": false
+    },
+    "source_native_caveat": {
+      "type": "string"
+    },
+    "structural_list_counts": {
+      "additionalProperties": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "type": "object"
+    },
+    "top_level_keys": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "arm_id",
+    "adapter_terminal",
+    "native_terminal",
+    "draft_sha256",
+    "draft_size_bytes",
+    "top_level_keys",
+    "investigation_result_key_count",
+    "structural_list_counts",
+    "scientific_payload_values_retained",
+    "native_exit_status_is_sufficient",
+    "raw_native_singleton_licences",
+    "performance_inference",
+    "source_native_caveat"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,112 @@
+{
+  "attempts": 1,
+  "authority": "ONE_PUBLIC_PROVIDER_NATIVE_CASE_MATCHER_OUTPUT_AND_INTERFACE_CONFORMANCE_ONLY_BEFORE_COMMON_SCORING",
+  "class_surface_binding_pass": true,
+  "class_surface_bindings": [
+    "ORION_P3_V20_CLASS_SURFACE_BOUND=source:37_TO_36:OWL_THING_ONLY",
+    "ORION_P3_V20_CLASS_SURFACE_BOUND=target:37_TO_36:OWL_THING_ONLY"
+  ],
+  "command": [
+    "/Volumes/P3V17_RUNTIME/venv/bin/python",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/bertmap_struct_entrypoint_v20.py",
+    "-s",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/inputs/SOURCE_BASE_BOUND_V20.rdf",
+    "-t",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/inputs/TARGET_BASE_BOUND_V20.rdf",
+    "-c",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/BERTMAP_CONFIG_V20.yaml",
+    "-u",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/UNIVERSE_MANIFEST_V20.json"
+  ],
+  "common_scoring_authorized": false,
+  "decoded_repaired_artifact": null,
+  "direct_logmap_child_exit_codes": [
+    0
+  ],
+  "effective_logmap_commands": [
+    "ORION_LOGMAP_EFFECTIVE_COMMAND=java -Xms500m -Xmx2147483648 -DentityExpansionLimit=100000000 --add-opens=java.base/java.lang=ALL-UNNAMED -jar /Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/deeponto/align/logmap/logmap-matcher-4.0.jar DEBUGGER file:/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/inputs/SOURCE_BASE_BOUND_V20.rdf file:/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/inputs/TARGET_BASE_BOUND_V20.rdf TXT /Volumes/P3V17_RUNTIME/output-v20/bertmap-out/bertmap/match/logmap-repair/filtered_mappings_for_LogMap_repair.txt /Volumes/P3V17_RUNTIME/output-v20/bertmap-out/bertmap/match/logmap-repair false false"
+  ],
+  "environment": {
+    "HF_HOME": "/Volumes/P3V17_RUNTIME/cache/hf",
+    "HF_HUB_OFFLINE": "1",
+    "HOME": "/Volumes/P3V17_RUNTIME/home",
+    "JAVA_HOME": "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PATH": "/Volumes/P3V17_RUNTIME/venv/bin:/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "TMPDIR": "/Volumes/P3V17_RUNTIME/tmp",
+    "TOKENIZERS_PARALLELISM": "false",
+    "TORCH_HOME": "/Volumes/P3V17_RUNTIME/cache/torch",
+    "TRANSFORMERS_CACHE": "/Volumes/P3V17_RUNTIME/cache/transformers",
+    "TRANSFORMERS_OFFLINE": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "finished_at_utc": "2026-08-24T06:34:58.064154+00:00",
+  "five_regular_non_symlink_artifacts": true,
+  "launch_error": null,
+  "native_artifacts": {
+    "extended_mappings.tsv": {
+      "bytes": 4583,
+      "path": "/Volumes/P3V17_RUNTIME/output-v20/bertmap-out/bertmap/match/extended_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "635d999347b6bfe29979b6051abc975a3983b8caf0d242b87fd4599970c0bd3c"
+    },
+    "filtered_mappings.tsv": {
+      "bytes": 4156,
+      "path": "/Volumes/P3V17_RUNTIME/output-v20/bertmap-out/bertmap/match/filtered_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "18cc7e1dc39aa795d8e2ec5657bebf9c30382c7e770d78b245ecbe5d8a50dcc4"
+    },
+    "raw_mappings.json": {
+      "bytes": 8860,
+      "path": "/Volumes/P3V17_RUNTIME/output-v20/bertmap-out/bertmap/match/raw_mappings.json",
+      "regular_non_symlink": true,
+      "sha256": "15f3080f1172ff042d81e2913be3305c134d7d6804eefec7e5d949343474e902"
+    },
+    "raw_mappings.tsv": {
+      "bytes": 4156,
+      "path": "/Volumes/P3V17_RUNTIME/output-v20/bertmap-out/bertmap/match/raw_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "18cc7e1dc39aa795d8e2ec5657bebf9c30382c7e770d78b245ecbe5d8a50dcc4"
+    },
+    "repaired_mappings.tsv": {
+      "bytes": 4156,
+      "path": "/Volumes/P3V17_RUNTIME/output-v20/bertmap-out/bertmap/match/repaired_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "26d3b4c72ba325a3f9e2126667438b91c0ba963eebe6958144f676f4b97524fe"
+    }
+  },
+  "native_exit_code": 0,
+  "native_success": true,
+  "protocol_id": "P3_V20_OAEI_2004_TEST_103_BERTMAP_STRUCT_RUNTIME_FILTERED_36_CLASS_V13_DECODER_COMMON_SCORING",
+  "reference_semantically_opened": false,
+  "retries": 0,
+  "schema_version": "orion.p3.oaei-bertmap.execution-result.v20",
+  "started_at_utc": "2026-08-24T06:30:16.413856+00:00",
+  "stderr": {
+    "bytes": 114854,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/BERTMAP_STDERR_V20.log",
+    "sha256": "5b56ea0d8e30819f30ea1471746324b0ab61d1a7173fcee06cc2ab9774966658"
+  },
+  "stdin_utf8": "2g\\n",
+  "stdout": {
+    "bytes": 22412,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/BERTMAP_STDOUT_V20.log",
+    "sha256": "9f1f2cd02803db1e835983a7ab4bf5f189db15f938213d138457b5c723b05671"
+  },
+  "terminal": "P3_V20_BERTMAP_NATIVE_PASS__TYPED_DECODER_OR_STRUCTURAL_CONTRACT_FAIL__COMMON_SCORING_NOT_AUTHORIZED",
+  "timed_out": false,
+  "timeout_seconds": 1800,
+  "typed_decoder": {
+    "error": "ValueError: source surface string violates frozen typed grammar",
+    "pass": false
+  },
+  "typed_decoder_pass": false,
+  "wall_nanoseconds": 281646897292,
+  "wall_seconds": 281.646897292
+}

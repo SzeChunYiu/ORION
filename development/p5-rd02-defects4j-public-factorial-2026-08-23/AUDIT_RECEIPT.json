@@ -1,0 +1,223 @@
+{
+  "artifacts": [
+    "SCIENTIFIC_REPORT.md",
+    "NEGATIVE_RESULT_LEDGER.md",
+    "AUDIT_RECEIPT.json",
+    "SHA256SUMS"
+  ],
+  "attachments_accessed": false,
+  "authority": "LOCAL_RIGHTS_BOUND_PUBLIC_DEVELOPMENT_AND_ARCHIVAL_AUDIT_ONLY__NOT_PROTECTED__NOT_FRESH__NOT_GENERAL",
+  "authority_boundaries": {
+    "candidate_generated_improvement": false,
+    "external_custody": false,
+    "generality": false,
+    "harm_benefit_claim": false,
+    "independence": false,
+    "population_transport": false,
+    "promotion": false,
+    "protected_freshness": false,
+    "protected_transfer": false,
+    "six_arm_superiority": false
+  },
+  "bridge_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "bridge_terminal_preserved": "P5_BRIDGE_PUBLIC_DEVELOPMENT_BOUND__PROTECTED_PROVIDER_AND_SIX_ARM_EXECUTION_CANNOT_CHECK",
+  "captured_at_utc": "2026-08-23T14:01:58Z",
+  "challenger": "KNOWN_PUBLIC_UPSTREAM_FIX_REPLAY__NOT_CANDIDATE_GENERATED",
+  "evaluator_custody": "LOCAL__NOT_INDEPENDENT__NOT_PROTECTED",
+  "h1_h4_status": {
+    "H1": "CANNOT_CHECK",
+    "H2": "CANNOT_CHECK",
+    "H3": "CANNOT_CHECK",
+    "H4": "CANNOT_CHECK"
+  },
+  "issue_prose_accessed": false,
+  "n_independent_units": 1,
+  "owned_artifact_sha256": {
+    "NEGATIVE_RESULT_LEDGER.md": "4cedf7664cdf6e03bb2984874c831260c525505197fe75c0e80461f850e87578",
+    "SCIENTIFIC_REPORT.md": "ac14a6971ce50cc2371df1cd2f071bab5e9ab2827e820b73a210d3331229fc15"
+  },
+  "paper_level_empirical_blocker_closed": false,
+  "preserved_adverse_and_boundary_identities": [
+    "V1 CANNOT_CHECK with HARMFUL_OR_ADVERSE_CELL_PRESENT",
+    "V2 checkout stream bytes overwritten and no longer directly reproducible",
+    "n=1 public known-fix replay only",
+    "local evaluator is not independent or protected",
+    "P5 H1-H4 CANNOT_CHECK",
+    "P5_PROTECTED_PROVIDER_AND_FRESH_TRANSFER_CANNOT_CHECK"
+  ],
+  "protected_outcomes_accessed": false,
+  "rights": {
+    "defects4j_framework": "MIT_AT_PINNED_REVISION",
+    "rights_scope": "THIS_PUBLIC_DEVELOPMENT_CODE_TEST_EXECUTION_ONLY",
+    "selected_upstream_code_tests_configuration": "APACHE_2_0_AT_SELECTED_REVISIONS",
+    "upstream_license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  "schema_version": "orion.p5.rd02.defects4j-public-factorial.audit-receipt.v1",
+  "scientific_terminal": "P5_RD02_N1_PUBLIC_KNOWN_FIX_REPLAY_ONLY__PROTECTED_FRESHNESS_AND_H1_H4_CANNOT_CHECK",
+  "source": "Defects4J Lang-1 public project/bug-family cluster",
+  "source_artifact_sha256": {
+    "FREEZE_RECEIPT_V1.json": "16169cd14f6005f128cd912a5366c2ad82e283d407af291283a0ecc793ca5135",
+    "FREEZE_RECEIPT_V2.json": "cdd0f3c7d8b79aa3ab0da8e84c0568439ad2869e2f64b04dc630026d312af2e5",
+    "FREEZE_RECEIPT_V3.json": "6e0cb17c7d2a2650f66fc9fc03a2c39ba5e4945198f6e39f6cd6736a282a8975",
+    "PREREGISTRATION_V1.json": "766c0335ff7e6a59c48ffccdff7551a85fb0743d29871f9979a949bfec4d46a4",
+    "PREREGISTRATION_V2.json": "e0d4d4217fa6e7bd1941710aa579f9bd59984af2ed40f4d184864df85b2905ee",
+    "PREREGISTRATION_V3.json": "5cd056ea54357cab9d341b57fa8b4fbd8a063011c4de983aa707e88de6e1959e",
+    "RESULT_V1.json": "0c2f2760f622a6260e8ed34cb648df309f51b9bdb3ea170918487152033c7c0e",
+    "RESULT_V2.json": "ef3f8893299578c071e8cad46d1c73cbe507d426a805ac772e9ae955092fab98",
+    "RESULT_V3.json": "e743ebb77a31c4c4606f7eded8045a60c78fa2f251c13908051156cfd4a1fb6e",
+    "run_factorial.py": "a770a04e9bea824a1fa510da125ac3d49a8df77b327243eaad304ec8080ca7f5",
+    "run_factorial_v2.py": "0513aab57a0e589c6736b3bda4cb08f7cd3e951e7c4d82e7af52ecc1646275cf",
+    "run_factorial_v3.py": "d3b4580836645b76d06518ac26b7fe73bad926c7a1fe7a8f05513f0b84d933fe"
+  },
+  "study_family": "P5-RD-02.DEFECTS4J.LANG1",
+  "technical_factorial_cells": 4,
+  "v1": {
+    "adverse_cells": 4,
+    "causes": [
+      "Defects4J 3.0.1 refuses non-Java-11 execution before checkout, making both registered JDK-17 cells invalid.",
+      "Defects4J creates prepared local checkout commits and trees, so comparison to raw upstream tree IDs incorrectly rejected both Java-11 checkouts."
+    ],
+    "harm_modifier": "HARMFUL_OR_ADVERSE_CELL_PRESENT",
+    "invalid_cells": 4,
+    "preserved_unchanged": true,
+    "recorded_terminal": "CANNOT_CHECK",
+    "result_sha256": "0c2f2760f622a6260e8ed34cb648df309f51b9bdb3ea170918487152033c7c0e",
+    "study_id": "P5-RD-02.DEFECTS4J.LANG1.V1",
+    "valid_cells": 0
+  },
+  "v2": {
+    "effects": {
+      "environment": 0.0,
+      "implementation": 1.0,
+      "interaction": 0
+    },
+    "exact_checkout_log_byte_preservation_terminal": "CANNOT_CHECK_EXACT_CHECKOUT_STREAM_BYTE_PRESERVATION",
+    "harm_modifier": "NO_ADVERSE_CELL",
+    "original_cells_with_registered_trigger": 2,
+    "predecessor_result_changed": false,
+    "recorded_terminal": "IMPLEMENTATION_MAIN_EFFECT",
+    "result_sha256": "ef3f8893299578c071e8cad46d1c73cbe507d426a805ac772e9ae955092fab98",
+    "study_id": "P5-RD-02.DEFECTS4J.LANG1.V2",
+    "successful_cells": 2,
+    "successor_of": "P5-RD-02.DEFECTS4J.LANG1.V1",
+    "valid_cells": 4
+  },
+  "v2_stream_provenance_audit": {
+    "declared_checkout_streams_checked": 8,
+    "declared_checkout_streams_matching_current_bytes": 0,
+    "declared_checkout_streams_mismatching_current_bytes": 8,
+    "declared_test_streams_checked": 8,
+    "declared_test_streams_matching_current_bytes": 8,
+    "declared_test_streams_mismatching_current_bytes": 0,
+    "manifest_boundary": "SHA256SUMS authenticates actual current files; it does not make RESULT_V2 checkout declarations match overwritten bytes.",
+    "mismatches": [
+      {
+        "actual_sha256": "a26a2fdfe16051dbd42f6f7c19a301a2a126b93f5fe42cf8014303231da682e3",
+        "cell_id": "C1E0",
+        "declared_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": false,
+        "path": "V2.C1E0.stdout.txt",
+        "phase": "checkout",
+        "stream": "stdout"
+      },
+      {
+        "actual_sha256": "cdb8c5245c063a34668cdbaf812d0bedcc14491ce03336a5e3afbffdebe0261f",
+        "cell_id": "C1E0",
+        "declared_sha256": "5dea084bd09593dafd6bb9272839f75ec99b20667ed3306b4ab754cd3b29a22e",
+        "matches": false,
+        "path": "V2.C1E0.stderr.txt",
+        "phase": "checkout",
+        "stream": "stderr"
+      },
+      {
+        "actual_sha256": "f4b1f16250d3fb8ba7673c0687dae26aab153de09e6834d26a6d6bc861145907",
+        "cell_id": "C0E0",
+        "declared_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": false,
+        "path": "V2.C0E0.stdout.txt",
+        "phase": "checkout",
+        "stream": "stdout"
+      },
+      {
+        "actual_sha256": "cdb8c5245c063a34668cdbaf812d0bedcc14491ce03336a5e3afbffdebe0261f",
+        "cell_id": "C0E0",
+        "declared_sha256": "0c005e59142a6544a7cf968a91eccbd56740d42c9b65a1bb2fba0af00f5b23ce",
+        "matches": false,
+        "path": "V2.C0E0.stderr.txt",
+        "phase": "checkout",
+        "stream": "stderr"
+      },
+      {
+        "actual_sha256": "f4b1f16250d3fb8ba7673c0687dae26aab153de09e6834d26a6d6bc861145907",
+        "cell_id": "C0E1",
+        "declared_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": false,
+        "path": "V2.C0E1.stdout.txt",
+        "phase": "checkout",
+        "stream": "stdout"
+      },
+      {
+        "actual_sha256": "cdb8c5245c063a34668cdbaf812d0bedcc14491ce03336a5e3afbffdebe0261f",
+        "cell_id": "C0E1",
+        "declared_sha256": "3492819ba9cebee9e0cec59aabeae5edff772c557fb8aef12d1da5d3dd70fadc",
+        "matches": false,
+        "path": "V2.C0E1.stderr.txt",
+        "phase": "checkout",
+        "stream": "stderr"
+      },
+      {
+        "actual_sha256": "a26a2fdfe16051dbd42f6f7c19a301a2a126b93f5fe42cf8014303231da682e3",
+        "cell_id": "C1E1",
+        "declared_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": false,
+        "path": "V2.C1E1.stdout.txt",
+        "phase": "checkout",
+        "stream": "stdout"
+      },
+      {
+        "actual_sha256": "cdb8c5245c063a34668cdbaf812d0bedcc14491ce03336a5e3afbffdebe0261f",
+        "cell_id": "C1E1",
+        "declared_sha256": "a694ad9362bd52402308655d89a2bad4db677ab476a08908415fb12ac42eae35",
+        "matches": false,
+        "path": "V2.C1E1.stderr.txt",
+        "phase": "checkout",
+        "stream": "stderr"
+      }
+    ],
+    "original_checkout_stream_bytes_recovered": false,
+    "path_collision_cause": "Path.with_suffix collapsed checkout and test phase stems to the same stdout/stderr paths within each cell; test execution overwrote checkout streams."
+  },
+  "v3": {
+    "archival_log_terminal": "ARCHIVAL_REPLAY_COMPLETE",
+    "archival_replay_only": true,
+    "declared_streams_checked": 16,
+    "declared_streams_matching_current_bytes": 16,
+    "declared_streams_mismatching_current_bytes": 0,
+    "frozen_after_v2_outcomes_known": true,
+    "grants_new_scientific_or_confirmatory_authority": false,
+    "phase_logs_preserved_separately": true,
+    "phase_path_distinct_cells": 4,
+    "predecessor_result_changed": false,
+    "recorded_factorial_terminal": "IMPLEMENTATION_MAIN_EFFECT",
+    "result_sha256": "e743ebb77a31c4c4606f7eded8045a60c78fa2f251c13908051156cfd4a1fb6e",
+    "study_id": "P5-RD-02.DEFECTS4J.LANG1.V3",
+    "successor_of": "P5-RD-02.DEFECTS4J.LANG1.V2",
+    "v2_checkout_log_bytes_recovered": false
+  },
+  "verification": {
+    "ci_run": false,
+    "json_files_expected_after_receipt": 10,
+    "pytest_run": false,
+    "sha256_manifest_covers_actual_top_level_files": true,
+    "sha256_manifest_verified": true,
+    "v1_declared_retained_streams_checked": 8,
+    "v1_declared_retained_streams_matching_current_bytes": 8,
+    "v2_declared_streams_checked": 16,
+    "v2_declared_streams_matching_current_bytes": 8,
+    "v2_declared_streams_mismatching_current_bytes": 8,
+    "v3_declared_streams_checked": 16,
+    "v3_declared_streams_matching_current_bytes": 16,
+    "v3_phase_paths_distinct_for_all_cells": true
+  },
+  "wide_terminal_preserved": "P5_WIDE_READY_FOR_EXTERNAL_PROJECT_PANEL_NOT_A_SCIENTIFIC_RESULT"
+}

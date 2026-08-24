@@ -1,0 +1,201 @@
+{
+  "active_loop": {
+    "batch_size": "max(10, ceil(0.002*N_r)) exactly as V5",
+    "feedback": "After each batch the protected evaluator reveals only that batch selected-label vector to the arm process, which refits from scratch on all screened rows.",
+    "initialization": "Within each class and review, choose the row minimizing SHA-256(review UTF-8, NUL, canonical record identity); positive first then negative. Exactly one seed per class. No cold-start claim.",
+    "same_information_rule": "All four cells receive identical per-review population, two seed identities, batch schedule and revealed label history conditional on their selected queries.",
+    "termination": "Order every canonical row; do not stop at a favorable threshold.",
+    "ties": "Stable descending score, then canonical ascending record identity."
+  },
+  "arms": {
+    "R0_L0": "candidate representation and learner",
+    "R0_L1": "candidate representation plus V4-selected u4 learner/balancer",
+    "R1_L0": "u4 representation plus candidate learner",
+    "R1_L1": "complete active u4 comparator; unchanged from V5"
+  },
+  "bindings": {
+    "overlap_receipt": {
+      "path": "LABEL_BLIND_OVERLAP_RECEIPT_V6.json",
+      "sha256": "bdf20de65cd28ffc1d984e755250604b0ce0e1550cad27da52a0ab9890164254"
+    },
+    "population_freeze": {
+      "path": "SOURCE_FAMILY_AND_POPULATION_FREEZE_V6.json",
+      "sha256": "3bbd1c56fa770836bc674ab56d890151f8975d14709aa2dd3586ccb2d7f4af87"
+    },
+    "source_rights_receipt": {
+      "path": "SOURCE_RIGHTS_PROVENANCE_RECEIPT_V6.json",
+      "sha256": "0c7211591ba5799721d5b8b00e11564b221a3e07526467df350adef2a29ddbeb"
+    }
+  },
+  "custody_contract": {
+    "pre_execution": "Each role signs exact source SHA-256, population SHA-256, protocol SHA-256, runner SHA-256, dependency lock and container/platform identity before opening expert_inclusion row values.",
+    "required_roles": [
+      "source verifier",
+      "protected label custodian/executor",
+      "result verifier"
+    ],
+    "separation": "No role may be performed by this V6 design session or the V3-V5 execution session if a confirmatory claim is intended.",
+    "write_surfaces": "Candidate and comparator write only arm-specific rankings/state; protected evaluator alone reads hidden source label column and writes metrics/terminal; append-only negative ledger cannot be overwritten."
+  },
+  "decision_rule": {
+    "cannot_check": "If B1, B2 or B3 fails, or a selected label cannot be semantically mapped, emit the CANNOT_CHECK terminal without comparative performance claims.",
+    "negative": "If B1-B3 pass but any C1-C6 or G3-G6 gate fails, preserve all effects and emit the adverse terminal. No review deletion, retuning or endpoint substitution.",
+    "positive": "Only the conjunction B1-B3, C1-C6 and G3-G6 permits the narrow family-specific positive terminal. It still does not establish domain-general, source-general, workflow-general or population-wide superiority."
+  },
+  "estimands": {
+    "coprimary": [
+      "unweighted mean Delta_L(CRE20)",
+      "unweighted mean Delta_L(R@10)"
+    ],
+    "full_candidate_minus_u4": "Per review m(R0,L0)-m(R1,L1), with unweighted mean.",
+    "interaction": "Per review and metric m, I_r(m)=(m(R1,L1)-m(R0,L1))-(m(R1,L0)-m(R0,L0)).",
+    "learner_balancer_main_effect": "Per review and metric m, Delta_L,r(m)=0.5*[(m(R0,L1)-m(R0,L0))+(m(R1,L1)-m(R1,L0))]. Aggregate by unweighted mean over all fourteen reviews.",
+    "multiplicity": "Noncompensatory conjunction: both coprimary endpoints and every safety/work-saving gate must pass. No endpoint can compensate another.",
+    "representation_main_effect": "Per review and metric m, Delta_R,r(m)=0.5*[(m(R1,L0)-m(R0,L0))+(m(R1,L1)-m(R0,L1))]."
+  },
+  "forbidden_changes": [
+    "review deletion or replacement",
+    "row pooling",
+    "label-column substitution",
+    "seed replacement",
+    "batch or tie change",
+    "representation/learner/comparator replacement",
+    "feature or margin retuning",
+    "post-outcome exclusion",
+    "endpoint-window or threshold change",
+    "independence self-certification"
+  ],
+  "forbidden_claims": [
+    "V5 reversal or deletion",
+    "SWIFT or SYNERGY superiority",
+    "population-wide or domain-general superiority",
+    "independent custody before a signed external receipt",
+    "cold start",
+    "exact ASReview application execution",
+    "causal mechanism identification beyond the fixed 2x2 contrast",
+    "positive result before every noncompensatory gate passes",
+    "globally unstudied, historically outcome-sealed or public-artifact-free source family"
+  ],
+  "frozen_on": "2026-08-23",
+  "gates": {
+    "B1_BINDING": "Every exact source, rights, revision, population, protocol, implementation, environment and custody hash passes.",
+    "B2_POPULATION": "Exactly 14 reviews and 4,934 canonical rows; zero final SWIFT/V5 content or PMID overlap; zero pairwise KIFMS overlap; both selected-label classes in every review.",
+    "B3_INDEPENDENT_CUSTODY": "Protected executor is organizationally/session-disjoint from the design and V3-V5 execution contexts, signs pre-outcome source/protocol/implementation manifests, and keeps hidden labels/outcomes inaccessible until the terminal receipt is sealed.",
+    "C1_CRE20_MAGNITUDE": "Unweighted mean learner/balancer Delta_L(CRE20) >= 0.010858985820770889.",
+    "C2_CRE20_SIGN": "Learner/balancer Delta_L(CRE20) is strictly positive in at least 12 of 14 reviews.",
+    "C3_R10_MAGNITUDE": "Unweighted mean learner/balancer Delta_L(R@10) >= 0.010858985820770889; this V5 threshold is unchanged.",
+    "C4_R10_SIGN": "Learner/balancer Delta_L(R@10) is strictly positive in at least 12 of 14 reviews; 80% preserves the V5 four-of-five rule.",
+    "C5_LEARNER_WORK_SAVING": "Unweighted mean learner/balancer Delta_L(WSS95) >= 0; unchanged.",
+    "C6_LEARNER_HARM": "Worst-review learner/balancer Delta_L(R@10) >= -0.05; unchanged.",
+    "G3_FULL_ARM_R10_MARGIN": "Unweighted mean [R0_L0-R1_L1] R@10 >= +0.05; unchanged.",
+    "G4_FULL_ARM_WORK_SAVING": "Unweighted mean [R0_L0-R1_L1] WSS95 >= 0; unchanged.",
+    "G5_FULL_ARM_HARM": "Worst-review [R0_L0-R1_L1] R@10 >= -0.05; unchanged.",
+    "G6_ABSOLUTE_WORK_SAVING": "R0_L0 WSS95 > 0 in every review; unchanged."
+  },
+  "identity": "P2_KIFMS_V6_RANK_CONTINUOUS_RECALL_EFFORT_SUCCESSOR",
+  "learners": {
+    "L0": {
+      "alpha": 1e-05,
+      "class_weight": "balanced",
+      "classifier": "SGDClassifier",
+      "loss": "log_loss",
+      "max_iter": 2000,
+      "query": "positive-class probability",
+      "random_state": 20260823,
+      "tol": 0.0001
+    },
+    "L1_u4": {
+      "C": 0.11,
+      "balancer": "positive weight 1; negative weight positives/(9.8*negatives); normalize mean one",
+      "balancer_ratio": 9.8,
+      "classifier": "LinearSVC",
+      "loss": "squared_hinge",
+      "query": "decision function",
+      "random_state": 20260823
+    }
+  },
+  "metrics": {
+    "cre20": "CRE20_r=(1/(0.20*P_r))*sum_{i=1}^{N_r} y_i*max(0.20-i/N_r,0). This is the exact normalized integral of the right-continuous full-ranking recall-effort step function over effort [0,0.20].",
+    "effort95": "E95_r=min{k/N_r: cumulative relevant through rank k >= ceil(0.95*P_r)}.",
+    "rank_coordinate": "For a complete order i=1..N_r with binary y_i and P_r=sum_i y_i, screening event i occurs at effort i/N_r.",
+    "recall_at_q": "R_r(q)=sum_{i=1}^{ceil(q*N_r)} y_i / P_r for q in {0.05,0.10,0.20}; ceil and minimum one exactly preserve prior P2 metric mechanics.",
+    "requirement": "P_r must be positive and less than N_r for every review; otherwise the entire V6 identity is CANNOT_CHECK before any arm is promoted.",
+    "wss95": "WSS95_r=0.95-E95_r."
+  },
+  "motivation": {
+    "preserved_v5_terminal": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR",
+    "rationale_for_continuous_endpoint": "V5 exhibited nonuniform R@5/R@10/R@20 behavior. V6 therefore replaces tail interpretation by a prospectively fixed normalized area under the complete recall-effort step function over the first 20% effort, while retaining adverse R@10 unchanged as a coprimary endpoint.",
+    "v5_adverse_result": "Learner/balancer mean R@10 effect +0.008834277869043594, positive 3/5 and zero 2/5; candidate-minus-u4 R@10 and WSS@95 negative."
+  },
+  "outcome_access_status": "NO KIFMS LABEL VALUES, CLASS COUNTS, SEEDS, ACTIVE ORDERS, OR CANDIDATE/COMPARATOR OUTCOMES ACCESSED",
+  "population": {
+    "all_reviews_retained": true,
+    "canonical_nonempty_pmids": 0,
+    "canonical_rows_total": 4934,
+    "disjointness_evidence": "Content identity is operative. KIFMS pubmed_id is present as a header but empty in every row, so PMID-overlap zeros are reported as vacuous, not corroborative.",
+    "label": "expert_inclusion only, protected until execution",
+    "review_count": 14,
+    "reviews": [
+      "Distal_radius_fractures_approach",
+      "Distal_radius_fractures_closed_reduction",
+      "Hallux_valgus_prognostic",
+      "Head_and_neck_cancer_bone",
+      "Head_and_neck_cancer_imaging",
+      "Obstetric_emergency_training",
+      "Post_intensive_care_treatment",
+      "Pregnancy_medication",
+      "Shoulder_replacement_diagnostic",
+      "Shoulder_replacement_surgery",
+      "Shoulderdystocia_positioning",
+      "Shoulderdystocia_recurrence",
+      "Total_knee_replacement",
+      "Vascular_access"
+    ],
+    "unit": "review decision; never row pooled"
+  },
+  "preserved_adverse_terminals": [
+    "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR",
+    "P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR",
+    "P2_SWIFT_V4_POST_OUTCOME_FACTORIZATION_IDENTIFIES_STABLE_COMPONENT_REQUIRES_CONTENT_DISJOINT_OUTCOME_UNOPENED_FAMILY",
+    "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR"
+  ],
+  "prior_public_artifact_boundary": "Public historical ASReview simulation artifact paths exist for these datasets. Their metric contents were not opened in V6; this fact must be disclosed in any execution report.",
+  "representations": {
+    "R0": {
+      "lowercase": true,
+      "max_features": 50000,
+      "min_df": 2,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "sublinear_tf": true,
+      "vectorizer": "TfidfVectorizer"
+    },
+    "R1_u4": {
+      "lowercase": true,
+      "max_df": 0.95,
+      "min_df": 1,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "sublinear_tf": true,
+      "vectorizer": "TfidfVectorizer"
+    }
+  },
+  "scope": "PROSPECTIVE_OUTCOME_UNOPENED_NEW_SOURCE_TRANSPORT_ON_FOURTEEN_DUTCH_MEDICAL_GUIDELINE_REVIEW_DECISIONS",
+  "secondary_reporting": [
+    "Every metric for every arm and review, plus all factorial effects and unweighted means.",
+    "Exact count of strictly positive review effects and the two-sided exact binomial sign-test value, descriptive only because this finite family is not a random sample.",
+    "R@5 and R@20 retained only as secondary diagnostics; neither can rescue a failed coprimary endpoint.",
+    "Complete ranking hashes, batch/query trajectory hashes, fit counts and software/environment identities."
+  ],
+  "status": "PROTOCOL_AND_SOURCE_POPULATION_FROZEN; EXECUTION_WITHHELD",
+  "terminals": {
+    "cannot_check": "P2_KIFMS_V6_RANK_CONTINUOUS_SUCCESSOR_CANNOT_CHECK_BINDING_POPULATION_LABEL_SEMANTICS_OR_CUSTODY",
+    "current_feasibility": "P2_KIFMS_V6_LAWFUL_EXACT_SOURCE_AND_LABEL_BLIND_DISJOINT_POPULATION_FROZEN__INDEPENDENT_PROTECTED_EXECUTION_CANNOT_CHECK",
+    "negative": "P2_KIFMS_V6_RANK_CONTINUOUS_AND_LOCKED_R10_SUCCESSOR_FAILS_ONE_OR_MORE_NONCOMPENSATORY_GATES_REQUIRES_SUCCESSOR",
+    "positive": "P2_KIFMS_V6_RANK_CONTINUOUS_AND_LOCKED_R10_SUCCESSOR_PASSES_ALL_FAMILY_SPECIFIC_GATES_NO_GENERAL_SUPERIORITY"
+  }
+}

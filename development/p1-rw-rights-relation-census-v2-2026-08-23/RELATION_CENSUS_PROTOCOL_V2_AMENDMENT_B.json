@@ -1,0 +1,16 @@
+{
+  "adverse_result_preserved": {
+    "observation": "The pinned CSV header has the 20 documented columns in exact order followed by one unnamed terminal column; the base exact-header gate failed before any data row was parsed.",
+    "rows_or_row_counts_opened": false,
+    "terminal": "CANNOT_CHECK_PINNED_SCHEMA_MISMATCH"
+  },
+  "amends_amendment_a_sha256": "6932397a6c85ebc8586a9903f55507a9412222d5fd7fa441d2ba1660989b3596",
+  "failure_terminal": "CANNOT_CHECK_UNDOCUMENTED_COLUMN_NONEMPTY_OR_ROW_WIDTH",
+  "frozen_at_utc": "2026-08-23T17:09:23.247400+00:00",
+  "identity": "P1.RW.CC0.RIGHTS.RELATION.CENSUS.V2.TRAILING.EMPTY.SCHEMA.AMENDMENT.B",
+  "repair_hypothesis": "The extra unnamed column is a serialization artifact only if it is empty on every data row.",
+  "revised_gateway_rule": "Admit the exact 21-field header consisting of the frozen 20 documented names plus one empty final name. During streaming, check only whether the final field is empty; never print or persist it. If any row has a nonempty final field or a width other than 21, terminate CANNOT_CHECK_UNDOCUMENTED_COLUMN_NONEMPTY_OR_ROW_WIDTH. This amendment does not expand the seven-field semantic allowlist.",
+  "schema_version": "orion.p1.rw-rights-relation-census.v2-amendment-b",
+  "status": "FROZEN_AFTER_HEADER_ONLY_AND_BEFORE_FIRST_DATA_ROW",
+  "success_terminal": "PINNED_DOCUMENTED_SCHEMA_PLUS_UNIFORMLY_EMPTY_TRAILING_FIELD_PASS"
+}

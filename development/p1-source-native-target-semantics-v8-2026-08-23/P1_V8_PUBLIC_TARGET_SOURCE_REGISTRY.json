@@ -1,0 +1,751 @@
+{
+  "captured_at_utc": "2026-08-23T16:42:09.646840+00:00",
+  "commit": {
+    "api_etag": "W/\"dd18baf77378d2b236251bde5270704d4389b5b042f36642adef7992ec040d6c\"",
+    "api_http_status": 200,
+    "author_name": "Sze Chun YIU",
+    "authored_at": "2026-08-23T05:49:02Z",
+    "html_url": "https://github.com/SzeChunYiu/ORION/commit/390267dfa9c6669e506ba67b5dde5dddd8f96232",
+    "message": "P1: freeze wide R7 successor preflight",
+    "sha": "390267dfa9c6669e506ba67b5dde5dddd8f96232",
+    "signature_reason": "unsigned",
+    "signature_verified": false,
+    "tree_sha": "1a77f45cf959d8e472315438e2e1f823be5d03c9"
+  },
+  "files": [
+    {
+      "bytes": 9593,
+      "etag": "\"71791add9f7433afa32d094b5b35a12b388ed94ffb480d3e084cb3eaae6de195\"",
+      "git_blob_sha1": "1dc86452968213c2224fffe322afa00e806cdc8a",
+      "http_status": 200,
+      "last_modified": null,
+      "line_count": 189,
+      "media_type": "text/plain; charset=utf-8",
+      "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+      "payload_retained_in_handoff": false,
+      "public_blob_url": "https://github.com/SzeChunYiu/ORION/blob/390267dfa9c6669e506ba67b5dde5dddd8f96232/research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+      "public_raw_url": "https://raw.githubusercontent.com/SzeChunYiu/ORION/390267dfa9c6669e506ba67b5dde5dddd8f96232/research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+      "remote_equals_local_commit_bytes": true,
+      "sha256": "f4c10d0cba206aba015ef56bd82101afbcd5aecf9f5487f854cb7dbdcb0e3500"
+    },
+    {
+      "bytes": 5147,
+      "etag": "\"42228709dd94cce12e27cb355a5c1fb888e888b0de5228f9077fc46ce0ad66f1\"",
+      "git_blob_sha1": "2b9de6472a70287775b43ca74bfe436a8f66f4f6",
+      "http_status": 200,
+      "last_modified": null,
+      "line_count": 78,
+      "media_type": "text/plain; charset=utf-8",
+      "path": "research/claim_expansion/p1/gpt_r1/FRAMEWORK_CONSISTENCY_V1.md",
+      "payload_retained_in_handoff": false,
+      "public_blob_url": "https://github.com/SzeChunYiu/ORION/blob/390267dfa9c6669e506ba67b5dde5dddd8f96232/research/claim_expansion/p1/gpt_r1/FRAMEWORK_CONSISTENCY_V1.md",
+      "public_raw_url": "https://raw.githubusercontent.com/SzeChunYiu/ORION/390267dfa9c6669e506ba67b5dde5dddd8f96232/research/claim_expansion/p1/gpt_r1/FRAMEWORK_CONSISTENCY_V1.md",
+      "remote_equals_local_commit_bytes": true,
+      "sha256": "30945cc7dd54ed8359bd03ba623e0bb092793da290d038a1b19678bd2aa36ccb"
+    },
+    {
+      "bytes": 22511,
+      "etag": "\"4610182873ec538c58afb050aeb60b96fd994a34aa020208e5dd5dfd36e8b877\"",
+      "git_blob_sha1": "1ca5a91fca0e1ae07bb80e1fa603d048123abf53",
+      "http_status": 200,
+      "last_modified": null,
+      "line_count": 634,
+      "media_type": "text/plain; charset=utf-8",
+      "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+      "payload_retained_in_handoff": false,
+      "public_blob_url": "https://github.com/SzeChunYiu/ORION/blob/390267dfa9c6669e506ba67b5dde5dddd8f96232/research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+      "public_raw_url": "https://raw.githubusercontent.com/SzeChunYiu/ORION/390267dfa9c6669e506ba67b5dde5dddd8f96232/research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+      "remote_equals_local_commit_bytes": true,
+      "sha256": "14a0b83c39474f804d72dce51e39df9c48d7d3c72460b96ad55be2f492607a50"
+    },
+    {
+      "bytes": 8267,
+      "etag": "\"da87e51b9bf779e2a6452bab5574c7238f88e369a9de1467126283fd0610e965\"",
+      "git_blob_sha1": "45121e051d75b204027934c2f3ce1c2d86d4f915",
+      "http_status": 200,
+      "last_modified": null,
+      "line_count": 217,
+      "media_type": "text/plain; charset=utf-8",
+      "path": "research/claim_expansion/p1/gpt_r7/R7_DESIGN_PROTOCOL_V1.json",
+      "payload_retained_in_handoff": false,
+      "public_blob_url": "https://github.com/SzeChunYiu/ORION/blob/390267dfa9c6669e506ba67b5dde5dddd8f96232/research/claim_expansion/p1/gpt_r7/R7_DESIGN_PROTOCOL_V1.json",
+      "public_raw_url": "https://raw.githubusercontent.com/SzeChunYiu/ORION/390267dfa9c6669e506ba67b5dde5dddd8f96232/research/claim_expansion/p1/gpt_r7/R7_DESIGN_PROTOCOL_V1.json",
+      "remote_equals_local_commit_bytes": true,
+      "sha256": "742443213d73e186e9d13eab71f261c90f414ec31df5cba3b5d22867e82764d2"
+    },
+    {
+      "bytes": 1785,
+      "etag": "\"8543a6e9de5976383d3114afa67477a6eafea2284b928bbbceebae8477c6b93c\"",
+      "git_blob_sha1": "277da5cf848421e73d43570da370540baa868d45",
+      "http_status": 200,
+      "last_modified": null,
+      "line_count": 62,
+      "media_type": "text/plain; charset=utf-8",
+      "path": "papers/FRAMEWORK_SNAPSHOT.json",
+      "payload_retained_in_handoff": false,
+      "public_blob_url": "https://github.com/SzeChunYiu/ORION/blob/390267dfa9c6669e506ba67b5dde5dddd8f96232/papers/FRAMEWORK_SNAPSHOT.json",
+      "public_raw_url": "https://raw.githubusercontent.com/SzeChunYiu/ORION/390267dfa9c6669e506ba67b5dde5dddd8f96232/papers/FRAMEWORK_SNAPSHOT.json",
+      "remote_equals_local_commit_bytes": true,
+      "sha256": "1e0a144502b66613f40482daa13b80c9e735b6896ed2e1c8293e62a85eb2b12a"
+    },
+    {
+      "bytes": 1859,
+      "etag": "\"682c64d9ab6b3ee0a7663fb82ce74118a815a78c87987048e05a24fb4b9966c6\"",
+      "git_blob_sha1": "aedc06cd676078bff746337cc77bbce415ed71e2",
+      "http_status": 200,
+      "last_modified": null,
+      "line_count": 65,
+      "media_type": "text/plain; charset=utf-8",
+      "path": "src/orion/registry.py",
+      "payload_retained_in_handoff": false,
+      "public_blob_url": "https://github.com/SzeChunYiu/ORION/blob/390267dfa9c6669e506ba67b5dde5dddd8f96232/src/orion/registry.py",
+      "public_raw_url": "https://raw.githubusercontent.com/SzeChunYiu/ORION/390267dfa9c6669e506ba67b5dde5dddd8f96232/src/orion/registry.py",
+      "remote_equals_local_commit_bytes": true,
+      "sha256": "a4233ec77c19b59e758fcf63b8a94aeefbfc15e0e4aca78b4fe5377f3225b782"
+    },
+    {
+      "bytes": 13456,
+      "etag": "\"9bab2480bdc818d3aeba9ab6f644bb63267558618cd1da118d86ce2dc5c4e9ec\"",
+      "git_blob_sha1": "35f91957515e1af3b4909d7215627de309ea7adc",
+      "http_status": 200,
+      "last_modified": null,
+      "line_count": 352,
+      "media_type": "text/plain; charset=utf-8",
+      "path": "src/orion/self_orion/revision_gate.py",
+      "payload_retained_in_handoff": false,
+      "public_blob_url": "https://github.com/SzeChunYiu/ORION/blob/390267dfa9c6669e506ba67b5dde5dddd8f96232/src/orion/self_orion/revision_gate.py",
+      "public_raw_url": "https://raw.githubusercontent.com/SzeChunYiu/ORION/390267dfa9c6669e506ba67b5dde5dddd8f96232/src/orion/self_orion/revision_gate.py",
+      "remote_equals_local_commit_bytes": true,
+      "sha256": "f9a127ee06300805fabb6a76c6272e175194a98fa82be4b130892bb0b9a3caa5"
+    }
+  ],
+  "occurrence_census": {
+    "ABSTAIN": {
+      "file_count": 1,
+      "locations": [
+        {
+          "line": 62,
+          "line_sha256": "6bdb2c1d6882c93889154738db295d90a9a4d149b9f20be1828158b662d76c55",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 1
+    },
+    "COMPILE_OR_REPRESENT": {
+      "file_count": 2,
+      "locations": [
+        {
+          "line": 57,
+          "line_sha256": "8fb95a46e6651f7896ed7f6a87ecca957c4a74c77079aad050c011ad1c925a65",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 27,
+          "line_sha256": "799ea5b7a0763ff37859b2d703ce4f7c61c4f9a84e856a290c9f8afe96c8b91c",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 132,
+          "line_sha256": "3d3a235c9f639350e1c5bf3ae6a8d6e17e5225e80f1e11bfd2ffce991245bac6",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 133,
+          "line_sha256": "72fc21d6819d0e439779140dea0ef92b06983475f498e39d2649acef6d539b19",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 4
+    },
+    "KEEP_COMPILE": {
+      "file_count": 2,
+      "locations": [
+        {
+          "line": 47,
+          "line_sha256": "ba7049a88ce950bb7ff9974b3081902de41dde97b943f84cc2b791d0710c1bc8",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 72,
+          "line_sha256": "eb2e6fa618b2399b151b8ec33b49a6339a0dda426166be4c6023508ef7cc5b8e",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 18,
+          "line_sha256": "4b9a2fd140f93eaae5dd313341a61baa5b81de2dcacac477012547b2b84bbadc",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 110,
+          "line_sha256": "cdfb3103d2bea4f562f8ff2a4199d33b48af1c7860b865520b29fb6dbda69449",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 130,
+          "line_sha256": "6c225bfcd6c0d6ba4c429fd2accd01a232631ca2ab1af51cebd8f21b3f0b395d",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 5
+    },
+    "KEEP_REPAIR": {
+      "file_count": 2,
+      "locations": [
+        {
+          "line": 48,
+          "line_sha256": "712eef82ddbe34a7084f3f93a01ed219b1a8a6091abe259e0614f2f485835376",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 73,
+          "line_sha256": "c7a5d2b8d3631b4ec934720855592c55861ad7055619af642f4a527ce0fe59c3",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 19,
+          "line_sha256": "6107ac5bfca72978edd524528de03885da6b115be05c3b17971565a7e0afb100",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 140,
+          "line_sha256": "cca7b1913f478930bf5c7e5c99a86727deb2dc535346c0de0df6ba930bb20a54",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 4
+    },
+    "KEEP_SEARCH": {
+      "file_count": 2,
+      "locations": [
+        {
+          "line": 46,
+          "line_sha256": "2a95a2f3945a2c833b295c6bb2bd178731bbd483215c416d4a9b734f34089dcf",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 17,
+          "line_sha256": "dea9f6794c83354b11b32711da9daab9df417a67f6b77bdf6e11b1a19b426f9d",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 110,
+          "line_sha256": "cdfb3103d2bea4f562f8ff2a4199d33b48af1c7860b865520b29fb6dbda69449",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 150,
+          "line_sha256": "96db421353c6732941fea0c0ddf79f8f183a5f2268ab39e6aa061284c25ff906",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 178,
+          "line_sha256": "3ca75bd32f8068947a578850d297eaa2a331601447d4aa145829e3e905aeb989",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 179,
+          "line_sha256": "efc15d4bf8f589fab61a03061cffb964064b2b47d62b5c7d53824fbe2b671360",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 6
+    },
+    "REFORMULATE_BOUNDARY": {
+      "file_count": 3,
+      "locations": [
+        {
+          "line": 51,
+          "line_sha256": "c6e882a5fd84d8d9ce35d1d3a5f26cc31f1bc24233fac8361540127fa549fa0d",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 28,
+          "line_sha256": "7f1a8adce6ffecafb2ff49da443bcd59c20fc7d7ca00fa928a0d5ba829d61f6b",
+          "path": "research/claim_expansion/p1/gpt_r1/FRAMEWORK_CONSISTENCY_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 22,
+          "line_sha256": "359a6e4677fd70786bfeff820369a13f92d93634db986b91f5b5278272e5f778",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 120,
+          "line_sha256": "93687cb11bfb10ad178faca50c396bce478704b16e18f13e0f3c2aad7ae9c176",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 140,
+          "line_sha256": "cca7b1913f478930bf5c7e5c99a86727deb2dc535346c0de0df6ba930bb20a54",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 160,
+          "line_sha256": "93687cb11bfb10ad178faca50c396bce478704b16e18f13e0f3c2aad7ae9c176",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 198,
+          "line_sha256": "93687cb11bfb10ad178faca50c396bce478704b16e18f13e0f3c2aad7ae9c176",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 7
+    },
+    "REFORMULATE_OBJECTIVE": {
+      "file_count": 3,
+      "locations": [
+        {
+          "line": 50,
+          "line_sha256": "957e27d31b0b1eb6ba0b6c08668cd744289240adb58cc4868b00348a8e398991",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 27,
+          "line_sha256": "1e977fb4e292307829218a51d8fe387757bf4768c38e84c2459b50b487004d95",
+          "path": "research/claim_expansion/p1/gpt_r1/FRAMEWORK_CONSISTENCY_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 22,
+          "line_sha256": "359a6e4677fd70786bfeff820369a13f92d93634db986b91f5b5278272e5f778",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 120,
+          "line_sha256": "93687cb11bfb10ad178faca50c396bce478704b16e18f13e0f3c2aad7ae9c176",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 130,
+          "line_sha256": "6c225bfcd6c0d6ba4c429fd2accd01a232631ca2ab1af51cebd8f21b3f0b395d",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 150,
+          "line_sha256": "96db421353c6732941fea0c0ddf79f8f183a5f2268ab39e6aa061284c25ff906",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 160,
+          "line_sha256": "93687cb11bfb10ad178faca50c396bce478704b16e18f13e0f3c2aad7ae9c176",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 180,
+          "line_sha256": "11109fcbb5856afb679235a243fba220dd50912e70624f70caf91e66e1b9fdaa",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 198,
+          "line_sha256": "93687cb11bfb10ad178faca50c396bce478704b16e18f13e0f3c2aad7ae9c176",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 9
+    },
+    "REMEASURE": {
+      "file_count": 2,
+      "locations": [
+        {
+          "line": 59,
+          "line_sha256": "6aa50496c64529c96db72d2c8a02204e053a308811e1a17147bdb2dc78a0daec",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 29,
+          "line_sha256": "57970804c8221f4f5d8f2a6113588d588467931ae3c9ed2d1cb8633cabe9b39f",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "REPAIR_ENV_OR_HARNESS": {
+      "file_count": 2,
+      "locations": [
+        {
+          "line": 58,
+          "line_sha256": "8cd8cecbffe6c50b1f28ca969c6eaae4004941b42fc2baef2f3ea4f2ca713b49",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 28,
+          "line_sha256": "6c986839f11b48c152a8e7db6b6bb7d5f74b509d1e4b9b7d776bb81c139ba57a",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 142,
+          "line_sha256": "8dcafcbdc55fed4224e4db30d0ceb4c051c108dcdd8019e5a6fb302c7d702ff7",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 143,
+          "line_sha256": "d687b5acdb2a8b075e6722f2e6e477cffcc07a8f1a61ef4d6ba3ce790416da3e",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 4
+    },
+    "REVISE_MEASUREMENT": {
+      "file_count": 3,
+      "locations": [
+        {
+          "line": 49,
+          "line_sha256": "1e8ef8a13a7c4d832908ad85ea91377a5a0ff389eac858bcdc543e7679c2db89",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 26,
+          "line_sha256": "2db2c2cb90ab9dd38ec1ea375d99549e147706c80f9f503dd681f6ec0c9855ea",
+          "path": "research/claim_expansion/p1/gpt_r1/FRAMEWORK_CONSISTENCY_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 20,
+          "line_sha256": "bf0ebc4f428f4788fee815aec8378f6f5b45edf8639fcf4579f8395afb38af3d",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 3
+    },
+    "SEARCH_MORE": {
+      "file_count": 2,
+      "locations": [
+        {
+          "line": 56,
+          "line_sha256": "b4db210bc87dd3f292580d876b7869f0448b730371c193969bead04f4e732c36",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 26,
+          "line_sha256": "45d00204d8f527fd7757849706c54b31b1705dc13c165ddee882a2b10429c26d",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 112,
+          "line_sha256": "09fc38f4d3fda4667136cc477f6332a43ba9ac6c3218343fa1ee9a44fb3d0285",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 113,
+          "line_sha256": "2ce666d5af9ddd97da5a1fa07df7ec25e6b8c872cacb25c2b55af2aa07ba48a9",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 183,
+          "line_sha256": "09fc38f4d3fda4667136cc477f6332a43ba9ac6c3218343fa1ee9a44fb3d0285",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 184,
+          "line_sha256": "c0e60a0f3382f99bb8d41edef83cb2683c6919ed7077743d433201920988879d",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 6
+    },
+    "TEST_OBJECTIVE_BASIS": {
+      "file_count": 2,
+      "locations": [
+        {
+          "line": 60,
+          "line_sha256": "83c51aa528ace2a5eb78c18f71347df41c014052705f26648b9cc77f3a28d28f",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 30,
+          "line_sha256": "1d785c08d653c647b66d89b6c89d6f6f0bd383e1af3bbe61416591e5a94544d7",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 152,
+          "line_sha256": "ec13a02c675de69fa269a71b2f3e95fe1fc6100121519e2f3a736afee8a2f8c1",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 153,
+          "line_sha256": "99875c4dafa94dffd533ee393e7b3902711574ea70effb796414fc7d320fd2ea",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 162,
+          "line_sha256": "ec13a02c675de69fa269a71b2f3e95fe1fc6100121519e2f3a736afee8a2f8c1",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 163,
+          "line_sha256": "ca7996525e5ee392459a04affe89850b7e306be25c10756ba21cb40be881021b",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 169,
+          "line_sha256": "6950d2066bd98edf06d0eef4f448e4816e6791647e6c39738f466665c14cde65",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 188,
+          "line_sha256": "ec13a02c675de69fa269a71b2f3e95fe1fc6100121519e2f3a736afee8a2f8c1",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 189,
+          "line_sha256": "96700e637e03f89da17f2d24e4194511348fc4eb8e14671d58a8048019328ded",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 9
+    },
+    "TEST_PROBLEM_BOUNDARY": {
+      "file_count": 2,
+      "locations": [
+        {
+          "line": 61,
+          "line_sha256": "c3791286a5e57aa721b3a64dd6c9c847aa6af95aaf451c7a0f2fc24742678451",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 31,
+          "line_sha256": "dbbb42b15982138e87c8368ccc52de70da83ccc7d0ff09cb236001f79b549bb0",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 122,
+          "line_sha256": "cf991d1224edb54685114bc3ec014a87cfec979f4997080230f09fd2556cca0c",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 123,
+          "line_sha256": "9e15f0028bc27ec39a421cb61ce8da95b6d4612ae33f82f0068723cba1114bfa",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 165,
+          "line_sha256": "cf991d1224edb54685114bc3ec014a87cfec979f4997080230f09fd2556cca0c",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 166,
+          "line_sha256": "d07a388160e618764f0d6b7acd937a8d4949a1149730ccfdadc6ecfc42079b80",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 6
+    },
+    "UNRESOLVED": {
+      "file_count": 5,
+      "locations": [
+        {
+          "line": 52,
+          "line_sha256": "5b598bde356aeb12586e33d1aadeed916e6af86f9d38fe76cf312f8ef79cf9c9",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 77,
+          "line_sha256": "16ea0c67530a1b736ed35fa08df2eb7a095b294a8f1bca80609530b918bae0f3",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 128,
+          "line_sha256": "14116200f0c1db5c32a1594c12475c74275a9887d28d7f234770c941011d9b09",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 179,
+          "line_sha256": "0a11cad6d5d8d1e97a57c498cfce1806787ffcb40c518c7a3e2776ce00d92aed",
+          "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 29,
+          "line_sha256": "5407cebeeeae588c66bc90e2072cd4961c1c37768e08972aecdc28af8769f302",
+          "path": "research/claim_expansion/p1/gpt_r1/FRAMEWORK_CONSISTENCY_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 41,
+          "line_sha256": "480f0672b97e5e12bb503085a4d22ef9a14a3eb1b3d82535b5ecb67cb0eebbef",
+          "path": "research/claim_expansion/p1/gpt_r1/FRAMEWORK_CONSISTENCY_V1.md",
+          "payload_retained": false
+        },
+        {
+          "line": 23,
+          "line_sha256": "d6c17b691bee2e6746c1a230b1488c2553f5a0e4d0b4043525fa255d85b98d11",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 431,
+          "line_sha256": "ed07f58bd16877dfc8f97b52a252eec10a67864417155200cd6e226b91fcdf59",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 482,
+          "line_sha256": "16da79ec875049063a2cd64de552dd966362c369ee4f2be894f800609fddf9c4",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 571,
+          "line_sha256": "59146458a29226f9678017ee5a72d886638df8ce0e0fc8ad2b9e405cd75dda86",
+          "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+          "payload_retained": false
+        },
+        {
+          "line": 167,
+          "line_sha256": "e835f0a6a679ef6118f4009e6097c25a1fe8ae760d825c972d528adc4aabf1af",
+          "path": "research/claim_expansion/p1/gpt_r7/R7_DESIGN_PROTOCOL_V1.json",
+          "payload_retained": false
+        },
+        {
+          "line": 38,
+          "line_sha256": "b2a32056f9ec22d9c8f271cf10c647b827b1308c43225aba84e83cfcedf61091",
+          "path": "src/orion/self_orion/revision_gate.py",
+          "payload_retained": false
+        },
+        {
+          "line": 183,
+          "line_sha256": "fa80704755e93f6a6206cbb47a8996a6d709b64225481055ffd0ddaf8fe0e0de",
+          "path": "src/orion/self_orion/revision_gate.py",
+          "payload_retained": false
+        },
+        {
+          "line": 186,
+          "line_sha256": "96c2997ff4657bbb9829d8125527791124b7ef9c9776a5a7da24d7fb44269944",
+          "path": "src/orion/self_orion/revision_gate.py",
+          "payload_retained": false
+        },
+        {
+          "line": 255,
+          "line_sha256": "96c2997ff4657bbb9829d8125527791124b7ef9c9776a5a7da24d7fb44269944",
+          "path": "src/orion/self_orion/revision_gate.py",
+          "payload_retained": false
+        },
+        {
+          "line": 267,
+          "line_sha256": "96c2997ff4657bbb9829d8125527791124b7ef9c9776a5a7da24d7fb44269944",
+          "path": "src/orion/self_orion/revision_gate.py",
+          "payload_retained": false
+        },
+        {
+          "line": 278,
+          "line_sha256": "96c2997ff4657bbb9829d8125527791124b7ef9c9776a5a7da24d7fb44269944",
+          "path": "src/orion/self_orion/revision_gate.py",
+          "payload_retained": false
+        },
+        {
+          "line": 284,
+          "line_sha256": "22985e0789a39903e3f60327213ffb3cfd171d589cf864f26a286a6124668046",
+          "path": "src/orion/self_orion/revision_gate.py",
+          "payload_retained": false
+        },
+        {
+          "line": 287,
+          "line_sha256": "96c2997ff4657bbb9829d8125527791124b7ef9c9776a5a7da24d7fb44269944",
+          "path": "src/orion/self_orion/revision_gate.py",
+          "payload_retained": false
+        },
+        {
+          "line": 290,
+          "line_sha256": "158ec4e2b04b1a761bbb4bd7da0c544306719bcc325c50e81fee538e4d6becc8",
+          "path": "src/orion/self_orion/revision_gate.py",
+          "payload_retained": false
+        },
+        {
+          "line": 334,
+          "line_sha256": "96c2997ff4657bbb9829d8125527791124b7ef9c9776a5a7da24d7fb44269944",
+          "path": "src/orion/self_orion/revision_gate.py",
+          "payload_retained": false
+        }
+      ],
+      "occurrence_count": 21
+    }
+  },
+  "occurrence_census_scope": "The seven frozen target-semantic source files only; unrelated repository occurrences are excluded.",
+  "payload_policy": {
+    "case_or_outcome_payloads_accessed": false,
+    "occurrence_line_hashes_only": true,
+    "remote_bodies_fetched_for_hash_and_byte_equality_only": true,
+    "remote_bodies_written_to_handoff": false,
+    "source_line_payloads_written_to_handoff": false
+  },
+  "registry_id": "P1.V8.PUBLIC.TARGET.SOURCE.PROVENANCE",
+  "repository": {
+    "api_etag": "W/\"ed50b925c5930bfdc500bcb5a28620b8f4c0a315087fde40a67881ba988de13c\"",
+    "api_http_status": 200,
+    "default_branch": "main",
+    "full_name": "SzeChunYiu/ORION",
+    "html_url": "https://github.com/SzeChunYiu/ORION",
+    "license_field": null,
+    "private": false,
+    "visibility": "public"
+  },
+  "schema_version": "orion.p1.public-target-source-provenance-registry.v8",
+  "terminal": "PUBLIC_ORION_TARGET_CORPUS_COMMIT_AND_BYTES_BOUND__REMOTE_PAYLOAD_NOT_RETAINED"
+}

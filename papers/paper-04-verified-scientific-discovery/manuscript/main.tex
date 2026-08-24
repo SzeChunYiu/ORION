@@ -4,7 +4,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{xurl}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{placeins}
 \setlength{\emergencystretch}{3em}
 % Content digests and long identifiers cannot break inside \texttt, which is the
@@ -13,7 +13,8 @@
 \urlstyle{tt}
 \newcommand{\idt}[1]{\path{#1}}
 
-\title{Eliminating Scientific-Authority Laundering with Non-Compensatory Protected Verification}
+\title{When Verification Axes Can Support Scientific Claims:\\
+Identifiability, Attainability, and Non-Compensatory Promotion}
 \author{Anonymous authors}
 \def\month{MM}
 \def\year{YYYY}
@@ -23,190 +24,35 @@
 \maketitle
 
 \begin{abstract}
-Scientific verification can establish that a claim is plausible, cited, or semantically supported without establishing that a particular source, checker, and evaluator jointly authorize a scientific claim transition. We test a non-compensatory authority pipeline that requires exact evidence-content binding, source ownership, semantic support, checker independence and hostile discrimination, evidence influence, evaluator/holdout integrity, protected-access clearance, and search-contamination clearance. Missing or failed prerequisites produce \cannot or \blockstate rather than a compensable confidence penalty. In a prospectively frozen, independently hosted 420-case protected campaign spanning 13 clean and hostile families, ORION eliminates false authority promotion across all 360 hostile opportunities, compared with 180/360 false promotions for the strongest frozen mechanism proxy (absolute difference $-0.50$, paired 95\% CI $[-0.553,-0.447]$). Both systems promote 60/60 clean positives, demonstrating that the gain is not produced by blanket refusal. Every registered ORION ablation preserves clean coverage while increasing false promotion, from 30/360 for several single-coordinate removals to 330/360 (91.7\%) when the hard terminal is replaced by a six-of-nine soft-confidence rule. Scored-process telemetry records zero protected-label identifiers and zero external-IP connections, and an independent implementation exactly reproduces the headline counts. A separate audit shows that the original \cannot comparison is saturated by an evidence-list shortcut and therefore cannot discriminate systems; rather than interpreting that equality as a scientific finding, we identify the construction defect and prospectively specify a harder evidential family. The protected V2 evidence therefore supports a strong benchmark-level conclusion: non-compensatory, content-bound authority gates can eliminate the scientific-authority laundering that survives strong citation, support, and provenance mechanisms while retaining full clean coverage.
-Scientific verification can establish that a claim is plausible, supported somewhere, or accompanied by a citation without establishing that a particular source, checker, and evaluator jointly justify a scientific-authority transition. We evaluate a non-escalating authority pipeline that requires exact evidence-content binding, source ownership, semantic support, checker independence and hostile discrimination, evidence influence, evaluator/holdout integrity, and search-contamination clearance. A missing prerequisite leaves the outcome undetermined and a failed one blocks it, rather than contributing a low score that confidence elsewhere can compensate for. In a prospectively frozen, independently hosted 420-case protected campaign covering 13 clean/hostile families, the governed pipeline produced 0 false authority promotions among 360 hostile opportunities, versus 180/360 for the strongest frozen comparator mechanism (absolute difference $-0.50$, paired 95\% CI $[-0.553,-0.447]$). Both promoted 60/60 clean positives, so the safety gain did not arise from total refusal. The predeclared abstention-superiority hypothesis was not supported on that battery: every system was correct on all eligible abstention cases, which we show is a property of how that family was constructed rather than a comparative finding. We then repair the construction under a protocol frozen beforehand and an identifiability register run before execution, and report one run of the same frozen panel on it: the governed pipeline selects the undetermined terminal on 30/30 eligible cases with 0/360 false promotions against 0/30 for the same strongest comparator (paired difference $1.0$, 95\% CI $[1.0,1.0]$), while the one comparator mechanism able to escalate selects it on 15/30, so the margin against that mechanism is $0.5$. Nine of the ten comparator mechanisms score zero because they cannot express an undetermined terminal at all, so this measures terminal expressiveness under a non-compensatory gate lattice --- the ability to report an inability --- and not a finer-grained scientific judgement. Every registered ablation increased false promotion while preserving clean coverage; replacing the non-compensatory terminal with a six-of-nine soft-confidence rule increased false promotion to 91.7\%. Scored-process telemetry recorded zero protected-label identifiers and zero external-IP connections, and an independent implementation reproduced the headline counts. The evidence supports the bounded claim that non-compensatory authority gates prevent authority laundering in this protected mechanical-gold benchmark; it does not establish universal evaluator security or superiority to the original external systems whose ideas motivated the comparator mechanisms.
+A benchmark score supports a competence claim only when the target is
+identifiable, compared interfaces can attain its terminal, and the panel is
+discriminating.  We formalize these requirements through fibrewise Bayes risk,
+a donor-factorization theorem, a terminal-adapter criterion, and
+data-processing and total-variation bounds.  In a protected 420-case battery,
+a non-compensatory promotion relation made 0/360 false promotions versus
+180/360 for the strongest frozen mechanism proxy, while both promoted 60/60
+clean positives.  A registered abstention contrast was saturated.  A distinct
+exact-axis battery exposed terminal expressiveness rather than general
+judgement.  On 400 exact contracts, the relation scored 400/400 versus 250/400
+for a donor-complete product and 50/400 for a compensatory product; an
+information-equivalent typed product tied at 400/400.  The paired improvement
+over the donor-complete product was $0.375$ with a domain-stratified 95\%
+bootstrap interval of $[0.3275,0.4225]$.  These finite batteries support the
+factorization and attainability boundary, not naturalistic superiority.  A
+separate source programme has authenticated 76/80 publication--archive--revision
+bridges but zero eligible natural pairs; an exact 106-class JAR projection does
+not supply fresh compilation or signed build and mode authority.
 \end{abstract}
 
-\noindent\textbf{Keywords:} scientific verification; provenance; evaluator integrity; protected evaluation; abstention; AI assurance.
+\noindent\textbf{Keywords:} scientific verification; benchmark identifiability; attainable risk; provenance; authorization; protected evaluation; abstention.
 
-\section{Introduction}
-Language-model research systems increasingly retrieve sources, synthesize claims, attach citations, and run automated verification. This creates a governance problem: a claim may be correct but attributed to the wrong source; a source may support a nearby claim but not the assigned one; a checker may be non-empty yet non-discriminating or share lineage with the answer; and an evaluator may be contaminated or tampered with after the fact. In each case, a scalar confidence score can remain high even though a prerequisite for scientific authority is absent.
-
-We study a stricter object: a \emph{scientific-authority transition}. A proposal can be plausible and well supported but is promoted only when a registered set of content, provenance, checker, and evaluator prerequisites all pass. Unresolved prerequisites do not contribute a low score; they block escalation. This design is motivated by source-aware verification, multi-source attribution, claim-level auditability, evidence influence, iterative fact checking, evaluator-tampering benchmarks, and search-time contamination work \citep{provenanceguard2026,attributionbench2024,aar2026,provenai2026,fire2024,rewardhacking2026,stc2026,deepsciverify2026}. Recent academic-integrity and agentic-abstention benchmarks also make explicit that declining to complete an unsupported action can itself be the correct behavior rather than a failure to optimize task success \citep{sciintegrity2026,agentabstain2026}.
-
-The contribution is the protected composition of these requirements as one non-compensatory authority transition. We do not claim provenance tracking, citation checking, contamination detection, abstention, benchmark auditing, or evaluator locking as standalone novelties. Instead, we test whether their authority-bearing conjunction can prevent false scientific promotion that remains possible when each coordinate is treated locally or allowed to compensate for another.
-
-The final study was executed after the subject, comparator/ablation mechanisms, evaluator, statistical rules, and split-generation code were frozen. A first 420-case protected campaign on an older subject remains valid evidence for that older revision but does not authorize the repaired subject. A separate 39-case live-model arm remains exploratory because post-run audit found label/denominator inconsistencies and a hidden-family execution leak. We therefore generated a fresh post-repair hidden split and executed the publication-authorizing campaign without reusing either prior outcome for tuning.
-
-Our main findings are: (i) ORION makes 0/360 false promotions while the strongest frozen mechanism proxy makes 180/360, with the paired H1 interval entirely beyond the predeclared five-point margin; (ii) both promote 60/60 clean positives, showing that the safety separation is achieved at identical clean coverage; (iii) every registered ablation increases false promotion without reducing clean coverage, with soft confidence producing 330/360 false promotions; and (iv) a post-run measurement audit identifies the original \cannot family as non-discriminating by construction and converts that issue into a prospectively specified harder test rather than a spurious equality claim.
-
-\section{Claim boundary and related work}
-\paragraph{Source ownership and attribution.}
-AttributionBench studies attribution evaluation across multiple sources \citep{attributionbench2024}. ProvenanceGuard emphasizes source-aware factuality and cross-source conflation \citep{provenanceguard2026}. Scientific claim-evidence benchmarks test whether evidence supports or contradicts claims \citep{claimbench2025}. These lines motivate distinct coordinates for claim correctness, source ownership, and semantic support.
-
-\paragraph{Provenance-sensitive authorization.}
-A current controlled audit makes the authorization distinction especially direct: evidence can be relevant to an agent decision without being authorized to determine that decision, and target-specific tests can hold the task and proposition fixed while varying only source authority \citep{provsen2026}. P4 therefore does not claim the relevance-versus-authorized-evidence distinction as new. Its empirical contribution is the protected, non-compensatory conjunction of content, ownership, support, checker, influence, evaluator, access, and contamination prerequisites.
-
-\paragraph{Auditability, citation fidelity, and influence.}
-Claim-level auditability work argues that research-agent outputs require persistent semantic provenance rather than only fluent text \citep{aar2026}. ProvenAI separates citation fidelity from whether cited evidence influenced the answer path \citep{provenai2026}. We adopt that separation: citation presence cannot substitute for evidence-use provenance.
-
-\paragraph{Research-integrity provenance and declared behavior.}
-INSPECT-AI and RIPE-KG represent the provenance of research-integrity assessments over clinical-trial publications, showing a current scientific setting in which the assessment process itself is an auditable object \citep{inspectai2026}. Behavioral Integrity Verification formalizes a complementary declared-versus-actual integrity problem for agent skills \citep{behavioralintegrity2026}. These are parent-domain precedents for explicit provenance and contract checking; P4 does not claim provenance ontologies, research-integrity knowledge graphs, or generic behavioral-integrity auditing as novel.
-
-\paragraph{Iterative verification and evidence escalation.}
-FIRE iterates retrieval and verification rather than treating a single retrieval pass as final \citep{fire2024}. DeepSciVerify motivates escalation from an abstract-level judgment to fuller evidence when initial evidence is insufficient \citep{deepsciverify2026}. These mechanisms inform two frozen comparator proxies.
-
-\paragraph{Evaluator integrity, benchmark auditing, and contamination.}
-RewardHackingAgents treats evaluator manipulation and held-out leakage as an explicit benchmark dimension \citep{rewardhacking2026}. Search-time contamination work shows that browsing systems can retrieve public benchmark answers during inference \citep{stc2026}. BenchGuard and Automated Benchmark Auditing show that benchmark specifications, environments, ground truths, and grading logic can themselves be defective \citep{benchguard2026,autobenchmarkaudit2026}. The Holistic Agent Leaderboard further demonstrates the value of standardized harnessing and trace inspection, including direct observation of agents searching for benchmark material rather than solving the intended task \citep{hal2025}. These results motivate protected evaluator identity, holdout custody, access telemetry, and independent audit; P4 does not claim automated benchmark auditing as its contribution.
-
-\paragraph{Abstention and scientific integrity.}
-SciIntegrity-Bench constructs academic-integrity dilemmas in which honest acknowledgement of inability is the only correct outcome, while AgentAbstain evaluates paired should-act/should-abstain tasks in executable environments \citep{sciintegrity2026,agentabstain2026}. They establish abstention as an evaluation target distinct from generic task success. P4's \cannot and \blockstate terminals are authority-specific states determined by unresolved or failed evidence/checker/evaluator prerequisites. The V2 audit shows that its original insufficient-evidence family does not resolve comparative abstention ability, so that axis is treated as a measurement-design result rather than generalized beyond the battery.
-
-Comparator names therefore use ``-style'' or describe a mechanism. They are protocol-matched reimplementations under one candidate-visible packet and resource accounting, not executions of the external authors' software. Our empirical claim is about the frozen mechanisms in this benchmark, not about published systems in their native environments.
-
-\input{discovery_failure_authority_interface}
-
-\section{Non-escalating authority transition}
-Let a proposal contain claim $c$ and evidence references $E=\{e_1,\ldots,e_n\}$. Promotion is a conjunction of hard prerequisites rather than a weighted score:
-\begin{align}
-G_{\mathrm{content}} &: \text{resolved bytes equal the registered evidence digest},\\
-G_{\mathrm{owner}} &: \text{the assigned source owns the cited content},\\
-G_{\mathrm{support}} &: \text{the assigned evidence supports }c,\\
-G_{\mathrm{indep}} &: \text{checker lineage is admissibly independent},\\
-G_{\mathrm{disc}} &: \text{checker rejects the frozen hostile battery},\\
-G_{\mathrm{influence}} &: \text{cited evidence participated in the answer path},\\
-G_{\mathrm{eval}} &: \text{evaluator identity/chronology is intact},\\
-G_{\mathrm{access}} &: \text{protected-label access telemetry is clear},\\
-G_{\mathrm{search}} &: \text{search-time contamination is clear}.
-\end{align}
-The terminal is \promote only when every required gate passes and the evidence supports the claim. A resolved negative prerequisite yields \blockstate; an unresolved evidential prerequisite yields \cannot. No failed coordinate can be averaged away by confidence elsewhere. Eight ablations remove one coordinate at a time, including a soft-confidence variant that promotes when at least six of nine gates pass.
-
-\section{Protected evaluation protocol}
-\subsection{Prospective freeze and fresh post-repair split}
-The prospective base protocol is \texttt{P4.protected-authority.v1}; V2 is an additive post-repair execution binding with a fresh hidden split and repaired-subject panel. The publication-authorizing subject is commit \texttt{f6e51b5c8f905382b8e2f5568d9035fc14241aa1}. Before any outcome-bearing run, a public-seed preflight exercised 42 hostile authority tests and the complete 420-case pipeline with ten comparator mechanisms, eight ablations, five deterministic repeats, protected scoring, typed-panel validation, and an independent reproducer. After the preflight and harness merge were signed and green on the default branch, an independent GitHub-hosted job minted a fresh secret-seeded split. The secret seed was never logged; only a commitment was retained.
-
-The final split contains 420 mechanical-gold cases across 13 families: 60 clean positives and 30 cases in each of 12 hostile/insufficient-evidence families. A 150-case post-run public slice contains 30 clean and 120 hostile cases; distinct protected-hostile and protected-holdout slices remain host-only during scoring. Table~\ref{tab:p4_t1} summarizes custody.
-
-\input{../tables/p4_t1_attack_custody.tex}
-
-\subsection{Gold-blind execution and custody}
-The candidate/comparator jobs received exactly two top-level fields per case: an opaque \texttt{case\_id} and \texttt{candidate\_visible}. The host mechanically proved that attack family, protected gold, custody class, and expected authority terminal were absent. Candidate and comparator jobs ran in separate GitHub-hosted jobs from the exact subject archive with repository credentials removed. Five deterministic repeats were recorded under file/network \texttt{strace}. The protected evaluator became eligible to download gold only after both scored lanes completed, and first checked that traces contained neither protected identifiers nor external-IP connections.
-
-The launch workflow also re-queried the signed execution-freeze commit and exact-main CI through the GitHub API, byte-compared the frozen workflow/binding/harness files to that signed commit, and recomputed host hashes before handing off candidate-visible data. The evaluator and independent reproducer were separate jobs.
-
-\subsection{Comparator panel, ablations, and statistics}
-Seven primary comparator IDs mirror the repaired subject's frozen authority panel: ProvenanceGuard-style source routing, AttributionBench-style multi-source attribution, FIRE-style iterative retrieve/verify, CLAIM-BENCH-style claim evidence, ProvenAI-style citation fidelity/influence, RewardHackingAgents-style contamination/tamper checks, and DeepSciVerify-style evidence escalation. Three auxiliary controls test citation presence, pooled semantic support, and auditability/provenance. These are mechanism proxies, not original implementations.
-
-The primary outcome is false authority-promotion rate over gold terminals that do not permit \promote. Clean coverage is promotion rate over the 60 clean positives. H1 requires an absolute false-promotion improvement beyond 0.05 against the strongest frozen comparator; H2 requires clean coverage non-inferior within 0.05; H3 tests superior correct \cannot selection. Rate intervals use Wilson 95\% intervals; paired effects use a fixed-seed percentile bootstrap. No false promotion, false block, abstention, candidate-caused failure, or clean false negative is removed from its eligible denominator.
-
-\section{Results}
-The publication-authorizing campaign is GitHub Actions run \texttt{31976589735}. The typed authority panel passed with no blockers, and a separate implementation independently reproduced the headline counts.
-
-\subsection{Elimination of false promotion at full clean coverage}
-ORION produced 0/360 false promotions. The strongest frozen comparator mechanism, ProvenAI-style citation-fidelity/influence, produced 180/360 (50.0\%). The paired difference was $-0.50$ with 95\% CI $[-0.553,-0.447]$, so H1 passed the predeclared $-0.05$ practical margin. Figure~\ref{fig:p4_2} reports the full mechanism panel.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{../figures/p4_2_false_promotion.png}
-\caption{False authority-promotion rate in protected V2. Whiskers are Wilson 95\% intervals. Comparator labels denote protocol-matched mechanism reimplementations.}
-\label{fig:p4_2}
-\end{figure}
-
-Both ORION and the strongest comparator promoted 60/60 clean positives, with zero clean false negatives. The clean-coverage difference and paired 95\% interval were both exactly zero, so H2 passed the $-0.05$ non-inferiority margin. Figure~\ref{fig:p4_3} shows that every primary mechanism sits at 1.0 clean coverage; the result therefore does not manufacture a frontier by visually jittering equal values.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{../figures/p4_3_coverage_frontier.png}
-\caption{Safety--coverage result. Every primary mechanism promoted 60/60 clean controls, while hostile false-promotion rates differ substantially.}
-\label{fig:p4_3}
-\end{figure}
-
-\subsection{Abstention-axis audit and prospective discriminator}
-Every one of the eleven panel members, ORION included, correctly selected \cannot on all 30 insufficient-evidence cases. The equality is exact, but the post-run construction audit shows why it cannot support a comparative abstention conclusion. In this battery the insufficient-evidence family has an \emph{empty} evidence list, while every other family carries exactly one evidence object. The shortcut ``predict \cannot\ if and only if the evidence list is empty'' therefore classifies all 420 cases correctly. The axis saturates by construction and has no resolving power.
-
-H3 was not supported; the construction audit shows that the registered abstention axis was saturated by an empty-evidence shortcut and therefore could not resolve comparative abstention ability. This audit converts an apparently neutral result into a concrete measurement finding: the original H3 family does not test evidential judgement. We therefore do not interpret the equality as evidence of equivalent abstention ability. Instead, the prospective repair changes what must be reasoned about while preserving the authority distinction. New cases present evidence that is read but fails to establish the claim, either because no supporting record exists or because an apparently supporting record lacks verifiable provenance. Under that repaired construction no evidence-free rule tested on the design reaches perfect classification; the best shortcut falls from $1.00$ to $0.96$. The repaired battery has not yet been executed, so it is a future discriminator rather than a retroactive result. Table~\ref{tab:p4_t3} retains the V2 abstention and false-negative counts exactly.
-
-\input{../tables/p4_t3_cannot_check_errors.tex}
-
-\subsection{Attack families and ablations}
-ORION made no false promotion in any hostile family. The strongest comparator false-promoted all 30 cases in each of six governance/checker families: weak checker, same-lane checker, post-hoc checker/evaluator, search-time contamination, evaluator tamper, and holdout access. It was correct on content substitution, source conflation, wrong-source, pooled-owner, cited-non-influential, and insufficient-evidence families. Figure~\ref{fig:p4_4} shows the contrast.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{../figures/p4_4_detection_by_attack.png}
-\caption{False-promotion rate by hostile family for ORION and the strongest frozen mechanism proxy.}
-\label{fig:p4_4}
-\end{figure}
-
-Every registered ablation preserved 60/60 clean coverage while increasing false promotion. Removing exact content binding, checker-lineage independence, hostile-checker discrimination, behavioral influence, or the search-contamination block produced 30/360 false promotions (8.3\%) each. Collapsing source/provenance identity produced 60/360 (16.7\%); removing evaluator protection/telemetry produced 90/360 (25.0\%); and replacing the fail-closed terminal with the predeclared six-of-nine soft-confidence threshold produced 330/360 (91.7\%). Table~\ref{tab:p4_t2} contains the complete panel.
-
-\input{../tables/p4_t2_baseline_ablation_results.tex}
-
-\subsection{Attribution, support, cost, and telemetry}
-Several mechanisms achieve perfect source-attribution accuracy while still false-promoting governance attacks; conversely, pooled semantic-support mechanisms can score well on support while attributing the source incorrectly. Figure~\ref{fig:p4_5} separates those coordinates.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{../figures/p4_5_attribution_vs_support.png}
-\caption{Source-attribution accuracy and support/contradiction F1 for the primary mechanism panel. High values on these coordinates do not guarantee a safe authority terminal.}
-\label{fig:p4_5}
-\end{figure}
-
-ORION's deterministic gate evaluation is slower than the simple mechanism proxies in this synthetic harness: mean latency is about 2.97~ms per case versus single-digit microseconds for the primary proxies (Figure~\ref{fig:p4_6}). This is not an end-to-end serving benchmark; model and network latency are intentionally absent.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{../figures/p4_6_cost_false_promotion.png}
-\caption{Mean deterministic evaluation latency versus false authority-promotion rate; the latency axis is logarithmic.}
-\label{fig:p4_6}
-\end{figure}
-
-Scored-process telemetry recorded zero protected-identifier hits and zero external-IP connections for both candidate and comparator jobs. Raw traces remain in protected custody. The independent reproducer obtained the same 0/360 versus 180/360 false-promotion counts and 60/60 versus 60/60 clean-promotion counts.
-
-\subsection{Audit-driven exclusion of non-authorizing evidence}
-The repository's earlier 39-case live-model arm is not used for publication authorization. Post-run audit identified internally inconsistent live labels/expected terminals, incorrect opportunity denominators in its summary path, and direct use of a candidate-hidden family label in the live ORION/ablation execution path. Preserving these outputs as diagnostics while excluding them from V2 is part of the same non-escalation discipline tested by the paper: evidence that does not satisfy the authority contract cannot be used to strengthen a scientific claim merely because it is favorable or available.
-
-\FloatBarrier
-\section{Threat model, scope, and interpretation}
-The protected result is deliberately specific about what it establishes. The campaign uses 420 synthetic mechanical-gold cases and therefore isolates authority-transition semantics rather than estimating performance on naturally occurring scientific disagreements. The written human-adjudication rubric is not triggered because all final cases are mechanically decidable. Scoring is deterministic and uses no LLM provider, which makes the authority mechanism auditable but does not measure the error distribution of a full stochastic research agent.
-
-Comparator mechanisms are matched reimplementations. They instantiate published ideas under one packet and budget, but the result is not a leaderboard against the original ProvenAI, ProvenanceGuard, DeepSciVerify, FIRE, AttributionBench, CLAIM-BENCH, RewardHackingAgents, or related implementations. The clean controls are intentionally unambiguous; 60/60 coverage proves that ORION's protected gain is not blanket refusal, while harder benign recall is an additional evaluation axis. The hostile taxonomy is finite, so adaptive attacks, compromised host infrastructure, side channels outside retained syscall/network telemetry, and novel evaluator attacks remain extension targets rather than implied coverage.
-
-Recent benchmark-auditing work provides an additional reason to make the evaluation object itself auditable: expert-built tasks and harnesses can contain specification, environment, ground-truth, or grading defects that materially alter measured rankings \citep{benchguard2026,autobenchmarkaudit2026,hal2025}. P4 addresses this risk with deterministic generation, typed-panel validation, exact split/harness binding, protected custody, post-run public slicing, and independent reproduction. The abstention-axis shortcut discovered after V2 demonstrates the value of that audit discipline directly: the manuscript identifies where a registered metric lacks resolving power instead of converting an easy battery into an exaggerated systems claim.
-
-The appropriate interpretation is architectural. Under the frozen attack families and custody model, non-compensatory authority gates eliminate promotions that survive strong semantic, citation, source, and provenance mechanisms when a governance prerequisite is missing. The empirical separation is carried by false authority promotion, which spans six distinct values across the panel and four across the ablations. Clean coverage is saturated at 1.0 across the panel, establishing absence of blanket refusal but not comparative difficulty on benign cases; the original \cannot family is also saturated and is therefore treated as a measurement-design boundary. This separation makes the central evidence stronger, not weaker: the benchmark has one discriminating primary axis, and that axis shows a 50-point absolute advantage with full clean coverage.
-
-\section{Broader impact and governance}
-False scientific-authority promotion can amplify incorrect or misattributed claims, particularly when a system presents verification artifacts that appear independent but are not. A fail-closed layer may reduce this risk, but excessive blocking can delay legitimate scientific communication or concentrate power in whoever controls evidence and evaluator registries. Work on academic integrity and agentic abstention reinforces that refusal can be the correct behavior under genuine insufficiency, while also showing that productive abstention remains difficult and should not be conflated with generic non-response \citep{sciintegrity2026,agentabstain2026}. We therefore report abstention cost, clean coverage, custody identity, and artifact transparency rather than optimizing only a security metric.
-
-Protected evaluation creates another trade-off: some labels must remain hidden during scoring, yet publication requires enough evidence for audit. We release safe aggregates and a post-run public slice while retaining protected holdout labels/traces in restricted custody. Exact subject/split/harness hashes and an independent reproduction receipt are published so the result is not represented by an unverifiable scalar score.
-
-\section{Reproducibility and availability}
-The campaign is run \texttt{31976589735}. The repaired subject is \texttt{f6e51b5c8f905382b8e2f5568d9035fc14241aa1}; split SHA-256 is \texttt{3fe91b669643fa158f2f64c1e6ab70837afbb9b0582e297f1da6e1c3c696fcd9}; frozen harness SHA-256 is \texttt{094f43cb320f8e8e3196049269b20ac22e7e94fa9890b80f27f38ef49f7c82ea}; and the safe publication bundle SHA-256 is \texttt{51ac14bc3a6b4b570aaca6d4a41c91f53d9bf2887e66f0620c412f78566a3b44}. The repository contains immutable publication metrics, execution-freeze bindings, the V2 comparator/ablation config, generation scripts, and a claim ledger. The safe bundle contains the post-run public attack slice and public per-case verdicts. Protected per-case gold and raw traces are retained separately and are not part of the public release.
-
-\section{Conclusion}
-Scientific authority is stricter than factuality, citation presence, attribution, semantic support, or evaluator confidence in isolation. In the prospectively frozen post-repair protected campaign, ORION's non-compensatory transition eliminates false promotion across all 360 hostile opportunities while preserving all 60 clean promotions. The strongest frozen mechanism proxy false-promotes 180/360 hostile cases, producing a 50-point absolute separation with paired 95\% CI $[-0.553,-0.447]$. Every registered ablation preserves clean coverage while increasing false promotion, and the six-of-nine soft-confidence replacement rises to 330/360 false promotions. The headline survives a fresh hidden split, gold-blind execution, protected-access and network telemetry, exact artifact binding, and independent reproduction.
-
-The study also demonstrates an important property of protected scientific evaluation itself. When the original \cannot family proves non-discriminating because an empty-evidence shortcut solves it perfectly, the audit detects the defect and prevents that saturated equality from becoming a false claim of equivalent abstention ability. Likewise, an earlier live-model arm with leakage and denominator defects is retained as diagnostic history but excluded from authorization. These are not rhetorical downgrades; they are instances of the same authority rule operating on the paper's own evidence.
-
-Within the registered mechanical-gold families, the strongest supported conclusion is therefore direct: non-compensatory, content-bound, custody-protected authority gates eliminate the scientific-authority laundering that survives strong frozen citation/support/provenance mechanisms without sacrificing clean coverage. The remaining extension questions concern harder benign cases, naturally occurring scientific disputes, adaptive attacks, and stochastic agents; they define where to test the contract next rather than weakening the demonstrated protected result.
-
-\bibliographystyle{tmlr}
-\bibliography{bibliography}
-
-\appendix
-\section{Freeze and custody identifiers}
-The final hidden set was created only after the V2 public preflight and harness merge were signed and green. Independent host run was \texttt{31975937488}; protected attack-set SHA-256 is \texttt{6b8b6243040163dfa582dbeb8896e2c68d6b263e3227b64e7bab199d8599897c}; candidate-manifest SHA-256 is \texttt{c5df341a6bf63f83d2af17492c498d4d36a944ad6616097a630d8390b7bda331}. Execution-freeze merge \texttt{99bcacc82224089c34019ad82287754388dadbc5} was GitHub-verified before launch. The launch workflow independently re-queried that signature and exact-main CI and byte-compared frozen workflow/binding/harness files against the signed freeze commit before handoff.
-
-\section{Ablation interpretation}
-Five 8.3\% ablations each expose a hostile family governed by the removed coordinate. Source/provenance collapse exposes two families (16.7\%), evaluator-protection removal exposes three (25\%), and soft confidence permits promotion in eleven of twelve hostile families (91.7\%). This monotone pattern is descriptive evidence that the final zero-false-promotion result is not generated by one redundant gate alone.
-
-\end{document}
 \input{sections/01-introduction}
 \input{sections/02-related-work}
+\input{sections/02a-verification-axis-identifiability}
 \input{sections/03-non-escalating-authority-transition}
 \input{sections/04-methods}
 \input{sections/05-results}
+\input{../submission/P4_X_PROMOTION_AUTHORITY_SECTION}
 \input{sections/06-threat-model-limitations-and-interpretation}
 \input{sections/07-broader-impact-and-governance}
 \input{sections/08-data-and-code-availability}

@@ -1,0 +1,49 @@
+{
+  "achieved": [
+    "FULL_CROSS_CONSTRUCT_INPUT_UNIVERSE_193305_CASES",
+    "BINARY_EQUIVALENCE_REFERENCE_RECALL_1399_OF_1399",
+    "NON_BINARY_REFERENCE_RELATIONS_CANNOT_CHECK_35_OF_35",
+    "MAXIMAL_BINARY_ENVELOPE_COVERAGE_1_0_ON_117914_SCORABLE_CASES",
+    "INFORMATION_EQUIVALENT_IDEAL_EXACT_TIE"
+  ],
+  "blocked": [
+    {
+      "claim": "HARM_SUPERIORITY_TO_AML",
+      "evidence": [
+        0.2247994300931187,
+        0.22473158403582272,
+        0.19352239767966484
+      ],
+      "terminal": "PUBLIC_V3_NO_HARM_SUPERIORITY"
+    },
+    {
+      "claim": "NONTRIVIAL_SELECTIVE_ENVELOPE",
+      "reason": "The only V3 coverage-one successor is maximal and unresolved on every scorable case.",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "claim": "PROTECTED_CONFIRMATION",
+      "reason": "V3 was explicitly designed after public V2 gold was opened.",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "claim": "SOURCE_DISJOINT_MULTI_FAMILY_TRANSPORT",
+      "reason": "OAEI 2004 is one bibliographic seed family.",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "claim": "CAUSAL_REFERENT_COORDINATE_EFFECT",
+      "reason": "No REFERENT_0 control or independently adjudicated coordinate contrast.",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "claim": "CURRENT_STRONGEST_COMPARATOR_SUPERIORITY",
+      "reason": "Only AML v3.2 auto is externally bound, with a runtime deviation and one parser failure.",
+      "terminal": "CANNOT_CHECK"
+    }
+  ],
+  "current_terminal": "PUBLIC_COVERAGE_MECHANICS_PASS__PROTECTED_SOURCE_DISJOINT_MULTI_FAMILY_TRANSPORT_CANNOT_CHECK",
+  "next_frozen_gate": "On untouched ontology families, require a proper evidence-licensed envelope with coverage 1.0, harm noninferiority in every loss regime, exact ideal tie, and cluster-level replication.",
+  "protocol_id": "P3.PUBLIC.OAEI.CROSS_CONSTRUCT.IDENTIFICATION_ENVELOPE.DEV.V3",
+  "schema_version": "orion.p3.transport-blockers.v3"
+}

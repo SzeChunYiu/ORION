@@ -1,0 +1,49 @@
+{
+  "authority_and_custody": {
+    "confirmation_claim_allowed": false,
+    "independent_or_protected": false,
+    "same_workspace": true,
+    "source_licence": "CC-BY-4.0 as frozen by V9"
+  },
+  "comparator": {
+    "active_loop": "exact V10 batch, seed, termination and tie rules",
+    "balancer": 9.8,
+    "identity": "EXACT_U4",
+    "input": "title + abstract",
+    "learner": "LinearSVC C=0.11 squared_hinge random_state=20260823",
+    "unchanged": true
+  },
+  "current_scope": "SIGNAL_AVAILABILITY_AND_FIBRE_SEPARATION_ONLY__NO_PERFORMANCE_EXECUTION",
+  "frozen_at_utc": "2026-08-24T06:00:26.857706+00:00",
+  "future_candidate_if_gate_passes": {
+    "current_execution_authorized": false,
+    "frozen_encoding": "normalize(title) + U+001F + normalize(abstract) + U+001F + 'KEYWORDS=' + normalize(keywords)",
+    "identity": "U4_PLUS_PROVIDER_KEYWORD_STATE",
+    "only_change": "Append provider-native normalized keywords as a typed field; exact learner, balancer, active loop, population and outcome gates remain unchanged."
+  },
+  "future_unchanged_gates": {
+    "absolute_work_saving": "controller WSS95 > 0 in every review",
+    "mean_delta_CRE20": ">= 0.010858985820770889",
+    "mean_delta_R10": ">= 0.010858985820770889",
+    "mean_delta_WSS95": ">= 0",
+    "positive_CRE20_sign": ">= 6/7 reviews strictly positive",
+    "positive_R10_sign": ">= 6/7 reviews strictly positive",
+    "worst_review_R10_harm": ">= -0.05"
+  },
+  "identity": "P2_V12_KEYWORD_STATE_MATCHED_CONTRACT",
+  "resource_contract": {
+    "future_compute": "All keyword parsing, vectorization, fitting and ranking costs must be reported and cannot be omitted from efficiency claims.",
+    "network_calls_for_signal": 0,
+    "new_source_files": 0,
+    "provider_payload_bytes": "Already charged in the exact V10 source file.",
+    "screening_budget": "Unchanged V10 effort endpoints and complete ranking."
+  },
+  "schema_version": "orion.p2.state-expanding-acquisition.matched-contract-freeze.v12",
+  "source_and_population": {
+    "new_records_added": 0,
+    "outcome_based_selection": false,
+    "records_removed": 0,
+    "same_exact_v10_source_bytes": true,
+    "same_exact_v10_two_record_population_membership": true
+  }
+}

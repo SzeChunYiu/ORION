@@ -1,0 +1,38 @@
+{
+  "identity": "P2_KIFMS_V7_NEGATIVE_RESULT_LEDGER",
+  "terminal": "P2_KIFMS_V7_TRANSPARENT_PUBLIC_EXECUTION_FAILS_ONE_OR_MORE_LOCKED_PERFORMANCE_GATES_REQUIRES_SUCCESSOR",
+  "entries": [
+    {
+      "id": "P2V7-N01",
+      "negative_result": "Independent custody remains absent.",
+      "positive_progress": "A hash-frozen public development execution closed the data/runtime information gap without claiming independence.",
+      "residual": "Require source-disjoint independent reproduction only for confirmatory widening; do not spend local compute trying to manufacture a signature."
+    },
+    {
+      "id": "P2V7-N02",
+      "negative_result": "Strict sign gates fail: CRE20 is positive in 11/14 and R@10 in 9/14, below 12/14.",
+      "positive_progress": "Magnitude and mean work-saving effects are large and positive: +0.084472 CRE20, +0.148820 R@10 and +0.119813 WSS95.",
+      "residual": "Preserve the failed gates. Use a source-disjoint successor with a continuous early-recall objective and predeclared resolution-aware inference."
+    },
+    {
+      "id": "P2V7-N03",
+      "negative_result": "Worst-review learner R@10 harm is -0.125, failing the -0.05 floor.",
+      "positive_progress": "Only one review has a negative learner R@10 effect; several zero effects expose the discreteness of sparse-positive R@10.",
+      "residual": "Add explicit worst-review harm regularization and retain the u4 fallback; do not delete the four-positive review."
+    },
+    {
+      "id": "P2V7-N04",
+      "negative_result": "Full candidate-minus-u4 means are -0.201648 R@10 and -0.119160 WSS95; G3-G5 fail.",
+      "positive_progress": "The factorial diagnosis identifies the u4 learner/balancer as the productive component across both representations.",
+      "residual": "Replace standalone-candidate competition with donor envelopment: u4 base plus a cross-fitted residual correction and fail-safe fallback."
+    },
+    {
+      "id": "P2V7-N05",
+      "negative_result": "The exact public family is highly class-imbalanced; five reviews have at most four positive rows, and one has only one.",
+      "positive_progress": "Every review has both classes, so the exact family is executable and its low-prevalence regime is itself scientifically relevant.",
+      "residual": "Use CRE20/curve-level losses and review-level weighting; retain R@10 only as the locked adverse historical endpoint in future transport."
+    }
+  ],
+  "next_discriminator": "Freeze a u4-based donor-envelopment controller with leave-one-review-out residual development and a hard fallback/harm rule, then execute once on a lawful source-disjoint public review family."
+}
+

@@ -1,0 +1,58 @@
+{
+  "active_loop": {
+    "batch_size": "max(10, ceil(0.002 * canonical review N))",
+    "seed": "One label-informed positive and one negative minimizing SHA-256(review NUL canonical record identity), positive first.",
+    "termination": "Complete ranking of every row.",
+    "tie_rule": "Stable descending scores over ascending canonical record-identity order."
+  },
+  "decision_rule": "Admit only U4_PLUS_TITLE_A250 and only if G1-G9 all pass. Otherwise discard the title residual and retain exact u4. TITLE_ONLY_U4 is a frozen ablation, not a substitute admission route.",
+  "execution_limit": "One execution of the frozen three-arm diagnostic; no grid, tuning, retry, pytest or repository CI.",
+  "forbidden_claims": [
+    "independent or protected confirmation",
+    "source-general, domain-general, workflow-general or application-exact superiority",
+    "KIFMS harm reversal",
+    "threshold relaxation",
+    "post-outcome review deletion",
+    "ORION-specific superiority"
+  ],
+  "frozen_arms": {
+    "EXACT_U4": "Exact V8/V7 u4 word TF-IDF, LinearSVC C=0.11 squared_hinge random_state=20260823, 9.8 balancer and unchanged active loop.",
+    "TITLE_ONLY_U4": "Title-emphasis representation title + title + abstract with the same exact u4 learner, balancer and active loop.",
+    "U4_PLUS_TITLE_A250": "At every active batch, separately population-z-score exact-u4 and title-only pool scores and rank by z_u4 + 0.25*(z_title-z_u4)."
+  },
+  "frozen_at_utc": "2026-08-23T20:38:18.788000+00:00",
+  "identity": "P2_V9_SOURCE_DISJOINT_TITLE_EMPHASIS_ALPHA025_DIAGNOSTIC",
+  "preserved_parent_terminal": "P2_V8_DONOR_ENVELOPMENT_CROSSFIT_FAILS_CRE20_WSS95_AND_HARM__NO_RESIDUAL_ADMITTED__EXACT_U4_FALLBACK",
+  "scope": "PUBLIC_DEVELOPMENT_SOURCE_DISJOINT_SEVEN_REVIEW_DIAGNOSTIC__NOT_CONFIRMATION_OR_INDEPENDENT_CUSTODY",
+  "source_population": {
+    "canonicalization": "Whitespace-normalize title and abstract; drop empty text; within review retain lexicographically smallest record_id for duplicate normalized title-abstract content; remove every content identity in SWIFT, the five V5 decisions, KIFMS V7, or more than one V9 review before labels are opened.",
+    "retention": "All seven frozen reviews must bind, contain both classes after label-blind exclusions, and execute. Any failure is CANNOT_CHECK; no review deletion.",
+    "review_units": [
+      "Kitchenham_2010",
+      "Bannach-Brown_2019",
+      "Nagtegaal_2019",
+      "Kwok_2020",
+      "Appenzeller-Herzog_2020",
+      "Wolters_2018",
+      "Bos_2018"
+    ],
+    "unit": "review decision, unweighted across exactly seven reviews"
+  },
+  "status": "FROZEN_BEFORE_SUCCESSOR_LABEL_VALUE_OR_COMPARATIVE_OUTCOME_ACCESS_IN_THIS_LANE",
+  "terminals": {
+    "cannot_check": "P2_V9_SOURCE_DISJOINT_TITLE_EMPHASIS_CANNOT_CHECK_BINDING_OR_POPULATION__NO_EXECUTABLE_CLAIM",
+    "negative": "P2_V9_SOURCE_DISJOINT_TITLE_EMPHASIS_FAILS_ONE_OR_MORE_FROZEN_GATES__RESIDUAL_DISCARDED__EXACT_U4_FALLBACK",
+    "positive": "P2_V9_SOURCE_DISJOINT_TITLE_EMPHASIS_PASSES_ALL_FROZEN_GATES__BOUNDED_PUBLIC_DEVELOPMENT_TRANSPORT_ONLY"
+  },
+  "unchanged_gates": {
+    "G1_BINDING": "All exact source, freeze, V8 result/adjudication/discriminator/runner and pinned active-core hashes match.",
+    "G2_SOURCE_CONTENT_AND_POPULATION": "All seven frozen populations bind, are content-disjoint from SWIFT/V5/KIFMS and each other, and contain both classes.",
+    "G3_MEAN_DELTA_CRE20": ">= 0.010858985820770889",
+    "G4_MEAN_DELTA_R10": ">= 0.010858985820770889",
+    "G5_MEAN_DELTA_WSS95": ">= 0",
+    "G6_POSITIVE_CRE20_SIGN": ">= 6/7 reviews strictly positive",
+    "G7_POSITIVE_R10_SIGN": ">= 6/7 reviews strictly positive",
+    "G8_WORST_REVIEW_R10_HARM": ">= -0.05",
+    "G9_ABSOLUTE_WORK_SAVING": "controller WSS95 > 0 in every review"
+  }
+}

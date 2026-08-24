@@ -1,0 +1,184 @@
+{
+  "authority": "OUTCOME_BLIND_INTERFACE_AND_IDENTITY_PREFLIGHT_ONLY",
+  "candidate": {
+    "arm_id": "ORION_R7A",
+    "binding": {
+      "path": "research/claim_expansion/p1/gpt_r6/native_orion_core_v1.py",
+      "sha256": "dab34f068b59ea3f89fc90e9dafd62b01b428198c1db785c4d717c4e6c38e14a"
+    },
+    "current_status": "NATIVE_PREDECESSOR_BOUND__R7A_COMMON_PAYLOAD_ACTION_ADAPTER_UNBOUND"
+  },
+  "common_candidate_visible_payload": {
+    "canonicalization": "UTF-8 JSON, sorted keys, compact separators",
+    "forbidden_fields": [
+      "gold_class",
+      "causal_family",
+      "decision_class",
+      "pair_role",
+      "source_id",
+      "source_rank",
+      "query_id",
+      "evaluator_disposition",
+      "protected_outcome",
+      "filesystem_path",
+      "answer_correlated_ordering"
+    ],
+    "no_per_arm_evidence_augmentation": true,
+    "same_exact_payload_bytes_and_digest_for_every_arm": true,
+    "visible_fields": [
+      "opaque_episode_handle",
+      "dossier",
+      "source_evidence_objects",
+      "opaque_probe_handles",
+      "admissible_opaque_action_handles",
+      "resource_envelope"
+    ]
+  },
+  "common_probe_contract": {
+    "every_request_metered_and_retained": true,
+    "identical_availability_and_cost_for_every_arm": true,
+    "maximum_revealed_probes_per_episode": 2,
+    "observations": [
+      "SUPPORT",
+      "REFUTE",
+      "INCONCLUSIVE"
+    ],
+    "probe_ids": [
+      "P_SEARCH_COVERAGE",
+      "P_REPRESENTATION_ROUNDTRIP",
+      "P_ENVIRONMENT_REPLAY",
+      "P_MEASUREMENT_CROSSCHECK",
+      "P_OBJECTIVE_PREDICTIVE_CHECK",
+      "P_BOUNDARY_COUNTERFACTUAL"
+    ]
+  },
+  "common_terminal_action_contract": {
+    "exactly_one_terminal_required": true,
+    "external_adapter_may_not_invent_a_terminal": true,
+    "malformed_timeout_or_missing_output": "RETAIN_AND_SCORE_FAILURE",
+    "terminals": [
+      "KEEP_SEARCH",
+      "KEEP_COMPILE",
+      "KEEP_REPAIR",
+      "REVISE_MEASUREMENT",
+      "REFORMULATE_OBJECTIVE",
+      "REFORMULATE_BOUNDARY",
+      "UNRESOLVED"
+    ]
+  },
+  "current_terminal": "CANNOT_CHECK_COMPARATOR_REGISTRY_AND_INTERFACE_BINDING",
+  "date": "2026-08-23",
+  "exact_upstream_bindings": [
+    {
+      "path": "development/comparator-binding-harness-2026-08-23/COMPARATOR_BINDING_LEDGER_V1.json",
+      "sha256": "060f9df106a82f86c7fcfb8e92515c881123ab9808ee1b02d9675211b73857e0"
+    },
+    {
+      "path": "development/comparator-binding-harness-2026-08-23/REMOTE_REPOSITORY_METADATA_2026-08-23.json",
+      "sha256": "f92a7060a68d1af645ace65db387af62c2e83c304b6865aa1bdf215b390db125"
+    },
+    {
+      "path": "research/claim_expansion/p1/gpt_r7/candidate_view.py",
+      "sha256": "442fcfbf9f40bfe25c884b0ae4287dbc65023ed0fc3019ccac52abb0b3b1e71f"
+    }
+  ],
+  "execution_authorized": false,
+  "external_pressure_test_not_primary": {
+    "binding_id": "P1.AI_SCIENTIST_V2",
+    "current_status": "SOURCE_AVAILABLE_RESTRICTED__INTERFACE_UNMAPPED__NOT_AN_R7A_ARM",
+    "paper": "arxiv:2504.08066v1",
+    "repo_head": "96bd51617cfdbb494a9fc283af00fe090edfae48",
+    "repo_license": "LicenseRef-AI-Scientist-Source-Code-1.0 (Responsible-AI-derived restrictions; GitHub API NOASSERTION)",
+    "repository": "https://github.com/SakanaAI/AI-Scientist-v2"
+  },
+  "mandatory_primary_comparator_count": 9,
+  "outcomes_accessed": false,
+  "primary_comparators": [
+    {
+      "arm_id": "P1_X_STATIC_HIDDEN_RESPONSIBILITY",
+      "binding": {
+        "path": "research/claim_expansion/p1/p1_x_execution.py",
+        "sha256": "41eb402efca83c16b0deafe3bf3f5a57785b1325d69a50eeed16fb4f06bfae43"
+      },
+      "current_status": "EXACT_CONTRACT_ARM_ONLY__R7A_ADAPTER_UNBOUND"
+    },
+    {
+      "arm_id": "GREEDY_IMMEDIATE_RESTORATION",
+      "binding": {
+        "path": "research/claim_expansion/p1/p1_x_execution.py",
+        "sha256": "41eb402efca83c16b0deafe3bf3f5a57785b1325d69a50eeed16fb4f06bfae43"
+      },
+      "current_status": "EXACT_CONTRACT_ARM_ONLY__R7A_ADAPTER_UNBOUND"
+    },
+    {
+      "arm_id": "UNIFORM_PROBING",
+      "binding": null,
+      "current_status": "MISSING_EXACT_IMPLEMENTATION_AND_R7A_ADAPTER"
+    },
+    {
+      "arm_id": "CHEAPEST_FIRST_PROBING",
+      "binding": null,
+      "current_status": "MISSING_EXACT_IMPLEMENTATION_AND_R7A_ADAPTER"
+    },
+    {
+      "arm_id": "UNCERTAINTY_OR_VOI_PROXY",
+      "binding": {
+        "path": "research/claim_expansion/p1/gpt_r2/policy.py",
+        "sha256": "9edd1e1a6e109e89ff3e0d0ad4885892e944c3191e08179a7efeea752ce8c079"
+      },
+      "current_status": "LEGACY_R2_POLICY_BOUND__R7A_ADAPTER_UNBOUND"
+    },
+    {
+      "arm_id": "DONOR_COMPLETE",
+      "binding": {
+        "path": "research/claim_expansion/p1/gpt_r2/policy.py",
+        "sha256": "9edd1e1a6e109e89ff3e0d0ad4885892e944c3191e08179a7efeea752ce8c079"
+      },
+      "current_status": "LEGACY_R2_POLICY_BOUND__R7A_ADAPTER_UNBOUND"
+    },
+    {
+      "arm_id": "DONOR_COMPLETE_FORCED_BUDGET",
+      "binding": null,
+      "current_status": "MISSING_EXACT_WRAPPER_AND_R7A_ADAPTER"
+    },
+    {
+      "arm_id": "DONOR_COMPLETE_MATCHED_SCHEDULE",
+      "binding": null,
+      "current_status": "MISSING_EXACT_WRAPPER_AND_R7A_ADAPTER"
+    },
+    {
+      "arm_id": "STRONGEST_RUNNABLE_EXTERNAL_SELF_REVISING_SCIENTIFIC_AGENT_AT_FREEZE",
+      "binding": {
+        "binding_id": "P1.AGENT_LABORATORY",
+        "paper": "arxiv:2501.04227v2",
+        "repo_head": "d9017d90e329112d2a80b7712f37ee9094d2cd27",
+        "repo_license": "MIT",
+        "repository": "https://github.com/SamuelSchmidgall/AgentLaboratory",
+        "run_entrypoint": "python ai_lab_repo.py --yaml-location experiment_configs/MATH_agentlab.yaml"
+      },
+      "current_status": "CANDIDATE_IDENTITY_BOUND__NATIVE_INTERFACE_MIXED_OR_UNMAPPED__NOT_AN_R7A_ARM"
+    }
+  ],
+  "resource_matching": {
+    "all_required": true,
+    "coordinates": [
+      "base_model_and_exact_provider_revision",
+      "temperature_seed_and_sampling_settings",
+      "model_call_limit",
+      "input_and_output_token_limit",
+      "retrieval_corpus_and_query_limit",
+      "probe_limit",
+      "tool_and_verifier_call_limit",
+      "wall_clock_cap",
+      "all_access_costs"
+    ],
+    "if_exact_match_impossible": "FREEZE_AND_REPORT_A_COST_ADJUSTED_FRONTIER_FOR_EVERY_ARM_OR_RETURN_CANNOT_CHECK"
+  },
+  "schema_version": "orion.p1.r7a.comparator-interface-contract.v1",
+  "terminal_preserving_external_adapter_law": {
+    "criterion": "the target R7A decision is constant on every fibre of the external system's candidate-visible native output/interface",
+    "mixed_fibre_disposition": "INTERFACE_LIMITED__CANNOT_CHECK_AS_R7A_PRIMARY_ARM",
+    "prompt_wrapper_warning": "a wrapper that supplies new responsibility logic or forces a non-native decision is a new common-interface proxy, not the named external system",
+    "required_evidence": "prospective conformance fixtures covering all seven terminals, errors, timeout, abstention, probe use, and action availability"
+  }
+}

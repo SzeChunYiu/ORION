@@ -1,0 +1,81 @@
+{
+  "chronology": {
+    "created_before_cutoff": true,
+    "created_before_cutoff_seconds": 136,
+    "earliest_target_program_cutoff": "2026-08-20T11:55:11Z",
+    "historical_precedence_verdict": "CANNOT_CHECK_BODY_EDIT_HISTORY",
+    "issue_created_at": "2026-08-20T11:52:55Z",
+    "issue_updated_at": "2026-08-21T08:37:30Z",
+    "pre_cutoff_body_version_immutably_bound": false,
+    "updated_after_cutoff": true
+  },
+  "fields_passed": 0,
+  "fields_required": 7,
+  "formal_delegation_bound": false,
+  "gate_id": "G1_EXPLICIT_R7_FORMAL_DELEGATION",
+  "gate_passed": false,
+  "identity": "P1_V12_GITHUB_ISSUE_696_FORMAL_DELEGATION_AUDIT",
+  "repository_record": {
+    "assignee_count": 0,
+    "assignees": [],
+    "author_login": "SzeChunYiu",
+    "issue_assignment_promoted_to_delegation": false,
+    "repository_owner_or_author_promoted_to_r7_owner": false
+  },
+  "required_field_results": [
+    {
+      "evidence": "Issue author login exists; repository/issue authorship is inadmissible substitution.",
+      "field": "delegator_identity",
+      "verdict": "FAIL_NOT_EXPLICIT_AS_R7_VOCABULARY_OWNER"
+    },
+    {
+      "evidence": "Official issue assignee list is empty and body contains no formal-delegate/delegation phrase.",
+      "field": "delegate_identity",
+      "verdict": "FAIL_ABSENT"
+    },
+    {
+      "evidence": {
+        "exact_target_identifier_counts": {
+          "KEEP_COMPILE": 0,
+          "KEEP_REPAIR": 0,
+          "KEEP_SEARCH": 0,
+          "REFORMULATE_BOUNDARY": 0,
+          "REFORMULATE_OBJECTIVE": 0,
+          "REVISE_MEASUREMENT": 0,
+          "UNRESOLVED": 1
+        }
+      },
+      "field": "exact_scope_all_seven_r7_targets",
+      "verdict": "FAIL_ZERO_OF_SEVEN_EXACT_IDENTIFIERS"
+    },
+    {
+      "evidence": "No explicit delegation phrase binding power to complete the V8 algebra.",
+      "field": "completion_power",
+      "verdict": "FAIL_NOT_EXPLICIT"
+    },
+    {
+      "evidence": {
+        "ratification_stem_count": 0
+      },
+      "field": "ratification_power",
+      "verdict": "FAIL_NOT_EXPLICIT"
+    },
+    {
+      "evidence": "Issue creation/update timestamps are record timestamps, not delegation effective terms.",
+      "field": "effective_time",
+      "verdict": "FAIL_NO_DELEGATION_EFFECTIVE_TIME"
+    },
+    {
+      "evidence": {
+        "signature_count": 0,
+        "signed_count": 0
+      },
+      "field": "acceptance_or_signature",
+      "verdict": "FAIL_ABSENT"
+    }
+  ],
+  "schema_version": "orion.p1.owner-custody-positive-successor.delegation-field-audit.v12",
+  "source_id": "GITHUB_ISSUE_696_OFFICIAL_API",
+  "source_sha256": "23236d2dadd91bf84d0b7ca8ca7d4b53a78008a5721c6f3f843b8a33df38a508",
+  "terminal": "P1_V12_ISSUE_696_PRE_CUTOFF_RECORD_EXISTS__ZERO_OF_SEVEN_FORMAL_DELEGATION_FIELDS_PASS"
+}

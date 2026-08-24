@@ -1,0 +1,114 @@
+{
+  "schema_version": "orion.p1-p5.unified-integration-receipt.v1",
+  "date": "2026-08-24",
+  "branch": "codex/p1-p5-unified-20260824",
+  "source_subjects": {
+    "origin_main_at_overlay_base": "30c903d3aee757b4c05f05729bb329fe43f20563",
+    "takeover_head": "d3a4ba600134b96eb3f367b167e84dfa88b87821",
+    "selective_overlay_commit": "6474c52149393230a91ecd655010305f4959c801",
+    "scientific_origin_main_integrated": "4ba814eebfbcc4cb9ec9de0618e0e6442c7f3799",
+    "post_package_origin_main_integrated": "77df4b898a179de8a780011ae34f7da02dac554a",
+    "resolved_merge_subject": "c6c71c6c758aa605fa414ff8eaeb87f1ef4b0672",
+    "p5_residual_branch": "revive/p5-residuals-nr01",
+    "p5_residual_commit": "7949873b1f318735ec23d4a147557221eb141479"
+  },
+  "integration_method": {
+    "cherry_pick_attempt": "ABORTED_AFTER_41_CONFLICTS",
+    "method": "SELECTIVE_TREE_OVERLAY_ON_CURRENT_MAIN_THEN_EXPLICIT_LATEST_MAIN_MERGES",
+    "conflicts_resolved": [
+      "papers/paper-03-global-knowledge-portrait/manuscript/bibliography.bib"
+    ],
+    "conflict_resolution": "Retained the union including osman2024uncertainty; no conflict-marker endpoints remain."
+  },
+  "scientific_dispositions": {
+    "p5_nr01": {
+      "control": "21/24; macro-F1 0.8726190476190476",
+      "treatment": "24/24; macro-F1 1.0",
+      "authority": "POST_OUTCOME_PUBLIC_SUITE_INSTRUMENT_DIAGNOSIS_ONLY",
+      "independent_preregistration_chronology": "CANNOT_CHECK",
+      "model_identity": "requested GLM-5.2; served GLM-5.3"
+    },
+    "p5_revision_level_v3": {
+      "panel_cases": 96,
+      "full_t7_accuracy": 0.125,
+      "full_t7_fresh_transfer": 0.125,
+      "terminal": "NO_TERMINAL_UNDER_FROZEN_RULES",
+      "bounded_secondaries": {
+        "H2": "NOT_CONFIRMED_AT_SAFETY_FLOOR",
+        "H3": "BOUNDED_PANEL_CONFIRMED",
+        "H4": "BOUNDED_PANEL_CONFIRMED"
+      },
+      "grants_scientific_authority": false
+    }
+  },
+  "verification": {
+    "pytest_or_repository_ci": "NOT_RUN_BY_EXPLICIT_USER_DIRECTION",
+    "tectonic_builds": {
+      "P1": {
+        "pages": 46,
+        "exit": 0,
+        "fatal": 0,
+        "undefined_reference_or_citation": 0,
+        "overfull": 0
+      },
+      "P2": {
+        "pages": 47,
+        "exit": 0,
+        "fatal": 0,
+        "undefined_reference_or_citation": 0,
+        "overfull": 0,
+        "note": "two font-shape substitutions only"
+      },
+      "P3": {
+        "pages": 45,
+        "exit": 0,
+        "fatal": 0,
+        "undefined_reference_or_citation": 0,
+        "overfull": 0,
+        "note": "one font-shape substitution only"
+      },
+      "P4": {
+        "pages": 26,
+        "exit": 0,
+        "fatal": 0,
+        "undefined_reference_or_citation": 0,
+        "overfull": 0
+      },
+      "P5": {
+        "pages": 37,
+        "exit": 0,
+        "fatal": 0,
+        "undefined_reference_or_citation": 0,
+        "overfull": 0,
+        "pdf_sha256": "d5832ca4dd7139b8af3fabb6e693e52afb5ff492e193b241f05616d529122482"
+      }
+    },
+    "local_visual_qa": "ALL_PAGES_P1_P5_INSPECTED; P5 duplicate/clipped figure defect repaired before final 37-page render",
+    "journal_package_sha256": {
+      "P1": "PASS_WITH_RENDER_CLOSURE_STATE_SUPERSEDED",
+      "P2": "PASS_WITH_RENDER_CLOSURE_STATE_SUPERSEDED",
+      "P3": "NO_JOURNAL_PACKAGE",
+      "P4": "NO_JOURNAL_PACKAGE",
+      "P5": "PASS_CURRENT_64_ENTRY_CLOSURE"
+    },
+    "json_jsonl": {
+      "status": "PARSE_PASS",
+      "changed_files": 1152,
+      "jsonl_rows": 7993,
+      "scope": "origin/main...HEAD plus unstaged and untracked integration files"
+    },
+    "conflict_markers": "NO_BEGIN_OR_END_MARKERS"
+  },
+  "branch_disposition": {
+    "conservative_prune_after_main_merge": 120,
+    "prune_rule": "Only live unchanged heads already ancestors of main, with no open PR and no active worktree.",
+    "retain": [
+      "codex/p1-p15-takeover-20260823",
+      "all active-worktree branches",
+      "open PR #1065 head",
+      "closed/nonancestor and unaudited branches pending content review"
+    ],
+    "do_not_blindly_merge": "Historical/adverse or incompatible branches remain audit evidence; branch deletion is not scientific promotion."
+  },
+  "terminal": "P1_P5_UNIFIED_INTEGRATION_VERIFIED_WITHOUT_PYTEST_OR_REPOSITORY_CI__P5_V3_NO_TERMINAL_PRESERVED__READY_FOR_PR_MERGE"
+}

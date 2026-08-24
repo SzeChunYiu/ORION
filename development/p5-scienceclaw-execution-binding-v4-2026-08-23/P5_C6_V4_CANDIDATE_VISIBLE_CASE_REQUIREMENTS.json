@@ -1,0 +1,23 @@
+{
+  "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+  "current_case": null,
+  "current_status": "BLOCKING",
+  "excluded_source_prefixes": [
+    "benchmarks/",
+    "categoryscienceclaw/HEA/"
+  ],
+  "required": [
+    "case_id",
+    "topic_bytes_sha256",
+    "allowed_source_corpus_manifest_sha256",
+    "allowed_skills_and_tool_parameters",
+    "candidate_visible_rights_receipt_sha256",
+    "source_filtered_seed_sha256",
+    "outcome_prefix_exclusion_receipt_sha256",
+    "protected_keys_absent",
+    "no_prior_outcome_payloads",
+    "no_reference_answers",
+    "no_protected_scores"
+  ],
+  "schema_version": "orion.p5.c6.candidate-visible-case-requirements.v4"
+}

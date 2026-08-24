@@ -1,0 +1,44 @@
+{
+  "authority": "PUBLIC_DEVELOPMENT_ONLY",
+  "case_selection": "Mechanistically exhaustive public boundary probes derived from the candidate-visible V6 task statement before any V11 candidate action.",
+  "cases": [
+    {
+      "case_id": "HEX_INT_MAX",
+      "expected_class": "Integer",
+      "input": "0x7fffffff",
+      "mechanism": "signed Integer positive boundary"
+    },
+    {
+      "case_id": "HEX_INT_OVER",
+      "expected_class": "Long",
+      "input": "0x80000000",
+      "mechanism": "first positive magnitude above Integer"
+    },
+    {
+      "case_id": "HEX_LONG_MAX",
+      "expected_class": "Long",
+      "input": "0x7fffffffffffffff",
+      "mechanism": "signed Long positive boundary"
+    },
+    {
+      "case_id": "HEX_LONG_OVER",
+      "expected_class": "BigInteger",
+      "input": "0x8000000000000000",
+      "mechanism": "first positive magnitude above Long"
+    },
+    {
+      "case_id": "HEX_LEADING_ZERO_INT_OVER",
+      "expected_class": "Long",
+      "input": "0x0000000080000000",
+      "mechanism": "leading-zero invariance above Integer"
+    },
+    {
+      "case_id": "HEX_LEADING_ZERO_LONG_OVER",
+      "expected_class": "BigInteger",
+      "input": "0x00008000000000000000",
+      "mechanism": "leading-zero invariance above Long"
+    }
+  ],
+  "protected_or_hidden_cases_present": false,
+  "schema_version": "orion.p5.c2.public-hex-classification-cases.v11"
+}

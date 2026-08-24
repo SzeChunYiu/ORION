@@ -1,0 +1,94 @@
+{
+  "authority": "SOURCE_NATIVE_PUBLIC_DEVELOPMENT_COMPARATOR_AUDIT__NOT_STRONGEST_SOTA_CERTIFICATE",
+  "binding": {
+    "command_template": "java -jar AgreementMakerLight.jar -s SOURCE_ONTOLOGY -t TARGET_ONTOLOGY -o OUTPUT_ALIGNMENT -a",
+    "jar_sha256": "a5b831a6c000e49aa4702b16486dabdf38e40bb68203a16a8019414fecc2ecf3",
+    "license": "Apache-2.0",
+    "name": "AgreementMakerLight",
+    "reference_alignment_argument_supplied": false,
+    "release_asset_sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27",
+    "runtime": {
+      "deviation": "EXECUTED_OUTSIDE_UPSTREAM_NAMED_RUNTIME__OUTPUT_REPLAY_REQUIRED",
+      "observed": "OpenJDK 17.0.19 arm64",
+      "upstream_readme_requirement": "Java SE Runtime Environment 8"
+    },
+    "tag": "v3.2",
+    "tag_commit": "d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6"
+  },
+  "current_terminal": "AML_SOURCE_NATIVE_DEVELOPMENT_COMPARATOR_BOUND__CURRENT_STRONGEST_COMPARATOR_SET_CANNOT_CHECK",
+  "execution": {
+    "all_successful_outputs_byte_identical": true,
+    "duplicate_cells_by_target": {
+      "102": 0,
+      "103": 13,
+      "104": 13,
+      "105": 0,
+      "201": 0,
+      "202": 0,
+      "204": 11,
+      "205": 3,
+      "221": 13,
+      "222": 13,
+      "223": 13,
+      "224": 0,
+      "225": 13,
+      "228": 9,
+      "230": 7,
+      "301": 0,
+      "302": 0,
+      "303": 0,
+      "304": 0
+    },
+    "n_executed": 19,
+    "n_failed": 1,
+    "n_targets": 20,
+    "pairs_outside_v3_universe": 0,
+    "raw_equivalence_cells": 518,
+    "terminal": "AML_19_OF_20_EXECUTED_BYTE_REPLAY_PASS__TEST_206_UNPARSABLE_PRESERVED",
+    "unique_canonical_pairs": 410
+  },
+  "fairness_contract": [
+    "SAME_117914_SCORABLE_CASE_CENSUS",
+    "SAME_PUBLIC_REFERENCE_DOMAIN_AND_CANNOT_CHECK_MAP",
+    "SAME_FOUR_ACTION_CONTRACT",
+    "SAME_THREE_LOSS_REGIMES",
+    "NONSELECTION_IS_OBSTRUCTION_ONLY_INSIDE_THE_DECLARED_COMPLETE_REFERENCE_DOMAIN",
+    "TEST_206_FAILURE_IS_UNRESOLVED_NOT_IMPUTED_OBSTRUCTION"
+  ],
+  "identity_gaps": [
+    "OPENJDK_17_EXECUTION_DEVIATES_FROM_UPSTREAM_NAMED_JAVA_8_RUNTIME",
+    "TEST_206_FAILED_TO_PARSE",
+    "V3_2_AUTO_MODE_IS_SOURCE_NATIVE_BUT_NOT_CERTIFIED_AS_THE_OFFICIAL_OR_CURRENT_BEST_CONFIGURATION",
+    "ONLY_ONE_EXTERNAL_ONTOLOGY_MATCHER_IS_BOUND",
+    "NO_CURRENT_STATE_OF_THE_ART_OR_CAPABILITY_MATCHED_STRUCTURAL_COMPARATOR_SET",
+    "PUBLIC_GOLD_INFORMED_DEVELOPMENT_ONLY"
+  ],
+  "promotion_requirements": [
+    "REPLAY_IN_UPSTREAM_NAMED_JAVA_8_OR_BIND_A_VALIDATED_CONTAINER_AND_COMPARE_OUTPUTS",
+    "BIND_CURRENT_STRONG_ONTOLOGY_MATCHERS_WITH_RELEASE_COMMIT_CONFIG_AND_OUTPUT_DIGESTS",
+    "USE_STANDARD_ALIGNMENT_PRECISION_RECALL_F1_ALONGSIDE_ALL_PAIR_HARM",
+    "PRESERVE_PARSER_AND_DUPLICATE_OUTPUT_FAILURES",
+    "EXECUTE_ON_SOURCE_DISJOINT_MULTI_FAMILY_DATA_WITH_EXTERNAL_CUSTODY"
+  ],
+  "protocol_id": "P3.PUBLIC.OAEI.CROSS_CONSTRUCT.IDENTIFICATION_ENVELOPE.DEV.V3",
+  "schema_version": "orion.p3.comparator-identity-audit.v3",
+  "system_id": "AML_V3_2_AUTO_SOURCE_NATIVE",
+  "v3_scorable_metrics": {
+    "exact_rate": 0.9227063792255372,
+    "f1": 0.43200895355344154,
+    "fn": 1013,
+    "fp": 2,
+    "gold_in_envelope_coverage": 0.9921637803823126,
+    "mean_floor_adjusted_harm": [
+      0.025200569906881288,
+      0.025268415964177282,
+      0.05647760232033516
+    ],
+    "n": 117914,
+    "precision": 0.9948453608247423,
+    "recall": 0.27591136526090065,
+    "tn": 108414,
+    "tp": 386,
+    "unresolved_rate": 0.06945740115677528
+  }
+}

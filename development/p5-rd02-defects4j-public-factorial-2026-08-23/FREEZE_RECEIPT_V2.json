@@ -1,0 +1,41 @@
+{
+  "schema_version": "orion.p5.rd02.public-development-freeze-receipt.v2",
+  "study_id": "P5-RD-02.DEFECTS4J.LANG1.V2",
+  "successor_of": "P5-RD-02.DEFECTS4J.LANG1.V1",
+  "frozen_at_utc": "2026-08-23T13:48:34Z",
+  "bridge_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "outcomes_accessed": false,
+  "protected_outcomes_accessed": false,
+  "predecessor_result_sha256": "0c2f2760f622a6260e8ed34cb648df309f51b9bdb3ea170918487152033c7c0e",
+  "predecessor_terminal": "CANNOT_CHECK",
+  "preregistration_path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/PREREGISTRATION_V2.json",
+  "preregistration_sha256": "e0d4d4217fa6e7bd1941710aa579f9bd59984af2ed40f4d184864df85b2905ee",
+  "runner_path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/run_factorial_v2.py",
+  "runner_sha256": "0513aab57a0e589c6736b3bda4cb08f7cd3e951e7c4d82e7af52ecc1646275cf",
+  "factorial_cells": 4,
+  "run_order": [
+    "C1E0",
+    "C0E0",
+    "C0E1",
+    "C1E1"
+  ],
+  "candidate_prepared_tree_identities": [
+    "eaec8f08f7e0fc2d10a39a6480878a338e1a7090",
+    "5890638f92d023d4bb6df6625508326009924c76"
+  ],
+  "environment_binary_identities": [
+    "sha256:c7ec15111335d5c7ef3c9a3ddcb67642ef3cfbbd8efc98d90b90526628b245b4",
+    "sha256:e561d7ba57da3bb04df5db5da06a7a164811fa3981c1cfaed0516c70f784b301"
+  ],
+  "registered_terminals": [
+    "ENVIRONMENT_MAIN_EFFECT",
+    "IMPLEMENTATION_MAIN_EFFECT",
+    "COUPLED_INTERACTION",
+    "JOINT_NULL_UNRESOLVED",
+    "CANNOT_CHECK"
+  ],
+  "harm_retention_required": true,
+  "grants_protected_freshness": false,
+  "grants_h1_h4_authority": false,
+  "freeze_terminal": "P5_RD02_PUBLIC_DEVELOPMENT_FACTORIAL_V2_FROZEN_BEFORE_OUTCOMES"
+}

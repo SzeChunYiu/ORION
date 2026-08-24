@@ -57,6 +57,130 @@ arm/world result rows. On the current CPU environment the deterministic campaign
 and independent verification each take roughly one minute; no network or model
 credential is used.
 
+## Public rights/relation census (outcome-blind development evidence)
+
+The frozen packet is
+`development/p1-rw-rights-relation-census-v2-2026-08-23/`. Verify its
+24-entry manifest in that directory with `sha256sum -c SHA256SUMS`. The raw
+Retraction Watch transport is deliberately not retained. To replay only its
+seven-field structural census without touching the packet, copy the directory
+to scratch, download the exact commit below, and run the standard-library
+reducer there:
+
+```bash
+audit=/tmp/p1-rw-rights-relation-census-v2
+rm -rf "$audit"
+cp -R development/p1-rw-rights-relation-census-v2-2026-08-23 "$audit"
+mkdir -p "$audit/.runtime"
+curl -L --fail \
+  -o "$audit/.runtime/retraction_watch.csv" \
+  https://gitlab.com/crossref/retraction-watch-data/-/raw/7bb2ced143b764974c53c6c61abfdd2379f5307d/retraction_watch.csv
+cd "$audit"
+python3 run_rw_relation_census_v2.py
+python3 validate_v2.py
+```
+
+The pinned file must have SHA-256
+`ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb`,
+65,984,968 bytes, and 71,944 data rows. The deterministic relation result is
+49,878 admitted relations in 42,924 connected families; the Europe PMC
+rights/stratum aggregates are receipt-bound in the packet and should not be
+silently refreshed under the same identity.
+
+## Structured-action semantics census (outcome-blind development evidence)
+
+The frozen V3 packet is
+`development/p1-structured-action-semantics-v3-2026-08-23/`. Its checksum
+manifest can be verified without querying a provider or opening any case or
+outcome:
+
+```bash
+cd development/p1-structured-action-semantics-v3-2026-08-23
+sha256sum -c SHA256SUMS
+python3 -m json.tool RESULT_V3.json >/dev/null
+python3 -m json.tool OWNER_FIELD_FEASIBILITY_V3.json >/dev/null
+```
+
+The immutable packet reproduces the V2 pool counts (12,038 exact-rights
+relations in 11,602 families), classifies 11,976 of 11,991 unique notices into
+exactly one of three provider-native strata, and records normalized
+relation-type agreement for 11,988 notices. It also records the decisive
+boundary: 0/12 owner-algebra requirement groups are sufficient. Do not rerun
+`collect_v3.py` under the same identity: it performs live provider queries, and
+a refresh would require a new protocol/result version. `validate_v3.py` writes
+a fresh validation timestamp, so run it only on a scratch copy if a regenerated
+receipt is required; the checked-in `SHA256SUMS` verifies the frozen packet.
+
+## Public-standard owner-algebra feasibility (outcome-blind)
+
+The frozen V4 packet is
+`development/p1-owner-algebra-construct-validity-v4-2026-08-23/`. Verify its
+18-file manifest and native 85-assertion scientific validator without network,
+pytest, repository CI, case text, or outcomes:
+
+```bash
+(cd development/p1-owner-algebra-construct-validity-v4-2026-08-23 && \
+  sha256sum -c SHA256SUMS)
+python3 development/p1-owner-algebra-construct-validity-v4-2026-08-23/verify_v4.py
+```
+
+The packet binds eight HTTP-200 documents from four institutional families and
+retains one frozen HTTP-404 route without substitution. It records 9/12
+structural analogues, 0/12 named-custodian/delegation groups, 0/12 sufficient
+groups, and zero scientific-action gold. Do not rerun `capture_sources_v4.py`
+under the frozen identity: mutable web bytes require a new capture identity.
+Do not use `--write-receipt` for ordinary verification because the checked-in
+receipt and manifest are already content-bound. Invoke the validator from the
+repository root because its frozen predecessor paths are repository-relative.
+
+## Source-native-to-R7 adapter audit (bounded development evidence)
+
+The adapter handoff is outside the repository checkout at
+`../lane-handoffs/p1-source-native-action-adapter-v2/`. It contains no case
+text, row-level outcomes, protected gold, or system outcomes. Verify its
+47-entry manifest independently from the repository root:
+
+```bash
+python3 - <<'PY'
+from pathlib import Path
+import hashlib, json
+
+base = Path("../lane-handoffs/p1-source-native-action-adapter-v2")
+manifest = base / "SHA256SUMS"
+assert hashlib.sha256(manifest.read_bytes()).hexdigest() == \
+    "9f4503f693e155b12fb8c333f4777619cec1d66e387dcfc0e141fffa6933847d"
+
+entries = 0
+for line in manifest.read_text().splitlines():
+    if not line.strip():
+        continue
+    expected, rel = line.split(None, 1)
+    rel = rel.strip().removeprefix("*")
+    assert hashlib.sha256((base / rel).read_bytes()).hexdigest() == expected
+    entries += 1
+assert entries == 47
+
+receipt = json.loads(Path(
+    "../lane-handoffs/p1-source-native-action-adapter-integration-v3/"
+    "INDEPENDENT_SHA256_VERIFICATION_V1.json"
+).read_text())
+assert receipt["passed"] is True
+assert receipt["entry_count"] == 47
+assert receipt["failures"] == []
+print("P1 adapter manifest: 47/47 PASS")
+PY
+```
+
+The bounded terminal is
+`P1_SOURCE_NATIVE_R7_ADAPTER_CANNOT_CHECK_TARGET_SEMANTICS`. All 117,649 total
+maps were enumerated: 0 are fully certified, 116,929 are rejected, and 720
+injective maps remain not disproved but uncertified. The only currently
+certified authority-safe partial map is `UNRESOLVED -> UNRESOLVED`. Zero
+certified maps must not be restated as zero possible maps. The full-artifact
+withdrawal witness is conditional on later owner-ratification of the proposed
+closed-world target denotations; the current target decision denotations and
+decision/action bridge remain unbound.
+
 ## Historical V1 command
 
 ## Command

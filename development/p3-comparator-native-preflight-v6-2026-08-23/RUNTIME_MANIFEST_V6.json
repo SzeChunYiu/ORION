@@ -1,0 +1,611 @@
+{
+  "generated_at": "2026-08-23T17:43:13.675945+00:00",
+  "logmap_dependency_jars": [
+    {
+      "bytes": 4467,
+      "path": "aopalliance-1.0.jar",
+      "sha256": "0addec670fedcd3f113c5c8091d783280d23f75e3acb841b61a9cdb079376a08"
+    },
+    {
+      "bytes": 95536,
+      "path": "apache-mime4j-core-0.7.2.jar",
+      "sha256": "4d7434c68f94b81a253c12f28e6bbb4d6239c361d6086a46e22e594bb43ac660"
+    },
+    {
+      "bytes": 176285,
+      "path": "automaton-1.11-8.jar",
+      "sha256": "a24475f6ccfe1cc7a4fe9e34e05ce687b0ce0c6e8cb781e0eced3b186482c61e"
+    },
+    {
+      "bytes": 63966,
+      "path": "avalon-framework-4.1.3.jar",
+      "sha256": "17731fe321a7a7cc3b56cb797634b8ec29fa0322004886a1523bbc7bc7eecf71"
+    },
+    {
+      "bytes": 421631,
+      "path": "axiom-api-1.2.14.jar",
+      "sha256": "c17b35199ff938240ac18f70e0750888269432375029e15d8e5d49ce294a654d"
+    },
+    {
+      "bytes": 59805,
+      "path": "axiom-c14n-1.2.14.jar",
+      "sha256": "082da81c99890e2007452c6231483120c6c7d0374fcb4b8bfcc61ba858833a87"
+    },
+    {
+      "bytes": 212170,
+      "path": "axiom-dom-1.2.14.jar",
+      "sha256": "7f3aaf83dfbcfbec5d5ad915f77349d884323f6a28134e1a11e28de0d1792bb1"
+    },
+    {
+      "bytes": 170746,
+      "path": "axiom-impl-1.2.14.jar",
+      "sha256": "cfafc9dab48292b86932b29b1e3c08b4dd2fa1f1e2a7bc9cd0f0f88868edf222"
+    },
+    {
+      "bytes": 246174,
+      "path": "commons-beanutils-1.9.3.jar",
+      "sha256": "c058e39c7c64203d3a448f3adb588cb03d6378ed808485618f26e137f29dae73"
+    },
+    {
+      "bytes": 232771,
+      "path": "commons-codec-1.6.jar",
+      "sha256": "54b34e941b8e1414bd3e40d736efd3481772dc26db3296f6aa45cec9f6203d86"
+    },
+    {
+      "bytes": 588337,
+      "path": "commons-collections-3.2.2.jar",
+      "sha256": "eeeae917917144a68a741d4c0dff66aa5c5c5fd85593ff217bced3fc8ca783b8"
+    },
+    {
+      "bytes": 494227,
+      "path": "commons-io-2.14.0.jar",
+      "sha256": "e35d1df7232568ed4b81d9a9ed94a0159b3ff6cf1915cc21eef5cb55d7b157a2"
+    },
+    {
+      "bytes": 261809,
+      "path": "commons-lang-2.4.jar",
+      "sha256": "2c73b940c91250bc98346926270f13a6a10bb6e29d2c9316a70d134e382c873e"
+    },
+    {
+      "bytes": 702952,
+      "path": "commons-lang3-3.18.0.jar",
+      "sha256": "4eeeae8d20c078abb64b015ec158add383ac581571cddc45c68f0c9ae0230720"
+    },
+    {
+      "bytes": 52915,
+      "path": "commons-logging-1.1.jar",
+      "sha256": "9e8d01f172301b966f1f404aa6fc0bdbec478ae9197256ad95bfcad1ef927601"
+    },
+    {
+      "bytes": 323630,
+      "path": "dom4j-2.1.3.jar",
+      "sha256": "549f3007c6290f6a901e57d1d331b4ed0e6bf7384f78bf10316ffceeca834de6"
+    },
+    {
+      "bytes": 107877,
+      "path": "elk-owl-implementation-0.4.3.jar",
+      "sha256": "4a66cae5220403917537d186a7a7db48747854ed346d283384a9f336581a1fe1"
+    },
+    {
+      "bytes": 94267,
+      "path": "elk-owl-model-0.4.3.jar",
+      "sha256": "fa6f69b421f5521714227e697448d9b65a91b1361f575aa64cba698f70b6b060"
+    },
+    {
+      "bytes": 151739,
+      "path": "elk-owlapi-0.4.3.jar",
+      "sha256": "fae00180d8c2d62770c81203a4607b2a0582f6c0514b5f72ca3636efd57ff442"
+    },
+    {
+      "bytes": 524534,
+      "path": "elk-reasoner-0.4.3.jar",
+      "sha256": "44e989141cfa167cddba60f5cf982094891ed5bcdfdec4788d6d64a4a856100a"
+    },
+    {
+      "bytes": 73353,
+      "path": "elk-util-collections-0.4.3.jar",
+      "sha256": "3c90c5c7830b15fa8a88065969999e6293a9e111f0a3e4d866da6356959186c1"
+    },
+    {
+      "bytes": 13534,
+      "path": "elk-util-common-0.4.3.jar",
+      "sha256": "78bc5f69b258bb8c68a386ef27ce6d103421a801ef96605aea9ff4eeea7e8505"
+    },
+    {
+      "bytes": 22407,
+      "path": "elk-util-concurrent-0.4.3.jar",
+      "sha256": "a1ec15943f9f04929b4594856c995cffb57153b24f6a3ec1b4332b574a2278aa"
+    },
+    {
+      "bytes": 8314,
+      "path": "elk-util-hashing-0.4.3.jar",
+      "sha256": "706da4cc452ccb28eceea1866e03cadf2525edd42e8238fc24a0813ad5fb7027"
+    },
+    {
+      "bytes": 10495,
+      "path": "elk-util-io-0.4.3.jar",
+      "sha256": "630c41aa82fded7a83bd631ae1e64a76fbcc9cb5883c74ca22229cc91c0cd4d6"
+    },
+    {
+      "bytes": 17707,
+      "path": "elk-util-logging-0.4.3.jar",
+      "sha256": "eedcb169253ae7812c7ea66b5b0893ad9a11e587250b46bb745104b659487fd4"
+    },
+    {
+      "bytes": 47465,
+      "path": "geronimo-activation_1.1_spec-1.1.jar",
+      "sha256": "3910d9f8b331b2ae573e16591ac246058e088cac97f3ec064f46b10a8801fcb9"
+    },
+    {
+      "bytes": 223298,
+      "path": "geronimo-javamail_1.4_spec-1.7.1.jar",
+      "sha256": "6f1e85d9c66135f5a9dbc9f78cbf8132e52f8a85884d618ccf0dbe9344c5a330"
+    },
+    {
+      "bytes": 2256213,
+      "path": "guava-18.0.jar",
+      "sha256": "d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99"
+    },
+    {
+      "bytes": 668235,
+      "path": "guice-4.0.jar",
+      "sha256": "b378ffc35e7f7125b3c5f3a461d4591ae1685e3c781392f0c854ed7b7581d6d2"
+    },
+    {
+      "bytes": 43425,
+      "path": "guice-assistedinject-4.0.jar",
+      "sha256": "ed44e4d809e6b3bc41ccd6e8b5acf43fb517234f4ac4c1125d7a82c44826f147"
+    },
+    {
+      "bytes": 81388,
+      "path": "guice-multibindings-4.0.jar",
+      "sha256": "79d1d122ce059ed2c55d5acfd77eb31e3891f6a4aa997257ec0e7aec3d10f078"
+    },
+    {
+      "bytes": 433368,
+      "path": "httpclient-4.2.5.jar",
+      "sha256": "c7fb05b793a586633d2d801a889e0846f3f21c7f8dc3dab776421383f49ebb8c"
+    },
+    {
+      "bytes": 115625,
+      "path": "httpclient-cache-4.2.5.jar",
+      "sha256": "ff4e0ddcd53c51f12a4775106cccd74815c309bef7a80292344f4c4d7195b880"
+    },
+    {
+      "bytes": 227275,
+      "path": "httpcore-4.2.4.jar",
+      "sha256": "bda2b9e0464f7a0e122d5e9bff7b384f3bc3a91af18ad51e029deaaa599e5db3"
+    },
+    {
+      "bytes": 105073,
+      "path": "ictclas4j-1.0.1.jar",
+      "sha256": "17a42f998094173439bde4f6804cd50553780a1ba245bff1731aefc764eb0ae5"
+    },
+    {
+      "bytes": 78502,
+      "path": "jackson-annotations-2.18.3.jar",
+      "sha256": "8aa5740d80b5a5025508b41bbadbaa1fb3772267c628b2e30681a4f45f8b8931"
+    },
+    {
+      "bytes": 589904,
+      "path": "jackson-core-2.18.6.jar",
+      "sha256": "e7e1bfa50f0a79db37e6aa37db111cf03aebf4a484b359d21127ab43ab2398c6"
+    },
+    {
+      "bytes": 1659155,
+      "path": "jackson-databind-2.18.3.jar",
+      "sha256": "510bdda75a7a6186c5bf33b851239488a1450906ae5757121f2e1cc48a7e108f"
+    },
+    {
+      "bytes": 2497,
+      "path": "javax.inject-1.jar",
+      "sha256": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff"
+    },
+    {
+      "bytes": 95806,
+      "path": "javax.servlet-api-3.1.0.jar",
+      "sha256": "af456b2dd41c4e82cf54f3e743bc678973d9fe35bd4d3071fa05c7e5333b8482"
+    },
+    {
+      "bytes": 226161,
+      "path": "jaxen-1.1.4.jar",
+      "sha256": "5da6c3bfc2aaf0fd7d43dc76829164a815fb9a9567eca9b7ccf67998fa70e3b5"
+    },
+    {
+      "bytes": 16519,
+      "path": "jcl-over-slf4j-1.7.7.jar",
+      "sha256": "c6472b5950e1c23202e567c6334e4832d1db46fad604b7a0d7af71d4a014bce2"
+    },
+    {
+      "bytes": 74702,
+      "path": "json-20231013.jar",
+      "sha256": "0f18192df289114e17aa1a0d0a7f8372cc9f5c7e4f7e39adcf8906fe714fa7d3"
+    },
+    {
+      "bytes": 16046,
+      "path": "json-simple-1.1.jar",
+      "sha256": "2d9484f4c649f708f47f9a479465fc729770ee65617dca3011836602264f6439"
+    },
+    {
+      "bytes": 118779,
+      "path": "jsonld-java-0.5.0.jar",
+      "sha256": "7bd3c137e8a1e12148a706015618d3b8ad01be7ac641a348d289933ecc63b8b4"
+    },
+    {
+      "bytes": 13774,
+      "path": "jsonld-java-sesame-0.5.0.jar",
+      "sha256": "7f642489bd4f949137573e70402d7bf4c2b388d0264312ef0c92b0eb4d87c19d"
+    },
+    {
+      "bytes": 31866,
+      "path": "jsr305-2.0.1.jar",
+      "sha256": "1e7f53fa5b8b5c807e986ba335665da03f18d660802d8bf061823089d1bee468"
+    },
+    {
+      "bytes": 367444,
+      "path": "log4j-1.2.14.jar",
+      "sha256": "e3bff9ab64a09b1ac2800f3b5fb1e3d99728064acb6dd3924938507638a404fb"
+    },
+    {
+      "bytes": 351127,
+      "path": "log4j-api-2.25.4.jar",
+      "sha256": "c4b642a7f047275215de117e0e3847eb2c7711d84a0aa7433e7b3c096daf341d"
+    },
+    {
+      "bytes": 2023860,
+      "path": "log4j-core-2.25.4.jar",
+      "sha256": "10fee2c0485d54fa44ee75d314f6295508f7b932281873db61a91b88073200e6"
+    },
+    {
+      "bytes": 72150,
+      "path": "logkit-1.0.1.jar",
+      "sha256": "7ea93b4fc21f3d05ed224b168a025f864db75ddfddc2343e1ec29a386d7501e0"
+    },
+    {
+      "bytes": 84419,
+      "path": "opencsv-3.10.jar",
+      "sha256": "ffab8b106d42c8e89868cc0bb34c5a832e48d2d8a260565667b0f997da7cbe5a"
+    },
+    {
+      "bytes": 1898468,
+      "path": "org.semanticweb.hermit-1.3.8.413.jar",
+      "sha256": "bdc093e458c0f5fc56329d359a389ea60ef767c82a7d2ab052ef0970ccef631d"
+    },
+    {
+      "bytes": 833595,
+      "path": "owlapi-api-4.1.3.jar",
+      "sha256": "c7cf7b3764adf672c642272c31301917e39e7f64079159ebc3181d58eb36b286"
+    },
+    {
+      "bytes": 11598,
+      "path": "owlapi-apibinding-4.1.3.jar",
+      "sha256": "f1d39b813afdf6264abcce1dcf107fb3fa488c1ab2a83b26867c1908d5740dd2"
+    },
+    {
+      "bytes": 20232,
+      "path": "owlapi-contract-4.1.3.jar",
+      "sha256": "a848ba83e22aed505891608e221e8f0cacb1eb806214d7d0b395955417ff55d6"
+    },
+    {
+      "bytes": 2878249,
+      "path": "owlapi-distribution-4.1.3.jar",
+      "sha256": "76e4d45fe7e4da28534a8e5085fc8d11525c5cc4133339256fab45b07171afbe"
+    },
+    {
+      "bytes": 103745,
+      "path": "owlapi-fixers-4.1.3.jar",
+      "sha256": "1c2bd325cd5da181a1209379bb3c44430ba27bc5742a5dff1028aaa71b545291"
+    },
+    {
+      "bytes": 453775,
+      "path": "owlapi-impl-4.1.3.jar",
+      "sha256": "700adceebc80dd4648778d1520de6981b01e9da038d8c838f627f13eec60a557"
+    },
+    {
+      "bytes": 189558,
+      "path": "owlapi-oboformat-4.1.3.jar",
+      "sha256": "ca74bae83abd22c1194ea57deaa42cdcf89c3a1bdc2c6b1f332cf66cfb14e238"
+    },
+    {
+      "bytes": 1046477,
+      "path": "owlapi-parsers-4.1.3.jar",
+      "sha256": "dd909b0e93fb0b2cdc103a0c1efd675126b243169e7aa89a054ad15bace9c143"
+    },
+    {
+      "bytes": 64541,
+      "path": "owlapi-rio-4.1.3.jar",
+      "sha256": "3bf18b99c1617290312bcd6c3e8ed15e700b35daa5cf670223f617c791a34081"
+    },
+    {
+      "bytes": 146018,
+      "path": "owlapi-tools-4.1.3.jar",
+      "sha256": "db5304d08f346013844797e031ca28c506ed6c3bb6b78ad0bde1896f1b058452"
+    },
+    {
+      "bytes": 21786,
+      "path": "semargl-core-0.6.1.jar",
+      "sha256": "52fb01e35f67e6965030d847858f44c7ce5340267703236cfa612a54c6e8a1af"
+    },
+    {
+      "bytes": 24728,
+      "path": "semargl-rdf-0.6.1.jar",
+      "sha256": "758180228feae7a65b5ed910f36046cf4a8343ce25630e6738b384d5e6fd8db2"
+    },
+    {
+      "bytes": 34994,
+      "path": "semargl-rdfa-0.6.1.jar",
+      "sha256": "1af7df3b1da6d120e2dc2653f9cb3a401bde1116d6568914287f83ab4830c46e"
+    },
+    {
+      "bytes": 10102,
+      "path": "semargl-sesame-0.6.1.jar",
+      "sha256": "59f6f188b2aacaa56f3b1509e688e48bd8f6c20cddac26fdde1d54244c216ea6"
+    },
+    {
+      "bytes": 166468,
+      "path": "sesame-model-2.7.12.jar",
+      "sha256": "81b3e81ec98a5a8f077655ef32bca162aed9ac268e296fcd808026e23ee53c97"
+    },
+    {
+      "bytes": 53968,
+      "path": "sesame-rio-api-2.7.12.jar",
+      "sha256": "9f78268498e0fb4d6ea907048a0b8d671fc18e5198b95435e2796d509f290bc7"
+    },
+    {
+      "bytes": 11327,
+      "path": "sesame-rio-binary-2.7.12.jar",
+      "sha256": "51810e228fa40f9a9eae0ea7f6d801fc2f0fc039827e45d437bcf45389176327"
+    },
+    {
+      "bytes": 8652,
+      "path": "sesame-rio-datatypes-2.7.12.jar",
+      "sha256": "3914d9e6b7e29ced6ab49c7cd9b5e50a1ae837dc4d1ecbe9061f2112a0777fda"
+    },
+    {
+      "bytes": 3587,
+      "path": "sesame-rio-languages-2.7.12.jar",
+      "sha256": "eba69bacd5f07969c8c0cbf4ef49d19c85b85026077e04eabf29ee4a9f51b683"
+    },
+    {
+      "bytes": 4580,
+      "path": "sesame-rio-n3-2.7.12.jar",
+      "sha256": "1a8518b953fe5e0f60ae662cdb1f18d27cb3bea76fc695bb573129bb7e5ba154"
+    },
+    {
+      "bytes": 7401,
+      "path": "sesame-rio-nquads-2.7.12.jar",
+      "sha256": "4288e7762df82834a742194510440a95265bf805c6a72ae0063a85dcba031c52"
+    },
+    {
+      "bytes": 15086,
+      "path": "sesame-rio-ntriples-2.7.12.jar",
+      "sha256": "09fab75b4c08661ba107d0256c3758d9e7dc1b62d81ea7a1e3d8293f0616a7b1"
+    },
+    {
+      "bytes": 12929,
+      "path": "sesame-rio-rdfjson-2.7.12.jar",
+      "sha256": "344af499246739166c564f2d1954dc07b5642082f3e82c10e064a6c16b4de57e"
+    },
+    {
+      "bytes": 37653,
+      "path": "sesame-rio-rdfxml-2.7.12.jar",
+      "sha256": "ed15595c429816a043bcd24d922aefd16905b9f0886c184a3a71573813423fde"
+    },
+    {
+      "bytes": 7406,
+      "path": "sesame-rio-trig-2.7.12.jar",
+      "sha256": "cb9e7453b6317a46a8f01a76b0f49d61c67199de39b1dcd1810f72b4074a2cf2"
+    },
+    {
+      "bytes": 11781,
+      "path": "sesame-rio-trix-2.7.12.jar",
+      "sha256": "e18ba3e1c89f1d1bc61896c82b282dd20e7b33b5205779939dd67f21c2705c08"
+    },
+    {
+      "bytes": 21709,
+      "path": "sesame-rio-turtle-2.7.12.jar",
+      "sha256": "b1c78bd92134b581ea8328fdd1f2219d87571e03267580cd9575ab8675f48f66"
+    },
+    {
+      "bytes": 79930,
+      "path": "sesame-util-2.7.12.jar",
+      "sha256": "76b02a2ea76b49897c4808b94da415a5bcaba60297d76edc29bbc147b078082b"
+    },
+    {
+      "bytes": 41473,
+      "path": "slf4j-api-1.7.31.jar",
+      "sha256": "cda862aa69683ac072ee2afd0b93d070ceab291ef5b857d318b24c1595b36b8a"
+    },
+    {
+      "bytes": 12211,
+      "path": "slf4j-log4j12-1.7.31.jar",
+      "sha256": "2de655f6cbd91107982e1d6ab297a7f919f12fa179573e8c6449b14c12191361"
+    },
+    {
+      "bytes": 182112,
+      "path": "stax2-api-3.1.1.jar",
+      "sha256": "850bbbbaaa1e7ecc4ebecdb8a283ff36d1f2451c6797b0175bc40ae2ad9b31c4"
+    },
+    {
+      "bytes": 2523218,
+      "path": "trove4j-3.0.3.jar",
+      "sha256": "3c8616203d61a12a7e3487e8b34f3c198c2b5ba9e90da0c7ea32d99cd4958012"
+    },
+    {
+      "bytes": 479104,
+      "path": "woodstox-core-asl-4.1.4.jar",
+      "sha256": "d24cf82fa3f2b30a847036ff4c198dde397e43c4599aef9e93fcbe1e49186bc2"
+    },
+    {
+      "bytes": 99555,
+      "path": "xz-1.5.jar",
+      "sha256": "86f30fa8775fa3a62cdb39d1ed78a6019164c1058864048d42cbee244e26e840"
+    }
+  ],
+  "platform": {
+    "java": "OpenJDK 17.0.19",
+    "machine": "arm64",
+    "macos": "26.4 (25E246)",
+    "python": "3.10.20"
+  },
+  "protocol_sha256": "d8c11f0a700411d2937bdebbb1081ea7e57d1ced721dba27c73d985b6a3d753c",
+  "python_distribution_record_count": 122,
+  "python_packages": [
+    "accelerate==1.6.0",
+    "aiohappyeyeballs==2.6.1",
+    "aiohttp==3.11.16",
+    "aiosignal==1.3.2",
+    "annotated-types==0.7.0",
+    "anytree==2.13.0",
+    "appnope==0.1.4",
+    "asttokens==3.0.0",
+    "async-timeout==5.0.1",
+    "attrs==25.3.0",
+    "blessed==1.20.0",
+    "blis==1.3.0",
+    "catalogue==2.0.10",
+    "certifi==2025.1.31",
+    "charset-normalizer==3.4.1",
+    "click==8.1.8",
+    "cloudpathlib==0.21.0",
+    "comm==0.2.2",
+    "confection==0.1.5",
+    "cymem==2.0.11",
+    "datasets==3.5.0",
+    "debugpy==1.8.14",
+    "decorator==5.2.1",
+    "deeponto==0.9.3",
+    "dill==0.3.8",
+    "enlighten==1.14.1",
+    "exceptiongroup==1.2.2",
+    "executing==2.2.0",
+    "filelock==3.18.0",
+    "frozenlist==1.5.0",
+    "fsspec==2024.12.0",
+    "huggingface-hub==0.30.2",
+    "idna==3.10",
+    "ipykernel==6.29.5",
+    "ipython==8.35.0",
+    "ipywidgets==8.1.6",
+    "isodate==0.7.2",
+    "jedi==0.19.2",
+    "Jinja2==3.1.6",
+    "joblib==1.4.2",
+    "jpype1==1.5.2",
+    "jupyter_client==8.6.3",
+    "jupyter_core==5.7.2",
+    "jupyterlab_widgets==3.0.14",
+    "langcodes==3.5.0",
+    "language_data==1.3.0",
+    "lxml==5.3.2",
+    "marisa-trie==1.2.1",
+    "markdown-it-py==3.0.0",
+    "MarkupSafe==3.0.2",
+    "matplotlib-inline==0.1.7",
+    "mdurl==0.1.2",
+    "mpmath==1.3.0",
+    "multidict==6.4.3",
+    "multiprocess==0.70.16",
+    "murmurhash==1.0.12",
+    "nest-asyncio==1.6.0",
+    "networkx==3.4.2",
+    "nltk==3.9.1",
+    "numpy==2.2.4",
+    "packaging==24.2",
+    "pandas==2.2.3",
+    "parso==0.8.4",
+    "pexpect==4.9.0",
+    "platformdirs==4.3.7",
+    "pprintpp==0.4.0",
+    "prefixed==0.9.0",
+    "preshed==3.0.9",
+    "prompt_toolkit==3.0.51",
+    "propcache==0.3.1",
+    "psutil==7.0.0",
+    "ptyprocess==0.7.0",
+    "pure_eval==0.2.3",
+    "pyarrow==19.0.1",
+    "pydantic==2.11.3",
+    "pydantic_core==2.33.1",
+    "Pygments==2.19.1",
+    "pyparsing==3.2.3",
+    "python-dateutil==2.9.0.post0",
+    "pytz==2025.2",
+    "PyYAML==6.0.2",
+    "pyzmq==26.4.0",
+    "rdflib==7.1.4",
+    "regex==2024.11.6",
+    "requests==2.32.3",
+    "rich==14.0.0",
+    "safetensors==0.5.3",
+    "scikit-learn==1.6.1",
+    "scipy==1.15.2",
+    "setuptools==78.1.0",
+    "shellingham==1.5.4",
+    "six==1.17.0",
+    "smart-open==7.1.0",
+    "spacy-legacy==3.0.12",
+    "spacy-loggers==1.0.5",
+    "spacy==3.8.5",
+    "srsly==2.5.1",
+    "stack-data==0.6.3",
+    "sympy==1.13.1",
+    "textdistance==4.6.3",
+    "thinc==8.3.6",
+    "threadpoolctl==3.6.0",
+    "tokenizers==0.21.1",
+    "torch==2.6.0",
+    "tornado==6.4.2",
+    "tqdm==4.67.1",
+    "traitlets==5.14.3",
+    "transformers==4.51.3",
+    "typer==0.15.2",
+    "typing-inspection==0.4.0",
+    "typing_extensions==4.13.2",
+    "tzdata==2025.2",
+    "urllib3==2.4.0",
+    "wasabi==1.1.3",
+    "wcwidth==0.2.13",
+    "weasel==0.4.1",
+    "widgetsnbextension==4.0.14",
+    "wrapt==1.17.2",
+    "xxhash==3.5.0",
+    "yacs==0.1.8",
+    "yarl==1.20.0"
+  ],
+  "python_unique_package_record_count": 121,
+  "schema_version": "orion.p3.comparator-native-preflight.runtime-manifest.v6",
+  "sources": {
+    "aml": {
+      "commit": "d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6",
+      "jar_sha256": "a5b831a6c000e49aa4702b16486dabdf38e40bb68203a16a8019414fecc2ecf3",
+      "licence": "Apache-2.0",
+      "name": "AML v3.2",
+      "release_sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27"
+    },
+    "deeponto": {
+      "commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+      "licence": "Apache-2.0",
+      "licence_sha256": "340ebaff716578e1b620521eeb740febbdcb24b8bd0c1de12c37b916aadf4d36",
+      "name": "BERTMap via DeepOnto 0.9.3",
+      "tree": "b499cb5780bbe749f7db44d0bc872d275a2737ea",
+      "uv_lock_sha256": "a99a3136c591156ba97f3c5ff83d9e91c76ee9aa63376312cc5cc82a007589c0"
+    },
+    "logmap": {
+      "built_jar_sha256": "8b2ebdc9490c211b99f8dbe6290e48de9072c3ab18f795712fa1b2efa518cf27",
+      "commit": "b3b57d0d8bfb5872bdffb49329d764acb4735713",
+      "dependency_jar_count_excluding_main": 88,
+      "licence": "Apache-2.0",
+      "licence_sha256": "6375b618c2aad77f0bdea18afb56511d0d3fdb6d012ade1bdab6f436b9618704",
+      "name": "LogMap 4.0 source",
+      "tree": "9259d38e18e9926cec615ea31a8a7f5e5540b67a"
+    },
+    "model": {
+      "licence": "MIT",
+      "licence_sha256": "9e8f42111a19340d74194466063143fbc4294b50dd26ad5c60a06dcaeafa99d2",
+      "repository": "emilyalsentzer/Bio_ClinicalBERT",
+      "revision": "d5892b39a4adaed74b92212a44081509db72f87b",
+      "weight_sha256": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719"
+    }
+  }
+}

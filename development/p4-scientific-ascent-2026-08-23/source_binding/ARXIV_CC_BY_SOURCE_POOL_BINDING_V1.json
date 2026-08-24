@@ -1,0 +1,66 @@
+{
+  "binding_id": "P4.NAT.AXIS.768.ARXIV_CC_BY_POOL_1536.V1",
+  "case_eligibility": {
+    "not_yet_established": [
+      "claim is scientifically material and atomic",
+      "full-text evidence licenses the target claim",
+      "restricted-view member is genuinely unidentifiable",
+      "paired control is identifiable",
+      "one of eight naturalistic mechanisms applies",
+      "independent evaluator agreement",
+      "source-disjoint replication eligibility",
+      "full-text bytes fetched and hashed for eligible cases",
+      "provider and modality diversity",
+      "24 eligible clusters in every domain-by-mechanism cell"
+    ],
+    "status": "UNADJUDICATED_SOURCE_CANDIDATES_ONLY"
+  },
+  "created_at": "2026-08-23T12:12:13.206659+00:00",
+  "frame": {
+    "candidate_to_planned_ratio": 2.0,
+    "path": "ARXIV_CC_BY_SOURCE_POOL_V1.jsonl",
+    "per_domain": {
+      "EARTH_ENVIRONMENT": 384,
+      "LIFE_BIOMEDICAL": 384,
+      "PHYSICAL_ENGINEERING": 384,
+      "SCIENTIFIC_SOFTWARE": 384
+    },
+    "planned_adjudicated_cases_per_domain": 192,
+    "rows": 1536,
+    "sha256": "47dd24657752731cdf45bab95852f3e18b50946af8a29b5acee95956ec81d895"
+  },
+  "grants_scientific_authority": false,
+  "harvest_log": {
+    "path": "ARXIV_CC_BY_POOL_HARVEST_LOG_V1.json",
+    "sha256": "3c6c78291acd13350781cc29a7171b516d926a7f05c040bb7fa0478e298970d3"
+  },
+  "immutability": {
+    "official_basis": "arXiv states each public version is a permanent part of the scientific record and may be cited with the full versioned identifier",
+    "rule": "bind only exact latest vN present in the harvested OAI record; unversioned URLs are forbidden",
+    "unit": "versioned arXiv identifier"
+  },
+  "official_policy_urls": {
+    "api": "https://info.arxiv.org/help/api/index.html",
+    "license": "https://info.arxiv.org/help/license/index.html",
+    "oai": "https://info.arxiv.org/help/oa/index.html",
+    "versions": "https://info.arxiv.org/help/versions.html"
+  },
+  "outcomes_accessed": false,
+  "rights": {
+    "article_content_filter": "exact arXivRaw license must be CC BY 4.0",
+    "attribution_required": true,
+    "excluded_for_content": [
+      "arXiv non-exclusive distribution license",
+      "CC BY-NC-ND",
+      "CC BY-NC-SA",
+      "CC BY-SA (excluded to avoid share-alike ambiguity in later case adaptations)",
+      "missing/unknown license"
+    ],
+    "metadata": "arXiv states that CC0 1.0 applies to all metadata",
+    "third_party_content_warning": "CC BY record eligibility does not by itself clear third-party figures, datasets, or publisher versions; V1 case construction is text-only unless separately cleared"
+  },
+  "schema_version": "orion.p4.public-naturalistic-source-binding.v1",
+  "source": "arXiv official OAI-PMH arXivRaw metadata",
+  "source_endpoint": "https://export.arxiv.org/oai2",
+  "terminal": "PUBLIC_CC_BY_SOURCE_POOL_BOUND__NATURALISTIC_CASE_ADJUDICATION_REQUIRED"
+}

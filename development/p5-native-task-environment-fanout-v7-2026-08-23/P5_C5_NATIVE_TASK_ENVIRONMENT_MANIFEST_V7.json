@@ -1,0 +1,68 @@
+{
+  "arm_code": "C5",
+  "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+  "arm_or_model_executed": false,
+  "authority": "BYTE_LEVEL_PREFLIGHT_ONLY",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "future_or_planned_bytes_promoted_to_evidence": false,
+  "missing_byte_artifacts": [
+    "fixed train membership bytes",
+    "fixed eval-dev membership bytes",
+    "fixed development-only locked-surrogate membership bytes",
+    "frozen solver outputs for every development item",
+    "development soft-anchor bytes and provenance",
+    "external pre-action EVALUATOR_REPAIR certificate instance",
+    "generated-output rights disposition"
+  ],
+  "next_discriminator": "Acquire or lawfully generate solver outputs before metric evolution, then freeze disjoint development memberships, soft anchors, the external certificate, and generated-output rights.",
+  "observations": [
+    "No schema or planned future solver output was promoted to byte evidence."
+  ],
+  "predecessor": {
+    "candidate_requirements": {
+      "path": "development/p5-double-ratchet-execution-binding-v4-2026-08-23/P5_C5_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json",
+      "sha256": "e6805eac1f8c114735026dfb5b58115f539fb9e33b3a1bb500aaa8cf9f8ab958",
+      "size_bytes": 1247
+    },
+    "field_registry": {
+      "path": "development/p5-double-ratchet-execution-binding-v4-2026-08-23/P5_C5_V4_FIELD_REGISTRY.json",
+      "sha256": "07294be547223840f8142e843f1d83d6c43f2d4f376231586f97a826c2d7cd10",
+      "size_bytes": 16957
+    }
+  },
+  "residual": "The workspace contains schemas and source metadata but no frozen solver-output artifact or complete development membership/anchor/certificate/rights bundle; the official runner regenerates hosted outputs and reports eval_locked each round.",
+  "satisfied_criteria": [
+    "shared core identity and rights",
+    "Double Ratchet source identity",
+    "solver.py and prompts.py source hashes recorded by V4"
+  ],
+  "schema_version": "orion.p5.native-task-environment-manifest.v7",
+  "shared_core": {
+    "case_body": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/CASE_BODY_V6.json",
+      "sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+      "size_bytes": 2799
+    },
+    "core_index": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_CORE_INDEX_V6.json",
+      "sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "size_bytes": 2399
+    },
+    "rights_manifest": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_RIGHTS_MANIFEST_V6.json",
+      "sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+      "size_bytes": 4082
+    },
+    "source_archive": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+      "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+      "size_bytes": 681034
+    },
+    "task_specification": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/TASK_SPECIFICATION_V6.md",
+      "sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+      "size_bytes": 1070
+    }
+  },
+  "status": "BLOCKING"
+}

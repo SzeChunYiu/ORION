@@ -1,0 +1,59 @@
+{
+  "actions": {
+    "class_counts_inspected_or_retained": false,
+    "index_json_parses": 0,
+    "label_values_inspected_or_retained": false,
+    "learner_or_model_runs": 0,
+    "manuscript_updated": false,
+    "metric_or_scorer_runs": 0,
+    "network_requests_in_official_gate": 6,
+    "official_post_discovery_gate_executions": 1,
+    "performance_arms": 0,
+    "pre_freeze_source_probes": "NONZERO_NOT_INDEPENDENTLY_AUDITED",
+    "protected_outcome_or_c4_runs": 0,
+    "pytest_or_repository_ci_runs": 0,
+    "ranking_runs": 0,
+    "review_csv_requests": 0,
+    "review_population_censuses": 0,
+    "shared_ledger_updated": false
+  },
+  "adverse_result": {
+    "causal_code": "FROZEN_INDEX_SHA_DOES_NOT_MATCH_PINNED_COMMIT_PATH",
+    "expected_identity": {
+      "bytes": 23118,
+      "git_blob_sha1": "ada2668adfbb33d61e11a6bec02b10637e419bde",
+      "sha256": "5d829c669f744cc6e91165b15dd3364554320d684398b841764b2609bb857d4b"
+    },
+    "expected_identity_owner_commit": "dc2dadfdbb98eb1b4259604789abd640aa3b693e",
+    "frozen_commit": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "frozen_commit_identity": {
+      "bytes": 22135,
+      "git_blob_sha1": "f4f5007156cb71e7d54e99057037fb75d44f87c4",
+      "sha256": "f34c17b3dca9d609585e5fcc9d24c5433d4ad240ef91e5c2e9a48edee1e0959a"
+    },
+    "frozen_route_acquisition_passed": false,
+    "historical_owner_provenance_passed": true,
+    "historical_owner_substituted": false
+  },
+  "authority": "PUBLIC_SOURCE_IDENTITY_DIAGNOSIS_AFTER_SAME_SESSION_DISCOVERY_ONLY",
+  "custody": {
+    "independent_roles_closed": 0,
+    "independent_roles_required": 3,
+    "performance_run_authorized": false
+  },
+  "next_discriminator": "P2_V15_COHERENT_SINGLE_COMMIT_INDEX_AND_DATASET_LOCK_WITH_INDEPENDENT_SOURCE_CUSTODY",
+  "not_warranted": [
+    "The frozen route contains seven eligible source-disjoint keyword-capable reviews.",
+    "The historical owner commit may be substituted into V14.",
+    "Provider-native keywords improve CRE20, R@10 or WSS95.",
+    "Any source-general, domain-general, workflow-general, application-exact or ORION-specific superiority.",
+    "Independent, protected, submission-ready or top-tier confirmation."
+  ],
+  "performance_run_authorized": false,
+  "preserved_v13_terminal": "P2_V13_IMPORTED_V10_CONTENT_IDENTITY_AND_EXACT_U4_TEXT_FIBRE_SEPARATION_PASS__PROVIDER_NATIVE_KEYWORD_STATE_BOUND__V10_4_OF_7_SUPPORT_CEILING_BLOCKS_MATCHED_PERFORMANCE__NEW_7_REVIEW_KEYWORD_FAMILY_AND_CUSTODY_REQUIRED",
+  "readiness": "NOT_SUBMISSION_READY",
+  "result_id": "P2.V14.STATE.EXPANDING.ACQUISITION.RESULT",
+  "schema_version": "orion.p2.state-expanding-acquisition.result.v14",
+  "terminal": "P2_V14_FROZEN_INDEX_IDENTITY_MISMATCH__PINNED_COMMIT_PATH_RESOLVES_F4F5007_BLOB_SHA256_F34C17B3__EXPECTED_ADA2668_BLOB_SHA256_5D829C66_BELONGS_TO_DC2DADF__STOP_BEFORE_CENSUS_AND_PERFORMANCE",
+  "widest_positive_result": "The exact source-identity failure is now causally localized: the V13-frozen commit resolves reproducibly to tree 49f437c, blob f4f5007 and SHA-256 f34c17b, while the separately frozen expected bytes resolve reproducibly at commit dc2dadf, tree 2173535, blob ada2668 and SHA-256 5d829c6. This supports a precise snapshot-lock repair, not a seven-review or performance claim."
+}

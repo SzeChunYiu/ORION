@@ -1,0 +1,79 @@
+{
+  "audit_scope": "Independent identity and applicability audit for research extraction from the exact frozen ontology bytes. This is not legal advice and not a blanket relicensing claim.",
+  "counts": {
+    "applicability_pass": 3,
+    "families_audited": 3,
+    "identity_pass": 3,
+    "research_use_pass": 3
+  },
+  "created_at": "2026-08-23T16:53:19.025411+00:00",
+  "families": {
+    "ENVO_2026_06_26": {
+      "applicability_basis": [
+        "The exact root LICENSE blob is bound to the frozen release commit.",
+        "The parsed frozen ontology itself declares the CC0 1.0 IRI."
+      ],
+      "applicability_pass": true,
+      "frozen_commit": "a2455d1a77e46bb8a664d65a157166b539269042",
+      "identity_pass": true,
+      "ontology_declared_license_iris": [
+        "https://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "research_use_pass": true,
+      "rights_identity": "CC0 1.0 Universal",
+      "rights_source_git_blob_sha1": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+      "rights_source_sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "rights_source_url": "https://raw.githubusercontent.com/EnvironmentOntology/envo/a2455d1a77e46bb8a664d65a157166b539269042/LICENSE",
+      "verdict": "PASS"
+    },
+    "FIBO_FND_2026Q2": {
+      "applicability_basis": [
+        "The exact root LICENSE blob is bound to the frozen repository commit.",
+        "The selected FND files are repository content at that same commit; no contrary file-level notice was observed in the extraction metadata."
+      ],
+      "applicability_pass": true,
+      "frozen_commit": "f59157fe156e3d91b1c045222d0a7dc06b7d78a2",
+      "identity_pass": true,
+      "ontology_declared_license_iris": [],
+      "research_use_pass": true,
+      "rights_identity": "MIT License, copyright 2020 Enterprise Data Management Council",
+      "rights_source_git_blob_sha1": "34cf2d376cc00346c285ea74d25647879cfe9a76",
+      "rights_source_sha256": "59f852c87fa59411aa7dc527bd5629074d2caced7de4a48bbe7c5763359d8559",
+      "rights_source_url": "https://raw.githubusercontent.com/edmcouncil/fibo/f59157fe156e3d91b1c045222d0a7dc06b7d78a2/LICENSE",
+      "verdict": "PASS"
+    },
+    "W3C_PROV_O_REC_20130430": {
+      "applicability_basis": [
+        "The dated Recommendation links W3C document-use rules and identifies the linked namespace resource as the OWL encoding of PROV-O.",
+        "The frozen TTL self-identifies version IRI http://www.w3.org/ns/prov-o-20130430 and versionInfo Recommendation version 2013-04-30, and links the PROV-O Recommendation.",
+        "The 2002 W3C Document License explicitly grants copying and distribution of the linked W3C document; that grant is sufficient for this unmodified research access and factual certificate extraction.",
+        "The archived 2002-license page states that the 2015 more-permissive document license was applied to documents previously available under it. This is supporting evidence, not an assumption that the 2023 software/document license applies retroactively.",
+        "Raw ontology payloads are not redistributed or retained by this lane."
+      ],
+      "applicability_pass": true,
+      "frozen_commit": "aa82bd71b6bb1f7b735bf3f7f5b948fae87764f0",
+      "frozen_git_blob_sha1": "8b4d4b18d73d1e8f3e671e879c6c242205b6a729",
+      "frozen_path": "ontology/releases/REC-prov-o-20130430/ns/prov-o.ttl",
+      "frozen_sha256": "3d03c8e15753178541fb8cd59fbefecaf1861f9c37ef75190c6e938b85fb0c3d",
+      "historical_document_license_sha256": "73101ed2e566de5dac8ff8f438fc24ef32d206687330aef7b2b640416d60af7e",
+      "historical_document_license_url": "https://www.w3.org/Consortium/Legal/2002/copyright-documents-20021231",
+      "identity_pass": true,
+      "nonrelied_upon_2023_software_document_license": {
+        "retroactive_applicability_assumed": false,
+        "sha256": "aab6d2da3de7e0c6158551b2fd8f43ffe2a3373f2ffecb0f1c6db9fa79b0690b",
+        "url": "https://www.w3.org/copyright/software-license-2023/"
+      },
+      "recommendation_sha256": "6b96671ab84faf12ce3f041aca12c3f93a6df2ed242348810743179a68e69555",
+      "recommendation_url": "https://www.w3.org/TR/2013/REC-prov-o-20130430/",
+      "research_use_pass": true,
+      "rights_identity": "W3C document-use grant applicable at the 2013 Recommendation publication",
+      "scope_limit": "PASS covers the exact research access and certificate extraction here; it does not assert a blanket licence for modified PROV-O distributions.",
+      "subsequent_document_license_sha256": "f3df06a8686e6cd5e3bde34ff9f7c6490b98e4f5b84263c5e4ba55fb2a3ff956",
+      "subsequent_document_license_url": "https://www.w3.org/Consortium/Legal/2015/doc-license",
+      "verdict": "PASS"
+    }
+  },
+  "raw_legal_or_ontology_payloads_retained": false,
+  "schema_version": "orion.p3.authoritative-negative-semantics.rights-identity-audit.v5",
+  "three_family_rights_gate_pass": true
+}

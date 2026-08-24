@@ -1,0 +1,25 @@
+{
+  "authority": "mechanical entrypoint probe only; invalid JSON forces documented fallback; not MDA and not scientific evidence",
+  "repo_head": "c354622458c460b419cab821d482c879f0578377",
+  "command_shape": "neuronbench.agent.run_baseline(load_world('ca_rebound', stochastic=False, seed=0), StubReturningEmptyJSON, budget=2)",
+  "world": "ca_rebound",
+  "observed": [
+    [
+      "brief step (12 uA, 40 ms)",
+      3
+    ],
+    [
+      "long step (10 uA, 300 ms)",
+      21
+    ]
+  ],
+  "predictions": {
+    "hyperpol -25 then release": 12.0,
+    "hyperpol -35 then release": 12.0,
+    "hyperpol -30 then release": 12.0,
+    "hyperpol -40 then release": 12.0,
+    "brief step (12 uA, 40 ms)": 12.0,
+    "long step (10 uA, 300 ms)": 12.0
+  },
+  "forecast_mse": 80.75
+}

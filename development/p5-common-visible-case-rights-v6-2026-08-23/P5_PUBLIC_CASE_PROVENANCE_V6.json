@@ -1,0 +1,39 @@
+{
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "frozen_at_utc": "2026-08-23T19:47:41Z",
+  "predecessor_public_development_evidence": {
+    "audit_receipt": {
+      "path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/AUDIT_RECEIPT.json",
+      "sha256": "aeed753b5eab56f828a8192717e18ba6953ae41ed4196f8b155960e67a70e528"
+    },
+    "authority": "PUBLIC_DEVELOPMENT_AND_PROVENANCE_CONTEXT_ONLY",
+    "preregistration_v3": {
+      "path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/PREREGISTRATION_V3.json",
+      "sha256": "5cd056ea54357cab9d341b57fa8b4fbd8a063011c4de983aa707e88de6e1959e"
+    },
+    "result_v2": {
+      "path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/RESULT_V2.json",
+      "retained_log_negative": "V2 checkout streams were overwritten; exact checkout-stream preservation remains CANNOT_CHECK.",
+      "sha256": "ef3f8893299578c071e8cad46d1c73cbe507d426a805ac772e9ae955092fab98"
+    },
+    "result_v3": {
+      "boundary": "Post-outcome archival replay only; not independent or confirmatory.",
+      "path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/RESULT_V3.json",
+      "sha256": "e743ebb77a31c4c4606f7eded8045a60c78fa2f251c13908051156cfd4a1fb6e"
+    },
+    "selection_is_post_outcome": true
+  },
+  "schema_version": "orion.p5.public-case-provenance.v6",
+  "source_identity": {
+    "apache_repository": "https://github.com/apache/commons-lang",
+    "buggy_commit": "396afc3e4693cfee182efe582455f2d97058c068",
+    "buggy_tree": "34e33cca607f33ffcf8661e3a6c4b7fc5aca9701",
+    "defects4j_commit": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+    "defects4j_repository": "https://github.com/rjust/defects4j",
+    "fixed_commit_known_to_packet_builder": "d1a45e9738de5b3e299bb51e987565dcce55fee6",
+    "known_public_fix_bytes_in_candidate_core": false,
+    "known_public_fix_patch_sha256": "2bacab48cc56c962cc906a3e95878735cacb2f231d4a64717a8798f1eb41090f",
+    "mapping_source_file_sha256": "373e86f5ae96329058f13e45944d01b1636732a9184afded514339791c192175",
+    "mapping_source_path": "framework/projects/Lang/commit-db:1"
+  }
+}

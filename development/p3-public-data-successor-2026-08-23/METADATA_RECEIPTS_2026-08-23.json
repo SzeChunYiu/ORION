@@ -1,0 +1,161 @@
+{
+  "authority": "OFFICIAL_PROVIDER_METADATA_AND_PINNED_TEXT_ONLY__NO_DATASET_BODY_OR_OUTCOME_ACCESS",
+  "captured_at_utc": "2026-08-23T12:53:00.418255+00:00",
+  "dataset_bodies_accessed": 0,
+  "extracted": {
+    "CRAFT_SHARED_TASK_2019_ZENODO_3460908": {
+      "creators": [
+        {
+          "affiliation": "CU Anschutz",
+          "name": "Hunter, Larry"
+        },
+        {
+          "affiliation": "CU Anschutz",
+          "name": "Baumgartner, Bill"
+        },
+        {
+          "affiliation": "CU Anschutz",
+          "name": "Bada, Mike"
+        }
+      ],
+      "doi": "10.5281/zenodo.3460908",
+      "files": [
+        {
+          "checksum": "md5:5aa8a6d59209e660d30d18f62e1467c8",
+          "key": "evaluation-data.tar.gz",
+          "size": 4219434
+        },
+        {
+          "checksum": "md5:bc09eeeca8b2e9df8fb0f2fded26a267",
+          "key": "craft-st-2019-2019_test_data.tar.gz",
+          "size": 118228814
+        },
+        {
+          "checksum": "md5:c312c057d35d66e303897c8e9a0b814d",
+          "key": "CRAFT-3.1.3.tar.gz",
+          "size": 138943683
+        }
+      ],
+      "license": {
+        "id": "cc-by-nc-sa-3.0"
+      },
+      "publication_date": "2019-07-03",
+      "record_id": "3460908",
+      "title": "CRAFT 2019 Shared Task data"
+    },
+    "OAEI_2004_ZENODO_15827226": {
+      "creators": [
+        {
+          "affiliation": "INRIA",
+          "name": "Euzenat, Jérôme"
+        }
+      ],
+      "doi": "10.5281/zenodo.15827226",
+      "files": [
+        {
+          "checksum": "md5:31676c68912a22622f6ca6d031519df9",
+          "key": "oacontest17.zip",
+          "size": 486043
+        }
+      ],
+      "license": {
+        "id": "cc-by-4.0"
+      },
+      "publication_date": "2004-10-10",
+      "record_id": "15827226",
+      "title": "OAEI 2004 (Ontology alignment contest) benchmark tests (oacontest17)"
+    },
+    "SCIREX_GITHUB_7DAAD660": {
+      "commit_date_utc": "2020-12-13T14:12:19Z",
+      "commit_sha": "7daad660fe94f504433590b7a781cfabe1e179c6",
+      "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "readme_sha256": "4c2050b55e77a633a39846a447bfb8c962f90d102a2a8b667067eaf16802ef66",
+      "release_head": {
+        "content_length_header": "7318844",
+        "dataset_body_accessed": false,
+        "etag": "\"70621cebbc6268d8fa73292f7bbaea1774bbad2df21183ca2df7fc00ff161316\""
+      },
+      "tree_sha": "c9931b14f2a085fecb6fb5cd36980fdc89b56c6c"
+    }
+  },
+  "gold_objects_accessed": 0,
+  "http_receipts": [
+    {
+      "body_bytes_accessed": 4859,
+      "body_sha256": "309adb5511adb6af0eaf4f8fec29736536d0f5757086de5e2eec96c833a448c1",
+      "content_length_header": "4859",
+      "content_type": "application/json",
+      "etag": "\"5\"",
+      "http_status": 200,
+      "last_modified": null,
+      "method": "GET",
+      "source_id": "CRAFT_SHARED_TASK_2019_ZENODO_3460908",
+      "url": "https://zenodo.org/api/records/3460908"
+    },
+    {
+      "body_bytes_accessed": 5332,
+      "body_sha256": "9a6b95198021dbbd4e0d07253ff874e8bd98e2038b6de171f7004934e06a0b9c",
+      "content_length_header": "5332",
+      "content_type": "application/json",
+      "etag": "\"4\"",
+      "http_status": 200,
+      "last_modified": null,
+      "method": "GET",
+      "source_id": "OAEI_2004_ZENODO_15827226",
+      "url": "https://zenodo.org/api/records/15827226"
+    },
+    {
+      "body_bytes_accessed": 5126,
+      "body_sha256": "8f3fe0f540386a05f01d1aba29a3599f38c4afe81970b1dfa0d5198d076757c5",
+      "content_length_header": "5126",
+      "content_type": "application/json; charset=utf-8",
+      "etag": "W/\"8f3fe0f540386a05f01d1aba29a3599f38c4afe81970b1dfa0d5198d076757c5\"",
+      "http_status": 200,
+      "last_modified": "Sun, 13 Dec 2020 14:12:19 GMT",
+      "method": "GET",
+      "source_id": "SCIREX_GITHUB_7DAAD660",
+      "url": "https://api.github.com/repos/allenai/SciREX/commits/7daad660fe94f504433590b7a781cfabe1e179c6"
+    },
+    {
+      "body_bytes_accessed": 3660,
+      "body_sha256": "4c2050b55e77a633a39846a447bfb8c962f90d102a2a8b667067eaf16802ef66",
+      "content_length_header": "3660",
+      "content_type": "text/plain; charset=utf-8",
+      "etag": "\"f57b88971d46c5150115f7b1ca42a2f19c197c77706ee6208e59fedbf296d8da\"",
+      "http_status": 200,
+      "last_modified": null,
+      "method": "GET",
+      "role": "README",
+      "source_id": "SCIREX_GITHUB_7DAAD660",
+      "url": "https://raw.githubusercontent.com/allenai/SciREX/7daad660fe94f504433590b7a781cfabe1e179c6/README.md"
+    },
+    {
+      "body_bytes_accessed": 11357,
+      "body_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "content_length_header": "11357",
+      "content_type": "text/plain; charset=utf-8",
+      "etag": "\"0f7ad233313d00f59c4f65f8c224ab2bfe14a8608ea59dc12ae4d7f13ba699e9\"",
+      "http_status": 200,
+      "last_modified": null,
+      "method": "GET",
+      "role": "LICENSE",
+      "source_id": "SCIREX_GITHUB_7DAAD660",
+      "url": "https://raw.githubusercontent.com/allenai/SciREX/7daad660fe94f504433590b7a781cfabe1e179c6/LICENSE"
+    },
+    {
+      "body_bytes_accessed": 0,
+      "body_sha256": null,
+      "content_length_header": "7318844",
+      "content_type": "application/octet-stream",
+      "dataset_body_accessed": false,
+      "etag": "\"70621cebbc6268d8fa73292f7bbaea1774bbad2df21183ca2df7fc00ff161316\"",
+      "http_status": 200,
+      "last_modified": null,
+      "method": "HEAD",
+      "role": "DATA_RELEASE_HEAD",
+      "source_id": "SCIREX_GITHUB_7DAAD660",
+      "url": "https://raw.githubusercontent.com/allenai/SciREX/7daad660fe94f504433590b7a781cfabe1e179c6/scirex_dataset/release_data.tar.gz"
+    }
+  ],
+  "schema_version": "orion.p3.public-metadata-receipts.v1"
+}

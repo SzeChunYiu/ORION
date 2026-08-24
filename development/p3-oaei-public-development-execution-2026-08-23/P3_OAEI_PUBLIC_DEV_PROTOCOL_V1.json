@@ -1,0 +1,190 @@
+{
+  "case_universe": {
+    "candidate_universe_recall_gate": 1.0,
+    "claimed_coordinates": [
+      "REFERENT"
+    ],
+    "closed_world_public_reference_contract": true,
+    "construction": "EXHAUSTIVE_CROSS_PRODUCT_WITHIN_SOURCE_NATIVE_ENTITY_TYPE",
+    "controlled_not_claimed_coordinates": [
+      "CONSTRUCT"
+    ],
+    "gold_used": false,
+    "source_ontology_test": "101",
+    "targets": [
+      "102",
+      "103",
+      "104",
+      "105",
+      "201",
+      "202",
+      "204",
+      "205",
+      "206",
+      "221",
+      "222",
+      "223",
+      "224",
+      "225",
+      "228",
+      "230",
+      "301",
+      "302",
+      "303",
+      "304"
+    ]
+  },
+  "design_timing": {
+    "aml_outputs_observed_before_candidate_freeze": true,
+    "candidate_designed_without_reference_alignment_content": true,
+    "interpretation": "PROCEDURAL_PUBLIC_DEVELOPMENT_NOT_BLIND_PROTECTED_CONFIRMATION",
+    "observed_system_facts": [
+      "AML_V3_2_EXECUTED_ON_19_INPUT_PAIRS",
+      "AML_V3_2_PARSER_FAILURE_ON_TEST_206"
+    ],
+    "public_reference_alignment_content_opened_before_freeze": false
+  },
+  "endpoints": {
+    "negative_terminals": [
+      "PUBLIC_P3_INVALID_ENVELOPE_COVERAGE",
+      "PUBLIC_P3_NO_HARM_REDUCTION",
+      "PUBLIC_P3_HARMFUL",
+      "PUBLIC_SOURCE_NATIVE_RUNTIME_FAILURE",
+      "PUBLIC_CANDIDATE_UNIVERSE_INVALID",
+      "PUBLIC_RESULT_CANNOT_CHECK"
+    ],
+    "positive_signal_terminal": "PUBLIC_ONE_SEED_FAMILY_DESCRIPTIVE_SIGNAL_ONLY_IF_P3_HAS_LOWER_HARM_IN_ALL_REGIMES_AND_COVERAGE_1_0_AND_IDEAL_TIE",
+    "primary": "FULL_CENSUS_DESCRIPTIVE_CANDIDATE_MINUS_AML_FLOOR_ADJUSTED_HARM_ACROSS_ALL_THREE_FROZEN_LOSS_REGIMES",
+    "secondary": [
+      "SOURCE_NATIVE_PRECISION_RECALL_F1",
+      "EXACT_RATE",
+      "UNRESOLVED_RATE",
+      "GOLD_IN_ENVELOPE_COVERAGE",
+      "PER_TEST_TRAJECTORIES",
+      "AML_EXECUTABLE_COMMON_SUPPORT_SENSITIVITY"
+    ]
+  },
+  "fairness": {
+    "abstention_costs_predeclared": true,
+    "same_action_contract": [
+      "GLUE",
+      "OBSTRUCTION",
+      "PLURAL",
+      "UNRESOLVED"
+    ],
+    "same_case_universe": true,
+    "same_loss_grid": "P3_PUBLIC_DATA_SUCCESSOR_PROTOCOL_V1_1",
+    "same_prediction_contract": true,
+    "same_public_gold_join": true,
+    "source_native_runtime_failure_not_imputed_as_obstruction": true
+  },
+  "gates": [
+    "OAEI_RIGHTS_AND_ATTRIBUTION_PASS",
+    "AML_APACHE_2_0_BINDING_PASS",
+    "ARCHIVE_AND_INPUT_MEMBER_DIGEST_PASS",
+    "NO_REFERENCE_CONTENT_BEFORE_PREDICTION_FREEZE",
+    "UNIQUE_COMPLETE_CASE_AND_PREDICTION_COVERAGE",
+    "REFERENCE_PAIR_CANDIDATE_UNIVERSE_RECALL_1_0",
+    "REFERENT_OPPORTUNITY_NONZERO",
+    "P3_GOLD_IN_ENVELOPE_COVERAGE_1_0",
+    "P3_IDEAL_PRODUCT_EXACT_TIE",
+    "NO_POOLED_OR_INFERENTIAL_PASS"
+  ],
+  "identity_boundary": {
+    "not_the_frozen_768_cluster_study": true,
+    "preserves": [
+      "P3.PUBLIC.TRANSPORT.CRAFT_SCIREX_OAEI.V1",
+      "P3.PUBLIC.TRANSPORT.CRAFT_SCIREX_OAEI.V1.1",
+      "ADVERSARIAL_AUDIT_FAIL__OAEI_INPUT_INDEX_REPLAY_ONLY__NO_END_TO_END_PUBLIC_RESULT"
+    ],
+    "protected_evidence": false,
+    "public_gold_only": true
+  },
+  "known_unavailable_claims": [
+    "PLURAL_TRUTH_OPPORTUNITY",
+    "TEMPORAL_CONTEXT",
+    "MULTI_DOMAIN_GENERALITY",
+    "NATURAL_PREVALENCE",
+    "INFERENTIAL_SUPERIORITY",
+    "PROTECTED_CONFIRMATION",
+    "FROZEN_768_CLUSTER_COMPLETION"
+  ],
+  "paper_id": "P3",
+  "protocol_id": "P3.PUBLIC.OAEI.CONFLICT_PRESERVING.DEV.V1",
+  "schema_version": "orion.p3.oaei-public-development.v1",
+  "source": {
+    "archive": "oacontest17.zip",
+    "descriptive_subunits": "20_TEST_101_TO_PERTURBATION_PAIRS",
+    "doi": "10.5281/zenodo.15827226",
+    "independent_unit": "ONE_BIBLIOGRAPHIC_SEED_FAMILY",
+    "license": "CC-BY-4.0",
+    "provider_checksum": "md5:31676c68912a22622f6ca6d031519df9",
+    "source_id": "OAEI_2004_ZENODO_15827226"
+  },
+  "status": "PRE_GOLD_EXECUTION_FREEZE__PUBLIC_DEVELOPMENT_ONLY",
+  "systems": [
+    {
+      "action_set": [
+        "GLUE",
+        "OBSTRUCTION",
+        "UNRESOLVED"
+      ],
+      "id": "AML_V3_2_AUTO_SOURCE_NATIVE",
+      "information": [
+        "RAW_ONTOLOGY",
+        "BUNDLED_AML_RESOURCES"
+      ],
+      "parser_failure_rule": "UNRESOLVED_WITH_GLUE_OBSTRUCTION_ENVELOPE",
+      "role": "STRONG_SOURCE_NATIVE_EXTERNAL_COMPARATOR"
+    },
+    {
+      "id": "FLAT_LABEL_EQUALITY_V1",
+      "information": [
+        "NORMALIZED_LABEL"
+      ],
+      "role": "GENERIC_LEXICAL_BASELINE"
+    },
+    {
+      "id": "TOKEN_JACCARD_FORCED_V1",
+      "information": [
+        "NORMALIZED_LABEL_TOKENS"
+      ],
+      "role": "GENERIC_LEXICAL_BASELINE",
+      "threshold": 0.5
+    },
+    {
+      "id": "AML_OR_LABEL_FORCED_V1",
+      "information": [
+        "AML_SELECTED",
+        "NORMALIZED_LABEL_EQUAL"
+      ],
+      "role": "MATCHED_INFORMATION_HIGH_RECALL_POINT_BASELINE"
+    },
+    {
+      "id": "AML_AND_LABEL_FORCED_V1",
+      "information": [
+        "AML_SELECTED",
+        "NORMALIZED_LABEL_EQUAL"
+      ],
+      "role": "MATCHED_INFORMATION_HIGH_PRECISION_POINT_BASELINE"
+    },
+    {
+      "id": "P3_CONFLICT_PRESERVING_WRAPPER_V1",
+      "information": [
+        "AML_SELECTED",
+        "NORMALIZED_LABEL_EQUAL"
+      ],
+      "role": "DEVELOPMENT_CANDIDATE_NOT_FULL_EPISTEMIC_ENVELOPE",
+      "rule": "AGREEMENT_IS_POINT; DISAGREEMENT_OR_AML_FAILURE_IS_UNRESOLVED_WITH_GLUE_OBSTRUCTION_ENVELOPE"
+    },
+    {
+      "id": "P3_INFORMATION_EQUIVALENT_IDEAL_V1",
+      "information": [
+        "AML_SELECTED",
+        "NORMALIZED_LABEL_EQUAL"
+      ],
+      "role": "IMPLEMENTATION_NEUTRALITY_BOUNDARY_REQUIRED_TO_TIE",
+      "rule": "IDENTICAL_OUTPUT_CONTRACT_TO_P3_CONFLICT_PRESERVING_WRAPPER_V1"
+    }
+  ]
+}

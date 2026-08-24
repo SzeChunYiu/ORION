@@ -1,0 +1,256 @@
+{
+  "all_passed": true,
+  "blocker_delta": {
+    "closed": 1,
+    "closed_identity": "P2_EXISTING_ARM_POSTHOC_CONVEX_RESCUE",
+    "p2_readiness_after": "NOT_SUBMISSION_READY",
+    "p2_readiness_before": "NOT_SUBMISSION_READY",
+    "superiority": "CANNOT_CHECK",
+    "top_tier_blockers_closed": 0
+  },
+  "checks": [
+    {
+      "expected": "c69e5634b8d0e82a1fa393dbae276d728e9a2f7ba4c9db81a27c0329e2e66742",
+      "name": "input_hash::v10_result",
+      "observed": "c69e5634b8d0e82a1fa393dbae276d728e9a2f7ba4c9db81a27c0329e2e66742",
+      "passed": true
+    },
+    {
+      "expected": "e5b40d165d76f017296ee7915f3d07ec9fed27b7c9bbbe106a0a00e318cab72c",
+      "name": "input_hash::v10_protocol",
+      "observed": "e5b40d165d76f017296ee7915f3d07ec9fed27b7c9bbbe106a0a00e318cab72c",
+      "passed": true
+    },
+    {
+      "expected": "a3c9107ad152766efc2a08d722657d550781f1f181f47f3ceeba041c0a710176",
+      "name": "input_hash::v11_theory",
+      "observed": "a3c9107ad152766efc2a08d722657d550781f1f181f47f3ceeba041c0a710176",
+      "passed": true
+    },
+    {
+      "expected": "1694e2f33bc195eb848e7ec93d3fd31793c936db96f62d43d17d09b5dac8dd6f",
+      "name": "input_hash::v11_receipt",
+      "observed": "1694e2f33bc195eb848e7ec93d3fd31793c936db96f62d43d17d09b5dac8dd6f",
+      "passed": true
+    },
+    {
+      "expected": 0.010858985820770889,
+      "name": "equal_primary_thresholds",
+      "observed": 0.010858985820770889,
+      "passed": true
+    },
+    {
+      "expected": 7,
+      "name": "seven_review_units",
+      "observed": 7,
+      "passed": true
+    },
+    {
+      "expected": [
+        "Appenzeller-Herzog_2020",
+        "Bannach-Brown_2019",
+        "Bos_2018",
+        "Kitchenham_2010",
+        "Kwok_2020",
+        "Nagtegaal_2019",
+        "Wolters_2018"
+      ],
+      "name": "same_review_keys",
+      "observed": [
+        "Appenzeller-Herzog_2020",
+        "Bannach-Brown_2019",
+        "Bos_2018",
+        "Kitchenham_2010",
+        "Kwok_2020",
+        "Nagtegaal_2019",
+        "Wolters_2018"
+      ],
+      "passed": true
+    },
+    {
+      "expected": 0.000779992744717628,
+      "name": "reconstruct_controller_mean_cre20",
+      "observed": 0.000779992744717628,
+      "passed": true
+    },
+    {
+      "expected": -0.00538268112525537,
+      "name": "reconstruct_controller_mean_r10",
+      "observed": -0.00538268112525537,
+      "passed": true
+    },
+    {
+      "expected": 0.0017654665499810302,
+      "name": "reconstruct_controller_mean_wss95",
+      "observed": 0.0017654665499810302,
+      "passed": true
+    },
+    {
+      "expected": 4,
+      "name": "reconstruct_controller_positive_cre20",
+      "observed": 4,
+      "passed": true
+    },
+    {
+      "expected": 1,
+      "name": "reconstruct_controller_positive_r10",
+      "observed": 1,
+      "passed": true
+    },
+    {
+      "expected": -0.0444444444444444,
+      "name": "reconstruct_controller_worst_r10",
+      "observed": -0.0444444444444444,
+      "passed": true
+    },
+    {
+      "expected": true,
+      "name": "reconstruct_gate::G1_BINDING",
+      "observed": true,
+      "passed": true
+    },
+    {
+      "expected": true,
+      "name": "reconstruct_gate::G2_SOURCE_CONTENT_AND_POPULATION",
+      "observed": true,
+      "passed": true
+    },
+    {
+      "expected": false,
+      "name": "reconstruct_gate::G3_MEAN_DELTA_CRE20",
+      "observed": false,
+      "passed": true
+    },
+    {
+      "expected": false,
+      "name": "reconstruct_gate::G4_MEAN_DELTA_R10",
+      "observed": false,
+      "passed": true
+    },
+    {
+      "expected": true,
+      "name": "reconstruct_gate::G5_MEAN_DELTA_WSS95",
+      "observed": true,
+      "passed": true
+    },
+    {
+      "expected": false,
+      "name": "reconstruct_gate::G6_POSITIVE_CRE20_SIGN",
+      "observed": false,
+      "passed": true
+    },
+    {
+      "expected": false,
+      "name": "reconstruct_gate::G7_POSITIVE_R10_SIGN",
+      "observed": false,
+      "passed": true
+    },
+    {
+      "expected": true,
+      "name": "reconstruct_gate::G8_WORST_REVIEW_R10_HARM",
+      "observed": true,
+      "passed": true
+    },
+    {
+      "expected": true,
+      "name": "reconstruct_gate::G9_ABSOLUTE_WORK_SAVING",
+      "observed": true,
+      "passed": true
+    },
+    {
+      "expected": 0.010858985820770889,
+      "name": "convex_hull_cre20_upper_below_gate",
+      "observed": 0.000779992744717628,
+      "passed": true
+    },
+    {
+      "expected": 0.010858985820770889,
+      "name": "convex_hull_r10_upper_below_gate",
+      "observed": 0.0,
+      "passed": true
+    }
+  ],
+  "checks_passed": 24,
+  "checks_total": 24,
+  "created_at_utc": "2026-08-23T21:19:38.821940+00:00",
+  "execution_counts": {
+    "new_arm_executions": 0,
+    "new_comparator_executions": 0,
+    "new_labels_opened": 0,
+    "new_model_fits": 0,
+    "pytest": 0,
+    "repository_ci": 0
+  },
+  "hull_certificate": {
+    "arm_vertices": {
+      "EXACT_U4": {
+        "mean_cre20": 0.0,
+        "mean_r10": 0.0,
+        "mean_wss95": 0.0,
+        "positive_cre20_reviews": 0,
+        "positive_r10_reviews": 0,
+        "worst_r10": 0.0
+      },
+      "TITLE_ONLY_U4": {
+        "mean_cre20": -0.0025801462366529726,
+        "mean_r10": -0.0009600614439324108,
+        "mean_wss95": -9.525866233123237e-05,
+        "positive_cre20_reviews": 3,
+        "positive_r10_reviews": 2,
+        "worst_r10": -0.022222222222222143
+      },
+      "U4_PLUS_TITLE_A250": {
+        "mean_cre20": 0.000779992744717628,
+        "mean_r10": -0.00538268112525537,
+        "mean_wss95": 0.0017654665499810302,
+        "positive_cre20_reviews": 4,
+        "positive_r10_reviews": 1,
+        "worst_r10": -0.0444444444444444
+      }
+    },
+    "closed_rescue_class": "EX_ANTE_GLOBAL_COMPLETE_ARM_RANDOMIZATION_OVER_EXACT_U4_TITLE_ONLY_U4_AND_U4_PLUS_TITLE_A250__EXPECTED_METRIC_RELAXATION",
+    "coordinatewise_hull_upper_bounds": {
+      "mean_cre20": 0.000779992744717628,
+      "mean_r10": 0.0
+    },
+    "not_closed": [
+      "new score-level alpha or representation search",
+      "review- or row-conditioned arm selection",
+      "a new learner or balancer",
+      "a lawful non-simulable signal or new acquisition support",
+      "source-disjoint independent confirmation",
+      "joint acquisition-authority evaluation"
+    ],
+    "primary_gate_threshold": 0.010858985820770889,
+    "proof": "For any p in the three-arm probability simplex, each expected primary mean is a convex combination of the corresponding arm means and is therefore no larger than the largest vertex value. Both vertex maxima are strictly below the registered threshold.",
+    "strict_shortfalls_from_gate": {
+      "mean_cre20": 0.01007899307605326,
+      "mean_r10": 0.010858985820770889
+    }
+  },
+  "identity": "CODEX_P1_P2_LANE_20260823_P2_V12_CONVEX_RESCUE_RECEIPT",
+  "inputs": {
+    "v10_protocol": {
+      "bytes": 4020,
+      "path": "development/p2-title-emphasis-conflict-resolved-v10-2026-08-23/PROTOCOL_FREEZE_V10.json",
+      "sha256": "e5b40d165d76f017296ee7915f3d07ec9fed27b7c9bbbe106a0a00e318cab72c"
+    },
+    "v10_result": {
+      "bytes": 26394,
+      "path": "development/p2-title-emphasis-conflict-resolved-v10-2026-08-23/RESULT_V10.json",
+      "sha256": "c69e5634b8d0e82a1fa393dbae276d728e9a2f7ba4c9db81a27c0329e2e66742"
+    },
+    "v11_receipt": {
+      "bytes": 5039,
+      "path": "development/p2-safe-residual-envelope-theory-v11-2026-08-23/THEORY_RECEIPT_V11.json",
+      "sha256": "1694e2f33bc195eb848e7ec93d3fd31793c936db96f62d43d17d09b5dac8dd6f"
+    },
+    "v11_theory": {
+      "bytes": 16196,
+      "path": "development/p2-safe-residual-envelope-theory-v11-2026-08-23/THEORY.md",
+      "sha256": "a3c9107ad152766efc2a08d722657d550781f1f181f47f3ceeba041c0a710176"
+    }
+  },
+  "scope": "STATIC_EXACT_REANALYSIS_OF_ALREADY_SEALED_PUBLIC_V10_ARM_METRICS",
+  "terminal": "CODEX_P1_P2_LANE_20260823_P2_V12_EXISTING_ARM_CONVEX_RESCUE_IMPOSSIBLE__PRIMARY_GATE_HULL_DISJOINT__EXACT_U4_REMAINS_FALLBACK__P2_TOP_TIER_READINESS_UNCHANGED"
+}

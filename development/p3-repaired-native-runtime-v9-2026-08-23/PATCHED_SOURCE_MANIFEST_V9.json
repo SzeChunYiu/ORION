@@ -1,0 +1,2121 @@
+{
+  "commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+  "schema_version": "orion.p3.repaired-native-runtime.source-manifest.v9",
+  "single_patch_sha256": "412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b",
+  "tracked_file_count": 352,
+  "tracked_files": [
+    {
+      "bytes": 834,
+      "modified": false,
+      "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "sha256": "0c8d64f29fb4536513653bf8c97da30f3340e2041b91c8952db1515d6b23a7b3"
+    },
+    {
+      "bytes": 595,
+      "modified": false,
+      "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+      "sha256": "1f48c52f209a971b8e7eae4120144d28fcf8ee38a7778a7b4d8cf1ab356617d2"
+    },
+    {
+      "bytes": 524,
+      "modified": false,
+      "path": ".github/dependabot.yml",
+      "sha256": "d382b5e4443575114946565ea42836cd84403f01a6b5aeb0c5e772fcce13a922"
+    },
+    {
+      "bytes": 1084,
+      "modified": false,
+      "path": ".github/workflows/python-publish.yml",
+      "sha256": "a9e752e2ec2436b79c8596e1fe1624dda516fd56e47ffb1e5b7c14ae3648803b"
+    },
+    {
+      "bytes": 1209,
+      "modified": false,
+      "path": ".gitignore",
+      "sha256": "aa2bdf1fd680ca82f2b819969e6b97d2bff88199bec5316cdf9fcce477cc63b6"
+    },
+    {
+      "bytes": 99,
+      "modified": false,
+      "path": ".gitmodules",
+      "sha256": "3d8a212f3e1d1b7b1e2bd15eada74954a256b5046f9beced9d5a3aa72d2047f2"
+    },
+    {
+      "bytes": 5224,
+      "modified": false,
+      "path": "CODE_OF_CONDUCT.md",
+      "sha256": "cae5af981660742fa63fb1de675459fa6f93ed160d55e66c8df4510881b95497"
+    },
+    {
+      "bytes": 9549,
+      "modified": false,
+      "path": "CONTRIBUTING.md",
+      "sha256": "8bec05c64827c52b332fd77d03d71a375a071a57eab15ae9ec42ae695083d102"
+    },
+    {
+      "bytes": 11393,
+      "modified": false,
+      "path": "LICENSE",
+      "sha256": "340ebaff716578e1b620521eeb740febbdcb24b8bd0c1de12c37b916aadf4d36"
+    },
+    {
+      "bytes": 12584,
+      "modified": false,
+      "path": "README.md",
+      "sha256": "ddd9a5b79c6d71b8a1f9145120e37a463bdaa74ab9dd6d1ac09c86976902a63b"
+    },
+    {
+      "bytes": 555,
+      "modified": false,
+      "path": "SECURITY.md",
+      "sha256": "a83bb8a8d722612b5cf7c6b96a85ad90c9d47c4d1cfc7e61abe3af66b4e2c3c9"
+    },
+    {
+      "bytes": 22553,
+      "modified": false,
+      "path": "docs/assets/example_bio-llm_candidate_mappings.tsv",
+      "sha256": "376bf96fbf446ad6be9a9098a8d91c152f79cc357c6c1e1db29f662027d0e5d9"
+    },
+    {
+      "bytes": 13877,
+      "modified": false,
+      "path": "docs/assets/example_candidate_mappings.tsv",
+      "sha256": "2ec2911e75f2e89ee793a5e37889537e9174c3c13e28626441a95b53cfef57c8"
+    },
+    {
+      "bytes": 58994,
+      "modified": false,
+      "path": "docs/assets/example_range_node.png",
+      "sha256": "eeb7963ebbb088ae43bf18fa047a7390627e21483c8329d138d858fbd6f8723b"
+    },
+    {
+      "bytes": 332,
+      "modified": false,
+      "path": "docs/assets/example_reference_mappings.tsv",
+      "sha256": "84a73d58147afc00da72ec6afef892852a5ad14845607f3fd8a5f30d64223a37"
+    },
+    {
+      "bytes": 20625,
+      "modified": false,
+      "path": "docs/assets/example_scored_candidate_mappings.tsv",
+      "sha256": "292d35857a76dc576bf14dc4d54472063bdb1c926a959e42eb934cb150ecd407"
+    },
+    {
+      "bytes": 14839,
+      "modified": false,
+      "path": "docs/bertmap.md",
+      "sha256": "a34fd59fee143d2f47aabdcf1af0e82432a52e47f32e54fb9cdf5a3c35a36088"
+    },
+    {
+      "bytes": 6814,
+      "modified": false,
+      "path": "docs/bertsubs.md",
+      "sha256": "e141e04c59470d85b99b32e9d9331728ca5fa0d68195932185b9e4c67b210c1f"
+    },
+    {
+      "bytes": 35776,
+      "modified": false,
+      "path": "docs/bio-ml.md",
+      "sha256": "29a44ef546e5f7c102e68d068722c73d1f23babd4791bcd3445db0bdf44d2b1e"
+    },
+    {
+      "bytes": 10290,
+      "modified": false,
+      "path": "docs/changelog.md",
+      "sha256": "d043ad311bd1eefb7fd5106d517abed73f2742de75fa9a596a17d2a4f5581ddc"
+    },
+    {
+      "bytes": 2095,
+      "modified": false,
+      "path": "docs/deeponto/align/bertmap/index.md",
+      "sha256": "b01a742326235e8a9b31bfd2a3bb5d0489669d4e3b271ce48adce6df61cdb72e"
+    },
+    {
+      "bytes": 1848,
+      "modified": false,
+      "path": "docs/deeponto/align/bertsubs/index.md",
+      "sha256": "b527b45607007fcf4f57444de53109a07ce3c6c945b84a94853e8046f0ae2c0e"
+    },
+    {
+      "bytes": 50,
+      "modified": false,
+      "path": "docs/deeponto/align/evaluation.md",
+      "sha256": "c2d1a05e9b1b31a684a9165905d0d93be23e68bb13406dfefebc6b2e203773a5"
+    },
+    {
+      "bytes": 190,
+      "modified": false,
+      "path": "docs/deeponto/align/logmap/index.md",
+      "sha256": "771103ec07325a75de9aacb7a7c088dc8c599bb45636770a30ffcd5d9fc20b13"
+    },
+    {
+      "bytes": 47,
+      "modified": false,
+      "path": "docs/deeponto/align/mapping.md",
+      "sha256": "e942d9c595c20bebcf164f6340f392652e85440d359e2678cc83ad18eeb60ca6"
+    },
+    {
+      "bytes": 100,
+      "modified": false,
+      "path": "docs/deeponto/align/oaei.md",
+      "sha256": "a1408af9121a25adf235bb38c4dd1a016f8342c4f53c3efd9bcb704e96bc639f"
+    },
+    {
+      "bytes": 1987,
+      "modified": false,
+      "path": "docs/deeponto/complete/bertsubs/index.md",
+      "sha256": "0997c6c6057c2d741fff8c76ed767f870e28f5ed32cc0b3ac3651506aa086c17"
+    },
+    {
+      "bytes": 202,
+      "modified": false,
+      "path": "docs/deeponto/complete/ontolama.md",
+      "sha256": "79000e1289144549e325f2220195a0158587f600e209b2266fea1b4ec7e8670c"
+    },
+    {
+      "bytes": 73,
+      "modified": false,
+      "path": "docs/deeponto/onto/normalisation.md",
+      "sha256": "cf315304b4e304ff204a088f8594eb1f8fb7d22ad13932b21b750184389d94da"
+    },
+    {
+      "bytes": 810,
+      "modified": false,
+      "path": "docs/deeponto/onto/ontology.md",
+      "sha256": "779fe2956bd24fe669477dff5f8c610ccda0993d9a34d56c040bb0be734946d9"
+    },
+    {
+      "bytes": 72,
+      "modified": false,
+      "path": "docs/deeponto/onto/projection.md",
+      "sha256": "4f11cf3edd677273e8d3e0cd624f22dd1de61913e9c789b04d262e97cd20e006"
+    },
+    {
+      "bytes": 67,
+      "modified": false,
+      "path": "docs/deeponto/onto/pruning.md",
+      "sha256": "acc83129b1db60be81584af401596dd83d8b4a41f8bc36bf7e892795738bf7a4"
+    },
+    {
+      "bytes": 120,
+      "modified": false,
+      "path": "docs/deeponto/onto/reasoning.md",
+      "sha256": "f4fcddb1bdcc3e3968edc269be383e61ae582774d01c16f88e9555a79a32e42d"
+    },
+    {
+      "bytes": 1313,
+      "modified": false,
+      "path": "docs/deeponto/onto/taxonomy.md",
+      "sha256": "2c507589f8c8c8006282405b67ad9afcc3487b245d3ef11fc0c42ae60ff8ca87"
+    },
+    {
+      "bytes": 1571,
+      "modified": false,
+      "path": "docs/deeponto/onto/verbalisation.md",
+      "sha256": "0d733160dc838c29334e268051e4ac6d817bbca23c7aad080f34f0c8374a7908"
+    },
+    {
+      "bytes": 50,
+      "modified": false,
+      "path": "docs/deeponto/utils/data_utils.md",
+      "sha256": "44788b1ae6577314163c8c917190430de5acb9023a7b3383075055264c7eb7db"
+    },
+    {
+      "bytes": 50,
+      "modified": false,
+      "path": "docs/deeponto/utils/decorators.md",
+      "sha256": "bf6513af2182c6b7216623be91a8ff3563d6d4f3fa014f8c71879506448d2a5c"
+    },
+    {
+      "bytes": 50,
+      "modified": false,
+      "path": "docs/deeponto/utils/file_utils.md",
+      "sha256": "db45a2f7ed65c671c94ab6a5e623fd03ecec26371ff4ba548305ab0bf8863501"
+    },
+    {
+      "bytes": 47,
+      "modified": false,
+      "path": "docs/deeponto/utils/logging.md",
+      "sha256": "3c9ace9f9327e82f500253c0a590a71a16d2f0cb6d50b464dafc913d1347d0af"
+    },
+    {
+      "bytes": 51,
+      "modified": false,
+      "path": "docs/deeponto/utils/text_utils.md",
+      "sha256": "6c4bb831659fb36b7a8454a4504d74af5514feb5a4912050603302e88231fde4"
+    },
+    {
+      "bytes": 949,
+      "modified": false,
+      "path": "docs/faqs.md",
+      "sha256": "b85414035290f29947ca221fd4ee348cb62a026bab3af44052bf1bc4c9934c88"
+    },
+    {
+      "bytes": 34962,
+      "modified": false,
+      "path": "docs/images/bertmap.svg",
+      "sha256": "170475e2c9399465350d172c4f6431d4247d7b9400bf211db4f471c5156ab2f5"
+    },
+    {
+      "bytes": 367257,
+      "modified": false,
+      "path": "docs/images/bertsubs.jpeg",
+      "sha256": "2abfd9c11113a74307b0df53eac8c65d1eaa63e88d362d4195bd3b24110fb84a"
+    },
+    {
+      "bytes": 67432,
+      "modified": false,
+      "path": "docs/images/bio-ml-oaei-2022.svg",
+      "sha256": "28e4863416f4dbc182a88616f7f829fa1c4c916a3a4df1f9134455885cfbbb7a"
+    },
+    {
+      "bytes": 58561,
+      "modified": false,
+      "path": "docs/images/bio-ml-oaei-2023.svg",
+      "sha256": "4d6642db815758ab1e45cfa3c0bbb99f768085a107f083c46bb4b7a948476bf7"
+    },
+    {
+      "bytes": 53892,
+      "modified": false,
+      "path": "docs/images/deeponto.svg",
+      "sha256": "9aaf154db372439d00ff5598ef52f7cb142e60425146dbbe8036fe2a2d0f547b"
+    },
+    {
+      "bytes": 1963,
+      "modified": false,
+      "path": "docs/images/email.png",
+      "sha256": "e20a772149b3efcdcdf3edde55ef267efef4b739ba646aeaaff05500344028b5"
+    },
+    {
+      "bytes": 9654,
+      "modified": false,
+      "path": "docs/images/favicon_package/android-chrome-192x192.png",
+      "sha256": "1a40f04a493c1202b57d5e6346fa0cc70ff742863b50789774099cffee06a2ca"
+    },
+    {
+      "bytes": 21690,
+      "modified": false,
+      "path": "docs/images/favicon_package/android-chrome-512x512.png",
+      "sha256": "1714f1fde63b2fb4ddc12d9aa5bc748cb0af655412f55c87e5500140d6c4711e"
+    },
+    {
+      "bytes": 5401,
+      "modified": false,
+      "path": "docs/images/favicon_package/apple-touch-icon.png",
+      "sha256": "bc24aa1fcf59a9f07986f0bf48b57dad5e4697a090b686ff9254b31cfb48a4c7"
+    },
+    {
+      "bytes": 246,
+      "modified": false,
+      "path": "docs/images/favicon_package/browserconfig.xml",
+      "sha256": "c348b0d6df3d900efef7ae4b4dfc8b62b1737b04d09d4584fef243211c266866"
+    },
+    {
+      "bytes": 705,
+      "modified": false,
+      "path": "docs/images/favicon_package/favicon-16x16.png",
+      "sha256": "b71cae0a5faf8009085bceb14bb340616280e9965a2ccc5abde5dfac88fe2e9a"
+    },
+    {
+      "bytes": 1276,
+      "modified": false,
+      "path": "docs/images/favicon_package/favicon-32x32.png",
+      "sha256": "4767713efbeded6b215031fc26bd6c5fb73729222c7996e1969a064b89228c38"
+    },
+    {
+      "bytes": 15086,
+      "modified": false,
+      "path": "docs/images/favicon_package/favicon.ico",
+      "sha256": "bd5c99c414a910628abe9f18ddffd439097d4fbec1d821e02b147d32dc613901"
+    },
+    {
+      "bytes": 6154,
+      "modified": false,
+      "path": "docs/images/favicon_package/mstile-150x150.png",
+      "sha256": "ca941d0e5d15257fd35f140cc78bd6fd00fa4a886338af2f9bcf806e94a8127a"
+    },
+    {
+      "bytes": 3436,
+      "modified": false,
+      "path": "docs/images/favicon_package/safari-pinned-tab.svg",
+      "sha256": "afe3e58ac3c234221f174ee88669ec59fb68681fae0aeebbce0ac82370731149"
+    },
+    {
+      "bytes": 426,
+      "modified": false,
+      "path": "docs/images/favicon_package/site.webmanifest",
+      "sha256": "310b869434f0ee9d99a110e5ef6bfb41eac115bce2428f562ff5df14378519ff"
+    },
+    {
+      "bytes": 7192,
+      "modified": false,
+      "path": "docs/images/icon.svg",
+      "sha256": "014aad7528935c641cee33040132dea9dd9274203181d055fe834dba0ae8f6b5"
+    },
+    {
+      "bytes": 50871,
+      "modified": false,
+      "path": "docs/images/verbalisation.svg",
+      "sha256": "b1d0372189a2b45ed58ea37c032fda9a92b469f862a6d39dcf4325d8dadd98ba"
+    },
+    {
+      "bytes": 288,
+      "modified": false,
+      "path": "docs/index.md",
+      "sha256": "b28108d391ff9fd0778ac3fc0db7edc01e52c3a2965fad804600caa8566f8278"
+    },
+    {
+      "bytes": 330,
+      "modified": false,
+      "path": "docs/javascripts/mathjax.js",
+      "sha256": "374c8d7cd2eaa20d92a91528e59498c36787f08cef4a7865c78cb24678e756b8"
+    },
+    {
+      "bytes": 6370,
+      "modified": false,
+      "path": "docs/ontolama.md",
+      "sha256": "4652e476052c41636f0d6c08645ddb448d05c1eb14a239dcd3eb99a099bda55e"
+    },
+    {
+      "bytes": 4508,
+      "modified": false,
+      "path": "docs/ontology.md",
+      "sha256": "b3a94169c39879c22f86ba6d87b303e17b4d881b99ae317f6dd426ae27d73f9d"
+    },
+    {
+      "bytes": 635,
+      "modified": false,
+      "path": "docs/overrides/main.html",
+      "sha256": "fcf4801b779f553ec9dc04bd68e158f2f5c5f46e8b80b311433e4920d4ee2029"
+    },
+    {
+      "bytes": 2357,
+      "modified": false,
+      "path": "docs/overrides/partials/nav.html",
+      "sha256": "30866a389c20e16b6b22c7f6e221987abd4ac5523a6b170438f23bf83fd999f9"
+    },
+    {
+      "bytes": 4699,
+      "modified": false,
+      "path": "docs/stylesheets/extra.css",
+      "sha256": "ba91297ecd8b9c01040b4583dd216faa8aff3deea9b3e294d0e0bbaac3817548"
+    },
+    {
+      "bytes": 3534,
+      "modified": false,
+      "path": "docs/verbaliser.md",
+      "sha256": "dcf243150b382db9431b378983e41991ead696f1e8a1e0ae97783324e3082eaa"
+    },
+    {
+      "bytes": 209,
+      "modified": false,
+      "path": "javalib/README.md",
+      "sha256": "81ef0563e013f914937a311177440b8f5ae4b6f250d3a20a5474dff62517ad0e"
+    },
+    {
+      "bytes": 158,
+      "modified": false,
+      "path": "javalib/build_jars.bat",
+      "sha256": "375797ff1d9bbaca5a2e24e943beef9bd2cd2f51cdb936b46c6d174ec14d9390"
+    },
+    {
+      "bytes": 165,
+      "modified": false,
+      "path": "javalib/build_jars.sh",
+      "sha256": "b0e396504ea3e892f1eacc8fc8f150db0411c0d0e67aa5bdb82570ad9c757771"
+    },
+    {
+      "bytes": 2407,
+      "modified": false,
+      "path": "javalib/gateway/build.gradle",
+      "sha256": "5453f0620d38c6adf46ab319320645a04389435eef790dfff36272e3e45e98f4"
+    },
+    {
+      "bytes": 55627,
+      "modified": false,
+      "path": "javalib/gateway/gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "50726ef76b6599d458dd37169a6b42d86d3790c83f6065a398e3e672448d18c6"
+    },
+    {
+      "bytes": 202,
+      "modified": false,
+      "path": "javalib/gateway/gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "a8f00cad381c588df83bb6746939929bbb4e66aa40549665ca8ec08f1432ee67"
+    },
+    {
+      "bytes": 5296,
+      "modified": false,
+      "path": "javalib/gateway/gradlew",
+      "sha256": "8c4c04dd98db1f00d49456dd162418a39312c5cb13d6865d783deb483bd1ed22"
+    },
+    {
+      "bytes": 2260,
+      "modified": false,
+      "path": "javalib/gateway/gradlew.bat",
+      "sha256": "0008d785920c9ff5cab17403e0270ccc7ceee8e169b6d67a82d96a5475fec5c9"
+    },
+    {
+      "bytes": 582,
+      "modified": false,
+      "path": "javalib/gateway/settings.gradle",
+      "sha256": "60e9ee9aa145a48496f7f2ffff1b8f6219291b7e6675d8cc74fa18600c5873da"
+    },
+    {
+      "bytes": 162,
+      "modified": false,
+      "path": "javalib/gateway/src/main/groovy/org/mowl/Edge.groovy",
+      "sha256": "4fa32ab02044e692648fbd639019bc3cc011aeab008c24fd490aa05f71bbdeb6"
+    },
+    {
+      "bytes": 132,
+      "modified": false,
+      "path": "javalib/gateway/src/main/groovy/org/mowl/HelloG.groovy",
+      "sha256": "a031381eb71ec5b58ce5e317ef91e09ce1b743054cf7fc8ff6d6e62629801490"
+    },
+    {
+      "bytes": 1439,
+      "modified": false,
+      "path": "javalib/gateway/src/main/java/Main.java",
+      "sha256": "ec2486cc8fef3ef61c752f0642274b0a13d052f82cea2187cc21eadcb3e7aaab"
+    },
+    {
+      "bytes": 636,
+      "modified": false,
+      "path": "javalib/gateway/src/main/java/org/mowl/Edge.java",
+      "sha256": "dd7af68ab3b964923af1d2daec7d4dde40bf1fc480d528627f04fe544380ed01"
+    },
+    {
+      "bytes": 344,
+      "modified": false,
+      "path": "javalib/gateway/src/main/java/org/mowl/MOWLShortFormProvider.java",
+      "sha256": "472b816130320a9825668057aa6f7f81ae24cde724ff09b000c06d159fe8bb61"
+    },
+    {
+      "bytes": 17121,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/CatParser/CatParser.scala",
+      "sha256": "bac0e73441d653215d423709cc400f75196ae4f9998925d08597fd9ebbfd9c51"
+    },
+    {
+      "bytes": 124,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/Hello.scala",
+      "sha256": "c95cbbca8f248c2e7652692335165435609fa900f880372db0810536b16fc2d3"
+    },
+    {
+      "bytes": 1579,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/Projectors/AbstractProjector.scala",
+      "sha256": "e6e7963f161409f354f85ee5d559cbc28c819bd3b1d1f61efc4519c7c6502489"
+    },
+    {
+      "bytes": 7224,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/Projectors/DL2VecProjector.scala",
+      "sha256": "1789b55fcef4be10e98c2a64428cd8b7cc4efb66d7331f45b59d6dee11ba42e8"
+    },
+    {
+      "bytes": 23460,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/Projectors/OWL2VecStarProjector.scala",
+      "sha256": "9bfbb3b0ef14ace0db9fe2c3ee17ae320d253c4f92bb3df1e7203fe0888d76b6"
+    },
+    {
+      "bytes": 3000,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/Projectors/TaxonomyProjector.scala",
+      "sha256": "1a4fd5ca3e1cef5991432b398d1e84449fc37617ce36b4f112ff9976db2816ca"
+    },
+    {
+      "bytes": 2869,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/Projectors/TaxonomyWithRelsProjector.scala",
+      "sha256": "7697c715ca7bb8368adfb400407d8c1cd4f13afbee9ec6d0bce120d024570c23"
+    },
+    {
+      "bytes": 2895,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/Types.scala",
+      "sha256": "8a590124d208e52a3d6042d3023dd49a8281ac21f167ae7af8d3ae05f85e2d9e"
+    },
+    {
+      "bytes": 1465,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/Utils.scala",
+      "sha256": "f3d1aa535c7dca53015bcfa601181fe59876db6eae40ecc9ddb969a881b7ab12"
+    },
+    {
+      "bytes": 5451,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/Walking/DeepWalk.scala",
+      "sha256": "b6000b76747839f244614300b12675c060803184fd2e601356963c66d4d3bb44"
+    },
+    {
+      "bytes": 10513,
+      "modified": false,
+      "path": "javalib/gateway/src/main/scala/org/mowl/Walking/Node2Vec.scala",
+      "sha256": "7a1b81d868beaf16ad59c376dd058d3460563bd160330d2254053ecfd4098603"
+    },
+    {
+      "bytes": 210,
+      "modified": false,
+      "path": "javalib/gradle_install.sh",
+      "sha256": "57579712cacb66926257b492cc5e81347d0ca113ec1d175ad751488223a95df5"
+    },
+    {
+      "bytes": 4382,
+      "modified": false,
+      "path": "mkdocs.yml",
+      "sha256": "b07ab0e731c5efa44b6f28a4bbb56ec9996739c6ba9bb1cbb8806f498b866bca"
+    },
+    {
+      "bytes": 2189,
+      "modified": false,
+      "path": "pyproject.toml",
+      "sha256": "a710834da5316b612953b0453cdd961afbff6568473ff8e24c4be92408ec586c"
+    },
+    {
+      "bytes": 255,
+      "modified": false,
+      "path": "requirements.txt",
+      "sha256": "b8ed9a1365c4378718f5d02fb502d4029335e36606a761f544acf33b81a34f01"
+    },
+    {
+      "bytes": 1565,
+      "modified": false,
+      "path": "scripts/bertmap.py",
+      "sha256": "3ccebf6723c8372afc5c8b1a2fdfbe6646217051a3327a5ec1e47098dd3b5de9"
+    },
+    {
+      "bytes": 8249,
+      "modified": false,
+      "path": "scripts/bertsubs_intra_evaluate.py",
+      "sha256": "866f87991495ac1c80f42daaf2bf0205ba772effd47b1eebc23cb13f76e9eea5"
+    },
+    {
+      "bytes": 3029,
+      "modified": false,
+      "path": "scripts/bertsubs_simple_test.py",
+      "sha256": "68f669d6607d0b91fd1fc736b4a389337bdfe322581b8133004d21672c02fccc"
+    },
+    {
+      "bytes": 1640,
+      "modified": false,
+      "path": "scripts/ontolama/config.yaml",
+      "sha256": "0623086627519691ad5c48f5655e175f5da460567f5b26e6ae3e706154187616"
+    },
+    {
+      "bytes": 233,
+      "modified": false,
+      "path": "scripts/ontolama/label_words.jsonl",
+      "sha256": "a3ec34a54fd3a32b28259b9656ad017424db0cbfe41f2867e79e97ce1517e210"
+    },
+    {
+      "bytes": 576,
+      "modified": false,
+      "path": "scripts/ontolama/nli_templates.txt",
+      "sha256": "28f4b676ea99f25562d46907186d323cc3e2a64ab859adf1482a1197a725e6aa"
+    },
+    {
+      "bytes": 748,
+      "modified": false,
+      "path": "scripts/ontolama/si_templates.txt",
+      "sha256": "842bc091b7cf81a6bb794639123393e53521581b55c06c2afc1fbabf34378782"
+    },
+    {
+      "bytes": 1912,
+      "modified": false,
+      "path": "src/deeponto/__init__.py",
+      "sha256": "ed82672c668af930038eff819230aee85661ed5900cffcbfdeddf42ea878bafb"
+    },
+    {
+      "bytes": 590,
+      "modified": false,
+      "path": "src/deeponto/align/__init__.py",
+      "sha256": "ad2a61db397cf7cd5c1d0fdb7e3fdc409aa8b23ba802edd7dcda922b13dcacd9"
+    },
+    {
+      "bytes": 797,
+      "modified": false,
+      "path": "src/deeponto/align/bertmap/__init__.py",
+      "sha256": "8d594645a38d23c08c1c2f07b0201d6dc83724effe8f6f04e41aae2e02b13dfb"
+    },
+    {
+      "bytes": 10043,
+      "modified": false,
+      "path": "src/deeponto/align/bertmap/bert_classifier.py",
+      "sha256": "ded9b776db16d69ee6be088c9aa4bbec0e9e639887e1eec102ecec3e0039a6a3"
+    },
+    {
+      "bytes": 2197,
+      "modified": false,
+      "path": "src/deeponto/align/bertmap/default_config.yaml",
+      "sha256": "7f14f7322e773cf5ec57a63c649df7a2e5cc6766b7e6a3473738593ffa45c1f8"
+    },
+    {
+      "bytes": 16976,
+      "modified": false,
+      "path": "src/deeponto/align/bertmap/mapping_prediction.py",
+      "sha256": "b34e29effa145e4b1134d965e0d67eb907b0f45cd3f3347b1f7f1fc33c7bbc9d"
+    },
+    {
+      "bytes": 16351,
+      "modified": false,
+      "path": "src/deeponto/align/bertmap/mapping_refinement.py",
+      "sha256": "f788fc45562c10b7128cc072e47020897ac8eb565905910749431ee80e248749"
+    },
+    {
+      "bytes": 17764,
+      "modified": false,
+      "path": "src/deeponto/align/bertmap/pipeline.py",
+      "sha256": "39458149cacc1d08e09bd5347f79dc3ecf5e2b8df73b5ab00a993d27e18dc4de"
+    },
+    {
+      "bytes": 28931,
+      "modified": false,
+      "path": "src/deeponto/align/bertmap/text_semantics.py",
+      "sha256": "33e5348d915c29538685f068b922bc4abaaaf8da159bd606772607aef1cc5b78"
+    },
+    {
+      "bytes": 650,
+      "modified": false,
+      "path": "src/deeponto/align/bertsubs/__init__.py",
+      "sha256": "ae7f402a713c59984e621d976810fe7a5089441af5ab918642d48f7407e084f0"
+    },
+    {
+      "bytes": 4782,
+      "modified": false,
+      "path": "src/deeponto/align/evaluation.py",
+      "sha256": "00b61ff42df8d28ea931b0ecfd370dec98c45390b2b11d8318a5c6e8910529db"
+    },
+    {
+      "bytes": 1596,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/__init__.py",
+      "sha256": "fe94bb5ba005fe2139921f59c035b1ee43eafd38934d5eaae83105ba30982697"
+    },
+    {
+      "bytes": 602,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/__init__.py",
+      "sha256": "8a7e3c70f75f7efb72344df06918264e39327d510cc5e83897e77099d45ddf2d"
+    },
+    {
+      "bytes": 4467,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/aopalliance-1.0.jar",
+      "sha256": "0addec670fedcd3f113c5c8091d783280d23f75e3acb841b61a9cdb079376a08"
+    },
+    {
+      "bytes": 95536,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/apache-mime4j-core-0.7.2.jar",
+      "sha256": "4d7434c68f94b81a253c12f28e6bbb4d6239c361d6086a46e22e594bb43ac660"
+    },
+    {
+      "bytes": 176285,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/automaton-1.11-8.jar",
+      "sha256": "a24475f6ccfe1cc7a4fe9e34e05ce687b0ce0c6e8cb781e0eced3b186482c61e"
+    },
+    {
+      "bytes": 63966,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/avalon-framework-4.1.3.jar",
+      "sha256": "17731fe321a7a7cc3b56cb797634b8ec29fa0322004886a1523bbc7bc7eecf71"
+    },
+    {
+      "bytes": 421631,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/axiom-api-1.2.14.jar",
+      "sha256": "c17b35199ff938240ac18f70e0750888269432375029e15d8e5d49ce294a654d"
+    },
+    {
+      "bytes": 59805,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/axiom-c14n-1.2.14.jar",
+      "sha256": "082da81c99890e2007452c6231483120c6c7d0374fcb4b8bfcc61ba858833a87"
+    },
+    {
+      "bytes": 212170,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/axiom-dom-1.2.14.jar",
+      "sha256": "7f3aaf83dfbcfbec5d5ad915f77349d884323f6a28134e1a11e28de0d1792bb1"
+    },
+    {
+      "bytes": 170746,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/axiom-impl-1.2.14.jar",
+      "sha256": "cfafc9dab48292b86932b29b1e3c08b4dd2fa1f1e2a7bc9cd0f0f88868edf222"
+    },
+    {
+      "bytes": 246174,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/commons-beanutils-1.9.3.jar",
+      "sha256": "c058e39c7c64203d3a448f3adb588cb03d6378ed808485618f26e137f29dae73"
+    },
+    {
+      "bytes": 232771,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/commons-codec-1.6.jar",
+      "sha256": "54b34e941b8e1414bd3e40d736efd3481772dc26db3296f6aa45cec9f6203d86"
+    },
+    {
+      "bytes": 588337,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/commons-collections-3.2.2.jar",
+      "sha256": "eeeae917917144a68a741d4c0dff66aa5c5c5fd85593ff217bced3fc8ca783b8"
+    },
+    {
+      "bytes": 214788,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/commons-io-2.6.jar",
+      "sha256": "f877d304660ac2a142f3865badfc971dec7ed73c747c7f8d5d2f5139ca736513"
+    },
+    {
+      "bytes": 276413,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/commons-io-2.7.jar",
+      "sha256": "4547858fff38bbf15262d520685b184a3dce96897bc1844871f055b96e8f6e95"
+    },
+    {
+      "bytes": 261809,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/commons-lang-2.4.jar",
+      "sha256": "2c73b940c91250bc98346926270f13a6a10bb6e29d2c9316a70d134e382c873e"
+    },
+    {
+      "bytes": 479881,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/commons-lang3-3.5.jar",
+      "sha256": "8ac96fc686512d777fca85e144f196cd7cfe0c0aec23127229497d1a38ff651c"
+    },
+    {
+      "bytes": 52915,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/commons-logging-1.1.jar",
+      "sha256": "9e8d01f172301b966f1f404aa6fc0bdbec478ae9197256ad95bfcad1ef927601"
+    },
+    {
+      "bytes": 313898,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/dom4j-1.6.1.jar",
+      "sha256": "593552ffea3c5823c6602478b5002a7c525fd904a3c44f1abe4065c22edfac73"
+    },
+    {
+      "bytes": 323630,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/dom4j-2.1.3.jar",
+      "sha256": "549f3007c6290f6a901e57d1d331b4ed0e6bf7384f78bf10316ffceeca834de6"
+    },
+    {
+      "bytes": 107877,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/elk-owl-implementation-0.4.3.jar",
+      "sha256": "4a66cae5220403917537d186a7a7db48747854ed346d283384a9f336581a1fe1"
+    },
+    {
+      "bytes": 94267,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/elk-owl-model-0.4.3.jar",
+      "sha256": "fa6f69b421f5521714227e697448d9b65a91b1361f575aa64cba698f70b6b060"
+    },
+    {
+      "bytes": 151739,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/elk-owlapi-0.4.3.jar",
+      "sha256": "fae00180d8c2d62770c81203a4607b2a0582f6c0514b5f72ca3636efd57ff442"
+    },
+    {
+      "bytes": 524534,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/elk-reasoner-0.4.3.jar",
+      "sha256": "44e989141cfa167cddba60f5cf982094891ed5bcdfdec4788d6d64a4a856100a"
+    },
+    {
+      "bytes": 73353,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/elk-util-collections-0.4.3.jar",
+      "sha256": "3c90c5c7830b15fa8a88065969999e6293a9e111f0a3e4d866da6356959186c1"
+    },
+    {
+      "bytes": 13534,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/elk-util-common-0.4.3.jar",
+      "sha256": "78bc5f69b258bb8c68a386ef27ce6d103421a801ef96605aea9ff4eeea7e8505"
+    },
+    {
+      "bytes": 22407,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/elk-util-concurrent-0.4.3.jar",
+      "sha256": "a1ec15943f9f04929b4594856c995cffb57153b24f6a3ec1b4332b574a2278aa"
+    },
+    {
+      "bytes": 8314,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/elk-util-hashing-0.4.3.jar",
+      "sha256": "706da4cc452ccb28eceea1866e03cadf2525edd42e8238fc24a0813ad5fb7027"
+    },
+    {
+      "bytes": 10495,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/elk-util-io-0.4.3.jar",
+      "sha256": "630c41aa82fded7a83bd631ae1e64a76fbcc9cb5883c74ca22229cc91c0cd4d6"
+    },
+    {
+      "bytes": 17707,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/elk-util-logging-0.4.3.jar",
+      "sha256": "eedcb169253ae7812c7ea66b5b0893ad9a11e587250b46bb745104b659487fd4"
+    },
+    {
+      "bytes": 47465,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/geronimo-activation_1.1_spec-1.1.jar",
+      "sha256": "3910d9f8b331b2ae573e16591ac246058e088cac97f3ec064f46b10a8801fcb9"
+    },
+    {
+      "bytes": 223298,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/geronimo-javamail_1.4_spec-1.7.1.jar",
+      "sha256": "6f1e85d9c66135f5a9dbc9f78cbf8132e52f8a85884d618ccf0dbe9344c5a330"
+    },
+    {
+      "bytes": 28804,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/geronimo-stax-api_1.0_spec-1.0.1.jar",
+      "sha256": "124235815fba376b0c20ed37f79d691fa26b4e00297a4ab27b6ca05ceb591348"
+    },
+    {
+      "bytes": 33654,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/google-api-translate-java-0.97.jar",
+      "sha256": "66d69723a9468a95b68eff10ef1717d4a433a981f056a4ed7d1a5bff648d7fda"
+    },
+    {
+      "bytes": 2256213,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/guava-18.0.jar",
+      "sha256": "d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99"
+    },
+    {
+      "bytes": 668235,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/guice-4.0.jar",
+      "sha256": "b378ffc35e7f7125b3c5f3a461d4591ae1685e3c781392f0c854ed7b7581d6d2"
+    },
+    {
+      "bytes": 43425,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/guice-assistedinject-4.0.jar",
+      "sha256": "ed44e4d809e6b3bc41ccd6e8b5acf43fb517234f4ac4c1125d7a82c44826f147"
+    },
+    {
+      "bytes": 81388,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/guice-multibindings-4.0.jar",
+      "sha256": "79d1d122ce059ed2c55d5acfd77eb31e3891f6a4aa997257ec0e7aec3d10f078"
+    },
+    {
+      "bytes": 433368,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/httpclient-4.2.5.jar",
+      "sha256": "c7fb05b793a586633d2d801a889e0846f3f21c7f8dc3dab776421383f49ebb8c"
+    },
+    {
+      "bytes": 115625,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/httpclient-cache-4.2.5.jar",
+      "sha256": "ff4e0ddcd53c51f12a4775106cccd74815c309bef7a80292344f4c4d7195b880"
+    },
+    {
+      "bytes": 227275,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/httpcore-4.2.4.jar",
+      "sha256": "bda2b9e0464f7a0e122d5e9bff7b384f3bc3a91af18ad51e029deaaa599e5db3"
+    },
+    {
+      "bytes": 105073,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/ictclas4j-1.0.1.jar",
+      "sha256": "17a42f998094173439bde4f6804cd50553780a1ba245bff1731aefc764eb0ae5"
+    },
+    {
+      "bytes": 68167,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jackson-annotations-2.11.1.jar",
+      "sha256": "045e61b0b4a347d12b86cf2d0e776dea6a79204ae12095c2b08906d29e594a5a"
+    },
+    {
+      "bytes": 66897,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jackson-annotations-2.9.9.jar",
+      "sha256": "1100a5884ddc4439a77165e1b9668c6063c07447cd2f6c9f69e3688ee76080c1"
+    },
+    {
+      "bytes": 351575,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jackson-core-2.11.1.jar",
+      "sha256": "25461dbfb431cb48e30118a0277671de8e8a56a3b1198492e24b2fb605d7575e"
+    },
+    {
+      "bytes": 325632,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jackson-core-2.9.9.jar",
+      "sha256": "3083079be6088db2ed0a0c6ff92204e0aa48fa1de9db5b59c468f35acf882c2c"
+    },
+    {
+      "bytes": 1389937,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jackson-databind-2.10.0.pr1.jar",
+      "sha256": "85ac1693c1cbf316c060b646ba9b2f85b7df2262614a0015b99f1d01b13d6ed6"
+    },
+    {
+      "bytes": 1419800,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jackson-databind-2.11.1.jar",
+      "sha256": "b486be39d9ff4ae8bc7782792f2ea70f3a7bdaee5bd13780d295d7674231afd6"
+    },
+    {
+      "bytes": 1348786,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jackson-databind-2.9.10.3.jar",
+      "sha256": "b6b5af41f197f89f9a538d9c42496cbeda40745cbd5d89718d97d32089936c40"
+    },
+    {
+      "bytes": 2497,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/javax.inject-1.jar",
+      "sha256": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff"
+    },
+    {
+      "bytes": 95806,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/javax.servlet-api-3.1.0.jar",
+      "sha256": "af456b2dd41c4e82cf54f3e743bc678973d9fe35bd4d3071fa05c7e5333b8482"
+    },
+    {
+      "bytes": 95505,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/javax.servlet-api-4.0.1.jar",
+      "sha256": "83a03dd877d3674576f0da7b90755c8524af099ccf0607fc61aa971535ad7c60"
+    },
+    {
+      "bytes": 226161,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jaxen-1.1.4.jar",
+      "sha256": "5da6c3bfc2aaf0fd7d43dc76829164a815fb9a9567eca9b7ccf67998fa70e3b5"
+    },
+    {
+      "bytes": 16519,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jcl-over-slf4j-1.7.7.jar",
+      "sha256": "c6472b5950e1c23202e567c6334e4832d1db46fad604b7a0d7af71d4a014bce2"
+    },
+    {
+      "bytes": 45944,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/json-20090211.jar",
+      "sha256": "055be110a570f9cda3eba8d70a006ff46c77a048bc67868524879211c48b330a"
+    },
+    {
+      "bytes": 16046,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/json-simple-1.1.jar",
+      "sha256": "2d9484f4c649f708f47f9a479465fc729770ee65617dca3011836602264f6439"
+    },
+    {
+      "bytes": 118779,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jsonld-java-0.5.0.jar",
+      "sha256": "7bd3c137e8a1e12148a706015618d3b8ad01be7ac641a348d289933ecc63b8b4"
+    },
+    {
+      "bytes": 13774,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jsonld-java-sesame-0.5.0.jar",
+      "sha256": "7f642489bd4f949137573e70402d7bf4c2b388d0264312ef0c92b0eb4d87c19d"
+    },
+    {
+      "bytes": 31866,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/jsr305-2.0.1.jar",
+      "sha256": "1e7f53fa5b8b5c807e986ba335665da03f18d660802d8bf061823089d1bee468"
+    },
+    {
+      "bytes": 367444,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/log4j-1.2.14.jar",
+      "sha256": "e3bff9ab64a09b1ac2800f3b5fb1e3d99728064acb6dd3924938507638a404fb"
+    },
+    {
+      "bytes": 489884,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/log4j-1.2.17.jar",
+      "sha256": "1d31696445697720527091754369082a6651bd49781b6005deb94e56753406f9"
+    },
+    {
+      "bytes": 292301,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/log4j-api-2.13.3.jar",
+      "sha256": "2b4b1965c9dce7f3732a0fbf5c8493199c1e6bf8cf65c3e235b57d98da5f36af"
+    },
+    {
+      "bytes": 1714164,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/log4j-core-2.13.3.jar",
+      "sha256": "9529c55814264ab96b0eeba2920ac0805170969c994cc479bd3d4d7eb24a35a8"
+    },
+    {
+      "bytes": 72150,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/logkit-1.0.1.jar",
+      "sha256": "7ea93b4fc21f3d05ed224b168a025f864db75ddfddc2343e1ec29a386d7501e0"
+    },
+    {
+      "bytes": 23191,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/microsoft-translator-java-api-0.6.2.jar",
+      "sha256": "dd550b891e9b0cad6a021eba56a7163487aa2697a8038436d641e0f0854985af"
+    },
+    {
+      "bytes": 84419,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/opencsv-3.10.jar",
+      "sha256": "ffab8b106d42c8e89868cc0bb34c5a832e48d2d8a260565667b0f997da7cbe5a"
+    },
+    {
+      "bytes": 1898468,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/org.semanticweb.hermit-1.3.8.413.jar",
+      "sha256": "bdc093e458c0f5fc56329d359a389ea60ef767c82a7d2ab052ef0970ccef631d"
+    },
+    {
+      "bytes": 833595,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/owlapi-api-4.1.3.jar",
+      "sha256": "c7cf7b3764adf672c642272c31301917e39e7f64079159ebc3181d58eb36b286"
+    },
+    {
+      "bytes": 11598,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/owlapi-apibinding-4.1.3.jar",
+      "sha256": "f1d39b813afdf6264abcce1dcf107fb3fa488c1ab2a83b26867c1908d5740dd2"
+    },
+    {
+      "bytes": 20232,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/owlapi-contract-4.1.3.jar",
+      "sha256": "a848ba83e22aed505891608e221e8f0cacb1eb806214d7d0b395955417ff55d6"
+    },
+    {
+      "bytes": 2878249,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/owlapi-distribution-4.1.3.jar",
+      "sha256": "76e4d45fe7e4da28534a8e5085fc8d11525c5cc4133339256fab45b07171afbe"
+    },
+    {
+      "bytes": 103745,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/owlapi-fixers-4.1.3.jar",
+      "sha256": "1c2bd325cd5da181a1209379bb3c44430ba27bc5742a5dff1028aaa71b545291"
+    },
+    {
+      "bytes": 453775,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/owlapi-impl-4.1.3.jar",
+      "sha256": "700adceebc80dd4648778d1520de6981b01e9da038d8c838f627f13eec60a557"
+    },
+    {
+      "bytes": 189558,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/owlapi-oboformat-4.1.3.jar",
+      "sha256": "ca74bae83abd22c1194ea57deaa42cdcf89c3a1bdc2c6b1f332cf66cfb14e238"
+    },
+    {
+      "bytes": 1046477,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/owlapi-parsers-4.1.3.jar",
+      "sha256": "dd909b0e93fb0b2cdc103a0c1efd675126b243169e7aa89a054ad15bace9c143"
+    },
+    {
+      "bytes": 64541,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/owlapi-rio-4.1.3.jar",
+      "sha256": "3bf18b99c1617290312bcd6c3e8ed15e700b35daa5cf670223f617c791a34081"
+    },
+    {
+      "bytes": 146018,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/owlapi-tools-4.1.3.jar",
+      "sha256": "db5304d08f346013844797e031ca28c506ed6c3bb6b78ad0bde1896f1b058452"
+    },
+    {
+      "bytes": 21786,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/semargl-core-0.6.1.jar",
+      "sha256": "52fb01e35f67e6965030d847858f44c7ce5340267703236cfa612a54c6e8a1af"
+    },
+    {
+      "bytes": 24728,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/semargl-rdf-0.6.1.jar",
+      "sha256": "758180228feae7a65b5ed910f36046cf4a8343ce25630e6738b384d5e6fd8db2"
+    },
+    {
+      "bytes": 34994,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/semargl-rdfa-0.6.1.jar",
+      "sha256": "1af7df3b1da6d120e2dc2653f9cb3a401bde1116d6568914287f83ab4830c46e"
+    },
+    {
+      "bytes": 10102,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/semargl-sesame-0.6.1.jar",
+      "sha256": "59f6f188b2aacaa56f3b1509e688e48bd8f6c20cddac26fdde1d54244c216ea6"
+    },
+    {
+      "bytes": 77977,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/servlet-api-2.3.jar",
+      "sha256": "8478b902d0815ed066db860fb14cc5d404548d4b6348ab930b46270fcddeba68"
+    },
+    {
+      "bytes": 105112,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/servlet-api-2.5.jar",
+      "sha256": "c658ea360a70faeeadb66fb3c90a702e4142a0ab7768f9ae9828678e0d9ad4dc"
+    },
+    {
+      "bytes": 166468,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-model-2.7.12.jar",
+      "sha256": "81b3e81ec98a5a8f077655ef32bca162aed9ac268e296fcd808026e23ee53c97"
+    },
+    {
+      "bytes": 53968,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-api-2.7.12.jar",
+      "sha256": "9f78268498e0fb4d6ea907048a0b8d671fc18e5198b95435e2796d509f290bc7"
+    },
+    {
+      "bytes": 11327,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-binary-2.7.12.jar",
+      "sha256": "51810e228fa40f9a9eae0ea7f6d801fc2f0fc039827e45d437bcf45389176327"
+    },
+    {
+      "bytes": 8652,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-datatypes-2.7.12.jar",
+      "sha256": "3914d9e6b7e29ced6ab49c7cd9b5e50a1ae837dc4d1ecbe9061f2112a0777fda"
+    },
+    {
+      "bytes": 3587,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-languages-2.7.12.jar",
+      "sha256": "eba69bacd5f07969c8c0cbf4ef49d19c85b85026077e04eabf29ee4a9f51b683"
+    },
+    {
+      "bytes": 4580,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-n3-2.7.12.jar",
+      "sha256": "1a8518b953fe5e0f60ae662cdb1f18d27cb3bea76fc695bb573129bb7e5ba154"
+    },
+    {
+      "bytes": 7401,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-nquads-2.7.12.jar",
+      "sha256": "4288e7762df82834a742194510440a95265bf805c6a72ae0063a85dcba031c52"
+    },
+    {
+      "bytes": 15086,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-ntriples-2.7.12.jar",
+      "sha256": "09fab75b4c08661ba107d0256c3758d9e7dc1b62d81ea7a1e3d8293f0616a7b1"
+    },
+    {
+      "bytes": 12929,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-rdfjson-2.7.12.jar",
+      "sha256": "344af499246739166c564f2d1954dc07b5642082f3e82c10e064a6c16b4de57e"
+    },
+    {
+      "bytes": 37653,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-rdfxml-2.7.12.jar",
+      "sha256": "ed15595c429816a043bcd24d922aefd16905b9f0886c184a3a71573813423fde"
+    },
+    {
+      "bytes": 7406,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-trig-2.7.12.jar",
+      "sha256": "cb9e7453b6317a46a8f01a76b0f49d61c67199de39b1dcd1810f72b4074a2cf2"
+    },
+    {
+      "bytes": 11781,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-trix-2.7.12.jar",
+      "sha256": "e18ba3e1c89f1d1bc61896c82b282dd20e7b33b5205779939dd67f21c2705c08"
+    },
+    {
+      "bytes": 21709,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-rio-turtle-2.7.12.jar",
+      "sha256": "b1c78bd92134b581ea8328fdd1f2219d87571e03267580cd9575ab8675f48f66"
+    },
+    {
+      "bytes": 79930,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/sesame-util-2.7.12.jar",
+      "sha256": "76b02a2ea76b49897c4808b94da415a5bcaba60297d76edc29bbc147b078082b"
+    },
+    {
+      "bytes": 32119,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/slf4j-api-1.7.10.jar",
+      "sha256": "3863e27005740d4d1289bf87b113efea115e9a22408a7d623be8004991232bfe"
+    },
+    {
+      "bytes": 41473,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/slf4j-api-1.7.31.jar",
+      "sha256": "cda862aa69683ac072ee2afd0b93d070ceab291ef5b857d318b24c1595b36b8a"
+    },
+    {
+      "bytes": 29257,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/slf4j-api-1.7.7.jar",
+      "sha256": "69980c038ca1b131926561591617d9c25fabfc7b29828af91597ca8570cf35fe"
+    },
+    {
+      "bytes": 12244,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/slf4j-log4j12-1.7.25.jar",
+      "sha256": "ddb343954deb6f046f862606c534178730c02ed23d0b7f6ca1012c1e3fa74273"
+    },
+    {
+      "bytes": 12211,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/slf4j-log4j12-1.7.31.jar",
+      "sha256": "2de655f6cbd91107982e1d6ab297a7f919f12fa179573e8c6449b14c12191361"
+    },
+    {
+      "bytes": 182112,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/stax2-api-3.1.1.jar",
+      "sha256": "850bbbbaaa1e7ecc4ebecdb8a283ff36d1f2451c6797b0175bc40ae2ad9b31c4"
+    },
+    {
+      "bytes": 2523218,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/trove4j-3.0.3.jar",
+      "sha256": "3c8616203d61a12a7e3487e8b34f3c198c2b5ba9e90da0c7ea32d99cd4958012"
+    },
+    {
+      "bytes": 479104,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/woodstox-core-asl-4.1.4.jar",
+      "sha256": "d24cf82fa3f2b30a847036ff4c198dde397e43c4599aef9e93fcbe1e49186bc2"
+    },
+    {
+      "bytes": 109318,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/xml-apis-1.0.b2.jar",
+      "sha256": "8232f3482c346d843e5e3fb361055771c1acc105b6d8a189eb9018c55948cf9f"
+    },
+    {
+      "bytes": 99555,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/java-dependencies/xz-1.5.jar",
+      "sha256": "86f30fa8775fa3a62cdb39d1ed78a6019164c1058864048d42cbee244e26e840"
+    },
+    {
+      "bytes": 3393718,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/logmap-matcher-4.0.jar",
+      "sha256": "e0b217156ffece911c472cc2cb2b25e7948b3c46801037e0161c3a752332d6a3"
+    },
+    {
+      "bytes": 7354,
+      "modified": false,
+      "path": "src/deeponto/align/logmap/parameters.txt",
+      "sha256": "01826f9c02c521978106e215ff3cb6ae810004a948d71870fa5b7bd75ddfacba"
+    },
+    {
+      "bytes": 28221,
+      "modified": true,
+      "path": "src/deeponto/align/mapping.py",
+      "sha256": "d0b3b6cfdee45019783707c4bd623cc76f8325142828cf1e10ebb74ad628d70f"
+    },
+    {
+      "bytes": 9795,
+      "modified": false,
+      "path": "src/deeponto/align/oaei.py",
+      "sha256": "16e707cbe9cab9fc8ed07bbede2aa8923a1eb46bd46fd1cbe9e1474ba011238a"
+    },
+    {
+      "bytes": 602,
+      "modified": false,
+      "path": "src/deeponto/complete/__init__.py",
+      "sha256": "8a7e3c70f75f7efb72344df06918264e39327d510cc5e83897e77099d45ddf2d"
+    },
+    {
+      "bytes": 796,
+      "modified": false,
+      "path": "src/deeponto/complete/bertsubs/__init__.py",
+      "sha256": "4cd52dcc84c07652bf86997e45b00bf2cd6d575d0d7743cdbf1f9826f68a8538"
+    },
+    {
+      "bytes": 5560,
+      "modified": false,
+      "path": "src/deeponto/complete/bertsubs/bert_classifier.py",
+      "sha256": "fea5df232f892725db17980590ac40373be79628a2c6d420b8a45f885aaa074a"
+    },
+    {
+      "bytes": 2770,
+      "modified": false,
+      "path": "src/deeponto/complete/bertsubs/default_config_inter.yaml",
+      "sha256": "6849f44ff6998d388e17244b22eb4afab2e0256c69372c975bc3f3be231dada5"
+    },
+    {
+      "bytes": 2749,
+      "modified": false,
+      "path": "src/deeponto/complete/bertsubs/default_config_intra.yaml",
+      "sha256": "9038898e01e20dca82646c9d4460b8509059bf7c228fdb752fa290e40c0b5438"
+    },
+    {
+      "bytes": 16303,
+      "modified": false,
+      "path": "src/deeponto/complete/bertsubs/pipeline_inter.py",
+      "sha256": "56b54a98c94c8671d1145ad006e2bea2bdb0095e91e0c9519420cab5883edae0"
+    },
+    {
+      "bytes": 17435,
+      "modified": false,
+      "path": "src/deeponto/complete/bertsubs/pipeline_intra.py",
+      "sha256": "eaddd8861de5ad6d2fb04b330bd0210bc4b12eeeafcff478b69950d1222162d2"
+    },
+    {
+      "bytes": 25366,
+      "modified": false,
+      "path": "src/deeponto/complete/bertsubs/text_semantics.py",
+      "sha256": "175ec07d916adeec1d40b8efcdb11824224b8835374aa1a12bc465804550189d"
+    },
+    {
+      "bytes": 627,
+      "modified": false,
+      "path": "src/deeponto/complete/ontolama/__init__.py",
+      "sha256": "0e4f2ae6772a777ceba3382db84eb2b3bead8780564f2893b5ed1229c75adb9c"
+    },
+    {
+      "bytes": 4208,
+      "modified": false,
+      "path": "src/deeponto/complete/ontolama/data_processor.py",
+      "sha256": "aa4f18601496679505cb3e434013f57a2278c4d693b5ae4bc3aaaf5ac7f4a089"
+    },
+    {
+      "bytes": 9869,
+      "modified": false,
+      "path": "src/deeponto/complete/ontolama/inference.py",
+      "sha256": "044283e40baaf7312755a31eeba4de2edf90e18abf01e7fd04bf396f94a27a49"
+    },
+    {
+      "bytes": 13443,
+      "modified": false,
+      "path": "src/deeponto/complete/ontolama/subsumption_sampler.py",
+      "sha256": "f3f6f56e5afc0b1dca7d6ad629a8a0072b5f8ff208a8b0f42a37ee205d2a3ee1"
+    },
+    {
+      "bytes": 95536,
+      "modified": false,
+      "path": "src/deeponto/lib/apache-mime4j-core-0.7.2.jar",
+      "sha256": "4d7434c68f94b81a253c12f28e6bbb4d6239c361d6086a46e22e594bb43ac660"
+    },
+    {
+      "bytes": 176285,
+      "modified": false,
+      "path": "src/deeponto/lib/automaton-1.11-8.jar",
+      "sha256": "a24475f6ccfe1cc7a4fe9e34e05ce687b0ce0c6e8cb781e0eced3b186482c61e"
+    },
+    {
+      "bytes": 421631,
+      "modified": false,
+      "path": "src/deeponto/lib/axiom-api-1.2.14.jar",
+      "sha256": "c17b35199ff938240ac18f70e0750888269432375029e15d8e5d49ce294a654d"
+    },
+    {
+      "bytes": 59805,
+      "modified": false,
+      "path": "src/deeponto/lib/axiom-c14n-1.2.14.jar",
+      "sha256": "082da81c99890e2007452c6231483120c6c7d0374fcb4b8bfcc61ba858833a87"
+    },
+    {
+      "bytes": 212170,
+      "modified": false,
+      "path": "src/deeponto/lib/axiom-dom-1.2.14.jar",
+      "sha256": "7f3aaf83dfbcfbec5d5ad915f77349d884323f6a28134e1a11e28de0d1792bb1"
+    },
+    {
+      "bytes": 170746,
+      "modified": false,
+      "path": "src/deeponto/lib/axiom-impl-1.2.14.jar",
+      "sha256": "cfafc9dab48292b86932b29b1e3c08b4dd2fa1f1e2a7bc9cd0f0f88868edf222"
+    },
+    {
+      "bytes": 922041,
+      "modified": false,
+      "path": "src/deeponto/lib/caffeine-2.8.6.jar",
+      "sha256": "230af102f4b41ca93b84447fcb6d105b7d736290a6142a99bcddcf3ca402fdbf"
+    },
+    {
+      "bytes": 226190,
+      "modified": false,
+      "path": "src/deeponto/lib/checker-qual-3.7.0.jar",
+      "sha256": "be2039732159d13f3f00867f22223992178a3b28b8a143724eba4206a8fdfff3"
+    },
+    {
+      "bytes": 164973,
+      "modified": false,
+      "path": "src/deeponto/lib/collection-0.7.jar",
+      "sha256": "e50cbc8379325ee17e8127eed7eb88fb70b94ba16e5e3d97e12401a1fc248fb8"
+    },
+    {
+      "bytes": 53820,
+      "modified": false,
+      "path": "src/deeponto/lib/commons-cli-1.4.jar",
+      "sha256": "fd3c7c9545a9cdb2051d1f9155c4f76b1e4ac5a57304404a6eedb578ffba7328"
+    },
+    {
+      "bytes": 353793,
+      "modified": false,
+      "path": "src/deeponto/lib/commons-codec-1.15.jar",
+      "sha256": "b3e9f6d63a790109bf0d056611fbed1cf69055826defeb9894a71369d246ed63"
+    },
+    {
+      "bytes": 632424,
+      "modified": false,
+      "path": "src/deeponto/lib/commons-compress-1.20.jar",
+      "sha256": "0aeb625c948c697ea7b205156e112363b59ed5e2551212cd4e460bdb72c7c06e"
+    },
+    {
+      "bytes": 49086,
+      "modified": false,
+      "path": "src/deeponto/lib/commons-csv-1.8.jar",
+      "sha256": "a8bd56652ed4668d9d5a33994ae52f59b9e39c8eb0ebcb6684e68aeee7579a61"
+    },
+    {
+      "bytes": 285424,
+      "modified": false,
+      "path": "src/deeponto/lib/commons-io-2.8.0.jar",
+      "sha256": "02f291e5d1243dc143496e3cbbb40a1ced47aa58f2d633d3e38780cd068d5074"
+    },
+    {
+      "bytes": 577742,
+      "modified": false,
+      "path": "src/deeponto/lib/commons-lang3-3.11.jar",
+      "sha256": "4ee380259c068d1dbe9e84ab52186f2acd65de067ec09beff731fca1697fdb16"
+    },
+    {
+      "bytes": 61829,
+      "modified": false,
+      "path": "src/deeponto/lib/commons-logging-1.2.jar",
+      "sha256": "daddea1ea0be0f56978ab3006b8ac92834afeefbd9b7e4e6316fca57df0fa636"
+    },
+    {
+      "bytes": 3167958,
+      "modified": false,
+      "path": "src/deeponto/lib/elk-owlapi4-library-0.5.0-SNAPSHOT.jar",
+      "sha256": "7ab552333bc3a46167a77a78efb18602a2d06323dfbeeb96adbfec8df4e41760"
+    },
+    {
+      "bytes": 13854,
+      "modified": false,
+      "path": "src/deeponto/lib/error_prone_annotations-2.4.0.jar",
+      "sha256": "5f2a0648230a662e8be049df308d583d7369f13af683e44ddf5829b6d741a228"
+    },
+    {
+      "bytes": 31548,
+      "modified": false,
+      "path": "src/deeponto/lib/fluent-hc-4.5.12.jar",
+      "sha256": "bce6ad2d2cb31200a8f4965dba6c5847decf173442216318a4bec76f2ef5f489"
+    },
+    {
+      "bytes": 248432,
+      "modified": false,
+      "path": "src/deeponto/lib/gateway.jar",
+      "sha256": "3ccce19ad9b343044429ac041ad9799dc8fd294e37b6b42521f08ed1bc3da950"
+    },
+    {
+      "bytes": 47465,
+      "modified": false,
+      "path": "src/deeponto/lib/geronimo-activation_1.1_spec-1.1.jar",
+      "sha256": "3910d9f8b331b2ae573e16591ac246058e088cac97f3ec064f46b10a8801fcb9"
+    },
+    {
+      "bytes": 223298,
+      "modified": false,
+      "path": "src/deeponto/lib/geronimo-javamail_1.4_spec-1.7.1.jar",
+      "sha256": "6f1e85d9c66135f5a9dbc9f78cbf8132e52f8a85884d618ccf0dbe9344c5a330"
+    },
+    {
+      "bytes": 28804,
+      "modified": false,
+      "path": "src/deeponto/lib/geronimo-stax-api_1.0_spec-1.0.1.jar",
+      "sha256": "124235815fba376b0c20ed37f79d691fa26b4e00297a4ab27b6ca05ceb591348"
+    },
+    {
+      "bytes": 7164868,
+      "modified": false,
+      "path": "src/deeponto/lib/groovy-all-2.4.15.jar",
+      "sha256": "51d6c4e71782e85674239189499854359d380fb75e1a703756e3aaa5b98a5af0"
+    },
+    {
+      "bytes": 2256213,
+      "modified": false,
+      "path": "src/deeponto/lib/guava-18.0.jar",
+      "sha256": "d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99"
+    },
+    {
+      "bytes": 1935920,
+      "modified": false,
+      "path": "src/deeponto/lib/hppcrt-0.7.5.jar",
+      "sha256": "f3cfbd511d0bd5a29b72bcca97fcaa81889cf6698f045c5f658744829c8784b9"
+    },
+    {
+      "bytes": 780321,
+      "modified": false,
+      "path": "src/deeponto/lib/httpclient-4.5.13.jar",
+      "sha256": "6fe9026a566c6a5001608cf3fc32196641f6c1e5e1986d1037ccdbd5f31ef743"
+    },
+    {
+      "bytes": 164090,
+      "modified": false,
+      "path": "src/deeponto/lib/httpclient-cache-4.5.13.jar",
+      "sha256": "66cefdee7475985256af680bf3ae7cd5d7d42e8fdeb939a6277922e1bdeed43a"
+    },
+    {
+      "bytes": 1368597,
+      "modified": false,
+      "path": "src/deeponto/lib/httpclient-osgi-4.5.12.jar",
+      "sha256": "7ed79f91c18a18a478569e205975fdf37c6bc29142f825d005037e497bca7af7"
+    },
+    {
+      "bytes": 328593,
+      "modified": false,
+      "path": "src/deeponto/lib/httpcore-4.4.13.jar",
+      "sha256": "e06e89d40943245fcfa39ec537cdbfce3762aecde8f9c597780d2b00c2b43424"
+    },
+    {
+      "bytes": 369320,
+      "modified": false,
+      "path": "src/deeponto/lib/httpcore-nio-4.4.13.jar",
+      "sha256": "71fcfbe869002c48563cc5979fc734571c8d0d167ccce42970c932f337981f19"
+    },
+    {
+      "bytes": 696255,
+      "modified": false,
+      "path": "src/deeponto/lib/httpcore-osgi-4.4.13.jar",
+      "sha256": "d31988d21bc3433d7b8841e86e1b9971b99d36fa0e84c03a32e129b033933fa0"
+    },
+    {
+      "bytes": 41792,
+      "modified": false,
+      "path": "src/deeponto/lib/httpmime-4.5.12.jar",
+      "sha256": "0cac77bd2f8cf326727f0516d6fcbe1aeddbab36e971a3da44ff47fa87b2eac4"
+    },
+    {
+      "bytes": 68215,
+      "modified": false,
+      "path": "src/deeponto/lib/jackson-annotations-2.11.3.jar",
+      "sha256": "6519b3811cb1c0afbbdab74fd841b0b34f3a489fccb43e9f981da1328d8ec23d"
+    },
+    {
+      "bytes": 351495,
+      "modified": false,
+      "path": "src/deeponto/lib/jackson-core-2.11.3.jar",
+      "sha256": "78cd0a6b936232e06dd3e38da8a0345348a09cd1ff9c4d844c6ee72c75cfc402"
+    },
+    {
+      "bytes": 1421699,
+      "modified": false,
+      "path": "src/deeponto/lib/jackson-databind-2.11.3.jar",
+      "sha256": "5eb2fa8403a077a15391b80f43784fe09f8787863f5c6f53cc9edd710fd3c1ae"
+    },
+    {
+      "bytes": 26586,
+      "modified": false,
+      "path": "src/deeponto/lib/javax.annotation-api-1.3.2.jar",
+      "sha256": "e04ba5195bcd555dc95650f7cc614d151e4bcd52d29a10b8aa2197f3ab89ab9b"
+    },
+    {
+      "bytes": 2497,
+      "modified": false,
+      "path": "src/deeponto/lib/javax.inject-1.jar",
+      "sha256": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff"
+    },
+    {
+      "bytes": 226161,
+      "modified": false,
+      "path": "src/deeponto/lib/jaxen-1.1.4.jar",
+      "sha256": "5da6c3bfc2aaf0fd7d43dc76829164a815fb9a9567eca9b7ccf67998fa70e3b5"
+    },
+    {
+      "bytes": 164617,
+      "modified": false,
+      "path": "src/deeponto/lib/jcel-core-0.24.1.jar",
+      "sha256": "9692dbb4a38a79e2b0e07248b95b9ab99d07ca48c824a0d93bbf409aac8fcb1b"
+    },
+    {
+      "bytes": 49889,
+      "modified": false,
+      "path": "src/deeponto/lib/jcel-coreontology-0.24.1.jar",
+      "sha256": "3fd026e60f372284945c5152c527f9370500abf45f5c1db15b0cf1bae344cd00"
+    },
+    {
+      "bytes": 124802,
+      "modified": false,
+      "path": "src/deeponto/lib/jcel-ontology-0.24.1.jar",
+      "sha256": "7c01d7f8cf42e1400018cb5e47097374aba18ecebe97b8ac7d14f0185b980932"
+    },
+    {
+      "bytes": 63423,
+      "modified": false,
+      "path": "src/deeponto/lib/jcel-owlapi-0.24.1.jar",
+      "sha256": "705248a63bb20f06b902ee437c36202557364eacd6b28b6bfda5a61561a1d125"
+    },
+    {
+      "bytes": 29551,
+      "modified": false,
+      "path": "src/deeponto/lib/jcel-reasoner-0.24.1.jar",
+      "sha256": "3dbb9c508f5bdaa0dcf305bf6791a41feecb806a17630560195d34650da01879"
+    },
+    {
+      "bytes": 16537,
+      "modified": false,
+      "path": "src/deeponto/lib/jcl-over-slf4j-1.7.30.jar",
+      "sha256": "71e9ee37b9e4eb7802a2acc5f41728a4cf3915e7483d798db3b4ff2ec8847c50"
+    },
+    {
+      "bytes": 69254,
+      "modified": false,
+      "path": "src/deeponto/lib/jcommander-1.72.jar",
+      "sha256": "e0de160b129b2414087e01fe845609cd55caec6820cfd4d0c90fabcc7bdb8c1e"
+    },
+    {
+      "bytes": 3099866,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-arq-3.17.0.jar",
+      "sha256": "ead9adaf87980fb23a6bd169803acdb5ac080ecd0e95d104867975761bbcd620"
+    },
+    {
+      "bytes": 228062,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-base-3.17.0.jar",
+      "sha256": "10e8aa3dd645f8ae369835f1b405db8e59545049426a0ee30e672ae3acc4abe5"
+    },
+    {
+      "bytes": 1737608,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-core-3.17.0.jar",
+      "sha256": "4236eae64e89126e70d8d2dc0376923fb707157083e74b2b4b212fdeeb6e57df"
+    },
+    {
+      "bytes": 134259,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-dboe-base-3.17.0.jar",
+      "sha256": "e5b906dd4594a525476a943eea9b5a1b18ec9a1a5b94d6566c70dbe61c97ab37"
+    },
+    {
+      "bytes": 21251,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-dboe-index-3.17.0.jar",
+      "sha256": "9b50b0629a16d425ce81ef19b51440831ea7bc32216362d8afeb32789a72ea47"
+    },
+    {
+      "bytes": 41311,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-dboe-storage-3.17.0.jar",
+      "sha256": "1561d33ef9fb965ea998238943fe97a097cc0488b06c3e5056e2900d9f9ae3ed"
+    },
+    {
+      "bytes": 96361,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-dboe-trans-data-3.17.0.jar",
+      "sha256": "a322fe84253581db9ff6548d8e876659bc65a0b45b433a8c6625cf7f59123c72"
+    },
+    {
+      "bytes": 80269,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-dboe-transaction-3.17.0.jar",
+      "sha256": "3e38a67b5fab2e6cc35d36eaa7fa67df25eeb643793daaa7340d3861a3966963"
+    },
+    {
+      "bytes": 137164,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-iri-3.17.0.jar",
+      "sha256": "413f4a3f3d0970853ec8fdf5a61c78fdc903c835ee225191a3cf024f376aa6cc"
+    },
+    {
+      "bytes": 55592,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-rdfconnection-3.17.0.jar",
+      "sha256": "08461a9ca373a57a7cf852a25aaacd5cba3350f6f43cfd430c3708cf5c83f77e"
+    },
+    {
+      "bytes": 274220,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-shacl-3.17.0.jar",
+      "sha256": "af89610defba0ce4f45f4f42f48d694f39927a4a5005c444f2ef510f18de452e"
+    },
+    {
+      "bytes": 3000440,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-shaded-guava-3.17.0.jar",
+      "sha256": "d5d94121d01547168026b4ce9ca0a8b76c7b5585a9de93b408eb2144225be233"
+    },
+    {
+      "bytes": 522511,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-tdb-3.17.0.jar",
+      "sha256": "c59f001767d7eb291367514a50d3c40e4a79055b46fea6398a2a0fb7137f09de"
+    },
+    {
+      "bytes": 269182,
+      "modified": false,
+      "path": "src/deeponto/lib/jena-tdb2-3.17.0.jar",
+      "sha256": "35c68513cdf0eee9f58afb3152f0ae68380cf307546d90004f4590b05215588b"
+    },
+    {
+      "bytes": 61311,
+      "modified": false,
+      "path": "src/deeponto/lib/jopt-simple-4.5.jar",
+      "sha256": "64335a48be6b142a7d0c13ec5c82a707857aa58c0234e6eda3eaca0e96eea51b"
+    },
+    {
+      "bytes": 3075853,
+      "modified": false,
+      "path": "src/deeponto/lib/jsonld-java-0.13.2.jar",
+      "sha256": "8f6d4bb2ca5f007cc08a7f867a3d9e2ef6cef6faa99c1c483b066736ca7a6317"
+    },
+    {
+      "bytes": 19943,
+      "modified": false,
+      "path": "src/deeponto/lib/jsr305-3.0.1.jar",
+      "sha256": "c885ce34249682bc0236b4a7d56efcc12048e6135a5baf7a9cde8ad8cda13fcd"
+    },
+    {
+      "bytes": 246059,
+      "modified": false,
+      "path": "src/deeponto/lib/libthrift-0.13.0.jar",
+      "sha256": "f261ec1cfb7452e25c584cb4440389dffce59a6d38dfe91d12ec790594629b6e"
+    },
+    {
+      "bytes": 367444,
+      "modified": false,
+      "path": "src/deeponto/lib/log4j-1.2.14.jar",
+      "sha256": "e3bff9ab64a09b1ac2800f3b5fb1e3d99728064acb6dd3924938507638a404fb"
+    },
+    {
+      "bytes": 10879,
+      "modified": false,
+      "path": "src/deeponto/lib/org.apache.servicemix.bundles.javax-inject-1_2.jar",
+      "sha256": "3f0540bb6d56269b17fe4897a1197f48e07d63b993c8b73a48b63e0cdc76a4bb"
+    },
+    {
+      "bytes": 1898468,
+      "modified": false,
+      "path": "src/deeponto/lib/org.semanticweb.hermit-1.3.8.413.jar",
+      "sha256": "bdc093e458c0f5fc56329d359a389ea60ef767c82a7d2ab052ef0970ccef631d"
+    },
+    {
+      "bytes": 957255,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-api-4.5.22.jar",
+      "sha256": "7ebc45163bcd45da6b6c91add407e648335405b65d4af6b927c6bd7826116a08"
+    },
+    {
+      "bytes": 14381,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-apibinding-4.5.22.jar",
+      "sha256": "cc815fd23699a9bd7d30da7f54820d2df0898883c0ef853687e053b474a29cf9"
+    },
+    {
+      "bytes": 115786,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-compatibility-4.5.22.jar",
+      "sha256": "c106ef4384b6dcb5dc6dd2c0ba1c203c091a83140537e55e66b4fea667a17f1c"
+    },
+    {
+      "bytes": 3165745,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-distribution-4.5.22.jar",
+      "sha256": "c9f0740517838b5ca0ba3d9d0e16e6735c7ef6f0f9567f02224c3b8771b63727"
+    },
+    {
+      "bytes": 103827,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-fixers-4.5.22.jar",
+      "sha256": "9b4e86d65738a32841c6cf57f9723247c8384ab932e9ffeb8b59e953dc071f4f"
+    },
+    {
+      "bytes": 471189,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-impl-4.5.22.jar",
+      "sha256": "077b860004e954284a0813311ddb5a49e61250b3b13c5b2a17d5459c353641fd"
+    },
+    {
+      "bytes": 187116,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-oboformat-4.5.22.jar",
+      "sha256": "5a32396e7c3d8acfd5f9160263db4b7c5edce736a0c76f8f48698fd402e0f242"
+    },
+    {
+      "bytes": 10934189,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-osgidistribution-4.5.22.jar",
+      "sha256": "e2f84842b021376a0ce1c7cedb36ddd7d20776536a37b367da124527b3dcc121"
+    },
+    {
+      "bytes": 1062259,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-parsers-4.5.22.jar",
+      "sha256": "3c5fdfa3a8ce753fcb7e5d98ccca231f7240675c5e601e38e530bcd2c08ad5fe"
+    },
+    {
+      "bytes": 6485,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-proof-0.1.0.jar",
+      "sha256": "44032015fed762a31eda8fe975e249280824a8eda82cf32205d736f93a348820"
+    },
+    {
+      "bytes": 79388,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-rio-4.5.22.jar",
+      "sha256": "be73ffa227b9dc84298a091ac4950b9c5e99450dced1231887b30427ec8a7151"
+    },
+    {
+      "bytes": 146192,
+      "modified": false,
+      "path": "src/deeponto/lib/owlapi-tools-4.5.22.jar",
+      "sha256": "af0a96488127917a1c82d08a4db9265491d97e9fa87e5238e5c025cd03ef6d5b"
+    },
+    {
+      "bytes": 177572,
+      "modified": false,
+      "path": "src/deeponto/lib/puli-0.1.0.jar",
+      "sha256": "4a2a71a8fee7edbbafbfcaeb8ece9d5e58ac6d70ffc8789f0c5e09dbe052cdf7"
+    },
+    {
+      "bytes": 233248,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-model-2.4.2.jar",
+      "sha256": "ed4f7b62431bf153b48c6d843f39ed0dab33e5d2df01a8183fc028123f53857e"
+    },
+    {
+      "bytes": 72906,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-api-2.4.2.jar",
+      "sha256": "7bc7851488d8c3561059de03f36fea65d7b968f19eb687c7acb01513dc383311"
+    },
+    {
+      "bytes": 12101,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-binary-2.4.2.jar",
+      "sha256": "da317ccb481479584baec59c5d7968629ff905733cd2cb1b70dd66d414eb9419"
+    },
+    {
+      "bytes": 9062,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-datatypes-2.4.2.jar",
+      "sha256": "df1c19b767beb299b75ec686a6dc047569acd40ac52e56cc794619e43e491113"
+    },
+    {
+      "bytes": 19497,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-jsonld-2.4.2.jar",
+      "sha256": "1f60eb5d94532daf44a70734cc8489063dbba445819118abf556668ee6591193"
+    },
+    {
+      "bytes": 5029,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-languages-2.4.2.jar",
+      "sha256": "6746717188a87adaca9d50a6b5bc3c093e29138205ecdc07142a159cc6c17e73"
+    },
+    {
+      "bytes": 5187,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-n3-2.4.2.jar",
+      "sha256": "51dbc2ea76a94c6088bda9e41732de45a787f6f987c50bc04ad1043339c5f9ba"
+    },
+    {
+      "bytes": 7911,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-nquads-2.4.2.jar",
+      "sha256": "c5e6e5bc7cf19640e956eb8c5f3f19f099694736e9e450984e70b3e58e8f98e8"
+    },
+    {
+      "bytes": 19276,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-ntriples-2.4.2.jar",
+      "sha256": "e15979f9a04fd0fa7e5692e3083161d6c7fdfb9db2c50441b98d60efb7eaa369"
+    },
+    {
+      "bytes": 14052,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-rdfjson-2.4.2.jar",
+      "sha256": "1c1619424e8da6a46eae818eaf296589d15e6e1489fac732f053f158c78a9a2c"
+    },
+    {
+      "bytes": 38703,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-rdfxml-2.4.2.jar",
+      "sha256": "641cfd32ca1242850f9ca2ac403796dea4af6c5619aa9c68fc998e71039216b3"
+    },
+    {
+      "bytes": 9023,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-trig-2.4.2.jar",
+      "sha256": "e6a479c823c2dd13cb6ec053fac52d43ad48e813238324fc23158df23fec3ac5"
+    },
+    {
+      "bytes": 13670,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-trix-2.4.2.jar",
+      "sha256": "715fc1af71c9f6b4497c679952d7e6980afd1f8f2ccf5580637ceca8cb5cb301"
+    },
+    {
+      "bytes": 36238,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-rio-turtle-2.4.2.jar",
+      "sha256": "a08dbc1ebf6f3db0adbc7ee7bb3726a55c8d7b6cd5a5d03f52048eceba379b65"
+    },
+    {
+      "bytes": 108646,
+      "modified": false,
+      "path": "src/deeponto/lib/rdf4j-util-2.4.2.jar",
+      "sha256": "80c85df21e5915cf418d42b622753e40ab9ed0a457504b3c6a2190fb60eb6b0f"
+    },
+    {
+      "bytes": 5749423,
+      "modified": false,
+      "path": "src/deeponto/lib/scala-library-2.11.12.jar",
+      "sha256": "0b3d6fd42958ee98715ba2ec5fe221f4ca1e694d7c981b0ae0cd68e97baf6dce"
+    },
+    {
+      "bytes": 41472,
+      "modified": false,
+      "path": "src/deeponto/lib/slf4j-api-1.7.30.jar",
+      "sha256": "cdba07964d1bb40a0761485c6b1e8c2f8fd9eb1d19c53928ac0d7f9510105c57"
+    },
+    {
+      "bytes": 15257,
+      "modified": false,
+      "path": "src/deeponto/lib/slf4j-simple-1.7.25.jar",
+      "sha256": "0966e86fffa5be52d3d9e7b89dd674d98a03eed0a454fbaf7c1bd9493bd9d874"
+    },
+    {
+      "bytes": 182112,
+      "modified": false,
+      "path": "src/deeponto/lib/stax2-api-3.1.1.jar",
+      "sha256": "850bbbbaaa1e7ecc4ebecdb8a283ff36d1f2451c6797b0175bc40ae2ad9b31c4"
+    },
+    {
+      "bytes": 479104,
+      "modified": false,
+      "path": "src/deeponto/lib/woodstox-core-asl-4.1.4.jar",
+      "sha256": "d24cf82fa3f2b30a847036ff4c198dde397e43c4599aef9e93fcbe1e49186bc2"
+    },
+    {
+      "bytes": 103131,
+      "modified": false,
+      "path": "src/deeponto/lib/xz-1.6.jar",
+      "sha256": "a594643d73cc01928cf6ca5ce100e094ea9d73af760a5d4fb6b75fa673ecec96"
+    },
+    {
+      "bytes": 1248,
+      "modified": false,
+      "path": "src/deeponto/onto/__init__.py",
+      "sha256": "43ed53da3bc2fcf4699c9dfd93cb54ad8ace27980e00fe7f7c02c01a1da32448"
+    },
+    {
+      "bytes": 7345,
+      "modified": false,
+      "path": "src/deeponto/onto/normalisation.py",
+      "sha256": "c074e0cee34829597b0754205a34cf94ac447ad89a66c2f853fdaf1797ac72d9"
+    },
+    {
+      "bytes": 45504,
+      "modified": false,
+      "path": "src/deeponto/onto/ontology.py",
+      "sha256": "f059d0485e101f7e9e2ec2386501d5e8b14698894e91775f56fe51e64a02dcfe"
+    },
+    {
+      "bytes": 5029,
+      "modified": false,
+      "path": "src/deeponto/onto/projection.py",
+      "sha256": "8d59a5483628e17680909947069aa14615b78f796ac505824d7df364be97c22d"
+    },
+    {
+      "bytes": 3326,
+      "modified": false,
+      "path": "src/deeponto/onto/pruning.py",
+      "sha256": "154cf94db5ad6c202a1e53066ba76e9bd5c44916675f6b69e085c769ec3a19eb"
+    },
+    {
+      "bytes": 13321,
+      "modified": false,
+      "path": "src/deeponto/onto/taxonomy.py",
+      "sha256": "8066ac48bcda3446060e73902fd6e5f18436928cccea8ffbb0a77b4471ed928d"
+    },
+    {
+      "bytes": 41053,
+      "modified": false,
+      "path": "src/deeponto/onto/verbalisation.py",
+      "sha256": "e9937b18684b21d7f22aa84bfd612cfc19d67df6d2addb8af0c965a175afa66b"
+    },
+    {
+      "bytes": 811,
+      "modified": false,
+      "path": "src/deeponto/utils/__init__.py",
+      "sha256": "be2a819ec6aebd2c44e68db52b1f8b4970973151532dbd01a143b49d7987c465"
+    },
+    {
+      "bytes": 1440,
+      "modified": false,
+      "path": "src/deeponto/utils/data_utils.py",
+      "sha256": "05df03c0795053d6c5d4359756d89366bc3b95d4a6d061714f95c845f8880260"
+    },
+    {
+      "bytes": 2271,
+      "modified": false,
+      "path": "src/deeponto/utils/decorators.py",
+      "sha256": "b99d5714c5c0122281ca68584aa672ce6a79b4e5a5e0fa13597c60881447ec9a"
+    },
+    {
+      "bytes": 5085,
+      "modified": false,
+      "path": "src/deeponto/utils/file_utils.py",
+      "sha256": "afb96fdd18991b2b88f2e5480712ebedf373fbcd40296191bf0ccd852e2ddf7e"
+    },
+    {
+      "bytes": 2537,
+      "modified": false,
+      "path": "src/deeponto/utils/logging.py",
+      "sha256": "d3ccc461448f7106d1a40c29a82114bb8936acc4f704a2c333ba87232f5ad007"
+    },
+    {
+      "bytes": 6722,
+      "modified": false,
+      "path": "src/deeponto/utils/text_utils.py",
+      "sha256": "6acc7a6e53090e40aaa2bf0a6b5a607f36ad950862000d005bb0a37bbf3a7a61"
+    },
+    {
+      "bytes": 1028332,
+      "modified": false,
+      "path": "uv.lock",
+      "sha256": "a99a3136c591156ba97f3c5ff83d9e91c76ee9aa63376312cc5cc82a007589c0"
+    }
+  ],
+  "tree": "b499cb5780bbe749f7db44d0bc872d275a2737ea"
+}

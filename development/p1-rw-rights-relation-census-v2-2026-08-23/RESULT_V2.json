@@ -1,0 +1,138 @@
+{
+  "authority": "FINITE_PINNED_OUTCOME_BLIND_METADATA_RELATION_AND_RIGHTS_FEASIBILITY_ONLY",
+  "claim_boundary": {
+    "licensed": [
+      "finite pinned metadata-relation existence and prevalence",
+      "exact structural exclusion counts",
+      "existence of a rights-admissible PMID-addressable public relation pool",
+      "nonzero provider-native metadata strata and deterministic wave width"
+    ],
+    "missing_or_nonmatching_is_negative": false,
+    "not_licensed": [
+      "case-text eligibility",
+      "minimal scientific terminal or action gold",
+      "causal responsibility or author intent",
+      "anti-leak candidate-view construct validity",
+      "matched controls or donor arms",
+      "model or comparator performance",
+      "protected score",
+      "naturalistic effect, transport, external validity or top-tier readiness"
+    ],
+    "publication_type_is_gold": false,
+    "scientific_terminal_cells_assigned": 0
+  },
+  "current_terminal": "P1_RW_EPMC_RIGHTS_VALID_RELATION_AND_SOURCE_NATIVE_TYPED_FEASIBILITY_PASS__SCIENTIFIC_ACTION_GOLD_AND_CONSTRUCT_VALIDITY_CANNOT_CHECK",
+  "epmc_exact_pair_rights_census": {
+    "absence_is_negative": false,
+    "admitted_rw_relations_input": 49878,
+    "both_endpoint_pmid_relations": 29768,
+    "cannot_check_epmc_allowlist_search_absence": 17730,
+    "cannot_check_no_both_endpoint_pmid": 20110,
+    "exact_both_endpoint_rights_pass_relations": 12038,
+    "exact_endpoint_license_counts": {
+      "ALLOW_CC0": 50,
+      "ALLOW_CC_BY": 25534,
+      "ALLOW_CC_BY_SA": 4
+    },
+    "exact_rights_pass_source_families": 11602
+  },
+  "generated_at_utc": "2026-08-23T17:27:57.717419+00:00",
+  "historical_terminal_preserved": "P1_NATURALISTIC_PUBLIC_PANEL_CANNOT_CHECK_RIGHTS_OR_CONSTRUCT_VALIDITY",
+  "identity": "P1.RW.EPMC.RIGHTS.RELATION.CENSUS.COMBINED.RESULT.V2",
+  "manuscript_integration": {
+    "full_empirical_claim_warranted": false,
+    "paper_top_tier_ready_from_this_result": false,
+    "scope": "ONE_NARROW_METADATA_FEASIBILITY_PARAGRAPH_ONLY",
+    "warranted": true
+  },
+  "pinned_source": {
+    "bytes": 65984968,
+    "commit": "7bb2ced143b764974c53c6c61abfdd2379f5307d",
+    "data_rows": 71944,
+    "git_blob": "40a049f02044fab8286c0304fd296bf1fa2cb8ca",
+    "header_exact_match": true,
+    "row_width_counts": {
+      "21": 71944
+    },
+    "sha256": "ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb"
+  },
+  "positive_theorem": "For the pinned 2026-08-21 Retraction Watch CC0 snapshot, the frozen seven-field gateway identifies 49,878 structurally admitted explicit metadata relations in 42,924 source-connected families. Within the bounded PMID-addressable subframe, official Europe PMC metadata gives exact allowlisted licenses on both endpoints for 12,038 relations in 11,602 families. Retraction-notice, correction-or-erratum, and expression-of-concern provider strata each contain at least 20 unique families in both prospectively deterministic waves. Therefore a rights-valid, three-stratum public development pool exists at metadata level.",
+  "protocol_freezes": [
+    {
+      "path": "RELATION_CENSUS_PROTOCOL_V2.json",
+      "sha256": "af8b7373a6ce2de34d0a5185d5d70410b46fbda44af996f922f9fa098e3117dc"
+    },
+    {
+      "path": "RELATION_CENSUS_PROTOCOL_V2_AMENDMENT_A.json",
+      "sha256": "6932397a6c85ebc8586a9903f55507a9412222d5fd7fa441d2ba1660989b3596"
+    },
+    {
+      "path": "RELATION_CENSUS_PROTOCOL_V2_AMENDMENT_B.json",
+      "sha256": "ce18a89594b4e850e09204ce5b66695340239b9a25b4f09475e660e8376cb4aa"
+    },
+    {
+      "path": "EPMC_AGGREGATE_RIGHTS_REDUCER_PREFREEZE_V2.json",
+      "sha256": "4a80d9408aa594141f1d9c475a2145b7349ae129a006117c832830071db898c9"
+    },
+    {
+      "path": "EPMC_CORE_LICENSE_GATEWAY_AMENDMENT_C_V2.json",
+      "sha256": "70d0591c353fa156d5be4dcfc7640649b10bcc3a6578e98d0f24b538c6783d9d"
+    }
+  ],
+  "rw_structural_census": {
+    "admitted_explicit_cc0_relations": 49878,
+    "admitted_source_connected_cc0_families": 42924,
+    "data_rows": 71944,
+    "duplicate_relation_later_occurrences": 198,
+    "explicit_both_endpoint_rows": 65360,
+    "family_component_adversities": {
+      "identifier_alias_ambiguity": 406,
+      "original_notice_role_collision": 13451
+    },
+    "identifier_alias_ambiguous_relations": 302,
+    "invalid_record_id_rows": 246,
+    "missing_both_endpoint_rows": 2683,
+    "missing_notice_endpoint_rows": 1151,
+    "missing_original_endpoint_rows": 2504,
+    "original_notice_role_collision_relations": 838,
+    "self_relation_occurrences": 14144
+  },
+  "schema_version": "orion.p1.rw-epmc-relation-feasibility-result.v2",
+  "source_native_typed_feasibility_cells": {
+    "EPMC_AMBIGUOUS_MULTIPLE_STRATA": {
+      "exact_rights_pass_relations": 1,
+      "minimum_20_families_each_wave_pass": false,
+      "primary_families": 0,
+      "replication_families": 1,
+      "unique_source_families": 1
+    },
+    "EPMC_CORRECTION_OR_ERRATUM": {
+      "exact_rights_pass_relations": 260,
+      "minimum_20_families_each_wave_pass": true,
+      "primary_families": 136,
+      "replication_families": 115,
+      "unique_source_families": 251
+    },
+    "EPMC_EXPRESSION_OF_CONCERN": {
+      "exact_rights_pass_relations": 469,
+      "minimum_20_families_each_wave_pass": true,
+      "primary_families": 230,
+      "replication_families": 236,
+      "unique_source_families": 466
+    },
+    "EPMC_OTHER_OR_CANNOT_CHECK": {
+      "exact_rights_pass_relations": 11,
+      "minimum_20_families_each_wave_pass": false,
+      "primary_families": 5,
+      "replication_families": 5,
+      "unique_source_families": 10
+    },
+    "EPMC_RETRACTION_NOTICE": {
+      "exact_rights_pass_relations": 11297,
+      "minimum_20_families_each_wave_pass": true,
+      "primary_families": 5611,
+      "replication_families": 5639,
+      "unique_source_families": 11250
+    }
+  }
+}

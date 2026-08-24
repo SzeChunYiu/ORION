@@ -1,0 +1,160 @@
+{
+  "authority": "OUTCOME_BLIND_STRUCTURED_METADATA_SEMANTICS_AND_REUSE_FEASIBILITY_ONLY",
+  "forbidden_semantic_access": [
+    "titles",
+    "abstracts",
+    "full text",
+    "Retraction Watch Reason",
+    "Retraction Watch Notes",
+    "Retraction Watch Subject/Institution/Journal/Publisher/Country/Author",
+    "case narrative or notice prose",
+    "model output",
+    "candidate/comparator output",
+    "protected score",
+    "gold label",
+    "author responsibility",
+    "causal blame"
+  ],
+  "frozen_at": "2026-08-23T17:50:22.865952+00:00",
+  "frozen_owner_algebra_requirements": {
+    "custodian_registry_path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p1-source-native-target-semantics-v8/P1_V8_REQUIRED_FIELD_CUSTODIAN_REGISTRY.json",
+    "custodian_registry_sha256": "42fd386b113802b5b269dada6ab2965503fa5afa020a06e52a25ce667d03dae4",
+    "field_paths": [
+      "closed_world",
+      "targets[*].scientific_process_coordinate",
+      "targets[*].postpublication_coordinate",
+      "targets[*].licensed_postpublication_operations",
+      "targets[*].forbidden_postpublication_operations",
+      "decision_probe_typing",
+      "targets[*].recommendation_authority",
+      "targets[*].execution_authority",
+      "terminal_behavior.{abstention,error,timeout,malformed,unsupported}",
+      "rights.{public_archive_url,reuse_licence_spdx,licence_text_sha256}",
+      "ratification",
+      "ratification.independent_semantic_reviewer"
+    ],
+    "requirement_group_count": 12,
+    "schema_path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p1-source-native-target-semantics-v8/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+    "schema_sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55"
+  },
+  "inherited_pool": {
+    "exact_rights_families": 11602,
+    "exact_rights_relations": 12038,
+    "provider_strata": [
+      "EPMC_RETRACTION_NOTICE",
+      "EPMC_CORRECTION_OR_ERRATUM",
+      "EPMC_EXPRESSION_OF_CONCERN"
+    ],
+    "result_path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p1-rw-rights-relation-census-v2/RESULT_V2.json",
+    "result_sha256": "7f0b2621843057b6aefd9dee92d86997dd316746fd056608d458903ddda885b7",
+    "rights_result_path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p1-rw-rights-relation-census-v2/EPMC_RIGHTS_TYPED_FEASIBILITY_RESULT_V2.json",
+    "rights_result_sha256": "c4edf7fbc2194d2e82cc099a90155b2d9e0ec78718ea63a192afc94bf4c20481",
+    "rule": "Only exact V2 rights-pass relations/families may be counted; reconstruction must reproduce V2 aggregate identities and counts before action-field access."
+  },
+  "owner_field_admission_rule": {
+    "all_required": [
+      "Exact field value is exposed in a provider-native structured field under the frozen gateway.",
+      "Exact reuse licence applies to that field/value and is bound by immutable evidence.",
+      "The source is the frozen required custodian or carries explicit delegation from that custodian.",
+      "Every schema subfield and all-target/exhaustiveness condition for the requirement group is satisfied.",
+      "No mapping from metadata relation type to R7 scientific action terminal is inferred."
+    ],
+    "metadata_relation_not_gold": "Publication type, RefType, related-article-type, or Crossref relation direction is record/link semantics. It is not scientific action gold, author intent, responsibility, recommendation authority, execution authority, or an exhaustive R7 target algebra.",
+    "partial": "Evidence may be marked PARTIAL_SOURCE_ANALOGUE only; it contributes zero sufficient owner fields."
+  },
+  "prevalue_field_gateway": {
+    "CROSSREF_REST_RELATION": [
+      "message.DOI",
+      "message.relation.{relation-key}[].id-type",
+      "message.relation.{relation-key}[].id",
+      "message.relation.{relation-key}[].asserted-by",
+      "message.license.URL"
+    ],
+    "EPMC_REST_CORE": [
+      "resultList.result.id",
+      "resultList.result.pmid",
+      "resultList.result.pmcid",
+      "resultList.result.pubTypeList.pubType",
+      "resultList.result.commentCorrectionList.commentCorrection.type",
+      "resultList.result.commentCorrectionList.commentCorrection.id",
+      "resultList.result.commentCorrectionList.commentCorrection.source"
+    ],
+    "NLM_JATS_TAG_LIBRARY": [
+      "related-article-type enumerated token",
+      "token definition text",
+      "directionality statement"
+    ],
+    "PUBMED_EFETCH_XML": [
+      "MedlineCitation/PMID:text",
+      "Article/PublicationTypeList/PublicationType:text",
+      "Article/PublicationTypeList/PublicationType:UI",
+      "CommentsCorrectionsList/CommentsCorrections:RefType",
+      "CommentsCorrectionsList/CommentsCorrections/PMID:text"
+    ],
+    "RW_CC0_PINNED": [
+      "Record ID",
+      "RetractionDOI",
+      "RetractionPubMedID",
+      "OriginalPaperDOI",
+      "OriginalPaperPubMedID",
+      "ArticleType",
+      "RetractionNature"
+    ]
+  },
+  "prohibitions": [
+    "No replacement relations/families",
+    "No case text or action prose",
+    "No model/comparator execution",
+    "No protected/gold scoring",
+    "No relation-type-to-action-terminal promotion",
+    "No inferred rights, owner identity, delegation, exhaustiveness, or authority",
+    "No manuscript/shared checkout/Git/pytest/CI activity"
+  ],
+  "protocol_id": "P1_V3_PROVIDER_NATIVE_STRUCTURED_ACTION_SEMANTICS_FEASIBILITY",
+  "retention": "Retain only protocols, counts, bounded structured token frequency tables, response digests, rights/provenance receipts, field decisions, failure atlas, validators, and checksums. Delete identifiers, raw responses, source CSV, caches, and action-value pairings.",
+  "schema_version": "orion.p1.structured-action-semantics-feasibility.protocol.v3",
+  "scientific_question": "Within the already admitted V2 rights-valid relation pool, do provider-native structured records for retraction, correction/erratum, and expression of concern expose legally reusable, owner-authored, exhaustive semantics sufficient to bind any of the twelve frozen R7 owner-algebra requirement groups?",
+  "sources": [
+    {
+      "commit": "7bb2ced143b764974c53c6c61abfdd2379f5307d",
+      "expected_csv_sha256": "ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb",
+      "id": "RW_CC0_PINNED",
+      "rights_gate": "Exact CC0 repository licence/hash inherited from V2; no mutable head substitution.",
+      "route": "https://gitlab.com/crossref/retraction-watch-data.git"
+    },
+    {
+      "id": "EPMC_REST_CORE",
+      "rights_gate": "Official Europe PMC/EMBL-EBI terms or applicable endpoint licence must explicitly permit reuse; free access alone is insufficient.",
+      "route": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+      "version": "6.9"
+    },
+    {
+      "id": "PUBMED_EFETCH_XML",
+      "rights_gate": "Official NLM data/website rights must explicitly cover the exact structured fields; absence or item-specific restrictions are CANNOT_CHECK.",
+      "route": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+    },
+    {
+      "id": "NLM_JATS_TAG_LIBRARY",
+      "rights_gate": "Official NLM copyright/terms evidence required; vocabulary documentation is not instance owner ratification.",
+      "route": "https://jats.nlm.nih.gov/archiving/tag-library/1.4/attribute/related-article-type.html"
+    },
+    {
+      "id": "CROSSREF_REST_RELATION",
+      "rights_gate": "Crossref metadata licensing must explicitly cover the exact relation fields; abstracts/full text remain forbidden.",
+      "route": "https://api.crossref.org/works/{doi}"
+    }
+  ],
+  "stratum_rules": {
+    "CORRECTION_OR_ERRATUM": "Provider-native exact tokens/relations explicitly denoting correction, corrigendum, or published erratum.",
+    "EXPRESSION_OF_CONCERN": "Provider-native exact tokens/relations explicitly denoting expression of concern.",
+    "RETRACTION": "Provider-native exact tokens/relations explicitly denoting retraction or retracted-article direction.",
+    "absence": "CANNOT_CHECK_STRUCTURED_ACTION_ABSENT; never a negative action.",
+    "multiple_or_conflicting": "CANNOT_CHECK_AMBIGUOUS_MULTIPLE_STRUCTURED_ACTIONS; never force one class."
+  },
+  "terminal_rules": {
+    "all": "P1_V3_TWELVE_OF_TWELVE_OWNER_ALGEBRA_FIELD_FEASIBILITY_PASS__OWNER_RATIFICATION_STILL_NOT_SCIENTIFIC_ACTION_GOLD",
+    "partial": "P1_V3_STRUCTURED_ACTION_METADATA_PARTIAL_OWNER_FIELD_FEASIBILITY_{K}_OF_12__SCIENTIFIC_ACTION_GOLD_AND_CONSTRUCT_VALIDITY_CANNOT_CHECK",
+    "provider_or_reconstruction_failure": "P1_V3_STRUCTURED_ACTION_SEMANTICS_FEASIBILITY_CANNOT_CHECK_PROVIDER_OR_POOL_RECONSTRUCTION",
+    "zero_of_twelve": "P1_V3_THREE_STRATUM_STRUCTURED_ACTION_METADATA_FEASIBILITY_PASS__ZERO_OF_TWELVE_OWNER_ALGEBRA_FIELDS_SUFFICIENT__SCIENTIFIC_ACTION_GOLD_AND_CONSTRUCT_VALIDITY_CANNOT_CHECK"
+  }
+}

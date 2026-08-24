@@ -1,0 +1,70 @@
+{
+  "exact_retention": "The adapter output must carry a byte-for-byte equal native_terminal object for every case, including COMPLETE_SUCCESS cases mapped to a singleton.",
+  "frozen_at_utc": "2026-08-23T17:05:00Z",
+  "native_status_vocabulary": [
+    "COMPLETE_SUCCESS",
+    "ERROR",
+    "TIMEOUT",
+    "ABSTAIN",
+    "EMPTY",
+    "PARTIAL",
+    "INVALID"
+  ],
+  "nonclaims": [
+    "A retained terminal is not a correct diagnosis.",
+    "A singleton conformance output is not comparator performance, preservation, transfer, harm, or superiority.",
+    "No raw native symptom licenses a singleton."
+  ],
+  "required_native_terminal_fields": [
+    "arm_id",
+    "status",
+    "native_code",
+    "payload_sha256"
+  ],
+  "rules_id": "P5.V3.NATIVE.TERMINAL.RETENTION",
+  "rules_in_order": [
+    {
+      "emit": "UNRESOLVED",
+      "id": "T1",
+      "reason": "NATIVE_TERMINAL_PRESERVED",
+      "when": "native status is not COMPLETE_SUCCESS"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "id": "T2",
+      "reason": "UNSUPPORTED_ARM_CLASS",
+      "when": "arm support set is empty or selected class is unsupported"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "id": "T3",
+      "reason": "CERTIFICATE_OR_FIBRE_FAILURE",
+      "when": "certificate is missing, nonunique, schema-invalid, late, non-input-native, outcome-exposed, or fibre-nonconstant"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "id": "T4",
+      "reason": "ACTION_OR_INVARIANCE_FAILURE",
+      "when": "action is missing, schema-invalid, incomplete, cross-front, registry-invalid, or changes any nonselected front"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "id": "T5",
+      "reason": "CROSS_RECORD_MISMATCH",
+      "when": "certificate, action, observation, arm or selected class disagree"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "id": "T6",
+      "reason": "DOUBLE_RATCHET_GUARD_FAILURE",
+      "when": "Double Ratchet does not preserve solver bytes, restrict mutations to evaluator, or pass development validity"
+    },
+    {
+      "emit": "the one supported declared_class",
+      "id": "T7",
+      "reason": "DECLARED_SYNTHETIC_FIBRE_CONSTANT_AND_NONSELECTED_FRONTS_INVARIANT",
+      "when": "all prior checks pass and the declared synthetic fibre is constant"
+    }
+  ],
+  "schema_version": "orion.p5.native-terminal-retention-rules.v3"
+}

@@ -1,4 +1,4 @@
-\section{Data and code availability}
+\section{Data availability}
 \label{sec:availability}
 
 Every artifact named anywhere in this paper is listed here with its path, so
@@ -70,15 +70,17 @@ suite is \idt{evidence/FINAL_SATURATION_AUDIT.md}.
 The primary and replication directories under
 \idt{research/revival/p1/confirmatory/v2.2/} each contain compressed public
 worlds, protected response matrices, raw results, the result record, an
-independent verification record, provenance, and a \idt{SHA256SUMS} manifest.
+separate-implementation verification record, provenance, and a \idt{SHA256SUMS}
+manifest.
 The primary execution identity is \idt{PRIMARY_EXECUTION_FREEZE_V3.json};
 earlier receipts and both additive amendments are retained beside it. The
 replication directory binds its own disjoint world and execution receipts.
 \idt{PRIMARY_REPLICATION_CONCORDANCE.json} checks the predeclared cross-run
-conditions without pooling the runs. The independent verifier is
+conditions without pooling the runs. The separate verifier is
 \idt{research/revival/p1/verify_mutation_necessity_independent.py}; it uses only
 the standard library and imports neither the candidate policies, the production
-scorer and statistics, nor the subject's licensing code.
+scorer and statistics, nor the subject's licensing code. This supplies code-path
+separation within the repository, not external scorer custody.
 
 The round-by-round donor dispositions that fixed the parent and ablation
 structure are \idt{research/revival/p1/P1_DONOR_ASSIMILATION_LEDGER_V1.json}
@@ -87,8 +89,8 @@ with its later rounds in the same directory,
 \idt{research/revival/p1/literature/SATURATION_LEDGER.md}.
 
 \subsection{The revision-responsibility battery}
-The protected freeze, protected results, and independent verification for both
-executions are under \idt{research/claim_expansion/p1/}: the first execution in
+The protected freeze, protected results, and separate-implementation verification
+for both executions are under \idt{research/claim_expansion/p1/}: the first execution in
 \idt{results/P1_X_PROTECTED_RESULT_V1.json} with its outcome-access receipt, and
 the comparator-fair disjoint second execution in
 \idt{v2/P1_X_PROTECTED_RESULT_V2.json} with
@@ -112,6 +114,147 @@ Section~\ref{sec:relatedwork} is drawn, is
 \idt{evidence/NEAREST_WORK_MATRIX_V2.md} with
 \idt{evidence/nearest_work_matrix_v2.json}. The bounded readiness attestation is
 \idt{evidence/PEER_REVIEW_READY_BOUNDED_V2.md}.
+
+\subsection{Naturalistic and comparator preflights}
+The outcome-blind metadata snapshot used to prepare the R7A successor is
+\idt{development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json},
+with canonical payload digest
+\idt{7dd283acd81e63e84887d82ee7761e89e62a47d31afceca8628e456b76f73e01}.
+Its protocol-binding status and exact non-promotion boundary are recorded in
+\idt{development/naturalistic-panel-harness-2026-08-23/PROTOCOL_BINDING_STATUS_V1.json}.
+These files contain repository/revision/licence metadata only and do not contain
+R7 cases, labels, pair assignments, scorer outputs or outcomes.
+The provider- and modality-diverse successor frame is
+\idt{development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json},
+with its frozen rules in
+\idt{development/provider-diverse-metadata-census-2026-08-23/CENSUS_PROTOCOL_V1.json}
+and its live conformance receipt in
+\idt{development/provider-diverse-metadata-census-2026-08-23/VERIFICATION_RECEIPT_V1.json}.
+It likewise contains no case or
+outcome authority; historical-byte, content-rights and eligibility terminals
+remain explicit.
+
+A prospectively frozen public correction/retraction source-feasibility probe is
+under
+\idt{development/p1-naturalistic-transport-successor-2026-08-23/}. The
+protocol, count-only Europe PMC receipt, Crossref rights amendment, source
+audit, and checksum manifest are preserved there. The pinned Retraction Watch
+CSV itself is not redistributed in this repository; its receipt records 71,944
+rows and the byte digest
+\idt{ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb}.
+No Europe PMC result row, relation, case text, pair assignment, typed-action
+gold item, system output, or protected score was opened or created by that
+probe. The official CC0 binding applies to the database metadata only, not to
+linked article, notice, attachment, abstract, supplement, or blog content.
+
+The outcome-blind rights/relation successor is preserved under
+\idt{development/p1-rw-rights-relation-census-v2-2026-08-23/}. Its exact
+Retraction Watch relation census, bounded Europe PMC rights reducer,
+source-native aggregate strata, amendments, negative ledger, validation
+receipt, and 24-entry checksum manifest are retained there. The raw
+65,984,968-byte transport is not redistributed; its SHA-256 is
+\idt{ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb}.
+The deterministic reducer reports 49,878 admitted relations in 42,924
+families, including 12,038 exact-both-endpoint-rights relations in 11,602
+families. It accessed no case text, scientific terminal, model output, or
+protected score. Missing provider matches remain \textsc{Cannot-check}; they
+are not incompatible-rights or source-absence findings.
+
+The structured-action semantics successor is
+\idt{development/p1-structured-action-semantics-v3-2026-08-23/}. Its frozen
+protocol and parser, immutable raw-interface failure, prospectively frozen
+normalization amendment, normalized provider census, twelve-group owner-field
+feasibility record, rights/provenance receipt, construct-validity failure atlas,
+negative ledger, result, validation receipt, and checksum manifest are retained
+there. The result digest is
+\idt{7178052320f85ea112e4b0b78da558fc5a68f7dc3b465a4f7afc9e1915860f2b}.
+The packet retains aggregate token frequencies only: no identifiers, raw
+provider responses, case text, scientific gold, model output, or protected
+score. Its 52 scientific-artifact assertions pass. The initial one-of-11,991
+raw interface match is retained as a serialization failure rather than
+overwritten; only the separately frozen display-token normalization supports
+the 11,988-of-11,991 relation-set agreement result.
+
+\subsection{Public-standard owner-algebra feasibility}
+The outcome-blind standards packet is
+\idt{development/p1-owner-algebra-construct-validity-v4-2026-08-23/}.
+Its protocol and parser-only amendment were frozen before the corresponding
+captures. The retained artifacts bind eight HTTP-200 documents from four
+institutional families and one fail-closed HTTP-404 route; raw source documents
+were deleted. The packet-native validator checks 85 scientific assertions
+without network access, repository CI, case text, outcomes, or protected
+scores. Its result records 9/12 structural analogues, 0/12 named-custodian or
+delegation groups, 0/12 sufficient groups, and zero scientific-action gold.
+The validator and 18-entry manifest establish bounded internal consistency and
+byte integrity, not independent semantic review or owner authority.
+
+\subsection{Outcome-blind source-native adapter audit}
+The bounded semantic-interface handoff is
+\idt{../lane-handoffs/p1-source-native-action-adapter-v2/}. Its amended
+protocol, compatibility matrix, certification result, partial adapter,
+conditional certificate, taxonomy provenance and primary captures are bound by
+the 47-entry \idt{SHA256SUMS} manifest. The manifest digest is
+\idt{9f4503f693e155b12fb8c333f4777619cec1d66e387dcfc0e141fffa6933847d}.
+An independent standard-library \texttt{hashlib.sha256} pass over every entry
+recorded zero failures in
+\idt{../lane-handoffs/p1-source-native-action-adapter-integration-v3/INDEPENDENT_SHA256_VERIFICATION_V1.json}.
+That receipt checks byte integrity only; it is not external semantic review,
+case authority or empirical verification.
+
+The audit enumerates all 117,649 total maps: 0 are fully certified, 116,929 are
+rejected, and 720 remain not disproved but uncertified. The only currently
+certified partial map preserves \textsc{Unresolved}; the actionable mappings
+remain unbound because exhaustive target denotations and an owner-approved
+decision/action bridge are absent. The full-withdrawal counterexample is
+explicitly conditional on later owner-ratification of proposed closed-world
+target denotations. No case text, row-level outcome, protected gold or system
+outcome was accessed, and the captured public taxonomies license semantic
+development only, not an R7 transition.
+
+The external comparator identity and interface audit is
+\idt{development/comparator-binding-harness-2026-08-23/COMPARATOR_BINDING_LEDGER_V1.json},
+with its scientific interpretation in
+\idt{development/comparator-binding-harness-2026-08-23/SCIENTIFIC_REPORT.md}.
+Its cross-paper terminal is \idt{CANNOT_CHECK_FULL_COMPARATOR_FREEZE}; bounded
+installation or entrypoint probes in that harness grant no P1 performance or
+external-authority claim.
+
+\subsection{Owner/custody execution packets V11--V13}
+The historical-governance audit is preserved under
+\idt{development/p1-owner-custody-positive-successor-v11-2026-08-24/}.
+Its \idt{SHA256SUMS} manifest digest is
+\idt{8ebd874f0b0a7f3a3a7877c698dee1371352ebc4ce5dc3bb1a1bd2a2d0629721}.
+The public issue-chronology, delegation-field and exact-commit route audit is
+preserved under
+\idt{development/p1-owner-custody-positive-successor-v12-2026-08-24/}.
+Its manifest digest is
+\idt{7a136154d7fbc3c52d51ea2dade7829446842c21381f3c9c912189d47dc29407}.
+The content-addressed external-execution packet is preserved under
+\idt{development/p1-owner-custody-positive-successor-v13-2026-08-24/}.
+Its manifest digest is
+\idt{c2ff7a87356559bfce4ea4033aae807a6a5c4ce03b8b43c29782b58c29d33667}.
+These three manifests verify the retained packet bytes only; they do not supply
+external identity, delegation, signatures, rights, custody, review, map
+certification or scientific outcomes.
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\textbf{Exact V13 terminal:}\par
+\small\raggedright
+\idt{P1_V13_CONTENT_ADDRESSED_EXTERNAL_EXECUTION_PACKET_COMPLETE__ZERO_OF_SEVEN_EXTERNAL_SIGNED_OUTPUTS_RECEIVED__ZERO_OF_FOUR_AUTHORITY_ACTS_CLOSED__720_MAPS_UNCHANGED}
+\end{minipage}
+\end{center}
+
+\section{Code availability}
+
+\subsection{Current review source and historical package identity}
+The current review source is not yet bound to a public archive URL, archive
+DOI, immutable submission commit, or verified repository-level licence. Editors
+and reviewers must therefore receive the exact current snapshot before external
+review. The PDF under \idt{journal_package/} remains a content-bound record of
+an earlier inspected manuscript, not a rendering of this revision:
+\idt{journal_package/RENDER_CLOSURE_STATE.json} marks that package
+\texttt{SUPERSEDED}. It must not be relabelled or submitted as the current PDF;
+the current source requires a fresh immutable release, build, and visual audit.
 
 \subsection{Repository access and reproduction}
 The implementation repository holds the source code, protocol definitions, case

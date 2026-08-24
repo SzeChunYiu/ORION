@@ -1,0 +1,37 @@
+{
+  "admissible_v4_actions": [
+    "source-name/size/hash census",
+    "source-code inspection",
+    "structural parser fixture",
+    "protected-key refusal fixture",
+    "fail-closed registry preflight",
+    "checksums"
+  ],
+  "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+  "forbidden": [
+    "model execution",
+    "scientific-tool execution",
+    "benchmark execution",
+    "protected scorer access",
+    "protected payload decoding",
+    "prior-outcome payload decoding",
+    "performance inference",
+    "P5 singleton emission"
+  ],
+  "protocol_id": "P5.C6.SCIENCECLAW.EXECUTION.BINDING.V4",
+  "release_gate": {
+    "current_blockers": 16,
+    "current_bound_fields": 5,
+    "native_selector_supported": false,
+    "released": false,
+    "required_bound_fields": 21
+  },
+  "schema_version": "orion.p5.c6.execution-binding-protocol.v4",
+  "scope": "OUTCOME_BLIND_PUBLIC_SOURCE_AND_PREFLIGHT_ONLY",
+  "source": {
+    "branch": "categoryscienceclaw-mechanics",
+    "commit_sha": "38b2f681e87272cd505c9b2671760fc3729756c2",
+    "repository": "https://github.com/lamm-mit/scienceclaw",
+    "tree_sha": "8b483159e46da54675ee904841f2e8667b2348bc"
+  }
+}

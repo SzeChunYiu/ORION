@@ -1,0 +1,1212 @@
+{
+  "authority": "OUTCOME_BLIND_METADATA_AND_RIGHTS_PREFLIGHT_ONLY",
+  "date": "2026-08-23",
+  "exact_upstream_bindings": [
+    {
+      "path": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json",
+      "sha256": "e5f5e03b215b33dd1dbefa555bb973953c4a36cfe65c11a94394da4c2b04dbbd"
+    },
+    {
+      "path": "development/provider-diverse-metadata-census-2026-08-23/CENSUS_PROTOCOL_V1.json",
+      "sha256": "01944e7f8efdb915ac2ae0bc758fccf7541850d02815cad4cac6d62e9e8113d0"
+    },
+    {
+      "path": "development/provider-diverse-metadata-census-2026-08-23/VERIFICATION_RECEIPT_V1.json",
+      "sha256": "f377e446cd1baf8d1f94098caf7678df5497f64be843e315b8d637384052da7d"
+    },
+    {
+      "path": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json",
+      "sha256": "fda172281a35279804cfa68538174381dad39d7623b2e3e875a82e7afa44004b"
+    },
+    {
+      "path": "development/naturalistic-panel-harness-2026-08-23/PROTOCOL_BINDING_STATUS_V1.json",
+      "sha256": "be3f2ef2b5aa2389c9d476329c81cffac363d132686720af19460070818cb8c2"
+    }
+  ],
+  "legal_status": "NOT_LEGAL_ADVICE__RIGHTS_OWNER_ATTESTATION_REQUIRED",
+  "outcomes_accessed": false,
+  "protected_case_fields_accessed": false,
+  "rights_admission_rule": {
+    "all_required": true,
+    "ambiguous_or_partial_scope_terminal": "CANNOT_CHECK_CONTENT_CLASS_RIGHTS",
+    "metadata_licence_is_not_automatically_content_licence": true,
+    "public_url_is_not_permission": true,
+    "requirements": [
+      "exact immutable content revision or provider-native version identity",
+      "content-class-specific licence or written permission for every byte exposed to systems/evaluators",
+      "permission for storage, machine processing, derived annotation, audit quotation, and the planned artifact release tier",
+      "attachments, issue comments, pull-request text, article body, dataset files, and repository code are adjudicated separately",
+      "terms and access status are bound by an identified rights owner before content access",
+      "sensitive, personal, confidential, embargoed, deleted, or author-intent-dependent material is excluded"
+    ]
+  },
+  "schema_version": "orion.p1.r7a.public-source-rights-ledger.v1",
+  "sources": [
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "candidate_domain": "BIOMEDICAL_CLINICAL",
+      "candidate_wave": "PRIMARY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "abstract": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "article_body": {
+          "declared_licence_uris": [
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start_date_time": "2026-02-01T00:00:00Z",
+              "url": "https://www.elsevier.com/tdm/userlicense/1.0/"
+            },
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start_date_time": "2026-02-01T00:00:00Z",
+              "url": "https://www.elsevier.com/legal/tdmrep-license"
+            },
+            {
+              "content_version": "vor",
+              "delay_in_days": 0,
+              "start_date_time": "2025-05-20T00:00:00Z",
+              "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+            }
+          ],
+          "status": "DECLARED_LICENSE_URIS_IN_METADATA_ONLY__BODY_NOT_ACCESSED__SCOPE_CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+        },
+        "supplement_or_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        }
+      },
+      "exact_provider_identity": "10.1016/j.bj.2025.100874",
+      "legal_gate": "CANNOT_CHECK_ARTICLE_BODY_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.1016/j.bj.2025.100874",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://doi.org/10.1016/j.bj.2025.100874",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "a12bcd4c5bbde87679d34c1cec4ba10b9dde3a0f84061e4dfb2217d0f1fe75a4",
+      "selected_pre_cutoff_revision": {
+        "identity_creation_timestamp": "2025-05-20T11:57:00Z",
+        "reason": "The public Crossref record proves a DOI record existed before cutoff but does not expose the exact historical metadata bytes as a revisioned object.",
+        "status": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY"
+      },
+      "source_family_id": "crossref:issn:2319-4170",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "DATA_REPOSITORY_DEPOSIT",
+      "candidate_domain": "BIOMEDICAL_CLINICAL",
+      "candidate_wave": "PRIMARY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "dataset_files": {
+          "declared_licence_id": "cc-by-4.0",
+          "status": "DECLARED_LICENCE_ID_IN_METADATA_ONLY__FILES_NOT_ACCESSED__BYTE_SCOPE_CANNOT_CHECK"
+        },
+        "description": {
+          "status": "NOT_ARCHIVED__CANNOT_CHECK"
+        },
+        "linked_files_or_attachments": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://about.zenodo.org/policies/"
+        }
+      },
+      "exact_provider_identity": "18092984",
+      "legal_gate": "CANNOT_CHECK_DATA_FILE_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "ZENODO_REST_API",
+      "persistent_identifier": "doi:10.5281/zenodo.18092984",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://zenodo.org/records/18092984",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "d6475ac958829903939c23188079cf3ec3343f20fa83637d2091781a56fd553b",
+      "selected_pre_cutoff_revision": {
+        "concept_doi": "10.5281/zenodo.18092983",
+        "status": "EXACT_VERSION_RECORD_AND_METADATA_UPDATED_BEFORE_CUTOFF",
+        "updated_at_provider": "2025-12-30T08:03:40.291943+00:00",
+        "version_doi": "10.5281/zenodo.18092984"
+      },
+      "source_family_id": "zenodo:conceptdoi:10.5281/zenodo.18092983",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "candidate_domain": "EARTH_ENVIRONMENTAL",
+      "candidate_wave": "PRIMARY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "abstract": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "article_body": {
+          "declared_licence_uris": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start_date_time": "2025-04-23T00:00:00Z",
+              "url": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ],
+          "status": "DECLARED_LICENSE_URIS_IN_METADATA_ONLY__BODY_NOT_ACCESSED__SCOPE_CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+        },
+        "supplement_or_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        }
+      },
+      "exact_provider_identity": "10.53941/eesus.2025.100001",
+      "legal_gate": "CANNOT_CHECK_ARTICLE_BODY_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.53941/eesus.2025.100001",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://doi.org/10.53941/eesus.2025.100001",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "3a1442094d04932f809a7715d388c3bf6148f23c417107c25e5415b607fdef75",
+      "selected_pre_cutoff_revision": {
+        "identity_creation_timestamp": "2025-09-08T06:10:28Z",
+        "reason": "The public Crossref record proves a DOI record existed before cutoff but does not expose the exact historical metadata bytes as a revisioned object.",
+        "status": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY"
+      },
+      "source_family_id": "crossref:issn:3083-4732",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "DATA_REPOSITORY_DEPOSIT",
+      "candidate_domain": "EARTH_ENVIRONMENTAL",
+      "candidate_wave": "PRIMARY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "dataset_files": {
+          "declared_licence_id": "cc-by-4.0",
+          "status": "DECLARED_LICENCE_ID_IN_METADATA_ONLY__FILES_NOT_ACCESSED__BYTE_SCOPE_CANNOT_CHECK"
+        },
+        "description": {
+          "status": "NOT_ARCHIVED__CANNOT_CHECK"
+        },
+        "linked_files_or_attachments": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://about.zenodo.org/policies/"
+        }
+      },
+      "exact_provider_identity": "18108141",
+      "legal_gate": "CANNOT_CHECK_DATA_FILE_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "ZENODO_REST_API",
+      "persistent_identifier": "doi:10.5281/zenodo.18108141",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://zenodo.org/records/18108141",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "9dc271d16bee6d93fdda76e46e4f37b32243440a681515960b7e1fcd8420bd5b",
+      "selected_pre_cutoff_revision": {
+        "concept_doi": "10.5281/zenodo.18107809",
+        "status": "EXACT_VERSION_RECORD_AND_METADATA_UPDATED_BEFORE_CUTOFF",
+        "updated_at_provider": "2025-12-31T18:54:15.026380+00:00",
+        "version_doi": "10.5281/zenodo.18108141"
+      },
+      "source_family_id": "zenodo:conceptdoi:10.5281/zenodo.18107809",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "candidate_domain": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "candidate_wave": "PRIMARY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "abstract": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "article_body": {
+          "declared_licence_uris": [
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start_date_time": "2026-02-01T00:00:00Z",
+              "url": "https://www.elsevier.com/tdm/userlicense/1.0/"
+            },
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start_date_time": "2026-02-01T00:00:00Z",
+              "url": "https://www.elsevier.com/legal/tdmrep-license"
+            },
+            {
+              "content_version": "stm-asf",
+              "delay_in_days": 0,
+              "start_date_time": "2026-02-01T00:00:00Z",
+              "url": "https://doi.org/10.15223/policy-017"
+            },
+            {
+              "content_version": "stm-asf",
+              "delay_in_days": 0,
+              "start_date_time": "2026-02-01T00:00:00Z",
+              "url": "https://doi.org/10.15223/policy-037"
+            },
+            {
+              "content_version": "stm-asf",
+              "delay_in_days": 0,
+              "start_date_time": "2026-02-01T00:00:00Z",
+              "url": "https://doi.org/10.15223/policy-012"
+            },
+            {
+              "content_version": "stm-asf",
+              "delay_in_days": 0,
+              "start_date_time": "2026-02-01T00:00:00Z",
+              "url": "https://doi.org/10.15223/policy-029"
+            },
+            {
+              "content_version": "stm-asf",
+              "delay_in_days": 0,
+              "start_date_time": "2026-02-01T00:00:00Z",
+              "url": "https://doi.org/10.15223/policy-004"
+            }
+          ],
+          "status": "DECLARED_LICENSE_URIS_IN_METADATA_ONLY__BODY_NOT_ACCESSED__SCOPE_CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+        },
+        "supplement_or_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        }
+      },
+      "exact_provider_identity": "10.1016/j.envsoft.2025.106834",
+      "legal_gate": "CANNOT_CHECK_ARTICLE_BODY_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.1016/j.envsoft.2025.106834",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://doi.org/10.1016/j.envsoft.2025.106834",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "1e6327414ffb34f47dccfda2d7d93f732d5935f52aa6a88ddd60aa04d7d6ca22",
+      "selected_pre_cutoff_revision": {
+        "identity_creation_timestamp": "2025-12-12T08:00:26Z",
+        "reason": "The public Crossref record proves a DOI record existed before cutoff but does not expose the exact historical metadata bytes as a revisioned object.",
+        "status": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY"
+      },
+      "source_family_id": "crossref:issn:1364-8152",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "NON_GITHUB_PROJECT_TRACKER",
+      "candidate_domain": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "candidate_wave": "PRIMARY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "issue_or_comment_text": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "provider_project_metadata": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://about.gitlab.com/terms/"
+        },
+        "readme_or_project_description": {
+          "status": "NOT_ARCHIVED__CANNOT_CHECK"
+        },
+        "repository_code": {
+          "licence_blob_id": "58af0d3787aec7d6f8d833535d64879156e7ec23",
+          "licence_bytes": 26526,
+          "licence_content_sha256": "b634ab5640e258563c536e658cad87080553df6f34f62269a21d554844e58bfe",
+          "licence_path": "COPYING",
+          "status": "EXACT_LICENCE_FILE_BYTES_HASHED_AT_SELECTED_COMMIT__SPDX_NOASSERTION"
+        }
+      },
+      "exact_provider_identity": "gromacs/gromacs",
+      "legal_gate": "CANNOT_CHECK_ISSUE_COMMENT_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "GITLAB_COM_REST_API_V4",
+      "persistent_identifier": "gitlab-project:17679574",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://gitlab.com/gromacs/gromacs",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "a1704f5c39c8d4792a9d236b6fb2590745ea2e95837759062e7c08d95177b38f",
+      "selected_pre_cutoff_revision": {
+        "commit_sha": "7942c72d82739c8f5ad782eac75ab97e40f79992",
+        "commit_url": "https://gitlab.com/gromacs/gromacs/-/commit/7942c72d82739c8f5ad782eac75ab97e40f79992",
+        "committed_date": "2025-12-22T20:24:33.000+01:00",
+        "status": "EXACT_COMMIT_SHA_AND_COMMITTER_DATE_BEFORE_CUTOFF"
+      },
+      "source_family_id": "gitlab-project:17679574",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "candidate_domain": "PHYSICAL_ENGINEERING",
+      "candidate_wave": "PRIMARY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "abstract": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "article_body": {
+          "declared_licence_uris": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start_date_time": "2025-06-29T00:00:00Z",
+              "url": "http://creativecommons.org/licenses/by-nc/4.0"
+            }
+          ],
+          "status": "DECLARED_LICENSE_URIS_IN_METADATA_ONLY__BODY_NOT_ACCESSED__SCOPE_CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+        },
+        "supplement_or_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        }
+      },
+      "exact_provider_identity": "10.35896/ijecie.v9i1.914",
+      "legal_gate": "CANNOT_CHECK_ARTICLE_BODY_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.35896/ijecie.v9i1.914",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://doi.org/10.35896/ijecie.v9i1.914",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "a0fc4c5f75d6e690156bb8bf026701fd7e943ac51aea488323db774a7b78155a",
+      "selected_pre_cutoff_revision": {
+        "identity_creation_timestamp": "2025-07-03T04:46:17Z",
+        "reason": "The public Crossref record proves a DOI record existed before cutoff but does not expose the exact historical metadata bytes as a revisioned object.",
+        "status": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY"
+      },
+      "source_family_id": "crossref:issn:2550-1100+2598-9588",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "INSTRUMENT_CALIBRATION_ARCHIVE",
+      "candidate_domain": "PHYSICAL_ENGINEERING",
+      "candidate_wave": "PRIMARY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "collection_data_files": {
+          "status": "USE_CONSTRAINTS_METADATA_PRESENT__NO_EXPLICIT_FILE_LICENCE_VERIFIED__CANNOT_CHECK",
+          "use_constraints_present": false,
+          "use_constraints_sha256": null
+        },
+        "documentation_or_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "provider_collection_metadata": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+        }
+      },
+      "exact_provider_identity": "C2107094645-NOAA_NCEI",
+      "legal_gate": "CANNOT_CHECK_COLLECTION_FILE_AND_DOCUMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "NASA_ESDIS_CMR_SEARCH_API",
+      "persistent_identifier": "cmr-concept:C2107094645-NOAA_NCEI",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://cmr.earthdata.nasa.gov/search/concepts/C2107094645-NOAA_NCEI/1.umm_json",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "e42866f268725529e20c04e9be24cf8b3bacf12d34c94042086f757ba35ffa0e",
+      "selected_pre_cutoff_revision": {
+        "concept_id": "C2107094645-NOAA_NCEI",
+        "exact_revision_response_sha256": "14d66cd03771576ff5df01b10aa5656bf998387841f7ae566bee33a90951bdad",
+        "revision_date": "2021-08-20T15:21:43.807Z",
+        "revision_id": 1,
+        "status": "EXACT_CMR_HISTORICAL_REVISION_ID_DATE_AND_RESPONSE_BYTES"
+      },
+      "source_family_id": "cmr:NOAA_NCEI:C01528",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "candidate_domain": "BIOMEDICAL_CLINICAL",
+      "candidate_wave": "REPLICATION",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "abstract": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "article_body": {
+          "declared_licence_uris": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start_date_time": "2024-12-30T00:00:00Z",
+              "url": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ],
+          "status": "DECLARED_LICENSE_URIS_IN_METADATA_ONLY__BODY_NOT_ACCESSED__SCOPE_CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+        },
+        "supplement_or_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        }
+      },
+      "exact_provider_identity": "10.31354/globalce.v6isi6.283",
+      "legal_gate": "CANNOT_CHECK_ARTICLE_BODY_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.31354/globalce.v6isi6.283",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://doi.org/10.31354/globalce.v6isi6.283",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "fd6705b1c5669e05e80c8b5724308cd289ca60a3beef016bfad78d3e44c7ba19",
+      "selected_pre_cutoff_revision": {
+        "identity_creation_timestamp": "2025-01-01T12:15:10Z",
+        "reason": "The public Crossref record proves a DOI record existed before cutoff but does not expose the exact historical metadata bytes as a revisioned object.",
+        "status": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY"
+      },
+      "source_family_id": "crossref:issn:2578-2762",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "DATA_REPOSITORY_DEPOSIT",
+      "candidate_domain": "BIOMEDICAL_CLINICAL",
+      "candidate_wave": "REPLICATION",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "dataset_files": {
+          "declared_licence_id": "cc-by-4.0",
+          "status": "DECLARED_LICENCE_ID_IN_METADATA_ONLY__FILES_NOT_ACCESSED__BYTE_SCOPE_CANNOT_CHECK"
+        },
+        "description": {
+          "status": "NOT_ARCHIVED__CANNOT_CHECK"
+        },
+        "linked_files_or_attachments": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://about.zenodo.org/policies/"
+        }
+      },
+      "exact_provider_identity": "17852132",
+      "legal_gate": "CANNOT_CHECK_DATA_FILE_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "ZENODO_REST_API",
+      "persistent_identifier": "doi:10.5281/zenodo.17852132",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://zenodo.org/records/17852132",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "8ceff8e6fcdcbb7e53daf013dc2681856969b9375134e5833d5fa769bf120d57",
+      "selected_pre_cutoff_revision": {
+        "concept_doi": "10.5281/zenodo.17852131",
+        "status": "EXACT_VERSION_RECORD_AND_METADATA_UPDATED_BEFORE_CUTOFF",
+        "updated_at_provider": "2025-12-24T11:08:22.620362+00:00",
+        "version_doi": "10.5281/zenodo.17852132"
+      },
+      "source_family_id": "zenodo:conceptdoi:10.5281/zenodo.17852131",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "candidate_domain": "EARTH_ENVIRONMENTAL",
+      "candidate_wave": "REPLICATION",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "abstract": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "article_body": {
+          "declared_licence_uris": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start_date_time": "2025-03-28T00:00:00Z",
+              "url": "https://creativecommons.org/licenses/by-nc/4.0"
+            }
+          ],
+          "status": "DECLARED_LICENSE_URIS_IN_METADATA_ONLY__BODY_NOT_ACCESSED__SCOPE_CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+        },
+        "supplement_or_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        }
+      },
+      "exact_provider_identity": "10.30564/jees.v7i4.8039",
+      "legal_gate": "CANNOT_CHECK_ARTICLE_BODY_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.30564/jees.v7i4.8039",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://doi.org/10.30564/jees.v7i4.8039",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "4f3777a47684fe2fd9172e227d3845304dc4ebe69fb08c72cef32d630ded8bcd",
+      "selected_pre_cutoff_revision": {
+        "identity_creation_timestamp": "2025-03-28T03:19:28Z",
+        "reason": "The public Crossref record proves a DOI record existed before cutoff but does not expose the exact historical metadata bytes as a revisioned object.",
+        "status": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY"
+      },
+      "source_family_id": "crossref:issn:2661-3190",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "DATA_REPOSITORY_DEPOSIT",
+      "candidate_domain": "EARTH_ENVIRONMENTAL",
+      "candidate_wave": "REPLICATION",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "dataset_files": {
+          "declared_licence_id": "cc-by-4.0",
+          "status": "DECLARED_LICENCE_ID_IN_METADATA_ONLY__FILES_NOT_ACCESSED__BYTE_SCOPE_CANNOT_CHECK"
+        },
+        "description": {
+          "status": "NOT_ARCHIVED__CANNOT_CHECK"
+        },
+        "linked_files_or_attachments": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://about.zenodo.org/policies/"
+        }
+      },
+      "exact_provider_identity": "18109101",
+      "legal_gate": "CANNOT_CHECK_DATA_FILE_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "ZENODO_REST_API",
+      "persistent_identifier": "doi:10.5281/zenodo.18109101",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://zenodo.org/records/18109101",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "ce142172b499c7b389c08763db7523a9fdc9664a569520a414bd42e2606eac1f",
+      "selected_pre_cutoff_revision": {
+        "concept_doi": "10.5281/zenodo.10637252",
+        "status": "EXACT_VERSION_RECORD_AND_METADATA_UPDATED_BEFORE_CUTOFF",
+        "updated_at_provider": "2025-12-31T15:24:31.201398+00:00",
+        "version_doi": "10.5281/zenodo.18109101"
+      },
+      "source_family_id": "zenodo:conceptdoi:10.5281/zenodo.10637252",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "candidate_domain": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "candidate_wave": "REPLICATION",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "abstract": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "article_body": {
+          "declared_licence_uris": [
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start_date_time": "2026-03-01T00:00:00Z",
+              "url": "https://www.elsevier.com/tdm/userlicense/1.0/"
+            },
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start_date_time": "2026-03-01T00:00:00Z",
+              "url": "https://www.elsevier.com/legal/tdmrep-license"
+            },
+            {
+              "content_version": "vor",
+              "delay_in_days": 0,
+              "start_date_time": "2025-12-28T00:00:00Z",
+              "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+            }
+          ],
+          "status": "DECLARED_LICENSE_URIS_IN_METADATA_ONLY__BODY_NOT_ACCESSED__SCOPE_CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+        },
+        "supplement_or_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        }
+      },
+      "exact_provider_identity": "10.1016/j.sciaf.2025.e03156",
+      "legal_gate": "CANNOT_CHECK_ARTICLE_BODY_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.1016/j.sciaf.2025.e03156",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://doi.org/10.1016/j.sciaf.2025.e03156",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "2c81c6557601c92bf91ce19087629b972feed0b51b742c29b680040779b0292a",
+      "selected_pre_cutoff_revision": {
+        "identity_creation_timestamp": "2025-12-29T16:28:20Z",
+        "reason": "The public Crossref record proves a DOI record existed before cutoff but does not expose the exact historical metadata bytes as a revisioned object.",
+        "status": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY"
+      },
+      "source_family_id": "crossref:issn:2468-2276",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "NON_GITHUB_PROJECT_TRACKER",
+      "candidate_domain": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "candidate_wave": "REPLICATION",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "issue_or_comment_text": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "provider_project_metadata": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://about.gitlab.com/terms/"
+        },
+        "readme_or_project_description": {
+          "status": "NOT_ARCHIVED__CANNOT_CHECK"
+        },
+        "repository_code": {
+          "licence_blob_id": "5b6e7c66c276e7610d4a73c70ec1a1f7c1003259",
+          "licence_bytes": 18009,
+          "licence_content_sha256": "204d8eff92f95aac4df6c8122bc1505f468f3a901e5a4cc08940e0ede1938994",
+          "licence_path": "License",
+          "status": "EXACT_LICENCE_FILE_BYTES_HASHED_AT_SELECTED_COMMIT__SPDX_NOASSERTION"
+        }
+      },
+      "exact_provider_identity": "QEF/q-e",
+      "legal_gate": "CANNOT_CHECK_ISSUE_COMMENT_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "GITLAB_COM_REST_API_V4",
+      "persistent_identifier": "gitlab-project:4578472",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://gitlab.com/QEF/q-e",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "12c1c5ec7da358552171dd79e849251e37b18f32688b37614edceab233b35304",
+      "selected_pre_cutoff_revision": {
+        "commit_sha": "2d07d94fc9613bdc2a5fd1eb10d4035b57c053ae",
+        "commit_url": "https://gitlab.com/QEF/q-e/-/commit/2d07d94fc9613bdc2a5fd1eb10d4035b57c053ae",
+        "committed_date": "2025-12-29T12:04:54.000+00:00",
+        "status": "EXACT_COMMIT_SHA_AND_COMMITTER_DATE_BEFORE_CUTOFF"
+      },
+      "source_family_id": "gitlab-project:4578472",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "candidate_domain": "PHYSICAL_ENGINEERING",
+      "candidate_wave": "REPLICATION",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "abstract": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "article_body": {
+          "declared_licence_uris": [
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start_date_time": "2025-10-24T00:00:00Z",
+              "url": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+            },
+            {
+              "content_version": "vor",
+              "delay_in_days": 0,
+              "start_date_time": "2025-10-24T00:00:00Z",
+              "url": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+            }
+          ],
+          "status": "DECLARED_LICENSE_URIS_IN_METADATA_ONLY__BODY_NOT_ACCESSED__SCOPE_CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+        },
+        "supplement_or_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        }
+      },
+      "exact_provider_identity": "10.1208/s12248-025-01156-0",
+      "legal_gate": "CANNOT_CHECK_ARTICLE_BODY_AND_ATTACHMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.1208/s12248-025-01156-0",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://doi.org/10.1208/s12248-025-01156-0",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "079249ea81f2bb63194d88f3ddb5bb6856f10bcd7f033942701b14d8879d4312",
+      "selected_pre_cutoff_revision": {
+        "identity_creation_timestamp": "2025-10-24T17:03:01Z",
+        "reason": "The public Crossref record proves a DOI record existed before cutoff but does not expose the exact historical metadata bytes as a revisioned object.",
+        "status": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY"
+      },
+      "source_family_id": "crossref:issn:1550-7416",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "INSTRUMENT_CALIBRATION_ARCHIVE",
+      "candidate_domain": "PHYSICAL_ENGINEERING",
+      "candidate_wave": "REPLICATION",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "collection_data_files": {
+          "status": "USE_CONSTRAINTS_METADATA_PRESENT__NO_EXPLICIT_FILE_LICENCE_VERIFIED__CANNOT_CHECK",
+          "use_constraints_present": true,
+          "use_constraints_sha256": "cc5c159ec0310f6007e60a9fbb9bf68daba87cf7b6f875e881f45d432c029a7f"
+        },
+        "documentation_or_attachment": {
+          "status": "NOT_ACCESSED__CANNOT_CHECK"
+        },
+        "provider_collection_metadata": {
+          "status": "PUBLICLY_RETRIEVABLE__REUSE_SCOPE_CANNOT_CHECK",
+          "terms_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+        }
+      },
+      "exact_provider_identity": "C2210183595-GES_DISC",
+      "legal_gate": "CANNOT_CHECK_COLLECTION_FILE_AND_DOCUMENT_RIGHTS_FOR_FUTURE_CASE_USE",
+      "metadata_provider": "NASA_ESDIS_CMR_SEARCH_API",
+      "persistent_identifier": "doi:10.5067/kmj8q9za1y3k",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://disc.gsfc.nasa.gov/datacollection/SNDRAQIML1CCALSUBRND_2.html",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "be2a56a48e5badb9766c8fc13d6c77cd01de3ec0100fee3a92ec6ced27b95f71",
+      "selected_pre_cutoff_revision": {
+        "concept_id": "C2210183595-GES_DISC",
+        "exact_revision_response_sha256": "0fbf20946a63bb75cf5bd781860fc40d05ad7fe8b759485c7f5446b97904c99c",
+        "revision_date": "2025-05-20T15:52:55.278Z",
+        "revision_id": 15,
+        "status": "EXACT_CMR_HISTORICAL_REVISION_ID_DATE_AND_RESPONSE_BYTES"
+      },
+      "source_family_id": "cmr:GES_DISC:SNDRAQIML1CCALSUBRND_2",
+      "source_ledger": "development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "BIOMEDICAL_CLINICAL",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "LICENSE",
+          "licence_spdx": "BSD-3-Clause",
+          "licence_text_sha256": "fb02749e4f251401f2c4023b7a30e71f40a21e138b87025036f74c980cfa63b2",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "scverse/scanpy",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:scverse/scanpy",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/scverse/scanpy",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "1f81157016609fd15dba5aad5469e481661c95772810b59562e0601dbb88f9e9",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-30T16:16:00Z",
+        "commit_sha": "b103908761ed9f5337b98629fcb54d03281d1fcf",
+        "commit_url": "https://github.com/scverse/scanpy/commit/b103908761ed9f5337b98629fcb54d03281d1fcf",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:scverse/scanpy",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "BIOMEDICAL_CLINICAL",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "LICENSE",
+          "licence_spdx": "NOASSERTION",
+          "licence_text_sha256": "11d1ebcaad2eb9f0f09a3df1deb4aca99a4da366ae9ae70f828c7447a24de453",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "biopython/biopython",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:biopython/biopython",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/biopython/biopython",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "9db9a8ebe32556417c250fc7814e4743fe836aa8a4ebeddbb53b57a1b8caf150",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-26T06:23:00Z",
+        "commit_sha": "54a8eda898997b98ecdc0da77f26cf5e0b87ee9a",
+        "commit_url": "https://github.com/biopython/biopython/commit/54a8eda898997b98ecdc0da77f26cf5e0b87ee9a",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:biopython/biopython",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "BIOMEDICAL_CLINICAL",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "COPYING",
+          "licence_spdx": "NOASSERTION",
+          "licence_text_sha256": "5ab0638392203d737b4d6c70e3920a61888efdee7de84a8374f3626522306dc7",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "nipy/nibabel",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:nipy/nibabel",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/nipy/nibabel",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "69723da0fbf1737a6899bc4874fd09ae6a4b3d7513aecd1a2bb985984619e4d9",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-19T22:34:07Z",
+        "commit_sha": "927be9130b42ff636f665ece106e8be6cc44208d",
+        "commit_url": "https://github.com/nipy/nibabel/commit/927be9130b42ff636f665ece106e8be6cc44208d",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:nipy/nibabel",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "EARTH_ENVIRONMENTAL",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "LICENSE",
+          "licence_spdx": "Apache-2.0",
+          "licence_text_sha256": "533d735a2bbc40eccebe20014c38a2bf6fb1afd488398d2c508006496099af17",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "pydata/xarray",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:pydata/xarray",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/pydata/xarray",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "55a03325b4e49b9a694f122e2b1e9f20b420a5f1dcbdb1c096b6b9ba4ade0fd7",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-29T21:18:49Z",
+        "commit_sha": "18ebe981d2924a07bff4cefec2f0904eb763bd4c",
+        "commit_url": "https://github.com/pydata/xarray/commit/18ebe981d2924a07bff4cefec2f0904eb763bd4c",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:pydata/xarray",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "EARTH_ENVIRONMENTAL",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "LICENSE",
+          "licence_spdx": "BSD-3-Clause",
+          "licence_text_sha256": "3fd7b39ad7368cc65ddbaac3b382440eb54d461c51043e377dfe36070b861a36",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "SciTools/cartopy",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:SciTools/cartopy",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/SciTools/cartopy",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "2ea61e2cbfcdaa82e89fe4efa1e069c47ad069eb819465cb56269a619511d34f",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-18T21:57:47Z",
+        "commit_sha": "6e0bd94b20511a7a0b1766402ca64c05ef502676",
+        "commit_url": "https://github.com/SciTools/cartopy/commit/6e0bd94b20511a7a0b1766402ca64c05ef502676",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:scitools/cartopy",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "EARTH_ENVIRONMENTAL",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "LICENSE",
+          "licence_spdx": "MIT",
+          "licence_text_sha256": "7fdd0c2647de9ed5aa549c21c46778374867793c2f874497b5480df22c7778ff",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "Unidata/netcdf4-python",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:Unidata/netcdf4-python",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/Unidata/netcdf4-python",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "21bce4eddc0f97a49e449121d3811b51b19947cbce3ec9b4cc51d7ff228a171d",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-24T15:48:56Z",
+        "commit_sha": "34e3a44e627b6143876c7c35830067fc5a18a3b7",
+        "commit_url": "https://github.com/Unidata/netcdf4-python/commit/34e3a44e627b6143876c7c35830067fc5a18a3b7",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:unidata/netcdf4-python",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "LICENSE.txt",
+          "licence_spdx": "NOASSERTION",
+          "licence_text_sha256": "1be1df33863f97a7bc1c4d67980bd6c69c9a6fef0a5ee76e6ad6cb91e56e8491",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "numpy/numpy",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:numpy/numpy",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/numpy/numpy",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "924e449fe04107e4449f057541edf9b3fda93eb9561f53a7d79646f377aebafd",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-31T18:08:32Z",
+        "commit_sha": "3556042ac2576a7bc4ec5a5bba9954fd07b4167e",
+        "commit_url": "https://github.com/numpy/numpy/commit/3556042ac2576a7bc4ec5a5bba9954fd07b4167e",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:numpy/numpy",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "LICENSE.txt",
+          "licence_spdx": "BSD-3-Clause",
+          "licence_text_sha256": "221e59f5e910fd7f94e44f0dac77436a11338c285c6346232e4a850a50da0e94",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "scipy/scipy",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:scipy/scipy",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/scipy/scipy",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "0d77deb35506c3d95e85d19436455d629cd04e36a9d9036a7cfffda07f838651",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-31T17:12:51Z",
+        "commit_sha": "2335807e25747c4dd41ba0c939b181168512a7c2",
+        "commit_url": "https://github.com/scipy/scipy/commit/2335807e25747c4dd41ba0c939b181168512a7c2",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:scipy/scipy",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "COPYING",
+          "licence_spdx": "BSD-3-Clause",
+          "licence_text_sha256": "75684d16f4662ab842ed5af9482ac01939aee83c8243d89993616d959d3053f8",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "scikit-learn/scikit-learn",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:scikit-learn/scikit-learn",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/scikit-learn/scikit-learn",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "fdac2e5c4853ca89f8af5ccc72a8f5d6313367d419709bb5ab81e784a8b97425",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-31T15:19:53Z",
+        "commit_sha": "04c9f3eee9dafa76b92bc589e55e700398ca6e10",
+        "commit_url": "https://github.com/scikit-learn/scikit-learn/commit/04c9f3eee9dafa76b92bc589e55e700398ca6e10",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:scikit-learn/scikit-learn",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "PHYSICAL_ENGINEERING",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "LICENSE.rst",
+          "licence_spdx": "BSD-3-Clause",
+          "licence_text_sha256": "1e79badb026dba4036780dbccda549ebc71bc1e3e6699083c2bb5ca5801cf838",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "astropy/astropy",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:astropy/astropy",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/astropy/astropy",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "4100fb4a4de48893d42b276841279b76153787d82fa9718f5180258eda2dedc2",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-30T15:40:34Z",
+        "commit_sha": "6156e3ad24f6c3ed34fac4ea9bfeaf3e2b0134c8",
+        "commit_url": "https://github.com/astropy/astropy/commit/6156e3ad24f6c3ed34fac4ea9bfeaf3e2b0134c8",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:astropy/astropy",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "PHYSICAL_ENGINEERING",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "LICENSE.txt",
+          "licence_spdx": "BSD-3-Clause",
+          "licence_text_sha256": "d2e0c990188a815f7da2b2d847710b1766a68134abb6edf1c2c65499ba30f892",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "qutip/qutip",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:qutip/qutip",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/qutip/qutip",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "fec7a1cc41f386613b72746eb0d9252a170dc686e1e1edba10927e40ab3c2f58",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-26T05:30:51Z",
+        "commit_sha": "4445247f8ba5ba2b3e2a206cb6210aab74dc5398",
+        "commit_url": "https://github.com/qutip/qutip/commit/4445247f8ba5ba2b3e2a206cb6210aab74dc5398",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:qutip/qutip",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    },
+    {
+      "artifact_modality": "GITHUB_SOFTWARE_REPOSITORY",
+      "candidate_domain": "PHYSICAL_ENGINEERING",
+      "candidate_wave": "UNASSIGNED_SEED_ONLY",
+      "case_eligibility_status": "NOT_ASSESSED__CANDIDATE_METADATA_ROOT_ONLY",
+      "content_accessed": false,
+      "content_class_rights": {
+        "issue_comment_pull_request_and_attachment_text": {
+          "status": "NOT_ACCESSED__RIGHTS_NOT_VERIFIED__CANNOT_CHECK"
+        },
+        "repository_files_at_selected_revision": {
+          "licence_path": "LICENSE.txt",
+          "licence_spdx": "BSD-3-Clause",
+          "licence_text_sha256": "299e52a519304ca8d51105cdc3d404c221d74e29f885555e06ab998868322025",
+          "status": "EXACT_LICENCE_BYTES_BOUND__SCOPE_REQUIRES_RIGHTS_OWNER_REVIEW"
+        }
+      },
+      "exact_provider_identity": "scikit-rf/scikit-rf",
+      "legal_gate": "CANNOT_CHECK_CASE_CONTENT_CLASS_RIGHTS",
+      "metadata_provider": "GITHUB_REST_API",
+      "persistent_identifier": "github:scikit-rf/scikit-rf",
+      "protected_fields_accessed": false,
+      "public_record_url": "https://github.com/scikit-rf/scikit-rf",
+      "r7a_case_content_admissible": false,
+      "record_sha256": "72f6b9f6a3e01595aa37e4ccefc4d7e5fef0977b6dcfba165b4509769940d4ae",
+      "selected_pre_cutoff_revision": {
+        "commit_date": "2025-12-12T15:43:51Z",
+        "commit_sha": "28b032ee26dbf5b7e274f250b0e0081a94208b99",
+        "commit_url": "https://github.com/scikit-rf/scikit-rf/commit/28b032ee26dbf5b7e274f250b0e0081a94208b99",
+        "status": "EXACT_COMMIT_BOUND"
+      },
+      "source_family_id": "github:scikit-rf/scikit-rf",
+      "source_ledger": "development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json"
+    }
+  ],
+  "summary": {
+    "candidate_metadata_roots": 28,
+    "case_content_rights_bound": 0,
+    "case_eligibility_assessed": 0,
+    "github_seed_roots": 12,
+    "provider_diverse_roots": 16,
+    "r7a_case_content_admissible": 0,
+    "required_r7a_source_clusters_both_waves": 896,
+    "scientific_terminal": "CANNOT_CHECK_SOURCE_UNIVERSE_AND_CONTENT_RIGHTS"
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "active_wins_or_ties_worlds": 3,
+  "aggregate": {
+    "ACTIVE_LOGREG": {
+      "fraction_screened_at_95_recall": 0.3453315409095541,
+      "recall_at_005": 0.5140639041125986,
+      "recall_at_010": 0.6875161816236205,
+      "recall_at_020": 0.7944776291880519,
+      "wss_at_95": 0.6046684590904459
+    },
+    "RANDOM": {
+      "fraction_screened_at_95_recall": 0.9445547511545207,
+      "recall_at_005": 0.07053172016456827,
+      "recall_at_010": 0.1234808874831668,
+      "recall_at_020": 0.2184936424258585,
+      "wss_at_95": 0.005445248845479192
+    },
+    "STATIC_SEED_CENTROID": {
+      "fraction_screened_at_95_recall": 0.6712670685357962,
+      "recall_at_005": 0.334636173918188,
+      "recall_at_010": 0.47577702487306717,
+      "recall_at_020": 0.5773133116300335,
+      "wss_at_95": 0.27873293146420375
+    }
+  },
+  "claim_scope": "PUBLIC_LABEL_BOUNDED_SCREENING_DEVELOPMENT_EVIDENCE_ONLY",
+  "forbidden_claims": [
+    "ORION-specific superiority",
+    "open-world route invention or global closure",
+    "protected freshness or independent custody",
+    "generality beyond the four frozen review worlds"
+  ],
+  "gates": {
+    "G1_BINDING": true,
+    "G2_ABSOLUTE": false,
+    "G3_INCREMENTAL": true,
+    "G4_WORK_SAVING": true
+  },
+  "schema_version": "orion.p2.synergy-screening-successor.v2",
+  "source_receipts": [
+    {
+      "actual_sha1": "6a0271155bd350b13c5bd715654ae3b2b2efbf2e",
+      "expected_sha1": "6a0271155bd350b13c5bd715654ae3b2b2efbf2e",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Hall_2012"
+    },
+    {
+      "actual_sha1": "f377fdd93b25d6fdd9cab5cee758cee74a5713b4",
+      "expected_sha1": "f377fdd93b25d6fdd9cab5cee758cee74a5713b4",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Hall_2012"
+    },
+    {
+      "actual_sha1": "83e99ad62ce0ad2420d5bfeeca7c89aadcb78d4e",
+      "expected_sha1": "83e99ad62ce0ad2420d5bfeeca7c89aadcb78d4e",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Moran_2021"
+    },
+    {
+      "actual_sha1": "f2f7c95c87ed0b05844b825ed4e766c3cdc57d41",
+      "expected_sha1": "f2f7c95c87ed0b05844b825ed4e766c3cdc57d41",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Moran_2021"
+    },
+    {
+      "actual_sha1": "1c34ca19e1283c79deaf7446e436b31e49b73fad",
+      "expected_sha1": "1c34ca19e1283c79deaf7446e436b31e49b73fad",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Walker_2018"
+    },
+    {
+      "actual_sha1": "06465733e867b36dbc42b38222b66f9045dcafea",
+      "expected_sha1": "06465733e867b36dbc42b38222b66f9045dcafea",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Walker_2018"
+    },
+    {
+      "actual_sha1": "a617afb765e95ac11045cf12ba6a9391c21d6447",
+      "expected_sha1": "a617afb765e95ac11045cf12ba6a9391c21d6447",
+      "file": "works_2.zip",
+      "passed": true,
+      "world_id": "Walker_2018"
+    },
+    {
+      "actual_sha1": "19e15577ebdbaa64d355fea441bfc17a6bca4e0a",
+      "expected_sha1": "19e15577ebdbaa64d355fea441bfc17a6bca4e0a",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Wolters_2018"
+    },
+    {
+      "actual_sha1": "e5c3912da42b0fb93ea5069fb9c8d6b078e3ac02",
+      "expected_sha1": "e5c3912da42b0fb93ea5069fb9c8d6b078e3ac02",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Wolters_2018"
+    }
+  ],
+  "strongest_comparator": "STATIC_SEED_CENTROID",
+  "terminal": "P2_SYNERGY_ACTIVE_ACQUISITION_REQUIRES_MODEL_OR_SEED_SUCCESSOR",
+  "worlds": [
+    {
+      "active_batch_size": 18,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.035255316729216425,
+          "recall_at_005": 0.9807692307692307,
+          "recall_at_010": 0.9903846153846154,
+          "recall_at_020": 0.9903846153846154,
+          "wss_at_95": 0.9147446832707835
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9407312635050609,
+          "recall_at_005": 0.057211538461538466,
+          "recall_at_010": 0.10384615384615385,
+          "recall_at_020": 0.2004807692307692,
+          "wss_at_95": 0.009268736494939122
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.5421357898328215,
+          "recall_at_005": 0.5192307692307693,
+          "recall_at_010": 0.7019230769230769,
+          "recall_at_020": 0.7980769230769231,
+          "wss_at_95": 0.40786421016717844
+        }
+      },
+      "eligible_records": 8793,
+      "included_records": 104,
+      "initial_seed_ids_sha256": "3eff0968bdbbebc333a80059820ff0ffa5ed3cabed6b85c1274fe9827b8c531e",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 50000,
+      "unlabelled_extra_works": 0,
+      "world_id": "Hall_2012"
+    },
+    {
+      "active_batch_size": 11,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.8423475258918297,
+          "recall_at_005": 0.08108108108108109,
+          "recall_at_010": 0.18018018018018017,
+          "recall_at_020": 0.3333333333333333,
+          "wss_at_95": 0.10765247410817025
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9571058688147295,
+          "recall_at_005": 0.05675675675675675,
+          "recall_at_010": 0.11126126126126126,
+          "recall_at_020": 0.21756756756756754,
+          "wss_at_95": -0.007105868814729627
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.8822401227464519,
+          "recall_at_005": 0.06306306306306306,
+          "recall_at_010": 0.0990990990990991,
+          "recall_at_020": 0.22522522522522523,
+          "wss_at_95": 0.06775987725354804
+        }
+      },
+      "eligible_records": 5214,
+      "included_records": 111,
+      "initial_seed_ids_sha256": "0ce11226525b2debc017a0780df47b47db6ee2e048ee5836cec2ca6ae7790824",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 50000,
+      "unlabelled_extra_works": 0,
+      "world_id": "Moran_2021"
+    },
+    {
+      "active_batch_size": 97,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.2932093023255814,
+          "recall_at_005": 0.6259842519685039,
+          "recall_at_010": 0.7900262467191601,
+          "recall_at_020": 0.9068241469816273,
+          "wss_at_95": 0.6567906976744186
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9505571059431522,
+          "recall_at_005": 0.049737532808398946,
+          "recall_at_010": 0.09986876640419948,
+          "recall_at_020": 0.19803149606299214,
+          "wss_at_95": -0.0005571059431525083
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.9340568475452197,
+          "recall_at_005": 0.12467191601049869,
+          "recall_at_010": 0.2073490813648294,
+          "recall_at_020": 0.33858267716535434,
+          "wss_at_95": 0.015943152454780285
+        }
+      },
+      "eligible_records": 48375,
+      "included_records": 762,
+      "initial_seed_ids_sha256": "ebd6d5e7207ab79381ff0c90d927f229964412da7fe83e227e5cf1fc9a4f9395",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 50000,
+      "unlabelled_extra_works": 0,
+      "world_id": "Walker_2018"
+    },
+    {
+      "active_batch_size": 10,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.21051401869158878,
+          "recall_at_005": 0.3684210526315789,
+          "recall_at_010": 0.7894736842105263,
+          "recall_at_020": 0.9473684210526315,
+          "wss_at_95": 0.7394859813084111
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9298247663551402,
+          "recall_at_005": 0.11842105263157894,
+          "recall_at_010": 0.1789473684210526,
+          "recall_at_020": 0.25789473684210523,
+          "wss_at_95": 0.02017523364485978
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.32663551401869156,
+          "recall_at_005": 0.631578947368421,
+          "recall_at_010": 0.8947368421052632,
+          "recall_at_020": 0.9473684210526315,
+          "wss_at_95": 0.6233644859813083
+        }
+      },
+      "eligible_records": 4280,
+      "included_records": 19,
+      "initial_seed_ids_sha256": "16051c7ac9270c156ddddf875e95857b3cdae42085170e739ba166eb1ed446d4",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 50000,
+      "unlabelled_extra_works": 0,
+      "world_id": "Wolters_2018"
+    }
+  ]
+}

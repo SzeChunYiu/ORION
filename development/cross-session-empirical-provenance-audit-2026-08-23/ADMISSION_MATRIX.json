@@ -1,0 +1,101 @@
+{
+  "generated_at": "2026-08-23T18:25:57.769143+00:00",
+  "groups": [
+    {
+      "audit_fact_admissible_files": 2,
+      "exact_narrow_empirical_claim_admissible_files": 0,
+      "file_count": 2,
+      "files": [
+        "papers/paper-01-recursive-epistemic-reconstruction/results/raw/pilot_runs.jsonl",
+        "papers/paper-01-recursive-epistemic-reconstruction/results/raw/pilot_scored.jsonl"
+      ],
+      "group": "P1 pilot raw/scored",
+      "naturalistic_or_real_source_claim_admissible_files": 0,
+      "reason": "Untracked and bound to a +dirty subject revision; hidden-formulation harness only.",
+      "top_tier_empirical_promotion_rejected_or_cannot_check_files": 2
+    },
+    {
+      "audit_fact_admissible_files": 2,
+      "exact_narrow_empirical_claim_admissible_files": 2,
+      "file_count": 2,
+      "files": [
+        "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_runs.jsonl",
+        "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl"
+      ],
+      "group": "P1 tracked test raw/scored",
+      "naturalistic_or_real_source_claim_admissible_files": 0,
+      "reason": "Admissible only as historical P1.hidden-formulation.v1 harness evidence; not naturalistic V2/V3 action evidence.",
+      "top_tier_empirical_promotion_rejected_or_cannot_check_files": 2
+    },
+    {
+      "audit_fact_admissible_files": 32,
+      "exact_narrow_empirical_claim_admissible_files": 0,
+      "file_count": 32,
+      "group": "P3 untracked annotation files",
+      "naturalistic_or_real_source_claim_admissible_files": 0,
+      "path_glob": "papers/paper-03-global-knowledge-portrait/gold/annotations/*.json",
+      "reason": "All 64 source references use SEED placeholders; only annotator-a/adjudicated-v1 exists.",
+      "top_tier_empirical_promotion_rejected_or_cannot_check_files": 32
+    },
+    {
+      "audit_fact_admissible_files": 5,
+      "exact_narrow_empirical_claim_admissible_files": 0,
+      "file_count": 5,
+      "files": [
+        "MANIFEST.json",
+        "results.jsonl",
+        "aggregates.json",
+        "checkpoint.jsonl",
+        "checkpoint_pre_retry.jsonl"
+      ],
+      "group": "P3 run-full core artifacts",
+      "naturalistic_or_real_source_claim_admissible_files": 0,
+      "reason": "Zero costs, cost metric errors, synthetic key hashes, gold mismatch, no source revision, and conflicting duplicate checkpoint keys.",
+      "top_tier_empirical_promotion_rejected_or_cannot_check_files": 5
+    },
+    {
+      "audit_fact_admissible_files": 3,
+      "exact_narrow_empirical_claim_admissible_files": 0,
+      "file_count": 3,
+      "files": [
+        "MANIFEST.json",
+        "results.jsonl",
+        "aggregates.json"
+      ],
+      "group": "P3 run-smoke core artifacts",
+      "naturalistic_or_real_source_claim_admissible_files": 0,
+      "reason": "Smoke harness output only; shares placeholder-source and zero-cost limitations.",
+      "top_tier_empirical_promotion_rejected_or_cannot_check_files": 3
+    },
+    {
+      "audit_fact_admissible_files": 2,
+      "exact_narrow_empirical_claim_admissible_files": 0,
+      "file_count": 2,
+      "files": [
+        "aggregates.json",
+        "metrics_by_system_seed.json"
+      ],
+      "group": "P3 partial analysis artifacts",
+      "naturalistic_or_real_source_claim_admissible_files": 0,
+      "reason": "Aggregates are empty; metrics contain only two systems at one seed each.",
+      "top_tier_empirical_promotion_rejected_or_cannot_check_files": 2
+    }
+  ],
+  "non_primary_files": {
+    "run_full_log_files_hashed_not_semantically_opened": 66,
+    "selected_file_inventory_total": 121,
+    "tracked_context_or_code_files_used_for_interpretation": 9
+  },
+  "primary_candidate_file_summary": {
+    "audit_fact_admissible_files": 46,
+    "exact_narrow_empirical_claim_admissible_files": 2,
+    "file_count": 46,
+    "naturalistic_or_real_source_claim_admissible_files": 0,
+    "top_tier_empirical_promotion_rejected_or_cannot_check_files": 46
+  },
+  "provenance_evidence_sha256": "221c8cd698f9c7115bab2fbe85e02dc6d828c97c241d8963123b1eaa504f4cdb",
+  "schema_version": "orion.cross-session-empirical-provenance.admission-matrix.v1",
+  "scope_rule": "Audit admission licenses only path/hash/schema/count facts. Narrow empirical admission requires a clean source binding and evidence that matches the stated construct. No file is admitted for naturalistic or real-source top-tier claims merely because it parses or reports PASS.",
+  "source_checkout_receipt_sha256": "92c4ee709ca5be6bd310c2ca2bc237d22c6332c17c022fb0751ac49bb13c5295",
+  "terminal": "CROSS_SESSION_EMPIRICAL_PROVENANCE_AUDIT_P1_P3_COMPLETE__NO_RECORD_PROMOTED__TOP_TIER_EMPIRICAL_CLAIMS_CANNOT_CHECK"
+}

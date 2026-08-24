@@ -1,0 +1,88 @@
+{
+  "arxiv_v2_source": {
+    "archive_member_count": 12,
+    "archive_sha256": "92cb482d252d28eca388b7cc2b69c24a1a1f91080a807aa14ceaba80c3d76d05",
+    "exact_required_runner_mentions": 0,
+    "moss_github_url_mentions": 1,
+    "supplement_or_companion_archive_members": [],
+    "verdict": "PAPER_SOURCE_POINTS_TO_THE_MOSS_REPOSITORY_BUT_CONTAINS_NO_BENCHMARK_COMPANION_OR_REQUIRED_RUNNER",
+    "version": "arXiv:2605.22794v2"
+  },
+  "authority": "PUBLIC_GITHUB_PUBLICATION_SURFACE_SNAPSHOT__NOT_LEGAL_ADVICE",
+  "checked_at_utc": "2026-08-23T21:35:04Z",
+  "claw_eval_pinned_companion_candidate": {
+    "archive_member_count_including_root": 1968,
+    "archive_sha256": "20d6ee03aa429d05123e724b8ae9ed8aa2cfd307d3e0c33850d669301dd2aeaf",
+    "commit_sha": "d3f02d4938ab0832377d90535013def2b1a2fdc0",
+    "exact_required_runner_matches": 0,
+    "license_path_matches": 0,
+    "manifest_prefix_members": 0,
+    "repository": "https://github.com/claw-eval/claw-eval",
+    "src_runner_members": 16,
+    "task_prefix_members": 1856,
+    "tree_sha": "c6c6f0f09b58aa68197412177449cd2f55f561ee",
+    "verdict": "SUBSTANTIVE_BENCHMARK_SOURCE_BUT_NOT_THE_EXACT_RELEASED_MOSS_COMPANION_LAYOUT_AND_NO_ROOT_LICENSE_FILE_AT_PINNED_COMMIT"
+  },
+  "independent_public_issue": {
+    "author": "rishisriv",
+    "comments": 0,
+    "created_at": "2026-08-19T19:56:25Z",
+    "maintainer_reply_observed": false,
+    "number": 3,
+    "role": "INDEPENDENT_CORROBORATION_ONLY__NOT_UPSTREAM_AUTHORITY",
+    "state": "open",
+    "title": "Reproducing Table 2: benchmark runner, demo mode, and flag-batch adapter appear to be absent from the repo",
+    "url": "https://github.com/hkgai-official/Moss/issues/3"
+  },
+  "moss_account_public_repositories": {
+    "companion_name_matches": [],
+    "names": [
+      "ClawNet",
+      "Model-Fusion",
+      "Moss",
+      "hkgai-official"
+    ],
+    "returned_count": 4
+  },
+  "moss_main": {
+    "archive_member_count_including_root": 7261,
+    "archive_sha256": "de6bb0e480749757d8e9b05a66c37c82228ea6d9d1e1cb92b6b32a3b28e5610e",
+    "benchmark_prefix_members": 0,
+    "commit_sha": "5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+    "exact_required_runner_matches": 0,
+    "pushed_at": "2026-05-23T03:57:09Z"
+  },
+  "moss_public_refs": {
+    "branches": [
+      {
+        "name": "main",
+        "sha": "5453f1feebad44c199f5887f852fc5bc7fb7d4da"
+      }
+    ],
+    "releases": 0,
+    "tags": [
+      {
+        "name": "v0.1.0",
+        "sha": "9f1b2929a6a1b6d405e0ce378d52cc8c8293618c"
+      }
+    ]
+  },
+  "moss_v0_1_0": {
+    "archive_member_count_including_root": 7260,
+    "archive_sha256": "24de890f18f5e744844f7decc0c1c89cd4f0715372d5c8d64b247a4095da3e51",
+    "benchmark_prefix_members": 0,
+    "commit_sha": "9f1b2929a6a1b6d405e0ce378d52cc8c8293618c",
+    "exact_required_runner_matches": 0
+  },
+  "schema_version": "orion.p5.c2.upstream-publication-snapshot.v10",
+  "scope_caveat": "This is the unauthenticated public GitHub surface returned at the checked time, not a claim about private or unpublished materials.",
+  "source_response_sha256": {
+    "branches": "d6abc9e710b9665a5ecf6fa1bdc36c2f20070daee4f53047f652b6fc6066d7fb",
+    "claw_eval_commit": "e3c2c0125eed9f68000ebd735bf61ddb3ed3e5f2b0f360333f9c27cd81427c47",
+    "issues": "04d2b5c96907edfaf119b68b52d5ea192d05a0a95aba02e0f9fef1f4b6b71e2f",
+    "owner_repositories": "0bb28098c913eee3b56e37db298d599c8653963c652c076e26edfa1414b88579",
+    "releases": "2ba33ca0557f1bb5b7ba88d67f9d0093c7185a36ec51fe2b7bd9372d3e001d6d",
+    "repository": "70ffb57355e258895f810cb2151113dac683afbb7970b8e27a955bf31903648b",
+    "tags": "9ba59a42d443c8798c88a46eef55f8b5ce871f3efb361e5982099f5f76e1871d"
+  }
+}

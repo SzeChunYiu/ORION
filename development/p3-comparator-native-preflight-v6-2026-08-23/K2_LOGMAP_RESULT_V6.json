@@ -1,0 +1,64 @@
+{
+  "authority": "RUNTIME_AND_NATIVE_ARTIFACT_PREFLIGHT_ONLY__NO_PERFORMANCE_OR_SCIENTIFIC_OUTCOME_AUTHORITY",
+  "identity": {
+    "built_jar_sha256": "8b2ebdc9490c211b99f8dbe6290e48de9072c3ab18f795712fa1b2efa518cf27",
+    "commit": "b3b57d0d8bfb5872bdffb49329d764acb4735713",
+    "dependency_jar_count_excluding_main": 88,
+    "licence": "Apache-2.0",
+    "licence_sha256": "6375b618c2aad77f0bdea18afb56511d0d3fdb6d012ade1bdab6f436b9618704",
+    "name": "LogMap 4.0 source",
+    "tree": "9259d38e18e9926cec615ea31a8a7f5e5540b67a"
+  },
+  "interface_amendment": {
+    "basis": "Pinned source writes this filename; amendment was frozen before the confirmation run.",
+    "required_filename": "logmap2_mappings.rdf",
+    "sha256": "e7c0e9427938c5286a76ebb15a48e7e571ca133cf4f7cbc75a8642c75a4072f2"
+  },
+  "interpretation_guard": "Rows were not compared with gold; header or row presence is not correctness, harm, coverage, or superiority evidence.",
+  "mandatory_metadata_guard": {
+    "duplicate_ontology_1_call_found": true,
+    "effect": "Both RDF ontology header positions name ontology 1. Consumers must validate row namespaces and must not treat the header as truth evidence.",
+    "observed_header": {
+      "onto1": "urn:orion:p3:v6:smoke:source",
+      "onto2": "urn:orion:p3:v6:smoke:source",
+      "uri1": "urn:orion:p3:v6:smoke:source",
+      "uri2": "urn:orion:p3:v6:smoke:source"
+    },
+    "source_path": "src/main/java/uk/ac/ox/krr/logmap2/LogMap2Core.java",
+    "source_sha256": "51ad9bed31f947c3b4785c86e43e3cfe93428c98d33385cfaa4fd804629079c5",
+    "status": "UPSTREAM_RDF_HEADER_DEFECT_CONFIRMED"
+  },
+  "native_artifacts": {
+    "rdf": {
+      "bytes": 1169,
+      "canonical_row_sha256": "f3f3c48305fa629494e82695dd95988b4e51e00470d8cfcaf5c5e21e23c86789",
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/.p3v6-runtime/results/logmap-confirm/logmap2_mappings.rdf",
+      "row_count": 3,
+      "sha256": "d37f214f15bd254b650b7a637513f3fafbfaeab668f0ab95c55fdb3b690b29b8"
+    },
+    "rdf_source_namespace_guard": true,
+    "rdf_target_namespace_guard": true,
+    "rdf_tsv_row_equivalence": true,
+    "tsv": {
+      "bytes": 238,
+      "canonical_row_sha256": "f3f3c48305fa629494e82695dd95988b4e51e00470d8cfcaf5c5e21e23c86789",
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/.p3v6-runtime/results/logmap-confirm/logmap2_mappings.tsv",
+      "row_count": 3,
+      "sha256": "41a1570551d9a2ff21eb8806ece30d8a4c124e1b5eee8533c8d47cd6c6f855a2"
+    }
+  },
+  "runtime": {
+    "build": "PASS_TESTS_SKIPPED_BY_SCOPE",
+    "exit_code": 0,
+    "java": "OpenJDK 17.0.19 arm64",
+    "maven": "3.9.11",
+    "maven_archive_sha256": "4b7195b6a4f5c81af4c0212677a32ee8143643401bc6e1e8412e6b06ea82beac",
+    "maven_archive_sha512": "bcfe4fe305c962ace56ac7b5fc7a08b87d5abd8b7e89027ab251069faebee516b0ded8961445d6d91ec1985dfe30f8153268843c89aa392733d1a3ec956c9978",
+    "maven_sidecar_match": true,
+    "timeout": false,
+    "wall_seconds": 1.0154446249944158
+  },
+  "schema_version": "orion.p3.comparator-native-preflight.slot-result.v6",
+  "slot": "K2_LOGMAP",
+  "terminal": "NATIVE_SMOKE_PASS_WITH_MANDATORY_RDF_HEADER_METADATA_GUARD"
+}

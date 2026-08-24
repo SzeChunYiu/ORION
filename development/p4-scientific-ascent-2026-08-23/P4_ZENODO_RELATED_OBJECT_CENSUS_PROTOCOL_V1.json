@@ -1,0 +1,122 @@
+{
+  "authority": "PUBLIC_METADATA_SOURCE_FEASIBILITY_ONLY",
+  "candidate_filter": {
+    "accepted_relation_schemes": [
+      "doi",
+      "url",
+      "arxiv",
+      "handle"
+    ],
+    "accepted_relations": [
+      "isSupplementTo",
+      "isDocumentedBy",
+      "isReferencedBy",
+      "references",
+      "isSourceOf",
+      "isDerivedFrom",
+      "isIdenticalTo"
+    ],
+    "access_status": [
+      "open"
+    ],
+    "files_not_downloaded": true,
+    "publication_relation_preferred": true,
+    "record_license_ids": [
+      "cc-by-4.0",
+      "cc0-1.0"
+    ],
+    "typed_relation_required": true
+  },
+  "cannot_check": "API or schema binding fails, response is incomplete, or provider terms/rights cannot be bound",
+  "counts_reported": [
+    "raw_hits",
+    "preflight_exclusions",
+    "licence_eligible",
+    "typed_relation_eligible",
+    "publication_typed_relation_eligible",
+    "unique_records",
+    "cross_query_records",
+    "per_domain_mechanism_counts"
+  ],
+  "current_terminal": "FROZEN_BEFORE_CENSUS_ACQUISITION",
+  "date": "2026-08-23",
+  "forbidden_claims": [
+    "natural-pair eligibility",
+    "article identity equivalence without adjudication",
+    "content rights beyond exact Zenodo record licence",
+    "linked external object rights",
+    "case resolution",
+    "scientific performance",
+    "provider generality"
+  ],
+  "negative_source_signal": "one or more queried cells has fewer than 48 unique licence-eligible accepted typed relations; open a new disjoint provider route without changing the cell",
+  "outcomes_accessed": false,
+  "positive_source_signal": "at least 48 unique licence-eligible records with an accepted typed relation in each of the eight queried domain-mechanism cells",
+  "preflight_exclusions": {
+    "reason": "three public Earth-dataset records were returned during API transport probing before this census freeze; no case outcome or aggregate was seen",
+    "record_ids": [
+      "20555527",
+      "3952159",
+      "15265047"
+    ]
+  },
+  "provider": {
+    "endpoint": "https://zenodo.org/api/records",
+    "name": "Zenodo",
+    "official_api": true,
+    "page_size": 200,
+    "raw_response_cache_outside_git": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/open-data-cache/P4_ZENODO_RELATED_OBJECT_CENSUS_V1",
+    "sort": "mostrecent"
+  },
+  "queries": [
+    {
+      "domain_id": "EARTH_ENVIRONMENT",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "q": "resource_type.type:dataset AND (climate OR geophysics OR ocean OR atmospheric OR earth)",
+      "query_id": "EARTH_DATA"
+    },
+    {
+      "domain_id": "LIFE_BIOMEDICAL",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "q": "resource_type.type:dataset AND (biology OR biomedical OR genomics OR ecology OR health)",
+      "query_id": "LIFE_DATA"
+    },
+    {
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "q": "resource_type.type:dataset AND (physics OR engineering OR robotics OR electronics OR materials)",
+      "query_id": "PHYSICAL_DATA"
+    },
+    {
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "q": "resource_type.type:dataset AND (software OR computational OR simulation OR benchmark OR algorithm)",
+      "query_id": "SOFTWARE_DATA"
+    },
+    {
+      "domain_id": "EARTH_ENVIRONMENT",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "q": "resource_type.type:software AND (climate OR geophysics OR ocean OR atmospheric OR earth)",
+      "query_id": "EARTH_SOFTWARE"
+    },
+    {
+      "domain_id": "LIFE_BIOMEDICAL",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "q": "resource_type.type:software AND (biology OR biomedical OR genomics OR ecology OR health)",
+      "query_id": "LIFE_SOFTWARE"
+    },
+    {
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "q": "resource_type.type:software AND (physics OR engineering OR robotics OR electronics OR materials)",
+      "query_id": "PHYSICAL_SOFTWARE"
+    },
+    {
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "q": "resource_type.type:software AND (scientific OR computational OR simulation OR benchmark OR algorithm)",
+      "query_id": "SCIENTIFIC_SOFTWARE"
+    }
+  ],
+  "schema_version": "orion.p4.zenodo-related-object-census.v1"
+}

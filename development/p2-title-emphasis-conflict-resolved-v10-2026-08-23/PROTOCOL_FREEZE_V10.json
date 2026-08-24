@@ -1,0 +1,63 @@
+{
+  "active_loop": {
+    "batch_size": "max(10, ceil(0.002 * canonical review N))",
+    "seed": "One label-informed positive and one negative minimizing SHA-256(review NUL canonical record identity), positive first.",
+    "termination": "Complete ranking of every row.",
+    "tie_rule": "Stable descending scores over ascending canonical record identity."
+  },
+  "decision_rule": "Admit only U4_PLUS_TITLE_A250 and only if G1-G9 all pass. Otherwise discard the title residual and retain exact u4. TITLE_ONLY_U4 remains an ablation only.",
+  "execution_limit": "One execution only; no grid, tuning, retry, pytest, repository CI, git operation, manuscript or shared-file edit.",
+  "forbidden_claims": [
+    "independent or protected confirmation",
+    "source-general, domain-general, workflow-general or application-exact superiority",
+    "KIFMS harm reversal",
+    "threshold relaxation",
+    "post-outcome review or row deletion",
+    "ORION-specific superiority"
+  ],
+  "frozen_arms": {
+    "EXACT_U4": "Exact V8/V7 u4 word TF-IDF, LinearSVC C=0.11 squared_hinge random_state=20260823, 9.8 balancer and unchanged active loop.",
+    "TITLE_ONLY_U4": "Title-emphasis title + title + abstract with the same exact u4 learner, balancer and loop.",
+    "U4_PLUS_TITLE_A250": "Per active batch, population-z-score exact-u4 and title-only pool scores and rank z_u4 + 0.25*(z_title-z_u4)."
+  },
+  "frozen_at_utc": "2026-08-23T20:47:47.359720+00:00",
+  "identity": "P2_V10_PROVIDER_NATIVE_CONFLICT_RESOLVED_TITLE_EMPHASIS_ALPHA025_DIAGNOSTIC",
+  "preserved_terminals": [
+    "P2_V8_DONOR_ENVELOPMENT_CROSSFIT_FAILS_CRE20_WSS95_AND_HARM__NO_RESIDUAL_ADMITTED__EXACT_U4_FALLBACK",
+    "P2_V9_SOURCE_DISJOINT_TITLE_EMPHASIS_CANNOT_CHECK_BINDING_OR_POPULATION__NO_EXECUTABLE_CLAIM"
+  ],
+  "scope": "PUBLIC_DEVELOPMENT_POST_IDENTITY_REPAIR_SEVEN_REVIEW_DIAGNOSTIC__NOT_CONFIRMATION_OR_INDEPENDENT_CUSTODY",
+  "single_change_from_v9": "For the exact Appenzeller-Herzog_2020 content group d1b054eda2f1fb8dea2e3ad78c9d32aba9819f9d2465b6509949ec11f4117bd4 only, retain both provider-native nonduplicate rows 1003 and 1018 and distinguish their canonical row identities by provider record_id. No label is selected or rewritten; every other V9 rule is unchanged.",
+  "source_population": {
+    "canonical_rows": 21897,
+    "retention": "All seven reviews and both source-native rows in the repaired group must bind and execute; no review or row deletion after outcome access.",
+    "review_units": [
+      "Kitchenham_2010",
+      "Bannach-Brown_2019",
+      "Nagtegaal_2019",
+      "Kwok_2020",
+      "Appenzeller-Herzog_2020",
+      "Wolters_2018",
+      "Bos_2018"
+    ],
+    "unique_normalized_title_abstract_identities": 21896,
+    "unit": "review decision, unweighted across exactly seven reviews"
+  },
+  "status": "FROZEN_AFTER_V9_PUBLIC_LABEL_ACCESS_AND_EXACT_SOURCE_NATIVE_CONFLICT_AUDIT_BEFORE_ANY_V10_MODEL_OUTCOME",
+  "terminals": {
+    "cannot_check": "P2_V10_PROVIDER_NATIVE_CONFLICT_RESOLVED_TITLE_EMPHASIS_CANNOT_CHECK_BINDING_OR_POPULATION__NO_EXECUTABLE_CLAIM",
+    "negative": "P2_V10_PROVIDER_NATIVE_CONFLICT_RESOLVED_TITLE_EMPHASIS_FAILS_ONE_OR_MORE_FROZEN_GATES__RESIDUAL_DISCARDED__EXACT_U4_FALLBACK",
+    "positive": "P2_V10_PROVIDER_NATIVE_CONFLICT_RESOLVED_TITLE_EMPHASIS_PASSES_ALL_FROZEN_GATES__BOUNDED_PUBLIC_DEVELOPMENT_TRANSPORT_ONLY"
+  },
+  "unchanged_gates": {
+    "G1_BINDING": "All exact source, V8, V9 and V10 freeze/runner hashes match.",
+    "G2_SOURCE_CONTENT_AND_POPULATION": "All seven repaired populations bind, are disjoint from the prior-family union and cross-review peers, and contain both classes.",
+    "G3_MEAN_DELTA_CRE20": ">= 0.010858985820770889",
+    "G4_MEAN_DELTA_R10": ">= 0.010858985820770889",
+    "G5_MEAN_DELTA_WSS95": ">= 0",
+    "G6_POSITIVE_CRE20_SIGN": ">= 6/7 reviews strictly positive",
+    "G7_POSITIVE_R10_SIGN": ">= 6/7 reviews strictly positive",
+    "G8_WORST_REVIEW_R10_HARM": ">= -0.05",
+    "G9_ABSOLUTE_WORK_SAVING": "controller WSS95 > 0 in every review"
+  }
+}

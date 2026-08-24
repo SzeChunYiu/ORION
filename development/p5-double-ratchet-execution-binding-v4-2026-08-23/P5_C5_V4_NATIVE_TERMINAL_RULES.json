@@ -1,0 +1,60 @@
+{
+  "actionable_class": "EVALUATOR_REPAIR",
+  "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+  "non_claims": [
+    "EVALUATOR_REPAIR is a candidate terminal, not a correctness or superiority finding",
+    "development agreement and synthetic fixtures are not P5 performance",
+    "the parser is not the independent protected scorer"
+  ],
+  "rules": [
+    {
+      "emit": "UNRESOLVED",
+      "native_terminal": "DOUBLE_RATCHET_GUARD_FAILURE",
+      "priority": 1,
+      "when": "protected panel or protected score enters evolution"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "native_terminal": "TIMEOUT",
+      "priority": 2,
+      "when": "native exit is 124"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "native_terminal": "ERROR",
+      "priority": 3,
+      "when": "native exit is nonzero"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "native_terminal": "EMPTY",
+      "priority": 4,
+      "when": "no final expression, history, or metric.db"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "native_terminal": "DOUBLE_RATCHET_GUARD_FAILURE",
+      "priority": 5,
+      "when": "solver/prompt/task bytes change, skill bank is nonempty, or write surface escapes results/metric_evo"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "native_terminal": "DOUBLE_RATCHET_GUARD_FAILURE",
+      "priority": 6,
+      "when": "--naive, --golden-diff-selectable, joint evolution, or failed development validity is observed"
+    },
+    {
+      "emit": "UNRESOLVED",
+      "native_terminal": "DOUBLE_RATCHET_GUARD_FAILURE",
+      "priority": 7,
+      "when": "input-native certificate is not uniquely EVALUATOR_REPAIR"
+    },
+    {
+      "emit": "EVALUATOR_REPAIR",
+      "native_terminal": "SUCCESS",
+      "priority": 8,
+      "when": "all preceding guards pass on a development-only run"
+    }
+  ],
+  "schema_version": "orion.p5.c5.double-ratchet-native-terminal-rules.v4"
+}

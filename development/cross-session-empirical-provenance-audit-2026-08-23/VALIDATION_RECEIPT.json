@@ -1,0 +1,39 @@
+{
+  "assertion_count": 78,
+  "boundary": {
+    "manuscript_or_readiness_files_mutated": false,
+    "pytest_or_repo_ci_run": false,
+    "raw_payload_imported": false,
+    "record_promoted": false,
+    "source_files_mutated": false
+  },
+  "schema_version": "orion.cross-session-empirical-provenance.validation-receipt.v1",
+  "scientific_checks": {
+    "naturalistic_or_real_source_admissible_files": 0,
+    "p1_pilot_rows": 990,
+    "p1_test_rows": 2880,
+    "p3_checkpoint_duplicate_excess": 940,
+    "p3_conflicting_duplicate_keys": 683,
+    "p3_independent_annotator_b_files": 0,
+    "p3_results": 75,
+    "p3_source_references": 64,
+    "p3_valid_source_hashes": 0,
+    "p3_zero_cost_and_error_rows": 75,
+    "primary_candidate_files": 46,
+    "top_tier_rejected_or_cannot_check_files": 46
+  },
+  "status": "PASS",
+  "terminal": "CROSS_SESSION_EMPIRICAL_PROVENANCE_AUDIT_P1_P3_COMPLETE__NO_RECORD_PROMOTED__TOP_TIER_EMPIRICAL_CLAIMS_CANNOT_CHECK",
+  "validated_artifact_sha256": {
+    "ADMISSION_MATRIX.json": "93e2efc65f67e931622c17a43a949de7169bfdf834b8b828eaac8849cf6176b2",
+    "NEGATIVE_RESULT_LEDGER.json": "02daf7da76a46819d8812707c2ac67f21841d5ead868eb203638f9dd8bdd65eb",
+    "NEGATIVE_RESULT_LEDGER.md": "52f503b06dbf4cdf2b8b22c94bf3e838f6c42265e1f2ff8c3fd511fbdead496e",
+    "PROVENANCE_AUDIT_EVIDENCE.json": "221c8cd698f9c7115bab2fbe85e02dc6d828c97c241d8963123b1eaa504f4cdb",
+    "REPORT.md": "7d68685eaf471b5b9d326e62c5be18dc5cd20fb7051b2715a8d66a300c8101de",
+    "RESULT.json": "8d6cb9edd0703295b7d47a73c75f80c741bf036f44cecfda911ea3fbd3937b16",
+    "SOURCE_CHECKOUT_RECEIPT.json": "92c4ee709ca5be6bd310c2ca2bc237d22c6332c17c022fb0751ac49bb13c5295",
+    "audit_provenance.py": "27730da0d22d02984e006a1888510a0874a23eb4af299385f776c111d0797b24",
+    "validate_audit.py": "0649a0b91c751993a67ebe6c9c440da3639e80216aca99cd8d2e01fa1c8641e4"
+  },
+  "validated_at": "2026-08-23T18:27:03.671565+00:00"
+}

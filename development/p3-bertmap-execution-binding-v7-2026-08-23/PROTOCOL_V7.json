@@ -1,0 +1,102 @@
+{
+  "authoritative_source": {
+    "bridge_rule": "The original repository says BERTMap is maintained in DeepOnto; the pinned DeepOnto README links the original repository and AAAI paper, and its BERTMap documentation links the same paper.",
+    "canonical_original": {
+      "commit": "ce848402b40e2f9513bf2d004894d3f82635022c",
+      "repository": "https://github.com/KRR-Oxford/BERTMap",
+      "tree": "6659aca8db43a74921ff5f5176b0dd9a80eb8554"
+    },
+    "maintained_implementation": {
+      "commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+      "package_version": "0.9.3",
+      "repository": "https://github.com/KRR-Oxford/DeepOnto",
+      "tree": "b499cb5780bbe749f7db44d0bc872d275a2737ea"
+    },
+    "paper": {
+      "arxiv": "2112.02682",
+      "doi": "10.1609/aaai.v36i5.20510",
+      "paper_outcomes_opened": false,
+      "title": "BERTMap: A BERT-Based Ontology Alignment System"
+    }
+  },
+  "authority": "PAPER_SOURCE_IDENTITY__DEPENDENCY_CONSTRUCTOR_COMPATIBILITY__NATIVE_ARTIFACT_INTERFACE_ONLY",
+  "frozen_at": "2026-08-23T18:56:21.140668+00:00",
+  "parser_binding": {
+    "absence_rule": "All source keys with zero rows is structurally valid and never obstruction.",
+    "artifact_directory": "<output_path>/bertmap/match",
+    "authority": "Structural completeness, universe, score, JSON/TSV equivalence, derivation and hash checks only.",
+    "parser": "bertmap_native_parser_v7.py",
+    "parser_sha256": "d1184dc129082bdcf18b415b551f244a695b4e34417286afc37a3f3a5d788bc5",
+    "required_files": [
+      "raw_mappings.json",
+      "raw_mappings.tsv",
+      "extended_mappings.tsv",
+      "filtered_mappings.tsv",
+      "repaired_mappings.tsv"
+    ]
+  },
+  "predecessor": {
+    "native_smoke_readiness": "2/3",
+    "scientific_comparator_readiness": "0/3",
+    "terminal": "CANNOT_CHECK_PINNED_DEPENDENCY_API_INCOMPATIBILITY",
+    "v6_k3_result": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-comparator-native-preflight-v6-2026-08-23/K3_BERTMAP_RESULT_V6.json",
+      "sha256": "89397bde96305b19b19487a87d0b8b82f5270cd8fafcb2993a596c3bd0e64df1"
+    },
+    "v6_result": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-comparator-native-preflight-v6-2026-08-23/RESULT_V6.json",
+      "sha256": "9f9a3a8cf8926068ca5dd6a0ff90c586494c18f6087368ce3975d7cc4089a538"
+    },
+    "v7_successor": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-comparator-native-preflight-v6-2026-08-23/K3_V7_COMPATIBILITY_SUCCESSOR_PROTOCOL.json",
+      "sha256": "d27475b837962bedf09387931866a5f6920449667c3ce702ccfc27b5e97e9ad4"
+    }
+  },
+  "preserved_invariants": {
+    "gold_or_reference_accessed": false,
+    "inputs_model_thresholds_offline_guards_and_budget": "Referenced from V6 and not opened or executed here.",
+    "model_opened_or_run": false,
+    "ontology_or_benchmark_opened_or_run": false,
+    "performance_scoring_performed": false,
+    "protected_outcomes_accessed": false,
+    "scientific_claims": "performance, harm, coverage, transport and superiority remain CANNOT_CHECK"
+  },
+  "protocol_id": "P3_V7_BERTMAP_OUTCOME_BLIND_COMPATIBILITY_AND_PARSER_BINDING",
+  "runtime_probe": {
+    "allowed": [
+      "resolve and install the exact four-package compatibility island and its transitive dependencies into a disposable Python-3.10 environment",
+      "import the four exact packages",
+      "inspect TrainingArguments signature",
+      "construct TrainingArguments with the source-native evaluation_strategy keyword and bounded local output path",
+      "run a synthetic language-level reproduction of the source-native table-reader indexing expression"
+    ],
+    "api_failure_gate": "Any resolution, hash, import, signature, or constructor failure is CANNOT_CHECK; no in-run version substitution.",
+    "api_success_gate": "Exact versions import; TrainingArguments signature contains evaluation_strategy; constructor returns without model/data/network access.",
+    "forbidden": [
+      "import DeepOnto or start its JVM",
+      "open or run any pretrained model or model payload",
+      "open or run any ontology, benchmark, gold/reference alignment, protected outcome, prediction, or paper data.zip payload",
+      "train, predict, repair, score, tune, or interpret row absence as obstruction"
+    ]
+  },
+  "schema_version": "orion.p3.bertmap-execution-binding.protocol.v7",
+  "single_intended_compatibility_change": {
+    "expected_primary_wheel_sha256": {
+      "accelerate-1.0.1-py3-none-any.whl": "c6aa0c7b8a797cb150471e90e3ca36ac41f5d4b40512cdd6f058b8bf25589467",
+      "tokenizers-0.20.3-cp310-cp310-macosx_11_0_arm64.whl": "c6361191f762bda98c773da418cf511cbaa0cb8d0a1196f16f8c0119bde68ff8",
+      "torch-2.5.1-cp310-none-macosx_11_0_arm64.whl": "23d062bf70776a3d04dbe74db950db2a5245e1ba4f27208a87f0d743b0d06e86",
+      "transformers-4.46.3-py3-none-any.whl": "a12ef6f52841fd190a3e5602145b542d03507222f2c64ebb7ee92e8788093aef"
+    },
+    "platform": "macOS arm64",
+    "python": "3.10.20",
+    "requirements_input": "V7_COMPATIBILITY_REQUIREMENTS.in",
+    "requirements_input_sha256": "5257aa7845fac4b38fcc8d2a90c9ee43ab4388eb01058c4002de7277a248c80a",
+    "source_lock_boundary": "These four versions coexist in the DeepOnto uv.lock only under the Python-below-3.9 resolution branch. Using them on Python 3.10 is an explicit separately hashed compatibility island, not the source lock's native Python-3.10 resolution.",
+    "tuple": {
+      "accelerate": "1.0.1",
+      "tokenizers": "0.20.3",
+      "torch": "2.5.1",
+      "transformers": "4.46.3"
+    }
+  }
+}

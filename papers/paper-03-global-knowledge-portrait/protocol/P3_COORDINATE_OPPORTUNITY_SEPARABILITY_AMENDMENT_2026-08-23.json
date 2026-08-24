@@ -1,0 +1,52 @@
+{
+  "schema_version": "orion.p3.coordinate-opportunity-separability-amendment.v1",
+  "paper_id": "P3",
+  "date": "2026-08-23",
+  "amends_wording_only": [
+    "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json",
+    "development/p3-public-data-successor-2026-08-23/P3_PUBLIC_DATA_SUCCESSOR_PROTOCOL_V1_1.json"
+  ],
+  "historical_results_immutable": true,
+  "outcomes_accessed_for_this_amendment": false,
+  "grants_scientific_authority": false,
+  "preserved_current_terminal": "P3_PARTIAL_IDENTIFICATION_READY_FOR_EXTERNAL_ATLAS_NOT_A_SCIENTIFIC_RESULT",
+  "defect": {
+    "original_binding": "SOURCE_DISJOINT_MULTI_DOMAIN_ATLAS_WITH_NONZERO_VARIATION_ON_ALL_FOUR_COORDINATES",
+    "problem": "Marginal variation across cases is not observational separability within a registered comparison. A field may take many atlas-wide values while remaining identical on both sides of every case.",
+    "measured_outcome_blind_example": {
+      "source_ref": "origin/codex/p1-p15-recursive-resolution-ledger@5c32845a10a4f9d66e50f21606f131354a43f2e3",
+      "path": "papers/paper-03-global-knowledge-portrait/evidence/P3_ATLAS_COORDINATE_OPPORTUNITY_2026-08-23.json",
+      "cases": 32,
+      "referent_distinct_values": 24,
+      "referent_within_case_contrasts": 0,
+      "construct_distinct_values": 12,
+      "construct_within_case_contrasts": 0,
+      "candidate_or_comparator_outcomes_accessed": false
+    }
+  },
+  "replacement_binding": "SOURCE_DISJOINT_MULTI_DOMAIN_ATLAS_WITH_NONZERO_WITHIN_COMPARISON_CONTRAST_ON_ALL_FOUR_COORDINATES_AND_REPORTED_JOINT_COORDINATE_SUPPORT",
+  "required_preoutcome_receipt": {
+    "per_coordinate": [
+      "cases_total",
+      "cases_with_left_right_contrast",
+      "within_comparison_contrast_fraction"
+    ],
+    "joint_support": "Count every observed binary contrast pattern over REFERENT, CONSTRUCT, MEASUREMENT and TEMPORAL_CONTEXT.",
+    "protected_query_opportunity": "Report separately from coordinate contrast.",
+    "zero_column_rule": "A coordinate with zero within-comparison contrasts cannot authorize a coordinate-specific claim.",
+    "nonzero_column_boundary": "Nonzero contrast admits analysis but does not alone identify a causal coordinate effect when other coordinates co-move."
+  },
+  "unchanged": [
+    "independent_unit",
+    "strata",
+    "planned_sample_size",
+    "multiplicity_family",
+    "endpoint",
+    "power_model",
+    "protected_gold_requirement",
+    "raw_text_attack_requirement",
+    "downstream_evaluator_custody",
+    "possible_scientific_terminals"
+  ],
+  "current_terminal": "P3_COORDINATE_OPPORTUNITY_WORDING_REPAIRED__EXTERNAL_ATLAS_AND_OUTCOMES_CANNOT_CHECK"
+}

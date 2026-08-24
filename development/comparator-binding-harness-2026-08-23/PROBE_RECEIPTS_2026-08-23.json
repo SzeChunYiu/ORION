@@ -1,0 +1,85 @@
+{
+  "schema_version": "orion.comparator-probe-receipts.v1",
+  "executed_at": "2026-08-23",
+  "authority": "Mechanical entrypoint/conformance probes only; no protected corpus, provider comparison, or scientific claim.",
+  "receipts": {
+    "SIEVE_FIXTURE": {
+      "repo": "ielab/skim-search-agent",
+      "repo_head": "4a640296770c39b8274e7678c6de844daea9541c",
+      "environment": "isolated venv; host Python 3.14.6; editable install from pinned shallow clone",
+      "command": "python run.py dataset=fixture strategy=sieve_bm25 runs_dir=development/comparator-binding-harness-2026-08-23/sieve_probe_runs",
+      "exit_code": 0,
+      "observed_terminal": {
+        "n": 1,
+        "n_skipped": 0,
+        "n_errors": 0,
+        "set_recall": 0.0,
+        "n_steps": 2.0
+      },
+      "interpretation": "PASS mechanics only. The fixture uses a stub policy and its zero score is not evidence about SIEVE on P2.",
+      "artifacts": [
+        {
+          "path": "sieve_probe_runs/agent/fixture/CodeRankEmbed/agent_research_snip/config.json",
+          "sha256": "24eef5f3e4b2cd22fe4d5b9f020b0e648859b5f921191402fa8c12b933045613"
+        },
+        {
+          "path": "sieve_probe_runs/agent/fixture/CodeRankEmbed/agent_research_snip/rows.jsonl",
+          "sha256": "c9aa2c0ed7340e60d6952213b54288784df6b5006dad6ea54d43afcda72fc096"
+        },
+        {
+          "path": "sieve_probe_runs/agent/fixture/CodeRankEmbed/agent_research_snip/results.json",
+          "sha256": "b3165958fa23017a23c5152c2427a48c09810f643d63c0f51823569d5a29a555"
+        }
+      ]
+    },
+    "NEURONBENCH_STUB_BASELINE": {
+      "repo": "murphyk/neuronbench",
+      "repo_head": "c354622458c460b419cab821d482c879f0578377",
+      "environment": "isolated venv; editable install; deterministic ca_rebound world",
+      "command": "neuronbench.agent.run_baseline(world, StubReturningEmptyJSON, budget=2)",
+      "exit_code": 0,
+      "observed_terminal": {
+        "observations": 2,
+        "predictions": 6,
+        "forecast_mse": 80.75
+      },
+      "interpretation": "PASS benchmark/baseline interface only. Invalid JSON intentionally exercises the documented fallback. This is not MDA, not a comparator-quality result, and not scientific evidence.",
+      "artifact": {
+        "path": "neuronbench_stub_probe.json",
+        "sha256": "4caa33ff37aec6de90bc0ef9e9d43ba5915037faa8a5d35aee38da8894879a16"
+      }
+    },
+    "PROVENAI_HELP": {
+      "repo": "mohammadfaizan6249/ProvenAI",
+      "repo_head": "b43b19c3a5d899415d37ed0b1813a446b990af44",
+      "probe": "editable --no-deps install, import provenai, then scripts/run_experiment.py --help",
+      "exit_code": 0,
+      "observed_terminal": "argparse exposes optional --question",
+      "interpretation": "Entrypoint syntax/import only; full dependencies/data/index/model execution CANNOT_CHECK."
+    },
+    "REWARD_HACKING_AGENTS_INSTALL": {
+      "repo": "Yonas650/RewardHackingAgents",
+      "repo_head": "9ea7cdc8dde6c89b1ea75e2ba86a61ffff72eb34",
+      "probe": "pip install --no-deps -e . then PYTHONPATH repo python -m rha.runner.grid_runner --help",
+      "exit_code": 1,
+      "observed_terminal": [
+        "setuptools refused multiple top-level packages rha and experiments",
+        "direct module invocation failed ModuleNotFoundError: yaml",
+        "requirements.txt omits PyYAML"
+      ],
+      "interpretation": "Current-head packaging/entrypoint failure on Python 3.14.6. This does not show scientific failure and may be environment-dependent."
+    },
+    "FIRE_ENTRYPOINT_AUDIT": {
+      "repo": "mbzuai-nlp/fire",
+      "repo_head": "cd7cb4af8dab00b1ab4bd78197a52e052203873d",
+      "probe": "Compare README quickstart with repository tree",
+      "exit_code": null,
+      "observed_terminal": "README names run_fire.py; file absent",
+      "interpretation": "CANNOT_CHECK runnable status at pinned head."
+    }
+  },
+  "source_snapshot_hashes": {
+    "REMOTE_REPOSITORY_METADATA_2026-08-23.json": "f92a7060a68d1af645ace65db387af62c2e83c304b6865aa1bdf215b390db125",
+    "PRIMARY_PAPER_METADATA_2026-08-23.json": "6220c201ae07bab43a0bcb4907f9765354b250b3077faa5f9d8ca95048499bf1"
+  }
+}

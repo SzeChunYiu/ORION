@@ -1,0 +1,159 @@
+{
+  "schema_version": "orion.p5.six-arm-terminal-preserving-adapter-protocol.v2",
+  "protocol_id": "P5.SIX_ARM.TERMINAL_PRESERVING.ADAPTERS.V2",
+  "paper_id": "P5",
+  "frozen_at_utc": "2026-08-23T15:42:15Z",
+  "status": "PROSPECTIVE_OUTCOME_BLIND_ADAPTER_AND_FIBRE_FIXTURE_FREEZE",
+  "authority": "SOURCE_INTERFACE_AND_SYNTHETIC_CONFORMANCE_ONLY__NO_PERFORMANCE_OR_PROTECTED_AUTHORITY",
+  "predecessor": {
+    "protocol_path": "work/lane-handoffs/p5-six-arm-comparator-panel/P5_OUTCOME_BLIND_COMPARATOR_AND_PUBLIC_PANEL_PROTOCOL_V1.json",
+    "protocol_sha256": "af7f0b4415c87fb1cfb6fa28db7872e38018563a7db9eea699d7c7b9138affbe",
+    "identity_ledger_path": "work/lane-handoffs/p5-six-arm-comparator-panel/P5_SIX_ARM_COMPARATOR_IDENTITY_LEDGER_V2.json",
+    "identity_ledger_sha256": "f6419103024de98d0cf44ee2681399007001eb79c9b830312d501b6045a60583",
+    "preserved_terminal": "P5_SIX_ARM_EXECUTION_CONFIG_RESOURCE_RIGHTS_AND_EIGHT_CLASS_ADAPTERS_CANNOT_CHECK",
+    "confirmatory_ready_arms": 0
+  },
+  "freeze_boundary": {
+    "native_output_examples_accessed_before_freeze": false,
+    "public_or_protected_outcome_rows_accessed": false,
+    "comparators_executed": false,
+    "performance_tables_used": false,
+    "fixture_source": "prospectively authored synthetic same-visible-symptom counterexamples only",
+    "no_outcome_adaptation": "Support sets, terminal rules, fixture identities and conformance logic may not be changed after any native example or outcome is opened."
+  },
+  "revision_classes": [
+    "EVIDENCE_REPAIR",
+    "MEASUREMENT_REPAIR",
+    "WITHIN_CLASS_MODEL_REPAIR",
+    "MODEL_CLASS_EXPANSION",
+    "REPRESENTATION_REGIME_REPAIR",
+    "EXECUTION_REPAIR",
+    "EVALUATOR_REPAIR",
+    "UNRESOLVED"
+  ],
+  "operational_class_certificates": {
+    "EVIDENCE_REPAIR": "Input-native certificate identifies missing, invalid or unauthorised evidential support; the complete proposed mutation is confined to a pre-frozen evidence/provenance surface.",
+    "MEASUREMENT_REPAIR": "Input-native certificate identifies a measurement or acquisition defect; the complete proposed mutation is confined to the pre-frozen measurement/instrument surface.",
+    "WITHIN_CLASS_MODEL_REPAIR": "The model family and representation are frozen; the proposal changes only a pre-frozen parameter, rule, prompt, component or implementation inside that family.",
+    "MODEL_CLASS_EXPANSION": "The proposal explicitly adds or replaces a hypothesis/model family and its complete mutation is confined to the pre-frozen model-family surface.",
+    "REPRESENTATION_REGIME_REPAIR": "The proposal changes the representation, schema, feature regime, vocabulary or coordinate system while leaving evidence custody and evaluator authority unchanged.",
+    "EXECUTION_REPAIR": "The scientific model, evidence, measurement and evaluator are frozen; the proposal changes only runtime, tooling, dependency or action execution.",
+    "EVALUATOR_REPAIR": "Input-native certificate identifies an evaluator/metric/gate defect; the candidate solver is byte-frozen and the proposal changes only the evaluator surface.",
+    "UNRESOLVED": "No unique supported class is identified, or a native failure/timeout/abstention/empty/partial/mixed terminal is preserved."
+  },
+  "fibre_theorem_contract": {
+    "native_observation_map": "For arm a, g_a maps a complete hidden task world to the complete adapter-visible native terminal and frozen input-native certificate record z.",
+    "class_map": "r maps the hidden task world to the minimal P5 revision class.",
+    "lawful_singleton_condition": "A deterministic adapter may emit class c only when every world in the fibre g_a^{-1}(z) has r(world)=c and c is in the arm's frozen support set.",
+    "mixed_fibre_rule": "If two admissible worlds share z but have different minimal revision classes, every singleton mapping is unsound; the only lawful P5 terminal is UNRESOLVED.",
+    "terminal_preservation_rule": "ERROR, TIMEOUT, ABSTAIN, EMPTY, PARTIAL, INVALID, unsupported class, multi-class certificate, multi-class write set, solver drift, or failed development validity gate maps to UNRESOLVED with the native terminal retained."
+  },
+  "arm_support_sets": {
+    "C1_FIXED_AGENT__SWE_AGENT": {
+      "conditionally_supported": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR",
+        "EVALUATOR_REPAIR"
+      ],
+      "condition": "A complete patch is accompanied by one host-validated input-native class certificate and its full write set lies in exactly that class's pre-frozen surface; the generic patch/success status alone is never sufficient."
+    },
+    "C2_DIRECT_SELF_EDIT__MOSS": {
+      "conditionally_supported": [
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR"
+      ],
+      "unsupported": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "EVALUATOR_REPAIR"
+      ],
+      "condition": "The isolated single-lineage successor mutation and complete write set uniquely determine one supported agent/scaffold class. Replay success, host swap or promotion alone is never sufficient."
+    },
+    "C3_ARCHIVE_BASED_SELF_EDIT__DGM": {
+      "conditionally_supported": [
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR"
+      ],
+      "unsupported": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "EVALUATOR_REPAIR"
+      ],
+      "condition": "The selected child mutation, not its archive score or parent rank, has a unique supported class certificate and single-class write set."
+    },
+    "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS": {
+      "conditionally_supported": [
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR"
+      ],
+      "unsupported": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "EVALUATOR_REPAIR"
+      ],
+      "condition": "A schema-valid typed revision plan and the actual complete mutation agree on one supported agent/scaffold class; free-text failure mode, profile status, score or generation rank alone is insufficient."
+    },
+    "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY": {
+      "conditionally_supported": [
+        "EVALUATOR_REPAIR"
+      ],
+      "unsupported": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR"
+      ],
+      "condition": "A pre-outcome input-native evaluator-defect certificate is present, solver bytes are unchanged, only evaluator bytes change, and development validity gates pass. CLEAN, DRAWBACK, ABSTAIN or locked agreement alone is insufficient."
+    },
+    "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW": {
+      "conditionally_supported": [],
+      "unsupported": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR",
+        "EVALUATOR_REPAIR"
+      ],
+      "condition": "Native typed artifacts, open needs, drafts and status mutations do not constitute a minimal P5 revision decision. An external scorer may evaluate them, but the adapter may not manufacture a class."
+    }
+  },
+  "adapter_rule_order": [
+    "Retain the exact arm identity and typed native terminal.",
+    "If native status is not COMPLETE_SUCCESS: emit UNRESOLVED.",
+    "If the arm has no native P5 decision support for the proposed class: emit UNRESOLVED.",
+    "Require exactly one host-validated input-native class certificate and exactly one complete write-surface class; they must agree.",
+    "Reject any mixed, unsupported, missing, empty or cross-class fibre as UNRESOLVED.",
+    "For Double Ratchet additionally require frozen solver bytes, evaluator-only mutation and a passed development validity gate.",
+    "Emit the unique supported class as a candidate terminal only; correctness, preservation and transfer remain external outcomes."
+  ],
+  "conformance_fixture_path": "P5_ADVERSARIAL_FIBRE_FIXTURES_V2.json",
+  "required_outputs": [
+    "protocol and per-arm adapter ledger",
+    "formal fibre theorem and counterexamples",
+    "bounded synthetic conformance receipt",
+    "recursive negative-result ledger",
+    "manuscript-ready text only if licensed and not applied",
+    "SHA256SUMS"
+  ],
+  "preserved_terminals": {
+    "confirmatory_ready": "0/6",
+    "execution": "P5_SIX_ARM_EXECUTION_CONFIG_RESOURCE_RIGHTS_AND_EIGHT_CLASS_ADAPTERS_CANNOT_CHECK",
+    "performance": "P5_COMPARATOR_PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK",
+    "H1_H4": "CANNOT_CHECK",
+    "protected_freshness": "CANNOT_CHECK"
+  }
+}

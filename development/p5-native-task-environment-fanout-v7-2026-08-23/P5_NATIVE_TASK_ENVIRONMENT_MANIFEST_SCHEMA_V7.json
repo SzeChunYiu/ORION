@@ -1,0 +1,57 @@
+{
+  "$id": "https://orion.invalid/p5/v7/native-task-environment-manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "arm_code": {
+      "enum": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ]
+    },
+    "arm_id": {
+      "enum": [
+        "C1_FIXED_AGENT__SWE_AGENT",
+        "C2_DIRECT_SELF_EDIT__MOSS",
+        "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+        "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+        "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+        "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW"
+      ]
+    },
+    "authority": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "case_id": {
+      "const": "P5-PUBLIC-LANG1-COMMON-001"
+    },
+    "schema_version": {
+      "const": "orion.p5.native-task-environment-manifest.v7"
+    },
+    "shared_core": {
+      "type": "object"
+    },
+    "status": {
+      "enum": [
+        "BOUND",
+        "BLOCKING"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "arm_code",
+    "arm_id",
+    "case_id",
+    "status",
+    "authority",
+    "shared_core"
+  ],
+  "title": "P5 V7 native task-environment manifest",
+  "type": "object"
+}

@@ -1,0 +1,147 @@
+{
+  "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+  "blocking_entries": [
+    {
+      "cause": "No independent scorer principal, immutable scorer digest, access-control identity or signed acceptance exists.",
+      "field_path": "custody.external_protected_scorer",
+      "next_discriminator": "Independent custodian supplies scorer identity, digest and access-control attestation without revealing protected bytes.",
+      "residual": "C5 confirmatory execution is not licensed.",
+      "state": "CANNOT_CHECK"
+    },
+    {
+      "cause": "The official runner reports its eval_locked value every round and at stdout; no independent one-shot handoff/no-return-channel receipt exists.",
+      "field_path": "custody.one_shot_no_feedback_barrier",
+      "next_discriminator": "Custodian signs one accepted artifact, one protected scoring event and no feedback path; verify the protected panel was never mounted during evolution.",
+      "residual": "The upstream eval_locked set may only be a development surrogate; final protected outcomes cannot enter this process.",
+      "state": "CANNOT_CHECK"
+    },
+    {
+      "cause": "No post-protocol protected panel identity, commitment or freshness attestation was available.",
+      "field_path": "custody.protected_panel_freshness",
+      "next_discriminator": "Freeze a fresh panel only after protocol and evaluator bytes are locked, under independent custody.",
+      "residual": "Fresh transfer, harm and performance remain CANNOT_CHECK.",
+      "state": "CANNOT_CHECK"
+    },
+    {
+      "cause": "The source contains no stored split or result payload. No rights-cleared P5 dossier, frozen solver-output set, development anchor or development-only locked surrogate is frozen.",
+      "field_path": "inputs.candidate_visible_case_bytes",
+      "next_discriminator": "Freeze one complete candidate-visible P5 development packet satisfying P5_C5_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json without any protected-final bytes.",
+      "residual": "The authored parser smoke is schema conformance only and licenses zero substantive P5 cases.",
+      "state": "UNBOUND"
+    },
+    {
+      "cause": "Repository labels do not freeze an immutable served model revision, cross-region route, exact endpoint/TLS identity, service revision, credential principal or allowed role/capability map; frozen solver outputs are also absent.",
+      "field_path": "model_provider.primary",
+      "next_discriminator": "Bind exact provider/service/model revisions and credentials, then generate solver outputs once and freeze their bytes before evaluator evolution.",
+      "residual": "C5 is not licensed for execution.",
+      "state": "UNBOUND"
+    },
+    {
+      "cause": "Dynamic detector, synthesis, teacher and solver calls have no aggregate call, input-token, output-token or USD hard stop; provider usage reconciliation and overshoot semantics are absent.",
+      "field_path": "resources.calls_tokens_usd",
+      "next_discriminator": "Instrument a provider-reconciled pre-call hard-stop monitor over every role and retry, with exact aggregate caps and typed exhaustion terminal.",
+      "residual": "A per-call output limit is not an aggregate resource binding.",
+      "state": "UNBOUND"
+    },
+    {
+      "cause": "Retry bytes are known, but the Bedrock route/DNS/TLS endpoint, offline dataset policy and deny-by-default egress network are not independently bound or enforced.",
+      "field_path": "resources.retry_network",
+      "next_discriminator": "Bind one provider endpoint and an attested egress network that denies Hugging Face/task fetch and every other destination.",
+      "residual": "C5 is not licensed for networked execution.",
+      "state": "UNBOUND"
+    },
+    {
+      "cause": "No content-addressed runtime image/SBOM/complete notices or authority for prompts, solver outputs, task traces, metric.db and result.json retention/publication is closed.",
+      "field_path": "rights.container_and_generated_artifacts",
+      "next_discriminator": "Build the full image, capture SBOM/licences and obtain explicit retention/disclosure authority for all generated artifacts.",
+      "residual": "C5 is not licensed for runtime artifact retention or redistribution.",
+      "state": "UNBOUND"
+    },
+    {
+      "cause": "No authorized Bedrock credential principal, study-use/data-retention terms, cross-region policy, pricing/quota receipt or publication permission is frozen.",
+      "field_path": "rights.model_provider_and_services",
+      "next_discriminator": "Bind provider terms, data policy, credential principal, region/route and aggregate-result publication rights.",
+      "residual": "Apache-2.0 source rights do not authorize model service use.",
+      "state": "UNBOUND"
+    },
+    {
+      "cause": "The repository explicitly excludes datasets/results. MBPP+/Hugging Face, P5 dossiers, development anchors and final protected panel have separate licences/terms not captured here.",
+      "field_path": "rights.task_and_benchmark_content",
+      "next_discriminator": "Use an authored or explicitly licensed P5 development packet plus an independently licensed protected panel and scorer.",
+      "residual": "No benchmark or P5 content is licensed by this packet.",
+      "state": "UNBOUND"
+    },
+    {
+      "cause": "No content-addressed Linux image containing Python 3.11, the exact lock, timeout tooling and source runtime has been built, SBOMed and smoke-verified.",
+      "field_path": "runtime.container_or_environment",
+      "next_discriminator": "Build once from the lock on the selected Linux architecture, capture image/SBOM digests and run only synthetic/native-shaped smoke.",
+      "residual": "The dependency lock and source bytes alone are not an executable environment.",
+      "state": "UNBOUND"
+    },
+    {
+      "cause": "The official entrypoint supports MBPP/report_gen, not the P5 dossier or eight-class decision. It regenerates hosted solver outputs at run time and uses eval_locked each round; no P5-native task adapter or frozen development-output environment exists.",
+      "field_path": "runtime.task_environment",
+      "next_discriminator": "Preregister and byte-freeze a P5-native evaluator-only adapter that consumes already frozen solver outputs, uses a development-only surrogate, and leaves the final protected panel external.",
+      "residual": "Silently formatting P5 as MBPP or exposing the final panel as eval_locked would change semantics and violate custody.",
+      "state": "UNBOUND"
+    }
+  ],
+  "blocking_field_count": 12,
+  "preserved_claims": {
+    "H1": "CANNOT_CHECK",
+    "H2": "CANNOT_CHECK",
+    "H3": "CANNOT_CHECK",
+    "H4": "CANNOT_CHECK",
+    "fresh_transfer": "CANNOT_CHECK",
+    "harm": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "preservation": "CANNOT_CHECK",
+    "superiority": "CANNOT_CHECK"
+  },
+  "schema_version": "orion.p5.c5.double-ratchet-negative-ledger.v4",
+  "scientific_defects": [
+    {
+      "cause": "solve_real_outputs calls the hosted agent for train, eval_dev and eval_locked during each run; source/model labels do not byte-freeze outputs.",
+      "id": "C5D1_SOLVER_OUTPUTS_REGENERATED",
+      "next_discriminator": "Freeze solver outputs before evolution and require their complete pre/post tree digest to match.",
+      "residual": "The supposed evaluator-only arm does not yet hold realized solver outputs fixed across attempts/arms.",
+      "state": "UNBOUND"
+    },
+    {
+      "cause": "evolve_metric_expr calls _report_locked each round, stores locked_report_agreement, writes final_locked_agreement and prints locked to stdout.",
+      "id": "C5D2_LOCKED_REPORTED_EACH_ROUND",
+      "next_discriminator": "Externally attest that native eval_locked is development-only and score the final evaluator once on a separate protected panel.",
+      "residual": "The final protected panel cannot be used as native eval_locked; only a candidate-visible development surrogate is admissible.",
+      "state": "CANNOT_CHECK"
+    },
+    {
+      "cause": "SUPPORTED_DATASETS is mbpp/report_gen and the native result exposes metric statistics, not a P5 one-of-eight responsibility decision.",
+      "id": "C5D3_NO_P5_NATIVE_DATASET_OR_CLASS",
+      "next_discriminator": "Preregister an evaluator-only P5 adapter and validate its fibres with synthetic/native-shaped cases only.",
+      "residual": "A P5 adapter is a separately named semantic bridge, not evidence that the released code natively solves P5.",
+      "state": "UNSUPPORTED"
+    },
+    {
+      "cause": "Authoritative tree has 0 stored split payload paths and 0 result payload paths.",
+      "id": "C5D4_SOURCE_HAS_NO_DATA_OR_RESULTS",
+      "next_discriminator": "Acquire separately licensed development content without opening any final protected outcome.",
+      "residual": "No task, result or performance claim can be reconstructed from source metadata.",
+      "state": "CANNOT_CHECK"
+    },
+    {
+      "cause": "README lists pydantic/pyyaml/boto3, while the default MBPP loader imports the Hugging Face datasets package at runtime.",
+      "id": "C5D5_README_DEPENDENCY_OMISSION",
+      "next_discriminator": "Build from the lock and preserve artifacts; amend only with explicit adapter identity.",
+      "residual": "V4 lock adds datasets explicitly; no claim is made that a future P5 adapter has no further dependencies.",
+      "state": "PRESERVED_REPAIRED_IN_V4_LOCK"
+    },
+    {
+      "cause": "Synthetic/native-shaped parser cases test mapping and refusal only.",
+      "id": "C5D6_METRIC_FIXTURES_NOT_PERFORMANCE",
+      "next_discriminator": "Use the independently custodied one-shot panel after 6/6 matched arm readiness.",
+      "residual": "They license zero raw singletons and say nothing about H1-H4, transfer, harm, preservation, performance or superiority.",
+      "state": "CANNOT_CHECK"
+    }
+  ],
+  "top_tier_publication_readiness": "NOT_ESTABLISHED"
+}

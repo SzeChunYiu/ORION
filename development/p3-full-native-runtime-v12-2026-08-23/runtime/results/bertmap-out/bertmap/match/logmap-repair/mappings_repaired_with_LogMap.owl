@@ -1,0 +1,574 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl#"
+     xml:base="http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl"
+     xmlns:mappings="http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl#entity1 -->
+
+    <owl:AnnotationProperty rdf:about="http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl#entity1"/>
+    
+
+
+    <!-- http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl#entity2 -->
+
+    <owl:AnnotationProperty rdf:about="http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl#entity2"/>
+    
+
+
+    <!-- http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl#measure -->
+
+    <owl:AnnotationProperty rdf:about="http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl#measure"/>
+    
+
+
+    <!-- http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl#relation -->
+
+    <owl:AnnotationProperty rdf:about="http://www.cs.ox.ac.uk/isg/projects/LogMap/mappings.owl#relation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class00 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class00">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class00"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class00"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class00"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class00</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class00</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class01 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class01">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class01"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class01"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class01"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class01</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class01</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class02 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class02">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class02"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class02"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class02"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class02</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class02</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class03 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class03">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class03"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class03"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class03"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class03</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class03</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class04 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class04">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class04"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class04"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class04"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class04</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class04</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class05 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class05">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class05"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class05"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class05"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class05</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class05</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class06 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class06">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class06"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class06"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class06"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class06</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class06</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class07 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class07">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class07"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class07"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class07"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class07</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class07</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class08 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class08">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class08"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class08"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class08"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class08</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class08</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class09 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class09">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class09"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class09"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class09"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class09</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class09</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class10 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class10">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class10"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class10"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class10"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class10</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class10</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class11 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class11">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class11"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class11"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class11"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class11</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class11</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class12 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class12">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class12"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class12"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class12"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class12</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class12</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class13 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class13">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class13"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class13"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class13"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class13</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class13</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class14 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class14">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class14"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class14"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class14"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class14</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class14</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class15 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class15">
+        <owl:equivalentClass rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class15"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class15"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class15"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class15</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class15</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class00 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class00"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class00"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class00"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class00</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class00</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class01 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class01"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class01"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class01"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class01</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class01</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class02 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class02"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class02"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class02"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class02</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class02</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class03 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class03"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class03"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class03"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class03</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class03</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class04 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class04"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class04"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class04"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class04</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class04</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class05 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class05"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class05"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class05"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class05</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class05</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class06 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class06"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class06"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class06"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class06</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class06</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class07 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class07"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class07"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class07"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class07</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class07</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class08 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class08"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class08"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class08"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class08</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class08</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class09 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class09"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class09"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class09"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class09</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class09</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class10 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class10"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class10"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class10"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class10</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class10</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class11 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class11"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class11"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class11"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class11</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class11</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class12 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class12"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class12"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class12"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class12</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class12</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class13 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class13"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class13"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class13"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class13</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class13</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class14 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class14"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class14"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class14"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class14</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class14</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+    
+
+
+    <!-- Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class15 -->
+
+    <owl:Class rdf:about="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class15"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class15"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#equivalentClass"/>
+        <owl:annotatedTarget rdf:resource="Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class15"/>
+        <entity1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class15</entity1>
+        <entity2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class15</entity2>
+        <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</measure>
+        <relation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">=</relation>
+    </owl:Axiom>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.1.3.20151118-2017) https://github.com/owlcs/owlapi -->
+

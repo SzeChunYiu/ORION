@@ -1,0 +1,118 @@
+{
+  "schema_version": "orion.p3.public-source-rights.v1",
+  "captured_at_utc": "2026-08-23T12:30:00Z",
+  "authority": "OFFICIAL_PROVIDER_METADATA_AND_PINNED_REPOSITORY_FILES__NOT_LEGAL_ADVICE",
+  "sources": [
+    {
+      "source_id": "CRAFT_SHARED_TASK_2019_ZENODO_3460908",
+      "donor_family": "CRAFT",
+      "canonical_record": "https://zenodo.org/records/3460908",
+      "metadata_api": "https://zenodo.org/api/records/3460908",
+      "doi": "10.5281/zenodo.3460908",
+      "title": "CRAFT 2019 Shared Task data",
+      "creators": ["Larry Hunter", "Bill Baumgartner", "Mike Bada"],
+      "publication_date": "2019-07-03",
+      "license_spdx_like": "CC-BY-NC-SA-3.0",
+      "license_provider_value": "cc-by-nc-sa-3.0",
+      "rights_terminal": "RESEARCH_USE_ALLOWED_SUBJECT_TO_ATTRIBUTION_NONCOMMERCIAL_AND_SHAREALIKE_CONDITIONS",
+      "required_conditions": [
+        "ATTRIBUTION_AND_DOI_CITATION",
+        "NONCOMMERCIAL_USE_ONLY",
+        "SHARE_ADAPTED_CORPUS_CONTENT_UNDER_COMPATIBLE_SHAREALIKE_TERMS",
+        "PRESERVE_PER_ARTICLE_PROVENANCE_AND_ANY_STRONGER_UPSTREAM_NOTICE"
+      ],
+      "files": [
+        {
+          "key": "CRAFT-3.1.3.tar.gz",
+          "role": "PUBLIC_TRAINING_INPUT_AND_ANNOTATION_PACKAGE",
+          "size": 138943683,
+          "checksum": "md5:c312c057d35d66e303897c8e9a0b814d",
+          "download_url": "https://zenodo.org/api/records/3460908/files/CRAFT-3.1.3.tar.gz/content"
+        },
+        {
+          "key": "craft-st-2019-2019_test_data.tar.gz",
+          "role": "PUBLIC_EVALUATION_INPUT_WITHOUT_EVALUATION_GOLD",
+          "size": 118228814,
+          "checksum": "md5:bc09eeeca8b2e9df8fb0f2fded26a267",
+          "download_url": "https://zenodo.org/api/records/3460908/files/craft-st-2019-2019_test_data.tar.gz/content"
+        },
+        {
+          "key": "evaluation-data.tar.gz",
+          "role": "PUBLIC_EVALUATION_GOLD__EVALUATOR_ONLY",
+          "size": 4219434,
+          "checksum": "md5:5aa8a6d59209e660d30d18f62e1467c8",
+          "download_url": "https://zenodo.org/api/records/3460908/files/evaluation-data.tar.gz/content"
+        }
+      ],
+      "scientific_use": "Biomedical full text, ontology concepts, coreference and separately packaged public evaluation gold.",
+      "authority_limits": [
+        "SINGLE_BIOMEDICAL_DOMAIN",
+        "PUBLIC_GOLD_NOT_PROTECTED_OR_FRESH",
+        "NO_NATIVE_REFERENT_CONSTRUCT_MEASUREMENT_TEMPORAL_ENVELOPE_LABEL",
+        "PER_ARTICLE_RIGHTS_AND_ATTRIBUTION_MUST_BE_PRESERVED"
+      ]
+    },
+    {
+      "source_id": "SCIREX_GITHUB_7DAAD660",
+      "donor_family": "SCIREX",
+      "canonical_record": "https://github.com/allenai/SciREX/tree/7daad660fe94f504433590b7a781cfabe1e179c6",
+      "repository": "allenai/SciREX",
+      "commit_sha": "7daad660fe94f504433590b7a781cfabe1e179c6",
+      "commit_date_utc": "2020-12-13T14:12:19Z",
+      "paper_citation": "Sarthak Jain, Madeleine van Zuylen, Hannaneh Hajishirzi, and Iz Beltagy. SciREX: A Challenge Dataset for Document-Level Information Extraction. ACL 2020. arXiv:2005.00512.",
+      "repository_license": "Apache-2.0",
+      "license_file_url": "https://raw.githubusercontent.com/allenai/SciREX/7daad660fe94f504433590b7a781cfabe1e179c6/LICENSE",
+      "license_file_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "readme_url": "https://raw.githubusercontent.com/allenai/SciREX/7daad660fe94f504433590b7a781cfabe1e179c6/README.md",
+      "readme_sha256": "4c2050b55e77a633a39846a447bfb8c962f90d102a2a8b667067eaf16802ef66",
+      "release": {
+        "path": "scirex_dataset/release_data.tar.gz",
+        "url": "https://raw.githubusercontent.com/allenai/SciREX/7daad660fe94f504433590b7a781cfabe1e179c6/scirex_dataset/release_data.tar.gz",
+        "content_length_header": 7318844,
+        "http_etag": "\"70621cebbc6268d8fa73292f7bbaea1774bbad2df21183ca2df7fc00ff161316\"",
+        "layout": ["train.jsonl", "dev.jsonl", "test.jsonl"]
+      },
+      "rights_terminal": "REPOSITORY_LICENSE_BOUND__UNDERLYING_ARTICLE_TEXT_RIGHTS_CANNOT_CHECK",
+      "default_adapter_policy": "METADATA_AND_SCHEMA_ONLY__DATA_BODY_DOWNLOAD_DISABLED_UNLESS_RIGHTS_OWNER_ACKNOWLEDGES_CONTENT_CLASS",
+      "scientific_use": "Document-level Method, Metric, Task, Material and Score entities, coreference and n-ary relations.",
+      "preserved_adverse_fact": "Pinned README states that approximately half of relations contain at least one entity with no retained paper mention because tables were discarded.",
+      "authority_limits": [
+        "PUBLIC_GOLD_NOT_PROTECTED_OR_FRESH",
+        "REPOSITORY_APACHE_LICENSE_DOES_NOT_BY_ITSELF_SETTLE_EVERY_UNDERLYING_ARTICLE_TEXT_BYTE",
+        "MISSING_TABLE_MENTIONS_MAKE_END_TO_END_RELATION_RECOVERY_PARTIALLY_UNOBSERVABLE",
+        "NO_NATIVE_P3_PORTRAIT_OR_DOWNSTREAM_LOSS_TERMINAL"
+      ]
+    },
+    {
+      "source_id": "OAEI_2004_ZENODO_15827226",
+      "donor_family": "OAEI",
+      "canonical_record": "https://zenodo.org/records/15827226",
+      "metadata_api": "https://zenodo.org/api/records/15827226",
+      "doi": "10.5281/zenodo.15827226",
+      "title": "OAEI 2004 (Ontology alignment contest) benchmark tests (oacontest17)",
+      "creator": "Jerome Euzenat",
+      "original_release_date": "2004-10-10",
+      "zenodo_conversion_note": "Converted from the OAEI website to a Zenodo dataset in July 2025.",
+      "license_spdx_like": "CC-BY-4.0",
+      "license_provider_value": "cc-by-4.0",
+      "rights_terminal": "USE_AND_REDISTRIBUTION_ALLOWED_WITH_ATTRIBUTION",
+      "required_conditions": ["ATTRIBUTION", "DOI_CITATION", "INDICATE_ADAPTATIONS"],
+      "files": [
+        {
+          "key": "oacontest17.zip",
+          "role": "PUBLIC_ONTOLOGY_INPUTS_AND_REFERENCE_ALIGNMENTS",
+          "size": 486043,
+          "checksum": "md5:31676c68912a22622f6ca6d031519df9",
+          "download_url": "https://zenodo.org/api/records/15827226/files/oacontest17.zip/content"
+        }
+      ],
+      "scientific_use": "Systematic bibliographic-ontology perturbations with separately named reference alignment files.",
+      "authority_limits": [
+        "ONE_SYNTHETIC_SEED_FAMILY__NUMBERED_TESTS_ARE_NOT_INDEPENDENT_NATURAL_UNITS",
+        "PUBLIC_REFERENCE_ALIGNMENTS_NOT_PROTECTED_OR_FRESH",
+        "CONTROL_PANEL_NOT_NATURALISTIC_MULTI_DOMAIN_RAW_TEXT"
+      ]
+    }
+  ],
+  "cross_source_terminal": "TWO_CONTENT_FAMILIES_LAWFULLY_DOWNLOADABLE_WITH_CONDITIONS__SCIREX_ARTICLE_TEXT_RIGHTS_CANNOT_CHECK__NO_PROTECTED_GOLD"
+}

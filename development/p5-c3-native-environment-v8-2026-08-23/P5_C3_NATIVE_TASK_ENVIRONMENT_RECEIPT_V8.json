@@ -1,0 +1,488 @@
+{
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "authority": "OUTCOME_BLIND_BYTE_LEVEL_C3_TASK_ENVIRONMENT_ONLY",
+  "candidate_seed": {
+    "excluded_payload_contents_opened": false,
+    "excluded_prefix_blob_bytes": 49707333,
+    "excluded_prefix_files": 1595,
+    "member_count": 69,
+    "members": [
+      {
+        "mode": "0o444",
+        "path": "candidate/control/P5_C3_CASE_ACTION_DOMAIN_V8.json",
+        "sha256": "cb8dceab72a7ba47c4c7c07341140ce83a7a42a4490602e7f7fda8ecf3f5ee31",
+        "size_bytes": 830
+      },
+      {
+        "mode": "0o444",
+        "path": "candidate/control/P5_C3_ENDPOINT_TOOL_WRITE_POLICY_V8.json",
+        "sha256": "deaee47820e3e05231a6f2e32f1a0afbec964cf904a8348ea3b5ad21079163ed",
+        "size_bytes": 1259
+      },
+      {
+        "mode": "0o444",
+        "path": "candidate/control/P5_C3_FIBRE_CONSTANCY_PROOF_V8.json",
+        "sha256": "c975b50a6f77b9183d3f95d6331b8f9dd32a0c1109288abd4f2c70c69c05ecc4",
+        "size_bytes": 748
+      },
+      {
+        "mode": "0o444",
+        "path": "candidate/control/P5_C3_INPUT_NATIVE_CERTIFICATE_V8.json",
+        "sha256": "460402c3925a083017d640872960ec9927dbbfce62e24fbe7f2cd62faf7de341",
+        "size_bytes": 1286
+      },
+      {
+        "mode": "0o444",
+        "path": "candidate/control/P5_C3_INVOCATION_ENVIRONMENT_V8.json",
+        "sha256": "ff86a90f01d4cba2416beab3ec0c468e0f0e5fd292809b70d0b0e78636879693",
+        "size_bytes": 1881
+      },
+      {
+        "mode": "0o444",
+        "path": "candidate/control/P5_C3_MUTABLE_IMMUTABLE_SPLIT_V8.json",
+        "sha256": "f1fead7d0e607ee30132e4c28f5634b0a96abfc17e0f2bb689e9e0a9febf6a4c",
+        "size_bytes": 1065
+      },
+      {
+        "mode": "0o444",
+        "path": "candidate/control/P5_C3_PROVENANCE_V8.json",
+        "sha256": "0dab3af51c73125ca92bc1f539a169d52ba493ac8d7f7ed6d483e873f624de36",
+        "size_bytes": 3291
+      },
+      {
+        "mode": "0o444",
+        "path": "candidate/control/P5_C3_RIGHTS_MANIFEST_V8.json",
+        "sha256": "a0b2382331ae122f4e57d3d3c9fed7c27e91753497585c33e6999fe710689359",
+        "size_bytes": 1634
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/.dockerignore",
+        "sha256": "bf639c018be52f903a84ebeb203e5dd3f62c88f924b0abb2463235eba9cc6162",
+        "size_bytes": 535
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/.gitattributes",
+        "sha256": "abcc87653d89bf205c633ff2e3e4b2a68532410e45b82e54a7420e6571d79c1e",
+        "size_bytes": 57
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/.gitignore",
+        "sha256": "362c1142069a58e76b9cd2cf8f30383027c1c9f6220926647feddcf2aa0caafa",
+        "size_bytes": 383
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/DGM_outer.py",
+        "sha256": "239bc76f0e1b78210b8f7b3757b1082f6ca07db3537d6af50a45bf97709795ed",
+        "size_bytes": 15699
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/Dockerfile",
+        "sha256": "55616682db154e7597b92f3406fa7bb240d91986d2f76581ba3f4a60941b6f7e",
+        "size_bytes": 527
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/LICENSE",
+        "sha256": "84b7504ce8dda1f37f592cdf67ad21371864583720d79ea289b0b0c75bfcdb17",
+        "size_bytes": 11361
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/README.md",
+        "sha256": "9760f30330e519946592ae88178f579dd717c3e55d3d461322e5facfa09c6bd4",
+        "size_bytes": 4232
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/analysis/plot_comparison.py",
+        "sha256": "20c7a28df19e5e9b21254160829b32eebfe2966e5b920135af7862d4762ae450",
+        "size_bytes": 5990
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/analysis/plot_progress.py",
+        "sha256": "c501a535055effd3f6d4f39c07151ffad9afec1f3c5295e4e298830ffa62b5b8",
+        "size_bytes": 4088
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/analysis/visualize_archive.py",
+        "sha256": "fc4178355a6f113060ce822b4619a543bfe6c770ea3629de9ec5178437eeda5d",
+        "size_bytes": 21393
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/coding_agent.py",
+        "sha256": "0fe9f4806fee18a481c9298a6d1ab6d754bb81666031598d86a9da2b632a5829",
+        "size_bytes": 7611
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/coding_agent_polyglot.py",
+        "sha256": "78eaea06c155f5bae6978e4668a0b54306b6c52d03678907a32b7e227c31e0cd",
+        "size_bytes": 6913
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/llm.py",
+        "sha256": "ca6ac22d7f128180de398cec48b9f5cc1f1f49f3bf1a8e935025588d8b09570d",
+        "size_bytes": 12702
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/llm_withtools.py",
+        "sha256": "b6fa4ee18ad8b42767f7cad68bf8ed7f7937dcfaf32b85757182979bdb895836",
+        "size_bytes": 17917
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/misc/conceptual.svg",
+        "sha256": "8e3ad907dd34a386be9e6b3a1da63f4223d72dac0df8bf5e5f528de18a01fef9",
+        "size_bytes": 914176
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/misc/overview.gif",
+        "sha256": "52863f6895553dd7f901be13686589bac33dbdeeb3fee5a6b86dd51a34be03ec",
+        "size_bytes": 2182207
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/benchmark.py",
+        "sha256": "b91823a5999c663847d4556049b66623144b625510bf1aa0416f66f83d0959ec",
+        "size_bytes": 32978
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/constants.py",
+        "sha256": "b7eeb9b5abe77aff08c476969902b7b3c777104f7b233bb171adf4d86f9ca67f",
+        "size_bytes": 2606
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/docker_build.py",
+        "sha256": "ad300c4d176c4409be554a1e6b2f1c02f48891fce41c31da698509579c0cb98e",
+        "size_bytes": 21059
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/docker_utils.py",
+        "sha256": "9f0d62ef345aa9a7b73508badd892a61e54dbce3cbad4c05354a5e9b66cd6fdc",
+        "size_bytes": 10375
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/dockerfiles.py",
+        "sha256": "29f3e26c2723722ab602a423b7a3c6e9d34e0deb0a5a4844b03917137f955d3e",
+        "size_bytes": 3085
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/harness.py",
+        "sha256": "15199d0ce36d17c74ae49510b538f7c790c5b03c5a0547fe41da152432ce7f06",
+        "size_bytes": 17726
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/prepare_polyglot_dataset.py",
+        "sha256": "f5f5103cbe762fc8f42933a086bab725c7f25178e8952dfde364c13b999563f7",
+        "size_bytes": 10598
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/run_evaluation.py",
+        "sha256": "c7e44170aa5b6b643b190d9757acdfee392c1c5b890b6dafd1081be2c997fcbd",
+        "size_bytes": 21557
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/subsets/medium.json",
+        "sha256": "11d06ac550fb0b15a2f855091308beffd918770a0ed4c4a64df6623652b1e0f3",
+        "size_bytes": 1188
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/subsets/small.json",
+        "sha256": "efb782a6260979f847c7cc5bb6af95f0bd1678aa7eb0cd075fdb663949efe2f9",
+        "size_bytes": 265
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/polyglot/test_spec.py",
+        "sha256": "f113789b55444c336cd3c82808524c7f26b84ee11393d44bb60a489ae2421743",
+        "size_bytes": 11402
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/prompts/diagnose_improvement_prompt.py",
+        "sha256": "eac772550ccac273162e2ce6ff43b81eec03743a321f9b30bc07fc941db2c6a4",
+        "size_bytes": 5542
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/prompts/self_improvement_prompt.py",
+        "sha256": "7d061402038e9ccbb120088ac849863e5880a657ad4a60122d93fdd180e908f2",
+        "size_bytes": 29740
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/prompts/testrepo_prompt.py",
+        "sha256": "d72f897bf6627a0eaa8f6037e2380ceb2cd3ddb71dd9f1a523b559a5bb21c8a1",
+        "size_bytes": 1929
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/prompts/tooluse_prompt.py",
+        "sha256": "79c23086fa7f7d5d5af5b5e7f3988b8bd13da224c8198787c1ff6db9439b066d",
+        "size_bytes": 994
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/pytest.ini",
+        "sha256": "b7a2cf657ccfcd49d5c111978f06d68a97f4389b0beefbbca57f7e296e724625",
+        "size_bytes": 371
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/requirements.txt",
+        "sha256": "4ef674aecea8fce1c1be6d663aab988dae61d5951bd296ab6250f5e2bc315aaf",
+        "size_bytes": 211
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/requirements_dev.txt",
+        "sha256": "58cfa97e21b89fad87009c8b2e41888558a1b5e09e11951519869822ccfe324f",
+        "size_bytes": 49
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/self_improve_step.py",
+        "sha256": "6f2ec364b11e7f6d35391ea66896fa2394cbca3bc59d68cf7352c2a77aa8cca7",
+        "size_bytes": 19726
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/swe_bench/harness.py",
+        "sha256": "2445479db7c7b0fa607dde5153dde2a85ce1fb3dd810bb088c81ab2f265c617a",
+        "size_bytes": 13042
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/swe_bench/report.py",
+        "sha256": "a86e6fa6f8826414c55f0742f115ab05bb35a9d733bc447fa2dcf3138a9d33d4",
+        "size_bytes": 5665
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/swe_bench/subsets/big.json",
+        "sha256": "76a8b81f0c044a64c928ab46312b5eb69c3728ab7d39c4fe6239a790797906cd",
+        "size_bytes": 3960
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/swe_bench/subsets/medium.json",
+        "sha256": "bf1cde9b2590f7813cc0cbb43a3ce0a9fccbdd163083891ff96b9abc82e4c06f",
+        "size_bytes": 1284
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/swe_bench/subsets/small.json",
+        "sha256": "b8909d87321bf7e9277e82baff8b2a739a3e1e76585ec512ae8ad4b6eef86591",
+        "size_bytes": 284
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/swe_bench/utils.py",
+        "sha256": "765c5c340426206c00f80641e57ddaf7eb17e61274304c9d6847e9a6166cb508",
+        "size_bytes": 8633
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/test_swebench.py",
+        "sha256": "c2f19f29e132cbecc5a68e94715604658a6b0ec4649d4968efc537c140ba40c6",
+        "size_bytes": 3025
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/tests/conftest.py",
+        "sha256": "c2b1b9ef868784b894d02f8f5b0ed34ac4d29cee719893beb5eb8bae6ad9b2e0",
+        "size_bytes": 144
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/tests/test_bash_tool.py",
+        "sha256": "837ad08e89aa7c227655d16896c564b1dbfa8414543440b8dfe4a88d9431413b",
+        "size_bytes": 2829
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/tests/test_edit_tool.py",
+        "sha256": "42245724b6e5470eacedc94b60ba03d5ccc8c75f645fcb24c6a3b376e1cdb654",
+        "size_bytes": 3139
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/tools/__init__.py",
+        "sha256": "20d623ac2d12119dc46527fdf099bb5c1329e0024ed27a413d2b929ca9888b86",
+        "size_bytes": 1103
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/tools/bash.py",
+        "sha256": "a11e7b40fe61b3105b88c4370bda1947a4f0f9cef0231a5f279ae917e0f21b02",
+        "size_bytes": 5601
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/tools/edit.py",
+        "sha256": "b53f7ae71c5bcda3de994f32a8553bead0f3fe46b250130adfd47ed40a2dec94",
+        "size_bytes": 6038
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/utils/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/utils/common_utils.py",
+        "sha256": "638400ea31f05424bd87f07b51bc7a516ef7929f7ddc0e45f1a8023a3eb851b9",
+        "size_bytes": 379
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/utils/docker_utils.py",
+        "sha256": "4f72795d21358299a2b3053e7798837a110a4a795fab8f064cdeaab759568552",
+        "size_bytes": 10315
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/utils/eval_utils.py",
+        "sha256": "5beaeaaa4e421e66aa7a6458882b34eeb781b5368bb5e15e492cb7e61292403d",
+        "size_bytes": 4031
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/utils/evo_utils.py",
+        "sha256": "0eb779270390f39aa0c4ff045ec9b6c3049736c6a008ae3d2e7a2df7ef253570",
+        "size_bytes": 5599
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/utils/git_utils.py",
+        "sha256": "b6d1a051ca7e663f221d5bc1c9154f33f380a80371ded6c8abfdbf23102004ea",
+        "size_bytes": 5268
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/dgm/utils/swe_log_parsers.py",
+        "sha256": "d1239b46864d9f4320ee6358b266113d009d1c55c706c00e29f910ed3cfa1aff",
+        "size_bytes": 10633
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/shared_core/APACHE-2.0-LICENSE.txt",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "size_bytes": 11358
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/shared_core/APACHE-NOTICE.txt",
+        "sha256": "3b1830189d4da56ebc6e43f32a96b92caa3392cdc0c5ba4af7c399f81696545d",
+        "size_bytes": 301
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/shared_core/CASE_BODY_V6.json",
+        "sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+        "size_bytes": 2799
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/shared_core/PACKET-CONTENT-CC0-1.0.txt",
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+        "size_bytes": 7048
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/shared_core/TASK_SPECIFICATION_V6.md",
+        "sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+        "size_bytes": 1070
+      },
+      {
+        "mode": "0o644",
+        "path": "candidate/shared_core/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+        "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+        "size_bytes": 681034
+      }
+    ],
+    "path": "P5_C3_CANDIDATE_SAFE_SEED_V8.tar.gz",
+    "sha256": "8d7197f581cad11695ae4c867ad8f941d86f7eeec8d0e8e4e7b79895d72b8f2d",
+    "size_bytes": 3503389
+  },
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "claims": {
+    "execution_readiness": "NOT_ESTABLISHED",
+    "performance": "CANNOT_CHECK",
+    "runtime_image": "CANNOT_CHECK",
+    "superiority": "CANNOT_CHECK"
+  },
+  "executions": {
+    "benchmark": 0,
+    "dgm": 0,
+    "model": 0,
+    "outcomes": 0,
+    "scorer": 0
+  },
+  "field": "runtime.task_environment",
+  "field_instances_closed": 0,
+  "finished_at": "2026-08-23T21:00:15.124297+00:00",
+  "gates": {
+    "endpoint_policy_bytes": true,
+    "exact_invocation_environment_bytes": true,
+    "exact_mutable_agent_immutable_host_split": true,
+    "excluded_outcome_prefixes_absent": true,
+    "input_native_certificate_committed_before_self_edit": true,
+    "native_dgm_can_initialize_from_candidate_safe_seed": false,
+    "shared_core_identity_unchanged": true,
+    "tool_policy_bytes": true,
+    "write_policy_bytes": true
+  },
+  "native_blocker_evidence": {
+    "line_ranges": [
+      [
+        15,
+        35
+      ],
+      [
+        50,
+        68
+      ]
+    ],
+    "path": "evidence/DGM_OUTER_INITIALIZATION_LINES_V8.txt",
+    "sha256": "5a1d46b8328d7215701fc20959080eddbde029bf2836f97ed9408e8f1ec7edec",
+    "source_path": "dgm/DGM_outer.py",
+    "source_sha256": "239bc76f0e1b78210b8f7b3757b1082f6ca07db3537d6af50a45bf97709795ed"
+  },
+  "next_discriminator": "A source-native DGM release must expose an outcome-free initial-state interface, or a separately named preregistered successor adapter must do so without fabricating prior performance fields; native C3 cannot be silently patched.",
+  "predecessor": {
+    "v4_field_registry_sha256": "7e9b8a3c75429dc004399181f4003c5baa966909a5b01ea3d579824784b1391b",
+    "v7_acceptance_sha256": "26f74b1482512e24e5cd719e73b7c9708d8503a5d2efe3ab9bde81643bf1b731",
+    "v7_manifest_sha256": "f8439c6b6bc7921034f573b4d89397dbb3ea024cfc2633f93d8b4c6c4de1c631"
+  },
+  "residual": "UNCHANGED_DGM_REQUIRES_EXCLUDED_INITIAL_OUTCOME_METADATA_TO_INITIALIZE",
+  "runtime_seconds": 0.122023,
+  "schema_version": "orion.p5.c3.native-task-environment-receipt.v8",
+  "source_receipt": {
+    "path": "P5_C3_FILTERED_DGM_SOURCE_RECEIPT_V8.json",
+    "sha256": "9ccd55ec0e2ac6128af600491057272b489bd166a61fb2c9251378ac54bd1299"
+  },
+  "started_at": "2026-08-23T21:00:15.003558+00:00",
+  "status": "BLOCKING"
+}

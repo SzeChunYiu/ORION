@@ -1,0 +1,366 @@
+{
+  "$id": "https://orion.invalid/p1/v8/r7-owner-approved-target-decision-algebra.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Prospective semantic authority needed to adjudicate the source-native adapter without case text or outcomes.",
+  "properties": {
+    "algebra_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "authority_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "may_adopt_promote_or_merge": {
+          "type": "boolean"
+        },
+        "may_execute_postpublication_action": {
+          "type": "boolean"
+        },
+        "may_infer_responsibility": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "may_infer_responsibility",
+        "may_execute_postpublication_action",
+        "may_adopt_promote_or_merge"
+      ],
+      "type": "object"
+    },
+    "closed_world": {
+      "const": true
+    },
+    "decision_probe_typing": {
+      "additionalProperties": false,
+      "properties": {
+        "decisions_are_terminals": {
+          "const": true
+        },
+        "diagnostic_actions_are_probes": {
+          "const": true
+        },
+        "one_to_one_bridge": {
+          "enum": [
+            "NONE",
+            "EXPLICIT_TABLE"
+          ]
+        }
+      },
+      "required": [
+        "decisions_are_terminals",
+        "diagnostic_actions_are_probes",
+        "one_to_one_bridge"
+      ],
+      "type": "object"
+    },
+    "ratification": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "delegation_basis": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "independent_semantic_reviewer": {
+          "additionalProperties": false,
+          "properties": {
+            "disposition": {
+              "enum": [
+                "CONFORMANT",
+                "NONCONFORMANT",
+                "CANNOT_CHECK"
+              ]
+            },
+            "identity": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "review_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "identity",
+            "review_sha256",
+            "disposition"
+          ],
+          "type": "object"
+        },
+        "key_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "ratified_at_utc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "signature": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "signature_scheme": {
+          "enum": [
+            "SIGSTORE",
+            "SSH",
+            "GPG"
+          ]
+        },
+        "vocabulary_owner_identity": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "vocabulary_owner_identity",
+        "delegation_basis",
+        "artifact_sha256",
+        "signature_scheme",
+        "key_id",
+        "signature",
+        "ratified_at_utc",
+        "independent_semantic_reviewer"
+      ],
+      "type": "object"
+    },
+    "rights": {
+      "additionalProperties": false,
+      "properties": {
+        "licence_text_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "public_archive_url": {
+          "pattern": "^https://",
+          "type": "string"
+        },
+        "reuse_licence_spdx": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "public_archive_url",
+        "reuse_licence_spdx",
+        "licence_text_sha256"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "orion.p1.r7.owner-approved-target-decision-algebra.v8"
+    },
+    "supersedes_or_extends": {
+      "additionalProperties": false,
+      "properties": {
+        "ard_protocol_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "public_commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "r7_protocol_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "public_commit",
+        "ard_protocol_sha256",
+        "r7_protocol_sha256"
+      ],
+      "type": "object"
+    },
+    "targets": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "decision_id": {
+            "enum": [
+              "KEEP_SEARCH",
+              "KEEP_COMPILE",
+              "KEEP_REPAIR",
+              "REVISE_MEASUREMENT",
+              "REFORMULATE_OBJECTIVE",
+              "REFORMULATE_BOUNDARY",
+              "UNRESOLVED"
+            ]
+          },
+          "diagnostic_probe_relations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "execution_authority": {
+            "enum": [
+              "NONE",
+              "EXTERNAL_OWNER_ONLY",
+              "SYSTEM"
+            ]
+          },
+          "exhaustive": {
+            "const": true
+          },
+          "forbidden_postpublication_operations": {
+            "items": {
+              "enum": [
+                "KEEP",
+                "REPAIR_METADATA_TYPOGRAPHY_ATTRIBUTION_FORMATTING_OR_REPORTING",
+                "REVISE_MEASUREMENT_OR_DATA",
+                "REVISE_METHOD_OR_ANALYSIS",
+                "WITHDRAW_OR_MATERIALLY_NARROW_CLAIM_OR_CONCLUSION",
+                "WITHDRAW_ARTIFACT",
+                "ABSTAIN"
+              ]
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "licensed_postpublication_operations": {
+            "items": {
+              "enum": [
+                "KEEP",
+                "REPAIR_METADATA_TYPOGRAPHY_ATTRIBUTION_FORMATTING_OR_REPORTING",
+                "REVISE_MEASUREMENT_OR_DATA",
+                "REVISE_METHOD_OR_ANALYSIS",
+                "WITHDRAW_OR_MATERIALLY_NARROW_CLAIM_OR_CONCLUSION",
+                "WITHDRAW_ARTIFACT",
+                "ABSTAIN"
+              ]
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "postpublication_coordinate": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "recommendation_authority": {
+            "enum": [
+              "NONE",
+              "ADVISORY",
+              "OWNER_RATIFIED"
+            ]
+          },
+          "scientific_process_coordinate": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sort": {
+            "enum": [
+              "SCIENTIFIC_PROCESS_DECISION",
+              "UNRESOLVED"
+            ]
+          }
+        },
+        "required": [
+          "decision_id",
+          "sort",
+          "scientific_process_coordinate",
+          "postpublication_coordinate",
+          "licensed_postpublication_operations",
+          "forbidden_postpublication_operations",
+          "recommendation_authority",
+          "execution_authority",
+          "diagnostic_probe_relations",
+          "exhaustive"
+        ],
+        "type": "object"
+      },
+      "maxItems": 7,
+      "minItems": 7,
+      "type": "array"
+    },
+    "terminal_behavior": {
+      "additionalProperties": false,
+      "properties": {
+        "abstention": {
+          "enum": [
+            "KEEP_SEARCH",
+            "KEEP_COMPILE",
+            "KEEP_REPAIR",
+            "REVISE_MEASUREMENT",
+            "REFORMULATE_OBJECTIVE",
+            "REFORMULATE_BOUNDARY",
+            "UNRESOLVED"
+          ]
+        },
+        "error": {
+          "enum": [
+            "KEEP_SEARCH",
+            "KEEP_COMPILE",
+            "KEEP_REPAIR",
+            "REVISE_MEASUREMENT",
+            "REFORMULATE_OBJECTIVE",
+            "REFORMULATE_BOUNDARY",
+            "UNRESOLVED"
+          ]
+        },
+        "malformed": {
+          "enum": [
+            "KEEP_SEARCH",
+            "KEEP_COMPILE",
+            "KEEP_REPAIR",
+            "REVISE_MEASUREMENT",
+            "REFORMULATE_OBJECTIVE",
+            "REFORMULATE_BOUNDARY",
+            "UNRESOLVED"
+          ]
+        },
+        "timeout": {
+          "enum": [
+            "KEEP_SEARCH",
+            "KEEP_COMPILE",
+            "KEEP_REPAIR",
+            "REVISE_MEASUREMENT",
+            "REFORMULATE_OBJECTIVE",
+            "REFORMULATE_BOUNDARY",
+            "UNRESOLVED"
+          ]
+        },
+        "unsupported": {
+          "enum": [
+            "KEEP_SEARCH",
+            "KEEP_COMPILE",
+            "KEEP_REPAIR",
+            "REVISE_MEASUREMENT",
+            "REFORMULATE_OBJECTIVE",
+            "REFORMULATE_BOUNDARY",
+            "UNRESOLVED"
+          ]
+        }
+      },
+      "required": [
+        "abstention",
+        "error",
+        "timeout",
+        "malformed",
+        "unsupported"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "algebra_id",
+    "supersedes_or_extends",
+    "closed_world",
+    "decision_probe_typing",
+    "targets",
+    "terminal_behavior",
+    "authority_boundary",
+    "rights",
+    "ratification"
+  ],
+  "title": "P1 V8 owner-approved R7 target decision algebra",
+  "type": "object"
+}

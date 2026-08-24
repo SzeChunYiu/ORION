@@ -1,0 +1,122 @@
+{
+  "attempt": {
+    "count": 1,
+    "gold_or_reference_opened": false,
+    "offline_guards": {
+      "HF_HUB_OFFLINE": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "TRANSFORMERS_OFFLINE": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "protected_outcome_opened": false,
+    "retries": 0,
+    "scientific_scoring": false,
+    "stdin_utf8": "2g\\n",
+    "timeout_seconds": 1800
+  },
+  "authority": "NO_GOLD_NATIVE_EXECUTION_ARTIFACT_AND_LEXICAL_INTERFACE_CONFORMANCE_ONLY__NO_CORRECTNESS_PERFORMANCE_HARM_COVERAGE_TRANSPORT_OR_SUPERIORITY_AUTHORITY",
+  "command": [
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/venv/bin/python",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/source/scripts/bertmap.py",
+    "-s",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/inputs/source.owl",
+    "-t",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/inputs/target.owl",
+    "-c",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/config.yaml"
+  ],
+  "frozen_inputs": {
+    "config": {
+      "logical_identity": "V9 exact values with V12-local model/output paths",
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/config.yaml",
+      "sha256": "e6e1b3789f4f14bf26588aec2417bd03a96df18bb93141a5c683818ecd807cb7"
+    },
+    "parser": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/bertmap_native_parser_v7.py",
+      "sha256": "d1184dc129082bdcf18b415b551f244a695b4e34417286afc37a3f3a5d788bc5"
+    },
+    "source_ontology": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/inputs/source.owl",
+      "sha256": "c347f32626f6c5b3b782b2f6344bca5ac2282a701161d11f1e02a7422fef4d9e"
+    },
+    "target_ontology": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/inputs/target.owl",
+      "sha256": "16bd34ec22c3d130b94257404fd60a112a3383d16255a67472e0c5e1518c5521"
+    },
+    "universe_manifest": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/UNIVERSE_MANIFEST_V12.json",
+      "sha256": "4bc0ff4c5c4afd18baff0d5cee3d6566e79fed681157211569d20af0e0d02de2"
+    }
+  },
+  "frozen_runtime": {
+    "entrypoint_sha256": "3ccebf6723c8372afc5c8b1a2fdfbe6646217051a3327a5ec1e47098dd3b5de9",
+    "installed_file_utils_sha256": "18a620f823770260acfe35029e406d34f0e0ef73cc74196a23c40e04fe5a2985",
+    "installed_logmap_main_jar_sha256": "e0b217156ffece911c472cc2cb2b25e7948b3c46801037e0161c3a752332d6a3",
+    "installed_logmap_manifest_classpath": "90/90 exact V11 hashes",
+    "installed_mapping_sha256": "d0b3b6cfdee45019783707c4bd623cc76f8325142828cf1e10ebb74ad628d70f",
+    "java": {
+      "binary": "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin/java",
+      "binary_sha256": "7db0dd5c0c4dc931244875d0723783a32cc7912922e6aaac1dbb744bf8ae837f",
+      "version": "17.0.19"
+    },
+    "model_manifest_sha256": "0c4472f9124b4f258d5aba008bc06d62862ae259de0d5c972e34d4371395130e",
+    "model_weight_sha256": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719",
+    "python": {
+      "base_binary_sha256": "0fc554036de7d5405d70defcf548204acb3fb829c6b2e55137efdc3ac1c24c67",
+      "expected_distributions": 126,
+      "full_requirements_sha256": "b3b2f366692f283b154a42238e465ab939268092bbdbf2accca465d081b53790",
+      "version": "3.10.20"
+    },
+    "source_archive_sha256": "240f8f45103bb512440b07a53544ba40173b7037abba120104e18d1ddca0ec45",
+    "source_preflight_sha256": "4edbdbac0eaa59f776694db5f5c72c93d98d94326d5481bc0d7399e1accf21ca",
+    "v12_runtime_patch_sha256": "f7c327deae806eb3c598f5236a5191a2b778f88e0a65c770f67c1056ef26957f",
+    "v8_table_patch_sha256": "412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b"
+  },
+  "lineage": {
+    "v11_closure_preflight_sha256": "15f178b91595d6f17da79a1fd234be7a66f58a1cdec82d5af18a376bc2ca086c",
+    "v11_receipt_sha256": "1282d4f6e1d7bc6a0e2a5a400d394b11c73856b37f94bf2cb92b39a32958015c",
+    "v11_terminal": "P3_V11_EXACT_V9_CLASSPATH_90_OF_90_PASS__JAVA17_ADD_OPENS_REPAIR_MICROGATE_PASS__DIRECT_CHILD_EXIT_ZERO__REGULAR_REPAIRED_MAPPING_OUTPUT_PRESENT__NO_RETRY__FULL_NATIVE_SUCCESSOR_AUTHORIZED",
+    "v9_protocol_sha256": "7e5eac0b04988cf936a9517043e63f8599866d215e1c5b3537fb47271d87f2e8",
+    "v9_result_sha256": "c4d6e29213c5eca07205c6a92f1d8ca228f3c4b1479c10d64a0ee64b78f2f906",
+    "v9_runtime_rights_gate_sha256": "1c92df931ee57e6d743484461c43e8d26c8d2e0773eb834be05a4133264a602a"
+  },
+  "protocol_id": "P3_V12_EXACT_V9_V11_FULL_NATIVE_NO_GOLD_SINGLE_ATTEMPT",
+  "schema_version": "orion.p3.full-native-runtime.protocol.v12",
+  "separate_lexical_audit": {
+    "checks": [
+      "final repaired source strings are exact frozen source IRIs",
+      "final repaired target strings are exact frozen target IRIs",
+      "raw LogMap TSV rows equal final repaired rows without normalization",
+      "count Optional.of wrappers in both fields"
+    ],
+    "normalization_forbidden": true,
+    "parser": "unchanged V7 structural parser; failure is retained, never repaired post-result"
+  },
+  "source_changes": {
+    "exact_v8_table_reader_repair": "dp[\"Score\"] -> dp.Score",
+    "other_source_changes_forbidden": true,
+    "v12_runtime_adapter": [
+      "insert only --add-opens=java.base/java.lang=ALL-UNNAMED before -jar",
+      "print exact effective command",
+      "print direct child exit",
+      "raise CalledProcessError on nonzero"
+    ]
+  },
+  "success_gate": {
+    "direct_logmap_child_exit_codes": [
+      0
+    ],
+    "native_exit_code": 0,
+    "required_regular_non_symlink_artifacts": [
+      "raw_mappings.json",
+      "raw_mappings.tsv",
+      "extended_mappings.tsv",
+      "filtered_mappings.tsv",
+      "repaired_mappings.tsv"
+    ],
+    "retries_used": 0
+  }
+}

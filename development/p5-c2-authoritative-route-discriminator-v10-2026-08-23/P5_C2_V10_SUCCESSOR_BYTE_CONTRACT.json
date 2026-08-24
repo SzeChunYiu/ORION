@@ -1,0 +1,40 @@
+{
+  "authority": "PROSPECTIVE_SUCCESSOR_ACCEPTANCE_CONTRACT_ONLY__NOT_RELEASED_MOSS_EVIDENCE",
+  "field_target": "runtime.task_environment",
+  "forbidden_keys_recursive": [
+    "protected_score",
+    "gold_patch",
+    "gold",
+    "hidden_panel_id",
+    "expected_patch",
+    "scorer_feedback"
+  ],
+  "required_byte_classes": [
+    {
+      "id": "session",
+      "requirement": "one authored or explicitly licensed FlagSnapshot/session with complete chunk hashes and no outcome-selected content"
+    },
+    {
+      "id": "source_mount",
+      "requirement": "the V6 LANG-1 archive mounted read-only, with an ephemeral copy/overlay exposing only NumberUtils.java as writable"
+    },
+    {
+      "id": "pre_action_certificate",
+      "requirement": "a host-issued input-native V3 certificate before candidate action; synthetic-domain proof must not be relabelled as a natural-case proof"
+    },
+    {
+      "id": "public_evaluator",
+      "requirement": "closed public-development evaluator implementation and setup bytes, held outside the candidate write surface"
+    },
+    {
+      "id": "write_reset_policy",
+      "requirement": "complete allowed/forbidden roots, before/after digests, and per-attempt destruction/reset bytes"
+    },
+    {
+      "id": "route_adapter",
+      "requirement": "a separately named content-addressed adapter that actually forwards/mounts the preceding bytes; no silent claim that it is released MOSS"
+    }
+  ],
+  "schema_version": "orion.p5.c2.successor-byte-contract.v10",
+  "successor_identity_requirement": "Distinct method identity from C2_DIRECT_SELF_EDIT__MOSS at commit 5453f1f unless upstream publishes the exact companion and rights."
+}

@@ -1,0 +1,54 @@
+{
+  "algebra_binding": {
+    "final_v8_instance_rule": "The final V8 instance equals the ratifiable payload plus a ratification object. ratification.artifact_sha256 is the ratifiable-payload SHA-256, not the final-envelope SHA-256. ratification.signature is the owner/delegate signature over the ALGEBRA_PAYLOAD domain message. The completed final V8 envelope is hashed separately and receives a detached ALGEBRA_ENVELOPE signature.",
+    "ratifiable_payload_excludes_top_level_keys": [
+      "ratification"
+    ],
+    "ratifiable_payload_includes_top_level_keys": [
+      "schema_version",
+      "algebra_id",
+      "supersedes_or_extends",
+      "closed_world",
+      "decision_probe_typing",
+      "targets",
+      "terminal_behavior",
+      "authority_boundary",
+      "rights"
+    ],
+    "review_binding": "The reviewer reviews and signs the exact ALGEBRA_PAYLOAD SHA-256. The final V8 ratification.independent_semantic_reviewer.review_sha256 equals the REVIEW payload SHA-256."
+  },
+  "canonicalization": {
+    "algorithm": "RFC8785_JSON_CANONICALIZATION_SCHEME",
+    "hash": "SHA-256",
+    "payload_rule": "Hash only the object under the exact payload key named by record_types; exclude payload_sha256 and signature wrapper fields.",
+    "unicode": "RFC8785 JCS UTF-8",
+    "unsupported_values": [
+      "NaN",
+      "Infinity",
+      "negative zero",
+      "duplicate object keys"
+    ]
+  },
+  "domain_message": {
+    "encoding": "UTF-8",
+    "exact_format": "ORION-P1-V13/{record_type}/SHA256\\n{64_lowercase_hex_payload_sha256}\\n"
+  },
+  "record_types": {
+    "ACCEPTANCE": "acceptance_payload",
+    "ALGEBRA_ENVELOPE": "completed final V8 envelope bytes after RFC8785 JCS canonicalization",
+    "ALGEBRA_PAYLOAD": "ratifiable_algebra_payload",
+    "CUSTODY_STAGE_A": "stage_a_receipt_payload",
+    "CUSTODY_STAGE_B": "stage_b_receipt_payload",
+    "DELEGATION": "delegation_payload",
+    "HOST_AUTHORITY": "host_authority_payload",
+    "INDEPENDENT_REVIEW": "review_payload",
+    "RIGHTS_GRANT": "rights_grant_payload"
+  },
+  "schema_version": "orion.p1.owner-custody-positive-successor.signing-canonicalization.v13",
+  "signature_schemes": [
+    "GPG",
+    "SSH",
+    "SIGSTORE"
+  ],
+  "status": "IMMUTABLE_SIGNING_DOMAIN_SPECIFICATION"
+}

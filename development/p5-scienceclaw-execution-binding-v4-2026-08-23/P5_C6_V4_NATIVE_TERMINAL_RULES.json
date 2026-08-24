@@ -1,0 +1,24 @@
+{
+  "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+  "draft_or_process_success_is_p5_selector": false,
+  "raw_native_singleton_licences": 0,
+  "rules": [
+    {
+      "adapter_terminal": "UNRESOLVED",
+      "condition": "valid strict native dry-run draft shape with no prohibited key",
+      "native_terminal": "NATIVE_DRY_RUN_DRAFT_RECORDED"
+    },
+    {
+      "adapter_terminal": "NO_OUTPUT",
+      "condition": "protected/gold/hidden/holdout/final-test key family present",
+      "native_terminal": "INPUT_REFUSED"
+    },
+    {
+      "adapter_terminal": "NO_OUTPUT",
+      "condition": "invalid JSON, wrong shape or missing nonempty candidate-visible fields",
+      "native_terminal": "INPUT_REFUSED"
+    }
+  ],
+  "schema_version": "orion.p5.c6.native-terminal-rules.v4",
+  "successor_rule": "Any ScienceClaw revision-proposal selector is a separately named material successor, not this native adapter."
+}

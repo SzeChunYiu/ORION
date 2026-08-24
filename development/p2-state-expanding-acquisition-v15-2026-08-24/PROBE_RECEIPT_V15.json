@@ -1,0 +1,171 @@
+{
+  "actions": {
+    "attestation_json_parses": 1,
+    "class_counts_inspected_or_retained": false,
+    "commit_json_parses": 1,
+    "index_json_parses": 0,
+    "index_json_requests": 0,
+    "label_values_inspected_or_retained": false,
+    "learner_or_model_runs": 0,
+    "license_json_parses": 1,
+    "network_requests": 7,
+    "pytest_or_repository_ci_runs": 0,
+    "ranking_or_metric_runs": 0,
+    "release_json_parses": 1,
+    "repository_json_parses": 1,
+    "review_csv_requests": 0,
+    "review_population_censuses": 0,
+    "tag_json_parses": 1,
+    "tree_json_parses": 1
+  },
+  "finished_at_utc": "2026-08-24T06:50:33.154782+00:00",
+  "protocol_sha256": "a492bf47620651b35542b64ac9bc1da115ef793d0998e14a3fa43ab98f64c29c",
+  "request_count": 7,
+  "requests": [
+    {
+      "body_bytes": 1923,
+      "body_path": "evidence/github_commit.body",
+      "body_sha256": "0c08e32780a89218cd0003520703787c78a1eef7a3d1c19b5f66d675db7f0082",
+      "error": null,
+      "final_url": "https://api.github.com/repos/asreview/synergy-dataset/git/commits/38b35218e4d0f99621cec5a8a25a0147bb88c654",
+      "finished_at": "2026-08-24T06:50:30.961793+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"c1265c229de7f4a65ed6a42b977fb88366143a77d7122352dfc7e32d75c8aa6d\"",
+        "last-modified": "Mon, 03 Oct 2022 08:23:46 GMT",
+        "x-github-request-id": "C0EA:22A799:5D0308:709569:6A8BE9B6",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "35",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_commit",
+      "started_at": "2026-08-24T06:50:30.609846+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/asreview/synergy-dataset/git/commits/38b35218e4d0f99621cec5a8a25a0147bb88c654"
+    },
+    {
+      "body_bytes": 43637,
+      "body_path": "evidence/github_recursive_tree.body",
+      "body_sha256": "11f2e58313b7010b16ad64ae464ebbac13d25d8cdfecfc896289301ba6898609",
+      "error": null,
+      "final_url": "https://api.github.com/repos/asreview/synergy-dataset/git/trees/49f437c367cc45a90867418fcef77c9ff3614456?recursive=1",
+      "finished_at": "2026-08-24T06:50:31.345206+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"78eb1410bea2b71aa46e2d76b81ee9819f91bb9ce8de4b6818da7e2ce11997c9\"",
+        "last-modified": "Thu, 02 Jul 2026 03:22:36 GMT",
+        "x-github-request-id": "C0EB:3EAB34:5E5C96:71F1ED:6A8BE9B7",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "34",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_recursive_tree",
+      "started_at": "2026-08-24T06:50:30.961970+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/asreview/synergy-dataset/git/trees/49f437c367cc45a90867418fcef77c9ff3614456?recursive=1"
+    },
+    {
+      "body_bytes": 2578,
+      "body_path": "evidence/github_license.body",
+      "body_sha256": "620d3a8666b0c05e308b541f1a8125c07fa9213f0888dee50409a6a0c8ca0393",
+      "error": null,
+      "final_url": "https://api.github.com/repos/asreview/synergy-dataset/license?ref=38b35218e4d0f99621cec5a8a25a0147bb88c654",
+      "finished_at": "2026-08-24T06:50:31.799080+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"936394cfc8b8339b6dbc5bdbd0787471c7072e826eadcc5d816226bb665d3d32\"",
+        "last-modified": "Mon, 03 Oct 2022 08:23:46 GMT",
+        "x-github-request-id": "C0EC:FC696:61C7D7:755B8A:6A8BE9B7",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "33",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_license",
+      "started_at": "2026-08-24T06:50:31.345572+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/asreview/synergy-dataset/license?ref=38b35218e4d0f99621cec5a8a25a0147bb88c654"
+    },
+    {
+      "body_bytes": 6736,
+      "body_path": "evidence/github_repository.body",
+      "body_sha256": "b293ef24747d9998dfc43942f26129509fb53b85743435f13ee784393b807c86",
+      "error": null,
+      "final_url": "https://api.github.com/repos/asreview/synergy-dataset",
+      "finished_at": "2026-08-24T06:50:32.086579+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"b2575be5fe8c584af8eac8ac021c3faf30ef932b30be9b539924012daf2d6b5c\"",
+        "last-modified": "Thu, 02 Jul 2026 03:22:36 GMT",
+        "x-github-request-id": "C0EE:B6A4A:5D4D45:70DF26:6A8BE9B7",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "32",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_repository",
+      "started_at": "2026-08-24T06:50:31.799241+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/asreview/synergy-dataset"
+    },
+    {
+      "body_bytes": 1781,
+      "body_path": "evidence/github_releases.body",
+      "body_sha256": "0e64143bc81b3d1515f7bd0aac9d98e633e8c853bcb0ba8ecde99dc478216a50",
+      "error": null,
+      "final_url": "https://api.github.com/repos/asreview/synergy-dataset/releases?per_page=100",
+      "finished_at": "2026-08-24T06:50:32.403972+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"cdbbc027ee74ae318420636665b1b67e7cf559fe7c117c702c80e2d971bae50c\"",
+        "x-github-request-id": "C0F0:2D4EC9:6915DF:7CA9BA:6A8BE9B8",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "31",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_releases",
+      "started_at": "2026-08-24T06:50:32.086901+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/asreview/synergy-dataset/releases?per_page=100"
+    },
+    {
+      "body_bytes": 1107,
+      "body_path": "evidence/github_tag_refs.body",
+      "body_sha256": "5a844ed4445253f779295d93728f12ccd1ceb6b140dde3b05988e0b76b897597",
+      "error": null,
+      "final_url": "https://api.github.com/repos/asreview/synergy-dataset/git/matching-refs/tags/",
+      "finished_at": "2026-08-24T06:50:32.802379+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"02a8f3c7dc337cd829e9b3e509cf41ce7f14d266b92f087b6c87fe218dd0ec3c\"",
+        "last-modified": "Thu, 02 Jul 2026 03:22:36 GMT",
+        "x-github-request-id": "C0F3:195FE6:608F3A:742372:6A8BE9B8",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "30",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_tag_refs",
+      "started_at": "2026-08-24T06:50:32.404180+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/asreview/synergy-dataset/git/matching-refs/tags/"
+    },
+    {
+      "body_bytes": 126,
+      "body_path": "evidence/github_index_attestation.body",
+      "body_sha256": "8ecae33333826db91507fbc9512eabf6e8e7c9be3c43f6681ca70bff4c028a6d",
+      "error": "HTTPError: 404 Not Found",
+      "final_url": "https://api.github.com/repos/asreview/synergy-dataset/attestations/sha256:f34c17b3dca9d609585e5fcc9d24c5433d4ad240ef91e5c2e9a48edee1e0959a",
+      "finished_at": "2026-08-24T06:50:33.154095+00:00",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "x-github-request-id": "C0F6:10F375:5FCBBD:735D13:6A8BE9B8",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": "29",
+        "x-ratelimit-reset": "1787555403"
+      },
+      "name": "github_index_attestation",
+      "started_at": "2026-08-24T06:50:32.802548+00:00",
+      "status": 404,
+      "url": "https://api.github.com/repos/asreview/synergy-dataset/attestations/sha256:f34c17b3dca9d609585e5fcc9d24c5433d4ad240ef91e5c2e9a48edee1e0959a"
+    }
+  ],
+  "schema_version": "orion.p2.state-expanding-acquisition.v15.probe-receipt"
+}

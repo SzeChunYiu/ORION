@@ -1,0 +1,81 @@
+{
+  "schema_version": "orion.p2.openalex-public-successor.v2",
+  "paper_id": "P2",
+  "status": "FROZEN_AFTER_V1_INTERFACE_DIAGNOSIS_BEFORE_V2_PROVIDER_EXECUTION",
+  "date": "2026-08-23",
+  "claim_scope": "PUBLIC_PROVIDER_DEVELOPMENT_EVIDENCE_ONLY",
+  "successor_of": "orion.p2.openalex-public-successor.v1",
+  "material_change": [
+    "Q0 uses a 180-character word-boundary prefix accepted by the provider",
+    "arXiv identity is read from ids.arxiv or the DataCite DOI alias 10.48550/arXiv.<id>"
+  ],
+  "immutable_v1_receipts": {
+    "result_sha256": "b4d080816e0cda5a2834ddece3f80dcf5dd3c6ffe1ac34a7a28b931c492aa6ee",
+    "trace_sha256": "10ffd34a8b3de5e3b9e45b0e309bf451ff201c2dd0c5d1837e70504959d684cd",
+    "candidate_sha256": "6532b08d4cdcc17ea66d21837bd49f72b3cde5c2fd12ea68afbd340e0d002c6e"
+  },
+  "benchmark": {
+    "dataset": "Lk123/AutoResearchBench",
+    "huggingface_commit": "dbb4b19d3e1487d14b31a020c2265b6995e07b5e",
+    "obfuscated_sha256": "e8d00086dc05bae823d75bf0776a9df5f8bcab59e0d683ea6479ac9e40db631d",
+    "decrypted_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6",
+    "upstream_code": "CherYou/AutoResearchBench@a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "licence_as_declared_by_dataset_card": "Apache-2.0",
+    "decrypted_bytes_redistributed": false
+  },
+  "provider": {
+    "name": "OpenAlex",
+    "endpoint": "https://api.openalex.org/works",
+    "credential_required": false,
+    "per_page": 20,
+    "minimum_inter_request_seconds": 1.1,
+    "maximum_attempts_per_call": 3,
+    "retry_statuses": [429, 500, 502, 503, 504],
+    "selected_fields": ["id", "ids", "doi", "title", "publication_year"]
+  },
+  "task_selection": {
+    "source": "papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV3_FREEZE_2026-08-18.json",
+    "order": "frozen_order",
+    "task_ids": [
+      "arb-wide-0054", "arb-wide-0055", "arb-wide-0111", "arb-wide-0117",
+      "arb-wide-0120", "arb-wide-0128", "arb-wide-0142", "arb-wide-0157",
+      "arb-wide-0172", "arb-wide-0178", "arb-wide-0230", "arb-wide-0253",
+      "arb-wide-0260", "arb-wide-0288", "arb-wide-0307", "arb-wide-0313",
+      "arb-wide-0315", "arb-wide-0318", "arb-wide-0319", "arb-wide-0339",
+      "arb-wide-0342", "arb-wide-0367", "arb-wide-0393", "arb-wide-0398"
+    ]
+  },
+  "queries": [
+    {"query_id": "Q0_SAFE_RAW", "rule": "first complete-word prefix of whitespace-normalized public question not exceeding 180 characters"},
+    {"query_id": "Q1_CURRENT", "rule": "arb_runtime.derive_current_vocabulary_query(limit=6)"},
+    {"query_id": "Q2_VARIANT", "rule": "arb_runtime.derive_lexical_variant_query(limit=8)"}
+  ],
+  "identity_bridge": "ids.arxiv, else normalized DOI prefix 10.48550/arxiv.",
+  "arms": {
+    "B0_RAW": "first 20 unique arXiv identities in Q0_SAFE_RAW provider order",
+    "B1_CURRENT": "first 20 unique arXiv identities in Q1_CURRENT provider order",
+    "S1_RRF3": "top 20 unique arXiv identities by sum_q 1/(60+rank_q), tie-broken by first-seen query then rank then identity"
+  },
+  "statistics": {
+    "primary_metric": "mean per-task official arXiv-id recall at candidate cap 20",
+    "secondary_metrics": ["tasks_with_any_gold_hit", "mean IoU", "mean precision"],
+    "paired_bootstrap_resamples": 10000,
+    "paired_bootstrap_seed": 20260823,
+    "sign_test": "exact two-sided, ties removed"
+  },
+  "gates": {
+    "G1_TRANSPORT": "all 72 frozen provider calls return HTTP 200 and valid JSON",
+    "G2_EMISSION": "S1_RRF3 has any gold hit on at least 12 of 24 tasks and mean recall >= 0.20",
+    "G3_FUSION": "S1_RRF3 mean recall gain over max(B0_RAW,B1_CURRENT) >= 0.05 and paired bootstrap 95% lower bound versus that arm > 0",
+    "G4_NO_PRECISION_COLLAPSE": "S1_RRF3 mean precision >= max(B0_RAW,B1_CURRENT) mean precision - 0.02"
+  },
+  "positive_terminal": "P2_OPENALEX_PUBLIC_POOL_FUSION_SUPPORTED_DEVELOPMENT_ONLY",
+  "negative_successor_terminal": "P2_OPENALEX_PUBLIC_POOL_FUSION_REQUIRES_NEW_ROUTE_OR_RANKER",
+  "cannot_check_terminal": "P2_OPENALEX_PUBLIC_POOL_FUSION_CANNOT_CHECK_TRANSPORT_OR_BINDING",
+  "forbidden_claims": [
+    "ORION acquisition-policy superiority",
+    "confirmatory or independently custodied evidence",
+    "deployed open-world superiority",
+    "generality beyond the frozen 24-task development subset"
+  ]
+}

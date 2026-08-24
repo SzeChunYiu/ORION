@@ -1,0 +1,27 @@
+{
+  "authority": "UNSIGNED_EXTERNAL_EXECUTION_TEMPLATE__NOT_INDEPENDENT_REVIEW",
+  "output_filename": "INDEPENDENT_SEMANTIC_REVIEW_SIGNED_V13.json",
+  "review_pass_rule": "Only a verified signature over record type INDEPENDENT_REVIEW whose review_payload disposition is CONFORMANT and whose algebra_payload_sha256 matches the owner-signed payload can pass.",
+  "review_payload": {
+    "algebra_payload_sha256": null,
+    "disposition": null,
+    "independence_attestation": {
+      "adapter_lane_participant": null,
+      "candidate_author_or_agent": null,
+      "no_prior_adapter_artifact_access": null
+    },
+    "review_narrative_sha256": null,
+    "reviewed_at_utc": null,
+    "reviewer_identity": null
+  },
+  "review_payload_sha256": null,
+  "review_signature": {
+    "key_id": null,
+    "signature": null,
+    "signature_scheme": null,
+    "verification_material_or_uri": null
+  },
+  "schema_version": "orion.p1.owner-custody-positive-successor.independent-semantic-review-template.v13",
+  "signing_specification": "SIGNING_CANONICALIZATION_V13.json",
+  "status": "UNSIGNED__NO_REVIEW"
+}

@@ -1,0 +1,99 @@
+{
+  "all_passed": true,
+  "checks": {
+    "all_arm_wss_identity": {
+      "max_absolute_error": 0.0,
+      "passed": true,
+      "review_arm_cells": 20
+    },
+    "arithmetic": {
+      "max_arm_mean_error": 1.1102230246251565e-16,
+      "max_effect_formula_error": 0,
+      "max_effect_mean_error": 0,
+      "max_full_arm_error": 0,
+      "max_wss_identity_error": 0,
+      "passed": true
+    },
+    "binding": {
+      "passed": true,
+      "staged_file_count": 12
+    },
+    "content_disjointness": {
+      "pairwise_duplicate_excess": 0,
+      "passed": true,
+      "swift_overlap": 0
+    },
+    "mechanism_gates": {
+      "exact_zero_review_count": 2,
+      "passed": true,
+      "recomputed": {
+        "M1_BINDING": true,
+        "M2_CONTENT_DISJOINT_POPULATION": true,
+        "M3_LEARNER_RECALL10_MAGNITUDE": false,
+        "M4_LEARNER_RECALL10_SIGN": false,
+        "M5_LEARNER_WORK_SAVING": true,
+        "M6_LEARNER_HARM": true
+      },
+      "reported": {
+        "M1_BINDING": true,
+        "M2_CONTENT_DISJOINT_POPULATION": true,
+        "M3_LEARNER_RECALL10_MAGNITUDE": false,
+        "M4_LEARNER_RECALL10_SIGN": false,
+        "M5_LEARNER_WORK_SAVING": true,
+        "M6_LEARNER_HARM": true
+      },
+      "strict_positive_review_count": 3
+    },
+    "nonpromotion_terminal": {
+      "passed": true,
+      "terminal": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR"
+    },
+    "preregistration_order": {
+      "execution_started_at": "2026-08-23T17:04:26.078269+00:00",
+      "implementation_frozen_at": "2026-08-23T17:04:15.500602+00:00",
+      "passed": true
+    },
+    "preserved_v3_gates": {
+      "passed": true,
+      "recomputed": {
+        "G1_BINDING": true,
+        "G2_POPULATION": true,
+        "G3_PRIMARY_MARGIN": false,
+        "G4_WORK_SAVING": false,
+        "G5_HARM": true,
+        "G6_ABSOLUTE_WORK_SAVING": true
+      },
+      "reported": {
+        "G1_BINDING": true,
+        "G2_POPULATION": true,
+        "G3_PRIMARY_MARGIN": false,
+        "G4_WORK_SAVING": false,
+        "G5_HARM": true,
+        "G6_ABSOLUTE_WORK_SAVING": true
+      }
+    },
+    "result_payload_sha256": {
+      "actual": "2cb0ab8c8a6c1338a9b9e1496ca0a1d0e7be1729faf7c4795e5ef19bfd798dba",
+      "expected": "2cb0ab8c8a6c1338a9b9e1496ca0a1d0e7be1729faf7c4795e5ef19bfd798dba",
+      "passed": true
+    },
+    "review_units": {
+      "canonical_rows": 101044,
+      "passed": true,
+      "review_level_units": 5,
+      "row_count_used_as_replication_count": false
+    },
+    "source_text_boundary": {
+      "forbidden_content_keys": [],
+      "passed": true
+    }
+  },
+  "date": "2026-08-23",
+  "excluded": [
+    "pytest",
+    "repository CI",
+    "Git mutation"
+  ],
+  "identity": "P2_SYNERGY_V5_SCIENTIFIC_VERIFICATION",
+  "verification_scope": "Independent JSON arithmetic, hashes, preregistration order, review-unit counts, content disjointness, gate and text-boundary checks."
+}

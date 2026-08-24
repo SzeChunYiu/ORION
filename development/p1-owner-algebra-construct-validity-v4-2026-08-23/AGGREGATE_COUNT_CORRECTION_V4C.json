@@ -1,0 +1,25 @@
+{
+  "after": {
+    "exact_structural_analogue_groups": 9
+  },
+  "amendment_id": "P1_V4C_STRUCTURAL_ANALOGUE_COUNT_ARITHMETIC_CORRECTION",
+  "before": {
+    "reported_structural_analogue_groups": 8
+  },
+  "case_or_outcome_accessed": false,
+  "changed_scientific_terminal": false,
+  "issued_at": "2026-08-23T19:13:59.825212+00:00",
+  "machine_table_sha256": "9675a577a54b6175d01907af16145a9f010744e7b66c7d004e742320e6c2f394",
+  "recomputation": "sum(bool(row.source_native_structural_analogues)) over G01-G12 = 9",
+  "schema_version": "orion.p1.owner-algebra-construct-validity.aggregate-count-correction.v4c",
+  "status": "CORRECTED_BEFORE_VALIDATION_RECEIPT_AND_MANIFEST",
+  "trigger": "The first native validation pass recomputed structural_analogue_observed over all twelve field rows and found nine true rows (G02-G10), while human-facing/result summaries had transcribed eight.",
+  "unchanged": {
+    "named_custodian_or_delegation_groups": 0,
+    "p1_readiness": "NOT_SUBMISSION_READY",
+    "requirement_groups": 12,
+    "scientific_action_gold_cells": 0,
+    "sufficient_owner_groups": 0,
+    "v8_survivors_cannot_check": 720
+  }
+}

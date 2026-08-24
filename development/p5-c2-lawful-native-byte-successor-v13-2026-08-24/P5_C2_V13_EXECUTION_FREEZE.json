@@ -1,0 +1,26 @@
+{
+  "build_context_manifest": {
+    "path": "BUILD_CONTEXT_MANIFEST_V13.json",
+    "sha256": "380580d05cfc222bf9874e51329f949619ac25452a784fe5d254de2724d73b8c",
+    "size_bytes": 4266
+  },
+  "candidate_or_outcome_execution_authorized": false,
+  "created_at_utc": "2026-08-24T06:49:26.234021+00:00",
+  "docker_client_present": true,
+  "docker_execution_authorized": true,
+  "docker_server_pre_freeze_returncode": 1,
+  "docker_server_pre_freeze_stderr": "failed to connect to the docker API at unix:///var/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /var/run/docker.sock: connect: no such file or directory\n",
+  "docker_server_pre_freeze_stdout": "\n",
+  "frozen_before_docker_server_start": true,
+  "protocol": {
+    "path": "P5_C2_V13_FROZEN_PROTOCOL.json",
+    "sha256": "11458435b753083d0444fab47105fd3e2b3150712a9fa6a0649010be0c3a43ba",
+    "size_bytes": 6628
+  },
+  "pytest_or_repository_ci_authorized": false,
+  "rootfs_regular_file_count": 9,
+  "rootfs_symlink_count": 0,
+  "schema_version": "orion.p5.c2.execution-freeze.v13",
+  "successor_identity": "C2_RIGHTS_CLEARED_SCRATCH_IMAGE_SUCCESSOR__ORION_V13",
+  "terminal": "P5_C2_V13_PROTOCOL_AND_COMPLETE_NINE_FILE_SCRATCH_ROOTFS_FROZEN_BEFORE_DOCKER_SERVER_START"
+}

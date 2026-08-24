@@ -1,0 +1,322 @@
+{
+  "check_count": 77,
+  "checks": [
+    {
+      "check": "all_json_machine_readable",
+      "pass": true
+    },
+    {
+      "check": "v14_result_immutable",
+      "pass": true
+    },
+    {
+      "check": "v14_sums_immutable",
+      "pass": true
+    },
+    {
+      "check": "v14_discriminator_immutable",
+      "pass": true
+    },
+    {
+      "check": "protocol_hash_frozen",
+      "pass": true
+    },
+    {
+      "check": "protocol_no_pre_access",
+      "pass": true
+    },
+    {
+      "check": "coherent_tuple_frozen",
+      "pass": true
+    },
+    {
+      "check": "later_route_disallowed",
+      "pass": true
+    },
+    {
+      "check": "probe_protocol_hash",
+      "pass": true
+    },
+    {
+      "check": "seven_requests_after_freeze",
+      "pass": true
+    },
+    {
+      "check": "body_exists_github_commit",
+      "pass": true
+    },
+    {
+      "check": "body_hash_github_commit",
+      "pass": true
+    },
+    {
+      "check": "receipt_exists_github_commit",
+      "pass": true
+    },
+    {
+      "check": "body_exists_github_recursive_tree",
+      "pass": true
+    },
+    {
+      "check": "body_hash_github_recursive_tree",
+      "pass": true
+    },
+    {
+      "check": "receipt_exists_github_recursive_tree",
+      "pass": true
+    },
+    {
+      "check": "body_exists_github_license",
+      "pass": true
+    },
+    {
+      "check": "body_hash_github_license",
+      "pass": true
+    },
+    {
+      "check": "receipt_exists_github_license",
+      "pass": true
+    },
+    {
+      "check": "body_exists_github_repository",
+      "pass": true
+    },
+    {
+      "check": "body_hash_github_repository",
+      "pass": true
+    },
+    {
+      "check": "receipt_exists_github_repository",
+      "pass": true
+    },
+    {
+      "check": "body_exists_github_releases",
+      "pass": true
+    },
+    {
+      "check": "body_hash_github_releases",
+      "pass": true
+    },
+    {
+      "check": "receipt_exists_github_releases",
+      "pass": true
+    },
+    {
+      "check": "body_exists_github_tag_refs",
+      "pass": true
+    },
+    {
+      "check": "body_hash_github_tag_refs",
+      "pass": true
+    },
+    {
+      "check": "receipt_exists_github_tag_refs",
+      "pass": true
+    },
+    {
+      "check": "body_exists_github_index_attestation",
+      "pass": true
+    },
+    {
+      "check": "body_hash_github_index_attestation",
+      "pass": true
+    },
+    {
+      "check": "receipt_exists_github_index_attestation",
+      "pass": true
+    },
+    {
+      "check": "qualification_protocol_hash",
+      "pass": true
+    },
+    {
+      "check": "signed_commit_exact",
+      "pass": true
+    },
+    {
+      "check": "recursive_tree_complete",
+      "pass": true
+    },
+    {
+      "check": "index_tree_entry_exact",
+      "pass": true
+    },
+    {
+      "check": "dataset_manifest_61",
+      "pass": true
+    },
+    {
+      "check": "dataset_bodies_not_requested",
+      "pass": true
+    },
+    {
+      "check": "exact_snapshot_root_mit",
+      "pass": true
+    },
+    {
+      "check": "current_cc0_not_blended",
+      "pass": true
+    },
+    {
+      "check": "metadata_v1_final_tag_exact",
+      "pass": true
+    },
+    {
+      "check": "attestation_absent",
+      "pass": true
+    },
+    {
+      "check": "provider_positive_custody_negative",
+      "pass": true
+    },
+    {
+      "check": "zero_protected_data_actions",
+      "pass": true
+    },
+    {
+      "check": "no_pytest_or_ci",
+      "pass": true
+    },
+    {
+      "check": "template_error_preserved",
+      "pass": true
+    },
+    {
+      "check": "correction_no_authority",
+      "pass": true
+    },
+    {
+      "check": "custody_manifest_hash",
+      "pass": true
+    },
+    {
+      "check": "candidate_author_cannot_sign",
+      "pass": true
+    },
+    {
+      "check": "three_residuals_have_discriminators",
+      "pass": true
+    },
+    {
+      "check": "result_provider_positive",
+      "pass": true
+    },
+    {
+      "check": "result_boundaries",
+      "pass": true
+    },
+    {
+      "check": "result_rights_boundary",
+      "pass": true
+    },
+    {
+      "check": "result_zero_science_actions",
+      "pass": true
+    },
+    {
+      "check": "result_verdict_bounded",
+      "pass": true
+    },
+    {
+      "check": "v14_adverse_preserved",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_HANDOFF_V15.md",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_HANDOFF_V15.md",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_IMPLEMENTATION_CORRECTION_V15B.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_IMPLEMENTATION_CORRECTION_V15B.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_INDEPENDENT_SOURCE_CUSTODY_REQUEST_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_INDEPENDENT_SOURCE_CUSTODY_REQUEST_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_INDEPENDENT_SOURCE_CUSTODY_REQUEST_V15.md",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_INDEPENDENT_SOURCE_CUSTODY_REQUEST_V15.md",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_NEGATIVE_RESULT_LEDGER_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_NEGATIVE_RESULT_LEDGER_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_PROBE_RECEIPT_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_PROBE_RECEIPT_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_PROTOCOL_FREEZE_RECEIPT_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_PROTOCOL_FREEZE_RECEIPT_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_PROTOCOL_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_PROTOCOL_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_PROVIDER_QUALIFICATION_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_PROVIDER_QUALIFICATION_V15.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_SCIENTIFIC_REPORT_V15.md",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_SCIENTIFIC_REPORT_V15.md",
+      "pass": true
+    },
+    {
+      "check": "evidence_exists_RESULT_V14.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_RESULT_V14.json",
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "finished_at_utc": "2026-08-24T06:55:54.023728+00:00",
+  "git_operation_run": false,
+  "json_file_count_excluding_receipt": 15,
+  "passed": 77,
+  "pytest_or_repository_ci_runs": 0,
+  "schema_version": "orion.p2.state-expanding-acquisition.v15.validation",
+  "validation_basis": "read-only deterministic packet-local chronology, hash, provider snapshot, custody, protected-data stop and bounded-claim checks",
+  "validator_read_only": true
+}

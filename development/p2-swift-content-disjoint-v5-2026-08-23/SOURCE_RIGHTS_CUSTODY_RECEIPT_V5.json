@@ -1,0 +1,213 @@
+{
+  "custody": {
+    "download_channel": "Direct Dataverse public datafile API",
+    "external_execution": false,
+    "independent_audit": false,
+    "status": "SAME_SESSION_PUBLIC_DOWNLOAD_NO_INDEPENDENT_CUSTODY"
+  },
+  "date": "2026-08-23",
+  "identity": "P2_SYNERGY_V5_SOURCE_RIGHTS_CUSTODY_RECEIPT",
+  "limits": [
+    "CC0 and public availability authorize this reuse but do not provide independent custody, protected freshness, external execution, or population transport.",
+    "The five decisions share one SYNERGY release and adapter even after content-identity disjointness.",
+    "OpenAlex metadata identity and reconstructed abstracts are source-specific representations."
+  ],
+  "redistribution": {
+    "large_source_bodies_in_handoff": false,
+    "result_contains_title_or_abstract": false,
+    "staged_bytes": 287754769,
+    "staging_path_role": "work/private-sources/p2-synergy-v1-v5"
+  },
+  "rights_evidence": {
+    "dataverse_metadata": {
+      "path": "source-audit/synergy-dataverse-metadata.json",
+      "sha256": "aa0103c0e006bdeb224580d61f3a3a36d09786df1fdd409895ba9d229ef2f575"
+    },
+    "repository_commit_receipt": {
+      "path": "source-audit/synergy-commit-master.json",
+      "sha256": "010b9336665e01cc3a47c9dd2c7e3ef65537a345fde9f6879b4938aeb9c1245d"
+    },
+    "repository_license": {
+      "path": "source-audit/synergy-LICENSE",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    "repository_readme": {
+      "path": "source-audit/synergy-README.md",
+      "sha256": "f304310c39393bf0f9d3951cb652d567cd1db811722dffab786c8134964e299b"
+    }
+  },
+  "source": {
+    "doi": "10.34894/HE6NAQ",
+    "license": "CC0-1.0",
+    "license_uri": "http://creativecommons.org/publicdomain/zero/1.0",
+    "publication_date": "2023-04-24",
+    "publisher": "DataverseNL",
+    "repository": "asreview/synergy-dataset",
+    "repository_commit": "dc2dadfdbb98eb1b4259604789abd640aa3b693e",
+    "version": "1.0"
+  },
+  "source_file_binding": {
+    "all_passed": true,
+    "file_count": 12,
+    "files": [
+      {
+        "bytes": 5372708,
+        "bytes_expected": 5372708,
+        "file_id": 359925,
+        "filename": "labels.csv",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Walker_2018",
+        "sha1": "1c34ca19e1283c79deaf7446e436b31e49b73fad",
+        "sha1_expected": "1c34ca19e1283c79deaf7446e436b31e49b73fad",
+        "sha256": "e79a43d018172652129d76a99b97c75c8aee2818c385c6270ee7158807ec7762",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Walker_2018/labels.csv"
+      },
+      {
+        "bytes": 62992826,
+        "bytes_expected": 62992826,
+        "file_id": 359868,
+        "filename": "works_1.zip",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Walker_2018",
+        "sha1": "06465733e867b36dbc42b38222b66f9045dcafea",
+        "sha1_expected": "06465733e867b36dbc42b38222b66f9045dcafea",
+        "sha256": "9c6a6ba9ca78311ff63971ef9ba6024a0e6aacd523b0da1a4a4adda05f81d8ce",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Walker_2018/works_1.zip"
+      },
+      {
+        "bytes": 58869042,
+        "bytes_expected": 58869042,
+        "file_id": 359828,
+        "filename": "works_2.zip",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Walker_2018",
+        "sha1": "a617afb765e95ac11045cf12ba6a9391c21d6447",
+        "sha1_expected": "a617afb765e95ac11045cf12ba6a9391c21d6447",
+        "sha256": "462e1ad0ac0b3d51b7bc43a75e475c16cd1faad9509baf414e2f01bd5a648607",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Walker_2018/works_2.zip"
+      },
+      {
+        "bytes": 3944082,
+        "bytes_expected": 3944082,
+        "file_id": 359849,
+        "filename": "labels.csv",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Brouwer_2019",
+        "sha1": "294dcb10804c6458ab7479204743217a1c4ff6c3",
+        "sha1_expected": "294dcb10804c6458ab7479204743217a1c4ff6c3",
+        "sha256": "fdf3dfdaa95ce6a2aac9f210c94c9ad04d075a3fa5233ef21df3454cb69b947a",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Brouwer_2019/labels.csv"
+      },
+      {
+        "bytes": 66466788,
+        "bytes_expected": 66466788,
+        "file_id": 359850,
+        "filename": "works_1.zip",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Brouwer_2019",
+        "sha1": "25aef912fd01e0430167129629c02a26eb993883",
+        "sha1_expected": "25aef912fd01e0430167129629c02a26eb993883",
+        "sha256": "5e431c37a24952b8484c5d5ab6a1391f3e85dba285acb31d9ae82dcf5dc32605",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Brouwer_2019/works_1.zip"
+      },
+      {
+        "bytes": 34788857,
+        "bytes_expected": 34788857,
+        "file_id": 359865,
+        "filename": "works_2.zip",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Brouwer_2019",
+        "sha1": "5540a32a9704859269bc2da8ffb33de786099547",
+        "sha1_expected": "5540a32a9704859269bc2da8ffb33de786099547",
+        "sha256": "efea73977db3db28861b335f90bf65f0972ad96a624e368233de8af740bf5c02",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Brouwer_2019/works_2.zip"
+      },
+      {
+        "bytes": 672721,
+        "bytes_expected": 672721,
+        "file_id": 359913,
+        "filename": "labels.csv",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Hall_2012",
+        "sha1": "6a0271155bd350b13c5bd715654ae3b2b2efbf2e",
+        "sha1_expected": "6a0271155bd350b13c5bd715654ae3b2b2efbf2e",
+        "sha256": "f488db73a8e8f7141bccb27a1d51a7df5469260610f7ae4e885630e0f8f6cf3b",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Hall_2012/labels.csv"
+      },
+      {
+        "bytes": 15085090,
+        "bytes_expected": 15085090,
+        "file_id": 359933,
+        "filename": "works_1.zip",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Hall_2012",
+        "sha1": "f377fdd93b25d6fdd9cab5cee758cee74a5713b4",
+        "sha1_expected": "f377fdd93b25d6fdd9cab5cee758cee74a5713b4",
+        "sha256": "e023a08afe9bbd7de3f1e7c87638d778ab7c2fc87e5903f261d8ccc36d054fdf",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Hall_2012/works_1.zip"
+      },
+      {
+        "bytes": 852937,
+        "bytes_expected": 852937,
+        "file_id": 359894,
+        "filename": "labels.csv",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Wassenaar_2017",
+        "sha1": "4606630b297f4deaf35eaf71a37e0f6a4b7f968a",
+        "sha1_expected": "4606630b297f4deaf35eaf71a37e0f6a4b7f968a",
+        "sha256": "1bbd1cf25e52534bd4d4147d1be352b11394d8883128cc6bc5608d157b05fbfd",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Wassenaar_2017/labels.csv"
+      },
+      {
+        "bytes": 19428163,
+        "bytes_expected": 19428163,
+        "file_id": 359812,
+        "filename": "works_1.zip",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Wassenaar_2017",
+        "sha1": "2f49c7673fd6274d04833d5a8090a7f840e2e7aa",
+        "sha1_expected": "2f49c7673fd6274d04833d5a8090a7f840e2e7aa",
+        "sha256": "e8a6a8654c4b1ed62f40bdefd1d13f2bbc5c75626ceeca3d9982655d7b5304af",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Wassenaar_2017/works_1.zip"
+      },
+      {
+        "bytes": 746832,
+        "bytes_expected": 746832,
+        "file_id": 359936,
+        "filename": "labels.csv",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Leenaars_2020",
+        "sha1": "e18e53c7ba55f1bcf75f8dca76d94d5d560521d3",
+        "sha1_expected": "e18e53c7ba55f1bcf75f8dca76d94d5d560521d3",
+        "sha256": "c9fdb288705f0fccfc6b7661594f0ac37424deaf15b06502cb5f61c7c333170e",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Leenaars_2020/labels.csv"
+      },
+      {
+        "bytes": 18534723,
+        "bytes_expected": 18534723,
+        "file_id": 359883,
+        "filename": "works_1.zip",
+        "passed": true,
+        "redistributed_in_handoff": false,
+        "review": "Leenaars_2020",
+        "sha1": "9beee9f32fe8b5a160653f2316173b1aed5c278f",
+        "sha1_expected": "9beee9f32fe8b5a160653f2316173b1aed5c278f",
+        "sha256": "92f6249cd3a366267c80c68143a26cb65e822cf257ad80ff44dfc3eaf184e657",
+        "staging_path_role": "private-sources/p2-synergy-v1-v5/Leenaars_2020/works_1.zip"
+      }
+    ],
+    "total_bytes": 287754769
+  },
+  "terminal": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR"
+}

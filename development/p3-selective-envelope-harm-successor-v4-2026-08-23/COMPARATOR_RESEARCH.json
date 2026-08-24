@@ -1,0 +1,383 @@
+{
+  "schema_version": "orion.p3.v4.comparator-research.v1",
+  "audit_id": "P3_V4_SOURCE_NATIVE_COMPARATOR_IDENTITY_AUDIT_2026_08_23",
+  "audited_at_utc": "2026-08-23T15:28:31Z",
+  "authority": "OUTCOME_BLIND_SOURCE_AND_INTERFACE_RESEARCH_ONLY__NO_COMPARATOR_PERFORMANCE_OR_NEW_FAMILY_OUTCOME_AUTHORITY",
+  "governing_protocol": {
+    "protocol_id": "P3.PUBLIC.OAEI.SELECTIVE.ENVELOPE.HARM.SUCCESSOR.DEV.V4",
+    "path": "work/lane-handoffs/p3-selective-envelope-harm-successor-v4/P3_SELECTIVE_ENVELOPE_HARM_PROTOCOL_V4.json"
+  },
+  "audit_exclusions": [
+    "No dataset rows, labels, reference-alignment contents, gold outcomes, comparator results, or performance tables were used to select or qualify a system.",
+    "No source checkout was built or executed, and no test, pytest, or repository CI was run.",
+    "The word strongest is not certified by this source-only audit; K2 and K3 are exact, primary-paper-linked eligible identities, not performance winners.",
+    "Code licence identity is kept separate from dependency, bundled-resource, pretrained-model, provider, input-ontology, and reference-alignment rights."
+  ],
+  "binary_reference_and_selective_adapter_contract": {
+    "truth_alphabet": [
+      "GLUE",
+      "OBSTRUCTION"
+    ],
+    "required_prediction_alphabet": [
+      "{GLUE}",
+      "{OBSTRUCTION}",
+      "{GLUE,OBSTRUCTION}",
+      "CANNOT_CHECK"
+    ],
+    "case_universe_rule": "A comparator is projected only onto the exact frozen family-specific binary candidate universe. An emitted correspondence outside that universe is recorded but creates no case. Every in-universe case must receive exactly one adapter terminal.",
+    "reference_truth_rule": "Comparator harm is computable only against a lawful, explicitly exhaustive binary truth universe. A positive-only or partial OAEI reference alignment does not license interpreting an absent reference cell as OBSTRUCTION. If reference completeness, negative semantics, and pair-universe coverage are not explicit and rights-cleared, comparator harm is CANNOT_CHECK regardless of runtime readiness.",
+    "relation_rule": "Only a native equivalence correspondence for the exact ordered or symmetry-normalized IRI pair can be considered positive evidence. Subsumption, relatedness, unknown relation codes, and type-incompatible rows do not establish binary equivalence or obstruction.",
+    "nonselection_rule": "A missing or nonselected correspondence is never OBSTRUCTION. It maps to {GLUE,OBSTRUCTION}, unless an input-native direct disjointness or contradiction certificate valid under the separately frozen reasoner profile establishes {OBSTRUCTION}.",
+    "positive_rule": "A valid emitted equivalence row may map to {GLUE} only under a pre-outcome-frozen native-output parser, relation policy, duplicate policy, confidence policy, and system-success terminal. Whether coverage remains one is an empirical gate, not implied by source identity.",
+    "error_rule": "Process error, timeout, missing artifact, invalid RDF/TSV, partial output, unsupported ontology syntax, or parser failure is a typed comparator failure. It is never imputed as OBSTRUCTION and never silently converted to an empty alignment.",
+    "information_equivalence_rule": "All candidate and ideal implementations must receive the same frozen task-specific inputs and the same frozen comparator terminals. Task gold, family outcomes, and reference alignments are forbidden. Fixed pretrained weights or bundled lexicons are method resources and must be content-addressed and disclosed; they may not be smuggled into only the ideal or candidate after outcome access.",
+    "action_equivalence_rule": "All systems are scored only after projection to the same four-terminal selective alphabet; native positive-only alignment output is not a complete binary decision rule.",
+    "qualification_consequence": "A runnable matcher with a generic alignment file is not yet a V4 comparator. It also needs family support, a lawful exhaustive binary truth universe, complete candidate-universe projection, a no-gold configuration, typed error handling, and the frozen adapter above."
+  },
+  "slot_bindings": [
+    {
+      "slot_id": "K1_AML",
+      "system_id": "AML_V3_2_AUTO_SOURCE_NATIVE",
+      "role": "retained V3 source-native matcher identity",
+      "paper": {
+        "title": "The AgreementMakerLight Ontology Matching System",
+        "version": "published ISWC 2013 paper",
+        "doi": "10.1007/978-3-642-41030-7_38",
+        "url": "https://doi.org/10.1007/978-3-642-41030-7_38"
+      },
+      "source": {
+        "official_repository": "https://github.com/AgreementMakerLight/AML-Project",
+        "tag": "v3.2",
+        "tag_commit": "d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6",
+        "release_asset": "https://github.com/AgreementMakerLight/AML-Project/releases/download/v3.2/AML_v3.2.zip",
+        "release_asset_sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27",
+        "jar_sha256": "a5b831a6c000e49aa4702b16486dabdf38e40bb68203a16a8019414fecc2ecf3"
+      },
+      "licence": {
+        "spdx": "Apache-2.0",
+        "file_at_revision": "https://raw.githubusercontent.com/AgreementMakerLight/AML-Project/d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6/LICENSE",
+        "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "rights_boundary": "Root code licence is bound. Existing V3 policy used bundled resources as distributed without redistribution; a dependency/resource bill was not re-audited here."
+      },
+      "install": {
+        "upstream": "Ready-to-run release JAR; no installation named by upstream.",
+        "named_runtime": "Java SE Runtime Environment 8"
+      },
+      "run_entrypoint": "java -jar AgreementMakerLight.jar -s SOURCE_ONTOLOGY -t TARGET_ONTOLOGY -o OUTPUT_ALIGNMENT -a",
+      "native_output": {
+        "success": "Alignment written to the explicit -o path; equivalence correspondences are positive alignment rows.",
+        "failure": "No output is saved without -o; ontology/parser/runtime errors must be detected from process and artifact validation rather than interpreted as an empty alignment."
+      },
+      "information_envelope": {
+        "candidate_visible": [
+          "source ontology",
+          "target ontology",
+          "bundled AML resources and configuration"
+        ],
+        "forbidden": [
+          "reference alignment",
+          "new-family outcomes",
+          "gold-derived threshold selection"
+        ]
+      },
+      "action_envelope": {
+        "reads": [
+          "two ontology files",
+          "release-bundled resources"
+        ],
+        "writes": [
+          "one declared output alignment",
+          "runtime logs or temporary files if produced by the JRE/application"
+        ],
+        "network": "Not required by the declared automatic CLI once release bytes are local."
+      },
+      "resource_envelope": {
+        "compute": "CPU/JVM; exact core, RAM, wall-time, timeout, and retry budgets are not frozen.",
+        "tokens": "none",
+        "runtime_deviation": "Historical V3 execution used OpenJDK 17.0.19 arm64 although upstream names Java 8."
+      },
+      "historical_v3_receipt_only": {
+        "completed_inputs": "19/20",
+        "typed_failure": "test 206 parser failure",
+        "interpretation": "Historical execution coverage and runtime-deviation facts only; not a new performance result and not evidence of current reproducibility."
+      },
+      "selective_binary_adapter": "Valid emitted equivalence row -> {GLUE}; absent/non-equivalence row -> {GLUE,OBSTRUCTION}; input-native frozen disjointness certificate -> {OBSTRUCTION}; failed or invalid run -> CANNOT_CHECK. Generic AML nonselection is never obstruction.",
+      "feasibility_terminal": "PUBLIC_V4_K1_AML_IDENTITY_BOUND__HISTORICAL_RUNTIME_DEVIATION_REPLAY_REQUIRED"
+    },
+    {
+      "slot_id": "K2_STRONG_LOGICAL_LEXICAL",
+      "system_id": "LOGMAP_4_SOURCE_AT_B3B57D0",
+      "role": "primary-paper-linked logical and lexical matcher candidate selected by source/interface criteria, not a performance ranking",
+      "paper": {
+        "title": "LogMap: Logic-Based and Scalable Ontology Matching",
+        "version": "published ISWC 2011 paper",
+        "doi": "10.1007/978-3-642-25073-6_18",
+        "url": "https://doi.org/10.1007/978-3-642-25073-6_18"
+      },
+      "source": {
+        "official_repository": "https://github.com/ernestojimenezruiz/logmap-matcher",
+        "default_branch_commit_observed": "b3b57d0d8bfb5872bdffb49329d764acb4735713",
+        "observed_commit_time": "2026-08-07T12:21:18+01:00",
+        "maven_coordinates": "uk.ox.logmap:logmap-matcher:4.0",
+        "main_class": "uk.ac.ox.krr.logmap2.LogMap2_CommandLine"
+      },
+      "licence": {
+        "spdx": "Apache-2.0",
+        "file_at_revision": "https://raw.githubusercontent.com/ernestojimenezruiz/logmap-matcher/b3b57d0d8bfb5872bdffb49329d764acb4735713/LICENSE.txt",
+        "license_sha256": "6375b618c2aad77f0bdea18afb56511d0d3fdb6d012ade1bdab6f436b9618704",
+        "rights_boundary": "Root source licence is bound. Maven dependencies, manually installed translation JAR, parameters.txt content, and any optional external translation/BioPortal service require a separate dependency/resource disposition before redistribution or networked execution."
+      },
+      "install": {
+        "source_build": "Install the non-Central Google translation dependency following lib/readme_mvn_install_google_translate.txt, then run mvn package or mvn clean install at the pinned commit.",
+        "build_outputs": "target/logmap-matcher-4.0.jar plus target/java-dependencies; parameters.txt must be colocated with the JAR/dependencies for the standalone layout.",
+        "execution_status": "Not built in this audit."
+      },
+      "run_entrypoint": "java -Xms500M -Xmx25G -DentityExpansionLimit=10000000 --add-opens=java.base/java.lang=ALL-UNNAMED -jar logmap-matcher-4.0.jar MATCHER SOURCE_IRI TARGET_IRI OUTPUT_DIRECTORY false",
+      "native_output": {
+        "success": "The MATCHER facility writes logmap_mappings in several mapping formats, including logmap_mappings.rdf, and exposes entity IRIs, relation/direction, type, and confidence.",
+        "failure": "The command-line main catches Exception and prints its help text. Therefore exit status alone is insufficient; the adapter must validate a complete, parseable expected artifact and preserve stderr/stdout and timeout terminals."
+      },
+      "information_envelope": {
+        "candidate_visible": [
+          "source ontology in an OWLAPI-supported format",
+          "target ontology in an OWLAPI-supported format",
+          "pinned parameters.txt and bundled/local lexical resources",
+          "ontology logic and structure used by LogMap reasoning and repair"
+        ],
+        "forbidden_mode": "EVALUATION is forbidden because it requires reference mappings; MATCHER is the only eligible comparator mode.",
+        "optional_services": "MATCHER-BIO and translation/network augmentations are outside the frozen core unless separately content- and rights-bound."
+      },
+      "action_envelope": {
+        "reads": [
+          "two ontology IRIs/files",
+          "parameters.txt",
+          "Java dependencies and local resources"
+        ],
+        "writes": [
+          "mapping files",
+          "overlap modules/fragments",
+          "logs"
+        ],
+        "network": "Disallow after dependencies and ontology bytes are staged; remote ontology IRIs, BioPortal, and translation services are not part of the eligible core."
+      },
+      "resource_envelope": {
+        "compute": "Java CPU/RAM; README suggests -Xms500M and -Xmx25G for newer Java. Exact cores, runtime image, wall-time, timeout, and retry budget remain unfrozen.",
+        "tokens": "none"
+      },
+      "selective_binary_adapter": "In-universe native equivalence row passing the pre-frozen native confidence/relation policy -> {GLUE}; no row, subsumption row, or unsupported relation -> {GLUE,OBSTRUCTION}; only a separately frozen input-native disjointness proof -> {OBSTRUCTION}; failed/incomplete run -> CANNOT_CHECK.",
+      "oaei_wrapper_provenance": {
+        "repository": "https://github.com/ernestojimenezruiz/logmap-melt",
+        "commit": "e891cea083cf5660776a59cc1f06578acc8ca229",
+        "licence": "Apache-2.0",
+        "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "entrypoint": "mvn clean install builds a MELT HTTP/Docker package whose matcher class is uk.ac.city.logmap.melt.LogMap_MELT",
+        "closure_defect": "The wrapper POM uses MELT master-SNAPSHOT and the mutable base image openjdk:8-jre-alpine. It is official interface provenance, not a reproducible V4 runtime until all dependency and image digests are frozen."
+      },
+      "sensitivity_variant": {
+        "system_id": "LOGMAPLT_AT_B3B57D0",
+        "paper": "LogMap family results for OAEI 2014, CEUR-WS Vol-1317, om2014-oaei-paper4; the paper describes LogMapLt as a lightweight variant using efficient string matching.",
+        "paper_url": "https://ceur-ws.org/Vol-1317/oaei14_paper4.pdf",
+        "source_and_licence": "Same pinned repository, commit, and Apache-2.0 licence bytes as LogMap.",
+        "entrypoint": "java -jar logmap-matcher-4.0.jar LITE SOURCE_IRI TARGET_IRI OUTPUT_DIRECTORY",
+        "native_output": "OAEI RDF alignment plus mapping files; it remains positive-only output.",
+        "oaei_wrapper_class": "uk.ac.city.logmap.melt.LogMapLite_MELT at logmap-melt commit e891cea083cf5660776a59cc1f06578acc8ca229",
+        "independence_boundary": "Same source family as LogMap and not an independent replication unit or second strongest-system claim.",
+        "feasibility_terminal": "PUBLIC_V4_LOGMAPLT_IDENTITY_BOUND__SENSITIVITY_ONLY__EXECUTION_CANNOT_CHECK"
+      },
+      "feasibility_terminal": "PUBLIC_V4_K2_LOGMAP_IDENTITY_BOUND__SOURCE_BUILD_RUNTIME_AND_SELECTIVE_ADAPTER_UNEXECUTED"
+    },
+    {
+      "slot_id": "K3_STRONG_NEURAL_OR_HYBRID",
+      "system_id": "BERTMAP_DEEPONTO_0_9_3_AT_74CA8D4",
+      "role": "primary-paper-linked neural matcher with an official maintained no-known-mappings route; eligible identity, not a performance ranking",
+      "paper": {
+        "title": "BERTMap: A BERT-Based Ontology Alignment System",
+        "version": "arXiv:2112.02682v4 and published AAAI 2022 paper",
+        "doi": "10.1609/aaai.v36i5.20510",
+        "urls": [
+          "https://arxiv.org/abs/2112.02682v4",
+          "https://doi.org/10.1609/aaai.v36i5.20510"
+        ]
+      },
+      "canonical_source": {
+        "official_repository": "https://github.com/KRR-Oxford/BERTMap",
+        "default_branch_commit_observed": "ce848402b40e2f9513bf2d004894d3f82635022c",
+        "licence": "Apache-2.0",
+        "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "entrypoint": "python run_bertmap.py -c config.json -m bertmap",
+        "eligibility_boundary": "The canonical README/config includes reference-mapping and automatic evaluation fields. It is paper identity evidence, but it is not the selected V4 execution route because a no-gold invocation is not cleanly isolated there."
+      },
+      "maintained_source": {
+        "official_repository": "https://github.com/KRR-Oxford/DeepOnto",
+        "default_branch_commit_observed": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+        "package_version": "0.9.3",
+        "maintenance_link": "The canonical BERTMap README says BERTMap is now maintained in DeepOnto, and the DeepOnto README identifies the same original repository and paper.",
+        "companion_paper": "DeepOnto: A Python package for ontology engineering with deep learning, Semantic Web 15(5), 2024, DOI 10.3233/SW-243568",
+        "licence": "Apache-2.0",
+        "license_sha256": "340ebaff716578e1b620521eeb740febbdcb24b8bd0c1de12c37b916aadf4d36"
+      },
+      "pretrained_model_identity": {
+        "model": "emilyalsentzer/Bio_ClinicalBERT",
+        "huggingface_revision": "d5892b39a4adaed74b92212a44081509db72f87b",
+        "card_licence": "MIT",
+        "license_sha256": "9e8f42111a19340d74194466063143fbc4294b50dd26ad5c60a06dcaeafa99d2",
+        "pytorch_model_size_bytes": 435778770,
+        "pytorch_model_lfs_sha256": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719",
+        "freeze_rule": "Materialize this exact revision locally and set pretrained_path to that content-addressed snapshot; do not resolve a moving Hub branch at execution time.",
+        "rights_boundary": "Model-card licence is bound; training-corpus provenance and the complete transitive package/model bill were not independently cleared for redistribution."
+      },
+      "install": {
+        "command_template": "pip install git+https://github.com/KRR-Oxford/DeepOnto.git@74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+        "runtime": "Python >=3.8, PyTorch, Transformers, JPype and a JVM for OWLAPI 4.5.22.",
+        "closure_defect": "DeepOnto's declared dependencies are not exact-version locked; a V4 lockfile/container and JVM identity are still required."
+      },
+      "run_entrypoint": "python scripts/bertmap.py -s SOURCE_ONTOLOGY -t TARGET_ONTOLOGY -c FROZEN_CONFIG.yaml",
+      "required_no_gold_config": {
+        "known_mappings": null,
+        "auxiliary_ontos": [],
+        "global_matching.enabled": true,
+        "global_matching.num_raw_candidates": 200,
+        "global_matching.num_best_predictions": 10,
+        "global_matching.mapping_extension_threshold": 0.9,
+        "global_matching.mapping_filtered_threshold": 0.9995,
+        "rule": "No reference mapping or auxiliary ontology may be supplied. All annotation-property IRIs, pretrained bytes, seeds, precision mode, device, and thresholds must be frozen before outcomes."
+      },
+      "native_output": {
+        "success": [
+          "bertmap/match/raw_mappings.json",
+          "bertmap/match/raw_mappings.tsv",
+          "bertmap/match/extended_mappings.tsv",
+          "bertmap/match/filtered_mappings.tsv",
+          "bertmap/match/repaired_mappings.tsv",
+          "configuration, corpus, training checkpoint, and logs under the output path"
+        ],
+        "row_contract": "Source IRI, target IRI, score for class mappings; mapping repair can change the final positive set.",
+        "native_errors": [
+          "RuntimeError if no configured class annotations are found",
+          "RuntimeError for an unsupported model name or non-YAML config",
+          "RuntimeError if no best BERT checkpoint exists after training",
+          "Interrupted mapping prediction may leave resumable but partial raw mapping files; partial artifacts cannot be scored"
+        ]
+      },
+      "information_envelope": {
+        "candidate_visible": [
+          "two raw ontologies",
+          "the frozen annotation-property list",
+          "intra-ontology textual semantics",
+          "ontology graph used in extension and logical repair",
+          "fixed pretrained-model bytes"
+        ],
+        "forbidden": [
+          "known_mappings",
+          "reference alignment",
+          "automatic validation/test threshold selection",
+          "new-family outcome feedback"
+        ]
+      },
+      "action_envelope": {
+        "reads": [
+          "two ontology files",
+          "frozen YAML",
+          "local frozen pretrained model/tokenizer",
+          "OWLAPI and LogMap-repair dependencies"
+        ],
+        "writes": [
+          "text-semantics corpus",
+          "fine-tuning data",
+          "model checkpoints",
+          "raw/extended/filtered/repaired mappings",
+          "logs"
+        ],
+        "network": "Disallow after dependency and model staging."
+      },
+      "resource_envelope": {
+        "compute": "BERT fine-tuning and prediction; default config names 3 epochs, batch size 32 for training, batch size 128 for prediction, 200 raw candidates and 10 retained predictions per source class. CPU/GPU device, CUDA/PyTorch build, seeds, wall-time, timeout, retry, and energy/cost budgets remain unfrozen.",
+        "tokens": "No paid LLM/API tokens; transformer subword work is local and not a provider billing unit."
+      },
+      "selective_binary_adapter": "Use only a completely produced, digest-verified mapping set selected before outcomes (raw, filtered, or repaired must be frozen). In-universe equivalence row meeting the frozen native score/relation rule -> {GLUE}; nonselection -> {GLUE,OBSTRUCTION}; only input-native frozen disjointness -> {OBSTRUCTION}; any training/runtime/artifact failure -> CANNOT_CHECK.",
+      "feasibility_terminal": "PUBLIC_V4_K3_BERTMAP_IDENTITY_BOUND__NO_GOLD_ROUTE_EXISTS__ENVIRONMENT_MODEL_SEED_RUNTIME_AND_SELECTIVE_ADAPTER_UNEXECUTED"
+    }
+  ],
+  "modern_hybrid_candidate_not_promoted": {
+    "system_id": "LOGMAPLLM_SOURCE_AT_D26F8C2",
+    "paper": {
+      "title": "Large Language Models as Oracles for Ontology Alignment",
+      "version": "arXiv:2508.08500v2; EACL 2026 long paper 110",
+      "urls": [
+        "https://arxiv.org/abs/2508.08500v2",
+        "https://aclanthology.org/2026.eacl-long.110/"
+      ]
+    },
+    "source": {
+      "official_repository": "https://github.com/city-artificial-intelligence/logmap-llm",
+      "default_branch_commit_observed": "d26f8c262ca2b12651094c5223070bfd72387832",
+      "licence": "Apache-2.0",
+      "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "entrypoint": "From the repository root, configure logmap-llm-config-basic.toml and execute python logmap_llm.py; the script bridges to the bundled LogMap 4.0 JAR through JPype and may call an OpenAI-compatible provider.",
+    "native_output": "Initial LogMap alignment, mappings-to-ask, ontology-derived prompts, per-mapping boolean Oracle predictions and token counts, and refined alignment files.",
+    "information_envelope": "Raw ontologies, LogMap state and uncertain mappings, selected ontology context in prompts, hosted-model weights/priors, and provider response. Reference alignments and outcome feedback must remain absent.",
+    "action_and_cost_envelope": "Reads ontologies/config/LogMap bytes, writes prompts/predictions/alignments, and may transmit public ontology-derived prompts to an external API. Provider/model/revision, terms, retention, input/output token cap, dollar cap, concurrency, timeout, retries, and seed are not frozen.",
+    "selective_adapter_possibility": "An Oracle True prediction above a frozen confidence policy could be a {GLUE} commitment; False cannot automatically become {OBSTRUCTION} without a semantics/calibration contract; unasked/nonselected cases remain {GLUE,OBSTRUCTION}; API or artifact failure is CANNOT_CHECK.",
+    "reason_not_promoted": "The repository describes an integrated pipeline still in progress and does not provide a locked install/runtime/provider identity. Its external model information and costs are not information-equivalent to K1/K2/K3 until explicitly frozen and exposed to candidate and ideal in the same way.",
+    "feasibility_terminal": "PUBLIC_V4_LOGMAPLLM_SOURCE_IDENTITY_BOUND__WIP_INSTALL_PROVIDER_MODEL_COST_RIGHTS_AND_INFORMATION_EQUIVALENCE_CANNOT_CHECK"
+  },
+  "controller_infrastructure_not_a_comparator": {
+    "system_id": "MELT_AT_DB89373",
+    "paper": "MELT - Matching EvaLuation Toolkit, published 2019, DOI 10.1007/978-3-030-33220-4_17",
+    "repository": "https://github.com/dwslab/melt",
+    "default_branch_commit_observed": "db893731fdf29371603847e3664dc18b80d45d4b",
+    "repository_version": "3.4-SNAPSHOT",
+    "licence": "MIT",
+    "license_sha256": "6259170d9437ff0c01c2441c5ba08b032c6e98bb4db90f31de295c27054e64cd",
+    "install_entrypoint": "mvn install at the pinned source commit, or use a separately frozen Maven Central release; do not use master-SNAPSHOT in the execution freeze.",
+    "native_role": "Matcher packaging, execution, evaluation, confidence filtering and OAEI interfaces. MELT transports alignments/errors; it does not itself supply GLUE or OBSTRUCTION semantics.",
+    "feasibility_terminal": "PUBLIC_V4_MELT_WRAPPER_IDENTITY_BOUND__NOT_A_COMPARATOR_OR_BINARY_CERTIFIER"
+  },
+  "unbound_named_candidate": {
+    "name": "Matcha",
+    "status": "CANNOT_CHECK",
+    "reason": "This bounded audit did not establish a unique primary-paper-linked official ontology-matching repository with immutable revision, licence bytes, and an install/run entrypoint. No similarly named repository was promoted by guesswork.",
+    "required_discriminator": "Provide the exact paper DOI/arXiv/ACL identity or author-owned repository, then repeat source, licence, runtime, native-output, and no-gold-interface binding.",
+    "terminal": "PUBLIC_V4_MATCHA_PRIMARY_SOURCE_IDENTITY_CANNOT_CHECK"
+  },
+  "panel_feasibility": {
+    "identity_bound": [
+      "AML v3.2",
+      "LogMap 4.0 source at b3b57d0d8bfb5872bdffb49329d764acb4735713",
+      "LogMapLt sensitivity variant at the same revision",
+      "BERTMap maintained in DeepOnto 0.9.3 at 74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+      "LogMapLLM source candidate at d26f8c262ca2b12651094c5223070bfd72387832",
+      "MELT controller infrastructure at db893731fdf29371603847e3664dc18b80d45d4b"
+    ],
+    "confirmatory_or_public_v4_execution_ready": [],
+    "source_lane_receipt": {
+      "source_family_rights_json_sha256": "8ebaf13247fb8ebf7e4aa14da925f6793290aa3bf29f100fbe36e0c7fcf5e3e8",
+      "source_family_rights_md_sha256": "6b9e5932539abffe77c8dffe99766f069c3b15e235b59d6c057901e88e535761",
+      "eligible_families": "0/7",
+      "binary_obstruction_semantics": "CANNOT_CHECK for every audited family because no track metadata licences reference absence as a negative label; Knowledge Graph and Common Knowledge Graph are explicitly partial.",
+      "consequence": "The source-family panel cannot freeze, so no comparator harm can be computed even if a matcher runtime is later reproduced."
+    },
+    "predecessor_semantic_warning": {
+      "receipt": "A predecessor-only audit reports 1,399 GLUE assignments and 116,515 OBSTRUCTION assignments created from within-domain absence from positive reference cells.",
+      "authority": "Coordination receipt only; no new-family outcomes were opened by this comparator lane.",
+      "v4_consequence": "That join rule is inadmissible in V4. It may not be reused as binary truth or as a comparator scoring universe."
+    },
+    "remaining_required_freezes": [
+      "family-specific binary candidate universes and relation normalization",
+      "lawful explicitly exhaustive binary reference semantics; no absent positive reference cell may be filled as obstruction",
+      "family support and ontology-syntax compatibility for every selected comparator",
+      "complete dependency/container/model/resource digests and licences",
+      "named runtime, core/RAM/GPU, timeout, retry, seed and nondeterminism policy",
+      "native artifact parser and completeness checks",
+      "positive confidence/output-set selection made before outcomes",
+      "same four-terminal selective adapter and typed failure rules",
+      "candidate/ideal information-equivalence manifest",
+      "outcome-blind prediction manifest before any new-family reference alignment is opened"
+    ],
+    "strongest_selection_terminal": "PUBLIC_V4_STRONGEST_COMPARATOR_SELECTION_CANNOT_CHECK__PERFORMANCE_WAS_OUT_OF_SCOPE",
+    "binary_reference_terminal": "PUBLIC_V4_BINARY_REFERENCE_EXHAUSTIVITY_CANNOT_CHECK__POSITIVE_REFERENCE_ABSENCE_IS_NOT_OBSTRUCTION",
+    "aggregate_terminal": "PUBLIC_V4_COMPARATOR_IDENTITY_CANNOT_CHECK__EXACT_CANDIDATES_BOUND_BUT_STRONGEST_SELECTION_RUNTIME_FAMILY_SUPPORT_AND_INFORMATION_EQUIVALENT_SELECTIVE_ADAPTERS_UNFROZEN",
+    "scientific_claim_terminal": "PUBLIC_V4_COMPARATOR_PERFORMANCE_HARM_COVERAGE_AND_SUPERIORITY_CANNOT_CHECK"
+  }
+}

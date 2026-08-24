@@ -1,0 +1,45 @@
+{
+  "ambiguity_rule": "A record with exact tokens in more than one high-level action stratum is AMBIGUOUS_MULTIPLE_STRATA and contributes to no single-action semantic admission.",
+  "construct_rule": "Even exact classified tokens are provider record/link semantics only. They bind no R7 owner-algebra field without the protocol owner/delegation, rights, completeness, and exhaustiveness gates.",
+  "directionality_rule": "Preserve exact provider token and direction. In/Of, corrected/forward, and retracted/forward are never collapsed into an owner-authorized operation.",
+  "epmc_pub_type_exact": {
+    "Correction": "CORRECTION_OR_ERRATUM",
+    "Expression of Concern": "EXPRESSION_OF_CONCERN",
+    "Published Erratum": "CORRECTION_OR_ERRATUM",
+    "Retraction of Publication": "RETRACTION"
+  },
+  "frozen_at": "2026-08-23T17:57:04.560835+00:00",
+  "jats_related_article_type_exact": {
+    "corrected-article": "CORRECTION_OR_ERRATUM",
+    "correction-forward": "CORRECTION_OR_ERRATUM",
+    "partial-retraction": "RETRACTION",
+    "retracted-article": "RETRACTION",
+    "retraction-forward": "RETRACTION"
+  },
+  "protocol_sha256": "cd653aec420249d98355478164c95ed6bfd1137e33279529ae06c011bf5114c3",
+  "pubmed_ref_type_exact": {
+    "CorrectedandRepublishedFrom": "CORRECTION_OR_ERRATUM",
+    "CorrectedandRepublishedIn": "CORRECTION_OR_ERRATUM",
+    "ErratumFor": "CORRECTION_OR_ERRATUM",
+    "ErratumIn": "CORRECTION_OR_ERRATUM",
+    "ExpressionOfConcernFor": "EXPRESSION_OF_CONCERN",
+    "ExpressionOfConcernIn": "EXPRESSION_OF_CONCERN",
+    "RetractedandRepublishedFrom": "RETRACTION",
+    "RetractedandRepublishedIn": "RETRACTION",
+    "RetractionIn": "RETRACTION",
+    "RetractionOf": "RETRACTION"
+  },
+  "schema_version": "orion.p1.structured-action-semantics.parser-rules.v3",
+  "source_evidence": {
+    "jats_related_article_type": {
+      "sha256": "915635dc5d23d382b9c00426428d0d69ad924254a843b3149b6e1cbfc82fb07e",
+      "url": "https://jats.nlm.nih.gov/archiving/tag-library/1.4/attribute/related-article-type.html"
+    },
+    "note": "Rules were frozen from provider schemas/documentation before aggregate action values from the V2 pool were opened.",
+    "pubmed_dtd": {
+      "sha256": "8c9a3c520259bb79ca87c04021671eb47fd300646aa1813bd884c418217d1573",
+      "url": "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd"
+    }
+  },
+  "unknown_rule": "Any token outside the frozen map is counted as OTHER_OR_CANNOT_CHECK. Absence is CANNOT_CHECK, not a negative action."
+}

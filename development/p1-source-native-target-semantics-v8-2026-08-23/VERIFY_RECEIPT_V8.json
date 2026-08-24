@@ -1,0 +1,106 @@
+{
+  "authority": "DIRECT_JSON_HASH_SOURCE_ENUMERATION_RIGHTS_AND_NONLEAKAGE_VERIFICATION_ONLY",
+  "case_text_or_outcomes_accessed": false,
+  "checks": {
+    "adapter_registry": {
+      "failures": [],
+      "passed": true,
+      "row_count": 720
+    },
+    "adjudication": {
+      "pair_status_counts": {
+        "CANNOT_CHECK": 30,
+        "PASS": 1,
+        "REJECT": 11
+      },
+      "passed": true,
+      "survivor_disposition": {
+        "authoritatively_rejected_by_v8_public_evidence": 0,
+        "certified_by_v8_public_evidence": 0,
+        "input_count": 720,
+        "minimum_missing_actionable_images_per_map": 5,
+        "reason": "Every not-disproved function fixes UNRESOLVED and maps five actionable source terminals injectively into six actionable target decisions. Every one of those five images lacks essential postpublication denotation fields.",
+        "remain_cannot_check": 720
+      }
+    },
+    "independent_enumeration": {
+      "counts": {
+        "fully_certified": 0,
+        "known_rejected": 116929,
+        "not_disproved_but_uncertified": 720,
+        "total": 117649
+      },
+      "passed": true
+    },
+    "json_parse": {
+      "file_count_before_receipt": 11,
+      "passed": true
+    },
+    "owner_algebra_schema": {
+      "custodian_requirement_count": 12,
+      "passed": true,
+      "required_top_level_fields": [
+        "algebra_id",
+        "authority_boundary",
+        "closed_world",
+        "decision_probe_typing",
+        "ratification",
+        "rights",
+        "schema_version",
+        "supersedes_or_extends",
+        "targets",
+        "terminal_behavior"
+      ]
+    },
+    "payload_nonretention": {
+      "forbidden_keys_present": [],
+      "passed": true,
+      "payload_files": []
+    },
+    "predecessor_manifest": {
+      "entry_count": 47,
+      "failures": [],
+      "passed": true
+    },
+    "protocol_boundary": {
+      "outcome_boundary": {
+        "case_text_accessed": false,
+        "model_or_comparator_executed": false,
+        "protected_data_accessed": false,
+        "row_level_outcomes_accessed": false,
+        "system_outputs_accessed": false
+      },
+      "passed": true
+    },
+    "public_source_bytes": {
+      "file_count": 7,
+      "local_failures": [],
+      "online_checked": true,
+      "online_failures": [],
+      "passed": true,
+      "tree": "1a77f45cf959d8e472315438e2e1f823be5d03c9"
+    },
+    "result_boundary": {
+      "artifact_binding_failures": [],
+      "manuscript_integration_warranted": false,
+      "passed": true,
+      "terminal": "P1_V8_PUBLIC_TARGET_SEMANTICS_PARTIALLY_BOUND__R7_POSTPUBLICATION_DENOTATIONS_RIGHTS_AND_OWNER_RATIFICATION_CANNOT_CHECK"
+    },
+    "rights_boundary": {
+      "license_status": 404,
+      "online_checked": true,
+      "passed": true,
+      "repository_status": 200
+    },
+    "semantic_registry": {
+      "actionable_complete_postpublication_denotations": 0,
+      "passed": true,
+      "target_count": 7
+    }
+  },
+  "passed": true,
+  "pytest_or_ci_run": false,
+  "schema_version": "orion.p1.source-native-target-semantics-verification-receipt.v8",
+  "terminal": "P1_V8_PUBLIC_TARGET_SEMANTICS_PARTIALLY_BOUND__R7_POSTPUBLICATION_DENOTATIONS_RIGHTS_AND_OWNER_RATIFICATION_CANNOT_CHECK",
+  "verified_at_utc": "2026-08-23T16:42:28.112738+00:00"
+}

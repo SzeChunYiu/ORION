@@ -1,0 +1,50 @@
+{
+  "schema_version": "orion.p1.adapter-blind-owner-ratification.result.v10",
+  "result_id": "P1.V10.ADAPTER.BLIND.OWNER.RATIFICATION.CURRENT.RESULT",
+  "authority": "LOCAL_BYTE_BOUND_PROTOCOL_DERIVATION_ONLY",
+  "exact_finding": "The V9 four-role completion contract is necessary but does not identify whether target semantics were chosen independently of the adapter audit. One precommitment ordering/custody predicate closes that design gap without adding a fifth authority role.",
+  "formal_result": "A completed signed bundle is observationally compatible with both independent target-side construction and adapter-aware semantic post-selection when its precommitment information set is unbound; therefore construct independence remains CANNOT_CHECK.",
+  "smallest_decisive_successor": {
+    "identity": "P1_R7_ADAPTER_BLIND_OWNER_RATIFICATION_MICROGATE_V10",
+    "retained_authority_acts": 4,
+    "new_authority_roles": 0,
+    "new_ordering_predicates": 1,
+    "historical_precedence_or_adapter_blind_custody_required": true,
+    "unchanged_map_audit_after_commitment_only": true
+  },
+  "current_bindings": {
+    "completed_owner_algebra": false,
+    "vocabulary_owner_or_delegate_signature": false,
+    "host_authority_signature": false,
+    "target_corpus_rights_grant": false,
+    "independent_semantic_review": false,
+    "historical_precedence_witness": false,
+    "prospective_adapter_blind_custody_receipt": false,
+    "map_audit_authorized": false
+  },
+  "preserved_adverse_predecessor": {
+    "owner_requirement_groups": 12,
+    "structural_analogue_groups": 9,
+    "named_custodian_or_delegation_groups": 0,
+    "sufficient_owner_groups": 0,
+    "scientific_action_gold_cells": 0,
+    "map_space": 117649,
+    "rejected_maps": 116929,
+    "cannot_check_maps": 720,
+    "certified_maps": 0
+  },
+  "not_warranted": [
+    "Any current owner, host, rights holder or reviewer identity is bound.",
+    "The public commit author is the vocabulary owner or formally delegated custodian.",
+    "Any current participant can retrospectively prove adapter blindness by assertion.",
+    "Any source-native terminal maps to an R7 target decision.",
+    "Any of the 720 maps is certified or newly rejected.",
+    "Any scientific-action gold cell or naturalistic effect exists.",
+    "P1 is submission-ready or top-tier ready."
+  ],
+  "next_discriminator": "Choose one of two lawful paths: bind a pre-existing owner-signed algebra with an immutable timestamp preceding the adapter programme, or recruit an external vocabulary owner/formal delegate and independent reviewer, deliver only the three byte-bound allowlisted target-side artifacts, obtain signed no-prior-access and delivery receipts, and content-address the algebra plus CONFORMANT review before unsealing adapter-side files. Then, and only then, run the unchanged 117,649-map audit.",
+  "case_or_outcome_accessed": false,
+  "map_audit_rerun": false,
+  "readiness": "NOT_SUBMISSION_READY",
+  "terminal": "P1_V10_FOUR_AUTHORITY_ACTS_REMAIN_NECESSARY__ADAPTER_BLIND_PRECOMMITMENT_OR_HISTORICAL_PRECEDENCE_CANNOT_CHECK__720_MAPS_UNCHANGED"
+}

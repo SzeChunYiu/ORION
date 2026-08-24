@@ -1,8 +1,9 @@
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
 \usepackage{booktabs}
 \usepackage{xurl}
+\usepackage{xspace}
 \usepackage[hidelinks]{hyperref}
 \emergencystretch=1em
 
@@ -12,6 +13,11 @@
 \newcommand{\obstruction}{\textsc{obstruction}\xspace}
 \newcommand{\pluralview}{\textsc{plural\_view}\xspace}
 \newcommand{\unresolved}{\textsc{unresolved}\xspace}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
 
 \title{Scientific Identity Authority for Recoverable Cross-Domain Knowledge Integration}
 % Content digests and repository paths need legal breakpoints in the rendered
@@ -46,6 +52,10 @@ Coordinate-Governed Mapping of Source-Local Scientific Projections}
 \label{sec:method}
 \input{sections/30-method}
 \input{sections/35-method-structure}
+
+\section{Epistemic portrait envelope theory}
+\label{sec:envelope}
+\input{sections/36-partial-identification-theory}
 
 \section{Public-reference mapping datasets}
 \label{sec:dataset}

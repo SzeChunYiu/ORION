@@ -1,0 +1,46 @@
+{
+  "acceptance_rules": [
+    "six and only six candidate-visible components materialize read-only",
+    "component and aggregate hashes match V6",
+    "source commit/tree/archive and control-side mapping lineage match",
+    "rights manifest and retained licence/notice hashes match",
+    "known fixed bytes and forbidden outcome keys/roots are absent",
+    "V12 remains non-aggregated with V11 and distinct from released MOSS",
+    "attempt destruction is verified"
+  ],
+  "atomic_questions": [
+    "Do all six candidate-visible components match exact path, size and SHA-256?",
+    "Does their canonical aggregate match the V6 core digest?",
+    "Does the source archive reproduce the 302-file commit/tree manifest?",
+    "Do Apache-2.0, NOTICE and CC0 bytes bind to the exact listed components?",
+    "Are fixed source, fix patch, generated evaluator, native arm data, model/service bytes and outcomes excluded?",
+    "Does the V6 C2 acceptance contract authorize exactly two fields and no V11 aggregation?"
+  ],
+  "authority": "SOURCE_NATIVE_CANDIDATE_VISIBLE_BYTES_RIGHTS_AND_LINEAGE_ONLY",
+  "development_question": "Can the exact six-component V6 source-native public-development core be routed with complete rights and provenance under a distinct C2 successor without inheriting V11 runtime closure or released MOSS identity?",
+  "forbidden": [
+    "C3 or C4 work or validators",
+    "MOSS, model, coding-agent, evaluator, benchmark or scorer execution",
+    "protected/gold/outcome access",
+    "repository CI or test-framework execution",
+    "manuscript/claim-ledger edit"
+  ],
+  "frozen_at_utc": "2026-08-24T06:20:00Z",
+  "frozen_hypothesis": "If all six V6 components, aggregate digest, source tree, rights mappings, exclusions and C2 acceptance arithmetic pass one read-only materialization/destruction gate, exactly the two V6-authorized fields are BOUND for V12 on the C2 V4 basis.",
+  "protocol_id": "P5.C2.SOURCE.NATIVE.RIGHTS.LINEAGE.SUCCESSOR.V12",
+  "reopen_triggers": [
+    "any component, aggregate, source-tree, rights or lineage hash changes",
+    "any candidate-visible component is added, substituted or made writable",
+    "any native/bundled task, model/service, generated artifact, fixed byte or outcome enters the core",
+    "V11 runtime closure is inherited without an explicit owner aggregation contract",
+    "public-development evidence is promoted to fresh, protected or confirmatory evidence"
+  ],
+  "saturation_assessment": {
+    "formulation": "One source-native root class can lawfully close two co-specified fields, but it cannot close runtime, isolation, provider, custody, compute, container or performance obligations.",
+    "knowledge": "V4 names the missing C2 case and task-rights fields; V6 supplies an explicit six-arm shared-core acceptance; V11 addresses a disjoint runtime field under a separate successor identity.",
+    "search_universe": "Complete frozen V4, V6, V10 and V11 packet bytes plus the content-addressed Apache/Defects4J lineage retained by V6."
+  },
+  "saturation_challenge": "V6 local authorship and post-outcome case selection are not independent authority; any native/bundled content substitution reopens rights and byte identity.",
+  "schema_version": "orion.p5.c2.source-native-rights-lineage-protocol.v12",
+  "successor_identity": "C2_SOURCE_NATIVE_VISIBLE_CORE_SUCCESSOR__ORION_V12"
+}

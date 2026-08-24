@@ -1,0 +1,110 @@
+{
+  "$id": "orion.p5.c4.adias-native-terminal.v4",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adapter_terminal": {
+      "const": "UNRESOLVED"
+    },
+    "arm_id": {
+      "const": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS"
+    },
+    "generation_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "metadata_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "native_exit_status_is_sufficient": {
+      "const": false
+    },
+    "native_terminal": {
+      "enum": [
+        "NATIVE_COMPILE_FAILURE",
+        "NATIVE_EMPTY_EVALUATION",
+        "NATIVE_EVALUATION_ARTIFACTS_RECORDED",
+        "NATIVE_NO_EFFECTIVE_PATCH",
+        "NATIVE_PARTIAL"
+      ]
+    },
+    "nonempty_report_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "performance_inference": {
+      "const": "FORBIDDEN"
+    },
+    "raw_native_singleton_licences": {
+      "const": 0
+    },
+    "report_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "reports": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "domain": {
+            "enum": [
+              "alfworld",
+              "taubench_return",
+              "taubench_retail",
+              "textcraft",
+              "webshop",
+              "scienceworld"
+            ]
+          },
+          "outcome_values_retained": {
+            "const": false
+          },
+          "path": {
+            "type": "string"
+          },
+          "record_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "domain",
+          "path",
+          "sha256",
+          "record_count",
+          "outcome_values_retained"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "orion.p5.c4.adias-native-terminal.v4"
+    },
+    "source_native_caveat": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "arm_id",
+    "adapter_terminal",
+    "native_terminal",
+    "generation_id",
+    "metadata_sha256",
+    "report_count",
+    "nonempty_report_count",
+    "reports",
+    "native_exit_status_is_sufficient",
+    "performance_inference",
+    "raw_native_singleton_licences",
+    "source_native_caveat"
+  ],
+  "type": "object"
+}

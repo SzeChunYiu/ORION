@@ -1,0 +1,147 @@
+{
+  "artifacts": {
+    "extended_mappings.tsv": {
+      "bytes": 1530,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/results/bertmap-out/bertmap/match/extended_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+    },
+    "filtered_mappings.tsv": {
+      "bytes": 1530,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/results/bertmap-out/bertmap/match/filtered_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+    },
+    "raw_mappings.json": {
+      "bytes": 3474,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/results/bertmap-out/bertmap/match/raw_mappings.json",
+      "regular_non_symlink": true,
+      "sha256": "d72fc7a406183918339593bd69aa4c6ed9fedfbf4b5c544e712dc304cef553ce"
+    },
+    "raw_mappings.tsv": {
+      "bytes": 1530,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/results/bertmap-out/bertmap/match/raw_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+    },
+    "repaired_mappings.tsv": {
+      "bytes": 1946,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/results/bertmap-out/bertmap/match/repaired_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "694d281361f3bc73dfdc947ae1a864ddc56c8d0860a8fe518797fd5bfeb3b635"
+    }
+  },
+  "authority": "NO_GOLD_NATIVE_EXECUTION_ARTIFACT_AND_LEXICAL_INTERFACE_CONFORMANCE_ONLY__NO_CORRECTNESS_PERFORMANCE_HARM_COVERAGE_TRANSPORT_OR_SUPERIORITY_AUTHORITY",
+  "command": [
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/venv/bin/python",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/source/scripts/bertmap.py",
+    "-s",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/inputs/source.owl",
+    "-t",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/inputs/target.owl",
+    "-c",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/config.yaml"
+  ],
+  "cwd": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23",
+  "direct_logmap_child": {
+    "effective_command_lines": [
+      "ORION_LOGMAP_EFFECTIVE_COMMAND=java -Xms500m -Xmx2147483648 -DentityExpansionLimit=100000000 --add-opens=java.base/java.lang=ALL-UNNAMED -jar /Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/venv/lib/python3.10/site-packages/deeponto/align/logmap/logmap-matcher-4.0.jar DEBUGGER file:/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/inputs/source.owl file:/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/inputs/target.owl TXT /Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/results/bertmap-out/bertmap/match/logmap-repair/filtered_mappings_for_LogMap_repair.txt /Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/results/bertmap-out/bertmap/match/logmap-repair false false"
+    ],
+    "observed_exit_codes": [
+      0
+    ],
+    "propagated_zero": true
+  },
+  "environment": {
+    "HF_HOME": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/cache/native/huggingface",
+    "HF_HUB_CACHE": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/cache/native/huggingface/hub",
+    "HF_HUB_OFFLINE": "1",
+    "HOME": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/home",
+    "JAVA_HOME": "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PATH": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/venv/bin:/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "TMPDIR": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/tmp",
+    "TOKENIZERS_PARALLELISM": "false",
+    "TORCH_HOME": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/cache/native/torch",
+    "TRANSFORMERS_CACHE": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/cache/native/transformers",
+    "TRANSFORMERS_OFFLINE": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "XDG_CACHE_HOME": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/cache/native/xdg"
+  },
+  "finished_at": "2026-08-23T20:50:16.040429+00:00",
+  "five_regular_non_symlink_artifacts": true,
+  "gold_or_reference_opened": false,
+  "launch_error": null,
+  "lexical_audit": {
+    "authority": "EXACT_LEXICAL_MEMBERSHIP_AND_TRANSPORT_ONLY__NO_MAPPING_TRUTH_AUTHORITY",
+    "exact_source_universe_members": 0,
+    "exact_target_universe_members": 0,
+    "failure_reason": "Final repaired entity strings are not exact frozen-universe IRIs; Optional.of wrappers violate downstream lexical membership.",
+    "final_repaired_rows": 16,
+    "final_three_field_rows": 16,
+    "normalization_applied": false,
+    "pass": false,
+    "raw_logmap_rows": 16,
+    "raw_to_final_exact_row_multiset_equal": true,
+    "schema_version": "orion.p3.full-native-runtime.lexical-semantics-audit.v12",
+    "source_optional_wrapper_rows": 16,
+    "target_optional_wrapper_rows": 16,
+    "terminal": "FAIL_OPTIONAL_WRAPPER_DOWNSTREAM_LEXICAL_SEMANTICS"
+  },
+  "lexical_audit_sha256": "bebd7dfc4e0e79a14fca1610fd5d8b1b0823ccdd89fa1838189ab83157ac6eed",
+  "native_attempts": 1,
+  "native_exit_code": 0,
+  "native_success_gate_pass": true,
+  "parser": {
+    "command": [
+      "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/venv/bin/python",
+      "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/bertmap_native_parser_v7.py",
+      "--output-dir",
+      "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/results/bertmap-out/bertmap/match",
+      "--manifest",
+      "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/UNIVERSE_MANIFEST_V12.json",
+      "--write-receipt",
+      "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/NATIVE_ARTIFACT_CONTRACT_V12.json"
+    ],
+    "exit_code": 2,
+    "receipt": {
+      "error": "repaired_mappings.tsv:2: source IRI is outside the frozen universe",
+      "schema_version": "orion.p3.bertmap-native-parser.v7",
+      "terminal": "CANNOT_CHECK_NATIVE_ARTIFACT_CONTRACT_FAILURE"
+    },
+    "receipt_sha256": "289ff4ab1df6ab131b640475c4caba5afa14bcc257997233c48916b251a4877a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "289ff4ab1df6ab131b640475c4caba5afa14bcc257997233c48916b251a4877a"
+  },
+  "preflight_sha256": "2700f845b1c195387adec372322e04edc1e442a3100edf5e57b3e5f7aa7b1fb4",
+  "protected_outcome_opened": false,
+  "protocol_id": "P3_V12_EXACT_V9_V11_FULL_NATIVE_NO_GOLD_SINGLE_ATTEMPT",
+  "protocol_sha256": "ecdaa4dd2ae82d3d0633e085bfe6392a6981032b18902045756dd5744334f4f9",
+  "retries_used": 0,
+  "schema_version": "orion.p3.full-native-runtime.execution-receipt.v12",
+  "scientific_scoring_performed": false,
+  "started_at": "2026-08-23T20:46:24.078147+00:00",
+  "stderr": {
+    "bytes": 57144,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/NATIVE_STDERR_V12.log",
+    "retained_exactly": true,
+    "sha256": "26a995a0dbd0072e7919bc509a85e039d22abbb89c16ff6751147ee390b41f02"
+  },
+  "stdin_utf8": "2g\\n",
+  "stdout": {
+    "bytes": 21916,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/NATIVE_STDOUT_V12.log",
+    "sha256": "cbba681048ef39a1f413531e384e3853a34396538d3ff9cf20c53f9790314dae"
+  },
+  "terminal": "P3_V12_SINGLE_FULL_NATIVE_ATTEMPT_PASS__DIRECT_LOGMAP_CHILD_EXIT_ZERO__FIVE_OF_FIVE_REGULAR_ARTIFACTS__OPTIONAL_WRAPPER_LEXICAL_SEMANTICS_FAIL__STRUCTURAL_PARSER_CANNOT_CHECK__NO_RETRY__NATIVE_READINESS_THREE_OF_THREE__SCIENTIFIC_READINESS_ZERO_OF_THREE",
+  "timed_out": false,
+  "timeout_seconds": 1800,
+  "wall_nanoseconds": 231909885166,
+  "wall_seconds": 231.909885166
+}

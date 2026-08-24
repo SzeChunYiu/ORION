@@ -1,0 +1,129 @@
+{
+  "authority": "PROSPECTIVE_PUBLIC_RECORD_AUDIT_ONLY__NOT_OWNER_DELEGATION_HOST_RIGHTS_REVIEW_ORCUSTODY_AUTHORITY",
+  "capture_rule": {
+    "fail_closed": "Non-2xx, identity mismatch, parse ambiguity or indirect copy is CANNOT_CHECK.",
+    "method": "Exactly one HTTP GET sequence per frozen official GitHub route, identifying User-Agent, redirects followed, 30-second timeout.",
+    "raw_retention": "Temporary bytes deleted after bounded extraction; no raw issue, licence or schema payload is retained in the packet.",
+    "record": "Requested/final URL, UTC time, HTTP status, content type, ETag, Last-Modified, byte length and SHA-256."
+  },
+  "execution_limit": {
+    "case_or_outcome_access": 0,
+    "map_audit_runs": 0,
+    "retries": 0,
+    "route_get_sequences": 3
+  },
+  "frozen_at_utc": "2026-08-24T06:13:05.183298+00:00",
+  "frozen_counts": {
+    "authority_acts": 4,
+    "cannot_check_maps": 720,
+    "certified_maps": 0,
+    "closed_authority_acts": 0,
+    "map_space": 117649,
+    "named_custodian_or_delegation_groups": 0,
+    "owner_requirement_groups": 12,
+    "rejected_maps": 116929,
+    "scientific_action_gold_cells": 0,
+    "structural_analogue_groups": 9,
+    "sufficient_owner_groups": 0
+  },
+  "frozen_gates": [
+    {
+      "gate_id": "G1_EXPLICIT_R7_FORMAL_DELEGATION",
+      "pass_rule": "The official issue record explicitly names delegator, delegate, exact seven-target R7 scope, powers to complete and ratify the algebra, effective time and acceptance. Repository ownership, issue authorship, assignment, prose requests or agent work are insufficient."
+    },
+    {
+      "gate_id": "G2_EXACT_COMPLETED_ALGEBRA_RIGHTS",
+      "pass_rule": "An exact completed seven-profile V8 algebra exists at the frozen commit and the applicable rights holder grants storage, machine processing, derived semantic adjudication, audit quotation and release rights for those exact bytes. A licence over an empty schema/template is only a component and cannot pass."
+    },
+    {
+      "gate_id": "G3_COMPLETE_OWNER_ALGEBRA_INSTANCE",
+      "pass_rule": "The captured artifact is an instance, not a JSON Schema; it contains exactly seven complete target profiles plus authority, rights, ratification signatures and independent review values."
+    }
+  ],
+  "frozen_routes": [
+    {
+      "candidate_class": "EXPLICIT_FORMAL_DELEGATION",
+      "expected_identity": "Issue 696 in SzeChunYiu/ORION",
+      "requested_url": "https://api.github.com/repos/SzeChunYiu/ORION/issues/696",
+      "retention": "HTTP provenance, exact response digest, bounded issue number/state/timestamps/author-login and delegation-field booleans; no comments, labels/outcomes or third-party copies.",
+      "source_id": "GITHUB_ISSUE_696_OFFICIAL_API"
+    },
+    {
+      "candidate_class": "EXACT_COMMITTED_ARTIFACT_RIGHTS",
+      "expected_identity": "Repository root LICENSE at exact commit 8d47c546591a3c96dc5cf202f7e227d13251221c",
+      "requested_url": "https://raw.githubusercontent.com/SzeChunYiu/ORION/8d47c546591a3c96dc5cf202f7e227d13251221c/LICENSE",
+      "retention": "HTTP provenance, exact digest, bounded licence identity/grant/copyright fields; no inference of scientific authority.",
+      "source_id": "GITHUB_COMMIT_LICENSE_RAW"
+    },
+    {
+      "candidate_class": "COMPLETED_OWNER_ALGEBRA_EXISTENCE",
+      "expected_identity": "Exact committed V8 prospective owner-algebra schema",
+      "requested_url": "https://raw.githubusercontent.com/SzeChunYiu/ORION/8d47c546591a3c96dc5cf202f7e227d13251221c/development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+      "retention": "HTTP provenance, exact digest, JSON structural counts, schema-versus-instance classification and ratification-value presence only.",
+      "source_id": "GITHUB_COMMIT_V8_SCHEMA_RAW"
+    }
+  ],
+  "issue_delegation_required_fields": [
+    "delegator_identity",
+    "delegate_identity",
+    "exact_scope_all_seven_r7_targets",
+    "completion_power",
+    "ratification_power",
+    "effective_time",
+    "acceptance_or_signature"
+  ],
+  "non_substitution_rules": [
+    "Repository author/login/owner identity is not R7 vocabulary ownership.",
+    "Issue authorship or task assignment is not formal delegation unless every frozen delegation field is explicit.",
+    "An open-source licence grants copyright permissions, not scientific owner, host, reviewer or custody authority.",
+    "A schema describing required fields is not a completed algebra instance.",
+    "Same-workspace or AI evidence is not external custody or independent review."
+  ],
+  "planned_outputs": [
+    "PROTOCOL_V12.json",
+    "PROTOCOL_FREEZE_RECEIPT_V12.json",
+    "SOURCE_CAPTURE_RECEIPT_V12.json",
+    "DELEGATION_FIELD_AUDIT_V12.json",
+    "RIGHTS_AND_ALGEBRA_AUDIT_V12.json",
+    "RESULT_V12.json",
+    "NEGATIVE_RESULT_LEDGER_V12.md",
+    "SCIENTIFIC_REPORT_V12.md",
+    "verify_v12.py",
+    "VALIDATION_RECEIPT_V12.json",
+    "SHA256SUMS"
+  ],
+  "predecessors": [
+    {
+      "path": "development/p1-owner-custody-positive-successor-v11-2026-08-24/RESULT_V11.json",
+      "sha256": "9177eed343a763f10f65f5c381d0f0f106cd2d76cca4ed7e6073d075648f58a5"
+    },
+    {
+      "path": "development/p1-owner-custody-positive-successor-v11-2026-08-24/OWNER_DELEGATION_AUDIT_V11.json",
+      "sha256": "0ae19e8acd429d00d862ab246d54c0dd32fb5d4801f9397869e19b49b83f3b1e"
+    },
+    {
+      "path": "development/p1-adapter-blind-owner-ratification-v10-2026-08-23/CURRENT_RESULT_V10.json",
+      "sha256": "f5c37921bfb2b289feeeeeb4e253f33fa4708e64bcc4f34a497abe76a5ea9044"
+    },
+    {
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+      "sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55"
+    }
+  ],
+  "prohibitions": [
+    "No case text or outcome access.",
+    "No map-audit rerun.",
+    "No self-issued or repository-derived authority promotion.",
+    "No fabricated delegation, rights, signature, review, custody, gold or certified map.",
+    "No pytest, repository CI, manuscript, shared ledger, Git history or other-lane edit."
+  ],
+  "protocol_id": "P1_V12_PUBLIC_R7_DELEGATION_AND_EXACT_REPOSITORY_RIGHTS_DISCRIMINATOR",
+  "schema_version": "orion.p1.owner-custody-positive-successor.protocol.v12",
+  "scientific_question": "Do exact official public repository records explicitly delegate the seven-target R7 vocabulary authority, or bind applicable rights over a completed R7 owner algebra, rather than merely evidence repository authorship or a licence over an incomplete schema?",
+  "target_authority_acts": [
+    "R7_VOCABULARY_OWNER_OR_FORMAL_DELEGATE_COMPLETES_AND_RATIFIES_ALGEBRA",
+    "HOST_AUTHORITY_SIGNS_RECOMMENDATION_EXECUTION_ADOPTION_BOUNDARIES",
+    "TARGET_CORPUS_RIGHTS_HOLDER_GRANTS_EXACT_RIGHTS",
+    "INDEPENDENT_SEMANTIC_REVIEWER_SIGNS_CONTENT_ADDRESSED_CONFORMANT_REVIEW"
+  ]
+}

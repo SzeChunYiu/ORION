@@ -1,0 +1,22 @@
+{
+  "candidate_dependency_tuple": {
+    "accelerate": "1.0.1",
+    "basis": "All four versions are already present together in the pinned DeepOnto uv.lock branch for older Python; only the Transformers API keyword was source-checked here.",
+    "evaluation_strategy_field_present": true,
+    "tokenizers": "0.20.3",
+    "torch": "2.5.1",
+    "training_args_source_sha256": "6c594e97c4dd930612ccba8fe763650ef91ae9d7e20b20d326017bf7cd06f237",
+    "transformers": "4.46.3",
+    "transformers_wheel_expected_sha256": "a12ef6f52841fd190a3e5602145b542d03507222f2c64ebb7ee92e8788093aef",
+    "transformers_wheel_sha256": "a12ef6f52841fd190a3e5602145b542d03507222f2c64ebb7ee92e8788093aef"
+  },
+  "failure_gate": "Any install, import, model, training, repair, timeout, missing-artifact, or parser failure is exact CANNOT_CHECK; no further in-run patching.",
+  "frozen_at": "2026-08-23T17:43:13.716657+00:00",
+  "predecessor_terminal": "CANNOT_CHECK_PINNED_DEPENDENCY_API_INCOMPATIBILITY",
+  "protocol_id": "P3_V7_BERTMAP_PINNED_COMPATIBILITY_SUCCESSOR",
+  "schema_version": "orion.p3.comparator-native-preflight.compatibility-successor.v7",
+  "scientific_boundary": "Even a pass would establish native smoke readiness only and would not change V5 comparator readiness, performance, harm, coverage, or superiority.",
+  "single_changed_factor": "Exact Python dependency tuple only; inputs, model revision, thresholds, offline guards, parser, no-gold rule, and budgets remain unchanged.",
+  "status": "PROSPECTIVE_NOT_EXECUTED",
+  "success_gate": "Fresh isolated native execution exits zero and all five prospectively required native artifacts parse and hash."
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "orion.p5.rd02.public-development-freeze-receipt.v1",
+  "study_id": "P5-RD-02.DEFECTS4J.LANG1.V1",
+  "frozen_at_utc": "2026-08-23T13:44:00Z",
+  "bridge_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "outcomes_accessed": false,
+  "protected_outcomes_accessed": false,
+  "preregistration_path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/PREREGISTRATION_V1.json",
+  "preregistration_sha256": "766c0335ff7e6a59c48ffccdff7551a85fb0743d29871f9979a949bfec4d46a4",
+  "runner_path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/run_factorial.py",
+  "runner_sha256": "a770a04e9bea824a1fa510da125ac3d49a8df77b327243eaad304ec8080ca7f5",
+  "source_revision": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+  "selected_instance": "Defects4J Lang-1",
+  "factorial_cells": 4,
+  "run_order": [
+    "C0E0",
+    "C1E1",
+    "C1E0",
+    "C0E1"
+  ],
+  "candidate_byte_identities": [
+    "396afc3e4693cfee182efe582455f2d97058c068",
+    "d1a45e9738de5b3e299bb51e987565dcce55fee6"
+  ],
+  "environment_binary_identities": [
+    "sha256:7db0dd5c0c4dc931244875d0723783a32cc7912922e6aaac1dbb744bf8ae837f",
+    "sha256:e561d7ba57da3bb04df5db5da06a7a164811fa3981c1cfaed0516c70f784b301"
+  ],
+  "registered_terminals": [
+    "ENVIRONMENT_MAIN_EFFECT",
+    "IMPLEMENTATION_MAIN_EFFECT",
+    "COUPLED_INTERACTION",
+    "JOINT_NULL_UNRESOLVED",
+    "CANNOT_CHECK"
+  ],
+  "harm_retention_required": true,
+  "grants_protected_freshness": false,
+  "grants_h1_h4_authority": false,
+  "freeze_terminal": "P5_RD02_PUBLIC_DEVELOPMENT_FACTORIAL_FROZEN_BEFORE_OUTCOMES"
+}

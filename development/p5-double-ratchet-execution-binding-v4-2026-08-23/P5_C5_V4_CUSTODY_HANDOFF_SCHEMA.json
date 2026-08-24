@@ -1,0 +1,67 @@
+{
+  "$id": "https://orion.invalid/p5/v4/c5-one-shot-handoff.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arm_id": {
+      "const": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY"
+    },
+    "candidate_feedback_channel": {
+      "const": "NONE"
+    },
+    "development_task_tree_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "evaluator_artifact_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "metric_db_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "native_result_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "one_shot_nonce": {
+      "minLength": 32,
+      "type": "string"
+    },
+    "protected_panel_commitment": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "orion.p5.c5.one-shot-handoff.v4"
+    },
+    "scorer_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "solver_tree_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "source_commit": {
+      "const": "0f14e910d361196422d9b938f45280919952d4fd"
+    }
+  },
+  "required": [
+    "schema_version",
+    "arm_id",
+    "source_commit",
+    "evaluator_artifact_sha256",
+    "metric_db_sha256",
+    "native_result_sha256",
+    "solver_tree_sha256",
+    "development_task_tree_sha256",
+    "protected_panel_commitment",
+    "scorer_sha256",
+    "one_shot_nonce",
+    "candidate_feedback_channel"
+  ],
+  "title": "C5 final evaluator one-shot custody handoff",
+  "type": "object"
+}

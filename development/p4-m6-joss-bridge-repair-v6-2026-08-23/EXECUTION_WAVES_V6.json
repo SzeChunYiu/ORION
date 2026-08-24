@@ -1,0 +1,102 @@
+{
+  "analysis_command": "rtk python development/p4-m6-joss-bridge-repair-v6-2026-08-23/analyze_bridge_repair_v6.py",
+  "authoritative_waves": [
+    {
+      "command": "rtk env P4_V6_MAX_SOURCE_DOWNLOAD_BYTES=50000000 python development/p4-m6-joss-bridge-repair-v6-2026-08-23/run_bridge_repair_v6.py",
+      "scope": "all 41",
+      "sequence": 1,
+      "superseded_by_later_targeted_same-row evidence": true,
+      "terminal_counts": {
+        "repaired": 14,
+        "unresolved": 27
+      }
+    },
+    {
+      "command": "rtk env P4_V6_MAX_SOURCE_DOWNLOAD_BYTES=250000000 P4_V6_ONLY_INDICES=104 python development/p4-m6-joss-bridge-repair-v6-2026-08-23/run_bridge_repair_v6.py",
+      "scope": [
+        104
+      ],
+      "sequence": 2,
+      "terminal_counts": {
+        "repaired": 15,
+        "unresolved": 26
+      }
+    },
+    {
+      "command": "rtk env P4_V6_MAX_SOURCE_DOWNLOAD_BYTES=60000000 P4_V6_ONLY_INDICES=115 python development/p4-m6-joss-bridge-repair-v6-2026-08-23/run_bridge_repair_v6.py",
+      "scope": [
+        115
+      ],
+      "sequence": 3,
+      "terminal_counts": {
+        "repaired": 16,
+        "unresolved": 25
+      }
+    },
+    {
+      "command": "rtk env P4_V6_MAX_SOURCE_DOWNLOAD_BYTES=700000000 P4_V6_ONLY_INDICES=155 python development/p4-m6-joss-bridge-repair-v6-2026-08-23/run_bridge_repair_v6.py",
+      "scope": [
+        155
+      ],
+      "sequence": 4,
+      "terminal_counts": {
+        "repaired": 17,
+        "unresolved": 24
+      }
+    },
+    {
+      "command": "rtk env P4_V6_ONLY_INDICES=165 python development/p4-m6-joss-bridge-repair-v6-2026-08-23/run_bridge_repair_v6.py",
+      "purpose": "remove false resource-deferral label when no immutable candidate exists",
+      "scope": [
+        165
+      ],
+      "sequence": 5,
+      "terminal_counts": {
+        "repaired": 17,
+        "unresolved": 24
+      }
+    }
+  ],
+  "commit_push_merge_rebase_run": false,
+  "created_at": "2026-08-23T18:54:07.364650+00:00",
+  "cwd": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover",
+  "download_payloads_retained": false,
+  "files_versions_tags_commits_requests_counted_as_units": false,
+  "final_counts": {
+    "frozen_units": 41,
+    "new_or_replacement_units": 0,
+    "repaired": 17,
+    "unresolved": 24
+  },
+  "final_rows_sha256": "5d8bdf4bceb4e87762f246b3f76568e2670a0736e2b3290f9e0418ae9d959db9",
+  "pytest_run": false,
+  "row_execution_byte_bound_distribution": {
+    "10000000": 1,
+    "250000000": 1,
+    "50000000": 37,
+    "60000000": 1,
+    "700000000": 1
+  },
+  "schema_version": "orion.p4.m6.joss-bridge-repair.execution-waves.v6",
+  "shell_rule": "every shell command prefixed with rtk",
+  "superseded_development_attempts": [
+    {
+      "command": "rtk python development/p4-m6-joss-bridge-repair-v6-2026-08-23/run_bridge_repair_v6.py",
+      "status": "INTERRUPTED_DURING_LIVE_ZENODO_REFETCH_PROTOTYPE__NO_AUTHORITATIVE_OUTPUT"
+    },
+    {
+      "command": "rtk python development/p4-m6-joss-bridge-repair-v6-2026-08-23/run_bridge_repair_v6.py",
+      "status": "INTERRUPTED_AFTER_FIRST_FROZEN_METADATA_MANIFEST_CASE__NO_AUTHORITATIVE_OUTPUT"
+    },
+    {
+      "command": "rtk python development/p4-m6-joss-bridge-repair-v6-2026-08-23/run_bridge_repair_v6.py",
+      "status": "COMPLETED_10MB_DEVELOPMENT_WAVE__SUPERSEDED_BY_QUALIFIED_SWHID_PATH_FIX"
+    },
+    {
+      "command": "rtk python development/p4-m6-joss-bridge-repair-v6-2026-08-23/run_bridge_repair_v6.py",
+      "status": "COMPLETED_QUALIFIED_SWHID_10MB_WAVE__SUPERSEDED_BY_50MB_AND_TARGETED_WAVES"
+    }
+  ],
+  "tests_and_ci_run": false,
+  "validation_command": "rtk python development/p4-m6-joss-bridge-repair-v6-2026-08-23/verify_v6.py"
+}

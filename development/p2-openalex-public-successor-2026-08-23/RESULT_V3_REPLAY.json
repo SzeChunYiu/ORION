@@ -1,0 +1,755 @@
+{
+  "aggregate": {
+    "B0_RAW": {
+      "mean_iou": 0.0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "tasks_with_any_gold_hit": 0
+    },
+    "B1_CURRENT": {
+      "mean_iou": 0.0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "tasks_with_any_gold_hit": 0
+    },
+    "S1_RRF3": {
+      "mean_iou": 0.0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "tasks_with_any_gold_hit": 0
+    }
+  },
+  "claim_scope": "POST_RESPONSE_EXPLORATORY_PUBLIC_PROVIDER_DEVELOPMENT_REPLAY_ONLY",
+  "forbidden_claims": [
+    "prospective or confirmatory evidence",
+    "ORION acquisition-policy superiority",
+    "independent evaluator custody",
+    "generality beyond the frozen 24-task development subset"
+  ],
+  "gates": {
+    "G1_TRANSPORT": true,
+    "G2_EMISSION": false,
+    "G3_FUSION": false,
+    "G4_NO_PRECISION_COLLAPSE": true
+  },
+  "per_task": [
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 6,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 5,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 11,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0054"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 17,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 2,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 17,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 17,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 2,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0055"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 3,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 4,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0111"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 4,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 4,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0117"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 2,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 2,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 2,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 2,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 2,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0120"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 7,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 5,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 7,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 3,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 7,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 8,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0128"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 16,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 16,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 16,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0142"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 2,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0157"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 4,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 4,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 4,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 2,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0172"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 3,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0178"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 5,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 5,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 5,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0230"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 13,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 13,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 2,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 13,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 3,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0253"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 21,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 2,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 21,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 4,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 21,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 6,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0260"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 18,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 18,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 18,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0288"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 21,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 21,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 4,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 21,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 5,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0307"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 6,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 6,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 6,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0313"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 6,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 6,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 6,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0315"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 9,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 9,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 9,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0318"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 15,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 15,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 15,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0319"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 4,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 4,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 4,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0339"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 10,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 10,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 8,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 10,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 8,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0342"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 15,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 4,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 15,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 3,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 15,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 7,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0367"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 7,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 7,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 7,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 1,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0393"
+    },
+    {
+      "scores": {
+        "B0_RAW": {
+          "gold_count": 18,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "B1_CURRENT": {
+          "gold_count": 18,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        },
+        "S1_RRF3": {
+          "gold_count": 18,
+          "hit_count": 0,
+          "iou": 0.0,
+          "precision": 0.0,
+          "predicted_count": 0,
+          "recall": 0.0
+        }
+      },
+      "task_id": "arb-wide-0398"
+    }
+  ],
+  "receipts": {
+    "candidate_sha256": "c191cb9a123f3a2eeea3dc15dd264986d9234b1575671169fbba983114346e94",
+    "gold_sha256": "27d54754d36415200c715550acc743733e1585e724bf575c69115680cc3da496",
+    "protocol_sha256": "1fd60c8983e4f0d903a72d3c2f5a19c63aa08d1a745b9fb47cdfe5b7484fed98",
+    "script_sha256": "68942b4dddca9b491f72e6a404453fd70997eed97d42917444a1484dacb32894",
+    "trace_sha256": "10ffd34a8b3de5e3b9e45b0e309bf451ff201c2dd0c5d1837e70504959d684cd"
+  },
+  "s1_minus_strongest": {
+    "bootstrap_95_ci": [
+      0.0,
+      0.0
+    ],
+    "exact_two_sided_sign_p": 1.0,
+    "mean_recall_delta": 0.0
+  },
+  "schema_version": "orion.p2.openalex-public-successor.v1",
+  "strongest_single_view": "B0_RAW",
+  "task_count": 24,
+  "terminal": "P2_OPENALEX_TWO_VIEW_REPLAY_REQUIRES_NEW_ROUTE_OR_RANKER",
+  "transport_final_status_counts": {
+    "200": 48
+  }
+}

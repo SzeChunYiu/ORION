@@ -1,0 +1,120 @@
+{
+  "claims": [
+    {
+      "assumptions": [
+        "family, units, donor, residual and gates frozen before controller outcomes",
+        "metrics exact on the finite family",
+        "bindings valid"
+      ],
+      "id": "P2-V11-T1",
+      "name": "Exact noncompensatory admission",
+      "not_claimed": [
+        "transport beyond the finite family",
+        "independent confirmation"
+      ],
+      "statement": "For a frozen finite family with exact metrics, a residual is admissible exactly when all bindings pass and its full CRE20/R10/WSS95/sign/harm/absolute-WSS vector belongs to the registered conjunctive gate region.",
+      "status": "PROVED_CONDITIONAL"
+    },
+    {
+      "assumptions": [
+        "joint coverage includes residual selection, endpoints and units",
+        "nonnumeric bindings pass"
+      ],
+      "id": "P2-V11-T2",
+      "name": "Simultaneous robust admission",
+      "not_claimed": [
+        "V8 or V10 supplies such simultaneous inference"
+      ],
+      "statement": "If a simultaneous 1-alpha confidence set covers the full target gate vector and admission requires the set to be contained in the gate region, false admission probability is at most alpha.",
+      "status": "PROVED_CONDITIONAL"
+    },
+    {
+      "assumptions": [
+        "exact immutable donor fallback",
+        "same task, access, budget and authority contract",
+        "sound certificate"
+      ],
+      "id": "P2-V11-T3",
+      "name": "Safe residual envelope embedding",
+      "not_claimed": [
+        "every admitted residual dominates each review",
+        "implementation correctness without hash binding"
+      ],
+      "statement": "A certificate-switched residual class contains the donor attainable set, executes exact donor on rejection or unbound evidence, and admits only gate-certified residuals on the joint-coverage event.",
+      "status": "PROVED_CONDITIONAL"
+    },
+    {
+      "assumptions": [
+        "at least two independently gated coordinates",
+        "ordinary finite compensatory scalarization"
+      ],
+      "id": "P2-V11-P1",
+      "name": "No ordinary compensatory scalar equivalence",
+      "not_claimed": [
+        "impossibility under every bounded registered domain or lexicographic rule"
+      ],
+      "statement": "On an unbounded or range-unregistered metric domain, no finite ordinary weighted linear score is sound and complete for the noncompensatory gate conjunction.",
+      "status": "PROVED"
+    },
+    {
+      "assumptions": [
+        "at least seven admissible unobserved worlds",
+        "no restriction determines unobserved metric differences"
+      ],
+      "id": "P2-V11-T4",
+      "name": "Finite-failure non-identification",
+      "not_claimed": [
+        "a positive unobserved family exists"
+      ],
+      "statement": "Without a cross-world restriction, finite observed residual failures admit observationally identical extensions in which a new family fails or passes; universal u4 optimality and future success are both unidentified.",
+      "status": "PROVED"
+    },
+    {
+      "assumptions": [
+        "donor class saturated over donor-measurable policies",
+        "same task, access, action and acquisition support, budget, cost, authority and world contract",
+        "candidate decision constant on donor fibres"
+      ],
+      "id": "P2-V11-T5",
+      "name": "Donor-fibre embedding and separation",
+      "not_claimed": [
+        "single u4 is saturated, Bayes-optimal or universally optimal",
+        "dominance under a mismatched cost, access, world or authority contract"
+      ],
+      "statement": "A same-support, same-contract candidate constant on donor-state fibres belongs to a saturated donor-complete class. Valid strict same-contract outside-envelope separation requires new fibre-separating information/state, new acquisition support, or proof the donor class was unsaturated. A contract mismatch changes the comparison and cannot establish dominance under the original contract.",
+      "status": "PROVED_CONDITIONAL"
+    },
+    {
+      "assumptions": [
+        "the residual input is exactly the donor title-abstract input with deterministic title duplication"
+      ],
+      "id": "P2-V11-C1",
+      "name": "Title emphasis is information-preserving",
+      "not_claimed": [
+        "all same-information learners fail"
+      ],
+      "statement": "Title duplication is a deterministic transform of the existing title-abstract fields; it adds no raw information and cannot expand the acquired identity union.",
+      "status": "PROVED_BY_DEFINITION"
+    },
+    {
+      "evidence_sha256": "c69e5634b8d0e82a1fa393dbae276d728e9a2f7ba4c9db81a27c0329e2e66742",
+      "id": "P2-V11-E1",
+      "name": "V10 gate reconstruction",
+      "not_claimed": [
+        "universal u4 optimality",
+        "independent confirmation"
+      ],
+      "statement": "V10 fails CRE20 and R10 magnitude and sign gates while passing mean WSS95, harm and absolute WSS95; exact u4 remains fallback.",
+      "status": "RECEIPT_SUPPORTED_FINITE"
+    }
+  ],
+  "global_forbidden_claims": [
+    "source-general, domain-general, workflow-general or application-exact superiority",
+    "universal u4 optimality",
+    "existence of a future positive residual family",
+    "independent or protected confirmation",
+    "new acquisition from a deterministic same-field transform",
+    "ORION-specific superiority"
+  ],
+  "identity": "P2_V11_SAFE_RESIDUAL_ENVELOPE_CLAIM_LEDGER"
+}

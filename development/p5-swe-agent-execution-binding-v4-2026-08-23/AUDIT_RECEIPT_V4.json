@@ -1,0 +1,62 @@
+{
+  "artifact_sha256": {
+    "P5_C1_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json": "937c9b09394ef63f21261d90d996838a1d6eac146bcc3c150ab0bf0904f5ed65",
+    "P5_C1_V4_CUSTODY_HANDOFF_SCHEMA.json": "29e056300c27dcaee9bca18537deae9cd6647acf2e11f3a5f7700dcfdf065542",
+    "P5_C1_V4_EXECUTION_BINDING_PROTOCOL.json": "0fc6ef0f2644243339ac7cb7d08554a7b6afc83dd642f34c5e414ab451905f7b",
+    "P5_C1_V4_FIELD_REGISTRY.json": "9c0e99a771ac766930a9b0097c0d1b0f7c2cd8649169ed255c8b347d4c2817c8",
+    "P5_C1_V4_NATIVE_OUTPUT_SCHEMA.json": "3e8595ea7b65ed19e45cfd39df1e08efd5b4f136f40f41bc1c59fe16cbdd8a4c",
+    "P5_C1_V4_NATIVE_TERMINAL_RULES.json": "0ecf8433499ded1c0e8768829599306419691c904c5698a25ca3bce5934a9425",
+    "P5_C1_V4_NEGATIVE_LEDGER.json": "174bf1261aafe8deed957e224d7252b0b83ed604f5b8bd6855ef8c8719287d50",
+    "P5_C1_V4_NEGATIVE_LEDGER.md": "3d0c5a574f5d09c18b5e315046b4b6f04081d4a5f9a4c50c5fa886924d572a7c",
+    "P5_C1_V4_RESULT.json": "0940d3dbcdb005234b87cf1ee7ac411172db3e006ef789034b62383281772f56",
+    "P5_C1_V4_SOURCE_RIGHTS_MANIFEST.json": "df2f4dee97bf674dad1b050aec92f8bf8aae5a808238e899eb140b7ac0cb341e",
+    "P5_C1_V4_WRITE_SURFACE_SCHEMA.json": "a9988a55db768ab2ffda581aed3f246c3ca187077fa2612c2e7e873ef1d845cc",
+    "README.md": "09873b5a5a56cf5543fd6b4c93f1f238b9f3434bfd23ec160eac33069efa90f1",
+    "SCIENTIFIC_REPORT_V4.md": "09ebe5bb25e34487eea02c3679affd37adc7688dcab1d4169e4afd659463fd35",
+    "SWE_AGENT_DEPENDENCY_LOCK_V4.uv.lock": "488077a1f953459ee955ef17588dcb0eb3e7b5e42ed3e1ba252c3af96ff573c8",
+    "UPSTREAM_SIMPLE_INSTANCE.yaml": "b088b1a7d146afcab66d2c529409066685a2b4d4433ba18df3649aef0c374bd8",
+    "build_p5_c1_v4_freeze.py": "6bc87dcbe3de7f3c42973cdcce8132b55d527b7314c4694d136142de5907054e",
+    "p5_c1_isolated_runner.py": "00de7c33623dc9d9b30c1a059ee95cbc2f1a16bbbef553df9cb3f08b1beb4e1d",
+    "p5_c1_native_parser.py": "fba94970a47735be47bc71c2c6f99566b343c7526f8516acedb8254b3a2a94c4",
+    "p5_c1_v4_validator.py": "989d258ad14f6cbcbd0fa755fb1d9677ef87875a880fcf2e2754208163e5f336"
+  },
+  "audit_id": "P5.C1.SWE_AGENT.OUTCOME.FREE.BINDING.AUDIT.V4",
+  "authority": "DIRECT_BYTE_HASH_SCHEMA_AND_AUTHORED_SYNTHETIC_PARSER_VERIFICATION_ONLY",
+  "captured_at_utc": "2026-08-23T17:30:00Z",
+  "direct_checks": {
+    "c1_blocking_fields": 12,
+    "c1_bound_fields": 9,
+    "isolated_runner_current_preflight_refuses": true,
+    "json_files_parse": true,
+    "native_parser_authored_synthetic_cases": 8,
+    "native_parser_failures": 0,
+    "panel_confirmatory_ready_arms": 0,
+    "python_ast_parse": true,
+    "sha256sum_check": "ALL_OK_AFTER_BUILD"
+  },
+  "main_checkout_or_other_lanes_modified": false,
+  "outcome_boundary": {
+    "comparator_outcomes_accessed": false,
+    "comparators_or_models_executed": false,
+    "gold_patch_or_test_patch_payload_values_disclosed_to_lane": false,
+    "performance_tables_accessed": false,
+    "protected_scores_accessed": false,
+    "protected_test_content_disclosed_to_lane": false,
+    "public_benchmark_first_record_key_names_observed": true
+  },
+  "predecessor_checksum_verification": {
+    "comparator_panel_v2": "ALL_OK",
+    "terminal_adapters_v2": "ALL_OK",
+    "v3": "ALL_OK"
+  },
+  "preserved": {
+    "panel_ready": "0/6",
+    "performance": "CANNOT_CHECK",
+    "raw_native_singleton_licences": 0,
+    "scienceclaw_supported_singletons": 0,
+    "superiority": "CANNOT_CHECK"
+  },
+  "pytest_or_repository_ci_run": false,
+  "schema_version": "orion.p5.c1.execution-binding-audit.v4",
+  "terminal": "P5_C1_V4_SWE_AGENT_NATIVE_PARSER_AND_ISOLATION_POLICY_BOUND__TWELVE_C1_FIELDS_BLOCKING__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK"
+}

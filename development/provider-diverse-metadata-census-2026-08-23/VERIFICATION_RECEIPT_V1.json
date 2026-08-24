@@ -1,0 +1,443 @@
+{
+  "article_or_issue_or_dataset_body_accessed": false,
+  "authority": "METADATA_CENSUS_CONFORMANCE_ONLY__NOT_CASE_OR_OUTCOME_AUTHORITY",
+  "checks": [
+    {
+      "check_id": "PROTOCOL_PAYLOAD_HASH",
+      "evidence": "776e5a66d69296bd14fed5760fd913b877310488912408f6d3ecf2d2407a28e7",
+      "status": "PASS"
+    },
+    {
+      "check_id": "CENSUS_PAYLOAD_HASH",
+      "evidence": "e1466f44231a02e4b36fc0a0b0d83a8f0db8b09bf6897e97c52702023e07d24d",
+      "status": "PASS"
+    },
+    {
+      "check_id": "PROTOCOL_BINDING_HASH",
+      "evidence": "776e5a66d69296bd14fed5760fd913b877310488912408f6d3ecf2d2407a28e7",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RECORD_COUNT",
+      "evidence": 16,
+      "status": "PASS"
+    },
+    {
+      "check_id": "RECORD_PAYLOAD_HASHES",
+      "evidence": "16/16",
+      "status": "PASS"
+    },
+    {
+      "check_id": "EXACT_CANDIDATE_MANIFEST",
+      "evidence": {
+        "expected": 16,
+        "observed": 16
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "FROZEN_QUERY_SELECTION_RANK_RECEIPTS",
+      "evidence": {
+        "broad_response_bodies_archived": false,
+        "query_receipts": 6,
+        "selected_rank_pairs": 12
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "WAVE_PROVIDER_MODALITY_DOMAIN_QUOTAS",
+      "evidence": {
+        "PRIMARY": {
+          "artifact_modalities": [
+            "DATA_REPOSITORY_DEPOSIT",
+            "INSTRUMENT_CALIBRATION_ARCHIVE",
+            "NON_GITHUB_PROJECT_TRACKER",
+            "PUBLISHER_ARTICLE"
+          ],
+          "artifact_modality_count": 4,
+          "candidate_records": 8,
+          "content_host_count_reported_separately": 6,
+          "content_hosts": [
+            "DOC/NOAA/NESDIS/NCEI",
+            "Elsevier BV",
+            "Scilight Press Pty Ltd",
+            "Universitas Al-Hikmah Indonesia",
+            "Zenodo",
+            "gromacs"
+          ],
+          "domain_counts": {
+            "BIOMEDICAL_CLINICAL": 2,
+            "COMPUTATIONAL_SCIENTIFIC_SOFTWARE": 2,
+            "EARTH_ENVIRONMENTAL": 2,
+            "PHYSICAL_ENGINEERING": 2
+          },
+          "metadata_provider_count": 4,
+          "metadata_providers": [
+            "CROSSREF_REST_API",
+            "GITLAB_COM_REST_API_V4",
+            "NASA_ESDIS_CMR_SEARCH_API",
+            "ZENODO_REST_API"
+          ],
+          "missing_matrix_cells": []
+        },
+        "REPLICATION": {
+          "artifact_modalities": [
+            "DATA_REPOSITORY_DEPOSIT",
+            "INSTRUMENT_CALIBRATION_ARCHIVE",
+            "NON_GITHUB_PROJECT_TRACKER",
+            "PUBLISHER_ARTICLE"
+          ],
+          "artifact_modality_count": 4,
+          "candidate_records": 8,
+          "content_host_count_reported_separately": 7,
+          "content_hosts": [
+            "Bilingual Publishing Group",
+            "Elsevier BV",
+            "Global Clinical Engineering Journal",
+            "NASA/GSFC/SED/ESD/TISL/GESDISC",
+            "QEF",
+            "Springer Science and Business Media LLC",
+            "Zenodo"
+          ],
+          "domain_counts": {
+            "BIOMEDICAL_CLINICAL": 2,
+            "COMPUTATIONAL_SCIENTIFIC_SOFTWARE": 2,
+            "EARTH_ENVIRONMENTAL": 2,
+            "PHYSICAL_ENGINEERING": 2
+          },
+          "metadata_provider_count": 4,
+          "metadata_providers": [
+            "CROSSREF_REST_API",
+            "GITLAB_COM_REST_API_V4",
+            "NASA_ESDIS_CMR_SEARCH_API",
+            "ZENODO_REST_API"
+          ],
+          "missing_matrix_cells": []
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "DEDUPLICATION_AND_CROSS_WAVE_DISJOINTNESS",
+      "evidence": {
+        "cross_wave_family_collisions": [],
+        "persistent_identifier_collisions": []
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "OUTCOME_AND_PROTECTED_FIELD_BOUNDARY",
+      "evidence": "16/16 metadata-only flags false",
+      "status": "PASS"
+    },
+    {
+      "check_id": "FAIL_CLOSED_TERMINALS_PRESERVED",
+      "evidence": {
+        "case_eligibility_not_assessed": 16,
+        "exact_historical_revision_cannot_check": 8,
+        "future_case_content_rights_cannot_check": 16,
+        "scientific_verdict": "CANNOT_CHECK_SOURCE_UNIVERSE"
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "LIVE_EXACT_PROVIDER_IDENTITY",
+      "evidence": "16/16",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TERMS_URL_HEAD_RECEIPTS",
+      "evidence": {
+        "live_2xx_3xx": 4,
+        "total": 4
+      },
+      "status": "PASS"
+    }
+  ],
+  "checks_passed": 13,
+  "checks_total": 13,
+  "conformance_terminal": "METADATA_CENSUS_CONFORMANCE_PASS",
+  "explicit_nonclaim": "Passing this verifier does not create an eligible case, settle rights, establish provider transport, or authorize a P1/P3/P4/P5 result.",
+  "failed_checks": [],
+  "outcomes_accessed": false,
+  "protected_case_fields_accessed": false,
+  "receipt_payload_sha256": "36c627e57b06a92ec9891b3fee532b46b8f26c9301b22fa9bc179f16af676dec",
+  "remote_identity_errors": [],
+  "remote_identity_receipts": [
+    {
+      "historical_revision_terminal": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY",
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "observed_identity": "10.1016/j.bj.2025.100874",
+      "provider_identity_match": true,
+      "provider_record_identity": "10.1016/j.bj.2025.100874",
+      "receipt": {
+        "final_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.bj.2025.100874&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "http_status": 200,
+        "request_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.bj.2025.100874&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "response_bytes": 1330,
+        "response_sha256": "68331c533f2424396fbd5172401f929778dcd04958b5cc47a441a2c981fec01d"
+      }
+    },
+    {
+      "metadata_provider_id": "ZENODO_REST_API",
+      "observed_identity": "18092984",
+      "observed_version_doi": "10.5281/zenodo.18092984",
+      "provider_identity_match": true,
+      "provider_record_identity": "18092984",
+      "receipt": {
+        "final_url": "https://zenodo.org/api/records/18092984",
+        "http_status": 200,
+        "request_url": "https://zenodo.org/api/records/18092984",
+        "response_bytes": 6445,
+        "response_sha256": "ad730a4fb4cdd1d4515ae456bb02fc72b7a1900d161dc9e2089e644a3bdc96d4"
+      }
+    },
+    {
+      "historical_revision_terminal": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY",
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "observed_identity": "10.53941/eesus.2025.100001",
+      "provider_identity_match": true,
+      "provider_record_identity": "10.53941/eesus.2025.100001",
+      "receipt": {
+        "final_url": "https://api.crossref.org/works?filter=doi%3A10.53941%2Feesus.2025.100001&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "http_status": 200,
+        "request_url": "https://api.crossref.org/works?filter=doi%3A10.53941%2Feesus.2025.100001&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "response_bytes": 955,
+        "response_sha256": "b72805fb074edba332345f0356e788c62a7269f456796e597ef9d13f6e316b22"
+      }
+    },
+    {
+      "metadata_provider_id": "ZENODO_REST_API",
+      "observed_identity": "18108141",
+      "observed_version_doi": "10.5281/zenodo.18108141",
+      "provider_identity_match": true,
+      "provider_record_identity": "18108141",
+      "receipt": {
+        "final_url": "https://zenodo.org/api/records/18108141",
+        "http_status": 200,
+        "request_url": "https://zenodo.org/api/records/18108141",
+        "response_bytes": 7601,
+        "response_sha256": "d5fcecaebf9f6743e4c8093c109fc235e1169d82fe9835a9b37e42d1058e1d56"
+      }
+    },
+    {
+      "historical_revision_terminal": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY",
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "observed_identity": "10.1016/j.envsoft.2025.106834",
+      "provider_identity_match": true,
+      "provider_record_identity": "10.1016/j.envsoft.2025.106834",
+      "receipt": {
+        "final_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.envsoft.2025.106834&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "http_status": 200,
+        "request_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.envsoft.2025.106834&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "response_bytes": 2100,
+        "response_sha256": "095748d622441507629795de2b45a5a5d8189626049384f80bcff8da90a6a087"
+      }
+    },
+    {
+      "commit_sha": "7942c72d82739c8f5ad782eac75ab97e40f79992",
+      "licence_content_sha256": "b634ab5640e258563c536e658cad87080553df6f34f62269a21d554844e58bfe",
+      "licence_receipt": {
+        "final_url": "https://gitlab.com/api/v4/projects/17679574/repository/files/COPYING?ref=7942c72d82739c8f5ad782eac75ab97e40f79992",
+        "http_status": 200,
+        "request_url": "https://gitlab.com/api/v4/projects/17679574/repository/files/COPYING?ref=7942c72d82739c8f5ad782eac75ab97e40f79992",
+        "response_bytes": 35785,
+        "response_sha256": "54602a51be18fb2296ebf9d0d91cf1413b9814b1b1cacb0b9f3ed531bab13e50"
+      },
+      "metadata_provider_id": "GITLAB_COM_REST_API_V4",
+      "observed_identity": "gromacs/gromacs",
+      "project_receipt": {
+        "final_url": "https://gitlab.com/api/v4/projects/gromacs%2Fgromacs",
+        "http_status": 200,
+        "request_url": "https://gitlab.com/api/v4/projects/gromacs%2Fgromacs",
+        "response_bytes": 954,
+        "response_sha256": "6ffce041e72b12354c81909982ffba38e00896d7e013936be848436bc0d164c0"
+      },
+      "provider_identity_match": true,
+      "provider_record_identity": "gromacs/gromacs"
+    },
+    {
+      "historical_revision_terminal": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY",
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "observed_identity": "10.35896/ijecie.v9i1.914",
+      "provider_identity_match": true,
+      "provider_record_identity": "10.35896/ijecie.v9i1.914",
+      "receipt": {
+        "final_url": "https://api.crossref.org/works?filter=doi%3A10.35896%2Fijecie.v9i1.914&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "http_status": 200,
+        "request_url": "https://api.crossref.org/works?filter=doi%3A10.35896%2Fijecie.v9i1.914&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "response_bytes": 1008,
+        "response_sha256": "b602d8305d8884e6479ebb7ead8fc28b7813b24559922e9a2539dcbe5b005bc3"
+      }
+    },
+    {
+      "exact_revision_response_sha256": "14d66cd03771576ff5df01b10aa5656bf998387841f7ae566bee33a90951bdad",
+      "metadata_provider_id": "NASA_ESDIS_CMR_SEARCH_API",
+      "observed_identity": "C2107094645-NOAA_NCEI",
+      "provider_identity_match": true,
+      "provider_record_identity": "C2107094645-NOAA_NCEI",
+      "receipt": {
+        "final_url": "https://cmr.earthdata.nasa.gov/search/concepts/C2107094645-NOAA_NCEI/1.umm_json",
+        "http_status": 200,
+        "request_url": "https://cmr.earthdata.nasa.gov/search/concepts/C2107094645-NOAA_NCEI/1.umm_json",
+        "response_bytes": 12003,
+        "response_sha256": "14d66cd03771576ff5df01b10aa5656bf998387841f7ae566bee33a90951bdad"
+      },
+      "revision_id": 1
+    },
+    {
+      "historical_revision_terminal": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY",
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "observed_identity": "10.31354/globalce.v6isi6.283",
+      "provider_identity_match": true,
+      "provider_record_identity": "10.31354/globalce.v6isi6.283",
+      "receipt": {
+        "final_url": "https://api.crossref.org/works?filter=doi%3A10.31354%2Fglobalce.v6isi6.283&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "http_status": 200,
+        "request_url": "https://api.crossref.org/works?filter=doi%3A10.31354%2Fglobalce.v6isi6.283&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "response_bytes": 974,
+        "response_sha256": "1b50829a20fb361f787a06c630f4c481547f8645ed3e45df8e81c69300a7159d"
+      }
+    },
+    {
+      "metadata_provider_id": "ZENODO_REST_API",
+      "observed_identity": "17852132",
+      "observed_version_doi": "10.5281/zenodo.17852132",
+      "provider_identity_match": true,
+      "provider_record_identity": "17852132",
+      "receipt": {
+        "final_url": "https://zenodo.org/api/records/17852132",
+        "http_status": 200,
+        "request_url": "https://zenodo.org/api/records/17852132",
+        "response_bytes": 14952,
+        "response_sha256": "025898ea4cf92925f85e1c70bc01994348db0994cb6ea667885faad3de667b7f"
+      }
+    },
+    {
+      "historical_revision_terminal": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY",
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "observed_identity": "10.30564/jees.v7i4.8039",
+      "provider_identity_match": true,
+      "provider_record_identity": "10.30564/jees.v7i4.8039",
+      "receipt": {
+        "final_url": "https://api.crossref.org/works?filter=doi%3A10.30564%2Fjees.v7i4.8039&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "http_status": 200,
+        "request_url": "https://api.crossref.org/works?filter=doi%3A10.30564%2Fjees.v7i4.8039&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "response_bytes": 955,
+        "response_sha256": "4c593544fd0910b2691382ef05fc29415be5e96630d292ac0378de93e1ad138a"
+      }
+    },
+    {
+      "metadata_provider_id": "ZENODO_REST_API",
+      "observed_identity": "18109101",
+      "observed_version_doi": "10.5281/zenodo.18109101",
+      "provider_identity_match": true,
+      "provider_record_identity": "18109101",
+      "receipt": {
+        "final_url": "https://zenodo.org/api/records/18109101",
+        "http_status": 200,
+        "request_url": "https://zenodo.org/api/records/18109101",
+        "response_bytes": 6189,
+        "response_sha256": "140d27d357478f95a8cc3dbc555b8b1eb1790598c959bc1399643ea1b2ead9ed"
+      }
+    },
+    {
+      "historical_revision_terminal": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY",
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "observed_identity": "10.1016/j.sciaf.2025.e03156",
+      "provider_identity_match": true,
+      "provider_record_identity": "10.1016/j.sciaf.2025.e03156",
+      "receipt": {
+        "final_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.sciaf.2025.e03156&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "http_status": 200,
+        "request_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.sciaf.2025.e03156&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "response_bytes": 1339,
+        "response_sha256": "eeb2e7bc6ba8037b001bc7c752e80de18d3b9207835868219873cda418eecb12"
+      }
+    },
+    {
+      "commit_sha": "2d07d94fc9613bdc2a5fd1eb10d4035b57c053ae",
+      "licence_content_sha256": "204d8eff92f95aac4df6c8122bc1505f468f3a901e5a4cc08940e0ede1938994",
+      "licence_receipt": {
+        "final_url": "https://gitlab.com/api/v4/projects/4578472/repository/files/License?ref=2d07d94fc9613bdc2a5fd1eb10d4035b57c053ae",
+        "http_status": 200,
+        "request_url": "https://gitlab.com/api/v4/projects/4578472/repository/files/License?ref=2d07d94fc9613bdc2a5fd1eb10d4035b57c053ae",
+        "response_bytes": 24429,
+        "response_sha256": "7909f98feab00c9f1a99cda01d8a91044fa86ebe059fb009d43aa506c22d8347"
+      },
+      "metadata_provider_id": "GITLAB_COM_REST_API_V4",
+      "observed_identity": "QEF/q-e",
+      "project_receipt": {
+        "final_url": "https://gitlab.com/api/v4/projects/QEF%2Fq-e",
+        "http_status": 200,
+        "request_url": "https://gitlab.com/api/v4/projects/QEF%2Fq-e",
+        "response_bytes": 842,
+        "response_sha256": "d210386f16e6c687a46be3aa59f4ff30ed9c997da557491f613e0b22c2b46992"
+      },
+      "provider_identity_match": true,
+      "provider_record_identity": "QEF/q-e"
+    },
+    {
+      "historical_revision_terminal": "CANNOT_CHECK_HISTORICAL_METADATA_BYTES__IDENTITY_EXISTENCE_ONLY",
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "observed_identity": "10.1208/s12248-025-01156-0",
+      "provider_identity_match": true,
+      "provider_record_identity": "10.1208/s12248-025-01156-0",
+      "receipt": {
+        "final_url": "https://api.crossref.org/works?filter=doi%3A10.1208%2Fs12248-025-01156-0&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "http_status": 200,
+        "request_url": "https://api.crossref.org/works?filter=doi%3A10.1208%2Fs12248-025-01156-0&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+        "response_bytes": 1210,
+        "response_sha256": "1b08bab6643a354a3009cfdd884e3ee15f26eab13f6591dc8bf06e1c0e7b0cf0"
+      }
+    },
+    {
+      "exact_revision_response_sha256": "0fbf20946a63bb75cf5bd781860fc40d05ad7fe8b759485c7f5446b97904c99c",
+      "metadata_provider_id": "NASA_ESDIS_CMR_SEARCH_API",
+      "observed_identity": "C2210183595-GES_DISC",
+      "provider_identity_match": true,
+      "provider_record_identity": "C2210183595-GES_DISC",
+      "receipt": {
+        "final_url": "https://cmr.earthdata.nasa.gov/search/concepts/C2210183595-GES_DISC/15.umm_json",
+        "http_status": 200,
+        "request_url": "https://cmr.earthdata.nasa.gov/search/concepts/C2210183595-GES_DISC/15.umm_json",
+        "response_bytes": 10002,
+        "response_sha256": "0fbf20946a63bb75cf5bd781860fc40d05ad7fe8b759485c7f5446b97904c99c"
+      },
+      "revision_id": 15
+    }
+  ],
+  "schema_version": "orion.provider-diverse-metadata-census.verification-receipt.v1",
+  "scientific_terminal_unchanged": "CANNOT_CHECK_SOURCE_UNIVERSE",
+  "terms_url_head_receipts": [
+    {
+      "content_type": "text/html",
+      "final_url": "https://about.gitlab.com/terms/",
+      "http_status": 200,
+      "method": "HEAD",
+      "request_url": "https://about.gitlab.com/terms/"
+    },
+    {
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://about.zenodo.org/policies/",
+      "http_status": 200,
+      "method": "HEAD",
+      "request_url": "https://about.zenodo.org/policies/"
+    },
+    {
+      "content_type": "text/html",
+      "final_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+      "http_status": 200,
+      "method": "HEAD",
+      "request_url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+    },
+    {
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+      "http_status": 200,
+      "method": "HEAD",
+      "request_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+    }
+  ],
+  "verified_at_utc": "2026-08-23T11:01:18+00:00"
+}

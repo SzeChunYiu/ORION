@@ -1,0 +1,96 @@
+{
+  "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+  "entries": [
+    {
+      "cause": "Only the official MIT smoke fixture is frozen; it has no task repository and is not a P5 scientific case.",
+      "id": "C1V4-N01",
+      "negative_result": "Candidate-visible P5 case remains unbound",
+      "next_discriminator": "Author and licence one substantive P5 case packet with exact problem/repository/config bytes and no protected fields.",
+      "residual": "C1 execution and task-content rights remain blocked.",
+      "resolved_in_v4": false
+    },
+    {
+      "cause": "No immutable primary identity, endpoint, revision, capability mapping or credential principal was supplied.",
+      "id": "C1V4-N02",
+      "negative_result": "Primary model/provider remains unbound",
+      "next_discriminator": "Freeze one exact primary plus provider terms, endpoint, tokenizer/accounting and effective config hash.",
+      "residual": "Calls, tokens, USD, retry/network and service rights cannot be fully enforced or matched.",
+      "resolved_in_v4": false
+    },
+    {
+      "cause": "A base image digest and dependency lock exist, but the derived SWE-agent image was not built or content-addressed.",
+      "id": "C1V4-N03",
+      "negative_result": "Complete runtime remains unbound",
+      "next_discriminator": "Build the Linux amd64 image from source+lock, emit digest, SBOM, licence bundle and entrypoint receipt.",
+      "residual": "The exact executable environment and dependency installation receipt cannot be checked.",
+      "resolved_in_v4": false
+    },
+    {
+      "cause": "Proposed caps exist, while exact aggregate token and USD enforcement depends on the primary provider/tokenizer.",
+      "id": "C1V4-N04",
+      "negative_result": "Aggregate usage hard-stop remains unbound",
+      "next_discriminator": "Implement provider-reconciled monotone counters with a pre-call remaining-budget gate and typed overshoot terminal.",
+      "residual": "Resource matching cannot yet be licensed.",
+      "resolved_in_v4": false
+    },
+    {
+      "cause": "Retry counts are frozen but no primary service endpoint or offline deployment is selected.",
+      "id": "C1V4-N05",
+      "negative_result": "Network allowlist remains unbound",
+      "next_discriminator": "Bind offline inference or a minimal exact egress policy including DNS/TLS identity.",
+      "residual": "The wrapper correctly defaults to no network, which also prevents an API-backed run.",
+      "resolved_in_v4": false
+    },
+    {
+      "cause": "No task seed tree, repository commit, setup commands or complete run_config.yaml exists.",
+      "id": "C1V4-N06",
+      "negative_result": "Task environment remains unbound",
+      "next_discriminator": "Freeze the task tree and setup/run configuration as one content-addressed candidate packet.",
+      "residual": "The native runner has nothing scientifically valid to execute.",
+      "resolved_in_v4": false
+    },
+    {
+      "cause": "Task, service, container-component and generated-artifact authorities are not closed by the SWE-agent MIT licence.",
+      "id": "C1V4-N07",
+      "negative_result": "Three rights surfaces remain unbound",
+      "next_discriminator": "Collect separate rights/terms receipts for every non-source byte and generated artifact flow.",
+      "residual": "Lawful source use does not license the full study.",
+      "resolved_in_v4": false
+    },
+    {
+      "cause": "No external scorer, protected-panel freshness commitment or signed one-shot barrier exists.",
+      "id": "C1V4-N08",
+      "negative_result": "Independent custody remains CANNOT_CHECK",
+      "next_discriminator": "Independent custodian completes P5_C1_V4_CUSTODY_HANDOFF_SCHEMA.json after protocol freeze.",
+      "residual": "Protected performance, harm and superiority remain CANNOT_CHECK.",
+      "resolved_in_v4": false
+    },
+    {
+      "cause": "The parser preserves native terminals and refuses protected keys; it intentionally emits UNRESOLVED.",
+      "id": "C1V4-N09",
+      "negative_result": "Adapter binding is not scientific classification",
+      "next_discriminator": "Only the separate V3 input-native certificate/action/invariance proof may license a supported singleton.",
+      "residual": "Zero raw native singleton licences are preserved.",
+      "resolved_in_v4": false
+    },
+    {
+      "cause": "This lane used source/configuration bytes and authored synthetic parser fixtures only.",
+      "id": "C1V4-N10",
+      "negative_result": "No C1 or panel outcome execution occurred",
+      "next_discriminator": "Execute only after all six arms and independent custody are ready; otherwise preserve 0/6.",
+      "residual": "No performance estimate or positive paper hypothesis follows.",
+      "resolved_in_v4": false
+    },
+    {
+      "cause": "The pinned default config includes the review_on_submit_m bundle, while C1 is the fixed-agent arm and may not gain a within-unit reviewer/retry selector.",
+      "id": "C1V4-N11",
+      "negative_result": "Upstream default config is not directly C1-admissible",
+      "next_discriminator": "Freeze agent.type=default, action_sampler=null, no retry loop, no review-on-submit bundle, and no open-PR/local-apply actions in the exact run config.",
+      "residual": "Using the upstream default unchanged would confound C1 with an adaptive/reviewer mechanism.",
+      "resolved_in_v4": false
+    }
+  ],
+  "ledger_id": "P5.C1.SWE_AGENT.RECURSIVE.NEGATIVE.LEDGER.V4",
+  "rule": "A negative result creates a prospectively testable discriminator; it is never rewritten as a positive outcome.",
+  "schema_version": "orion.p5.c1.recursive-negative-ledger.v4"
+}

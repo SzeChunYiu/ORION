@@ -1,0 +1,36 @@
+{
+  "arms": {
+    "R0_L0": "Candidate representation plus candidate SGD log-loss/class_weight-balanced learner.",
+    "R0_L1": "Candidate representation plus u4 LinearSVC/balanced-ratio-9.8 learner.",
+    "R1_L0": "u4 representation plus candidate SGD log-loss/class_weight-balanced learner.",
+    "R1_L1": "u4 representation plus u4 LinearSVC/balanced-ratio-9.8 learner."
+  },
+  "classification_rule": {
+    "interaction_dominant": "Neither main effect is stable and absolute interaction >= 0.01 with the same sign in at least four reviews.",
+    "no_stable_attribution": "No preceding rule passes.",
+    "stable_component": "Absolute mean component effect at recall@10% >= 0.01, same sign in at least four of five reviews, and magnitude at least half the absolute V3 full-arm gap."
+  },
+  "date": "2026-08-23",
+  "estimands": {
+    "interaction": "(R1_L1-R0_L1)-(R1_L0-R0_L0), reported per review and as an unweighted mean.",
+    "learner_balancer_main_effect": "Average of (R0_L1-R0_L0) and (R1_L1-R1_L0) on review-level recall@10% and WSS@95.",
+    "representation_main_effect": "Average of (R1_L0-R0_L0) and (R1_L1-R0_L1) on review-level recall@10% and WSS@95.",
+    "tail_diagnostics": "Recall@5%, recall@20%, fraction screened to 95% recall and WSS@95 for every arm and review."
+  },
+  "forbidden_changes": [
+    "review deletion",
+    "seed replacement",
+    "batch change",
+    "margin change",
+    "post-result feature cap",
+    "comparator replacement",
+    "pooled-row substitution for the review-level estimand"
+  ],
+  "identity": "P2_SWIFT_CONTROLLER_COMPONENT_FACTORIZATION_V4",
+  "motivation_terminal": "P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR",
+  "nonpromotion_rule": "No arm may replace the candidate or support a superiority claim on SWIFT. Any selected component combination must be frozen without outcome access and tested on a content-disjoint review family with the same active u4 comparator and unchanged safety gates.",
+  "population": "Exact V3 canonical rows, seeds, batches, review retention, metrics and review-level aggregation.",
+  "scope": "Post-outcome public-development mechanism diagnosis; not a superiority retest, confirmation, or controller promotion study.",
+  "status": "FROZEN_AFTER_V3_OUTCOMES_FOR_POST_OUTCOME_DIAGNOSIS_ONLY",
+  "v3_result_sha256": "a42b4c82a0a8be7dcd9426f9e0fda9a77dfb935e25a55d22d19372417cfee04b"
+}

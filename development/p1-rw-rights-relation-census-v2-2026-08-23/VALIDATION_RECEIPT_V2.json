@@ -1,0 +1,82 @@
+{
+  "checks": {
+    "authority_and_forbidden_access": {
+      "case_text_accessed": false,
+      "model_or_comparator_executed": false,
+      "passed": true,
+      "protected_scores_accessed": false,
+      "rw_action_or_outcome_columns_opened": false,
+      "scientific_terminal_cells_assigned": 0
+    },
+    "combined_bindings": {
+      "passed": true
+    },
+    "epmc_arithmetic": {
+      "exact_license_endpoint_total": 25588,
+      "passed": true,
+      "relation_status_total": 49878,
+      "typed_relation_total": 12038
+    },
+    "freeze_hashes": {
+      "failures": {},
+      "passed": true,
+      "verified_count": 5
+    },
+    "json_parse": {
+      "errors": [],
+      "file_count": 15,
+      "passed": true
+    },
+    "pinned_raw_identity_and_schema": {
+      "bytes": 65984968,
+      "data_rows": 71944,
+      "header_fields": 21,
+      "passed": true,
+      "row_width_counts": {
+        "21": 71944
+      },
+      "sha256": "ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb",
+      "trailing_header_empty": true,
+      "undocumented_terminal_nonempty_or_width_mismatch_rows": 0
+    },
+    "rw_arithmetic": {
+      "explicit_relation_decomposition_total": 65360,
+      "passed": true,
+      "row_decomposition_total": 71944
+    },
+    "typed_cell_wave_arithmetic": {
+      "cells_checked": 5,
+      "failures": {},
+      "passed": true,
+      "width_pass_cells": [
+        "EPMC_CORRECTION_OR_ERRATUM",
+        "EPMC_EXPRESSION_OF_CONCERN",
+        "EPMC_RETRACTION_NOTICE"
+      ]
+    },
+    "v8_predecessor_immutability": {
+      "input_survivors": 720,
+      "manifest_entries_checked": 19,
+      "note": "The predecessor V8 manifest verified independently; this lane wrote only its isolated directory.",
+      "passed": true,
+      "remain_cannot_check": 720,
+      "survivors_changed": 0,
+      "verified_external_manifest": "../p1-source-native-target-semantics-v8/SHA256SUMS"
+    }
+  },
+  "cleanup": {
+    "checked_at_utc": "2026-08-23T17:28:12.515269+00:00",
+    "identifier_level_temporary_mappings_retained": false,
+    "passed": true,
+    "pycache_or_pyc_present": false,
+    "raw_epmc_payload_retained": false,
+    "raw_rw_payload_retained": false,
+    "runtime_directory_present": false
+  },
+  "created_at_utc": "2026-08-23T17:27:58.168254+00:00",
+  "identity": "P1.RW.EPMC.RIGHTS.RELATION.CENSUS.V2.VALIDATION",
+  "passed": true,
+  "runtime_cleanup_pending": false,
+  "schema_version": "orion.p1.rw-epmc-validation-receipt.v2",
+  "verification_boundary": "Direct JSON/hash/schema/arithmetic/access-boundary and predecessor-manifest verification only; no pytest, CI, build, Git or manuscript edit."
+}

@@ -1,0 +1,37 @@
+P4 V8 exact-target terminal receipt
+cwd: /Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p4-unresolved-identity-v8-2026-08-23
+scope: ten frozen V7 identities; provider-native authoritative metadata, archives, and APIs only
+
+[predecessor provider pass]
+$ rtk python run_targeted_provider_pass_v8.py
+receipt: PROVIDER_PROBE_RECEIPT_V8.json
+started_at: 2026-08-23T20:39:31.053155+00:00
+finished_at: 2026-08-23T20:39:43.469928+00:00
+runtime_seconds: 12.416647
+result: 10 exact targets probed; eight initial Zenodo content requests returned HTTP 406 due to application/octet-stream Accept handling; no scope expansion
+
+[archive transport correction]
+$ rtk python retry_blocked_archive_transport_v8.py
+P4_V8_ARCHIVE_TRANSPORT_RETRY_COMPLETE__10_EXACT_ARCHIVES__RUNTIME_SECONDS=23.338581
+receipt runtime_seconds: 23.337980
+started_at: 2026-08-23T20:41:56.637092+00:00
+finished_at: 2026-08-23T20:42:19.975218+00:00
+result: 10/10 exact provider archives HTTP 200 and provider MD5 verified
+
+[exact SWH discriminator for target 199]
+$ rtk python probe_swh_199_v8.py
+P4_V8_SWH_199_PROBE_COMPLETE__HTTP=200__TARGET=ba731454bcc111627e810d5f3782af88c718e8f9__RUNTIME_SECONDS=0.249880
+receipt runtime_seconds: 0.249612
+result: authenticated SWH anchor is a synthetic Zenodo release targeting a directory, not a full revision
+
+[fail-closed adjudication]
+$ rtk python adjudicate_v8.py
+P4_V8_FINAL_ADJUDICATION_COMPLETE__REPAIRED=3__REMAINING=7__TOTAL_MEASURED_RUNTIME_SECONDS=36.011085
+result: repaired indices 59, 108, 196; exact residual and next discriminator recorded for 36, 91, 133, 165, 185, 190, 199
+
+[artifact validation]
+$ rtk python <inline receipt validation>
+P4_V8_ARTIFACT_VALIDATION_PASS__10_ROWS__3_REPAIRED__7_EXACT_RESIDUALS__10_ARCHIVES_CHECKSUM_VERIFIED
+checks: JSON consistency; all resolved gates true; all remaining rows have residual plus next discriminator; PSD and SEPARATE archive-license bytes equal exact-commit license bytes; FAIRLinked embedded tag ref and FETCH_HEAD exact; frozen protocol hash exact
+
+No pytest, CI, Git command, commit, target source execution, replacement, proxy bridge, broad harvest, or unit inflation was used.

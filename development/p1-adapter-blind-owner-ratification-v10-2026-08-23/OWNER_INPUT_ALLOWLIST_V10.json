@@ -1,0 +1,72 @@
+{
+  "schema_version": "orion.p1.adapter-blind-owner-input-allowlist.v10",
+  "identity": "P1.V10.ADAPTER.BLIND.OWNER.INPUT.ALLOWLIST",
+  "authority": "PROSPECTIVE_INPUT_CUSTODY_PROTOCOL_ONLY__NOT_OWNER_RATIFICATION",
+  "delivery_rule": "Before the target algebra and independent semantic review are content-addressed, the algebra author and semantic reviewer may receive only the exact local target-side artifacts below plus independently retrieved public standards. They may not receive any P1 extraction, crosswalk, source-terminal, compatibility, survivor-map, audit-result, case, model, comparator, score, or outcome artifact.",
+  "allowlisted_local_artifacts": [
+    {
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+      "sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55",
+      "reason": "Blank prospective completion schema; contains no chosen target profile and no adapter assignment."
+    },
+    {
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_TARGET_SEMANTIC_REGISTRY.json",
+      "sha256": "fc3ff7435d291e8581eeefaab30b16a119bb005fd99f720090ef147c6b2944ba",
+      "reason": "Target-side public intensional anchors and explicit unbound fields."
+    },
+    {
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_PUBLIC_TARGET_SOURCE_REGISTRY.json",
+      "sha256": "7f16c0c6b036b1d257b917744fe63b562ff693cf9f41992dd1c93424e248c17d",
+      "reason": "Immutable target-side public-source provenance; public commit is unsigned and is not itself ratification."
+    }
+  ],
+  "public_standard_rule": {
+    "allowed": true,
+    "constraint": "The author may independently consult primary public postpublication standards. No P1-derived token extraction, structural-analogue table, crosswalk, compatibility row, or proposed source-to-target assignment may be supplied before commitment.",
+    "rights_boundary": "Independent consultation does not grant reuse rights over the R7 target algebra."
+  },
+  "forbidden_precommitment_classes": [
+    "P1 source-native terminal profiles",
+    "P1 source-target compatibility matrices",
+    "the 720 survivor-map registry or any map assignment",
+    "positive, negative or CANNOT_CHECK adapter audit results",
+    "P1-derived public-standard token envelopes or owner-group analogue tables",
+    "case text, labels, dossiers or protected gold",
+    "model, comparator, score, performance or outcome artifacts"
+  ],
+  "exact_known_excluded_artifacts": [
+    {
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_720_ADAPTER_REGISTRY.json",
+      "sha256": "f2507273c49a30cceddfd745476aeab373a5c11d14dc56108ab16493cbd4dd23"
+    },
+    {
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_ADAPTER_ADJUDICATION_RESULT.json",
+      "sha256": "0364e95997323192594c1c7491e65ef26969a707fca47a7e5c021a531f2ad5ac"
+    },
+    {
+      "path": "development/p1-owner-algebra-construct-validity-v4-2026-08-23/OWNER_GROUP_FEASIBILITY_V4.json",
+      "sha256": "9675a577a54b6175d01907af16145a9f010744e7b66c7d004e742320e6c2f394"
+    },
+    {
+      "path": "development/p1-owner-algebra-construct-validity-v4-2026-08-23/STANDARD_NATIVE_ACTION_ENVELOPE_V4.json",
+      "sha256": "d6dd6bab21ef971e966b081e357691581f7106bf029059d0854144ae72a7dc97"
+    },
+    {
+      "path": "../lane-handoffs/p1-source-native-action-adapter-v2/ADAPTER_COMPATIBILITY_MATRIX_V2.json",
+      "sha256": "64d44ae85dc54411ae083c35f53090ac6776ec81e57a2425113c437f3fd746d5"
+    }
+  ],
+  "custody_receipt_minimum_fields": [
+    "recipient_identity",
+    "recipient_role",
+    "delivery_timestamp_utc",
+    "delivered_artifact_sha256_list",
+    "no_other_p1_adapter_or_outcome_material_delivered_attestation",
+    "recipient_no_prior_adapter_artifact_access_attestation",
+    "signature_scheme",
+    "key_id",
+    "signature"
+  ],
+  "current_delivery_executed": false,
+  "current_custody_receipt_bound": false
+}

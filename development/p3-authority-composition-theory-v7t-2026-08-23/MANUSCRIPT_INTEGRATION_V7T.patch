@@ -1,0 +1,151 @@
+--- a/papers/paper-03-global-knowledge-portrait/manuscript/sections/00-abstract.tex
++++ b/papers/paper-03-global-knowledge-portrait/manuscript/sections/00-abstract.tex
+@@ -8,7 +8,7 @@
+ mapping constraints. This changes integration from selecting one canonical
+ graph to three separable questions: which claims are point identified, which
+ additional observation would shrink the envelope, and which downstream action
+-is justified while identification remains partial. Seven formal results give
++is justified while identification remains partial. Eight formal results give
+ the framework its scope. A fibre criterion proves that a query is identified
+ exactly when it is constant across all worlds yielding the same observation;
+ otherwise no observation-only rule can be uniformly correct. An information-
+@@ -31,7 +31,11 @@
+ unrelated output labels. A universal factorisation theorem further shows that
+ the identified-set map is the coarsest sufficient claim interface: any other
+ sufficient product must refine it, and information-equivalent implementations
+-must tie under the same loss.
++must tie under the same loss. An authority-aware fibre criterion further
++places claim-relevant source, rights, execution, reference and custody
++failure outside the scientific truth codomain and shows why passed local
++preflights do not identify an end-to-end claim without an explicit
++composition relation.
+ 
+ Existing evidence tests slices of the theory without being promoted to
+ end-to-end authority. In a disjoint, prospectively execution-frozen 32-case
+--- a/papers/paper-03-global-knowledge-portrait/manuscript/sections/20-related-work.tex
++++ b/papers/paper-03-global-knowledge-portrait/manuscript/sections/20-related-work.tex
+@@ -178,4 +178,16 @@
+ false-split guard declared in advance. Raw-text extraction, naturalistic
+ envelope validity, independent expert construct validity, recoverability and
+ downstream utility require separate evidence.
++\paragraph{Uncertainty in automated ontology matching.}
++Osman, Pileggi and Ben Yahia empirically document substantial uncertainty and
++unreliability in automated ontology matching on a real-data integration case,
++and argue that appropriately designed semi-supervised approaches are more
++mature than unqualified automation \cite{osman2024uncertainty}. We absorb that
++diagnosis rather than claim uncertainty awareness as novel. Their unit is
++matcher uncertainty and its management. Our residual is claim-relative
++identification: content uncertainty and missing source, rights, executable,
++reference or custody authority are represented in one terminal-preserving
++fibre calculus, and a missing comparison is not converted into an observed
++error, tie or obstruction.
++
+ \endinput
+--- a/papers/paper-03-global-knowledge-portrait/manuscript/sections/36-partial-identification-theory.tex
++++ b/papers/paper-03-global-knowledge-portrait/manuscript/sections/36-partial-identification-theory.tex
+@@ -559,4 +559,87 @@
+ theory. They do not by themselves establish calibrated naturalistic envelopes
+ or downstream utility.
+ 
++\subsection{Authority-augmented identification and composition}
++\label{sec:authority-augmented}
++
++The portrait envelope above identifies content relative to an observation.
++Some scientific queries are additionally undefined unless the evidence
++possesses claim-relevant authority: a source and version are bound, the
++material may lawfully support the declared use, the method and comparator can
++execute, the population and semantics coincide, and the outcome is evaluated
++under the declared custody. Missing such a condition is not a third truth
++value and is not evidence against the method. It is an authority terminal.
++
++For a query $q:\Omega\to\Theta$, freeze the finite set $J_q$ of authority
++gates required by the claim and let $a_j:\Omega\to\{0,1\}$ be their truth in a
++world. Introduce $\bot_{\mathrm{auth}}\notin\Theta$ and define
++\begin{equation}
++ q^A(\omega)=
++ \begin{cases}
++ q(\omega),&\prod_{j\in J_q}a_j(\omega)=1,\\
++ \bot_{\mathrm{auth}},&\text{otherwise},
++ \end{cases}
++ \qquad
++ \Theta^A_q(y)=\{q^A(\omega):O(\omega)=y\}.
++ \label{eq:authority-envelope}
++\end{equation}
++The terminal is the formal counterpart of \textsc{CannotCheck}. In
++particular, if all compatible completions lack a required executable or
++reference identity, then $\Theta^A_q(y)=\{\bot_{\mathrm{auth}}\}$ rather than
++the empty set or a negative performance value.
++
++\begin{theorem}[Authority-aware fibre criterion]
++\label{thm:authority-fibre}
++For a realised observation $y$ and $\theta\in\Theta$, the authorized claim
++value is point identified as $\theta$ if and only if
++$\Theta^A_q(y)=\{\theta\}$. Equivalently, every authority gate is true and
++$q(\omega)=\theta$ throughout the observation fibre. If
++$\bot_{\mathrm{auth}}\in\Theta^A_q(y)$, the observation does not identify the
++authority needed for the claim; if two ordinary values occur, it does not
++identify the claim's substance.
++\end{theorem}
++
++\begin{proof}
++$\Theta^A_q(y)$ is the image of the observation fibre under $q^A$. It is the
++ordinary singleton $\{\theta\}$ exactly when $q^A$ is constantly $\theta$ on
++that fibre. By Equation~\eqref{eq:authority-envelope}, this holds exactly when
++all frozen gates equal one and $q$ is constantly $\theta$ there. The two
++failure cases follow from whether the image contains the authority terminal or
++multiple ordinary values.
++\end{proof}
++
++The same refinement order applies. If $O_2$ refines $O_1$ while $q$ and the
++frozen authority predicates are unchanged, the refined fibre is a subset of
++the coarse fibre and therefore
++\begin{equation}
++ \Theta_q^{A,(2)}(O_2(\omega))
++ \subseteq
++ \Theta_q^{A,(1)}(O_1(\omega)).
++ \label{eq:authority-refinement}
++\end{equation}
++Truthful acquisition of a rights fact, executable revision or custodied
++outcome can therefore shrink the set. A mismatched repository, changed
++population or outcome-informed adapter is a changed scientific identity, not
++a refinement of the frozen observation.
++
++Local readiness is not sufficient for global composition. Consider two worlds
++with the same observed stage artifacts and with every local source, rights,
++parser and entrypoint gate true. Let an unobserved relation say whether the two
++artifacts belong to the same scientific identity, with value zero in one world
++and one in the other, and let the end-to-end query be that relation. Every
++local statement is fixed and authorized, but the global identified set is
++$\{0,1\}$. A passed collection of local preflights therefore yields an
++end-to-end result only when the global query factors through those outputs
++under an explicit composition relation.
++
++For comparator superiority, the required gates include both executable
++identities, resource and configuration completeness, use rights, task and
++population identity, reference authority, scorer custody and terminal-
++preserving completion. If any is absent or unresolved, a missing run cannot be
++imputed as a loss, tie, abstention, obstruction or zero. Native artifact smoke
++may identify a narrower executability query, but it does not identify
++superiority without the remaining truth, population and custody gates. This
++extends the content envelope to scientific evaluation without claiming a new
++general theory beyond the fibre criterion.
++
+ \endinput
+--- a/papers/paper-03-global-knowledge-portrait/manuscript/bibliography.bib
++++ b/papers/paper-03-global-knowledge-portrait/manuscript/bibliography.bib
+@@ -278,3 +278,15 @@
+   address={San Francisco},
+   year={2003}
+ }
++
++@article{osman2024uncertainty,
++  author={Osman, In{\`e}s and Pileggi, Salvatore Flavio and Ben Yahia, Sadok},
++  title={Uncertainty in Automated Ontology Matching: Lessons from an Empirical Evaluation},
++  journal={Applied Sciences},
++  volume={14},
++  number={11},
++  pages={4679},
++  year={2024},
++  doi={10.3390/app14114679}
++}
++

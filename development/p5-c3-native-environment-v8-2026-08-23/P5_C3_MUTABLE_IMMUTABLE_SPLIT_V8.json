@@ -1,0 +1,31 @@
+{
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "ephemeral_mutable_agent_roots": [
+    "/p5/work/dgm_worktree",
+    "/p5/work/output_dgm"
+  ],
+  "ephemeral_mutable_task_paths": [
+    "/p5/work/task_worktree/src/main/java/org/apache/commons/lang3/math/NumberUtils.java"
+  ],
+  "excluded_roots_absent": [
+    "initial/",
+    "initial_polyglot/",
+    "swe_bench/ref_agent_results/"
+  ],
+  "frozen_at_utc": "2026-08-23T21:00:00Z",
+  "immutable_host_roots": [
+    "/p5/host/controller",
+    "/p5/host/policy",
+    "/p5/host/receipts"
+  ],
+  "immutable_task_paths": "every other member of the exact V6 Commons Lang source archive",
+  "input_native_certificate_sha256": "460402c3925a083017d640872960ec9927dbbfce62e24fbe7f2cd62faf7de341",
+  "read_only_seed_roots": [
+    "/p5/seed/candidate/dgm",
+    "/p5/seed/candidate/shared_core",
+    "/p5/seed/candidate/control"
+  ],
+  "reset": "destroy every ephemeral root after the non-executed or future single attempt",
+  "schema_version": "orion.p5.c3.mutable-immutable-split.v8"
+}

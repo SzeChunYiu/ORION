@@ -1,0 +1,478 @@
+{
+  "arms_by_review": {
+    "BPA": {
+      "ASREVIEW_ELAS_U4_CADENCE_MATCHED_COMPONENTS": {
+        "features": 467539,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.11381057554891516,
+          "recall_at_005": 0.8468468468468469,
+          "recall_at_010": 0.8918918918918919,
+          "recall_at_020": 0.972972972972973,
+          "wss_at_95": 0.8361894244510848
+        },
+        "model_fits": 481,
+        "order_sha256": "0553a0cdd26b2c7aa306bbe86f025db6357608846c39a86957abd49b65bddc70"
+      },
+      "FIXED_LOGREG_CONTROLLER": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.19851890346888398,
+          "recall_at_005": 0.7747747747747747,
+          "recall_at_010": 0.8648648648648649,
+          "recall_at_020": 0.954954954954955,
+          "wss_at_95": 0.7514810965311159
+        },
+        "model_fits": 481,
+        "order_sha256": "dde01476f79831ccf47614508a028ffaec0312387dbea02b42cc1b53c3a9cc2d"
+      },
+      "adapter_receipt": {
+        "batch_size": 16,
+        "initial_seed_record_identities_sha256": "da6391680413cf935fd0429796a16c80c2122584da63d4c29d0e5b5c87065bf7",
+        "text_list_sha256": "72c44a7ed96706814db4fc29307114b4eb148a7644d1d21ceb2ab8e04ab07ab6"
+      }
+    },
+    "Fluoride": {
+      "ASREVIEW_ELAS_U4_CADENCE_MATCHED_COMPONENTS": {
+        "features": 352541,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.05003350457895912,
+          "recall_at_005": 0.9607843137254902,
+          "recall_at_010": 0.9803921568627451,
+          "recall_at_020": 0.9803921568627451,
+          "wss_at_95": 0.8999664954210408
+        },
+        "model_fits": 448,
+        "order_sha256": "71b7b173d8ef96771c07277cf088a9853b26c404d276d58de11a2c6fb0b6daf5"
+      },
+      "FIXED_LOGREG_CONTROLLER": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.14384632566450747,
+          "recall_at_005": 0.8823529411764706,
+          "recall_at_010": 0.9411764705882353,
+          "recall_at_020": 0.9803921568627451,
+          "wss_at_95": 0.8061536743354925
+        },
+        "model_fits": 448,
+        "order_sha256": "aa88429e9c0d0489ba9ef65d262aac53f2f207e403c5e2024e418cc600e0b388"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "4e5284a5641355b255b92d44a71c4df742f6f0c9577b14ac6dd37d223d8259aa",
+        "text_list_sha256": "ecf750d2d980d43b4c1e5e31a2455b753cdb80beef684aaa5d60b39f3f749673"
+      }
+    },
+    "Neuropain": {
+      "ASREVIEW_ELAS_U4_CADENCE_MATCHED_COMPONENTS": {
+        "features": 1410708,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.29800733957540215,
+          "recall_at_005": 0.24166832967471563,
+          "recall_at_010": 0.477349830373179,
+          "recall_at_020": 0.8207942526441828,
+          "wss_at_95": 0.6519926604245978
+        },
+        "model_fits": 495,
+        "order_sha256": "c4aac466afb7ff0462a7714db67d20b4b222caa55459116be39df4eb417fc675"
+      },
+      "FIXED_LOGREG_CONTROLLER": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.3117947662653908,
+          "recall_at_005": 0.24486130512871682,
+          "recall_at_010": 0.4717621233286769,
+          "recall_at_020": 0.8070245459988027,
+          "wss_at_95": 0.6382052337346091
+        },
+        "model_fits": 495,
+        "order_sha256": "ad1f9636037f68fc21ec53c4edf649d9c751d4a1b961d568fe18c17631fe4f5c"
+      },
+      "adapter_receipt": {
+        "batch_size": 59,
+        "initial_seed_record_identities_sha256": "eab11f263236d9d1e25306ceffb9a1872f7b74bfe292477df9e5c3d76fff7a44",
+        "text_list_sha256": "365baa4a79f4c08e5e23d9da9b8d01be23c8c87936dd0e5da181c45db27c7631"
+      }
+    },
+    "PFOS-PFOA": {
+      "ASREVIEW_ELAS_U4_CADENCE_MATCHED_COMPONENTS": {
+        "features": 466132,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.10350293231890949,
+          "recall_at_005": 0.8210526315789474,
+          "recall_at_010": 0.9368421052631579,
+          "recall_at_020": 0.9894736842105263,
+          "wss_at_95": 0.8464970676810905
+        },
+        "model_fits": 486,
+        "order_sha256": "8ad1f564fc97eff28caddfff02b77350940502d2f1b23e1bfc2b38c44c901319"
+      },
+      "FIXED_LOGREG_CONTROLLER": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.11142811856078617,
+          "recall_at_005": 0.7789473684210526,
+          "recall_at_010": 0.9157894736842105,
+          "recall_at_020": 0.9789473684210527,
+          "wss_at_95": 0.8385718814392138
+        },
+        "model_fits": 486,
+        "order_sha256": "2f6fee6b181740b46fcb76c3b4985cf72f92a658292a92aded02b61167f5f230"
+      },
+      "adapter_receipt": {
+        "batch_size": 13,
+        "initial_seed_record_identities_sha256": "436eca8651d535e2ed12371ed26af23646079edb17db44552abb8f26e8e1bf0e",
+        "text_list_sha256": "27bc9af29601dafeceeed91999030f8b44eebb9596e185caca5963907163a782"
+      }
+    },
+    "Transgenerational": {
+      "ASREVIEW_ELAS_U4_CADENCE_MATCHED_COMPONENTS": {
+        "features": 2423501,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.196004197444497,
+          "recall_at_005": 0.662303664921466,
+          "recall_at_010": 0.8324607329842932,
+          "recall_at_020": 0.9581151832460733,
+          "wss_at_95": 0.7539958025555029
+        },
+        "model_fits": 496,
+        "order_sha256": "e582f521b94a4559aa0a6db5a7bff2cfd3867f2ceacae1c8f579e7039b892a6a"
+      },
+      "FIXED_LOGREG_CONTROLLER": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.2477521038661756,
+          "recall_at_005": 0.643979057591623,
+          "recall_at_010": 0.8167539267015707,
+          "recall_at_020": 0.9083769633507853,
+          "wss_at_95": 0.7022478961338243
+        },
+        "model_fits": 496,
+        "order_sha256": "c2e2e01beab265341d4cab5ccc2f4b0da36e75cb00cb685628f7b416572bd37d"
+      },
+      "adapter_receipt": {
+        "batch_size": 98,
+        "initial_seed_record_identities_sha256": "fd580e015ad0aef80e655cb7ffae14f5c3266a9690f698e506a6e7bcdbd3b8c2",
+        "text_list_sha256": "abcf93a37a739a6b11cbe2ca59b0dc07497a118b050d0a708558ba0a7997199f"
+      }
+    }
+  },
+  "binding_receipt": {
+    "freeze_files": {
+      "population_correction": {
+        "actual": "a671965790cb05441ee99e2770b3bb30a14022e8a1d12326fa8a6f7cae450064",
+        "expected": "a671965790cb05441ee99e2770b3bb30a14022e8a1d12326fa8a6f7cae450064",
+        "passed": true
+      },
+      "protocol": {
+        "actual": "ae1b398d9fc95bb09dffcef88092bcc18103d762d005a0c3397665182685a24f",
+        "expected": "ae1b398d9fc95bb09dffcef88092bcc18103d762d005a0c3397665182685a24f",
+        "passed": true
+      },
+      "runner": {
+        "actual": "348b7aa1fe708d480da178bdfd4736ec08df86a2d177337b94af205eefbe649a",
+        "expected": "348b7aa1fe708d480da178bdfd4736ec08df86a2d177337b94af205eefbe649a",
+        "passed": true
+      },
+      "source_and_rights": {
+        "actual": "489ba4b823b40276586367f5f49581ee0cfeda685e5f8be3bdcf9731b50558ab",
+        "expected": "489ba4b823b40276586367f5f49581ee0cfeda685e5f8be3bdcf9731b50558ab",
+        "passed": true
+      }
+    },
+    "passed": true,
+    "source_files": {
+      "PUBMED_SNAPSHOT_RECEIPT_V1.json": {
+        "bytes_actual": 23460,
+        "bytes_expected": 23460,
+        "passed": true,
+        "sha256_actual": "ea461e91f584028e7fec07f7b2a5d60ba48fccaed6f79fd29ab7a02213ed8199",
+        "sha256_expected": "ea461e91f584028e7fec07f7b2a5d60ba48fccaed6f79fd29ab7a02213ed8199"
+      },
+      "private-source/pubmed-snapshot.jsonl": {
+        "bytes_actual": 90520080,
+        "bytes_expected": 90520080,
+        "passed": true,
+        "sha256_actual": "962aeb56416dc72fe54336eb4867d14e17505b9b28cb7baf2fd469e82439a568",
+        "sha256_expected": "962aeb56416dc72fe54336eb4867d14e17505b9b28cb7baf2fd469e82439a568"
+      },
+      "source-audit/csmed-LICENSE": {
+        "bytes_actual": 11357,
+        "bytes_expected": 11357,
+        "passed": true,
+        "sha256_actual": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "sha256_expected": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "source-audit/csmed-commit-main.json": {
+        "bytes_actual": 101561,
+        "bytes_expected": 101561,
+        "passed": true,
+        "sha256_actual": "d683d1a9bde601af3da699e663933199b4e102e70fa94e0642171df7ced1d7e6",
+        "sha256_expected": "d683d1a9bde601af3da699e663933199b4e102e70fa94e0642171df7ced1d7e6"
+      },
+      "source-audit/csmed-swift-loader.py": {
+        "bytes_actual": 9866,
+        "bytes_expected": 9866,
+        "passed": true,
+        "sha256_actual": "4261ee2ffa33f66421a42a2556c5cbbc1c9f4d25314f5bc962c7e4d614f72139",
+        "sha256_expected": "4261ee2ffa33f66421a42a2556c5cbbc1c9f4d25314f5bc962c7e4d614f72139"
+      },
+      "source-audit/swift-article.html": {
+        "bytes_actual": 429158,
+        "bytes_expected": 429158,
+        "passed": true,
+        "sha256_actual": "2bdf377ea7a910f0cefbad39eebede02a217d2d7d259dcab9396cb4f10355821",
+        "sha256_expected": "2bdf377ea7a910f0cefbad39eebede02a217d2d7d259dcab9396cb4f10355821"
+      },
+      "source-audit/swift-camarades.xlsx": {
+        "bytes_actual": 18129827,
+        "bytes_expected": 18129827,
+        "passed": true,
+        "sha256_actual": "6977a713486f31c390d582e9de9e1488374a8c9f80c04788d5a43c03b0691c69",
+        "sha256_expected": "6977a713486f31c390d582e9de9e1488374a8c9f80c04788d5a43c03b0691c69"
+      },
+      "source-audit/swift-content-structure-preflight.json": {
+        "bytes_actual": 2237,
+        "bytes_expected": 2237,
+        "passed": true,
+        "sha256_actual": "d36ae4f5fdd627923f39a9d7d8f609933c0139adbbd7e977d8d1c61517b0e3bd",
+        "sha256_expected": "d36ae4f5fdd627923f39a9d7d8f609933c0139adbbd7e977d8d1c61517b0e3bd"
+      },
+      "source-audit/swift-label-schema-preflight.json": {
+        "bytes_actual": 720,
+        "bytes_expected": 720,
+        "passed": true,
+        "sha256_actual": "5c595e5daa130ee3a2d6cc1ae9f2bcfa6eb000b5cc067f085387a9cc0d6865d0",
+        "sha256_expected": "5c595e5daa130ee3a2d6cc1ae9f2bcfa6eb000b5cc067f085387a9cc0d6865d0"
+      },
+      "source-audit/swift-ohat.xlsx": {
+        "bytes_actual": 4119296,
+        "bytes_expected": 4119296,
+        "passed": true,
+        "sha256_actual": "0d326731f82e41a665a036bcca3d72ce1ee2b3d4af9e783a3dea319c31556462",
+        "sha256_expected": "0d326731f82e41a665a036bcca3d72ce1ee2b3d4af9e783a3dea319c31556462"
+      },
+      "source-audit/swift-structure-audit.json": {
+        "bytes_actual": 996,
+        "bytes_expected": 996,
+        "passed": true,
+        "sha256_actual": "946185cdf2f48ea7a182317f69c4c7b7feaa6e19f8bc10e080962c1466c4d101",
+        "sha256_expected": "946185cdf2f48ea7a182317f69c4c7b7feaa6e19f8bc10e080962c1466c4d101"
+      }
+    }
+  },
+  "claim_scope": "PUBLIC_DEVELOPMENT_MULTI_REVIEW_TRANSPORT_OF_A_FIXED_ACTIVE_SCREENING_CONTROLLER",
+  "effects_by_review": {
+    "BPA": {
+      "fraction_screened_at_95_recall": 0.08470832791996882,
+      "recall_at_005": -0.07207207207207211,
+      "recall_at_010": -0.027027027027026973,
+      "recall_at_020": -0.018018018018018056,
+      "wss_at_95": -0.08470832791996885
+    },
+    "Fluoride": {
+      "fraction_screened_at_95_recall": 0.09381282108554835,
+      "recall_at_005": -0.07843137254901966,
+      "recall_at_010": -0.039215686274509776,
+      "recall_at_020": 0.0,
+      "wss_at_95": -0.09381282108554834
+    },
+    "Neuropain": {
+      "fraction_screened_at_95_recall": 0.013787426689988669,
+      "recall_at_005": 0.0031929754540011845,
+      "recall_at_010": -0.0055877070445021215,
+      "recall_at_020": -0.013769706645380131,
+      "wss_at_95": -0.013787426689988669
+    },
+    "PFOS-PFOA": {
+      "fraction_screened_at_95_recall": 0.007925186241876686,
+      "recall_at_005": -0.04210526315789476,
+      "recall_at_010": -0.021052631578947434,
+      "recall_at_020": -0.010526315789473606,
+      "wss_at_95": -0.007925186241876658
+    },
+    "Transgenerational": {
+      "fraction_screened_at_95_recall": 0.05174790642167859,
+      "recall_at_005": -0.01832460732984298,
+      "recall_at_010": -0.015706806282722585,
+      "recall_at_020": -0.04973821989528793,
+      "wss_at_95": -0.05174790642167859
+    }
+  },
+  "elapsed_seconds": 1295.1453928750125,
+  "failed_gates": [
+    "G3_PRIMARY_MARGIN",
+    "G4_WORK_SAVING"
+  ],
+  "forbidden_claims": [
+    "prospective confirmation or protected replication",
+    "cold-start screening",
+    "exact execution of the ASReview application",
+    "ASReview software inferiority",
+    "independent review-level observations merely because the five review names are distinct",
+    "population-wide, domain-general, source-general, model-general, or workflow-general superiority",
+    "independent custody or external execution",
+    "ORION-specific superiority, route invention, closure, or task completion",
+    "retrospective controller, comparator, seed, batch, endpoint, margin, exclusion, or review selection"
+  ],
+  "gates": {
+    "G1_BINDING": true,
+    "G2_POPULATION": true,
+    "G3_PRIMARY_MARGIN": false,
+    "G4_WORK_SAVING": false,
+    "G5_HARM": true,
+    "G6_ABSOLUTE_WORK_SAVING": true
+  },
+  "identity": "P2_SWIFT_CROSS_REVIEW_CONTROLLER_TRANSPORT_V3",
+  "implementation_freeze_sha256": "637108060a38fadef04fc7609b4ec0e0a934aa585b78cd17346d87d9304ad6d9",
+  "mean_candidate_minus_comparator": {
+    "fraction_screened_at_95_recall": 0.05039633367181222,
+    "recall_at_005": -0.04154806793096567,
+    "recall_at_010": -0.021717971641541777,
+    "recall_at_020": -0.018410452069631943,
+    "wss_at_95": -0.05039633367181222
+  },
+  "overlap_receipt": {
+    "max_pairwise_shared_content_identities": 68,
+    "pairwise": [
+      {
+        "review_a": "BPA",
+        "review_b": "Fluoride",
+        "shared_content_identities": 0
+      },
+      {
+        "review_a": "BPA",
+        "review_b": "Neuropain",
+        "shared_content_identities": 0
+      },
+      {
+        "review_a": "BPA",
+        "review_b": "PFOS-PFOA",
+        "shared_content_identities": 35
+      },
+      {
+        "review_a": "BPA",
+        "review_b": "Transgenerational",
+        "shared_content_identities": 68
+      },
+      {
+        "review_a": "Fluoride",
+        "review_b": "Neuropain",
+        "shared_content_identities": 25
+      },
+      {
+        "review_a": "Fluoride",
+        "review_b": "PFOS-PFOA",
+        "shared_content_identities": 0
+      },
+      {
+        "review_a": "Fluoride",
+        "review_b": "Transgenerational",
+        "shared_content_identities": 0
+      },
+      {
+        "review_a": "Neuropain",
+        "review_b": "PFOS-PFOA",
+        "shared_content_identities": 0
+      },
+      {
+        "review_a": "Neuropain",
+        "review_b": "Transgenerational",
+        "shared_content_identities": 0
+      },
+      {
+        "review_a": "PFOS-PFOA",
+        "review_b": "Transgenerational",
+        "shared_content_identities": 58
+      }
+    ]
+  },
+  "population_receipts": {
+    "BPA": {
+      "canonical_content_set_sha256": "ee22da915a63cf3b2e098499d63e0a794b43c38b109631613b5add1d8ba81a85",
+      "canonical_record_order_sha256": "963f1cf5324291e397f11f711f3e6b6ad48a21f26bc0ce3e2b5ca36d11bb1b48",
+      "canonical_rows": 7697,
+      "duplicate_content_excess": 3,
+      "eligible_before_deduplication": 7700,
+      "empty_text_rows": 0,
+      "excluded_rows": 7586,
+      "included_rows": 111,
+      "missing_pubmed_metadata": 0,
+      "noncanonical_label_rows": 0,
+      "source_rows": 7700
+    },
+    "Fluoride": {
+      "canonical_content_set_sha256": "8034cd76779885603909700f4ec898d1dbc4e24dc9507c802bf611836dac14d6",
+      "canonical_record_order_sha256": "0b02bfce99ac773a2f373300b35905238eacc7412bf537f0998649547067d245",
+      "canonical_rows": 4477,
+      "duplicate_content_excess": 2,
+      "eligible_before_deduplication": 4479,
+      "empty_text_rows": 0,
+      "excluded_rows": 4426,
+      "included_rows": 51,
+      "missing_pubmed_metadata": 0,
+      "noncanonical_label_rows": 0,
+      "source_rows": 4479
+    },
+    "Neuropain": {
+      "canonical_content_set_sha256": "f88e6365e965b10ed6dab46ac30b0e487c418889d9f1b0254bb53ad946f8e969",
+      "canonical_record_order_sha256": "0deab4421694be389043e1f99a38d384bc9e07113cb58ddba285dc7e49869600",
+      "canonical_rows": 29157,
+      "duplicate_content_excess": 50,
+      "eligible_before_deduplication": 29207,
+      "empty_text_rows": 0,
+      "excluded_rows": 24146,
+      "included_rows": 5011,
+      "missing_pubmed_metadata": 0,
+      "noncanonical_label_rows": 0,
+      "source_rows": 29207
+    },
+    "PFOS-PFOA": {
+      "canonical_content_set_sha256": "5e7b915989c6fd7f685fa8a13441cc376094dc4b6db91333326a083528a3736c",
+      "canonical_record_order_sha256": "df13560d8d0eeda6e2cf3d5a2857bd07ef9e9792acf7b6512adf40c0d30b9e9a",
+      "canonical_rows": 6309,
+      "duplicate_content_excess": 0,
+      "eligible_before_deduplication": 6309,
+      "empty_text_rows": 0,
+      "excluded_rows": 6214,
+      "included_rows": 95,
+      "missing_pubmed_metadata": 22,
+      "noncanonical_label_rows": 0,
+      "source_rows": 6331
+    },
+    "Transgenerational": {
+      "canonical_content_set_sha256": "1898a69a3d7a057474ce8bf562862884fba89d5b9363648b0fe6e4492becc682",
+      "canonical_record_order_sha256": "c8f927a53ed39fcb1a007d9e44514e4d0c0665f5d91643191432a1c2513de5aa",
+      "canonical_rows": 48601,
+      "duplicate_content_excess": 31,
+      "eligible_before_deduplication": 48632,
+      "empty_text_rows": 0,
+      "excluded_rows": 47837,
+      "included_rows": 764,
+      "missing_pubmed_metadata": 6,
+      "noncanonical_label_rows": 0,
+      "source_rows": 48638
+    }
+  },
+  "preserved_terminal": "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR",
+  "protocol_freeze_sha256": "ae1b398d9fc95bb09dffcef88092bcc18103d762d005a0c3397665182685a24f",
+  "pubmed_receipt": {
+    "duplicate_pmid_excess": 0,
+    "pmid_key_set_sha256": "546f93d7b698c19ea365120a833faf3c2390aa29a17923f7bc17f9b19dbdbe22",
+    "unique_pmids": 62481
+  },
+  "result_payload_sha256": "0afea7f05e61c185ce47526867dffb68c6600a3fc1afb75748a85419a6dd486d",
+  "software": {
+    "numpy": "2.4.4",
+    "openpyxl": "3.1.5",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.1"
+  },
+  "source_and_rights_freeze_sha256": "489ba4b823b40276586367f5f49581ee0cfeda685e5f8be3bdcf9731b50558ab",
+  "terminal": "P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR",
+  "total_canonical_rows": 96241,
+  "worst_review_at_recall_010": {
+    "candidate_minus_comparator": -0.039215686274509776,
+    "review": "Fluoride"
+  }
+}

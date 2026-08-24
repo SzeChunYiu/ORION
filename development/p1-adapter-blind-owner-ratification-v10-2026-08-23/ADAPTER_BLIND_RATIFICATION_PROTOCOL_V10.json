@@ -1,0 +1,91 @@
+{
+  "schema_version": "orion.p1.adapter-blind-owner-ratification.protocol.v10",
+  "identity": "P1_R7_ADAPTER_BLIND_OWNER_RATIFICATION_MICROGATE_V10",
+  "date": "2026-08-23",
+  "authority": "PROSPECTIVE_CONSTRUCT_VALIDITY_PROTOCOL_ONLY__NOT_RATIFICATION_OR_AUDIT_AUTHORITY",
+  "parent_identity": "P1_R7_LICENSED_OWNER_RATIFIED_TARGET_ALGEBRA_AND_INDEPENDENT_REVIEW_V9",
+  "parent_contract": {
+    "path": "development/p1-scientific-blocker-compression-2026-08-23/OWNER_ALGEBRA_V9_COMPLETION_CONTRACT.json",
+    "sha256": "32a4af7b6adb9dd8250e072470605e574ed695145818da3b87cdeec3feef92b1"
+  },
+  "problem": "V9 binds necessary authority roles but does not record whether algebra content or semantic review was selected after access to adapter-side candidates. A signature records who approved bytes, not the information set used to choose them.",
+  "scientific_estimand": "Independent target-semantic construct validity: whether the completed seven-target algebra is fixed from target-side authority and evidence before exposure to P1 source-terminal or adapter candidates.",
+  "minimal_repair": {
+    "new_authority_roles": 0,
+    "retained_non_substitutable_authority_acts": 4,
+    "added_predicate_count": 1,
+    "predicate": "TARGET_ALGEBRA_AND_SEMANTIC_REVIEW_COMMITMENT_PRECEDES_ADAPTER_SIDE_EXPOSURE",
+    "why_minimal": "Removing the predicate leaves independent target construction and adapter-aware post-selection observationally indistinguishable; adding a fifth authority role is unnecessary because the predicate attaches to the existing author and reviewer acts."
+  },
+  "admissible_independence_paths": [
+    {
+      "path_id": "HISTORICAL_PRECEDENCE",
+      "pass_rule": "An owner-signed target definition with all V8-required semantic elements has an independently verifiable immutable timestamp earlier than the P1 source-terminal and adapter programme; any later rendering into the V8 schema is mechanical and adds no semantic choice. Applicable rights/host bindings and an author-independent CONFORMANT semantic review must also be bound.",
+      "current_state": "CANNOT_CHECK"
+    },
+    {
+      "path_id": "PROSPECTIVE_ADAPTER_BLIND_AUTHORING",
+      "pass_rule": "An external owner/delegate and independent reviewer receive only OWNER_INPUT_ALLOWLIST_V10.json inputs until the target algebra and semantic review are content-addressed and signed; a signed delivery/no-prior-access receipt binds the precommitment information set.",
+      "current_state": "NOT_EXECUTED"
+    }
+  ],
+  "ordered_gates": [
+    {
+      "order": 1,
+      "gate": "SELECT_INDEPENDENCE_PATH",
+      "pass": "Historical precedence is byte/timestamp verified, or named external owner/delegate and reviewer agree to prospective adapter-blind custody.",
+      "fail_closed": "CANNOT_CHECK_CONSTRUCT_INDEPENDENCE"
+    },
+    {
+      "order": 2,
+      "gate": "FREEZE_DELIVERY_ALLOWLIST",
+      "pass": "Every delivered precommitment byte is listed by path and SHA-256 in OWNER_INPUT_ALLOWLIST_V10.json; no forbidden class is delivered.",
+      "fail_closed": "CANNOT_CHECK_PRECOMMITMENT_INFORMATION_SET"
+    },
+    {
+      "order": 3,
+      "gate": "AUTHOR_TARGET_ALGEBRA",
+      "pass": "Vocabulary owner or formal delegate completes all seven target profiles, closed-world claim, probe typing and terminal behavior without adapter-side exposure.",
+      "fail_closed": "CANNOT_CHECK_OWNER_ALGEBRA"
+    },
+    {
+      "order": 4,
+      "gate": "BIND_HOST_AND_RIGHTS",
+      "pass": "Host authority signs recommendation/execution/adoption limits and applicable rights holder signs exact archive/licence/hash grant.",
+      "fail_closed": "CANNOT_CHECK_HOST_OR_RIGHTS_AUTHORITY"
+    },
+    {
+      "order": 5,
+      "gate": "INDEPENDENT_TARGET_SIDE_REVIEW",
+      "pass": "Reviewer with no algebra authorship, case/outcome custody, or adapter-side exposure signs a content-addressed CONFORMANT review.",
+      "fail_closed": "CANNOT_CHECK_INDEPENDENT_SEMANTIC_REVIEW"
+    },
+    {
+      "order": 6,
+      "gate": "COMMIT_THEN_UNSEAL",
+      "pass": "Algebra, host, rights, review and custody receipt digests are immutable before adapter-side artifacts are disclosed.",
+      "fail_closed": "PROTOCOL_ORDER_VIOLATION__DO_NOT_RUN_AUDIT"
+    },
+    {
+      "order": 7,
+      "gate": "UNCHANGED_MAP_AUDIT",
+      "pass": "Only now rerun the unchanged 117,649-map adjudication with all seven gates unchanged.",
+      "fail_closed": "MAP_AUDIT_UNAUTHORIZED"
+    }
+  ],
+  "frozen_counts": {
+    "owner_requirement_groups": 12,
+    "current_sufficient_groups": 0,
+    "unchanged_map_space": 117649,
+    "currently_rejected_maps": 116929,
+    "currently_cannot_check_maps": 720,
+    "currently_certified_maps": 0,
+    "scientific_action_gold_cells": 0
+  },
+  "positive_terminal": "P1_V10_ADAPTER_BLIND_OWNER_ALGEBRA_BOUND__INDEPENDENT_CONFORMANT_REVIEW_BOUND__UNCHANGED_MAP_AUDIT_AUTHORIZED",
+  "negative_terminal": "P1_V10_COMPLETED_INDEPENDENT_OWNER_ALGEBRA_REJECTS_ALL_MAPS_UNDER_UNCHANGED_GATES",
+  "cannot_check_terminal": "P1_V10_FOUR_AUTHORITY_ACTS_REMAIN_NECESSARY__ADAPTER_BLIND_PRECOMMITMENT_OR_HISTORICAL_PRECEDENCE_CANNOT_CHECK__720_MAPS_UNCHANGED",
+  "current_execution_authorized": false,
+  "case_or_outcome_access_authorized": false,
+  "map_audit_authorized": false
+}

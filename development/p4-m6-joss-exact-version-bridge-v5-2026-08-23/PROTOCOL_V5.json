@@ -1,0 +1,147 @@
+{
+  "authority": "PUBLIC_METADATA_SOURCE_FEASIBILITY_ONLY__NO_CASE_TEXT_LABELS_SYSTEM_OUTCOMES_OR_NATURAL_PAIR_DECISIONS",
+  "decision_rule": {
+    "cannot_check_if": "any relation, rights, repository, tag/commit, dedup, transport, domain or lineage field is missing/ambiguous",
+    "forbidden_claims": [
+      "eligible natural pairs",
+      "source-frame readiness from search hits or versions",
+      "protected confirmation",
+      "model performance",
+      "ORION superiority",
+      "provider generality"
+    ],
+    "natural_pair_count": "zero unless all frozen relation/rights/dedup/lineage and external natural-pair gates pass",
+    "positive_exact_bridge_if": "every exact bridge gate passes for a frozen DOI/repository concept; a pass licenses only an exact publication-version transport candidate, not a natural pair",
+    "preserved_programme_terminal": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK"
+  },
+  "exact_bridge_gate": {
+    "accepted_spdx": [
+      "MIT",
+      "Apache-2.0",
+      "GPL-2.0-only",
+      "GPL-2.0-or-later",
+      "GPL-3.0-only",
+      "GPL-3.0-or-later",
+      "BSD-2-Clause",
+      "BSD-3-Clause",
+      "MPL-2.0",
+      "ISC",
+      "LGPL-2.1-only",
+      "LGPL-2.1-or-later",
+      "LGPL-3.0-only",
+      "LGPL-3.0-or-later"
+    ],
+    "all_required": [
+      "frozen JOSS DOI exposes exactly one labelled Software archive DOI",
+      "archive DOI resolves to one immutable version record distinct from or explicitly equal to its concept identity",
+      "JOSS DOI to archive DOI relation is explicit on the publication page",
+      "archive version record explicitly identifies the same repository concept as the labelled JOSS repository",
+      "archive metadata explicitly identifies a tag or commit and that relation resolves to the same immutable Git commit",
+      "exact archive version has explicit accepted software rights and the immutable commit exposes the accepted licence",
+      "V3/V5 publication, object/archive and repository dedup gates pass",
+      "V4 unique frozen domain assignment passes unchanged"
+    ],
+    "no_inference_rules": [
+      "matching version strings alone do not prove tag identity",
+      "matching archive and GitHub dates do not prove version relation",
+      "repository relation plus current latest release does not prove publication-version alignment",
+      "generic or missing rights are not hand-mapped",
+      "archive files or releases never multiply units"
+    ]
+  },
+  "forbidden_write_scope": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover",
+  "frozen_at": "2026-08-23T16:15:51.531939+00:00",
+  "frozen_frame": {
+    "exact_publication_doi_count": 200,
+    "extension_allowed": false,
+    "identity_manifest": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p4-joss-exact-version-bridge-v5/FROZEN_JOSS_IDENTITIES_V5.json",
+    "identity_manifest_sha256": "f75e9d79f237c0c4491d4399cc574e2fb40193ffdc9e9fbee75dc121f8e775e3",
+    "joss_url_template": "https://joss.theoj.org/papers/{publication_doi}",
+    "replacement_after_failure_allowed": false
+  },
+  "normalization_and_dedup": {
+    "at_most_one_unit_per_publication_doi_repository_concept": true,
+    "cross_provider_keys": [
+      "publication_doi",
+      "archive/version object DOI",
+      "archive concept DOI",
+      "repository concept identity"
+    ],
+    "doi": "lowercase; strip doi: and https://doi.org/ prefixes; preserve version DOI and concept DOI separately",
+    "not_independent_units": [
+      "JOSS pages",
+      "archive pages",
+      "search hits",
+      "API responses",
+      "files",
+      "checksums",
+      "releases",
+      "tags",
+      "commits",
+      "versions",
+      "assets",
+      "authors",
+      "citations"
+    ],
+    "omitted_payload_absence_is_zero_overlap": false,
+    "repository": "case-fold owner/repository and bind numeric repository id when available",
+    "v3_identity_source": "V3_M6_IDENTITY_RECOVERY_V5.json only"
+  },
+  "outcomes_accessed_at_freeze": false,
+  "predecessors": [
+    {
+      "identity": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK",
+      "preservation": "IMMUTABLE"
+    },
+    {
+      "identity": "P4_M6_JOSS_GITHUB_BOUNDED_TRANSPORT_COMPLETE__EXACT_PUBLICATION_RELEASE_VERSION_RELATION_AND_AUTHOR_LINEAGE_CANNOT_CHECK__M6_CELL_FRAME_NOT_READY",
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p4-m6-source-provider-successor-v4/RESULT_V4.json",
+      "preservation": "IMMUTABLE",
+      "sha256": "5a556cef00d5776c883a8a57a7111b52a11c71145b83318b9506fa0a4867e6a3"
+    },
+    {
+      "identity": "P4_V3_M6_EXACT_CONCEPT_PUBLICATION_IDENTITIES_RECOVERED_FOR_CROSS_PROVIDER_DEDUP_ONLY",
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p4-joss-exact-version-bridge-v5/V3_M6_IDENTITY_RECOVERY_V5.json",
+      "preservation": "IDENTITY_ONLY",
+      "sha256": "251d806f21333e995f3304c7b66a16a43a8c9a834e95837e81cbaff394389d4a"
+    }
+  ],
+  "protected_data_accessed_at_freeze": false,
+  "protocol_id": "P4.PUBLIC.M6.JOSS.ARCHIVE.EXACT.VERSION.BRIDGE.DEV.V5",
+  "schema_version": "orion.p4.m6.joss-exact-version-bridge.protocol.v5",
+  "separated_gates": {
+    "author_lineage_independence": "CANNOT_CHECK unless outcome-blind external adjudication proves it; noncollision of names/owners is not proof",
+    "natural_pair_adjudication": "CANNOT_CHECK; public metadata contains no same-claim, one-coordinate intervention or material-resolvability decision",
+    "provider_family_disjointness": "JOSS publication metadata plus GitHub/Zenodo archival services does not by itself prove independent content-provider replication; provider-family classification is reported separately from item overlap"
+  },
+  "source_routes": {
+    "datacite_doi_metadata": {
+      "counting": "discovery/relation evidence only; DataCite never creates a content-provider family",
+      "endpoint_template": "https://api.datacite.org/dois/{archive_doi}",
+      "purpose": "bind exact version DOI, concept DOI, publisher/host, version, rights and related identifiers"
+    },
+    "github_public_api": {
+      "activation": "only for the one repository labelled by the frozen JOSS page",
+      "endpoints": [
+        "/repos/{owner}/{repo}/git/ref/tags/{candidate_tag}",
+        "/repos/{owner}/{repo}/git/tags/{annotated_tag_sha} when required",
+        "/repos/{owner}/{repo}/license?ref={resolved_commit_sha}"
+      ],
+      "forbidden": "do not substitute current latest release or scan all tags to find a match unless the archive metadata explicitly names the candidate tag/commit",
+      "purpose": "resolve an archive-explicit tag/commit relation and exact licence at that immutable commit"
+    },
+    "joss_publication_page": {
+      "accepted_archive_relation": "exactly one link whose visible label is Software archive and whose href contains a DOI",
+      "accepted_repository_relation": "exactly one labelled Software repository GitHub relation, compared with V4 identity",
+      "purpose": "bind labelled Software archive relation and labelled Software repository relation for the frozen DOI"
+    },
+    "zenodo_public_record": {
+      "activation": "only when the exact JOSS archive DOI is a Zenodo DOI with a numeric record id",
+      "counting": "one archive DOI/repository concept at most; files and versions are evidence, never n",
+      "endpoint_template": "https://zenodo.org/api/records/{record_id}",
+      "purpose": "bind source-native archived version DOI, concept DOI, files/checksums, rights, version and source/repository relations"
+    }
+  },
+  "status": "FROZEN_BEFORE_V5_METADATA_HARVEST",
+  "write_scope": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p4-joss-exact-version-bridge-v5"
+}

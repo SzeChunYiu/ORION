@@ -1,0 +1,17 @@
+{
+  "arm_code": "C2",
+  "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+  "arm_or_model_executed": false,
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "field": "runtime.task_environment",
+  "field_instances_closed": 0,
+  "manifest": {
+    "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C2_NATIVE_TASK_ENVIRONMENT_MANIFEST_V7.json",
+    "sha256": "af9bda98b28936996f298c570d384d668121367ccac1a2a0897968a7f87e9ef8",
+    "size_bytes": 3102
+  },
+  "protocol_sha256": "3a6cc70a0f91957ef4e7fbc5ec42e66875084f7985c2250c056e00d865aa4fe0",
+  "residual": "MOSS commit 5453f1feebad44c199f5887f852fc5bc7fb7d4da requires but omits benchmark/claw-eval/runner/benchmark.py, benchmark/claw-eval/src, and the manifests/tasks/results layout; V4 schemas do not instantiate the four missing artifacts.",
+  "schema_version": "orion.p5.native-task-environment-acceptance.v7",
+  "status": "BLOCKING"
+}

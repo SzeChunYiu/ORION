@@ -1,0 +1,73 @@
+{
+  "authority": "OUTCOME_BLIND_BYTE_RIGHTS_AND_FIELD_ACCEPTANCE_ONLY",
+  "authority_source": {
+    "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SIX_ARM_SHARED_CORE_ACCEPTANCE_V6.json",
+    "sha256": "86d9ccc04f941e7e331ea48a6537f0c3e07768d4c561dd27ce73f1ac655bf92a",
+    "size_bytes": 9198
+  },
+  "c2_receipt": {
+    "acceptance_status": "ACCEPTED_SHARED_CASE_AND_RIGHTS_CORE_ONLY__NATIVE_ENVIRONMENT_BLOCKING",
+    "after_shared_core_only": {
+      "blocking": 12,
+      "bound": 9
+    },
+    "arm_code": "C2",
+    "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+    "arm_or_model_executed": false,
+    "before": {
+      "blocking": 14,
+      "bound": 7
+    },
+    "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+    "field_bindings": {
+      "inputs.candidate_visible_case_bytes": {
+        "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+        "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+        "status": "BOUND"
+      },
+      "rights.task_and_benchmark_content": {
+        "condition": "Only listed shared-core content may be used; all native/bundled content is excluded unless separately licensed.",
+        "rights_manifest_sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+        "status": "BOUND"
+      },
+      "runtime.task_environment": {
+        "binding": null,
+        "residual": "The released MOSS benchmark companion is absent; a P5-native session/replay environment and host certificate remain unbound.",
+        "status": "BLOCKING"
+      }
+    },
+    "same_candidate_visible_core_sha256": "09a2eb17394d7b84c11641b468d14446af955c4c3272557810d861a275c72da7"
+  },
+  "count_basis": {
+    "after_source_core_only": {
+      "blocking": 12,
+      "bound": 9
+    },
+    "before": {
+      "blocking": 14,
+      "bound": 7
+    },
+    "source": "C2 V4 twenty-one-field registry as explicitly reproduced by the V6 C2 acceptance receipt"
+  },
+  "forbidden_aggregation": {
+    "aggregation_with_v11_authorized": false,
+    "reason": "No owner contract authorizes unioning closures across the distinct V11 and V12 successor identities.",
+    "runtime_task_environment_inherited": false,
+    "v11_state": {
+      "blocking": 13,
+      "bound": 8
+    },
+    "v11_successor_identity": "C2_LAWFUL_NATIVE_BYTE_SUCCESSOR__ORION_V11"
+  },
+  "permitted_field_closures": [
+    "inputs.candidate_visible_case_bytes",
+    "rights.task_and_benchmark_content"
+  ],
+  "released_moss_preserved": {
+    "blocking": 14,
+    "bound": 7,
+    "commit": "5453f1feebad44c199f5887f852fc5bc7fb7d4da"
+  },
+  "schema_version": "orion.p5.c2.explicit-shared-core-acceptance-basis.v12",
+  "successor_identity": "C2_SOURCE_NATIVE_VISIBLE_CORE_SUCCESSOR__ORION_V12"
+}

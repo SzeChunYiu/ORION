@@ -1,0 +1,39 @@
+{
+  "acceptable_issuers": [
+    "Zenodo record owner for record 20171460 through a provider-native signed provenance object",
+    "NutritionalLungImmunity/PAI repository owner through a verifiable Sigstore/GitHub artifact attestation"
+  ],
+  "alternative_provider_correction": "A replacement checksum-bound archive that exactly equals immutable revision aa021231... in every non-.git path, byte and executable bit also resolves the V12 residual without asserting build provenance for extra files.",
+  "contract_identity": "PAI_INDEX_91_ARCHIVE_BUILD_AND_MODE_AUTHORITY_V1",
+  "forbidden_inference": "Matching bytes, local compilation, a TAR header, README wording, a release title or repository commit signature alone does not satisfy this contract.",
+  "purpose": "Narrow provider-native authority contract for the V12 residual only; it does not authorize scientific outcomes.",
+  "required_predicates": [
+    "State the exact compiler distribution, version, platform, digest and complete command that generated the 106 class files, or state that the tracked JAR is the authoritative byte source and identify its generating build.",
+    "Bind the complete 106-output manifest; a subset or aggregate count is insufficient.",
+    "State that cpp/PAIpp.exe and run.sh were deliberately released as mode 0755 in the exact checksum-bound archive, and explain the contradiction with the verified revision tree's 100644 modes.",
+    "Bind the exact archive SHA-256, full revision and tree in the signed predicate."
+  ],
+  "required_subjects": {
+    "archive_only_class_count": 106,
+    "archive_only_class_manifest_sha256": "e9e6142c2a61a2bb79d25a682311fd63f1316120d1c039733dd6047ceffcf828",
+    "cpp_PAIpp_exe": {
+      "required_archive_mode": "0755",
+      "sha256": "23887c1ec55e689014298c8e276a4bafbfbd3ba9fbbb0e317505f33816c5f4d6",
+      "signed_revision_mode_to_explain": "100644"
+    },
+    "run_sh": {
+      "required_archive_mode": "0755",
+      "sha256": "20464879ee7dfd8db06c1f7978488f8e78c021df6b97df530a86628835ca90d1",
+      "signed_revision_mode_to_explain": "100644"
+    },
+    "source_manifest_sha256": "9ef2c0acaa41f7df6c8f904dbb389d73947c15a08ec8698ed26ea534c4f7a6cd",
+    "source_repository": "https://github.com/NutritionalLungImmunity/PAI",
+    "source_revision": "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+    "source_tree": "d5620f3acf4e5a163cfdfdefc2432ebd5709008a",
+    "tracked_jar_sha256": "ff49482838e3a761913df327a48e819d4f9e552bfeab29655a82675c60c47162",
+    "zenodo_archive_bytes": 17147954,
+    "zenodo_archive_sha256": "2a94e0ed7e61e18ea4135aa559d6a06a407adcabd84dbbc52ebface6bba5b407"
+  },
+  "schema_version": "orion.p4.exact-edge-build-provenance.v12.provider-signing-contract",
+  "verification_gate": "Signature/issuer identity, subject digests, revision/tree, complete class manifest and both path-mode predicates must all verify. Gates are conjunctive and noncompensatory."
+}

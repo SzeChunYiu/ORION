@@ -1,0 +1,61 @@
+{
+  "$id": "https://orion.invalid/p5/v4/c1-independent-custody-attestation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "current_state": "UNBOUND_NO_ATTESTATION_PRESENT",
+  "properties": {
+    "candidate_custody_has_no_read_access": {
+      "const": true
+    },
+    "custodian_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "no_feedback_channel": {
+      "const": true
+    },
+    "one_scoring_event": {
+      "const": true
+    },
+    "one_submission": {
+      "const": true
+    },
+    "panel_frozen_after_protocol": {
+      "const": true
+    },
+    "protected_panel_commitment": {
+      "minLength": 32,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "orion.p5.c1.independent-custody-attestation.v4"
+    },
+    "scorer_code_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "signature": {
+      "minLength": 32,
+      "type": "string"
+    },
+    "signed_at_utc": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "custodian_id",
+    "scorer_code_sha256",
+    "protected_panel_commitment",
+    "panel_frozen_after_protocol",
+    "candidate_custody_has_no_read_access",
+    "one_submission",
+    "one_scoring_event",
+    "no_feedback_channel",
+    "signed_at_utc",
+    "signature"
+  ],
+  "title": "P5 C1 independent one-shot custody attestation",
+  "type": "object"
+}

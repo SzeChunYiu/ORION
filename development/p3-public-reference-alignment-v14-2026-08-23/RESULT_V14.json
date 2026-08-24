@@ -1,0 +1,81 @@
+{
+  "admission": {
+    "exact_provider_native_case_found": false,
+    "gold_or_reference_file_opened_by_v14": false,
+    "identity_by_equal_class_label_invented": false,
+    "reason": "The frozen pair is locally constructed synthetic input, its hashes and IRIs match no admitted provider record, and no exact Bio-ML identity packet is present.",
+    "reference_alignment_admitted": false
+  },
+  "authority": "LOCAL_RECEIPT_BOUND_PROVIDER_IDENTITY_AUDIT_ONLY__PUBLIC_DEVELOPMENT_EVIDENCE__NOT_PROTECTED_CONFIRMATION",
+  "claim_boundary": {
+    "mapping_truth": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "protected_confirmation": "CANNOT_CHECK",
+    "public_data_role": "DEVELOPMENT_EVIDENCE_ONLY",
+    "superiority": "CANNOT_CHECK"
+  },
+  "frozen_pair": {
+    "construction": "Synthetic parallel labels/hierarchies only; no mappings, disjointness, truth, gold, reference, protected row, or task outcome.",
+    "provider_native": false,
+    "source": {
+      "named_classes": 16,
+      "ontology_iri": "urn:orion:p3:v6:bertmap-smoke:source",
+      "path": "BERTMAP_SMOKE_SOURCE_V6.owl",
+      "sha256": "c347f32626f6c5b3b782b2f6344bca5ac2282a701161d11f1e02a7422fef4d9e"
+    },
+    "target": {
+      "named_classes": 16,
+      "ontology_iri": "urn:orion:p3:v6:bertmap-smoke:target",
+      "path": "BERTMAP_SMOKE_TARGET_V6.owl",
+      "sha256": "16bd34ec22c3d130b94257404fd60a112a3383d16255a67472e0c5e1518c5521"
+    }
+  },
+  "metrics": {
+    "f1": "CANNOT_CHECK",
+    "precision": "CANNOT_CHECK",
+    "recall": "CANNOT_CHECK"
+  },
+  "next_discriminator": "Run the already frozen matcher/decoder on a separately frozen provider-native ontology pair only after exact version, rights, ontology hashes, reference hash, and same-universe comparator identity are all admitted prospectively.",
+  "protocol_id": "P3_V14_FROZEN_V12_V13_PROVIDER_NATIVE_REFERENCE_IDENTITY_AUDIT",
+  "provider_evidence": {
+    "bioml": {
+      "registered_records": 0,
+      "status": "NOT_ADMITTED__NO_EXACT_BIOML_VERSION_RIGHTS_ONTOLOGY_HASH_AND_REFERENCE_HASH_RECORD_IN_FROZEN_PROVIDER_REGISTRY"
+    },
+    "oaei_2004": {
+      "archive": "oacontest17.zip",
+      "conditions": [
+        "ATTRIBUTION",
+        "DOI_CITATION",
+        "INDICATE_ADAPTATIONS"
+      ],
+      "doi": "10.5281/zenodo.15827226",
+      "frozen_hash_match_count": 0,
+      "inventory_units": 21,
+      "license": "CC-BY-4.0",
+      "ontology_member_hashes_checked": 21,
+      "protected_authority": false,
+      "provider_checksum": "md5:31676c68912a22622f6ca6d031519df9",
+      "provider_literal_hits_for_frozen_hashes_and_iris": {
+        "16bd34ec22c3d130b94257404fd60a112a3383d16255a67472e0c5e1518c5521": 0,
+        "c347f32626f6c5b3b782b2f6344bca5ac2282a701161d11f1e02a7422fef4d9e": 0,
+        "urn:orion:p3:v6:bertmap-smoke:source": 0,
+        "urn:orion:p3:v6:bertmap-smoke:target": 0
+      },
+      "public_gold_join_gate_status": "FAIL_INVALID_CANDIDATE_UNIVERSE",
+      "record": "https://zenodo.org/records/15827226",
+      "reference_member_hashes_checked": 19,
+      "source_id": "OAEI_2004_ZENODO_15827226"
+    }
+  },
+  "same_universe_frozen_comparator": "CANNOT_CHECK",
+  "schema_version": "orion.p3.public-reference-identity-audit.v14",
+  "terminal": "P3_V14_PROVIDER_NATIVE_REFERENCE_IDENTITY_CANNOT_CHECK__FROZEN_PAIR_IS_SYNTHETIC_AND_MATCHES_NO_OAEI_BIOML_CASE__NO_PUBLIC_GOLD_ADMITTED__NO_METRICS_OR_COMPARATOR_COMPUTED",
+  "v13_decoded_mapping": {
+    "raw_v12_unchanged_in_v13": true,
+    "rows": 16,
+    "sha256_after_v14": "c67ee88d541013f41984b239f9cdeaebdcd81573f2080d8af24c7688207dd0f3",
+    "sha256_before_v14": "c67ee88d541013f41984b239f9cdeaebdcd81573f2080d8af24c7688207dd0f3",
+    "unchanged": true
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v11.protocol",
+  "identity": "P4.M6.JOSS.EXACT.EDGE.LINEAGE.AUTHORITY.V11",
+  "frozen_at": "2026-08-24T06:04:42Z",
+  "repository_head_at_freeze": "8d47c546591a3c96dc5cf202f7e227d13251221c",
+  "outcome_informed": true,
+  "predecessor": {
+    "identity": "P4.M6.JOSS.EXACT.EDGE.LINEAGE.AUTHORITY.V10",
+    "result_path": "development/p4-exact-edge-lineage-authority-v10-2026-08-24/RESULT_V10.json",
+    "result_sha256": "9cd19c2f2d3129f4789e5976395ce02f6cb08a29287614900c2b3bddbbaa20d1",
+    "sha256sums_path": "development/p4-exact-edge-lineage-authority-v10-2026-08-24/SHA256SUMS",
+    "sha256sums_sha256": "b643beb8a740cc618bacc742f617e87f3eed3e1288afe1af87f6b49aff5d0449",
+    "cumulative_exact_bridge": "76/80",
+    "remaining_indices": [36, 91, 133, 185]
+  },
+  "chronology_boundary": "The frozen V10 index-199 target-specific discriminator failed. The separately frozen outcome-informed V10B content-identity successor passed. Both facts remain immutable and are not collapsed or reinterpreted in V11.",
+  "unit_rule": "The same four frozen JOSS publication concepts only. A provider response, archive, file, ref, revision, Git object, distribution or provenance statement is evidence about a frozen unit, never a new unit.",
+  "historical_results_immutable": true,
+  "allowed_authorities": [
+    "Zenodo official record, checksum-bound file and DataCite-export APIs",
+    "DataCite official DOI registration API",
+    "GitHub official REST commit, raw-content and immutable-revision codeload APIs",
+    "an exact Git object database and worktree transported inside the checksum-bound provider archive",
+    "PyPI official PEP 691 Simple JSON and Integrity provenance APIs"
+  ],
+  "targets": [
+    {
+      "frozen_index": 36,
+      "repository": "jaxionproject/jaxion",
+      "publication_doi": "10.21105/joss.09542",
+      "archive_concept_doi": "10.5281/zenodo.21221061",
+      "archive_child_doi": "10.5281/zenodo.21221062",
+      "publication_version": "0.0.3",
+      "accepted_commit": "069ab4f56d100d765d46c594ac1b06add7e49f9e",
+      "preserved_archive_sha256": "e8d9defc64c7da5b64859ade992230c99ff4c20cb2e748c1f5827f6fcf72480c",
+      "preserved_embedded_worktree_head": "3cd108c376faf9832373adfe3ab4688295aa42fa",
+      "preserved_embedded_head_tag": "0.0.12",
+      "v11_discriminator": "Query the exact current Zenodo child and DataCite registrations for a provider correction. Closure requires an explicit immutable version 0.0.3 relation and archive-root content identity to accepted commit 069ab4f56d100d765d46c594ac1b06add7e49f9e. Because the preserved checksum-bound archive embeds a 0.0.12 worktree HEAD, metadata correction alone is noncompensatory and cannot close content identity. Do not redownload the 85,369,480-byte archive unless provider metadata first corrects the version relation and supplies a replacement checksum."
+    },
+    {
+      "frozen_index": 91,
+      "repository": "nutritionallungimmunity/pai",
+      "publication_doi": "10.21105/joss.10245",
+      "archive_doi": "10.5281/zenodo.20171460",
+      "publication_version": "v1.0.0",
+      "accepted_tag_commit": "9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59",
+      "archive_embedded_head": "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+      "archive_sha256": "2a94e0ed7e61e18ea4135aa559d6a06a407adcabd84dbbc52ebface6bba5b407",
+      "v11_discriminator": "Test whether the adverse embedded HEAD is nevertheless a provider-native exact source-content witness: the checksum-bound archive's embedded Git repository must be structurally valid, clean at aa021231cdafb6d74ce9ab5f55f824a3032058a4 and expose the same root tree as the current GitHub exact commit; every non-.git archive path, type, byte and executable bit must equal the immutable GitHub codeload at that full revision; archive and exact revision rights must be MIT. If so, closure is content identity only and the accepted-tag mismatch remains explicit."
+    },
+    {
+      "frozen_index": 133,
+      "repository": "artefactory/woodtapper",
+      "publication_version": "v0.0.13",
+      "accepted_commit": "7ac6d23d504404c4004faad663f6b889427109e6",
+      "artifact_filename": "woodtapper-0.0.13.tar.gz",
+      "artifact_sha256": "b509f6469b9ff8888195751c811d689559f45e24aeb35bb173b9680c99c8dbf3",
+      "v11_discriminator": "Query the exact file object in PyPI's official PEP 691 Simple JSON. Follow a provenance URL only if the file object itself exposes one. Closure requires a provider-native signed statement whose subject digest is the exact sdist SHA-256 and whose source repository plus full revision equal the frozen repository and accepted commit. Absence, a project-level trusted-publisher assertion, a workflow run or local reproduction is insufficient."
+    },
+    {
+      "frozen_index": 185,
+      "repository": "mit-psfc/disruption-py",
+      "publication_version": "v0.14.0",
+      "accepted_commit": "dec5c58a3e3970bc6817f33efb615fea11057fce",
+      "artifact_filename": "disruption_py-0.14.0.tar.gz",
+      "artifact_sha256": "775f92dbcbd6d1523db241494998e4b0867d51a84236feb7accc86b63b033a19",
+      "v11_discriminator": "Query the exact file object in PyPI's official PEP 691 Simple JSON. Follow a provenance URL only if the file object itself exposes one. Closure requires a provider-native signed statement whose subject digest is the exact sdist SHA-256 and whose source repository plus full revision equal the frozen repository and accepted commit. Projection equality, workflow metadata or local reconstruction is insufficient."
+    }
+  ],
+  "index_91_archive_normalization": {
+    "format": "gzip-compressed TAR only; any other response fails closed",
+    "root_rule": "Every archive member must be safe and beneath exactly one top-level repository root.",
+    "dvcs_envelope_rule": "The sole <root>/.git subtree is separated from the software payload manifest, not silently discarded: it must pass git fsck, authenticate the frozen HEAD and tree, and the extracted worktree must be clean. No other path is excluded.",
+    "payload_manifest": "After removing one top-level root and the separately adjudicated .git subtree, include every regular file and symbolic link with normalized path, entry type, SHA-256 of bytes or symlink target, byte count and executable-bit state. Reject duplicates, hard links, devices, unsafe paths and encrypted content.",
+    "codeload_manifest": "Remove exactly one codeload root and include every regular file and symbolic link under the same fields; no path is excluded.",
+    "equality": "Pass only if the two sorted payload manifests are exactly equal and the embedded Git HEAD tree equals the GitHub exact-commit tree. Any extra, missing, differing, dirty or untracked worktree path fails closed.",
+    "large_payloads": "Do not retain raw archive bodies. Retain URLs, statuses, byte counts, MD5/SHA-256, full normalized manifests and selected Git receipts."
+  },
+  "predeclared_requests": [
+    "index 36: GET https://zenodo.org/api/records/21221062",
+    "index 36: GET https://api.datacite.org/dois/10.5281%2Fzenodo.21221061 and ...21221062",
+    "index 91: GET https://zenodo.org/api/records/20171460 and its exact frozen file content URL",
+    "index 91: GET https://api.github.com/repos/NutritionalLungImmunity/PAI/commits/aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+    "index 91: GET https://raw.githubusercontent.com/NutritionalLungImmunity/PAI/aa021231cdafb6d74ce9ab5f55f824a3032058a4/LICENSE",
+    "index 91: GET https://codeload.github.com/NutritionalLungImmunity/PAI/tar.gz/aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+    "index 133: GET https://pypi.org/simple/woodtapper/ with Accept application/vnd.pypi.simple.v1+json",
+    "index 185: GET https://pypi.org/simple/disruption-py/ with Accept application/vnd.pypi.simple.v1+json",
+    "conditional: follow only an exact-file provider provenance URL exposed by the corresponding PEP 691 object"
+  ],
+  "closure_scope": "Any pass repairs only an exact source/content or distribution-provenance edge. It grants no tag ancestry when a different immutable content witness is used and no natural-pair eligibility, author-lineage independence, source-disjoint replication, external custody, comparator outcome, performance or superiority authority.",
+  "cannot_check": "A missing, absent, contradicted, mutable, project-level, workflow-only, subset, projected, dirty, path-unsafe, unsigned or locally reconstructed relation remains CANNOT_CHECK. Gates are conjunctive and noncompensatory.",
+  "forbidden": [
+    "modify V10/V10B or earlier artifacts",
+    "reinterpret the failed original V10 index-199 discriminator",
+    "count evidence objects as scientific units",
+    "exclude any index-91 archive path other than the separately adjudicated .git envelope",
+    "identify an exact-content witness as the accepted tag commit or its descendant without ancestry evidence",
+    "promote source repair into natural-pair, lineage, custody, outcome, performance or superiority authority",
+    "run pytest or repository CI"
+  ]
+}

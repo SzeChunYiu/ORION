@@ -1,0 +1,304 @@
+{
+  "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+  "checks": [
+    {
+      "check": "registry_21_fields",
+      "detail": 21,
+      "passed": true
+    },
+    {
+      "check": "registry_6_bound",
+      "detail": [
+        "adapter.native_parser_binding",
+        "identity.native_entrypoint_bytes",
+        "identity.source_license_bytes",
+        "identity.source_repository_commit",
+        "model_provider.fallbacks",
+        "resources.wallclock"
+      ],
+      "passed": true
+    },
+    {
+      "check": "registry_15_blocking",
+      "detail": [
+        "adapter.isolated_write_surface",
+        "custody.external_protected_scorer",
+        "custody.one_shot_no_feedback_barrier",
+        "custody.protected_panel_freshness",
+        "inputs.candidate_visible_case_bytes",
+        "model_provider.primary",
+        "resources.calls_tokens_usd",
+        "resources.retry_network",
+        "rights.container_and_generated_artifacts",
+        "rights.model_provider_and_services",
+        "rights.task_and_benchmark_content",
+        "runtime.compute",
+        "runtime.container_or_environment",
+        "runtime.dependency_lock",
+        "runtime.task_environment"
+      ],
+      "passed": true
+    },
+    {
+      "check": "registry_not_ready",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "panel_zero_of_six",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "terminal_exact",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "terminal_file_exact",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "source_commit_exact",
+      "detail": "fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993",
+      "passed": true
+    },
+    {
+      "check": "source_tree_exact",
+      "detail": "98fc19e691c31b635ec432b6240db775a9527fd0",
+      "passed": true
+    },
+    {
+      "check": "source_worktree_clean",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "tree_manifest_file_count",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "tree_manifest_sha256_entries",
+      "detail": 1578,
+      "passed": true
+    },
+    {
+      "check": "tree_manifest_total_bytes",
+      "detail": 85154021,
+      "passed": true
+    },
+    {
+      "check": "tree_manifest_commit_tree",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "archive_identity",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "declarations_not_lock",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "four_unpinned_vcs",
+      "detail": [
+        "agentenv_textcraft @ git+https://github.com/WooooDyy/AgentGym.git#subdirectory=agentenv-textcraft",
+        "git+https://github.com/sierra-research/tau-bench.git",
+        "git+https://github.com/nacloos/baba-is-ai",
+        "git+https://github.com/Genesis-Embodied-AI/Genesis.git"
+      ],
+      "passed": true
+    },
+    {
+      "check": "source_license_hash",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "component_data_licenses_zero",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "commercial_not_authorized",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "parser_hash_bound",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "runner_hash_bound",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "zero_task_parser_exit_zero",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "zero_task_terminal_empty",
+      "detail": {
+        "adapter_terminal": "UNRESOLVED",
+        "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+        "generation_id": "0",
+        "metadata_sha256": "3f2b118d8845f23b1a98f34f4bbc47ca2388680e4a339d2d90e870fe768277a9",
+        "native_exit_status_is_sufficient": false,
+        "native_terminal": "NATIVE_EMPTY_EVALUATION",
+        "nonempty_report_count": 0,
+        "performance_inference": "FORBIDDEN",
+        "raw_native_singleton_licences": 0,
+        "report_count": 1,
+        "reports": [
+          {
+            "domain": "alfworld",
+            "outcome_values_retained": false,
+            "path": "alfworld_eval/report.json",
+            "record_count": 0,
+            "sha256": "51401b5548e94ca7f9679897781d4d07c250bb3f5282d3b301a52d955a982f5f"
+          }
+        ],
+        "schema_version": "orion.p5.c4.adias-native-terminal.v4",
+        "source_native_caveat": "ADIAS report structure records an evaluation artifact only; source scores, valid_parent, and process exit do not establish P5 performance or responsibility."
+      },
+      "passed": true
+    },
+    {
+      "check": "zero_task_not_performance",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "native_output_schema_validation",
+      "detail": "1 output validated",
+      "passed": true
+    },
+    {
+      "check": "protected_key_refused",
+      "detail": "{\"schema_version\": \"orion.p5.c4.adias-native-terminal.v4\", \"refused\": true, \"reason\": \"protected/final-test key refused: protected_score\"}\n",
+      "passed": true
+    },
+    {
+      "check": "runner_refuses_current_registry",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "runner_refusal_exact_count",
+      "detail": {
+        "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+        "blocking_field_count": 15,
+        "blocking_fields": [
+          "adapter.isolated_write_surface",
+          "custody.external_protected_scorer",
+          "custody.one_shot_no_feedback_barrier",
+          "custody.protected_panel_freshness",
+          "inputs.candidate_visible_case_bytes",
+          "model_provider.primary",
+          "resources.calls_tokens_usd",
+          "resources.retry_network",
+          "rights.container_and_generated_artifacts",
+          "rights.model_provider_and_services",
+          "rights.task_and_benchmark_content",
+          "runtime.compute",
+          "runtime.container_or_environment",
+          "runtime.dependency_lock",
+          "runtime.task_environment"
+        ],
+        "bound_field_count": 6,
+        "schema_version": "orion.p5.c4.adias-runner-terminal.v4",
+        "terminal": "EXECUTION_REFUSED_NONBOUND_FIELDS"
+      },
+      "passed": true
+    },
+    {
+      "check": "native_execution_false",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "performance_cannot_check",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "superiority_cannot_check",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "raw_singletons_zero",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "v3_unsupported_fibres_preserved",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "smoke_not_substantive",
+      "detail": null,
+      "passed": true
+    }
+  ],
+  "field_census": {
+    "blocking": 15,
+    "bound": 6,
+    "execution_ready": false,
+    "required": 21
+  },
+  "frozen_at_utc": "2026-08-23T18:34:25Z",
+  "schema_version": "orion.p5.c4.audit-receipt.v4",
+  "scientific_claims": {
+    "native_execution": false,
+    "performance": "CANNOT_CHECK",
+    "raw_native_singleton_licences": 0,
+    "superiority": "CANNOT_CHECK"
+  },
+  "smoke": {
+    "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+    "fixture": "authored zero-task native-shaped ADIAS gen_0 metadata/report; not retained",
+    "fixture_is_performance": false,
+    "fixture_is_substantive_p5_case": false,
+    "native_or_model_job_executed": false,
+    "outcomes_accessed": 0,
+    "parser": {
+      "adapter_terminal": "UNRESOLVED",
+      "native_output_schema_validations": 1,
+      "protected_key_exit_code": 2,
+      "protected_key_refused": true,
+      "zero_task_exit_code": 0,
+      "zero_task_native_terminal": "NATIVE_EMPTY_EVALUATION"
+    },
+    "performance_inference": "FORBIDDEN",
+    "runner": {
+      "blocking_field_count": 15,
+      "preflight_exit_code": 3,
+      "terminal": "EXECUTION_REFUSED_NONBOUND_FIELDS"
+    },
+    "schema_version": "orion.p5.c4.outcome-blind-smoke-receipt.v4"
+  },
+  "source": {
+    "commit_sha": "fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993",
+    "tree_sha": "98fc19e691c31b635ec432b6240db775a9527fd0",
+    "worktree_clean": true
+  },
+  "terminal": "P5_C4_V4_ADIAS_SOURCE_TREE_NATIVE_PARSER_EMPTY_FALLBACK_AND_WALLCLOCK_BOUND__FIFTEEN_C4_FIELDS_BLOCKING__DEPENDENCY_LOCK_TASK_RIGHTS_ISOLATION_AND_CUSTODY_UNBOUND__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK",
+  "validation": {
+    "checks_failed": 0,
+    "checks_passed": 35,
+    "json_files_parsed": 15,
+    "json_parse_failures": 0,
+    "native_output_schema_validations": 1,
+    "source_file_sha256_validations": 1578
+  }
+}

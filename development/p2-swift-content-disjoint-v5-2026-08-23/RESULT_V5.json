@@ -1,0 +1,800 @@
+{
+  "arms_by_review": {
+    "Brouwer_2019": {
+      "R0_L0": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.03088742140019469,
+          "recall_at_005": 1.0,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.9191125785998052
+        },
+        "model_fits": 494,
+        "order_sha256": "b42fc2f8d6dca070daf7e54d485bec484147c900426b7d8b2ed7103bc4297512"
+      },
+      "R0_L1": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.022784077455339526,
+          "recall_at_005": 1.0,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.9272159225446605
+        },
+        "model_fits": 494,
+        "order_sha256": "633467fc472fb92b425f0949b0b35c75960f2e563836adcd07db89bca433cf41"
+      },
+      "R1_L0": {
+        "features": 1704327,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.029019442763556,
+          "recall_at_005": 1.0,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.920980557236444
+        },
+        "model_fits": 494,
+        "order_sha256": "c1d497a43c6f1a4ab4ab353fe9f302021fdc942816323ac46cc38751dc35a643"
+      },
+      "R1_L1": {
+        "features": 1704327,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.0213370517509011,
+          "recall_at_005": 1.0,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.9286629482490989
+        },
+        "model_fits": 494,
+        "order_sha256": "752b1f32750ad6dc17c70b0c25f0ffb03417d2689a06b051b09bad1a16df5a86"
+      },
+      "adapter_receipt": {
+        "batch_size": 77,
+        "initial_seed_record_identities_sha256": "75507a2df935d8d49ab34a2ca8a0c38e54b6c38f9defa1e892ba6206be4f045a",
+        "text_list_sha256": "02b2d8af366b369c0499102d07c5b88fd64ec2f387a518c6cb6ea5a6dfeee7d2"
+      }
+    },
+    "Hall_2012": {
+      "R0_L0": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.03757258339974952,
+          "recall_at_005": 0.970873786407767,
+          "recall_at_010": 0.9902912621359223,
+          "recall_at_020": 0.9902912621359223,
+          "wss_at_95": 0.9124274166002504
+        },
+        "model_fits": 488,
+        "order_sha256": "ddd672affccc55840108ebc9c46cc063ccd3bd16bdaf8f916bb720b71ccfc5cb"
+      },
+      "R0_L1": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.02652852100648981,
+          "recall_at_005": 0.9902912621359223,
+          "recall_at_010": 0.9902912621359223,
+          "recall_at_020": 0.9902912621359223,
+          "wss_at_95": 0.9234714789935101
+        },
+        "model_fits": 488,
+        "order_sha256": "6b3c6c4011f973d0f503b3b0db074307cd6eec3e5bd7e19dd12501b1e0b437a5"
+      },
+      "R1_L0": {
+        "features": 398148,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.03791415233974724,
+          "recall_at_005": 0.9902912621359223,
+          "recall_at_010": 0.9902912621359223,
+          "recall_at_020": 0.9902912621359223,
+          "wss_at_95": 0.9120858476602527
+        },
+        "model_fits": 488,
+        "order_sha256": "213dfda4ef9467bc9ac4910f0329de92b9a4bcb0ac8dafb0f6d39e9600e00179"
+      },
+      "R1_L1": {
+        "features": 398148,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.026870089946487534,
+          "recall_at_005": 0.9902912621359223,
+          "recall_at_010": 0.9902912621359223,
+          "recall_at_020": 0.9902912621359223,
+          "wss_at_95": 0.9231299100535124
+        },
+        "model_fits": 488,
+        "order_sha256": "619e37c9b9fe18b4ebd5e0471e32dd11ceab0e6d96285783863d5c71f8b61867"
+      },
+      "adapter_receipt": {
+        "batch_size": 18,
+        "initial_seed_record_identities_sha256": "005ca1d20454c1aebbcdefa045b01f9dfb249da9799e8f4fa88b431ac4dbd411",
+        "text_list_sha256": "e3f613ad89a869492076e3e18da006078baf8e43d1080acfe20114260a23d706"
+      }
+    },
+    "Leenaars_2020": {
+      "R0_L0": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.3061621922381416,
+          "recall_at_005": 0.35,
+          "recall_at_010": 0.6327586206896552,
+          "recall_at_020": 0.846551724137931,
+          "wss_at_95": 0.6438378077618583
+        },
+        "model_fits": 480,
+        "order_sha256": "dca9a80e1b9551cb7f86b7f7265c7badd67e7c885add94c9f7bc7344d5900d05"
+      },
+      "R0_L1": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.273473362080957,
+          "recall_at_005": 0.3879310344827586,
+          "recall_at_010": 0.6431034482758621,
+          "recall_at_020": 0.8879310344827587,
+          "wss_at_95": 0.6765266379190429
+        },
+        "model_fits": 480,
+        "order_sha256": "a4ea2f464d5d3669342db35b037c04dba3f7f74da85325a8f8c6fc20ed391cb2"
+      },
+      "R1_L0": {
+        "features": 404958,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.29475587703435807,
+          "recall_at_005": 0.3741379310344828,
+          "recall_at_010": 0.6310344827586207,
+          "recall_at_020": 0.8775862068965518,
+          "wss_at_95": 0.6552441229656418
+        },
+        "model_fits": 480,
+        "order_sha256": "8083b9ff51e7baa37e326db10692ed61046b4d68b7e19181ac986f6907c9e145"
+      },
+      "R1_L1": {
+        "features": 404958,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.27875921546807625,
+          "recall_at_005": 0.38275862068965516,
+          "recall_at_010": 0.6448275862068965,
+          "recall_at_020": 0.8896551724137931,
+          "wss_at_95": 0.6712407845319237
+        },
+        "model_fits": 480,
+        "order_sha256": "2c065333013effa1e50754d60eb15a02123f80151eb88a69773814fc28c907bf"
+      },
+      "adapter_receipt": {
+        "batch_size": 15,
+        "initial_seed_record_identities_sha256": "4920f7e234dc23da0edac48d07529c5102db1379a0cdbf63b3e1190716aeb138",
+        "text_list_sha256": "2b3c7f2f267e950b1e1149865910a4273c414711473483b9cb51110f8fcce6c3"
+      }
+    },
+    "Walker_2018": {
+      "R0_L0": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.3380396617377973,
+          "recall_at_005": 0.6113821138211382,
+          "recall_at_010": 0.7837398373983739,
+          "recall_at_020": 0.8910569105691057,
+          "wss_at_95": 0.6119603382622026
+        },
+        "model_fits": 500,
+        "order_sha256": "71602782f1114db6a7dec5f5c9cea9da2ecb6aff2d4f65718fe3c0d1c1d06f6f"
+      },
+      "R0_L1": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.2181395578853667,
+          "recall_at_005": 0.6910569105691057,
+          "recall_at_010": 0.7967479674796748,
+          "recall_at_020": 0.9447154471544715,
+          "wss_at_95": 0.7318604421146333
+        },
+        "model_fits": 500,
+        "order_sha256": "ec6d47fc95577ff37d8fcec4053d98c7898eba1bbf0658e925c7dd9d932c1c2b"
+      },
+      "R1_L0": {
+        "features": 2268041,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.2549577172246674,
+          "recall_at_005": 0.6455284552845528,
+          "recall_at_010": 0.7983739837398374,
+          "recall_at_020": 0.9154471544715447,
+          "wss_at_95": 0.6950422827753325
+        },
+        "model_fits": 500,
+        "order_sha256": "49c2cc184f0224b4d9306d4fb79b566cc3622f5589d110fb58bc91d35444eb46"
+      },
+      "R1_L1": {
+        "features": 2268041,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.21613668958013946,
+          "recall_at_005": 0.6878048780487804,
+          "recall_at_010": 0.7934959349593496,
+          "recall_at_020": 0.9447154471544715,
+          "wss_at_95": 0.7338633104198605
+        },
+        "model_fits": 500,
+        "order_sha256": "ec90a164bd1e4ec9e9d8c338b012157108434206cae5cb97896e497b338caef9"
+      },
+      "adapter_receipt": {
+        "batch_size": 81,
+        "initial_seed_record_identities_sha256": "dec11fb0728c9e21cf4c87da042afc77255ca8f0717cd2654934b59e348bc56f",
+        "text_list_sha256": "bc374731f59f7f454324ce193e7ef3a8831927accdc3f28884649173b7012da7"
+      }
+    },
+    "Wassenaar_2017": {
+      "R0_L0": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.16523183809092282,
+          "recall_at_005": 0.7570093457943925,
+          "recall_at_010": 0.8504672897196262,
+          "recall_at_020": 0.9626168224299065,
+          "wss_at_95": 0.7847681619090772
+        },
+        "model_fits": 473,
+        "order_sha256": "1170fa126e6d8cc3b7b5dde06d01aa72493eb4d70f84d4fdac35ac49f291f7e0"
+      },
+      "R0_L1": {
+        "features": 50000,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.12762422594774203,
+          "recall_at_005": 0.8317757009345794,
+          "recall_at_010": 0.8878504672897196,
+          "recall_at_020": 0.9906542056074766,
+          "wss_at_95": 0.8223757740522579
+        },
+        "model_fits": 473,
+        "order_sha256": "fb437fb24a4060ca529e056aacba41325d6f8b2c64321acab70d1114f6440f6e"
+      },
+      "R1_L0": {
+        "features": 448983,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.14801389518199667,
+          "recall_at_005": 0.7757009345794392,
+          "recall_at_010": 0.8691588785046729,
+          "recall_at_020": 0.9626168224299065,
+          "wss_at_95": 0.8019861048180033
+        },
+        "model_fits": 473,
+        "order_sha256": "ca69e5eafe45732b77db5f1803d41ad74e7570e40a84237bd37553a4267d890d"
+      },
+      "R1_L1": {
+        "features": 448983,
+        "metrics": {
+          "fraction_screened_at_95_recall": 0.12717112218698082,
+          "recall_at_005": 0.8317757009345794,
+          "recall_at_010": 0.8878504672897196,
+          "recall_at_020": 0.9906542056074766,
+          "wss_at_95": 0.8228288778130192
+        },
+        "model_fits": 473,
+        "order_sha256": "59cf244640ff3f6ec9d5e4aa9211e4ee5d053d2b2a64700ed94a0e1caee26142"
+      },
+      "adapter_receipt": {
+        "batch_size": 14,
+        "initial_seed_record_identities_sha256": "3d0903919aeeca426443324c7d120083223ead23d8c0fb9060f69573ebbf6be9",
+        "text_list_sha256": "0e2242a9f6e48d9a508da34a60af6b6644438647c1689702e52cbe3166925b45"
+      }
+    }
+  },
+  "binding_receipt": {
+    "fixed_files": {
+      "population_freeze": {
+        "bytes": 6165,
+        "passed": true,
+        "sha256_actual": "cc818935af09021638736fc240b96c240488f6e39271c7be389ad1bc8ad07ead",
+        "sha256_expected": "cc818935af09021638736fc240b96c240488f6e39271c7be389ad1bc8ad07ead"
+      },
+      "preflight_result": {
+        "bytes": 9978,
+        "passed": true,
+        "sha256_actual": "522f1bff50a174ea7d607e262891ea50d0a150a844adca774d4ecb4873b5f247",
+        "sha256_expected": "522f1bff50a174ea7d607e262891ea50d0a150a844adca774d4ecb4873b5f247"
+      },
+      "preflight_runner": {
+        "bytes": 12369,
+        "passed": true,
+        "sha256_actual": "9935f01ae2b806884a003b9399d8ddf54df6a890136f91dd353301ab0245885f",
+        "sha256_expected": "9935f01ae2b806884a003b9399d8ddf54df6a890136f91dd353301ab0245885f"
+      },
+      "protocol_freeze": {
+        "bytes": 6627,
+        "passed": true,
+        "sha256_actual": "b49e97485b30a5361378dd181cdd20e694a1f8e87f8f2119fe50f6207f86c3d4",
+        "sha256_expected": "b49e97485b30a5361378dd181cdd20e694a1f8e87f8f2119fe50f6207f86c3d4"
+      },
+      "runner": {
+        "bytes": 19395,
+        "passed": true,
+        "sha256_actual": "be2c11dda4e984433278f4b8b87b3e2d09d4a2b780f33d3913dfd52b9fdf70d0",
+        "sha256_expected": "be2c11dda4e984433278f4b8b87b3e2d09d4a2b780f33d3913dfd52b9fdf70d0"
+      },
+      "selection_freeze": {
+        "bytes": 2811,
+        "passed": true,
+        "sha256_actual": "8a9c5ffedb4d758e8a8819bd3bae98ac8cc4b84ca82caa5882754e15a673ff5b",
+        "sha256_expected": "8a9c5ffedb4d758e8a8819bd3bae98ac8cc4b84ca82caa5882754e15a673ff5b"
+      },
+      "source_download_binding": {
+        "bytes": 6902,
+        "passed": true,
+        "sha256_actual": "e2e807bb9df6518877f89a76b76f855bca49a63495b5669230b7de5878a74ebb",
+        "sha256_expected": "e2e807bb9df6518877f89a76b76f855bca49a63495b5669230b7de5878a74ebb"
+      },
+      "v3_result": {
+        "bytes": 18836,
+        "passed": true,
+        "sha256_actual": "a42b4c82a0a8be7dcd9426f9e0fda9a77dfb935e25a55d22d19372417cfee04b",
+        "sha256_expected": "a42b4c82a0a8be7dcd9426f9e0fda9a77dfb935e25a55d22d19372417cfee04b"
+      },
+      "v4_result": {
+        "bytes": 41275,
+        "passed": true,
+        "sha256_actual": "c1e5b50f3498bb84ec3d6303af6a4c9f355a4f5eeec1d47e0eef567f629b5884",
+        "sha256_expected": "c1e5b50f3498bb84ec3d6303af6a4c9f355a4f5eeec1d47e0eef567f629b5884"
+      },
+      "v4_runner": {
+        "bytes": 20282,
+        "passed": true,
+        "sha256_actual": "ed18d84549ccf9ec65895539dfafb0dfef897d97f34923dc8f5d59ebe332a003",
+        "sha256_expected": "ed18d84549ccf9ec65895539dfafb0dfef897d97f34923dc8f5d59ebe332a003"
+      }
+    },
+    "passed": true,
+    "staged_source_files": {
+      "Brouwer_2019/labels.csv": {
+        "bytes_actual": 3944082,
+        "bytes_expected": 3944082,
+        "passed": true,
+        "sha256_actual": "fdf3dfdaa95ce6a2aac9f210c94c9ad04d075a3fa5233ef21df3454cb69b947a",
+        "sha256_expected": "fdf3dfdaa95ce6a2aac9f210c94c9ad04d075a3fa5233ef21df3454cb69b947a"
+      },
+      "Brouwer_2019/works_1.zip": {
+        "bytes_actual": 66466788,
+        "bytes_expected": 66466788,
+        "passed": true,
+        "sha256_actual": "5e431c37a24952b8484c5d5ab6a1391f3e85dba285acb31d9ae82dcf5dc32605",
+        "sha256_expected": "5e431c37a24952b8484c5d5ab6a1391f3e85dba285acb31d9ae82dcf5dc32605"
+      },
+      "Brouwer_2019/works_2.zip": {
+        "bytes_actual": 34788857,
+        "bytes_expected": 34788857,
+        "passed": true,
+        "sha256_actual": "efea73977db3db28861b335f90bf65f0972ad96a624e368233de8af740bf5c02",
+        "sha256_expected": "efea73977db3db28861b335f90bf65f0972ad96a624e368233de8af740bf5c02"
+      },
+      "Hall_2012/labels.csv": {
+        "bytes_actual": 672721,
+        "bytes_expected": 672721,
+        "passed": true,
+        "sha256_actual": "f488db73a8e8f7141bccb27a1d51a7df5469260610f7ae4e885630e0f8f6cf3b",
+        "sha256_expected": "f488db73a8e8f7141bccb27a1d51a7df5469260610f7ae4e885630e0f8f6cf3b"
+      },
+      "Hall_2012/works_1.zip": {
+        "bytes_actual": 15085090,
+        "bytes_expected": 15085090,
+        "passed": true,
+        "sha256_actual": "e023a08afe9bbd7de3f1e7c87638d778ab7c2fc87e5903f261d8ccc36d054fdf",
+        "sha256_expected": "e023a08afe9bbd7de3f1e7c87638d778ab7c2fc87e5903f261d8ccc36d054fdf"
+      },
+      "Leenaars_2020/labels.csv": {
+        "bytes_actual": 746832,
+        "bytes_expected": 746832,
+        "passed": true,
+        "sha256_actual": "c9fdb288705f0fccfc6b7661594f0ac37424deaf15b06502cb5f61c7c333170e",
+        "sha256_expected": "c9fdb288705f0fccfc6b7661594f0ac37424deaf15b06502cb5f61c7c333170e"
+      },
+      "Leenaars_2020/works_1.zip": {
+        "bytes_actual": 18534723,
+        "bytes_expected": 18534723,
+        "passed": true,
+        "sha256_actual": "92f6249cd3a366267c80c68143a26cb65e822cf257ad80ff44dfc3eaf184e657",
+        "sha256_expected": "92f6249cd3a366267c80c68143a26cb65e822cf257ad80ff44dfc3eaf184e657"
+      },
+      "Walker_2018/labels.csv": {
+        "bytes_actual": 5372708,
+        "bytes_expected": 5372708,
+        "passed": true,
+        "sha256_actual": "e79a43d018172652129d76a99b97c75c8aee2818c385c6270ee7158807ec7762",
+        "sha256_expected": "e79a43d018172652129d76a99b97c75c8aee2818c385c6270ee7158807ec7762"
+      },
+      "Walker_2018/works_1.zip": {
+        "bytes_actual": 62992826,
+        "bytes_expected": 62992826,
+        "passed": true,
+        "sha256_actual": "9c6a6ba9ca78311ff63971ef9ba6024a0e6aacd523b0da1a4a4adda05f81d8ce",
+        "sha256_expected": "9c6a6ba9ca78311ff63971ef9ba6024a0e6aacd523b0da1a4a4adda05f81d8ce"
+      },
+      "Walker_2018/works_2.zip": {
+        "bytes_actual": 58869042,
+        "bytes_expected": 58869042,
+        "passed": true,
+        "sha256_actual": "462e1ad0ac0b3d51b7bc43a75e475c16cd1faad9509baf414e2f01bd5a648607",
+        "sha256_expected": "462e1ad0ac0b3d51b7bc43a75e475c16cd1faad9509baf414e2f01bd5a648607"
+      },
+      "Wassenaar_2017/labels.csv": {
+        "bytes_actual": 852937,
+        "bytes_expected": 852937,
+        "passed": true,
+        "sha256_actual": "1bbd1cf25e52534bd4d4147d1be352b11394d8883128cc6bc5608d157b05fbfd",
+        "sha256_expected": "1bbd1cf25e52534bd4d4147d1be352b11394d8883128cc6bc5608d157b05fbfd"
+      },
+      "Wassenaar_2017/works_1.zip": {
+        "bytes_actual": 19428163,
+        "bytes_expected": 19428163,
+        "passed": true,
+        "sha256_actual": "e8a6a8654c4b1ed62f40bdefd1d13f2bbc5c75626ceeca3d9982655d7b5304af",
+        "sha256_expected": "e8a6a8654c4b1ed62f40bdefd1d13f2bbc5c75626ceeca3d9982655d7b5304af"
+      }
+    }
+  },
+  "claim_scope": "PROSPECTIVELY_FROZEN_SAME_SESSION_PUBLIC_CONTENT_DISJOINT_TRANSPORT_OF_THE_V4_LEARNER_BALANCER_ATTRIBUTION",
+  "effects_by_review": {
+    "Brouwer_2019": {
+      "interaction": {
+        "fraction_screened_at_95_recall": 0.0004209529322002671,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": -0.0004209529322003469
+      },
+      "learner_balancer_main_effect": {
+        "fraction_screened_at_95_recall": -0.007892867478755032,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.007892867478755061
+      },
+      "representation_main_effect": {
+        "fraction_screened_at_95_recall": -0.001657502170538559,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.0016575021705386161
+      }
+    },
+    "Hall_2012": {
+      "interaction": {
+        "fraction_screened_at_95_recall": 3.469446951953614e-18,
+        "recall_at_005": -0.01941747572815533,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.0
+      },
+      "learner_balancer_main_effect": {
+        "fraction_screened_at_95_recall": -0.011044062393259705,
+        "recall_at_005": 0.009708737864077666,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.011044062393259724
+      },
+      "representation_main_effect": {
+        "fraction_screened_at_95_recall": 0.0003415689399977207,
+        "recall_at_005": 0.009708737864077666,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": -0.0003415689399977051
+      }
+    },
+    "Leenaars_2020": {
+      "interaction": {
+        "fraction_screened_at_95_recall": 0.01669216859090278,
+        "recall_at_005": -0.029310344827586265,
+        "recall_at_010": 0.0034482758620688614,
+        "recall_at_020": -0.02931034482758632,
+        "wss_at_95": -0.016692168590902723
+      },
+      "learner_balancer_main_effect": {
+        "fraction_screened_at_95_recall": -0.02434274586173321,
+        "recall_at_005": 0.023275862068965508,
+        "recall_at_010": 0.012068965517241348,
+        "recall_at_020": 0.02672413793103451,
+        "wss_at_95": 0.02434274586173324
+      },
+      "representation_main_effect": {
+        "fraction_screened_at_95_recall": -0.0030602309083321566,
+        "recall_at_005": 0.009482758620689674,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.01637931034482759,
+        "wss_at_95": 0.0030602309083321844
+      }
+    },
+    "Walker_2018": {
+      "interaction": {
+        "fraction_screened_at_95_recall": 0.08107907620790264,
+        "recall_at_005": -0.03739837398373991,
+        "recall_at_010": -0.01788617886178867,
+        "recall_at_020": -0.024390243902438935,
+        "wss_at_95": -0.08107907620790267
+      },
+      "learner_balancer_main_effect": {
+        "fraction_screened_at_95_recall": -0.07936056574847929,
+        "recall_at_005": 0.06097560975609756,
+        "recall_at_010": 0.004065040650406526,
+        "recall_at_020": 0.04146341463414632,
+        "wss_at_95": 0.07936056574847933
+      },
+      "representation_main_effect": {
+        "fraction_screened_at_95_recall": -0.04254240640917857,
+        "recall_at_005": 0.01544715447154471,
+        "recall_at_010": 0.005691056910569092,
+        "recall_at_020": 0.012195121951219468,
+        "wss_at_95": 0.04254240640917856
+      }
+    },
+    "Wassenaar_2017": {
+      "interaction": {
+        "fraction_screened_at_95_recall": 0.01676483914816493,
+        "recall_at_005": -0.01869158878504673,
+        "recall_at_010": -0.01869158878504673,
+        "recall_at_020": 0.0,
+        "wss_at_95": -0.016764839148164845
+      },
+      "learner_balancer_main_effect": {
+        "fraction_screened_at_95_recall": -0.02922519256909832,
+        "recall_at_005": 0.06542056074766356,
+        "recall_at_010": 0.028037383177570097,
+        "recall_at_020": 0.028037383177570097,
+        "wss_at_95": 0.029225192569098335
+      },
+      "representation_main_effect": {
+        "fraction_screened_at_95_recall": -0.008835523334843678,
+        "recall_at_005": 0.009345794392523366,
+        "recall_at_010": 0.009345794392523366,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.008835523334843665
+      }
+    }
+  },
+  "elapsed_seconds": 2082.5257437909895,
+  "execution_completed_at_utc": "2026-08-23T17:39:08.656693+00:00",
+  "execution_started_at_utc": "2026-08-23T17:04:26.078269+00:00",
+  "failed_mechanism_gates": [
+    "M3_LEARNER_RECALL10_MAGNITUDE",
+    "M4_LEARNER_RECALL10_SIGN"
+  ],
+  "failed_preserved_v3_gates": [
+    "G3_PRIMARY_MARGIN",
+    "G4_WORK_SAVING"
+  ],
+  "forbidden_claims": [
+    "independent custody or external execution",
+    "cold start",
+    "exact ASReview application execution",
+    "controller or ORION superiority",
+    "SWIFT promotion",
+    "statistical independence beyond the enforced content-identity rule",
+    "population-wide, domain-general or workflow-general superiority"
+  ],
+  "full_arm_candidate_minus_u4_by_review": {
+    "Brouwer_2019": {
+      "fraction_screened_at_95_recall": 0.00955036964929359,
+      "recall_at_005": 0.0,
+      "recall_at_010": 0.0,
+      "recall_at_020": 0.0,
+      "wss_at_95": -0.009550369649293677
+    },
+    "Hall_2012": {
+      "fraction_screened_at_95_recall": 0.010702493453261984,
+      "recall_at_005": -0.01941747572815533,
+      "recall_at_010": 0.0,
+      "recall_at_020": 0.0,
+      "wss_at_95": -0.010702493453262019
+    },
+    "Leenaars_2020": {
+      "fraction_screened_at_95_recall": 0.027402976770065368,
+      "recall_at_005": -0.03275862068965518,
+      "recall_at_010": -0.012068965517241348,
+      "recall_at_020": -0.0431034482758621,
+      "wss_at_95": -0.027402976770065424
+    },
+    "Walker_2018": {
+      "fraction_screened_at_95_recall": 0.12190297215765786,
+      "recall_at_005": -0.07642276422764227,
+      "recall_at_010": -0.009756097560975618,
+      "recall_at_020": -0.05365853658536579,
+      "wss_at_95": -0.12190297215765789
+    },
+    "Wassenaar_2017": {
+      "fraction_screened_at_95_recall": 0.038060715903942,
+      "recall_at_005": -0.07476635514018692,
+      "recall_at_010": -0.03738317757009346,
+      "recall_at_020": -0.028037383177570097,
+      "wss_at_95": -0.038060715903942
+    }
+  },
+  "identity": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_TRANSPORT",
+  "implementation_freeze_sha256": "7816fe9f671134dc1c1bca7528ed1b9104a3ab40bb0be2187f5a606de75f00b6",
+  "mean_full_arm_candidate_minus_u4": {
+    "fraction_screened_at_95_recall": 0.04152390558684416,
+    "recall_at_005": -0.04067304315712794,
+    "recall_at_010": -0.011841648129662086,
+    "recall_at_020": -0.024959873607759597,
+    "wss_at_95": -0.0415239055868442
+  },
+  "mechanism_gates": {
+    "M1_BINDING": true,
+    "M2_CONTENT_DISJOINT_POPULATION": true,
+    "M3_LEARNER_RECALL10_MAGNITUDE": false,
+    "M4_LEARNER_RECALL10_SIGN": false,
+    "M5_LEARNER_WORK_SAVING": true,
+    "M6_LEARNER_HARM": true
+  },
+  "nonpromotion_rule": "No V5 arm replaces the candidate or supports superiority. A positive terminal confirms only directional transport of the V4 learner/balancer component attribution under this exact source and adapter.",
+  "population_receipt": {
+    "final_pairwise_duplicate_excess": 0,
+    "final_swift_overlap_count": 0,
+    "passed": true,
+    "reviews": {
+      "Brouwer_2019": {
+        "canonical_content_set_sha256": "b15be8ed47d34935ccf929dd694dfb4702041981d2959a4d41c52de19c492e38",
+        "canonical_openalex_id_set_sha256": "9ada604a07517606219d233b66e460e0de781fe37bda93b056c79a8d1ecba0bd",
+        "canonical_record_order_sha256": "344399ed226ec2bb2081cce9d76273d8d298ac526e454eac4d912ab88d59fe14",
+        "canonical_rows": 38009,
+        "duplicate_content_label_conflicts": 0,
+        "excluded_rows": 37947,
+        "excluded_rows_before_population_exclusions": 38052,
+        "included_rows": 62,
+        "included_rows_before_population_exclusions": 62,
+        "label_rows": 38114,
+        "population_passed": true,
+        "work_rows": 38114
+      },
+      "Hall_2012": {
+        "canonical_content_set_sha256": "d46af1205258fe86e1d7eb0e3b2c6fb4393cab65140986e000252e65e7510031",
+        "canonical_openalex_id_set_sha256": "126b6ce9ecbf60b017e5f3b5c34632f12e1a2bd8bd45337386162595df3033f1",
+        "canonical_record_order_sha256": "6966fd5800a6c774db3b2ab18302d2a7ec8830c038731a0d1da01953343d6f8e",
+        "canonical_rows": 8783,
+        "duplicate_content_label_conflicts": 1,
+        "excluded_rows": 8680,
+        "excluded_rows_before_population_exclusions": 8689,
+        "included_rows": 103,
+        "included_rows_before_population_exclusions": 104,
+        "label_rows": 8793,
+        "population_passed": true,
+        "work_rows": 8793
+      },
+      "Leenaars_2020": {
+        "canonical_content_set_sha256": "43e9d5da2b520b2bfb6354ef982dd14fabc81102c88720daa01f42ac499b9f4f",
+        "canonical_openalex_id_set_sha256": "e125caad34ab9dadac3e2c40cb168059322d4bedc3a7f13833047bc59f74d4f7",
+        "canonical_record_order_sha256": "ff6be6e57fb9e68a8f9710ef9d1cecb7a54f3f25e794f1849faa3ddc75059d64",
+        "canonical_rows": 7189,
+        "duplicate_content_label_conflicts": 1,
+        "excluded_rows": 6609,
+        "excluded_rows_before_population_exclusions": 6633,
+        "included_rows": 580,
+        "included_rows_before_population_exclusions": 583,
+        "label_rows": 7216,
+        "population_passed": true,
+        "work_rows": 7216
+      },
+      "Walker_2018": {
+        "canonical_content_set_sha256": "8f1b8a13fdd40af8be049f0fc46897ead315e8a8fa8aba038784fd494d452271",
+        "canonical_openalex_id_set_sha256": "53863374ac78eeed16eb0390c80691182469f0e8433007c786fb8a21507be2ed",
+        "canonical_record_order_sha256": "595ea57a44f63bb236797cbe1b546ec3147f4bf12c4d291388ab9537c034425d",
+        "canonical_rows": 40442,
+        "duplicate_content_label_conflicts": 2,
+        "excluded_rows": 39827,
+        "excluded_rows_before_population_exclusions": 47613,
+        "included_rows": 615,
+        "included_rows_before_population_exclusions": 762,
+        "label_rows": 48375,
+        "population_passed": true,
+        "work_rows": 48375
+      },
+      "Wassenaar_2017": {
+        "canonical_content_set_sha256": "88ae0fc8df9eaa99087a075e998e5fe9495fdba6e9071906686510619b8771cf",
+        "canonical_openalex_id_set_sha256": "2d9887b59ec18b7b685c02ac65dd52b9eff6c499df25f019cebeaba5e7e10e8a",
+        "canonical_record_order_sha256": "f6ad517724de80f8901cf292654acb1afcae89c476207d00c2ab556f4b32eb9f",
+        "canonical_rows": 6621,
+        "duplicate_content_label_conflicts": 0,
+        "excluded_rows": 6514,
+        "excluded_rows_before_population_exclusions": 7557,
+        "included_rows": 107,
+        "included_rows_before_population_exclusions": 111,
+        "label_rows": 7668,
+        "population_passed": true,
+        "work_rows": 7668
+      }
+    },
+    "swift_receipt": {
+      "review_unique_content_counts": {
+        "BPA": 7697,
+        "Fluoride": 4477,
+        "Neuropain": 29157,
+        "PFOS-PFOA": 6309,
+        "Transgenerational": 48601
+      },
+      "union_content_set_sha256": "9f947860904932015fef06a826bbeac8d242729cbdec2a3cf903c1bbd9614917",
+      "union_unique_content_count": 96056,
+      "v3_result_sha256": "a42b4c82a0a8be7dcd9426f9e0fda9a77dfb935e25a55d22d19372417cfee04b"
+    },
+    "total_canonical_rows": 101044
+  },
+  "preserved_adverse_terminals": [
+    "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR",
+    "P2_SWIFT_CROSS_REVIEW_CONTROLLER_TRANSPORT_CANNOT_CHECK_BINDING_OR_POPULATION",
+    "P2_SWIFT_V2_CROSS_REVIEW_CONTROLLER_TRANSPORT_CANNOT_CHECK_BINDING_OR_POPULATION",
+    "P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR",
+    "P2_SWIFT_V4_POST_OUTCOME_FACTORIZATION_IDENTIFIES_STABLE_COMPONENT_REQUIRES_CONTENT_DISJOINT_OUTCOME_UNOPENED_FAMILY"
+  ],
+  "preserved_v3_gates": {
+    "G1_BINDING": true,
+    "G2_POPULATION": true,
+    "G3_PRIMARY_MARGIN": false,
+    "G4_WORK_SAVING": false,
+    "G5_HARM": true,
+    "G6_ABSOLUTE_WORK_SAVING": true
+  },
+  "protocol_freeze_sha256": "b49e97485b30a5361378dd181cdd20e694a1f8e87f8f2119fe50f6207f86c3d4",
+  "result_payload_sha256": "2cb0ab8c8a6c1338a9b9e1496ca0a1d0e7be1729faf7c4795e5ef19bfd798dba",
+  "software": {
+    "numpy": "2.4.4",
+    "openpyxl": "3.1.5",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.1"
+  },
+  "terminal": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR",
+  "total_canonical_rows": 101044,
+  "unweighted_mean_arm_metrics": {
+    "R0_L0": {
+      "fraction_screened_at_95_recall": 0.17557873937336116,
+      "recall_at_005": 0.7378530492046596,
+      "recall_at_010": 0.8514514019887155,
+      "recall_at_020": 0.9381033438545732,
+      "wss_at_95": 0.7744212606266386
+    },
+    "R0_L1": {
+      "fraction_screened_at_95_recall": 0.133709948875179,
+      "recall_at_005": 0.7802109816244731,
+      "recall_at_010": 0.8635986290362357,
+      "recall_at_020": 0.9627183898761258,
+      "wss_at_95": 0.8162900511248209
+    },
+    "R1_L0": {
+      "fraction_screened_at_95_recall": 0.15293221690886508,
+      "recall_at_005": 0.7571317166068795,
+      "recall_at_010": 0.8577717214278107,
+      "recall_at_020": 0.9491882891867851,
+      "wss_at_95": 0.7970677830911349
+    },
+    "R1_L1": {
+      "fraction_screened_at_95_recall": 0.13405483378651703,
+      "recall_at_005": 0.7785260923617875,
+      "recall_at_010": 0.8632930501183775,
+      "recall_at_020": 0.9630632174623328,
+      "wss_at_95": 0.8159451662134829
+    }
+  },
+  "unweighted_mean_component_effects": {
+    "interaction": {
+      "fraction_screened_at_95_recall": 0.022991407375834123,
+      "recall_at_005": -0.020963556664905646,
+      "recall_at_010": -0.006625898356953308,
+      "recall_at_020": -0.010740117746005052,
+      "wss_at_95": -0.022991407375834116
+    },
+    "learner_balancer_main_effect": {
+      "fraction_screened_at_95_recall": -0.03037308681026511,
+      "recall_at_005": 0.03187615408736086,
+      "recall_at_010": 0.008834277869043594,
+      "recall_at_020": 0.019244987148550184,
+      "wss_at_95": 0.030373086810265137
+    },
+    "representation_main_effect": {
+      "fraction_screened_at_95_recall": -0.01115081877657905,
+      "recall_at_005": 0.008796889069767083,
+      "recall_at_010": 0.0030073702606184917,
+      "recall_at_020": 0.005714886459209412,
+      "wss_at_95": 0.011150818776579063
+    }
+  },
+  "worst_full_arm_review_at_recall_010": {
+    "effect": -0.03738317757009346,
+    "review": "Wassenaar_2017"
+  },
+  "worst_learner_review_at_recall_010": {
+    "effect": 0.0,
+    "review": "Brouwer_2019"
+  }
+}

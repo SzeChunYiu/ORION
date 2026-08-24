@@ -1,0 +1,161 @@
+{
+  "adapter_receipt": {
+    "candidate_text_sha256": "166df5d829aab09547f1c68b24d1476f8681f8b53954ccae9483070d1ebe5110",
+    "comparator_text_sha256": "166df5d829aab09547f1c68b24d1476f8681f8b53954ccae9483070d1ebe5110",
+    "record_identity_order_sha256": "e2aecfaf638d756dbaeef4c91688a19b4ea1c3a476419cbd0935088d671d3864"
+  },
+  "arms": {
+    "ACTIVE_LOGREG_V2_CANDIDATE": {
+      "features": 50000,
+      "metrics": {
+        "fraction_screened_at_95_recall": 0.2052557374481084,
+        "recall_at_005": 0.4063745019920319,
+        "recall_at_010": 0.7034085878707392,
+        "recall_at_020": 0.9459938025675078,
+        "wss_at_95": 0.7447442625518915
+      },
+      "model_fits": 491,
+      "order_sha256": "ef00a1c9e31aa11379067765b230ca396ffbfc28d488a865ee0c46ac4114110a"
+    },
+    "ASREVIEW_ELAS_U3_CADENCE_MATCHED": {
+      "features": 69815,
+      "metrics": {
+        "fraction_screened_at_95_recall": 0.23670400250646198,
+        "recall_at_005": 0.3691899070385126,
+        "recall_at_010": 0.6671093404161134,
+        "recall_at_020": 0.917220008853475,
+        "wss_at_95": 0.713295997493538
+      },
+      "model_fits": 491,
+      "order_sha256": "ad4f141da6c02dc7333835acfae9944d03879d387743a04fa624c88814320983"
+    },
+    "ASREVIEW_ELAS_U4_CADENCE_MATCHED": {
+      "features": 1353310,
+      "metrics": {
+        "fraction_screened_at_95_recall": 0.2032192370956372,
+        "recall_at_005": 0.41434262948207173,
+        "recall_at_010": 0.7224435590969456,
+        "recall_at_020": 0.9482071713147411,
+        "wss_at_95": 0.7467807629043628
+      },
+      "model_fits": 491,
+      "order_sha256": "89cc1fc4fbaf5b30f4c2c465eecd076651e5266684f64be78eba663063a88ded"
+    }
+  },
+  "audit_identity": "P2_ZENODO_V2_POST_OUTCOME_ACTIVE_COMPARATOR_AUDIT_V1",
+  "binding_receipt": {
+    "files": {
+      "asreview_archive": {
+        "actual": "d7023ed8c12cbc3690af1c7db6f907d7c179061253a5a1007c6290e46ecef912",
+        "expected": "d7023ed8c12cbc3690af1c7db6f907d7c179061253a5a1007c6290e46ecef912",
+        "passed": true
+      },
+      "v1_retained_result": {
+        "actual": "775f3a105487cbce22839a90ae7441f8bb0b154ee0bc9b02ed0c53159f06b23b",
+        "expected": "775f3a105487cbce22839a90ae7441f8bb0b154ee0bc9b02ed0c53159f06b23b",
+        "passed": true
+      },
+      "v2_implementation": {
+        "actual": "174a475fd820505fd5bc2a6d8cc946b612294901bfceb6c121a23b9a7ef55b6c",
+        "expected": "174a475fd820505fd5bc2a6d8cc946b612294901bfceb6c121a23b9a7ef55b6c",
+        "passed": true
+      },
+      "v2_protocol": {
+        "actual": "b564c9546def95db55ca0c2733d32198112241669e5c0917d48bb878ede27efb",
+        "expected": "b564c9546def95db55ca0c2733d32198112241669e5c0917d48bb878ede27efb",
+        "passed": true
+      },
+      "v2_result": {
+        "actual": "60c050a0bb1580c279d80ac365a80c9122de25fa0c796190ab897f2ed8119b3b",
+        "expected": "60c050a0bb1580c279d80ac365a80c9122de25fa0c796190ab897f2ed8119b3b",
+        "passed": true
+      }
+    },
+    "passed": true,
+    "selected_asreview_source": {
+      "asreview/learner.py": {
+        "actual": "96064f9c15dff92fb0bc587d4704745dc519c2c31ab277d70d6841656a67a059",
+        "expected": "96064f9c15dff92fb0bc587d4704745dc519c2c31ab277d70d6841656a67a059",
+        "passed": true
+      },
+      "asreview/models/balancers.py": {
+        "actual": "66320e140aa362b67f59695151debea98033ac7512a287955aa495330ff1f3d9",
+        "expected": "66320e140aa362b67f59695151debea98033ac7512a287955aa495330ff1f3d9",
+        "passed": true
+      },
+      "asreview/models/classifiers.py": {
+        "actual": "4a7eb542784bc85bc23949ed237bfe2e16bf0ca912d2969a358e734cb638d891",
+        "expected": "4a7eb542784bc85bc23949ed237bfe2e16bf0ca912d2969a358e734cb638d891",
+        "passed": true
+      },
+      "asreview/models/feature_extractors.py": {
+        "actual": "e5fded88198e9cef346a74a8c612728545c8b738a6197914c6356e3a26930ba8",
+        "expected": "e5fded88198e9cef346a74a8c612728545c8b738a6197914c6356e3a26930ba8",
+        "passed": true
+      },
+      "asreview/models/models.py": {
+        "actual": "597d10c6f1691f87d22ceb4b58a9c2d7766d99fddaa2ac017c7d088b103dbc16",
+        "expected": "597d10c6f1691f87d22ceb4b58a9c2d7766d99fddaa2ac017c7d088b103dbc16",
+        "passed": true
+      },
+      "asreview/models/queriers.py": {
+        "actual": "ffa6bbc729e28f7e04a64d73f8244e9325389dd95acc285a9375272a0d17e515",
+        "expected": "ffa6bbc729e28f7e04a64d73f8244e9325389dd95acc285a9375272a0d17e515",
+        "passed": true
+      }
+    },
+    "source": {
+      "bytes_actual": 53881052,
+      "bytes_expected": 53881052,
+      "md5_actual": "3d8c9589d8051b26d6f9dff7eaf1865d",
+      "md5_expected": "3d8c9589d8051b26d6f9dff7eaf1865d",
+      "passed": true
+    }
+  },
+  "candidate_minus_best_active_wss_at_95": -0.002036500352471271,
+  "candidate_minus_strongest_active_recall_at_010": -0.019034971226206343,
+  "claim_scope": "POST_V2_ONE_PUBLIC_POOL_ACTIVE_COMPARATOR_AUDIT_ONLY",
+  "eligible_records": 25534,
+  "excluded_records": 23275,
+  "forbidden_claims": [
+    "prospective confirmation of the already observed V2 result",
+    "exact reproduction of the ASReview application or its one-record query cadence",
+    "ASReview inferiority as a software system",
+    "cold-start screening",
+    "fitted-model, representation, identity-adapter, initialization-policy or population transport",
+    "multi-review or source-general superiority",
+    "protected labels, independent custody or independent replay",
+    "ORION-specific novelty or superiority",
+    "open-world route invention, closure or task completion"
+  ],
+  "gates": {
+    "G1_BINDING": true,
+    "G2_CANDIDATE_REPRODUCTION": true,
+    "G3_PRIMARY_ACTIVE_MARGIN": false,
+    "G4_WORK_SAVING_DOMINANCE": false
+  },
+  "implementation_freeze_sha256": "b4b889e2ae9722583f76700d76f2d61bb074305c14f029af2817ac6c9ab011d5",
+  "included_records": 2259,
+  "initial_seed_record_identities_sha256": "77e8eee599c1a499ab328b8f0fb0249f337b92a7be8db0d2b486d1a5d10e4c02",
+  "parse_receipt": {
+    "duplicate_identity_excess_rows_excluded": 3,
+    "duplicate_record_identities_after_repair": 0,
+    "eligible_unique_records": 25534,
+    "excluded_first_raw_line_sha256": "c619fb151436f2569165e3e7b8e8421310e8685740dd1be19945c449c8b266d5",
+    "excluded_incident_rows": 1,
+    "five_field_post_incident_rows": 25539,
+    "malformed_field_rows": 0,
+    "noncanonical_class_rows_excluded": 2,
+    "total_raw_lines": 25540
+  },
+  "protocol_sha256": "39a2bbee8c2630a46ee4a13d87fbc89548a0d622ce9a910b2bae75315a05db76",
+  "software": {
+    "numpy": "2.4.4",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.1"
+  },
+  "strongest_active_comparator_at_010": "ASREVIEW_ELAS_U4_CADENCE_MATCHED",
+  "strongest_active_comparator_at_wss95": "ASREVIEW_ELAS_U4_CADENCE_MATCHED",
+  "terminal": "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR"
+}

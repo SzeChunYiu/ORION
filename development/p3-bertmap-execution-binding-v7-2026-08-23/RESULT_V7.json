@@ -1,0 +1,67 @@
+{
+  "authority": "PAPER_SOURCE_IDENTITY__DEPENDENCY_CONSTRUCTOR_COMPATIBILITY__NATIVE_ARTIFACT_INTERFACE_ONLY",
+  "dependency_api_compatibility": "DEPENDENCY_API_CONSTRUCTOR_PASS",
+  "evidence": {
+    "compatibility_island_manifest_sha256": "d02ac442491f92c51aae156cc009cc306fdecedb971c5c07f05854bd44221014",
+    "compatibility_lock_sha256": "6a31875e9b6315c3a07a58c1cfc401f704d0f1d187f28323d4f49806b0290293",
+    "native_artifact_contract_sha256": "49c7ad8a2ef50e459ee92a49348b418c8cadc8979287e2c1ee29feffc43da757",
+    "parser_self_test_sha256": "4d91b3466f1c48cd671c6dea2e9694a84e9720e0853417d25ec7819307f15461",
+    "parser_sha256": "d1184dc129082bdcf18b415b551f244a695b4e34417286afc37a3f3a5d788bc5",
+    "protocol_sha256": "849f0f7b46adab50bc5648636a4bd283d87443a6bea59f26ec251f2b756337bf",
+    "runtime_receipt_sha256": "1d344fc11930a0c27a8817fcc9e8025ebd8e99ae0a296fc1ea436676be2e68be",
+    "source_rights_manifest_sha256": "dc2ed9c3e5253975f9040908c0b7cd8e47b11566a054c4fea8c5066b98cbfce9"
+  },
+  "full_native_bertmap_execution": "CANNOT_CHECK__NOT_RUN",
+  "material_source_defect": {
+    "authority": "SOURCE_SEMANTIC_AND_SYNTHETIC_LANGUAGE_LEVEL_REPRODUCTION_ONLY__NO_BERTMAP_OUTPUT_OPENED",
+    "conditional_effect": "Any nonempty non-reference table read reaches dp['Score'] and raises TypeError; an empty table does not enter the loop.",
+    "dp_string_subscript_found": true,
+    "function_line_span": [
+      119,
+      151
+    ],
+    "pandas_itertuples_row_semantics": "namedtuple; positional or attribute access, not string-key indexing",
+    "source_path": "src/deeponto/align/mapping.py",
+    "source_sha256": "9cf0dce1c5bd142e4175f628f8f3267f54ed6deac9f31e165a25b4a073eedff0",
+    "synthetic_nonempty_row_error": "TypeError: tuple indices must be integers or slices, not str"
+  },
+  "native_parser_binding": "BOUND__SEVEN_OF_SEVEN_SYNTHETIC_CONTRACT_CHECKS",
+  "outcome_boundary": {
+    "gold_or_reference_opened": false,
+    "model_opened_or_run": false,
+    "ontology_or_benchmark_opened_or_run": false,
+    "paper_data_zip_opened": false,
+    "protected_outcomes_opened": false,
+    "training_prediction_repair_or_scoring": false
+  },
+  "paper_source_identity": "BOUND",
+  "preserved_terminals": {
+    "v5_scientific_comparator_readiness": "0/3",
+    "v6": "P3_V6_TWO_OF_THREE_NATIVE_SMOKE_READY__BERTMAP_PINNED_LOCK_API_INCOMPATIBILITY_CANNOT_CHECK__V5_SCIENTIFIC_READINESS_UNCHANGED_ZERO_OF_THREE"
+  },
+  "protocol_id": "P3_V7_BERTMAP_OUTCOME_BLIND_COMPATIBILITY_AND_PARSER_BINDING",
+  "readiness_delta": {
+    "api_keyword_compatibility": "CANNOT_CHECK_IN_V6_TO_CONSTRUCTOR_PASS_IN_V7",
+    "native_artifact_parser": "GENERIC_SHAPE_GATE_TO_CLOSED_COMPLETENESS_AND_DERIVATION_PARSER",
+    "native_smoke_ready_after": "2/3",
+    "native_smoke_ready_before": "2/3",
+    "net_comparator_readiness_change": 0,
+    "paper_maintained_source_bridge": "REVALIDATED_EXACT",
+    "scientific_comparator_ready_after": "0/3",
+    "scientific_comparator_ready_before": "0/3"
+  },
+  "remaining_blockers": [
+    "separately versioned repair of the nonempty EntityMapping table-reader defect",
+    "complete content-addressed DeepOnto Python/JVM runtime rather than a constructor-only island",
+    "component-level rights/SBOM closure for bundled Java and full Python/model/generated-artifact layers",
+    "fresh isolated no-model-feedback BERTMap run producing all five parseable artifacts",
+    "independently custodied rights-valid evaluation before any correctness, performance, harm, coverage, transport or superiority claim"
+  ],
+  "required_native_artifacts": {
+    "present": 0,
+    "required": 5
+  },
+  "schema_version": "orion.p3.bertmap-execution-binding.result.v7",
+  "source_root_rights": "BOUND_APACHE_2_0__FULL_RUNTIME_RIGHTS_NOT_CLOSED",
+  "terminal": "P3_V7_BERTMAP_PAPER_SOURCE_AND_DEPENDENCY_CONSTRUCTOR_COMPATIBILITY_BOUND__CLOSED_FIVE_ARTIFACT_PARSER_BOUND__NONEMPTY_SOURCE_TABLE_READER_DEFECT_AND_FULL_NATIVE_SMOKE_CANNOT_CHECK__NATIVE_READINESS_TWO_OF_THREE__SCIENTIFIC_READINESS_ZERO_OF_THREE"
+}

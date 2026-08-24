@@ -1,0 +1,64 @@
+{
+  "argparse_defect_policy": "PRESERVE_NATIVE_C3; use only the explicit valid choice random; do not patch source",
+  "argv": [
+    "python3",
+    "-I",
+    "DGM_outer.py",
+    "--max_generation",
+    "1",
+    "--selfimprove_size",
+    "1",
+    "--selfimprove_workers",
+    "1",
+    "--choose_selfimproves_method",
+    "random",
+    "--update_archive",
+    "keep_all",
+    "--num_swe_evals",
+    "1",
+    "--shallow_eval",
+    "--no_full_eval"
+  ],
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "environment": {
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "P5_CASE_ID": "P5-PUBLIC-LANG1-COMMON-001",
+    "P5_NETWORK_POLICY": "DENY_ALL",
+    "P5_OUTCOME_ACCESS": "FORBIDDEN",
+    "P5_PROTECTED_SCORER_ACCESS": "FORBIDDEN",
+    "PYTHONHASHSEED": "0",
+    "TZ": "UTC"
+  },
+  "execution_authorized": false,
+  "frozen_at_utc": "2026-08-23T21:00:00Z",
+  "native_initialization_preflight": {
+    "cause": "Unchanged DGM requires initial/ and reads prior overall_performance fields; the candidate-safe seed must exclude those prior-outcome files.",
+    "source_lines": [
+      19,
+      28,
+      29,
+      30,
+      31,
+      33,
+      60,
+      63,
+      64,
+      65,
+      66
+    ],
+    "source_sha256": "239bc76f0e1b78210b8f7b3757b1082f6ca07db3537d6af50a45bf97709795ed",
+    "status": "BLOCKING"
+  },
+  "schema_version": "orion.p5.c3.invocation-environment.v8",
+  "source_identity": {
+    "commit": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+    "entrypoint": "DGM_outer.py",
+    "entrypoint_sha256": "239bc76f0e1b78210b8f7b3757b1082f6ca07db3537d6af50a45bf97709795ed",
+    "filtered_source_sha256": "b1755cb7b009e241e8ca419cf5567dfdee8bc8fd11b1f427bceb124a2eed9081",
+    "repository": "https://github.com/jennyzzt/dgm",
+    "tree": "dc58ea5c481124afdb97468c1bed4e0debb425c4"
+  },
+  "working_directory": "/p5/work/dgm_worktree"
+}

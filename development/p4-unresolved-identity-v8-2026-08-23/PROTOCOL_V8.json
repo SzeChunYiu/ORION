@@ -1,0 +1,114 @@
+{
+  "acceptance": {
+    "admissible_new_evidence": [
+      "provider-native DOI/version metadata",
+      "provider archive bytes and embedded revision/license bytes",
+      "source-native tag/release/commit/license API",
+      "provider-authenticated SWH directory relation",
+      "exact source-native release-asset byte equality"
+    ],
+    "inadmissible": [
+      "editorial assertion alone",
+      "filename resemblance",
+      "later version",
+      "replacement publication/archive/repository",
+      "proxy archive",
+      "normalized similarity without exact accepted identity method"
+    ],
+    "resolve_only_if": "Exact frozen publication DOI, exact frozen archive version relation, exact source-native tag/release to full commit, same frozen repository, authenticated archive-to-commit identity, accepted software rights at archive and commit, and public transport are all evidenced."
+  },
+  "authority": "PROVIDER_NATIVE_AUTHORITATIVE_METADATA_ARCHIVES_AND_APIS_ONLY",
+  "created_at": "2026-08-23T20:36:14.286323+00:00",
+  "one_targeted_pass": true,
+  "pytest_ci_git_operations": false,
+  "schema_version": "orion.p4.unresolved-identity-targeted-pass.v8",
+  "scope": {
+    "broad_harvest": false,
+    "exact_identity_count": 10,
+    "replacement_archives": false,
+    "replacement_publications": false,
+    "targets": [
+      {
+        "archive_doi": "10.5281/zenodo.21221061",
+        "frozen_index": 36,
+        "publication_doi": "10.21105/joss.09542",
+        "repository": "jaxionproject/jaxion",
+        "v7_primary_failure": "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+        "v7_row_sha256": "bdab8180082095534d2a0d75b587934d3865eb7e7cb578cd43ef28c8e91ccb4d"
+      },
+      {
+        "archive_doi": "10.5281/zenodo.21226146",
+        "frozen_index": 59,
+        "publication_doi": "10.21105/joss.09411",
+        "repository": "mohd-afeef-badri/psd",
+        "v7_primary_failure": "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+        "v7_row_sha256": "55221c6b1aa842a1a02e0d623e12ca7468fd55bc6e88d1a2b87358aa4a66c75d"
+      },
+      {
+        "archive_doi": "10.5281/zenodo.20171460",
+        "frozen_index": 91,
+        "publication_doi": "10.21105/joss.10245",
+        "repository": "nutritionallungimmunity/pai",
+        "v7_primary_failure": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "v7_row_sha256": "1389e858c88662e0c11c442cfcf3e8116f14a236bf7fba544bad8b5b58bee8a6"
+      },
+      {
+        "archive_doi": "10.5281/zenodo.20272994",
+        "frozen_index": 108,
+        "publication_doi": "10.21105/joss.09628",
+        "repository": "cwru-sdle/fairlinked",
+        "v7_primary_failure": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "v7_row_sha256": "a236b2da26d4567842809ff8b2b62bf3443255b26644bb772488364698d493e0"
+      },
+      {
+        "archive_doi": "10.5281/zenodo.20026885",
+        "frozen_index": 133,
+        "publication_doi": "10.21105/joss.10112",
+        "repository": "artefactory/woodtapper",
+        "v7_primary_failure": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "v7_row_sha256": "ac74a61277fed477fff5ef4810565abe540cb5e157b52ace95f1c1049b8a01d9"
+      },
+      {
+        "archive_doi": "10.5281/zenodo.19661454",
+        "frozen_index": 165,
+        "publication_doi": "10.21105/joss.10223",
+        "repository": "alek050/databallpy",
+        "v7_primary_failure": "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+        "v7_row_sha256": "9cc95473f2ea9bf4819c48c9056098aa84bef31497daa7aec068df483a0f3cea"
+      },
+      {
+        "archive_doi": "10.5281/zenodo.19051387",
+        "frozen_index": 185,
+        "publication_doi": "10.21105/joss.09364",
+        "repository": "mit-psfc/disruption-py",
+        "v7_primary_failure": "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "v7_row_sha256": "f62476a691d46c794712630676344d18e3c6f26af1e228369db5e7d2ef1ffe10"
+      },
+      {
+        "archive_doi": "10.5281/zenodo.19335435",
+        "frozen_index": 190,
+        "publication_doi": "10.21105/joss.09481",
+        "repository": "ugurdar/datadriftr",
+        "v7_primary_failure": "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "v7_row_sha256": "007b5ce85a6c92aae5b25b54cbbe41e4301990b1c5786b24a14cbc6aa45245e7"
+      },
+      {
+        "archive_doi": "10.5281/zenodo.19141362",
+        "frozen_index": 196,
+        "publication_doi": "10.21105/joss.08851",
+        "repository": "watershedswildfireresearchcollaborative/separate",
+        "v7_primary_failure": "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+        "v7_row_sha256": "f01b95724850ca783c3ffc0ffb4c66d4e9c39a79fdd6301ab97d906c3cd3359c"
+      },
+      {
+        "archive_doi": "10.5281/zenodo.19202203",
+        "frozen_index": 199,
+        "publication_doi": "10.21105/joss.09603",
+        "repository": "targene/targene-pipeline",
+        "v7_primary_failure": "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "v7_row_sha256": "ab693130c4607ae2e32a52678faed757f1277539364479aa92c05ff0ddad5a28"
+      }
+    ],
+    "unit_inflation": false
+  }
+}

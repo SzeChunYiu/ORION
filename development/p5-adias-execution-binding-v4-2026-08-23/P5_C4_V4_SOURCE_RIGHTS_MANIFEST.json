@@ -1,0 +1,60 @@
+{
+  "acknowledged_third_parties": [
+    "HyperAgent",
+    "tau-bench",
+    "ALFWorld",
+    "ScienceWorld",
+    "TextCraft",
+    "WebShop"
+  ],
+  "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+  "bundled_data_census": {
+    "alfworld": {
+      "bytes": 83837483,
+      "files": 606
+    },
+    "scienceworld": {
+      "bytes": 50625,
+      "files": 3
+    },
+    "textcraft": {
+      "bytes": 540379,
+      "files": 863
+    },
+    "webshop": {
+      "bytes": 30653,
+      "files": 4
+    }
+  },
+  "closed_rights": [
+    "exact root source licence bytes only"
+  ],
+  "commercial_execution_authorized": false,
+  "component_licence_files_under_data": 0,
+  "legal_conclusion_claimed": false,
+  "root_licence": {
+    "noncommercial_only": true,
+    "patent_and_trademark_rights_licensed": false,
+    "path": "LICENSE.md",
+    "sha256": "047d2259741a3ebb30d8c8a43d4ba79b5b229a069acd1d2bea49f22b297d8e98",
+    "sharealike": true,
+    "spdx": "CC-BY-NC-SA-4.0"
+  },
+  "schema_version": "orion.p5.c4.source-rights-manifest.v4",
+  "source_identity": {
+    "archive_sha256": "472e2ef2258c764b563b07be725a82de80df15bd617259fd839f894b8c602216",
+    "commit_sha": "fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993",
+    "file_count": 1578,
+    "repository": "https://github.com/scylj1/adias",
+    "tree_sha": "98fc19e691c31b635ec432b6240db775a9527fd0"
+  },
+  "terminal": "SOURCE_LICENCE_BYTES_BOUND__TASK_BENCHMARK_CONTAINER_SERVICE_AND_OUTPUT_RIGHTS_CANNOT_CHECK",
+  "unclosed_rights": [
+    "third-party bundled data and benchmark task content",
+    "unselected P5 candidate-visible case",
+    "model/provider/services",
+    "transitive dependencies and built container",
+    "generated patches, profiles, diagnoses, transcripts, records, reports, plots, logs, and final summaries",
+    "protected scorer/panel"
+  ]
+}

@@ -1,0 +1,335 @@
+{
+  "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+  "blocking_field_count": 12,
+  "blocking_fields": [
+    "custody.external_protected_scorer",
+    "custody.one_shot_no_feedback_barrier",
+    "custody.protected_panel_freshness",
+    "inputs.candidate_visible_case_bytes",
+    "model_provider.primary",
+    "resources.calls_tokens_usd",
+    "resources.retry_network",
+    "rights.container_and_generated_artifacts",
+    "rights.model_provider_and_services",
+    "rights.task_and_benchmark_content",
+    "runtime.container_or_environment",
+    "runtime.task_environment"
+  ],
+  "bound_execution_envelope": {
+    "compute": {
+      "gpus": 0,
+      "pids_limit": 2048,
+      "provider_parallelism": 64,
+      "ram_gib": 32,
+      "vcpus": 16
+    },
+    "egress_network": null,
+    "fallbacks": [],
+    "native_command": null,
+    "runtime_image": null,
+    "wallclock_seconds": {
+      "termination_grace": 120,
+      "whole_c5_run": 21600
+    }
+  },
+  "bound_field_count": 9,
+  "bound_fields": [
+    "adapter.isolated_write_surface",
+    "adapter.native_parser_binding",
+    "identity.native_entrypoint_bytes",
+    "identity.source_license_bytes",
+    "identity.source_repository_commit",
+    "model_provider.fallbacks",
+    "resources.wallclock",
+    "runtime.compute",
+    "runtime.dependency_lock"
+  ],
+  "execution_ready": false,
+  "fields": {
+    "adapter.isolated_write_surface": {
+      "binding": {
+        "ephemeral_roots": [
+          "/tmp",
+          "/run/cache"
+        ],
+        "host_writable_roots": [
+          "/input/source/results"
+        ],
+        "policy": "P5_C5_V4_WRITE_SURFACE_SCHEMA.json",
+        "runner": "p5_c5_isolated_runner.py",
+        "runner_sha256": "7193b47993074ae8eac3108418bbb19e417a30ddae842933cd87a2b6b7adb9df"
+      },
+      "cause": null,
+      "next_discriminator": "Validate mount precedence, egress and before/after source/task digests on the eventual content-addressed Linux image.",
+      "residual": "The hashed wrapper freezes a results-only host write surface, a fresh-store reset and read-only source/task mounts; it still refuses command construction while any other field is unbound.",
+      "state": "BOUND"
+    },
+    "adapter.native_parser_binding": {
+      "binding": {
+        "actionable_classes": [
+          "EVALUATOR_REPAIR"
+        ],
+        "parser": "p5_c5_native_parser.py",
+        "parser_sha256": "3b26cde8152a8cb98faff8ba3963ee5e5ea684633154b6302ff3de5fe72a632c",
+        "protected_score_fields_emitted": 0,
+        "schema": "P5_C5_V4_NATIVE_OUTPUT_SCHEMA.json"
+      },
+      "cause": null,
+      "next_discriminator": "Keep parser bytes frozen and place the independent final scorer outside candidate/evolution custody.",
+      "residual": "The parser freezes the C5 guard mapping and content-addresses result.json plus metric.db while withholding all agreement values; it is not a protected scorer.",
+      "state": "BOUND"
+    },
+    "custody.external_protected_scorer": {
+      "binding": null,
+      "cause": "No independent scorer principal, immutable scorer digest, access-control identity or signed acceptance exists.",
+      "next_discriminator": "Independent custodian supplies scorer identity, digest and access-control attestation without revealing protected bytes.",
+      "residual": "C5 confirmatory execution is not licensed.",
+      "state": "CANNOT_CHECK"
+    },
+    "custody.one_shot_no_feedback_barrier": {
+      "binding": null,
+      "cause": "The official runner reports its eval_locked value every round and at stdout; no independent one-shot handoff/no-return-channel receipt exists.",
+      "next_discriminator": "Custodian signs one accepted artifact, one protected scoring event and no feedback path; verify the protected panel was never mounted during evolution.",
+      "residual": "The upstream eval_locked set may only be a development surrogate; final protected outcomes cannot enter this process.",
+      "state": "CANNOT_CHECK"
+    },
+    "custody.protected_panel_freshness": {
+      "binding": null,
+      "cause": "No post-protocol protected panel identity, commitment or freshness attestation was available.",
+      "next_discriminator": "Freeze a fresh panel only after protocol and evaluator bytes are locked, under independent custody.",
+      "residual": "Fresh transfer, harm and performance remain CANNOT_CHECK.",
+      "state": "CANNOT_CHECK"
+    },
+    "identity.native_entrypoint_bytes": {
+      "binding": {
+        "common_sha256": "a609f1e6c10070e34dd46ca87bc2ee333ae783d45da142ff90012693b927a78f",
+        "config_sha256": "6bf780a86a27a99cc102c87a2aa8f9dfd073f087466158f38f80b7aae0159760",
+        "entrypoint": "scripts/run_metric_evo.py",
+        "entrypoint_sha256": "fd6a2b776e1f64edb361401451e3e62d50b9caf21d129c3fa5dcbe336116dac0",
+        "excluded": [
+          "scripts/run_co_evo.py",
+          "scripts/run_skill_evo.py",
+          "--naive",
+          "--golden-diff-selectable"
+        ],
+        "metric_evolution_sha256": "86edd1c9b75e4926b3ebe754fa9cb7e85819c9cf307aed94a53323a71eda8618",
+        "metric_store_sha256": "e859ec13a1e7801788b7314da145f4a67d63970cf6ed9338c6658fb114a9708d",
+        "prompts_sha256": "08611d2077e44267dbef415e26d514971ee36d268e2938e716d4b12c4eafa8f9",
+        "solver_sha256": "089707d2a543c2fcf43be661a058647a0326e5402eb360156ed8baaba9de78ed"
+      },
+      "cause": null,
+      "next_discriminator": "Reverify all bound bytes immediately before image build and after evolution.",
+      "residual": "Exact evaluator-only runner, frozen solver and core metric bytes are retained; bytes alone do not freeze hosted outputs or create a P5 adapter.",
+      "state": "BOUND"
+    },
+    "identity.source_license_bytes": {
+      "binding": {
+        "license_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+        "notice_sha256": "5d86be6e681240106316a6763eb0dcb47a8adcb426c19df4693098ceb61bb531",
+        "spdx": "Apache-2.0"
+      },
+      "cause": null,
+      "next_discriminator": "Carry LICENSE and NOTICE into any derived runtime/source distribution.",
+      "residual": "Exact source licence and notice bytes are retained; task, service, container and generated-artifact rights remain separate.",
+      "state": "BOUND"
+    },
+    "identity.source_repository_commit": {
+      "binding": {
+        "archive_sha256": "9426222eefc25878f7e7d1ecd1ff9824c894bc358cb8d5f31ee3c8d4a8db9640",
+        "commit_date_utc": "2026-07-29T05:20:31Z",
+        "commit_sha": "0f14e910d361196422d9b938f45280919952d4fd",
+        "repository": "https://github.com/amazon-science/Self-Evolving-Agents-Double-Ratchet",
+        "tree_blob_bytes": 888822,
+        "tree_file_count": 113,
+        "tree_sha": "3ca13a51b4fb6ff77013d8886023ee852cbf373e"
+      },
+      "cause": null,
+      "next_discriminator": "Fetch by commit and reverify archive/tree immediately before a build.",
+      "residual": "Official public source identity is byte-addressed in a clean detached read-only scratch clone.",
+      "state": "BOUND"
+    },
+    "inputs.candidate_visible_case_bytes": {
+      "binding": {
+        "authoritative_tree_result_payload_paths": 0,
+        "authoritative_tree_split_payload_paths": 0
+      },
+      "cause": "The source contains no stored split or result payload. No rights-cleared P5 dossier, frozen solver-output set, development anchor or development-only locked surrogate is frozen.",
+      "next_discriminator": "Freeze one complete candidate-visible P5 development packet satisfying P5_C5_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json without any protected-final bytes.",
+      "residual": "The authored parser smoke is schema conformance only and licenses zero substantive P5 cases.",
+      "state": "UNBOUND"
+    },
+    "model_provider.fallbacks": {
+      "binding": {
+        "closed_behavior": "FAIL; DO_NOT_SWITCH_MODEL_OR_PROVIDER",
+        "fallbacks": [],
+        "unsafe_environment_inheritance": "DENIED_BY_FRESH_CONTAINER_ENV"
+      },
+      "cause": null,
+      "next_discriminator": "Retain the empty list when primary model/service identities are selected.",
+      "residual": "The exact fallback set is empty for the selected metric-only role clients.",
+      "state": "BOUND"
+    },
+    "model_provider.primary": {
+      "binding": {
+        "configured_embedding_model": "global.cohere.embed-v4:0",
+        "source_default_model": "global.anthropic.claude-opus-4-7",
+        "source_default_region": "us-east-1",
+        "source_roles": [
+          "agent",
+          "teacher",
+          "architect",
+          "judge",
+          "critic",
+          "light"
+        ]
+      },
+      "cause": "Repository labels do not freeze an immutable served model revision, cross-region route, exact endpoint/TLS identity, service revision, credential principal or allowed role/capability map; frozen solver outputs are also absent.",
+      "next_discriminator": "Bind exact provider/service/model revisions and credentials, then generate solver outputs once and freeze their bytes before evaluator evolution.",
+      "residual": "C5 is not licensed for execution.",
+      "state": "UNBOUND"
+    },
+    "resources.calls_tokens_usd": {
+      "binding": {
+        "per_call_max_output_tokens": 8192
+      },
+      "cause": "Dynamic detector, synthesis, teacher and solver calls have no aggregate call, input-token, output-token or USD hard stop; provider usage reconciliation and overshoot semantics are absent.",
+      "next_discriminator": "Instrument a provider-reconciled pre-call hard-stop monitor over every role and retry, with exact aggregate caps and typed exhaustion terminal.",
+      "residual": "A per-call output limit is not an aggregate resource binding.",
+      "state": "UNBOUND"
+    },
+    "resources.retry_network": {
+      "binding": {
+        "base_delay_seconds": 0.5,
+        "connect_timeout_seconds": 10,
+        "fallbacks": [],
+        "jitter": "FULL",
+        "max_delay_seconds": 8.0,
+        "read_timeout_seconds": 120,
+        "source_retry_attempts": 3
+      },
+      "cause": "Retry bytes are known, but the Bedrock route/DNS/TLS endpoint, offline dataset policy and deny-by-default egress network are not independently bound or enforced.",
+      "next_discriminator": "Bind one provider endpoint and an attested egress network that denies Hugging Face/task fetch and every other destination.",
+      "residual": "C5 is not licensed for networked execution.",
+      "state": "UNBOUND"
+    },
+    "resources.wallclock": {
+      "binding": {
+        "enforcer": "p5_c5_isolated_runner.py",
+        "enforcer_sha256": "7193b47993074ae8eac3108418bbb19e417a30ddae842933cd87a2b6b7adb9df",
+        "native_candidate_subprocess_seconds": 10,
+        "termination_grace_seconds": 120,
+        "timeout_terminal": "TIMEOUT/exit 124",
+        "whole_c5_run_seconds": 21600
+      },
+      "cause": null,
+      "next_discriminator": "Verify TERM/KILL propagation, child cleanup and exit 124 in the eventual image.",
+      "residual": "A whole-run timeout is prospectively frozen; provider calls already have connect/read timeouts and MBPP has a native 10-second candidate subprocess timeout.",
+      "state": "BOUND"
+    },
+    "rights.container_and_generated_artifacts": {
+      "binding": null,
+      "cause": "No content-addressed runtime image/SBOM/complete notices or authority for prompts, solver outputs, task traces, metric.db and result.json retention/publication is closed.",
+      "next_discriminator": "Build the full image, capture SBOM/licences and obtain explicit retention/disclosure authority for all generated artifacts.",
+      "residual": "C5 is not licensed for runtime artifact retention or redistribution.",
+      "state": "UNBOUND"
+    },
+    "rights.model_provider_and_services": {
+      "binding": null,
+      "cause": "No authorized Bedrock credential principal, study-use/data-retention terms, cross-region policy, pricing/quota receipt or publication permission is frozen.",
+      "next_discriminator": "Bind provider terms, data policy, credential principal, region/route and aggregate-result publication rights.",
+      "residual": "Apache-2.0 source rights do not authorize model service use.",
+      "state": "UNBOUND"
+    },
+    "rights.task_and_benchmark_content": {
+      "binding": {
+        "result_payload_paths": 0,
+        "stored_split_payload_paths": 0,
+        "tree_dataset_builder_paths": 3
+      },
+      "cause": "The repository explicitly excludes datasets/results. MBPP+/Hugging Face, P5 dossiers, development anchors and final protected panel have separate licences/terms not captured here.",
+      "next_discriminator": "Use an authored or explicitly licensed P5 development packet plus an independently licensed protected panel and scorer.",
+      "residual": "No benchmark or P5 content is licensed by this packet.",
+      "state": "UNBOUND"
+    },
+    "runtime.compute": {
+      "binding": {
+        "enforcer": "p5_c5_isolated_runner.py",
+        "enforcer_sha256": "7193b47993074ae8eac3108418bbb19e417a30ddae842933cd87a2b6b7adb9df",
+        "gpus": 0,
+        "pids_limit": 2048,
+        "provider_parallelism": 64,
+        "ram_gib": 32,
+        "vcpus": 16
+      },
+      "cause": null,
+      "next_discriminator": "Verify Docker/cgroup enforcement and provider fan-out on the final host before custody use.",
+      "residual": "The wrapper freezes container-wide CPU/RAM/PID/no-GPU limits and preserves the native 64-thread provider fan-out.",
+      "state": "BOUND"
+    },
+    "runtime.container_or_environment": {
+      "binding": null,
+      "cause": "No content-addressed Linux image containing Python 3.11, the exact lock, timeout tooling and source runtime has been built, SBOMed and smoke-verified.",
+      "next_discriminator": "Build once from the lock on the selected Linux architecture, capture image/SBOM digests and run only synthetic/native-shaped smoke.",
+      "residual": "The dependency lock and source bytes alone are not an executable environment.",
+      "state": "UNBOUND"
+    },
+    "runtime.dependency_lock": {
+      "binding": {
+        "direct_dependencies": [
+          "boto3",
+          "datasets",
+          "pydantic",
+          "pyyaml"
+        ],
+        "lock": "DOUBLE_RATCHET_DEPENDENCY_LOCK_V4.uv.lock",
+        "lock_sha256": "4b1ddccc3a85d6ade871682691ad0c06173a71a237458b350044d0ed615c55f5",
+        "package_entries": 46,
+        "python_request": ">=3.11,<3.12",
+        "resolver": "uv 0.11.1",
+        "spec": "DOUBLE_RATCHET_DEPENDENCY_SPEC_V4.toml",
+        "spec_sha256": "26a9eea24fc0f56538e6710f42f435fcb066cacabd7022b801e572a86fe5758a"
+      },
+      "cause": null,
+      "next_discriminator": "Build from this exact lock, preserve wheel/sdist receipts, and amend only under a separately named adapter revision if P5 integration needs more packages.",
+      "residual": "The V4 resolution closes the released default MBPP metric-only dependency base, including the source-observed but README-omitted datasets package; a future P5 task adapter may introduce additional dependencies and remains separately unbound.",
+      "state": "BOUND"
+    },
+    "runtime.task_environment": {
+      "binding": {
+        "native_command": null
+      },
+      "cause": "The official entrypoint supports MBPP/report_gen, not the P5 dossier or eight-class decision. It regenerates hosted solver outputs at run time and uses eval_locked each round; no P5-native task adapter or frozen development-output environment exists.",
+      "next_discriminator": "Preregister and byte-freeze a P5-native evaluator-only adapter that consumes already frozen solver outputs, uses a development-only surrogate, and leaves the final protected panel external.",
+      "residual": "Silently formatting P5 as MBPP or exposing the final panel as eval_locked would change semantics and violate custody.",
+      "state": "UNBOUND"
+    }
+  },
+  "frozen_at_utc": "2026-08-23T18:35:39Z",
+  "panel_confirmatory_ready_arms": 0,
+  "registry_id": "P5.C5.DOUBLE_RATCHET.FIELD.REGISTRY.V4",
+  "required_field_paths": [
+    "adapter.isolated_write_surface",
+    "adapter.native_parser_binding",
+    "custody.external_protected_scorer",
+    "custody.one_shot_no_feedback_barrier",
+    "custody.protected_panel_freshness",
+    "identity.native_entrypoint_bytes",
+    "identity.source_license_bytes",
+    "identity.source_repository_commit",
+    "inputs.candidate_visible_case_bytes",
+    "model_provider.fallbacks",
+    "model_provider.primary",
+    "resources.calls_tokens_usd",
+    "resources.retry_network",
+    "resources.wallclock",
+    "rights.container_and_generated_artifacts",
+    "rights.model_provider_and_services",
+    "rights.task_and_benchmark_content",
+    "runtime.compute",
+    "runtime.container_or_environment",
+    "runtime.dependency_lock",
+    "runtime.task_environment"
+  ],
+  "schema_version": "orion.p5.c5.double-ratchet-field-registry.v4",
+  "terminal": "C5_PARTIAL_BINDING__TWELVE_REQUIRED_FIELDS_NOT_BOUND__EXECUTION_REFUSED"
+}

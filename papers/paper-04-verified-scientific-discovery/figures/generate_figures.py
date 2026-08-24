@@ -157,10 +157,29 @@ def p4_6() -> str:
     lines=start("Deterministic latency vs false promotion")
     x0,x1,y0,y1=120,920,500,80
     vals=[METRICS["systems"][s]["mean_latency_seconds"]*1e6 for s in PRIMARY]; logs=[math.log10(v) for v in vals]; lo,hi=min(logs),max(logs)
+    # Fixed direct-label layout.  Two comparator points are almost coincident;
+    # name them together rather than jittering data or drawing leader arrows.
+    label_layout = {
+        "ORION": (8, -8, "start"),
+        "provenanceguard-style-source-routing": (-8, -12, "end"),
+        "attributionbench-multisource-attribution": (8, -12, "start"),
+        "fire-iterative-retrieve-or-verify": (8, -12, "start"),
+        "claimbench-sciclaimhunt-scientific-evidence": (8, -12, "start"),
+        "provenai-citation-fidelity-influence": (8, 22, "start"),
+    }
     lines += [f'<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y0}" stroke="black"/>', f'<line x1="{x0}" y1="{y0}" x2="{x0}" y2="{y1}" stroke="black"/>']
     for sid,us,lg in zip(PRIMARY,vals,logs):
         fp=METRICS["systems"][sid]["false_promotion_rate"]; x=x0+(x1-x0)*(lg-lo)/(hi-lo); y=y0-(y0-y1)*fp; fill="#2f5597" if sid=="ORION" else "#777"
-        lines += [f'<circle cx="{x:.1f}" cy="{y:.1f}" r="6" fill="{fill}"/>', f'<text x="{x+8:.1f}" y="{y-8:.1f}" font-family="sans-serif" font-size="10">{SHORT[sid]}</text>']
+        lines.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="6" fill="{fill}"/>')
+        if sid in label_layout:
+            dx,dy,anchor=label_layout[sid]
+            lines.append(f'<text x="{x+dx:.1f}" y="{y+dy:.1f}" text-anchor="{anchor}" font-family="sans-serif" font-size="10">{SHORT[sid]}</text>')
+    overlap_x=max(x0+(x1-x0)*(logs[PRIMARY.index(sid)]-lo)/(hi-lo) for sid in ("rewardhackingagents-search-contamination", "deepsciverify-abstract-to-full-escalation"))
+    overlap_y=y0-(y0-y1)*METRICS["systems"]["rewardhackingagents-search-contamination"]["false_promotion_rate"]
+    lines += [
+        f'<text x="{overlap_x+9:.1f}" y="{overlap_y-20:.1f}" font-family="sans-serif" font-size="10">RHAgents /</text>',
+        f'<text x="{overlap_x+9:.1f}" y="{overlap_y-8:.1f}" font-family="sans-serif" font-size="10">DeepSci (overlap)</text>',
+    ]
     lines += ['<text x="520" y="552" text-anchor="middle" font-family="sans-serif" font-size="13">Mean latency (microseconds; log scale)</text>', '<text x="28" y="285" transform="rotate(-90 28 285)" text-anchor="middle" font-family="sans-serif" font-size="13">False promotion rate</text>', '<text x="480" y="585" text-anchor="middle" font-family="sans-serif" font-size="10">Mechanism-level deterministic timing; no model/network serving latency is included.</text>', '</svg>']
     return "\n".join(lines)
 

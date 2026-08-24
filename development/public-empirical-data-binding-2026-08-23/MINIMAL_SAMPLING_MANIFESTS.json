@@ -1,0 +1,156 @@
+{
+  "authority": "OUTCOME_BLIND_FILE_IDENTITY_SELECTION_ONLY",
+  "captured_at_utc": "2026-08-23T11:50:10+00:00",
+  "dataset_rows_accessed": 0,
+  "label_values_accessed": 0,
+  "manifests": [
+    {
+      "eligibility_status": "CANNOT_CHECK_P1_WIDE_PANEL_ELIGIBILITY",
+      "manifest_id": "P1_PUBLIC_TRANSITION_SOURCE_PREFLIGHT_V1",
+      "paper_id": "P1",
+      "row_ids_materialized": false,
+      "selected_objects": [
+        {
+          "declared_split_examples": 300,
+          "lfs_sha256": "92abca7cb527b41a9f66d03a26ce441ff7319e3a49f985998fd56be4bb9b08b2",
+          "path": "data/test-00000-of-00001.parquet",
+          "revision_sha": "846e647b9f33c0b51b739d005d13d85493c9af09",
+          "source_id": "SWE-BENCH__SWE-BENCH_MULTILINGUAL"
+        },
+        {
+          "reason_no_payload": "LICENCE_UNKNOWN_AND_ENDPOINT_LABELS_INADEQUATE",
+          "revision_sha": "53e19322c88bb01c1b0c6a61bde68bc2b1c3028e",
+          "selected_at": "DATASET_CARD_AND_BUILDER_REVISION_ONLY",
+          "source_id": "ALLENAI__PEER_READ"
+        }
+      ]
+    },
+    {
+      "eligibility_status": "FOUR_BOUNDED_SCREENING_WORLD_FILES_SELECTED__FOUR_OPEN_WORLD_ARENAS_NOT_BOUND",
+      "manifest_id": "P2_SYSTEMATIC_REVIEW_WORLD_PREFLIGHT_V1",
+      "paper_id": "P2",
+      "row_ids_materialized": false,
+      "selected_objects": [
+        {
+          "checksum": {
+            "type": "SHA-1",
+            "value": "6a0271155bd350b13c5bd715654ae3b2b2efbf2e"
+          },
+          "directory_label": "synergy-dataset-v1.0/Hall_2012",
+          "download_url": "https://dataverse.nl/api/access/datafile/359913",
+          "file_id": 359913,
+          "label": "labels.csv",
+          "size": 672721
+        },
+        {
+          "checksum": {
+            "type": "SHA-1",
+            "value": "83e99ad62ce0ad2420d5bfeeca7c89aadcb78d4e"
+          },
+          "directory_label": "synergy-dataset-v1.0/Moran_2021",
+          "download_url": "https://dataverse.nl/api/access/datafile/359826",
+          "file_id": 359826,
+          "label": "labels.csv",
+          "size": 535584
+        },
+        {
+          "checksum": {
+            "type": "SHA-1",
+            "value": "1c34ca19e1283c79deaf7446e436b31e49b73fad"
+          },
+          "directory_label": "synergy-dataset-v1.0/Walker_2018",
+          "download_url": "https://dataverse.nl/api/access/datafile/359925",
+          "file_id": 359925,
+          "label": "labels.csv",
+          "size": 5372708
+        },
+        {
+          "checksum": {
+            "type": "SHA-1",
+            "value": "19e15577ebdbaa64d355fea441bfc17a6bca4e0a"
+          },
+          "directory_label": "synergy-dataset-v1.0/Wolters_2018",
+          "download_url": "https://dataverse.nl/api/access/datafile/359887",
+          "file_id": 359887,
+          "label": "labels.csv",
+          "size": 460956
+        }
+      ],
+      "selection_rule": "FOUR_LOWEST_SHA256_DIRECTORY_LABELS_AMONG_26_VERSION_1_0_labels.csv_FILES"
+    },
+    {
+      "archive_bodies_opened": 0,
+      "eligibility_status": "ONE_RAW_TEXT_BIOMEDICAL_GOLD_SOURCE_AND_TWO_ALIGNMENT_CONTROLS_BOUND__P3_MULTI_DOMAIN_PANEL_OPEN",
+      "manifest_id": "P3_RAW_TEXT_ALIGNMENT_PREFLIGHT_V1",
+      "paper_id": "P3",
+      "row_ids_materialized": false,
+      "selected_objects": [
+        {
+          "checksum": "md5:5aa8a6d59209e660d30d18f62e1467c8",
+          "key": "evaluation-data.tar.gz",
+          "size": 4219434,
+          "source_id": "ZENODO_3460908"
+        },
+        {
+          "checksum": "md5:bc09eeeca8b2e9df8fb0f2fded26a267",
+          "key": "craft-st-2019-2019_test_data.tar.gz",
+          "size": 118228814,
+          "source_id": "ZENODO_3460908"
+        },
+        {
+          "checksum": "md5:c312c057d35d66e303897c8e9a0b814d",
+          "key": "CRAFT-3.1.3.tar.gz",
+          "size": 138943683,
+          "source_id": "ZENODO_3460908"
+        },
+        {
+          "checksum": "md5:31676c68912a22622f6ca6d031519df9",
+          "key": "oacontest17.zip",
+          "size": 486043,
+          "source_id": "ZENODO_15827226"
+        },
+        {
+          "commit_sha": "7daad660fe94f504433590b7a781cfabe1e179c6",
+          "content_length_header": "7318844",
+          "http_etag": "\"70621cebbc6268d8fa73292f7bbaea1774bbad2df21183ca2df7fc00ff161316\"",
+          "path": "scirex_dataset/release_data.tar.gz",
+          "source_id": "SCIREX"
+        }
+      ]
+    },
+    {
+      "eligibility_status": "IMPLEMENTATION_AND_EXECUTION_SOURCE_FAMILIES_ONLY__EIGHT_CLASS_PROTECTED_PANEL_OPEN",
+      "manifest_id": "P5_PUBLIC_DEVELOPMENT_FAILURE_PREFLIGHT_V1",
+      "paper_id": "P5",
+      "row_ids_materialized": false,
+      "selected_objects": [
+        {
+          "declared_split_examples": 300,
+          "lfs_sha256": "92abca7cb527b41a9f66d03a26ce441ff7319e3a49f985998fd56be4bb9b08b2",
+          "path": "data/test-00000-of-00001.parquet",
+          "revision_sha": "846e647b9f33c0b51b739d005d13d85493c9af09",
+          "source_id": "SWE-BENCH__SWE-BENCH_MULTILINGUAL"
+        },
+        {
+          "declared_split_examples": 500,
+          "lfs_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25",
+          "path": "data/test-00000-of-00001.parquet",
+          "revision_sha": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+          "source_id": "SWE-BENCH__SWE-BENCH_VERIFIED"
+        },
+        {
+          "commit_sha": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+          "source_id": "DEFECTS4J",
+          "tree_sha": "e2912f772b85037f8c3c1bdc2a27db6bfc70e661"
+        },
+        {
+          "artifact_bodies_opened": 0,
+          "commit_sha": "2b276ac5c475bcc71c9d62384943206c7768408f",
+          "source_id": "BUGSWARM"
+        }
+      ]
+    }
+  ],
+  "protected_outcome_bytes_accessed": false,
+  "schema_version": "orion.public-empirical-data-binding.sampling-manifests.v1"
+}

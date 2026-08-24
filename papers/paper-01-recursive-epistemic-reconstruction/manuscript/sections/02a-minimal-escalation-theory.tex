@@ -11,10 +11,22 @@ authorized transition is minimal in the scientific change order. The
 $K/W/M$ architecture used in the experiments is one realization of this
 object, not part of its mathematical definition.
 
+\paragraph{Mathematical conventions.}
+Unless a probability law is explicitly introduced, the equalities and
+factorizations in this section are pointwise, set-theoretic statements on the
+declared context class. They do not by themselves assert that a factor map is
+measurable or computable; a measurable version additionally requires the
+corresponding quotient/factor map to be measurable. Once a law is introduced,
+conditional distributions and their conclusions are defined only almost
+surely, so a null interface fibre receives no pointwise certification. Every
+decision alphabet used below is nonempty. For the Bayes result we use standard
+Borel spaces and a finite discrete decision alphabet, so regular conditional
+laws and a measurable fixed-order maximizer exist.
+
 \subsection{Contexts, transition orders, and admissible fronts}
 
-Let $\mathcal E$ be an arbitrary set of evidence contexts. A context $e$ has
-a candidate transition space $\mathcal R_e$ and a strict partial order
+Let $\mathcal E$ be an arbitrary nonempty set of evidence contexts. A context
+$e$ has a candidate transition space $\mathcal R_e$ and a strict partial order
 $\prec_e$. The interpretation of $r'\prec_e r$ is that $r'$ makes strictly
 less scientific change than $r$ in context $e$. The order need not be a
 chain: revisions of a measurement model and a problem boundary, for example,
@@ -116,90 +128,330 @@ interface relation.
 \paragraph{Corollary 1 (information-equivalent products must tie).}
 Any donor product that reconstructs the transition tuple above and applies the
 same decision rule is extensionally identical to $\Gamma$ on every context.
+Reconstruction may use a relabelled representation only when it comes with a
+known decision-preserving isomorphism: the alignment must preserve candidate
+correspondence, preserve and reflect the strict transition order and every
+predicate truth value, preserve $Q(e)$, and map each reconstructed front/output
+back to the original $\Gamma$ decision. Equal component counts, or an unaligned
+isomorphism of otherwise anonymous encodings, is not information equivalence in
+this sense.
 
 The ideal-product tie in Section~\ref{sec:revision} is therefore a required
 negative boundary. It is evidence against an inherent centralization or
 expressivity advantage, not an inconvenient null result.
 
-\subsection{The optimal error of a lossy scientific interface}
+\paragraph{Terminal-transport certification boundary.}
+Exact set-theoretic factorization does not manufacture target semantics. An
+outcome-blind audit compared six source-native postpublication terminals with
+seven inherited process-decision identifiers. Among all
+$7^6=117{,}649$ total maps, none is fully certified by the inherited semantics;
+this does not imply that no semantics-preserving map exists. Because the six
+actionable target decisions lack exhaustive coordinate, licensed-operation and
+forbidden-operation denotations, and because terminal decisions and diagnostic
+actions have no inherited one-to-one bridge, 720 injective maps remain not
+disproved but uncertified. The only currently certified status-preserving
+partial mapping sends \textsc{Unresolved} to \textsc{Unresolved}; every
+actionable image remains unbound. Full-artifact withdrawal is an impossibility
+witness only conditional on later owner-ratification of the proposed
+closed-world target denotations. This is an additional typed-transport gate,
+not a corollary of Theorem~1.
 
-Exact equivalence is a worst-case property. A distributional version
-quantifies how much error remains when a donor interface merges contexts that
-usually, but not always, require the same transition. Let $E\sim\mu$ on a
-standard Borel context space, let $\phi$ be measurable into a standard Borel
-interface space, let the output alphabet $\mathcal Y$ be finite,
-and define the regular conditional probabilities
-\[
-p_y(z)=\Pr\{\Gamma(E)=y\mid\phi(E)=z\}.
-\]
+\subsection{Legal-action deficiency of a lossy scientific interface}
 
-\paragraph{Theorem 2 (mixed-fibre Bayes lower bound).}
-For every deterministic or randomized policy that uses only $\phi(E)$, its
-zero--one transition error satisfies
+Exact equivalence is a worst-case property. A distributional version must
+also respect unequal harms and context-dependent legal actions. Let $E\sim\mu$
+on a standard Borel context space, let $Z=\phi(E)$ take values in a standard
+Borel interface space, and let $\mathcal A_0$ be a finite nonempty action
+alphabet. Each context has a nonempty legal set $\mathcal A(E)\subseteq
+\mathcal A_0$ and a nonnegative measurable loss $L(E,a)$. Define the actions
+that are legal almost surely on an observed fibre by
 \[
-\Pr\{\widehat\Gamma\ne\Gamma(E)\}
-\ \ge\
-1-\mathbb E_{\phi(E)}\!\left[\max_{y\in\mathcal Y}p_y(\phi(E))\right].
+ \mathcal A_\phi(z)=
+ \{a\in\mathcal A_0:\Pr(a\in\mathcal A(E)\mid Z=z)=1\}.
 \]
-A fibrewise maximum-probability decoder attains equality. Consequently, zero
-error is possible exactly when the conditional decision distribution is a
-point mass almost surely.
+When this set is nonempty almost surely, define
+\begin{align*}
+ R_{\mathrm{full}}^*
+ &=\mathbb E\!\left[\min_{a\in\mathcal A(E)}L(E,a)\right],\\
+ R_\phi^*
+ &=\mathbb E_Z\!\left[
+   \min_{a\in\mathcal A_\phi(Z)}
+   \mathbb E\{L(E,a)\mid Z\}
+ \right].
+\end{align*}
+
+\paragraph{Theorem 2 (legal-action interface deficiency).}
+Assume $\mathcal A_\phi(Z)$ is nonempty almost surely and the displayed
+expectations are finite. Every deterministic or
+randomized policy using only $Z$ and legal almost surely has risk at least
+$R_\phi^*$. A deterministic fibrewise minimizer attains this value, and
+\[
+ \Delta_\phi=R_\phi^*-R_{\mathrm{full}}^*\geq 0.
+\]
+Equality holds exactly when almost every observed fibre admits a common legal
+action that is full-context Bayes-optimal almost surely on that fibre.
 
 \paragraph{Proof.}
-Condition on $\phi(E)=z$. If a randomized decoder selects $y$ with probability
-$q_y(z)$, its conditional success probability is
-$\sum_y q_y(z)p_y(z)\leq\max_y p_y(z)$. Averaging and complementing gives the
-bound. Concentrating $q$ on a maximizing label attains it. The final claim
-follows because the expectation of the maximum is one exactly when the
-conditional distribution is almost surely degenerate. \hfill$\square$
+Condition on $Z=z$. Any randomized legal policy is supported on
+$\mathcal A_\phi(z)$, so its conditional risk is a convex combination of the
+conditional risks of those actions and cannot be smaller than their minimum.
+Because $\mathcal A_0$ is finite, a fixed tie order gives a measurable
+minimizer and attains $R_\phi^*$. For every common legal action $a$,
+$L(E,a)-\min_{b\in\mathcal A(E)}L(E,b)\geq0$ almost surely. Conditional
+expectation, minimization over common legal actions, and then expectation over
+$Z$ prove $\Delta_\phi\geq0$. Equality holds exactly when a minimizing common
+legal action has zero regret almost surely on almost every fibre. Emptiness of
+$\mathcal A_\phi(z)$ is precisely the absence of an action an interface-only
+policy can select while remaining legal almost surely conditional on that
+fibre.
+\hfill$\square$
 
-The right-hand side is the irreducible \emph{decision-fibre impurity} of the
-interface. It supplies a population estimand for naturalistic evaluation:
-the scientific question is not merely whether a composed system contains the
-right named modules, but whether its visible interface collapses contexts with
-different licensed transitions. This decision-theoretic reading is related
-to Blackwell's comparison of experiments \cite{blackwell1953}; the contribution
-here is its specialization to the typed, hard-gated transition object and the
-empirical isolation of a particular omitted coupling, not the general idea of
-comparing information structures.
+\paragraph{Infeasible-fibre boundary.}
+If $\Pr\{\mathcal A_\phi(Z)=\varnothing\}>0$, the displayed $R_\phi^*$ is not
+defined and no $Z$-measurable policy with actions in $\mathcal A_0$ can be
+legal almost surely. The fail-closed conclusion is then the meta-level status
+\textsc{unresolved}/\textsc{cannot check}, not an action with an imputed loss.
+If deferral is intended to be feasible, it must instead be included explicitly
+in $\mathcal A_0$ and made legal in the relevant contexts.
+
+If every action is legal and $L(E,a)=\mathbf 1\{a\neq\Gamma(E)\}$ for a finite
+decision alphabet, the theorem reduces to
+\[
+ R_\phi^*=1-\mathbb E_Z\!\left[
+   \max_a\Pr\{\Gamma(E)=a\mid Z\}
+ \right],
+\]
+the earlier decision-fibre impurity. Thus unequal transition harms,
+resource-sensitive legality, and unresolved/deferral when declared as an
+explicit legal action are part of
+the same interface-deficiency object rather than post-hoc exceptions. This
+decision-theoretic reading is donor territory related to Blackwell's
+comparison of experiments \cite{blackwell1953}. The contribution claimed here
+is its specialization to typed, hard-gated scientific transitions and the
+empirical isolation of omitted couplings, not the general comparison of
+information structures.
 
 \paragraph{Corollary 2 (component-essentiality criterion).}
 Let the complete interface be $S=(S_1,\ldots,S_m)$ and let $S_{-j}$ omit one
 component. Exact decisions are possible from $S_{-j}$ if and only if no two
 contexts agree on $S_{-j}$ while requiring different $\Gamma$ decisions. If a
-fibre contains two equiprobable decision classes, every policy omitting $S_j$
-has conditional error at least $1/2$ on that fibre.
+fibre is supported on exactly two decision classes with conditional probability
+$1/2$ each, every policy omitting $S_j$ has conditional error at least $1/2$
+on that fibre. More generally its optimal conditional error is
+$1-\max_y\Pr\{\Gamma(E)=y\mid S_{-j}\}$ on the fibre.
 
 This turns every negative ablation into a new scientific question: characterize
 the mixed fibres it creates, identify which missing relation splits them, and
 test whether those fibres occur under a naturalistic acquisition distribution.
 It does not turn a failed outcome into a positive result by relabeling it.
 
-\paragraph{Corollary 3 (licence-coupling impossibility).}
+\paragraph{Corollary 3 (conditional licence-coupling impossibility).}
 Consider an interface that exposes candidate revisions, recovery results,
 invariant checks, dependency impacts, and budgets, but omits $J_e$, the relation
-coupling evidence to the layer authorized to change. No policy using only that
-interface can agree with $\Gamma$ on every context. Under an equal mixture of
-the two contexts below, every policy has error at least $1/2$.
+coupling evidence to the layer authorized to change. If the context class
+contains two situations with the same reduced interface and different
+$\Gamma$ decisions because their licence relations differ, no policy using
+only that interface can agree with $\Gamma$ on both. Under an equal mixture of
+such a pair, every policy has error at least $1/2$.
 
 \paragraph{Proof.}
-Take $r_{\mathrm L}\prec r_{\mathrm H}$. Construct two contexts with identical
-candidate, recovery, preservation, impact, and budget outputs. In $e_0$, the
+Take $r_{\mathrm L}\prec r_{\mathrm H}$. In a context class containing the
+following pair, hold the candidate, recovery, preservation, impact, and budget
+outputs identical. In $e_0$, the
 evidence licenses only $r_{\mathrm L}$. In $e_1$, a registered exclusion
 witness licenses only $r_{\mathrm H}$. Hence
 $\Gamma(e_0)=r_{\mathrm L}$ and $\Gamma(e_1)=r_{\mathrm H}$, although the
 reduced interface is identical. Theorem~2 gives the equal-mixture bound.
 \hfill$\square$
 
+Omitting $J_e$ alone is not enough to prove impossibility on an arbitrary fixed
+context class: $J_e$ may be constant or derivable from the remaining fields.
+The necessary and sufficient condition is the actual mixed fibre above. The
+construction shows instead that an interface with no licence coordinate has no
+universal correctness guarantee over transition systems admitting such pairs.
+
 The licence example is one instance of Theorems~1--2. The same analysis
 applies to any omitted preservation, scope, measurement, authority, or resource
 relation that changes the decision within an otherwise identical interface
 fibre.
 
-\subsection{Absorbing stronger theories without erasing old results}
 
-A broad framework must be able to incorporate a stronger donor theory without
-silently changing old conclusions. Let an old transition system on
+\subsection{State-indexed active refinement of a mixed transition fibre}
+
+A mixed transition fibre is not necessarily a permanent impossibility.  It can
+become a controlled acquisition problem, but action legality must remain inside
+the mathematical state rather than being restored by an informal wrapper.
+Consider a finite nonempty active context set $W$, a finite nonempty target
+alphabet $\mathcal Y$, target $\gamma:W\to\mathcal Y$, and a finite nonempty
+observable laboratory-state set $\mathcal S$.  In state $s\in\mathcal S$, let
+$\mathcal D(s)$ be a finite nonempty terminal-action set and $\mathcal T(s)$ a
+finite, possibly empty, legal test set.  For $t\in\mathcal T(s)$, let
+$c(s,t)\geq0$ be its cost, let $B(s,t)$ be a finite nonempty joint
+outcome--next-state branch set, and let $K_{s,t}(o,s'\mid w)$ be a known
+probability mass function on $B(s,t)$.  The recorded state is assumed
+Markov-sufficient for action legality, costs, and these kernels.  Destructive
+and no-repeat tests move to a state where they are absent from
+$\mathcal T(s')$; replenishment requires an explicit transition back.  A
+terminal action may be a transition front, further measurement, deferral, or
+an unresolved decision, with finite loss $L_s(d,\gamma(w))$.
+
+For $d\in\mathcal D(s)$ write
+$\ell_{s,d}(w)=L_s(d,\gamma(w))$.  Define the state-indexed policy-risk
+frontiers
+\[
+ \mathcal V_{0,s}=\{\ell_{s,d}:d\in\mathcal D(s)\},
+\]
+For a legal test $t$, collect its continuation choices in
+\[
+ \mathcal U_{n-1}(s,t)=
+ \prod_{(o,s')\in B(s,t)}\mathcal V_{n-1,s'}
+\]
+and, for $u=(v_{o,s'})\in\mathcal U_{n-1}(s,t)$, define
+\[
+ [\mathsf B_{s,t}u](w)=c(s,t)+
+ \sum_{(o,s')\in B(s,t)}
+ K_{s,t}(o,s'\mid w)v_{o,s'}(w).
+\]
+The controlled recurrence is then
+\[
+ \mathcal V_{n,s}=\mathcal V_{0,s}\cup
+ \bigcup_{t\in\mathcal T(s)}
+ \{\mathsf B_{s,t}u:u\in\mathcal U_{n-1}(s,t)\}.
+\]
+The horizon is at most $n$: stopping remains legal before the test budget is
+exhausted.
+
+\paragraph{Theorem 3 (finite controlled-transition frontier; donor-derived).}
+For every state $s$ and finite horizon $n$, $\mathcal V_{n,s}$ is exactly the
+set of world-conditional risk vectors of deterministic legal policy trees.
+For any nonempty fixed ex-ante credal set $\Pi\subseteq\Delta(W)$, the
+deterministic and world-independent randomized perfect-recall values are,
+respectively,
+\[
+ \min_{v\in\mathcal V_{n,s}}\sup_{p\in\Pi}p\!\cdot\!v,
+ \qquad
+ \min_{v\in\operatorname{conv}(\mathcal V_{n,s})}
+      \sup_{p\in\Pi}p\!\cdot\!v.
+\]
+Both policy minima are attained.  If $\Pi$ is nonclosed, a licensed prior
+attaining the inner supremum need not exist.
+
+\paragraph{Proof.}
+At horizon zero every legal tree stops.  Inductively, a nonterminal tree chooses
+$t\in\mathcal T(s)$ and one legal depth-$(n-1)$ continuation after each observed
+$(o,s')$; conditional expectation gives exactly the displayed recursion.  The
+converse attaches trees realizing the selected continuation vectors.  Under
+finite perfect recall, world-independent behavioural randomization is
+outcome-law equivalent to a mixture over deterministic trees, so its risk set
+is the convex hull \cite{kuhn1953}. The deterministic set is finite, the convex hull is
+compact, and $v\mapsto\sup_{p\in\Pi}p\cdot v$ is Lipschitz.  This proves policy
+attainment but does not close the licensed prior registry. \hfill$\square$
+
+The same controlled object gives two additional limits that are obscured by a
+scalar score. Fix a legal finite-horizon policy $\pi$ and let $P_w^\pi$ be the
+law of its complete observed state--test--outcome transcript before the
+terminal action. Because the horizon and alphabets are finite, the transcript
+space is finite.
+
+Here a complete observed transcript records the initial state, every chosen
+legal test, each joint observed branch $(o,s')$, and the stopping time or an
+equivalent absorbing stop marker. Supports are taken only over histories
+generated with positive probability by the fixed legal policy; the theorem
+does not authorize tests outside $\mathcal T(s)$.
+
+\paragraph{Theorem 4 (exact controlled-transcript separation; donor-derived).}
+There exists a transcript decoder that returns $\gamma(w)$ almost surely for
+every active context $w$ if and only if
+\[
+ \operatorname{supp}(P_w^\pi)\cap
+ \operatorname{supp}(P_{w'}^\pi)=\varnothing
+ \quad\text{whenever }\gamma(w)\ne\gamma(w').
+\]
+Equivalently, for every $y\ne y'$ in $\gamma(W)$ and every pair of strictly
+positive probability weights on $\gamma^{-1}(y)$ and $\gamma^{-1}(y')$, the
+corresponding within-class mixtures of the laws $P_w^\pi$ are mutually
+singular.
+
+\paragraph{Proof.}
+If a transcript lies in the support of two contexts with different targets,
+any decoder gives the same answer on that transcript and is wrong with
+positive probability in at least one context. Conversely, disjoint cross-target
+supports assign a unique target to every transcript in their union; define the
+decoder by that target and arbitrarily off the union. The mixture statement is
+the same support condition because every within-class weight is positive.
+\hfill$\square$
+
+Thus an observed stochastic next state can create separation because it is
+part of the transcript, but it cannot license an unavailable test. In
+particular, positive Kullback--Leibler divergence without support separation
+may reduce approximate error but cannot establish finite exact identification.
+This is the exact-support boundary beneath classical sequential design and
+controlled-sensing error criteria \cite{chernoff1959}; no new general
+active-testing theorem is claimed.
+
+For the ambiguity boundary, pad stopping with an absorbing symbol and include
+the latent context in the resulting finite path space $\Omega_\pi$. Each
+$p\in\Pi$ induces a path law $P_p^\pi$. Define
+\[
+ \mathcal C_\pi=\overline{\operatorname{conv}}
+   \{P_p^\pi:p\in\Pi\},
+ \qquad
+ \mathcal C_\pi^{\rm rect}=\operatorname{Rect}(\mathcal C_\pi),
+\]
+where $\operatorname{Rect}$ is the smallest closed convex family containing
+$\mathcal C_\pi$ that is stable under historywise pasting of conditional
+continuation laws on positive-probability observed-history atoms. For any
+bounded path loss $R$, write $J_{\rm fix}(R)=\sup_{P\in\mathcal C_\pi}
+\mathbb E_P R$ and $J_{\rm rect}(R)=\max_{P\in\mathcal C_\pi^{\rm rect}}
+\mathbb E_P R$.
+
+\paragraph{Theorem 5 (exact rectangularization boundary; donor-derived).}
+For every bounded path loss,
+$J_{\rm fix}(R)\leq J_{\rm rect}(R)$. Equality holds for every bounded path
+loss if and only if
+$\mathcal C_\pi=\mathcal C_\pi^{\rm rect}$. For a particular $R$, the values
+differ exactly when rectangular closure strictly increases its support
+functional.
+
+\paragraph{Proof.}
+Set inclusion gives the inequality. On the finite path space, bounded losses
+are precisely linear functionals of path laws. Two compact convex subsets of
+the probability simplex have equal support functions for all such functionals
+if and only if the sets are equal. The fixed-loss statement is the definition
+of strict support-functional increase. \hfill$\square$
+
+For a singleton prior, scalarizing Theorem~3 yields the ordinary
+controlled-state posterior Bellman equation, conditioning jointly on outcome
+and observed next state. For a fixed nonrectangular prior family, the risk
+vectors must remain coupled until the root. A posterior-local minimax recursion
+evaluates $\mathcal C_\pi^{\rm rect}$ only when its admissible nature moves are
+declared to be exactly the positive-history conditional continuation families
+induced by $\mathcal C_\pi$, with independent historywise pasting. An
+unspecified rule that merely selects a ``worst posterior'' locally need not
+generate that hull. Even under the declared rectangular protocol, the
+calculation equals the fixed ex-ante problem only under Theorem~5's all-loss
+condition or the corresponding support-functional equality for the specified
+loss \cite{epstein2003}.
+
+These controlled-state results are donor-derived synthesis rather than one new
+theorem: Theorem~3 uses finite-horizon POMDP policy-tree/risk-vector theory
+\cite{smallwood1973}; its randomized convex-hull statement additionally uses
+mixed--behavioural equivalence under finite perfect recall \cite{kuhn1953}; and
+Theorem~5 uses recursive multiple-priors rectangularity \cite{epstein2003}.
+Their scientific role is an audit interface: an unavailable test cannot enter
+a policy tree; an observed stochastic next state cannot be discarded; an
+optimal robust policy need not come with an attaining least-favourable licensed
+prior; and a target-separating zero-cost path rules out a strictly positive
+acquisition-cost lower bound for that target and horizon. The finite witness
+packet retains these failures, along with
+state-sufficiency, rectangularity, randomization-admissibility, and
+infinite-horizon failures, as successor identities S1--S9 rather than
+converting them into positive empirical evidence.
+
+\subsection{Absorbing stronger theories while preserving an old front}
+
+A broad framework must be able to incorporate a stronger donor theory while
+stating exactly whether its old minimal front changes. Let an old transition system on
 $\mathcal R$ have admissible set $\mathcal A$ and front $\mathcal F$. Let an
 extended system on $\mathcal R^+$ have admissible set $\mathcal A^+$ and front
 $\mathcal F^+$, with an order embedding $i:\mathcal R\hookrightarrow
@@ -209,12 +461,14 @@ $\mathcal N=\mathcal A^+\setminus i(\mathcal A)$ for the genuinely new
 admissible transitions and assume the extended admissible order is well
 founded.
 
-\paragraph{Theorem 3 (conservative-envelope criterion).}
+\paragraph{Theorem 6 (conservative-envelope criterion).}
 The extension preserves the old scientific front exactly,
 $\mathcal F^+=i(\mathcal F)$, if and only if both conditions hold:
 \begin{enumerate}
-  \item no $n\in\mathcal N$ lies below an old minimum $i(f)$; and
-  \item every $n\in\mathcal N$ lies above at least one old minimum $i(f)$,
+  \item no $n\in\mathcal N$ lies strictly below an old minimum $i(f)$ in the
+  extended order; and
+  \item every $n\in\mathcal N$ lies strictly above at least one old minimum $i(f)$
+  in the extended order,
   for some $f\in\mathcal F$.
 \end{enumerate}
 
@@ -227,6 +481,15 @@ because the extended order is well founded, every nonminimal new transition
 has a minimal predecessor; equality of the fronts makes that predecessor an
 embedded member of $\mathcal F$. \hfill$\square$
 
+This equivalence is front-conservativity only. It does not by itself preserve
+the truth value of each individual admissibility predicate, losses, evidence
+provenance, or legal-history semantics on embedded transitions. Those stronger
+claims require the extension to preserve and reflect the corresponding
+structures separately. No measurability assumption is needed for this
+set-theoretic front result; measurable policy claims would additionally require
+measurable embeddings and factor maps. New admissible transitions are allowed:
+the criterion excludes new minima, not all new actions.
+
 The criterion distinguishes assimilation from evasion. A donor mechanism that
 only adds scientifically broader alternatives above an existing admissible
 front can be absorbed conservatively. A donor that supplies a genuinely
@@ -236,7 +499,9 @@ attached to their original transition system, while a materially enlarged
 system receives a new identity and a new test.
 
 \paragraph{Proposition 2 (universal front representation).}
-Fix any partial order $(\mathcal R,\preceq)$. Every antichain-valued map
+Fix any reflexive partial order $(\mathcal R,\preceq)$, call a set an
+antichain when distinct elements are incomparable, and take $\min$ with
+respect to the strict part of $\preceq$. Every antichain-valued map
 $H:\mathcal E\to 2^{\mathcal R}$ is the minimal-front map of an epistemic
 transition envelope.
 
@@ -246,11 +511,15 @@ $\mathcal A_H(e)=\{r:\exists h\in H(e),\ h\preceq r\}$. Every $h\in H(e)$ is
 minimal because $H(e)$ is an antichain, and every other admissible element has
 some $h$ strictly below it. Hence $\min\mathcal A_H(e)=H(e)$. \hfill$\square$
 
-The proposition removes any dependence on the particular $K/W/M$ chain. The
-same theory can represent incomparable transitions among questions,
-representations, measurements, model classes, experimental designs, search
-policies, and methods, provided their scientific change relation is made
-explicit.
+The proposition removes any dependence on the particular $K/W/M$ chain, but
+it is also an adverse expressivity boundary. Because an unrestricted envelope
+can encode every antichain-valued policy, envelope form alone has no
+falsifiable scientific content. Content enters through the predeclared order,
+legal-action and loss model, evidence gates, visible interface, and registered
+interventions. The same representation can cover incomparable changes to
+questions, representations, measurements, model classes, experimental
+designs, search policies, and methods only when those scientific relations are
+made explicit and independently attackable.
 
 \subsection{What the present experiments establish}
 

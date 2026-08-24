@@ -1,0 +1,86 @@
+{
+  "author_lineage": {
+    "independence_adjudicated": 0,
+    "publication_author_signatures_retained": 200,
+    "status": "CANNOT_CHECK_EXTERNAL_ADJUDICATION_REQUIRED"
+  },
+  "created_at": "2026-08-23T16:02:45.641100+00:00",
+  "domain": {
+    "ambiguous": 27,
+    "authority": "development classification only",
+    "provider_qualified_by_domain": {
+      "EARTH_ENVIRONMENT": 5,
+      "LIFE_BIOMEDICAL": 7,
+      "PHYSICAL_ENGINEERING": 6,
+      "SCIENTIFIC_SOFTWARE": 62
+    },
+    "unclassified": 33,
+    "unique_assignments": 120
+  },
+  "immutable_identity": {
+    "release_identities_bound": 180,
+    "release_or_tag_shortfall": 11,
+    "release_tags_resolved_to_commit_sha": 180,
+    "repository_identities_bound": 191
+  },
+  "outcomes_accessed": false,
+  "protected_data_accessed": false,
+  "protocol_id": "P4.PUBLIC.M6.JOSS_GITHUB.SOURCE_PROVIDER.SUCCESSOR.DEV.V4",
+  "provider_route": {
+    "content_provider": "GITHUB_RELEASES",
+    "counting_family": "JOSS_GITHUB_RELEASE",
+    "item_level_overlap_with_v3": "CANNOT_CHECK__V3_CANDIDATE_JSONL_OMITTED_FROM_BOUNDED_PACKET",
+    "publication_provider": "JOURNAL_OF_OPEN_SOURCE_SOFTWARE",
+    "rule": "papers, repositories, organizations, releases and tags do not create additional provider families",
+    "source_disjoint_from_figshare": true,
+    "within_family_independent_provider_count": 1
+  },
+  "relation": {
+    "boundary": "JOSS-to-repository plus a current immutable release identifies a publication-linked software concept, but does not prove that the current tag is the version evaluated by the JOSS paper",
+    "exact_publication_to_release_tag_alignment": 0,
+    "joss_labelled_repository_relation": 191,
+    "missing_or_ambiguous_joss_relation": 9
+  },
+  "rights": {
+    "accepted_exact_tag_license_and_blob": 118,
+    "boundary": "default-branch licence inference is forbidden; only the GitHub licence endpoint at the exact release tag and its blob SHA were accepted",
+    "failed_or_unbound_exact_release_license": 62,
+    "provider_qualified_license_distribution": {
+      "Apache-2.0": 13,
+      "BSD-2-Clause": 1,
+      "BSD-3-Clause": 16,
+      "MIT": 50
+    }
+  },
+  "schema_version": "orion.p4.m6.source-provider-successor.audit.v4",
+  "transport": {
+    "bounded_v4_transport_status": "COMPLETE_FOR_FROZEN_200_PUBLICATION_FRAME",
+    "crossref_rows_requested": 200,
+    "crossref_rows_returned": 200,
+    "github_repository_transport_failures": 0,
+    "joss_http_transport_failures": 0,
+    "predecessor_transport_status": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK"
+  },
+  "unit_integrity": {
+    "candidate_rows": 200,
+    "cross_provider_concept_and_publication_deduplication": "CANNOT_CHECK_AGAINST_V3_OMITTED_ROW_IDENTITIES",
+    "duplicate_failures": 0,
+    "not_counted_as_units": [
+      "Crossref search hits",
+      "queries",
+      "JOSS HTML pages",
+      "GitHub repositories without a qualifying release",
+      "releases or tags of the same repository concept",
+      "release assets",
+      "files",
+      "commits",
+      "forks",
+      "mirrors",
+      "versions",
+      "API responses",
+      "authors",
+      "publication citations"
+    ],
+    "provider_qualified_unique_doi_repository_concepts": 80
+  }
+}

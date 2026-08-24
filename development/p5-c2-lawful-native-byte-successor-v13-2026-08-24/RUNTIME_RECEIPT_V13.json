@@ -1,0 +1,59 @@
+{
+  "container_exit_code": 0,
+  "container_id": "97744c4cd714f2384cbc48fb57e3320a9ad5a7dcfbbf1cbc7d24133cbf7b1fdb",
+  "create_command": [
+    "docker",
+    "create",
+    "--name",
+    "orion-p5-c2-v13-run",
+    "--platform",
+    "linux/arm64",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "orion-p5-c2-v13:20260824"
+  ],
+  "diff": {
+    "entry_count": 0,
+    "returncode": 0,
+    "stderr": {
+      "path": "transcripts/DIFF_STDERR_V13.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "stdout": {
+      "path": "transcripts/DIFF_STDOUT_V13.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    }
+  },
+  "image_id": "sha256:b14dd4b7d5631707ba718cf5df8991d53d40a606c81521d313874c5810a710b5",
+  "network_requests": 0,
+  "protected_or_outcome_data_accessed": false,
+  "runtime_pass": true,
+  "schema_version": "orion.p5.c2.runtime-receipt.v13",
+  "security": {
+    "cap_drop_all": true,
+    "network_none": true,
+    "no_new_privileges": true,
+    "read_only_rootfs": true
+  },
+  "start_returncode": 0,
+  "stderr": {
+    "path": "transcripts/RUNTIME_STDERR_V13.bin",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size_bytes": 0
+  },
+  "stderr_empty": true,
+  "stdout": {
+    "path": "transcripts/RUNTIME_STDOUT_V13.bin",
+    "sha256": "a50fb880030e15bcd006fc6c31fb15ea516063944f28aa0a2a67d7a3b93ed5a3",
+    "size_bytes": 25
+  },
+  "stdout_exact_expected": true,
+  "successor_identity": "C2_RIGHTS_CLEARED_SCRATCH_IMAGE_SUCCESSOR__ORION_V13"
+}

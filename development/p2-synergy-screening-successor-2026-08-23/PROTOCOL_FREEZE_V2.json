@@ -1,0 +1,108 @@
+{
+  "schema_version": "orion.p2.synergy-screening-successor.v2",
+  "status": "IMPLEMENTATION_ONLY_SUCCESSOR_FROZEN_AFTER_V1_PRE_OUTCOME_FAILURE",
+  "date": "2026-08-23",
+  "paper_id": "P2",
+  "predecessor": {
+    "protocol": "PROTOCOL_FREEZE.json",
+    "runner": "run_synergy_successor.py",
+    "scientific_outcome_observed": false,
+    "failure": "V1 converted an n-by-1 sparse centroid-similarity matrix to a length-one object array and raised IndexError before producing a result",
+    "allowed_change": "materialise the same sparse cosine-similarity values with toarray().ravel()"
+  },
+  "claim_scope": "PUBLIC_LABEL_BOUNDED_SCREENING_DEVELOPMENT_EVIDENCE_ONLY",
+  "dataset": {
+    "name": "SYNERGY - Open machine learning dataset on study selection in systematic reviews",
+    "doi": "10.34894/HE6NAQ",
+    "version": "V1",
+    "licence": "CC0-1.0",
+    "provider": "DataverseNL"
+  },
+  "worlds": [
+    {
+      "world_id": "Hall_2012",
+      "declared_works": 8793,
+      "declared_included": 104,
+      "files": [
+        {"file_id": 359913, "name": "labels.csv", "sha1": "6a0271155bd350b13c5bd715654ae3b2b2efbf2e", "bytes": 672721},
+        {"file_id": 359933, "name": "works_1.zip", "sha1": "f377fdd93b25d6fdd9cab5cee758cee74a5713b4", "bytes": 15085090}
+      ]
+    },
+    {
+      "world_id": "Moran_2021",
+      "declared_works": 5214,
+      "declared_included": 111,
+      "files": [
+        {"file_id": 359826, "name": "labels.csv", "sha1": "83e99ad62ce0ad2420d5bfeeca7c89aadcb78d4e", "bytes": 535584},
+        {"file_id": 359914, "name": "works_1.zip", "sha1": "f2f7c95c87ed0b05844b825ed4e766c3cdc57d41", "bytes": 14708207}
+      ]
+    },
+    {
+      "world_id": "Walker_2018",
+      "declared_works": 48375,
+      "declared_included": 762,
+      "files": [
+        {"file_id": 359925, "name": "labels.csv", "sha1": "1c34ca19e1283c79deaf7446e436b31e49b73fad", "bytes": 5372708},
+        {"file_id": 359868, "name": "works_1.zip", "sha1": "06465733e867b36dbc42b38222b66f9045dcafea", "bytes": 62992826},
+        {"file_id": 359828, "name": "works_2.zip", "sha1": "a617afb765e95ac11045cf12ba6a9391c21d6447", "bytes": 58869042}
+      ]
+    },
+    {
+      "world_id": "Wolters_2018",
+      "declared_works": 4280,
+      "declared_included": 19,
+      "files": [
+        {"file_id": 359887, "name": "labels.csv", "sha1": "19e15577ebdbaa64d355fea441bfc17a6bca4e0a", "bytes": 460956},
+        {"file_id": 359900, "name": "works_1.zip", "sha1": "e5c3912da42b0fb93ea5069fb9c8d6b078e3ac02", "bytes": 11463283}
+      ]
+    }
+  ],
+  "eligibility": "all work records with an exact labels.csv identity join and label_included in {0,1}; missing title and abstract become an empty string and remain eligible",
+  "text": "whitespace-normalized title plus reconstructed abstract_inverted_index",
+  "initial_seed": "within each world, the included and excluded record having the lexicographically smallest sha256(world_id + ':' + record_id); the same two seeds initialize every arm",
+  "features": {
+    "vectorizer": "sklearn.feature_extraction.text.TfidfVectorizer",
+    "ngram_range": [1, 2],
+    "min_df": 2,
+    "max_features": 50000,
+    "sublinear_tf": true,
+    "lowercase": true
+  },
+  "arms": {
+    "RANDOM": "20 deterministic random permutations after the shared two-record seed",
+    "STATIC_SEED_CENTROID": "descending cosine similarity to the included seed in the frozen TF-IDF space",
+    "ACTIVE_LOGREG": "batch active screening; refit class-balanced SGD logistic loss on observed labels and select highest predicted inclusion probability"
+  },
+  "active_model": {
+    "implementation": "sklearn.linear_model.SGDClassifier",
+    "loss": "log_loss",
+    "class_weight": "balanced",
+    "alpha": 0.00001,
+    "max_iter": 2000,
+    "tol": 0.0001,
+    "random_state": 20260823,
+    "batch_size": "max(10, ceil(0.002 * eligible_world_size))"
+  },
+  "random_seeds": [20260823, 20260824, 20260825, 20260826, 20260827, 20260828, 20260829, 20260830, 20260831, 20260832, 20260833, 20260834, 20260835, 20260836, 20260837, 20260838, 20260839, 20260840, 20260841, 20260842],
+  "outcomes": {
+    "primary": "macro mean recall at 10 percent of each world screened",
+    "secondary": ["recall at 5 percent", "recall at 20 percent", "fraction screened to reach 95 percent recall", "WSS@95 = 0.95 - fraction screened to reach 95 percent recall"],
+    "analysis_unit": "review world",
+    "random_arm_summary": "mean across its 20 frozen permutations within world before macro aggregation"
+  },
+  "gates": {
+    "G1_BINDING": "every source checksum passes and every eligible label joins exactly one work",
+    "G2_ABSOLUTE": "ACTIVE_LOGREG macro recall at 10 percent screened >= 0.80",
+    "G3_INCREMENTAL": "ACTIVE_LOGREG macro recall gain at 10 percent over the stronger of RANDOM and STATIC_SEED_CENTROID >= 0.10 and wins or ties in at least 3 of 4 worlds",
+    "G4_WORK_SAVING": "ACTIVE_LOGREG WSS@95 > 0 in every world"
+  },
+  "positive_terminal": "P2_SYNERGY_ACTIVE_ACQUISITION_SUPPORTED_BOUNDED_PUBLIC_DEVELOPMENT",
+  "negative_successor_terminal": "P2_SYNERGY_ACTIVE_ACQUISITION_REQUIRES_MODEL_OR_SEED_SUCCESSOR",
+  "cannot_check_terminal": "P2_SYNERGY_ACTIVE_ACQUISITION_CANNOT_CHECK_BINDING",
+  "forbidden_claims": [
+    "ORION-specific superiority",
+    "open-world route invention or global closure",
+    "protected freshness or independent custody",
+    "generality beyond the four frozen review worlds"
+  ]
+}

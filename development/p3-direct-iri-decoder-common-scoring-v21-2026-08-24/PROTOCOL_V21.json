@@ -1,0 +1,97 @@
+{
+  "schema_version": "orion.p3.direct-iri-decoder-common-scoring.protocol.v21",
+  "protocol_id": "P3_V21_FROZEN_V20_DIRECT_IRI_IDENTITY_DECODER_AND_COMMON_SCORING",
+  "authority": "FROZEN_V20_NATIVE_OUTPUT_INTERFACE_CONFORMANCE_THEN_ONE_PUBLIC_CASE_EXACT_DESCRIPTIVE_SCORING",
+  "created_at_utc": "2026-08-24T06:37:00+00:00",
+  "attempt": {
+    "decoder_attempts": 1,
+    "retries": 0
+  },
+  "typed_decoder": {
+    "name": "ABSOLUTE_DIRECT_IRI_IDENTITY_V1",
+    "anchored_regex": "\\A[A-Za-z][A-Za-z0-9+.-]*:[^()\\s]+\\Z",
+    "decode_rule": "decoded_entity_iri = input_entity_iri",
+    "requirements": [
+      "whole-string grammar",
+      "exact role-universe membership",
+      "observed source and target injectivity",
+      "no trim, case fold, substitution, URL decoding, wrapper removal or heuristic repair"
+    ],
+    "post_outcome_status": "the V20 surface-format diagnosis occurred after matcher output but before any semantic access to gold; the identity decoder cannot alter, add, remove or rank mappings"
+  },
+  "frozen_code": {
+    "bertmap_native_parser_v7.py": "d1184dc129082bdcf18b415b551f244a695b4e34417286afc37a3f3a5d788bc5",
+    "common_pair_evaluator_v21.py": "a4f6ed12da24fc332828d0f1fc32b1f34e47a89903ccfe52b6048fc06f1aba97",
+    "run_direct_decoder_v21.py": "1213e0dc54182e6b9d00d8001a243cd2a8eb49590fb8414a69524bf4cf569510"
+  },
+  "frozen_inputs": {
+    "v20_native_result": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/BERTMAP_RESULT_V20.json",
+      "bytes": 5930,
+      "sha256": "e6c3fe8303e34a973556e6076098ff1ec8aadbea6e55f4df0c6184794f645f41"
+    },
+    "native_raw_json": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/frozen-native-interface/raw_mappings.json",
+      "bytes": 8860,
+      "sha256": "15f3080f1172ff042d81e2913be3305c134d7d6804eefec7e5d949343474e902"
+    },
+    "native_raw_tsv": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/frozen-native-interface/raw_mappings.tsv",
+      "bytes": 4156,
+      "sha256": "18cc7e1dc39aa795d8e2ec5657bebf9c30382c7e770d78b245ecbe5d8a50dcc4"
+    },
+    "native_extended_tsv": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/frozen-native-interface/extended_mappings.tsv",
+      "bytes": 4583,
+      "sha256": "635d999347b6bfe29979b6051abc975a3983b8caf0d242b87fd4599970c0bd3c"
+    },
+    "native_filtered_tsv": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/frozen-native-interface/filtered_mappings.tsv",
+      "bytes": 4156,
+      "sha256": "18cc7e1dc39aa795d8e2ec5657bebf9c30382c7e770d78b245ecbe5d8a50dcc4"
+    },
+    "native_repaired_tsv": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/frozen-native-interface/repaired_mappings.tsv",
+      "bytes": 4156,
+      "sha256": "26d3b4c72ba325a3f9e2126667438b91c0ba963eebe6958144f676f4b97524fe"
+    },
+    "universe_manifest": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/UNIVERSE_MANIFEST_V21.json",
+      "bytes": 5007,
+      "sha256": "0d420e8f45093c7ea15b8b10385f55e6a1b85f42dacbdfcf7a12f959e314b127"
+    },
+    "reference_hash_only_before_scoring": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/inputs/REFERENCE_FROZEN_V21.rdf",
+      "bytes": 29568,
+      "sha256": "0afb0f2c9764201d91c226c5fb60d4b25425168acf6c2604fb191be906e9ec16"
+    },
+    "aml_frozen_output": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-aml-java8-prospective-comparator-v16-2026-08-23/AML_ALIGNMENT_V16.rdf",
+      "bytes": 15151,
+      "sha256": "994c74c3749543205d89ef7daea0c3156d267410e35c1687f55601768b3db934"
+    },
+    "aml_frozen_result": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-aml-java8-prospective-comparator-v16-2026-08-23/RESULT_V16.json",
+      "bytes": 3076,
+      "sha256": "8045631b720ac9d0c612c418b853efb6b45951257972604923dcf1d9f9a253ce"
+    }
+  },
+  "scoring_contract": {
+    "analysis_unit": "one OAEI 2004 test-103 case",
+    "pair_identity": "directed exact entity1/entity2 pair with relation =; duplicates collapsed",
+    "primary_estimand": "common class-to-class opportunity exact precision, recall and F1",
+    "secondary_estimand": "full equivalence-pair exact precision, recall and F1",
+    "reference_semantically_opened_only_after_both_outputs_and_evaluator_frozen": true,
+    "population_inference": false,
+    "confidence_intervals": false,
+    "p_values": false
+  },
+  "claim_boundary": [
+    "the direct-IRI decoder is an identity transform and has no performance authority",
+    "one historical public case is not general superiority",
+    "finite pair cells are not treated as independent samples",
+    "same-workspace execution is not protected or independent confirmation",
+    "the primary class-only estimand is accompanied by the mandatory full-equivalence-pair estimand",
+    "V17, V18 and the V20 typed-decoder failure remain immutable adverse outcomes"
+  ]
+}

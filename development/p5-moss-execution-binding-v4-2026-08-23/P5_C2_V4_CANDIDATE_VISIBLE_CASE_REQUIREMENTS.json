@@ -1,0 +1,22 @@
+{
+  "current_state": "UNBOUND",
+  "forbidden": [
+    "protected score",
+    "gold patch",
+    "post-selection by outcome",
+    "same-case protected feedback",
+    "external scorer access",
+    "unlicensed conversation/session content"
+  ],
+  "required": [
+    "authored or explicitly licensed session/failure bytes",
+    "content hash and provenance for every chunk",
+    "host-issued V3 minimal-class certificate before candidate action",
+    "closed candidate-visible public-development evaluator/task definition",
+    "no protected/gold labels, patches, outcomes, scorer responses or hidden-panel identifiers",
+    "no outcome-selected source or case inclusion",
+    "complete expected write-root declaration without prescribing the answer"
+  ],
+  "schema_version": "orion.p5.c2.candidate-visible-case-requirements.v4",
+  "smoke_fixture_is_substantive_p5_case": false
+}

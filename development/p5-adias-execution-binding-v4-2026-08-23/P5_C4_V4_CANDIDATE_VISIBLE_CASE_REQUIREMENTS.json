@@ -1,0 +1,24 @@
+{
+  "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+  "forbidden": [
+    "native test/final_test content",
+    "protected outcomes",
+    "gold/reference answers",
+    "unhashed external task fetches"
+  ],
+  "native_shaped_smoke_fixture_is_substantive_p5_case": false,
+  "required": [
+    "case_id and schema version",
+    "exact authored/licensed task bytes and SHA-256",
+    "single native ADIAS domain and split policy",
+    "task/environment code and data hashes",
+    "all visible task identifiers and seeds",
+    "max turns/steps and evaluation sample count",
+    "candidate-visible scoring/feedback boundary",
+    "rights holder/grant/territory/purpose/retention",
+    "proof that protected panel bytes/outcomes are absent",
+    "no fixture-to-performance promotion"
+  ],
+  "schema_version": "orion.p5.c4.candidate-visible-case-requirements.v4",
+  "status": "UNBOUND"
+}

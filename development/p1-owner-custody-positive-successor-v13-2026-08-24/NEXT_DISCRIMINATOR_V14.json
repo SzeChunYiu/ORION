@@ -1,0 +1,43 @@
+{
+  "acceptance_gate": {
+    "all_required": true,
+    "checks": [
+      "All seven required output filenames are present and content-addressed.",
+      "Delegator ownership basis is independently verifiable and both delegation and acceptance signatures verify.",
+      "Stage-A no-prior-access receipts precede semantic delivery and list exactly the three manifest semantic hashes.",
+      "The completed algebra conforms to the exact V8 schema, contains exactly seven unique required targets and its signed hash matches every downstream record.",
+      "Host and rights records bind separate verified authorities, exact evidence and exact corpus/artifact hashes.",
+      "Stage-B reviewer delivery occurs only after algebra sealing and contains no adapter or outcome material.",
+      "The independent review signature verifies, its algebra hash matches and its disposition is CONFORMANT.",
+      "All external artifacts were committed before adapter-side unsealing."
+    ],
+    "failure_rule": "Any absent, null, ambiguous, unverifiable, out-of-order or hash-inconsistent conjunct fails closed. Do not repair external semantic values or substitute an actor after unsealing."
+  },
+  "current_authorization": {
+    "external_bundle_acceptance": false,
+    "map_audit": false,
+    "manuscript_update": false
+  },
+  "frozen_execution_packet": {
+    "manifest_path": "development/p1-owner-custody-positive-successor-v13-2026-08-24/EXECUTION_PACKET_MANIFEST_V13.json",
+    "manifest_sha256": "98c096919af7336d1f50cdbed644dce01f371812391996bf59339f0a326f2820",
+    "semantic_input_count": 3
+  },
+  "identity": "P1_V14_EXTERNAL_SIGNED_BUNDLE_ACCEPTANCE_AND_SIGNATURE_VERIFICATION_GATE",
+  "map_audit_after_success_only": {
+    "cannot_check_maps_before": 720,
+    "map_space": 117649,
+    "rules_unchanged": true
+  },
+  "required_external_outputs": [
+    "OWNER_DELEGATION_AND_ACCEPTANCE_SIGNED_V13.json",
+    "ADAPTER_BLIND_STAGE_A_RECEIPTS_SIGNED_V13.json",
+    "OWNER_COMPLETED_R7_ALGEBRA_V13.json",
+    "OWNER_COMPLETED_R7_ALGEBRA_V13.sig",
+    "HOST_AND_RIGHTS_ACCEPTANCE_SIGNED_V13.json",
+    "INDEPENDENT_SEMANTIC_REVIEW_SIGNED_V13.json",
+    "ADAPTER_BLIND_STAGE_B_REVIEW_DELIVERY_SIGNED_V13.json"
+  ],
+  "schema_version": "orion.p1.owner-custody-positive-successor.next-discriminator.v14",
+  "terminal": "P1_V14_AWAITING_COMPLETE_EXTERNALLY_SIGNED_CONTENT_ADDRESSED_BUNDLE"
+}

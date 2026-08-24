@@ -1,0 +1,163 @@
+{
+  "checks": [
+    {
+      "check": "protocol_prefrozen",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "terminal_file_exact",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "result_terminal",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "receipt_terminal",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "receipt_protocol_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "live_gate_all_pass",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "technical_failure_preserved",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "technical_failure_no_outcome",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "provider_live_http",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "provider_archive_not_retained",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "reference_semantics_unparsed",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "zero_gold_rows",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "zero_metrics",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "zero_scoring",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "zero_matcher_attempts",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "zero_java_attempts",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "zero_training_attempts",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "zero_prediction_attempts",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "zero_repair_attempts",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "provider_pair_bound",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "source_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "target_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "reference_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_output_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "readiness_unchanged",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "not_top_tier_ready",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "all_scientific_claims_cannot_check",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "result_output_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "terminal_output_hash",
+      "evidence": null,
+      "pass": true
+    }
+  ],
+  "checks_passed": 29,
+  "checks_total": 29,
+  "schema_version": "orion.p3.provider-native-identity.validation.v15",
+  "terminal": "P3_V15_PACKET_LOCAL_VALIDATION_PASS",
+  "validated_hashes": {
+    "ATTEMPT_1_FAILURE.txt": "47ba9baadbdc205cc02e5ba5ccec9c75140dd8d4282e0efc297e080b26eb8acb",
+    "PROTOCOL_V15.json": "abb9f376caa5e7e39526600a84672d936ba6d32d14d638df17a72170c1b40910",
+    "RECEIPT_V15.json": "4b27db7d93213e8e31be545616f640e6daaa1ee9ffd4bc863166fb49c54c5782",
+    "RESULT_V15.json": "21a46421d9a4c9d0eec9a493a3666f87e3b272d68e659d152c45dec5063cf2bf",
+    "SCIENTIFIC_REPORT_V15.md": "02636ad62bccf016f8dc62a82bc4a9b8fe6fa27b8b87c3d25ed22f2f32d86f37",
+    "TERMINAL_V15.txt": "bf1fa861f32754a4bbd0dda4cea682306c1718dde5545a55fa907b436c1f87d3",
+    "run_identity_gate_v15.py": "cbd29446033e271e11cd7c81aee98ce2ae2ea6f155927707001a538dff83aaa5",
+    "validate_v15.py": "083a8cb88af0522fa85a823a0129867d7b64b2b2fa2fc95eaa4ca455b44683f4"
+  }
+}

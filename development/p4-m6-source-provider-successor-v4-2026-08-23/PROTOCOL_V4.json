@@ -1,0 +1,131 @@
+{
+  "schema_version": "orion.p4.m6.source-provider-successor.protocol.v4",
+  "protocol_id": "P4.PUBLIC.M6.JOSS_GITHUB.SOURCE_PROVIDER.SUCCESSOR.DEV.V4",
+  "frozen_at": "2026-08-23T15:52:09Z",
+  "status": "FROZEN_BEFORE_V4_METADATA_HARVEST",
+  "authority": "PUBLIC_METADATA_SOURCE_FEASIBILITY_ONLY__NO_NATURAL_PAIR_LABELS_OR_SYSTEM_OUTCOMES",
+  "write_scope": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p4-m6-source-provider-successor-v4",
+  "forbidden_write_scope": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover",
+  "predecessors": [
+    {
+      "identity": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK",
+      "path": "development/p4-source-universe-successor-v3-2026-08-23/RESULT_V1.json",
+      "sha256": "3e556f15a0c872b3bbf8236227e6546ed14b3166979f343b071edb50cdb36a66",
+      "preservation": "IMMUTABLE"
+    },
+    {
+      "identity": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+      "path": "development/p4-source-universe-successor-v3-2026-08-23/PROTOCOL_V1.json",
+      "sha256": "441d4f05a0efaab0ada32c12e0f0841a3997a41c6acc95e9b3c8ce32e15c64c9",
+      "preservation": "IMMUTABLE"
+    },
+    {
+      "identity": "P4_NATURALISTIC_V2_IDENTITY_COMPLETE__FEASIBILITY_AND_EXTERNAL_PANEL_CANNOT_CHECK",
+      "preservation": "IMMUTABLE"
+    }
+  ],
+  "scope": {
+    "mechanism": "M6_ARTICLE_TO_CODE_RELEASE",
+    "domains": [
+      "EARTH_ENVIRONMENT",
+      "LIFE_BIOMEDICAL",
+      "SCIENTIFIC_SOFTWARE",
+      "PHYSICAL_ENGINEERING"
+    ],
+    "predecessor_observed_strict_counts": {
+      "EARTH_ENVIRONMENT": 2,
+      "LIFE_BIOMEDICAL": 0,
+      "SCIENTIFIC_SOFTWARE": 6,
+      "PHYSICAL_ENGINEERING": 1
+    },
+    "quota_per_cell": {
+      "primary": 24,
+      "source_family_disjoint_replication": 8,
+      "reserve": 16,
+      "total_unique_candidate_units": 48
+    },
+    "no_pooling_across_domains": true,
+    "no_reclassification_after_counts": true,
+    "no_post_harvest_query_extension": true
+  },
+  "provider_freeze": {
+    "publication_provider": "JOURNAL_OF_OPEN_SOURCE_SOFTWARE",
+    "content_provider": "GITHUB_RELEASES",
+    "provider_family": "JOSS_GITHUB_RELEASE",
+    "source_disjoint_from_predecessor_figshare": true,
+    "crossref_query": {
+      "endpoint": "https://api.crossref.org/journals/2475-9066/works",
+      "filter": "from-pub-date:2024-01-01,until-pub-date:2026-08-23",
+      "sort": "published",
+      "order": "desc",
+      "rows": 200,
+      "cursor": "*",
+      "pages": 1,
+      "fields": ["DOI", "title", "abstract", "published", "author", "URL"]
+    },
+    "joss_relation_endpoint": "https://joss.theoj.org/papers/{normalized_doi}",
+    "github_endpoints": [
+      "/repos/{owner}/{repo}",
+      "/repos/{owner}/{repo}/releases/latest",
+      "/repos/{owner}/{repo}/license?ref={release_tag}",
+      "/repos/{owner}/{repo}/git/ref/tags/{release_tag}",
+      "/repos/{owner}/{repo}/git/tags/{annotated_tag_sha} when required"
+    ],
+    "github_authentication": "local gh credential used only for public API rate allowance; no secret retained",
+    "bounded_sample_rule": "exactly the first Crossref page of at most 200 unique JOSS publication DOIs under the frozen query; no replacement or extra query after failures"
+  },
+  "domain_lexicon": {
+    "source": "verbatim from predecessor PROTOCOL_V1.json",
+    "EARTH_ENVIRONMENT": ["climate", "ocean", "marine", "atmospher", "weather", "earth", "geolog", "geophys", "hydrolog", "soil", "environment", "planet"],
+    "LIFE_BIOMEDICAL": ["biolog", "biomed", "genom", "gene", "protein", "cell", "ecolog", "species", "neuro", "clinical", "health", "disease"],
+    "SCIENTIFIC_SOFTWARE": ["software", "code", "package", "library", "workflow", "algorithm", "simulation", "model", "computational", "reproducib"],
+    "PHYSICAL_ENGINEERING": ["physics", "physical", "material", "engineer", "mechanic", "electr", "photon", "quantum", "energy", "chemical", "chemistry", "device"],
+    "rule": "case-insensitive substring matches over JOSS title/abstract plus GitHub description/topics; assign the unique domain with the greatest number of distinct matched tokens",
+    "tie": "CANNOT_CHECK_DOMAIN_AMBIGUOUS",
+    "zero": "CANNOT_CHECK_DOMAIN_UNCLASSIFIED",
+    "authority_boundary": "discovery classification only; external adjudication remains required"
+  },
+  "strict_candidate_unit": {
+    "identity": "one unique tuple of normalized JOSS publication DOI and case-folded GitHub repository full_name; at most the latest GitHub release is retained for transport evidence",
+    "all_required": [
+      "unique JOSS publication DOI from the frozen Crossref page",
+      "JOSS page exposes a labelled software-repository relation to exactly one GitHub repository",
+      "GitHub repository full_name and numeric repository id are bound",
+      "latest non-draft GitHub release id and tag are bound",
+      "release tag resolves to an immutable commit SHA, dereferencing annotated tags",
+      "license endpoint at that exact release tag returns an accepted non-NOASSERTION SPDX identifier and license blob SHA",
+      "release tarball_url is an HTTPS transport identity",
+      "repository is neither archived nor disabled at capture",
+      "frozen domain rule yields exactly one domain",
+      "no duplicate publication DOI or repository concept identity within or across cells"
+    ],
+    "accepted_spdx": [
+      "MIT", "Apache-2.0", "GPL-2.0-only", "GPL-2.0-or-later",
+      "GPL-3.0-only", "GPL-3.0-or-later", "BSD-2-Clause",
+      "BSD-3-Clause", "MPL-2.0", "ISC", "LGPL-2.1-only",
+      "LGPL-2.1-or-later", "LGPL-3.0-only", "LGPL-3.0-or-later"
+    ],
+    "not_independent_units": [
+      "Crossref search hits", "queries", "JOSS HTML pages", "GitHub repositories without a qualifying release",
+      "releases or tags of the same repository concept", "release assets", "files", "commits", "forks", "mirrors",
+      "versions", "API responses", "authors", "publication citations"
+    ],
+    "publication_release_version_boundary": "JOSS-to-repository relation plus a current immutable release establishes a publication-linked software concept and transport candidate, not that the release bytes are the exact version evaluated by the paper; exact paper-to-release version alignment remains CANNOT_CHECK unless explicitly asserted",
+    "natural_pair_boundary": "metadata qualification never establishes same-claim preservation, the one-coordinate intervention, author-lineage independence, scientific resolvability, or natural-pair eligibility"
+  },
+  "provider_independence": {
+    "counting_family": "JOSS_GITHUB_RELEASE",
+    "independent_from": ["FIGSHARE"],
+    "not_independent_within_family": "multiple GitHub repositories, JOSS papers, releases, tags or organizations remain one provider family for the replication gate",
+    "author_lineage": "normalized JOSS authors and GitHub owner are retained as audit fields; absence of a collision is not treated as proof of source-author independence"
+  },
+  "decision_rule": {
+    "positive_source_frame_if": "after union with immutable V3 strict units, every M6 cell has at least 48 unique candidate concepts and at least 8 units from a provider family disjoint from its primary family, with all identity, relation, rights, transport and domain gates satisfied",
+    "shortfall_if": "a completed bounded harvest leaves any M6 cell below 48 or below 8 provider-family-disjoint units",
+    "cannot_check_if": "transport failures or ambiguity prevent complete evaluation of the frozen Crossref page",
+    "preserved_terminal": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK",
+    "forbidden_positive_claims": ["eligible natural pairs", "quota passage from search hits or versions", "protected confirmation", "model performance", "ORION superiority", "provider generality"]
+  },
+  "outcomes_accessed_at_freeze": false,
+  "protected_data_accessed_at_freeze": false
+}

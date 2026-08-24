@@ -1,0 +1,86 @@
+{
+  "acquisition_ceiling_witness": {
+    "new_route_ceiling": 1.0,
+    "reordering_ceiling": 0.5
+  },
+  "all_passed": true,
+  "donor_fibre_witness": {
+    "candidate_not_donor_factorable": true,
+    "donor_state_tied": true,
+    "new_signal_separates": true
+  },
+  "finite_extension_nonidentification": {
+    "extensions_agree_on_observed": true,
+    "interpretation": "logical compatibility only, not evidence that the unseen family exists",
+    "observed_worlds": 7,
+    "positive_unseen_family_passes": true
+  },
+  "harm_noncompensation_witness": {
+    "gates": {
+      "absolute_wss95": true,
+      "mean_cre20": true,
+      "mean_r10": true,
+      "mean_wss95": true,
+      "positive_cre20": true,
+      "positive_r10": true,
+      "worst_r10_harm": false
+    },
+    "rows": 7
+  },
+  "identity": "P2_V11_FINITE_THEORY_WITNESS_RECEIPT",
+  "passing_gate_witness": {
+    "gates": {
+      "absolute_wss95": true,
+      "mean_cre20": true,
+      "mean_r10": true,
+      "mean_wss95": true,
+      "positive_cre20": true,
+      "positive_r10": true,
+      "worst_r10_harm": true
+    },
+    "rows": 7
+  },
+  "scalar_compensation_witnesses": [
+    {
+      "compensated_score": 1000001.0108579858,
+      "failed_r10": 0.01085798582077089,
+      "weights": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "compensated_score": 500004.02171597164,
+      "failed_r10": 0.01085798582077089,
+      "weights": [
+        0.5,
+        2.0,
+        4.0
+      ]
+    },
+    {
+      "compensated_score": 3000000.7527144966,
+      "failed_r10": 0.01085798582077089,
+      "weights": [
+        3.0,
+        0.25,
+        0.75
+      ]
+    }
+  ],
+  "v10_gate_reconstruction": {
+    "gates": {
+      "absolute_wss95": true,
+      "mean_cre20": false,
+      "mean_r10": false,
+      "mean_wss95": true,
+      "positive_cre20": false,
+      "positive_r10": false,
+      "worst_r10_harm": true
+    },
+    "matches_result": true,
+    "rows": 7
+  },
+  "v10_result_sha256": "c69e5634b8d0e82a1fa393dbae276d728e9a2f7ba4c9db81a27c0329e2e66742"
+}

@@ -1,0 +1,10 @@
+{
+  "cause": "The original preflight accidentally called string join on the direct-review concatenated string, inserting spaces between characters before whitespace normalization. V2 correctly implemented the intended case-sensitive whitespace-normalized title-plus-abstract identity, exposing that the pinned preflight counts for Neuropain and its Fluoride overlap were mechanically wrong.",
+  "date": "2026-08-23",
+  "identity": "P2_SWIFT_V2_POPULATION_BINDING_FAILURE_DIAGNOSIS",
+  "model_outcomes_opened": false,
+  "next_discriminator": "V3 changes only the population count expectations and binds the corrected metadata audit. All reviews, texts, labels, seeds, controllers, comparators, endpoints, margins and gates remain unchanged.",
+  "retained_result_sha256": "50da27236d96c6eee3088cd3d3abe394f490efed407cea4dd9686da523760fbb",
+  "retained_terminal": "P2_SWIFT_V2_CROSS_REVIEW_CONTROLLER_TRANSPORT_CANNOT_CHECK_BINDING_OR_POPULATION",
+  "scientific_decision": "Do not reproduce the accidental whitespace-insensitive character-sequence identity because it can collapse distinct token boundaries. Retain V1 and V2 CANNOT_CHECK, issue a label-independent corrected structure audit, and freeze V3 with the intended standard identity before any controller/comparator outcome."
+}

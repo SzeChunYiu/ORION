@@ -1,0 +1,117 @@
+{
+  "checks": [
+    {
+      "check": "frozen_before_docker_start",
+      "pass": true
+    },
+    {
+      "check": "scratch_base",
+      "pass": true
+    },
+    {
+      "check": "linux_arm64",
+      "pass": true
+    },
+    {
+      "check": "build_exit_zero",
+      "pass": true
+    },
+    {
+      "check": "single_exported_layer",
+      "pass": true
+    },
+    {
+      "check": "actual_layer_equals_frozen_rootfs",
+      "pass": true
+    },
+    {
+      "check": "actual_regular_file_count_nine",
+      "pass": true
+    },
+    {
+      "check": "actual_symlink_count_zero",
+      "pass": true
+    },
+    {
+      "check": "spdx_2_3_complete",
+      "pass": true
+    },
+    {
+      "check": "rights_map_complete",
+      "pass": true
+    },
+    {
+      "check": "license_bundle_complete",
+      "pass": true
+    },
+    {
+      "check": "generated_authority_retention",
+      "pass": true
+    },
+    {
+      "check": "generated_authority_disclosure",
+      "pass": true
+    },
+    {
+      "check": "generated_authority_publication",
+      "pass": true
+    },
+    {
+      "check": "generated_authority_redistribution",
+      "pass": true
+    },
+    {
+      "check": "runtime_exact",
+      "pass": true
+    },
+    {
+      "check": "diff_empty",
+      "pass": true
+    },
+    {
+      "check": "archive_retained_hash_bound",
+      "pass": true
+    },
+    {
+      "check": "daemon_artifacts_disposed",
+      "pass": true
+    },
+    {
+      "check": "no_protected_or_outcome_access",
+      "pass": true
+    },
+    {
+      "check": "no_pytest_or_repository_ci",
+      "pass": true
+    },
+    {
+      "check": "no_c4_model_moss_evaluator_or_scorer_execution",
+      "pass": true
+    },
+    {
+      "check": "no_v11_v12_aggregation",
+      "pass": true
+    }
+  ],
+  "checks_passed": 23,
+  "checks_total": 23,
+  "executed": {
+    "benchmark": false,
+    "c4": false,
+    "coding_agent": false,
+    "docker_probe_runtime": true,
+    "docker_scratch_image_build": true,
+    "evaluator": false,
+    "model": false,
+    "moss": false,
+    "protected_data": false,
+    "pytest": false,
+    "repository_ci": false,
+    "scorer": false
+  },
+  "schema_version": "orion.p5.c2.rights-image-gate-receipt.v13",
+  "status": "PASS",
+  "successor_identity": "C2_RIGHTS_CLEARED_SCRATCH_IMAGE_SUCCESSOR__ORION_V13",
+  "target_field": "rights.container_and_generated_artifacts",
+  "terminal": "P5_C2_V13_SCRATCH_IMAGE_SBOM_LICENSE_AUTHORITY_RUNTIME_ARCHIVE_AND_DISPOSAL_GATE_PASS"
+}

@@ -1,0 +1,39 @@
+{
+  "development_data": "KIFMS V7 exact 14-review family; all outcomes are now open and may be used only for mechanism development.",
+  "forbidden_shortcuts": [
+    "lower a V7 threshold or reinterpret a failed gate",
+    "drop a sparse-positive or adverse review",
+    "select a successor on KIFMS and call the same KIFMS replay confirmatory",
+    "replace the u4 donor with a weaker standalone candidate",
+    "claim independence from same-workspace hashes"
+  ],
+  "identity": "P2_KIFMS_V7_NEXT_DONOR_ENVELOPMENT_DISCRIMINATOR_V8",
+  "mechanism": {
+    "base": "The pinned R1_L1 u4 representation and learner/balancer is mandatory.",
+    "fallback": "At every query batch the controller must be able to emit the unchanged u4 score/order when residual support is absent.",
+    "residual": "A separately normalized candidate score may alter the u4 score only under a leave-one-review-out support rule learned from the other thirteen KIFMS reviews.",
+    "support_rule": "Enable a residual configuration only if its thirteen-review mean CRE20 exceeds u4, its mean WSS95 is nonnegative relative to u4, and its worst-review R@10 delta is at least -0.05; otherwise use exact u4.",
+    "selection": "Choose the residual family and strength using nested leave-one-review-out KIFMS development only; freeze one controller before acquiring outcomes from the source-disjoint family."
+  },
+  "motivation": {
+    "full_candidate_minus_u4_r10": -0.20164785611214184,
+    "full_candidate_minus_u4_wss95": -0.1191596730710355,
+    "learner_balancer_cre20": 0.08447153352976401,
+    "learner_balancer_r10": 0.14882047515976088,
+    "learner_balancer_wss95": 0.11981318648444647,
+    "scientific_diagnosis": "The donor learner/balancer is useful; the standalone candidate is not. Upward progress requires absorbing the donor and adding only a safely supported residual."
+  },
+  "next_execution": {
+    "data": "A lawful public review family disjoint in content and named review identity from SWIFT, SYNERGY V5 and KIFMS V7.",
+    "estimands": "CRE20 and R@10 remain coprimary; WSS95 and worst-review harm remain noncompensatory.",
+    "minimum_units": "Predeclare the complete available family; no post-outcome review selection.",
+    "required_comparators": [
+      "unchanged complete u4",
+      "frozen donor-envelopment controller",
+      "residual ablation with the u4 base held fixed"
+    ]
+  },
+  "success_condition": "On the source-disjoint family, the frozen donor-envelopment controller passes both coprimary magnitude/sign rules, relative WSS95, worst-review harm and absolute work-saving gates against unchanged u4.",
+  "terminal_if_no_residual_survives_development": "P2_V8_DONOR_ENVELOPMENT_SELECTS_EXACT_U4_FALLBACK__NO_SUPPORTED_ORION_RESIDUAL",
+  "terminal_if_transport_fails": "P2_V8_DONOR_ENVELOPMENT_FAILS_ONE_OR_MORE_SOURCE_DISJOINT_GATES_REQUIRES_NEW_RESIDUAL_MECHANISM"
+}

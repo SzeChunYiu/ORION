@@ -1,0 +1,282 @@
+{
+  "schema_version": "orion.p5.public-source-metadata-capture.v1",
+  "captured_at_utc": "2026-08-23",
+  "outcome_blind_protocol": "P5_OUTCOME_BLIND_COMPARATOR_AND_PUBLIC_PANEL_PROTOCOL_V1.json",
+  "dataset_rows_opened": false,
+  "repositories": [
+    {
+      "repo": "bears-bugs/bears-benchmark",
+      "canonical_url": "https://github.com/bears-bugs/bears-benchmark",
+      "default_branch": "master",
+      "commit_sha": "f69ba79793e8dc05888e588660d8e3bb74538d79",
+      "tree_sha": "efce58bcb9116e3674b755b0c1f0d8c5a10fe2fa",
+      "github_license_spdx": "GPL-3.0",
+      "archived": false,
+      "root_paths": [
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "docs",
+        "scripts"
+      ],
+      "captures": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/bears-bugs/bears-benchmark/f69ba79793e8dc05888e588660d8e3bb74538d79/README.md",
+          "byte_count": 3616,
+          "sha256": "22934bb21b9bf856194a2c2606b834c77b5b0ec5cb13eef7faedda0ea986e772",
+          "evidence_lines": [
+            "# The Bears-Benchmark",
+            "The Bears-Benchmark, or just Bears, is a benchmark of bugs for automatic program repair studies in Java 8.",
+            "The bugs are collected from open-source projects hosted on GitHub through a process that scans pairs of builds from Travis Continuous Integration and reproduces bugs (by test failure) and their patches (passing test suite).",
+            "title = {{Bears: An Extensible Java Bug Benchmark for Automatic Program Repair Studies}},",
+            "## Bug Repository Design",
+            "Each bug is stored in a branch.",
+            "The name of each branch follows the pattern `<GitHub project slug>-<buggy Travis build id>-<patched Travis build id>`.",
+            "The files and data on a bug are organized in commits in the branch of the bug as follows:",
+            "- Commit #1 contains the version of the program with the bug",
+            "- Commit #2 contains the changes in the tests (the one to execute to get a failure)",
+            "- Commit #3 contains the version of the program with the human-written patch",
+            "- Commit #4 contains the metadata file `bears.json`, which is a gathering of information collected during the bug reproduction process. It contains information about the bug (e.g. test failure names), the patch (e.g. patch size), and the bug reproduction process (e.g. duration).",
+            "In the folder [scripts](scripts/) you can find scripts to check out bugs, to compile them, and to run tests on them.",
+            "You can list the bugs in the current version of the benchmark with jq",
+            "You can check out a single bug by given a bug ID (see [bug IDs](https://bears-bugs.github.io/bears-benchmark)) as argument with",
+            "python scripts/checkout_bug.py --bugId <bug ID>",
+            "python scripts/run_tests_bug.py --bugId Bears-1 # this should fail because the checkout_bug.py has checked out the third, buggy commit",
+            "In the same way as you can check out one or all bugs you can compile the checked out buggy program versions and run tests on them using the scripts `compile_all.py`, `compile_bug.py`, `run_tests_all.py`, `run_tests_bug.py`.",
+            "The original benchmark contained 251 bugs (see file `scripts/data/bug_id_and_branch_2019.json`). However, many bugs have rotten with dependencies having disappeared (in particular snaphots) and version problems.",
+            "The benchmark as of Sep 2023 contains 118 bugs (`jq length scripts/data/bug_id_and_branch.json`).",
+            "The following 17 bugs can also be reproduced with Java 11: Bears-150, Bears-179, Bears-194, Bears-206, Bears-207, Bears-211, Bears-212, Bears-220, Bears-225, Bears-231, Bears-232, Bears-236, Bears-238, Bears-240, Bears-242, Bears-246, Bears-250",
+            "Thanks to Hohyeon Jeong for contributing to saving old bugs with workarounds."
+          ]
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/bears-bugs/bears-benchmark/f69ba79793e8dc05888e588660d8e3bb74538d79/LICENSE",
+          "byte_count": 35149,
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+          "evidence_lines": [
+            "                    GNU GENERAL PUBLIC LICENSE",
+            "                       Version 3, 29 June 2007",
+            "",
+            " Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>",
+            " Everyone is permitted to copy and distribute verbatim copies",
+            " of this license document, but changing it is not allowed.",
+            "",
+            "                            Preamble"
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "gitbugactions/gitbug-java",
+      "canonical_url": "https://github.com/gitbugactions/gitbug-java",
+      "default_branch": "main",
+      "commit_sha": "fe986fb7919be62c2a6f611ee16659e849646798",
+      "tree_sha": "d14f8a8d4928ffb9aed868a2d7dcc05156e0c9ce",
+      "github_license_spdx": "MIT",
+      "archived": false,
+      "root_paths": [
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "bin",
+        "data",
+        "gitbug-java",
+        "gitbug",
+        "poetry.lock",
+        "pyproject.toml",
+        "test"
+      ],
+      "captures": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/gitbugactions/gitbug-java/fe986fb7919be62c2a6f611ee16659e849646798/README.md",
+          "byte_count": 4464,
+          "sha256": "4d29965f15c9c57e31e42fa4fe807389611365443602d059728fd7b25044ffcf",
+          "evidence_lines": [
+            "GitBug-Java is a reproducible Java benchmark of recent bugs.",
+            "If you use GitBug-Java in your research work, please cite [GitBug-Java: A Reproducible Benchmark of Recent Java Bugs (MSR 2024)](https://arxiv.org/pdf/2402.02961.pdf)",
+            "title={GitBug-Java: A Reproducible Benchmark of Recent Java Bugs},",
+            "booktitle={Proceedings of the 21st International Conference on Mining Software Repositories},",
+            "1. List all available project ids",
+            "2. List all available bug ids",
+            "3. Checkout bug-fix"
+          ]
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/gitbugactions/gitbug-java/fe986fb7919be62c2a6f611ee16659e849646798/LICENSE",
+          "byte_count": 1070,
+          "sha256": "dd98a0a1a01d94e2a5742dee500164e5bf2114e48391f244897092b554ab7cbd",
+          "evidence_lines": [
+            "MIT License",
+            "",
+            "Copyright (c) 2023 gitbugactions",
+            "",
+            "Permission is hereby granted, free of charge, to any person obtaining a copy",
+            "of this software and associated documentation files (the \"Software\"), to deal",
+            "in the Software without restriction, including without limitation the rights",
+            "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell"
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "bugs-dot-jar/bugs-dot-jar",
+      "canonical_url": "https://github.com/bugs-dot-jar/bugs-dot-jar",
+      "default_branch": "master",
+      "commit_sha": "84107172868b44295d2d7a664ce0f139a48990a3",
+      "tree_sha": "ba35448a5383fd1b6b15c3be29b7b05bc3f885dd",
+      "github_license_spdx": null,
+      "archived": false,
+      "root_paths": [
+        ".gitmodules",
+        "README.md",
+        "accumulo",
+        "camel",
+        "commons-math",
+        "flink",
+        "jackrabbit-oak",
+        "logging-log4j2",
+        "maven",
+        "wicket"
+      ],
+      "captures": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/bugs-dot-jar/bugs-dot-jar/84107172868b44295d2d7a664ce0f139a48990a3/README.md",
+          "byte_count": 3987,
+          "sha256": "ae8962ad58ccb1ba9f3f8b5470efcb380a54de28f26aece254ea93a1aed4e73c",
+          "evidence_lines": [
+            "# Bugs.jar: A Large-scale, Diverse Dataset of Bugs for Java Program Repair",
+            "$ git clone --recursive https://github.com/bugs-dot-jar/bugs-dot-jar.git",
+            "To update the dataset, don't forget to update the submodules as well:",
+            "To browse a specific bug data, please go to one of the following project directories and select a branch starting with \"bugs-dot-jar-\".  The branch names follow the format: \"bugs-dot-jar\\_\\[JIRA Issue ID\\]\\_\\[Git commit ID of the fixed version\\].  Each branch in a project represents the buggy version corresponding to the JIRA Issue and also includes the bug report, the developer patch, and the test results under `.bugs-dot-jar` directory.",
+            "|   +-- .bugs-dot-jar",
+            "|       +-- bug-report.yml",
+            "$ git branch -a | grep bugs-dot-jar_",
+            "remotes/origin/bugs-dot-jar_ACCUMULO-1044_9396979b",
+            "remotes/origin/bugs-dot-jar_ACCUMULO-1044_ea2f9856",
+            "remotes/origin/bugs-dot-jar_ACCUMULO-1051_25cf3ccd",
+            "remotes/origin/bugs-dot-jar_ACCUMULO-1120_474b2577",
+            "$ git checkout bugs-dot-jar_ACCUMULO-1051_25cf3ccd",
+            "Branch 'bugs-dot-jar_ACCUMULO-1051_25cf3ccd' set up to track remote branch 'bugs-dot-jar_ACCUMULO-1051_25cf3ccd' from 'origin'.",
+            "Switched to a new branch 'bugs-dot-jar_ACCUMULO-1051_25cf3ccd'",
+            "$ ls -a .bugs-dot-jar",
+            ".                      bug-report.yml         flaky-test-results.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "squaresLab/ManyBugs",
+      "canonical_url": "https://github.com/squaresLab/ManyBugs",
+      "default_branch": "master",
+      "commit_sha": "68a7b7b3d46de18890e05089c4ece05746ada920",
+      "tree_sha": "da0fbbc44255db80d03b7f7110e188e0bd24ec94",
+      "github_license_spdx": null,
+      "archived": false,
+      "root_paths": [
+        ".bugzoo.yml",
+        ".gitignore",
+        ".travis.yml",
+        "Dockerfile",
+        "Dockerfile.gzip",
+        "README.md",
+        "base",
+        "compile.sh",
+        "gmp",
+        "gzip",
+        "libtiff",
+        "lighttpd",
+        "manybugs.bugzoo.yml",
+        "php",
+        "python",
+        "wireshark"
+      ],
+      "captures": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/squaresLab/ManyBugs/68a7b7b3d46de18890e05089c4ece05746ada920/README.md",
+          "byte_count": 426,
+          "sha256": "1016915cc7056cbd29d151be8515a2d9b6d87ad29c177523a84af66f1a8d528d",
+          "evidence_lines": [
+            "The ManyBugs dataset is compatible with",
+            "historical software bugs. To install the ManyBugs dataset to your local"
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "jkoppel/QuixBugs",
+      "canonical_url": "https://github.com/jkoppel/QuixBugs",
+      "default_branch": "master",
+      "commit_sha": "4257f44b0ff1181dedaedee6a447e133219fcebf",
+      "tree_sha": "c6dee50e458e8e6d0195133f40e0a4581b54200e",
+      "github_license_spdx": "MIT",
+      "archived": false,
+      "root_paths": [
+        ".github",
+        ".gitignore",
+        "JavaDeserialization.class",
+        "JavaDeserialization.java",
+        "LICENSE",
+        "README.md",
+        "_config.yml",
+        "build.gradle",
+        "conftest.py",
+        "correct_java_programs",
+        "correct_python_programs",
+        "final_progress.txt",
+        "java_programs",
+        "java_testcases",
+        "json_testcases",
+        "legal_notes.txt",
+        "python_programs",
+        "python_testcases",
+        "quixbugs.pdf",
+        "tester.py"
+      ],
+      "captures": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/jkoppel/QuixBugs/4257f44b0ff1181dedaedee6a447e133219fcebf/README.md",
+          "byte_count": 6947,
+          "sha256": "021ddf80a87b80ec8ea3e9eff7f8f3101336862377d75dedcab51acb3ce0596d",
+          "evidence_lines": [
+            "# QuixBugs Benchmark [![CI Status](https://github.com/jkoppel/QuixBugs/actions/workflows/ci.yml/badge.svg)](https://github.com/jkoppel/QuixBugs/actions/workflows/ci.yml)",
+            "The QuixBugs benchmark consists of 40 programs from the Quixey Challenge translated into both Python and Java. Each contains a one-line defect, along with passing (when possible) and failing testcases. Defects fall into one of 14 defect classes. Corrected Python programs are also supplied. Quixbugs is intended for investigating cross-language performance by _multi-lingual_ program repair tools.",
+            "For more details, see the [\"QuixBugs: A Multi-Lingual Program Repair Benchmark Set Based on the Quixey Challenge\"](quixbugs.pdf). Researchers at KTH have run 5 repair systems on the Java version of Quixbugs programs, see [\"A Comprehensive Study of Automatic Program Repair on the QuixBugs Benchmark\"](http://arxiv.org/pdf/1805.03454).",
+            "From 2011 to 2013, mobile app search startup Quixey ran a challenge in which programmers were given an implementation of a classic algorithm with a bug on a single line, and had one minute to supply a fix. Success entailed $100 and a possible interview. These programs were developed as challenges for humans by people unaware of program repair.",
+            "The Java programs are already compiled (see `*.class` files in `java_programs`). Note the all java programs are in the same package called `java_programs`. The utility class `JavaDeserialization.java` requires you to download the external library Gson.",
+            "To run both defective versions of a program against their tests, as well as the corrected Python version, use the test driver:",
+            "- `gradle test` can be used to run tests on the buggy programs (Runs JUnit tests from the `java_testcases/junit` folder);",
+            "- `gradle crtTest` can be used to run tests on the correct programs (Runs JUnit tests from the `java_testcases/junit/crt_program` folder).",
+            "It is also possible to run tests for a single program with the `--tests` option:",
+            "For the Python version, there are [pytest](https://pytest.org/) tests for each program in the `python_testcases` folder. To run them, install pytest using `pip` and then, from the root of the repository, call `pytest` to run tests for a single program or target the whole directory to run every test inside it.",
+            "Tests work for both buggy and correct versions of programs. The default test calls the buggy version, but there is a custom `--correct` flag that uses the correct version of a program.",
+            "The root folder holds the test driver. It deserializes the JSON testcases for a selected program, then runs them against the defective versions located in java\\_programs/ and python\\_programs/. The exception is graph-based programs, for which the testcases are located in the same folder as the corresponding program (they are still run with the test driver in the same manner).",
+            "For reference, corrected versions of the Python programs are in correct\\_python\\_programs/.",
+            "Programs include:"
+          ]
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/jkoppel/QuixBugs/4257f44b0ff1181dedaedee6a447e133219fcebf/LICENSE",
+          "byte_count": 1057,
+          "sha256": "3bb03003929be645f6557a66fcb9820f527df7ce2b51b491405d233cb191d517",
+          "evidence_lines": [
+            "Copyright 2017-2019 James Koppel",
+            "",
+            "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:",
+            "",
+            "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.",
+            "",
+            "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+          ]
+        }
+      ]
+    }
+  ]
+}

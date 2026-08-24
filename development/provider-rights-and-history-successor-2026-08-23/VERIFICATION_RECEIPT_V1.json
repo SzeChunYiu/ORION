@@ -1,0 +1,287 @@
+{
+  "checks": [
+    {
+      "check": "parent_census_payload_hash",
+      "expected": "e1466f44231a02e4b36fc0a0b0d83a8f0db8b09bf6897e97c52702023e07d24d",
+      "observed": "e1466f44231a02e4b36fc0a0b0d83a8f0db8b09bf6897e97c52702023e07d24d",
+      "passed": true
+    },
+    {
+      "check": "protocol_payload_hash",
+      "expected": "38074e06e362c1ed3fab47bdd5c982c24526970c73f055bb4adee5023e93c49f",
+      "observed": "38074e06e362c1ed3fab47bdd5c982c24526970c73f055bb4adee5023e93c49f",
+      "passed": true
+    },
+    {
+      "check": "evidence_payload_hash",
+      "expected": "ed681089403f8de6f4d8951d4c0989cee70828a5d0c5d978efabcec541e8db10",
+      "observed": "ed681089403f8de6f4d8951d4c0989cee70828a5d0c5d978efabcec541e8db10",
+      "passed": true
+    },
+    {
+      "check": "root_ledger_payload_hash",
+      "expected": "92825c996ddd19c36b97b1580cc9623931486c627db24d257f1bded3b32f31f1",
+      "observed": "92825c996ddd19c36b97b1580cc9623931486c627db24d257f1bded3b32f31f1",
+      "passed": true
+    },
+    {
+      "check": "gap_ledger_payload_hash",
+      "expected": "e3ccd49fa94afe933424c9dcff8cfac068a366e691476a5c7473adccc63ceb22",
+      "observed": "e3ccd49fa94afe933424c9dcff8cfac068a366e691476a5c7473adccc63ceb22",
+      "passed": true
+    },
+    {
+      "check": "cross_artifact_payload_links",
+      "expected": "all true",
+      "observed": {
+        "ledger_evidence": true,
+        "ledger_parent": true,
+        "ledger_protocol": true,
+        "protocol_parent": true
+      },
+      "passed": true
+    },
+    {
+      "check": "root_count",
+      "expected": 16,
+      "observed": 16,
+      "passed": true
+    },
+    {
+      "check": "unique_root_ids",
+      "expected": 16,
+      "observed": 16,
+      "passed": true
+    },
+    {
+      "check": "crossref_root_count",
+      "expected": 8,
+      "observed": 8,
+      "passed": true
+    },
+    {
+      "check": "rights_cell_count",
+      "expected": 66,
+      "observed": 66,
+      "passed": true
+    },
+    {
+      "check": "rights_status_counts",
+      "expected": {
+        "ACCESS_ONLY_NOT_REUSE": 2,
+        "CANNOT_CHECK": 30,
+        "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED": 10,
+        "NOT_ACCESSED": 16,
+        "ROOT_BOUND_PERMISSION": 8
+      },
+      "observed": {
+        "ACCESS_ONLY_NOT_REUSE": 2,
+        "CANNOT_CHECK": 30,
+        "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED": 10,
+        "NOT_ACCESSED": 16,
+        "ROOT_BOUND_PERMISSION": 8
+      },
+      "passed": true
+    },
+    {
+      "check": "crossref_history_negatives",
+      "expected": {
+        "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES": 8
+      },
+      "observed": {
+        "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES": 8
+      },
+      "passed": true
+    },
+    {
+      "check": "crossref_exact_pre_cutoff_bytes",
+      "expected": {
+        "evidence": 0,
+        "ledger": 0
+      },
+      "observed": {
+        "evidence": 0,
+        "ledger": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "successor_gap_count",
+      "expected": 66,
+      "observed": 66,
+      "passed": true
+    },
+    {
+      "check": "every_unresolved_cell_exactly_one_successor",
+      "expected": {
+        "actual_unique": 66,
+        "duplicates": 0,
+        "expected_unique": 66
+      },
+      "observed": {
+        "actual_unique": 66,
+        "duplicates": 0,
+        "expected_unique": 66
+      },
+      "passed": true
+    },
+    {
+      "check": "unique_successor_identities",
+      "expected": 66,
+      "observed": 66,
+      "passed": true
+    },
+    {
+      "check": "complete_successor_discriminators",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "check": "no_protected_content_label_or_outcome_access",
+      "expected": "all true",
+      "observed": {
+        "archive_replay_bodies_unfetched": true,
+        "evidence_bodies_unarchived": true,
+        "evidence_outcomes": true,
+        "evidence_protected_fields": true,
+        "protocol_outcomes": true,
+        "protocol_protected_fields": true,
+        "root_case_content": true,
+        "root_eligibility": true,
+        "root_labels_outcomes": true
+      },
+      "passed": true
+    },
+    {
+      "check": "unique_evidence_ids",
+      "expected": 35,
+      "observed": 35,
+      "passed": true
+    },
+    {
+      "check": "official_assertions",
+      "expected": {
+        "all_present": 21,
+        "records": 21
+      },
+      "observed": {
+        "all_present": 21,
+        "records": 21
+      },
+      "passed": true
+    },
+    {
+      "check": "evidence_url_hash_timestamp_completeness",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "check": "declared_licence_url_liveness",
+      "expected": {
+        "live": 12,
+        "records": 12
+      },
+      "observed": {
+        "live": 12,
+        "records": 12
+      },
+      "passed": true
+    },
+    {
+      "check": "crossref_2025_torrent_infohash",
+      "expected": "e0eda0104902d61c025e27e4846b66491d4c9f98",
+      "observed": "e0eda0104902d61c025e27e4846b66491d4c9f98",
+      "passed": true
+    },
+    {
+      "check": "crossref_2025_torrent_root_membership_unchecked",
+      "expected": "CANNOT_CHECK_WITHOUT_197GB_CORPUS_EXTRACTION_OR_PROVIDER_INDEX",
+      "observed": "CANNOT_CHECK_WITHOUT_197GB_CORPUS_EXTRACTION_OR_PROVIDER_INDEX",
+      "passed": true
+    },
+    {
+      "check": "crossref_2026_01_snapshot_unavailable",
+      "expected": 404,
+      "observed": 404,
+      "passed": true
+    },
+    {
+      "check": "internet_archive_query_count",
+      "expected": 16,
+      "observed": 16,
+      "passed": true
+    },
+    {
+      "check": "internet_archive_receipt_integrity",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "check": "internet_archive_confirmed_captures",
+      "expected": 0,
+      "observed": 0,
+      "passed": true
+    },
+    {
+      "check": "current_crossref_receipt_hash_completeness",
+      "expected": {
+        "complete": 8,
+        "records": 8
+      },
+      "observed": {
+        "complete": 8,
+        "records": 8
+      },
+      "passed": true
+    },
+    {
+      "check": "scientific_terminal_preserved",
+      "expected": "CANNOT_CHECK_RIGHTS_AND_HISTORY_BINDING",
+      "observed": {
+        "gap_ledger": "CANNOT_CHECK_RIGHTS_AND_HISTORY_BINDING",
+        "protocol": "CANNOT_CHECK_RIGHTS_AND_HISTORY_BINDING",
+        "root_ledger": "CANNOT_CHECK_RIGHTS_AND_HISTORY_BINDING"
+      },
+      "passed": true
+    }
+  ],
+  "explicit_nonclaim": "A passing structural receipt does not establish reuse permission, case eligibility, historical Crossref bytes, empirical transport, or a positive scientific result.",
+  "hard_failure_count": 0,
+  "hard_failures": [],
+  "input_file_sha256": {
+    "EVIDENCE_SNAPSHOT_V1.json": "4b1c18076f18f2e6523add4318c81c92fdc90fcb1164608e6fe914a262c82542",
+    "PROTOCOL_V1.json": "634146fe7e76937f09e106bd63ac72ff8a51d34f5c7a5a13e4e046df5093c4fd",
+    "ROOT_RIGHTS_HISTORY_LEDGER_V1.json": "36a511d58738d9ab7306876148c33adf0e45e42872c094690e7c891d5ce862dd",
+    "SOURCE_CENSUS_V1.json": "e5f5e03b215b33dd1dbefa555bb973953c4a36cfe65c11a94394da4c2b04dbbd",
+    "SUCCESSOR_GAP_LEDGER_V1.json": "30240a5ca1abb76422358897389102212e7f5d4814cbec1fba570393a39ddb9c"
+  },
+  "schema_version": "orion.provider-rights-history-successor.verification.v1",
+  "scientific_terminal": "CANNOT_CHECK_RIGHTS_AND_HISTORY_BINDING",
+  "summary": {
+    "crossref_exact_pre_cutoff_bytes": 0,
+    "crossref_history_cannot_check": 8,
+    "declared_licence_urls_live": 12,
+    "internet_archive_query_status_counts": {
+      "HTTP_200_EMPTY": 11,
+      "REQUEST_ERROR_CANNOT_CHECK": 5
+    },
+    "official_assertion_records": 21,
+    "rights_cells": 66,
+    "rights_status_counts": {
+      "ACCESS_ONLY_NOT_REUSE": 2,
+      "CANNOT_CHECK": 30,
+      "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED": 10,
+      "NOT_ACCESSED": 16,
+      "ROOT_BOUND_PERMISSION": 8
+    },
+    "roots": 16,
+    "successor_gaps": 66
+  },
+  "verification_receipt_payload_sha256": "1aa807ad29ed81330d65831ae13c19cf33a9297f4f18e58ca27478226de5cb0a",
+  "verification_scope": "STRUCTURAL_INTEGRITY_NEGATIVE_PROVENANCE_AND_NO_ACCESS_BOUNDARIES_ONLY",
+  "verification_status": "PASS_STRUCTURAL_INTEGRITY_WITH_SCIENTIFIC_CANNOT_CHECK",
+  "verified_at_utc": "2026-08-23T11:34:40+00:00"
+}

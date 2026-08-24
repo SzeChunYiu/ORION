@@ -1,0 +1,109 @@
+{
+  "authority": "REPAIR_RUNTIME_AND_ARTIFACT_INTERFACE_CONFORMANCE_ONLY__NO_GOLD_REFERENCE_CORRECTNESS_PERFORMANCE_HARM_COVERAGE_TRANSPORT_OR_SUPERIORITY_AUTHORITY",
+  "candidate_flag_efficacy": "CANNOT_CHECK__PROCESS_FAILED_ON_ABSENT_MANIFEST_CLASSPATH_DEPENDENCY_BEFORE_REACHING_V9_GUICE_REFLECTION_SITE",
+  "command": [
+    "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin/java",
+    "-Xms500m",
+    "-Xmx2147483648",
+    "-DentityExpansionLimit=100000000",
+    "--add-opens=java.base/java.lang=ALL-UNNAMED",
+    "-jar",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-java17-add-opens-microgate-v10-2026-08-23/runtime/logmap-matcher-4.0.jar",
+    "DEBUGGER",
+    "file:///Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/source.owl",
+    "file:///Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/target.owl",
+    "TXT",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/results/bertmap-out/bertmap/match/logmap-repair/filtered_mappings_for_LogMap_repair.txt",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-java17-add-opens-microgate-v10-2026-08-23/runtime/output",
+    "false",
+    "false"
+  ],
+  "cwd": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-java17-add-opens-microgate-v10-2026-08-23",
+  "direct_child_exit_code": 1,
+  "execution_gate_status": "FAIL",
+  "failure_adjudication": {
+    "adjacent_manifest_class_path_entries_present_in_v10": 0,
+    "causal_exception": "java.lang.ClassNotFoundException: org.semanticweb.owlapi.model.OWLOntologyCreationException",
+    "cause": "The exact V9 LogMap main JAR is a thin JAR whose manifest resolves 90 relative java-dependencies entries. V9 cleanup removed runtime/venv and runtime/source. V10 restored the exact main JAR but not its adjacent manifest classpath closure.",
+    "not_inferred": "The failure does not show that --add-opens is ineffective; the V9 Guice reflection site was not reached.",
+    "primary_exception": "java.lang.NoClassDefFoundError: org/semanticweb/owlapi/model/OWLOntologyCreationException",
+    "v9_logmap_jar_manifest_class_path_entries": 90
+  },
+  "finished_at": "2026-08-23T20:32:33.855600+00:00",
+  "frozen_inputs_observed": {
+    "filtered_mappings_for_repair": {
+      "bytes": 1600,
+      "matches_v9_frozen_hash": true,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/results/bertmap-out/bertmap/match/logmap-repair/filtered_mappings_for_LogMap_repair.txt",
+      "sha256": "6c12ab82c83e6d44149cb03f761880e8a23171d6fb73142225d49e1c6b0eafe4"
+    },
+    "java_binary": {
+      "bytes": 69600,
+      "matches_v9_frozen_hash": true,
+      "path": "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin/java",
+      "sha256": "7db0dd5c0c4dc931244875d0723783a32cc7912922e6aaac1dbb744bf8ae837f"
+    },
+    "logmap_jar": {
+      "bytes": 3393718,
+      "matches_v9_frozen_hash": true,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-java17-add-opens-microgate-v10-2026-08-23/runtime/logmap-matcher-4.0.jar",
+      "sha256": "e0b217156ffece911c472cc2cb2b25e7948b3c46801037e0161c3a752332d6a3"
+    },
+    "source_ontology": {
+      "bytes": 3735,
+      "matches_v9_frozen_hash": true,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/source.owl",
+      "sha256": "c347f32626f6c5b3b782b2f6344bca5ac2282a701161d11f1e02a7422fef4d9e"
+    },
+    "target_ontology": {
+      "bytes": 3735,
+      "matches_v9_frozen_hash": true,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/target.owl",
+      "sha256": "16bd34ec22c3d130b94257404fd60a112a3383d16255a67472e0c5e1518c5521"
+    }
+  },
+  "full_deeponto_or_bertmap_run": false,
+  "gold_or_reference_alignment_opened": false,
+  "java_child_invocations": 1,
+  "next_discriminator": {
+    "execution_delta": "Keep exact V9 Java, LogMap JAR, ontology and mapping hashes; add only --add-opens=java.base/java.lang=ALL-UNNAMED; require direct exit zero and a regular non-symlink repaired mapping output.",
+    "full_native_run_policy": "Do not run DeepOnto/BERTMap unless that successor microgate passes.",
+    "identity": "NEW_DISTINCT_SUCCESSOR_NOT_A_RETRY_OF_V10",
+    "pre_execution_requirement": "Reconstruct all 90 manifest Class-Path entries at the exact relative paths and verify each against the V9 Java component SBOM before authorizing one Java child."
+  },
+  "protocol_id": "P3_V10_JAVA17_ADD_OPENS_REPAIR_ONLY_MICROGATE",
+  "protocol_sha256": "269a4b4c33b98ecb3b12bbaa47aabdff022a8067aacb235c8059eb93bd530ef7",
+  "required_output": {
+    "bytes": null,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-java17-add-opens-microgate-v10-2026-08-23/runtime/output/mappings_repaired_with_LogMap.tsv",
+    "present": false,
+    "regular_non_symlink": false,
+    "sha256": null
+  },
+  "retries_used": 0,
+  "runner_terminal": "P3_V10_JAVA17_ADD_OPENS_REPAIR_MICROGATE_FAIL__DIRECT_CHILD_EXIT_OR_REGULAR_OUTPUT_GATE_NOT_SATISFIED__NO_RETRY__FULL_NATIVE_SUCCESSOR_NOT_AUTHORIZED",
+  "schema_version": "orion.p3.java17-add-opens-repair-microgate.receipt.v10",
+  "scientific_scoring_performed": false,
+  "started_at": "2026-08-23T20:32:33.721320+00:00",
+  "stderr": {
+    "bytes": 567,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-java17-add-opens-microgate-v10-2026-08-23/JAVA_STDERR_V10.log",
+    "retained_exactly": true,
+    "sha256": "b2079700384a4a88eca82482aac88fca927a19bde98fcd7ec8a3aeb118d71be6"
+  },
+  "stdout": {
+    "bytes": 22,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-java17-add-opens-microgate-v10-2026-08-23/JAVA_STDOUT_V10.log",
+    "sha256": "5a305e887ab7272acbbf89193fe97fb8b195a072d90feaec39e35cbc5e2c1690"
+  },
+  "success": false,
+  "success_gate": {
+    "direct_child_exit_zero": false,
+    "regular_non_symlink_output": false
+  },
+  "terminal": "P3_V10_JAVA17_ADD_OPENS_MICROGATE_CANNOT_CHECK__DIRECT_CHILD_EXIT_ONE__V9_MANIFEST_CLASSPATH_CLOSURE_ABSENT_AFTER_CLEANUP__NO_REGULAR_REPAIR_OUTPUT__NO_RETRY__FULL_NATIVE_SUCCESSOR_NOT_AUTHORIZED",
+  "timed_out": false,
+  "timeout_seconds": 120,
+  "wall_nanoseconds": 133503125,
+  "wall_seconds": 0.133503125
+}

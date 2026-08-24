@@ -1,0 +1,89 @@
+{
+  "$id": "https://orion.invalid/p5/v4/c1-swe-agent-native-terminal.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adapter_disposition": {
+      "properties": {
+        "output": {
+          "const": "UNRESOLVED"
+        },
+        "raw_native_singleton_licensed": {
+          "const": false
+        }
+      },
+      "required": [
+        "output",
+        "reason",
+        "raw_native_singleton_licensed"
+      ],
+      "type": "object"
+    },
+    "arm_id": {
+      "const": "C1_FIXED_AGENT__SWE_AGENT"
+    },
+    "instance_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "native_retention": {
+      "type": "object"
+    },
+    "native_terminal": {
+      "additionalProperties": false,
+      "properties": {
+        "arm_id": {
+          "const": "C1_FIXED_AGENT__SWE_AGENT"
+        },
+        "native_code": {
+          "type": "string"
+        },
+        "payload_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "COMPLETE_SUCCESS",
+            "ERROR",
+            "TIMEOUT",
+            "ABSTAIN",
+            "EMPTY",
+            "PARTIAL",
+            "INVALID"
+          ]
+        }
+      },
+      "required": [
+        "arm_id",
+        "status",
+        "native_code",
+        "payload_sha256"
+      ],
+      "type": "object"
+    },
+    "outcome_boundary": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "orion.p5.c1.swe-agent-native-terminal.v4"
+    },
+    "source": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "arm_id",
+    "instance_id",
+    "source",
+    "native_terminal",
+    "native_retention",
+    "adapter_disposition",
+    "outcome_boundary"
+  ],
+  "title": "P5 C1 normalized SWE-agent native terminal",
+  "type": "object"
+}

@@ -1,0 +1,123 @@
+{
+  "analysis": {
+    "adverse_rule": "Retain every failure. Any fixed-challenger failure, failure outside the registered original trigger, timeout, crash, or tool error yields HARMFUL_OR_ADVERSE_CELL_PRESENT.",
+    "audit_terminal_rule": [
+      "Any invalid cell, identity drift, timeout, tool error, missing stream, reused phase path, or retained-byte hash mismatch -> CANNOT_CHECK.",
+      "All four cells valid with four distinct phase paths per cell and every retained stream matching its declared hash -> ARCHIVAL_REPLAY_COMPLETE."
+    ],
+    "environment_effect": "mean(success at E1) minus mean(success at E0)",
+    "implementation_effect": "mean(success at C1) minus mean(success at C0)",
+    "interaction": "(C1E1-C0E1) minus (C1E0-C0E0)",
+    "terminal_rule": [
+      "Any invalid, timeout, byte-drift, unparseable, or tool-error cell -> CANNOT_CHECK.",
+      "Nonzero interaction, or simultaneous nonzero implementation and environment effects -> COUPLED_INTERACTION.",
+      "Only nonzero environment effect -> ENVIRONMENT_MAIN_EFFECT.",
+      "Only nonzero implementation effect -> IMPLEMENTATION_MAIN_EFFECT.",
+      "All effects zero -> JOINT_NULL_UNRESOLVED."
+    ]
+  },
+  "authority": "AUDIT_ONLY_PUBLIC_DEVELOPMENT_REPLAY__NOT_CONFIRMATORY__NOT_PROTECTED__NOT_FRESH__NOT_GENERAL",
+  "bridge_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "factors": {
+    "candidate_bytes": [
+      {
+        "config_sha256": "9f566faf05152c1365d5af98e8815dc6adf386318bf9017ce4b6ac31b6b3a984",
+        "defects4j_version": "1b",
+        "level_id": "C0_DEFECTS4J_PREPARED_ORIGINAL",
+        "prepared_tree_sha": "eaec8f08f7e0fc2d10a39a6480878a338e1a7090",
+        "upstream_revision": "396afc3e4693cfee182efe582455f2d97058c068"
+      },
+      {
+        "config_sha256": "d9eaa4710bebdc29e3c4d4323344756c135c90032f13b05112583cbae970cc87",
+        "defects4j_version": "1f",
+        "level_id": "C1_DEFECTS4J_PREPARED_PUBLIC_FIX_REPLAY",
+        "prepared_tree_sha": "5890638f92d023d4bb6df6625508326009924c76",
+        "public_fix_patch_sha256": "2bacab48cc56c962cc906a3e95878735cacb2f231d4a64717a8798f1eb41090f",
+        "upstream_revision": "d1a45e9738de5b3e299bb51e987565dcce55fee6"
+      }
+    ],
+    "environment": [
+      {
+        "java_binary_sha256": "c7ec15111335d5c7ef3c9a3ddcb67642ef3cfbbd8efc98d90b90526628b245b4",
+        "java_home": "/opt/homebrew/Cellar/openjdk@11/11.0.32.1/libexec/openjdk.jdk/Contents/Home",
+        "java_version": "11.0.32.1+0",
+        "level_id": "E0_OBSERVED_HOMEBREW_OPENJDK11",
+        "vendor": "Homebrew"
+      },
+      {
+        "java_archive_sha256": "3e3687488e472035b7a27732f0f6127d59903ba9fd0cb6c815f1a182f4160109",
+        "java_binary_sha256": "e561d7ba57da3bb04df5db5da06a7a164811fa3981c1cfaed0516c70f784b301",
+        "java_home": "/tmp/p5-rd02-defects4j/jdk11/Contents/Home",
+        "java_version": "11.0.32+9",
+        "level_id": "E1_RECONSTRUCTED_TEMURIN_OPENJDK11",
+        "vendor": "Eclipse Temurin"
+      }
+    ]
+  },
+  "fixed_limitations": [
+    "V2 outcomes were known before V3 freeze; V3 is an audit replay, not an independent confirmatory experiment.",
+    "n=1 public development cluster provides no population or transport inference",
+    "the challenger is a public known fix, not a generated revision",
+    "the environment factor changes JDK distribution and patch version while sharing host OS and build tools",
+    "local evaluator custody is not independent or protected",
+    "public gold gives no protected freshness or P5 H1-H4 authority",
+    "V3 cannot recover the overwritten V2 checkout-log bytes; it can only preserve a distinct successor replay."
+  ],
+  "grants_scientific_authority": false,
+  "h1_h4_status": "CANNOT_CHECK",
+  "held_fixed": {
+    "defects4j_installation": "one shared initialized installation",
+    "evaluator": "Defects4J test at 8c16da8230843cdc918eaf4ddb449637f02b83c6",
+    "evaluator_script_sha256": "c1d3a517c9e9c82b7467df910660412fd3f4d47521a048279301dbedb1183706",
+    "host_os_and_architecture": "native arm64 macOS",
+    "input": "Exact Defects4J-prepared candidate tree; issue prose and attachments excluded.",
+    "locale": "C",
+    "success_criterion": "valid evaluator execution with zero failing developer tests",
+    "task": "Resolve Defects4J Lang-1 under its public developer test suite.",
+    "timeout_seconds_per_cell": 1200,
+    "timezone": "America/Los_Angeles",
+    "triggering_test": "org.apache.commons.lang3.math.NumberUtilsTest::TestLang747"
+  },
+  "historical_results_immutable": true,
+  "material_change": "V3 is a distinct audit-only replay. It preserves checkout and test stdout/stderr under four unique phase-qualified paths per valid cell and records a per-cell distinct-path predicate. It does not change V1 or V2.",
+  "outcomes_accessed_at_freeze": true,
+  "parent_study_id": "P5-RD-02",
+  "predecessor_result": {
+    "adverse_modifier": "NO_ADVERSE_CELL",
+    "observed_audit_negative": "The V2 runner used Path.with_suffix on both phase stems, collapsing each cell checkout and test streams to the same two paths. Current bytes validate the test hashes, while all eight declared checkout-stream hashes are no longer directly reproducible from retained files.",
+    "path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/RESULT_V2.json",
+    "sha256": "ef3f8893299578c071e8cad46d1c73cbe507d426a805ac772e9ae955092fab98",
+    "silent_repair_prohibited": true,
+    "terminal": "IMPLEMENTATION_MAIN_EFFECT"
+  },
+  "protected_freshness_status": "CANNOT_CHECK",
+  "protocol_status": "FROZEN_BEFORE_V3_ARCHIVAL_REPLAY__V2_OUTCOMES_ALREADY_ACCESSED",
+  "registered_at_utc": "2026-08-23T13:55:02Z",
+  "registered_terminals": [
+    "ARCHIVAL_REPLAY_COMPLETE",
+    "CANNOT_CHECK"
+  ],
+  "research_problem": "Determine whether the already-observed V2 local factorial can be replayed with complete phase-separated log-byte retention under the same bound candidate and environment identities.",
+  "run_order": [
+    "C0E1",
+    "C1E0",
+    "C0E0",
+    "C1E1"
+  ],
+  "run_order_rule": "Ascending SHA-256 of study_id + ':' + cell_id.",
+  "schema_version": "orion.p5.rd02.public-development-preregistration.v3",
+  "scientific_increment_possible": false,
+  "source": {
+    "attachments_accessed": false,
+    "issue_prose_accessed": false,
+    "project_bug": "Lang-1",
+    "revision_sha": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+    "source_id": "DEFECTS4J",
+    "upstream_buggy_revision": "396afc3e4693cfee182efe582455f2d97058c068",
+    "upstream_fixed_revision": "d1a45e9738de5b3e299bb51e987565dcce55fee6",
+    "upstream_license": "Apache-2.0",
+    "upstream_license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  "study_id": "P5-RD-02.DEFECTS4J.LANG1.V3",
+  "successor_of": "P5-RD-02.DEFECTS4J.LANG1.V2"
+}

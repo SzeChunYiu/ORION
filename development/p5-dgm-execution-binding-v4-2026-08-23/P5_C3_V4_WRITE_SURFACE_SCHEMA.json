@@ -1,0 +1,27 @@
+{
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "field_state": "CANNOT_CHECK",
+  "released_source_gap": "DGM requires mutable Git/container/task state and a host Docker daemon; released Dockerfile copies the entire repository including outcome paths",
+  "required_isolation": {
+    "allowed_mutation_roots": [
+      "ephemeral filtered DGM candidate tree",
+      "ephemeral output_dgm attempt directory",
+      "ephemeral task repositories and task containers",
+      "dedicated ephemeral Docker data root",
+      "sole receipt output directory"
+    ],
+    "audit": "complete before/after digest for every allowed root plus proof that no forbidden mount, path or endpoint was reachable",
+    "forbidden_roots": [
+      "shared or pinned upstream checkout",
+      "initial/, initial_polyglot/ and swe_bench/ref_agent_results/ payloads",
+      "host Docker daemon and persistent images/volumes",
+      "host home, SSH, cloud config, keychains and unrelated credentials",
+      "protected panel and external scorer",
+      "other comparator arms",
+      "network endpoints outside the final allowlist"
+    ],
+    "reset": "destroy VM, Docker data root, networks, images, containers, mutable source and task copies after every attempt",
+    "source_seed": "read-only filtered seed excluding initial/, initial_polyglot/ and swe_bench/ref_agent_results/; copied only inside a disposable executor"
+  },
+  "schema_version": "orion.p5.c3.write-surface.v4"
+}

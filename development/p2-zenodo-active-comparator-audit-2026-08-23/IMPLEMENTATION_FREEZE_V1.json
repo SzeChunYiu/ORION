@@ -1,0 +1,41 @@
+{
+  "adapter": {
+    "candidate_text": "exact V2 normalized title, abstract and MeSH concatenation",
+    "comparator_input": "two logical fields: normalized original title; normalized original abstract followed by MeSH with pipe separators replaced by spaces",
+    "labels": "binary include/exclude labels are retained exactly",
+    "record_order": "ascending class-free record identity SHA-256",
+    "warm_seed": "exact V2 included seed followed by exact V2 excluded seed",
+    "why_terminal_preserving": "The adapter changes only field packaging. It does not merge, drop, infer or relabel include/exclude terminals, and both candidate and comparators receive the same record universe, labels, text fields and warm seed."
+  },
+  "audit_boundary": "The candidate outcome was already known. Only the two registered active-comparator outcomes were unopened at freeze. This execution is a post-outcome one-pool robustness audit, never confirmation or generalization evidence.",
+  "candidate_reproduction": {
+    "classifier": "SGDClassifier(loss=log_loss,class_weight=balanced,alpha=1e-5,max_iter=2000,tol=1e-4,random_state=20260823)",
+    "feature_extractor": "TfidfVectorizer(ngram_range=(1,2),min_df=2,max_features=50000,sublinear_tf=True,lowercase=True)",
+    "querier": "descending predict_proba positive class",
+    "tie_break": "ascending record identity",
+    "query_batch": 52
+  },
+  "comparator_execution": {
+    "ASREVIEW_ELAS_U3_CADENCE_MATCHED": "Pinned u3 NB, TF-IDF, balanced ratio 1.2 and max-query components; deterministic stable ranking; batches of 52 instead of the ASReview application default of one.",
+    "ASREVIEW_ELAS_U4_CADENCE_MATCHED": "Pinned default u4 LinearSVC, TF-IDF, balanced ratio 9.8 and max-query components; explicit random_state 20260823 and deterministic stable ranking; batches of 52 instead of the ASReview application default of one.",
+    "balanced_weight": "Exact pinned ASReview formula: positive weight 1, negative weight n_positive/(ratio*n_negative), followed by normalization to total sample count.",
+    "complete_order": "Fit on all screened labels, rank every unscreened record by the frozen active score with stable identity tie-break, reveal the next full batch, and repeat until the population is ordered.",
+    "fairness": "Both comparator configurations are fixed before outcome access and the candidate is compared with their endpoint-wise maximum; all three active arms receive the same labels, seed, text fields, record universe and 52-record feedback cadence."
+  },
+  "date": "2026-08-23",
+  "determinism": {
+    "candidate_random_state": 20260823,
+    "ranking": "numpy stable argsort of descending score over ascending identity pool",
+    "svm_random_state": 20260823,
+    "vectorizers": "fitted once on the full unlabeled text population, as in the V2 transductive representation rule and pinned ASReview simulation pattern"
+  },
+  "execution_command_template": "python run_active_comparator_audit_v1.py --protocol PROTOCOL_FREEZE_V1.json --implementation IMPLEMENTATION_FREEZE_V1.json --data <ZENODO_FILE> --v2-dir <V2_LANE> --asreview-archive <PINNED_ARCHIVE> --asreview-root <PINNED_SOURCE_ROOT> --out RESULT_V1.json",
+  "frozen_protocol_sha256": "39a2bbee8c2630a46ee4a13d87fbc89548a0d622ce9a910b2bae75315a05db76",
+  "frozen_runner_sha256": "ffed82db49d30f5b1ff856b020c9824767fc183fc688ebb808fb4656737b66a2",
+  "metric_implementation": {
+    "fraction_screened_at_95_recall": "one-indexed position of the ceil(0.95*total_included)-th inclusion divided by N",
+    "recall_budget_rounding": "ceil(fraction*N), inclusive of the two warm seeds",
+    "wss_at_95": "0.95 minus fraction_screened_at_95_recall"
+  },
+  "status": "FROZEN_BEFORE_ANY_REGISTERED_ACTIVE_COMPARATOR_OUTCOME"
+}

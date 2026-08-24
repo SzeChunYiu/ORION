@@ -1,0 +1,78 @@
+{
+  "arm_field_blocker_delta": 0,
+  "assurance_negatives_outside_the_84_field_partition": [
+    {
+      "cause": "C4 native validation rewrites AUDIT_RECEIPT_V4.json with a digest of metadata containing a random temporary path, so its frozen SHA256SUMS entry drifts.",
+      "id": "P5.V5.ASSURANCE.C4.NONDETERMINISTIC.AUDIT.RECEIPT",
+      "next_discriminator": "Make the smoke metadata path-invariant, regenerate the audit once, freeze SHA256SUMS, then prove two consecutive validator runs are byte-identical.",
+      "state": "CANNOT_CHECK"
+    },
+    {
+      "cause": "The cleaned C6 packet no longer contains the .source-audit repository required by its native validator.",
+      "id": "P5.V5.ASSURANCE.C6.SOURCE.AUDIT.ABSENT",
+      "next_discriminator": "Teach the validator to reconstruct/verify the exact source from its content-addressed manifest without retaining an untracked audit tree, or restore a separately verified immutable source checkout.",
+      "state": "CANNOT_CHECK"
+    }
+  ],
+  "authority": "OUTCOME_BLIND_CONTROL_PLANE_CONTRACT_AND_V4_STATUS_RECOMPUTATION_ONLY",
+  "blocking_instances_after": 84,
+  "blocking_instances_before": 84,
+  "efficiency_gain": "The work queue is reduced from 84 repeated arm-field statements to five evidence-producing work packages. This is coordination compression, not scientific blocker removal.",
+  "highest_fanout_directly_authorable_next_discriminator": "Author or license one substantive P5 candidate-visible packet and bind its byte/rights manifest before producing six native environment receipts.",
+  "highest_fanout_next_discriminator": "An independent principal signs one post-protocol six-arm panel/scorer/freshness/no-feedback bundle accepted by the V5 gate.",
+  "records": [
+    {
+      "arm_field_delta": 0,
+      "blocking_instances_after": 18,
+      "blocking_instances_before": 18,
+      "next_discriminator": "An independent principal signs one post-protocol six-arm panel/scorer/freshness/no-feedback bundle accepted by the V5 gate.",
+      "preserved_terminal": "CANNOT_CHECK",
+      "repair_completed": "A single panel-wide contract, receipt shape, fan-out rule and fail-closed gate now replace duplicated prose.",
+      "root_id": "R1_INDEPENDENT_PANEL_CUSTODY",
+      "why_not_promoted": "CONTRACT_IMPLEMENTED__INDEPENDENT_SIGNED_EVIDENCE_ABSENT"
+    },
+    {
+      "arm_field_delta": 0,
+      "blocking_instances_after": 18,
+      "blocking_instances_before": 18,
+      "next_discriminator": "Author or license one substantive P5 candidate-visible packet and bind its byte/rights manifest before producing six native environment receipts.",
+      "preserved_terminal": "CANNOT_CHECK",
+      "repair_completed": "A single panel-wide contract, receipt shape, fan-out rule and fail-closed gate now replace duplicated prose.",
+      "root_id": "R2_COMMON_CASE_RIGHTS_AND_NATIVE_TASK_ADAPTATION",
+      "why_not_promoted": "CONTRACT_IMPLEMENTED__SUBSTANTIVE_PACKET_RIGHTS_AND_SIX_ENVIRONMENTS_ABSENT"
+    },
+    {
+      "arm_field_delta": 0,
+      "blocking_instances_after": 25,
+      "blocking_instances_before": 25,
+      "next_discriminator": "Select exact role-complete provider identities and terms, then deploy one deny-default metering broker; C6 additionally needs separately named fail-fast bytes.",
+      "preserved_terminal": "CANNOT_CHECK",
+      "repair_completed": "A single panel-wide contract, receipt shape, fan-out rule and fail-closed gate now replace duplicated prose.",
+      "root_id": "R3_MODEL_SERVICE_METERING_EGRESS_AND_FALLBACKS",
+      "why_not_promoted": "CONTRACT_IMPLEMENTED__PROVIDER_ROLE_RIGHTS_ENDPOINTS_METER_AND_C6_SUCCESSOR_ABSENT"
+    },
+    {
+      "arm_field_delta": 0,
+      "blocking_instances_after": 15,
+      "blocking_instances_before": 15,
+      "next_discriminator": "Resolve C3/C4/C6 locks, then build and SBOM six content-addressed runtimes with complete generated-artifact dispositions.",
+      "preserved_terminal": "CANNOT_CHECK",
+      "repair_completed": "A single panel-wide contract, receipt shape, fan-out rule and fail-closed gate now replace duplicated prose.",
+      "root_id": "R4_CONTENT_ADDRESSED_RUNTIME_DEPENDENCIES_AND_ARTIFACT_RIGHTS",
+      "why_not_promoted": "COMMON_SCHEMA_IMPLEMENTED__ARM_SPECIFIC_IMAGES_LOCKS_SBOMS_AND_GRANTS_ABSENT"
+    },
+    {
+      "arm_field_delta": 0,
+      "blocking_instances_after": 8,
+      "blocking_instances_before": 8,
+      "next_discriminator": "Provision one reproducible outer-capsule design and produce per-arm receipts covering child processes, Docker daemons, caches, devices, schedulers and remote work.",
+      "preserved_terminal": "CANNOT_CHECK",
+      "repair_completed": "A single panel-wide contract, receipt shape, fan-out rule and fail-closed gate now replace duplicated prose.",
+      "root_id": "R5_OUTER_CAPSULE_ISOLATION_AND_COMPUTE",
+      "why_not_promoted": "CONTRACT_IMPLEMENTED__DISPOSABLE_EXECUTOR_AND_COMPLETE_DESCENDANT_RECEIPTS_ABSENT"
+    }
+  ],
+  "root_count": 5,
+  "schema_version": "orion.p5.panelwide-root-closure-negative-ledger.v5",
+  "terminal": "P5_V5_PANELWIDE_ROOT_CAUSE_CONTRACT_AND_SIX_PARSER_DISPATCH_BOUND__EIGHTY_FOUR_BLOCKER_INSTANCES_COLLAPSED_TO_FIVE_ROOT_WORK_PACKAGES__ZERO_ARM_FIELD_BINDINGS_CREATED_WITHOUT_MISSING_EXTERNAL_OR_ARM_SPECIFIC_EVIDENCE__FORTY_TWO_OF_ONE_HUNDRED_TWENTY_SIX_FIELDS_BOUND__EIGHTY_FOUR_BLOCKING__ZERO_OF_SIX_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK"
+}

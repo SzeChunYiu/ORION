@@ -1,0 +1,37 @@
+{
+  "absence_rule": "Zero mapping rows are permitted when every expected source key is present; absence is never obstruction.",
+  "artifacts": {
+    "extended_mappings.tsv": {
+      "bytes": 4583,
+      "sha256": "635d999347b6bfe29979b6051abc975a3983b8caf0d242b87fd4599970c0bd3c"
+    },
+    "filtered_mappings.tsv": {
+      "bytes": 4156,
+      "sha256": "18cc7e1dc39aa795d8e2ec5657bebf9c30382c7e770d78b245ecbe5d8a50dcc4"
+    },
+    "raw_mappings.json": {
+      "bytes": 8860,
+      "sha256": "15f3080f1172ff042d81e2913be3305c134d7d6804eefec7e5d949343474e902"
+    },
+    "raw_mappings.tsv": {
+      "bytes": 4156,
+      "sha256": "18cc7e1dc39aa795d8e2ec5657bebf9c30382c7e770d78b245ecbe5d8a50dcc4"
+    },
+    "repaired_mappings.tsv": {
+      "bytes": 4156,
+      "sha256": "26d3b4c72ba325a3f9e2126667438b91c0ba963eebe6958144f676f4b97524fe"
+    }
+  },
+  "authority": "INTERFACE_CONFORMANCE_ONLY__NO_MAPPING_TRUTH_OR_PERFORMANCE_AUTHORITY",
+  "completed_source_key_count": 36,
+  "expected_source_key_count": 36,
+  "row_counts": {
+    "extended": 36,
+    "filtered": 33,
+    "raw_json": 33,
+    "raw_tsv": 33,
+    "repaired": 33
+  },
+  "schema_version": "orion.p3.bertmap-native-parser.v7",
+  "terminal": "STRUCTURAL_NATIVE_ARTIFACT_CONTRACT_PASS"
+}

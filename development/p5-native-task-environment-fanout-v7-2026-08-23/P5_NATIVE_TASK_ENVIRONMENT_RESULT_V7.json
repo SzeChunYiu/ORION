@@ -1,0 +1,61 @@
+{
+  "authority": "OUTCOME_BLIND_BYTE_LEVEL_TASK_ENVIRONMENT_ACCEPTANCE_ONLY",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "executions": {
+    "arms": 0,
+    "benchmarks": 0,
+    "models": 0,
+    "outcomes_accessed": 0,
+    "protected_scorers": 0
+  },
+  "field_delta": {
+    "after_blocking": 71,
+    "after_bound": 55,
+    "before_blocking": 72,
+    "before_bound": 54,
+    "new_bindings": 1,
+    "per_arm": {
+      "C1": {
+        "blocking": 9,
+        "bound": 12
+      },
+      "C2": {
+        "blocking": 12,
+        "bound": 9
+      },
+      "C3": {
+        "blocking": 13,
+        "bound": 8
+      },
+      "C4": {
+        "blocking": 13,
+        "bound": 8
+      },
+      "C5": {
+        "blocking": 10,
+        "bound": 11
+      },
+      "C6": {
+        "blocking": 14,
+        "bound": 7
+      }
+    },
+    "ready_arms": 0
+  },
+  "preserved_claims": {
+    "H1_H4": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "superiority": "CANNOT_CHECK",
+    "top_tier_publication_readiness": "NOT_ESTABLISHED"
+  },
+  "protocol_id": "P5.NATIVE.TASK.ENVIRONMENT.FANOUT.V7",
+  "protocol_sha256": "3a6cc70a0f91957ef4e7fbc5ec42e66875084f7985c2250c056e00d865aa4fe0",
+  "root_r2": {
+    "after_blocking_instances": 5,
+    "before_blocking_instances": 6,
+    "native_environment_instances_closed": 1,
+    "smallest_remaining_root": "Five arm-specific environment artifact bundles, not one shared blocker."
+  },
+  "schema_version": "orion.p5.native-task-environment-fanout-result.v7",
+  "terminal": "P5_V7_C1_NATIVE_TASK_ENVIRONMENT_BOUND__ONE_OF_SIX_ENVIRONMENTS_CLOSED__FIFTY_FIVE_OF_ONE_HUNDRED_TWENTY_SIX_FIELDS_BOUND__SEVENTY_ONE_BLOCKING__FIVE_R2_NATIVE_ENVIRONMENT_INSTANCES_REMAIN__ZERO_OF_SIX_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK"
+}

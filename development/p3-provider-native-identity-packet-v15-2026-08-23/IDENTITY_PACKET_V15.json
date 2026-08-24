@@ -1,0 +1,106 @@
+{
+  "admission_gates": {
+    "exact_version_bound": true,
+    "prospective_execution_ready": false,
+    "reference_hash_bound": true,
+    "remaining_gate": "EXACT_AML_V3_2_JAVA_8_RUNTIME_AND_ONE_OUTCOME_BLIND_PROSPECTIVE_MATCHER_DECODER_RUN",
+    "rights_bound": true,
+    "same_universe_comparator_identity_bound": true,
+    "source_hash_bound": true,
+    "target_hash_bound": true
+  },
+  "authority": "LIVE_PRIMARY_PROVIDER_METADATA_PLUS_CONTENT_HASHES__PUBLIC_DEVELOPMENT_ONLY__NOT_PROTECTED_CONFIRMATION",
+  "case": {
+    "reference": {
+      "expected_cells_from_prior_receipt": 91,
+      "member": "103/refalign.rdf",
+      "role": "PUBLIC_NONPROTECTED_REFERENCE",
+      "sha256": "0afb0f2c9764201d91c226c5fb60d4b25425168acf6c2604fb191be906e9ec16",
+      "size_bytes": 29568
+    },
+    "source": {
+      "member": "101/onto.rdf",
+      "sha256": "d6143780103217a4a562e4982f0d4c724c09d3a3e7dc146a6b42cecc3e9f1064",
+      "size_bytes": 69721
+    },
+    "target": {
+      "member": "103/onto.rdf",
+      "sha256": "e3643a6fcd237a162d120e58227df2e24e0398668c6f2428e4fea850180405cf",
+      "size_bytes": 70677
+    },
+    "test_id": "103",
+    "universe": "OAEI_2004_BIBLIOGRAPHIC_ONTOLOGY_ALIGNMENT_CONTEST_TEST_103"
+  },
+  "claim_boundary": {
+    "identity_packet": "BOUND",
+    "naturalistic_generality": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "protected_confirmation": "CANNOT_CHECK",
+    "provider_native_pair": "BOUND",
+    "public_reference_identity": "BOUND_NOT_OPENED_SEMANTICALLY",
+    "superiority": "CANNOT_CHECK"
+  },
+  "created_at_utc": "2026-08-23T21:32:05.665089+00:00",
+  "next_discriminator": "Provision exact Java SE 8, verify AML v3.2 initialization without reference input, then run AML and the already repaired matcher/decoder once on frozen test 103 before opening the reference for scoring.",
+  "preserved_predecessor": {
+    "scope": "V15 does not rehabilitate or score the V12/V13 synthetic pair; it freezes a separately named provider-native successor.",
+    "sha256": "fc1f1d35668604e72bc63edd397988eb85c035145b0e6025b848d7c5d3c96314",
+    "v14_result": "development/p3-public-reference-alignment-v14-2026-08-23/RESULT_V14.json",
+    "v14_terminal": "P3_V14_PROVIDER_NATIVE_REFERENCE_IDENTITY_CANNOT_CHECK__FROZEN_PAIR_IS_SYNTHETIC_AND_MATCHES_NO_OAEI_BIOML_CASE__NO_PUBLIC_GOLD_ADMITTED__NO_METRICS_OR_COMPARATOR_COMPUTED"
+  },
+  "prospective_freeze": {
+    "decoder_attempts": 0,
+    "frozen_before_matcher_execution": true,
+    "gold_semantics_inspected": false,
+    "matcher_attempts": 0,
+    "reference_bytes_accessed_for_hash_only": true,
+    "scoring_attempts": 0,
+    "synthetic_v12_v13_pair_reused": false,
+    "training_attempts": 0
+  },
+  "protocol_id": "P3_V15_PROVIDER_NATIVE_OAEI_2004_TEST_103_IDENTITY_FREEZE",
+  "provider": {
+    "archive": {
+      "name": "oacontest17.zip",
+      "provider_md5": "31676c68912a22622f6ca6d031519df9",
+      "sha256": "f22aac206773e4eacdd54cf9519ffe997332a430326bdae29f4210a24efab0b4",
+      "size_bytes": 486043
+    },
+    "doi": "10.5281/zenodo.15827226",
+    "metadata_api": "https://zenodo.org/api/records/15827226",
+    "record": "https://zenodo.org/records/15827226",
+    "record_id": 15827226,
+    "rights": {
+      "conditions": [
+        "ATTRIBUTION",
+        "DOI_CITATION",
+        "INDICATE_ADAPTATIONS"
+      ],
+      "license": "CC-BY-4.0",
+      "protected_authority": false,
+      "public_development_role": true
+    },
+    "source_id": "OAEI_2004_ZENODO_15827226",
+    "version_identity": "ZENODO_RECORD_15827226__UPDATED_2025-07-07T08:31:31.761639+00:00"
+  },
+  "same_universe_comparator": {
+    "command_template": "java -jar AgreementMakerLight.jar -s 101/onto.rdf -t 103/onto.rdf -o AML_V3_2_TEST_103_ALIGNMENT.rdf -a",
+    "license": "Apache-2.0",
+    "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "local_runtime_deviation": "Prior binding observed OpenJDK 17.0.19 arm64; exact Java 8 prospective runtime still required for provider-faithful execution.",
+    "name": "AgreementMakerLight",
+    "reference_alignment_argument_supplied": false,
+    "release_asset": "AML_v3.2.zip",
+    "release_sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27",
+    "release_size_bytes": 42450207,
+    "release_url": "https://github.com/AgreementMakerLight/AML-Project/releases/download/v3.2/AML_v3.2.zip",
+    "role": "FROZEN_SAME_UNIVERSE_PUBLIC_DEVELOPMENT_COMPARATOR__NOT_CURRENT_SOTA_CERTIFICATE",
+    "runtime_requirement": "UPSTREAM_README_JAVA_SE_8",
+    "system_id": "AML_V3_2_AUTO_SOURCE_NATIVE",
+    "tag": "v3.2",
+    "tag_commit": "d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6"
+  },
+  "schema_version": "orion.p3.provider-native-identity-packet.v15",
+  "successor_identity": "P3_V15_PROVIDER_NATIVE_IDENTITY_PACKET__OAEI_2004_TEST_103__AML_V3_2",
+  "terminal": "P3_V15_EXACT_PROVIDER_NATIVE_OAEI_TEST_103_IDENTITY_PACKET_BOUND__SAME_UNIVERSE_AML_V3_2_COMPARATOR_FROZEN__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK_PENDING_JAVA8_PROSPECTIVE_RUN"
+}

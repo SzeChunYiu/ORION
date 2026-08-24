@@ -1,0 +1,99 @@
+{
+  "actionable_target_count": 6,
+  "authority": "PROSPECTIVE_COMPLETION_REQUIREMENTS_ONLY__NOT_RATIFICATION",
+  "execution_rule": "Only a completed schema-valid, licensed, signed algebra with an independent CONFORMANT review may trigger the unchanged 117,649-map rerun. No case text or outcomes may be used to choose the algebra.",
+  "registry_id": "P1.V8.REQUIRED.OWNER.ALGEBRA.FIELDS.AND.CUSTODIANS",
+  "requirements": [
+    {
+      "current_state": "UNBOUND",
+      "discriminator": "Explicit true statement that listed target profiles are exhaustive for adapter adjudication.",
+      "field_path": "closed_world",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra"
+    },
+    {
+      "current_state": "BOUND_PUBLIC_INTENSIONAL_ANCHOR__NOT_EXHAUSTIVE",
+      "discriminator": "One closed coordinate definition per target, including overlap/disjointness rules.",
+      "field_path": "targets[*].scientific_process_coordinate",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra retaining or superseding the public anchor"
+    },
+    {
+      "current_state": "UNBOUND",
+      "discriminator": "Exact postpublication coordinate or explicit NONE for every target.",
+      "field_path": "targets[*].postpublication_coordinate",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra"
+    },
+    {
+      "current_state": "UNBOUND",
+      "discriminator": "Exhaustive operation set for G3 and G4.",
+      "field_path": "targets[*].licensed_postpublication_operations",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra"
+    },
+    {
+      "current_state": "UNBOUND",
+      "discriminator": "Exhaustive forbidden operation set for inequality and authority-expansion witnesses.",
+      "field_path": "targets[*].forbidden_postpublication_operations",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra"
+    },
+    {
+      "current_state": "PARTIALLY_BOUND__SEPARATE_TYPES_AND_NO_INHERITED_ONE_TO_ONE_BRIDGE",
+      "discriminator": "Retain probe/decision separation and state any postpublication recommendation bridge without relabeling probes as decisions.",
+      "field_path": "decision_probe_typing",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved explicit bridge table or explicit NONE"
+    },
+    {
+      "current_state": "UNBOUND_FOR_POSTPUBLICATION_ACTIONS",
+      "discriminator": "Distinguish semantic recommendation from execution/adoption authority.",
+      "field_path": "targets[*].recommendation_authority",
+      "required_custodian": "R7_VOCABULARY_OWNER_AND_HOST_AUTHORITY_OWNER",
+      "required_source": "owner-approved authority boundary"
+    },
+    {
+      "current_state": "PUBLIC_FRAMEWORK_DENIES_SELF_ADOPTION_PROMOTION_AND_MERGE__POSTPUBLICATION_HOST_UNBOUND",
+      "discriminator": "Explicit NONE, EXTERNAL_OWNER_ONLY or SYSTEM per target.",
+      "field_path": "targets[*].execution_authority",
+      "required_custodian": "HOST_AUTHORITY_OWNER",
+      "required_source": "owner-approved authority boundary"
+    },
+    {
+      "current_state": "UNBOUND_FOR_TARGET_SEMANTICS",
+      "discriminator": "One fail-closed terminal for each non-success condition; system-level scoring prose is insufficient.",
+      "field_path": "terminal_behavior.{abstention,error,timeout,malformed,unsupported}",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra"
+    },
+    {
+      "current_state": "UNBOUND__NO_DETECTED_LICENCE_APPLICABLE_TO_TARGET_CORPUS",
+      "discriminator": "Explicit reuse/redistribution licence and immutable public archive.",
+      "field_path": "rights.{public_archive_url,reuse_licence_spdx,licence_text_sha256}",
+      "required_custodian": "TARGET_CORPUS_RIGHTS_HOLDER_OR_AUTHORISED_LICENSOR",
+      "required_source": "licence text controlled by the applicable rights holder"
+    },
+    {
+      "current_state": "UNBOUND__PUBLIC_COMMIT_UNSIGNED_AND_NOT_AN_ALGEBRA_RATIFICATION",
+      "discriminator": "Verify signature, delegation basis, artifact digest and timestamp before enumeration.",
+      "field_path": "ratification",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "content-addressed signature bundle over the completed algebra"
+    },
+    {
+      "current_state": "UNBOUND",
+      "discriminator": "Review all seven target profiles against public predecessors and unchanged G1-G7 before case/outcome access.",
+      "field_path": "ratification.independent_semantic_reviewer",
+      "required_custodian": "REVIEWER_WITH_NO_ALGEBRA_AUTHORSHIP_OR_CASE_OUTCOME_CUSTODY",
+      "required_source": "independent semantic conformance review"
+    }
+  ],
+  "schema_version": "orion.p1.r7.owner-algebra-field-custodian-registry.v8",
+  "source_taxonomy_custody": {
+    "current_state": "FROZEN_IN_R7_PREDECESSOR_WITH_MIXED_RIGHTS_BOUNDARIES",
+    "required_custodian": "SOURCE_TAXONOMY_EVIDENCE_VERIFIER",
+    "rule": "Do not rewrite source terminals to fit a target algebra; preserve partial-retraction/removal scope uncertainties and all predecessor rights terminals."
+  },
+  "target_count": 7
+}

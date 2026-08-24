@@ -1,0 +1,124 @@
+{
+  "accepted_license_distribution_among_provider_qualified": {
+    "Apache-2.0": 13,
+    "BSD-2-Clause": 1,
+    "BSD-3-Clause": 16,
+    "MIT": 50
+  },
+  "all_four_m6_cells_gate_evaluable": false,
+  "all_four_m6_cells_pass": false,
+  "authority": "PUBLIC_METADATA_SOURCE_FEASIBILITY_ONLY__NO_NATURAL_PAIR_LABELS_OR_SYSTEM_OUTCOMES",
+  "cells": {
+    "EARTH_ENVIRONMENT": {
+      "full_cell_gate": "CANNOT_CHECK",
+      "gap_is_confirmed_population_deficit": false,
+      "mechanism": "M6_ARTICLE_TO_CODE_RELEASE",
+      "optimistic_disjoint_replication_8_pass": false,
+      "optimistic_disjoint_replication_units": 2,
+      "optimistic_gap_to_48": 41,
+      "optimistic_primary_24_pass": false,
+      "optimistic_primary_family": "JOSS_GITHUB_RELEASE",
+      "optimistic_primary_units": 5,
+      "optimistic_total_quota_pass": false,
+      "optimistic_union_before_exact_version_and_external_adjudication": 7,
+      "provider_family_counts": {
+        "FIGSHARE_V3_LOWER_BOUND": 2,
+        "JOSS_GITHUB_RELEASE_V4_PROVIDER_QUALIFIED": 5
+      },
+      "reason": "V3 transport remains incomplete; its omitted row-level packet prevents cross-provider concept/publication deduplication; V4 also has no explicit JOSS-publication-to-exact-GitHub-release-tag alignment or external author-lineage/natural-pair adjudication.",
+      "v3_observed_strict_metadata_lower_bound": 2,
+      "v4_exact_publication_release_aligned_units": 0,
+      "v4_provider_qualified_concept_candidates": 5,
+      "v4_units_promoted_through_all_relation_lineage_and_natural_pair_gates": 0
+    },
+    "LIFE_BIOMEDICAL": {
+      "full_cell_gate": "CANNOT_CHECK",
+      "gap_is_confirmed_population_deficit": false,
+      "mechanism": "M6_ARTICLE_TO_CODE_RELEASE",
+      "optimistic_disjoint_replication_8_pass": false,
+      "optimistic_disjoint_replication_units": 0,
+      "optimistic_gap_to_48": 41,
+      "optimistic_primary_24_pass": false,
+      "optimistic_primary_family": "JOSS_GITHUB_RELEASE",
+      "optimistic_primary_units": 7,
+      "optimistic_total_quota_pass": false,
+      "optimistic_union_before_exact_version_and_external_adjudication": 7,
+      "provider_family_counts": {
+        "FIGSHARE_V3_LOWER_BOUND": 0,
+        "JOSS_GITHUB_RELEASE_V4_PROVIDER_QUALIFIED": 7
+      },
+      "reason": "V3 transport remains incomplete; its omitted row-level packet prevents cross-provider concept/publication deduplication; V4 also has no explicit JOSS-publication-to-exact-GitHub-release-tag alignment or external author-lineage/natural-pair adjudication.",
+      "v3_observed_strict_metadata_lower_bound": 0,
+      "v4_exact_publication_release_aligned_units": 0,
+      "v4_provider_qualified_concept_candidates": 7,
+      "v4_units_promoted_through_all_relation_lineage_and_natural_pair_gates": 0
+    },
+    "PHYSICAL_ENGINEERING": {
+      "full_cell_gate": "CANNOT_CHECK",
+      "gap_is_confirmed_population_deficit": false,
+      "mechanism": "M6_ARTICLE_TO_CODE_RELEASE",
+      "optimistic_disjoint_replication_8_pass": false,
+      "optimistic_disjoint_replication_units": 1,
+      "optimistic_gap_to_48": 41,
+      "optimistic_primary_24_pass": false,
+      "optimistic_primary_family": "JOSS_GITHUB_RELEASE",
+      "optimistic_primary_units": 6,
+      "optimistic_total_quota_pass": false,
+      "optimistic_union_before_exact_version_and_external_adjudication": 7,
+      "provider_family_counts": {
+        "FIGSHARE_V3_LOWER_BOUND": 1,
+        "JOSS_GITHUB_RELEASE_V4_PROVIDER_QUALIFIED": 6
+      },
+      "reason": "V3 transport remains incomplete; its omitted row-level packet prevents cross-provider concept/publication deduplication; V4 also has no explicit JOSS-publication-to-exact-GitHub-release-tag alignment or external author-lineage/natural-pair adjudication.",
+      "v3_observed_strict_metadata_lower_bound": 1,
+      "v4_exact_publication_release_aligned_units": 0,
+      "v4_provider_qualified_concept_candidates": 6,
+      "v4_units_promoted_through_all_relation_lineage_and_natural_pair_gates": 0
+    },
+    "SCIENTIFIC_SOFTWARE": {
+      "full_cell_gate": "CANNOT_CHECK",
+      "gap_is_confirmed_population_deficit": false,
+      "mechanism": "M6_ARTICLE_TO_CODE_RELEASE",
+      "optimistic_disjoint_replication_8_pass": false,
+      "optimistic_disjoint_replication_units": 6,
+      "optimistic_gap_to_48": 0,
+      "optimistic_primary_24_pass": true,
+      "optimistic_primary_family": "JOSS_GITHUB_RELEASE",
+      "optimistic_primary_units": 62,
+      "optimistic_total_quota_pass": true,
+      "optimistic_union_before_exact_version_and_external_adjudication": 68,
+      "provider_family_counts": {
+        "FIGSHARE_V3_LOWER_BOUND": 6,
+        "JOSS_GITHUB_RELEASE_V4_PROVIDER_QUALIFIED": 62
+      },
+      "reason": "V3 transport remains incomplete; its omitted row-level packet prevents cross-provider concept/publication deduplication; V4 also has no explicit JOSS-publication-to-exact-GitHub-release-tag alignment or external author-lineage/natural-pair adjudication.",
+      "v3_observed_strict_metadata_lower_bound": 6,
+      "v4_exact_publication_release_aligned_units": 0,
+      "v4_provider_qualified_concept_candidates": 62,
+      "v4_units_promoted_through_all_relation_lineage_and_natural_pair_gates": 0
+    }
+  },
+  "created_at": "2026-08-23T16:02:45.640720+00:00",
+  "preserved_terminal": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK",
+  "protocol_id": "P4.PUBLIC.M6.JOSS_GITHUB.SOURCE_PROVIDER.SUCCESSOR.DEV.V4",
+  "provider_qualified_by_domain": {
+    "EARTH_ENVIRONMENT": 5,
+    "LIFE_BIOMEDICAL": 7,
+    "PHYSICAL_ENGINEERING": 6,
+    "SCIENTIFIC_SOFTWARE": 62
+  },
+  "schema_version": "orion.p4.m6.source-provider-successor.cell-counts.v4",
+  "stage_counts": {
+    "accepted_exact_tag_license_and_blob": 118,
+    "author_lineage_independence_adjudicated": 0,
+    "crossref_unique_joss_publications": 200,
+    "explicit_joss_publication_to_exact_github_release_tag_alignment": 0,
+    "joss_labelled_repository_relations": 191,
+    "latest_github_releases_bound": 180,
+    "natural_pairs_adjudicated": 0,
+    "provider_qualified_concept_candidates": 80,
+    "public_active_github_repositories": 191,
+    "release_tags_resolved_to_commit_sha": 180,
+    "unique_domain_assignment": 120
+  }
+}

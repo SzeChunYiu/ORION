@@ -1,0 +1,73 @@
+{
+  "comparators": [
+    {
+      "execution_ready": false,
+      "failure": "build/runtime/timeout/partial/invalid artifact -> CANNOT_CHECK",
+      "identity": "AML v3.2 at d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6",
+      "mapping": "emitted in-universe equivalence row -> {GLUE}; absent/non-equivalence row -> {GLUE,OBSTRUCTION}; input-native truth is never copied into comparator output",
+      "native_success": "complete parseable AML alignment artifact only",
+      "slot": "K1_AML"
+    },
+    {
+      "execution_ready": false,
+      "failure": "build/runtime/timeout/partial/invalid artifact -> CANNOT_CHECK",
+      "identity": "LogMap 4.0 at b3b57d0d8bfb5872bdffb49329d764acb4735713",
+      "mapping": "emitted in-universe equivalence row -> {GLUE}; absent/subsumption/unsupported row -> {GLUE,OBSTRUCTION}; no row is never OBSTRUCTION",
+      "native_success": "complete parseable MATCHER-mode logmap_mappings artifact only; EVALUATION mode forbidden",
+      "slot": "K2_LOGMAP"
+    },
+    {
+      "execution_ready": false,
+      "failure": "model/dependency/runtime/training/timeout/partial/invalid artifact -> CANNOT_CHECK",
+      "identity": "BERTMap via DeepOnto 0.9.3 at 74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+      "mapping": "emitted in-universe equivalence row above the prospectively frozen native threshold -> {GLUE}; nonselection -> {GLUE,OBSTRUCTION}; no row is never OBSTRUCTION",
+      "native_success": "one preselected complete digest-verified no-gold mapping artifact",
+      "slot": "K3_BERTMAP"
+    }
+  ],
+  "created_at": "2026-08-23T16:42:23.209999+00:00",
+  "input_projection": {
+    "candidate_visibility": "Candidate and ideal see the same frozen ontology bytes and no hidden truth table. Direct axioms are input-native semantics, not protected gold.",
+    "fibo_staging": "The exact 59 pre-frozen FND RDF/XML blobs form one family. Runtime packaging must use an offline frozen catalog or a separately hashed deterministic union; that runtime packaging is not execution-ready in V5.",
+    "source_target_relation": "Two byte-identical staged views of the same frozen family graph; no IRI rewriting, label editing, removal, augmentation or ontology outcome feedback."
+  },
+  "outcomes_opened": false,
+  "schema_version": "orion.p3.authoritative-negative-semantics.comparator-adapters.v5",
+  "scoring_boundary": "Adapters can measure false GLUE commitments on explicit disjoint pairs and selective coverage on the certificate-bearing universe. They cannot establish naturalistic cross-ontology transport, full Cartesian truth, strongest-system status, V3 harm superiority or protected claims.",
+  "source_frame_id": "P3_V5_DIRECT_AXIOM_NEGATIVE_SEMANTICS_CALIBRATION_FRAME",
+  "status": "FROZEN_BEFORE_V5_AXIOM_AND_COMPARATOR_OUTCOME_ACCESS",
+  "truth_adapter": {
+    "assertion_scope": "Only triples/lists literally present in the frozen selected files; imports and entailments are not fetched or inferred.",
+    "candidate_universe": "For each frozen family, the finite union of certificate-bearing named-class pairs only; it is not the Cartesian product.",
+    "conflict_rule": "If one canonical pair has both GLUE and OBSTRUCTION certificates, emit CANNOT_CHECK_CONFLICT and exclude it from the binary calibration frame.",
+    "forbidden_truth_inference": [
+      "absence from any positive or negative set",
+      "nonselection by a matcher",
+      "subclass non-equivalence",
+      "different labels",
+      "different namespaces",
+      "reasoner-inferred disjointness",
+      "closed-world Cartesian completion",
+      "blank-node restriction disagreement"
+    ],
+    "glue_certificates": [
+      "(C,C) for a named class C in the family authority namespace, because source and target inputs are byte-identical views with the same immutable IRI and definition",
+      "direct asserted named-to-named owl:equivalentClass(C,D), when both IRIs are in the family authority namespace"
+    ],
+    "namespace_guards": {
+      "ENVO_2026_06_26": [
+        "http://purl.obolibrary.org/obo/ENVO_"
+      ],
+      "FIBO_FND_2026Q2": [
+        "https://spec.edmcouncil.org/fibo/"
+      ],
+      "W3C_PROV_O_REC_20130430": [
+        "http://www.w3.org/ns/prov#"
+      ]
+    },
+    "obstruction_certificates": [
+      "direct asserted named-to-named owl:disjointWith(C,D), symmetric canonicalized",
+      "all unordered named-class pairs explicitly enumerated by an owl:AllDisjointClasses owl:members list, when all retained IRIs are in the family authority namespace"
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "authority": "SOURCE_NATIVE_ARTIFACT_STRUCTURE_AND_FAIL_CLOSED_COMPLETENESS_ONLY",
+  "completion_rules": [
+    "All five required regular non-symlink artifacts must exist and hash.",
+    "The raw JSON key set must equal the prospectively frozen eligible source universe, including keys with empty mapping lists.",
+    "Raw JSON and TSV row multisets must agree; every row must stay in the frozen source/target universes with a finite score in [0,1].",
+    "Extended mappings retain raw rows; filtered mappings equal the frozen-threshold subset; repaired pairs stay within filtered pairs.",
+    "Any missing, partial, stale, invalid or out-of-universe artifact is CANNOT_CHECK, never an empty alignment or obstruction."
+  ],
+  "parser": {
+    "does_not_open_ontologies_models_gold_or_protected_outcomes": true,
+    "path": "bertmap_native_parser_v7.py",
+    "self_test_receipt": {
+      "failed": 0,
+      "passed": 7,
+      "path": "PARSER_SELF_TEST_RECEIPT_V7.json",
+      "sha256": "4d91b3466f1c48cd671c6dea2e9694a84e9720e0853417d25ec7819307f15461"
+    },
+    "sha256": "d1184dc129082bdcf18b415b551f244a695b4e34417286afc37a3f3a5d788bc5"
+  },
+  "required_artifacts": [
+    {
+      "format": "JSON object: exact eligible source IRI keys; values are lists of [source IRI, target IRI, score]",
+      "path": "bertmap/match/raw_mappings.json"
+    },
+    {
+      "format": "exact tab header SrcEntity,TgtEntity,Score; row multiset equals raw JSON",
+      "path": "bertmap/match/raw_mappings.tsv"
+    },
+    {
+      "format": "same exact tab schema; retains all raw rows",
+      "path": "bertmap/match/extended_mappings.tsv"
+    },
+    {
+      "format": "same exact tab schema; exact thresholded extended set",
+      "path": "bertmap/match/filtered_mappings.tsv"
+    },
+    {
+      "format": "same exact tab schema; repaired pairs remain within filtered pairs",
+      "path": "bertmap/match/repaired_mappings.tsv"
+    }
+  ],
+  "schema_version": "orion.p3.bertmap-execution-binding.native-artifact-contract.v7",
+  "scientific_boundary": "Parser pass is interface conformance only and cannot establish mapping correctness, coverage, harm, transport, superiority or absence-as-obstruction.",
+  "source_anchors": {
+    "checkpointed_raw_outputs": {
+      "lines": "295-330",
+      "path": "src/deeponto/align/bertmap/mapping_prediction.py",
+      "sha256": "b34e29effa145e4b1134d965e0d67eb907b0f45cd3f3347b1f7f1fc33c7bbc9d"
+    },
+    "extension_filter_and_existing_file_trust": {
+      "lines": "93-198",
+      "path": "src/deeponto/align/bertmap/mapping_refinement.py",
+      "sha256": "f788fc45562c10b7128cc072e47020897ac8eb565905910749431ee80e248749"
+    },
+    "nonempty_table_reader_defect": {
+      "authority": "SOURCE_SEMANTIC_AND_SYNTHETIC_LANGUAGE_LEVEL_REPRODUCTION_ONLY__NO_BERTMAP_OUTPUT_OPENED",
+      "conditional_effect": "Any nonempty non-reference table read reaches dp['Score'] and raises TypeError; an empty table does not enter the loop.",
+      "dp_string_subscript_found": true,
+      "function_line_span": [
+        119,
+        151
+      ],
+      "pandas_itertuples_row_semantics": "namedtuple; positional or attribute access, not string-key indexing",
+      "source_path": "src/deeponto/align/mapping.py",
+      "source_sha256": "9cf0dce1c5bd142e4175f628f8f3267f54ed6deac9f31e165a25b4a073eedff0",
+      "synthetic_nonempty_row_error": "TypeError: tuple indices must be integers or slices, not str"
+    },
+    "repair_and_existing_file_trust": {
+      "lines": "270-319",
+      "path": "src/deeponto/align/bertmap/mapping_refinement.py",
+      "sha256": "f788fc45562c10b7128cc072e47020897ac8eb565905910749431ee80e248749"
+    }
+  },
+  "source_identity": {
+    "commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+    "package_version": "0.9.3",
+    "repository": "https://github.com/KRR-Oxford/DeepOnto",
+    "tree": "b499cb5780bbe749f7db44d0bc872d275a2737ea"
+  }
+}

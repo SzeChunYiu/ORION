@@ -1,0 +1,2197 @@
+{
+  "arms_by_review": {
+    "Distal_radius_fractures_approach": {
+      "R0_L0": {
+        "features": 5854,
+        "metrics": {
+          "cre20": 0.18996415770609318,
+          "fraction_screened_at_95_recall": 0.43010752688172044,
+          "recall_at_005": 0.16666666666666666,
+          "recall_at_010": 0.16666666666666666,
+          "recall_at_020": 0.3333333333333333,
+          "wss_at_95": 0.5198924731182795
+        },
+        "model_fits": 19,
+        "order_sha256": "47b5e004664e160509f886353d53145ef1fde70398cd104d32d711bb99e8937e"
+      },
+      "R0_L1": {
+        "features": 5854,
+        "metrics": {
+          "cre20": 0.2078853046594982,
+          "fraction_screened_at_95_recall": 0.3924731182795699,
+          "recall_at_005": 0.16666666666666666,
+          "recall_at_010": 0.16666666666666666,
+          "recall_at_020": 0.5,
+          "wss_at_95": 0.5575268817204301
+        },
+        "model_fits": 19,
+        "order_sha256": "fc640721b20e588a6b16cc7ed98b25503c5865d1e39ea227974310f747241601"
+      },
+      "R1_L0": {
+        "features": 21142,
+        "metrics": {
+          "cre20": 0.19444444444444445,
+          "fraction_screened_at_95_recall": 0.5161290322580645,
+          "recall_at_005": 0.16666666666666666,
+          "recall_at_010": 0.16666666666666666,
+          "recall_at_020": 0.3333333333333333,
+          "wss_at_95": 0.43387096774193545
+        },
+        "model_fits": 19,
+        "order_sha256": "74bb60bc729d2e9db804fe3bef6553dba2379a6107c763aa37182e2eab6c0840"
+      },
+      "R1_L1": {
+        "features": 21142,
+        "metrics": {
+          "cre20": 0.19086021505376347,
+          "fraction_screened_at_95_recall": 0.3064516129032258,
+          "recall_at_005": 0.16666666666666666,
+          "recall_at_010": 0.16666666666666666,
+          "recall_at_020": 0.5,
+          "wss_at_95": 0.6435483870967742
+        },
+        "model_fits": 19,
+        "order_sha256": "6027aea0be41479b9d06786990ba593a968b98e50ad8c8184e394112da8bbc9a"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "0ef7b123551cb75c6cb5f3bed3c2d0260b184b47c1ea8c9e9eeffe83226a88d9",
+        "text_list_sha256": "4ca874ff5d7b5ea9b3aa4b44a13f97803d6db3dd23269a8090518965ef3ad6f4"
+      }
+    },
+    "Distal_radius_fractures_closed_reduction": {
+      "R0_L0": {
+        "features": 7782,
+        "metrics": {
+          "cre20": 0.4200743494423792,
+          "fraction_screened_at_95_recall": 0.5018587360594795,
+          "recall_at_005": 0.25,
+          "recall_at_010": 0.5,
+          "recall_at_020": 0.75,
+          "wss_at_95": 0.44814126394052045
+        },
+        "model_fits": 27,
+        "order_sha256": "a47c630b8a94b4a574f20d39119a7052266029049f218ee6b9e8ae5e1616513e"
+      },
+      "R0_L1": {
+        "features": 7782,
+        "metrics": {
+          "cre20": 0.3373605947955391,
+          "fraction_screened_at_95_recall": 0.5092936802973977,
+          "recall_at_005": 0.25,
+          "recall_at_010": 0.25,
+          "recall_at_020": 0.75,
+          "wss_at_95": 0.4407063197026022
+        },
+        "model_fits": 27,
+        "order_sha256": "c80e0bca34e760661031058b83c60b69e8d968fb836aef90ec63a73c2a9cbecf"
+      },
+      "R1_L0": {
+        "features": 29180,
+        "metrics": {
+          "cre20": 0.4851301115241636,
+          "fraction_screened_at_95_recall": 0.5724907063197026,
+          "recall_at_005": 0.5,
+          "recall_at_010": 0.5,
+          "recall_at_020": 0.75,
+          "wss_at_95": 0.3775092936802974
+        },
+        "model_fits": 27,
+        "order_sha256": "3213b124d166c26caaabb376b131340dd5b5529931bf3d0385ed163fc6df4746"
+      },
+      "R1_L1": {
+        "features": 29180,
+        "metrics": {
+          "cre20": 0.38382899628252787,
+          "fraction_screened_at_95_recall": 0.5018587360594795,
+          "recall_at_005": 0.25,
+          "recall_at_010": 0.5,
+          "recall_at_020": 0.75,
+          "wss_at_95": 0.44814126394052045
+        },
+        "model_fits": 27,
+        "order_sha256": "dbb9d9e312fae76f5f3533b2365fcf0a9225d6f22e46b93f220f4877124b7e32"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "183f759d702377f615df5adb87ee165b93ef1bfb27278b03b7d43f08f7c5ef61",
+        "text_list_sha256": "8c6a81fad001d703cc23cb427cbb64919529d4b0eaef27b68345957743464533"
+      }
+    },
+    "Hallux_valgus_prognostic": {
+      "R0_L0": {
+        "features": 15185,
+        "metrics": {
+          "cre20": 0.5418526785714286,
+          "fraction_screened_at_95_recall": 0.31875,
+          "recall_at_005": 0.42857142857142855,
+          "recall_at_010": 0.5714285714285714,
+          "recall_at_020": 0.9285714285714286,
+          "wss_at_95": 0.63125
+        },
+        "model_fits": 64,
+        "order_sha256": "2ca59a55ca0c6f8a79af15411f9e89f3409636cf7025f657eb29b14fbf668835"
+      },
+      "R0_L1": {
+        "features": 15185,
+        "metrics": {
+          "cre20": 0.5970982142857142,
+          "fraction_screened_at_95_recall": 0.225,
+          "recall_at_005": 0.5,
+          "recall_at_010": 0.7142857142857143,
+          "recall_at_020": 0.9285714285714286,
+          "wss_at_95": 0.725
+        },
+        "model_fits": 64,
+        "order_sha256": "f5d7cc5b3c5ddda1af2ee8e449b23b46796f0b02becd9c4c86a2ada75f8147a2"
+      },
+      "R1_L0": {
+        "features": 50733,
+        "metrics": {
+          "cre20": 0.5,
+          "fraction_screened_at_95_recall": 0.325,
+          "recall_at_005": 0.35714285714285715,
+          "recall_at_010": 0.6428571428571429,
+          "recall_at_020": 0.7142857142857143,
+          "wss_at_95": 0.625
+        },
+        "model_fits": 64,
+        "order_sha256": "2361638c75cb21addd728ca54d05641fe6c6084523af39d5cadb55f5974be804"
+      },
+      "R1_L1": {
+        "features": 50733,
+        "metrics": {
+          "cre20": 0.5474330357142858,
+          "fraction_screened_at_95_recall": 0.2296875,
+          "recall_at_005": 0.42857142857142855,
+          "recall_at_010": 0.6428571428571429,
+          "recall_at_020": 0.9285714285714286,
+          "wss_at_95": 0.7203124999999999
+        },
+        "model_fits": 64,
+        "order_sha256": "8404f11586a28ff606145dee395150c363e9415bccabdbc9d66ae5754d4b3a92"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "88a38278097f9532eaad29515d0f1633a3bdc375b9014c9d0e159a8fbb6693c8",
+        "text_list_sha256": "db6e1ea29e3dbe8282bd3bc28793f985b05d0b7695f157b847a5971ea71c458e"
+      }
+    },
+    "Head_and_neck_cancer_bone": {
+      "R0_L0": {
+        "features": 8661,
+        "metrics": {
+          "cre20": 0.3929738562091504,
+          "fraction_screened_at_95_recall": 0.3104575163398693,
+          "recall_at_005": 0.25,
+          "recall_at_010": 0.4,
+          "recall_at_020": 0.75,
+          "wss_at_95": 0.6395424836601307
+        },
+        "model_fits": 31,
+        "order_sha256": "ec5d330feb453183bb487c88386aade88602c428a492dce288cbf4003c0e2864"
+      },
+      "R0_L1": {
+        "features": 8661,
+        "metrics": {
+          "cre20": 0.5831699346405228,
+          "fraction_screened_at_95_recall": 0.19934640522875818,
+          "recall_at_005": 0.35,
+          "recall_at_010": 0.75,
+          "recall_at_020": 0.95,
+          "wss_at_95": 0.7506535947712418
+        },
+        "model_fits": 31,
+        "order_sha256": "b455183893cabb81444bee236a15933808d485d353a085bec74da7ae9786eefc"
+      },
+      "R1_L0": {
+        "features": 33831,
+        "metrics": {
+          "cre20": 0.4148692810457516,
+          "fraction_screened_at_95_recall": 0.3790849673202614,
+          "recall_at_005": 0.35,
+          "recall_at_010": 0.4,
+          "recall_at_020": 0.7,
+          "wss_at_95": 0.5709150326797385
+        },
+        "model_fits": 31,
+        "order_sha256": "25a8c54e4c04647e835646609e9c4d310b9f30bf6084718bf7ad7e564a6b4a01"
+      },
+      "R1_L1": {
+        "features": 33831,
+        "metrics": {
+          "cre20": 0.5820261437908496,
+          "fraction_screened_at_95_recall": 0.20915032679738563,
+          "recall_at_005": 0.35,
+          "recall_at_010": 0.75,
+          "recall_at_020": 0.85,
+          "wss_at_95": 0.7408496732026143
+        },
+        "model_fits": 31,
+        "order_sha256": "f5038c0cf6883edcd5703196f223065ec840448e7beb961257aa59a4d63ad8a9"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "5105615b3aa34c7fda39e8779f9b4b1db1bab240a52cb59158793d1112b7cc59",
+        "text_list_sha256": "23ae85223f2f3204849ceb4df54effc65910bdd376a475cac10da4da04b16867"
+      }
+    },
+    "Head_and_neck_cancer_imaging": {
+      "R0_L0": {
+        "features": 2139,
+        "metrics": {
+          "cre20": 0.36538461538461536,
+          "fraction_screened_at_95_recall": 0.36538461538461536,
+          "recall_at_005": 0.25,
+          "recall_at_010": 0.375,
+          "recall_at_020": 0.75,
+          "wss_at_95": 0.5846153846153845
+        },
+        "model_fits": 5,
+        "order_sha256": "9683ee7776e6a046ffe077c360f6aaf5d6f8305b13aaf11a5c5f7cb5cdc2a953"
+      },
+      "R0_L1": {
+        "features": 2139,
+        "metrics": {
+          "cre20": 0.33653846153846156,
+          "fraction_screened_at_95_recall": 0.28846153846153844,
+          "recall_at_005": 0.25,
+          "recall_at_010": 0.375,
+          "recall_at_020": 0.75,
+          "wss_at_95": 0.6615384615384615
+        },
+        "model_fits": 5,
+        "order_sha256": "4a27c4658f7fcdb7580aa4ea6dd981a5b683610cef9d15dfa1836ea4609464f4"
+      },
+      "R1_L0": {
+        "features": 11017,
+        "metrics": {
+          "cre20": 0.3774038461538461,
+          "fraction_screened_at_95_recall": 0.36538461538461536,
+          "recall_at_005": 0.25,
+          "recall_at_010": 0.5,
+          "recall_at_020": 0.75,
+          "wss_at_95": 0.5846153846153845
+        },
+        "model_fits": 5,
+        "order_sha256": "517b55c636dbb4c1ad6cbda97cc7f7f3fcb15c33f16503f4f3a57174e7f9e84e"
+      },
+      "R1_L1": {
+        "features": 11017,
+        "metrics": {
+          "cre20": 0.36538461538461536,
+          "fraction_screened_at_95_recall": 0.25,
+          "recall_at_005": 0.25,
+          "recall_at_010": 0.5,
+          "recall_at_020": 0.75,
+          "wss_at_95": 0.7
+        },
+        "model_fits": 5,
+        "order_sha256": "9f07fa727770d30e7c9df214ccf48d98e5db70429175e6b66acb9a502261e353"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "333d766b7ef169b224842815f86722dc939ddabda015214231867783e4bf000d",
+        "text_list_sha256": "581d15373baed4db820aa007c1860f9937dacd9573f3b01b4c09331b5ce999a7"
+      }
+    },
+    "Obstetric_emergency_training": {
+      "R0_L0": {
+        "features": 5207,
+        "metrics": {
+          "cre20": 0.19386503067484664,
+          "fraction_screened_at_95_recall": 0.7055214723926381,
+          "recall_at_005": 0.2,
+          "recall_at_010": 0.2,
+          "recall_at_020": 0.2,
+          "wss_at_95": 0.24447852760736188
+        },
+        "model_fits": 17,
+        "order_sha256": "7a5c7e702fb3a92106eae7bee4ca7e5b86ff93cc8089b2253cd80b847ba4ada7"
+      },
+      "R0_L1": {
+        "features": 5207,
+        "metrics": {
+          "cre20": 0.19386503067484664,
+          "fraction_screened_at_95_recall": 0.4294478527607362,
+          "recall_at_005": 0.2,
+          "recall_at_010": 0.2,
+          "recall_at_020": 0.2,
+          "wss_at_95": 0.5205521472392638
+        },
+        "model_fits": 17,
+        "order_sha256": "4d8cfe8aee7bfe09c29e6854fa39f731d6177be65911019909cd8de61e1604ea"
+      },
+      "R1_L0": {
+        "features": 24265,
+        "metrics": {
+          "cre20": 0.19386503067484664,
+          "fraction_screened_at_95_recall": 0.8282208588957055,
+          "recall_at_005": 0.2,
+          "recall_at_010": 0.2,
+          "recall_at_020": 0.2,
+          "wss_at_95": 0.12177914110429444
+        },
+        "model_fits": 17,
+        "order_sha256": "3c37eb2c5f7bfe5f672ad079c76ccd8886c987d47fe8793508b8d3bb8a7496e3"
+      },
+      "R1_L1": {
+        "features": 24265,
+        "metrics": {
+          "cre20": 0.22822085889570556,
+          "fraction_screened_at_95_recall": 0.39263803680981596,
+          "recall_at_005": 0.2,
+          "recall_at_010": 0.2,
+          "recall_at_020": 0.4,
+          "wss_at_95": 0.557361963190184
+        },
+        "model_fits": 17,
+        "order_sha256": "4ed91f42261356b8e6b3d1c1ef6aa444d957c032fff7d9084a5ece1fe268fc24"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "37498b55fbe6732bb360f9eb91897fe9772a3b06439c8ea2ca891f417ea140c9",
+        "text_list_sha256": "d5c5d84b84f7a33fb42366c54301251f5cb2fd44983e95d4d7d40b1a35a5ed39"
+      }
+    },
+    "Post_intensive_care_treatment": {
+      "R0_L0": {
+        "features": 12801,
+        "metrics": {
+          "cre20": 0.38893554482469034,
+          "fraction_screened_at_95_recall": 0.5311778290993071,
+          "recall_at_005": 0.2727272727272727,
+          "recall_at_010": 0.36363636363636365,
+          "recall_at_020": 0.6818181818181818,
+          "wss_at_95": 0.41882217090069285
+        },
+        "model_fits": 44,
+        "order_sha256": "3f8dfa7da746f7a09ee42c87f1c38efc4081a87b52f10b13a0a7d55e8139bf50"
+      },
+      "R0_L1": {
+        "features": 12801,
+        "metrics": {
+          "cre20": 0.47459584295612,
+          "fraction_screened_at_95_recall": 0.3187066974595843,
+          "recall_at_005": 0.3181818181818182,
+          "recall_at_010": 0.5,
+          "recall_at_020": 0.8181818181818182,
+          "wss_at_95": 0.6312933025404157
+        },
+        "model_fits": 44,
+        "order_sha256": "0c5fa978315d9de711cc1756b262073601806860b9b4f7ffb8d838a83804e8af"
+      },
+      "R1_L0": {
+        "features": 46820,
+        "metrics": {
+          "cre20": 0.3759185387360907,
+          "fraction_screened_at_95_recall": 0.5635103926096998,
+          "recall_at_005": 0.3181818181818182,
+          "recall_at_010": 0.36363636363636365,
+          "recall_at_020": 0.5454545454545454,
+          "wss_at_95": 0.38648960739030014
+        },
+        "model_fits": 44,
+        "order_sha256": "4d180b73f103399a48c2d4c9578f6a8b43b4a68e4d03e0b1a03b2b9ecaacc54a"
+      },
+      "R1_L1": {
+        "features": 46820,
+        "metrics": {
+          "cre20": 0.4606340541675415,
+          "fraction_screened_at_95_recall": 0.302540415704388,
+          "recall_at_005": 0.3181818181818182,
+          "recall_at_010": 0.5,
+          "recall_at_020": 0.7272727272727273,
+          "wss_at_95": 0.6474595842956119
+        },
+        "model_fits": 44,
+        "order_sha256": "5239ebbffee0ed8654af99aab7c2cab61704f8a3f41cb516321b6b414992f91e"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "40b6bb8b8ce0a97e91f22b23cc3fa79e13914275779db27e6f5420cbc924a6cb",
+        "text_list_sha256": "384591cc0fa429aa9fbce47233e1e18857418141232c431e48dccaa9d2c53ab6"
+      }
+    },
+    "Pregnancy_medication": {
+      "R0_L0": {
+        "features": 10774,
+        "metrics": {
+          "cre20": 0.26661462399167324,
+          "fraction_screened_at_95_recall": 0.3442622950819672,
+          "recall_at_005": 0.15555555555555556,
+          "recall_at_010": 0.2,
+          "recall_at_020": 0.6666666666666666,
+          "wss_at_95": 0.6057377049180328
+        },
+        "model_fits": 43,
+        "order_sha256": "035d988deedf953becfec7f88ab64d0e60b775aab2bf67fa41ed44abed7b07d8"
+      },
+      "R0_L1": {
+        "features": 10774,
+        "metrics": {
+          "cre20": 0.4018214936247723,
+          "fraction_screened_at_95_recall": 0.24824355971896955,
+          "recall_at_005": 0.2222222222222222,
+          "recall_at_010": 0.3111111111111111,
+          "recall_at_020": 0.8444444444444444,
+          "wss_at_95": 0.7017564402810303
+        },
+        "model_fits": 43,
+        "order_sha256": "769a4fc91cac0fd7ce01f3feb5041fe4ecea5ec4b4ad0f0f391fb07c5147a8b4"
+      },
+      "R1_L0": {
+        "features": 40280,
+        "metrics": {
+          "cre20": 0.3303669008587041,
+          "fraction_screened_at_95_recall": 0.3442622950819672,
+          "recall_at_005": 0.17777777777777778,
+          "recall_at_010": 0.26666666666666666,
+          "recall_at_020": 0.7777777777777778,
+          "wss_at_95": 0.6057377049180328
+        },
+        "model_fits": 43,
+        "order_sha256": "a0c54cffd8875c1a392e931fa57ec82dd608c9f3b6283a08a3159a4fdc0857bf"
+      },
+      "R1_L1": {
+        "features": 40280,
+        "metrics": {
+          "cre20": 0.40301847514962275,
+          "fraction_screened_at_95_recall": 0.2857142857142857,
+          "recall_at_005": 0.2,
+          "recall_at_010": 0.3111111111111111,
+          "recall_at_020": 0.8444444444444444,
+          "wss_at_95": 0.6642857142857143
+        },
+        "model_fits": 43,
+        "order_sha256": "05c7bc2a1f208fb32773e8d184e04d88204a76b02618441038e35334fec0e3b2"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "573f7c7404422fac80d1ef081b163fe1ba46eb10bd13bb1167f20d59f991367e",
+        "text_list_sha256": "4118dd28adba30311969912431496dd16ab13de792ce95e473694cf3a1f0e299"
+      }
+    },
+    "Shoulder_replacement_diagnostic": {
+      "R0_L0": {
+        "features": 9459,
+        "metrics": {
+          "cre20": 0.9850746268656716,
+          "fraction_screened_at_95_recall": 0.0029850746268656717,
+          "recall_at_005": 1.0,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.9470149253731343
+        },
+        "model_fits": 34,
+        "order_sha256": "015fe139354db6fbf7f69bea2fc25cb226e372793ab4847d6e39e9622d1bc0e9"
+      },
+      "R0_L1": {
+        "features": 9459,
+        "metrics": {
+          "cre20": 0.9850746268656716,
+          "fraction_screened_at_95_recall": 0.0029850746268656717,
+          "recall_at_005": 1.0,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.9470149253731343
+        },
+        "model_fits": 34,
+        "order_sha256": "0ffb280234f331c7f3a28a93312112ecbaa7bf3e307bfcd059bc34ab9b294b63"
+      },
+      "R1_L0": {
+        "features": 38250,
+        "metrics": {
+          "cre20": 0.9850746268656716,
+          "fraction_screened_at_95_recall": 0.0029850746268656717,
+          "recall_at_005": 1.0,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.9470149253731343
+        },
+        "model_fits": 34,
+        "order_sha256": "32156a6d4051d296caab6c09709f590a757e2452ee7d496cb6e56ea9691a4367"
+      },
+      "R1_L1": {
+        "features": 38250,
+        "metrics": {
+          "cre20": 0.9850746268656716,
+          "fraction_screened_at_95_recall": 0.0029850746268656717,
+          "recall_at_005": 1.0,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.9470149253731343
+        },
+        "model_fits": 34,
+        "order_sha256": "30252657ccd57dcc7b47e9b04cfeee618e788c5ebc1eda19e10f17c48162e693"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "ff296f704e0e8f56065feab991318b355510909093454d1855c08f78863318bc",
+        "text_list_sha256": "98945b08f67197be8212d6d1fe517f9e34c8a77d093cae014aacde5342e1b983"
+      }
+    },
+    "Shoulder_replacement_surgery": {
+      "R0_L0": {
+        "features": 10587,
+        "metrics": {
+          "cre20": 0.7794117647058824,
+          "fraction_screened_at_95_recall": 0.10741687979539642,
+          "recall_at_005": 0.5,
+          "recall_at_010": 0.75,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8425831202046036
+        },
+        "model_fits": 39,
+        "order_sha256": "24eaf3579909da4f45851c025823324aaf8a0cf33ea8fcee9f061bfff78de79c"
+      },
+      "R0_L1": {
+        "features": 10587,
+        "metrics": {
+          "cre20": 0.8561381074168797,
+          "fraction_screened_at_95_recall": 0.06905370843989769,
+          "recall_at_005": 0.75,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8809462915601023
+        },
+        "model_fits": 39,
+        "order_sha256": "840a1706536218d2447329c6f5eb9748f0438293b60b541fe6d60b7789625f39"
+      },
+      "R1_L0": {
+        "features": 36885,
+        "metrics": {
+          "cre20": 0.8497442455242967,
+          "fraction_screened_at_95_recall": 0.061381074168797956,
+          "recall_at_005": 0.75,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8886189258312021
+        },
+        "model_fits": 39,
+        "order_sha256": "091d2f8f74ce97335d2330e2931f719dd36c0186d30bb6fab119b62c55f985d5"
+      },
+      "R1_L1": {
+        "features": 36885,
+        "metrics": {
+          "cre20": 0.862531969309463,
+          "fraction_screened_at_95_recall": 0.0639386189258312,
+          "recall_at_005": 0.75,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8860613810741688
+        },
+        "model_fits": 39,
+        "order_sha256": "724af56e3e79d2cbe4cbb04b80018cadbbb3c8ba68da66f64ffe284006c3e8c9"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "98724e06fd8115b130d2440c5125f5dcbfd3f519f8996f603ff5e2e60bed4f0c",
+        "text_list_sha256": "2b82e479a1ddb1033acdeadbf8099c4ccce8eaff025f1ee2312ae090215ce755"
+      }
+    },
+    "Shoulderdystocia_positioning": {
+      "R0_L0": {
+        "features": 5742,
+        "metrics": {
+          "cre20": 0.6685082872928176,
+          "fraction_screened_at_95_recall": 0.17679558011049723,
+          "recall_at_005": 0.6666666666666666,
+          "recall_at_010": 0.6666666666666666,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.7732044198895027
+        },
+        "model_fits": 18,
+        "order_sha256": "324e6b2071ae314fa04ff0fb65613c54740d056b3c3a6fe87b1e0ab045a00661"
+      },
+      "R0_L1": {
+        "features": 5742,
+        "metrics": {
+          "cre20": 0.7882136279926334,
+          "fraction_screened_at_95_recall": 0.10497237569060773,
+          "recall_at_005": 0.6666666666666666,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8450276243093923
+        },
+        "model_fits": 18,
+        "order_sha256": "e03cb8d846e0db4a0f74adef20e1365d4827994d6d2c0c66f736d7aa7ab5c373"
+      },
+      "R1_L0": {
+        "features": 26091,
+        "metrics": {
+          "cre20": 0.7697974217311233,
+          "fraction_screened_at_95_recall": 0.11602209944751381,
+          "recall_at_005": 0.6666666666666666,
+          "recall_at_010": 0.6666666666666666,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8339779005524861
+        },
+        "model_fits": 18,
+        "order_sha256": "005e181154c83b1a23d033c3225ed29f6432dce07e5c43a39a98414d79308fce"
+      },
+      "R1_L1": {
+        "features": 26091,
+        "metrics": {
+          "cre20": 0.7882136279926334,
+          "fraction_screened_at_95_recall": 0.10497237569060773,
+          "recall_at_005": 0.6666666666666666,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8450276243093923
+        },
+        "model_fits": 18,
+        "order_sha256": "0257c796bbbc9eb4932d3b1e4898f3319a37a49db727c82ae174d06f1ef28bb8"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "64f6ec69585a834363aac09e9ec64018433321a89d33103b8cc233c83f8d209c",
+        "text_list_sha256": "ec0fc450ad0018720d27646f897aa59a4435ed92285d587c2d9d97142a71f6db"
+      }
+    },
+    "Shoulderdystocia_recurrence": {
+      "R0_L0": {
+        "features": 8220,
+        "metrics": {
+          "cre20": 0.6277777777777778,
+          "fraction_screened_at_95_recall": 0.19333333333333333,
+          "recall_at_005": 0.6666666666666666,
+          "recall_at_010": 0.6666666666666666,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.7566666666666666
+        },
+        "model_fits": 30,
+        "order_sha256": "84a82eaae233afcb99387a24e04edd96142cc855fdabec9ebeb68188c8bd4484"
+      },
+      "R0_L1": {
+        "features": 8220,
+        "metrics": {
+          "cre20": 0.922222222222222,
+          "fraction_screened_at_95_recall": 0.02666666666666667,
+          "recall_at_005": 1.0,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.9233333333333333
+        },
+        "model_fits": 30,
+        "order_sha256": "e4821009423961e76b01b0a2f1f549515ae7c2185e801ef7868d8a3f8f5d3393"
+      },
+      "R1_L0": {
+        "features": 31879,
+        "metrics": {
+          "cre20": 0.6222222222222221,
+          "fraction_screened_at_95_recall": 0.21,
+          "recall_at_005": 0.6666666666666666,
+          "recall_at_010": 0.6666666666666666,
+          "recall_at_020": 0.6666666666666666,
+          "wss_at_95": 0.74
+        },
+        "model_fits": 30,
+        "order_sha256": "0380b46b4cea550c370012aa29b1700b68d2923d98574634f30a5c3a5b386a03"
+      },
+      "R1_L1": {
+        "features": 31879,
+        "metrics": {
+          "cre20": 0.9277777777777776,
+          "fraction_screened_at_95_recall": 0.02666666666666667,
+          "recall_at_005": 1.0,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.9233333333333333
+        },
+        "model_fits": 30,
+        "order_sha256": "d5cd6a81235b1a5cee795142bd9331baa20dab5b020432d4224309acc3c8196b"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "4a08c274ab89df194de32c9925b6fc4abf084160c7ef3a8fa1cc569672b9dd55",
+        "text_list_sha256": "0444dc736afd152d319adacb58aa58af2a98250a1773c997641a9a08dce846fa"
+      }
+    },
+    "Total_knee_replacement": {
+      "R0_L0": {
+        "features": 13164,
+        "metrics": {
+          "cre20": 0.6223903966597077,
+          "fraction_screened_at_95_recall": 0.7828810020876826,
+          "recall_at_005": 0.4375,
+          "recall_at_010": 0.625,
+          "recall_at_020": 0.9375,
+          "wss_at_95": 0.16711899791231732
+        },
+        "model_fits": 48,
+        "order_sha256": "97ed5684ec6b0379d2c27c2a28bbe1e6f1e15f3d48e30d749725e476ad278268"
+      },
+      "R0_L1": {
+        "features": 13164,
+        "metrics": {
+          "cre20": 0.7620041753653445,
+          "fraction_screened_at_95_recall": 0.6200417536534447,
+          "recall_at_005": 0.6875,
+          "recall_at_010": 0.875,
+          "recall_at_020": 0.9375,
+          "wss_at_95": 0.32995824634655524
+        },
+        "model_fits": 48,
+        "order_sha256": "d75b2221ca869fa8716b933da8f43496db14d5743d8e298aa7c475e524b1673c"
+      },
+      "R1_L0": {
+        "features": 48198,
+        "metrics": {
+          "cre20": 0.6264352818371608,
+          "fraction_screened_at_95_recall": 0.7098121085594989,
+          "recall_at_005": 0.5625,
+          "recall_at_010": 0.625,
+          "recall_at_020": 0.875,
+          "wss_at_95": 0.240187891440501
+        },
+        "model_fits": 48,
+        "order_sha256": "7779995262cc730d769d657b6559bf2676e3ba7601fb2c2b57149528303df2a2"
+      },
+      "R1_L1": {
+        "features": 48198,
+        "metrics": {
+          "cre20": 0.7685281837160752,
+          "fraction_screened_at_95_recall": 0.5970772442588727,
+          "recall_at_005": 0.6875,
+          "recall_at_010": 0.9375,
+          "recall_at_020": 0.9375,
+          "wss_at_95": 0.3529227557411273
+        },
+        "model_fits": 48,
+        "order_sha256": "3bd085550ca68cd9dddaea46ea5dfa246bea732fc868ec6de43f0f3bc29219c0"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "fc88403df88b34bdac99877a9cf0e465a355a87cbaccb100c17d35a8c9a462d4",
+        "text_list_sha256": "914f28a743df4c3a061c7bfd1fdb310f91fbf97a32795aa3e7b6c0754da04bde"
+      }
+    },
+    "Vascular_access": {
+      "R0_L0": {
+        "features": 20080,
+        "metrics": {
+          "cre20": 0.43238341968911914,
+          "fraction_screened_at_95_recall": 0.23704663212435234,
+          "recall_at_005": 0.1,
+          "recall_at_010": 0.2,
+          "recall_at_020": 0.9,
+          "wss_at_95": 0.7129533678756477
+        },
+        "model_fits": 77,
+        "order_sha256": "2bcb929e6da7d71665c655993a7329c15012f947629136cdfdf283940938a2dc"
+      },
+      "R0_L1": {
+        "features": 20080,
+        "metrics": {
+          "cre20": 0.753238341968912,
+          "fraction_screened_at_95_recall": 0.08808290155440414,
+          "recall_at_005": 0.7,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8619170984455958
+        },
+        "model_fits": 77,
+        "order_sha256": "57c5ed59ecc10408c61ecbaddb10a8f1c4fc0120a2a3db2c9dbade016da820af"
+      },
+      "R1_L0": {
+        "features": 75048,
+        "metrics": {
+          "cre20": 0.5386010362694301,
+          "fraction_screened_at_95_recall": 0.21502590673575128,
+          "recall_at_005": 0.1,
+          "recall_at_010": 0.8,
+          "recall_at_020": 0.9,
+          "wss_at_95": 0.7349740932642487
+        },
+        "model_fits": 77,
+        "order_sha256": "277ac10fa8947bede0535294430ee9f874285bcec0b568037df119404d33a29f"
+      },
+      "R1_L1": {
+        "features": 75048,
+        "metrics": {
+          "cre20": 0.8115284974093265,
+          "fraction_screened_at_95_recall": 0.06606217616580311,
+          "recall_at_005": 0.7,
+          "recall_at_010": 1.0,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8839378238341968
+        },
+        "model_fits": 77,
+        "order_sha256": "c53b2decf86c0c91525588a75f13e0b0bb0a6f274381451a33bb1ae569018429"
+      },
+      "adapter_receipt": {
+        "batch_size": 10,
+        "initial_seed_record_identities_sha256": "6295069e549f9933eca5a88b68f2f3efe6d0459b129daa389aa45c0fbd334778",
+        "text_list_sha256": "45f4c5119913c49e4399262a8df99fef08dad79a2f36c35372691c0e61240495"
+      }
+    }
+  },
+  "binding_receipt": {
+    "fixed": {
+      "pinned_active_core_v3": {
+        "actual": "348b7aa1fe708d480da178bdfd4736ec08df86a2d177337b94af205eefbe649a",
+        "expected": "348b7aa1fe708d480da178bdfd4736ec08df86a2d177337b94af205eefbe649a",
+        "passed": true
+      },
+      "pinned_factorial_core_v4": {
+        "actual": "ed18d84549ccf9ec65895539dfafb0dfef897d97f34923dc8f5d59ebe332a003",
+        "expected": "ed18d84549ccf9ec65895539dfafb0dfef897d97f34923dc8f5d59ebe332a003",
+        "passed": true
+      },
+      "protocol_v7": {
+        "actual": "0e7e9979dd4f4cb9869d6dea2ad613928e8495de2e5bd384e01a6fc070327b31",
+        "expected": "0e7e9979dd4f4cb9869d6dea2ad613928e8495de2e5bd384e01a6fc070327b31",
+        "passed": true
+      },
+      "runner_v7": {
+        "actual": "e888f4e4d57cf46d92241dabd61a7e2c3459a8c4d7465c522a167050970ae79a",
+        "expected": "e888f4e4d57cf46d92241dabd61a7e2c3459a8c4d7465c522a167050970ae79a",
+        "passed": true
+      },
+      "v6_overlap": {
+        "actual": "bdf20de65cd28ffc1d984e755250604b0ce0e1550cad27da52a0ab9890164254",
+        "expected": "bdf20de65cd28ffc1d984e755250604b0ce0e1550cad27da52a0ab9890164254",
+        "passed": true
+      },
+      "v6_population": {
+        "actual": "3bbd1c56fa770836bc674ab56d890151f8975d14709aa2dd3586ccb2d7f4af87",
+        "expected": "3bbd1c56fa770836bc674ab56d890151f8975d14709aa2dd3586ccb2d7f4af87",
+        "passed": true
+      },
+      "v6_protocol": {
+        "actual": "55a5363e6f9360c4722979d0cb11751575f050ce2eea2147a7883d679ea09633",
+        "expected": "55a5363e6f9360c4722979d0cb11751575f050ce2eea2147a7883d679ea09633",
+        "passed": true
+      },
+      "v6_rights": {
+        "actual": "0c7211591ba5799721d5b8b00e11564b221a3e07526467df350adef2a29ddbeb",
+        "expected": "0c7211591ba5799721d5b8b00e11564b221a3e07526467df350adef2a29ddbeb",
+        "passed": true
+      }
+    },
+    "passed": true,
+    "staged_sources": {
+      "Distal_radius_fractures_approach.csv": {
+        "bytes_actual": 406332,
+        "bytes_expected": 406332,
+        "passed": true,
+        "sha256_actual": "4cd8c624aff1a9b553f2f9ed28fbaf15118aff3603602bae5c09f0bfd8b4a6bf",
+        "sha256_expected": "4cd8c624aff1a9b553f2f9ed28fbaf15118aff3603602bae5c09f0bfd8b4a6bf"
+      },
+      "Distal_radius_fractures_closed_reduction.csv": {
+        "bytes_actual": 577392,
+        "bytes_expected": 577392,
+        "passed": true,
+        "sha256_actual": "2f963ea6a212e73404df97d354cf82905ec1d55528187142d08a121c6e041995",
+        "sha256_expected": "2f963ea6a212e73404df97d354cf82905ec1d55528187142d08a121c6e041995"
+      },
+      "Hallux_valgus_prognostic.csv": {
+        "bytes_actual": 1169001,
+        "bytes_expected": 1169001,
+        "passed": true,
+        "sha256_actual": "188ff7103e5ab86aadc9a80b28dfc1108bd88e52d18723266dfe0013695dc617",
+        "sha256_expected": "188ff7103e5ab86aadc9a80b28dfc1108bd88e52d18723266dfe0013695dc617"
+      },
+      "Head_and_neck_cancer_bone.csv": {
+        "bytes_actual": 564229,
+        "bytes_expected": 564229,
+        "passed": true,
+        "sha256_actual": "ee74cbf990f8a3f1407057cdf950c19a4b5f2d0b9390b60c2d261f4be7293ff4",
+        "sha256_expected": "ee74cbf990f8a3f1407057cdf950c19a4b5f2d0b9390b60c2d261f4be7293ff4"
+      },
+      "Head_and_neck_cancer_imaging.csv": {
+        "bytes_actual": 111991,
+        "bytes_expected": 111991,
+        "passed": true,
+        "sha256_actual": "c01e99b6f57ae97f9e449d301a6503c055cd45fa20454fa2b5a6e47ac8725ef0",
+        "sha256_expected": "c01e99b6f57ae97f9e449d301a6503c055cd45fa20454fa2b5a6e47ac8725ef0"
+      },
+      "Obstetric_emergency_training.csv": {
+        "bytes_actual": 371062,
+        "bytes_expected": 371062,
+        "passed": true,
+        "sha256_actual": "4e62a928ab37cf6f7e8d67eebd33532f4ffedbe38f2ddb2a33021cfc3845d54f",
+        "sha256_expected": "4e62a928ab37cf6f7e8d67eebd33532f4ffedbe38f2ddb2a33021cfc3845d54f"
+      },
+      "Post_intensive_care_treatment.csv": {
+        "bytes_actual": 1037179,
+        "bytes_expected": 1037179,
+        "passed": true,
+        "sha256_actual": "21c7028df7bfd7d852a94461740b2c6cdce1879d28d1f75d40dd90ad4feb5f71",
+        "sha256_expected": "21c7028df7bfd7d852a94461740b2c6cdce1879d28d1f75d40dd90ad4feb5f71"
+      },
+      "Pregnancy_medication.csv": {
+        "bytes_actual": 764346,
+        "bytes_expected": 764346,
+        "passed": true,
+        "sha256_actual": "11cf5bbc976463daab5b5e754d18fd91c6a0f08716bbfa9ab7c25b93c77284bf",
+        "sha256_expected": "11cf5bbc976463daab5b5e754d18fd91c6a0f08716bbfa9ab7c25b93c77284bf"
+      },
+      "Shoulder_replacement_diagnostic.csv": {
+        "bytes_actual": 604535,
+        "bytes_expected": 604535,
+        "passed": true,
+        "sha256_actual": "53b2a7f49c13bdc873a325413cd3a88e27736b95e264e7efe33ae81605bd3bd3",
+        "sha256_expected": "53b2a7f49c13bdc873a325413cd3a88e27736b95e264e7efe33ae81605bd3bd3"
+      },
+      "Shoulder_replacement_surgery.csv": {
+        "bytes_actual": 732926,
+        "bytes_expected": 732926,
+        "passed": true,
+        "sha256_actual": "0ad6b4aa54e6420e025426ef5521cb9fdac9fa22ce23f8df81bbbed95c585fd3",
+        "sha256_expected": "0ad6b4aa54e6420e025426ef5521cb9fdac9fa22ce23f8df81bbbed95c585fd3"
+      },
+      "Shoulderdystocia_positioning.csv": {
+        "bytes_actual": 426234,
+        "bytes_expected": 426234,
+        "passed": true,
+        "sha256_actual": "06fbd3eccee44c0df075f46d48a226bec057deaddb1b9ae15547ad25ef544d14",
+        "sha256_expected": "06fbd3eccee44c0df075f46d48a226bec057deaddb1b9ae15547ad25ef544d14"
+      },
+      "Shoulderdystocia_recurrence.csv": {
+        "bytes_actual": 607229,
+        "bytes_expected": 607229,
+        "passed": true,
+        "sha256_actual": "c8adb718113b6f34004b048fc49e49d2ddd0d859a7075f3cead0e166aadf0019",
+        "sha256_expected": "c8adb718113b6f34004b048fc49e49d2ddd0d859a7075f3cead0e166aadf0019"
+      },
+      "Total_knee_replacement.csv": {
+        "bytes_actual": 970220,
+        "bytes_expected": 970220,
+        "passed": true,
+        "sha256_actual": "cbbfc39a45bf502d4bb89a9542047914fea79c8aecbbcb4ba062104fb48ae60a",
+        "sha256_expected": "cbbfc39a45bf502d4bb89a9542047914fea79c8aecbbcb4ba062104fb48ae60a"
+      },
+      "Vascular_access.csv": {
+        "bytes_actual": 1342225,
+        "bytes_expected": 1342225,
+        "passed": true,
+        "sha256_actual": "730b2300b970c95bc56b1d29ff934b811b725c50497880f5ed91ce260bc2ae05",
+        "sha256_expected": "730b2300b970c95bc56b1d29ff934b811b725c50497880f5ed91ce260bc2ae05"
+      }
+    }
+  },
+  "canonicalization_receipt": {
+    "Distal_radius_fractures_approach": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 194,
+      "within_review_duplicate_content_excess": 1,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Distal_radius_fractures_closed_reduction": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 277,
+      "within_review_duplicate_content_excess": 0,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Hallux_valgus_prognostic": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 640,
+      "within_review_duplicate_content_excess": 0,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Head_and_neck_cancer_bone": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 1,
+      "provisional_unique_rows": 310,
+      "within_review_duplicate_content_excess": 0,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Head_and_neck_cancer_imaging": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 56,
+      "within_review_duplicate_content_excess": 0,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Obstetric_emergency_training": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 188,
+      "within_review_duplicate_content_excess": 0,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Post_intensive_care_treatment": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 433,
+      "within_review_duplicate_content_excess": 2,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Pregnancy_medication": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 427,
+      "within_review_duplicate_content_excess": 1,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Shoulder_replacement_diagnostic": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 342,
+      "within_review_duplicate_content_excess": 0,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Shoulder_replacement_surgery": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 397,
+      "within_review_duplicate_content_excess": 0,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Shoulderdystocia_positioning": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 218,
+      "within_review_duplicate_content_excess": 0,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Shoulderdystocia_recurrence": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 334,
+      "within_review_duplicate_content_excess": 1,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Total_knee_replacement": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 479,
+      "within_review_duplicate_content_excess": 1,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    },
+    "Vascular_access": {
+      "duplicate_content_label_conflicts": 0,
+      "empty_text_rows": 0,
+      "provisional_unique_rows": 772,
+      "within_review_duplicate_content_excess": 0,
+      "within_review_duplicate_pmid_excess_after_content_dedup": 0
+    }
+  },
+  "class_counts": {
+    "Distal_radius_fractures_approach": {
+      "negative": 180,
+      "positive": 6
+    },
+    "Distal_radius_fractures_closed_reduction": {
+      "negative": 265,
+      "positive": 4
+    },
+    "Hallux_valgus_prognostic": {
+      "negative": 626,
+      "positive": 14
+    },
+    "Head_and_neck_cancer_bone": {
+      "negative": 286,
+      "positive": 20
+    },
+    "Head_and_neck_cancer_imaging": {
+      "negative": 44,
+      "positive": 8
+    },
+    "Obstetric_emergency_training": {
+      "negative": 158,
+      "positive": 5
+    },
+    "Post_intensive_care_treatment": {
+      "negative": 411,
+      "positive": 22
+    },
+    "Pregnancy_medication": {
+      "negative": 382,
+      "positive": 45
+    },
+    "Shoulder_replacement_diagnostic": {
+      "negative": 334,
+      "positive": 1
+    },
+    "Shoulder_replacement_surgery": {
+      "negative": 387,
+      "positive": 4
+    },
+    "Shoulderdystocia_positioning": {
+      "negative": 178,
+      "positive": 3
+    },
+    "Shoulderdystocia_recurrence": {
+      "negative": 297,
+      "positive": 3
+    },
+    "Total_knee_replacement": {
+      "negative": 463,
+      "positive": 16
+    },
+    "Vascular_access": {
+      "negative": 762,
+      "positive": 10
+    }
+  },
+  "confirmatory_terminal_available": false,
+  "custody": {
+    "confirmatory_claim_permitted": false,
+    "independent_custody": false,
+    "mode": "HASH_FROZEN_TRANSPARENT_PUBLIC_DEVELOPMENT_EXECUTION"
+  },
+  "effects_by_review": {
+    "Distal_radius_fractures_approach": {
+      "interaction": {
+        "cre20": -0.021505376344086002,
+        "fraction_screened_at_95_recall": -0.17204301075268813,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.17204301075268813
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.007168458781362019,
+        "fraction_screened_at_95_recall": -0.12365591397849462,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.16666666666666669,
+        "wss_at_95": 0.12365591397849468
+      },
+      "representation_main_effect": {
+        "cre20": -0.006272401433691732,
+        "fraction_screened_at_95_recall": 0.0,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 5.551115123125783e-17
+      }
+    },
+    "Distal_radius_fractures_closed_reduction": {
+      "interaction": {
+        "cre20": -0.0185873605947956,
+        "fraction_screened_at_95_recall": -0.0780669144981413,
+        "recall_at_005": -0.25,
+        "recall_at_010": 0.25,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.0780669144981413
+      },
+      "learner_balancer_main_effect": {
+        "cre20": -0.09200743494423791,
+        "fraction_screened_at_95_recall": -0.03159851301115241,
+        "recall_at_005": -0.125,
+        "recall_at_010": -0.125,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.03159851301115241
+      },
+      "representation_main_effect": {
+        "cre20": 0.055762081784386575,
+        "fraction_screened_at_95_recall": 0.03159851301115241,
+        "recall_at_005": 0.125,
+        "recall_at_010": 0.125,
+        "recall_at_020": 0.0,
+        "wss_at_95": -0.03159851301115241
+      }
+    },
+    "Hallux_valgus_prognostic": {
+      "interaction": {
+        "cre20": -0.007812499999999778,
+        "fraction_screened_at_95_recall": -0.00156250000000005,
+        "recall_at_005": -5.551115123125783e-17,
+        "recall_at_010": -0.1428571428571429,
+        "recall_at_020": 0.2142857142857143,
+        "wss_at_95": 0.0015624999999999112
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.0513392857142857,
+        "fraction_screened_at_95_recall": -0.09453125,
+        "recall_at_005": 0.07142857142857142,
+        "recall_at_010": 0.07142857142857145,
+        "recall_at_020": 0.10714285714285715,
+        "wss_at_95": 0.09453124999999996
+      },
+      "representation_main_effect": {
+        "cre20": -0.04575892857142849,
+        "fraction_screened_at_95_recall": 0.005468750000000008,
+        "recall_at_005": -0.07142857142857142,
+        "recall_at_010": 5.551115123125783e-17,
+        "recall_at_020": -0.10714285714285715,
+        "wss_at_95": -0.005468750000000022
+      }
+    },
+    "Head_and_neck_cancer_bone": {
+      "interaction": {
+        "cre20": -0.023039215686274428,
+        "fraction_screened_at_95_recall": -0.05882352941176469,
+        "recall_at_005": -0.09999999999999998,
+        "recall_at_010": 0.0,
+        "recall_at_020": -0.04999999999999993,
+        "wss_at_95": 0.05882352941176461
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.17867647058823521,
+        "fraction_screened_at_95_recall": -0.14052287581699346,
+        "recall_at_005": 0.04999999999999999,
+        "recall_at_010": 0.35,
+        "recall_at_020": 0.175,
+        "wss_at_95": 0.14052287581699346
+      },
+      "representation_main_effect": {
+        "cre20": 0.010375816993464015,
+        "fraction_screened_at_95_recall": 0.03921568627450979,
+        "recall_at_005": 0.04999999999999999,
+        "recall_at_010": 0.0,
+        "recall_at_020": -0.07500000000000001,
+        "wss_at_95": -0.03921568627450983
+      }
+    },
+    "Head_and_neck_cancer_imaging": {
+      "interaction": {
+        "cre20": 0.016826923076923073,
+        "fraction_screened_at_95_recall": -0.038461538461538436,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.038461538461538436
+      },
+      "learner_balancer_main_effect": {
+        "cre20": -0.020432692307692263,
+        "fraction_screened_at_95_recall": -0.09615384615384615,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.0961538461538462
+      },
+      "representation_main_effect": {
+        "cre20": 0.020432692307692263,
+        "fraction_screened_at_95_recall": -0.019230769230769218,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.125,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.019230769230769218
+      }
+    },
+    "Obstetric_emergency_training": {
+      "interaction": {
+        "cre20": 0.03435582822085892,
+        "fraction_screened_at_95_recall": -0.1595092024539877,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.2,
+        "wss_at_95": 0.1595092024539877
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.01717791411042946,
+        "fraction_screened_at_95_recall": -0.3558282208588957,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.1,
+        "wss_at_95": 0.35582822085889576
+      },
+      "representation_main_effect": {
+        "cre20": 0.01717791411042946,
+        "fraction_screened_at_95_recall": 0.042944785276073594,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.1,
+        "wss_at_95": -0.042944785276073594
+      }
+    },
+    "Post_intensive_care_treatment": {
+      "interaction": {
+        "cre20": -0.0009447826999788855,
+        "fraction_screened_at_95_recall": -0.04849884526558901,
+        "recall_at_005": -0.04545454545454547,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.045454545454545414,
+        "wss_at_95": 0.0484988452655889
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.08518790678144023,
+        "fraction_screened_at_95_recall": -0.23672055427251731,
+        "recall_at_005": 0.022727272727272735,
+        "recall_at_010": 0.13636363636363635,
+        "recall_at_020": 0.15909090909090917,
+        "wss_at_95": 0.23672055427251731
+      },
+      "representation_main_effect": {
+        "cre20": -0.013489397438589068,
+        "fraction_screened_at_95_recall": 0.008083140877598205,
+        "recall_at_005": 0.022727272727272735,
+        "recall_at_010": 0.0,
+        "recall_at_020": -0.11363636363636365,
+        "wss_at_95": -0.00808314087759826
+      }
+    },
+    "Pregnancy_medication": {
+      "interaction": {
+        "cre20": -0.06255529534218046,
+        "fraction_screened_at_95_recall": 0.037470725995316145,
+        "recall_at_005": -0.044444444444444425,
+        "recall_at_010": -0.06666666666666665,
+        "recall_at_020": -0.11111111111111116,
+        "wss_at_95": -0.03747072599531609
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.10392922196200885,
+        "fraction_screened_at_95_recall": -0.07728337236533958,
+        "recall_at_005": 0.04444444444444444,
+        "recall_at_010": 0.07777777777777778,
+        "recall_at_020": 0.12222222222222223,
+        "wss_at_95": 0.0772833723653395
+      },
+      "representation_main_effect": {
+        "cre20": 0.03247462919594066,
+        "fraction_screened_at_95_recall": 0.018735362997658073,
+        "recall_at_005": 1.3877787807814457e-17,
+        "recall_at_010": 0.033333333333333326,
+        "recall_at_020": 0.05555555555555558,
+        "wss_at_95": -0.018735362997658045
+      }
+    },
+    "Shoulder_replacement_diagnostic": {
+      "interaction": {
+        "cre20": 0.0,
+        "fraction_screened_at_95_recall": 0.0,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.0
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.0,
+        "fraction_screened_at_95_recall": 0.0,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.0
+      },
+      "representation_main_effect": {
+        "cre20": 0.0,
+        "fraction_screened_at_95_recall": 0.0,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.0
+      }
+    },
+    "Shoulder_replacement_surgery": {
+      "interaction": {
+        "cre20": -0.06393861892583108,
+        "fraction_screened_at_95_recall": 0.04092071611253198,
+        "recall_at_005": -0.25,
+        "recall_at_010": -0.25,
+        "recall_at_020": 0.0,
+        "wss_at_95": -0.04092071611253201
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.04475703324808178,
+        "fraction_screened_at_95_recall": -0.01790281329923274,
+        "recall_at_005": 0.125,
+        "recall_at_010": 0.125,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.01790281329923271
+      },
+      "representation_main_effect": {
+        "cre20": 0.038363171355498826,
+        "fraction_screened_at_95_recall": -0.025575447570332477,
+        "recall_at_005": 0.125,
+        "recall_at_010": 0.125,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.025575447570332477
+      }
+    },
+    "Shoulderdystocia_positioning": {
+      "interaction": {
+        "cre20": -0.10128913443830567,
+        "fraction_screened_at_95_recall": 0.06077348066298342,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": -0.06077348066298338
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.06906077348066292,
+        "fraction_screened_at_95_recall": -0.04143646408839779,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.33333333333333337,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.04143646408839785
+      },
+      "representation_main_effect": {
+        "cre20": 0.050644567219152836,
+        "fraction_screened_at_95_recall": -0.03038674033149171,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.03038674033149169
+      }
+    },
+    "Shoulderdystocia_recurrence": {
+      "interaction": {
+        "cre20": 0.011111111111111183,
+        "fraction_screened_at_95_recall": -0.016666666666666663,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": 0.33333333333333337,
+        "wss_at_95": 0.016666666666666607
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.2999999999999999,
+        "fraction_screened_at_95_recall": -0.175,
+        "recall_at_005": 0.33333333333333337,
+        "recall_at_010": 0.33333333333333337,
+        "recall_at_020": 0.16666666666666669,
+        "wss_at_95": 0.17500000000000004
+      },
+      "representation_main_effect": {
+        "cre20": -5.551115123125783e-17,
+        "fraction_screened_at_95_recall": 0.008333333333333331,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.0,
+        "recall_at_020": -0.16666666666666669,
+        "wss_at_95": -0.008333333333333304
+      }
+    },
+    "Total_knee_replacement": {
+      "interaction": {
+        "cre20": 0.0024791231732776975,
+        "fraction_screened_at_95_recall": 0.050104384133611624,
+        "recall_at_005": -0.125,
+        "recall_at_010": 0.0625,
+        "recall_at_020": 0.0625,
+        "wss_at_95": -0.050104384133611624
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.1408533402922756,
+        "fraction_screened_at_95_recall": -0.1377870563674321,
+        "recall_at_005": 0.1875,
+        "recall_at_010": 0.28125,
+        "recall_at_020": 0.03125,
+        "wss_at_95": 0.1377870563674321
+      },
+      "representation_main_effect": {
+        "cre20": 0.005284446764091899,
+        "fraction_screened_at_95_recall": -0.048016701461377875,
+        "recall_at_005": 0.0625,
+        "recall_at_010": 0.03125,
+        "recall_at_020": -0.03125,
+        "wss_at_95": 0.048016701461377875
+      }
+    },
+    "Vascular_access": {
+      "interaction": {
+        "cre20": -0.04792746113989649,
+        "fraction_screened_at_95_recall": 2.7755575615628914e-17,
+        "recall_at_005": 0.0,
+        "recall_at_010": -0.6000000000000001,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.0
+      },
+      "learner_balancer_main_effect": {
+        "cre20": 0.2968911917098447,
+        "fraction_screened_at_95_recall": -0.1489637305699482,
+        "recall_at_005": 0.6,
+        "recall_at_010": 0.5,
+        "recall_at_020": 0.09999999999999998,
+        "wss_at_95": 0.14896373056994816
+      },
+      "representation_main_effect": {
+        "cre20": 0.08225388601036274,
+        "fraction_screened_at_95_recall": -0.022020725388601045,
+        "recall_at_005": 0.0,
+        "recall_at_010": 0.30000000000000004,
+        "recall_at_020": 0.0,
+        "wss_at_95": 0.022020725388601003
+      }
+    }
+  },
+  "elapsed_seconds": 18.027367750008125,
+  "execution_completed_at_utc": "2026-08-23T19:50:50.620436+00:00",
+  "execution_started_at_utc": "2026-08-23T19:50:32.600882+00:00",
+  "failed_performance_gates": [
+    "C2_CRE20_SIGN",
+    "C4_R10_SIGN",
+    "C6_LEARNER_HARM",
+    "G3_FULL_ARM_R10_MARGIN",
+    "G4_FULL_ARM_WORK_SAVING",
+    "G5_FULL_ARM_HARM"
+  ],
+  "forbidden_claims": [
+    "independent custody or confirmation",
+    "globally unstudied source family",
+    "population-wide, domain-general, workflow-general, or source-general superiority",
+    "exact ASReview application execution",
+    "cold start",
+    "causal mechanism identification beyond the frozen 2x2 contrast",
+    "deletion or reversal of V3-V6 adverse terminals",
+    "post-outcome review deletion, endpoint substitution, tuning, or gate relaxation"
+  ],
+  "full_arm_candidate_minus_u4_by_review": {
+    "Distal_radius_fractures_approach": {
+      "cre20": -0.0008960573476702871,
+      "fraction_screened_at_95_recall": 0.12365591397849462,
+      "recall_at_005": 0.0,
+      "recall_at_010": 0.0,
+      "recall_at_020": -0.16666666666666669,
+      "wss_at_95": -0.12365591397849474
+    },
+    "Distal_radius_fractures_closed_reduction": {
+      "cre20": 0.036245353159851335,
+      "fraction_screened_at_95_recall": 0.0,
+      "recall_at_005": 0.0,
+      "recall_at_010": 0.0,
+      "recall_at_020": 0.0,
+      "wss_at_95": 0.0
+    },
+    "Hallux_valgus_prognostic": {
+      "cre20": -0.005580357142857206,
+      "fraction_screened_at_95_recall": 0.08906249999999999,
+      "recall_at_005": 0.0,
+      "recall_at_010": -0.07142857142857151,
+      "recall_at_020": 0.0,
+      "wss_at_95": -0.08906249999999993
+    },
+    "Head_and_neck_cancer_bone": {
+      "cre20": -0.18905228758169923,
+      "fraction_screened_at_95_recall": 0.10130718954248366,
+      "recall_at_005": -0.09999999999999998,
+      "recall_at_010": -0.35,
+      "recall_at_020": -0.09999999999999998,
+      "wss_at_95": -0.10130718954248363
+    },
+    "Head_and_neck_cancer_imaging": {
+      "cre20": 0.0,
+      "fraction_screened_at_95_recall": 0.11538461538461536,
+      "recall_at_005": 0.0,
+      "recall_at_010": -0.125,
+      "recall_at_020": 0.0,
+      "wss_at_95": -0.11538461538461542
+    },
+    "Obstetric_emergency_training": {
+      "cre20": -0.03435582822085892,
+      "fraction_screened_at_95_recall": 0.3128834355828221,
+      "recall_at_005": 0.0,
+      "recall_at_010": 0.0,
+      "recall_at_020": -0.2,
+      "wss_at_95": -0.31288343558282217
+    },
+    "Post_intensive_care_treatment": {
+      "cre20": -0.07169850934285116,
+      "fraction_screened_at_95_recall": 0.2286374133949191,
+      "recall_at_005": -0.04545454545454547,
+      "recall_at_010": -0.13636363636363635,
+      "recall_at_020": -0.045454545454545525,
+      "wss_at_95": -0.22863741339491905
+    },
+    "Pregnancy_medication": {
+      "cre20": -0.1364038511579495,
+      "fraction_screened_at_95_recall": 0.05854800936768151,
+      "recall_at_005": -0.04444444444444445,
+      "recall_at_010": -0.1111111111111111,
+      "recall_at_020": -0.1777777777777778,
+      "wss_at_95": -0.05854800936768145
+    },
+    "Shoulder_replacement_diagnostic": {
+      "cre20": 0.0,
+      "fraction_screened_at_95_recall": 0.0,
+      "recall_at_005": 0.0,
+      "recall_at_010": 0.0,
+      "recall_at_020": 0.0,
+      "wss_at_95": 0.0
+    },
+    "Shoulder_replacement_surgery": {
+      "cre20": -0.0831202046035806,
+      "fraction_screened_at_95_recall": 0.043478260869565216,
+      "recall_at_005": -0.25,
+      "recall_at_010": -0.25,
+      "recall_at_020": 0.0,
+      "wss_at_95": -0.04347826086956519
+    },
+    "Shoulderdystocia_positioning": {
+      "cre20": -0.11970534069981575,
+      "fraction_screened_at_95_recall": 0.0718232044198895,
+      "recall_at_005": 0.0,
+      "recall_at_010": -0.33333333333333337,
+      "recall_at_020": 0.0,
+      "wss_at_95": -0.07182320441988954
+    },
+    "Shoulderdystocia_recurrence": {
+      "cre20": -0.2999999999999998,
+      "fraction_screened_at_95_recall": 0.16666666666666666,
+      "recall_at_005": -0.33333333333333337,
+      "recall_at_010": -0.33333333333333337,
+      "recall_at_020": 0.0,
+      "wss_at_95": -0.16666666666666674
+    },
+    "Total_knee_replacement": {
+      "cre20": -0.14613778705636749,
+      "fraction_screened_at_95_recall": 0.18580375782880998,
+      "recall_at_005": -0.25,
+      "recall_at_010": -0.3125,
+      "recall_at_020": 0.0,
+      "wss_at_95": -0.18580375782880998
+    },
+    "Vascular_access": {
+      "cre20": -0.3791450777202074,
+      "fraction_screened_at_95_recall": 0.17098445595854922,
+      "recall_at_005": -0.6,
+      "recall_at_010": -0.8,
+      "recall_at_020": -0.09999999999999998,
+      "wss_at_95": -0.17098445595854916
+    }
+  },
+  "identity": "P2_KIFMS_V7_HASH_FROZEN_TRANSPARENT_PUBLIC_EXECUTION",
+  "mean_full_arm_candidate_minus_u4": {
+    "cre20": -0.10213213912242901,
+    "fraction_screened_at_95_recall": 0.1191596730710355,
+    "recall_at_005": -0.11594516594516595,
+    "recall_at_010": -0.20164785611214184,
+    "recall_at_020": -0.05642135642135643,
+    "wss_at_95": -0.1191596730710355
+  },
+  "performance_gates": {
+    "C1_CRE20_MAGNITUDE": true,
+    "C2_CRE20_SIGN": false,
+    "C3_R10_MAGNITUDE": true,
+    "C4_R10_SIGN": false,
+    "C5_LEARNER_WORK_SAVING": true,
+    "C6_LEARNER_HARM": false,
+    "G3_FULL_ARM_R10_MARGIN": false,
+    "G4_FULL_ARM_WORK_SAVING": false,
+    "G5_FULL_ARM_HARM": false,
+    "G6_ABSOLUTE_WORK_SAVING": true
+  },
+  "population_reconstruction_receipt": {
+    "candidate_count": 1,
+    "canonical_rows": 4934,
+    "canonical_union_content_set_sha256": "731d87e66b3e1195826c82e0a94fef19c044d63503ba2a36e41d38f811df0b12",
+    "excluded_content_identity_sha256": "1e193a46003c015390a65e4334f71f678d7512e22169c8984010f91220abecd0",
+    "excluded_review": "Shoulderdystocia_recurrence",
+    "unique_external_exclusion_reconstructed": true
+  },
+  "preserved_terminals": [
+    "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR",
+    "P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR",
+    "P2_SWIFT_V4_POST_OUTCOME_FACTORIZATION_IDENTIFIES_STABLE_COMPONENT_REQUIRES_CONTENT_DISJOINT_OUTCOME_UNOPENED_FAMILY",
+    "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR",
+    "P2_KIFMS_V6_LAWFUL_EXACT_SOURCE_AND_LABEL_BLIND_DISJOINT_POPULATION_FROZEN__INDEPENDENT_PROTECTED_EXECUTION_CANNOT_CHECK"
+  ],
+  "result_payload_sha256": "ca9483ee88dc61f7a003083d53cb3936944edc09997b7bac5a15805d2f0abd1e",
+  "scope": "OUTCOME_UNOPENED_HASH_FROZEN_PUBLIC_DEVELOPMENT_EXECUTION_ON_THE_EXACT_V6_KIFMS_FAMILY",
+  "software": {
+    "numpy": "2.4.4",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.1"
+  },
+  "source_receipt": {
+    "Distal_radius_fractures_approach": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id"
+      ],
+      "raw_rows": 195
+    },
+    "Distal_radius_fractures_closed_reduction": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "raw_rows": 277
+    },
+    "Hallux_valgus_prognostic": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id"
+      ],
+      "raw_rows": 640
+    },
+    "Head_and_neck_cancer_bone": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id",
+        ""
+      ],
+      "raw_rows": 311
+    },
+    "Head_and_neck_cancer_imaging": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id"
+      ],
+      "raw_rows": 56
+    },
+    "Obstetric_emergency_training": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id"
+      ],
+      "raw_rows": 188
+    },
+    "Post_intensive_care_treatment": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id",
+        ""
+      ],
+      "raw_rows": 435
+    },
+    "Pregnancy_medication": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "raw_rows": 428
+    },
+    "Shoulder_replacement_diagnostic": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "raw_rows": 342
+    },
+    "Shoulder_replacement_surgery": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id"
+      ],
+      "raw_rows": 397
+    },
+    "Shoulderdystocia_positioning": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "raw_rows": 218
+    },
+    "Shoulderdystocia_recurrence": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id",
+        "",
+        "",
+        ""
+      ],
+      "raw_rows": 335
+    },
+    "Total_knee_replacement": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id"
+      ],
+      "raw_rows": 480
+    },
+    "Vascular_access": {
+      "header": [
+        "noisy_inclusion",
+        "expert_inclusion",
+        "fulltext_inclusion",
+        "key",
+        "title",
+        "year",
+        "month",
+        "day",
+        "journal",
+        "issn",
+        "volume",
+        "issue",
+        "pages",
+        "authors",
+        "url",
+        "language",
+        "publisher",
+        "location",
+        "abstract",
+        "notes",
+        "pubmed_id",
+        "pmc_id"
+      ],
+      "raw_rows": 772
+    }
+  },
+  "strictly_positive_review_counts": {
+    "learner_cre20": 11,
+    "learner_r10": 9
+  },
+  "terminal": "P2_KIFMS_V7_TRANSPARENT_PUBLIC_EXECUTION_FAILS_ONE_OR_MORE_LOCKED_PERFORMANCE_GATES_REQUIRES_SUCCESSOR",
+  "two_sided_exact_binomial_sign_p": {
+    "learner_cre20": 0.057373046875,
+    "learner_r10": 0.4239501953125
+  },
+  "unweighted_mean_arm_metrics": {
+    "R0_L0": {
+      "cre20": 0.4910865092711324,
+      "fraction_screened_at_95_recall": 0.35771274952269455,
+      "recall_at_005": 0.3817395897753041,
+      "recall_at_010": 0.47750463821892397,
+      "recall_at_020": 0.7784206864564007,
+      "wss_at_95": 0.5922872504773053
+    },
+    "R0_L1": {
+      "cre20": 0.5856589985005097,
+      "fraction_screened_at_95_recall": 0.25162680948846006,
+      "recall_at_005": 0.5043740981240982,
+      "recall_at_010": 0.6530045351473923,
+      "recall_at_020": 0.8341926922284065,
+      "wss_at_95": 0.6983731905115399
+    },
+    "R1_L0": {
+      "cre20": 0.5188480705634108,
+      "fraction_screened_at_95_recall": 0.3720935093863174,
+      "recall_at_005": 0.4332573180787467,
+      "recall_at_010": 0.5570114409400124,
+      "recall_at_020": 0.7294655741084313,
+      "wss_at_95": 0.5779064906136825
+    },
+    "R1_L1": {
+      "cre20": 0.5932186483935614,
+      "fraction_screened_at_95_recall": 0.2385530764516591,
+      "recall_at_005": 0.49768475572047005,
+      "recall_at_010": 0.6791524943310657,
+      "recall_at_020": 0.8348420428777572,
+      "wss_at_95": 0.7114469235483408
+    }
+  },
+  "unweighted_mean_component_effects": {
+    "interaction": {
+      "cre20": -0.020201911399226967,
+      "fraction_screened_at_95_recall": -0.027454492900423764,
+      "recall_at_005": -0.05820707070707071,
+      "recall_at_010": -0.05335884353741498,
+      "recall_at_020": 0.049604462997320145,
+      "wss_at_95": 0.02745449290042375
+    },
+    "learner_balancer_main_effect": {
+      "cre20": 0.08447153352976401,
+      "fraction_screened_at_95_recall": -0.11981318648444646,
+      "recall_at_005": 0.0935309729952587,
+      "recall_at_010": 0.14882047515976088,
+      "recall_at_020": 0.08057423727066586,
+      "wss_at_95": 0.11981318648444647
+    },
+    "representation_main_effect": {
+      "cre20": 0.017660605592664993,
+      "fraction_screened_at_95_recall": 0.0006535134134109338,
+      "recall_at_005": 0.022414192949907236,
+      "recall_at_010": 0.052827380952380966,
+      "recall_at_020": -0.02415288084930942,
+      "wss_at_95": -0.0006535134134109388
+    }
+  },
+  "v6_independent_custody_gate": false
+}

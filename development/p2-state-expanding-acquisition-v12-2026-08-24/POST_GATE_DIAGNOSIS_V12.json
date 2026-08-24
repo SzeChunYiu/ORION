@@ -1,0 +1,52 @@
+{
+  "authority": "POST_GATE_DIAGNOSIS_ONLY__NEVER_GATE_PROMOTION",
+  "exact_facts": {
+    "abstracts_normalized_equal": true,
+    "exact_u4_text_sha256_each": "77baa6675fd97c3c630fdd971baddd5250d864260d31cf2ac6632fa2a93943fa",
+    "keyword_hashes_distinct": true,
+    "keyword_normalized_bytes_by_record": {
+      "1003": 282,
+      "1018": 572
+    },
+    "keyword_sha256_by_record": {
+      "1003": "84d5e7ad0f936aeb53d05447d6784452990a776916d33711f5f1c719f01c7c42",
+      "1018": "3a376c64afe24454b1d3caff6d2fe46de471851aeee999659b20054ef3477d7e"
+    },
+    "normalized_abstract_bytes_each": 0,
+    "record_ids": [
+      "1003",
+      "1018"
+    ],
+    "titles_normalized_equal": true
+  },
+  "gate_terminal": "P2_V12_PROVIDER_NATIVE_KEYWORD_FIBRE_SEPARATION_FAIL_CLOSED",
+  "identity": "P2_V12_CONTENT_IDENTITY_CANONICALIZATION_MISMATCH_DIAGNOSIS",
+  "mismatch": {
+    "cause": "V9/V10 content_identity hashes normalize(title) + one literal space + normalize(abstract), retaining a trailing separator when abstract is empty. V12 normalized the concatenated string, removing that trailing separator. Exact u4 model text is constructed with .strip(), so both records are still tied on exact u4 model input.",
+    "frozen_v10_content_identity": "d1b054eda2f1fb8dea2e3ad78c9d32aba9819f9d2465b6509949ec11f4117bd4",
+    "source_evidence": [
+      {
+        "path": "development/p2-source-disjoint-title-emphasis-v9-2026-08-23/prepare_population_v9.py",
+        "relevant_lines": "37-42",
+        "sha256": "9b992f457a6fed28aa1126b1073385475a76fd802da660b5f5fb07677d054020"
+      },
+      {
+        "path": "development/p2-title-emphasis-conflict-resolved-v10-2026-08-23/run_title_emphasis_v10.py",
+        "relevant_lines": "91-94, 128-132",
+        "sha256": "8808e9dc05db7d1e18294cb6d6da8e17b1dd94260697e85e0445ec18f2fb9837"
+      }
+    ],
+    "v12_runner_content_identity": "77baa6675fd97c3c630fdd971baddd5250d864260d31cf2ac6632fa2a93943fa"
+  },
+  "next_discriminator": "Do not retry V12. Freeze a new source-disjoint successor that imports the exact V9/V10 content-identity function by hash, separately binds the exact u4 model-text hash, predeclares the complete keyword-capable population rather than one known pair, and executes only under matched outcome custody and unchanged V10 gates.",
+  "schema_version": "orion.p2.state-expanding-acquisition.post-gate-diagnosis.v12",
+  "scientific_interpretation": {
+    "exact_u4_model_input_tie_observed": true,
+    "frozen_gate_passed": false,
+    "performance_implication": "NONE",
+    "provider_native_keyword_candidate_observed": true,
+    "signal_admitted": false,
+    "why_fail_closed": "The prospective rule required the exact V10 content-identity binding, so equal donor-text hashes and distinct keyword hashes cannot override the failed conjunct after execution."
+  },
+  "terminal": "P2_V12_POST_GATE_DIAGNOSIS_IDENTIFIES_TRAILING_SEPARATOR_HASH_MISMATCH__NO_GATE_PROMOTION"
+}

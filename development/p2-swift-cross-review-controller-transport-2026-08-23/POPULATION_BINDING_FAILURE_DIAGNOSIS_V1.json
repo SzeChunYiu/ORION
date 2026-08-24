@@ -1,0 +1,33 @@
+{
+  "cause": "The V1 runner used casefolded title, a newline, and casefolded abstract, while the pinned pre-outcome structure audit used the case-sensitive whitespace-normalized concatenation of title, one space, and abstract.",
+  "date": "2026-08-23",
+  "identity": "P2_SWIFT_V1_POPULATION_BINDING_FAILURE_DIAGNOSIS",
+  "label_counts_opened": true,
+  "model_outcomes_opened": false,
+  "next_discriminator": "Rebind the exact pre-outcome content identity, freeze a separately hashed V2 runner and implementation, and execute before any controller or comparator outcome is opened.",
+  "observed_mismatches": {
+    "BPA": {
+      "prefreeze_duplicate_excess": 3,
+      "v1_duplicate_excess": 3
+    },
+    "Fluoride": {
+      "prefreeze_duplicate_excess": 2,
+      "v1_duplicate_excess": 2
+    },
+    "Neuropain": {
+      "prefreeze_duplicate_excess": 61,
+      "v1_duplicate_excess": 83
+    },
+    "PFOS-PFOA": {
+      "prefreeze_duplicate_excess": 0,
+      "v1_duplicate_excess": 0
+    },
+    "Transgenerational": {
+      "prefreeze_duplicate_excess": 31,
+      "v1_duplicate_excess": 32
+    }
+  },
+  "repair_boundary": "A V2 mechanics-only successor may bind the exact pre-outcome identity function. It must retain every review, endpoint, gate, seed rule, controller and comparator unchanged. V1 remains immutable CANNOT_CHECK.",
+  "retained_result_sha256": "bb368453688929d5e5305f40407cb6c488b3ecc8b28715a069c060776acee40e",
+  "retained_terminal": "P2_SWIFT_CROSS_REVIEW_CONTROLLER_TRANSPORT_CANNOT_CHECK_BINDING_OR_POPULATION"
+}

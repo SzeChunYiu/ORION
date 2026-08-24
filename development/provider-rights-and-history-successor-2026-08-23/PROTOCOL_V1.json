@@ -1,0 +1,50 @@
+{
+  "authority": "PUBLIC_POLICY_METADATA_AND_ARCHIVE_INDEX_AUDIT_ONLY__NOT_LEGAL_ADVICE__NOT_CASE_AUTHORITY",
+  "crossref_history_root_count": 8,
+  "cutoff_utc": "2025-12-31T23:59:59Z",
+  "fail_closed_terminals": {
+    "eligibility": "METADATA_ROOT_ONLY__CASE_ELIGIBILITY_NOT_ASSESSED",
+    "history": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES",
+    "overall": "CANNOT_CHECK_RIGHTS_AND_HISTORY_BINDING",
+    "rights": "CANNOT_CHECK_ROOT_CONTENT_CLASS_RIGHTS"
+  },
+  "forbidden_access": [
+    "article_or_abstract_body",
+    "dataset_payload",
+    "issue_or_comment_body",
+    "attachment",
+    "repository_readme_or_project_description",
+    "case_label_or_pair_role",
+    "candidate_or_comparator_output",
+    "protected_gold_or_outcome"
+  ],
+  "frozen_at_utc": "2026-08-23T11:22:16+00:00",
+  "historical_evidence_hierarchy": [
+    "exact provider historical revision bytes plus provider timestamp and content hash",
+    "content-addressed official snapshot containing the exact root plus extraction proof",
+    "independent archive capture of the exact provider metadata response with timestamp and digest",
+    "provider creation/deposit/index timestamp only, which is identity evidence but not byte provenance"
+  ],
+  "history_positive_condition": "For each Crossref DOI, an exact pre-cutoff metadata object is extracted from a provider or independent content-addressed archive with timestamp, digest, and identity proof.",
+  "outcomes_accessed": false,
+  "parent_census_payload_sha256": "e1466f44231a02e4b36fc0a0b0d83a8f0db8b09bf6897e97c52702023e07d24d",
+  "parent_successor_identity": "PROVIDER_MODALITY_TRANSPORT_METADATA_CENSUS_V1",
+  "protected_case_fields_accessed": false,
+  "protocol_payload_sha256": "38074e06e362c1ed3fab47bdd5c982c24526970c73f055bb4adee5023e93c49f",
+  "questions": [
+    "Can exact pre-cutoff Crossref metadata bytes be bound to every article root through official snapshots, public files, deposit evidence, or independent content-addressed archives?",
+    "Can metadata, body/file/code, issue/comment, documentation, and attachment rights be bound separately for every root without opening candidate content?"
+  ],
+  "rights_positive_condition": "Every intended acquired content class has a root-bound authoritative permission and acquisition policy compatible with the frozen use; uploader/depositor authority ambiguities are separately closed.",
+  "rights_status_vocabulary": {
+    "ACCESS_ONLY_NOT_REUSE": "The provider permits or exposes acquisition but gives no root-bound reuse grant for this content class.",
+    "CANNOT_CHECK": "The evidence does not establish the content-class right, historical bytes, or scope.",
+    "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED": "The provider requires a declaration and the record supplies one, but uploader/depositor authority or byte scope is not independently established.",
+    "NOT_ACCESSED": "The content class remained unopened and unarchived.",
+    "ROOT_BOUND_PERMISSION": "An authoritative root-bound licence or policy covers the named content class; this is not a legal opinion or case-eligibility finding."
+  },
+  "robots_boundary": "robots.txt is an acquisition/crawling directive, not copyright permission, a content licence, case eligibility, or scientific authority",
+  "root_count": 16,
+  "schema_version": "orion.provider-rights-history-successor.protocol.v1",
+  "successor_identity": "PROVIDER_ROOT_RIGHTS_AND_HISTORICAL_BYTE_PROVENANCE_V1"
+}

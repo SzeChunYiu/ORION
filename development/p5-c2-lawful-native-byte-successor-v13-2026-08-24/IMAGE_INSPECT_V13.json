@@ -1,0 +1,42 @@
+[
+    {
+        "Id": "sha256:b14dd4b7d5631707ba718cf5df8991d53d40a606c81521d313874c5810a710b5",
+        "RepoTags": [
+            "orion-p5-c2-v13:20260824"
+        ],
+        "RepoDigests": [],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-08-24T00:00:00Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Entrypoint": [
+                "/orion/probe"
+            ],
+            "WorkingDir": "/",
+            "Labels": {
+                "org.opencontainers.image.licenses": "Apache-2.0-AND-CC0-1.0",
+                "org.opencontainers.image.title": "ORION-P5-C2-V13-rights-cleared-probe"
+            }
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 708572,
+        "GraphDriver": {
+            "Data": {
+                "SourceDir": "/dev/shm/orion-v13-docker/data/vfs/dir/0mm5kbcx5zhyy492sii5ri8x4"
+            },
+            "Name": "vfs"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:58daba4a70db3f0a2fb0533eee3280ad1bd6c2abb6281ce6a8049c71379051bb"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-08-24T09:07:59.455734486+02:00"
+        }
+    }
+]

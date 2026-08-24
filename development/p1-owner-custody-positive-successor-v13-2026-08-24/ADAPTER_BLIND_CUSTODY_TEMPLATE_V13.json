@@ -1,0 +1,68 @@
+{
+  "authority": "UNSIGNED_EXTERNAL_EXECUTION_TEMPLATE__NOT_CUSTODY",
+  "exact_semantic_input_allowlist": [
+    "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55",
+    "fc3ff7435d291e8581eeefaab30b16a119bb005fd99f720090ef147c6b2944ba",
+    "7f16c0c6b036b1d257b917744fe63b562ff693cf9f41992dd1c93424e248c17d"
+  ],
+  "forbidden_material_attestation": "I received no P1 source-native terminal profile, crosswalk, compatibility row, survivor map, audit result, case, label, model, comparator, score or outcome artifact before the sealed algebra commitment.",
+  "schema_version": "orion.p1.owner-custody-positive-successor.adapter-blind-custody-template.v13",
+  "signing_specification": "SIGNING_CANONICALIZATION_V13.json",
+  "stage_a_receipts": [
+    {
+      "stage_a_receipt_payload": {
+        "delivered_artifact_sha256_list": [],
+        "delivery_timestamp_utc": null,
+        "no_other_p1_adapter_or_outcome_material_delivered": null,
+        "recipient_identity": null,
+        "recipient_no_prior_adapter_artifact_access": null,
+        "recipient_role": "OWNER_OR_FORMAL_DELEGATE"
+      },
+      "stage_a_receipt_payload_sha256": null,
+      "signature": {
+        "key_id": null,
+        "signature": null,
+        "signature_scheme": null,
+        "verification_material_or_uri": null
+      }
+    },
+    {
+      "stage_a_receipt_payload": {
+        "delivered_artifact_sha256_list": [],
+        "delivery_timestamp_utc": null,
+        "no_other_p1_adapter_or_outcome_material_delivered": null,
+        "recipient_identity": null,
+        "recipient_no_prior_adapter_artifact_access": null,
+        "recipient_role": "INDEPENDENT_SEMANTIC_REVIEWER"
+      },
+      "stage_a_receipt_payload_sha256": null,
+      "signature": {
+        "key_id": null,
+        "signature": null,
+        "signature_scheme": null,
+        "verification_material_or_uri": null
+      }
+    }
+  ],
+  "stage_b_reviewer_delivery": {
+    "signature": {
+      "key_id": null,
+      "signature": null,
+      "signature_scheme": null,
+      "verification_material_or_uri": null
+    },
+    "stage_b_receipt_payload": {
+      "delivered_algebra_payload_sha256": null,
+      "delivered_artifact_sha256_list": [],
+      "delivery_timestamp_utc": null,
+      "no_adapter_or_outcome_material_delivered": null,
+      "reviewer_identity": null
+    },
+    "stage_b_receipt_payload_sha256": null
+  },
+  "stage_outputs": [
+    "ADAPTER_BLIND_STAGE_A_RECEIPTS_SIGNED_V13.json",
+    "ADAPTER_BLIND_STAGE_B_REVIEW_DELIVERY_SIGNED_V13.json"
+  ],
+  "status": "UNSIGNED__ZERO_CUSTODY"
+}

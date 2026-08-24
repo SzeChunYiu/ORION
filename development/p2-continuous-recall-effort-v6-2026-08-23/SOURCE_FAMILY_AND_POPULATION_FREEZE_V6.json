@@ -1,0 +1,89 @@
+{
+  "cannot_check_rules": [
+    "Any exact source file, licence, schema or canonical population hash mismatch.",
+    "Any review lacks both selected-label classes when first opened by the independent custodian.",
+    "Any selected label value cannot be mapped without semantic inference.",
+    "Any review is deleted, replaced, pooled, or post-outcome filtered.",
+    "Any label, seed, ordering or candidate/comparator outcome was opened before all protocol and implementation hashes were signed by the independent custodian."
+  ],
+  "frozen_on": "2026-08-23",
+  "identity": "P2_KIFMS_V6_SOURCE_FAMILY_AND_POPULATION_FREEZE",
+  "label_adapter": {
+    "current_access": "HEADER_NAME_ONLY; NO ROW VALUE OR CLASS COUNT OPENED",
+    "forbidden": [
+      "noisy_inclusion",
+      "fulltext_inclusion"
+    ],
+    "rule": "Use the selected column only after transfer to the independent protected custodian. Map source-declared truth values to binary inclusion under a separately signed schema receipt; any unmapped value or absent class makes the complete V6 identity CANNOT_CHECK.",
+    "selected": "expert_inclusion"
+  },
+  "motivation_terminal": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR",
+  "no_further_exclusion_allowed": true,
+  "outcome_boundary": "NO LABEL VALUES, CLASS COUNTS, SEEDS, ORDERINGS, OR COMPARATIVE OUTCOMES ACCESSED",
+  "overlap_boundary": {
+    "final_swift_content_and_pmid_matches": 0,
+    "final_v5_content_and_pmid_matches": 0,
+    "one_raw_v5_content_match_excluded": 1,
+    "pmid_overlap_interpretation": "Vacuous for KIFMS because all 5,074 pubmed_id cells are empty; content-identity disjointness is the operative external and cross-review gate.",
+    "raw_swift_content_or_pmid_matches": 0,
+    "raw_v5_pmid_matches": 0,
+    "shared_within_kifms_content_identities_excluded": 65
+  },
+  "population_counts": {
+    "canonical_nonempty_pmids": 0,
+    "canonical_rows": 4934,
+    "canonical_union_content_set_sha256": "731d87e66b3e1195826c82e0a94fef19c044d63503ba2a36e41d38f811df0b12",
+    "canonical_union_pmid_set_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "per_review": {
+      "Distal_radius_fractures_approach": 186,
+      "Distal_radius_fractures_closed_reduction": 269,
+      "Hallux_valgus_prognostic": 640,
+      "Head_and_neck_cancer_bone": 306,
+      "Head_and_neck_cancer_imaging": 52,
+      "Obstetric_emergency_training": 163,
+      "Post_intensive_care_treatment": 433,
+      "Pregnancy_medication": 427,
+      "Shoulder_replacement_diagnostic": 335,
+      "Shoulder_replacement_surgery": 391,
+      "Shoulderdystocia_positioning": 181,
+      "Shoulderdystocia_recurrence": 300,
+      "Total_knee_replacement": 479,
+      "Vascular_access": 772
+    },
+    "raw_rows": 5074
+  },
+  "population_rule": {
+    "content_identity": "SHA-256(case-sensitive whitespace-normalized title + one ASCII space + abstract)",
+    "cross_review": "exclude every row whose content identity or nonempty PMID occurs in more than one KIFMS review",
+    "external": "exclude on either content or PMID match to raw SWIFT or V5 work bodies",
+    "pmid_identity": "terminal digit string from pubmed_id/URL",
+    "within_review": "exclude empty text; stable ascending key then source row; retain first unique content and nonempty PMID"
+  },
+  "review_count": 14,
+  "review_units": [
+    "Distal_radius_fractures_approach",
+    "Distal_radius_fractures_closed_reduction",
+    "Hallux_valgus_prognostic",
+    "Head_and_neck_cancer_bone",
+    "Head_and_neck_cancer_imaging",
+    "Obstetric_emergency_training",
+    "Post_intensive_care_treatment",
+    "Pregnancy_medication",
+    "Shoulder_replacement_diagnostic",
+    "Shoulder_replacement_surgery",
+    "Shoulderdystocia_positioning",
+    "Shoulderdystocia_recurrence",
+    "Total_knee_replacement",
+    "Vascular_access"
+  ],
+  "selection_rule": "Retain all fourteen CSV review files exposed by OSF node vt3n4 at exact file revision one. No review selection, deletion or replacement is permitted after this freeze.",
+  "source_identity": {
+    "exact_revision": 1,
+    "file_count": 14,
+    "licence": "CC-BY-4.0",
+    "osf_node": "vt3n4",
+    "osf_title": "Medical Guidelines Dutch Association Medical Specialists",
+    "source_receipt_sha256": "0c7211591ba5799721d5b8b00e11564b221a3e07526467df350adef2a29ddbeb"
+  },
+  "status": "FROZEN_AFTER_LABEL_BLIND_SOURCE_AND_OVERLAP_PREFLIGHT_BEFORE_OUTCOME_ACCESS"
+}

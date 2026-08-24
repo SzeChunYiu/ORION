@@ -1,0 +1,40 @@
+{
+  "bridge_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "candidate_prepared_tree_identities": [
+    "eaec8f08f7e0fc2d10a39a6480878a338e1a7090",
+    "5890638f92d023d4bb6df6625508326009924c76"
+  ],
+  "environment_binary_identities": [
+    "sha256:c7ec15111335d5c7ef3c9a3ddcb67642ef3cfbbd8efc98d90b90526628b245b4",
+    "sha256:e561d7ba57da3bb04df5db5da06a7a164811fa3981c1cfaed0516c70f784b301"
+  ],
+  "factorial_cells": 4,
+  "freeze_terminal": "P5_RD02_V3_AUDIT_REPLAY_FROZEN_AFTER_KNOWN_V2_OUTCOMES",
+  "frozen_at_utc": "2026-08-23T13:56:08Z",
+  "grants_confirmatory_authority": false,
+  "grants_h1_h4_authority": false,
+  "grants_protected_freshness": false,
+  "predecessor_audit_negative": "V2 checkout stream bytes were overwritten by test streams because phase stems collapsed to the same retained paths.",
+  "predecessor_result_sha256": "ef3f8893299578c071e8cad46d1c73cbe507d426a805ac772e9ae955092fab98",
+  "predecessor_terminal": "IMPLEMENTATION_MAIN_EFFECT",
+  "preregistration_path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/PREREGISTRATION_V3.json",
+  "preregistration_sha256": "5cd056ea54357cab9d341b57fa8b4fbd8a063011c4de983aa707e88de6e1959e",
+  "protected_outcomes_accessed": false,
+  "registered_terminals": [
+    "ARCHIVAL_REPLAY_COMPLETE",
+    "CANNOT_CHECK"
+  ],
+  "run_order": [
+    "C0E1",
+    "C1E0",
+    "C0E0",
+    "C1E1"
+  ],
+  "runner_path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/run_factorial_v3.py",
+  "runner_sha256": "d3b4580836645b76d06518ac26b7fe73bad926c7a1fe7a8f05513f0b84d933fe",
+  "schema_version": "orion.p5.rd02.public-development-freeze-receipt.v3",
+  "study_id": "P5-RD-02.DEFECTS4J.LANG1.V3",
+  "successor_of": "P5-RD-02.DEFECTS4J.LANG1.V2",
+  "v2_outcomes_accessed": true,
+  "v3_outcomes_accessed": false
+}

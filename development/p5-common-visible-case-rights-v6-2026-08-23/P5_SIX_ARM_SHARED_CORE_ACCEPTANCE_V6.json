@@ -1,0 +1,210 @@
+{
+  "authority": "OUTCOME_BLIND_BYTE_RIGHTS_AND_FIELD_ACCEPTANCE_ONLY",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+  "native_task_environment_instances_closed": 0,
+  "receipts": [
+    {
+      "acceptance_status": "ACCEPTED_SHARED_CASE_AND_RIGHTS_CORE_ONLY__NATIVE_ENVIRONMENT_BLOCKING",
+      "after_shared_core_only": {
+        "blocking": 10,
+        "bound": 11
+      },
+      "arm_code": "C1",
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "arm_or_model_executed": false,
+      "before": {
+        "blocking": 12,
+        "bound": 9
+      },
+      "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "field_bindings": {
+        "inputs.candidate_visible_case_bytes": {
+          "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+          "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+          "status": "BOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "condition": "Only listed shared-core content may be used; all native/bundled content is excluded unless separately licensed.",
+          "rights_manifest_sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+          "status": "BOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "residual": "SWE-agent image, setup/run config, tool policy and native acceptance environment remain unbound.",
+          "status": "BLOCKING"
+        }
+      },
+      "same_candidate_visible_core_sha256": "09a2eb17394d7b84c11641b468d14446af955c4c3272557810d861a275c72da7"
+    },
+    {
+      "acceptance_status": "ACCEPTED_SHARED_CASE_AND_RIGHTS_CORE_ONLY__NATIVE_ENVIRONMENT_BLOCKING",
+      "after_shared_core_only": {
+        "blocking": 12,
+        "bound": 9
+      },
+      "arm_code": "C2",
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "arm_or_model_executed": false,
+      "before": {
+        "blocking": 14,
+        "bound": 7
+      },
+      "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "field_bindings": {
+        "inputs.candidate_visible_case_bytes": {
+          "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+          "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+          "status": "BOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "condition": "Only listed shared-core content may be used; all native/bundled content is excluded unless separately licensed.",
+          "rights_manifest_sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+          "status": "BOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "residual": "The released MOSS benchmark companion is absent; a P5-native session/replay environment and host certificate remain unbound.",
+          "status": "BLOCKING"
+        }
+      },
+      "same_candidate_visible_core_sha256": "09a2eb17394d7b84c11641b468d14446af955c4c3272557810d861a275c72da7"
+    },
+    {
+      "acceptance_status": "ACCEPTED_SHARED_CASE_AND_RIGHTS_CORE_ONLY__NATIVE_ENVIRONMENT_BLOCKING",
+      "after_shared_core_only": {
+        "blocking": 13,
+        "bound": 8
+      },
+      "arm_code": "C3",
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "arm_or_model_executed": false,
+      "before": {
+        "blocking": 15,
+        "bound": 6
+      },
+      "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "field_bindings": {
+        "inputs.candidate_visible_case_bytes": {
+          "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+          "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+          "status": "BOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "condition": "Only listed shared-core content may be used; all native/bundled content is excluded unless separately licensed.",
+          "rights_manifest_sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+          "status": "BOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "residual": "Mutable-agent/immutable-host tree split, input-native class certificate, endpoint policy and DGM-native environment remain unbound.",
+          "status": "BLOCKING"
+        }
+      },
+      "same_candidate_visible_core_sha256": "09a2eb17394d7b84c11641b468d14446af955c4c3272557810d861a275c72da7"
+    },
+    {
+      "acceptance_status": "ACCEPTED_SHARED_CASE_AND_RIGHTS_CORE_ONLY__NATIVE_ENVIRONMENT_BLOCKING",
+      "after_shared_core_only": {
+        "blocking": 13,
+        "bound": 8
+      },
+      "arm_code": "C4",
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "arm_or_model_executed": false,
+      "before": {
+        "blocking": 15,
+        "bound": 6
+      },
+      "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "field_bindings": {
+        "inputs.candidate_visible_case_bytes": {
+          "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+          "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+          "status": "BOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "condition": "Only listed shared-core content may be used; all native/bundled content is excluded unless separately licensed.",
+          "rights_manifest_sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+          "status": "BOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "residual": "ADIAS domain adapter, task IDs/seeds, turn/evaluation limits and environment bytes remain unbound; bundled native task data stays excluded.",
+          "status": "BLOCKING"
+        }
+      },
+      "same_candidate_visible_core_sha256": "09a2eb17394d7b84c11641b468d14446af955c4c3272557810d861a275c72da7"
+    },
+    {
+      "acceptance_status": "ACCEPTED_SHARED_CASE_AND_RIGHTS_CORE_ONLY__NATIVE_ENVIRONMENT_BLOCKING",
+      "after_shared_core_only": {
+        "blocking": 10,
+        "bound": 11
+      },
+      "arm_code": "C5",
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "arm_or_model_executed": false,
+      "before": {
+        "blocking": 12,
+        "bound": 9
+      },
+      "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "field_bindings": {
+        "inputs.candidate_visible_case_bytes": {
+          "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+          "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+          "status": "BOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "condition": "Only listed shared-core content may be used; all native/bundled content is excluded unless separately licensed.",
+          "rights_manifest_sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+          "status": "BOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "residual": "Frozen solver outputs, solver/prompts bytes, development memberships and metric-only native environment remain unbound.",
+          "status": "BLOCKING"
+        }
+      },
+      "same_candidate_visible_core_sha256": "09a2eb17394d7b84c11641b468d14446af955c4c3272557810d861a275c72da7"
+    },
+    {
+      "acceptance_status": "ACCEPTED_SHARED_CASE_AND_RIGHTS_CORE_ONLY__NATIVE_ENVIRONMENT_BLOCKING",
+      "after_shared_core_only": {
+        "blocking": 14,
+        "bound": 7
+      },
+      "arm_code": "C6",
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "arm_or_model_executed": false,
+      "before": {
+        "blocking": 16,
+        "bound": 5
+      },
+      "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "field_bindings": {
+        "inputs.candidate_visible_case_bytes": {
+          "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+          "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+          "status": "BOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "condition": "Only listed shared-core content may be used; all native/bundled content is excluded unless separately licensed.",
+          "rights_manifest_sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+          "status": "BOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "residual": "ScienceClaw profile, allowed skills/tools, source-filtered seed, fallback closure and native topic/case environment remain unbound.",
+          "status": "BLOCKING"
+        }
+      },
+      "same_candidate_visible_core_sha256": "09a2eb17394d7b84c11641b468d14446af955c4c3272557810d861a275c72da7"
+    }
+  ],
+  "rights_manifest_sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+  "same_core_for_all_six": true,
+  "schema_version": "orion.p5.six-arm-shared-core-acceptance.v6",
+  "shared_field_instances_closed": 12
+}

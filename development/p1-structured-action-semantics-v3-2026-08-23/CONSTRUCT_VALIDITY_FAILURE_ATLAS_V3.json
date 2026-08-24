@@ -1,0 +1,125 @@
+{
+  "entries": [
+    {
+      "construct_consequence": "No record asserts R7 vocabulary-owner identity or formal delegation.",
+      "failure": "Provider/indexer custody is not R7-owner custody",
+      "failure_id": "CV01_PROVIDER_NOT_OWNER",
+      "next_discriminator": "A content-addressed delegation and completed algebra signed by the R7 owner.",
+      "observed_evidence": "Europe PMC and PubMed expose structured publication/link metadata for 11,991 comparable notices.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "Tokens such as RetractionOf or ErratumFor do not enumerate the licensed or forbidden R7 operations.",
+      "failure": "Relation/link semantics are not operation semantics",
+      "failure_id": "CV02_LINK_NOT_OPERATION",
+      "next_discriminator": "Owner-approved per-target operation sets, including exhaustive forbidden sets.",
+      "observed_evidence": "JATS describes an outward-facing link and PubMed RefType names bibliographic relationships.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "High metadata conformance still does not yield KEEP/REPAIR/REFORMULATE/UNRESOLVED terminals.",
+      "failure": "Directionality is not a target decision",
+      "failure_id": "CV03_DIRECTION_NOT_DECISION",
+      "next_discriminator": "An explicit owner-approved bridge from source relation evidence to target decisions, or explicit NONE.",
+      "observed_evidence": "The normalized relation sets agree for 11,988 of 11,991 notices while preserving Of/In and forward/backward direction.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "The seven target profiles and operation sets cannot be assumed exhaustive.",
+      "failure": "No exhaustiveness or closed world",
+      "failure_id": "CV04_OPEN_WORLD",
+      "next_discriminator": "Signed closed_world=true plus exhaustive=true for each target.",
+      "observed_evidence": "Both providers omit some relation identifiers and the protocol treats all absence as CANNOT_CHECK.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "Metadata cannot authorize Orion to recommend a postpublication action.",
+      "failure": "No recommendation authority",
+      "failure_id": "CV05_NO_RECOMMENDATION_AUTHORITY",
+      "next_discriminator": "Joint vocabulary-owner and host-authority approval per target.",
+      "observed_evidence": "No allowlisted structured field carries advisory or owner-ratified recommendation authority.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "No execution, adoption, promotion, or merge may follow.",
+      "failure": "No execution/adoption authority",
+      "failure_id": "CV06_NO_EXECUTION_AUTHORITY",
+      "next_discriminator": "Host owner assigns NONE, EXTERNAL_OWNER_ONLY, or SYSTEM and signs it.",
+      "observed_evidence": "Structured metadata records publication events but no system authority boundary.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "Fail-closed behavior for the R7 adapter remains unbound.",
+      "failure": "No non-success terminal behavior",
+      "failure_id": "CV07_NO_TERMINAL_BEHAVIOR",
+      "next_discriminator": "One owner-approved terminal for every non-success condition.",
+      "observed_evidence": "No provider field maps abstention, error, timeout, malformed, or unsupported inputs.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "Authenticity, delegation, artifact identity, and timestamp cannot be verified.",
+      "failure": "No signed owner ratification",
+      "failure_id": "CV08_NO_RATIFICATION",
+      "next_discriminator": "Owner signature bundle with artifact digest and delegation basis.",
+      "observed_evidence": "Provider records and vocabulary documents contain no signature bundle over the target algebra.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "Cross-provider agreement cannot satisfy independent_semantic_reviewer.",
+      "failure": "No independent semantic review",
+      "failure_id": "CV09_NO_INDEPENDENT_REVIEW",
+      "next_discriminator": "Independent reviewer with no algebra authorship or case-outcome custody issues CONFORMANT receipt.",
+      "observed_evidence": "Europe PMC/PubMed agreement is metadata conformance between related indexing interfaces, not a review of the R7 algebra.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "Those licences do not publish or license the target algebra itself.",
+      "failure": "Item rights are not target-algebra rights",
+      "failure_id": "CV10_ITEM_RIGHTS_NOT_ALGEBRA_RIGHTS",
+      "next_discriminator": "Rights-holder archive URL, SPDX identifier, and licence-text hash for the completed algebra.",
+      "observed_evidence": "12,038 relations in 11,602 families have exact allowlisted licences at both article endpoints.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "A raw or even normalized publication-type equality claim would overstate interface equivalence.",
+      "failure": "Provider publication-type overlays differ",
+      "failure_id": "CV11_PUBLICATION_LAYER_DRIFT",
+      "next_discriminator": "Treat PubMed PublicationType and Europe PMC semantic overlays as separate strata, or obtain provider documentation explicitly binding the overlay.",
+      "observed_evidence": "After excluding 739 records with frozen lowercase JATS/PMC additions, only 740/11,991 publication-type sets match; every remaining mismatch is the Europe-PMC-only controlled token Retraction of Publication on 11,251 records.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "Provider relation completeness cannot be inferred from near-perfect agreement.",
+      "failure": "Three normalized relation sets still differ",
+      "failure_id": "CV12_RESIDUAL_RELATION_DRIFT",
+      "next_discriminator": "Provider-native provenance/refresh receipts or record-owner attestation for the three residual interfaces.",
+      "observed_evidence": "11,988/11,991 normalized relation sets match; one has EPMC-only Preprint in and two have PubMed-only RetractionOf.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "Unknown or absent structured values cannot be forced into a scientific action.",
+      "failure": "Fifteen notice records remain outside the frozen action strata",
+      "failure_id": "CV13_OTHER_CANNOT_CHECK",
+      "next_discriminator": "An owner-approved additional structured token or explicit unsupported terminal.",
+      "observed_evidence": "11,976/11,991 records classify into exactly one stratum; 15 are OTHER_OR_CANNOT_CHECK and zero are ambiguous.",
+      "status": "OPEN"
+    },
+    {
+      "construct_consequence": "The pool proves three-stratum feasibility but not balanced sampling, natural prevalence of R7 decisions, or transport.",
+      "failure": "The public structured pool is highly retraction-dominant",
+      "failure_id": "CV14_STRATUM_COVERAGE_IMBALANCE",
+      "next_discriminator": "Prospectively stratified design with independent scientific-action adjudication and explicit estimand weighting.",
+      "observed_evidence": "Record counts are 11,251 retraction, 256 correction/erratum, and 469 expression of concern.",
+      "status": "OPEN"
+    }
+  ],
+  "generated_at": "2026-08-23T18:11:26.900337+00:00",
+  "protocol_sha256": "cd653aec420249d98355478164c95ed6bfd1137e33279529ae06c011bf5114c3",
+  "provider_census_sha256": "947ff02bdfe9f9f45f0300bfafc8f1c2f20dd8fd63e54498ef3830dbd6fdf18e",
+  "schema_version": "orion.p1.structured-action-semantics.construct-validity-failure-atlas.v3",
+  "summary": {
+    "open_failure_count": 14,
+    "owner_field_sufficient_count": 0,
+    "rule": "Every open failure is a research target; none may be converted to a positive scientific claim without its discriminator."
+  }
+}

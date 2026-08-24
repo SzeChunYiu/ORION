@@ -1,0 +1,70 @@
+{
+  "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+  "authority": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_PREFLIGHT_ONLY",
+  "execution_order": [
+    "independent custodian binds every non-BOUND field without protected outcome access",
+    "validator requires 21/21 BOUND and a content-addressed disposable runtime launcher",
+    "candidate receives only the frozen rights-cleared case and public-development evaluator",
+    "MOSS executes in a dedicated isolated Docker/VM boundary under one process-group watchdog",
+    "native parser retains MOSS terminal and emits UNRESOLVED without class inference",
+    "V3 certificate/action/fibre validation runs separately",
+    "one frozen successor enters external protected custody once with no feedback"
+  ],
+  "frozen_at_utc": "2026-08-23T17:38:58Z",
+  "frozen_components": {
+    "dependency_locks": {
+      "host": {
+        "package_entries": 11,
+        "path": "MOSS_HOST_DEPENDENCY_LOCK_V4.uv.lock",
+        "python_request": ">=3.11",
+        "resolver": "uv 0.11.1",
+        "sha256": "382c5d3ad1eaa6ca85e970dca53b7c423f68878c23ceada8c3f17138c2b84b72"
+      },
+      "openclaw": {
+        "identical_to_upstream_lock": true,
+        "node_engine": ">=22.12.0",
+        "package_entries": 1196,
+        "package_manager": "pnpm@10.23.0",
+        "path": "MOSS_OPENCLAW_DEPENDENCY_LOCK_V4.pnpm-lock.yaml",
+        "sha256": "17a36bc38c1817eaee7a7c4264d58b127f5edb6a5054e4952545450cfde0337c"
+      }
+    },
+    "fail_closed_gate": {
+      "path": "p5_c2_fail_closed_runner.py",
+      "sha256": "c5665107f6b11d5448ab1d9552fbd6e4d49ea063085831653b31eada390f80ef"
+    },
+    "fallbacks": [],
+    "native_parser": {
+      "path": "p5_c2_native_parser.py",
+      "sha256": "2e1617527cb1b10c8030e8c5555892c47332a2dde85eb0a539f1eb04043b1470"
+    },
+    "wallclock_seconds": {
+      "per_case": 21600,
+      "termination_grace": 120,
+      "whole_c2_run": 21600
+    }
+  },
+  "nonclaims": [
+    "No MOSS evolution, model, coding agent, benchmark, replay, protected scorer or comparator was executed.",
+    "CLI help loading and parser conformance are not native evolution success.",
+    "The released benchmark/runtime gap is not repaired by inventing or substituting bytes.",
+    "No performance, preservation, transfer, harm or superiority inference is available."
+  ],
+  "predecessors": {
+    "c1_swe_v4_sha256s": "2398e75169612fb777b487c795caa5402b47f27c1039f7dcfd3dcc3789020df4",
+    "v2_comparator_panel_sha256s": "94ef91058dd6c453296d557129e080ff7918f8d7e09716a1d69ba57d77b5bad1",
+    "v2_identity_ledger": "f6419103024de98d0cf44ee2681399007001eb79c9b830312d501b6045a60583",
+    "v2_resource_ledger": "1e3a450b1561cb2d3a1d556c77ef1688f8894fb2331fcfa334de87a18bd11dfe",
+    "v2_terminal_adapters_sha256s": "bd69cfcb3dda70d4d08c84b6ce35a0cc7e77865627dd48278e07b3f8cd158850",
+    "v3_adapter_refinement_sha256s": "50d1ff72f63093216761c4b47d3ced6de82915967578f33f3296bf41e4f73c4a",
+    "v3_blocker_ledger": "265e3ba834ab7e24c471965f8064542e3f61f74414e0646b22a90fe9ae95c789"
+  },
+  "protocol_id": "P5.C2.MOSS.EXECUTION.BINDING.V4",
+  "schema_version": "orion.p5.c2.moss-execution-binding-protocol.v4",
+  "source_identity": {
+    "archive_sha256": "de6bb0e480749757d8e9b05a66c37c82228ea6d9d1e1cb92b6b32a3b28e5610e",
+    "commit_sha": "5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+    "repository": "https://github.com/hkgai-official/Moss",
+    "tree_sha": "ebfcd6ac3ae00749240a5e2d8a96ad570adaf63f"
+  }
+}

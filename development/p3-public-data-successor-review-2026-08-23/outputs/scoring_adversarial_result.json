@@ -1,0 +1,208 @@
+{
+  "authority": "PUBLIC_VISIBLE_GOLD_DEVELOPMENT_TRANSPORT_ONLY",
+  "protected_evidence": false,
+  "schema_version": "orion.p3.public-score.v1",
+  "systems": {
+    "ADVERSARY": {
+      "case_results": [
+        {
+          "case_id": "SCORE.1",
+          "cluster_id": "INJECTED.A",
+          "envelope_size": 1,
+          "exact": false,
+          "false_merge": false,
+          "false_split": false,
+          "floor_adjusted": [
+            {
+              "costs": {
+                "false_merge": 1.0,
+                "false_split": 1.0,
+                "unresolved": 0.25
+              },
+              "excess_harm": 0.75,
+              "floor": 0.25,
+              "loss": 1.0,
+              "status": "DECIDED"
+            },
+            {
+              "costs": {
+                "false_merge": 5.0,
+                "false_split": 1.0,
+                "unresolved": 0.25
+              },
+              "excess_harm": 0.75,
+              "floor": 0.25,
+              "loss": 1.0,
+              "status": "DECIDED"
+            },
+            {
+              "costs": {
+                "false_merge": 1.0,
+                "false_split": 5.0,
+                "unresolved": 0.25
+              },
+              "excess_harm": 4.75,
+              "floor": 0.25,
+              "loss": 5.0,
+              "status": "DECIDED"
+            }
+          ],
+          "gold_in_envelope": false,
+          "identified_set_non_singleton": true,
+          "over_resolution": true,
+          "prediction": "BANANA",
+          "truth": "GLUE",
+          "unresolved": false
+        },
+        {
+          "case_id": "SCORE.1",
+          "cluster_id": "INJECTED.B",
+          "envelope_size": 1,
+          "exact": false,
+          "false_merge": false,
+          "false_split": false,
+          "floor_adjusted": [
+            {
+              "costs": {
+                "false_merge": 1.0,
+                "false_split": 1.0,
+                "unresolved": 0.25
+              },
+              "excess_harm": 0.75,
+              "floor": 0.25,
+              "loss": 1.0,
+              "status": "DECIDED"
+            },
+            {
+              "costs": {
+                "false_merge": 5.0,
+                "false_split": 1.0,
+                "unresolved": 0.25
+              },
+              "excess_harm": 0.75,
+              "floor": 0.25,
+              "loss": 1.0,
+              "status": "DECIDED"
+            },
+            {
+              "costs": {
+                "false_merge": 1.0,
+                "false_split": 5.0,
+                "unresolved": 0.25
+              },
+              "excess_harm": 4.75,
+              "floor": 0.25,
+              "loss": 5.0,
+              "status": "DECIDED"
+            }
+          ],
+          "gold_in_envelope": false,
+          "identified_set_non_singleton": true,
+          "over_resolution": true,
+          "prediction": "BANANA",
+          "truth": "GLUE",
+          "unresolved": false
+        },
+        {
+          "case_id": "SCORE.2",
+          "cluster_id": "INJECTED.C",
+          "envelope_size": 1,
+          "exact": false,
+          "false_merge": false,
+          "false_split": false,
+          "floor_adjusted": [
+            {
+              "costs": {
+                "false_merge": 1.0,
+                "false_split": 1.0,
+                "unresolved": 0.25
+              },
+              "excess_harm": 0.0,
+              "floor": 0.0,
+              "loss": 0.0,
+              "status": "DECIDED"
+            },
+            {
+              "costs": {
+                "false_merge": 5.0,
+                "false_split": 1.0,
+                "unresolved": 0.25
+              },
+              "excess_harm": 0.0,
+              "floor": 0.0,
+              "loss": 0.0,
+              "status": "DECIDED"
+            },
+            {
+              "costs": {
+                "false_merge": 1.0,
+                "false_split": 5.0,
+                "unresolved": 0.25
+              },
+              "excess_harm": 0.0,
+              "floor": 0.0,
+              "loss": 0.0,
+              "status": "DECIDED"
+            }
+          ],
+          "gold_in_envelope": false,
+          "identified_set_non_singleton": false,
+          "over_resolution": false,
+          "prediction": "OBSTRUCTION",
+          "truth": "PLURAL",
+          "unresolved": false
+        }
+      ],
+      "exact_rate": 0.0,
+      "false_merge_rate_on_nonmerge_opportunities": 0.0,
+      "false_split_rate_on_merge_opportunities": 0.0,
+      "floor_adjusted_case_weighted_summary": [
+        {
+          "case_weighted_mean_excess_harm": 0.5,
+          "cluster_weighted_mean_excess_harm": 0.5,
+          "costs": {
+            "false_merge": 1.0,
+            "false_split": 1.0,
+            "unresolved": 0.25
+          },
+          "n_clusters": 3,
+          "status": "CLUSTER_WEIGHTED_DESCRIPTIVE_NO_INTERVAL"
+        },
+        {
+          "case_weighted_mean_excess_harm": 0.5,
+          "cluster_weighted_mean_excess_harm": 0.5,
+          "costs": {
+            "false_merge": 5.0,
+            "false_split": 1.0,
+            "unresolved": 0.25
+          },
+          "n_clusters": 3,
+          "status": "CLUSTER_WEIGHTED_DESCRIPTIVE_NO_INTERVAL"
+        },
+        {
+          "case_weighted_mean_excess_harm": 3.1666666666666665,
+          "cluster_weighted_mean_excess_harm": 3.1666666666666665,
+          "costs": {
+            "false_merge": 1.0,
+            "false_split": 5.0,
+            "unresolved": 0.25
+          },
+          "n_clusters": 3,
+          "status": "CLUSTER_WEIGHTED_DESCRIPTIVE_NO_INTERVAL"
+        }
+      ],
+      "floor_adjusted_identified_case_count": 3,
+      "floor_adjusted_status": "DECIDED_DESCRIPTIVELY",
+      "gold_in_envelope_coverage": 0.0,
+      "mean_envelope_size_conditional_on_coverage": null,
+      "merge_opportunities": 2,
+      "n_cases": 3,
+      "n_clusters": 3,
+      "non_singleton_identified_set_opportunities": 2,
+      "nonmerge_opportunities": 1,
+      "over_resolution_rate_on_non_singleton_identified_sets": 1.0,
+      "unresolved_rate": 0.0
+    }
+  },
+  "warning": "Case-level rates are descriptive. Inference must use source-artifact-family clusters; OAEI numbered tests share one seed family."
+}

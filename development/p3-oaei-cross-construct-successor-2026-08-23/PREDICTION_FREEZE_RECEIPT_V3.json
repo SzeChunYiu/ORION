@@ -1,0 +1,93 @@
+{
+  "aml_pairs_outside_case_universe": 0,
+  "aml_stats": {
+    "duplicate_cells_by_target": {
+      "102": 0,
+      "103": 13,
+      "104": 13,
+      "105": 0,
+      "201": 0,
+      "202": 0,
+      "204": 11,
+      "205": 3,
+      "221": 13,
+      "222": 13,
+      "223": 13,
+      "224": 0,
+      "225": 13,
+      "228": 9,
+      "230": 7,
+      "301": 0,
+      "302": 0,
+      "303": 0,
+      "304": 0
+    },
+    "n_targets_executed": 19,
+    "n_targets_failed": 1,
+    "raw_equivalence_cells": 518,
+    "unique_canonical_pairs": 410
+  },
+  "authority": "POST_PUBLIC_GOLD_INFORMED_DEVELOPMENT_PREDICTION_FREEZE",
+  "case_file_sha256": "b9bc38e8fc0afd411cd45b9fe8f358c8151f3de9eddb94b73de3882d610f0e36",
+  "construct_transition_counts": {
+    "Class->Class": 26064,
+    "Class->ClassReference": 144,
+    "Class->DatatypeProperty": 25380,
+    "Class->ObjectProperty": 14472,
+    "Class->PropertyReference": 216,
+    "DatatypeProperty->Class": 34028,
+    "DatatypeProperty->ClassReference": 188,
+    "DatatypeProperty->DatatypeProperty": 33135,
+    "DatatypeProperty->ObjectProperty": 18894,
+    "DatatypeProperty->PropertyReference": 282,
+    "ObjectProperty->Class": 15928,
+    "ObjectProperty->ClassReference": 88,
+    "ObjectProperty->DatatypeProperty": 15510,
+    "ObjectProperty->ObjectProperty": 8844,
+    "ObjectProperty->PropertyReference": 132
+  },
+  "current_terminal": "V3_CROSS_CONSTRUCT_PREDICTIONS_FROZEN__POST_GOLD_INFORMED_PUBLIC_DEVELOPMENT",
+  "n_cases": 193305,
+  "n_prediction_rows": 1159830,
+  "prediction_file": "/tmp/p3-cross-construct-successor-v3/predictions.jsonl",
+  "prediction_file_sha256": "ecc729f0f95050aaac84def97e1afbafc4d28926476081d35d66b879c6339117",
+  "prediction_file_size": 586511629,
+  "protocol_id": "P3.PUBLIC.OAEI.CROSS_CONSTRUCT.IDENTIFICATION_ENVELOPE.DEV.V3",
+  "public_gold_influenced_system_design": true,
+  "reference_alignment_read_during_this_execution": false,
+  "schema_version": "orion.p3.oaei-cross-construct-prediction-freeze.v3",
+  "system_action_counts": {
+    "AML_V3_2_AUTO_SOURCE_NATIVE": {
+      "GLUE": 410,
+      "OBSTRUCTION": 181765,
+      "UNRESOLVED": 11130
+    },
+    "FLAT_LABEL_EQUALITY_V1": {
+      "GLUE": 1556,
+      "OBSTRUCTION": 191749
+    },
+    "P3_CONFLICT_PRESERVING_WRAPPER_V2_CROSS_CONSTRUCT": {
+      "GLUE": 380,
+      "OBSTRUCTION": 180633,
+      "UNRESOLVED": 12292
+    },
+    "P3_INFORMATION_EQUIVALENT_IDEAL_V3": {
+      "UNRESOLVED": 193305
+    },
+    "P3_MAXIMAL_BINARY_IDENTIFICATION_ENVELOPE_V3": {
+      "UNRESOLVED": 193305
+    },
+    "TOKEN_JACCARD_FORCED_V1": {
+      "GLUE": 1674,
+      "OBSTRUCTION": 191631
+    }
+  },
+  "systems": [
+    "AML_V3_2_AUTO_SOURCE_NATIVE",
+    "FLAT_LABEL_EQUALITY_V1",
+    "TOKEN_JACCARD_FORCED_V1",
+    "P3_CONFLICT_PRESERVING_WRAPPER_V2_CROSS_CONSTRUCT",
+    "P3_MAXIMAL_BINARY_IDENTIFICATION_ENVELOPE_V3",
+    "P3_INFORMATION_EQUIVALENT_IDEAL_V3"
+  ]
+}

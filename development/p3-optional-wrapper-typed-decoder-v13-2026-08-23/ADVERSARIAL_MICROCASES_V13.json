@@ -1,0 +1,154 @@
+{
+  "cases": [
+    {
+      "error": null,
+      "expected_accept": true,
+      "expected_decoded": "urn:orion:p3:v6:bertmap-smoke:source#Class00",
+      "id": "valid_source",
+      "observed_accept": true,
+      "observed_decoded": "urn:orion:p3:v6:bertmap-smoke:source#Class00",
+      "pass": true,
+      "role": "source",
+      "text": "Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class00"
+    },
+    {
+      "error": "surface string does not match the exact typed grammar",
+      "expected_accept": false,
+      "expected_decoded": null,
+      "id": "missing_wrapper",
+      "observed_accept": false,
+      "observed_decoded": null,
+      "pass": true,
+      "role": "source",
+      "text": "urn:orion:p3:v6:bertmap-smoke:source#Class00"
+    },
+    {
+      "error": "surface string does not match the exact typed grammar",
+      "expected_accept": false,
+      "expected_decoded": null,
+      "id": "misspelled_constructor",
+      "observed_accept": false,
+      "observed_decoded": null,
+      "pass": true,
+      "role": "source",
+      "text": "Optional.ofx(urn:orion:p3:v6:bertmap-smoke:source)#Class00"
+    },
+    {
+      "error": "surface string does not match the exact typed grammar",
+      "expected_accept": false,
+      "expected_decoded": null,
+      "id": "nested_wrapper",
+      "observed_accept": false,
+      "observed_decoded": null,
+      "pass": true,
+      "role": "source",
+      "text": "Optional.of(Optional.of(urn:orion:p3:v6:bertmap-smoke:source))#Class00"
+    },
+    {
+      "error": "surface string does not match the exact typed grammar",
+      "expected_accept": false,
+      "expected_decoded": null,
+      "id": "missing_close",
+      "observed_accept": false,
+      "observed_decoded": null,
+      "pass": true,
+      "role": "source",
+      "text": "Optional.of(urn:orion:p3:v6:bertmap-smoke:source#Class00"
+    },
+    {
+      "error": "surface string does not match the exact typed grammar",
+      "expected_accept": false,
+      "expected_decoded": null,
+      "id": "fragment_inside_wrapper",
+      "observed_accept": false,
+      "observed_decoded": null,
+      "pass": true,
+      "role": "source",
+      "text": "Optional.of(urn:orion:p3:v6:bertmap-smoke:source#Class00)"
+    },
+    {
+      "error": "surface string does not match the exact typed grammar",
+      "expected_accept": false,
+      "expected_decoded": null,
+      "id": "empty_fragment",
+      "observed_accept": false,
+      "observed_decoded": null,
+      "pass": true,
+      "role": "source",
+      "text": "Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#"
+    },
+    {
+      "error": "surface string does not match the exact typed grammar",
+      "expected_accept": false,
+      "expected_decoded": null,
+      "id": "multiple_fragments",
+      "observed_accept": false,
+      "observed_decoded": null,
+      "pass": true,
+      "role": "source",
+      "text": "Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class00#extra"
+    },
+    {
+      "error": "surface string does not match the exact typed grammar",
+      "expected_accept": false,
+      "expected_decoded": null,
+      "id": "whitespace",
+      "observed_accept": false,
+      "observed_decoded": null,
+      "pass": true,
+      "role": "source",
+      "text": "Optional.of(urn:orion:p3:v6:bertmap-smoke:source) #Class00"
+    },
+    {
+      "error": "decoded IRI is not an exact member of the role-specific frozen universe",
+      "expected_accept": false,
+      "expected_decoded": null,
+      "id": "unknown_role_member",
+      "observed_accept": false,
+      "observed_decoded": null,
+      "pass": true,
+      "role": "source",
+      "text": "Optional.of(urn:orion:p3:v6:bertmap-smoke:source)#Class99"
+    },
+    {
+      "error": "decoded IRI is not an exact member of the role-specific frozen universe",
+      "expected_accept": false,
+      "expected_decoded": null,
+      "id": "cross_role_member",
+      "observed_accept": false,
+      "observed_decoded": null,
+      "pass": true,
+      "role": "source",
+      "text": "Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class00"
+    },
+    {
+      "error": null,
+      "expected_accept": true,
+      "expected_decoded": "urn:orion:p3:v6:bertmap-smoke:target#Class15",
+      "id": "valid_target",
+      "observed_accept": true,
+      "observed_decoded": "urn:orion:p3:v6:bertmap-smoke:target#Class15",
+      "pass": true,
+      "role": "target",
+      "text": "Optional.of(urn:orion:p3:v6:bertmap-smoke:target)#Class15"
+    }
+  ],
+  "checks_passed": 12,
+  "checks_total": 12,
+  "grammar": {
+    "acceptance_requirements": [
+      "whole string matches anchored grammar exactly",
+      "no whitespace, nested parentheses, second fragment, missing fragment, or alternative constructor",
+      "decoded entity IRI is an exact member of the role-specific frozen universe",
+      "decoder is injective separately for source and target observed strings"
+    ],
+    "anchored_regex": "\\AOptional\\.of\\((?P<ontology_iri>[A-Za-z][A-Za-z0-9+.-]*:[^()\\s#]+)\\)(?P<fragment>#[^#()\\s]+)\\Z",
+    "decode_rule": "decoded_entity_iri = ontology_iri + fragment",
+    "name": "OWLAPI_OPTIONAL_ONTOLOGY_IRI_PLUS_ENTITY_FRAGMENT_V1",
+    "normalization_forbidden": "No trim, substring replacement, case fold, URL decoding, heuristic repair, or outcome-dependent mutation.",
+    "surface_form": "Optional.of(<ontology-IRI>)<fragment>"
+  },
+  "pass": true,
+  "schema_version": "orion.p3.optional-wrapper-typed-decoder.adversarial-microcases.v13",
+  "terminal": "PASS_TYPED_DECODER_ADVERSARIAL_MICROCASES"
+}

@@ -1,0 +1,56 @@
+{
+  "current_gate_contract": {
+    "models": 0,
+    "network_calls": 0,
+    "outcomes": 0,
+    "provider_fields": [
+      "record_id",
+      "title",
+      "abstract",
+      "keywords"
+    ],
+    "records": 2,
+    "source_bytes": 5807809
+  },
+  "custody": {
+    "independent_outcome_custody": false,
+    "performance_authorized": false,
+    "same_workspace_public_development": true
+  },
+  "exact_comparator": {
+    "identity": "EXACT_U4",
+    "keywords_available": false,
+    "model_text_function": "exact V10 normalized title/abstract plus .strip()",
+    "population_identity_function": "direct import of V9 content_identity"
+  },
+  "frozen_at_utc": "2026-08-24T06:07:45.672571+00:00",
+  "identity": "P2_V13_KEYWORD_STATE_CONTRACT_AND_SUPPORT_CEILING",
+  "keyword_candidate": {
+    "current_status": "NONSIMULATION_WITNESS_ONLY",
+    "only_new_coordinate": "provider-native keywords",
+    "representation_or_learner_change": false
+  },
+  "next_population_contract": {
+    "complete_available_family_no_post_outcome_deletion": true,
+    "exact_rights_required": true,
+    "independent_custody_required": true,
+    "minimum_keyword_capable_review_units": 6,
+    "review_units": 7,
+    "source_disjoint_from": [
+      "SWIFT",
+      "SYNERGY_V5",
+      "KIFMS_V7",
+      "V9_V10_SEVEN_REVIEW_FAMILY"
+    ],
+    "unchanged_u4_and_v10_gates": true
+  },
+  "schema_version": "orion.p2.state-expanding-acquisition.matched-contract-and-support-freeze.v13",
+  "support_ceiling": {
+    "fallback_reviews": 3,
+    "keyword_capable_reviews": 4,
+    "matched_v10_performance_gate_feasible": false,
+    "maximum_strictly_positive_keyword_review_count": 4,
+    "total_v10_reviews": 7,
+    "unchanged_required_count": 6
+  }
+}

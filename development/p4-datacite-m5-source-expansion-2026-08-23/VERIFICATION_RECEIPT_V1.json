@@ -1,0 +1,302 @@
+{
+  "checks": [
+    {
+      "check": "protocol_payload_hash",
+      "expected": "494089214d5509850c7812fea2a68ac753e8eaa8e09491b0ba170e8dc7b14456",
+      "observed": "494089214d5509850c7812fea2a68ac753e8eaa8e09491b0ba170e8dc7b14456",
+      "passed": true
+    },
+    {
+      "check": "result_payload_hash",
+      "expected": "c9e55d910438b8fa0331a1810d6d3600ac8020846984a4e195c0cecbb2c39b20",
+      "observed": "c9e55d910438b8fa0331a1810d6d3600ac8020846984a4e195c0cecbb2c39b20",
+      "passed": true
+    },
+    {
+      "check": "protocol_file_link",
+      "expected": "210b446ff205c6f9cf25cc7c3231d388bfd4187e97006f3c897aabbecb16f691",
+      "observed": "210b446ff205c6f9cf25cc7c3231d388bfd4187e97006f3c897aabbecb16f691",
+      "passed": true
+    },
+    {
+      "check": "candidate_file_link",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    },
+    {
+      "check": "bound_zenodo_v2_result_file",
+      "expected": "683c2ec074c04d92276dcd185f3c06750f6e1dd9817310ecd6e879f87f99e62d",
+      "observed": "683c2ec074c04d92276dcd185f3c06750f6e1dd9817310ecd6e879f87f99e62d",
+      "passed": true
+    },
+    {
+      "check": "zenodo_v1_terminal_immutable",
+      "expected": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1_TRANSPORT_CANNOT_CHECK_HTTP_400",
+      "observed": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1_TRANSPORT_CANNOT_CHECK_HTTP_400",
+      "passed": true
+    },
+    {
+      "check": "zenodo_v2_terminal_immutable",
+      "expected": "P4_ZENODO_RELATED_OBJECT_V2_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_PROVIDER",
+      "observed": "P4_ZENODO_RELATED_OBJECT_V2_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_PROVIDER",
+      "passed": true
+    },
+    {
+      "check": "negative_identity_policy",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "check": "four_frozen_queries",
+      "expected": 4,
+      "observed": 4,
+      "passed": true
+    },
+    {
+      "check": "four_raw_responses",
+      "expected": 4,
+      "observed": 4,
+      "passed": true
+    },
+    {
+      "check": "api_page_schema_receipts",
+      "expected": true,
+      "observed": true,
+      "passed": true
+    },
+    {
+      "check": "pagination_integrity",
+      "expected": {
+        "receipt_pages": true,
+        "result": true
+      },
+      "observed": {
+        "receipt_pages": true,
+        "result": true
+      },
+      "passed": true
+    },
+    {
+      "check": "raw_hits",
+      "expected": 4000,
+      "observed": 4000,
+      "passed": true
+    },
+    {
+      "check": "provider_disjointness_fail_closed",
+      "expected": 4000,
+      "observed": 4000,
+      "passed": true
+    },
+    {
+      "check": "raw_response_hashes",
+      "expected": [
+        "0eeb7b37ea34745cf9c48e0863cf5141a5a50b46b2eb4c206ea13a24f51c986c",
+        "acf02d2ecd1829035d5b84ed5555b15966998c21add09fab39cba732bb6b101b",
+        "a6e056829002af7349b2a3b7ad6125818a3e09274412dcefc08f98dc0e4d8e1c",
+        "c644d628e7f266af8c65a5b0a6911bc347f5fadcbd5d0933f067689f8865600b"
+      ],
+      "observed": [
+        "0eeb7b37ea34745cf9c48e0863cf5141a5a50b46b2eb4c206ea13a24f51c986c",
+        "acf02d2ecd1829035d5b84ed5555b15966998c21add09fab39cba732bb6b101b",
+        "a6e056829002af7349b2a3b7ad6125818a3e09274412dcefc08f98dc0e4d8e1c",
+        "c644d628e7f266af8c65a5b0a6911bc347f5fadcbd5d0933f067689f8865600b"
+      ],
+      "passed": true
+    },
+    {
+      "check": "zero_admitted_candidates",
+      "expected": {
+        "file_bytes": 0,
+        "rows": 0,
+        "unique": 0
+      },
+      "observed": {
+        "file_bytes": 0,
+        "rows": 0,
+        "unique": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "official_evidence_receipts",
+      "expected": {
+        "http_200": 4,
+        "records": 4
+      },
+      "observed": {
+        "http_200": 4,
+        "records": 4
+      },
+      "passed": true
+    },
+    {
+      "check": "retained_assertion_mismatch",
+      "expected": {
+        "evidence_passes": 3,
+        "failed_assertions": [
+          "OpenSearch query string syntax"
+        ]
+      },
+      "observed": {
+        "evidence_passes": 3,
+        "failed_assertions": [
+          "OpenSearch query string syntax"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "check": "unchanged_four_domain_48_signal_shortfalls",
+      "expected": {
+        "EARTH_ENVIRONMENT": {
+          "combined": 37,
+          "datacite": 0,
+          "delta": -11,
+          "zenodo": 37
+        },
+        "LIFE_BIOMEDICAL": {
+          "combined": 44,
+          "datacite": 0,
+          "delta": -4,
+          "zenodo": 44
+        },
+        "PHYSICAL_ENGINEERING": {
+          "combined": 29,
+          "datacite": 0,
+          "delta": -19,
+          "zenodo": 29
+        },
+        "SCIENTIFIC_SOFTWARE": {
+          "combined": 30,
+          "datacite": 0,
+          "delta": -18,
+          "zenodo": 30
+        }
+      },
+      "observed": {
+        "EARTH_ENVIRONMENT": {
+          "combined": 37,
+          "datacite": 0,
+          "delta": -11,
+          "zenodo": 37
+        },
+        "LIFE_BIOMEDICAL": {
+          "combined": 44,
+          "datacite": 0,
+          "delta": -4,
+          "zenodo": 44
+        },
+        "PHYSICAL_ENGINEERING": {
+          "combined": 29,
+          "datacite": 0,
+          "delta": -19,
+          "zenodo": 29
+        },
+        "SCIENTIFIC_SOFTWARE": {
+          "combined": 30,
+          "datacite": 0,
+          "delta": -18,
+          "zenodo": 30
+        }
+      },
+      "passed": true
+    },
+    {
+      "check": "unchanged_zenodo_v2_m6_gate_still_fails",
+      "expected": {
+        "EARTH_ENVIRONMENT": 6,
+        "LIFE_BIOMEDICAL": 10,
+        "PHYSICAL_ENGINEERING": 10,
+        "SCIENTIFIC_SOFTWARE": 7
+      },
+      "observed": {
+        "EARTH_ENVIRONMENT": 6,
+        "LIFE_BIOMEDICAL": 10,
+        "PHYSICAL_ENGINEERING": 10,
+        "SCIENTIFIC_SOFTWARE": 7
+      },
+      "passed": true
+    },
+    {
+      "check": "no_content_or_outcome_access",
+      "expected": "all true",
+      "observed": {
+        "candidate_content_bytes": true,
+        "files": true,
+        "metadata_descriptions": true,
+        "models": true,
+        "outcomes": true
+      },
+      "passed": true
+    },
+    {
+      "check": "exact_retained_terminal",
+      "expected": "P4_DATACITE_M5_CENSUS_V1_CANNOT_CHECK_TRANSPORT_OR_SCHEMA",
+      "observed": "P4_DATACITE_M5_CENSUS_V1_CANNOT_CHECK_TRANSPORT_OR_SCHEMA",
+      "passed": true
+    },
+    {
+      "check": "not_execution_ready",
+      "expected": false,
+      "observed": false,
+      "passed": true
+    }
+  ],
+  "explicit_nonclaim": "Structural verification preserves the failed census; it does not establish a DataCite source candidate, content permission, natural-pair eligibility, or scientific result.",
+  "hard_failure_count": 0,
+  "hard_failures": [],
+  "input_file_sha256": {
+    "P4_DATACITE_M5_CANDIDATES_V1.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "P4_DATACITE_M5_CENSUS_PROTOCOL_V1.json": "210b446ff205c6f9cf25cc7c3231d388bfd4187e97006f3c897aabbecb16f691",
+    "P4_DATACITE_M5_CENSUS_RESULT_V1.json": "793d2698957529653e708aff9c886ec9cdbc99beaca4247e1350a8fab877c5f7",
+    "P4_ZENODO_RELATED_OBJECT_CENSUS_RESULT_V2.json": "683c2ec074c04d92276dcd185f3c06750f6e1dd9817310ecd6e879f87f99e62d"
+  },
+  "schema_version": "orion.p4.datacite-m5-census-verification.v1",
+  "summary": {
+    "all_eight_m5_m6_cells_pass": false,
+    "candidate_rows": 0,
+    "per_cell": {
+      "EARTH_ENVIRONMENT": {
+        "combined": 37,
+        "datacite": 0,
+        "delta": -11,
+        "zenodo": 37
+      },
+      "LIFE_BIOMEDICAL": {
+        "combined": 44,
+        "datacite": 0,
+        "delta": -4,
+        "zenodo": 44
+      },
+      "PHYSICAL_ENGINEERING": {
+        "combined": 29,
+        "datacite": 0,
+        "delta": -19,
+        "zenodo": 29
+      },
+      "SCIENTIFIC_SOFTWARE": {
+        "combined": 30,
+        "datacite": 0,
+        "delta": -18,
+        "zenodo": 30
+      }
+    },
+    "provider_disjointness_exclusions": 4000,
+    "queries": 4,
+    "raw_hits": 4000,
+    "scientific_terminal": "P4_DATACITE_M5_CENSUS_V1_CANNOT_CHECK_TRANSPORT_OR_SCHEMA",
+    "unchanged_m6_signal_counts": {
+      "EARTH_ENVIRONMENT": 6,
+      "LIFE_BIOMEDICAL": 10,
+      "PHYSICAL_ENGINEERING": 10,
+      "SCIENTIFIC_SOFTWARE": 7
+    }
+  },
+  "verification_receipt_payload_sha256": "a807b73152eaa6fab28c0b799a700942d8851b8eba1ec884fb2ad49e9a95ee82",
+  "verification_scope": "STRUCTURAL_INTEGRITY_AND_RETAINED_NEGATIVE_PROVENANCE_ONLY",
+  "verification_status": "PASS_STRUCTURAL_INTEGRITY_WITH_RETAINED_TRANSPORT_SCHEMA_CANNOT_CHECK",
+  "verified_at_utc": "2026-08-23T14:21:36+00:00"
+}

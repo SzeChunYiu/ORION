@@ -1,0 +1,62 @@
+{
+  "actions": {
+    "case_or_outcome_accessed": false,
+    "external_authority_claimed": false,
+    "external_delivery_executed": false,
+    "external_identity_or_signature_fabricated": false,
+    "manuscript_updated": false,
+    "map_audit_rerun": false,
+    "public_metadata_probe_repeated": false,
+    "pytest_or_repository_ci_run": false,
+    "shared_ledger_updated": false
+  },
+  "adverse_result": {
+    "authority_acts_closed": 0,
+    "authority_acts_required": 4,
+    "causal_boundary": "EXTERNAL_VERIFIED_ACTORS_AND_AUTHORIZED_DELIVERY_CHANNEL_NOT_SUPPLIED",
+    "external_outputs_received": 0,
+    "external_outputs_required": 7,
+    "map_audit_authorized": false
+  },
+  "authority": "PROVIDER_READY_UNSIGNED_EXECUTION_PACKET_ONLY",
+  "frozen_counts": {
+    "cannot_check_maps": 720,
+    "certified_maps": 0,
+    "map_space": 117649,
+    "named_custodian_or_delegation_groups": 0,
+    "owner_requirement_groups": 12,
+    "rejected_maps": 116929,
+    "scientific_action_gold_cells": 0,
+    "structural_analogue_groups": 9,
+    "sufficient_owner_groups": 0
+  },
+  "next_discriminator": "P1_V14_EXTERNAL_SIGNED_BUNDLE_ACCEPTANCE_AND_SIGNATURE_VERIFICATION_GATE",
+  "not_warranted": [
+    "Any R7 owner, delegate, host, rights holder or independent reviewer identity is bound.",
+    "Any unsigned template delegates authority or proves custody.",
+    "The owner-approved seven-target algebra has been completed or ratified.",
+    "Any of four external authority acts is closed.",
+    "Any of 720 surviving maps is certified or newly rejected.",
+    "Any scientific-action gold cell, effect, superiority or top-tier readiness is established."
+  ],
+  "positive_result": {
+    "administrative_execution_components_bound": 8,
+    "exact_allowlisted_semantic_inputs_bound": 3,
+    "external_required_outputs_machine_named": 7,
+    "provider_ready_packet_complete": true,
+    "public_metadata_probe_repeated": false,
+    "self_hash_or_signature_cycle_resolved": true,
+    "signature_schemes_frozen": [
+      "GPG",
+      "SSH",
+      "SIGSTORE"
+    ],
+    "unsigned_external_templates": 5
+  },
+  "preserved_v12_terminal": "P1_V12_PRE_CUTOFF_ISSUE_IDENTITY_BOUND__ZERO_OF_SEVEN_FORMAL_DELEGATION_FIELDS__EXACT_COMMIT_LICENSE_AND_SCHEMA_PUBLIC_ROUTES_404__ZERO_OF_FOUR_AUTHORITY_ACTS_CLOSED__720_MAPS_UNCHANGED",
+  "readiness": "READY_FOR_EXTERNAL_AUTHORITY_EXECUTION__NOT_SUBMISSION_READY",
+  "result_id": "P1.V13.OWNER.CUSTODY.POSITIVE.SUCCESSOR.RESULT",
+  "schema_version": "orion.p1.owner-custody-positive-successor.result.v13",
+  "terminal": "P1_V13_CONTENT_ADDRESSED_EXTERNAL_EXECUTION_PACKET_COMPLETE__ZERO_OF_SEVEN_EXTERNAL_SIGNED_OUTPUTS_RECEIVED__ZERO_OF_FOUR_AUTHORITY_ACTS_CLOSED__720_MAPS_UNCHANGED",
+  "widest_positive_result": "V13 converts the V12 authority gap into one immutable provider-ready execution object: eight administrative components and exactly three V10-allowlisted semantic inputs are byte-bound; RFC8785 payload domains remove the algebra/review self-hash cycle; all required external outputs, ordering, signature schemes, pass rules and fail-closed boundaries are machine named. This is execution readiness, not external authority or scientific map validation."
+}

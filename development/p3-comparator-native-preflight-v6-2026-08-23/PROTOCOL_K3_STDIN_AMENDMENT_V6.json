@@ -1,0 +1,36 @@
+{
+  "amended_interface": {
+    "executable_and_arguments_unchanged": true,
+    "model_config_inputs_thresholds_dependencies_timeout_and_offline_guards_unchanged": true,
+    "reason": "Finite explicit heap input compatible with the prompt syntax and bounded below the machine memory; no source patch.",
+    "retries_per_amended_launch": 0,
+    "stdin_exact_utf8": "2g\\n"
+  },
+  "amendment_id": "P3_V6_K3_DOCUMENTED_JVM_MEMORY_STDIN_BINDING",
+  "failed_discovery_execution": {
+    "native_artifact_files_created": 0,
+    "ontology_loading_started": false,
+    "prediction_started": false,
+    "run_record_sha256": "0a1d8cc16cfdeefe0f2983f479b6ff5e3d963c9cbc5c7d994631b90674fd2843",
+    "stdout_prompt": "Please enter the maximum memory located to JVM [8g]:",
+    "terminal": "click.exceptions.Abort",
+    "training_started": false
+  },
+  "frozen_at": "2026-08-23T17:37:17.026288+00:00",
+  "schema_version": "orion.p3.comparator-native-preflight.k3-stdin-amendment.v6",
+  "scientific_invariance": [
+    "The prompt failure exposed no rows, predictions, gold, protected data, score, or performance outcome.",
+    "The amendment binds only a documented native interface value before ontology loading.",
+    "No result-conditioned tuning or gate weakening is permitted.",
+    "Any failure after this amended launch is terminal CANNOT_CHECK for K3 V6."
+  ],
+  "source_evidence": {
+    "official_docs_fact": "Pinned documentation specifies piping a memory value into a background/noninteractive Python command.",
+    "official_docs_relpath": "docs/ontology.md",
+    "official_docs_sha256": "b3a94169c39879c22f86ba6d87b303e17b4d881b99ae317f6dd426ae27d73f9d",
+    "ontology_module_relpath": "src/deeponto/onto/ontology.py",
+    "ontology_module_sha256": "f059d0485e101f7e9e2ec2386501d5e8b14698894e91775f56fe51e64a02dcfe",
+    "prompt_source_fact": "On import, when JVM is not started, pinned DeepOnto uses click.prompt for maximum JVM memory with default 8g."
+  },
+  "trigger_class": "OUTCOME_NEUTRAL_NATIVE_ENTRYPOINT_STDIN_INTERFACE_DISCOVERY"
+}

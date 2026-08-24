@@ -1,0 +1,62 @@
+{
+  "$id": "orion.p5.c4.custody-handoff.v4",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "current_status": "CANNOT_CHECK_NO_ATTESTATION",
+  "properties": {
+    "arm_id": {
+      "const": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS"
+    },
+    "candidate_received_protected_bytes": {
+      "const": false
+    },
+    "candidate_terminal_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "custodian_identity": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "custodian_signature": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "feedback_before_terminal": {
+      "const": false
+    },
+    "freshness_nonce": {
+      "minLength": 16,
+      "type": "string"
+    },
+    "handoff_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "one_shot": {
+      "const": true
+    },
+    "protected_panel_manifest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "scorer_code_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "handoff_id",
+    "arm_id",
+    "candidate_terminal_sha256",
+    "protected_panel_manifest_sha256",
+    "freshness_nonce",
+    "scorer_code_sha256",
+    "custodian_identity",
+    "custodian_signature",
+    "candidate_received_protected_bytes",
+    "feedback_before_terminal",
+    "one_shot"
+  ],
+  "type": "object"
+}

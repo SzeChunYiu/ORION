@@ -1,0 +1,126 @@
+{
+  "authority": "PROSPECTIVE_PROVIDER_READY_EXECUTION_PACKET_ONLY__NOT_EXTERNAL_SIGNATURE_DELEGATION_REVIEW_RIGHTS_OR_CUSTODY",
+  "execution_identity": "P1_V13_EXTERNAL_OWNER_DELEGATION_AND_ADAPTER_BLIND_COMPLETION_EXECUTION",
+  "frozen_at_utc": "2026-08-24T06:49:39Z",
+  "frozen_counts": {
+    "authority_acts": 4,
+    "cannot_check_maps": 720,
+    "certified_maps": 0,
+    "closed_authority_acts": 0,
+    "map_space": 117649,
+    "named_custodian_or_delegation_groups": 0,
+    "owner_requirement_groups": 12,
+    "rejected_maps": 116929,
+    "scientific_action_gold_cells": 0,
+    "structural_analogue_groups": 9,
+    "sufficient_owner_groups": 0
+  },
+  "immutable_allowlisted_semantic_inputs": [
+    {
+      "bytes": 9400,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+      "sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55"
+    },
+    {
+      "bytes": 13063,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_TARGET_SEMANTIC_REGISTRY.json",
+      "sha256": "fc3ff7435d291e8581eeefaab30b16a119bb005fd99f720090ef147c6b2944ba"
+    },
+    {
+      "bytes": 31001,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_PUBLIC_TARGET_SOURCE_REGISTRY.json",
+      "sha256": "7f16c0c6b036b1d257b917744fe63b562ff693cf9f41992dd1c93424e248c17d"
+    }
+  ],
+  "external_outputs_required_to_close_v13": [
+    "OWNER_DELEGATION_AND_ACCEPTANCE_SIGNED_V13.json",
+    "ADAPTER_BLIND_STAGE_A_RECEIPTS_SIGNED_V13.json",
+    "OWNER_COMPLETED_R7_ALGEBRA_V13.json",
+    "OWNER_COMPLETED_R7_ALGEBRA_V13.sig",
+    "HOST_AND_RIGHTS_ACCEPTANCE_SIGNED_V13.json",
+    "INDEPENDENT_SEMANTIC_REVIEW_SIGNED_V13.json",
+    "ADAPTER_BLIND_STAGE_B_REVIEW_DELIVERY_SIGNED_V13.json"
+  ],
+  "four_authority_acts": [
+    "R7 vocabulary owner or separately verified formal delegate completes and ratifies the exact seven-target algebra.",
+    "Host authority signs recommendation, execution and adoption boundaries.",
+    "Target-corpus rights holder grants the exact storage, processing, adjudication, quotation and release rights.",
+    "Eligible adapter-independent semantic reviewer signs a content-addressed CONFORMANT review."
+  ],
+  "ordered_external_execution": [
+    "An external delegator supplies a separately verifiable R7 vocabulary-ownership basis and signs the exact seven-target delegation; the named delegate signs acceptance.",
+    "Before semantic work, the delegate and reviewer sign no-prior-adapter-access attestations. Administrative signing forms may be delivered, but the semantic input set remains exactly the three V10 allowlisted artifacts plus independently retrieved primary public standards.",
+    "The delegate signs receipt of the exact three allowlisted hashes, completes the exact seven-target ratifiable payload and signs its RFC8785 canonical SHA-256 under the ALGEBRA_PAYLOAD domain.",
+    "After the payload hash is sealed, the independent reviewer receives only that payload, allowlisted target-side artifacts and primary public standards, then signs the content-addressed review and delivery receipt.",
+    "The delegate constructs the final schema-conformant V8 instance by adding ratification that binds the signed payload hash and signed review hash, then content-addresses and signs the final envelope separately.",
+    "Host authority and target-corpus rights holder sign their separate content-addressed records over the final envelope; neither act is inferred from owner delegation or repository licensing.",
+    "Every signature and key identity is verified; every digest is committed before any adapter-side artifact is unsealed.",
+    "Only a completely signed, internally consistent bundle authorizes the unchanged 117,649-map audit."
+  ],
+  "pass_rule": {
+    "adapter_blind_custody": "Both stage-A no-prior-access receipts and the stage-B reviewer delivery receipt are signed, hash-consistent and precede adapter unsealing.",
+    "algebra": "Exactly seven unique required decision IDs occupy the RFC8785-canonical ratifiable payload; its ALGEBRA_PAYLOAD hash is owner/delegate signed, reviewed, inserted into final V8 ratification, and the final schema-conformant envelope is separately hashed and signed.",
+    "delegation": "All seven target IDs, both completion and ratification powers, delegator ownership basis, delegator signature, delegate acceptance, effective time and revocation rule are bound.",
+    "host_and_rights": "Separate verified authorities sign exact host boundaries and exact target-corpus rights over content-addressed bytes.",
+    "independent_review": "A reviewer independent of the candidate-author and adapter lanes signs a CONFORMANT review of the sealed algebra hash.",
+    "noncompensatory": "All conjuncts pass; no field, signature, role or act compensates for another."
+  },
+  "planned_outputs": [
+    "PROTOCOL_V13.json",
+    "SIGNING_CANONICALIZATION_V13.json",
+    "OWNER_DELEGATION_AND_ACCEPTANCE_TEMPLATE_V13.json",
+    "ADAPTER_BLIND_CUSTODY_TEMPLATE_V13.json",
+    "OWNER_ALGEBRA_COMPLETION_COVERSHEET_V13.json",
+    "HOST_AND_RIGHTS_ACCEPTANCE_TEMPLATE_V13.json",
+    "INDEPENDENT_SEMANTIC_REVIEW_TEMPLATE_V13.json",
+    "EXTERNAL_EXECUTION_INSTRUCTIONS_V13.md",
+    "EXECUTION_PACKET_MANIFEST_V13.json",
+    "AUTHORITY_EXECUTION_STATUS_V13.json",
+    "PROTOCOL_FREEZE_RECEIPT_V13.json",
+    "RESULT_V13.json",
+    "NEGATIVE_RESULT_LEDGER_V13.md",
+    "SCIENTIFIC_REPORT_V13.md",
+    "NEXT_DISCRIMINATOR_V14.json",
+    "verify_v13.py",
+    "VALIDATION_RECEIPT_V13.json",
+    "SHA256SUMS"
+  ],
+  "predecessors": [
+    {
+      "path": "development/p1-owner-custody-positive-successor-v12-2026-08-24/NEXT_DELEGATION_EXECUTION_CONTRACT_V13.json",
+      "sha256": "68e460ab9a70b36dd92549e07128095737d55fa3bf299bd7fc9c82743ab3603e"
+    },
+    {
+      "path": "development/p1-owner-custody-positive-successor-v12-2026-08-24/RESULT_V12.json",
+      "sha256": "1d68ee419dc3edc736cc7e6a7cd623e8a77b0737f7976645fa7785e888298e42"
+    },
+    {
+      "path": "development/p1-owner-custody-positive-successor-v11-2026-08-24/RESULT_V11.json",
+      "sha256": "9177eed343a763f10f65f5c381d0f0f106cd2d76cca4ed7e6073d075648f58a5"
+    },
+    {
+      "path": "development/p1-adapter-blind-owner-ratification-v10-2026-08-23/OWNER_INPUT_ALLOWLIST_V10.json",
+      "sha256": "b2af50537d7f571642e08fd53f2454723024e023e004305326ca0efcaf206226"
+    }
+  ],
+  "prohibitions": [
+    "No candidate-author or AI fabrication of external names, ownership bases, signatures, keys, delegations, acceptance, rights, review or custody.",
+    "No inference of R7 ownership from repository ownership, issue authorship, employment, task assignment or open-source licensing.",
+    "No semantic input beyond the exact V10 allowlist plus independently retrieved primary public standards before algebra commitment.",
+    "No P1 source profiles, crosswalks, compatibility rows, survivor maps, audit results, cases, labels, models, scores or outcomes delivered before commitment.",
+    "No map-audit rerun, case or outcome access, pytest, repository CI, manuscript, shared ledger, Git history or other-lane edit.",
+    "No completion claim from an unsigned template or provider-ready packet."
+  ],
+  "protocol_id": "P1_V13_EXTERNAL_AUTHORITY_EXECUTION_PACKET",
+  "schema_version": "orion.p1.owner-custody-positive-successor.protocol.v13",
+  "scientific_question": "Can the V12 causal authority gap be converted into one externally executable, content-addressed and adapter-blind signing packet without fabricating any authority or repeating public metadata probes?",
+  "targets": [
+    "KEEP_SEARCH",
+    "KEEP_COMPILE",
+    "KEEP_REPAIR",
+    "REVISE_MEASUREMENT",
+    "REFORMULATE_OBJECTIVE",
+    "REFORMULATE_BOUNDARY",
+    "UNRESOLVED"
+  ]
+}

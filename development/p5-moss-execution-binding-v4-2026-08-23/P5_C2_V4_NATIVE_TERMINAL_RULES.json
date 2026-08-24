@@ -1,0 +1,20 @@
+{
+  "adapter_output": "always UNRESOLVED; zero raw native singleton licences",
+  "external_protected_gold_policy": "fail closed on any protected/gold/scorer key",
+  "mapping": {
+    "aborted_max_iter | aborted_streak": "ABSTAIN",
+    "converged + latest verdict converged + commitHash + imageTag": "COMPLETE_SUCCESS",
+    "converged missing its required candidate identity": "INVALID",
+    "failed | rolled_back": "ERROR",
+    "initialized | in_progress | swap_pending": "PARTIAL"
+  },
+  "retention": [
+    "exact manifest status",
+    "exact latest closed-set verdict",
+    "current iteration/stage",
+    "hashes rather than raw candidate identifiers"
+  ],
+  "schema_version": "orion.p5.c2.native-terminal-rules.v4",
+  "score_policy": "native development scores may occur in the manifest but are not reproduced or consulted by terminal mapping",
+  "source_schema_version": 6
+}

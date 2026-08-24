@@ -1,0 +1,72 @@
+{
+  "batching": {
+    "format": "json",
+    "max_workers": 4,
+    "minimum_request_interval_per_worker_seconds": 0.05,
+    "pageSize": 1000,
+    "pmids_per_query": 80,
+    "resultType": "idlist",
+    "retries": 4,
+    "synonym": "false",
+    "timeout_seconds": 45
+  },
+  "binds_relation_result_sha256": "2f3a6c569fd1e8dbf5e1add7f13c72a29c43941ec454ea89c795608f2d392976",
+  "eligible_input": "Only admitted explicit RW CC0 relations with valid PMIDs on both endpoints. DOI-only relations remain CANNOT_CHECK for this bounded batched reducer; they are not negative or excluded from the RW metadata theorem.",
+  "failure_rule": "Provider/parser/schema/rights ambiguity or any forbidden-field access fails closed and is preserved.",
+  "frozen_at_utc": "2026-08-23T17:12:22.588418+00:00",
+  "identity": "P1.RW.EPMC.AGGREGATE.RIGHTS.REDUCER.V2",
+  "pmc_oa_exact_verification": {
+    "exact_automatic_allowlist": [
+      "CC0",
+      "CC BY",
+      "CC BY-SA"
+    ],
+    "forbidden": [
+      "record.citation",
+      "link.href",
+      "link.filename",
+      "all content"
+    ],
+    "nonmatch": "CANNOT_CHECK, not a negative scientific outcome",
+    "normalization": "uppercase; normalize underscores/hyphens to single spaces only for BY tokenization; accept exactly CC0, CC BY, CC BY-SA optionally followed by a numeric version token; reject ND, NC, custom, missing or unparsed",
+    "persist_allowlist": [
+      "queried PMCID count",
+      "response SHA256 aggregate",
+      "record.id internally",
+      "record.license aggregate",
+      "response status aggregate"
+    ],
+    "route": "https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi?id={PMCID}"
+  },
+  "pre_freeze_disclosure": {
+    "aggregate or action-stratum census run": false,
+    "one_hidden license-filter syntax probe returned hitCount": 1,
+    "one_hidden_allowlisted PMID was used to inspect idlist response field names and one PMC OA license response": "No identifier, title, abstract, action, row text, or protected outcome was printed or persisted. The pilot returned one resolution and a CC BY license."
+  },
+  "schema_version": "orion.p1.epmc-aggregate-rights-reducer-prefreeze.v2",
+  "sealed_action_aggregation": "Query membership identifiers exist only in process memory, are aggregated over exact-rights-pass relations/families, and are then destroyed. No identifier-to-type mapping, action column, or protected terminal is written. Zero or multiple bands are CANNOT_CHECK_OTHER_OR_AMBIGUOUS.",
+  "search_allowlist_clause": "OPEN_ACCESS:Y AND IN_PMC:Y AND (LICENSE:\"cc0\" OR LICENSE:\"cc by\" OR LICENSE:\"cc by-sa\") AND NOT (LICENSE:\"cc by-nd\" OR LICENSE:\"cc by-nc\" OR LICENSE:\"cc by-nc-nd\" OR LICENSE:\"cc by-nc-sa\")",
+  "search_interpretation": "A hit is an official Europe PMC search-index candidate for exact article-specific rights verification. It is not itself final content-rights admission. Absence is CANNOT_CHECK_EPMC_SEARCH_ALLOWLIST_MATCH, never incompatible rights.",
+  "source_native_strata": [
+    {
+      "clause": "PUB_TYPE:\"Retraction of Publication\"",
+      "id": "EPMC_RETRACTION_NOTICE"
+    },
+    {
+      "clause": "(PUB_TYPE:\"Correction\" OR PUB_TYPE:\"Published Erratum\")",
+      "id": "EPMC_CORRECTION_OR_ERRATUM"
+    },
+    {
+      "clause": "PUB_TYPE:\"Expression of Concern\"",
+      "id": "EPMC_EXPRESSION_OF_CONCERN"
+    }
+  ],
+  "status": "FROZEN_BEFORE_AGGREGATE_QUERY_EXECUTION",
+  "success_boundary": "Nonzero exact-rights-pass relations/families and nonzero source-native aggregate type cells establish only panel-construction feasibility on the pinned public metadata universe. They do not establish terminal gold, responsibility, anti-leak views, donors, model effect, transport or external authority.",
+  "typed_cell_measures": [
+    "exact-content-rights-pass relations",
+    "unique source families containing at least one pass relation",
+    "PRIMARY/REPLICATION deterministic family width"
+  ],
+  "wave_rule": "int(sha256(canonical family key)[0:16],16) mod 2: 0 PRIMARY, 1 REPLICATION; no top-up"
+}

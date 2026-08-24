@@ -1,0 +1,216 @@
+{
+  "finished_at": "2026-08-24T06:10:08.275517+00:00",
+  "large_payloads": [
+    {
+      "bytes": 17147954,
+      "identity": "index_91_zenodo_archive",
+      "md5": "506a29c006cbf81161acf21bca60e021",
+      "sha256": "2a94e0ed7e61e18ea4135aa559d6a06a407adcabd84dbbc52ebface6bba5b407"
+    },
+    {
+      "bytes": 6909445,
+      "identity": "index_91_github_codeload_aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+      "md5": "13e0ae26ce46457adf1a8126f027e4a5",
+      "sha256": "d43c827568d1acef62cea08990580a95ea5869f9eef4106fb3da8b941377e5af"
+    }
+  ],
+  "large_payloads_retained": false,
+  "protocol_sha256": "687a29b8d5358723fc16274c11e325431a42f00216b4f400a2d2446c04d55334",
+  "request_count": 10,
+  "requests": [
+    {
+      "body_bytes": 3647,
+      "body_md5": "4d5172a4e27073e2614bcff446764888",
+      "body_path": "evidence/36_zenodo_child.body",
+      "body_retained": true,
+      "body_sha256": "a9f4b5bf8f323c0fe05fbe291f2b03a5b84230448c042b43865f720508399905",
+      "error": null,
+      "final_url": "https://zenodo.org/api/records/21221062",
+      "finished_at": "2026-08-24T06:09:55.131970+00:00",
+      "headers": {
+        "content-length": "3647",
+        "content-type": "application/json",
+        "etag": "\"4\"",
+        "x-ratelimit-limit": "133",
+        "x-ratelimit-remaining": "132",
+        "x-ratelimit-reset": "1787551856"
+      },
+      "started_at": "2026-08-24T06:09:54.795230+00:00",
+      "status": 200,
+      "url": "https://zenodo.org/api/records/21221062"
+    },
+    {
+      "body_bytes": 4788,
+      "body_md5": "fc07fbdec0c2bab38ba668ffd3eeb2b2",
+      "body_path": "evidence/36_datacite_concept.body",
+      "body_retained": true,
+      "body_sha256": "fe29a5ff86d8ef6edfe75eec10e7ba23279aabcbd2af715f9f12266fdc7591f9",
+      "error": null,
+      "final_url": "https://api.datacite.org/dois/10.5281%2Fzenodo.21221061",
+      "finished_at": "2026-08-24T06:09:55.742634+00:00",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "etag": "W/\"fe29a5ff86d8ef6edfe75eec10e7ba23\""
+      },
+      "started_at": "2026-08-24T06:09:55.286332+00:00",
+      "status": 200,
+      "url": "https://api.datacite.org/dois/10.5281%2Fzenodo.21221061"
+    },
+    {
+      "body_bytes": 5043,
+      "body_md5": "6ca249a85cab07a676e023ab5914c21a",
+      "body_path": "evidence/36_datacite_child.body",
+      "body_retained": true,
+      "body_sha256": "15526866f794023854f1103fd097a8b6f37469b6890c5e9af2bbc6f080ded859",
+      "error": null,
+      "final_url": "https://api.datacite.org/dois/10.5281%2Fzenodo.21221062",
+      "finished_at": "2026-08-24T06:09:56.216463+00:00",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "etag": "W/\"15526866f794023854f1103fd097a8b6\""
+      },
+      "started_at": "2026-08-24T06:09:55.898079+00:00",
+      "status": 200,
+      "url": "https://api.datacite.org/dois/10.5281%2Fzenodo.21221062"
+    },
+    {
+      "body_bytes": 4793,
+      "body_md5": "4560f57a8177c2c5eb8ec37fdf69da37",
+      "body_path": "evidence/91_zenodo_record.body",
+      "body_retained": true,
+      "body_sha256": "25f58d39a46aeedbf1bdb728507185a5281ac48b860416ca96e347ea7f4c30fe",
+      "error": null,
+      "final_url": "https://zenodo.org/api/records/20171460",
+      "finished_at": "2026-08-24T06:09:56.705513+00:00",
+      "headers": {
+        "content-length": "4793",
+        "content-type": "application/json",
+        "etag": "\"8\"",
+        "x-ratelimit-limit": "133",
+        "x-ratelimit-remaining": "131",
+        "x-ratelimit-reset": "1787551856"
+      },
+      "started_at": "2026-08-24T06:09:56.372093+00:00",
+      "status": 200,
+      "url": "https://zenodo.org/api/records/20171460"
+    },
+    {
+      "body_bytes": 17147954,
+      "body_md5": "506a29c006cbf81161acf21bca60e021",
+      "body_path": null,
+      "body_retained": false,
+      "body_sha256": "2a94e0ed7e61e18ea4135aa559d6a06a407adcabd84dbbc52ebface6bba5b407",
+      "error": null,
+      "final_url": "https://zenodo.org/api/records/20171460/files/THE_PU~1.GZ/content",
+      "finished_at": "2026-08-24T06:10:03.428153+00:00",
+      "headers": {
+        "content-disposition": "attachment; filename=THE_PU~1.GZ",
+        "content-length": "17147954",
+        "content-type": "application/octet-stream",
+        "x-ratelimit-limit": "133",
+        "x-ratelimit-remaining": "130",
+        "x-ratelimit-reset": "1787551856"
+      },
+      "started_at": "2026-08-24T06:09:56.860977+00:00",
+      "status": 200,
+      "url": "https://zenodo.org/api/records/20171460/files/THE_PU~1.GZ/content"
+    },
+    {
+      "body_bytes": 5787,
+      "body_md5": "517466b71226d3100eaaa348c426cd0f",
+      "body_path": "evidence/91_github_embedded_head_commit.body",
+      "body_retained": true,
+      "body_sha256": "4d3abc2500d9650d3c1645b56fd19795dd108bf29b1e3260cb47ef3b8a1a15bb",
+      "error": null,
+      "final_url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/commits/aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+      "finished_at": "2026-08-24T06:10:04.045512+00:00",
+      "headers": {
+        "Content-Length": "5787",
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"9aec3396d76b894c4a12990c54fe32fa4e2ac45fc6b01c18bd14c0ae4ae7c541\"",
+        "Last-Modified": "Wed, 13 May 2026 21:03:45 GMT",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "59",
+        "X-RateLimit-Reset": "1787555403"
+      },
+      "started_at": "2026-08-24T06:10:03.622442+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/commits/aa021231cdafb6d74ce9ab5f55f824a3032058a4"
+    },
+    {
+      "body_bytes": 1080,
+      "body_md5": "bd042b03db373ea2b5fbaaf03ad4ad86",
+      "body_path": "evidence/91_github_embedded_head_license.body",
+      "body_retained": true,
+      "body_sha256": "32d6e5b56b27a50adfa6101c632ebf641f7cae6b0bcb8917716880802eecf250",
+      "error": null,
+      "final_url": "https://raw.githubusercontent.com/NutritionalLungImmunity/PAI/aa021231cdafb6d74ce9ab5f55f824a3032058a4/LICENSE",
+      "finished_at": "2026-08-24T06:10:04.570014+00:00",
+      "headers": {
+        "Content-Length": "1080",
+        "Content-Type": "text/plain; charset=utf-8",
+        "ETag": "\"985ab0ee7a8fb171e3a44480923b21d869e01615e8ab8fbd7b73cb7b70659709\""
+      },
+      "started_at": "2026-08-24T06:10:04.196513+00:00",
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/NutritionalLungImmunity/PAI/aa021231cdafb6d74ce9ab5f55f824a3032058a4/LICENSE"
+    },
+    {
+      "body_bytes": 6909445,
+      "body_md5": "13e0ae26ce46457adf1a8126f027e4a5",
+      "body_path": null,
+      "body_retained": false,
+      "body_sha256": "d43c827568d1acef62cea08990580a95ea5869f9eef4106fb3da8b941377e5af",
+      "error": null,
+      "final_url": "https://codeload.github.com/NutritionalLungImmunity/PAI/tar.gz/aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+      "finished_at": "2026-08-24T06:10:06.297047+00:00",
+      "headers": {
+        "Content-Type": "application/x-gzip",
+        "ETag": "\"e898913d081b4a95e2315ed97f4348b8949704806d016c4a54125ffb55c77886\"",
+        "content-disposition": "attachment; filename=PAI-aa021231cdafb6d74ce9ab5f55f824a3032058a4.tar.gz"
+      },
+      "started_at": "2026-08-24T06:10:04.720403+00:00",
+      "status": 200,
+      "url": "https://codeload.github.com/NutritionalLungImmunity/PAI/tar.gz/aa021231cdafb6d74ce9ab5f55f824a3032058a4"
+    },
+    {
+      "body_bytes": 3307,
+      "body_md5": "d2ec7f7bd5d8a3755b2174ce3b6a29f4",
+      "body_path": "evidence/133_pypi_simple_json.body",
+      "body_retained": true,
+      "body_sha256": "2a5523ab41d8d3615442f58fcb2bc2d9042da7ce7675b1ac7648ba521be80a19",
+      "error": null,
+      "final_url": "https://pypi.org/simple/woodtapper/",
+      "finished_at": "2026-08-24T06:10:07.431040+00:00",
+      "headers": {
+        "Content-Length": "3307",
+        "Content-Type": "application/vnd.pypi.simple.v1+json",
+        "etag": "\"amkMWokG+COCPcEYNTPvQQ\"",
+        "x-pypi-last-serial": "40099330"
+      },
+      "started_at": "2026-08-24T06:10:07.160108+00:00",
+      "status": 200,
+      "url": "https://pypi.org/simple/woodtapper/"
+    },
+    {
+      "body_bytes": 7635,
+      "body_md5": "b4d5814e75adcf8ee09f3a8fbcb1e7f8",
+      "body_path": "evidence/185_pypi_simple_json.body",
+      "body_retained": true,
+      "body_sha256": "38370c23970188af97d8bebd6302471443b3759fd4810c3204074281dd8a1d91",
+      "error": null,
+      "final_url": "https://pypi.org/simple/disruption-py/",
+      "finished_at": "2026-08-24T06:10:08.120001+00:00",
+      "headers": {
+        "Content-Length": "7635",
+        "Content-Type": "application/vnd.pypi.simple.v1+json",
+        "etag": "\"aXQ9fGEfnyc5gjlc1cDlsA\"",
+        "x-pypi-last-serial": "35317187"
+      },
+      "started_at": "2026-08-24T06:10:07.586279+00:00",
+      "status": 200,
+      "url": "https://pypi.org/simple/disruption-py/"
+    }
+  ],
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v11.probe-receipt"
+}

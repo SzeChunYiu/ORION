@@ -1,0 +1,43 @@
+{
+  "schema_version": "orion.p3.public-comparator-registry.v1",
+  "authority": "RUNNABLE_DETERMINISTIC_DEVELOPMENT_COMPARATORS__NOT_STRONGEST_EXTERNAL_SYSTEM_CLAIM",
+  "implemented_in": "p3_public_data_adapter.py",
+  "comparators": [
+    {
+      "id": "FLAT_LABEL_EQUALITY_V1",
+      "definition": "Unicode NFKC, casefold, collapse non-alphanumeric spans; GLUE iff normalized labels are equal and nonempty, otherwise OBSTRUCTION.",
+      "uses_gold": false,
+      "known_weakness": "Ignores type, coordinates, provenance, missingness and global constraints."
+    },
+    {
+      "id": "TOKEN_JACCARD_FORCED_V1",
+      "definition": "Token-set Jaccard on normalized labels; GLUE iff score >= 0.5, otherwise OBSTRUCTION.",
+      "uses_gold": false,
+      "known_weakness": "Forces a determinate answer and treats a lexical threshold as identity authority."
+    },
+    {
+      "id": "TYPE_AWARE_PAIRWISE_V1",
+      "definition": "UNRESOLVED if label or type is absent; GLUE iff source-native types agree and token Jaccard >= 0.5; otherwise OBSTRUCTION.",
+      "uses_gold": false,
+      "known_weakness": "No joint-completion or claim-relative coordinate semantics."
+    },
+    {
+      "id": "COMPLETE_CASE_CONSERVATIVE_V1",
+      "definition": "UNRESOLVED unless every required coordinate is explicitly observed on both sides; OBSTRUCTION on any unequal observed required coordinate; GLUE otherwise.",
+      "uses_gold": false,
+      "known_weakness": "Blanket complete-case abstention may destroy identified answers and is not an information-equivalent ideal product."
+    }
+  ],
+  "external_donor_not_claimed_as_bound": [
+    {
+      "id": "SCIREX_OFFICIAL_MODEL_AT_7DAAD660",
+      "status": "PINNED_CODE_CANDIDATE__TRAINING_ENVIRONMENT_AND_OUTPUT_ADAPTER_NOT_EXECUTED",
+      "reason": "The public adapter must not call an old scientific IE model a common portrait comparator without a terminal-preserving mapping."
+    },
+    {
+      "id": "OPENEA_AT_B59E014",
+      "status": "GPL_3_0_RUNNABLE_DONOR_CANDIDATE__NOT_BOUND_AS_PRIMARY_ARM",
+      "reason": "Entity alignment is not a native CRAFT/SciREX/OAEI set-valued scientific-identity terminal."
+    }
+  ]
+}

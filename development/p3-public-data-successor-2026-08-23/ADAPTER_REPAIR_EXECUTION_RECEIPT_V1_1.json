@@ -1,0 +1,69 @@
+{
+  "adapter_sha256": "c497c91ea48c3b51920cb8dd742714046eeff1ebc83a70d7b6a9115fa139dea3",
+  "authority": "ADAPTER_REPAIR_AND_INPUT_ONLY_EXECUTION__NO_PUBLIC_GOLD__NO_EMPIRICAL_RESULT",
+  "current_terminal": "V1_1_MECHANICS_REPAIRED__OAEI_INPUT_CASE_PATH_EXECUTED__EMPIRICAL_AND_COMPARATIVE_TERMINALS_CANNOT_CHECK",
+  "direct_checks": {
+    "check_names": [
+      "seal_valid_cases",
+      "valid_four_terminal_score",
+      "recursive_inventory_leak_rejected",
+      "recursive_case_leak_rejected",
+      "zero_coordinate_gate_rejected",
+      "duplicate_prediction_rejected",
+      "invalid_relation_rejected",
+      "digest_mismatch_rejected",
+      "prediction_cluster_injection_rejected",
+      "rights_cannot_check_blocks_body"
+    ],
+    "full_receipt_sha256": "0fe116555cf7ad2c622f201aa093310ab3b8970b6e3988347f99186919945b49",
+    "n_checks": 10,
+    "passed": true,
+    "semantic_assertions": {
+      "coordinate_gate_pass_recorded": true,
+      "no_pooled_pass": true,
+      "obstruction_on_plural_is_plural_collapse": true,
+      "obstruction_on_plural_positive_loss": true,
+      "plural_exact_zero_loss": true,
+      "rights_cannot_check_blocks_body": true
+    }
+  },
+  "empirical_candidate_output_generated": false,
+  "oaei_input_only_execution": {
+    "adapter_sha256": "c497c91ea48c3b51920cb8dd742714046eeff1ebc83a70d7b6a9115fa139dea3",
+    "candidate_universe": "EXHAUSTIVE_CROSS_PRODUCT_WITHIN_SOURCE_NATIVE_ENTITY_TYPE",
+    "case_file_sha256": "4e7037f6f707dd1c3af9cfe9b4c274a640f79c748bc50354403c1f0aa3763eb4",
+    "case_file_size": 77816448,
+    "cluster_count": 1,
+    "current_terminal": "OAEI_INPUT_CASE_UNIVERSE_BUILT__NO_GOLD__NO_CANDIDATE__NO_COMPARATIVE_RESULT",
+    "n_cases": 68043,
+    "reference_alignment_members_read": 0,
+    "source_archive_provider_checksum": "md5:31676c68912a22622f6ca6d031519df9",
+    "source_archive_sha256": "f22aac206773e4eacdd54cf9519ffe997332a430326bdae29f4210a24efab0b4",
+    "target_tests": 20
+  },
+  "oaei_v1_1_inventory_sample": {
+    "cluster_count": 1,
+    "inventory_rows": 21,
+    "inventory_sha256": "ef0d7100bcba19d934f2c05cc4fe7a547a87f6d4cd51c505a933adc598bb9dab",
+    "reference_alignment_content_read": false,
+    "sample_sha256": "622dc10c52233036772bc1690e84e870d537989967abf019a64280dd0c1f8bc1",
+    "sample_units": 21
+  },
+  "preserved_v1_adverse_terminal": "ADVERSARIAL_AUDIT_FAIL__OAEI_INPUT_INDEX_REPLAY_ONLY__NO_END_TO_END_PUBLIC_RESULT",
+  "protocol_id": "P3.PUBLIC.TRANSPORT.CRAFT_SCIREX_OAEI.V1.1",
+  "protocol_sha256": "fd50d8259132b3cb009ba01ccc60c09e484b9b1ee387943181ad113e01c7e203",
+  "public_reference_content_opened": false,
+  "pytest_or_ci_run": false,
+  "remaining_blockers": [
+    "NO_P3_CANDIDATE_IMPLEMENTED",
+    "NO_SOURCE_NATIVE_EXTERNAL_COMPARATOR_BOUND",
+    "NO_PUBLIC_GOLD_JOIN_EXECUTED",
+    "NO_PROTECTED_GOLD",
+    "NO_TEMPORAL_CONTEXT_DONOR",
+    "OAEI_HAS_ONE_SEED_FAMILY",
+    "CRAFT_RIGHTS_DECISION_ABSENT",
+    "SCIREX_RIGHTS_DECISION_ABSENT",
+    "NO_COMPARATIVE_OR_EMPIRICAL_RESULT"
+  ],
+  "schema_version": "orion.p3.public-data-successor-repair-execution.v1.1"
+}

@@ -1,0 +1,56 @@
+{
+  "finished_at": "2026-08-24T06:13:04.989718+00:00",
+  "identity": "P4.M6.JOSS.EXACT.EDGE.LINEAGE.AUTHORITY.V11.NEGATIVE.RESULTS",
+  "noncompensatory_rule": "Authenticated subsets, matching Git trees, local Git cleanliness under ignored file-mode settings, local reconstruction, provider hash identity or absent provenance never compensate for the named terminal gate.",
+  "predecessor_result_sha256": "9cd19c2f2d3129f4789e5976395ce02f6cb08a29287614900c2b3bddbbaa20d1",
+  "remaining_count": 4,
+  "remaining_indices": [
+    36,
+    91,
+    133,
+    185
+  ],
+  "rows": [
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 36,
+      "new_evidence": "The exact Zenodo child and both official DataCite concept/child registrations still expose no version. The provider file remains the 85,369,480-byte jaxion.zip with MD5 825cae8912147ba8a5415c6a73d95818. Preserved checksum-bound archive evidence authenticates embedded worktree HEAD 3cd108c376faf9832373adfe3ab4688295aa42fa (tag 0.0.12), not publication version 0.0.3 commit 069ab4f56d100d765d46c594ac1b06add7e49f9e. Metadata absence and content contradiction are both terminal; the large archive was not redundantly downloaded.",
+      "next_discriminator": "A provider replacement/correction must bind an exact 0.0.3 archive checksum whose root is commit 069ab4f56d100d765d46c594ac1b06add7e49f9e; the current checksum-bound archive is an embedded 0.0.12 worktree.",
+      "repository": "jaxionproject/jaxion",
+      "residual": "EXACT_ARCHIVE_VERSION_DOI_RELATION_AND_ARCHIVE_ROOT_TO_TAG_COMMIT_IDENTITY_CONTRADICTED",
+      "terminal_gate": "provider_corrected_exact_version_and_replacement_archive_root_to_accepted_commit",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 91,
+      "new_evidence": "The checksum-bound 17,147,954-byte Zenodo archive exactly authenticates embedded Git HEAD aa021231cdafb6d74ce9ab5f55f824a3032058a4 and tree d5620f3acf4e5a163cfdfdefc2432ebd5709008a; git fsck passes, and current GitHub independently authenticates the same full revision and tree. However the separately adjudicated non-.git archive payload has 444 paths versus 338 in immutable codeload: 106 untracked compiled Java .class files are archive-only, and cpp/PAIpp.exe plus run.sh have equal bytes but executable-bit drift. git diff-files is nonzero. Exact manifest equality therefore fails despite MIT rights, and the accepted v1.0.0 tag still points to a different absent-from-archive commit.",
+      "next_discriminator": "A corrected checksum-bound archive must exactly equal an immutable source revision, or provider-native signed build provenance must bind all 106 compiled classes and the two mode changes to full revision aa021231...; subset/source-tree equality is insufficient.",
+      "repository": "nutritionallungimmunity/pai",
+      "residual": "EMBEDDED_HEAD_TREE_AUTHENTICATED_BUT_ARCHIVE_PAYLOAD_HAS_UNTRACKED_GENERATED_FILES_AND_MODE_DRIFT",
+      "terminal_gate": "exact_full_archive_payload_to_immutable_revision_or_provider_native_build_attestation",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 133,
+      "new_evidence": "PyPI's official PEP 691 exact file object binds woodtapper-0.0.13.tar.gz to SHA-256 b509f6469b9ff8888195751c811d689559f45e24aeb35bb173b9680c99c8dbf3 but exposes provenance: null. This independently agrees with V10's exact Integrity and GitHub artifact-attestation 404s; no provider-native statement binds the sdist to commit 7ac6d23d504404c4004faad663f6b889427109e6.",
+      "next_discriminator": "PyPI must expose exact-file signed provenance binding SHA-256 b509f646... to commit 7ac6d23d..., including the generated-C toolchain.",
+      "repository": "artefactory/woodtapper",
+      "residual": "SDIST_TO_FULL_COMMIT_AUTHENTICATED_BUILD_PROVENANCE_CANNOT_CHECK",
+      "terminal_gate": "pypi_exact_file_signed_artifact_to_full_commit_provenance",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 185,
+      "new_evidence": "PyPI's official PEP 691 exact file object binds disruption_py-0.14.0.tar.gz to SHA-256 775f92dbcbd6d1523db241494998e4b0867d51a84236feb7accc86b63b033a19 but exposes provenance: null. This independently agrees with V10's exact Integrity and GitHub artifact-attestation 404s; no provider-native statement binds the projected sdist to commit dec5c58a3e3970bc6817f33efb615fea11057fce.",
+      "next_discriminator": "PyPI must expose exact-file signed provenance binding SHA-256 775f92db... to commit dec5c58..., including the tracked-ignored CSV inclusion state.",
+      "repository": "mit-psfc/disruption-py",
+      "residual": "SDIST_PROJECTION_TO_TAG_COMMIT_AUTHENTICATED_BUILD_PROVENANCE_CANNOT_CHECK",
+      "terminal_gate": "pypi_exact_file_signed_projected_sdist_to_full_commit_provenance",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    }
+  ],
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v11.negative-result-ledger"
+}

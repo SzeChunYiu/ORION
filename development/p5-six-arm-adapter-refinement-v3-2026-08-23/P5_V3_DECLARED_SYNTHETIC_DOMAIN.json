@@ -1,0 +1,167 @@
+{
+  "arms": {
+    "C1_FIXED_AGENT__SWE_AGENT": {
+      "mixed_pair": [
+        "EXECUTION_REPAIR",
+        "EVALUATOR_REPAIR"
+      ],
+      "name": "SWE-agent",
+      "resource_ledger_arm_id": "C1_FIXED_AGENT",
+      "support": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR",
+        "EVALUATOR_REPAIR"
+      ]
+    },
+    "C2_DIRECT_SELF_EDIT__MOSS": {
+      "mixed_pair": [
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "REPRESENTATION_REGIME_REPAIR"
+      ],
+      "name": "MOSS",
+      "resource_ledger_arm_id": "C2_DIRECT_SELF_EDIT",
+      "support": [
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR"
+      ]
+    },
+    "C3_ARCHIVE_BASED_SELF_EDIT__DGM": {
+      "mixed_pair": [
+        "MODEL_CLASS_EXPANSION",
+        "EXECUTION_REPAIR"
+      ],
+      "name": "Darwin Godel Machine",
+      "resource_ledger_arm_id": "C3_ARCHIVE_BASED_SELF_EDIT",
+      "support": [
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR"
+      ]
+    },
+    "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS": {
+      "mixed_pair": [
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "EXECUTION_REPAIR"
+      ],
+      "name": "ADIAS",
+      "resource_ledger_arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION",
+      "support": [
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR"
+      ]
+    },
+    "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY": {
+      "mixed_pair": [
+        "EVIDENCE_REPAIR",
+        "EVALUATOR_REPAIR"
+      ],
+      "name": "Double Ratchet metric-only",
+      "resource_ledger_arm_id": "C5_EVALUATOR_ONLY_EVOLUTION",
+      "support": [
+        "EVALUATOR_REPAIR"
+      ]
+    },
+    "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW": {
+      "mixed_pair": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR"
+      ],
+      "name": "ScienceClaw",
+      "resource_ledger_arm_id": "C6_STRONGEST_SOURCE_GROUNDED_MODERN_METHOD",
+      "support": []
+    }
+  },
+  "authority": "PROSPECTIVE_SYNTHETIC_CONTRACT_CASES_ONLY",
+  "case_families": [
+    {
+      "construction": "two worlds per arm share the complete raw-visible key and have distinct authored minimal classes",
+      "expected": "UNRESOLVED",
+      "id": "RAW_MIXED_FIBRE"
+    },
+    {
+      "construction": "two worlds per supported arm-class cell share one valid certificate/action visible key and the same authored minimal class",
+      "expected": "declared supported class",
+      "id": "SUPPORTED_CONSTANT_FIBRE"
+    },
+    {
+      "construction": "two worlds for each arm with support share an otherwise valid certificate/action key but have distinct authored minimal classes",
+      "expected": "UNRESOLVED",
+      "id": "MISCERTIFIED_MIXED_FIBRE"
+    },
+    {
+      "construction": "one schema-valid certificate/action for each unsupported arm-class cell",
+      "expected": "UNRESOLVED",
+      "id": "UNSUPPORTED_CLASS"
+    },
+    {
+      "expected": "UNRESOLVED",
+      "id": "CERTIFICATE_DEFECT",
+      "variants": [
+        "MISSING",
+        "NONUNIQUE",
+        "INVALID_ISSUER",
+        "LATE",
+        "PROTECTED_ACCESS",
+        "NO_FIBRE_PROOF",
+        "CLASS_MISMATCH"
+      ]
+    },
+    {
+      "expected": "UNRESOLVED",
+      "id": "ACTION_OR_INVARIANCE_DEFECT",
+      "variants": [
+        "MISSING",
+        "INCOMPLETE",
+        "MULTI_FRONT",
+        "NONSELECTED_DRIFT",
+        "PATH_OUTSIDE_REGISTRY",
+        "FRONT_MISMATCH",
+        "PROTECTED_SURFACE_TOUCH",
+        "EXTERNAL_SCORER_TOUCH",
+        "HASH_NO_CHANGE",
+        "OBSERVATION_MISMATCH",
+        "CERTIFICATE_MISMATCH"
+      ]
+    },
+    {
+      "construction": "one case per arm and each of six non-complete native statuses",
+      "expected": "UNRESOLVED",
+      "id": "NATIVE_NONCOMPLETE_TERMINAL"
+    },
+    {
+      "expected": "UNRESOLVED",
+      "id": "DOUBLE_RATCHET_GUARD_DEFECT",
+      "variants": [
+        "SOLVER_DRIFT",
+        "NON_EVALUATOR_MUTATION",
+        "DEVELOPMENT_VALIDITY_FAILED"
+      ]
+    }
+  ],
+  "domain_id": "P5.V3.DECLARED.SYNTHETIC.OUTCOME.FREE.DOMAIN",
+  "frozen_at_utc": "2026-08-23T17:05:00Z",
+  "generation_rule": "The checked validator deterministically instantiates every listed arm/class/status/variant cell. No stochastic generation or outcome access is permitted.",
+  "native_examples_used": false,
+  "native_statuses": [
+    "COMPLETE_SUCCESS",
+    "ERROR",
+    "TIMEOUT",
+    "ABSTAIN",
+    "EMPTY",
+    "PARTIAL",
+    "INVALID"
+  ],
+  "outcome_rows_used": false,
+  "performance_examples_used": false,
+  "schema_version": "orion.p5.declared-synthetic-adapter-domain.v3",
+  "synthetic_oracle_note": "minimal_class is an authored logical property of a fictional world used only to test fibre constancy; it is not a comparator, benchmark, public, protected, or scientific outcome."
+}

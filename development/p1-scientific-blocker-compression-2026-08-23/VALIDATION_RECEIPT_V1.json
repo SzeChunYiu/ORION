@@ -1,0 +1,137 @@
+{
+  "boundary": {
+    "case_or_outcome_accessed": false,
+    "execution_authorized": false,
+    "manuscript_or_shared_matrix_edited": false,
+    "network_used": false,
+    "pytest_or_repository_ci_run": false
+  },
+  "errors": [],
+  "local_artifact_sha256": {
+    "BLOCKER_COMPRESSION_V1.json": "8ea2d9048e1b355464257da3456a46a0dadcf17e69bc278ff44e7f69d6169dc7",
+    "BLOCKER_COMPRESSION_V1.md": "695ddce5083a7f0295d79faa27ea14e5eeca10e4ba607498ae012ed328c811c3",
+    "MANUSCRIPT_ALIGNMENT_CHECK_V1.json": "4b4a98a3c66f1ca6efcb243c0fd1148353aba068a46bb11ecc105005bbe12260",
+    "OWNER_ALGEBRA_V9_COMPLETION_CONTRACT.json": "32a4af7b6adb9dd8250e072470605e574ed695145818da3b87cdeec3feef92b1",
+    "README.md": "affc639c6754cc556be28f8e204fc5ca47bc2e1110c943b3fc8d46dcf3bd6c20",
+    "RW_CC0_NATURALISTIC_BRIDGE_V1.json": "856ca7e8f9048956e82f7b03ec49e70a17209cc90ef7b2e5e860502fc0e99582",
+    "validate_packet.py": "38c0315910c6e85e315291996700996ef349cedb31478e45f02dca1f3101da57"
+  },
+  "schema_version": "orion.p1.scientific-blocker-compression.validation.v1",
+  "status": "PASS",
+  "terminal": "P1_TWO_HIGH_FAN_OUT_SCIENTIFIC_ROOTS_IDENTIFIED__OWNER_ALGEBRA_AND_NATURALISTIC_CUSTODY_UNRESOLVED",
+  "upstream_bindings": [
+    {
+      "actual_sha256": "cb09da0c5299b7f34837d8bef63cc4bd1348e38e202fb85840549fdcdfd91f12",
+      "exists": true,
+      "expected_sha256": "cb09da0c5299b7f34837d8bef63cc4bd1348e38e202fb85840549fdcdfd91f12",
+      "matches": true,
+      "path": "development/p1-owner-algebra-construct-validity-v4-2026-08-23/RESULT_V4.json"
+    },
+    {
+      "actual_sha256": "722549e66d1198684c2c22cfd0a0991108e01a9848a0b40bea0ec3cc2247023e",
+      "exists": true,
+      "expected_sha256": "722549e66d1198684c2c22cfd0a0991108e01a9848a0b40bea0ec3cc2247023e",
+      "matches": true,
+      "path": "development/p1-owner-algebra-construct-validity-v4-2026-08-23/VALIDATION_RECEIPT_V4.json"
+    },
+    {
+      "actual_sha256": "47d1d6b38c96b7046500188c84b3b3cdb6afb1260a9acf87e4731dadd2ed76ed",
+      "exists": true,
+      "expected_sha256": "47d1d6b38c96b7046500188c84b3b3cdb6afb1260a9acf87e4731dadd2ed76ed",
+      "matches": true,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_RESULT_V8.json"
+    },
+    {
+      "actual_sha256": "ef65f236618cd34c5b0ceb897c9d55ce37060d08de56cc842e8ab08369ce0be9",
+      "exists": true,
+      "expected_sha256": "ef65f236618cd34c5b0ceb897c9d55ce37060d08de56cc842e8ab08369ce0be9",
+      "matches": true,
+      "path": "development/p1-public-naturalistic-successor-2026-08-23/R7A_EXECUTION_PREFLIGHT_V1.json"
+    },
+    {
+      "actual_sha256": "7f0b2621843057b6aefd9dee92d86997dd316746fd056608d458903ddda885b7",
+      "exists": true,
+      "expected_sha256": "7f0b2621843057b6aefd9dee92d86997dd316746fd056608d458903ddda885b7",
+      "matches": true,
+      "path": "development/p1-rw-rights-relation-census-v2-2026-08-23/RESULT_V2.json"
+    },
+    {
+      "actual_sha256": "346ef9ab4deae2e1742eadaa84d7260f1b3c7e30b77c9def29e1f7f9d064346f",
+      "exists": true,
+      "expected_sha256": "346ef9ab4deae2e1742eadaa84d7260f1b3c7e30b77c9def29e1f7f9d064346f",
+      "matches": true,
+      "path": "development/p1-rw-rights-relation-census-v2-2026-08-23/VALIDATION_RECEIPT_V2.json"
+    },
+    {
+      "actual_sha256": "7178052320f85ea112e4b0b78da558fc5a68f7dc3b465a4f7afc9e1915860f2b",
+      "exists": true,
+      "expected_sha256": "7178052320f85ea112e4b0b78da558fc5a68f7dc3b465a4f7afc9e1915860f2b",
+      "matches": true,
+      "path": "development/p1-structured-action-semantics-v3-2026-08-23/RESULT_V3.json"
+    },
+    {
+      "actual_sha256": "b53f5b121e0220679d1c46fe350c189fc74e51509baf8eba2c4eacc357598506",
+      "exists": true,
+      "expected_sha256": "b53f5b121e0220679d1c46fe350c189fc74e51509baf8eba2c4eacc357598506",
+      "matches": true,
+      "path": "development/p1-structured-action-semantics-v3-2026-08-23/VALIDATION_RECEIPT_V3.json"
+    },
+    {
+      "actual_sha256": "57c45498b57be43075ceb7efb2f90598af53848ba1c8b0c8a7e2ed5b6813f5ff",
+      "exists": true,
+      "expected_sha256": "57c45498b57be43075ceb7efb2f90598af53848ba1c8b0c8a7e2ed5b6813f5ff",
+      "matches": true,
+      "path": "../lane-handoffs/p1-naturalistic-transport/SOURCE_RIGHTS_AMENDMENT_V1.json"
+    },
+    {
+      "actual_sha256": "9ba2529cf448e3b7324af50f57ffc749982648519f60a56f03e758a5dc24e4f5",
+      "exists": true,
+      "expected_sha256": "9ba2529cf448e3b7324af50f57ffc749982648519f60a56f03e758a5dc24e4f5",
+      "matches": true,
+      "path": "../lane-handoffs/p1-naturalistic-transport/METADATA_COUNT_RECEIPT_V1.json"
+    },
+    {
+      "actual_sha256": "02e8866789450a3b650ce3eb80d13d5cb95188898b6e8e45b5dbb9d7901e800b",
+      "exists": true,
+      "expected_sha256": "02e8866789450a3b650ce3eb80d13d5cb95188898b6e8e45b5dbb9d7901e800b",
+      "matches": true,
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.tex"
+    },
+    {
+      "actual_sha256": "08938dd14a83bc10bdcd8670c1bdc94dd1d7eb9d9c0dec8f4eab76130f91f4e9",
+      "exists": true,
+      "expected_sha256": "08938dd14a83bc10bdcd8670c1bdc94dd1d7eb9d9c0dec8f4eab76130f91f4e9",
+      "matches": true,
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/01-foundations.tex"
+    },
+    {
+      "actual_sha256": "07b35e1fae1f58189c0e4fd3239848a26993c62cd80f4d3afd43579ee44b023c",
+      "exists": true,
+      "expected_sha256": "07b35e1fae1f58189c0e4fd3239848a26993c62cd80f4d3afd43579ee44b023c",
+      "matches": true,
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md"
+    }
+  ],
+  "validated_at": "2026-08-23T00:00:00+00:00",
+  "validated_counts": {
+    "adapter_maps_cannot_check": 720,
+    "adapter_maps_total": 117649,
+    "complete_source_clusters": 0,
+    "europe_pmc_frozen_queries": 5,
+    "external_custody_roles_bound": 0,
+    "owner_requirement_groups": 12,
+    "owner_sufficient_groups": 0,
+    "ready_comparator_arms": 0,
+    "rights_valid_metadata_relations": 12038,
+    "rights_valid_metadata_source_families": 11602,
+    "rw_rows_counted_without_field_display": 71944,
+    "rw_structurally_admitted_metadata_relations": 49878,
+    "scientific_roots": 2,
+    "structured_action_records_ambiguous": 0,
+    "structured_action_records_correction_or_erratum": 256,
+    "structured_action_records_expression_of_concern": 469,
+    "structured_action_records_other_or_cannot_check": 15,
+    "structured_action_records_retraction": 11251,
+    "system_outcomes_accessed": 0
+  }
+}

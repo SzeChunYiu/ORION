@@ -1,0 +1,57 @@
+{
+  "schema_version": "orion.p1.controlled-transition-claim-amendment.v1",
+  "frozen_on": "2026-08-23",
+  "paper": "P1",
+  "authority": "DONOR_DERIVED_ANALYTIC_SYNTHESIS_NOT_EMPIRICAL_EVIDENCE",
+  "manuscript_source": "papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/02a-minimal-escalation-theory.tex",
+  "claims": [
+    {
+      "id": "P1-ST5",
+      "manuscript_theorem": 4,
+      "claim": "For a fixed legal finite-horizon policy on finite alphabets, exact target decoding in every active context is possible if and only if complete observed transcript supports are disjoint across different target classes.",
+      "boundary": "Policy-specific. It neither proves that a separating legal policy exists nor validates an estimated transcript kernel. Positive KL without support separation is insufficient for finite exactness."
+    },
+    {
+      "id": "P1-ST3",
+      "manuscript_theorem": 5,
+      "claim": "For a fixed legal policy, fixed-prior and rectangular robust expectations agree for every bounded path loss if and only if the induced closed convex path-law family is stable under positive-history pasting.",
+      "boundary": "The equivalence is policywise and donor-derived. A posterior-local minimax recursion generates the stated rectangular hull only when its admissible nature moves are exactly the induced positive-history conditional continuation families with independent historywise pasting; an unspecified local worst-posterior rule need not do so."
+    }
+  ],
+  "donor_sources": [
+    "finite POMDP policy-vector theory",
+    "active hypothesis testing and controlled sensing",
+    "multiple-priors rectangularity and dynamic consistency"
+  ],
+  "preserved_negative_identities": [
+    "S1_ACTION_LEGALITY",
+    "S2_DESTRUCTIVE_TEST_REUSE",
+    "S3_OBSERVED_NEXT_STATE_CENSORING",
+    "S4_RANDOMIZATION_AUTHORITY",
+    "S5_WORST_PRIOR_NONATTAINMENT",
+    "S6_NONRECTANGULAR_PRIOR_PASTING",
+    "S7_ZERO_COST_SEPARATION",
+    "S8_INFINITE_HORIZON_FREE_CYCLE",
+    "S9_STATE_NOT_MARKOV_SUFFICIENT"
+  ],
+  "receipt_coverage": {
+    "finite_executable_witnesses": "S1-S7",
+    "analytic_only_boundaries": [
+      "S8_INFINITE_HORIZON_FREE_CYCLE",
+      "S9_STATE_NOT_MARKOV_SUFFICIENT"
+    ]
+  },
+  "not_claimed": [
+    "new POMDP alpha-vector theory",
+    "new general active-testing separation theory",
+    "new multiple-priors rectangularity theory",
+    "empirical kernel validity",
+    "naturalistic mixed-fibre prevalence",
+    "model-general scientific-agent superiority"
+  ],
+  "remaining_top_tier_blockers": [
+    "systematic external full-text priority audit for any beyond-donor theorem",
+    "estimated-kernel coverage and adaptive-selection theory or an explicit known-kernel boundary",
+    "externally bound naturalistic decision-fibre population and independent scorer custody"
+  ]
+}

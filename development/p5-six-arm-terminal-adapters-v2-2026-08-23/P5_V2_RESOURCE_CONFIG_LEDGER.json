@@ -1,0 +1,1132 @@
+{
+  "schema_version": "orion.p5.six-arm-resource-config-ledger.v2",
+  "artifact_id": "P5.SIX_ARM.RESOURCE.CONFIG.RIGHTS.LEDGER.V2",
+  "paper_id": "P5",
+  "claim_id": "P5.REVISION_LEVEL.WIDE.V1",
+  "captured_at_utc": "2026-08-23",
+  "authority": "OUTCOME_BLIND_PRIMARY_SOURCE_RESOURCE_CONFIG_RUNTIME_RIGHTS_PREFLIGHT_ONLY",
+  "scientific_content_only": true,
+  "outcomes_accessed": false,
+  "protected_outcomes_accessed": false,
+  "comparator_execution_performed": false,
+  "dataset_rows_labels_patches_tests_or_outcome_examples_opened": false,
+  "grants_performance_or_superiority_authority": false,
+  "predecessor": {
+    "directory": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p5-six-arm-comparator-panel",
+    "identity_ledger": "P5_SIX_ARM_COMPARATOR_IDENTITY_LEDGER_V2.json",
+    "identity_ledger_sha256": "f6419103024de98d0cf44ee2681399007001eb79c9b830312d501b6045a60583",
+    "retained_primary_source_metadata": {
+      "P5_OUTCOME_BLIND_COMPARATOR_AND_PUBLIC_PANEL_PROTOCOL_V1.json": "af7f0b4415c87fb1cfb6fa28db7872e38018563a7db9eea699d7c7b9138affbe",
+      "RESEARCH_FIXED_AGENT_AND_MODERN_METHOD.json": "6701817cfa35bd867e74d30f0267f4785b17c5aa1ca1b9977833155009e13341",
+      "RESEARCH_DIRECT_ARCHIVE_SELF_EDIT.json": "42d020d6df96336726798f1c9b780922d08014402c2a8f659965ceaea1f8394b",
+      "RESEARCH_ISSUE_EVALUATOR.json": "619baaacaa6e9bcbac62e0f941e13f724e101034a6f44f717432203aea5751c8",
+      "P5_PUBLIC_SOURCE_RIGHTS_AND_FEASIBILITY_MATRIX_V2.json": "b6549c7d7e1a7ef9e79c92a0433b369971a5ca3f33a41625e45ede233df52b0c"
+    }
+  },
+  "status_vocabulary": {
+    "BOUND_NATIVE_METADATA": "A value is stated in retained primary-source metadata at the pinned identity; it is not thereby the selected P5 confirmatory value.",
+    "FREEZABLE_NOT_FROZEN": "A lawful prospective choice is identifiable, but no content-addressed pre-outcome P5 selection is retained.",
+    "UNBOUND": "The retained metadata does not bind the exact confirmatory value.",
+    "CANNOT_CHECK": "The required evidence or lawful adapter is absent; no positive inference is permitted."
+  },
+  "panel_state": {
+    "semantic_roles_frozen": 6,
+    "primary_source_identities_bound": 6,
+    "official_paper_linked_implementations": 6,
+    "arms_with_licence_bytes_bound": 6,
+    "arms_with_documented_native_entrypoint": 6,
+    "arms_with_hashed_p5_eight_class_adapter": 0,
+    "arms_with_complete_confirmatory_model_provider_budget_environment_identity": 0,
+    "arms_confirmatory_ready": 0,
+    "denominator": 6,
+    "identity_terminal": "P5_SIX_ARM_SEMANTIC_AND_SOURCE_IDENTITIES_BOUND",
+    "execution_terminal": "P5_SIX_ARM_EXECUTION_CONFIG_RESOURCE_RIGHTS_AND_EIGHT_CLASS_ADAPTERS_CANNOT_CHECK",
+    "scientific_terminal": "P5_COMPARATOR_PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK",
+    "H1": "CANNOT_CHECK",
+    "H2": "CANNOT_CHECK",
+    "H3": "CANNOT_CHECK",
+    "H4": "CANNOT_CHECK",
+    "protected_freshness": "CANNOT_CHECK"
+  },
+  "matched_exposure_freeze": {
+    "status": "UNBOUND_ACROSS_ALL_SIX_ARMS",
+    "required_fields": [
+      {
+        "field": "candidate_visible_packet_bytes",
+        "state": "UNBOUND"
+      },
+      {
+        "field": "allowed_repository_and_evidence_bytes",
+        "state": "UNBOUND"
+      },
+      {
+        "field": "network_policy_and_service_revisions",
+        "state": "UNBOUND"
+      },
+      {
+        "field": "model_provider_capability_match",
+        "state": "UNBOUND"
+      },
+      {
+        "field": "wall_time_budget",
+        "state": "UNBOUND"
+      },
+      {
+        "field": "token_and_monetary_budget",
+        "state": "UNBOUND"
+      },
+      {
+        "field": "tool_call_and_step_budget",
+        "state": "UNBOUND"
+      },
+      {
+        "field": "cpu_ram_gpu_parallelism_and_container_identity",
+        "state": "UNBOUND"
+      },
+      {
+        "field": "retry_and_fallback_policy",
+        "state": "UNBOUND"
+      },
+      {
+        "field": "isolated_arm_specific_write_surface",
+        "state": "FREEZABLE_NOT_FROZEN"
+      },
+      {
+        "field": "independent_protected_responsibility_preservation_fresh_transfer_harm_scorer",
+        "state": "CANNOT_CHECK"
+      },
+      {
+        "field": "typed_retention_of_invalid_error_timeout_abstention_unresolved",
+        "state": "FREEZABLE_NOT_FROZEN"
+      }
+    ],
+    "noncompensatory_rule": "Every field must be prospectively frozen and content-addressed for every arm before any protected execution. A native default is descriptive metadata, not permission to substitute it for the matched value. Missing rights, configuration, budget, adapter, custody, or terminal handling yields CANNOT_CHECK and cannot be offset by another arm."
+  },
+  "arms": [
+    {
+      "arm_id": "C1_FIXED_AGENT",
+      "identity": {
+        "name": "SWE-agent",
+        "paper": "arxiv:2405.15793v3",
+        "repository": "https://github.com/SWE-agent/SWE-agent",
+        "commit_sha": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+        "branch": "UNBOUND",
+        "implementation_status": "OFFICIAL_PAPER_LINKED_IMPLEMENTATION",
+        "licence": "MIT",
+        "licence_path": "LICENSE",
+        "licence_sha256": "7610ed3916f6674e34b78417894abd57ff538b3cfdda3085e3643d82acbaf31f"
+      },
+      "runtime_environment": {
+        "state": "UNBOUND",
+        "bound_native_metadata": {
+          "install": "Install the pinned repository per its source-install documentation.",
+          "entrypoint": "sweagent = sweagent.run.run:main"
+        },
+        "freezable_not_frozen": [
+          "exact invocation and run configuration",
+          "isolated task checkout/container"
+        ],
+        "unbound_confirmatory_fields": [
+          "dependency lock",
+          "container image and digest",
+          "task environment identity",
+          "OS/runtime revision",
+          "CPU",
+          "RAM",
+          "GPU",
+          "parallelism"
+        ]
+      },
+      "model_provider_services": {
+        "state": "UNBOUND",
+        "bound_native_metadata": "Model/config driven.",
+        "freezable_not_frozen": [
+          "agent YAML",
+          "model and provider revision",
+          "prompt/config bytes"
+        ],
+        "unbound_confirmatory_fields": [
+          "model",
+          "provider",
+          "endpoint",
+          "credentials/terms",
+          "fallbacks",
+          "service revision"
+        ]
+      },
+      "resource_and_retry_envelope": {
+        "state": "UNBOUND",
+        "bound_native_defaults": {},
+        "freezable_not_frozen": [
+          "wall time",
+          "step/tool-call limit",
+          "token cap",
+          "monetary cap",
+          "network policy",
+          "retry policy"
+        ],
+        "unbound_confirmatory_fields": [
+          "all selected matched resource values"
+        ]
+      },
+      "candidate_information_and_write_surface": {
+        "bound_native_metadata": {
+          "visible": [
+            "issue/problem statement",
+            "pinned task repository checkout",
+            "agent YAML/model/provider/tool configuration",
+            "observations returned by allowed commands"
+          ],
+          "actions": [
+            "shell/editor actions exposed by the agent-computer interface",
+            "candidate patch/submission"
+          ],
+          "native_outputs": [
+            "repository patch/submission",
+            "trajectory/action-observation record",
+            "run metadata",
+            "native termination"
+          ]
+        },
+        "p5_isolation_freezable_not_frozen": "Allow candidate writes only inside an isolated task checkout; deny protected evaluator, labels, fresh split, host promotion registry, and sibling-arm state."
+      },
+      "native_terminal_retention": {
+        "state": "FREEZABLE_NOT_FROZEN",
+        "terminals_to_retain": [
+          "setup failure",
+          "tool error",
+          "invalid patch",
+          "timeout",
+          "budget exhaustion",
+          "no submission"
+        ],
+        "native_p5_eight_class_or_cannot_check_terminal": false,
+        "silent_zero_forbidden": true
+      },
+      "rights_content_service_boundary": {
+        "source": "MIT source at the pinned revision.",
+        "separate_or_unbound": [
+          "task/upstream repository rights",
+          "issue and task-content rights",
+          "provider credentials and model terms",
+          "container-image rights"
+        ]
+      },
+      "p5_adapter": {
+        "status": "NOT_IMPLEMENTED_OR_HASHED",
+        "adapter_sha256": "UNBOUND",
+        "required_boundary": "External protected scorer must evaluate the native action/patch without inferring an eight-class responsibility label from issue resolution. Unsupported non-code classes remain failure/UNRESOLVED rather than rewritten success."
+      },
+      "confirmatory_readiness": {
+        "ready": false,
+        "blocking_reasons": [
+          "resource/config/environment identity unbound",
+          "model/provider identity unbound",
+          "matched budgets unbound",
+          "P5 adapter absent and unhashed",
+          "protected scorer and freshness custody CANNOT_CHECK",
+          "task/content/service rights not closed"
+        ],
+        "terminal": "IDENTITY_BOUND__P5_RESOURCE_ACTION_TERMINAL_AND_PROTECTED_SCORER_ADAPTER_CANNOT_CHECK"
+      }
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT",
+      "identity": {
+        "name": "MOSS",
+        "paper": "arxiv:2605.22794v2",
+        "repository": "https://github.com/hkgai-official/Moss",
+        "commit_sha": "5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+        "branch": "main",
+        "implementation_status": "OFFICIAL_PAPER_LINKED_IMPLEMENTATION",
+        "licence": "COMPOSITE_APACHE_2_0_ROOT__VENDORED_OPENCLAW_MIT__VENDORED_A2UI_MIXED",
+        "licence_path": "LICENSE",
+        "licence_sha256": "3903e8b0fd6b4f6fc83f194c1e7b8525f1b40a284e4682ba1cec7e77eb765b63",
+        "notice_sha256": "da9dce4d4fbd44a4feb37a54e27220788fbcc6887e4367d479b1bd402f63dd19",
+        "vendored_openclaw_licence_sha256": "62316704df7426e5a79d2827ff8aca36e9abb3a73b8e68557030749ebefec667"
+      },
+      "runtime_environment": {
+        "state": "PARTIALLY_BOUND_NATIVE_METADATA__CONFIRMATORY_UNBOUND",
+        "bound_native_metadata": {
+          "prerequisites": [
+            "Docker 24+",
+            "Node 22+",
+            "pnpm 10",
+            "Python 3.11+",
+            "jq",
+            "OpenAI-completions-compatible endpoint",
+            "authenticated Claude Code, Codex, DeepSeek-TUI, or OpenCode"
+          ],
+          "install": [
+            "git clone official repository",
+            "copy .env.example to .env",
+            "fill model/provider settings",
+            "./scripts/setup.sh"
+          ],
+          "entrypoints": [
+            "moss evo flag",
+            "moss evo start --depth shallow|standard|deep",
+            "moss evo status",
+            "moss evo stop",
+            "moss evo apply",
+            "docker exec moss-gateway moss ..."
+          ],
+          "json_mode": true
+        },
+        "freezable_not_frozen": [
+          "one depth tier",
+          "one authenticated coding-agent CLI",
+          "exact host/container layout",
+          "exact dependency/image digests"
+        ],
+        "unbound_confirmatory_fields": [
+          "selected dependency lock",
+          "container image digests",
+          "OS/runtime revisions beyond minimums",
+          "CPU",
+          "RAM",
+          "GPU",
+          "parallelism",
+          "task environment identity"
+        ]
+      },
+      "model_provider_services": {
+        "state": "UNBOUND",
+        "bound_native_metadata": "Requires an OpenAI-compatible model endpoint plus one authenticated coding-agent CLI; spawn receipts may expose provider and model.",
+        "freezable_not_frozen": [
+          "endpoint",
+          "model revision",
+          "provider",
+          "coding-agent CLI identity and version",
+          "environment variables"
+        ],
+        "unbound_confirmatory_fields": [
+          "selected model/provider/service",
+          "capability match",
+          "credential and service terms",
+          "fallback behavior"
+        ]
+      },
+      "resource_and_retry_envelope": {
+        "state": "PARTIALLY_BOUND_NATIVE_DEFAULTS__MATCHED_VALUES_UNBOUND",
+        "bound_native_defaults": {
+          "depth_tiers": {
+            "shallow": {
+              "iterations": 3,
+              "plan_rounds": 1,
+              "code_retries": 0,
+              "trials_per_task": 2,
+              "plateau": 1
+            },
+            "standard": {
+              "iterations": 5,
+              "plan_rounds": 2,
+              "code_retries": 1,
+              "trials_per_task": 3,
+              "plateau": 2
+            },
+            "deep": {
+              "iterations": 8,
+              "plan_rounds": 3,
+              "code_retries": 2,
+              "trials_per_task": 5,
+              "plateau": 3
+            }
+          },
+          "timeouts_seconds": {
+            "task_trial": 300,
+            "validation_trials": 1,
+            "build_smoke": 240,
+            "docker_build": 600,
+            "locator": 1800,
+            "planner": 1800,
+            "plan_reviewer": 1500,
+            "implementer": 3600,
+            "code_reviewer": 1800,
+            "task_evaluator": 1500,
+            "reviewer": 1200,
+            "swap_window": 90
+          },
+          "accounting": "Provider/model/elapsed/cost/token fields are reported when exposed."
+        },
+        "freezable_not_frozen": [
+          "depth tier",
+          "whole-run wall time",
+          "aggregate token/USD/tool caps",
+          "task count",
+          "network",
+          "CPU/RAM",
+          "retry/fallback policy"
+        ],
+        "unbound_confirmatory_fields": [
+          "hard whole-run token cap",
+          "hard whole-run USD cap",
+          "selected matched compute and wall-time values"
+        ]
+      },
+      "candidate_information_and_write_surface": {
+        "bound_native_metadata": {
+          "visible": [
+            "OpenClaw source",
+            "curated failure-batch chunks",
+            "baseline/candidate replay traces",
+            "diagnoses/plans/diffs/reviews/scoring matrices",
+            "model/tool outputs"
+          ],
+          "writes": [
+            "openclaw inner Git repository and evo branches",
+            "MOSS_DATA_DIR",
+            "Docker images/containers",
+            ".env state",
+            "/tmp/moss.sock"
+          ],
+          "native_outputs": [
+            "CLI JSON/status/batch/apply records",
+            "diagnosis/plan/diff/review/evaluation artifacts",
+            "spawn resource receipts",
+            "loop and manifest verdicts"
+          ]
+        },
+        "p5_isolation_freezable_not_frozen": "Replace production replay/promotion with isolated candidate-only execution; deny protected outcomes and host promotion."
+      },
+      "native_terminal_retention": {
+        "state": "PARTIALLY_TYPED_NATIVE__P5_MAPPING_NOT_FROZEN",
+        "terminals_to_retain": [
+          "CONVERGED",
+          "NEED_MORE_WORK",
+          "FUNDAMENTAL_LIMIT_MODEL",
+          "FUNDAMENTAL_LIMIT_ARCHITECTURE",
+          "rolled_back",
+          "failed",
+          "aborted_max_iter",
+          "aborted_streak",
+          "unknown provider",
+          "role timeout",
+          "Docker build timeout",
+          "health-probe rollback"
+        ],
+        "native_p5_eight_class_or_cannot_check_terminal": false
+      },
+      "rights_content_service_boundary": {
+        "source": "Root MOSS additions Apache-2.0; vendored OpenClaw MIT; vendored A2UI and other components retain their terms and notices.",
+        "separate_or_unbound": [
+          "rights to session/failure artifacts",
+          "provider and coding-agent service terms",
+          "Docker/host mutation authority",
+          "any external task or benchmark content"
+        ]
+      },
+      "p5_adapter": {
+        "status": "NOT_RELEASED_NOT_IMPLEMENTED_OR_HASHED",
+        "adapter_sha256": "UNBOUND",
+        "required_boundary": "Pass only the frozen motivating packet; block protected labels/outcomes/patches/evaluator feedback; isolate writes; emit exactly one P5 action or UNRESOLVED; retain native terminals; externalize scoring."
+      },
+      "confirmatory_readiness": {
+        "ready": false,
+        "blocking_reasons": [
+          "no selected model/provider/coding-agent identity",
+          "no exact dependency/container/compute identity",
+          "no whole-run token/USD cap",
+          "matched packet and network unbound",
+          "P5 adapter absent and unhashed",
+          "protected scorer/freshness CANNOT_CHECK",
+          "session/content/service rights not closed"
+        ],
+        "terminal": "IDENTITY_BOUND__OFFICIAL_SOURCE_RUNNABLE_IN_NATIVE_OPENCLAW_SETTING__P5_CONFIRMATORY_EXECUTION_CANNOT_CHECK"
+      }
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT",
+      "identity": {
+        "name": "Darwin Gödel Machine",
+        "paper": "arxiv:2505.22954v3",
+        "repository": "https://github.com/jennyzzt/dgm",
+        "commit_sha": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+        "branch": "main",
+        "implementation_status": "OFFICIAL_PAPER_LINKED_IMPLEMENTATION",
+        "licence": "Apache-2.0",
+        "licence_path": "LICENSE",
+        "licence_sha256": "84b7504ce8dda1f37f592cdf67ad21371864583720d79ea289b0b0c75bfcdb17"
+      },
+      "runtime_environment": {
+        "state": "PARTIALLY_BOUND_NATIVE_METADATA__CONFIRMATORY_UNBOUND",
+        "bound_native_metadata": {
+          "install": [
+            "Docker",
+            "Python virtualenv",
+            "pip install -r requirements.txt",
+            "separate SWE-bench checkout at dc4c087c2b9e4cefebf2e3d201d27e36",
+            "optional Polyglot"
+          ],
+          "packaging": "Raw Python scripts; requirements mostly unpinned; no package entrypoint.",
+          "entrypoints": [
+            "python DGM_outer.py",
+            "python self_improve_step.py ...",
+            "python coding_agent.py ..."
+          ]
+        },
+        "freezable_not_frozen": [
+          "declared fix or retention of the pinned argparse choice defect",
+          "exact task/harness subset",
+          "exact Docker image",
+          "exact Python/dependency graph"
+        ],
+        "unbound_confirmatory_fields": [
+          "dependency lock",
+          "container digest",
+          "OS/Python revision",
+          "CPU",
+          "RAM",
+          "GPU",
+          "complete compute identity",
+          "prepared benchmark/task environment"
+        ]
+      },
+      "model_provider_services": {
+        "state": "PARTIALLY_BOUND_NATIVE_DEFAULTS__CONFIRMATORY_UNBOUND",
+        "bound_native_metadata": {
+          "diagnosis_model": "o1-2024-12-17",
+          "coding_model": "bedrock/us.anthropic.claude-3-5-sonnet-20241022-v2:0",
+          "credentials": [
+            "OpenAI",
+            "Anthropic or AWS Bedrock"
+          ]
+        },
+        "freezable_not_frozen": [
+          "retain or override each model default",
+          "provider endpoint/revision",
+          "credential/service terms",
+          "fallback policy"
+        ],
+        "unbound_confirmatory_fields": [
+          "selected matched model/provider capability",
+          "service revision and quotas",
+          "exact fallback behavior"
+        ]
+      },
+      "resource_and_retry_envelope": {
+        "state": "PARTIALLY_BOUND_NATIVE_DEFAULTS__WHOLE_RUN_CAP_UNBOUND",
+        "bound_native_defaults": {
+          "max_generations": 80,
+          "self_improvement_attempts_per_generation": 2,
+          "parallel_workers": 2,
+          "swe_evaluations_per_attempt": 1,
+          "archive_update": "keep_all",
+          "parent_choice": "score_child_prop (intended default; pinned argparse choices contain a concatenation defect)",
+          "max_output_tokens_for_supported_calls": 4096,
+          "recursive_retries_after_initial": {
+            "diagnosis": 3,
+            "tool_response": 3
+          },
+          "backoff_max_seconds": 600,
+          "coding_agent_timeout_seconds": 1800,
+          "declared_outer_future_timeout_seconds": 5400
+        },
+        "caveat": "The 5400-second future.result timeout is called after as_completed and is not a watchdog for a running future.",
+        "freezable_not_frozen": [
+          "generation/worker/evaluation counts",
+          "whole-run wall time",
+          "aggregate token/USD/tool caps",
+          "network",
+          "compute",
+          "retry/fallback semantics"
+        ],
+        "unbound_confirmatory_fields": [
+          "effective whole-attempt timeout outside coding_agent",
+          "aggregate token/USD cap",
+          "selected matched resources"
+        ]
+      },
+      "candidate_information_and_write_surface": {
+        "bound_native_metadata": {
+          "visible": [
+            "DGM source/tools",
+            "archive and lineage metadata",
+            "performance/resolved/unresolved/empty-patch metadata",
+            "diagnostic evaluation logs",
+            "parent patch chain and current diff"
+          ],
+          "writes": [
+            "output_dgm run directory",
+            "per-variant metadata/log/diff files",
+            "temporary Docker /dgm worktree",
+            "external benchmark checkouts"
+          ],
+          "native_outputs": [
+            "dgm_outer.log",
+            "dgm_metadata.jsonl",
+            "per-child metadata and self_improve.log",
+            "self_evo.md",
+            "model_patch.diff",
+            "benchmark harness artifacts"
+          ]
+        },
+        "p5_isolation_freezable_not_frozen": "Evolution may use only frozen public-development outcomes; freeze final archive policy before protected scoring and deny protected outcomes to diagnosis/selection."
+      },
+      "native_terminal_retention": {
+        "state": "NATIVE_FAILURES_EXIST__P5_MAPPING_NOT_FROZEN",
+        "terminals_to_retain": [
+          "missing cached initial results",
+          "metadata/evaluation/compilation exclusion",
+          "missing or empty patch",
+          "evaluation exception",
+          "coding-agent timeout",
+          "context-length failure",
+          "pinned argparse defect"
+        ],
+        "native_p5_eight_class_or_structured_abstention": false
+      },
+      "rights_content_service_boundary": {
+        "source": "Apache-2.0 repository at the pinned revision.",
+        "separate_or_unbound": [
+          "OpenAI/Anthropic/AWS Bedrock terms",
+          "separate SWE-bench framework",
+          "benchmark datasets and task/project/test/patch rights",
+          "Docker authority",
+          "untrusted generated-code isolation"
+        ]
+      },
+      "p5_adapter": {
+        "status": "NOT_RELEASED_NOT_IMPLEMENTED_OR_HASHED",
+        "adapter_sha256": "UNBOUND",
+        "required_boundary": "Use public development only; block protected outcome feedback; freeze final archive selection; map one action or UNRESOLVED; isolate writes; retain every invalid/error/timeout terminal."
+      },
+      "confirmatory_readiness": {
+        "ready": false,
+        "blocking_reasons": [
+          "requirements/container/task subset unbound",
+          "matched model/provider and capability not frozen",
+          "whole-run resource cap absent",
+          "static entrypoint defect lacks a declared frozen treatment",
+          "P5 adapter absent and unhashed",
+          "protected scorer/freshness CANNOT_CHECK",
+          "benchmark/content/service rights not closed"
+        ],
+        "terminal": "IDENTITY_BOUND__OFFICIAL_NATIVE_DGM_RUN_PATH_DOCUMENTED__P5_CONFIRMATORY_EXECUTION_CANNOT_CHECK"
+      }
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION",
+      "identity": {
+        "name": "ADIAS",
+        "paper": "arxiv:2608.06410v1",
+        "repository": "https://github.com/scylj1/adias",
+        "commit_sha": "fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993",
+        "branch": "main",
+        "implementation_status": "OFFICIAL_PRIMARY_PAPER_LINKED_INITIAL_CODE_RELEASE",
+        "licence": "LicenseRef-CC-BY-NC-SA-4.0",
+        "licence_path": "LICENSE.md",
+        "licence_sha256": "047d2259741a3ebb30d8c8a43d4ba79b5b229a069acd1d2bea49f22b297d8e98",
+        "paper_licence": "arXiv non-exclusive distribution licence 1.0"
+      },
+      "runtime_environment": {
+        "state": "PARTIALLY_BOUND_NATIVE_METADATA__CONFIRMATORY_UNBOUND",
+        "bound_native_metadata": {
+          "prerequisites": [
+            "Python 3.12 development environment",
+            "Graphviz/build system libraries",
+            "Docker",
+            "domain-specific Docker image"
+          ],
+          "install": [
+            "venv_nat",
+            "pip install requirements.txt",
+            "pip install requirements_dev.txt",
+            "pip install -e ."
+          ],
+          "entrypoints": [
+            "adias-eval",
+            "adias-harness",
+            "adias-report",
+            "adias-run-meta-agent",
+            "scripts/run_*.sh to generate_loop.py",
+            "python run_meta_agent.py ..."
+          ]
+        },
+        "freezable_not_frozen": [
+          "exact dependency and image digests",
+          "one domain/P5 adapter",
+          "one optimize_option and path policy",
+          "exact host/container isolation"
+        ],
+        "unbound_confirmatory_fields": [
+          "dependency lock",
+          "container digest",
+          "external interactive environment identity",
+          "CPU",
+          "RAM",
+          "GPU",
+          "selected parallelism"
+        ]
+      },
+      "model_provider_services": {
+        "state": "PARTIALLY_BOUND_NATIVE_DEFAULT__CONFIRMATORY_UNBOUND",
+        "bound_native_metadata": "Released scripts default meta/task/user roles to openai/deepseek-v4-flash, overrideable by environment or CLI; LiteLLM may access OpenAI-compatible, Anthropic, or Gemini services.",
+        "freezable_not_frozen": [
+          "role-specific models and revisions",
+          "provider/endpoint",
+          "optional public-search policy",
+          "credentials and terms"
+        ],
+        "unbound_confirmatory_fields": [
+          "selected provider/model per role",
+          "capability match",
+          "service revisions",
+          "fallback behavior"
+        ]
+      },
+      "resource_and_retry_envelope": {
+        "state": "PARTIALLY_BOUND_NATIVE_DEFAULTS__AGGREGATE_CAPS_UNBOUND",
+        "bound_native_defaults": {
+          "general": {
+            "max_generation": 10,
+            "eval_workers": 10,
+            "parent_selection": "profile",
+            "optimize_option": "agent_and_meta",
+            "hide_domain": true,
+            "final_test": true
+          },
+          "taubench_return_script": {
+            "max_generation": 3,
+            "train_examples": 55,
+            "validation_examples": 15,
+            "test_examples": 32,
+            "eval_workers": 4,
+            "final_test_repeats": 1
+          },
+          "improve_or_learn_timeout_seconds": 21600,
+          "token_usage_receipt": "optional token_usage.json"
+        },
+        "freezable_not_frozen": [
+          "one native configuration family",
+          "case counts",
+          "aggregate wall/token/USD/tool caps",
+          "network/search",
+          "compute",
+          "repository-wide retry policy"
+        ],
+        "unbound_confirmatory_fields": [
+          "aggregate token cap",
+          "aggregate tool-call cap",
+          "hard dollar cap",
+          "single retry policy",
+          "matched selected resource values"
+        ]
+      },
+      "candidate_information_and_write_surface": {
+        "bound_native_metadata": {
+          "visible": [
+            "task protocol/public priors",
+            "candidate code and lineage",
+            "development scores/trajectories",
+            "profile.json issue state",
+            "diagnoses and prior patches"
+          ],
+          "native_write_descriptions": [
+            "released improver prompt: one focused patch in 1-3 files under task_agent, diagnostic_agent, or profile_agent",
+            "CLI agent_and_meta documentation additionally names meta_agent.py and generate_loop.py"
+          ],
+          "native_outputs": [
+            "model_patch.diff",
+            "patch summary",
+            "profile.json",
+            "round_diagnosis.json",
+            "archive/lineage",
+            "evaluation reports",
+            "logs",
+            "optional token_usage.json",
+            "final summary"
+          ]
+        },
+        "binding_gap": "Prompt and CLI path surfaces conflict; an external content-bound allow-list must be frozen.",
+        "p5_isolation_freezable_not_frozen": "Class-specific write allow-list enforced outside the model; deny source records, split manifests, protected evaluator/holdouts/outcomes, host promotion, and peer arms."
+      },
+      "native_terminal_retention": {
+        "state": "NATIVE_FAILURES_RETAINED_IN_LOGS__P5_MAPPING_NOT_FROZEN",
+        "terminals_to_retain": [
+          "compile_status.ok=false",
+          "empty patch",
+          "21600-second subprocess timeout",
+          "evaluation error",
+          "missing profile outputs",
+          "blocked/out-of-surface write"
+        ],
+        "native_p5_eight_class_or_cannot_check_terminal": false
+      },
+      "rights_content_service_boundary": {
+        "source": "Repository root CC BY-NC-SA 4.0; noncommercial and ShareAlike restrictions; not OSI-open.",
+        "paper": "arXiv non-exclusive distribution licence, separate from source.",
+        "separate_or_unbound": [
+          "HyperAgent and Tau-bench/ALFWorld/ScienceWorld/TextCraft/WebShop assets",
+          "benchmark data and environments",
+          "model/provider terms",
+          "Docker images",
+          "public-search service terms"
+        ]
+      },
+      "p5_adapter": {
+        "status": "SPECIFIABLE_BUT_NOT_IMPLEMENTED_OR_HASHED",
+        "adapter_sha256": "UNBOUND",
+        "required_boundary": "A deterministic mapper may use issue target plus actual write set only when the class is unique and permitted; ambiguous, unsupported, cross-class, missing, error, timeout, or blocked cases become UNRESOLVED."
+      },
+      "confirmatory_readiness": {
+        "ready": false,
+        "blocking_reasons": [
+          "restricted source rights require lawful-use determination",
+          "dependency/container/domain identity unbound",
+          "selected model/provider/service identity unbound",
+          "aggregate budgets and retry policy unbound",
+          "write allow-list conflict unresolved",
+          "P5 adapter absent and unhashed",
+          "protected scorer/freshness CANNOT_CHECK",
+          "third-party content/service rights not closed"
+        ],
+        "terminal": "P5_C4_IDENTITY_BOUND_SOURCE_AVAILABLE_RESTRICTED__P5_EIGHT_CLASS_ACTION_ADAPTER_CANNOT_CHECK"
+      }
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY_EVOLUTION",
+      "identity": {
+        "name": "Double Ratchet metric-only arm",
+        "paper": "arxiv:2607.12790v2",
+        "repository": "https://github.com/amazon-science/Self-Evolving-Agents-Double-Ratchet",
+        "commit_sha": "0f14e910d361196422d9b938f45280919952d4fd",
+        "branch": "main",
+        "implementation_status": "OFFICIAL_PRIMARY_PAPER_LINKED_REFERENCE_IMPLEMENTATION__OFFICIAL_METRIC_ONLY_ARM",
+        "licence": "Apache-2.0",
+        "licence_path": "LICENSE",
+        "licence_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+        "notice_sha256": "5d86be6e681240106316a6763eb0dcb47a8adcb426c19df4693098ceb61bb531",
+        "paper_licence": "CC BY-NC-SA 4.0"
+      },
+      "runtime_environment": {
+        "state": "PARTIALLY_BOUND_NATIVE_METADATA__CONFIRMATORY_UNBOUND",
+        "bound_native_metadata": {
+          "prerequisites": [
+            "Python >=3.11",
+            "pydantic",
+            "pyyaml",
+            "boto3",
+            "AWS credentials/IAM",
+            "MODEL_API_REGION"
+          ],
+          "entrypoint": "python scripts/run_metric_evo.py",
+          "selected_semantic_arm": "metric-only; scripts/run_co_evo.py is excluded",
+          "documented_command": "python scripts/run_metric_evo.py --single-model global.anthropic.claude-opus-4-7 --rounds 100 --patience 100 --min-delta 0 --seed 42 --tag anchored"
+        },
+        "freezable_not_frozen": [
+          "exact dependency versions",
+          "one P5 dossier adapter",
+          "frozen solver identity",
+          "one native default or reproduction configuration",
+          "exact execution host"
+        ],
+        "unbound_confirmatory_fields": [
+          "dependency lock",
+          "container/OS identity",
+          "P5 task-output generator identity",
+          "CPU",
+          "RAM",
+          "GPU",
+          "selected parallelism"
+        ]
+      },
+      "model_provider_services": {
+        "state": "PARTIALLY_BOUND_NATIVE_DEFAULT__CONFIRMATORY_UNBOUND",
+        "bound_native_metadata": "All roles default to global.anthropic.claude-opus-4-7 through Amazon Bedrock; some detector/embedding packs may invoke other configured services. No cross-model fallback by default.",
+        "freezable_not_frozen": [
+          "exact Bedrock model/provider revision",
+          "role mapping",
+          "detector and embedding services",
+          "region",
+          "credentials/quotas/terms"
+        ],
+        "unbound_confirmatory_fields": [
+          "matched provider capability",
+          "all optional service identities",
+          "frozen solver model/provider/prompts/tools"
+        ]
+      },
+      "resource_and_retry_envelope": {
+        "state": "PARTIALLY_BOUND_NATIVE_DEFAULTS__AGGREGATE_CAPS_UNBOUND",
+        "bound_native_defaults": {
+          "repository": {
+            "dataset": "mbpp",
+            "stored_train": 60,
+            "stored_eval_dev": 10,
+            "stored_eval_locked": 40,
+            "rounds_upper_bound": 8,
+            "min_delta": 0.01,
+            "patience": 2,
+            "seed": 42,
+            "parallelism": 64,
+            "max_tokens_per_model_call": 8192
+          },
+          "paper_reproduction": {
+            "rounds_upper_bound": 100,
+            "min_delta": 0,
+            "patience": 100,
+            "seeds": [
+              42,
+              7,
+              13
+            ]
+          },
+          "retry": {
+            "bedrock_attempts_max": 3,
+            "backoff_base_seconds": 0.5,
+            "backoff_cap_seconds": 8,
+            "connect_timeout_seconds": 10,
+            "read_timeout_seconds": 120,
+            "soft_label_attempts": 3
+          }
+        },
+        "freezable_not_frozen": [
+          "repository-default versus reproduction regime",
+          "P5 train/dev/locked-surrogate output counts",
+          "rounds",
+          "aggregate detector/tool calls",
+          "aggregate token/USD budget",
+          "whole-run wall time",
+          "compute"
+        ],
+        "unbound_confirmatory_fields": [
+          "aggregate call/token/USD cap",
+          "aggregate wallclock timeout",
+          "matched selected resource values"
+        ]
+      },
+      "candidate_information_and_write_surface": {
+        "bound_native_metadata": {
+          "visible": [
+            "fixed no-skill solver outputs",
+            "unlabelled train outputs",
+            "sparse eval_dev anchor",
+            "typed detector pool and lifecycle",
+            "metric expression/marginals/gaps/elites"
+          ],
+          "writes": [
+            "metric.db",
+            "result.json",
+            "detector/evaluation/audit state"
+          ],
+          "native_outputs": [
+            "final metric expression",
+            "locked agreement",
+            "elites/history",
+            "typed detector traces",
+            "CLEAN/DRAWBACK/ABSTAIN statuses",
+            "append-only audit events"
+          ]
+        },
+        "p5_isolation_freezable_not_frozen": "Keep solver/task universe fixed; use development-only locked surrogate; freeze final metric; independent custodian scores protected panel once and returns no outcome to evolution."
+      },
+      "native_terminal_retention": {
+        "state": "PARTIALLY_TYPED_NATIVE__P5_MAPPING_NOT_FROZEN",
+        "terminals_to_retain": [
+          "Status.ABSTAIN",
+          "all-detectors-abstain",
+          "null soft label after three attempts",
+          "provider error",
+          "network timeout",
+          "null final expression/history",
+          "aggregate timeout"
+        ],
+        "native_p5_eight_class_or_cannot_check_terminal": false,
+        "mapping_constraint": "Only EVALUATOR_REPAIR is actionable; DRAWBACK is not automatically EVALUATOR_REPAIR; every non-evaluator/ambiguous/error/timeout case is UNRESOLVED."
+      },
+      "rights_content_service_boundary": {
+        "source": "Apache-2.0 code with NOTICE retention.",
+        "paper": "CC BY-NC-SA 4.0, separate from source.",
+        "separate_or_unbound": [
+          "MBPP+",
+          "Spider 2.0-Snow and hosted Snowflake",
+          "report-generation data/RAQS and evaluator",
+          "P5 cases and protected panel",
+          "Amazon Bedrock model permissions/pricing/quotas"
+        ]
+      },
+      "p5_adapter": {
+        "status": "SPECIFIABLE_BUT_NOT_IMPLEMENTED_OR_HASHED",
+        "adapter_sha256": "UNBOUND",
+        "required_boundary": "Bind the frozen solver; adapt only development inputs; substitute a development-only locked surrogate; emit a content-addressed evaluator plus EVALUATOR_REPAIR or UNRESOLVED; score the protected panel once outside candidate custody."
+      },
+      "confirmatory_readiness": {
+        "ready": false,
+        "blocking_reasons": [
+          "dependency/host/frozen-solver identity unbound",
+          "selected default versus reproduction config unbound",
+          "aggregate budgets and wallclock unbound",
+          "optional service identities unbound",
+          "P5 adapter absent and unhashed",
+          "official eval_locked flow is not protected-custody safe without a wrapper",
+          "protected scorer/freshness CANNOT_CHECK",
+          "dataset/service/panel rights not closed"
+        ],
+        "terminal": "P5_C5_IDENTITY_BOUND_OFFICIAL_EVALUATOR_ONLY_IMPLEMENTATION__P5_PROTECTED_EIGHT_CLASS_ADAPTER_CANNOT_CHECK"
+      }
+    },
+    {
+      "arm_id": "C6_STRONGEST_SOURCE_GROUNDED_MODERN_METHOD",
+      "identity": {
+        "name": "ScienceClaw / Self-Revising Discovery Systems",
+        "paper": "arxiv:2606.01444v1",
+        "repository": "https://github.com/lamm-mit/scienceclaw",
+        "commit_sha": "38b2f681e87272cd505c9b2671760fc3729756c2",
+        "branch": "categoryscienceclaw-mechanics",
+        "implementation_status": "OFFICIAL_PAPER_LINKED_IMPLEMENTATION_BRANCH",
+        "licence": "Apache-2.0",
+        "licence_path": "LICENSE",
+        "licence_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "paper_licence": "CC BY-NC-ND 4.0",
+        "entrypoint_sha256": {
+          "setup.py": "0302ab0d1436ead7f587c9e241cf67dd26b93ad2eb1ead9c316d149d8e151d12",
+          "bin/scienceclaw-post": "edf23cc94775cc19d9dc63d11818211e61f618127b8baddb0c39a6270f16ebaf",
+          "autonomous/deep_investigation.py": "72493b0e60b9ede93a945cc73f89780a30e9fc405bfc957dc8532e37711fa556"
+        }
+      },
+      "runtime_environment": {
+        "state": "MOSTLY_UNBOUND",
+        "bound_native_metadata": {
+          "install": "Pinned repository setup.py/profile installation; optional skill dependencies and external services must be enumerated.",
+          "entrypoints": [
+            "scienceclaw-post --agent <id> --topic <topic> --dry-run",
+            "autonomous.deep_investigation.run_deep_investigation(agent_name, topic, ...)"
+          ]
+        },
+        "freezable_not_frozen": [
+          "exact profile",
+          "tool list and hashes",
+          "optional dependencies",
+          "artifact-store reset",
+          "dry-run-only execution"
+        ],
+        "unbound_confirmatory_fields": [
+          "dependency lock",
+          "container/OS/runtime",
+          "topic-to-case adapter",
+          "scientific service revisions",
+          "CPU",
+          "RAM",
+          "GPU",
+          "parallelism"
+        ]
+      },
+      "model_provider_services": {
+        "state": "UNBOUND",
+        "bound_native_metadata": "LLM plus selectable scientific tools/services; open-ended unless frozen.",
+        "freezable_not_frozen": [
+          "provider/model revision",
+          "profile and tool code hashes",
+          "API/service revisions",
+          "credentials",
+          "network allowlist"
+        ],
+        "unbound_confirmatory_fields": [
+          "all selected model/provider/service identities",
+          "capability match",
+          "tool dataset/service terms",
+          "fallback behavior"
+        ]
+      },
+      "resource_and_retry_envelope": {
+        "state": "UNBOUND",
+        "bound_native_defaults": {},
+        "freezable_not_frozen": [
+          "topic/case bytes",
+          "wall time",
+          "token/USD caps",
+          "tool calls",
+          "compute",
+          "retries",
+          "network",
+          "artifact reset semantics"
+        ],
+        "unbound_confirmatory_fields": [
+          "all P5 matched resource values"
+        ]
+      },
+      "candidate_information_and_write_surface": {
+        "bound_native_metadata": {
+          "visible": [
+            "prospectively frozen topic/case packet",
+            "agent profile",
+            "allowed scientific service observations",
+            "candidate-side artifact lineage"
+          ],
+          "writes": [
+            "candidate-side immutable typed artifact store",
+            "agent/global JSONL ledgers",
+            "dry-run draft"
+          ],
+          "native_outputs": [
+            "UUID/content-hashed typed artifacts with lineage",
+            "JSONL metadata ledgers",
+            "investigation result/draft",
+            "open needs",
+            "status mutations"
+          ]
+        },
+        "p5_isolation_freezable_not_frozen": "No Infinite posting; deny protected labels/evaluator/freshness, host promotion, and sibling state; confine changes to candidate artifacts."
+      },
+      "native_terminal_retention": {
+        "state": "NATIVE_STATES_EXIST__P5_MAPPING_NOT_FROZEN",
+        "terminals_to_retain": [
+          "login failure",
+          "service timeout",
+          "tool failure",
+          "missing optional dependency",
+          "invalid or empty artifact",
+          "open need",
+          "draft-only",
+          "no-post"
+        ],
+        "native_p5_eight_class_or_cannot_check_terminal": false,
+        "mapping_constraint": "An open need or native status mutation must not be relabelled as UNRESOLVED or a revision class without a frozen lawful adapter."
+      },
+      "rights_content_service_boundary": {
+        "source": "Apache-2.0 repository at the pinned revision.",
+        "paper": "CC BY-NC-ND 4.0, separate from source.",
+        "separate_or_unbound": [
+          "scientific APIs",
+          "Infinite service",
+          "model/provider terms",
+          "tool datasets",
+          "generated artifact rights",
+          "P5 case and protected-panel rights"
+        ]
+      },
+      "p5_adapter": {
+        "status": "NOT_IMPLEMENTED_OR_HASHED",
+        "adapter_sha256": "UNBOUND",
+        "required_boundary": "Freeze topic-to-case input and external protected scorer; expose only candidate-side artifacts; do not manufacture a minimal revision decision; score preservation and fresh transfer outside candidate custody."
+      },
+      "confirmatory_readiness": {
+        "ready": false,
+        "blocking_reasons": [
+          "runtime/dependency/profile/tool identity unbound",
+          "model/provider/service identities unbound",
+          "all matched resource budgets unbound",
+          "topic-to-case and eight-class adapter absent and unhashed",
+          "protected scorer/freshness CANNOT_CHECK",
+          "external service/content/generated-artifact rights not closed"
+        ],
+        "terminal": "IDENTITY_ENTRYPOINT_AND_TYPED_ARTIFACT_SUBSTRATE_BOUND__P5_EIGHT_CLASS_RESOURCE_SERVICE_AND_FRESHNESS_ADAPTER_CANNOT_CHECK"
+      }
+    }
+  ],
+  "cross_arm_negative_result": {
+    "result": "0/6_CONFIRMATORY_READY",
+    "cause": "The predecessor closes semantic/source identity only. No arm has a complete content-addressed P5 configuration spanning matched visible bytes, model/provider/services, runtime/container/compute, whole-run budgets, retries, isolated writes, typed eight-class adapter, lawful content/service rights, and independent protected scoring.",
+    "residual": "Native defaults differ in meaning and coverage and cannot be treated as matched confirmatory allocations. Every arm lacks at least one essential resource/config/rights/adapter/custody field; most lack several.",
+    "next_discriminator": "Before opening outcomes, create a successor freeze amendment that chooses and hashes one lawful adapter and full execution manifest per arm plus one common exposure/scorer manifest. Re-audit rights per content and service root. If any field remains UNBOUND or CANNOT_CHECK, retain the arm-level failure and do not execute a confirmatory comparison."
+  },
+  "final_verdict": {
+    "confirmatory_ready_arms": 0,
+    "total_arms": 6,
+    "execution_terminal": "P5_SIX_ARM_EXECUTION_CONFIG_RESOURCE_RIGHTS_AND_EIGHT_CLASS_ADAPTERS_CANNOT_CHECK",
+    "scientific_terminal": "P5_COMPARATOR_PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK",
+    "H1_H4": "CANNOT_CHECK",
+    "protected_freshness": "CANNOT_CHECK"
+  }
+}

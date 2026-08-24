@@ -1,0 +1,517 @@
+{
+  "active_strict_wins_worlds": 6,
+  "aggregate": {
+    "ACTIVE_LOGREG": {
+      "fraction_screened_at_95_recall": 0.39606521457466776,
+      "recall_at_005": 0.4129623106627824,
+      "recall_at_010": 0.619971502990371,
+      "recall_at_020": 0.7776070169348471,
+      "wss_at_95": 0.5539347854253323
+    },
+    "RANDOM": {
+      "fraction_screened_at_95_recall": 0.9353771030716587,
+      "recall_at_005": 0.08279929092134282,
+      "recall_at_010": 0.13088415957077515,
+      "recall_at_020": 0.2205068251869549,
+      "wss_at_95": 0.014622896928341398
+    },
+    "STATIC_SEED_CENTROID": {
+      "fraction_screened_at_95_recall": 0.6534897291656574,
+      "recall_at_005": 0.35306717217094574,
+      "recall_at_010": 0.4694493650566764,
+      "recall_at_020": 0.63226176012143,
+      "wss_at_95": 0.29651027083434256
+    }
+  },
+  "claim_scope": "PUBLIC_BOUNDED_SCREENING_RELATIVE_ACQUISITION_CONFIRMATION_ONLY",
+  "forbidden_claims": [
+    "repair of the predecessor absolute 0.80 gate",
+    "ORION-specific superiority",
+    "open-world route invention or global closure",
+    "protected freshness or independent custody",
+    "generality beyond bounded systematic-review screening pools",
+    "confirmatory independence from public labels"
+  ],
+  "gates": {
+    "G1_BINDING": true,
+    "G2_INCREMENTAL": true,
+    "G3_REPLICATION": false,
+    "G4_WORK_SAVING": true,
+    "G5_NO_MATERIAL_HARM": false
+  },
+  "macro_wss_gain_over_stronger_per_world_comparator": 0.2574245145909896,
+  "paired_world_differences": [
+    {
+      "active_minus_random_recall_at_010": 0.7875,
+      "recall_at_010_difference": 0.33333333333333326,
+      "recall_comparator": "STATIC_SEED_CENTROID",
+      "world_id": "Radjenovic_2013",
+      "wss_at_95_difference": 0.7091828138163437,
+      "wss_comparator": "STATIC_SEED_CENTROID"
+    },
+    {
+      "active_minus_random_recall_at_010": 0.2837797619047619,
+      "recall_at_010_difference": 0.12202380952380948,
+      "recall_comparator": "STATIC_SEED_CENTROID",
+      "world_id": "Muthu_2021",
+      "wss_at_95_difference": 0.23832291283560125,
+      "wss_comparator": "STATIC_SEED_CENTROID"
+    },
+    {
+      "active_minus_random_recall_at_010": 0.5327615780445969,
+      "recall_at_010_difference": 0.25900514579759865,
+      "recall_comparator": "STATIC_SEED_CENTROID",
+      "world_id": "Leenaars_2020",
+      "wss_at_95_difference": 0.3317627494456762,
+      "wss_comparator": "STATIC_SEED_CENTROID"
+    },
+    {
+      "active_minus_random_recall_at_010": 0.6933333333333334,
+      "recall_at_010_difference": 0.13333333333333341,
+      "recall_comparator": "STATIC_SEED_CENTROID",
+      "world_id": "Chou_2003",
+      "wss_at_95_difference": -0.05922431865828093,
+      "wss_comparator": "STATIC_SEED_CENTROID"
+    },
+    {
+      "active_minus_random_recall_at_010": -0.05555555555555558,
+      "recall_at_010_difference": -0.05555555555555558,
+      "recall_comparator": "RANDOM",
+      "world_id": "Chou_2004",
+      "wss_at_95_difference": -0.11411042944785277,
+      "wss_comparator": "STATIC_SEED_CENTROID"
+    },
+    {
+      "active_minus_random_recall_at_010": 0.7296296296296296,
+      "recall_at_010_difference": 0.14814814814814814,
+      "recall_comparator": "STATIC_SEED_CENTROID",
+      "world_id": "Smid_2020",
+      "wss_at_95_difference": 0.28130947849257715,
+      "wss_comparator": "STATIC_SEED_CENTROID"
+    },
+    {
+      "active_minus_random_recall_at_010": 0.36,
+      "recall_at_010_difference": 0.0,
+      "recall_comparator": "STATIC_SEED_CENTROID",
+      "world_id": "Oud_2018",
+      "wss_at_95_difference": 0.3203781512605042,
+      "wss_comparator": "STATIC_SEED_CENTROID"
+    },
+    {
+      "active_minus_random_recall_at_010": 0.5812499999999999,
+      "recall_at_010_difference": 0.20833333333333331,
+      "recall_comparator": "STATIC_SEED_CENTROID",
+      "world_id": "van_Dis_2020",
+      "wss_at_95_difference": 0.35177475898334787,
+      "wss_comparator": "STATIC_SEED_CENTROID"
+    }
+  ],
+  "schema_version": "orion.p2.synergy-confirmatory-successor.v1",
+  "source_receipts": [
+    {
+      "actual_sha1": "c3be8bf101251aadce5caad3fda01de922b3ced0",
+      "expected_sha1": "c3be8bf101251aadce5caad3fda01de922b3ced0",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Radjenovic_2013"
+    },
+    {
+      "actual_sha1": "b95c37f175390ae54b7b51439b7edba2ec57edda",
+      "expected_sha1": "b95c37f175390ae54b7b51439b7edba2ec57edda",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Radjenovic_2013"
+    },
+    {
+      "actual_sha1": "aec170a4d881a62c2679a893a4d51a80c4075626",
+      "expected_sha1": "aec170a4d881a62c2679a893a4d51a80c4075626",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Muthu_2021"
+    },
+    {
+      "actual_sha1": "79497328dcb5e535a2ba8a18e31e2afb52f006c8",
+      "expected_sha1": "79497328dcb5e535a2ba8a18e31e2afb52f006c8",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Muthu_2021"
+    },
+    {
+      "actual_sha1": "e18e53c7ba55f1bcf75f8dca76d94d5d560521d3",
+      "expected_sha1": "e18e53c7ba55f1bcf75f8dca76d94d5d560521d3",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Leenaars_2020"
+    },
+    {
+      "actual_sha1": "9beee9f32fe8b5a160653f2316173b1aed5c278f",
+      "expected_sha1": "9beee9f32fe8b5a160653f2316173b1aed5c278f",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Leenaars_2020"
+    },
+    {
+      "actual_sha1": "07572cfa34f80601be283d7797bf5fda5cf165cd",
+      "expected_sha1": "07572cfa34f80601be283d7797bf5fda5cf165cd",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Chou_2003"
+    },
+    {
+      "actual_sha1": "1731968731a69db84bbd12c32963c5960849e4ae",
+      "expected_sha1": "1731968731a69db84bbd12c32963c5960849e4ae",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Chou_2003"
+    },
+    {
+      "actual_sha1": "c2b4d6ab46d100abe713882a440454bb17e67e09",
+      "expected_sha1": "c2b4d6ab46d100abe713882a440454bb17e67e09",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Chou_2004"
+    },
+    {
+      "actual_sha1": "e3e545d711b5d1fe7ba6f67aa46b61b87bcb3ff1",
+      "expected_sha1": "e3e545d711b5d1fe7ba6f67aa46b61b87bcb3ff1",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Chou_2004"
+    },
+    {
+      "actual_sha1": "d42441e9bd0950e3c41761da55984a48bf697202",
+      "expected_sha1": "d42441e9bd0950e3c41761da55984a48bf697202",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Smid_2020"
+    },
+    {
+      "actual_sha1": "5b25141447205f50035f6f7988baee655612af54",
+      "expected_sha1": "5b25141447205f50035f6f7988baee655612af54",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Smid_2020"
+    },
+    {
+      "actual_sha1": "8362968272b45fd001c0159bb4b55458deffc55a",
+      "expected_sha1": "8362968272b45fd001c0159bb4b55458deffc55a",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "Oud_2018"
+    },
+    {
+      "actual_sha1": "663d4bbb283df1b2c819e81643d15b9d4f7755c7",
+      "expected_sha1": "663d4bbb283df1b2c819e81643d15b9d4f7755c7",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "Oud_2018"
+    },
+    {
+      "actual_sha1": "93d604e2ac3491ef783fd221017a1f397c35c0ef",
+      "expected_sha1": "93d604e2ac3491ef783fd221017a1f397c35c0ef",
+      "file": "labels.csv",
+      "passed": true,
+      "world_id": "van_Dis_2020"
+    },
+    {
+      "actual_sha1": "e44ff0294f596f6dc0d6a3a5d5a3e5ee2757e9b5",
+      "expected_sha1": "e44ff0294f596f6dc0d6a3a5d5a3e5ee2757e9b5",
+      "file": "works_1.zip",
+      "passed": true,
+      "world_id": "van_Dis_2020"
+    }
+  ],
+  "terminal": "P2_SYNERGY_ACTIVE_ACQUISITION_RELATIVE_EFFECT_REQUIRES_MODEL_OR_SCOPE_SUCCESSOR",
+  "uncertainty": {
+    "bootstrap_percentile_95_interval": [
+      0.06015342100247759,
+      0.22551517533828852
+    ],
+    "bootstrap_replicates": 100000,
+    "bootstrap_seed": 20260823,
+    "exact_one_sided_sign_flip_p": 0.015625,
+    "paired_recall_gain_macro_mean": 0.1435776934892501
+  },
+  "worlds": [
+    {
+      "active_batch_size": 12,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.11491154170176916,
+          "recall_at_005": 0.8125,
+          "recall_at_010": 0.9166666666666666,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8350884582982308
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9555770850884582,
+          "recall_at_005": 0.06770833333333333,
+          "recall_at_010": 0.12916666666666668,
+          "recall_at_020": 0.23229166666666665,
+          "wss_at_95": -0.005577085088458328
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.8240943555181129,
+          "recall_at_005": 0.5,
+          "recall_at_010": 0.5833333333333334,
+          "recall_at_020": 0.6666666666666666,
+          "wss_at_95": 0.125905644481887
+        }
+      },
+      "eligible_records": 5935,
+      "included_records": 48,
+      "initial_seed_ids_sha256": "c7110c19531fb9d4b557eed733f8aec234a1d114ab521dbc16d437c838940261",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 50000,
+      "unlabelled_extra_works": 0,
+      "world_id": "Radjenovic_2013"
+    },
+    {
+      "active_batch_size": 10,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.5899227657226922,
+          "recall_at_005": 0.24107142857142858,
+          "recall_at_010": 0.38095238095238093,
+          "recall_at_020": 0.5892857142857143,
+          "wss_at_95": 0.36007723427730776
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9495218830452373,
+          "recall_at_005": 0.05044642857142857,
+          "recall_at_010": 0.09717261904761905,
+          "recall_at_020": 0.19940476190476192,
+          "wss_at_95": 0.00047811695476274174
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.8282456785582935,
+          "recall_at_005": 0.17857142857142858,
+          "recall_at_010": 0.25892857142857145,
+          "recall_at_020": 0.44345238095238093,
+          "wss_at_95": 0.1217543214417065
+        }
+      },
+      "eligible_records": 2719,
+      "included_records": 336,
+      "initial_seed_ids_sha256": "992321788ee4d07c4d5423062ab4471044f3780d57bf74e8e1d556b25ffff9d4",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 50000,
+      "unlabelled_extra_works": 0,
+      "world_id": "Muthu_2021"
+    },
+    {
+      "active_batch_size": 15,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.30903547671840353,
+          "recall_at_005": 0.3704974271012007,
+          "recall_at_010": 0.6380789022298456,
+          "recall_at_020": 0.8593481989708405,
+          "wss_at_95": 0.6409645232815964
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9445745565410201,
+          "recall_at_005": 0.052572898799313886,
+          "recall_at_010": 0.10531732418524872,
+          "recall_at_020": 0.20643224699828475,
+          "wss_at_95": 0.005425443458979995
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.6407982261640798,
+          "recall_at_005": 0.2367066895368782,
+          "recall_at_010": 0.379073756432247,
+          "recall_at_020": 0.5951972555746141,
+          "wss_at_95": 0.3092017738359202
+        }
+      },
+      "eligible_records": 7216,
+      "included_records": 583,
+      "initial_seed_ids_sha256": "bc704e089d0cdd95b4b935e25835a6d2f3380ee280227f8073ef2ffeddb5cd17",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 50000,
+      "unlabelled_extra_works": 0,
+      "world_id": "Leenaars_2020"
+    },
+    {
+      "active_batch_size": 10,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.8280922431865828,
+          "recall_at_005": 0.6,
+          "recall_at_010": 0.8666666666666667,
+          "recall_at_020": 0.8666666666666667,
+          "wss_at_95": 0.12190775681341715
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9508123689727463,
+          "recall_at_005": 0.13000000000000003,
+          "recall_at_010": 0.17333333333333337,
+          "recall_at_020": 0.24,
+          "wss_at_95": -0.0008123689727463524
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.7688679245283019,
+          "recall_at_005": 0.6,
+          "recall_at_010": 0.7333333333333333,
+          "recall_at_020": 0.8,
+          "wss_at_95": 0.18113207547169807
+        }
+      },
+      "eligible_records": 1908,
+      "included_records": 15,
+      "initial_seed_ids_sha256": "c1288dd499d3fb012caa673a565112605ebb285f804555ef2a9be835ef286ef0",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 43285,
+      "unlabelled_extra_works": 0,
+      "world_id": "Chou_2003"
+    },
+    {
+      "active_batch_size": 10,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.7478527607361963,
+          "recall_at_005": 0.1111111111111111,
+          "recall_at_010": 0.1111111111111111,
+          "recall_at_020": 0.1111111111111111,
+          "wss_at_95": 0.20214723926380362
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.895398773006135,
+          "recall_at_005": 0.15,
+          "recall_at_010": 0.16666666666666669,
+          "recall_at_020": 0.2111111111111111,
+          "wss_at_95": 0.05460122699386498
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.6337423312883436,
+          "recall_at_005": 0.1111111111111111,
+          "recall_at_010": 0.1111111111111111,
+          "recall_at_020": 0.3333333333333333,
+          "wss_at_95": 0.3162576687116564
+        }
+      },
+      "eligible_records": 1630,
+      "included_records": 9,
+      "initial_seed_ids_sha256": "b5230c109980f5036e181134ac8c8017c0d7ad20fec591f2e060a01ec22cfbe4",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 33985,
+      "unlabelled_extra_works": 0,
+      "world_id": "Chou_2004"
+    },
+    {
+      "active_batch_size": 10,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.13894175866006853,
+          "recall_at_005": 0.5185185185185185,
+          "recall_at_010": 0.8518518518518519,
+          "recall_at_020": 1.0,
+          "wss_at_95": 0.8110582413399314
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9334411876665399,
+          "recall_at_005": 0.06666666666666665,
+          "recall_at_010": 0.1222222222222222,
+          "recall_at_020": 0.22592592592592592,
+          "wss_at_95": 0.016558812333460172
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.4202512371526456,
+          "recall_at_005": 0.5925925925925926,
+          "recall_at_010": 0.7037037037037037,
+          "recall_at_020": 0.8888888888888888,
+          "wss_at_95": 0.5297487628473543
+        }
+      },
+      "eligible_records": 2627,
+      "included_records": 27,
+      "initial_seed_ids_sha256": "879647417733df8caa8fc6659c34d61fea9e346703fb88228f9f015ad1a3f82e",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 50000,
+      "unlabelled_extra_works": 0,
+      "world_id": "Smid_2020"
+    },
+    {
+      "active_batch_size": 10,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.2342436974789916,
+          "recall_at_005": 0.15,
+          "recall_at_010": 0.5,
+          "recall_at_020": 0.85,
+          "wss_at_95": 0.7157563025210083
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9141806722689075,
+          "recall_at_005": 0.08250000000000002,
+          "recall_at_010": 0.14,
+          "recall_at_020": 0.23500000000000004,
+          "wss_at_95": 0.035819327731092386
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.5546218487394958,
+          "recall_at_005": 0.3,
+          "recall_at_010": 0.5,
+          "recall_at_020": 0.65,
+          "wss_at_95": 0.39537815126050413
+        }
+      },
+      "eligible_records": 952,
+      "included_records": 20,
+      "initial_seed_ids_sha256": "b780f623e72e776999dd252ef009e16c637de4f8b22ecbe8e5d5cfbec694e98a",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 25544,
+      "unlabelled_extra_works": 0,
+      "world_id": "Oud_2018"
+    },
+    {
+      "active_batch_size": 19,
+      "arms": {
+        "ACTIVE_LOGREG": {
+          "fraction_screened_at_95_recall": 0.20552147239263804,
+          "recall_at_005": 0.5,
+          "recall_at_010": 0.6944444444444444,
+          "recall_at_020": 0.9444444444444444,
+          "wss_at_95": 0.7444785276073619
+        },
+        "RANDOM": {
+          "fraction_screened_at_95_recall": 0.9395102979842245,
+          "recall_at_005": 0.0625,
+          "recall_at_010": 0.11319444444444446,
+          "recall_at_020": 0.21388888888888888,
+          "wss_at_95": 0.010489702015775598
+        },
+        "STATIC_SEED_CENTROID": {
+          "fraction_screened_at_95_recall": 0.5572962313759859,
+          "recall_at_005": 0.3055555555555556,
+          "recall_at_010": 0.4861111111111111,
+          "recall_at_020": 0.6805555555555556,
+          "wss_at_95": 0.392703768624014
+        }
+      },
+      "eligible_records": 9128,
+      "included_records": 72,
+      "initial_seed_ids_sha256": "ca1c21062d42e3567ca31a1e0b975bb02ebc851ef6455da25ec398a06b095330",
+      "label_field": "label_included",
+      "label_id_field": "openalex_id",
+      "missing_label_work_joins": 0,
+      "tfidf_features": 50000,
+      "unlabelled_extra_works": 0,
+      "world_id": "van_Dis_2020"
+    }
+  ]
+}

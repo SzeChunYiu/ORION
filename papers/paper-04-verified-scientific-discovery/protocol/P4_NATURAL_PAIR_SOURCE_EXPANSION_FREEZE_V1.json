@@ -1,0 +1,104 @@
+{
+  "allocation_order": [
+    "harvest source candidates without target claims or terminals",
+    "deduplicate by exact object and typed relation",
+    "bind root-specific rights and bytes",
+    "freeze source-family/author/DOI-disjoint primary, replication and reserve partitions",
+    "external adjudicator screens natural-pair and material-claim eligibility",
+    "candidate receives only frozen visible pair member after gold commitment"
+  ],
+  "claim_preservation": {
+    "domains_unchanged": true,
+    "forbidden": [
+      "collapse mechanisms",
+      "drop short domains",
+      "reassign cases across cells after outcomes",
+      "infer content rights from public metadata",
+      "treat keyword hit as eligible pair"
+    ],
+    "margin_unchanged": true,
+    "mechanisms_unchanged": true,
+    "primary_quota_per_cell": 24,
+    "replication_quota_per_cell": 8,
+    "reserve_per_cell": 16
+  },
+  "current_terminal": "P4_NATURAL_PAIR_SOURCE_EXPANSION_FROZEN__ROUTES_R2_TO_R5_UNBOUND",
+  "date": "2026-08-23",
+  "execution_ready_terminal": "P4_NATURAL_PAIR_32_CELL_SOURCE_FRAME_READY_FOR_EXTERNAL_ADJUDICATION",
+  "grants_scientific_authority": false,
+  "outcomes_accessed": false,
+  "paper_id": "P4",
+  "rights_cannot_check_terminal": "P4_NATURAL_PAIR_SOURCE_RIGHTS_CANNOT_CHECK",
+  "schema_version": "orion.p4.natural-pair-source-expansion.v1",
+  "shortfall_terminal": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+  "source_routes": [
+    {
+      "content_gate": "exact version-specific CC BY 4.0 observation and immutable abstract/full-text/source hashes",
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION"
+      ],
+      "provider": "arXiv",
+      "route_id": "R1_ARXIV_VERSIONED_CC_BY",
+      "status": "CANDIDATE_POOL_BOUND__FULLTEXT_AND_PAIR_ADJUDICATION_MISSING"
+    },
+    {
+      "content_gate": "OA-package article-level licence plus separately enumerated linked correction/protocol/supplement licence and byte hashes",
+      "mechanisms": [
+        "M3_PROTOCOL_TO_RESULTS",
+        "M4_ARTICLE_TO_CORRECTION",
+        "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+      ],
+      "provider": "PubMed Central Open Access subset",
+      "route_id": "R2_PMC_OA_LINKED_RECORDS",
+      "status": "PROSPECTIVE_UNHARVESTED"
+    },
+    {
+      "content_gate": "exact CC BY 4.0 or CC0 record, typed IsSupplementTo/IsDocumentedBy/IsReferencedBy relation, separately hashed files and attribution",
+      "mechanisms": [
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION"
+      ],
+      "provider": "Zenodo via official API and DataCite relation metadata",
+      "route_id": "R3_ZENODO_RELATED_DATA",
+      "status": "PROSPECTIVE_UNHARVESTED"
+    },
+    {
+      "content_gate": "exact release DOI, code licence, immutable archive hash, linked-article relation and documentation rights; issue/comment prose excluded unless separately licensed",
+      "mechanisms": [
+        "M6_ARTICLE_TO_CODE_RELEASE"
+      ],
+      "provider": "Zenodo software releases via official API and Software Heritage identity when available",
+      "route_id": "R4_ZENODO_RELATED_SOFTWARE",
+      "status": "PROSPECTIVE_UNHARVESTED"
+    },
+    {
+      "content_gate": "abstract and full-paper objects separately licensed, identity-linked and byte-hashed; metadata-only proceedings records inadmissible",
+      "mechanisms": [
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "provider": "rights-screened open proceedings or repository pairs",
+      "route_id": "R5_OPEN_PROCEEDINGS_FULLTEXT",
+      "status": "PROVIDER_BINDING_REQUIRED"
+    },
+    {
+      "content_gate": "CC0/public metadata may propose linked identities but never authorizes content bytes",
+      "mechanisms": [
+        "M3_PROTOCOL_TO_RESULTS",
+        "M4_ARTICLE_TO_CORRECTION",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+        "M6_ARTICLE_TO_CODE_RELEASE",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER",
+        "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+      ],
+      "provider": "Crossref, DataCite and OpenAlex",
+      "route_id": "R6_DISCOVERY_METADATA_ONLY",
+      "status": "DISCOVERY_ONLY_NOT_A_CONTENT_SOURCE"
+    }
+  ],
+  "successor_of": "P4.H3.NATURALISTIC.V2",
+  "trigger": {
+    "artifact": "development/p4-scientific-ascent-2026-08-23/P4_NATURAL_PAIR_METADATA_FEASIBILITY_V1.json",
+    "finding": "M3 through M8 have at least one domain below 48 metadata-signal records; metadata signals are only upper bounds on eligible pairs",
+    "sha256": "8ee8bc85d524efc0a0d5239a3862b7bfc5cfa81f62ae3afc50fa06ad9e534807"
+  }
+}

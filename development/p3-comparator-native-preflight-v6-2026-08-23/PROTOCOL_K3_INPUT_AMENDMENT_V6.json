@@ -1,0 +1,47 @@
+{
+  "amended_inputs": {
+    "construction": "Synthetic parallel labels/hierarchies only; no mappings, disjointness, truth, gold, reference, protected row, or task outcome.",
+    "source": {
+      "named_classes": 16,
+      "path": "BERTMAP_SMOKE_SOURCE_V6.owl",
+      "sha256": "c347f32626f6c5b3b782b2f6344bca5ac2282a701161d11f1e02a7422fef4d9e"
+    },
+    "target": {
+      "named_classes": 16,
+      "path": "BERTMAP_SMOKE_TARGET_V6.owl",
+      "sha256": "16bd34ec22c3d130b94257404fd60a112a3383d16255a67472e0c5e1518c5521"
+    }
+  },
+  "base_protocol_sha256": "d8c11f0a700411d2937bdebbb1081ea7e57d1ced721dba27c73d985b6a3d753c",
+  "config": {
+    "annotation_properties": [
+      "http://www.w3.org/2000/01/rdf-schema#label"
+    ],
+    "auxiliary_ontos": [],
+    "epochs": 3.0,
+    "known_mappings": null,
+    "path": "BERTMAP_SMOKE_CONFIG_V6.yaml",
+    "prediction_batch": 16,
+    "sha256": "e967584ee4fe20409c60b85e8a9bd9d848a56a29114fb8e9294d6a0b396cb141",
+    "thresholds_unchanged": {
+      "extension": 0.9,
+      "filter": 0.9995
+    },
+    "training_batch": 1
+  },
+  "created_at": "2026-08-23T17:28:54.394951+00:00",
+  "schema_version": "orion.p3.comparator-native-preflight.k3-input-amendment.v6",
+  "scope": "K3_BERTMAP_SMOKE_INPUT_SIZE_AND_BATCH_ONLY",
+  "source_evidence": {
+    "bert_classifier_path": "src/deeponto/align/bertmap/bert_classifier.py",
+    "bert_classifier_sha256": "ded9b776db16d69ee6be088c9aa4bbec0e9e639887e1eec102ecec3e0039a6a3",
+    "commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+    "line_anchor": "100-124",
+    "line_anchor_corpus": "287-344 and 487-578",
+    "text_semantics_path": "src/deeponto/align/bertmap/text_semantics.py",
+    "text_semantics_sha256": "33e5348d915c29538685f068b922bc4abaaaf8da159bd606772607aef1cc5b78"
+  },
+  "source_only_reason": "Pinned DeepOnto computes logging_steps=int(floor(training_rows/batch_size)*0.02) and eval_steps=10*logging_steps. The original three-class smoke corpus cannot make these positive under batch 32, so the native Trainer contract is structurally invalid before model outcomes.",
+  "success_boundary": "Only complete native smoke pipeline readiness. The amended input/config cannot establish performance, transport, superiority, harm, reproducibility, or V5-frame execution readiness.",
+  "timing": "Frozen after source inspection and before any K3 environment execution, model load, training, prediction, or native output access."
+}

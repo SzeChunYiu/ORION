@@ -1,0 +1,26 @@
+{
+  "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+  "field_state": "CANNOT_CHECK",
+  "released_source_gap": "native MOSS currently requires host Docker and source mutation; no disposable executor binding is released",
+  "required_isolation": {
+    "allowed_mutation_roots": [
+      "ephemeral openclaw candidate tree",
+      "ephemeral MOSS_DATA_DIR",
+      "dedicated ephemeral Docker data root",
+      "sole receipt output directory"
+    ],
+    "audit": "complete before/after digest of every allowed root and proof no forbidden mount or write exists",
+    "forbidden_roots": [
+      "shared checkout",
+      "host Docker daemon",
+      "host home/config/keychains",
+      "protected panel",
+      "external scorer",
+      "other arms",
+      "network endpoints outside final allowlist"
+    ],
+    "reset": "destroy executor, Docker data root, networks, images, containers and mutable source copy after every attempt",
+    "source_seed": "read-only outside a disposable executor; copied to an ephemeral inner Git repository"
+  },
+  "schema_version": "orion.p5.c2.write-surface.v4"
+}

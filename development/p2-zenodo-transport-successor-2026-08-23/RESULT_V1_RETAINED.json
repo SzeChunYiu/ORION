@@ -1,0 +1,56 @@
+{
+  "arms": {},
+  "claim_scope": "ONE_PUBLIC_LABELLED_PHYSIOTHERAPY_SCREENING_POOL_TRANSPORT_DEVELOPMENT_ONLY",
+  "forbidden_claims": [
+    "outcome-blind confirmation",
+    "protected labels or independent custody",
+    "multi-world replication",
+    "ORION-specific superiority",
+    "open-world route invention or closure",
+    "generality beyond this one public screening pool"
+  ],
+  "gates": {
+    "G1_BINDING": false,
+    "G2_ABSOLUTE": false,
+    "G3_INCREMENTAL": false,
+    "G4_WORK_SAVING": false,
+    "G5_NO_RANDOM_HARM": false
+  },
+  "implementation_freeze_sha256": "83f5dfc1df8e778f04a5cf0762f324548cd762fa99dba9f654d124c79a681f70",
+  "outcome_blind_before_protocol": false,
+  "parse_receipt": {
+    "duplicate_record_identities": 3,
+    "eligible_rows": 25537,
+    "excluded_first_raw_line_hash_passed": true,
+    "excluded_first_raw_line_sha256_actual": "c619fb151436f2569165e3e7b8e8421310e8685740dd1be19945c449c8b266d5",
+    "excluded_first_raw_line_sha256_expected": "c619fb151436f2569165e3e7b8e8421310e8685740dd1be19945c449c8b266d5",
+    "excluded_rows": 1,
+    "invalid_class_rows": 2,
+    "malformed_field_rows": 0,
+    "total_raw_lines": 25540
+  },
+  "preflight_incident": {
+    "aggregate_or_model_outcomes_observed": false,
+    "excluded_first_raw_line_sha256": "c619fb151436f2569165e3e7b8e8421310e8685740dd1be19945c449c8b266d5",
+    "exposed_rows": 1,
+    "outcome_blind_before_protocol": false
+  },
+  "protocol_sha256": "15e6c90775f820b22dab259b235a31def367edf65c4e8f3b5656876792341128",
+  "schema_version": "orion.p2.zenodo-10423427.transport-development.v1",
+  "software": {
+    "numpy": "2.4.4",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.1"
+  },
+  "source_receipt": {
+    "bytes_actual": 53881052,
+    "bytes_expected": 53881052,
+    "bytes_passed": true,
+    "md5_actual": "3d8c9589d8051b26d6f9dff7eaf1865d",
+    "md5_expected": "3d8c9589d8051b26d6f9dff7eaf1865d",
+    "md5_passed": true,
+    "path_basename": "citation_screening_deduplicated_corpus.csv"
+  },
+  "terminal": "P2_ZENODO_ACTIVE_ACQUISITION_TRANSPORT_CANNOT_CHECK_BINDING"
+}

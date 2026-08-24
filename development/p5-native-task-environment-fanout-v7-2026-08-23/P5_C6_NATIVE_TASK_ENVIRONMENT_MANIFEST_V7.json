@@ -1,0 +1,67 @@
+{
+  "arm_code": "C6",
+  "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+  "arm_or_model_executed": false,
+  "authority": "BYTE_LEVEL_PREFLIGHT_ONLY",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "future_or_planned_bytes_promoted_to_evidence": false,
+  "missing_byte_artifacts": [
+    "case-specific topic byte artifact",
+    "allowed source-corpus manifest bytes",
+    "allowed skill and exact tool-parameter bytes",
+    "candidate-safe filtered ScienceClaw source seed bytes",
+    "outcome-prefix exclusion receipt over the actual seed",
+    "exact profile and memory/artifact reset policy bytes"
+  ],
+  "next_discriminator": "Construct a prior-outcome-free source seed from commit 38b2f681e87272cd505c9b2671760fc3729756c2, then freeze one V6-derived topic, local allowed corpus, rights-cleared skills/tools, and an exact clean-profile/reset manifest.",
+  "observations": [
+    "Source-bundled benchmarks/, categoryscienceclaw/HEA/, and tracked bytecode remain excluded."
+  ],
+  "predecessor": {
+    "candidate_requirements": {
+      "path": "development/p5-scienceclaw-execution-binding-v4-2026-08-23/P5_C6_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json",
+      "sha256": "4daefdc7358160ca3d43ae461df0456678a54c320c7c1a384f7983fe5813445e",
+      "size_bytes": 668
+    },
+    "field_registry": {
+      "path": "development/p5-scienceclaw-execution-binding-v4-2026-08-23/P5_C6_V4_FIELD_REGISTRY.json",
+      "sha256": "3890fe2b53e23a650b452be0080807f4e064410fce176ce13195174ebedccc47",
+      "size_bytes": 16086
+    }
+  },
+  "residual": "V4 records the ScienceClaw tree and excluded prefixes but no actual filtered seed, topic, corpus, skill/tool, profile, or reset artifacts exist; a free-form topic declaration is not a native task environment.",
+  "satisfied_criteria": [
+    "shared core identity and rights",
+    "ScienceClaw source commit/tree and prior-outcome prefix names",
+    "native draft parser and outer wallclock identity"
+  ],
+  "schema_version": "orion.p5.native-task-environment-manifest.v7",
+  "shared_core": {
+    "case_body": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/CASE_BODY_V6.json",
+      "sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+      "size_bytes": 2799
+    },
+    "core_index": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_CORE_INDEX_V6.json",
+      "sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "size_bytes": 2399
+    },
+    "rights_manifest": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_RIGHTS_MANIFEST_V6.json",
+      "sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+      "size_bytes": 4082
+    },
+    "source_archive": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+      "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+      "size_bytes": 681034
+    },
+    "task_specification": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/TASK_SPECIFICATION_V6.md",
+      "sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+      "size_bytes": 1070
+    }
+  },
+  "status": "BLOCKING"
+}

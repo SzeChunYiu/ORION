@@ -124,19 +124,35 @@ terminal decision carries typed reopen triggers (budget increase, backend
 recovery or refresh, material frame change, material finding on an alternative
 route); a route reopens exactly when an observed trigger intersects that set.
 
-\begin{proposition}[Fail-closed stopping]
+\begin{proposition}[Route-stop non-certification]
 \label{prop:failclosed}
-No route decision certifies task saturation. In the implementation every route
-decision, \textsc{stop} included, carries an explicit declaration that it does
-not certify task saturation, so route-local exhaustion cannot be lifted to
-task-level completeness by any composition of route outcomes.
+No individual route decision certifies task saturation. In the implementation
+every route decision, \textsc{stop} included, has only route-local authority and
+carries an explicit declaration that it does not certify task saturation.
+Consequently, a route stop cannot be used by itself as a task-completeness
+certificate. A composition of route outcomes may support task closure only
+through a separately specified ensemble predicate whose route universe,
+material-obligation registry, provider/observability/custody guards, resource
+state and reopen triggers were fixed before the outcome.
 \end{proposition}
 
+\begin{proof}
+The route decision alphabet contains no task-closure authority, so projection
+of any one route output cannot emit a valid task certificate. The controller's
+task decision is instead produced by the separately typed closure map over the
+full ensemble state. If that map's registered completeness and validity guards
+hold, a composition can certify closure; if they do not, composition of
+route-local stops alone supplies no missing authority.
+\end{proof}
+
 Task closure is therefore a separate judgement over the route ensemble. It
-requires that every route is in a terminal or explicitly reopenable state, that
+requires that every route in the prospectively registered route universe is in
+a terminal or explicitly reopenable state, that
 no suspended or unavailable route leaves an unmet obligation, and --- by
 Proposition~\ref{prop:failclosed} --- that no coverage diagnostic has been used
-as its authority. An unavailable route remains an open coverage obligation and
+as its authority. It also requires the registered provider, observability,
+custody and resource-validity guards to pass as one conjunction. An unavailable
+route remains an open coverage obligation and
 is reported as such; it is never converted into evidence that nothing further
 exists.
 

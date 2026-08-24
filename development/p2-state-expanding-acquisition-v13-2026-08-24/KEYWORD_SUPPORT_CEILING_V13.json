@@ -1,0 +1,28 @@
+{
+  "additional_independent_custody_bound": false,
+  "authority": "EXACT_SCHEMA_AND_FALLBACK_DERIVATION_ONLY__NO_PERFORMANCE_OUTCOMES",
+  "deficiency": 2,
+  "fallback_count": 3,
+  "identity": "P2_V13_V10_KEYWORD_SUPPORT_CEILING",
+  "matched_v10_performance_execution_authorized": false,
+  "maximum_possible_strictly_positive_reviews_for_keyword_only_change_with_exact_u4_fallback": 4,
+  "provider_native_keyword_capable_count": 4,
+  "provider_native_keyword_capable_reviews": [
+    "Appenzeller-Herzog_2020",
+    "Bos_2018",
+    "Kwok_2020",
+    "Wolters_2018"
+  ],
+  "review_count": 7,
+  "reviews_without_provider_native_keywords": [
+    "Bannach-Brown_2019",
+    "Kitchenham_2010",
+    "Nagtegaal_2019"
+  ],
+  "schema_version": "orion.p2.state-expanding-acquisition.keyword-support-ceiling.v13",
+  "source_selection_path": "development/p2-source-disjoint-title-emphasis-v9-2026-08-23/SOURCE_SELECTION_FREEZE_V9.json",
+  "source_selection_sha256": "a75c2d8203cd54dff7587cf40c982080dd1d37f217bd4821135050f893580a99",
+  "terminal": "P2_V13_V10_KEYWORD_SUPPORT_CEILING_4_OF_7__UNCHANGED_6_OF_7_SIGN_GATES_UNREACHABLE__NO_PERFORMANCE_RUN",
+  "theorem": "If a keyword-only controller emits exact u4 whenever provider-native keywords are absent, every absent-keyword review has delta exactly zero. Therefore at most four of the seven V10 reviews can be strictly positive, which cannot satisfy either unchanged 6/7 CRE20-sign or R10-sign gate regardless of unknown outcomes.",
+  "unchanged_positive_sign_requirement": 6
+}

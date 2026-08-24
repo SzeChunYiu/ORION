@@ -1,0 +1,177 @@
+{
+  "claim_boundary": [
+    "Same five frozen residual identities only; no replacement or proxy unit.",
+    "V10B is explicitly outcome-informed and repairs one exact source-content edge only.",
+    "The original V10 index-199 target-specific discriminator failed and is not reinterpreted.",
+    "The later v0.13.5 revision is only an immutable exact-content witness for the checksum-bound v0.13.4 archive.",
+    "No natural-pair eligibility, author-lineage independence, source-disjoint replication, external custody, comparator outcome, performance or superiority claim follows."
+  ],
+  "cumulative_exact_bridge": "76/80",
+  "cumulative_exact_by_domain": {
+    "EARTH_ENVIRONMENT": 5,
+    "LIFE_BIOMEDICAL": 7,
+    "PHYSICAL_ENGINEERING": 4,
+    "SCIENTIFIC_SOFTWARE": 60
+  },
+  "evidence": {
+    "EDGE_199_CONTENT_IDENTITY_V10B.json": {
+      "bytes": 4625,
+      "sha256": "cbc24084e5753429d7f20408df92db5d4d8706550c94d0efda6a62a1cc58e46a"
+    },
+    "EDGE_199_NORMALIZED_MANIFESTS_V10B.json": {
+      "bytes": 86907,
+      "sha256": "98fbb6f95d53e4ce50e1d250710afac6c77a1d22bc707c365ae421a7190b53c5"
+    },
+    "NEGATIVE_RESULT_LEDGER_V10.json": {
+      "bytes": 4584,
+      "sha256": "669adfbea8b6defab1d38d634d7ba24714b951913c332287dd6995a67b2755a8"
+    },
+    "PROBE_RECEIPT_V10B.json": {
+      "bytes": 6326,
+      "sha256": "74b77828491c167068d6e1fc8095308420d91c0f9c3dba03ab881c9cae5b5907"
+    },
+    "PROTOCOL_FREEZE_RECEIPT_V10.json": {
+      "bytes": 427,
+      "sha256": "7732a083312b3bc81a68bcf0efbd29810a7c2076892e52de080b502fd10be160"
+    },
+    "PROTOCOL_FREEZE_RECEIPT_V10B.json": {
+      "bytes": 487,
+      "sha256": "62732c6f848e8dc88a355b8a987edaec2032762851c99d563e8fa409fa50deda"
+    },
+    "PROTOCOL_V10.json": {
+      "bytes": 8209,
+      "sha256": "b19145f547b686943ae8c12e9cb63d22557f38f765176cfdb6ce12395df43399"
+    },
+    "PROTOCOL_V10B.json": {
+      "bytes": 6492,
+      "sha256": "8eda26f0fef9a9545e7393651601050e9a34e4843af7463f5e5cbd90f7d214f2"
+    },
+    "PROVIDER_AUTHORITY_PROBE_RECEIPT_V10.json": {
+      "bytes": 59263,
+      "sha256": "92b6cb4d8e01f93ba76068144be018683d5d098764707dbd4a137a1cfe3ac11b"
+    },
+    "SWH_CANONICAL_PROBE_RECEIPT_V10.json": {
+      "bytes": 4430,
+      "sha256": "952044c1516c8eadf12bd4a9b6a5287e1bdc2018d686d68dc136e0342b2d16d7"
+    },
+    "development/p4-exact-edge-lineage-authority-v9-2026-08-23/RESULT_V9.json": {
+      "bytes": 11174,
+      "sha256": "b9507beca0bc653e99e6281a4f47df10d600851be6c8b1750a0beab4b8aa2111"
+    },
+    "development/p4-exact-edge-lineage-authority-v9-2026-08-23/SHA256SUMS": {
+      "bytes": 22458,
+      "sha256": "caae0bb5fabd064f8c76d33270c97afe2659a45da9a050118bf68fd7bace4cb7"
+    }
+  },
+  "finished_at": "2026-08-24T05:55:45.448536+00:00",
+  "identity": "P4.M6.JOSS.EXACT.EDGE.LINEAGE.AUTHORITY.V10",
+  "natural_pair_and_scientific_boundary": {
+    "author_lineage_adjudications_added": 0,
+    "comparator_outcomes_accessed": false,
+    "eligible_natural_pairs_added": 0,
+    "external_custody_added": false,
+    "programme_terminal": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK",
+    "scientific_authority_granted": false
+  },
+  "next_discriminator": "For indices 36 and 91, require provider correction of the exact frozen archive relation. For indices 133 and 185, require provider-native artifact-to-commit build provenance. Separately complete the full 76-edge author-conflict/replication partition and natural-pair/custody gates; exact-edge count alone is not confirmatory evidence.",
+  "predecessor": {
+    "cumulative_exact_bridge": "75/80",
+    "identity": "P4.M6.JOSS.EXACT_EDGE_LINEAGE.AUTHORITY.V9",
+    "remaining_indices": [
+      36,
+      91,
+      133,
+      185,
+      199
+    ],
+    "result_sha256": "b9507beca0bc653e99e6281a4f47df10d600851be6c8b1750a0beab4b8aa2111",
+    "sha256sums_sha256": "caae0bb5fabd064f8c76d33270c97afe2659a45da9a050118bf68fd7bace4cb7"
+  },
+  "predecessor_exact_bridge": "75/80",
+  "protocol_chronology": {
+    "v10_primary": {
+      "index_199_target_specific_discriminator": "FAILED_AS_FROZEN",
+      "outcome_informed": false,
+      "status": "ALL_FIVE_FROZEN_TARGET_DISCRIMINATORS_ADJUDICATED"
+    },
+    "v10b_successor": {
+      "frozen_before_v10b_archive_download_or_comparison": true,
+      "outcome_informed": true,
+      "scope": "index 199 exact content identity only",
+      "status": "PASSED_ALL_EIGHT_NONCOMPENSATORY_GATES"
+    }
+  },
+  "rows": [
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 36,
+      "new_evidence": "The exact concept DOI request still returns child record 10.5281/zenodo.21221062, whose metadata has no version and whose sole jaxion.zip file is 85,369,480 bytes with MD5 825cae8912147ba8a5415c6a73d95818. GitHub still binds tag 0.0.3 to full commit 069ab4f56d100d765d46c594ac1b06add7e49f9e. No provider correction binds the frozen archive to version 0.0.3 or that commit.",
+      "next_discriminator": "A Zenodo/provider correction must bind the frozen DOI and exact archive bytes to version 0.0.3 and full commit 069ab4f56d100d765d46c594ac1b06add7e49f9e.",
+      "repository": "jaxionproject/jaxion",
+      "residual": "EXACT_ARCHIVE_VERSION_DOI_RELATION_AND_ARCHIVE_ROOT_TO_TAG_COMMIT_IDENTITY_CANNOT_CHECK",
+      "terminal_gate": "provider_corrected_version_and_archive_to_commit_identity",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 91,
+      "new_evidence": "Zenodo still identifies the checksum-bound record as v1.0.0 and GitHub still binds tag v1.0.0 to 9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59. No corrected archive or provider statement supersedes the immutable V9 archive evidence: embedded HEAD, main and origin/main are aa021231cdafb6d74ce9ab5f55f824a3032058a4, while the accepted tag commit is absent from the embedded object store.",
+      "next_discriminator": "A corrected exact v1.0.0 archive or authenticated provider statement must bind the frozen bytes to 9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59 and resolve the adverse embedded Git authority.",
+      "repository": "nutritionallungimmunity/pai",
+      "residual": "ARCHIVE_TO_ACCEPTED_TAG_COMMIT_IDENTITY_CONTRADICTED_BY_EMBEDDED_GIT_HEAD",
+      "terminal_gate": "corrected_archive_or_provider_statement_superseding_adverse_embedded_git_authority",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 133,
+      "new_evidence": "Zenodo and PyPI still bind woodtapper-0.0.13.tar.gz to SHA-256 b509f6469b9ff8888195751c811d689559f45e24aeb35bb173b9680c99c8dbf3, and GitHub binds tag v0.0.13 to 7ac6d23d504404c4004faad663f6b889427109e6. The exact PyPI Integrity request returns 404 with 'No provenance available for woodtapper-0.0.13.tar.gz'; the exact GitHub artifact-attestation subject also returns 404. V9 local reconstruction differed in two generated C files and cannot substitute for provider provenance.",
+      "next_discriminator": "PyPI trusted-publisher/Sigstore provenance or another provider-native exact build attestation must bind SHA-256 b509f646... to commit 7ac6d23d..., including the generated-C toolchain.",
+      "repository": "artefactory/woodtapper",
+      "residual": "SDIST_TO_FULL_COMMIT_AUTHENTICATED_BUILD_PROVENANCE_CANNOT_CHECK",
+      "terminal_gate": "provider_native_sdist_to_full_commit_provenance",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 185,
+      "new_evidence": "Zenodo and PyPI still bind disruption_py-0.14.0.tar.gz to SHA-256 775f92dbcbd6d1523db241494998e4b0867d51a84236feb7accc86b63b033a19, and GitHub binds source tag v0.14 to dec5c58a3e3970bc6817f33efb615fea11057fce. The exact PyPI Integrity request returns 404 with no provenance and the exact GitHub artifact-attestation subject returns 404. V9 showed common-file equality only: the sdist is a projection and a local rebuild omitted three tracked ignored CSV files.",
+      "next_discriminator": "A provider-native build attestation must bind SHA-256 775f92db... to commit dec5c58..., including the tracked-ignored CSV inclusion state.",
+      "repository": "mit-psfc/disruption-py",
+      "residual": "SDIST_PROJECTION_TO_TAG_COMMIT_AUTHENTICATED_BUILD_PROVENANCE_CANNOT_CHECK",
+      "terminal_gate": "provider_native_projected_sdist_to_full_commit_provenance",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "accepted_identity_method": "EXACT_NORMALIZED_ZENODO_ARCHIVE_TO_GITHUB_IMMUTABLE_COMMIT_MANIFEST_EQUALITY",
+      "domain": "LIFE_BIOMEDICAL",
+      "frozen_index": 199,
+      "new_evidence": "A separately frozen V10B successor verifies that current GitHub tag v0.13.5 points to full immutable revision a85df681d29a5cf3406d529144a7c0645e543e61 and that GitHub authenticates tree 178315b57afafc1f20ab9929b4de893430524c62. The official Software Heritage source-origin snapshot independently binds the same tag, revision and directory. The 4,237,826-byte checksum-bound Zenodo v0.13.4 ZIP (MD5 3409352bdc0926acfafc39bf121f4263; SHA-256 5eaf4bc23f11cf14d6b1f41510a7b99cf3107cb906a7b7e9aa2945a2a64baeba) and the 4,247,426-byte immutable GitHub revision codeload ZIP (SHA-256 b468f53c66e751ae242a039ba94c43788ec059363f8d2a2691207b4d4015a0b7) normalize to the same 165-path manifest: no missing, extra or differing entry, identical file bytes/types/executable bits, manifest SHA-256 32decf39f38d4652e184bef077625ce8e22fa44ec37afb98746ddce178f5364e. Exact LICENSE bytes are MIT.",
+      "next_discriminator": "Closed for exact source content identity.",
+      "repaired_gates": [
+        "exact_source_native_full_commit_identity",
+        "archive_to_commit_content_identity",
+        "accepted_archive_and_commit_software_rights"
+      ],
+      "repository": "targene/targene-pipeline",
+      "residual": null,
+      "terminal_gate": "closed_exact_source_content_identity",
+      "v10_primary_discriminator": "FAILED_AS_FROZEN: the source-origin snapshot has no v0.13.4 branch and exact revision 0f8b2dbca06a3bb7031de9058ee9882995e04412 remains absent from current GitHub and Software Heritage.",
+      "v10b_successor_status": "OUTCOME_INFORMED_PROTOCOL_FROZEN_BEFORE_NEW_ARCHIVE_DOWNLOAD_OR_COMPARISON",
+      "verdict": "RESOLVED_SAME_CONTENT_IDENTITY",
+      "version_label_boundary": "The later v0.13.5 revision is an immutable witness of identical content only. It is not asserted to be, descend from or restore the deleted v0.13.4 commit."
+    }
+  ],
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v10.result",
+  "v10_closed_count": 1,
+  "v10_closed_indices": [
+    199
+  ],
+  "v10_remaining_count": 4,
+  "v10_remaining_indices": [
+    36,
+    91,
+    133,
+    185
+  ]
+}

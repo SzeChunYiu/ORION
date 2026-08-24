@@ -1,0 +1,66 @@
+{
+  "arm_code": "C3",
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "arm_or_model_executed": false,
+  "authority": "BYTE_LEVEL_PREFLIGHT_ONLY",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "future_or_planned_bytes_promoted_to_evidence": false,
+  "missing_byte_artifacts": [
+    "content-addressed filtered DGM seed excluding initial/, initial_polyglot/, and swe_bench/ref_agent_results/",
+    "case-specific pre-action input-native certificate instance",
+    "byte-level mutable-agent versus immutable-host split manifest",
+    "case-specific endpoint/tool/write policy bytes",
+    "exact P5 DGM invocation/environment bytes"
+  ],
+  "next_discriminator": "Build a filtered DGM seed from commit a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2, then freeze the pre-action certificate, tree split, and exact deny-default P5 invocation.",
+  "observations": [
+    "The full DGM archive cannot substitute for the required outcome-free candidate seed."
+  ],
+  "predecessor": {
+    "candidate_requirements": {
+      "path": "development/p5-dgm-execution-binding-v4-2026-08-23/P5_C3_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json",
+      "sha256": "dd97ec536ff53f7a29c54a1de11583c4fc30613e55b400303ce4d63b74911259",
+      "size_bytes": 1080
+    },
+    "field_registry": {
+      "path": "development/p5-dgm-execution-binding-v4-2026-08-23/P5_C3_V4_FIELD_REGISTRY.json",
+      "sha256": "7e9b8a3c75429dc004399181f4003c5baa966909a5b01ea3d579824784b1391b",
+      "size_bytes": 18506
+    }
+  },
+  "residual": "V4 records 1,595 excluded outcome/initial files and a full archive identity, but no candidate-safe filtered seed or case-specific certificate/policy/environment artifact exists.",
+  "satisfied_criteria": [
+    "shared core identity and rights",
+    "DGM source identity and outcome-prefix names",
+    "native parser and fail-closed runner identity"
+  ],
+  "schema_version": "orion.p5.native-task-environment-manifest.v7",
+  "shared_core": {
+    "case_body": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/CASE_BODY_V6.json",
+      "sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+      "size_bytes": 2799
+    },
+    "core_index": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_CORE_INDEX_V6.json",
+      "sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "size_bytes": 2399
+    },
+    "rights_manifest": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_RIGHTS_MANIFEST_V6.json",
+      "sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+      "size_bytes": 4082
+    },
+    "source_archive": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+      "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+      "size_bytes": 681034
+    },
+    "task_specification": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/TASK_SPECIFICATION_V6.md",
+      "sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+      "size_bytes": 1070
+    }
+  },
+  "status": "BLOCKING"
+}

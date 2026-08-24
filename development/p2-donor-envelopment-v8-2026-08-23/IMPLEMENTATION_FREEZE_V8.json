@@ -1,0 +1,22 @@
+{
+  "identity": "P2_KIFMS_V8_U4_DONOR_ENVELOPMENT_IMPLEMENTATION_FREEZE",
+  "status": "FROZEN_AFTER_V7_OUTCOME_ACCESS_BEFORE_V8_RESIDUAL_EXECUTION",
+  "frozen_at_utc": "2026-08-23T19:40:00+00:00",
+  "development_boundary": "KIFMS V7 outcomes are open development data. No V8 residual configuration order, metric, support result, outer-fold selection, or cross-fitted aggregate was executed before this freeze.",
+  "command": "rtk python run_donor_envelopment_v8.py --packet . --v6 ../p2-continuous-recall-effort-v6-2026-08-23 --v7 ../p2-kifms-transparent-execution-v7-2026-08-23 --stage /Users/billy/Documents/Codex/2026-08-23/can-x20/work/private-sources/p2-kifms-v7 --out RESULT_V8.json",
+  "fixed_sha256": {
+    "protocol_v8": "f98553670ac21071cc96eb332e130d23738c92856631e6159c207f27b6be1ef9",
+    "runner_v8": "a15ebec8f8560a88373ea45994bf031e2cf36ee932989ed6c52a89b20f464d82",
+    "pinned_active_core_v3": "348b7aa1fe708d480da178bdfd4736ec08df86a2d177337b94af205eefbe649a",
+    "v7_result": "0b230e1670cdf7dd9fe3bd0aadc832d649223a88d9533aae0e3aceb9aea0074c",
+    "v7_protocol": "0e7e9979dd4f4cb9869d6dea2ad613928e8495de2e5bd384e01a6fc070327b31",
+    "v6_overlap": "bdf20de65cd28ffc1d984e755250604b0ce0e1550cad27da52a0ab9890164254",
+    "v6_rights": "0c7211591ba5799721d5b8b00e11564b221a3e07526467df350adef2a29ddbeb"
+  },
+  "source_boundary": "The 14 exact source CSVs remain outside the packet and are checked against the V6 rights receipt before execution.",
+  "custody": {
+    "same_workspace": true,
+    "independent": false,
+    "confirmation_permitted": false
+  }
+}

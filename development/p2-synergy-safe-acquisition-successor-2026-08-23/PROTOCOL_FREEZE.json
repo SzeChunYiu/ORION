@@ -1,0 +1,350 @@
+{
+  "active_model": {
+    "alpha": 1e-05,
+    "batch_size": "max(10, ceil(0.002 * eligible_world_size))",
+    "class_weight": "balanced",
+    "implementation": "SGDClassifier",
+    "loss": "log_loss",
+    "max_iter": 2000,
+    "random_state": 20260823,
+    "tol": 0.0001
+  },
+  "arms": {
+    "ACTIVE_LOGREG": "unchanged certainty-based V2 active SGD logistic arm in the query-augmented vector space",
+    "RANDOM": "20 deterministic random permutations after shared seeds",
+    "SAFE_RANK_FUSION": "at every batch rank remaining records separately by active probability, review-query cosine, seed cosine and frozen random priority; combine rank percentiles as 0.40, 0.30, 0.20 and 0.10 and select the highest combined ranks",
+    "STATIC_REVIEW_QUERY": "descending review-query cosine",
+    "STATIC_SEED_CENTROID": "descending seed cosine"
+  },
+  "candidate_text": "whitespace-normalized title plus reconstructed abstract_inverted_index",
+  "cannot_check_terminal": "P2_SYNERGY_SAFE_QUERY_CONDITIONED_ACQUISITION_CANNOT_CHECK_BINDING",
+  "claim_scope": "PUBLIC_BOUNDED_SCREENING_SAFE_QUERY_CONDITIONED_ACQUISITION_CONFIRMATION_ONLY",
+  "dataset": {
+    "doi": "10.34894/HE6NAQ",
+    "licence": "CC0-1.0",
+    "metadata_receipt_sha256": "6014c6557f6305e284e0c24d3a62a321e6cf1bc2faf80204961d4c627a827c37",
+    "name": "SYNERGY - Open machine learning dataset on study selection in systematic reviews",
+    "provider": "DataverseNL",
+    "version": "V1"
+  },
+  "date": "2026-08-23",
+  "development_only_selection": {
+    "authority": "POST_OUTCOME_DEVELOPMENT_ONLY__NOT_CONFIRMATORY",
+    "burned_worlds_used_to_choose_mechanism": [
+      "Chou_2004",
+      "Oud_2018"
+    ],
+    "candidate": "SAFE_QUERY_LABEL_EXPLORATION_RANK_FUSION",
+    "chou_2004_recall_at_010": 0.4444444444444444,
+    "oud_2018_recall_at_010": 0.7
+  },
+  "eligibility": "all work records with an exact labels.csv identity join and label_included in {0,1}; missing title and abstract become an empty string and remain eligible",
+  "features": {
+    "fit_corpus": "all candidate texts plus one review-query text",
+    "lowercase": true,
+    "max_features": 50000,
+    "min_df": 2,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "sublinear_tf": true,
+    "vectorizer": "TfidfVectorizer"
+  },
+  "forbidden_claims": [
+    "overwriting either predecessor terminal",
+    "ORION-specific superiority",
+    "open-world route invention or global closure",
+    "protected freshness or independent custody",
+    "generality beyond bounded systematic-review screening pools",
+    "superiority to systems not represented by the four frozen comparators"
+  ],
+  "fusion": {
+    "ACTIVE_LOGREG": 0.4,
+    "DETERMINISTIC_RANDOM_PRIORITY": 0.1,
+    "STATIC_REVIEW_QUERY": 0.3,
+    "STATIC_SEED_CENTROID": 0.2,
+    "tie_break": "ascending stable record index"
+  },
+  "gates": {
+    "G1_BINDING": "every frozen source file passes its exact byte count and SHA-1, every label joins exactly one work, and all eight worlds execute",
+    "G2_INCREMENTAL": "macro primary paired gain >= 0.05",
+    "G3_REPLICATION": "strict primary wins in at least 6 of 8 worlds and exact one-sided paired sign-flip p <= 0.05",
+    "G4_WORK_SAVING": "SAFE_RANK_FUSION WSS@95 > 0 in every world and macro WSS gain over the best comparator within each world >= 0.05",
+    "G5_NO_MATERIAL_HARM": "SAFE_RANK_FUSION recall at 10 percent is no more than 0.05 below RANDOM in every world"
+  },
+  "initial_seed": "lexicographically smallest sha256(world_id + colon + record_id) included and excluded records, shared by every arm",
+  "negative_successor_terminal": "P2_SYNERGY_SAFE_QUERY_CONDITIONED_ACQUISITION_REQUIRES_SUCCESSOR",
+  "outcomes": {
+    "analysis_unit": "review world",
+    "primary": "per-world SAFE_RANK_FUSION recall at 10 percent minus the maximum recall among RANDOM, STATIC_SEED_CENTROID, STATIC_REVIEW_QUERY and ACTIVE_LOGREG; macro mean",
+    "secondary": [
+      "recall at 5 percent",
+      "recall at 20 percent",
+      "fraction screened to 95 percent recall",
+      "WSS@95"
+    ],
+    "uncertainty": "exact one-sided paired sign-flip and 100000 world bootstrap replicates with seed 20260823"
+  },
+  "paper_id": "P2",
+  "positive_terminal": "P2_SYNERGY_SAFE_QUERY_CONDITIONED_ACQUISITION_CONFIRMED_ON_EIGHT_UNTOUCHED_PUBLIC_WORLDS",
+  "predecessor": {
+    "preserved_failures": [
+      "STRICT_WINS_6_OF_8_BELOW_7_OF_8",
+      "CHOU_2004_ACTIVE_MINUS_RANDOM_RECALL_AT_10_PERCENT_NEGATIVE_0_055556"
+    ],
+    "preserved_positive_diagnostics": [
+      "PAIRED_MACRO_RECALL_GAIN_0_143578",
+      "BOOTSTRAP_95_INTERVAL_0_060153_TO_0_225515",
+      "EXACT_SIGN_FLIP_P_0_015625",
+      "MACRO_WSS_GAIN_0_257425"
+    ],
+    "result": "../p2-synergy-confirmatory-successor-2026-08-23/RESULT.json",
+    "sha256": "cc0bcfd04e396b9ed8d81b37fec0309887520a027a7e87a4efc7ebd331e51133",
+    "terminal": "P2_SYNERGY_ACTIVE_ACQUISITION_RELATIVE_EFFECT_REQUIRES_MODEL_OR_SCOPE_SUCCESSOR"
+  },
+  "random_seeds": [
+    20260823,
+    20260824,
+    20260825,
+    20260826,
+    20260827,
+    20260828,
+    20260829,
+    20260830,
+    20260831,
+    20260832,
+    20260833,
+    20260834,
+    20260835,
+    20260836,
+    20260837,
+    20260838,
+    20260839,
+    20260840,
+    20260841,
+    20260842
+  ],
+  "review_query": "whitespace-normalized title plus reconstructed abstract_inverted_index from the exact metadata_publication.json",
+  "schema_version": "orion.p2.synergy-safe-acquisition-successor.v1",
+  "selection": {
+    "excluded_burned_worlds": [
+      "Chou_2003",
+      "Chou_2004",
+      "Hall_2012",
+      "Leenaars_2020",
+      "Moran_2021",
+      "Muthu_2021",
+      "Oud_2018",
+      "Radjenovic_2013",
+      "Smid_2020",
+      "Walker_2018",
+      "Wolters_2018",
+      "van_Dis_2020"
+    ],
+    "outcomes_opened_before_freeze": false,
+    "rank_key": "sha256(P2-SYNERGY-SAFE-CONFIRM-V1 + colon + world_id + colon + labels_sha1)",
+    "selected_rule": "eight lexicographically smallest rank keys among fourteen still-unopened worlds"
+  },
+  "status": "FROZEN_BEFORE_SELECTED_FILE_BODY_DOWNLOAD",
+  "worlds": [
+    {
+      "files": [
+        {
+          "bytes": 852937,
+          "file_id": 359894,
+          "name": "labels.csv",
+          "sha1": "4606630b297f4deaf35eaf71a37e0f6a4b7f968a"
+        },
+        {
+          "bytes": 23201,
+          "file_id": 359876,
+          "name": "metadata_publication.json",
+          "sha1": "75483b5f0f6267c34c2435131416113da9507d4f"
+        },
+        {
+          "bytes": 19428163,
+          "file_id": 359812,
+          "name": "works_1.zip",
+          "sha1": "2f49c7673fd6274d04833d5a8090a7f840e2e7aa"
+        }
+      ],
+      "selection_key_sha256": "045128a4e8b0c98f45068f709d1ba4d25436ff482491d2ec3e22679be30754cd",
+      "world_id": "Wassenaar_2017"
+    },
+    {
+      "files": [
+        {
+          "bytes": 114789,
+          "file_id": 359807,
+          "name": "labels.csv",
+          "sha1": "9e259ab38db70c22e0fd91c9eddad6fef62c263d"
+        },
+        {
+          "bytes": 19662,
+          "file_id": 359862,
+          "name": "metadata_publication.json",
+          "sha1": "fdfb9e7c2419b736d2423577ac8ab65e341e83bd"
+        },
+        {
+          "bytes": 2989015,
+          "file_id": 359922,
+          "name": "works_1.zip",
+          "sha1": "6d32f0062bb96ca1f1c19b2e83de666bd281e1ce"
+        }
+      ],
+      "selection_key_sha256": "06e3bc143d9e3bb53dcadd4a5d7738403f2865dc28257b2e19ee94fb395e7030",
+      "world_id": "Menon_2022"
+    },
+    {
+      "files": [
+        {
+          "bytes": 19786,
+          "file_id": 359827,
+          "name": "labels.csv",
+          "sha1": "37c17300c3d657047b16e218e0ad16489e126ada"
+        },
+        {
+          "bytes": 23494,
+          "file_id": 359854,
+          "name": "metadata_publication.json",
+          "sha1": "98b3e72734ef04b063d82fe6ccce27981a8a913f"
+        },
+        {
+          "bytes": 738232,
+          "file_id": 359840,
+          "name": "works_1.zip",
+          "sha1": "08c0e98eb3f8440a118eb0ffa56f1466aca2d9ed"
+        }
+      ],
+      "selection_key_sha256": "2834b3ed814af07d45c76837088a34f1d6f1dcfaf4554811eb32a495f86bfcbd",
+      "world_id": "Donners_2021"
+    },
+    {
+      "files": [
+        {
+          "bytes": 150923,
+          "file_id": 359801,
+          "name": "labels.csv",
+          "sha1": "23d2c9477dfe756ecf335c06637667c2b3963485"
+        },
+        {
+          "bytes": 15345,
+          "file_id": 359802,
+          "name": "metadata_publication.json",
+          "sha1": "97a482126c85f33ab72e2efec357178831c3488d"
+        },
+        {
+          "bytes": 6019723,
+          "file_id": 359906,
+          "name": "works_1.zip",
+          "sha1": "5f8cfa4cdfaa31a2d47c132e59a9248d801f1154"
+        }
+      ],
+      "selection_key_sha256": "2cf638e15171e2c6c0fec4ba3552e68632e97fce05046c4ac53eb8020d357343",
+      "world_id": "van_der_Waal_2022"
+    },
+    {
+      "files": [
+        {
+          "bytes": 42227,
+          "file_id": 359941,
+          "name": "labels.csv",
+          "sha1": "a6084709a61447f6c6cf3cc5c12d94d485621f5d"
+        },
+        {
+          "bytes": 33943,
+          "file_id": 359832,
+          "name": "metadata_publication.json",
+          "sha1": "9c9c743907b79bcbdc8c871596e8167bceec91d5"
+        },
+        {
+          "bytes": 1028035,
+          "file_id": 359908,
+          "name": "works_1.zip",
+          "sha1": "0c0f426df9712b9d5346ceaa8cdd5a250d337faa"
+        }
+      ],
+      "selection_key_sha256": "4523e7ebbbe5a6a5369cd43bfcdd071adc3e97e2d8fee3273fc5f3a610971be7",
+      "world_id": "Nelson_2002"
+    },
+    {
+      "files": [
+        {
+          "bytes": 63996,
+          "file_id": 359944,
+          "name": "labels.csv",
+          "sha1": "946c649001751730c3e60f2fdc7e09e11ebba940"
+        },
+        {
+          "bytes": 35711,
+          "file_id": 359902,
+          "name": "metadata_publication.json",
+          "sha1": "2272b9e4b9dc32cdbb8aaa3cf9e4ded3ca779b3a"
+        },
+        {
+          "bytes": 2106498,
+          "file_id": 359937,
+          "name": "works_1.zip",
+          "sha1": "cc3233d2279b3467d2a849518a7127c3ec6aaaaf"
+        }
+      ],
+      "selection_key_sha256": "6b9df8b7a1f4c6ccee55e8cb9466547fd907f41a615d4753fb94b21547d9aa8c",
+      "world_id": "van_der_Valk_2021"
+    },
+    {
+      "files": [
+        {
+          "bytes": 133950,
+          "file_id": 359915,
+          "name": "labels.csv",
+          "sha1": "9f88ea3227c98abb262a12f9fda5cabde3c8f53a"
+        },
+        {
+          "bytes": 21552,
+          "file_id": 359866,
+          "name": "metadata_publication.json",
+          "sha1": "a89f4784fbc000f1121b9d8fd7a8fab99bda9ea9"
+        },
+        {
+          "bytes": 3526740,
+          "file_id": 359918,
+          "name": "works_1.zip",
+          "sha1": "1cc65dd16c7ae270adeb4c84c9c616f0c0ef9b64"
+        }
+      ],
+      "selection_key_sha256": "8873ef0594e44b88ccd740a7b987e204d7026a6b49b4a4cc83468297c1a30b2e",
+      "world_id": "Jeyaraman_2020"
+    },
+    {
+      "files": [
+        {
+          "bytes": 3944082,
+          "file_id": 359849,
+          "name": "labels.csv",
+          "sha1": "294dcb10804c6458ab7479204743217a1c4ff6c3"
+        },
+        {
+          "bytes": 22477,
+          "file_id": 359923,
+          "name": "metadata_publication.json",
+          "sha1": "7c2b121d43999272c06e5c5d72bbd6b82dc826d6"
+        },
+        {
+          "bytes": 66466788,
+          "file_id": 359850,
+          "name": "works_1.zip",
+          "sha1": "25aef912fd01e0430167129629c02a26eb993883"
+        },
+        {
+          "bytes": 34788857,
+          "file_id": 359865,
+          "name": "works_2.zip",
+          "sha1": "5540a32a9704859269bc2da8ffb33de786099547"
+        }
+      ],
+      "selection_key_sha256": "91e2f005972ffffe243ea0c395489e3c016c48b8af2533a3ad8510d8a62bf003",
+      "world_id": "Brouwer_2019"
+    }
+  ]
+}

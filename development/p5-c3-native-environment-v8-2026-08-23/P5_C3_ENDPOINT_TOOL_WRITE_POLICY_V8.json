@@ -1,0 +1,39 @@
+{
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "execution_authorized": false,
+  "frozen_at_utc": "2026-08-23T21:00:00Z",
+  "network": {
+    "candidate_visible_allowed_endpoints": [],
+    "default": "DENY",
+    "docker_daemon": "FORBIDDEN_FROM_CANDIDATE_CUSTODY",
+    "model_service_endpoints": "UNBOUND_IN_SEPARATE_FIELD",
+    "protected_scorer": "FORBIDDEN"
+  },
+  "schema_version": "orion.p5.c3.endpoint-tool-write-policy.v8",
+  "tools": {
+    "allowed": [
+      "read_candidate_seed",
+      "copy_to_ephemeral_worktree",
+      "edit_mutable_agent_worktree",
+      "edit_exact_task_path",
+      "capture_patch_digest"
+    ],
+    "forbidden": [
+      "benchmark_execution",
+      "protected_scorer_access",
+      "gold_or_reference_output_access",
+      "host_git_remote_access",
+      "host_docker_daemon_access",
+      "writes_outside_declared_ephemeral_roots"
+    ]
+  },
+  "writes": {
+    "all_other_task_paths": "READ_ONLY",
+    "before_after_digest_required": true,
+    "receipt_output": "/p5/receipts/c3-single-attempt",
+    "split_manifest_sha256": "f1fead7d0e607ee30132e4c28f5634b0a96abfc17e0f2bb689e9e0a9febf6a4c",
+    "task_write_allowlist": [
+      "/p5/work/task_worktree/src/main/java/org/apache/commons/lang3/math/NumberUtils.java"
+    ]
+  }
+}

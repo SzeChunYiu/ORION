@@ -1,0 +1,280 @@
+{
+  "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+  "blocking_field_count": 15,
+  "blocking_fields": [
+    "adapter.isolated_write_surface",
+    "custody.external_protected_scorer",
+    "custody.one_shot_no_feedback_barrier",
+    "custody.protected_panel_freshness",
+    "inputs.candidate_visible_case_bytes",
+    "model_provider.primary",
+    "resources.calls_tokens_usd",
+    "resources.retry_network",
+    "rights.container_and_generated_artifacts",
+    "rights.model_provider_and_services",
+    "rights.task_and_benchmark_content",
+    "runtime.compute",
+    "runtime.container_or_environment",
+    "runtime.dependency_lock",
+    "runtime.task_environment"
+  ],
+  "bound_execution_envelope": {
+    "authority": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_PREFLIGHT_ONLY",
+    "outcome_policy": "NO_PROTECTED_PANEL_OR_PERFORMANCE_ACCESS",
+    "resources": {
+      "dedicated_docker_host": "REQUIRED_FROM_BOUND_SUCCESSOR_UNDER_SCRATCH_ROOT",
+      "rlimits": {
+        "file_bytes": 10737418240,
+        "open_files": 4096,
+        "processes": 512
+      },
+      "termination_grace_seconds": 120,
+      "whole_run_seconds": 21600
+    },
+    "source": {
+      "commit_sha": "fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993",
+      "tree_sha": "98fc19e691c31b635ec432b6240db775a9527fd0"
+    }
+  },
+  "bound_field_count": 6,
+  "bound_fields": [
+    "adapter.native_parser_binding",
+    "identity.native_entrypoint_bytes",
+    "identity.source_license_bytes",
+    "identity.source_repository_commit",
+    "model_provider.fallbacks",
+    "resources.wallclock"
+  ],
+  "execution_ready": false,
+  "fields": {
+    "adapter.isolated_write_surface": {
+      "binding": null,
+      "cause": "Native ADIAS selects DOCKER_HOST or /var/run/docker.sock, builds and runs host-networked containers, injects API keys, and permits root meta-agent bash/edit activity; no disposable dedicated daemon/executor receipt exists.",
+      "next_discriminator": "Provision a disposable Linux executor plus dedicated rootless Docker daemon under the scratch root; demonstrate no writes, containers, images, caches, or sockets escape the declared surface.",
+      "residual": "The V4 gate describes a required isolated-daemon boundary but cannot self-attest that an executor provides it.",
+      "status": "BLOCKING"
+    },
+    "adapter.native_parser_binding": {
+      "binding": {
+        "input": "one native ADIAS gen_<id>/ directory containing metadata.json and zero or more candidate-visible *_eval[/_val]/report.json files",
+        "native_scores_retained": false,
+        "output_schema": "P5_C4_V4_NATIVE_OUTPUT_SCHEMA.json",
+        "path": "p5_c4_native_parser.py",
+        "protected_and_final_test_policy": "REFUSE_BEFORE_OUTCOME_RETENTION",
+        "raw_native_singleton_licences": 0,
+        "sha256": "2048aae10c1ba4e03d3925a1040d9ec75bc41e4c52fe9e674400fca3ae12e64e"
+      },
+      "cause": "ADIAS has no versioned terminal schema and process exit zero is not sufficient; V4 binds a strict structural parser to the frozen writers.",
+      "next_discriminator": "Use only under external custody after exact report provenance is bound.",
+      "residual": "Parser terminals remain UNRESOLVED for P5 responsibility/performance.",
+      "status": "BOUND"
+    },
+    "custody.external_protected_scorer": {
+      "binding": null,
+      "cause": "No independent scorer identity, code digest, signing key, or return schema is supplied.",
+      "next_discriminator": "Obtain a signed external scorer attestation with exact code/data hashes and a minimal terminal-only return contract.",
+      "residual": "Native ADIAS report writers are candidate-side evaluation utilities, not an external protected scorer.",
+      "status": "BLOCKING"
+    },
+    "custody.one_shot_no_feedback_barrier": {
+      "binding": null,
+      "cause": "No independent custodian attests a one-shot no-feedback barrier.",
+      "next_discriminator": "Bind an external one-shot custodian that withholds protected inputs/outcomes until the candidate terminal is frozen.",
+      "residual": "ADIAS is explicitly iterative and learns from evaluation artifacts; native final_test_summary.json is written in the same run.",
+      "status": "BLOCKING"
+    },
+    "custody.protected_panel_freshness": {
+      "binding": null,
+      "cause": "No protected panel identity, freshness nonce, selection receipt, or independence attestation is available.",
+      "next_discriminator": "Bind a fresh six-arm panel manifest under independent custody.",
+      "residual": "Bundled train/val/test declarations do not establish the P5 protected panel.",
+      "status": "BLOCKING"
+    },
+    "identity.native_entrypoint_bytes": {
+      "binding": {
+        "background_scripts_admissible": false,
+        "console_scripts": [
+          "adias-eval = domains.run_eval:main",
+          "adias-harness = domains.harness:main",
+          "adias-report = domains.report:main",
+          "adias-run-meta-agent = run_meta_agent:main"
+        ],
+        "formal_outer_entrypoint": "python -u generate_loop.py",
+        "implementation_sha256": "ac15bcbbcfce2f2bf11e93f8ebc7e18c81f8cddf368e7c88e4c0db296f678e22",
+        "meta_implementation_sha256": "e1537f9001cc9ff2330c6209f63b1ab161102ac620e46813a44aa5a486293d0f",
+        "meta_wrapper_sha256": "aaec511b6bd43390c89b1b369ddb8f9067bb53a7c9c01807ad9ac77be873dd63",
+        "pyproject_sha256": "932662da12a4ac06c0500996c1158b75e8a56908f1be8989e6e282e82cf5237a",
+        "root_wrapper_sha256": "a7e757a9842e008651011f10bb1536f7a530566860385a1cba3b2a7c66180fee"
+      },
+      "cause": "Exact entrypoint bytes and released command surfaces are present.",
+      "next_discriminator": "Carry these hashes into a complete execution manifest.",
+      "residual": "Entrypoint identity does not select a task, model, dependency graph, or environment.",
+      "status": "BOUND"
+    },
+    "identity.source_license_bytes": {
+      "binding": {
+        "noncommercial_restriction": true,
+        "path": "LICENSE.md",
+        "sha256": "047d2259741a3ebb30d8c8a43d4ba79b5b229a069acd1d2bea49f22b297d8e98",
+        "sharealike_condition": true,
+        "spdx": "CC-BY-NC-SA-4.0"
+      },
+      "cause": "Exact root licence bytes are present.",
+      "next_discriminator": "Maintain source attribution/noncommercial/sharealike compliance and separately close all component rights.",
+      "residual": "The root licence cannot establish that acknowledged third-party benchmark/data/dependencies were sublicensable by the repository licensor.",
+      "status": "BOUND"
+    },
+    "identity.source_repository_commit": {
+      "binding": {
+        "archive_sha256": "472e2ef2258c764b563b07be725a82de80df15bd617259fd839f894b8c602216",
+        "archive_size_bytes": 86681600,
+        "commit_author_date": "2026-08-21T19:50:40+08:00",
+        "commit_sha": "fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993",
+        "file_count": 1578,
+        "repository": "https://github.com/scylj1/adias",
+        "tree_manifest": "ADIAS_SOURCE_TREE_MANIFEST_V4.json",
+        "tree_manifest_sha256": "f2a06b6317d98a3fdd08de14310ad17c15c0ff41a9d323d9dae7a2f4af348fa0",
+        "tree_sha": "98fc19e691c31b635ec432b6240db775a9527fd0"
+      },
+      "cause": "The paper-linked public source identity is exact and detached.",
+      "next_discriminator": "Use only this commit/tree in a successor execution receipt.",
+      "residual": "Source identity alone is not runtime, rights, or performance identity.",
+      "status": "BOUND"
+    },
+    "inputs.candidate_visible_case_bytes": {
+      "binding": null,
+      "cause": "No exact P5 candidate-visible task/case packet, split, task identifiers, or checksum set is selected.",
+      "next_discriminator": "Author or obtain one rights-cleared P5 case packet satisfying P5_C4_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json.",
+      "residual": "Bundled ADIAS data and native-shaped smoke fixtures are not substantive P5 cases.",
+      "status": "BLOCKING"
+    },
+    "model_provider.fallbacks": {
+      "binding": {
+        "closed_behavior": "FAIL_WITH_NATIVE_TERMINAL; DO_NOT_SWITCH_META_TASK_USER_OR_SEARCH_MODEL_OR_PROVIDER",
+        "external_search": "FORCED_OFF",
+        "fallbacks": [],
+        "per_role_provider_override": "FORBIDDEN"
+      },
+      "cause": "V4 freezes a closed empty fallback set independent of the still-unbound primary.",
+      "next_discriminator": "Bind one model/provider/service identity and preserve this no-switch policy.",
+      "residual": "This does not choose or authorize the primary service.",
+      "status": "BOUND"
+    },
+    "model_provider.primary": {
+      "binding": null,
+      "cause": "Source defaults name openai/deepseek-v4-flash, but a source default is not a provider/model/version/service binding; TauBench also has a user-simulator role.",
+      "next_discriminator": "Bind one exact model snapshot and provider endpoint for every native role, or prove a single shared binding, with no fallback.",
+      "residual": "API base, model snapshot, tokenizer, context, role mapping, user simulator, and service terms remain unknown.",
+      "status": "BLOCKING"
+    },
+    "resources.calls_tokens_usd": {
+      "binding": null,
+      "cause": "Source records best-effort usage after calls but provides no aggregate hard stop; cost may be absent and multiple meta/diagnostic/profile/task/user/search roles can call models.",
+      "next_discriminator": "Add a provider-side and local reconciled hard stop for calls, input/output tokens, and USD across all roles.",
+      "residual": "MAX_TOKENS=16384 is a per-call request, not an aggregate lock or provider-reconciled budget.",
+      "status": "BLOCKING"
+    },
+    "resources.retry_network": {
+      "binding": null,
+      "cause": "Source uses host networking for builds/runs, proxy build args, provider egress, optional web search, package/VCS downloads, and a backoff max_time of 600 seconds without a frozen endpoint allowlist.",
+      "next_discriminator": "Prebuild an offline image; deny network except exact provider endpoints; bind DNS/IP/TLS policy and finite retry ceilings.",
+      "residual": "Forcing external search off and freezing empty model fallbacks does not close ordinary provider/build/network retries.",
+      "status": "BLOCKING"
+    },
+    "resources.wallclock": {
+      "binding": {
+        "dedicated_daemon_cleanup_required": true,
+        "enforcer": "p5_c4_fail_closed_runner.py",
+        "enforcer_sha256": "ef984aafeacc32e99597814b383542202fb5eba67ebf72a0839349230f09260c",
+        "native_background_scripts_forbidden": true,
+        "termination_grace_seconds": 120,
+        "timeout_terminal": "TIMEOUT/exit 124",
+        "whole_run_seconds": 21600
+      },
+      "cause": "Native code caps individual meta-agent execs at 21,600 seconds but has no whole-run cap and released scripts background the job; V4 binds a direct foreground process-group watchdog.",
+      "next_discriminator": "Demonstrate timeout plus container cleanup on the rights-cleared disposable executor before execution readiness.",
+      "residual": "The watchdog is never exercised on a native job in V4 because 15 fields remain blocking; isolated daemon cleanup depends on the separate write-surface field.",
+      "status": "BOUND"
+    },
+    "rights.container_and_generated_artifacts": {
+      "binding": null,
+      "cause": "The mutable python:3.12-bullseye base, transitive packages, VCS installs, built images, generated patches, transcripts, profiles, traces, and reports lack a complete SBOM/rights disposition.",
+      "next_discriminator": "Resolve a digest-pinned image, SBOM, licence notices, generated-artifact custody, retention, and publication permissions.",
+      "residual": "Root CC-BY-NC-SA source rights do not close third-party/container/output rights.",
+      "status": "BLOCKING"
+    },
+    "rights.model_provider_and_services": {
+      "binding": null,
+      "cause": "No selected model/provider/service terms, data-processing terms, or redistribution/retention disposition exists.",
+      "next_discriminator": "Bind service terms and authorize all meta/task/user-simulator roles before calls.",
+      "residual": "README examples of API keys are configuration hints, not service rights.",
+      "status": "BLOCKING"
+    },
+    "rights.task_and_benchmark_content": {
+      "binding": null,
+      "cause": "The tree bundles 606 ALFWorld, 863 TextCraft, 4 WebShop, and 3 ScienceWorld data files and depends on TauBench tasks, but data/ contains no component licence/NOTICE files; root CC terms cannot prove third-party grant scope.",
+      "next_discriminator": "Obtain component-specific rights receipts and one rights-cleared candidate-visible P5 task/benchmark packet.",
+      "residual": "Acknowledgements and public availability are not benchmark reuse authority; the exact P5 task is also unselected.",
+      "status": "BLOCKING"
+    },
+    "runtime.compute": {
+      "binding": null,
+      "cause": "Native containers set only pids_limit=256; they use host networking and set no CPU, RAM, GPU, disk, image-cache, or aggregate parallelism hard limit. Source eval_workers defaults to 10.",
+      "next_discriminator": "Bind and demonstrate cgroup CPU/RAM/PID/disk/GPU limits covering launcher, Docker daemon, builds, and every child container.",
+      "residual": "Outer rlimits cannot account for daemon-owned containers without a demonstrated dedicated executor cgroup.",
+      "status": "BLOCKING"
+    },
+    "runtime.container_or_environment": {
+      "binding": null,
+      "cause": "Dockerfile uses mutable python:3.12-bullseye, performs network installs, and the source has domain-specific optional build variants without image digests.",
+      "next_discriminator": "Build offline from a resolved dependency lock and freeze image/daemon/kernel/architecture identities.",
+      "residual": "No built-image digest, OS package lock, architecture, Docker/daemon version, or complete SBOM is frozen.",
+      "status": "BLOCKING"
+    },
+    "runtime.dependency_lock": {
+      "binding": {
+        "classification": "NOT_A_LOCK",
+        "source_declaration_audit": "ADIAS_DEPENDENCY_DECLARATIONS_V4.json"
+      },
+      "cause": "No uv/poetry/pip-tools/conda lock or hash-complete constraints file exists; four requirements VCS dependencies are unpinned and declarations conflict.",
+      "next_discriminator": "Resolve Python 3.12/platform-specific artifacts with hashes and exact VCS commits, then reproduce an offline install.",
+      "residual": "requirements.txt, pyproject ranges, requirements_dev.txt, and Docker RUN lines are source declarations, not one resolved transitive graph.",
+      "status": "BLOCKING"
+    },
+    "runtime.task_environment": {
+      "binding": null,
+      "cause": "No single ADIAS domain, split, task IDs, environment implementation, seed, max turns, image variant, or case bytes are chosen for P5 C4.",
+      "next_discriminator": "Select one rights-cleared native domain/task and freeze every environment/data/config byte and seed under a matched six-arm contract.",
+      "residual": "Six native domains have different external packages/data; source defaults and bundled fixtures are not a matched task environment.",
+      "status": "BLOCKING"
+    }
+  },
+  "frozen_at_utc": "2026-08-23T18:34:25Z",
+  "panel_confirmatory_ready_arms": 0,
+  "registry_id": "P5.C4.ADIAS.EXECUTION.BINDING.V4",
+  "required_field_paths": [
+    "adapter.isolated_write_surface",
+    "adapter.native_parser_binding",
+    "custody.external_protected_scorer",
+    "custody.one_shot_no_feedback_barrier",
+    "custody.protected_panel_freshness",
+    "identity.native_entrypoint_bytes",
+    "identity.source_license_bytes",
+    "identity.source_repository_commit",
+    "inputs.candidate_visible_case_bytes",
+    "model_provider.fallbacks",
+    "model_provider.primary",
+    "resources.calls_tokens_usd",
+    "resources.retry_network",
+    "resources.wallclock",
+    "rights.container_and_generated_artifacts",
+    "rights.model_provider_and_services",
+    "rights.task_and_benchmark_content",
+    "runtime.compute",
+    "runtime.container_or_environment",
+    "runtime.dependency_lock",
+    "runtime.task_environment"
+  ],
+  "schema_version": "orion.p5.c4.field-registry.v4",
+  "terminal": "P5_C4_V4_ADIAS_SOURCE_TREE_NATIVE_PARSER_EMPTY_FALLBACK_AND_WALLCLOCK_BOUND__FIFTEEN_C4_FIELDS_BLOCKING__DEPENDENCY_LOCK_TASK_RIGHTS_ISOLATION_AND_CUSTODY_UNBOUND__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK"
+}

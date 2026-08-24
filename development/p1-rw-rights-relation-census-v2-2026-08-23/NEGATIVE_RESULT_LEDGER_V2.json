@@ -1,0 +1,104 @@
+{
+  "entries": [
+    {
+      "cause": "Pinned CSV serialization contains an undocumented trailing column.",
+      "id": "N01_HEADER_SCHEMA_DRIFT",
+      "next_discriminator": "On every future blob, refreeze and repeat the exact header plus uniformly-empty check before row semantics.",
+      "residual": "All 71,944 data rows had width 21 and the frozen Amendment B gateway required the terminal cell to be empty; zero nonempty terminal cells occurred.",
+      "result": "The 20 documented header names were followed by one unnamed terminal field, so the original exact-header gate failed.",
+      "status": "REPAIRED_WITH_ADVERSE_PRESERVED"
+    },
+    {
+      "cause": "Source identifier missing under frozen normalization.",
+      "id": "N02_INVALID_RECORD_ID",
+      "next_discriminator": "Provider-issued corrected identifiers in a later pinned release.",
+      "residual": "Never imputed from DOI, title or ordering.",
+      "result": "246 rows lacked a usable Record ID.",
+      "status": "EXCLUDED"
+    },
+    {
+      "cause": "The seven-field source metadata did not supply both source-native endpoints.",
+      "id": "N03_MISSING_ENDPOINTS",
+      "next_discriminator": "An official provider-native endpoint relation or rights-owner attestation.",
+      "residual": "No title, author, date or fuzzy relation inference was used.",
+      "result": "2,683 rows lacked both endpoints; 2,504 lacked an original endpoint; 1,151 lacked a notice endpoint.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "cause": "The endpoint fields do not identify two distinct artifacts after exact aliasing.",
+      "id": "N04_SELF_RELATIONS",
+      "next_discriminator": "A provider correction binding a distinct notice identifier.",
+      "residual": "They cannot support an original-notice pair.",
+      "result": "14,144 explicit-both-endpoint row occurrences collapsed original and notice to the same source-declared identity.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "cause": "Multiple source rows encode one exact directed identifier relation.",
+      "id": "N05_DUPLICATE_RELATIONS",
+      "next_discriminator": "None for census; retain component-level family grouping in any study.",
+      "residual": "Only one relation was counted; row multiplicity is not sample size.",
+      "result": "198 later row occurrences repeated an already frozen relation key.",
+      "status": "DEDUPLICATED"
+    },
+    {
+      "cause": "A DOI co-occurred with multiple PMIDs or a PMID with multiple DOIs.",
+      "id": "N06_IDENTIFIER_ALIAS_AMBIGUITY",
+      "next_discriminator": "Official identifier resolution with immutable response receipts.",
+      "residual": "No equivalence direction was guessed.",
+      "result": "302 unique relations and 406 connected components failed DOI-PMID alias consistency.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "cause": "The same identifier occupies both endpoint roles somewhere in the visible relation graph.",
+      "id": "N07_ORIGINAL_NOTICE_ROLE_COLLISION",
+      "next_discriminator": "Provider-native version-chain semantics prospectively frozen before reclassification.",
+      "residual": "Connected families were not split to manufacture independence.",
+      "result": "838 unique relations were in role-collision components; 13,451 source components contained an identity used as both original and notice, including self/update chains.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "cause": "The bounded Europe PMC idlist/core reducer was PMID-addressable only.",
+      "id": "N08_NO_BOTH_PMID",
+      "next_discriminator": "Prospectively freeze an official DOI-to-PMCID resolver and rerun only this residual.",
+      "residual": "DOI presence is preserved in the RW census; this is not absence from Europe PMC or a rights failure.",
+      "result": "20,110 otherwise admitted RW relations lacked PMIDs on both endpoints for the frozen batch reducer.",
+      "status": "CANNOT_CHECK_BOUNDED_ROUTE"
+    },
+    {
+      "cause": "At least one endpoint was not returned under the frozen Europe PMC OA/PMC/license search predicate.",
+      "id": "N09_EPMC_ALLOWLIST_SEARCH_ABSENCE",
+      "next_discriminator": "Exact endpoint resolution plus article-specific rights metadata or permission.",
+      "residual": "No incompatible license or missing article was inferred.",
+      "result": "17,730 both-PMID relations lacked an allowlist search match on one or both endpoints.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "cause": "Provider publication-type metadata was absent/outside-band or nonunique.",
+      "id": "N10_TYPE_OTHER_OR_AMBIGUOUS",
+      "next_discriminator": "Owner-separated source-native type adjudication under a frozen mapping.",
+      "residual": "No nearest action or scientific terminal was imputed.",
+      "result": "11 exact-rights relations were outside the three frozen provider strata and 1 matched multiple strata.",
+      "status": "CANNOT_CHECK_TYPED_CELL"
+    },
+    {
+      "cause": "Publication type and retraction metadata are not minimal scientific responsibility-to-authority gold.",
+      "id": "N11_SCIENTIFIC_TERMINAL_GOLD",
+      "next_discriminator": "Rights-cleared case dossiers and sealed, owner-separated minimal-transition adjudication.",
+      "residual": "No case text, causal responsibility, author intent or action column was opened.",
+      "result": "0 scientific terminal cells were assigned; 0 cases were adjudicated.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "cause": "This lane stops at source-universe feasibility.",
+      "id": "N12_CONSTRUCT_AND_EFFECT",
+      "next_discriminator": "Freeze and execute owner-separated construct validation on the three width-pass strata.",
+      "residual": "The V1 overall construct-validity terminal remains active.",
+      "result": "0 anti-leak candidate views, donor-complete arms, information-equivalent arms, model outputs, protected scores or effect estimates exist.",
+      "status": "CANNOT_CHECK"
+    }
+  ],
+  "generated_at_utc": "2026-08-23T17:27:57.717419+00:00",
+  "identity": "P1.RW.EPMC.NEGATIVE.RESULT.LEDGER.V2",
+  "principle": "Every adverse result remains a research problem with a next discriminator. Missing or ambiguous metadata is CANNOT_CHECK, never an empirical or scientific negative.",
+  "schema_version": "orion.negative-result-ledger.v2"
+}

@@ -1,0 +1,30 @@
+/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/transformers/utils/hub.py:128: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO:deeponto:2g maximum memory allocated to JVM.
+INFO:deeponto:JVM started successfully.
+Traceback (most recent call last):
+  File "ReasonerFactory.java", line 15, in org.semanticweb.HermiT.ReasonerFactory.createReasoner
+Exception: Java Exception
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Volumes/P3V17_RUNTIME/source/scripts/bertmap.py", line 38, in <module>
+    run_bertmap()
+  File "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+  File "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+  File "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+  File "/Volumes/P3V17_RUNTIME/source/scripts/bertmap.py", line 31, in run_bertmap
+    src_onto = Ontology(src_onto_file)
+  File "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/deeponto/onto/ontology.py", line 137, in __init__
+    self.reasoner = OntologyReasoner(self, self.reasoner_type)
+  File "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/deeponto/onto/ontology.py", line 645, in __init__
+    self.load_reasoner(self.reasoner_type)
+  File "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/deeponto/onto/ontology.py", line 661, in load_reasoner
+    self.owl_reasoner = self.owl_reasoner_factory.createReasoner(self.onto.owl_onto)
+java.lang.java.lang.IllegalArgumentException: java.lang.IllegalArgumentException: Non-simple property '<http://co4.inrialpes.fr/align/Contest/101/onto.rdf#isPartOf>' or its inverse appears in the cardinality restriction 'ObjectMaxCardinality(1 <http://co4.inrialpes.fr/align/Contest/101/onto.rdf#isPartOf> owl:Thing)'.

@@ -1,0 +1,21 @@
+{
+  "authored_license": "CC0-1.0",
+  "binary": {
+    "path": "build-context/rootfs/orion/probe",
+    "sha256": "ecede44702a8d2cd5d7ee2534310bae5a21047f7fcf20e251771206261d50976",
+    "size_bytes": 177
+  },
+  "dynamic_dependencies": [],
+  "elf_class": "ELF64",
+  "elf_data": "little-endian",
+  "elf_machine": "AArch64",
+  "expected_exit_code": 0,
+  "expected_stdout_hex": "4f52494f4e2056313320636f6e7461696e657220706173730a",
+  "generator": {
+    "path": "probe/generate_aarch64_probe_v13.py",
+    "sha256": "3f6064f6d12ef0576f070d44702264b3f4b691b48bd58b11233546b392269493",
+    "size_bytes": 2477
+  },
+  "runtime_abi": "Linux syscalls write=64 and exit=93 only",
+  "schema_version": "orion.p5.c2.probe-generation-receipt.v13"
+}

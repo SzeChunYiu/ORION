@@ -1,0 +1,215 @@
+{
+  "c3_blocker_delta": 0,
+  "checks": [
+    {
+      "check": "preregistration_exact",
+      "detail": "18946ca0493bb73a3c52f51a0cef5910b11f19e0e89c6da34f272c761076718c",
+      "passed": true
+    },
+    {
+      "check": "preregistered_before_microgate",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "stop_rule_exact",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "forbids_fabrication",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "forbids_degenerate_evasion",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "adapter_hash_receipted",
+      "detail": "3a1ee1a6a1a781793c0d288ca98afdc2b5ad0269be5fa374c5108f35590f6862",
+      "passed": true
+    },
+    {
+      "check": "adapter_fail_closed",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "one_completed_microgate",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "verdict_stop",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "terminal_exact",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "terminal_file_exact",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "exact_source_hash",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "exact_excerpt_hash",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "all_static_gates_true",
+      "detail": {
+        "fresh_archive_is_nonempty_initial": true,
+        "fresh_initial_directory_required": true,
+        "missing_parent_metadata_is_caught_and_skipped": true,
+        "native_parent_eligibility_reads_all_four_prior_fields": true,
+        "native_parent_eligibility_reads_overall_performance": true,
+        "no_released_outcome_free_initialization_argument": true,
+        "nondegenerate_random_route_requires_candidates": true
+      },
+      "passed": true
+    },
+    {
+      "check": "five_required_prior_fields",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "all_strategies_rejected",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "native_semantics_not_preservable",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "no_initializer_materialized",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "no_performance_fabricated",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "no_source_or_core_mutation",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "zero_executions",
+      "detail": {
+        "benchmark": 0,
+        "dgm": 0,
+        "model": 0,
+        "outcomes": 0,
+        "scorer": 0,
+        "tests": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "field_remains_blocking",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "zero_field_closure",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "claims_preserved",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "v8_unchanged_P5_C3_CANDIDATE_SAFE_SEED_V8.tar.gz",
+      "detail": "8d7197f581cad11695ae4c867ad8f941d86f7eeec8d0e8e4e7b79895d72b8f2d",
+      "passed": true
+    },
+    {
+      "check": "v8_unchanged_P5_C3_NATIVE_TASK_ENVIRONMENT_RECEIPT_V8.json",
+      "detail": "fafca0ece9654e7c0b0e738628648fea9b74a917b29440c16513b53a7b21a4d2",
+      "passed": true
+    },
+    {
+      "check": "v8_unchanged_P5_C3_INPUT_NATIVE_CERTIFICATE_V8.json",
+      "detail": "460402c3925a083017d640872960ec9927dbbfce62e24fbe7f2cd62faf7de341",
+      "passed": true
+    },
+    {
+      "check": "v8_unchanged_P5_C3_MUTABLE_IMMUTABLE_SPLIT_V8.json",
+      "detail": "f1fead7d0e607ee30132e4c28f5634b0a96abfc17e0f2bb689e9e0a9febf6a4c",
+      "passed": true
+    },
+    {
+      "check": "v8_before_after_equal",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "six_core_members",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "lang1_core_preserved",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "excluded_prefixes_absent",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "excluded_payloads_unopened",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "witness_no_identity_element",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "witness_no_solution",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "witness_scope_bounded",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "result_no_future_overclaim",
+      "detail": null,
+      "passed": true
+    }
+  ],
+  "checks_failed": 0,
+  "checks_passed": 37,
+  "dgm_model_benchmark_scorer_outcome_test_executions": "0/0/0/0/0/0",
+  "field_instances_closed": 0,
+  "json_files_parsed_before_receipt": 4,
+  "microgate_rerun": false,
+  "schema_version": "orion.p5.c3.outcome-free-successor-validation-receipt.v9",
+  "terminal": "P5_C3_V9_OUTCOME_FREE_INITIALIZATION_ADAPTER_STOPPED__UNCHANGED_NATIVE_PARENT_SELECTION_REQUIRES_PRIOR_OUTCOME_METADATA__NO_LAWFUL_SEMANTICS_PRESERVING_ADAPTER__RUNTIME_TASK_ENVIRONMENT_REMAINS_BLOCKING",
+  "v8_mutated": false,
+  "validation_scope": "PACKET_AND_PREDECESSOR_HASHES_ONLY__SCIENTIFIC_MICROGATE_NOT_RERUN"
+}

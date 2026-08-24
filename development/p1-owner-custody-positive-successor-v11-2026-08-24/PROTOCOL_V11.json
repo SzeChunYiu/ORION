@@ -1,0 +1,180 @@
+{
+  "authority": "PROSPECTIVE_SOURCE_NEUTRAL_HISTORICAL_AUTHORITY_AUDIT_ONLY__NOT_R7_OWNERSHIP_DELEGATION_RATIFICATION_RIGHTS_HOST_AUTHORITY_OR_REVIEW",
+  "candidate_classes": [
+    {
+      "admissible_if": "Official issuer identifies the R7 vocabulary owner and the pre-cutoff bytes directly contain every V8 field for all seven exact R7 targets.",
+      "class_id": "HISTORICAL_DIRECT_OWNER_AUTHORED_EXACT_ALGEBRA"
+    },
+    {
+      "admissible_if": "Official pre-cutoff bytes name the delegator, delegate, exact R7 vocabulary scope, powers, effective date and verifiable issuer.",
+      "class_id": "EXPLICIT_FORMAL_DELEGATION"
+    },
+    {
+      "admissible_if": "Official pre-cutoff standard bytes identify issuer and drafting/approval process and contain source-native semantic components; this class may pass only the historical-standard-component gate unless it also meets every exact-algebra and authority gate.",
+      "class_id": "HISTORICAL_STANDARDS_ACTION_RECORD"
+    },
+    {
+      "admissible_if": "Official pre-cutoff standard bytes contain a directly quoted or bounded native semantic component relevant to postpublication status/action, with no R7 mapping inferred; never owner gold or map-audit authority.",
+      "class_id": "SOURCE_STANDARD_SEMANTIC_COMPONENT_ONLY"
+    }
+  ],
+  "capture_rule": {
+    "fail_closed": "Non-2xx, identity mismatch, ambiguous issuer/date, parse failure or indirect copy is CANNOT_CHECK for that field.",
+    "forbidden": "No search snippet or third-party copy is authority.",
+    "method": "Exactly one HTTP GET per frozen route using an identifying research User-Agent, redirects followed, 30-second timeout.",
+    "raw_retention": "No response HTML or PDF retained in the packet; temporary bytes are deleted after hashing and bounded extraction.",
+    "record": "Requested URL, final URL, capture UTC, status, content type, response byte length, ETag, Last-Modified and SHA-256."
+  },
+  "component_gate": {
+    "full_positive": "All gates 1-10 pass for a single lawful completed authority bundle.",
+    "historical_standard_semantic_component_positive": "At least one official exact-byte source passes gates 1-3, predates cutoff, and directly exposes a bounded source-native postpublication action/status component. This does not pass gates 4-10 and cannot authorize the map audit.",
+    "partial_components_cannot_authorize_audit": true
+  },
+  "frozen_at_utc": "2026-08-24T05:48:16.002085+00:00",
+  "frozen_counts": {
+    "cannot_check_maps": 720,
+    "certified_maps": 0,
+    "map_space": 117649,
+    "named_custodian_or_delegation_groups": 0,
+    "owner_requirement_groups": 12,
+    "rejected_maps": 116929,
+    "scientific_action_gold_cells": 0,
+    "structural_analogue_groups": 9,
+    "sufficient_owner_groups": 0
+  },
+  "frozen_routes": [
+    {
+      "candidate_class": "HISTORICAL_STANDARDS_ACTION_RECORD",
+      "expected_identity": "NISO RP-45-2024 Communication of Retractions, Removals, and Expressions of Concern",
+      "expected_issuer": "National Information Standards Organization",
+      "requested_url": "https://groups.niso.org/higherlogic/ws/public/download/30869/NISO_RP-45-2024_CREC.pdf",
+      "retention": "HTTP provenance, digest, PDF metadata, bounded front-matter authority/date/rights fields, field-presence booleans; delete response bytes after evaluation.",
+      "source_id": "NISO_RP45_2024_OFFICIAL_PDF"
+    },
+    {
+      "candidate_class": "SOURCE_STANDARD_SEMANTIC_COMPONENT_ONLY",
+      "expected_identity": "Official NISO publication landing page for RP-45-2024",
+      "expected_issuer": "National Information Standards Organization",
+      "requested_url": "https://www.niso.org/publications/rp-45-2024-crec",
+      "retention": "HTTP provenance, digest, bounded issuer/date/rights fields and field-presence booleans; delete response bytes after evaluation.",
+      "source_id": "NISO_RP45_2024_OFFICIAL_LANDING"
+    }
+  ],
+  "historical_cutoff": {
+    "inclusive": false,
+    "local_display": "2026-08-20T13:55:11+02:00",
+    "source": "Earliest verified target-program commit cf5665e0fc6106e5cf057baa19bae20ffa43c212",
+    "utc": "2026-08-20T11:55:11Z"
+  },
+  "non_substitution_rules": [
+    "Standards authorship, standards committee participation and issuer identity do not imply R7 vocabulary ownership or delegation.",
+    "Repository authorship and unsigned Git commits do not imply vocabulary ownership, host authority, rights, independent review or adapter blindness.",
+    "Structural analogues and source-native terms do not map to an R7 decision and do not create owner gold.",
+    "Partial standard semantics cannot authorize or rerun the unchanged 117,649-map audit."
+  ],
+  "ordered_gates": [
+    {
+      "fail_closed": "CANNOT_CHECK_SOURCE_IDENTITY_OR_BYTES",
+      "gate": "IMMUTABLE_SOURCE_IDENTITY_AND_EXACT_BYTES",
+      "order": 1,
+      "pass_rule": "Official route resolves with 2xx status, expected identity/issuer is present, exact response length and SHA-256 are bound."
+    },
+    {
+      "fail_closed": "CANNOT_CHECK_HISTORICAL_PRECEDENCE",
+      "gate": "VERIFIABLE_PRE_CUTOFF_PUBLICATION",
+      "order": 2,
+      "pass_rule": "Official bytes expose an unambiguous publication/issuance date strictly before 2026-08-20T11:55:11Z."
+    },
+    {
+      "fail_closed": "CANNOT_CHECK_ISSUER_OR_OWNER",
+      "gate": "EXPLICIT_ISSUER_OR_OWNER_IDENTITY",
+      "order": 3,
+      "pass_rule": "Official bytes explicitly identify the issuing institution; an R7 owner passes only if the exact R7 vocabulary owner is explicitly identified."
+    },
+    {
+      "fail_closed": "CANNOT_CHECK_FORMAL_DELEGATION",
+      "gate": "EXPLICIT_FORMAL_DELEGATION",
+      "order": 4,
+      "pass_rule": "Delegator, delegate, exact R7 scope, conferred powers, effective date and official evidence are explicit."
+    },
+    {
+      "fail_closed": "CANNOT_CHECK_APPLICABLE_RIGHTS",
+      "gate": "LAWFUL_REUSE_RIGHTS",
+      "order": 5,
+      "pass_rule": "Applicable rights holder binds a licence permitting the planned storage, processing, derived adjudication, audit quotation and artifact release tier."
+    },
+    {
+      "fail_closed": "NOT_DIRECTLY_APPLICABLE_TO_EXACT_R7_TARGETS",
+      "gate": "DIRECT_EXACT_SEVEN_TARGET_APPLICABILITY",
+      "order": 6,
+      "pass_rule": "Source directly governs KEEP_SEARCH, KEEP_COMPILE, KEEP_REPAIR, REVISE_MEASUREMENT, REFORMULATE_OBJECTIVE, REFORMULATE_BOUNDARY and UNRESOLVED as the exact R7 targets; no semantic mapping or analogy is used."
+    },
+    {
+      "fail_closed": "INCOMPLETE_OWNER_ALGEBRA",
+      "gate": "COMPLETE_V8_FIELD_COVERAGE_AND_EXHAUSTIVENESS",
+      "order": 7,
+      "pass_rule": "All required V8 algebra fields are present for all seven exact targets, including closed world, coordinates, operations, bridge, terminal behavior, authority, rights and ratification."
+    },
+    {
+      "fail_closed": "CANNOT_CHECK_HOST_AUTHORITY",
+      "gate": "HOST_AUTHORITY_APPLICABILITY",
+      "order": 8,
+      "pass_rule": "The exact host authority signs recommendation, execution, adoption, promotion and merge boundaries."
+    },
+    {
+      "fail_closed": "CANNOT_CHECK_CONSTRUCT_INDEPENDENCE",
+      "gate": "HISTORICAL_NONEXPOSURE_OR_ADAPTER_BLIND_CUSTODY",
+      "order": 9,
+      "pass_rule": "A complete owner algebra predates the cutoff, or prospective adapter-blind allowlisted delivery and signed custody receipts exist."
+    },
+    {
+      "fail_closed": "CANNOT_CHECK_INDEPENDENT_SEMANTIC_REVIEW",
+      "gate": "INDEPENDENT_SEMANTIC_REVIEW_AUTHORITY",
+      "order": 10,
+      "pass_rule": "A content-addressed CONFORMANT review is signed by an eligible reviewer with no algebra authorship, case/outcome custody or adapter exposure."
+    }
+  ],
+  "planned_outputs": [
+    "PROTOCOL_V11.json",
+    "PROTOCOL_FREEZE_RECEIPT_V11.json",
+    "SOURCE_CAPTURE_RECEIPT_V11.json",
+    "OWNER_DELEGATION_AUDIT_V11.json",
+    "HISTORICAL_SEMANTIC_COMPONENTS_V11.json",
+    "RESULT_V11.json",
+    "NEGATIVE_RESULT_LEDGER_V11.md",
+    "SCIENTIFIC_REPORT_V11.md",
+    "verify_v11.py",
+    "VALIDATION_RECEIPT_V11.json",
+    "SHA256SUMS"
+  ],
+  "predecessors": [
+    {
+      "path": "development/p1-adapter-blind-owner-ratification-v10-2026-08-23/ADAPTER_BLIND_RATIFICATION_PROTOCOL_V10.json",
+      "sha256": "1308f37618b2e01b6a48dcc473f754b14fc81a8b6ce9990192fae72eaa0302f9"
+    },
+    {
+      "path": "development/p1-adapter-blind-owner-ratification-v10-2026-08-23/CURRENT_RESULT_V10.json",
+      "sha256": "f5c37921bfb2b289feeeeeb4e253f33fa4708e64bcc4f34a497abe76a5ea9044"
+    },
+    {
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+      "sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55"
+    },
+    {
+      "path": "development/p1-scientific-blocker-compression-2026-08-23/OWNER_ALGEBRA_V9_COMPLETION_CONTRACT.json",
+      "sha256": "32a4af7b6adb9dd8250e072470605e574ed695145818da3b87cdeec3feef92b1"
+    }
+  ],
+  "preserved_v10_terminal": "P1_V10_FOUR_AUTHORITY_ACTS_REMAIN_NECESSARY__ADAPTER_BLIND_PRECOMMITMENT_OR_HISTORICAL_PRECEDENCE_CANNOT_CHECK__720_MAPS_UNCHANGED",
+  "prohibitions": [
+    "No case text or outcome access.",
+    "No AI agent, local verifier or same-repository process labelled external custody or independent review.",
+    "No fabricated signature, delegation, rights grant, review, custody, gold or certified map.",
+    "No pytest or repository CI.",
+    "No manuscript or claim-ledger edit unless the full prospective scientific gate passes.",
+    "No rerun of the 117,649-map audit unless all authority and ordering gates pass."
+  ],
+  "protocol_id": "P1_R7_HISTORICAL_OWNER_CUSTODY_POSITIVE_SUCCESSOR_V11",
+  "schema_version": "orion.p1.owner-custody-positive-successor.protocol.v11",
+  "scientific_question": "Before the frozen R7 target-program cutoff, does an official immutable source directly evidence a complete owner-authored seven-target algebra or explicit formal delegation sufficient to bind any V10 authority act without inference from repository authorship, structural analogy, or later approval?"
+}

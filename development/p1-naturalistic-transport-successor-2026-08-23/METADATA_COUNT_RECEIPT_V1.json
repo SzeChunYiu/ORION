@@ -1,0 +1,95 @@
+{
+  "authority": "COUNT_ONLY_METADATA_PREFLIGHT__NO_CASE_OR_SCIENTIFIC_AUTHORITY",
+  "errors": [],
+  "generated_at": "2026-08-23T14:48:18.212489+00:00",
+  "identity": "P1.NATURALISTIC.PUBLIC.METADATA.COUNT.V1",
+  "interpretation": "Counts establish candidate metadata prevalence under the frozen publication-type queries only. They do not establish original-notice joins, rights, typed action gold, anti-leak construct validity, case eligibility, decision-mixed fibres or system performance.",
+  "protocol": {
+    "frozen_at": "2026-08-23T16:43:45+02:00",
+    "path": "work/lane-handoffs/p1-naturalistic-transport/SOURCE_FEASIBILITY_PROTOCOL_V1.json",
+    "sha256": "1e6888c347dbd5cb41bdeba049c9eb6537d8f5e5b9df3a38d461c9f23a0cc88a"
+  },
+  "provider": "EUROPE_PMC_ARTICLES_REST_API_V6_9",
+  "requests": [
+    {
+      "hit_count": 93796,
+      "http_status": 200,
+      "id": "EPMC_OA_PUBLISHED_ERRATUM",
+      "provider_query_echo": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Published Erratum\"",
+      "provider_version": "6.9",
+      "query": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Published Erratum\"",
+      "raw_response_sha256": "03058c92d2e3f5a7bd65da440a022b0c790725ad4f295264dd8d26ec8c1043ad",
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=OPEN_ACCESS%3AY+AND+IN_PMC%3AY+AND+PUB_TYPE%3A%22Published+Erratum%22&resultType=idlist&format=json&pageSize=1&synonym=False&cursorMark=%2A",
+      "result_rows_inspected": false,
+      "result_rows_persisted": false,
+      "role": "candidate correction or erratum notices"
+    },
+    {
+      "hit_count": 105342,
+      "http_status": 200,
+      "id": "EPMC_OA_CORRECTION",
+      "provider_query_echo": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Correction\"",
+      "provider_version": "6.9",
+      "query": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Correction\"",
+      "raw_response_sha256": "5f991b8f5a58592d8aa464d573657714f7b4e78b2533528c0db9ab735fcc5751",
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=OPEN_ACCESS%3AY+AND+IN_PMC%3AY+AND+PUB_TYPE%3A%22Correction%22&resultType=idlist&format=json&pageSize=1&synonym=False&cursorMark=%2A",
+      "result_rows_inspected": false,
+      "result_rows_persisted": false,
+      "role": "candidate records using a provider-level correction publication type; zero is retained"
+    },
+    {
+      "hit_count": 17360,
+      "http_status": 200,
+      "id": "EPMC_OA_RETRACTION_NOTICE",
+      "provider_query_echo": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Retraction of Publication\"",
+      "provider_version": "6.9",
+      "query": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Retraction of Publication\"",
+      "raw_response_sha256": "6b8a28e34d7cf746a2bab95141ebfc6236490cf7a7bd6c03a10c9a6e895c0eae",
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=OPEN_ACCESS%3AY+AND+IN_PMC%3AY+AND+PUB_TYPE%3A%22Retraction+of+Publication%22&resultType=idlist&format=json&pageSize=1&synonym=False&cursorMark=%2A",
+      "result_rows_inspected": false,
+      "result_rows_persisted": false,
+      "role": "candidate retraction notices"
+    },
+    {
+      "hit_count": 18056,
+      "http_status": 200,
+      "id": "EPMC_OA_RETRACTED_ORIGINAL",
+      "provider_query_echo": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Retracted Publication\"",
+      "provider_version": "6.9",
+      "query": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Retracted Publication\"",
+      "raw_response_sha256": "4186cb516236009582e4b40b219b6b51eb7f266a5896ff06665c7f5b3275da73",
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=OPEN_ACCESS%3AY+AND+IN_PMC%3AY+AND+PUB_TYPE%3A%22Retracted+Publication%22&resultType=idlist&format=json&pageSize=1&synonym=False&cursorMark=%2A",
+      "result_rows_inspected": false,
+      "result_rows_persisted": false,
+      "role": "candidate original records indexed as retracted"
+    },
+    {
+      "hit_count": 1516,
+      "http_status": 200,
+      "id": "EPMC_OA_EXPRESSION_OF_CONCERN",
+      "provider_query_echo": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Expression of Concern\"",
+      "provider_version": "6.9",
+      "query": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Expression of Concern\"",
+      "raw_response_sha256": "f958d15518adb84641dc56a7da9a4db0250d90f49c12df31f2fa24c60899a44c",
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=OPEN_ACCESS%3AY+AND+IN_PMC%3AY+AND+PUB_TYPE%3A%22Expression+of+Concern%22&resultType=idlist&format=json&pageSize=1&synonym=False&cursorMark=%2A",
+      "result_rows_inspected": false,
+      "result_rows_persisted": false,
+      "role": "candidate unresolved or provisional notices"
+    }
+  ],
+  "schema_version": "orion.p1.naturalistic-public-metadata-count-receipt.v1",
+  "summary": {
+    "article_or_notice_text_accessed": false,
+    "case_execution_authorized": false,
+    "completed_query_count": 5,
+    "eligible_source_clusters": 0,
+    "frozen_query_count": 5,
+    "notice_class_hit_count_sum_not_deduplicated": 218014,
+    "pair_relations_assessed": 0,
+    "result_rows_inspected": false,
+    "result_rows_persisted": false,
+    "retracted_original_hit_count": 18056,
+    "rights_admissible_pairs": 0,
+    "terminal": "P1_NATURALISTIC_PUBLIC_METADATA_CANDIDATES_PRESENT__CASE_FEASIBILITY_UNDETERMINED"
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "schema_version": "orion.p5.public-source-rights-matrix.v1",
+  "successor_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "captured_at_utc": "2026-08-23T13:17:50Z",
+  "authority": "SOURCE_IDENTITY_AND_CONTENT_CLASS_RIGHTS_PREFLIGHT_ONLY__NOT_LEGAL_ADVICE__NOT_EMPIRICAL_EVIDENCE",
+  "dataset_rows_accessed": 0,
+  "label_values_accessed": 0,
+  "protected_outcome_bytes_accessed": false,
+  "rules": [
+    "A repository or client licence is not extended to issue prose, comments, attachments, images, containers, upstream projects, service backends, or redistributed dataset bytes without a root-bound statement.",
+    "Public visibility is not a permission grant and is not protected freshness.",
+    "CANNOT_CHECK content is excluded from sampling until a content-class owner supplies a compatible disposition.",
+    "Public gold can be used only for development and contamination controls.",
+    "The external custodian must record the exact permission basis for every protected case byte before eligibility adjudication."
+  ],
+  "sources": [
+    {
+      "source_id": "SWE_BENCH_MULTILINGUAL",
+      "canonical_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+      "immutable_revision": "846e647b9f33c0b51b739d005d13d85493c9af09",
+      "selected_object": {
+        "path": "data/test-00000-of-00001.parquet",
+        "lfs_sha256": "92abca7cb527b41a9f66d03a26ce441ff7319e3a49f985998fd56be4bb9b08b2",
+        "declared_examples": 300
+      },
+      "content_class_rights": {
+        "dataset_card": "MIT_DECLARED_IN_CARD",
+        "dataset_bytes": "MIT_DECLARED_IN_CARD",
+        "issue_comment_attachment_and_upstream_repository_bytes": "CANNOT_CHECK_PER_ROOT"
+      },
+      "allowed_bridge_use": [
+        "development-only implementation/execution fixtures after per-root byte filtering",
+        "adapter conformance",
+        "public-gold contamination sensitivity"
+      ],
+      "protected_freshness": false,
+      "eight_class_gold": false,
+      "terminal": "DEVELOPMENT_ONLY_PUBLIC_GOLD__P5_CONFIRMATORY_ENDPOINT_OPEN"
+    },
+    {
+      "source_id": "DEFECTS4J",
+      "canonical_url": "https://github.com/rjust/defects4j",
+      "immutable_revision": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+      "tree_sha": "e2912f772b85037f8c3c1bdc2a27db6bfc70e661",
+      "declared_active_bugs": 854,
+      "content_class_rights": {
+        "framework_repository": "MIT_ROOT_BOUND",
+        "underlying_project_revisions_tests_and_bug_reports": "CANNOT_CHECK_PER_PROJECT_ROOT"
+      },
+      "allowed_bridge_use": [
+        "framework-level development and reproducibility preflight",
+        "implementation-class fixtures only after project-root clearance"
+      ],
+      "protected_freshness": false,
+      "eight_class_gold": false,
+      "terminal": "FRAMEWORK_BOUND__UNDERLYING_PROJECT_RIGHTS_AND_P5_ENDPOINT_OPEN"
+    },
+    {
+      "source_id": "SWE_BENCH_VERIFIED",
+      "canonical_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified",
+      "immutable_revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+      "selected_object": {
+        "path": "data/test-00000-of-00001.parquet",
+        "lfs_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25",
+        "declared_examples": 500
+      },
+      "content_class_rights": {
+        "dataset_bytes": "CANNOT_CHECK_NO_CURRENT_CARD_LICENSE_FIELD_OR_TAG",
+        "issue_comment_attachment_and_upstream_repository_bytes": "CANNOT_CHECK_PER_ROOT"
+      },
+      "allowed_bridge_use": [],
+      "protected_freshness": false,
+      "eight_class_gold": false,
+      "terminal": "CANNOT_CHECK_DATASET_AND_CONTENT_CLASS_RIGHTS"
+    },
+    {
+      "source_id": "BUGSWARM",
+      "canonical_url": "https://github.com/BugSwarm/bugswarm",
+      "immutable_revision": "2b276ac5c475bcc71c9d62384943206c7768408f",
+      "content_class_rights": {
+        "infrastructure_repository": "BSD_3_CLAUSE_ROOT_BOUND",
+        "mined_project_repository": "CANNOT_CHECK_PER_PROJECT_ROOT",
+        "ci_log_patch_test_and_container_layers": "CANNOT_CHECK_PER_ARTIFACT_ROOT"
+      },
+      "allowed_bridge_use": [
+        "infrastructure adapter development without opening mined artifact bodies"
+      ],
+      "protected_freshness": false,
+      "eight_class_gold": false,
+      "terminal": "INFRASTRUCTURE_BOUND__MINED_ARTIFACT_RIGHTS_AND_CAUSAL_LABELS_CANNOT_CHECK"
+    },
+    {
+      "source_id": "BUGSINPY",
+      "canonical_url": "https://github.com/soarsmu/BugsInPy",
+      "immutable_revision": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+      "content_class_rights": {
+        "repository_and_framework": "CANNOT_CHECK_NO_ROOT_LICENSE_FILE_AT_PIN",
+        "underlying_project_revisions_tests_and_bug_reports": "CANNOT_CHECK_PER_PROJECT_ROOT"
+      },
+      "allowed_bridge_use": [],
+      "protected_freshness": false,
+      "eight_class_gold": false,
+      "terminal": "CANNOT_CHECK_RIGHTS__EXCLUDED_FROM_BRIDGE_SAMPLING"
+    },
+    {
+      "source_id": "SWE_BENCH_MULTIMODAL_CURRENT",
+      "canonical_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal",
+      "immutable_revision": "4e6662d51c48e475f7f346e4fa09a6f8b31fcaa5",
+      "selected_objects": [
+        {
+          "path": "data/dev-00000-of-00001.parquet",
+          "lfs_sha256": "714f4b815680608168d620c87c6b3420b3d4690d6656fc85b1da6511bfb55931",
+          "bytes": 3220440,
+          "declared_examples_machine_metadata": 100
+        },
+        {
+          "path": "data/test-00000-of-00001.parquet",
+          "lfs_sha256": "ce21141e0b2aadb6b91cf21d27c93e4c159afb1c4c25b7b4ea9222d823dd9da7",
+          "bytes": 8083200,
+          "declared_examples_machine_metadata": 480
+        }
+      ],
+      "content_class_rights": {
+        "dataset_bytes": "CANNOT_CHECK_NO_DATASET_LEVEL_LICENSE_FIELD_OR_TAG",
+        "harness_repository": "MIT_AT_SWE_BENCH_REPOSITORY",
+        "task_generation_repository": "CANNOT_CHECK_NO_REPOSITORY_LICENSE_ASSERTION",
+        "issue_pr_comment_image_attachment_and_upstream_repository_bytes": "CANNOT_CHECK_PER_ROOT"
+      },
+      "public_gold_evidence": [
+        "current card describes patch as the gold patch",
+        "current card publishes test_patch, FAIL_TO_PASS, and PASS_TO_PASS schema fields",
+        "current card documents local test evaluation and predictions_path gold",
+        "official task repository documents running gold evaluation"
+      ],
+      "allowed_bridge_use": [],
+      "conditional_use_after_rights_resolution": [
+        "development-only visual issue-repair fixture",
+        "public-gold contamination control"
+      ],
+      "protected_freshness": false,
+      "eight_class_gold": false,
+      "terminal": "PUBLIC_TEST_GOLD_AND_LOCAL_EVALUATION__RIGHTS_CANNOT_CHECK__NOT_PROTECTED"
+    },
+    {
+      "source_id": "SWE_BENCH_SB_CLI_AND_API",
+      "canonical_url": "https://github.com/SWE-bench/sb-cli",
+      "immutable_revision": "b679692b8b7e274a6c89fd0842f25b02da4b9256",
+      "api_base_url": "https://api.swebench.com",
+      "content_class_rights": {
+        "client_repository": "MIT_ROOT_BOUND",
+        "service_backend_and_evaluator_images": "CANNOT_CHECK_UNVERSIONED_AND_UNRELEASED",
+        "served_task_test_and_gold_bytes": "CANNOT_CHECK",
+        "submitted_candidate_patch": "CANNOT_CHECK_SERVICE_TERMS_NOT_BOUND_IN_THIS_LANE"
+      },
+      "service_capabilities_observed": [
+        "prediction upload",
+        "quota-limited remote evaluation",
+        "JSON report retrieval"
+      ],
+      "missing_for_protected_custody": [
+        "server evaluator digest",
+        "served dataset and split digest",
+        "evaluation image and environment digest",
+        "access-history receipt",
+        "rights and scholarly-use disposition",
+        "independent verifier receipt"
+      ],
+      "allowed_bridge_use": [
+        "remote public-evaluation conformance only after service terms and source rights bind"
+      ],
+      "protected_freshness": false,
+      "eight_class_gold": false,
+      "terminal": "REMOTE_PUBLIC_EVALUATION_ONLY__NOT_PROTECTED"
+    },
+    {
+      "source_id": "SWE_BENCH_PRO_COMMERCIAL_PRIVATE_CONDITIONAL",
+      "canonical_urls": [
+        "https://static.scale.com/uploads/654197dc94d34f66c0f5184e/SWEAP_Eval_Scale%20(9).pdf",
+        "https://labs.scale.com/leaderboard/swe_bench_pro_private"
+      ],
+      "observed_primary_pdf_sha256": "9952394066c11d4992e24a9d3c2c35288efee0ecd2ec3cd67bc918efcf717e93",
+      "provider_described_scope": {
+        "private_proprietary_repositories": 18,
+        "commercial_problem_count": 276,
+        "public_access": false
+      },
+      "content_class_rights": {
+        "provider_claimed_commercial_repository_access": "PARTNERSHIP_OR_PURCHASE_DESCRIBED_BY_PROVIDER",
+        "this_project_scholarly_use_and_result_publication": "CANNOT_CHECK_NO_EXECUTED_AGREEMENT",
+        "task_test_image_and_result_receipt_export": "CANNOT_CHECK"
+      },
+      "strength": "STRONGEST_CURRENT_CONTRACTUAL_PROVIDER_CANDIDATE",
+      "missing_for_bridge": [
+        "written external-evaluation agreement",
+        "genuinely new post-freeze cases",
+        "task, split, test, harness, image, and evaluator commitments",
+        "candidate-visible boundary and access telemetry",
+        "six-arm matched execution",
+        "machine-readable per-task result and harm receipts",
+        "external verifier access",
+        "revision classes beyond implementation or execution repair"
+      ],
+      "protected_freshness": "CANNOT_CHECK_PRIVATE_IS_NOT_POST_FREEZE_FRESHNESS",
+      "eight_class_gold": false,
+      "terminal": "STRONGEST_CONTRACTUAL_PROVIDER_CANDIDATE__NOT_EXECUTION_BOUND"
+    },
+    {
+      "source_id": "SWE_BENCH_LIVE_FUTURE_RELEASE_AUXILIARY",
+      "canonical_urls": [
+        "https://github.com/microsoft/SWE-bench-Live",
+        "https://huggingface.co/datasets/SWE-bench-Live/SWE-bench-Live"
+      ],
+      "immutable_revisions": {
+        "repository": "bc09878a5d192d0804dbd647dc6e650372fcb0ac",
+        "dataset": "a637bd46829f3132e12938c8a0ca93173a977b8e"
+      },
+      "content_class_rights": {
+        "repository_or_dataset_declared_level": "MIT_REPORTED_BY_OFFICIAL_CARD_OR_REPOSITORY",
+        "upstream_issue_patch_test_and_attachment_bytes": "CANNOT_CHECK_PER_PROJECT_ROOT"
+      },
+      "freshness_use": "A future release can be a temporal-freshness auxiliary only if every subject and comparator freezes before release and no post-release modification is permitted.",
+      "protected_freshness": false,
+      "eight_class_gold": false,
+      "terminal": "FUTURE_PUBLIC_FRESHNESS_AUXILIARY_ONLY__NOT_PROTECTED_CUSTODY"
+    },
+    {
+      "source_id": "COMMISSIONED_EXTERNAL_PROTECTED_PANEL",
+      "canonical_url": null,
+      "immutable_revision": null,
+      "content_class_rights": {
+        "all_case_content_classes": "UNBOUND_PENDING_SIGNED_PROVIDER_CONTRACT"
+      },
+      "allowed_bridge_use": [],
+      "becomes_eligible_only_if": [
+        "the provider contract in PROTECTED_FRESHNESS_PROVIDER_CONTRACT_V1.json is identity-complete and signed",
+        "all retained bytes have root-bound permission",
+        "cases are genuinely new and authored after the protocol freeze",
+        "candidate and comparator operators never receive gold, protected tests, harm rubrics, or fresh-transfer targets",
+        "a separate verifier can authenticate commitments, access logs, and result receipts"
+      ],
+      "protected_freshness": "UNBOUND",
+      "eight_class_gold": "UNBOUND",
+      "terminal": "P5_PROTECTED_PROVIDER_AND_FRESH_TRANSFER_CANNOT_CHECK"
+    }
+  ],
+  "summary": {
+    "public_sources_allowed_now_for_payload_sampling": 0,
+    "public_sources_with_narrow_development_path_after_per_root_filtering": 2,
+    "current_remote_routes_closing_protected_freshness": 0,
+    "strongest_contractual_provider_candidate": "SWE_BENCH_PRO_COMMERCIAL_PRIVATE_CONDITIONAL",
+    "paper_level_empirical_blocker_closed": false,
+    "scientific_terminal": "PUBLIC_DEVELOPMENT_SUBSTRATE_PARTIALLY_BOUND__PROTECTED_RIGHTS_FRESHNESS_AND_EIGHT_CLASS_GOLD_OPEN"
+  }
+}

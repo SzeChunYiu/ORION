@@ -1,0 +1,102 @@
+{
+  "boundary": "This corrects label-independent population mechanics only. It is frozen after class counts were incidentally opened by V1 but before any candidate or comparator outcome; it supplies no performance evidence.",
+  "cause": "For Fluoride and Neuropain only, the superseded audit applied space.join to a string rather than to split tokens, creating a whitespace-insensitive character-sequence identity.",
+  "controller_or_comparator_outcomes_observed": false,
+  "corrected_identity": "SHA-256 of the case-sensitive whitespace-normalized concatenation title + one space + abstract for every review.",
+  "date": "2026-08-23",
+  "identity": "P2_SWIFT_CONTENT_STRUCTURE_PREFLIGHT_CORRECTION_V2",
+  "labels_used": false,
+  "max_pairwise_shared_content_identities": 68,
+  "pairwise_overlaps": [
+    {
+      "review_a": "BPA",
+      "review_b": "Fluoride",
+      "shared_content_identities": 0
+    },
+    {
+      "review_a": "BPA",
+      "review_b": "Neuropain",
+      "shared_content_identities": 0
+    },
+    {
+      "review_a": "BPA",
+      "review_b": "PFOS-PFOA",
+      "shared_content_identities": 35
+    },
+    {
+      "review_a": "BPA",
+      "review_b": "Transgenerational",
+      "shared_content_identities": 68
+    },
+    {
+      "review_a": "Fluoride",
+      "review_b": "Neuropain",
+      "shared_content_identities": 25
+    },
+    {
+      "review_a": "Fluoride",
+      "review_b": "PFOS-PFOA",
+      "shared_content_identities": 0
+    },
+    {
+      "review_a": "Fluoride",
+      "review_b": "Transgenerational",
+      "shared_content_identities": 0
+    },
+    {
+      "review_a": "Neuropain",
+      "review_b": "PFOS-PFOA",
+      "shared_content_identities": 0
+    },
+    {
+      "review_a": "Neuropain",
+      "review_b": "Transgenerational",
+      "shared_content_identities": 0
+    },
+    {
+      "review_a": "PFOS-PFOA",
+      "review_b": "Transgenerational",
+      "shared_content_identities": 58
+    }
+  ],
+  "reviews": {
+    "BPA": {
+      "canonical_rows": 7697,
+      "eligible_rows": 7700,
+      "missing_metadata_rows": 0,
+      "source_rows": 7700,
+      "within_review_duplicate_content_excess": 3
+    },
+    "Fluoride": {
+      "canonical_rows": 4477,
+      "eligible_rows": 4479,
+      "missing_metadata_rows": 0,
+      "source_rows": 4479,
+      "within_review_duplicate_content_excess": 2
+    },
+    "Neuropain": {
+      "canonical_rows": 29157,
+      "eligible_rows": 29207,
+      "missing_metadata_rows": 0,
+      "source_rows": 29207,
+      "within_review_duplicate_content_excess": 50
+    },
+    "PFOS-PFOA": {
+      "canonical_rows": 6309,
+      "eligible_rows": 6309,
+      "missing_metadata_rows": 22,
+      "source_rows": 6331,
+      "within_review_duplicate_content_excess": 0
+    },
+    "Transgenerational": {
+      "canonical_rows": 48601,
+      "eligible_rows": 48632,
+      "missing_metadata_rows": 6,
+      "source_rows": 48638,
+      "within_review_duplicate_content_excess": 31
+    }
+  },
+  "superseded_audit_sha256": "d36ae4f5fdd627923f39a9d7d8f609933c0139adbbd7e977d8d1c61517b0e3bd",
+  "total_canonical_rows": 96241,
+  "total_eligible_rows": 96327
+}

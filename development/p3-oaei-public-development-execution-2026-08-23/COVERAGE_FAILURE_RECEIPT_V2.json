@@ -1,0 +1,31 @@
+{
+  "authority": "PUBLIC_GOLD_INFORMED_FAILURE_DIAGNOSIS__DEVELOPMENT_ONLY",
+  "by_aml_selected_and_label_equal": {
+    "AML_FALSE__LABEL_FALSE": 285,
+    "AML_TRUE__LABEL_TRUE": 19
+  },
+  "by_point_transition": {
+    "GLUE_TO_OBSTRUCTION": 19,
+    "OBSTRUCTION_TO_GLUE": 285
+  },
+  "by_target": {
+    "105": 3,
+    "201": 76,
+    "202": 91,
+    "204": 9,
+    "205": 55,
+    "222": 1,
+    "223": 8,
+    "301": 26,
+    "302": 19,
+    "303": 6,
+    "304": 10
+  },
+  "current_terminal": "P3_AGREEMENT_TO_POINT_RULE_FALSIFIED_ON_PUBLIC_DEVELOPMENT",
+  "failure_rate": 0.004458327833751301,
+  "interpretation": "Agreement between AML and exact-label evidence was not sufficient to license a point decision: 285 double-negative agreements missed GLUE and 19 double-positive agreements falsely asserted GLUE.",
+  "n_candidate_envelope_failures": 304,
+  "protected_evidence": false,
+  "protocol_id": "P3.PUBLIC.OAEI.CONFLICT_PRESERVING.DEV.V2",
+  "schema_version": "orion.p3.oaei-public-coverage-failure.v2"
+}

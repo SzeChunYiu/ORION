@@ -1,0 +1,165 @@
+{
+  "adapter_id": "DGM_OUTCOME_FREE_INITIALIZATION_ADAPTER_V9",
+  "adapter_implementation": {
+    "exit_code": 3,
+    "fail_closed": true,
+    "path": "p5_c3_outcome_free_initializer_v9.py",
+    "sha256": "3a1ee1a6a1a781793c0d288ca98afdc2b5ad0269be5fa374c5108f35590f6862"
+  },
+  "adapter_result": {
+    "adapter_id": "DGM_OUTCOME_FREE_INITIALIZATION_ADAPTER_V9",
+    "adapter_materialized": false,
+    "authority": "STATIC_EXACT_BYTE_AND_AST_MICROGATE_ONLY",
+    "claims": {
+      "execution_readiness": "NOT_ESTABLISHED",
+      "performance": "CANNOT_CHECK",
+      "superiority": "CANNOT_CHECK"
+    },
+    "dgm_source_mutated": false,
+    "executions": {
+      "benchmark": 0,
+      "dgm": 0,
+      "model": 0,
+      "outcomes": 0,
+      "scorer": 0,
+      "tests": 0
+    },
+    "field": "runtime.task_environment",
+    "field_instances_closed": 0,
+    "field_status": "BLOCKING",
+    "gates": {
+      "fresh_archive_is_nonempty_initial": true,
+      "fresh_initial_directory_required": true,
+      "missing_parent_metadata_is_caught_and_skipped": true,
+      "native_parent_eligibility_reads_all_four_prior_fields": true,
+      "native_parent_eligibility_reads_overall_performance": true,
+      "no_released_outcome_free_initialization_argument": true,
+      "nondegenerate_random_route_requires_candidates": true
+    },
+    "initial_directory_materialized": false,
+    "lang1_core_mutated": false,
+    "native_semantics_preservable": false,
+    "next_discriminator": "An upstream DGM release must define an outcome-free initial parent and selection semantics natively; otherwise a changed parent selector is a new comparator, not a semantics-preserving C3 adapter.",
+    "predecessor_seed_sha256": "8d7197f581cad11695ae4c867ad8f941d86f7eeec8d0e8e4e7b79895d72b8f2d",
+    "preregistration_sha256": "18946ca0493bb73a3c52f51a0cef5910b11f19e0e89c6da34f272c761076718c",
+    "prior_performance_fields_created": false,
+    "required_prior_fields": [
+      "accuracy_score",
+      "overall_performance",
+      "total_emptypatch_ids",
+      "total_resolved_ids",
+      "total_unresolved_ids"
+    ],
+    "residual": "NATIVE_C3_INITIAL_PARENT_ELIGIBILITY_REQUIRES_REAL_PRIOR_OUTCOME_METADATA",
+    "schema_version": "orion.p5.c3.outcome-free-initializer-adapter-result.v9",
+    "source_excerpt_sha256": "5a1d46b8328d7215701fc20959080eddbde029bf2836f97ed9408e8f1ec7edec",
+    "source_lines_examined": [
+      [
+        15,
+        35
+      ],
+      [
+        50,
+        68
+      ],
+      [
+        215,
+        320
+      ]
+    ],
+    "source_member": "candidate/dgm/DGM_outer.py",
+    "source_member_sha256": "239bc76f0e1b78210b8f7b3757b1082f6ca07db3537d6af50a45bf97709795ed",
+    "strategy_adjudication": [
+      {
+        "admissible": false,
+        "reason": "Requires excluded initial/ prior-result payloads.",
+        "strategy": "RESTORE_NATIVE_INITIAL_METADATA"
+      },
+      {
+        "admissible": false,
+        "reason": "Fabricates prior performance and identifier partitions that native selection consumes.",
+        "strategy": "SYNTHESIZE_NEUTRAL_OR_ZERO_OVERALL_PERFORMANCE"
+      },
+      {
+        "admissible": false,
+        "reason": "Avoids rather than preserves a nondegenerate C3 parent-selection and self-edit route.",
+        "strategy": "EMPTY_ARCHIVE_OR_ZERO_SELFIMPROVE_OR_ZERO_GENERATIONS"
+      },
+      {
+        "admissible": false,
+        "reason": "Materially replaces the released score/count-dependent parent-eligibility semantics.",
+        "strategy": "REPLACE_NATIVE_PARENT_SELECTION_WITH_INPUT_CERTIFICATE_ONLY"
+      }
+    ],
+    "terminal": "P5_C3_V9_OUTCOME_FREE_INITIALIZATION_ADAPTER_STOPPED__UNCHANGED_NATIVE_PARENT_SELECTION_REQUIRES_PRIOR_OUTCOME_METADATA__NO_LAWFUL_SEMANTICS_PRESERVING_ADAPTER__RUNTIME_TASK_ENVIRONMENT_REMAINS_BLOCKING"
+  },
+  "authority": "ONE_STATIC_EXACT_BYTE_AND_AST_MICROGATE_ONLY",
+  "excluded_prior_outcome_prefixes": {
+    "absent_from_seed": true,
+    "excluded_payload_contents_opened": false,
+    "forbidden_members_observed": []
+  },
+  "executions": {
+    "benchmark": 0,
+    "dgm": 0,
+    "model": 0,
+    "outcomes": 0,
+    "scorer": 0,
+    "tests": 0
+  },
+  "field_closure_effect": {
+    "c3_blocker_delta": 0,
+    "field": "runtime.task_environment",
+    "field_instances_closed": 0,
+    "v8_status": "BLOCKING",
+    "v9_status": "BLOCKING"
+  },
+  "immutable_lang1_core": {
+    "extracted_for_mutation": false,
+    "member_count": 6,
+    "members": {
+      "candidate/shared_core/APACHE-2.0-LICENSE.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "candidate/shared_core/APACHE-NOTICE.txt": "3b1830189d4da56ebc6e43f32a96b92caa3392cdc0c5ba4af7c399f81696545d",
+      "candidate/shared_core/CASE_BODY_V6.json": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+      "candidate/shared_core/PACKET-CONTENT-CC0-1.0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "candidate/shared_core/TASK_SPECIFICATION_V6.md": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+      "candidate/shared_core/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08"
+    },
+    "mutated": false
+  },
+  "microgate_type": "STATIC_EXACT_BYTE_AND_AST_DATAFLOW_GATE",
+  "microgates_run": 1,
+  "next_discriminator": "An upstream DGM release must define an outcome-free initial parent and selection semantics natively; otherwise a changed parent selector is a new comparator, not a semantics-preserving C3 adapter.",
+  "predecessor_v8": {
+    "hashes_after": {
+      "input_certificate": "460402c3925a083017d640872960ec9927dbbfce62e24fbe7f2cd62faf7de341",
+      "mutable_immutable_split": "f1fead7d0e607ee30132e4c28f5634b0a96abfc17e0f2bb689e9e0a9febf6a4c",
+      "receipt": "fafca0ece9654e7c0b0e738628648fea9b74a917b29440c16513b53a7b21a4d2",
+      "seed": "8d7197f581cad11695ae4c867ad8f941d86f7eeec8d0e8e4e7b79895d72b8f2d"
+    },
+    "hashes_before": {
+      "input_certificate": "460402c3925a083017d640872960ec9927dbbfce62e24fbe7f2cd62faf7de341",
+      "mutable_immutable_split": "f1fead7d0e607ee30132e4c28f5634b0a96abfc17e0f2bb689e9e0a9febf6a4c",
+      "receipt": "fafca0ece9654e7c0b0e738628648fea9b74a917b29440c16513b53a7b21a4d2",
+      "seed": "8d7197f581cad11695ae4c867ad8f941d86f7eeec8d0e8e4e7b79895d72b8f2d"
+    },
+    "mutated": false,
+    "packet": "development/p5-c3-native-environment-v8-2026-08-23"
+  },
+  "preregistration": {
+    "frozen_before_microgate": true,
+    "path": "P5_C3_V9_SUCCESSOR_ADAPTER_PREREGISTRATION.json",
+    "sha256": "18946ca0493bb73a3c52f51a0cef5910b11f19e0e89c6da34f272c761076718c"
+  },
+  "protocol_id": "P5.C3.DGM.OUTCOME_FREE_INITIALIZATION.SUCCESSOR.V9",
+  "schema_version": "orion.p5.c3.outcome-free-successor-microgate-receipt.v9",
+  "scientific_boundary": {
+    "native_c3_semantics_preserved_by_stopping": true,
+    "native_execution_readiness": "NOT_ESTABLISHED",
+    "performance": "CANNOT_CHECK",
+    "prior_performance_fabricated": false,
+    "superiority": "CANNOT_CHECK"
+  },
+  "terminal": "P5_C3_V9_OUTCOME_FREE_INITIALIZATION_ADAPTER_STOPPED__UNCHANGED_NATIVE_PARENT_SELECTION_REQUIRES_PRIOR_OUTCOME_METADATA__NO_LAWFUL_SEMANTICS_PRESERVING_ADAPTER__RUNTIME_TASK_ENVIRONMENT_REMAINS_BLOCKING",
+  "verdict": "STOP_NO_LAWFUL_SEMANTICS_PRESERVING_OUTCOME_FREE_INITIALIZATION_ADAPTER"
+}

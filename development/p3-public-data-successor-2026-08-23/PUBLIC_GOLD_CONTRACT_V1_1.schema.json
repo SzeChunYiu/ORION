@@ -1,0 +1,112 @@
+{
+  "$defs": {
+    "opportunity": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "NONZERO",
+            "ZERO",
+            "CANNOT_CHECK"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "count"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "orion.p3.public-gold-contract.v1.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "case_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "cluster_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "coordinate_opportunities": {
+      "additionalProperties": {
+        "$ref": "#/$defs/opportunity"
+      },
+      "propertyNames": {
+        "enum": [
+          "REFERENT",
+          "CONSTRUCT",
+          "MEASUREMENT",
+          "TEMPORAL_CONTEXT"
+        ]
+      },
+      "type": "object"
+    },
+    "gold_authority": {
+      "enum": [
+        "CRAFT_PUBLIC_GOLD",
+        "SCIREX_PUBLIC_GOLD",
+        "OAEI_PUBLIC_REFERENCE"
+      ]
+    },
+    "identified_relations": {
+      "items": {
+        "enum": [
+          "GLUE",
+          "OBSTRUCTION",
+          "PLURAL",
+          "UNRESOLVED"
+        ]
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "input_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "panel_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "protected_evidence": {
+      "const": false
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "source_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "true_relation": {
+      "enum": [
+        "GLUE",
+        "OBSTRUCTION",
+        "PLURAL",
+        "UNRESOLVED"
+      ]
+    }
+  },
+  "required": [
+    "case_id",
+    "cluster_id",
+    "source_id",
+    "panel_id",
+    "input_digest",
+    "true_relation",
+    "identified_relations",
+    "gold_authority",
+    "protected_evidence",
+    "coordinate_opportunities"
+  ],
+  "title": "Evaluator-only public gold bound to a sealed case",
+  "type": "object"
+}

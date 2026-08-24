@@ -1,0 +1,103 @@
+{
+  "claim_scope": "PUBLIC_DEVELOPMENT_CROSS_REVIEW_CONTROLLER_TRANSPORT_ONLY",
+  "date": "2026-08-23",
+  "frozen_before_controller_or_comparator_outcomes": true,
+  "identity": "P2_SWIFT_SOURCE_AND_RIGHTS_FREEZE_V1",
+  "primary_source": {
+    "article_doi": "10.1186/s13643-016-0263-z",
+    "article_title": "SWIFT-Review: a text-mining workbench for systematic review",
+    "files": {
+      "source-audit/swift-camarades.xlsx": {
+        "bytes": 18129827,
+        "sha256": "6977a713486f31c390d582e9de9e1488374a8c9f80c04788d5a43c03b0691c69"
+      },
+      "source-audit/swift-ohat.xlsx": {
+        "bytes": 4119296,
+        "sha256": "0d326731f82e41a665a036bcca3d72ce1ee2b3d4af9e783a3dea319c31556462"
+      }
+    },
+    "selected_reviews": [
+      "BPA",
+      "Fluoride",
+      "Neuropain",
+      "PFOS-PFOA",
+      "Transgenerational"
+    ]
+  },
+  "rights": {
+    "article_html": {
+      "bytes": 429158,
+      "path": "source-audit/swift-article.html",
+      "sha256": "2bdf377ea7a910f0cefbad39eebede02a217d2d7d259dcab9396cb4f10355821"
+    },
+    "article_rights_statement": "The publisher HTML states that the article is CC BY 4.0 and that the Creative Commons Public Domain Dedication waiver applies to data made available in the article unless otherwise stated.",
+    "dataset_rights_conclusion": "The two supplementary SWIFT workbooks are treated as article data under the publisher's CC0 data waiver; the pinned CSMeD loader independently declares the SWIFT dataset CC0.",
+    "loader_declaration": {
+      "bytes": 9866,
+      "declared_license": "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+      "path": "source-audit/csmed-swift-loader.py",
+      "sha256": "4261ee2ffa33f66421a42a2556c5cbbc1c9f4d25314f5bc962c7e4d614f72139"
+    },
+    "limits": [
+      "The Apache-2.0 CSMeD repository license alone does not license every constituent dataset.",
+      "This freeze relies on the source article's data waiver for the two SWIFT supplementary workbooks, not on repository code licensing alone.",
+      "The local PubMed title/abstract snapshot has a separate redistribution boundary and is not authorized for redistribution by this freeze.",
+      "This rights conclusion does not create protected custody, independent execution, confirmation, or population transport."
+    ]
+  },
+  "provenance": {
+    "csmed_commit": "b30e9739939f52b1e799295138791f1fd5b002a5",
+    "csmed_commit_receipt": {
+      "bytes": 101561,
+      "path": "source-audit/csmed-commit-main.json",
+      "sha256": "d683d1a9bde601af3da699e663933199b4e102e70fa94e0642171df7ced1d7e6"
+    },
+    "csmed_code_license": {
+      "bytes": 11357,
+      "path": "source-audit/csmed-LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "metadata_only_audits": {
+      "source-audit/swift-content-structure-preflight.json": {
+        "bytes": 2237,
+        "sha256": "d36ae4f5fdd627923f39a9d7d8f609933c0139adbbd7e977d8d1c61517b0e3bd"
+      },
+      "source-audit/swift-label-schema-preflight.json": {
+        "bytes": 720,
+        "sha256": "5c595e5daa130ee3a2d6cc1ae9f2bcfa6eb000b5cc067f085387a9cc0d6865d0"
+      },
+      "source-audit/swift-structure-audit.json": {
+        "bytes": 996,
+        "sha256": "946185cdf2f48ea7a182317f69c4c7b7feaa6e19f8bc10e080962c1466c4d101"
+      }
+    }
+  },
+  "pubmed_enrichment": {
+    "label_blind": true,
+    "missing_pmids": 28,
+    "requested_unique_pmids": 62509,
+    "returned_unique_pmids": 62481,
+    "snapshot": {
+      "bytes": 90520080,
+      "path": "private-source/pubmed-snapshot.jsonl",
+      "sha256": "962aeb56416dc72fe54336eb4867d14e17505b9b28cb7baf2fd469e82439a568"
+    },
+    "snapshot_receipt": {
+      "bytes": 23460,
+      "path": "PUBMED_SNAPSHOT_RECEIPT_V1.json",
+      "sha256": "ea461e91f584028e7fec07f7b2a5d60ba48fccaed6f79fd29ab7a02213ed8199"
+    },
+    "redistribution_boundary": "Local research snapshot. Do not redistribute PubMed titles or abstracts without a separate rights review. Result artifacts must contain hashes and aggregate counts only, never article text."
+  },
+  "rejected_sources": [
+    {
+      "reason": "Dataset license unknown; public repository availability is not a reuse license.",
+      "source": "hannousse/Semantic-Scholar-Evaluation"
+    },
+    {
+      "reason": "Lawful but would require a substantially larger mutable PubMed enrichment before a frozen execution.",
+      "source": "CLEF TAR 2017"
+    }
+  ],
+  "status": "FROZEN_BEFORE_ANY_CONTROLLER_OR_COMPARATOR_OUTCOME"
+}

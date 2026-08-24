@@ -1,0 +1,49 @@
+{
+  "schema_version": "orion.p5.six-arm-terminal-adapter-audit-receipt.v2",
+  "protocol_id": "P5.SIX_ARM.TERMINAL_PRESERVING.ADAPTERS.V2",
+  "work_scope": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p5-six-arm-terminal-adapters-v2/",
+  "shared_checkout_modified": false,
+  "main_manuscripts_modified": false,
+  "comparators_executed": false,
+  "native_output_examples_accessed": false,
+  "public_or_protected_outcome_rows_accessed": false,
+  "protected_evidence_accessed": false,
+  "pytest_run": false,
+  "repository_ci_run": false,
+  "git_commit_merge_rebase_or_push": false,
+  "parallel_lanes": [
+    {
+      "lane": "arms_1_3_adapters",
+      "artifacts": ["P5_V2_ADAPTER_LEDGER_ARMS_1_3.json", "P5_V2_ADAPTER_LEDGER_ARMS_1_3.md"],
+      "result": "SWE conditional 7; MOSS 4; DGM 4; raw singleton 0"
+    },
+    {
+      "lane": "arms_4_6_adapters",
+      "artifacts": ["P5_V2_ADAPTER_LEDGER_ARMS_4_6.json", "P5_V2_ADAPTER_LEDGER_ARMS_4_6.md"],
+      "result": "ADIAS conditional 4; Double Ratchet 1; ScienceClaw 0; raw singleton 0"
+    },
+    {
+      "lane": "resource_config_rights",
+      "artifacts": ["P5_V2_RESOURCE_CONFIG_LEDGER.json", "P5_V2_RESOURCE_CONFIG_LEDGER.md"],
+      "result": "0/6 confirmatory-ready"
+    },
+    {
+      "lane": "formal_fibre_and_conformance",
+      "artifacts": ["P5_NATIVE_OUTPUT_FIBRE_THEOREM_V2.json", "P5_NATIVE_OUTPUT_FIBRE_THEOREM_V2.md", "P5_TERMINAL_ADAPTER_CONFORMANCE_RECEIPT_V2.json"],
+      "result": "six mixed fibres; 90/90 synthetic conformance; 70 UNRESOLVED; zero performance authority"
+    }
+  ],
+  "verification_required": [
+    "parse every JSON artifact",
+    "recompute the synthetic receipt from frozen protocol and fixture hashes",
+    "verify SHA256SUMS"
+  ],
+  "preserved_terminals": {
+    "confirmatory_ready": "0/6",
+    "execution": "P5_SIX_ARM_EXECUTION_CONFIG_RESOURCE_RIGHTS_AND_EIGHT_CLASS_ADAPTERS_CANNOT_CHECK",
+    "performance": "P5_COMPARATOR_PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK",
+    "H1_H4": "CANNOT_CHECK",
+    "protected_freshness": "CANNOT_CHECK"
+  },
+  "terminal": "P5_V2_ADAPTER_HANDOFF_COMPLETE__HASH_VERIFIED__NO_PERFORMANCE_CLAIM"
+}

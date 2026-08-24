@@ -1,0 +1,22 @@
+{
+  "audited_at_utc": "2026-08-23T17:38:58Z",
+  "authored_smoke_fixtures_removed": true,
+  "cli_smoke_stdout_stderr_removed": true,
+  "forbidden_raw_or_large_artifact_paths": [],
+  "lane_file_count_before_sha256s": 22,
+  "lane_total_bytes_before_sha256s": 539542,
+  "largest_file": {
+    "bytes": 383708,
+    "path": "MOSS_OPENCLAW_DEPENDENCY_LOCK_V4.pnpm-lock.yaml"
+  },
+  "locks_intentionally_retained": [
+    "MOSS_HOST_DEPENDENCY_LOCK_V4.uv.lock",
+    "MOSS_OPENCLAW_DEPENDENCY_LOCK_V4.pnpm-lock.yaml"
+  ],
+  "no_raw_or_large_payload_retained": true,
+  "parser_smoke_output_removed": true,
+  "python_cache_paths": [],
+  "schema_version": "orion.p5.c2.cleanup-audit.v4",
+  "scratch_source_runtime_removed": true,
+  "temporary_source_archive_removed": true
+}

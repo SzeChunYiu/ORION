@@ -1,0 +1,147 @@
+{
+  "arm_executions_performed": 0,
+  "authority": "OUTCOME_BLIND_CONTROL_PLANE_CONTRACT_AND_V4_STATUS_RECOMPUTATION_ONLY",
+  "benchmarks_accessed_or_executed": false,
+  "common_custody_contract": {
+    "anti_self_attestation": "This local repository cannot establish independent custody, panel freshness or absence of a feedback channel. The V5 gate can verify receipt structure and hashes but not institutional independence by itself.",
+    "one_bundle_can_target_field_instances": 18,
+    "required_external_facts": [
+      "independent custodian principal and signing key",
+      "protected panel commitment, selection nonce and post-protocol freshness attestation",
+      "immutable external scorer code/data digest and access-control identity",
+      "one accepted frozen candidate terminal per arm and exactly one score event",
+      "proof that protected inputs, diagnostics, scores and outcomes never returned to candidate/adaptation custody",
+      "terminal-only signed closing receipt naming all six arm/source/parser/config digests"
+    ],
+    "status": "SCHEMA_AND_GATE_BOUND__EXTERNAL_EVIDENCE_ABSENT__EIGHTEEN_ARM_FIELDS_REMAIN_BLOCKING"
+  },
+  "common_execution_contract": {
+    "anti_shortcut": "Wrapper source without a matching executor receipt does not bind isolation, compute, runtime, network, or task-environment fields.",
+    "outer_capsule": [
+      "One disposable capsule per arm; no shared mutable state between arms.",
+      "Read-only source and case mounts; scratch-only candidate writes; output is terminal-only and append-only.",
+      "Deny protected, scorer, sibling, host-promotion, device, scheduler and undeclared credential surfaces.",
+      "Account for every descendant process, nested container/daemon, cache, subprocess, service call and remote job.",
+      "Require before/after digests, egress log, cgroup/resource receipt, cleanup receipt and typed timeout/budget terminals."
+    ],
+    "preflight": [
+      "Verify all six frozen arm identities, source/result/field-registry hashes and parser hashes.",
+      "Require one common candidate-visible packet digest and prohibit protected, gold, scorer and prior-outcome payloads.",
+      "Require six arm-native environment/image manifests and six acceptance receipts.",
+      "Refuse all arm execution until every one of the 126 arm-field instances is BOUND."
+    ]
+  },
+  "common_parser_contract": {
+    "dispatch_registry": [
+      {
+        "arm_code": "C1",
+        "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+        "panel_dispatch_status": "BOUND_FROM_V4_BYTES",
+        "path": "development/p5-swe-agent-execution-binding-v4-2026-08-23/p5_c1_native_parser.py",
+        "sha256": "fba94970a47735be47bc71c2c6f99566b343c7526f8516acedb8254b3a2a94c4"
+      },
+      {
+        "arm_code": "C2",
+        "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+        "panel_dispatch_status": "BOUND_FROM_V4_BYTES",
+        "path": "development/p5-moss-execution-binding-v4-2026-08-23/p5_c2_native_parser.py",
+        "sha256": "2e1617527cb1b10c8030e8c5555892c47332a2dde85eb0a539f1eb04043b1470"
+      },
+      {
+        "arm_code": "C3",
+        "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+        "panel_dispatch_status": "BOUND_FROM_V4_BYTES",
+        "path": "development/p5-dgm-execution-binding-v4-2026-08-23/p5_c3_native_parser.py",
+        "sha256": "a1912202b36b7a6b522a99e2466dd71d2c70c0ade51798a3330afead4a7781a9"
+      },
+      {
+        "arm_code": "C4",
+        "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+        "panel_dispatch_status": "BOUND_FROM_V4_BYTES",
+        "path": "development/p5-adias-execution-binding-v4-2026-08-23/p5_c4_native_parser.py",
+        "sha256": "2048aae10c1ba4e03d3925a1040d9ec75bc41e4c52fe9e674400fca3ae12e64e"
+      },
+      {
+        "arm_code": "C5",
+        "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+        "panel_dispatch_status": "BOUND_FROM_V4_BYTES",
+        "path": "development/p5-double-ratchet-execution-binding-v4-2026-08-23/p5_c5_native_parser.py",
+        "sha256": "3b26cde8152a8cb98faff8ba3963ee5e5ea684633154b6302ff3de5fe72a632c"
+      },
+      {
+        "arm_code": "C6",
+        "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+        "panel_dispatch_status": "BOUND_FROM_V4_BYTES",
+        "path": "development/p5-scienceclaw-execution-binding-v4-2026-08-23/p5_c6_native_parser.py",
+        "sha256": "ec04f562d6472699e4fcf2418eb265a350154cdf74117161f885a7964e5113e3"
+      }
+    ],
+    "parser_count": 6,
+    "status": "BOUND_FROM_SIX_EXISTING_V4_PARSER_BINDINGS__NO_NEW_ARM_FIELD_DELTA",
+    "terminal_policy": "Retain native invalid, error, timeout, abstention and UNRESOLVED; emit no protected score or invented singleton."
+  },
+  "common_resource_contract": {
+    "anti_shortcut": "Unselected providers, tokenizers, prices, endpoints or executors make the corresponding fields BLOCKING.",
+    "comparability_rule": "Nominal equality is insufficient; effective capability and accounting coverage must be adjudicated for each native role.",
+    "matched_values": "MUST_BE_FILLED_ONCE_AFTER_CASE_AND_PROVIDER_SELECTION_AND_THEN_BYTE_FROZEN",
+    "required_caps": [
+      "whole-arm and per-case wallclock plus termination grace",
+      "aggregate provider calls, input tokens, output tokens and USD with pre-call refusal and overshoot semantics",
+      "CPU, RAM, PID, disk, GPU and aggregate parallelism across every local descendant and daemon",
+      "finite retries and timeouts by role",
+      "deny-default egress with exact DNS/IP/TLS/service identities and no background/remote work"
+    ]
+  },
+  "evidence_promotion_rule": "A panel artifact fans out to an arm field only when the same bytes logically satisfy that field for that arm, the arm-specific acceptance receipt validates, and every required external or arm-native fact is present. A protocol, schema, placeholder, local assertion, or another arm's receipt is never promoted.",
+  "forbidden_promotions": [
+    "Do not convert a shared schema into six evidence receipts.",
+    "Do not convert a source default into a model/provider/version binding.",
+    "Do not convert a base-image digest into a derived runtime/SBOM binding.",
+    "Do not convert public accessibility into task, benchmark, service or generated-artifact rights.",
+    "Do not convert a local signature or hash check into independent custody or freshness.",
+    "Do not execute any arm, model, benchmark or protected scorer under this packet.",
+    "Do not promote synthetic/parser conformance into performance, superiority, harm or fresh-transfer evidence."
+  ],
+  "freeze_semantics": "PROSPECTIVE_BEFORE_ANY_P5_CONFIRMATORY_ARM_EXECUTION_OR_PROTECTED_OUTCOME_ACCESS",
+  "frozen_at_utc": "2026-08-23T19:19:11Z",
+  "governing_identity_ledger": {
+    "path": "development/p5-six-arm-comparator-panel-2026-08-23/P5_SIX_ARM_COMPARATOR_IDENTITY_LEDGER_V2.json",
+    "sha256": "f6419103024de98d0cf44ee2681399007001eb79c9b830312d501b6045a60583"
+  },
+  "governing_public_panel_protocol": {
+    "path": "development/p5-six-arm-comparator-panel-2026-08-23/P5_OUTCOME_BLIND_COMPARATOR_AND_PUBLIC_PANEL_PROTOCOL_V1.json",
+    "sha256": "af7f0b4415c87fb1cfb6fa28db7872e38018563a7db9eea699d7c7b9138affbe"
+  },
+  "grants_performance_authority": false,
+  "models_accessed_or_executed": false,
+  "outcomes_accessed": false,
+  "paper_id": "P5",
+  "protected_outcomes_accessed": false,
+  "protocol_id": "P5.SIX_ARM.PANELWIDE.ROOT.CLOSURE.V5",
+  "required_field_paths": [
+    "adapter.isolated_write_surface",
+    "adapter.native_parser_binding",
+    "custody.external_protected_scorer",
+    "custody.one_shot_no_feedback_barrier",
+    "custody.protected_panel_freshness",
+    "identity.native_entrypoint_bytes",
+    "identity.source_license_bytes",
+    "identity.source_repository_commit",
+    "inputs.candidate_visible_case_bytes",
+    "model_provider.fallbacks",
+    "model_provider.primary",
+    "resources.calls_tokens_usd",
+    "resources.retry_network",
+    "resources.wallclock",
+    "rights.container_and_generated_artifacts",
+    "rights.model_provider_and_services",
+    "rights.task_and_benchmark_content",
+    "runtime.compute",
+    "runtime.container_or_environment",
+    "runtime.dependency_lock",
+    "runtime.task_environment"
+  ],
+  "rights_and_runtime_boundary": "No panel-wide contract projects one source licence, provider term, task grant, image, lockfile, SBOM, runtime receipt or generated-artifact permission across incompatible arms.",
+  "schema_version": "orion.p5.panelwide-root-closure-protocol.v5",
+  "terminal": "P5_V5_PANELWIDE_ROOT_CAUSE_CONTRACT_AND_SIX_PARSER_DISPATCH_BOUND__EIGHTY_FOUR_BLOCKER_INSTANCES_COLLAPSED_TO_FIVE_ROOT_WORK_PACKAGES__ZERO_ARM_FIELD_BINDINGS_CREATED_WITHOUT_MISSING_EXTERNAL_OR_ARM_SPECIFIC_EVIDENCE__FORTY_TWO_OF_ONE_HUNDRED_TWENTY_SIX_FIELDS_BOUND__EIGHTY_FOUR_BLOCKING__ZERO_OF_SIX_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK"
+}

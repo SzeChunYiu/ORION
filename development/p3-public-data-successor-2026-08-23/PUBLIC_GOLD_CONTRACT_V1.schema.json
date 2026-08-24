@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p3.public-gold-contract.v1",
+  "title": "Evaluator-only public gold and identification contract",
+  "type": "object",
+  "required": ["case_id", "cluster_id", "true_relation", "gold_authority", "protected_evidence"],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "cluster_id": {"type": "string", "minLength": 1},
+    "true_relation": {"enum": ["GLUE", "OBSTRUCTION", "PLURAL", "UNRESOLVED"]},
+    "identified_relations": {
+      "type": "array",
+      "items": {"enum": ["GLUE", "OBSTRUCTION", "PLURAL", "UNRESOLVED"]},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "gold_authority": {"enum": ["CRAFT_PUBLIC_GOLD", "SCIREX_PUBLIC_GOLD", "OAEI_PUBLIC_REFERENCE"]},
+    "protected_evidence": {"const": false},
+    "coordinate_opportunities": {"type": "object"},
+    "provenance": {"type": "object"}
+  },
+  "additionalProperties": true
+}

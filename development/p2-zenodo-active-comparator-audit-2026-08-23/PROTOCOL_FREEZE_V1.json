@@ -1,0 +1,130 @@
+{
+  "audit_identity": "P2_ZENODO_V2_POST_OUTCOME_ACTIVE_COMPARATOR_AUDIT_V1",
+  "candidate": {
+    "arm": "ACTIVE_LOGREG",
+    "batch_size": 52,
+    "known_before_this_freeze": true,
+    "order_sha256_expected": "ef00a1c9e31aa11379067765b230ca396ffbfc28d488a865ee0c46ac4114110a",
+    "recall_at_010_expected": 0.7034085878707392,
+    "source_result_sha256": "60c050a0bb1580c279d80ac365a80c9122de25fa0c796190ab897f2ed8119b3b",
+    "wss_at_95_expected": 0.7447442625518915
+  },
+  "claim_scope": "POST_V2_ONE_PUBLIC_POOL_ACTIVE_COMPARATOR_AUDIT_ONLY",
+  "comparator_outcomes_observed_before_freeze": false,
+  "comparator_registry": {
+    "ASREVIEW_ELAS_U3_CADENCE_MATCHED": {
+      "balancer": {
+        "name": "balanced",
+        "ratio": 1.2
+      },
+      "batch_size": 52,
+      "classifier": {
+        "alpha": 3.822,
+        "name": "MultinomialNB"
+      },
+      "feature_extractor": {
+        "lowercase": true,
+        "ngram_range": [
+          1,
+          1
+        ],
+        "stop_words": "english",
+        "vectorizer": "TfidfVectorizer"
+      },
+      "provenance": "Pinned ASReview ELAS u3 configuration; query cadence alone is matched to the V2 candidate.",
+      "querier": "stable descending positive-class probability"
+    },
+    "ASREVIEW_ELAS_U4_CADENCE_MATCHED": {
+      "balancer": {
+        "name": "balanced",
+        "ratio": 9.8
+      },
+      "batch_size": 52,
+      "classifier": {
+        "C": 0.11,
+        "loss": "squared_hinge",
+        "name": "LinearSVC",
+        "random_state": 20260823
+      },
+      "feature_extractor": {
+        "lowercase": true,
+        "max_df": 0.95,
+        "min_df": 1,
+        "ngram_range": [
+          1,
+          2
+        ],
+        "sublinear_tf": true,
+        "vectorizer": "TfidfVectorizer"
+      },
+      "provenance": "Pinned ASReview default ELAS u4 configuration with an explicit deterministic LinearSVC seed; query cadence alone is matched to the V2 candidate.",
+      "querier": "stable descending decision function"
+    }
+  },
+  "date": "2026-08-23",
+  "forbidden_claims": [
+    "prospective confirmation of the already observed V2 result",
+    "exact reproduction of the ASReview application or its one-record query cadence",
+    "ASReview inferiority as a software system",
+    "cold-start screening",
+    "fitted-model, representation, identity-adapter, initialization-policy or population transport",
+    "multi-review or source-general superiority",
+    "protected labels, independent custody or independent replay",
+    "ORION-specific novelty or superiority",
+    "open-world route invention, closure or task completion"
+  ],
+  "gates": {
+    "G1_BINDING": "Zenodo body, V1 retained failure, V2 protocol, V2 implementation, V2 result, pinned ASReview archive and selected source-file hashes all match",
+    "G2_CANDIDATE_REPRODUCTION": "candidate order hash, recall at 10 percent and WSS at 95 reproduce the retained V2 receipt",
+    "G3_PRIMARY_ACTIVE_MARGIN": "candidate recall at 10 percent minus the maximum of both frozen active comparators is at least 0.05",
+    "G4_WORK_SAVING_DOMINANCE": "candidate WSS at 95 minus the maximum WSS at 95 across both frozen active comparators is nonnegative"
+  },
+  "initial_seed": "the exact V2 included/excluded record pair and order, selected by the retained complete-label-informed hash rule",
+  "metrics": {
+    "primary": "recall at 10 percent screened",
+    "secondary": [
+      "recall at 5 percent",
+      "recall at 20 percent",
+      "fraction screened to 95 percent recall",
+      "WSS at 95"
+    ]
+  },
+  "population": {
+    "eligible_unique_records": 25534,
+    "excluded_records": 23275,
+    "included_records": 2259,
+    "source": "Zenodo 10423427 citation_screening_deduplicated_corpus.csv after the retained V2 schema repair",
+    "source_bytes": 53881052,
+    "source_md5": "3d8c9589d8051b26d6f9dff7eaf1865d"
+  },
+  "positive_terminal": "P2_ZENODO_V2_CANDIDATE_SURVIVES_PINNED_ACTIVE_COMPARATOR_FAMILY_ON_ONE_PUBLIC_POOL",
+  "negative_terminal": "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR",
+  "cannot_check_terminal": "P2_ZENODO_V2_ACTIVE_COMPARATOR_AUDIT_CANNOT_CHECK_BINDING",
+  "provenance": {
+    "asreview_archive_sha256": "d7023ed8c12cbc3690af1c7db6f907d7c179061253a5a1007c6290e46ecef912",
+    "asreview_commit": "1788bc97ff5b5652dbe1e5b5ad5253bef1b03aef",
+    "asreview_license": "Apache-2.0",
+    "asreview_repository": "asreview/asreview",
+    "selected_source_sha256": {
+      "asreview/learner.py": "96064f9c15dff92fb0bc587d4704745dc519c2c31ab277d70d6841656a67a059",
+      "asreview/models/balancers.py": "66320e140aa362b67f59695151debea98033ac7512a287955aa495330ff1f3d9",
+      "asreview/models/classifiers.py": "4a7eb542784bc85bc23949ed237bfe2e16bf0ca912d2969a358e734cb638d891",
+      "asreview/models/feature_extractors.py": "e5fded88198e9cef346a74a8c612728545c8b738a6197914c6356e3a26930ba8",
+      "asreview/models/models.py": "597d10c6f1691f87d22ceb4b58a9c2d7766d99fddaa2ac017c7d088b103dbc16",
+      "asreview/models/queriers.py": "ffa6bbc729e28f7e04a64d73f8244e9325389dd95acc285a9375272a0d17e515"
+    },
+    "v1_retained_result_sha256": "775f3a105487cbce22839a90ae7441f8bb0b154ee0bc9b02ed0c53159f06b23b",
+    "v2_implementation_sha256": "174a475fd820505fd5bc2a6d8cc946b612294901bfceb6c121a23b9a7ef55b6c",
+    "v2_protocol_sha256": "b564c9546def95db55ca0c2733d32198112241669e5c0917d48bb878ede27efb",
+    "v2_result_sha256": "60c050a0bb1580c279d80ac365a80c9122de25fa0c796190ab897f2ed8119b3b"
+  },
+  "source_adapter": {
+    "candidate": "exact retained V2 whitespace-normalized title plus abstract plus MeSH text",
+    "comparator_abstract": "whitespace-normalized original abstract followed by MeSH terms with pipes replaced by spaces",
+    "comparator_title": "whitespace-normalized original title",
+    "labels": "include maps to 1 and exclude maps to 0; no terminal is collapsed or relabelled",
+    "record_order": "ascending retained V2 class-free record identity SHA-256",
+    "tie_break": "stable score ordering over ascending record identity"
+  },
+  "status": "FROZEN_AFTER_V2_OUTCOME_BEFORE_ANY_REGISTERED_ACTIVE_COMPARATOR_OUTCOME"
+}

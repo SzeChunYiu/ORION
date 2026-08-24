@@ -1,0 +1,167 @@
+{
+  "authority": "PUBLIC_METADATA_SOURCE_FEASIBILITY_ONLY",
+  "candidate_filter": {
+    "accepted_relation_schemes": [
+      "arxiv",
+      "doi",
+      "handle",
+      "url"
+    ],
+    "accepted_relations": [
+      "cites",
+      "documents",
+      "isCitedBy",
+      "isDerivedFrom",
+      "isDocumentedBy",
+      "isIdenticalTo",
+      "isReferencedBy",
+      "isSourceOf",
+      "isSupplementTo",
+      "isSupplementedBy",
+      "references"
+    ],
+    "files_not_downloaded": true,
+    "public_file_evidence": "at least one HTTPS file content link exposed in the record response",
+    "public_metadata_evidence": "returned by unauthenticated official public API",
+    "publication_resource_type_rule": "publication or publication-*",
+    "publication_target_resource_type_required": true,
+    "record_license_basis": "exact open-license identifiers observed in the disclosed Zenodo schema probes; linked-object rights remain unbound",
+    "record_license_ids": [
+      "agpl-3.0-or-later",
+      "apache2.0",
+      "bsd-3-clause",
+      "cc-by-4.0",
+      "cc-zero",
+      "gpl-3.0",
+      "gpl-3.0-or-later",
+      "mit-license"
+    ],
+    "typed_relation_required": true
+  },
+  "cannot_check": "API/schema/pagination integrity fails or disclosure digest does not bind",
+  "counts_reported": [
+    "raw_hits",
+    "prefreeze_exclusions",
+    "duplicate_within_query",
+    "licence_eligible",
+    "public_file_evidence_eligible",
+    "typed_relation_eligible",
+    "publication_typed_relation_eligible",
+    "unique_candidate_records",
+    "cross_query_record_count",
+    "per_domain_mechanism_counts"
+  ],
+  "current_terminal": "FROZEN_BEFORE_V2_CENSUS_ACQUISITION",
+  "date": "2026-08-23",
+  "forbidden_claims": [
+    "natural-pair eligibility",
+    "article identity equivalence without adjudication",
+    "content rights beyond exact Zenodo record licence",
+    "linked external object rights",
+    "case resolution",
+    "scientific performance",
+    "provider generality",
+    "confirmation",
+    "ORION superiority"
+  ],
+  "identity": "P4_ZENODO_RELATED_OBJECT_CENSUS_V2",
+  "lineage": {
+    "repairs": [
+      "unauthenticated_api_page_size_200_to_documented_observed_limit_25",
+      "single_page_to_nine_frozen_pages",
+      "v1_access_field_assumption_to_public_api_plus_https_file-link evidence",
+      "zenodo_cc0_identifier_cc0-1.0_to_cc-zero",
+      "software-query_open_license_ids_added",
+      "bidirectional_related-identifier_vocabulary_bound",
+      "positive_gate_bound_to_publication-typed_relations_not_any_typed_relation"
+    ],
+    "v1_protocol_sha256": "d71615b812bc582d528f1d6058f5dc57b9522142bb2d96c9a877dffac77bf1b2",
+    "v1_retained_result_sha256": "433968a0d98c858781b6cd45a48dbd34b12e359dfe479b95ae0b14016c5d398c",
+    "v1_retained_terminal": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1_TRANSPORT_CANNOT_CHECK_HTTP_400",
+    "v2_is_distinct_successor": true
+  },
+  "negative_source_signal": "one or more frozen cells has fewer than 48 unique publication-typed candidates; retain the shortfall and expand a disjoint provider without changing that cell",
+  "outcomes_accessed": false,
+  "positive_source_signal": {
+    "conjunction": "all eight frozen domain-mechanism cells",
+    "minimum_per_cell": 48,
+    "unit": "unique non-prefreeze Zenodo records with accepted record license, public file evidence, and an accepted publication-typed related identifier"
+  },
+  "prefreeze_disclosure": {
+    "excluded_record_count": 162,
+    "exclusion_rule": "all disclosed record IDs are excluded before V2 candidate counts",
+    "path": "development/p4-scientific-ascent-2026-08-23/P4_ZENODO_V2_PREFREEZE_PROBE_DISCLOSURE.json",
+    "sha256": "76eab6d8d7c1f32df141d16dbbe57d3007ba183a8d3e9a44818626f6a2644178"
+  },
+  "provider": {
+    "endpoint": "https://zenodo.org/api/records",
+    "inter_request_seconds": 0.5,
+    "name": "Zenodo",
+    "official_api": true,
+    "page_size": 25,
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "raw_response_cache_outside_git": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/open-data-cache/P4_ZENODO_RELATED_OBJECT_CENSUS_V2",
+    "sort": "mostrecent"
+  },
+  "queries": [
+    {
+      "domain_id": "EARTH_ENVIRONMENT",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "q": "resource_type.type:dataset AND (climate OR geophysics OR ocean OR atmospheric OR earth)",
+      "query_id": "EARTH_DATA"
+    },
+    {
+      "domain_id": "LIFE_BIOMEDICAL",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "q": "resource_type.type:dataset AND (biology OR biomedical OR genomics OR ecology OR health)",
+      "query_id": "LIFE_DATA"
+    },
+    {
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "q": "resource_type.type:dataset AND (physics OR engineering OR robotics OR electronics OR materials)",
+      "query_id": "PHYSICAL_DATA"
+    },
+    {
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "q": "resource_type.type:dataset AND (software OR computational OR simulation OR benchmark OR algorithm)",
+      "query_id": "SOFTWARE_DATA"
+    },
+    {
+      "domain_id": "EARTH_ENVIRONMENT",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "q": "resource_type.type:software AND (climate OR geophysics OR ocean OR atmospheric OR earth)",
+      "query_id": "EARTH_SOFTWARE"
+    },
+    {
+      "domain_id": "LIFE_BIOMEDICAL",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "q": "resource_type.type:software AND (biology OR biomedical OR genomics OR ecology OR health)",
+      "query_id": "LIFE_SOFTWARE"
+    },
+    {
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "q": "resource_type.type:software AND (physics OR engineering OR robotics OR electronics OR materials)",
+      "query_id": "PHYSICAL_SOFTWARE"
+    },
+    {
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "q": "resource_type.type:software AND (scientific OR computational OR simulation OR benchmark OR algorithm)",
+      "query_id": "SCIENTIFIC_SOFTWARE"
+    }
+  ],
+  "schema_version": "orion.p4.zenodo-related-object-census.v2"
+}

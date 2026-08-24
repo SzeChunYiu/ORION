@@ -1,0 +1,83 @@
+{
+  "all_pass": true,
+  "empirical_authority": false,
+  "external_independent_review": false,
+  "new_counterexamples": [
+    {
+      "id": "A1_STATE_INDEX_REQUIRED",
+      "legal_no_action_value": "1/2",
+      "pass": true,
+      "stationary_value": "0"
+    },
+    {
+      "analytic_supremum": "1",
+      "attained": false,
+      "finite_grid_max": "999/1000",
+      "id": "A2_WORST_PRIOR_NONATTAINMENT",
+      "pass": true
+    },
+    {
+      "exact_error": "0",
+      "id": "A3_ZERO_COST_BOUNDARY",
+      "pass": true,
+      "theorem_4_applicable": false,
+      "total_acquisition_cost": "0"
+    }
+  ],
+  "protected_evaluation": false,
+  "review_ledger": {
+    "entries": 12,
+    "pass": true,
+    "schema": "active-identification-adversarial-gap-ledger-v1"
+  },
+  "schema": "active-identification-adversarial-review-receipt-v1",
+  "scope": "local finite mathematical and artifact checks only",
+  "source_manifest": {
+    "pass": true,
+    "rows": [
+      {
+        "actual": "3df4a63354fd93dea2791d3e74461524ae1658d3dc21e752411083990de0e76e",
+        "expected": "3df4a63354fd93dea2791d3e74461524ae1658d3dc21e752411083990de0e76e",
+        "pass": true,
+        "path": "development/active-identification-theory-2026-08-23/README.md"
+      },
+      {
+        "actual": "8fe8af7d491e91b10ca0f7ed41813d8aecfc5c1af82f0d1c522ec747e1b77487",
+        "expected": "8fe8af7d491e91b10ca0f7ed41813d8aecfc5c1af82f0d1c522ec747e1b77487",
+        "pass": true,
+        "path": "development/active-identification-theory-2026-08-23/THEORY.md"
+      },
+      {
+        "actual": "03afc025fed44855b058c9a05132d00b5bffea79ac2b412a57818a41fcdcfac3",
+        "expected": "03afc025fed44855b058c9a05132d00b5bffea79ac2b412a57818a41fcdcfac3",
+        "pass": true,
+        "path": "development/active-identification-theory-2026-08-23/NEGATIVE_RESULT_LEDGER.md"
+      },
+      {
+        "actual": "27adba4c68a468b0fdf42763acd0383e4239dca2b2622010398d8b45c06c20db",
+        "expected": "27adba4c68a468b0fdf42763acd0383e4239dca2b2622010398d8b45c06c20db",
+        "pass": true,
+        "path": "development/active-identification-theory-2026-08-23/INTEGRATION_CANDIDATES.md"
+      },
+      {
+        "actual": "d46a45581f1c6a070d3a541ff0ee5d5df38db4841be725e4967f0cebc2741b89",
+        "expected": "d46a45581f1c6a070d3a541ff0ee5d5df38db4841be725e4967f0cebc2741b89",
+        "pass": true,
+        "path": "development/active-identification-theory-2026-08-23/finite_active_identification_harness.py"
+      },
+      {
+        "actual": "5498eff7b46cd47e1bdf1d2c91a2637dbcbfa782c88bb05c3e0b2b43e9665e83",
+        "expected": "5498eff7b46cd47e1bdf1d2c91a2637dbcbfa782c88bb05c3e0b2b43e9665e83",
+        "pass": true,
+        "path": "development/active-identification-theory-2026-08-23/COUNTEREXAMPLE_RECEIPT.json"
+      }
+    ]
+  },
+  "source_witnesses": {
+    "pass": true,
+    "recomputed_checks_passed": 8,
+    "recomputed_checks_total": 8,
+    "source_script_sha256": "d46a45581f1c6a070d3a541ff0ee5d5df38db4841be725e4967f0cebc2741b89",
+    "stored_receipt_equal": true
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "$id": "https://orion.invalid/p5/v3/candidate-visible-class-certificate.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The certificate is issued before candidate action and contains no native output, protected score, comparator performance, or evaluator feedback.",
+  "properties": {
+    "arm_id": {
+      "enum": [
+        "C1_FIXED_AGENT__SWE_AGENT",
+        "C2_DIRECT_SELF_EDIT__MOSS",
+        "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+        "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+        "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+        "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW"
+      ]
+    },
+    "basis": {
+      "additionalProperties": false,
+      "properties": {
+        "domain_scope_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "fibre_constancy_attestation": {
+          "additionalProperties": false,
+          "properties": {
+            "declared_class": {
+              "enum": [
+                "EVIDENCE_REPAIR",
+                "MEASUREMENT_REPAIR",
+                "WITHIN_CLASS_MODEL_REPAIR",
+                "MODEL_CLASS_EXPANSION",
+                "REPRESENTATION_REGIME_REPAIR",
+                "EXECUTION_REPAIR",
+                "EVALUATOR_REPAIR"
+              ]
+            },
+            "proof_ref_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "status": {
+              "const": "PROVED_ON_DECLARED_SYNTHETIC_DOMAIN"
+            }
+          },
+          "required": [
+            "status",
+            "declared_class",
+            "proof_ref_sha256"
+          ],
+          "type": "object"
+        },
+        "predicate_id": {
+          "pattern": "^SYNTHETIC_[A-Z0-9_.-]+$",
+          "type": "string"
+        },
+        "source_ref_sha256": {
+          "items": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "predicate_id",
+        "source_ref_sha256",
+        "domain_scope_sha256",
+        "fibre_constancy_attestation"
+      ],
+      "type": "object"
+    },
+    "certificate_id": {
+      "pattern": "^P5V3-CERT-[A-Z0-9_.-]+$",
+      "type": "string"
+    },
+    "complete": {
+      "const": true
+    },
+    "declared_class": {
+      "enum": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR",
+        "EVALUATOR_REPAIR"
+      ]
+    },
+    "issuance": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_visible": {
+          "const": true
+        },
+        "input_native": {
+          "const": true
+        },
+        "issuer_role": {
+          "const": "HOST_INPUT_VALIDATOR"
+        },
+        "native_output_access": {
+          "const": false
+        },
+        "phase": {
+          "const": "BEFORE_CANDIDATE_ACTION"
+        },
+        "protected_outcome_access": {
+          "const": false
+        },
+        "sequence": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "issuer_role",
+        "phase",
+        "candidate_visible",
+        "input_native",
+        "native_output_access",
+        "protected_outcome_access",
+        "sequence"
+      ],
+      "type": "object"
+    },
+    "observation_id": {
+      "pattern": "^P5V3-OBS-[A-Z0-9_.-]+$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "orion.p5.candidate-visible-class-certificate.v3"
+    }
+  },
+  "required": [
+    "schema_version",
+    "certificate_id",
+    "arm_id",
+    "observation_id",
+    "declared_class",
+    "issuance",
+    "basis",
+    "complete"
+  ],
+  "title": "P5 V3 minimal candidate-visible input-native class certificate",
+  "type": "object"
+}

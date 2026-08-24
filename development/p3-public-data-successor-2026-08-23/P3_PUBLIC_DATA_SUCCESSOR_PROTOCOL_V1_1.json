@@ -1,0 +1,238 @@
+{
+  "authority": "PUBLIC_VISIBLE_GOLD_TRANSPORT_AND_ADVERSE_COVERAGE_STUDY_ONLY",
+  "candidate_interface": {
+    "execution": "EXTERNAL_COMMAND_MUST_CONSUME_CASE JSONL AND EMIT PREDICTION JSONL BEFORE GOLD ACCESS",
+    "id": "P3_EPISTEMIC_ENVELOPE_CANDIDATE",
+    "no_candidate_is_implemented_or_EVALUATED_BY_THIS_PROTOCOL": true,
+    "required_output": [
+      "case_id",
+      "relation",
+      "admissible_relations",
+      "reason_codes",
+      "input_digest"
+    ]
+  },
+  "comparators": [
+    {
+      "id": "FLAT_LABEL_EQUALITY_V1",
+      "implementation": "p3_public_data_adapter.py::flat_label_equality",
+      "information": "LEFT_AND_RIGHT_SURFACE_LABELS_ONLY",
+      "terminal": "DETERMINATE_GLUE_OR_OBSTRUCTION"
+    },
+    {
+      "id": "TOKEN_JACCARD_FORCED_V1",
+      "implementation": "p3_public_data_adapter.py::token_jaccard_forced",
+      "information": "NORMALIZED_LABEL_TOKENS_ONLY",
+      "terminal": "DETERMINATE_GLUE_OR_OBSTRUCTION",
+      "threshold": 0.5
+    },
+    {
+      "global_consistency": false,
+      "id": "TYPE_AWARE_PAIRWISE_V1",
+      "implementation": "p3_public_data_adapter.py::type_aware_pairwise",
+      "information": "LABEL_AND_SOURCE_NATIVE_ENTITY_TYPE",
+      "terminal": "GLUE_OBSTRUCTION_OR_UNRESOLVED"
+    },
+    {
+      "id": "COMPLETE_CASE_CONSERVATIVE_V1",
+      "implementation": "p3_public_data_adapter.py::complete_case_conservative",
+      "information": "DECLARED_REQUIRED_COORDINATES_AND_OBSERVEDNESS",
+      "terminal": "GLUE_OBSTRUCTION_OR_UNRESOLVED"
+    }
+  ],
+  "coordinate_opportunity": {
+    "CONSTRUCT": "EXPECTED_NONZERO_WITHIN_COMPARISON_CONTRAST_FROM_OAEI_AND_SCIREX_TYPES__MUST_BE_VERIFIED_BEFORE_SCORING",
+    "MEASUREMENT": "EXPECTED_NONZERO_WITHIN_COMPARISON_CONTRAST_FROM_SCIREX_METRIC_SCORE_STRUCTURE__MUST_BE_VERIFIED_BEFORE_SCORING",
+    "REFERENT": "EXPECTED_NONZERO_WITHIN_COMPARISON_CONTRAST_FROM_CRAFT_AND_OAEI__MUST_BE_VERIFIED_BEFORE_SCORING",
+    "TEMPORAL_CONTEXT": "CANNOT_CHECK__NO LAWFUL PUBLIC DONOR ABOVE SUPPLIES A PROTECTED NATURAL TEMPORAL MAPPING PANEL",
+    "joint_support_rule": "REPORT_THE_BINARY_WITHIN_COMPARISON_CONTRAST_PATTERN_OVER_ALL_FOUR_COORDINATES__MARGINAL_VARIATION_ALONE_IS_NOT_SEPARABILITY",
+    "promotion_rule": "ZERO_WITHIN_COMPARISON_OPPORTUNITY_OR_CANNOT_CHECK_ON_ANY_REQUIRED_COORDINATE_BLOCKS_PROMOTION_TO_THE_FROZEN_768_CLUSTER_CLAIM__NONZERO_CONTRAST_ALONE_DOES_NOT_IDENTIFY_CAUSAL_COORDINATE_VALUE"
+  },
+  "current_terminal": "OAEI_INPUT_ONLY_CASE_BUILDER_EXECUTABLE__NO_PUBLIC_GOLD__NO_P3_CANDIDATE__NO_SOURCE_NATIVE_COMPARATOR__NO_EMPIRICAL_RESULT",
+  "endpoints": {
+    "cannot_check_rule": "FLOOR_ADJUSTED HARM REQUIRES A NONEMPTY INDEPENDENT IDENTIFIED_RELATIONS SET, COMPLETE FOUR_TERMINAL LOSS, AND PASSING COORDINATE-OPPORTUNITY GATES.",
+    "claim_logic": "NO POOLED PASS; EACH DONOR FAMILY AND EACH CLAIMED COORDINATE MUST HAVE A NONZERO OPPORTUNITY DENOMINATOR AND PRESERVE COVERAGE",
+    "four_terminal_loss_semantics": {
+      "GLUE": {
+        "GLUE": "0",
+        "OBSTRUCTION": "false_merge",
+        "PLURAL": "false_merge",
+        "UNRESOLVED": "unjustified_resolution"
+      },
+      "OBSTRUCTION": {
+        "GLUE": "false_split",
+        "OBSTRUCTION": "0",
+        "PLURAL": "plural_collapse",
+        "UNRESOLVED": "unjustified_resolution"
+      },
+      "PLURAL": {
+        "GLUE": "false_plural",
+        "OBSTRUCTION": "false_plural",
+        "PLURAL": "0",
+        "UNRESOLVED": "unjustified_resolution"
+      },
+      "UNRESOLVED": {
+        "GLUE": "unresolved",
+        "OBSTRUCTION": "unresolved",
+        "PLURAL": "unresolved",
+        "UNRESOLVED": "0"
+      },
+      "orientation": "ROWS_ARE_ACTIONS__COLUMNS_ARE_LICENSED_STATES"
+    },
+    "gates": [
+      "SOURCE_RIGHTS_PASS",
+      "INPUT_GOLD_SEPARATION_OR_INLINE_LABEL_BLINDNESS_RECEIPT",
+      "NONZERO_OPPORTUNITY_FOR_THE_COORDINATE_BEING_CLAIMED",
+      "GOLD_IN_ENVELOPE_COVERAGE_AT_DECLARED_LEVEL",
+      "SOURCE_NATIVE_EXTERNAL_COMPARATOR_BOUND_OR_COMPARATIVE_SUPERIORITY_CANNOT_CHECK",
+      "NO_CASE_ROW_OR_ANNOTATION_COUNTED_AS_AN_INDEPENDENT_CLUSTER",
+      "CLOSED_CONTRACT_AND_RECURSIVE_OUTCOME_LEAKAGE_PASS",
+      "UNIQUE_EXACT_SYSTEM_CASE_COVERAGE",
+      "PREDICTION_INPUT_DIGEST_MATCHES_SEALED_CASE",
+      "SOURCE_PANEL_CLUSTER_IDENTITIES_TAKEN_FROM_CASE_AND_GOLD_AUTHORITY",
+      "FOUR_TERMINAL_RELATION_AND_LOSS_VALIDATION"
+    ],
+    "loss_grid": [
+      {
+        "false_merge": 1.0,
+        "false_plural": 1.0,
+        "false_split": 1.0,
+        "plural_collapse": 1.0,
+        "unjustified_resolution": 1.0,
+        "unresolved": 0.25
+      },
+      {
+        "false_merge": 5.0,
+        "false_plural": 1.0,
+        "false_split": 1.0,
+        "plural_collapse": 1.0,
+        "unjustified_resolution": 5.0,
+        "unresolved": 0.25
+      },
+      {
+        "false_merge": 1.0,
+        "false_plural": 1.0,
+        "false_split": 5.0,
+        "plural_collapse": 5.0,
+        "unjustified_resolution": 5.0,
+        "unresolved": 0.25
+      }
+    ],
+    "noncompensatory_secondary": [
+      "FALSE_MERGE_RATE_ON_SEPARABLE_OPPORTUNITIES",
+      "FALSE_SPLIT_RATE_ON_GLUEABLE_OPPORTUNITIES",
+      "OVER_RESOLUTION_RATE_ON_NON_SINGLETON_IDENTIFIED_SETS",
+      "GOLD_IN_ENVELOPE_COVERAGE",
+      "ENVELOPE_SIZE_CONDITIONAL_ON_COVERAGE",
+      "SOURCE_FAMILY_AND_COORDINATE_STRATIFIED_RESULTS",
+      "RAW_TEXT_TO_STRUCTURE_STAGE_ATTRIBUTED_FAILURE"
+    ],
+    "primary": "CLUSTER_WEIGHTED_FLOOR_ADJUSTED_AVOIDABLE_HARM_OVER_PREDECLARED_LOSS_GRID"
+  },
+  "grants_protected_confirmatory_authority": false,
+  "historical_results_immutable": true,
+  "not_a_relabeling_of": [
+    "P3.PARTIAL_OBSERVATION.A004",
+    "P3.PARTIAL_IDENTIFICATION.EXCESS_HARM.V1",
+    "P3.CO.V2.H1"
+  ],
+  "outcome_blind_sampling": {
+    "craft": "CENSUS_OF_PROVIDER EVALUATION INPUTS",
+    "forbidden_selection_material": [
+      "GOLD_RELATION",
+      "ANNOTATION_COUNT",
+      "SYSTEM_OUTPUT",
+      "ERROR_TYPE",
+      "EFFECT_SIZE"
+    ],
+    "oaei": "FULL DESCRIPTIVE CENSUS WITH ONE INDEPENDENT SEED FAMILY",
+    "ordering": "SHA256(PROTOCOL_ID || SOURCE_ID || UNIT_ID)",
+    "scirex": "OFFICIAL TEST CENSUS AFTER RIGHTS GATE",
+    "selection_material": [
+      "SOURCE_ID",
+      "PINNED_REVISION",
+      "OFFICIAL_SPLIT",
+      "DOCUMENT_OR_TEST_ID",
+      "RIGHTS_ELIGIBILITY"
+    ]
+  },
+  "outcomes_accessed_during_design": false,
+  "panels": [
+    {
+      "gold_package": "evaluation-data.tar.gz",
+      "gold_visibility": "PUBLIC_BUT_SEPARATELY_PACKAGED__EVALUATOR_ONLY_AFTER_OUTPUT_FREEZE",
+      "independent_unit": "PMC_ARTICLE_DOCUMENT",
+      "input_package": "craft-st-2019-2019_test_data.tar.gz",
+      "panel_id": "CRAFT_EVALUATION_CENSUS",
+      "sampling": "CENSUS_OF_EVALUATION_INPUT_DOCUMENTS__EXPECTED_30_FROM_PROVIDER_DESCRIPTION",
+      "scientific_roles": [
+        "REFERENT_AND_CONCEPT_MAPPING",
+        "COREFERENCE",
+        "RAW_TEXT_ATTACK_IN_ONE_BIOMEDICAL_DOMAIN"
+      ],
+      "source_id": "CRAFT_SHARED_TASK_2019_ZENODO_3460908"
+    },
+    {
+      "gold_visibility": "PUBLIC_INLINE__SAMPLER_MAY_READ_ONLY_DOC_ID_AND_OFFICIAL_SPLIT",
+      "independent_unit": "SEMANTIC_SCHOLAR_PAPER_DOCUMENT",
+      "input_and_gold_layout": "test.jsonl_with_public_inline_annotations",
+      "panel_id": "SCIREX_OFFICIAL_TEST_TRANSPORT",
+      "rights_gate": "DO_NOT_DOWNLOAD_OR_PARSE_DATA_BODY_UNTIL_UNDERLYING_ARTICLE_TEXT_CONTENT_RIGHTS_ARE_ACKNOWLEDGED",
+      "sampling": "OFFICIAL_TEST_SPLIT_CENSUS__NO_LABEL_CONDITIONED_SUBSAMPLING",
+      "scientific_roles": [
+        "METHOD_TASK_MATERIAL_METRIC_SCORE_STRUCTURE",
+        "MISSING_MENTION_ADVERSE_PANEL",
+        "DOCUMENT_LEVEL_RELATIONS"
+      ],
+      "source_id": "SCIREX_GITHUB_7DAAD660"
+    },
+    {
+      "gold_pattern": "**/refalign.rdf",
+      "gold_visibility": "PUBLIC_BUT_PATH_SEPARABLE__EVALUATOR_ONLY_AFTER_OUTPUT_FREEZE",
+      "independent_unit": "ONE_BIBLIOGRAPHIC_SEED_FAMILY",
+      "input_package": "oacontest17.zip",
+      "not_independent_units": [
+        "NUMBERED_TEST_DIRECTORY",
+        "ONTOLOGY_ENTITY",
+        "REFERENCE_CORRESPONDENCE"
+      ],
+      "panel_id": "OAEI_2004_FULL_STRESS_CENSUS",
+      "sampling": "CENSUS_OF_NUMBERED_TEST_DIRECTORIES_FOR_DESCRIPTIVE_STRESS_ONLY",
+      "scientific_roles": [
+        "REPRESENTATION_TRANSFORM",
+        "ONTOLOGY_ALIGNMENT",
+        "SYSTEMATIC_OBSTRUCTION_CONTROL"
+      ],
+      "source_id": "OAEI_2004_ZENODO_15827226"
+    }
+  ],
+  "paper_id": "P3",
+  "possible_terminals": [
+    "PUBLIC_TRANSPORT_REDUCES_AVOIDABLE_HARM_IN_NAMED_PUBLIC_PANELS_ONLY",
+    "PUBLIC_TRANSPORT_DOES_NOT_REDUCE_AVOIDABLE_HARM",
+    "PUBLIC_TRANSPORT_INVALID_ENVELOPE_COVERAGE",
+    "PUBLIC_TRANSPORT_CANNOT_CHECK_STRONGEST_SOURCE_NATIVE_COMPARATOR",
+    "PUBLIC_TRANSPORT_CANNOT_CHECK_IDENTIFICATION_FLOOR",
+    "PUBLIC_TRANSPORT_CANNOT_CHECK_RIGHTS_OR_COORDINATE_OPPORTUNITY"
+  ],
+  "protocol_id": "P3.PUBLIC.TRANSPORT.CRAFT_SCIREX_OAEI.V1.1",
+  "protocol_status": "ADVERSE_AUDIT_REPAIR_FROZEN__OAEI_INPUT_CASE_BUILDER_EXECUTABLE__NO_PUBLIC_GOLD_OR_EMPIRICAL_RESULT",
+  "repair_lineage": {
+    "oaei_input_ontology_content_accessed": true,
+    "oaei_reference_alignment_content_accessed": false,
+    "outcomes_accessed_during_repair": false,
+    "preserves_v1_protocol": true,
+    "repairs": [
+      "FOUR_TERMINAL_LOSS",
+      "RECURSIVE_LEAKAGE_REJECTION",
+      "CLOSED_CASE_AND_PREDICTION_CONTRACTS",
+      "UNIQUE_EXACT_PREDICTION_COVERAGE",
+      "CASE_AUTHORITY_BINDING",
+      "COORDINATE_OPPORTUNITY_GATES",
+      "OAEI_INPUT_ONLY_CASE_BUILDER"
+    ],
+    "v1_adverse_audit_terminal": "ADVERSARIAL_AUDIT_FAIL__OAEI_INPUT_INDEX_REPLAY_ONLY__NO_END_TO_END_PUBLIC_RESULT"
+  },
+  "schema_version": "orion.p3.public-transport-successor.v1.1",
+  "scientific_question": "Across three legally classified public donor families, does a claim-relative set-valued mapping interface reduce avoidable over-resolution and false integration relative to four outcome-blind runnable comparators, while retaining gold coverage and exposing irreducible missing-observation strata?"
+}

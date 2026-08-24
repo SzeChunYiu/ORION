@@ -1,0 +1,76 @@
+{
+  "archive_member_hashes": {
+    "reference": {
+      "expected_cells_from_prior_receipt": 91,
+      "member": "103/refalign.rdf",
+      "role": "PUBLIC_NONPROTECTED_REFERENCE",
+      "sha256": "0afb0f2c9764201d91c226c5fb60d4b25425168acf6c2604fb191be906e9ec16",
+      "size_bytes": 29568
+    },
+    "source": {
+      "member": "101/onto.rdf",
+      "sha256": "d6143780103217a4a562e4982f0d4c724c09d3a3e7dc146a6b42cecc3e9f1064",
+      "size_bytes": 69721
+    },
+    "target": {
+      "member": "103/onto.rdf",
+      "sha256": "e3643a6fcd237a162d120e58227df2e24e0398668c6f2428e4fea850180405cf",
+      "size_bytes": 70677
+    },
+    "test_id": "103",
+    "universe": "OAEI_2004_BIBLIOGRAPHIC_ONTOLOGY_ALIGNMENT_CONTEST_TEST_103"
+  },
+  "captured_at_utc": "2026-08-23T21:32:05.665089+00:00",
+  "input_receipts": {
+    "aml_binding": {
+      "path": "development/p3-oaei-public-development-execution-2026-08-23/AML_V3_2_BINDING_RECEIPT_V1.json",
+      "sha256": "2900e48f69bc6ffd8b3cb42a27fbc9d2b66ab5bb2ad1d867866a1934e7477995"
+    },
+    "oaei_rights": {
+      "path": "development/p3-oaei-public-development-execution-2026-08-23/OAEI_RIGHTS_AND_ATTRIBUTION_RECEIPT_V1.json",
+      "sha256": "638b125357e4398d577cdc05483bed38cb18f5b60291809a7b05f47580c2d643"
+    },
+    "v14_receipt": {
+      "path": "development/p3-public-reference-alignment-v14-2026-08-23/RECEIPT_V14.json",
+      "sha256": "b7477e2472b1ab5580beb8191124fe6f3a94c6500642084694c9372f24bf1f8b"
+    }
+  },
+  "matcher_attempts": 0,
+  "network_requests": [
+    {
+      "bytes": 5332,
+      "http_status": 200,
+      "sha256": "8f3a79f76d0d455573f21b174a44a17bfa98b5d06190311b9e0ec8b8296c01de",
+      "url": "https://zenodo.org/api/records/15827226"
+    },
+    {
+      "bytes": 486043,
+      "http_status": 200,
+      "sha256": "f22aac206773e4eacdd54cf9519ffe997332a430326bdae29f4210a24efab0b4",
+      "url": "https://zenodo.org/api/records/15827226/files/oacontest17.zip/content"
+    },
+    {
+      "bytes": 3285,
+      "http_status": 200,
+      "sha256": "26fc1af0c0111c0130fe761ee63c9e6d3cd2955a488d6f887dba79732fbe67fa",
+      "url": "https://api.github.com/repos/AgreementMakerLight/AML-Project/releases/tags/v3.2"
+    },
+    {
+      "bytes": 11357,
+      "http_status": 200,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "url": "https://raw.githubusercontent.com/AgreementMakerLight/AML-Project/d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6/LICENSE"
+    },
+    {
+      "bytes": 42450207,
+      "http_status": 200,
+      "sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27",
+      "url": "https://github.com/AgreementMakerLight/AML-Project/releases/download/v3.2/AML_v3.2.zip"
+    }
+  ],
+  "protocol_id": "P3_V15_PROVIDER_NATIVE_OAEI_2004_TEST_103_IDENTITY_FREEZE",
+  "schema_version": "orion.p3.provider-native-primary-receipt.v15",
+  "scoring_attempts": 0,
+  "success": true,
+  "terminal": "P3_V15_EXACT_PROVIDER_NATIVE_OAEI_TEST_103_IDENTITY_PACKET_BOUND__SAME_UNIVERSE_AML_V3_2_COMPARATOR_FROZEN__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK_PENDING_JAVA8_PROSPECTIVE_RUN"
+}

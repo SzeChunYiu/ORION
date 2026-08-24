@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "absence_flags_false": true,
+    "adapters_hash_matches_freeze": true,
+    "admission_recomputed_from_rights_audit": true,
+    "all_source_files_transport_parse_pass": true,
+    "certificate_conflicts_zero": true,
+    "certificate_counts_match": true,
+    "certificate_ids_unique": true,
+    "certificate_rows_4838": true,
+    "certificate_rows_unique": true,
+    "comparator_outcomes_unopened": true,
+    "comparators_0_of_3_execution_ready": true,
+    "family_gate_3_of_3": true,
+    "inference_flags_false": true,
+    "positive_absence_not_used": true,
+    "protected_outcomes_unopened": true,
+    "protocol_hash_matches_freeze": true,
+    "raw_payloads_not_retained": true,
+    "rights_gate_3_of_3": true,
+    "source_bytes_11076252": true,
+    "source_file_count_61": true,
+    "source_prefreeze_hash_matches_freeze": true,
+    "source_triples_121589": true,
+    "three_family_gate_not_relaxed": true
+  },
+  "counts": {
+    "checks": 23,
+    "failed": 0,
+    "passed": 23
+  },
+  "created_at": "2026-08-23T16:53:19.044580+00:00",
+  "method": "stdlib JSON/JSONL parsing, cryptographic hash equality, count/uniqueness/conflict and boundary-flag checks; no pytest or CI",
+  "schema_version": "orion.p3.authoritative-negative-semantics.scientific-validation.v5",
+  "validation_pass": true
+}

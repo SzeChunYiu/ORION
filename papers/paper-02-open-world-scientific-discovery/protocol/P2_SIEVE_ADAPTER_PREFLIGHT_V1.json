@@ -1,0 +1,107 @@
+{
+  "schema_version": "orion.p2.sieve-adapter-preflight.v1",
+  "paper_id": "P2",
+  "binding_id": "P2.SIEVE.TERMINAL_PRESERVING_ADAPTER.V1",
+  "protocol_status": "PROSPECTIVE_IDENTITY_AND_INTERFACE_PREFLIGHT__NOT_A_FROZEN_COMPARATOR_ARM",
+  "outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "historical_results_immutable": true,
+  "candidate": {
+    "name": "SIEVE / SkimSearchAgent",
+    "primary_paper": "arxiv:2608.02751v2",
+    "repository": "https://github.com/ielab/skim-search-agent",
+    "commit": "4a640296770c39b8274e7678c6de844daea9541c",
+    "licence": "Apache-2.0",
+    "repository_role": "PAPER_LINKED_IMPLEMENTATION"
+  },
+  "native_interface": {
+    "actions_observed": ["search", "fetch", "answer"],
+    "terminal_families": ["answer", "end", "error", "timeout"],
+    "trace_fields_required": [
+      "instance_id",
+      "queries",
+      "actions",
+      "observations",
+      "surfaced_docs",
+      "retrieved",
+      "final_answer",
+      "stopped",
+      "trajectory",
+      "n_steps",
+      "prompt_tokens",
+      "completion_tokens"
+    ]
+  },
+  "frozen_namespace_requirements": {
+    "identical_candidate_visible_task_world": true,
+    "identical_query_and_provider_namespace": true,
+    "identical_route_exposure": true,
+    "identical_hard_budget_and_timeout": true,
+    "identical_gold_normalization_and_scoring": true,
+    "provider_model_and_tool_revisions_must_be_frozen": true,
+    "adapter_must_be_deterministic_and_outcome_blind": true
+  },
+  "adapter_terminals": [
+    "EVIDENCE_CANDIDATE_PRESENT",
+    "NO_EVIDENCE_CANDIDATE_EMITTED",
+    "NATIVE_ERROR",
+    "NATIVE_TIMEOUT"
+  ],
+  "terminal_map_constraints": [
+    {
+      "native_condition": "answer_or_end_with_nonempty_retrieved_or_declared_candidate_set",
+      "adapter_terminal": "EVIDENCE_CANDIDATE_PRESENT",
+      "may_authorize_p2_close": false
+    },
+    {
+      "native_condition": "answer_or_end_with_empty_candidate_set",
+      "adapter_terminal": "NO_EVIDENCE_CANDIDATE_EMITTED",
+      "may_authorize_p2_close": false
+    },
+    {
+      "native_condition": "error",
+      "adapter_terminal": "NATIVE_ERROR",
+      "may_authorize_p2_close": false
+    },
+    {
+      "native_condition": "timeout",
+      "adapter_terminal": "NATIVE_TIMEOUT",
+      "may_authorize_p2_close": false
+    }
+  ],
+  "forbidden_conversions": [
+    "empty_answer_to_successful_abstention",
+    "error_to_cannot_check_credit",
+    "timeout_to_cannot_check_credit",
+    "surfaced_document_to_validated_evidence",
+    "retrieved_identifier_to_discharged_obligation",
+    "native_answer_or_end_to_p2_task_level_close",
+    "unavailable_or_censored_route_to_available_route",
+    "adapter_generated_query_or_evidence_not_present_in_native_trace"
+  ],
+  "authority_rule": "The adapter exposes acquisition behavior only. P2 closure still requires established evidence validity and the registered obligation predicate; maximal robust closure additionally requires registry/validity completeness over every compatible world.",
+  "preoutcome_checks": [
+    "pinned_repository_and_licence_bytes_verified",
+    "fixture_independent_cli_and_output_schema_frozen",
+    "every_native_terminal_has_exactly_one_adapter_terminal",
+    "unknown_or_malformed_native_output_fails_closed",
+    "no_adapter_path_emits_p2_close",
+    "archived_p2_task_world_reproduced_before_successor_execution",
+    "equal_route_provider_budget_and_scoring_receipts_bound"
+  ],
+  "bounded_probe": {
+    "fixture": "development/comparator-binding-harness-2026-08-23/sieve_probe_runs/agent/fixture/CodeRankEmbed/agent_research_snip",
+    "policy": "stub",
+    "instances": 1,
+    "execution_errors": 0,
+    "score": 0.0,
+    "authority": "ENTRYPOINT_CONFORMANCE_ONLY"
+  },
+  "possible_preflight_terminals": [
+    "P2_SIEVE_ADAPTER_PREFLIGHT_PASS__ARM_STILL_REQUIRES_ARCHIVED_TASK_WORLD_REPRODUCTION",
+    "P2_SIEVE_ADAPTER_INTERFACE_MIXES_AUTHORITY_FIBRES",
+    "P2_SIEVE_ADAPTER_ROUTE_OR_BUDGET_MISMATCH",
+    "P2_SIEVE_ADAPTER_CANNOT_CHECK"
+  ],
+  "current_terminal": "P2_SIEVE_RUNNABLE_FIXTURE__NOT_A_FROZEN_ARM"
+}

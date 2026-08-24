@@ -1,0 +1,70 @@
+{
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "entries": [
+    {
+      "cause": "DGM_outer.py lines 227-228 omit a comma between 'score_child_prop' and 'best', so Python forms the single choice 'score_child_propbest'.",
+      "id": "P5.C3.V4.ARGPARSE.CHOICE.CONCATENATION",
+      "next_discriminator": "Preserve this behaviour for native C3; if repaired, freeze a new commit as a separately named successor and test all intended choices without benchmark outcomes.",
+      "positive_progress": "The exact source defect and affected option values are frozen; the unvalidated default caveat is separated from explicit CLI acceptance.",
+      "residual": "Explicit --choose_selfimproves_method score_child_prop and best are rejected, while omitting the option may still pass the default into program logic. Native task semantics are defective."
+    },
+    {
+      "cause": "DGM_outer.py lines 302-305 call future.result(timeout=5400) only after as_completed yields an already-completed future.",
+      "id": "P5.C3.V4.INEFFECTIVE.FUTURE.TIMEOUT",
+      "next_discriminator": "Verify VM-wide timeout and destructive cleanup on a disposable executor; a source-level timeout repair requires a distinct successor identity.",
+      "positive_progress": "A separate 21,600-second process-group watchdog plus 120-second TERM/KILL grace is byte-frozen.",
+      "residual": "The released timeout cannot bound a still-running future; the outer watchdog does not itself prove Docker-descendant termination or cleanup."
+    },
+    {
+      "cause": "Dockerfile uses python:3.10-slim without a digest; requirements.txt has 19 entries and requirements_dev.txt 4, with zero exact pins and no authoritative lockfile.",
+      "id": "P5.C3.V4.MUTABLE.ENVIRONMENT",
+      "next_discriminator": "Resolve and hash every transitive dependency for the selected Linux/Python platform, pin base/task/derived image digests, and inventory licences/SBOM.",
+      "positive_progress": "All declaration, Dockerfile and source hashes are retained and the dependency-lock field is explicitly adjudicated UNBOUND.",
+      "residual": "Rebuilds may resolve different OS image and Python dependency bytes. V4 is honestly 6/21 BOUND, not 7/21."
+    },
+    {
+      "cause": "README line 88 warns that model-generated code can behave destructively; released execution grants mutable Git and Docker-backed task surfaces.",
+      "id": "P5.C3.V4.UNTRUSTED.GENERATED.CODE",
+      "next_discriminator": "Execute only in a dedicated disposable VM with a private rootless daemon, filtered mounts, denied ambient credentials/egress and full before/after mutation evidence.",
+      "positive_progress": "A minimal allowed/forbidden write-surface and disposable reset theorem is frozen; execution remains fail closed.",
+      "residual": "No native isolation proof, rootless daemon, egress allowlist, complete mutation digest or cleanup receipt exists."
+    },
+    {
+      "cause": "The authoritative tree tracks 1,595 files (49,707,333 bytes) under initial/, initial_polyglot/ and swe_bench/ref_agent_results/; Dockerfile COPY . would place them in the container.",
+      "id": "P5.C3.V4.OUTCOME.PAYLOAD.CUSTODY",
+      "next_discriminator": "Build a filtered source seed by path allowlist, prove excluded blob absence, and freeze a separate pre-protected public-development archive before candidate access.",
+      "positive_progress": "A metadata-only census is frozen without opening payload contents, and all three prefixes are forbidden from the candidate seed.",
+      "residual": "No filtered, content-addressed source seed or lawful public-development archive/case packet has been produced."
+    },
+    {
+      "cause": "Released DGM exposes archive/evaluation metadata rather than a stable pre-evaluation result schema; V3 had only a generic synthetic adapter.",
+      "id": "P5.C3.V4.NATIVE.PARSER.BOUNDARY",
+      "next_discriminator": "After all 21 fields bind, capture one lawful patch terminal and apply the byte-frozen V3 certificate/action/fibre operation outside candidate custody.",
+      "positive_progress": "V4 freezes an adapter-authored patch-capture schema, rejects prohibited exact/prefix families and unknown keys, preserves native status, and maps even valid PATCH_CAPTURED to UNRESOLVED.",
+      "residual": "Parser conformance is not DGM execution, and a patch remains a mixed scientific fibre until the separate certificate/action proof is valid."
+    },
+    {
+      "cause": "Historical model-name strings, ambient API keys, provider endpoints, retries and aggregate calls/tokens/USD caps are not reproducibly bound.",
+      "id": "P5.C3.V4.MODEL.RESOURCE.BINDING",
+      "next_discriminator": "Bind exact diagnosis and coding-agent service identities, no-fallback configs, pre-call aggregate counters, provider receipts and a final egress allowlist.",
+      "positive_progress": "Fallbacks are frozen empty and network defaults to deny except exact future endpoints.",
+      "residual": "Primary service identity, effective configuration, cost accounting and egress remain UNBOUND."
+    },
+    {
+      "cause": "The README pins a separate SWE-bench source commit, but its tasks, data, project repositories, tests, images and reference outputs have distinct identity and rights layers.",
+      "id": "P5.C3.V4.TASK.RIGHTS.RUNTIME",
+      "next_discriminator": "Freeze an exact rights-cleared task subset and all project/container identities, then build a reproducible environment without importing protected/reference outcomes.",
+      "positive_progress": "The documented SWE-bench commit is retained as a discriminator rather than treated as a complete task/runtime binding.",
+      "residual": "Exact task environment, task content rights, container images and generated-artifact authority remain CANNOT_CHECK or UNBOUND."
+    },
+    {
+      "cause": "Independent scorer identity, one-shot no-feedback enforcement and fresh protected-panel custody cannot be established locally.",
+      "id": "P5.C3.V4.CUSTODY.PANEL",
+      "next_discriminator": "An independent custodian signs all three content-addressed attestations only after every arm and the public-development protocol are frozen.",
+      "positive_progress": "The required attestations and no-feedback boundary are byte-specified and local self-attestation is prohibited.",
+      "residual": "Six-arm confirmatory readiness remains 0/6; H1-H4, transfer, harm, performance and superiority are CANNOT_CHECK."
+    }
+  ],
+  "frozen_at_utc": "2026-08-23T18:15:39Z",
+  "schema_version": "orion.p5.c3.recursive-negative-ledger.v4"
+}

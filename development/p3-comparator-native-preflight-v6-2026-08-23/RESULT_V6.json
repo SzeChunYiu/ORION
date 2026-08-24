@@ -1,0 +1,50 @@
+{
+  "absence_nonselection_rule": "Missing artifacts and absent rows are CANNOT_CHECK, never obstruction or negative truth.",
+  "generated_at": "2026-08-23T17:43:13.728316+00:00",
+  "gold_or_reference_alignment_accessed": false,
+  "native_smoke_readiness": {
+    "passed": 2,
+    "slots": {
+      "K1_AML": "NATIVE_SMOKE_PASS",
+      "K2_LOGMAP": "NATIVE_SMOKE_PASS_WITH_MANDATORY_RDF_HEADER_METADATA_GUARD",
+      "K3_BERTMAP": "CANNOT_CHECK_PINNED_DEPENDENCY_API_INCOMPATIBILITY"
+    },
+    "total": 3
+  },
+  "outcome_blind": true,
+  "performance_scoring_performed": false,
+  "preserved_terminals": {
+    "v3": "PUBLIC_V3_MAXIMAL_BINARY_ENVELOPE_COVERAGE_PASS__PUBLIC_V3_NO_HARM_SUPERIORITY__PUBLIC_NONPROTECTED_ONE_SEED_FAMILY_ONLY",
+    "v4_comparator_readiness": "0/3",
+    "v4_source_admission": "0/7",
+    "v5_comparator_readiness": "0/3",
+    "v5_family_admission": "3/3_DIRECT_CERTIFICATE_CALIBRATION_ONLY"
+  },
+  "protected_data_accessed": false,
+  "protocol_sha256": "d8c11f0a700411d2937bdebbb1081ea7e57d1ced721dba27c73d985b6a3d753c",
+  "required_native_artifacts": {
+    "K1_AML": {
+      "present": 1,
+      "required": 1
+    },
+    "K2_LOGMAP": {
+      "mandatory_sidecar_guards_passed": 1,
+      "present": 1,
+      "required": 1
+    },
+    "K3_BERTMAP": {
+      "present": 0,
+      "required": 5
+    }
+  },
+  "schema_version": "orion.p3.comparator-native-preflight.result.v6",
+  "scientific_readiness": {
+    "changed_by_v6": false,
+    "v5_comparator_readiness": "0/3"
+  },
+  "successor": {
+    "artifact": "K3_V7_COMPATIBILITY_SUCCESSOR_PROTOCOL.json",
+    "status": "PROSPECTIVE_NOT_EXECUTED"
+  },
+  "terminal": "P3_V6_TWO_OF_THREE_NATIVE_SMOKE_READY__BERTMAP_PINNED_LOCK_API_INCOMPATIBILITY_CANNOT_CHECK__V5_SCIENTIFIC_READINESS_UNCHANGED_ZERO_OF_THREE"
+}

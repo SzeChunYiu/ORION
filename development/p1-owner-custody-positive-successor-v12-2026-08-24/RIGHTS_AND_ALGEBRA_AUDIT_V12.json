@@ -1,0 +1,46 @@
+{
+  "completed_algebra_bound": false,
+  "exact_commit": "8d47c546591a3c96dc5cf202f7e227d13251221c",
+  "gates": [
+    {
+      "gate_id": "G2_EXACT_COMPLETED_ALGEBRA_RIGHTS",
+      "passed": false,
+      "verdict": "CANNOT_CHECK_NO_EXACT_PUBLIC_LICENSE_OR_COMPLETED_ALGEBRA_BYTES"
+    },
+    {
+      "gate_id": "G3_COMPLETE_OWNER_ALGEBRA_INSTANCE",
+      "passed": false,
+      "verdict": "FAIL_INHERITED_ARTIFACT_IS_SCHEMA_NOT_INSTANCE"
+    }
+  ],
+  "identity": "P1_V12_EXACT_COMMIT_PUBLIC_RIGHTS_AND_COMPLETED_ALGEBRA_AUDIT",
+  "inherited_local_artifact_classification": {
+    "classification": "JSON_SCHEMA_FOR_PROSPECTIVE_INSTANCE__NOT_COMPLETED_INSTANCE",
+    "completed_target_profiles": 0,
+    "exact_target_identifier_enum_count": 7,
+    "independent_review_values": 0,
+    "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+    "public_authority_claimed": false,
+    "ratification_signature_values": 0,
+    "sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55"
+  },
+  "public_route_results": [
+    {
+      "exact_bytes_bound": false,
+      "gate_effect": "CANNOT_CHECK_PUBLIC_LICENSE_BYTES",
+      "http_status": 404,
+      "retry_or_substitution_used": false,
+      "source_id": "GITHUB_COMMIT_LICENSE_RAW"
+    },
+    {
+      "exact_bytes_bound": false,
+      "gate_effect": "CANNOT_CHECK_PUBLIC_SCHEMA_BYTES",
+      "http_status": 404,
+      "retry_or_substitution_used": false,
+      "source_id": "GITHUB_COMMIT_V8_SCHEMA_RAW"
+    }
+  ],
+  "rights_component_bound": false,
+  "schema_version": "orion.p1.owner-custody-positive-successor.rights-and-algebra-audit.v12",
+  "terminal": "P1_V12_EXACT_COMMIT_PUBLIC_LICENSE_AND_SCHEMA_ROUTES_404__LOCAL_SCHEMA_NOT_INSTANCE"
+}

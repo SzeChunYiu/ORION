@@ -1,0 +1,91 @@
+{
+  "arm_support_sets": {
+    "C1_FIXED_AGENT__SWE_AGENT": [
+      "EVIDENCE_REPAIR",
+      "MEASUREMENT_REPAIR",
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR",
+      "EVALUATOR_REPAIR"
+    ],
+    "C2_DIRECT_SELF_EDIT__MOSS": [
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR"
+    ],
+    "C3_ARCHIVE_BASED_SELF_EDIT__DGM": [
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR"
+    ],
+    "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS": [
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR"
+    ],
+    "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY": [
+      "EVALUATOR_REPAIR"
+    ],
+    "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW": []
+  },
+  "artifacts": {
+    "action_schema": "P5_V3_ACTION_WRITE_SURFACE_SCHEMA.json",
+    "certificate_schema": "P5_V3_CANDIDATE_VISIBLE_CERTIFICATE_SCHEMA.json",
+    "front_registry": "P5_V3_EIGHT_CLASS_FRONT_REGISTRY.json",
+    "resource_manifest_template": "P5_V3_MATCHED_RESOURCE_MANIFEST_TEMPLATE.json",
+    "synthetic_domain": "P5_V3_DECLARED_SYNTHETIC_DOMAIN.json",
+    "terminal_rules": "P5_V3_NATIVE_TERMINAL_RETENTION_RULES.json",
+    "validator": "p5_v3_contract_validator.py"
+  },
+  "authority": "SCHEMA_FIBRE_AND_INVARIANCE_CONFORMANCE_ON_DECLARED_SYNTHETIC_DOMAIN_ONLY",
+  "declared_domain_totality_definition": "Every frozen synthetic case must return exactly one output in the eight-class vocabulary, retain its exact native terminal, and raise no unhandled exception.",
+  "fibre_constancy_definition": "Within the declared synthetic domain, group worlds by the full adapter-visible key. A singleton is permitted only when all synthetic oracle classes in the group equal the certificate/action class.",
+  "frozen_at_utc": "2026-08-23T17:05:00Z",
+  "invariance_definition": "Exactly the selected actionable front changes; every other front digest is equal before/after; each mutation target lies under the selected front root and every mutation is enumerated.",
+  "outcome_boundary": {
+    "comparators_or_models_executed": false,
+    "fixtures": "prospectively generated synthetic contract objects only",
+    "native_comparator_output_examples_accessed": false,
+    "performance_tables_accessed": false,
+    "protected_data_accessed": false,
+    "public_or_protected_outcome_rows_accessed": false
+  },
+  "paper_id": "P5",
+  "predecessor": {
+    "confirmatory_ready_arms": 0,
+    "directory": "../p5-six-arm-terminal-adapters-v2",
+    "fixtures": {
+      "path": "P5_ADVERSARIAL_FIBRE_FIXTURES_V2.json",
+      "sha256": "f27d844c550a55d77f6d14f3e655fbb8c15357d9e4b085d8f1f5ce9409875a05"
+    },
+    "preserved_terminal": "P5_SIX_ARM_EXECUTION_CONFIG_RESOURCE_RIGHTS_AND_EIGHT_CLASS_ADAPTERS_CANNOT_CHECK",
+    "protocol": {
+      "path": "P5_TERMINAL_PRESERVING_ADAPTER_PROTOCOL_V2.json",
+      "sha256": "0415e2f01f326a45405e95fd575dd9e11fcf2ddfd06b422fb96673a6bf93558a"
+    },
+    "resource_ledger": {
+      "path": "P5_V2_RESOURCE_CONFIG_LEDGER.json",
+      "sha256": "1e3a450b1561cb2d3a1d556c77ef1688f8894fb2331fcfa334de87a18bd11dfe"
+    }
+  },
+  "preserved_boundaries": {
+    "H1": "CANNOT_CHECK",
+    "H2": "CANNOT_CHECK",
+    "H3": "CANNOT_CHECK",
+    "H4": "CANNOT_CHECK",
+    "confirmatory_ready": "0/6",
+    "harm": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "protected_freshness": "CANNOT_CHECK",
+    "raw_native_singleton_licences": 0,
+    "scienceclaw_supported_singletons": 0,
+    "superiority": "CANNOT_CHECK"
+  },
+  "protocol_id": "P5.SIX_ARM.ADAPTER.REFINEMENT.V3",
+  "schema_version": "orion.p5.six-arm-adapter-refinement-protocol.v3",
+  "status": "PROSPECTIVE_OUTCOME_FREE_SYNTHETIC_CONTRACT_FREEZE"
+}

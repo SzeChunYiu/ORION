@@ -1,0 +1,669 @@
+{
+  "schema_id": "P4_SOURCE_UNIVERSE_PROVIDER_PROVENANCE_URLS_V1",
+  "generated_at_utc": "2026-08-23T15:13:53.352198Z",
+  "lane": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+  "evidence_class": "PUBLIC_DEVELOPMENT_EVIDENCE_ONLY",
+  "protected_confirmation": false,
+  "counting_guardrails": [
+    "Files, versions, queries, and provider mirrors are not independent natural pairs.",
+    "One unit requires concept-DOI, linked-publication-DOI, exact relation, exact accepted item license, direct-download authority, provider-root identity, and cross-provider deduplication.",
+    "DataCite is discovery/cross-check metadata, never an independent content provider for an underlying host.",
+    "Any rights, relation, download, or provider ambiguity is CANNOT_CHECK rather than positive."
+  ],
+  "provider_terminals": {
+    "DRYAD": "CANNOT_CHECK_ANONYMOUS_DIRECT_DOWNLOAD_AUTHORITY",
+    "FIGSHARE": "ENDPOINT_CAPABILITIES_OBSERVED__PAIR_ELIGIBILITY_ITEM_SPECIFIC",
+    "HARVARD_DATAVERSE": "ENDPOINT_CAPABILITIES_OBSERVED__STRUCTURED_PUBLICATION_DOI_REQUIRED",
+    "DATACITE": "DISCOVERY_ONLY__NOT_INDEPENDENT_CONTENT_PROVIDER"
+  },
+  "captures": [
+    {
+      "id": "dryad_datasets_page1_per1",
+      "provider": "DRYAD",
+      "method": "GET",
+      "url": "https://datadryad.org/api/v2/datasets?page=1&per_page=1",
+      "body": "evidence/dryad/datasets_page1_per1.json",
+      "headers": "evidence/dryad/datasets_page1_per1.headers.txt",
+      "purpose": "Bounded primary-API sample establishing dataset DOI, item license, structured primary_article DOI relation, provider-relative download links, authors, versions, and pagination.",
+      "observed": [
+        "HTTP 200 JSON",
+        "sample DOI doi:10.5061/dryad.7rh4625",
+        "license https://spdx.org/licenses/CC0-1.0.html",
+        "relatedWorks relationship=primary_article with DOI",
+        "last-page link implies 72003 one-record pages at capture time"
+      ],
+      "boundary": "One provider-chosen page is endpoint/schema evidence only; it is not a domain-cell census, an eligible natural-pair count, or protected confirmation.",
+      "captured_at_utc": "2026-08-23T15:06:22.315135Z",
+      "final_http_status": 200,
+      "media_type": "application/json; charset=utf-8",
+      "body_sha256": "581caa4db1f05210535586bd3a26152720956dfb9e55f5c4ed63b7920e8fe348",
+      "body_bytes": 5116,
+      "headers_sha256": "0931a23c9077dde8e28a2bbc22aa8e145a68654e960a6aed1dbb3f532ae49ebb",
+      "headers_bytes": 3102
+    },
+    {
+      "id": "dryad_version_124910",
+      "provider": "DRYAD",
+      "method": "GET",
+      "url": "https://datadryad.org/api/v2/versions/124910",
+      "body": "evidence/dryad/version_124910.json",
+      "headers": "evidence/dryad/version_124910.headers.txt",
+      "purpose": "Exact version metadata and version-scoped files/download link relations.",
+      "observed": [
+        "HTTP 200 JSON",
+        "versionNumber=2",
+        "stash:files and stash:download relations present"
+      ],
+      "boundary": "Advertised relations do not establish anonymous download authority; the bounded anonymous download probes returned 401.",
+      "captured_at_utc": "2026-08-23T15:08:53.385440Z",
+      "final_http_status": 200,
+      "media_type": "application/json; charset=utf-8",
+      "body_sha256": "9848edc58f1ba581382290e64720c55f33237f276de6b29fa99d736499e38bd4",
+      "body_bytes": 6150,
+      "headers_sha256": "63950d9c4f525ebe3cd272669fd1d32ab1f748fec2ce704750ebbd1a206870b4",
+      "headers_bytes": 3102
+    },
+    {
+      "id": "dryad_version_124910_files",
+      "provider": "DRYAD",
+      "method": "GET",
+      "url": "https://datadryad.org/api/v2/versions/124910/files",
+      "body": "evidence/dryad/version_124910_files.json",
+      "headers": "evidence/dryad/version_124910_files.headers.txt",
+      "purpose": "Bounded file-metadata response establishing file paths, sizes, MIME types, MD5 digests, and file-level download relations.",
+      "observed": [
+        "HTTP 200 JSON",
+        "count=20",
+        "file metadata include path, size, mimeType, digest and stash:download",
+        "returned file objects link to stash:version /api/v2/versions/93 rather than requested /api/v2/versions/124910"
+      ],
+      "boundary": "CANNOT_CHECK_EXACT_VERSION_FILE_LINEAGE because returned file objects link to version 93; files and versions are not independent natural pairs and never increase n.",
+      "captured_at_utc": "2026-08-23T15:08:54.203406Z",
+      "final_http_status": 200,
+      "media_type": "application/json; charset=utf-8",
+      "body_sha256": "48aee84ccb36cf7072f7fddb0d89083e6f1a7ffd8e384255cc0021d74cef3d5b",
+      "body_bytes": 12173,
+      "headers_sha256": "0711b3241acd4337f132230c8db4ed9227a7bd7476ebb6e9474a61e558452893",
+      "headers_bytes": 3103
+    },
+    {
+      "id": "dryad_dataset_download_range_probe",
+      "provider": "DRYAD",
+      "method": "GET with Range: bytes=0-0",
+      "url": "https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.7rh4625/download",
+      "body": "evidence/dryad/dataset_10.5061_dryad.7rh4625_range0.bin",
+      "headers": "evidence/dryad/dataset_10.5061_dryad.7rh4625_range0.headers.txt",
+      "purpose": "One-byte-bounded anonymous probe of the advertised dataset download relation.",
+      "observed": [
+        "HTTP 401 JSON",
+        "error=Unauthorized, must have current bearer token"
+      ],
+      "boundary": "CANNOT_CHECK_ANONYMOUS_DIRECT_DOWNLOAD_AUTHORITY; do not mark Dryad candidates direct-download-qualified from metadata alone.",
+      "captured_at_utc": "2026-08-23T15:08:41.302549Z",
+      "final_http_status": 401,
+      "media_type": "application/json; charset=utf-8",
+      "body_sha256": "1ac025323ea66e58c9a8a0b960db5a839ef812e1ff8bfea2f3aff74dc3961296",
+      "body_bytes": 56,
+      "headers_sha256": "7cc204fcecb467f08311ad164adad8b1b9023d593a74060b95acae50b7b01026",
+      "headers_bytes": 3043
+    },
+    {
+      "id": "dryad_file_download_range_probe",
+      "provider": "DRYAD",
+      "method": "GET with Range: bytes=0-0",
+      "url": "https://datadryad.org/api/v2/files/1/download",
+      "body": "evidence/dryad/file_1_range0.bin",
+      "headers": "evidence/dryad/file_1_range0.headers.txt",
+      "purpose": "One-byte-bounded anonymous probe of an advertised file-level download relation.",
+      "observed": [
+        "HTTP 401 JSON",
+        "error=Unauthorized, must have current bearer token"
+      ],
+      "boundary": "CANNOT_CHECK_ANONYMOUS_DIRECT_DOWNLOAD_AUTHORITY and CANNOT_CHECK_EXACT_VERSION_FILE_LINEAGE; the link returned 401 and its source file object links to version 93, not requested version 124910.",
+      "captured_at_utc": "2026-08-23T15:09:15.528892Z",
+      "final_http_status": 401,
+      "media_type": "application/json; charset=utf-8",
+      "body_sha256": "1ac025323ea66e58c9a8a0b960db5a839ef812e1ff8bfea2f3aff74dc3961296",
+      "body_bytes": 56,
+      "headers_sha256": "c63bc030a103acf06c60a6d16043e138c195fa8c7c5b85ff2901ff0ede8ef7cb",
+      "headers_bytes": 3043
+    },
+    {
+      "id": "dryad_api_landing",
+      "provider": "DRYAD",
+      "method": "GET",
+      "url": "https://datadryad.org/api",
+      "body": "evidence/dryad/api_landing.html",
+      "headers": "evidence/dryad/api_landing.headers.txt",
+      "purpose": "Official Dryad API landing-page provenance.",
+      "observed": [
+        "HTTP 200 HTML"
+      ],
+      "boundary": "Documentation provenance only; current behavior is bound by captured API responses.",
+      "captured_at_utc": "2026-08-23T15:06:43.770765Z",
+      "final_http_status": 200,
+      "media_type": "text/html; charset=utf-8",
+      "body_sha256": "a9b4b7696d2d76f9458de7189ab542fd880634b8297c1b688ec912b1a8c46e49",
+      "body_bytes": 9796,
+      "headers_sha256": "2db5a65972126d7cd848accd6cfa9d227238e5219534505d568204608a434bb2",
+      "headers_bytes": 3995
+    },
+    {
+      "id": "dryad_api_docs_redirect_page",
+      "provider": "DRYAD",
+      "method": "GET",
+      "url": "https://datadryad.org/api/v2/docs/",
+      "body": "evidence/dryad/api_docs.html",
+      "headers": "evidence/dryad/api_docs.headers.txt",
+      "purpose": "Official documentation route response showing client-side redirect to /api.",
+      "observed": [
+        "HTTP 200 HTML",
+        "meta refresh target /api"
+      ],
+      "boundary": "Redirect-page evidence only.",
+      "captured_at_utc": "2026-08-23T15:06:29.098804Z",
+      "final_http_status": 200,
+      "media_type": "text/html; charset=UTF-8",
+      "body_sha256": "8f1ae73a475c4cd413894cfe011a042e9cd5fd3070968652a6b2d0e5c1a7897f",
+      "body_bytes": 147,
+      "headers_sha256": "a8dd8fdf242ba7ac23567a851e86db20f562663e6e1e3393be421f86287cd73f",
+      "headers_bytes": 1149
+    },
+    {
+      "id": "dryad_terms",
+      "provider": "DRYAD",
+      "method": "GET",
+      "url": "https://datadryad.org/terms",
+      "body": "evidence/dryad/terms.html",
+      "headers": "evidence/dryad/terms.headers.txt",
+      "purpose": "Official Dryad terms and reuse-policy provenance.",
+      "observed": [
+        "HTTP 200 HTML"
+      ],
+      "boundary": "Site-wide policy text does not replace exact item-level license checks.",
+      "captured_at_utc": "2026-08-23T15:10:46.857711Z",
+      "final_http_status": 200,
+      "media_type": "text/html; charset=utf-8",
+      "body_sha256": "9a422bb12d60e9dc799b054d23e6431514e78ea2098f63ca21708afaad5a4df9",
+      "body_bytes": 32244,
+      "headers_sha256": "60309408cc73d338447dd08e461b13f3680f53f4cfdb84cc5027f6fc04a9c053",
+      "headers_bytes": 3996
+    },
+    {
+      "id": "figshare_item_types",
+      "provider": "FIGSHARE",
+      "method": "GET",
+      "url": "https://api.figshare.com/v2/item_types",
+      "body": "evidence/figshare/item_types.json",
+      "headers": "evidence/figshare/item_types.headers.txt",
+      "purpose": "Official type registry establishing dataset type id 3 and software type id 9.",
+      "observed": [
+        "HTTP 200 JSON",
+        "id=3 dataset",
+        "id=9 software"
+      ],
+      "boundary": "Type identity is discovery metadata, not natural-pair eligibility.",
+      "captured_at_utc": "2026-08-23T15:07:04.849222Z",
+      "final_http_status": 200,
+      "media_type": "application/json",
+      "body_sha256": "c3a5681f3bba268b421c0adfa1fd1b9124cd5e5d00b86688b0ee0bddec82c5f2",
+      "body_bytes": 3657,
+      "headers_sha256": "24aa1a9bcac62e95f2cf2ff69906d5001ea811013dc82a0f7c82443476836db7",
+      "headers_bytes": 439
+    },
+    {
+      "id": "figshare_licenses",
+      "provider": "FIGSHARE",
+      "method": "GET",
+      "url": "https://api.figshare.com/v2/licenses",
+      "body": "evidence/figshare/licenses.json",
+      "headers": "evidence/figshare/licenses.headers.txt",
+      "purpose": "Official Figshare license registry and exact license URLs.",
+      "observed": [
+        "HTTP 200 JSON",
+        "CC BY 4.0, CC0, MIT, GPL variants, Apache 2.0 listed"
+      ],
+      "boundary": "Registry presence does not license an item; exact full-record item license remains required.",
+      "captured_at_utc": "2026-08-23T15:07:05.154115Z",
+      "final_http_status": 200,
+      "media_type": "application/json",
+      "body_sha256": "a989d334d627b662ffad623431290ecff12bd943048fa29c7add07279fe70118",
+      "body_bytes": 599,
+      "headers_sha256": "3dab0d29c67fd531cdd446f5d18c61737a0eb22bba6cd45cfb541e2f147298a4",
+      "headers_bytes": 438
+    },
+    {
+      "id": "figshare_dataset_search",
+      "provider": "FIGSHARE",
+      "method": "POST",
+      "url": "https://api.figshare.com/v2/articles/search",
+      "request_body": "evidence/figshare/search_dataset_request.json",
+      "body": "evidence/figshare/search_dataset.json",
+      "headers": "evidence/figshare/search_dataset.headers.txt",
+      "purpose": "One-result bounded dataset discovery request.",
+      "observed": [
+        "HTTP 200 JSON",
+        "defined_type=3",
+        "one result only"
+      ],
+      "boundary": "Search rows are discovery evidence only; fetch full records and deduplicate concept/publication/provider identity before counting.",
+      "captured_at_utc": "2026-08-23T15:07:05.445005Z",
+      "final_http_status": 200,
+      "media_type": "application/json",
+      "body_sha256": "43a7ee378fde4a99eaa7ab274e4cb257e3c28ef2294017c6b30edac9e2ad7273",
+      "body_bytes": 944,
+      "headers_sha256": "fa0d25fa4ad9b188abcde83f153b59c52f8763b5b9e3b734d7dd4e34ae55d4da",
+      "headers_bytes": 671,
+      "request_body_sha256": "b78568f7b1c33455dbb97a9b98016cd9bd78b2fd0ad8a74bffbc2827b3c2ea74",
+      "request_body_bytes": 120
+    },
+    {
+      "id": "figshare_software_search",
+      "provider": "FIGSHARE",
+      "method": "POST",
+      "url": "https://api.figshare.com/v2/articles/search",
+      "request_body": "evidence/figshare/search_software_request.json",
+      "body": "evidence/figshare/search_software.json",
+      "headers": "evidence/figshare/search_software.headers.txt",
+      "purpose": "One-result bounded software discovery request.",
+      "observed": [
+        "HTTP 200 JSON",
+        "defined_type=9",
+        "one result only"
+      ],
+      "boundary": "Search metadata is noncanonical for pair identity; full-record resource_doi can differ or be null.",
+      "captured_at_utc": "2026-08-23T15:07:05.844070Z",
+      "final_http_status": 200,
+      "media_type": "application/json",
+      "body_sha256": "70e0550159338079d9429effc1bd183c3087c32ff174f952d5d25b5dd8522efe",
+      "body_bytes": 1257,
+      "headers_sha256": "030f78ded773ad4652d9d59a462019a06cbf293917e7b6eefd484a673ca668da",
+      "headers_bytes": 672,
+      "request_body_sha256": "f79ccaf4ffd1aa59a20fa9d06f7836b0e2896072be4b6295831f136da07037d7",
+      "request_body_bytes": 121
+    },
+    {
+      "id": "figshare_article_33317496_dataset",
+      "provider": "FIGSHARE",
+      "method": "GET",
+      "url": "https://api.figshare.com/v2/articles/33317496",
+      "body": "evidence/figshare/article_33317496.json",
+      "headers": "evidence/figshare/article_33317496.headers.txt",
+      "purpose": "Exact dataset record establishing item DOI/version, item license, download_disabled flag, file IDs, direct download URLs, MD5 values, MIME types, categories, and authors.",
+      "observed": [
+        "HTTP 200 JSON",
+        "doi=10.6084/m9.figshare.33317496.v1",
+        "license=CC BY 4.0",
+        "download_disabled=false",
+        "files have download_url and MD5"
+      ],
+      "boundary": "resource_doi/resource_title are null in this full record, so CANNOT_CHECK_PAIR_IDENTITY for article-to-data pairing.",
+      "captured_at_utc": "2026-08-23T15:07:20.610023Z",
+      "final_http_status": 200,
+      "media_type": "application/json",
+      "body_sha256": "61cb80062051b80d1b65a5dc42c3d620999514479117b2a457591ce6126ea34d",
+      "body_bytes": 4220,
+      "headers_sha256": "3d3a262792668c5da09d85654f462e8a4c3bf4c9af5dfe3e6a5444f0afe7297e",
+      "headers_bytes": 439
+    },
+    {
+      "id": "figshare_article_33317559_software",
+      "provider": "FIGSHARE",
+      "method": "GET",
+      "url": "https://api.figshare.com/v2/articles/33317559",
+      "body": "evidence/figshare/article_33317559.json",
+      "headers": "evidence/figshare/article_33317559.headers.txt",
+      "purpose": "Exact software record establishing item DOI/version, item license, download_disabled flag, and directly addressable files.",
+      "observed": [
+        "HTTP 200 JSON",
+        "doi=10.6084/m9.figshare.33317559.v4",
+        "defined_type=9",
+        "license=CC BY 4.0",
+        "download_disabled=false"
+      ],
+      "boundary": "A Figshare content license on a software-typed package is not automatically a prospectively accepted code license; resource_doi/resource_title are null in the full record, hence CANNOT_CHECK_M6_LICENSE and CANNOT_CHECK_PAIR_IDENTITY.",
+      "captured_at_utc": "2026-08-23T15:07:21.031304Z",
+      "final_http_status": 200,
+      "media_type": "application/json",
+      "body_sha256": "06dc8db465d854a248bbfb75b8b18b264b32e3ce9aab3f43fbee849af184dde4",
+      "body_bytes": 8425,
+      "headers_sha256": "6acdfe84ba4ebf4ec0090a3b3e0b783ebfac1eaece553f271f58dc4446d32651",
+      "headers_bytes": 439
+    },
+    {
+      "id": "figshare_dataset_file_range_probe",
+      "provider": "FIGSHARE",
+      "method": "GET with Range: bytes=0-0",
+      "url": "https://ndownloader.figshare.com/files/67773810",
+      "body": "evidence/figshare/file_67773810_range0.bin",
+      "headers": "evidence/figshare/file_67773810_range0.headers.txt",
+      "purpose": "One-byte-bounded anonymous direct-download probe for an exact dataset file.",
+      "observed": [
+        "HTTP 302 to provider storage followed by HTTP 206",
+        "Content-Range bytes 0-0/78885",
+        "ETag matches recorded MD5"
+      ],
+      "boundary": "Confirms access only for this exact file at capture time; it does not generalize to other items.",
+      "captured_at_utc": "2026-08-23T15:09:37.255707Z",
+      "final_http_status": 206,
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "body_sha256": "5c62e091b8c0565f1bafad0dad5934276143ae2ccef7a5381e8ada5b1a8d26d2",
+      "body_bytes": 1,
+      "headers_sha256": "64216b28fe56c55aa09c5ae626cc8bde0692922370b389a8eb01683c5b62313e",
+      "headers_bytes": 2176
+    },
+    {
+      "id": "figshare_software_file_range_probe",
+      "provider": "FIGSHARE",
+      "method": "GET with Range: bytes=0-0",
+      "url": "https://ndownloader.figshare.com/files/67773978",
+      "body": "evidence/figshare/file_67773978_range0.bin",
+      "headers": "evidence/figshare/file_67773978_range0.headers.txt",
+      "purpose": "One-byte-bounded anonymous direct-download probe for an exact software-package file.",
+      "observed": [
+        "HTTP 302 to provider storage followed by HTTP 206",
+        "one byte returned"
+      ],
+      "boundary": "Access success does not establish an accepted code license or linked-publication identity.",
+      "captured_at_utc": "2026-08-23T15:09:37.775526Z",
+      "final_http_status": 206,
+      "media_type": "application/gzip",
+      "body_sha256": "ffe679bb831c95b67dc17819c63c5090d221aac6f4c7bf530f594ab43d21fa1e",
+      "body_bytes": 1,
+      "headers_sha256": "a86335a9570911635a6d4bedc398287c1d88b1757901c2af992906e12deeafcf",
+      "headers_bytes": 2184
+    },
+    {
+      "id": "figshare_zenodo_mirror_search",
+      "provider": "FIGSHARE",
+      "method": "POST",
+      "url": "https://api.figshare.com/v2/articles/search",
+      "request_body": "evidence/figshare/search_zenodo_mirror_request.json",
+      "body": "evidence/figshare/search_zenodo_mirror.json",
+      "headers": "evidence/figshare/search_zenodo_mirror.headers.txt",
+      "purpose": "Bounded provider/mirror-identity probe targeting Zenodo DOI text.",
+      "observed": [
+        "HTTP 200 JSON",
+        "Figshare DOI 10.6084/m9.figshare.33317592.v1",
+        "search resource_doi=10.5281/zenodo.22062688"
+      ],
+      "boundary": "Demonstrates that provider search results can describe imported/mirrored external DOI lineages; these must not be counted as source-disjoint Figshare units.",
+      "captured_at_utc": "2026-08-23T15:10:08.429597Z",
+      "final_http_status": 200,
+      "media_type": "application/json",
+      "body_sha256": "31e7f40cbe401d19d084777c2348a94d1f420b04ea80f910ed57425c4651b05a",
+      "body_bytes": 880,
+      "headers_sha256": "359eb08a1cdff6f7e25281693ef7685a4bea6e9da64d61ed3bd73d36e93623c2",
+      "headers_bytes": 671,
+      "request_body_sha256": "41050bb9cc361c46f1ed76edb82cee3d2639f9b350dbd9cbb07b829e57a98aab",
+      "request_body_bytes": 109
+    },
+    {
+      "id": "figshare_article_33317592_zenodo_mirror",
+      "provider": "FIGSHARE",
+      "method": "GET",
+      "url": "https://api.figshare.com/v2/articles/33317592",
+      "body": "evidence/figshare/article_33317592_zenodo_mirror.json",
+      "headers": "evidence/figshare/article_33317592_zenodo_mirror.headers.txt",
+      "purpose": "Exact mirror record establishing structured IsIdenticalTo relation to a Zenodo DOI and canonical external source URLs.",
+      "observed": [
+        "HTTP 200 JSON",
+        "related_materials includes IsIdenticalTo DOI 10.5281/zenodo.22062688",
+        "related_materials identifies canonical GitHub repository"
+      ],
+      "boundary": "EXCLUDE_PROVIDER_MIRROR_DUPLICATE; versions/files/providers do not create independent natural pairs.",
+      "captured_at_utc": "2026-08-23T15:10:21.304816Z",
+      "final_http_status": 200,
+      "media_type": "application/json",
+      "body_sha256": "065f060737f5dd3100c471e1f13851f896575076e7384e447151a173331e90c2",
+      "body_bytes": 6125,
+      "headers_sha256": "4ce93f32093ae17f445c2f181c19da6c2295923d9b20f148b2c8e6595334fb34",
+      "headers_bytes": 439
+    },
+    {
+      "id": "figshare_api_docs",
+      "provider": "FIGSHARE",
+      "method": "GET",
+      "url": "https://docs.figshare.com/",
+      "body": "evidence/figshare/api_docs.html",
+      "headers": "evidence/figshare/api_docs.headers.txt",
+      "purpose": "Official Figshare API documentation provenance.",
+      "observed": [
+        "HTTP 200 HTML"
+      ],
+      "boundary": "Documentation provenance only; item-level captured responses control evidence claims.",
+      "captured_at_utc": "2026-08-23T15:10:54.306866Z",
+      "final_http_status": 200,
+      "media_type": "text/html",
+      "body_sha256": "825c1a14fef69eab1ab2d2e2f568f57f9c766b2918262b687739c215e214bd61",
+      "body_bytes": 240738,
+      "headers_sha256": "20a61621804b4e0abb68e2451c4dec26ad49bcf9030b0280c68d875706c62132",
+      "headers_bytes": 470
+    },
+    {
+      "id": "dataverse_search_dataset_per1",
+      "provider": "HARVARD_DATAVERSE",
+      "method": "GET",
+      "url": "https://dataverse.harvard.edu/api/search?q=*&type=dataset&per_page=1",
+      "body": "evidence/dataverse/search_dataset_per1.json",
+      "headers": "evidence/dataverse/search_dataset_per1.headers.txt",
+      "purpose": "One-result bounded primary search response and public result-count provenance.",
+      "observed": [
+        "HTTP 200 JSON",
+        "total_count=302786 at capture time",
+        "one result only"
+      ],
+      "boundary": "Search totals and rows are discovery evidence only and do not establish linked-publication DOI, rights, direct download, or natural-pair eligibility.",
+      "captured_at_utc": "2026-08-23T15:07:37.591983Z",
+      "final_http_status": 200,
+      "media_type": "application/json;charset=UTF-8",
+      "body_sha256": "7954ff65b5e7e8a0b758f31959c9ffdd06b27348e804b9cf111b931f4feaf8c5",
+      "body_bytes": 1635,
+      "headers_sha256": "20568483c88d337aa9e02fe17d720f397376e7e3c42d79572b9c222868897cf4",
+      "headers_bytes": 547
+    },
+    {
+      "id": "dataverse_dataset_DVN_27221",
+      "provider": "HARVARD_DATAVERSE",
+      "method": "GET",
+      "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi%3A10.7910%2FDVN%2F27221",
+      "body": "evidence/dataverse/dataset_DVN_27221.json",
+      "headers": "evidence/dataverse/dataset_DVN_27221.headers.txt",
+      "purpose": "Exact dataset-version response establishing concept DOI, version state, SPDX-linked item license, file restriction, file ID, file checksum, and publication-citation metadata.",
+      "observed": [
+        "HTTP 200 JSON",
+        "persistent DOI 10.7910/DVN/27221",
+        "license CC0 1.0 with rightsIdentifier CC0-1.0 and SPDX scheme",
+        "file restricted=false",
+        "file MD5 f57184de03766641c510cdc911d9fad1"
+      ],
+      "boundary": "Publication metadata is citation/title only with no linked publication DOI in this sample; CANNOT_CHECK_PAIR_IDENTITY.",
+      "captured_at_utc": "2026-08-23T15:07:54.430846Z",
+      "final_http_status": 200,
+      "media_type": "application/json;charset=UTF-8",
+      "body_sha256": "fc9cd5f523f9f1a1c5977b1e8f9ac5140c7eca2a39ee8a7f36bc804fa4d991e4",
+      "body_bytes": 4372,
+      "headers_sha256": "c9bb55c606d4bbe5e4d8c0309562e09e1a2110b068abd3c46f78dee3198a7162",
+      "headers_bytes": 639
+    },
+    {
+      "id": "dataverse_datafile_2498426_head_probe",
+      "provider": "HARVARD_DATAVERSE",
+      "method": "HEAD with redirect following",
+      "url": "https://dataverse.harvard.edu/api/access/datafile/2498426",
+      "body": "evidence/dataverse/datafile_2498426_head.body.txt",
+      "headers": "evidence/dataverse/datafile_2498426_head.headers.txt",
+      "purpose": "Bounded no-body probe of exact datafile access route.",
+      "observed": [
+        "initial HTTP 303 signed storage redirect",
+        "redirected HEAD returned HTTP 403"
+      ],
+      "boundary": "CANNOT_CHECK_BY_HEAD because signed storage permits GET-range but not HEAD; do not treat this 403 as a restricted-file result.",
+      "captured_at_utc": "2026-08-23T15:08:15.597166Z",
+      "final_http_status": 403,
+      "media_type": "application/xml",
+      "body_sha256": "f174638c9e5b972b65c310f00af1adcbcc3f3e714c79b209fb23b82523e60911",
+      "body_bytes": 1361,
+      "headers_sha256": "f174638c9e5b972b65c310f00af1adcbcc3f3e714c79b209fb23b82523e60911",
+      "headers_bytes": 1361
+    },
+    {
+      "id": "dataverse_datafile_2498426_range_probe",
+      "provider": "HARVARD_DATAVERSE",
+      "method": "GET with Range: bytes=0-0",
+      "url": "https://dataverse.harvard.edu/api/access/datafile/2498426",
+      "body": "evidence/dataverse/datafile_2498426_range0.bin",
+      "headers": "evidence/dataverse/datafile_2498426_range0.headers.txt",
+      "purpose": "One-byte-bounded anonymous direct-download probe for an exact unrestricted file.",
+      "observed": [
+        "initial HTTP 303 signed storage redirect followed by HTTP 206",
+        "Content-Range bytes 0-0/2545568",
+        "ETag equals dataset-record MD5"
+      ],
+      "boundary": "Confirms access only for this exact file at capture time; candidate pairing still fails without a structured linked publication DOI.",
+      "captured_at_utc": "2026-08-23T15:08:30.706384Z",
+      "final_http_status": 206,
+      "media_type": "application/zip",
+      "body_sha256": "5c62e091b8c0565f1bafad0dad5934276143ae2ccef7a5381e8ada5b1a8d26d2",
+      "body_bytes": 1,
+      "headers_sha256": "a9b0db854b08eefe0670172d9212180a9cec780a70906a4673aa30ef2fd1833b",
+      "headers_bytes": 1762
+    },
+    {
+      "id": "dataverse_native_api_guide",
+      "provider": "HARVARD_DATAVERSE",
+      "method": "GET",
+      "url": "https://guides.dataverse.org/en/latest/api/native-api.html",
+      "body": "evidence/dataverse/api_guide.html",
+      "headers": "evidence/dataverse/api_guide.headers.txt",
+      "purpose": "Official native API documentation provenance, including persistent-ID dataset access, licenses, restriction metadata, and datafile access routes.",
+      "observed": [
+        "HTTP 200 HTML"
+      ],
+      "boundary": "Documentation describes API semantics; exact candidate eligibility requires captured item-specific evidence.",
+      "captured_at_utc": "2026-08-23T15:07:38.650696Z",
+      "final_http_status": 200,
+      "media_type": "text/html; charset=UTF-8",
+      "body_sha256": "fd81869241d5afd12e14231d6d1844c24675244abe533d6791b2cf3f185bdf8a",
+      "body_bytes": 1107288,
+      "headers_sha256": "8379c2f40ced1dee02a5531926549a409a0efd8abb7dda94e0d6486b9e39a093",
+      "headers_bytes": 236
+    },
+    {
+      "id": "datacite_dataset_is_supplement_to_per1",
+      "provider": "DATACITE",
+      "method": "GET",
+      "url": "https://api.datacite.org/dois?query=types.resourceTypeGeneral%3ADataset%20AND%20relatedIdentifiers.relationType%3AIsSupplementTo&page%5Bsize%5D=1",
+      "body": "evidence/datacite/dois_dataset_is_supplement_to_per1.json",
+      "headers": "evidence/datacite/dois_dataset_is_supplement_to_per1.headers.txt",
+      "purpose": "One-result bounded discovery query establishing DOI relation metadata, rights metadata, publisher/URL, and client identity.",
+      "observed": [
+        "HTTP 200 JSON",
+        "meta.total=2254061 at capture time",
+        "first DOI 10.5281/zenodo.22067317",
+        "publisher=Zenodo",
+        "client relationship id=cern.zenodo",
+        "rights include CC-BY-NC-ND plus copyright",
+        "IsSupplementTo target is another dataset DOI"
+      ],
+      "boundary": "DATACITE_DISCOVERY_ONLY: DataCite is not an independent content provider; IsSupplementTo does not imply article relation; rights metadata is not a substitute for host item/download authority; this result is a Zenodo object and must not be counted as disjoint.",
+      "captured_at_utc": "2026-08-23T15:09:50.997744Z",
+      "final_http_status": 200,
+      "media_type": "application/json; charset=utf-8",
+      "body_sha256": "10a5d70084eba8ff4421a0fade326ab3a5db4fb64eb8bc281614f131fc7daa96",
+      "body_bytes": 10232,
+      "headers_sha256": "246c07811528a87278da3bb3bd9467a9b7e45d49d53f26ac4ac2eeef95e2a394",
+      "headers_bytes": 1065
+    },
+    {
+      "id": "datacite_rest_api_guide",
+      "provider": "DATACITE",
+      "method": "GET",
+      "url": "https://support.datacite.org/docs/api",
+      "body": "evidence/datacite/rest_api_guide.html",
+      "headers": "evidence/datacite/rest_api_guide.headers.txt",
+      "purpose": "Official DataCite REST API guide provenance.",
+      "observed": [
+        "HTTP 200 HTML"
+      ],
+      "boundary": "Documentation/discovery provenance only; underlying host controls item-specific rights and download authority.",
+      "captured_at_utc": "2026-08-23T15:09:51.287927Z",
+      "final_http_status": 200,
+      "media_type": "text/html; charset=utf-8",
+      "body_sha256": "547439f229e9ab3f03c359e6df09c146a0b670ec2b265f3169f3cf635355c8fa",
+      "body_bytes": 342869,
+      "headers_sha256": "d2a9821399c3f2210ce5efd524e27e7d2bfaf277c92ad5188800698de486515e",
+      "headers_bytes": 3256
+    }
+  ],
+  "capture_count": 26,
+  "provider_capture_counts": {
+    "DATACITE": 2,
+    "DRYAD": 8,
+    "FIGSHARE": 11,
+    "HARVARD_DATAVERSE": 5
+  },
+  "errors_and_cannot_check": [
+    {
+      "id": "DRYAD_ANONYMOUS_DOWNLOAD_401",
+      "evidence": [
+        "dryad_dataset_download_range_probe",
+        "dryad_file_download_range_probe"
+      ],
+      "terminal": "CANNOT_CHECK_ANONYMOUS_DIRECT_DOWNLOAD_AUTHORITY"
+    },
+    {
+      "id": "DRYAD_REQUESTED_VERSION_RETURNED_FILE_LINK_DIVERGENCE",
+      "evidence": [
+        "dryad_version_124910_files",
+        "dryad_file_download_range_probe"
+      ],
+      "terminal": "CANNOT_CHECK_EXACT_VERSION_FILE_LINEAGE"
+    },
+    {
+      "id": "FIGSHARE_SEARCH_FULL_RESOURCE_DOI_FIELD_DIVERGENCE",
+      "evidence": [
+        "figshare_software_search",
+        "figshare_article_33317559_software"
+      ],
+      "terminal": "CANNOT_CHECK_PAIR_IDENTITY"
+    },
+    {
+      "id": "FIGSHARE_SOFTWARE_CC_BY_NOT_CODE_LICENSE",
+      "evidence": [
+        "figshare_article_33317559_software"
+      ],
+      "terminal": "CANNOT_CHECK_M6_LICENSE"
+    },
+    {
+      "id": "FIGSHARE_ZENODO_MIRROR",
+      "evidence": [
+        "figshare_zenodo_mirror_search",
+        "figshare_article_33317592_zenodo_mirror"
+      ],
+      "terminal": "EXCLUDE_PROVIDER_MIRROR_DUPLICATE"
+    },
+    {
+      "id": "DATAVERSE_CITATION_WITHOUT_PUBLICATION_DOI",
+      "evidence": [
+        "dataverse_dataset_DVN_27221"
+      ],
+      "terminal": "CANNOT_CHECK_PAIR_IDENTITY"
+    },
+    {
+      "id": "DATAVERSE_HEAD_REDIRECT_403_BUT_GET_RANGE_206",
+      "evidence": [
+        "dataverse_datafile_2498426_head_probe",
+        "dataverse_datafile_2498426_range_probe"
+      ],
+      "terminal": "HEAD_METHOD_NOT_AUTHORITY_TEST"
+    },
+    {
+      "id": "DATACITE_IS_SUPPLEMENT_TO_NON_ARTICLE",
+      "evidence": [
+        "datacite_dataset_is_supplement_to_per1"
+      ],
+      "terminal": "CANNOT_CHECK_PAIR_TYPE__DISCOVERY_ONLY"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "binfmt_registration_removed_before_data_root_destruction": true,
+  "build_host_boundary": "ephemeral Docker 29.3.0 daemon and data root on an x86_64 Linux host; final image platform linux/arm64 via registered qemu-aarch64; build network disabled and runtime network none",
+  "initial_unprivileged_data_root_removal_complete": false,
+  "initial_unprivileged_residual": "root-owned containerd/runc/data directories required the documented sudo escalation",
+  "local_retained_image_archive": "image/orion-p5-c2-v13-linux-arm64.tar",
+  "post_escalation_docker_socket_absent": true,
+  "post_escalation_ephemeral_data_root_absent": true,
+  "post_escalation_temporary_remote_cli_link_absent": true,
+  "retained_remote_payload_bytes": 0,
+  "schema_version": "orion.p5.c2.remote-build-environment-destruction-receipt.v13",
+  "status": "PASS_AFTER_EXPLICIT_PRIVILEGE_ESCALATION",
+  "successor_identity": "C2_RIGHTS_CLEARED_SCRATCH_IMAGE_SUCCESSOR__ORION_V13",
+  "target_image_absent_before_daemon_cleanup": true,
+  "terminal": "P5_C2_V13_REMOTE_EPHEMERAL_DOCKER_DAEMON_SOCKET_CLI_LINK_AND_TMPFS_DATA_ROOT_DESTROYED__ZERO_REMOTE_PAYLOAD_RETAINED",
+  "transcript": {
+    "path": "transcripts/REMOTE_BUILD_ENVIRONMENT_DESTRUCTION_V13.txt",
+    "sha256": "4291a29111d62ac2c4ebc99a168c1c2001b40b71dd6195560efb07cc5673e768",
+    "size_bytes": 407
+  }
+}
