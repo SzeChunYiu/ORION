@@ -1,0 +1,83 @@
+{
+  "authority": "SCHEDULER_RUNTIME_AND_CLEANUP_EVIDENCE_ONLY__NO_PROMPT_BODY_GENERATION_TASK_EXECUTION_EVALUATION_OUTCOME_COST_OR_SCIENTIFIC_AUTHORITY",
+  "cleanup": {
+    "loopback_listener_absent": true,
+    "process_group_absent": true
+  },
+  "execution_boundary": {
+    "billed_cost_status": "CANNOT_CHECK",
+    "billed_cost_usd": null,
+    "credentials_used": false,
+    "evaluator_or_outcome_opened": false,
+    "external_api_invoked": false,
+    "generation_invoked": false,
+    "official_outcomes_opened": 0,
+    "production_admissibility": "CANNOT_CHECK",
+    "pytest_or_ci_invoked": false,
+    "scientific_authority_delta": "NONE",
+    "task_prompt_packet_bodies_retained": 0,
+    "tasks_executed": 0
+  },
+  "job": {
+    "alloc_tres": "billing=8,cpu=8,gres/gpu:a40=1,gres/gpu=1,mem=64G,node=1",
+    "elapsed": "00:02:03",
+    "exit_code": "0:0",
+    "finished_at_utc": "2026-08-24T18:18:35Z",
+    "job_name": "p1_sab_pf_succ_v1",
+    "jobs_in_successor_execution_lane": 1,
+    "resources": {
+      "cpus": 8,
+      "gpus": "a40:1",
+      "memory": "64G",
+      "nodes": 1,
+      "partition": "gpua40i",
+      "tasks": 1
+    },
+    "slurm_job_id": "3537617",
+    "started_at_utc": "2026-08-24T18:16:51Z",
+    "state": "COMPLETED"
+  },
+  "private_evidence": {
+    "preflight_stderr": {
+      "bytes": 0,
+      "retention": "PRIVATE_NON_REPOSITORY_REMOTE_ROOT_ONLY",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "preflight_stdout": {
+      "bytes": 262,
+      "retention": "PRIVATE_NON_REPOSITORY_REMOTE_ROOT_ONLY",
+      "sha256": "835b90ea303d6fba504dd9dec28432c799be6b918fc9591e969e634b25251ac0"
+    },
+    "scheduler_stderr": {
+      "bytes": 112,
+      "retention": "PRIVATE_NON_REPOSITORY_REMOTE_ROOT_ONLY",
+      "sha256": "ea3bc2ddcd2e62b4f8b64836ca5650558f11b324858bf8bdeeff35de39a92a00"
+    }
+  },
+  "public_evidence": {
+    "cleanup_receipt": {
+      "bytes": 343,
+      "path": "CLEANUP_V1.json",
+      "sha256": "7433906796d11e8f9d0d6431ce57fd55c881800145e99364745b4f8a69512270"
+    },
+    "job_receipt": {
+      "bytes": 1884,
+      "path": "SUCCESSOR_JOB_RECEIPT_V1.json",
+      "sha256": "b760fa128fd12174f179c52025c1b84e431719f69edb1f9b8b433cbacc993a11"
+    },
+    "sacct": {
+      "bytes": 156,
+      "path": "SACCT_V1.txt",
+      "rows": 1,
+      "sha256": "5eeb5ae5e933cdea0e9214e8d2c69e0ec65c561c607779635341668a95d6c0b1"
+    },
+    "terminal": {
+      "bytes": 351,
+      "completion_lines": 1,
+      "path": "TERMINAL_V1.txt",
+      "sha256": "6a8e694528f0b72369f2b80f759b5362407eec5124664fb19b702fd2c7a4e39f"
+    }
+  },
+  "schema_version": "orion.p1.scienceagentbench.protected-prompt-fit-successor-scheduler-runtime-receipt.v2",
+  "status": "PASS_EXACTLY_ONE_BOUNDED_A40_JOB_COMPLETED_EXIT_ZERO_AND_CLEANED"
+}

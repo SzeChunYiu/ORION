@@ -1,0 +1,156 @@
+{
+  "authority": "BOUNDED_STATIC_PROMPT_FIT_SUCCESSOR_RESULT_ONLY__NO_GENERATION_TASK_EXECUTION_EVALUATION_OUTCOME_COST_PRODUCTION_OR_SCIENTIFIC_AUTHORITY",
+  "claim_boundary": {
+    "credentials_used": false,
+    "evaluator_or_outcome_opened": false,
+    "external_api_invoked": false,
+    "generation_invoked": false,
+    "gguf_in_repository": 0,
+    "integer_token_id_audit_in_repository": 0,
+    "manuscript_or_pdf_changed": false,
+    "official_outcomes_opened": 0,
+    "production_admissibility": "CANNOT_CHECK",
+    "pytest_or_ci_invoked": false,
+    "raw_protected_rows_in_repository": 0,
+    "raw_token_ledger_in_repository": 0,
+    "scientific_authority_delta": "NONE",
+    "task_prompt_packet_bodies_in_repository": 0,
+    "tasks_executed": 0
+  },
+  "execution": {
+    "elapsed": "00:02:03",
+    "exit_code": "0:0",
+    "jobs": 1,
+    "resources": {
+      "cpus": 8,
+      "gpus": "a40:1",
+      "memory": "64G",
+      "nodes": 1,
+      "tasks": 1
+    },
+    "slurm_job_id": "3537617",
+    "state": "COMPLETED"
+  },
+  "next_discriminator": "A_SEPARATELY_AUTHORIZED_STATEFUL_EXECUTION_MUST_PROVIDE_EACH_RR_PHASE0_GENERATION_TO_RENDER_AND_TOKENIZE_DYNAMIC_RR_PHASE1__NO_SUCH_EXECUTION_IS_AUTHORIZED_HERE",
+  "phase_token_ranges": {
+    "NR_PHASE0": {
+      "maximum_prompt_tokens": 468,
+      "minimum_prompt_tokens": 213,
+      "records": 306
+    },
+    "NR_PHASE1": {
+      "maximum_prompt_tokens": 21037,
+      "minimum_prompt_tokens": 218,
+      "records": 306
+    },
+    "OS_PHASE1": {
+      "maximum_prompt_tokens": 21022,
+      "minimum_prompt_tokens": 203,
+      "records": 306
+    },
+    "RR_PHASE0": {
+      "maximum_prompt_tokens": 468,
+      "minimum_prompt_tokens": 213,
+      "records": 306
+    }
+  },
+  "predecessor_adverse_result": {
+    "lane": "development/p1-scienceagentbench-protected-prompt-fit-result-v1-2026-08-24/",
+    "merge_commit": "a3ac9e462552c84d2169b24f664f7791296d6769",
+    "preservation": "UNCHANGED_ADVERSE_RESULT_RETAINED_NOT_REINTERPRETED",
+    "pull_request": 1190,
+    "result_sha256": "2eccca3862e07e2a73e6efd1abf7988e2885a3269f11bd97f6d728f5f5fc1d1c",
+    "sha256sums_sha256": "37de79e648b0d2a8a5a84c5811f4cdff950c7c6bd4bc4f893ed17a768edc64f5"
+  },
+  "receipt_bindings": {
+    "body_free_export_manifest": {
+      "bytes": 1577,
+      "sha256": "ea2de55a77b0d8131a7f0e1814791363c50bfc54d9043ecb380ac3c0726cbb07"
+    },
+    "cleanup_receipt": {
+      "bytes": 343,
+      "sha256": "7433906796d11e8f9d0d6431ce57fd55c881800145e99364745b4f8a69512270"
+    },
+    "finalization_receipt": {
+      "bytes": 2084,
+      "sha256": "0a5267edc41ff4b73c2807bf34e74f42d14f82f3f458f41c7bac790cbdf28ba5"
+    },
+    "input_gate_receipt": {
+      "bytes": 2751,
+      "sha256": "c9d82fe81dcb468174ee1951cf3622b88d107aa52f7528e6e2997f3498a74534"
+    },
+    "protected_prompt_fit_receipt": {
+      "bytes": 539479,
+      "sha256": "4ff1163b7e405b5881a7d2d4aea10bb634aaf49ada7bfc0c02159a1b5e18fa83"
+    },
+    "sacct": {
+      "bytes": 156,
+      "sha256": "5eeb5ae5e933cdea0e9214e8d2c69e0ec65c561c607779635341668a95d6c0b1"
+    },
+    "scheduler_runtime_receipt": {
+      "bytes": 2792,
+      "sha256": "c88a40980a07f0d16b11af002aeb3de9386c5b1cb1740970f05c17363d862485"
+    },
+    "successor_input_bindings": {
+      "bytes": 4252,
+      "sha256": "14e6964c2894b5c500614da6c305d54429b6a5a70a5ce850833015cee4bebe23"
+    },
+    "successor_job_receipt": {
+      "bytes": 1884,
+      "sha256": "b760fa128fd12174f179c52025c1b84e431719f69edb1f9b8b433cbacc993a11"
+    },
+    "terminal": {
+      "bytes": 351,
+      "sha256": "6a8e694528f0b72369f2b80f759b5362407eec5124664fb19b702fd2c7a4e39f"
+    },
+    "token_ledger_audit_aggregate": {
+      "bytes": 4600,
+      "sha256": "fc0881a3eba21c972a2fa23c35cebd6a0e4f61317d785f6f56bd5ee502e56767"
+    },
+    "tokenization_receipt": {
+      "bytes": 1006,
+      "sha256": "4330c210cd47bc36496da367e62fa849fcf74890c03b80edb20d2284b0b6af09"
+    }
+  },
+  "repair": {
+    "contract": {
+      "bytes": 8840,
+      "path": "development/p1-scienceagentbench-protected-prompt-fit-preflight-v1-2026-08-24/PROTECTED_PROMPT_FIT_CONTRACT_V1.json",
+      "sha256": "a2c1dd159f662f019697a3f3a12d7cd06a3d6533258f73d24ed6390a236e51d1"
+    },
+    "implementation": {
+      "bytes": 77033,
+      "path": "development/p1-scienceagentbench-protected-prompt-fit-preflight-v1-2026-08-24/protected_prompt_fit_preflight_v1.py",
+      "sha256": "4b605096e3421acd9f826e20864d96eda793f6a9b97879a264d4d8be2acac136"
+    },
+    "merge_commit": "ee66ee2b6489f7c754ffff219e2ab183c03d6368",
+    "pull_request": 1192
+  },
+  "schema_version": "orion.p1.scienceagentbench.protected-prompt-fit-successor-result.v2",
+  "status": "STATIC_STATE_INDEPENDENT_PROMPT_FIT_ESTABLISHED_DYNAMIC_RR_AND_PRODUCTION_ADMISSIBILITY_CANNOT_CHECK",
+  "typed_result": {
+    "all_state_independent_prompts_fit": true,
+    "billed_cost_status": "CANNOT_CHECK",
+    "billed_cost_usd": null,
+    "context_window_tokens": 32768,
+    "dynamic_rr_phase1": "CANNOT_CHECK_DYNAMIC_RR_PHASE0_STATE_REQUIRED",
+    "dynamic_rr_phase1_records": 306,
+    "minimum_remaining_context_margin_tokens": 3554,
+    "production_admissibility": "CANNOT_CHECK",
+    "scientific_authority_delta": "NONE",
+    "state_independent_static_prompt_fit": "FIT_FROM_BOUND_TOKEN_LEDGER",
+    "static_fit": 1224,
+    "static_not_fit": 0,
+    "static_state_independent_prompts": 1224,
+    "tasks": 102,
+    "tokenization_repeat_count": 3,
+    "tokenization_repeat_identity": "THREE_BYTE_AND_INTEGER_TOKEN_ID_IDENTICAL_RESPONSES_PER_PROMPT",
+    "tokenize_requests": 3672,
+    "tokenizer_request_semantics": {
+      "add_special": true,
+      "parse_special": true,
+      "route": "POST /tokenize"
+    },
+    "worst_occupied_context_tokens": 29214
+  }
+}
