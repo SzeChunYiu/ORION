@@ -1,0 +1,373 @@
+{
+  "base_revision": "3616f0f1a69b571fcbf85fa3093aa050765c7fc9",
+  "certificate": {
+    "independent_of_m": true,
+    "interaction_arity": 2,
+    "maximum_clause_support_terms": 4,
+    "name": "P4(m)"
+  },
+  "complete_regressions": {
+    "m5_n1": {
+      "count": 21,
+      "enumeration_sha256": "f91313c5f39f540dd7b8354609e8f3d4591ba97ed35a6e2fbc0e53a95717ff1b",
+      "mismatch_count_capped": 0,
+      "mismatches": [],
+      "p4_true": 0,
+      "qubits": 1,
+      "quotient": "TERM_REORDERING_MULTISET",
+      "term_count": 5,
+      "unary_optimal": 0,
+      "zero_mismatches": true
+    },
+    "m5_n2": {
+      "count": 11628,
+      "enumeration_sha256": "9577bc4752852c4982de8098fcc66e7d154e5efc35f82181b0933db70f45451c",
+      "mismatch_count_capped": 0,
+      "mismatches": [],
+      "p4_true": 75,
+      "qubits": 2,
+      "quotient": "TERM_REORDERING_MULTISET",
+      "term_count": 5,
+      "unary_optimal": 75,
+      "zero_mismatches": true
+    },
+    "m6_n1": {
+      "count": 28,
+      "enumeration_sha256": "1bdeef11271811c6768ff2c22664907c161c8b678355de7b7b32b2202d27d4b3",
+      "mismatch_count_capped": 0,
+      "mismatches": [],
+      "p4_true": 0,
+      "qubits": 1,
+      "quotient": "TERM_REORDERING_MULTISET",
+      "term_count": 6,
+      "unary_optimal": 0,
+      "zero_mismatches": true
+    }
+  },
+  "cross_grammar_transfer": false,
+  "cross_objective_transfer": false,
+  "decision_value_optimizer_hierarchy_authority": "DECISION_ONLY",
+  "exact_value_authority": false,
+  "gates": {
+    "all_m_claim_comes_from_proof_not_enumeration": true,
+    "complete_quotient_counts": true,
+    "complete_regressions_zero_mismatch": true,
+    "m4_sharp_counterexample": true,
+    "no_network_or_protected_subject": true,
+    "protocol_present": true,
+    "qg12_parent_bound": true,
+    "symbolic_proof_ledger": true
+  },
+  "network_access": false,
+  "novelty_authority": false,
+  "optimizer_witness_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "proof_ledger": {
+    "all_checks": true,
+    "block_gain_rows_2_to_16": {
+      "10": {
+        "after_w_ge_2sF": -22,
+        "bits": 4,
+        "factor_coefficient": 58,
+        "weight_coefficient": -4
+      },
+      "11": {
+        "after_w_ge_2sF": -24,
+        "bits": 4,
+        "factor_coefficient": 64,
+        "weight_coefficient": -4
+      },
+      "12": {
+        "after_w_ge_2sF": -26,
+        "bits": 4,
+        "factor_coefficient": 70,
+        "weight_coefficient": -4
+      },
+      "13": {
+        "after_w_ge_2sF": -28,
+        "bits": 4,
+        "factor_coefficient": 76,
+        "weight_coefficient": -4
+      },
+      "14": {
+        "after_w_ge_2sF": -30,
+        "bits": 4,
+        "factor_coefficient": 82,
+        "weight_coefficient": -4
+      },
+      "15": {
+        "after_w_ge_2sF": -32,
+        "bits": 4,
+        "factor_coefficient": 88,
+        "weight_coefficient": -4
+      },
+      "16": {
+        "after_w_ge_2sF": -34,
+        "bits": 4,
+        "factor_coefficient": 94,
+        "weight_coefficient": -4
+      },
+      "2": {
+        "after_w_ge_2sF": 0,
+        "bits": 1,
+        "factor_coefficient": 4,
+        "weight_coefficient": -1
+      },
+      "3": {
+        "after_w_ge_2sF": -2,
+        "bits": 2,
+        "factor_coefficient": 10,
+        "weight_coefficient": -2
+      },
+      "4": {
+        "after_w_ge_2sF": -2,
+        "bits": 2,
+        "factor_coefficient": 14,
+        "weight_coefficient": -2
+      },
+      "5": {
+        "after_w_ge_2sF": -7,
+        "bits": 3,
+        "factor_coefficient": 23,
+        "weight_coefficient": -3
+      },
+      "6": {
+        "after_w_ge_2sF": -8,
+        "bits": 3,
+        "factor_coefficient": 28,
+        "weight_coefficient": -3
+      },
+      "7": {
+        "after_w_ge_2sF": -9,
+        "bits": 3,
+        "factor_coefficient": 33,
+        "weight_coefficient": -3
+      },
+      "8": {
+        "after_w_ge_2sF": -10,
+        "bits": 3,
+        "factor_coefficient": 38,
+        "weight_coefficient": -3
+      },
+      "9": {
+        "after_w_ge_2sF": -20,
+        "bits": 4,
+        "factor_coefficient": 52,
+        "weight_coefficient": -4
+      }
+    },
+    "checks": {
+      "converse_explicit_witness_partitions": true,
+      "depth_base_1_to_5": true,
+      "dominance_factoring_and_shared_width": true,
+      "h_2_3_4_equals_1": true,
+      "h_5_equals_0": true,
+      "h_nonpositive_5_to_128": true,
+      "integer_pair_packing_lemma": true,
+      "large_block_coefficient_nonpositive_3_to_128": true,
+      "single_17_plus_symbolic_sign": true,
+      "single_5_to_8_exact_close": true,
+      "single_9_to_16_close": true
+    },
+    "depth_recurrence": "d(s)=d(ceil(s/2))+d(floor(s/2))+s-2",
+    "depth_values_1_to_16": {
+      "1": 0,
+      "10": 16,
+      "11": 19,
+      "12": 22,
+      "13": 25,
+      "14": 28,
+      "15": 31,
+      "16": 34,
+      "2": 0,
+      "3": 1,
+      "4": 2,
+      "5": 4,
+      "6": 6,
+      "7": 8,
+      "8": 10,
+      "9": 13
+    },
+    "human_proof_location": "development/orion-qg-regime-geometry/PAPER_C_C1_ALL_M_DECISION_CERTIFICATE_PROTOCOL_2026-08-24.md",
+    "shape_credit_h_1_to_16": {
+      "1": 0,
+      "10": -7,
+      "11": -9,
+      "12": -11,
+      "13": -13,
+      "14": -15,
+      "15": -17,
+      "16": -19,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 0,
+      "6": -1,
+      "7": -2,
+      "8": -3,
+      "9": -5
+    },
+    "single_block_rows_5_to_16": {
+      "10": {
+        "F_positive_gain_coefficient_at_F_1": -13,
+        "bits": 4,
+        "constant": -2,
+        "depth_sum": 16
+      },
+      "11": {
+        "F_positive_gain_coefficient_at_F_1": -15,
+        "bits": 4,
+        "constant": -3,
+        "depth_sum": 19
+      },
+      "12": {
+        "F_positive_gain_coefficient_at_F_1": -17,
+        "bits": 4,
+        "constant": -4,
+        "depth_sum": 22
+      },
+      "13": {
+        "F_positive_gain_coefficient_at_F_1": -19,
+        "bits": 4,
+        "constant": -5,
+        "depth_sum": 25
+      },
+      "14": {
+        "F_positive_gain_coefficient_at_F_1": -21,
+        "bits": 4,
+        "constant": -6,
+        "depth_sum": 28
+      },
+      "15": {
+        "F_positive_gain_coefficient_at_F_1": -23,
+        "bits": 4,
+        "constant": -7,
+        "depth_sum": 31
+      },
+      "16": {
+        "F_positive_gain_coefficient_at_F_1": -25,
+        "bits": 4,
+        "constant": -8,
+        "depth_sum": 34
+      },
+      "5": {
+        "F_positive_gain_coefficient_at_F_1": 0,
+        "bits": 3,
+        "constant": 1,
+        "depth_sum": 4
+      },
+      "6": {
+        "F_positive_gain_coefficient_at_F_1": 0,
+        "bits": 3,
+        "constant": 1,
+        "depth_sum": 6
+      },
+      "7": {
+        "F_positive_gain_coefficient_at_F_1": 0,
+        "bits": 3,
+        "constant": 1,
+        "depth_sum": 8
+      },
+      "8": {
+        "F_positive_gain_coefficient_at_F_1": 0,
+        "bits": 3,
+        "constant": 1,
+        "depth_sum": 10
+      },
+      "9": {
+        "F_positive_gain_coefficient_at_F_1": -11,
+        "bits": 4,
+        "constant": -1,
+        "depth_sum": 13
+      }
+    },
+    "theorem": "For every m>=5 in the frozen structural partition grammar, C_F=C_U iff P4(m)",
+    "unbounded_steps": {
+      "arbitrary_pair_blocks": "integer gains plus every disjoint two-pair clause allow at most one zero gain",
+      "h_nonpositive_all_s_ge_5": "base s=5; for s>=6 one balanced child has size>=3 and positive depth sum",
+      "large_block_all_s_ge_3": "perfect matching for even s, odd cycle for odd s",
+      "single_s_ge_17": "b(s)>=5 makes m(3-b)-1 and the remaining exact constant strictly nonpositive"
+    }
+  },
+  "protected_subject_access": false,
+  "protocol_path": "development/orion-qg-regime-geometry/PAPER_C_C1_ALL_M_DECISION_CERTIFICATE_PROTOCOL_2026-08-24.md",
+  "protocol_sha256": "0d7adc323e6addc8018fbb6556d280a8a122f4a1644e2f1bc9a59fc973ecb5f0",
+  "qg12_parent_binding": {
+    "all_checks": true,
+    "checks": {
+      "all_gates": true,
+      "digest": true,
+      "m6_n2_complete": true,
+      "m6_n2_zero_mismatches": true,
+      "no_parent_novelty_authority": true,
+      "no_parent_physical_claim": true,
+      "pair_language": true,
+      "terminal": true
+    },
+    "file_sha256": "6b829cf0fa19629522df3c5907fa3c14ac4e49f6c32b4ed1227e486b202a9329",
+    "path": "research/extensions/orion-qg/QG12_SIXLCU_P0_THEOREM_RESULTS.json",
+    "result_digest": "3e6fe23ab095f89c60d96226d13baac4c4c6120dd1da782f871a35245303eef9",
+    "role": "M6_N2_BINDING_REGRESSION_ONLY__NOT_ALL_M_PROOF_PREMISE"
+  },
+  "result_digest": "455883f266c0294e10e451346c123ed27e1a807ff72312142c7c43bb4c5e3a53",
+  "schema": "ORION.PaperC.C1.AllMDecisionCertificate.v1",
+  "scientific_authority": "EXACT_FROZEN_STRUCTURAL_GRAMMAR_M_GE_5_ONLY",
+  "sharpness": {
+    "all_checks": true,
+    "checks": {
+      "codes": true,
+      "p4_holds": true,
+      "single_and_optimum_23": true,
+      "strict_failure": true,
+      "unary_27": true,
+      "weights": true
+    },
+    "codes": [
+      5,
+      9,
+      13,
+      81
+    ],
+    "interpretation": "P4_IS_NOT_SUFFICIENT_AT_M4__M_GE_5_THRESHOLD_IS_SHARP",
+    "observed": {
+      "best_partition": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "disjoint_pair_clauses": true,
+      "optimum_cost": 23,
+      "p4": true,
+      "pair_clauses": true,
+      "pair_gains": {
+        "0-1": 0,
+        "0-2": 0,
+        "0-3": -1,
+        "1-2": 0,
+        "1-3": -1,
+        "2-3": -1
+      },
+      "unary_cost": 27,
+      "unary_optimal": false,
+      "weights": [
+        2,
+        2,
+        2,
+        3
+      ]
+    },
+    "pauli_strings": [
+      "XXII",
+      "XYII",
+      "XZII",
+      "XIXX"
+    ],
+    "qubits": 4,
+    "term_count": 4
+  },
+  "terminal": "PAPER_C_C1_ALL_M_GE_5_FOUR_INDEX_DECISION_THEOREM_MACHINE_CORROBORATED__M4_SHARP_COUNTEREXAMPLE",
+  "theorem": "For every m>=5 in the frozen structural partition compiler, C_F=C_U iff all one-pair and two-disjoint-pair clauses hold"
+}
