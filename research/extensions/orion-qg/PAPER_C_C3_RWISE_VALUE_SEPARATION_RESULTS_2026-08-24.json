@@ -1,0 +1,365 @@
+{
+  "base_revision": "cfce47d8c4edb9c3df83efd35c699cb9a25a8a07",
+  "c1_parent_binding": {
+    "all_checks": true,
+    "checks": {
+      "digest": true,
+      "gates": true,
+      "no_novelty": true,
+      "no_physical": true,
+      "terminal": true
+    },
+    "file_sha256": "3ffdd36ab1c73680930f3e5471ec095a5dd2ea33438765d3ccca0584bc9afeff",
+    "path": "research/extensions/orion-qg/PAPER_C_C1_ALL_M_DECISION_RESULTS_2026-08-24.json",
+    "result_digest": "455883f266c0294e10e451346c123ed27e1a807ff72312142c7c43bb4c5e3a53"
+  },
+  "c2_parent_binding": {
+    "all_checks": true,
+    "checks": {
+      "digest": true,
+      "gates": true,
+      "no_novelty": true,
+      "no_physical": true,
+      "terminal": true
+    },
+    "file_sha256": "3a5e8eeee12d246ccf2a1d7422bdf4e0c0027c066934870272cdee9e7a6055f1",
+    "path": "research/extensions/orion-qg/PAPER_C_C2_PAIR_GAIN_VALUE_SEPARATION_RESULTS_2026-08-24.json",
+    "result_digest": "b82a965e6f2d063c8aff07b5f21513a4f5e8aecd11b811b9781713ff6dfc7c9f"
+  },
+  "complete_m_minus_2_interaction_value_sufficient": false,
+  "cross_grammar_transfer": false,
+  "cross_objective_transfer": false,
+  "direct_exact_checks": {
+    "all_checks": true,
+    "digest": "93fd72fca2824ec71a902d7bf6214e82a777c323f30d203fb01d078c0c8d5d26",
+    "rows": [
+      {
+        "A_best_partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "A_delta": 1520,
+        "B_best_partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "B_delta": 1501,
+        "L": 1,
+        "all_checks": true,
+        "both_decision_certificate_false": true,
+        "both_strictly_improved": true,
+        "both_unique_one_block": true,
+        "expected_gap": 19,
+        "gap_exact": true,
+        "interaction_tensor_identical": true,
+        "m": 5,
+        "observed_gap": 19,
+        "partition_count": 52,
+        "qubits": 180,
+        "same_qubits": true,
+        "same_weights": true,
+        "tensor_entry_count": 25,
+        "tensor_order": 3
+      },
+      {
+        "A_best_partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "A_delta": 4301,
+        "B_best_partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "B_delta": 4278,
+        "L": 1,
+        "all_checks": true,
+        "both_decision_certificate_false": true,
+        "both_strictly_improved": true,
+        "both_unique_one_block": true,
+        "expected_gap": 23,
+        "gap_exact": true,
+        "interaction_tensor_identical": true,
+        "m": 6,
+        "observed_gap": 23,
+        "partition_count": 203,
+        "qubits": 415,
+        "same_qubits": true,
+        "same_weights": true,
+        "tensor_entry_count": 56,
+        "tensor_order": 4
+      },
+      {
+        "A_best_partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        ],
+        "A_delta": 11654,
+        "B_best_partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        ],
+        "B_delta": 11627,
+        "L": 1,
+        "all_checks": true,
+        "both_decision_certificate_false": true,
+        "both_strictly_improved": true,
+        "both_unique_one_block": true,
+        "expected_gap": 27,
+        "gap_exact": true,
+        "interaction_tensor_identical": true,
+        "m": 7,
+        "observed_gap": 27,
+        "partition_count": 877,
+        "qubits": 946,
+        "same_qubits": true,
+        "same_weights": true,
+        "tensor_entry_count": 119,
+        "tensor_order": 5
+      },
+      {
+        "A_best_partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        ],
+        "A_delta": 30491,
+        "B_best_partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        ],
+        "B_delta": 30460,
+        "L": 1,
+        "all_checks": true,
+        "both_decision_certificate_false": true,
+        "both_strictly_improved": true,
+        "both_unique_one_block": true,
+        "expected_gap": 31,
+        "gap_exact": true,
+        "interaction_tensor_identical": true,
+        "m": 8,
+        "observed_gap": 31,
+        "partition_count": 4140,
+        "qubits": 2133,
+        "same_qubits": true,
+        "same_weights": true,
+        "tensor_entry_count": 246,
+        "tensor_order": 6
+      },
+      {
+        "A_best_partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        ],
+        "A_delta": 96485,
+        "B_best_partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        ],
+        "B_delta": 96441,
+        "L": 1,
+        "all_checks": true,
+        "both_decision_certificate_false": true,
+        "both_strictly_improved": true,
+        "both_unique_one_block": true,
+        "expected_gap": 44,
+        "gap_exact": true,
+        "interaction_tensor_identical": true,
+        "m": 9,
+        "observed_gap": 44,
+        "partition_count": 21147,
+        "qubits": 5914,
+        "same_qubits": true,
+        "same_weights": true,
+        "tensor_entry_count": 501,
+        "tensor_order": 7
+      }
+    ]
+  },
+  "gates": {
+    "c1_parent_bound": true,
+    "c2_parent_bound": true,
+    "direct_m5_to_m9_exact": true,
+    "donor_and_authority_boundaries_preserved": true,
+    "exploratory_threshold_not_claimed_minimal": true,
+    "protocol_present": true,
+    "symbolic_proof_complete": true
+  },
+  "minimal_padding_authority": false,
+  "multiplicative_approximation_lower_bound": false,
+  "network_access": false,
+  "novelty_authority": false,
+  "optimizer_separation_new_in_c3": false,
+  "physical_quantum_advantage_claim": false,
+  "protected_subject_access": false,
+  "protocol_path": "development/orion-qg-regime-geometry/PAPER_C_C3_RWISE_VALUE_SEPARATION_PROTOCOL_2026-08-24.md",
+  "protocol_sha256": "434ebd31db54775d05b5fc53dd6b13f2647cfe8b7a73b282586600937d2dce1c",
+  "result_digest": "d35d50524a7c1734c86493b9db2f5eff8b9fdb8ec94a639cba9cd5e4dad0c815",
+  "schema": "ORION.PaperC.C3.RwiseValueSeparation.v1",
+  "scientific_authority": "EXACT_FROZEN_STRUCTURAL_GRAMMAR_CONSTRUCTION_ONLY",
+  "symbolic_ledger": {
+    "all_checks": true,
+    "checks": {
+      "all_columns_nonempty": true,
+      "all_labeled_factors_through_m_minus_2": true,
+      "common_column_partition_penalty_at_least_3K": true,
+      "exact_full_factor_gap_L": true,
+      "exact_value_gap_formula": true,
+      "no_minimal_padding_claim": true,
+      "parity_fiber_formula": true,
+      "same_ordered_weights": true,
+      "same_term_and_qubit_counts": true,
+      "structural_overhead_bound": true,
+      "trade_column_one_block_cost_upper_bound": true,
+      "unbounded_for_each_fixed_m": true,
+      "unique_one_block_from_positive_margin": true
+    },
+    "proof": {
+      "dominance": "C(P)-C(full)>=3K-N*m*(b+1)-H>0",
+      "full_factor_coefficient": "1-m*(b+1)",
+      "gap": "[m*(b+1)-1]L",
+      "low_order_count": "K+L*2^(q-t-1) for every fixed t<q variable subset"
+    },
+    "rows": [
+      {
+        "L": 1,
+        "bits": 3,
+        "common_columns": 172,
+        "dominance_margin_lower_bound": 345,
+        "gap": 19,
+        "m": 5,
+        "one_block_overhead": 11,
+        "q": 4,
+        "qubits": 180,
+        "trade_columns": 8
+      },
+      {
+        "L": 7,
+        "bits": 3,
+        "common_columns": 1132,
+        "dominance_margin_lower_bound": 2265,
+        "gap": 133,
+        "m": 5,
+        "one_block_overhead": 11,
+        "q": 4,
+        "qubits": 1188,
+        "trade_columns": 56
+      },
+      {
+        "L": 3,
+        "bits": 3,
+        "common_columns": 6165,
+        "dominance_margin_lower_bound": 12331,
+        "gap": 93,
+        "m": 8,
+        "one_block_overhead": 20,
+        "q": 7,
+        "qubits": 6357,
+        "trade_columns": 192
+      },
+      {
+        "L": 2,
+        "bits": 4,
+        "common_columns": 2621494,
+        "dominance_margin_lower_bound": 5242989,
+        "gap": 158,
+        "m": 16,
+        "one_block_overhead": 53,
+        "q": 15,
+        "qubits": 2654262,
+        "trade_columns": 32768
+      },
+      {
+        "L": 1,
+        "bits": 6,
+        "common_columns": 496068722830,
+        "dominance_margin_lower_bound": 992137445661,
+        "gap": 230,
+        "m": 33,
+        "one_block_overhead": 141,
+        "q": 32,
+        "qubits": 498216206478,
+        "trade_columns": 2147483648
+      }
+    ]
+  },
+  "terminal": "PAPER_C_C3_ARBITRARY_FIXED_ORDER_INTERACTION_DATA_VALUE_INSUFFICIENT__LINEAR_GAP_MACHINE_CORROBORATED",
+  "theorem": {
+    "exact_value_gap": "[m*(ceil(log2(m))+1)-1]L",
+    "fixed_m_ambiguity": "linear and unbounded in L",
+    "quantifiers": "for every m>=5 and L>=1",
+    "same_decision": "both strictly improved over unary",
+    "same_information": "all labeled common-factor counts through order m-2",
+    "unique_optimizer": "one block in both instances"
+  },
+  "unbounded_additive_value_ambiguity": true
+}
