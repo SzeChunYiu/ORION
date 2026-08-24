@@ -28,7 +28,7 @@ import json
 from pathlib import Path
 
 DATA = Path.home() / "orion-work/trec/trec-covid"
-OUT = Path(__file__).resolve().parent / "P2_TREC_COVID_ROUTE_FREEZE_V1.json"
+OUT = Path(__file__).resolve().parent / "P2_TREC_COVID_ROUTE_FREEZE_V4.json"
 
 AVAILABLE = {
     "LEXICAL": ["keyword"],
@@ -45,9 +45,30 @@ UNAVAILABLE = {
 #: thing under measurement rather than a formality.
 BUDGET = {
     "max_route_calls": 6,
-    "max_reads": 20,
-    "max_tool_calls": 40,
-    "max_model_tokens": 0,
+    # Third attempt at this number, and the first computed rather than picked.
+    #
+    # V2 used 20. V3 used 60, reasoning "20 per route x 3 available routes".
+    # Both starved: a policy reads what a route RETURNS, and postings are
+    # depth-100, so the first route alone consumes any budget below 100 and the
+    # session then stays closed. V3's per-route allowance of 20 was simply the
+    # wrong quantity -- the right one is the posting depth.
+    #
+    # The principle is unchanged from V3 and is what V3 mis-arithmetised: the
+    # budget must let each AVAILABLE route be probed and its results read, so
+    # that what binds is route allocation -- the quantity under measurement --
+    # rather than read starvation on whichever route runs first. That is
+    # posting_depth x available_routes = 100 x 3.
+    "max_reads": 300,
+    # reads do not charge tool calls, but keep this above the read budget so
+    # it cannot become the accidental binding constraint instead.
+    "max_tool_calls": 400,
+    # V1 set this to 0 to mean "no model budget". Budget.__post_init__ rejects
+    # anything below 1, so V1 could not be constructed and no arm ever ran on
+    # it. 1 is the smallest value the harness accepts and carries the same
+    # meaning: every arm here is deterministic and spends no model tokens, so
+    # this dimension cannot bind. If some future arm did spend one, it would
+    # exhaust immediately, which is the correct behaviour for a no-model study.
+    "max_model_tokens": 1,
     "max_wallclock_seconds": 600.0,
 }
 POSTING_DEPTH = 100
@@ -79,7 +100,20 @@ def main() -> int:
     topics.sort(key=lambda t: int(t["topic"]))
 
     freeze = {
-        "schema": "P2.TrecCovidRouteFreeze.v1",
+        "schema": "P2.TrecCovidRouteFreeze.v4",
+        "supersedes": {
+            "artifact": "P2_TREC_COVID_ROUTE_FREEZE_V3.json",
+            "sha256": "4fab37da4ef8f66fde7f08b1a88a3c541a160d2682b7400bd527f7fa1b7f7aa9",
+            "reason": (
+                "V3 froze max_reads=60 on the reasoning '20 per route x 3 "
+                "routes'. The per-route quantity is the posting depth, not 20: "
+                "a policy reads what a route returns, and postings are "
+                "depth-100, so LEXICAL alone consumed the whole budget and "
+                "every later route stopped budget_exhausted. Same starvation "
+                "as V2, same cause, arithmetic corrected to depth x routes. No "
+                "arm has been scored against V1, V2 or V3; all are retained."
+            ),
+        },
         "purpose": "topic -> route-probe mapping, frozen before any arm is scored",
         "corpus": "BEIR trec-covid",
         "available_routes": AVAILABLE,
