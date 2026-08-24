@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p5.c3.dgm-native-terminal.v4",
+  "title": "P5 C3 DGM outcome-blind native terminal",
+  "type": "object",
+  "required": ["schema_version", "arm_id", "source", "native_terminal", "native_retention", "adapter_disposition", "outcome_boundary"],
+  "properties": {
+    "schema_version": {"const": "orion.p5.c3.dgm-native-terminal.v4"},
+    "arm_id": {"const": "C3_ARCHIVE_BASED_SELF_EDIT__DGM"},
+    "native_terminal": {
+      "type": "object",
+      "required": ["arm_id", "status", "native_code", "payload_sha256"],
+      "properties": {
+        "arm_id": {"const": "C3_ARCHIVE_BASED_SELF_EDIT__DGM"},
+        "status": {"enum": ["COMPLETE_SUCCESS", "PARTIAL", "EMPTY", "TIMEOUT", "ERROR", "INVALID"]},
+        "native_code": {"type": "string"},
+        "payload_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "adapter_disposition": {
+      "type": "object",
+      "required": ["output", "reason", "raw_native_singleton_licensed"],
+      "properties": {
+        "output": {"const": "UNRESOLVED"},
+        "reason": {"type": "string"},
+        "raw_native_singleton_licensed": {"const": false}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

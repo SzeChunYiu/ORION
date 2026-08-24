@@ -1,0 +1,283 @@
+{
+  "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+  "blocking_field_count": 12,
+  "blocking_fields": [
+    "custody.external_protected_scorer",
+    "custody.one_shot_no_feedback_barrier",
+    "custody.protected_panel_freshness",
+    "inputs.candidate_visible_case_bytes",
+    "model_provider.primary",
+    "resources.calls_tokens_usd",
+    "resources.retry_network",
+    "rights.container_and_generated_artifacts",
+    "rights.model_provider_and_services",
+    "rights.task_and_benchmark_content",
+    "runtime.container_or_environment",
+    "runtime.task_environment"
+  ],
+  "bound_execution_envelope": {
+    "compute": {
+      "gpus": 0,
+      "parallelism": 1,
+      "pids_limit": 512,
+      "ram_gib": 4,
+      "vcpus": 1
+    },
+    "fallbacks": [],
+    "runtime_image": "docker.io/library/python:3.11@sha256:fd6b7cf944078fe424fe8b7d659e6cb4d28cf75495d1c52a43c49b6293fa5002",
+    "wallclock_seconds": {
+      "per_case": 3600,
+      "termination_grace": 30,
+      "whole_c1_run": 3600
+    }
+  },
+  "bound_field_count": 9,
+  "bound_fields": [
+    "adapter.isolated_write_surface",
+    "adapter.native_parser_binding",
+    "identity.native_entrypoint_bytes",
+    "identity.source_license_bytes",
+    "identity.source_repository_commit",
+    "model_provider.fallbacks",
+    "resources.wallclock",
+    "runtime.compute",
+    "runtime.dependency_lock"
+  ],
+  "execution_ready": false,
+  "fields": {
+    "adapter.isolated_write_surface": {
+      "binding": {
+        "path": "p5_c1_isolated_runner.py",
+        "policy_schema": "P5_C1_V4_WRITE_SURFACE_SCHEMA.json",
+        "sha256": "00de7c33623dc9d9b30c1a059ee95cbc2f1a16bbbef553df9cb3f08b1beb4e1d"
+      },
+      "cause": null,
+      "next_discriminator": "Validate the same wrapper against the eventual complete runtime image before custody execution.",
+      "residual": "A hashed fail-closed Docker policy now fixes read-only inputs, ephemeral task writes, a sole host output mount and per-attempt reset.",
+      "state": "BOUND"
+    },
+    "adapter.native_parser_binding": {
+      "binding": {
+        "output_schema": "P5_C1_V4_NATIVE_OUTPUT_SCHEMA.json",
+        "path": "p5_c1_native_parser.py",
+        "sha256": "fba94970a47735be47bc71c2c6f99566b343c7526f8516acedb8254b3a2a94c4"
+      },
+      "cause": null,
+      "next_discriminator": "External V3 certificate/action validation remains separate and must not be folded into this parser.",
+      "residual": "The parser binds SWE-agent trajectory.info.exit_status and submission bytes to an outcome-blind terminal while licensing zero raw singletons.",
+      "state": "BOUND"
+    },
+    "custody.external_protected_scorer": {
+      "binding": null,
+      "cause": "No independent scorer identity, code digest, access-control principal or signed acceptance exists.",
+      "next_discriminator": "Independent custodian supplies scorer identity, immutable digest and access-control attestation without revealing protected bytes.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "CANNOT_CHECK"
+    },
+    "custody.one_shot_no_feedback_barrier": {
+      "binding": null,
+      "cause": "The local wrapper can deny candidate network but cannot attest independent scorer custody or post-transfer nonfeedback.",
+      "next_discriminator": "Independent custodian binds one accepted submission, one scoring event, append-only receipt and no return channel.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "CANNOT_CHECK"
+    },
+    "custody.protected_panel_freshness": {
+      "binding": null,
+      "cause": "No protected panel identity or freshness attestation was available to this lane.",
+      "next_discriminator": "Independent custodian freezes a fresh panel after protocol lock and reveals only a signed aggregate receipt after the study closes.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "CANNOT_CHECK"
+    },
+    "identity.native_entrypoint_bytes": {
+      "binding": {
+        "entrypoint": "sweagent = sweagent.run.run:main",
+        "pyproject_sha256": "c15229fac40a10716b53fda2cf6ba756d62cb59d682e7d10d7d62b640dfccef9",
+        "run_py_sha256": "f4d50e37528f6a737f514bc888ea7efac25cdbb61bc1f6e6371546f6ef886e79"
+      },
+      "cause": null,
+      "next_discriminator": "Reverify raw bytes immediately before image build.",
+      "residual": "Exact official entrypoint bytes retained.",
+      "state": "BOUND"
+    },
+    "identity.source_license_bytes": {
+      "binding": {
+        "path": "LICENSE",
+        "sha256": "7610ed3916f6674e34b78417894abd57ff538b3cfdda3085e3643d82acbaf31f",
+        "spdx": "MIT"
+      },
+      "cause": null,
+      "next_discriminator": "Carry the licence and notice into the eventual runtime/source bundle.",
+      "residual": "Exact source licence bytes retained.",
+      "state": "BOUND"
+    },
+    "identity.source_repository_commit": {
+      "binding": {
+        "commit_sha": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+        "repository": "https://github.com/SWE-agent/SWE-agent"
+      },
+      "cause": null,
+      "next_discriminator": "Fetch by commit and verify every source-manifest byte before build.",
+      "residual": "Official repository commit retained.",
+      "state": "BOUND"
+    },
+    "inputs.candidate_visible_case_bytes": {
+      "binding": null,
+      "cause": "Only the official MIT smoke fixture is frozen; it is not a substantive P5 case and lacks a pinned task repository.",
+      "next_discriminator": "Publish one rights-cleared P5 candidate packet satisfying P5_C1_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "UNBOUND"
+    },
+    "model_provider.fallbacks": {
+      "binding": {
+        "closed_behavior": "FAIL_WITH_NATIVE_TERMINAL; DO_NOT_SWITCH_MODEL_OR_PROVIDER",
+        "fallbacks": []
+      },
+      "cause": null,
+      "next_discriminator": "Retain the empty fallback list when the primary is selected.",
+      "residual": "Fallback set is the closed empty list.",
+      "state": "BOUND"
+    },
+    "model_provider.primary": {
+      "binding": null,
+      "cause": "No exact model, provider, endpoint, service revision, prompt capability map or authorized credential principal was selected.",
+      "next_discriminator": "Select one immutable or independently attested model/service identity and hash the complete effective config.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "UNBOUND"
+    },
+    "resources.calls_tokens_usd": {
+      "binding": {
+        "prospective_values": {
+          "aggregate_input_tokens": 400000,
+          "aggregate_output_tokens": 100000,
+          "api_calls": 50,
+          "max_input_tokens_per_call": 64000,
+          "max_output_tokens_per_call": 8000,
+          "usd": 3.0
+        }
+      },
+      "cause": "Exact values are proposed, but aggregate token hard-stop and cost accounting depend on the unbound primary model/provider/tokenizer.",
+      "next_discriminator": "Bind provider-native usage accounting plus a hard-stop monitor, then retain overshoot behavior as a typed terminal.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "UNBOUND"
+    },
+    "resources.retry_network": {
+      "binding": {
+        "fallbacks": [],
+        "retry_values": {
+          "attempts": 3,
+          "max_wait_seconds": 4,
+          "min_wait_seconds": 1
+        }
+      },
+      "cause": "Retry values are closed, but the network allowlist cannot be final until the primary endpoint and task-fetch policy are bound.",
+      "next_discriminator": "Freeze exact DNS/IP/TLS endpoint policy or a local offline model; disallow all other egress.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "UNBOUND"
+    },
+    "resources.wallclock": {
+      "binding": {
+        "enforcer": "p5_c1_isolated_runner.py",
+        "enforcer_sha256": "00de7c33623dc9d9b30c1a059ee95cbc2f1a16bbbef553df9cb3f08b1beb4e1d",
+        "per_case_seconds": 3600,
+        "termination_grace_seconds": 30,
+        "whole_c1_run_seconds": 3600
+      },
+      "cause": null,
+      "next_discriminator": "Verify timeout availability and signal behavior in the eventual runtime image.",
+      "residual": "The one-case wallclock is prospectively frozen and wrapped by timeout with a 30-second kill grace.",
+      "state": "BOUND"
+    },
+    "rights.container_and_generated_artifacts": {
+      "binding": null,
+      "cause": "Base-image identity is captured, but complete component notices and authority for generated trajectories/patch retention or redistribution are not closed.",
+      "next_discriminator": "Freeze complete image SBOM/licences and obtain explicit generated-artifact retention/disclosure authority.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "UNBOUND"
+    },
+    "rights.model_provider_and_services": {
+      "binding": null,
+      "cause": "No provider/service was selected and no study-use/data-retention terms were captured.",
+      "next_discriminator": "Bind provider terms, data policy, region, credential principal and permitted publication of aggregate receipts.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "UNBOUND"
+    },
+    "rights.task_and_benchmark_content": {
+      "binding": null,
+      "cause": "The MIT smoke fixture is lawful but not the P5 task; issue visibility alone is not a reuse licence.",
+      "next_discriminator": "Use an authored or explicitly licensed P5 task packet with repository/content licence bytes.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "UNBOUND"
+    },
+    "runtime.compute": {
+      "binding": {
+        "enforcer_sha256": "00de7c33623dc9d9b30c1a059ee95cbc2f1a16bbbef553df9cb3f08b1beb4e1d",
+        "gpus": 0,
+        "parallelism": 1,
+        "pids_limit": 512,
+        "ram_gib": 4,
+        "vcpus": 1
+      },
+      "cause": null,
+      "next_discriminator": "Verify Docker enforcement receipt on the eventual execution host.",
+      "residual": "The wrapper fixes a single-worker CPU/RAM/PID envelope and no GPU.",
+      "state": "BOUND"
+    },
+    "runtime.container_or_environment": {
+      "binding": {
+        "base_image": "docker.io/library/python:3.11@sha256:fd6b7cf944078fe424fe8b7d659e6cb4d28cf75495d1c52a43c49b6293fa5002"
+      },
+      "cause": "The base image is content-addressed, but no complete derived SWE-agent runtime image was built and hashed.",
+      "next_discriminator": "Build from the frozen source and lock, record final image digest/SBOM, and verify entrypoint plus timeout tooling.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "UNBOUND"
+    },
+    "runtime.dependency_lock": {
+      "binding": {
+        "packages": 152,
+        "path": "SWE_AGENT_DEPENDENCY_LOCK_V4.uv.lock",
+        "python_request": "3.11",
+        "resolver": "uv 0.11.1",
+        "sha256": "488077a1f953459ee955ef17588dcb0eb3e7b5e42ed3e1ba252c3af96ff573c8"
+      },
+      "cause": null,
+      "next_discriminator": "Build once from this lock on the selected Linux platform and preserve the wheel/source archive digest receipt.",
+      "residual": "A hash-locked 152-package resolution is frozen for the pinned source.",
+      "state": "BOUND"
+    },
+    "runtime.task_environment": {
+      "binding": null,
+      "cause": "No substantive P5 task repository, base commit, setup commands, environment image or candidate-visible run_config.yaml is frozen; the upstream default review-on-submit bundle is not directly admissible for the fixed-agent arm.",
+      "next_discriminator": "Bind the exact task seed tree, base commit, setup command bytes and an effective default-agent configuration with retry-agent, action-sampler and review-on-submit disabled.",
+      "residual": "C1 is not licensed for execution while this field is not BOUND.",
+      "state": "UNBOUND"
+    }
+  },
+  "frozen_at_utc": "2026-08-23T17:30:00Z",
+  "panel_confirmatory_ready_arms": 0,
+  "registry_id": "P5.C1.SWE_AGENT.FIELD.REGISTRY.V4",
+  "required_field_paths": [
+    "adapter.isolated_write_surface",
+    "adapter.native_parser_binding",
+    "custody.external_protected_scorer",
+    "custody.one_shot_no_feedback_barrier",
+    "custody.protected_panel_freshness",
+    "identity.native_entrypoint_bytes",
+    "identity.source_license_bytes",
+    "identity.source_repository_commit",
+    "inputs.candidate_visible_case_bytes",
+    "model_provider.fallbacks",
+    "model_provider.primary",
+    "resources.calls_tokens_usd",
+    "resources.retry_network",
+    "resources.wallclock",
+    "rights.container_and_generated_artifacts",
+    "rights.model_provider_and_services",
+    "rights.task_and_benchmark_content",
+    "runtime.compute",
+    "runtime.container_or_environment",
+    "runtime.dependency_lock",
+    "runtime.task_environment"
+  ],
+  "schema_version": "orion.p5.c1.field-registry.v4",
+  "terminal": "C1_PARTIAL_BINDING__TWELVE_REQUIRED_FIELDS_NOT_BOUND__EXECUTION_REFUSED"
+}

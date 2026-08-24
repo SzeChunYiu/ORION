@@ -1,0 +1,292 @@
+{
+  "endpoint": "https://export.arxiv.org/oai2",
+  "exclusion_counts": {
+    "content_license_not_cc_by_4": 23847,
+    "duplicate_across_sets_or_domains": 33,
+    "incomplete_record": 4,
+    "withdrawal_marker": 2
+  },
+  "frame_path": "ARXIV_CC_BY_SOURCE_POOL_V1.jsonl",
+  "frame_sha256": "47dd24657752731cdf45bab95852f3e18b50946af8a29b5acee95956ec81d895",
+  "from": "2018-01-01",
+  "harvested_at": "2026-08-23T12:12:13.206659+00:00",
+  "metadata_prefix": "arXivRaw",
+  "per_domain": {
+    "EARTH_ENVIRONMENT": 384,
+    "LIFE_BIOMEDICAL": 384,
+    "PHYSICAL_ENGINEERING": 384,
+    "SCIENTIFIC_SOFTWARE": 384
+  },
+  "raw_response_retention": "all OAI XML pages retained as deterministic gzip members under raw_oai_pages/",
+  "request_interval_seconds": 3.1,
+  "requests": [
+    {
+      "accepted_before_domain_cap": 93,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&metadataPrefix=arXivRaw&set=physics%3Aphysics%3Aao-ph&from=2018-01-01&until=2026-08-20",
+      "response_sha256": "ba53ba48f930e9b155339ac808a63f3c04f82b1253cb29582c6b097ff688f10e",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "839a6a7aecbb8c0d1bf47364fa9a6f0e300c1af6c61faa989514e5aa097e91d5",
+      "retained_response_path": "raw_oai_pages/001_EARTH_ENVIRONMENT_physics_physics_ao-ph.xml.gz",
+      "set": "physics:physics:ao-ph"
+    },
+    {
+      "accepted_before_domain_cap": 35,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2020-12-17%2526until%253D2026-08-20%2526set%253Dphysics%25253Aphysics%25253Aao-ph%2526skip%253D0",
+      "response_sha256": "65d7b0f59b6bbde2d79438bac9e0b33f287afb4828cae7baaab7ca9c067c74c0",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "4d2acbd0d9bd1bfaee691c9c98515f9039e1f147f67caeac2b1e4a73788b617a",
+      "retained_response_path": "raw_oai_pages/002_EARTH_ENVIRONMENT_physics_physics_ao-ph.xml.gz",
+      "set": "physics:physics:ao-ph"
+    },
+    {
+      "accepted_before_domain_cap": 107,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&metadataPrefix=arXivRaw&set=physics%3Aphysics%3Ageo-ph&from=2018-01-01&until=2026-08-20",
+      "response_sha256": "ac958cab6c979727f2a08762e72549074d03546803ccdb148eb9a803c5bc72e1",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "29f3e9d379a556dc7e6ad48cd09cd170cc05ae2854b3b6c98c7215e818dfbf9d",
+      "retained_response_path": "raw_oai_pages/003_EARTH_ENVIRONMENT_physics_physics_geo-ph.xml.gz",
+      "set": "physics:physics:geo-ph"
+    },
+    {
+      "accepted_before_domain_cap": 21,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2020-11-16%2526until%253D2026-08-20%2526set%253Dphysics%25253Aphysics%25253Ageo-ph%2526skip%253D3",
+      "response_sha256": "37ace1b90d1dc42bc95e79a4ed821e6976aa4193c102891b6747b3964063f780",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "ed3a2aa5ad9ad40b778e578ff3eb18de43f79801b4a4bb5c7f4f2a808da71295",
+      "retained_response_path": "raw_oai_pages/004_EARTH_ENVIRONMENT_physics_physics_geo-ph.xml.gz",
+      "set": "physics:physics:geo-ph"
+    },
+    {
+      "accepted_before_domain_cap": 26,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&metadataPrefix=arXivRaw&set=physics%3Aastro-ph%3AEP&from=2018-01-01&until=2026-08-20",
+      "response_sha256": "8a07b3e56b1a88949c98bfe3258defa5631c3f68f74cd781c48db01a587d0f59",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "0fe1d2e67e718837b959fc525f2d01b11ce383b0d308030f42202b0a624b3089",
+      "retained_response_path": "raw_oai_pages/005_EARTH_ENVIRONMENT_physics_astro-ph_EP.xml.gz",
+      "set": "physics:astro-ph:EP"
+    },
+    {
+      "accepted_before_domain_cap": 23,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2018-08-29%2526until%253D2026-08-20%2526set%253Dphysics%25253Aastro-ph%25253AEP%2526skip%253D18",
+      "response_sha256": "2d7c7bc3184fe80679f5a91b65742b3ebb48cb9bf49d4541f77f60a8c64a0ca5",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "21bc26570d445eec627752cdf3ccf475ef7f35e7b13fe0faf9d070f38232954b",
+      "retained_response_path": "raw_oai_pages/006_EARTH_ENVIRONMENT_physics_astro-ph_EP.xml.gz",
+      "set": "physics:astro-ph:EP"
+    },
+    {
+      "accepted_before_domain_cap": 30,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2019-03-27%2526until%253D2026-08-20%2526set%253Dphysics%25253Aastro-ph%25253AEP%2526skip%253D0",
+      "response_sha256": "60d09d480fad1b37afb0f37b0474abecfebea7760d62a957e045dc4b5c14d418",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "068ea013b8698ef9df799f6d108623f5126edb4e798c907353d40fce1e36dda1",
+      "retained_response_path": "raw_oai_pages/007_EARTH_ENVIRONMENT_physics_astro-ph_EP.xml.gz",
+      "set": "physics:astro-ph:EP"
+    },
+    {
+      "accepted_before_domain_cap": 26,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2019-10-16%2526until%253D2026-08-20%2526set%253Dphysics%25253Aastro-ph%25253AEP%2526skip%253D16",
+      "response_sha256": "616734e6e119ecb83ac3b2e359e2a93919518232540aebec3e81ace2a5d40ac3",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "b175c2f5a39b86be9a857c714feb982d118f3df6569bfa5c5864e48a11e7b56c",
+      "retained_response_path": "raw_oai_pages/008_EARTH_ENVIRONMENT_physics_astro-ph_EP.xml.gz",
+      "set": "physics:astro-ph:EP"
+    },
+    {
+      "accepted_before_domain_cap": 23,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2020-04-29%2526until%253D2026-08-20%2526set%253Dphysics%25253Aastro-ph%25253AEP%2526skip%253D12",
+      "response_sha256": "c62ba4831801bb346199e3ea6dca941b961b97df0db6f2345689c34173f380e7",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "e941b001e027c9c87a3a5618418fb5af75e01af1f257f72a9fb3312e1872ad8e",
+      "retained_response_path": "raw_oai_pages/009_EARTH_ENVIRONMENT_physics_astro-ph_EP.xml.gz",
+      "set": "physics:astro-ph:EP"
+    },
+    {
+      "accepted_before_domain_cap": 68,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&metadataPrefix=arXivRaw&set=q-bio&from=2018-01-01&until=2026-08-20",
+      "response_sha256": "36510816c37216cca491ccf38e2653be1049ad42bdaf07b0c5da931b3e649596",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "9af375fb43ea5104cf4945dfd7cfbc451b97fbb84d84b447c9c301da36f02d9e",
+      "retained_response_path": "raw_oai_pages/010_LIFE_BIOMEDICAL_q-bio.xml.gz",
+      "set": "q-bio"
+    },
+    {
+      "accepted_before_domain_cap": 90,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2018-07-04%2526until%253D2026-08-20%2526set%253Dq-bio%2526skip%253D17",
+      "response_sha256": "ca8a46aa2def685a44f8cb13a71639c86688c7758b0134e1fa31167631b5c0e7",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "b4419606c6e50d3bf3c316889009cba5b1d984e5104bc04db8260d463a92a711",
+      "retained_response_path": "raw_oai_pages/011_LIFE_BIOMEDICAL_q-bio.xml.gz",
+      "set": "q-bio"
+    },
+    {
+      "accepted_before_domain_cap": 80,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2019-01-04%2526until%253D2026-08-20%2526set%253Dq-bio%2526skip%253D1",
+      "response_sha256": "9d62c38936f17edd88c6c9c719b8da6d941ce7ca00f794f19840964ca3a3debb",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "7f2917f7ae1e4fead79f3f2e71f04d77bc2daa5f2263f3b8a23463fb1746f72c",
+      "retained_response_path": "raw_oai_pages/012_LIFE_BIOMEDICAL_q-bio.xml.gz",
+      "set": "q-bio"
+    },
+    {
+      "accepted_before_domain_cap": 100,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2019-07-01%2526until%253D2026-08-20%2526set%253Dq-bio%2526skip%253D4",
+      "response_sha256": "561e4b08f01079cba1ed7112097df76ae08c7a280d423c3e4ba1cb81bd51690e",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "0cfb7b1c7fe7b297b4224ba51d737de09cf6ea3af389e1256fe4a0efd01cec17",
+      "retained_response_path": "raw_oai_pages/013_LIFE_BIOMEDICAL_q-bio.xml.gz",
+      "set": "q-bio"
+    },
+    {
+      "accepted_before_domain_cap": 46,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2019-11-27%2526until%253D2026-08-20%2526set%253Dq-bio%2526skip%253D8",
+      "response_sha256": "685d4f96bfa0115cbd1607d543562c2ae66f622aa1d55294936c96860727a474",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "a10d9b58aaaa4f17a4060b803e172c148c7ee965be95a772d5bbcb015181e327",
+      "retained_response_path": "raw_oai_pages/014_LIFE_BIOMEDICAL_q-bio.xml.gz",
+      "set": "q-bio"
+    },
+    {
+      "accepted_before_domain_cap": 67,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&metadataPrefix=arXivRaw&set=cs%3Acs%3ASE&from=2018-01-01&until=2026-08-20",
+      "response_sha256": "14f443923ee87dc276850a0493708bbe64f6bfd32f0d3366da01033f3752000a",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "96a6be7d9ab40527f4325b3087c75617436042b81f8dfc58e09f001f2a1194e0",
+      "retained_response_path": "raw_oai_pages/015_SCIENTIFIC_SOFTWARE_cs_cs_SE.xml.gz",
+      "set": "cs:cs:SE"
+    },
+    {
+      "accepted_before_domain_cap": 82,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2019-05-14%2526until%253D2026-08-20%2526set%253Dcs%25253Acs%25253ASE%2526skip%253D2",
+      "response_sha256": "b3fdabdfa0a6765f24bdab1cb1b40547432dc5ff7fb7761f4fcce5f64fd2192c",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "210894444a524bebd83ef54d746ee9ceb6c89e18416daf76267e539f31b45107",
+      "retained_response_path": "raw_oai_pages/016_SCIENTIFIC_SOFTWARE_cs_cs_SE.xml.gz",
+      "set": "cs:cs:SE"
+    },
+    {
+      "accepted_before_domain_cap": 224,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2020-06-19%2526until%253D2026-08-20%2526set%253Dcs%25253Acs%25253ASE%2526skip%253D3",
+      "response_sha256": "8c9344821bb2964b3d7b1c95ee145c787da554a96193915547a9f44fa858155f",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "e429e5197e5b9a1cf790ed55420bb65f8fdf114c1d80770105049dca1c9aec91",
+      "retained_response_path": "raw_oai_pages/017_SCIENTIFIC_SOFTWARE_cs_cs_SE.xml.gz",
+      "set": "cs:cs:SE"
+    },
+    {
+      "accepted_before_domain_cap": 11,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2021-03-17%2526until%253D2026-08-20%2526set%253Dcs%25253Acs%25253ASE%2526skip%253D12",
+      "response_sha256": "048243be10ab664c4e3e09d0f441ccdc097555144b92a9d0728f194201609b8b",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "56edd4a5b907da702ba384fb288570a4a68c681f784812778bff00c0017df106",
+      "retained_response_path": "raw_oai_pages/018_SCIENTIFIC_SOFTWARE_cs_cs_SE.xml.gz",
+      "set": "cs:cs:SE"
+    },
+    {
+      "accepted_before_domain_cap": 81,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&metadataPrefix=arXivRaw&set=eess&from=2018-01-01&until=2026-08-20",
+      "response_sha256": "9b43bd5869bf34a8012578f7e29cd3669f79a26b4c3700b26d9e4b5fa901601d",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "7a8a33f1321025c0fd69ef95fc6e5feef18dd9e5d4585640bfb39e1eb1ff5409",
+      "retained_response_path": "raw_oai_pages/019_PHYSICAL_ENGINEERING_eess.xml.gz",
+      "set": "eess"
+    },
+    {
+      "accepted_before_domain_cap": 71,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2018-07-17%2526until%253D2026-08-20%2526set%253Deess%2526skip%253D8",
+      "response_sha256": "0493b44996f9bd8cb9d45f0b1f2839b295774b8099b784cf1f40f61b31f93279",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "83911fba986ea39a59cb95920999b6430fbb0cad1516a77c6fef3f0d449ec4c5",
+      "retained_response_path": "raw_oai_pages/020_PHYSICAL_ENGINEERING_eess.xml.gz",
+      "set": "eess"
+    },
+    {
+      "accepted_before_domain_cap": 73,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2018-12-13%2526until%253D2026-08-20%2526set%253Deess%2526skip%253D1",
+      "response_sha256": "518ae15fa423f54a27238473e82e3406f74572126c4319b39335cb088f9041ad",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "21091bd6005351e292eedc38facb35e6facb95a0ce424b08314feff57d9213df",
+      "retained_response_path": "raw_oai_pages/021_PHYSICAL_ENGINEERING_eess.xml.gz",
+      "set": "eess"
+    },
+    {
+      "accepted_before_domain_cap": 68,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2019-04-25%2526until%253D2026-08-20%2526set%253Deess%2526skip%253D2",
+      "response_sha256": "f9de59735a9db647d015813ac119ef419985ac14f5de35ac54010b05124050e7",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "765390734bc73f70860b6c1456b41a647690ac9405948536c58c2982a69dd13d",
+      "retained_response_path": "raw_oai_pages/022_PHYSICAL_ENGINEERING_eess.xml.gz",
+      "set": "eess"
+    },
+    {
+      "accepted_before_domain_cap": 66,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2019-07-04%2526until%253D2026-08-20%2526set%253Deess%2526skip%253D2",
+      "response_sha256": "d1a7f1344cebcf9e604c17a8e3f04a7fedb0c19b68c1afac62703530a8917658",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "7add54948cf02805a15ed3c35962b44947d1ce5c270b39adeab413032f832dcc",
+      "retained_response_path": "raw_oai_pages/023_PHYSICAL_ENGINEERING_eess.xml.gz",
+      "set": "eess"
+    },
+    {
+      "accepted_before_domain_cap": 25,
+      "record_count": 1300,
+      "request_url": "https://export.arxiv.org/oai2?verb=ListRecords&resumptionToken=verb%253DListRecords%2526metadataPrefix%253DarXivRaw%2526from%253D2019-08-27%2526until%253D2026-08-20%2526set%253Deess%2526skip%253D20",
+      "response_sha256": "785f55c1a2403f4369566281c46d0474eebc8920f91d65d7c7df6dd0fd576759",
+      "resumption_complete_list_size": null,
+      "resumption_cursor": null,
+      "retained_response_gzip_sha256": "7b925bb230d4a1818786641cc3174b8a0b08965841cfa7f00c78f10096c59731",
+      "retained_response_path": "raw_oai_pages/024_PHYSICAL_ENGINEERING_eess.xml.gz",
+      "set": "eess"
+    }
+  ],
+  "schema_version": "orion.p4.arxiv-ccby-harvest-log.v1",
+  "selected_total": 1536,
+  "selection_rule": "first 384 unique complete non-withdrawn CC BY 4.0 records per declared domain in OAI response order; Earth/environment is balanced 128/128/128 across atmospheric-oceanic physics, geophysics, and earth-planetary astrophysics; this is a 2:1 source pool for the planned 192 adjudicated clusters per domain; domain and set order frozen in script",
+  "until": "2026-08-20"
+}

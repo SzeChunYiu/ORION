@@ -1,0 +1,36 @@
+{
+  "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+  "calls_tokens_usd": {
+    "status": "BLOCKING"
+  },
+  "compute": {
+    "status": "BLOCKING"
+  },
+  "dependency_lock": {
+    "audit": "SCIENCECLAW_DEPENDENCY_DECLARATIONS_V4.json",
+    "status": "BLOCKING"
+  },
+  "model_provider": {
+    "fallbacks": null,
+    "native_fallbacks_detected": [
+      "deep-to-simple investigation",
+      "coherence-shield-to-direct",
+      "Hugging Face text-to-chat",
+      "rule/keyword reasoning",
+      "skill-selection",
+      "parameter retry"
+    ],
+    "primary": null,
+    "status": "BLOCKING"
+  },
+  "retry_network": {
+    "status": "BLOCKING"
+  },
+  "schema_version": "orion.p5.c6.resource-registry.v4",
+  "wallclock": {
+    "remote_async_jobs_allowed": false,
+    "status": "BOUND",
+    "termination_grace_seconds": 120,
+    "whole_run_seconds": 21600
+  }
+}

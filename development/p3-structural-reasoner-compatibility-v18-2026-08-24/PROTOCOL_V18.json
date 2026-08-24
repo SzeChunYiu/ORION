@@ -1,0 +1,81 @@
+{
+  "schema_version": "orion.p3.structural-reasoner-compatibility.protocol.v18",
+  "protocol_id": "P3_V18_OAEI_2004_TEST_103_STRUCTURAL_REASONER_COMPATIBILITY_MICROGATE",
+  "authority": "STRUCTURAL_REASONER_COMPATIBILITY_ONLY",
+  "attempt": {
+    "attempts": 1,
+    "retries": 0,
+    "stdin_utf8": "2g\n"
+  },
+  "reasoner_type": "struct",
+  "required_operations": {
+    "load_source_and_target": true,
+    "exact_36_by_36_named_class_identity": true,
+    "rdfs_label_annotation_index": true,
+    "asserted_named_parent_lookup_for_every_class": true,
+    "asserted_named_child_lookup_for_every_class": true,
+    "sibling_group_construction": true,
+    "structural_consistency_operation": true
+  },
+  "forbidden_operations": {
+    "training": false,
+    "matching": false,
+    "protected_alignment_access": false,
+    "scoring": false
+  },
+  "pass_gate": {
+    "both_reasoners_are_struct": true,
+    "exact_class_sets_equal_frozen_universes": true,
+    "exact_33_local_rdfs_label_keys_nonempty_per_side": true,
+    "all_taxonomy_members_within_role_universe": true,
+    "both_structural_consistency_calls_true": true,
+    "no_exception": true
+  },
+  "frozen_code": {
+    "runner_sha256": "3e36de86ff277f17c600c3f646c62558cccbfaf93eb8ee748cba227ffc7ca4bb"
+  },
+  "frozen_inputs": {
+    "source": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-structural-reasoner-compatibility-v18-2026-08-24/inputs/SOURCE_BASE_BOUND_V18.rdf",
+      "bytes": 69784,
+      "sha256": "273d9308df0a17abf73909e1e80403f97d433c941e140e48e85830e00234bd0d"
+    },
+    "target": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-structural-reasoner-compatibility-v18-2026-08-24/inputs/TARGET_BASE_BOUND_V18.rdf",
+      "bytes": 70740,
+      "sha256": "15cb200231c5351a78dc9afd70bfa19d6e4c59e9a63663011b5dd20c59053a2e"
+    },
+    "universe": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-structural-reasoner-compatibility-v18-2026-08-24/UNIVERSE_MANIFEST_V18.json",
+      "bytes": 5007,
+      "sha256": "0d420e8f45093c7ea15b8b10385f55e6a1b85f42dacbdfcf7a12f959e314b127"
+    }
+  },
+  "runtime": {
+    "python_version": "3.10.20",
+    "critical_files": {
+      "python": {
+        "path": "/Users/billy/.local/share/uv/python/cpython-3.10.20-macos-aarch64-none/bin/python3.10",
+        "bytes": 49968,
+        "sha256": "0fc554036de7d5405d70defcf548204acb3fb829c6b2e55137efdc3ac1c24c67"
+      },
+      "installed_deeponto_ontology": {
+        "path": "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/deeponto/onto/ontology.py",
+        "bytes": 45504,
+        "sha256": "f059d0485e101f7e9e2ec2386501d5e8b14698894e91775f56fe51e64a02dcfe"
+      }
+    }
+  },
+  "predecessor_v17_failure": {
+    "result_path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/BERTMAP_RESULT_V17.json",
+    "result_sha256": "773d549a1867d00ccaf0847dbceb66e9136e355a1a32937b763f8871f707a93f",
+    "terminal": "P3_V17_BERTMAP_NATIVE_ATTEMPT_FAIL__NO_RETRY__COMMON_SCORING_NOT_AUTHORIZED",
+    "cause": "HermiT rejected the historical transitive isPartOf cardinality pattern before mappings were produced"
+  },
+  "claim_boundary": [
+    "a pass establishes compatibility of this frozen pair with the structural loading and asserted taxonomy surface only",
+    "a pass does not establish matcher success, mapping quality, generalisation, performance, efficiency, or superiority",
+    "one historical public case is one analysis unit",
+    "V17 remains an immutable failed native HermiT attempt"
+  ]
+}

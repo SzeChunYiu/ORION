@@ -1,0 +1,162 @@
+{
+  "amendments": {
+    "documented_jvm_stdin": "4a3f1d3b19bf9563c89560fe4e7919fc6168966e33c9bc94245088552820382f",
+    "scientific_parameters_changed_after_native_semantics_started": false,
+    "sixteen_class_input": "dd9224269ab053026937a485bd2a5552573ef9ec878c93425d9ce86891e3974e",
+    "venv_symlink_launcher": "e8877827d054cd5743b07d3232a9661d82ae43d391f9b70136fcf59a56feb752"
+  },
+  "authority": "RUNTIME_AND_NATIVE_ARTIFACT_PREFLIGHT_ONLY__NO_PERFORMANCE_OR_SCIENTIFIC_OUTCOME_AUTHORITY",
+  "failure": {
+    "cause": "Pinned DeepOnto source passes the removed `evaluation_strategy` keyword, while its Python-3.10 uv-lock resolves Transformers 4.51.3 whose constructor exposes `eval_strategy` instead.",
+    "deeponto_passes_evaluation_strategy": true,
+    "deeponto_source_sha256": "ded9b776db16d69ee6be088c9aa4bbec0e9e639887e1eec102ecec3e0039a6a3",
+    "exact_terminal": "TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'",
+    "exact_terminal_present_in_stderr": true,
+    "installed_transformers_constructor_uses_eval_strategy": true,
+    "stage": "TrainingArguments construction before training"
+  },
+  "identity": {
+    "commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+    "licence": "Apache-2.0",
+    "licence_sha256": "340ebaff716578e1b620521eeb740febbdcb24b8bd0c1de12c37b916aadf4d36",
+    "name": "BERTMap via DeepOnto 0.9.3",
+    "tree": "b499cb5780bbe749f7db44d0bc872d275a2737ea",
+    "uv_lock_sha256": "a99a3136c591156ba97f3c5ff83d9e91c76ee9aa63376312cc5cc82a007589c0"
+  },
+  "input_derived_progress_trace": {
+    "authority": "STRUCTURAL_EXECUTION_TRACE_ONLY",
+    "nonsynonym_records": 104,
+    "performance_scoring_started": false,
+    "prediction_started": false,
+    "source_named_classes": 16,
+    "synonym_records": 16,
+    "target_named_classes": 16,
+    "training_records": 108,
+    "training_started": false,
+    "validation_records": 12
+  },
+  "interpretation_guard": "The nonzero exit and missing artifacts are CANNOT_CHECK, never an empty alignment, obstruction, or negative scientific result.",
+  "model": {
+    "expected_weight_sha256": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719",
+    "files": [
+      {
+        "bytes": 391,
+        "path": ".gitattributes",
+        "sha256": "f049f7c0d16eaffe605baca479013bcb7a3847077cf6e548ba7b228831cf9c38"
+      },
+      {
+        "bytes": 1071,
+        "path": "LICENSE",
+        "sha256": "9e8f42111a19340d74194466063143fbc4294b50dd26ad5c60a06dcaeafa99d2"
+      },
+      {
+        "bytes": 2681,
+        "path": "README.md",
+        "sha256": "bf666c7d32897296d028b655fdc0a3f16d7309cc69af11e93d3473218c2b00f2"
+      },
+      {
+        "bytes": 385,
+        "path": "config.json",
+        "sha256": "4a470c65801cab55fc1cc5854aa2bfebc18428ac1989777e9acefc5a9f0c1444"
+      },
+      {
+        "bytes": 435778770,
+        "path": "pytorch_model.bin",
+        "sha256": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719"
+      },
+      {
+        "bytes": 213450,
+        "path": "vocab.txt",
+        "sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02"
+      }
+    ],
+    "licence": "MIT",
+    "licence_sha256": "9e8f42111a19340d74194466063143fbc4294b50dd26ad5c60a06dcaeafa99d2",
+    "repository": "emilyalsentzer/Bio_ClinicalBERT",
+    "revision": "d5892b39a4adaed74b92212a44081509db72f87b",
+    "weight_hash_match": true,
+    "weight_sha256": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719"
+  },
+  "nonrequired_partial_artifacts_before_cleanup": [
+    {
+      "bytes": 3297,
+      "path": "bertmap/bertmap.log",
+      "sha256": "245a192ececa6d97a8e8d71b4f7b20954cc0279233b9d5c1b9b4571dc670b05d"
+    },
+    {
+      "bytes": 665,
+      "path": "bertmap/config.yaml",
+      "sha256": "14f426ee0cc60d69d33249442c69882586a77a2444e13ab4380712c79b755865"
+    },
+    {
+      "bytes": 11932,
+      "path": "bertmap/data/fine-tune.data.json",
+      "sha256": "9e5f6186797e8792b9fa024d36d9558cf825276564a6afd9ff7a1698066537f6"
+    },
+    {
+      "bytes": 13789,
+      "path": "bertmap/data/text-semantics.corpora.json",
+      "sha256": "b3f1d8bebb9ac27686cf46c462c2772dd42c827fc37bed754fa738ebbe26f867"
+    }
+  ],
+  "required_native_artifact_count": 5,
+  "required_native_artifact_present_count": 0,
+  "required_native_artifacts": [
+    {
+      "exists": false,
+      "path": "bertmap/match/raw_mappings.json"
+    },
+    {
+      "exists": false,
+      "path": "bertmap/match/raw_mappings.tsv"
+    },
+    {
+      "exists": false,
+      "path": "bertmap/match/extended_mappings.tsv"
+    },
+    {
+      "exists": false,
+      "path": "bertmap/match/filtered_mappings.tsv"
+    },
+    {
+      "exists": false,
+      "path": "bertmap/match/repaired_mappings.tsv"
+    }
+  ],
+  "runtime": {
+    "distribution_records": 122,
+    "duplicate_distribution_records": [
+      {
+        "count": 2,
+        "name": "deeponto",
+        "version": "0.9.3"
+      }
+    ],
+    "exit_code": 1,
+    "java": "OpenJDK 17.0.19 arm64",
+    "key_packages": {
+      "accelerate": "1.6.0",
+      "deeponto": "0.9.3",
+      "tokenizers": "0.21.1",
+      "torch": "2.6.0",
+      "transformers": "4.51.3"
+    },
+    "machine": "arm64",
+    "offline_guards": {
+      "HF_HUB_OFFLINE": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "TRANSFORMERS_OFFLINE": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "python": "3.10.20",
+    "timeout": false,
+    "unique_package_records": 121,
+    "wall_seconds": 24.27695987498737
+  },
+  "schema_version": "orion.p3.comparator-native-preflight.slot-result.v6",
+  "slot": "K3_BERTMAP",
+  "terminal": "CANNOT_CHECK_PINNED_DEPENDENCY_API_INCOMPATIBILITY"
+}

@@ -1,0 +1,460 @@
+{
+  "checks": [
+    {
+      "check": "protocol_prefrozen",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "input_exists::v14_result",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-reference-alignment-v14-2026-08-23/RESULT_V14.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::oaei_rights",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-public-development-execution-2026-08-23/OAEI_RIGHTS_AND_ATTRIBUTION_RECEIPT_V1.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::oaei_case_universe",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-public-development-execution-2026-08-23/CASE_UNIVERSE_RECEIPT_V2.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::oaei_gold_join",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-public-development-execution-2026-08-23/PUBLIC_GOLD_JOIN_RECEIPT_V2.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::aml_binding",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-public-development-execution-2026-08-23/AML_V3_2_BINDING_RECEIPT_V1.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::aml_output_manifest",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-public-development-execution-2026-08-23/AML_OUTPUT_FREEZE_MANIFEST_V1.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::v7_protocol",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-bertmap-execution-binding-v7-2026-08-23/PROTOCOL_V7.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::v8_patch",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/V8_TABLE_READER_EXACT.patch",
+      "pass": true
+    },
+    {
+      "check": "input_exists::v11_receipt",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/RECEIPT_V11.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::v12_protocol",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/PROTOCOL_V12.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::v12_receipt",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/NATIVE_EXECUTION_RECEIPT_V12.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::v13_protocol",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/PROTOCOL_V13.json",
+      "pass": true
+    },
+    {
+      "check": "input_exists::v13_receipt",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/RECEIPT_V13.json",
+      "pass": true
+    },
+    {
+      "check": "provider_record_id",
+      "evidence": 15827226,
+      "pass": true
+    },
+    {
+      "check": "provider_doi",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "provider_title",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "provider_publication_date",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "provider_license",
+      "evidence": "cc-by-4.0",
+      "pass": true
+    },
+    {
+      "check": "unique_provider_archive",
+      "evidence": 1,
+      "pass": true
+    },
+    {
+      "check": "provider_archive_size",
+      "evidence": 486043,
+      "pass": true
+    },
+    {
+      "check": "provider_archive_md5",
+      "evidence": "md5:31676c68912a22622f6ca6d031519df9",
+      "pass": true
+    },
+    {
+      "check": "provider_archive_url",
+      "evidence": "https://zenodo.org/api/records/15827226/files/oacontest17.zip/content",
+      "pass": true
+    },
+    {
+      "check": "downloaded_archive_size",
+      "evidence": 486043,
+      "pass": true
+    },
+    {
+      "check": "downloaded_archive_md5",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "downloaded_archive_sha256",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "archive_member_present::source",
+      "evidence": "101/onto.rdf",
+      "pass": true
+    },
+    {
+      "check": "archive_member_bytes::source",
+      "evidence": 69721,
+      "pass": true
+    },
+    {
+      "check": "archive_member_sha256::source",
+      "evidence": "d6143780103217a4a562e4982f0d4c724c09d3a3e7dc146a6b42cecc3e9f1064",
+      "pass": true
+    },
+    {
+      "check": "archive_member_present::target",
+      "evidence": "103/onto.rdf",
+      "pass": true
+    },
+    {
+      "check": "archive_member_bytes::target",
+      "evidence": 70677,
+      "pass": true
+    },
+    {
+      "check": "archive_member_sha256::target",
+      "evidence": "e3643a6fcd237a162d120e58227df2e24e0398668c6f2428e4fea850180405cf",
+      "pass": true
+    },
+    {
+      "check": "archive_member_present::reference",
+      "evidence": "103/refalign.rdf",
+      "pass": true
+    },
+    {
+      "check": "archive_member_bytes::reference",
+      "evidence": 29568,
+      "pass": true
+    },
+    {
+      "check": "archive_member_sha256::reference",
+      "evidence": "0afb0f2c9764201d91c226c5fb60d4b25425168acf6c2604fb191be906e9ec16",
+      "pass": true
+    },
+    {
+      "check": "provider_index_test_103_description",
+      "evidence": "103) Concept test: Language generalisation",
+      "pass": true
+    },
+    {
+      "check": "ontology_xml_root::source",
+      "evidence": "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+      "pass": true
+    },
+    {
+      "check": "ontology_xml_root::target",
+      "evidence": "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+      "pass": true
+    },
+    {
+      "check": "predecessor_identity_gap_present",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_doi",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_license",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_conditions",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_operations",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_provider_checksum",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "prior_source_inventory_agrees",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "prior_target_inventory_agrees",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "prior_reference_inventory_agrees",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "bertmap_paper_doi",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "bertmap_original_commit",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "bertmap_maintained_commit",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "deeponto_package_version",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "v8_patch_identity",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "v11_classpath_lineage",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "v12_source_change_boundary",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "v12_java_adapter_lineage",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "v13_decoder_lineage",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "v13_no_gold_boundary",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_system_id",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_tag_commit",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_license",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_jar_sha256",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_release_sha256",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_no_reference_argument",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_same_source_input",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_same_target_input",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_unique_target_103_output",
+      "evidence": 1,
+      "pass": true
+    },
+    {
+      "check": "aml_target_103_executed",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_target_103_replay_identical",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_target_103_output_sha256",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "aml_output_frozen_pre_reference",
+      "evidence": null,
+      "pass": true
+    }
+  ],
+  "checks_passed": 70,
+  "checks_total": 70,
+  "finished_at": "2026-08-23T21:21:57.250324+00:00",
+  "http_receipts": {
+    "archive": {
+      "body_bytes": 486043,
+      "body_sha256": "f22aac206773e4eacdd54cf9519ffe997332a430326bdae29f4210a24efab0b4",
+      "content_length_header": "486043",
+      "content_type": "application/octet-stream",
+      "etag": null,
+      "final_url": "https://zenodo.org/api/records/15827226/files/oacontest17.zip/content",
+      "http_status": 200,
+      "last_modified": null,
+      "requested_url": "https://zenodo.org/api/records/15827226/files/oacontest17.zip/content"
+    },
+    "metadata": {
+      "body_bytes": 5332,
+      "body_sha256": "8f3a79f76d0d455573f21b174a44a17bfa98b5d06190311b9e0ec8b8296c01de",
+      "content_length_header": "5332",
+      "content_type": "application/json",
+      "etag": "\"4\"",
+      "final_url": "https://zenodo.org/api/records/15827226",
+      "http_status": 200,
+      "last_modified": null,
+      "requested_url": "https://zenodo.org/api/records/15827226"
+    }
+  },
+  "identity_gate_invocations_total": 2,
+  "input_receipts": {
+    "aml_binding": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-public-development-execution-2026-08-23/AML_V3_2_BINDING_RECEIPT_V1.json",
+      "sha256": "2900e48f69bc6ffd8b3cb42a27fbc9d2b66ab5bb2ad1d867866a1934e7477995"
+    },
+    "aml_output_manifest": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-public-development-execution-2026-08-23/AML_OUTPUT_FREEZE_MANIFEST_V1.json",
+      "sha256": "fe030d2adbe9495b28f9f46289b8e455d406e0d9a4c13c7bc70049908240d46d"
+    },
+    "oaei_case_universe": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-public-development-execution-2026-08-23/CASE_UNIVERSE_RECEIPT_V2.json",
+      "sha256": "46b7d34b3a4f5f547219f6b04559404522d6ce49588a458288d02325d0b0d04a"
+    },
+    "oaei_gold_join": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-public-development-execution-2026-08-23/PUBLIC_GOLD_JOIN_RECEIPT_V2.json",
+      "sha256": "cc2060aad9a2ee3f9fcf0130f907a0f025822658fad5ce69b20e0faa0f24a07d"
+    },
+    "oaei_rights": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-public-development-execution-2026-08-23/OAEI_RIGHTS_AND_ATTRIBUTION_RECEIPT_V1.json",
+      "sha256": "638b125357e4398d577cdc05483bed38cb18f5b60291809a7b05f47580c2d643"
+    },
+    "v11_receipt": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/RECEIPT_V11.json",
+      "sha256": "1282d4f6e1d7bc6a0e2a5a400d394b11c73856b37f94bf2cb92b39a32958015c"
+    },
+    "v12_protocol": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/PROTOCOL_V12.json",
+      "sha256": "ecdaa4dd2ae82d3d0633e085bfe6392a6981032b18902045756dd5744334f4f9"
+    },
+    "v12_receipt": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/NATIVE_EXECUTION_RECEIPT_V12.json",
+      "sha256": "66aa28ca038c7f7f9767f117cc05f155e42b55c77e9fea2adb43ffb30bd27732"
+    },
+    "v13_protocol": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/PROTOCOL_V13.json",
+      "sha256": "894f63983de9d850dd4465c79950343fce8a2e2aafb3c5b3c8c234f58d4c78c1"
+    },
+    "v13_receipt": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/RECEIPT_V13.json",
+      "sha256": "5872bee686f444af7f14caedddc1bf52664a0878993bdf1e400d6165abdb95ed"
+    },
+    "v14_result": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-reference-alignment-v14-2026-08-23/RESULT_V14.json",
+      "sha256": "fc1f1d35668604e72bc63edd397988eb85c035145b0e6025b848d7c5d3c96314"
+    },
+    "v7_protocol": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-bertmap-execution-binding-v7-2026-08-23/PROTOCOL_V7.json",
+      "sha256": "849f0f7b46adab50bc5648636a4bd283d87443a6bea59f26ec251f2b756337bf"
+    },
+    "v8_patch": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/V8_TABLE_READER_EXACT.patch",
+      "sha256": "412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b"
+    }
+  },
+  "outputs": {
+    "result": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/CODEX_P3_P4_LANE_20260823_P3_PROVIDER_NATIVE_IDENTITY_V15/RESULT_V15.json",
+      "sha256": "21a46421d9a4c9d0eec9a493a3666f87e3b272d68e659d152c45dec5063cf2bf"
+    },
+    "terminal": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/CODEX_P3_P4_LANE_20260823_P3_PROVIDER_NATIVE_IDENTITY_V15/TERMINAL_V15.txt",
+      "sha256": "bf1fa861f32754a4bbd0dda4cea682306c1718dde5545a55fa907b436c1f87d3"
+    }
+  },
+  "prior_technical_invocations": {
+    "artifact": "ATTEMPT_1_FAILURE.txt",
+    "count": 1,
+    "failure": "Runner addressed the V13 no-gold field through a nonexistent outcome_boundary key; corrected to the frozen execution.gold_or_reference_opened field before the successful invocation.",
+    "outcomes_opened": false
+  },
+  "protocol_id": "P3_V15_OAEI2004_101_103_PROVIDER_NATIVE_IDENTITY_PREFREEZE",
+  "protocol_sha256": "abb9f376caa5e7e39526600a84672d936ba6d32d14d638df17a72170c1b40910",
+  "runtime_nanoseconds": 1001309083,
+  "runtime_seconds": 1.001309083,
+  "schema_version": "orion.p3.provider-native-identity.receipt.v15",
+  "started_at": "2026-08-23T21:21:56.248836+00:00",
+  "success": true,
+  "terminal": "P3_V15_PROVIDER_NATIVE_OAEI_101_103_IDENTITY_PASS__EXACT_VERSION_RIGHTS_ONTOLOGY_REFERENCE_AND_SAME_UNIVERSE_AML_BOUND__REFERENCE_SEMANTICS_UNPARSED_ONE_BERTMAP_SUCCESSOR_AUTHORIZED__SCIENTIFIC_READINESS_ZERO_OF_THREE_UNCHANGED"
+}

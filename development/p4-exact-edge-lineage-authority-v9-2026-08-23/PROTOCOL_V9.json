@@ -1,0 +1,110 @@
+{
+  "allowed_primary_authority": [
+    "Zenodo official record/file APIs and checksum-bound files",
+    "GitHub official REST API for repository refs, releases, commits, trees, contents and codeload bytes",
+    "Software Heritage official API for origins, snapshots, releases, revisions and content-addressed directories",
+    "Crossref official API and JOSS review issue records",
+    "provider-native ORCID identifiers when exposed in exact Crossref, Zenodo or JOSS records"
+  ],
+  "bounded_probe": {
+    "commit_search": "only repository commit pages around the provider archive publication/release date or archive-embedded exact prefixes; content comparison may use immutable codeload bytes; no broad replacement harvest",
+    "current_source_probe": "one current provider pass over exact targets; record HTTP status, final URL, response hashes, ref/release/commit identities and SWH objects",
+    "lineage_probe": "exact Crossref authors plus provider-native ORCID fields and exact Zenodo creators only; no fuzzy name inference is promoted"
+  },
+  "cannot_check_rule": "missing, ambiguous, mutable, name-only or externally unadjudicated authority remains CANNOT_CHECK; sequential not-reached gates are reported as such",
+  "closure_rule": {
+    "edge": "publication DOI must bind the exact archive DOI/version and same repository; accepted rights must hold on archive and immutable source; archive must be bound to a full immutable source commit by a source-native full ref/release edge, an authenticated provider-origin edge, or exact content-addressed tree/manifest identity. Editorial assertion alone is insufficient.",
+    "lineage": "author-lineage authority requires stable provider-native person identifiers or an externally adjudicated normalization record and a frozen primary/replication partition; names alone cannot prove independence.",
+    "natural_pair": "exact edge and rights are only source-frame prerequisites. Natural-pair eligibility additionally requires independent claim/materiality adjudication, one-coordinate information-state change, target-pure resolving/restricted states, nuisance resistance and external custody."
+  },
+  "date": "2026-08-23",
+  "forbidden": [
+    "edit manuscript/shared ledger",
+    "git operations",
+    "pytest or repository CI",
+    "claim top-tier readiness",
+    "convert JOSS editorial checks into a full commit edge without immutable-source identity",
+    "treat metadata availability as content rights or natural-pair eligibility"
+  ],
+  "grants_scientific_authority": false,
+  "historical_adverse_results_immutable": true,
+  "identity": "P4.M6.JOSS.EXACT_EDGE_LINEAGE.AUTHORITY.V9",
+  "next_terminals": [
+    "P4_M6_EXACT_EDGE_AUTHORITY_V9_CLOSED_K_OF_7",
+    "P4_AUTHOR_LINEAGE_EXTERNAL_AUTHORITY_CANNOT_CHECK",
+    "P4_NATURAL_PAIR_EXTERNAL_ADJUDICATION_AND_CUSTODY_CANNOT_CHECK"
+  ],
+  "outcomes_accessed": false,
+  "predecessor": {
+    "exact_bridge_before": "73/80",
+    "path": "development/p4-unresolved-identity-v8-2026-08-23/FINAL_IDENTITY_RESOLUTION_V8.json",
+    "sha256": "558f2fba8fb52c7ce94d21c12cc4e087986cca8175a21a9fccb4c05809b53504"
+  },
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v9.protocol",
+  "targets": [
+    {
+      "archive_doi": "10.5281/zenodo.21221061",
+      "frozen_index": 36,
+      "next_discriminator": "Provider-native correction or immutable child metadata must bind the frozen concept DOI to version 0.0.3 and the deposited root to commit 069ab4f56d100d765d46c594ac1b06add7e49f9e; the current child description says 0.0.12 and the embedded 0.0.3 ref is historical rather than the archive HEAD.",
+      "publication_doi": "10.21105/joss.09542",
+      "publication_version": "0.0.3",
+      "repository": "jaxionproject/jaxion",
+      "residual": "EXACT_ARCHIVE_VERSION_DOI_RELATION_AND_ARCHIVE_ROOT_TO_TAG_COMMIT_IDENTITY_CANNOT_CHECK"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20171460",
+      "frozen_index": 91,
+      "next_discriminator": "An authoritative provider relation or archive provenance record must name exact commit 9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59, or provider archive content must exactly equal that immutable commit tree.",
+      "publication_doi": "10.21105/joss.10245",
+      "publication_version": "v1.0.0",
+      "repository": "nutritionallungimmunity/pai",
+      "residual": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20026885",
+      "frozen_index": 133,
+      "next_discriminator": "The provider must expose an authenticated full revision edge to 7ac6d23d504404c4004faad663f6b889427109e6 or exact provider archive content must equal that immutable commit tree.",
+      "publication_doi": "10.21105/joss.10112",
+      "publication_version": "v0.0.13",
+      "repository": "artefactory/woodtapper",
+      "residual": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19661454",
+      "frozen_index": 165,
+      "next_discriminator": "The provider must expose an authenticated full revision edge to b52a049f685af3fc849359673c4ac183e7ccc5d3 or exact provider archive content must equal that immutable commit tree.",
+      "publication_doi": "10.21105/joss.10223",
+      "publication_version": "v0.7.3",
+      "repository": "alek050/databallpy",
+      "residual": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19051387",
+      "frozen_index": 185,
+      "next_discriminator": "A source-native restored v0.14.0 ref/release or provider-authenticated metadata must disclose its full immutable commit; only then can exact commit rights and archive identity be bound.",
+      "publication_doi": "10.21105/joss.09364",
+      "publication_version": "v0.14.0",
+      "repository": "mit-psfc/disruption-py",
+      "residual": "EXACT_TAG_TO_FULL_COMMIT_AND_ARCHIVE_TO_COMMIT_IDENTITY_CANNOT_CHECK"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19335435",
+      "frozen_index": 190,
+      "next_discriminator": "A source-native restored 1.1.0 ref/release or provider-authenticated metadata must disclose its full immutable commit; only then can exact commit rights and archive identity be bound.",
+      "publication_doi": "10.21105/joss.09481",
+      "publication_version": "1.1.0",
+      "repository": "ugurdar/datadriftr",
+      "residual": "EXACT_TAG_TO_FULL_COMMIT_AND_ARCHIVE_TO_COMMIT_IDENTITY_CANNOT_CHECK"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19202203",
+      "frozen_index": 199,
+      "next_discriminator": "Software Heritage or the source provider must expose a full revision edge for the archived 0f8b2db prefix and bind v0.13.4 to it; the current authenticated SWH release terminates at a directory, not a revision.",
+      "publication_doi": "10.21105/joss.09603",
+      "publication_version": "v0.13.4",
+      "repository": "targene/targene-pipeline",
+      "residual": "EXACT_TAG_TO_FULL_COMMIT_AND_ARCHIVE_TO_COMMIT_IDENTITY_CANNOT_CHECK"
+    }
+  ],
+  "unit_rule": "same seven frozen JOSS publication DOI concepts only; no replacement, proxy, tag, file, commit, request, author, contributor, provider response, or version counts as an added unit"
+}

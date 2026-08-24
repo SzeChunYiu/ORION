@@ -1,0 +1,29 @@
+{
+  "schema_version": "orion.cross-session-p1-p5-ingestion.v1",
+  "observed_remote_main": "7f7f91931323cb891c323c898888fa81b86a2ac1",
+  "local_dirty_wave_head": "1b27b32b7d1dda3793d8247689f81e6c2f78d83d",
+  "git_operations": {
+    "commit": false,
+    "fetch": false,
+    "merge": false,
+    "push": false,
+    "rebase": false,
+    "reset": false
+  },
+  "pytest_or_repository_ci_run": false,
+  "imports": [
+    {"pr": 997, "merge_sha": "6e2309460ddbfd31c6a14c0bb3d1146f7448d27d", "files": 2, "mode": "EXACT_REMOTE_BLOBS"},
+    {"pr": 1005, "merge_sha": "f3521f6b4e462b85f6bb48681c0fe513ab01db77", "files": 2, "mode": "EXACT_REMOTE_BLOBS"},
+    {"pr": 1010, "merge_sha": "877d506038ab65a27b20bba376cd012d3c63997c", "files": 2, "mode": "EXACT_REMOTE_BLOBS"},
+    {"pr": 1011, "merge_sha": "c2535e1a204d65f3ee3e5e5f9afab1d09414f8ab", "files": 1, "mode": "ALREADY_BYTE_IDENTICAL"},
+    {"pr": 984, "merge_sha": "be99f4c96e2ca3772b0e7796fbf7a5e0eeda1232", "files": 1, "mode": "EXACT_REMOTE_BLOB"},
+    {"pr": 1015, "merge_sha": "7f7f91931323cb891c323c898888fa81b86a2ac1", "files": 2, "mode": "EXACT_REMOTE_BLOBS"}
+  ],
+  "independent_local_fix": {
+    "issue": 1003,
+    "path": "src/orion/study/p1/tables.py",
+    "finding": "APPLICABILITY_WAS_CHECKED_ONLY_WHEN_DENOMINATOR_ZERO",
+    "disposition": "CHECK_APPLICABILITY_BEFORE_DENOMINATOR"
+  },
+  "grants_scientific_authority": false
+}

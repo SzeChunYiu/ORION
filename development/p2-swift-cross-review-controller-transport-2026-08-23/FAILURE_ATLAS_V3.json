@@ -1,0 +1,37 @@
+{
+  "date": "2026-08-23",
+  "failures": [
+    {
+      "cause_status": "UNIDENTIFIED_COMPONENT_MIXTURE",
+      "failure_id": "P2-SWIFT-V3-PRIMARY-MARGIN",
+      "next_discriminator": "Frozen 2x2 representation-by-learner/balancer component factorization, followed by source-disjoint confirmation of any selected controller.",
+      "observation": "Mean candidate-minus-u4 recall@10% was -0.021717971642, below the preregistered +0.05 margin; the candidate was lower on all five reviews.",
+      "residual": "The result combines representation, learner/loss, balancing and scoring-rule differences, so it cannot attribute the gap to one component."
+    },
+    {
+      "cause_status": "UNIDENTIFIED_LATE_RECALL_TAIL",
+      "failure_id": "P2-SWIFT-V3-WORK-SAVING",
+      "next_discriminator": "Decompose component effects on the full recall curve and 95%-recall tail without changing V3 gates or deleting reviews.",
+      "observation": "Mean candidate-minus-u4 WSS@95 was -0.050396333672; candidate WSS@95 remained positive in every review.",
+      "residual": "Absolute work saving does not establish relative dominance; the candidate required more screening to reach 95% recall in every review."
+    },
+    {
+      "cause_status": "KNOWN_SOURCE_OVERLAP",
+      "failure_id": "P2-SWIFT-V3-RESIDUAL-DEPENDENCE",
+      "next_discriminator": "A future source-family transport panel must enforce content-disjoint review families before population-level uncertainty claims.",
+      "observation": "The maximum pairwise shared content identity count was 68.",
+      "residual": "Five review names are distinct decisions but not proven statistically independent samples."
+    },
+    {
+      "cause_status": "DIAGNOSED_AND_RETAINED",
+      "failure_id": "P2-SWIFT-V1-V2-POPULATION-MECHANICS",
+      "next_discriminator": "Treat V3 as public development only; protected or confirmatory evidence requires a new outcome-unopened family and an independently checked population adapter.",
+      "observation": "V1 and V2 both stopped before model execution because their content-identity implementation did not bind the intended preflight population.",
+      "residual": "V3 is frozen after class counts were opened, although still before any candidate/comparator outcome."
+    }
+  ],
+  "forbidden_reinterpretation": "No failure is converted into a positive superiority result. The harm and absolute-work-saving gates passing do not compensate for the failed primary and relative-work-saving gates.",
+  "identity": "P2_SWIFT_V3_FAILURE_ATLAS",
+  "preserved_terminal": "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR",
+  "terminal": "P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR"
+}

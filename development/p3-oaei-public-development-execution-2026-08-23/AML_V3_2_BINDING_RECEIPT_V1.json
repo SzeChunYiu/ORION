@@ -1,0 +1,25 @@
+{
+  "authority_limit": "SOURCE_NATIVE_PUBLIC_DEVELOPMENT_COMPARATOR__NOT_CURRENT_SOTA_CERTIFICATE__NOT_PROTECTED",
+  "bundled_resources_policy": "USED_AS_DISTRIBUTED_IN_RELEASE_ASSET__NO_REDISTRIBUTION",
+  "command_template": "java -jar AgreementMakerLight.jar -s SOURCE_ONTOLOGY -t TARGET_ONTOLOGY -o OUTPUT_ALIGNMENT -a",
+  "jar_sha256": "a5b831a6c000e49aa4702b16486dabdf38e40bb68203a16a8019414fecc2ecf3",
+  "license": "Apache-2.0",
+  "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "name": "AgreementMakerLight",
+  "readme_sha256": "c7543adb55fba729143aa8d6935d351b02c1497d308ed6f3f7e97cd3c7851ea4",
+  "reference_alignment_argument_supplied": false,
+  "release_asset": "https://github.com/AgreementMakerLight/AML-Project/releases/download/v3.2/AML_v3.2.zip",
+  "release_asset_sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27",
+  "repository": "https://github.com/AgreementMakerLight/AML-Project",
+  "role": "STRONG_SOURCE_NATIVE_ONTOLOGY_ALIGNMENT_COMPARATOR",
+  "runtime": {
+    "deviation": "EXECUTED_OUTSIDE_UPSTREAM_NAMED_RUNTIME__OUTPUT_REPLAY_REQUIRED",
+    "observed": "OpenJDK 17.0.19 arm64",
+    "upstream_readme_requirement": "Java SE Runtime Environment 8"
+  },
+  "schema_version": "orion.p3.external-comparator-binding.v1",
+  "system_id": "AML_V3_2_AUTO_SOURCE_NATIVE",
+  "tag": "v3.2",
+  "tag_commit": "d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6",
+  "terminal": "BOUND_FOR_PUBLIC_DEVELOPMENT_WITH_RUNTIME_DEVIATION_AND_REPLAY_GATE"
+}

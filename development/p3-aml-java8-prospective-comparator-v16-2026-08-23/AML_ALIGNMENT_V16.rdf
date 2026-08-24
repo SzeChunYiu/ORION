@@ -1,0 +1,430 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment'
+	 xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' 
+	 xmlns:xsd='http://www.w3.org/2001/XMLSchema#' 
+	 alignmentSource='AgreementMakerLight'>
+
+<Alignment>
+	<xml>yes</xml>
+	<level>0</level>
+	<type>11</type>
+	<onto1>file:/tmp/p3-v15-aml-java8-run/case/source.rdf</onto1>
+	<onto2>file:/tmp/p3-v15-aml-java8-run/case/target.rdf</onto2>
+	<uri1>file:/tmp/p3-v15-aml-java8-run/case/source.rdf</uri1>
+	<uri2>file:/tmp/p3-v15-aml-java8-run/case/target.rdf</uri2>
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Chapter"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Chapter"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#MastersThesis"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#MastersThesis"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Book"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Book"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Part"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Part"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Booklet"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Booklet"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Deliverable"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Deliverable"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#LectureNotes"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#LectureNotes"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Manual"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Manual"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#PhdThesis"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#PhdThesis"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Reference"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Reference"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Institution"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Institution"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#MotionPicture"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#MotionPicture"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#InCollection"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#InCollection"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#School"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#School"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Academic"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Academic"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#TechReport"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#TechReport"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Collection"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Collection"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Unpublished"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Unpublished"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Report"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Report"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Informal"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Informal"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.99</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Date"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Date"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#Date"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#Date"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Conference"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Conference"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#Conference"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#Conference"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Journal"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Journal"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#InProceedings"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#InProceedings"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#InProceedings"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#InProceedings"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#Journal"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#Journal"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Proceedings"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Proceedings"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#Proceedings"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#Proceedings"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Misc"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Misc"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#Misc"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#Misc"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#PageRange"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#PageRange"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#PageRange"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#PageRange"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#Address"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Address"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Address"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#Address"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#InBook"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#InBook"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#InBook"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#InBook"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#Article"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#Article"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Article"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Article"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#PersonList"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#PersonList"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#PersonList"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#PersonList"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Monograph"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#Monograph"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#Monograph"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Monograph"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="http://co4.inrialpes.fr/align/Contest/101/onto.rdf#Publisher"/>
+			<entity2 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/target.rdf#Publisher"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+	<map>
+		<Cell>
+			<entity1 rdf:resource="file:/tmp/p3-v15-aml-java8-run/case/source.rdf#Publisher"/>
+			<entity2 rdf:resource="http://co4.inrialpes.fr/align/Contest/103/onto.rdf#Publisher"/>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+			<relation>=</relation>
+		</Cell>
+	</map>
+
+</Alignment>
+</rdf:RDF>

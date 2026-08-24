@@ -1,0 +1,84 @@
+{
+  "authority": "REPAIR_RUNTIME_AND_ARTIFACT_INTERFACE_CONFORMANCE_ONLY__NO_GOLD_REFERENCE_CORRECTNESS_PERFORMANCE_HARM_COVERAGE_TRANSPORT_OR_SUPERIORITY_AUTHORITY",
+  "closure_preflight": {
+    "expected_entries": 90,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/CLOSURE_PREFLIGHT_V11.json",
+    "required_complete": true,
+    "required_matches": 90,
+    "sha256": "15f178b91595d6f17da79a1fd234be7a66f58a1cdec82d5af18a376bc2ca086c"
+  },
+  "command": [
+    "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin/java",
+    "-Xms500m",
+    "-Xmx2147483648",
+    "-DentityExpansionLimit=100000000",
+    "--add-opens=java.base/java.lang=ALL-UNNAMED",
+    "-jar",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/logmap-matcher-4.0.jar",
+    "DEBUGGER",
+    "file:/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/source.owl",
+    "file:/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/target.owl",
+    "TXT",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/results/bertmap-out/bertmap/match/logmap-repair/filtered_mappings_for_LogMap_repair.txt",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/output",
+    "false",
+    "false"
+  ],
+  "delta_from_v9_failing_java_command": {
+    "only_jvm_option_added": "--add-opens=java.base/java.lang=ALL-UNNAMED",
+    "other_semantic_arguments_changed": false,
+    "output_root_relocated_to_fresh_successor_packet": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/output",
+    "runtime_relocated_with_identical_hashes": true
+  },
+  "failure_policy": "ANY_HASH_OR_90_ENTRY_CLOSURE_MISMATCH_PREVENTS_EXECUTION; NONZERO_DIRECT_CHILD_EXIT_OR ABSENT/NONREGULAR/SYMLINK OUTPUT FAILS; NO RETRY; RETAIN EXACT STDERR",
+  "frozen_inputs": {
+    "filtered_mappings_for_repair": {
+      "bytes": 1600,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/results/bertmap-out/bertmap/match/logmap-repair/filtered_mappings_for_LogMap_repair.txt",
+      "rows": 16,
+      "sha256": "6c12ab82c83e6d44149cb03f761880e8a23171d6fb73142225d49e1c6b0eafe4"
+    },
+    "java_binary": {
+      "bytes": 69600,
+      "path": "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin/java",
+      "sha256": "7db0dd5c0c4dc931244875d0723783a32cc7912922e6aaac1dbb744bf8ae837f"
+    },
+    "logmap_jar": {
+      "bytes": 3393718,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/logmap-matcher-4.0.jar",
+      "sha256": "e0b217156ffece911c472cc2cb2b25e7948b3c46801037e0161c3a752332d6a3"
+    },
+    "source_ontology": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/source.owl",
+      "sha256": "c347f32626f6c5b3b782b2f6344bca5ac2282a701161d11f1e02a7422fef4d9e"
+    },
+    "target_ontology": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/target.owl",
+      "sha256": "16bd34ec22c3d130b94257404fd60a112a3383d16255a67472e0c5e1518c5521"
+    }
+  },
+  "materially_distinct_from_v10": "V11 reconstructs and hash-verifies all 90 relative LogMap manifest Class-Path entries before Java; V10 had 0/90.",
+  "parent_v9": {
+    "java_component_sbom_sha256": "1a74a00136628a337516052bf3bc61140990392d973a98ab73454d7851759a30",
+    "jdk_runtime_manifest_sha256": "3cd4c7448dd5f749b8705976aa83edd392f4b9593bcae67210589e8a56e54b82",
+    "protocol_sha256": "7e5eac0b04988cf936a9517043e63f8599866d215e1c5b3537fb47271d87f2e8",
+    "result_sha256": "c4d6e29213c5eca07205c6a92f1d8ca228f3c4b1479c10d64a0ee64b78f2f906",
+    "runtime_rights_gate_sha256": "1c92df931ee57e6d743484461c43e8d26c8d2e0773eb834be05a4133264a602a"
+  },
+  "protocol_id": "P3_V11_EXACT_V9_LOGMAP_CLASSPATH_JAVA17_ADD_OPENS_REPAIR_ONLY_MICROGATE",
+  "schema_version": "orion.p3.logmap-manifest-classpath.repair-microgate.protocol.v11",
+  "single_authorized_attempt": {
+    "full_deeponto_or_bertmap_run": false,
+    "gold_or_reference_alignment_opened": false,
+    "java_child_invocations": 1,
+    "offline": true,
+    "repair_only": true,
+    "retries_permitted": 0,
+    "timeout_seconds": 120
+  },
+  "success_gate": {
+    "direct_java_child_exit_code": 0,
+    "required_output": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/output/mappings_repaired_with_LogMap.tsv",
+    "required_output_type": "regular_non_symlink_file"
+  }
+}

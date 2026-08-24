@@ -1,0 +1,47 @@
+{
+  "entries": [
+    {
+      "cause": "For falsey threshold, Python short-circuits `not threshold or ...`; the defective subscript is never evaluated.",
+      "id": "P3V8-N01",
+      "negative_result": "V7 described the table-reader defect as affecting every nonempty non-reference table.",
+      "next_discriminator": "Use the V8 truthy-threshold scope in every integration artifact.",
+      "positive_progress": "V8 prospectively separates empty, falsey-threshold and truthy-threshold cases and reproduces the TypeError only at the exact truthy-threshold boundary.",
+      "residual": "Prior wording must not be reused as an all-nonempty claim."
+    },
+    {
+      "cause": "The comparison uses dp[\"Score\"] while the same row is otherwise accessed by attributes.",
+      "id": "P3V8-N02",
+      "negative_result": "Pinned mapping.py cannot apply a truthy threshold because `itertuples()` rows do not support string-key access.",
+      "next_discriminator": "Apply only the content-addressed V8 patch inside a complete rights-closed runtime.",
+      "positive_progress": "The exact one-expression Apache-2.0 source patch dp.Score passes synthetic truthy-threshold execution and preserves normalized method AST outside that access.",
+      "residual": "This is source-patch and language-level evidence, not DeepOnto or native BERTMap execution."
+    },
+    {
+      "cause": "The source method expects an attribute named Score and a value comparable to the threshold.",
+      "id": "P3V8-N03",
+      "negative_result": "Malformed synthetic tables lack Score or carry nonnumeric Score values.",
+      "next_discriminator": "Keep upstream schema validation explicit in any native adapter; do not silently coerce malformed scores.",
+      "positive_progress": "Both cases fail closed without returning mappings.",
+      "residual": "No new coercion or schema-repair semantics were introduced by this minimal patch."
+    },
+    {
+      "cause": "V8 stops at the first meaningful repair boundary and forbids models, ontologies, prediction and native execution.",
+      "id": "P3V8-N04",
+      "negative_result": "A synthetic five-file fixture passes the frozen V7 parser, but no actual native BERTMap artifact exists.",
+      "next_discriminator": "Require all five actual artifacts from one fresh isolated no-gold run; synthetic fixture hashes cannot satisfy this gate.",
+      "positive_progress": "The repaired EntityMapping row shape remains compatible with the exact V7 structural parser contract.",
+      "residual": "Native smoke stays 2/3 and BERTMap actual-artifact presence stays 0/5."
+    },
+    {
+      "cause": "DeepOnto, pandas integration, JVM/JARs and generated artifact layers are outside the island's closure.",
+      "id": "P3V8-N05",
+      "negative_result": "The V7 26-distribution island is constructor-only and full Python/JVM rights/SBOM remain open.",
+      "next_discriminator": "Bind a complete content-addressed Python runtime and component-level Java SBOM/rights decisions before native execution custody.",
+      "positive_progress": "V8 reuses the exact V7 source, lock, manifest and parser identities without inflating them into a complete runtime claim.",
+      "residual": "No native or scientific comparator promotion is lawful from this packet alone."
+    }
+  ],
+  "protocol_id": "P3_V8_BERTMAP_PROSPECTIVE_MINIMAL_TABLE_READER_REPAIR",
+  "schema_version": "orion.p3.bertmap-table-reader-repair.negative-ledger.v8",
+  "terminal": "P3_V8_BERTMAP_TABLE_READER_MINIMAL_REPAIR_SOURCE_HASH_AND_SYNTHETIC_EMPTY_NONEMPTY_EXECUTION_BOUND__MALFORMED_STALE_AND_PROHIBITED_CASES_FAIL_CLOSED__V7_PARSER_SYNTHETIC_COMPATIBILITY_BOUND__NATIVE_SMOKE_AND_SCIENTIFIC_READINESS_UNCHANGED"
+}

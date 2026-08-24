@@ -1,0 +1,29 @@
+{
+  "claim_scope": "PUBLIC_DEVELOPMENT_MULTI_REVIEW_TRANSPORT_ONLY",
+  "command": "rtk python run_swift_cross_review_controller_transport_v1.py --root . --source-freeze SOURCE_AND_RIGHTS_FREEZE_V1.json --protocol PROTOCOL_FREEZE_V1.json --implementation IMPLEMENTATION_FREEZE_V1.json --out RESULT_V1.json",
+  "date": "2026-08-23",
+  "implementation_notes": {
+    "active_loop": "Each arm refits from scratch on all currently screened rows after every cadence-matched batch and produces a complete deterministic ordering.",
+    "candidate": "Frozen TF-IDF plus SGD log-loss controller; stable maximum positive-probability query.",
+    "comparator": "Pinned ASReview ELAS u4 TF-IDF, LinearSVC, balanced-ratio 9.8 and stable maximum-query components; this is not exact ASReview application execution.",
+    "deduplication": "Label-independent earliest-row retention by within-review normalized content identity.",
+    "initialization": "One deterministic label-informed positive and one deterministic label-informed negative per review; no cold-start claim.",
+    "privacy": "Source text is used in memory but never emitted to result artifacts.",
+    "review_aggregation": "All five reviews are retained; effects are aggregated by an unweighted review-level mean and a worst-review gate."
+  },
+  "outcomes_observed_before_freeze": false,
+  "protocol_freeze_sha256": "0b4fddc0a075234d3c3b8c112da543636256bd360e37cf14af0af39d7d072c46",
+  "runner": "run_swift_cross_review_controller_transport_v1.py",
+  "runner_bytes": 24599,
+  "runner_sha256": "04164d17e16f094342cb3fba1c60bdfd601b668ffd6efd0a3aec5c890d256bf6",
+  "software": {
+    "numpy": "2.4.4",
+    "openpyxl": "3.1.5",
+    "pandas": "2.3.3",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.1"
+  },
+  "source_and_rights_freeze_sha256": "489ba4b823b40276586367f5f49581ee0cfeda685e5f8be3bdcf9731b50558ab",
+  "status": "IMPLEMENTATION_FROZEN_BEFORE_ANY_LABEL_COUNT_CONTROLLER_OUTCOME_OR_COMPARATOR_OUTCOME"
+}

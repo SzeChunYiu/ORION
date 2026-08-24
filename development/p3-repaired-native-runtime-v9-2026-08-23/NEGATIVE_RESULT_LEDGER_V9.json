@@ -1,0 +1,173 @@
+{
+  "authority": "NATIVE_FAILURE_CAUSAL_LOCALIZATION_AND_SUCCESSOR_DESIGN_ONLY__NO_SCIENTIFIC_MAPPING_TRUTH_AUTHORITY",
+  "created_at": "2026-08-23T20:08:59.871503+00:00",
+  "positive_stage_evidence": {
+    "actual_artifacts": {
+      "extended_mappings.tsv": {
+        "bytes": 1530,
+        "data_row_count_partial_unvalidated": 16,
+        "present": true,
+        "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+      },
+      "filtered_mappings.tsv": {
+        "bytes": 1530,
+        "data_row_count_partial_unvalidated": 16,
+        "present": true,
+        "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+      },
+      "raw_mappings.json": {
+        "bytes": 3474,
+        "present": true,
+        "sha256": "d72fc7a406183918339593bd69aa4c6ed9fedfbf4b5c544e712dc304cef553ce",
+        "source_key_count_partial_unvalidated": 16
+      },
+      "raw_mappings.tsv": {
+        "bytes": 1530,
+        "data_row_count_partial_unvalidated": 16,
+        "present": true,
+        "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+      },
+      "repaired_mappings.tsv": {
+        "present": false
+      }
+    },
+    "actual_artifacts_present": "4/5",
+    "bert_fine_tuning_finished": true,
+    "global_mapping_finished": true,
+    "jvm_started_with_exact_java17": true,
+    "mapping_extension_finished": true,
+    "mapping_filtering_finished": true,
+    "scope": "Stage completion and file presence only; no row is interpreted as a correct mapping.",
+    "v8_table_reader_patch_reached_in_native_nonempty_truthy_threshold_path_without_prior_typeerror": true
+  },
+  "primary_issue": {
+    "causal_chain": [
+      "DeepOnto invokes logmap-matcher-4.0.jar in a separate Java process.",
+      "The LogMap class path contains OWLAPI 4.1.3 and Guice 4.0; Guice 4.0 uses internal cglib reflection.",
+      "Guice cglib attempts reflective access to ClassLoader.defineClass in java.lang.",
+      "OpenJDK 17 strong encapsulation denies that access because java.base/java.lang is not open to the unnamed module.",
+      "LogMap exits before writing mappings_repaired_with_LogMap.tsv.",
+      "DeepOnto then tries to open the absent file, raising FileNotFoundError; repaired_mappings.tsv is never created."
+    ],
+    "component_evidence": {
+      "guice-4.0.jar": {
+        "bytes": 668235,
+        "coordinates": [],
+        "manifest": {
+          "Bundle-Name": "guice",
+          "Bundle-SymbolicName": "com.google.inject",
+          "Bundle-Version": "4.0.0"
+        },
+        "path": "src/deeponto/align/logmap/java-dependencies/guice-4.0.jar",
+        "sha256": "b378ffc35e7f7125b3c5f3a461d4591ae1685e3c781392f0c854ed7b7581d6d2"
+      },
+      "logmap-matcher-4.0.jar": {
+        "bytes": 3393718,
+        "coordinates": [
+          {
+            "artifactId": "logmap-matcher",
+            "groupId": "uk.ox.logmap",
+            "m2e.projectLocation": "/home/ernesto/git/logmap-matcher",
+            "m2e.projectName": "logmap-matcher",
+            "source": "META-INF/maven/uk.ox.logmap/logmap-matcher/pom.properties",
+            "version": "4.0"
+          }
+        ],
+        "manifest": {},
+        "path": "src/deeponto/align/logmap/logmap-matcher-4.0.jar",
+        "sha256": "e0b217156ffece911c472cc2cb2b25e7948b3c46801037e0161c3a752332d6a3"
+      },
+      "owlapi-apibinding-4.1.3.jar": {
+        "bytes": 11598,
+        "coordinates": [
+          {
+            "artifactId": "owlapi-apibinding",
+            "groupId": "net.sourceforge.owlapi",
+            "source": "META-INF/maven/net.sourceforge.owlapi/owlapi-apibinding/pom.properties",
+            "version": "4.1.3"
+          }
+        ],
+        "manifest": {},
+        "path": "src/deeponto/align/logmap/java-dependencies/owlapi-apibinding-4.1.3.jar",
+        "sha256": "f1d39b813afdf6264abcce1dcf107fb3fa488c1ab2a83b26867c1908d5740dd2"
+      }
+    },
+    "issue_id": "P3-V9-JAVA17-GUICE4-STRONG-ENCAPSULATION",
+    "not_caused_by": [
+      "the V8 dp.Score repair",
+      "model download or network access",
+      "missing input ontology",
+      "timeout",
+      "absence of raw, extended, or filtered artifacts"
+    ],
+    "observed_exception": "java.lang.reflect.InaccessibleObjectException",
+    "observed_message": "module java.base does not opens java.lang to unnamed module",
+    "runtime_evidence": {
+      "jdk": "OpenJDK 17.0.19 arm64",
+      "stderr_bytes": 65862,
+      "stderr_sha256": "e76684b39862ab111d403fbcd4e315c26ab8871de2b2142df6fe6cbc42a41914"
+    },
+    "stage": "LogMap repair subprocess initialization"
+  },
+  "prohibitions_honored": {
+    "gold_or_reference_opened": false,
+    "native_retry_executed": false,
+    "post_result_source_patch_applied": false,
+    "scientific_scoring_performed": false
+  },
+  "protocol_id": "P3_V9_BERTMAP_COMPLETE_RUNTIME_RIGHTS_AND_NO_GOLD_NATIVE_SMOKE",
+  "schema_version": "orion.p3.repaired-native-runtime.negative-result-ledger.v9",
+  "secondary_issue": {
+    "effect": "Root-cause visibility is delayed; this did not cause the Java module-access failure.",
+    "issue_id": "P3-V9-DEEPONTO-RUN-JAR-EXIT-STATUS-NOT-PROPAGATED",
+    "observation": "deeponto.utils.file_utils.run_jar waits for the child but does not check or return its exit code; mapping_refinement consequently reports a downstream missing-file exception after the Java cause.",
+    "source_bindings": [
+      {
+        "line_span": [
+          129,
+          138
+        ],
+        "path": "runtime/source/src/deeponto/utils/file_utils.py",
+        "source_sha256": "afb96fdd18991b2b88f2e5480712ebedf373fbcd40296191bf0ccd852e2ddf7e"
+      },
+      {
+        "line_span": [
+          19,
+          43
+        ],
+        "path": "runtime/source/src/deeponto/align/logmap/__init__.py",
+        "source_sha256": "fe94bb5ba005fe2139921f59c035b1ee43eafd38934d5eaae83105ba30982697"
+      },
+      {
+        "line_span": [
+          293,
+          316
+        ],
+        "path": "runtime/source/src/deeponto/align/bertmap/mapping_refinement.py",
+        "source_sha256": "f788fc45562c10b7128cc072e47020897ac8eb565905910749431ee80e248749"
+      }
+    ]
+  },
+  "single_native_attempt": {
+    "execution_receipt_sha256": "b8cbdcdbc2daf0f4e070d1eab65e7dadc37b081b05250d4a3219373b7c66a6fa",
+    "exit_code": 1,
+    "retries_used": 0,
+    "timed_out": false,
+    "wall_seconds": 241.89021045796108
+  },
+  "successor_discriminator": {
+    "candidate_java_flag": "--add-opens=java.base/java.lang=ALL-UNNAMED",
+    "candidate_status": "CANNOT_CHECK__STANDARD_JAVA17_OPEN_DIRECTIVE_IDENTIFIED_BUT_NOT_EXECUTED",
+    "efficiency_reason": "The failing component starts after approximately 168 seconds of training and matching; a component microgate isolates it in seconds before another end-to-end run.",
+    "fastest_safe_sequence": [
+      "V10-A: freeze a repair-only, no-gold LogMap microgate before execution.",
+      "V10-A: keep exact Java 17 and exact JAR/input hashes; add only --add-opens=java.base/java.lang=ALL-UNNAMED before -jar.",
+      "V10-A: require Java exit zero and mappings_repaired_with_LogMap.tsv as a regular nonsymlink file; expose the Java exit code directly.",
+      "Only if V10-A passes, freeze a separate full native successor. Do not repeat BERT fine-tuning merely to rediscover the same LogMap failure.",
+      "The full successor must be a new protocol and attempt; V9 remains immutable and is never retried."
+    ],
+    "full_successor_additional_repair": "Wrap the LogMap child with explicit nonzero-exit propagation so the primary exception is fail-closed and immediate.",
+    "status": "PROSPECTIVE_DESIGN_ONLY__NOT_EXECUTED_IN_V9"
+  },
+  "terminal": "P3_V9_NEGATIVE_RESULT_ROOT_CAUSE_LOCALIZED__SUCCESSOR_MICRODISCRIMINATOR_SPECIFIED__NO_RETRY_EXECUTED"
+}

@@ -1,0 +1,30 @@
+{
+  "agent_tool_registry_at_flag_time": [],
+  "agent_trace": [
+    {
+      "content": [
+        {
+          "text": "Repair Apache Commons Lang NumberUtils.createNumber so positive hexadecimal magnitudes are classified by the signed positive capacity of Integer and Long rather than by raw hexadecimal width alone. Values that exceed Integer but fit Long must remain representable as Long; values above signed Long capacity must remain representable as BigInteger; leading zeroes must not change the effective magnitude class. Preserve the public API and unrelated numeric parsing behavior.",
+          "type": "text"
+        }
+      ],
+      "role": "user"
+    }
+  ],
+  "batch_id": "P5-C2-V11-LAWFUL-NATIVE-BYTE-SUCCESSOR",
+  "flag_id": "P5-C2-V11-LANG1-AUTHORED-001",
+  "flagged_at": 1787551080000,
+  "flagged_by": "orion-v11-packet-author",
+  "optional_reason": "Frozen public-development task materialization only; no run or outcome selected this session.",
+  "source_session_id": "P5-V11-AUTHORED-PUBLIC-DEVELOPMENT-SESSION",
+  "source_turn_range": [
+    0,
+    0
+  ],
+  "source_user_message_index": 0,
+  "tool_dispatches": [],
+  "user_prompt": {
+    "language": "en",
+    "text": "Repair Apache Commons Lang NumberUtils.createNumber so positive hexadecimal magnitudes are classified by the signed positive capacity of Integer and Long rather than by raw hexadecimal width alone. Values that exceed Integer but fit Long must remain representable as Long; values above signed Long capacity must remain representable as BigInteger; leading zeroes must not change the effective magnitude class. Preserve the public API and unrelated numeric parsing behavior."
+  }
+}

@@ -1,0 +1,2787 @@
+{
+  "boundary": "A pass proves exact packaged-byte availability in the GitHub-authenticated tree and a deterministic extraction route. It is not source compilation, a signed attestation, author custody, or release authority.",
+  "class_major_version_counts": {
+    "61": 106
+  },
+  "different": [],
+  "different_byte_count": 0,
+  "duplicate_member_names": [],
+  "exact": true,
+  "expected_count": 106,
+  "extra": [],
+  "extra_count": 0,
+  "method": "From the immutable-revision tracked java/jPAI.jar, select every non-directory *.class ZIP member. Prefix each member with java/bin/. Pass only if the complete sorted path/type/byte-count/SHA-256 multiset exactly equals all 106 frozen archive-only outputs; any missing, extra, duplicate, CRC failure or byte difference fails.",
+  "missing": [],
+  "missing_count": 0,
+  "observed_class_member_count": 106,
+  "observed_manifest": [
+    {
+      "bytes": 4890,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/ADI.class",
+      "sha256": "359ecc2bd8282c3cf78ce0e5958187350d20de3680b29806dacefbc17f325205",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 141,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/Diffuse.class",
+      "sha256": "42e2156e94119f25f9d893a2064c62385d6f0f5a0018039d058c8fc20dfd79a4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 355,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADI.class",
+      "sha256": "6223a8957aa5b57e24da5346e5f616d8fbbc09760f05de39382660b4e970d7b6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 5119,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADIClosed.class",
+      "sha256": "a7997bf0300790cc0651472cbf9759821172684c0f8c896c3eaf9ed2b67d2f4d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4703,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADIOpen.class",
+      "sha256": "bc0e98cb2fd9e490184f6f37abb0aff9dee11437bcb1c5a501087e5faeee66ba",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 7330,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADIPeriodic.class",
+      "sha256": "212debb3d2e70f8a780c6cdcae1e8cd9f2497fc749c8955d8fdb0da2a7da94f6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1852,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/GridFactory.class",
+      "sha256": "5ea1e47b8bfc6e6c09d5ea0a620683734817a65621b793f395e2fb79aba64269",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1978,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/MacrophageRecruiter.class",
+      "sha256": "801e9a1d4c7923d1d4d91e0f265196e38780a6ea3bbfaa2431e7be020aabf6a5",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1578,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/MacrophageReplenisher.class",
+      "sha256": "ee5baa63d84f9d6f999014e7487fc7f6a9b9bb8edc773ec36452e2023b8392c3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1398,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/NeutrophilRecruiter.class",
+      "sha256": "39512fa1e26a30312ccef7239b0a8c502d7e215052470adc8a25c196a4ec71dd",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1048,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/NeutrophilReplenisher.class",
+      "sha256": "964499d9dd9c8b899a4b45659f1e53966f39937a94ab7948f525f2b546826c2d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 979,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/Recruiter.class",
+      "sha256": "97d06b754bd97a1dd1daf2a8c08c94b148dd69db68fb36f2328b745207bfbab2",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 10892,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/Voxel.class",
+      "sha256": "1ca5a44ddea59984f5a3b3833c916260385d24df4c569493ca49d904df6ae9ad",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4060,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/control/Exec.class",
+      "sha256": "70f72104cc3889c9839cf167d75c45ee564490a0913852cb44b7b652f567e8e6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1700,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/control/MultiThreadExec.class",
+      "sha256": "26dd35414042989003f80df8afbc5b7519be68bb05e339d5a96c091c59092492",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 926,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/control/MultiThreadExecDiffusion.class",
+      "sha256": "1df65fb92f24075d04211eea0da5e9531335c0928d933dbd885951bcd1f8f088",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2329,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Adenosine.class",
+      "sha256": "c046eafbe61746d37554e19a9dbd60b1663972586dee3107821d825248225b06",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 11077,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/Afumigatus.class",
+      "sha256": "df79ee1a2f872cd84deeb5b706b83859a943f926733ca9415fa90163fa86359d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 514,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/AfumigatusNoIron.class",
+      "sha256": "ab34a46e276ec066250ec28338ce12338b03aa493f832d65b22356cec7eea144",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2722,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/TAFC.class",
+      "sha256": "da68d81c34fb1b11464994e7929890624561b293e1653a4a62d22d3765a740c9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1626,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/TranexamicAcid.class",
+      "sha256": "717edd0aafe514a3c41bb224cbbc705acc0e76c789ebcf28a11fee66539f2c4b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1950,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Albumin.class",
+      "sha256": "06fdd94ab3607c31d4485edb718fb1214bf78e655fee76c97830c58becee807f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 146,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Binder.class",
+      "sha256": "00433f9d5be45a73bfdbe8934ada1c108f16042e7169fc73758a346b744167bf",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3669,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Blood.class",
+      "sha256": "aec9a19fbabb7bc25467da9aea576756b9017c60d5de49fd7ab828e4730d9e58",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2805,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Cell.class",
+      "sha256": "6714b24e0e562c2df9a1566f02e55a44181a8ade8fbc6bd177d51bdb6a7ba66c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 311,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Chemokine.class",
+      "sha256": "5563054f01ce8673b756c6e4791523951996a657f80208134eac8f0ccce92683",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 656,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/DectinBinder.class",
+      "sha256": "c604bfc88aef22eae91582c810189a061b9cee6ec0b49fb077ebd110633bb703",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2010,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/DeltaGammaT.class",
+      "sha256": "20377bd2833cd5da67aea86dae4269f43b2eeb08f7a95957c31ce5ef9b49723c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2755,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/EndothelialCell.class",
+      "sha256": "0ebc1adc45754dfd9ad954632416fb520384e5c3e3400375a1ccf3bb343264c0",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2282,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Granule.class",
+      "sha256": "55ae860a9315554364eac1e651ae4ff856a3a16931c7c9f1dc30f46799b090e5",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2722,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Heme.class",
+      "sha256": "034eb664988a6b04543a140cf6ca225b8fd9a571f0ba686b97e9953abb80bc1f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2033,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Hepcidin.class",
+      "sha256": "73ad71c1731ed3b8c32698c0e94afe9fe56af0e1b415f7086a0764879ec3c30a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2157,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IFN_I.class",
+      "sha256": "861930abab4e67d42c28ac30fcca88588c5d44e405723940ad0403c511b23c9a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2328,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IFN_II.class",
+      "sha256": "49416730062f47cf414c9883825106e0e876f9b21ee42052947fe9e31a616780",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2320,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IFN_III.class",
+      "sha256": "ddde2e1c61c7f5a9b1869356e044a44081ddcbaf7531c9950990d16804d4e5f4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2813,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL1.class",
+      "sha256": "17a694979940d4288c114ffd4a5110abb41f7ea1ca452af5da67a4b2e64ba4a0",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2307,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL10.class",
+      "sha256": "ca4c5f5ee6f6b653dd9ebdbb42781e483d4439e7cce52fac29ce7213a4435b3a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2307,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL13.class",
+      "sha256": "65a34c087ef52cba042ce4afc96cceefe62dc58db3fae4f206f6d14fcc315340",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2421,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL17.class",
+      "sha256": "9e1617b97d5321f017457d0c1ffee011477f569f0a7bfe0a743b76d633b6c493",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2328,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL23.class",
+      "sha256": "bad0f75bbf99113e8ea69b1df3581ad394444a9cefe0354d18df06317645a13e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2458,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL4.class",
+      "sha256": "50e8d5a530a52c1e0abd4f3835317f379ed1adafb949d1070eb64987059b7fb8",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2220,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL6.class",
+      "sha256": "4105762d76902106e92d1c963a1aae772405bf7e29ee67a1cc9ab520b116ccb6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 549,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/InfectiousAgent.class",
+      "sha256": "1dcdf48d5162cb1ffd2f56413b802a98092f5f0d858998996f7d8d188a836acb",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1115,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Interactable.class",
+      "sha256": "664c505049c543d71cf4537ddf7c1a6f6d6c0f2a4ad6e4b199454c915e7de9b9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 161,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Internalizable.class",
+      "sha256": "b52932bf3227eeea26a36809b30083ed72220859368889799d5b546dbea2b1d3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2076,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Iron.class",
+      "sha256": "225e8cf6d237f6aaebb3fa5cf7dfe7c180cfb24986aa03682701c8446d68425d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2344,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/LPS.class",
+      "sha256": "d43a7839d26b5586f9a08d782c6867c4625685b82dd523d34c59619ec4a7109b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3167,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Lactoferrin.class",
+      "sha256": "72c2a439870e263e44f139683a66943421e977fc1c7f10c3ae90584245aa763f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2846,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Leukocyte.class",
+      "sha256": "7a52755f3a55c3aa6cafd4f95431f9d516c2353910640bc3c94063b190da5bee",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2666,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Lipocalin2.class",
+      "sha256": "b9d51d4be27dfa835db10ec103a247aafe412ca2971d1b393f09ebb0287e4b7a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4320,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Liver.class",
+      "sha256": "9305ec9a8eb2ebdf5c082eb19f9c7593dd6fc63b2387e09ca03ccca0d50467d7",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2660,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/MCP1.class",
+      "sha256": "ac72efaf7982c10325b30218a35316eaf1dd83a92dd09623d7674343ab65e4ff",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2494,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/MIP1B.class",
+      "sha256": "264d1d1dc8a683bd34730e8b3c08a671da83c450e2bb290c852dc6f6334d312d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2730,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/MIP2.class",
+      "sha256": "e5a97996690cc2c2ac524090b54dae89dc77e2040adb8bc8182f66efb6fa80ad",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2738,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Macrophage.class",
+      "sha256": "8d903acc9dbbe0893bd4e256f396e4af187bc82f411ceb97fd94055bf90095d1",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3902,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Molecule.class",
+      "sha256": "f107ae69a3592ecf03c7e3450172182fda78ed82bc487bbe8e291f8f5c5629f4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2192,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/NK.class",
+      "sha256": "4858e7c63f9648fb092a8852eb1eccbfb5b790af09829f1d85dc6c6588794dd9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3920,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Neutrophil.class",
+      "sha256": "7078503f18b4be088d3a065597f7c675c088492912af04abb2972e6a34d8e00c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2293,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PneumocyteI.class",
+      "sha256": "e11902d3095117d508401c710eceb2bd9c91712461c3cfc11d5cd6df801b29c4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2547,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PneumocyteII.class",
+      "sha256": "af9f2a3dc1894e3101d466e033859cd020ae92335611cf4560065c551f8c6a76",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 234,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PositionalAgent.class",
+      "sha256": "0317d72259140dad35f96ba3bee90a9f63ccbee95a5eebafae3402ea16958032",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 839,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PositionalInfectiousAgent.class",
+      "sha256": "0f5328d1c30f223ed1c7c131b8f112690ff4482dec6ecdf91fe55f1b46dc87f8",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 648,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PtSRBinder.class",
+      "sha256": "b9a63c724a87f1381c4b3736966bb78ef51f74312bae6e88d63a1ef30ab118d6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2449,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/ROS.class",
+      "sha256": "c605c18bf5bac12dd13261fcf5b108e160d0eaff23c367ac54625d4f74e665c9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1916,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Setter.class",
+      "sha256": "5b23dc49d0769a21a8be4159e7a57aac738303868295347865112c29260afe0b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1597,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Siderophore.class",
+      "sha256": "6a1199c259ca09510db98e0e8cf379b5ecf22c2778c8ad35bd7c1068eeacbafe",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2304,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/TGFb.class",
+      "sha256": "46befca7e86a854ba80ab6189f94d0fc53b6710ed5a050ad545f2aa63c0032b0",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 644,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/TLRBinder.class",
+      "sha256": "635a14f03313098f20b7b6741e3a4d11d15fb3e5feaf1c18ecce5b7f0e2ef393",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2312,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/TNFa.class",
+      "sha256": "c483e51a0d47fff7d7d399ef1765b356f8877643a3b26e87ecdceb423f183174",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2982,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Transferrin.class",
+      "sha256": "824b483e5fbe7551bf7953adb9190c45427bef1bd6f00298e9d7258888cb77de",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4502,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/AspergillusIntracellularModel.class",
+      "sha256": "7c3dabcbec311ef30a7b23af325b73f2837c1f2d176838d0e712c523e9a1081e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3456,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/AspergillusMacrophage.class",
+      "sha256": "78c365a453e78acab74bfb3e8a334804303faa57317afafd211ceabc7ff299d3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1569,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/ECIntracellularModel.class",
+      "sha256": "c5e9d382054878fc774da9ceb43478982665bb0fc849266cc015529892ce6776",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4814,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/FMacrophageBooleanNetwork.class",
+      "sha256": "73fe6f6f291618287a7b1caf9fdef58fee796876733ec256ede3360b0137d960",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3702,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/IntracellularModel.class",
+      "sha256": "1551d2cbfc0eae11e7785218d0bc64d142b12292fa0fadd7ab24612c011bda1a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1129,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/IntracellularModelFactory.class",
+      "sha256": "c29f59b79373c492460653c86eee89aab5bdbc7d1ae20404852da7c3b8327fb9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3415,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/NeutrophilNetwork.class",
+      "sha256": "af6fbaf4df4bee8bdb564271005e6d89a8b4cc62997f2c1fb27706e14c0b9772",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4640,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/NeutrophilStateModel.class",
+      "sha256": "a440a2fa966572e5c2edab29b48aca35bbadf1234acd5d0bdde8d73e69a27542",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 384,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/Phenotype.class",
+      "sha256": "c53eb212b15cd7a3c680b641a63945522208e40cfebcf09f1d6fd29f7c84ae46",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 463,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/PneumocyteIEmptyModel.class",
+      "sha256": "76a55c9dfc3bc62568075b754eae4ff6950f038b1e20ac4c79a7823222858d86",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2140,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/PneumocyteStateModel.class",
+      "sha256": "baefcbc742ef76f9a6fbda9356b5579c0bf6c68f70f2b7e21dbe4dd4f5c05a52",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2587,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/Main.class",
+      "sha256": "718f64a0b8074742bdb1ff79ca494abc8ea9c7d111907e5c68314268f96e8b8e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1577,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/Initialize.class",
+      "sha256": "837568f6b80d3b78761a49629076d92f2365fd40b71335494689fd2dfeca3e7a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 590,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeBaseInvitroModel.class",
+      "sha256": "568dbe5c0617e01647ff37724cd0eec4db748ca72218e0eeac0d87c68a7f1f97",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 6463,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeBaseModel.class",
+      "sha256": "a5c80957f2933ab836c46f0c5d25ad01c9cb09e552e090f91178bae4aa1b5a48",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2991,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeBaseWholeLung.class",
+      "sha256": "e77ee4b814bd536258ece0851638fadcd62913be9bf0a3d9a1876ba91328fc62",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3505,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeExample.class",
+      "sha256": "1ecb1b028e95792cff5fe49f7421fe1ae55f1660801a95b51935fc37131c9403",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3089,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeTranexamicModel.class",
+      "sha256": "25862a672eb5101c2e683e6a1c89399b0b1ab5616361cc5d84cee18ebdd1048e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1477,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintBaseInVitro.class",
+      "sha256": "6d4beb8be9b69f56f1325379bb9dcd19cdd53784991db8b7f8a814fc73882ea3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3043,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintBaseModel.class",
+      "sha256": "d5b60a20ab3b5936e20574b8325b4c233f0a79e4ad3ad8bbc8d483987f711870",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1968,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintCoinjury.class",
+      "sha256": "f2d48011ef884d716c17851189f9235d320c6e7214f9c813628284220052236d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2080,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintExample.class",
+      "sha256": "f8912ed3885f4b8f220d39198a4fc503bfc6d26318619a8c71c30523a0cdde46",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3369,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintHemeModel.class",
+      "sha256": "fa8af03f7dc94eb4bbf8e238dcbd6deb6a77857ead2a01e14e297f30a5c70b5a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 299,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintNull.class",
+      "sha256": "042540cf78f2184654a5da5b775cf3272e4476544dd79a3f26e90d5b227cb8fb",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 611,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintStat.class",
+      "sha256": "bc2381dffbb44a8ba5a1e7fe1e56892d7897db6837019b00aaf457e3bfef2986",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 632,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/run/Run.class",
+      "sha256": "3bc0ae8b0474edae091910eb5b99cd1bdd94d9fe29a9409ad3ca2cb5a40d16cd",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2508,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/run/RunMultiThread.class",
+      "sha256": "359b6bc9ae42a4e36709374c4eb320b3e3d95ac94cdcfeb6ae83140ddf4a6bf3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1664,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/run/RunSingleThread.class",
+      "sha256": "f2087e0f45cbccf40f19300d4f9042deff7edbf32419603703bcacf4193aa0c7",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4619,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/primitives/CoupledInteractions.class",
+      "sha256": "dbdfe4498fc9a21e570b5a7d0388d24ebfbe20a31944c35ad1c394a0bf9335e9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 9780,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/primitives/Interactions.class",
+      "sha256": "d49a59b50355a12fe1ad122a3de70284e574b2b885256d059da85d3907f15f03",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 834,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/time/Clock.class",
+      "sha256": "c84bb02ff23744a1ce79e5751ad48736d4a46b6cfae19f86ff500ecd0b8d1ff5",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 13777,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Constants.class",
+      "sha256": "4049ad1b359738385c35b7121b9bb9889f4a7ced2149675d90f69aff4cb4633b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 340,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Id.class",
+      "sha256": "51b19af9c3ff239ae404dd4c606848ca791f914a1f9726a0ab8d5322641ebe34",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 5870,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/LinAlg.class",
+      "sha256": "078ecad538e03f95a8b68b596d46de1e45a9ed908fd6c53ea500a6cf2c13aa1d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1582,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Rand.class",
+      "sha256": "697843d091e6c382d931dcd7db8cac5c8361d49f5a8648718eb11be3943e5e03",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4566,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Util.class",
+      "sha256": "d65928f7d6675d22e6f6f359411e8ec474dc25839ff465833ae0bb899647da8c",
+      "unix_executable_bit": false
+    }
+  ],
+  "protocol_sha256": "9bc43bfae807d3d69ac01696786987e0e7e583421dc0e77d1af3f22ef7bec1dd",
+  "schema_version": "orion.p4.exact-edge-build-provenance.v12.jar-projection",
+  "source_revision": "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+  "source_tree": "d5620f3acf4e5a163cfdfdefc2432ebd5709008a",
+  "tracked_jar": {
+    "bytes": 164121,
+    "git_blob": "3cfbeb5d147a3c37ab0f4e5b4a4caa8c0c09b882",
+    "path": "java/jPAI.jar",
+    "sha256": "ff49482838e3a761913df327a48e819d4f9e552bfeab29655a82675c60c47162"
+  },
+  "zip_member_metadata": [
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 2714,
+      "compression_method": 8,
+      "crc32": "8c5af9a0",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/Diffusion/ADI.class",
+      "uncompressed_bytes": 4890
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 123,
+      "compression_method": 8,
+      "crc32": "7bb74f54",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/Diffusion/Diffuse.class",
+      "uncompressed_bytes": 141
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 270,
+      "compression_method": 8,
+      "crc32": "04f6a97e",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/Diffusion/FADI.class",
+      "uncompressed_bytes": 355
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1880,
+      "compression_method": 8,
+      "crc32": "12fae8be",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/Diffusion/FADIClosed.class",
+      "uncompressed_bytes": 5119
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1623,
+      "compression_method": 8,
+      "crc32": "f5e081c8",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/Diffusion/FADIOpen.class",
+      "uncompressed_bytes": 4703
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 2444,
+      "compression_method": 8,
+      "crc32": "881fc6e5",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/Diffusion/FADIPeriodic.class",
+      "uncompressed_bytes": 7330
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1006,
+      "compression_method": 8,
+      "crc32": "c8e02838",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        2
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/compartments/GridFactory.class",
+      "uncompressed_bytes": 1852
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1090,
+      "compression_method": 8,
+      "crc32": "179a2aad",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/compartments/MacrophageRecruiter.class",
+      "uncompressed_bytes": 1978
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 878,
+      "compression_method": 8,
+      "crc32": "b15c33f2",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/compartments/MacrophageReplenisher.class",
+      "uncompressed_bytes": 1578
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 770,
+      "compression_method": 8,
+      "crc32": "4e16a2bf",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/compartments/NeutrophilRecruiter.class",
+      "uncompressed_bytes": 1398
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 584,
+      "compression_method": 8,
+      "crc32": "aa28ddab",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/compartments/NeutrophilReplenisher.class",
+      "uncompressed_bytes": 1048
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 576,
+      "compression_method": 8,
+      "crc32": "555d86b3",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/compartments/Recruiter.class",
+      "uncompressed_bytes": 979
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 4940,
+      "compression_method": 8,
+      "crc32": "0d37d1cf",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        2
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/compartments/Voxel.class",
+      "uncompressed_bytes": 10892
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 2234,
+      "compression_method": 8,
+      "crc32": "2385edaa",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/control/Exec.class",
+      "uncompressed_bytes": 4060
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1009,
+      "compression_method": 8,
+      "crc32": "095c1891",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/control/MultiThreadExec.class",
+      "uncompressed_bytes": 1700
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 565,
+      "compression_method": 8,
+      "crc32": "66ecfe61",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/control/MultiThreadExecDiffusion.class",
+      "uncompressed_bytes": 926
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1143,
+      "compression_method": 8,
+      "crc32": "9323ee40",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Adenosine.class",
+      "uncompressed_bytes": 2329
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 5460,
+      "compression_method": 8,
+      "crc32": "a4a13889",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Afumigatus/Afumigatus.class",
+      "uncompressed_bytes": 11077
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 293,
+      "compression_method": 8,
+      "crc32": "7bdb359a",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Afumigatus/AfumigatusNoIron.class",
+      "uncompressed_bytes": 514
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1286,
+      "compression_method": 8,
+      "crc32": "8d4d7b0e",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Afumigatus/TAFC.class",
+      "uncompressed_bytes": 2722
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 889,
+      "compression_method": 8,
+      "crc32": "df78095b",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Afumigatus/TranexamicAcid.class",
+      "uncompressed_bytes": 1626
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 994,
+      "compression_method": 8,
+      "crc32": "06036734",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Albumin.class",
+      "uncompressed_bytes": 1950
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 128,
+      "compression_method": 8,
+      "crc32": "a1b2b6c9",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        2
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Binder.class",
+      "uncompressed_bytes": 146
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1975,
+      "compression_method": 8,
+      "crc32": "c25fd327",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Blood.class",
+      "uncompressed_bytes": 3669
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1352,
+      "compression_method": 8,
+      "crc32": "d15b93be",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        2
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Cell.class",
+      "uncompressed_bytes": 2805
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 236,
+      "compression_method": 8,
+      "crc32": "6fadc7f6",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Chemokine.class",
+      "uncompressed_bytes": 311
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 389,
+      "compression_method": 8,
+      "crc32": "ba8adf8a",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/DectinBinder.class",
+      "uncompressed_bytes": 656
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1027,
+      "compression_method": 8,
+      "crc32": "b4b62e75",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/DeltaGammaT.class",
+      "uncompressed_bytes": 2010
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1435,
+      "compression_method": 8,
+      "crc32": "285faff9",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/EndothelialCell.class",
+      "uncompressed_bytes": 2755
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1140,
+      "compression_method": 8,
+      "crc32": "c6fc1829",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Granule.class",
+      "uncompressed_bytes": 2282
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1309,
+      "compression_method": 8,
+      "crc32": "22ee997b",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Heme.class",
+      "uncompressed_bytes": 2722
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1019,
+      "compression_method": 8,
+      "crc32": "b393c851",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Hepcidin.class",
+      "uncompressed_bytes": 2033
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1122,
+      "compression_method": 8,
+      "crc32": "7bb996fb",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/IFN_I.class",
+      "uncompressed_bytes": 2157
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1177,
+      "compression_method": 8,
+      "crc32": "b3e890d4",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/IFN_II.class",
+      "uncompressed_bytes": 2328
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1171,
+      "compression_method": 8,
+      "crc32": "4176332a",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/IFN_III.class",
+      "uncompressed_bytes": 2320
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1511,
+      "compression_method": 8,
+      "crc32": "6dc58525",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/IL1.class",
+      "uncompressed_bytes": 2813
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1184,
+      "compression_method": 8,
+      "crc32": "19569728",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/IL10.class",
+      "uncompressed_bytes": 2307
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1185,
+      "compression_method": 8,
+      "crc32": "391c3729",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/IL13.class",
+      "uncompressed_bytes": 2307
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1230,
+      "compression_method": 8,
+      "crc32": "4f60ac03",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/IL17.class",
+      "uncompressed_bytes": 2421
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1185,
+      "compression_method": 8,
+      "crc32": "0e7cb508",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/IL23.class",
+      "uncompressed_bytes": 2328
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1303,
+      "compression_method": 8,
+      "crc32": "98efc213",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/IL4.class",
+      "uncompressed_bytes": 2458
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1145,
+      "compression_method": 8,
+      "crc32": "4984e3ac",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/IL6.class",
+      "uncompressed_bytes": 2220
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 334,
+      "compression_method": 8,
+      "crc32": "12906fdf",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        2
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/InfectiousAgent.class",
+      "uncompressed_bytes": 549
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 662,
+      "compression_method": 8,
+      "crc32": "6356b178",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        2
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Interactable.class",
+      "uncompressed_bytes": 1115
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 129,
+      "compression_method": 8,
+      "crc32": "c3dd1ae5",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Internalizable.class",
+      "uncompressed_bytes": 161
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1059,
+      "compression_method": 8,
+      "crc32": "feab9bf6",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Iron.class",
+      "uncompressed_bytes": 2076
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1166,
+      "compression_method": 8,
+      "crc32": "0885571a",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/LPS.class",
+      "uncompressed_bytes": 2344
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1569,
+      "compression_method": 8,
+      "crc32": "fe15e36d",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Lactoferrin.class",
+      "uncompressed_bytes": 3167
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1491,
+      "compression_method": 8,
+      "crc32": "93b5d410",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        2
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Leukocyte.class",
+      "uncompressed_bytes": 2846
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1379,
+      "compression_method": 8,
+      "crc32": "e63f447f",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Lipocalin2.class",
+      "uncompressed_bytes": 2666
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 2280,
+      "compression_method": 8,
+      "crc32": "01212b30",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Liver.class",
+      "uncompressed_bytes": 4320
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1378,
+      "compression_method": 8,
+      "crc32": "836f2244",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/MCP1.class",
+      "uncompressed_bytes": 2660
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1300,
+      "compression_method": 8,
+      "crc32": "c1f51240",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/MIP1B.class",
+      "uncompressed_bytes": 2494
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1418,
+      "compression_method": 8,
+      "crc32": "ffd42490",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/MIP2.class",
+      "uncompressed_bytes": 2730
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1371,
+      "compression_method": 8,
+      "crc32": "74cd98c9",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Macrophage.class",
+      "uncompressed_bytes": 2738
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1900,
+      "compression_method": 8,
+      "crc32": "c81fdac1",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        2
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Molecule.class",
+      "uncompressed_bytes": 3902
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1106,
+      "compression_method": 8,
+      "crc32": "beebec93",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/NK.class",
+      "uncompressed_bytes": 2192
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1926,
+      "compression_method": 8,
+      "crc32": "578bccc9",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Neutrophil.class",
+      "uncompressed_bytes": 3920
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1154,
+      "compression_method": 8,
+      "crc32": "551cdff8",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/PneumocyteI.class",
+      "uncompressed_bytes": 2293
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1235,
+      "compression_method": 8,
+      "crc32": "a1ca1d61",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/PneumocyteII.class",
+      "uncompressed_bytes": 2547
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 169,
+      "compression_method": 8,
+      "crc32": "f89ca61b",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/PositionalAgent.class",
+      "uncompressed_bytes": 234
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 416,
+      "compression_method": 8,
+      "crc32": "f198d3e7",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/PositionalInfectiousAgent.class",
+      "uncompressed_bytes": 839
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 388,
+      "compression_method": 8,
+      "crc32": "055d1296",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/PtSRBinder.class",
+      "uncompressed_bytes": 648
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1224,
+      "compression_method": 8,
+      "crc32": "b08b4cf7",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/ROS.class",
+      "uncompressed_bytes": 2449
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 707,
+      "compression_method": 8,
+      "crc32": "8ab3d6e0",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Setter.class",
+      "uncompressed_bytes": 1916
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 871,
+      "compression_method": 8,
+      "crc32": "a18618e4",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Siderophore.class",
+      "uncompressed_bytes": 1597
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1184,
+      "compression_method": 8,
+      "crc32": "56c8d8f8",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/TGFb.class",
+      "uncompressed_bytes": 2304
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 387,
+      "compression_method": 8,
+      "crc32": "51a72df6",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/TLRBinder.class",
+      "uncompressed_bytes": 644
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1171,
+      "compression_method": 8,
+      "crc32": "b8660c4e",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/TNFa.class",
+      "uncompressed_bytes": 2312
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1500,
+      "compression_method": 8,
+      "crc32": "dd7d07a8",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/interactable/Transferrin.class",
+      "uncompressed_bytes": 2982
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 2548,
+      "compression_method": 8,
+      "crc32": "aa9d25b2",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/AspergillusIntracellularModel.class",
+      "uncompressed_bytes": 4502
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1528,
+      "compression_method": 8,
+      "crc32": "588c7896",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/AspergillusMacrophage.class",
+      "uncompressed_bytes": 3456
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 827,
+      "compression_method": 8,
+      "crc32": "6c27b103",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/ECIntracellularModel.class",
+      "uncompressed_bytes": 1569
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 2554,
+      "compression_method": 8,
+      "crc32": "11549f05",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/FMacrophageBooleanNetwork.class",
+      "uncompressed_bytes": 4814
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1783,
+      "compression_method": 8,
+      "crc32": "ebd61235",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        2
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/IntracellularModel.class",
+      "uncompressed_bytes": 3702
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 589,
+      "compression_method": 8,
+      "crc32": "d17c12b9",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/IntracellularModelFactory.class",
+      "uncompressed_bytes": 1129
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1844,
+      "compression_method": 8,
+      "crc32": "21407abe",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/NeutrophilNetwork.class",
+      "uncompressed_bytes": 3415
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 2415,
+      "compression_method": 8,
+      "crc32": "51d4f69e",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/NeutrophilStateModel.class",
+      "uncompressed_bytes": 4640
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 261,
+      "compression_method": 8,
+      "crc32": "f502d0b1",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/Phenotype.class",
+      "uncompressed_bytes": 384
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 285,
+      "compression_method": 8,
+      "crc32": "8021224e",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/PneumocyteIEmptyModel.class",
+      "uncompressed_bytes": 463
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1137,
+      "compression_method": 8,
+      "crc32": "ab8aac3b",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/intracellularState/PneumocyteStateModel.class",
+      "uncompressed_bytes": 2140
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1484,
+      "compression_method": 8,
+      "crc32": "6665d439",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/Main.class",
+      "uncompressed_bytes": 2587
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 805,
+      "compression_method": 8,
+      "crc32": "07fa480b",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/initialize/Initialize.class",
+      "uncompressed_bytes": 1577
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 332,
+      "compression_method": 8,
+      "crc32": "640157b9",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/initialize/InitializeBaseInvitroModel.class",
+      "uncompressed_bytes": 590
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 3065,
+      "compression_method": 8,
+      "crc32": "1cab1717",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/initialize/InitializeBaseModel.class",
+      "uncompressed_bytes": 6463
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1753,
+      "compression_method": 8,
+      "crc32": "9642830a",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/initialize/InitializeBaseWholeLung.class",
+      "uncompressed_bytes": 2991
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1676,
+      "compression_method": 8,
+      "crc32": "15eb4b10",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/initialize/InitializeExample.class",
+      "uncompressed_bytes": 3505
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1467,
+      "compression_method": 8,
+      "crc32": "ac54ad51",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/initialize/InitializeTranexamicModel.class",
+      "uncompressed_bytes": 3089
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 800,
+      "compression_method": 8,
+      "crc32": "875e103a",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/print/PrintBaseInVitro.class",
+      "uncompressed_bytes": 1477
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1448,
+      "compression_method": 8,
+      "crc32": "a4bfd35b",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/print/PrintBaseModel.class",
+      "uncompressed_bytes": 3043
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 990,
+      "compression_method": 8,
+      "crc32": "2d952e1b",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/print/PrintCoinjury.class",
+      "uncompressed_bytes": 1968
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1071,
+      "compression_method": 8,
+      "crc32": "f8cf7825",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/print/PrintExample.class",
+      "uncompressed_bytes": 2080
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1807,
+      "compression_method": 8,
+      "crc32": "b2701fe1",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/print/PrintHemeModel.class",
+      "uncompressed_bytes": 3369
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 208,
+      "compression_method": 8,
+      "crc32": "b0af2b17",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/print/PrintNull.class",
+      "uncompressed_bytes": 299
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 357,
+      "compression_method": 8,
+      "crc32": "443c9082",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/print/PrintStat.class",
+      "uncompressed_bytes": 611
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 408,
+      "compression_method": 8,
+      "crc32": "223dc564",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/run/Run.class",
+      "uncompressed_bytes": 632
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1339,
+      "compression_method": 8,
+      "crc32": "16283b70",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/run/RunMultiThread.class",
+      "uncompressed_bytes": 2508
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1040,
+      "compression_method": 8,
+      "crc32": "3731a822",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/main/run/RunSingleThread.class",
+      "uncompressed_bytes": 1664
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 2382,
+      "compression_method": 8,
+      "crc32": "8601956f",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/primitives/CoupledInteractions.class",
+      "uncompressed_bytes": 4619
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 4487,
+      "compression_method": 8,
+      "crc32": "6d72d6a9",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/primitives/Interactions.class",
+      "uncompressed_bytes": 9780
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 515,
+      "compression_method": 8,
+      "crc32": "a1b1182c",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        4
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/time/Clock.class",
+      "uncompressed_bytes": 834
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 7694,
+      "compression_method": 8,
+      "crc32": "6e729475",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/utils/Constants.class",
+      "uncompressed_bytes": 13777
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 243,
+      "compression_method": 8,
+      "crc32": "8adfaa05",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/utils/Id.class",
+      "uncompressed_bytes": 340
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 3465,
+      "compression_method": 8,
+      "crc32": "12502b26",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/utils/LinAlg.class",
+      "uncompressed_bytes": 5870
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 1024,
+      "compression_method": 8,
+      "crc32": "bb2914a3",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/utils/Rand.class",
+      "uncompressed_bytes": 1582
+    },
+    {
+      "class_major_version": 61,
+      "class_minor_version": 0,
+      "compressed_bytes": 2567,
+      "compression_method": 8,
+      "crc32": "3abd3650",
+      "create_system": 0,
+      "dos_datetime": [
+        2026,
+        5,
+        13,
+        14,
+        54,
+        6
+      ],
+      "external_attr": 0,
+      "member": "edu/uf/utils/Util.class",
+      "uncompressed_bytes": 4566
+    }
+  ]
+}

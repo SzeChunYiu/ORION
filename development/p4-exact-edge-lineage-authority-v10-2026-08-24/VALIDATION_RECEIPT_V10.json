@@ -1,0 +1,338 @@
+{
+  "check_count": 81,
+  "checks": [
+    {
+      "check": "all_json_machine_readable",
+      "pass": true
+    },
+    {
+      "check": "immutable_v9_result_hash",
+      "pass": true
+    },
+    {
+      "check": "immutable_v9_sha256sums_hash",
+      "pass": true
+    },
+    {
+      "check": "v10_protocol_hash",
+      "pass": true
+    },
+    {
+      "check": "v10_provider_probe_protocol_hash",
+      "pass": true
+    },
+    {
+      "check": "v10_provider_probe_five_rows",
+      "pass": true
+    },
+    {
+      "check": "v10_provider_probe_65_requests",
+      "pass": true
+    },
+    {
+      "check": "v10b_protocol_hash",
+      "pass": true
+    },
+    {
+      "check": "v10b_explicitly_outcome_informed",
+      "pass": true
+    },
+    {
+      "check": "v10b_probe_protocol_hash",
+      "pass": true
+    },
+    {
+      "check": "v10b_frozen_before_every_request",
+      "pass": true
+    },
+    {
+      "check": "v10b_six_predeclared_requests",
+      "pass": true
+    },
+    {
+      "check": "v10b_all_requests_http_200",
+      "pass": true
+    },
+    {
+      "check": "retained_body_exists_199_v10b_github_ref_v0_13_5.body",
+      "pass": true
+    },
+    {
+      "check": "retained_body_hash_199_v10b_github_ref_v0_13_5.body",
+      "pass": true
+    },
+    {
+      "check": "retained_body_exists_199_v10b_github_commit.body",
+      "pass": true
+    },
+    {
+      "check": "retained_body_hash_199_v10b_github_commit.body",
+      "pass": true
+    },
+    {
+      "check": "retained_body_exists_199_v10b_github_raw_license.body",
+      "pass": true
+    },
+    {
+      "check": "retained_body_hash_199_v10b_github_raw_license.body",
+      "pass": true
+    },
+    {
+      "check": "retained_body_exists_199_v10b_zenodo_record.body",
+      "pass": true
+    },
+    {
+      "check": "retained_body_hash_199_v10b_zenodo_record.body",
+      "pass": true
+    },
+    {
+      "check": "omitted_body_has_no_path_5eaf4bc23f11",
+      "pass": true
+    },
+    {
+      "check": "omitted_body_has_no_path_b468f53c66e7",
+      "pass": true
+    },
+    {
+      "check": "index_199_all_eight_gates",
+      "pass": true
+    },
+    {
+      "check": "index_199_exact_165_paths",
+      "pass": true
+    },
+    {
+      "check": "index_199_zero_manifest_residual",
+      "pass": true
+    },
+    {
+      "check": "index_199_full_revision",
+      "pass": true
+    },
+    {
+      "check": "index_199_exact_git_tree",
+      "pass": true
+    },
+    {
+      "check": "index_199_swh_independent_ref",
+      "pass": true
+    },
+    {
+      "check": "index_199_zenodo_md5",
+      "pass": true
+    },
+    {
+      "check": "index_199_zenodo_zip_identity",
+      "pass": true
+    },
+    {
+      "check": "index_199_codeload_zip_identity",
+      "pass": true
+    },
+    {
+      "check": "index_199_mit_rights",
+      "pass": true
+    },
+    {
+      "check": "index_199_manifest_hash_equal",
+      "pass": true
+    },
+    {
+      "check": "index_199_manifest_entries_exact",
+      "pass": true
+    },
+    {
+      "check": "index_199_manifest_no_encryption",
+      "pass": true
+    },
+    {
+      "check": "index_199_one_root_each",
+      "pass": true
+    },
+    {
+      "check": "index_36_current_zenodo_child_unversioned",
+      "pass": true
+    },
+    {
+      "check": "index_91_adverse_embedded_git_preserved",
+      "pass": true
+    },
+    {
+      "check": "index_133_one__integrity_",
+      "pass": true
+    },
+    {
+      "check": "index_133_pypi_integrity_absent",
+      "pass": true
+    },
+    {
+      "check": "index_133_one__attestations_",
+      "pass": true
+    },
+    {
+      "check": "index_133_github_attestation_absent",
+      "pass": true
+    },
+    {
+      "check": "index_185_one__integrity_",
+      "pass": true
+    },
+    {
+      "check": "index_185_pypi_integrity_absent",
+      "pass": true
+    },
+    {
+      "check": "index_185_one__attestations_",
+      "pass": true
+    },
+    {
+      "check": "index_185_github_attestation_absent",
+      "pass": true
+    },
+    {
+      "check": "four_preserved_negative_rows",
+      "pass": true
+    },
+    {
+      "check": "no_negative_relabel",
+      "pass": true
+    },
+    {
+      "check": "closed_one_index_199",
+      "pass": true
+    },
+    {
+      "check": "remaining_four",
+      "pass": true
+    },
+    {
+      "check": "cumulative_76_of_80",
+      "pass": true
+    },
+    {
+      "check": "life_only_domain_increment",
+      "pass": true
+    },
+    {
+      "check": "v10_primary_failure_preserved",
+      "pass": true
+    },
+    {
+      "check": "v10b_chronology_explicit",
+      "pass": true
+    },
+    {
+      "check": "no_scientific_authority",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_EDGE_199_CONTENT_IDENTITY_V10B.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_EDGE_199_CONTENT_IDENTITY_V10B.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_EDGE_199_NORMALIZED_MANIFESTS_V10B.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_EDGE_199_NORMALIZED_MANIFESTS_V10B.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_NEGATIVE_RESULT_LEDGER_V10.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_NEGATIVE_RESULT_LEDGER_V10.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_PROBE_RECEIPT_V10B.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_PROBE_RECEIPT_V10B.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_PROTOCOL_FREEZE_RECEIPT_V10.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_PROTOCOL_FREEZE_RECEIPT_V10.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_PROTOCOL_FREEZE_RECEIPT_V10B.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_PROTOCOL_FREEZE_RECEIPT_V10B.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_PROTOCOL_V10.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_PROTOCOL_V10.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_PROTOCOL_V10B.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_PROTOCOL_V10B.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_PROVIDER_AUTHORITY_PROBE_RECEIPT_V10.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_PROVIDER_AUTHORITY_PROBE_RECEIPT_V10.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_SWH_CANONICAL_PROBE_RECEIPT_V10.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_SWH_CANONICAL_PROBE_RECEIPT_V10.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_RESULT_V9.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_RESULT_V9.json",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_exists_SHA256SUMS",
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hash_SHA256SUMS",
+      "pass": true
+    },
+    {
+      "check": "large_zip_bodies_not_retained",
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "finished_at": "2026-08-24T05:57:36.281343+00:00",
+  "git_operation_run": false,
+  "json_file_count_excluding_receipt": 88,
+  "passed": 81,
+  "pytest_run": false,
+  "repository_ci_run": false,
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v10.validation",
+  "validation_basis": "deterministic packet-local structural, hash, exact-manifest, chronology and scientific-boundary checks"
+}

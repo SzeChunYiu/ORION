@@ -1,0 +1,58 @@
+{
+  "authority": "POLICY_SNAPSHOT_AND_HASH_RECEIPT__NOT_LEGAL_ADVICE__NOT_CASE_ELIGIBILITY",
+  "files": [
+    {
+      "bytes": 101950,
+      "path": "policy_snapshots/arxiv_license_2026-08-23.html",
+      "sha256": "30a09ffd10f63462312f3550b3270f5ce72f379625e9e308d0f2fea8ecae6fb6",
+      "url": "https://info.arxiv.org/help/license/index.html"
+    },
+    {
+      "bytes": 96452,
+      "path": "policy_snapshots/arxiv_versions_2026-08-23.html",
+      "sha256": "7d0c1813b88a1e26f91edbe9f05cacc8c61805f914b998df29988aee4cc16258",
+      "url": "https://info.arxiv.org/help/versions.html"
+    },
+    {
+      "bytes": 91974,
+      "path": "policy_snapshots/arxiv_oai_2026-08-23.html",
+      "sha256": "544d276632e1bebbc77fad678cce7a9846804f82e58b7e74d387700a38784b80",
+      "url": "https://info.arxiv.org/help/oa/index.html"
+    },
+    {
+      "bytes": 82263,
+      "path": "policy_snapshots/arxiv_api_2026-08-23.html",
+      "sha256": "b139c6025580872e1f6f169e4d6e05bdeb23eb358e97d9a1d68db9bd1c16a7a4",
+      "url": "https://info.arxiv.org/help/api/index.html"
+    },
+    {
+      "bytes": 1890,
+      "path": "policy_snapshots/arxiv_oai_identify_2026-08-23.xml",
+      "sha256": "f563208b9807031ffebfc756b7cdfec36eb3a7e25ab43b5c652fbc51ba399b84",
+      "url": "https://export.arxiv.org/oai2?verb=Identify"
+    },
+    {
+      "bytes": 2419,
+      "path": "policy_snapshots/arxiv_raw_schema_2026-08-23.xsd",
+      "sha256": "b1f24a0b763c16bd68ac1871fb08cc8f3eb70e859469bdabbce92fa3e2616d85",
+      "url": "https://oaipmh.arxiv.org/OAI/arXivRaw.xsd"
+    }
+  ],
+  "observations": [
+    {
+      "observation": "all metadata CC0 1.0; CC BY 4.0 permits attributed distribution/adaptation/commercial reuse; arXiv non-exclusive distribution licence limits third-party reuse",
+      "source_path": "policy_snapshots/arxiv_license_2026-08-23.html"
+    },
+    {
+      "observation": "each public version is permanent; replacement/withdrawal increments version; full versioned identifier is citable",
+      "source_path": "policy_snapshots/arxiv_versions_2026-08-23.html"
+    },
+    {
+      "observation": "official arXivRaw schema exposes version history, licence, title, authors, categories and abstract",
+      "source_path": "policy_snapshots/arxiv_raw_schema_2026-08-23.xsd"
+    }
+  ],
+  "provider": "arXiv",
+  "retrieved_at": "2026-08-23T12:07:00Z",
+  "schema_version": "orion.p4.official-source-policy-snapshot.v1"
+}

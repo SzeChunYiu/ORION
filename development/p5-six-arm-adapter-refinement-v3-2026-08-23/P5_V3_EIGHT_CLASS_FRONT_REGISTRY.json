@@ -1,0 +1,92 @@
+{
+  "arm_support_sets": {
+    "C1_FIXED_AGENT__SWE_AGENT": [
+      "EVIDENCE_REPAIR",
+      "MEASUREMENT_REPAIR",
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR",
+      "EVALUATOR_REPAIR"
+    ],
+    "C2_DIRECT_SELF_EDIT__MOSS": [
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR"
+    ],
+    "C3_ARCHIVE_BASED_SELF_EDIT__DGM": [
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR"
+    ],
+    "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS": [
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR"
+    ],
+    "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY": [
+      "EVALUATOR_REPAIR"
+    ],
+    "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW": []
+  },
+  "authority": "SYNTHETIC_ACTION_SURFACE_CLASSIFICATION_ONLY__NO_CORRECTNESS_OR_PERFORMANCE_AUTHORITY",
+  "candidate_visible_before_action": true,
+  "fronts": [
+    {
+      "actionable": true,
+      "class": "EVIDENCE_REPAIR",
+      "invariance": "All non-evidence front digests remain unchanged.",
+      "synthetic_root": "synthetic://front/evidence/"
+    },
+    {
+      "actionable": true,
+      "class": "MEASUREMENT_REPAIR",
+      "invariance": "All non-measurement front digests remain unchanged.",
+      "synthetic_root": "synthetic://front/measurement/"
+    },
+    {
+      "actionable": true,
+      "class": "WITHIN_CLASS_MODEL_REPAIR",
+      "invariance": "Model family and representation front digests remain unchanged; only the within-family surface changes.",
+      "synthetic_root": "synthetic://front/model/within-class/"
+    },
+    {
+      "actionable": true,
+      "class": "MODEL_CLASS_EXPANSION",
+      "invariance": "Evidence, measurement, representation, execution and evaluator front digests remain unchanged.",
+      "synthetic_root": "synthetic://front/model/class-expansion/"
+    },
+    {
+      "actionable": true,
+      "class": "REPRESENTATION_REGIME_REPAIR",
+      "invariance": "Evidence custody, model-family selection, execution and evaluator front digests remain unchanged.",
+      "synthetic_root": "synthetic://front/representation/"
+    },
+    {
+      "actionable": true,
+      "class": "EXECUTION_REPAIR",
+      "invariance": "Evidence, measurement, scientific-model, representation and evaluator front digests remain unchanged.",
+      "synthetic_root": "synthetic://front/execution/"
+    },
+    {
+      "actionable": true,
+      "class": "EVALUATOR_REPAIR",
+      "invariance": "Candidate solver bytes and every non-evaluator front digest remain unchanged.",
+      "synthetic_root": "synthetic://front/evaluator/"
+    },
+    {
+      "actionable": false,
+      "class": "UNRESOLVED",
+      "invariance": "No singleton licence and no action/write-surface claim.",
+      "synthetic_root": null
+    }
+  ],
+  "frozen_at_utc": "2026-08-23T17:05:00Z",
+  "raw_native_singletons_licensed": 0,
+  "registry_id": "P5.V3.FROZEN.EIGHT.CLASS.FRONT.REGISTRY",
+  "schema_version": "orion.p5.eight-class-front-registry.v3",
+  "scienceclaw_boundary": "C6 has no supported singleton front; a selector would be a successor method rather than an adapter relabel."
+}

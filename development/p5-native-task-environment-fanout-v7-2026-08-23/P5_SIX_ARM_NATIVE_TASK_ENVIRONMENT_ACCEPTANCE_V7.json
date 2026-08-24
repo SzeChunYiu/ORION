@@ -1,0 +1,153 @@
+{
+  "accepted_arm_count": 1,
+  "accepted_arms": [
+    "C1"
+  ],
+  "arm_or_model_executions": 0,
+  "authority": "OUTCOME_BLIND_BYTE_LEVEL_TASK_ENVIRONMENT_ACCEPTANCE_ONLY",
+  "blocking_arm_count": 5,
+  "blocking_arms": [
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6"
+  ],
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "protocol_sha256": "3a6cc70a0f91957ef4e7fbc5ec42e66875084f7985c2250c056e00d865aa4fe0",
+  "receipts": [
+    {
+      "arm_code": "C1",
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "arm_or_model_executed": false,
+      "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+      "field": "runtime.task_environment",
+      "field_instances_closed": 1,
+      "manifest": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C1_NATIVE_TASK_ENVIRONMENT_MANIFEST_V7.json",
+        "sha256": "a541be9bb61fc14b772afaa63d56446ed87c7df9a7d1da1fdccf53f9da013a92",
+        "size_bytes": 4987
+      },
+      "protocol_sha256": "3a6cc70a0f91957ef4e7fbc5ec42e66875084f7985c2250c056e00d865aa4fe0",
+      "receipt": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C1_NATIVE_TASK_ENVIRONMENT_ACCEPTANCE_V7.json",
+        "sha256": "282f6989791418f69cbf7d410f0ac5630cebf846871cf6f48f92a882a77df57f",
+        "size_bytes": 659
+      },
+      "residual": null,
+      "schema_version": "orion.p5.native-task-environment-acceptance.v7",
+      "status": "BOUND"
+    },
+    {
+      "arm_code": "C2",
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "arm_or_model_executed": false,
+      "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+      "field": "runtime.task_environment",
+      "field_instances_closed": 0,
+      "manifest": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C2_NATIVE_TASK_ENVIRONMENT_MANIFEST_V7.json",
+        "sha256": "af9bda98b28936996f298c570d384d668121367ccac1a2a0897968a7f87e9ef8",
+        "size_bytes": 3102
+      },
+      "protocol_sha256": "3a6cc70a0f91957ef4e7fbc5ec42e66875084f7985c2250c056e00d865aa4fe0",
+      "receipt": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C2_NATIVE_TASK_ENVIRONMENT_ACCEPTANCE_V7.json",
+        "sha256": "97d3115cdf3b45536969bfefa238a410f3e5b6a6885257f84887b655445cb966",
+        "size_bytes": 895
+      },
+      "residual": "MOSS commit 5453f1feebad44c199f5887f852fc5bc7fb7d4da requires but omits benchmark/claw-eval/runner/benchmark.py, benchmark/claw-eval/src, and the manifests/tasks/results layout; V4 schemas do not instantiate the four missing artifacts.",
+      "schema_version": "orion.p5.native-task-environment-acceptance.v7",
+      "status": "BLOCKING"
+    },
+    {
+      "arm_code": "C3",
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "arm_or_model_executed": false,
+      "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+      "field": "runtime.task_environment",
+      "field_instances_closed": 0,
+      "manifest": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C3_NATIVE_TASK_ENVIRONMENT_MANIFEST_V7.json",
+        "sha256": "f8439c6b6bc7921034f573b4d89397dbb3ea024cfc2633f93d8b4c6c4de1c631",
+        "size_bytes": 3260
+      },
+      "protocol_sha256": "3a6cc70a0f91957ef4e7fbc5ec42e66875084f7985c2250c056e00d865aa4fe0",
+      "receipt": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C3_NATIVE_TASK_ENVIRONMENT_ACCEPTANCE_V7.json",
+        "sha256": "26f74b1482512e24e5cd719e73b7c9708d8503a5d2efe3ab9bde81643bf1b731",
+        "size_bytes": 843
+      },
+      "residual": "V4 records 1,595 excluded outcome/initial files and a full archive identity, but no candidate-safe filtered seed or case-specific certificate/policy/environment artifact exists.",
+      "schema_version": "orion.p5.native-task-environment-acceptance.v7",
+      "status": "BLOCKING"
+    },
+    {
+      "arm_code": "C4",
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "arm_or_model_executed": false,
+      "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+      "field": "runtime.task_environment",
+      "field_instances_closed": 0,
+      "manifest": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C4_NATIVE_TASK_ENVIRONMENT_MANIFEST_V7.json",
+        "sha256": "a5934a35932b4f8b427bcdc713ad5c7f8201420da75ac0a3d2c3c06a353e994e",
+        "size_bytes": 3306
+      },
+      "protocol_sha256": "3a6cc70a0f91957ef4e7fbc5ec42e66875084f7985c2250c056e00d865aa4fe0",
+      "receipt": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C4_NATIVE_TASK_ENVIRONMENT_ACCEPTANCE_V7.json",
+        "sha256": "631e3f1ed03e909f571d3c5b665cf42c20e544514ce6e3c73b8c7640a3856bd6",
+        "size_bytes": 941
+      },
+      "residual": "The six retained native ADIAS domains are alfworld, taubench_return, taubench_retail, textcraft, webshop, and scienceworld; none implements the V6 Apache Commons Lang patch task. Choosing one by name or declaring limits without adapter bytes would change task semantics.",
+      "schema_version": "orion.p5.native-task-environment-acceptance.v7",
+      "status": "BLOCKING"
+    },
+    {
+      "arm_code": "C5",
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "arm_or_model_executed": false,
+      "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+      "field": "runtime.task_environment",
+      "field_instances_closed": 0,
+      "manifest": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C5_NATIVE_TASK_ENVIRONMENT_MANIFEST_V7.json",
+        "sha256": "d6b16afdea158a90180a0397eb739c087d6a114b6d532d45f2716d2a424258ef",
+        "size_bytes": 3356
+      },
+      "protocol_sha256": "3a6cc70a0f91957ef4e7fbc5ec42e66875084f7985c2250c056e00d865aa4fe0",
+      "receipt": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C5_NATIVE_TASK_ENVIRONMENT_ACCEPTANCE_V7.json",
+        "sha256": "f334bea5a27e8b6022689205ab295f84c9f9b6380d3cc6cb5aab51193cf75fa6",
+        "size_bytes": 919
+      },
+      "residual": "The workspace contains schemas and source metadata but no frozen solver-output artifact or complete development membership/anchor/certificate/rights bundle; the official runner regenerates hosted outputs and reports eval_locked each round.",
+      "schema_version": "orion.p5.native-task-environment-acceptance.v7",
+      "status": "BLOCKING"
+    },
+    {
+      "arm_code": "C6",
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "arm_or_model_executed": false,
+      "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+      "field": "runtime.task_environment",
+      "field_instances_closed": 0,
+      "manifest": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C6_NATIVE_TASK_ENVIRONMENT_MANIFEST_V7.json",
+        "sha256": "841ed78268e908cbbfbf18e2d9569c9890128769176cb90e485b6d0f2c355385",
+        "size_bytes": 3361
+      },
+      "protocol_sha256": "3a6cc70a0f91957ef4e7fbc5ec42e66875084f7985c2250c056e00d865aa4fe0",
+      "receipt": {
+        "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C6_NATIVE_TASK_ENVIRONMENT_ACCEPTANCE_V7.json",
+        "sha256": "7dbbbf5dc5643c0b8b2e615d47bf01ac9b3d39ab6d1225a00e260ffb6b61f209",
+        "size_bytes": 881
+      },
+      "residual": "V4 records the ScienceClaw tree and excluded prefixes but no actual filtered seed, topic, corpus, skill/tool, profile, or reset artifacts exist; a free-form topic declaration is not a native task environment.",
+      "schema_version": "orion.p5.native-task-environment-acceptance.v7",
+      "status": "BLOCKING"
+    }
+  ],
+  "schema_version": "orion.p5.six-arm-native-task-environment-acceptance.v7"
+}

@@ -1,0 +1,71 @@
+{
+  "compiler_image": {
+    "license_boundary": "Public Eclipse Temurin OpenJDK image; runtime labels and component/license inventory must be captured in the SBOM.",
+    "manifest_digest": "sha256:38e51c132b7e3bd6c5b131303792ece0a8a6f32ee1039eee2c04a87678760861",
+    "platform": "linux/arm64/v8",
+    "registry": "docker.io/library/eclipse-temurin",
+    "required_runtime_check": "javac -version must print javac 17.0.14 and java -version must identify OpenJDK 17.0.14+7 before compilation",
+    "tag_observed_before_freeze": "17.0.14_7-jdk"
+  },
+  "compiler_probe": {
+    "attempts": [
+      {
+        "exact_terminal": "failed to connect to the docker API at unix:///var/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /var/run/docker.sock: connect: no such file or directory",
+        "returncode": 1,
+        "step": "docker_pull_frozen_manifest"
+      },
+      {
+        "exact_terminal": "Unable to find application named 'Docker'",
+        "returncode": 1,
+        "step": "start_docker_desktop"
+      },
+      {
+        "exact_terminal": "failed to download cache artifact: exit status 1; error starting vm: error at 'creating and starting': exit status 1",
+        "returncode": 1,
+        "step": "lawful_disposable_colima_0.10.3_lima_2.2.0_first_start"
+      },
+      {
+        "exact_terminal": "Failed to wait for the guest SSH server to become available, falling back to usernet forwarder; colima status: error retrieving current runtime: empty value; docker API: dial unix /var/run/docker.sock: connect: no such file or directory",
+        "returncode": 1,
+        "step": "lawful_disposable_colima_second_start"
+      },
+      {
+        "exact_terminal": "error getting qcow image: error during image download: write /Users/billy/Library/Caches/colima/caches/b0992ab88f5a3c0c436bbb3065c01466f20dc1dd0eb0a60299d410176f21a1c3.downloading: no space left on device",
+        "filesystem_observation": "/dev/disk3s1s1 228Gi size, 12Gi used, 127Mi available, 99% capacity at the failed fresh-instance attempt",
+        "returncode": 1,
+        "step": "lawful_disposable_colima_fresh_instance_after_cache_removal"
+      }
+    ],
+    "cleanup": "The disposable Colima/Lima formulae, VM state and Colima cache installed by V12 were removed; no persistent compiler runtime was left running.",
+    "compiler_executed": false,
+    "exact_terminal": "PINNED_COMPILER_RUNTIME_UNAVAILABLE_NO_BUILD_EXECUTED",
+    "fresh_class_outputs_observed": false,
+    "frozen_command": "Within an empty output directory and immutable source checkout: find java/src -type f -name '*.java' -print0 | LC_ALL=C sort -z | xargs -0 javac -d /out",
+    "frozen_image": {
+      "license_boundary": "Public Eclipse Temurin OpenJDK image; runtime labels and component/license inventory must be captured in the SBOM.",
+      "manifest_digest": "sha256:38e51c132b7e3bd6c5b131303792ece0a8a6f32ee1039eee2c04a87678760861",
+      "platform": "linux/arm64/v8",
+      "registry": "docker.io/library/eclipse-temurin",
+      "required_runtime_check": "javac -version must print javac 17.0.14 and java -version must identify OpenJDK 17.0.14+7 before compilation",
+      "tag_observed_before_freeze": "17.0.14_7-jdk"
+    },
+    "nonrepeating_discriminator": "Retry only after an available linux/arm64 OCI runtime and sufficient disposable disk exist, using the already frozen image manifest digest and command; otherwise obtain the provider signing contract. Do not substitute a compiler or repeat the same unavailable-runtime probe.",
+    "protocol_sha256": "9bc43bfae807d3d69ac01696786987e0e7e583421dc0e77d1af3f22ef7bec1dd",
+    "schema_version": "orion.p4.exact-edge-build-provenance.v12.compiler-probe",
+    "source_compilation_exact": null,
+    "substitute_compiler_used": false,
+    "verdict": "CANNOT_CHECK"
+  },
+  "jar_reader": {
+    "executable": "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "executable_sha256": "4f00ea2ad53d62437a6a3946b73c73614a97e8accdc5b96dc095ea1a0d9c6a56",
+    "implementation": "CPython standard-library zipfile; read-only extraction and CRC verification",
+    "license_boundary": "Python Software Foundation licensed local runtime; no private or restricted tool used.",
+    "python_version": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]"
+  },
+  "network_client": "CPython urllib.request with GitHub API version 2022-11-28",
+  "network_request_count": 10,
+  "protocol_sha256": "9bc43bfae807d3d69ac01696786987e0e7e583421dc0e77d1af3f22ef7bec1dd",
+  "rights_boundary": "PAI archive/revision rights were adjudicated MIT in immutable V11. Tool licensing permits the investigation but does not supply provider provenance.",
+  "schema_version": "orion.p4.exact-edge-build-provenance.v12.tool-provenance"
+}

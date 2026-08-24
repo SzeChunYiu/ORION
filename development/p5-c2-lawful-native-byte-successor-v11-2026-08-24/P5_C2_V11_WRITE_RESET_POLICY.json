@@ -1,0 +1,36 @@
+{
+  "attempt_destruction_required": true,
+  "attempt_root": "host-created unique temporary directory",
+  "before_after_digest": {
+    "algorithm": "SHA-256",
+    "coverage": "every regular file under candidate_work/source plus the sole mutable target separately",
+    "no_action_expectation": "before and after digests must match during the V11 route gate",
+    "receipt_required": true
+  },
+  "candidate_action_authorized": false,
+  "candidate_read_only_roots": [
+    "source_readonly",
+    "candidate_inputs"
+  ],
+  "candidate_writable_paths": [
+    "src/main/java/org/apache/commons/lang3/math/NumberUtils.java"
+  ],
+  "candidate_writable_root": "candidate_work/source",
+  "directory_policy": "No candidate-writable directories; all directories are 0555 after materialization.",
+  "evaluator_execution_authorized": false,
+  "file_policy": "All files are 0444 except NumberUtils.java at 0644 in the ephemeral candidate overlay.",
+  "forbidden_roots": [
+    "protected",
+    "gold",
+    "hidden_panel",
+    "scorer",
+    "reference_solution",
+    "outcome_cache"
+  ],
+  "host_only_roots": [
+    "host_controlled"
+  ],
+  "reset_method": "recursively restore owner permissions solely for host cleanup, delete the unique attempt parent, and assert nonexistence",
+  "schema_version": "orion.p5.c2.write-reset-policy.v11",
+  "successor_identity": "C2_LAWFUL_NATIVE_BYTE_SUCCESSOR__ORION_V11"
+}

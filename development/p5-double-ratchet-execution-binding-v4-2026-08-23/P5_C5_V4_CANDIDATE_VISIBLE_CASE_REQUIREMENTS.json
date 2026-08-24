@@ -1,0 +1,27 @@
+{
+  "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+  "forbidden": [
+    "protected revision-responsibility gold",
+    "protected fresh-transfer or harm labels",
+    "protected final score or per-case feedback",
+    "released outcome/result payload used as a fixture",
+    "regeneration of supposedly frozen solver outputs inside metric evolution"
+  ],
+  "required_content_addressed_components": [
+    "P5 candidate-visible dossier bytes and schema",
+    "fixed train, eval_dev and development-only locked-surrogate membership",
+    "frozen solver outputs for every development item",
+    "frozen solver.py and prompts.py bytes",
+    "development soft-anchor bytes and provenance",
+    "input-native one-of-eight certificate produced outside the evolver",
+    "task and generated-output rights receipt"
+  ],
+  "required_separation": {
+    "eval_dev": "candidate-visible sparse development anchor",
+    "eval_locked": "development-only validity surrogate; never the protected final panel",
+    "protected_final_panel": "absent from candidate/evolver custody and scored once externally",
+    "train": "unlabelled frozen solver outputs"
+  },
+  "schema_version": "orion.p5.c5.candidate-visible-case-requirements.v4",
+  "state": "UNBOUND"
+}

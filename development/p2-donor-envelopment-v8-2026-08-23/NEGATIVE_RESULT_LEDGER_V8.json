@@ -1,0 +1,101 @@
+{
+  "entries": [
+    {
+      "finding": "Nested-LORO cross-fitted mean CRE20 did not improve on exact u4.",
+      "id": "V8-N1",
+      "next_discriminator": "Test the single strongest bounded residual on a source-disjoint family without KIFMS retuning.",
+      "value": -0.0020091233819910037
+    },
+    {
+      "finding": "Nested-LORO cross-fitted relative WSS95 was negative.",
+      "id": "V8-N2",
+      "next_discriminator": "Retain WSS95 as noncompensatory; no CRE20 gain may pay for extra screening work.",
+      "value": -0.0009911137548134536
+    },
+    {
+      "finding": "Worst held-out R@10 harm was far below the unchanged -0.05 floor.",
+      "id": "V8-N3",
+      "next_discriminator": "Require source-disjoint worst-review harm and retain exact u4 fallback.",
+      "review": "Shoulderdystocia_positioning",
+      "selected": "F1_WORD_PRUNED_A100",
+      "value": -0.33333333333333337
+    },
+    {
+      "fallback_count": 12,
+      "fallback_fraction": 0.8571428571428571,
+      "finding": "The selector fell back to exact u4 in twelve of fourteen folds; both nonfallback selections were adverse on their held-out review.",
+      "id": "V8-N4",
+      "next_discriminator": "Treat exclusion-sensitive support as a target, not as positive selection evidence.",
+      "nonfallback_failures": {
+        "Shoulderdystocia_positioning": {
+          "delta_cre20": -0.009208103130755041,
+          "delta_r10": -0.33333333333333337,
+          "delta_wss95": -0.0055248618784530246,
+          "selected": "F1_WORD_PRUNED_A100"
+        },
+        "Total_knee_replacement": {
+          "delta_cre20": -0.018919624217119013,
+          "delta_r10": -0.0625,
+          "delta_wss95": -0.008350730688935326,
+          "selected": "F2_TITLE_EMPHASIS_A250"
+        }
+      }
+    },
+    {
+      "configuration_summary": {
+        "F1_WORD_PRUNED_A100": {
+          "full_fourteen_support_passed": false,
+          "mean_delta_cre20": -0.00011992006181096066,
+          "mean_delta_r10": -0.02380952380952381,
+          "mean_delta_wss95": 0.0012789525461852397,
+          "worst_review_delta_r10": -0.33333333333333337
+        },
+        "F1_WORD_PRUNED_A250": {
+          "full_fourteen_support_passed": false,
+          "mean_delta_cre20": 0.0029711519973965555,
+          "mean_delta_r10": -0.00032467532467533075,
+          "mean_delta_wss95": -0.0010919322706266776,
+          "worst_review_delta_r10": -0.050000000000000044
+        },
+        "F2_TITLE_EMPHASIS_A100": {
+          "full_fourteen_support_passed": false,
+          "mean_delta_cre20": 0.00901850124257261,
+          "mean_delta_r10": -0.0012175324675324703,
+          "mean_delta_wss95": 0.0032284247688908435,
+          "worst_review_delta_r10": -0.0625
+        },
+        "F2_TITLE_EMPHASIS_A250": {
+          "full_fourteen_support_passed": false,
+          "mean_delta_cre20": 0.0106931250595191,
+          "mean_delta_r10": -0.0012175324675324703,
+          "mean_delta_wss95": 0.002042792819172991,
+          "worst_review_delta_r10": -0.0625
+        },
+        "F3_CHAR_MORPHOLOGY_A100": {
+          "full_fourteen_support_passed": false,
+          "mean_delta_cre20": -0.0030322978983137005,
+          "mean_delta_r10": 0.006493506493506496,
+          "mean_delta_wss95": -0.020770200387777698,
+          "worst_review_delta_r10": 0.0
+        },
+        "F3_CHAR_MORPHOLOGY_A250": {
+          "full_fourteen_support_passed": false,
+          "mean_delta_cre20": 0.001333707306026993,
+          "mean_delta_r10": -0.026244588744588744,
+          "mean_delta_wss95": -0.025055156866206043,
+          "worst_review_delta_r10": -0.33333333333333337
+        }
+      },
+      "finding": "None of the six configurations passed CRE20, WSS95, and worst-review R@10 support jointly over all fourteen development reviews.",
+      "id": "V8-N5",
+      "next_discriminator": "Carry only the most scientifically informative title-emphasis configuration as a diagnostic into a source-disjoint family."
+    },
+    {
+      "finding": "KIFMS is open same-workspace development data and cannot provide confirmation or independent custody.",
+      "id": "V8-N6",
+      "next_discriminator": "Acquire and freeze a lawful source-disjoint family before its labels or comparative outcomes are opened."
+    }
+  ],
+  "identity": "P2_KIFMS_V8_NEGATIVE_RESULT_LEDGER",
+  "terminal": "P2_V8_DONOR_ENVELOPMENT_CROSSFIT_FAILS_CRE20_WSS95_AND_HARM__NO_RESIDUAL_ADMITTED__EXACT_U4_FALLBACK"
+}

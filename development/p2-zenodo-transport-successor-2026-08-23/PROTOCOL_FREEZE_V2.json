@@ -1,0 +1,131 @@
+{
+  "active_model": {
+    "alpha": 1e-05,
+    "batch_size": "max(10,ceil(0.002*N))",
+    "class_weight": "balanced",
+    "loss": "log_loss",
+    "max_iter": 2000,
+    "random_state": 20260823,
+    "tol": 0.0001
+  },
+  "arms": {
+    "ACTIVE_LOGREG": "batch active class-balanced SGD logistic loss selecting highest inclusion probability",
+    "RANDOM": "20 deterministic permutations after shared seeds",
+    "STATIC_SEED_CENTROID": "descending cosine similarity to included seed"
+  },
+  "cannot_check_terminal": "P2_ZENODO_ACTIVE_ACQUISITION_TRANSPORT_V2_CANNOT_CHECK_BINDING",
+  "claim_scope": "ONE_PUBLIC_LABELLED_PHYSIOTHERAPY_SCREENING_POOL_POST_SCHEMA_REPAIR_TRANSPORT_DEVELOPMENT_ONLY",
+  "date": "2026-08-23",
+  "eligibility": "after excluding the exact contaminated first raw line, retain exact five-field rows whose class is exactly include or exclude; for class-free record-identity collisions retain the earliest raw line; empty title, PMID, abstract or MeSH remains eligible",
+  "features": {
+    "lowercase": true,
+    "max_features": 50000,
+    "min_df": 2,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "sublinear_tf": true,
+    "vectorizer": "TfidfVectorizer"
+  },
+  "forbidden_claims": [
+    "outcome-blind confirmation",
+    "protected labels or independent custody",
+    "multi-world replication",
+    "ORION-specific superiority",
+    "open-world route invention or closure",
+    "generality beyond this one public screening pool",
+    "pre-outcome schema freeze",
+    "confirmation after schema repair"
+  ],
+  "gates": {
+    "G1_BINDING": "exact body, excluded-row hash, 25540 raw lines, 25539 five-field post-incident rows, 2 noncanonical exclusions, 3 duplicate-identity exclusions, 25534 eligible unique canonical records and binary labels",
+    "G2_ABSOLUTE": "ACTIVE_LOGREG recall at 10 percent >= 0.50",
+    "G3_INCREMENTAL": "ACTIVE_LOGREG recall at 10 percent minus max(RANDOM,STATIC_SEED_CENTROID) >= 0.10",
+    "G4_WORK_SAVING": "ACTIVE_LOGREG WSS@95 > 0",
+    "G5_NO_RANDOM_HARM": "ACTIVE_LOGREG recall at 10 percent >= RANDOM recall at 10 percent"
+  },
+  "initial_seed": "included and excluded eligible records with lexicographically smallest sha256(source_id + colon + record_identity), shared by all arms",
+  "negative_terminal": "P2_ZENODO_ACTIVE_ACQUISITION_TRANSPORT_V2_REQUIRES_NEW_CONTROLLER",
+  "outcomes": {
+    "analysis_unit": "one citation-screening pool; no cross-world inferential p-value",
+    "primary": "recall at 10 percent screened",
+    "secondary": [
+      "recall at 5 percent",
+      "recall at 20 percent",
+      "fraction screened to 95 percent recall",
+      "WSS@95"
+    ]
+  },
+  "paper_id": "P2",
+  "positive_terminal": "P2_ZENODO_ACTIVE_ACQUISITION_TRANSPORT_V2_SUPPORTED_ON_ONE_PUBLIC_PHYSIOTHERAPY_POOL",
+  "preflight_incident": {
+    "aggregate_or_model_outcomes_observed": false,
+    "excluded_first_raw_line_sha256": "c619fb151436f2569165e3e7b8e8421310e8685740dd1be19945c449c8b266d5",
+    "exposed_rows": 1,
+    "outcome_blind_before_protocol": false
+  },
+  "random_seeds": [
+    20260823,
+    20260824,
+    20260825,
+    20260826,
+    20260827,
+    20260828,
+    20260829,
+    20260830,
+    20260831,
+    20260832,
+    20260833,
+    20260834,
+    20260835,
+    20260836,
+    20260837,
+    20260838,
+    20260839,
+    20260840,
+    20260841,
+    20260842
+  ],
+  "record_identity": "sha256(title + tab + pmid + tab + abstract + tab + mesh); duplicate identities are a binding failure",
+  "sanitation": {
+    "controller_changed_from_v1": false,
+    "duplicate_identity_action": "retain earliest raw line among canonical rows",
+    "duplicate_identity_excess_rows_expected": 3,
+    "eligible_unique_records_expected": 25534,
+    "noncanonical_class_action": "exclude",
+    "noncanonical_class_rows_expected": 2
+  },
+  "schema_version": "orion.p2.zenodo-10423427.transport-development.v2",
+  "source": {
+    "bytes": 53881052,
+    "columns": [
+      "title",
+      "pmid",
+      "abstract",
+      "class",
+      "mesh_terms_pipe_delimited"
+    ],
+    "declared_rows": 25540,
+    "delimiter": "tab",
+    "doi": "10.5281/zenodo.10423427",
+    "file": "citation_screening_deduplicated_corpus.csv",
+    "license": "CC-BY-4.0",
+    "md5": "3d8c9589d8051b26d6f9dff7eaf1865d",
+    "record_id": "10423427"
+  },
+  "status": "FROZEN_AFTER_V1_BINDING_FAILURE_BEFORE_ANY_MODEL_OUTCOME",
+  "text": "whitespace-normalized title plus abstract plus MeSH terms with pipe replaced by space",
+  "v1_binding_failure": {
+    "model_outcomes_observed": false,
+    "result_sha256": "775f3a105487cbce22839a90ae7441f8bb0b154ee0bc9b02ed0c53159f06b23b",
+    "structural_census_observed": {
+      "canonical_class_rows": 25537,
+      "duplicate_identity_excess_rows": 3,
+      "noncanonical_class_rows": 2,
+      "post_incident_five_field_rows": 25539,
+      "total_raw_lines": 25540
+    },
+    "terminal": "P2_ZENODO_ACTIVE_ACQUISITION_TRANSPORT_CANNOT_CHECK_BINDING"
+  }
+}

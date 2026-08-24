@@ -1,0 +1,55 @@
+{
+  "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+  "execution_ready": false,
+  "fallbacks": [],
+  "paper_reproduction_shape": {
+    "min_delta": 0,
+    "patience": 100,
+    "rounds_upper_bound": 100,
+    "seeds_named": [
+      42,
+      7,
+      13
+    ]
+  },
+  "schema_version": "orion.p5.c5.resource-registry.v4",
+  "source_defaults": {
+    "candidate_subprocess_timeout_seconds": 10,
+    "dataset": "mbpp",
+    "eval_dev": 10,
+    "eval_locked": 40,
+    "max_tokens_per_model_call": 8192,
+    "min_delta": 0.01,
+    "parallelism": 64,
+    "patience": 2,
+    "rounds_upper_bound": 8,
+    "seed": 42,
+    "train": 60
+  },
+  "source_retry_policy": {
+    "attempts_per_model": 3,
+    "base_delay_seconds": 0.5,
+    "connect_timeout_seconds": 10,
+    "jitter": "FULL",
+    "maximum_delay_seconds": 8.0,
+    "read_timeout_seconds": 120
+  },
+  "unbound": [
+    "aggregate API call ceiling",
+    "aggregate input/output token hard stop",
+    "aggregate USD hard stop and overshoot semantics",
+    "exact Bedrock endpoint/DNS/TLS/service revision",
+    "deny-by-default egress network attestation"
+  ],
+  "v4_bound_compute": {
+    "gpus": 0,
+    "pids_limit": 2048,
+    "provider_parallelism": 64,
+    "ram_gib": 32,
+    "vcpus": 16
+  },
+  "v4_bound_wallclock_seconds": {
+    "termination_grace": 120,
+    "whole_c5_run": 21600
+  }
+}

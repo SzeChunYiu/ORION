@@ -1,0 +1,93 @@
+{
+  "authority": "PUBLIC_UPSTREAM_DISCOVERY_ONLY",
+  "observations": {
+    "exact_runner_code_search_count": 0,
+    "issue_3_comment_count": 0,
+    "issue_3_state": "open",
+    "main_commit": "5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+    "maintainer_companion_found": false,
+    "maintainer_repository_count": 4,
+    "only_tag": "v0.1.0",
+    "public_release_count": 0,
+    "public_tag_count": 1,
+    "returned_fork_count": 3
+  },
+  "queries": [
+    "MOSS branches, tags, releases and forks",
+    "maintainer repository enumeration",
+    "issue 3 state/comments",
+    "exact public code search for benchmark/claw-eval/runner/benchmark.py",
+    "repository and code searches for MOSS/claw-eval companions"
+  ],
+  "raw_snapshots": [
+    {
+      "path": "upstream_search/branches.json",
+      "sha256": "9cb1a365b0576543599d4150220c2c75a693f3036a6476a2d3e09f4a6fdad190",
+      "size_bytes": 201
+    },
+    {
+      "path": "upstream_search/code_search_exact.json",
+      "sha256": "4af480b8ee5b87b369a76c49bd22c9a783908272ebffbe97898f8ab0f0772a5f",
+      "size_bytes": 55
+    },
+    {
+      "path": "upstream_search/code_search_moss_claw.json",
+      "sha256": "715c8ec822e91115573715cd88b7104d3f672a3dc7a97450663bfa88ef2ecc21",
+      "size_bytes": 54
+    },
+    {
+      "path": "upstream_search/forks.json",
+      "sha256": "76d2dbbd2f422517a8f87f2ccc6bb91e0dc03f8d9cd4371fce5fcf4b40f279c5",
+      "size_bytes": 15763
+    },
+    {
+      "path": "upstream_search/issue3.json",
+      "sha256": "1184c20b70a3f9ff72c5c8fdb98fc7bbf4408820e0fa986050dcafab43eee5be",
+      "size_bytes": 6694
+    },
+    {
+      "path": "upstream_search/issue3_comments.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "size_bytes": 2
+    },
+    {
+      "path": "upstream_search/issues_search_benchmark.json",
+      "sha256": "06fbb6a51d6de530da59649b4d235c47767053e4f8e87d9aca11964fec02a864",
+      "size_bytes": 6768
+    },
+    {
+      "path": "upstream_search/owner_repos.json",
+      "sha256": "b518d8510b0205354be6078fde85ef3bf3cf3bbd92b707778627b61fce19a31b",
+      "size_bytes": 22115
+    },
+    {
+      "path": "upstream_search/releases.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "size_bytes": 2
+    },
+    {
+      "path": "upstream_search/repo.json",
+      "sha256": "f5a4007a469cf87f204031b9652bab4cbbfcbe07034c6b390863a87abe50784e",
+      "size_bytes": 5436
+    },
+    {
+      "path": "upstream_search/repo_search.json",
+      "sha256": "d10693fc565850cfb10336bd4d91e6d7b1d0d9e6808080c5d7ecfa9ba9aa93d6",
+      "size_bytes": 22902
+    },
+    {
+      "path": "upstream_search/repo_search_claw.json",
+      "sha256": "a32c31083db48ae4dc4d52a8817d8e20cfc75fd4d625d7d84f5972839aa1ab63",
+      "size_bytes": 123394
+    },
+    {
+      "path": "upstream_search/tags.json",
+      "sha256": "ae390d2eb53fc8a411e8df12902404ee317ad538e35928d71bb398de100e4ebc",
+      "size_bytes": 414
+    }
+  ],
+  "released_moss_state_changed": false,
+  "schema_version": "orion.p5.c2.upstream-successor-search-receipt.v11",
+  "searched_at_utc": "2026-08-24T05:47:08Z",
+  "verdict": "NO_LAWFUL_UPSTREAM_COMPANION_FOUND__PROCEED_ONLY_AS_DISTINCT_AUTHORED_SUCCESSOR"
+}

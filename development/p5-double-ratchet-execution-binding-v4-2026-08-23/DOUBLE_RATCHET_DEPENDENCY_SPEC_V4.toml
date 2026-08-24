@@ -1,0 +1,13 @@
+[project]
+name = "p5-c5-double-ratchet-runtime-freeze"
+version = "0.0.0"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "boto3",
+  "datasets",
+  "pydantic",
+  "pyyaml",
+]
+
+[tool.uv]
+package = false

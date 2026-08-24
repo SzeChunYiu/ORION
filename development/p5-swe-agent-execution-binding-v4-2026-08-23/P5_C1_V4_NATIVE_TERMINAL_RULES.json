@@ -1,0 +1,65 @@
+{
+  "adapter_disposition": "UNRESOLVED",
+  "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+  "class_emission": "NEVER_BY_NATIVE_PARSER",
+  "exact_native_retention": [
+    "info.exit_status including null",
+    "submission UTF-8 byte count",
+    "submission sha256",
+    "trajectory sha256",
+    "trajectory step count",
+    "native model usage counters"
+  ],
+  "mapping_in_order": [
+    {
+      "status": "COMPLETE_SUCCESS",
+      "when": "exit_status == submitted and submission is nonempty"
+    },
+    {
+      "reason": "autosubmission does not erase the causing terminal",
+      "status": "PARTIAL",
+      "when": "exit_status begins submitted ("
+    },
+    {
+      "status": "TIMEOUT",
+      "when": "exit_status contains timeout or total_execution_time"
+    },
+    {
+      "status": "ABSTAIN",
+      "when": "exit_status in exit_forfeit, exit_cost, exit_context, exit_command"
+    },
+    {
+      "status": "ERROR",
+      "when": "exit_status in exit_api, exit_environment_error, exit_error, exit_format"
+    },
+    {
+      "status": "EMPTY",
+      "when": "missing exit_status and no steps/submission"
+    },
+    {
+      "status": "PARTIAL",
+      "when": "missing exit_status with partial material"
+    },
+    {
+      "status": "INVALID",
+      "when": "skipped or unrecognized"
+    }
+  ],
+  "parser_sha256": "fba94970a47735be47bc71c2c6f99566b343c7526f8516acedb8254b3a2a94c4",
+  "protected_key_policy": "REFUSE",
+  "protected_or_evaluator_keys": [
+    "FAIL_TO_PASS",
+    "PASS_TO_PASS",
+    "evaluation_report",
+    "gold_patch",
+    "protected_outcome",
+    "protected_score",
+    "resolved",
+    "reward",
+    "score",
+    "test_patch"
+  ],
+  "raw_native_singleton_licences": 0,
+  "rules_id": "P5.C1.SWE_AGENT.NATIVE.TERMINAL.RETENTION.V4",
+  "schema_version": "orion.p5.c1.native-terminal-retention-rules.v4"
+}

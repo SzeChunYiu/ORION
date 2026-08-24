@@ -1,0 +1,438 @@
+{
+  "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+  "authority": "OUTCOME_BLIND_SOURCE_RUNTIME_PREFLIGHT_ONLY",
+  "cleanup_required": [
+    "temporary source archive/tree",
+    "authored smoke fixtures",
+    "parser output",
+    "CLI stdout/stderr",
+    "validator scratch receipt"
+  ],
+  "execution": {
+    "ci_run": false,
+    "git_or_shared_checkout_edited": false,
+    "model_or_comparator_run": false,
+    "protected_or_gold_opened": false,
+    "pytest_run": false,
+    "raw_or_large_final_payload_retained": false
+  },
+  "frozen_at_utc": "2026-08-23T17:38:58Z",
+  "lock_receipt": {
+    "host_package_entries": 11,
+    "host_uv_sha256": "382c5d3ad1eaa6ca85e970dca53b7c423f68878c23ceada8c3f17138c2b84b72",
+    "openclaw_package_entries": 1196,
+    "openclaw_pnpm_sha256": "17a36bc38c1817eaee7a7c4264d58b127f5edb6a5054e4952545450cfde0337c"
+  },
+  "readiness": {
+    "blocker_delta": -4,
+    "panel_ready_arms": 0,
+    "panel_required_arms": 6,
+    "v3_blocking_fields": 18,
+    "v3_bound_fields": 3,
+    "v4_blocking_fields": 14,
+    "v4_bound_fields": 7
+  },
+  "schema_version": "orion.p5.c2.audit-receipt.v4",
+  "smoke_summary": {
+    "exact_cli_help_exit": 0,
+    "full_native_smoke": "CANNOT_CHECK",
+    "native_status_without_gateway_exit": 1,
+    "parser_outcome_free_fixture_exit": 0,
+    "parser_protected_key_refusal_exit": 2
+  },
+  "source_receipt": {
+    "archive_sha256": "de6bb0e480749757d8e9b05a66c37c82228ea6d9d1e1cb92b6b32a3b28e5610e",
+    "benchmark_prefixed_paths": 0,
+    "commit_sha": "5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+    "github_tree_truncated": false,
+    "repository": "https://github.com/hkgai-official/Moss",
+    "tree_sha": "ebfcd6ac3ae00749240a5e2d8a96ad570adaf63f"
+  },
+  "terminal": "P5_C2_V4_MOSS_NATIVE_PARSER_DEPENDENCY_LOCKS_FALLBACK_AND_WALLCLOCK_BOUND__FOURTEEN_C2_FIELDS_BLOCKING__RELEASED_BENCHMARK_RUNTIME_ABSENT__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK",
+  "validation": {
+    "checks": [
+      {
+        "name": "json_valid::P5_C2_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_CUSTODY_HANDOFF_SCHEMA.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_EXECUTION_BINDING_PROTOCOL.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_FIELD_REGISTRY.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_NATIVE_OUTPUT_SCHEMA.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_NATIVE_TERMINAL_RULES.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_NEGATIVE_LEDGER.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_RESOURCE_REGISTRY.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_RESULT.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_SMOKE_RECEIPT.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_SOURCE_RIGHTS_MANIFEST.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C2_V4_WRITE_SURFACE_SCHEMA.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "required_fields_21",
+        "observed": 21,
+        "passed": true
+      },
+      {
+        "name": "all_required_fields_present",
+        "observed": [],
+        "passed": true
+      },
+      {
+        "name": "bound_fields_7",
+        "observed": [
+          "adapter.native_parser_binding",
+          "identity.native_entrypoint_bytes",
+          "identity.source_license_bytes",
+          "identity.source_repository_commit",
+          "model_provider.fallbacks",
+          "resources.wallclock",
+          "runtime.dependency_lock"
+        ],
+        "passed": true
+      },
+      {
+        "name": "blocking_fields_14",
+        "observed": [
+          "adapter.isolated_write_surface",
+          "custody.external_protected_scorer",
+          "custody.one_shot_no_feedback_barrier",
+          "custody.protected_panel_freshness",
+          "inputs.candidate_visible_case_bytes",
+          "model_provider.primary",
+          "resources.calls_tokens_usd",
+          "resources.retry_network",
+          "rights.container_and_generated_artifacts",
+          "rights.model_provider_and_services",
+          "rights.task_and_benchmark_content",
+          "runtime.compute",
+          "runtime.container_or_environment",
+          "runtime.task_environment"
+        ],
+        "passed": true
+      },
+      {
+        "name": "execution_refused",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "panel_zero_of_six",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "delta_minus_four",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "new_bindings_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "raw_singletons_zero",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "v3_counts_preserved",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "claims_cannot_check",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "publication_not_established",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "host_lock_hash",
+        "observed": "382c5d3ad1eaa6ca85e970dca53b7c423f68878c23ceada8c3f17138c2b84b72",
+        "passed": true
+      },
+      {
+        "name": "node_lock_hash",
+        "observed": "17a36bc38c1817eaee7a7c4264d58b127f5edb6a5054e4952545450cfde0337c",
+        "passed": true
+      },
+      {
+        "name": "host_lock_entries_11",
+        "observed": 11,
+        "passed": true
+      },
+      {
+        "name": "node_lock_entries_1196",
+        "observed": 1196,
+        "passed": true
+      },
+      {
+        "name": "parser_hash_bound",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "runner_hash_bound",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "source_commit_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "source_tree_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "source_archive_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "benchmark_paths_zero",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "tree_receipt_not_truncated",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "missing_runtime_cannot_check",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "benchmark_rights_unbound",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "source_licence_layers_separate",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::initialized",
+        "observed": "PARTIAL",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::initialized",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_no_score_mapping::initialized",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::in_progress",
+        "observed": "PARTIAL",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::in_progress",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_no_score_mapping::in_progress",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::swap_pending",
+        "observed": "PARTIAL",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::swap_pending",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_no_score_mapping::swap_pending",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::converged",
+        "observed": "COMPLETE_SUCCESS",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::converged",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_no_score_mapping::converged",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::rolled_back",
+        "observed": "ERROR",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::rolled_back",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_no_score_mapping::rolled_back",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::failed",
+        "observed": "ERROR",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::failed",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_no_score_mapping::failed",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::aborted_max_iter",
+        "observed": "ABSTAIN",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::aborted_max_iter",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_no_score_mapping::aborted_max_iter",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::aborted_streak",
+        "observed": "ABSTAIN",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::aborted_streak",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_no_score_mapping::aborted_streak",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "converged_requires_candidate_identity",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "protected_key_refused",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "runner_preflight_refuses",
+        "observed": {
+          "count": 14,
+          "rc": 3
+        },
+        "passed": true
+      },
+      {
+        "name": "smoke_no_raw_retention",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "smoke_full_native_cannot_check",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "negative_ledger_recursive",
+        "observed": 6,
+        "passed": true
+      },
+      {
+        "name": "no_raw_or_large_artifact_types",
+        "observed": [],
+        "passed": true
+      },
+      {
+        "name": "no_file_over_one_mib",
+        "observed": [],
+        "passed": true
+      }
+    ],
+    "checks_failed": 0,
+    "checks_passed": 70,
+    "checks_total": 70,
+    "failures": [],
+    "passed": true,
+    "schema_version": "orion.p5.c2.validator-receipt.v4"
+  }
+}

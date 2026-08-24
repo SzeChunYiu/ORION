@@ -1,0 +1,164 @@
+{
+  "authority": "COMPLETE_CONTENT_ADDRESSED_RUNTIME_RIGHTS_GATE_AND_NATIVE_ARTIFACT_SMOKE_ONLY__NO_SCIENTIFIC_OUTCOME_AUTHORITY",
+  "claim_boundary": "A native smoke pass would change native-smoke readiness to 3/3 only. Scientific comparator readiness, performance, harm, coverage, transport and superiority remain 0/3 or CANNOT_CHECK without independent protected evaluation.",
+  "execution_success_gate": "After the rights gate passes, one offline entrypoint run exits zero within 1800 seconds and all five actual regular nonsymlink artifacts exist and pass the exact frozen V7 parser.",
+  "failure_gate": "Any missing/unknown right, dependency, identity, hash, runtime file, model file, nonzero exit, timeout, missing/partial artifact or parser failure is CANNOT_CHECK; do not execute or retry past the first failed gate.",
+  "frozen_at": "2026-08-23T19:44:03.422878+00:00",
+  "jvm_runtime": {
+    "content_address_rule": "Hash every regular file in resolved JAVA_HOME and retain all legal-file hashes.",
+    "deeponto_jar_rule": "Inventory every tracked JAR by path, bytes and SHA-256; deduplicate by hash; require component identity plus licence evidence for every unique hash before JVM start.",
+    "required_java": "OpenJDK 17.0.19 arm64",
+    "rights_gate": "Any JDK or DeepOnto JAR component without rights evidence blocks JVM start and native execution.",
+    "stdin_utf8": "2g\\n"
+  },
+  "model": {
+    "license": "MIT",
+    "license_sha256": "9e8f42111a19340d74194466063143fbc4294b50dd26ad5c60a06dcaeafa99d2",
+    "repository": "emilyalsentzer/Bio_ClinicalBERT",
+    "required_files": {
+      ".gitattributes": "f049f7c0d16eaffe605baca479013bcb7a3847077cf6e548ba7b228831cf9c38",
+      "LICENSE": "9e8f42111a19340d74194466063143fbc4294b50dd26ad5c60a06dcaeafa99d2",
+      "README.md": "bf666c7d32897296d028b655fdc0a3f16d7309cc69af11e93d3473218c2b00f2",
+      "config.json": "4a470c65801cab55fc1cc5854aa2bfebc18428ac1989777e9acefc5a9f0c1444",
+      "pytorch_model.bin": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719",
+      "vocab.txt": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02"
+    },
+    "revision": "d5892b39a4adaed74b92212a44081509db72f87b"
+  },
+  "predecessors": {
+    "v6_k3_result": {
+      "path": "../p3-comparator-native-preflight-v6-2026-08-23/K3_BERTMAP_RESULT_V6.json",
+      "sha256": "89397bde96305b19b19487a87d0b8b82f5270cd8fafcb2993a596c3bd0e64df1"
+    },
+    "v6_protocol": {
+      "path": "../p3-comparator-native-preflight-v6-2026-08-23/PROTOCOL_V6.json",
+      "sha256": "d8c11f0a700411d2937bdebbb1081ea7e57d1ced721dba27c73d985b6a3d753c"
+    },
+    "v7_compatibility_lock": {
+      "distribution_count": 26,
+      "path": "../p3-bertmap-execution-binding-v7-2026-08-23/V7_COMPATIBILITY_REQUIREMENTS.txt",
+      "sha256": "6a31875e9b6315c3a07a58c1cfc401f704d0f1d187f28323d4f49806b0290293"
+    },
+    "v7_parser": {
+      "path": "../p3-bertmap-execution-binding-v7-2026-08-23/bertmap_native_parser_v7.py",
+      "sha256": "d1184dc129082bdcf18b415b551f244a695b4e34417286afc37a3f3a5d788bc5"
+    },
+    "v7_result": {
+      "path": "../p3-bertmap-execution-binding-v7-2026-08-23/RESULT_V7.json",
+      "sha256": "4190f248bd8f00954d4994f34680ddb29782ad6b946abf38ee235f5b6cb8bf5d"
+    },
+    "v8_patch": {
+      "original_source_sha256": "9cf0dce1c5bd142e4175f628f8f3267f54ed6deac9f31e165a25b4a073eedff0",
+      "path": "../p3-bertmap-table-reader-repair-v8-2026-08-23/mapping_dp_score_v8.patch",
+      "repaired_source_sha256": "d0b3b6cfdee45019783707c4bd623cc76f8325142828cf1e10ebb74ad628d70f",
+      "sha256": "412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b"
+    },
+    "v8_result": {
+      "path": "../p3-bertmap-table-reader-repair-v8-2026-08-23/RESULT_V8.json",
+      "sha256": "6ccd4b9ab8dafe8dbf8bcf0c33cb76006ab043c0df34bd5e0d0595ef2d03138b"
+    }
+  },
+  "protocol_id": "P3_V9_BERTMAP_COMPLETE_RUNTIME_RIGHTS_AND_NO_GOLD_NATIVE_SMOKE",
+  "python_runtime": {
+    "exact_compatibility_tuple": {
+      "accelerate": "1.0.1",
+      "tokenizers": "0.20.3",
+      "torch": "2.5.1",
+      "transformers": "4.46.3"
+    },
+    "full_environment_rule": "Resolve every DeepOnto runtime dependency plus the exact V7 tuple into one hash-locked requirements file; install only from that lock; inventory every installed distribution and every installed file hash.",
+    "platform": "aarch64-apple-darwin",
+    "python": "3.10.20",
+    "require_hashes": true,
+    "resolver": "uv",
+    "rights_gate": "Every installed distribution must have exact identity, version, file inventory, hash and nonempty licence expression/classifier/text metadata; unknown rights blocks import and native execution."
+  },
+  "readiness_before": {
+    "bertmap_actual_artifacts": "0/5",
+    "native_smoke_ready": "2/3",
+    "scientific_comparator_ready": "0/3"
+  },
+  "required_actual_artifacts": [
+    "raw_mappings.json",
+    "raw_mappings.tsv",
+    "extended_mappings.tsv",
+    "filtered_mappings.tsv",
+    "repaired_mappings.tsv"
+  ],
+  "rights_success_gate": "Python, JDK, every DeepOnto JAR, source, model and authored input rights all close with exact content addresses before import/JVM/native execution.",
+  "schema_version": "orion.p3.repaired-native-runtime.protocol.v9",
+  "single_source_change": {
+    "after": "dp.Score",
+    "before": "dp[\"Score\"]",
+    "expected_repaired_sha256": "d0b3b6cfdee45019783707c4bd623cc76f8325142828cf1e10ebb74ad628d70f",
+    "other_source_changes_forbidden": true,
+    "patch_sha256": "412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b",
+    "path": "src/deeponto/align/mapping.py"
+  },
+  "source_identity": {
+    "commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+    "package_version": "0.9.3",
+    "repository": "https://github.com/KRR-Oxford/DeepOnto",
+    "root_license": "Apache-2.0",
+    "root_license_sha256": "340ebaff716578e1b620521eeb740febbdcb24b8bd0c1de12c37b916aadf4d36",
+    "tree": "b499cb5780bbe749f7db44d0bc872d275a2737ea"
+  },
+  "unchanged_no_gold_smoke": {
+    "cpu_threads": 1,
+    "entrypoint": "runtime/source/scripts/bertmap.py -s runtime/inputs/source.owl -t runtime/inputs/target.owl -c runtime/config.yaml",
+    "forbidden": [
+      "gold or reference alignment access",
+      "protected outcome access",
+      "performance, correctness, harm, coverage, transport or superiority scoring",
+      "threshold, model, input, parser or source changes beyond the exact V8 patch",
+      "matcher-time network access",
+      "retry or outcome-conditioned repair"
+    ],
+    "logical_config": {
+      "annotation_property_iris": [
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "auxiliary_ontos": [],
+      "bert": {
+        "batch_size_for_prediction": 16,
+        "batch_size_for_training": 1,
+        "max_length_for_input": 128,
+        "num_epochs_for_training": 3.0,
+        "resume_training": null
+      },
+      "global_matching": {
+        "enabled": true,
+        "for_oaei": false,
+        "mapping_extension_threshold": 0.9,
+        "mapping_filtered_threshold": 0.9995,
+        "num_best_predictions": 10,
+        "num_raw_candidates": 200
+      },
+      "known_mappings": null,
+      "model": "bertmap"
+    },
+    "offline_guards": {
+      "HF_HUB_OFFLINE": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "TRANSFORMERS_OFFLINE": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "only_path_changes": "output_path and pretrained_path are rebound to content-addressed V9 packet-local locations before execution; all logical values remain unchanged.",
+    "retries": 0,
+    "source": {
+      "named_classes": 16,
+      "origin": "../p3-comparator-native-preflight-v6-2026-08-23/BERTMAP_SMOKE_SOURCE_V6.owl",
+      "sha256": "c347f32626f6c5b3b782b2f6344bca5ac2282a701161d11f1e02a7422fef4d9e"
+    },
+    "stdin_utf8": "2g\\n",
+    "target": {
+      "named_classes": 16,
+      "origin": "../p3-comparator-native-preflight-v6-2026-08-23/BERTMAP_SMOKE_TARGET_V6.owl",
+      "sha256": "16bd34ec22c3d130b94257404fd60a112a3383d16255a67472e0c5e1518c5521"
+    },
+    "wall_seconds": 1800
+  }
+}

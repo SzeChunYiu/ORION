@@ -1,0 +1,378 @@
+{
+  "by_domain": {
+    "EARTH_ENVIRONMENT": {
+      "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED": 1
+    },
+    "LIFE_BIOMEDICAL": {
+      "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK": 2,
+      "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK": 1
+    },
+    "PHYSICAL_ENGINEERING": {
+      "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK": 3
+    },
+    "SCIENTIFIC_SOFTWARE": {
+      "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED": 1,
+      "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK": 10,
+      "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK": 6
+    }
+  },
+  "created_at": "2026-08-23T18:53:34.328829+00:00",
+  "entries": [
+    {
+      "cause": "A frozen JOSS archive DOI is a concept DOI or the captured source-native response identifies a different version DOI. Mutable latest resolution is not an exact publication-version bridge.",
+      "identity": "EXACT_PUBLICATION_VERSION_IDENTITY",
+      "next_discriminator": "Obtain a source-native immutable version relation for the same DOI identity or retain CANNOT_CHECK.",
+      "observed": "12/24 unresolved identities fail this primary gate.",
+      "residual": "No version string, date, filename or current-latest response is substituted."
+    },
+    {
+      "cause": "No deterministic source-native tag/commit candidate resolved to a commit with an exact qualified-SWHID/Git-tree or normalized archive-manifest identity.",
+      "identity": "CONTENT_ADDRESSED_ARCHIVE_COMMIT_IDENTITY",
+      "next_discriminator": "Use an authenticated source-native origin/revision relation for the same archive bytes and repository; never select a latest release.",
+      "observed": "21 identities retain this overlapping failure; content identity nevertheless repaired 17 and bound 20 of 41 overall.",
+      "residual": "Unmatched manifests, missing/deleted refs and absent candidates remain zero repair."
+    },
+    {
+      "cause": "Source-native or DOI-registered exact-version rights are missing or are content licences rather than accepted software SPDX rights.",
+      "identity": "EXACT_ARCHIVE_SOFTWARE_RIGHTS",
+      "next_discriminator": "Bind accepted software rights on the same immutable archive version and commit.",
+      "observed": "3 identities fail this overlapping gate.",
+      "residual": "CC BY and absent rights are not hand-mapped to software rights."
+    },
+    {
+      "cause": "Exact bridging cannot override frozen per-domain total, primary and source-disjoint replication gates.",
+      "identity": "M6_CELL_FRAME",
+      "next_discriminator": "Close the same frozen replication quotas with nonreplacement disjoint-provider identities before adjudication.",
+      "observed": "Final exact unions are Earth 6/48, Life 4/48, Scientific Software 51/48 and Physical 4/48; replication arms remain 2/8, 0/8, 6/8 and 1/8.",
+      "residual": "Scientific Software passes total and primary counts but fails replication; all four full cells fail."
+    },
+    {
+      "cause": "Content identity proves snapshot continuity, not independent authors, same scientific claim, one-coordinate intervention or material resolvability.",
+      "identity": "AUTHOR_LINEAGE_AND_NATURAL_PAIR",
+      "next_discriminator": "Commission a frozen outcome-blind external panel only after all source-cell gates pass.",
+      "observed": "Author-lineage decisions 0; natural-pair adjudications 0; eligible natural pairs 0.",
+      "residual": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK remains unchanged."
+    },
+    {
+      "cause": "One SWH release-route feasibility probe preceded the V6 protocol freeze and is disclosed in the protocol.",
+      "identity": "DEVELOPMENT_ONLY_PILOT_DISCLOSURE",
+      "next_discriminator": "Run a separately frozen independent verification if the bounded bridge is to support confirmatory language.",
+      "observed": "All positive rows require exact content-address equality, but this remains a development repair, not a confirmatory study.",
+      "residual": "No global transport, natural-pair, performance or superiority claim is licensed."
+    }
+  ],
+  "overlapping_gate_counts": {
+    "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED": 3,
+    "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK": 12,
+    "IMMUTABLE_COMMIT_CANNOT_CHECK": 21,
+    "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK": 21
+  },
+  "preserved_programme_terminal": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK",
+  "primary_mutually_exclusive_counts": {
+    "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED": 2,
+    "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK": 12,
+    "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK": 10
+  },
+  "row_level_unresolved": [
+    {
+      "archive_doi": "10.5281/zenodo.21363955",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 19,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.10379",
+      "repository": "shin1koda/dmf"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.21221061",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 36,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09542",
+      "repository": "jaxionproject/jaxion"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.21308007",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 45,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.08384",
+      "repository": "sergei-mironov/litrepl"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.21226146",
+      "domain": "EARTH_ENVIRONMENT",
+      "frozen_index": 59,
+      "overlapping_causes": [
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_cause": "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+      "publication_doi": "10.21105/joss.09411",
+      "repository": "mohd-afeef-badri/psd"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20649191",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 64,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.08083",
+      "repository": "pnnl/constrain"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20317656",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 73,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09989",
+      "repository": "merck/algebraicagents.jl"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20454682",
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 86,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.10084",
+      "repository": "fgdfgfthgr-fox/volume_seg_tool"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20171460",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 91,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.10245",
+      "repository": "nutritionallungimmunity/pai"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20272994",
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 108,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09628",
+      "repository": "cwru-sdle/fairlinked"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.17316637",
+      "domain": "LIFE_BIOMEDICAL",
+      "frozen_index": 109,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.10003",
+      "repository": "bu-smbl/mymesh"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19389277",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 131,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09468",
+      "repository": "rahulumrao/sparc"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20026885",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 133,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.10112",
+      "repository": "artefactory/woodtapper"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.4680218",
+      "domain": "LIFE_BIOMEDICAL",
+      "frozen_index": 140,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09528",
+      "repository": "nplinker/nplinker"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19444615",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 145,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09720",
+      "repository": "josephbrunet/cardiotensor"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19610186",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 148,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09943",
+      "repository": "sweav02/baderkit"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.16934842",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 159,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09914",
+      "repository": "adityapt/deepcausalmmm"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19661454",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 165,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+      "publication_doi": "10.21105/joss.10223",
+      "repository": "alek050/databallpy"
+    },
+    {
+      "archive_doi": "10.6084/m9.figshare.31989372",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 171,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.08946",
+      "repository": "halcy/mastodon.py"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.18926958",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 179,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.08767",
+      "repository": "extremeflow/pysemtools"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19287728",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 183,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09886",
+      "repository": "tensorbfs/omeinsumcontractionorders.jl"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19051387",
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 185,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09364",
+      "repository": "mit-psfc/disruption-py"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19335435",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 190,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09481",
+      "repository": "ugurdar/datadriftr"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19141362",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 196,
+      "overlapping_causes": [
+        "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK"
+      ],
+      "primary_cause": "FROZEN_ARCHIVE_DOI_IS_CONCEPT_OR_MUTABLE_LATEST_REDIRECT__EXACT_PUBLICATION_VERSION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.08851",
+      "repository": "watershedswildfireresearchcollaborative/separate"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19202203",
+      "domain": "LIFE_BIOMEDICAL",
+      "frozen_index": 199,
+      "overlapping_causes": [
+        "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+        "IMMUTABLE_COMMIT_CANNOT_CHECK"
+      ],
+      "primary_cause": "SOURCE_ARCHIVE_TO_IMMUTABLE_REPOSITORY_COMMIT_CONTENT_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09603",
+      "repository": "targene/targene-pipeline"
+    }
+  ],
+  "schema_version": "orion.p4.m6.joss-bridge-repair.negative-ledger.v6",
+  "terminal": "P4_M6_JOSS_SAME_IDENTITY_CONTENT_ADDRESSED_BRIDGE_REPAIR_PARTIAL_17_OF_41__FINAL_EXACT_56_OF_80__AUTHOR_LINEAGE_AND_NATURAL_PAIR_CANNOT_CHECK",
+  "unresolved_identity_count": 24
+}

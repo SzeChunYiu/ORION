@@ -1,0 +1,47 @@
+{
+  "schema_version": "orion.p2.openalex-public-successor.v3-replay",
+  "paper_id": "P2",
+  "status": "FROZEN_AFTER_V1_INTERFACE_DIAGNOSIS_BEFORE_V3_GOLD_RESCORING",
+  "date": "2026-08-23",
+  "claim_scope": "POST_RESPONSE_EXPLORATORY_PUBLIC_PROVIDER_DEVELOPMENT_REPLAY_ONLY",
+  "successor_of": [
+    "orion.p2.openalex-public-successor.v1",
+    "orion.p2.openalex-public-successor.v2"
+  ],
+  "material_change": "Recover the 48/48 successful V1 Q1_CURRENT and Q2_VARIANT response bodies through the preregistered DataCite DOI-to-arXiv alias bridge, discarding failed Q0 rather than imputing it.",
+  "source_trace": {
+    "path": "development/p2-openalex-public-successor-2026-08-23/OPENALEX_TRACE_V1_RETAINED.json",
+    "sha256": "10ffd34a8b3de5e3b9e45b0e309bf451ff201c2dd0c5d1837e70504959d684cd",
+    "admitted_queries": ["Q1_CURRENT", "Q2_VARIANT"],
+    "required_final_http_200_calls": 48,
+    "failed_q0_calls_admitted": 0
+  },
+  "identity_bridge": "Use response arxiv_id when present; otherwise normalized DOI prefix 10.48550/arxiv.",
+  "arms": {
+    "B0_RAW": "first 20 unique arXiv identities from Q1_CURRENT (legacy result-key compatibility)",
+    "B1_CURRENT": "first 20 unique arXiv identities from Q2_VARIANT (legacy result-key compatibility)",
+    "S1_RRF3": "top 20 unique arXiv identities by reciprocal-rank fusion of Q1_CURRENT and Q2_VARIANT with k=60 (legacy result-key compatibility)"
+  },
+  "statistics": {
+    "primary_metric": "mean per-task official arXiv-id recall at candidate cap 20",
+    "secondary_metrics": ["tasks_with_any_gold_hit", "mean IoU", "mean precision"],
+    "paired_bootstrap_resamples": 10000,
+    "paired_bootstrap_seed": 20260823,
+    "sign_test": "exact two-sided, ties removed"
+  },
+  "gates": {
+    "G1_TRANSPORT": "all 48 admitted source calls ended HTTP 200",
+    "G2_EMISSION": "fused arm has any gold hit on at least 12 of 24 tasks and mean recall >= 0.20",
+    "G3_FUSION": "fused mean recall gain over strongest single view >= 0.05 and paired bootstrap 95% lower bound > 0",
+    "G4_NO_PRECISION_COLLAPSE": "fused mean precision >= strongest single-view mean precision - 0.02"
+  },
+  "positive_terminal": "P2_OPENALEX_TWO_VIEW_REPLAY_FUSION_SUPPORTED_EXPLORATORY_ONLY",
+  "negative_successor_terminal": "P2_OPENALEX_TWO_VIEW_REPLAY_REQUIRES_NEW_ROUTE_OR_RANKER",
+  "cannot_check_terminal": "P2_OPENALEX_TWO_VIEW_REPLAY_CANNOT_CHECK_SOURCE_TRACE",
+  "forbidden_claims": [
+    "prospective or confirmatory evidence",
+    "ORION acquisition-policy superiority",
+    "independent evaluator custody",
+    "generality beyond the frozen 24-task development subset"
+  ]
+}

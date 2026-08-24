@@ -1,0 +1,40 @@
+{
+  "authority": "PROSPECTIVE_UNSIGNED_TEMPLATE_ONLY__NOT_DELEGATION",
+  "current_execution_authorized": false,
+  "current_identities_bound": false,
+  "identity": "P1_V13_EXTERNAL_OWNER_DELEGATION_AND_ADAPTER_BLIND_COMPLETION_EXECUTION",
+  "map_audit_authorized": false,
+  "ordered_execution": [
+    "Verify delegator ownership basis and delegation signature without repository-authorship inference.",
+    "Deliver only V10 OWNER_INPUT_ALLOWLIST_V10.json byte-bound artifacts.",
+    "Obtain signed no-prior-adapter-access and delivery receipts.",
+    "Delegate completes all seven target profiles; host and rights holders bind their separate acts.",
+    "Eligible independent reviewer signs content-addressed CONFORMANT review.",
+    "Commit every digest before unsealing adapter-side artifacts.",
+    "Only then authorize unchanged 117,649-map audit."
+  ],
+  "required_delegation_record": {
+    "acceptance_signature": "required",
+    "delegate_identity": "named natural person or institution independent of the adapter lane",
+    "delegator_identity": "R7 vocabulary owner with separately verifiable ownership basis",
+    "effective_at_utc": "required",
+    "expiry_or_revocation_rule": "required",
+    "powers": [
+      "complete closed-world V8 algebra",
+      "ratify exact content hash"
+    ],
+    "scope": [
+      "KEEP_SEARCH",
+      "KEEP_COMPILE",
+      "KEEP_REPAIR",
+      "REVISE_MEASUREMENT",
+      "REFORMULATE_OBJECTIVE",
+      "REFORMULATE_BOUNDARY",
+      "UNRESOLVED"
+    ],
+    "signature_and_key_id": "required",
+    "signature_scheme": "GPG, SSH or Sigstore"
+  },
+  "schema_version": "orion.p1.owner-custody-positive-successor.next-delegation-execution-contract.v13",
+  "terminal": "P1_V13_EXTERNAL_OWNER_AND_DELEGATE_IDENTITIES_SIGNATURES_AND_CUSTODY_NOT_YET_BOUND"
+}

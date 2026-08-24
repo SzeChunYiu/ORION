@@ -1,0 +1,11 @@
+--- a/src/deeponto/align/mapping.py
++++ b/src/deeponto/align/mapping.py
+@@ -146,7 +146,7 @@
+                 entity_mappings.append(ReferenceMapping(dp.SrcEntity, dp.TgtEntity, relation))
+             else:
+                 # allow `None` for threshold
+-                if not threshold or dp["Score"] >= threshold:
++                if not threshold or dp.Score >= threshold:
+                     entity_mappings.append(EntityMapping(dp.SrcEntity, dp.TgtEntity, relation, dp.Score))
+         return entity_mappings
+ 

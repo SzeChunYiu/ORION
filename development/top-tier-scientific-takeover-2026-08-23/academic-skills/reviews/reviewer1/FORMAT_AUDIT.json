@@ -1,0 +1,48 @@
+{
+  "audit_version": 1,
+  "interpretation": "All five abstracts exceed the 150-word Article limit. P2, P4 and P5 exceed the six-item main display budget. Exact main-text compliance requires an exclusion-aware editorial count, but every manuscript needs substantial compression and NMI Article restructuring.",
+  "method": "Recursive TeX input expansion from each main.tex; comments, display math, inline math, common citation/path/reference arguments, and TeX control sequences removed before token counting. Full-document prose counts include Methods and other sections excluded by NMI, so they are not exact NMI main-text counts. Display counts are literal main-document figure/table environments after input expansion.",
+  "papers": {
+    "P1": {
+      "approx_abstract_words": 337,
+      "approx_full_document_prose_words": 17790,
+      "combined_displays": 5,
+      "figures": 2,
+      "tables": 3
+    },
+    "P2": {
+      "approx_abstract_words": 807,
+      "approx_full_document_prose_words": 22149,
+      "combined_displays": 9,
+      "figures": 6,
+      "tables": 3
+    },
+    "P3": {
+      "approx_abstract_words": 858,
+      "approx_full_document_prose_words": 18631,
+      "combined_displays": 1,
+      "figures": 0,
+      "tables": 1
+    },
+    "P4": {
+      "approx_abstract_words": 591,
+      "approx_full_document_prose_words": 12127,
+      "combined_displays": 10,
+      "figures": 5,
+      "tables": 5
+    },
+    "P5": {
+      "approx_abstract_words": 656,
+      "approx_full_document_prose_words": 17389,
+      "combined_displays": 10,
+      "figures": 1,
+      "tables": 9
+    }
+  },
+  "target": "Nature Machine Intelligence Article, initial submission",
+  "target_limits": {
+    "abstract_words": 150,
+    "combined_main_figures_tables": 6,
+    "main_text_words": 3500
+  }
+}

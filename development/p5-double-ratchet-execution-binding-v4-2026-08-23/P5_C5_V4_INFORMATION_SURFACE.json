@@ -1,0 +1,45 @@
+{
+  "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+  "forbidden_flags_and_paths": [
+    "--naive",
+    "--golden-diff-selectable",
+    "scripts/run_co_evo.py",
+    "scripts/run_skill_evo.py"
+  ],
+  "native_candidate_visible": [
+    "fixed task prompts and frozen no-skill solver outputs for train/eval_dev/development-locked surrogate",
+    "unlabelled train gaps and detector consensus",
+    "eval_dev golden-reference verbal feedback",
+    "typed detector pool, lifecycle, costs, provenance and prompts",
+    "metric expressions, elites, marginal statistics and audit history",
+    "development-only agreement values if retained by the external study design"
+  ],
+  "native_writes": {
+    "metric.db": [
+      "ops",
+      "batteries",
+      "metric_stats",
+      "eval_records",
+      "audit_log"
+    ],
+    "result.json": [
+      "final_metric_expr",
+      "final_locked_agreement",
+      "elites",
+      "evolution_history",
+      "synthesized_ops_total",
+      "store",
+      "audit_events"
+    ],
+    "stdout": "final metric expression, locked value and audit count"
+  },
+  "protected_hidden": [
+    "fresh final panel identity and bytes",
+    "protected revision-responsibility, transfer and harm labels",
+    "protected scorer implementation and per-case outcomes",
+    "final score before the whole matched panel is closed"
+  ],
+  "protected_outcome_accessed": false,
+  "schema_version": "orion.p5.c5.information-surface.v4",
+  "scientific_defect": "The official runner itself generates solver outputs, evaluates eval_locked every round, persists locked values, and prints the final locked value. It is only P5-safe if eval_locked is a separately licensed development surrogate and the final protected panel never enters this process. Hosted sampling also means solver outputs are not byte-frozen merely because solver code/model labels are fixed."
+}

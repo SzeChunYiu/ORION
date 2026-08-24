@@ -1,0 +1,20 @@
+model: bertmap
+output_path: /Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/results/bertmap-out
+annotation_property_iris:
+  - http://www.w3.org/2000/01/rdf-schema#label
+known_mappings: null
+auxiliary_ontos: []
+bert:
+  pretrained_path: /Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/model
+  max_length_for_input: 128
+  num_epochs_for_training: 3.0
+  batch_size_for_training: 1
+  batch_size_for_prediction: 16
+  resume_training: null
+global_matching:
+  enabled: true
+  num_raw_candidates: 200
+  num_best_predictions: 10
+  mapping_extension_threshold: 0.9
+  mapping_filtered_threshold: 0.9995
+  for_oaei: false

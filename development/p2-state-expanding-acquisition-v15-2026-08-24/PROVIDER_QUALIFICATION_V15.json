@@ -1,0 +1,508 @@
+{
+  "coherent_snapshot": {
+    "candidate_dataset_template": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/{review_id}.csv",
+    "commit": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "index_bytes": 22135,
+    "index_git_blob_sha1": "f4f5007156cb71e7d54e99057037fb75d44f87c4",
+    "index_path": "index_v1.json",
+    "index_sha256": "f34c17b3dca9d609585e5fcc9d24c5433d4ad240ef91e5c2e9a48edee1e0959a",
+    "repair_boundary": "Preserve the V13/V14 frozen commit and candidate-dataset route; replace only the incompatible inherited index byte identity in this new protocol.",
+    "repository": "asreview/synergy-dataset",
+    "root_tree_sha1": "49f437c367cc45a90867418fcef77c9ff3614456"
+  },
+  "commit": {
+    "commit_tree_pass": true,
+    "sha": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "signature_valid": true,
+    "status": 200,
+    "tree_sha1": "49f437c367cc45a90867418fcef77c9ff3614456",
+    "verification": {
+      "payload": "tree 49f437c367cc45a90867418fcef77c9ff3614456\nparent 9c5874f9c57d1d8dd49000137ccbf5e9c17bac40\nauthor Jonathan de Bruin <jonathandebruinos@gmail.com> 1664785426 +0200\ncommitter GitHub <noreply@github.com> 1664785426 +0200\n\nUse of ASReview < 1 for metadata collection (#79)\n\n",
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJjOpwSCRBK7hj4Ov3rIwAAKeMIACeUkOJnKR2QVK0OjuWVFl5W\n4v5BzYCI6buWiI+uEqSy/BGel79RJvGRF5fO9ogYGVoLU7ckYAgHozYGvXmiz24T\n1eiWH7Wzc07hD+sVgTAqjfXM9ptt8mkD3rKPmmS5SSyjwP4eSGLivMiTdhY1f40U\n2Jo6BsoTUYocrPhrDYD/q7pVyp9K34G2oo+Q1lSB1HUH2s1s2frj1peHFUsiFbSf\nobRyHoja6uE4Rk8IIQHleMlz/fs1r9a0dh2fe0jjQr0bzwe1gU6Qx5CXlAif7q/c\nPxNBOz46iuj5i+/nHGBug3Gw8l+hsAqQ4totqy2IN6GG7ryG6O8GFa/ZZwUskls=\n=qLMd\n-----END PGP SIGNATURE-----\n",
+      "verified": true,
+      "verified_at": "2024-01-16T19:59:59Z"
+    }
+  },
+  "gates": {
+    "coherent_commit_tree": true,
+    "coherent_index_tree_entry": true,
+    "independent_source_custody": false,
+    "provider_native_v15_contract_predicate": false,
+    "provider_signature_valid": true,
+    "recursive_tree_complete": true,
+    "repository_rights_witness": true,
+    "same_snapshot_dataset_path_manifest_nonempty": true
+  },
+  "index_entry": {
+    "body_requested": false,
+    "entry": {
+      "mode": "100644",
+      "path": "index_v1.json",
+      "sha": "f4f5007156cb71e7d54e99057037fb75d44f87c4",
+      "size": 22135,
+      "type": "blob",
+      "url": "https://api.github.com/repos/asreview/synergy-dataset/git/blobs/f4f5007156cb71e7d54e99057037fb75d44f87c4"
+    },
+    "json_parsed": false,
+    "matching_entry_count": 1,
+    "pass": true
+  },
+  "protocol_sha256": "a492bf47620651b35542b64ac9bc1da115ef793d0998e14a3fa43ab98f64c29c",
+  "provider_relations": {
+    "index_attestation_status": 404,
+    "release_count": 1,
+    "releases": [
+      {
+        "asset_count": 0,
+        "draft": false,
+        "id": 100677630,
+        "prerelease": false,
+        "tag_name": "v1.0",
+        "target_commitish": "master"
+      }
+    ],
+    "tag_ref_count": 3,
+    "tag_refs": [
+      {
+        "object": {
+          "sha": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+          "type": "commit",
+          "url": "https://api.github.com/repos/asreview/synergy-dataset/git/commits/38b35218e4d0f99621cec5a8a25a0147bb88c654"
+        },
+        "ref": "refs/tags/metadata-v1-final"
+      },
+      {
+        "object": {
+          "sha": "254b1cc6e11ace77ae26c7f8fbe8997a632f2680",
+          "type": "commit",
+          "url": "https://api.github.com/repos/asreview/synergy-dataset/git/commits/254b1cc6e11ace77ae26c7f8fbe8997a632f2680"
+        },
+        "ref": "refs/tags/v1.0"
+      },
+      {
+        "object": {
+          "sha": "345008e177383a6b6decdda803dff462df161c9e",
+          "type": "commit",
+          "url": "https://api.github.com/repos/asreview/synergy-dataset/git/commits/345008e177383a6b6decdda803dff462df161c9e"
+        },
+        "ref": "refs/tags/v1.0rc0"
+      }
+    ],
+    "v15_contract_predicate_present": false
+  },
+  "recursive_tree": {
+    "blob_count": 140,
+    "entry_count": 169,
+    "pass": true,
+    "sha": "49f437c367cc45a90867418fcef77c9ff3614456",
+    "status": 200,
+    "truncated": false
+  },
+  "rights_witness": {
+    "api_path": "LICENSE",
+    "boundary": "Repository-level license witness only; per-review third-party dataset rights remain for the independent custodian.",
+    "decoded_bytes": 1064,
+    "decoded_sha256": "f1e934ccb74b86e49caa93146e16d342c86885d06a4b8d087679c3ac5689bbad",
+    "git_blob_sha1": "72f8c206ed3b5e333f94f3dffde2b525fb449954",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "node_id": "MDc6TGljZW5zZTEz",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "pass": true,
+    "repository_api_license": {
+      "key": "cc0-1.0",
+      "name": "Creative Commons Zero v1.0 Universal",
+      "node_id": "MDc6TGljZW5zZTY=",
+      "spdx_id": "CC0-1.0",
+      "url": "https://api.github.com/licenses/cc0-1.0"
+    },
+    "status": 200,
+    "tree_license_entries": [
+      {
+        "bytes": 1064,
+        "git_blob_sha1": "72f8c206ed3b5e333f94f3dffde2b525fb449954",
+        "mode": "100644",
+        "path": "LICENSE"
+      }
+    ]
+  },
+  "same_snapshot_dataset_path_manifest": {
+    "bodies_requested": false,
+    "count": 61,
+    "labels_or_class_counts_inspected": false,
+    "manifest": [
+      {
+        "bytes": 5807809,
+        "git_blob_sha1": "9ae09df552ec21c76b97b571226e2b62ff7a6fd7",
+        "mode": "100644",
+        "path": "datasets/Appenzeller-Herzog_2020/output/Appenzeller-Herzog_2020.csv"
+      },
+      {
+        "bytes": 2635942,
+        "git_blob_sha1": "73615843988e6296c61b8fee352a2be9449d7319",
+        "mode": "100644",
+        "path": "datasets/Bannach-Brown_2019/output/Bannach-Brown_2019.csv"
+      },
+      {
+        "bytes": 11373742,
+        "git_blob_sha1": "d83f9f5a416550687321768e5578c8168da90b54",
+        "mode": "100644",
+        "path": "datasets/Bos_2018/output/Bos_2018.csv"
+      },
+      {
+        "bytes": 4764430,
+        "git_blob_sha1": "4656e0cfc98558c90c9099e5e4bab1e53c819074",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/ACEInhibitors.csv"
+      },
+      {
+        "bytes": 1607158,
+        "git_blob_sha1": "7746f0d10c56ca51fa84ef9f06a3b1a48b2d65b4",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/ADHD.csv"
+      },
+      {
+        "bytes": 559011,
+        "git_blob_sha1": "bba54428af0d3d7cff9abd3c869453f76d21dc54",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/Antihistamines.csv"
+      },
+      {
+        "bytes": 1984822,
+        "git_blob_sha1": "92cd1a0dd925e0c1f33e88a157701ab8bc8b8d7e",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/AtypicalAntipsychotics.csv"
+      },
+      {
+        "bytes": 3968624,
+        "git_blob_sha1": "a73fd6f1bacc75930357766c3218c26addf43f4e",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/BetaBlockers.csv"
+      },
+      {
+        "bytes": 2341143,
+        "git_blob_sha1": "53c3b4c9fcd2151d612064071fc980202929b3bb",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/CalciumChannelBlockers.csv"
+      },
+      {
+        "bytes": 797959,
+        "git_blob_sha1": "60512db7a8a86cfde36b356d4bf907d53e17c1ad",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/Estrogens.csv"
+      },
+      {
+        "bytes": 751492,
+        "git_blob_sha1": "ddb0ae34feafb74b7b1b42bd70211d793fa6d275",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/NSAIDS.csv"
+      },
+      {
+        "bytes": 3355302,
+        "git_blob_sha1": "1799633150364ba0451459971873e13bb4ef86e1",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/Opiods.csv"
+      },
+      {
+        "bytes": 1011622,
+        "git_blob_sha1": "322fbfa53fe39b667abc0906138e3141f1ad1010",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/OralHypoglycemics.csv"
+      },
+      {
+        "bytes": 2506896,
+        "git_blob_sha1": "5749846a34fc17ff430114bc594809ee90a1bddb",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/ProtonPumpInhibitors.csv"
+      },
+      {
+        "bytes": 2216862,
+        "git_blob_sha1": "0d7aa21de2ea72e0b123fa3bf752186006d2c069",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/SkeletalMuscleRelaxants.csv"
+      },
+      {
+        "bytes": 5705602,
+        "git_blob_sha1": "253c22457db927ca1b634397374d767195b2d0ab",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/Statins.csv"
+      },
+      {
+        "bytes": 1130686,
+        "git_blob_sha1": "bc486db5affdf6685d557341c8ffe36ca285fdc4",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/Triptans.csv"
+      },
+      {
+        "bytes": 556163,
+        "git_blob_sha1": "f921843cbf8197cd55689122345c002015ca7051",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/local/UrinaryIncontinence.csv"
+      },
+      {
+        "bytes": 4117098,
+        "git_blob_sha1": "23e0b626cf81266427a80a5e68acbf9fa280e9f3",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/ACEInhibitors.csv"
+      },
+      {
+        "bytes": 1360265,
+        "git_blob_sha1": "0e7f5edccfd85ff22f3ba8e2b1b7761b76149a62",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/ADHD.csv"
+      },
+      {
+        "bytes": 475126,
+        "git_blob_sha1": "755bded91ae2fe22873325572f4dde5ac05d46d3",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/Antihistamines.csv"
+      },
+      {
+        "bytes": 1672292,
+        "git_blob_sha1": "4afabd96d26a318c8285e77416d97d9384719fa7",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/AtypicalAntipsychotics.csv"
+      },
+      {
+        "bytes": 3364044,
+        "git_blob_sha1": "c117217b0864270b6e575a7419151483bd4e9225",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/BetaBlockers.csv"
+      },
+      {
+        "bytes": 1986880,
+        "git_blob_sha1": "0e575912a1494897120b1338b94ad010a8fa8b43",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/CalciumChannelBlockers.csv"
+      },
+      {
+        "bytes": 683824,
+        "git_blob_sha1": "ce75e9dc8d4729e757dbfb8d7aaf70346f7372c2",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/Estrogens.csv"
+      },
+      {
+        "bytes": 623911,
+        "git_blob_sha1": "2041475a68cfaa8d1794072e4ad8822d64856e46",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/NSAIDS.csv"
+      },
+      {
+        "bytes": 2834692,
+        "git_blob_sha1": "fbb54279468a6098b78ce6054634beea5da41dbf",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/Opiods.csv"
+      },
+      {
+        "bytes": 866887,
+        "git_blob_sha1": "4138cb36c5ab6fbc8d657cde601bfb4d0de5d32e",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/OralHypoglycemics.csv"
+      },
+      {
+        "bytes": 2100388,
+        "git_blob_sha1": "d9808683f7fad124793a34ab90b9e044dcd4752f",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/ProtonPumpInhibitors.csv"
+      },
+      {
+        "bytes": 1869881,
+        "git_blob_sha1": "897d7cd3be7a897a6d00af172a89d010b1ed83fd",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/SkeletalMuscleRelaxants.csv"
+      },
+      {
+        "bytes": 4768961,
+        "git_blob_sha1": "66eff6420f464df6f6a73b843567566a9145e683",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/Statins.csv"
+      },
+      {
+        "bytes": 963899,
+        "git_blob_sha1": "e67052e350e5b2879cca338e424c455d6d24da2d",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/Triptans.csv"
+      },
+      {
+        "bytes": 468188,
+        "git_blob_sha1": "167b1db5435d74d87f3c37a31d01427195f6cab7",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/output/online/UrinaryIncontinence.csv"
+      },
+      {
+        "bytes": 4753506,
+        "git_blob_sha1": "27519806378b0c6f14ea3e2745a147e3587b8ee6",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/ACEInhibitors.csv"
+      },
+      {
+        "bytes": 1603951,
+        "git_blob_sha1": "3c1db898e6f6af54406a3886e7c18ab3c80b4ac6",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/ADHD.csv"
+      },
+      {
+        "bytes": 557894,
+        "git_blob_sha1": "ffe369c167183ba2c0b415f3b3fe0fd6fcb09919",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/Antihistamines.csv"
+      },
+      {
+        "bytes": 1980488,
+        "git_blob_sha1": "5e73464dca4723705990ecd9d9dfe8701e643d72",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/AtypicalAntipsychotics.csv"
+      },
+      {
+        "bytes": 3959806,
+        "git_blob_sha1": "a97523f79712201eb8c5cbe5931c931614fed50a",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/BetaBlockers.csv"
+      },
+      {
+        "bytes": 2336399,
+        "git_blob_sha1": "07c81c1b7791470f91008a8bff3dfc030ef303d0",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/CalciumChannelBlockers.csv"
+      },
+      {
+        "bytes": 796614,
+        "git_blob_sha1": "719d8b1de91e4c08be0b9af1bdb81b2a7dbce514",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/Estrogens.csv"
+      },
+      {
+        "bytes": 750071,
+        "git_blob_sha1": "56dbda24ea8906baa39da32932a38f750c691605",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/NSAIDS.csv"
+      },
+      {
+        "bytes": 3347109,
+        "git_blob_sha1": "eb7efe58f7b000676a74d7ea311fa1a7c74ad3cc",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/Opiods.csv"
+      },
+      {
+        "bytes": 1009769,
+        "git_blob_sha1": "268bbe23584360968032ef70828597150a830c6d",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/OralHypoglycemics.csv"
+      },
+      {
+        "bytes": 2501565,
+        "git_blob_sha1": "1700a9e6b2eadca8929f00400b08ef7a8591bf70",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/ProtonPumpInhibitors.csv"
+      },
+      {
+        "bytes": 2210343,
+        "git_blob_sha1": "fa35e6ef0b1ce27f401e1598d169fdbc35ccf997",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/SkeletalMuscleRelaxants.csv"
+      },
+      {
+        "bytes": 5690911,
+        "git_blob_sha1": "8656abea71147829813772d9e9131f976327473f",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/Statins.csv"
+      },
+      {
+        "bytes": 1128249,
+        "git_blob_sha1": "6d551f2e15a929ef59c595160c8020e808021cee",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/Triptans.csv"
+      },
+      {
+        "bytes": 555022,
+        "git_blob_sha1": "64ad51fa886f417e6bbf7d03cb096b6018d57281",
+        "mode": "100644",
+        "path": "datasets/Cohen_2006/raw/UrinaryIncontinence.csv"
+      },
+      {
+        "bytes": 8854177,
+        "git_blob_sha1": "c7d796937f1d7fca3eb5c4507b20f016f40f673b",
+        "mode": "100644",
+        "path": "datasets/Hall_Wahono_Radjenovic_Kitchenham/output/Hall_2012.csv"
+      },
+      {
+        "bytes": 1819743,
+        "git_blob_sha1": "15ae14584cf762aba37ce9fe8a1ce27db293fea4",
+        "mode": "100644",
+        "path": "datasets/Hall_Wahono_Radjenovic_Kitchenham/output/Kitchenham_2010.csv"
+      },
+      {
+        "bytes": 6587766,
+        "git_blob_sha1": "8d3fc956e495425f83c855a1d523e3812f8170ca",
+        "mode": "100644",
+        "path": "datasets/Hall_Wahono_Radjenovic_Kitchenham/output/Radjenovic_2013.csv"
+      },
+      {
+        "bytes": 8029683,
+        "git_blob_sha1": "5a39c5de6c3f91e3d651aaf48322f7037f23d132",
+        "mode": "100644",
+        "path": "datasets/Hall_Wahono_Radjenovic_Kitchenham/output/Wahono_2015.csv"
+      },
+      {
+        "bytes": 4411575,
+        "git_blob_sha1": "05054ccdddd1e4ad8e2945525b271134d6289b28",
+        "mode": "100644",
+        "path": "datasets/Kwok_2020/output/Kwok_2020.csv"
+      },
+      {
+        "bytes": 3638285,
+        "git_blob_sha1": "f79c51fd18647cf0c6a0c022fa1c0dd70fad8c60",
+        "mode": "100644",
+        "path": "datasets/Nagtegaal_2019/output/Nagtegaal_2019.csv"
+      },
+      {
+        "bytes": 10437481,
+        "git_blob_sha1": "21c978fc55cf69b561e279df3bd28b6ec81d511d",
+        "mode": "100644",
+        "path": "datasets/Wolters_2018/output/Wolters_2018.csv"
+      },
+      {
+        "bytes": 18795734,
+        "git_blob_sha1": "9cbbe82ab97c7736e7f86643b777621ecd0d463f",
+        "mode": "100644",
+        "path": "datasets/van_Dis_2020/output/van_Dis_2020.csv"
+      },
+      {
+        "bytes": 668410,
+        "git_blob_sha1": "4f4e67f318fcbd5460bf5214f9e5776083816ce5",
+        "mode": "100644",
+        "path": "datasets/van_de_Schoot_2017/csv/schoot-lgmm-ptsd-included-1.csv"
+      },
+      {
+        "bytes": 85120,
+        "git_blob_sha1": "bf3de908bd4c535a3f5d9c37e31253301d4b50de",
+        "mode": "100644",
+        "path": "datasets/van_de_Schoot_2017/csv/schoot-lgmm-ptsd-included-2.csv"
+      },
+      {
+        "bytes": 23383,
+        "git_blob_sha1": "6e75a1844a298a52f39fa0c6cf0b6934f75d8e7e",
+        "mode": "100644",
+        "path": "datasets/van_de_Schoot_2017/csv/schoot-lgmm-ptsd-included-3.csv"
+      },
+      {
+        "bytes": 14470375,
+        "git_blob_sha1": "2dd0bb560b74ce56d06b6081f99e2cd7fdc97d78",
+        "mode": "100644",
+        "path": "datasets/van_de_Schoot_2017/csv/schoot-lgmm-ptsd-initial.csv"
+      },
+      {
+        "bytes": 10468015,
+        "git_blob_sha1": "a5d99f4ab7246bb0deda0da6b7e891d2911af01d",
+        "mode": "100644",
+        "path": "datasets/van_de_Schoot_2017/output/van_de_Schoot_2017.csv"
+      }
+    ]
+  },
+  "schema_version": "orion.p2.state-expanding-acquisition.v15.provider-qualification",
+  "widest_positive": "Provider-authenticated coherent same-snapshot metadata only; generic signature/rights/path witnesses are not independent V15 contract custody."
+}

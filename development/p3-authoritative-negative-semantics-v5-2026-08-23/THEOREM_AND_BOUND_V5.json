@@ -1,0 +1,53 @@
+{
+  "corollaries": {
+    "family_extensibility": "The theorem schema is not bounded to the three observed families; each new family must independently pass the unchanged admission gate.",
+    "monotone_refinement": "Adding conflict-free direct certificates can only preserve or shrink information sets; it cannot turn absence into OBSTRUCTION.",
+    "no_free_obstruction": "Without a selected explicit negative certificate, obstruction is not identified."
+  },
+  "created_at": "2026-08-23T16:53:19.037820+00:00",
+  "definitions": {
+    "G_C": "canonical pairs carrying an admitted direct GLUE certificate",
+    "I_C_pair": {
+      "G_C_only": [
+        "GLUE"
+      ],
+      "O_C_only": [
+        "OBSTRUCTION"
+      ],
+      "both": "CANNOT_CHECK_CONFLICT",
+      "neither": [
+        "GLUE",
+        "OBSTRUCTION"
+      ]
+    },
+    "O_C": "canonical pairs carrying an admitted direct OBSTRUCTION certificate"
+  },
+  "frame_id": "P3_V5_DIRECT_AXIOM_NEGATIVE_SEMANTICS_CALIBRATION_FRAME",
+  "name": "Direct-certificate partial-identification theorem",
+  "not_established": [
+    "Cartesian exhaustivity",
+    "naturalistic cross-ontology transport",
+    "comparator superiority or performance",
+    "population transport",
+    "V3 harm reversal",
+    "protected outcomes"
+  ],
+  "observed_instantiation": {
+    "admitted_families": 3,
+    "certificate_domain_size": 4838,
+    "conflicts": 0,
+    "glue_singletons": 4789,
+    "obstruction_singletons": 49,
+    "point_identified_on_entire_observed_certificate_domain": true,
+    "required_families": 3
+  },
+  "proof_sketch": [
+    "The adapter assigns singleton {GLUE} exactly to same-IRI identities and direct named equivalentClass certificates.",
+    "It assigns singleton {OBSTRUCTION} exactly to direct named disjointWith or valid named AllDisjointClasses certificates.",
+    "The frozen absence rule maps no-certificate pairs to {GLUE, OBSTRUCTION}, so neither positive-reference absence nor matcher nonselection can create obstruction.",
+    "The conflict rule excludes pairs carrying both certificate kinds; therefore the remaining certificate domain has a unique binary label."
+  ],
+  "schema_version": "orion.p3.authoritative-negative-semantics.theorem-and-bound.v5",
+  "sharp_bound": "Binary truth is point-identified on the finite direct-certificate set. Every pair outside that set remains set-valued unless separately certified.",
+  "universal_theorem": "For any immutable byte-identical source/target ontology views satisfying the frozen namespace and direct-axiom rules, every canonical pair with exactly one certificate kind is point-identified; every pair with neither kind remains set-valued {GLUE, OBSTRUCTION}; and every pair with both kinds is excluded as CANNOT_CHECK_CONFLICT."
+}

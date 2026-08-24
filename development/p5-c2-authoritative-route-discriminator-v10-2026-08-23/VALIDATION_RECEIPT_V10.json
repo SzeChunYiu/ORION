@@ -1,0 +1,22 @@
+{
+  "arm_or_model_executed": false,
+  "checks": {
+    "archive_hash_and_path_assertions": "PASS",
+    "builder_exit_code": 0,
+    "packet_validator_exit_code": 0,
+    "packet_validator_expected_output": {
+      "json_files_parsed": 8,
+      "negative_entries_verified": 3,
+      "required_successor_byte_classes": 6,
+      "route_excerpts_verified": 7,
+      "status": "PASS"
+    },
+    "python_source_compile_in_memory": "PASS",
+    "sha256sums_entries_verified": 11,
+    "sha256sums_status": "PASS"
+  },
+  "prohibited_c4_validator_executed": false,
+  "schema_version": "orion.p5.c2.validation-receipt.v10",
+  "scope": "SCHEMA_CROSS_REFERENCE_HASH_AND_STATIC_ROUTE_VALIDATION_ONLY__NO_SCIENTIFIC_PERFORMANCE_AUTHORITY",
+  "validated_at_utc": "2026-08-23T21:35:04Z"
+}

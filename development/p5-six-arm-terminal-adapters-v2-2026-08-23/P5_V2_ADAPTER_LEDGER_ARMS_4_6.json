@@ -1,0 +1,588 @@
+{
+  "arms": [
+    {
+      "adapter_specific_controls": [
+        "Replace task/evaluation intake with the frozen candidate-visible P5 dossier plus allowed public motivating/replay observations; protected labels, gold patches, hidden tests, evaluator messages, fresh-transfer outcomes and harm outcomes never enter profile.json, diagnoses, revision plans, parent selection or candidate scoring.",
+        "Freeze one host-enforced component-to-front registry and write allowlist. The source describes a focused 1-3-file prompt surface and a broader CLI agent_and_meta surface; neither is trusted as the P5 boundary until one exact external policy is content-addressed.",
+        "Require the final selected candidate to provide a schema-valid revision_action.json bound to model_patch.diff, profile.revision_plan and the complete host-observed write set. Free-text target_failure_mode is evidence for the certificate parser, never a class label by itself.",
+        "Development-only compile/evaluation may determine native completion under a pre-frozen public-development harness. No protected outcome may select a parent, best candidate, generation, patch or terminal.",
+        "Preserve compile failure, empty patch, timeout, evaluation error/skipped state, missing profile/diagnosis, early stop, log and resource terminals; never rewrite them as EXECUTION_REPAIR or any successful class."
+      ],
+      "arm_execution_ready": false,
+      "conditional_singleton_support_count": 4,
+      "feasibility_terminal": "ADIAS_IDENTITY_BOUND__ISSUE_DIAGNOSTIC_AND_FINAL_ACTION_FIBRES_SEPARATED__OUTCOME_BLIND_SINGLE_FRONT_ADAPTER_NOT_RELEASED",
+      "frozen_support_set": {
+        "conditionally_supported": [
+          "WITHIN_CLASS_MODEL_REPAIR",
+          "MODEL_CLASS_EXPANSION",
+          "REPRESENTATION_REGIME_REPAIR",
+          "EXECUTION_REPAIR"
+        ],
+        "unsupported": [
+          "EVIDENCE_REPAIR",
+          "MEASUREMENT_REPAIR",
+          "EVALUATOR_REPAIR"
+        ]
+      },
+      "identity": {
+        "branch": "main",
+        "commit": "fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993",
+        "licence": "CC BY-NC-SA 4.0 (noncommercial/share-alike; not OSI-open)",
+        "licence_sha256": "047d2259741a3ebb30d8c8a43d4ba79b5b229a069acd1d2bea49f22b297d8e98",
+        "native_entrypoints": [
+          "scripts/run_*.sh -> python -u generate_loop.py",
+          "python run_meta_agent.py ... --mode improve|learn",
+          "adias-run-meta-agent = run_meta_agent:main"
+        ],
+        "paper": "ADIAS: Automated Design of Interactive Agentic Systems, arXiv:2608.06410v1",
+        "repository": "https://github.com/scylj1/adias"
+      },
+      "native_fibre_map": [
+        {
+          "lawful_projection": "The matching one of WITHIN_CLASS_MODEL_REPAIR, MODEL_CLASS_EXPANSION, REPRESENTATION_REGIME_REPAIR or EXECUTION_REPAIR, only if native status is COMPLETE_SUCCESS and the certificate, declared class, recomputed write-front singleton, authorized surface and other-front invariance hashes all agree.",
+          "native_fibre": "final selected model_patch.diff plus schema-valid profile.revision_plan, one host-validated input-native certificate and a complete valid single-front action manifest",
+          "proof": "The adapter-visible record z contains an independently validated certificate for c and a complete changed-component front set exactly {c}; by the frozen certificate/registry contract, every admissible hidden world in this refined fibre has action type c. The raw ADIAS patch, issue or success terminal contributes no singleton semantics. Scientific correctness/minimality remains external.",
+          "singleton_set": [
+            "WITHIN_CLASS_MODEL_REPAIR",
+            "MODEL_CLASS_EXPANSION",
+            "REPRESENTATION_REGIME_REPAIR",
+            "EXECUTION_REPAIR"
+          ]
+        },
+        {
+          "lawful_projection": "UNRESOLVED even if syntactically valid",
+          "native_fibre": "schema-valid revision plan or final patch declaring EVIDENCE_REPAIR, MEASUREMENT_REPAIR or EVALUATOR_REPAIR",
+          "reason": "Those fronts are outside ADIAS V2 frozen support. Generic agent/meta source rewriting cannot manufacture evidence, measurement or evaluator decision support."
+        },
+        {
+          "lawful_projection": "UNRESOLVED",
+          "native_fibre": "profile.json issue category, target_failure_mode, lifecycle status, evidence references, attempts, absence observations or change history without an agreeing final action proof",
+          "reason": "Persistent issue metadata is a diagnostic fibre. The same visible issue/status may require model, representation, execution or an unsupported front."
+        },
+        {
+          "lawful_projection": "UNRESOLVED",
+          "native_fibre": "round_diagnosis.json, patch_summary, meta_agent_chat_history.md, generate.log or token_usage.json without a sealed final action",
+          "reason": "Intermediate reasoning, summaries, logs and resources neither select nor certify one P5 front."
+        },
+        {
+          "forbidden_relabels": [
+            "EXECUTION_REPAIR",
+            "WITHIN_CLASS_MODEL_REPAIR",
+            "MODEL_CLASS_EXPANSION",
+            "REPRESENTATION_REGIME_REPAIR"
+          ],
+          "lawful_projection": "UNRESOLVED",
+          "native_fibre": "model_patch.diff or final best candidate without one host-validated certificate and complete single-front write-set proof",
+          "reason": "A code patch can alter prompts/policy, model family, memory/representation, tooling/orchestration or several fronts."
+        },
+        {
+          "lawful_projection": "UNRESOLVED unless the distinct action proof passes",
+          "native_fibre": "compile_status.ok=true or successful candidate compilation/evaluation alone",
+          "reason": "Compilation and development success are run/evaluator outcomes, not revision-class semantics."
+        },
+        {
+          "lawful_projection": "UNRESOLVED as a class prediction; protected versions are forbidden adapter inputs",
+          "native_fibre": "candidate archive, parent relation, generation rank, validation/test score or final best-candidate summary",
+          "reason": "Archive/rank/score selects native candidates but does not identify a P5 front. Protected feedback would violate outcome blindness."
+        },
+        {
+          "forbidden_relabels": [
+            "EXECUTION_REPAIR"
+          ],
+          "lawful_projection": "UNRESOLVED with compile-failure terminal and payload digest preserved",
+          "native_fibre": "compile_status.ok=false with error text and skipped evaluation",
+          "reason": "A candidate compilation failure is not a proposal to repair the execution front."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with empty/early-stop status preserved",
+          "native_fibre": "empty patch or consecutive-empty-patch early stop",
+          "reason": "No valid final revision action exists."
+        },
+        {
+          "forbidden_relabels": [
+            "EXECUTION_REPAIR"
+          ],
+          "lawful_projection": "UNRESOLVED with exact timeout/process status preserved",
+          "native_fibre": "meta-agent/improve/learn process exits nonzero after 21600-second timeout",
+          "reason": "Resource exhaustion is a run terminal, not a successful execution repair."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with exact evaluation terminal preserved",
+          "native_fibre": "evaluation exception, run_eval=false, skipped evaluation or parallel evaluation failure",
+          "reason": "Missing or failed evaluation cannot become a class decision."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with missing-output warning preserved",
+          "native_fibre": "successful learn process but profile.json or round_diagnosis.json absent",
+          "reason": "The required certificate substrate is incomplete."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with P5_UNRESOLVED_MIXED_OR_AMBIGUOUS_FRONT",
+          "native_fibre": "actual complete write set touches unknown components, multiple fronts or conflicts with profile.revision_plan",
+          "reason": "The fibre contains incomparable or unsupported actions and fails the exact-front theorem condition."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with P5_UNRESOLVED_ADAPTER_INTEGRITY_FAILURE",
+          "native_fibre": "candidate relies on the source-level prompt/CLI write-surface mismatch without a host-enforced frozen allowlist",
+          "reason": "The complete action surface is not identified, so the adapter cannot prove a singleton front."
+        }
+      ],
+      "native_semantic_boundary": "ADIAS emits persistent issue state, diagnoses, revision plans, agent-code patches, lineage and development evaluation records. Stable issue identity, profile lifecycle, compile success, score, parent rank and a free-text failure category do not natively identify the minimal P5 revision front.",
+      "raw_native_symptom_singletons_licensed": 0,
+      "released_adapter_found": false,
+      "slot_id": "C4_ISSUE_CENTRIC_OPTIMIZATION",
+      "system_id": "ADIAS_AT_FBCF0C7"
+    },
+    {
+      "adapter_specific_controls": [
+        "Hash and freeze solver code, prompts, model/provider revision, tools, seed, task universe and output generator before metric evolution; verify exact byte identity afterward.",
+        "Use only candidate-visible P5 development dossiers, frozen-solver outputs, unlabelled development outputs and a frozen development anchor. The official eval_locked path must be replaced by or interpreted only as a development surrogate.",
+        "Freeze a final content-addressed evaluator artifact and a revision_action.json. The complete write set must touch evaluator components only; no solver, skill, prompt, task, split, benchmark or protected evaluator byte may change.",
+        "Require a pre-outcome input-native evaluator-defect certificate distinct from detector DRAWBACK and require all frozen development validity gates to pass.",
+        "The external custodian scores the sealed metric once on the protected panel and withholds outcomes. No protected agreement, rollback, elite selection, synthesis, retry or replacement occurs.",
+        "Retain all detector statuses, null labels, provider/network errors, timeouts, null final expression/history and development validity failures separately from the projected P5 class."
+      ],
+      "arm_execution_ready": false,
+      "conditional_singleton_support_count": 1,
+      "feasibility_terminal": "DOUBLE_RATCHET_METRIC_ONLY_IDENTITY_BOUND__DIAGNOSTIC_AND_EVALUATOR_ACTION_FIBRES_SEPARATED__PROTECTED_OUTCOME_BLIND_ADAPTER_NOT_RELEASED",
+      "frozen_support_set": {
+        "conditionally_supported": [
+          "EVALUATOR_REPAIR"
+        ],
+        "unsupported": [
+          "EVIDENCE_REPAIR",
+          "MEASUREMENT_REPAIR",
+          "WITHIN_CLASS_MODEL_REPAIR",
+          "MODEL_CLASS_EXPANSION",
+          "REPRESENTATION_REGIME_REPAIR",
+          "EXECUTION_REPAIR"
+        ]
+      },
+      "identity": {
+        "branch": "main",
+        "commit": "0f14e910d361196422d9b938f45280919952d4fd",
+        "excluded_entrypoint": "scripts/run_co_evo.py because it changes the skill library as well as the metric",
+        "licence": "Apache-2.0 with NOTICE",
+        "licence_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+        "native_entrypoint": "python scripts/run_metric_evo.py ...",
+        "notice_sha256": "5d86be6e681240106316a6763eb0dcb47a8adcb426c19df4693098ceb61bb531",
+        "paper": "Who Grades the Grader? Co-Evolving Evaluation Metrics and Skills for Self-Improving LLM Agents, arXiv:2607.12790v2",
+        "repository": "https://github.com/amazon-science/Self-Evolving-Agents-Double-Ratchet"
+      },
+      "metric_diagnostic_vs_revision_decision": {
+        "diagnostic_only": [
+          "CLEAN",
+          "DRAWBACK",
+          "ABSTAIN",
+          "all-detectors-abstain",
+          "per-detector drawback class/evidence/severity",
+          "final_locked_agreement",
+          "marginal statistics",
+          "gaps",
+          "elite rank",
+          "evolution history"
+        ],
+        "not_licensed_inference": [
+          "DRAWBACK -> EVALUATOR_REPAIR",
+          "CLEAN -> no repair or resolved case",
+          "ABSTAIN -> any substantive revision class",
+          "high agreement -> EVALUATOR_REPAIR",
+          "detector evidence -> minimal P5 front"
+        ],
+        "only_conditional_action": "EVALUATOR_REPAIR from a separate pre-outcome host-validated evaluator-defect certificate plus a sealed evaluator-only mutation and passed development validity gate."
+      },
+      "native_fibre_map": [
+        {
+          "lawful_projection": "EVALUATOR_REPAIR",
+          "native_fibre": "complete successful metric-only run with final evaluator artifact plus one host-validated input-native evaluator-defect certificate, byte-identical frozen solver/task universe, evaluator-only single-front action manifest and passed development validity gates",
+          "proof": "The refined observation z proves an incumbent evaluator defect and a complete mutation confined to the evaluator front while solver/task bytes are invariant. Under the frozen certificate contract every admissible world in this fibre has action type EVALUATOR_REPAIR. The singleton is not inferred from DRAWBACK or agreement, and later protected correctness/minimality remains external.",
+          "singleton_set": [
+            "EVALUATOR_REPAIR"
+          ]
+        },
+        {
+          "forbidden_relabels": [
+            "EVALUATOR_REPAIR"
+          ],
+          "lawful_projection": "UNRESOLVED",
+          "native_fibre": "Status.DRAWBACK alone, including a detector note, class, evidence or severity",
+          "reason": "The frozen same-visible-symptom fixture contains an omitted-evidence world and a defective-evaluator world with the same DRAWBACK. The fibre is mixed."
+        },
+        {
+          "lawful_projection": "UNRESOLVED",
+          "native_fibre": "Status.CLEAN alone",
+          "reason": "No detected drawback does not prove that no scientific revision is needed and does not identify a revision class."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with ABSTAIN/all-abstain preserved",
+          "native_fibre": "Status.ABSTAIN or all detectors abstain",
+          "reason": "The metric declines to decide; it is not passed and has no P5-front semantics."
+        },
+        {
+          "lawful_projection": "UNRESOLVED",
+          "native_fibre": "per-detector trace, drawback category, evidence, severity, cost or note without the distinct evaluator-defect certificate and action",
+          "reason": "These are metric diagnostics. They can motivate investigation but cannot become revision-class labels."
+        },
+        {
+          "lawful_projection": "UNRESOLVED",
+          "native_fibre": "result.json final_metric_expr, metric.db, reverse-tree expression or content-addressed evaluator artifact without the distinct evaluator-defect certificate",
+          "reason": "A changed metric establishes the object evolved, not that evaluator repair is the unique minimal action for the case."
+        },
+        {
+          "lawful_projection": "UNRESOLVED and forbidden as protected-path class input",
+          "native_fibre": "final_locked_agreement, development agreement, elite rank, contribution statistic, gap or evolution history",
+          "reason": "Performance and selection diagnostics do not identify action semantics. Protected values would violate custody."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with validity-failure terminal preserved",
+          "native_fibre": "evaluator-only final artifact and certificate but development validity gate fails",
+          "reason": "The frozen support condition is not satisfied."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with P5_UNRESOLVED_ADAPTER_INTEGRITY_FAILURE",
+          "native_fibre": "run_metric_evo invocation that mutates solver/skill/prompt/task/split bytes or any run_co_evo.py joint-evolution output",
+          "reason": "The C5 identity requires solver/task invariance and evaluator-only writes; joint evolution is outside the arm."
+        },
+        {
+          "lawful_projection": "UNRESOLVED",
+          "native_fibre": "syntactically valid action declaring any non-evaluator class",
+          "reason": "All six non-evaluator resolved classes are outside C5 frozen support."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with null-label reason preserved",
+          "native_fibre": "null soft label after no-LLM/provider/unparseable attempts",
+          "reason": "Missing development annotation is not an evaluator-repair decision."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with exact provider/timeout terminal preserved",
+          "native_fibre": "retryable Bedrock failure after three attempts, non-retryable provider exception or network connect/read timeout exhaustion",
+          "reason": "Service failure is not EVALUATOR_REPAIR or EXECUTION_REPAIR."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with exact missing/timeout state preserved",
+          "native_fibre": "null final expression, no history, absent metric artifact or unbound aggregate wallclock timeout",
+          "reason": "No valid complete evaluator action exists."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with custody/protocol integrity failure",
+          "native_fibre": "official eval_locked value enters proposal, elite, rollback, synthesis, retry or replacement on the protected path",
+          "reason": "Protected information contaminated candidate selection; no lawful outcome-blind terminal can be recovered post hoc."
+        }
+      ],
+      "native_semantic_boundary": "The selected arm evolves detector operations and a metric expression while the solver and task universe are fixed. CLEAN, DRAWBACK, ABSTAIN, detector class/evidence/severity, agreement, marginal contribution, elite rank and metric history are evaluator diagnostics. None alone decides which P5 scientific revision front a case requires.",
+      "raw_native_symptom_singletons_licensed": 0,
+      "released_adapter_found": false,
+      "slot_id": "C5_EVALUATOR_ONLY_EVOLUTION",
+      "system_id": "DOUBLE_RATCHET_METRIC_ONLY_AT_0F14E91"
+    },
+    {
+      "adapter_specific_controls": [
+        "Freeze one topic-to-case packet, agent profile, model/provider, tool list/code hashes, API revisions, network allowlist, resource budgets and candidate artifact-store reset before execution.",
+        "Run in dry-run mode only. Disable Infinite posting and deny protected labels/evaluator/freshness, host promotion and sibling state.",
+        "Retain native artifact UUID/hash/agent/skill/topic/parent lineage, JSONL records, open-needs and status values exactly. Projecting selected_revision_class=UNRESOLVED does not rename the native open-need/draft/error terminal.",
+        "Do not infer EVIDENCE_REPAIR from a missing source, MEASUREMENT_REPAIR from a missing measurement, REPRESENTATION_REGIME_REPAIR from a typed artifact, or any class from a successful investigation/draft.",
+        "Because the prospectively frozen V2 support set is empty, even an externally attached class declaration or action manifest cannot create a resolved singleton. Adding support requires a new pre-outcome successor protocol."
+      ],
+      "arm_execution_ready": false,
+      "conditional_singleton_support_count": 0,
+      "feasibility_terminal": "SCIENCECLAW_IDENTITY_BOUND__ALL_NATIVE_FIBRES_PROJECT_UNRESOLVED_WITH_NATIVE_TERMINALS_RETAINED__P5_SELECTOR_NOT_RELEASED",
+      "frozen_support_set": {
+        "conditionally_supported": [],
+        "unsupported": [
+          "EVIDENCE_REPAIR",
+          "MEASUREMENT_REPAIR",
+          "WITHIN_CLASS_MODEL_REPAIR",
+          "MODEL_CLASS_EXPANSION",
+          "REPRESENTATION_REGIME_REPAIR",
+          "EXECUTION_REPAIR",
+          "EVALUATOR_REPAIR"
+        ]
+      },
+      "identity": {
+        "branch": "categoryscienceclaw-mechanics",
+        "commit": "38b2f681e87272cd505c9b2671760fc3729756c2",
+        "entrypoint_sha256": {
+          "autonomous/deep_investigation.py": "72493b0e60b9ede93a945cc73f89780a30e9fc405bfc957dc8532e37711fa556",
+          "bin/scienceclaw-post": "edf23cc94775cc19d9dc63d11818211e61f618127b8baddb0c39a6270f16ebaf",
+          "setup.py": "0302ab0d1436ead7f587c9e241cf67dd26b93ad2eb1ead9c316d149d8e151d12"
+        },
+        "licence": "Apache-2.0",
+        "licence_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "native_entrypoints": [
+          "scienceclaw-post --agent <id> --topic <topic> --dry-run",
+          "autonomous.deep_investigation.run_deep_investigation(agent_name, topic, ...)"
+        ],
+        "paper": "Self-Revising Discovery Systems for Science: A Categorical Framework for Agentic Artificial Intelligence, arXiv:2606.01444v1",
+        "repository": "https://github.com/lamm-mit/scienceclaw"
+      },
+      "native_fibre_map": [
+        {
+          "lawful_projection": "UNRESOLVED with native artifact terminal and digest preserved",
+          "native_fibre": "valid immutable typed artifact with UUID/content hash/agent/skill/topic/parent lineage",
+          "reason": "A provenance-rich scientific artifact is evidence about an investigation, not a minimal P5 revision decision; C6 has no supported resolved class."
+        },
+        {
+          "forbidden_relabels": [
+            "EVIDENCE_REPAIR",
+            "MEASUREMENT_REPAIR"
+          ],
+          "lawful_projection": "UNRESOLVED while retaining native terminal OPEN_NEED",
+          "native_fibre": "open need with a valid typed artifact",
+          "reason": "The frozen same-visible-symptom fixture has a missing-primary-source world and a missing-measurement-resolution world with the same native symptom. Renaming the native terminal is forbidden; only the separate P5 projection is UNRESOLVED."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with draft/result status preserved",
+          "native_fibre": "investigation result, final draft or dry-run draft",
+          "reason": "Narrative or synthesized output does not provide a P5 action selector."
+        },
+        {
+          "lawful_projection": "UNRESOLVED when considered as a case prediction",
+          "native_fibre": "agent/global JSONL ledger, parent lineage or artifact status mutation",
+          "reason": "Lineage and state transitions carry custody/provenance information, not revision-front semantics."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with DRY_RUN/NO_POST preserved",
+          "native_fibre": "successful dry-run/no-post terminal",
+          "reason": "Operational completion is not a P5 class and posting is forbidden in this lane."
+        },
+        {
+          "lawful_projection": "UNRESOLVED",
+          "native_fibre": "externally attached revision_action.json or class certificate claiming any resolved class",
+          "reason": "Every resolved class is outside ScienceClaw V2 frozen support. The adapter may not manufacture a selector around a substrate that does not natively expose the decision interface."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with P5_UNRESOLVED_ADAPTER_INTEGRITY_FAILURE",
+          "native_fibre": "Infinite posting attempted or candidate write escapes the isolated artifact/ledger surface",
+          "reason": "The action violates the frozen custody/write policy and cannot be repaired after observation."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with the exact native error/timeout/dependency terminal preserved",
+          "native_fibre": "login failure, service timeout, tool failure or missing optional dependency",
+          "reason": "Run failures are not scientific revision decisions."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with the exact native state preserved",
+          "native_fibre": "invalid artifact, empty artifact, missing result, draft-only or no-post noncompletion",
+          "reason": "No valid native P5 action exists; missing output is never rewritten as success."
+        },
+        {
+          "lawful_projection": "UNRESOLVED with P5_UNRESOLVED_MIXED_OR_AMBIGUOUS_FRONT",
+          "native_fibre": "mixed set of artifacts, needs or status mutations suggesting more than one front",
+          "reason": "The visible fibre is nonconstant over the P5 ontology and C6 has no singleton support in any event."
+        }
+      ],
+      "native_semantic_boundary": "ScienceClaw emits content-addressed typed scientific artifacts, lineage ledgers, investigation drafts, open needs and status mutations. Those records preserve provenance and representation regime but do not natively choose a minimal P5 revision class.",
+      "raw_native_symptom_singletons_licensed": 0,
+      "released_adapter_found": false,
+      "slot_id": "C6_STRONGEST_SOURCE_GROUNDED_MODERN_METHOD",
+      "system_id": "SCIENCECLAW_AT_38B2F68"
+    }
+  ],
+  "audit_exclusions": [
+    "No native output example, trajectory, patch, profile row, detector trace, metric result, artifact body, benchmark row, label, protected diagnostic, gold patch, hidden test, fresh-transfer outcome, harm outcome, or comparator performance was inspected or executed.",
+    "No native repository was built or run; the source facts below are retained interface contracts from the predecessor audits.",
+    "This ledger proves only a prospective terminal projection. It does not show that a released adapter exists, that any proposed class is scientifically correct, or that any arm is ready."
+  ],
+  "audit_id": "P5_V2_TERMINAL_PRESERVING_ADAPTER_AUDIT_ARMS_4_6_2026_08_23",
+  "authority": "SOURCE_AND_INTERFACE_CONTRACT_AUDIT_ONLY__NO_NATIVE_OUTPUT_EXAMPLE_OR_OUTCOME_AUTHORITY",
+  "captured_at_utc": "2026-08-23T15:50:47Z",
+  "common_terminal_preserving_adapter": {
+    "action_manifest_required_fields": [
+      "declared_revision_class",
+      "native_final_artifact_sha256",
+      "changed_component_ids",
+      "claimed_front_set",
+      "authorized_write_surface_sha256",
+      "before_after_invariance_hashes_for_all_other_fronts",
+      "scientific_target_identity_sha256",
+      "candidate_visibility_manifest_sha256",
+      "protected_information_accessed_false",
+      "external_evaluator_write_access_false",
+      "input_native_class_certificate_sha256"
+    ],
+    "custody_rule": "The class record and native artifacts are frozen and hashed before an evaluator outside candidate custody opens protected outcomes. No post-outcome class, front-set, threshold, parser, path registry, or successor-selection change is allowed.",
+    "front_registry_rule": "Every candidate-writable component must be prospectively assigned to zero, one, or multiple P5 fronts. Unregistered components and components assigned to multiple fronts are ambiguous. A file extension or the bare fact that code changed is never a front classifier.",
+    "lawful_single_front_fibres": [
+      {
+        "class_id": "EVIDENCE_REPAIR",
+        "required_exact_front": "Only registered acquisition, routing, provenance, coverage, or evidence-authority components change; measurement, representation, model class, evaluator and execution identities are hash-invariant."
+      },
+      {
+        "class_id": "MEASUREMENT_REPAIR",
+        "required_exact_front": "Only registered instrument, label, proxy, calibration, sampling, or measurement-mapping components change; downstream model family and evaluator identities are hash-invariant."
+      },
+      {
+        "class_id": "WITHIN_CLASS_MODEL_REPAIR",
+        "required_exact_front": "Only registered parameter, objective, prior, inference, or training components change; the licensed model-class ID and representation identity are hash-invariant."
+      },
+      {
+        "class_id": "MODEL_CLASS_EXPANSION",
+        "required_exact_front": "Only the registered hypothesis/model-family boundary changes, with an explicit expansion/replacement action; evidence, measurement, representation, evaluator and execution-method identities are otherwise hash-invariant."
+      },
+      {
+        "class_id": "REPRESENTATION_REGIME_REPAIR",
+        "required_exact_front": "Only registered state-variable, ontology, encoding, interface, memory, or typed-artifact-regime components change; the scientific target identity is hash-invariant."
+      },
+      {
+        "class_id": "EXECUTION_REPAIR",
+        "required_exact_front": "Only registered environment, dependency, toolchain, runtime, hardware, orchestration, or implementation-substrate components change; scientific method class, evidence, measurement, representation and evaluator identities are hash-invariant. A generic source patch is not sufficient."
+      },
+      {
+        "class_id": "EVALUATOR_REPAIR",
+        "required_exact_front": "Only a candidate-authored evaluator proposal or public-development evaluator component changes. The protected evaluator remains unreadable and unwritable and the scientific method/model artifacts are hash-invariant."
+      },
+      {
+        "class_id": "UNRESOLVED",
+        "required_exact_front": "No unique authorized single-front action survives validation, or the native system explicitly returns no decision. The exact native terminal remains present in the output record."
+      }
+    ],
+    "native_status_nonidentifiability_proof": "For each audited system, native success/progress/failure terminals describe run state rather than the semantic target of the proposed scientific revision. The same terminal can accompany actions on multiple P5 fronts, and a single P5 front can end in multiple native terminals. Therefore native terminal alone has a many-to-many fibre over the P5 ontology and cannot lawfully identify a resolved singleton. A singleton requires a host-validated input-native class certificate and a complete single-class write set that agree.",
+    "outcome_blindness_rule": "The candidate and adapter classifier may read only the frozen motivating packet, frozen public substrate and their own native artifacts. They may not read the revision-class label, protected diagnostics, evaluator messages, gold revision or patch, hidden tests/scorer implementation, fresh-transfer targets, harm rubric/outcome, sibling-arm state, or later promotion outcome.",
+    "output_record": {
+      "adapter_terminal_values": [
+        "P5_SINGLE_FRONT_ACTION_VALID",
+        "P5_UNRESOLVED_NATIVE_NONDECISION",
+        "P5_UNRESOLVED_UNSUPPORTED_FIBRE",
+        "P5_UNRESOLVED_MIXED_OR_AMBIGUOUS_FRONT",
+        "P5_UNRESOLVED_NATIVE_ERROR_TIMEOUT_OR_INVALID",
+        "P5_UNRESOLVED_ADAPTER_INTEGRITY_FAILURE"
+      ],
+      "required_fields": [
+        "adapter_terminal",
+        "selected_revision_class",
+        "native_terminal",
+        "native_terminal_payload_sha256",
+        "native_final_artifact_sha256",
+        "action_manifest_sha256",
+        "input_native_class_certificate_sha256",
+        "front_set",
+        "unresolved_reason_codes",
+        "candidate_visibility_manifest_sha256",
+        "validator_version_sha256"
+      ],
+      "selected_revision_class_values": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR",
+        "EVALUATOR_REPAIR",
+        "UNRESOLVED"
+      ]
+    },
+    "resolved_singleton_rule": "A resolved singleton c is lawful only when native status is COMPLETE_SUCCESS, c belongs to the arm's frozen support set, one host-validated input-native class certificate uniquely identifies c, the native run has a valid final artifact, its validated action manifest declares c, the recomputed complete changed-component front set is exactly {c}, the certificate and write-set class agree, all other-front invariance checks pass, the action is inside the authorized write surface, and no protected information was visible. Equivalently, every admissible hidden world in the adapter-visible fibre must have minimal class c. Correctness and minimality are then judged later by the external scorer; they are not inferred by the adapter.",
+    "terminal_preservation_rule": "Projection to UNRESOLVED must not erase or rename the native terminal. The complete record retains the exact native error, timeout, abort, no-submission, rollback, or status payload by digest and a typed unresolved reason. Missing output is never rewritten as a successful class action.",
+    "unresolved_rule": "If the native record is an error, timeout, abort, rollback, no-submission, empty/invalid artifact, intermediate-only artifact, unsupported terminal, or if its front set is empty, unknown, mixed, inconsistent with the declaration, or lacks an invariance receipt, selected_revision_class is UNRESOLVED."
+  },
+  "cross_arm_proofs": {
+    "conditional_support": "ADIAS has four prospective certified action fibres; Double Ratchet has one evaluator-only certified action fibre; ScienceClaw has none. Each ADIAS/Double Ratchet singleton requires a distinct input-native certificate plus a complete exact-front write-set proof. These are adapter-augmented interface conditions, not native capabilities or outcome evidence.",
+    "external_scoring_boundary": "A conditional singleton classifies the sealed proposed action front only. Protected responsibility correctness, minimality, preservation, fresh transfer, harm, H1-H4, performance and superiority are determined later by an independent evaluator and remain CANNOT_CHECK here.",
+    "metric_diagnostics_not_decisions": "Double Ratchet CLEAN, DRAWBACK, ABSTAIN, detector traces, agreement and elite statistics are retained metric diagnostics. DRAWBACK can arise from an evidence defect or an evaluator defect, so it cannot be relabelled EVALUATOR_REPAIR. Only a separate evaluator-defect certificate and evaluator-only mutation can conditionally support that class.",
+    "raw_native_terminal_singletons": "Across ADIAS, Double Ratchet metric-only and ScienceClaw, zero raw native terminal names a P5 revision class. Each retained same-visible-symptom fixture contains at least two admissible worlds with different minimal fronts, so singleton relabelling from the raw symptom is unsound.",
+    "scienceclaw_total_unresolved": "ScienceClaw open needs and typed artifacts are preserved as native terminals/artifacts while the distinct P5 projection is UNRESOLVED. This does not rename OPEN_NEED; the record retains both fields. The empty V2 support set forbids all resolved singleton mappings.",
+    "unresolved_totality": "Every native fibre has a total projection. Unsupported, mixed, ambiguous, intermediate, empty, invalid, error, timeout, abstention and custody-integrity states map to UNRESOLVED while the exact native terminal/payload digest remains. No missing run becomes a silent success or zero."
+  },
+  "freeze_boundary": {
+    "comparators_executed": false,
+    "native_output_examples_accessed": false,
+    "no_post_outcome_adapter_change": "Any change to support, parser, certificate, front registry, write surface, terminal rule or custody after outcome access creates a new successor; it cannot amend this V2 identity.",
+    "public_or_protected_outcome_rows_accessed": false,
+    "source_interface_contracts_only": true,
+    "support_sets_and_fixtures_frozen_before_this_ledger": true
+  },
+  "frozen_revision_classes": [
+    {
+      "class_id": "EVIDENCE_REPAIR",
+      "minimal_front": "Change acquisition, routing, provenance, coverage, or evidence authority without changing the registered measurement, representation, model class, evaluator, or execution substrate."
+    },
+    {
+      "class_id": "MEASUREMENT_REPAIR",
+      "minimal_front": "Change an instrument, label, proxy, calibration, sampling, or measurement mapping while holding the downstream model family and evaluator fixed."
+    },
+    {
+      "class_id": "WITHIN_CLASS_MODEL_REPAIR",
+      "minimal_front": "Change parameters, objectives, priors, inference, or training within the already licensed model class and representation."
+    },
+    {
+      "class_id": "MODEL_CLASS_EXPANSION",
+      "minimal_front": "Expand or replace the hypothesis/model family because no licensed within-class change can resolve the protected responsibility."
+    },
+    {
+      "class_id": "REPRESENTATION_REGIME_REPAIR",
+      "minimal_front": "Change state variables, ontology, encoding, interface, memory, or typed artifact regime while holding the scientific target fixed."
+    },
+    {
+      "class_id": "EXECUTION_REPAIR",
+      "minimal_front": "Change environment, dependency, toolchain, runtime, hardware, orchestration, or implementation bytes without changing the scientific method class."
+    },
+    {
+      "class_id": "EVALUATOR_REPAIR",
+      "minimal_front": "Change tests, scorers, acceptance rules, harm adjudication, or evaluator implementation because the prior evaluator is defective or target-misaligned."
+    },
+    {
+      "class_id": "UNRESOLVED",
+      "minimal_front": "Return no unique authorized revision when allowed diagnostics do not separate competing fronts, the ontology is incomplete, rights prevent adjudication, or more than one incomparable minimal front remains."
+    }
+  ],
+  "paper_id": "P5",
+  "readiness": {
+    "H1": "CANNOT_CHECK",
+    "H2": "CANNOT_CHECK",
+    "H3": "CANNOT_CHECK",
+    "H4": "CANNOT_CHECK",
+    "arms_audited": "3/6",
+    "conditional_singleton_support_counts": {
+      "ADIAS": 4,
+      "Double Ratchet metric-only": 1,
+      "ScienceClaw": 0
+    },
+    "confirmatory_ready_arms_4_6": "0/3",
+    "confirmatory_ready_full_six_arm_panel": "0/6",
+    "performance_harm_and_superiority": "CANNOT_CHECK",
+    "protected_freshness": "CANNOT_CHECK",
+    "raw_native_terminal_singletons_licensed_in_arms_4_6": 0,
+    "released_eight_class_adapters_found_in_arms_4_6": "0/3",
+    "terminal": "P5_V2_ARMS_4_6_TERMINAL_PROJECTIONS_SPECIFIED__METRIC_DIAGNOSTICS_SEPARATED_FROM_REVISION_DECISIONS__RELEASED_OUTCOME_BLIND_EIGHT_CLASS_ADAPTERS_CANNOT_CHECK__ZERO_OF_SIX_CONFIRMATORY_READY"
+  },
+  "schema_version": "orion.p5.six-arm-terminal-adapters.v2.arms-4-6",
+  "scope": [
+    "C4_ISSUE_CENTRIC_OPTIMIZATION / ADIAS",
+    "C5_EVALUATOR_ONLY_EVOLUTION / Double Ratchet metric-only",
+    "C6_STRONGEST_SOURCE_GROUNDED_MODERN_METHOD / ScienceClaw"
+  ],
+  "source_receipts": {
+    "adapter_protocol": {
+      "path": "work/lane-handoffs/p5-six-arm-terminal-adapters-v2/P5_TERMINAL_PRESERVING_ADAPTER_PROTOCOL_V2.json",
+      "sha256": "0415e2f01f326a45405e95fd575dd9e11fcf2ddfd06b422fb96673a6bf93558a"
+    },
+    "adversarial_fixtures": {
+      "path": "work/lane-handoffs/p5-six-arm-terminal-adapters-v2/P5_ADVERSARIAL_FIBRE_FIXTURES_V2.json",
+      "sha256": "f27d844c550a55d77f6d14f3e655fbb8c15357d9e4b085d8f1f5ce9409875a05"
+    },
+    "arms_1_3_sibling_ledger": {
+      "path": "work/lane-handoffs/p5-six-arm-terminal-adapters-v2/P5_V2_ADAPTER_LEDGER_ARMS_1_3.json",
+      "sha256": "0e00434b31e20388ff21596bb6500a940f62f9db89e1bcd69e2641038f8e2094"
+    },
+    "fibre_theorem": {
+      "path": "work/lane-handoffs/p5-six-arm-terminal-adapters-v2/P5_NATIVE_OUTPUT_FIBRE_THEOREM_V2.json",
+      "sha256": "7cab81c106c670392607856d976cc68a871cad74c5b8b91b14e8495b38c08174"
+    },
+    "issue_and_evaluator_source_research": {
+      "path": "work/lane-handoffs/p5-six-arm-comparator-panel/RESEARCH_ISSUE_EVALUATOR.json",
+      "sha256": "619baaacaa6e9bcbac62e0f941e13f724e101034a6f44f717432203aea5751c8"
+    },
+    "modern_method_source_research": {
+      "path": "work/lane-handoffs/p5-six-arm-comparator-panel/RESEARCH_FIXED_AGENT_AND_MODERN_METHOD.json",
+      "sha256": "6701817cfa35bd867e74d30f0267f4785b17c5aa1ca1b9977833155009e13341"
+    },
+    "predecessor_comparator_ledger": {
+      "path": "work/lane-handoffs/p5-six-arm-comparator-panel/P5_SIX_ARM_COMPARATOR_IDENTITY_LEDGER_V2.json",
+      "sha256": "f6419103024de98d0cf44ee2681399007001eb79c9b830312d501b6045a60583"
+    },
+    "resource_config_ledger": {
+      "path": "work/lane-handoffs/p5-six-arm-terminal-adapters-v2/P5_V2_RESOURCE_CONFIG_LEDGER.json",
+      "sha256": "1e3a450b1561cb2d3a1d556c77ef1688f8894fb2331fcfa334de87a18bd11dfe"
+    }
+  }
+}

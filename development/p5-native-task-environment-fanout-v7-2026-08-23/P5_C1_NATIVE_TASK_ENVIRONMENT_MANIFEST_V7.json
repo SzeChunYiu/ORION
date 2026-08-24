@@ -1,0 +1,114 @@
+{
+  "arm_code": "C1",
+  "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+  "arm_or_model_executed": false,
+  "authority": "OUTCOME_BLIND_BYTE_LEVEL_TASK_ENVIRONMENT_ONLY",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "criteria_satisfied": [
+    "exact shared source archive/repository identity",
+    "byte-frozen setup specification",
+    "byte-frozen effective default-agent configuration",
+    "retry agent disabled",
+    "action sampler disabled",
+    "review disabled",
+    "open-PR behavior disabled",
+    "native tool/write policy"
+  ],
+  "environment_artifacts": {
+    "effective_agent_config": {
+      "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C1_EFFECTIVE_AGENT_CONFIG_V7.json",
+      "sha256": "ecffb244a80c4a3fc9875b1a45ebe6b56af81bbf1fc7ff138bc0d6b654c00bd3",
+      "size_bytes": 1383
+    },
+    "setup": {
+      "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C1_TASK_SETUP_V7.sh",
+      "sha256": "10f4ad97fb83324cfbac46b6e225657a55028594156b3b25d6e7f731dbbb3167",
+      "size_bytes": 1416
+    }
+  },
+  "environment_id": "P5-C1-LANG1-FIXED-AGENT-V7",
+  "field_scope": "runtime.task_environment only",
+  "native_binding": {
+    "dependency_lock": {
+      "path": "development/p5-swe-agent-execution-binding-v4-2026-08-23/SWE_AGENT_DEPENDENCY_LOCK_V4.uv.lock",
+      "sha256": "488077a1f953459ee955ef17588dcb0eb3e7b5e42ed3e1ba252c3af96ff573c8",
+      "size_bytes": 716479
+    },
+    "field_registry": {
+      "path": "development/p5-swe-agent-execution-binding-v4-2026-08-23/P5_C1_V4_FIELD_REGISTRY.json",
+      "sha256": "9c0e99a771ac766930a9b0097c0d1b0f7c2cd8649169ed255c8b347d4c2817c8",
+      "size_bytes": 13269
+    },
+    "parser": {
+      "path": "development/p5-swe-agent-execution-binding-v4-2026-08-23/p5_c1_native_parser.py",
+      "sha256": "fba94970a47735be47bc71c2c6f99566b343c7526f8516acedb8254b3a2a94c4",
+      "size_bytes": 7431
+    },
+    "protocol": {
+      "path": "development/p5-swe-agent-execution-binding-v4-2026-08-23/P5_C1_V4_EXECUTION_BINDING_PROTOCOL.json",
+      "sha256": "0fc6ef0f2644243339ac7cb7d08554a7b6afc83dd642f34c5e414ab451905f7b",
+      "size_bytes": 3441
+    },
+    "runner": {
+      "path": "development/p5-swe-agent-execution-binding-v4-2026-08-23/p5_c1_isolated_runner.py",
+      "sha256": "00de7c33623dc9d9b30c1a059ee95cbc2f1a16bbbef553df9cb3f08b1beb4e1d",
+      "size_bytes": 6250
+    },
+    "source_rights": {
+      "path": "development/p5-swe-agent-execution-binding-v4-2026-08-23/P5_C1_V4_SOURCE_RIGHTS_MANIFEST.json",
+      "sha256": "df2f4dee97bf674dad1b050aec92f8bf8aae5a808238e899eb140b7ac0cb341e",
+      "size_bytes": 8152
+    }
+  },
+  "performance_or_superiority_claimed": false,
+  "policy": {
+    "action_sampler": null,
+    "chooser_or_reviewer_loop": false,
+    "gold_or_outcome_payloads": false,
+    "open_pr": false,
+    "retry_agent": false,
+    "review_on_submit_m": false,
+    "setup_network": "DENY"
+  },
+  "residual_outside_field": "C1 remains non-ready because nine unrelated V6 field instances remain blocking.",
+  "runtime_or_container_identity_claimed": false,
+  "schema_version": "orion.p5.native-task-environment-manifest.v7",
+  "shared_core": {
+    "case_body": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/CASE_BODY_V6.json",
+      "sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+      "size_bytes": 2799
+    },
+    "core_index": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_CORE_INDEX_V6.json",
+      "sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "size_bytes": 2399
+    },
+    "rights_manifest": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_RIGHTS_MANIFEST_V6.json",
+      "sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+      "size_bytes": 4082
+    },
+    "source_archive": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+      "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+      "size_bytes": 681034
+    },
+    "task_specification": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/TASK_SPECIFICATION_V6.md",
+      "sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+      "size_bytes": 1070
+    }
+  },
+  "status": "BOUND",
+  "task_seed": {
+    "archive": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+      "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+      "size_bytes": 681034
+    },
+    "commit": "396afc3e4693cfee182efe582455f2d97058c068",
+    "repository": "https://github.com/apache/commons-lang",
+    "tree": "34e33cca607f33ffcf8661e3a6c4b7fc5aca9701"
+  }
+}

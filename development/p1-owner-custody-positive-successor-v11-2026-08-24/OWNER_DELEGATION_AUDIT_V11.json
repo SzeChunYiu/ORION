@@ -1,0 +1,142 @@
+{
+  "candidate_class_counts": {
+    "explicit_formal_delegation": 0,
+    "historical_direct_owner_authored_exact_algebra": 0,
+    "historical_standards_action_record": 1,
+    "source_standard_semantic_component_sources": 2
+  },
+  "local_history": [
+    {
+      "artifact_bytes": 5147,
+      "artifact_sha256": "30945cc7dd54ed8359bd03ba623e0bb092793da290d038a1b19678bd2aa36ccb",
+      "author_date": "2026-08-20T13:55:11+02:00",
+      "commit": "cf5665e0fc6106e5cf057baa19bae20ffa43c212",
+      "finding": "Earliest target-program framework map; contains seven conceptual rows but uses KEEP+SEARCH/KEEP+COMPILE/KEEP+REPAIR for three targets; unsigned and not an owner algebra.",
+      "path": "research/claim_expansion/p1/gpt_r1/FRAMEWORK_CONSISTENCY_V1.md",
+      "signature_status": "N",
+      "tree": "02e7fb9b190767f7d443626371b225a0b435e56e",
+      "utc": "2026-08-20T11:55:11Z"
+    },
+    {
+      "artifact_bytes": 9593,
+      "artifact_sha256": "f4c10d0cba206aba015ef56bd82101afbcd5aecf9f5487f854cb7dbdcb0e3500",
+      "author_date": "2026-08-20T14:01:37+02:00",
+      "commit": "8938ba321cd06b43e91747bf2e06bdf8e54ced4f",
+      "finding": "Contains all seven exact decision identifiers 386 seconds after the cutoff; unsigned, no explicit R7 owner/delegation, and incomplete for V8 owner-algebra fields.",
+      "path": "research/claim_expansion/p1/gpt_r1/ARD_PROTOCOL_V1.md",
+      "signature_status": "N",
+      "tree": "dc5c6c743053a0d40b8dbdefb763c0d77865111f",
+      "utc": "2026-08-20T12:01:37Z"
+    },
+    {
+      "artifact_bytes": 22511,
+      "artifact_sha256": "14a0b83c39474f804d72dce51e39df9c48d7d3c72460b96ad55be2f492607a50",
+      "author_date": "2026-08-23T07:49:02+02:00",
+      "commit": "390267dfa9c6669e506ba67b5dde5dddd8f96232",
+      "finding": "Contains all seven exact decision identifiers; post-cutoff, unsigned, and not a completed owner-ratified algebra.",
+      "path": "research/claim_expansion/p1/gpt_r1/run_ard_exact_pilot.py",
+      "signature_status": "N",
+      "tree": "1a77f45cf959d8e472315438e2e1f823be5d03c9",
+      "utc": "2026-08-23T05:49:02Z"
+    },
+    {
+      "artifact_sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55",
+      "author_date": "2026-08-24T07:21:06+02:00",
+      "commit": "8d47c546591a3c96dc5cf202f7e227d13251221c",
+      "finding": "First commit containing the exact V8 postpublication-operation vocabulary; post-cutoff, unsigned, and the file is a prospective schema rather than a completed signed algebra.",
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+      "signature_status": "N",
+      "tree": "6c8e412db4d31c2867fc4e3af9fa417479f79824",
+      "utc": "2026-08-24T05:21:06Z"
+    }
+  ],
+  "non_substitution_applied": true,
+  "ordered_gate_results": [
+    {
+      "evidence": "Two of two frozen official routes returned HTTP 200 and are bound by exact byte length and SHA-256.",
+      "full_r7_bundle_verdict": "PASS",
+      "gate": "IMMUTABLE_SOURCE_IDENTITY_AND_EXACT_BYTES",
+      "order": 1,
+      "standard_component_verdict": "PASS"
+    },
+    {
+      "evidence": "Official PDF approval is 2024-06-26 and official landing publication datetime is 2024-06-27T12:00:00Z, both before 2026-08-20T11:55:11Z.",
+      "full_r7_bundle_verdict": "PASS_FOR_SOURCE_ONLY",
+      "gate": "VERIFIABLE_PRE_CUTOFF_PUBLICATION",
+      "order": 2,
+      "standard_component_verdict": "PASS"
+    },
+    {
+      "evidence": "NISO issuer, working group and approving committee are explicit; no captured source identifies an R7 vocabulary owner.",
+      "full_r7_bundle_verdict": "FAIL_R7_OWNER_NOT_EVIDENCED",
+      "gate": "EXPLICIT_ISSUER_OR_OWNER_IDENTITY",
+      "order": 3,
+      "standard_component_verdict": "PASS_ISSUER"
+    },
+    {
+      "evidence": "No captured official source delegates exact R7 vocabulary powers from a named R7 owner.",
+      "full_r7_bundle_verdict": "FAIL_NOT_EVIDENCED",
+      "gate": "EXPLICIT_FORMAL_DELEGATION",
+      "order": 4,
+      "standard_component_verdict": "NOT_REQUIRED"
+    },
+    {
+      "evidence": "The PDF supplies conditional noncommercial reproduction permission; neither route licenses or controls the completed R7 algebra or target corpus.",
+      "full_r7_bundle_verdict": "FAIL_R7_TARGET_CORPUS_RIGHTS_NOT_EVIDENCED",
+      "gate": "LAWFUL_REUSE_RIGHTS",
+      "order": 5,
+      "standard_component_verdict": "PASS_FOR_BOUNDED_NONCOMMERCIAL_FACT_EXTRACTION"
+    },
+    {
+      "evidence": "All seven exact R7 identifiers have count zero in both captured responses; no semantic crosswalk is inferred.",
+      "full_r7_bundle_verdict": "FAIL_ZERO_OF_SEVEN_EXACT_TARGET_IDS_PRESENT",
+      "gate": "DIRECT_EXACT_SEVEN_TARGET_APPLICABILITY",
+      "order": 6,
+      "standard_component_verdict": "NOT_APPLICABLE"
+    },
+    {
+      "evidence": "The sources are a publication standard and landing page, not a closed-world seven-target V8 algebra.",
+      "full_r7_bundle_verdict": "FAIL_ZERO_COMPLETE_TARGET_PROFILES",
+      "gate": "COMPLETE_V8_FIELD_COVERAGE_AND_EXHAUSTIVENESS",
+      "order": 7,
+      "standard_component_verdict": "NOT_APPLICABLE"
+    },
+    {
+      "evidence": "No ORION/P1 host recommendation, execution, adoption, promotion or merge authority is bound.",
+      "full_r7_bundle_verdict": "FAIL_NOT_EVIDENCED",
+      "gate": "HOST_AUTHORITY_APPLICABILITY",
+      "order": 8,
+      "standard_component_verdict": "NOT_APPLICABLE"
+    },
+    {
+      "evidence": "The standard predates the programme, but the required complete owner algebra does not; local exact R7 artifacts are unsigned and at/after cutoff.",
+      "full_r7_bundle_verdict": "FAIL_NO_COMPLETE_PRE_CUTOFF_OWNER_ALGEBRA_OR_CUSTODY_RECEIPT",
+      "gate": "HISTORICAL_NONEXPOSURE_OR_ADAPTER_BLIND_CUSTODY",
+      "order": 9,
+      "standard_component_verdict": "PASS_HISTORICAL_STANDARD_PRECEDENCE_ONLY"
+    },
+    {
+      "evidence": "Standards committee review is not a content-addressed independent review of the completed R7 algebra and no such review is relabelled.",
+      "full_r7_bundle_verdict": "FAIL_NOT_EVIDENCED",
+      "gate": "INDEPENDENT_SEMANTIC_REVIEW_AUTHORITY",
+      "order": 10,
+      "standard_component_verdict": "NOT_APPLICABLE"
+    }
+  ],
+  "owner_requirement_counts": {
+    "groups": 12,
+    "named_custodian_or_delegation_groups": 0,
+    "structural_analogue_groups": 9,
+    "sufficient_groups": 0
+  },
+  "protocol_id": "P1_R7_HISTORICAL_OWNER_CUSTODY_POSITIVE_SUCCESSOR_V11",
+  "schema_version": "orion.p1.owner-custody-positive-successor.owner-delegation-audit.v11",
+  "strict_full_bundle_summary": {
+    "full_gate_pass": false,
+    "gates_failed_or_not_evidenced": 7,
+    "gates_partially_or_source_only_passed": 2,
+    "gates_passed_without_scope_qualification": 1,
+    "map_audit_authorized": false
+  },
+  "terminal": "P1_V11_HISTORICAL_STANDARD_GOVERNANCE_BOUND__R7_OWNER_DELEGATION_AND_COMPLETE_ALGEBRA_NOT_EVIDENCED"
+}

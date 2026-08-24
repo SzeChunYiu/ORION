@@ -1,0 +1,168 @@
+{
+  "schema_version": "orion.p5.rd02.public-development-preregistration.v1",
+  "study_id": "P5-RD-02.DEFECTS4J.LANG1.V1",
+  "registered_at_utc": "2026-08-23T13:42:00Z",
+  "parent_study_id": "P5-RD-02",
+  "bridge_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "source_error_preserved": {
+    "case_id": "P5-HC-012",
+    "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+    "attributed": "IMPLEMENTATION_BUG",
+    "historical_result_immutable": true
+  },
+  "authority": "PUBLIC_DEVELOPMENT_FACTORIAL_ONLY__NOT_PROTECTED__NOT_FRESH__NOT_GENERAL",
+  "protocol_status": "FROZEN_BEFORE_FACTORIAL_OUTCOMES",
+  "outcomes_accessed_at_freeze": false,
+  "grants_scientific_authority": false,
+  "grants_h1_h4_authority": false,
+  "research_problem": "Within one licensed reproducible public defect, separate a public implementation-fix intervention from a registered runtime-JDK reconstruction while holding task, input, evaluator, timezone, Defects4J revision, and success criterion fixed.",
+  "source_selection": {
+    "source_id": "DEFECTS4J",
+    "repository": "https://github.com/rjust/defects4j",
+    "revision_sha": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+    "selection_rule": "Use the Defects4J README's worked Commons Lang example and its lowest active Lang bug ID, Lang-1, without inspecting test outcomes.",
+    "project_id": "Lang",
+    "bug_id": 1,
+    "upstream_project": "Apache Commons Lang",
+    "upstream_buggy_revision": "396afc3e4693cfee182efe582455f2d97058c068",
+    "upstream_buggy_tree": "34e33cca607f33ffcf8661e3a6c4b7fc5aca9701",
+    "upstream_fixed_revision": "d1a45e9738de5b3e299bb51e987565dcce55fee6",
+    "upstream_fixed_tree": "33a334f58676a72fbe59419c46b1ba87f77530a6",
+    "public_fix_patch_sha256": "2bacab48cc56c962cc906a3e95878735cacb2f231d4a64717a8798f1eb41090f",
+    "defects4j_active_bug_registry_sha256": "cb68d0b470c72142e77ee3b07398b4761218f0f00b2ef61bec0ff55fe0e0762a",
+    "defects4j_project_build_definition_sha256": "6e5f498876757a1482142bca94ba285305fd10fb3c32a95ec403aa7efe01762b",
+    "issue_prose_accessed": false,
+    "dataset_row_payload_accessed": false,
+    "metadata_used": [
+      "project and bug identity",
+      "buggy and fixed revision IDs",
+      "triggering test ID",
+      "modified source class",
+      "documented Java-11 reproducibility requirement"
+    ]
+  },
+  "rights": {
+    "defects4j_framework": "MIT_AT_PINNED_REVISION",
+    "upstream_source_tests_and_configuration": "APACHE_2_0_AT_BOTH_SELECTED_REVISIONS",
+    "upstream_license_path": "LICENSE.txt",
+    "upstream_license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "issue_or_comment_prose": "NOT_ACCESSED",
+    "attachments": "NOT_ACCESSED",
+    "rights_terminal": "ROOT_BOUND_CODE_AND_TEST_RIGHTS_BOUND_FOR_THIS_DEVELOPMENT_EXECUTION"
+  },
+  "independent_unit": "one_public_project_bug_family_cluster",
+  "n_independent_units": 1,
+  "factors": {
+    "candidate_bytes": [
+      {
+        "level_id": "C0_CONTENT_ADDRESSED_ORIGINAL",
+        "operationalization": "Defects4J Lang-1 buggy revision",
+        "revision_sha": "396afc3e4693cfee182efe582455f2d97058c068",
+        "tree_sha": "34e33cca607f33ffcf8661e3a6c4b7fc5aca9701"
+      },
+      {
+        "level_id": "C1_CONTENT_ADDRESSED_PUBLIC_FIX_REPLAY_CHALLENGER",
+        "operationalization": "Defects4J Lang-1 fixed revision, used as a public development challenger rather than a candidate-generated or protected fix",
+        "revision_sha": "d1a45e9738de5b3e299bb51e987565dcce55fee6",
+        "tree_sha": "33a334f58676a72fbe59419c46b1ba87f77530a6",
+        "patch_sha256": "2bacab48cc56c962cc906a3e95878735cacb2f231d4a64717a8798f1eb41090f"
+      }
+    ],
+    "environment": [
+      {
+        "level_id": "E0_CONTENT_ADDRESSED_OBSERVED_JDK17",
+        "operationalization": "Current native macOS arm64 host with Homebrew OpenJDK 17.0.19",
+        "java_home": "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home",
+        "java_binary_sha256": "7db0dd5c0c4dc931244875d0723783a32cc7912922e6aaac1dbb744bf8ae837f",
+        "java_version": "17.0.19",
+        "timezone": "America/Los_Angeles"
+      },
+      {
+        "level_id": "E1_CONTENT_ADDRESSED_RECONSTRUCTED_JDK11",
+        "operationalization": "Current native macOS arm64 host with a separately downloaded Eclipse Temurin JDK 11.0.32+9 archive",
+        "java_home": "/tmp/p5-rd02-defects4j/jdk11/Contents/Home",
+        "java_archive_name": "OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.32_9.tar.gz",
+        "java_archive_sha256": "3e3687488e472035b7a27732f0f6127d59903ba9fd0cb6c815f1a182f4160109",
+        "java_binary_sha256": "e561d7ba57da3bb04df5db5da06a7a164811fa3981c1cfaed0516c70f784b301",
+        "java_version": "11.0.32+9",
+        "timezone": "America/Los_Angeles"
+      }
+    ]
+  },
+  "held_fixed": {
+    "task": "Resolve Defects4J Lang-1 under the public developer test suite.",
+    "input": "The exact selected project revision and Defects4J project metadata; issue prose and attachments are excluded.",
+    "evaluator": "Defects4J 8c16da8230843cdc918eaf4ddb449637f02b83c6 framework/bin/defects4j test",
+    "evaluator_script_sha256": "c1d3a517c9e9c82b7467df910660412fd3f4d47521a048279301dbedb1183706",
+    "triggering_test": "org.apache.commons.lang3.math.NumberUtilsTest::TestLang747",
+    "success_criterion": "The Defects4J test command completes without timeout or tool error and reports zero failing developer tests.",
+    "harm_criterion": "Retain every failing test. A challenger failure, a failure outside the registered triggering test, timeout, crash, or tool error is an adverse cell and cannot be compensated by another arm.",
+    "timezone": "America/Los_Angeles",
+    "locale": "C",
+    "host_os_and_architecture": "held fixed within the native arm64 macOS host",
+    "defects4j_revision": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+    "perl_and_build_tool_installation": "shared initialized Defects4J installation"
+  },
+  "cells": [
+    {
+      "cell_id": "C0E0",
+      "candidate_level": "C0_CONTENT_ADDRESSED_ORIGINAL",
+      "environment_level": "E0_CONTENT_ADDRESSED_OBSERVED_JDK17"
+    },
+    {
+      "cell_id": "C1E1",
+      "candidate_level": "C1_CONTENT_ADDRESSED_PUBLIC_FIX_REPLAY_CHALLENGER",
+      "environment_level": "E1_CONTENT_ADDRESSED_RECONSTRUCTED_JDK11"
+    },
+    {
+      "cell_id": "C1E0",
+      "candidate_level": "C1_CONTENT_ADDRESSED_PUBLIC_FIX_REPLAY_CHALLENGER",
+      "environment_level": "E0_CONTENT_ADDRESSED_OBSERVED_JDK17"
+    },
+    {
+      "cell_id": "C0E1",
+      "candidate_level": "C0_CONTENT_ADDRESSED_ORIGINAL",
+      "environment_level": "E1_CONTENT_ADDRESSED_RECONSTRUCTED_JDK11"
+    }
+  ],
+  "run_order_rule": "Ascending SHA-256 of study_id + ':' + cell_id.",
+  "run_order": [
+    "C0E0",
+    "C1E1",
+    "C1E0",
+    "C0E1"
+  ],
+  "timeout_seconds_per_cell": 1200,
+  "analysis": {
+    "cell_success": "one if and only if the exact evaluator is valid and failing_test_count is zero; otherwise zero for a valid adverse result or missing for an invalid/tool-failure cell",
+    "implementation_effect": "mean(success at C1) minus mean(success at C0)",
+    "environment_effect": "mean(success at E1) minus mean(success at E0)",
+    "interaction": "(C1E1-C0E1) minus (C1E0-C0E0)",
+    "terminal_rule": [
+      "Any invalid, timeout, byte-drift, or unparseable cell -> CANNOT_CHECK.",
+      "Nonzero interaction, or simultaneous nonzero implementation and environment main effects -> COUPLED_INTERACTION.",
+      "Only nonzero environment effect -> ENVIRONMENT_MAIN_EFFECT.",
+      "Only nonzero implementation effect -> IMPLEMENTATION_MAIN_EFFECT.",
+      "All effects zero -> JOINT_NULL_UNRESOLVED."
+    ],
+    "harm_rule": "Report an independent HARMFUL_OR_ADVERSE_CELL_PRESENT modifier if any challenger cell fails, any unexpected test fails, or any cell times out or has a tool error."
+  },
+  "registered_terminals": [
+    "ENVIRONMENT_MAIN_EFFECT",
+    "IMPLEMENTATION_MAIN_EFFECT",
+    "COUPLED_INTERACTION",
+    "JOINT_NULL_UNRESOLVED",
+    "CANNOT_CHECK"
+  ],
+  "limitations_fixed_before_outcomes": [
+    "One public bug is one development cluster and supplies no population inference.",
+    "The challenger replays public upstream fixed bytes and is not a candidate-generated revision.",
+    "The reconstruction changes the JDK while sharing host OS and build tooling; it does not test every environment dependency.",
+    "The evaluator and scorer are local, not independent or protected.",
+    "Public gold cannot support protected freshness, host promotion, or P5 H1-H4.",
+    "The development instance is not source-disjoint from a protected confirmatory instance because no protected instance exists in this lane."
+  ],
+  "possible_final_authority": "LOCAL_RIGHTS_BOUND_PUBLIC_DEVELOPMENT_FACTORIAL_ONLY",
+  "protected_freshness_status": "CANNOT_CHECK",
+  "h1_h4_status": "CANNOT_CHECK"
+}

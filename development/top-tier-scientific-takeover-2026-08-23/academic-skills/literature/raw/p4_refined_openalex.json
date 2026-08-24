@@ -1,0 +1,330 @@
+[
+  {
+    "title": "Calibrated Selective Classification",
+    "doi": "10.48550/arxiv.2208.12084",
+    "authors": [
+      "Adam Fisch",
+      "Tommi Jaakkola",
+      "Regina Barzilay"
+    ],
+    "year": 2022,
+    "publication_date": "2022-08-25",
+    "cited_by_count": 5,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "Selective classification allows models to abstain from making predictions (e.g., say \"I don't know\") when in doubt in order to obtain better effective accuracy. While typical selective models can be effective at producing more accurate predictions on average, they may still allow for wrong predictions that have high confidence, or skip correct predictions that have low confidence. Providing calibrated uncertainty estimates alongside predictions -- probabilities that correspond to true frequencie",
+    "openalex_id": "https://openalex.org/W4293352322",
+    "relevance_score": 42.64081
+  },
+  {
+    "title": "Uncertainty-aware abstention in medical diagnosis based on medical texts",
+    "doi": "10.1038/s44387-026-00097-z",
+    "authors": [
+      "Artem Vazhentsev",
+      "Ivan Sviridov",
+      "Alvard Barseghyan",
+      "Gleb Kuzmin",
+      "Alexander Panchenko"
+    ],
+    "year": 2026,
+    "publication_date": "2026-05-29",
+    "cited_by_count": 1,
+    "journal": "npj Artificial Intelligence",
+    "abstract": "This study addresses the reliability of AI-assisted medical diagnosis through selective prediction, where models can abstain from decisions based on predictive uncertainty. Such selective prediction (or abstention) approaches are usually based on modeling the predictive uncertainty of the machine learning models involved. We systematically evaluate uncertainty quantification methods for medical text analysis across heterogeneous tasks and datasets, including binary mortality prediction from disc",
+    "openalex_id": "https://openalex.org/W4415188035",
+    "relevance_score": 40.693535
+  },
+  {
+    "title": "CARES: A Comprehensive Benchmark of Trustworthiness in Medical Vision Language Models",
+    "doi": "10.48550/arxiv.2406.06007",
+    "authors": [
+      "Peng Xia",
+      "Ze Chen",
+      "Juanxi Tian",
+      "Yangrui Gong",
+      "Ruibo Hou"
+    ],
+    "year": 2024,
+    "publication_date": "2024-06-10",
+    "cited_by_count": 4,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "Artificial intelligence has significantly impacted medical applications, particularly with the advent of Medical Large Vision Language Models (Med-LVLMs), sparking optimism for the future of automated and personalized healthcare. However, the trustworthiness of Med-LVLMs remains unverified, posing significant risks for future model deployment. In this paper, we introduce CARES and aim to comprehensively evaluate the Trustworthiness of Med-LVLMs across the medical domain. We assess the trustworth",
+    "openalex_id": "https://openalex.org/W4399553982",
+    "relevance_score": 33.939785
+  },
+  {
+    "title": "Outside the Box: Abstraction-Based Monitoring of Neural Networks",
+    "doi": "10.3233/faia200375",
+    "authors": [
+      "Thomas A. Henzinger",
+      "Lukina Anna",
+      "Christian Schilling"
+    ],
+    "year": 2020,
+    "publication_date": "2020-01-01",
+    "cited_by_count": 26,
+    "journal": "Frontiers in artificial intelligence and applications",
+    "abstract": "Neural networks have demonstrated unmatched performance in a range of classification tasks. Despite numerous efforts of the research community, novelty detection remains one of the significant limitations of neural networks. The ability to identify previously unseen inputs as novel is crucial for our understanding of the decisions made by neural networks. At runtime, inputs not falling into any of the categories learned during training cannot be classified correctly by the neural network. Existi",
+    "openalex_id": "https://openalex.org/W2990866385",
+    "relevance_score": 29.6742
+  },
+  {
+    "title": "LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory",
+    "doi": "10.48550/arxiv.2410.10813",
+    "authors": [
+      "Di Wu",
+      "Hongwei Wang",
+      "Wenhao Yu",
+      "Yuwei Zhang",
+      "Kai‐Wei Chang"
+    ],
+    "year": 2024,
+    "publication_date": "2024-10-14",
+    "cited_by_count": 3,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "Audit kit for the memory-retrieval benchmark of Mnemosyne OS, a local-firstmemory system for AI assistants. This archive contains everything needed to audit the published scoreindependently: the per-question ledger for every run, the scoring andverification scripts, the methodology, and the raw run logs. Headline result: 72.9% on LongMemEval-M, full-haystack variant. It isreported as a LOWER BOUND, not a leaderboard score — full-haystack is theharder setting and is rarely the one reported. The k",
+    "openalex_id": "https://openalex.org/W4403571340",
+    "relevance_score": 27.289019
+  },
+  {
+    "title": "FairlyUncertain: A Comprehensive Benchmark of Uncertainty in Algorithmic Fairness",
+    "doi": "10.48550/arxiv.2410.02005",
+    "authors": [
+      "Lucas Rosenblatt",
+      "R. Teal Witter"
+    ],
+    "year": 2024,
+    "publication_date": "2024-10-02",
+    "cited_by_count": 1,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "Fair predictive algorithms hinge on both equality and trust, yet inherent uncertainty in real-world data challenges our ability to make consistent, fair, and calibrated decisions. While fairly managing predictive error has been extensively explored, some recent work has begun to address the challenge of fairly accounting for irreducible prediction uncertainty. However, a clear taxonomy and well-specified objectives for integrating uncertainty into fairness remains undefined. We address this gap ",
+    "openalex_id": "https://openalex.org/W4403854152",
+    "relevance_score": 27.036982
+  },
+  {
+    "title": "Learning Noise Transition Matrix from Only Noisy Labels via Total Variation Regularization",
+    "doi": "10.48550/arxiv.2102.02414",
+    "authors": [
+      "Yivan Zhang",
+      "Gang Niu",
+      "Masashi Sugiyama"
+    ],
+    "year": 2021,
+    "publication_date": "2021-02-04",
+    "cited_by_count": 25,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "Many weakly supervised classification methods employ a noise transition matrix to capture the class-conditional label corruption. To estimate the transition matrix from noisy data, existing methods often need to estimate the noisy class-posterior, which could be unreliable due to the overconfidence of neural networks. In this work, we propose a theoretically grounded method that can estimate the noise transition matrix and learn a classifier simultaneously, without relying on the error-prone noi",
+    "openalex_id": "https://openalex.org/W3126748415",
+    "relevance_score": 23.07546
+  },
+  {
+    "title": "THE TIMING OF BY-ELECTIONS",
+    "doi": "10.1093/oxfordjournals.pa.a051674",
+    "authors": [
+      "Michael Rush"
+    ],
+    "year": 1973,
+    "publication_date": "1973-09-01",
+    "cited_by_count": 15,
+    "journal": "Parliamentary Affairs",
+    "abstract": "There are nearly half a million elected officials in American local governments, and the timing of their elections varies enormously both across states and even within the same state.Some local elections are held simultaneously with major federal and state races, while others are held at times when no higher level elections coincide.This Article argues that the timing of local elections drives turnout and, ultimately, substantive policymaking.When local elections do not coincide with important f",
+    "openalex_id": "https://openalex.org/W1824680750",
+    "relevance_score": 18.711933
+  },
+  {
+    "title": "Selective Sampling for Online Best-arm Identification",
+    "doi": "10.48550/arxiv.2110.14864",
+    "authors": [
+      "Romain Camilleri",
+      "Zhihan Xiong",
+      "Maryam Fazel",
+      "Lalit Jain",
+      "Kevin Jamieson"
+    ],
+    "year": 2021,
+    "publication_date": "2021-10-28",
+    "cited_by_count": 1,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "This work considers the problem of selective-sampling for best-arm identification. Given a set of potential options $\\mathcal{Z}\\subset\\mathbb{R}^d$, a learner aims to compute with probability greater than $1-δ$, $\\arg\\max_{z\\in \\mathcal{Z}} z^{\\top}θ_{\\ast}$ where $θ_{\\ast}$ is unknown. At each time step, a potential measurement $x_t\\in \\mathcal{X}\\subset\\mathbb{R}^d$ is drawn IID and the learner can either choose to take the measurement, in which case they observe a noisy measurement of $x^{\\t",
+    "openalex_id": "https://openalex.org/W3210834491",
+    "relevance_score": 17.498302
+  },
+  {
+    "title": "Outside the Box: Abstraction-Based Monitoring of Neural Networks",
+    "doi": "10.48550/arxiv.1911.09032",
+    "authors": [
+      "Thomas A. Henzinger",
+      "Anna Lukina",
+      "Christian Schilling"
+    ],
+    "year": 2019,
+    "publication_date": "2019-11-20",
+    "cited_by_count": 5,
+    "journal": "KOPS (University of Konstanz)",
+    "abstract": "Neural networks have demonstrated unmatched performance in a range of classification tasks. Despite numerous efforts of the research community, novelty detection remains one of the significant limitations of neural networks. The ability to identify previously unseen inputs as novel is crucial for our understanding of the decisions made by neural networks. At runtime, inputs not falling into any of the categories learned during training cannot be classified correctly by the neural network. Existi",
+    "openalex_id": "https://openalex.org/W3090232746",
+    "relevance_score": 15.753525
+  },
+  {
+    "title": "Dyad ranking using Plackett–Luce models based on joint feature representations",
+    "doi": "10.1007/s10994-017-5694-9",
+    "authors": [
+      "Dirk Schäfer",
+      "Eyke Hüllermeier"
+    ],
+    "year": 2018,
+    "publication_date": "2018-01-10",
+    "cited_by_count": 25,
+    "journal": "Machine Learning",
+    "abstract": "",
+    "openalex_id": "https://openalex.org/W2783218948",
+    "relevance_score": 14.577732
+  },
+  {
+    "title": "Learning from AVA: Early Lessons from a Curated and Trustworthy Generative AI for Policy and Development Research",
+    "doi": "10.1145/3772318.3791062",
+    "authors": [
+      "Nimisha Karnatak",
+      "Mohamad Chatila",
+      "Daniel Alejandro Pinzon Hernandez",
+      "Reza Yazdanfar",
+      "Michelle Dugas"
+    ],
+    "year": 2026,
+    "publication_date": "2026-04-13",
+    "cited_by_count": 1,
+    "journal": "",
+    "abstract": "General-purpose LLMs pose misinformation risks for development and policy experts, lacking epistemic humility for verifiable outputs. We present AVA (AI + Verified Analysis), a GenAI platform built on a curated library of over 4,000 World Bank Reports with multilingual capabilities. AVA’s multi-agent pipeline enables users to query and receive evidence-based syntheses. It operationalizes epistemic humility through two mechanisms: citation verifiability (tracing claims to sources) and reasoned ab",
+    "openalex_id": "https://openalex.org/W7154041164",
+    "relevance_score": 11.822315
+  },
+  {
+    "title": "On the Challenges and Opportunities in Generative AI",
+    "doi": "10.48550/arxiv.2403.00025",
+    "authors": [
+      "Laura Manduchi",
+      "Meister, Clara",
+      "Kushagra Pandey",
+      "Robert Bamler",
+      "Ryan Cotterell"
+    ],
+    "year": 2024,
+    "publication_date": "2024-02-28",
+    "cited_by_count": 18,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "The field of deep generative modeling has grown rapidly in the last few years. With the availability of massive amounts of training data coupled with advances in scalable unsupervised learning paradigms, recent large-scale generative models show tremendous promise in synthesizing high-resolution images and text, as well as structured data such as videos and molecules. However, we argue that current large-scale generative AI models exhibit several fundamental shortcomings that hinder their widesp",
+    "openalex_id": "https://openalex.org/W4392425499",
+    "relevance_score": 10.656862
+  },
+  {
+    "title": "Omni-Modal Dissonance Benchmark: Systematically Breaking Modality Consensus to Probe Robustness and Calibrated Abstention",
+    "doi": null,
+    "authors": [
+      "Zabir Al Nazi",
+      "Shubhashis Roy Dipta",
+      "Md Rizwan Parvez"
+    ],
+    "year": 2026,
+    "publication_date": "2026-03-28",
+    "cited_by_count": 0,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "Existing omni-modal benchmarks attempt to measure modality-specific contributions, but their measurements are confounded: naturally co-occurring modalities carry correlated yet unequal information, making it unclear whether results reflect true modality reliance or information asymmetry. We introduce OMD-Bench, where all modalities are initially congruent - each presenting the same anchor, an object or event independently perceivable through video, audio, and text - which we then systematically ",
+    "openalex_id": "https://openalex.org/W7148177857",
+    "relevance_score": 10.494979
+  },
+  {
+    "title": "The Judge Knows When It Knows: Calibrated Abstention for LLM-Based A/B-Test Prediction",
+    "doi": "10.48550/arxiv.2608.07517",
+    "authors": [
+      "Tyler Dooskin",
+      "Squoosh Technical Staff"
+    ],
+    "year": 2026,
+    "publication_date": "2026-07-02",
+    "cited_by_count": 0,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "Can a multimodal LLM predict which version of a web page will win a real A/B test from screenshots alone? We report the most complete answer we are aware of, from six weeks of pre-registered experiments on real conversion tests: mostly no -- and the exceptions are identifiable in advance. On 330 real A/B tests a Gemini 3 Flash judge reaches Cohen's kappa = 0.14, but on the trustworthy (statistically significant) half of the labels the evidence is inconclusive (kappa = 0.11, CI includes zero). We",
+    "openalex_id": "https://openalex.org/W7202177076",
+    "relevance_score": 9.764985
+  },
+  {
+    "title": "Predictable Compression Failures: Order Sensitivity and Information Budgeting for Evidence-Grounded Binary Adjudication",
+    "doi": "10.48550/arxiv.2509.11208",
+    "authors": [
+      "Leon Chlon",
+      "Karim, Ahmed",
+      "Maggie Chlon",
+      "Awada, MarcAntonio"
+    ],
+    "year": 2025,
+    "publication_date": "2025-09-14",
+    "cited_by_count": 1,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "Transformers used for evidence-grounded binary adjudication (e.g., support/refute, yes/no, or verifier-backed pass/fail decisions) can be sensitive to the order in which exchangeable evidence is presented, producing dispersion across permutations and unreliable attempted answers under a verifier-relative Bernoulli predicate. We treat evidence order as a nuisance variable and formalize an expectation-realization gap: next-token training can minimize expected conditional description length over or",
+    "openalex_id": "https://openalex.org/W4415088079",
+    "relevance_score": 9.213284
+  },
+  {
+    "title": "Diagnosing and Mitigating Sycophancy and Skepticism in LLM Causal Judgment",
+    "doi": "10.18653/v1/2026.findings-acl.427",
+    "authors": [
+      "Edward Y Chang"
+    ],
+    "year": 2026,
+    "publication_date": "2026-01-01",
+    "cited_by_count": 2,
+    "journal": "",
+    "abstract": "Do frontier LLMs reason causally, or do they pattern-match, yielding under pressure and hedging under uncertainty?We frame causal judgment as evaluation along three axes, Utility, Safety, and Wise Refusal, across Pearl's Ladder.We introduce Recursive Causal Audit (RCA), a process-integrity evaluator whose Judge has no access to gold labels: it checks whether a model's answer is entailed by its own derivation, internally consistent, and not dominated by user hints under pressure.RCA unifies perso",
+    "openalex_id": "https://openalex.org/W7166799387",
+    "relevance_score": 8.931311
+  },
+  {
+    "title": "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+    "doi": "10.48550/arxiv.2510.13290",
+    "authors": [
+      "Hedström, Anna",
+      "Salim I. Amoukou",
+      "Tom Bewley",
+      "Saumitra Mishra",
+      "Manuela Veloso"
+    ],
+    "year": 2025,
+    "publication_date": "2025-10-15",
+    "cited_by_count": 0,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "We introduce Mechanistic Error Reduction with Abstention (MERA), a principled framework for steering language models (LMs) to mitigate errors through selective, adaptive interventions. Unlike existing methods that rely on fixed, manually tuned steering strengths, often resulting in under or oversteering, MERA addresses these limitations by (i) optimising the intervention direction, and (ii) calibrating when, and how much to steer, thereby provably improving performance or abstaining when no conf",
+    "openalex_id": "https://openalex.org/W4415275362",
+    "relevance_score": 8.4936495
+  },
+  {
+    "title": "Towards trustworthy agentic AI: a comprehensive survey of safety, robustness, privacy, and system security",
+    "doi": "10.20935/acadai8260",
+    "authors": [
+      "Jinhu Qi",
+      "Muzhi Li",
+      "Jiahong Liu",
+      "Yuqin Shu",
+      "D S F Yu"
+    ],
+    "year": 2026,
+    "publication_date": "2026-04-29",
+    "cited_by_count": 2,
+    "journal": "Academia AI and Applications",
+    "abstract": "Agentic AI systems—Large Language Models (LLMs) augmented with planning, tool use, memory, and long-horizon interactions—can execute complex tasks autonomously, but their multi-step trajectories introduce new failure modes that challenge trustworthiness. This survey provides a focused examination of trustworthy agentic AI through two core dimensions that are critical for high-risk deployments: Safety and Robustness and Privacy and System Security. For each dimension, we clarify key concepts, ide",
+    "openalex_id": "https://openalex.org/W7159965625",
+    "relevance_score": 7.984972
+  },
+  {
+    "title": "The weight of history: change and continuity in German foreign policy towards the Israeli-Palestinian conflict",
+    "doi": "10.25710/n83k-ny05",
+    "authors": [
+      "Anne‐Kathrin Kreft"
+    ],
+    "year": 2020,
+    "publication_date": "2020-04-01",
+    "cited_by_count": 17,
+    "journal": "Western CEDAR (Western Washington University)",
+    "abstract": "This study tests whether the consensus on German foreign policy continuity after unification is applicable to foreign policy towards the Israeli-Palestinian conflict, where the involvement is complicated by historical legacies resulting from the Holocaust, and includes an evaluation of realist and constructivist theories. An interpretative case study with comparative insights from EU, UK and French foreign policy considers three cases in the pre- and two in the postunification period: the 1967 W",
+    "openalex_id": "https://openalex.org/W2282802946",
+    "relevance_score": 7.9589243
+  }
+]

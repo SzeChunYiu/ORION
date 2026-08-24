@@ -1,0 +1,39 @@
+{
+  "authority": "RUNTIME_AND_NATIVE_ARTIFACT_PREFLIGHT_ONLY__NO_PERFORMANCE_OR_SCIENTIFIC_OUTCOME_AUTHORITY",
+  "identity": {
+    "commit": "d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6",
+    "jar_sha256": "a5b831a6c000e49aa4702b16486dabdf38e40bb68203a16a8019414fecc2ecf3",
+    "licence": "Apache-2.0",
+    "name": "AML v3.2",
+    "release_sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27"
+  },
+  "interpretation_guard": "Rows were not compared with gold and are neither correctness nor performance evidence.",
+  "native_artifact": {
+    "bytes": 1337,
+    "canonical_row_sha256": "b383de57a4382c13a10f6d4ba15e1c1ae231349d055ee7055848603c0fe174f7",
+    "cell_count": 3,
+    "header": {
+      "onto1": "urn:orion:p3:v6:smoke:source",
+      "onto2": "urn:orion:p3:v6:smoke:target",
+      "uri1": "urn:orion:p3:v6:smoke:source",
+      "uri2": "urn:orion:p3:v6:smoke:target"
+    },
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/.p3v6-runtime/results/aml_alignment.rdf",
+    "row_shape_count": 3,
+    "sha256": "4a755b3e8e845cdef2a48c1cdd16145e20dbde2937fc539c17a6b3bb31146052",
+    "source_namespace_guard": true,
+    "target_namespace_guard": true,
+    "xml_parse": "PASS"
+  },
+  "runtime": {
+    "deviation_guard": "Retained: smoke succeeded on Java 17, but cross-runtime reproducibility was not checked.",
+    "exit_code": 0,
+    "java": "OpenJDK 17.0.19 arm64",
+    "timeout": false,
+    "upstream_named_runtime": "Java 8",
+    "wall_seconds": 0.3191402909869794
+  },
+  "schema_version": "orion.p3.comparator-native-preflight.slot-result.v6",
+  "slot": "K1_AML",
+  "terminal": "NATIVE_SMOKE_PASS"
+}

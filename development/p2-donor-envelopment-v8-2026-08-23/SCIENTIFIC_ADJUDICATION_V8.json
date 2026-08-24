@@ -1,0 +1,118 @@
+{
+  "adjudicated_terminal": "P2_V8_DONOR_ENVELOPMENT_CROSSFIT_FAILS_CRE20_WSS95_AND_HARM__NO_RESIDUAL_ADMITTED__EXACT_U4_FALLBACK",
+  "binding_passed": true,
+  "claims_not_authorized": [
+    "KIFMS confirmation or independent custody",
+    "a safe or superior donor-envelopment controller",
+    "source-general residual benefit",
+    "relaxation of the V7 harm floor"
+  ],
+  "cross_fitted_aggregate": {
+    "development_safety_checks": {
+      "mean_cre20_positive": false,
+      "mean_wss95_nonnegative": false,
+      "worst_review_r10_at_least_minus_0_05": false
+    },
+    "fallback_count": 12,
+    "fallback_fraction": 0.8571428571428571,
+    "mean_delta_vs_u4": {
+      "cre20": -0.0020091233819910037,
+      "fraction_screened_at_95_recall": 0.0009911137548134546,
+      "recall_at_005": 0.004464285714285714,
+      "recall_at_010": -0.028273809523809527,
+      "recall_at_020": 0.0,
+      "wss_at_95": -0.0009911137548134536
+    },
+    "selected_counts": {
+      "EXACT_U4_FALLBACK": 12,
+      "F1_WORD_PRUNED_A100": 1,
+      "F1_WORD_PRUNED_A250": 0,
+      "F2_TITLE_EMPHASIS_A100": 0,
+      "F2_TITLE_EMPHASIS_A250": 1,
+      "F3_CHAR_MORPHOLOGY_A100": 0,
+      "F3_CHAR_MORPHOLOGY_A250": 0
+    },
+    "strictly_positive_review_counts": {
+      "cre20": 0,
+      "r10": 0
+    },
+    "worst_review_delta_r10": -0.33333333333333337
+  },
+  "execution_terminal": "P2_V8_NESTED_LORO_DONOR_ENVELOPMENT_DEVELOPMENT_SELECTED__SOURCE_DISJOINT_EXECUTION_REQUIRED",
+  "full_grid_configuration_summary": {
+    "F1_WORD_PRUNED_A100": {
+      "full_fourteen_support_passed": false,
+      "mean_delta_cre20": -0.00011992006181096066,
+      "mean_delta_r10": -0.02380952380952381,
+      "mean_delta_wss95": 0.0012789525461852397,
+      "worst_review_delta_r10": -0.33333333333333337
+    },
+    "F1_WORD_PRUNED_A250": {
+      "full_fourteen_support_passed": false,
+      "mean_delta_cre20": 0.0029711519973965555,
+      "mean_delta_r10": -0.00032467532467533075,
+      "mean_delta_wss95": -0.0010919322706266776,
+      "worst_review_delta_r10": -0.050000000000000044
+    },
+    "F2_TITLE_EMPHASIS_A100": {
+      "full_fourteen_support_passed": false,
+      "mean_delta_cre20": 0.00901850124257261,
+      "mean_delta_r10": -0.0012175324675324703,
+      "mean_delta_wss95": 0.0032284247688908435,
+      "worst_review_delta_r10": -0.0625
+    },
+    "F2_TITLE_EMPHASIS_A250": {
+      "full_fourteen_support_passed": false,
+      "mean_delta_cre20": 0.0106931250595191,
+      "mean_delta_r10": -0.0012175324675324703,
+      "mean_delta_wss95": 0.002042792819172991,
+      "worst_review_delta_r10": -0.0625
+    },
+    "F3_CHAR_MORPHOLOGY_A100": {
+      "full_fourteen_support_passed": false,
+      "mean_delta_cre20": -0.0030322978983137005,
+      "mean_delta_r10": 0.006493506493506496,
+      "mean_delta_wss95": -0.020770200387777698,
+      "worst_review_delta_r10": 0.0
+    },
+    "F3_CHAR_MORPHOLOGY_A250": {
+      "full_fourteen_support_passed": false,
+      "mean_delta_cre20": 0.001333707306026993,
+      "mean_delta_r10": -0.026244588744588744,
+      "mean_delta_wss95": -0.025055156866206043,
+      "worst_review_delta_r10": -0.33333333333333337
+    }
+  },
+  "identity": "P2_KIFMS_V8_POST_EXECUTION_SCIENTIFIC_ADJUDICATION",
+  "interpretation": {
+    "admission": "No residual is admitted. The exact u4 fallback is the only V8 output eligible to be frozen while a source-disjoint discriminator is acquired.",
+    "exclusion_fragility": "In both activations, the held-out review was itself adverse for the selected residual; removing the harmed unit made the residual appear supported.",
+    "positive_diagnostic": "Title emphasis improved full-grid mean CRE20 and WSS95, but its -0.0625 worst-review R@10 violated the unchanged -0.05 harm floor.",
+    "selector_activation": "A residual passed the other-thirteen rule in two of fourteen outer folds."
+  },
+  "nonfallback_held_out_failures": {
+    "Shoulderdystocia_positioning": {
+      "delta_cre20": -0.009208103130755041,
+      "delta_r10": -0.33333333333333337,
+      "delta_wss95": -0.0055248618784530246,
+      "selected": "F1_WORD_PRUNED_A100"
+    },
+    "Total_knee_replacement": {
+      "delta_cre20": -0.018919624217119013,
+      "delta_r10": -0.0625,
+      "delta_wss95": -0.008350730688935326,
+      "selected": "F2_TITLE_EMPHASIS_A250"
+    }
+  },
+  "result_sha256": "8aa6438b470a7facd7e630a8280afdbc034120c631eac4fdfe744d48a0e63e75",
+  "status": "POST_EXECUTION_CLASSIFICATION__NOT_A_RETROACTIVE_PROTOCOL_FREEZE",
+  "support_fold_counts": {
+    "F1_WORD_PRUNED_A100": 1,
+    "F1_WORD_PRUNED_A250": 0,
+    "F2_TITLE_EMPHASIS_A100": 1,
+    "F2_TITLE_EMPHASIS_A250": 1,
+    "F3_CHAR_MORPHOLOGY_A100": 0,
+    "F3_CHAR_MORPHOLOGY_A250": 0
+  },
+  "u4_identity_passed_all_reviews": true
+}

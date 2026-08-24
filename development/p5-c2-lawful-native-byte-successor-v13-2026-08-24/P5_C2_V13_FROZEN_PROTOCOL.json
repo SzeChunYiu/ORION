@@ -1,0 +1,151 @@
+{
+  "build_contract": {
+    "automatic_sbom_attestation": false,
+    "base_image": "scratch",
+    "network": "none",
+    "no_cache": true,
+    "platform": "linux/arm64",
+    "provenance_attestation": false,
+    "reason": "The complete rootfs SBOM and rights map are produced and checked directly from the exported layer.",
+    "source_date_epoch": 1787529600,
+    "tag": "orion-p5-c2-v13:20260824"
+  },
+  "closure_gate": [
+    "all frozen predecessor and context hashes match",
+    "Docker image builds from scratch for linux/arm64 with build network none",
+    "actual exported rootfs regular-file/symlink inventory and hashes equal the frozen rootfs manifest",
+    "complete SPDX-2.3 SBOM enumerates every actual rootfs regular file/symlink",
+    "image-content rights map enumerates the same exact path set and the full license/NOTICE bundle is retained",
+    "generated-artifact authority explicitly covers retention, disclosure, publication and redistribution of the named V13 artifact classes",
+    "constrained runtime exits zero with exact stdout, empty stderr and empty docker diff",
+    "image descriptor/config/layer identities and retained image archive hash/size are captured",
+    "container and daemon image identity are removed and absence is verified after receipts are frozen"
+  ],
+  "executions_forbidden": [
+    "C4",
+    "released MOSS benchmark",
+    "coding agent or model",
+    "public or protected evaluator/scorer",
+    "protected, gold, hidden or feedback data",
+    "known fix patch or fixed source tree",
+    "pytest or repository CI"
+  ],
+  "external_inputs": {
+    "field_registry_v4": {
+      "path": "development/p5-moss-execution-binding-v4-2026-08-23/P5_C2_V4_FIELD_REGISTRY.json",
+      "sha256": "a7639cbcc51fa14a35eb6a0d25c15759fc66a0cda86e718bcb88fa0a4d36182f",
+      "size_bytes": 16797
+    },
+    "v11_result": {
+      "path": "development/p5-c2-lawful-native-byte-successor-v11-2026-08-24/P5_C2_V11_RESULT.json",
+      "sha256": "5ef52d7ef26d0cc1c65c587ebf7f63adacd19a8ae5ab45abb578fc2bff9009ae",
+      "size_bytes": 2176
+    },
+    "v12_result": {
+      "path": "development/p5-c2-lawful-native-byte-successor-v12-2026-08-24/P5_C2_V12_RESULT.json",
+      "sha256": "d474dfefe4fbc2505916222402976b9355f4a33fcea9813853c7f19e6dd9ca3d",
+      "size_bytes": 2725
+    },
+    "v6_case_body": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/CASE_BODY_V6.json",
+      "sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+      "size_bytes": 2799
+    },
+    "v6_rights_manifest": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_RIGHTS_MANIFEST_V6.json",
+      "sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+      "size_bytes": 4082
+    },
+    "v6_six_arm_acceptance": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SIX_ARM_SHARED_CORE_ACCEPTANCE_V6.json",
+      "sha256": "86d9ccc04f941e7e331ea48a6537f0c3e07768d4c561dd27ce73f1ac655bf92a",
+      "size_bytes": 9198
+    },
+    "v6_source_archive": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+      "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+      "size_bytes": 681034
+    },
+    "v6_task_specification": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/TASK_SPECIFICATION_V6.md",
+      "sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+      "size_bytes": 1070
+    }
+  },
+  "fail_closed": "Any failed gate leaves the target field UNBOUND and preserves the exact adverse result.",
+  "frozen_at_utc": "2026-08-24T06:49:26.233329+00:00",
+  "frozen_code": {
+    "builder": {
+      "path": "build_p5_c2_v13_packet.py",
+      "sha256": "e9d275071a9c25b61caf9fa20b81565e1c47b35f7b3e34b56c09d56b717d95a7",
+      "size_bytes": 48690
+    },
+    "probe_generator": {
+      "path": "probe/generate_aarch64_probe_v13.py",
+      "sha256": "3f6064f6d12ef0576f070d44702264b3f4b691b48bd58b11233546b392269493",
+      "size_bytes": 2477
+    },
+    "validator": {
+      "path": "validate_p5_c2_v13_packet.py",
+      "sha256": "7abe48732ae9a45e5bf750bea250e58914542874c81a889f70488a4de8141f6c",
+      "size_bytes": 12398
+    }
+  },
+  "frozen_packet_inputs": {
+    "build_context_manifest": {
+      "path": "BUILD_CONTEXT_MANIFEST_V13.json",
+      "sha256": "380580d05cfc222bf9874e51329f949619ac25452a784fe5d254de2724d73b8c",
+      "size_bytes": 4266
+    },
+    "generated_artifact_authority": {
+      "path": "P5_C2_V13_GENERATED_ARTIFACT_AUTHORITY.json",
+      "sha256": "364a9b5e9ded47561698ef8db9938fbcac730e67b5b7553905f6121791194729",
+      "size_bytes": 2305
+    },
+    "image_content_rights_map": {
+      "path": "P5_C2_V13_IMAGE_CONTENT_RIGHTS_MAP.json",
+      "sha256": "50ea0c2333a2c34b7ffec818c481e565abf8d6010549c8d29bb7ad03916991c7",
+      "size_bytes": 2480
+    },
+    "license_bundle_manifest": {
+      "path": "LICENSE_BUNDLE_MANIFEST_V13.json",
+      "sha256": "72153f0381343924a1959561fb29ed4b358ec14a0e6e43fe797b121a2a0d4bac",
+      "size_bytes": 799
+    },
+    "probe_generation_receipt": {
+      "path": "PROBE_GENERATION_RECEIPT_V13.json",
+      "sha256": "f67ffecd75cfcaa0c891e2d8413dd1ba03cd8c3b8877a89fe25ea16a8c125621",
+      "size_bytes": 729
+    }
+  },
+  "identity_boundary": {
+    "aggregation_with_v11_or_v12_authorized": false,
+    "count_basis_after_only_if_gate_passes": {
+      "blocking": 13,
+      "bound": 8
+    },
+    "count_basis_before": {
+      "blocking": 14,
+      "bound": 7
+    },
+    "distinct_from_released_moss": true,
+    "distinct_from_v11": true,
+    "distinct_from_v12": true
+  },
+  "manuscript_edit_rule": "No manuscript or shared-claim-ledger edit in this additive owned lane.",
+  "prospective_gate": "Frozen before Docker Desktop startup, image build, runtime output, diff, image identity and archive identity.",
+  "protocol_id": "P5.C2.RIGHTS.CLEARED.SCRATCH.IMAGE.SUCCESSOR.V13",
+  "runtime_contract": {
+    "capabilities_dropped": "ALL",
+    "expected_diff_entries": 0,
+    "expected_exit_code": 0,
+    "expected_stderr_hex": "",
+    "expected_stdout_hex": "4f52494f4e2056313320636f6e7461696e657220706173730a",
+    "network": "none",
+    "no_new_privileges": true,
+    "read_only_rootfs": true
+  },
+  "schema_version": "orion.p5.c2.lawful-native-byte-successor-protocol.v13",
+  "successor_identity": "C2_RIGHTS_CLEARED_SCRATCH_IMAGE_SUCCESSOR__ORION_V13",
+  "target_field": "rights.container_and_generated_artifacts"
+}

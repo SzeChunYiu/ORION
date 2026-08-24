@@ -1,0 +1,102 @@
+{
+  "all_pass": true,
+  "checks": [
+    {
+      "explicit_tree_counts": {
+        "initial": 2,
+        "open": 6
+      },
+      "explicit_tree_crosscheck": true,
+      "id": "C1_UNAVAILABLE_INITIAL_TEST",
+      "initial_legal_actions": 0,
+      "legal_initial_value": "1/2",
+      "pass": true,
+      "same_test_if_open_value": "0"
+    },
+    {
+      "explicit_tree_counts": {
+        "legal": 6,
+        "stationary": 38
+      },
+      "explicit_tree_crosscheck": true,
+      "id": "C2_DESTRUCTIVE_NO_REPEAT",
+      "illegal_stationary_repeat_value": "7/40",
+      "legal_one_test_value": "1/4",
+      "legal_two_horizon_value": "1/4",
+      "pass": true
+    },
+    {
+      "explicit_tree_count": 6,
+      "explicit_tree_crosscheck": true,
+      "frontier_size": 6,
+      "id": "C3_STOCHASTIC_NEXT_STATE",
+      "optimal_value": "3/10",
+      "pass": true,
+      "target_vector": [
+        "3/10",
+        "3/10"
+      ]
+    },
+    {
+      "deterministic_robust_value": "1",
+      "fair_randomized_vector": [
+        "1/2",
+        "1/2"
+      ],
+      "id": "C4_RANDOMIZED_MINIMAX",
+      "pass": true,
+      "randomized_robust_value": "1/2"
+    },
+    {
+      "approaching_values": [
+        "1/2",
+        "2/3",
+        "3/4",
+        "4/5",
+        "5/6",
+        "6/7",
+        "7/8"
+      ],
+      "attained_in_credal_set": false,
+      "id": "C5_NONCLOSED_CREDAL_NONATTAINMENT",
+      "pass": true,
+      "policy_attainment_affected": false,
+      "risk_vector": [
+        "1",
+        "0"
+      ],
+      "support_supremum": "1"
+    },
+    {
+      "bayes_values_horizon_0_1_2": [
+        "1/2",
+        "1/2",
+        "0"
+      ],
+      "explicit_tree_count": 38,
+      "explicit_tree_crosscheck": true,
+      "id": "C6_ZERO_COST_CLOSURE",
+      "pass": true,
+      "perfect_zero_cost_vector_present": true,
+      "total_acquisition_cost": "0"
+    },
+    {
+      "explicit_tree_count": 6,
+      "explicit_tree_crosscheck": true,
+      "fixed_ex_ante_minimax_value": "1/10",
+      "fixed_lower_bound_identity": "R_A+R_B=1/5+(4/5)(q0+q1)>=1/5",
+      "id": "C7_FIXED_VS_RECTANGULAR",
+      "pass": true,
+      "rectangular_posterior_local_value": "1/2",
+      "strict_gap": "2/5"
+    }
+  ],
+  "checks_passed": 7,
+  "checks_total": 7,
+  "empirical_authority": false,
+  "external_independent_review": false,
+  "protected_evaluation": false,
+  "schema": "state-indexed-active-identification-receipt-v1",
+  "scope": "exact finite local mathematical witnesses only",
+  "script_sha256": "fc7f3cd2ce791d2c12fd04b8f11b75d16bba6bf6e852b2b19c0d22280880a8d2"
+}

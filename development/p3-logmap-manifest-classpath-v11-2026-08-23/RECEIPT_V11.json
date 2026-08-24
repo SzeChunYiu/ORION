@@ -1,0 +1,129 @@
+{
+  "authority": "REPAIR_RUNTIME_AND_ARTIFACT_INTERFACE_CONFORMANCE_ONLY__NO_GOLD_REFERENCE_CORRECTNESS_PERFORMANCE_HARM_COVERAGE_TRANSPORT_OR_SUPERIORITY_AUTHORITY",
+  "closure_entries_live_verified": "90/90",
+  "closure_preflight_sha256": "15f178b91595d6f17da79a1fd234be7a66f58a1cdec82d5af18a376bc2ca086c",
+  "closure_reconstruction": {
+    "bytes": 25337399,
+    "entries_matching_v9": "90/90",
+    "wall_nanoseconds": 7148934500,
+    "wall_seconds": 7.1489345
+  },
+  "command": [
+    "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin/java",
+    "-Xms500m",
+    "-Xmx2147483648",
+    "-DentityExpansionLimit=100000000",
+    "--add-opens=java.base/java.lang=ALL-UNNAMED",
+    "-jar",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/logmap-matcher-4.0.jar",
+    "DEBUGGER",
+    "file:/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/source.owl",
+    "file:/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/target.owl",
+    "TXT",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/results/bertmap-out/bertmap/match/logmap-repair/filtered_mappings_for_LogMap_repair.txt",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/output",
+    "false",
+    "false"
+  ],
+  "cwd": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23",
+  "direct_child_exit_code": 0,
+  "finished_at": "2026-08-23T20:36:56.717839+00:00",
+  "frozen_inputs_observed": {
+    "filtered_mappings_for_repair": {
+      "bytes": 1600,
+      "matches_v9_frozen_hash": true,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/results/bertmap-out/bertmap/match/logmap-repair/filtered_mappings_for_LogMap_repair.txt",
+      "sha256": "6c12ab82c83e6d44149cb03f761880e8a23171d6fb73142225d49e1c6b0eafe4"
+    },
+    "java_binary": {
+      "bytes": 69600,
+      "matches_v9_frozen_hash": true,
+      "path": "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin/java",
+      "sha256": "7db0dd5c0c4dc931244875d0723783a32cc7912922e6aaac1dbb744bf8ae837f"
+    },
+    "logmap_jar": {
+      "bytes": 3393718,
+      "matches_v9_frozen_hash": true,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/logmap-matcher-4.0.jar",
+      "sha256": "e0b217156ffece911c472cc2cb2b25e7948b3c46801037e0161c3a752332d6a3"
+    },
+    "source_ontology": {
+      "bytes": 3735,
+      "matches_v9_frozen_hash": true,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/source.owl",
+      "sha256": "c347f32626f6c5b3b782b2f6344bca5ac2282a701161d11f1e02a7422fef4d9e"
+    },
+    "target_ontology": {
+      "bytes": 3735,
+      "matches_v9_frozen_hash": true,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/runtime/inputs/target.owl",
+      "sha256": "16bd34ec22c3d130b94257404fd60a112a3383d16255a67472e0c5e1518c5521"
+    }
+  },
+  "full_deeponto_or_bertmap_run": false,
+  "gold_or_reference_alignment_opened": false,
+  "java_child_invocations": 1,
+  "output_inventory": {
+    "mappings_repaired_with_LogMap.owl": {
+      "bytes": 34393,
+      "regular_non_symlink": true,
+      "sha256": "0b483aef0f0604ae901ff5c587bc3eec13270522ec581c11a31a4f4ea6a8590c"
+    },
+    "mappings_repaired_with_LogMap.rdf": {
+      "bytes": 4994,
+      "regular_non_symlink": true,
+      "sha256": "1e3c58c2326ac1f1ed29c8ed8bb6114d80f90c76ca8f712546eeb7aa1a908b87"
+    },
+    "mappings_repaired_with_LogMap.tsv": {
+      "bytes": 1920,
+      "regular_non_symlink": true,
+      "sha256": "8507d5de622b74b202a288b186e080afbea5dde55d056015a8cb72c5e472b2cf"
+    },
+    "mappings_repaired_with_LogMap.txt": {
+      "bytes": 2016,
+      "regular_non_symlink": true,
+      "sha256": "1cd957724ca3fafe8a1fe32ab9b38b34ad832878f4ff69cfd2cccc8bb0431956"
+    }
+  },
+  "protocol_id": "P3_V11_EXACT_V9_LOGMAP_CLASSPATH_JAVA17_ADD_OPENS_REPAIR_ONLY_MICROGATE",
+  "protocol_sha256": "a30bb13cc8bb6a4fb3551424eb8b2b02923ad72e92165603211e139d05ded027",
+  "repaired_mapping_content_observation": {
+    "authority": "LEXICAL_SHAPE_OBSERVATION_ONLY__NO_MAPPING_CORRECTNESS_AUTHORITY",
+    "rows": 16,
+    "source_fields_with_optional_wrapper": 16,
+    "target_fields_with_optional_wrapper": 16,
+    "three_field_rows": 16
+  },
+  "required_output": {
+    "bytes": 1920,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/output/mappings_repaired_with_LogMap.tsv",
+    "present": true,
+    "regular_non_symlink": true,
+    "sha256": "8507d5de622b74b202a288b186e080afbea5dde55d056015a8cb72c5e472b2cf"
+  },
+  "retries_used": 0,
+  "schema_version": "orion.p3.logmap-manifest-classpath.repair-microgate.receipt.v11",
+  "scientific_scoring_performed": false,
+  "started_at": "2026-08-23T20:36:56.288026+00:00",
+  "stderr": {
+    "bytes": 0,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/JAVA_STDERR_V11.log",
+    "retained_exactly": true,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 59,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-logmap-manifest-classpath-v11-2026-08-23/JAVA_STDOUT_V11.log",
+    "sha256": "dfb06885867ce84a91a961d2013827538a2b4a08ae29cfeba5507f2e84144945"
+  },
+  "success": true,
+  "success_gate": {
+    "direct_child_exit_zero": true,
+    "regular_non_symlink_output": true
+  },
+  "terminal": "P3_V11_EXACT_V9_CLASSPATH_90_OF_90_PASS__JAVA17_ADD_OPENS_REPAIR_MICROGATE_PASS__DIRECT_CHILD_EXIT_ZERO__REGULAR_REPAIRED_MAPPING_OUTPUT_PRESENT__NO_RETRY__FULL_NATIVE_SUCCESSOR_AUTHORIZED",
+  "timed_out": false,
+  "timeout_seconds": 120,
+  "wall_nanoseconds": 429009959,
+  "wall_seconds": 0.429009959
+}

@@ -1,0 +1,31 @@
+{
+  "binding_time_utc": "2026-08-24T06:25:11.684250+00:00",
+  "current_session_role": "candidate-author-controlled source identity executor and packet author",
+  "independence": {
+    "closed_roles": 0,
+    "required_roles": 3,
+    "same_session_self_attestation_allowed": false
+  },
+  "performance_authorization": false,
+  "reason": "Content-addressed public-source lineage is bound, but the current session cannot independently custody the population, outcomes or result verification.",
+  "roles": {
+    "outcome_custodian": {
+      "bound": false,
+      "identity": null,
+      "required_act": "Execute exactly one frozen matched run only after a valid seven-review population packet is independently signed."
+    },
+    "result_verifier": {
+      "bound": false,
+      "identity": null,
+      "required_act": "Receive content-addressed outputs without candidate authorship and verify unchanged gates."
+    },
+    "source_population_custodian": {
+      "bound": false,
+      "identity": null,
+      "required_act": "Sign one coherent single-snapshot commit-tree-blob-index lock, exact rights and the complete label-blind seven-review census before outcomes."
+    }
+  },
+  "schema_version": "orion.p2.state-expanding-acquisition.custody-receipt.v14",
+  "source_identity_executor_independent": false,
+  "terminal": "P2_V14_ZERO_OF_THREE_INDEPENDENT_CUSTODY_ROLES_BOUND__PERFORMANCE_NOT_AUTHORIZED"
+}

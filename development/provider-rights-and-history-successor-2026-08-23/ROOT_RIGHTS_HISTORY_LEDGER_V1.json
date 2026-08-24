@@ -1,0 +1,1305 @@
+{
+  "authority": "ROOT_BY_ROOT_RIGHTS_AND_HISTORY_PREFLIGHT_ONLY",
+  "captured_at_utc": "2026-08-23T11:22:16+00:00",
+  "case_eligibility_terminal": "METADATA_ROOT_ONLY__CASE_ELIGIBILITY_NOT_ASSESSED",
+  "content_class_cell_count": 66,
+  "crossref_history_status_counts": {
+    "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES": 8,
+    "EXACT_PRE_CUTOFF_BYTES": 0
+  },
+  "evidence_payload_sha256": "ed681089403f8de6f4d8951d4c0989cee70828a5d0c5d978efabcec541e8db10",
+  "explicit_nonclaim": "A policy or licence preflight is not case eligibility, legal advice, cross-provider transport evidence, or a scientific result.",
+  "ledger_payload_sha256": "92825c996ddd19c36b97b1580cc9623931486c627db24d257f1bded3b32f31f1",
+  "parent_census_payload_sha256": "e1466f44231a02e4b36fc0a0b0d83a8f0db8b09bf6897e97c52702023e07d24d",
+  "protocol_payload_sha256": "38074e06e362c1ed3fab47bdd5c982c24526970c73f055bb4adee5023e93c49f",
+  "rights_status_counts": {
+    "ACCESS_ONLY_NOT_REUSE": 2,
+    "CANNOT_CHECK": 30,
+    "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED": 10,
+    "NOT_ACCESSED": 16,
+    "ROOT_BOUND_PERMISSION": 8
+  },
+  "root_count": 16,
+  "roots": [
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "canonical_dedup_root": "crossref:issn:2319-4170",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "article_body": {
+          "declared_content_licences": [
+            {
+              "content_version": "vor",
+              "delay_in_days": 0,
+              "start": "2025-05-20T00:00:00Z",
+              "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+            }
+          ],
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "A current Crossref member-deposited VOR/unspecified Creative Commons URI exists, but Crossref states it does not verify licence URLs and no article bytes or publisher root statement were opened.",
+          "status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED"
+        },
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Metadata identity and rights declarations do not establish case inclusion, labels, pairing, or scientific strata.",
+          "status": "NOT_ACCESSED"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "CR_PUBLIC_DATA_DOC",
+            "CR_METADATA_PLUS_TERMS",
+            "CR_ROBOTS"
+          ],
+          "reason": "Crossref describes public/open access and Metadata Plus grants subscribers broad metadata rights, but no equally explicit public-REST caller reuse grant was bound here; site CC BY is not assumed to cover member-supplied record fields.",
+          "status": "CANNOT_CHECK"
+        },
+        "supplement_or_attachment": {
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "No root-bound supplement or attachment licence was identified without opening those content classes.",
+          "status": "CANNOT_CHECK"
+        }
+      },
+      "content_host_identity": "Elsevier BV",
+      "historical_byte_provenance": {
+        "current_deposit_after_cutoff": true,
+        "current_sparse_metadata": {
+          "created": "2025-05-20T11:57:00Z",
+          "deposited": "2026-04-03T01:56:08Z",
+          "doi": "10.1016/j.bj.2025.100874",
+          "indexed": "2026-07-17T01:42:35Z",
+          "issn": [
+            "2319-4170"
+          ],
+          "license": [
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start": "2026-02-01T00:00:00Z",
+              "url": "https://www.elsevier.com/tdm/userlicense/1.0/"
+            },
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start": "2026-02-01T00:00:00Z",
+              "url": "https://www.elsevier.com/legal/tdmrep-license"
+            },
+            {
+              "content_version": "vor",
+              "delay_in_days": 0,
+              "start": "2025-05-20T00:00:00Z",
+              "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+            }
+          ],
+          "publisher": "Elsevier BV"
+        },
+        "current_sparse_metadata_receipt": {
+          "normalized_sha256": "6233e3fb59f6f038ec7974e997a6783964dbfc6415867d6472868cd2b36eeb54",
+          "receipt": {
+            "content_length_header": null,
+            "content_type": "application/json",
+            "etag": null,
+            "final_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.bj.2025.100874&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "http_status": 200,
+            "last_modified": null,
+            "method": "GET",
+            "request_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.bj.2025.100874&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "response_bytes": 1330,
+            "response_sha256": "68331c533f2424396fbd5172401f929778dcd04958b5cc47a441a2c981fec01d"
+          },
+          "url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.bj.2025.100874&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1"
+        },
+        "evidence_ids": [
+          "CR_SNAPSHOT_DOC",
+          "CR_PUBLIC_DATA_DOC",
+          "CR_2025_RELEASE_DOC",
+          "CR_2025_PUBLIC_FILE_TORRENT",
+          "CR_2026_01_SNAPSHOT_HEAD"
+        ],
+        "internet_archive_doi_redirect_capture_count": 0,
+        "internet_archive_exact_api_capture_count": 0,
+        "negative_identity": "POST_CUTOFF_REDEPOSIT_DIVERGENCE__10_1016_J_BJ_2025_100874",
+        "official_2025_public_file_relation": "NOT_IN_2025_RELEASE_BY_PROVIDER_CREATION_TIME_AFTER_RELEASE",
+        "official_2025_public_file_root_membership_checked": false,
+        "official_2026_01_snapshot_bytes_obtained": false,
+        "status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES"
+      },
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.1016/j.bj.2025.100874",
+      "protected_domain_candidate": "BIOMEDICAL_CLINICAL",
+      "root_id": "10.1016/j.bj.2025.100874",
+      "wave_id": "PRIMARY"
+    },
+    {
+      "artifact_modality": "DATA_REPOSITORY_DEPOSIT",
+      "canonical_dedup_root": "zenodo:conceptdoi:10.5281/zenodo.18092983",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Files were not opened; metadata and declared licence do not establish scientific case eligibility.",
+          "status": "NOT_ACCESSED"
+        },
+        "dataset_files": {
+          "declared_licence_id": "cc-by-4.0",
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES",
+            "CC_BY_4_LEGAL",
+            "ZENODO_ROBOTS"
+          ],
+          "reason": "The exact record declares CC BY 4.0 and Zenodo requires a licence for public files, but Zenodo assigns uploader responsibility and does not independently establish uploader authority.",
+          "status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED"
+        },
+        "linked_or_derived_attachments": {
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES"
+          ],
+          "reason": "The record declaration is not extended to third-party linked objects or derived external attachments without a root-specific relation.",
+          "status": "CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES",
+            "CC0_1_LEGAL"
+          ],
+          "reason": "Zenodo terms and policies explicitly place metadata under CC0 except email addresses; no email fields are retained in the census.",
+          "status": "ROOT_BOUND_PERMISSION"
+        }
+      },
+      "content_host_identity": "Zenodo",
+      "historical_byte_provenance": null,
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "ZENODO_REST_API",
+      "persistent_identifier": "doi:10.5281/zenodo.18092984",
+      "protected_domain_candidate": "BIOMEDICAL_CLINICAL",
+      "root_id": "18092984",
+      "wave_id": "PRIMARY"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "canonical_dedup_root": "crossref:issn:3083-4732",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "article_body": {
+          "declared_content_licences": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start": "2025-04-23T00:00:00Z",
+              "url": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ],
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "A current Crossref member-deposited VOR/unspecified Creative Commons URI exists, but Crossref states it does not verify licence URLs and no article bytes or publisher root statement were opened.",
+          "status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED"
+        },
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Metadata identity and rights declarations do not establish case inclusion, labels, pairing, or scientific strata.",
+          "status": "NOT_ACCESSED"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "CR_PUBLIC_DATA_DOC",
+            "CR_METADATA_PLUS_TERMS",
+            "CR_ROBOTS"
+          ],
+          "reason": "Crossref describes public/open access and Metadata Plus grants subscribers broad metadata rights, but no equally explicit public-REST caller reuse grant was bound here; site CC BY is not assumed to cover member-supplied record fields.",
+          "status": "CANNOT_CHECK"
+        },
+        "supplement_or_attachment": {
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "No root-bound supplement or attachment licence was identified without opening those content classes.",
+          "status": "CANNOT_CHECK"
+        }
+      },
+      "content_host_identity": "Scilight Press Pty Ltd",
+      "historical_byte_provenance": {
+        "current_deposit_after_cutoff": false,
+        "current_sparse_metadata": {
+          "created": "2025-09-08T06:10:28Z",
+          "deposited": "2025-09-08T06:10:29Z",
+          "doi": "10.53941/eesus.2025.100001",
+          "indexed": "2025-09-11T19:52:24Z",
+          "issn": [
+            "3083-4732"
+          ],
+          "license": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start": "2025-04-23T00:00:00Z",
+              "url": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ],
+          "publisher": "Scilight Press Pty Ltd"
+        },
+        "current_sparse_metadata_receipt": {
+          "normalized_sha256": "cc4f1b1e6cecc016ad9409f5e03fba54cd507539aab67f3d32ddc2d0e06be5c6",
+          "receipt": {
+            "content_length_header": null,
+            "content_type": "application/json",
+            "etag": null,
+            "final_url": "https://api.crossref.org/works?filter=doi%3A10.53941%2Feesus.2025.100001&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "http_status": 200,
+            "last_modified": null,
+            "method": "GET",
+            "request_url": "https://api.crossref.org/works?filter=doi%3A10.53941%2Feesus.2025.100001&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "response_bytes": 955,
+            "response_sha256": "b72805fb074edba332345f0356e788c62a7269f456796e597ef9d13f6e316b22"
+          },
+          "url": "https://api.crossref.org/works?filter=doi%3A10.53941%2Feesus.2025.100001&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1"
+        },
+        "evidence_ids": [
+          "CR_SNAPSHOT_DOC",
+          "CR_PUBLIC_DATA_DOC",
+          "CR_2025_RELEASE_DOC",
+          "CR_2025_PUBLIC_FILE_TORRENT",
+          "CR_2026_01_SNAPSHOT_HEAD"
+        ],
+        "internet_archive_doi_redirect_capture_count": 0,
+        "internet_archive_exact_api_capture_count": 0,
+        "negative_identity": "UNCOMMITTED_PRE_CUTOFF_DEPOSIT_BYTES__10_53941_EESUS_2025_100001",
+        "official_2025_public_file_relation": "NOT_IN_2025_RELEASE_BY_PROVIDER_CREATION_TIME_AFTER_RELEASE",
+        "official_2025_public_file_root_membership_checked": false,
+        "official_2026_01_snapshot_bytes_obtained": false,
+        "status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES"
+      },
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.53941/eesus.2025.100001",
+      "protected_domain_candidate": "EARTH_ENVIRONMENTAL",
+      "root_id": "10.53941/eesus.2025.100001",
+      "wave_id": "PRIMARY"
+    },
+    {
+      "artifact_modality": "DATA_REPOSITORY_DEPOSIT",
+      "canonical_dedup_root": "zenodo:conceptdoi:10.5281/zenodo.18107809",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Files were not opened; metadata and declared licence do not establish scientific case eligibility.",
+          "status": "NOT_ACCESSED"
+        },
+        "dataset_files": {
+          "declared_licence_id": "cc-by-4.0",
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES",
+            "CC_BY_4_LEGAL",
+            "ZENODO_ROBOTS"
+          ],
+          "reason": "The exact record declares CC BY 4.0 and Zenodo requires a licence for public files, but Zenodo assigns uploader responsibility and does not independently establish uploader authority.",
+          "status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED"
+        },
+        "linked_or_derived_attachments": {
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES"
+          ],
+          "reason": "The record declaration is not extended to third-party linked objects or derived external attachments without a root-specific relation.",
+          "status": "CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES",
+            "CC0_1_LEGAL"
+          ],
+          "reason": "Zenodo terms and policies explicitly place metadata under CC0 except email addresses; no email fields are retained in the census.",
+          "status": "ROOT_BOUND_PERMISSION"
+        }
+      },
+      "content_host_identity": "Zenodo",
+      "historical_byte_provenance": null,
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "ZENODO_REST_API",
+      "persistent_identifier": "doi:10.5281/zenodo.18108141",
+      "protected_domain_candidate": "EARTH_ENVIRONMENTAL",
+      "root_id": "18108141",
+      "wave_id": "PRIMARY"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "canonical_dedup_root": "crossref:issn:1364-8152",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "article_body": {
+          "declared_content_licences": [],
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "No current Crossref VOR/unspecified Creative Commons licence URI establishes article-body reuse; TDM or STM policy links are not promoted to a body licence.",
+          "status": "CANNOT_CHECK"
+        },
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Metadata identity and rights declarations do not establish case inclusion, labels, pairing, or scientific strata.",
+          "status": "NOT_ACCESSED"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "CR_PUBLIC_DATA_DOC",
+            "CR_METADATA_PLUS_TERMS",
+            "CR_ROBOTS"
+          ],
+          "reason": "Crossref describes public/open access and Metadata Plus grants subscribers broad metadata rights, but no equally explicit public-REST caller reuse grant was bound here; site CC BY is not assumed to cover member-supplied record fields.",
+          "status": "CANNOT_CHECK"
+        },
+        "supplement_or_attachment": {
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "No root-bound supplement or attachment licence was identified without opening those content classes.",
+          "status": "CANNOT_CHECK"
+        }
+      },
+      "content_host_identity": "Elsevier BV",
+      "historical_byte_provenance": {
+        "current_deposit_after_cutoff": true,
+        "current_sparse_metadata": {
+          "created": "2025-12-12T08:00:26Z",
+          "deposited": "2026-02-09T07:35:02Z",
+          "doi": "10.1016/j.envsoft.2025.106834",
+          "indexed": "2026-08-17T17:46:17Z",
+          "issn": [
+            "1364-8152"
+          ],
+          "license": [
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start": "2026-02-01T00:00:00Z",
+              "url": "https://www.elsevier.com/tdm/userlicense/1.0/"
+            },
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start": "2026-02-01T00:00:00Z",
+              "url": "https://www.elsevier.com/legal/tdmrep-license"
+            },
+            {
+              "content_version": "stm-asf",
+              "delay_in_days": 0,
+              "start": "2026-02-01T00:00:00Z",
+              "url": "https://doi.org/10.15223/policy-017"
+            },
+            {
+              "content_version": "stm-asf",
+              "delay_in_days": 0,
+              "start": "2026-02-01T00:00:00Z",
+              "url": "https://doi.org/10.15223/policy-037"
+            },
+            {
+              "content_version": "stm-asf",
+              "delay_in_days": 0,
+              "start": "2026-02-01T00:00:00Z",
+              "url": "https://doi.org/10.15223/policy-012"
+            },
+            {
+              "content_version": "stm-asf",
+              "delay_in_days": 0,
+              "start": "2026-02-01T00:00:00Z",
+              "url": "https://doi.org/10.15223/policy-029"
+            },
+            {
+              "content_version": "stm-asf",
+              "delay_in_days": 0,
+              "start": "2026-02-01T00:00:00Z",
+              "url": "https://doi.org/10.15223/policy-004"
+            }
+          ],
+          "publisher": "Elsevier BV"
+        },
+        "current_sparse_metadata_receipt": {
+          "normalized_sha256": "58a7fb1152af7bc83c96a04eaf6e6f1eb40eaafaf2c5e2c6880512fdd756af62",
+          "receipt": {
+            "content_length_header": null,
+            "content_type": "application/json",
+            "etag": null,
+            "final_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.envsoft.2025.106834&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "http_status": 200,
+            "last_modified": null,
+            "method": "GET",
+            "request_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.envsoft.2025.106834&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "response_bytes": 2100,
+            "response_sha256": "095748d622441507629795de2b45a5a5d8189626049384f80bcff8da90a6a087"
+          },
+          "url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.envsoft.2025.106834&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1"
+        },
+        "evidence_ids": [
+          "CR_SNAPSHOT_DOC",
+          "CR_PUBLIC_DATA_DOC",
+          "CR_2025_RELEASE_DOC",
+          "CR_2025_PUBLIC_FILE_TORRENT",
+          "CR_2026_01_SNAPSHOT_HEAD"
+        ],
+        "internet_archive_doi_redirect_capture_count": 0,
+        "internet_archive_exact_api_capture_count": 0,
+        "negative_identity": "POST_CUTOFF_REDEPOSIT_DIVERGENCE__10_1016_J_ENVSOFT_2025_106834",
+        "official_2025_public_file_relation": "NOT_IN_2025_RELEASE_BY_PROVIDER_CREATION_TIME_AFTER_RELEASE",
+        "official_2025_public_file_root_membership_checked": false,
+        "official_2026_01_snapshot_bytes_obtained": false,
+        "status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES"
+      },
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.1016/j.envsoft.2025.106834",
+      "protected_domain_candidate": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "root_id": "10.1016/j.envsoft.2025.106834",
+      "wave_id": "PRIMARY"
+    },
+    {
+      "artifact_modality": "NON_GITHUB_PROJECT_TRACKER",
+      "canonical_dedup_root": "gitlab-project:17679574",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "No issue, comment, attachment, label, or outcome was opened.",
+          "status": "NOT_ACCESSED"
+        },
+        "issue_attachment": {
+          "evidence_ids": [
+            "GITLAB_API_TERMS",
+            "GITLAB_WEBSITE_TERMS",
+            "GITLAB_ROBOTS"
+          ],
+          "reason": "GitLab robots disallow upload paths and no project/root attachment licence is bound.",
+          "status": "CANNOT_CHECK"
+        },
+        "issue_or_comment_text": {
+          "evidence_ids": [
+            "GITLAB_API_TERMS",
+            "GITLAB_WEBSITE_TERMS",
+            "GITLAB_ROBOTS"
+          ],
+          "reason": "Neither project code licence nor GitLab API/website terms supplies a root-bound public reuse grant for user issue/comment prose.",
+          "status": "CANNOT_CHECK"
+        },
+        "provider_project_metadata": {
+          "evidence_ids": [
+            "GITLAB_API_TERMS",
+            "GITLAB_REST_DOC",
+            "GITLAB_ROBOTS"
+          ],
+          "reason": "GitLab documents bounded API access but its API terms grant no ownership in accessed content and prohibit bulk collection except where law permits.",
+          "status": "ACCESS_ONLY_NOT_REUSE"
+        },
+        "repository_code": {
+          "evidence_ids": [],
+          "licence_content_sha256": "b634ab5640e258563c536e658cad87080553df6f34f62269a21d554844e58bfe",
+          "licence_path": "COPYING",
+          "reason": "An exact LGPL-2.1 license text is hashed at the selected pre-cutoff commit; this does not extend to issue prose or attachments.",
+          "status": "ROOT_BOUND_PERMISSION"
+        }
+      },
+      "content_host_identity": "gromacs",
+      "historical_byte_provenance": null,
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "GITLAB_COM_REST_API_V4",
+      "persistent_identifier": "gitlab-project:17679574",
+      "protected_domain_candidate": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "root_id": "gromacs/gromacs",
+      "wave_id": "PRIMARY"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "canonical_dedup_root": "crossref:issn:2550-1100+2598-9588",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "article_body": {
+          "declared_content_licences": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start": "2025-06-29T00:00:00Z",
+              "url": "http://creativecommons.org/licenses/by-nc/4.0"
+            }
+          ],
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "A current Crossref member-deposited VOR/unspecified Creative Commons URI exists, but Crossref states it does not verify licence URLs and no article bytes or publisher root statement were opened.",
+          "status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED"
+        },
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Metadata identity and rights declarations do not establish case inclusion, labels, pairing, or scientific strata.",
+          "status": "NOT_ACCESSED"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "CR_PUBLIC_DATA_DOC",
+            "CR_METADATA_PLUS_TERMS",
+            "CR_ROBOTS"
+          ],
+          "reason": "Crossref describes public/open access and Metadata Plus grants subscribers broad metadata rights, but no equally explicit public-REST caller reuse grant was bound here; site CC BY is not assumed to cover member-supplied record fields.",
+          "status": "CANNOT_CHECK"
+        },
+        "supplement_or_attachment": {
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "No root-bound supplement or attachment licence was identified without opening those content classes.",
+          "status": "CANNOT_CHECK"
+        }
+      },
+      "content_host_identity": "Universitas Al-Hikmah Indonesia",
+      "historical_byte_provenance": {
+        "current_deposit_after_cutoff": false,
+        "current_sparse_metadata": {
+          "created": "2025-07-03T04:46:17Z",
+          "deposited": "2025-07-03T04:46:23Z",
+          "doi": "10.35896/ijecie.v9i1.914",
+          "indexed": "2025-07-03T05:10:05Z",
+          "issn": [
+            "2550-1100",
+            "2598-9588"
+          ],
+          "license": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start": "2025-06-29T00:00:00Z",
+              "url": "http://creativecommons.org/licenses/by-nc/4.0"
+            }
+          ],
+          "publisher": "Universitas Al-Hikmah Indonesia"
+        },
+        "current_sparse_metadata_receipt": {
+          "normalized_sha256": "36cdc5e2b3602a15752fbe88956e86f92fc7fae62aa24710000a39f3fb5eb861",
+          "receipt": {
+            "content_length_header": null,
+            "content_type": "application/json",
+            "etag": null,
+            "final_url": "https://api.crossref.org/works?filter=doi%3A10.35896%2Fijecie.v9i1.914&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "http_status": 200,
+            "last_modified": null,
+            "method": "GET",
+            "request_url": "https://api.crossref.org/works?filter=doi%3A10.35896%2Fijecie.v9i1.914&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "response_bytes": 1008,
+            "response_sha256": "b602d8305d8884e6479ebb7ead8fc28b7813b24559922e9a2539dcbe5b005bc3"
+          },
+          "url": "https://api.crossref.org/works?filter=doi%3A10.35896%2Fijecie.v9i1.914&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1"
+        },
+        "evidence_ids": [
+          "CR_SNAPSHOT_DOC",
+          "CR_PUBLIC_DATA_DOC",
+          "CR_2025_RELEASE_DOC",
+          "CR_2025_PUBLIC_FILE_TORRENT",
+          "CR_2026_01_SNAPSHOT_HEAD"
+        ],
+        "internet_archive_doi_redirect_capture_count": 0,
+        "internet_archive_exact_api_capture_count": 0,
+        "negative_identity": "UNCOMMITTED_PRE_CUTOFF_DEPOSIT_BYTES__10_35896_IJECIE_V9I1_914",
+        "official_2025_public_file_relation": "NOT_IN_2025_RELEASE_BY_PROVIDER_CREATION_TIME_AFTER_RELEASE",
+        "official_2025_public_file_root_membership_checked": false,
+        "official_2026_01_snapshot_bytes_obtained": false,
+        "status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES"
+      },
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.35896/ijecie.v9i1.914",
+      "protected_domain_candidate": "PHYSICAL_ENGINEERING",
+      "root_id": "10.35896/ijecie.v9i1.914",
+      "wave_id": "PRIMARY"
+    },
+    {
+      "artifact_modality": "INSTRUMENT_CALIBRATION_ARCHIVE",
+      "canonical_dedup_root": "cmr:NOAA_NCEI:C01528",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "No collection file or documentation was opened; rights policy does not establish scientific case eligibility.",
+          "status": "NOT_ACCESSED"
+        },
+        "collection_data_files": {
+          "evidence_ids": [
+            "NASA_DATA_USE",
+            "CMR_ROBOTS",
+            "NCEI_ROBOTS"
+          ],
+          "reason": "The root is NOAA-hosted non-NASA data. NASA guidance expressly defers to the sponsoring organization, the historical UMM has no use-constraints grant, and no root-bound NOAA permission was located.",
+          "status": "CANNOT_CHECK"
+        },
+        "documentation_or_third_party_attachment": {
+          "evidence_ids": [
+            "NASA_DATA_USE",
+            "CMR_ROBOTS"
+          ],
+          "reason": "NASA policy warns that third-party copyrighted material may require separate permission; documents and attachments were not opened or classified.",
+          "status": "CANNOT_CHECK"
+        },
+        "provider_collection_metadata": {
+          "evidence_ids": [
+            "NASA_DATA_USE",
+            "CMR_ROBOTS",
+            "NCEI_ROBOTS"
+          ],
+          "reason": "The NASA CMR record is accessible, but non-NASA NOAA metadata rights are deferred to the sponsor and remain unbound.",
+          "status": "CANNOT_CHECK"
+        }
+      },
+      "content_host_identity": "DOC/NOAA/NESDIS/NCEI",
+      "historical_byte_provenance": null,
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "NASA_ESDIS_CMR_SEARCH_API",
+      "persistent_identifier": "cmr-concept:C2107094645-NOAA_NCEI",
+      "protected_domain_candidate": "PHYSICAL_ENGINEERING",
+      "root_id": "C2107094645-NOAA_NCEI",
+      "wave_id": "PRIMARY"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "canonical_dedup_root": "crossref:issn:2578-2762",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "article_body": {
+          "declared_content_licences": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start": "2024-12-30T00:00:00Z",
+              "url": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ],
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "A current Crossref member-deposited VOR/unspecified Creative Commons URI exists, but Crossref states it does not verify licence URLs and no article bytes or publisher root statement were opened.",
+          "status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED"
+        },
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Metadata identity and rights declarations do not establish case inclusion, labels, pairing, or scientific strata.",
+          "status": "NOT_ACCESSED"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "CR_PUBLIC_DATA_DOC",
+            "CR_METADATA_PLUS_TERMS",
+            "CR_ROBOTS"
+          ],
+          "reason": "Crossref describes public/open access and Metadata Plus grants subscribers broad metadata rights, but no equally explicit public-REST caller reuse grant was bound here; site CC BY is not assumed to cover member-supplied record fields.",
+          "status": "CANNOT_CHECK"
+        },
+        "supplement_or_attachment": {
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "No root-bound supplement or attachment licence was identified without opening those content classes.",
+          "status": "CANNOT_CHECK"
+        }
+      },
+      "content_host_identity": "Global Clinical Engineering Journal",
+      "historical_byte_provenance": {
+        "current_deposit_after_cutoff": false,
+        "current_sparse_metadata": {
+          "created": "2025-01-01T12:15:10Z",
+          "deposited": "2025-01-30T22:24:02Z",
+          "doi": "10.31354/globalce.v6isi6.283",
+          "indexed": "2025-01-30T22:40:06Z",
+          "issn": [
+            "2578-2762"
+          ],
+          "license": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start": "2024-12-30T00:00:00Z",
+              "url": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ],
+          "publisher": "Global Clinical Engineering Journal"
+        },
+        "current_sparse_metadata_receipt": {
+          "normalized_sha256": "8e205677cac64254960b9f2f868983181296caf25df9747b411236c5ddf00881",
+          "receipt": {
+            "content_length_header": null,
+            "content_type": "application/json",
+            "etag": null,
+            "final_url": "https://api.crossref.org/works?filter=doi%3A10.31354%2Fglobalce.v6isi6.283&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "http_status": 200,
+            "last_modified": null,
+            "method": "GET",
+            "request_url": "https://api.crossref.org/works?filter=doi%3A10.31354%2Fglobalce.v6isi6.283&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "response_bytes": 974,
+            "response_sha256": "1b50829a20fb361f787a06c630f4c481547f8645ed3e45df8e81c69300a7159d"
+          },
+          "url": "https://api.crossref.org/works?filter=doi%3A10.31354%2Fglobalce.v6isi6.283&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1"
+        },
+        "evidence_ids": [
+          "CR_SNAPSHOT_DOC",
+          "CR_PUBLIC_DATA_DOC",
+          "CR_2025_RELEASE_DOC",
+          "CR_2025_PUBLIC_FILE_TORRENT",
+          "CR_2026_01_SNAPSHOT_HEAD"
+        ],
+        "internet_archive_doi_redirect_capture_count": 0,
+        "internet_archive_exact_api_capture_count": 0,
+        "negative_identity": "UNCOMMITTED_PRE_CUTOFF_DEPOSIT_BYTES__10_31354_GLOBALCE_V6ISI6_283",
+        "official_2025_public_file_relation": "POSSIBLY_IN_RELEASE__ROOT_MEMBERSHIP_NOT_EXTRACTED",
+        "official_2025_public_file_root_membership_checked": false,
+        "official_2026_01_snapshot_bytes_obtained": false,
+        "status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES"
+      },
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.31354/globalce.v6isi6.283",
+      "protected_domain_candidate": "BIOMEDICAL_CLINICAL",
+      "root_id": "10.31354/globalce.v6isi6.283",
+      "wave_id": "REPLICATION"
+    },
+    {
+      "artifact_modality": "DATA_REPOSITORY_DEPOSIT",
+      "canonical_dedup_root": "zenodo:conceptdoi:10.5281/zenodo.17852131",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Files were not opened; metadata and declared licence do not establish scientific case eligibility.",
+          "status": "NOT_ACCESSED"
+        },
+        "dataset_files": {
+          "declared_licence_id": "cc-by-4.0",
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES",
+            "CC_BY_4_LEGAL",
+            "ZENODO_ROBOTS"
+          ],
+          "reason": "The exact record declares CC BY 4.0 and Zenodo requires a licence for public files, but Zenodo assigns uploader responsibility and does not independently establish uploader authority.",
+          "status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED"
+        },
+        "linked_or_derived_attachments": {
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES"
+          ],
+          "reason": "The record declaration is not extended to third-party linked objects or derived external attachments without a root-specific relation.",
+          "status": "CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES",
+            "CC0_1_LEGAL"
+          ],
+          "reason": "Zenodo terms and policies explicitly place metadata under CC0 except email addresses; no email fields are retained in the census.",
+          "status": "ROOT_BOUND_PERMISSION"
+        }
+      },
+      "content_host_identity": "Zenodo",
+      "historical_byte_provenance": null,
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "ZENODO_REST_API",
+      "persistent_identifier": "doi:10.5281/zenodo.17852132",
+      "protected_domain_candidate": "BIOMEDICAL_CLINICAL",
+      "root_id": "17852132",
+      "wave_id": "REPLICATION"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "canonical_dedup_root": "crossref:issn:2661-3190",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "article_body": {
+          "declared_content_licences": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start": "2025-03-28T00:00:00Z",
+              "url": "https://creativecommons.org/licenses/by-nc/4.0"
+            }
+          ],
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "A current Crossref member-deposited VOR/unspecified Creative Commons URI exists, but Crossref states it does not verify licence URLs and no article bytes or publisher root statement were opened.",
+          "status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED"
+        },
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Metadata identity and rights declarations do not establish case inclusion, labels, pairing, or scientific strata.",
+          "status": "NOT_ACCESSED"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "CR_PUBLIC_DATA_DOC",
+            "CR_METADATA_PLUS_TERMS",
+            "CR_ROBOTS"
+          ],
+          "reason": "Crossref describes public/open access and Metadata Plus grants subscribers broad metadata rights, but no equally explicit public-REST caller reuse grant was bound here; site CC BY is not assumed to cover member-supplied record fields.",
+          "status": "CANNOT_CHECK"
+        },
+        "supplement_or_attachment": {
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "No root-bound supplement or attachment licence was identified without opening those content classes.",
+          "status": "CANNOT_CHECK"
+        }
+      },
+      "content_host_identity": "Bilingual Publishing Group",
+      "historical_byte_provenance": {
+        "current_deposit_after_cutoff": false,
+        "current_sparse_metadata": {
+          "created": "2025-03-28T03:19:28Z",
+          "deposited": "2025-03-28T03:19:29Z",
+          "doi": "10.30564/jees.v7i4.8039",
+          "indexed": "2026-06-07T22:44:36Z",
+          "issn": [
+            "2661-3190"
+          ],
+          "license": [
+            {
+              "content_version": "unspecified",
+              "delay_in_days": 0,
+              "start": "2025-03-28T00:00:00Z",
+              "url": "https://creativecommons.org/licenses/by-nc/4.0"
+            }
+          ],
+          "publisher": "Bilingual Publishing Group"
+        },
+        "current_sparse_metadata_receipt": {
+          "normalized_sha256": "31b9408fc7520a96247538757d6320e96ba2962d358970e094fb1ecfd8bb527f",
+          "receipt": {
+            "content_length_header": null,
+            "content_type": "application/json",
+            "etag": null,
+            "final_url": "https://api.crossref.org/works?filter=doi%3A10.30564%2Fjees.v7i4.8039&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "http_status": 200,
+            "last_modified": null,
+            "method": "GET",
+            "request_url": "https://api.crossref.org/works?filter=doi%3A10.30564%2Fjees.v7i4.8039&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "response_bytes": 955,
+            "response_sha256": "4c593544fd0910b2691382ef05fc29415be5e96630d292ac0378de93e1ad138a"
+          },
+          "url": "https://api.crossref.org/works?filter=doi%3A10.30564%2Fjees.v7i4.8039&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1"
+        },
+        "evidence_ids": [
+          "CR_SNAPSHOT_DOC",
+          "CR_PUBLIC_DATA_DOC",
+          "CR_2025_RELEASE_DOC",
+          "CR_2025_PUBLIC_FILE_TORRENT",
+          "CR_2026_01_SNAPSHOT_HEAD"
+        ],
+        "internet_archive_doi_redirect_capture_count": 0,
+        "internet_archive_exact_api_capture_count": 0,
+        "negative_identity": "UNCOMMITTED_PRE_CUTOFF_DEPOSIT_BYTES__10_30564_JEES_V7I4_8039",
+        "official_2025_public_file_relation": "NOT_IN_2025_RELEASE_BY_PROVIDER_CREATION_TIME_AFTER_RELEASE",
+        "official_2025_public_file_root_membership_checked": false,
+        "official_2026_01_snapshot_bytes_obtained": false,
+        "status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES"
+      },
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.30564/jees.v7i4.8039",
+      "protected_domain_candidate": "EARTH_ENVIRONMENTAL",
+      "root_id": "10.30564/jees.v7i4.8039",
+      "wave_id": "REPLICATION"
+    },
+    {
+      "artifact_modality": "DATA_REPOSITORY_DEPOSIT",
+      "canonical_dedup_root": "zenodo:conceptdoi:10.5281/zenodo.10637252",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Files were not opened; metadata and declared licence do not establish scientific case eligibility.",
+          "status": "NOT_ACCESSED"
+        },
+        "dataset_files": {
+          "declared_licence_id": "cc-by-4.0",
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES",
+            "CC_BY_4_LEGAL",
+            "ZENODO_ROBOTS"
+          ],
+          "reason": "The exact record declares CC BY 4.0 and Zenodo requires a licence for public files, but Zenodo assigns uploader responsibility and does not independently establish uploader authority.",
+          "status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED"
+        },
+        "linked_or_derived_attachments": {
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES"
+          ],
+          "reason": "The record declaration is not extended to third-party linked objects or derived external attachments without a root-specific relation.",
+          "status": "CANNOT_CHECK"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "ZENODO_TERMS",
+            "ZENODO_POLICIES",
+            "CC0_1_LEGAL"
+          ],
+          "reason": "Zenodo terms and policies explicitly place metadata under CC0 except email addresses; no email fields are retained in the census.",
+          "status": "ROOT_BOUND_PERMISSION"
+        }
+      },
+      "content_host_identity": "Zenodo",
+      "historical_byte_provenance": null,
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "ZENODO_REST_API",
+      "persistent_identifier": "doi:10.5281/zenodo.18109101",
+      "protected_domain_candidate": "EARTH_ENVIRONMENTAL",
+      "root_id": "18109101",
+      "wave_id": "REPLICATION"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "canonical_dedup_root": "crossref:issn:2468-2276",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "article_body": {
+          "declared_content_licences": [
+            {
+              "content_version": "vor",
+              "delay_in_days": 0,
+              "start": "2025-12-28T00:00:00Z",
+              "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+            }
+          ],
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "A current Crossref member-deposited VOR/unspecified Creative Commons URI exists, but Crossref states it does not verify licence URLs and no article bytes or publisher root statement were opened.",
+          "status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED"
+        },
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Metadata identity and rights declarations do not establish case inclusion, labels, pairing, or scientific strata.",
+          "status": "NOT_ACCESSED"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "CR_PUBLIC_DATA_DOC",
+            "CR_METADATA_PLUS_TERMS",
+            "CR_ROBOTS"
+          ],
+          "reason": "Crossref describes public/open access and Metadata Plus grants subscribers broad metadata rights, but no equally explicit public-REST caller reuse grant was bound here; site CC BY is not assumed to cover member-supplied record fields.",
+          "status": "CANNOT_CHECK"
+        },
+        "supplement_or_attachment": {
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "No root-bound supplement or attachment licence was identified without opening those content classes.",
+          "status": "CANNOT_CHECK"
+        }
+      },
+      "content_host_identity": "Elsevier BV",
+      "historical_byte_provenance": {
+        "current_deposit_after_cutoff": true,
+        "current_sparse_metadata": {
+          "created": "2025-12-29T16:28:20Z",
+          "deposited": "2026-07-20T17:30:33Z",
+          "doi": "10.1016/j.sciaf.2025.e03156",
+          "indexed": "2026-07-20T18:03:58Z",
+          "issn": [
+            "2468-2276"
+          ],
+          "license": [
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start": "2026-03-01T00:00:00Z",
+              "url": "https://www.elsevier.com/tdm/userlicense/1.0/"
+            },
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start": "2026-03-01T00:00:00Z",
+              "url": "https://www.elsevier.com/legal/tdmrep-license"
+            },
+            {
+              "content_version": "vor",
+              "delay_in_days": 0,
+              "start": "2025-12-28T00:00:00Z",
+              "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+            }
+          ],
+          "publisher": "Elsevier BV"
+        },
+        "current_sparse_metadata_receipt": {
+          "normalized_sha256": "5f4bd5bca3e66a3f668b08b20cdb1aa766f74db94b72e939393366df1bac12e6",
+          "receipt": {
+            "content_length_header": null,
+            "content_type": "application/json",
+            "etag": null,
+            "final_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.sciaf.2025.e03156&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "http_status": 200,
+            "last_modified": null,
+            "method": "GET",
+            "request_url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.sciaf.2025.e03156&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "response_bytes": 1339,
+            "response_sha256": "eeb2e7bc6ba8037b001bc7c752e80de18d3b9207835868219873cda418eecb12"
+          },
+          "url": "https://api.crossref.org/works?filter=doi%3A10.1016%2Fj.sciaf.2025.e03156&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1"
+        },
+        "evidence_ids": [
+          "CR_SNAPSHOT_DOC",
+          "CR_PUBLIC_DATA_DOC",
+          "CR_2025_RELEASE_DOC",
+          "CR_2025_PUBLIC_FILE_TORRENT",
+          "CR_2026_01_SNAPSHOT_HEAD"
+        ],
+        "internet_archive_doi_redirect_capture_count": 0,
+        "internet_archive_exact_api_capture_count": 0,
+        "negative_identity": "POST_CUTOFF_REDEPOSIT_DIVERGENCE__10_1016_J_SCIAF_2025_E03156",
+        "official_2025_public_file_relation": "NOT_IN_2025_RELEASE_BY_PROVIDER_CREATION_TIME_AFTER_RELEASE",
+        "official_2025_public_file_root_membership_checked": false,
+        "official_2026_01_snapshot_bytes_obtained": false,
+        "status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES"
+      },
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.1016/j.sciaf.2025.e03156",
+      "protected_domain_candidate": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "root_id": "10.1016/j.sciaf.2025.e03156",
+      "wave_id": "REPLICATION"
+    },
+    {
+      "artifact_modality": "NON_GITHUB_PROJECT_TRACKER",
+      "canonical_dedup_root": "gitlab-project:4578472",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "No issue, comment, attachment, label, or outcome was opened.",
+          "status": "NOT_ACCESSED"
+        },
+        "issue_attachment": {
+          "evidence_ids": [
+            "GITLAB_API_TERMS",
+            "GITLAB_WEBSITE_TERMS",
+            "GITLAB_ROBOTS"
+          ],
+          "reason": "GitLab robots disallow upload paths and no project/root attachment licence is bound.",
+          "status": "CANNOT_CHECK"
+        },
+        "issue_or_comment_text": {
+          "evidence_ids": [
+            "GITLAB_API_TERMS",
+            "GITLAB_WEBSITE_TERMS",
+            "GITLAB_ROBOTS"
+          ],
+          "reason": "Neither project code licence nor GitLab API/website terms supplies a root-bound public reuse grant for user issue/comment prose.",
+          "status": "CANNOT_CHECK"
+        },
+        "provider_project_metadata": {
+          "evidence_ids": [
+            "GITLAB_API_TERMS",
+            "GITLAB_REST_DOC",
+            "GITLAB_ROBOTS"
+          ],
+          "reason": "GitLab documents bounded API access but its API terms grant no ownership in accessed content and prohibit bulk collection except where law permits.",
+          "status": "ACCESS_ONLY_NOT_REUSE"
+        },
+        "repository_code": {
+          "evidence_ids": [],
+          "licence_content_sha256": "204d8eff92f95aac4df6c8122bc1505f468f3a901e5a4cc08940e0ede1938994",
+          "licence_path": "License",
+          "reason": "An exact GPL-2.0 license text is hashed at the selected pre-cutoff commit; this does not extend to issue prose or attachments.",
+          "status": "ROOT_BOUND_PERMISSION"
+        }
+      },
+      "content_host_identity": "QEF",
+      "historical_byte_provenance": null,
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "GITLAB_COM_REST_API_V4",
+      "persistent_identifier": "gitlab-project:4578472",
+      "protected_domain_candidate": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "root_id": "QEF/q-e",
+      "wave_id": "REPLICATION"
+    },
+    {
+      "artifact_modality": "PUBLISHER_ARTICLE",
+      "canonical_dedup_root": "crossref:issn:1550-7416",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "article_body": {
+          "declared_content_licences": [
+            {
+              "content_version": "vor",
+              "delay_in_days": 0,
+              "start": "2025-10-24T00:00:00Z",
+              "url": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+            }
+          ],
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "No current Crossref VOR/unspecified Creative Commons licence URI establishes article-body reuse; TDM or STM policy links are not promoted to a body licence.",
+          "status": "CANNOT_CHECK"
+        },
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "Metadata identity and rights declarations do not establish case inclusion, labels, pairing, or scientific strata.",
+          "status": "NOT_ACCESSED"
+        },
+        "provider_metadata_record": {
+          "evidence_ids": [
+            "CR_PUBLIC_DATA_DOC",
+            "CR_METADATA_PLUS_TERMS",
+            "CR_ROBOTS"
+          ],
+          "reason": "Crossref describes public/open access and Metadata Plus grants subscribers broad metadata rights, but no equally explicit public-REST caller reuse grant was bound here; site CC BY is not assumed to cover member-supplied record fields.",
+          "status": "CANNOT_CHECK"
+        },
+        "supplement_or_attachment": {
+          "evidence_ids": [
+            "CR_LICENSE_METADATA_DOC"
+          ],
+          "reason": "No root-bound supplement or attachment licence was identified without opening those content classes.",
+          "status": "CANNOT_CHECK"
+        }
+      },
+      "content_host_identity": "Springer Science and Business Media LLC",
+      "historical_byte_provenance": {
+        "current_deposit_after_cutoff": true,
+        "current_sparse_metadata": {
+          "created": "2025-10-24T17:03:01Z",
+          "deposited": "2026-02-11T18:02:00Z",
+          "doi": "10.1208/s12248-025-01156-0",
+          "indexed": "2026-07-27T17:16:52Z",
+          "issn": [
+            "1550-7416"
+          ],
+          "license": [
+            {
+              "content_version": "tdm",
+              "delay_in_days": 0,
+              "start": "2025-10-24T00:00:00Z",
+              "url": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+            },
+            {
+              "content_version": "vor",
+              "delay_in_days": 0,
+              "start": "2025-10-24T00:00:00Z",
+              "url": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+            }
+          ],
+          "publisher": "Springer Science and Business Media LLC"
+        },
+        "current_sparse_metadata_receipt": {
+          "normalized_sha256": "d1c4857adfafb94fdb4503c51307dd1f26bad2e39cf3b3d9e5c941c49325245f",
+          "receipt": {
+            "content_length_header": null,
+            "content_type": "application/json",
+            "etag": null,
+            "final_url": "https://api.crossref.org/works?filter=doi%3A10.1208%2Fs12248-025-01156-0&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "http_status": 200,
+            "last_modified": null,
+            "method": "GET",
+            "request_url": "https://api.crossref.org/works?filter=doi%3A10.1208%2Fs12248-025-01156-0&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1",
+            "response_bytes": 1210,
+            "response_sha256": "1b08bab6643a354a3009cfdd884e3ee15f26eab13f6591dc8bf06e1c0e7b0cf0"
+          },
+          "url": "https://api.crossref.org/works?filter=doi%3A10.1208%2Fs12248-025-01156-0&select=DOI%2Ctype%2Cpublisher%2Ccreated%2Cdeposited%2Cindexed%2Clicense%2CURL%2Cmember%2CISSN%2Cissn-type&rows=1"
+        },
+        "evidence_ids": [
+          "CR_SNAPSHOT_DOC",
+          "CR_PUBLIC_DATA_DOC",
+          "CR_2025_RELEASE_DOC",
+          "CR_2025_PUBLIC_FILE_TORRENT",
+          "CR_2026_01_SNAPSHOT_HEAD"
+        ],
+        "internet_archive_doi_redirect_capture_count": 0,
+        "internet_archive_exact_api_capture_count": 0,
+        "negative_identity": "POST_CUTOFF_REDEPOSIT_DIVERGENCE__10_1208_S12248_025_01156_0",
+        "official_2025_public_file_relation": "NOT_IN_2025_RELEASE_BY_PROVIDER_CREATION_TIME_AFTER_RELEASE",
+        "official_2025_public_file_root_membership_checked": false,
+        "official_2026_01_snapshot_bytes_obtained": false,
+        "status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES"
+      },
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "CROSSREF_REST_API",
+      "persistent_identifier": "doi:10.1208/s12248-025-01156-0",
+      "protected_domain_candidate": "PHYSICAL_ENGINEERING",
+      "root_id": "10.1208/s12248-025-01156-0",
+      "wave_id": "REPLICATION"
+    },
+    {
+      "artifact_modality": "INSTRUMENT_CALIBRATION_ARCHIVE",
+      "canonical_dedup_root": "cmr:GES_DISC:SNDRAQIML1CCALSUBRND_2",
+      "case_content_accessed": false,
+      "case_eligibility_assessed": false,
+      "content_class_rights": {
+        "case_eligibility": {
+          "evidence_ids": [],
+          "reason": "No collection file or documentation was opened; rights policy does not establish scientific case eligibility.",
+          "status": "NOT_ACCESSED"
+        },
+        "collection_data_files": {
+          "evidence_ids": [
+            "NASA_DATA_USE",
+            "NASA_OPEN_POLICY",
+            "CC0_1_LEGAL",
+            "CMR_ROBOTS"
+          ],
+          "reason": "The exact historical CMR root is NASA GES DISC/Aqua AIRS; its use-constraints object cites NASA guidance and declares no conflicting licence. NASA policy places unmarked NASA-led mission data under CC0.",
+          "status": "ROOT_BOUND_PERMISSION"
+        },
+        "documentation_or_third_party_attachment": {
+          "evidence_ids": [
+            "NASA_DATA_USE",
+            "CMR_ROBOTS"
+          ],
+          "reason": "NASA policy warns that third-party copyrighted material may require separate permission; documents and attachments were not opened or classified.",
+          "status": "CANNOT_CHECK"
+        },
+        "provider_collection_metadata": {
+          "evidence_ids": [
+            "NASA_DATA_USE",
+            "NASA_OPEN_POLICY",
+            "CC0_1_LEGAL",
+            "CMR_ROBOTS"
+          ],
+          "reason": "NASA full-and-open/CC0 policy covers the NASA-led CMR metadata root.",
+          "status": "ROOT_BOUND_PERMISSION"
+        }
+      },
+      "content_host_identity": "NASA/GSFC/SED/ESD/TISL/GESDISC",
+      "historical_byte_provenance": null,
+      "labels_or_outcomes_accessed": false,
+      "metadata_provider_id": "NASA_ESDIS_CMR_SEARCH_API",
+      "persistent_identifier": "doi:10.5067/kmj8q9za1y3k",
+      "protected_domain_candidate": "PHYSICAL_ENGINEERING",
+      "root_id": "C2210183595-GES_DISC",
+      "wave_id": "REPLICATION"
+    }
+  ],
+  "schema_version": "orion.provider-rights-history-successor.root-ledger.v1",
+  "scientific_terminal": "CANNOT_CHECK_RIGHTS_AND_HISTORY_BINDING"
+}

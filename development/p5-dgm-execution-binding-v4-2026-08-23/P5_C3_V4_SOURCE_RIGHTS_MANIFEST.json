@@ -1,0 +1,157 @@
+{
+  "authoritative_tree_metadata_census": {
+    "candidate_seed_policy": "exclude all three prefixes before any candidate access",
+    "method": "git ls-tree -r -l HEAD metadata only",
+    "non_outcome_union": {
+      "blob_bytes": 3488164,
+      "files": 55
+    },
+    "outcome_or_initial_prefixes": [
+      {
+        "blob_bytes": 27591301,
+        "files": 475,
+        "prefix": "initial/"
+      },
+      {
+        "blob_bytes": 22099022,
+        "files": 1118,
+        "prefix": "initial_polyglot/"
+      },
+      {
+        "blob_bytes": 17010,
+        "files": 2,
+        "prefix": "swe_bench/ref_agent_results/"
+      }
+    ],
+    "outcome_or_initial_union": {
+      "blob_bytes": 49707333,
+      "files": 1595
+    },
+    "payload_contents_opened": false,
+    "reference_outcome_entries": [
+      {
+        "blob_bytes": 8356,
+        "git_blob": "97cc25611b6159e8127d9898f0e9b6e978704b1d",
+        "path": "swe_bench/ref_agent_results/claude_tools.json"
+      },
+      {
+        "blob_bytes": 8654,
+        "git_blob": "72e071a4416f98e3419287cb6203c95de17db365",
+        "path": "swe_bench/ref_agent_results/open_hands.json"
+      }
+    ],
+    "tracked_blob_bytes": 53195497,
+    "tracked_files": 1650
+  },
+  "authority": "PUBLIC_SOURCE_IDENTITY_RIGHTS_AND_METADATA_ONLY_OUTCOME_CENSUS__NOT_LEGAL_ADVICE",
+  "dependency_declaration_audit": {
+    "authoritative_lockfiles": 0,
+    "requirements_dev_txt_entries": 4,
+    "requirements_dev_txt_exact_pins": 0,
+    "requirements_txt_entries": 19,
+    "requirements_txt_exact_pins": 0,
+    "terminal": "DECLARATIONS_HASHED__DEPENDENCY_RESOLUTION_UNBOUND"
+  },
+  "frozen_at_utc": "2026-08-23T18:15:39Z",
+  "hashed_authoritative_files": [
+    {
+      "path": "LICENSE",
+      "sha256": "84b7504ce8dda1f37f592cdf67ad21371864583720d79ea289b0b0c75bfcdb17"
+    },
+    {
+      "path": "README.md",
+      "sha256": "9760f30330e519946592ae88178f579dd717c3e55d3d461322e5facfa09c6bd4"
+    },
+    {
+      "path": "DGM_outer.py",
+      "sha256": "239bc76f0e1b78210b8f7b3757b1082f6ca07db3537d6af50a45bf97709795ed"
+    },
+    {
+      "path": "self_improve_step.py",
+      "sha256": "6f2ec364b11e7f6d35391ea66896fa2394cbca3bc59d68cf7352c2a77aa8cca7"
+    },
+    {
+      "path": "coding_agent.py",
+      "sha256": "0fe9f4806fee18a481c9298a6d1ab6d754bb81666031598d86a9da2b632a5829"
+    },
+    {
+      "path": "llm.py",
+      "sha256": "ca6ac22d7f128180de398cec48b9f5cc1f1f49f3bf1a8e935025588d8b09570d"
+    },
+    {
+      "path": "llm_withtools.py",
+      "sha256": "b6fa4ee18ad8b42767f7cad68bf8ed7f7937dcfaf32b85757182979bdb895836"
+    },
+    {
+      "path": "utils/docker_utils.py",
+      "sha256": "4f72795d21358299a2b3053e7798837a110a4a795fab8f064cdeaab759568552"
+    },
+    {
+      "path": "utils/git_utils.py",
+      "sha256": "b6d1a051ca7e663f221d5bc1c9154f33f380a80371ded6c8abfdbf23102004ea"
+    },
+    {
+      "path": "utils/evo_utils.py",
+      "sha256": "0eb779270390f39aa0c4ff045ec9b6c3049736c6a008ae3d2e7a2df7ef253570"
+    },
+    {
+      "path": "swe_bench/harness.py",
+      "sha256": "2445479db7c7b0fa607dde5153dde2a85ce1fb3dd810bb088c81ab2f265c617a"
+    },
+    {
+      "path": "swe_bench/report.py",
+      "sha256": "a86e6fa6f8826414c55f0742f115ab05bb35a9d733bc447fa2dcf3138a9d33d4"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "55616682db154e7597b92f3406fa7bb240d91986d2f76581ba3f4a60941b6f7e"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "4ef674aecea8fce1c1be6d663aab988dae61d5951bd296ab6250f5e2bc315aaf"
+    },
+    {
+      "path": "requirements_dev.txt",
+      "sha256": "58cfa97e21b89fad87009c8b2e41888558a1b5e09e11951519869822ccfe324f"
+    }
+  ],
+  "licence_layers": [
+    {
+      "license_sha256": "84b7504ce8dda1f37f592cdf67ad21371864583720d79ea289b0b0c75bfcdb17",
+      "scope": "DGM root source",
+      "spdx": "Apache-2.0"
+    },
+    {
+      "documented_commit": "dc4c087c2b9e4cefebf2e3d201d27e36",
+      "scope": "documented separate SWE-bench checkout and task/project artifacts",
+      "status": "SEPARATE_RIGHTS_NOT_CLOSED"
+    },
+    {
+      "scope": "container, transitive dependencies, model services, generated artifacts and protected panel",
+      "status": "NOT_CLOSED"
+    }
+  ],
+  "rights_closed": [
+    "public source inspection",
+    "DGM Apache-2.0 source layer"
+  ],
+  "rights_not_closed": [
+    "SWE-bench/task/project/test/reference-output bytes",
+    "P5 candidate-visible failure packet",
+    "transitive dependency licences and SBOM",
+    "base/derived/task container distribution",
+    "model and coding-agent services",
+    "generated code, patches, logs, transcripts, predictions and archive state",
+    "protected scorer and panel"
+  ],
+  "schema_version": "orion.p5.c3.source-rights-manifest.v4",
+  "source": {
+    "archive_bytes_retained_in_lane": false,
+    "archive_format": "git archive --format=tar <commit>",
+    "archive_sha256": "bb92fc4c9f1a2a930059a9fa92db32f0d2ee81e030dd6925a9afbb4b2f3f1ee4",
+    "commit_sha": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+    "commit_time": "2025-08-13T11:40:14+01:00",
+    "repository": "https://github.com/jennyzzt/dgm",
+    "tree_sha": "dc58ea5c481124afdb97468c1bed4e0debb425c4"
+  }
+}

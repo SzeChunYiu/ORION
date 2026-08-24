@@ -1,0 +1,14 @@
+{
+  "current_state": "CANNOT_CHECK",
+  "local_self_attestation_allowed": false,
+  "required_attestations": [
+    "candidate receives only byte-frozen visible packet and public-development services",
+    "one frozen successor commit/image accepted before protected scoring",
+    "candidate and adaptation custody close before transfer",
+    "independent scorer identity and code digest",
+    "fresh protected panel frozen after protocol lock",
+    "one scoring event with append-only receipt",
+    "no protected score/outcome/diagnostic returns to candidate or adaptation custody"
+  ],
+  "schema_version": "orion.p5.c2.custody-handoff.v4"
+}

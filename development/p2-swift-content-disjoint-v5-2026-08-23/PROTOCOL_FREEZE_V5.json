@@ -1,0 +1,151 @@
+{
+  "active_loop": {
+    "batch_size": "max(10, ceil(0.002 * canonical review N))",
+    "feedback": "Reveal frozen labels batchwise, refit from scratch on all screened rows, query highest-scoring remaining rows.",
+    "termination": "Order every row.",
+    "ties": "Stable descending score over canonical ascending record-identity order."
+  },
+  "arms": {
+    "R0_L0": "candidate representation and learner",
+    "R0_L1": "candidate representation plus V4-selected L1 learner/balancer",
+    "R1_L0": "u4 representation plus L0 learner",
+    "R1_L1": "u4 representation and learner/balancer"
+  },
+  "decision_rule": "CANNOT_CHECK if M1 or M2 fails. The mechanism-transport positive terminal requires M1-M6. Otherwise retain every measured effect and use the adverse mechanism terminal. Report preserved G1-G6 separately; they cannot be relaxed or used to promote an arm.",
+  "estimands": {
+    "full_arm_candidate_minus_u4": "R0_L0-R1_L1, review-level and unweighted mean for preserved V3 gates.",
+    "interaction": "(R1_L1-R0_L1)-(R1_L0-R0_L0), review-level and unweighted mean.",
+    "learner_balancer_main_effect": "Review-level average of (R0_L1-R0_L0) and (R1_L1-R1_L0), then unweighted mean across five reviews.",
+    "representation_main_effect": "Review-level average of (R1_L0-R0_L0) and (R1_L1-R0_L1), then unweighted mean."
+  },
+  "forbidden_changes": [
+    "review deletion",
+    "seed replacement",
+    "batch change",
+    "post-result exclusion",
+    "post-result feature cap",
+    "comparator replacement",
+    "margin relaxation",
+    "pooled-row substitution"
+  ],
+  "forbidden_claims": [
+    "independent custody or external execution",
+    "cold start",
+    "exact ASReview application execution",
+    "controller or ORION superiority",
+    "SWIFT promotion",
+    "statistical independence beyond the enforced content-identity rule",
+    "population-wide, domain-general or workflow-general superiority"
+  ],
+  "frozen_at_utc": "2026-08-23T17:01:38.329069+00:00",
+  "identity": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_TRANSPORT",
+  "initialization": {
+    "cold_start_claim_denied": true,
+    "rule": "Within each class and review choose the row minimizing SHA-256(review, NUL, record identity); positive first, negative second.",
+    "seed_count_per_review": 2
+  },
+  "learners": {
+    "L0": {
+      "alpha": 1e-05,
+      "class_weight": "balanced",
+      "classifier": "SGDClassifier",
+      "loss": "log_loss",
+      "max_iter": 2000,
+      "querier": "positive-class probability",
+      "random_state": 20260823,
+      "tol": 0.0001
+    },
+    "L1": {
+      "C": 0.11,
+      "balancer": "positive weight 1; negative weight positives/(9.8*negatives); normalize mean one",
+      "balancer_ratio": 9.8,
+      "classifier": "LinearSVC",
+      "loss": "squared_hinge",
+      "querier": "decision function",
+      "random_state": 20260823
+    }
+  },
+  "mechanism_gates": {
+    "M1_BINDING": "Every source, rights, selection, population, protocol and implementation hash passes.",
+    "M2_CONTENT_DISJOINT_POPULATION": "Exactly 101044 canonical rows; zero SWIFT overlap and zero pairwise successor overlap; all five reviews retained and both label classes present.",
+    "M3_LEARNER_RECALL10_MAGNITUDE": "Unweighted mean learner/balancer R@10 effect >= 0.010858985820770889 (max of 0.01 and half absolute V3 full-arm gap).",
+    "M4_LEARNER_RECALL10_SIGN": "Learner/balancer R@10 effect is strictly positive in at least four of five reviews.",
+    "M5_LEARNER_WORK_SAVING": "Unweighted mean learner/balancer WSS@95 effect is nonnegative.",
+    "M6_LEARNER_HARM": "Worst review learner/balancer R@10 effect is at least -0.05."
+  },
+  "metrics": [
+    "recall_at_005",
+    "recall_at_010",
+    "recall_at_020",
+    "fraction_screened_at_95_recall",
+    "wss_at_95"
+  ],
+  "nonpromotion_rule": "No V5 arm replaces the candidate or supports superiority. A positive terminal confirms only directional transport of the V4 learner/balancer component attribution under this exact source and adapter.",
+  "population": {
+    "canonical_rows_expected": 101044,
+    "external_swift_overlap_required": 0,
+    "pairwise_successor_overlap_required": 0,
+    "per_review_expected": {
+      "Brouwer_2019": 38009,
+      "Hall_2012": 8783,
+      "Leenaars_2020": 7189,
+      "Walker_2018": 40442,
+      "Wassenaar_2017": 6621
+    },
+    "reviews": [
+      "Walker_2018",
+      "Brouwer_2019",
+      "Hall_2012",
+      "Wassenaar_2017",
+      "Leenaars_2020"
+    ]
+  },
+  "population_freeze_sha256": "cc818935af09021638736fc240b96c240488f6e39271c7be389ad1bc8ad07ead",
+  "preserved_adverse_terminals": [
+    "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR",
+    "P2_SWIFT_CROSS_REVIEW_CONTROLLER_TRANSPORT_CANNOT_CHECK_BINDING_OR_POPULATION",
+    "P2_SWIFT_V2_CROSS_REVIEW_CONTROLLER_TRANSPORT_CANNOT_CHECK_BINDING_OR_POPULATION",
+    "P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR",
+    "P2_SWIFT_V4_POST_OUTCOME_FACTORIZATION_IDENTIFIES_STABLE_COMPONENT_REQUIRES_CONTENT_DISJOINT_OUTCOME_UNOPENED_FAMILY"
+  ],
+  "preserved_v3_gates": {
+    "G1_BINDING": "Binding pass.",
+    "G2_POPULATION": "Population pass.",
+    "G3_PRIMARY_MARGIN": "Mean R0_L0-minus-R1_L1 R@10 >= +0.05.",
+    "G4_WORK_SAVING": "Mean R0_L0-minus-R1_L1 WSS@95 >= 0.",
+    "G5_HARM": "Worst review R0_L0-minus-R1_L1 R@10 >= -0.05.",
+    "G6_ABSOLUTE_WORK_SAVING": "R0_L0 WSS@95 > 0 in every review."
+  },
+  "representations": {
+    "R0": {
+      "lowercase": true,
+      "max_features": 50000,
+      "min_df": 2,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "sublinear_tf": true,
+      "vectorizer": "TfidfVectorizer"
+    },
+    "R1": {
+      "lowercase": true,
+      "max_df": 0.95,
+      "min_df": 1,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "sublinear_tf": true,
+      "vectorizer": "TfidfVectorizer"
+    }
+  },
+  "scope": "PROSPECTIVELY_FROZEN_SAME_SESSION_PUBLIC_CONTENT_DISJOINT_TRANSPORT_OF_THE_V4_LEARNER_BALANCER_ATTRIBUTION",
+  "source_identity": "DataverseNL SYNERGY V1, DOI 10.34894/HE6NAQ, CC0-1.0",
+  "status": "FROZEN_BEFORE_LABEL_VALUES_CLASS_COUNTS_SEEDS_OR_ANY_V5_MODEL_OUTCOME",
+  "terminals": {
+    "cannot_check": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_TRANSPORT_CANNOT_CHECK_BINDING_POPULATION_OR_EXECUTION",
+    "mechanism_negative": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR",
+    "mechanism_positive": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_PASSES_FROZEN_TRANSPORT_GATES_NO_SUPERIORITY_PROMOTION"
+  }
+}

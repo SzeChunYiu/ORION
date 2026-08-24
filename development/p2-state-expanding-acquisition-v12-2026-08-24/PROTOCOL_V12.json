@@ -1,0 +1,123 @@
+{
+  "authority": "PROSPECTIVE_OUTCOME_BLIND_PUBLIC_SIGNAL_GATE_ONLY__NOT_PERFORMANCE_OR_CONFIRMATION_AUTHORITY",
+  "donor_state": {
+    "identity": "EXACT_V8_V10_U4",
+    "keywords_available_to_donor": false,
+    "pinned_core_path": "development/p2-donor-envelopment-v8-2026-08-23/pinned_active_core_v3.py",
+    "pinned_core_sha256": "348b7aa1fe708d480da178bdfd4736ec08df86a2d177337b94af205eefbe649a",
+    "representation": "Whitespace-normalized title plus abstract only, word TF-IDF, exact V10 learner/balancer and active loop."
+  },
+  "execution_limit": {
+    "model_executions": 0,
+    "network_requests": 0,
+    "outcome_blind_gate_executions": 1,
+    "performance_arms": 0,
+    "retries": 0
+  },
+  "frozen_at_utc": "2026-08-24T06:00:26.857706+00:00",
+  "mechanism_class": "NON_SIMULABLE_INFORMATION_OR_RETAINED_STATE",
+  "outcome_boundary": {
+    "allowed_fields": [
+      "record_id",
+      "title",
+      "abstract",
+      "keywords"
+    ],
+    "forbidden_values": [
+      "label_included",
+      "label_abstract_screening",
+      "candidate rankings",
+      "u4 rankings",
+      "class counts",
+      "relevance metrics",
+      "performance outcomes"
+    ],
+    "predecessor_public_results_may_be_read": true
+  },
+  "planned_outputs": [
+    "PROTOCOL_V12.json",
+    "MATCHED_CONTRACT_FREEZE_V12.json",
+    "IMPLEMENTATION_FREEZE_V12.json",
+    "PROTOCOL_FREEZE_RECEIPT_V12.json",
+    "run_outcome_blind_gate_v12.py",
+    "OUTCOME_BLIND_GATE_RECEIPT_V12.json",
+    "RESULT_V12.json",
+    "NEGATIVE_RESULT_LEDGER_V12.md",
+    "SCIENTIFIC_REPORT_V12.md",
+    "verify_v12.py",
+    "VALIDATION_RECEIPT_V12.json",
+    "SHA256SUMS"
+  ],
+  "predecessors": [
+    {
+      "path": "development/p2-donor-envelopment-v8-2026-08-23/RESULT_V8.json",
+      "sha256": "8aa6438b470a7facd7e630a8280afdbc034120c631eac4fdfe744d48a0e63e75"
+    },
+    {
+      "path": "development/p2-title-emphasis-conflict-resolved-v10-2026-08-23/RESULT_V10.json",
+      "sha256": "c69e5634b8d0e82a1fa393dbae276d728e9a2f7ba4c9db81a27c0329e2e66742"
+    },
+    {
+      "path": "development/p2-title-emphasis-conflict-resolved-v10-2026-08-23/POPULATION_FREEZE_V10.json",
+      "sha256": "f16cbca74e968d238475666311a1f0977230fa242b5574329bbe47d9747e3125"
+    },
+    {
+      "path": "development/p2-safe-residual-envelope-theory-v11-2026-08-23/THEORY.md",
+      "sha256": "a3c9107ad152766efc2a08d722657d550781f1f181f47f3ceeba041c0a710176"
+    },
+    {
+      "path": "development/top-tier-scientific-takeover-2026-08-23/P1_P5_RECURSIVE_GAP_LEDGER_V1.md",
+      "sha256": "2c9bc51875cc33dc7c0e97a9184eed36548233e44ff4398d209bae157c829999"
+    }
+  ],
+  "preserved_terminals": [
+    "P2_V8_DONOR_ENVELOPMENT_CROSSFIT_FAILS_CRE20_WSS95_AND_HARM__NO_RESIDUAL_ADMITTED__EXACT_U4_FALLBACK",
+    "P2_V10_PROVIDER_NATIVE_CONFLICT_RESOLVED_TITLE_EMPHASIS_FAILS_ONE_OR_MORE_FROZEN_GATES__RESIDUAL_DISCARDED__EXACT_U4_FALLBACK",
+    "P2_V11_SAFE_RESIDUAL_ENVELOPE_AND_DONOR_FIBRE_SEPARATION_PROVED__FINITE_V8_V10_FAILURES_DO_NOT_IDENTIFY_UNIVERSAL_U4_OPTIMALITY__NEW_INFORMATION_OR_UNSATURATED_DONOR_CLASS_REQUIRED_FOR_STRICT_ASCENT"
+  ],
+  "prohibitions": [
+    "No label values, class counts, model orders or performance outcomes.",
+    "No scan for alternative pairs after the frozen pair outcome.",
+    "No model run or claim that keywords improve screening.",
+    "No independent/protected-custody claim.",
+    "No pytest, repository CI, manuscript, shared ledger, Git history or other lane edit."
+  ],
+  "protocol_id": "P2_V12_PROVIDER_NATIVE_KEYWORD_FIBRE_SEPARATOR",
+  "public_source": {
+    "commit": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "declared_licence": "CC-BY Attribution 4.0 International",
+    "expected_bytes": 5807809,
+    "expected_sha256": "456f9306b0ce1aee840ac0244f11df3b2a168aa46007a92f5dcf59916d309a69",
+    "licence_evidence": "development/p2-source-disjoint-title-emphasis-v9-2026-08-23/SOURCE_SELECTION_FREEZE_V9.json",
+    "path": "../private-sources/p2-systematic-review-datasets-v9/Appenzeller-Herzog_2020.csv",
+    "pinned_url": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/Appenzeller-Herzog_2020/output/Appenzeller-Herzog_2020.csv",
+    "raw_redistribution": false
+  },
+  "schema_version": "orion.p2.state-expanding-acquisition.protocol.v12",
+  "scientific_question": "Does one exact CC-BY provider-native keyword field separate a pair of public source records that exact u4 cannot distinguish because their normalized title-plus-abstract donor state is identical?",
+  "single_authorized_gate": {
+    "cannot_check": "Any binding, schema, row identity or lawful-source check is absent or mismatched.",
+    "gate_id": "G1_PROVIDER_NATIVE_KEYWORD_FIBRE_SEPARATION",
+    "negative_meaning": "The frozen pair does not supply a keyword fibre separation; no retry, pair substitution or post-gate scan is permitted in V12.",
+    "pass_rule": [
+      "All predecessor and source hashes bind.",
+      "The exact source header contains record_id, title, abstract and keywords.",
+      "Exactly one row exists for each frozen record id 1003 and 1018.",
+      "Both rows hash to the exact V10 shared title-abstract content identity.",
+      "Whitespace-normalized keyword values differ and at least one is nonempty.",
+      "The executor does not interpret, compare, count, emit or retain any label/outcome value.",
+      "No model, ranking, relevance metric or performance gate is executed."
+    ],
+    "positive_meaning": "A real provider-native state coordinate refines one exact u4 donor fibre inside the unchanged V10 population. This establishes signal/state availability and non-simulation only."
+  },
+  "smallest_target": {
+    "expected_shared_content_identity": "d1b054eda2f1fb8dea2e3ad78c9d32aba9819f9d2465b6509949ec11f4117bd4",
+    "new_coordinate": "keywords",
+    "reason": "V10 already freezes these two provider-native records as simultaneously retained and binds their shared title-abstract content identity, making them the smallest matched-population donor fibre available without changing source or population.",
+    "record_ids": [
+      "1003",
+      "1018"
+    ],
+    "review": "Appenzeller-Herzog_2020"
+  }
+}

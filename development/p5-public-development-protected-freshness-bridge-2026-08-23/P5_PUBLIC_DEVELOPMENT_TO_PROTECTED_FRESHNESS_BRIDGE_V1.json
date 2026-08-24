@@ -1,0 +1,305 @@
+{
+  "schema_version": "orion.p5.public-development-to-protected-freshness-bridge.v1",
+  "successor_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "paper_id": "P5",
+  "frozen_at_utc": "2026-08-23T13:17:50Z",
+  "authority": "PROSPECTIVE_EXECUTION_BRIDGE_ONLY__NOT_AN_EMPIRICAL_RESULT__NOT_LEGAL_ADVICE",
+  "protocol_status": "PUBLIC_DEVELOPMENT_ROUTE_BOUND__PROTECTED_PROVIDER_AND_SIX_ARM_EXECUTION_CANNOT_CHECK",
+  "outcomes_accessed": false,
+  "dataset_rows_accessed_by_lane": 0,
+  "protected_outcome_bytes_accessed": false,
+  "grants_scientific_authority": false,
+  "grants_submission_authority": false,
+  "historical_results_immutable": true,
+  "successor_of": [
+    "P5.REVISION_LEVEL.WIDE.V1",
+    "P5.FRESH.AUTHORITY.CAMPAIGN.V1",
+    "P5.PUBLIC.TASKS.REVISION.CLASS.GOLD.V1",
+    "P5.PUBLIC.BENCHMARK.FRESHNESS.V1"
+  ],
+  "material_change": "The successor separates rights-cleared public development from two genuinely new externally held waves, names eight domain rubrics and six primary comparator slots, adds no-revision harm sentinels, requires source- and provider-disjoint replication, and fail-closes on rights, comparator, evaluator, custody, freshness, ontology, or block-independence defects.",
+  "bound_predecessor_artifacts": [
+    {
+      "path": "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json",
+      "sha256": "ab871b23ca9b8dfed8447057671e21c0fa37ad86d93fdf2605dae8d7a765c39d"
+    },
+    {
+      "path": "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
+      "sha256": "e694d8b4bcddbf2dab6cbf990c6b7ff67854f68a996efa6f838076fd30416e55"
+    },
+    {
+      "path": "papers/paper-05-self-orion/protocol/SELF_ORION_V3_MDA_SOURCE_BINDING_AMENDMENT_2026-08-23.json",
+      "sha256": "8581feef439cae508e9924904c6085b4a5d22347f76ee7f86e6effcc85783635"
+    },
+    {
+      "path": "development/public-empirical-data-binding-2026-08-23/PUBLIC_SOURCE_BINDINGS.json",
+      "sha256": "d9f15a03ce1941d6ab697900e10c24398eda9efe179801f339f8e9561d0bd162"
+    },
+    {
+      "path": "development/p4-p5-readiness-audit-2026-08-23/READINESS_MATRIX.json",
+      "sha256": "75491c4a801236835949bedfa76d2cf65951e2469d6231c8ff05d3457567f247"
+    },
+    {
+      "path": "development/comparator-binding-harness-2026-08-23/COMPARATOR_BINDING_LEDGER_V1.json",
+      "sha256": "060f9df106a82f86c7fcfb8e92515c881123ab9808ee1b02d9675211b73857e0"
+    },
+    {
+      "path": "development/provider-rights-and-history-successor-2026-08-23/ROOT_RIGHTS_HISTORY_LEDGER_V1.json",
+      "sha256": "36a511d58738d9ab7306876148c33adf0e45e42872c094690e7c891d5ce862dd"
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S0_PREDECESSOR_PRESERVATION",
+      "allowed": [
+        "verify predecessor bytes and additive amendments",
+        "retain the 21/24 descriptive archive and all three errors",
+        "retain CANNOT_CHECK and REFUSED_UNBOUND execution receipts"
+      ],
+      "prohibited": [
+        "reseal or reuse the published 24-case suite",
+        "rewrite a null, harmful, adverse, or CANNOT_CHECK predecessor as positive"
+      ],
+      "pass_terminal": "PREDECESSOR_IDENTITIES_VERIFIED",
+      "fail_terminal": "CANNOT_CHECK_PREDECESSOR_IDENTITY"
+    },
+    {
+      "stage_id": "S1_PUBLIC_DEVELOPMENT",
+      "allowed": [
+        "adapter conformance and deterministic interface tests",
+        "contamination and public-gold sensitivity controls",
+        "the three registered residual 2x2 discriminator studies",
+        "open-set ontology annotation and reliability pilots",
+        "outcome-blind source, rights, and 64-cell feasibility accounting"
+      ],
+      "prohibited": [
+        "confirmatory H1-H4 scoring",
+        "freshness, custody, independence, harm-benefit, or superiority claims",
+        "using rights-unclear content bytes"
+      ],
+      "pass_terminal": "PUBLIC_DEVELOPMENT_ADAPTERS_AND_FEASIBILITY_BOUND__NOT_CONFIRMATORY",
+      "fail_terminal": "PUBLIC_DEVELOPMENT_SOURCE_OR_INTERFACE_NEGATIVE"
+    },
+    {
+      "stage_id": "S2_IDENTITY_COMPLETE_FREEZE",
+      "required_before_candidate_generation": [
+        "root-by-content-class rights disposition for every selected byte",
+        "complete 64-cell eligibility table with no silent reassignment",
+        "six exact primary comparator manifests and adapters",
+        "subject, candidate, model, provider, tool, budget, seed, epoch, and environment identities",
+        "96 same-visible-symptom block commitments per wave",
+        "primary and replication split commitments",
+        "protected evaluator, fresh-transfer evaluator, harm adjudicator, and verifier identities"
+      ],
+      "pass_terminal": "IDENTITY_COMPLETE_FREEZE_READY_FOR_EXTERNAL_EXECUTION",
+      "fail_terminal": "CANNOT_CHECK_IDENTITY_COMPLETE_FREEZE"
+    },
+    {
+      "stage_id": "S3_PRIMARY_PROTECTED_EXECUTION",
+      "wave_id": "PRIMARY",
+      "endpoint_clusters": 768,
+      "no_revision_harm_sentinel_clusters": 96,
+      "all_clusters_source_disjoint": true,
+      "candidate_generation_after_freeze_only": true,
+      "outcomes_held_outside_candidate_custody": true,
+      "pass_terminal": "PRIMARY_PROTECTED_MINIMAL_REVISION_SUPPORTED",
+      "negative_terminals": [
+        "PRIMARY_NO_INCREMENTAL_VALUE",
+        "PRIMARY_HARMFUL_REFUTED",
+        "PRIMARY_INTERACTION_OR_CLASS_HETEROGENEITY",
+        "PRIMARY_JOINT_NULL_UNRESOLVED",
+        "PRIMARY_CANNOT_CHECK"
+      ]
+    },
+    {
+      "stage_id": "S4_SOURCE_PROVIDER_TIME_DISJOINT_REPLICATION",
+      "wave_id": "REPLICATION",
+      "endpoint_clusters": 768,
+      "no_revision_harm_sentinel_clusters": 96,
+      "disjoint_from_primary": [
+        "project and issue family",
+        "case author",
+        "provider or host organization where feasible and otherwise a preregistered worst-group limitation",
+        "evaluation epoch",
+        "fresh-transfer targets",
+        "gold adjudication panel"
+      ],
+      "pass_terminal": "SOURCE_PROVIDER_TIME_DISJOINT_REPLICATION_SUPPORTED",
+      "negative_terminals": [
+        "REPLICATION_NO_INCREMENTAL_VALUE",
+        "REPLICATION_HARMFUL_REFUTED",
+        "REPLICATION_TRANSPORT_HETEROGENEITY",
+        "REPLICATION_JOINT_NULL_UNRESOLVED",
+        "REPLICATION_CANNOT_CHECK"
+      ]
+    }
+  ],
+  "design": {
+    "independent_unit": "source_disjoint_project_issue_family_cluster",
+    "not_independent_units": [
+      "case view",
+      "issue comment",
+      "candidate edit",
+      "test",
+      "rerun",
+      "comparator arm",
+      "revision class",
+      "metric cell"
+    ],
+    "wave_count": 2,
+    "wave_ids": [
+      "PRIMARY",
+      "REPLICATION"
+    ],
+    "domain_count": 8,
+    "revision_class_count": 8,
+    "same_symptom_blocks_per_domain_per_wave": 12,
+    "clusters_per_same_symptom_block": 8,
+    "endpoint_clusters_per_domain_per_wave": 96,
+    "endpoint_clusters_per_wave": 768,
+    "endpoint_clusters_both_waves": 1536,
+    "no_revision_harm_sentinel_clusters_per_domain_per_wave": 12,
+    "no_revision_harm_sentinel_clusters_per_wave": 96,
+    "total_clusters_including_sentinels_both_waves": 1728,
+    "same_visible_symptom_block_definition": "Within each domain and wave, one frozen symptom signature identifies eight globally source-disjoint project/issue-family clusters, one for each revision class. Candidate-visible equivalence is adjudicated before protected labels or outcomes are opened. Block identity is retained in all analyses.",
+    "source_disjointness_rule": "No repository, project lineage, issue family, patch lineage, attachment root, case author, or protected evaluator-authored derivative may contribute more than one independent cluster anywhere in the same wave.",
+    "analysis_rule": "All paired arm contrasts use the project/issue-family cluster as the unit and preserve symptom-block membership. Case views, reruns, metrics, and arms never increase n. Any dependence or source collision that invalidates this unit triggers a power redesign under a new successor identity before outcome access.",
+    "primary_endpoint": "correct_minimal_authorized_revision_with_preservation_and_protected_fresh_transfer_success",
+    "noncompensatory_gates": [
+      "protected responsibility correctness",
+      "minimality and no excess broad revision",
+      "preservation obligations",
+      "fresh-transfer success",
+      "no-revision sentinel safety",
+      "harm ceiling",
+      "every one of six frozen primary comparator contrasts",
+      "worst-domain and worst-revision-class floors"
+    ],
+    "power_status": "RECALCULATION_REQUIRED_AFTER_EXACT_SIX_ARM_FREEZE_AND_BLOCK_DEPENDENCE_AUDIT",
+    "predecessor_power_model_is_not_reused_as_final_authority": true
+  },
+  "domains": [
+    {
+      "domain_id": "BIOMEDICAL_CLINICAL",
+      "eligibility_rubric": "Versioned systems whose outputs inform biomedical experiments, clinical research, or clinical evidence workflows; generic health-app UI defects without a scientific or evidence consequence are excluded."
+    },
+    {
+      "domain_id": "LIFE_SCIENCE_EXPERIMENTAL",
+      "eligibility_rubric": "Versioned systems for molecular, cellular, organismal, ecological, or omics experiments; purely administrative laboratory software is excluded."
+    },
+    {
+      "domain_id": "EARTH_ENVIRONMENTAL",
+      "eligibility_rubric": "Versioned systems for climate, geospatial, atmospheric, ocean, hydrologic, or environmental inference and measurement."
+    },
+    {
+      "domain_id": "PHYSICAL_SCIENCE",
+      "eligibility_rubric": "Versioned systems for physics, chemistry, astronomy, or materials inference, simulation, measurement, or theory testing."
+    },
+    {
+      "domain_id": "ENGINEERING_ROBOTICS",
+      "eligibility_rubric": "Versioned systems for engineering design, controls, robotics, instrumentation, digital twins, or safety-relevant simulation."
+    },
+    {
+      "domain_id": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "eligibility_rubric": "Versioned research software, numerical methods, scientific workflows, and data-intensive research infrastructure whose failure changes a scientific result or its evidential status."
+    },
+    {
+      "domain_id": "SOCIAL_BEHAVIORAL_ECONOMIC",
+      "eligibility_rubric": "Versioned systems for social, behavioral, educational, policy, or economic measurement and inference; generic business automation is excluded."
+    },
+    {
+      "domain_id": "MATHEMATICAL_STATISTICAL_FORMAL",
+      "eligibility_rubric": "Versioned systems for theorem, proof, formal verification, statistical method, identifiability, or mathematical model development with an auditable correctness target."
+    }
+  ],
+  "revision_classes": [
+    {
+      "class_id": "EVIDENCE_REPAIR",
+      "minimal_front": "Change acquisition, routing, provenance, coverage, or evidence authority without changing the registered measurement, representation, model class, evaluator, or execution substrate."
+    },
+    {
+      "class_id": "MEASUREMENT_REPAIR",
+      "minimal_front": "Change an instrument, label, proxy, calibration, sampling, or measurement mapping while holding the downstream model family and evaluator fixed."
+    },
+    {
+      "class_id": "WITHIN_CLASS_MODEL_REPAIR",
+      "minimal_front": "Change parameters, objectives, priors, inference, or training within the already licensed model class and representation."
+    },
+    {
+      "class_id": "MODEL_CLASS_EXPANSION",
+      "minimal_front": "Expand or replace the hypothesis/model family because no licensed within-class change can resolve the protected responsibility."
+    },
+    {
+      "class_id": "REPRESENTATION_REGIME_REPAIR",
+      "minimal_front": "Change state variables, ontology, encoding, interface, memory, or typed artifact regime while holding the scientific target fixed."
+    },
+    {
+      "class_id": "EXECUTION_REPAIR",
+      "minimal_front": "Change environment, dependency, toolchain, runtime, hardware, orchestration, or implementation bytes without changing the scientific method class."
+    },
+    {
+      "class_id": "EVALUATOR_REPAIR",
+      "minimal_front": "Change tests, scorers, acceptance rules, harm adjudication, or evaluator implementation because the prior evaluator is defective or target-misaligned."
+    },
+    {
+      "class_id": "UNRESOLVED",
+      "minimal_front": "Return no unique authorized revision when allowed diagnostics do not separate competing fronts, the ontology is incomplete, rights prevent adjudication, or more than one incomparable minimal front remains."
+    }
+  ],
+  "primary_comparator_slots": [
+    "C1_NO_REVISION",
+    "C2_MATCHED_DIRECT_BROAD_SELF_EDIT",
+    "C3_SWE_AGENT_FIXED_ISSUE_SOLVER",
+    "C4_MDA_V3_M_OPEN_MECHANISM_REIMPLEMENTATION",
+    "C5_WORLD_EVOLVER_WORLD_MODEL_MECHANISM_REIMPLEMENTATION",
+    "C6_SCIENCECLAW_REPRESENTATION_REGIME_ADAPTER"
+  ],
+  "secondary_non_superiority_controls": [
+    "GENERIC_CAUSAL_DIAGNOSIS",
+    "RANDOM_DIAGNOSTIC",
+    "ALWAYS_UNRESOLVED",
+    "ORACLE_CEILING_ANALYSIS_ONLY",
+    "FEEDBACK_PERMUTED",
+    "NO_FEEDBACK",
+    "CONTRADICTORY_FEEDBACK",
+    "RANDOM_FEEDBACK"
+  ],
+  "protected_provider_minimum_contract_path": "development/p5-public-development-protected-freshness-bridge-2026-08-23/PROTECTED_FRESHNESS_PROVIDER_CONTRACT_V1.json",
+  "source_rights_matrix_path": "development/p5-public-development-protected-freshness-bridge-2026-08-23/PUBLIC_SOURCE_RIGHTS_MATRIX_V1.json",
+  "comparator_ledger_path": "development/p5-public-development-protected-freshness-bridge-2026-08-23/SIX_ARM_COMPARATOR_BINDING_LEDGER_V1.json",
+  "remote_evaluator_audit_path": "development/p5-public-development-protected-freshness-bridge-2026-08-23/OFFICIAL_REMOTE_EVALUATOR_AUDIT_V1.json",
+  "current_blockers": [
+    "SIX_PRIMARY_COMPARATOR_EXECUTABLE_IDENTITIES_AND_ADAPTERS_NOT_ALL_BOUND",
+    "OUTCOME_BLIND_64_CELL_RIGHTS_AND_ELIGIBILITY_TABLE_NOT_POPULATED",
+    "PROTECTED_PROVIDER_AND_TWO_WAVE_CASE_REGISTRIES_NOT_BOUND",
+    "SUBJECT_MODEL_PROVIDER_TOOL_BUDGET_SEED_EPOCH_IDENTITIES_NOT_BOUND",
+    "PROTECTED_GOLD_SPLITS_EVALUATORS_HARM_ADJUDICATOR_AND_VERIFIER_NOT_BOUND",
+    "SAME_SYMPTOM_BLOCK_INDEPENDENCE_AND_POWER_NOT_AUDITED",
+    "ISSUE8_PACKET_EXECUTION_REGISTRY_DIVERGENCE_REMAINS_REFUSED_UNBOUND"
+  ],
+  "possible_terminals": [
+    "P5_BRIDGE_BOTH_WAVES_SUPPORTED",
+    "P5_BRIDGE_PRIMARY_SUPPORTED_REPLICATION_NOT_SUPPORTED",
+    "P5_BRIDGE_NO_INCREMENTAL_VALUE",
+    "P5_BRIDGE_HARMFUL_REFUTED",
+    "P5_BRIDGE_INTERACTION_OR_TRANSPORT_HETEROGENEITY",
+    "P5_BRIDGE_JOINT_NULL_UNRESOLVED",
+    "P5_BRIDGE_SOURCE_UNIVERSE_OR_RIGHTS_NEGATIVE",
+    "P5_BRIDGE_COMPARATOR_INTERFACE_LIMITED",
+    "P5_BRIDGE_CANNOT_CHECK"
+  ],
+  "claim_logic": {
+    "primary_only": "A positive primary wave can support only the exact frozen primary panel and every stated noncompensatory gate; it cannot support cross-provider or cross-time transport.",
+    "broad_transport": "A wider claim requires both source/provider/time-disjoint waves, every six-arm contrast, every worst-group floor, all sentinel and harm gates, and a verifier-signed archive.",
+    "failure_recursion": "Every material change to intervention, comparator, population, rights basis, custody, or endpoint receives a new successor identity. Negative, null, harmful, interaction, and CANNOT_CHECK outcomes remain immutable."
+  },
+  "explicit_nonclaims": [
+    "No beneficial or transferable self-improvement result exists in this lane.",
+    "Public gold is not protected freshness.",
+    "A remote API is not independent or immutable evaluator custody without a versioned backend, task registry, access log, rights disposition, and verifier receipt.",
+    "A paper-derived mechanism reimplementation is not an official solver reproduction.",
+    "Local role names do not establish owner separation.",
+    "The 21/24 descriptive archive is not a protected confirmatory result and may not be resealed."
+  ],
+  "current_terminal": "P5_BRIDGE_PUBLIC_DEVELOPMENT_BOUND__PROTECTED_PROVIDER_AND_SIX_ARM_EXECUTION_CANNOT_CHECK"
+}

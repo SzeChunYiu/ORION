@@ -1,0 +1,48 @@
+{
+  "$id": "orion.p5.c6.custody-handoff.v4",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "current_status": "CANNOT_CHECK",
+  "properties": {
+    "candidate_freeze_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "external_scorer_code_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "feedback_to_candidate": {
+      "const": false
+    },
+    "freshness_nonce": {
+      "minLength": 16,
+      "type": "string"
+    },
+    "one_shot": {
+      "const": true
+    },
+    "protected_panel_manifest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "signed_attestation": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "terminal_only_return": {
+      "const": true
+    }
+  },
+  "required": [
+    "candidate_freeze_sha256",
+    "external_scorer_code_sha256",
+    "protected_panel_manifest_sha256",
+    "freshness_nonce",
+    "one_shot",
+    "feedback_to_candidate",
+    "signed_attestation",
+    "terminal_only_return"
+  ],
+  "type": "object"
+}

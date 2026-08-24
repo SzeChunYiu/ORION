@@ -1,0 +1,391 @@
+{
+  "schema_version": "orion.p5.issue-evaluator-primary-source-research.v1",
+  "paper_id": "P5",
+  "as_of_utc": "2026-08-23T00:00:00Z",
+  "scope": [
+    "C4_ISSUE_CENTRIC_OPTIMIZATION",
+    "C5_EVALUATOR_ONLY_EVOLUTION"
+  ],
+  "authority": "PRIMARY_PAPER_OFFICIAL_REPOSITORY_IDENTITY_RIGHTS_AND_INTERFACE_RESEARCH_ONLY",
+  "outcome_blindness": {
+    "governing_protocol": "P5_OUTCOME_BLIND_COMPARATOR_AND_PUBLIC_PANEL_PROTOCOL_V1.json",
+    "dataset_rows_opened": false,
+    "labels_opened": false,
+    "gold_patches_opened": false,
+    "test_bodies_opened": false,
+    "task_outcomes_opened": false,
+    "protected_results_opened": false,
+    "repository_tests_run": false,
+    "repository_ci_run": false,
+    "candidate_entrypoints_executed": false,
+    "selection_used_p5_outcomes": false
+  },
+  "selection_rule": "Select by exact semantic fit, primary-paper binding, immutable official source, licence bytes, documented entrypoint, and adapter feasibility; never by P5 outcomes.",
+  "selected_slots": [
+    {
+      "slot_id": "C4_ISSUE_CENTRIC_OPTIMIZATION",
+      "semantic_role": "Issue-indexed cross-round optimization of an agent harness from task-failure trajectories and intervention outcomes.",
+      "selected_identity": "ADIAS",
+      "selection_reason": "The primary paper explicitly defines issue-centric agent optimization; the paper-linked repository implements stable failure categories, persistent issue state in profile.json, issue-guided parent/repair planning, and focused full-code modification. This is a literal fit rather than an analogy.",
+      "paper_and_exact_version": {
+        "arxiv_id": "2608.06410",
+        "version": "v1",
+        "title": "ADIAS: Automated Design of Interactive Agentic Systems",
+        "canonical_url": "https://arxiv.org/abs/2608.06410v1",
+        "full_text_url": "https://arxiv.org/html/2608.06410v1",
+        "submitted": "2026-08-03",
+        "paper_licence": "arXiv non-exclusive distribution licence 1.0",
+        "paper_licence_url": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+      },
+      "official_repository": "https://github.com/scylj1/adias",
+      "paper_repository_binding": "Primary-paper HTML says: Code is available at https://github.com/scylj1/adias/.",
+      "default_branch": "main",
+      "commit_sha": "fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993",
+      "commit_date_utc": "2026-08-21T11:50:40Z",
+      "official_or_reimplementation_status": "OFFICIAL_PRIMARY_PAPER_LINKED_INITIAL_CODE_RELEASE",
+      "licence_spdx_or_terminal": "LicenseRef-CC-BY-NC-SA-4.0",
+      "licence_osi_status": "NOT_OSI_OPEN__NONCOMMERCIAL_AND_SHAREALIKE_RESTRICTIONS",
+      "licence_file_path": "LICENSE.md",
+      "licence_raw_url": "https://raw.githubusercontent.com/scylj1/adias/fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993/LICENSE.md",
+      "licence_byte_sha256": "047d2259741a3ebb30d8c8a43d4ba79b5b229a069acd1d2bea49f22b297d8e98",
+      "install_entrypoint": [
+        "sudo dnf install -y python3.12-devel",
+        "sudo dnf install -y graphviz graphviz-devel cmake ninja-build bzip2-devel zlib-devel ncurses-devel libffi-devel",
+        "python3.12 -m venv venv_nat",
+        "source venv_nat/bin/activate",
+        "pip install -r requirements.txt",
+        "pip install -r requirements_dev.txt",
+        "pip install -e .",
+        "build the domain-specific Docker image using scripts/build_docker_*.sh"
+      ],
+      "packaged_console_entrypoints": [
+        "adias-eval = domains.run_eval:main",
+        "adias-harness = domains.harness:main",
+        "adias-report = domains.report:main",
+        "adias-run-meta-agent = run_meta_agent:main"
+      ],
+      "run_entrypoint": {
+        "smoke": "./scripts/build_docker_default.sh && ./scripts/run_smoke_taubench_return.sh",
+        "formal_family": "scripts/run_*.sh -> python -u generate_loop.py",
+        "documented_taubench_return": "./scripts/run_taubench_return.sh",
+        "direct_meta_agent": "python run_meta_agent.py --git_dir <repo> --base_commit <sha> --repo_path <repo> --evals_folder <dir> --outdir <dir> --mode improve|learn ..."
+      },
+      "candidate_visible_information": [
+        "task protocol and public task-level information; optional one-shot external search is explicitly described as unverified prior knowledge",
+        "current and archived candidate programs, parent relations, validation scores, task trajectories, diagnostic reports, and prior patches",
+        "profile.json with task summary, stable failure-category keys, lifecycle status, evidence references, attempts, absence observations, complete change history, and a revision plan",
+        "compile/runtime diagnostics and evaluation logs from exposed development splits"
+      ],
+      "candidate_hidden_information_required_for_p5": [
+        "protected revision-responsibility gold",
+        "protected fresh-transfer tasks and answers",
+        "protected evaluator internals and protected harm verdicts",
+        "final-panel test bodies or outcome feedback before terminal evaluation"
+      ],
+      "legal_actions_and_write_surface": {
+        "native_paper_semantics": "The designer may add, remove, or rewrite agent-side prompts, tools, memory, and task-specific modules, and the paper reports that optimization machinery can also be revised.",
+        "released_improver_prompt": "One focused patch, 1-3 files, under task_agent/, diagnostic_agent/, or profile_agent/; domains/ is reset before exporting model_patch.diff.",
+        "released_cli_documentation": "--optimize_option agent_and_meta says task_agent plus meta_agent.py/generate_loop.py may co-evolve; --optimize_option only_agent narrows the surface.",
+        "binding_gap": "The released prompt and CLI documentation do not name the same exact path allow-list. A P5 wrapper must enforce one content-bound write policy outside the model rather than relying on prompt text.",
+        "p5_required_isolation": "No write access to source case records, split manifests, protected evaluators, holdouts, outcome archives, scorer code, external host promotion state, or peer arms."
+      },
+      "token_tool_time_compute_retry_envelope": {
+        "general_cli_defaults": {
+          "max_generation": 10,
+          "eval_workers": 10,
+          "parent_selection": "profile",
+          "optimize_option": "agent_and_meta",
+          "hide_domain": true,
+          "final_test": true
+        },
+        "documented_taubench_return_script_defaults": {
+          "max_generation": 3,
+          "train_examples": 55,
+          "validation_examples": 15,
+          "test_examples": 32,
+          "eval_workers": 4,
+          "final_test_repeats": 1
+        },
+        "model_defaults": "openai/deepseek-v4-flash for meta/task/user roles in the released shell scripts, overrideable by environment or CLI",
+        "per_improve_or_learn_process_timeout_seconds": 21600,
+        "aggregate_token_cap": "UNBOUND; token_usage.json is recorded when produced, but no hard total token ceiling is frozen by the repository",
+        "tool_call_cap": "UNBOUND for the code improver; evaluation steps and task-agent tool calls are domain dependent",
+        "compute": "Python 3.12, Docker, domain images, external interactive environments, parallel evaluation workers, and provider inference",
+        "retries": "Domain/evaluation/provider behavior is implementation specific; no single repository-wide retry cap was found in the documented entrypoint. P5 must bind one."
+      },
+      "native_outputs": [
+        "per-generation model_patch.diff and patch_summary",
+        "profile.json persistent issue state",
+        "round_diagnosis.json",
+        "candidate archive, generation lineage, train/validation/test evaluation reports and scores",
+        "meta_agent_chat_history.md, generate.log, optional token_usage.json",
+        "final best-candidate and test summary"
+      ],
+      "native_errors_timeouts_and_abstentions": {
+        "compile_failure": "compile_status.ok=false plus error text and a compile-failure diagnostic; evaluation of that candidate is skipped",
+        "empty_patch": "retained; may contribute to the optional two-consecutive-empty-patch early stop",
+        "meta_agent_timeout": "external timeout command returns a non-zero process status after 21600 seconds; no typed P5 terminal is emitted",
+        "evaluation_error": "caught into generation metadata/logs or propagated from parallel evaluation; run_eval can be set false",
+        "missing_profile_outputs": "warning when profile.json and round_diagnosis.json are absent despite a successful learn process",
+        "native_abstention": "No native one-of-eight P5 revision terminal or typed CANNOT_CHECK output was found."
+      },
+      "p5_eight_class_adapter": {
+        "status": "SPECIFIABLE_BUT_NOT_IMPLEMENTED_OR_HASHED",
+        "candidate_input": "Only the frozen candidate-visible P5 dossier, motivating/replay observations, public context allowed by the protocol, and append-only negative history.",
+        "required_output": "A schema-validated record with one label from EVIDENCE_REPAIR, MEASUREMENT_REPAIR, WITHIN_CLASS_MODEL_REPAIR, MODEL_CLASS_EXPANSION, REPRESENTATION_REGIME_REPAIR, EXECUTION_REPAIR, EVALUATOR_REPAIR, UNRESOLVED; confidence/evidence references; proposed write set; patch hash if any; native error/timeout terminal; resource receipt.",
+        "mapping_rule": "A deterministic frozen mapper may map profile.revision_plan.target_failure_mode plus actual proposed write paths to a class only when the mapping is unique and the action stays inside the class-specific allow-list. Ambiguous, unsupported, cross-class, or missing plans map to UNRESOLVED and no broad edit. Free-text relabelling is forbidden.",
+        "write_policy": "Run an exact pinned copy in an isolated worktree/container. Allow only the prospectively registered class-specific surface; use an external host to reject any protected-path or out-of-surface write. Preserve every null, failed, harmful, uncompilable, timed-out and blocked candidate.",
+        "known_coverage_gap": "The official code is optimized for agent-side full-code repair. It has no native operations for all P5 evidence, measurement, model-class, representation-regime, execution, and evaluator revisions, and it does not natively decide a minimal class among the eight.",
+        "freshness_rule": "Motivating/replay feedback may update profile.json; protected fresh/protected evaluator outcomes are single-use external measurements and never become ADIAS input before its terminal decision."
+      },
+      "rights_and_service_dependencies": {
+        "source_rights": "Repository root is CC BY-NC-SA 4.0, not an OSI software licence. Attribution, NonCommercial, and ShareAlike terms apply to covered material; separate permission is required for uses outside those terms.",
+        "paper_rights": "Paper uses the arXiv non-exclusive distribution licence; paper text rights are separate from repository source rights.",
+        "third_party_content": "The repository acknowledges HyperAgent and Tau-bench, ALFWorld, ScienceWorld, TextCraft, and WebShop. Root licensing does not establish redistribution or execution rights for embedded or fetched benchmark data/assets; each root and content class needs a separate audit.",
+        "services": [
+          "OpenAI-compatible, Anthropic, and/or Gemini model credentials as selected",
+          "LiteLLM/provider network access",
+          "Docker daemon and domain-specific images",
+          "optional public web search",
+          "benchmark-specific environments and their own terms"
+        ]
+      },
+      "feasibility_terminal": "P5_C4_IDENTITY_BOUND_SOURCE_AVAILABLE_RESTRICTED__P5_EIGHT_CLASS_ACTION_ADAPTER_CANNOT_CHECK"
+    },
+    {
+      "slot_id": "C5_EVALUATOR_ONLY_EVOLUTION",
+      "semantic_role": "Only the evaluation metric evolves while the solver and task sets are prospectively fixed.",
+      "selected_identity": "Double Ratchet metric-evolution arm (run_metric_evo.py), not the joint co-evolution arm",
+      "selection_reason": "The primary paper states that the metric is the only evolving object and the official runner states that the skill bank is empty and only the evaluation metric evolves. This exactly satisfies C5. The repository's co-evolution commands are explicitly excluded from this slot.",
+      "paper_and_exact_version": {
+        "arxiv_id": "2607.12790",
+        "version": "v2",
+        "title": "Who Grades the Grader? Co-Evolving Evaluation Metrics and Skills for Self-Improving LLM Agents",
+        "canonical_url": "https://arxiv.org/abs/2607.12790v2",
+        "full_text_url": "https://arxiv.org/html/2607.12790v2",
+        "submitted": "2026-07-14",
+        "last_revised": "2026-07-30",
+        "paper_licence": "CC BY-NC-SA 4.0",
+        "paper_licence_url": "http://creativecommons.org/licenses/by-nc-sa/4.0/"
+      },
+      "official_repository": "https://github.com/amazon-science/Self-Evolving-Agents-Double-Ratchet",
+      "paper_repository_binding": "The v2 arXiv comment and primary full text directly link the repository; README calls it the reference implementation.",
+      "default_branch": "main",
+      "commit_sha": "0f14e910d361196422d9b938f45280919952d4fd",
+      "commit_date_utc": "2026-07-29T05:20:31Z",
+      "official_or_reimplementation_status": "OFFICIAL_PRIMARY_PAPER_LINKED_REFERENCE_IMPLEMENTATION__OFFICIAL_METRIC_ONLY_ARM",
+      "licence_spdx_or_terminal": "Apache-2.0",
+      "licence_file_path": "LICENSE",
+      "licence_raw_url": "https://raw.githubusercontent.com/amazon-science/Self-Evolving-Agents-Double-Ratchet/0f14e910d361196422d9b938f45280919952d4fd/LICENSE",
+      "licence_byte_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+      "notice_file_path": "NOTICE",
+      "notice_byte_sha256": "5d86be6e681240106316a6763eb0dcb47a8adcb426c19df4693098ceb61bb531",
+      "install_entrypoint": [
+        "Python >=3.11",
+        "pip install pydantic pyyaml boto3",
+        "configure AWS credentials/IAM and MODEL_API_REGION for Amazon Bedrock",
+        "run from the repository root; scripts add vendor/ to sys.path"
+      ],
+      "run_entrypoint": {
+        "selected_metric_only_arm": "python scripts/run_metric_evo.py --single-model global.anthropic.claude-opus-4-7 --rounds 100 --patience 100 --min-delta 0 --seed 42 --tag anchored",
+        "minimal_documented_family": "python scripts/run_metric_evo.py [--dataset mbpp] [--rounds N]",
+        "excluded_joint_arm": "python scripts/run_co_evo.py ...; excluded because it changes both metric and skill library",
+        "ablation": "--naive disables anchor safety and validity gate; not the primary C5 identity"
+      },
+      "candidate_visible_information": [
+        "outputs of a frozen no-skill solver on fixed train, eval_dev, and eval_locked task sets",
+        "unlabelled train outputs and detector consensus",
+        "a sparse eval_dev anchor consisting of golden-reference verbal feedback",
+        "current typed detector pool, detector costs/provenance/lifecycle, metric expression, per-op marginal statistics, gaps, and elite metric history"
+      ],
+      "candidate_hidden_information_required_for_p5": [
+        "protected revision-responsibility gold",
+        "protected fresh-transfer labels and protected harm verdicts",
+        "protected evaluator internals and final locked outcomes during metric proposal/selection"
+      ],
+      "legal_actions_and_write_surface": {
+        "native_metric_only_surface": "Synthesize typed drawback detectors, evolve the expression combining them, promote/retire detector operations, and persist metric state. The solver's skill bank remains empty and solver weights/code are fixed.",
+        "forbidden_for_c5": "No solver prompt/code/skill/model update, no task/split mutation, no protected evaluator or holdout write, no joint run_co_evo.py path, and no candidate-controlled host promotion.",
+        "native_persistence": "metric.db persists op pool, detector specifications, expressions/batteries, eval records and an append-only audit log; result.json persists the final expression and history."
+      },
+      "token_tool_time_compute_retry_envelope": {
+        "repository_defaults": {
+          "dataset": "mbpp",
+          "stored_train": 60,
+          "stored_eval_locked": 40,
+          "stored_eval_dev": 10,
+          "rounds_upper_bound": 8,
+          "min_delta": 0.01,
+          "patience": 2,
+          "seed": 42,
+          "parallelism": 64,
+          "max_tokens_per_model_call": 8192
+        },
+        "paper_reproduction_command": {
+          "rounds_upper_bound": 100,
+          "min_delta": 0,
+          "patience": 100,
+          "seeds_reported_by_readme": [42, 7, 13]
+        },
+        "models": "All roles default to global.anthropic.claude-opus-4-7; no cross-model fallback by default. Some detector packs and embeddings may invoke other configured roles/services.",
+        "model_calls": "One frozen-solver generation per fixed task output plus soft labels on eval_dev; each round may invoke detector ops, the metric architect/editor, and op synthesis. The repository does not freeze a hard aggregate call or dollar cap.",
+        "retry_policy": "Bedrock retryable error codes receive at most 3 attempts with full-jitter exponential backoff (base 0.5 s, cap 8 s); non-retryable access/validation errors propagate. No fallback model is configured by default.",
+        "network_timeouts_seconds": {
+          "connect": 10,
+          "read": 120
+        },
+        "soft_label_retry": "Three parse/provider attempts; final failure returns a null label and explanatory text.",
+        "compute": "Python CPU orchestration with up to 64 concurrent provider calls; MBPP evaluation and other adapters may add local execution or external services."
+      },
+      "native_outputs": [
+        "result.json containing final_metric_expr, final_locked_agreement, elites, evolution_history, synthesized_ops_total, metric.db path, and audit_events",
+        "metric.db containing typed op rows, metric/battery state, eval records, contribution stats, and append-only audit events",
+        "per-detector trace rows with status, cost, note, drawback class/evidence/severity",
+        "metric verdicts from the native Status vocabulary CLEAN, DRAWBACK, ABSTAIN",
+        "round-by-round histories and inspectable reverse-tree expressions"
+      ],
+      "native_errors_timeouts_and_abstentions": {
+        "detector_abstention": "Status.ABSTAIN; a battery where all detectors abstain is not passed",
+        "soft_label_unavailable": "Null label with no-LLM, provider-error, or unparseable-text note after bounded retries",
+        "provider_error": "Retryable Bedrock failures exhaust 3 attempts; non-retryable failures propagate as Python exceptions",
+        "network_timeout": "Botocore connect/read timeout participates in the retry policy, then propagates",
+        "no_expression_or_no_history": "final_locked may be null; the repository emits no typed P5 CANNOT_CHECK terminal",
+        "aggregate_wallclock_timeout": "UNBOUND by the documented runner"
+      },
+      "p5_eight_class_adapter": {
+        "status": "SPECIFIABLE_BUT_NOT_IMPLEMENTED_OR_HASHED",
+        "frozen_solver_requirement": "Bind the exact candidate generator/solver code, prompts, provider/model revision, tool surface and seed before evolution; verify its byte identity after the run.",
+        "development_input": "Give metric evolution only candidate-visible P5 dossiers, frozen-solver outputs, unlabelled development outputs, and a prospectively frozen development anchor that is not the protected final panel.",
+        "required_output": "Content-addressed evaluator artifact plus a one-of-eight decision. Because this comparator can change only the evaluator, EVALUATOR_REPAIR is the only actionable repair label; all non-evaluator or ambiguous cases must be UNRESOLVED. DRAWBACK is not automatically EVALUATOR_REPAIR.",
+        "mapping_rule": "Emit EVALUATOR_REPAIR only when the frozen rule establishes a defect in the incumbent evaluation interface and the evolved evaluator passes its development validity gates; emit UNRESOLVED on native ABSTAIN, null label, ambiguous class, unsupported non-evaluator repair, invalid output, error, or timeout.",
+        "protected_custody_repair": "The official runner computes eval_locked agreement each round and writes it into history, although it says locked is report-only. For P5, that set must be a development-only locked surrogate. An independent external evaluator must score the frozen final metric exactly once on the protected panel and withhold the outcome from the evolver/candidate. No protected score may enter elites, rollback, synthesis, retry, or replacement decisions.",
+        "resource_matching": "Freeze task-output counts, development-anchor size, rounds, detector/tool calls, model tokens, wall time, retries and compute; retain all candidates and null/error terminals.",
+        "native_interface_gap": "The official MBPP/report-generation metrics do not natively consume the P5 dossier or emit one of the eight revision classes."
+      },
+      "rights_and_service_dependencies": {
+        "source_rights": "Apache-2.0 source at the pinned revision, with NOTICE retention obligations.",
+        "paper_rights": "CC BY-NC-SA 4.0 paper; paper and code have different licences.",
+        "datasets_and_evaluators": "The repository states that no datasets, outputs, logs, or results are included. MBPP+, Spider 2.0-Snow, report-generation data/RAQS, hosted warehouses, task records and P5 cases retain their own rights and terms; Apache-2.0 does not cover them merely because an adapter references them.",
+        "services": [
+          "Amazon Bedrock credentials and permission for the configured Claude models",
+          "network access and provider pricing/quotas",
+          "Spider 2.0 hosted Snowflake credentials for that adapter",
+          "separately supplied report-generation data and evaluator for that adapter",
+          "lawfully acquired P5 development and protected-custody panels"
+        ]
+      },
+      "feasibility_terminal": "P5_C5_IDENTITY_BOUND_OFFICIAL_EVALUATOR_ONLY_IMPLEMENTATION__P5_PROTECTED_EIGHT_CLASS_ADAPTER_CANNOT_CHECK"
+    }
+  ],
+  "candidate_disposition": [
+    {
+      "candidate": "RewardHackingAgents",
+      "paper": "arxiv:2603.11337v1",
+      "title": "RewardHackingAgents: Benchmarking Evaluation Integrity for LLM ML-Engineering Agents",
+      "official_repository": "https://github.com/Yonas650/RewardHackingAgents",
+      "commit_sha": "9ea7cdc8dde6c89b1ea75e2ba86a61ffff72eb34",
+      "licence": "MIT",
+      "licence_file_path": "LICENSE",
+      "licence_byte_sha256": "fb203ad8909d0b73679cbaf597cfad372addd9cb4df08fe76c03094024c66de0",
+      "documented_install": "pip install -r requirements.txt",
+      "documented_run": "python -m rha.runner.grid_runner --config experiments/configs/grid_v2.yaml --episodes_dir artifacts/episodes_synth",
+      "native_input_output": "Runs code-editing agents in fresh ML workspaces; tracks patches and file access; emits true and reported metrics, runtime, tamper/leak/detector flags, episode JSON, tables and plots.",
+      "native_error_boundary": "run_episode has no typed abstention/CANNOT_CHECK or top-level exception conversion. The documented requirements.txt omits PyYAML even though grid_runner imports yaml, so the documented install is insufficient unless PyYAML is already present.",
+      "semantic_fit": "REJECT_C5",
+      "reason": "It is a benchmark and static integrity-audit/locking environment. It does not evolve the evaluator. This is an explicit exclusion in the frozen C5 definition, although it remains valuable evaluator-integrity infrastructure.",
+      "terminal": "P5_C5_REJECT_STATIC_REWARD_HACKING_BENCHMARK_NOT_EVALUATOR_EVOLUTION"
+    },
+    {
+      "candidate": "Verifier-as-Gatekeeper (VaG)",
+      "paper": "arxiv:2608.05810v1",
+      "title": "When Self-Evolution Backfires: Pre-Commit Gating against Skill Contamination in LLM Agents",
+      "official_repository": null,
+      "commit_sha": null,
+      "licence": "CANNOT_CHECK_NO_PRIMARY_PAPER_LINKED_CODE",
+      "licence_file_path": null,
+      "licence_byte_sha256": null,
+      "paper_licence": "arXiv non-exclusive distribution licence 1.0",
+      "native_paper_semantics": "Cold skills face schema validity, single-skill A-B replay on held-out tasks, and LLM semantic review; survivors undergo marginal-gain greedy selection before Hot admission. Outputs are Cold/Warm/Hot/rejected skill-pool states.",
+      "semantic_fit": "REJECT_C5",
+      "reason": "VaG is a pre-commit acceptance/gating mechanism applied to an evolving skill pool. The verifier/gates are not the evolving object. Primary-paper inspection found no official code URL, revision, licence bytes or entrypoint. It is a P5 safety/acceptance baseline candidate, not evaluator-only evolution.",
+      "terminal": "P5_C5_REJECT_STATIC_PRECOMMIT_GATE__OFFICIAL_CODE_CANNOT_CHECK"
+    },
+    {
+      "candidate": "Ratchet",
+      "paper": "arxiv:2605.22148v3",
+      "title": "Ratchet: How Reliable Must an LLM Judge Be to Retire a Skill?",
+      "official_repository": "https://github.com/amazon-science/Self-Evolving-Agents-Ratchet",
+      "commit_sha": "4401662ef477b8957580263323bc56d0c8fbf40a",
+      "licence": "Apache-2.0",
+      "licence_file_path": "LICENSE",
+      "licence_byte_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+      "notice_byte_sha256": "11b35ee88c5469201da4bdd7c1f62674afd24fa907e8481c4548ccdf84c118ca",
+      "documented_install": "pip install -e '.[dev,bedrock,mbpp]'",
+      "documented_run": "python scripts/run_skill_loop.py mbpp --n-train 3 --n-eval 2 --rounds 1 --tag smoke",
+      "native_input_output": "A fixed LLM routes and solves with zero/one natural-language skill; failures and grader outcomes create capsules/verdicts; the system synthesizes, caps and retires skills while retaining evidence in SQLite and YAML.",
+      "semantic_fit": "REJECT_C5",
+      "reason": "The repository says Ratchet assumes a reliable metric already grades each attempt. The skill library, not the evaluator, evolves. It is a strong skill-lifecycle arm for a different role. Its author-linked Double Ratchet repository contains the exact evaluator-only arm selected above.",
+      "terminal": "P5_C5_REJECT_SKILL_EVOLUTION_WITH_FIXED_EVALUATOR"
+    }
+  ],
+  "primary_evidence": [
+    {
+      "id": "ADIAS_PAPER_SEMANTICS",
+      "url": "https://arxiv.org/html/2608.06410v1",
+      "quote": "A persistent issue state maintains stable issue identities, lifecycle status, supporting evidence, and intervention-outcome histories. Issue-guided optimization uses this state to jointly propose repair targets and revision directions for subsequent focused full-code modification."
+    },
+    {
+      "id": "ADIAS_PAPER_CODE_LINK",
+      "url": "https://arxiv.org/html/2608.06410v1",
+      "quote": "Code is available at https://github.com/scylj1/adias/."
+    },
+    {
+      "id": "ADIAS_REPOSITORY_RELEASE",
+      "url": "https://github.com/scylj1/adias/blob/fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993/README.md",
+      "quote": "This repository is an initial code release for the ADIAS paper ... failed trajectories are diagnosed into reusable issue categories, the persistent issue state is maintained in profile.json, and the next code revision is guided by the active issue state and revision plan."
+    },
+    {
+      "id": "DOUBLE_RATCHET_EXACT_C5_SEMANTICS",
+      "url": "https://arxiv.org/html/2607.12790v2",
+      "quote": "the metric is the function that scores one solver output, and it is the only thing that evolves: not the benchmark, whose tasks and references are fixed before any loop starts"
+    },
+    {
+      "id": "DOUBLE_RATCHET_OFFICIAL_CODE_LINK",
+      "url": "https://arxiv.org/html/2607.12790v2",
+      "quote": "Code: https://github.com/amazon-science/Self-Evolving-Agents-Double-Ratchet."
+    },
+    {
+      "id": "DOUBLE_RATCHET_METRIC_ONLY_RUNNER",
+      "url": "https://github.com/amazon-science/Self-Evolving-Agents-Double-Ratchet/blob/0f14e910d361196422d9b938f45280919952d4fd/scripts/run_metric_evo.py",
+      "quote": "run_metric_evo — metric-evolution loop with the skill bank EMPTY (no skills). The agent's skill bank is empty and no skills are injected; only the EVALUATION METRIC evolves."
+    },
+    {
+      "id": "RHA_STATIC_BENCHMARK_BOUNDARY",
+      "url": "https://github.com/Yonas650/RewardHackingAgents/blob/9ea7cdc8dde6c89b1ea75e2ba86a61ffff72eb34/README.md",
+      "quote": "RewardHackingAgents is a benchmark suite for studying reward hacking in code-editing agents that modify machine learning training and evaluation pipelines."
+    },
+    {
+      "id": "VAG_STATIC_GATE_BOUNDARY",
+      "url": "https://arxiv.org/html/2608.05810v1",
+      "quote": "Every distilled skill starts Cold: recorded, but invisible to the agent. Reaching the runtime context requires clearing two gates of increasing verification stringency."
+    },
+    {
+      "id": "RATCHET_FIXED_EVALUATOR_BOUNDARY",
+      "url": "https://github.com/amazon-science/Self-Evolving-Agents-Ratchet/blob/4401662ef477b8957580263323bc56d0c8fbf40a/README.md",
+      "quote": "Ratchet assumes a reliable metric already grades each attempt."
+    }
+  ],
+  "slot_terminals": {
+    "C4_ISSUE_CENTRIC_OPTIMIZATION": "IDENTITY_BOUND_ENTRYPOINT_BOUND_SOURCE_RESTRICTED_ADAPTER_CANNOT_CHECK",
+    "C5_EVALUATOR_ONLY_EVOLUTION": "IDENTITY_BOUND_OFFICIAL_METRIC_ONLY_ENTRYPOINT_BOUND_ADAPTER_CANNOT_CHECK"
+  },
+  "cross_slot_terminal": "P5_C4_C5_IDENTITIES_BOUND__EXECUTION_READY_EIGHT_CLASS_PROTECTED_ADAPTERS_CANNOT_CHECK",
+  "scientific_authority": "CANNOT_CHECK",
+  "hypotheses": {
+    "H1": "CANNOT_CHECK",
+    "H2": "CANNOT_CHECK",
+    "H3": "CANNOT_CHECK",
+    "H4": "CANNOT_CHECK"
+  },
+  "protected_freshness": "CANNOT_CHECK"
+}

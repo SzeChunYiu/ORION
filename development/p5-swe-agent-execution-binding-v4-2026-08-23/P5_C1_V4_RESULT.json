@@ -1,0 +1,48 @@
+{
+  "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+  "authority": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_PREFLIGHT_ONLY",
+  "execution": {
+    "c1_executed": false,
+    "c1_execution_ready": false,
+    "panel_confirmatory_ready_arms": 0,
+    "panel_required_arms": 6
+  },
+  "next_discriminator": "Bind one exact rights-cleared P5 case, primary model/service, derived runtime image, usage/network enforcement and three independent-custody fields; C1 still must wait for 6/6 panel readiness.",
+  "preserved_boundaries": {
+    "raw_native_singleton_licences": 0,
+    "scienceclaw_supported_singletons": 0,
+    "v3_supported_singleton_case_records": 40,
+    "v3_synthetic_cases": 231,
+    "v3_unresolved_case_records": 191
+  },
+  "preserved_claims": {
+    "H1": "CANNOT_CHECK",
+    "H2": "CANNOT_CHECK",
+    "H3": "CANNOT_CHECK",
+    "H4": "CANNOT_CHECK",
+    "harm": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "superiority": "CANNOT_CHECK",
+    "top_tier_publication_readiness": "NOT_ESTABLISHED"
+  },
+  "protocol_id": "P5.C1.SWE_AGENT.EXECUTION.BINDING.V4",
+  "schema_version": "orion.p5.c1.swe-agent-execution-binding-result.v4",
+  "terminal": "P5_C1_V4_SWE_AGENT_NATIVE_PARSER_AND_ISOLATION_POLICY_BOUND__TWELVE_C1_FIELDS_BLOCKING__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK",
+  "v4_repairs": {
+    "c1_blocking_fields": 12,
+    "c1_bound_fields": 9,
+    "newly_bound_v3_fields": [
+      "adapter.isolated_write_surface",
+      "adapter.native_parser_binding",
+      "model_provider.fallbacks",
+      "resources.wallclock",
+      "runtime.compute",
+      "runtime.dependency_lock"
+    ],
+    "retained_bound_identity_fields": [
+      "identity.native_entrypoint_bytes",
+      "identity.source_license_bytes",
+      "identity.source_repository_commit"
+    ]
+  }
+}

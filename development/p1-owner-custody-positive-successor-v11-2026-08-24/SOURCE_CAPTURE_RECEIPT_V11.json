@@ -1,0 +1,138 @@
+{
+  "capture_count": 2,
+  "capture_method": "Exactly one HTTP GET per frozen route using an identifying research User-Agent, redirects followed, 30-second timeout.",
+  "capture_terminal": "P1_V11_TWO_OF_TWO_FROZEN_OFFICIAL_ROUTES_BYTE_BOUND",
+  "exactly_one_get_sequence_per_route": true,
+  "frozen_route_count": 2,
+  "protocol_id": "P1_R7_HISTORICAL_OWNER_CUSTODY_POSITIVE_SUCCESSOR_V11",
+  "protocol_sha256": "bfe26edf6808577eb6a7a3e96ad2bdc6a1669d727b3e5e510a7d987256336f38",
+  "raw_payload_retained_in_packet": false,
+  "schema_version": "orion.p1.owner-custody-positive-successor.source-capture-receipt.v11",
+  "sources": [
+    {
+      "capture_completed_at_utc": "2026-08-24T05:48:35.856217+00:00",
+      "capture_started_at_utc": "2026-08-24T05:48:34.326455+00:00",
+      "content_length_header": null,
+      "content_type": "application/pdf",
+      "error": null,
+      "etag": null,
+      "exact_r7_target_token_counts": {
+        "KEEP_COMPILE": 0,
+        "KEEP_REPAIR": 0,
+        "KEEP_SEARCH": 0,
+        "REFORMULATE_BOUNDARY": 0,
+        "REFORMULATE_OBJECTIVE": 0,
+        "REVISE_MEASUREMENT": 0,
+        "UNRESOLVED": 0
+      },
+      "final_url": "https://groups.niso.org/higherlogic/ws/public/download/30869/NISO_RP-45-2024_CREC.pdf",
+      "historical_date_evaluation": {
+        "approved_date": "2024-06-26",
+        "cutoff_utc": "2026-08-20T11:55:11Z",
+        "pdf_creation_date": "2024-06-27T16:52:21+02:00",
+        "pdf_modification_date": "2024-06-27T16:52:21+02:00",
+        "strictly_before_cutoff": true,
+        "verdict": "PASS"
+      },
+      "http_status": 200,
+      "identity_evaluation": {
+        "author_field": "NISO CREC Working Group",
+        "doi": "10.3789/niso-rp-45-2024",
+        "format": "PDF 1.7",
+        "pages": 66,
+        "title": "RP-45-2024 Communication of Retractions, Removals, and Expressions of Concern (CREC)",
+        "verdict": "PASS"
+      },
+      "issuer_and_governance_evaluation": {
+        "approval_evidence": "Front matter states approved June 26, 2024; foreword states the NISO CREC Working Group developed and approved the Recommended Practice and identifies the approving NISO Topic Committee.",
+        "issuer_identity": "National Information Standards Organization (NISO)",
+        "prepared_by": "NISO CREC Working Group",
+        "r7_formal_delegation_verdict": "NOT_EVIDENCED",
+        "r7_owner_identity_verdict": "NOT_EVIDENCED",
+        "standard_action_record_verdict": "PASS"
+      },
+      "last_modified": null,
+      "requested_url": "https://groups.niso.org/higherlogic/ws/public/download/30869/NISO_RP-45-2024_CREC.pdf",
+      "response_bytes": 1591347,
+      "retained_extract_scope": "Metadata, dates, issuer/governance fields, rights class, exact-token counts and bounded native-term presence only.",
+      "rights_evaluation": {
+        "applies_to_completed_r7_algebra": false,
+        "bounded_fact_extraction": "PERMITTED_WITH_ATTRIBUTION_CONDITIONS",
+        "planned_raw_redistribution": false,
+        "r7_target_corpus_rights_verdict": "NOT_EVIDENCED",
+        "statement_class": "CUSTOM_CONDITIONAL_NONCOMMERCIAL_REPRODUCTION_PERMISSION"
+      },
+      "sha256": "110ff6008091aea1535d6242e2cb5ab1c56b353b932ac30afc4b075133ca86a1",
+      "source_id": "NISO_RP45_2024_OFFICIAL_PDF",
+      "source_native_component_presence": {
+        "correction": true,
+        "expression of concern": true,
+        "notice": true,
+        "removal": true,
+        "retraction": true,
+        "status": true,
+        "withdrawal": true
+      }
+    },
+    {
+      "capture_completed_at_utc": "2026-08-24T05:48:36.592976+00:00",
+      "capture_started_at_utc": "2026-08-24T05:48:35.857095+00:00",
+      "content_length_header": null,
+      "content_type": "text/html; charset=UTF-8",
+      "error": null,
+      "etag": "\"1787550516\"",
+      "exact_r7_target_token_counts": {
+        "KEEP_COMPILE": 0,
+        "KEEP_REPAIR": 0,
+        "KEEP_SEARCH": 0,
+        "REFORMULATE_BOUNDARY": 0,
+        "REFORMULATE_OBJECTIVE": 0,
+        "REVISE_MEASUREMENT": 0,
+        "UNRESOLVED": 0
+      },
+      "final_url": "https://www.niso.org/publications/rp-45-2024-crec",
+      "historical_date_evaluation": {
+        "cutoff_utc": "2026-08-20T11:55:11Z",
+        "display_date": "June 27, 2024",
+        "last_modified_header_not_used_for_publication_date": true,
+        "publication_datetime": "2024-06-27T12:00:00Z",
+        "strictly_before_cutoff": true,
+        "verdict": "PASS"
+      },
+      "http_status": 200,
+      "identity_evaluation": {
+        "doi": "10.3789/niso-rp-45-2024",
+        "format": "HTML",
+        "official_pdf_href": "https://groups.niso.org/higherlogic/ws/public/download/30869/NISO_RP-45-2024_CREC.pdf",
+        "title": "NISO RP-45-2024, Communication of Retractions, Removals, and Expressions of Concern (CREC) | NISO website",
+        "verdict": "PASS"
+      },
+      "issuer_and_governance_evaluation": {
+        "issuer_identity": "NISO via official NISO publication route",
+        "r7_formal_delegation_verdict": "NOT_EVIDENCED",
+        "r7_owner_identity_verdict": "NOT_EVIDENCED",
+        "standard_action_record_verdict": "CORROBORATING_OFFICIAL_LANDING"
+      },
+      "last_modified": "Mon, 24 Aug 2026 05:48:36 GMT",
+      "requested_url": "https://www.niso.org/publications/rp-45-2024-crec",
+      "response_bytes": 24780,
+      "retained_extract_scope": "Title, DOI, official PDF link, publication datetime, exact-token counts and bounded native-term presence only.",
+      "rights_evaluation": {
+        "page_level_reuse_licence": "NOT_IDENTIFIED_IN_CAPTURED_BYTES",
+        "planned_raw_redistribution": false,
+        "r7_target_corpus_rights_verdict": "NOT_EVIDENCED"
+      },
+      "sha256": "bc8e23ad13d11a47fd849435595bcb1470d901cdd5b0888282b0d69c35aa1dbc",
+      "source_id": "NISO_RP45_2024_OFFICIAL_LANDING",
+      "source_native_component_presence": {
+        "correction": false,
+        "expression of concern": false,
+        "notice": false,
+        "removal": true,
+        "retraction": true,
+        "status": true,
+        "withdrawal": false
+      }
+    }
+  ]
+}

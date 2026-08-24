@@ -1,0 +1,321 @@
+\section{Public cross-dataset screening: one-pool learner-rule transport}
+\label{sec:public-screening-transport}
+
+The acquisition ceiling separates route emission from downstream selection.
+We therefore tested one narrower transport question independently of open-world
+route invention: once a fixed citation pool has been acquired, does sequential
+label feedback retain value on a public source outside the SYNERGY review
+family used for controller development?  The target was the CC BY 4.0
+physiotherapy citation-screening corpus released by Dhrangadhariya, Hilfiker and
+M\"uller \cite{dhrangadhariya2023citationdataset}.  The pinned 53,881,052-byte
+file contains 25,540 tab-delimited raw lines.
+
+\paragraph{Transport estimand.}
+Here ``transport'' is component-specific. Across source families, the active
+update rule, its hyperparameters, and the batch-size rule were held fixed, but the record-identity
+adapter and TF--IDF representation were re-instantiated on the target corpus,
+and the initial seed was selected using target labels. Let $P$ denote the
+canonical repaired pool and $z(P)$ that disclosed label-informed seed. The
+primary observed contrast is therefore
+\[
+ \Delta_{10}(P,z)=
+ R_{\rm active}(P,z;0.10)-
+ \max_{k\in\mathcal K_{\rm reg}}R_k(P,z;0.10),
+\]
+conditional on this one $P$, this seed rule, and the frozen source-specific
+adapter, where $\mathcal K_{\rm reg}$ contains the two registered passive
+within-pool baselines. It is not an estimator of a mean effect over review populations and
+does not transport a fitted model, representation, identity layer,
+initialization policy, or cold-start capability.
+
+\paragraph{Schema incident and successor identity.}
+The source has no header.  A preflight intended to inspect a header therefore
+exposed the first row's public label before the protocol was frozen.  That exact
+raw line was excluded by SHA-256, and the campaign is explicitly not
+outcome-blind.  V1 then failed its binding gate before any model outcome: two of
+the remaining rows used noncanonical class literals and three canonical rows
+collided with earlier rows under the frozen class-free record identity.  The V1
+terminal remains
+\idt{P2_ZENODO_ACTIVE_ACQUISITION_TRANSPORT_CANNOT_CHECK_BINDING}.
+
+Before computing any model score, V2 froze the schema repair: admit exact
+\texttt{include}/\texttt{exclude} rows only and retain the earliest canonical
+row within an identity collision.  The resulting population contained 25,534
+unique records, including 2,259 inclusions.  This repair makes V2
+post-schema-development evidence; it does not restore outcome blindness or
+independent custody.
+
+\paragraph{Frozen arms and endpoints.}
+All arms used the same label-informed warm start: the complete public labels
+were scanned to hash-select one known inclusion and one known exclusion.
+Results are therefore conditional on an available positive seed and do not
+measure cold-start screening. A
+passive static comparator ranked the remaining L2-normalized title--abstract--MeSH
+TF--IDF vectors by cosine similarity to the included seed; a random comparator
+averaged 20 frozen permutations.  The active arm refit a class-balanced
+logistic-loss SGD classifier after batches of 52 newly screened records and
+selected the highest predicted inclusion probabilities.  The primary endpoint
+was recall after screening 10\% of the population.  Secondary endpoints were
+recall at 5\% and 20\%, fraction screened to 95\% recall, and
+$\mathrm{WSS}@95=0.95-f_{95}$.  V2 required exact binding, active recall at
+10\% of at least 0.50, advantage of at least 0.10 over the better-performing
+registered baseline, positive WSS@95, and no harm relative to random.
+
+\paragraph{Result.}
+All five declared gates passed in the producing lane; the receipt records
+matching protocol and implementation hashes. At 10\% screened, active recall was 0.703409 versus
+0.335989 for the better-performing of the two registered passive within-pool baselines,
+the static seed centroid, a difference of
++0.367419; the 20-permutation random mean was 0.102789.  Active recall was
+0.406375 at 5\% and 0.945994 at 20\%.  It reached 95\% recall after screening
+0.205256 of the pool, giving WSS@95 of 0.744744; the static comparator's
+corresponding values were 0.676941 and 0.273059. The producing lane reports a
+byte-identical local rerun, but no separate replay receipt or independent
+verification is archived.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\hline
+Arm & R@5\% & R@10\% & R@20\% & $f_{95}$ & WSS@95 \\
+\hline
+Active label feedback & 0.406375 & 0.703409 & 0.945994 & 0.205256 & 0.744744 \\
+Static seed centroid & 0.177512 & 0.335989 & 0.560425 & 0.676941 & 0.273059 \\
+Random, 20-seed mean & 0.051439 & 0.102789 & 0.201239 & 0.950305 & -0.000305 \\
+\hline
+\end{tabular}
+\caption{Frozen one-pool public screening transport result.  Recall columns
+report the included-record fraction recovered at each screening budget;
+$f_{95}$ is the population fraction screened to reach 95\% recall.  Random is
+the arithmetic mean over 20 frozen permutations.  The analysis unit is one
+post-schema-repair pool, so the table carries no cross-world inferential claim.}
+\label{tab:p2-zenodo-transport}
+\end{table}
+
+\paragraph{Post-V2 active-comparator audit.}
+Because both original comparators were passive, the $+0.367419$ contrast does
+not identify superiority over a modern active-screening controller. After the
+V2 outcome was known but before either new comparator outcome was opened, a
+distinct audit froze the pinned ASReview ELAS u4 and u3 model components
+\cite{vandeschoot2021asreview}. Both cadence-matched arms received the same
+repaired record universe, text fields, label-informed warm seed and batches of
+52 labels as the candidate. This reproduces the pinned model, balancing,
+TF--IDF and maximum-query components under a matched feedback cadence; it is
+not an exact execution of the ASReview application or its default one-record
+query cadence.
+
+The V2 candidate reproduced exactly. ELAS u4 was nevertheless stronger:
+recall at 10\% was 0.722444 versus 0.703409, so the candidate-minus-u4
+difference was $-0.019035$. U4 also achieved WSS@95 of 0.746781 versus
+0.744744, a candidate difference of $-0.002037$. U3 was weaker than the
+candidate, with recall at 10\% of 0.667109 and WSS@95 of 0.713296. Thus the
+prefrozen $+0.05$ primary-margin and nonnegative WSS-dominance gates both
+failed, producing
+\idt{P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR}.
+The original V1 failure and V2 one-pool terminal remain immutable; this audit
+changes the admissible interpretation, not their identities.
+
+The resulting positive content is narrower but more diagnostic: sequential
+feedback substantially outperformed the two passive arms on this pool, while
+the particular logistic controller did not exceed the stronger active family.
+No post-outcome tuning on this pool can promote the claim. A controller-level
+superiority claim now requires a prospectively frozen, source-disjoint
+multi-review family whose comparator registry includes the u4 family before
+protected outcomes are opened.
+
+This is a large conditional within-pool contrast after fitting a new active
+SGD model with the previously fixed estimator family, hyperparameters and
+batch-size rule, but a source-specific
+title--abstract--MeSH representation and identity adapter. It is not an
+inferential replication across
+review worlds: the analysis unit is one pool, so no cross-world $p$-value is
+reported.  Nor does it identify an ORION-specific effect, because active
+screening is a donor component and the fixed pool contains no open-world route
+invention or scientific-closure decision. It is also conditional on the
+label-informed warm start and does not establish cold-start transport.
+Publication-grade promotion still
+requires a prospectively population-frozen, source-disjoint multi-review family
+with protected labels, the now-identified stronger active comparator family,
+and external custody.
+
+\paragraph{Cross-review SWIFT successor.}
+A later public-development successor tested the fixed candidate against the
+cadence-matched pinned u4 components across five SWIFT review decisions
+released with the SWIFT-Review workbench \cite{howard2016swiftreview}.  V1
+and V2 stopped before fitting either model and remain \textsc{cannot-check}
+mechanics failures: V1 used a casefolded newline-delimited identity that did not
+match the preflight counts, while V2 exposed that the original direct-review
+preflight had inserted spaces between characters.  V3 instead froze the
+intended case-sensitive whitespace-normalized, label-independent identity
+audit.  That correction occurred after review class counts were opened but
+before any candidate or comparator outcome, so V3 is public-development
+evidence rather than protected confirmation.
+
+The corrected population contained 96,241 canonical rows across BPA,
+Fluoride, Neuropain, PFOS--PFOA and Transgenerational.  The unweighted
+review-level mean candidate-minus-u4 recall@10\% was $-0.021717971642$, against
+a preregistered $+0.05$ primary margin; mean candidate-minus-u4 WSS@95 was
+$-0.050396333672$, against a nonnegative relative-work-saving gate.  U4 was
+better on both endpoints in all five reviews.  The worst recall@10\% difference
+was $-0.039215686275$ for Fluoride, so the $-0.05$ harm gate passed, and
+candidate WSS@95 was positive in every review, so the absolute-work-saving gate
+passed.  Those two gates are non-compensatory and do not repair failure of the
+primary and relative-work-saving gates.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lrr}
+\hline
+Gate or estimand & Criterion & V3 result \\
+\hline
+Mean candidate-minus-u4 R@10\% & $\ge +0.05$ & $-0.021717971642$ (fail) \\
+Mean candidate-minus-u4 WSS@95 & $\ge 0$ & $-0.050396333672$ (fail) \\
+Worst-review R@10\% difference & $\ge -0.05$ & $-0.039215686275$ (pass) \\
+Candidate WSS@95 in every review & $>0$ & pass \\
+\hline
+\end{tabular}
+\caption{SWIFT V3 cross-review public-development decision.  Means are
+unweighted over five distinct review decisions, not over 96,241 pooled rows.
+The reviews are not asserted to be statistically independent; the maximum
+pairwise shared-content count was 68.  Passing the harm and absolute-work-saving
+gates cannot compensate for the failed primary and relative gates.}
+\label{tab:p2-swift-v3}
+\end{table}
+
+The exact V3 terminal is
+\idt{P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR}.
+The earlier one-pool terminal remains, verbatim,
+\idt{P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR}.
+The result is not cold-start evidence, exact ASReview application execution,
+protected confirmation, independent custody, population transport, ASReview
+software inferiority, or ORION-specific superiority.
+
+V4 executed the frozen 2-by-2 representation-by-learner/balancer factorization
+only as post-outcome mechanism diagnosis.  All four arms used the same 96,241
+canonical rows per arm, and the candidate and u4 corner reproductions matched
+V3 exactly.  The unweighted review-level learner/balancer main effect was
+$+0.022618035379$ for recall@10\% with the aggregate sign in five of five
+reviews, and $+0.041725819160$ for WSS@95.  The representation main effect on
+recall@10\% was $-0.000900063738$, with its aggregate sign in only one of five
+reviews; the interaction was $+0.003067576381$, with its aggregate sign in
+three of five.  Under the frozen classification, only the learner/balancer
+component was stable on this panel.
+
+The exact V4 terminal is
+\idt{P2_SWIFT_V4_POST_OUTCOME_FACTORIZATION_IDENTIFIES_STABLE_COMPONENT_REQUIRES_CONTENT_DISJOINT_OUTCOME_UNOPENED_FAMILY}.
+Because the factorization was designed after the V3 outcomes and reused the
+same partly overlapping decisions, it cannot replace the candidate, promote
+any arm, or support a superiority claim on SWIFT.  The selected mechanism must
+be frozen without outcome access and evaluated on a content-disjoint review
+family with the same active u4 comparator and unchanged safety gates.
+
+V5 performed that test under a new identity on the CC0 SYNERGY V1 release.
+Before label values or model outcomes were opened, the study selected the five
+largest review decisions from publisher-documented counts and froze the
+population, four-arm implementation and unchanged gates.  A label-blind
+adapter excluded every normalized content identity appearing in SWIFT and
+every identity shared across the five successor reviews.  The retained units
+were the five review decisions, not the 101,044 screening records: Walker
+(40,442), Brouwer (38,009), Hall (8,783), Wassenaar (6,621), and Leenaars
+(7,189).  Final SWIFT overlap and pairwise successor overlap were both zero.
+
+The learner/balancer recall@10\% main effect was $+0.008834277869$, below the
+locked $+0.010858985821$ magnitude threshold.  It was strictly positive in
+three of five decisions and exactly zero in Brouwer and Hall, failing the
+four-of-five strictly-positive sign gate.  The same contrast was positive in
+the frozen recall@5\%, recall@20\%, and WSS@95 diagnostics
+($+0.031876154087$, $+0.019244987149$, and $+0.030373086810$), but those
+diagnostics do not replace the failed recall@10\% rule.  The preserved full-arm
+candidate-minus-u4 means were $-0.011841648130$ at recall@10\% and
+$-0.041523905587$ at WSS@95, so the original relative margin and work-saving
+gates again failed while harm and absolute work saving passed without
+compensation.
+
+The exact V5 terminal is
+\idt{P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR}.
+This is a preregistered adverse same-session transport result, not independent
+confirmation.  All five decisions share one release, representation and local
+adapter, and their labels encode final full-text inclusion rather than an
+application-exact title/abstract decision.  No arm is promoted.  A successor
+must use a lawful family disjoint from both SWIFT and V5, keep recall@10\% as a
+locked adverse coprimary endpoint, and preregister a continuous recall--effort
+curve before outcomes, ideally under independent custody.
+
+\subsection{V6 outcome-unopened source and continuous-estimand freeze}
+
+V6 closes the next source-feasibility discriminator without executing a
+comparison.  It binds all 14 revision-one CSV review decisions exposed by the
+public OSF node \idt{vt3n4}, Medical Guidelines Dutch Association Medical
+Specialists.  The node declares CC BY 4.0; every file is fixed by OSF file and
+GUID identity, revision-one URL, byte count and SHA-256.  Label-blind
+canonicalization used only stable key, title, abstract and the declared PubMed
+field.  It reduced 5,074 raw rows to 4,934 canonical rows.  One provisional
+row matched a V5 raw-work content identity, and 65 identities occurred in more
+than one KIFMS review, affecting 132 rows; all were removed symmetrically before
+any KIFMS label or model outcome.  Final normalized title--abstract content
+overlap with both SWIFT and V5 is zero.  The declared PubMed field is empty in
+all 5,074 rows, so zero PMID overlap is vacuous rather than a second
+corroborating channel.  The final content-union SHA-256 is
+\idt{731d87e66b3e1195826c82e0a94fef19c044d63503ba2a36e41d38f811df0b12}.
+
+For a complete ordering $i=1,\ldots,N_r$, hidden binary labels $y_i$ and
+$P_r=\sum_i y_i$, the new coprimary functional is frozen as
+\[
+ \operatorname{CRE20}_r=
+ \frac{1}{0.20P_r}\sum_{i=1}^{N_r}
+ y_i\max\!\left(0.20-\frac{i}{N_r},0\right),
+\]
+the normalized area under the complete recall--effort step function over the
+first 20\% screened.  Recall@10\% remains an adverse coprimary endpoint under
+the unchanged magnitude threshold; both endpoints require a strictly positive
+effect in at least 12 of 14 decisions.  The active u4 comparator, full
+factorial cells, batch and seed rules, learner and full-arm WSS@95 gates,
+worst-review harm gates and absolute-work-saving gate are unchanged.  No
+endpoint can compensate another.
+
+This freeze opened no KIFMS label value, class count, seed, V6 ordering or
+comparative score.  It is outcome-unopened only for the exact V6 design
+context: the companion repository contains paths to historical public ASReview
+simulation artifacts for the named datasets, whose metric contents were not
+inspected here.  The family is therefore not described as globally unstudied
+or historically outcome-sealed.  Public source-body feasibility is established,
+but the selected \idt{expert_inclusion} semantics, two-class existence in every
+review, a signed runner, and independent protected custody remain unresolved.
+The exact current terminal is
+\idt{P2_KIFMS_V6_LAWFUL_EXACT_SOURCE_AND_LABEL_BLIND_DISJOINT_POPULATION_FROZEN__INDEPENDENT_PROTECTED_EXECUTION_CANNOT_CHECK}.
+It supplies no performance, harm, work-saving, transport or superiority result.
+
+\subsection{V7 hash-frozen transparent public execution}
+
+V7 separates an unavailable strengthening condition from the empirical
+critical path. Before opening any KIFMS label value, it froze a new identity,
+the exact V6 source/population hashes, the four-arm runner, dependency versions,
+CRE20/R@10 coprimary rules and every unchanged harm/work-saving gate. The 14
+revision-one CC-BY-4.0 files then matched their exact bytes and SHA-256 values;
+an outcome-blind unique single-exclusion reconstruction reproduced all 4,934
+canonical rows and the V6 union hash. Every review contained both
+\idt{expert_inclusion} classes, and every arm produced a complete order.
+
+The learner/balancer main effect is positive on average: $+0.084471534$ on
+CRE20, $+0.148820475$ at recall@10\%, and $+0.119813186$ on WSS@95. Thus both
+magnitude gates and mean work saving pass. CRE20 is strictly positive in 11/14
+reviews and recall@10\% in 9/14, below the locked 12/14 sign gates. The exact
+descriptive two-sided sign-test values are 0.057373 and 0.423950. The
+worst-review learner recall@10\% effect is $-0.125$, failing the $-0.05$ harm
+floor. The full candidate-minus-u4 means are $-0.201647856$ at recall@10\% and
+$-0.119159673$ on WSS@95, so the relative margin, work-saving and harm gates
+also fail; candidate absolute WSS95 remains positive in every review.
+
+The exact V7 terminal is
+\idt{P2_KIFMS_V7_TRANSPARENT_PUBLIC_EXECUTION_FAILS_ONE_OR_MORE_LOCKED_PERFORMANCE_GATES_REQUIRES_SUCCESSOR}.
+This is an adverse result under six of ten locked performance gates. It is also
+a sharper upward diagnosis: the u4 learner/balancer is the productive component
+across both representations, while the standalone candidate and complete
+candidate stack do not envelop the strong donor. The next mechanism therefore
+makes u4 mandatory, learns only a leave-one-review-out residual correction with
+a hard u4 fallback, and requires a source-disjoint public family for its next
+test. V7 is same-workspace transparent public development, explicitly records
+independent custody as false, and cannot issue confirmation, ASReview-software
+or domain-general superiority.

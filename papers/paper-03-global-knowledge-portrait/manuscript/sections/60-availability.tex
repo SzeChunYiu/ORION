@@ -1,9 +1,8 @@
-\section{Data and code availability}
+\section{Data availability}
 \label{sec:availability}
 
-The implementation repository contains the mapping calculus, the frozen
-public-reference datasets and their builders, the deterministic evaluator, the
-successor battery, and the publication-layer regeneration commands. Every
+The repository snapshot contains the frozen public-reference datasets,
+successor evidence and content bindings used by this study. Every
 artifact named anywhere in this paper is listed here with its path, so that no
 repository location has to be carried in the narrative. Paths below are
 relative to the paper directory unless they begin with \idt{src/} or
@@ -46,8 +45,8 @@ evaluator, analysis and publication projection are
 \idt{src/orion/study/p3_public_reference_holdout.py},
 \idt{src/orion/study/p3_public_reference.py},
 \idt{src/orion/study/p3_public_reference_analysis.py} and
-\idt{src/orion/study/p3_public_reference_publication.py}. The independent
-evaluator used for replay is
+\idt{src/orion/study/p3_public_reference_publication.py}. The separately
+implemented repository evaluator used for replay is
 \idt{src/orion/study/p3_independent_evaluator.py}.
 
 \subsection{Frozen public-reference datasets}
@@ -82,9 +81,9 @@ under \idt{publication/} with their own \idt{SHA256SUMS}. The bootstrap seed
 20260817 and both pass margins are recorded in the execution manifest rather
 than chosen afterwards.
 
-The independent reproduction of the confirmatory mapping result is
+The separate-implementation reproduction of the confirmatory mapping result is
 \idt{research/verification/records/P3.C5.confirmatory-mapping.json}; the
-successor battery's independent verifier and its record are
+successor battery's separate verifier and its record are
 \idt{research/claim_expansion/p3/verify_p3_x_independent.py} and
 \idt{research/claim_expansion/p3/P3_X_INDEPENDENT_VERIFICATION_V1.json}. The
 bounded method-structure pilot of
@@ -95,6 +94,233 @@ in \idt{research/extensions/p1-p3-structure/} and its receipt at
 The mapping from each result-bearing claim to the archived artifact that
 supports it is \idt{CLAIM_LEDGER_V1.md}, with the manuscript map at
 \idt{CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md}.
+
+\subsection{External-successor preflights}
+
+The prospective partial-identification design is
+\idt{protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json}. Its metadata-only
+source roots are recorded in
+\idt{development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json},
+whose canonical payload digest is
+\idt{7dd283acd81e63e84887d82ee7761e89e62a47d31afceca8628e456b76f73e01};
+the exact P3 non-promotion status is in
+\idt{development/naturalistic-panel-harness-2026-08-23/PROTOCOL_BINDING_STATUS_V1.json}.
+No raw case, coordinate assignment, gold label or system output occurs in that
+snapshot.
+The provider- and modality-diverse successor frame is
+\idt{development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json},
+with protocol
+\idt{development/provider-diverse-metadata-census-2026-08-23/CENSUS_PROTOCOL_V1.json}
+and receipt
+\idt{development/provider-diverse-metadata-census-2026-08-23/VERIFICATION_RECEIPT_V1.json}.
+It closes metadata structure only; its
+rights, eligibility and scientific-source-universe terminals remain fail-closed.
+
+The comparator-identity audit is
+\idt{development/comparator-binding-harness-2026-08-23/COMPARATOR_BINDING_LEDGER_V1.json}.
+It records that the prospective four-arm multiplicity family is count-only;
+until four exact identities, revisions, licences, adapters and terminal maps are
+bound, its terminal remains
+\idt{P3_COMPARATOR_FAMILY_CANNOT_CHECK_IDENTITY}.
+
+The public OAEI development protocol, frozen inputs and runners are under
+\idt{development/p3-oaei-public-development-execution-2026-08-23/}.  The
+bounded result, failure anatomy and manuscript boundary are
+\idt{RESULT_V2.json}, \idt{FAILURE_ATLAS_V1.json}, \idt{RESULTS.md} and
+\idt{MANUSCRIPT_READY_BOUNDED_UPDATE.md}; their directory manifest is
+\idt{SHA256SUMS}.  The result digest is
+\idt{5f5edee08aca44d34e5748d16f1923fba88f3eb47bf2e591c49eea37ee83fdef}.
+Large reproducible intermediate files were hashed and removed rather than
+committed.  This route exposes public references and has authority only as
+one-family development; it is not independent protected gold.
+
+The distinct post-public-gold-informed cross-construct successor is under
+\idt{development/p3-oaei-cross-construct-successor-2026-08-23/}. Its protocol,
+execution receipts, full result, failure diagnosis, theorem note, coordinate
+and comparator audits, transport blockers and scientific report are
+\idt{P3_CROSS_CONSTRUCT_PROTOCOL_V3.json},
+\idt{DEVELOPMENT_EXECUTION_FREEZE_RECEIPT_V3.json}, \idt{RESULT_V3.json},
+\idt{RECURSIVE_FAILURE_DIAGNOSIS_V3.json},
+\idt{IDENTIFICATION_ENVELOPE_THEOREM_V3.md},
+\idt{COORDINATE_IDENTIFICATION_AUDIT_V3.json},
+\idt{COMPARATOR_IDENTITY_AUDIT_V3.json}, \idt{TRANSPORT_BLOCKERS_V3.json} and
+\idt{RESULTS.md}. The V3 result SHA-256 is
+\idt{2c9e59dc323cf65200152ffc259341131e60bb040175f9f109872f35d5d468d4}.
+The large case, prediction and public-gold JSONL products were retained by
+hash and line count and then removed, as recorded in
+\idt{TEMP_DATA_DISPOSAL_RECEIPT_V3.json}. V3 was designed after V2 public gold
+was opened, so it is public development evidence only and supplies no protected
+or independent authority.
+
+The distinct outcome-blind V4 feasibility audit is under
+\idt{development/p3-selective-envelope-harm-successor-v4-2026-08-23/}. Its
+protocol, source-rights audit, comparator binding, formal theorem, conditional
+harm bound, result, adverse-result ledger and verification receipt are
+\idt{P3_SELECTIVE_ENVELOPE_HARM_PROTOCOL_V4.json},
+\idt{SOURCE_FAMILY_RIGHTS.json}, \idt{COMPARATOR_RESEARCH.json},
+\idt{OPEN_WORLD_REFERENCE_IDENTIFICATION_THEOREM_V4.json},
+\idt{SELECTIVITY_HARM_BOUND_V4.json}, \idt{RESULT_V4.json},
+\idt{RECURSIVE_NEGATIVE_RESULT_LEDGER_V4.json} and
+\idt{AUDIT_RECEIPT_V4.json}. All retained bytes are bound by the directory
+\idt{SHA256SUMS}; the V4 result SHA-256 is
+\idt{580bc76eb64d6678a45adb6fac900d8ad18d597548b883bef18471740b50b81b}.
+No new-family reference payload, relation value, matcher output, performance
+result or protected evidence was opened.
+
+The distinct V5 direct-certificate calibration packet is under
+\idt{development/p3-authoritative-negative-semantics-v5-2026-08-23/}. Its
+freeze, rights/identity audit, 61-file byte manifest, 4,838-row certificate
+registry, theorem/bound, adverse-result ledger, result and 23-check scientific
+validation are retained as \idt{PROTOCOL_FREEZE_RECEIPT_V5.json},
+\idt{RIGHTS_IDENTITY_AUDIT_V5.json}, \idt{SOURCE_BYTE_MANIFEST_V5.json},
+\idt{CERTIFICATE_REGISTRY_V5.jsonl}, \idt{THEOREM_AND_BOUND_V5.json},
+\idt{NEGATIVE_RESULT_LEDGER_V5.json}, \idt{RESULT_V5.json} and
+\idt{SCIENTIFIC_VALIDATION_V5.json}. The V5 result SHA-256 is
+\idt{5e468fc319fcc70e2f1058912cd34da7290831e2c20801f73e495ee7339cded7}.
+The packet retains no raw ontology payload. No comparator output, protected
+outcome or naturalistic cross-ontology result was opened.
+
+The V6 comparator-native preflight packet is under
+\idt{development/p3-comparator-native-preflight-v6-2026-08-23/}.  The three
+slot results, overall result, negative ledger, runtime manifest, prospective V7
+dependency protocol and 63-check validation are
+\idt{K1_AML_RESULT_V6.json}, \idt{K2_LOGMAP_RESULT_V6.json},
+\idt{K3_BERTMAP_RESULT_V6.json}, \idt{RESULT_V6.json},
+\idt{NEGATIVE_RESULT_LEDGER_V6.json}, \idt{RUNTIME_MANIFEST_V6.json},
+\idt{K3_V7_COMPATIBILITY_SUCCESSOR_PROTOCOL.json}, and
+\idt{VALIDATION_RECEIPT_V6.json}.  Their result SHA-256 values are
+\idt{41821ba01456f674beea1923d95e8ea7cd76641f71050c71ae8ed27d16768139},
+\idt{44f59b0dbb89545d30a30105b2cfdacc9e31da0bfad637180f0a4d4a6eb3bba1},
+\idt{89397bde96305b19b19487a87d0b8b82f5270cd8fafcb2993a596c3bd0e64df1},
+and \idt{9f9a3a8cf8926068ca5dd6a0ff90c586494c18f6087368ce3975d7cc4089a538}.
+Temporary dependencies, model weights, raw native outputs and logs were
+deleted after bounded hashes/counts were retained. No gold, protected output
+or comparator score appears in the packet.
+
+The BERTMap compatibility and closed-parser successor is under
+\idt{development/p3-bertmap-execution-binding-v7-2026-08-23/}. Its frozen
+protocol, 26-distribution compatibility lock, runtime/source-rights receipts,
+five-artifact contract, parser receipt, negative ledger, result and 63-check
+validation are bound by the local \idt{SHA256SUMS}. The result SHA-256 is
+\idt{4190f248bd8f00954d4994f34680ddb29782ad6b946abf38ee235f5b6cb8bf5d}.
+No ontology, model, benchmark, gold, protected output, training, prediction,
+repair or scoring appears in the packet.
+
+The prospectively frozen table-reader repair is under
+\idt{development/p3-bertmap-table-reader-repair-v8-2026-08-23/}. Its protocol
+and freeze receipt, exact pinned source and Apache-2.0 notice, one-expression
+patch, language-level execution receipt, result, negative ledger and
+packet-native validator are bound by the local \idt{SHA256SUMS}. The patch
+SHA-256 is
+\idt{412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b},
+and the result SHA-256 is
+\idt{6ccd4b9ab8dafe8dbf8bcf0c33cb76006ab043c0df34bd5e0d0595ef2d03138b}.
+The validator passes 42/42 checks and the manifest binds 14 files. Temporary
+five-file parser fixtures were deleted; actual native artifact presence is
+0/5. No DeepOnto import, JVM, ontology, model, benchmark, gold, protected
+output, training, prediction, native mapping repair or scoring appears in this
+packet.
+
+The complete-runtime V9 native packet is under
+\idt{development/p3-repaired-native-runtime-v9-2026-08-23/}. Its prospective
+protocol, Python/JVM SBOM and rights receipts, single-attempt receipt, four
+retained native artifacts, execution/parser receipts, cleanup audit, adverse
+ledger, result and packet-native validator are bound by the local
+\idt{SHA256SUMS}. The validator passes 33/33 checks; validation-receipt SHA-256
+is
+\idt{2a6c329587266859de77b1ec164be9055636c8e9b45ab321f3962707be74ffe7}.
+The absent repair artifact and the Java~17/Guice~4.0 exception are retained as
+fail-closed evidence. Runtime caches and model/source stages were removed after
+the audit, releasing approximately 5.42~GB; the retained packet is about
+9.1~MB. No gold, protected output, correctness, performance, harm, coverage or
+transport score appears in the packet.
+
+The V10 repair-only stop and V11 repaired runtime-closure successor are under
+\idt{development/p3-java17-add-opens-microgate-v10-2026-08-23/} and
+\idt{development/p3-logmap-manifest-classpath-v11-2026-08-23/}. V10 retains the
+direct missing-OWLAPI failure with 0/90 dependencies. V11 hash-verifies 90/90
+manifest dependencies and retains the single exit-zero 16-row repair. Neither
+packet opens reference truth or runs BERTMap training.
+
+The one-attempt full successor, typed lexical adapter and reference-identity
+gate are under \idt{development/p3-full-native-runtime-v12-2026-08-23/},
+\idt{development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/}, and
+\idt{development/p3-public-reference-alignment-v14-2026-08-23/}. V12 retains
+five native artifacts and direct child status. V13 retains the original wrapped
+repair, twelve adversarial grammar cases and a separately decoded artifact with
+SHA-256
+\idt{c67ee88d541013f41984b239f9cdeaebdcd81573f2080d8af24c7688207dd0f3}.
+V14 retains the 21-unit provider inventory/hash audit and opens no reference
+file. Its receipt and result SHA-256 digests are
+\idt{b7477e2472b1ab5580beb8191124fe6f3a94c6500642084694c9372f24bf1f8b}
+and
+\idt{fc1f1d35668604e72bc63edd397988eb85c035145b0e6025b848d7c5d3c96314}.
+No protected output, correctness, performance, harm, coverage or transport
+score appears in V10--V14.
+
+The provider-native identity and exact-Java-8 comparator packets are under
+\idt{development/p3-provider-native-identity-packet-v15-2026-08-23/} and
+\idt{development/p3-aml-java8-prospective-comparator-v16-2026-08-23/}. V15
+binds the Zenodo/OAEI ontology and reference identities and AML release without
+semantic reference access; V16 retains the single exit-zero 46-cell AML output.
+Their \idt{SHA256SUMS} digests are
+\idt{1dd1e8234c19e4e53dec4b96d5ecfa05473300a7e44e077dd8de92cc5d5da558}
+and
+\idt{8c37aceda665a235088ffa62b0b0c9e718fe75c174184779ea3eeb635461fd96}.
+
+The immutable V17 HermiT attempt, V18 structural-surface failure and V19
+outcome-blind class-surface successor are under
+\idt{development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/},
+\idt{development/p3-structural-reasoner-compatibility-v18-2026-08-24/} and
+\idt{development/p3-deeponto-class-surface-v19-2026-08-24/}. They retain the
+single-attempt logs, exact adverse terminals, protocol and runtime receipts,
+universe manifests and packet-native validators. Their \idt{SHA256SUMS}
+digests are
+\idt{c1d8bf3c9103b3eb39d15e49b0352552c4c2dcabb21ba8192ad8135c9d38d8ed},
+\idt{eaa0e352a2c4dd6774055e5b5cdd8edf81c55671924cf3f98fb884f016babedd}
+and
+\idt{46792f76e285a9161950c89fc944b4c37e453c395de7d7ec466549a4b9783168}.
+
+The V20 native BERTMap packet and V21 identity-decoder/scoring packet are under
+\idt{development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/} and
+\idt{development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/}.
+V20 retains the one exit-zero run, all five frozen native-artifact identities
+and the inherited typed-decoder error without opening the reference. V21 copies
+and binds those five artifacts, retains the identity-transform decoder and
+structural-parser receipts, and contains the exact pair table opened only after
+both matcher outputs were frozen. The metrics and scientific-report SHA-256
+digests are
+\idt{99c2b5614e461587c327a61bffae918b9af4d478efbaacf2f9e2c31135ad3082}
+and
+\idt{d473b8e4d9858045fa99791ac2fd476744916ecc38103bbf2166e05774531411};
+the two packet \idt{SHA256SUMS} digests are
+\idt{07e4965600e683e90546cb8b53442f7c9927c2e5fce69db2a59c4e5d2e0ec1ff}
+and
+\idt{c6b888f1bdd54baa8eaddc3d9c0f29f4427836096cc9dd79a849e4f82f763baa}.
+These files reproduce one finite public-case description. They do not provide
+an independent, source-disjoint or population-level comparison.
+
+The authority-composition theory packet is under
+\idt{development/p3-authority-composition-theory-v7t-2026-08-23/}. Its formal
+note, two-world countermodel receipt, result, negative ledger, literature
+boundary and 32-check validation are
+\idt{AUTHORITY_AUGMENTED_IDENTIFICATION_THEORY_V7T.md},
+\idt{FINITE_COUNTERMODEL_RESULT_V7T.json}, \idt{RESULT_V7T.json},
+\idt{NEGATIVE_RESULT_LEDGER_V7T.md}, \idt{NEAREST_WORK_DELTA_V7T.md}, and
+\idt{VALIDATION_RECEIPT_V7T.json}. No comparator outcome, gold value or
+protected datum occurs in that packet; it supplies a mathematical composition
+boundary only.
+
+\section{Code availability}
+
+Central custom code for the mapping calculus, public-reference builders,
+evaluators and publication projection is present in this repository snapshot
+at the paths listed above, with executable instructions in \idt{REPRODUCE.md}.
+The current package does not yet bind a public archive URL, archive DOI,
+immutable submission commit or verified repository-level licence. A submission
+must therefore give editors and reviewers access to the exact snapshot and bind
+those four release coordinates before external review; this manuscript does
+not replace them with an unqualified availability-on-request statement.
 
 \subsection{Reproduction}
 

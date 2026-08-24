@@ -1,0 +1,97 @@
+{
+  "authority": "PINNED_SOURCE_STATIC_ROUTE_AUDIT_ONLY",
+  "commit_sha": "5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+  "demo_route": {
+    "exact_required_runner_present_in_archive": false,
+    "line_evidence": "trial_runner.py:40-45 resolves benchmark/claw-eval/runner/benchmark.py",
+    "state": "BLOCKING"
+  },
+  "excerpts": [
+    {
+      "line_end": 45,
+      "line_start": 40,
+      "path": "upstream://hkgai-official/Moss@5453f1feebad44c199f5887f852fc5bc7fb7d4da/host-daemon/src/ops/trial_runner.py",
+      "source_file_sha256": "40e60a8e3393caf1a4efdf6b433873883f07049038a95364b70f7f7d2c7524d7",
+      "text": "def _resolve_paths() -> tuple[str, str, str]:\n    \"\"\"Read env at call time (not import time) so tests can patch env.\"\"\"\n    repo_dir = os.environ[\"MOSS_OPENCLAW_REPO_DIR\"]\n    moss_root = str(Path(repo_dir).parent)\n    benchmark_py = f\"{moss_root}/benchmark/claw-eval/runner/benchmark.py\"\n    return repo_dir, moss_root, benchmark_py\n",
+      "text_sha256": "cae485d2dd984b619de953f2ea28c54b9e23b14b0b640da6cbbae49deff7412d"
+    },
+    {
+      "line_end": 612,
+      "line_start": 599,
+      "path": "upstream://hkgai-official/Moss@5453f1feebad44c199f5887f852fc5bc7fb7d4da/host-daemon/src/ops/trial_runner.py",
+      "source_file_sha256": "40e60a8e3393caf1a4efdf6b433873883f07049038a95364b70f7f7d2c7524d7",
+      "text": "def _build_user_mode_prompt(user_prompt: str) -> str:\n    \"\"\"Compose the agent's user message for a user-mode trial.\n\n    Plain user_prompt + a brief environment hint. No tool-endpoint block \u2014\n    the candidate image (B) is responsible for providing whatever tools the\n    agent might call; the trial is testing how that image responds to the\n    user's flagged ask, not a synthetic replay scenario.\n    \"\"\"\n    parts: list[str] = [user_prompt or \"\"]\n    parts.append(\"\")\n    parts.append(\"--- Environment ---\")\n    parts.append(\"Workspace: /tmp_workspace (write any files / scripts here).\")\n    parts.append(\"Report your final result inline (chat reply).\")\n    return \"\\n\".join(parts)\n",
+      "text_sha256": "e1c8cb7b54a1d2ed87dfff1fa109c33d8276b59c5a8d35aa5f8c13e798867195"
+    },
+    {
+      "line_end": 678,
+      "line_start": 626,
+      "path": "upstream://hkgai-official/Moss@5453f1feebad44c199f5887f852fc5bc7fb7d4da/host-daemon/src/ops/trial_runner.py",
+      "source_file_sha256": "40e60a8e3393caf1a4efdf6b433873883f07049038a95364b70f7f7d2c7524d7",
+      "text": "    Differences from demo's handle_run_trial (the only mode-specific bits):\n\n      - Tasks are passed inline in payload['tasks'] (no claweval manifest yaml);\n        each task is just {task_id, user_prompt} \u2014 extracted from the flag\n        snapshot.\n      - Per-task setup: none beyond what demo does. The candidate image (B)\n        carries its own tools / sandbox stack; the agent is expected to call\n        them directly inside its worker container.\n      - Agent message is just the user_prompt + a brief environment hint;\n        no tool-endpoint block to inject.\n      - No grade_summary \u2014 caller uses task-evaluator (Stage 7.5) for signal.\n\n    Payload shape (see TS docker-rpc.ts RunUserModeBatchTrialRequest):\n        image_tag: str\n        iter_dir: str (host abs)\n        tasks: [{task_id, user_prompt}]\n        n_trials: int (per-task; default 1)\n        n_workers: int (default 3)\n        per_task_timeout_s: float (default 600)\n        worker_health_timeout_s: float (default 120)\n    \"\"\"\n    image_tag = payload[\"image_tag\"]\n    iter_dir = payload[\"iter_dir\"]            # host abs\n    tasks_in = list(payload.get(\"tasks\") or [])\n    n_trials = int(payload.get(\"n_trials\", 1))\n    n_workers_req = int(payload.get(\"n_workers\", 3))\n    per_task_timeout_s = float(payload.get(\"per_task_timeout_s\", 600))\n    worker_health_timeout_s = float(payload.get(\"worker_health_timeout_s\", 120))\n\n    if not tasks_in:\n        yield Response(\n            id=req_id, type=\"error\",\n            data={\"message\": \"tasks list is empty\"},\n        )\n        return\n\n    _, moss_root, _ = _resolve_paths()\n    iter_n = _normalize_iter_n(iter_dir)\n\n    # ----- Phase 1: spawn workers (parallel) -----\n    # n_workers capped at n_tasks: more workers than tasks is wasteful.\n    n_workers = min(n_workers_req, len(tasks_in))\n    workers: list[str] = []\n    for i in range(n_workers):\n        name = f\"moss-user-trial-iter{iter_n}-w{i + 1}-{uuid.uuid4().hex[:6]}\"\n        cmd = [\n            \"run\", \"-d\", \"--name\", name,\n            \"-v\", f\"{iter_dir}:/iter_dir\",\n            \"-e\", f\"MOSS_MODEL_API_KEY={os.environ.get('MOSS_MODEL_API_KEY', '')}\",\n            \"-e\", f\"MOSS_MODEL_BASE_URL={os.environ.get('MOSS_MODEL_BASE_URL', '')}\",\n            \"-e\", f\"MOSS_MODEL_ID={os.environ['MOSS_MODEL_ID']}\",\n            \"--entrypoint\", \"sleep\", image_tag, \"infinity\",\n        ]\n",
+      "text_sha256": "bf9be2058bed2360a8bffb1a4fbc72b7b510be332569c455232bb768890160c7"
+    },
+    {
+      "line_end": 64,
+      "line_start": 38,
+      "path": "upstream://hkgai-official/Moss@5453f1feebad44c199f5887f852fc5bc7fb7d4da/openclaw/src/evolution/modes/user-mode.ts",
+      "source_file_sha256": "d04070dd7011d6c75c928f1e1b0f1f59b8fdd23b0c091b7d1d24d321b8f80dbf",
+      "text": "  async getBaselineTaskDefinitions(): Promise<TaskDefinition[]> {\n    const dir = this.batchDir();\n    if (!fs.existsSync(dir)) {\n      throw new Error(`UserMode: flag batch dir does not exist: ${dir}`);\n    }\n    // Each task = one flag snapshot file. _batch.json is metadata, not a task.\n    const flagFiles = fs\n      .readdirSync(dir)\n      .filter((f) => f !== \"_batch.json\" && f.endsWith(\".json\"))\n      .sort();\n    return flagFiles.map((f) => {\n      const snap: FlagSnapshot = JSON.parse(fs.readFileSync(path.join(dir, f), \"utf8\"));\n      return {\n        task_id: snap.flag_id,\n        task_name: snap.user_prompt.text.slice(0, 80) || snap.flag_id,\n        prompt: snap.user_prompt,\n        // User mode trial uses the candidate image's own tools (sandboxed).\n        // Fields below are populated empty to keep the TaskDefinition shape\n        // compatible with demo mode without injecting v2.6-specific extras.\n        tools: [],\n        tool_endpoints: [],\n        services: [],\n        timeout_seconds: 600,\n        scoring_components: [],\n        reference_solution: null,\n      };\n    });\n",
+      "text_sha256": "44f9b17a406491ed42931f894ffff88010ce2ab104f5d2459af9b6993fbe69df"
+    },
+    {
+      "line_end": 112,
+      "line_start": 93,
+      "path": "upstream://hkgai-official/Moss@5453f1feebad44c199f5887f852fc5bc7fb7d4da/openclaw/src/evolution/modes/user-mode.ts",
+      "source_file_sha256": "d04070dd7011d6c75c928f1e1b0f1f59b8fdd23b0c091b7d1d24d321b8f80dbf",
+      "text": "  async runBatchTrial(args: BatchTrialArgs): Promise<BatchTrialResult> {\n    // host-daemon expects host-abs paths; iteration.ts passes container-abs\n    // iter_dir so we translate here. The candidate image carries whatever\n    // tools the agent needs (sandboxed by v2.6 OSS assumption).\n    const { pathToHost } = await import(\"../path-mapping.js\");\n    const r = await runUserModeBatchTrial({\n      imageTag: args.imageTag,\n      iterDir: pathToHost(args.iterDir),\n      nTrials: args.nTrials,\n      tasks: args.tasks.map((t) => ({\n        taskId: t.task_id,\n        userPrompt: t.prompt.text,\n      })),\n    });\n    return {\n      tasks: r.tasks,\n      // No grade_summary in user mode \u2014 orchestrator uses task-evaluator\n      // (Stage 7.5) for signal.\n      gradeSummaryPath: undefined,\n    };\n",
+      "text_sha256": "b9c0105c6b13a1c659c1d65adc03483e94af311ad2c39afa845fc0de9e201675"
+    },
+    {
+      "line_end": 301,
+      "line_start": 291,
+      "path": "upstream://hkgai-official/Moss@5453f1feebad44c199f5887f852fc5bc7fb7d4da/openclaw/src/evolution/iteration.ts",
+      "source_file_sha256": "78a33815de13913c1903c30c38f2f60f3d88a2bfbd5f924f1fcdf0000027f357",
+      "text": "  // Demo mode populates gradeSummaryPath; user mode leaves it undefined and\n  // the orchestrator falls back to trainResults: [] (Stage 7.5 task-evaluator\n  // becomes the sole verdict-grounding signal).\n  const trainResults = trialBatch.gradeSummaryPath\n    ? readTrainResults(trialBatch.gradeSummaryPath, req.stageATasks ?? [])\n    : [];\n\n  // Stage 7.5: per-task task-evaluator. Runs one Claude session per task,\n  // scoring the same keypoints chosen at baseline (Stage 0.5). Output goes to\n  // iteration_{iter}/task_evaluations/<task_id>.md and is parsed back into an\n  // IterEvaluation so the matrix builder + plateau detector see it.\n",
+      "text_sha256": "7d8993238cd1062a639df53bbc765a2a2014e4482affd9497d85afacb8c82c2c"
+    },
+    {
+      "line_end": 42,
+      "line_start": 25,
+      "path": "upstream://hkgai-official/Moss@5453f1feebad44c199f5887f852fc5bc7fb7d4da/openclaw/src/evolution/stages/task-evaluator.ts",
+      "source_file_sha256": "9c2a06e2df47d2b4211ae21da00e1835d7c948a1a8b36a462f7c736d6f7a4470",
+      "text": "export async function runTaskEvaluatorStage(\n  input: TaskEvaluatorStageInput,\n): Promise<RunRoleStageResult> {\n  return runRoleStage({\n    iter: input.iter,\n    iterDir: input.iterDir,\n    tracesDir: input.tracesDir,\n    role: \"task_evaluator\",\n    stage: \"task-evaluator\",\n    mdFilename: `task_evaluations/${input.taskId}.md`,\n    systemPrompt: input.systemPrompt,\n    userInput: input.userInput,\n    addContainerDirs: input.addContainerDirs,\n    cwdContainer: input.cwdContainer,\n    timeoutS: input.timeoutS,\n    evolutionLog: input.evolutionLog,\n    taskId: input.taskId,\n  });\n",
+      "text_sha256": "d1453c27d56420de03965f15161913dfacf9c4c24c8c596ef3980443059c5d12"
+    }
+  ],
+  "schema_version": "orion.p5.c2.pinned-source-route-audit.v10",
+  "source_files": {
+    "flag_batch.ts": "ab51e4ff0f9b1a3a4e2be4cc822ed2bdc0ae2738fe2df4af46d8fe6d7f8f1f18",
+    "iteration.ts": "78a33815de13913c1903c30c38f2f60f3d88a2bfbd5f924f1fcdf0000027f357",
+    "task-evaluator.md": "0564f18bd8a4eed20ffcf5402cadd10ea11678faeef49d9c29fd7c53383f1f7a",
+    "task-evaluator.ts": "9c2a06e2df47d2b4211ae21da00e1835d7c948a1a8b36a462f7c736d6f7a4470",
+    "trial_runner.py": "40e60a8e3393caf1a4efdf6b433873883f07049038a95364b70f7f7d2c7524d7",
+    "user-mode.ts": "d04070dd7011d6c75c928f1e1b0f1f59b8fdd23b0c091b7d1d24d321b8f80dbf"
+  },
+  "user_mode_route": {
+    "closed_public_evaluator_implementation_bound": false,
+    "common_lang1_source_archive_mount_bound": false,
+    "complete_write_root_bound": false,
+    "host_pre_action_certificate_forwarded": false,
+    "only_task_fields_forwarded": [
+      "task_id",
+      "user_prompt"
+    ],
+    "state": "BLOCKING_FOR_V7_LANG1_NATIVE_TASK_ENVIRONMENT",
+    "task_definition_empty_fields": [
+      "tools",
+      "tool_endpoints",
+      "services",
+      "scoring_components"
+    ],
+    "trial_worker_volume_mounts": [
+      "iter_dir:/iter_dir"
+    ],
+    "verdict_signal": "LLM task-evaluator role is the sole verdict-grounding signal when gradeSummaryPath is undefined"
+  }
+}

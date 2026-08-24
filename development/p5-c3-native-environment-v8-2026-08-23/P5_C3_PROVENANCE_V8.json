@@ -1,0 +1,70 @@
+{
+  "control_sha256": {
+    "P5_C3_CASE_ACTION_DOMAIN_V8.json": "cb8dceab72a7ba47c4c7c07341140ce83a7a42a4490602e7f7fda8ecf3f5ee31",
+    "P5_C3_ENDPOINT_TOOL_WRITE_POLICY_V8.json": "deaee47820e3e05231a6f2e32f1a0afbec964cf904a8348ea3b5ad21079163ed",
+    "P5_C3_FIBRE_CONSTANCY_PROOF_V8.json": "c975b50a6f77b9183d3f95d6331b8f9dd32a0c1109288abd4f2c70c69c05ecc4",
+    "P5_C3_INPUT_NATIVE_CERTIFICATE_V8.json": "460402c3925a083017d640872960ec9927dbbfce62e24fbe7f2cd62faf7de341",
+    "P5_C3_INVOCATION_ENVIRONMENT_V8.json": "ff86a90f01d4cba2416beab3ec0c468e0f0e5fd292809b70d0b0e78636879693",
+    "P5_C3_MUTABLE_IMMUTABLE_SPLIT_V8.json": "f1fead7d0e607ee30132e4c28f5634b0a96abfc17e0f2bb689e9e0a9febf6a4c"
+  },
+  "dgm": {
+    "commit": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+    "excluded_files": 1595,
+    "excluded_payload_contents_opened": false,
+    "filtered_source_receipt_sha256": "9ccd55ec0e2ac6128af600491057272b489bd166a61fb2c9251378ac54bd1299",
+    "filtered_source_sha256": "b1755cb7b009e241e8ca419cf5567dfdee8bc8fd11b1f427bceb124a2eed9081",
+    "included_files": 55,
+    "repository": "https://github.com/jennyzzt/dgm",
+    "tree": "dc58ea5c481124afdb97468c1bed4e0debb425c4"
+  },
+  "frozen_at_utc": "2026-08-23T21:00:00Z",
+  "predecessor_gate": {
+    "v4_field_registry_sha256": "7e9b8a3c75429dc004399181f4003c5baa966909a5b01ea3d579824784b1391b",
+    "v7_acceptance_sha256": "26f74b1482512e24e5cd719e73b7c9708d8503a5d2efe3ab9bde81643bf1b731",
+    "v7_manifest_sha256": "f8439c6b6bc7921034f573b4d89397dbb3ea024cfc2633f93d8b4c6c4de1c631"
+  },
+  "schema_version": "orion.p5.c3.candidate-safe-provenance.v8",
+  "shared_lang1_core": {
+    "candidate_visible_core_sha256": "09a2eb17394d7b84c11641b468d14446af955c4c3272557810d861a275c72da7",
+    "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+    "components": [
+      {
+        "path": "candidate/shared_core/CASE_BODY_V6.json",
+        "sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+        "size_bytes": 2799,
+        "spdx": "CC0-1.0"
+      },
+      {
+        "path": "candidate/shared_core/TASK_SPECIFICATION_V6.md",
+        "sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+        "size_bytes": 1070,
+        "spdx": "CC0-1.0"
+      },
+      {
+        "path": "candidate/shared_core/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+        "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+        "size_bytes": 681034,
+        "spdx": "Apache-2.0"
+      },
+      {
+        "path": "candidate/shared_core/APACHE-2.0-LICENSE.txt",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "size_bytes": 11358,
+        "spdx": "Apache-2.0"
+      },
+      {
+        "path": "candidate/shared_core/APACHE-NOTICE.txt",
+        "sha256": "3b1830189d4da56ebc6e43f32a96b92caa3392cdc0c5ba4af7c399f81696545d",
+        "size_bytes": 301,
+        "spdx": "Apache-2.0"
+      },
+      {
+        "path": "candidate/shared_core/PACKET-CONTENT-CC0-1.0.txt",
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+        "size_bytes": 7048,
+        "spdx": "CC0-1.0"
+      }
+    ],
+    "core_index_sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e"
+  }
+}

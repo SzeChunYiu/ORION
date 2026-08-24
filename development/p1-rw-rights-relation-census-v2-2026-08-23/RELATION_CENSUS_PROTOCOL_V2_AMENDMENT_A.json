@@ -1,0 +1,31 @@
+{
+  "additional_exclusion_precedence": [
+    "IDENTIFIER_ALIAS_AMBIGUITY",
+    "ORIGINAL_NOTICE_ROLE_COLLISION",
+    "SELF_RELATION"
+  ],
+  "amends_protocol_sha256": "af8b7373a6ce2de34d0a5185d5d70410b46fbda44af996f922f9fa098e3117dc",
+  "claim_boundary": "Connected components are source-declared identifier/relation families only. They do not establish shared causal responsibility, author intent, scientific action or statistical independence beyond non-splitting of visible metadata links.",
+  "frozen_at_utc": "2026-08-23T17:06:59.265719+00:00",
+  "identity": "P1.RW.CC0.RIGHTS.RELATION.CENSUS.V2.ALIAS.COMPONENT.AMENDMENT.A",
+  "prospective_status": {
+    "header_or_row_fields_opened": false,
+    "pinned_identity_verified": true,
+    "raw_payload_downloaded": true,
+    "reason": "Freeze exact source-family construction before invoking the row gateway.",
+    "row_counts_opened": false
+  },
+  "schema_version": "orion.p1.rw-rights-relation-census.v2-amendment-a",
+  "source_family_construction": {
+    "alias_collision": "A normalized DOI co-declared with more than one distinct PMID, or a PMID co-declared with more than one distinct DOI, marks the entire connected component CANNOT_CHECK_IDENTIFIER_ALIAS_AMBIGUITY. No direction or equivalence is guessed.",
+    "canonical_component_root": "Lexicographically smallest original DOI if present, else lexicographically smallest original PMID, else CANNOT_CHECK.",
+    "connected_component_not_causal_cluster": true,
+    "duplicate_relation": "After alias union, repeated identical directed original-notice edges are one relation; later row occurrences are DUPLICATE_RELATION_KEY.",
+    "endpoint_alias_rule": "Within one RW row and one endpoint role, valid DOI and PMID identifiers are source-declared aliases. Union only those exact co-declared identifiers; do not use title, author, date, fuzzy text, external inference or identifier resolution.",
+    "family_rule": "A source family is a weakly connected component of the resulting bipartite original-notice endpoint graph, including shared notices and update chains. This supersedes the base protocol family_key shorthand solely to prevent a source-connected component from being split across statistical units or waves.",
+    "relation_edge_rule": "Each structurally eligible row adds one directed original-endpoint to notice-endpoint edge after source-declared alias union.",
+    "role_collision": "An endpoint identity appearing as both original and notice anywhere marks the connected component CANNOT_CHECK_ORIGINAL_NOTICE_ROLE_COLLISION.",
+    "self_relation": "An edge whose original and notice endpoints collapse to one alias set is excluded as CANNOT_CHECK_SELF_RELATION."
+  },
+  "status": "FROZEN_BEFORE_ROW_GATEWAY"
+}

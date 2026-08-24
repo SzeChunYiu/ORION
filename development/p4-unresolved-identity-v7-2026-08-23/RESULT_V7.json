@@ -1,0 +1,370 @@
+{
+  "artifact_hashes": {
+    "harvest_receipt": "290ab62b087e33f8c730e372308a51cbc2c66b5c59e55cd7d981dd70c8103243",
+    "input": "76b4faf88fd4c37f4fdb9ec9e5158bab139651855702578c4476e87c62f887c2",
+    "protocol": "7e140becfb423c8ecf6e20f2428799919aaaafe0afcb9d16c3a204650f626e12",
+    "protocol_freeze": "ab75f50450345a0517fde03f413d5a108d2258efeeb955cd1a5c9251136dc341",
+    "rows": "fbea1d7e601785f6e591ff6bcd18e67ce243d6437c7b89a32e35bbe226529a01",
+    "runner": "295364c0c378bc53bdcbe25cbd242cd19bba6f8ce9e87cf3f84a10d0868b8534",
+    "v6_result": "527f8031ccce602653cd586c4db12b93e186e1dd24e9a83e177ff5cb6510c2bb",
+    "v6_rows": "5d8bdf4bceb4e87762f246b3f76568e2670a0736e2b3290f9e0418ae9d959db9"
+  },
+  "authority": "PUBLIC_SOURCE_NATIVE_METADATA_AND_AUTHENTICATED_BYTES_ONLY__NO_REPLACEMENT_PUBLICATIONS_NO_PROXY_BRIDGES_NO_NATURAL_PAIR_AUTHORITY",
+  "by_domain": {
+    "EARTH_ENVIRONMENT": {
+      "entering_v7": 1,
+      "remaining_unresolved": 1,
+      "v7_repairs": 0
+    },
+    "LIFE_BIOMEDICAL": {
+      "entering_v7": 3,
+      "remaining_unresolved": 1,
+      "v7_repairs": 2
+    },
+    "PHYSICAL_ENGINEERING": {
+      "entering_v7": 3,
+      "remaining_unresolved": 2,
+      "v7_repairs": 1
+    },
+    "SCIENTIFIC_SOFTWARE": {
+      "entering_v7": 17,
+      "remaining_unresolved": 6,
+      "v7_repairs": 11
+    }
+  },
+  "counts": {
+    "author_lineage_adjudications": 0,
+    "eligible_natural_pairs": 0,
+    "files_versions_tags_commits_requests_counted_as_units": 0,
+    "final_exact_joss_bridges": 70,
+    "natural_pair_adjudications": 0,
+    "new_or_replacement_publication_dois": 0,
+    "same_frozen_publication_dois": 200,
+    "v4_provider_qualified_frozen": 80,
+    "v6_exact_joss_bridges": 56,
+    "v6_unresolved_entering_v7": 24,
+    "v7_remaining_unresolved": 10,
+    "v7_same_identity_repairs": 14
+  },
+  "created_at": "2026-08-23T20:13:39.102506+00:00",
+  "overlapping_gate_counts": {
+    "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK": 9,
+    "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED": 4,
+    "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK": 2,
+    "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED": 3,
+    "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK": 3,
+    "PUBLIC_TRANSPORT_CANNOT_CHECK": 2
+  },
+  "preserved_boundaries": {
+    "author_lineage_adjudications": 0,
+    "author_lineage_independence": "CANNOT_CHECK_EXTERNAL_OUTCOME_BLIND_ADJUDICATION_REQUIRED",
+    "eligible_natural_pairs": 0,
+    "natural_pair_adjudications": 0,
+    "natural_pair_eligibility": "CANNOT_CHECK_EXTERNAL_OUTCOME_BLIND_ADJUDICATION_REQUIRED",
+    "programme_terminal": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK"
+  },
+  "primary_mutually_exclusive_counts": {
+    "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK": 3,
+    "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED": 2,
+    "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK": 2,
+    "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK": 3
+  },
+  "programme_terminal": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK",
+  "repaired_identities": [
+    {
+      "archive_doi": "10.5281/zenodo.21363955",
+      "archive_spdx": "MIT",
+      "commit_sha": "10b3f383fb73998288e35b27a86c86b1a36de5ea",
+      "commit_spdx": "MIT",
+      "frozen_index": 19,
+      "identity_method": "ARCHIVE_NORMALIZED_MANIFEST_EQUALS_IMMUTABLE_COMMIT_ARCHIVE_MANIFEST",
+      "publication_doi": "10.21105/joss.10379",
+      "repository": "shin1koda/dmf",
+      "selected_archive_version_doi": "10.5281/zenodo.21363956",
+      "tag": "v1.2.2"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.21308007",
+      "archive_spdx": "BSD-3-Clause",
+      "commit_sha": "14fe43995d9dcfde69d6adfa2bc2a51f88de9f2b",
+      "commit_spdx": "BSD-3-Clause",
+      "frozen_index": 45,
+      "identity_method": "ARCHIVE_BYTES_EMBED_EXACT_FULL_COMMIT_SHA_RESOLVED_FROM_JOSS_TAG",
+      "publication_doi": "10.21105/joss.08384",
+      "repository": "sergei-mironov/litrepl",
+      "selected_archive_version_doi": "10.5281/zenodo.21308007",
+      "tag": "3.14.2"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20649191",
+      "archive_spdx": "BSD-2-Clause",
+      "commit_sha": "f85663288b54e70727bf146c1eb1abd5d626600d",
+      "commit_spdx": "BSD-2-Clause",
+      "frozen_index": 64,
+      "identity_method": "ARCHIVE_PROVIDER_RELATED_IDENTIFIER_EXACT_TAG_TO_SAME_IMMUTABLE_COMMIT",
+      "publication_doi": "10.21105/joss.08083",
+      "repository": "pnnl/constrain",
+      "selected_archive_version_doi": "10.5281/zenodo.20649192",
+      "tag": "0.7.0"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20317656",
+      "archive_spdx": "MIT",
+      "commit_sha": "50ddf31229ac70939e849741c650ede7b32a4d03",
+      "commit_spdx": "MIT",
+      "frozen_index": 73,
+      "identity_method": "ARCHIVE_SWH_DIRECTORY_IDENTITY_EQUALS_IMMUTABLE_COMMIT_ROOT_TREE",
+      "publication_doi": "10.21105/joss.09989",
+      "repository": "merck/algebraicagents.jl",
+      "selected_archive_version_doi": "10.5281/zenodo.20317656",
+      "tag": "v0.4.0"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20454682",
+      "archive_spdx": "MIT",
+      "commit_sha": "00d317510105cacb1c81d512cb26c5922c7fec31",
+      "commit_spdx": "MIT",
+      "frozen_index": 86,
+      "identity_method": "ARCHIVE_BYTES_EQUAL_EXACT_GITHUB_TAG_RELEASE_ASSET_BYTES",
+      "publication_doi": "10.21105/joss.10084",
+      "repository": "fgdfgfthgr-fox/volume_seg_tool",
+      "selected_archive_version_doi": "10.5281/zenodo.20454682",
+      "tag": "0.12.1"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.17316637",
+      "archive_spdx": "MIT",
+      "commit_sha": "d13b0174e4a01b3efceaad24daab2e818e9ccece",
+      "commit_spdx": "MIT",
+      "frozen_index": 109,
+      "identity_method": "V6_QUALIFIED_SWHID_PATH_DIRECTORY_EQUALS_GIT_COMMIT_ROOT_TREE",
+      "publication_doi": "10.21105/joss.10003",
+      "repository": "bu-smbl/mymesh",
+      "selected_archive_version_doi": "10.5281/zenodo.20448899",
+      "tag": "0.4.1"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19389277",
+      "archive_spdx": "MIT",
+      "commit_sha": "309ad06dfc18b91932dbe48d237e015f0e6875cc",
+      "commit_spdx": "MIT",
+      "frozen_index": 131,
+      "identity_method": "ARCHIVE_PROVIDER_RELATED_IDENTIFIER_EXACT_TAG_TO_SAME_IMMUTABLE_COMMIT",
+      "publication_doi": "10.21105/joss.09468",
+      "repository": "rahulumrao/sparc",
+      "selected_archive_version_doi": "10.5281/zenodo.19389278",
+      "tag": "v0.1.0"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.4680218",
+      "archive_spdx": "Apache-2.0",
+      "commit_sha": "1a4603b9171b1a8e1d791cfc4b358bf51f3cfb87",
+      "commit_spdx": "Apache-2.0",
+      "frozen_index": 140,
+      "identity_method": "ARCHIVE_PROVIDER_RELATED_IDENTIFIER_EXACT_TAG_TO_SAME_IMMUTABLE_COMMIT",
+      "publication_doi": "10.21105/joss.09528",
+      "repository": "nplinker/nplinker",
+      "selected_archive_version_doi": "10.5281/zenodo.19367010",
+      "tag": "v2.0.3"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19444615",
+      "archive_spdx": "MIT",
+      "commit_sha": "67067e19ed358fc11a2a715c11113b819e7aecd3",
+      "commit_spdx": "MIT",
+      "frozen_index": 145,
+      "identity_method": "ARCHIVE_PROVIDER_RELATED_IDENTIFIER_EXACT_TAG_TO_SAME_IMMUTABLE_COMMIT",
+      "publication_doi": "10.21105/joss.09720",
+      "repository": "josephbrunet/cardiotensor",
+      "selected_archive_version_doi": "10.5281/zenodo.19444616",
+      "tag": "v1.1.8"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19610186",
+      "archive_spdx": "BSD-3-Clause",
+      "commit_sha": "336ae4e69eeb916c50559fc2635e6b89f71a61d1",
+      "commit_spdx": "BSD-3-Clause",
+      "frozen_index": 148,
+      "identity_method": "ARCHIVE_PROVIDER_RELATED_IDENTIFIER_EXACT_TAG_TO_SAME_IMMUTABLE_COMMIT",
+      "publication_doi": "10.21105/joss.09943",
+      "repository": "sweav02/baderkit",
+      "selected_archive_version_doi": "10.5281/zenodo.19610187",
+      "tag": "0.9.1"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.16934842",
+      "archive_spdx": "MIT",
+      "commit_sha": "eef60b882f3a3d8b7c1e56378ecf4d75885f24ff",
+      "commit_spdx": "MIT",
+      "frozen_index": 159,
+      "identity_method": "ARCHIVE_PROVIDER_RELATED_IDENTIFIER_EXACT_TAG_TO_SAME_IMMUTABLE_COMMIT",
+      "publication_doi": "10.21105/joss.09914",
+      "repository": "adityapt/deepcausalmmm",
+      "selected_archive_version_doi": "10.5281/zenodo.19644531",
+      "tag": "v1.0.20"
+    },
+    {
+      "archive_doi": "10.6084/m9.figshare.31989372",
+      "archive_spdx": "MIT",
+      "commit_sha": "7112ade83b96d5d286eb7aee00d8a6bdcf8f5000",
+      "commit_spdx": "MIT",
+      "frozen_index": 171,
+      "identity_method": "ARCHIVE_NORMALIZED_MANIFEST_EQUALS_IMMUTABLE_COMMIT_ARCHIVE_MANIFEST",
+      "publication_doi": "10.21105/joss.08946",
+      "repository": "halcy/mastodon.py",
+      "selected_archive_version_doi": "10.6084/m9.figshare.31989372.v1",
+      "tag": "v2.2.0"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.18926958",
+      "archive_spdx": "BSD-3-Clause",
+      "commit_sha": "cbeacba44dd577f958aa3c3447480fc7255ed832",
+      "commit_spdx": "BSD-3-Clause",
+      "frozen_index": 179,
+      "identity_method": "ARCHIVE_NORMALIZED_MANIFEST_EQUALS_IMMUTABLE_COMMIT_ARCHIVE_MANIFEST",
+      "publication_doi": "10.21105/joss.08767",
+      "repository": "extremeflow/pysemtools",
+      "selected_archive_version_doi": "10.5281/zenodo.18926958",
+      "tag": "v1.3.0"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19287728",
+      "archive_spdx": "MIT",
+      "commit_sha": "3c2d3c54cce4a1346863aa421f6f4706deccfd94",
+      "commit_spdx": "MIT",
+      "frozen_index": 183,
+      "identity_method": "ARCHIVE_PROVIDER_RELATED_IDENTIFIER_EXACT_TAG_TO_SAME_IMMUTABLE_COMMIT",
+      "publication_doi": "10.21105/joss.09886",
+      "repository": "tensorbfs/omeinsumcontractionorders.jl",
+      "selected_archive_version_doi": "10.5281/zenodo.19287729",
+      "tag": "v1.2.3"
+    }
+  ],
+  "schema_version": "orion.p4.targeted-identity.result.v7",
+  "status": "V7_TARGETED_IDENTITY_RESOLUTION_COMPLETE",
+  "unresolved_identities": [
+    {
+      "archive_doi": "10.5281/zenodo.21221061",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 36,
+      "overlapping_failures": [
+        "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+        "PUBLIC_TRANSPORT_CANNOT_CHECK"
+      ],
+      "primary_failure": "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09542",
+      "repository": "jaxionproject/jaxion"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.21226146",
+      "domain": "EARTH_ENVIRONMENT",
+      "frozen_index": 59,
+      "overlapping_failures": [
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_failure": "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+      "publication_doi": "10.21105/joss.09411",
+      "repository": "mohd-afeef-badri/psd"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20171460",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 91,
+      "overlapping_failures": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+      ],
+      "primary_failure": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.10245",
+      "repository": "nutritionallungimmunity/pai"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20272994",
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 108,
+      "overlapping_failures": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+      ],
+      "primary_failure": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09628",
+      "repository": "cwru-sdle/fairlinked"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20026885",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 133,
+      "overlapping_failures": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+      ],
+      "primary_failure": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.10112",
+      "repository": "artefactory/woodtapper"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19661454",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 165,
+      "overlapping_failures": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_failure": "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+      "publication_doi": "10.21105/joss.10223",
+      "repository": "alek050/databallpy"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19051387",
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 185,
+      "overlapping_failures": [
+        "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_failure": "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09364",
+      "repository": "mit-psfc/disruption-py"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19335435",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 190,
+      "overlapping_failures": [
+        "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_failure": "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09481",
+      "repository": "ugurdar/datadriftr"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19141362",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 196,
+      "overlapping_failures": [
+        "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+        "PUBLIC_TRANSPORT_CANNOT_CHECK"
+      ],
+      "primary_failure": "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.08851",
+      "repository": "watershedswildfireresearchcollaborative/separate"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19202203",
+      "domain": "LIFE_BIOMEDICAL",
+      "frozen_index": 199,
+      "overlapping_failures": [
+        "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_failure": "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09603",
+      "repository": "targene/targene-pipeline"
+    }
+  ]
+}

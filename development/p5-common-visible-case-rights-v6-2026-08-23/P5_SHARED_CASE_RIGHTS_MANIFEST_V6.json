@@ -1,0 +1,64 @@
+{
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "components": [
+    {
+      "component_id": "APACHE_COMMONS_LANG_BUGGY_SOURCE_ARCHIVE",
+      "grant": "Use, reproduction, modification and distribution subject to Apache-2.0 terms, notices and attribution conditions.",
+      "license_path": "candidate_visible/APACHE-2.0-LICENSE.txt",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "license_spdx_id": "Apache-2.0",
+      "notice_path": "candidate_visible/APACHE-NOTICE.txt",
+      "notice_sha256": "3b1830189d4da56ebc6e43f32a96b92caa3392cdc0c5ba4af7c399f81696545d",
+      "path": "candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+      "purpose": "No field-of-use limitation stated in the retained licence text.",
+      "retention": "May be retained and redistributed subject to the retained licence and notice conditions.",
+      "rights_holder": "Apache Software Foundation and contributors as stated in retained NOTICE/source headers",
+      "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+      "territory": "No territorial limitation stated in the retained licence text."
+    },
+    {
+      "component_id": "DEFECTS4J_LANG1_SOURCE_IDENTITY_MAPPING",
+      "grant": "Use, copy, modify, merge, publish, distribute, sublicense and sell subject to the retained MIT notice.",
+      "license_path": "source_provenance/DEFECTS4J-MIT-LICENSE.txt",
+      "license_sha256": "4a1f097e4ad6697404786561d37884cd69671a967798ad05daf589dfb02a9be8",
+      "license_spdx_id": "MIT",
+      "path": "source_provenance/DEFECTS4J-LANG1-SOURCE-MAPPING.csv",
+      "purpose": "No field-of-use limitation stated in the retained licence text.",
+      "retention": "May be retained subject to preservation of the copyright and permission notice.",
+      "rights_holder": "Defects4J copyright holders and contributors as stated in retained licence",
+      "sha256": "4eedc44859d990f5acd57e01f8f327049b606adbf550e8f308764dde9122eec7",
+      "territory": "No territorial limitation stated in the retained licence text."
+    },
+    {
+      "authorship_assertion_is_local_not_independent": true,
+      "component_id": "V6_AUTHORED_CASE_BODY_AND_TASK_SPECIFICATION",
+      "grant": "CC0-1.0 dedication for newly authored case-body and task-specification text only.",
+      "license_path": "candidate_visible/PACKET-CONTENT-CC0-1.0.txt",
+      "license_sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "license_spdx_id": "CC0-1.0",
+      "paths": [
+        "candidate_visible/CASE_BODY_V6.json",
+        "candidate_visible/TASK_SPECIFICATION_V6.md"
+      ],
+      "purpose": "Unrestricted to the extent described by CC0-1.0.",
+      "retention": "Unrestricted to the extent described by CC0-1.0.",
+      "rights_holder": "Authors of the V6 packet acting through the repository owner",
+      "sha256_by_path": {
+        "candidate_visible/CASE_BODY_V6.json": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+        "candidate_visible/TASK_SPECIFICATION_V6.md": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098"
+      },
+      "territory": "Worldwide to the extent described by CC0-1.0."
+    }
+  ],
+  "explicitly_excluded": [
+    "Apache issue prose and attachments",
+    "the fixed source tree and public fix patch",
+    "Defects4J generated/prepared environments and evaluator scripts",
+    "all arm-native datasets, tasks, examples, skills and prior-result payloads",
+    "all model/service content and generated solver outputs"
+  ],
+  "legal_advice": false,
+  "reuse_condition": "The binding applies only when future arm adapters use exactly the listed common-case components. Any native dataset, benchmark, issue attachment, skill corpus, generated solver output, container layer, model service, or newly fetched content requires a separate rights disposition and reopens the affected field.",
+  "rights_status": "BOUND_FOR_LISTED_SHARED_CASE_COMPONENTS",
+  "schema_version": "orion.p5.shared-case-rights-manifest.v6"
+}

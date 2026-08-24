@@ -1,0 +1,83 @@
+{
+  "schema_version": "orion.p3.deeponto-class-surface.protocol.v19",
+  "protocol_id": "P3_V19_OAEI_2004_TEST_103_DEEPONTO_BUILTIN_CLASS_SURFACE_MICROGATE",
+  "authority": "DEEPONTO_BUILTIN_CLASS_INDEX_FILTER_AND_STRUCTURAL_COMPATIBILITY_ONLY",
+  "attempt": {
+    "attempts": 1,
+    "retries": 0,
+    "stdin_utf8": "2g\n"
+  },
+  "reasoner_type": "struct",
+  "outcome_blind_adapter": {
+    "operation": "remove exactly http://www.w3.org/2002/07/owl#Thing from each loaded Ontology.owl_classes runtime dictionary",
+    "required_raw_surface": "each raw runtime dictionary equals its frozen 36-class role universe plus exactly owl:Thing",
+    "underlying_ontology_axiom_changes": 0,
+    "other_runtime_index_changes": 0
+  },
+  "required_operations": {
+    "load_source_and_target": true,
+    "raw_37_by_37_surface_identity": true,
+    "post_adapter_exact_36_by_36_class_identity": true,
+    "exact_36_annotation_keys_per_side": true,
+    "exact_33_nonempty_local_labels_and_3_empty_external_labels_per_side": true,
+    "asserted_named_parent_lookup_for_every_frozen_class": true,
+    "asserted_named_child_lookup_for_every_frozen_class": true,
+    "sibling_group_construction": true,
+    "structural_consistency_operation": true
+  },
+  "forbidden_operations": {
+    "training": false,
+    "matching": false,
+    "protected_alignment_access": false,
+    "scoring": false
+  },
+  "frozen_code": {
+    "runner_sha256": "8b4a1a9b226ee296d542aee7a50e493103beeb63d3055ad52698aaba2b006614"
+  },
+  "frozen_inputs": {
+    "source": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-deeponto-class-surface-v19-2026-08-24/inputs/SOURCE_BASE_BOUND_V19.rdf",
+      "bytes": 69784,
+      "sha256": "273d9308df0a17abf73909e1e80403f97d433c941e140e48e85830e00234bd0d"
+    },
+    "target": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-deeponto-class-surface-v19-2026-08-24/inputs/TARGET_BASE_BOUND_V19.rdf",
+      "bytes": 70740,
+      "sha256": "15cb200231c5351a78dc9afd70bfa19d6e4c59e9a63663011b5dd20c59053a2e"
+    },
+    "universe": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-deeponto-class-surface-v19-2026-08-24/UNIVERSE_MANIFEST_V19.json",
+      "bytes": 5007,
+      "sha256": "0d420e8f45093c7ea15b8b10385f55e6a1b85f42dacbdfcf7a12f959e314b127"
+    }
+  },
+  "runtime": {
+    "python_version": "3.10.20",
+    "critical_files": {
+      "python": {
+        "path": "/Users/billy/.local/share/uv/python/cpython-3.10.20-macos-aarch64-none/bin/python3.10",
+        "bytes": 49968,
+        "sha256": "0fc554036de7d5405d70defcf548204acb3fb829c6b2e55137efdc3ac1c24c67"
+      },
+      "installed_deeponto_ontology": {
+        "path": "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/deeponto/onto/ontology.py",
+        "bytes": 45504,
+        "sha256": "f059d0485e101f7e9e2ec2386501d5e8b14698894e91775f56fe51e64a02dcfe"
+      }
+    }
+  },
+  "predecessor_v18": {
+    "result_path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-structural-reasoner-compatibility-v18-2026-08-24/RESULT_V18.json",
+    "bytes": 3150,
+    "sha256": "21a7a6f27818a3fddeb99390e33a5fb92d1ab50660a12c3324d1762e9c45532d",
+    "terminal": "P3_V18_STRUCTURAL_REASONER_COMPATIBILITY_FAIL__V19_BERTMAP_NOT_AUTHORIZED",
+    "causal_observation": "both structural reasoners loaded and returned consistency true; the raw DeepOnto class surface had 37 keys because owl:Thing was present, and build_annotation_index materialised 37 keys including empty sets"
+  },
+  "claim_boundary": [
+    "a pass establishes only an outcome-blind runtime class-index adapter for this frozen pair",
+    "the adapter does not alter underlying ontology axioms or assert semantic equivalence beyond the earlier public-IRI binding",
+    "a pass does not establish matcher success, mapping quality, generalisation, performance, efficiency, or superiority",
+    "one historical public case is one analysis unit",
+    "V17 and V18 remain immutable adverse attempts"
+  ]
+}

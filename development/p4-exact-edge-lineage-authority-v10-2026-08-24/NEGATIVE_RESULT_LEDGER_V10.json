@@ -1,0 +1,56 @@
+{
+  "finished_at": "2026-08-24T05:55:45.447228+00:00",
+  "identity": "P4.M6.JOSS.EXACT.EDGE.LINEAGE.AUTHORITY.V10.NEGATIVE.RESULTS",
+  "noncompensatory_rule": "No later gate, score, local reconstruction, subset equality or source-frame progress compensates for the named terminal failure.",
+  "preserved_predecessor": "development/p4-exact-edge-lineage-authority-v9-2026-08-23/NEGATIVE_RESULT_LEDGER_V9.json",
+  "remaining_count": 4,
+  "remaining_indices": [
+    36,
+    91,
+    133,
+    185
+  ],
+  "rows": [
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 36,
+      "new_evidence": "The exact concept DOI request still returns child record 10.5281/zenodo.21221062, whose metadata has no version and whose sole jaxion.zip file is 85,369,480 bytes with MD5 825cae8912147ba8a5415c6a73d95818. GitHub still binds tag 0.0.3 to full commit 069ab4f56d100d765d46c594ac1b06add7e49f9e. No provider correction binds the frozen archive to version 0.0.3 or that commit.",
+      "next_discriminator": "A Zenodo/provider correction must bind the frozen DOI and exact archive bytes to version 0.0.3 and full commit 069ab4f56d100d765d46c594ac1b06add7e49f9e.",
+      "repository": "jaxionproject/jaxion",
+      "residual": "EXACT_ARCHIVE_VERSION_DOI_RELATION_AND_ARCHIVE_ROOT_TO_TAG_COMMIT_IDENTITY_CANNOT_CHECK",
+      "terminal_gate": "provider_corrected_version_and_archive_to_commit_identity",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 91,
+      "new_evidence": "Zenodo still identifies the checksum-bound record as v1.0.0 and GitHub still binds tag v1.0.0 to 9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59. No corrected archive or provider statement supersedes the immutable V9 archive evidence: embedded HEAD, main and origin/main are aa021231cdafb6d74ce9ab5f55f824a3032058a4, while the accepted tag commit is absent from the embedded object store.",
+      "next_discriminator": "A corrected exact v1.0.0 archive or authenticated provider statement must bind the frozen bytes to 9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59 and resolve the adverse embedded Git authority.",
+      "repository": "nutritionallungimmunity/pai",
+      "residual": "ARCHIVE_TO_ACCEPTED_TAG_COMMIT_IDENTITY_CONTRADICTED_BY_EMBEDDED_GIT_HEAD",
+      "terminal_gate": "corrected_archive_or_provider_statement_superseding_adverse_embedded_git_authority",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 133,
+      "new_evidence": "Zenodo and PyPI still bind woodtapper-0.0.13.tar.gz to SHA-256 b509f6469b9ff8888195751c811d689559f45e24aeb35bb173b9680c99c8dbf3, and GitHub binds tag v0.0.13 to 7ac6d23d504404c4004faad663f6b889427109e6. The exact PyPI Integrity request returns 404 with 'No provenance available for woodtapper-0.0.13.tar.gz'; the exact GitHub artifact-attestation subject also returns 404. V9 local reconstruction differed in two generated C files and cannot substitute for provider provenance.",
+      "next_discriminator": "PyPI trusted-publisher/Sigstore provenance or another provider-native exact build attestation must bind SHA-256 b509f646... to commit 7ac6d23d..., including the generated-C toolchain.",
+      "repository": "artefactory/woodtapper",
+      "residual": "SDIST_TO_FULL_COMMIT_AUTHENTICATED_BUILD_PROVENANCE_CANNOT_CHECK",
+      "terminal_gate": "provider_native_sdist_to_full_commit_provenance",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 185,
+      "new_evidence": "Zenodo and PyPI still bind disruption_py-0.14.0.tar.gz to SHA-256 775f92dbcbd6d1523db241494998e4b0867d51a84236feb7accc86b63b033a19, and GitHub binds source tag v0.14 to dec5c58a3e3970bc6817f33efb615fea11057fce. The exact PyPI Integrity request returns 404 with no provenance and the exact GitHub artifact-attestation subject returns 404. V9 showed common-file equality only: the sdist is a projection and a local rebuild omitted three tracked ignored CSV files.",
+      "next_discriminator": "A provider-native build attestation must bind SHA-256 775f92db... to commit dec5c58..., including the tracked-ignored CSV inclusion state.",
+      "repository": "mit-psfc/disruption-py",
+      "residual": "SDIST_PROJECTION_TO_TAG_COMMIT_AUTHENTICATED_BUILD_PROVENANCE_CANNOT_CHECK",
+      "terminal_gate": "provider_native_projected_sdist_to_full_commit_provenance",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    }
+  ],
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v10.negative-result-ledger"
+}

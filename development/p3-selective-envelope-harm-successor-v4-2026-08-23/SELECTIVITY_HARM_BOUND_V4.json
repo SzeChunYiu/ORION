@@ -1,0 +1,46 @@
+{
+  "schema_version": "orion.p3.selectivity-harm-bound.v4",
+  "claim_id": "P3.V4.COVERAGE.ONE.HARM.SELECTIVITY.BOUND",
+  "authority": "FORMAL_CONSEQUENCE_OF_FROZEN_V3_LOSS_AND_RETAINED_PUBLIC_DEVELOPMENT_COUNTS",
+  "setup": {
+    "binary_scorable_cases": 117914,
+    "full_binary_envelope_harm_per_case": 0.25,
+    "correct_singleton_harm": 0.0,
+    "coverage_one_forbids_wrong_singletons": true
+  },
+  "proposition": "For a coverage-one binary controller whose only scorable outputs are correct singletons and the full binary envelope, mean harm equals 0.25 times its unresolved/full-envelope rate. Harm noninferiority to comparator harm h therefore requires unresolved_rate <= 4h, equivalently correct_singleton_rate >= 1-4h.",
+  "proof": "Coverage one excludes wrong singleton outputs. If q is the full-envelope rate, correct singletons contribute zero and full envelopes contribute 0.25, so H=0.25q. H<=h iff q<=4h.",
+  "v3_aml_thresholds": [
+    {
+      "regime": 1,
+      "aml_harm": 0.025200569906881288,
+      "max_full_envelope_rate": 0.10080227962752515,
+      "min_correct_singleton_rate": 0.8991977203724748
+    },
+    {
+      "regime": 2,
+      "aml_harm": 0.025268415964177282,
+      "max_full_envelope_rate": 0.10107366385670913,
+      "min_correct_singleton_rate": 0.8989263361432909
+    },
+    {
+      "regime": 3,
+      "aml_harm": 0.05647760232033516,
+      "max_full_envelope_rate": 0.22591040928134065,
+      "min_correct_singleton_rate": 0.7740895907186593
+    }
+  ],
+  "v3_zero_failure_registry_projection": {
+    "registered_correct_glue_singletons": 361,
+    "selection_rate": 0.003061553335481792,
+    "full_envelope_rate": 0.9969384466645183,
+    "projected_harm_if_all_other_cases_full_envelope": 0.24923461166612956,
+    "candidate_minus_aml_harm": [
+      0.22403404175924826,
+      0.22396619570195228,
+      0.1927570093457944
+    ]
+  },
+  "conclusion": "The one safe V3 glue cell is scientifically nontrivial but far too sparse for harm noninferiority. On the strictest inherited V3 regime a coverage-one successor would need correct proper singletons on at least 89.919772% of scorable cases, not merely a few high-confidence matches. A successful V4 needs a broadly covering obstruction certificate or substantially stronger source-native evidence, not only a precision-safe positive gate.",
+  "boundary": "This is a V3-loss arithmetic constraint, not evidence that the threshold is attainable or transports to new families. Family-wise V4 thresholds must be computed from each frozen comparator harm without pooling."
+}

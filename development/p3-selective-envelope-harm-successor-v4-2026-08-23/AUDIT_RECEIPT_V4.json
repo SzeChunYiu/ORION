@@ -1,0 +1,60 @@
+{
+  "schema_version": "orion.p3.selective-envelope-harm-successor-audit-receipt.v4",
+  "protocol_id": "P3.PUBLIC.OAEI.SELECTIVE.ENVELOPE.HARM.SUCCESSOR.DEV.V4",
+  "audit_scope": "PRE_OUTCOME_METADATA_SOURCE_COMPARATOR_AND_FORMAL_AUDIT",
+  "work_scope": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p3-selective-envelope-harm-successor-v4/",
+  "shared_checkout_modified": false,
+  "main_manuscripts_modified": false,
+  "tests_or_ci_run": false,
+  "pytest_run": false,
+  "git_commit_or_push_performed": false,
+  "new_family_outcomes_accessed": false,
+  "protected_evidence_accessed": false,
+  "parallel_lanes": [
+    {
+      "lane": "source_family_rights",
+      "result": "7 candidate families audited; 0 eligible; no reference contents opened",
+      "artifacts": [
+        "SOURCE_FAMILY_RIGHTS.json",
+        "SOURCE_FAMILY_RIGHTS.md"
+      ]
+    },
+    {
+      "lane": "comparator_source_identity",
+      "result": "AML, LogMap and BERTMap identities bound; 0 execution-ready; no builds or outcomes",
+      "artifacts": [
+        "COMPARATOR_RESEARCH.json",
+        "COMPARATOR_RESEARCH.md"
+      ]
+    },
+    {
+      "lane": "formal_identification_and_synthesis",
+      "result": "Open-world non-identification theorem and fail-closed V4 synthesis",
+      "artifacts": [
+        "OPEN_WORLD_REFERENCE_IDENTIFICATION_THEOREM_V4.json",
+        "OPEN_WORLD_REFERENCE_IDENTIFICATION_THEOREM_V4.md",
+        "RESULT_V4.json",
+        "RESULTS_V4.md"
+      ]
+    }
+  ],
+  "linked_claude_session_coordination": {
+    "url": "https://claude.ai/code/session_01UhpGXdb2xjdtE5BsmV6vZb",
+    "observed_read_only": true,
+    "observed_status": "ARCHIVED_AND_OUT_OF_USAGE_CREDITS",
+    "live_cooperation_possible": false,
+    "relevant_scientific_warning_reused": "Across-corpus coordinate variation is not within-case separability.",
+    "message_sent_or_external_state_changed": false
+  },
+  "verification": {
+    "json_validation": "python -m json.tool on every retained JSON artifact",
+    "hash_manifest": "SHA256SUMS",
+    "scientific_checks": [
+      "V3 obstruction join branch inspected at immutable lines 526-534",
+      "V3 retained counts checked: 1399 GLUE and 116515 absence-derived OBSTRUCTION",
+      "selectivity-harm decimal arithmetic independently recomputed",
+      "source and comparator agent artifact hashes independently recomputed"
+    ]
+  },
+  "terminal": "V4_AUDIT_COMPLETE__OUTCOME_BLIND_STOP_VERIFIED__NO_PERFORMANCE_OR_PUBLICATION_READINESS_CLAIM"
+}

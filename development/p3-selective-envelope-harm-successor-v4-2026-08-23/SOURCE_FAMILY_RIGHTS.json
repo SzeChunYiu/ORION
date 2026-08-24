@@ -1,0 +1,717 @@
+{
+  "audit_id": "P3.V4.SOURCE.FAMILY.RIGHTS.METADATA_ONLY.2026-08-23",
+  "audited_at_utc": "2026-08-23T15:26:29Z",
+  "authority": "PUBLIC_DEVELOPMENT_SOURCE_FEASIBILITY_ONLY__NOT_LEGAL_ADVICE__NOT_CONFIRMATORY",
+  "boundary": {
+    "decisive_binary_semantics_rule": "V4 forbids treating matcher nonselection, reference absence, missingness, or generic non-equivalence as OBSTRUCTION. A family needs authoritative metadata that its reference is exhaustive over the frozen candidate universe and that absence is a valid binary negative. None of seven audited track pages supplies that statement.",
+    "important_non_inference": "Corpus-level source or referent variation is not within-case binary separability. No family is credited with exercising both binary outcomes in comparable cases; that terminal is CANNOT_CHECK until a frozen outcome-blind execution may lawfully open the reference payload.",
+    "metadata_only": true,
+    "methods": [
+      "official OAEI/provider landing-page retrieval",
+      "HTTP HEAD only for selected archives",
+      "git ls-remote only for repository identities",
+      "licence/README metadata retrieval"
+    ],
+    "opened_dataset_payloads": false,
+    "opened_gold_labels_or_task_outcomes": false,
+    "opened_matcher_outputs": false,
+    "opened_ontology_entity_bodies": false,
+    "opened_reference_alignments_or_relation_values": false,
+    "performed_runtime_execution": false
+  },
+  "campaign_metadata": {
+    "bytes": 19180,
+    "etag": "\"6920bb78-4aec\"",
+    "last_modified": "Fri, 21 Nov 2025 19:20:24 GMT",
+    "sha256_of_metadata_page_bytes_at_audit": "32257493783d8b1882e8e4cc27134643d58ffb2d92637d32eeb326fce81ca1cc",
+    "url": "https://oaei.ontologymatching.org/2025/"
+  },
+  "families": [
+    {
+      "advertised_scope": {
+        "campaign_home_class_counts": [
+          2744,
+          3304
+        ],
+        "ontology_documents": 2,
+        "reference_provenance": "initial mapping from Martin Ringwald and Terry Hayamizu at MGI; later data improvements credited to Elena Beisswanger",
+        "sources": [
+          "Adult Mouse Anatomy (MA)",
+          "NCI Thesaurus anatomy subset"
+        ],
+        "test_cases": 1
+      },
+      "binary_obstruction_semantics": "CANNOT_CHECK__TRACK_DESCRIBES_A_REFERENCE_MAPPING_BUT_NOT_AN_EXHAUSTIVE_ENTITY_PAIR_UNIVERSE_OR_ABSENCE_AS_NEGATIVE",
+      "blocking_reasons": [
+        "no published archive SHA-256 or equivalent",
+        "OAEI archive not mapped to exact upstream ontology revisions",
+        "reference-alignment licence absent",
+        "one fixed pair cannot supply source-family replication",
+        "binary obstruction semantics not licensed by authoritative exhaustive-reference metadata"
+      ],
+      "campaign_release": "OAEI 2025 Anatomy",
+      "eligibility_terminal": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "family_id": "OAEI_ANATOMY",
+      "family_independence": {
+        "cross_track": "not source-disjoint from OAEI_LARGEBIO because both use NCI Thesaurus",
+        "superfamily": "BIOMEDICAL_NCI_SHARED",
+        "within_track": "one fixed ontology pair; no within-family replication"
+      },
+      "official_page": {
+        "bytes": 7706,
+        "etag": "\"6920bb78-1e1a\"",
+        "last_modified": "Fri, 21 Nov 2025 19:20:24 GMT",
+        "sha256_of_metadata_page_bytes_at_audit": "343757752ffa22843418ae49a11015867938f99410a4060b509b0d4f4bd5d349",
+        "url": "https://oaei.ontologymatching.org/2025/anatomy/index.html"
+      },
+      "provider_release_identity": {
+        "http_head": {
+          "accept_ranges": "bytes",
+          "content_length": 329860,
+          "etag": "\"6920bb78-50884\"",
+          "last_modified": "Fri, 21 Nov 2025 19:20:24 GMT",
+          "status": 200
+        },
+        "immutability_terminal": "CANNOT_CHECK__OPAQUE_HTTP_ETAG_IS_NOT_A_PUBLISHED_CRYPTOGRAPHIC_DIGEST",
+        "input_archive_url": "https://oaei.ontologymatching.org/2025/anatomy/anatomy-dataset.zip",
+        "provider": "OAEI Anatomy organizers",
+        "published_cryptographic_checksum": null,
+        "suite_id": "anatomy_track",
+        "version_id": "anatomy_track-default"
+      },
+      "rights": {
+        "bundle": "CANNOT_CHECK__TRACK_PAGE_HAS_NO_LICENCE_STATEMENT",
+        "inputs": [
+          {
+            "current_head": "5cd7d03b30c520c1ef535faf747c9e6344307eea",
+            "current_repository": "https://github.com/obophenotype/adult-mouse-anatomy-ontology",
+            "current_upstream": "https://obofoundry.org/ontology/ma.html",
+            "current_upstream_licence": "CC BY 4.0",
+            "id": "Adult Mouse Anatomy",
+            "metadata_page_sha256": "44e2e29aa6de3ece01f23363630fae33aadb910d9cb6c32f4e7307d37e283b03",
+            "oaei_snapshot_mapping": "CANNOT_CHECK"
+          },
+          {
+            "current_head": "c410c6f4cbff2b7b08645d539a295bed82bd100b",
+            "current_repository": "https://github.com/ncit-obo-org/ncit-obo-edition",
+            "current_upstream": "https://obofoundry.org/ontology/ncit.html",
+            "current_upstream_licence": "CC BY 4.0",
+            "id": "NCI Thesaurus subset",
+            "metadata_page_sha256": "81eba8cb5f3fefba48e4e3ebbf76350bd188fdcd3dcccf49605b1082bec4e0db",
+            "oaei_snapshot_mapping": "CANNOT_CHECK"
+          }
+        ],
+        "reference_alignment": "CANNOT_CHECK__TRACK_PAGE_HAS_ATTRIBUTION_BUT_NO_EXPLICIT_REFERENCE_LICENCE"
+      },
+      "runtime_feasibility": {
+        "coordinate_declared": true,
+        "framework": "MELT/TDRS",
+        "native_comparator_run_verified": false,
+        "scale": "moderate",
+        "terminal": "ADAPTER_PATH_DECLARED__EXECUTION_AND_BUDGET_CANNOT_CHECK"
+      },
+      "within_case_binary_separability": "CANNOT_CHECK__NO_REFERENCE_RELATION_OR_OUTCOME_DISTRIBUTION_OPENED"
+    },
+    {
+      "advertised_scope": {
+        "all_possible_unordered_test_cases": 120,
+        "crisp_reference_test_cases": 21,
+        "ontologies_in_crisp_reference": 7,
+        "ontologies_total": 16,
+        "origin_categories": [
+          "actual conference web pages",
+          "conference-organization software tools",
+          "organizer insider experience"
+        ],
+        "source_project": "OntoFarm"
+      },
+      "binary_obstruction_semantics": "CANNOT_CHECK__21_ALIGNMENTS_COMPLETE_THE_ONTOLOGY_PAIR_SPACE_AMONG_SEVEN_ONTOLOGIES_BUT_DO_NOT_DECLARE_ENTITY_PAIR_REFERENCE_EXHAUSTIVENESS_OR_ABSENCE_AS_NEGATIVE",
+      "blocking_reasons": [
+        "no published cryptographic archive digests",
+        "no explicit input-ontology licence",
+        "no explicit reference-alignment licence",
+        "source clusters are not provenance-pinned",
+        "derivative dependence with MultiFarm",
+        "binary obstruction semantics not licensed by authoritative exhaustive-reference metadata"
+      ],
+      "campaign_release": "OAEI 2025 Conference",
+      "eligibility_terminal": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "family_id": "OAEI_CONFERENCE",
+      "family_independence": {
+        "cross_track": "MultiFarm is explicitly derived by translating a seven-ontology OntoFarm subset; Conference and MultiFarm cannot both count as independent families",
+        "superfamily": "ONTOFARM",
+        "within_track": "heterogeneous source inspirations but all ontologies curated within one OntoFarm collection; exact author/source cluster independence is not established by metadata"
+      },
+      "official_page": {
+        "bytes": 15705,
+        "etag": "\"6920bb78-3d59\"",
+        "last_modified": "Fri, 21 Nov 2025 19:20:24 GMT",
+        "sha256_of_metadata_page_bytes_at_audit": "697a21c9d3317bffb65b9dc47ff18f1da308019832bf16219fae7e00c7ac3dbb",
+        "url": "https://oaei.ontologymatching.org/2025/conference/index.html"
+      },
+      "provider_release_identity": {
+        "input_archive_url": "https://oaei.ontologymatching.org/2025/conference/data/conference.zip",
+        "input_http_head": {
+          "content_length": 55387,
+          "etag": "\"6920bb78-d85b\"",
+          "last_modified": "Fri, 21 Nov 2025 19:20:24 GMT",
+          "status": 200
+        },
+        "provider": "OAEI Conference organizers / OntoFarm",
+        "published_cryptographic_checksum": null,
+        "reference_archive_url": "https://oaei.ontologymatching.org/2025/conference/data/reference-alignment.zip",
+        "reference_http_head": {
+          "content_length": 16852,
+          "etag": "\"6920bb78-41d4\"",
+          "last_modified": "Fri, 21 Nov 2025 19:20:24 GMT",
+          "status": 200
+        },
+        "suite_id": "conference",
+        "version_id": "conference-v1"
+      },
+      "rights": {
+        "bundle": "CANNOT_CHECK",
+        "input_ontology_collection": "CANNOT_CHECK__NO_EXPLICIT_LICENCE_ON_OAEI_TRACK_OR_ONTOFARM_LANDING_PAGE",
+        "ontofarm_landing_sha256": "b268a3789454b57417e2d72eeeb0b4cff60da13de47d9eead7f2a145c8b9ef96",
+        "ontofarm_landing_url": "http://owl.vse.cz/ontofarm/",
+        "reference_alignment": "CANNOT_CHECK__CITATION_REQUEST_IS_NOT_A_LICENCE_GRANT"
+      },
+      "runtime_feasibility": {
+        "coordinate_declared": true,
+        "framework": "MELT/TDRS",
+        "native_comparator_run_verified": false,
+        "scale": "small",
+        "terminal": "ADAPTER_PATH_DECLARED__EXECUTION_CANNOT_CHECK"
+      },
+      "within_case_binary_separability": "CANNOT_CHECK__REFERENCE_VARIANTS_AND_CASE_COUNT_ARE_METADATA_ONLY"
+    },
+    {
+      "advertised_scope": {
+        "advertised_public_pair_cases_product": 1125,
+        "alignments_per_language_pair_advertised": 25,
+        "blind_ontology_names": [
+          "Edas",
+          "Ekaw"
+        ],
+        "cardinality_warning": "The same 2025 page says 8 languages plus English yet lists 45 pairs including Arabic, which implies 10 languages; exact current document cardinality is CANNOT_CHECK without payload.",
+        "current_language_pair_ids": 45,
+        "original_base_ontologies": 7,
+        "original_languages_including_english": 9
+      },
+      "binary_obstruction_semantics": "CANNOT_CHECK__CROSS_LINGUAL_REFERENCE_AVAILABILITY_DOES_NOT_LICENSE_CLOSED_WORLD_NEGATIVES",
+      "blocking_reasons": [
+        "no direct 2025 byte release identity on track page",
+        "no published checksum",
+        "scientific-use prose is not a complete redistribution/modification licence",
+        "reference rights absent",
+        "not independent of Conference or across language variants",
+        "binary obstruction semantics not licensed by authoritative exhaustive-reference metadata"
+      ],
+      "campaign_release": "OAEI 2025 MultiFarm",
+      "eligibility_terminal": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "family_id": "OAEI_MULTIFARM",
+      "family_independence": {
+        "cross_track": "must collapse with OAEI_CONFERENCE for replication",
+        "superfamily": "ONTOFARM_TRANSLATION_DERIVATIVE",
+        "within_track": "languages and language pairs are repeated translations of the same OntoFarm semantic seeds, not independent source families"
+      },
+      "official_page": {
+        "bytes": 5793,
+        "etag": "\"6920bb78-16a1\"",
+        "last_modified": "Fri, 21 Nov 2025 19:20:24 GMT",
+        "sha256_of_metadata_page_bytes_at_audit": "bb822022298fdd170b59e8027361bd8193c02cccf47469d125b6a59fce5e3201",
+        "url": "https://oaei.ontologymatching.org/2025/multifarm/index.html"
+      },
+      "provider_release_identity": {
+        "direct_2025_archive_url": null,
+        "language_pair_ids_advertised": 45,
+        "provider": "OAEI MultiFarm organizers / University of Mannheim MultiFarm",
+        "published_cryptographic_checksum": null,
+        "repository": "http://oaei.webdatacommons.org/tdrs/",
+        "source_landing": "https://web.informatik.uni-mannheim.de/multifarm/",
+        "source_landing_sha256": "aea5acefdf37f79bd9b48e526987d332eb62c9a420020759c01f1917bdcfe009",
+        "suite_id": "multifarm",
+        "version_id_pattern": "[pair-language]-v2"
+      },
+      "rights": {
+        "base_ontofarm_inputs": "CANNOT_CHECK",
+        "bundle": "CANNOT_CHECK",
+        "reference_alignments": "CANNOT_CHECK__NO_EXPLICIT_LICENCE",
+        "translated_inputs": "CANNOT_CHECK__SOURCE_PAGE_SAYS_USE_FOR_ANY_SCIENTIFIC_PURPOSE_BUT_PROVIDES_NO_STANDARD_LICENCE_AND_CONTAINS_A_LEGACY_PERMISSION_WARNING_FOR_RAW_TRANSLATIONS"
+      },
+      "runtime_feasibility": {
+        "case_grid": "45 language-pair suites, 25 advertised alignments per pair",
+        "coordinate_declared": true,
+        "framework": "MELT/TDRS",
+        "native_comparator_run_verified": false,
+        "scale": "medium/high repeated-suite cost",
+        "terminal": "ADAPTER_PATH_DECLARED__EXACT_RELEASE_AND_EXECUTION_CANNOT_CHECK"
+      },
+      "within_case_binary_separability": "CANNOT_CHECK__TRANSLATION_VARIATION_IS_NOT_BINARY_OUTCOME_SEPARABILITY"
+    },
+    {
+      "advertised_scope": {
+        "base_pair_scale_tasks": 6,
+        "flagged_reference_variants": 6,
+        "input_ontologies": [
+          "FMA",
+          "SNOMED CT",
+          "NCI Thesaurus"
+        ],
+        "largest_advertised_class_counts": {
+          "FMA": 78989,
+          "NCI": 66724,
+          "SNOMED_fragment": 122464
+        },
+        "reference_source": "UMLS Metathesaurus"
+      },
+      "binary_obstruction_semantics": "CANNOT_CHECK__UMLS_DERIVED_POSITIVE_AND_UNKNOWN_MAPPINGS_DO_NOT_DECLARE_ABSENT_ENTITY_PAIRS_AS_VALID_OBSTRUCTION",
+      "blocking_reasons": [
+        "SNOMED CT and UMLS are not unrestricted public-panel inputs",
+        "no published archive cryptographic checksum",
+        "legacy snapshots not mapped to current upstream licences",
+        "not a current OAEI track",
+        "shares NCI lineage with Anatomy",
+        "binary obstruction semantics not licensed by authoritative exhaustive-reference metadata"
+      ],
+      "campaign_release": "OAEI 2015 Large Biomedical Ontology Track (legacy; superseded by Bio-ML in current campaign)",
+      "eligibility_terminal": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "family_id": "OAEI_LARGEBIO",
+      "family_independence": {
+        "cross_track": "shares NCI with Anatomy; cannot count as source-disjoint from Anatomy",
+        "superfamily": "BIOMEDICAL_NCI_SHARED",
+        "within_track": "three pairings share ontologies and UMLS-derived reference construction"
+      },
+      "official_page": {
+        "bytes": 11242,
+        "etag": "\"69e24df4-2bea\"",
+        "last_modified": "Fri, 17 Apr 2026 15:12:52 GMT",
+        "sha256_of_metadata_page_bytes_at_audit": "b400c23516ddd955d5fe055e6d11505a98697d3ce47ec03e051c9ae3810e321c",
+        "url": "https://oaei.ontologymatching.org/2015/largebio/"
+      },
+      "provider_release_identity": {
+        "archive_url": "https://oaei.ontologymatching.org/2015/largebio/LargeBio_dataset_oaei2015.zip",
+        "base_tasks": 6,
+        "current_campaign_status": "not a 2025 track; OAEI 2025 says Bio-ML supersedes LargeBio and Phenotype",
+        "http_head": {
+          "content_length": 17046198,
+          "etag": "\"69e24df3-1041ab6\"",
+          "last_modified": "Fri, 17 Apr 2026 15:12:51 GMT",
+          "status": 200
+        },
+        "provider": "OAEI LargeBio organizers",
+        "published_cryptographic_checksum": null,
+        "suite_id": "largebio",
+        "version_ids": "largebio-{fma_nci|fma_snomed|snomed_nci}-{small|whole}_2015 plus flagged variants"
+      },
+      "rights": {
+        "FMA": {
+          "current_upstream_licence": "CC BY 3.0",
+          "legacy_oaei_snapshot_mapping": "CANNOT_CHECK",
+          "metadata_sha256": "2dae236e1bac8da2cbf62d33ffde2c17af5d9bcec018f6440a1ef7ed520b04af",
+          "metadata_url": "https://obofoundry.org/ontology/fma.html"
+        },
+        "NCI": {
+          "current_upstream_licence": "CC BY 4.0",
+          "legacy_oaei_snapshot_mapping": "CANNOT_CHECK",
+          "metadata_sha256": "81eba8cb5f3fefba48e4e3ebbf76350bd188fdcd3dcccf49605b1082bec4e0db",
+          "metadata_url": "https://obofoundry.org/ontology/ncit.html"
+        },
+        "SNOMED_CT": {
+          "disposition": "LICENCE_REQUIRED; charges may apply outside member territories and annual registration/reporting may apply",
+          "metadata_page_sha256": "80a41b91b60d51c6b8a2946d00a9339bd29766239bf895e29ed888d5991afbc7",
+          "official_url": "https://www.snomed.org/get-snomed"
+        },
+        "UMLS_reference": {
+          "disposition": "INDIVIDUAL UMLS LICENCE AND UTS ACCOUNT REQUIRED; source-vocabulary redistribution restrictions apply",
+          "metadata_page_sha256": "aba832cd75916fae0c2143d057a92911ae3cb973b28d75afb30d336923471707",
+          "official_url": "https://www.nlm.nih.gov/databases/umls.html"
+        },
+        "bundle": "NOT_LAWFUL_PUBLIC_PANEL_READY"
+      },
+      "runtime_feasibility": {
+        "coordinate_declared": true,
+        "framework": "legacy SEALS",
+        "native_comparator_run_verified": false,
+        "scale": "high/very high",
+        "terminal": "LEGACY_ADAPTER_DECLARED__CURRENT_RUNTIME_AND_LICENCE_CANNOT_CHECK"
+      },
+      "within_case_binary_separability": "CANNOT_CHECK__UMLS_REFERENCE_VALUES_NOT_OPENED"
+    },
+    {
+      "advertised_scope": {
+        "ontologies": 4,
+        "potential_source_subfamilies": 2,
+        "reference_alignments": 2,
+        "source_pairs": [
+          [
+            "ENVO",
+            "SWEET"
+          ],
+          [
+            "NCBI Taxonomy",
+            "TAXREF-LD"
+          ]
+        ]
+      },
+      "binary_obstruction_semantics": "CANNOT_CHECK__TWO_REFERENCE_ALIGNMENTS_ARE_ADVERTISED_WITHOUT_EXHAUSTIVENESS_OR_NEGATIVE_LABEL_SEMANTICS",
+      "blocking_reasons": [
+        "advertised 2025 bundle URL returns 404",
+        "no exact suite/version coordinate on page",
+        "no published checksum",
+        "OAEI snapshots not mapped to upstream releases",
+        "reference-alignment licences absent",
+        "binary obstruction semantics not licensed by authoritative exhaustive-reference metadata"
+      ],
+      "campaign_release": "OAEI 2025 Biodiversity and Ecology",
+      "eligibility_terminal": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "family_id": "OAEI_BIODIV",
+      "family_independence": {
+        "cross_track": "no definite direct source overlap with the other six candidates established by metadata",
+        "superfamily": "BIODIVERSITY_ECOLOGY",
+        "within_track": "ENVO-SWEET and NCBI-TAXREF-LD are metadata-distinct source pairs and are candidates for separate clusters, but the frozen protocol currently names one track family and exact release/reference provenance is unavailable"
+      },
+      "official_page": {
+        "bytes": 6307,
+        "etag": "\"6920bb78-18a3\"",
+        "last_modified": "Fri, 21 Nov 2025 19:20:24 GMT",
+        "sha256_of_metadata_page_bytes_at_audit": "69fb45264593daf2dc55e98695dcb80555b92c3494196b4fb113492b8bbcb1c5",
+        "url": "https://oaei.ontologymatching.org/2025/biodiv/index.html"
+      },
+      "provider_release_identity": {
+        "advertised_archive_url": "https://upload.uni-jena.de/data/68b028e813c9c3.77183112/biodiv.zip",
+        "advertised_bundle": "4 ontologies + 2 reference alignments + modules",
+        "http_head_at_audit": {
+          "status": 404
+        },
+        "provider": "OAEI Biodiv organizers",
+        "published_cryptographic_checksum": null,
+        "suite_id": null,
+        "version_id": null
+      },
+      "rights": {
+        "ENVO": {
+          "current_head": "a2455d1a77e46bb8a664d65a157166b539269042",
+          "current_repository": "https://github.com/EnvironmentOntology/envo",
+          "current_upstream_licence": "CC0 1.0",
+          "metadata_sha256": "057670ec1c84947fffdf7e0bab60b625632aa82f102e9daaa81f5a1a489127c8",
+          "metadata_url": "https://obofoundry.org/ontology/envo.html",
+          "oaei_snapshot_mapping": "CANNOT_CHECK"
+        },
+        "NCBI_Taxonomy": {
+          "current_OBO_edition_licence": "CC0 1.0",
+          "current_head": "91117dcdde2ab5219d9a7ef786e89468337cb761",
+          "current_repository": "https://github.com/obophenotype/ncbitaxon",
+          "metadata_sha256": "54184a999a7c1a6aebba413509478716854a7a5514e17c3c8f4bfeef439925d2",
+          "metadata_url": "https://obofoundry.org/ontology/ncbitaxon.html",
+          "oaei_snapshot_mapping": "CANNOT_CHECK"
+        },
+        "SWEET": {
+          "current_head": "db60c8ddb1b781fbadae176f69286a2cdd5099a0",
+          "current_upstream_licence": "CC0 1.0",
+          "licence_sha256": "8da08cd0b610f92886cf7fe0f137c4ba6bacefc8185b5add37e3ba540e286756",
+          "licence_url": "https://raw.githubusercontent.com/ESIPFed/sweet/master/LICENSE",
+          "oaei_snapshot_mapping": "CANNOT_CHECK",
+          "repository": "https://github.com/ESIPFed/sweet"
+        },
+        "TAXREF_LD": {
+          "current_dataset_licence": "CC BY 3.0 France",
+          "current_head": "7cc1614eb22fec028ac5f1891d5b52d5f67f4d0e",
+          "oaei_snapshot_mapping": "CANNOT_CHECK",
+          "readme_sha256": "a475d9ce4f4f43c0341edf23a5d15a658cec97171626b7ef0e38d44621f3fb70",
+          "readme_url": "https://raw.githubusercontent.com/frmichel/taxref-ld/master/README.md",
+          "repository": "https://github.com/frmichel/taxref-ld"
+        },
+        "bundle": "CANNOT_CHECK__ADVERTISED_LINK_RETURNS_404",
+        "reference_alignments": "CANNOT_CHECK__NO_EXPLICIT_LICENCE_ON_TRACK_PAGE"
+      },
+      "runtime_feasibility": {
+        "archive_live": false,
+        "coordinate_declared": false,
+        "framework": "MELT claimed by track page",
+        "native_comparator_run_verified": false,
+        "scale": "large taxonomy tasks",
+        "terminal": "CURRENT_PUBLIC_RUNTIME_CANNOT_CHECK__ADVERTISED_ARCHIVE_404"
+      },
+      "within_case_binary_separability": "CANNOT_CHECK__TWO_SOURCE_PAIRS_DO_NOT_ESTABLISH_WITHIN_CASE_OUTCOME_CONTRAST"
+    },
+    {
+      "advertised_scope": {
+        "franchise_clusters": [
+          "Star Wars (3 graphs, 2 cases)",
+          "Marvel (2 graphs, 1 case)",
+          "Star Trek (3 graphs, 2 cases)"
+        ],
+        "gold": "schema expert correspondences plus instance links extracted from wiki External links; explicitly partial",
+        "knowledge_graphs_in_track_table": 8,
+        "test_cases": 5,
+        "total_advertised_classes": 1382,
+        "total_advertised_instances": 497607,
+        "total_advertised_properties": 2452
+      },
+      "binary_obstruction_semantics": "CANNOT_CHECK__TRACK_EXPLICITLY_CALLS_GOLD_PARTIAL_SO_REFERENCE_ABSENCE_CANNOT_BE_A_NEGATIVE_LABEL",
+      "blocking_reasons": [
+        "no published dataset checksum",
+        "per-wiki and derived-dump rights not bound",
+        "schema and instance gold licences absent",
+        "partial-gold domain licensing unresolved",
+        "resource envelope not frozen",
+        "binary obstruction semantics not licensed by authoritative exhaustive-reference metadata"
+      ],
+      "campaign_release": "OAEI 2025 Knowledge Graph v4",
+      "eligibility_terminal": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "family_id": "OAEI_KNOWLEDGE_GRAPH",
+      "family_independence": {
+        "cross_track": "CommonKG is a different source collection, but both are large KG matching tracks and shared extraction/knowledge-source dependence must be modelled rather than assumed away",
+        "superfamily": "FANDOM_DBKWIK",
+        "within_track": "three franchises are distinct content clusters but share Fandom hosting, DBpedia extraction, and OAEI gold-construction process; cluster-level outcome independence is not established"
+      },
+      "official_page": {
+        "bytes": 16553,
+        "etag": "\"6920bb78-40a9\"",
+        "last_modified": "Fri, 21 Nov 2025 19:20:24 GMT",
+        "sha256_of_metadata_page_bytes_at_audit": "07ebb8e7e55d23ac068e39511ffb9db0fadf82c6b2d4ede760d8ade40d000c83",
+        "url": "https://oaei.ontologymatching.org/2025/knowledgegraph/index.html"
+      },
+      "provider_release_identity": {
+        "melt_constant": "TrackRepository.Knowledgegraph.V4",
+        "provider": "OAEI Knowledge Graph organizers / DBkWik",
+        "published_cryptographic_checksum": null,
+        "repository": "http://oaei.webdatacommons.org/tdrs/",
+        "suite_id": "knowledgegraph",
+        "version_id": "v4"
+      },
+      "rights": {
+        "DBkWik_derived_dumps": "CANNOT_CHECK__NO_TRACK_LEVEL_DATA_LICENCE",
+        "Fandom_source_content": "CANNOT_CHECK_PER_WIKI_AND_PER_REVISION",
+        "bundle": "CANNOT_CHECK",
+        "expert_schema_gold": "CANNOT_CHECK__NO_EXPLICIT_REFERENCE_LICENCE",
+        "external_link_instance_gold": "CANNOT_CHECK__NO_EXPLICIT_REFERENCE_LICENCE"
+      },
+      "runtime_feasibility": {
+        "coordinate_declared": true,
+        "framework": "MELT/TDRS",
+        "native_comparator_run_verified": false,
+        "scale": "high (instance + schema; about 497607 advertised instances)",
+        "terminal": "ADAPTER_PATH_DECLARED__RIGHTS_RESOURCE_BUDGET_AND_EXECUTION_CANNOT_CHECK"
+      },
+      "within_case_binary_separability": "CANNOT_CHECK__PARTIAL_GOLD_EXISTENCE_DOES_NOT_ESTABLISH_BOTH_BINARY_OUTCOMES_WITHIN_COMPARABLE_CASES"
+    },
+    {
+      "advertised_scope": {
+        "advertised_classes": {
+          "DBpedia": 138,
+          "NELL": 134,
+          "Wikidata": 304,
+          "YAGO": 304
+        },
+        "advertised_instances": {
+          "DBpedia": 631461,
+          "NELL": 1184377,
+          "Wikidata": 2160102,
+          "YAGO": 5149594
+        },
+        "gold": "NELL-DBpedia is explicitly partial; creation discussed in track paper",
+        "nested_duplicate": "yago-wikidata-v1-small is a fewer-instances subset of yago-wikidata-v1 and is not an independent family",
+        "source_kgs": [
+          "NELL",
+          "DBpedia",
+          "YAGO",
+          "Wikidata"
+        ],
+        "source_pairs": [
+          [
+            "NELL",
+            "DBpedia"
+          ],
+          [
+            "YAGO",
+            "Wikidata"
+          ]
+        ],
+        "test_cases": 3
+      },
+      "binary_obstruction_semantics": "CANNOT_CHECK__NELL_DBPEDIA_GOLD_IS_EXPLICITLY_PARTIAL_AND_NO_TRACK_METADATA_LICENSES_ABSENCE_AS_NEGATIVE",
+      "blocking_reasons": [
+        "linked repositories have no licence grant",
+        "no release tags/checksums bound",
+        "upstream KG versions are not identified",
+        "reference rights absent",
+        "nested small/full YAGO-Wikidata tests cannot add replication",
+        "very-high runtime budget unresolved",
+        "binary obstruction semantics not licensed by authoritative exhaustive-reference metadata"
+      ],
+      "campaign_release": "OAEI 2023 Common Knowledge Graphs (last listed campaign)",
+      "eligibility_terminal": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "family_id": "OAEI_COMMON_KNOWLEDGE",
+      "family_independence": {
+        "cross_track": "not proven independent of the Fandom/DBkWik KG family at the outcome-generating-process level",
+        "superfamily": "COMMON_WORLD_KG",
+        "within_track": "two source pairs are metadata-distinct, but DBpedia/YAGO/Wikidata have overlapping world-knowledge/Wikipedia lineages; the small test is nested, not independent"
+      },
+      "official_page": {
+        "bytes": 6099,
+        "etag": "\"69e29c0c-17d3\"",
+        "last_modified": "Fri, 17 Apr 2026 20:46:04 GMT",
+        "sha256_of_metadata_page_bytes_at_audit": "1b5bd7791dca6cd191a19df75c60f4c76929cf794f4f9825705bf2c6def2067c",
+        "url": "https://oaei.ontologymatching.org/2023/commonKG/index.html"
+      },
+      "provider_release_identity": {
+        "provider": "OAEI CommonKG organizers",
+        "published_cryptographic_dataset_checksum": null,
+        "repositories": [
+          {
+            "pinned_head": "c2b9f8903e11f5cffa353dfdad3e8685fb04d631",
+            "root_licence": "NOT_FOUND",
+            "tags": [],
+            "url": "https://github.com/OmaimaFallatah/KG_GoldeStandard"
+          },
+          {
+            "additional_main_ref": "1547e850f7ee2986ad406e640559dc94e8539381",
+            "pinned_default_head": "081f4af7c445f29b5bb3f6b35b26293982f5774d",
+            "root_licence": "NOT_FOUND",
+            "url": "https://github.com/OmaimaFallatah/YagoWikiData"
+          }
+        ],
+        "suite_id": "commonkg",
+        "version_ids": [
+          "nell-dbpedia-v1",
+          "yago-wikidata-v1",
+          "yago-wikidata-v1-small"
+        ]
+      },
+      "rights": {
+        "DBpedia_input": "CANNOT_CHECK_FOR_EXACT_BUNDLED_REVISION_AND_REQUIRED_ATTRIBUTION",
+        "NELL_input": "CANNOT_CHECK_FOR_EXACT_BUNDLED_REVISION",
+        "Wikidata_input": "CANNOT_CHECK_FOR_EXACT_BUNDLED_REVISION",
+        "YAGO_input": "CANNOT_CHECK_FOR_EXACT_BUNDLED_REVISION",
+        "reference_alignments": "CANNOT_CHECK__NO_REPOSITORY_OR_TRACK_LEVEL_LICENCE",
+        "repository_bundles": "CANNOT_CHECK__BOTH_PRIMARY_LINKED_REPOSITORIES_HAVE_NO_ROOT_LICENCE_AT_PINNED_DEFAULT_HEAD",
+        "small_subset": "inherits full YAGO-Wikidata rights and dependence blockers"
+      },
+      "runtime_feasibility": {
+        "coordinate_declared": true,
+        "framework": "MELT",
+        "native_comparator_run_verified": false,
+        "scale": "very high (page advertises up to 5.15M instances in YAGO)",
+        "terminal": "ADAPTER_PATH_DECLARED__RIGHTS_RESOURCE_BUDGET_AND_EXECUTION_CANNOT_CHECK"
+      },
+      "within_case_binary_separability": "CANNOT_CHECK__SOURCE_KG_VARIATION_AND_PARTIAL_GOLD_METADATA_DO_NOT_ESTABLISH_WITHIN_CASE_BINARY_CONTRAST"
+    }
+  ],
+  "framework": {
+    "audited_head_commit": "db893731fdf29371603847e3664dc18b80d45d4b",
+    "commit_identity_method": "git ls-remote HEAD and refs/heads/master",
+    "feasibility_boundary": "A declared MELT/SEALS coordinate shows adapter-path availability only. It does not establish that a comparator accepts the V4 information interface, finishes under the frozen budget, or can consume a legally cleared byte-identical release.",
+    "licence": "MIT",
+    "licence_bytes": 1071,
+    "licence_sha256": "6259170d9437ff0c01c2441c5ba08b032c6e98bb4db90f31de295c27054e64cd",
+    "licence_url": "https://raw.githubusercontent.com/dwslab/melt/master/LICENSE",
+    "name": "MELT",
+    "official_repository": "https://github.com/dwslab/melt"
+  },
+  "inherited_predecessor_semantics_receipt": {
+    "diagnosis": "V3 assigned OBSTRUCTION to within-reference-domain pairs absent from positive equivalence/nonexpressible cells. V4 explicitly disallows transporting this closed-world absence rule to new families.",
+    "implementation_lines": "526-535",
+    "implementation_path": "work/lane-handoffs/p3-cross-construct-successor/p3_cross_construct_successor.py",
+    "observed_counts": {
+      "GLUE": 1399,
+      "absence_derived_OBSTRUCTION": 116515
+    },
+    "receipt_path": "work/lane-handoffs/p3-cross-construct-successor/PUBLIC_GOLD_JOIN_RECEIPT_V3.json",
+    "scope": "ALREADY_OPEN V3 PREDECESSOR ONLY__NOT_NEW_FAMILY_OUTCOME_ACCESS",
+    "transport_rule": "No V4 source receives valid OBSTRUCTION labels unless an authoritative, pre-outcome source contract declares the reference exhaustive over the frozen candidate universe and absence a valid negative."
+  },
+  "prospective_panel_decision": {
+    "can_freeze_now": false,
+    "eligible_family_ids": [],
+    "exclusions": {
+      "OAEI_ANATOMY": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "OAEI_BIODIV": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "OAEI_COMMON_KNOWLEDGE": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "OAEI_CONFERENCE": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "OAEI_KNOWLEDGE_GRAPH": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "OAEI_LARGEBIO": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+      "OAEI_MULTIFARM": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK"
+    },
+    "metadata_only_candidate_clusters_for_future_reaudit": [
+      {
+        "cluster": "BIOMEDICAL_NCI_SHARED",
+        "members": [
+          "OAEI_ANATOMY",
+          "OAEI_LARGEBIO"
+        ],
+        "selection_rule": "at most one; LargeBio additionally requires UMLS/SNOMED entitlement"
+      },
+      {
+        "cluster": "ONTOFARM",
+        "members": [
+          "OAEI_CONFERENCE",
+          "OAEI_MULTIFARM"
+        ],
+        "selection_rule": "at most one; translations do not add family replication"
+      },
+      {
+        "cluster": "BIODIVERSITY_ECOLOGY",
+        "members": [
+          "OAEI_BIODIV"
+        ],
+        "selection_rule": "may be split only after exact release/reference provenance freezes ENVO-SWEET and NCBI-TAXREF-LD separately"
+      },
+      {
+        "cluster": "FANDOM_DBKWIK",
+        "members": [
+          "OAEI_KNOWLEDGE_GRAPH"
+        ],
+        "selection_rule": "franchises remain nested clusters until rights and outcome-process independence are established"
+      },
+      {
+        "cluster": "COMMON_WORLD_KG",
+        "members": [
+          "OAEI_COMMON_KNOWLEDGE"
+        ],
+        "selection_rule": "full/small YAGO-Wikidata are one unit; source-pair independence must be defended"
+      }
+    ],
+    "minimum_remediation_receipts": [
+      "provider-published or independently computed pre-outcome SHA-256 for every input and reference artifact",
+      "exact input ontology/KG upstream version mapping",
+      "explicit licence/permission for every input and reference alignment including derived bundles",
+      "source-lineage cluster declaration that collapses shared ontologies, translations, nested subsets, and shared gold construction",
+      "authoritative per-family statement that the reference is exhaustive over the frozen candidate universe and that absence is a valid binary negative; otherwise OBSTRUCTION remains CANNOT_CHECK",
+      "MELT/SEALS coordinate or lawful local bundle plus frozen comparator resource/error envelope",
+      "outcome-blind candidate-universe build and prediction manifest before reference access"
+    ],
+    "terminal": "P3_V4_PROSPECTIVE_SOURCE_FAMILY_DISJOINT_PUBLIC_PANEL_CANNOT_FREEZE__ZERO_OF_SEVEN_FULL_RIGHTS_IMMUTABILITY_RECORDS"
+  },
+  "protocol_id": "P3.PUBLIC.OAEI.SELECTIVE.ENVELOPE.HARM.SUCCESSOR.DEV.V4",
+  "quantified_audit": {
+    "binary_obstruction_semantics_terminal": "PUBLIC_V4_BINARY_OBSTRUCTION_SEMANTICS_CANNOT_CHECK",
+    "candidate_track_families": 7,
+    "definite_dependence_collapses": [
+      "OAEI_ANATOMY + OAEI_LARGEBIO share NCI Thesaurus and a biomedical lineage",
+      "OAEI_CONFERENCE + OAEI_MULTIFARM share the OntoFarm seed; MultiFarm is a translation derivative"
+    ],
+    "families_meeting_all_protocol_source_requirements": 0,
+    "families_with_metadata_licensed_absence_as_binary_obstruction": 0,
+    "live_selected_archive_head_results": {
+      "anatomy": 200,
+      "biodiv": 404,
+      "conference_inputs": 200,
+      "conference_reference": 200,
+      "largebio": 200
+    },
+    "metadata_only_source_lineage_upper_bound_after_definite_collapses": 5,
+    "minimum_independent_families_required": 3,
+    "official_track_page_identities_bound": 7,
+    "overall_terminal": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK__PUBLIC_V4_SOURCE_FAMILY_DISJOINT_REPLICATION_CANNOT_CHECK",
+    "panel_freeze_terminal": "P3_V4_PROSPECTIVE_SOURCE_FAMILY_DISJOINT_PUBLIC_PANEL_CANNOT_FREEZE__ZERO_OF_SEVEN_FULL_RIGHTS_IMMUTABILITY_RECORDS",
+    "published_cryptographic_dataset_checksums_bound": 0,
+    "reference_alignment_explicit_licences_bound": 0,
+    "track_pages_with_literal_checksum_or_sha256_token": 0,
+    "track_pages_with_literal_license_or_licence_token": 0,
+    "warning": "Five is only a lineage upper bound, not five eligible or statistically independent families. Rights, immutable releases, reference licences, within-case separability, and outcome independence are unresolved.",
+    "within_case_binary_separability_terminal": "PUBLIC_V4_WITHIN_CASE_BINARY_SEPARABILITY_CANNOT_CHECK"
+  },
+  "schema_version": "orion.p3.source-family-rights-feasibility.v4"
+}

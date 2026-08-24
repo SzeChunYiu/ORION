@@ -1,0 +1,478 @@
+{
+  "authority": "GITHUB_EXACT_COMMIT_TREE_AND_BYTE_VERIFIED_FILTERED_SOURCE_ONLY",
+  "executions": {
+    "benchmark": 0,
+    "dgm": 0,
+    "model": 0,
+    "outcomes": 0,
+    "scorer": 0
+  },
+  "filter": {
+    "every_included_blob_matches_exact_git_tree": true,
+    "excluded_blob_bytes": 49707333,
+    "excluded_files": 1595,
+    "excluded_payload_contents_opened": false,
+    "excluded_prefixes": [
+      "initial/",
+      "initial_polyglot/",
+      "swe_bench/ref_agent_results/"
+    ],
+    "included_blob_bytes": 3488164,
+    "included_files": 55
+  },
+  "finished_at": "2026-08-23T20:55:06.461635+00:00",
+  "output": {
+    "canonical_member_manifest_sha256": "9cfccf904d7e4e10858a8964d2b95d329051e1fc528752cc5346b4b79c4af936",
+    "members": [
+      {
+        "git_blob_sha1": "ff85d932651c50369b93d832853305e03d7ca5c0",
+        "git_mode": "100644",
+        "path": "dgm/.dockerignore",
+        "sha256": "bf639c018be52f903a84ebeb203e5dd3f62c88f924b0abb2463235eba9cc6162",
+        "size_bytes": 535
+      },
+      {
+        "git_blob_sha1": "d03dc1b67ac3f20735917f5f5dc32c59f065882e",
+        "git_mode": "100644",
+        "path": "dgm/.gitattributes",
+        "sha256": "abcc87653d89bf205c633ff2e3e4b2a68532410e45b82e54a7420e6571d79c1e",
+        "size_bytes": 57
+      },
+      {
+        "git_blob_sha1": "80308a7d0707138d62ee580ba7d48d75e1db8ee0",
+        "git_mode": "100644",
+        "path": "dgm/.gitignore",
+        "sha256": "362c1142069a58e76b9cd2cf8f30383027c1c9f6220926647feddcf2aa0caafa",
+        "size_bytes": 383
+      },
+      {
+        "git_blob_sha1": "2c87f4bdc303d0ab3c4ad2333b03ecf0a74392be",
+        "git_mode": "100644",
+        "path": "dgm/DGM_outer.py",
+        "sha256": "239bc76f0e1b78210b8f7b3757b1082f6ca07db3537d6af50a45bf97709795ed",
+        "size_bytes": 15699
+      },
+      {
+        "git_blob_sha1": "79a222ef6c193f83c8b78201f2380bac7e07400d",
+        "git_mode": "100644",
+        "path": "dgm/Dockerfile",
+        "sha256": "55616682db154e7597b92f3406fa7bb240d91986d2f76581ba3f4a60941b6f7e",
+        "size_bytes": 527
+      },
+      {
+        "git_blob_sha1": "ba43cb811f1fdc963d9601012bb51f69c2598ca0",
+        "git_mode": "100644",
+        "path": "dgm/LICENSE",
+        "sha256": "84b7504ce8dda1f37f592cdf67ad21371864583720d79ea289b0b0c75bfcdb17",
+        "size_bytes": 11361
+      },
+      {
+        "git_blob_sha1": "e4ed9fa7747d265536961a98d3361000b58e396d",
+        "git_mode": "100644",
+        "path": "dgm/README.md",
+        "sha256": "9760f30330e519946592ae88178f579dd717c3e55d3d461322e5facfa09c6bd4",
+        "size_bytes": 4232
+      },
+      {
+        "git_blob_sha1": "a2ca66b3c1a072d3c97f083faecfc52630e89f2e",
+        "git_mode": "100644",
+        "path": "dgm/analysis/plot_comparison.py",
+        "sha256": "20c7a28df19e5e9b21254160829b32eebfe2966e5b920135af7862d4762ae450",
+        "size_bytes": 5990
+      },
+      {
+        "git_blob_sha1": "e7274a347d4e6ea9e56a8b2733774fcec3775152",
+        "git_mode": "100644",
+        "path": "dgm/analysis/plot_progress.py",
+        "sha256": "c501a535055effd3f6d4f39c07151ffad9afec1f3c5295e4e298830ffa62b5b8",
+        "size_bytes": 4088
+      },
+      {
+        "git_blob_sha1": "8a0b85fb6f29263f8406ff51b0754fa85266b522",
+        "git_mode": "100644",
+        "path": "dgm/analysis/visualize_archive.py",
+        "sha256": "fc4178355a6f113060ce822b4619a543bfe6c770ea3629de9ec5178437eeda5d",
+        "size_bytes": 21393
+      },
+      {
+        "git_blob_sha1": "c32dfa371159b91be5573a46472e2f1a1724282f",
+        "git_mode": "100644",
+        "path": "dgm/coding_agent.py",
+        "sha256": "0fe9f4806fee18a481c9298a6d1ab6d754bb81666031598d86a9da2b632a5829",
+        "size_bytes": 7611
+      },
+      {
+        "git_blob_sha1": "39bfae04615e4e8f039cd5eb771274cad4083a59",
+        "git_mode": "100644",
+        "path": "dgm/coding_agent_polyglot.py",
+        "sha256": "78eaea06c155f5bae6978e4668a0b54306b6c52d03678907a32b7e227c31e0cd",
+        "size_bytes": 6913
+      },
+      {
+        "git_blob_sha1": "d6b4da1fdcea8fb1bc3dd22f59123b77a84d6995",
+        "git_mode": "100644",
+        "path": "dgm/llm.py",
+        "sha256": "ca6ac22d7f128180de398cec48b9f5cc1f1f49f3bf1a8e935025588d8b09570d",
+        "size_bytes": 12702
+      },
+      {
+        "git_blob_sha1": "b75f1118ff40542a98bed03c6bb84835523d9bbb",
+        "git_mode": "100644",
+        "path": "dgm/llm_withtools.py",
+        "sha256": "b6fa4ee18ad8b42767f7cad68bf8ed7f7937dcfaf32b85757182979bdb895836",
+        "size_bytes": 17917
+      },
+      {
+        "git_blob_sha1": "5dee5201deffdbde40ba18e93d765570fe4fecd7",
+        "git_mode": "100644",
+        "path": "dgm/misc/conceptual.svg",
+        "sha256": "8e3ad907dd34a386be9e6b3a1da63f4223d72dac0df8bf5e5f528de18a01fef9",
+        "size_bytes": 914176
+      },
+      {
+        "git_blob_sha1": "52a561f298624bcdc7a32e4727021d816ff1692c",
+        "git_mode": "100644",
+        "path": "dgm/misc/overview.gif",
+        "sha256": "52863f6895553dd7f901be13686589bac33dbdeeb3fee5a6b86dd51a34be03ec",
+        "size_bytes": 2182207
+      },
+      {
+        "git_blob_sha1": "9b15bb1422f26ca3fb92c10c0a34e9c64db66be5",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/benchmark.py",
+        "sha256": "b91823a5999c663847d4556049b66623144b625510bf1aa0416f66f83d0959ec",
+        "size_bytes": 32978
+      },
+      {
+        "git_blob_sha1": "b8338c5e04f5f4085bc35f9370dccfbdb4394e98",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/constants.py",
+        "sha256": "b7eeb9b5abe77aff08c476969902b7b3c777104f7b233bb171adf4d86f9ca67f",
+        "size_bytes": 2606
+      },
+      {
+        "git_blob_sha1": "60daa2beb2258769e28b358039efecd5ad46764f",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/docker_build.py",
+        "sha256": "ad300c4d176c4409be554a1e6b2f1c02f48891fce41c31da698509579c0cb98e",
+        "size_bytes": 21059
+      },
+      {
+        "git_blob_sha1": "7bac372ea8449077e5c9ffc57e4c27aa7ecad61c",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/docker_utils.py",
+        "sha256": "9f0d62ef345aa9a7b73508badd892a61e54dbce3cbad4c05354a5e9b66cd6fdc",
+        "size_bytes": 10375
+      },
+      {
+        "git_blob_sha1": "696eb8a389d7c4741be7f5ac6f8cfa7f8ce8da13",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/dockerfiles.py",
+        "sha256": "29f3e26c2723722ab602a423b7a3c6e9d34e0deb0a5a4844b03917137f955d3e",
+        "size_bytes": 3085
+      },
+      {
+        "git_blob_sha1": "69a9e8968b4bf5a26662dd91b9853671762a365d",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/harness.py",
+        "sha256": "15199d0ce36d17c74ae49510b538f7c790c5b03c5a0547fe41da152432ce7f06",
+        "size_bytes": 17726
+      },
+      {
+        "git_blob_sha1": "bf4be94f319d0498fba75cf33c3c2fa7b0716368",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/prepare_polyglot_dataset.py",
+        "sha256": "f5f5103cbe762fc8f42933a086bab725c7f25178e8952dfde364c13b999563f7",
+        "size_bytes": 10598
+      },
+      {
+        "git_blob_sha1": "02f1ab291feb9ac0321185b24f166713b2f67d7c",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/run_evaluation.py",
+        "sha256": "c7e44170aa5b6b643b190d9757acdfee392c1c5b890b6dafd1081be2c997fcbd",
+        "size_bytes": 21557
+      },
+      {
+        "git_blob_sha1": "7cce480f7da58484fee26c2d04fa4ad844be8055",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/subsets/medium.json",
+        "sha256": "11d06ac550fb0b15a2f855091308beffd918770a0ed4c4a64df6623652b1e0f3",
+        "size_bytes": 1188
+      },
+      {
+        "git_blob_sha1": "5e1e3c40b6bc6b02920074296c33317fadd4e084",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/subsets/small.json",
+        "sha256": "efb782a6260979f847c7cc5bb6af95f0bd1678aa7eb0cd075fdb663949efe2f9",
+        "size_bytes": 265
+      },
+      {
+        "git_blob_sha1": "55d5406ca1e49d2b352280600f2ee5668597f6b8",
+        "git_mode": "100644",
+        "path": "dgm/polyglot/test_spec.py",
+        "sha256": "f113789b55444c336cd3c82808524c7f26b84ee11393d44bb60a489ae2421743",
+        "size_bytes": 11402
+      },
+      {
+        "git_blob_sha1": "1770b875c5962d2e3a3f448a42a8de7d6e0051d0",
+        "git_mode": "100644",
+        "path": "dgm/prompts/diagnose_improvement_prompt.py",
+        "sha256": "eac772550ccac273162e2ce6ff43b81eec03743a321f9b30bc07fc941db2c6a4",
+        "size_bytes": 5542
+      },
+      {
+        "git_blob_sha1": "0a958270d9e5fae34c9f1205ef75f560e4a88c7b",
+        "git_mode": "100644",
+        "path": "dgm/prompts/self_improvement_prompt.py",
+        "sha256": "7d061402038e9ccbb120088ac849863e5880a657ad4a60122d93fdd180e908f2",
+        "size_bytes": 29740
+      },
+      {
+        "git_blob_sha1": "56842d4a915a055a1e988f7da1b7a44b8dc0217a",
+        "git_mode": "100644",
+        "path": "dgm/prompts/testrepo_prompt.py",
+        "sha256": "d72f897bf6627a0eaa8f6037e2380ceb2cd3ddb71dd9f1a523b559a5bb21c8a1",
+        "size_bytes": 1929
+      },
+      {
+        "git_blob_sha1": "85e02d52bb55036a97dd79c344fa81f40466039d",
+        "git_mode": "100644",
+        "path": "dgm/prompts/tooluse_prompt.py",
+        "sha256": "79c23086fa7f7d5d5af5b5e7f3988b8bd13da224c8198787c1ff6db9439b066d",
+        "size_bytes": 994
+      },
+      {
+        "git_blob_sha1": "204f31b4010a1bede05a8278dd73b3791f1a55e5",
+        "git_mode": "100644",
+        "path": "dgm/pytest.ini",
+        "sha256": "b7a2cf657ccfcd49d5c111978f06d68a97f4389b0beefbbca57f7e296e724625",
+        "size_bytes": 371
+      },
+      {
+        "git_blob_sha1": "0a303559f6d6b3803b59fdf0b0c3a9de8c74dc03",
+        "git_mode": "100644",
+        "path": "dgm/requirements.txt",
+        "sha256": "4ef674aecea8fce1c1be6d663aab988dae61d5951bd296ab6250f5e2bc315aaf",
+        "size_bytes": 211
+      },
+      {
+        "git_blob_sha1": "cdf25b5cd924590b18910f7128ec53ecea8dd1a7",
+        "git_mode": "100644",
+        "path": "dgm/requirements_dev.txt",
+        "sha256": "58cfa97e21b89fad87009c8b2e41888558a1b5e09e11951519869822ccfe324f",
+        "size_bytes": 49
+      },
+      {
+        "git_blob_sha1": "c8e41b5050f169959882dec1afca2ff94d69303e",
+        "git_mode": "100644",
+        "path": "dgm/self_improve_step.py",
+        "sha256": "6f2ec364b11e7f6d35391ea66896fa2394cbca3bc59d68cf7352c2a77aa8cca7",
+        "size_bytes": 19726
+      },
+      {
+        "git_blob_sha1": "1b940db792f062b6e1e9143545236f4ba1c17ed1",
+        "git_mode": "100644",
+        "path": "dgm/swe_bench/harness.py",
+        "sha256": "2445479db7c7b0fa607dde5153dde2a85ce1fb3dd810bb088c81ab2f265c617a",
+        "size_bytes": 13042
+      },
+      {
+        "git_blob_sha1": "d5b83c0bdf509a859897ed7f99be8203ff307086",
+        "git_mode": "100644",
+        "path": "dgm/swe_bench/report.py",
+        "sha256": "a86e6fa6f8826414c55f0742f115ab05bb35a9d733bc447fa2dcf3138a9d33d4",
+        "size_bytes": 5665
+      },
+      {
+        "git_blob_sha1": "ec238f5da8526154627ecbad4a2cb20c98cec5bf",
+        "git_mode": "100644",
+        "path": "dgm/swe_bench/subsets/big.json",
+        "sha256": "76a8b81f0c044a64c928ab46312b5eb69c3728ab7d39c4fe6239a790797906cd",
+        "size_bytes": 3960
+      },
+      {
+        "git_blob_sha1": "836b2e0cb386d6a3737cf2e9346f742c1e84cb73",
+        "git_mode": "100644",
+        "path": "dgm/swe_bench/subsets/medium.json",
+        "sha256": "bf1cde9b2590f7813cc0cbb43a3ce0a9fccbdd163083891ff96b9abc82e4c06f",
+        "size_bytes": 1284
+      },
+      {
+        "git_blob_sha1": "ba80c367b958496087f25f6b2cd667b982b2404c",
+        "git_mode": "100644",
+        "path": "dgm/swe_bench/subsets/small.json",
+        "sha256": "b8909d87321bf7e9277e82baff8b2a739a3e1e76585ec512ae8ad4b6eef86591",
+        "size_bytes": 284
+      },
+      {
+        "git_blob_sha1": "f61ffa0c0500a3dbc98db5ebb1267cdf1f57866c",
+        "git_mode": "100644",
+        "path": "dgm/swe_bench/utils.py",
+        "sha256": "765c5c340426206c00f80641e57ddaf7eb17e61274304c9d6847e9a6166cb508",
+        "size_bytes": 8633
+      },
+      {
+        "git_blob_sha1": "be6e527f0b755f201f88b6adbc2c9ebe73f6a7ac",
+        "git_mode": "100644",
+        "path": "dgm/test_swebench.py",
+        "sha256": "c2f19f29e132cbecc5a68e94715604658a6b0ec4649d4968efc537c140ba40c6",
+        "size_bytes": 3025
+      },
+      {
+        "git_blob_sha1": "4ca16ae8291dae41be53e3226f586150ab4060cc",
+        "git_mode": "100644",
+        "path": "dgm/tests/conftest.py",
+        "sha256": "c2b1b9ef868784b894d02f8f5b0ed34ac4d29cee719893beb5eb8bae6ad9b2e0",
+        "size_bytes": 144
+      },
+      {
+        "git_blob_sha1": "a826846ec91fb2a8611b8a4a25e85df0f0d92ecd",
+        "git_mode": "100644",
+        "path": "dgm/tests/test_bash_tool.py",
+        "sha256": "837ad08e89aa7c227655d16896c564b1dbfa8414543440b8dfe4a88d9431413b",
+        "size_bytes": 2829
+      },
+      {
+        "git_blob_sha1": "f0782c69c0ba27092520c2ae6b39a926079aca70",
+        "git_mode": "100644",
+        "path": "dgm/tests/test_edit_tool.py",
+        "sha256": "42245724b6e5470eacedc94b60ba03d5ccc8c75f645fcb24c6a3b376e1cdb654",
+        "size_bytes": 3139
+      },
+      {
+        "git_blob_sha1": "89518f4bd7e02826853a44f24b413dcbe15ca463",
+        "git_mode": "100644",
+        "path": "dgm/tools/__init__.py",
+        "sha256": "20d623ac2d12119dc46527fdf099bb5c1329e0024ed27a413d2b929ca9888b86",
+        "size_bytes": 1103
+      },
+      {
+        "git_blob_sha1": "ba91c0e21980de0f675a3820fa221a92825354a7",
+        "git_mode": "100644",
+        "path": "dgm/tools/bash.py",
+        "sha256": "a11e7b40fe61b3105b88c4370bda1947a4f0f9cef0231a5f279ae917e0f21b02",
+        "size_bytes": 5601
+      },
+      {
+        "git_blob_sha1": "244d4404e7f6617835f70f76862b33f5bfa1b470",
+        "git_mode": "100644",
+        "path": "dgm/tools/edit.py",
+        "sha256": "b53f7ae71c5bcda3de994f32a8553bead0f3fe46b250130adfd47ed40a2dec94",
+        "size_bytes": 6038
+      },
+      {
+        "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "git_mode": "100644",
+        "path": "dgm/utils/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      },
+      {
+        "git_blob_sha1": "f0bc3aa9f3a9245088b31ecca42e3e648ffef287",
+        "git_mode": "100644",
+        "path": "dgm/utils/common_utils.py",
+        "sha256": "638400ea31f05424bd87f07b51bc7a516ef7929f7ddc0e45f1a8023a3eb851b9",
+        "size_bytes": 379
+      },
+      {
+        "git_blob_sha1": "e4f381c1ca6a1a0979bfea000b801c8e45cc5344",
+        "git_mode": "100644",
+        "path": "dgm/utils/docker_utils.py",
+        "sha256": "4f72795d21358299a2b3053e7798837a110a4a795fab8f064cdeaab759568552",
+        "size_bytes": 10315
+      },
+      {
+        "git_blob_sha1": "4ad02175a89b98412612926489169cd18ab7b0c5",
+        "git_mode": "100644",
+        "path": "dgm/utils/eval_utils.py",
+        "sha256": "5beaeaaa4e421e66aa7a6458882b34eeb781b5368bb5e15e492cb7e61292403d",
+        "size_bytes": 4031
+      },
+      {
+        "git_blob_sha1": "0fb73e33afe7109dd44c9531f05c1600a51e73cc",
+        "git_mode": "100644",
+        "path": "dgm/utils/evo_utils.py",
+        "sha256": "0eb779270390f39aa0c4ff045ec9b6c3049736c6a008ae3d2e7a2df7ef253570",
+        "size_bytes": 5599
+      },
+      {
+        "git_blob_sha1": "7d212f4d2a103993affc8bca7f872a846956a025",
+        "git_mode": "100644",
+        "path": "dgm/utils/git_utils.py",
+        "sha256": "b6d1a051ca7e663f221d5bc1c9154f33f380a80371ded6c8abfdbf23102004ea",
+        "size_bytes": 5268
+      },
+      {
+        "git_blob_sha1": "9cd27b4b6dff55e736db8a6755462e9a6acb50c4",
+        "git_mode": "100644",
+        "path": "dgm/utils/swe_log_parsers.py",
+        "sha256": "d1239b46864d9f4320ee6358b266113d009d1c55c706c00e29f910ed3cfa1aff",
+        "size_bytes": 10633
+      }
+    ],
+    "path": "DGM_FILTERED_SOURCE_a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2.tar.gz",
+    "sha256": "b1755cb7b009e241e8ca419cf5567dfdee8bc8fd11b1f427bceb124a2eed9081",
+    "size_bytes": 2810154
+  },
+  "rights": {
+    "license_path": "evidence/DGM_LICENSE_APACHE_2_0.txt",
+    "license_sha256": "84b7504ce8dda1f37f592cdf67ad21371864583720d79ea289b0b0c75bfcdb17",
+    "source_spdx": "Apache-2.0"
+  },
+  "runtime_seconds": 2.634979,
+  "schema_version": "orion.p5.c3.filtered-dgm-source-receipt.v8",
+  "source": {
+    "codeload_request": {
+      "body_bytes": 10465161,
+      "body_sha256": "3c98ae6bfa7b6597cbcddaf02bcce46e56ff97cdf6d14867251211be8069d961",
+      "content_type": "application/x-gzip",
+      "error": null,
+      "final_url": "https://codeload.github.com/jennyzzt/dgm/tar.gz/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+      "finished_at": "2026-08-23T20:55:06.191141+00:00",
+      "http_status": 200,
+      "runtime_seconds": 1.319889,
+      "started_at": "2026-08-23T20:55:04.871269+00:00",
+      "url": "https://codeload.github.com/jennyzzt/dgm/tar.gz/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2"
+    },
+    "commit_request": {
+      "body_bytes": 2193,
+      "body_sha256": "e4d315ad599597929fc89fa44949ff0e51ed4ef86f952662408f365399cbbff6",
+      "content_type": "application/json; charset=utf-8",
+      "error": null,
+      "final_url": "https://api.github.com/repos/jennyzzt/dgm/git/commits/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+      "finished_at": "2026-08-23T20:55:04.147577+00:00",
+      "http_status": 200,
+      "runtime_seconds": 0.319994,
+      "started_at": "2026-08-23T20:55:03.827599+00:00",
+      "url": "https://api.github.com/repos/jennyzzt/dgm/git/commits/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2"
+    },
+    "commit_sha": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+    "license_request": {
+      "body_bytes": 11361,
+      "body_sha256": "84b7504ce8dda1f37f592cdf67ad21371864583720d79ea289b0b0c75bfcdb17",
+      "content_type": "application/vnd.github.raw+json; charset=utf-8",
+      "error": null,
+      "final_url": "https://api.github.com/repos/jennyzzt/dgm/contents/LICENSE?ref=a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+      "finished_at": "2026-08-23T20:55:04.870710+00:00",
+      "http_status": 200,
+      "runtime_seconds": 0.282574,
+      "started_at": "2026-08-23T20:55:04.588148+00:00",
+      "url": "https://api.github.com/repos/jennyzzt/dgm/contents/LICENSE?ref=a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2"
+    },
+    "repository": "https://github.com/jennyzzt/dgm",
+    "tree_request": {
+      "body_bytes": 459657,
+      "body_sha256": "1a6fa00f226884032407b4b309dffaf6b446383bc1cb503d1fc50531a3eda7ef",
+      "content_type": "application/json; charset=utf-8",
+      "error": null,
+      "final_url": "https://api.github.com/repos/jennyzzt/dgm/git/trees/dc58ea5c481124afdb97468c1bed4e0debb425c4?recursive=1",
+      "finished_at": "2026-08-23T20:55:04.585418+00:00",
+      "http_status": 200,
+      "runtime_seconds": 0.437747,
+      "started_at": "2026-08-23T20:55:04.147674+00:00",
+      "url": "https://api.github.com/repos/jennyzzt/dgm/git/trees/dc58ea5c481124afdb97468c1bed4e0debb425c4?recursive=1"
+    },
+    "tree_sha": "dc58ea5c481124afdb97468c1bed4e0debb425c4"
+  },
+  "started_at": "2026-08-23T20:55:03.827455+00:00"
+}

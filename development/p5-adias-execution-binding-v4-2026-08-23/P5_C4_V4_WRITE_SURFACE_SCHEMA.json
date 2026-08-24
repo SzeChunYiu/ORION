@@ -1,0 +1,59 @@
+{
+  "$id": "orion.p5.c4.write-surface.v4",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "native_observed_network": [
+    "host-network Docker builds",
+    "host-network task containers",
+    "model provider calls",
+    "optional external web search",
+    "package and Git dependency fetches"
+  ],
+  "native_observed_writes": [
+    "host outputs/logs/staging/temporary directories",
+    "mutable source copy and Git objects/commits inside task container",
+    "agent_output profiles, diagnoses, change reports, patches, token usage, transcripts, raw events",
+    "records/report JSON and episode traces",
+    "Docker images, containers, build cache, and optional host data mount access"
+  ],
+  "properties": {
+    "candidate_case": {
+      "description": "read-only exact candidate-visible case packet",
+      "type": "string"
+    },
+    "dedicated_docker_root": {
+      "description": "ephemeral daemon socket, image, container, layer, and volume state under scratch_root",
+      "type": "string"
+    },
+    "forbidden_surfaces": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "released_output_root": {
+      "description": "sole retained output mount",
+      "type": "string"
+    },
+    "scratch_root": {
+      "description": "ephemeral HOME/TMP/cache/build root",
+      "type": "string"
+    },
+    "source_copy": {
+      "description": "ephemeral mutable copy of the pinned tree under scratch_root",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_copy",
+    "candidate_case",
+    "released_output_root",
+    "scratch_root",
+    "dedicated_docker_root",
+    "forbidden_surfaces"
+  ],
+  "source_native_boundary_is_sufficient": false,
+  "status": "BLOCKING_UNTIL_DISPOSABLE_EXECUTOR_RECEIPT",
+  "type": "object"
+}

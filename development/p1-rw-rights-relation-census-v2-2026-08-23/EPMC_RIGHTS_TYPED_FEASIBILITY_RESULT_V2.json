@@ -1,0 +1,124 @@
+{
+  "authority": "OFFICIAL_METADATA_RIGHTS_AND_SOURCE_NATIVE_AGGREGATE_TYPE_FEASIBILITY_ONLY",
+  "current_terminal": "P1_RW_EPMC_RIGHTS_VALID_RELATION_AND_SOURCE_NATIVE_TYPED_FEASIBILITY_PASS__SCIENTIFIC_ACTION_GOLD_AND_CONSTRUCT_VALIDITY_CANNOT_CHECK",
+  "epmc_core_exact_rights": {
+    "amendment_path": "EPMC_CORE_LICENSE_GATEWAY_AMENDMENT_C_V2.json",
+    "amendment_sha256": "70d0591c353fa156d5be4dcfc7640649b10bcc3a6578e98d0f24b538c6783d9d",
+    "batches": 320,
+    "case_text_or_forbidden_fields_semantically_accessed": false,
+    "hit_count_sum": 25588,
+    "normalized_status_counts": {
+      "ALLOW_CC0": 50,
+      "ALLOW_CC_BY": 25534,
+      "ALLOW_CC_BY_SA": 4
+    },
+    "raw_license_aggregate_counts": {
+      "cc by": 25534,
+      "cc by-sa": 4,
+      "cc0": 50
+    },
+    "raw_payloads_persisted": false,
+    "response_sha256_multiset_digest": "fba71a0008d9f16d89ae19ed136e530afe08e7b16b66c13d2cc77349df0ac6f8",
+    "unique_pmids_queried": 25588
+  },
+  "generated_at_utc": "2026-08-23T17:27:42.264252+00:00",
+  "identity": "P1.RW.EPMC.RIGHTS.TYPED.FEASIBILITY.RESULT.V2",
+  "input": {
+    "admitted_rw_cc0_families": 42924,
+    "admitted_rw_cc0_relations": 49878,
+    "relations_with_both_endpoint_pmids": 29768,
+    "unique_endpoint_pmids_queried": 57444
+  },
+  "positive_result": "The exact-rights-pass relations/families and nonempty provider-native strata demonstrate a rights-valid public construction pool under frozen metadata-only rules. They do not demonstrate that anti-leak candidate evidence or independently adjudicated minimal scientific actions exist.",
+  "protocol": {
+    "path": "EPMC_AGGREGATE_RIGHTS_REDUCER_PREFREEZE_V2.json",
+    "sha256": "4a80d9408aa594141f1d9c475a2145b7349ae129a006117c832830071db898c9"
+  },
+  "raw_or_temporary_payloads_retained": false,
+  "relation_feasibility": {
+    "exact_both_endpoint_content_rights_pass_relations": 12038,
+    "exact_rights_pass_unique_source_families": 11602,
+    "status_counts": {
+      "CANNOT_CHECK_EPMC_ALLOWLIST_SEARCH_ABSENCE": 17730,
+      "CANNOT_CHECK_NO_BOTH_PMID_FOR_BOUNDED_REDUCER": 20110,
+      "EXACT_BOTH_ENDPOINT_CONTENT_RIGHTS_PASS": 12038
+    }
+  },
+  "schema_version": "orion.p1.epmc-rights-reducer-result.v2",
+  "search_stage": {
+    "absence_interpretation": "CANNOT_CHECK, never incompatible rights or negative science",
+    "batches": 719,
+    "epmc_provider_version": "6.9",
+    "hit_count_sum": 25588,
+    "response_sha256_multiset_digest": "223d765492152956dd8b9f8ae698c613fc6eee926f6d692a9e3a7d453d036357",
+    "unique_candidate_pmcids": 25588,
+    "unique_pmids_with_multiple_pmcid_matches": 0,
+    "unique_pmids_with_one_allowlist_search_match": 25588
+  },
+  "source_native_aggregate_stratum_query_receipts": {
+    "EPMC_CORRECTION_OR_ERRATUM": {
+      "batches": 150,
+      "hit_count_sum": 261,
+      "matched_notice_pmids": 261,
+      "response_sha256_multiset_digest": "770dd060d6afe01db318713075fb7579c0a5f368d939f243939a9107791662eb"
+    },
+    "EPMC_EXPRESSION_OF_CONCERN": {
+      "batches": 150,
+      "hit_count_sum": 469,
+      "matched_notice_pmids": 469,
+      "response_sha256_multiset_digest": "141c3014e126282d5142f6bb0f0142c5cc3ba59d9a708e3634934784d2fecd0d"
+    },
+    "EPMC_RETRACTION_NOTICE": {
+      "batches": 150,
+      "hit_count_sum": 11251,
+      "matched_notice_pmids": 11251,
+      "response_sha256_multiset_digest": "c7c2ec920e3652c9ad877fef80d81cd7c189cd1a0116f6a6b1c79c2b814b2438"
+    }
+  },
+  "typed_boundary": {
+    "case_text_accessed": false,
+    "identifier_to_type_mapping_persisted": false,
+    "model_or_comparator_executed": false,
+    "protected_scores_accessed": false,
+    "publication_type_is_scientific_terminal_or_gold": false,
+    "rw_action_columns_opened": false,
+    "scientific_terminal_cells_assigned": 0
+  },
+  "typed_feasibility_cells": {
+    "EPMC_AMBIGUOUS_MULTIPLE_STRATA": {
+      "exact_rights_pass_relations": 1,
+      "minimum_20_families_each_wave_pass": false,
+      "primary_families": 0,
+      "replication_families": 1,
+      "unique_source_families": 1
+    },
+    "EPMC_CORRECTION_OR_ERRATUM": {
+      "exact_rights_pass_relations": 260,
+      "minimum_20_families_each_wave_pass": true,
+      "primary_families": 136,
+      "replication_families": 115,
+      "unique_source_families": 251
+    },
+    "EPMC_EXPRESSION_OF_CONCERN": {
+      "exact_rights_pass_relations": 469,
+      "minimum_20_families_each_wave_pass": true,
+      "primary_families": 230,
+      "replication_families": 236,
+      "unique_source_families": 466
+    },
+    "EPMC_OTHER_OR_CANNOT_CHECK": {
+      "exact_rights_pass_relations": 11,
+      "minimum_20_families_each_wave_pass": false,
+      "primary_families": 5,
+      "replication_families": 5,
+      "unique_source_families": 10
+    },
+    "EPMC_RETRACTION_NOTICE": {
+      "exact_rights_pass_relations": 11297,
+      "minimum_20_families_each_wave_pass": true,
+      "primary_families": 5611,
+      "replication_families": 5639,
+      "unique_source_families": 11250
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v10.protocol",
+  "identity": "P4.M6.JOSS.EXACT.EDGE.LINEAGE.AUTHORITY.V10",
+  "frozen_at": "2026-08-24T05:38:24Z",
+  "repository_head_at_freeze": "8d47c546591a3c96dc5cf202f7e227d13251221c",
+  "predecessor": {
+    "identity": "P4.M6.JOSS.EXACT_EDGE_LINEAGE.AUTHORITY.V9",
+    "result_path": "development/p4-exact-edge-lineage-authority-v9-2026-08-23/RESULT_V9.json",
+    "result_sha256": "b9507beca0bc653e99e6281a4f47df10d600851be6c8b1750a0beab4b8aa2111",
+    "sha256sums_path": "development/p4-exact-edge-lineage-authority-v9-2026-08-23/SHA256SUMS",
+    "sha256sums_sha256": "caae0bb5fabd064f8c76d33270c97afe2659a45da9a050118bf68fd7bace4cb7",
+    "exact_bridge_before": "75/80",
+    "remaining_indices": [36, 91, 133, 185, 199]
+  },
+  "unit_rule": "The same five frozen JOSS publication concepts only. No replacement publication, archive version, repository, release, tag, commit, provider response, artifact, file, author or request is a new unit.",
+  "historical_results_immutable": true,
+  "outcomes_accessed": false,
+  "allowed_authorities": [
+    "Zenodo official record, versions and checksum-bound file APIs",
+    "GitHub official REST, Atom, raw-content and codeload endpoints",
+    "GitHub official artifact-attestation API for an exact SHA-256 subject",
+    "PyPI official project JSON and Integrity API for an exact distribution filename",
+    "Software Heritage official origin, visit, snapshot, release, revision and directory APIs",
+    "Crossref official work API and the exact JOSS review issue and comments"
+  ],
+  "predeclared_evidence_order": [
+    "1. Verify the immutable V9 predecessor hashes and retain its adverse evidence without reinterpretation.",
+    "2. Query the exact Zenodo record, concept/version chain and frozen file checksum. Stop as CANNOT_CHECK if the publication version or frozen file identity is contradicted.",
+    "3. Query exact GitHub tag/ref, release, commit and repository-native metadata. A short prefix, branch head, release target_commitish string or deleted ref is insufficient.",
+    "4. Query exact PyPI Integrity and GitHub artifact-attestation subjects for indices 133 and 185. A 404 or unsigned artifact does not become negative provenance and cannot close a build edge.",
+    "5. Query Software Heritage origin visits and snapshots, then follow an exact tag branch only to a full revision and its directory. Deposit release-to-directory evidence alone is insufficient for a Git revision edge.",
+    "6. Compare checksum-bound archive content with an immutable provider-native revision only after the full revision is authenticated. Exact normalized path and byte equality may close the content identity gate. Subset or generated-projection equality does not.",
+    "7. Query the exact JOSS record only to corroborate publication DOI, repository, version and archive DOI. Editorial statements do not manufacture a missing full commit.",
+    "8. Apply the frozen conjunction and report every failed and not-reached gate. No score or compensatory rule is permitted."
+  ],
+  "closure_rule": {
+    "edge": "The exact publication DOI must bind the frozen archive version and repository. Accepted software rights must hold on the archive and immutable source. The archive must be bound to a full immutable source revision by an exact provider-native ref/release edge, an authenticated archival origin snapshot edge, or exact normalized archive-to-revision content equality.",
+    "build_projection": "For a distribution projection, closure additionally requires provider-native provenance or attestation that binds the exact artifact SHA-256 to the full source commit. Local reproducibility, source-subset equality, matching version text, or a same-version tag is not sufficient.",
+    "cannot_check": "Missing, ambiguous, mutable, name-only, third-party-only, unsigned or contradicted authority remains CANNOT_CHECK. Sequentially later gates are NOT_REACHED after a necessary failure.",
+    "scientific_boundary": "An exact source edge is only source-frame progress. It grants no natural-pair eligibility, author-lineage independence, external custody, comparator outcome, performance or superiority authority."
+  },
+  "targets": [
+    {
+      "frozen_index": 36,
+      "publication_doi": "10.21105/joss.09542",
+      "archive_doi": "10.5281/zenodo.21221061",
+      "publication_version": "0.0.3",
+      "repository": "jaxionproject/jaxion",
+      "accepted_commit": "069ab4f56d100d765d46c594ac1b06add7e49f9e",
+      "v9_residual": "EXACT_ARCHIVE_VERSION_DOI_RELATION_AND_ARCHIVE_ROOT_TO_TAG_COMMIT_IDENTITY_CANNOT_CHECK",
+      "v10_discriminator": "A corrected provider version record and archive root must bind exact version 0.0.3 to accepted commit 069ab4f56d100d765d46c594ac1b06add7e49f9e."
+    },
+    {
+      "frozen_index": 91,
+      "publication_doi": "10.21105/joss.10245",
+      "archive_doi": "10.5281/zenodo.20171460",
+      "publication_version": "v1.0.0",
+      "repository": "nutritionallungimmunity/pai",
+      "accepted_commit": "9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59",
+      "v9_residual": "ARCHIVE_TO_ACCEPTED_TAG_COMMIT_IDENTITY_CONTRADICTED_BY_EMBEDDED_GIT_HEAD",
+      "v10_discriminator": "A corrected exact archive or authenticated provider statement must replace the adverse embedded Git authority that binds aa021231cdafb6d74ce9ab5f55f824a3032058a4."
+    },
+    {
+      "frozen_index": 133,
+      "publication_doi": "10.21105/joss.10112",
+      "archive_doi": "10.5281/zenodo.20026885",
+      "publication_version": "v0.0.13",
+      "repository": "artefactory/woodtapper",
+      "accepted_commit": "7ac6d23d504404c4004faad663f6b889427109e6",
+      "artifact_filename": "woodtapper-0.0.13.tar.gz",
+      "artifact_sha256": "b509f6469b9ff8888195751c811d689559f45e24aeb35bb173b9680c99c8dbf3",
+      "v9_residual": "SDIST_TO_FULL_COMMIT_AUTHENTICATED_BUILD_PROVENANCE_CANNOT_CHECK",
+      "v10_discriminator": "Exact PyPI Integrity or GitHub artifact attestation must bind the sdist SHA-256 to accepted commit 7ac6d23d504404c4004faad663f6b889427109e6."
+    },
+    {
+      "frozen_index": 185,
+      "publication_doi": "10.21105/joss.09364",
+      "archive_doi": "10.5281/zenodo.19051387",
+      "publication_version": "v0.14.0",
+      "repository": "mit-psfc/disruption-py",
+      "accepted_commit": "dec5c58a3e3970bc6817f33efb615fea11057fce",
+      "accepted_source_tag": "v0.14",
+      "artifact_filename": "disruption_py-0.14.0.tar.gz",
+      "artifact_sha256": "775f92dbcbd6d1523db241494998e4b0867d51a84236feb7accc86b63b033a19",
+      "v9_residual": "SDIST_PROJECTION_TO_TAG_COMMIT_AUTHENTICATED_BUILD_PROVENANCE_CANNOT_CHECK",
+      "v10_discriminator": "Exact PyPI Integrity or GitHub artifact attestation must bind the sdist SHA-256 to accepted commit dec5c58a3e3970bc6817f33efb615fea11057fce."
+    },
+    {
+      "frozen_index": 199,
+      "publication_doi": "10.21105/joss.09603",
+      "archive_doi": "10.5281/zenodo.19202203",
+      "publication_version": "v0.13.4",
+      "repository": "targene/targene-pipeline",
+      "discovered_commit": "0f8b2dbca06a3bb7031de9058ee9882995e04412",
+      "archive_inner_directory_swhid": "swh:1:dir:178315b57afafc1f20ab9929b4de893430524c62",
+      "source_origin_snapshot": "4cc32f66bbfae46d9d3ee0bfd210a46619f0e895",
+      "v9_residual": "FULL_COMMIT_DISCOVERED_BUT_PROVIDER_NATIVE_REVISION_AUTHORITY_CANNOT_CHECK",
+      "v10_discriminator": "The Software Heritage source-origin snapshot may close only if an exact v0.13.4 branch points to full revision 0f8b2dbca06a3bb7031de9058ee9882995e04412 and that revision points to directory 178315b57afafc1f20ab9929b4de893430524c62 with accepted rights."
+    }
+  ],
+  "forbidden": [
+    "modify or delete V9 evidence",
+    "replace a frozen publication identity",
+    "treat a provider response, tag, commit, file, author or request as a new scientific unit",
+    "promote third-party discovery into provider-native authority",
+    "treat local reconstruction or subset equality as provider attestation",
+    "infer natural-pair eligibility, author-lineage independence, external custody or scientific performance from exact-edge closure",
+    "run pytest or repository CI"
+  ]
+}

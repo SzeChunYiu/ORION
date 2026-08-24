@@ -1,0 +1,35 @@
+{
+  "authority_acts": {
+    "host_authority": false,
+    "independent_semantic_review": false,
+    "target_corpus_rights": false,
+    "vocabulary_owner_or_formal_delegate": false
+  },
+  "closed_authority_acts": 0,
+  "external_execution": {
+    "authorized_delivery_channel_supplied": false,
+    "external_actor_identities_supplied": false,
+    "external_outputs_received": 0,
+    "external_outputs_required": 7,
+    "started": false
+  },
+  "frozen_counts": {
+    "cannot_check_maps": 720,
+    "certified_maps": 0,
+    "map_space": 117649,
+    "rejected_maps": 116929
+  },
+  "map_audit_authorized": false,
+  "provider_ready_packet": {
+    "administrative_components_bound": 8,
+    "complete": true,
+    "manifest_path": "EXECUTION_PACKET_MANIFEST_V13.json",
+    "manifest_sha256": "98c096919af7336d1f50cdbed644dce01f371812391996bf59339f0a326f2820",
+    "semantic_inputs_bound": 3,
+    "signing_cycle_resolved": true,
+    "unsigned_templates": 5
+  },
+  "reason_external_execution_not_started": "No externally verified R7 owner/delegator, accepting delegate, host authority, rights holder, independent reviewer or authorized delivery channel was supplied. Candidate-author and AI fabrication is prohibited.",
+  "schema_version": "orion.p1.owner-custody-positive-successor.authority-execution-status.v13",
+  "terminal": "P1_V13_PROVIDER_READY_PACKET_BOUND__ZERO_OF_SEVEN_EXTERNAL_OUTPUTS_RECEIVED__ZERO_OF_FOUR_AUTHORITY_ACTS_CLOSED__720_MAPS_UNCHANGED"
+}

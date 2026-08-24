@@ -1,0 +1,1828 @@
+{
+  "archive_download_url": "https://github.com/apache/commons-lang/archive/396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+  "archive_root": "commons-lang-396afc3e4693cfee182efe582455f2d97058c068/",
+  "canonical_member_manifest_sha256": "4fbe1517b1bf3c549986272fe16fead6a8e4eb6f3cfa47f09c3a92bf94162abc",
+  "link_member_count": 0,
+  "members": [
+    {
+      "mode": "0o664",
+      "path": "LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size_bytes": 11358
+    },
+    {
+      "mode": "0o664",
+      "path": "NOTICE.txt",
+      "sha256": "3b1830189d4da56ebc6e43f32a96b92caa3392cdc0c5ba4af7c399f81696545d",
+      "size_bytes": 301
+    },
+    {
+      "mode": "0o664",
+      "path": "RELEASE-NOTES.txt",
+      "sha256": "1577ef1704152ad09cdf0edb3adff685172f5091fc7df70aac8d5613d36a6d79",
+      "size_bytes": 2265
+    },
+    {
+      "mode": "0o664",
+      "path": "build.properties.sample",
+      "sha256": "50fafe63cb696e9a5bb8c79e46421453d9faa4c6ffc8348ebaa6cedcea5a4284",
+      "size_bytes": 1437
+    },
+    {
+      "mode": "0o664",
+      "path": "build.xml",
+      "sha256": "371c4e41a37cdfc862f8aaeabc69283525a5c84e364c510de4cdbb48f9dbe8ad",
+      "size_bytes": 11775
+    },
+    {
+      "mode": "0o664",
+      "path": "checkstyle.xml",
+      "sha256": "c7b0f04e7ddce25eae8e21708830917a936ed2dfab56f884bf2a1a672e2c61d3",
+      "size_bytes": 1847
+    },
+    {
+      "mode": "0o664",
+      "path": "default.properties",
+      "sha256": "e0fde69c6941ae97ce68c5045cff3bd01433b0486213bb9e65f215194a126e06",
+      "size_bytes": 2801
+    },
+    {
+      "mode": "0o664",
+      "path": "doap_lang.rdf",
+      "sha256": "f772055ac25f77dd7b88a51544d2f3d2da81753865b1aeb4eaf773a0601f59c8",
+      "size_bytes": 3744
+    },
+    {
+      "mode": "0o664",
+      "path": "findbugs-exclude-filter.xml",
+      "sha256": "9dc81d224ddc14d1af35509916a8168c4c7548d8525bedf56a830fdb67a7ae8a",
+      "size_bytes": 4336
+    },
+    {
+      "mode": "0o664",
+      "path": "pom.xml",
+      "sha256": "0110b202c1c966cb65064541136102bab8642ac9d7464e43a326716b26d96be9",
+      "size_bytes": 19643
+    },
+    {
+      "mode": "0o664",
+      "path": "src/assembly/bin.xml",
+      "sha256": "f8520055e948284178b3bc12018fe01fce6a04f1e2bbfe8850b6a6c136f0c4e5",
+      "size_bytes": 1585
+    },
+    {
+      "mode": "0o664",
+      "path": "src/assembly/src.xml",
+      "sha256": "98e6a7de73cc29d650b3fd91b98d263e4bad8465b59fd00c62075dfeb5513865",
+      "size_bytes": 1695
+    },
+    {
+      "mode": "0o664",
+      "path": "src/changes/changes.xml",
+      "sha256": "b7dea875da855d0a93bfe67c4fe4cd5873aa6d936c2123df1663c52ab86ef847",
+      "size_bytes": 62938
+    },
+    {
+      "mode": "0o664",
+      "path": "src/changes/release-notes.vm",
+      "sha256": "76f5bcd8dbe00a7f433abb83a8c6a5431c808dcab6881aa924f55fdadd7783ca",
+      "size_bytes": 3971
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/AnnotationUtils.java",
+      "sha256": "e3bcf0e2ed85cd12ee0d10efa7157ccfadc6ae5a604f844c973573d2fc3fd0ca",
+      "size_bytes": 13895
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/ArrayUtils.java",
+      "sha256": "c34d29a9ed3f04ab94f59ba9186ad3bcc5a42fcb894076ca69513c924a04935d",
+      "size_bytes": 235829
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/BitField.java",
+      "sha256": "63354c9cb65751520b833aebc2f270bb4c8b926300cc5004c76e61dbcf141bea",
+      "size_bytes": 8675
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/BooleanUtils.java",
+      "sha256": "1c90971a0ca12d9a7fabb0ed8e61d0692b045bf4ef41bddcef115717d2624d63",
+      "size_bytes": 42119
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/CharEncoding.java",
+      "sha256": "75f78bfa5270f0735981d4118a4c53d42fce8511eea5b8f5317a30a96cffcc74",
+      "size_bytes": 4193
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/CharRange.java",
+      "sha256": "f7995686b7871b90c36b2f125f51758d560c6420e8cf5a8642d611b91877cebf",
+      "size_bytes": 11147
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/CharSequenceUtils.java",
+      "sha256": "a8d916b9af69b22de931e0e1543426455809b11fc478b1fb97b883127160e162",
+      "size_bytes": 8576
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/CharSet.java",
+      "sha256": "1a622c7688cb163d9025a074ccb3122377db69a5e579f5010fa762783da8db85",
+      "size_bytes": 9066
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/CharSetUtils.java",
+      "sha256": "ecc7aafb2b6c8a68c7a8b0313b25da11684b89ba2cc8614d71de9910778a80a5",
+      "size_bytes": 9248
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/CharUtils.java",
+      "sha256": "d5afe664c295c13a7f561d96de89763606664ae77cf77dd71a8919f7e617bd3b",
+      "size_bytes": 18260
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/ClassUtils.java",
+      "sha256": "895ee3b272174b92e53dce063621fd05f6f68a5c2898770c275b9b415c36054a",
+      "size_bytes": 45815
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/Conversion.java",
+      "sha256": "8786fa07d8517dbe3e97b762036bf9212fee206262f44d6c3e65b16fb8e4cddc",
+      "size_bytes": 65666
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/EnumUtils.java",
+      "sha256": "671c2841ed022c4f5d477a426a0c65f3383f99b6b6f7e4f6b197956ff11c8143",
+      "size_bytes": 14041
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/JavaVersion.java",
+      "sha256": "a4b87b78bb18d115eb1cdf2a30ec8b4b605253a06de9bf5c3eafe4c324ebc58b",
+      "size_bytes": 4519
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/LocaleUtils.java",
+      "sha256": "7c33beb02231321c73c53daf24d66e59024ce37d32a54a1fd1ac52a811eb875c",
+      "size_bytes": 13204
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/ObjectUtils.java",
+      "sha256": "ac65428b215c089d08cf48444253d465febd9b75b016829592145753952a6fff",
+      "size_bytes": 35257
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/RandomStringUtils.java",
+      "sha256": "794dee4208002f98bc5dd998b45251f8bdf83d11c4a313f75a7edfc2fe912718",
+      "size_bytes": 13035
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/Range.java",
+      "sha256": "e6bc306c3125ef9ad2efe778e40ee28900f1d16a1608135b0bcb5a98909ce67e",
+      "size_bytes": 18011
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/SerializationException.java",
+      "sha256": "a0636de2229a0129fb3f246de32d3cabf730a0e9c364935831c6eca73a316114",
+      "size_bytes": 2473
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/SerializationUtils.java",
+      "sha256": "dd886d7da9357b30e1fbb84652a08c0c6eb17987e40c115da063b6e9bee7435b",
+      "size_bytes": 13125
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/StringEscapeUtils.java",
+      "sha256": "4557a973061d58d0ed5c12623ab9decaff0aa0b221212fe45a1a0ceb1d6564a0",
+      "size_bytes": 25310
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/StringUtils.java",
+      "sha256": "0170542292bfffcf79a82308c989b8d8c0d3ed85319f16cb728c7a7a22f5bb47",
+      "size_bytes": 297910
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/SystemUtils.java",
+      "sha256": "1376b2b4568a18f5f9ccff4878ad08aa08e3857845636d82ffa2cf5523a8c751",
+      "size_bytes": 50389
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/Validate.java",
+      "sha256": "6cc187882b6a92b3a709ea1a018e6dc38a16e9f6c7c5cb306324469876e9e1c1",
+      "size_bytes": 50292
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/builder/Builder.java",
+      "sha256": "90f35ada72f0aa20ab347c3fa5548f97d9c45c4f83ee775d88630bd6264a5fed",
+      "size_bytes": 3021
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/builder/CompareToBuilder.java",
+      "sha256": "34fc266834b149ba2babd3c1ef9d2aa85cfc84acfa74465a406d38858210ec64",
+      "size_bytes": 37365
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "sha256": "e2e4f3e28c3e526c55b4a7ab4d6db47f3fc72f8931613c803c6ce30972895df6",
+      "size_bytes": 32736
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/builder/HashCodeBuilder.java",
+      "sha256": "b6c2e17979a743e786b0b52414c813fdaa996dd2862ce155c08ec104b4a6b534",
+      "size_bytes": 32265
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/builder/IDKey.java",
+      "sha256": "34e71ab04c59361c188f8b5087aee0fa5cf85c8b635caf47d6f1c2b39e95f0af",
+      "size_bytes": 2452
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java",
+      "sha256": "0daeca44c2e1b9b36e433078dab4cab97e8c53e5ff2668fd5ee82ff891869916",
+      "size_bytes": 24237
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/builder/StandardToStringStyle.java",
+      "sha256": "eb3e3d2cf4e0495fee66e056783ea5ee6ced0ef8fde88b0d0d549a2a3cf3d811",
+      "size_bytes": 18028
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/builder/ToStringBuilder.java",
+      "sha256": "0a539f8bfb32fbc7c3a6c9a2baea3eee7017db50b0de381aa436382870d8495a",
+      "size_bytes": 36624
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/builder/ToStringStyle.java",
+      "sha256": "62bd0e8994e94cd5da3297bb79ef89470baa0129b75d938441f231884779a76b",
+      "size_bytes": 76443
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/builder/package.html",
+      "sha256": "7ff82bea1114726c479ccd6d6fcbe0b53e7d599a41ed5fc7f680eb43b9dc74f1",
+      "size_bytes": 1149
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/AtomicInitializer.java",
+      "sha256": "c4818fea8d7752b2864268d60d338165cc65da16015904a5f6b892fd235044e9",
+      "size_bytes": 4812
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/AtomicSafeInitializer.java",
+      "sha256": "800549df90fe2901c840d02bb74e9834ff25452973149c49466f1b5e4262e13b",
+      "size_bytes": 4045
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/BackgroundInitializer.java",
+      "sha256": "c528b787f386ac56f61ecc594c0602b5fe065c4d2ab839ac0df87f23a49a0393",
+      "size_bytes": 13317
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/BasicThreadFactory.java",
+      "sha256": "e2c4ce61a2c4210c31e2ee2ee15ab68c4a27749542041adf7335bf4dae556df4",
+      "size_bytes": 14094
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/CallableBackgroundInitializer.java",
+      "sha256": "98b424022b95e00034526eaba6950f5d17c2d1fe4e381e3533e1c4d8230753c1",
+      "size_bytes": 4946
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/ConcurrentException.java",
+      "sha256": "56d2b1d027210c51887d293a7303926d718193e61b7d133be523a19cae20695d",
+      "size_bytes": 2533
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/ConcurrentInitializer.java",
+      "sha256": "9326742f721ef52e0186c4fd6e6352dfd48de2d16a765b962cabc4010b4e7348",
+      "size_bytes": 2292
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/ConcurrentRuntimeException.java",
+      "sha256": "12cde10c297458f03326aec79995a3088aad6e9c25f23a6430f789b290115d15",
+      "size_bytes": 2671
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/ConcurrentUtils.java",
+      "sha256": "d08650422efa1930c1701322b701d400ec2392874dafa600507eac7c435c802d",
+      "size_bytes": 15306
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/ConstantInitializer.java",
+      "sha256": "93dbe78a2f352bc942531af73fd18c33e594646c6450902ca1824d587e09c6ed",
+      "size_bytes": 4469
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/LazyInitializer.java",
+      "sha256": "a63a05c0c5a76f39c65afb4fbdd79d9fe0e56c8e169cfc33f9fb18cb75ee9e19",
+      "size_bytes": 4734
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/MultiBackgroundInitializer.java",
+      "sha256": "b121b2bc7ed9ed17f0c66c9e44cc56a0fb7973897368f62eecd527084abc93ef",
+      "size_bytes": 15033
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/TimedSemaphore.java",
+      "sha256": "5e862bd3b3fc64f7fef31a3bd5a49ffed54d0c856a16c0f1ef0679a7cea7d85b",
+      "size_bytes": 16090
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/concurrent/package.html",
+      "sha256": "4b989b221daf0222e2dc9adc3364e57fe666dcd9b5c99a92e00d979158def748",
+      "size_bytes": 972
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/event/EventListenerSupport.java",
+      "sha256": "4c68336938c8496222c91ded04f040d79aef2c2f4795eb2633ec06423623e4a3",
+      "size_bytes": 11964
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/event/EventUtils.java",
+      "sha256": "2ccc96c6127149b721772a4a010620b5c3d71b0a8372e70c046ee4f1105e6545",
+      "size_bytes": 5958
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/event/package.html",
+      "sha256": "6b281f2a69a3c6480f52446d8d6eade975402f260e5ef23caa0d7c648bd8d424",
+      "size_bytes": 850
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/exception/CloneFailedException.java",
+      "sha256": "34f0c0c3c1368ec4a2df70291ca6d7af71d16d49c5e71360278c0702e5d6df02",
+      "size_bytes": 2051
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/exception/ContextedException.java",
+      "sha256": "778bac78e532318c4bba51aba3cec95b19b231141f79546f6eb022f36a2a5918",
+      "size_bytes": 8807
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/exception/ContextedRuntimeException.java",
+      "sha256": "9a873c87ef6782d5845d22a1494a46513c769d42a298398e4f69f5cc7c1060d2",
+      "size_bytes": 8924
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/exception/DefaultExceptionContext.java",
+      "sha256": "66de8fd3c58106c8e8e2338842068e77dbc6ad74722997380a3179b67026e07d",
+      "size_bytes": 5382
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/exception/ExceptionContext.java",
+      "sha256": "ad07e3f4b25c736475ff776674b8541527a28bbc25b6731097f63e67a040294d",
+      "size_bytes": 3862
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/exception/ExceptionUtils.java",
+      "sha256": "1cb747b1d6015ee1d7099cfaf3add90dc4b0e9f5ce9eb6113d30c3fe18a42d40",
+      "size_bytes": 28671
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/exception/package.html",
+      "sha256": "e8d4573415ac7803500014ca886b61db30bd8a0bbeea270bc861a2588adb69e8",
+      "size_bytes": 1233
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/math/Fraction.java",
+      "sha256": "c508a3e60fdd6687221d045850807f98d24fda0630f0a2aa27996291e9d0adbe",
+      "size_bytes": 35550
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/math/IEEE754rUtils.java",
+      "sha256": "570d51670dc93f8aa59a0cde21d07f6714bc913e176b3368dc16629f5b0d9f04",
+      "size_bytes": 8163
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "sha256": "14ebbdea51d9028d433e3605258f12ca2a2b658c0c3316017bc3031e4ac490d2",
+      "size_bytes": 49045
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/math/package.html",
+      "sha256": "b53e1f9928f99c7476b3786b3ee93fb96649add87f99741464c387a08509c563",
+      "size_bytes": 1119
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/mutable/Mutable.java",
+      "sha256": "884f398fd2feeae69d8b6d2c8e155ee5e74186b43ca830eaeb30566541e9eea4",
+      "size_bytes": 1889
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/mutable/MutableBoolean.java",
+      "sha256": "43b918064e398aa5e0b89325a861974ed9720abb2a6846e14460ac8404263b78",
+      "size_bytes": 5931
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/mutable/MutableByte.java",
+      "sha256": "d6c733006861abee3c6996dfa8355e8a40956c5c796c063aee6fd54fc0666a4d",
+      "size_bytes": 8039
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/mutable/MutableDouble.java",
+      "sha256": "f8029c72dcd695b0648a74672d0ddd27a14cb85a18c2516c6de2efdf83416229",
+      "size_bytes": 9725
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/mutable/MutableFloat.java",
+      "sha256": "afe68c863416edd53541b2b7c2227360155d3955f6042e9cd7e1a7bd86804542",
+      "size_bytes": 9665
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/mutable/MutableInt.java",
+      "sha256": "47904c0ef2890d661f1abae815f52d6fdc8eebf325734c5e13e66c9a9b6359da",
+      "size_bytes": 7827
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/mutable/MutableLong.java",
+      "sha256": "21cb3435f48eab3bf2ba778052d74dd5c52a80e893e9b9648bd502afb7854624",
+      "size_bytes": 7851
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/mutable/MutableObject.java",
+      "sha256": "10c3befc268fe7a5bb0b7eb17115feebff389c7ca86b157c6dda3b13e244fec9",
+      "size_bytes": 3785
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/mutable/MutableShort.java",
+      "sha256": "3f9aaf02b7f2e757e9cc3cb86881a0838b0ad30f58ce8f4454ec33e0d2b81217",
+      "size_bytes": 8103
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/mutable/package.html",
+      "sha256": "dffea1c4254dcae9cbd1d0d129cf896915461fcd87a81c85d83a646789dd3da3",
+      "size_bytes": 1020
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/overview.html",
+      "sha256": "6feefd5506645fbdba52cf06b5bc58ea2a7ab8e640b84773e334e9c5835a4689",
+      "size_bytes": 880
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/package.html",
+      "sha256": "e5765a42acd7f9e68eacff02e3c9cc90f71263a1f84b7fa6bbeb7ff9b3a24b03",
+      "size_bytes": 1073
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/reflect/ConstructorUtils.java",
+      "sha256": "2c51472e68aa879f2b7d149d715e75436ae8709ac33844af6690e362a8dce40e",
+      "size_bytes": 12892
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/reflect/FieldUtils.java",
+      "sha256": "b929678b0308439bbce44f1321f0373714efc541b4756805f1a25717299f1139",
+      "size_bytes": 30474
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/reflect/MemberUtils.java",
+      "sha256": "c13b1b7e3df6d831a87cd52e7f83c0a7613b0a0393a39900ef4e2614a738f55a",
+      "size_bytes": 7338
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/reflect/MethodUtils.java",
+      "sha256": "b648fabb609a6685f931280a70876a5a685fce173d4f6cc3c7ed89952e6734bf",
+      "size_bytes": 22743
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/reflect/TypeUtils.java",
+      "sha256": "5bfd4080ff4140d29e7f071ae68ba3e0b95ebcf0fa9170dba353592f254cddca",
+      "size_bytes": 44839
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/reflect/package.html",
+      "sha256": "99f002c5f165971cf05a4203f268cc4f9e8bc11ffb68f7116b089c94a7164234",
+      "size_bytes": 1056
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/CompositeFormat.java",
+      "sha256": "0dd10bbd0f23b90ef04224a9c58603d1a9ea5a53ff4dc13bc9881040bf3bf607",
+      "size_bytes": 3738
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java",
+      "sha256": "4cbeda3059efb67912b1650839feb7ab73eeaceaca709a370a882e1ab73fae2f",
+      "size_bytes": 19441
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/FormatFactory.java",
+      "sha256": "d9b6faeb942a5f9de39989115a4d095bea76717ee81bae73a47ffdfc19a79a14",
+      "size_bytes": 1495
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/FormattableUtils.java",
+      "sha256": "07a77a53aa4c4afc64daa153c0526e2292c99a6b3c5ceb99ffa3849be55a2f41",
+      "size_bytes": 6710
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/StrBuilder.java",
+      "sha256": "e4f56ac07aeff7b954fa7b780ff1a00f4df1e0da025d2b12f26e738a9867df64",
+      "size_bytes": 102119
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/StrLookup.java",
+      "sha256": "d12609151f30948385163f48b17d2f2b29821e5610aa1a6d9808c92840933e29",
+      "size_bytes": 6141
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/StrMatcher.java",
+      "sha256": "a22dc58a785e9c80d2c054c8bc4f26c75956b73d255d365593fc558bcc4a3883",
+      "size_bytes": 15064
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/StrSubstitutor.java",
+      "sha256": "177fe6e1076a5e32d3bc6a5affebf14dad22fa377cfc7e9fff0c1850f39c30fc",
+      "size_bytes": 41460
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/StrTokenizer.java",
+      "sha256": "c01b4bd31a0b6a8ce9fda78b32b40f807b52851de4610440092699d63ed94a9e",
+      "size_bytes": 38073
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/WordUtils.java",
+      "sha256": "9645607a833eb699cd3fec3e66648ff1a8b38cd9e61ae033e415059a1763c775",
+      "size_bytes": 19421
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/package.html",
+      "sha256": "84ef4b128ccbb46cebf6e67c99324017d8a3176278bdb4711fd20a0e2d28f6aa",
+      "size_bytes": 1057
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/AggregateTranslator.java",
+      "sha256": "7f8825645d66f52f604d7040830bfe038c84dd199afaf13e9916aeca94a88b2c",
+      "size_bytes": 2138
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java",
+      "sha256": "38151c414d0f628a8979ef81e2f329ca547563dfb6fd3f1898ad5dcf3a906b7f",
+      "size_bytes": 5013
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/CodePointTranslator.java",
+      "sha256": "fcc1c73251e3883d7784718faecc4c69dfc22fff249bf8c43d16309cc71bdf9b",
+      "size_bytes": 2074
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/EntityArrays.java",
+      "sha256": "37f8a9ac24e5569d80cc93ad85cd452b06fdb9dc6016029b4e1e32bfecfd160f",
+      "size_bytes": 25198
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/JavaUnicodeEscaper.java",
+      "sha256": "af91b6be7d7ee34eb3be542e973a7dd6a124b846b6a70f3d1d31970cdba570e5",
+      "size_bytes": 4092
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/LookupTranslator.java",
+      "sha256": "01724dbf336abe1d411fc67f265419496284c5712d32237443954d5ff1c61d8f",
+      "size_bytes": 2999
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/NumericEntityEscaper.java",
+      "sha256": "9f6804f7633e8b86f8eed785734c5cc64a07c4c3190f25e354a375684356e456",
+      "size_bytes": 4347
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java",
+      "sha256": "8c8976ce04dbfe032e2e79e88423d0bd8be51bd23e8b571b71f9fefd7e0542fa",
+      "size_bytes": 5088
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java",
+      "sha256": "dbc09e6a528ca8ed57856bb8dc929695588cc42e8bc97b9dc1af0088bc789220",
+      "size_bytes": 2309
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/UnicodeEscaper.java",
+      "sha256": "6454fadfaa94e47b902dacaf48fdb654b75d206aac37511f253f2d053443e124",
+      "size_bytes": 4955
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/UnicodeUnescaper.java",
+      "sha256": "1698f2a32cff10649b74b1be40876978511ba085923354439b52cf8e835547ce",
+      "size_bytes": 2558
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/text/translate/package.html",
+      "sha256": "1df71f68fd2530a4fb745adf01844033169c0d09d5536fe313c1504904f7f632",
+      "size_bytes": 1072
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/DateFormatUtils.java",
+      "sha256": "cdbdae02c0b3e85abdf54ccb457f4c6181cf19f92dcffc6f9b54ca0e24ccd9ed",
+      "size_bytes": 12731
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/DateParser.java",
+      "sha256": "b37bb106c2540bac53254182335ce44d55e43920f36ffe9da401f93e1a3a507b",
+      "size_bytes": 3299
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/DatePrinter.java",
+      "sha256": "0c1c2c414370167c8252426c8d3d2ae38a1697303d0ccc052a4a71033fa802c9",
+      "size_bytes": 3811
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/DateUtils.java",
+      "sha256": "3f39e2a0abeece0cc191807ec33bed6cb2a3b4a186c7f037b58aae9eb08ae8df",
+      "size_bytes": 82821
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java",
+      "sha256": "9e8abb7b7066e51e05f0205923e3ae0aa1b2717972a5fa056cd2e491bcb55847",
+      "size_bytes": 26061
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+      "sha256": "3f57aa0670e3de105bf9b08f1b8c041416cf8312a039157f1e1b2a7dd63f3583",
+      "size_bytes": 20847
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/FastDateParser.java",
+      "sha256": "b9469492d6a03c16492ae0ea9675a49403505fdc05c04f8bd344901e2c01ff07",
+      "size_bytes": 27248
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java",
+      "sha256": "4c51c777e21674f44e13771f3022ce0f0e998037c3a1bad3fcc51c1c35622ecb",
+      "size_bytes": 39440
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/FormatCache.java",
+      "sha256": "a2e5be4f523b3343952480709e5fb2838aba252089059ca7f534f94b04d8e6cf",
+      "size_bytes": 11293
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/StopWatch.java",
+      "sha256": "1cea75c3400798bd6349a15015790f893e52fe2d73aafac1d44b3fa75c80655d",
+      "size_bytes": 11208
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/time/package.html",
+      "sha256": "3cb5aec533bbb3025fd57d4d41c8f842ed9462b4ffec605f96481f0bd31145c3",
+      "size_bytes": 992
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/tuple/ImmutablePair.java",
+      "sha256": "6bc5ba975e81e4197256b40ab65965e6935c1d7db641d22396f13f7f9630db7c",
+      "size_bytes": 3280
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/tuple/ImmutableTriple.java",
+      "sha256": "42ddc61f116fef4dfa83fc6f1cc9568c546a3daf8dcc87fb97c1d53b6055a18b",
+      "size_bytes": 3286
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/tuple/MutablePair.java",
+      "sha256": "e4f4d7792f83e413fb823c965878e427ef4916d0b5a50fb0d16f199a3888bba4",
+      "size_bytes": 3397
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/tuple/MutableTriple.java",
+      "sha256": "7ac04c090e93e23cf87ea6cd92dce276cfe6847354b0736f06adc2bc7ddfe93b",
+      "size_bytes": 3667
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/tuple/Pair.java",
+      "sha256": "6c564e01c04e7afdb907f64ed656bf156d06a40738909e5153a67dd60021db73",
+      "size_bytes": 6278
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/tuple/Triple.java",
+      "sha256": "6c0187a7b5a11200596d28e709eef12fe6dbc00dc4cbf3a4d6497526a0344d33",
+      "size_bytes": 5885
+    },
+    {
+      "mode": "0o664",
+      "path": "src/main/java/org/apache/commons/lang3/tuple/package.html",
+      "sha256": "dd9cb43bbc6a5f056481bff9e34f6cdfe7beb693797ea1194785b4252b1deee5",
+      "size_bytes": 864
+    },
+    {
+      "mode": "0o664",
+      "path": "src/media/logo.xcf",
+      "sha256": "344023b687b50ece856aa42f34a187e980a5707248c512306740e7d89258a1a2",
+      "size_bytes": 19992
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/download_lang.cgi",
+      "sha256": "7a222f33a1da2dcbb63825425480af1db9a9132f4755491c1ecedbdfe9704b9f",
+      "size_bytes": 157
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/images/logo.png",
+      "sha256": "e5bafd3ae1fd7e5e1bc73a834786a92cbf43658d992e8382fd476f1655dae71d",
+      "size_bytes": 11862
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/lang2-lang3-clirr-report.html",
+      "sha256": "bc89042206d62723a18f39e7be27e93005d5c0be3918f810df99165b9bbc2917",
+      "size_bytes": 157640
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-1.0.1.txt",
+      "sha256": "d48e9b3cf23bde125534eb5782eae7cc0b8a843fc6ea07e0e2fbb2e9793c8e8e",
+      "size_bytes": 1727
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-1.0.txt",
+      "sha256": "c1507ec0fb9cff3a2de41820661a56362afe9e5707bacccdb3f20c7732104cb7",
+      "size_bytes": 5221
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-2.0.txt",
+      "sha256": "437fda51c39482145b3448adcc4a88011862f6d0e99f2767d03ca3eb48492475",
+      "size_bytes": 34341
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-2.1.txt",
+      "sha256": "95e43e5cb923c1eef80fdf5d688d14b2d53b06b19b454d7ec069d918b732682c",
+      "size_bytes": 6755
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-2.2.txt",
+      "sha256": "303741b22b9e0bc5b84fc124180568f389e2742b8183bf962c1170ec109e70d8",
+      "size_bytes": 5406
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-2.3.txt",
+      "sha256": "3363c7010da56eaebef0f326571ab01c317b61404c80ddec675d98b8def07a73",
+      "size_bytes": 4167
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-2.4.txt",
+      "sha256": "807fbb5460f334ac134148a555fb1c9dfb1aa457bfaa36090b88428cbe7f4a98",
+      "size_bytes": 6520
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-2.5.txt",
+      "sha256": "33f739d67f28787ebdbee07c84009a3009cabe73ffe1846f7ba721b656332cf4",
+      "size_bytes": 5332
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-2.6.txt",
+      "sha256": "52cd66aa6436960fe6c4f2487cfe7483239b21aa1634209c7be38cfe813b932e",
+      "size_bytes": 2964
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-3.0.1.txt",
+      "sha256": "feebf118d0a186c1a927afb83556267e75f1da24a92af7496b56d6af49116153",
+      "size_bytes": 1988
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-3.0.txt",
+      "sha256": "6b9a130de6e94fc66762310907d5cd4a1ac2aa3a0b8c8953cd1fe255a0280ba0",
+      "size_bytes": 9121
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/resources/release-notes/RELEASE-NOTES-3.1.txt",
+      "sha256": "90782316a8786e717c890615b1feb5bf305d79ccc0609d2bf2c8ef01e9f69a38",
+      "size_bytes": 1795
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/site.xml",
+      "sha256": "fd6a537efdfd2ad9de97c631f29433a60a9b9cec668ee1974befbfe25dc61889",
+      "size_bytes": 1991
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/article2_4.xml",
+      "sha256": "1b2f32fd17cea7a867a9be66a7ebef180682725d5d0619b61ffb61f9ca142345",
+      "size_bytes": 17439
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/article2_5.xml",
+      "sha256": "aaccf2cdb90fc62048325896f7be0a21a9fdde18d15e81bfc987a7629b9a1698",
+      "size_bytes": 8856
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/article3_0.xml",
+      "sha256": "0e5f9e8db2f07c8b4f0d5f04269b0338a2cc7b47ed3970cbe8688320108fd6a9",
+      "size_bytes": 12848
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/building.xml",
+      "sha256": "b29c7dba34cabf0c695ea26a3313b747acc333ff7232593a5da5e60f844881ce",
+      "size_bytes": 2963
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/developerguide.xml",
+      "sha256": "a1ecf3f1d4ccd87fa8b6a81052ba0880a9be308a0ec338b6ef36faad48bc6a84",
+      "size_bytes": 6306
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/download_lang.xml",
+      "sha256": "6b5635724b46f98ac806364bd1d19c7211924463c18c65e6866966b00d505dc4",
+      "size_bytes": 8691
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/index.xml",
+      "sha256": "bb342c2ab54447854e711f6703d9a08a4b560e571a11b0cd214a18dc9e561803",
+      "size_bytes": 4313
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/issue-tracking.xml",
+      "sha256": "1db0a02c8d45afd78ae5a7d9e47ca429b98648c1c05950935ef3b20a89261613",
+      "size_bytes": 5777
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/mail-lists.xml",
+      "sha256": "7e19f59ad730bea0587ac6ba330aa184eafa7f4608bd8f08260c93cf576b33be",
+      "size_bytes": 9365
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/proposal.xml",
+      "sha256": "0ec9486e8a8de5c77ba4ec6060c6ffaf60b5818e09a5c3360c22054f7b835c14",
+      "size_bytes": 3209
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/release-history.xml",
+      "sha256": "289378b640ef8c19b44e918f613ba28f4a3a5d5d77bbe669b32bb3a964f0c515",
+      "size_bytes": 3323
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/upgradeto2_0.xml",
+      "sha256": "9afe3de3f5c5191cdd14e56fac5b8802e904dada717c1015de8659b15170e28e",
+      "size_bytes": 36425
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/upgradeto2_1.xml",
+      "sha256": "38ce30f24243560db85daf8012ddc17d12f86d14616ae878c072b1835b87cbbe",
+      "size_bytes": 7705
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/upgradeto2_2.xml",
+      "sha256": "fb94aab206991c22b67a9660eebce4b3c76f2625c23a9c172d931cb9f7d023b5",
+      "size_bytes": 8287
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/upgradeto2_3.xml",
+      "sha256": "a152ad352a8323ac07b366af01b6884f964e2cd4939e32f04b3900b1e72f7c17",
+      "size_bytes": 5132
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/upgradeto2_4.xml",
+      "sha256": "e93134cc1af6371035dbfdf7af0ff16166646978b2c97b4a85788cfcfd6420c4",
+      "size_bytes": 7566
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/upgradeto2_5.xml",
+      "sha256": "85b58c6a9d2467db39a05f537dd020a97507c1e039b52c4b0389bbb11996a085",
+      "size_bytes": 6278
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/upgradeto2_6.xml",
+      "sha256": "e13b440804cbabd0f0c454922d3aaf531b0725ad9332d4c0aa0c3d743eb50e55",
+      "size_bytes": 3932
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/upgradeto3_0.xml",
+      "sha256": "3c0079c1c292cfb968f2db13f92e3b559a1e5622414afa211a18dbdbb3c56706",
+      "size_bytes": 9503
+    },
+    {
+      "mode": "0o664",
+      "path": "src/site/xdoc/userguide.xml",
+      "sha256": "b64944441e630a01b9339485c0b6986efe082b5ce719b250332bccb587fdd7a1",
+      "size_bytes": 39077
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/AnnotationUtilsTest.java",
+      "sha256": "4b7f4074c191a21d004989e62ade5a6552a22b09f5b25c8069617d760fac8671",
+      "size_bytes": 19250
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/ArrayUtilsAddTest.java",
+      "sha256": "fd36638e7c81af4d3e491217b88c0c61a422ac9c006590d6bf2ed2eeea1c8d40",
+      "size_bytes": 30014
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/ArrayUtilsRemoveMultipleTest.java",
+      "sha256": "ab40f504f2149963fcefb2b20ad295a242c612d75e1d6c031eaf5535e0988802",
+      "size_bytes": 59217
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/ArrayUtilsRemoveTest.java",
+      "sha256": "460e9e6984c2c315e676ee6472997bca463e0221a254d8fb368faf28be2dd6d9",
+      "size_bytes": 23931
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/ArrayUtilsTest.java",
+      "sha256": "5f8c7cd10d1a9f0dd4b291fa6b7a7bc6e7a529e668e82651eff1563667687a7c",
+      "size_bytes": 126880
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/BitFieldTest.java",
+      "sha256": "7ae585e268a5bb54ab96eaf95b8276cd4dc89b0d40f79756c5b9307a172cc177",
+      "size_bytes": 9967
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/BooleanUtilsTest.java",
+      "sha256": "940861ca0b09fd651a604de58c0c19cd28fbda2efd71a4d2e5fbca1b5feb0de9",
+      "size_bytes": 37212
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/CharEncodingTest.java",
+      "sha256": "aea780ebceed64ff16e0c1d11abfecd298b99cb6207d4fe45934f8d7d5ddfc4c",
+      "size_bytes": 4150
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/CharRangeTest.java",
+      "sha256": "75186935115b05b6c1bac71c8b6d2498d2a1e15be4947125996e388dfe18c9c5",
+      "size_bytes": 15048
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/CharSequenceUtilsTest.java",
+      "sha256": "708a99cfc4317e1325850a22177436f860e51c2a5f61385ff627d02524a134df",
+      "size_bytes": 3304
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/CharSetTest.java",
+      "sha256": "bf1db730efb6925fc94938eedee55532715d8bc5886a3d76b9630f3145de562f",
+      "size_bytes": 18912
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/CharSetUtilsTest.java",
+      "sha256": "d698cdc9dc665dd55d3830afa73da2f5c527994a39b1faab2d0f42e3b39b3b84",
+      "size_bytes": 12684
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/CharUtilsPerfRun.java",
+      "sha256": "a3156398f9c6e22a1e749055b0288a2309c7194212833678b86169642c694fe7",
+      "size_bytes": 5829
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/CharUtilsTest.java",
+      "sha256": "d4d1975d75a7e3231959063914eed73d9f84495c23b3b0b79e13c7386f3cc931",
+      "size_bytes": 13458
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/ClassUtilsTest.java",
+      "sha256": "09cdf8ba16b9d3ac5f7333f15e47507146179aab0217ea75bb3e4bf340fcfc50",
+      "size_bytes": 69650
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/ConversionTest.java",
+      "sha256": "9cd0f6d184069b6e6bef2aa02fe065d0487e6a91d86be04b84555cb13d918240",
+      "size_bytes": 100602
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/EnumUtilsTest.java",
+      "sha256": "36d793c3ec368e493db29d0f8d40eac413a3dcddba7040e23596574a596e5ded",
+      "size_bytes": 19831
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/HashSetvBitSetTest.java",
+      "sha256": "fa90f34098375f744893db630401b8cfa8b56cc617feb29492ac0373cdfcdbac",
+      "size_bytes": 6251
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/JavaVersionTest.java",
+      "sha256": "628860f3c8207eeb071f786b5a90d67059d41bb9a3e9906154a39af41764eb7f",
+      "size_bytes": 2998
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/LocaleUtilsTest.java",
+      "sha256": "3cd845f6e80c4051a4de3396ddc3382984bc504c2ddb70c618c1bccbbb9cad2a",
+      "size_bytes": 22167
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/ObjectUtilsTest.java",
+      "sha256": "989e4d8ae0eb2d4d628a458c0924cbb674d3ed6866eb7210136b305c4cbcc99b",
+      "size_bytes": 27739
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/RandomStringUtilsTest.java",
+      "sha256": "f1bc5b964614f562b70c2ddaaaf0ddaf307d8c8716616a323d0139dc2cc97355",
+      "size_bytes": 14314
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/RangeTest.java",
+      "sha256": "18da93df784a5ef647b19ba3f5d77105232969f00827a885fb7fc67e8d6ec021",
+      "size_bytes": 13365
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/SerializationUtilsTest.java",
+      "sha256": "69d8935f697fee4a4f182b997c0274a7371314a9df03ca995509c67389553cb5",
+      "size_bytes": 15142
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/StringEscapeUtilsTest.java",
+      "sha256": "c12f8b22cc559f19e88b46c5196ddfd95679d42413f6ce89e4d4a6041967bcc2",
+      "size_bytes": 24353
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/StringUtilsEqualsIndexOfTest.java",
+      "sha256": "6d950dde626cb9e835a623d3ddbeb1a614c7a0b83106b8a69ea241176ee553d5",
+      "size_bytes": 50710
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/StringUtilsIsTest.java",
+      "sha256": "fdf784181e5c0172a739e76163546e9450c20968868f11683c4447d4497125cd",
+      "size_bytes": 8004
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/StringUtilsStartsEndsWithTest.java",
+      "sha256": "24716320b46545f146f2ae1f354784efe6900f58b71a5bf30608cc071715f5e0",
+      "size_bytes": 10570
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/StringUtilsSubstringTest.java",
+      "sha256": "d5fc24843f80150e32382657d6a01873f57e54c7e078924a2413f7145b45e1d0",
+      "size_bytes": 15137
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/StringUtilsTest.java",
+      "sha256": "b4b579f041792fb998e0c2f287934952831379b38f3b2721367df1134fc544c9",
+      "size_bytes": 113994
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/StringUtilsTrimEmptyTest.java",
+      "sha256": "a95adf32062e6d240dbbb5a4645c5b771337cc04fb3a6732b6183b542fe4f2eb",
+      "size_bytes": 13378
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/SystemUtilsTest.java",
+      "sha256": "6e1b067b81fb8c712496a3c0aa8238b53452e9fdfc189f04c964294f49650e3d",
+      "size_bytes": 18178
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/ValidateTest.java",
+      "sha256": "be8d04d4d334f3789a898262a1275b8dfca341a13e78a5f98b6b6ea38fb428f2",
+      "size_bytes": 33824
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/CompareToBuilderTest.java",
+      "sha256": "1cec62a9ea815dcf902ea4cc801a69cd00b76befea6796a9b131a88141efde5e",
+      "size_bytes": 51780
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/DefaultToStringStyleTest.java",
+      "sha256": "720f8d28e7be074a518b9720eb4ce639ed23ca5fd36d9e30790382c827131839",
+      "size_bytes": 6569
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/EqualsBuilderTest.java",
+      "sha256": "e56c49efde5b294211c3db1c9b1756b935ed7dc75dcece1891de7980cb354f84",
+      "size_bytes": 43082
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/HashCodeBuilderAndEqualsBuilderTest.java",
+      "sha256": "a26c9c333182bf61993351f12f450b7aeb35b270472565dd3a7ba52b3d7fc735",
+      "size_bytes": 4947
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/HashCodeBuilderTest.java",
+      "sha256": "b203ed7f2e154d84a86f26c223d165b520ddc59a97eeb931f84980a12b6289c0",
+      "size_bytes": 22965
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/MultiLineToStringStyleTest.java",
+      "sha256": "f70d30cfff2d63a9f9880557433eb9c3fccd7a80901cdcf017cf7c979dc728e6",
+      "size_bytes": 9306
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/NoFieldNamesToStringStyleTest.java",
+      "sha256": "203c4b493b696f6e6a8f3e726048c42041c1608bea2d4f5f1889caf0e1c2a697",
+      "size_bytes": 6536
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/ReflectionToStringBuilderConcurrencyTest.java",
+      "sha256": "36e6d5cdaa646402783a2c54bd0fbf863fdf82236965a940080f6ee02fb00f7b",
+      "size_bytes": 4669
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/ReflectionToStringBuilderExcludeTest.java",
+      "sha256": "7bd8f994403414b359cff333d18e865cb32beb8352d7b433377850d4331546c1",
+      "size_bytes": 5150
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/ReflectionToStringBuilderMutateInspectConcurrencyTest.java",
+      "sha256": "2259f712ca935d7fe250eba30fae8c54879697ca5ffa3f27090215a297805005",
+      "size_bytes": 3672
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/ShortPrefixToStringStyleTest.java",
+      "sha256": "ea93afaa28b500c71a102618f58a4d2edf56a16f09d0fbc8dafd40490c7a8009",
+      "size_bytes": 6474
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/SimpleToStringStyleTest.java",
+      "sha256": "bc03fc4bca9dcb2eb01df0d9ff5f60678d6cf4b28969fa700e7af5eadd088425",
+      "size_bytes": 5830
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/StandardToStringStyleTest.java",
+      "sha256": "4072bcc6b5ec670ca474811fc2ec799e3c0c5e2e750d24388e62c45ef0d3fee1",
+      "size_bytes": 6941
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/ToStringBuilderTest.java",
+      "sha256": "afc362473421e5e3f5fe2184b7f3dac5e8f31dc5865d4876a728740ffda7be04",
+      "size_bytes": 48377
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/ToStringStyleConcurrencyTest.java",
+      "sha256": "124947a3cf825ecc919f5da0d79de177b6a6e33e5e27c951e568ea6803b26a13",
+      "size_bytes": 4295
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/builder/ToStringStyleTest.java",
+      "sha256": "50d4ccae8452e59d13cb259ccf8fc752747050d24ff31e325243176d391fe848",
+      "size_bytes": 4039
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/AbstractConcurrentInitializerTest.java",
+      "sha256": "b66efe256b0853c78b720ae09a14b5052e5b06b4f3ca8e9a5c7f4450b6e78f69",
+      "size_bytes": 3947
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/AtomicInitializerTest.java",
+      "sha256": "475cadac134f10c51d42bfbf1761e0c742e4eb8fa17deec713dafa3cdf82f4a2",
+      "size_bytes": 1406
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/AtomicSafeInitializerTest.java",
+      "sha256": "b1f32b9981290d7a418ad0e8fb31f9383511dbd4cc7db8b54c70eef86fe89457",
+      "size_bytes": 2546
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/BackgroundInitializerTest.java",
+      "sha256": "b1905aa5074f4740951ebd79feba2f9fb3eab6dfc8599a3e4e30bf252922ba19",
+      "size_bytes": 10480
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/BasicThreadFactoryTest.java",
+      "sha256": "349930353f4b76490bb0c83a485f416def6896bcb4c8d9e413d15fe8a08818ca",
+      "size_bytes": 11618
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/CallableBackgroundInitializerTest.java",
+      "sha256": "806385df9207eba59c745ae5b28b525fc8d319ed17cc79357d46833f559f6cc9",
+      "size_bytes": 3371
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/ConcurrentUtilsTest.java",
+      "sha256": "42003c7308bfeb45d649b4dddc7f09e2e1c987da9c36ae9979b2bd505d4777dc",
+      "size_bytes": 19165
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/ConstantInitializerTest.java",
+      "sha256": "adaba3195128bb570e839a32097e8824e7e6c8d941e5f939d134849cf0dd9c3e",
+      "size_bytes": 4192
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/LazyInitializerTest.java",
+      "sha256": "2ca53cfab56d553208b7a5eb6d06d8d020af611c716d212b7d02489e03fc79e2",
+      "size_bytes": 1992
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/MultiBackgroundInitializerTest.java",
+      "sha256": "c3e1742e392b9c9f622c4795c7c0fe4df35149f98c2fd402224e8104fdd6270e",
+      "size_bytes": 14756
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/concurrent/TimedSemaphoreTest.java",
+      "sha256": "68ee0194fb9d26933bb0185e6a8b9eed4f4dd8fa717292acb9d5d6fbfcc1e08c",
+      "size_bytes": 18252
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/event/EventListenerSupportTest.java",
+      "sha256": "4aafde358a4844699fafc7e3851ac2a800e10ec488ec3f66e0317e9dd748c638",
+      "size_bytes": 9564
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/event/EventUtilsTest.java",
+      "sha256": "7f8c0bf81021ddcf5d3e0b72657eadd8e5efe12160a56af9bcf8534a3729843d",
+      "size_bytes": 9902
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/exception/AbstractExceptionContextTest.java",
+      "sha256": "2f4103c42d19a1de3afe961e7dde85a715b90535d6842635b3dd57b92fa48dba",
+      "size_bytes": 7739
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/exception/ContextedExceptionTest.java",
+      "sha256": "775a1a20b0b463e45fe3ab01899488dd67a9a6566e8a3082ca575f14daf5c035",
+      "size_bytes": 4726
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/exception/ContextedRuntimeExceptionTest.java",
+      "sha256": "1b218e239f4c752af9635cfc576a55703d42e3e4cdace27f391e7c31808acdaa",
+      "size_bytes": 4941
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/exception/DefaultExceptionContextTest.java",
+      "sha256": "659001c1472552b2234ae0a32f7901d314e4a544743720b21e60d8797c487651",
+      "size_bytes": 1417
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/exception/ExceptionUtilsTest.java",
+      "sha256": "70be9e0accf1701637c66916c60bd56c7a9d00c1980ca7352e2e44abe9ad3a86",
+      "size_bytes": 23477
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/math/FractionTest.java",
+      "sha256": "2cafe40336d808d0b2abcd35d287ff1a361dedbaf262863d53b1197bd7e275b9",
+      "size_bytes": 46747
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/math/IEEE754rUtilsTest.java",
+      "sha256": "9eddf95986d3e7f590bc2cf615f582d8bcde2b1d150f6a7c1c23abf925f83378",
+      "size_bytes": 4270
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/math/NumberUtilsTest.java",
+      "sha256": "3a60a4df54a6b36096dfaf0a903caaf5ca9d4ecafc97792f63affc8a0d73a410",
+      "size_bytes": 64800
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/mutable/MutableBooleanTest.java",
+      "sha256": "6008ec2c64c1c7ca89add09ffc01e5915a294dc85c8e6c1acc82cbeff3b094a9",
+      "size_bytes": 4752
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/mutable/MutableByteTest.java",
+      "sha256": "e940d56c29a3cb01fe21be65118889a22748864235bac6d7ba122b28b82bb35e",
+      "size_bytes": 6610
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/mutable/MutableDoubleTest.java",
+      "sha256": "32fe89b4ee44df58a96b3f212f0d05437580869966218581d08cba25a64718ab",
+      "size_bytes": 6935
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/mutable/MutableFloatTest.java",
+      "sha256": "1c32b854d3b86ab642e3afec97fd1abbe709d7250337dd2757a50174048e1af5",
+      "size_bytes": 6837
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/mutable/MutableIntTest.java",
+      "sha256": "fccc33afb58346d1c9906f6f2581ba940dbc1084bec8f237b5b8008f033edf86",
+      "size_bytes": 6600
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/mutable/MutableLongTest.java",
+      "sha256": "4362f040200c105b4e437b49599ed7b5edbfc423b67618770b16582516da2628",
+      "size_bytes": 6381
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/mutable/MutableObjectTest.java",
+      "sha256": "b67a9e0918a076dedd59c86cb53f21441914bc4ea45ebe576f42a4d863058079",
+      "size_bytes": 3770
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/mutable/MutableShortTest.java",
+      "sha256": "044a6033e0ba944db95d26e5cd61624f51da9f591e623f88d09b161c15f6e41d",
+      "size_bytes": 6625
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/ConstructorUtilsTest.java",
+      "sha256": "973f6fbb46934e5888a81adeb80576c075a12a112805088d5240d9eb018c0127",
+      "size_bytes": 10172
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/FieldUtilsTest.java",
+      "sha256": "d1dd39ec20bffc8f5e82c4c58cdda472be2721b9dbe21f690429b18d2ab07f95",
+      "size_bytes": 54925
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/MethodUtilsTest.java",
+      "sha256": "dc1ba1d826f34d5e7f4f16cf6fb40c6e12518a0b35ae50e634fd5ed611883c6b",
+      "size_bytes": 17716
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/TypeUtilsTest.java",
+      "sha256": "197d21e7731d50bae2b3f48a818edb594c396f36696a5c2b62f080bb997dfd50",
+      "size_bytes": 33742
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/Ambig.java",
+      "sha256": "fcdaf5226ede88a7cd9869e638d80837ff3decbb42d1aee7feaeb4fd568f7f93",
+      "size_bytes": 922
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/Bar.java",
+      "sha256": "a324b7528ec202e965a6c7f4b9bf69dbb3665595823b73115e483527f8274dba",
+      "size_bytes": 950
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/Foo.java",
+      "sha256": "5cdad196a9c6cf1201fc8ee8eeef586f008f653538f9ce5dee335799910cfa36",
+      "size_bytes": 950
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/GenericParent.java",
+      "sha256": "dc41e05444a2da942bba812caa26b114c19b4f5eec3cbaf64ec0d67fbb3f2ee7",
+      "size_bytes": 955
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/GenericTypeHolder.java",
+      "sha256": "334d7ad9733429751b0145a9b6b116fa57f38135e0ccbcace6e1b5c8774c9766",
+      "size_bytes": 1137
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/Parent.java",
+      "sha256": "2d19109f5b06ceb98b0d49f35db883b64209d11f813942888816d9d44739c3ec",
+      "size_bytes": 1052
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/PrivatelyShadowedChild.java",
+      "sha256": "e38d2eed72a216bcf89e8144639b9cd5acc53fdb2f1ff0d8cdaadd96b83b1c4b",
+      "size_bytes": 1149
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/PublicChild.java",
+      "sha256": "02724ca5e11d4ce16c8d9b621e11eebf9422c6992975559d017c3b68af9ed06a",
+      "size_bytes": 1033
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/PubliclyShadowedChild.java",
+      "sha256": "e5f45a4d2c02e895ce5f2f2e327cba8c0d9b36f2a414f70789fc8c9a5cdfd5fc",
+      "size_bytes": 1106
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/StaticContainer.java",
+      "sha256": "1b7f2b481b56eb8518e7fc6b9260c9cb19cf214eaeeb4efe209967d70732536e",
+      "size_bytes": 1771
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/StaticContainerChild.java",
+      "sha256": "b16fc6f04222b7d72d378de07a75f9acbb745037267240694f26f245b6ae762e",
+      "size_bytes": 942
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/reflect/testbed/StringParameterizedChild.java",
+      "sha256": "f884840512c770d531d490fa8b9a4ca9fde5283e933686f4dc4b1493eded9732",
+      "size_bytes": 1035
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/CompositeFormatTest.java",
+      "sha256": "0e8f452effe46d7a41cd9037c1c2863247caf380d0e8bc5e4aa62d19be4a705c",
+      "size_bytes": 3093
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/ExtendedMessageFormatTest.java",
+      "sha256": "5d2db4aeeb98370a53f4235cc8b186db81f57eba4e6e635bc6c5b8540cc92663",
+      "size_bytes": 20094
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/FormattableUtilsTest.java",
+      "sha256": "36aa0355918308fbc3c813bb55d3cdcd81ff3aaa3cd31a2491748d6fa2d1aff2",
+      "size_bytes": 8164
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/StrBuilderAppendInsertTest.java",
+      "sha256": "7085a825f457334473ad9fba76b738f6a07549ab3cfcb2380fe7f744e9666268",
+      "size_bytes": 52193
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/StrBuilderTest.java",
+      "sha256": "3c26252fb894cc44684f2d168abc3186dfedb11ae2fec48e15917faceef42887",
+      "size_bytes": 67118
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/StrLookupTest.java",
+      "sha256": "92f7ce9c1a7f288cee6c72125d496310b4a1795e15ea30757fa0588b6ba33169",
+      "size_bytes": 2765
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/StrMatcherTest.java",
+      "sha256": "7791956f565025c7c658fc7a585069ff22dd6de581a14d0a3d48af96d9f20f85",
+      "size_bytes": 9584
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/StrSubstitutorTest.java",
+      "sha256": "c678bd49efbce4f87253852e52e97e99a0db92458ae1f82486032a5a550eaff6",
+      "size_bytes": 21688
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/StrTokenizerTest.java",
+      "sha256": "a210d74d7bcf773379a00ab098c7cc2c4b4182349de2a2d1026f367b1a96b738",
+      "size_bytes": 31305
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/WordUtilsTest.java",
+      "sha256": "2202de40fc7cdcd699a5e833066af7317a1ba1029d91396bfa5fd71fc0bd3e7f",
+      "size_bytes": 19369
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/translate/EntityArraysTest.java",
+      "sha256": "7929371dd7b7f3e3bafd905f66a1241d848910fa511620093cbd1c2b43e9b71c",
+      "size_bytes": 2599
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/translate/LookupTranslatorTest.java",
+      "sha256": "d58f5f73d7d758b5dab318d3173ebb51cefac18b6a42259ce14d465d8f55cde6",
+      "size_bytes": 2072
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/translate/NumericEntityEscaperTest.java",
+      "sha256": "d9f442d25e5505ab20fb285cae7e9d382a80886960beca5e3c4d2279337289f1",
+      "size_bytes": 2434
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaperTest.java",
+      "sha256": "b4337f997f89a0cf3b623d31ba159535314c55c8f5144c2e8c64cc639a251e5d",
+      "size_bytes": 3124
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/translate/OctalUnescaperTest.java",
+      "sha256": "53003a4f487f3af099c786b2b44ab86a25e337cc46a3356954cbf5fad9df4b9b",
+      "size_bytes": 2266
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/translate/UnicodeEscaperTest.java",
+      "sha256": "17e6afc010a094a42aab336aafcd17295fc099e124df86ecf51553bf70f1eac5",
+      "size_bytes": 2008
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/text/translate/UnicodeUnescaperTest.java",
+      "sha256": "77fab44da3a1400dbe5a0fb1c770a1333d6a730e3f8f88a26429c9f44764a506",
+      "size_bytes": 2092
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/DateFormatUtilsTest.java",
+      "sha256": "278f6f7b5c3da6029e74e8cbe2b1613a8398be3520d171b43cd3fc93049a5cab",
+      "size_bytes": 11771
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/DateUtilsFragmentTest.java",
+      "sha256": "7e2973aa4feb538a82e07b0b05407871b65efade4d107125c98d982e5b9bda1d",
+      "size_bytes": 22532
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/DateUtilsRoundingTest.java",
+      "sha256": "c074aaac6a7acf77372ef1a7889611832ab0872e990bf36184e890bfd81a95a4",
+      "size_bytes": 34054
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/DateUtilsTest.java",
+      "sha256": "2253a15d972e1b7320d0bd6b92826f1f648e67b873f178b3c7bc63081820b1fe",
+      "size_bytes": 77673
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/DurationFormatUtilsTest.java",
+      "sha256": "a619201eea6cdd95c10a272afb058af7bc444522b2be88f906236ceb53c47c2d",
+      "size_bytes": 31504
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/FastDateFormatTest.java",
+      "sha256": "3df10cf3a7813457b1c01764f6b4d0c43b4daf2549a29abd3b1c6547d3e59d79",
+      "size_bytes": 14887
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/FastDateFormat_ParserTest.java",
+      "sha256": "a97a7fab2d0b8d5269e9355b34315ba043372eed3a53148cfd794f3e355e45b7",
+      "size_bytes": 1241
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/FastDateFormat_PrinterTest.java",
+      "sha256": "c23e343abca89b68f9e86854edea612163a08071f37e06aafd5d18d55cd4f881",
+      "size_bytes": 1244
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/FastDateParserTest.java",
+      "sha256": "5a8e61105d7a42ecc71effa62d7a606bbeb3d8c3c68859dd070a318a99e06d84",
+      "size_bytes": 19870
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/FastDatePrinterTest.java",
+      "sha256": "a155bc0689aee07fb5ad07565c2742de8523d9f2d09a063766359036cd895269",
+      "size_bytes": 10845
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/time/StopWatchTest.java",
+      "sha256": "47822a4de2aa824685e6496353ddaafd4d2b18882886f0f92e6746fb42b9a836",
+      "size_bytes": 7575
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/tuple/ImmutablePairTest.java",
+      "sha256": "3fb0a95d04ab79d5b072fef83311eee4d1bbb3b64cd34b46d3fa58fd9affa16b",
+      "size_bytes": 4175
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/tuple/ImmutableTripleTest.java",
+      "sha256": "4c90ee59ac6200411c5678e7a2a188b397da88f9f4c333da5bb317e973b168a2",
+      "size_bytes": 5282
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/tuple/MutablePairTest.java",
+      "sha256": "8688a0681cfab4dd290f8c46474f89ffa7e7600e05ef746e4b2808c666125424",
+      "size_bytes": 4347
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/tuple/MutableTripleTest.java",
+      "sha256": "5f461fff7a172c8784d929acc034dcc52600680cfe620725c5209eabaf700498",
+      "size_bytes": 5526
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/tuple/PairTest.java",
+      "sha256": "036e6c2208f7d558a0f7f7e6874107697f51814e5af938c84034f74464d00584",
+      "size_bytes": 4594
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/java/org/apache/commons/lang3/tuple/TripleTest.java",
+      "sha256": "d8acf153d17f0bd1bd69f8daab194df14e18a04300769dacd21442870f96770e",
+      "size_bytes": 5501
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/resources/java.policy",
+      "sha256": "fcfab3f2203698d648b798b20d36ee952cc77491646a6856fb4425293b9cbd9d",
+      "size_bytes": 26277
+    },
+    {
+      "mode": "0o664",
+      "path": "src/test/resources/lang-708-input.txt",
+      "sha256": "d4b4964e58d08c25ec6a89a1284215096b32b0d0556928bd0432f9dfe5d84c95",
+      "size_bytes": 6038
+    }
+  ],
+  "regular_file_bytes": 5122012,
+  "regular_file_count": 302,
+  "schema_version": "orion.p5.public-source-tree-content-manifest.v6",
+  "source_archive_path": "candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+  "source_archive_sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+  "upstream_commit": "396afc3e4693cfee182efe582455f2d97058c068",
+  "upstream_repository": "https://github.com/apache/commons-lang",
+  "upstream_tree": "34e33cca607f33ffcf8661e3a6c4b7fc5aca9701"
+}

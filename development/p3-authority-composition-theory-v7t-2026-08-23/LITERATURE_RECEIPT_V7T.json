@@ -1,0 +1,45 @@
+{
+  "schema_version": "orion.p3.authority-composition.literature-receipt.v7t",
+  "retrieved_at": "2026-08-23",
+  "provider": "Crossref REST API",
+  "queries": [
+    {
+      "topic": "partial identification scientific knowledge integration uncertainty",
+      "cache_path": "../../open-data-cache/p3-authority-theory-20260823/crossref_partial_identification.json",
+      "returned_items": 20
+    },
+    {
+      "topic": "ontology matching uncertainty abstention",
+      "cache_path": "../../open-data-cache/p3-authority-theory-20260823/crossref_ontology_uncertainty.json",
+      "returned_items": 20
+    },
+    {
+      "topic": "benchmark evaluation missing comparators algorithm ranking uncertainty",
+      "cache_path": "../../open-data-cache/p3-authority-theory-20260823/crossref_benchmark_authority.json",
+      "returned_items": 20
+    }
+  ],
+  "direct_record": {
+    "doi": "10.3390/app14114679",
+    "title": "Uncertainty in Automated Ontology Matching: Lessons from an Empirical Evaluation",
+    "published": "2024-05-29",
+    "journal": "Applied Sciences",
+    "crossref_record_path": "../../open-data-cache/p3-authority-theory-20260823/crossref_uncertainty_ontology_matching_record.json",
+    "crossref_record_sha256": "effde4021ceacfe3fa5b9e68a1530180eeb50bfc2cc9ce42037a4fd4be886c96",
+    "crossref_reported_licence": "CC-BY-4.0",
+    "authority_used": "Crossref metadata and abstract only"
+  },
+  "failed_routes": [
+    {
+      "route": "OpenAlex search API",
+      "result": "HTTP_429",
+      "effect": "No OpenAlex result was used."
+    },
+    {
+      "route": "Crossref-linked MDPI publisher PDF",
+      "result": "HTTP_403",
+      "effect": "No full-text claim or full-text novelty adjudication was made."
+    }
+  ],
+  "boundary": "The searches are discovery aids, not an exhaustive or independent novelty review. Novelty remains CANNOT_CHECK."
+}

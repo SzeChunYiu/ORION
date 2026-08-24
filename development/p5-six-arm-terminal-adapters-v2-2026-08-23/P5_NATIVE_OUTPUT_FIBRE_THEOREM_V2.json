@@ -1,0 +1,44 @@
+{
+  "schema_version": "orion.p5.native-output-fibre-factorisation-theorem.v2",
+  "claim_id": "P5.V2.NATIVE.OUTPUT.FIBRE.FACTORISATION",
+  "authority": "FORMAL_INTERFACE_IDENTIFICATION_AND_SYNTHETIC_COUNTEREXAMPLE_ONLY",
+  "theorem": "For task-world map r:W->C and adapter-visible native map g:W->Z, an exact deterministic adapter A with r=A composed with g exists if and only if r is constant on every fibre of g.",
+  "proof": {
+    "necessity": "If g(w1)=g(w2), determinism gives A(g(w1))=A(g(w2)); if r=A composed with g then r(w1)=r(w2).",
+    "sufficiency": "When r is constant on every fibre, define A(z) as the common r value on g inverse of z; the definition is well-defined and r=A composed with g."
+  },
+  "mixed_fibre_corollary": "One same-visible-symptom pair with different minimal revision classes makes every singleton mapping unsound; UNRESOLVED is the terminal-preserving output.",
+  "frozen_counterexamples": [
+    {"arm": "SWE-agent", "symptom": "patch_produced_and_process_exited_zero", "classes": ["EXECUTION_REPAIR", "EVALUATOR_REPAIR"]},
+    {"arm": "MOSS", "symptom": "successor_replay_improved", "classes": ["WITHIN_CLASS_MODEL_REPAIR", "REPRESENTATION_REGIME_REPAIR"]},
+    {"arm": "DGM", "symptom": "child_selected_as_archive_best", "classes": ["MODEL_CLASS_EXPANSION", "EXECUTION_REPAIR"]},
+    {"arm": "ADIAS", "symptom": "profile_issue_open_and_candidate_patch_compiles", "classes": ["WITHIN_CLASS_MODEL_REPAIR", "EXECUTION_REPAIR"]},
+    {"arm": "Double Ratchet metric-only", "symptom": "DRAWBACK", "classes": ["EVIDENCE_REPAIR", "EVALUATOR_REPAIR"]},
+    {"arm": "ScienceClaw", "symptom": "open_need_with_valid_typed_artifact", "classes": ["EVIDENCE_REPAIR", "MEASUREMENT_REPAIR"]}
+  ],
+  "raw_native_symptom_singletons_licensed": 0,
+  "certified_refinement_conditions": [
+    "COMPLETE_SUCCESS native terminal",
+    "exactly one host-validated input-native class certificate",
+    "exactly one complete write-surface class",
+    "certificate and write class agree",
+    "class is in frozen arm support set",
+    "arm-specific custody and solver-identity conditions pass"
+  ],
+  "conditional_singleton_support_counts": {
+    "SWE-agent": 7,
+    "MOSS": 4,
+    "DGM": 4,
+    "ADIAS": 4,
+    "Double Ratchet metric-only": 1,
+    "ScienceClaw": 0
+  },
+  "synthetic_conformance": {
+    "cases": 90,
+    "passed": 90,
+    "unresolved": 70,
+    "certified_singletons": 20,
+    "performance_authority": false
+  },
+  "boundary": "Certified singleton output labels a proposed action type only. Correctness, minimality, preservation, transfer, H1-H4, protected freshness, performance and superiority remain CANNOT_CHECK."
+}

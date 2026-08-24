@@ -1,0 +1,81 @@
+{
+  "$id": "orion.p5.c3.dgm-patch-capture.v4",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arm_id": {
+      "const": "C3_ARCHIVE_BASED_SELF_EDIT__DGM"
+    },
+    "exit_code": {
+      "maximum": 255,
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "native_code": {
+      "enum": [
+        "INITIALIZED",
+        "DIAGNOSIS_READY",
+        "SELF_EDIT_STARTED",
+        "PATCH_CAPTURED",
+        "NO_ENTRY",
+        "NO_PROBLEM_STATEMENT",
+        "MISSING_PATCH",
+        "EMPTY_PATCH",
+        "ARGPARSE_INTEGRITY_ERROR",
+        "PROVIDER_ERROR",
+        "RUNTIME_ERROR",
+        "TIMEOUT"
+      ]
+    },
+    "parent_commit": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "patch_bytes": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "patch_sha256": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      ]
+    },
+    "run_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "orion.p5.c3.dgm-patch-capture.v4"
+    },
+    "stage": {
+      "enum": [
+        "initialize",
+        "diagnose",
+        "self_edit",
+        "capture_patch"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "arm_id",
+    "run_id",
+    "parent_commit",
+    "native_code",
+    "stage",
+    "exit_code",
+    "patch_sha256",
+    "patch_bytes"
+  ],
+  "title": "P5 C3 DGM outcome-blind pre-evaluation patch capture",
+  "type": "object"
+}

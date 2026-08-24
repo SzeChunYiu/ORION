@@ -1,0 +1,101 @@
+{
+  "attempts": 1,
+  "authority": "ONE_PUBLIC_PROVIDER_NATIVE_CASE_MATCHER_OUTPUT_AND_INTERFACE_CONFORMANCE_ONLY_BEFORE_COMMON_SCORING",
+  "command": [
+    "/Volumes/P3V17_RUNTIME/venv/bin/python",
+    "/Volumes/P3V17_RUNTIME/source/scripts/bertmap.py",
+    "-s",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/inputs/SOURCE_BASE_BOUND_V17.rdf",
+    "-t",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/inputs/TARGET_BASE_BOUND_V17.rdf",
+    "-c",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/BERTMAP_CONFIG_V17.yaml"
+  ],
+  "common_scoring_authorized": false,
+  "decoded_repaired_artifact": null,
+  "direct_logmap_child_exit_codes": [],
+  "effective_logmap_commands": [],
+  "environment": {
+    "HF_HOME": "/Volumes/P3V17_RUNTIME/cache/hf",
+    "HF_HUB_OFFLINE": "1",
+    "HOME": "/Volumes/P3V17_RUNTIME/home",
+    "JAVA_HOME": "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PATH": "/Volumes/P3V17_RUNTIME/venv/bin:/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "TMPDIR": "/Volumes/P3V17_RUNTIME/tmp",
+    "TOKENIZERS_PARALLELISM": "false",
+    "TORCH_HOME": "/Volumes/P3V17_RUNTIME/cache/torch",
+    "TRANSFORMERS_CACHE": "/Volumes/P3V17_RUNTIME/cache/transformers",
+    "TRANSFORMERS_OFFLINE": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "finished_at_utc": "2026-08-24T06:10:38.442103+00:00",
+  "five_regular_non_symlink_artifacts": false,
+  "launch_error": null,
+  "native_artifacts": {
+    "extended_mappings.tsv": {
+      "bytes": null,
+      "path": "/Volumes/P3V17_RUNTIME/output/bertmap-out/bertmap/match/extended_mappings.tsv",
+      "regular_non_symlink": false,
+      "sha256": null
+    },
+    "filtered_mappings.tsv": {
+      "bytes": null,
+      "path": "/Volumes/P3V17_RUNTIME/output/bertmap-out/bertmap/match/filtered_mappings.tsv",
+      "regular_non_symlink": false,
+      "sha256": null
+    },
+    "raw_mappings.json": {
+      "bytes": null,
+      "path": "/Volumes/P3V17_RUNTIME/output/bertmap-out/bertmap/match/raw_mappings.json",
+      "regular_non_symlink": false,
+      "sha256": null
+    },
+    "raw_mappings.tsv": {
+      "bytes": null,
+      "path": "/Volumes/P3V17_RUNTIME/output/bertmap-out/bertmap/match/raw_mappings.tsv",
+      "regular_non_symlink": false,
+      "sha256": null
+    },
+    "repaired_mappings.tsv": {
+      "bytes": null,
+      "path": "/Volumes/P3V17_RUNTIME/output/bertmap-out/bertmap/match/repaired_mappings.tsv",
+      "regular_non_symlink": false,
+      "sha256": null
+    }
+  },
+  "native_exit_code": 1,
+  "native_success": false,
+  "protocol_id": "P3_V17_OAEI_2004_TEST_103_BERTMAP_EXACT_V12_RUNTIME_V13_DECODER_COMMON_SCORING",
+  "reference_semantically_opened": false,
+  "retries": 0,
+  "schema_version": "orion.p3.oaei-bertmap.execution-result.v17",
+  "started_at_utc": "2026-08-24T06:09:08.552280+00:00",
+  "stderr": {
+    "bytes": 2220,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/BERTMAP_STDERR_V17.log",
+    "sha256": "1f7b06fdff795501ccd9da193612249e98f10405bd58be7688bb6529437b1638"
+  },
+  "stdin_utf8": "2g\\n",
+  "stdout": {
+    "bytes": 54,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/BERTMAP_STDOUT_V17.log",
+    "sha256": "76393e0659126f6abe9e3e02b64a33f23ba801b1d6897c436dd0282a78574ba8"
+  },
+  "terminal": "P3_V17_BERTMAP_NATIVE_ATTEMPT_FAIL__NO_RETRY__COMMON_SCORING_NOT_AUTHORIZED",
+  "timed_out": false,
+  "timeout_seconds": 1800,
+  "typed_decoder": {
+    "error": "native success gate not satisfied",
+    "pass": false
+  },
+  "typed_decoder_pass": false,
+  "wall_nanoseconds": 89887939583,
+  "wall_seconds": 89.887939583
+}

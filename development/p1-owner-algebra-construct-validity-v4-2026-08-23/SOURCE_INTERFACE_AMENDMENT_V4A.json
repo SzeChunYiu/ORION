@@ -1,0 +1,80 @@
+{
+  "amendment_id": "P1_V4A_BOUNDED_MAIN_CONTENT_AND_CANONICAL_SOURCE_NORMALIZATION",
+  "changes": [
+    {
+      "reason": "Exclude navigation, news, footer and scripts.",
+      "selector": "div#content",
+      "source_id": "CROSSREF_CROSSMARK"
+    },
+    {
+      "reason": "Exclude navigation, news, footer and scripts.",
+      "selector": "div#content",
+      "source_id": "CROSSREF_POLICY_PAGE"
+    },
+    {
+      "reason": "Exclude navigation, news, footer and scripts; inspect only code/pre/table tokens inside documentation content.",
+      "selector": "div#content",
+      "source_id": "CROSSREF_RELATIONSHIPS"
+    },
+    {
+      "reason": "Exclude navigation and unrelated teasers.",
+      "selector": "main#content",
+      "source_id": "NISO_CREC_RP45_LANDING"
+    },
+    {
+      "reason": "Exclude alphabetic tag-library navigation/index.",
+      "selector": "div#text",
+      "source_id": "NLM_JATS_RELATED_ARTICLE"
+    },
+    {
+      "reason": "Exclude site navigation and scripts.",
+      "selector": "main#main-content",
+      "source_id": "COPE_RETRACTION_GUIDELINES"
+    },
+    {
+      "reason": "Extract only allowlisted bounded tokens and document identity/rights markers; do not retain text.",
+      "selector": "pdftotext UTF-8 normalized text",
+      "source_id": "NISO_CREC_RP45_PDF"
+    },
+    {
+      "reason": "Official same-page linked PDF; freeze before first fetch; retain only digest, identity/version/rights markers and bounded native tokens.",
+      "selector": "pdftotext UTF-8 normalized text",
+      "source_id": "COPE_RETRACTION_GUIDELINES_PDF",
+      "url": "https://publicationethics.org/media/848/download?attachment"
+    }
+  ],
+  "crossref_relation_token_normalization": {
+    "admit_exact_official_case_forms": [
+      "isReplacedBy",
+      "Replaces",
+      "isVersionOf",
+      "hasVersion",
+      "updates"
+    ],
+    "rule": "Case forms are retained exactly as displayed; no equivalence to R7 targets and no invented inverse."
+  },
+  "deduplication": "Landing page and PDF from the same institution count as one institutional source family.",
+  "frozen_at": "2026-08-23T19:04:53.546101+00:00",
+  "outcome_blindness": "No case, article, notice, model, comparator, protected score, scientific-action gold, or R7 target assignment was opened. This amendment changes only document-bound extraction and adds the already linked official COPE PDF before fetching it.",
+  "protocol_sha256": "ac5ee3c6a9f3ab2ab8f6942e32d49958245fbc50372c3a7f8eb58af4051b85ae",
+  "raw_capture_sha256_before_amendment": {
+    "COPE_RETRACTION_GUIDELINES.html": "e6e43f09e0af36f47b5007f1451b72d5d8c416f70e60727f2ee5d9d128d40281",
+    "CROSSREF_CROSSMARK.html": "b4229ad75909d5d01e3448270dee36672b892208214a6996d47077c4518321a2",
+    "CROSSREF_POLICY_PAGE.html": "7587874d117eaca3bbbdc7caa3ae5874d549ec0cc98813bbc51a82a97ad4397a",
+    "CROSSREF_RELATIONSHIPS.html": "62dd1b1a2ae006ed24f9df0a430da8ea0f772f87e589859bc2fa3163925ef154",
+    "ICMJE_CORRECTIONS_ROUTE.html": "01faee9f88020df6f121760a5b493da807ced28fd53326287465df9030a88853",
+    "NISO_CREC_RP45_LANDING.html": "bc8e23ad13d11a47fd849435595bcb1470d901cdd5b0888282b0d69c35aa1dbc",
+    "NISO_CREC_RP45_PDF.pdf": "110ff6008091aea1535d6242e2cb5ab1c56b353b932ac30afc4b075133ca86a1",
+    "NLM_JATS_RELATED_ARTICLE.html": "ec2df613a9fcf4a2b8c7342d111e99c444938c98cf55b2562e88a6364999dcd1"
+  },
+  "schema_version": "orion.p1.owner-algebra-construct-validity.source-interface-amendment.v4a",
+  "trigger": "Raw source capture showed mutable site-wide navigation/news material and official camelCase relation tokens outside the initial hyphenated examples. The COPE landing page also exposed an official PDF link after the canonical same-host redirect resolved.",
+  "unchanged": [
+    "12-group V8 conjunctive sufficiency rule",
+    "custodian nondelegation theorem",
+    "no-semantic-crosswalk rule",
+    "forbidden case/outcome access",
+    "terminal rules",
+    "readiness rule"
+  ]
+}

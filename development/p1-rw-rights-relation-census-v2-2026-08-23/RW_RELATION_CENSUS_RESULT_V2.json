@@ -1,0 +1,163 @@
+{
+  "alias_audit": {
+    "alias_components": 111110,
+    "ambiguous_alias_components": 406,
+    "doi_to_multiple_pmid_keys": 225,
+    "original_notice_role_collision_alias_components": 13866,
+    "pmid_to_multiple_doi_keys": 198
+  },
+  "authority": "OUTCOME_BLIND_METADATA_RELATION_CENSUS_ONLY",
+  "claim_boundary": "The pinned CC0 database contains the reported exact count of explicit, source-declared identifier relations and source-connected metadata families after frozen structural gates. This is a positive metadata-relation existence/prevalence result only; it is not linked-content admission, scientific action gold, causal responsibility, case construct validity, model evidence, transport, or external authority.",
+  "current_terminal": "P1_RW_CC0_EXPLICIT_METADATA_RELATION_CENSUS_PASS__CONTENT_RIGHTS_AND_TYPED_FEASIBILITY_CANNOT_CHECK",
+  "family_census": {
+    "admitted_explicit_rw_cc0_source_families": 42924,
+    "family_relation_multiplicity": {
+      "1": 41098,
+      "10": 7,
+      "108": 1,
+      "11": 4,
+      "12": 5,
+      "122": 1,
+      "13": 6,
+      "14": 1,
+      "15": 2,
+      "150": 1,
+      "16": 4,
+      "168": 1,
+      "17": 1,
+      "18": 1,
+      "19": 1,
+      "2": 1499,
+      "20": 1,
+      "21": 2,
+      "22": 1,
+      "25": 2,
+      "266": 1,
+      "28": 1,
+      "29": 1,
+      "3": 144,
+      "30": 2,
+      "31": 2,
+      "36": 2,
+      "37": 1,
+      "379": 1,
+      "38": 1,
+      "39": 1,
+      "4": 51,
+      "41": 1,
+      "42": 2,
+      "43": 2,
+      "45": 1,
+      "466": 1,
+      "48": 4,
+      "49": 1,
+      "5": 18,
+      "6": 19,
+      "60": 1,
+      "64": 1,
+      "659": 1,
+      "67": 1,
+      "7": 5,
+      "767": 1,
+      "8": 12,
+      "80": 1,
+      "9": 5
+    },
+    "source_connected_components_before_gates": 56781,
+    "status_counts": {
+      "ADMITTED_EXPLICIT_RW_CC0_FAMILY": 42924,
+      "CANNOT_CHECK_IDENTIFIER_ALIAS_AMBIGUITY": 406,
+      "CANNOT_CHECK_ORIGINAL_NOTICE_ROLE_COLLISION": 13451
+    }
+  },
+  "gateway": {
+    "action_or_outcome_column_accessed": false,
+    "case_text_accessed": false,
+    "forbidden_columns_opened_or_used": false,
+    "forbidden_columns_persisted_or_aggregated": false,
+    "raw_transport_will_be_deleted": true,
+    "semantic_allowlist": [
+      "Record ID",
+      "RetractionDate",
+      "RetractionDOI",
+      "RetractionPubMedID",
+      "OriginalPaperDate",
+      "OriginalPaperDOI",
+      "OriginalPaperPubMedID"
+    ]
+  },
+  "generated_at_utc": "2026-08-23T17:09:47.139722+00:00",
+  "identifier_field_counts": {
+    "notice_doi_invalid": 2,
+    "notice_doi_missing": 4667,
+    "notice_doi_valid": 67029,
+    "notice_pmid_missing": 39051,
+    "notice_pmid_valid": 32647,
+    "original_doi_missing": 5946,
+    "original_doi_valid": 65752,
+    "original_pmid_missing": 38075,
+    "original_pmid_valid": 33623
+  },
+  "identity": "P1.RW.CC0.RIGHTS.RELATION.CENSUS.RESULT.V2",
+  "protocol": {
+    "amendment_path": "RELATION_CENSUS_PROTOCOL_V2_AMENDMENT_A.json",
+    "amendment_sha256": "6932397a6c85ebc8586a9903f55507a9412222d5fd7fa441d2ba1660989b3596",
+    "path": "RELATION_CENSUS_PROTOCOL_V2.json",
+    "schema_amendment_path": "RELATION_CENSUS_PROTOCOL_V2_AMENDMENT_B.json",
+    "schema_amendment_sha256": "ce18a89594b4e850e09204ce5b66695340239b9a25b4f09475e660e8376cb4aa",
+    "sha256": "af8b7373a6ce2de34d0a5185d5d70410b46fbda44af996f922f9fa098e3117dc"
+  },
+  "relation_census": {
+    "admitted_explicit_rw_cc0_relations": 49878,
+    "admitted_relations_with_both_endpoint_dois": 48929,
+    "admitted_relations_with_both_endpoint_pmids": 29768,
+    "endpoint_preferred_key_mode_counts": {
+      "DOI_DOI": 48929,
+      "DOI_PMID": 273,
+      "PMID_DOI": 159,
+      "PMID_PMID": 517
+    },
+    "status_counts": {
+      "ADMITTED_EXPLICIT_RW_CC0_RELATION": 49878,
+      "CANNOT_CHECK_IDENTIFIER_ALIAS_AMBIGUITY": 302,
+      "CANNOT_CHECK_ORIGINAL_NOTICE_ROLE_COLLISION": 838,
+      "CANNOT_CHECK_SELF_RELATION_OCCURRENCES": 14144,
+      "DUPLICATE_RELATION_KEY_LATER_OCCURRENCES": 198
+    },
+    "unique_nonself_explicit_relations_before_component_gates": 51018
+  },
+  "rights": {
+    "admitted_family_metadata_rights_pass": 42924,
+    "admitted_relation_metadata_rights_pass": 49878,
+    "content_rights_admissible_pairs": 0,
+    "linked_content_rights_assessed": false,
+    "rw_allowlisted_metadata_license": "CC0",
+    "rw_blob_identity_pass": true
+  },
+  "row_level_structural_counts": {
+    "explicit_both_endpoints_rows": 65360,
+    "invalid_record_id": 246,
+    "missing_both_endpoints": 2683,
+    "missing_notice_endpoint": 1151,
+    "missing_original_endpoint": 2504,
+    "rows_total": 71944
+  },
+  "schema_version": "orion.p1.rw-rights-relation-census-result.v2",
+  "source": {
+    "bytes": 65984968,
+    "commit": "7bb2ced143b764974c53c6c61abfdd2379f5307d",
+    "data_rows": 71944,
+    "git_blob": "40a049f02044fab8286c0304fd296bf1fa2cb8ca",
+    "header_exact_match": true,
+    "row_width_counts": {
+      "21": 71944
+    },
+    "sha256": "ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb"
+  },
+  "typed_feasibility": {
+    "rw_action_columns_opened": false,
+    "scientific_terminal_cells_assigned": 0,
+    "source_native_action_cells_assigned": 0,
+    "state": "CANNOT_CHECK_PENDING_OFFICIAL_EPMC_AGGREGATE_ONLY_METADATA_REDUCER"
+  }
+}

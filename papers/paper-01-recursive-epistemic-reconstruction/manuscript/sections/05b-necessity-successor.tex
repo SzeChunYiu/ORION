@@ -89,14 +89,15 @@ directions recur in replication.
   \label{fig:P1-7}
 \end{figure}
 
-\subsection{Independent verification and authorized claim}
+\subsection{Separate-implementation verification and authorized claim}
 
-An independently implemented standard-library verifier imports neither the
+A separately implemented standard-library verifier imports neither the
 candidate policies, the production scorer and statistics, nor the subject's own
 licensing code. It recomputes all 40,348 arm/world score rows per run, the
 complete analysis object, and the terminal. Both verification records report
 zero score mismatches, zero analysis mismatches, and matching supported
-terminals.
+terminals. This is local code-path separation, not external or institutionally
+independent verification.
 
 The result supports a bounded credential-free mechanical claim: on this frozen
 family, the science-specific conjunction of epistemic-level necessity,

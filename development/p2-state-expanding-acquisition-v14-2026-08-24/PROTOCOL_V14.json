@@ -1,0 +1,124 @@
+{
+  "authority": "PUBLIC_SOURCE_IDENTITY_DIAGNOSIS_AFTER_SAME_SESSION_DISCOVERY__NOT_INDEPENDENT_CUSTODY_OR_PERFORMANCE_CONFIRMATION",
+  "custody_boundary": {
+    "independent_outcome_custodian_bound": false,
+    "independent_result_verifier_bound": false,
+    "independent_source_population_custodian_bound": false,
+    "same_session_cannot_self_attest_independence": true
+  },
+  "frozen_at_utc": "2026-08-24T06:21:38Z",
+  "frozen_first_route": {
+    "commit": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "expected_index_bytes": 23118,
+    "expected_index_git_blob_sha1": "ada2668adfbb33d61e11a6bec02b10637e419bde",
+    "expected_index_sha256": "5d829c669f744cc6e91165b15dd3364554320d684398b841764b2609bb857d4b",
+    "index_path": "index_v1.json",
+    "raw_url": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/index_v1.json",
+    "repository": "asreview/synergy-dataset",
+    "seven_review_candidate_template": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/{review}/output/{review}.csv"
+  },
+  "frozen_selection_rule_if_and_only_if_identity_passes": [
+    "Enumerate the complete pinned index without label values, class counts or model outcomes.",
+    "Exclude every SWIFT, SYNERGY V5, KIFMS V7 and V9/V10 review identity and every frozen prior content identity.",
+    "Require title, abstract, provider-native keywords and binary label schema plus exact CC-BY-4.0 or CC0 rights.",
+    "Require nonempty provider-native keywords in the frozen predeclared completeness fraction; never impute keywords from title or abstract.",
+    "Select the seven smallest eligible label-blind raw row counts, breaking ties by review identity; retain all seven.",
+    "Freeze exact source bytes, canonical population, content disjointness, keyword coverage, u4 and keyword-only representation before labels or outcomes."
+  ],
+  "historical_corroboration_target": {
+    "commit": "dc2dadfdbb98eb1b4259604789abd640aa3b693e",
+    "expected_index_bytes": 23118,
+    "expected_index_git_blob_sha1": "ada2668adfbb33d61e11a6bec02b10637e419bde",
+    "expected_index_sha256": "5d829c669f744cc6e91165b15dd3364554320d684398b841764b2609bb857d4b",
+    "index_path": "index_v1.json",
+    "purpose": "Establish provenance of the V13-frozen expected bytes only; this route is not authorized as a substitute."
+  },
+  "identity": "P2_V14_FROZEN_INDEX_COMMIT_PATH_IDENTITY_GATE",
+  "matched_performance_contract_unchanged": {
+    "active_loop": "V10 exact",
+    "balancer": 9.8,
+    "costs": "All parsing, vectorization, fitting and ranking costs charged",
+    "fallback": "Exact u4 on any binding or signal failure",
+    "gates": "V10 G3-G9 unchanged and simultaneous",
+    "learner": "LinearSVC C=0.11 squared_hinge random_state=20260823",
+    "performance_run_authorized": false
+  },
+  "no_substitution_rule": "If the frozen commit/path bytes do not equal the frozen expected index SHA-256, stop before index parsing, review census, review CSV download, labels, models, rankings and metrics. The historical owner is provenance evidence only and cannot replace the frozen route in V14.",
+  "planned_outputs": [
+    "PROTOCOL_V14.json",
+    "run_identity_gate_v14.py",
+    "IMPLEMENTATION_FREEZE_V14.json",
+    "PROTOCOL_FREEZE_RECEIPT_V14.json",
+    "ONLINE_SOURCE_RECEIPT_V14.json",
+    "IDENTITY_MISMATCH_GATE_RECEIPT_V14.json",
+    "CUSTODY_RECEIPT_V14.json",
+    "RESULT_V14.json",
+    "NEGATIVE_RESULT_LEDGER_V14.md",
+    "NEXT_DISCRIMINATOR_V15.json",
+    "SCIENTIFIC_REPORT_V14.md",
+    "verify_v14.py",
+    "VALIDATION_RECEIPT_V14.json",
+    "SHA256SUMS"
+  ],
+  "post_discovery_boundary": {
+    "identity_mismatch_known_before_this_protocol_freeze": true,
+    "pre_freeze_source_probe_count": "NONZERO_NOT_INDEPENDENTLY_AUDITED",
+    "purpose": "Content-addressed reproduction and causal lineage diagnosis of the already observed source-identity failure.",
+    "prospective_or_independent_claim": false
+  },
+  "predecessors": [
+    {
+      "path": "development/p2-state-expanding-acquisition-v13-2026-08-24/NEXT_DISCRIMINATOR_V14.json",
+      "sha256": "7858cea90d245b96dc845c894633e29cba16a1914e73c0ce91de9d1d06c78e72"
+    },
+    {
+      "path": "development/p2-state-expanding-acquisition-v13-2026-08-24/PROTOCOL_V13.json",
+      "sha256": "154e2b0da959f9e90babff1388c81982a8e17ba060d5c75205bad3eb7598e301"
+    },
+    {
+      "path": "development/p2-state-expanding-acquisition-v13-2026-08-24/RESULT_V13.json",
+      "sha256": "8f8681febfccc390f8e3392d321e01737c0ef4cfd2f4f3db45ab8410a15f2cbf"
+    },
+    {
+      "path": "development/p2-swift-content-disjoint-v5-2026-08-23/source-audit/synergy-tree.json",
+      "sha256": "7de93ce1dd72a8f20871a77381e9e9229d8a6ed4424cfd647549ee180b021031"
+    },
+    {
+      "path": "development/p2-swift-content-disjoint-v5-2026-08-23/source-audit/synergy-commit-master.json",
+      "sha256": "010b9336665e01cc3a47c9dd2c7e3ef65537a345fde9f6879b4938aeb9c1245d"
+    }
+  ],
+  "prohibitions": [
+    "No V12 or V13 edit, retry or relabelling.",
+    "No index JSON parsing after the byte-identity mismatch.",
+    "No review census or review CSV download.",
+    "No label value or class-count inspection or retention.",
+    "No learner, model, ranking, metric, scorer, protected-outcome or prohibited C4 execution.",
+    "No pytest or repository CI.",
+    "No post-census source substitution.",
+    "No claim that the seven-review family exists or that keywords improve screening.",
+    "No independent, protected, submission-ready or top-tier claim.",
+    "No manuscript, shared ledger, Git or other-lane edit."
+  ],
+  "protocol_id": "P2_V14_SOURCE_IDENTITY_FAIL_CLOSED_BEFORE_CENSUS",
+  "schema_version": "orion.p2.state-expanding-acquisition.protocol.v14",
+  "scientific_question": "Does the exact V13-frozen repository commit and path resolve byte-for-byte to the separately frozen V13 index identity, and if not, which exact commit-tree-blob lineage owns each identity?",
+  "single_post_discovery_reproducibility_gate": {
+    "expected_adverse_code": "FROZEN_INDEX_SHA_DOES_NOT_MATCH_PINNED_COMMIT_PATH",
+    "gate_id": "G1_COMMIT_TREE_BLOB_INDEX_IDENTITY",
+    "network_requests": 6,
+    "pass_rule_for_route_acquisition": [
+      "The frozen commit resolves to one exact root tree.",
+      "That root tree binds index_v1.json to the frozen expected Git blob SHA-1 and byte count.",
+      "The raw path bytes reproduce both the tree-bound Git blob SHA-1 and frozen expected SHA-256.",
+      "All three custody roles are independently bound before any subsequent census."
+    ],
+    "reproducibility_diagnosis_rule": [
+      "Fetch commit metadata, its exact root tree and raw index bytes for the frozen route without parsing the index bytes.",
+      "Compute raw byte count, SHA-256 and Git blob SHA-1 in memory; never retain the index body.",
+      "Fetch the historical target commit, root tree and raw index bytes only to locate the frozen expected identity; never substitute it.",
+      "If frozen route acquisition fails, emit the exact causal mismatch and stop before census."
+    ]
+  },
+  "stop_boundary": "The first failed identity conjunct terminates V14 before source census and performance."
+}

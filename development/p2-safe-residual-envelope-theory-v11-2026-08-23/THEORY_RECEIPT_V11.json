@@ -1,0 +1,136 @@
+{
+  "artifact_sha256_before_manifest": {
+    "CLAIM_LEDGER_V11.json": "78cdb51ec59ed1ce792180bec1dfe71fa0d8461cb6c02e6d96039a7b671b453a",
+    "FINITE_WITNESS_RECEIPT_V11.json": "ed1284a63f418ad832676aa8625f339db6f9d09001891d95dce423d727a0e2e1",
+    "THEORY.md": "a3c9107ad152766efc2a08d722657d550781f1f181f47f3ceeba041c0a710176",
+    "finite_witnesses.py": "7144b7db94a464a23e43a724dcdae9481440161a09ba562aae7c8ef28bef40ba"
+  },
+  "claim_boundary": [
+    "conditional theory is not an empirical performance win",
+    "finite non-identification is not evidence of a positive unseen family",
+    "saturation is an explicit assumption and is not established for single u4",
+    "a cost, access, world or authority contract mismatch invalidates the original dominance comparison",
+    "same-workspace public evidence is not independent confirmation"
+  ],
+  "corollary_count": 1,
+  "created_at_utc": "2026-08-23T21:02:41.071605+00:00",
+  "finite_witnesses": {
+    "acquisition_ceiling_witness": {
+      "new_route_ceiling": 1.0,
+      "reordering_ceiling": 0.5
+    },
+    "all_passed": true,
+    "donor_fibre_witness": {
+      "candidate_not_donor_factorable": true,
+      "donor_state_tied": true,
+      "new_signal_separates": true
+    },
+    "finite_extension_nonidentification": {
+      "extensions_agree_on_observed": true,
+      "interpretation": "logical compatibility only, not evidence that the unseen family exists",
+      "observed_worlds": 7,
+      "positive_unseen_family_passes": true
+    },
+    "harm_noncompensation_witness": {
+      "gates": {
+        "absolute_wss95": true,
+        "mean_cre20": true,
+        "mean_r10": true,
+        "mean_wss95": true,
+        "positive_cre20": true,
+        "positive_r10": true,
+        "worst_r10_harm": false
+      },
+      "rows": 7
+    },
+    "identity": "P2_V11_FINITE_THEORY_WITNESS_RECEIPT",
+    "passing_gate_witness": {
+      "gates": {
+        "absolute_wss95": true,
+        "mean_cre20": true,
+        "mean_r10": true,
+        "mean_wss95": true,
+        "positive_cre20": true,
+        "positive_r10": true,
+        "worst_r10_harm": true
+      },
+      "rows": 7
+    },
+    "scalar_compensation_witnesses": [
+      {
+        "compensated_score": 1000001.0108579858,
+        "failed_r10": 0.01085798582077089,
+        "weights": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "compensated_score": 500004.02171597164,
+        "failed_r10": 0.01085798582077089,
+        "weights": [
+          0.5,
+          2.0,
+          4.0
+        ]
+      },
+      {
+        "compensated_score": 3000000.7527144966,
+        "failed_r10": 0.01085798582077089,
+        "weights": [
+          3.0,
+          0.25,
+          0.75
+        ]
+      }
+    ],
+    "v10_gate_reconstruction": {
+      "gates": {
+        "absolute_wss95": true,
+        "mean_cre20": false,
+        "mean_r10": false,
+        "mean_wss95": true,
+        "positive_cre20": false,
+        "positive_r10": false,
+        "worst_r10_harm": true
+      },
+      "matches_result": true,
+      "rows": 7
+    },
+    "v10_result_sha256": "c69e5634b8d0e82a1fa393dbae276d728e9a2f7ba4c9db81a27c0329e2e66742"
+  },
+  "identity": "P2_V11_SAFE_RESIDUAL_ENVELOPE_THEORY_RECEIPT",
+  "input_bindings": {
+    "acquisition_authority_theory": {
+      "sha256": "d31b4f4fc20febe911e2abf4a91493cdc4e411205b7a74ecc67f356200408c36"
+    },
+    "p2_v10_receipt": {
+      "sha256": "4ca47bceb950776a096a9ad17312098347f5e17ddb28e69d1a85b013ca6738aa"
+    },
+    "p2_v10_result": {
+      "sha256": "c69e5634b8d0e82a1fa393dbae276d728e9a2f7ba4c9db81a27c0329e2e66742"
+    },
+    "p2_v4_factorization_result": {
+      "sha256": "c1e5b50f3498bb84ec3d6303af6a4c9f355a4f5eeec1d47e0eef567f629b5884"
+    },
+    "p2_v8_adjudication": {
+      "sha256": "fe1f5633a465c0b6d8e21673d867d77e3ccc8fc3af58c86703a25ea3f3d0ec25"
+    },
+    "p2_v8_result": {
+      "sha256": "8aa6438b470a7facd7e630a8280afdbc034120c631eac4fdfe744d48a0e63e75"
+    }
+  },
+  "proposition_count": 2,
+  "status": "THEORY_AND_FINITE_WITNESSES_COMPLETE__NO_NEW_EMPIRICAL_OR_MODEL_RUN",
+  "terminal": "P2_V11_SAFE_RESIDUAL_ENVELOPE_AND_DONOR_FIBRE_SEPARATION_PROVED__FINITE_V8_V10_FAILURES_DO_NOT_IDENTIFY_UNIVERSAL_U4_OPTIMALITY__NEW_INFORMATION_OR_UNSATURATED_DONOR_CLASS_REQUIRED_FOR_STRICT_ASCENT",
+  "theorem_count": 5,
+  "verification": {
+    "finite_witness_command": "rtk python finite_witnesses.py",
+    "git_or_manuscript_or_shared_edits": false,
+    "new_data_or_model_runs": false,
+    "pytest_or_repository_ci": false,
+    "terminal": "P2_V11_FINITE_WITNESSES_PASS"
+  },
+  "widest_positive_result": "A certificate-switched residual envelope conditionally preserves the exact donor and soundly admits a residual under a simultaneous noncompensatory certificate. Valid strict same-contract ascent beyond a saturated donor-complete class requires non-simulable information/state, new acquisition support, or proof of donor-class incompleteness; a contract mismatch changes the comparison and cannot establish dominance under the original contract."
+}

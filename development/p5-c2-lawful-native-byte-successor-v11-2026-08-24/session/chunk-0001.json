@@ -1,0 +1,8 @@
+{
+  "candidate_outcome_or_evaluator_feedback_present": false,
+  "content": "Repair Apache Commons Lang NumberUtils.createNumber so positive hexadecimal magnitudes are classified by the signed positive capacity of Integer and Long rather than by raw hexadecimal width alone. Values that exceed Integer but fit Long must remain representable as Long; values above signed Long capacity must remain representable as BigInteger; leading zeroes must not change the effective magnitude class. Preserve the public API and unrelated numeric parsing behavior.",
+  "role": "user",
+  "schema_version": "orion.p5.c2.authored-session-chunk.v11",
+  "sequence": 1,
+  "source": "V6 candidate-visible authored public-development case body"
+}

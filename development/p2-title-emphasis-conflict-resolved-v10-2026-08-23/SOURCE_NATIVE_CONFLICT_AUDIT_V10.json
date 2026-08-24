@@ -1,0 +1,56 @@
+{
+  "adjudication": {
+    "label_choice_used": false,
+    "model_outcomes_accessed": false,
+    "resolved": true,
+    "rule": "These are two provider-native nonduplicate source records. Retain both; for this exact group only, distinguish canonical row identity by provider record_id. Do not select, pool, majority-vote, relabel, or delete either row."
+  },
+  "audited_at_utc": "2026-08-23T20:46:30.637462+00:00",
+  "exact_conflict": {
+    "distinct_author_hashes": true,
+    "distinct_doi_hashes": true,
+    "normalized_title_abstract_content_identity": "d1b054eda2f1fb8dea2e3ad78c9d32aba9819f9d2465b6509949ec11f4117bd4",
+    "review": "Appenzeller-Herzog_2020",
+    "rows": [
+      {
+        "authors_sha256": "b21842b549a307d440ceedcc48d7164027396ed8aa4d4bb729642faca2f2713c",
+        "doi_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "duplicate_record_id": null,
+        "label_abstract_screening": 0,
+        "label_included": 0,
+        "provider_record_id": "1003",
+        "source_row_number": 1004,
+        "year": "1968"
+      },
+      {
+        "authors_sha256": "4f937f7f1f7a2fd6f892d6adfb2450e105f4308a2e1607182714e7744269b6e6",
+        "doi_sha256": "ab29bba97a6045cbc6b3c0515c675ef0590b9aae072f6294c5d9e871ff75f8c0",
+        "duplicate_record_id": null,
+        "label_abstract_screening": 1,
+        "label_included": 1,
+        "provider_record_id": "1018",
+        "source_row_number": 1019,
+        "year": "1968"
+      }
+    ],
+    "same_abstract_hash": true,
+    "same_title_hash": true
+  },
+  "identity": "P2_V10_APPENZELLER_PROVIDER_NATIVE_CONFLICT_AUDIT",
+  "provider_semantics": {
+    "duplicate_relation": "The pinned notebook marks duplicate_record_id only after grouping by cleaned title and cleaned authors; nonduplicate rows remain blank.",
+    "label_included": "The pinned README defines 0 as not included and 1 as included; the notebook derives this field using cleaned title and author membership.",
+    "record_id": "The pinned notebook assigns df_all.index + 1 before labeling."
+  },
+  "scope": "MECHANICS_ONLY_SOURCE_NATIVE_IDENTITY_ADJUDICATION__PUBLIC_OUTCOMES_ALREADY_OPEN_IN_V9__NO_CONFIRMATION",
+  "source": {
+    "provider_notebook_git_blob_sha": "18905c720b9d8b869bf9613c68a1d19e2ee4bd88",
+    "provider_notebook_sha256": "99e133148b3a30f5ef63da88dbc00dce4f1bcc045a34255e84952f5a7f00f25a",
+    "provider_readme_sha256": "471ad37532dbc488f1d30882d7f577ff4be3b333b1be52587e7fd12144755bcc",
+    "repository_commit": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "source_csv_sha256": "456f9306b0ce1aee840ac0244f11df3b2a168aa46007a92f5dcf59916d309a69"
+  },
+  "status": "SOURCE_NATIVE_IDENTITY_RELATION_RESOLVED_BEFORE_ANY_V10_MODEL_OUTCOME",
+  "v9_result_sha256": "87088cb9874429eaf3cd61db40a668a039556cffd860d7dd6ff7cc0ee019c4fa",
+  "v9_terminal": "P2_V9_SOURCE_DISJOINT_TITLE_EMPHASIS_CANNOT_CHECK_BINDING_OR_POPULATION__NO_EXECUTABLE_CLAIM"
+}

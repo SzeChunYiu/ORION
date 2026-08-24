@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="urn:orion:p3:v6:smoke:target#"
+     xml:base="urn:orion:p3:v6:smoke:target"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+  <owl:Ontology rdf:about="urn:orion:p3:v6:smoke:target"/>
+  <owl:Class rdf:about="urn:orion:p3:v6:smoke:target#Alpha"><rdfs:label xml:lang="en">alpha entity</rdfs:label></owl:Class>
+  <owl:Class rdf:about="urn:orion:p3:v6:smoke:target#Beta"><rdfs:label xml:lang="en">beta entity</rdfs:label><rdfs:subClassOf rdf:resource="urn:orion:p3:v6:smoke:target#Alpha"/></owl:Class>
+  <owl:Class rdf:about="urn:orion:p3:v6:smoke:target#Gamma"><rdfs:label xml:lang="en">gamma entity</rdfs:label><rdfs:subClassOf rdf:resource="urn:orion:p3:v6:smoke:target#Alpha"/></owl:Class>
+</rdf:RDF>

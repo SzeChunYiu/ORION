@@ -1,0 +1,60 @@
+{
+  "$id": "orion.p3.public-prediction-contract.v1.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admissible_relations": {
+      "items": {
+        "enum": [
+          "GLUE",
+          "OBSTRUCTION",
+          "PLURAL",
+          "UNRESOLVED"
+        ]
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "case_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "details": {
+      "type": "object"
+    },
+    "gold_accessed": {
+      "const": false
+    },
+    "input_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "relation": {
+      "enum": [
+        "GLUE",
+        "OBSTRUCTION",
+        "PLURAL",
+        "UNRESOLVED"
+      ]
+    },
+    "schema_version": {
+      "const": "orion.p3.public-prediction.v1.1"
+    },
+    "system_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "system_id",
+    "relation",
+    "admissible_relations",
+    "input_digest",
+    "gold_accessed"
+  ],
+  "title": "P3 frozen public prediction without statistical-weight fields",
+  "type": "object"
+}

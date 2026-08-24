@@ -1,0 +1,17 @@
+{
+  "arm_code": "C4",
+  "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+  "arm_or_model_executed": false,
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "field": "runtime.task_environment",
+  "field_instances_closed": 0,
+  "manifest": {
+    "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C4_NATIVE_TASK_ENVIRONMENT_MANIFEST_V7.json",
+    "sha256": "a5934a35932b4f8b427bcdc713ad5c7f8201420da75ac0a3d2c3c06a353e994e",
+    "size_bytes": 3306
+  },
+  "protocol_sha256": "3a6cc70a0f91957ef4e7fbc5ec42e66875084f7985c2250c056e00d865aa4fe0",
+  "residual": "The six retained native ADIAS domains are alfworld, taubench_return, taubench_retail, textcraft, webshop, and scienceworld; none implements the V6 Apache Commons Lang patch task. Choosing one by name or declaring limits without adapter bytes would change task semantics.",
+  "schema_version": "orion.p5.native-task-environment-acceptance.v7",
+  "status": "BLOCKING"
+}

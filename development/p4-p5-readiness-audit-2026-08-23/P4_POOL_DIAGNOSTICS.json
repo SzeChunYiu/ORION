@@ -1,0 +1,147 @@
+{
+  "audit_date": "2026-08-23",
+  "authority": "INDEPENDENT_DESCRIPTIVE_AUDIT_OF_FROZEN_SOURCE_POOL_ONLY__NOT_CASE_ELIGIBILITY_OR_SCIENTIFIC_RESULT",
+  "capacity_diagnostics": {
+    "attrition_reserve_after_primary_and_equally_sized_replication": 0,
+    "candidate_to_primary_ratio": 2.0,
+    "eligible_case_panel_present": false,
+    "full_text_bytes_fetched_and_hashed_for_eligible_cases": false,
+    "mean_candidates_per_planned_cell_if_evenly_distributed": 48.0,
+    "mechanism_assignments_present": false,
+    "paired_naturalistic_identifiable_unidentifiable_views_present": false,
+    "planned_clusters_per_cell": 24,
+    "planned_domain_mechanism_cells": 32,
+    "planned_domains": 4,
+    "planned_mechanisms": 8,
+    "planned_primary_clusters": 768,
+    "source_disjoint_replication_frame_present": false
+  },
+  "counts": {
+    "acquisition_route_counts": {
+      "cs:cs:SE": 384,
+      "eess": 384,
+      "physics:astro-ph:EP": 128,
+      "physics:physics:ao-ph": 128,
+      "physics:physics:geo-ph": 128,
+      "q-bio": 384
+    },
+    "domain_counts": {
+      "EARTH_ENVIRONMENT": 384,
+      "LIFE_BIOMEDICAL": 384,
+      "PHYSICAL_ENGINEERING": 384,
+      "SCIENTIFIC_SOFTWARE": 384
+    },
+    "live_exact_abstract_checks_passed": 4,
+    "live_exact_abstract_checks_total": 4,
+    "live_exact_pdf_checks_passed": 4,
+    "live_exact_pdf_checks_total": 4,
+    "retained_official_oai_pages": 24,
+    "rows": 1536,
+    "unique_arxiv_ids": 1536,
+    "unique_exact_arxiv_ids": 1536,
+    "validation_checks_passed": 15,
+    "validation_checks_total": 15
+  },
+  "identity_diagnostics": {
+    "duplicated_exact_author_strings": 44,
+    "duplicated_exact_author_strings_crossing_domains": 0,
+    "exact_author_string_noncollision_interpretation": "Exact strings do not cross domains, but names were not normalized and this does not establish source-family independence.",
+    "maximum_exact_author_string_frequency": 10,
+    "normalized_author_identity_or_lineage_independence_established": false,
+    "rows_in_duplicated_exact_author_strings": 114,
+    "rows_with_doi": 544,
+    "unique_abstract_sha256": 1536,
+    "unique_dois": 544,
+    "unique_exact_author_strings": 1466
+  },
+  "revision_diagnostics": {
+    "exact_version_counts": {
+      "v1": 1140,
+      "v2": 285,
+      "v3": 75,
+      "v4": 26,
+      "v5": 4,
+      "v6": 4,
+      "v7": 2
+    }
+  },
+  "schema_version": "orion.p4-p5-readiness-audit.p4-pool-diagnostics.v1",
+  "scientific_interpretation": {
+    "closed": [
+      "immutable multi-domain arXiv candidate identities",
+      "candidate-level exact CC BY 4.0 licence metadata for the retained arXiv versions",
+      "source-pool byte fixity and structural conformance"
+    ],
+    "current_terminal": "PUBLIC_CC_BY_SOURCE_POOL_BOUND__NATURALISTIC_CASE_ADJUDICATION_REQUIRED",
+    "not_closed": [
+      "case eligibility",
+      "naturalistic identifiability pairing",
+      "domain-by-mechanism quotas",
+      "full-text case-byte custody",
+      "provider, modality, and temporal transport",
+      "source-disjoint replication",
+      "scientific performance or superiority"
+    ]
+  },
+  "source": {
+    "binding_id": "P4.NAT.AXIS.768.ARXIV_CC_BY_POOL_1536.V1",
+    "harvest_window": {
+      "from": "2018-01-01",
+      "until": "2026-08-20"
+    },
+    "modality": "author-written scientific article text",
+    "modality_count": 1,
+    "path": "development/p4-scientific-ascent-2026-08-23/source_binding/ARXIV_CC_BY_SOURCE_POOL_V1.jsonl",
+    "provider": "arXiv",
+    "provider_count": 1,
+    "selection_consequence": "OAI from filters repository datestamps, while first-in-response quota filling selected only records with OAI datestamps through 2021; it is not a temporally representative sample of the declared window",
+    "selection_rule": "first 384 unique complete non-withdrawn CC BY 4.0 records per declared domain in OAI response order; Earth/environment 128 per subroute",
+    "sha256": "47dd24657752731cdf45bab95852f3e18b50946af8a29b5acee95956ec81d895"
+  },
+  "temporal_diagnostics": {
+    "first_version_year_counts": {
+      "2009": 1,
+      "2014": 1,
+      "2015": 1,
+      "2016": 9,
+      "2017": 43,
+      "2018": 482,
+      "2019": 555,
+      "2020": 320,
+      "2021": 124
+    },
+    "first_version_year_max": 2021,
+    "first_version_year_min": 2009,
+    "latest_version_year_counts": {
+      "2015": 1,
+      "2016": 2,
+      "2017": 16,
+      "2018": 448,
+      "2019": 577,
+      "2020": 358,
+      "2021": 134
+    },
+    "latest_version_year_max": 2021,
+    "latest_version_year_min": 2015,
+    "oai_datestamp_year_counts": {
+      "2018": 421,
+      "2019": 592,
+      "2020": 372,
+      "2021": 151
+    },
+    "selected_first_version_years_absent": [
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "selected_latest_version_years_absent": [
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  }
+}

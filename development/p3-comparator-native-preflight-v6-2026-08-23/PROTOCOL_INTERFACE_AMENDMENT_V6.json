@@ -1,0 +1,26 @@
+{
+  "amended_parser": [
+    "XML must parse and contain an Alignment element.",
+    "Every Cell must contain exactly one entity1 IRI, entity2 IRI, relation, and numeric finite confidence.",
+    "Every left IRI must use the frozen source namespace and every right IRI the frozen target namespace.",
+    "The same rows, relation and confidence must occur in logmap2_mappings.tsv.",
+    "Because the pinned source writes the source ontology IRI into both RDF headers, header onto2/uri2 is recorded as an upstream defect and is never used to infer row side, truth, completeness, or performance."
+  ],
+  "amended_required_artifact": "logmap2_mappings.rdf",
+  "base_protocol_sha256": "d8c11f0a700411d2937bdebbb1081ea7e57d1ced721dba27c73d985b6a3d753c",
+  "created_at": "2026-08-23T17:26:41.264003+00:00",
+  "first_run_disposition": "FAIL_UNDER_BASE_PROTOCOL_EXPECTED_FILENAME__NOT_A_RETRY_AND_NOT_SCORED",
+  "schema_version": "orion.p3.comparator-native-preflight.interface-amendment.v6",
+  "scope": "K2_LOGMAP_NATIVE_FILENAME_AND_HEADER_GUARD_ONLY",
+  "source_evidence": {
+    "commit": "b3b57d0d8bfb5872bdffb49329d764acb4735713",
+    "filename_lines": "507-520: absolute output directory triggers saveExtractedMappings(\"logmap2_mappings\")",
+    "header_defect_lines": "1755-1760: createOutFiles receives onto_process1.getOntoIRI() for both ontology header arguments",
+    "path": "src/main/java/uk/ac/ox/krr/logmap2/LogMap2Core.java",
+    "repository": "https://github.com/ernestojimenezruiz/logmap-matcher",
+    "sha256": "51ad9bed31f947c3b4785c86e43e3cfe93428c98d33385cfaa4fd804629079c5"
+  },
+  "success_boundary": "A confirmation run can establish only native smoke parser/runtime readiness under mandatory namespace and sidecar guards; it cannot establish comparator performance or V5-frame execution readiness.",
+  "timing": "Frozen after first smoke process completed but before the amended confirmation run; no gold, reference, protected, performance, harm, or scientific scoring was opened.",
+  "why_amendment_is_allowed": "The change resolves a source-native interface mismatch and upstream metadata defect. It does not select mappings, thresholds, cases, scores, or outcomes."
+}

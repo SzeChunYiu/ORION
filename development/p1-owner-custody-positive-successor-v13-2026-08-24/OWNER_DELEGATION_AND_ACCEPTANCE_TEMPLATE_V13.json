@@ -1,0 +1,52 @@
+{
+  "acceptance_payload": {
+    "accepted_at_utc": null,
+    "delegate_identity": null,
+    "delegation_payload_sha256": null,
+    "statement": "I accept the exact seven-target completion and ratification delegation identified by delegation_payload_sha256."
+  },
+  "acceptance_payload_sha256": null,
+  "acceptance_signature": {
+    "key_id": null,
+    "signature": null,
+    "signature_scheme": null,
+    "verification_material_or_uri": null
+  },
+  "authority": "UNSIGNED_EXTERNAL_EXECUTION_TEMPLATE__NOT_DELEGATION",
+  "delegation_payload": {
+    "delegate_identity": null,
+    "delegator_identity": null,
+    "effective_at_utc": null,
+    "expiry_or_revocation_rule": null,
+    "ownership_basis": {
+      "description": null,
+      "evidence_sha256": null,
+      "public_or_authorized_verification_uri": null
+    },
+    "powers": [
+      "COMPLETE_CLOSED_WORLD_V8_ALGEBRA",
+      "RATIFY_EXACT_CONTENT_HASH"
+    ],
+    "scope": [
+      "KEEP_SEARCH",
+      "KEEP_COMPILE",
+      "KEEP_REPAIR",
+      "REVISE_MEASUREMENT",
+      "REFORMULATE_OBJECTIVE",
+      "REFORMULATE_BOUNDARY",
+      "UNRESOLVED"
+    ]
+  },
+  "delegation_payload_sha256": null,
+  "delegation_signature": {
+    "key_id": null,
+    "signature": null,
+    "signature_scheme": null,
+    "verification_material_or_uri": null
+  },
+  "instructions": "Hash and sign delegation_payload with record type DELEGATION. The delegate then binds that exact hash in acceptance_payload and signs with record type ACCEPTANCE. Candidate authors and AI agents must not populate identities, basis, keys or signatures.",
+  "output_filename": "OWNER_DELEGATION_AND_ACCEPTANCE_SIGNED_V13.json",
+  "schema_version": "orion.p1.owner-custody-positive-successor.owner-delegation-template.v13",
+  "signing_specification": "SIGNING_CANONICALIZATION_V13.json",
+  "status": "UNSIGNED__ZERO_AUTHORITY"
+}

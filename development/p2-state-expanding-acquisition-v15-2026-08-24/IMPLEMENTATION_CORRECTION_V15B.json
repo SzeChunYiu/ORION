@@ -1,0 +1,17 @@
+{
+  "authorization": {
+    "candidate_request": false,
+    "census": false,
+    "index_parse": false,
+    "performance": false,
+    "reuse_provider_metadata_as_descriptive_witness": true
+  },
+  "chronology": "The V15 provider gate completed before the candidate-template transcription error was checked against immutable V14. The frozen V15 protocol remains unchanged.",
+  "corrected_successor_template": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/{review}/output/{review}.csv",
+  "error": "FROZEN_V15_CANDIDATE_TEMPLATE_DIVERGES_FROM_IMMUTABLE_V14_TEMPLATE",
+  "immutable_v14_template": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/{review}/output/{review}.csv",
+  "schema_version": "orion.p2.state-expanding-acquisition.v15b.implementation-correction",
+  "scientific_effect": "No index or candidate body was requested, no census or outcome occurred, and the erroneous template was never executed. The seven provider metadata responses are not reinterpreted as prospective evidence under the correction.",
+  "v15_frozen_template": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/{review_id}.csv",
+  "v15_protocol_sha256": "a492bf47620651b35542b64ac9bc1da115ef793d0998e14a3fa43ab98f64c29c"
+}

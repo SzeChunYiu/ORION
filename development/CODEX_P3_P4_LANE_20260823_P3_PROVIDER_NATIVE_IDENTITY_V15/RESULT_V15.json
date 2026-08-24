@@ -1,0 +1,142 @@
+{
+  "admission": {
+    "exact_provider_native_case_found": true,
+    "exact_version_bound": true,
+    "one_separate_bertmap_successor_authorized": true,
+    "reference_hash_bound": true,
+    "rights_bound": true,
+    "same_universe_comparator_identity_bound": true,
+    "source_ontology_hash_bound": true,
+    "target_ontology_hash_bound": true
+  },
+  "authority": "LIVE_PROVIDER_AND_LOCAL_RECEIPT_BOUND_PUBLIC_DEVELOPMENT_IDENTITY_ONLY__NOT_PROTECTED_CONFIRMATION",
+  "blocker_delta": {
+    "authorized_prospective_runs": "ZERO_TO_ONE",
+    "provider_native_pair_identity": "CANNOT_CHECK_TO_BOUND",
+    "same_universe_comparator_identity": "CANNOT_CHECK_TO_BOUND",
+    "scientific_comparator_readiness": "0/3_TO_0/3",
+    "top_tier_submission_ready": false
+  },
+  "candidate_identity": {
+    "lineage_receipts": {
+      "v11_receipt_sha256": "1282d4f6e1d7bc6a0e2a5a400d394b11c73856b37f94bf2cb92b39a32958015c",
+      "v12_execution_receipt_sha256": "66aa28ca038c7f7f9767f117cc05f155e42b55c77e9fea2adb43ffb30bd27732",
+      "v12_protocol_sha256": "ecdaa4dd2ae82d3d0633e085bfe6392a6981032b18902045756dd5744334f4f9",
+      "v13_protocol_sha256": "894f63983de9d850dd4465c79950343fce8a2e2aafb3c5b3c8c234f58d4c78c1",
+      "v13_receipt_sha256": "5872bee686f444af7f14caedddc1bf52664a0878993bdf1e400d6165abdb95ed",
+      "v7_protocol_sha256": "849f0f7b46adab50bc5648636a4bd283d87443a6bea59f26ec251f2b756337bf",
+      "v8_patch_sha256": "412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b"
+    },
+    "maintained_commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+    "maintained_repository": "https://github.com/KRR-Oxford/DeepOnto",
+    "name": "BERTMap maintained in DeepOnto",
+    "original_commit": "ce848402b40e2f9513bf2d004894d3f82635022c",
+    "original_repository": "https://github.com/KRR-Oxford/BERTMap",
+    "package_version": "0.9.3",
+    "paper_arxiv": "2112.02682",
+    "paper_doi": "10.1609/aaai.v36i5.20510",
+    "paper_title": "BERTMap: A BERT-Based Ontology Alignment System",
+    "required_lineage": [
+      "P3 V8 exact dp.Score table-reader repair",
+      "P3 V11 exact 90-of-90 LogMap manifest classpath",
+      "P3 V12 Java add-opens direct-child propagation adapter",
+      "P3 V13 fail-closed typed Optional decoder with exact role-universe membership"
+    ]
+  },
+  "claim_boundary": {
+    "coverage": "CANNOT_CHECK",
+    "harm": "CANNOT_CHECK",
+    "mapping_truth": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "protected_confirmation": "CANNOT_CHECK",
+    "superiority": "CANNOT_CHECK",
+    "transport": "CANNOT_CHECK"
+  },
+  "execution_boundary": {
+    "archive_written_to_disk": false,
+    "downloads": 2,
+    "java_attempts": 0,
+    "matcher_attempts": 0,
+    "metrics_computed": 0,
+    "prediction_attempts": 0,
+    "public_gold_rows_interpreted": 0,
+    "reference_bytes_accessed_for_hash": true,
+    "reference_semantics_parsed": false,
+    "repair_attempts": 0,
+    "scientific_scoring_performed": false,
+    "training_attempts": 0
+  },
+  "next_discriminator": "Freeze a new execution protocol from this exact identity, run one no-feedback BERTMap attempt on 101/onto.rdf to 103/onto.rdf, freeze all artifacts and typed-decoder receipts before semantically parsing 103/refalign.rdf, then score BERTMap and the frozen AML output under one declared pair-set metric contract.",
+  "protocol_id": "P3_V15_OAEI2004_101_103_PROVIDER_NATIVE_IDENTITY_PREFREEZE",
+  "provider_identity": {
+    "archive": "oacontest17.zip",
+    "archive_bytes": 486043,
+    "archive_md5": "31676c68912a22622f6ca6d031519df9",
+    "archive_sha256": "f22aac206773e4eacdd54cf9519ffe997332a430326bdae29f4210a24efab0b4",
+    "doi": "10.5281/zenodo.15827226",
+    "license": "CC-BY-4.0",
+    "live_metadata_body_sha256": "8f3a79f76d0d455573f21b174a44a17bfa98b5d06190311b9e0ec8b8296c01de",
+    "publication_date": "2004-10-10",
+    "record_id": 15827226,
+    "title": "OAEI 2004 (Ontology alignment contest) benchmark tests (oacontest17)"
+  },
+  "provider_native_pair": {
+    "independence_warning": "All numbered tests are systematic alterations of one bibliographic seed ontology and are one donor cluster, not independent studies.",
+    "pair_id": "OAEI2004_OACONTEST17_101_TO_103",
+    "provider_index": {
+      "bytes": 23507,
+      "member": "index.html",
+      "selection_marker": "103) Concept test: Language generalisation",
+      "selection_marker_occurrences": 1,
+      "sha256": "29f245ad18ff6f0c26255b91c6f89484ccf992fd36511ee2c0582081a4e2d92c"
+    },
+    "reference": {
+      "bytes": 29568,
+      "member": "103/refalign.rdf",
+      "semantics_parsed_by_v15": false,
+      "sha256": "0afb0f2c9764201d91c226c5fb60d4b25425168acf6c2604fb191be906e9ec16"
+    },
+    "source": {
+      "bytes": 69721,
+      "member": "101/onto.rdf",
+      "sha256": "d6143780103217a4a562e4982f0d4c724c09d3a3e7dc146a6b42cecc3e9f1064"
+    },
+    "source_xml_parse": "PASS",
+    "target": {
+      "bytes": 70677,
+      "member": "103/onto.rdf",
+      "sha256": "e3643a6fcd237a162d120e58227df2e24e0398668c6f2428e4fea850180405cf"
+    },
+    "target_xml_parse": "PASS"
+  },
+  "same_universe_comparator": {
+    "authority_limit": "Source-native public-development comparator; not a current-SOTA or protected-confirmation certificate.",
+    "binding_receipt_sha256": "2900e48f69bc6ffd8b3cb42a27fbc9d2b66ab5bb2ad1d867866a1934e7477995",
+    "expected_target_103_output_sha256": "0141182140af358cf6bed245d2ed307efc8302551f272d0bf89811d0c0520657",
+    "jar_sha256": "a5b831a6c000e49aa4702b16486dabdf38e40bb68203a16a8019414fecc2ecf3",
+    "license": "Apache-2.0",
+    "name": "AgreementMakerLight",
+    "output_manifest_sha256": "fe030d2adbe9495b28f9f46289b8e455d406e0d9a4c13c7bc70049908240d46d",
+    "pre_reference_output": {
+      "alignment_cells": 46,
+      "byte_identical": true,
+      "log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "output_sha256": "0141182140af358cf6bed245d2ed307efc8302551f272d0bf89811d0c0520657",
+      "output_size": 15291,
+      "replay_log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "replay_sha256": "0141182140af358cf6bed245d2ed307efc8302551f272d0bf89811d0c0520657",
+      "status": "EXECUTED",
+      "target_test": "103"
+    },
+    "reference_alignment_argument_supplied": false,
+    "release_asset_sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27",
+    "repository": "https://github.com/AgreementMakerLight/AML-Project",
+    "source_member_sha256": "d6143780103217a4a562e4982f0d4c724c09d3a3e7dc146a6b42cecc3e9f1064",
+    "system_id": "AML_V3_2_AUTO_SOURCE_NATIVE",
+    "tag": "v3.2",
+    "tag_commit": "d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6",
+    "target_member_sha256": "e3643a6fcd237a162d120e58227df2e24e0398668c6f2428e4fea850180405cf"
+  },
+  "schema_version": "orion.p3.provider-native-identity.result.v15",
+  "terminal": "P3_V15_PROVIDER_NATIVE_OAEI_101_103_IDENTITY_PASS__EXACT_VERSION_RIGHTS_ONTOLOGY_REFERENCE_AND_SAME_UNIVERSE_AML_BOUND__REFERENCE_SEMANTICS_UNPARSED_ONE_BERTMAP_SUCCESSOR_AUTHORIZED__SCIENTIFIC_READINESS_ZERO_OF_THREE_UNCHANGED"
+}

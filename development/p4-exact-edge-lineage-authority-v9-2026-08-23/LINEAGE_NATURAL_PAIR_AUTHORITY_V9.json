@@ -1,0 +1,435 @@
+{
+  "adjudication": {
+    "author_lineage_adjudications_added": 0,
+    "author_lineage_independence": "CANNOT_CHECK",
+    "author_lineage_reason": "The replication rule applies across the full exact source frame and requires a pre-adjudication primary/replication partition. Seven residual records cannot establish the full conflict graph; names and missing ORCIDs cannot prove inequality; no external normalization adjudication is present.",
+    "identity_progress": "26 of 30 exact publication-author positions have the same ORCID on Crossref and Zenodo; one additional publication author has a Crossref ORCID absent from Zenodo; three positions remain name-only. These counts bind person identifiers only for the exact seven-record subset.",
+    "natural_pair_eligibility": "CANNOT_CHECK",
+    "natural_pair_reason": "Exact source edges and author identifiers are source-frame prerequisites only. No independent material-claim/one-coordinate/target-purity/nuisance adjudication, comparator outcome, evaluator custody or source-disjoint replication partition was opened.",
+    "natural_pairs_added": 0,
+    "outcomes_accessed": false
+  },
+  "authority": "Crossref exact publication DOI authors and Zenodo exact archive record creators; ORCID exact strings only",
+  "counts": {
+    "cross_provider_exact_orcid_matches": 26,
+    "crossref_only_orcid": 1,
+    "crossref_orcid_identified": 27,
+    "name_only_publication_authors": 3,
+    "publication_authors": 30,
+    "zenodo_orcid_identified": 26
+  },
+  "crossref_only_orcid": [
+    {
+      "frozen_index": 165,
+      "name": "Matthias Kempe",
+      "orcid": "0000-0002-4709-6172"
+    }
+  ],
+  "finished_at": "2026-08-23T21:44:43.111583+00:00",
+  "name_only_publication_authors": [
+    {
+      "frozen_index": 165,
+      "name": "Daan Grob",
+      "orcid": null
+    },
+    {
+      "frozen_index": 185,
+      "name": "MIT PSFC Disruptions Group",
+      "orcid": null
+    },
+    {
+      "frozen_index": 199,
+      "name": "Kelsey Tetley-Campbell",
+      "orcid": null
+    }
+  ],
+  "rows": [
+    {
+      "archive_doi": "10.5281/zenodo.21221062",
+      "cross_provider_exact_orcid_match_count": 1,
+      "cross_provider_exact_orcid_matches": [
+        "0000-0001-6631-2566"
+      ],
+      "crossref_author_count": 1,
+      "crossref_authors": [
+        {
+          "name": "Philip Mocz",
+          "orcid": "0000-0001-6631-2566"
+        }
+      ],
+      "crossref_orcid_count": 1,
+      "exact_author_set_identity_status": "FULL_STABLE_IDENTITY_BOUND_FOR_THIS_RECORD",
+      "frozen_index": 36,
+      "partition_authority": "NOT_REACHED__SEVEN_TARGET_SUBSET_ONLY__FULL_73_EDGE_CONFLICT_GRAPH_AND_EXTERNAL_ADJUDICATION_MISSING",
+      "publication_doi": "10.21105/joss.09542",
+      "zenodo_creators": [
+        {
+          "name": "Mocz, Philip",
+          "orcid": "0000-0001-6631-2566"
+        }
+      ],
+      "zenodo_orcid_count": 1
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20171460",
+      "cross_provider_exact_orcid_match_count": 3,
+      "cross_provider_exact_orcid_matches": [
+        "0000-0001-9802-5211",
+        "0000-0002-7925-987X",
+        "0000-0002-9143-9451"
+      ],
+      "crossref_author_count": 3,
+      "crossref_authors": [
+        {
+          "name": "Henrique AL Ribeiro",
+          "orcid": "0000-0001-9802-5211"
+        },
+        {
+          "name": "Sandra A Tsiorintsoa",
+          "orcid": "0000-0002-7925-987X"
+        },
+        {
+          "name": "Reinhard Laubenbacher",
+          "orcid": "0000-0002-9143-9451"
+        }
+      ],
+      "crossref_orcid_count": 3,
+      "exact_author_set_identity_status": "FULL_STABLE_IDENTITY_BOUND_FOR_THIS_RECORD",
+      "frozen_index": 91,
+      "partition_authority": "NOT_REACHED__SEVEN_TARGET_SUBSET_ONLY__FULL_73_EDGE_CONFLICT_GRAPH_AND_EXTERNAL_ADJUDICATION_MISSING",
+      "publication_doi": "10.21105/joss.10245",
+      "zenodo_creators": [
+        {
+          "name": "Ribeiro, Henrique AL",
+          "orcid": "0000-0001-9802-5211"
+        },
+        {
+          "name": "Tsiorintsoa, Sandra A",
+          "orcid": "0000-0002-7925-987X"
+        },
+        {
+          "name": "Laubenbacher, Reinhard",
+          "orcid": "0000-0002-9143-9451"
+        }
+      ],
+      "zenodo_orcid_count": 3
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20026885",
+      "cross_provider_exact_orcid_match_count": 5,
+      "cross_provider_exact_orcid_matches": [
+        "0000-0001-9946-4160",
+        "0009-0000-1456-3056",
+        "0009-0002-0248-4881",
+        "0009-0006-0898-6873",
+        "0009-0009-4256-5425"
+      ],
+      "crossref_author_count": 5,
+      "crossref_authors": [
+        {
+          "name": "Abdoulaye Sakho",
+          "orcid": "0009-0002-0248-4881"
+        },
+        {
+          "name": "Jad Aouad",
+          "orcid": "0009-0000-1456-3056"
+        },
+        {
+          "name": "Carl-Erik Gauthier",
+          "orcid": "0009-0009-4256-5425"
+        },
+        {
+          "name": "Emmanuel Malherbe",
+          "orcid": "0009-0006-0898-6873"
+        },
+        {
+          "name": "Erwan Scornet",
+          "orcid": "0000-0001-9946-4160"
+        }
+      ],
+      "crossref_orcid_count": 5,
+      "exact_author_set_identity_status": "FULL_STABLE_IDENTITY_BOUND_FOR_THIS_RECORD",
+      "frozen_index": 133,
+      "partition_authority": "NOT_REACHED__SEVEN_TARGET_SUBSET_ONLY__FULL_73_EDGE_CONFLICT_GRAPH_AND_EXTERNAL_ADJUDICATION_MISSING",
+      "publication_doi": "10.21105/joss.10112",
+      "zenodo_creators": [
+        {
+          "name": "Sakho, Abdoulaye",
+          "orcid": "0009-0002-0248-4881"
+        },
+        {
+          "name": "Aouad, Jad",
+          "orcid": "0009-0000-1456-3056"
+        },
+        {
+          "name": "Gauthier, Carl-Erik",
+          "orcid": "0009-0009-4256-5425"
+        },
+        {
+          "name": "Malherbe, Emmanuel",
+          "orcid": "0009-0006-0898-6873"
+        },
+        {
+          "name": "Scornet, Erwan",
+          "orcid": "0000-0001-9946-4160"
+        }
+      ],
+      "zenodo_orcid_count": 5
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19661454",
+      "cross_provider_exact_orcid_match_count": 1,
+      "cross_provider_exact_orcid_matches": [
+        "0000-0003-4056-7274"
+      ],
+      "crossref_author_count": 3,
+      "crossref_authors": [
+        {
+          "name": "Gerard Alexander Oonk",
+          "orcid": "0000-0003-4056-7274"
+        },
+        {
+          "name": "Daan Grob",
+          "orcid": null
+        },
+        {
+          "name": "Matthias Kempe",
+          "orcid": "0000-0002-4709-6172"
+        }
+      ],
+      "crossref_orcid_count": 2,
+      "exact_author_set_identity_status": "PARTIAL_STABLE_IDENTITY_BOUND",
+      "frozen_index": 165,
+      "partition_authority": "NOT_REACHED__SEVEN_TARGET_SUBSET_ONLY__FULL_73_EDGE_CONFLICT_GRAPH_AND_EXTERNAL_ADJUDICATION_MISSING",
+      "publication_doi": "10.21105/joss.10223",
+      "zenodo_creators": [
+        {
+          "name": "Oonk, Gerard Alexander",
+          "orcid": "0000-0003-4056-7274"
+        },
+        {
+          "name": "Grob, Daan",
+          "orcid": null
+        },
+        {
+          "name": "Kempe, Matthias",
+          "orcid": null
+        }
+      ],
+      "zenodo_orcid_count": 1
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19051387",
+      "cross_provider_exact_orcid_match_count": 7,
+      "cross_provider_exact_orcid_matches": [
+        "0000-0001-5301-5095",
+        "0000-0002-6560-1881",
+        "0000-0002-8868-0017",
+        "0000-0002-9948-2649",
+        "0000-0003-4920-6109",
+        "0009-0003-0288-9501",
+        "0009-0004-3728-3259"
+      ],
+      "crossref_author_count": 8,
+      "crossref_authors": [
+        {
+          "name": "Gregorio L. Trevisan",
+          "orcid": "0000-0003-4920-6109"
+        },
+        {
+          "name": "Yumou Wei",
+          "orcid": "0000-0002-8868-0017"
+        },
+        {
+          "name": "Amos M. Decker",
+          "orcid": "0009-0004-3728-3259"
+        },
+        {
+          "name": "Joshua Lorincz",
+          "orcid": "0009-0003-0288-9501"
+        },
+        {
+          "name": "Samuel L. Jackson",
+          "orcid": "0000-0001-5301-5095"
+        },
+        {
+          "name": "Cristina Rea",
+          "orcid": "0000-0002-9948-2649"
+        },
+        {
+          "name": "Robert S. Granetz",
+          "orcid": "0000-0002-6560-1881"
+        },
+        {
+          "name": "MIT PSFC Disruptions Group",
+          "orcid": null
+        }
+      ],
+      "crossref_orcid_count": 7,
+      "exact_author_set_identity_status": "PARTIAL_STABLE_IDENTITY_BOUND",
+      "frozen_index": 185,
+      "partition_authority": "NOT_REACHED__SEVEN_TARGET_SUBSET_ONLY__FULL_73_EDGE_CONFLICT_GRAPH_AND_EXTERNAL_ADJUDICATION_MISSING",
+      "publication_doi": "10.21105/joss.09364",
+      "zenodo_creators": [
+        {
+          "name": "Trevisan, Gregorio L.",
+          "orcid": "0000-0003-4920-6109"
+        },
+        {
+          "name": "Wei, Yumou",
+          "orcid": "0000-0002-8868-0017"
+        },
+        {
+          "name": "Decker, Amos M.",
+          "orcid": "0009-0004-3728-3259"
+        },
+        {
+          "name": "Lorincz, Joshua",
+          "orcid": "0009-0003-0288-9501"
+        },
+        {
+          "name": "Jackson, Samuel L.",
+          "orcid": "0000-0001-5301-5095"
+        },
+        {
+          "name": "Rea, Cristina",
+          "orcid": "0000-0002-9948-2649"
+        },
+        {
+          "name": "Granetz, Robert S.",
+          "orcid": "0000-0002-6560-1881"
+        },
+        {
+          "name": "MIT PSFC Disruptions Group",
+          "orcid": null
+        }
+      ],
+      "zenodo_orcid_count": 7
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19335435",
+      "cross_provider_exact_orcid_match_count": 2,
+      "cross_provider_exact_orcid_matches": [
+        "0000-0002-6172-5449",
+        "0009-0005-8076-2199"
+      ],
+      "crossref_author_count": 2,
+      "crossref_authors": [
+        {
+          "name": "Ugur Dar",
+          "orcid": "0009-0005-8076-2199"
+        },
+        {
+          "name": "Mustafa Cavus",
+          "orcid": "0000-0002-6172-5449"
+        }
+      ],
+      "crossref_orcid_count": 2,
+      "exact_author_set_identity_status": "FULL_STABLE_IDENTITY_BOUND_FOR_THIS_RECORD",
+      "frozen_index": 190,
+      "partition_authority": "NOT_REACHED__SEVEN_TARGET_SUBSET_ONLY__FULL_73_EDGE_CONFLICT_GRAPH_AND_EXTERNAL_ADJUDICATION_MISSING",
+      "publication_doi": "10.21105/joss.09481",
+      "zenodo_creators": [
+        {
+          "name": "Dar, Ugur",
+          "orcid": "0009-0005-8076-2199"
+        },
+        {
+          "name": "CAVUS, Mustafa",
+          "orcid": "0000-0002-6172-5449"
+        }
+      ],
+      "zenodo_orcid_count": 2
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19202203",
+      "cross_provider_exact_orcid_match_count": 7,
+      "cross_provider_exact_orcid_matches": [
+        "0000-0001-5203-2205",
+        "0000-0002-1119-2576",
+        "0000-0002-1400-6599",
+        "0000-0002-3708-3706",
+        "0000-0002-7998-4262",
+        "0000-0003-0202-7816",
+        "0000-0003-1432-5511"
+      ],
+      "crossref_author_count": 8,
+      "crossref_authors": [
+        {
+          "name": "Olivier Labayle",
+          "orcid": "0000-0002-3708-3706"
+        },
+        {
+          "name": "Joshua Slaughter",
+          "orcid": "0000-0002-1400-6599"
+        },
+        {
+          "name": "Breeshey Roskams-Hieter",
+          "orcid": "0000-0002-1119-2576"
+        },
+        {
+          "name": "Kelsey Tetley-Campbell",
+          "orcid": null
+        },
+        {
+          "name": "Mark J. van der Laan",
+          "orcid": "0000-0003-1432-5511"
+        },
+        {
+          "name": "Chris P. Ponting",
+          "orcid": "0000-0003-0202-7816"
+        },
+        {
+          "name": "Ava Khamseh",
+          "orcid": "0000-0001-5203-2205"
+        },
+        {
+          "name": "Sjoerd Viktor Beentjes",
+          "orcid": "0000-0002-7998-4262"
+        }
+      ],
+      "crossref_orcid_count": 7,
+      "exact_author_set_identity_status": "PARTIAL_STABLE_IDENTITY_BOUND",
+      "frozen_index": 199,
+      "partition_authority": "NOT_REACHED__SEVEN_TARGET_SUBSET_ONLY__FULL_73_EDGE_CONFLICT_GRAPH_AND_EXTERNAL_ADJUDICATION_MISSING",
+      "publication_doi": "10.21105/joss.09603",
+      "zenodo_creators": [
+        {
+          "name": "Olivier Labayle",
+          "orcid": "0000-0002-3708-3706"
+        },
+        {
+          "name": "Joshua Slaughter",
+          "orcid": "0000-0002-1400-6599"
+        },
+        {
+          "name": "Breeshey Roskams-Hieter",
+          "orcid": "0000-0002-1119-2576"
+        },
+        {
+          "name": "Kelsey Tetley-Campbell",
+          "orcid": null
+        },
+        {
+          "name": "Mark J. van der Laan",
+          "orcid": "0000-0003-1432-5511"
+        },
+        {
+          "name": "Chris P. Ponting",
+          "orcid": "0000-0003-0202-7816"
+        },
+        {
+          "name": "Ava Khamseh",
+          "orcid": "0000-0001-5203-2205"
+        },
+        {
+          "name": "Sjoerd Viktor Beentjes",
+          "orcid": "0000-0002-7998-4262"
+        }
+      ],
+      "zenodo_orcid_count": 7
+    }
+  ],
+  "schema_version": "orion.p4.lineage-natural-pair-authority.v9",
+  "scope": "seven residual target records, not the full 73 exact-edge frame"
+}

@@ -2,7 +2,7 @@
 
 **Status:** OK / DESCRIPTIVE_ONLY
 
-Accuracy **21/24** = 0.875 (macro precision 0.895833; macro recall 0.875000; standard macro-F1 0.872619; Wilson 95% CI 0.690–0.957). Three residual errors are retained.
+Accuracy **21/24** = 0.875 (macro precision 0.895833; macro recall 0.875000; standard macro-F1 0.872619; nominal Wilson score interval 0.690–0.957). This interval treats the 24 fixed cases as Bernoulli units and is not a population confidence interval. Three residual errors are retained.
 
 | gold \ attributed | RETRIEVAL_MISS | ROUTING_PLANNING_MISS | IMPLEMENTATION_BUG | ENVIRONMENT_DEPENDENCY_TOOL_FAILURE | EVALUATOR_METRIC_BUG | REPRESENTATION_GAP | MEASUREMENT_SPECIFICATION_GAP | METHOD_BASIS_GAP |
 |---|---|---|---|---|---|---|---|---|

@@ -1,0 +1,95 @@
+{
+  "aggregation_with_v11_or_v12_authorized": false,
+  "entries": [
+    {
+      "cause": "The released architecture requires host-side source mutation and Docker control. The pinned compose file does not isolate the daemon, dynamic trial workers have no CPU/RAM/PID flags, and no content-addressed disposable VM or rootless Docker endpoint is bound.",
+      "field": "adapter.isolated_write_surface",
+      "next_discriminator": "Run the exact source in a disposable content-addressed VM with a dedicated rootless Docker daemon; prove host/source/protected mounts are absent and produce a complete before/after mutation digest.",
+      "preserved_state": "CANNOT_CHECK"
+    },
+    {
+      "cause": "No independent scorer principal, immutable scorer digest, access control or signed acceptance exists.",
+      "field": "custody.external_protected_scorer",
+      "next_discriminator": "An independent custodian supplies scorer identity, digest and access-control attestation without revealing protected bytes.",
+      "preserved_state": "CANNOT_CHECK"
+    },
+    {
+      "cause": "Local code cannot self-attest independent custody, one accepted successor, one score event and no return channel.",
+      "field": "custody.one_shot_no_feedback_barrier",
+      "next_discriminator": "An independent custodian binds an append-only one-shot receipt and verifies no candidate/adaptation feedback path.",
+      "preserved_state": "CANNOT_CHECK"
+    },
+    {
+      "cause": "No protected panel identity or post-freeze freshness attestation was available.",
+      "field": "custody.protected_panel_freshness",
+      "next_discriminator": "An independent custodian freezes a fresh panel after protocol lock and reveals only the authorized closing receipt.",
+      "preserved_state": "CANNOT_CHECK"
+    },
+    {
+      "cause": "No exact rights-cleared P5 failure batch/session packet is frozen. The authored parser fixture is schema-only and not a substantive P5 case.",
+      "field": "inputs.candidate_visible_case_bytes",
+      "next_discriminator": "Author or license a minimal P5 batch satisfying P5_C2_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json without gold, protected outcomes or scorer feedback.",
+      "preserved_state": "UNBOUND"
+    },
+    {
+      "cause": "MOSS requires both a chat/trial model endpoint and one authenticated coding-agent CLI. No exact model, provider, endpoint, CLI version, service revision, credential principal or per-role model is selected.",
+      "field": "model_provider.primary",
+      "next_discriminator": "Freeze one chat/trial model and one coding-agent CLI/model/provider with complete effective config and independent service terms.",
+      "preserved_state": "UNBOUND"
+    },
+    {
+      "cause": "No provider-reconciled hard stop exists for aggregate calls, input/output tokens or USD across all MOSS roles and trial workers.",
+      "field": "resources.calls_tokens_usd",
+      "next_discriminator": "After primary binding, enforce exact aggregate counters before every call, define overshoot semantics, and reconcile to provider receipts.",
+      "preserved_state": "UNBOUND"
+    },
+    {
+      "cause": "The primary endpoints, DNS/TLS identities and task-fetch policy are unbound; released dynamic trial containers use bridge networking and no final egress allowlist is enforced.",
+      "field": "resources.retry_network",
+      "next_discriminator": "Bind exact endpoints or local offline services and enforce a deny-by-default egress policy for gateway, daemon, coding agents and every dynamic worker.",
+      "preserved_state": "UNBOUND"
+    },
+    {
+      "cause": "No model/coding-agent provider is selected and no study-use, data-retention, region or publication terms are captured.",
+      "field": "rights.model_provider_and_services",
+      "next_discriminator": "Bind terms and data policy for both chat/trial and coding-agent services before credentials enter the runtime.",
+      "preserved_state": "UNBOUND"
+    },
+    {
+      "cause": "The pinned source trial runner requires benchmark/claw-eval, but the complete Git tree contains zero benchmark paths; no alternative task/benchmark packet or rights file is released in this commit.",
+      "field": "rights.task_and_benchmark_content",
+      "next_discriminator": "Obtain an upstream content-addressed release of the missing benchmark/runtime with its licence, or bind an authored P5-native evaluator as an explicitly named successor rather than silently patching the comparator.",
+      "preserved_state": "UNBOUND"
+    },
+    {
+      "cause": "Values are proposed but not enforced across the gateway, host daemon, coding-agent subprocesses, Docker build and dynamic trial workers; native worker docker run lacks CPU/RAM/PID limit flags.",
+      "field": "runtime.compute",
+      "next_discriminator": "Enforce one cgroup/VM-wide cap and verify every dynamic child stays inside it.",
+      "preserved_state": "UNBOUND"
+    },
+    {
+      "cause": "No complete arm64/amd64 derived MOSS/OpenClaw image, host-daemon environment, Docker daemon identity or runtime SBOM was built. The local Docker client has no reachable daemon and pnpm 10.23.0 is absent.",
+      "field": "runtime.container_or_environment",
+      "next_discriminator": "On a rights-cleared disposable Linux executor, install pnpm 10.23.0, build exact source from both locks, and capture image, host environment and SBOM digests.",
+      "preserved_state": "UNBOUND"
+    },
+    {
+      "cause": "The native runtime hard-codes a benchmark tree that is absent from the authoritative commit; no exact P5 session/batch, trial service, setup bytes or generated task manifest is bound.",
+      "field": "runtime.task_environment",
+      "next_discriminator": "Acquire an authoritative content-addressed benchmark companion release, or preregister and name a P5-native successor runtime with its own semantics and rights.",
+      "preserved_state": "CANNOT_CHECK"
+    }
+  ],
+  "released_moss_unchanged": true,
+  "remaining_successor_blocker_count": 13,
+  "resolution": {
+    "cause_removed": "Complete scratch-image bytes, directly enumerated SBOM, full licence/NOTICE bundle and explicit generated-artifact retention/disclosure/publication authority are jointly bound.",
+    "field": "rights.container_and_generated_artifacts",
+    "status": "BOUND"
+  },
+  "resolved_in_v13": [
+    "rights.container_and_generated_artifacts"
+  ],
+  "schema_version": "orion.p5.c2.recursive-negative-ledger.v13",
+  "successor_identity": "C2_RIGHTS_CLEARED_SCRATCH_IMAGE_SUCCESSOR__ORION_V13"
+}

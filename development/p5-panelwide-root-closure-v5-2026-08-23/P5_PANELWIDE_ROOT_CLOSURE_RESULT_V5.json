@@ -1,0 +1,159 @@
+{
+  "authority": "OUTCOME_BLIND_CONTROL_PLANE_CONTRACT_AND_V4_STATUS_RECOMPUTATION_ONLY",
+  "exact_recomputation": {
+    "blocker_delta": 0,
+    "field_instances_total": 126,
+    "fields_per_arm": 21,
+    "per_arm": {
+      "C1": {
+        "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+        "blocking": 12,
+        "bound": 9,
+        "execution_ready": false
+      },
+      "C2": {
+        "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+        "blocking": 14,
+        "bound": 7,
+        "execution_ready": false
+      },
+      "C3": {
+        "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+        "blocking": 15,
+        "bound": 6,
+        "execution_ready": false
+      },
+      "C4": {
+        "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+        "blocking": 15,
+        "bound": 6,
+        "execution_ready": false
+      },
+      "C5": {
+        "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+        "blocking": 12,
+        "bound": 9,
+        "execution_ready": false
+      },
+      "C6": {
+        "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+        "blocking": 16,
+        "bound": 5,
+        "execution_ready": false
+      }
+    },
+    "v4_blocking_instances": 84,
+    "v4_bound_instances": 42,
+    "v5_blocking_instances": 84,
+    "v5_bound_instances": 42,
+    "v5_new_arm_field_bindings": 0
+  },
+  "execution": {
+    "arm_executions": 0,
+    "benchmarks_executed": 0,
+    "confirmatory_ready_arms": 0,
+    "models_executed": 0,
+    "protected_outcomes_accessed": false,
+    "required_arms": 6
+  },
+  "fresh_verification_boundary": {
+    "assurance_claim": "The 84-field recomputation is fresh from JSON and six parser/result/registry digests; full native packet assurance is not uniformly fresh.",
+    "native_validator_observations": {
+      "C1": {
+        "receipt": "P5_C1_V4_VALIDATED__9_BOUND__12_BLOCKING",
+        "status": "PASS"
+      },
+      "C2": {
+        "checks_passed": 71,
+        "status": "PASS"
+      },
+      "C3": {
+        "checks_passed": 134,
+        "status": "PASS"
+      },
+      "C4": {
+        "checks_passed": 35,
+        "residual": "Fresh validation changes AUDIT_RECEIPT_V4.json because the smoke metadata hashes a random temporary generation path; the frozen SHA256SUMS entry therefore does not reproduce.",
+        "status": "PASS_BUT_REWRITES_AUDIT_RECEIPT_WITH_TEMP_PATH_DERIVED_HASH"
+      },
+      "C5": {
+        "checks_passed": 351,
+        "status": "PASS"
+      },
+      "C6": {
+        "residual": "p5_c6_v4_validator.py requires development/p5-scienceclaw-execution-binding-v4-2026-08-23/.source-audit, which is absent after cleanup.",
+        "status": "CANNOT_CHECK"
+      }
+    },
+    "packet_sha256sum_manifests": {
+      "C1": {
+        "failures": [],
+        "listed_entries": 20,
+        "status": "PASS"
+      },
+      "C2": {
+        "failures": [],
+        "listed_entries": 23,
+        "status": "PASS"
+      },
+      "C3": {
+        "failures": [],
+        "listed_entries": 23,
+        "status": "PASS"
+      },
+      "C4": {
+        "failures": [
+          {
+            "actual_sha256": "26db8126126e98da92847155969047dfc8f88e5e2fa4eb6599145b2decb57a31",
+            "expected_sha256": "88296f96f8b615a9a028490434ad20c589c3dea8373393eae4ec83dfd01288df",
+            "path": "AUDIT_RECEIPT_V4.json"
+          }
+        ],
+        "listed_entries": 23,
+        "status": "CANNOT_CHECK_MANIFEST_MISMATCH"
+      },
+      "C5": {
+        "failures": [],
+        "listed_entries": 24,
+        "status": "PASS"
+      },
+      "C6": {
+        "failures": [],
+        "listed_entries": 23,
+        "status": "PASS"
+      }
+    },
+    "v4_field_registry_result_and_parser_hashes": "PASS_FOR_ALL_SIX"
+  },
+  "highest_fanout_directly_authorable_next_discriminator": "Author or license one substantive P5 candidate-visible packet and bind its byte/rights manifest before producing six native environment receipts.",
+  "highest_fanout_next_discriminator": "An independent principal signs one post-protocol six-arm panel/scorer/freshness/no-feedback bundle accepted by the V5 gate.",
+  "panelwide_repairs": {
+    "arm_field_bindings_created": 0,
+    "coordination_claim": "84 blocker instances are now an exact, non-overlapping five-package evidence queue.",
+    "coordination_compression_fraction": 0.9404761904761905,
+    "coordination_work_item_delta": -79,
+    "coordination_work_items_after": 5,
+    "coordination_work_items_before": 84,
+    "custody_field_instances_targeted_by_one_external_bundle": 18,
+    "exact_equivalence_classes": 14,
+    "matched_exposure_status": "BLOCKING_COMMON_EFFECTIVE_VECTOR_NOT_YET_FROZEN",
+    "parser_dispatch_bindings_verified": 6,
+    "root_work_packages": 5,
+    "scientific_blockers_removed": 0
+  },
+  "preserved_claims": {
+    "H1": "CANNOT_CHECK",
+    "H2": "CANNOT_CHECK",
+    "H3": "CANNOT_CHECK",
+    "H4": "CANNOT_CHECK",
+    "fresh_transfer": "CANNOT_CHECK",
+    "harm": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "preservation": "CANNOT_CHECK",
+    "superiority": "CANNOT_CHECK",
+    "top_tier_publication_readiness": "NOT_ESTABLISHED"
+  },
+  "protocol_id": "P5.SIX_ARM.PANELWIDE.ROOT.CLOSURE.V5",
+  "schema_version": "orion.p5.panelwide-root-closure-result.v5",
+  "terminal": "P5_V5_PANELWIDE_ROOT_CAUSE_CONTRACT_AND_SIX_PARSER_DISPATCH_BOUND__EIGHTY_FOUR_BLOCKER_INSTANCES_COLLAPSED_TO_FIVE_ROOT_WORK_PACKAGES__ZERO_ARM_FIELD_BINDINGS_CREATED_WITHOUT_MISSING_EXTERNAL_OR_ARM_SPECIFIC_EVIDENCE__FORTY_TWO_OF_ONE_HUNDRED_TWENTY_SIX_FIELDS_BOUND__EIGHTY_FOUR_BLOCKING__ZERO_OF_SIX_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK"
+}

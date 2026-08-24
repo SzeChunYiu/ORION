@@ -1,0 +1,161 @@
+{
+  "analysis_unit": "one frozen OAEI 2004 test-103 case",
+  "authority": "ONE_PROVIDER_NATIVE_PUBLIC_CASE_EXACT_DESCRIPTIVE_PAIR_METRICS_ONLY",
+  "claim_boundary": [
+    "a finite-case F1 difference is not a population or current-SOTA superiority claim",
+    "OAEI test 103 belongs to one historical bibliographic seed family",
+    "the primary estimand is class-to-class because BERTMap V21 has no property-matching opportunity",
+    "the secondary full-pair estimand exposes task-coverage differences rather than hiding them",
+    "public same-workspace execution is not protected or independent confirmation"
+  ],
+  "estimands": {
+    "primary_common_class_pair": {
+      "AML_V3_2": {
+        "f1": {
+          "decimal": 0.3902439024390244,
+          "denominator": 41,
+          "fraction": "16/41",
+          "numerator": 16
+        },
+        "false_negative": 25,
+        "false_positive": 0,
+        "gold_pairs": 33,
+        "precision": {
+          "decimal": 1.0,
+          "denominator": 1,
+          "fraction": "1/1",
+          "numerator": 1
+        },
+        "predicted_pairs": 8,
+        "recall": {
+          "decimal": 0.24242424242424243,
+          "denominator": 33,
+          "fraction": "8/33",
+          "numerator": 8
+        },
+        "true_positive": 8
+      },
+      "BERTMAP_V21": {
+        "f1": {
+          "decimal": 1.0,
+          "denominator": 1,
+          "fraction": "1/1",
+          "numerator": 1
+        },
+        "false_negative": 0,
+        "false_positive": 0,
+        "gold_pairs": 33,
+        "precision": {
+          "decimal": 1.0,
+          "denominator": 1,
+          "fraction": "1/1",
+          "numerator": 1
+        },
+        "predicted_pairs": 33,
+        "recall": {
+          "decimal": 1.0,
+          "denominator": 1,
+          "fraction": "1/1",
+          "numerator": 1
+        },
+        "true_positive": 33
+      },
+      "bertmap_minus_aml_f1": {
+        "decimal": 0.6097560975609756,
+        "denominator": 41,
+        "fraction": "25/41",
+        "numerator": 25
+      },
+      "finite_case_f1_winner": "BERTMAP",
+      "gold_scope": "exact directed equivalence pairs; duplicates collapsed"
+    },
+    "secondary_full_equivalence_pair": {
+      "AML_V3_2": {
+        "f1": {
+          "decimal": 0.11678832116788321,
+          "denominator": 137,
+          "fraction": "16/137",
+          "numerator": 16
+        },
+        "false_negative": 83,
+        "false_positive": 38,
+        "gold_pairs": 91,
+        "precision": {
+          "decimal": 0.17391304347826086,
+          "denominator": 23,
+          "fraction": "4/23",
+          "numerator": 4
+        },
+        "predicted_pairs": 46,
+        "recall": {
+          "decimal": 0.08791208791208792,
+          "denominator": 91,
+          "fraction": "8/91",
+          "numerator": 8
+        },
+        "true_positive": 8
+      },
+      "BERTMAP_V21": {
+        "f1": {
+          "decimal": 0.532258064516129,
+          "denominator": 62,
+          "fraction": "33/62",
+          "numerator": 33
+        },
+        "false_negative": 58,
+        "false_positive": 0,
+        "gold_pairs": 91,
+        "precision": {
+          "decimal": 1.0,
+          "denominator": 1,
+          "fraction": "1/1",
+          "numerator": 1
+        },
+        "predicted_pairs": 33,
+        "recall": {
+          "decimal": 0.3626373626373626,
+          "denominator": 91,
+          "fraction": "33/91",
+          "numerator": 33
+        },
+        "true_positive": 33
+      },
+      "bertmap_minus_aml_f1": {
+        "decimal": 0.4154697433482458,
+        "denominator": 8494,
+        "fraction": "3529/8494",
+        "numerator": 3529
+      },
+      "finite_case_f1_winner": "BERTMAP",
+      "gold_scope": "exact directed equivalence pairs; duplicates collapsed"
+    }
+  },
+  "identities": {
+    "aml": {
+      "cells": 46,
+      "equivalence_pairs": 46,
+      "sha256": "994c74c3749543205d89ef7daea0c3156d267410e35c1687f55601768b3db934"
+    },
+    "bertmap": {
+      "decoded_rows": 33,
+      "duplicate_rows": 0,
+      "sha256": "26d3b4c72ba325a3f9e2126667438b91c0ba963eebe6958144f676f4b97524fe",
+      "unique_pairs": 33
+    },
+    "reference": {
+      "cells": 91,
+      "equivalence_cells": 91,
+      "sha256": "0afb0f2c9764201d91c226c5fb60d4b25425168acf6c2604fb191be906e9ec16"
+    }
+  },
+  "inference": {
+    "confidence_intervals": false,
+    "p_values": false,
+    "population_estimand": false,
+    "reason": "the finite pair table is enumerated, while there is only one case and pair cells are not treated as independent samples"
+  },
+  "protocol_id": "P3_V21_FROZEN_V20_DIRECT_IRI_IDENTITY_DECODER_AND_COMMON_SCORING",
+  "reference_first_semantically_opened_after_both_outputs_frozen": true,
+  "schema_version": "orion.p3.same-universe-common-pair-metrics.v21",
+  "terminal": "P3_V21_SAME_UNIVERSE_COMMON_SCORING_PASS__PRIMARY_COMMON_CLASS_PAIR_BERTMAP__ONE_PUBLIC_OAEI_CASE_DESCRIPTIVE_ONLY__NO_POPULATION_OR_GENERAL_SUPERIORITY_AUTHORITY"
+}

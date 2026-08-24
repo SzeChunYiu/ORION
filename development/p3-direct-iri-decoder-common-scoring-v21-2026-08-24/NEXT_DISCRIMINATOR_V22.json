@@ -1,0 +1,37 @@
+{
+  "schema_version": "orion.p3.next-discriminator.v22",
+  "identity": "P3_V22_SOURCE_DISJOINT_MULTI_CASE_INDEPENDENT_CUSTODY",
+  "selection_frozen_before_gold_semantics": true,
+  "required_case_family": {
+    "minimum_cases": 7,
+    "minimum_provider_or_track_families": 2,
+    "minimum_ontology_domains": 2,
+    "source_disjoint_from_oaei_2004_test_103": true,
+    "exact_ontology_and_reference_hashes": true,
+    "provider_native_rights_and_version_bindings": true
+  },
+  "execution": {
+    "bertmap_model_revision_unchanged_from_v20": true,
+    "bertmap_thresholds_unchanged_from_v20": true,
+    "random_seeds_explicitly_pinned": true,
+    "one_attempt_per_case_no_retry": true,
+    "same_role_universe_and_identity_decoder_rules": true,
+    "aml_exact_revision_and_adapter_frozen": true,
+    "stronger_current_comparator_required_when_common_interface_exists": true,
+    "independent_output_and_scorer_custody": true
+  },
+  "estimands": [
+    "per-case common class-to-class exact precision recall and F1",
+    "per-case full equivalence-pair exact precision recall and F1",
+    "case-level aggregate with cases as analysis units",
+    "worst-case harm and coverage gates"
+  ],
+  "prohibited_promotions": [
+    "no pair cell treated as an independent case",
+    "no reuse of test 103 as source-disjoint replication",
+    "no property-coverage omission from the headline evidence chain",
+    "no same-workspace scoring called independent confirmation",
+    "no threshold or case selection after gold access"
+  ],
+  "v21_boundary": "one historical public case is exact descriptive evidence only"
+}

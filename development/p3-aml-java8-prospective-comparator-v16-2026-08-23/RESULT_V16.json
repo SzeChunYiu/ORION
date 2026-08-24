@@ -1,0 +1,62 @@
+{
+  "authority": "SOURCE_NATIVE_PUBLIC_DEVELOPMENT_COMPARATOR_OUTPUT_ONLY__REFERENCE_NOT_OPENED_FOR_SEMANTIC_SCORING__NO_PERFORMANCE_OR_SUPERIORITY_AUTHORITY",
+  "claim_boundary": {
+    "aml_native_execution": "PASS",
+    "naturalistic_generality": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "protected_confirmation": "CANNOT_CHECK",
+    "superiority": "CANNOT_CHECK"
+  },
+  "comparator": {
+    "jar_sha256": "a5b831a6c000e49aa4702b16486dabdf38e40bb68203a16a8019414fecc2ecf3",
+    "reference_alignment_argument_supplied": false,
+    "release_sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27",
+    "system_id": "AML_V3_2_AUTO_SOURCE_NATIVE"
+  },
+  "created_at_utc": "2026-08-23T21:35:05.522664+00:00",
+  "execution": {
+    "attempts": 1,
+    "retries": 0,
+    "returncode": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "6c294098f162ae5d3dc2e3e988e4d1b7598c69a9c45b459169c8514971901808",
+    "timed_out": false,
+    "wall_seconds": 2.29592862498248
+  },
+  "inputs": {
+    "reference_sha256_frozen_but_not_semantically_opened": "0afb0f2c9764201d91c226c5fb60d4b25425168acf6c2604fb191be906e9ec16",
+    "source_sha256": "d6143780103217a4a562e4982f0d4c724c09d3a3e7dc146a6b42cecc3e9f1064",
+    "target_sha256": "e3643a6fcd237a162d120e58227df2e24e0398668c6f2428e4fea850180405cf"
+  },
+  "next_discriminator": "Reconstruct the exact repaired BERTMap V12/V13 runtime without changing model, learner, parser, or pair; run it once on the V15 provider-native test 103; freeze its decoded output; only then open the frozen public reference and score both outputs under the same evaluator.",
+  "output": {
+    "alignment_cells": 46,
+    "bytes": 15151,
+    "path": "AML_ALIGNMENT_V16.rdf",
+    "sha256": "994c74c3749543205d89ef7daea0c3156d267410e35c1687f55601768b3db934",
+    "well_formed_xml": true
+  },
+  "predecessor": {
+    "identity_packet": "development/p3-provider-native-identity-packet-v15-2026-08-23/IDENTITY_PACKET_V15.json",
+    "sha256": "2c5da6cf4e2b6ca98572498af1df9ac70a6245c7fdc3c968f1a3c996aa3b568a"
+  },
+  "protocol_id": "P3_V16_OAEI_2004_TEST_103_AML_V3_2_JAVA8_OUTCOME_BLIND_SINGLE_ATTEMPT",
+  "readiness": {
+    "aml_output_frozen_before_reference_scoring": true,
+    "exact_java8_comparator_runtime_closed": true,
+    "provider_native_identity_bound": true,
+    "repaired_matcher_decoder_output_frozen": false,
+    "same_universe_scoring_ready": false
+  },
+  "runtime": {
+    "architecture": "x86_64 under macOS Rosetta",
+    "java_version": "1.8.0_502",
+    "package": "OpenJDK8U-jre_x64_mac_hotspot_8u502b07.tar.gz",
+    "package_bytes": 44361568,
+    "package_sha256": "56ba6743d1b5eb47e656f1f5e76501df44dea50579d8cab758176ec1b2277003",
+    "vendor": "Eclipse Temurin",
+    "vm_build": "25.502-b07"
+  },
+  "schema_version": "orion.p3.aml-java8-prospective-comparator.v16",
+  "terminal": "P3_V16_OAEI_TEST_103_AML_V3_2_EXACT_JAVA8_SINGLE_ATTEMPT_PASS__46_OUTPUT_CELLS_FROZEN__REFERENCE_NOT_OPENED_FOR_SCORING__BERTMAP_OUTPUT_AND_SAME_UNIVERSE_METRICS_PENDING"
+}

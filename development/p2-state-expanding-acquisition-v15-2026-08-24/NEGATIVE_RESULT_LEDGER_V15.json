@@ -1,0 +1,24 @@
+{
+  "preserved_v14_terminal": "P2_V14_FROZEN_INDEX_IDENTITY_MISMATCH__PINNED_COMMIT_PATH_RESOLVES_F4F5007_BLOB_SHA256_F34C17B3__EXPECTED_ADA2668_BLOB_SHA256_5D829C66_BELONGS_TO_DC2DADF__STOP_BEFORE_CENSUS_AND_PERFORMANCE",
+  "rows": [
+    {
+      "issue": "V15 candidate-template transcription",
+      "next_discriminator": "Use only the exact immutable V14 template in a future independently signed custody packet.",
+      "observation": "The frozen V15 template omitted immutable V14's /output/{review}.csv structure. It was never executed; V15B records the correction without rewriting chronology.",
+      "verdict": "IMPLEMENTATION_FREEZE_MISMATCH_FAIL_CLOSED"
+    },
+    {
+      "issue": "independent source-population custody",
+      "next_discriminator": "Satisfy INDEPENDENT_SOURCE_CUSTODY_REQUEST_V15.json with an external outcome-blind signature.",
+      "observation": "The commit is validly signed and metadata-v1-final targets it, but no provider-native predicate signs the V15 tuple, 61-blob candidate manifest, per-review rights and no-route-switch contract; the exact index attestation endpoint returned 404.",
+      "verdict": "CANNOT_CHECK"
+    },
+    {
+      "issue": "same-snapshot rights scope",
+      "next_discriminator": "Independent custodian binds exact per-review rights without blending root and current metadata licenses.",
+      "observation": "The exact historical commit's LICENSE is MIT; current repository metadata says CC0 but is not historical-snapshot bound. Neither establishes every candidate review's required CC-BY-4.0/CC0 rights.",
+      "verdict": "CANNOT_CHECK_PER_REVIEW_RIGHTS"
+    }
+  ],
+  "schema_version": "orion.p2.state-expanding-acquisition.v15.negative-result-ledger"
+}

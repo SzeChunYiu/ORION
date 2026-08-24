@@ -1,0 +1,268 @@
+{
+  "authority": "PRE_EXECUTION_RUNTIME_IDENTITY_AND_RIGHTS_GATE__NOT_LEGAL_ADVICE",
+  "checks": [
+    {
+      "check": "protocol_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "predecessor_v6_protocol",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "predecessor_v6_k3_result",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "predecessor_v7_result",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "predecessor_v7_compatibility_lock",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "predecessor_v7_parser",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "predecessor_v8_result",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "predecessor_v8_patch",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "source_commit",
+      "detail": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+      "pass": true
+    },
+    {
+      "check": "source_tree",
+      "detail": "b499cb5780bbe749f7db44d0bc872d275a2737ea",
+      "pass": true
+    },
+    {
+      "check": "source_only_mapping_modified",
+      "detail": "M src/deeponto/align/mapping.py",
+      "pass": true
+    },
+    {
+      "check": "source_patch_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "repaired_mapping_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "source_license",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "python_rights",
+      "detail": {
+        "distribution_count": 126,
+        "distributions_with_rights_evidence": 126,
+        "distributions_without_rights_evidence": 0,
+        "installed_distribution_file_records": 34981,
+        "python_base_file_records": 2585,
+        "python_base_license_files": 1
+      },
+      "pass": true
+    },
+    {
+      "check": "python_distribution_count",
+      "detail": 126,
+      "pass": true
+    },
+    {
+      "check": "python_exact_key_versions",
+      "detail": {
+        "accelerate": "1.0.1",
+        "deeponto": "0.9.3",
+        "tokenizers": "0.20.3",
+        "torch": "2.5.1",
+        "transformers": "4.46.3"
+      },
+      "pass": true
+    },
+    {
+      "check": "full_lock_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "jdk_rights",
+      "detail": {
+        "bytes": 318963433,
+        "file_count": 357,
+        "legal_file_count": 30
+      },
+      "pass": true
+    },
+    {
+      "check": "jdk_version",
+      "detail": "openjdk version \"17.0.19\" 2026-04-21\nOpenJDK Runtime Environment Homebrew (build 17.0.19+0)\nOpenJDK 64-Bit Server VM Homebrew (build 17.0.19+0, mixed mode, sharing)",
+      "pass": true
+    },
+    {
+      "check": "jar_inventory",
+      "detail": {
+        "tracked_jar_paths": 208,
+        "unique_jar_hashes": 192,
+        "unique_with_embedded_or_pom_rights_metadata": 104,
+        "unique_without_rights_metadata": 88,
+        "zip_valid_paths": 208
+      },
+      "pass": true
+    },
+    {
+      "check": "jar_rights",
+      "detail": {
+        "central_sha1_matches": 167,
+        "central_sha1_mismatches": 8,
+        "coordinates_bound": 177,
+        "jar_paths": 208,
+        "rights_bound": 192,
+        "rights_unbound": 0,
+        "unique_components": 192
+      },
+      "pass": true
+    },
+    {
+      "check": "model_files",
+      "detail": [
+        {
+          "bytes": 391,
+          "exists": true,
+          "expected_sha256": "f049f7c0d16eaffe605baca479013bcb7a3847077cf6e548ba7b228831cf9c38",
+          "match": true,
+          "path": ".gitattributes",
+          "sha256": "f049f7c0d16eaffe605baca479013bcb7a3847077cf6e548ba7b228831cf9c38"
+        },
+        {
+          "bytes": 1071,
+          "exists": true,
+          "expected_sha256": "9e8f42111a19340d74194466063143fbc4294b50dd26ad5c60a06dcaeafa99d2",
+          "match": true,
+          "path": "LICENSE",
+          "sha256": "9e8f42111a19340d74194466063143fbc4294b50dd26ad5c60a06dcaeafa99d2"
+        },
+        {
+          "bytes": 2681,
+          "exists": true,
+          "expected_sha256": "bf666c7d32897296d028b655fdc0a3f16d7309cc69af11e93d3473218c2b00f2",
+          "match": true,
+          "path": "README.md",
+          "sha256": "bf666c7d32897296d028b655fdc0a3f16d7309cc69af11e93d3473218c2b00f2"
+        },
+        {
+          "bytes": 385,
+          "exists": true,
+          "expected_sha256": "4a470c65801cab55fc1cc5854aa2bfebc18428ac1989777e9acefc5a9f0c1444",
+          "match": true,
+          "path": "config.json",
+          "sha256": "4a470c65801cab55fc1cc5854aa2bfebc18428ac1989777e9acefc5a9f0c1444"
+        },
+        {
+          "bytes": 435778770,
+          "exists": true,
+          "expected_sha256": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719",
+          "match": true,
+          "path": "pytorch_model.bin",
+          "sha256": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719"
+        },
+        {
+          "bytes": 213450,
+          "exists": true,
+          "expected_sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02",
+          "match": true,
+          "path": "vocab.txt",
+          "sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "check": "model_license",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "source_input_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "target_input_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "input_class_counts",
+      "detail": {
+        "source": 16,
+        "target": 16
+      },
+      "pass": true
+    },
+    {
+      "check": "input_no_gold_tokens",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "output_absent_before_execution",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "config_logical_values",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "checks_passed": 30,
+  "checks_total": 30,
+  "content_counts": {
+    "deeponto_jar_paths": 208,
+    "deeponto_unique_jar_hashes": 192,
+    "jar_rights_bound": 192,
+    "jdk_files": 357,
+    "jdk_legal_files": 30,
+    "model_files": 6,
+    "python_base_files": 2585,
+    "python_distributions": 126,
+    "python_installed_file_records": 34981,
+    "source_tracked_files": 352
+  },
+  "evaluated_at": "2026-08-23T19:55:31.662237+00:00",
+  "gold_or_outcomes_opened": false,
+  "manifests": {
+    "config_sha256": "01df313b8bb683f6cfe08f0050f90979ccdcc14454074eaccbcab395bf1096ea",
+    "java_component_rights_sha256": "256f9d9a61db3769309aef69602ca37de495851a22d54796fc693e3d680d70c1",
+    "java_component_sbom_sha256": "1a74a00136628a337516052bf3bc61140990392d973a98ab73454d7851759a30",
+    "jdk_runtime_manifest_sha256": "3cd4c7448dd5f749b8705976aa83edd392f4b9593bcae67210589e8a56e54b82",
+    "model_manifest_sha256": "f2b66e330718cdb4eb1de92c20dfc82922bf49ada6390c78bd7cbf4686c66c6b",
+    "patched_source_sha256": "e2317df4d9f81fd574d844f6d316659f8b74625d0958a87dee0f43c08dafd63f",
+    "python_runtime_sbom_sha256": "2b7f3200d7401b3c01c5feba2fe3594317f9fb59fb13ab027beea6be27a51a55",
+    "universe_manifest_sha256": "4bc0ff4c5c4afd18baff0d5cee3d6566e79fed681157211569d20af0e0d02de2"
+  },
+  "native_execution_authorized": true,
+  "protocol_id": "P3_V9_BERTMAP_COMPLETE_RUNTIME_RIGHTS_AND_NO_GOLD_NATIVE_SMOKE",
+  "schema_version": "orion.p3.repaired-native-runtime.rights-gate.v9",
+  "terminal": "PASS__COMPLETE_CONTENT_ADDRESSED_RUNTIME_AND_COMPONENT_RIGHTS_BOUND"
+}

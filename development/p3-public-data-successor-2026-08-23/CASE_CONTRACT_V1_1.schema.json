@@ -1,0 +1,147 @@
+{
+  "$defs": {
+    "projection": {
+      "additionalProperties": false,
+      "properties": {
+        "coordinates": {
+          "additionalProperties": true,
+          "propertyNames": {
+            "enum": [
+              "REFERENT",
+              "CONSTRUCT",
+              "MEASUREMENT",
+              "TEMPORAL_CONTEXT"
+            ]
+          },
+          "type": "object"
+        },
+        "entity_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "observedness": {
+          "additionalProperties": {
+            "enum": [
+              "OBSERVED",
+              "NOT_OBSERVED",
+              "UNRESOLVED"
+            ]
+          },
+          "propertyNames": {
+            "enum": [
+              "REFERENT",
+              "CONSTRUCT",
+              "MEASUREMENT",
+              "TEMPORAL_CONTEXT"
+            ]
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "label",
+        "entity_type",
+        "coordinates",
+        "observedness"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "orion.p3.public-case-contract.v1.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "case_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "cluster_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "input_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "left": {
+      "$ref": "#/$defs/projection"
+    },
+    "panel_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "builder_id": {
+          "type": "string"
+        },
+        "builder_revision": {
+          "type": "string"
+        },
+        "left_locator": {
+          "type": "string"
+        },
+        "left_member": {
+          "type": "string"
+        },
+        "right_locator": {
+          "type": "string"
+        },
+        "right_member": {
+          "type": "string"
+        },
+        "source_archive_sha256": {
+          "type": "string"
+        },
+        "source_member": {
+          "type": "string"
+        },
+        "source_revision": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "required_coordinates": {
+      "items": {
+        "enum": [
+          "REFERENT",
+          "CONSTRUCT",
+          "MEASUREMENT",
+          "TEMPORAL_CONTEXT"
+        ]
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "right": {
+      "$ref": "#/$defs/projection"
+    },
+    "source_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "case_id",
+    "cluster_id",
+    "source_id",
+    "panel_id",
+    "left",
+    "right",
+    "required_coordinates",
+    "provenance",
+    "input_digest"
+  ],
+  "title": "P3 sealed public-data case without gold",
+  "type": "object"
+}

@@ -1,0 +1,105 @@
+{
+  "accepted_identity_method": "EXACT_NORMALIZED_ZENODO_ARCHIVE_TO_GITHUB_IMMUTABLE_COMMIT_MANIFEST_EQUALITY",
+  "all_closure_gates_pass": true,
+  "claim_boundary": [
+    "This closes only the checksum-bound archive content identity to an immutable provider-native full revision.",
+    "The later v0.13.5 revision is not asserted to be the deleted v0.13.4 commit, its descendant or a restored tag.",
+    "The version-label difference is explicit and no unit is added.",
+    "No natural-pair, author-lineage, source-disjoint replication, custody, outcome, performance or superiority authority is granted."
+  ],
+  "comparison": {
+    "common_entry_count": 165,
+    "differing": [],
+    "differing_count": 0,
+    "exact": true,
+    "left_entry_count": 165,
+    "only_left": [],
+    "only_left_count": 0,
+    "only_right": [],
+    "only_right_count": 0,
+    "right_entry_count": 165
+  },
+  "comparison_directory_swhid": "swh:1:dir:178315b57afafc1f20ab9929b4de893430524c62",
+  "comparison_revision": "a85df681d29a5cf3406d529144a7c0645e543e61",
+  "comparison_revision_ref": "v0.13.5",
+  "finished_at": "2026-08-24T05:52:01.870138+00:00",
+  "frozen_index": 199,
+  "gates": {
+    "exact_archive_and_revision_mit_rights": true,
+    "exact_normalized_archive_to_revision_manifest": true,
+    "github_exact_commit_authenticated": true,
+    "github_v0_13_5_ref_to_full_revision": true,
+    "protocol_hash_frozen": true,
+    "swh_origin_ref_revision_directory": true,
+    "zenodo_archive_declared_md5": true,
+    "zenodo_exact_record_version_repository_file_rights": true
+  },
+  "github_codeload": {
+    "downloaded_bytes": 4247426,
+    "downloaded_md5": "a316dd8374fb6ba8b6e27c24ddf3a9d6",
+    "downloaded_sha256": "b468f53c66e751ae242a039ba94c43788ec059363f8d2a2691207b4d4015a0b7",
+    "revision": "a85df681d29a5cf3406d529144a7c0645e543e61"
+  },
+  "github_commit": {
+    "html_url": "https://github.com/TARGENE/targene-pipeline/commit/a85df681d29a5cf3406d529144a7c0645e543e61",
+    "sha": "a85df681d29a5cf3406d529144a7c0645e543e61",
+    "tree_sha": "178315b57afafc1f20ab9929b4de893430524c62"
+  },
+  "github_ref": {
+    "annotated_tag_followed": false,
+    "initial_object_sha": "a85df681d29a5cf3406d529144a7c0645e543e61",
+    "initial_object_type": "commit",
+    "resolved_object_sha": "a85df681d29a5cf3406d529144a7c0645e543e61",
+    "resolved_object_type": "commit"
+  },
+  "identity": "P4.M6.JOSS.EXACT.EDGE.LINEAGE.AUTHORITY.V10B.INDEX.199",
+  "licenses": {
+    "exact_license_byte_equal": true,
+    "github_codeload_license": {
+      "bytes": 1072,
+      "entry_type": "regular",
+      "normalized_path": "LICENSE",
+      "sha256": "20122bc48a8c893915be5ce8a4f4a10785d8eee7fec36c5f930a208d0e575230",
+      "unix_executable_bit": false
+    },
+    "github_raw_license_bytes": 1072,
+    "github_raw_license_is_mit": true,
+    "github_raw_license_sha256": "20122bc48a8c893915be5ce8a4f4a10785d8eee7fec36c5f930a208d0e575230",
+    "zenodo_archive_license": {
+      "bytes": 1072,
+      "entry_type": "regular",
+      "normalized_path": "LICENSE",
+      "sha256": "20122bc48a8c893915be5ce8a4f4a10785d8eee7fec36c5f930a208d0e575230",
+      "unix_executable_bit": false
+    },
+    "zenodo_declared": "mit-license"
+  },
+  "next_discriminator": "Closed for exact source content identity.",
+  "outcome_informed_successor": true,
+  "protocol_path": "PROTOCOL_V10B.json",
+  "protocol_sha256": "8eda26f0fef9a9545e7393651601050e9a34e4843af7463f5e5cbd90f7d214f2",
+  "publication_version": "v0.13.4",
+  "repository": "targene/targene-pipeline",
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v10b.edge-199-content-identity",
+  "software_heritage": {
+    "origin_snapshot_sha1": "4cc32f66bbfae46d9d3ee0bfd210a46619f0e895",
+    "ref_target": "a85df681d29a5cf3406d529144a7c0645e543e61",
+    "ref_target_type": "revision",
+    "revision_body_sha256": "c987c0c456b7d839cfdf75389ad8c719e9bf277520bd5dfc6302b34c6fc76220",
+    "revision_directory": "178315b57afafc1f20ab9929b4de893430524c62",
+    "revision_id": "a85df681d29a5cf3406d529144a7c0645e543e61",
+    "snapshot_body_sha256": "af5b379e6fe13ea509501540a3b6f95f86f659de1cd9cbedddf33c6373780c49"
+  },
+  "verdict": "RESOLVED_SAME_CONTENT_IDENTITY",
+  "zenodo": {
+    "doi": "10.5281/zenodo.19202203",
+    "downloaded_bytes": 4237826,
+    "downloaded_md5": "3409352bdc0926acfafc39bf121f4263",
+    "downloaded_sha256": "5eaf4bc23f11cf14d6b1f41510a7b99cf3107cb906a7b7e9aa2945a2a64baeba",
+    "file_key": "TARGENE/targene-pipeline-v0.13.4.zip",
+    "license": "mit-license",
+    "provider_checksum": "md5:3409352bdc0926acfafc39bf121f4263",
+    "record_id": 19202203,
+    "version": "v0.13.4"
+  }
+}

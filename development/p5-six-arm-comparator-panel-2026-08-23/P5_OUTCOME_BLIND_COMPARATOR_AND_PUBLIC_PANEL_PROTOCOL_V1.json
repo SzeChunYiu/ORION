@@ -1,0 +1,195 @@
+{
+  "schema_version": "orion.p5.outcome-blind-comparator-public-panel-protocol.v1",
+  "paper_id": "P5",
+  "protocol_id": "P5.SIX_ARM.IDENTITY_AND.PUBLIC_PANEL.PREFLIGHT.V1",
+  "frozen_at_utc": "2026-08-23T15:01:59Z",
+  "frozen_before_new_dataset_inspection": true,
+  "authority": "METADATA_SOURCE_IDENTITY_RIGHTS_AND_INTERFACE_PREFLIGHT_ONLY",
+  "grants_scientific_authority": false,
+  "outcomes_accessed_before_freeze": false,
+  "protected_outcomes_access_permitted": false,
+  "public_row_level_outcomes_access_permitted": false,
+  "governing_endpoint": {
+    "protocol_path": "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json",
+    "claim_id": "P5.REVISION_LEVEL.WIDE.V1",
+    "independent_unit": "source_disjoint_project_issue_family_cluster",
+    "planned_independent_units": 768,
+    "revision_classes": [
+      "EVIDENCE_REPAIR",
+      "MEASUREMENT_REPAIR",
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR",
+      "EVALUATOR_REPAIR",
+      "UNRESOLVED"
+    ],
+    "primary_endpoint": "correct_minimal_revision_with_preservation_and_fresh_transfer_success",
+    "comparator_count": 6,
+    "claim_logic": "intersection_all_six_frozen_contrasts_and_every_noncompensatory_harm_gate_must_pass"
+  },
+  "six_semantic_roles_frozen_before_identity_search": [
+    {
+      "slot_id": "C1_FIXED_AGENT",
+      "definition": "A prospectively pinned issue-solving agent whose candidate policy, prompts, tools and code do not revise themselves within an evaluation unit.",
+      "excludes": [
+        "no-op control",
+        "self-modifying agent",
+        "benchmark repository without solver code"
+      ]
+    },
+    {
+      "slot_id": "C2_DIRECT_SELF_EDIT",
+      "definition": "A single active lineage directly edits its own candidate artifacts or agent implementation and then executes the edited successor without archive-based population selection.",
+      "excludes": [
+        "fixed label proxy",
+        "prompt-only relabelling",
+        "archive or population search"
+      ]
+    },
+    {
+      "slot_id": "C3_ARCHIVE_BASED_SELF_EDIT",
+      "definition": "A self-improvement method retaining an explicit archive or population of agent variants and selecting or branching successors from that archive.",
+      "excludes": [
+        "single-lineage direct edit without archive",
+        "benchmark-only repository"
+      ]
+    },
+    {
+      "slot_id": "C4_ISSUE_CENTRIC_OPTIMIZATION",
+      "definition": "A method that treats concrete repository issues or task failures as the optimization substrate for iteratively improving an agent or its scaffolding.",
+      "excludes": [
+        "fixed issue solver with no optimization across issues",
+        "paper-only conceptual analogy"
+      ]
+    },
+    {
+      "slot_id": "C5_EVALUATOR_ONLY_EVOLUTION",
+      "definition": "A method in which the evolving object is the evaluator, verifier or evaluation environment while the candidate generator/solver is held prospectively fixed for the primary contrast.",
+      "excludes": [
+        "jointly changing solver and evaluator",
+        "static evaluator audit",
+        "reward-hacking benchmark without evaluator evolution"
+      ]
+    },
+    {
+      "slot_id": "C6_STRONGEST_SOURCE_GROUNDED_MODERN_METHOD",
+      "definition": "The most methodologically complete source-grounded modern self-revision or scientific-discovery system found by the frozen search, chosen by interface coverage and released evidence rather than observed P5 performance.",
+      "selection_order": [
+        "author-bound primary-paper implementation",
+        "exact revision and licence bytes",
+        "documented runnable entrypoint",
+        "native self-revision semantics",
+        "broad typed artifact or mechanism coverage",
+        "lawful P5 adapter feasibility"
+      ],
+      "excludes": [
+        "benchmark treated as solver",
+        "unreleased code presented as runnable",
+        "selection using P5 outcomes"
+      ]
+    }
+  ],
+  "identity_search_rules": {
+    "eligible_evidence": [
+      "primary paper version page and full text",
+      "paper-linked official repository",
+      "author or lab repository explicitly tied to the paper",
+      "pinned Git object metadata",
+      "repository README and packaging manifests",
+      "licence bytes",
+      "documented CLI or Python entrypoint"
+    ],
+    "identity_precedence": [
+      "paper-linked official repository at exact revision",
+      "author or lab repository with explicit paper binding",
+      "declared non-official mechanism reimplementation",
+      "paper-only identity"
+    ],
+    "forbidden_substitutions": [
+      "benchmark repository for official solver code",
+      "third-party reproduction for official implementation",
+      "repository default branch name for immutable revision",
+      "repository licence metadata for underlying dataset or project-content rights"
+    ],
+    "performance_blind_selection": true
+  },
+  "metadata_only_public_source_policy": {
+    "permitted": [
+      "dataset or repository title and provider",
+      "landing-page descriptive counts",
+      "immutable revision or release identifier",
+      "file names, byte sizes and provider checksums",
+      "root and content-class licence text",
+      "README-described schema names without values",
+      "API response headers and repository tree metadata"
+    ],
+    "forbidden": [
+      "dataset rows",
+      "issue bodies selected for the study",
+      "labels or label distributions derived from row bodies",
+      "gold patches",
+      "test bodies or outcomes",
+      "artifact or archive payload bodies",
+      "Docker/container contents",
+      "protected evaluator responses",
+      "pilot or comparator performance"
+    ],
+    "selection_keys": [
+      "provider identity",
+      "project-family breadth from descriptive metadata",
+      "language/domain metadata",
+      "revision immutability",
+      "licence and redistribution status",
+      "presence of bug/issue/fix linkage described by provider",
+      "feasibility of source-disjoint clustering"
+    ],
+    "no_row_ids_selected": true,
+    "metadata_findings_do_not_create_freshness": true
+  },
+  "required_arm_binding_fields": [
+    "slot_id",
+    "semantic_role",
+    "paper_and_exact_version",
+    "official_repository",
+    "commit_sha",
+    "official_or_reimplementation_status",
+    "licence_spdx_or_terminal",
+    "licence_file_path",
+    "licence_byte_sha256",
+    "install_entrypoint",
+    "run_entrypoint",
+    "candidate_visible_information",
+    "legal_actions_and_write_surface",
+    "token_tool_time_compute_retry_envelope",
+    "native_outputs",
+    "native_errors_timeouts_and_abstentions",
+    "p5_eight_class_adapter",
+    "rights_and_service_dependencies",
+    "feasibility_terminal"
+  ],
+  "required_public_source_fields": [
+    "source_id",
+    "provider",
+    "immutable_revision",
+    "metadata_scope_observed",
+    "framework_licence",
+    "content_class_rights",
+    "underlying_project_rights",
+    "descriptive_project_count",
+    "descriptive_issue_or_pair_count",
+    "source_disjoint_cluster_feasibility",
+    "permitted_use",
+    "blocked_use",
+    "feasibility_terminal"
+  ],
+  "fail_closed_rules": [
+    "Any missing immutable identity, licence byte, entrypoint, adapter, rights class or matched resource envelope remains CANNOT_CHECK.",
+    "A native error, timeout, invalid output, abstention or unresolved decision is retained as a typed terminal.",
+    "No arm may be removed or replaced using outcome information.",
+    "Public gold is development-only and never protected freshness.",
+    "H1-H4 and protected freshness remain CANNOT_CHECK in this lane."
+  ],
+  "current_terminal": "P5_COMPARATOR_FAMILY_CANNOT_CHECK_SIX_ARM_IDENTITY",
+  "timestamp_note": "Administrative correction from nominal day-floor to original file-creation instant; protocol semantics unchanged and no dataset row was accessed."
+}

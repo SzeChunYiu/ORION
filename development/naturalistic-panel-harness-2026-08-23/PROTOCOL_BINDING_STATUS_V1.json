@@ -1,0 +1,119 @@
+{
+  "schema_version": "orion.shared-naturalistic-panel-binding-status.v1",
+  "audit_date": "2026-08-23",
+  "authority": "PREOUTCOME_SOURCE_METADATA_PREFLIGHT_ONLY",
+  "outcomes_accessed": false,
+  "protected_case_fields_accessed": false,
+  "historical_results_immutable": true,
+  "closed_shared_component": {
+    "component_id": "PUBLIC_SOURCE_FAMILY_IDENTITY_REVISION_LICENCE_METADATA_12",
+    "status": "CLOSED_FOR_TWELVE_CANDIDATE_REPOSITORY_FAMILIES_ONLY",
+    "records": 12,
+    "provider_count": 1,
+    "artifact_modality_count": 1,
+    "candidate_domain_counts": {
+      "BIOMEDICAL_CLINICAL": 3,
+      "EARTH_ENVIRONMENTAL": 3,
+      "COMPUTATIONAL_SCIENTIFIC_SOFTWARE": 3,
+      "PHYSICAL_ENGINEERING": 3
+    },
+    "snapshot_payload_sha256": "7dd283acd81e63e84887d82ee7761e89e62a47d31afceca8628e456b76f73e01",
+    "verified_properties": [
+      "official_repository_identity",
+      "public_primary_repository_url_http_200",
+      "exact_commit_sha_at_or_before_2025_12_31",
+      "exact_commit_url_http_200",
+      "licence_bytes_at_exact_commit",
+      "licence_byte_sha256_and_live_download_match"
+    ],
+    "licence_resolution": {
+      "machine_asserted_spdx_records": 9,
+      "exact_licence_text_but_spdx_noassertion_records": 3,
+      "issue_text_or_attachment_licence_verified": false
+    },
+    "does_not_constitute": [
+      "case acquisition",
+      "case eligibility",
+      "scientific domain adjudication",
+      "adverse control pairing",
+      "source disjointness across a complete frame",
+      "coordinate variation",
+      "identifiability or unidentifiability labels",
+      "revision class labels",
+      "protected outcomes",
+      "independent gold or custody"
+    ]
+  },
+  "paper_protocols": [
+    {
+      "paper_id": "P1",
+      "protocol_path": "research/claim_expansion/p1/gpt_r7/R7A_MAXT_POWER_AMENDMENT_V2.json",
+      "protocol_sha256": "01d5870023ce9867fc8328e60a3f3e6d4468785a7efb32626140d8b37ba25db5",
+      "current_terminal_unchanged": "P1_R7A_READY_FOR_EXTERNAL_BINDING_NOT_A_SCIENTIFIC_RESULT",
+      "local_bindings_status": "PREEXISTING_BOUND__NOT_CHANGED_BY_THIS_LANE",
+      "external_bindings": [
+        {
+          "binding_id": "PRIMARY_AND_REPLICATION_SOURCE_SNAPSHOTS",
+          "status": "OPEN__TWELVE_FAMILY_METADATA_SUBCOMPONENT_ONLY",
+          "reason": "The frozen R7A binding requires complete eligibility and exclusions, 384 pairs plus 64 unresolved clusters per wave, and a source-disjoint replication for 896 source clusters total. No issue or source-case text was accessed here."
+        },
+        {"binding_id": "STRONGEST_RUNNABLE_EXTERNAL_COMPARATOR", "status": "OPEN_OUTSIDE_SOURCE_METADATA_LANE"},
+        {"binding_id": "PRIMARY_AND_CHANGED_REPLICATION_SEMANTIC_HOST_CUSTODY", "status": "OPEN_EXTERNAL_CUSTODY_REQUIRED"},
+        {"binding_id": "INDEPENDENT_PRIMARY_AND_REPLICATION_SCORER_CUSTODY", "status": "OPEN_EXTERNAL_CUSTODY_REQUIRED"},
+        {"binding_id": "PROTECTED_EXECUTION_ENVIRONMENT", "status": "OPEN_EXTERNAL_CUSTODY_REQUIRED"}
+      ]
+    },
+    {
+      "paper_id": "P3",
+      "protocol_path": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json",
+      "protocol_sha256": "63e093f44a645e6475952b0221f33ec6bc9afc50a8d143481f945268b51a7264",
+      "current_terminal_unchanged": "P3_PARTIAL_IDENTIFICATION_READY_FOR_EXTERNAL_ATLAS_NOT_A_SCIENTIFIC_RESULT",
+      "external_bindings": [
+        {
+          "binding_id": "SOURCE_DISJOINT_MULTI_DOMAIN_ATLAS_WITH_NONZERO_VARIATION_ON_ALL_FOUR_COORDINATES",
+          "status": "OPEN__TWELVE_FAMILY_METADATA_SUBCOMPONENT_ONLY",
+          "reason": "Repository identities are pinned, but no 768-cluster atlas, coordinate assignment, observation opportunity, nonzero variation, or source-disjoint replication exists."
+        },
+        {"binding_id": "INDEPENDENT_PROTECTED_GOLD_LABELS", "status": "OPEN_NOT_ACCESSED"},
+        {"binding_id": "RAW_TEXT_ATTACK_CORPUS", "status": "OPEN_NOT_ACCESSED"},
+        {"binding_id": "DOWNSTREAM_DECISION_EVALUATOR_CUSTODY", "status": "OPEN_EXTERNAL_CUSTODY_REQUIRED"}
+      ]
+    },
+    {
+      "paper_id": "P4",
+      "protocol_path": "papers/paper-04-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V1.json",
+      "protocol_sha256": "3892cb1727f55833e673f0864195a3f29f0458592abd0cc427ae9822884959cc",
+      "current_terminal_unchanged": "P4_NATURALISTIC_READY_FOR_EXTERNAL_PANEL_NOT_A_SCIENTIFIC_RESULT",
+      "external_bindings": [
+        {
+          "binding_id": "BLINDED_MULTI_DOMAIN_NATURALISTIC_CASE_PANEL",
+          "status": "OPEN__TWELVE_FAMILY_METADATA_SUBCOMPONENT_ONLY",
+          "reason": "No case text, exact claim axis, identifiable control, unidentifiability mechanism, blinding, or 768-cluster panel was created."
+        },
+        {"binding_id": "CANNOT_CHECK_CAPABLE_EXTERNAL_COMPARATORS", "status": "OPEN_OUTSIDE_SOURCE_METADATA_LANE"},
+        {"binding_id": "INDEPENDENT_EVALUATOR_AND_RAW_CASE_CUSTODY", "status": "OPEN_EXTERNAL_CUSTODY_REQUIRED"},
+        {"binding_id": "SOURCE_DISJOINT_REPLICATION_PANEL", "status": "OPEN_NOT_ACQUIRED"}
+      ]
+    },
+    {
+      "paper_id": "P5",
+      "protocol_path": "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json",
+      "protocol_sha256": "ab871b23ca9b8dfed8447057671e21c0fa37ad86d93fdf2605dae8d7a765c39d",
+      "current_terminal_unchanged": "P5_WIDE_READY_FOR_EXTERNAL_PROJECT_PANEL_NOT_A_SCIENTIFIC_RESULT",
+      "external_bindings": [
+        {"binding_id": "M_OPEN_ONLY_SOURCE_GROUNDED_STRUCTURAL_BINDING", "status": "OPEN__REPOSITORY_IDENTITY_IS_NOT_A_STRUCTURAL_BINDING"},
+        {
+          "binding_id": "SOURCE_DISJOINT_PROTECTED_PROJECT_ISSUE_PANEL",
+          "status": "OPEN__TWELVE_PROJECT_FAMILY_METADATA_SUBCOMPONENT_ONLY",
+          "reason": "No issue text, symptom block, revision-class label, fresh-transfer instance, eight-domain frame, or 768-cluster protected panel was accessed or built."
+        },
+        {"binding_id": "FINAL_SPLIT_COMMITMENT", "status": "OPEN_NOT_CREATED"},
+        {"binding_id": "INDEPENDENT_PROTECTED_EVALUATOR_AND_FRESH_TRANSFER_EVALUATOR", "status": "OPEN_EXTERNAL_CUSTODY_REQUIRED"},
+        {"binding_id": "SUBJECT_CANDIDATE_BASELINE_AND_EPOCH_IDENTITIES", "status": "OPEN_OUTSIDE_SOURCE_METADATA_LANE"},
+        {"binding_id": "EXTERNAL_RESULT_VERIFIER_CUSTODY", "status": "OPEN_EXTERNAL_CUSTODY_REQUIRED"}
+      ]
+    }
+  ],
+  "scientific_verdict": "METADATA_SUBSTRATE_FEASIBLE__NO_REGISTERED_EXTERNAL_PANEL_BINDING_CLOSED",
+  "next_discriminator": "Before any issue or source-case content is opened, freeze a provider-diverse acquisition census with exact ranking, years, deduplication, exclusions, licence handling for issue text and attachments, and independent custodian ownership. Then test whether every required P1/P3/P4/P5 stratum has enough source-family candidates. A GitHub-only census cannot establish cross-domain or cross-provider generality."
+}

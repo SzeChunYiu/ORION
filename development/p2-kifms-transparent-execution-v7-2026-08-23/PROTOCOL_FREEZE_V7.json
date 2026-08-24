@@ -1,0 +1,99 @@
+{
+  "active_loop": {
+    "batch_size": "max(10, ceil(0.002*N_r))",
+    "initialization": "Within each class and review choose the row minimizing SHA-256(review UTF-8, NUL, canonical record identity), positive first then negative.",
+    "refit": "After each selected batch, refit from scratch on every observed row.",
+    "termination": "Order every canonical row.",
+    "ties": "Stable descending score, then canonical record order."
+  },
+  "arms": {
+    "R0_L0": "candidate TF-IDF representation and SGD log-loss balanced learner",
+    "R0_L1": "candidate TF-IDF representation and pinned u4 LinearSVC learner/balancer",
+    "R1_L0": "pinned u4 TF-IDF representation and candidate learner",
+    "R1_L1": "complete pinned u4 comparator"
+  },
+  "custody_design": {
+    "confirmatory_status": "NOT_INDEPENDENT_CONFIRMATION",
+    "mode": "hash-frozen transparent public-data development execution",
+    "rationale": "V6's external custodian is unavailable. V7 does not self-certify independence; it obtains the scientifically useful public execution while keeping independent reproduction as a strengthening gate rather than wasting local compute on signatures.",
+    "required_disclosure": "Same-workspace design and execution; public historical ASReview simulations exist for the named source family; no exact V7 result was opened before this freeze."
+  },
+  "decision_rule": {
+    "cannot_check": "Any frozen file, source byte, population hash, label map, both-class check, complete-order check, or implementation binding fails.",
+    "public_performance_adverse": "If the binding and population pass but any C1-C6 or G3-G6 performance gate fails, preserve every effect and issue the adverse V7 successor terminal.",
+    "public_performance_pass": "If every C1-C6 and G3-G6 performance gate passes, issue only the exact-family public-development pass terminal; independent confirmation and broad superiority remain unavailable."
+  },
+  "estimands": {
+    "coprimary": [
+      "unweighted mean learner/balancer main effect on CRE20",
+      "unweighted mean learner/balancer main effect on R@10"
+    ],
+    "full_candidate_minus_u4": "Per review R0_L0 minus R1_L1, then unweighted mean.",
+    "interaction": "Per metric and review (R1_L1-R0_L1)-(R1_L0-R0_L0).",
+    "learner_balancer_main_effect": "Per metric and review 0.5*((R0_L1-R0_L0)+(R1_L1-R1_L0)).",
+    "representation_main_effect": "Per metric and review 0.5*((R1_L0-R0_L0)+(R1_L1-R0_L1))."
+  },
+  "forbidden_claims": [
+    "independent custody or confirmation",
+    "globally unstudied source family",
+    "population-wide, domain-general, workflow-general, or source-general superiority",
+    "exact ASReview application execution",
+    "cold start",
+    "causal mechanism identification beyond the frozen 2x2 contrast",
+    "deletion or reversal of V3-V6 adverse terminals",
+    "post-outcome review deletion, endpoint substitution, tuning, or gate relaxation"
+  ],
+  "frozen_at_utc": "2026-08-23T20:04:00+02:00",
+  "gates": {
+    "C1_CRE20_MAGNITUDE": "mean learner/balancer CRE20 effect >= 0.010858985820770889",
+    "C2_CRE20_SIGN": "learner/balancer CRE20 effect strictly positive in at least 12/14 reviews",
+    "C3_R10_MAGNITUDE": "mean learner/balancer R@10 effect >= 0.010858985820770889",
+    "C4_R10_SIGN": "learner/balancer R@10 effect strictly positive in at least 12/14 reviews",
+    "C5_LEARNER_WORK_SAVING": "mean learner/balancer WSS95 effect >= 0",
+    "C6_LEARNER_HARM": "worst-review learner/balancer R@10 effect >= -0.05",
+    "G3_FULL_ARM_R10_MARGIN": "mean R0_L0 minus R1_L1 R@10 >= +0.05",
+    "G4_FULL_ARM_WORK_SAVING": "mean R0_L0 minus R1_L1 WSS95 >= 0",
+    "G5_FULL_ARM_HARM": "worst-review R0_L0 minus R1_L1 R@10 >= -0.05",
+    "G6_ABSOLUTE_WORK_SAVING": "R0_L0 WSS95 > 0 in every review"
+  },
+  "identity": "P2_KIFMS_V7_HASH_FROZEN_TRANSPARENT_PUBLIC_EXECUTION",
+  "label": {
+    "accepted_tokens": {
+      "0": 0,
+      "0.0": 0,
+      "1": 1,
+      "1.0": 1,
+      "false": 0,
+      "true": 1
+    },
+    "operational_semantics": "expert_inclusion is treated as the source-named binary expert screening decision; V7 does not claim an independently validated universal construct.",
+    "selected_column": "expert_inclusion"
+  },
+  "metrics": {
+    "CRE20": "(1/(0.20*P_r))*sum_i y_i*max(0.20-i/N_r,0) over the complete order",
+    "R@q": "relevant rows among the first max(1,ceil(q*N_r)) divided by P_r for q in 0.05,0.10,0.20",
+    "WSS95": "0.95 minus the smallest fraction screened attaining ceil(0.95*P_r) relevant rows"
+  },
+  "outcome_access_status_at_freeze": "NO KIFMS LABEL VALUES, CLASS COUNTS, SEEDS, V7 ORDERS, ARM METRICS, OR COMPARATIVE OUTCOMES ACCESSED",
+  "population": {
+    "canonical_rows": 4934,
+    "review_count": 14,
+    "rule": "Reconstruct the exact V6 label-blind population. Because V6 records exactly one external content exclusion, enumerate the single outcome-blind deletion and require a unique candidate reproducing every frozen per-review and union content/PMID hash.",
+    "source": "14 exact OSF vt3n4 revision-one CSVs, CC-BY-4.0",
+    "unit": "review decision; unweighted across all fourteen; never row pooled"
+  },
+  "preserved_terminals": [
+    "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR",
+    "P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR",
+    "P2_SWIFT_V4_POST_OUTCOME_FACTORIZATION_IDENTIFIES_STABLE_COMPONENT_REQUIRES_CONTENT_DISJOINT_OUTCOME_UNOPENED_FAMILY",
+    "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR",
+    "P2_KIFMS_V6_LAWFUL_EXACT_SOURCE_AND_LABEL_BLIND_DISJOINT_POPULATION_FROZEN__INDEPENDENT_PROTECTED_EXECUTION_CANNOT_CHECK"
+  ],
+  "scope": "OUTCOME_UNOPENED_HASH_FROZEN_PUBLIC_DEVELOPMENT_EXECUTION_ON_THE_EXACT_V6_KIFMS_FAMILY",
+  "status": "FROZEN_BEFORE_LABEL_OR_OUTCOME_ACCESS",
+  "terminals": {
+    "cannot_check": "P2_KIFMS_V7_TRANSPARENT_EXECUTION_CANNOT_CHECK_BINDING_POPULATION_LABEL_OR_RUNTIME",
+    "public_performance_adverse": "P2_KIFMS_V7_TRANSPARENT_PUBLIC_EXECUTION_FAILS_ONE_OR_MORE_LOCKED_PERFORMANCE_GATES_REQUIRES_SUCCESSOR",
+    "public_performance_pass": "P2_KIFMS_V7_TRANSPARENT_PUBLIC_EXECUTION_PASSES_ALL_LOCKED_EXACT_FAMILY_PERFORMANCE_GATES__INDEPENDENT_CONFIRMATION_PENDING"
+  }
+}

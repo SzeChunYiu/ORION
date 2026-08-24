@@ -1,0 +1,327 @@
+{
+  "check_count": 63,
+  "checks": [
+    {
+      "check": "json_parse:K1_AML_RESULT_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:K2_LOGMAP_RESULT_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:K3_BERTMAP_RESULT_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:K3_V7_COMPATIBILITY_SUCCESSOR_PROTOCOL.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:NEGATIVE_RESULT_LEDGER_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_FREEZE_RECEIPT_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_INTERFACE_AMENDMENT_FREEZE_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_INTERFACE_AMENDMENT_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_K3_INPUT_AMENDMENT_FREEZE_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_K3_INPUT_AMENDMENT_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_K3_LAUNCHER_AMENDMENT_FREEZE_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_K3_LAUNCHER_AMENDMENT_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_K3_STDIN_AMENDMENT_FREEZE_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_K3_STDIN_AMENDMENT_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:RESOURCE_AND_CLEANUP_AUDIT_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:RESULT_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:RUNTIME_MANIFEST_V6.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "protocol_freeze_hash",
+      "evidence": "d8c11f0a700411d2937bdebbb1081ea7e57d1ced721dba27c73d985b6a3d753c",
+      "pass": true
+    },
+    {
+      "check": "interface_amendment_freeze_hash",
+      "evidence": "e7c0e9427938c5286a76ebb15a48e7e571ca133cf4f7cbc75a8642c75a4072f2",
+      "pass": true
+    },
+    {
+      "check": "k3_input_amendment_freeze_hash",
+      "evidence": "dd9224269ab053026937a485bd2a5552573ef9ec878c93425d9ce86891e3974e",
+      "pass": true
+    },
+    {
+      "check": "k3_launcher_amendment_freeze_hash",
+      "evidence": "e8877827d054cd5743b07d3232a9661d82ae43d391f9b70136fcf59a56feb752",
+      "pass": true
+    },
+    {
+      "check": "k3_stdin_amendment_freeze_hash",
+      "evidence": "4a3f1d3b19bf9563c89560fe4e7919fc6168966e33c9bc94245088552820382f",
+      "pass": true
+    },
+    {
+      "check": "inherited_binding_exists:v3_comparator_identity",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p3-cross-construct-successor/COMPARATOR_IDENTITY_AUDIT_V3.json",
+      "pass": true
+    },
+    {
+      "check": "inherited_binding_hash:v3_comparator_identity",
+      "evidence": "df7c842c482ae584f4f2fc4e48979c186bb5e832365e96c18befa10df1a91c6d",
+      "pass": true
+    },
+    {
+      "check": "inherited_binding_exists:v4_result",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p3-selective-envelope-harm-successor-v4/RESULT_V4.json",
+      "pass": true
+    },
+    {
+      "check": "inherited_binding_hash:v4_result",
+      "evidence": "580bc76eb64d6678a45adb6fac900d8ad18d597548b883bef18471740b50b81b",
+      "pass": true
+    },
+    {
+      "check": "inherited_binding_exists:v5_adapters",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p3-authoritative-negative-semantics-v5/COMPARATOR_ADAPTERS_V5.json",
+      "pass": true
+    },
+    {
+      "check": "inherited_binding_hash:v5_adapters",
+      "evidence": "55ac61950f897b6af30043ff8fead72441a729af7ab138a6c93c193de56d1816",
+      "pass": true
+    },
+    {
+      "check": "inherited_binding_exists:v5_result",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p3-authoritative-negative-semantics-v5/RESULT_V5.json",
+      "pass": true
+    },
+    {
+      "check": "inherited_binding_hash:v5_result",
+      "evidence": "5e468fc319fcc70e2f1058912cd34da7290831e2c20801f73e495ee7339cded7",
+      "pass": true
+    },
+    {
+      "check": "k1_terminal",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k1_exit_zero",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k1_cell_count",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k1_namespace_guards",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k2_terminal_guarded_pass",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k2_exit_zero",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k2_three_rows_each",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k2_rdf_tsv_equivalence",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k2_namespace_guards",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k2_header_defect_guard",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k3_terminal_cannot_check",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k3_nonzero_not_timeout",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k3_exact_failure",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k3_required_artifacts_zero_of_five",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k3_no_training_prediction_scoring",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "k3_model_hash_match",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "overall_two_of_three",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "overall_v5_unchanged",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "overall_no_gold_protected_scoring",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "preserved_v3_exact",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "preserved_v4_exact",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "preserved_v5_exact",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "successor_prospective_only",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "successor_wheel_hash_match",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "successor_api_field_source_checked",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "negative_ledger_entry_count",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "negative_ledger_complete_fields",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "runtime_manifest_logmap_dependencies",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "runtime_manifest_python_packages",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "cleanup_runtime_removed",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "cleanup_raw_large_residue_zero",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "cleanup_pycache_pyc_zero",
+      "evidence": null,
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "json_file_count_excluding_receipt": 18,
+  "passed": 63,
+  "schema_version": "orion.p3.comparator-native-preflight.validation-receipt.v6",
+  "terminal": "PASS",
+  "validated_at": "2026-08-23T17:45:02.930262+00:00",
+  "validator": "validate_v6.py stdlib assertions; no pytest or CI"
+}

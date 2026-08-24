@@ -1,0 +1,147 @@
+{
+  "canonical_union_content_set_sha256": "92142ba94886db32475535ce07ad237796e9156b63a1c2a13f0fb401f0cd7271",
+  "deduplication": "Within each review, SHA-256 of case-sensitive whitespace-normalized title plus one space plus reconstructed abstract; retain lexicographically smallest OpenAlex id per content identity without reading labels.",
+  "exclusions": [
+    "missing labeled OpenAlex work",
+    "empty normalized title plus abstract",
+    "within-review duplicate content excess",
+    "any content identity in the V3 SWIFT union",
+    "any content identity present in two or more selected successor reviews"
+  ],
+  "external_disjointness": {
+    "final_swift_overlap_count": 0,
+    "required": 0,
+    "swift_union_content_set_sha256": "9f947860904932015fef06a826bbeac8d242729cbdec2a3cf903c1bbd9614917",
+    "swift_union_unique_content_count": 96056
+  },
+  "frozen_at_utc": "2026-08-23T17:01:38.328643+00:00",
+  "identity": "P2_SYNERGY_V5_POPULATION_AND_CONTENT_FREEZE",
+  "internal_disjointness": {
+    "pairwise_after_exclusion": [
+      {
+        "review_a": "Walker_2018",
+        "review_b": "Brouwer_2019",
+        "shared_content": 0
+      },
+      {
+        "review_a": "Walker_2018",
+        "review_b": "Hall_2012",
+        "shared_content": 0
+      },
+      {
+        "review_a": "Walker_2018",
+        "review_b": "Wassenaar_2017",
+        "shared_content": 0
+      },
+      {
+        "review_a": "Walker_2018",
+        "review_b": "Leenaars_2020",
+        "shared_content": 0
+      },
+      {
+        "review_a": "Brouwer_2019",
+        "review_b": "Hall_2012",
+        "shared_content": 0
+      },
+      {
+        "review_a": "Brouwer_2019",
+        "review_b": "Wassenaar_2017",
+        "shared_content": 0
+      },
+      {
+        "review_a": "Brouwer_2019",
+        "review_b": "Leenaars_2020",
+        "shared_content": 0
+      },
+      {
+        "review_a": "Hall_2012",
+        "review_b": "Wassenaar_2017",
+        "shared_content": 0
+      },
+      {
+        "review_a": "Hall_2012",
+        "review_b": "Leenaars_2020",
+        "shared_content": 0
+      },
+      {
+        "review_a": "Wassenaar_2017",
+        "review_b": "Leenaars_2020",
+        "shared_content": 0
+      }
+    ],
+    "required_each": 0,
+    "shared_identities_before_exclusion": 189
+  },
+  "no_further_exclusion_allowed": true,
+  "outcome_access_status": "NO_LABEL_VALUES, CLASS COUNTS, SEEDS, ACTIVE ORDERS, OR MODEL OUTCOMES ACCESSED",
+  "per_review": {
+    "Brouwer_2019": {
+      "canonical_content_set_sha256": "b15be8ed47d34935ccf929dd694dfb4702041981d2959a4d41c52de19c492e38",
+      "canonical_openalex_id_set_sha256": "9ada604a07517606219d233b66e460e0de781fe37bda93b056c79a8d1ecba0bd",
+      "canonical_record_order_sha256": "344399ed226ec2bb2081cce9d76273d8d298ac526e454eac4d912ab88d59fe14",
+      "canonical_rows": 38009,
+      "empty_text_rows": 0,
+      "excluded_successor_pairwise_content_overlap": 103,
+      "excluded_swift_content_overlap": 5,
+      "missing_labeled_work_identifier_rows": 0,
+      "within_review_duplicate_content_excess": 2
+    },
+    "Hall_2012": {
+      "canonical_content_set_sha256": "d46af1205258fe86e1d7eb0e3b2c6fb4393cab65140986e000252e65e7510031",
+      "canonical_openalex_id_set_sha256": "126b6ce9ecbf60b017e5f3b5c34632f12e1a2bd8bd45337386162595df3033f1",
+      "canonical_record_order_sha256": "6966fd5800a6c774db3b2ab18302d2a7ec8830c038731a0d1da01953343d6f8e",
+      "canonical_rows": 8783,
+      "empty_text_rows": 0,
+      "excluded_successor_pairwise_content_overlap": 0,
+      "excluded_swift_content_overlap": 0,
+      "missing_labeled_work_identifier_rows": 0,
+      "within_review_duplicate_content_excess": 10
+    },
+    "Leenaars_2020": {
+      "canonical_content_set_sha256": "43e9d5da2b520b2bfb6354ef982dd14fabc81102c88720daa01f42ac499b9f4f",
+      "canonical_openalex_id_set_sha256": "e125caad34ab9dadac3e2c40cb168059322d4bedc3a7f13833047bc59f74d4f7",
+      "canonical_record_order_sha256": "ff6be6e57fb9e68a8f9710ef9d1cecb7a54f3f25e794f1849faa3ddc75059d64",
+      "canonical_rows": 7189,
+      "empty_text_rows": 0,
+      "excluded_successor_pairwise_content_overlap": 19,
+      "excluded_swift_content_overlap": 7,
+      "missing_labeled_work_identifier_rows": 0,
+      "within_review_duplicate_content_excess": 5
+    },
+    "Walker_2018": {
+      "canonical_content_set_sha256": "8f1b8a13fdd40af8be049f0fc46897ead315e8a8fa8aba038784fd494d452271",
+      "canonical_openalex_id_set_sha256": "53863374ac78eeed16eb0390c80691182469f0e8433007c786fb8a21507be2ed",
+      "canonical_record_order_sha256": "595ea57a44f63bb236797cbe1b546ec3147f4bf12c4d291388ab9537c034425d",
+      "canonical_rows": 40442,
+      "empty_text_rows": 5,
+      "excluded_successor_pairwise_content_overlap": 186,
+      "excluded_swift_content_overlap": 7741,
+      "missing_labeled_work_identifier_rows": 0,
+      "within_review_duplicate_content_excess": 23
+    },
+    "Wassenaar_2017": {
+      "canonical_content_set_sha256": "88ae0fc8df9eaa99087a075e998e5fe9495fdba6e9071906686510619b8771cf",
+      "canonical_openalex_id_set_sha256": "2d9887b59ec18b7b685c02ac65dd52b9eff6c499df25f019cebeaba5e7e10e8a",
+      "canonical_record_order_sha256": "f6ad517724de80f8901cf292654acb1afcae89c476207d00c2ab556f4b32eb9f",
+      "canonical_rows": 6621,
+      "empty_text_rows": 0,
+      "excluded_successor_pairwise_content_overlap": 70,
+      "excluded_swift_content_overlap": 988,
+      "missing_labeled_work_identifier_rows": 0,
+      "within_review_duplicate_content_excess": 2
+    }
+  },
+  "preflight_result_sha256": "522f1bff50a174ea7d607e262891ea50d0a150a844adca774d4ecb4873b5f247",
+  "preflight_runner_sha256": "9935f01ae2b806884a003b9399d8ddf54df6a890136f91dd353301ab0245885f",
+  "reviews": [
+    "Walker_2018",
+    "Brouwer_2019",
+    "Hall_2012",
+    "Wassenaar_2017",
+    "Leenaars_2020"
+  ],
+  "selection_freeze_sha256": "8a9c5ffedb4d758e8a8819bd3bae98ac8cc4b84ca82caa5882754e15a673ff5b",
+  "source_binding_sha256": "e2e807bb9df6518877f89a76b76f855bca49a63495b5669230b7de5878a74ebb",
+  "status": "FROZEN_AFTER_LABEL_BLIND_CONTENT_PREFLIGHT_BEFORE_LABEL_VALUES_CLASS_COUNTS_SEEDS_OR_MODEL_OUTCOMES",
+  "total_canonical_rows": 101044
+}

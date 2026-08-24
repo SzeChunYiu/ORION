@@ -1,0 +1,396 @@
+{
+  "audit_date": "2026-08-23",
+  "authority": "SCIENTIFIC_READINESS_AUDIT_ONLY__NO_NEW_EMPIRICAL_OUTCOME__NO_EXTERNAL_CUSTODY_CLAIM",
+  "blockers": [
+    {
+      "blocker_id": "P5.EVIDENCE.PRIMARY_FRESH_TRANSFER_UNEXECUTED",
+      "cannot_check_condition": "Any protected case, split, evaluator, baseline, subject, epoch, or verifier identity is missing or non-independent.",
+      "current_terminal": [
+        "P5.H1-H4=CANNOT_CHECK",
+        "campaign_execution=REFUSED_UNBOUND",
+        "P5_WIDE_READY_FOR_EXTERNAL_PROJECT_PANEL_NOT_A_SCIENTIFIC_RESULT"
+      ],
+      "evidence_paths": [
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.json",
+        "papers/paper-05-self-orion/evidence/ISSUE_159_CHECKBOX_AUDIT_V1.json",
+        "papers/paper-05-self-orion/manuscript/sections/07-evaluation.tex",
+        "papers/paper-05-self-orion/manuscript/sections/10-limitations.tex",
+        "papers/paper-05-self-orion/manuscript/tables/P5-T2_baseline_ablation_results.tex",
+        "papers/paper-05-self-orion/evidence/tables/P5-T3_harmful_null_interventions.md"
+      ],
+      "external_custody_need": [
+        "protected fresh cases",
+        "matched result scoring",
+        "harm adjudication",
+        "result verification"
+      ],
+      "external_custody_required": true,
+      "finding": "The primary claim asks whether governed self-revision improves protected fresh outcomes with harm control, but no matched fresh-transfer campaign, baseline archive, or ablation archive exists. H1-H4 remain CANNOT_CHECK; the 21/24 diagnostic is not the primary endpoint.",
+      "lawful_public_data_action": "Use pinned public software-repair sources only to build and debug adapters, contamination checks, and development fixtures; retain public gold as development-only.",
+      "negative_condition": "No incremental value, non-inferiority failure, or a non-compensatory harm gate fails.",
+      "next_discriminator": "After every identity and split is frozen outside candidate custody, execute the matched V1/V2/full-candidate/baseline/ablation campaign and archive all positive, null, harmful, rejected, and CANNOT_CHECK observations.",
+      "papers": [
+        "P5"
+      ],
+      "positive_condition": "Predeclared improvement and non-inferiority/harm gates pass against every frozen comparator on protected fresh cases.",
+      "rank": 1,
+      "severity": "A"
+    },
+    {
+      "blocker_id": "P4.EVIDENCE.NO_ELIGIBLE_NATURALISTIC_PANEL_OR_CUSTODY",
+      "cannot_check_condition": "Full bytes, rights, or independent adjudication are unavailable.",
+      "current_terminal": [
+        "PUBLIC_CC_BY_SOURCE_POOL_BOUND__NATURALISTIC_CASE_ADJUDICATION_REQUIRED",
+        "P4_NATURALISTIC_READY_FOR_EXTERNAL_PANEL_NOT_A_SCIENTIFIC_RESULT"
+      ],
+      "evidence_paths": [
+        "development/p4-scientific-ascent-2026-08-23/PUBLIC_NATURALISTIC_SOURCE_AUDIT_V1.md",
+        "development/p4-scientific-ascent-2026-08-23/source_binding/ARXIV_CC_BY_SOURCE_POOL_BINDING_V1.json",
+        "papers/paper-04-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V1.json"
+      ],
+      "external_custody_need": [
+        "raw full-text bytes",
+        "case eligibility",
+        "gold three-terminal decisions",
+        "pair construction and disagreement records"
+      ],
+      "external_custody_required": true,
+      "finding": "The 1,536 arXiv rows are licensed source candidates, not 768 eligible naturalistic cases. There are no externally adjudicated material claims, naturally occurring identifiable/unidentifiable view pairs, full-text case hashes, or independent raw-case custody.",
+      "lawful_public_data_action": "Fetch and hash exact CC BY arXiv full text into a quarantined screening layer; preregister a case-origin taxonomy and screen only naturally existing information states, not outcome-authored redactions.",
+      "negative_condition": "Eligible pairs are too rare, are not naturally occurring, or expert resolution is below the frozen reliability gate.",
+      "next_discriminator": "Run an outcome-blind feasibility pilot in every domain: independent experts must identify a material claim, show the full view resolves it, show a naturally existing restricted view omits a load-bearing fact, and retain disagreements and attrition.",
+      "papers": [
+        "P4"
+      ],
+      "positive_condition": "A blinded panel fills preregistered cells with rights-cleared, naturally paired, adjudicator-agreed cases and nonzero panel resolution.",
+      "rank": 2,
+      "severity": "A"
+    },
+    {
+      "blocker_id": "P5.AUTHORITY.PROTECTED_FRESHNESS_IDENTITIES_UNBOUND",
+      "cannot_check_condition": "The host cannot expose signed hash receipts without exposing protected content.",
+      "current_terminal": [
+        "REFUSED_UNBOUND",
+        "BIND_ISSUE8_PACKET",
+        "CANNOT_CHECK"
+      ],
+      "evidence_paths": [
+        "papers/paper-05-self-orion/protocol/PROTOCOL_V1.json",
+        "papers/paper-05-self-orion/protocol/PROTOCOL_V2.json",
+        "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
+        "papers/paper-05-self-orion/evidence/ISSUE_159_CHECKBOX_AUDIT_V1.json",
+        "papers/paper-05-self-orion/evidence/ISSUE8_PACKET_EXECUTION_BINDING_RECEIPT.json",
+        "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md"
+      ],
+      "external_custody_need": [
+        "genuinely new post-freeze or access-controlled cases",
+        "split generation",
+        "evaluator and fresh-evaluator binaries",
+        "protected verifier service and access logs"
+      ],
+      "external_custody_required": true,
+      "finding": "Subject, protected suite, candidate packet, final split, evaluator, fresh evaluator, baseline configuration, provider/model revision, and evaluation epoch remain unbound. The shipped 24-case suite publishes plaintext labels and is explicitly development/descriptive-only: it must not be re-sealed or reused for confirmation. The frozen packet and execution registry also disagree, so execution correctly refuses to run.",
+      "lawful_public_data_action": "Reconcile schemas and task registries on outcome-free fixtures; do not re-seal or reuse the published 24-case suite; prepare an immutable run manifest and content-class rights checklist without inspecting new protected outcomes.",
+      "negative_condition": "Any registry divergence, post-outcome mutation, custody overlap, or contamination breach occurs.",
+      "next_discriminator": "A host must create genuinely new protected cases, bind one authoritative task registry and all hashes before candidate generation, and have an independent verifier reproduce the binding. The old 24 cases remain descriptive only.",
+      "papers": [
+        "P5"
+      ],
+      "positive_condition": "Every required identity is immutable, mutually consistent, host-frozen before candidate generation, and independently verified.",
+      "rank": 3,
+      "severity": "A"
+    },
+    {
+      "blocker_id": "P4.DESIGN.MECHANISM_QUOTAS_AND_REPLICATION_ABSENT",
+      "cannot_check_condition": "Mechanism eligibility or disjointness cannot be independently adjudicated.",
+      "current_terminal": [
+        "UNADJUDICATED_SOURCE_CANDIDATES_ONLY"
+      ],
+      "evidence_paths": [
+        "development/p4-scientific-ascent-2026-08-23/source_binding/ARXIV_CC_BY_SOURCE_POOL_BINDING_V1.json",
+        "development/p4-scientific-ascent-2026-08-23/PUBLIC_NATURALISTIC_SOURCE_AUDIT_V1.md",
+        "development/p4-p5-readiness-audit-2026-08-23/P4_POOL_DIAGNOSTICS.json"
+      ],
+      "external_custody_need": [
+        "blinded mechanism adjudication",
+        "primary/replication allocation"
+      ],
+      "external_custody_required": true,
+      "finding": "The naturalistic protocol gives counts but does not enumerate the four domain IDs, eight mechanism IDs/rubrics, or four comparator identities, so the 32 strata lack stable denotation. The two-to-one pool averages only 48 candidates per putative cell before eligibility/attrition, and an equally sized replication allocation would leave no reserve.",
+      "lawful_public_data_action": "Before outcome access, enumerate exact domain and mechanism identities/rubrics, eligibility and attrition rules; then estimate mechanism prevalence on a separate screening sample and expand rare cells under new disjoint source bindings.",
+      "negative_condition": "A frozen cell remains short under the declared source universe.",
+      "next_discriminator": "First publish an identity-complete amendment. Then return only eligible counts/exclusions by frozen domain-mechanism cell and bind distinct primary, attrition-reserve, and source/author/DOI-disjoint replication frames.",
+      "papers": [
+        "P4"
+      ],
+      "positive_condition": "Every stratum and comparator has a stable immutable identity, and all 32 cells meet quota in both primary and replication frames after attrition.",
+      "rank": 4,
+      "severity": "A"
+    },
+    {
+      "blocker_id": "P4.COMPARATOR.NO_NATIVE_THREE_TERMINAL_FAMILY",
+      "cannot_check_condition": "Author code/output semantics are unavailable and no declared independent reimplementation is possible.",
+      "current_terminal": [
+        "CANNOT_CHECK_FULL_COMPARATOR_FREEZE",
+        "P4_EXTERNAL_TERMINAL_CANNOT_CHECK"
+      ],
+      "evidence_paths": [
+        "development/comparator-binding-harness-2026-08-23/SCIENTIFIC_REPORT.md",
+        "development/comparator-binding-harness-2026-08-23/COMPARATOR_BINDING_LEDGER_V1.json",
+        "papers/paper-04-verified-scientific-discovery/CLAIM_LEDGER_V4.md",
+        "papers/paper-04-verified-scientific-discovery/manuscript/sections/06-threat-model-limitations-and-interpretation.tex"
+      ],
+      "external_custody_need": [],
+      "external_custody_required": false,
+      "finding": "The protocol declares four comparators but freezes no four identities. None of the audited neighbours natively emits ResolvedTrue, ResolvedFalse, and CannotCheck; binary BLOCK, attributable/not-attributable, parse failure, or free-text insufficiency cannot be relabelled as the third terminal.",
+      "lawful_public_data_action": "Freeze outcome-blind native-output schemas and test whether a prospective adapter is constant on every comparator-output fibre relevant to the P4 target.",
+      "negative_condition": "A native-output fibre mixes target terminals or the executable identity cannot be bound.",
+      "next_discriminator": "For each candidate comparator, prove or falsify terminal-adapter attainability on a development fibre. Admit only exact target-pure adapters; report the rest as interface-limited rather than weak.",
+      "papers": [
+        "P4"
+      ],
+      "positive_condition": "Four immutable, lawful, runnable comparator identities have prospectively frozen target-pure terminal maps and matched information/cost envelopes.",
+      "rank": 5,
+      "severity": "A"
+    },
+    {
+      "blocker_id": "P5.COMPARATOR.SIX_ARM_FAMILY_UNDEFINED",
+      "cannot_check_condition": "No executable source or reproducible equivalence envelope can be obtained.",
+      "current_terminal": [
+        "CANNOT_CHECK_FULL_COMPARATOR_FREEZE",
+        "MDA_V3_FULL_SOURCE_BOUND__OFFICIAL_SOLVER_CODE_NOT_RELEASED"
+      ],
+      "evidence_paths": [
+        "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json",
+        "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
+        "papers/paper-05-self-orion/protocol/SELF_ORION_V3_MDA_SOURCE_BINDING_AMENDMENT_2026-08-23.json",
+        "development/comparator-binding-harness-2026-08-23/SCIENTIFIC_REPORT.md"
+      ],
+      "external_custody_need": [],
+      "external_custody_required": false,
+      "finding": "The wide protocol declares six primary comparators but names no six immutable systems/adapters; the structural V3 protocol requires only three donor bindings. Therefore the max-T multiplicity family and the phrase beat every comparator lack stable denotation.",
+      "lawful_public_data_action": "Freeze development adapters for SWE-agent and ScienceClaw; solicit official MDA/WorldEvolver code or name independent reimplementations explicitly and define equivalence envelopes.",
+      "negative_condition": "An arm cannot express or execute the required revision decision under matched exposure and budget.",
+      "next_discriminator": "Publish a six-row identity ledger containing system ID, repository/commit/licence, entrypoint, revision-class interface, information boundary, budget, output map, and official-versus-reimplementation status.",
+      "papers": [
+        "P5"
+      ],
+      "positive_condition": "All six arms are immutable, lawful, runnable, endpoint-aligned, and included in the frozen multiplicity family.",
+      "rank": 6,
+      "severity": "A"
+    },
+    {
+      "blocker_id": "P5.SOURCE.RIGHTS_AND_EIGHT_CLASS_PANEL_ABSENT",
+      "cannot_check_condition": "Rights authority, provenance, or case eligibility cannot be verified.",
+      "current_terminal": [
+        "PUBLIC_SOURCE_SUBSTRATE_PARTIALLY_BOUND__NO_PAPER_LEVEL_EMPIRICAL_BLOCKER_CLOSED",
+        "CANNOT_CHECK_RIGHTS_AND_HISTORY_BINDING"
+      ],
+      "evidence_paths": [
+        "development/public-empirical-data-binding-2026-08-23/PUBLIC_SOURCE_BINDINGS.json",
+        "development/public-empirical-data-binding-2026-08-23/EVIDENCE_REPORT.md",
+        "development/provider-rights-and-history-successor-2026-08-23/ROOT_RIGHTS_HISTORY_LEDGER_V1.json",
+        "development/provider-rights-and-history-successor-2026-08-23/SCIENTIFIC_REPORT.md"
+      ],
+      "external_custody_need": [
+        "protected eight-class labels",
+        "same-symptom blocking",
+        "fresh-transfer outcomes",
+        "harm adjudication"
+      ],
+      "external_custody_required": true,
+      "finding": "The wide protocol fixes domain_count=8 but does not name the eight domains or their eligibility/rubric definitions. Public sources mainly cover implementation/execution repair and do not supply eight domains by eight revision classes by 12 clusters, same-visible-symptom blocks, protected revision-responsibility gold, fresh transfer, harm outcomes, or external custody. Repository or dataset licences do not automatically cover issue prose, comments, attachments, containers, upstream projects, or third-party files.",
+      "lawful_public_data_action": "Populate only rights-cleared development strata: SWE-bench Multilingual, Defects4J, and exact licensed code revisions; keep SWE-bench Verified, BugsInPy, BugSwarm mined artifacts, issue prose, comments, and attachments fail-closed until class-specific rights bind.",
+      "negative_condition": "One or more revision/domain cells are empty or rights-ineligible under the frozen source universe.",
+      "next_discriminator": "First freeze the eight domain IDs and eligibility/rubric definitions. Then create a root-by-content-class rights ledger and an outcome-blind 64-cell feasibility table. Any zero/uncleared cell triggers a new source-universe successor rather than reassignment.",
+      "papers": [
+        "P5"
+      ],
+      "positive_condition": "Every retained byte class has a root-bound permission and every preregistered cell has eligible protected cases with independent gold.",
+      "rank": 7,
+      "severity": "A"
+    },
+    {
+      "audit_classification": "TRANSPORT_NOT_ESTABLISHED",
+      "blocker_id": "P4.TRANSPORT.PROVIDER_MODALITY_TEMPORAL_MONOCULTURE",
+      "cannot_check_condition": "Rights or historical bytes prevent constructing a comparable group.",
+      "current_terminal": [],
+      "evidence_paths": [
+        "development/p4-scientific-ascent-2026-08-23/source_binding/harvest_arxiv_oai.py",
+        "development/p4-p5-readiness-audit-2026-08-23/P4_POOL_DIAGNOSTICS.json",
+        "development/provider-rights-and-history-successor-2026-08-23/SCIENTIFIC_REPORT.md"
+      ],
+      "external_custody_need": [
+        "source-disjoint replication allocation",
+        "confirmatory outcome scoring by provider, modality, and time wave"
+      ],
+      "external_custody_required": true,
+      "finding": "The deep pool has one provider and one article-text modality. All selected OAI datestamps and latest versions end in 2021 despite a window through 2026, because the first eligible records in OAI order filled each quota.",
+      "lawful_public_data_action": "Replace first-in-response quota filling with a preregistered stratified temporal sampling rule and add separately rights-bound public providers/modalities.",
+      "negative_condition": "Effect or case eligibility collapses in a preregistered provider, modality, or temporal group.",
+      "next_discriminator": "Measure eligibility and effect heterogeneity by provider, modality, and time wave on a source-disjoint replication panel.",
+      "papers": [
+        "P4"
+      ],
+      "positive_condition": "The claim survives frozen worst-group and replication gates across multiple providers, modalities, and recent time strata.",
+      "rank": 8,
+      "severity": "B"
+    },
+    {
+      "blocker_id": "P5.MODEL.REVISION_ONTOLOGY_AND_KERNEL_VALIDITY_UNTESTED",
+      "cannot_check_condition": "Independent factor-level bytes, evaluator identity, or source-disjoint instances are unavailable.",
+      "current_terminal": [
+        "P5_RESIDUAL_DISCRIMINATORS_DESIGNED_NOT_EXECUTED",
+        "CANNOT_CHECK"
+      ],
+      "evidence_paths": [
+        "papers/paper-05-self-orion/manuscript/sections/10-limitations.tex",
+        "papers/paper-05-self-orion/protocol/P5_RESIDUAL_DISCRIMINATOR_SUCCESSORS_V1.json",
+        "papers/paper-05-self-orion/THEORY_CLAIM_LEDGER_V2.md"
+      ],
+      "external_custody_need": [
+        "blinded expert ontology labels",
+        "protected intervention outcomes"
+      ],
+      "external_custody_required": true,
+      "finding": "The eight-class ontology is not shown complete or reliably identifiable; inclusion of the true latent situation, kernel calibration, finite-sample power, state sufficiency, and optimal adaptive policy are unestablished. Structural cover does not imply transfer.",
+      "lawful_public_data_action": "Execute development-only annotation and intervention pilots on rights-cleared cases; estimate disagreement, uncovered classes, coupled interactions, and kernel instability without using protected confirmatory cases.",
+      "negative_condition": "New classes recur, interactions dominate, kernels are unstable, or the required decision remains mixed after allowed tests.",
+      "next_discriminator": "Run the three registered 2x2 residual studies and an open-set ontology audit with an explicit OTHER/UNRESOLVED route; estimate whether the same visible symptom remains decision-pure after interventions.",
+      "papers": [
+        "P5"
+      ],
+      "positive_condition": "Expert/open-set audit shows adequate coverage and reliability, and protected intervention kernels discriminate revision decisions under frozen power/calibration gates.",
+      "rank": 9,
+      "severity": "B"
+    },
+    {
+      "audit_classification": "TOP_TIER_NOVELTY_NOT_ESTABLISHED_BEYOND_BOUNDED_COMPOSITION",
+      "blocker_id": "P45.NOVELTY.INHERITED_THEORY_NEEDS_DECISIVE_CONSEQUENCE",
+      "cannot_check_condition": "Comparator equivalence, naturalistic cases, or protected outcomes remain unbound.",
+      "current_terminal": [],
+      "evidence_paths": [
+        "development/p1-p5-top-tier-positioning-audit-2026-08-23/RANKED_BLOCKER_MATRIX.md",
+        "papers/paper-04-verified-scientific-discovery/CLAIM_LEDGER_V4.md",
+        "papers/paper-05-self-orion/THEORY_CLAIM_LEDGER_V2.md",
+        "development/active-identification-theory-review-2026-08-23/ADVERSARIAL_REVIEW.md"
+      ],
+      "external_custody_need": [
+        "naturalistic confirmatory consequence",
+        "independent evaluation"
+      ],
+      "external_custody_required": true,
+      "finding": "P4 factorization/Bayes/TV results and P5 factorization/Bayes/set-cover/POMDP results are inherited or donor-derived. The residual novelty is P4 adequacy decomposition and P5 minimal-authorized-revision/governance composition, neither yet validated by the naturalistic consequence needed for a top-tier theory-plus-evidence claim.",
+      "lawful_public_data_action": "Keep inherited lemmas as tools, not novelty headlines; predeclare one discriminating causal consequence unique to each residual composition and test it first on lawful development data.",
+      "negative_condition": "An information-equivalent donor ties, or the residual composition adds no decision-useful value.",
+      "next_discriminator": "P4: test whether the four-condition adequacy decomposition predicts distinct error modes after terminal attainability is matched. P5: test whether minimal authorized revision improves protected transfer/harm beyond donor mechanisms under the six-arm freeze.",
+      "papers": [
+        "P4",
+        "P5"
+      ],
+      "positive_condition": "A preregistered nontrivial consequence survives naturalistic primary and source-disjoint replication tests.",
+      "rank": 10,
+      "severity": "B"
+    },
+    {
+      "audit_classification": "SOURCE_POOL_INTEGRATION_PENDING",
+      "blocker_id": "P4.INTEGRATION.ARXIV_POOL_NOT_IN_CURRENT_CLAIM_SURFACE",
+      "cannot_check_condition": "The source artifacts change concurrently and cannot be content-bound.",
+      "current_terminal": [],
+      "evidence_paths": [
+        "papers/paper-04-verified-scientific-discovery/CLAIM_LEDGER_V4.md",
+        "papers/paper-04-verified-scientific-discovery/manuscript/sections/06-threat-model-limitations-and-interpretation.tex",
+        "development/p4-scientific-ascent-2026-08-23/PUBLIC_NATURALISTIC_SOURCE_AUDIT_V1.md"
+      ],
+      "external_custody_need": [],
+      "external_custody_required": false,
+      "finding": "The current P4 claim ledger and manuscript record the provider-diverse metadata census but do not yet cite or characterize the new 1,536-row arXiv pool. This is an integration gap only; writing it in cannot create empirical authority.",
+      "lawful_public_data_action": "After the scientific audit is accepted, add one claim-ledger row and a limitations/data-availability paragraph that report the source-pool terminal and all remaining gaps.",
+      "negative_condition": "Any text implies case eligibility, performance, replication, or transport from the pool.",
+      "next_discriminator": "Cross-check manuscript, claim ledger, source binding, and checksum identity for exact agreement without presenting candidates as cases.",
+      "papers": [
+        "P4"
+      ],
+      "positive_condition": "All surfaces report the exact pool hash and candidate-only authority boundary consistently.",
+      "rank": 11,
+      "severity": "C"
+    },
+    {
+      "audit_classification": "AMENDMENT_COMPOSITION_REQUIRED",
+      "blocker_id": "P5.INTEGRATION.MDA_AMENDMENT_MUST_BE_COMPOSED",
+      "cannot_check_condition": "Concurrent source changes prevent binding the amendment and base artifact identities.",
+      "current_terminal": [
+        "MDA_V3_FULL_SOURCE_BOUND__OFFICIAL_SOLVER_CODE_NOT_RELEASED"
+      ],
+      "evidence_paths": [
+        "papers/paper-05-self-orion/protocol/SELF_ORION_V3_MDA_SOURCE_BINDING_AMENDMENT_2026-08-23.json",
+        "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
+        "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json",
+        "development/public-empirical-data-binding-2026-08-23/PUBLIC_SOURCE_BINDINGS.json"
+      ],
+      "external_custody_need": [],
+      "external_custody_required": false,
+      "finding": "The additive amendment correctly replaces the stale ABSTRACT_ONLY diagnosis, but hash-pinned base artifacts still literally retain the superseded blocker. Automated readiness consumers that do not compose the amendment will report an obsolete state.",
+      "lawful_public_data_action": "Make readiness tooling and manuscript claim surfaces compose the additive amendment while preserving hash-pinned historical records; do not mutate predecessor artifacts silently.",
+      "negative_condition": "Any current surface still presents ABSTRACT_ONLY as the operative blocker without the amendment.",
+      "next_discriminator": "A deterministic composed-state audit must resolve the superseded blocker to the amendment terminal everywhere while preserving historical hashes.",
+      "papers": [
+        "P5"
+      ],
+      "positive_condition": "Every current readiness surface reports the v3 source-grounded/non-official-solver terminal and identifies the amendment authority.",
+      "rank": 12,
+      "severity": "C"
+    }
+  ],
+  "paper_verdicts": {
+    "P4": {
+      "supported_ceiling": "adequacy-envelope and exact-contract scientific-promotion relation under frozen mechanical/proxy batteries",
+      "unsupported_upgrade": "naturalistic, cross-provider, cross-modality, original-system, or general scientific-judgement superiority",
+      "verdict": "BOUNDED_TECHNICAL_CONTRIBUTION_DEFENSIBLE__BROAD_NATURALISTIC_OR_ORIGINAL_SYSTEM_SUPERIORITY_NOT_READY"
+    },
+    "P5": {
+      "supported_ceiling": "governance semantics, donor-aware theory synthesis, local hostile tests, and a descriptive 21/24 diagnostic with three retained errors",
+      "unsupported_upgrade": "beneficial transferable self-improvement, reduced harm, superiority to matched self-edit/self-evolution systems, or host-promotion authority",
+      "verdict": "NOT_TOP_TIER_READY_AS_EMPIRICAL_SELF_IMPROVEMENT_PAPER"
+    }
+  },
+  "public_data_boundary": {
+    "can_advance": [
+      "P4 rights-cleared source screening and exact full-text hashing",
+      "P4 temporal/provider/modality frame expansion after separate rights binding",
+      "P4 and P5 comparator entrypoint and terminal-adapter development",
+      "P5 implementation/execution development strata and the three residual discriminator pilots",
+      "content-class rights ledgers, contamination controls, schemas, and outcome-blind manifests"
+    ],
+    "cannot_close": [
+      "P4 naturalistic case eligibility and raw-case/evaluator custody",
+      "P4 source-disjoint confirmatory replication",
+      "P5 protected revision-responsibility gold",
+      "P5 protected freshness, harm outcomes, independent evaluators, and result verification",
+      "any broad superiority or top-tier empirical claim"
+    ]
+  },
+  "recursion_rule": {
+    "admissible_terminals": [
+      "SUPPORTED",
+      "NOT_SUPPORTED",
+      "HARMFUL_REFUTED",
+      "INTERACTION",
+      "JOINT_NULL_UNRESOLVED",
+      "CANNOT_CHECK"
+    ],
+    "materially_new_intervention_requires_successor_identity": true,
+    "predecessor_results_immutable": true,
+    "prohibited": "Relabelling a negative, null, harmful, or CANNOT_CHECK predecessor as positive after changing the intervention, population, comparator, or custody."
+  },
+  "schema_version": "orion.p4-p5-readiness-audit.matrix.v1",
+  "scope": [
+    "P4",
+    "P5"
+  ],
+  "severity_definition": {
+    "A": "rejection-level blocker for the target broad/top-tier empirical claim",
+    "B": "blocks transport, construct validity, or novelty ceiling but not a carefully bounded technical contribution",
+    "C": "integration or claim-surface consistency gap that cannot itself create evidence"
+  }
+}

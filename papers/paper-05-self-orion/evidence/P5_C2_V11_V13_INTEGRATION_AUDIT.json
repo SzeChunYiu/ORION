@@ -1,0 +1,189 @@
+{
+  "schema_version": "orion.p5.c2.v11-v13.manuscript-integration-audit.v1",
+  "audit_date": "2026-08-24",
+  "scope": "Read-only integration audit of three deliberately separate C2 successors; no released-MOSS or global-panel state is modified.",
+  "packet_integrity": [
+    {
+      "version": 11,
+      "successor_identity": "C2_LAWFUL_NATIVE_BYTE_SUCCESSOR__ORION_V11",
+      "result": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v11-2026-08-24/P5_C2_V11_RESULT.json",
+        "sha256": "5ef52d7ef26d0cc1c65c587ebf7f63adacd19a8ae5ab45abb578fc2bff9009ae",
+        "size_bytes": 2176
+      },
+      "artifact_manifest": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v11-2026-08-24/ARTIFACT_MANIFEST_V11.json",
+        "sha256": "612c50679f58d476780932c0e0adae7b1cc994f30907e93cde318d23ffd0c262",
+        "size_bytes": 6977
+      },
+      "sha256sums": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v11-2026-08-24/SHA256SUMS",
+        "sha256": "a0680fe25be730772139d5f27dfdaf5b2e27e248a0fd3f9440b7f923d12e250c",
+        "size_bytes": 3937
+      },
+      "successor_count_basis": {
+        "authority": "OWNER_SPECIFIED_C2_V4_TWENTY_ONE_FIELD_BASIS",
+        "only_state_transition": "runtime.task_environment: BLOCKING -> BOUND",
+        "predecessor_blocking": 14,
+        "predecessor_bound": 7,
+        "successor_blocking": 13,
+        "successor_bound": 8
+      },
+      "terminal": "P5_C2_V11_SIX_OF_SIX_SUCCESSOR_BYTE_CLASSES_BOUND__DISTINCT_ORION_LAWFUL_NATIVE_SUCCESSOR__RUNTIME_TASK_ENVIRONMENT_BOUND_ON_C2_V4_COUNT_BASIS__EIGHT_OF_TWENTY_ONE_BOUND__THIRTEEN_BLOCKING__RELEASED_MOSS_UNCHANGED__ZERO_OF_SIX_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK"
+    },
+    {
+      "version": 12,
+      "successor_identity": "C2_SOURCE_NATIVE_VISIBLE_CORE_SUCCESSOR__ORION_V12",
+      "result": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v12-2026-08-24/P5_C2_V12_RESULT.json",
+        "sha256": "d474dfefe4fbc2505916222402976b9355f4a33fcea9813853c7f19e6dd9ca3d",
+        "size_bytes": 2725
+      },
+      "artifact_manifest": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v12-2026-08-24/ARTIFACT_MANIFEST_V12.json",
+        "sha256": "47d0491fc6d0e302a5293e393b5a06cc6d057fa707f537db59ed31cff7fc1d86",
+        "size_bytes": 2530
+      },
+      "sha256sums": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v12-2026-08-24/SHA256SUMS",
+        "sha256": "80dd9b2e8cd9db218517c2e1b0e0433fc5a29edfa8ddeb19b4f197271565be3e",
+        "size_bytes": 1371
+      },
+      "successor_count_basis": {
+        "after_v12_source_core_only": {
+          "blocking": 12,
+          "bound": 9
+        },
+        "authority": "V6_EXPLICIT_C2_SHARED_CORE_ACCEPTANCE_ON_C2_V4_TWENTY_ONE_FIELD_BASIS",
+        "before": {
+          "blocking": 14,
+          "bound": 7
+        }
+      },
+      "terminal": "P5_C2_V12_SOURCE_NATIVE_CORE_RIGHTS_AND_LINEAGE_BOUND__TWO_EXACT_FIELDS_CLOSED__DISTINCT_SUCCESSOR_NINE_OF_TWENTY_ONE_BOUND__TWELVE_BLOCKING__V11_NOT_AGGREGATED__RELEASED_MOSS_UNCHANGED__ZERO_OF_SIX_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK"
+    },
+    {
+      "version": 13,
+      "successor_identity": "C2_RIGHTS_CLEARED_SCRATCH_IMAGE_SUCCESSOR__ORION_V13",
+      "result": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/P5_C2_V13_RESULT.json",
+        "sha256": "24f0b7a4c56440943a9d2be1e2dea3979e9367e9846b92a28cfc9daf349cccca",
+        "size_bytes": 2355
+      },
+      "artifact_manifest": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/ARTIFACT_MANIFEST_V13.json",
+        "sha256": "db4315e09fb18c22dff274595c34d6e16a60e5bba24b0ec0ba19b87f8e852cde",
+        "size_bytes": 9207
+      },
+      "sha256sums": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/SHA256SUMS",
+        "sha256": "d72285ed629ff6b4c0d7d90728ec935e9558e4be70246f0e28c10165ade41fde",
+        "size_bytes": 5313
+      },
+      "successor_count_basis": {
+        "authority": "OWNER_SPECIFIED_C2_V4_TWENTY_ONE_FIELD_BASIS",
+        "only_state_transition": "rights.container_and_generated_artifacts: UNBOUND -> BOUND",
+        "predecessor_blocking": 14,
+        "predecessor_bound": 7,
+        "successor_blocking": 13,
+        "successor_bound": 8
+      },
+      "terminal": "P5_C2_V13_COMPLETE_SCRATCH_IMAGE_SBOM_LICENSE_AND_GENERATED_ARTIFACT_AUTHORITY_BOUND__DISTINCT_SUCCESSOR_EIGHT_OF_TWENTY_ONE_BOUND__THIRTEEN_BLOCKING__V11_V12_NOT_AGGREGATED__RELEASED_MOSS_UNCHANGED__ZERO_OF_SIX_READY"
+    }
+  ],
+  "v13_four_way_path_bijection": {
+    "status": "PASS",
+    "regular_file_count": 9,
+    "symlink_count": 0,
+    "normalization": {
+      "frozen_build_context": "strip build-context/rootfs and prepend /",
+      "exported_layer": "use regular_file_or_symlink_inventory keys",
+      "rights_map": "use entries[].path",
+      "spdx": "strip leading ./ from files[].fileName and prepend /"
+    },
+    "equal_sets": true,
+    "paths": [
+      "/orion/GENERATED_ARTIFACT_AUTHORITY_V13.json",
+      "/orion/IMAGE_CONTENT_RIGHTS_MAP_V13.json",
+      "/orion/input/CASE_BODY_V6.json",
+      "/orion/input/TASK_SPECIFICATION_V6.md",
+      "/orion/input/commons-lang-source.tar.gz",
+      "/orion/licenses/APACHE-2.0.txt",
+      "/orion/licenses/APACHE-NOTICE.txt",
+      "/orion/licenses/CC0-1.0.txt",
+      "/orion/probe"
+    ],
+    "sources": {
+      "frozen_build_context": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/BUILD_CONTEXT_MANIFEST_V13.json",
+        "sha256": "380580d05cfc222bf9874e51329f949619ac25452a784fe5d254de2724d73b8c",
+        "size_bytes": 4266
+      },
+      "exported_layer_inventory": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/ROOTFS_LAYER_MANIFEST_V13.json",
+        "sha256": "268941351661c70891c6ed3470104afee26f4ebc453faa038f7b66efc34afcbc",
+        "size_bytes": 3172
+      },
+      "rights_map": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/P5_C2_V13_IMAGE_CONTENT_RIGHTS_MAP.json",
+        "sha256": "50ea0c2333a2c34b7ffec818c481e565abf8d6010549c8d29bb7ad03916991c7",
+        "size_bytes": 2480
+      },
+      "spdx_2_3": {
+        "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/IMAGE_SBOM_V13.spdx.json",
+        "sha256": "c4176781aa3ef906bd439c8641dfc53a375665e6541466f74a2cbb7afcf65de4",
+        "size_bytes": 8363
+      }
+    }
+  },
+  "v13_runtime_and_disposal": {
+    "runtime_receipt": {
+      "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/RUNTIME_RECEIPT_V13.json",
+      "sha256": "ca70b9ad25388d3cdc93fe09a941cc4274cdefa1ae8e95a12a02e0295dd6bec6",
+      "size_bytes": 1698
+    },
+    "image_archive_receipt": {
+      "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/IMAGE_ARCHIVE_RECEIPT_V13.json",
+      "sha256": "69376dda160db10a44c956df5461ce36ceca9d9ed7b040e932b813f39226b07a",
+      "size_bytes": 898
+    },
+    "remote_environment_destruction_receipt": {
+      "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/REMOTE_BUILD_ENVIRONMENT_DESTRUCTION_RECEIPT_V13.json",
+      "sha256": "c22f30f7b4db1cb3f1b3bee8093af98d8d63dc33b907754334961cad864a7a4e",
+      "size_bytes": 1342
+    },
+    "exact_stdout": "ORION V13 container pass\\n",
+    "exit_code": 0,
+    "network": "none",
+    "read_only_rootfs": true,
+    "capabilities_dropped": "ALL",
+    "no_new_privileges": true,
+    "container_diff": "empty"
+  },
+  "scientific_boundary": {
+    "released_moss": {
+      "bound": 7,
+      "blocking": 14,
+      "unchanged": true
+    },
+    "successors_non_aggregable": true,
+    "global_55_of_126_panel_census_modified": false,
+    "ready_arms": "0/6",
+    "H1": "CANNOT_CHECK",
+    "H2": "CANNOT_CHECK",
+    "H3": "CANNOT_CHECK",
+    "H4": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "superiority": "CANNOT_CHECK",
+    "top_tier_peer_review_ready": "NOT_ESTABLISHED"
+  },
+  "validation": {
+    "pytest_or_repository_ci_run": false,
+    "packet_validators": [
+      "P5_C2_V11_PACKET_VALID__SIX_OF_SIX_CLASSES_PASS__ONE_SUCCESSOR_FIELD_BOUND__RELEASED_MOSS_UNCHANGED__NO_OUTCOME_EXECUTED",
+      "P5_C2_V12_PACKET_VALID__SIX_OF_SIX_SOURCE_COMPONENTS_PASS__TWO_FIELDS_BOUND__V11_NOT_AGGREGATED__RELEASED_MOSS_UNCHANGED__NO_OUTCOME_EXECUTED",
+      "P5_C2_V13_PACKET_VALID__COMPLETE_SCRATCH_IMAGE_SBOM_LICENSE_AND_GENERATED_AUTHORITY_BOUND__EIGHT_OF_TWENTY_ONE_DISTINCT_SUCCESSOR__V11_V12_NOT_AGGREGATED__RELEASED_MOSS_UNCHANGED__NO_PYTEST_CI_OR_OUTCOME_EXECUTED"
+    ],
+    "sha256sum_files": "all entries in each V11/V12/V13 SHA256SUMS verified OK on 2026-08-24"
+  }
+}

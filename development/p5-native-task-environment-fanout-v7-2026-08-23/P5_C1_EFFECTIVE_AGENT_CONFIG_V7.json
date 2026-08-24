@@ -1,0 +1,40 @@
+{
+  "agent": {
+    "action_sampler": null,
+    "actions": {
+      "apply_patch_locally": false,
+      "open_pr": false
+    },
+    "chooser_or_reviewer_loop": false,
+    "max_candidate_attempts": 1,
+    "retry_agent": false,
+    "review_on_submit_m": false,
+    "tools_bundles": [
+      "tools/registry",
+      "tools/edit_anthropic"
+    ],
+    "type": "default"
+  },
+  "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "execution_authorized_by_v7": false,
+  "outcome_and_gold_payloads_present": false,
+  "schema_version": "orion.p5.c1.effective-agent-config.v7",
+  "setup": {
+    "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/P5_C1_TASK_SETUP_V7.sh",
+    "sha256": "10f4ad97fb83324cfbac46b6e225657a55028594156b3b25d6e7f731dbbb3167",
+    "size_bytes": 1416
+  },
+  "task": {
+    "all_other_archive_members_read_only": true,
+    "archive_sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+    "commit": "396afc3e4693cfee182efe582455f2d97058c068",
+    "mutable_paths": [
+      "src/main/java/org/apache/commons/lang3/math/NumberUtils.java"
+    ],
+    "network_during_setup": "DENY",
+    "problem_statement_sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+    "repository": "https://github.com/apache/commons-lang",
+    "tree": "34e33cca607f33ffcf8661e3a6c4b7fc5aca9701"
+  }
+}

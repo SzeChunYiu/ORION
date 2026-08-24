@@ -1,0 +1,60 @@
+{
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "authority": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_PREFLIGHT_ONLY",
+  "execution_order": [
+    "independent owners bind all 21 fields without protected outcome access",
+    "construct a filtered source seed excluding all frozen outcome/initial prefixes",
+    "validator requires 21/21 BOUND and a content-addressed disposable runtime launcher",
+    "candidate receives one rights-cleared failure packet plus its committed input-native certificate",
+    "DGM performs at most one pre-evaluation diagnosis/self-edit/patch-capture attempt under the outer watchdog",
+    "no benchmark evaluation, archive score, admission, gold/protected scorer or sibling-arm state enters candidate custody",
+    "native parser retains the exact patch-capture terminal and emits UNRESOLVED",
+    "V3 certificate/action/fibre validation runs separately outside candidate custody",
+    "one frozen successor may enter independent protected custody once only after 6/6 panel readiness"
+  ],
+  "frozen_at_utc": "2026-08-23T18:15:39Z",
+  "frozen_components": {
+    "fail_closed_gate": {
+      "path": "p5_c3_fail_closed_runner.py",
+      "sha256": "5a3a6be750f84d1c3ad11c1cf7012eb411138d72778011699ce38e5132423e97"
+    },
+    "fallbacks": [],
+    "native_output_schema": {
+      "path": "P5_C3_V4_NATIVE_OUTPUT_SCHEMA.json",
+      "sha256": "d4d62f2b3faade2b8c79d147f48c2402a249c1845a729df003d40e3ceae125cb"
+    },
+    "native_parser": {
+      "path": "p5_c3_native_parser.py",
+      "sha256": "a1912202b36b7a6b522a99e2466dd71d2c70c0ade51798a3330afead4a7781a9"
+    },
+    "wallclock_seconds": {
+      "per_case": 21600,
+      "termination_grace": 120,
+      "whole_c3_run": 21600
+    }
+  },
+  "nonclaims": [
+    "No DGM, model, task, benchmark, Docker container, archive update, protected scorer or comparator was executed.",
+    "Parser conformance and fail-closed preflight are not DGM success or scientific performance.",
+    "A native patch is not a P5 responsibility class and always maps to UNRESOLVED.",
+    "No preservation, transfer, harm, performance or superiority inference is available."
+  ],
+  "predecessor": {
+    "v3_adapter_refinement_sha256s": "50d1ff72f63093216761c4b47d3ced6de82915967578f33f3296bf41e4f73c4a",
+    "v3_blocking_fields": 18,
+    "v3_bound_identity_fields": 3
+  },
+  "protocol_id": "P5.C3.DGM.EXECUTION.BINDING.V4",
+  "schema_version": "orion.p5.c3.dgm-execution-binding-protocol.v4",
+  "source_defect_policy": {
+    "native_c3": "preserve pinned defects exactly",
+    "repaired_code": "must receive a new successor identity and cannot be silently relabeled C3"
+  },
+  "source_identity": {
+    "archive_format": "git archive --format=tar <commit>",
+    "archive_sha256": "bb92fc4c9f1a2a930059a9fa92db32f0d2ee81e030dd6925a9afbb4b2f3f1ee4",
+    "commit_sha": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+    "repository": "https://github.com/jennyzzt/dgm",
+    "tree_sha": "dc58ea5c481124afdb97468c1bed4e0debb425c4"
+  }
+}

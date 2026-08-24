@@ -1,0 +1,62 @@
+{
+  "schema_version": "orion.p5.c3.outcome-free-initialization-impossibility-witness.v9",
+  "adapter_id": "DGM_OUTCOME_FREE_INITIALIZATION_ADAPTER_V9",
+  "scope": "EXACT_RELEASED_DGM_SOURCE_AT_A565FD2_ONLY",
+  "source": {
+    "member": "candidate/dgm/DGM_outer.py",
+    "sha256": "239bc76f0e1b78210b8f7b3757b1082f6ca07db3537d6af50a45bf97709795ed",
+    "evidence_excerpt_sha256": "5a1d46b8328d7215701fc20959080eddbde029bf2836f97ed9408e8f1ec7edec"
+  },
+  "premises": [
+    {
+      "id": "P1_FRESH_PARENT",
+      "fact": "A fresh native run fixes the archive to the singleton parent initial and requires an initial directory.",
+      "source_lines": [15, 35]
+    },
+    {
+      "id": "P2_PARENT_ELIGIBILITY",
+      "fact": "Every archive member becomes eligible only after native code reads overall_performance.accuracy_score and the unresolved, empty-patch and resolved identifier lists.",
+      "source_lines": [50, 68]
+    },
+    {
+      "id": "P3_MISSING_METADATA",
+      "fact": "Any missing field is caught and the parent is skipped, leaving no eligible initial parent.",
+      "source_lines": [57, 75]
+    },
+    {
+      "id": "P4_NONDEGENERATE_ACTION",
+      "fact": "Every nondegenerate self-edit route selects from eligible parents; the frozen V8 route requests one random parent.",
+      "source_lines": [77, 136]
+    },
+    {
+      "id": "P5_OUTCOME_FREE_CONSTRAINT",
+      "fact": "V9 forbids restoring excluded initial outcomes and forbids inventing, zero-filling or imputing the required prior-performance fields.",
+      "preregistration_sha256": "18946ca0493bb73a3c52f51a0cef5910b11f19e0e89c6da34f272c761076718c"
+    },
+    {
+      "id": "P6_SEMANTIC_PRESERVATION",
+      "fact": "V9 forbids changing parent eligibility, selection, self-edit, evaluation or archive-update semantics and rejects zero-action evasions."
+    }
+  ],
+  "contradiction": {
+    "required_for_native_nonempty_parent": "REAL_PRIOR_OVERALL_PERFORMANCE_AND_IDENTIFIER_PARTITIONS",
+    "allowed_by_outcome_free_adapter": "NO_PRIOR_OUTCOME_VALUES_AND_NO_FABRICATION",
+    "identity_element_exposed_by_native_interface": false,
+    "semantics_preserving_solution_exists": false
+  },
+  "adjudicated_evasions": {
+    "restore_initial": "PROHIBITED_PRIOR_OUTCOME_ACCESS",
+    "zero_fill_or_impute": "PROHIBITED_FABRICATION_AND_CHANGES_SELECTION",
+    "empty_archive": "NO_NONDEGENERATE_PARENT_OR_SELF_EDIT",
+    "zero_selfimprove_or_generation": "NO_C3_ACTION_AND_NOT_RUNTIME_CLOSURE",
+    "certificate_only_parent_selection": "NEW_COMPARATOR_SEMANTICS"
+  },
+  "conclusion": "No lawful outcome-free initialization adapter can preserve the exact native C3 semantics at this source identity.",
+  "scope_boundary": "This is not an impossibility result for future DGM designs. It is a byte-bound interface impossibility for the exact released source and V9 constraints.",
+  "field_effect": {
+    "field": "runtime.task_environment",
+    "status": "BLOCKING",
+    "field_instances_closed": 0,
+    "c3_blocker_delta": 0
+  }
+}

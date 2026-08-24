@@ -1,0 +1,18 @@
+{
+  "authority": "OUTCOME_BLIND_PUBLIC_SOURCE_AND_ROUTE_PREFLIGHT_ONLY",
+  "forbidden": [
+    "MOSS/model/coding-agent execution",
+    "benchmark or evaluator execution",
+    "protected/gold/outcome access",
+    "treating a proposed successor contract as released MOSS evidence"
+  ],
+  "frozen_at_utc": "2026-08-23T21:35:04Z",
+  "primary_question": "Does any public authoritative MOSS route instantiate the V7 C2 LANG-1 session, source, pre-action certificate, closed evaluator, and write-root bytes without changing the released arm?",
+  "protocol_id": "P5.C2.AUTHORITATIVE.ROUTE.DISCRIMINATOR.V10",
+  "routes": [
+    "published demo/benchmark route",
+    "released user-mode flag-batch route"
+  ],
+  "schema_version": "orion.p5.c2.authoritative-route-protocol.v10",
+  "success_gate": "At least one released route must carry all five byte classes with explicit rights and no protected outcome, gold patch, hidden evaluator, or candidate feedback."
+}

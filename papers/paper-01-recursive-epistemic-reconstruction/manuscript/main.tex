@@ -2,7 +2,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage[margin=1in]{geometry}
 \usepackage{xurl}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 % figure/table infrastructure
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -12,6 +12,13 @@
 \usepackage{array}
 \usepackage{ragged2e}
 \usepackage[strings]{underscore}
+% Preserve literal underscores in the BibTeX database filename.  The
+% `strings` option otherwise expands them into formatting commands in the aux
+% file, causing BibTeX to skip the novelty-refresh database.
+\begingroup
+\catcode`\_=12
+\gdef\pOneBibDatabases{bibliography,novelty_refresh_2026}
+\endgroup
 \graphicspath{{figures/}{../results/figures/}}
 \captionsetup{font=small,labelfont=bf}
 \setlength{\emergencystretch}{2em}
@@ -20,8 +27,8 @@
 \urlstyle{tt}
 \newcommand{\idt}[1]{\path{#1}}
 
-\title{Protected Necessity Certificates for Scientific Problem Reformulation}
-\title{Recursive Epistemic Reconstruction under Changing Problem Formulations}
+\title{Typed Responsibility Licensing for Scientific Revision:\\
+Transition Envelopes and Exact Mechanism Evidence}
 \author{Working framework draft}
 \date{August 2026}
 
@@ -31,22 +38,35 @@
 \input{generated/suite_facts}
 
 \begin{abstract}
-Scientific agents can already plan, maintain structured information state, audit failures, repair dependencies, and revise intermediate work. A harder control problem remains: when is a high-level change to the scientific formulation or search universe actually necessary and authorized, rather than a convenient reaction to failure? We study that decision as a protected epistemic-mutation contract. ORION separates object knowledge $K_t$, the current relevance/search-universe model $W_t$, and governed method state $M_t$; excludes lower-level explanations before high-level mutation; requires a same-task counterfactual benefit; preserves protected sibling invariants; and binds each accepted change to its exact dependency impact. A prospectively frozen credential-free study evaluates nine systems and five direct ablations on 2,882 worlds, including 480 hidden shifts and 2,402 evidence/execution controls. In both the primary run and a pre-bound disjoint replication, ORION attains 1.000 protected hidden-shift success versus 0.494 and 0.483 for the strongest frozen parent, yielding paired advantages of 0.506 and 0.517 whose 95\% intervals exceed the registered 0.10 margin. ORION simultaneously records zero unnecessary high-level reframes, protected-sibling regressions, and forbidden high-level mutations. An independent implementation recomputes all 40,348 score rows per run with zero score or analysis mismatches. A separate post-saturation successor tests revision responsibility on 400 exact heterogeneous contracts: after prospectively repairing only a comparator defect, P1-X attains 400/400 exact revision decisions versus 275/400 for a donor-complete greedy product (paired difference 0.3125, 95\% CI [0.2675,0.3575]), again with zero false high-level reframes and zero protected-invariant violations. An ideal product supplied the same scientific responsibility, preservation, reopening, and authority semantics also attains 400/400, showing that the contract is sufficient and donor-compatible rather than dependent on centralized ORION expressivity. Together, the studies establish a strong bounded result: protected necessity gating can make high-level scientific reformulation both substantially more successful under hidden formulation shifts and fully selective on the registered mechanical and exact-contract families.
-Research-agent architectures increasingly expose structured plans, persistent information state, recursive auditing, targeted follow-up, causal failure attribution, and dependency-aware repair. This paper studies a narrower residual that survives those mechanisms: should a high-level scientific formulation or search-universe mutation require a protected counterfactual necessity certificate? The mechanism under test separates object knowledge $K_t$, the current relevance/search-universe model $W_t$, and governed method state $M_t$; tests lower-level alternatives before high-level mutation; requires a same-task counterfactual effect and protected-sibling preservation; and binds any accepted change to its dependency impact. A prospectively frozen credential-free study evaluates nine systems and five direct ablations on 2,882 worlds, including 480 hidden shifts and 2,402 evidence/execution controls. In both the primary run and a pre-bound disjoint replication, the governed policy attains 1.000 protected hidden-shift success versus 0.494/0.483 for each strongest parent, with paired advantages 0.506 and 0.517 whose 95\% intervals exceed the registered 0.10 margin. Both runs have zero unnecessary high-level reframes, protected-sibling regressions, and forbidden high-level mutations. An independent implementation recomputes all 40,348 score rows per run with zero score or analysis mismatches. A separate post-saturation revision-responsibility battery tests the wider control contract on 400 exact heterogeneous cases: after preserving a comparator-defective first execution and prospectively repairing only that defect in a disjoint second, the escalation contract attains 400/400 exact revision decisions versus 275/400 for a donor-complete greedy product (paired difference 0.3125, 95\% CI [0.2675,0.3575]); an ideal product given identical semantics ties 400/400. The authorized claims remain bounded to the registered mechanical and exact-contract families; model-general and open-ended scientific-agent superiority remain undetermined.
+A successful diagnosis or repair does not determine which scientific layer the
+evidence authorizes changing. We formalize typed responsibility-to-authority
+licensing through epistemic transition envelopes, exact interface factorization,
+and legal-action deficiency. In prospectively frozen primary and disjoint
+generator runs of 2,882 mechanical worlds each, the licensed-transition policy
+attained hidden-shift success 1.0000 versus 0.4938 and 0.4833 for the strongest
+assimilated parents, with no unnecessary high-level changes on 2,402 controls
+per run. On 400 authored exact contracts, it made 400 correct decisions versus
+275 for a donor-complete interface lacking the licensing coupling; an
+information-equivalent product tied at 400/400. These results establish a finite
+mechanism boundary, not naturalistic or inherent-expressivity superiority. The
+historical 48-case precursor remains negative. In the naturalistic programme,
+117,649 source-to-target maps yield 116,929 rejections, 720 unresolved maps, and
+zero certifications. V13 makes external authority execution content-addressed
+but has received 0/7 signed outputs and closed 0/4 authority acts.
 \end{abstract}
 
-\noindent\textbf{Keywords:} autonomous scientific research; problem reformulation; epistemic state; dependency reopening; metareasoning; research agents.
+\noindent\textbf{Keywords:} epistemic transitions; scientific reformulation; information sufficiency; belief revision; autonomous science; research agents.
 
 \input{sections/01-foundations}
 \input{sections/02-recursive-engine}
+\input{sections/02a-minimal-escalation-theory}
 \input{sections/03-reframe-reopen}
 \input{sections/04-self-audit}
-\input{sections/05a-methods}
-\input{sections/05-evaluation}
 \input{sections/05b-necessity-successor}
 \input{sections/05c-revision-responsibility-successor}
+\input{sections/05a-methods}
+\input{sections/05-evaluation}
 \input{sections/06-related-work-boundary}
-\input{sections/06a-post-saturation-novelty-refresh}
 \input{sections/06b-successor-discovery-failure-interface}
 \input{sections/07-limitations}
 \input{sections/09-reproducibility}
@@ -54,5 +74,5 @@ Research-agent architectures increasingly expose structured plans, persistent in
 \input{sections/08-conclusion}
 
 \bibliographystyle{plain}
-\bibliography{bibliography,novelty_refresh_2026}
+\bibliography{\pOneBibDatabases}
 \end{document}

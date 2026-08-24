@@ -1,0 +1,170 @@
+{
+  "schema_version": "orion.p1.rw-cc0-naturalistic-bridge.v1",
+  "identity": "P1.RW.CC0.NATURALISTIC.DEVELOPMENT.BRIDGE.V1",
+  "date": "2026-08-23",
+  "authority": "OUTCOME_BLIND_SOURCE_AND_DESIGN_BRIDGE_ONLY__NO_CASE_OR_PERFORMANCE_AUTHORITY",
+  "existing_successors_served": [
+    "ORION.SOURCE.UNIVERSE.ELIGIBILITY.V1",
+    "P1.NATURALISTIC.TRANSITION.TRANSPORT.V1",
+    "P1.LICENSING.RELATION.NECESSITY.V1",
+    "P1.R7.EXTERNAL.ADAPTER.V1"
+  ],
+  "source_bindings": {
+    "development_backbone": {
+      "provider": "Crossref Retraction Watch database",
+      "repository": "https://gitlab.com/crossref/retraction-watch-data",
+      "project_id": 61336882,
+      "commit": "7bb2ced143b764974c53c6c61abfdd2379f5307d",
+      "csv_blob": "40a049f02044fab8286c0304fd296bf1fa2cb8ca",
+      "csv_sha256": "ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb",
+      "csv_bytes": 65984968,
+      "data_rows_counted_without_field_display": 71944,
+      "metadata_licence": "CC0",
+      "rights_scope": "Retraction Watch database metadata fields only; linked articles, abstracts, notices, attachments, supplements and blog posts are separate content classes."
+    },
+    "replication_candidate_universe": {
+      "provider": "Europe PMC / PMC Open Access",
+      "frozen_count_queries": 5,
+      "published_erratum_hits": 93796,
+      "correction_hits": 105342,
+      "retraction_notice_hits": 17360,
+      "retracted_original_hits": 18056,
+      "expression_of_concern_hits": 1516,
+      "result_rows_inspected": false,
+      "result_rows_persisted": false,
+      "relation_pairs_assessed": 0,
+      "rights_admissible_pairs": 0
+    },
+    "rights_valid_metadata_relation_pool": {
+      "rw_structurally_admitted_relations": 49878,
+      "both_endpoint_pmid_relations": 29768,
+      "exact_both_endpoint_rights_pass_relations": 12038,
+      "exact_rights_pass_source_families": 11602,
+      "cannot_check_epmc_allowlist_search_absence": 17730,
+      "endpoint_licence_incidence_counts": {
+        "ALLOW_CC0": 50,
+        "ALLOW_CC_BY": 25534,
+        "ALLOW_CC_BY_SA": 4
+      },
+      "boundary": "Metadata relation and endpoint-rights feasibility only; none is yet an eligible R7A case dossier or scientific-action gold item."
+    },
+    "provider_structured_action_feasibility": {
+      "unique_notice_records": 11991,
+      "single_stratum_records": 11976,
+      "retraction_records": 11251,
+      "correction_or_erratum_records": 256,
+      "expression_of_concern_records": 469,
+      "other_or_cannot_check_records": 15,
+      "ambiguous_multiple_strata": 0,
+      "normalized_relation_set_matches": 11988,
+      "boundary": "Provider metadata conformance is not independent semantic gold, owner authority or a one-to-one R7 action bridge."
+    }
+  },
+  "independent_unit": "CONNECTED_SCIENTIFIC_UPDATE_FAMILY",
+  "family_collapse_keys_in_precedence_order": [
+    "source-native original-notice relation root",
+    "original DOI or PMID",
+    "notice DOI or PMID",
+    "explicit reinstatement or correction chain",
+    "canonical study, dataset, project or companion-paper family"
+  ],
+  "pseudoreplication_forbidden": [
+    "rows",
+    "pair members",
+    "reasons",
+    "multiple notices for one original",
+    "model samples",
+    "probes",
+    "bootstrap draws"
+  ],
+  "development_and_replication_separation": {
+    "development": "Pinned 2026-08-21 Retraction Watch CC0 connected families; public-label development authority only.",
+    "protected_replication": "Rights-cleared Europe PMC/PMC original-notice families or a prospectively frozen later source wave acquired by an owner-separated custodian.",
+    "hard_disjointness": "No original DOI/PMID, notice DOI/PMID, update chain, study, dataset, project, author family or derivative record family may cross waves.",
+    "provider_warning": "A temporal wave from the same curator is not owner-disjoint cross-provider replication and must be reported separately."
+  },
+  "protected_evaluator_only_fields": [
+    "Record ID",
+    "DOI and PMID",
+    "URLs",
+    "journal and publisher",
+    "RetractionNature",
+    "Reason",
+    "Paywalled",
+    "Notes",
+    "publication type",
+    "source-native relation type",
+    "source rank",
+    "provider identity",
+    "filename, path and ordering"
+  ],
+  "candidate_view": {
+    "visible": [
+      "opaque episode handle",
+      "rights-cleared noisy scientific symptom and evidence objects",
+      "opaque probe handles",
+      "opaque action handles",
+      "matched resource envelope"
+    ],
+    "anti_leak_required": [
+      "remove titles, filenames, paths, URL slugs, headings, publication types, relation types and explicit action tokens",
+      "blind filename, phrase, provider, ordering and publication-type responders remain at the frozen null",
+      "no rule or promoted action cell has fewer than 20 independent update families",
+      "leave-one-family and leave-one-provider shortcut audits pass before candidate scoring",
+      "if redaction destroys the scientific discriminator, exclude the family rather than reconstructing a label"
+    ]
+  },
+  "typed_action_gold": {
+    "source_native_classes": [
+      "KEEP_OR_REPAIR_REPORTING",
+      "REVISE_MEASUREMENT_OR_DATA",
+      "REVISE_METHOD_OR_ANALYSIS",
+      "WITHDRAW_CLAIM_OR_CONCLUSION",
+      "WITHDRAW_ARTIFACT_FULL_RETRACTION",
+      "UNRESOLVED"
+    ],
+    "publication_or_update_type_is_not_automatic_gold": true,
+    "adjudication": "Two owner-separated blinded adjudicators apply the completed V9 algebra; unresolved disagreement after a sealed third review is UNRESOLVED.",
+    "r7a_adapter_status": "CANNOT_CHECK_PENDING_V9_OWNER_ALGEBRA"
+  },
+  "matched_arms": {
+    "relation_ablated_donor": "Receives diagnosis, repair, rollback, preservation and budget information but not the responsibility-to-authority coupling.",
+    "information_equivalent_donor": "Receives identical responsibility and legal-authority semantics and is required to tie.",
+    "same_payload_actions_resources": true,
+    "native_external_proxy_drift_forbidden": true
+  },
+  "registered_scale_preserved": {
+    "causal_families": 8,
+    "protected_domains": 4,
+    "paired_source_clusters_per_wave": 384,
+    "unresolved_source_clusters_per_wave": 64,
+    "source_disjoint_waves": 2,
+    "total_source_clusters": 896,
+    "large_effect_power_boundary": "The inherited design has projected max-T joint power 0.920216 at delta 0.20 and discordance 0.40, but only 0.06778 at delta 0.15 and n=384; no positive result is promised."
+  },
+  "pre_execution_gates": [
+    "V9 owner algebra complete and independently CONFORMANT",
+    "outcome-blind connected-family census with exact exclusions",
+    "rights complete for every candidate-visible byte",
+    "all required cells meet independent-family minima without top-up",
+    "source-disjointness and contamination audit complete",
+    "typed gold, candidate views and all hostile leakage checks complete",
+    "candidate, donor-complete, information-equivalent and external adapters bound",
+    "byte-identical information/actions/resources across arms",
+    "changed semantic host and owner-separated source, case, gold, scoring and verification custody bound"
+  ],
+  "positive_condition": "The licensing relation improves protected source-cluster-weighted legal-action utility over every target-sufficient matched donor without excess broad transition, preserves the required information-equivalent tie and replicates on the protected wave and worst domains.",
+  "negative_condition": "A target-sufficient donor ties or wins, mixed fibres are negligible, leakage persists, redaction removes the discriminator, or the relation adds no value or increases harm.",
+  "cannot_check_condition": "Any V9, rights, relation, gold, family-count, anti-leak, adapter, host, scorer or custody gate remains unbound.",
+  "current_counts": {
+    "rights_valid_metadata_relations": 12038,
+    "rights_valid_metadata_families": 11602,
+    "eligible_source_clusters": 0,
+    "scientific_action_gold_cells": 0,
+    "ready_comparator_arms": 0,
+    "external_custody_roles_bound": 0,
+    "system_outcomes": 0
+  },
+  "execution_authorized": false,
+  "current_terminal": "P1_RW_CC0_DEVELOPMENT_SOURCE_BOUND__OWNER_ALGEBRA_CONSTRUCT_VALIDITY_AND_PROTECTED_CUSTODY_CANNOT_CHECK"
+}

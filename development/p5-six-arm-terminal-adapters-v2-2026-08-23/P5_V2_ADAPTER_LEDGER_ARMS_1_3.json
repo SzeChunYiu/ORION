@@ -1,0 +1,459 @@
+{
+  "schema_version": "orion.p5.six-arm-terminal-adapters.v2.arms-1-3",
+  "audit_id": "P5_V2_TERMINAL_PRESERVING_ADAPTER_AUDIT_ARMS_1_3_2026_08_23",
+  "captured_at_utc": "2026-08-23T15:43:01Z",
+  "paper_id": "P5",
+  "authority": "SOURCE_AND_INTERFACE_CONTRACT_AUDIT_ONLY__NO_NATIVE_OUTPUT_EXAMPLE_OR_OUTCOME_AUTHORITY",
+  "scope": [
+    "C1_FIXED_AGENT / SWE-agent",
+    "C2_DIRECT_SELF_EDIT / MOSS",
+    "C3_ARCHIVE_BASED_SELF_EDIT / Darwin Godel Machine"
+  ],
+  "source_receipts": {
+    "predecessor_comparator_ledger": {
+      "path": "work/lane-handoffs/p5-six-arm-comparator-panel/P5_SIX_ARM_COMPARATOR_IDENTITY_LEDGER_V2.json",
+      "sha256": "f6419103024de98d0cf44ee2681399007001eb79c9b830312d501b6045a60583"
+    },
+    "eight_class_definition": {
+      "path": "work/orion-takeover/development/p5-public-development-protected-freshness-bridge-2026-08-23/P5_PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE_V1.json",
+      "sha256": "908e6b96b45097b783a46e3cde894ba3a8fa56c5c0a6b4a9d7f3a12b97ed42cb"
+    },
+    "candidate_visibility_contract": {
+      "path": "work/orion-takeover/development/p5-public-development-protected-freshness-bridge-2026-08-23/PROTECTED_FRESHNESS_PROVIDER_CONTRACT_V1.json",
+      "sha256": "5a193c07e457fe42c3e5083eaedde933dae7b329f713ca8b5578b27625fd9321"
+    }
+  },
+  "audit_exclusions": [
+    "No native output example, trajectory, patch, diff, archive row, benchmark row, label, protected diagnostic outcome, gold patch, hidden test, fresh-transfer outcome, harm outcome, or comparator performance was inspected or executed.",
+    "No native repository was built or run.",
+    "This ledger specifies a prospective adapter proof obligation; it is not evidence that any released adapter exists or that any class prediction is correct."
+  ],
+  "frozen_revision_classes": [
+    {
+      "class_id": "EVIDENCE_REPAIR",
+      "minimal_front": "Change acquisition, routing, provenance, coverage, or evidence authority without changing the registered measurement, representation, model class, evaluator, or execution substrate."
+    },
+    {
+      "class_id": "MEASUREMENT_REPAIR",
+      "minimal_front": "Change an instrument, label, proxy, calibration, sampling, or measurement mapping while holding the downstream model family and evaluator fixed."
+    },
+    {
+      "class_id": "WITHIN_CLASS_MODEL_REPAIR",
+      "minimal_front": "Change parameters, objectives, priors, inference, or training within the already licensed model class and representation."
+    },
+    {
+      "class_id": "MODEL_CLASS_EXPANSION",
+      "minimal_front": "Expand or replace the hypothesis/model family because no licensed within-class change can resolve the protected responsibility."
+    },
+    {
+      "class_id": "REPRESENTATION_REGIME_REPAIR",
+      "minimal_front": "Change state variables, ontology, encoding, interface, memory, or typed artifact regime while holding the scientific target fixed."
+    },
+    {
+      "class_id": "EXECUTION_REPAIR",
+      "minimal_front": "Change environment, dependency, toolchain, runtime, hardware, orchestration, or implementation bytes without changing the scientific method class."
+    },
+    {
+      "class_id": "EVALUATOR_REPAIR",
+      "minimal_front": "Change tests, scorers, acceptance rules, harm adjudication, or evaluator implementation because the prior evaluator is defective or target-misaligned."
+    },
+    {
+      "class_id": "UNRESOLVED",
+      "minimal_front": "Return no unique authorized revision when allowed diagnostics do not separate competing fronts, the ontology is incomplete, rights prevent adjudication, or more than one incomparable minimal front remains."
+    }
+  ],
+  "common_terminal_preserving_adapter": {
+    "output_record": {
+      "required_fields": [
+        "adapter_terminal",
+        "selected_revision_class",
+        "native_terminal",
+        "native_terminal_payload_sha256",
+        "native_final_artifact_sha256",
+        "action_manifest_sha256",
+        "input_native_class_certificate_sha256",
+        "front_set",
+        "unresolved_reason_codes",
+        "candidate_visibility_manifest_sha256",
+        "validator_version_sha256"
+      ],
+      "adapter_terminal_values": [
+        "P5_SINGLE_FRONT_ACTION_VALID",
+        "P5_UNRESOLVED_NATIVE_NONDECISION",
+        "P5_UNRESOLVED_UNSUPPORTED_FIBRE",
+        "P5_UNRESOLVED_MIXED_OR_AMBIGUOUS_FRONT",
+        "P5_UNRESOLVED_NATIVE_ERROR_TIMEOUT_OR_INVALID",
+        "P5_UNRESOLVED_ADAPTER_INTEGRITY_FAILURE"
+      ],
+      "selected_revision_class_values": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR",
+        "EVALUATOR_REPAIR",
+        "UNRESOLVED"
+      ]
+    },
+    "terminal_preservation_rule": "Projection to UNRESOLVED must not erase or rename the native terminal. The complete record retains the exact native error, timeout, abort, no-submission, rollback, or status payload by digest and a typed unresolved reason. Missing output is never rewritten as a successful class action.",
+    "outcome_blindness_rule": "The candidate and adapter classifier may read only the frozen motivating packet, frozen public substrate and their own native artifacts. They may not read the revision-class label, protected diagnostics, evaluator messages, gold revision or patch, hidden tests/scorer implementation, fresh-transfer targets, harm rubric/outcome, sibling-arm state, or later promotion outcome.",
+    "custody_rule": "The class record and native artifacts are frozen and hashed before an evaluator outside candidate custody opens protected outcomes. No post-outcome class, front-set, threshold, parser, path registry, or successor-selection change is allowed.",
+    "action_manifest_required_fields": [
+      "declared_revision_class",
+      "native_final_artifact_sha256",
+      "changed_component_ids",
+      "claimed_front_set",
+      "authorized_write_surface_sha256",
+      "before_after_invariance_hashes_for_all_other_fronts",
+      "scientific_target_identity_sha256",
+      "candidate_visibility_manifest_sha256",
+      "protected_information_accessed_false",
+      "external_evaluator_write_access_false",
+      "input_native_class_certificate_sha256"
+    ],
+    "front_registry_rule": "Every candidate-writable component must be prospectively assigned to zero, one, or multiple P5 fronts. Unregistered components and components assigned to multiple fronts are ambiguous. A file extension or the bare fact that code changed is never a front classifier.",
+    "resolved_singleton_rule": "A resolved singleton c is lawful only when native status is COMPLETE_SUCCESS, c belongs to the arm's frozen support set, one host-validated input-native class certificate uniquely identifies c, the native run has a valid final artifact, its validated action manifest declares c, the recomputed complete changed-component front set is exactly {c}, the certificate and write-set class agree, all other-front invariance checks pass, the action is inside the authorized write surface, and no protected information was visible. Equivalently, every admissible hidden world in the adapter-visible fibre must have minimal class c. Correctness and minimality are then judged later by the external scorer; they are not inferred by the adapter.",
+    "unresolved_rule": "If the native record is an error, timeout, abort, rollback, no-submission, empty/invalid artifact, intermediate-only artifact, unsupported terminal, or if its front set is empty, unknown, mixed, inconsistent with the declaration, or lacks an invariance receipt, selected_revision_class is UNRESOLVED.",
+    "native_status_nonidentifiability_proof": "For each audited system, native success/progress/failure terminals describe run state rather than the semantic target of the proposed scientific revision. The same terminal can accompany actions on multiple P5 fronts, and a single P5 front can end in multiple native terminals. Therefore native terminal alone has a many-to-many fibre over the P5 ontology and cannot lawfully identify a resolved singleton. A singleton requires a host-validated input-native class certificate and a complete single-class write set that agree.",
+    "lawful_single_front_fibres": [
+      {
+        "class_id": "EVIDENCE_REPAIR",
+        "required_exact_front": "Only registered acquisition, routing, provenance, coverage, or evidence-authority components change; measurement, representation, model class, evaluator and execution identities are hash-invariant."
+      },
+      {
+        "class_id": "MEASUREMENT_REPAIR",
+        "required_exact_front": "Only registered instrument, label, proxy, calibration, sampling, or measurement-mapping components change; downstream model family and evaluator identities are hash-invariant."
+      },
+      {
+        "class_id": "WITHIN_CLASS_MODEL_REPAIR",
+        "required_exact_front": "Only registered parameter, objective, prior, inference, or training components change; the licensed model-class ID and representation identity are hash-invariant."
+      },
+      {
+        "class_id": "MODEL_CLASS_EXPANSION",
+        "required_exact_front": "Only the registered hypothesis/model-family boundary changes, with an explicit expansion/replacement action; evidence, measurement, representation, evaluator and execution-method identities are otherwise hash-invariant."
+      },
+      {
+        "class_id": "REPRESENTATION_REGIME_REPAIR",
+        "required_exact_front": "Only registered state-variable, ontology, encoding, interface, memory, or typed-artifact-regime components change; the scientific target identity is hash-invariant."
+      },
+      {
+        "class_id": "EXECUTION_REPAIR",
+        "required_exact_front": "Only registered environment, dependency, toolchain, runtime, hardware, orchestration, or implementation-substrate components change; scientific method class, evidence, measurement, representation and evaluator identities are hash-invariant. A generic source patch is not sufficient."
+      },
+      {
+        "class_id": "EVALUATOR_REPAIR",
+        "required_exact_front": "Only a candidate-authored evaluator proposal or public-development evaluator component changes. The protected evaluator remains unreadable and unwritable and the scientific method/model artifacts are hash-invariant."
+      },
+      {
+        "class_id": "UNRESOLVED",
+        "required_exact_front": "No unique authorized single-front action survives validation, or the native system explicitly returns no decision. The exact native terminal remains present in the output record."
+      }
+    ]
+  },
+  "arms": [
+    {
+      "slot_id": "C1_FIXED_AGENT",
+      "system_id": "SWE_AGENT_AT_3EA751C",
+      "identity": {
+        "paper": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering, arXiv:2405.15793v3",
+        "repository": "https://github.com/SWE-agent/SWE-agent",
+        "commit": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+        "licence": "MIT",
+        "native_entrypoint": "sweagent"
+      },
+      "native_semantic_boundary": "SWE-agent natively returns a repository submission/patch and run trajectory for an issue-solving task. It does not natively assert which P5 minimal revision front the patch targets.",
+      "adapter_specific_controls": [
+        "Use one prospectively pinned model, prompt/config and tool interface; no within-unit self-revision.",
+        "Run only in an isolated candidate checkout with the frozen component-to-front registry and write allowlist.",
+        "Require revision_action.json plus the native submission hash; the adapter, not the model declaration alone, recomputes the front set from registered changed components.",
+        "Do not infer a class from issue resolution, a plausible patch, test success, repository path names, or later protected evaluator success.",
+        "Unsupported non-code actions and edits outside the registered candidate substrate project to UNRESOLVED."
+      ],
+      "native_fibre_map": [
+        {
+          "native_fibre": "valid nonempty final repository patch/submission plus one host-validated input-native certificate and valid single-front action manifest",
+          "lawful_projection": "The one declared class among the seven resolved fronts, but only if the recomputed front set is the exact matching singleton and every common proof obligation passes.",
+          "singleton_set": [
+            "EVIDENCE_REPAIR",
+            "MEASUREMENT_REPAIR",
+            "WITHIN_CLASS_MODEL_REPAIR",
+            "MODEL_CLASS_EXPANSION",
+            "REPRESENTATION_REGIME_REPAIR",
+            "EXECUTION_REPAIR",
+            "EVALUATOR_REPAIR"
+          ],
+          "proof": "The singleton comes from the adapter-validated action surface and invariance receipt, not from the generic patch or native success terminal."
+        },
+        {
+          "native_fibre": "valid patch/submission without a valid action manifest, or patch touching unknown/multiple fronts",
+          "lawful_projection": "UNRESOLVED",
+          "reason": "A generic issue patch has a many-to-many semantic fibre: it can alter execution, model, representation, evaluator, evidence or several fronts at once."
+        },
+        {
+          "native_fibre": "trajectory/action-observation record or run metadata without a frozen final action",
+          "lawful_projection": "UNRESOLVED",
+          "reason": "Intermediate reasoning and tool use are not the selected revision action."
+        },
+        {
+          "native_fibre": "native successful termination status alone",
+          "lawful_projection": "UNRESOLVED",
+          "reason": "Issue-solver completion carries no P5-front semantics."
+        },
+        {
+          "native_fibre": "setup failure, tool error, invalid patch, timeout, budget exhaustion, no submission or empty submission",
+          "lawful_projection": "UNRESOLVED with the exact native terminal preserved",
+          "reason": "Failure is neither EXECUTION_REPAIR nor evidence of any other scientific responsibility class."
+        },
+        {
+          "native_fibre": "explicit valid adapter action declaring UNRESOLVED with no conflicting actionable patch",
+          "lawful_projection": "UNRESOLVED",
+          "reason": "This is the only direct no-decision projection; it remains a non-success class for scoring."
+        }
+      ],
+      "released_adapter_found": false,
+      "arm_execution_ready": false,
+      "feasibility_terminal": "SWE_AGENT_IDENTITY_BOUND__V2_SINGLE_FRONT_ACTION_MANIFEST_AND_EXTERNAL_SCORER_ADAPTER_NOT_RELEASED"
+    },
+    {
+      "slot_id": "C2_DIRECT_SELF_EDIT",
+      "system_id": "MOSS_AT_5453F1F",
+      "identity": {
+        "paper": "MOSS: Self-Evolution through Source-Level Rewriting in Autonomous Agent Systems, arXiv:2605.22794v2",
+        "repository": "https://github.com/hkgai-official/Moss",
+        "commit": "5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+        "licence": "Composite Apache-2.0 root, vendored OpenClaw MIT, vendored A2UI mixed",
+        "native_entrypoint": "moss evo start/status/stop/apply"
+      },
+      "native_semantic_boundary": "MOSS rewrites OpenClaw TypeScript source, replays curated production-failure batches, and can promote a container. Its run verdicts and deployment states describe evolution progress, not the P5 scientific revision front selected for a protected case.",
+      "frozen_support_set": {
+        "conditionally_supported": [
+          "WITHIN_CLASS_MODEL_REPAIR",
+          "MODEL_CLASS_EXPANSION",
+          "REPRESENTATION_REGIME_REPAIR",
+          "EXECUTION_REPAIR"
+        ],
+        "unsupported": [
+          "EVIDENCE_REPAIR",
+          "MEASUREMENT_REPAIR",
+          "EVALUATOR_REPAIR"
+        ]
+      },
+      "adapter_specific_controls": [
+        "Replace recent-session/failure-batch intake with the frozen candidate-visible P5 motivating packet; no protected label, gold patch, diagnostic outcome, evaluator trace or score may enter Locate, Plan, Task-Evaluate or Verdict.",
+        "Disable moss evo apply and all host/container promotion on the protected path. Freeze and hash a candidate successor in an isolated branch/container before external evaluation.",
+        "Task-Evaluate may use only public-development checks fixed before protected execution; its scores and matrices cannot contain protected outcomes.",
+        "Require the final frozen successor to emit revision_action.json and validate its changed-component front set under the common adapter.",
+        "Preserve every MOSS verdict, manifest status, spawn exit, cost/token record, error, timeout, abort and rollback terminal."
+      ],
+      "native_fibre_map": [
+        {
+          "native_fibre": "frozen final successor/diff plus valid single-front P5 action manifest",
+          "lawful_projection": "The matching one of the four frozen supported classes if and only if native status is COMPLETE_SUCCESS and the input-native certificate, complete write set, exact-front and invariance proofs agree.",
+          "singleton_set": [
+            "WITHIN_CLASS_MODEL_REPAIR",
+            "MODEL_CLASS_EXPANSION",
+            "REPRESENTATION_REGIME_REPAIR",
+            "EXECUTION_REPAIR"
+          ],
+          "proof": "The class is identified by the sealed P5 action manifest and front validator. Rewriting TypeScript source by itself is not EXECUTION_REPAIR because the edit may change memory, representation, orchestration, model policy or several fronts."
+        },
+        {
+          "native_fibre": "successor/diff declaring EVIDENCE_REPAIR, MEASUREMENT_REPAIR or EVALUATOR_REPAIR",
+          "lawful_projection": "UNRESOLVED even if the declaration is syntactically valid",
+          "reason": "These classes are outside MOSS's frozen V2 agent/scaffold support set; the adapter may not manufacture support from a generic source rewrite."
+        },
+        {
+          "native_fibre": "diagnosis, plan, diff, review, Task-Evaluate result or scoring matrix before a frozen final successor",
+          "lawful_projection": "UNRESOLVED",
+          "reason": "These are intermediate artefacts and may be mutually inconsistent or span several fronts."
+        },
+        {
+          "native_fibre": "loop verdict CONVERGED",
+          "lawful_projection": "UNRESOLVED unless accompanied by a separately valid single-front action manifest",
+          "reason": "Convergence says the native loop stopped successfully, not which P5 responsibility class was selected."
+        },
+        {
+          "native_fibre": "loop verdict NEED_MORE_WORK",
+          "lawful_projection": "UNRESOLVED with NEED_MORE_WORK preserved",
+          "reason": "No final unique authorized action has been selected."
+        },
+        {
+          "native_fibre": "loop verdict FUNDAMENTAL_LIMIT_MODEL",
+          "lawful_projection": "UNRESOLVED with FUNDAMENTAL_LIMIT_MODEL preserved",
+          "forbidden_relabels": [
+            "WITHIN_CLASS_MODEL_REPAIR",
+            "MODEL_CLASS_EXPANSION"
+          ],
+          "reason": "The native term denotes a limitation of the evolution/coding-agent model and is not a proposed P5 scientific-model action or minimal-front proof."
+        },
+        {
+          "native_fibre": "loop verdict FUNDAMENTAL_LIMIT_ARCHITECTURE",
+          "lawful_projection": "UNRESOLVED with FUNDAMENTAL_LIMIT_ARCHITECTURE preserved",
+          "forbidden_relabels": [
+            "MODEL_CLASS_EXPANSION",
+            "REPRESENTATION_REGIME_REPAIR",
+            "EXECUTION_REPAIR"
+          ],
+          "reason": "Architecture is native-substrate language and does not distinguish the frozen P5 fronts."
+        },
+        {
+          "native_fibre": "manifest status initialized, in_progress or swap_pending",
+          "lawful_projection": "UNRESOLVED with native status preserved",
+          "reason": "No frozen final action exists; swap_pending is deployment state, not EXECUTION_REPAIR."
+        },
+        {
+          "native_fibre": "manifest status converged",
+          "lawful_projection": "UNRESOLVED unless the distinct single-front action proof passes",
+          "reason": "Native completion is class-agnostic."
+        },
+        {
+          "native_fibre": "manifest status rolled_back, failed, aborted_max_iter or aborted_streak; unknown provider; spawn/build/role timeout; crash or no-progress abort",
+          "lawful_projection": "UNRESOLVED with exact status/error/timeout preserved",
+          "reason": "None is a successful scientific revision action, and rollback/failure cannot be relabelled EXECUTION_REPAIR."
+        },
+        {
+          "native_fibre": "successful moss evo apply or healthy container swap",
+          "lawful_projection": "UNRESOLVED on the protected path",
+          "reason": "Promotion is forbidden candidate-side mutation and a deployment outcome, not a P5 responsibility label. The V2 adapter must disable apply rather than learn from it."
+        },
+        {
+          "native_fibre": "spawn terminal {exit_code, elapsed_s, session_id, cost_usd, tokens, provider, model}",
+          "lawful_projection": "UNRESOLVED when considered alone",
+          "reason": "Resource/run metadata has no class semantics but must be retained for budget auditing."
+        }
+      ],
+      "released_adapter_found": false,
+      "arm_execution_ready": false,
+      "feasibility_terminal": "MOSS_IDENTITY_BOUND__NATIVE_TERMINALS_PROJECTION_PROVED__OUTCOME_BLIND_SINGLE_FRONT_SUCCESSOR_ADAPTER_NOT_RELEASED"
+    },
+    {
+      "slot_id": "C3_ARCHIVE_BASED_SELF_EDIT",
+      "system_id": "DGM_AT_A565FD2",
+      "identity": {
+        "paper": "Darwin Godel Machine: Open-Ended Evolution of Self-Improving Agents, arXiv:2505.22954v3",
+        "repository": "https://github.com/jennyzzt/dgm",
+        "commit": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+        "licence": "Apache-2.0",
+        "native_entrypoints": [
+          "python DGM_outer.py",
+          "python self_improve_step.py",
+          "python coding_agent.py"
+        ]
+      },
+      "native_semantic_boundary": "DGM evolves the coding agent itself by selecting archived parents, generating model_patch.diff and using benchmark outcomes for archive admission. Archive score and rank never identify a P5 class. A selected child mutation can be projected only within the four frozen agent/scaffold classes when a host-validated input-native certificate and its complete single-class write set uniquely agree; a raw self-modification diff alone remains UNRESOLVED.",
+      "frozen_support_set": {
+        "conditionally_supported": [
+          "WITHIN_CLASS_MODEL_REPAIR",
+          "MODEL_CLASS_EXPANSION",
+          "REPRESENTATION_REGIME_REPAIR",
+          "EXECUTION_REPAIR"
+        ],
+        "unsupported": [
+          "EVIDENCE_REPAIR",
+          "MEASUREMENT_REPAIR",
+          "EVALUATOR_REPAIR"
+        ]
+      },
+      "adapter_specific_controls": [
+        "Evolution, benchmark diagnosis, parent selection and archive admission may use only a frozen public-development pool with separately lawful task rights.",
+        "Freeze one final archive node, all ancestor patches, model/provider/config and successor-selection policy before any protected P5 packet is opened.",
+        "No protected patch, label, diagnostic, resolution result, evaluator message, fresh-transfer result or harm outcome may update the archive, parent weights, diagnosis or agent source.",
+        "For the protected adapter, select and freeze the child mutation in an isolated candidate workspace and require revision_action.json plus one host-validated input-native class certificate tied to that mutation's native artifact.",
+        "Never treat SWE-bench or Polyglot harness code as DGM solver code, and never treat a benchmark resolved/unresolved identifier as a P5 class.",
+        "Retain the exact archive, parent, error, timeout, exclusion, missing-diff and compilation terminals while projecting invalid/nondecisions to UNRESOLVED."
+      ],
+      "native_fibre_map": [
+        {
+          "native_fibre": "selected child mutation plus one host-validated input-native certificate and valid complete single-front P5 action manifest",
+          "lawful_projection": "The matching one of the four frozen supported P5 classes if and only if native status is COMPLETE_SUCCESS and the common certificate, exact-front, invariance, visibility and custody proofs pass.",
+          "singleton_set": [
+            "WITHIN_CLASS_MODEL_REPAIR",
+            "MODEL_CLASS_EXPANSION",
+            "REPRESENTATION_REGIME_REPAIR",
+            "EXECUTION_REPAIR"
+          ],
+          "proof": "Only the selected mutation observed together with an agreeing input-native class certificate and complete single-class write set has the P5 codomain. Archive performance, rank and raw diff existence have no lawful direct class map."
+        },
+        {
+          "native_fibre": "DGM model_patch.diff, parent patch chain or compiled child without the agreeing input-native certificate and complete single-class write-set proof",
+          "lawful_projection": "UNRESOLVED",
+          "forbidden_relabels": [
+            "EXECUTION_REPAIR",
+            "WITHIN_CLASS_MODEL_REPAIR",
+            "MODEL_CLASS_EXPANSION",
+            "REPRESENTATION_REGIME_REPAIR"
+          ],
+          "reason": "Raw self-modification has a mixed fibre across the four supported agent/scaffold classes and can also cross multiple fronts."
+        },
+        {
+          "native_fibre": "selected child mutation declaring EVIDENCE_REPAIR, MEASUREMENT_REPAIR or EVALUATOR_REPAIR",
+          "lawful_projection": "UNRESOLVED even if syntactically valid",
+          "reason": "These classes are outside DGM's frozen V2 agent/scaffold support set."
+        },
+        {
+          "native_fibre": "dgm_metadata archive/generation/parent/children/compiled-children record or outer/per-child log",
+          "lawful_projection": "UNRESOLVED when considered as a case prediction",
+          "reason": "Archive lineage and run state do not identify a scientific revision front."
+        },
+        {
+          "native_fibre": "benchmark harness metadata/report, resolved/unresolved/empty-patch ID, performance score or diagnosis target",
+          "lawful_projection": "UNRESOLVED and forbidden from the protected-path adapter input",
+          "reason": "These are evaluator outcomes or benchmark-specific states, not P5 class actions; protected versions would violate outcome blindness."
+        },
+        {
+          "native_fibre": "valid coding-agent task patch without a valid single-front action manifest",
+          "lawful_projection": "UNRESOLVED",
+          "reason": "A generic code patch may correspond to several P5 fronts and cannot be assumed EXECUTION_REPAIR."
+        },
+        {
+          "native_fibre": "RuntimeError because cached initial evaluation is absent; parent excluded after metadata/evaluation/compilation access failure; evaluation exception",
+          "lawful_projection": "UNRESOLVED with the exact native error/exclusion terminal preserved",
+          "reason": "Setup/evaluation failure is not a revision action."
+        },
+        {
+          "native_fibre": "missing or empty model_patch.diff or child not admitted",
+          "lawful_projection": "UNRESOLVED with missing/empty/nonadmission status preserved",
+          "reason": "No valid selected mutation/action exists."
+        },
+        {
+          "native_fibre": "coding-agent GNU timeout 1800, context-length failure, provider retry exhaustion or any stage without a proven whole-attempt watchdog",
+          "lawful_projection": "UNRESOLVED with timeout/provider terminal preserved",
+          "reason": "Resource failure cannot be relabelled EXECUTION_REPAIR or model-class repair."
+        },
+        {
+          "native_fibre": "documented parent-choice configuration affected by the pinned argparse choice-concatenation defect",
+          "lawful_projection": "UNRESOLVED or adapter-integrity failure until the exact invoked option is statically accepted and frozen",
+          "reason": "A configuration identity defect prevents a trustworthy successor-selection fibre; it provides no P5 class information."
+        },
+        {
+          "native_fibre": "no structured native P5 abstention and no valid selected mutation/action artifact",
+          "lawful_projection": "UNRESOLVED",
+          "reason": "Fail closed while preserving the actual native terminal rather than inventing an abstention or success."
+        }
+      ],
+      "released_adapter_found": false,
+      "arm_execution_ready": false,
+      "feasibility_terminal": "DGM_IDENTITY_BOUND__ARCHIVE_SCORE_AND_SELECTED_MUTATION_FIBRES_SEPARATED__OUTCOME_BLIND_SUPPORTED_CLASS_ADAPTER_NOT_RELEASED"
+    }
+  ],
+  "cross_arm_proofs": {
+    "no_native_resolved_singleton": "Across SWE-agent, MOSS and DGM, zero released native terminal names a P5 class and zero released source interface supplies the host-validated input-native class certificate, action manifest, exact front registry, complete write set, other-front invariance receipt, candidate/evaluator custody split and protected-information exclusion required for a resolved singleton.",
+    "adapter_augmented_resolved_singletons": "SWE-agent conditionally supports all seven resolved classes. MOSS and DGM conditionally support only WITHIN_CLASS_MODEL_REPAIR, MODEL_CLASS_EXPANSION, REPRESENTATION_REGIME_REPAIR and EXECUTION_REPAIR. A future adapter may project a supported class only when one host-validated input-native certificate and the complete single-class write set agree. This is an interface construction, not a released capability or scientific result.",
+    "unresolved_totality": "Every native fibre still has a total projection: valid exclusive actions map to their class; every other fibre maps to UNRESOLVED while retaining its native terminal. Thus unsupported/error states are not dropped from denominators and cannot become silent successes.",
+    "external_scoring_boundary": "The adapter classifies the action target, not whether it is the correct minimal responsibility. Protected minimality, preservation, fresh transfer and harm are scored only after the sealed prediction by an external evaluator."
+  },
+  "readiness": {
+    "arms_audited": "3/6",
+    "released_eight_class_adapters_found_in_arms_1_3": "0/3",
+    "confirmatory_ready_arms_1_3": "0/3",
+    "confirmatory_ready_full_six_arm_panel": "0/6",
+    "H1": "CANNOT_CHECK",
+    "H2": "CANNOT_CHECK",
+    "H3": "CANNOT_CHECK",
+    "H4": "CANNOT_CHECK",
+    "protected_freshness": "CANNOT_CHECK",
+    "performance_harm_and_superiority": "CANNOT_CHECK",
+    "terminal": "P5_V2_ARMS_1_3_TERMINAL_PROJECTIONS_SPECIFIED__RELEASED_OUTCOME_BLIND_EIGHT_CLASS_ADAPTERS_CANNOT_CHECK__ZERO_OF_SIX_CONFIRMATORY_READY"
+  }
+}

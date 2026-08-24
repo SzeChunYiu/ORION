@@ -1,0 +1,267 @@
+{
+  "content_disjointness": {
+    "pairwise_successor_duplicate_excess": 0,
+    "swift_overlap": 0
+  },
+  "date": "2026-08-23",
+  "elapsed_seconds": 2082.5257437909895,
+  "failed_mechanism_gates": [
+    "M3_LEARNER_RECALL10_MAGNITUDE",
+    "M4_LEARNER_RECALL10_SIGN"
+  ],
+  "failed_preserved_v3_gates": [
+    "G3_PRIMARY_MARGIN",
+    "G4_WORK_SAVING"
+  ],
+  "identity": "P2_SYNERGY_V5_EXECUTION_RECEIPT",
+  "mean_full_arm_candidate_minus_u4": {
+    "fraction_screened_at_95_recall": 0.04152390558684416,
+    "recall_at_005": -0.04067304315712794,
+    "recall_at_010": -0.011841648129662086,
+    "recall_at_020": -0.024959873607759597,
+    "wss_at_95": -0.0415239055868442
+  },
+  "mechanism_gates": {
+    "M1_BINDING": true,
+    "M2_CONTENT_DISJOINT_POPULATION": true,
+    "M3_LEARNER_RECALL10_MAGNITUDE": false,
+    "M4_LEARNER_RECALL10_SIGN": false,
+    "M5_LEARNER_WORK_SAVING": true,
+    "M6_LEARNER_HARM": true
+  },
+  "nonpromotion_rule": "No V5 arm replaces the candidate or supports superiority. A positive terminal confirms only directional transport of the V4 learner/balancer component attribution under this exact source and adapter.",
+  "preserved_v3_gates": {
+    "G1_BINDING": true,
+    "G2_POPULATION": true,
+    "G3_PRIMARY_MARGIN": false,
+    "G4_WORK_SAVING": false,
+    "G5_HARM": true,
+    "G6_ABSOLUTE_WORK_SAVING": true
+  },
+  "review_level_unit_count": 5,
+  "review_receipts": {
+    "Brouwer_2019": {
+      "adapter_receipt": {
+        "batch_size": 77,
+        "initial_seed_record_identities_sha256": "75507a2df935d8d49ab34a2ca8a0c38e54b6c38f9defa1e892ba6206be4f045a",
+        "text_list_sha256": "02b2d8af366b369c0499102d07c5b88fd64ec2f387a518c6cb6ea5a6dfeee7d2"
+      },
+      "arms": {
+        "R0_L0": {
+          "features": 50000,
+          "model_fits": 494,
+          "order_sha256": "b42fc2f8d6dca070daf7e54d485bec484147c900426b7d8b2ed7103bc4297512"
+        },
+        "R0_L1": {
+          "features": 50000,
+          "model_fits": 494,
+          "order_sha256": "633467fc472fb92b425f0949b0b35c75960f2e563836adcd07db89bca433cf41"
+        },
+        "R1_L0": {
+          "features": 1704327,
+          "model_fits": 494,
+          "order_sha256": "c1d497a43c6f1a4ab4ab353fe9f302021fdc942816323ac46cc38751dc35a643"
+        },
+        "R1_L1": {
+          "features": 1704327,
+          "model_fits": 494,
+          "order_sha256": "752b1f32750ad6dc17c70b0c25f0ffb03417d2689a06b051b09bad1a16df5a86"
+        }
+      },
+      "canonical_rows": 38009,
+      "duplicate_content_label_conflicts": 0,
+      "excluded_rows": 37947,
+      "included_rows": 62
+    },
+    "Hall_2012": {
+      "adapter_receipt": {
+        "batch_size": 18,
+        "initial_seed_record_identities_sha256": "005ca1d20454c1aebbcdefa045b01f9dfb249da9799e8f4fa88b431ac4dbd411",
+        "text_list_sha256": "e3f613ad89a869492076e3e18da006078baf8e43d1080acfe20114260a23d706"
+      },
+      "arms": {
+        "R0_L0": {
+          "features": 50000,
+          "model_fits": 488,
+          "order_sha256": "ddd672affccc55840108ebc9c46cc063ccd3bd16bdaf8f916bb720b71ccfc5cb"
+        },
+        "R0_L1": {
+          "features": 50000,
+          "model_fits": 488,
+          "order_sha256": "6b3c6c4011f973d0f503b3b0db074307cd6eec3e5bd7e19dd12501b1e0b437a5"
+        },
+        "R1_L0": {
+          "features": 398148,
+          "model_fits": 488,
+          "order_sha256": "213dfda4ef9467bc9ac4910f0329de92b9a4bcb0ac8dafb0f6d39e9600e00179"
+        },
+        "R1_L1": {
+          "features": 398148,
+          "model_fits": 488,
+          "order_sha256": "619e37c9b9fe18b4ebd5e0471e32dd11ceab0e6d96285783863d5c71f8b61867"
+        }
+      },
+      "canonical_rows": 8783,
+      "duplicate_content_label_conflicts": 1,
+      "excluded_rows": 8680,
+      "included_rows": 103
+    },
+    "Leenaars_2020": {
+      "adapter_receipt": {
+        "batch_size": 15,
+        "initial_seed_record_identities_sha256": "4920f7e234dc23da0edac48d07529c5102db1379a0cdbf63b3e1190716aeb138",
+        "text_list_sha256": "2b3c7f2f267e950b1e1149865910a4273c414711473483b9cb51110f8fcce6c3"
+      },
+      "arms": {
+        "R0_L0": {
+          "features": 50000,
+          "model_fits": 480,
+          "order_sha256": "dca9a80e1b9551cb7f86b7f7265c7badd67e7c885add94c9f7bc7344d5900d05"
+        },
+        "R0_L1": {
+          "features": 50000,
+          "model_fits": 480,
+          "order_sha256": "a4ea2f464d5d3669342db35b037c04dba3f7f74da85325a8f8c6fc20ed391cb2"
+        },
+        "R1_L0": {
+          "features": 404958,
+          "model_fits": 480,
+          "order_sha256": "8083b9ff51e7baa37e326db10692ed61046b4d68b7e19181ac986f6907c9e145"
+        },
+        "R1_L1": {
+          "features": 404958,
+          "model_fits": 480,
+          "order_sha256": "2c065333013effa1e50754d60eb15a02123f80151eb88a69773814fc28c907bf"
+        }
+      },
+      "canonical_rows": 7189,
+      "duplicate_content_label_conflicts": 1,
+      "excluded_rows": 6609,
+      "included_rows": 580
+    },
+    "Walker_2018": {
+      "adapter_receipt": {
+        "batch_size": 81,
+        "initial_seed_record_identities_sha256": "dec11fb0728c9e21cf4c87da042afc77255ca8f0717cd2654934b59e348bc56f",
+        "text_list_sha256": "bc374731f59f7f454324ce193e7ef3a8831927accdc3f28884649173b7012da7"
+      },
+      "arms": {
+        "R0_L0": {
+          "features": 50000,
+          "model_fits": 500,
+          "order_sha256": "71602782f1114db6a7dec5f5c9cea9da2ecb6aff2d4f65718fe3c0d1c1d06f6f"
+        },
+        "R0_L1": {
+          "features": 50000,
+          "model_fits": 500,
+          "order_sha256": "ec6d47fc95577ff37d8fcec4053d98c7898eba1bbf0658e925c7dd9d932c1c2b"
+        },
+        "R1_L0": {
+          "features": 2268041,
+          "model_fits": 500,
+          "order_sha256": "49c2cc184f0224b4d9306d4fb79b566cc3622f5589d110fb58bc91d35444eb46"
+        },
+        "R1_L1": {
+          "features": 2268041,
+          "model_fits": 500,
+          "order_sha256": "ec90a164bd1e4ec9e9d8c338b012157108434206cae5cb97896e497b338caef9"
+        }
+      },
+      "canonical_rows": 40442,
+      "duplicate_content_label_conflicts": 2,
+      "excluded_rows": 39827,
+      "included_rows": 615
+    },
+    "Wassenaar_2017": {
+      "adapter_receipt": {
+        "batch_size": 14,
+        "initial_seed_record_identities_sha256": "3d0903919aeeca426443324c7d120083223ead23d8c0fb9060f69573ebbf6be9",
+        "text_list_sha256": "0e2242a9f6e48d9a508da34a60af6b6644438647c1689702e52cbe3166925b45"
+      },
+      "arms": {
+        "R0_L0": {
+          "features": 50000,
+          "model_fits": 473,
+          "order_sha256": "1170fa126e6d8cc3b7b5dde06d01aa72493eb4d70f84d4fdac35ac49f291f7e0"
+        },
+        "R0_L1": {
+          "features": 50000,
+          "model_fits": 473,
+          "order_sha256": "fb437fb24a4060ca529e056aacba41325d6f8b2c64321acab70d1114f6440f6e"
+        },
+        "R1_L0": {
+          "features": 448983,
+          "model_fits": 473,
+          "order_sha256": "ca69e5eafe45732b77db5f1803d41ad74e7570e40a84237bd37553a4267d890d"
+        },
+        "R1_L1": {
+          "features": 448983,
+          "model_fits": 473,
+          "order_sha256": "59cf244640ff3f6ec9d5e4aa9211e4ee5d053d2b2a64700ed94a0e1caee26142"
+        }
+      },
+      "canonical_rows": 6621,
+      "duplicate_content_label_conflicts": 0,
+      "excluded_rows": 6514,
+      "included_rows": 107
+    }
+  },
+  "row_count_is_not_replication_count": true,
+  "statistical_unit": "review decision",
+  "terminal": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR",
+  "total_canonical_rows_per_arm": 101044,
+  "total_row_arm_evaluations": 404176,
+  "unweighted_mean_arm_metrics": {
+    "R0_L0": {
+      "fraction_screened_at_95_recall": 0.17557873937336116,
+      "recall_at_005": 0.7378530492046596,
+      "recall_at_010": 0.8514514019887155,
+      "recall_at_020": 0.9381033438545732,
+      "wss_at_95": 0.7744212606266386
+    },
+    "R0_L1": {
+      "fraction_screened_at_95_recall": 0.133709948875179,
+      "recall_at_005": 0.7802109816244731,
+      "recall_at_010": 0.8635986290362357,
+      "recall_at_020": 0.9627183898761258,
+      "wss_at_95": 0.8162900511248209
+    },
+    "R1_L0": {
+      "fraction_screened_at_95_recall": 0.15293221690886508,
+      "recall_at_005": 0.7571317166068795,
+      "recall_at_010": 0.8577717214278107,
+      "recall_at_020": 0.9491882891867851,
+      "wss_at_95": 0.7970677830911349
+    },
+    "R1_L1": {
+      "fraction_screened_at_95_recall": 0.13405483378651703,
+      "recall_at_005": 0.7785260923617875,
+      "recall_at_010": 0.8632930501183775,
+      "recall_at_020": 0.9630632174623328,
+      "wss_at_95": 0.8159451662134829
+    }
+  },
+  "unweighted_mean_component_effects": {
+    "interaction": {
+      "fraction_screened_at_95_recall": 0.022991407375834123,
+      "recall_at_005": -0.020963556664905646,
+      "recall_at_010": -0.006625898356953308,
+      "recall_at_020": -0.010740117746005052,
+      "wss_at_95": -0.022991407375834116
+    },
+    "learner_balancer_main_effect": {
+      "fraction_screened_at_95_recall": -0.03037308681026511,
+      "recall_at_005": 0.03187615408736086,
+      "recall_at_010": 0.008834277869043594,
+      "recall_at_020": 0.019244987148550184,
+      "wss_at_95": 0.030373086810265137
+    },
+    "representation_main_effect": {
+      "fraction_screened_at_95_recall": -0.01115081877657905,
+      "recall_at_005": 0.008796889069767083,
+      "recall_at_010": 0.0030073702606184917,
+      "recall_at_020": 0.005714886459209412,
+      "wss_at_95": 0.011150818776579063
+    }
+  }
+}

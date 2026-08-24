@@ -1,0 +1,327 @@
+{
+  "check_count": 63,
+  "checks": [
+    {
+      "check": "json_parse:AUDIT_RECEIPT_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:CLEANUP_AUDIT_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:COMPATIBILITY_ISLAND_MANIFEST_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:NATIVE_ARTIFACT_CONTRACT_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:NEGATIVE_RESULT_LEDGER_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PARSER_SELF_TEST_RECEIPT_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROBE_ASSERTION_AMENDMENT_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_FREEZE_RECEIPT_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:PROTOCOL_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:RESULT_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:RUNTIME_COMPATIBILITY_RECEIPT_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "json_parse:SOURCE_RIGHTS_MANIFEST_V7.json",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "protocol_freeze_hash",
+      "evidence": "849f0f7b46adab50bc5648636a4bd283d87443a6bea59f26ec251f2b756337bf",
+      "pass": true
+    },
+    {
+      "check": "protocol_parser_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "predecessor_exists:v6_k3_result",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-comparator-native-preflight-v6-2026-08-23/K3_BERTMAP_RESULT_V6.json",
+      "pass": true
+    },
+    {
+      "check": "predecessor_hash:v6_k3_result",
+      "evidence": "89397bde96305b19b19487a87d0b8b82f5270cd8fafcb2993a596c3bd0e64df1",
+      "pass": true
+    },
+    {
+      "check": "predecessor_exists:v6_result",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-comparator-native-preflight-v6-2026-08-23/RESULT_V6.json",
+      "pass": true
+    },
+    {
+      "check": "predecessor_hash:v6_result",
+      "evidence": "9f9a3a8cf8926068ca5dd6a0ff90c586494c18f6087368ce3975d7cc4089a538",
+      "pass": true
+    },
+    {
+      "check": "predecessor_exists:v7_successor",
+      "evidence": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-comparator-native-preflight-v6-2026-08-23/K3_V7_COMPATIBILITY_SUCCESSOR_PROTOCOL.json",
+      "pass": true
+    },
+    {
+      "check": "predecessor_hash:v7_successor",
+      "evidence": "d27475b837962bedf09387931866a5f6920449667c3ce702ccfc27b5e97e9ad4",
+      "pass": true
+    },
+    {
+      "check": "protocol_forbidden_operations_false",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "runtime_constructor_pass",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "runtime_exact_versions",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "runtime_keyword_and_constructor",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "runtime_keyword_deprecated_retained",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "runtime_training_args_source_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "runtime_26_distributions",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "runtime_license_metadata_present",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "runtime_no_forbidden_operations",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "source_reader_defect_ast",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "source_reader_defect_reproduced",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "island_lock_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "island_input_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "island_all_primary_hashes",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "island_hash_mode",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "island_constructor_only_boundary",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "parser_self_test",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "parser_empty_absence_pass",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "parser_partial_refusal",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "contract_five_artifacts",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "contract_parser_hash",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "contract_reader_defect_bound",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_exact_source_commits",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_exact_source_trees",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_root_licenses",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_paper_identity",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_data_payload_unopened",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_submodule_unopened",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_jar_census",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "rights_full_runtime_not_closed",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "result_terminal",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "result_zero_native_artifacts",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "result_readiness_unchanged",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "result_no_forbidden_outcomes",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "result_evidence_hashes",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "negative_ledger_count",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "negative_ledger_complete",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "probe_amendment_retained",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "audit_boundary",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "cleanup_runtime_removed",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "cleanup_no_model_ontology_payload_opened",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "sha256_manifest_all_exist",
+      "evidence": 23,
+      "pass": true
+    },
+    {
+      "check": "sha256_manifest_all_match",
+      "evidence": 23,
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "json_file_count_excluding_receipt": 12,
+  "passed": 63,
+  "schema_version": "orion.p3.bertmap-execution-binding.validation-receipt.v7",
+  "terminal": "PASS",
+  "validated_at": "2026-08-23T19:04:56.056525+00:00",
+  "validator": "validate_v7.py stdlib assertions; no pytest or repository CI"
+}

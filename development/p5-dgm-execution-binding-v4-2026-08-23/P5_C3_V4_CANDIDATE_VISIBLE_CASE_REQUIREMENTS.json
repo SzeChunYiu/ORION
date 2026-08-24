@@ -1,0 +1,28 @@
+{
+  "schema_version": "orion.p5.c3.candidate-visible-case-requirements.v4",
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "required": [
+    "case_id and source identity hashed before candidate access",
+    "rights-cleared motivating failure packet with no protected or gold fields",
+    "exact mutable coding-agent source tree and immutable host-controller tree",
+    "one input-native eight-class certificate committed before self-edit",
+    "allowed tools, endpoints, model identity, budgets and write surface",
+    "no benchmark outcome, archive score, protected label, scorer feedback, gold patch, hidden test or sibling-arm state",
+    "separate public-development archive frozen before protected-panel identity exists"
+  ],
+  "forbidden_key_families": [
+    "accuracy_score",
+    "archive_admitted",
+    "benchmark_outcome",
+    "gold_*",
+    "heldout_*",
+    "overall_performance",
+    "protected_*",
+    "resolved_ids",
+    "scorer_*",
+    "test_output",
+    "unresolved_ids"
+  ],
+  "case_packet_available": false,
+  "terminal": "P5_C3_CASE_BYTES_AND_RIGHTS_UNBOUND"
+}

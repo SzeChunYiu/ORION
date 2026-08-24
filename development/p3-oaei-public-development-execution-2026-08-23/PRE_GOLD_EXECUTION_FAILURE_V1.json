@@ -1,0 +1,40 @@
+{
+  "ambiguous_key_multiplicity_counts": {
+    "2": 2119,
+    "4": 34
+  },
+  "ambiguous_local_fragment_keys": 2153,
+  "aml_selected_pairs": 410,
+  "attempted_command": "run-systems",
+  "authority": "PRE_PUBLIC_GOLD_ADVERSE_EXECUTION_IDENTITY",
+  "case_file": "/tmp/p3-oaei-public-dev/execution-v1/cases.jsonl",
+  "case_file_sha256": "015fa7cca686b1078711e5b07e3be66d2b491670c0adb7e4c75d643305c7686e",
+  "case_file_size": 77067975,
+  "cause": "LOCAL_FRAGMENT_COLLAPSE_CREATED_NONINJECTIVE_KEYS_AND_EXPLICIT_DECLARATION_ONLY_SIGNATURE_OMITTED_ONE_AML_CLASS_REFERENT",
+  "current_terminal": "PUBLIC_CANDIDATE_UNIVERSE_INVALID__PRE_GOLD_IDENTITY_MAP_FAILURE",
+  "failure_class": "AML_CASE_IDENTITY_MAP_INVALID",
+  "failure_message": "AML/case terminal map invalid: ambiguous=2153, unmatched=1",
+  "gold_output_absent": true,
+  "n_cases": 68043,
+  "n_prediction_rows": 476301,
+  "next_discriminator": "PRE_GOLD_SUCCESSOR_MUST_USE_DOCUMENT_AWARE_FULL_IRI_KEYS_AND_INPUT_ONLY_ONTOLOGY_SIGNATURE_CLOSURE_THAT_COVERS_COMPARATOR_REFERENTS",
+  "prediction_attempt_file": "/tmp/p3-oaei-public-dev/execution-v1/predictions.jsonl",
+  "prediction_attempt_file_sha256": "07b4cf7cd0a4d4f9e6ab61004dfe47b9575606e83aa5b030eff4d199dc13c8c4",
+  "prediction_attempt_file_size": 208864081,
+  "protected_evidence": false,
+  "protocol_id": "P3.PUBLIC.OAEI.CONFLICT_PRESERVING.DEV.V1",
+  "public_reference_content_opened": false,
+  "schema_version": "orion.p3.oaei-public-pre-gold-execution-failure.v1",
+  "scientific_consequence": "V1_PREDICTION_FREEZE_INVALID__NO_GOLD_OPENING_AUTHORIZED",
+  "script_sha256_at_failure": "6e3327a2993c956801a7e31f21ae58b17a00ae01f9e88ae54c6975c692e63984",
+  "unmatched_aml_cells": [
+    {
+      "entity1": "http://xmlns.com/foaf/0.1/#Person",
+      "entity2": "http://ebiquity.umbc.edu/v2.1/ontology/person.owl#Person",
+      "measure": 0.9801,
+      "relation": "=",
+      "target_test": "302"
+    }
+  ],
+  "unmatched_aml_pairs": 1
+}

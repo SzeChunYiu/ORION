@@ -1,0 +1,177 @@
+{
+  "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+  "authoritative_native_contract": {
+    "default_config_contains_review_on_submit_bundle": true,
+    "default_config_is_directly_c1_admissible": false,
+    "default_deployment_image_tag": "python:3.11",
+    "default_model": "UNBOUND_REQUIRED_FIELD",
+    "documented_single_run": "sweagent run --config config/default.yaml ...",
+    "native_output": [
+      "trajectory JSON",
+      "candidate patch",
+      "prediction JSONL",
+      "run metadata"
+    ],
+    "native_terminal_source": "trajectory.info.exit_status",
+    "package_entrypoint": "sweagent = sweagent.run.run:main"
+  },
+  "captured_at_utc": "2026-08-23T17:30:00Z",
+  "commit_sha": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+  "manifest_id": "P5.C1.SWE_AGENT.PUBLIC.SOURCE.RIGHTS.V4",
+  "official_repository": "https://github.com/SWE-agent/SWE-agent",
+  "official_status": "OFFICIAL_PAPER_LINKED_IMPLEMENTATION",
+  "outcome_boundary": {
+    "comparator_outcomes_accessed": false,
+    "gold_patch_or_test_patch_payload_values_disclosed_to_lane": false,
+    "protected_scores_accessed": false,
+    "protected_test_content_disclosed_to_lane": false,
+    "public_benchmark_first_record_key_names_observed": true
+  },
+  "paper": "arxiv:2405.15793v3",
+  "rights": {
+    "container": {
+      "reason": "The official image contains multiple upstream components; a complete image rights/notice packet was not frozen.",
+      "state": "UNBOUND"
+    },
+    "generated_v4_artifacts": {
+      "reason": "No independent redistribution/licensing authority was supplied for generated run artifacts.",
+      "state": "UNBOUND"
+    },
+    "model_provider_services": {
+      "state": "UNBOUND"
+    },
+    "p5_task_and_benchmark_content": {
+      "state": "UNBOUND"
+    },
+    "resolved_dependencies": {
+      "reason": "The lock identifies bytes but the transitive licence/notice set was not independently closed.",
+      "state": "UNBOUND"
+    },
+    "simple_fixture": {
+      "not_a_p5_confirmatory_case": true,
+      "path": "UPSTREAM_SIMPLE_INSTANCE.yaml",
+      "sha256": "b088b1a7d146afcab66d2c529409066685a2b4d4433ba18df3649aef0c374bd8",
+      "state": "BOUND_FOR_OUTCOME_FREE_SMOKE_ONLY"
+    },
+    "swe_agent_source": {
+      "license_path": "LICENSE",
+      "license_sha256": "7610ed3916f6674e34b78417894abd57ff538b3cfdda3085e3643d82acbaf31f",
+      "scope": "Pinned SWE-agent repository bytes, including the copied simple fixture.",
+      "spdx": "MIT",
+      "state": "BOUND"
+    }
+  },
+  "runtime_base_capture": {
+    "complete_swe_agent_runtime": false,
+    "config_digest": "sha256:c514701300438939d8f2f3fd75cc57ea2eff502c1920e5cc98c713cf17452e3d",
+    "manifest_digest": "sha256:fd6b7cf944078fe424fe8b7d659e6cb4d28cf75495d1c52a43c49b6293fa5002",
+    "mutable_tag_observed": "3.11",
+    "registry": "docker.io/library/python",
+    "rights_state": "UNBOUND",
+    "selected_platform": {
+      "architecture": "amd64",
+      "os": "linux"
+    }
+  },
+  "schema_version": "orion.p5.c1.public-source-rights-manifest.v4",
+  "source_files": [
+    {
+      "bytes": 1147,
+      "git_blob_sha1": "e702436e21844c5c519de31ab68277a6d3b427d9",
+      "path": "LICENSE",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/LICENSE",
+      "sha256": "7610ed3916f6674e34b78417894abd57ff538b3cfdda3085e3643d82acbaf31f"
+    },
+    {
+      "bytes": 8158,
+      "git_blob_sha1": "e241ede47c338b69eb13cbc5423047e1edf1d50f",
+      "path": "README.md",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/README.md",
+      "sha256": "dcd880557720efbab0f5c0e68f2bc742309efecfce83244c9e670ec1f1adf76f"
+    },
+    {
+      "bytes": 6487,
+      "git_blob_sha1": "f17efb696ee262637823380bbbee5e3ca03ba9c5",
+      "path": "pyproject.toml",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/pyproject.toml",
+      "sha256": "c15229fac40a10716b53fda2cf6ba756d62cb59d682e7d10d7d62b640dfccef9"
+    },
+    {
+      "bytes": 3242,
+      "git_blob_sha1": "fb79208113c3e803c091f3886e240a7918c3cd7f",
+      "path": "config/default.yaml",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/config/default.yaml",
+      "sha256": "96aeb863cbfaa768044527155f8555c9b401c6644e937b5b6b0bba5538b6eee4"
+    },
+    {
+      "bytes": 5327,
+      "git_blob_sha1": "e9952a9c9262d0580f5ab8552d2ba249c3eb162e",
+      "path": "sweagent/run/run.py",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/run/run.py",
+      "sha256": "f4d50e37528f6a737f514bc888ea7efac25cdbb61bc1f6e6371546f6ef886e79"
+    },
+    {
+      "bytes": 9182,
+      "git_blob_sha1": "1c3209ad165773e7374b5765efafce00bd4d114e",
+      "path": "sweagent/run/run_single.py",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/run/run_single.py",
+      "sha256": "4c373cdea6a7d3c67a7c8ad2c183ae1bb0d3e74fe820957ca6469b8a9e1eae80"
+    },
+    {
+      "bytes": 4506,
+      "git_blob_sha1": "d199ec1fcf7fd774a994a10748cc7d31929eb706",
+      "path": "sweagent/run/hooks/apply_patch.py",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/run/hooks/apply_patch.py",
+      "sha256": "d9e283aa53673e43039513b71d111817dbce0f44e6e3d2022a0f4037620a0848"
+    },
+    {
+      "bytes": 55804,
+      "git_blob_sha1": "4844aeb7c42e06121fe37ba223e9263c04b53c3b",
+      "path": "sweagent/agent/agents.py",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/agent/agents.py",
+      "sha256": "d6cdf7ac66a6509ceba08e3541b856f0734acf79f9a485ed8a6e2c72f0d211a8"
+    },
+    {
+      "bytes": 37757,
+      "git_blob_sha1": "496b226574b84c1b65edde284dfbfaa48b4f4b8d",
+      "path": "sweagent/agent/models.py",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/agent/models.py",
+      "sha256": "91a8cb62703d7db656b0e615811ff0b9eedd51cd3ea89a6eeb2393f1d35c6cce"
+    },
+    {
+      "bytes": 10989,
+      "git_blob_sha1": "cbe01952643decdf8c519b10a659e254e9a02384",
+      "path": "sweagent/environment/swe_env.py",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/environment/swe_env.py",
+      "sha256": "cc2631890aaba56a648a2bdeef6019b7c2f29a171daba6e704adbfb57ff99c7a"
+    },
+    {
+      "bytes": 9519,
+      "git_blob_sha1": "655db8dd9de19b9c044ced88c0fe14b7fc63d110",
+      "path": "sweagent/environment/repo.py",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/environment/repo.py",
+      "sha256": "88d0c1098202a725eaaddcfa8d61b09eaacb7232cad5becbcd568b50b26dc760"
+    },
+    {
+      "bytes": 101,
+      "git_blob_sha1": "5de565b72f5b7a8de9260090ec2338e70864ac6b",
+      "path": "tests/test_data/data_sources/simple_instances.yaml",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/tests/test_data/data_sources/simple_instances.yaml",
+      "sha256": "b088b1a7d146afcab66d2c529409066685a2b4d4433ba18df3649aef0c374bd8"
+    },
+    {
+      "bytes": 2321,
+      "git_blob_sha1": "948ae25d56b5ae24d2d5aa4c2275a62fc1d3bd3a",
+      "path": "docs/installation/source.md",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/docs/installation/source.md",
+      "sha256": "767c35277faa115d5e39c04d3af5e5a1c1cb1ec95bc5685593cc27979ee62319"
+    },
+    {
+      "bytes": 1354,
+      "git_blob_sha1": "c993977e15f6b6b02fdd88e4ff109398a0e69f7f",
+      "path": "docs/usage/cli.md",
+      "raw_url": "https://raw.githubusercontent.com/SWE-agent/SWE-agent/3ea751c087f32b16e039a2233dd6eefecef325d5/docs/usage/cli.md",
+      "sha256": "f3b3eb4c7df5a0e1dc68a19c394ed344ecd99dfb246fc6a9e40e0e8cafbae7e8"
+    }
+  ]
+}

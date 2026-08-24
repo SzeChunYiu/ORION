@@ -1,0 +1,170 @@
+{
+  "authority": "PUBLIC_DEVELOPMENT_OUTCOME_BLIND_MECHANICAL_BINDING_ONLY__NOT_PERFORMANCE_CONFIRMATION_OR_INDEPENDENT_CUSTODY",
+  "exact_imports": {
+    "content_identity_module": {
+      "function": "content_identity",
+      "path": "development/p2-source-disjoint-title-emphasis-v9-2026-08-23/prepare_population_v9.py",
+      "rule": "Import and call directly; do not copy, normalize, wrap or recanonicalize its title/abstract arguments before the call.",
+      "sha256": "9b992f457a6fed28aa1126b1073385475a76fd802da660b5f5fb07677d054020"
+    },
+    "u4_core": {
+      "path": "development/p2-donor-envelopment-v8-2026-08-23/pinned_active_core_v3.py",
+      "sha256": "348b7aa1fe708d480da178bdfd4736ec08df86a2d177337b94af205eefbe649a"
+    },
+    "u4_text_authority": {
+      "construction": "Normalize title and abstract with the imported V9 normalize function, then exact expression f'{title} {abstract}'.strip(); hash model text separately from population identity.",
+      "path": "development/p2-title-emphasis-conflict-resolved-v10-2026-08-23/run_title_emphasis_v10.py",
+      "sha256": "8808e9dc05db7d1e18294cb6d6da8e17b1dd94260697e85e0445ec18f2fb9837"
+    }
+  },
+  "frozen_at_utc": "2026-08-24T06:07:45.672571+00:00",
+  "frozen_witness": {
+    "expected_exact_u4_model_text_sha256": "77baa6675fd97c3c630fdd971baddd5250d864260d31cf2ac6632fa2a93943fa",
+    "expected_keyword_normalized_bytes_by_record": {
+      "1003": 282,
+      "1018": 572
+    },
+    "expected_keyword_sha256_by_record": {
+      "1003": "84d5e7ad0f936aeb53d05447d6784452990a776916d33711f5f1c719f01c7c42",
+      "1018": "3a376c64afe24454b1d3caff6d2fe46de471851aeee999659b20054ef3477d7e"
+    },
+    "expected_v10_content_identity": "d1b054eda2f1fb8dea2e3ad78c9d32aba9819f9d2465b6509949ec11f4117bd4",
+    "record_ids": [
+      "1003",
+      "1018"
+    ],
+    "review": "Appenzeller-Herzog_2020",
+    "selection_provenance": "Record pair frozen before keyword-value access in V12; V13 uses no alternative-pair search."
+  },
+  "matched_performance_prerequisites": {
+    "all_must_close_before_any_run": [
+      "A source-disjoint, exact-rights family of exactly seven review units with provider-native keywords in at least six units.",
+      "Complete label-blind population and source hashes frozen before outcomes.",
+      "Exact u4 and keyword-only change with learner/balancer/active loop unchanged.",
+      "All keyword parsing/vectorization/fitting costs charged.",
+      "Independent outcome custody and result verification identities bound.",
+      "Unchanged V10 simultaneous noncompensatory gates."
+    ],
+    "current_closed": 0,
+    "current_run_authorized": false
+  },
+  "outcome_boundary": {
+    "allowed_fields": [
+      "record_id",
+      "title",
+      "abstract",
+      "keywords"
+    ],
+    "forbidden_values": [
+      "label_included",
+      "label_abstract_screening",
+      "class counts",
+      "rankings",
+      "CRE20",
+      "R@10",
+      "WSS95"
+    ],
+    "gate_retries": 0,
+    "model_runs": 0,
+    "network_requests": 0
+  },
+  "planned_outputs": [
+    "PROTOCOL_V13.json",
+    "MATCHED_CONTRACT_AND_SUPPORT_FREEZE_V13.json",
+    "IMPLEMENTATION_FREEZE_V13.json",
+    "PROTOCOL_FREEZE_RECEIPT_V13.json",
+    "run_outcome_blind_gate_v13.py",
+    "OUTCOME_BLIND_GATE_RECEIPT_V13.json",
+    "KEYWORD_SUPPORT_CEILING_V13.json",
+    "NEXT_DISCRIMINATOR_V14.json",
+    "RESULT_V13.json",
+    "NEGATIVE_RESULT_LEDGER_V13.md",
+    "SCIENTIFIC_REPORT_V13.md",
+    "verify_v13.py",
+    "VALIDATION_RECEIPT_V13.json",
+    "SHA256SUMS"
+  ],
+  "predecessors": [
+    {
+      "path": "development/p2-state-expanding-acquisition-v12-2026-08-24/PROTOCOL_V12.json",
+      "sha256": "7588ecdddc7d421178e4eb18b140977bb18eb11e8ed2523d071f53a5ed5f09b7"
+    },
+    {
+      "path": "development/p2-state-expanding-acquisition-v12-2026-08-24/OUTCOME_BLIND_GATE_RECEIPT_V12.json",
+      "sha256": "a7d4c2e8b4950217295f222110db8c9b2b82f72ec048a12bd48cbe35c65356cc"
+    },
+    {
+      "path": "development/p2-state-expanding-acquisition-v12-2026-08-24/POST_GATE_DIAGNOSIS_V12.json",
+      "sha256": "260c1dedeb9da1e56c174e86b86373198249b3f3ee70fc88c5d049ece1dff69a"
+    },
+    {
+      "path": "development/p2-state-expanding-acquisition-v12-2026-08-24/RESULT_V12.json",
+      "sha256": "99c054ac292a7ceb2602323ca011f651f8f3ca3f00fb1a0d25b2684979836ff4"
+    },
+    {
+      "path": "development/p2-source-disjoint-title-emphasis-v9-2026-08-23/SOURCE_SELECTION_FREEZE_V9.json",
+      "sha256": "a75c2d8203cd54dff7587cf40c982080dd1d37f217bd4821135050f893580a99"
+    },
+    {
+      "path": "development/p2-source-disjoint-title-emphasis-v9-2026-08-23/prepare_population_v9.py",
+      "sha256": "9b992f457a6fed28aa1126b1073385475a76fd802da660b5f5fb07677d054020"
+    },
+    {
+      "path": "development/p2-title-emphasis-conflict-resolved-v10-2026-08-23/run_title_emphasis_v10.py",
+      "sha256": "8808e9dc05db7d1e18294cb6d6da8e17b1dd94260697e85e0445ec18f2fb9837"
+    },
+    {
+      "path": "development/p2-donor-envelopment-v8-2026-08-23/pinned_active_core_v3.py",
+      "sha256": "348b7aa1fe708d480da178bdfd4736ec08df86a2d177337b94af205eefbe649a"
+    }
+  ],
+  "preserved_v12_terminal": "P2_V12_PROVIDER_NATIVE_KEYWORDS_DIFFER_ON_EXACT_U4_TEXT_TIE__FROZEN_V10_CONTENT_IDENTITY_BINDING_FAILS_TRAILING_EMPTY_ABSTRACT_CANONICALIZATION__GATE_FAIL_CLOSED__NO_PERFORMANCE_RUN",
+  "prohibitions": [
+    "No V12 edit, retry or relabelling.",
+    "No alternate-pair search.",
+    "No model or performance run.",
+    "No label interpretation or class counts.",
+    "No claim that keywords improve screening.",
+    "No independent/protected confirmation claim.",
+    "No pytest, repository CI, manuscript/shared-ledger/Git/other-lane edit."
+  ],
+  "protocol_id": "P2_V13_IMPORTED_CONTENT_IDENTITY_AND_SEPARATE_U4_TEXT_KEYWORD_WITNESS",
+  "public_source": {
+    "expected_bytes": 5807809,
+    "expected_sha256": "456f9306b0ce1aee840ac0244f11df3b2a168aa46007a92f5dcf59916d309a69",
+    "licence": "CC-BY Attribution 4.0 International",
+    "path": "../private-sources/p2-systematic-review-datasets-v9/Appenzeller-Herzog_2020.csv",
+    "pinned_url": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/Appenzeller-Herzog_2020/output/Appenzeller-Herzog_2020.csv",
+    "raw_redistribution": false
+  },
+  "repair_boundary": "V13 does not retry V12 or reinterpret its failed gate. It creates a new identity that repairs only the frozen canonicalizer implementation and validates the disclosed witness as public development evidence.",
+  "schema_version": "orion.p2.state-expanding-acquisition.protocol.v13",
+  "scientific_question": "When the exact V9/V10 content-identity function is imported from its byte-bound module without reimplementation, do the two V12-frozen provider records bind the V10 population fibre, separately tie on exact u4 model text, and remain separated by provider-native keywords?",
+  "single_authorized_gate": {
+    "gate_id": "G1_IMPORTED_IDENTITY_SEPARATE_TEXT_KEYWORD_NONSIMULATION",
+    "negative_meaning": "Any mismatch fails closed; no alternate pair or V13 retry.",
+    "pass_rule": [
+      "All exact source, V9/V10 modules, u4 core, V12 and source-selection hashes bind.",
+      "Exactly the V12-frozen records 1003 and 1018 are read using only record_id, title, abstract and keywords.",
+      "Direct calls to the imported V9 content_identity function return the exact V10 identity for both records.",
+      "Separately constructed exact V10/u4 model-text hashes equal the frozen 77baa... value for both records.",
+      "Normalized keyword hashes and byte lengths equal the V12-frozen receipts and the hashes differ.",
+      "No label value, class count, model, ranking or performance outcome is interpreted, retained or computed."
+    ],
+    "positive_meaning": "The disclosed provider-native keyword coordinate is a byte-bound non-simulable state witness on one exact u4 text fibre within the V10 population. No performance or transport claim follows."
+  },
+  "smallest_lawful_keyword_population": {
+    "current_v10_keyword_capable_review_count": 4,
+    "current_v10_keyword_capable_reviews": [
+      "Appenzeller-Herzog_2020",
+      "Bos_2018",
+      "Kwok_2020",
+      "Wolters_2018"
+    ],
+    "current_v10_review_count": 7,
+    "current_v10_sign_gate_required_strictly_positive_reviews": 6,
+    "current_witness_population_records": 2,
+    "performance_run_authorized": false,
+    "support_ceiling": "With exact-u4 fallback on the three reviews lacking provider-native keywords, a keyword-only mechanism can be strictly positive on at most 4/7 reviews, below the unchanged 6/7 sign gate."
+  }
+}

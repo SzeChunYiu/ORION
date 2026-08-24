@@ -1,0 +1,127 @@
+{
+  "schema_version": "orion.p5.attribution-instrument.v2",
+  "paper_id": "P5",
+  "lane": "NR-01",
+  "frozen_date": "2026-08-23",
+  "protocol_status": "PROSPECTIVE_DESIGN_ONLY__NO_V2_OUTCOMES_ACCESSED",
+  "outcomes_accessed": false,
+  "modifies_original_diagnostic": false,
+  "historical_errors_immutable": true,
+  "source_negative": {
+    "claim_id": "P5.glm52_attribution",
+    "verification_record": "research/verification/records/P5.glm-5.2-attribution-21-24.json",
+    "historical_accuracy": "21/24 = 0.875 (glm-5.2, V1 instrument)",
+    "historical_standard_macro_f1": 0.8726190476190476,
+    "residual_errors": [
+      {"case_id": "P5-HC-002", "gold": "RETRIEVAL_MISS", "attributed": "REPRESENTATION_GAP", "confidence": "MEDIUM"},
+      {"case_id": "P5-HC-012", "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE", "attributed": "IMPLEMENTATION_BUG", "confidence": "HIGH"},
+      {"case_id": "P5-HC-018", "gold": "REPRESENTATION_GAP", "attributed": "METHOD_BASIS_GAP", "confidence": "HIGH"}
+    ]
+  },
+  "failure_attribution": {
+    "method": "Each residual error was attributed to exactly one stage by reading the frozen case text, the V1 prompt (scripts/run_p5_glm_attribution.py ATTRIBUTION_PROMPT), and the recorded reasoning in results.jsonl. A case is decidable iff the licensed evidence (text the case actually states) maps onto exactly one family under the eight published one-line definitions; speculation beyond the text is not licensed.",
+    "per_case": {
+      "P5-HC-002": {
+        "stage": "attribution_mechanism",
+        "licensed_evidence": "The failure predicate's subject is 'the nearest neighbor search'; 'fails to find semantically similar documents' with 'despite clear content overlap' (relevant content exists) matches the RETRIEVAL_MISS definition verbatim in structure. No representation/encoding/format choice is stated to be wrong, so REPRESENTATION_GAP's definition ('Correct algorithm/data but wrong representation, encoding, or format choice') has no licensed support.",
+        "model_override": "Recorded reasoning infers embedding quality ('points to the embedding representation failing to capture semantic similarity') from 'embeddings were generated' — a mechanism the text never states.",
+        "decidable_from_licensed_evidence": true
+      },
+      "P5-HC-012": {
+        "stage": "attribution_mechanism",
+        "licensed_evidence": "Conditional failure structure: 'fails when encountering file paths with spaces, despite working on test data with simple names'; context names test_data vs production_data as the differing property. The operative variable between the working and failing regime is an environment/data property; the text states no code-logic defect (IMPLEMENTATION_BUG's definition requires one).",
+        "model_override": "Recorded reasoning converts the environment-conditional trigger into a code-located defect ('The code fails to correctly handle paths with spaces — a concrete implementation defect'), injecting a defect locus the text does not assert.",
+        "decidable_from_licensed_evidence": true
+      },
+      "P5-HC-018": {
+        "stage": "attribution_mechanism",
+        "licensed_evidence": "Explicit stated-cause clause: 'because the representation doesn't capture causal structure' names the representation as the failing locus, matching REPRESENTATION_GAP's definition.",
+        "model_override": "Recorded reasoning re-derives a deeper cause ('its foundational approach lacks causal structure ... requires a fundamentally different method'), overriding the stated cause clause with a METHOD_BASIS_GAP reading.",
+        "decidable_from_licensed_evidence": true
+      }
+    },
+    "common_root_cause": "All three errors are the same single-stage failure: the V1 instrument asks for 'best judgment' via free-form causal reasoning, so any mechanism the model finds plausible can override the evidence the case actually states. The three lost cases are exactly those whose designed competitor family (per the sealed competing_cause_set) is the more 'deeply causal' attractor: representation deeper than search, code defect deeper than environment trigger, method deeper than representation. No case is genuinely undecidable, so none is relabeled CANNOT_CHECK; the scoring rule stage is not implicated.",
+    "genuinely_undecidable_cases": []
+  },
+  "hypothesis": "The three residual errors are instrument-stage artifacts, not model-capability limits: forcing licensed-evidence extraction (Stage A) before a deterministic definitional mapping (Stage B) removes them under the same serving conditions, without any case-specific or family-pair-specific rule.",
+  "arms": {
+    "control": {
+      "name": "V1_PROMPT_REPLAY",
+      "purpose": "Same-model anchor: replay the exact V1 ATTRIBUTION_PROMPT on the currently served model to check whether the V1 confusion pattern reproduces when only the serving changes. Not a re-measurement of the historical glm-5.2 run.",
+      "uses": "verbatim ATTRIBUTION_PROMPT from scripts/run_p5_glm_attribution.py"
+    },
+    "treatment": {
+      "name": "V2_LICENSED_EVIDENCE_STAGED_ATTRIBUTION",
+      "purpose": "Attribution derived by deterministic rules from a structured, quote-backed extraction of licensed evidence; the model only extracts, never diagnoses."
+    }
+  },
+  "serving": {
+    "requested_model": "glm-5.2",
+    "known_routing": "z.ai anthropic endpoint currently serves 'glm-5.3' under the 'glm-5.2' alias; served model is recorded per response; both arms run under identical serving conditions.",
+    "temperature": 0.0,
+    "endpoint": "https://api.z.ai/api/anthropic/v1/messages (direct, stdlib-only client; same backend as the original campaign's local adapter)"
+  },
+  "v2_instrument": {
+    "stage_a_extraction": {
+      "inputs": ["visible_symptom", "candidate_visible_context"],
+      "prohibitions": [
+        "Use ONLY what the case text states. No outside knowledge, no inferred mechanisms, no world model about how such systems usually fail.",
+        "Every non-absent field must carry a verbatim quote from the symptom or context.",
+        "Extraction only: never name a root-cause family and never diagnose."
+      ],
+      "fields": {
+        "failing_subject": "the system/component the failure sentence asserts is failing, with locus category",
+        "stated_cause": "an explicit causal clause in the text ('because X', 'due to X', 'since X', or an appositive naming the defect), with the locus category of the system whose failure/defect the clause asserts; absent if none",
+        "working_failing_delta": "present only if the SAME system/code is described as working in one regime and failing in another; differs_by=ENVIRONMENT_OR_DATA_PROPERTY only when the differing property belongs to the environment or input data (two measurements disagreeing is NOT such a delta)",
+        "stated_code_defect": "YES only if the text itself asserts the code's logic/implementation is defective (wrong logic, incorrect assumption, bad accumulation, inefficient implementation); a wrong choice of representation/format/data-structure with the algorithm otherwise correct is NOT a code defect"
+      },
+      "locus_vocabulary": [
+        "SEARCH_RETRIEVAL_LOOKUP",
+        "PLANNING_ROUTING",
+        "CODE_LOGIC_IMPLEMENTATION",
+        "EXTERNAL_DEPENDENCY_ENVIRONMENT_TOOL",
+        "EVALUATOR_MEASUREMENT_SYSTEM",
+        "REPRESENTATION_ENCODING_FORMAT",
+        "PROTOCOL_SPECIFICATION_MEASUREMENT_DESIGN",
+        "FOUNDATIONAL_METHOD",
+        "NONE"
+      ],
+      "locus_vocabulary_derivation": "One locus per published family definition as given verbatim in the V1 prompt; the vocabulary restates the taxonomy, it does not add information the V1 arm lacked."
+    },
+    "stage_b_mapping": {
+      "locus_to_family": {
+        "SEARCH_RETRIEVAL_LOOKUP": "RETRIEVAL_MISS",
+        "PLANNING_ROUTING": "ROUTING_PLANNING_MISS",
+        "CODE_LOGIC_IMPLEMENTATION": "IMPLEMENTATION_BUG",
+        "EXTERNAL_DEPENDENCY_ENVIRONMENT_TOOL": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+        "EVALUATOR_MEASUREMENT_SYSTEM": "EVALUATOR_METRIC_BUG",
+        "REPRESENTATION_ENCODING_FORMAT": "REPRESENTATION_GAP",
+        "PROTOCOL_SPECIFICATION_MEASUREMENT_DESIGN": "MEASUREMENT_SPECIFICATION_GAP",
+        "FOUNDATIONAL_METHOD": "METHOD_BASIS_GAP"
+      },
+      "rules_in_priority_order": [
+        "R1: stated_code_defect=YES AND stated_cause present AND locus(stated_cause) maps to a family different from IMPLEMENTATION_BUG -> CANNOT_DISTINGUISH (self-contradictory licensed evidence)",
+        "R2: stated_code_defect=YES -> IMPLEMENTATION_BUG",
+        "R3: stated_cause present -> locus_to_family[stated_cause.locus] (NONE locus falls through)",
+        "R4: working_failing_delta.differs_by=ENVIRONMENT_OR_DATA_PROPERTY -> ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+        "R5: failing_subject.locus != NONE -> locus_to_family[failing_subject.locus]",
+        "R6: otherwise -> CANNOT_DISTINGUISH (no licensed evidence)"
+      ],
+      "priority_rationale": "Most specific asserted defect first: an asserted concrete code defect (R2) is more specific than a generic cause clause (R3), which is more specific than a structural contrast (R4), which is more specific than component identity (R5).",
+      "determinism": "Stage B is pure code; identical extraction always yields the identical family."
+    }
+  },
+  "scoring": {
+    "accuracy": "correct / 24 against frozen suite gold",
+    "macro_f1": "standard one-vs-rest macro-F1 from tp/fp/fn per label (independent-scorer convention from research/verification/records/P5.glm-5.2-attribution-21-24.json)",
+    "cannot_distinguish_handling": "Reported separately with the fired rule; NOT counted as error and NOT counted as success. Pre-registered justification rule: a CANNOT_DISTINGUISH is legitimate only when no licensed-evidence rule fires; if any fires, the output is scored."
+  },
+  "honesty_boundary": [
+    "This is a re-test of instrument design on a frozen in-repo suite whose gold labels are colocated in the repository (verifier discrepancy P5.protected-label-colocated-in-suite-json). It is NOT a blind evaluation and does not certify blind or fresh-transfer attribution capability; that remains the fresh-transfer campaign lane.",
+    "The served model is glm-5.3 under the glm-5.2 alias; the V1 21/24 historical anchor (glm-5.2) is history, not re-measured. The control arm exists precisely so the before/after comparison varies the instrument, not the serving.",
+    "V1 results, receipts, and tables are immutable; nothing is relabeled; the V2 evidence lands in a new directory.",
+    "Stage-B rules are stated only over the published family definitions and general linguistic structure (stated-cause clause, concessive/contrastive regime delta, defect-locus assertion, failing subject). No case identifiers and no family-pair-specific provisions exist anywhere in the instrument.",
+    "If V2 does not improve, or improves the three cases while degrading others, the full 24-case matrix is reported unchanged."
+  ],
+  "current_terminal": "P5_ATTRIBUTION_INSTRUMENT_V2_DESIGNED_NOT_EXECUTED"
+}

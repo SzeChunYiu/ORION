@@ -1,0 +1,917 @@
+{
+  "all_eight_cells_pass_frozen_signal_gate": false,
+  "authority": "PUBLIC_METADATA_SOURCE_FEASIBILITY_ONLY",
+  "candidate_jsonl_sha256": "d6f767e88cdc401dd1f7643ed76e4460645fcc3dff9744dc504fed01351c1247",
+  "candidate_rows": 173,
+  "case_outcomes_accessed": false,
+  "cross_query_record_count": 38,
+  "date": "2026-08-23",
+  "files_downloaded": false,
+  "forbidden_claims": [
+    "natural-pair eligibility",
+    "article identity equivalence without adjudication",
+    "content rights beyond exact Zenodo record licence",
+    "linked external object rights",
+    "case resolution",
+    "scientific performance",
+    "provider generality",
+    "confirmation",
+    "ORION superiority"
+  ],
+  "identity": "P4_ZENODO_RELATED_OBJECT_CENSUS_V2",
+  "model_outcomes_executed": false,
+  "pagination_integrity_passed": true,
+  "per_cell": {
+    "EARTH_DATA": {
+      "domain_id": "EARTH_ENVIRONMENT",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "passes_frozen_signal_gate": false,
+      "publication_typed_relation_candidates": 37
+    },
+    "EARTH_SOFTWARE": {
+      "domain_id": "EARTH_ENVIRONMENT",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "passes_frozen_signal_gate": false,
+      "publication_typed_relation_candidates": 6
+    },
+    "LIFE_DATA": {
+      "domain_id": "LIFE_BIOMEDICAL",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "passes_frozen_signal_gate": false,
+      "publication_typed_relation_candidates": 44
+    },
+    "LIFE_SOFTWARE": {
+      "domain_id": "LIFE_BIOMEDICAL",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "passes_frozen_signal_gate": false,
+      "publication_typed_relation_candidates": 10
+    },
+    "PHYSICAL_DATA": {
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "passes_frozen_signal_gate": false,
+      "publication_typed_relation_candidates": 29
+    },
+    "PHYSICAL_SOFTWARE": {
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "passes_frozen_signal_gate": false,
+      "publication_typed_relation_candidates": 10
+    },
+    "SCIENTIFIC_SOFTWARE": {
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "passes_frozen_signal_gate": false,
+      "publication_typed_relation_candidates": 7
+    },
+    "SOFTWARE_DATA": {
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "passes_frozen_signal_gate": false,
+      "publication_typed_relation_candidates": 30
+    }
+  },
+  "prefreeze_disclosure_sha256": "76eab6d8d7c1f32df141d16dbbe57d3007ba183a8d3e9a44818626f6a2644178",
+  "protocol_sha256": "01c1bb250accfaee4103a162565cd2107515cd306adf690713a5c1372e953d1f",
+  "provider_schema_passed": true,
+  "query_count": 8,
+  "query_receipts": [
+    {
+      "domain_id": "EARTH_ENVIRONMENT",
+      "licence_eligible": 194,
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "pages": [
+        {
+          "page": 1,
+          "raw_response_bytes": 405043,
+          "raw_response_file": "01_EARTH_DATA_page_01.json",
+          "raw_response_sha256": "a209653431340ca6724ba116896ef3628fc7c9252126b0b0db1d964d17cfff97",
+          "reported_total_hits": 50734,
+          "request_url_sha256": "35442ca454b9fe17e7d5295ce4b5a157282b870a639a8c1ec5d6425e4daef2aa",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 2,
+          "raw_response_bytes": 278281,
+          "raw_response_file": "01_EARTH_DATA_page_02.json",
+          "raw_response_sha256": "8c3026069a7928c6546ad1a2af6b57d84629698178613543118d0811dd82ab56",
+          "reported_total_hits": 50734,
+          "request_url_sha256": "18d00c2a8020db7c1f3f67340f4f6a5eacb59d160641d1676ad871bfaf7e72b9",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 3,
+          "raw_response_bytes": 298938,
+          "raw_response_file": "01_EARTH_DATA_page_03.json",
+          "raw_response_sha256": "c95bae261ae0e7c0de3ec345378e3489d5c3e1ca6af01d8d8b9f3df8ba56a0bd",
+          "reported_total_hits": 50734,
+          "request_url_sha256": "0e3d8e0a9d745ad48d83d591b8b52fa2a257cde71282eca73fdd59e6829ecde4",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 4,
+          "raw_response_bytes": 269162,
+          "raw_response_file": "01_EARTH_DATA_page_04.json",
+          "raw_response_sha256": "3d8a4df876f6cc31d7c4f82818869142d32455322dc6ac0f029783357b149e05",
+          "reported_total_hits": 50734,
+          "request_url_sha256": "300462b427633ef3d36549769858cf5577d1805a5daf18c52a3652affd49e893",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 5,
+          "raw_response_bytes": 235157,
+          "raw_response_file": "01_EARTH_DATA_page_05.json",
+          "raw_response_sha256": "d15376721f24698da25c69ff08e6cfec5cba67cc82366a200c4fad84c1a70e9f",
+          "reported_total_hits": 50734,
+          "request_url_sha256": "62d0e0711484c5ab12b7d4289ce00738fc8ec82ca1d1167e90047f0fb1a96cb3",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 6,
+          "raw_response_bytes": 279027,
+          "raw_response_file": "01_EARTH_DATA_page_06.json",
+          "raw_response_sha256": "1630e968814fb14a4d2c69b3fce9533e1c6ce920c7072ce8a0d8b4c7ef990d85",
+          "reported_total_hits": 50734,
+          "request_url_sha256": "070ae1651c4743fbfba3b66ee9d79750c7da196722abfb85f12100acf28a9684",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 7,
+          "raw_response_bytes": 298656,
+          "raw_response_file": "01_EARTH_DATA_page_07.json",
+          "raw_response_sha256": "d6e04687d300f7272d39f2b10e2355b15afb66fc141e1d608685529bdf7cac24",
+          "reported_total_hits": 50734,
+          "request_url_sha256": "fbf91aa490d8fe55f7dd210335c2b951d32720fbecce48db9d7a9cde19875eee",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 8,
+          "raw_response_bytes": 294625,
+          "raw_response_file": "01_EARTH_DATA_page_08.json",
+          "raw_response_sha256": "bb004136b6f95bcb3bbfb19fdebbeeb0694a868dfe3df8a735ae152ed74a94f3",
+          "reported_total_hits": 50734,
+          "request_url_sha256": "88f50f40b9beef51406338d99706fe68d72bda09bacfa0ce25f44ff085a8c433",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 9,
+          "raw_response_bytes": 281717,
+          "raw_response_file": "01_EARTH_DATA_page_09.json",
+          "raw_response_sha256": "941ec033e5113e4d1b2de49b677996ed3ed7ba307ab939dfeb990a4c2d888fbb",
+          "reported_total_hits": 50734,
+          "request_url_sha256": "988feca0c2cbd394d2eba046142e1c49b8467f2b5420133692734d3a6866de1f",
+          "returned_hits": 25,
+          "schema_passed": true
+        }
+      ],
+      "prefreeze_exclusions": 25,
+      "public_file_evidence_eligible": 174,
+      "publication_typed_relation_eligible": 37,
+      "query_id": "EARTH_DATA",
+      "raw_hits": 225,
+      "typed_relation_eligible": 51,
+      "unique_raw_records": 225
+    },
+    {
+      "domain_id": "LIFE_BIOMEDICAL",
+      "licence_eligible": 190,
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "pages": [
+        {
+          "page": 1,
+          "raw_response_bytes": 371520,
+          "raw_response_file": "02_LIFE_DATA_page_01.json",
+          "raw_response_sha256": "f77a3c7d42224d3df74d7c725be1fb41733ac66a3685da8c36035de5e512c7b1",
+          "reported_total_hits": 72887,
+          "request_url_sha256": "fb079aed2e76b8e0219209d534d85ec0a0c5f89145d287b7f30614d93a550a81",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 2,
+          "raw_response_bytes": 252527,
+          "raw_response_file": "02_LIFE_DATA_page_02.json",
+          "raw_response_sha256": "f5cfea6eff3ff2ceb7727a6abbd66f8cf03448a19bf948fdc2470c1b6659872d",
+          "reported_total_hits": 72887,
+          "request_url_sha256": "32fdd4b3e78308ebfd9d018e51c5da85da0463a78277731d43e260cef48b3ca2",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 3,
+          "raw_response_bytes": 330441,
+          "raw_response_file": "02_LIFE_DATA_page_03.json",
+          "raw_response_sha256": "63f73dff7fa91283d7cdb0a092ab470a6ddc414b513e7c24eec6b2f7a867d1a3",
+          "reported_total_hits": 72887,
+          "request_url_sha256": "f41502bb33616ee0bf5e6965ab1d7d5fc814f1ef4efa1554f5b944001c7b75ad",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 4,
+          "raw_response_bytes": 272307,
+          "raw_response_file": "02_LIFE_DATA_page_04.json",
+          "raw_response_sha256": "a195448663c90254177a361df585e41bdfad6b39ee8f7c790321a35e8163e015",
+          "reported_total_hits": 72887,
+          "request_url_sha256": "dc9f7036350dbd190cee31420b050b6e8cc13d46801a73ef38bbad9c0b8f6bd8",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 5,
+          "raw_response_bytes": 282500,
+          "raw_response_file": "02_LIFE_DATA_page_05.json",
+          "raw_response_sha256": "48b63a24181fcdd15043945f4deea27f39d3b27830834ba995f20122a7ac3d1e",
+          "reported_total_hits": 72887,
+          "request_url_sha256": "06637b59f19a686b82b4a32e4fca16f413a2855723e9c4a572f2aba797f4556c",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 6,
+          "raw_response_bytes": 169310,
+          "raw_response_file": "02_LIFE_DATA_page_06.json",
+          "raw_response_sha256": "be4267e9ee667499c1d0e95769bf3e1edd4afd69690af405cb2d012508d481a0",
+          "reported_total_hits": 72887,
+          "request_url_sha256": "682c0d5f3173e8b0a97a7eafab5ea225f9a816b9785a2628e90088a414bad773",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 7,
+          "raw_response_bytes": 230805,
+          "raw_response_file": "02_LIFE_DATA_page_07.json",
+          "raw_response_sha256": "7fefd2e9f8210dfc36759940f2bb2b297613bf75aad97fca17c63dbd184cdade",
+          "reported_total_hits": 72887,
+          "request_url_sha256": "0decb58ab2d5ba64e625186f9bbebb5f1078b1884cddaa11294d9b7812f6b899",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 8,
+          "raw_response_bytes": 304095,
+          "raw_response_file": "02_LIFE_DATA_page_08.json",
+          "raw_response_sha256": "f60111dc37509a9f245f2c722235eee5d51b88d7801b1e2dc6d69b085dbed525",
+          "reported_total_hits": 72887,
+          "request_url_sha256": "e60a224c360951cbd2a662396aaed83298979264a88a901f633eed1e7254ab05",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 9,
+          "raw_response_bytes": 195878,
+          "raw_response_file": "02_LIFE_DATA_page_09.json",
+          "raw_response_sha256": "b1f3eac8bf382cc57e1aa14359103f7e2c21f9158973a19565ecefa89eb4a212",
+          "reported_total_hits": 72887,
+          "request_url_sha256": "c404040cb52cc30e47e512454dd9e6de2f969b8e82014a28bb71b6a7596c0a7a",
+          "returned_hits": 25,
+          "schema_passed": true
+        }
+      ],
+      "prefreeze_exclusions": 26,
+      "public_file_evidence_eligible": 178,
+      "publication_typed_relation_eligible": 44,
+      "query_id": "LIFE_DATA",
+      "raw_hits": 225,
+      "typed_relation_eligible": 63,
+      "unique_raw_records": 225
+    },
+    {
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "licence_eligible": 180,
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "pages": [
+        {
+          "page": 1,
+          "raw_response_bytes": 307768,
+          "raw_response_file": "03_PHYSICAL_DATA_page_01.json",
+          "raw_response_sha256": "aafa044878c746cba4f17d5613a6c5e3954babcd0c2ff2af002565977b24c266",
+          "reported_total_hits": 45707,
+          "request_url_sha256": "823e34139a0e15a0c240c5f00d0a70f18cf1590352a67b3623dc550c106d839d",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 2,
+          "raw_response_bytes": 325128,
+          "raw_response_file": "03_PHYSICAL_DATA_page_02.json",
+          "raw_response_sha256": "3ef0ae9fd64aa3615361302cd678fd44dad6a44a5a2f3e389f3e10d516b1e631",
+          "reported_total_hits": 45707,
+          "request_url_sha256": "7c53e56f15e750209e10cc3524127f8f938f04ce3846d83b40f7b2175739e3af",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 3,
+          "raw_response_bytes": 322713,
+          "raw_response_file": "03_PHYSICAL_DATA_page_03.json",
+          "raw_response_sha256": "f7054edcd791d9091bbe2a823efea9e1b481b602bf08d79c04ca4250fd7e333c",
+          "reported_total_hits": 45707,
+          "request_url_sha256": "465c3c7b97d730fc11c78ac24111d5a5c932f35bb8752baa49823f105276403f",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 4,
+          "raw_response_bytes": 301079,
+          "raw_response_file": "03_PHYSICAL_DATA_page_04.json",
+          "raw_response_sha256": "88cfd4aef4b2c386436c6da0d30b81ae15cfe548062c04fb341e35f79f56cd1a",
+          "reported_total_hits": 45707,
+          "request_url_sha256": "def7c7aa8ea751ae57428630371584b419eb1b3008a8d4cf191e11bfdc7f1dc0",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 5,
+          "raw_response_bytes": 236137,
+          "raw_response_file": "03_PHYSICAL_DATA_page_05.json",
+          "raw_response_sha256": "fb737c7957cf62b548c709f613c951eedc2d56d6eaae9cab68a83b254717d934",
+          "reported_total_hits": 45707,
+          "request_url_sha256": "c8ddbd4262c44434f75fb9646c8a7b3c70360c6e280faf49a21a556eeec3c824",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 6,
+          "raw_response_bytes": 247210,
+          "raw_response_file": "03_PHYSICAL_DATA_page_06.json",
+          "raw_response_sha256": "0580f694a9ad2cbc47a2c0c40289bba82f109016afd290f8f1eaf1d05f2a744d",
+          "reported_total_hits": 45707,
+          "request_url_sha256": "2ef093084b42c410f4afd11067fa69941222fadbacd1d763166ba9c5f64a7a44",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 7,
+          "raw_response_bytes": 247747,
+          "raw_response_file": "03_PHYSICAL_DATA_page_07.json",
+          "raw_response_sha256": "68c791012fb56d2050d19ac294e19e318b8bf9e6985356c1e35a7804bec2fc11",
+          "reported_total_hits": 45707,
+          "request_url_sha256": "659f4ba7859f405d9b571a0260311b74cb41b654928ea12d7750f25c03e60743",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 8,
+          "raw_response_bytes": 300371,
+          "raw_response_file": "03_PHYSICAL_DATA_page_08.json",
+          "raw_response_sha256": "fced636af25400cdf94d3f8651456829f71a95094591c50cadb1b4e2690bbc08",
+          "reported_total_hits": 45707,
+          "request_url_sha256": "49b61ec820e8e198a5f31bdb994d5cacdd3cae76ad62500cf4b196cbb4e9d4fc",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 9,
+          "raw_response_bytes": 171843,
+          "raw_response_file": "03_PHYSICAL_DATA_page_09.json",
+          "raw_response_sha256": "cd5b868e8a1ddb948d0e21ed86e4afe9364c83737676fa8614ac1cadf7254a65",
+          "reported_total_hits": 45707,
+          "request_url_sha256": "e84858503fb77fdbeecef51275bc8954f4e7d6bdd4444c66b0ee0c2e3ee2d0c6",
+          "returned_hits": 25,
+          "schema_passed": true
+        }
+      ],
+      "prefreeze_exclusions": 32,
+      "public_file_evidence_eligible": 161,
+      "publication_typed_relation_eligible": 29,
+      "query_id": "PHYSICAL_DATA",
+      "raw_hits": 225,
+      "typed_relation_eligible": 38,
+      "unique_raw_records": 225
+    },
+    {
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "licence_eligible": 185,
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "pages": [
+        {
+          "page": 1,
+          "raw_response_bytes": 303254,
+          "raw_response_file": "04_SOFTWARE_DATA_page_01.json",
+          "raw_response_sha256": "3b65731d9bcc97bb6f9b793b2bda4a9ad7872914f26bcf78008556e29739cc04",
+          "reported_total_hits": 61876,
+          "request_url_sha256": "b1c06d92e7e47345fb80011d6d7c9d3934954dd31434177bb80de12fdce921e0",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 2,
+          "raw_response_bytes": 371762,
+          "raw_response_file": "04_SOFTWARE_DATA_page_02.json",
+          "raw_response_sha256": "433e038659232c47f6cf364eca75e2146cbc8fbf43ceedb1c00faffb1dcb043f",
+          "reported_total_hits": 61876,
+          "request_url_sha256": "c32f73d7834f6292bacfd92002fdf28302035b89f218cd03bc3d15360908e627",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 3,
+          "raw_response_bytes": 296910,
+          "raw_response_file": "04_SOFTWARE_DATA_page_03.json",
+          "raw_response_sha256": "3869c24c775595e8a283401a73f185321c15ec186e1b2009d9b09b100052a424",
+          "reported_total_hits": 61876,
+          "request_url_sha256": "fef8a6eee08c53be5987d5d1c54dfebdb9e51e40c6928c7f97a3c6e005fda7ce",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 4,
+          "raw_response_bytes": 288826,
+          "raw_response_file": "04_SOFTWARE_DATA_page_04.json",
+          "raw_response_sha256": "bc3ad8b6408501b7a3459c2e9d9d4f76c89a775cd8f2c21a68832c1e4bc21a1d",
+          "reported_total_hits": 61876,
+          "request_url_sha256": "22c0d5ea5a8ede0ff84b8233a6b9cd4eebac99af9e148c355fbde5a98912a676",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 5,
+          "raw_response_bytes": 234451,
+          "raw_response_file": "04_SOFTWARE_DATA_page_05.json",
+          "raw_response_sha256": "06603afba00c10e3fd76bc6a4fc3750d5b5ad900ed90350ce8006156887ebb20",
+          "reported_total_hits": 61876,
+          "request_url_sha256": "fc0ee5439e0e8187dbd4720d56bc353b34fc3ef13a139179b16e7d80938d6985",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 6,
+          "raw_response_bytes": 317215,
+          "raw_response_file": "04_SOFTWARE_DATA_page_06.json",
+          "raw_response_sha256": "4fccdb22b61444204324bcd7e127f567367954a94aa83d6f7f1e2b7db432f66c",
+          "reported_total_hits": 61876,
+          "request_url_sha256": "3faed2aad799be29f915373d4640b6b14b1c9a83d732c8a5fada8dcfb1c9b69f",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 7,
+          "raw_response_bytes": 238021,
+          "raw_response_file": "04_SOFTWARE_DATA_page_07.json",
+          "raw_response_sha256": "bffdb404eae7e723fed9ec5d8e6153a4b8c788ad27c310a07e735ef3485a6711",
+          "reported_total_hits": 61876,
+          "request_url_sha256": "3154c270547617139449c0205ed226fabebd2b79849cc8f13f5afaf327964881",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 8,
+          "raw_response_bytes": 319646,
+          "raw_response_file": "04_SOFTWARE_DATA_page_08.json",
+          "raw_response_sha256": "9799560624f13c842f2938a3a5442a201c3ef189068b323ccc99150b388979be",
+          "reported_total_hits": 61876,
+          "request_url_sha256": "68f18f55ce1edfb9029094bdc9f6e2717e472338d8dcfbffc7e7bec82f6fb1bb",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 9,
+          "raw_response_bytes": 234587,
+          "raw_response_file": "04_SOFTWARE_DATA_page_09.json",
+          "raw_response_sha256": "f220abe3aedadbc87916a23447c74b2b1bf649ce19f2464e4b1c01c904c657d3",
+          "reported_total_hits": 61876,
+          "request_url_sha256": "58f4f315268cd155f10b101a404f19b9b37c66877423a34d0b8eba08e0d8247b",
+          "returned_hits": 25,
+          "schema_passed": true
+        }
+      ],
+      "prefreeze_exclusions": 31,
+      "public_file_evidence_eligible": 169,
+      "publication_typed_relation_eligible": 30,
+      "query_id": "SOFTWARE_DATA",
+      "raw_hits": 225,
+      "typed_relation_eligible": 45,
+      "unique_raw_records": 225
+    },
+    {
+      "domain_id": "EARTH_ENVIRONMENT",
+      "licence_eligible": 190,
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "pages": [
+        {
+          "page": 1,
+          "raw_response_bytes": 143096,
+          "raw_response_file": "05_EARTH_SOFTWARE_page_01.json",
+          "raw_response_sha256": "76ae6c1ce1e92297acdb61b7050b5197624d01ed2919747f0415475693f4319f",
+          "reported_total_hits": 12317,
+          "request_url_sha256": "8a51ae3602ed59618346349c52791efa6496c36ec779ccca5d1c3e9811089f8b",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 2,
+          "raw_response_bytes": 154981,
+          "raw_response_file": "05_EARTH_SOFTWARE_page_02.json",
+          "raw_response_sha256": "cf41e535d71b97614ce1fba185813a1548d560bb0eee0af906c4cc26017be93d",
+          "reported_total_hits": 12317,
+          "request_url_sha256": "39f114aa3348ef9e30b2d61d451f2e75924d9409cfe24b8e46ecaeab1fe87bc3",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 3,
+          "raw_response_bytes": 145276,
+          "raw_response_file": "05_EARTH_SOFTWARE_page_03.json",
+          "raw_response_sha256": "8dad58825dc9bd3a041388b441c6689ab14488455aea85ff1bd81d2bcc81aa0b",
+          "reported_total_hits": 12317,
+          "request_url_sha256": "dea57e248a894aed756fb0c9dd120b36d12c6afbf6af53aece70dafcc18136ba",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 4,
+          "raw_response_bytes": 153824,
+          "raw_response_file": "05_EARTH_SOFTWARE_page_04.json",
+          "raw_response_sha256": "401fe193f6b822cb20b8464cf63582a2956701a6beab1174176b2bb06a24fd6c",
+          "reported_total_hits": 12317,
+          "request_url_sha256": "34811ef56bc24ddd405222e2002234973a202b0c2d9061eccf4b96f3cb9b79ec",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 5,
+          "raw_response_bytes": 144601,
+          "raw_response_file": "05_EARTH_SOFTWARE_page_05.json",
+          "raw_response_sha256": "67e768bdd500c2cf2dfb12d1abf9ad80e3d0ef5e3f44c9dd11eff39ee845398b",
+          "reported_total_hits": 12317,
+          "request_url_sha256": "70a6d1a469d882dadf476c1a86077d1fc5fdcba2f8f9499c961047c8385fd467",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 6,
+          "raw_response_bytes": 144898,
+          "raw_response_file": "05_EARTH_SOFTWARE_page_06.json",
+          "raw_response_sha256": "f19ce078fa7ae91f9c2e06d0b273765678ca90c73b4f446ccecfd80aeb10d0f8",
+          "reported_total_hits": 12317,
+          "request_url_sha256": "3b608b7367dc0b9915793a811aee72fc58e851943271778b0ed2ece8455a5a87",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 7,
+          "raw_response_bytes": 165008,
+          "raw_response_file": "05_EARTH_SOFTWARE_page_07.json",
+          "raw_response_sha256": "c9ac001847ed07b03217f94256e774219e87a9687bd0b44223cf59d229ec8002",
+          "reported_total_hits": 12317,
+          "request_url_sha256": "5b55c0d0219faf6db3bea7c0d82c636e5ef194b40c2ff3c4a783ac60c7939dbe",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 8,
+          "raw_response_bytes": 149562,
+          "raw_response_file": "05_EARTH_SOFTWARE_page_08.json",
+          "raw_response_sha256": "dda5b1b8d4a4242d217c934e978c1b204f21218fb46fd1ba27f91d776ef14a6a",
+          "reported_total_hits": 12317,
+          "request_url_sha256": "d1cc85a19837d54c9f0e6ee6cc701d1ae4f9cd85e32610809b5b3452c8999dee",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 9,
+          "raw_response_bytes": 162995,
+          "raw_response_file": "05_EARTH_SOFTWARE_page_09.json",
+          "raw_response_sha256": "fd1ffc92e9cb8a8a7cfc4280aee32049362b2010b0569c03d9abd50b295ab44e",
+          "reported_total_hits": 12317,
+          "request_url_sha256": "cb4877bea62e3bd8665d4e14143a38ae09b7fa4a29f16937a8b51354d80b7718",
+          "returned_hits": 25,
+          "schema_passed": true
+        }
+      ],
+      "prefreeze_exclusions": 25,
+      "public_file_evidence_eligible": 183,
+      "publication_typed_relation_eligible": 6,
+      "query_id": "EARTH_SOFTWARE",
+      "raw_hits": 225,
+      "typed_relation_eligible": 122,
+      "unique_raw_records": 225
+    },
+    {
+      "domain_id": "LIFE_BIOMEDICAL",
+      "licence_eligible": 184,
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "pages": [
+        {
+          "page": 1,
+          "raw_response_bytes": 160921,
+          "raw_response_file": "06_LIFE_SOFTWARE_page_01.json",
+          "raw_response_sha256": "80fae8c42d6377dd6f0ff152155d6694aa8a326a2b6776ae2c2e933e41d9e7e7",
+          "reported_total_hits": 14438,
+          "request_url_sha256": "84b0fd87b98c041107606f1083e918a2d6c21cd630ea52eb3c8f9cc9f4e2f498",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 2,
+          "raw_response_bytes": 152801,
+          "raw_response_file": "06_LIFE_SOFTWARE_page_02.json",
+          "raw_response_sha256": "f039efc13667aff6463f2106a08422ae24e13beb77b09aba8c1053a9d5c34f0b",
+          "reported_total_hits": 14438,
+          "request_url_sha256": "d1f7c1b8ef3bfb69b2144ccda49b8ab0b103b347d6242a26648861eb5ed4f262",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 3,
+          "raw_response_bytes": 184117,
+          "raw_response_file": "06_LIFE_SOFTWARE_page_03.json",
+          "raw_response_sha256": "0ce5e7243cfb44ea8c20d4b180e580ddf2077e9743bd91633f88ed7f7c566423",
+          "reported_total_hits": 14438,
+          "request_url_sha256": "b8eeff4440083dd5921913ad64618afe65e82c9608f447b71e92f178ae976324",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 4,
+          "raw_response_bytes": 371936,
+          "raw_response_file": "06_LIFE_SOFTWARE_page_04.json",
+          "raw_response_sha256": "0472172e1130247c45f80015a7054f68002d395cb31a1a23ccdb8cd9092f1853",
+          "reported_total_hits": 14438,
+          "request_url_sha256": "26d41fb76a19e39c8791054edf917471406385a6785b57aa1b82f51162ccabd7",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 5,
+          "raw_response_bytes": 276614,
+          "raw_response_file": "06_LIFE_SOFTWARE_page_05.json",
+          "raw_response_sha256": "9031b415122bd4edf3b50167b13b974178551ceb8bc0db81aa55f4063eb3f3e1",
+          "reported_total_hits": 14438,
+          "request_url_sha256": "e617947d6b21db7213c4de83848269fc864a293abcfca3b3e84009defa32d9f0",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 6,
+          "raw_response_bytes": 143432,
+          "raw_response_file": "06_LIFE_SOFTWARE_page_06.json",
+          "raw_response_sha256": "e18afae392f58a1800d591d9fb24df548c647d0c9aa949feb662ba81e0d0a330",
+          "reported_total_hits": 14438,
+          "request_url_sha256": "2d9979080705e0fe95530a3149c50ca92fc15d4aa56091f60ed69c219884a98b",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 7,
+          "raw_response_bytes": 158496,
+          "raw_response_file": "06_LIFE_SOFTWARE_page_07.json",
+          "raw_response_sha256": "01215df8e1eaa4ae33b841177f1095d3863c7a69abca904e176486ac71afcbd0",
+          "reported_total_hits": 14438,
+          "request_url_sha256": "5e91f6ece8351bec59700d5bf61aaceaee4b3b5a417f3d2cf75a942662387494",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 8,
+          "raw_response_bytes": 150908,
+          "raw_response_file": "06_LIFE_SOFTWARE_page_08.json",
+          "raw_response_sha256": "9d5f6f9b3f1f42a41d1079f7afb091fc429ab588f0a6240107a13819f585b0e7",
+          "reported_total_hits": 14438,
+          "request_url_sha256": "8ba3d7aac2b3d9ad86e9b9e72728570f810fcc00a608e4a93225124770bc8fae",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 9,
+          "raw_response_bytes": 208720,
+          "raw_response_file": "06_LIFE_SOFTWARE_page_09.json",
+          "raw_response_sha256": "94ea00249c0cdf3d2646e31ea65d0682e80b1ebc33724a71b9763d4cd4f3745d",
+          "reported_total_hits": 14438,
+          "request_url_sha256": "0ed91b33851fc0d3db6c58d51f131f030a34ebcf32dd11c294985e1583f4fae9",
+          "returned_hits": 25,
+          "schema_passed": true
+        }
+      ],
+      "prefreeze_exclusions": 26,
+      "public_file_evidence_eligible": 181,
+      "publication_typed_relation_eligible": 10,
+      "query_id": "LIFE_SOFTWARE",
+      "raw_hits": 225,
+      "typed_relation_eligible": 156,
+      "unique_raw_records": 225
+    },
+    {
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "licence_eligible": 178,
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "pages": [
+        {
+          "page": 1,
+          "raw_response_bytes": 153131,
+          "raw_response_file": "07_PHYSICAL_SOFTWARE_page_01.json",
+          "raw_response_sha256": "18cec037ad430160dd4c3d1a34547611ff4fad4ea0d9eb74f416dcd527e373fa",
+          "reported_total_hits": 16358,
+          "request_url_sha256": "7e554e8eb2e5f8038db9fc9d0c78981128c8143a49972bc59bd9d13e574536ab",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 2,
+          "raw_response_bytes": 145734,
+          "raw_response_file": "07_PHYSICAL_SOFTWARE_page_02.json",
+          "raw_response_sha256": "2d68763751646b71c9683670b0aa0d96f207420c644dfefd2aa5b82a71cd7b09",
+          "reported_total_hits": 16358,
+          "request_url_sha256": "ae451f29ef4cc22df50606ae6a710c10de0cc7a169cad4b2df004451dff8066a",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 3,
+          "raw_response_bytes": 150092,
+          "raw_response_file": "07_PHYSICAL_SOFTWARE_page_03.json",
+          "raw_response_sha256": "bb5180494f600726d3bf23ca319c4869c0f08acf4066111a4d55051d40f7ae9e",
+          "reported_total_hits": 16358,
+          "request_url_sha256": "867b17d1970e56afd0eb6ec2f839eb6f58e8ddbe3b81718a325e0f9039e7eb97",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 4,
+          "raw_response_bytes": 153451,
+          "raw_response_file": "07_PHYSICAL_SOFTWARE_page_04.json",
+          "raw_response_sha256": "5fcf0483bc8016bea59a0367eca3c6d0887b1a18b694772b02a441f104de9c12",
+          "reported_total_hits": 16358,
+          "request_url_sha256": "e12b5175cf6d3e4d662396291d5ad0eaddd186ca6db6cc04e8d5d22ee303ff22",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 5,
+          "raw_response_bytes": 173333,
+          "raw_response_file": "07_PHYSICAL_SOFTWARE_page_05.json",
+          "raw_response_sha256": "928676d7f5f648571854ddfa9a22aff19c0069f1def3c9cdd4b3df3351e0e91c",
+          "reported_total_hits": 16358,
+          "request_url_sha256": "566e167c912435b263d5cface187083f638dd1a728059643dd9bca115cb8b0bc",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 6,
+          "raw_response_bytes": 202004,
+          "raw_response_file": "07_PHYSICAL_SOFTWARE_page_06.json",
+          "raw_response_sha256": "9bd7d596335770184e292c39dccbf70463f53fd3ad0c524396233f7d0f5f1002",
+          "reported_total_hits": 16358,
+          "request_url_sha256": "c96393a9081898828a76263a2bb72a6a47a442cd497a2b1b9f7f5329ce80314d",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 7,
+          "raw_response_bytes": 160635,
+          "raw_response_file": "07_PHYSICAL_SOFTWARE_page_07.json",
+          "raw_response_sha256": "a18e13d5c8fc39147074fafe779d3f9cd33a4c76d6202adfee1c19626017240a",
+          "reported_total_hits": 16358,
+          "request_url_sha256": "2fa14b72b6a9a83e1d74c3dc717b01f145d94cb0cddb300c26dfd06d776435ef",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 8,
+          "raw_response_bytes": 306600,
+          "raw_response_file": "07_PHYSICAL_SOFTWARE_page_08.json",
+          "raw_response_sha256": "87b806c71959146761bb1f64a5c7864303942d161a89f54fc879e0422627df89",
+          "reported_total_hits": 16358,
+          "request_url_sha256": "e49557d45304c42b53f47de452847548a5235ec963829c7cfeaf7f05171b60fa",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 9,
+          "raw_response_bytes": 191144,
+          "raw_response_file": "07_PHYSICAL_SOFTWARE_page_09.json",
+          "raw_response_sha256": "18a109a75df4a4f86ba57d1641ed0b4f74d791bf9a97d229cf64809631d44c88",
+          "reported_total_hits": 16358,
+          "request_url_sha256": "04c1488036992b45b49eeb5118c434d43d9531850d75c86b7ba2b7627abf3bfe",
+          "returned_hits": 25,
+          "schema_passed": true
+        }
+      ],
+      "prefreeze_exclusions": 30,
+      "public_file_evidence_eligible": 172,
+      "publication_typed_relation_eligible": 10,
+      "query_id": "PHYSICAL_SOFTWARE",
+      "raw_hits": 225,
+      "typed_relation_eligible": 104,
+      "unique_raw_records": 225
+    },
+    {
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "licence_eligible": 173,
+      "mechanism_id": "M6_ARTICLE_TO_CODE_RELEASE",
+      "pages": [
+        {
+          "page": 1,
+          "raw_response_bytes": 193235,
+          "raw_response_file": "08_SCIENTIFIC_SOFTWARE_page_01.json",
+          "raw_response_sha256": "954c3a3c6e3e58c749582116cc47373534afdb4894edd2390ef6d79758e220e6",
+          "reported_total_hits": 29785,
+          "request_url_sha256": "6e6258cf0a53f6d03b8673d31453f3f6122c805e392349ced5d9392b75093b82",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 2,
+          "raw_response_bytes": 158760,
+          "raw_response_file": "08_SCIENTIFIC_SOFTWARE_page_02.json",
+          "raw_response_sha256": "19d9d24d578c9ff9ef69ddcbd3ef7aeedfee821f174a6e2542678630c51d789e",
+          "reported_total_hits": 29785,
+          "request_url_sha256": "3c482a72de3f9153da3ad3c4be56a76656246c3898eb75f053cbef9e09a40b03",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 3,
+          "raw_response_bytes": 145443,
+          "raw_response_file": "08_SCIENTIFIC_SOFTWARE_page_03.json",
+          "raw_response_sha256": "f60c23977cafeb3fa1ed585b764719c5346c14fc27239b127b5265e348d2ec84",
+          "reported_total_hits": 29785,
+          "request_url_sha256": "75b84700038892bedbfb772c3a72cdc6b9fa9338518f4e59eb833abb6c20aec7",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 4,
+          "raw_response_bytes": 211113,
+          "raw_response_file": "08_SCIENTIFIC_SOFTWARE_page_04.json",
+          "raw_response_sha256": "fd3952ef64cb113b934345029959867317ae9fe362b4d2862bda8394c906d90a",
+          "reported_total_hits": 29785,
+          "request_url_sha256": "5f815ee12d233561b15e3c2cf78eea4023869e90eee9ac9b824197770fe1b417",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 5,
+          "raw_response_bytes": 157676,
+          "raw_response_file": "08_SCIENTIFIC_SOFTWARE_page_05.json",
+          "raw_response_sha256": "e10bd0f2edea4d186e9d45da35f9ed0e1e717c57a41190417f8cf2b65a500b07",
+          "reported_total_hits": 29785,
+          "request_url_sha256": "3ea71f2185522819102557b924a3bbb0ed8844a9c6ab8863f9bdd4a12ecc2192",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 6,
+          "raw_response_bytes": 500989,
+          "raw_response_file": "08_SCIENTIFIC_SOFTWARE_page_06.json",
+          "raw_response_sha256": "7cd1213a5b6e4c93e3b3f3aefecd2dbf76a2a0bf7a5f1c0b85602b5471779b46",
+          "reported_total_hits": 29785,
+          "request_url_sha256": "61e87ac8bc836663c1be949b561c2eb89ace034ed43ec274a5e1b87f6dcadbdb",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 7,
+          "raw_response_bytes": 200811,
+          "raw_response_file": "08_SCIENTIFIC_SOFTWARE_page_07.json",
+          "raw_response_sha256": "e0fbd6dd1cc78313ccb6fb26866b6b87568c14fe86f9ec0260750323842b0d21",
+          "reported_total_hits": 29785,
+          "request_url_sha256": "b55eca2d30b992ad48223df91fdbd96ef3bff4b3b1da57d513c74e76c94ce8bf",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 8,
+          "raw_response_bytes": 156249,
+          "raw_response_file": "08_SCIENTIFIC_SOFTWARE_page_08.json",
+          "raw_response_sha256": "2bdb7e9f45374f648b382387aece7ae2cfa074b3be41459b59bdbaaaa3db7032",
+          "reported_total_hits": 29785,
+          "request_url_sha256": "186f864de6e34dbacd171d1261478dd4da6b33f9b86814c12621021750b6371a",
+          "returned_hits": 25,
+          "schema_passed": true
+        },
+        {
+          "page": 9,
+          "raw_response_bytes": 157855,
+          "raw_response_file": "08_SCIENTIFIC_SOFTWARE_page_09.json",
+          "raw_response_sha256": "18269443567e69d81a1b0f97377aecac10f9b22999471f5088b212190e33c215",
+          "reported_total_hits": 29785,
+          "request_url_sha256": "2289f34af649438914de90efa00c25c4f46ec86682928046b4a04df4bb35c583",
+          "returned_hits": 25,
+          "schema_passed": true
+        }
+      ],
+      "prefreeze_exclusions": 38,
+      "public_file_evidence_eligible": 170,
+      "publication_typed_relation_eligible": 7,
+      "query_id": "SCIENTIFIC_SOFTWARE",
+      "raw_hits": 225,
+      "typed_relation_eligible": 113,
+      "unique_raw_records": 225
+    }
+  ],
+  "raw_response_count": 72,
+  "schema_version": "orion.p4.zenodo-related-object-census-receipt.v2",
+  "terminal": "P4_ZENODO_RELATED_OBJECT_V2_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_PROVIDER",
+  "unique_candidate_records": 98,
+  "v1_retained_terminal": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1_TRANSPORT_CANNOT_CHECK_HTTP_400"
+}

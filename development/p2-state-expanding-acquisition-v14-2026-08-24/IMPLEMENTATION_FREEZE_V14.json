@@ -1,0 +1,24 @@
+{
+  "frozen_at_utc": "2026-08-24T06:21:38Z",
+  "implementation": {
+    "path": "development/p2-state-expanding-acquisition-v14-2026-08-24/run_identity_gate_v14.py",
+    "sha256": "d31dafcc4a745ed3cf5e3369e6134325ba9a65045de9af0a6b7f672c123d5175"
+  },
+  "implementation_boundary": [
+    "Exactly six online requests: commit, root tree and raw index for each of two commits.",
+    "Only commit and tree API JSON are parsed.",
+    "Raw index bodies are hashed in memory, never JSON-decoded and never persisted.",
+    "Git blob SHA-1 is recomputed from raw bytes and bound to each tree entry.",
+    "The historical route proves provenance only and is not substituted into V14.",
+    "The first frozen-route identity mismatch stops all census and performance work."
+  ],
+  "label_or_outcome_fields_used": [],
+  "model_or_metric_code_imported": false,
+  "network_retries": 0,
+  "protocol": {
+    "path": "development/p2-state-expanding-acquisition-v14-2026-08-24/PROTOCOL_V14.json",
+    "sha256": "53d1534a68ef1d9c0962dda51905d6457e5f32cc6460c8b8b678bd8bbc5ee508"
+  },
+  "schema_version": "orion.p2.state-expanding-acquisition.implementation-freeze.v14",
+  "terminal": "P2_V14_PROTOCOL_AND_IDENTITY_RUNNER_FROZEN_AFTER_DISCOVERY_BEFORE_OFFICIAL_REPRODUCTION_GATE"
+}

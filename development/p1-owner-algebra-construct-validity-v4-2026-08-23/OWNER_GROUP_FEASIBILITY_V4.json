@@ -1,0 +1,248 @@
+{
+  "adapter_rerun": {
+    "performed": false,
+    "reason": "The V8 execution precondition requires a completed licensed signed owner algebra and independent CONFORMANT review; V4 supplies neither.",
+    "v8_720_survivors_changed": false
+  },
+  "amendment_sha256": "25ce645fce229ae16a450977197846e7c423bdd0035ac1608370c4d285ca4fea",
+  "authority": "PUBLIC_STANDARD_CONSTRUCT_FEASIBILITY_ONLY",
+  "counts": {
+    "groups_with_named_custodian_or_delegation": 0,
+    "groups_with_source_native_structural_analogue": 9,
+    "requirement_groups": 12,
+    "scientific_action_gold_cells": 0,
+    "sufficient_owner_groups": 0
+  },
+  "decision_rule": "Every group is conjunctive. Structural analogues contribute zero unless the exact required custodian/delegation, R7 coverage/exhaustiveness, schema subfields, and applicable target-algebra rights all pass.",
+  "exact_nondelegation_upper_bound": {
+    "future_owner_signed_algebra_impossible": false,
+    "maximum_sufficient_groups": 0,
+    "named_custodian_conjunct_true_groups": 0,
+    "proof": "For every group, sufficiency implies its named-custodian/delegation conjunct. The conjunct is false in all twelve rows; therefore every sufficiency indicator is zero and their sum is zero."
+  },
+  "field_decisions": [
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "closed_world",
+      "group_id": "G01",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "R7 vocabulary owner must sign closed_world=true for the exact seven-target algebra.",
+      "reason": "No captured source asserts that the seven R7 targets are exhaustive.",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra",
+      "source_native_structural_analogues": [],
+      "structural_analogue_observed": false,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "targets[*].scientific_process_coordinate",
+      "group_id": "G02",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "R7 vocabulary owner must ratify exhaustive, overlap-resolved coordinates.",
+      "reason": "Standards define their own editorial/status objects, not exhaustive R7 scientific-process coordinates.",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra retaining or superseding the public anchor",
+      "source_native_structural_analogues": [
+        "NISO: retraction/removal/EoC metadata objects",
+        "Crossref: current status"
+      ],
+      "structural_analogue_observed": true,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "targets[*].postpublication_coordinate",
+      "group_id": "G03",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "R7 vocabulary owner must assign the exact coordinate or NONE per target.",
+      "reason": "Public standards supply strong postpublication coordinate analogues but none assigns one exact coordinate or NONE to every R7 target.",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra",
+      "source_native_structural_analogues": [
+        "COPE: retraction/correction/EoC/replacement/removal",
+        "NISO: retraction/removal/EoC",
+        "Crossref: correction/retraction/update"
+      ],
+      "structural_analogue_observed": true,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "targets[*].licensed_postpublication_operations",
+      "group_id": "G04",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "Owner must enumerate exhaustive licensed operations for every target.",
+      "reason": "Recommendations and publisher policies are not the exhaustive licensed R7 operation sets.",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra",
+      "source_native_structural_analogues": [
+        "COPE formal policy for editors/publishers",
+        "Crossref publisher update policy"
+      ],
+      "structural_analogue_observed": true,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "targets[*].forbidden_postpublication_operations",
+      "group_id": "G05",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "Owner must enumerate exhaustive forbidden operations for every target.",
+      "reason": "COPE supplies retraction contraindications, but not the exhaustive forbidden V8 operation complement for seven R7 targets.",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra",
+      "source_native_structural_analogues": [
+        "COPE: when retraction is not appropriate"
+      ],
+      "structural_analogue_observed": true,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "decision_probe_typing",
+      "group_id": "G06",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "Owner must retain decision/probe separation and sign EXPLICIT_TABLE or NONE.",
+      "reason": "The sources distinguish notices, status metadata, relations, policies and editorial actions, but contain no owner-approved R7 probe/decision bridge table or explicit NONE.",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved explicit bridge table or explicit NONE",
+      "source_native_structural_analogues": [
+        "CREC: event versus notice/metadata",
+        "Crossref: status versus update relation/policy",
+        "JATS: relation link"
+      ],
+      "structural_analogue_observed": true,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "targets[*].recommendation_authority",
+      "group_id": "G07",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "R7 vocabulary owner and host-authority owner must jointly bind per-target recommendation authority.",
+      "reason": "COPE advises editors/publishers and Crossref records publisher policy; neither grants R7 target recommendation authority.",
+      "required_custodian": "R7_VOCABULARY_OWNER_AND_HOST_AUTHORITY_OWNER",
+      "required_source": "owner-approved authority boundary",
+      "source_native_structural_analogues": [
+        "COPE: formal advisory policy",
+        "Crossref: publisher-owned update policy"
+      ],
+      "structural_analogue_observed": true,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "targets[*].execution_authority",
+      "group_id": "G08",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "Host-authority owner must assign NONE, EXTERNAL_OWNER_ONLY, or SYSTEM per target.",
+      "reason": "Editorial standards locate action with editors/publishers; they do not bind the P1 host or grant SYSTEM execution.",
+      "required_custodian": "HOST_AUTHORITY_OWNER",
+      "required_source": "owner-approved authority boundary",
+      "source_native_structural_analogues": [
+        "COPE: editors/publishers issue retractions"
+      ],
+      "structural_analogue_observed": true,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "terminal_behavior.{abstention,error,timeout,malformed,unsupported}",
+      "group_id": "G09",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "Owner must bind all five fail-closed terminals.",
+      "reason": "COPE gives an inconclusive-evidence boundary, but no source defines all five R7 non-success terminals.",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "owner-approved target algebra",
+      "source_native_structural_analogues": [
+        "COPE: inconclusive evidence can lead to expression-of-concern consideration"
+      ],
+      "structural_analogue_observed": true,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "rights.{public_archive_url,reuse_licence_spdx,licence_text_sha256}",
+      "group_id": "G10",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "Target-algebra rights holder must publish the exact completed algebra and exact applicable licence-text hash.",
+      "reason": "Document reuse rights are heterogeneous and apply to the documents, not a completed R7 target algebra.",
+      "required_custodian": "TARGET_CORPUS_RIGHTS_HOLDER_OR_AUTHORISED_LICENSOR",
+      "required_source": "licence text controlled by the applicable rights holder",
+      "source_native_structural_analogues": [
+        "Crossref docs: CC-BY-4.0",
+        "COPE PDF: CC-BY-NC-ND-4.0",
+        "NISO PDF: custom noncommercial permission"
+      ],
+      "structural_analogue_observed": true,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "ratification",
+      "group_id": "G11",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "R7 owner or delegated custodian must sign the completed algebra with identity, delegation, digest, key and timestamp.",
+      "reason": "Institutional publication and local response hashing are not a content-addressed signature by the R7 owner over a completed algebra.",
+      "required_custodian": "R7_VOCABULARY_OWNER_OR_FORMALLY_DELEGATED_TAXONOMY_CUSTODIAN",
+      "required_source": "content-addressed signature bundle over the completed algebra",
+      "source_native_structural_analogues": [],
+      "structural_analogue_observed": false,
+      "sufficiency": "INSUFFICIENT"
+    },
+    {
+      "all_schema_subfields_satisfied": false,
+      "applicable_completed_target_algebra_rights_bound": false,
+      "counts_as_sufficient_owner_group": false,
+      "exact_r7_target_coverage_and_exhaustiveness": false,
+      "field_path": "ratification.independent_semantic_reviewer",
+      "group_id": "G12",
+      "named_custodian_authorship_or_explicit_delegation_evidenced": false,
+      "next_discriminator": "An independent reviewer with no algebra authorship or case-outcome custody must issue a content-addressed CONFORMANT review.",
+      "reason": "Consensus standards and cross-institution agreement are not independent semantic review of an authored R7 algebra.",
+      "required_custodian": "REVIEWER_WITH_NO_ALGEBRA_AUTHORSHIP_OR_CASE_OUTCOME_CUSTODY",
+      "required_source": "independent semantic conformance review",
+      "source_native_structural_analogues": [],
+      "structural_analogue_observed": false,
+      "sufficiency": "INSUFFICIENT"
+    }
+  ],
+  "protocol_sha256": "ac5ee3c6a9f3ab2ab8f6942e32d49958245fbc50372c3a7f8eb58af4051b85ae",
+  "schema_version": "orion.p1.owner-algebra-construct-validity.owner-group-feasibility.v4",
+  "terminal": "P1_V4_PUBLIC_POSTPUBLICATION_STANDARD_SCAFFOLD_FEASIBLE__ZERO_OF_TWELVE_OWNER_ALGEBRA_GROUPS_SUFFICIENT__SCIENTIFIC_ACTION_GOLD_AND_CONSTRUCT_VALIDITY_CANNOT_CHECK",
+  "v8_registry_sha256": "42fd386b113802b5b269dada6ab2965503fa5afa020a06e52a25ce667d03dae4"
+}

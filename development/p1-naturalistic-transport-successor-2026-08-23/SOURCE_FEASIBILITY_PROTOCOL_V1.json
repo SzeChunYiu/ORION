@@ -1,0 +1,424 @@
+{
+  "schema_version": "orion.p1.naturalistic-public-source-feasibility.v1",
+  "identity": "P1.NATURALISTIC.PUBLIC.SOURCE.FEASIBILITY.V1",
+  "date": "2026-08-23",
+  "frozen_at": "2026-08-23T16:43:45+02:00",
+  "authority": "OUTCOME_BLIND_METADATA_COUNT_AND_RIGHTS_CONSTRUCT_PREFLIGHT_ONLY",
+  "dominant_scientific_question": "Does noisy source evidence license a particular scientific revision level after diagnosis and repair candidates are available, and does an explicit typed responsibility-to-authority relation reduce legal-action deficiency without inducing broader unnecessary change?",
+  "execution_authorized": false,
+  "case_text_access_authorized": false,
+  "system_outcomes_accessed": false,
+  "case_outcomes_accessed": false,
+  "preexisting_access_disclosure": {
+    "before_this_freeze": "Official documentation, source-project metadata, Europe PMC field names, and metadata for five named Zenodo records had already been archived. No Europe PMC result row, article body, abstract, supplementary file, Zenodo file, Retraction Watch CSV row, candidate output, comparator output, or protected action label was accessed in this lane.",
+    "effect": "The present freeze governs every future provider query and does not retroactively promote the preexisting metadata to an eligible case panel."
+  },
+  "claim_boundary": {
+    "widest_possible_if_only_counts_are_run": "Public metadata contains candidate records under the frozen query strings.",
+    "not_authorized_by_counts": [
+      "an admissible original-notice pair exists",
+      "a noisy candidate view can be separated from the protected action label",
+      "the typed action is adjudicable",
+      "mixed decision fibres occur",
+      "the P1 relation improves decisions",
+      "naturalistic or external scientific authority"
+    ],
+    "mechanical_and_authored_exact_results_remain_separate": true,
+    "historical_negative_and_shortcut_results_remain_immutable": true
+  },
+  "documentation_bindings": [
+    {
+      "path": "work/lane-handoffs/p1-naturalistic-transport/epmc-swagger.json",
+      "sha256": "ed54250e868f7bf6184a3c4f8ad0d0a5c12ef8b0fee9b22d6b9f144939ef6c8c",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/api/swagger.json",
+      "purpose": "search route and parameter contract"
+    },
+    {
+      "path": "work/lane-handoffs/p1-naturalistic-transport/epmc-fields.json",
+      "sha256": "07d1bede0b87369e95ba77753ac0be7a1f954f327b45e4ba9fb87bdcd281888d",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/fields?format=json",
+      "purpose": "official search-field vocabulary; includes OPEN_ACCESS, IN_PMC, LICENSE, PUB_TYPE and identifier fields"
+    },
+    {
+      "path": "work/lane-handoffs/p1-naturalistic-transport/epmc-rest-doc.html",
+      "sha256": "50045e01a1f5f27e601a91628816eb6d6583262b9ca66e3b2ad4013ee30b5bb9",
+      "source_url": "https://europepmc.org/RestfulWebService",
+      "purpose": "official Europe PMC REST documentation"
+    },
+    {
+      "path": "work/lane-handoffs/p1-naturalistic-transport/epmc-oa-doc.html",
+      "sha256": "64d101741c522fdf5d0d97c7a5514e858fc4db234d4d8fd207b3868b4a82f57c",
+      "source_url": "https://europepmc.org/downloads/openaccess",
+      "purpose": "Europe PMC open-access subset terms and official retrieval routes"
+    },
+    {
+      "path": "work/lane-handoffs/p1-naturalistic-transport/epmc-copyright.html",
+      "sha256": "f52cea9546d9e1459ec16ac4e421a8f25821fdc8a9867225e1b02bc36696c9b5",
+      "source_url": "https://europepmc.org/Copyright",
+      "purpose": "copyright and anti-scraping boundary"
+    },
+    {
+      "path": "work/lane-handoffs/p1-naturalistic-transport/pmc-oa.html",
+      "sha256": "59d49f3f6c015c5e9a88c2dcd75db2ba921614c5d03f0e752156bac73731b8df",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/tools/openftlist/",
+      "purpose": "PMC OA Subset scope, licence groupings and permitted automated retrieval services"
+    },
+    {
+      "path": "work/lane-handoffs/p1-naturalistic-transport/pmc-oa-service.html",
+      "sha256": "bbb3ad1c90bd5d4f6186e9a5c278b8fc5950c961233f3d677ad15c9cd419eb05",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/tools/oa-service/",
+      "purpose": "per-PMCID OA package, licence and retraction metadata route"
+    },
+    {
+      "path": "work/lane-handoffs/p1-naturalistic-transport/pmc-userguide-license.html",
+      "sha256": "df49b642bd1fbd3bada77507cb4222dd9567097b9d86ee371d06b9deb702cd34",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/about/userguide/#bylicense",
+      "purpose": "official PMC Creative Commons search-filter vocabulary"
+    }
+  ],
+  "source_cutoffs": {
+    "provider_query_cutoff_utc": "2026-08-23T14:43:45Z",
+    "inclusive_record_rule": "provider record creation or first-index timestamp must be no later than the cutoff; a later metadata update is retained only as a current-status field and cannot create a pre-cutoff historical byte claim",
+    "version_rule": "bind provider-native immutable identifiers and returned timestamps; if the exact historical bytes cannot be recovered, record CANNOT_CHECK_HISTORICAL_METADATA_BYTES",
+    "no_post_cutoff_top_up": true,
+    "query_revision_after_counts_forbidden": true
+  },
+  "sources": {
+    "EUROPE_PMC": {
+      "provider_identity": "EUROPE_PMC_ARTICLES_REST_API_V6_9",
+      "metadata_count_route": "GET https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+      "field_vocabulary_route": "GET https://www.ebi.ac.uk/europepmc/webservices/rest/fields?format=json",
+      "per_record_metadata_route_after_count_gate_only": "GET https://www.ebi.ac.uk/europepmc/webservices/rest/article/{source}/{id}?format=json",
+      "pmc_oa_rights_route_after_relation_gate_only": "GET https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi?id={PMCID}",
+      "content_routes_after_all_rights_and_construct_gates_only": [
+        "GET https://www.ebi.ac.uk/europepmc/webservices/rest/{PMCID}/fullTextXML",
+        "PMC OAI-PMH Service",
+        "PMC FTP Service",
+        "PMC Cloud Service",
+        "PMC BioC API"
+      ],
+      "arbitrary_html_scraping_forbidden": true,
+      "count_request_parameters": {
+        "resultType": "idlist",
+        "format": "json",
+        "pageSize": 1,
+        "synonym": false,
+        "cursorMark": "*"
+      },
+      "count_response_allowlist": [
+        "hitCount",
+        "version",
+        "request.queryString"
+      ],
+      "count_response_disposal_rule": "The client must extract only hitCount and request metadata in memory, must not print or persist resultList, and must not follow identifiers.",
+      "frozen_candidate_queries": [
+        {
+          "id": "EPMC_OA_PUBLISHED_ERRATUM",
+          "query": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Published Erratum\"",
+          "role": "candidate correction or erratum notices"
+        },
+        {
+          "id": "EPMC_OA_CORRECTION",
+          "query": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Correction\"",
+          "role": "candidate records using a provider-level correction publication type; zero is retained"
+        },
+        {
+          "id": "EPMC_OA_RETRACTION_NOTICE",
+          "query": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Retraction of Publication\"",
+          "role": "candidate retraction notices"
+        },
+        {
+          "id": "EPMC_OA_RETRACTED_ORIGINAL",
+          "query": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Retracted Publication\"",
+          "role": "candidate original records indexed as retracted"
+        },
+        {
+          "id": "EPMC_OA_EXPRESSION_OF_CONCERN",
+          "query": "OPEN_ACCESS:Y AND IN_PMC:Y AND PUB_TYPE:\"Expression of Concern\"",
+          "role": "candidate unresolved or provisional notices"
+        }
+      ],
+      "relation_identity_required_after_count_gate": {
+        "rule": "The original and notice must be joined by an explicit provider-native comment/correction relation carrying identifiers on both ends; title similarity, author overlap or model inference is insufficient.",
+        "ambiguous_or_missing_terminal": "CANNOT_CHECK_SOURCE_NATIVE_RELATION_IDENTITY",
+        "relation_type_is_protected_gold_not_candidate_visible": true
+      }
+    },
+    "PMC_OPEN_ACCESS": {
+      "provider_identity": "NLM_PMC_OPEN_ACCESS_SUBSET",
+      "per_record_rights_route": "GET https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi?id={PMCID}",
+      "rights_metadata_allowlist": [
+        "record.id",
+        "record.license",
+        "record.retracted",
+        "responseDate"
+      ],
+      "rights_metadata_forbidden_to_persist": [
+        "record.citation",
+        "record.link.href",
+        "record.link.filename"
+      ],
+      "article_specific_license_check_mandatory": true,
+      "both_original_and_notice_must_pass": true
+    },
+    "ZENODO": {
+      "provider_identity": "ZENODO_RECORDS_REST_API",
+      "frozen_record_route": "GET https://zenodo.org/api/records/{record_id}",
+      "frozen_candidate_record_ids": [
+        18768427,
+        14783213,
+        14921712,
+        15185273,
+        20478570
+      ],
+      "metadata_only_allowlist": [
+        "id",
+        "conceptdoi",
+        "doi",
+        "created",
+        "updated",
+        "metadata.license.id",
+        "metadata.access_right",
+        "metadata.resource_type.id",
+        "metadata.related_identifiers.identifier",
+        "metadata.related_identifiers.scheme",
+        "metadata.related_identifiers.relation",
+        "files.aggregate_count",
+        "files.aggregate_size",
+        "files.checksum"
+      ],
+      "metadata_fields_forbidden_before_case_authorization": [
+        "metadata.title",
+        "metadata.description",
+        "metadata.keywords",
+        "metadata.notes",
+        "files.key",
+        "files.links",
+        "file contents"
+      ],
+      "future_record_discovery_forbidden": true,
+      "file_download_authorized": false,
+      "record_level_warning": "A CC licence on a deposit does not establish that upstream Retraction Watch-derived fields or linked notices are lawfully reusable; provenance and upstream rights must be adjudicated field by field."
+    },
+    "CROSSREF_RETRACTION_WATCH": {
+      "provider_identity": "CROSSREF_RETRACTION_WATCH_DATA_REPOSITORY_HEAD_7bb2ced143b764974c53c6c61abfdd2379f5307d",
+      "metadata_documentation_route": "https://www.crossref.org/documentation/retrieve-metadata/retraction-watch/",
+      "dataset_route": "https://gitlab.com/crossref/retraction-watch-data",
+      "current_rights_terminal": "CANNOT_CHECK_RETRACTION_WATCH_DATASET_REUSE_LICENSE",
+      "dataset_download_authorized": false,
+      "row_access_authorized": false,
+      "permitted_role": "documentation and source-identity audit only until an explicit dataset licence or rights-owner attestation is bound",
+      "project_metadata_sha256": "1d733c7e1b6d803359401287a37f02ed853c28f818d35932aba140a7005f42be",
+      "doi_metadata_sha256": "03c374762331fa20358ac9bee65d2e4782f5f5ead54e4199cf7cbfe2e9db607b"
+    },
+    "OPENALEX": {
+      "provider_identity": "OPENALEX_CC0_METADATA",
+      "documentation_sha256": "fa22f2a779d5d64496d6da91b153aa5c9c9316d32a011a12d83590a13e89298b",
+      "permitted_role": "CC0 bibliographic metadata and retracted-status cross-check only",
+      "forbidden_role": "causal responsibility gold or typed minimal-transition gold",
+      "construct_warning": "Predicting is_retracted from a title or abstract would be retrospective retraction-risk prediction, not responsibility-to-authority licensing."
+    }
+  },
+  "permissible_licenses": {
+    "automatic_allowlist_for_transformed_candidate_views": [
+      "CC0-1.0",
+      "CC-BY-3.0",
+      "CC-BY-4.0",
+      "CC-BY-SA-3.0",
+      "CC-BY-SA-4.0"
+    ],
+    "share_alike_condition": "Every derivative and released candidate view must satisfy the applicable share-alike licence; otherwise the record is excluded.",
+    "not_automatically_admissible": [
+      "CC-BY-ND",
+      "CC-BY-NC",
+      "CC-BY-NC-ND",
+      "CC-BY-NC-SA",
+      "custom",
+      "publisher-specific",
+      "no machine-readable licence",
+      "missing licence"
+    ],
+    "override_rule": "Only an identified rights owner may admit a non-allowlisted content class by binding exact licence text or written permission for storage, machine processing, transformation, derived annotation, audit quotation and the planned release tier before any content bytes are opened.",
+    "upstream_provenance_rule": "A downstream CC licence cannot cure an unlicensed or ambiguously licensed upstream dataset field.",
+    "pair_rule": "The exact original, notice and every excerpt or supplement used in the dossier must each be admissible. The strictest compatible release obligation governs the derived case."
+  },
+  "metadata_only_fields": {
+    "allowed_general": [
+      "provider record identifier",
+      "DOI",
+      "PMCID",
+      "provider source namespace",
+      "creation, index and update timestamps",
+      "open-access boolean",
+      "machine-readable licence identifier",
+      "source-native relation identifiers and relation type in protected custody",
+      "publication type in protected custody",
+      "language and coarse source strata",
+      "content checksum, byte count and aggregate file count without filenames"
+    ],
+    "forbidden_general_until_case_authorization": [
+      "title",
+      "abstract",
+      "body or full-text XML",
+      "supplementary material",
+      "file name or path",
+      "URL slug",
+      "heading",
+      "notice reason narrative",
+      "Retraction Watch reason or notes",
+      "explicit protected action token",
+      "candidate or comparator output",
+      "protected score or evaluator disposition"
+    ]
+  },
+  "deduplication_and_wave_assignment": {
+    "canonical_family_root_precedence": [
+      "source-native original-notice relation root",
+      "original DOI",
+      "original PMCID",
+      "Zenodo concept DOI",
+      "provider-native immutable record family"
+    ],
+    "one_statistical_unit_per_family": true,
+    "group_all_updates_of_same_original": true,
+    "cross_provider_duplicates_collapsed": true,
+    "source_cluster_is_statistical_unit": true,
+    "pair_members_not_independent_units": true,
+    "wave_assignment": "Within each frozen domain-by-action stratum, assign a canonical family to PRIMARY when int(sha256(canonical_family_root)[0:16],16) mod 2 equals 0 and to REPLICATION otherwise. No reassignment or top-up is allowed; an empty cell is retained as a negative source-universe result.",
+    "source_disjointness": "No DOI, PMCID, concept DOI, study, dataset, project, companion paper, notice family, journal correction chain or derivative record family may cross waves."
+  },
+  "eligibility_all_required": [
+    "exact provider-native original and notice identities exist before the frozen cutoff",
+    "an explicit source-native original-notice relation is bound",
+    "every content class used in the dossier passes the pair-level licence rule",
+    "the episode concerns a scientific artifact, measurement, data, analysis, method, claim or conclusion rather than only administrative status",
+    "the licensed action is adjudicable from public evidence without private author intent",
+    "a noisy evidence view can be formed without title, filename, URL, heading, publication-type, relation-type, ordering or explicit action-token leakage",
+    "the protected action remains independently codable after anti-leak redaction; if redaction destroys the discriminator, the case is excluded rather than guessed",
+    "an information-equivalent donor and a relation-ablated donor can receive byte-identical visible evidence and identical actions/resources",
+    "the case belongs to exactly one canonical source family and one wave",
+    "sensitive, personal, confidential, embargoed, deleted or author-intent-dependent material is absent"
+  ],
+  "exclusion_reasons_frozen": [
+    "RIGHTS_MISSING_OR_INCOMPATIBLE",
+    "UPSTREAM_PROVENANCE_RIGHTS_AMBIGUOUS",
+    "ORIGINAL_OR_NOTICE_NOT_OPEN_ACCESS",
+    "SOURCE_NATIVE_RELATION_MISSING_OR_AMBIGUOUS",
+    "POST_CUTOFF_IDENTITY",
+    "DUPLICATE_SOURCE_FAMILY",
+    "NON_SCIENTIFIC_OR_ADMINISTRATIVE_ONLY",
+    "PRIVATE_AUTHOR_INTENT_REQUIRED",
+    "PROTECTED_ACTION_NOT_INDEPENDENTLY_ADJUDICABLE",
+    "ANTI_LEAK_REDACTION_DESTROYS_DISCRIMINATING_EVIDENCE",
+    "TERMINAL_MAP_AMBIGUOUS",
+    "MATCHED_DONOR_OR_CONTROL_CANNOT_BE_CONSTRUCTED",
+    "SENSITIVE_OR_RESTRICTED_CONTENT",
+    "LANGUAGE_CAPABILITY_OR_EVALUATOR_CUSTODY_UNBOUND"
+  ],
+  "frozen_terminal_map": {
+    "order_type": "scientific-change partial order; no total-order assumption across data and method revisions",
+    "terminals": [
+      {
+        "id": "KEEP_OR_REPAIR_REPORTING",
+        "definition": "No scientific measurement, data, method, claim or artifact withdrawal is licensed; at most metadata, typography, attribution, formatting or reporting repair is licensed."
+      },
+      {
+        "id": "REVISE_MEASUREMENT_OR_DATA",
+        "definition": "The licensed minimal change is to measurements, observations, labels, data extraction, data processing or the released dataset, without changing the scientific method or withdrawing the central conclusion."
+      },
+      {
+        "id": "REVISE_METHOD_OR_ANALYSIS",
+        "definition": "The licensed minimal change alters the analysis, model, protocol, experimental method or inferential procedure, while a broader claim or artifact withdrawal is not yet required."
+      },
+      {
+        "id": "WITHDRAW_CLAIM_OR_CONCLUSION",
+        "definition": "The evidence licenses withdrawing or materially narrowing a claim or conclusion, but does not license treating the whole artifact as withdrawn."
+      },
+      {
+        "id": "WITHDRAW_ARTIFACT_FULL_RETRACTION",
+        "definition": "The evidence licenses withdrawal of the scientific artifact as a whole."
+      },
+      {
+        "id": "UNRESOLVED",
+        "definition": "Public admissible evidence does not identify one legal minimal transition; no broader action may be imputed."
+      }
+    ],
+    "publication_type_not_equal_gold": true,
+    "gold_rule": "Two owner-separated adjudicators must infer the minimal licensed terminal from admissible evidence and preservation obligations. A publisher label is evidence but cannot by itself replace typed adjudication.",
+    "disagreement_rule": "Unresolved disagreement after a sealed third adjudication is UNRESOLVED, not the nearest ordered class.",
+    "existing_r7a_terminal_compatibility": "This source-native development terminal map is not silently coerced into KEEP_SEARCH, KEEP_COMPILE, KEEP_REPAIR, REVISE_MEASUREMENT, REFORMULATE_OBJECTIVE, REFORMULATE_BOUNDARY or UNRESOLVED. A later adapter must publish a total, semantics-preserving map or the case remains TERMINAL_MAP_AMBIGUOUS."
+  },
+  "candidate_view_anti_leak_contract": {
+    "remove_or_replace": [
+      "titles",
+      "filenames",
+      "filesystem paths",
+      "URLs and URL slugs",
+      "provider and journal identity",
+      "publication-type labels",
+      "relation-type labels",
+      "headings such as correction, erratum, retraction or expression of concern",
+      "explicit terminal tokens and close morphological variants",
+      "answer-correlated ordering",
+      "source ranks and query identifiers"
+    ],
+    "retain_if_rights_admissible": [
+      "noisy defect evidence",
+      "counterfactual or corrected measurements",
+      "method and analysis descriptions needed to discriminate the licensed layer",
+      "preservation obligations",
+      "uncertainty and conflicting evidence",
+      "opaque evidence-object and probe handles"
+    ],
+    "hostile_checks": [
+      "blind filename, title and phrase responder",
+      "publication-type-only responder",
+      "provider and ordering responder",
+      "single-rule and singleton-feature audit",
+      "leave-one-source-family-out shortcut audit",
+      "relation-token and action-token scanner"
+    ],
+    "failure_rule": "Any shortcut exceeding the frozen chance or majority reference on protected families blocks case admission; removing the cue after seeing model outcomes is forbidden."
+  },
+  "matched_controls_and_donors": {
+    "same_family_control": "When naturally available, use a rights-cleared same-family update whose admissible evidence licenses KEEP_OR_REPAIR_REPORTING; do not fabricate a control by editing outcome-bearing text.",
+    "donor_complete_arm": "Receives all diagnosis, repair, rollback, preservation and budget information available to the licensed-relation arm, but not the responsibility-to-authority coupling.",
+    "information_equivalent_arm": "Receives the exact responsibility and legal-authority semantics and must be expected to tie; defeating it is not a registered positive condition.",
+    "same_bytes_actions_resources": true,
+    "no_native_system_proxy_drift": true
+  },
+  "gates_before_case_text": [
+    "COUNTS_RUN_FROM_FROZEN_QUERIES_WITH_RESULT_ROWS_DISCARDED",
+    "AT_LEAST_ONE_CANDIDATE_NOTICE_CLASS_AND_ONE_CANDIDATE_ORIGINAL_CLASS_NONZERO",
+    "PER_RECORD_SOURCE_NATIVE_RELATION_METADATA_ROUTE_BOUND",
+    "BOTH_ENDS_ARTICLE_SPECIFIC_LICENSE_ALLOWLISTED",
+    "UPSTREAM_PROVENANCE_RIGHTS_CLEARED",
+    "TERMINAL_ADJUDICATION_AND_ANTI_LEAK CONSTRUCTORS_OWNER_SEPARATED",
+    "RAW_CASE_AND_PROTECTED_GOLD_CUSTODY_BOUND"
+  ],
+  "count_stage_terminal_rules": [
+    {
+      "condition": "all frozen count requests complete, at least one notice-class count and the retracted-original count are nonzero, and no provider or parser error occurs",
+      "terminal": "P1_NATURALISTIC_PUBLIC_METADATA_CANDIDATES_PRESENT__CASE_FEASIBILITY_UNDETERMINED"
+    },
+    {
+      "condition": "all notice-class counts are zero or retracted-original count is zero",
+      "terminal": "P1_NATURALISTIC_PUBLIC_PANEL_NOT_SUPPORTED_ZERO_METADATA_CANDIDATE_CLASS"
+    },
+    {
+      "condition": "a provider, query, schema, cutoff or count-only disposal gate fails",
+      "terminal": "P1_NATURALISTIC_PUBLIC_PANEL_CANNOT_CHECK_METADATA_CENSUS"
+    }
+  ],
+  "case_feasibility_terminal_rules": [
+    {
+      "condition": "rights, explicit relation identity, anti-leak construct validity, typed gold, matched controls, and both donor arms are bound for enough source-disjoint domain/action cells",
+      "terminal": "P1_NATURALISTIC_PUBLIC_PANEL_READY_FOR_PROTECTED_DEVELOPMENT_EXECUTION"
+    },
+    {
+      "condition": "candidate metadata exists but any noncompensatory rights, relation, terminal-map, anti-leak, donor, control, source-width or custody gate remains unbound",
+      "terminal": "P1_NATURALISTIC_PUBLIC_PANEL_CANNOT_CHECK_RIGHTS_OR_CONSTRUCT_VALIDITY"
+    }
+  ],
+  "current_terminal": "P1_NATURALISTIC_PUBLIC_PANEL_CANNOT_CHECK_RIGHTS_OR_CONSTRUCT_VALIDITY"
+}

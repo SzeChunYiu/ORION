@@ -1,0 +1,63 @@
+{
+  "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+  "blocking_observations": [
+    "No aggregate call/token/USD hard-stop is released.",
+    "Dynamic trial docker run has no CPU/RAM/PID flags.",
+    "Bridge-networked gateway/workers have no final endpoint allowlist.",
+    "No complete derived image or host daemon environment is materialized.",
+    "The required benchmark/claw-eval tree is absent."
+  ],
+  "bound": {
+    "dependency_locks": {
+      "host": {
+        "package_entries": 11,
+        "path": "MOSS_HOST_DEPENDENCY_LOCK_V4.uv.lock",
+        "python_request": ">=3.11",
+        "resolver": "uv 0.11.1",
+        "sha256": "382c5d3ad1eaa6ca85e970dca53b7c423f68878c23ceada8c3f17138c2b84b72"
+      },
+      "openclaw": {
+        "identical_to_upstream_lock": true,
+        "node_engine": ">=22.12.0",
+        "package_entries": 1196,
+        "package_manager": "pnpm@10.23.0",
+        "path": "MOSS_OPENCLAW_DEPENDENCY_LOCK_V4.pnpm-lock.yaml",
+        "sha256": "17a36bc38c1817eaee7a7c4264d58b127f5edb6a5054e4952545450cfde0337c"
+      }
+    },
+    "fallbacks": [],
+    "wallclock_seconds": {
+      "per_case": 21600,
+      "termination_grace": 120,
+      "whole_c2_run": 21600
+    }
+  },
+  "frozen_at_utc": "2026-08-23T17:38:58Z",
+  "proposed_but_unbound": {
+    "calls_tokens_usd": null,
+    "compute": {
+      "gpus": 0,
+      "parallelism": 1,
+      "pids_limit": 2048,
+      "ram_gib": 16,
+      "vcpus": 8
+    },
+    "network": "deny except exact bound endpoints"
+  },
+  "schema_version": "orion.p5.c2.resource-registry.v4",
+  "source_defaults_not_adopted_as_matched_p5_values": {
+    "build_smoke": 240,
+    "depth_tier": "shallow has max_iter=3, max_plan_rounds=1, max_code_retries=0, n_trials_per_task=2",
+    "docker_build": 600,
+    "role_timeouts_seconds": {
+      "code_reviewer": 1800,
+      "implementer": 3600,
+      "locator": 1800,
+      "plan_reviewer": 1500,
+      "planner": 1800,
+      "reviewer": 1200,
+      "task_evaluator": 1500
+    },
+    "swap_window": 90
+  }
+}

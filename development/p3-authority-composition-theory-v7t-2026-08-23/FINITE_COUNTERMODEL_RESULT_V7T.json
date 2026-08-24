@@ -1,0 +1,44 @@
+{
+  "all_local_artifacts_fixed": true,
+  "all_local_gates_true": true,
+  "canonical_content_sha256": "030925660fcf2eba916c326be81acd5b328f45bc6be379a8719ba0c0ad52dced",
+  "global_query_identified_set": [
+    0,
+    1
+  ],
+  "global_query_point_identified": false,
+  "observed_signature_count": 1,
+  "schema_version": "orion.p3.authority-composition.countermodel.v7t",
+  "terminal": "LOCAL_STAGE_READINESS_PASS__GLOBAL_COMPOSITION_QUERY_NOT_IDENTIFIED",
+  "world_count": 2,
+  "worlds": [
+    {
+      "global_query": 0,
+      "local_gates": {
+        "entrypoint": 1,
+        "parser": 1,
+        "rights": 1,
+        "source": 1
+      },
+      "observation": "same_local_artifacts",
+      "stage_1_artifact": "fixed_A",
+      "stage_2_artifact": "fixed_B",
+      "unobserved_cross_stage_identity": 0,
+      "world": "omega_0"
+    },
+    {
+      "global_query": 1,
+      "local_gates": {
+        "entrypoint": 1,
+        "parser": 1,
+        "rights": 1,
+        "source": 1
+      },
+      "observation": "same_local_artifacts",
+      "stage_1_artifact": "fixed_A",
+      "stage_2_artifact": "fixed_B",
+      "unobserved_cross_stage_identity": 1,
+      "world": "omega_1"
+    }
+  ]
+}

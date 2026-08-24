@@ -1,0 +1,48 @@
+{
+  "$id": "orion.p5.c6.write-surface.v4",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "current_status": "BLOCKING_UNDEMONSTRATED",
+  "properties": {
+    "case_read_only": {
+      "const": true
+    },
+    "devices_allowed": {
+      "const": false
+    },
+    "isolated_home": {
+      "const": true
+    },
+    "network_policy": {
+      "const": "DENY_BY_DEFAULT_EXACT_ALLOWLIST"
+    },
+    "output_root": {
+      "type": "string"
+    },
+    "remote_async_jobs_allowed": {
+      "const": false
+    },
+    "reset_receipt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "scratch_root": {
+      "type": "string"
+    },
+    "source_read_only": {
+      "const": true
+    }
+  },
+  "required": [
+    "source_read_only",
+    "case_read_only",
+    "isolated_home",
+    "scratch_root",
+    "output_root",
+    "network_policy",
+    "remote_async_jobs_allowed",
+    "devices_allowed",
+    "reset_receipt_sha256"
+  ],
+  "type": "object"
+}

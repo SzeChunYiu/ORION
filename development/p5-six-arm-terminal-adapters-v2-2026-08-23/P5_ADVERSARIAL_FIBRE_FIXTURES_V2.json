@@ -1,0 +1,106 @@
+{
+  "schema_version": "orion.p5.adversarial-same-visible-symptom-fibre-fixtures.v2",
+  "fixture_set_id": "P5.V2.SYNTHETIC.FIBRE.FIXTURES.PRE_NATIVE.EXAMPLES",
+  "frozen_at_utc": "2026-08-23T15:42:15Z",
+  "authority": "SYNTHETIC_CONFORMANCE_AND_COUNTEREXAMPLE_ONLY",
+  "native_output_examples_used": false,
+  "public_or_protected_outcome_rows_used": false,
+  "arms": [
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "same_visible_symptom": "patch_produced_and_process_exited_zero",
+      "counterexample_worlds": [
+        {"world_id": "C1_W1", "minimal_class": "EXECUTION_REPAIR", "latent_cause": "runtime dispatcher defect"},
+        {"world_id": "C1_W2", "minimal_class": "EVALUATOR_REPAIR", "latent_cause": "incorrect acceptance gate"}
+      ],
+      "expected_without_certificate": "UNRESOLVED"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "same_visible_symptom": "successor_replay_improved",
+      "counterexample_worlds": [
+        {"world_id": "C2_W1", "minimal_class": "WITHIN_CLASS_MODEL_REPAIR", "latent_cause": "prompt rule defect inside fixed family"},
+        {"world_id": "C2_W2", "minimal_class": "REPRESENTATION_REGIME_REPAIR", "latent_cause": "state representation loses the distinguishing feature"}
+      ],
+      "expected_without_certificate": "UNRESOLVED"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "same_visible_symptom": "child_selected_as_archive_best",
+      "counterexample_worlds": [
+        {"world_id": "C3_W1", "minimal_class": "MODEL_CLASS_EXPANSION", "latent_cause": "current solver family lacks required mechanism"},
+        {"world_id": "C3_W2", "minimal_class": "EXECUTION_REPAIR", "latent_cause": "mechanism exists but tool execution is broken"}
+      ],
+      "expected_without_certificate": "UNRESOLVED"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "same_visible_symptom": "profile_issue_open_and_candidate_patch_compiles",
+      "counterexample_worlds": [
+        {"world_id": "C4_W1", "minimal_class": "WITHIN_CLASS_MODEL_REPAIR", "latent_cause": "agent policy rule is wrong"},
+        {"world_id": "C4_W2", "minimal_class": "EXECUTION_REPAIR", "latent_cause": "tool binding calls the wrong executable"}
+      ],
+      "expected_without_certificate": "UNRESOLVED"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "same_visible_symptom": "DRAWBACK",
+      "counterexample_worlds": [
+        {"world_id": "C5_W1", "minimal_class": "EVIDENCE_REPAIR", "latent_cause": "evidence packet omits the decisive provenance"},
+        {"world_id": "C5_W2", "minimal_class": "EVALUATOR_REPAIR", "latent_cause": "metric expression scores the decisive evidence incorrectly"}
+      ],
+      "expected_without_certificate": "UNRESOLVED"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "same_visible_symptom": "open_need_with_valid_typed_artifact",
+      "counterexample_worlds": [
+        {"world_id": "C6_W1", "minimal_class": "EVIDENCE_REPAIR", "latent_cause": "missing primary source"},
+        {"world_id": "C6_W2", "minimal_class": "MEASUREMENT_REPAIR", "latent_cause": "missing measurement resolution"}
+      ],
+      "expected_without_certificate": "UNRESOLVED"
+    }
+  ],
+  "positive_conformance_templates": {
+    "C1_FIXED_AGENT__SWE_AGENT": [
+      "EVIDENCE_REPAIR",
+      "MEASUREMENT_REPAIR",
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR",
+      "EVALUATOR_REPAIR"
+    ],
+    "C2_DIRECT_SELF_EDIT__MOSS": [
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR"
+    ],
+    "C3_ARCHIVE_BASED_SELF_EDIT__DGM": [
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR"
+    ],
+    "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS": [
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR"
+    ],
+    "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY": [
+      "EVALUATOR_REPAIR"
+    ],
+    "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW": []
+  },
+  "negative_terminal_templates": [
+    "ERROR",
+    "TIMEOUT",
+    "ABSTAIN",
+    "EMPTY",
+    "PARTIAL",
+    "INVALID"
+  ],
+  "freeze_terminal": "P5_V2_ADVERSARIAL_FIBRE_FIXTURES_FROZEN_BEFORE_NATIVE_OUTPUT_EXAMPLES"
+}

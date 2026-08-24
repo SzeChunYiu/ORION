@@ -1,0 +1,101 @@
+{
+  "checks": [
+    {
+      "check": "code_bertmap_native_parser_v7.py",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "code_common_pair_evaluator_v21.py",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "code_run_direct_decoder_v21.py",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "input_v20_native_result",
+      "detail": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/BERTMAP_RESULT_V20.json",
+      "pass": true
+    },
+    {
+      "check": "input_native_raw_json",
+      "detail": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/frozen-native-interface/raw_mappings.json",
+      "pass": true
+    },
+    {
+      "check": "input_native_raw_tsv",
+      "detail": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/frozen-native-interface/raw_mappings.tsv",
+      "pass": true
+    },
+    {
+      "check": "input_native_extended_tsv",
+      "detail": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/frozen-native-interface/extended_mappings.tsv",
+      "pass": true
+    },
+    {
+      "check": "input_native_filtered_tsv",
+      "detail": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/frozen-native-interface/filtered_mappings.tsv",
+      "pass": true
+    },
+    {
+      "check": "input_native_repaired_tsv",
+      "detail": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/frozen-native-interface/repaired_mappings.tsv",
+      "pass": true
+    },
+    {
+      "check": "input_universe_manifest",
+      "detail": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/UNIVERSE_MANIFEST_V21.json",
+      "pass": true
+    },
+    {
+      "check": "input_reference_hash_only_before_scoring",
+      "detail": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/inputs/REFERENCE_FROZEN_V21.rdf",
+      "pass": true
+    },
+    {
+      "check": "input_aml_frozen_output",
+      "detail": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-aml-java8-prospective-comparator-v16-2026-08-23/AML_ALIGNMENT_V16.rdf",
+      "pass": true
+    },
+    {
+      "check": "input_aml_frozen_result",
+      "detail": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-aml-java8-prospective-comparator-v16-2026-08-23/RESULT_V16.json",
+      "pass": true
+    },
+    {
+      "check": "v20_native_success",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "v20_typed_failure_preserved",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "v20_scoring_not_authorized",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "v20_reference_unopened",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "decoder_grammar_frozen",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "checks_passed": 18,
+  "checks_total": 18,
+  "decoder_authorized": true,
+  "evaluated_at_utc": "2026-08-24T06:38:33.126420+00:00",
+  "protocol_sha256": "c64d5f50fbdd73914bc25afa75c5a1fdf270bdfa41043cbb93b4238fe93b18ff",
+  "schema_version": "orion.p3.direct-iri-decoder.preflight.v21",
+  "terminal": "P3_V21_FROZEN_V20_OUTPUT_AND_DIRECT_IRI_DECODER_PREFLIGHT_PASS"
+}

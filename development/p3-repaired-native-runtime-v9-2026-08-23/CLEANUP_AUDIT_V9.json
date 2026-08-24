@@ -1,0 +1,106 @@
+{
+  "all_cleanup_targets_absent": true,
+  "bytes_released_nominal": 5418492269,
+  "completed": true,
+  "completed_at": "2026-08-23T20:10:25.109548+00:00",
+  "created_at": "2026-08-23T20:09:02.718277+00:00",
+  "deleted": [
+    {
+      "bytes_before_cleanup": 1090816883,
+      "exists_after_cleanup": false,
+      "exists_before_cleanup": true,
+      "path": "runtime/cache",
+      "regular_file_count_before_cleanup": 35105
+    },
+    {
+      "bytes_before_cleanup": 3024394,
+      "exists_after_cleanup": false,
+      "exists_before_cleanup": true,
+      "path": "runtime/rights-cache",
+      "regular_file_count_before_cleanup": 413
+    },
+    {
+      "bytes_before_cleanup": 1006606196,
+      "exists_after_cleanup": false,
+      "exists_before_cleanup": true,
+      "path": "runtime/venv",
+      "regular_file_count_before_cleanup": 40147
+    },
+    {
+      "bytes_before_cleanup": 435996748,
+      "exists_after_cleanup": false,
+      "exists_before_cleanup": true,
+      "path": "runtime/model",
+      "regular_file_count_before_cleanup": 6
+    },
+    {
+      "bytes_before_cleanup": 280339505,
+      "exists_after_cleanup": false,
+      "exists_before_cleanup": true,
+      "path": "runtime/source",
+      "regular_file_count_before_cleanup": 629
+    },
+    {
+      "bytes_before_cleanup": 2601708543,
+      "exists_after_cleanup": false,
+      "exists_before_cleanup": true,
+      "path": "runtime/results/bertmap-out/bertmap/bert",
+      "regular_file_count_before_cleanup": 22
+    }
+  ],
+  "planned_deletions": [
+    {
+      "bytes_before_cleanup": 1090816883,
+      "exists_before_cleanup": true,
+      "path": "runtime/cache",
+      "regular_file_count_before_cleanup": 35105
+    },
+    {
+      "bytes_before_cleanup": 3024394,
+      "exists_before_cleanup": true,
+      "path": "runtime/rights-cache",
+      "regular_file_count_before_cleanup": 413
+    },
+    {
+      "bytes_before_cleanup": 1006606196,
+      "exists_before_cleanup": true,
+      "path": "runtime/venv",
+      "regular_file_count_before_cleanup": 40147
+    },
+    {
+      "bytes_before_cleanup": 435996748,
+      "exists_before_cleanup": true,
+      "path": "runtime/model",
+      "regular_file_count_before_cleanup": 6
+    },
+    {
+      "bytes_before_cleanup": 280339505,
+      "exists_before_cleanup": true,
+      "path": "runtime/source",
+      "regular_file_count_before_cleanup": 629
+    },
+    {
+      "bytes_before_cleanup": 2601708543,
+      "exists_before_cleanup": true,
+      "path": "runtime/results/bertmap-out/bertmap/bert",
+      "regular_file_count_before_cleanup": 22
+    }
+  ],
+  "policy": "Delete large staged runtime and generated checkpoint intermediates only after durable manifests, receipts, failure localization, and retained native-artifact hashes exist.",
+  "retained": [
+    "runtime/config.yaml",
+    "runtime/inputs/source.owl",
+    "runtime/inputs/target.owl",
+    "runtime/results/bertmap-out/bertmap/config.yaml",
+    "runtime/results/bertmap-out/bertmap/data",
+    "runtime/results/bertmap-out/bertmap/match/raw_mappings.json",
+    "runtime/results/bertmap-out/bertmap/match/raw_mappings.tsv",
+    "runtime/results/bertmap-out/bertmap/match/extended_mappings.tsv",
+    "runtime/results/bertmap-out/bertmap/match/filtered_mappings.tsv",
+    "runtime/results/bertmap-out/bertmap/match/logmap-repair/filtered_mappings_for_LogMap_repair.txt",
+    "NATIVE_STDOUT_V9.log",
+    "NATIVE_STDERR_V9.log"
+  ],
+  "retention_boundary": "No synthetic file is relabelled as repaired_mappings.tsv or as a native artifact.",
+  "schema_version": "orion.p3.repaired-native-runtime.cleanup-audit.v9"
+}

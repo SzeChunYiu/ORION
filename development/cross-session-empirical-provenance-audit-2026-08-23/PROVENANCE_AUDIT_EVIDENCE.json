@@ -1,0 +1,588 @@
+{
+  "boundary": {
+    "model_or_comparator_executed": false,
+    "payload_bodies_retained": false,
+    "raw_data_imported": false,
+    "record_promoted": false,
+    "source_checkout_mutated_outside_audit_directory": false
+  },
+  "generated_at": "2026-08-23T18:23:47.064617+00:00",
+  "overall_terminal": "CROSS_SESSION_EMPIRICAL_PROVENANCE_AUDIT_P1_P3_COMPLETE__NO_RECORD_PROMOTED__TOP_TIER_EMPIRICAL_CLAIMS_CANNOT_CHECK",
+  "p1": {
+    "evidence_class": "HIDDEN_FORMULATION_HARNESS",
+    "files": {
+      "pilot_runs.jsonl": {
+        "bytes": 936573,
+        "elapsed_seconds_max": 0.017134749999968335,
+        "elapsed_seconds_min": 4.108299617655575e-05,
+        "error_nonempty": 0,
+        "excluded_true": 0,
+        "git_tracked": false,
+        "model_token_nonzero_rows": 0,
+        "model_token_nonzero_system_counts": {},
+        "model_tokens_sum": 0,
+        "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/pilot_runs.jsonl",
+        "protocol_ids": [
+          "P1.hidden-formulation.v1"
+        ],
+        "raw_trace_wallclock_nonzero_rows": 0,
+        "rows": 990,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "sha256": "84ae5ea1fc9dea014b2fa804ad60dc4d2e8fdb396738d925971f92c697438e19",
+        "status_counts": {
+          "OK": 990
+        },
+        "subject_revisions": [
+          "55f0bc766f2242ca6fffd729f3f44c01168f663d+dirty"
+        ],
+        "suite_fingerprints": [
+          "7a50a2d5025beb7dea4835911fa7dbf4a191431447397c73939c276b71dc49b5"
+        ],
+        "systems": [
+          "arex_like_recursive_audit_followup",
+          "full_reset_instead_of_dependency_reopen",
+          "generic_retry_instead_of_typed_reframe",
+          "iris_like_information_state_revision",
+          "orion_full",
+          "orion_without_explicit_M",
+          "orion_without_explicit_W",
+          "orion_without_mechanic_self_audit",
+          "scion_like_dependency_execution_plan",
+          "static_react_tool_workflow",
+          "tree_search_iterative_research"
+        ],
+        "unique_case_system_seed": 990,
+        "unique_cases": 18
+      },
+      "pilot_scored.jsonl": {
+        "bytes": 1410255,
+        "cannot_check_reason_nonempty_rows": 0,
+        "control_rows": 330,
+        "git_tracked": false,
+        "hidden_shift_rows": 660,
+        "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/pilot_scored.jsonl",
+        "rows": 990,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "sha256": "a11ac3a910d2257325cf351dc6fdb00fa28db9a3d29f581faadab14f1a1cd208",
+        "status_counts": {
+          "SCORED": 990
+        },
+        "subject_revisions": [
+          "55f0bc766f2242ca6fffd729f3f44c01168f663d+dirty"
+        ],
+        "suite_fingerprints": [
+          "7a50a2d5025beb7dea4835911fa7dbf4a191431447397c73939c276b71dc49b5"
+        ],
+        "systems": [
+          "arex_like_recursive_audit_followup",
+          "full_reset_instead_of_dependency_reopen",
+          "generic_retry_instead_of_typed_reframe",
+          "iris_like_information_state_revision",
+          "orion_full",
+          "orion_without_explicit_M",
+          "orion_without_explicit_W",
+          "orion_without_mechanic_self_audit",
+          "scion_like_dependency_execution_plan",
+          "static_react_tool_workflow",
+          "tree_search_iterative_research"
+        ],
+        "trace_fidelity_false_rows": 0,
+        "unique_case_system_seed": 990,
+        "unique_cases": 18
+      },
+      "test_runs.jsonl": {
+        "bytes": 2683508,
+        "elapsed_seconds_max": 21.558809749985812,
+        "elapsed_seconds_min": 4.612500197254121e-05,
+        "error_nonempty": 0,
+        "excluded_true": 0,
+        "git_tracked": true,
+        "model_token_nonzero_rows": 240,
+        "model_token_nonzero_system_counts": {
+          "orion_live_provider": 240
+        },
+        "model_tokens_sum": 289261,
+        "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_runs.jsonl",
+        "protocol_ids": [
+          "P1.hidden-formulation.v1"
+        ],
+        "raw_trace_wallclock_nonzero_rows": 0,
+        "rows": 2880,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "sha256": "83cc652ce8a6dbeab6cb664af42ca36dee2704ef58ee7e6ea32cd060ea9fc17e",
+        "status_counts": {
+          "OK": 2880
+        },
+        "subject_revisions": [
+          "0cf4e8d82771252de94be8c696a3f39fd3191019"
+        ],
+        "suite_fingerprints": [
+          "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420"
+        ],
+        "systems": [
+          "arex_like_recursive_audit_followup",
+          "full_reset_instead_of_dependency_reopen",
+          "generic_retry_instead_of_typed_reframe",
+          "iris_like_information_state_revision",
+          "orion_full",
+          "orion_live_provider",
+          "orion_without_explicit_M",
+          "orion_without_explicit_W",
+          "orion_without_mechanic_self_audit",
+          "scion_like_dependency_execution_plan",
+          "static_react_tool_workflow",
+          "tree_search_iterative_research"
+        ],
+        "unique_case_system_seed": 2880,
+        "unique_cases": 48
+      },
+      "test_scored.jsonl": {
+        "bytes": 4083262,
+        "cannot_check_reason_nonempty_rows": 0,
+        "control_rows": 960,
+        "git_tracked": true,
+        "hidden_shift_rows": 1920,
+        "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl",
+        "rows": 2880,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "sha256": "f37db6247dd1f5883e443b6d7b454e099759cb26baa3e09f74e7fd275e4d7f7b",
+        "status_counts": {
+          "SCORED": 2880
+        },
+        "subject_revisions": [
+          "0cf4e8d82771252de94be8c696a3f39fd3191019"
+        ],
+        "suite_fingerprints": [
+          "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420"
+        ],
+        "systems": [
+          "arex_like_recursive_audit_followup",
+          "full_reset_instead_of_dependency_reopen",
+          "generic_retry_instead_of_typed_reframe",
+          "iris_like_information_state_revision",
+          "orion_full",
+          "orion_live_provider",
+          "orion_without_explicit_M",
+          "orion_without_explicit_W",
+          "orion_without_mechanic_self_audit",
+          "scion_like_dependency_execution_plan",
+          "static_react_tool_workflow",
+          "tree_search_iterative_research"
+        ],
+        "trace_fidelity_false_rows": 0,
+        "unique_case_system_seed": 2880,
+        "unique_cases": 48
+      }
+    },
+    "grid_identity": {
+      "pilot": "18 cases x 11 systems x 5 seeds = 990 unique rows",
+      "test": "48 cases x 12 systems x 5 seeds = 2,880 unique rows"
+    },
+    "naturalistic_v2_v3_action_evidence_admissible": false,
+    "pilot_model_token_nonzero_rows": 0,
+    "pilot_subject_revision_dirty": true,
+    "reason": "All four files are explicitly bound to P1.hidden-formulation.v1 and frozen hidden-shift suite fingerprints. Even the 240 live-provider test rows score hidden-formulation cases against host-side gold; they are not naturalistic P1 V2/V3 postpublication-action evidence.",
+    "terminal": "P1_CROSS_SESSION_RAW_EVIDENCE_IS_HIDDEN_FORMULATION_HARNESS_ONLY__NATURALISTIC_V2_V3_ACTION_EVIDENCE_CANNOT_CHECK",
+    "test_live_provider_model_tokens_sum": 289261,
+    "test_live_provider_rows": 240
+  },
+  "p3": {
+    "analysis_directory": {
+      "aggregate_system_count": 0,
+      "aggregates_bytes": 2,
+      "aggregates_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "metric_seed_counts": {
+        "ORION_FULL": 1,
+        "VanillaLongContext": 1
+      },
+      "metric_systems": [
+        "ORION_FULL",
+        "VanillaLongContext"
+      ],
+      "metrics_by_system_seed_sha256": "704525c3a34dd0ae432dd4c875b2fcd4a6213c605eb78753905e441df44e9a46"
+    },
+    "annotations": {
+      "annotator_a_filename_count": 32,
+      "annotator_b_filename_count": 0,
+      "annotator_counts": {
+        "adjudicated-v1": 32
+      },
+      "coordinates_matching_tracked_combined_gold": 32,
+      "discipline_counts": {
+        "biomed": 8,
+        "climate": 8,
+        "phys": 8,
+        "social": 8
+      },
+      "document_ids_with_seed_placeholder": 64,
+      "duplicate_placeholder_hash_excess": 1,
+      "duplicate_placeholder_hash_values": 1,
+      "files": 32,
+      "freeze_source_span_status": {
+        "document_id_prefixes": [
+          "pmc",
+          "arxiv",
+          "socarxiv",
+          "essd"
+        ],
+        "note": "All 64 source spans carry SEED placeholder document IDs and seed: prefixed placeholder text hashes. Verified open-access spans are required before real-world construct validity can be claimed.",
+        "text_hash_prefixes": [
+          "seed"
+        ]
+      },
+      "freeze_two_annotator_status": {
+        "annotation_round_used": "ADJUDICATION",
+        "annotator_a_records_on_disk": 0,
+        "annotator_b_records_on_disk": 0,
+        "annotator_id": "seed-to-gold-v1",
+        "coordinate_agreement_computable": false,
+        "independent_labels_exist": false,
+        "note": "Two independent initial labels on a substantial shared subset are NOT available. annotation_agreement_by_coordinate therefore cannot be computed on a real corpus. Per owner governance decision on issue #158, coordinates requiring independent labelling remain CANNOT_CHECK and are recorded in issue #100 as an external blocker. No manufactured second annotator was created."
+      },
+      "sample_ids": 32,
+      "source_metadata_matching_tracked_combined_gold": 32,
+      "source_references": 64,
+      "source_text_field_present_in_untracked_annotations": 0,
+      "text_hash_seed_prefix": 64,
+      "tracked_combined_gold_source_text_nonempty": 64,
+      "tracked_combined_gold_text_hash_matches_text_sha256": 0,
+      "tracked_combined_gold_text_length_max": 87,
+      "tracked_combined_gold_text_length_min": 31,
+      "unique_document_ids": 64,
+      "unique_placeholder_text_hashes": 63,
+      "valid_64_hex_text_hashes": 0
+    },
+    "empirical_promotion_allowed": false,
+    "run_full": {
+      "checkpoint_final": {
+        "bytes": 3879279,
+        "case_indices": 32,
+        "duplicate_excess": 940,
+        "duplicate_keys_with_conflicting_payloads": 683,
+        "exact_duplicate_excess": 0,
+        "key_multiplicity_distribution": {
+          "1": 1717,
+          "2": 502,
+          "3": 131,
+          "4": 34,
+          "5": 9,
+          "6": 4,
+          "7": 3
+        },
+        "keys_not_in_pre_retry": 72,
+        "keys_with_duplicates": 683,
+        "max_key_multiplicity": 7,
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/checkpoint.jsonl",
+        "per_system": {
+          "CrossDomainRAG": {
+            "duplicate_excess": 33,
+            "keys_with_duplicates": 19,
+            "rows": 193,
+            "unique_keys": 160
+          },
+          "FlatUniversalSchema": {
+            "duplicate_excess": 42,
+            "keys_with_duplicates": 25,
+            "rows": 202,
+            "unique_keys": 160
+          },
+          "ORION_FULL": {
+            "duplicate_excess": 17,
+            "keys_with_duplicates": 8,
+            "rows": 177,
+            "unique_keys": 160
+          },
+          "ORION_no_W_expansion": {
+            "duplicate_excess": 122,
+            "keys_with_duplicates": 100,
+            "rows": 282,
+            "unique_keys": 160
+          },
+          "ORION_no_construct": {
+            "duplicate_excess": 36,
+            "keys_with_duplicates": 26,
+            "rows": 196,
+            "unique_keys": 160
+          },
+          "ORION_no_context": {
+            "duplicate_excess": 69,
+            "keys_with_duplicates": 45,
+            "rows": 229,
+            "unique_keys": 160
+          },
+          "ORION_no_measurement": {
+            "duplicate_excess": 32,
+            "keys_with_duplicates": 26,
+            "rows": 192,
+            "unique_keys": 160
+          },
+          "ORION_no_modality_polarity_attribution_discourse": {
+            "duplicate_excess": 142,
+            "keys_with_duplicates": 111,
+            "rows": 302,
+            "unique_keys": 160
+          },
+          "ORION_no_obstruction": {
+            "duplicate_excess": 124,
+            "keys_with_duplicates": 95,
+            "rows": 284,
+            "unique_keys": 160
+          },
+          "ORION_no_recoverability": {
+            "duplicate_excess": 139,
+            "keys_with_duplicates": 105,
+            "rows": 299,
+            "unique_keys": 160
+          },
+          "ORION_no_referent": {
+            "duplicate_excess": 34,
+            "keys_with_duplicates": 25,
+            "rows": 194,
+            "unique_keys": 160
+          },
+          "ProvenanceSchema": {
+            "duplicate_excess": 45,
+            "keys_with_duplicates": 31,
+            "rows": 205,
+            "unique_keys": 160
+          },
+          "SCOPE_SCION_Like": {
+            "duplicate_excess": 45,
+            "keys_with_duplicates": 29,
+            "rows": 205,
+            "unique_keys": 160
+          },
+          "ScientificRAG": {
+            "duplicate_excess": 41,
+            "keys_with_duplicates": 25,
+            "rows": 201,
+            "unique_keys": 160
+          },
+          "VanillaLongContext": {
+            "duplicate_excess": 19,
+            "keys_with_duplicates": 13,
+            "rows": 179,
+            "unique_keys": 160
+          }
+        },
+        "pre_retry_keys_missing_final": 0,
+        "rows": 3340,
+        "seeds": 5,
+        "sha256": "1c44c6626d49b497bbedcfa36ac88906f97d4e0b6b8b29dd7bb73b15c82fb2d9",
+        "systems": 15,
+        "unique_sid_case_seed": 2400
+      },
+      "checkpoint_pre_retry": {
+        "bytes": 3169819,
+        "case_indices": 32,
+        "duplicate_excess": 392,
+        "duplicate_keys_with_conflicting_payloads": 392,
+        "exact_duplicate_excess": 0,
+        "key_multiplicity_distribution": {
+          "1": 1936,
+          "2": 392
+        },
+        "keys_with_duplicates": 392,
+        "max_key_multiplicity": 2,
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/checkpoint_pre_retry.jsonl",
+        "per_system": {
+          "CrossDomainRAG": {
+            "duplicate_excess": 0,
+            "keys_with_duplicates": 0,
+            "rows": 157,
+            "unique_keys": 157
+          },
+          "FlatUniversalSchema": {
+            "duplicate_excess": 0,
+            "keys_with_duplicates": 0,
+            "rows": 155,
+            "unique_keys": 155
+          },
+          "ORION_FULL": {
+            "duplicate_excess": 0,
+            "keys_with_duplicates": 0,
+            "rows": 158,
+            "unique_keys": 158
+          },
+          "ORION_no_W_expansion": {
+            "duplicate_excess": 91,
+            "keys_with_duplicates": 91,
+            "rows": 251,
+            "unique_keys": 160
+          },
+          "ORION_no_construct": {
+            "duplicate_excess": 0,
+            "keys_with_duplicates": 0,
+            "rows": 159,
+            "unique_keys": 159
+          },
+          "ORION_no_context": {
+            "duplicate_excess": 0,
+            "keys_with_duplicates": 0,
+            "rows": 142,
+            "unique_keys": 142
+          },
+          "ORION_no_measurement": {
+            "duplicate_excess": 0,
+            "keys_with_duplicates": 0,
+            "rows": 159,
+            "unique_keys": 159
+          },
+          "ORION_no_modality_polarity_attribution_discourse": {
+            "duplicate_excess": 105,
+            "keys_with_duplicates": 105,
+            "rows": 265,
+            "unique_keys": 160
+          },
+          "ORION_no_obstruction": {
+            "duplicate_excess": 88,
+            "keys_with_duplicates": 88,
+            "rows": 248,
+            "unique_keys": 160
+          },
+          "ORION_no_recoverability": {
+            "duplicate_excess": 97,
+            "keys_with_duplicates": 97,
+            "rows": 257,
+            "unique_keys": 160
+          },
+          "ORION_no_referent": {
+            "duplicate_excess": 0,
+            "keys_with_duplicates": 0,
+            "rows": 159,
+            "unique_keys": 159
+          },
+          "ProvenanceSchema": {
+            "duplicate_excess": 0,
+            "keys_with_duplicates": 0,
+            "rows": 150,
+            "unique_keys": 150
+          },
+          "SCOPE_SCION_Like": {
+            "duplicate_excess": 0,
+            "keys_with_duplicates": 0,
+            "rows": 157,
+            "unique_keys": 157
+          },
+          "ScientificRAG": {
+            "duplicate_excess": 11,
+            "keys_with_duplicates": 11,
+            "rows": 144,
+            "unique_keys": 133
+          },
+          "VanillaLongContext": {
+            "duplicate_excess": 0,
+            "keys_with_duplicates": 0,
+            "rows": 159,
+            "unique_keys": 159
+          }
+        },
+        "rows": 2720,
+        "seeds": 5,
+        "sha256": "24d6093fa1ae36558c17bdd10551158623d18a6b9f3d35ad4fd1c952b8724f63",
+        "systems": 15,
+        "unique_sid_case_seed": 2328
+      },
+      "code_evidence": {
+        "analyze_run_py_sha256": "433f58cf5614a2e6b18be66f344ea18d5186987cc99fd5014a463c54496c322c",
+        "checkpoint_analysis_last_write_wins_dict_comprehension_present": true,
+        "cost_metric_signature_mismatch_present": true,
+        "cost_metrics_declared_positional_parameters": 1,
+        "evaluate_py_sha256": "6cd17b685e910f0e7481dd51cce8528162f927ea2fb22da7f492a810c43e1c4c",
+        "full_orion_stub_marker_present": true,
+        "metric_dispatch_positional_argument_counts": [
+          2
+        ],
+        "metrics_py_sha256": "a5863fba514b78894240e166cda50dfeecfdc08b81679258e3c8240de5d9a79e",
+        "zero_cost_metadata_literal_present": true
+      },
+      "manifest": {
+        "current_combined_gold_byte_sha256": "778168a5c05da95464f76b877762c1f9da19f41a8ee5dcc28ac65aca58471e7e",
+        "gold_hash": "667be9620944abba078dca442c1283baec59a14989fbdf5761137a7cd11e5c8a",
+        "gold_hash_matches_current_combined_gold_bytes": false,
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/MANIFEST.json",
+        "resource_policy": {
+          "context_budget_per_case": "TBD",
+          "frozen_model_family": "deepseek-v4-pro",
+          "retrieval_allowance": "TBD"
+        },
+        "run_manifest_hash": "2418037639d15ff819b8e50631e6b4d822d3a4970b8dc293951e4f5b022e068c",
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "sha256": "3eb4a36e2e12c798354772d42926e500cd572f7caf1f9c73d5df18b9cbb3747d",
+        "source_revision_bound": false,
+        "systems": 15
+      },
+      "results": {
+        "bytes": 203582,
+        "cost_metrics_error_counts": {
+          "-1.0": 75
+        },
+        "failure_class_counts": {
+          "None": 75
+        },
+        "orion_full_pass_rows": 5,
+        "path": "papers/paper-03-global-knowledge-portrait/evaluation/run-full/results.jsonl",
+        "raw_artifact_hash_matches_system_seed_key_rows": 75,
+        "raw_artifact_hash_unique": 75,
+        "raw_artifact_hash_valid_sha256_rows": 75,
+        "rows": 75,
+        "run_manifest_hash_values": [
+          "2418037639d15ff819b8e50631e6b4d822d3a4970b8dc293951e4f5b022e068c"
+        ],
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "sha256": "c0489f58a060de693cd5446b73bd6baaa9b429c9c31e5ddba752749431e2977e",
+        "source_revision_bound": false,
+        "status_counts": {
+          "PASS": 75
+        },
+        "systems": 15,
+        "unique_system_seed": 75,
+        "zero_cost_field_rows": {
+          "model_tokens": 75,
+          "reported_currency_cost": 75,
+          "tool_calls": 75,
+          "wallclock_seconds": 75
+        }
+      }
+    },
+    "terminal": "P3_CROSS_SESSION_STRUCTURAL_OUTPUTS_PRESENT__REAL_SOURCE_PROVENANCE_ANNOTATOR_INDEPENDENCE_COST_AND_DEDUPLICATED_EMPIRICAL_BINDING_CANNOT_CHECK"
+  },
+  "schema_version": "orion.cross-session-empirical-provenance.audit-evidence.v1",
+  "source_checkout_receipt_sha256": "92c4ee709ca5be6bd310c2ca2bc237d22c6332c17c022fb0751ac49bb13c5295"
+}

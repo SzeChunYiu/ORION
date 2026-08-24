@@ -1,0 +1,924 @@
+{
+  "arm_manifests": [
+    {
+      "arm_id": "C1_FIXED_AGENT__SWE_AGENT",
+      "execution_ready": false,
+      "fields": {
+        "adapter.isolated_write_surface": {
+          "binding": null,
+          "blocker_reason": "The V3 synthetic write registry is specified, but no runtime enforcement/reset wrapper is bound.",
+          "state": "UNBOUND"
+        },
+        "adapter.native_parser_binding": {
+          "binding": null,
+          "blocker_reason": "The generic V3 synthetic contract is hashed, but no arm-native runtime parser/binding is implemented or checked against native outputs.",
+          "state": "UNBOUND"
+        },
+        "custody.external_protected_scorer": {
+          "binding": null,
+          "blocker_reason": "Independent protected scorer identity, code and access control remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "custody.one_shot_no_feedback_barrier": {
+          "binding": null,
+          "blocker_reason": "No enforced one-shot no-feedback custody wrapper is bound.",
+          "state": "UNBOUND"
+        },
+        "custody.protected_panel_freshness": {
+          "binding": null,
+          "blocker_reason": "Protected panel identity and freshness remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "identity.native_entrypoint_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_license_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_repository_commit": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "inputs.candidate_visible_case_bytes": {
+          "binding": null,
+          "blocker_reason": "No exact P5 candidate-visible case packet is frozen.",
+          "state": "UNBOUND"
+        },
+        "model_provider.fallbacks": {
+          "binding": null,
+          "blocker_reason": "Fallback identities and closed fallback behaviour are unbound.",
+          "state": "UNBOUND"
+        },
+        "model_provider.primary": {
+          "binding": null,
+          "blocker_reason": "Selected model/provider/service revision, configuration and capability mapping are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.calls_tokens_usd": {
+          "binding": null,
+          "blocker_reason": "Aggregate calls, tokens and USD caps are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.retry_network": {
+          "binding": null,
+          "blocker_reason": "Retry, timeout, backoff and network allowlist are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.wallclock": {
+          "binding": null,
+          "blocker_reason": "Per-case and whole-run wallclock caps are unbound.",
+          "state": "UNBOUND"
+        },
+        "rights.container_and_generated_artifacts": {
+          "binding": null,
+          "blocker_reason": "Container/image and generated-artifact authority is not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.model_provider_and_services": {
+          "binding": null,
+          "blocker_reason": "Model/provider and external service terms are not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "binding": null,
+          "blocker_reason": "Upstream repository, issue and task-content rights are not closed.",
+          "state": "UNBOUND"
+        },
+        "runtime.compute": {
+          "binding": null,
+          "blocker_reason": "CPU, RAM, GPU and parallelism are not selected and frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.container_or_environment": {
+          "binding": null,
+          "blocker_reason": "No content-addressed container or complete immutable environment is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.dependency_lock": {
+          "binding": null,
+          "blocker_reason": "No exact dependency lock digest is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "blocker_reason": "Isolated task checkout/container and task environment identity are unbound.",
+          "state": "UNBOUND"
+        }
+      },
+      "name": "SWE-agent",
+      "resource_ledger_arm_id": "C1_FIXED_AGENT"
+    },
+    {
+      "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+      "execution_ready": false,
+      "fields": {
+        "adapter.isolated_write_surface": {
+          "binding": null,
+          "blocker_reason": "The V3 synthetic write registry is specified, but no runtime enforcement/reset wrapper is bound.",
+          "state": "UNBOUND"
+        },
+        "adapter.native_parser_binding": {
+          "binding": null,
+          "blocker_reason": "The generic V3 synthetic contract is hashed, but no arm-native runtime parser/binding is implemented or checked against native outputs.",
+          "state": "UNBOUND"
+        },
+        "custody.external_protected_scorer": {
+          "binding": null,
+          "blocker_reason": "Independent protected scorer identity, code and access control remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "custody.one_shot_no_feedback_barrier": {
+          "binding": null,
+          "blocker_reason": "No enforced one-shot no-feedback custody wrapper is bound.",
+          "state": "UNBOUND"
+        },
+        "custody.protected_panel_freshness": {
+          "binding": null,
+          "blocker_reason": "Protected panel identity and freshness remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "identity.native_entrypoint_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_license_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_repository_commit": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "inputs.candidate_visible_case_bytes": {
+          "binding": null,
+          "blocker_reason": "No exact P5 candidate-visible case packet is frozen.",
+          "state": "UNBOUND"
+        },
+        "model_provider.fallbacks": {
+          "binding": null,
+          "blocker_reason": "Fallback identities and closed fallback behaviour are unbound.",
+          "state": "UNBOUND"
+        },
+        "model_provider.primary": {
+          "binding": null,
+          "blocker_reason": "Authenticated coding-agent CLI, model, provider, endpoint and revision are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.calls_tokens_usd": {
+          "binding": null,
+          "blocker_reason": "Aggregate calls, tokens and USD caps are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.retry_network": {
+          "binding": null,
+          "blocker_reason": "Retry, timeout, backoff and network allowlist are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.wallclock": {
+          "binding": null,
+          "blocker_reason": "Per-case and whole-run wallclock caps are unbound.",
+          "state": "UNBOUND"
+        },
+        "rights.container_and_generated_artifacts": {
+          "binding": null,
+          "blocker_reason": "Docker/host mutation authority and generated-session artifact rights are not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.model_provider_and_services": {
+          "binding": null,
+          "blocker_reason": "Model/provider and external service terms are not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "binding": null,
+          "blocker_reason": "Session/failure artifacts and any external task or benchmark content rights are not closed.",
+          "state": "UNBOUND"
+        },
+        "runtime.compute": {
+          "binding": null,
+          "blocker_reason": "CPU, RAM, GPU and parallelism are not selected and frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.container_or_environment": {
+          "binding": null,
+          "blocker_reason": "No content-addressed container or complete immutable environment is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.dependency_lock": {
+          "binding": null,
+          "blocker_reason": "No exact dependency lock digest is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "blocker_reason": "No exact matched task/harness/runtime environment is frozen.",
+          "state": "UNBOUND"
+        }
+      },
+      "name": "MOSS",
+      "resource_ledger_arm_id": "C2_DIRECT_SELF_EDIT"
+    },
+    {
+      "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+      "execution_ready": false,
+      "fields": {
+        "adapter.isolated_write_surface": {
+          "binding": null,
+          "blocker_reason": "The V3 synthetic write registry is specified, but no runtime enforcement/reset wrapper is bound.",
+          "state": "UNBOUND"
+        },
+        "adapter.native_parser_binding": {
+          "binding": null,
+          "blocker_reason": "The generic V3 synthetic contract is hashed, but no arm-native runtime parser/binding is implemented or checked against native outputs.",
+          "state": "UNBOUND"
+        },
+        "custody.external_protected_scorer": {
+          "binding": null,
+          "blocker_reason": "Independent protected scorer identity, code and access control remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "custody.one_shot_no_feedback_barrier": {
+          "binding": null,
+          "blocker_reason": "No enforced one-shot no-feedback custody wrapper is bound.",
+          "state": "UNBOUND"
+        },
+        "custody.protected_panel_freshness": {
+          "binding": null,
+          "blocker_reason": "Protected panel identity and freshness remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "identity.native_entrypoint_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_license_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_repository_commit": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "inputs.candidate_visible_case_bytes": {
+          "binding": null,
+          "blocker_reason": "No exact P5 candidate-visible case packet is frozen.",
+          "state": "UNBOUND"
+        },
+        "model_provider.fallbacks": {
+          "binding": null,
+          "blocker_reason": "Fallback identities and closed fallback behaviour are unbound.",
+          "state": "UNBOUND"
+        },
+        "model_provider.primary": {
+          "binding": null,
+          "blocker_reason": "Selected model/provider/service revision, configuration and capability mapping are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.calls_tokens_usd": {
+          "binding": null,
+          "blocker_reason": "Aggregate calls, tokens and USD caps are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.retry_network": {
+          "binding": null,
+          "blocker_reason": "Retry, timeout, backoff and network allowlist are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.wallclock": {
+          "binding": null,
+          "blocker_reason": "No effective whole-attempt timeout outside coding_agent is frozen.",
+          "state": "UNBOUND"
+        },
+        "rights.container_and_generated_artifacts": {
+          "binding": null,
+          "blocker_reason": "Docker authority and untrusted generated-code isolation/retention rights are not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.model_provider_and_services": {
+          "binding": null,
+          "blocker_reason": "Model/provider and external service terms are not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "binding": null,
+          "blocker_reason": "SWE-bench framework, benchmark data, project, tests and patch rights are not closed.",
+          "state": "UNBOUND"
+        },
+        "runtime.compute": {
+          "binding": null,
+          "blocker_reason": "CPU, RAM, GPU and parallelism are not selected and frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.container_or_environment": {
+          "binding": null,
+          "blocker_reason": "No content-addressed container or complete immutable environment is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.dependency_lock": {
+          "binding": null,
+          "blocker_reason": "No exact dependency lock digest is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "blocker_reason": "Task/harness subset, prepared benchmark environment and treatment of the pinned argparse-choice defect are unbound.",
+          "state": "UNBOUND"
+        }
+      },
+      "name": "Darwin Godel Machine",
+      "resource_ledger_arm_id": "C3_ARCHIVE_BASED_SELF_EDIT"
+    },
+    {
+      "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+      "execution_ready": false,
+      "fields": {
+        "adapter.isolated_write_surface": {
+          "binding": null,
+          "blocker_reason": "The native write allow-list conflict is unresolved; the synthetic registry does not enforce the runtime surface.",
+          "state": "UNBOUND"
+        },
+        "adapter.native_parser_binding": {
+          "binding": null,
+          "blocker_reason": "The generic V3 synthetic contract is hashed, but no arm-native runtime parser/binding is implemented or checked against native outputs.",
+          "state": "UNBOUND"
+        },
+        "custody.external_protected_scorer": {
+          "binding": null,
+          "blocker_reason": "Independent protected scorer identity, code and access control remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "custody.one_shot_no_feedback_barrier": {
+          "binding": null,
+          "blocker_reason": "No enforced one-shot no-feedback custody wrapper is bound.",
+          "state": "UNBOUND"
+        },
+        "custody.protected_panel_freshness": {
+          "binding": null,
+          "blocker_reason": "Protected panel identity and freshness remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "identity.native_entrypoint_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_license_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_repository_commit": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "inputs.candidate_visible_case_bytes": {
+          "binding": null,
+          "blocker_reason": "No exact P5 candidate-visible case packet is frozen.",
+          "state": "UNBOUND"
+        },
+        "model_provider.fallbacks": {
+          "binding": null,
+          "blocker_reason": "Fallback identities and closed fallback behaviour are unbound.",
+          "state": "UNBOUND"
+        },
+        "model_provider.primary": {
+          "binding": null,
+          "blocker_reason": "Selected model/provider/service revision, configuration and capability mapping are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.calls_tokens_usd": {
+          "binding": null,
+          "blocker_reason": "Aggregate calls, tokens and USD caps are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.retry_network": {
+          "binding": null,
+          "blocker_reason": "Retry, timeout, backoff and network allowlist are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.wallclock": {
+          "binding": null,
+          "blocker_reason": "Per-case and whole-run wallclock caps are unbound.",
+          "state": "UNBOUND"
+        },
+        "rights.container_and_generated_artifacts": {
+          "binding": null,
+          "blocker_reason": "Container/image and generated-artifact authority is not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.model_provider_and_services": {
+          "binding": null,
+          "blocker_reason": "Model/provider and public-search service terms are not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "binding": null,
+          "blocker_reason": "ADIAS source use is restricted by CC BY-NC-SA and third-party benchmark/environment rights are not closed.",
+          "state": "UNBOUND"
+        },
+        "runtime.compute": {
+          "binding": null,
+          "blocker_reason": "CPU, RAM, GPU and parallelism are not selected and frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.container_or_environment": {
+          "binding": null,
+          "blocker_reason": "No content-addressed container or complete immutable environment is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.dependency_lock": {
+          "binding": null,
+          "blocker_reason": "No exact dependency lock digest is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "blocker_reason": "Dependency/container/domain identity, optimize_option and path policy are unbound.",
+          "state": "UNBOUND"
+        }
+      },
+      "name": "ADIAS",
+      "resource_ledger_arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION"
+    },
+    {
+      "arm_id": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+      "execution_ready": false,
+      "fields": {
+        "adapter.isolated_write_surface": {
+          "binding": null,
+          "blocker_reason": "The V3 synthetic write registry is specified, but no runtime enforcement/reset wrapper is bound.",
+          "state": "UNBOUND"
+        },
+        "adapter.native_parser_binding": {
+          "binding": null,
+          "blocker_reason": "The generic evaluator-front contract exists, but no native adapter or protected-custody wrapper is implemented and hashed.",
+          "state": "UNBOUND"
+        },
+        "custody.external_protected_scorer": {
+          "binding": null,
+          "blocker_reason": "Independent protected scorer identity, code and access control remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "custody.one_shot_no_feedback_barrier": {
+          "binding": null,
+          "blocker_reason": "Official eval_locked flow is not protected-custody safe without a bound development-surrogate and one-shot wrapper.",
+          "state": "UNBOUND"
+        },
+        "custody.protected_panel_freshness": {
+          "binding": null,
+          "blocker_reason": "Protected panel identity and freshness remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "identity.native_entrypoint_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_license_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_repository_commit": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "inputs.candidate_visible_case_bytes": {
+          "binding": null,
+          "blocker_reason": "P5 dossier bytes, frozen solver identity and development-only locked surrogate are unbound.",
+          "state": "UNBOUND"
+        },
+        "model_provider.fallbacks": {
+          "binding": null,
+          "blocker_reason": "Fallback identities and closed fallback behaviour are unbound.",
+          "state": "UNBOUND"
+        },
+        "model_provider.primary": {
+          "binding": null,
+          "blocker_reason": "Bedrock revision, role mapping, detector and embedding service identities, region and frozen solver configuration are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.calls_tokens_usd": {
+          "binding": null,
+          "blocker_reason": "Aggregate calls, tokens and USD caps are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.retry_network": {
+          "binding": null,
+          "blocker_reason": "Retry, timeout, backoff and network allowlist are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.wallclock": {
+          "binding": null,
+          "blocker_reason": "Per-case and whole-run wallclock caps are unbound.",
+          "state": "UNBOUND"
+        },
+        "rights.container_and_generated_artifacts": {
+          "binding": null,
+          "blocker_reason": "Container/image and generated-artifact authority is not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.model_provider_and_services": {
+          "binding": null,
+          "blocker_reason": "Amazon Bedrock permissions, pricing, quotas and optional service terms are not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "binding": null,
+          "blocker_reason": "MBPP+, Spider 2.0-Snow/Snowflake, report-generation data/evaluator and P5 panel rights are not closed.",
+          "state": "UNBOUND"
+        },
+        "runtime.compute": {
+          "binding": null,
+          "blocker_reason": "CPU, RAM, GPU and parallelism are not selected and frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.container_or_environment": {
+          "binding": null,
+          "blocker_reason": "No content-addressed container or complete immutable environment is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.dependency_lock": {
+          "binding": null,
+          "blocker_reason": "No exact dependency lock digest is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "blocker_reason": "P5 task-output generator and selected default-versus-reproduction regime are unbound.",
+          "state": "UNBOUND"
+        }
+      },
+      "name": "Double Ratchet metric-only",
+      "resource_ledger_arm_id": "C5_EVALUATOR_ONLY_EVOLUTION"
+    },
+    {
+      "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+      "execution_ready": false,
+      "fields": {
+        "adapter.isolated_write_surface": {
+          "binding": null,
+          "blocker_reason": "The V3 synthetic write registry is specified, but no runtime enforcement/reset wrapper is bound.",
+          "state": "UNBOUND"
+        },
+        "adapter.native_parser_binding": {
+          "binding": null,
+          "blocker_reason": "ScienceClaw has no native supported singleton; implementing a selector would be a material successor method, not an adapter binding.",
+          "state": "UNSUPPORTED"
+        },
+        "custody.external_protected_scorer": {
+          "binding": null,
+          "blocker_reason": "Independent protected scorer identity, code and access control remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "custody.one_shot_no_feedback_barrier": {
+          "binding": null,
+          "blocker_reason": "No enforced one-shot no-feedback custody wrapper is bound.",
+          "state": "UNBOUND"
+        },
+        "custody.protected_panel_freshness": {
+          "binding": null,
+          "blocker_reason": "Protected panel identity and freshness remain CANNOT_CHECK.",
+          "state": "UNBOUND"
+        },
+        "identity.native_entrypoint_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_license_bytes": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "identity.source_repository_commit": {
+          "binding": "Retained V2 content-addressed source identity",
+          "blocker_reason": null,
+          "state": "BOUND"
+        },
+        "inputs.candidate_visible_case_bytes": {
+          "binding": null,
+          "blocker_reason": "No exact P5 candidate-visible case packet is frozen.",
+          "state": "UNBOUND"
+        },
+        "model_provider.fallbacks": {
+          "binding": null,
+          "blocker_reason": "Fallback identities and closed fallback behaviour are unbound.",
+          "state": "UNBOUND"
+        },
+        "model_provider.primary": {
+          "binding": null,
+          "blocker_reason": "All model/provider/scientific service identities and capability mapping are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.calls_tokens_usd": {
+          "binding": null,
+          "blocker_reason": "All P5 tool-call, token and USD values are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.retry_network": {
+          "binding": null,
+          "blocker_reason": "Retry, timeout, backoff and network allowlist are unbound.",
+          "state": "UNBOUND"
+        },
+        "resources.wallclock": {
+          "binding": null,
+          "blocker_reason": "Per-case and whole-run wallclock caps are unbound.",
+          "state": "UNBOUND"
+        },
+        "rights.container_and_generated_artifacts": {
+          "binding": null,
+          "blocker_reason": "Generated-artifact rights and retention/redistribution authority are not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.model_provider_and_services": {
+          "binding": null,
+          "blocker_reason": "Scientific APIs, Infinite service, model/provider and tool-service terms are not closed.",
+          "state": "UNBOUND"
+        },
+        "rights.task_and_benchmark_content": {
+          "binding": null,
+          "blocker_reason": "Tool datasets, topic/case and protected-panel rights are not closed.",
+          "state": "UNBOUND"
+        },
+        "runtime.compute": {
+          "binding": null,
+          "blocker_reason": "CPU, RAM, GPU and parallelism are not selected and frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.container_or_environment": {
+          "binding": null,
+          "blocker_reason": "No content-addressed container or complete immutable environment is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.dependency_lock": {
+          "binding": null,
+          "blocker_reason": "No exact dependency lock digest is frozen.",
+          "state": "UNBOUND"
+        },
+        "runtime.task_environment": {
+          "binding": null,
+          "blocker_reason": "Profile, tools, optional dependencies, artifact reset, dry-run mode, topic-to-case adapter and scientific service revisions are unbound.",
+          "state": "UNBOUND"
+        }
+      },
+      "name": "ScienceClaw",
+      "resource_ledger_arm_id": "C6_STRONGEST_SOURCE_GROUNDED_MODERN_METHOD"
+    }
+  ],
+  "authority": "OUTCOME_FREE_EXECUTION_PREFLIGHT_TEMPLATE_ONLY",
+  "confirmatory_ready_arms": 0,
+  "field_definitions": {
+    "adapter.isolated_write_surface": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Enforced write allowlist and reset semantics matched to the registry.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "adapter.native_parser_binding": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Hashed arm-native parser to this V3 certificate/action contract.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "custody.external_protected_scorer": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Independent scorer identity, code digest and access controls.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "custody.one_shot_no_feedback_barrier": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "One-shot scoring and no outcome feedback into candidate/adaptation custody.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "custody.protected_panel_freshness": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Protected panel identity/freshness attestation unavailable to candidate.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "identity.native_entrypoint_bytes": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Content-addressed native entrypoint bytes.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "identity.source_license_bytes": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Content-addressed source licence bytes.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "identity.source_repository_commit": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Pinned source repository and commit.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "inputs.candidate_visible_case_bytes": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Exact candidate-visible P5 case bytes and input manifest.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "model_provider.fallbacks": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Closed fallback policy and all fallback identities.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "model_provider.primary": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Model, provider, endpoint/service revision, prompts/config and capability mapping.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "resources.calls_tokens_usd": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Tool/model-call, token and monetary caps.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "resources.retry_network": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Retry, timeout, backoff and network allowlist.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "resources.wallclock": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Per-case and whole-run wallclock caps.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "rights.container_and_generated_artifacts": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Container/image and generated-artifact use, retention and redistribution rights.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "rights.model_provider_and_services": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Lawful model/provider/API/search/tool-service use.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "rights.task_and_benchmark_content": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Lawful use of task, benchmark, issue, session and environment content.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "runtime.compute": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "CPU, RAM, GPU and parallelism allocation.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "runtime.container_or_environment": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Container digest or complete immutable environment identity.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "runtime.dependency_lock": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Exact dependency lock digest.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    },
+    "runtime.task_environment": {
+      "binding_rule": "BOUND requires a pre-execution value and sha256 or an enumerated closed value; a template or freezable choice is UNBOUND.",
+      "description": "Task, harness, OS/runtime and external environment identity.",
+      "required_for_execution": true,
+      "state_vocabulary": [
+        "BOUND",
+        "UNBOUND",
+        "CANNOT_CHECK",
+        "UNSUPPORTED"
+      ]
+    }
+  },
+  "frozen_at_utc": "2026-08-23T17:05:00Z",
+  "matching_rule": "Every required field must be BOUND for every arm before execution. Equality means an identical resource value where semantically fungible; otherwise a predeclared capability-equivalence rule and arm-specific value must both be frozen. Templates and freezable choices do not count as bindings.",
+  "panel_execution_rule": "If any required field is UNBOUND, CANNOT_CHECK or UNSUPPORTED for an arm, that arm is not execution-ready; do not repair readiness by deleting the arm after outcomes.",
+  "predecessor_resource_ledger_sha256": "1e3a450b1561cb2d3a1d556c77ef1688f8894fb2331fcfa334de87a18bd11dfe",
+  "required_arms": 6,
+  "schema_version": "orion.p5.matched-resource-manifest-template.v3",
+  "template_id": "P5.V3.SIX.ARM.MATCHED.RESOURCE.RIGHTS.CUSTODY.TEMPLATE"
+}

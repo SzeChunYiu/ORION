@@ -1,0 +1,70 @@
+{
+  "schema_version": "orion.p1.naturalistic-public-source-rights-amendment.v1",
+  "identity": "P1.RW.CC0.SOURCE.RIGHTS.AMENDMENT.V1",
+  "date": "2026-08-23",
+  "authority": "SOURCE_RIGHTS_AND_OUTCOME_BLIND_COUNT_AMENDMENT_ONLY",
+  "amends": {
+    "path": "work/lane-handoffs/p1-naturalistic-transport/SOURCE_FEASIBILITY_PROTOCOL_V1.json",
+    "sha256": "1e6888c347dbd5cb41bdeba049c9eb6537d8f5e5b9df3a38d461c9f23a0cc88a",
+    "scope": "CROSSREF_RETRACTION_WATCH rights status only; frozen Europe PMC queries, terminal map, exclusions, anti-leak rules and all execution gates are unchanged"
+  },
+  "chronology": {
+    "pre_amendment_evidence": "The GitLab project licence field and Crossref DOI metadata licence field were null and no repository licence file resolved.",
+    "pre_amendment_terminal": "CANNOT_CHECK_RETRACTION_WATCH_DATASET_REUSE_LICENSE",
+    "new_authoritative_evidence": "Crossref's official metadata-retrieval documentation explicitly lists the Retraction Watch database as CC0.",
+    "resolution": "The CC0 gate is resolved for Retraction Watch database metadata fields. Null repository/DOI licence fields are preserved as provenance facts but no longer control the database-field reuse decision."
+  },
+  "official_rights_binding": {
+    "source_url": "https://www.crossref.org/documentation/retrieve-metadata/",
+    "archived_html_path": "work/lane-handoffs/p1-naturalistic-transport/crossref-metadata-licensing.html",
+    "archived_html_sha256": "06a4101a3cc7a9122d65c5deb3da2b6278b7bd80e2c7440473ab1a1b9a5afc5f",
+    "archived_text_path": "work/lane-handoffs/p1-naturalistic-transport/crossref-metadata-licensing.txt",
+    "archived_text_sha256": "1cadf7e3255461ce95009a2ceda7e3b0beaa1f402e24ba9c878aa70732082550",
+    "verbatim_fact": "The licensing table lists 'Open Funder Registry, Retraction Watch database' with licence 'CC0'.",
+    "abstract_boundary": "The same page states that abstracts remain under publisher or author copyright."
+  },
+  "exact_dataset_identity": {
+    "repository": "https://gitlab.com/crossref/retraction-watch-data",
+    "project_id": 61336882,
+    "commit": "7bb2ced143b764974c53c6c61abfdd2379f5307d",
+    "csv_blob": "40a049f02044fab8286c0304fd296bf1fa2cb8ca",
+    "csv_sha256": "ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb",
+    "csv_bytes": 65984968,
+    "data_rows_counted_without_displaying_fields": 71944,
+    "readme_generation_date": "2026-08-21"
+  },
+  "content_class_scope": {
+    "cc0_admissible": [
+      "Retraction Watch CSV database metadata fields",
+      "Crossref-generated aggregations derived only from those metadata fields"
+    ],
+    "not_licensed_by_this_binding": [
+      "publisher article bodies",
+      "publisher or author abstracts",
+      "correction or retraction notice full text",
+      "attachments and supplements",
+      "Retraction Watch blog posts",
+      "linked third-party pages"
+    ],
+    "upstream_and_linked_content_must_be_adjudicated_separately": true
+  },
+  "development_use_boundary": {
+    "source_candidate_status": "RIGHTS_BOUND_FOR_METADATA_ONLY_DEVELOPMENT",
+    "row_content_opening_authorized_by_this_amendment": false,
+    "case_execution_authorized": false,
+    "protected_or_confirmatory_authority": false,
+    "required_next_freeze": "P1.RW.CC0.NATURALISTIC.DEVELOPMENT.V1 with connected update-family units, evaluator-hidden label fields, matched action contrasts, anti-memorization controls, blinded adjudication and a protected future-update wave"
+  },
+  "remaining_noncompensatory_blockers": [
+    "public curated labels and memorization risk",
+    "post-event reason codes are not direct causal-responsibility gold",
+    "multiple rows may encode one update family",
+    "corrections and expressions of concern are undercovered relative to retractions",
+    "no noisy anti-leak candidate view has passed hostile checks",
+    "no matched donor-complete and information-equivalent arms are frozen on this source",
+    "no independent case, gold, scoring or result-verification custody",
+    "no protected future-update or owner-disjoint replication wave"
+  ],
+  "current_overall_terminal": "P1_NATURALISTIC_PUBLIC_PANEL_CANNOT_CHECK_RIGHTS_OR_CONSTRUCT_VALIDITY",
+  "terminal_note": "The Retraction Watch CSV metadata rights subgate is now resolved. The overall terminal remains CANNOT_CHECK because construct validity, linked-content rights when used, adapters, source-disjoint protected replication and external custody remain unbound."
+}

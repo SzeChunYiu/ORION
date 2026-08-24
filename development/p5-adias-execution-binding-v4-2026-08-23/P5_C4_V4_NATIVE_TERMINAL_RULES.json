@@ -1,0 +1,57 @@
+{
+  "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+  "forbidden_inferences": [
+    "P5 performance",
+    "P5 superiority",
+    "P5 responsibility class",
+    "harm",
+    "preservation",
+    "fresh transfer"
+  ],
+  "global_adapter_terminal": "UNRESOLVED",
+  "material_source_defects_preserved": [
+    "generate() catches evaluation exceptions and can return normally after setting run_eval false",
+    "released run scripts use nohup/background and exit after writing a PID",
+    "a native report with total=0 still contains score=0 and can make get_score return non-None",
+    "native report JSON has no schema/version identifier"
+  ],
+  "refused_material": [
+    "final_test paths",
+    "protected/gold/holdout paths or keys",
+    "final_test_summary keys"
+  ],
+  "rules": [
+    {
+      "condition": "compile_status.ok is false or native compile_failure_diagnosis.json exists",
+      "terminal": "NATIVE_COMPILE_FAILURE"
+    },
+    {
+      "condition": "one or more structurally valid candidate-visible report.json files exist but every total is zero",
+      "terminal": "NATIVE_EMPTY_EVALUATION"
+    },
+    {
+      "condition": "metadata.run_eval is true and at least one structurally valid candidate-visible report has total>0",
+      "terminal": "NATIVE_EVALUATION_ARTIFACTS_RECORDED"
+    },
+    {
+      "condition": "no prior rule matches and patch_summary.has_patch is false",
+      "terminal": "NATIVE_NO_EFFECTIVE_PATCH"
+    },
+    {
+      "condition": "no prior rule matches",
+      "terminal": "NATIVE_PARTIAL"
+    }
+  ],
+  "schema_version": "orion.p5.c4.native-terminal-rules.v4",
+  "smoke_fixture_is_performance": false,
+  "source_writers": {
+    "metadata": {
+      "path": "src/generate_loop.py",
+      "sha256": "ac15bcbbcfce2f2bf11e93f8ebc7e18c81f8cddf368e7c88e4c0db296f678e22"
+    },
+    "report_dispatch": {
+      "path": "src/domains/report.py",
+      "sha256": "19e0f6eca574ad635b5aabb33a2a54299064e08df880088c3a7c0e351cc7f655"
+    }
+  }
+}

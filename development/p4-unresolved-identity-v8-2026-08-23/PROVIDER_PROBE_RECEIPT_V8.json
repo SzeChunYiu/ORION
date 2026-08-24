@@ -1,0 +1,2104 @@
+{
+  "archive_transport_retry": {
+    "corrected_accept": "*/*",
+    "finished_at": "2026-08-23T20:42:19.975218+00:00",
+    "reason": "ZENODO_CONTENT_ENDPOINT_REJECTED_APPLICATION_OCTET_STREAM_ACCEPT_WITH_HTTP_406",
+    "retried_exact_archive_count": 10,
+    "runtime_seconds": 23.33798,
+    "scope_expanded": false,
+    "started_at": "2026-08-23T20:41:56.637092+00:00"
+  },
+  "authority": "PROVIDER_NATIVE_AUTHORITATIVE_METADATA_ARCHIVES_AND_APIS_ONLY",
+  "broad_harvest": false,
+  "finished_at": "2026-08-23T20:39:43.469928+00:00",
+  "one_targeted_pass": true,
+  "probes": [
+    {
+      "archive_analysis": null,
+      "archive_doi": "10.5281/zenodo.21221061",
+      "archive_transport_retry": {
+        "body_bytes": 85369480,
+        "body_md5": "825cae8912147ba8a5415c6a73d95818",
+        "body_sha256": "e8d9defc64c7da5b64859ade992230c99ff4c20cb2e748c1f5827f6fcf72480c",
+        "content_length_header": "85369480",
+        "content_type": "application/octet-stream",
+        "error": null,
+        "final_url": "https://zenodo.org/api/records/21221062/files/jaxion.zip/content",
+        "finished_at": "2026-08-23T20:42:02.267811+00:00",
+        "http_status": 200,
+        "started_at": "2026-08-23T20:41:56.639448+00:00",
+        "url": "https://zenodo.org/api/records/21221062/files/jaxion.zip/content"
+      },
+      "archive_transport_retry_analysis": {
+        "archive_kind": "zip",
+        "eligible_small_member_count": 215,
+        "exact_full_commit_hits": [
+          {
+            "evidence_path": "evidence/36_jaxion_.git_packed-refs",
+            "member_bytes": 741,
+            "member_path": "jaxion/.git/packed-refs",
+            "member_sha256": "6bc76c9514e9658ee9c14cce113ab88f1996c9a128c0ff8e5faf3d4b330c8f96",
+            "provenance_shaped_path": true
+          }
+        ],
+        "exact_tag_provenance_hits": [
+          {
+            "member_bytes": 741,
+            "member_path": "jaxion/.git/packed-refs",
+            "member_sha256": "6bc76c9514e9658ee9c14cce113ab88f1996c9a128c0ff8e5faf3d4b330c8f96"
+          },
+          {
+            "member_bytes": 319,
+            "member_path": "jaxion/CITATION.cff",
+            "member_sha256": "2900cbd4bea7cebd27a6856d5af6af57376dcad85eb43b9eb26fe4915648836f"
+          }
+        ],
+        "license_candidates": [
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "Apache-2.0",
+            "evidence_path": "evidence/36_jaxion_LICENSE",
+            "member_bytes": 11341,
+            "member_path": "jaxion/LICENSE",
+            "member_sha256": "5bd69671962b18a3340dc582846c06558f499548673c50f7bc4aae650102b329"
+          }
+        ],
+        "provenance_full_sha_candidates": {
+          "jaxion/.git/logs/HEAD": [
+            "0000000000000000000000000000000000000000",
+            "3cd108c376faf9832373adfe3ab4688295aa42fa",
+            "4b7966173afa6b671447dd23c37a3da646af3b46"
+          ],
+          "jaxion/.git/logs/refs/heads/main": [
+            "0000000000000000000000000000000000000000",
+            "3cd108c376faf9832373adfe3ab4688295aa42fa",
+            "4b7966173afa6b671447dd23c37a3da646af3b46"
+          ],
+          "jaxion/.git/logs/refs/remotes/origin/HEAD": [
+            "0000000000000000000000000000000000000000",
+            "4b7966173afa6b671447dd23c37a3da646af3b46"
+          ],
+          "jaxion/.git/logs/refs/remotes/origin/main": [
+            "3cd108c376faf9832373adfe3ab4688295aa42fa",
+            "4b7966173afa6b671447dd23c37a3da646af3b46"
+          ],
+          "jaxion/.git/packed-refs": [
+            "069ab4f56d100d765d46c594ac1b06add7e49f9e",
+            "303d5334bc87091c6cb41bc465e865d98b09be01",
+            "4aecba118fb1d032c7cc7cd086b4b7f469132cfb",
+            "4b7966173afa6b671447dd23c37a3da646af3b46",
+            "5d1e942386cfd8a4ac5dda5a92e5aadb69b1e2f1",
+            "7d08025ba272a046b98bfb190275405d9108e00c",
+            "807b2ee055eff22463f7a2576be9c09c3e040601",
+            "9a0ef5dccf2d13412828707ad804a8b6fad4ce86",
+            "b646856665269ed882323201a89f25f10377ca5d",
+            "b711d89ae7e968abed5e97795e2ae50af124ec05",
+            "f0917d09a210b55fdd00ffae064498994b2965ce",
+            "f40aa832f70141e1190a1855659b11eacb102390"
+          ],
+          "jaxion/.git/refs/heads/main": [
+            "3cd108c376faf9832373adfe3ab4688295aa42fa"
+          ],
+          "jaxion/.git/refs/remotes/origin/main": [
+            "3cd108c376faf9832373adfe3ab4688295aa42fa"
+          ]
+        },
+        "root_names_from_eligible_members": [
+          "jaxion"
+        ],
+        "scanned_bytes": 276151
+      },
+      "archive_transport_retry_checksum_verified": true,
+      "archive_transport_retry_provider_checksum": "md5:825cae8912147ba8a5415c6a73d95818",
+      "datacite_frozen_doi": {
+        "attributes": {
+          "doi": "10.5281/zenodo.21221061",
+          "publisher": "Zenodo",
+          "relatedIdentifiers": [
+            {
+              "relatedIdentifier": "10.5281/zenodo.21221061",
+              "relatedIdentifierType": "DOI",
+              "relationType": "IsVersionOf"
+            }
+          ],
+          "rightsList": [
+            {
+              "rights": "Creative Commons Attribution 4.0 International",
+              "rightsIdentifier": "cc-by-4.0",
+              "rightsIdentifierScheme": "SPDX",
+              "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
+              "schemeUri": "https://spdx.org/licenses/"
+            },
+            {
+              "rights": "Copyright (C) 2026 Philip Mocz",
+              "rightsUri": "http://rightsstatements.org/vocab/InC/1.0/"
+            }
+          ],
+          "state": "findable",
+          "url": "https://zenodo.org/doi/10.5281/zenodo.21221061",
+          "version": null
+        },
+        "request": {
+          "body_bytes": 4788,
+          "body_md5": "fc07fbdec0c2bab38ba668ffd3eeb2b2",
+          "body_sha256": "fe29a5ff86d8ef6edfe75eec10e7ba23279aabcbd2af715f9f12266fdc7591f9",
+          "content_length_header": null,
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.datacite.org/dois/10.5281%2Fzenodo.21221061",
+          "finished_at": "2026-08-23T20:39:31.451920+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:31.055329+00:00",
+          "url": "https://api.datacite.org/dois/10.5281%2Fzenodo.21221061"
+        }
+      },
+      "exact_commit_license": {
+        "metadata": {
+          "content_bytes": 11357,
+          "content_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "git_blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "path": "LICENSE",
+          "spdx_id": "Apache-2.0"
+        },
+        "request": {
+          "body_bytes": 16761,
+          "body_md5": "5afab0063cd9b9cfdaa9d6cd1eeb7926",
+          "body_sha256": "63279093ab7fb034b9c3db662c830c23f5099d1e53a5b7d2f18ebabe4d00943d",
+          "content_length_header": "16761",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/jaxionproject/jaxion/license?ref=069ab4f56d100d765d46c594ac1b06add7e49f9e",
+          "finished_at": "2026-08-23T20:39:33.380871+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:32.889673+00:00",
+          "url": "https://api.github.com/repos/jaxionproject/jaxion/license?ref=069ab4f56d100d765d46c594ac1b06add7e49f9e"
+        }
+      },
+      "frozen_index": 36,
+      "provider_archive_request": null,
+      "publication_doi": "10.21105/joss.09542",
+      "publication_version_field": "0.0.3",
+      "repository": "jaxionproject/jaxion",
+      "source_native_release": {
+        "metadata": {
+          "assets": [],
+          "draft": false,
+          "html_url": "https://github.com/JaxionProject/jaxion/releases/tag/0.0.3",
+          "id": 256836603,
+          "prerelease": false,
+          "tag_name": "0.0.3",
+          "target_commitish": "main"
+        },
+        "request": {
+          "body_bytes": 1792,
+          "body_md5": "f28e7521d0c603f2b2ee86db4c8209cc",
+          "body_sha256": "119f71839c4f47bd9f685ddf19f6991f54b0bdfc54c94e3fcfee43cb2bbd7991",
+          "content_length_header": "1792",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/jaxionproject/jaxion/releases/tags/0.0.3",
+          "finished_at": "2026-08-23T20:39:32.889564+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:32.521067+00:00",
+          "url": "https://api.github.com/repos/jaxionproject/jaxion/releases/tags/0.0.3"
+        }
+      },
+      "unique_provider_version_matches": [],
+      "v7_exact_commit": "069ab4f56d100d765d46c594ac1b06add7e49f9e",
+      "v7_failure_causes": [
+        "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+        "PUBLIC_TRANSPORT_CANNOT_CHECK"
+      ],
+      "v7_row_line_sha256": "bdab8180082095534d2a0d75b587934d3865eb7e7cb578cd43ef28c8e91ccb4d",
+      "zenodo_direct_record": {
+        "metadata": {
+          "conceptdoi": "10.5281/zenodo.21221061",
+          "conceptrecid": "21221061",
+          "created": "2026-07-06T13:12:58.614946+00:00",
+          "doi": "10.5281/zenodo.21221062",
+          "doi_url": "https://doi.org/10.5281/zenodo.21221062",
+          "files": [
+            {
+              "checksum": "md5:825cae8912147ba8a5415c6a73d95818",
+              "id": "ce57b4bd-b088-42fc-8276-6d3d6c98028e",
+              "key": "jaxion.zip",
+              "links": {
+                "self": "https://zenodo.org/api/records/21221062/files/jaxion.zip/content"
+              },
+              "size": 85369480
+            }
+          ],
+          "id": 21221062,
+          "links": {
+            "access": "https://zenodo.org/api/records/21221062/access",
+            "access_grants": "https://zenodo.org/api/records/21221062/access/grants",
+            "access_links": "https://zenodo.org/api/records/21221062/access/links",
+            "access_request": "https://zenodo.org/api/records/21221062/access/request",
+            "access_users": "https://zenodo.org/api/records/21221062/access/users",
+            "archive": "https://zenodo.org/api/records/21221062/files-archive",
+            "archive_media": "https://zenodo.org/api/records/21221062/media-files-archive",
+            "communities": "https://zenodo.org/api/records/21221062/communities",
+            "communities-suggestions": "https://zenodo.org/api/records/21221062/communities-suggestions",
+            "doi": "https://doi.org/10.5281/zenodo.21221062",
+            "draft": "https://zenodo.org/api/records/21221062/draft",
+            "file_modification": "https://zenodo.org/api/records/21221062/file-modification",
+            "files": "https://zenodo.org/api/records/21221062/files",
+            "latest": "https://zenodo.org/api/records/21221062/versions/latest",
+            "latest_html": "https://zenodo.org/records/21221062/latest",
+            "media_files": "https://zenodo.org/api/records/21221062/media-files",
+            "parent": "https://zenodo.org/api/records/21221061",
+            "parent_doi": "https://doi.org/10.5281/zenodo.21221061",
+            "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.21221061",
+            "parent_html": "https://zenodo.org/records/21221061",
+            "preview_html": "https://zenodo.org/records/21221062?preview=1",
+            "quota_increase": "https://zenodo.org/api/records/21221062/quota-increase",
+            "request_deletion": "https://zenodo.org/api/records/21221062/request-deletion",
+            "requests": "https://zenodo.org/api/records/21221062/requests",
+            "reserve_doi": "https://zenodo.org/api/records/21221062/draft/pids/doi",
+            "self": "https://zenodo.org/api/records/21221062",
+            "self_doi": "https://doi.org/10.5281/zenodo.21221062",
+            "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.21221062",
+            "self_html": "https://zenodo.org/records/21221062",
+            "self_iiif_manifest": "https://zenodo.org/api/iiif/record:21221062/manifest",
+            "self_iiif_sequence": "https://zenodo.org/api/iiif/record:21221062/sequence/default",
+            "versions": "https://zenodo.org/api/records/21221062/versions"
+          },
+          "metadata": {
+            "access_right": "open",
+            "creators": [
+              {
+                "affiliation": "Flatiron Institute",
+                "name": "Mocz, Philip",
+                "orcid": "0000-0001-6631-2566"
+              }
+            ],
+            "description": "<p>JOSS accepted version of Jaxion (0.0.12)</p>",
+            "doi": "10.5281/zenodo.21221062",
+            "license": {
+              "id": "cc-by-4.0"
+            },
+            "publication_date": "2026-07-06",
+            "relations": {
+              "version": [
+                {
+                  "index": 0,
+                  "is_last": true,
+                  "parent": {
+                    "pid_type": "recid",
+                    "pid_value": "21221061"
+                  }
+                }
+              ]
+            },
+            "resource_type": {
+              "title": "Software",
+              "type": "software"
+            },
+            "title": "Jaxion: A JAX package for Fuzzy Dark Matter"
+          },
+          "modified": "2026-07-06T13:12:58.766048+00:00",
+          "owners": [
+            {
+              "id": "1132696"
+            }
+          ],
+          "recid": "21221062",
+          "revision": 4,
+          "state": "done",
+          "stats": {
+            "downloads": 1,
+            "unique_downloads": 1,
+            "unique_views": 24,
+            "version_downloads": 1,
+            "version_unique_downloads": 1,
+            "version_unique_views": 24,
+            "version_views": 24,
+            "views": 24
+          },
+          "status": "published",
+          "submitted": true,
+          "swh": {},
+          "title": "Jaxion: A JAX package for Fuzzy Dark Matter",
+          "updated": "2026-07-06T13:12:58.766048+00:00"
+        },
+        "request": {
+          "body_bytes": 3647,
+          "body_md5": "4d5172a4e27073e2614bcff446764888",
+          "body_sha256": "a9f4b5bf8f323c0fe05fbe291f2b03a5b84230448c042b43865f720508399905",
+          "content_length_header": "3647",
+          "content_type": "application/json",
+          "error": null,
+          "final_url": "https://zenodo.org/api/records/21221062",
+          "finished_at": "2026-08-23T20:39:32.030018+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:31.452057+00:00",
+          "url": "https://zenodo.org/api/records/21221061"
+        }
+      },
+      "zenodo_exact_concept_search": {
+        "metadata": null,
+        "request": {
+          "body_bytes": 207,
+          "body_md5": "29218c9777f8649f80e298637c952938",
+          "body_sha256": "8105c5098c3b8051ed4e35cc510a7c4af8dcca8edb46986c9a37ba5469c6985c",
+          "content_length_header": "207",
+          "content_type": "application/json",
+          "error": "HTTPError:400",
+          "final_url": "https://zenodo.org/api/records?q=conceptrecid%3A21221061&all_versions=true&size=50",
+          "finished_at": "2026-08-23T20:39:32.521019+00:00",
+          "http_status": 400,
+          "started_at": "2026-08-23T20:39:32.312329+00:00",
+          "url": "https://zenodo.org/api/records?q=conceptrecid%3A21221061&all_versions=true&size=50"
+        }
+      },
+      "zenodo_versions": {
+        "metadata": null,
+        "request": {
+          "body_bytes": 40,
+          "body_md5": "134f427dc9e3d5127f8f67c254f1742e",
+          "body_sha256": "065d91af06a01eb55620e8b4f41c6c760fa8ac3fef0a2a18123db62ba255cdd1",
+          "content_length_header": "40",
+          "content_type": "application/json",
+          "error": "HTTPError:404",
+          "final_url": "https://zenodo.org/api/records/21221061/versions",
+          "finished_at": "2026-08-23T20:39:32.312282+00:00",
+          "http_status": 404,
+          "started_at": "2026-08-23T20:39:32.030075+00:00",
+          "url": "https://zenodo.org/api/records/21221061/versions"
+        }
+      }
+    },
+    {
+      "archive_doi": "10.5281/zenodo.21226146",
+      "archive_transport_retry": {
+        "body_bytes": 26246904,
+        "body_md5": "b497d4fb7b4cd41ee3124a440a2bd0dc",
+        "body_sha256": "d523dc16decea3ab8f99fb900c5046d7f293599d70007eaacc7a891f18baaaee",
+        "content_length_header": "26246904",
+        "content_type": "application/octet-stream",
+        "error": null,
+        "final_url": "https://zenodo.org/api/records/21226146/files/psd-2.6.0.zip/content",
+        "finished_at": "2026-08-23T20:42:04.427908+00:00",
+        "http_status": 200,
+        "started_at": "2026-08-23T20:42:02.531252+00:00",
+        "url": "https://zenodo.org/api/records/21226146/files/psd-2.6.0.zip/content"
+      },
+      "archive_transport_retry_analysis": {
+        "archive_kind": "zip",
+        "eligible_small_member_count": 572,
+        "exact_full_commit_hits": [],
+        "exact_tag_provenance_hits": [],
+        "license_candidates": [
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "Apache-2.0",
+            "evidence_path": "evidence/59_psd-2.6.0_LICENSE",
+            "member_bytes": 11357,
+            "member_path": "psd-2.6.0/LICENSE",
+            "member_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+          }
+        ],
+        "provenance_full_sha_candidates": {},
+        "root_names_from_eligible_members": [
+          "psd-2.6.0"
+        ],
+        "scanned_bytes": 476626
+      },
+      "archive_transport_retry_checksum_verified": true,
+      "archive_transport_retry_provider_checksum": "md5:b497d4fb7b4cd41ee3124a440a2bd0dc",
+      "exact_commit_license": {
+        "metadata": {
+          "content_bytes": 11357,
+          "content_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "git_blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "path": "LICENSE",
+          "spdx_id": "Apache-2.0"
+        },
+        "request": {
+          "body_bytes": 16761,
+          "body_md5": "0154f1c8a0d73af8b34940e9892fb70a",
+          "body_sha256": "4fcb1e8d74a229df88a882821472cef745e3bec7540ff2644d73545cfc143550",
+          "content_length_header": "16761",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/mohd-afeef-badri/psd/license?ref=944d2763a4f67b266beaf427a912ba1d2ac298be",
+          "finished_at": "2026-08-23T20:39:34.294510+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:33.737807+00:00",
+          "url": "https://api.github.com/repos/mohd-afeef-badri/psd/license?ref=944d2763a4f67b266beaf427a912ba1d2ac298be"
+        }
+      },
+      "frozen_index": 59,
+      "provider_archive_request": {
+        "body_bytes": 88,
+        "body_md5": "c89a28142f4e87bc483be71f0411faeb",
+        "body_sha256": "c4da04682d12a4b6af79d185fb2dea312becefa30547f59d3ae4ab1aee810877",
+        "content_length_header": "88",
+        "content_type": "application/json",
+        "error": "HTTPError:406",
+        "final_url": "https://zenodo.org/api/records/21226146/files/psd-2.6.0.zip/content",
+        "finished_at": "2026-08-23T20:39:34.515589+00:00",
+        "http_status": 406,
+        "started_at": "2026-08-23T20:39:34.294722+00:00",
+        "url": "https://zenodo.org/api/records/21226146/files/psd-2.6.0.zip/content"
+      },
+      "provider_checksum": "md5:b497d4fb7b4cd41ee3124a440a2bd0dc",
+      "provider_checksum_verified": null,
+      "publication_doi": "10.21105/joss.09411",
+      "publication_version_field": "v2.6.0",
+      "repository": "mohd-afeef-badri/psd",
+      "source_native_release": {
+        "metadata": {
+          "assets": [],
+          "draft": false,
+          "html_url": "https://github.com/mohd-afeef-badri/psd/releases/tag/v2.6.0",
+          "id": 349750013,
+          "prerelease": false,
+          "tag_name": "v2.6.0",
+          "target_commitish": "main"
+        },
+        "request": {
+          "body_bytes": 1843,
+          "body_md5": "f83a7d9d8b4ff281d651e7a6bce92c35",
+          "body_sha256": "6e61ddd86011cb078f9aad176a86a1e063b9904ed9968ff9be19a1d5f4c5a041",
+          "content_length_header": "1843",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/mohd-afeef-badri/psd/releases/tags/v2.6.0",
+          "finished_at": "2026-08-23T20:39:33.737725+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:33.381011+00:00",
+          "url": "https://api.github.com/repos/mohd-afeef-badri/psd/releases/tags/v2.6.0"
+        }
+      },
+      "v7_exact_commit": "944d2763a4f67b266beaf427a912ba1d2ac298be",
+      "v7_failure_causes": [
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "v7_row_line_sha256": "55221c6b1aa842a1a02e0d623e12ca7468fd55bc6e88d1a2b87358aa4a66c75d"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20171460",
+      "archive_transport_retry": {
+        "body_bytes": 17147954,
+        "body_md5": "506a29c006cbf81161acf21bca60e021",
+        "body_sha256": "2a94e0ed7e61e18ea4135aa559d6a06a407adcabd84dbbc52ebface6bba5b407",
+        "content_length_header": "17147954",
+        "content_type": "application/octet-stream",
+        "error": null,
+        "final_url": "https://zenodo.org/api/records/20171460/files/THE_PU~1.GZ/content",
+        "finished_at": "2026-08-23T20:42:06.314661+00:00",
+        "http_status": 200,
+        "started_at": "2026-08-23T20:42:04.583114+00:00",
+        "url": "https://zenodo.org/api/records/20171460/files/THE_PU~1.GZ/content"
+      },
+      "archive_transport_retry_analysis": {
+        "archive_kind": "tar",
+        "eligible_small_member_count": 545,
+        "exact_full_commit_hits": [],
+        "exact_tag_provenance_hits": [],
+        "license_candidates": [
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/91_PAI_LICENSE",
+            "member_bytes": 1080,
+            "member_path": "PAI/LICENSE",
+            "member_sha256": "32d6e5b56b27a50adfa6101c632ebf641f7cae6b0bcb8917716880802eecf250"
+          }
+        ],
+        "provenance_full_sha_candidates": {
+          "PAI/.git/FETCH_HEAD": [
+            "aa021231cdafb6d74ce9ab5f55f824a3032058a4"
+          ],
+          "PAI/.git/ORIG_HEAD": [
+            "d03c7db5ae0fd408b3ebfa549f6059f127a8d1de"
+          ],
+          "PAI/.git/logs/HEAD": [
+            "0000000000000000000000000000000000000000",
+            "09b4b24f5615df3546e64e762fd1aed713fae93c",
+            "1dcf004b60bc51a17c69d80a1ccfbf536571c847",
+            "364c42f83e6c0f2d9f6112c14a86a200e918bf81",
+            "4d150621c56cb08c7b1354f1b8a572ea28e88d4e",
+            "80d190ef41d0d7013bf010ac818a252709276470",
+            "8cb89e971f55cf60518043fa96af7822ebf8495a",
+            "a3e19d9137d9c5e08b447cecccd9bc0c3331602a",
+            "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+            "ccc342fc306eb6fbd61b6d4bc200b865886aac41",
+            "d03c7db5ae0fd408b3ebfa549f6059f127a8d1de"
+          ],
+          "PAI/.git/logs/refs/heads/main": [
+            "0000000000000000000000000000000000000000",
+            "09b4b24f5615df3546e64e762fd1aed713fae93c",
+            "1dcf004b60bc51a17c69d80a1ccfbf536571c847",
+            "364c42f83e6c0f2d9f6112c14a86a200e918bf81",
+            "4d150621c56cb08c7b1354f1b8a572ea28e88d4e",
+            "80d190ef41d0d7013bf010ac818a252709276470",
+            "8cb89e971f55cf60518043fa96af7822ebf8495a",
+            "a3e19d9137d9c5e08b447cecccd9bc0c3331602a",
+            "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+            "ccc342fc306eb6fbd61b6d4bc200b865886aac41",
+            "d03c7db5ae0fd408b3ebfa549f6059f127a8d1de"
+          ],
+          "PAI/.git/logs/refs/remotes/origin/HEAD": [
+            "0000000000000000000000000000000000000000",
+            "80d190ef41d0d7013bf010ac818a252709276470"
+          ],
+          "PAI/.git/logs/refs/remotes/origin/main": [
+            "09b4b24f5615df3546e64e762fd1aed713fae93c",
+            "1dcf004b60bc51a17c69d80a1ccfbf536571c847",
+            "364c42f83e6c0f2d9f6112c14a86a200e918bf81",
+            "80d190ef41d0d7013bf010ac818a252709276470",
+            "8cb89e971f55cf60518043fa96af7822ebf8495a",
+            "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+            "ccc342fc306eb6fbd61b6d4bc200b865886aac41",
+            "d03c7db5ae0fd408b3ebfa549f6059f127a8d1de"
+          ],
+          "PAI/.git/packed-refs": [
+            "80d190ef41d0d7013bf010ac818a252709276470"
+          ],
+          "PAI/.git/refs/heads/main": [
+            "aa021231cdafb6d74ce9ab5f55f824a3032058a4"
+          ],
+          "PAI/.git/refs/remotes/origin/main": [
+            "aa021231cdafb6d74ce9ab5f55f824a3032058a4"
+          ]
+        },
+        "root_names_from_eligible_members": [
+          "PAI"
+        ],
+        "scanned_bytes": 408503
+      },
+      "archive_transport_retry_checksum_verified": true,
+      "archive_transport_retry_provider_checksum": "md5:506a29c006cbf81161acf21bca60e021",
+      "exact_commit_license": {
+        "metadata": {
+          "content_bytes": 1080,
+          "content_sha256": "32d6e5b56b27a50adfa6101c632ebf641f7cae6b0bcb8917716880802eecf250",
+          "git_blob_sha": "87bc910cc5f672224a480d5495e6ff3e1e51b490",
+          "path": "LICENSE",
+          "spdx_id": "MIT"
+        },
+        "request": {
+          "body_bytes": 2619,
+          "body_md5": "51bdf4239ff83fa6a370c1c9f868b6a6",
+          "body_sha256": "b16ec052ab3083f41076d90a2dc023aabb79ff7932c2cb290923eefde1211249",
+          "content_length_header": "2619",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/nutritionallungimmunity/pai/license?ref=9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59",
+          "finished_at": "2026-08-23T20:39:35.310172+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:34.855590+00:00",
+          "url": "https://api.github.com/repos/nutritionallungimmunity/pai/license?ref=9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59"
+        }
+      },
+      "frozen_index": 91,
+      "provider_archive_request": {
+        "body_bytes": 88,
+        "body_md5": "c89a28142f4e87bc483be71f0411faeb",
+        "body_sha256": "c4da04682d12a4b6af79d185fb2dea312becefa30547f59d3ae4ab1aee810877",
+        "content_length_header": "88",
+        "content_type": "application/json",
+        "error": "HTTPError:406",
+        "final_url": "https://zenodo.org/api/records/20171460/files/THE_PU~1.GZ/content",
+        "finished_at": "2026-08-23T20:39:35.529458+00:00",
+        "http_status": 406,
+        "started_at": "2026-08-23T20:39:35.310285+00:00",
+        "url": "https://zenodo.org/api/records/20171460/files/THE_PU~1.GZ/content"
+      },
+      "provider_checksum": "md5:506a29c006cbf81161acf21bca60e021",
+      "provider_checksum_verified": null,
+      "publication_doi": "10.21105/joss.10245",
+      "publication_version_field": "v1.0.0",
+      "repository": "nutritionallungimmunity/pai",
+      "source_native_release": {
+        "metadata": {
+          "assets": [],
+          "draft": false,
+          "html_url": "https://github.com/NutritionalLungImmunity/PAI/releases/tag/v1.0.0",
+          "id": 332687314,
+          "prerelease": false,
+          "tag_name": "v1.0.0",
+          "target_commitish": "main"
+        },
+        "request": {
+          "body_bytes": 1861,
+          "body_md5": "4b765f374fde1385533412be12f8eb3c",
+          "body_sha256": "b975917301df5cb06e3a8f5ada391819cc8722c5b885dc1ec80414d7986a2dd8",
+          "content_length_header": "1861",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/nutritionallungimmunity/pai/releases/tags/v1.0.0",
+          "finished_at": "2026-08-23T20:39:34.855432+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:34.515676+00:00",
+          "url": "https://api.github.com/repos/nutritionallungimmunity/pai/releases/tags/v1.0.0"
+        }
+      },
+      "v7_exact_commit": "9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59",
+      "v7_failure_causes": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+      ],
+      "v7_row_line_sha256": "1389e858c88662e0c11c442cfcf3e8116f14a236bf7fba544bad8b5b58bee8a6"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20272994",
+      "archive_transport_retry": {
+        "body_bytes": 36346950,
+        "body_md5": "258a759299f8f8277faf0392966f14fb",
+        "body_sha256": "0c1f82b33e6b64cc4dc9c90d13a1c69ac9ede6d115dbedbce46c300f99c8c979",
+        "content_length_header": "36346950",
+        "content_type": "application/octet-stream",
+        "error": null,
+        "final_url": "https://zenodo.org/api/records/20272994/files/FAIRLinked.zip/content",
+        "finished_at": "2026-08-23T20:42:08.774432+00:00",
+        "http_status": 200,
+        "started_at": "2026-08-23T20:42:06.431713+00:00",
+        "url": "https://zenodo.org/api/records/20272994/files/FAIRLinked.zip/content"
+      },
+      "archive_transport_retry_analysis": {
+        "archive_kind": "zip",
+        "eligible_small_member_count": 1097,
+        "exact_full_commit_hits": [
+          {
+            "evidence_path": "evidence/108_FAIRLinked_.git_FETCH_HEAD",
+            "member_bytes": 416,
+            "member_path": "FAIRLinked/.git/FETCH_HEAD",
+            "member_sha256": "283f54d5a64beeee7e1d326400451cfae23d1d71a36f1db21af921e4031bccdb",
+            "provenance_shaped_path": true
+          },
+          {
+            "evidence_path": "evidence/108_FAIRLinked_.git_refs_tags_v0.3.3.4",
+            "member_bytes": 41,
+            "member_path": "FAIRLinked/.git/refs/tags/v0.3.3.4",
+            "member_sha256": "20f87b1a3bd5e63052dc56c4bee1559d56014177b48cd5f6edd9ddbafb195601",
+            "provenance_shaped_path": true
+          }
+        ],
+        "exact_tag_provenance_hits": [
+          {
+            "member_bytes": 416,
+            "member_path": "FAIRLinked/.git/FETCH_HEAD",
+            "member_sha256": "283f54d5a64beeee7e1d326400451cfae23d1d71a36f1db21af921e4031bccdb"
+          }
+        ],
+        "license_candidates": [
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "BSD-3-Clause",
+            "evidence_path": "evidence/108_FAIRLinked_LICENSE.txt",
+            "member_bytes": 1456,
+            "member_path": "FAIRLinked/LICENSE.txt",
+            "member_sha256": "c5e1dffbcf551710315f8ea4ae51904ee6b307b4706d03070d7368ea3af93869"
+          },
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "Apache-2.0",
+            "evidence_path": "evidence/108_FAIRLinked_FAIRLinked_helper_data_licenseinfo.json",
+            "member_bytes": 343140,
+            "member_path": "FAIRLinked/FAIRLinked/helper_data/licenseinfo.json",
+            "member_sha256": "9810820ed1e9b9eb23bf77a59cadc56795e95d95799c4fb1ffa62e917dfbeb40"
+          }
+        ],
+        "provenance_full_sha_candidates": {
+          "FAIRLinked/.git/FETCH_HEAD": [
+            "1e831e074ae465956b66305df029bfcd286afe9f",
+            "59f536c0154f46733f29956075c9159a82872865",
+            "7a92c4038bd15288711c14570bf9e77999b62d6c",
+            "7b032920eed342713906bff100bddca69f2f11d6"
+          ],
+          "FAIRLinked/.git/ORIG_HEAD": [
+            "d632ec6b9edbc30ce1741593417fc95fe2c3284b"
+          ],
+          "FAIRLinked/.git/logs/HEAD": [
+            "0000000000000000000000000000000000000000",
+            "05224b1a1ef4b8210072d33ab8af9fe5d087e7d6",
+            "0fc82425dc79a48526186078e4171532604b623e",
+            "1027a4cd847d150e320afe6f37e1cfc5f8aaa0f1",
+            "10f23cffcc1250de9b3cd2ade3ee06fc25c09121",
+            "13c5a73e0a8e8b0ac4baa5eb518d3cefb141f704",
+            "1a91ced228ab58ea05b0fd3f5fab0281ea9d17b6",
+            "1ace7395e6a677de2503c887372d487fe83f6a52",
+            "22811b34418836c3a1691951daf6a5e7eaac668f",
+            "2406e551c41e1d1670b3c77fae4488f11ab41d52",
+            "2907bedb0dc0de58887bac7ea19bae6d3bc5a01f",
+            "2bba19187fef904739dc68320923af4ed5aeb179",
+            "36447044d667c0a56e1c01d7c6528d700be59adc",
+            "37b1443b747600304be2c94e19368e787afd1275",
+            "3992ec735bf91f4dbfb56849a3bb98e01d348f80",
+            "3dcc11d10adf621fcb10d8d4e1ae6fc113eefb5f",
+            "3eac751af64727ea5d98e4753c26348ed3c8c6d0",
+            "4673779f188ae53f1fc31b7d968cbe8de3f5061a",
+            "4e6b4783863689f23f5ae86748252c8591b1bb57",
+            "52877242d36b3799c00696f36f9ec6a573455ea5",
+            "53716cfda5f8fea11b70332134a43a8f4a7352fe",
+            "557f355b43e0c42fab9fca31b4c72fcc3cee0048",
+            "56ff1a22501ac69901ddfbd79c5a0dc8500c74a4",
+            "5891240d4caaceca63881775b7417f949b6da1db",
+            "5a62cbf45e46df2835fe4c7f8bb705b81de120c5",
+            "5c1ad4c695a32d2079483d61f06d8d9898b7494c",
+            "5f14473758f452b6828fe8768e1c5c33432c2327",
+            "626f0f50ce1f23d62fb029c45a244a11a29006be",
+            "627c63e92868acac7283770e02cc3a257245ec0e",
+            "67c247aa649e964fc36b4a86872172cf8cf6b1ed",
+            "6925a868a4833abb5347bc26bf0a2689787fd17a",
+            "6ab403326e142a5eaa7da4a12f0328303397353a",
+            "6daaca8280365b0965701848cc04ef357fa7882b",
+            "6dbf4c585f96c0fb2f9cd5b8e4087d7b8586b8c9",
+            "6e60613876eb628256818d60f7c9765268fde09f",
+            "72ae4faecc09179e3822f6894118b71c12056e57",
+            "78cec394f5139b523efe03bf948066eb0f5179db",
+            "7b032920eed342713906bff100bddca69f2f11d6",
+            "7b9d0f6b260aadc9623c4f1f2101016f705c7f6f",
+            "7da424ce192a0b7898038347a257654a2556642c",
+            "7f9d57a4ac6644344c6966d85af02f4b26acebfa",
+            "82d8cb14b0cb02b58f4812fe9881df81c96406e8",
+            "833da460b43658a238e1a4f55bbd996bbe168c8c",
+            "924fe39972caf6109df1e14785e515bddeb81dbc",
+            "9573ccfaaa216b96c127fda8397d825e9b136266",
+            "97b375c7faf6003bd5901d786a5acb97a33fdd9d",
+            "9c4100582d762befa77e90b68fc5d058ef38325e",
+            "a5b2820ec3bc8a68aea97803240014bd8176801e",
+            "aaa3f0290a84105960b27d6abdc3db6cb9b38b3a",
+            "ac2f38f8cd253bce64ff50ea91d7b1c4030f20ce",
+            "b44cdbeec5b3bcedeb7c161de4855f1d1a48e4f4",
+            "b78b5191bc266b43e42e54a3014710f0d6c8dc26",
+            "b7a7e6be5dc9c62dd3269a3d606572b0b03c84d1",
+            "b8c9271c90739e60c0cf81ce546030336ec9b2ea",
+            "c28a8c3c095365bd9b4b244baac485ebe9c39409",
+            "c3041e4fbfe5f76943f12884203d40745ba0bb14",
+            "c71f358892168aec16e1412f1356eb9ce1c6832c",
+            "cc62a9caf7b45525e91814a0bce2418da9e661e3",
+            "ccabd8040d9ac02c9f90d06129afd24663e90957",
+            "d28a62391eee73e9b6b76d2afa57704b83d6fa24",
+            "d3a07901a83d1e34ea1c2748db8e53886d501a16",
+            "d632ec6b9edbc30ce1741593417fc95fe2c3284b",
+            "d7ae2eca67c945f2a466704107a40a30249c8b40",
+            "e05fce5e34299cb70eed68720bdfc153fdcbdd36",
+            "e0a0868aaee1fa0a1b6a12848e6a1bc2cd18d4d2",
+            "e21c3bad87836ddadf0e33f4a34ac76c6ce98c0a",
+            "e2f592e3305ecd7ad29ed56b54986da8e65970c2",
+            "e6638e8f211a72236cd2a2beb238396c0af1b96d",
+            "e68af190ae6f1e85c4cd30736015b21acca213d1",
+            "e716f54d1a4ee591ce2deec8824b7186d14e91be",
+            "e7f7150427899c7ee8209e004e4de7882a7e00a7",
+            "f145c016ca426c607311f1517d6c6edb0c663092",
+            "f90ebfdff7b99887ed94fd4797e630f18d9972c1"
+          ],
+          "FAIRLinked/.git/logs/refs/heads/main": [
+            "0000000000000000000000000000000000000000",
+            "56ff1a22501ac69901ddfbd79c5a0dc8500c74a4",
+            "5891240d4caaceca63881775b7417f949b6da1db",
+            "97b375c7faf6003bd5901d786a5acb97a33fdd9d",
+            "aaa3f0290a84105960b27d6abdc3db6cb9b38b3a",
+            "b8c9271c90739e60c0cf81ce546030336ec9b2ea",
+            "c28a8c3c095365bd9b4b244baac485ebe9c39409"
+          ],
+          "FAIRLinked/.git/logs/refs/heads/van-vxt": [
+            "0000000000000000000000000000000000000000",
+            "05224b1a1ef4b8210072d33ab8af9fe5d087e7d6",
+            "0fc82425dc79a48526186078e4171532604b623e",
+            "1027a4cd847d150e320afe6f37e1cfc5f8aaa0f1",
+            "10f23cffcc1250de9b3cd2ade3ee06fc25c09121",
+            "13c5a73e0a8e8b0ac4baa5eb518d3cefb141f704",
+            "1a91ced228ab58ea05b0fd3f5fab0281ea9d17b6",
+            "1ace7395e6a677de2503c887372d487fe83f6a52",
+            "22811b34418836c3a1691951daf6a5e7eaac668f",
+            "2406e551c41e1d1670b3c77fae4488f11ab41d52",
+            "2907bedb0dc0de58887bac7ea19bae6d3bc5a01f",
+            "2bba19187fef904739dc68320923af4ed5aeb179",
+            "36447044d667c0a56e1c01d7c6528d700be59adc",
+            "37b1443b747600304be2c94e19368e787afd1275",
+            "3992ec735bf91f4dbfb56849a3bb98e01d348f80",
+            "3dcc11d10adf621fcb10d8d4e1ae6fc113eefb5f",
+            "3eac751af64727ea5d98e4753c26348ed3c8c6d0",
+            "4673779f188ae53f1fc31b7d968cbe8de3f5061a",
+            "4e6b4783863689f23f5ae86748252c8591b1bb57",
+            "52877242d36b3799c00696f36f9ec6a573455ea5",
+            "53716cfda5f8fea11b70332134a43a8f4a7352fe",
+            "557f355b43e0c42fab9fca31b4c72fcc3cee0048",
+            "5891240d4caaceca63881775b7417f949b6da1db",
+            "5a62cbf45e46df2835fe4c7f8bb705b81de120c5",
+            "5c1ad4c695a32d2079483d61f06d8d9898b7494c",
+            "5f14473758f452b6828fe8768e1c5c33432c2327",
+            "626f0f50ce1f23d62fb029c45a244a11a29006be",
+            "627c63e92868acac7283770e02cc3a257245ec0e",
+            "67c247aa649e964fc36b4a86872172cf8cf6b1ed",
+            "6925a868a4833abb5347bc26bf0a2689787fd17a",
+            "6ab403326e142a5eaa7da4a12f0328303397353a",
+            "6daaca8280365b0965701848cc04ef357fa7882b",
+            "6dbf4c585f96c0fb2f9cd5b8e4087d7b8586b8c9",
+            "6e60613876eb628256818d60f7c9765268fde09f",
+            "72ae4faecc09179e3822f6894118b71c12056e57",
+            "78cec394f5139b523efe03bf948066eb0f5179db",
+            "7b032920eed342713906bff100bddca69f2f11d6",
+            "7b9d0f6b260aadc9623c4f1f2101016f705c7f6f",
+            "7da424ce192a0b7898038347a257654a2556642c",
+            "7f9d57a4ac6644344c6966d85af02f4b26acebfa",
+            "82d8cb14b0cb02b58f4812fe9881df81c96406e8",
+            "833da460b43658a238e1a4f55bbd996bbe168c8c",
+            "924fe39972caf6109df1e14785e515bddeb81dbc",
+            "9573ccfaaa216b96c127fda8397d825e9b136266",
+            "97b375c7faf6003bd5901d786a5acb97a33fdd9d",
+            "9c4100582d762befa77e90b68fc5d058ef38325e",
+            "a5b2820ec3bc8a68aea97803240014bd8176801e",
+            "aaa3f0290a84105960b27d6abdc3db6cb9b38b3a",
+            "ac2f38f8cd253bce64ff50ea91d7b1c4030f20ce",
+            "b44cdbeec5b3bcedeb7c161de4855f1d1a48e4f4",
+            "b78b5191bc266b43e42e54a3014710f0d6c8dc26",
+            "b7a7e6be5dc9c62dd3269a3d606572b0b03c84d1",
+            "b8c9271c90739e60c0cf81ce546030336ec9b2ea",
+            "c28a8c3c095365bd9b4b244baac485ebe9c39409",
+            "c3041e4fbfe5f76943f12884203d40745ba0bb14",
+            "c71f358892168aec16e1412f1356eb9ce1c6832c",
+            "cc62a9caf7b45525e91814a0bce2418da9e661e3",
+            "ccabd8040d9ac02c9f90d06129afd24663e90957",
+            "d28a62391eee73e9b6b76d2afa57704b83d6fa24",
+            "d3a07901a83d1e34ea1c2748db8e53886d501a16",
+            "d632ec6b9edbc30ce1741593417fc95fe2c3284b",
+            "d7ae2eca67c945f2a466704107a40a30249c8b40",
+            "e05fce5e34299cb70eed68720bdfc153fdcbdd36",
+            "e0a0868aaee1fa0a1b6a12848e6a1bc2cd18d4d2",
+            "e21c3bad87836ddadf0e33f4a34ac76c6ce98c0a",
+            "e2f592e3305ecd7ad29ed56b54986da8e65970c2",
+            "e6638e8f211a72236cd2a2beb238396c0af1b96d",
+            "e68af190ae6f1e85c4cd30736015b21acca213d1",
+            "e716f54d1a4ee591ce2deec8824b7186d14e91be",
+            "e7f7150427899c7ee8209e004e4de7882a7e00a7",
+            "f145c016ca426c607311f1517d6c6edb0c663092",
+            "f90ebfdff7b99887ed94fd4797e630f18d9972c1"
+          ],
+          "FAIRLinked/.git/logs/refs/remotes/origin/HEAD": [
+            "0000000000000000000000000000000000000000",
+            "97b375c7faf6003bd5901d786a5acb97a33fdd9d"
+          ],
+          "FAIRLinked/.git/logs/refs/remotes/origin/brandon-bkl46": [
+            "0000000000000000000000000000000000000000",
+            "59f536c0154f46733f29956075c9159a82872865",
+            "7f058e5383262fd1280f4da4962e917632aeec20",
+            "e3c37d63909e878104d8fff720567949caa3b48d"
+          ],
+          "FAIRLinked/.git/logs/refs/remotes/origin/main": [
+            "0490f26448f94eca436957b821740865e77ae6e6",
+            "07bfe2c395cf2756f20f8e7ead0e3d609ea846f1",
+            "0df64006cb86adebbdb6bb04531c21e03f606c82",
+            "0fbc05b6cffcae9514185fa4ff09668064cbfa7e",
+            "18b38e51a6057819dca0a9fb2ff47381913a96c2",
+            "55762446948bda824b71d3c3980388f4064866bf",
+            "56ff1a22501ac69901ddfbd79c5a0dc8500c74a4",
+            "5891240d4caaceca63881775b7417f949b6da1db",
+            "6b8efc199f29714c822d993314e042cbabb77f14",
+            "6bc7bdd317126b2a7887b376d2cd3659d4eb4255",
+            "787d17a13deb5da25452b9c3be11e65e47799d02",
+            "7a92c4038bd15288711c14570bf9e77999b62d6c",
+            "92390dd644140a66f84f65951ba6247ff67b5925",
+            "93559bd3545497d700fdd568c8b3c75f318a10aa",
+            "97b375c7faf6003bd5901d786a5acb97a33fdd9d",
+            "aaa3f0290a84105960b27d6abdc3db6cb9b38b3a",
+            "b3bac824e29da5c679f062526da8856ba245add4",
+            "bd5d365dea17e842e8a6b19f886394057a9000f3",
+            "c020c358719d393e906a7659216591beec5613b8",
+            "c28a8c3c095365bd9b4b244baac485ebe9c39409",
+            "cba049e04beaadb6bb7fdea4b789c5a66d44d05e",
+            "da5d8ce7c680774fee80c48295b5d93444ce5a08",
+            "f2c0f9bddead3a4fa60b728e53efeb9d55694848",
+            "f2e97cd7ff7b7fe4a6675faf958e1043eb76d643",
+            "fc4f08f9a8a942b80d99bee8bc0280739abc7e00"
+          ],
+          "FAIRLinked/.git/logs/refs/remotes/origin/revert-3-ritika-v0.3.0.0": [
+            "0000000000000000000000000000000000000000",
+            "2ba572495a1fd9946497e9191609c17233f50d26"
+          ],
+          "FAIRLinked/.git/logs/refs/remotes/origin/van-vxt": [
+            "0000000000000000000000000000000000000000",
+            "05224b1a1ef4b8210072d33ab8af9fe5d087e7d6",
+            "0fc82425dc79a48526186078e4171532604b623e",
+            "1027a4cd847d150e320afe6f37e1cfc5f8aaa0f1",
+            "10f23cffcc1250de9b3cd2ade3ee06fc25c09121",
+            "13c5a73e0a8e8b0ac4baa5eb518d3cefb141f704",
+            "1a91ced228ab58ea05b0fd3f5fab0281ea9d17b6",
+            "1ace7395e6a677de2503c887372d487fe83f6a52",
+            "22811b34418836c3a1691951daf6a5e7eaac668f",
+            "2406e551c41e1d1670b3c77fae4488f11ab41d52",
+            "2907bedb0dc0de58887bac7ea19bae6d3bc5a01f",
+            "2bba19187fef904739dc68320923af4ed5aeb179",
+            "36447044d667c0a56e1c01d7c6528d700be59adc",
+            "37b1443b747600304be2c94e19368e787afd1275",
+            "3992ec735bf91f4dbfb56849a3bb98e01d348f80",
+            "3dcc11d10adf621fcb10d8d4e1ae6fc113eefb5f",
+            "3eac751af64727ea5d98e4753c26348ed3c8c6d0",
+            "4673779f188ae53f1fc31b7d968cbe8de3f5061a",
+            "4e6b4783863689f23f5ae86748252c8591b1bb57",
+            "52877242d36b3799c00696f36f9ec6a573455ea5",
+            "53716cfda5f8fea11b70332134a43a8f4a7352fe",
+            "557f355b43e0c42fab9fca31b4c72fcc3cee0048",
+            "5891240d4caaceca63881775b7417f949b6da1db",
+            "5a62cbf45e46df2835fe4c7f8bb705b81de120c5",
+            "5c1ad4c695a32d2079483d61f06d8d9898b7494c",
+            "626f0f50ce1f23d62fb029c45a244a11a29006be",
+            "627c63e92868acac7283770e02cc3a257245ec0e",
+            "67c247aa649e964fc36b4a86872172cf8cf6b1ed",
+            "6925a868a4833abb5347bc26bf0a2689787fd17a",
+            "6ab403326e142a5eaa7da4a12f0328303397353a",
+            "6daaca8280365b0965701848cc04ef357fa7882b",
+            "6dbf4c585f96c0fb2f9cd5b8e4087d7b8586b8c9",
+            "72ae4faecc09179e3822f6894118b71c12056e57",
+            "78cec394f5139b523efe03bf948066eb0f5179db",
+            "7b032920eed342713906bff100bddca69f2f11d6",
+            "7b9d0f6b260aadc9623c4f1f2101016f705c7f6f",
+            "7f9d57a4ac6644344c6966d85af02f4b26acebfa",
+            "82d8cb14b0cb02b58f4812fe9881df81c96406e8",
+            "833da460b43658a238e1a4f55bbd996bbe168c8c",
+            "9002717205fb798b9336caacd5b912aa64fba8c5",
+            "924fe39972caf6109df1e14785e515bddeb81dbc",
+            "9573ccfaaa216b96c127fda8397d825e9b136266",
+            "9c4100582d762befa77e90b68fc5d058ef38325e",
+            "a5b2820ec3bc8a68aea97803240014bd8176801e",
+            "aaa3f0290a84105960b27d6abdc3db6cb9b38b3a",
+            "ac2f38f8cd253bce64ff50ea91d7b1c4030f20ce",
+            "b44cdbeec5b3bcedeb7c161de4855f1d1a48e4f4",
+            "b78b5191bc266b43e42e54a3014710f0d6c8dc26",
+            "b7a7e6be5dc9c62dd3269a3d606572b0b03c84d1",
+            "c28a8c3c095365bd9b4b244baac485ebe9c39409",
+            "c3041e4fbfe5f76943f12884203d40745ba0bb14",
+            "c71f358892168aec16e1412f1356eb9ce1c6832c",
+            "cc62a9caf7b45525e91814a0bce2418da9e661e3",
+            "ccabd8040d9ac02c9f90d06129afd24663e90957",
+            "d28a62391eee73e9b6b76d2afa57704b83d6fa24",
+            "d3a07901a83d1e34ea1c2748db8e53886d501a16",
+            "d632ec6b9edbc30ce1741593417fc95fe2c3284b",
+            "d7ae2eca67c945f2a466704107a40a30249c8b40",
+            "e05fce5e34299cb70eed68720bdfc153fdcbdd36",
+            "e0a0868aaee1fa0a1b6a12848e6a1bc2cd18d4d2",
+            "e21c3bad87836ddadf0e33f4a34ac76c6ce98c0a",
+            "e2f592e3305ecd7ad29ed56b54986da8e65970c2",
+            "e6638e8f211a72236cd2a2beb238396c0af1b96d",
+            "e68af190ae6f1e85c4cd30736015b21acca213d1",
+            "e716f54d1a4ee591ce2deec8824b7186d14e91be",
+            "f145c016ca426c607311f1517d6c6edb0c663092",
+            "f90ebfdff7b99887ed94fd4797e630f18d9972c1"
+          ],
+          "FAIRLinked/.git/packed-refs": [
+            "2ae754191d408f4f6826f97bf6524d3c15c5fdfc",
+            "62509c1743e3432558db9b05aabea113788963a5",
+            "97b375c7faf6003bd5901d786a5acb97a33fdd9d"
+          ],
+          "FAIRLinked/.git/refs/heads/main": [
+            "c28a8c3c095365bd9b4b244baac485ebe9c39409"
+          ],
+          "FAIRLinked/.git/refs/heads/van-vxt": [
+            "7b032920eed342713906bff100bddca69f2f11d6"
+          ],
+          "FAIRLinked/.git/refs/remotes/origin/brandon-bkl46": [
+            "59f536c0154f46733f29956075c9159a82872865"
+          ],
+          "FAIRLinked/.git/refs/remotes/origin/main": [
+            "7a92c4038bd15288711c14570bf9e77999b62d6c"
+          ],
+          "FAIRLinked/.git/refs/remotes/origin/revert-3-ritika-v0.3.0.0": [
+            "2ba572495a1fd9946497e9191609c17233f50d26"
+          ],
+          "FAIRLinked/.git/refs/remotes/origin/van-vxt": [
+            "7b032920eed342713906bff100bddca69f2f11d6"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.2.0.3": [
+            "3eac751af64727ea5d98e4753c26348ed3c8c6d0"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.2.0.4": [
+            "5a62cbf45e46df2835fe4c7f8bb705b81de120c5"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.0": [
+            "5891240d4caaceca63881775b7417f949b6da1db"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.1": [
+            "c28a8c3c095365bd9b4b244baac485ebe9c39409"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.10": [
+            "9573ccfaaa216b96c127fda8397d825e9b136266"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.11": [
+            "627c63e92868acac7283770e02cc3a257245ec0e"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.12": [
+            "b44cdbeec5b3bcedeb7c161de4855f1d1a48e4f4"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.13": [
+            "b7a7e6be5dc9c62dd3269a3d606572b0b03c84d1"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.14": [
+            "e2f592e3305ecd7ad29ed56b54986da8e65970c2"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.15": [
+            "1027a4cd847d150e320afe6f37e1cfc5f8aaa0f1"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.16": [
+            "3992ec735bf91f4dbfb56849a3bb98e01d348f80"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.17": [
+            "67c247aa649e964fc36b4a86872172cf8cf6b1ed"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.18": [
+            "52877242d36b3799c00696f36f9ec6a573455ea5"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.19": [
+            "d3a07901a83d1e34ea1c2748db8e53886d501a16"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.3": [
+            "6925a868a4833abb5347bc26bf0a2689787fd17a"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.4": [
+            "f145c016ca426c607311f1517d6c6edb0c663092"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.5": [
+            "f90ebfdff7b99887ed94fd4797e630f18d9972c1"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.6": [
+            "53716cfda5f8fea11b70332134a43a8f4a7352fe"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.7": [
+            "1a91ced228ab58ea05b0fd3f5fab0281ea9d17b6"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.8": [
+            "d28a62391eee73e9b6b76d2afa57704b83d6fa24"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.0.9": [
+            "7f9d57a4ac6644344c6966d85af02f4b26acebfa"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.1.0": [
+            "5f14473758f452b6828fe8768e1c5c33432c2327"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.1.1": [
+            "5c1ad4c695a32d2079483d61f06d8d9898b7494c"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.1.2": [
+            "a5b2820ec3bc8a68aea97803240014bd8176801e"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.1.3": [
+            "626f0f50ce1f23d62fb029c45a244a11a29006be"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.1.4": [
+            "e716f54d1a4ee591ce2deec8824b7186d14e91be"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.1.5": [
+            "c71f358892168aec16e1412f1356eb9ce1c6832c"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.1.6": [
+            "6daaca8280365b0965701848cc04ef357fa7882b"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.0": [
+            "682ec88a9d6c77dbe41b09375744cf5b784978dd"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.1": [
+            "787d17a13deb5da25452b9c3be11e65e47799d02"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.10": [
+            "8b3c47450f4238a67c8ce813bd5038067c5b2463"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.11": [
+            "9de7264a645629685ed49c0fa68752bbbecfc397"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.12": [
+            "683cac27a3a14e375e30a75b2e121a0bd6afbb15"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.13": [
+            "c0ef3cf303f57ade808e9062603cb8e1c70115b5"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.2": [
+            "38e044bd90c4223b8a12e8e5de4cb66c7c09c606"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.3": [
+            "d4e835b89d7ae516feaef2aa6dd02f5a4a926e4a"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.4": [
+            "2bccdd0e43e9ccccbc37738735d7b100efef100a"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.5": [
+            "2c7bfc27dc17851df8b54841224aa5bf50e0fd56"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.6": [
+            "53ba56437baee36ff291ab3f3a55461e4e979e16"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.7": [
+            "e29f3ff4bf28ee9f9955626820e249d212805491"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.8": [
+            "fecd26b1056acaaa84703cb10bc226ec9a74bfd4"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.2.9": [
+            "c8348c8f02ef313748bc1dfb51079eb124690135"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.3.0": [
+            "d80508aff9d7d05dad508087f8fd430151703fce"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.3.1": [
+            "fbf150b71368081d8ff5a12a2db5a63f91d99674"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.3.2": [
+            "1ced477b7bf7518ab8258d7a2f511a76eabb7a7a"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.3.3": [
+            "3e0a40c73f2d18c5a8c1e38c149a1b97510060b6"
+          ],
+          "FAIRLinked/.git/refs/tags/v0.3.3.4": [
+            "1e831e074ae465956b66305df029bfcd286afe9f"
+          ]
+        },
+        "root_names_from_eligible_members": [
+          "FAIRLinked",
+          "__MACOSX"
+        ],
+        "scanned_bytes": 19917160
+      },
+      "archive_transport_retry_checksum_verified": true,
+      "archive_transport_retry_provider_checksum": "md5:258a759299f8f8277faf0392966f14fb",
+      "exact_commit_license": {
+        "metadata": {
+          "content_bytes": 1456,
+          "content_sha256": "c5e1dffbcf551710315f8ea4ae51904ee6b307b4706d03070d7368ea3af93869",
+          "git_blob_sha": "a9633143ccf39f26184a0bc4ddc16b522b397082",
+          "path": "LICENSE.txt",
+          "spdx_id": "BSD-3-Clause"
+        },
+        "request": {
+          "body_bytes": 3179,
+          "body_md5": "ec708780a7e824da4d430e35b63f2fc5",
+          "body_sha256": "7c30ea7f13046470dd465e662768c5c0c94688b12f4a269d95d1fb892feaf947",
+          "content_length_header": "3179",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/cwru-sdle/fairlinked/license?ref=1e831e074ae465956b66305df029bfcd286afe9f",
+          "finished_at": "2026-08-23T20:39:36.267059+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:35.865923+00:00",
+          "url": "https://api.github.com/repos/cwru-sdle/fairlinked/license?ref=1e831e074ae465956b66305df029bfcd286afe9f"
+        }
+      },
+      "frozen_index": 108,
+      "provider_archive_request": {
+        "body_bytes": 88,
+        "body_md5": "c89a28142f4e87bc483be71f0411faeb",
+        "body_sha256": "c4da04682d12a4b6af79d185fb2dea312becefa30547f59d3ae4ab1aee810877",
+        "content_length_header": "88",
+        "content_type": "application/json",
+        "error": "HTTPError:406",
+        "final_url": "https://zenodo.org/api/records/20272994/files/FAIRLinked.zip/content",
+        "finished_at": "2026-08-23T20:39:36.570786+00:00",
+        "http_status": 406,
+        "started_at": "2026-08-23T20:39:36.267208+00:00",
+        "url": "https://zenodo.org/api/records/20272994/files/FAIRLinked.zip/content"
+      },
+      "provider_checksum": "md5:258a759299f8f8277faf0392966f14fb",
+      "provider_checksum_verified": null,
+      "publication_doi": "10.21105/joss.09628",
+      "publication_version_field": "v0.3.3.4",
+      "repository": "cwru-sdle/fairlinked",
+      "source_native_release": {
+        "metadata": {
+          "assets": [],
+          "draft": false,
+          "html_url": "https://github.com/cwru-sdle/FAIRLinked/releases/tag/v0.3.3.4",
+          "id": 326044994,
+          "prerelease": false,
+          "tag_name": "v0.3.3.4",
+          "target_commitish": "main"
+        },
+        "request": {
+          "body_bytes": 2230,
+          "body_md5": "ffe5838f3a845ce889c8a683167547dd",
+          "body_sha256": "e64c71ba31c7eae70560eef17bac0704eb2af95fd62fa2dad2994cf1bba39951",
+          "content_length_header": "2230",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/cwru-sdle/fairlinked/releases/tags/v0.3.3.4",
+          "finished_at": "2026-08-23T20:39:35.865750+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:35.529494+00:00",
+          "url": "https://api.github.com/repos/cwru-sdle/fairlinked/releases/tags/v0.3.3.4"
+        }
+      },
+      "v7_exact_commit": "1e831e074ae465956b66305df029bfcd286afe9f",
+      "v7_failure_causes": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+      ],
+      "v7_row_line_sha256": "a236b2da26d4567842809ff8b2b62bf3443255b26644bb772488364698d493e0"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20026885",
+      "archive_transport_retry": {
+        "body_bytes": 367447,
+        "body_md5": "3c31abcadc619fb4f101232b8b8cfbe5",
+        "body_sha256": "b509f6469b9ff8888195751c811d689559f45e24aeb35bb173b9680c99c8dbf3",
+        "content_length_header": "367447",
+        "content_type": "application/octet-stream",
+        "error": null,
+        "final_url": "https://zenodo.org/api/records/20026885/files/woodtapper-0.0.13.tar.gz/content",
+        "finished_at": "2026-08-23T20:42:09.864212+00:00",
+        "http_status": 200,
+        "started_at": "2026-08-23T20:42:09.280490+00:00",
+        "url": "https://zenodo.org/api/records/20026885/files/woodtapper-0.0.13.tar.gz/content"
+      },
+      "archive_transport_retry_analysis": {
+        "archive_kind": "tar",
+        "eligible_small_member_count": 34,
+        "exact_full_commit_hits": [],
+        "exact_tag_provenance_hits": [],
+        "license_candidates": [
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/133_woodtapper-0.0.13_LICENSE",
+            "member_bytes": 1068,
+            "member_path": "woodtapper-0.0.13/LICENSE",
+            "member_sha256": "0c3d62dc6b0d680c24a67fab9c025fbc607fd89ad6740a801b5bfaec04745832"
+          }
+        ],
+        "provenance_full_sha_candidates": {},
+        "root_names_from_eligible_members": [
+          "woodtapper-0.0.13"
+        ],
+        "scanned_bytes": 128632
+      },
+      "archive_transport_retry_checksum_verified": true,
+      "archive_transport_retry_provider_checksum": "md5:3c31abcadc619fb4f101232b8b8cfbe5",
+      "exact_commit_license": {
+        "metadata": {
+          "content_bytes": 1068,
+          "content_sha256": "0c3d62dc6b0d680c24a67fab9c025fbc607fd89ad6740a801b5bfaec04745832",
+          "git_blob_sha": "ea47ecc4912fa4d75c49470f5df5861bbbf96807",
+          "path": "LICENSE",
+          "spdx_id": "MIT"
+        },
+        "request": {
+          "body_bytes": 2568,
+          "body_md5": "2df469ef737b5417457aa7d344e36965",
+          "body_sha256": "6b563f09ed3898a751b9caa24cd797f4fd092f7d213afac6a75fdd9824c421a4",
+          "content_length_header": "2568",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/artefactory/woodtapper/license?ref=7ac6d23d504404c4004faad663f6b889427109e6",
+          "finished_at": "2026-08-23T20:39:37.488879+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:36.959257+00:00",
+          "url": "https://api.github.com/repos/artefactory/woodtapper/license?ref=7ac6d23d504404c4004faad663f6b889427109e6"
+        }
+      },
+      "frozen_index": 133,
+      "provider_archive_request": {
+        "body_bytes": 88,
+        "body_md5": "c89a28142f4e87bc483be71f0411faeb",
+        "body_sha256": "c4da04682d12a4b6af79d185fb2dea312becefa30547f59d3ae4ab1aee810877",
+        "content_length_header": "88",
+        "content_type": "application/json",
+        "error": "HTTPError:406",
+        "final_url": "https://zenodo.org/api/records/20026885/files/woodtapper-0.0.13.tar.gz/content",
+        "finished_at": "2026-08-23T20:39:37.753844+00:00",
+        "http_status": 406,
+        "started_at": "2026-08-23T20:39:37.488981+00:00",
+        "url": "https://zenodo.org/api/records/20026885/files/woodtapper-0.0.13.tar.gz/content"
+      },
+      "provider_checksum": "md5:3c31abcadc619fb4f101232b8b8cfbe5",
+      "provider_checksum_verified": null,
+      "publication_doi": "10.21105/joss.10112",
+      "publication_version_field": "v0.0.13",
+      "repository": "artefactory/woodtapper",
+      "source_native_release": {
+        "metadata": {
+          "assets": [],
+          "draft": false,
+          "html_url": "https://github.com/artefactory/woodtapper/releases/tag/v0.0.13",
+          "id": 264726375,
+          "prerelease": false,
+          "tag_name": "v0.0.13",
+          "target_commitish": "main"
+        },
+        "request": {
+          "body_bytes": 1933,
+          "body_md5": "644ca06ad755402f6a67ad14f02b8c5a",
+          "body_sha256": "b71be53313376c4109ea56b526208971fdb3cf38a5858962abfc40718b33131e",
+          "content_length_header": "1933",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/artefactory/woodtapper/releases/tags/v0.0.13",
+          "finished_at": "2026-08-23T20:39:36.959145+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:36.570859+00:00",
+          "url": "https://api.github.com/repos/artefactory/woodtapper/releases/tags/v0.0.13"
+        }
+      },
+      "v7_exact_commit": "7ac6d23d504404c4004faad663f6b889427109e6",
+      "v7_failure_causes": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+      ],
+      "v7_row_line_sha256": "ac74a61277fed477fff5ef4810565abe540cb5e157b52ace95f1c1049b8a01d9"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19661454",
+      "archive_transport_retry": {
+        "body_bytes": 106471934,
+        "body_md5": "d3062459c520eef8b5d09db8aeaace45",
+        "body_sha256": "560b97cd4ae393f666130acd8909e7622fd01b77c0779c9ca1bf043fb0e69e1d",
+        "content_length_header": "106471934",
+        "content_type": "application/octet-stream",
+        "error": null,
+        "final_url": "https://zenodo.org/api/records/19661454/files/databallpy-0.7.3.zip/content",
+        "finished_at": "2026-08-23T20:42:15.429787+00:00",
+        "http_status": 200,
+        "started_at": "2026-08-23T20:42:09.880798+00:00",
+        "url": "https://zenodo.org/api/records/19661454/files/databallpy-0.7.3.zip/content"
+      },
+      "archive_transport_retry_analysis": {
+        "archive_kind": "zip",
+        "eligible_small_member_count": 284,
+        "exact_full_commit_hits": [],
+        "exact_tag_provenance_hits": [],
+        "license_candidates": [
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/165_databallpy-0.7.3_LICENSE",
+            "member_bytes": 1085,
+            "member_path": "databallpy-0.7.3/LICENSE",
+            "member_sha256": "812df5802e6d654e44918c8673bfc8f779c5f537c5fccdb3ba75389eb47ce7b9"
+          }
+        ],
+        "provenance_full_sha_candidates": {},
+        "root_names_from_eligible_members": [
+          "databallpy-0.7.3"
+        ],
+        "scanned_bytes": 1629251
+      },
+      "archive_transport_retry_checksum_verified": true,
+      "archive_transport_retry_provider_checksum": "md5:d3062459c520eef8b5d09db8aeaace45",
+      "exact_commit_license": {
+        "metadata": {
+          "content_bytes": 1085,
+          "content_sha256": "812df5802e6d654e44918c8673bfc8f779c5f537c5fccdb3ba75389eb47ce7b9",
+          "git_blob_sha": "d200bbfb56cdbd4bf58131087de8a7fabf863c36",
+          "path": "LICENSE",
+          "spdx_id": "MIT"
+        },
+        "request": {
+          "body_bytes": 2566,
+          "body_md5": "0e510843d57bac4c08f1ee761b475bef",
+          "body_sha256": "ecbeb88bd906641fa4d1c5adfd7dd4e8c04d3635556bbac8274edbc6b4bd8e7a",
+          "content_length_header": "2566",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/alek050/databallpy/license?ref=b52a049f685af3fc849359673c4ac183e7ccc5d3",
+          "finished_at": "2026-08-23T20:39:38.459773+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:38.078272+00:00",
+          "url": "https://api.github.com/repos/alek050/databallpy/license?ref=b52a049f685af3fc849359673c4ac183e7ccc5d3"
+        }
+      },
+      "frozen_index": 165,
+      "provider_archive_request": {
+        "body_bytes": 88,
+        "body_md5": "c89a28142f4e87bc483be71f0411faeb",
+        "body_sha256": "c4da04682d12a4b6af79d185fb2dea312becefa30547f59d3ae4ab1aee810877",
+        "content_length_header": "88",
+        "content_type": "application/json",
+        "error": "HTTPError:406",
+        "final_url": "https://zenodo.org/api/records/19661454/files/databallpy-0.7.3.zip/content",
+        "finished_at": "2026-08-23T20:39:38.677750+00:00",
+        "http_status": 406,
+        "started_at": "2026-08-23T20:39:38.459881+00:00",
+        "url": "https://zenodo.org/api/records/19661454/files/databallpy-0.7.3.zip/content"
+      },
+      "provider_checksum": "md5:d3062459c520eef8b5d09db8aeaace45",
+      "provider_checksum_verified": null,
+      "publication_doi": "10.21105/joss.10223",
+      "publication_version_field": "v0.7.3",
+      "repository": "alek050/databallpy",
+      "source_native_release": {
+        "metadata": {
+          "assets": [],
+          "draft": false,
+          "html_url": "https://github.com/Alek050/databallpy/releases/tag/v0.7.3",
+          "id": 308867766,
+          "prerelease": false,
+          "tag_name": "v0.7.3",
+          "target_commitish": "develop"
+        },
+        "request": {
+          "body_bytes": 7535,
+          "body_md5": "d4589f6b2cf6988ff699ad340970d360",
+          "body_sha256": "b742b582f68d9c44642b7b01ec42bb281a8a730d2ccfc6df7791dc31a4c80594",
+          "content_length_header": "7535",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/alek050/databallpy/releases/tags/v0.7.3",
+          "finished_at": "2026-08-23T20:39:38.077945+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:37.753917+00:00",
+          "url": "https://api.github.com/repos/alek050/databallpy/releases/tags/v0.7.3"
+        }
+      },
+      "v7_exact_commit": "b52a049f685af3fc849359673c4ac183e7ccc5d3",
+      "v7_failure_causes": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "v7_row_line_sha256": "9cc95473f2ea9bf4819c48c9056098aa84bef31497daa7aec068df483a0f3cea"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19051387",
+      "archive_transport_retry": {
+        "body_bytes": 129215,
+        "body_md5": "0aa4c0e052aca91eaf9df537837e8441",
+        "body_sha256": "775f92dbcbd6d1523db241494998e4b0867d51a84236feb7accc86b63b033a19",
+        "content_length_header": "129215",
+        "content_type": "application/octet-stream",
+        "error": null,
+        "final_url": "https://zenodo.org/api/records/19051387/files/disruption_py-0.14.0.tar.gz/content",
+        "finished_at": "2026-08-23T20:42:16.325770+00:00",
+        "http_status": 200,
+        "started_at": "2026-08-23T20:42:15.786319+00:00",
+        "url": "https://zenodo.org/api/records/19051387/files/disruption_py-0.14.0.tar.gz/content"
+      },
+      "archive_transport_retry_analysis": {
+        "archive_kind": "tar",
+        "eligible_small_member_count": 65,
+        "exact_full_commit_hits": [],
+        "exact_tag_provenance_hits": [],
+        "license_candidates": [
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/185_disruption_py-0.14.0_LICENSE",
+            "member_bytes": 1106,
+            "member_path": "disruption_py-0.14.0/LICENSE",
+            "member_sha256": "0ccdf3612bb9b79ff26b44f859b9fb19957e0029eaa66be9f32b0409f1688d33"
+          }
+        ],
+        "provenance_full_sha_candidates": {},
+        "root_names_from_eligible_members": [
+          "disruption_py-0.14.0"
+        ],
+        "scanned_bytes": 547483
+      },
+      "archive_transport_retry_checksum_verified": true,
+      "archive_transport_retry_provider_checksum": "md5:0aa4c0e052aca91eaf9df537837e8441",
+      "exact_commit_license": null,
+      "frozen_index": 185,
+      "provider_archive_request": {
+        "body_bytes": 88,
+        "body_md5": "c89a28142f4e87bc483be71f0411faeb",
+        "body_sha256": "c4da04682d12a4b6af79d185fb2dea312becefa30547f59d3ae4ab1aee810877",
+        "content_length_header": "88",
+        "content_type": "application/json",
+        "error": "HTTPError:406",
+        "final_url": "https://zenodo.org/api/records/19051387/files/disruption_py-0.14.0.tar.gz/content",
+        "finished_at": "2026-08-23T20:39:39.278284+00:00",
+        "http_status": 406,
+        "started_at": "2026-08-23T20:39:39.041005+00:00",
+        "url": "https://zenodo.org/api/records/19051387/files/disruption_py-0.14.0.tar.gz/content"
+      },
+      "provider_checksum": "md5:0aa4c0e052aca91eaf9df537837e8441",
+      "provider_checksum_verified": null,
+      "publication_doi": "10.21105/joss.09364",
+      "publication_version_field": "v0.14.0",
+      "repository": "mit-psfc/disruption-py",
+      "source_native_release": {
+        "metadata": null,
+        "request": {
+          "body_bytes": 133,
+          "body_md5": "8d3f5f6d3ee7aded4ae7e94f0310eaae",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "content_length_header": "133",
+          "content_type": "application/json; charset=utf-8",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/mit-psfc/disruption-py/releases/tags/v0.14.0",
+          "finished_at": "2026-08-23T20:39:39.040911+00:00",
+          "http_status": 404,
+          "started_at": "2026-08-23T20:39:38.677812+00:00",
+          "url": "https://api.github.com/repos/mit-psfc/disruption-py/releases/tags/v0.14.0"
+        }
+      },
+      "v7_exact_commit": null,
+      "v7_failure_causes": [
+        "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "v7_row_line_sha256": "f62476a691d46c794712630676344d18e3c6f26af1e228369db5e7d2ef1ffe10"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19335435",
+      "archive_transport_retry": {
+        "body_bytes": 8463286,
+        "body_md5": "e7c4251bb855df190406829ff35bc202",
+        "body_sha256": "c5dc99b1346a34b9b046dc0190d3f2ea071d6032f0dcbdee66662a62128c5a14",
+        "content_length_header": "8463286",
+        "content_type": "application/octet-stream",
+        "error": null,
+        "final_url": "https://zenodo.org/api/records/19335435/files/datadriftR.zip/content",
+        "finished_at": "2026-08-23T20:42:17.435249+00:00",
+        "http_status": 200,
+        "started_at": "2026-08-23T20:42:16.338808+00:00",
+        "url": "https://zenodo.org/api/records/19335435/files/datadriftR.zip/content"
+      },
+      "archive_transport_retry_analysis": {
+        "archive_kind": "zip",
+        "eligible_small_member_count": 355,
+        "exact_full_commit_hits": [],
+        "exact_tag_provenance_hits": [
+          {
+            "member_bytes": 1496,
+            "member_path": "datadriftR-main/CITATION.cff",
+            "member_sha256": "5d02b4687072abaf8809740bb6c50f7b2672621d3b5bd1f879af86ff6404ae08"
+          }
+        ],
+        "license_candidates": [
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/190_datadriftR-main_LICENSE",
+            "member_bytes": 1080,
+            "member_path": "datadriftR-main/LICENSE",
+            "member_sha256": "79dd70a104e1136db181d225335f5d4adfc3516e4124e647093de7db0bfb24bb"
+          },
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/190_datadriftR-main_datadriftR.Rcheck_00_pkg_src_datadriftR_LICENSE",
+            "member_bytes": 1080,
+            "member_path": "datadriftR-main/datadriftR.Rcheck/00_pkg_src/datadriftR/LICENSE",
+            "member_sha256": "79dd70a104e1136db181d225335f5d4adfc3516e4124e647093de7db0bfb24bb"
+          },
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/190_datadriftR-main_datadriftR.Rcheck_datadriftR_LICENSE",
+            "member_bytes": 1080,
+            "member_path": "datadriftR-main/datadriftR.Rcheck/datadriftR/LICENSE",
+            "member_sha256": "79dd70a104e1136db181d225335f5d4adfc3516e4124e647093de7db0bfb24bb"
+          },
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/190_datadriftR-main_docs_LICENSE-text.html",
+            "member_bytes": 8457,
+            "member_path": "datadriftR-main/docs/LICENSE-text.html",
+            "member_sha256": "c6c0f34990e62362314f414722c00568a08b9d1eccbb50a3b24126c9c252a49c"
+          }
+        ],
+        "provenance_full_sha_candidates": {},
+        "root_names_from_eligible_members": [
+          "datadriftR-main"
+        ],
+        "scanned_bytes": 325315
+      },
+      "archive_transport_retry_checksum_verified": true,
+      "archive_transport_retry_provider_checksum": "md5:e7c4251bb855df190406829ff35bc202",
+      "exact_commit_license": null,
+      "frozen_index": 190,
+      "provider_archive_request": {
+        "body_bytes": 88,
+        "body_md5": "c89a28142f4e87bc483be71f0411faeb",
+        "body_sha256": "c4da04682d12a4b6af79d185fb2dea312becefa30547f59d3ae4ab1aee810877",
+        "content_length_header": "88",
+        "content_type": "application/json",
+        "error": "HTTPError:406",
+        "final_url": "https://zenodo.org/api/records/19335435/files/datadriftR.zip/content",
+        "finished_at": "2026-08-23T20:39:39.849344+00:00",
+        "http_status": 406,
+        "started_at": "2026-08-23T20:39:39.614817+00:00",
+        "url": "https://zenodo.org/api/records/19335435/files/datadriftR.zip/content"
+      },
+      "provider_checksum": "md5:e7c4251bb855df190406829ff35bc202",
+      "provider_checksum_verified": null,
+      "publication_doi": "10.21105/joss.09481",
+      "publication_version_field": "1.1.0",
+      "repository": "ugurdar/datadriftr",
+      "source_native_release": {
+        "metadata": null,
+        "request": {
+          "body_bytes": 133,
+          "body_md5": "8d3f5f6d3ee7aded4ae7e94f0310eaae",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "content_length_header": "133",
+          "content_type": "application/json; charset=utf-8",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/ugurdar/datadriftr/releases/tags/1.1.0",
+          "finished_at": "2026-08-23T20:39:39.614715+00:00",
+          "http_status": 404,
+          "started_at": "2026-08-23T20:39:39.278387+00:00",
+          "url": "https://api.github.com/repos/ugurdar/datadriftr/releases/tags/1.1.0"
+        }
+      },
+      "v7_exact_commit": null,
+      "v7_failure_causes": [
+        "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "v7_row_line_sha256": "007b5ce85a6c92aae5b25b54cbbe41e4301990b1c5786b24a14cbc6aa45245e7"
+    },
+    {
+      "archive_analysis": null,
+      "archive_doi": "10.5281/zenodo.19141362",
+      "archive_transport_retry": {
+        "body_bytes": 15034638,
+        "body_md5": "bd1a50c2dfea0a313d78e563c588dce0",
+        "body_sha256": "9db37b75a672b4a31c4e5c09f8f6256a61bbaac05e397c951cab117fd7c6fdf3",
+        "content_length_header": "15034638",
+        "content_type": "application/octet-stream",
+        "error": null,
+        "final_url": "https://zenodo.org/api/records/19141363/files/WatershedsWildfireResearchCollaborative/SEPARATE-V1.1.0.zip/content",
+        "finished_at": "2026-08-23T20:42:18.932454+00:00",
+        "http_status": 200,
+        "started_at": "2026-08-23T20:42:17.488541+00:00",
+        "url": "https://zenodo.org/api/records/19141363/files/WatershedsWildfireResearchCollaborative/SEPARATE-V1.1.0.zip/content"
+      },
+      "archive_transport_retry_analysis": {
+        "archive_kind": "zip",
+        "eligible_small_member_count": 148,
+        "exact_full_commit_hits": [],
+        "exact_tag_provenance_hits": [],
+        "license_candidates": [
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/196_WatershedsWildfireResearchCollaborative-SEPARATE-ba11b62_LICENSE",
+            "member_bytes": 1091,
+            "member_path": "WatershedsWildfireResearchCollaborative-SEPARATE-ba11b62/LICENSE",
+            "member_sha256": "dede37733d537d46be1e1d0da900b77bbbecfd86b9302d4ae72c39659615e703"
+          },
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/196_WatershedsWildfireResearchCollaborative-SEPARATE-ba11b62_build_installer_mac_LICENSE.txt",
+            "member_bytes": 1091,
+            "member_path": "WatershedsWildfireResearchCollaborative-SEPARATE-ba11b62/build_installer/mac/LICENSE.txt",
+            "member_sha256": "dede37733d537d46be1e1d0da900b77bbbecfd86b9302d4ae72c39659615e703"
+          },
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/196_WatershedsWildfireResearchCollaborative-SEPARATE-ba11b62_build_installer_windows_LICENSE.txt",
+            "member_bytes": 1091,
+            "member_path": "WatershedsWildfireResearchCollaborative-SEPARATE-ba11b62/build_installer/windows/LICENSE.txt",
+            "member_sha256": "dede37733d537d46be1e1d0da900b77bbbecfd86b9302d4ae72c39659615e703"
+          }
+        ],
+        "provenance_full_sha_candidates": {},
+        "root_names_from_eligible_members": [
+          "WatershedsWildfireResearchCollaborative-SEPARATE-ba11b62"
+        ],
+        "scanned_bytes": 220436
+      },
+      "archive_transport_retry_checksum_verified": true,
+      "archive_transport_retry_provider_checksum": "md5:bd1a50c2dfea0a313d78e563c588dce0",
+      "datacite_frozen_doi": {
+        "attributes": {
+          "doi": "10.5281/zenodo.19141362",
+          "publisher": "Zenodo",
+          "relatedIdentifiers": [
+            {
+              "relatedIdentifier": "10.5281/zenodo.19141363",
+              "relatedIdentifierType": "DOI",
+              "relationType": "HasVersion"
+            }
+          ],
+          "rightsList": [
+            {
+              "rights": "MIT License",
+              "rightsIdentifier": "mit",
+              "rightsIdentifierScheme": "SPDX",
+              "rightsUri": "https://opensource.org/licenses/MIT",
+              "schemeUri": "https://spdx.org/licenses/"
+            }
+          ],
+          "state": "findable",
+          "url": "https://zenodo.org/doi/10.5281/zenodo.19141362",
+          "version": "V1.1.0"
+        },
+        "request": {
+          "body_bytes": 6054,
+          "body_md5": "600259fb8f4df4acc0cd8938884d64f8",
+          "body_sha256": "86c6761293a3552363c668943cb507510f7aacf9c8dad12d4fa866d7065818a6",
+          "content_length_header": null,
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.datacite.org/dois/10.5281%2Fzenodo.19141362",
+          "finished_at": "2026-08-23T20:39:40.225161+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:39.849429+00:00",
+          "url": "https://api.datacite.org/dois/10.5281%2Fzenodo.19141362"
+        }
+      },
+      "exact_commit_license": {
+        "metadata": {
+          "content_bytes": 1091,
+          "content_sha256": "dede37733d537d46be1e1d0da900b77bbbecfd86b9302d4ae72c39659615e703",
+          "git_blob_sha": "7920f5049238e34191076c5bc1a4208fb649bc20",
+          "path": "LICENSE",
+          "spdx_id": "MIT"
+        },
+        "request": {
+          "body_bytes": 2784,
+          "body_md5": "1f868d23608fbd1be3a4134401b443eb",
+          "body_sha256": "54a907f1c577e1c6f086352c5713f9ba1e1d7ce54f3881090f9f2807373aaca1",
+          "content_length_header": "2784",
+          "content_type": "application/json; charset=utf-8",
+          "error": null,
+          "final_url": "https://api.github.com/repos/watershedswildfireresearchcollaborative/separate/license?ref=ba11b623cebc5d042f7bbe6c23b1f48c5d71c27f",
+          "finished_at": "2026-08-23T20:39:42.480855+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:41.858328+00:00",
+          "url": "https://api.github.com/repos/watershedswildfireresearchcollaborative/separate/license?ref=ba11b623cebc5d042f7bbe6c23b1f48c5d71c27f"
+        }
+      },
+      "frozen_index": 196,
+      "provider_archive_request": null,
+      "publication_doi": "10.21105/joss.08851",
+      "publication_version_field": "v1.1.0",
+      "repository": "watershedswildfireresearchcollaborative/separate",
+      "source_native_release": {
+        "metadata": null,
+        "request": {
+          "body_bytes": 133,
+          "body_md5": "8d3f5f6d3ee7aded4ae7e94f0310eaae",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "content_length_header": "133",
+          "content_type": "application/json; charset=utf-8",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/watershedswildfireresearchcollaborative/separate/releases/tags/v1.1.0",
+          "finished_at": "2026-08-23T20:39:41.858294+00:00",
+          "http_status": 404,
+          "started_at": "2026-08-23T20:39:41.460141+00:00",
+          "url": "https://api.github.com/repos/watershedswildfireresearchcollaborative/separate/releases/tags/v1.1.0"
+        }
+      },
+      "unique_provider_version_matches": [
+        {
+          "doi": "10.5281/zenodo.19141363",
+          "files": [
+            {
+              "checksum": "md5:bd1a50c2dfea0a313d78e563c588dce0",
+              "id": "2e60e458-9f86-4139-91bd-8905045412e0",
+              "key": "WatershedsWildfireResearchCollaborative/SEPARATE-V1.1.0.zip",
+              "links": {
+                "self": "https://zenodo.org/api/records/19141363/files/WatershedsWildfireResearchCollaborative/SEPARATE-V1.1.0.zip/content"
+              },
+              "size": 15034638
+            }
+          ],
+          "id": 19141363,
+          "license": {
+            "id": "mit-license"
+          },
+          "version": "V1.1.0"
+        }
+      ],
+      "v7_exact_commit": "ba11b623cebc5d042f7bbe6c23b1f48c5d71c27f",
+      "v7_failure_causes": [
+        "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+        "PUBLIC_TRANSPORT_CANNOT_CHECK"
+      ],
+      "v7_row_line_sha256": "f01b95724850ca783c3ffc0ffb4c66d4e9c39a79fdd6301ab97d906c3cd3359c",
+      "zenodo_direct_record": {
+        "metadata": {
+          "conceptdoi": "10.5281/zenodo.19141362",
+          "conceptrecid": "19141362",
+          "created": "2026-03-21T00:38:21.383104+00:00",
+          "doi": "10.5281/zenodo.19141363",
+          "doi_url": "https://doi.org/10.5281/zenodo.19141363",
+          "files": [
+            {
+              "checksum": "md5:bd1a50c2dfea0a313d78e563c588dce0",
+              "id": "2e60e458-9f86-4139-91bd-8905045412e0",
+              "key": "WatershedsWildfireResearchCollaborative/SEPARATE-V1.1.0.zip",
+              "links": {
+                "self": "https://zenodo.org/api/records/19141363/files/WatershedsWildfireResearchCollaborative/SEPARATE-V1.1.0.zip/content"
+              },
+              "size": 15034638
+            }
+          ],
+          "id": 19141363,
+          "links": {
+            "access": "https://zenodo.org/api/records/19141363/access",
+            "access_grants": "https://zenodo.org/api/records/19141363/access/grants",
+            "access_links": "https://zenodo.org/api/records/19141363/access/links",
+            "access_request": "https://zenodo.org/api/records/19141363/access/request",
+            "access_users": "https://zenodo.org/api/records/19141363/access/users",
+            "archive": "https://zenodo.org/api/records/19141363/files-archive",
+            "archive_media": "https://zenodo.org/api/records/19141363/media-files-archive",
+            "communities": "https://zenodo.org/api/records/19141363/communities",
+            "communities-suggestions": "https://zenodo.org/api/records/19141363/communities-suggestions",
+            "doi": "https://doi.org/10.5281/zenodo.19141363",
+            "draft": "https://zenodo.org/api/records/19141363/draft",
+            "file_modification": "https://zenodo.org/api/records/19141363/file-modification",
+            "files": "https://zenodo.org/api/records/19141363/files",
+            "latest": "https://zenodo.org/api/records/19141363/versions/latest",
+            "latest_html": "https://zenodo.org/records/19141363/latest",
+            "media_files": "https://zenodo.org/api/records/19141363/media-files",
+            "parent": "https://zenodo.org/api/records/19141362",
+            "parent_doi": "https://doi.org/10.5281/zenodo.19141362",
+            "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.19141362",
+            "parent_html": "https://zenodo.org/records/19141362",
+            "preview_html": "https://zenodo.org/records/19141363?preview=1",
+            "quota_increase": "https://zenodo.org/api/records/19141363/quota-increase",
+            "request_deletion": "https://zenodo.org/api/records/19141363/request-deletion",
+            "requests": "https://zenodo.org/api/records/19141363/requests",
+            "reserve_doi": "https://zenodo.org/api/records/19141363/draft/pids/doi",
+            "self": "https://zenodo.org/api/records/19141363",
+            "self_doi": "https://doi.org/10.5281/zenodo.19141363",
+            "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.19141363",
+            "self_html": "https://zenodo.org/records/19141363",
+            "self_iiif_manifest": "https://zenodo.org/api/iiif/record:19141363/manifest",
+            "self_iiif_sequence": "https://zenodo.org/api/iiif/record:19141363/sequence/default",
+            "versions": "https://zenodo.org/api/records/19141363/versions"
+          },
+          "metadata": {
+            "access_right": "open",
+            "creators": [
+              {
+                "affiliation": "Simon Fraser University",
+                "name": "Murphy, Brendan",
+                "orcid": "0000-0001-8025-1253"
+              },
+              {
+                "affiliation": "Utah State University",
+                "name": "David, Scott",
+                "orcid": "0000-0003-2708-4251"
+              }
+            ],
+            "custom": {
+              "code:codeRepository": "https://github.com/WatershedsWildfireResearchCollaborative/SEPARATE",
+              "code:programmingLanguage": [
+                {
+                  "id": "python",
+                  "title": {
+                    "en": "Python"
+                  }
+                }
+              ]
+            },
+            "description": "<p>Initial public release of SEPARATE associated with the accepted JOSS paper.</p>\n<p>SEPARATE is a tool for partitioning tipping-bucket rainfall data into storm events and calculating event rainfall metrics.</p>\n<p>Highlights:</p>\n<ul>\n<li>Provides GUI and non-GUI workflows</li>\n<li>Storm event partitioning methods</li>\n<li>Rainfall metric calculations and plotting</li>\n</ul>\n<p>For installation and usage, see the README and documentation in this repository.</p>",
+            "doi": "10.5281/zenodo.19141363",
+            "license": {
+              "id": "mit-license"
+            },
+            "publication_date": "2026-03-21",
+            "relations": {
+              "version": [
+                {
+                  "index": 0,
+                  "is_last": true,
+                  "parent": {
+                    "pid_type": "recid",
+                    "pid_value": "19141362"
+                  }
+                }
+              ]
+            },
+            "resource_type": {
+              "title": "Software",
+              "type": "software"
+            },
+            "title": "SEPARATE: Storm Event Partitioning And Rainfall Analytics for Tipping-bucket rain gauge data Evaluation",
+            "version": "V1.1.0"
+          },
+          "modified": "2026-03-21T02:04:50.163954+00:00",
+          "owners": [
+            {
+              "id": "1580896"
+            }
+          ],
+          "recid": "19141363",
+          "revision": 6,
+          "state": "done",
+          "stats": {
+            "downloads": 11,
+            "unique_downloads": 11,
+            "unique_views": 30,
+            "version_downloads": 11,
+            "version_unique_downloads": 11,
+            "version_unique_views": 30,
+            "version_views": 36,
+            "views": 36
+          },
+          "status": "published",
+          "submitted": true,
+          "swh": {
+            "swhid": "swh:1:dir:f15c662c0c95899e87caa17a6d2b0b5c0a0d7279;origin=https://doi.org/10.5281/zenodo.19141362;visit=swh:1:snp:d733cca02809095de1308ae8534d0fe853aa8b92;anchor=swh:1:rel:004a7b87baa9e66acd5f6cc773b93ecb8e5edd48;path=WatershedsWildfireResearchCollaborative-SEPARATE-ba11b62"
+          },
+          "title": "SEPARATE: Storm Event Partitioning And Rainfall Analytics for Tipping-bucket rain gauge data Evaluation",
+          "updated": "2026-03-21T02:04:50.163954+00:00"
+        },
+        "request": {
+          "body_bytes": 4892,
+          "body_md5": "659f6b25b92fd49f4bcfedfc14bbba28",
+          "body_sha256": "b0a89333bd809b2d1c8899b616bdb28069b0b28af18bf793cf8989f75d02d9d3",
+          "content_length_header": "4892",
+          "content_type": "application/json",
+          "error": null,
+          "final_url": "https://zenodo.org/api/records/19141363",
+          "finished_at": "2026-08-23T20:39:40.848050+00:00",
+          "http_status": 200,
+          "started_at": "2026-08-23T20:39:40.225406+00:00",
+          "url": "https://zenodo.org/api/records/19141362"
+        }
+      },
+      "zenodo_exact_concept_search": {
+        "metadata": null,
+        "request": {
+          "body_bytes": 207,
+          "body_md5": "29218c9777f8649f80e298637c952938",
+          "body_sha256": "8105c5098c3b8051ed4e35cc510a7c4af8dcca8edb46986c9a37ba5469c6985c",
+          "content_length_header": "207",
+          "content_type": "application/json",
+          "error": "HTTPError:400",
+          "final_url": "https://zenodo.org/api/records?q=conceptrecid%3A19141362&all_versions=true&size=50",
+          "finished_at": "2026-08-23T20:39:41.460088+00:00",
+          "http_status": 400,
+          "started_at": "2026-08-23T20:39:41.214876+00:00",
+          "url": "https://zenodo.org/api/records?q=conceptrecid%3A19141362&all_versions=true&size=50"
+        }
+      },
+      "zenodo_versions": {
+        "metadata": null,
+        "request": {
+          "body_bytes": 40,
+          "body_md5": "134f427dc9e3d5127f8f67c254f1742e",
+          "body_sha256": "065d91af06a01eb55620e8b4f41c6c760fa8ac3fef0a2a18123db62ba255cdd1",
+          "content_length_header": "40",
+          "content_type": "application/json",
+          "error": "HTTPError:404",
+          "final_url": "https://zenodo.org/api/records/19141362/versions",
+          "finished_at": "2026-08-23T20:39:41.214806+00:00",
+          "http_status": 404,
+          "started_at": "2026-08-23T20:39:40.848174+00:00",
+          "url": "https://zenodo.org/api/records/19141362/versions"
+        }
+      }
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19202203",
+      "archive_transport_retry": {
+        "body_bytes": 4237826,
+        "body_md5": "3409352bdc0926acfafc39bf121f4263",
+        "body_sha256": "5eaf4bc23f11cf14d6b1f41510a7b99cf3107cb906a7b7e9aa2945a2a64baeba",
+        "content_length_header": "4237826",
+        "content_type": "application/octet-stream",
+        "error": null,
+        "final_url": "https://zenodo.org/api/records/19202203/files/TARGENE/targene-pipeline-v0.13.4.zip/content",
+        "finished_at": "2026-08-23T20:42:19.937193+00:00",
+        "http_status": 200,
+        "started_at": "2026-08-23T20:42:19.010163+00:00",
+        "url": "https://zenodo.org/api/records/19202203/files/TARGENE/targene-pipeline-v0.13.4.zip/content"
+      },
+      "archive_transport_retry_analysis": {
+        "archive_kind": "zip",
+        "eligible_small_member_count": 165,
+        "exact_full_commit_hits": [],
+        "exact_tag_provenance_hits": [],
+        "license_candidates": [
+          {
+            "accepted_spdx": true,
+            "byte_equal_to_exact_commit_license": false,
+            "detected_spdx": "MIT",
+            "evidence_path": "evidence/199_TARGENE-targene-pipeline-0f8b2db_LICENSE",
+            "member_bytes": 1072,
+            "member_path": "TARGENE-targene-pipeline-0f8b2db/LICENSE",
+            "member_sha256": "20122bc48a8c893915be5ce8a4f4a10785d8eee7fec36c5f930a208d0e575230"
+          }
+        ],
+        "provenance_full_sha_candidates": {},
+        "root_names_from_eligible_members": [
+          "TARGENE-targene-pipeline-0f8b2db"
+        ],
+        "scanned_bytes": 146725
+      },
+      "archive_transport_retry_checksum_verified": true,
+      "archive_transport_retry_provider_checksum": "md5:3409352bdc0926acfafc39bf121f4263",
+      "exact_commit_license": null,
+      "frozen_index": 199,
+      "provider_archive_request": {
+        "body_bytes": 88,
+        "body_md5": "c89a28142f4e87bc483be71f0411faeb",
+        "body_sha256": "c4da04682d12a4b6af79d185fb2dea312becefa30547f59d3ae4ab1aee810877",
+        "content_length_header": "88",
+        "content_type": "application/json",
+        "error": "HTTPError:406",
+        "final_url": "https://zenodo.org/api/records/19202203/files/TARGENE/targene-pipeline-v0.13.4.zip/content",
+        "finished_at": "2026-08-23T20:39:43.021862+00:00",
+        "http_status": 406,
+        "started_at": "2026-08-23T20:39:42.791079+00:00",
+        "url": "https://zenodo.org/api/records/19202203/files/TARGENE/targene-pipeline-v0.13.4.zip/content"
+      },
+      "provider_checksum": "md5:3409352bdc0926acfafc39bf121f4263",
+      "provider_checksum_verified": null,
+      "provider_swh_path_commit_prefix": {
+        "full_commit_sha": null,
+        "prefix": "0f8b2db",
+        "request": {
+          "body_bytes": 141,
+          "body_md5": "2c93421cceb947bf509b2be39847b5b6",
+          "body_sha256": "cc25254bf4180ec211357d7df0cdfe3063cf3117d94828c59d37bae528f31b86",
+          "content_length_header": "141",
+          "content_type": "application/json; charset=utf-8",
+          "error": "HTTPError:422",
+          "final_url": "https://api.github.com/repos/targene/targene-pipeline/commits/0f8b2db",
+          "finished_at": "2026-08-23T20:39:43.469690+00:00",
+          "http_status": 422,
+          "started_at": "2026-08-23T20:39:43.022067+00:00",
+          "url": "https://api.github.com/repos/targene/targene-pipeline/commits/0f8b2db"
+        },
+        "swhid": "swh:1:dir:ba731454bcc111627e810d5f3782af88c718e8f9;origin=https://doi.org/10.5281/zenodo.18935680;visit=swh:1:snp:77badd108768ea817fbd754f5d3ccc4ce2d9c7fe;anchor=swh:1:rel:0c3cbaebb9ca41133e5705792b1388336c34a43e;path=TARGENE-targene-pipeline-0f8b2db"
+      },
+      "publication_doi": "10.21105/joss.09603",
+      "publication_version_field": "v0.13.4",
+      "repository": "targene/targene-pipeline",
+      "source_native_release": {
+        "metadata": null,
+        "request": {
+          "body_bytes": 133,
+          "body_md5": "8d3f5f6d3ee7aded4ae7e94f0310eaae",
+          "body_sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d",
+          "content_length_header": "133",
+          "content_type": "application/json; charset=utf-8",
+          "error": "HTTPError:404",
+          "final_url": "https://api.github.com/repos/targene/targene-pipeline/releases/tags/v0.13.4",
+          "finished_at": "2026-08-23T20:39:42.791021+00:00",
+          "http_status": 404,
+          "started_at": "2026-08-23T20:39:42.480958+00:00",
+          "url": "https://api.github.com/repos/targene/targene-pipeline/releases/tags/v0.13.4"
+        }
+      },
+      "v7_exact_commit": null,
+      "v7_failure_causes": [
+        "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "v7_row_line_sha256": "ab693130c4607ae2e32a52678faed757f1277539364479aa92c05ff0ddad5a28"
+    }
+  ],
+  "runtime_seconds": 12.416647,
+  "schema_version": "orion.p4.provider-native-targeted-probe-receipt.v8",
+  "started_at": "2026-08-23T20:39:31.053155+00:00",
+  "target_count": 10
+}

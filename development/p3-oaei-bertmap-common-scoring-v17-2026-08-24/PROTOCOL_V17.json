@@ -1,0 +1,223 @@
+{
+  "attempt": {
+    "native_attempts": 1,
+    "protected_outcome_access": false,
+    "reference_semantic_access_before_both_outputs": false,
+    "retries": 0,
+    "stdin_utf8": "2g\\n",
+    "timeout_seconds": 1800
+  },
+  "authority": "ONE_PUBLIC_PROVIDER_NATIVE_CASE_PROSPECTIVE_MATCHER_AND_EXACT_DESCRIPTIVE_COMMON_SCORING_ONLY",
+  "base_iri_binding": {
+    "frozen_before_matcher_outcomes": true,
+    "method": "one explicit xml:base equal to each provider document IRI",
+    "rights": "CC-BY-4.0 derivative; provider bytes retained and adaptation explicitly identified",
+    "semantic_isomorphism_under_public_id": true,
+    "source_public_id": "http://co4.inrialpes.fr/align/Contest/101/onto.rdf",
+    "target_public_id": "http://co4.inrialpes.fr/align/Contest/103/onto.rdf"
+  },
+  "bertmap_contract": {
+    "config_sha256": "ccf94c9d2cce0a52836356fda5b644e94efb1ca9470fad22bf6bd6d8605af094",
+    "direct_logmap_child_exit_codes": [
+      0
+    ],
+    "exact_java17_add_opens": "--add-opens=java.base/java.lang=ALL-UNNAMED",
+    "learner_and_thresholds": "exact V12 logical values",
+    "required_artifacts": [
+      "raw_mappings.json",
+      "raw_mappings.tsv",
+      "extended_mappings.tsv",
+      "filtered_mappings.tsv",
+      "repaired_mappings.tsv"
+    ]
+  },
+  "claim_boundary": [
+    "one historical public case is not general superiority",
+    "finite pair cells are not treated as independent samples",
+    "same-workspace execution is not protected or independent confirmation",
+    "class-only primary estimand does not hide full-task coverage because the full equivalence-pair estimand is mandatory"
+  ],
+  "created_at_utc": "2026-08-24T06:08:38.678050+00:00",
+  "frozen_code": {
+    "BERTMAP_CONFIG_V17.yaml": "ccf94c9d2cce0a52836356fda5b644e94efb1ca9470fad22bf6bd6d8605af094",
+    "base_iri_adapter_v17.py": "b5983d3944b6a1411a0d75ccdf0fd0cf228d70da602151d10a4301ecc246248b",
+    "bertmap_native_parser_v7.py": "d1184dc129082bdcf18b415b551f244a695b4e34417286afc37a3f3a5d788bc5",
+    "common_pair_evaluator_v17.py": "9a2c8bbd1d4b3cd6756a25340fa579d36fabc4af619ac6b8a11f7bd8c9e8fd4b",
+    "run_bertmap_v17.py": "44d8c085cfc84f7e7020417055816ebd8f4f3a4f52c095929a9b590aa02aa881"
+  },
+  "frozen_inputs": {
+    "aml_frozen_output": {
+      "bytes": 15151,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-aml-java8-prospective-comparator-v16-2026-08-23/AML_ALIGNMENT_V16.rdf",
+      "sha256": "994c74c3749543205d89ef7daea0c3156d267410e35c1687f55601768b3db934"
+    },
+    "aml_frozen_result": {
+      "bytes": 3076,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-aml-java8-prospective-comparator-v16-2026-08-23/RESULT_V16.json",
+      "sha256": "8045631b720ac9d0c612c418b853efb6b45951257972604923dcf1d9f9a253ce"
+    },
+    "base_adapter_receipt": {
+      "bytes": 7656,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/BASE_IRI_ADAPTER_RECEIPT_V17.json",
+      "sha256": "cd40358972ee7a7b538f585cb6a706cdb32714c51d01185e3f77a4bffa942984"
+    },
+    "reference_hash_only_before_scoring": {
+      "bytes": 29568,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/inputs/REFERENCE_FROZEN_V17.rdf",
+      "sha256": "0afb0f2c9764201d91c226c5fb60d4b25425168acf6c2604fb191be906e9ec16"
+    },
+    "source_base_bound": {
+      "bytes": 69784,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/inputs/SOURCE_BASE_BOUND_V17.rdf",
+      "sha256": "273d9308df0a17abf73909e1e80403f97d433c941e140e48e85830e00234bd0d"
+    },
+    "source_provider": {
+      "bytes": 69721,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/inputs/SOURCE_PROVIDER_V17.rdf",
+      "sha256": "d6143780103217a4a562e4982f0d4c724c09d3a3e7dc146a6b42cecc3e9f1064"
+    },
+    "target_base_bound": {
+      "bytes": 70740,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/inputs/TARGET_BASE_BOUND_V17.rdf",
+      "sha256": "15cb200231c5351a78dc9afd70bfa19d6e4c59e9a63663011b5dd20c59053a2e"
+    },
+    "target_provider": {
+      "bytes": 70677,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/inputs/TARGET_PROVIDER_V17.rdf",
+      "sha256": "e3643a6fcd237a162d120e58227df2e24e0398668c6f2428e4fea850180405cf"
+    },
+    "universe_manifest": {
+      "bytes": 5007,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/UNIVERSE_MANIFEST_V17.json",
+      "sha256": "0d420e8f45093c7ea15b8b10385f55e6a1b85f42dacbdfcf7a12f959e314b127"
+    }
+  },
+  "predecessors": {
+    "v13_result": {
+      "bytes": 4065,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/RESULT_V13.json",
+      "sha256": "10cbb21f080d263fca7f21cfe1e73e4fda24752ee1250069073df0e4340e9d87"
+    },
+    "v15_identity": {
+      "bytes": 5019,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-provider-native-identity-packet-v15-2026-08-23/IDENTITY_PACKET_V15.json",
+      "sha256": "2c5da6cf4e2b6ca98572498af1df9ac70a6245c7fdc3c968f1a3c996aa3b568a"
+    },
+    "v16_aml_result": {
+      "bytes": 3076,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-aml-java8-prospective-comparator-v16-2026-08-23/RESULT_V16.json",
+      "sha256": "8045631b720ac9d0c612c418b853efb6b45951257972604923dcf1d9f9a253ce"
+    }
+  },
+  "protocol_id": "P3_V17_OAEI_2004_TEST_103_BERTMAP_EXACT_V12_RUNTIME_V13_DECODER_COMMON_SCORING",
+  "pytest_or_repository_ci": false,
+  "runtime": {
+    "critical_files": {
+      "installed_file_utils": {
+        "bytes": 5818,
+        "path": "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/deeponto/utils/file_utils.py",
+        "sha256": "18a620f823770260acfe35029e406d34f0e0ef73cc74196a23c40e04fe5a2985"
+      },
+      "installed_logmap_jar": {
+        "bytes": 3393718,
+        "path": "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/deeponto/align/logmap/logmap-matcher-4.0.jar",
+        "sha256": "e0b217156ffece911c472cc2cb2b25e7948b3c46801037e0161c3a752332d6a3"
+      },
+      "installed_mapping": {
+        "bytes": 28221,
+        "path": "/Volumes/P3V17_RUNTIME/venv/lib/python3.10/site-packages/deeponto/align/mapping.py",
+        "sha256": "d0b3b6cfdee45019783707c4bd623cc76f8325142828cf1e10ebb74ad628d70f"
+      },
+      "java": {
+        "bytes": 69600,
+        "path": "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/bin/java",
+        "sha256": "7db0dd5c0c4dc931244875d0723783a32cc7912922e6aaac1dbb744bf8ae837f"
+      },
+      "model_config": {
+        "bytes": 385,
+        "path": "/Volumes/MyDrive/codex_tmp/p3-v17-runtime-20260824/model/config.json",
+        "sha256": "4a470c65801cab55fc1cc5854aa2bfebc18428ac1989777e9acefc5a9f0c1444"
+      },
+      "model_gitattributes": {
+        "bytes": 391,
+        "path": "/Volumes/MyDrive/codex_tmp/p3-v17-runtime-20260824/model/.gitattributes",
+        "sha256": "f049f7c0d16eaffe605baca479013bcb7a3847077cf6e548ba7b228831cf9c38"
+      },
+      "model_license": {
+        "bytes": 1071,
+        "path": "/Volumes/MyDrive/codex_tmp/p3-v17-runtime-20260824/model/LICENSE",
+        "sha256": "9e8f42111a19340d74194466063143fbc4294b50dd26ad5c60a06dcaeafa99d2"
+      },
+      "model_readme": {
+        "bytes": 2681,
+        "path": "/Volumes/MyDrive/codex_tmp/p3-v17-runtime-20260824/model/README.md",
+        "sha256": "bf666c7d32897296d028b655fdc0a3f16d7309cc69af11e93d3473218c2b00f2"
+      },
+      "model_vocab": {
+        "bytes": 213450,
+        "path": "/Volumes/MyDrive/codex_tmp/p3-v17-runtime-20260824/model/vocab.txt",
+        "sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02"
+      },
+      "model_weights": {
+        "bytes": 435778770,
+        "path": "/Volumes/MyDrive/codex_tmp/p3-v17-runtime-20260824/model/pytorch_model.bin",
+        "sha256": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719"
+      },
+      "python": {
+        "bytes": 49968,
+        "path": "/Users/billy/.local/share/uv/python/cpython-3.10.20-macos-aarch64-none/bin/python3.10",
+        "sha256": "0fc554036de7d5405d70defcf548204acb3fb829c6b2e55137efdc3ac1c24c67"
+      },
+      "source_entrypoint": {
+        "bytes": 1565,
+        "path": "/Volumes/P3V17_RUNTIME/source/scripts/bertmap.py",
+        "sha256": "3ccebf6723c8372afc5c8b1a2fdfbe6646217051a3327a5ec1e47098dd3b5de9"
+      }
+    },
+    "distribution_count": 126,
+    "expected_distribution_sbom": {
+      "bytes": 7758273,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-repaired-native-runtime-v9-2026-08-23/PYTHON_RUNTIME_SBOM_V9.json",
+      "sha256": "2b7f3200d7401b3c01c5feba2fe3594317f9fb59fb13ab027beea6be27a51a55"
+    },
+    "external_runtime_root": "/Volumes/P3V17_RUNTIME",
+    "java_home": "/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home",
+    "model_repository": "emilyalsentzer/Bio_ClinicalBERT",
+    "model_revision": "d5892b39a4adaed74b92212a44081509db72f87b",
+    "python_version": "3.10.20",
+    "requirements_lock": {
+      "bytes": 247214,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/V9_FULL_REQUIREMENTS_EXACT.txt",
+      "sha256": "b3b2f366692f283b154a42238e465ab939268092bbdbf2accca465d081b53790"
+    },
+    "source_archive": {
+      "bytes": 90445931,
+      "path": "/Volumes/MyDrive/codex_tmp/p3-v17-runtime-20260824/downloads/deeponto-74ca8d47.tar.gz",
+      "sha256": "240f8f45103bb512440b07a53544ba40173b7037abba120104e18d1ddca0ec45"
+    },
+    "source_commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+    "source_tree": "b499cb5780bbe749f7db44d0bc872d275a2737ea"
+  },
+  "schema_version": "orion.p3.oaei-bertmap-common-scoring.protocol.v17",
+  "scoring_contract": {
+    "analysis_unit": "one OAEI 2004 test-103 case",
+    "confidence_intervals": false,
+    "p_values": false,
+    "pair_identity": "directed exact entity1/entity2 pair with relation =; duplicates collapsed",
+    "population_inference": false,
+    "primary_estimand": "common class-to-class opportunity exact precision, recall and F1",
+    "reference_semantically_opened_only_after_both_outputs_and_evaluator_frozen": true,
+    "secondary_estimand": "full equivalence-pair exact precision, recall and F1"
+  },
+  "typed_decoder": {
+    "anchored_regex": "\\AOptional\\.of\\((?P<ontology_iri>[A-Za-z][A-Za-z0-9+.-]*:[^()\\s#]+)\\)(?P<fragment>#[^#()\\s]+)\\Z",
+    "decode_rule": "decoded_entity_iri = ontology_iri + fragment",
+    "name": "OWLAPI_OPTIONAL_ONTOLOGY_IRI_PLUS_ENTITY_FRAGMENT_V1",
+    "requirements": [
+      "whole-string grammar",
+      "exact role-universe membership",
+      "observed source and target injectivity",
+      "no trim/case fold/substitution/URL decoding/heuristic repair"
+    ]
+  }
+}

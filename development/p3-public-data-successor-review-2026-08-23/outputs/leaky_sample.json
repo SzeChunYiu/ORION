@@ -1,0 +1,24 @@
+{
+  "gold_fields_used": [],
+  "protocol_id": "P3.PUBLIC.TRANSPORT.CRAFT_SCIREX_OAEI.V1",
+  "public_not_protected": true,
+  "schema_version": "orion.p3.public-outcome-blind-sample.v1",
+  "selection_algorithm": "SHA256(PROTOCOL_ID || NUL || SOURCE_ID || NUL || UNIT_ID); census with provider split preserved",
+  "system_outputs_used": [],
+  "units": [
+    {
+      "analysis_role": "DESCRIPTIVE_STRESS_ONLY",
+      "candidate_output": "GLUE",
+      "cluster_id": "OAEI2004::BIBLIOGRAPHIC_SEED_FAMILY",
+      "donor_family": "OAEI",
+      "effect_size": 1.0,
+      "gold_annotation_count": 999,
+      "gold_relation": "GLUE",
+      "provider_split": "descriptive_stress",
+      "selected_without_outcomes": true,
+      "selection_digest": "e8c6e4f1a93027d1e10cecc52497d598ab3f789b54715172c6a399544b3c59de",
+      "source_id": "OAEI_2004_ZENODO_15827226",
+      "unit_id": "LEAK-1"
+    }
+  ]
+}

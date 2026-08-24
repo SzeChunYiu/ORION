@@ -1,0 +1,33 @@
+{
+  "date": "2026-08-23",
+  "frozen_protocol_sha256": "15e6c90775f820b22dab259b235a31def367edf65c4e8f3b5656876792341128",
+  "status": "FROZEN_BEFORE_PARSING_ANY_REMAINING_DATA_ROW",
+  "parsing": {
+    "encoding": "utf-8-strict",
+    "line_endings": "remove one terminal LF and an immediately preceding CR, if present",
+    "field_rule": "split the remaining raw line on literal tab and require exactly five fields",
+    "excluded_first_row_hash_rule": "sha256 of the first raw line after line-ending removal",
+    "record_identity_rule": "sha256 of title, PMID, abstract and MeSH joined by literal tab; class excluded",
+    "eligible_class_literals": [
+      "include",
+      "exclude"
+    ]
+  },
+  "determinism": {
+    "dataset_order": "ascending record_identity sha256",
+    "initial_seed_order": "included seed first, excluded seed second",
+    "stable_seed_key": "sha256(10423427 + colon + record_identity_sha256)",
+    "ranking_tie_break": "ascending record_identity sha256",
+    "random_permutation": "Python random.Random(seed).shuffle applied to the deterministic non-seed order",
+    "active_batch_selection": "fit on all screened labels, rank remaining inclusion probabilities descending, reveal the next full batch in rank order, then refit",
+    "static_centroid": "cosine similarity to the included seed under the shared L2-normalized TF-IDF representation"
+  },
+  "metrics": {
+    "recall_budget_rounding": "ceil(fraction * N), including the shared initial seed",
+    "fraction_screened_at_95_recall": "one-indexed position of the ceil(0.95 * total_included)-th included record divided by N",
+    "wss_at_95": "0.95 - fraction_screened_at_95_recall",
+    "random_arm_aggregation": "arithmetic mean of each metric over the 20 frozen permutations"
+  },
+  "execution_scope": "Generate a complete deterministic ordering for each arm; no post-outcome controller change is permitted under this identity.",
+  "claim_boundary": "Public-label, one-pool transport development only; the first labeled row was exposed before protocol freeze and remains excluded."
+}

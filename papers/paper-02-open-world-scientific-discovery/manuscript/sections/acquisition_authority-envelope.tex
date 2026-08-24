@@ -11,6 +11,18 @@ save cost while making another part worse.  This section defines the joint
 object and derives the conditions under which such local improvements can be
 composed into a scientifically stronger controller.
 
+\paragraph{Mathematical conventions.}
+Unless a probability law is explicitly introduced, exactness and
+factorization are pointwise, set-theoretic statements. Fibre constancy alone
+therefore proves a set map, not a measurable or computable implementation; a
+measurable factorization additionally requires a measurable quotient/factor
+map. Probabilistic statements are almost-sure under their declared laws and do
+not certify null fibres. Decision and action alphabets are nonempty. When total
+variation is used below, both laws live on one declared measurable transcript
+space and
+$\operatorname{TV}(P,Q)=\sup_{B}|P(B)-Q(B)|$, one half of the $L^1$ distance
+when densities exist.
+
 \subsection{Worlds, obligations and a non-compensatory frontier}
 
 Let $w\in\mathcal W$ be a scientific world and let $h_t$ be the complete
@@ -27,7 +39,8 @@ relevance to a search query.
 A controller $\pi$ comprises route generation $G$, acquisition $A$, a
 question-conditioned state compiler $M$, and closure authority $C$.  Under
 budget $B$, source-access contract $\mathcal I$ and task distribution $P$, let
-its outcome vector be
+its outcome vector be (with the admissible policy class restricted to policies
+for which these coordinates are measurable and integrable)
 \[
  Z_B(\pi,w)=(D,U,V,-F,Y,-K).
 \]
@@ -37,6 +50,29 @@ future questions, $F$ is false task closure, $Y$ is valid closure yield, and
 $K$ is fully charged cost.  Signs are chosen so larger is better except that
 $F$ is a non-compensatory safety coordinate: a gain in report quality cannot
 purchase permission to hide a false closure.
+
+For two outcome vectors $z,z'\in\mathbb R^6$, write $z\succeq z'$ for the
+coordinatewise product order,
+\[
+ D\geq D',\quad U\geq U',\quad V\geq V',\quad
+ F\leq F',\quad Y\geq Y',\quad K\leq K',
+\]
+and write $z\succ z'$ when $z\succeq z'$ and at least one inequality is
+strict. Thus a utility gain never compensates for worse false closure or cost;
+incomparability is retained as a scientific trade-off rather than collapsed by
+an unregistered scalar score. Let $q(\pi)$ collect the nonnumeric provider,
+observability, custody and contract-validity states of policy $\pi$. For a
+prospectively fixed guard registry
+$\eta=(\tau_F,\tau_Y,B,q_{\rm req})$, define
+\[
+ \mathsf G_\eta(\pi)=1
+ \quad\Longleftrightarrow\quad
+ \mathbb E[F]\leq\tau_F,
+ \ \mathbb E[Y]\geq\tau_Y,
+ \ \mathbb E[K]\leq B,
+ \ \text{and }q(\pi)=q_{\rm req}.
+\]
+An unbound or \textsc{cannot-check} guard is not a pass.
 
 \begin{definition}[Acquisition--authority envelope]
 \label{def:acquisition-authority-envelope}
@@ -49,11 +85,32 @@ For an admissible policy class $\Pi$,
    \right\}.
 \]
 Its \emph{guarded frontier} retains only points satisfying the prospectively
-fixed false-closure, valid-closure-yield, provider-validity and cost guards.
-A candidate establishes envelope improvement only by lying outside the guarded
-frontier of the frozen donor-complete class under the same $P$, $B$ and
-$\mathcal I$; winning against a conveniently weak member of that class is
-insufficient.
+fixed guard predicate $\mathsf G_\eta$ and then takes the $\succeq$-maximal
+points. Guard filtering and maximization are different operations: guarded
+attainable sets are monotone under donor addition, whereas their maximal-point
+sets need not be.
+\end{definition}
+
+\begin{definition}[Prospectively registered strict improvement]
+\label{def:strict-envelope-improvement}
+Before outcomes, register a donor-complete class $\Pi_0$, the contracts
+$(P,B,\mathcal I)$, guard registry $\eta$, primary coordinate $j$, strict
+margin $\delta_j>0$, coordinatewise non-inferiority tolerances
+$\varepsilon\geq0$, and a simultaneous one-sided uncertainty rule. Let
+$\mathcal F_0$ be the resulting guarded donor frontier. A candidate point
+$z_c$ establishes \emph{strict donor-complete improvement} only if its guards
+pass and, for every $z\in\mathcal F_0$,
+\[
+ z_{c,k}\geq z_k-\varepsilon_k\quad\text{for every benefit-signed coordinate }k,
+ \qquad z_{c,j}\geq z_j+\delta_j,
+\]
+with the sign convention above and with the registered simultaneous bounds,
+not point estimates, satisfying the inequalities. Safety coordinates may set
+no-harm tolerance to zero and always remain subject to $\mathsf G_\eta$.
+Failure to bind the donor frontier, any guard, or the uncertainty rule is
+\textsc{cannot-check}. A new nondominated trade-off may be reported as frontier
+extension, but neither that fact nor a win over a post-selected weak comparator
+licenses the word ``superior.''
 \end{definition}
 
 This definition absorbs the strongest neighbouring components instead of
@@ -81,14 +138,23 @@ it may leave the guarded frontier unchanged after its cost is charged.
 
 \begin{proof}
 Every policy feasible in $\Pi_1$ remains feasible in $\Pi_2$; take the closure
-of their attainable outcome vectors.  The guarded statement follows because
-the same non-compensatory filters are applied to the superset.
+of their attainable outcome vectors. Intersecting both attainable sets with the
+same prospectively fixed guard predicate preserves inclusion. Taking maximal
+points afterward need not preserve inclusion, which is why the proposition is
+about attainable sets rather than frontier-point identity.
 \end{proof}
+
+The inclusion is an inclusion of closed attainable sets, not an inclusion of
+their Pareto-maximal or guarded-frontier points. A newly attainable point can
+dominate and thereby remove an old frontier point.
 
 This elementary monotonicity result changes the novelty test.  A new paper that
 improves retrieval should be absorbed into the comparator class.  The theory is
 falsified, not protected, if the expanded donor class reaches every proposed
-candidate point under matched resources.
+candidate point under matched resources. Any strict-superiority statement must
+apply Definition~\ref{def:strict-envelope-improvement}; merely lying outside a
+plotted frontier, beating one convenient member, or choosing the improved
+coordinate after seeing outcomes is insufficient.
 
 \subsection{The acquisition ceiling: why seven emitted identifiers matter}
 
@@ -181,9 +247,12 @@ $s^{-1}(z)$.
 \begin{proof}
 If $\kappa=g\circ s$ and $s(w)=s(w')$, then
 $\kappa(w)=g(s(w))=g(s(w'))=\kappa(w')$.  Conversely, if $\kappa$ is constant
-on every fibre, define $g(z)$ to be $\kappa(w)$ for any $w$ satisfying
-$s(w)=z$.  Fibre constancy makes the definition independent of the chosen
-$w$.
+on every fibre, first define $g(z)=\kappa(w)$ for $z\in s(\mathcal W)$ using
+any $w$ with $s(w)=z$. Fibre constancy makes this definition independent of
+the chosen representative. Then extend $g$ from $s(\mathcal W)$ to all of
+$\mathcal S$ by assigning any fixed member of the nonempty alphabet
+$\mathcal Y_C$ to every $z\notin s(\mathcal W)$. The extension does not affect
+$g\circ s$.
 \end{proof}
 
 The theorem gives an exact necessary-and-sufficient condition, not a claim that
@@ -202,8 +271,12 @@ decision-identical to the authority rule.
 
 The factorization obstruction has a quantitative version.  Consider two task
 worlds $w_0,w_1$ whose correct decisions are respectively \textsc{close} and
-\textsc{open}.  Let $P_0$ and $P_1$ be the distributions of the complete
-observable transcript available to the controller before its decision.  Count
+\textsc{open}. Let $P_0$ and $P_1$ be probability measures on a common
+measurable transcript space $(\mathcal X,\Sigma_{\mathcal X})$, representing the
+complete observable transcript available to the controller before its decision. A
+randomized closure rule is a Markov kernel from
+$(\mathcal X,\Sigma_{\mathcal X})$ to
+the finite discrete alphabet $\mathcal Y_C$. Count
 \textsc{cannot-check} as not yielding a valid closure in $w_0$ but not as false
 closure in $w_1$.
 
@@ -238,54 +311,101 @@ or \textsc{cannot-check} state is the only honest output.
 
 \subsection{Authority completion and its maximality}
 
-For a transcript $h$, let $R(h)$ be the registered set of material obligations
-that are not yet independently discharged.  Assume an \emph{adversarial
-realizability contract}: for each $o\in R(h)$ there exists a task world
-consistent with $h$ in which the evidence behind $o$ changes the scientific
-decision or admissible closure state.  Define the obligation-completed closure
-rule
+For a transcript $h$, let $\mathcal W(h)$ be the nonempty class of task worlds
+compatible with the declared observation and world contract, and let
+$A(w,h)$ say that closing at $h$ is scientifically admissible in world $w$.
+The robustly safe histories are
 \[
- C^+(h)=
- \begin{cases}
-  \textsc{close}, & R(h)=\varnothing\ \text{and the task contract is valid},\\
-  \textsc{cannot-check}, & \text{required observability or provider validity is unestablished},\\
-  \textsc{open}, & \text{otherwise}.
- \end{cases}
+ \mathcal H_{\rm safe}
+ =\{h:\text{$A(w,h)$ holds for every $w\in\mathcal W(h)$}\}.
 \]
 
-\begin{theorem}[Maximally permissive sound completion]
+\begin{theorem}[Maximally permissive robust completion]
 \label{thm:maximal-completion}
-Relative to the declared obligation and realizability contract, $C^+$ has no
-false closure.  Moreover, any rule using the same contract that closes at a
-history where $R(h)\ne\varnothing$ is unsound on at least one compatible world.
-Thus no universally sound rule closes a strict superset of the histories closed
-by $C^+$.
+The rule $C^\star$ that closes exactly on $\mathcal H_{\rm safe}$ has no false
+closure on any compatible world. Every other rule with that universal soundness
+property closes on a subset of $\mathcal H_{\rm safe}$. Hence $C^\star$ is the
+unique maximally permissive universally sound close set, relative to the
+declared compatible-world class.
 \end{theorem}
 
 \begin{proof}
-If $C^+$ closes, every registered material obligation is discharged and the
-contract is valid, which is the contract's definition of admissible closure.  If
-another rule closes with $o\in R(h)$, adversarial realizability supplies a world
-consistent with the same history in which $o$ changes the decision; closure is
-false in that world.  Therefore every universally sound rule must refuse that
-history.
+Closure by $C^\star$ is admissible in every compatible world by the definition
+of $\mathcal H_{\rm safe}$. If another universally sound rule closes at
+$h\notin\mathcal H_{\rm safe}$, some $w\in\mathcal W(h)$ has $\neg A(w,h)$,
+contradicting soundness. Thus every sound close set is a subset of
+$\mathcal H_{\rm safe}$. \hfill$\square$
 \end{proof}
 
-The theorem is broad but explicitly contract-relative.  It does not claim that
-an open-web system can enumerate every material obligation from finite search.
-Completeness of $R(h)$ requires either a closed registry, a validated sampling
-model, independently curated hidden-route custody, or a declared
-\textsc{cannot-check} boundary.  The theorem nevertheless provides a positive
-composition result: any future acquisition, ranking, stopping or memory donor
-can be installed below $C^+$ without losing sound closure, and any improvement
-that discharges more obligations moves the controller toward valid closure
-rather than merely increasing a surrogate score.
+The theorem is exact but not directly computable unless the compatible-world
+class is represented adequately. The registered obligation rule is a
+conservative implementation candidate. Let $R(h)$ be the set of material
+obligations not yet independently discharged and let $V(h)$ say that every
+required task-contract, observability and provider-validity condition is
+established. Define
+\[
+ C^+(h)=
+ \begin{cases}
+  \textsc{cannot-check}, & \neg V(h),\\
+  \textsc{close}, & V(h)\ \text{and}\ R(h)=\varnothing,\\
+  \textsc{open}, & \text{otherwise}.
+ \end{cases}
+\]
+It is sound whenever
+\[
+ V(h)\ \wedge\ R(h)=\varnothing\quad\Longrightarrow\quad
+ h\in\mathcal H_{\rm safe}.
+\]
+It equals the maximal rule $C^\star$ if and only if the reverse implication
+also holds. Equivalently, the registry and validity predicate must be complete
+for robust closure, not merely sufficient. An adversarial-realizability
+condition---every unresolved material obligation has a compatible world in
+which closure is inadmissible---establishes that $R(h)\ne\varnothing$ implies
+$h\notin\mathcal H_{\rm safe}$; it does not by itself prove that every safe
+history is recognized by $V$ and $R$.
+
+This distinction is the open-world boundary. A closed registry, a validated
+sampling model, independently curated hidden-route custody, or a declared
+\textsc{cannot-check} state may justify the missing equivalence. Without it,
+$C^+$ is a sound lower approximation that may forgo valid closure, not a
+maximally permissive rule. Future acquisition, ranking, stopping or memory
+donors can be installed below $C^+$ without losing soundness when the sufficient
+condition is preserved; improvements that establish $V$, discharge obligations,
+or split a previously mixed closure fibre can move $C^+$ toward $C^\star$.
 
 \begin{corollary}[When acquisition enlarges closure authority]
 Adding a donor mechanism can expand discovery or reduce cost by
-Proposition~\ref{prop:donor-monotonicity}.  It enlarges the set of histories that
-can be soundly closed only if the resulting observation/state map splits a
-previously mixed closure fibre or discharges an obligation in $R(h)$.
+Proposition~\ref{prop:donor-monotonicity}. It enlarges the exact robust safe set
+only by changing the observation or compatible-world class so that a previously
+unsafe history enters $\mathcal H_{\rm safe}$. For the operational rule $C^+$,
+this can occur by splitting a mixed closure fibre, discharging an obligation,
+establishing a missing validity condition $V$, or making a required action and
+terminal reachable under the registered budget/interface. The list is
+exhaustive only relative to those declared state coordinates.
+\end{corollary}
+
+\begin{corollary}[Comparator-adapter admissibility]
+Let $T$ be a comparator's complete native transcript and let $a(T)$ be the
+normalized transcript supplied to the frozen evaluation. An adapter is lawful
+only if $a$ is a prospectively fixed deterministic map. Thus under every
+declared world law $W\to T\to a(T)$ is a Markov chain, with no new query,
+source, world signal or unregistered action introduced by $a$. It must map
+native actions, costs, outputs and terminals into the frozen
+route/action/output namespace while preserving every registered terminal
+distinction. Other than prospectively fixed identity normalization, it cannot
+invent source identities or content; in particular, a native empty result,
+error or timeout remains non-evidence-bearing and cannot become acquired
+evidence, an obligation discharge, or task closure. Under these conditions
+every decision based on $a(T)$ also factors through $T$, so the adapter cannot
+split a native transcript fibre or lift the acquisition ceiling. It may only
+preserve or coarsen the comparator's information.
+
+Adapter lawfulness does not itself authorize closure. Soundness of a close
+terminal still requires the sufficient condition
+$V(h)\wedge R(h)=\varnothing\Rightarrow h\in\mathcal H_{\rm safe}$, and equality
+with maximal robust authority still requires the reverse implication. Thus a
+native answer or end terminal may be recorded faithfully without being
+promoted to a P2 task-level \textsc{close} terminal.
 \end{corollary}
 
 This is the sense in which the proposed theory envelops its nearest work.
@@ -293,6 +413,75 @@ Retrieval, coverage, information utility, stopping, obligation certificates and
 memory are all admissible mechanisms inside the envelope.  Their scientific
 value is measured by the joint frontier they make reachable; their outputs do
 not acquire global authority merely by being numerically confident.
+
+\subsection{Safe residual envelopes and the donor-saturation boundary}
+
+Fix a source-bound finite family $F$, exact donor $d$, residual $r$ and a
+predeclared conjunction $\mathcal K(F)$ of CRE20, R@10, WSS95, sign, harm and
+absolute-work-saving gates. Let $B_F$ collect source, population,
+implementation and custody bindings, with every unbound predicate treated as
+false. The certificate-switched policy is
+\[
+ \pi_r^{\mathrm{env}}=
+ \begin{cases}
+ e_r,&B_F=1\ \text{and}\ x(r)\in\mathcal K(F),\\
+ d,&\text{otherwise}.
+ \end{cases}
+\]
+Thus an unavailable or rejected residual is not imputed as a tie or zero; it
+executes the exact donor.
+
+\begin{theorem}[Simultaneously certified residual embedding]
+\label{thm:safe-residual-envelope}
+Suppose the family, donor, residual, endpoints and gates are fixed before
+candidate outcomes. If a simultaneous $(1-\alpha)$ confidence set for the
+complete gate vector is contained in $\mathcal K(F)$, then the probability of
+admitting a target vector outside $\mathcal K(F)$ is at most $\alpha$.
+Moreover, the attainable set of the certificate-switched class contains the
+donor attainable set, and every rejected or unbound residual executes $d$.
+\end{theorem}
+
+\begin{proof}
+False admission requires the true vector to lie outside $\mathcal K(F)$ while
+the confidence set lies inside it, which is possible only on simultaneous
+noncoverage. Donor containment follows by construction, and fallback is the
+second branch of the switch.
+\end{proof}
+
+The conjunction is noncompensatory: a sufficiently large gain on one endpoint
+cannot buy a failed coprimary, sign or harm gate. In particular, V10's positive
+mean WSS95 cannot repair its failed CRE20/R@10 magnitude and sign gates.
+
+Now let $s_D(w)$ be all information and retained state available to a donor
+class $\Pi_D$ in world $w$, and let $\mathcal A_D(w)$ be its admissible action
+and acquisition support under the matched contract. Call $\Pi_D$ saturated if
+it contains every allowed policy measurable from $s_D$ that uses only
+$\mathcal A_D$.
+
+\begin{theorem}[Donor-fibre saturation boundary]
+\label{thm:donor-fibre-saturation}
+Under the same task, access, budget and authority contract, a candidate whose
+action is constant on every fibre of $s_D$ and lies in $\mathcal A_D$ belongs
+to a saturated $\Pi_D$. Therefore strict outside-envelope separation requires
+at least one of: a signal or retained state that separates a donor fibre, an
+acquisition action outside donor support, or proof that the declared class was
+not saturated. Changing the cost, access, world or authority contract changes
+the estimand and does not establish dominance under the original contract.
+\end{theorem}
+
+\begin{proof}
+Fibre constancy gives a well-defined factorization $c=g\circ s_D$. Matched
+action support and contract guards make this an admissible donor policy, which
+saturation includes. The separation statement is the contrapositive; a contract
+mismatch instead violates the comparison premise.
+\end{proof}
+
+Finite residual failures do not establish saturation or universal donor
+optimality: absent a cross-world restriction, two extensions can agree on all
+observed reviews while a new-family residual fails every gate in one and passes
+them in the other. The title-emphasis transform is deterministic from fields
+already in donor state, so it adds no information; V10 rejects that one
+algorithmic transform, not every possible same-information learner.
 
 \subsection{A failure-derived candidate: obligation-directed adaptive
 exploration}

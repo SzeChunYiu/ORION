@@ -1,0 +1,107 @@
+{
+  "authority": "DIRECT_SYNTHETIC_AND_INPUT_ONLY_MECHANICS__NO_PUBLIC_GOLD__NO_EMPIRICAL_RESULT",
+  "checks": [
+    {
+      "expected_ok": true,
+      "expected_text": null,
+      "name": "seal_valid_cases",
+      "passed": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "expected_ok": true,
+      "expected_text": null,
+      "name": "valid_four_terminal_score",
+      "passed": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "expected_ok": false,
+      "expected_text": "unknown fields rejected",
+      "name": "recursive_inventory_leak_rejected",
+      "passed": true,
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1173, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1169, in main\n    args.func(args)\n    ~~~~~~~~~^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 534, in cmd_sample\n    validate_inventory_row(row, f\"inventory[{row_index}]\")\n    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 165, in validate_inventory_row\n    require_closed_fields(row, INVENTORY_FIELDS, context)\n    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 161, in require_closed_fields\n    raise ValueError(f\"{context}: unknown fields rejected by closed contract: {unknown}\")\nValueError: inventory[1]: unknown fields rejected by closed contract: ['provenance']\n",
+      "stdout": ""
+    },
+    {
+      "expected_ok": false,
+      "expected_text": "forbidden outcome fields",
+      "name": "recursive_case_leak_rejected",
+      "passed": true,
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1173, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1169, in main\n    args.func(args)\n    ~~~~~~~~~^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 800, in cmd_seal_cases\n    validate_case(case, f\"case[{row_index}]\", require_digest=False)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 213, in validate_case\n    raise ValueError(f\"{context}: forbidden outcome fields: {forbidden}\")\nValueError: case[1]: forbidden outcome fields: ['$.provenance.evaluator_gold', '$.provenance.evaluator_gold.true_relation']\n",
+      "stdout": ""
+    },
+    {
+      "expected_ok": false,
+      "expected_text": "ZERO_OR_UNKNOWN_OPPORTUNITY",
+      "name": "zero_coordinate_gate_rejected",
+      "passed": true,
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1173, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1169, in main\n    args.func(args)\n    ~~~~~~~~~^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1020, in cmd_score_public\n    opportunity_receipt = enforce_coordinate_opportunity_gates(cases, gold)\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 939, in enforce_coordinate_opportunity_gates\n    raise GateFailure(f\"ZERO_OR_UNKNOWN_OPPORTUNITY: {source_id}/{coordinate} total={total}\")\nGateFailure: ZERO_OR_UNKNOWN_OPPORTUNITY: DIRECT_SYNTHETIC/REFERENT total=0\n",
+      "stdout": ""
+    },
+    {
+      "expected_ok": false,
+      "expected_text": "duplicate (system_id, case_id)",
+      "name": "duplicate_prediction_rejected",
+      "passed": true,
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1173, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1169, in main\n    args.func(args)\n    ~~~~~~~~~^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1031, in cmd_score_public\n    raise ValueError(f\"prediction[{row_index}]: duplicate (system_id, case_id)=({system_id}, {case_id})\")\nValueError: prediction[9]: duplicate (system_id, case_id)=(EXACT_FOUR_STATE_PROBE, DIRECT.1)\n",
+      "stdout": ""
+    },
+    {
+      "expected_ok": false,
+      "expected_text": "invalid relation",
+      "name": "invalid_relation_rejected",
+      "passed": true,
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1173, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1169, in main\n    args.func(args)\n    ~~~~~~~~~^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1025, in cmd_score_public\n    validate_prediction(prediction, f\"prediction[{row_index}]\")\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 255, in validate_prediction\n    raise ValueError(f\"{context}: invalid relation {prediction['relation']!r}\")\nValueError: prediction[1]: invalid relation 'BANANA'\n",
+      "stdout": ""
+    },
+    {
+      "expected_ok": false,
+      "expected_text": "input_digest mismatch",
+      "name": "digest_mismatch_rejected",
+      "passed": true,
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1173, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1169, in main\n    args.func(args)\n    ~~~~~~~~~^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1033, in cmd_score_public\n    raise ValueError(f\"prediction[{row_index}]: input_digest mismatch for {case_id}\")\nValueError: prediction[1]: input_digest mismatch for DIRECT.1\n",
+      "stdout": ""
+    },
+    {
+      "expected_ok": false,
+      "expected_text": "unknown fields rejected",
+      "name": "prediction_cluster_injection_rejected",
+      "passed": true,
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1173, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1169, in main\n    args.func(args)\n    ~~~~~~~~~^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 1025, in cmd_score_public\n    validate_prediction(prediction, f\"prediction[{row_index}]\")\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 244, in validate_prediction\n    require_closed_fields(prediction, PREDICTION_FIELDS, context)\n    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-public-data-successor-2026-08-23/p3_public_data_adapter.py\", line 161, in require_closed_fields\n    raise ValueError(f\"{context}: unknown fields rejected by closed contract: {unknown}\")\nValueError: prediction[1]: unknown fields rejected by closed contract: ['cluster_id']\n",
+      "stdout": ""
+    },
+    {
+      "expected_ok": true,
+      "expected_text": null,
+      "name": "rights_cannot_check_blocks_body",
+      "passed": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "passed": true,
+  "public_gold_opened": false,
+  "pytest_or_ci_run": false,
+  "schema_version": "orion.p3.public-adapter-direct-repair-checks.v1.1",
+  "semantic_assertions": {
+    "coordinate_gate_pass_recorded": true,
+    "no_pooled_pass": true,
+    "obstruction_on_plural_is_plural_collapse": true,
+    "obstruction_on_plural_positive_loss": true,
+    "plural_exact_zero_loss": true,
+    "rights_cannot_check_blocks_body": true
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p3.public-case-contract.v1",
+  "title": "P3 public-data source-pair case without gold",
+  "type": "object",
+  "required": ["case_id", "cluster_id", "source_id", "left", "right", "required_coordinates", "input_digest"],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "cluster_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "panel_id": {"type": "string"},
+    "left": {"$ref": "#/$defs/projection"},
+    "right": {"$ref": "#/$defs/projection"},
+    "required_coordinates": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "input_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "provenance": {"type": "object"}
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "projection": {
+      "type": "object",
+      "required": ["label", "entity_type", "coordinates", "observedness"],
+      "properties": {
+        "label": {"type": ["string", "null"]},
+        "entity_type": {"type": ["string", "null"]},
+        "coordinates": {"type": "object"},
+        "observedness": {
+          "type": "object",
+          "additionalProperties": {"enum": ["OBSERVED", "NOT_OBSERVED", "UNRESOLVED"]}
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

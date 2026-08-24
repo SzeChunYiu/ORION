@@ -1,0 +1,166 @@
+{
+  "claim_scope": "PUBLIC_DEVELOPMENT_MULTI_REVIEW_TRANSPORT_OF_A_FIXED_ACTIVE_SCREENING_CONTROLLER",
+  "date": "2026-08-23",
+  "forbidden_claims": [
+    "prospective confirmation or protected replication",
+    "cold-start screening",
+    "exact execution of the ASReview application",
+    "ASReview software inferiority",
+    "independent review-level observations merely because the five review names are distinct",
+    "population-wide, domain-general, source-general, model-general, or workflow-general superiority",
+    "independent custody or external execution",
+    "ORION-specific superiority, route invention, closure, or task completion",
+    "retrospective controller, comparator, seed, batch, endpoint, margin, exclusion, or review selection"
+  ],
+  "frozen_before_label_counts_controller_outcomes_or_comparator_outcomes": true,
+  "identity": "P2_SWIFT_CROSS_REVIEW_CONTROLLER_TRANSPORT_V1",
+  "population": {
+    "canonical_rows_expected": 96230,
+    "content": "Whitespace-normalized title followed by abstract. PMID-only review text is joined from the frozen local PubMed snapshot; Fluoride and Neuropain text comes from the frozen supplementary workbooks.",
+    "cross_review_overlap": "Retain records shared across reviews because reviews are distinct screening decisions. Report pairwise overlap and do not claim complete statistical independence; the pre-outcome maximum shared content identity is 68.",
+    "deduplication": "Within each review, compute SHA-256 over casefolded whitespace-normalized title, a newline, and casefolded whitespace-normalized abstract; retain the earliest source row for each content identity without reading its label.",
+    "exclusion": "Exclude PMID-only rows absent from the frozen PubMed snapshot and rows whose normalized title plus abstract is empty. No other row or review exclusion is allowed after outcomes.",
+    "expected_before_deduplication": {
+      "BPA": 7700,
+      "Fluoride": 4479,
+      "Neuropain": 29207,
+      "PFOS-PFOA": 6309,
+      "Transgenerational": 48632
+    },
+    "expected_duplicate_excess": {
+      "BPA": 3,
+      "Fluoride": 2,
+      "Neuropain": 61,
+      "PFOS-PFOA": 0,
+      "Transgenerational": 31
+    },
+    "reviews": [
+      "BPA",
+      "Fluoride",
+      "Neuropain",
+      "PFOS-PFOA",
+      "Transgenerational"
+    ],
+    "source_identity": "P2_SWIFT_SOURCE_AND_RIGHTS_FREEZE_V1"
+  },
+  "labels": {
+    "BPA": {
+      "column": "Status",
+      "negative": "Excluded",
+      "positive": "Included"
+    },
+    "Fluoride": {
+      "column": "Included",
+      "negative": "EXCLUDED",
+      "positive": "INCLUDED"
+    },
+    "Neuropain": {
+      "column": "Label",
+      "negative": "Excluded",
+      "positive": "Included"
+    },
+    "PFOS-PFOA": {
+      "column": "Status",
+      "negative": "Excluded",
+      "positive": "Included"
+    },
+    "Transgenerational": {
+      "column": "Status",
+      "negative": "Excluded",
+      "positive": "Included"
+    }
+  },
+  "initialization": {
+    "cold_start_claim_denied": true,
+    "order": "The positive seed is first and the negative seed second.",
+    "rule": "Within each label class and review, select the row minimizing SHA-256(review identity, a NUL byte, record identity). This is one label-informed positive and one label-informed negative per review.",
+    "seed_count_per_review": 2
+  },
+  "active_loop": {
+    "batch_size": "max(10, ceil(0.002 * canonical review N))",
+    "feedback": "After each queried batch, reveal the frozen binary labels for those rows, refit from scratch on all screened rows, and query the highest-scoring remaining rows.",
+    "ranking_ties": "Stable descending score order over the canonical ascending record-identity order.",
+    "termination": "Continue until every canonical row has an order position; do not stop at a favorable recall threshold."
+  },
+  "candidate": {
+    "classifier": {
+      "alpha": 1e-05,
+      "class_weight": "balanced",
+      "loss": "log_loss",
+      "max_iter": 2000,
+      "name": "SGDClassifier",
+      "random_state": 20260823,
+      "tol": 0.0001
+    },
+    "feature_extractor": {
+      "lowercase": true,
+      "max_features": 50000,
+      "min_df": 2,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "sublinear_tf": true,
+      "vectorizer": "TfidfVectorizer"
+    },
+    "querier": "highest positive-class probability"
+  },
+  "comparator": {
+    "balancer": {
+      "implementation": "At every fit, positive selected rows receive weight 1.0; negative selected rows receive positives/(9.8*negatives); normalize weights to mean one.",
+      "name": "ASReview balanced components",
+      "ratio": 9.8
+    },
+    "classifier": {
+      "C": 0.11,
+      "loss": "squared_hinge",
+      "name": "LinearSVC",
+      "random_state": 20260823
+    },
+    "feature_extractor": {
+      "lowercase": true,
+      "max_df": 0.95,
+      "min_df": 1,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "sublinear_tf": true,
+      "vectorizer": "TfidfVectorizer"
+    },
+    "identity": "ASREVIEW_ELAS_U4_CADENCE_MATCHED_COMPONENTS",
+    "provenance": "Pinned ASReview ELAS u4 components previously frozen against asreview/asreview commit 1788bc97ff5b5652dbe1e5b5ad5253bef1b03aef; batch cadence is matched to the candidate rather than the application default.",
+    "querier": "stable maximum decision-function score"
+  },
+  "estimands": {
+    "primary": "Unweighted mean across the five reviews of candidate recall@10% minus comparator recall@10%.",
+    "secondary": [
+      "recall@5%",
+      "recall@20%",
+      "fraction screened to 95% recall",
+      "WSS@95"
+    ],
+    "wss_at_95": "0.95 minus the fraction screened, counting seed rows, at the first rank reaching ceil(0.95 * number of included rows)."
+  },
+  "gates": {
+    "G1_BINDING": "Every source, rights, preflight, PubMed snapshot, protocol and implementation hash matches its freeze.",
+    "G2_POPULATION": "All five review schemas, missing-metadata exclusions, duplicate excess counts, canonical review counts and canonical total match the pre-outcome expectations; every review contains both classes.",
+    "G3_PRIMARY_MARGIN": "The unweighted review-level mean candidate-minus-u4 recall@10% is at least +0.05.",
+    "G4_WORK_SAVING": "The unweighted review-level mean candidate-minus-u4 WSS@95 is nonnegative.",
+    "G5_HARM": "The worst review candidate-minus-u4 recall@10% is at least -0.05.",
+    "G6_ABSOLUTE_WORK_SAVING": "Candidate WSS@95 is strictly greater than zero in every review."
+  },
+  "reporting": {
+    "aggregate": "Report every gate, the unweighted mean, and the worst review. Do not replace review-level reporting with a pooled row-level effect.",
+    "per_review": "Report source, eligible and canonical counts, label counts, duplicate excess, batch size, feature counts, model fits, order hashes, all metrics for both arms, and candidate-minus-comparator effects.",
+    "text_boundary": "Do not write PubMed or workbook titles/abstracts into result or report artifacts."
+  },
+  "terminals": {
+    "cannot_check": "P2_SWIFT_CROSS_REVIEW_CONTROLLER_TRANSPORT_CANNOT_CHECK_BINDING_OR_POPULATION",
+    "negative": "P2_SWIFT_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR",
+    "positive": "P2_SWIFT_CROSS_REVIEW_CONTROLLER_PASSES_ALL_PUBLIC_DEVELOPMENT_GATES"
+  },
+  "decision_rule": "Use the positive terminal only if G1 through G6 all pass. Use CANNOT_CHECK if G1 or G2 fails. Otherwise retain every measured effect and use the negative terminal. No controller tuning, comparator replacement, margin change, review exclusion, or outcome deletion is allowed.",
+  "preserved_terminal": "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR",
+  "status": "FROZEN_BEFORE_ANY_LABEL_COUNT_CONTROLLER_OUTCOME_OR_COMPARATOR_OUTCOME"
+}

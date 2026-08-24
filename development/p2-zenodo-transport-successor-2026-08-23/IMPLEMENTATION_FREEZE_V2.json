@@ -1,0 +1,41 @@
+{
+  "claim_boundary": "Post-schema-repair public-label one-pool transport development only; V1 remains a CANNOT_CHECK binding failure and no V2 model outcome existed at this freeze.",
+  "date": "2026-08-23",
+  "determinism": {
+    "active_batch_selection": "fit on all screened labels, rank remaining inclusion probabilities descending, reveal the next full batch in rank order, then refit",
+    "dataset_order": "ascending record_identity sha256",
+    "initial_seed_order": "included seed first, excluded seed second",
+    "random_permutation": "Python random.Random(seed).shuffle applied to the deterministic non-seed order",
+    "ranking_tie_break": "ascending record_identity sha256",
+    "stable_seed_key": "sha256(10423427 + colon + record_identity_sha256)",
+    "static_centroid": "cosine similarity to the included seed under the shared L2-normalized TF-IDF representation"
+  },
+  "execution_scope": "Generate a complete deterministic ordering for each arm; no post-outcome controller change is permitted under this identity.",
+  "frozen_protocol_sha256": "b564c9546def95db55ca0c2733d32198112241669e5c0917d48bb878ede27efb",
+  "metrics": {
+    "fraction_screened_at_95_recall": "one-indexed position of the ceil(0.95 * total_included)-th included record divided by N",
+    "random_arm_aggregation": "arithmetic mean of each metric over the 20 frozen permutations",
+    "recall_budget_rounding": "ceil(fraction * N), including the shared initial seed",
+    "wss_at_95": "0.95 - fraction_screened_at_95_recall"
+  },
+  "parsing": {
+    "canonical_subset": "after excluding the incident row, exclude noncanonical class literals; among canonical class-free identity collisions retain the earliest raw line",
+    "eligible_class_literals": [
+      "include",
+      "exclude"
+    ],
+    "encoding": "utf-8-strict",
+    "excluded_first_row_hash_rule": "sha256 of the first raw line after line-ending removal",
+    "expected_census": {
+      "duplicate_identity_exclusions": 3,
+      "eligible_unique_records": 25534,
+      "five_field_post_incident_rows": 25539,
+      "noncanonical_class_exclusions": 2,
+      "total_raw_lines": 25540
+    },
+    "field_rule": "split the remaining raw line on literal tab and require exactly five fields",
+    "line_endings": "remove one terminal LF and an immediately preceding CR, if present",
+    "record_identity_rule": "sha256 of title, PMID, abstract and MeSH joined by literal tab; class excluded"
+  },
+  "status": "FROZEN_AFTER_V1_SCHEMA_DIAGNOSIS_BEFORE_ANY_MODEL_OUTCOME"
+}

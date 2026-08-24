@@ -1,0 +1,29 @@
+# P5-RD-02 negative-result ledger
+
+**Date:** 2026-08-23  
+**Bridge:** `P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1`  
+**Authority:** preserved public-development results and new discriminators only
+
+V1, V2, and V3 are distinct identities. No later replay rewrites an earlier
+adverse result. `CANNOT_CHECK` is not a null, and a public known fix is not a
+self-improvement result.
+
+| research identity | preserved result | positive terminal | negative or harmful terminal | `CANNOT_CHECK` terminal | next discriminator |
+|---|---|---|---|---|---|
+| `P5.RD02.V1.INVALID.FACTORIAL.V1` | V1 remains `CANNOT_CHECK` with four invalid cells and `HARMFUL_OR_ADVERSE_CELL_PRESENT`: two Java-17 arms were outside Defects4J's runtime contract, while the two Java-11 arms were rejected by an incorrect raw-tree identity rule. | A separately frozen successor keeps every runtime inside contract and binds the actually prepared candidate identities before its outcomes. | The repaired design still contains invalid, drifting, timeout, or harmful cells. | Any required runtime, prepared tree/configuration, or evaluator identity remains unbound. | V2 executed this discriminator but does not erase V1; retain V1 result hash `0c2f2760...c7c0e`. |
+| `P5.RD02.V2.PUBLIC.KNOWN.FIX.REPLAY.V1` | On n=1 public `Lang-1`, the known fixed bytes pass under both Java-11 distributions and original bytes retain the registered trigger: implementation `+1.0`, environment `0.0`, interaction `0`. | The public development terminal is `IMPLEMENTATION_MAIN_EFFECT` with all cells valid under the registered rule. | The fixed challenger fails, introduces an unexpected failure, or an environment interaction appears. | Any cell or exact candidate/environment/evaluator identity is invalid. | Do not repeat this known fix for scientific promotion; move to candidate-generated, protected, source-disjoint cases. |
+| `P5.RD02.V2.CHECKOUT.STREAM.PRESERVATION.V1` | V2's test phase overwrote each cell's checkout stdout/stderr path. All eight live test hashes match; all eight declared checkout hashes mismatch the current bytes. | Every phase has a unique retained path and every live byte hash matches its declaration. | Any phase path is reused or any declared retained-byte hash mismatches. | Original overwritten checkout bytes cannot be recovered or independently verified. | Preserve V2 unchanged; use a separately frozen archival successor with phase-qualified paths. |
+| `P5.RD02.V3.ARCHIVAL.REPLAY.V1` | V3 was frozen after V2 outcomes were known and is audit-only. All 16 phase streams match and all four cells have distinct checkout/test paths while replaying the same pattern. | `ARCHIVAL_REPLAY_COMPLETE` for phase-log preservation only. | A stream is missing/mismatched, paths collide, or the local replay drifts. | Exact archival bytes or identities cannot be checked. | Treat V3 as provenance repair only; never call it independent confirmation or a new scientific effect. |
+| `P5.RD02.TWO.JDK11.ENVIRONMENT.NULL.V1` | Environment effect is zero between two Java-11 distributions on one native arm64 macOS host with shared tooling. | A prospectively powered, source-disjoint environment panel shows transport across registered OS/tool/dependency regimes without interactions or harm. | A runtime, dependency, OS, toolchain, or candidate-by-environment interaction changes outcomes. | Environment lineage, equivalence, or evaluator validity is missing. | Test new defects across separately held environment regimes; do not infer broad invariance from two JDK-11 binaries. |
+| `P5.RD02.N1.TRANSPORT.V1` | Four cells belong to one public project/bug family; independent n is one, not four. | Source-disjoint replication meets the registered worst-domain, worst-class, preservation, freshness, and harm gates. | The effect fails to replicate, collapses in a subgroup, or causes harm. | Source-family independence, eligibility, power, or outcomes are unbound. | Bind the full protected panel before candidate generation. |
+| `P5.RD02.PUBLIC.GOLD.NO.PROTECTED.FRESHNESS.V1` | The challenger replays a known public upstream fix and the public evaluator/tests; neither gold nor outcome is protected or fresh. | A new post-freeze/access-controlled task and evaluator remain outside challenger read/write authority until final submission. | Public replay gain fails to transfer or protected harm exceeds a gate. | Access history, task epoch, gold custody, or evaluator identity is missing. | Use this lane only for development; execute the provider-held protected/freshness bridge. |
+| `P5.RD02.LOCAL.EVALUATOR.CUSTODY.V1` | Candidate execution, evaluator, scoring, and result retention are local rather than independent. | An external custodian freezes evaluator bytes, runs every exact arm, preserves access telemetry, and signs per-case receipts. | Custody is compromised, the evaluator can be changed by a candidate, or receipts fail verification. | Operator identity, independence, evaluator hash, or custody log is unbound. | Contract an external evaluator; same-context audit cannot certify independence. |
+| `P5.RD02.H1.H4.AUTHORITY.V1` | A public known-fix replay does not test beneficial governed self-improvement, causal revision utility, protected fresh transfer, or integrity advantage. | Every prospectively frozen H1--H4 endpoint beats all six exact arms and passes every non-compensatory harm/protection gate in independent replication. | Any hypothesis fails, a comparator ties/wins, or any harm gate fails. | Protected cases, six arms, epochs, custody, transfer, harm, or verifier receipts remain unbound. | Preserve H1, H2, H3, and H4 as `CANNOT_CHECK`. |
+
+## Current terminal
+
+`P5_RD02_N1_PUBLIC_KNOWN_FIX_REPLAY_ONLY__PROTECTED_FRESHNESS_AND_H1_H4_CANNOT_CHECK`
+
+The V2 checkout-log subterminal remains
+`CANNOT_CHECK_EXACT_CHECKOUT_STREAM_BYTE_PRESERVATION`; V3 reaches
+`ARCHIVAL_REPLAY_COMPLETE` only for its own audit streams.

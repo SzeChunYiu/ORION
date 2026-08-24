@@ -1,0 +1,85 @@
+{
+  "admission_recomputed_after_independent_rights_audit": true,
+  "admission_recomputed_at": "2026-08-23T16:53:19.026208+00:00",
+  "boundary": {
+    "candidate_universe": "certificate-bearing pairs only",
+    "cartesian_absence_used": false,
+    "comparator_outputs_opened": false,
+    "naturalistic_cross_ontology_claim": false,
+    "positive_reference_absence_used": false,
+    "protected_outcomes_opened": false,
+    "reasoner_inference_used": false
+  },
+  "counts": {
+    "admitted_families": 3,
+    "certificate_rows": 4838,
+    "conflicts": 0,
+    "frozen_families": 3,
+    "glue_rows": 4789,
+    "obstruction_rows": 49,
+    "required_families": 3
+  },
+  "created_at": "2026-08-23T16:44:31.173002+00:00",
+  "families": {
+    "ENVO_2026_06_26": {
+      "all_disjoint_lists_expanded": 0,
+      "authority_namespace_class_count": 4317,
+      "conflict_count": 0,
+      "distinct_equivalence_glue_certificate_count": 0,
+      "explicit_disjoint_obstruction_certificate_count": 20,
+      "family_admitted": true,
+      "frozen_file_count": 1,
+      "identity_glue_certificate_count": 4317,
+      "list_error_count": 0,
+      "list_errors": [],
+      "observed_bytes": 9614229,
+      "ontology_declared_license_iris": [
+        "https://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "rights_registry_pass": true,
+      "source_family_disjoint_governance_pass": true,
+      "transport_and_parse_pass": true,
+      "triple_count_sum_without_cross_file_dedup": 106817
+    },
+    "FIBO_FND_2026Q2": {
+      "all_disjoint_lists_expanded": 0,
+      "authority_namespace_class_count": 433,
+      "conflict_count": 0,
+      "distinct_equivalence_glue_certificate_count": 9,
+      "explicit_disjoint_obstruction_certificate_count": 25,
+      "family_admitted": true,
+      "frozen_file_count": 59,
+      "identity_glue_certificate_count": 433,
+      "list_error_count": 0,
+      "list_errors": [],
+      "observed_bytes": 1393228,
+      "ontology_declared_license_iris": [],
+      "rights_registry_pass": true,
+      "source_family_disjoint_governance_pass": true,
+      "transport_and_parse_pass": true,
+      "triple_count_sum_without_cross_file_dedup": 13626
+    },
+    "W3C_PROV_O_REC_20130430": {
+      "all_disjoint_lists_expanded": 0,
+      "authority_namespace_class_count": 30,
+      "conflict_count": 0,
+      "distinct_equivalence_glue_certificate_count": 0,
+      "explicit_disjoint_obstruction_certificate_count": 4,
+      "family_admitted": true,
+      "frozen_file_count": 1,
+      "identity_glue_certificate_count": 30,
+      "list_error_count": 0,
+      "list_errors": [],
+      "observed_bytes": 68795,
+      "ontology_declared_license_iris": [],
+      "rights_registry_pass": true,
+      "source_family_disjoint_governance_pass": true,
+      "transport_and_parse_pass": true,
+      "triple_count_sum_without_cross_file_dedup": 1146
+    }
+  },
+  "frame_gate_pass": true,
+  "frame_id": "P3_V5_DIRECT_AXIOM_NEGATIVE_SEMANTICS_CALIBRATION_FRAME",
+  "rights_identity_audit_sha256": "0a31d4c3e2dd3d13483016016d56a3b4f47166e0a6c77119950bdaeedd577a86",
+  "schema_version": "orion.p3.authoritative-negative-semantics.extraction-result.v5"
+}

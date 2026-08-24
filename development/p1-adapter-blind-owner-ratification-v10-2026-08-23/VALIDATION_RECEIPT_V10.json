@@ -1,0 +1,123 @@
+{
+  "allowlisted_local_artifacts": 3,
+  "boundary": {
+    "case_or_outcome_accessed": false,
+    "git_operation_run": false,
+    "manuscript_or_shared_ledger_edited": false,
+    "map_audit_rerun": false,
+    "network_used": false,
+    "pytest_or_repository_ci_run": false
+  },
+  "errors": [],
+  "local_artifact_sha256": {
+    "ADAPTER_BLIND_RATIFICATION_PROTOCOL_V10.json": "1308f37618b2e01b6a48dcc473f754b14fc81a8b6ce9990192fae72eaa0302f9",
+    "CURRENT_RESULT_V10.json": "f5c37921bfb2b289feeeeeb4e253f33fa4708e64bcc4f34a497abe76a5ea9044",
+    "OWNER_INPUT_ALLOWLIST_V10.json": "b2af50537d7f571642e08fd53f2454723024e023e004305326ca0efcaf206226",
+    "POST_SELECTION_NONIDENTIFICATION_THEOREM_V10.md": "483e0fb42097affc52339cb0ea17ebf92bc1a6a442b2dad1c6ba75b28a7b0e41",
+    "README.md": "7c39a65e7772fa28dec105db38bdf1c2b164bb668b4f6df0e9ac68b03649fd7b",
+    "SCIENTIFIC_REPORT_V10.md": "9a372221929cf2064e8cb7453d4e8836ba5d9cce20449e65a416e2f617d9a04c",
+    "verify_v10.py": "0dd2868258dee6207db2733c236ee547d1ba5c930c7973d037899d4b4add3fa8"
+  },
+  "new_authority_roles": 0,
+  "new_ordering_predicates": 1,
+  "retained_authority_acts": 4,
+  "schema_version": "orion.p1.adapter-blind-owner-ratification.validation.v10",
+  "status": "PASS",
+  "terminal": "P1_V10_FOUR_AUTHORITY_ACTS_REMAIN_NECESSARY__ADAPTER_BLIND_PRECOMMITMENT_OR_HISTORICAL_PRECEDENCE_CANNOT_CHECK__720_MAPS_UNCHANGED",
+  "upstream_bindings": [
+    {
+      "actual_sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55",
+      "exists": true,
+      "expected_sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55",
+      "matches": true,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json"
+    },
+    {
+      "actual_sha256": "42fd386b113802b5b269dada6ab2965503fa5afa020a06e52a25ce667d03dae4",
+      "exists": true,
+      "expected_sha256": "42fd386b113802b5b269dada6ab2965503fa5afa020a06e52a25ce667d03dae4",
+      "matches": true,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_FIELD_CUSTODIAN_REGISTRY.json"
+    },
+    {
+      "actual_sha256": "fc3ff7435d291e8581eeefaab30b16a119bb005fd99f720090ef147c6b2944ba",
+      "exists": true,
+      "expected_sha256": "fc3ff7435d291e8581eeefaab30b16a119bb005fd99f720090ef147c6b2944ba",
+      "matches": true,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_TARGET_SEMANTIC_REGISTRY.json"
+    },
+    {
+      "actual_sha256": "7f16c0c6b036b1d257b917744fe63b562ff693cf9f41992dd1c93424e248c17d",
+      "exists": true,
+      "expected_sha256": "7f16c0c6b036b1d257b917744fe63b562ff693cf9f41992dd1c93424e248c17d",
+      "matches": true,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_PUBLIC_TARGET_SOURCE_REGISTRY.json"
+    },
+    {
+      "actual_sha256": "f2507273c49a30cceddfd745476aeab373a5c11d14dc56108ab16493cbd4dd23",
+      "exists": true,
+      "expected_sha256": "f2507273c49a30cceddfd745476aeab373a5c11d14dc56108ab16493cbd4dd23",
+      "matches": true,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_720_ADAPTER_REGISTRY.json"
+    },
+    {
+      "actual_sha256": "0364e95997323192594c1c7491e65ef26969a707fca47a7e5c021a531f2ad5ac",
+      "exists": true,
+      "expected_sha256": "0364e95997323192594c1c7491e65ef26969a707fca47a7e5c021a531f2ad5ac",
+      "matches": true,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_ADAPTER_ADJUDICATION_RESULT.json"
+    },
+    {
+      "actual_sha256": "47d1d6b38c96b7046500188c84b3b3cdb6afb1260a9acf87e4731dadd2ed76ed",
+      "exists": true,
+      "expected_sha256": "47d1d6b38c96b7046500188c84b3b3cdb6afb1260a9acf87e4731dadd2ed76ed",
+      "matches": true,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_RESULT_V8.json"
+    },
+    {
+      "actual_sha256": "9675a577a54b6175d01907af16145a9f010744e7b66c7d004e742320e6c2f394",
+      "exists": true,
+      "expected_sha256": "9675a577a54b6175d01907af16145a9f010744e7b66c7d004e742320e6c2f394",
+      "matches": true,
+      "path": "development/p1-owner-algebra-construct-validity-v4-2026-08-23/OWNER_GROUP_FEASIBILITY_V4.json"
+    },
+    {
+      "actual_sha256": "d6dd6bab21ef971e966b081e357691581f7106bf029059d0854144ae72a7dc97",
+      "exists": true,
+      "expected_sha256": "d6dd6bab21ef971e966b081e357691581f7106bf029059d0854144ae72a7dc97",
+      "matches": true,
+      "path": "development/p1-owner-algebra-construct-validity-v4-2026-08-23/STANDARD_NATIVE_ACTION_ENVELOPE_V4.json"
+    },
+    {
+      "actual_sha256": "cb09da0c5299b7f34837d8bef63cc4bd1348e38e202fb85840549fdcdfd91f12",
+      "exists": true,
+      "expected_sha256": "cb09da0c5299b7f34837d8bef63cc4bd1348e38e202fb85840549fdcdfd91f12",
+      "matches": true,
+      "path": "development/p1-owner-algebra-construct-validity-v4-2026-08-23/RESULT_V4.json"
+    },
+    {
+      "actual_sha256": "32a4af7b6adb9dd8250e072470605e574ed695145818da3b87cdeec3feef92b1",
+      "exists": true,
+      "expected_sha256": "32a4af7b6adb9dd8250e072470605e574ed695145818da3b87cdeec3feef92b1",
+      "matches": true,
+      "path": "development/p1-scientific-blocker-compression-2026-08-23/OWNER_ALGEBRA_V9_COMPLETION_CONTRACT.json"
+    },
+    {
+      "actual_sha256": "64d44ae85dc54411ae083c35f53090ac6776ec81e57a2425113c437f3fd746d5",
+      "exists": true,
+      "expected_sha256": "64d44ae85dc54411ae083c35f53090ac6776ec81e57a2425113c437f3fd746d5",
+      "matches": true,
+      "path": "../lane-handoffs/p1-source-native-action-adapter-v2/ADAPTER_COMPATIBILITY_MATRIX_V2.json"
+    }
+  ],
+  "validated_at": "2026-08-23T00:00:00+00:00",
+  "validated_counts": {
+    "current_sufficient_groups": 0,
+    "currently_cannot_check_maps": 720,
+    "currently_certified_maps": 0,
+    "currently_rejected_maps": 116929,
+    "owner_requirement_groups": 12,
+    "scientific_action_gold_cells": 0,
+    "unchanged_map_space": 117649
+  }
+}

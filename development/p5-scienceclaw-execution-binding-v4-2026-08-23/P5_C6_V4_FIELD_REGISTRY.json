@@ -1,0 +1,233 @@
+{
+  "arm_id": "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW",
+  "blocking_field_count": 16,
+  "blocking_fields": [
+    "adapter.isolated_write_surface",
+    "custody.external_protected_scorer",
+    "custody.one_shot_no_feedback_barrier",
+    "custody.protected_panel_freshness",
+    "inputs.candidate_visible_case_bytes",
+    "model_provider.fallbacks",
+    "model_provider.primary",
+    "resources.calls_tokens_usd",
+    "resources.retry_network",
+    "rights.container_and_generated_artifacts",
+    "rights.model_provider_and_services",
+    "rights.task_and_benchmark_content",
+    "runtime.compute",
+    "runtime.container_or_environment",
+    "runtime.dependency_lock",
+    "runtime.task_environment"
+  ],
+  "bound_field_count": 5,
+  "bound_fields": [
+    "adapter.native_parser_binding",
+    "identity.native_entrypoint_bytes",
+    "identity.source_license_bytes",
+    "identity.source_repository_commit",
+    "resources.wallclock"
+  ],
+  "execution_ready": false,
+  "fields": {
+    "adapter.isolated_write_surface": {
+      "binding": null,
+      "cause": "Native ScienceClaw writes profiles, credentials, drafts, journals, investigations, graphs, artifacts and attestations under ~/.scienceclaw; selected skills may execute subprocesses, install packages, submit remote jobs or contact lab/scientific services. No disposable executor proof exists.",
+      "next_discriminator": "Demonstrate a disposable read-only source/case executor with an isolated HOME, scratch-only outputs, no devices/schedulers, and a complete reset/egress receipt.",
+      "residual": "A home-directory redirect and source checkout alone do not confine subprocess, service, cache, credential, device, scheduler or network effects.",
+      "status": "BLOCKING"
+    },
+    "adapter.native_parser_binding": {
+      "binding": {
+        "all_adapter_terminals": [
+          "UNRESOLVED"
+        ],
+        "input": "one native scienceclaw-post --dry-run draft JSON",
+        "output_schema": "P5_C6_V4_NATIVE_OUTPUT_SCHEMA.json",
+        "path": "p5_c6_native_parser.py",
+        "protected_key_policy": "RAW_KEY_REFUSAL_BEFORE_JSON_DECODING",
+        "raw_native_singleton_licences": 0,
+        "scientific_payload_values_retained": false,
+        "sha256": "ec04f562d6472699e4fcf2418eb265a350154cdf74117161f885a7964e5113e3"
+      },
+      "cause": "V4 binds a strict structural parser to the released dry-run draft shape without inventing a ScienceClaw selector.",
+      "next_discriminator": "A resolved ScienceClaw decision requires a separately named, prospectively frozen revision-proposal successor; do not relabel this native parser.",
+      "residual": "A valid draft, artifact, open need, status or content hash remains provenance/representation evidence and never identifies one P5 responsibility class.",
+      "status": "BOUND"
+    },
+    "custody.external_protected_scorer": {
+      "binding": null,
+      "cause": "No independent scorer identity, code digest, signing key or terminal-only return schema is supplied.",
+      "next_discriminator": "Obtain a signed external scorer attestation with exact code/data hashes and no candidate-readable outcomes.",
+      "residual": "ScienceClaw self-critique, peer review, benchmark files and artifact audits are candidate-side facilities, not an external protected scorer.",
+      "status": "BLOCKING"
+    },
+    "custody.one_shot_no_feedback_barrier": {
+      "binding": null,
+      "cause": "No independent one-shot no-feedback custodian exists; ScienceClaw is explicitly iterative, stores artifacts/needs and can refine content from prior outputs.",
+      "next_discriminator": "Bind an external custodian that releases only a terminal after candidate freeze and proves no protected feedback entered artifacts, memory, tools or services.",
+      "residual": "Local code cannot self-attest that protected information was withheld from a recursive discovery system.",
+      "status": "BLOCKING"
+    },
+    "custody.protected_panel_freshness": {
+      "binding": null,
+      "cause": "No fresh protected panel identity, nonce, selection receipt or independence attestation exists.",
+      "next_discriminator": "Bind a new six-arm protected panel manifest under independent custody after excluding all source-bundled prior-outcome prefixes.",
+      "residual": "The public benchmarks/ and HEA result paths are prior source content and cannot establish fresh protected evaluation.",
+      "status": "BLOCKING"
+    },
+    "identity.native_entrypoint_bytes": {
+      "binding": {
+        "artifacts/artifact.py": "9ee6a638b500391653f03482db4bf6dbee8cb67d8c3631c3f73de9a536f87712",
+        "autonomous/deep_investigation.py": "72493b0e60b9ede93a945cc73f89780a30e9fc405bfc957dc8532e37711fa556",
+        "autonomous/post_generator.py": "376801fab499ac5644549c451a373fc369bf0ce2978b1a62aae4ad635b000e05",
+        "bin/scienceclaw-post": "edf23cc94775cc19d9dc63d11818211e61f618127b8baddb0c39a6270f16ebaf",
+        "core/llm_client.py": "5fdaaf49b1fb8e8e592e192e9405bed8c4f963335c7fe2c92bc85f8387bf0073",
+        "dry_run_caveat": "dry-run suppresses Infinite posting only; it still runs the investigation and writes a draft",
+        "released_command": "scienceclaw-post --agent <id> --topic <topic> --community <community> --skills <csv> --dry-run",
+        "setup.py": "0302ab0d1436ead7f587c9e241cf67dd26b93ad2eb1ead9c316d149d8e151d12"
+      },
+      "cause": "Exact released command and implementation bytes are present.",
+      "next_discriminator": "Carry all hashes into a future source-native conformance receipt without treating --dry-run as outcome-free execution.",
+      "residual": "Entrypoint identity does not bind topic/case, profile, skills, dependencies, models, tools, services, isolation or scientific terminal semantics.",
+      "status": "BOUND"
+    },
+    "identity.source_license_bytes": {
+      "binding": {
+        "metadata_consistent": false,
+        "package_json_declared_license": "MIT",
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "spdx": "Apache-2.0"
+      },
+      "cause": "Exact root Apache-2.0 licence bytes are present, while package.json separately declares MIT.",
+      "next_discriminator": "Use the exact root licence bytes and obtain component/service/content-specific rights receipts; do not infer rights from package.json.",
+      "residual": "The root grant binds source identity but the metadata inconsistency and third-party skills, APIs, datasets, models, services and generated artifacts require separate adjudication.",
+      "status": "BOUND"
+    },
+    "identity.source_repository_commit": {
+      "binding": {
+        "archive_sha256": "2020d5dd69e5118bebccb2e82cf47807c6be6a0eeb75952e910f0bbac98f82be",
+        "archive_size_bytes": 109045760,
+        "branch": "categoryscienceclaw-mechanics",
+        "commit_sha": "38b2f681e87272cd505c9b2671760fc3729756c2",
+        "file_count": 2122,
+        "repository": "https://github.com/lamm-mit/scienceclaw",
+        "total_file_bytes": 106818041,
+        "tree_manifest": "SCIENCECLAW_SOURCE_TREE_MANIFEST_V4.json",
+        "tree_manifest_sha256": "9c681dc2bcde9ad281f39f129bf452789298019172e628db75e337ca8c24e1f2",
+        "tree_sha": "8b483159e46da54675ee904841f2e8667b2348bc"
+      },
+      "cause": "The paper-linked public branch commit, full tree and deterministic archive are exact.",
+      "next_discriminator": "Build a separately hashed filtered seed excluding benchmarks/, categoryscienceclaw/HEA/ and tracked bytecode before any candidate access.",
+      "residual": "This commit includes public prior-result prefixes and tracked bytecode; it is not itself a clean candidate seed or runtime identity.",
+      "status": "BOUND"
+    },
+    "inputs.candidate_visible_case_bytes": {
+      "binding": null,
+      "cause": "No exact P5 candidate-visible topic/case packet, source corpus, allowed evidence or checksums are selected.",
+      "next_discriminator": "Author or obtain one rights-cleared P5 case satisfying P5_C6_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json.",
+      "residual": "A free-form topic string and public source-bundled examples are not a matched P5 case.",
+      "status": "BLOCKING"
+    },
+    "model_provider.fallbacks": {
+      "binding": null,
+      "cause": "Released source has multiple automatic fallbacks: deep-to-simple investigation, coherence-shield-to-direct calls, Hugging Face text-to-chat calls, rule/keyword reasoning and skill-selection fallbacks, parameter retries, and per-package install continuation.",
+      "next_discriminator": "Create a separately named source patch or upstream release that aborts on every fallback, then freeze and hash its exact no-switch semantics before outcomes.",
+      "residual": "No native flag closes all fallback behavior; silently declaring an empty list would misdescribe the released method.",
+      "status": "BLOCKING"
+    },
+    "model_provider.primary": {
+      "binding": null,
+      "cause": "Defaults permit OpenAI, Anthropic or Hugging Face and mutable environment/config values; selected skills can add other model or scientific-service roles.",
+      "next_discriminator": "Bind one exact primary identity for every LLM/tool role and forbid all switches under a separately identified method if source changes are required.",
+      "residual": "Backend, model snapshot, endpoint, tokenizer, context, temperature and role/capability mapping remain unknown.",
+      "status": "BLOCKING"
+    },
+    "resources.calls_tokens_usd": {
+      "binding": null,
+      "cause": "Source exposes per-call max_tokens values but no aggregate hard stop across reasoning, retry, reflection, peer review, tools, services or recursive needs.",
+      "next_discriminator": "Add provider-reconciled aggregate hard stops across every LLM, API, scheduler and laboratory/tool service.",
+      "residual": "Per-call output limits are not calls/input tokens/USD budgets and may omit tool/service costs.",
+      "status": "BLOCKING"
+    },
+    "resources.retry_network": {
+      "binding": null,
+      "cause": "Native code performs network searches, provider/service/API calls, package installs, optional posting, retries and possible remote job submission without a frozen endpoint allowlist or global retry ceiling.",
+      "next_discriminator": "Preinstall offline dependencies, forbid asynchronous remote jobs and posting, and bind a deny-by-default endpoint/DNS/TLS/retry policy.",
+      "residual": "--dry-run prevents posting only; it does not disable investigation network access, provider calls, skill retries or dynamic installation.",
+      "status": "BLOCKING"
+    },
+    "resources.wallclock": {
+      "binding": {
+        "enforcer": "p5_c6_fail_closed_runner.py",
+        "enforcer_sha256": "09e2c54a108721653a7ff0e53d3421075526157f608c6ae7b7986bd97f8d6c60",
+        "remote_async_jobs_forbidden": true,
+        "termination_grace_seconds": 120,
+        "timeout_terminal": "TIMEOUT/exit 124",
+        "whole_run_seconds": 21600
+      },
+      "cause": "V4 supplies an outer process-group watchdog for one future foreground scienceclaw-post invocation.",
+      "next_discriminator": "Demonstrate timeout and cleanup only after isolated execution, task/tool selection and deny-by-default network bindings close.",
+      "residual": "The current registry still refuses with 16 blockers; process termination cannot cancel undeclared remote jobs, which are therefore forbidden rather than treated as bounded.",
+      "status": "BOUND"
+    },
+    "rights.container_and_generated_artifacts": {
+      "binding": null,
+      "cause": "No content-addressed image/SBOM or publication/retention disposition exists for drafts, artifacts, journals, graphs, attestations, model outputs, figures, code or service-derived content.",
+      "next_discriminator": "Freeze the complete image/SBOM/notices and a generated-artifact custody, retention and redistribution policy.",
+      "residual": "Root source rights do not close dependency, container, generated-output or third-party-content rights.",
+      "status": "BLOCKING"
+    },
+    "rights.model_provider_and_services": {
+      "binding": null,
+      "cause": "No selected LLM/provider, Infinite, scientific API, database, search, scheduler or laboratory-service terms and data-processing dispositions are bound.",
+      "next_discriminator": "Bind exact service terms and data/output rights for every selected role and forbid unlisted services.",
+      "residual": "Public endpoints and API examples are not authorization for matched evaluation use or redistribution.",
+      "status": "BLOCKING"
+    },
+    "rights.task_and_benchmark_content": {
+      "binding": null,
+      "cause": "The repository contains 334 skill directories but only four nested component licence files; external datasets, papers, database results and one P5 case are unselected. Public prior-result prefixes are not fresh benchmark authority.",
+      "next_discriminator": "Select a minimal rights-cleared skill/content set and exact candidate-visible/protected-case receipts.",
+      "residual": "Root Apache source licensing does not by itself establish reuse rights for all fetched content, databases, services or protected evaluation material.",
+      "status": "BLOCKING"
+    },
+    "runtime.compute": {
+      "binding": null,
+      "cause": "Selected skills can use subprocesses, local code, GPUs, HPC/schedulers or external services; no aggregate CPU, RAM, GPU, PID, disk, parallelism or remote-work cap is frozen.",
+      "next_discriminator": "Bind cgroup/disk/PID/GPU limits and prohibit remote/asynchronous execution unless separately metered and cancelable.",
+      "residual": "psutil detection and per-tool defaults are observations, not hard enforcement.",
+      "status": "BLOCKING"
+    },
+    "runtime.container_or_environment": {
+      "binding": null,
+      "cause": "No digest-pinned base image, OS package set, Python build, architecture, tool binary set, credential surface or complete SBOM is frozen.",
+      "next_discriminator": "Build a filtered, offline, content-addressed environment from a resolved lock and freeze every tool binary and credential mount.",
+      "residual": "The installer clones/pulls mutable source and resolves network packages at run time.",
+      "status": "BLOCKING"
+    },
+    "runtime.dependency_lock": {
+      "binding": {
+        "audit": "SCIENCECLAW_DEPENDENCY_DECLARATIONS_V4.json",
+        "classification": "NOT_A_LOCK"
+      },
+      "cause": "No common lockfile exists; core/full requirements have 9/112 declarations and zero exact pins; the 60-key lazy map names 96 unversioned packages and continues after installation failures.",
+      "next_discriminator": "Resolve one platform-specific hash-complete lock for the exact selected skill set and reproduce an offline fail-fast install.",
+      "residual": "A hashed declaration list does not identify resolved transitive artifacts or prove that all selected skills installed successfully.",
+      "status": "BLOCKING"
+    },
+    "runtime.task_environment": {
+      "binding": null,
+      "cause": "Agent profile, topic-to-case adapter, exact skills, tool parameters, data revisions, seeds, memory/artifact reset, dry-run draft path and service revisions are unbound.",
+      "next_discriminator": "Freeze one complete profile/topic/skill/tool/data/reset manifest and exclude source-bundled prior outcomes before candidate access.",
+      "residual": "ScienceClaw selection and fallback behavior can change the executed scientific workflow for the same topic.",
+      "status": "BLOCKING"
+    }
+  },
+  "native_selector_supported": false,
+  "panel_confirmatory_ready_arms": 0,
+  "panel_required_arms": 6,
+  "required_field_count": 21,
+  "schema_version": "orion.p5.c6.scienceclaw-field-registry.v4",
+  "terminal": "P5_C6_V4_SCIENCECLAW_SOURCE_TREE_DRAFT_PARSER_AND_OUTER_WALLCLOCK_BOUND__NATIVE_SELECTOR_UNSUPPORTED_AND_FALLBACKS_OPEN__SIXTEEN_C6_FIELDS_BLOCKING__PRIOR_OUTCOME_PREFIXES_HASHED_NOT_DECODED__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK"
+}

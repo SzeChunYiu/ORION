@@ -1,0 +1,266 @@
+{
+  "active_model": {
+    "alpha": 1e-05,
+    "batch_size": "max(10, ceil(0.002 * eligible_world_size))",
+    "class_weight": "balanced",
+    "implementation": "sklearn.linear_model.SGDClassifier",
+    "loss": "log_loss",
+    "max_iter": 2000,
+    "random_state": 20260823,
+    "tol": 0.0001
+  },
+  "arms": {
+    "ACTIVE_LOGREG": "unchanged V2 batch active screening; refit class-balanced SGD logistic loss on observed labels and select highest predicted inclusion probability",
+    "RANDOM": "20 deterministic random permutations after the shared two-record seed",
+    "STATIC_SEED_CENTROID": "descending cosine similarity to the included seed in the frozen TF-IDF space"
+  },
+  "cannot_check_terminal": "P2_SYNERGY_CONFIRMATORY_SUCCESSOR_CANNOT_CHECK_BINDING",
+  "claim_scope": "PUBLIC_BOUNDED_SCREENING_RELATIVE_ACQUISITION_CONFIRMATION_ONLY",
+  "dataset": {
+    "doi": "10.34894/HE6NAQ",
+    "licence": "CC0-1.0",
+    "metadata_receipt_path": "development/public-empirical-data-binding-2026-08-23/ONLINE_EVIDENCE_RECEIPTS.json",
+    "metadata_receipt_sha256": "6014c6557f6305e284e0c24d3a62a321e6cf1bc2faf80204961d4c627a827c37",
+    "name": "SYNERGY - Open machine learning dataset on study selection in systematic reviews",
+    "provider": "DataverseNL",
+    "version": "V1"
+  },
+  "date": "2026-08-23",
+  "eligibility": "all work records with an exact labels.csv identity join and label_included in {0,1}; missing title and abstract become an empty string and remain eligible",
+  "features": {
+    "lowercase": true,
+    "max_features": 50000,
+    "min_df": 2,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "sublinear_tf": true,
+    "vectorizer": "sklearn.feature_extraction.text.TfidfVectorizer"
+  },
+  "forbidden_claims": [
+    "repair of the predecessor absolute 0.80 gate",
+    "ORION-specific superiority",
+    "open-world route invention or global closure",
+    "protected freshness or independent custody",
+    "generality beyond bounded systematic-review screening pools",
+    "confirmatory independence from public labels"
+  ],
+  "gates": {
+    "G1_BINDING": "every source checksum passes, every eligible label joins exactly one work, and all eight hash-selected worlds execute",
+    "G2_INCREMENTAL": "macro mean of ACTIVE_LOGREG recall-at-10-percent minus max(RANDOM recall-at-10-percent, STATIC_SEED_CENTROID recall-at-10-percent) within each world >= 0.10",
+    "G3_REPLICATION": "ACTIVE_LOGREG strictly exceeds max(RANDOM, STATIC_SEED_CENTROID) recall at 10 percent in at least 7 of 8 worlds and the exact one-sided paired sign-flip p-value <= 0.05",
+    "G4_WORK_SAVING": "ACTIVE_LOGREG WSS@95 > 0 in every world and the macro mean of ACTIVE_LOGREG WSS@95 minus max(RANDOM WSS@95, STATIC_SEED_CENTROID WSS@95) within each world >= 0.10",
+    "G5_NO_MATERIAL_HARM": "ACTIVE_LOGREG recall at 10 percent is no more than 0.05 below RANDOM in every world"
+  },
+  "initial_seed": "within each world, the included and excluded record having the lexicographically smallest sha256(world_id + colon + record_id); the same two seeds initialize every arm",
+  "negative_successor_terminal": "P2_SYNERGY_ACTIVE_ACQUISITION_RELATIVE_EFFECT_REQUIRES_MODEL_OR_SCOPE_SUCCESSOR",
+  "outcomes": {
+    "analysis_unit": "review world",
+    "primary": "per-world recall at 10 percent screened difference ACTIVE_LOGREG minus the larger of RANDOM and STATIC_SEED_CENTROID recall, aggregated by macro mean",
+    "random_arm_summary": "mean across its 20 frozen permutations within world",
+    "secondary": [
+      "recall at 5 percent",
+      "recall at 20 percent",
+      "fraction screened to reach 95 percent recall",
+      "WSS@95 = 0.95 - fraction screened to reach 95 percent recall"
+    ],
+    "uncertainty": "exact one-sided sign-flip test across eight paired world differences plus 100000 world bootstrap replicates with seed 20260823"
+  },
+  "paper_id": "P2",
+  "positive_terminal": "P2_SYNERGY_ACTIVE_ACQUISITION_RELATIVE_EFFECT_CONFIRMED_ON_EIGHT_UNTOUCHED_PUBLIC_WORLDS",
+  "predecessor": {
+    "preserved_findings": [
+      "G2_ABSOLUTE_FAILED_AT_0.687516_MACRO_RECALL_AT_10_PERCENT",
+      "G3_INCREMENTAL_PASSED_WITH_PLUS_0.211739_OVER_STATIC",
+      "G4_WORK_SAVING_PASSED_IN_FOUR_OF_FOUR",
+      "MORAN_2021_ACTIVE_RECALL_AT_10_PERCENT_0.180180"
+    ],
+    "result": "../p2-synergy-screening-successor-2026-08-23/RESULT_V2.json",
+    "sha256": "4831d347b39139ebb26ccfa8afc6b86529c34b60206086e13bb4b677598d8c60",
+    "terminal": "P2_SYNERGY_ACTIVE_ACQUISITION_REQUIRES_MODEL_OR_SEED_SUCCESSOR"
+  },
+  "random_seeds": [
+    20260823,
+    20260824,
+    20260825,
+    20260826,
+    20260827,
+    20260828,
+    20260829,
+    20260830,
+    20260831,
+    20260832,
+    20260833,
+    20260834,
+    20260835,
+    20260836,
+    20260837,
+    20260838,
+    20260839,
+    20260840,
+    20260841,
+    20260842
+  ],
+  "schema_version": "orion.p2.synergy-confirmatory-successor.v1",
+  "selection": {
+    "eligible_worlds": "all 26 SYNERGY V1 review directories with labels.csv and works_*.zip in the frozen Dataverse metadata receipt",
+    "excluded_burned_worlds": [
+      "Hall_2012",
+      "Moran_2021",
+      "Walker_2018",
+      "Wolters_2018"
+    ],
+    "outcomes_opened_before_freeze": false,
+    "rank_key": "sha256(P2-SYNERGY-CONFIRM-V1 + colon + world_id + colon + labels_sha1)",
+    "selected_rule": "eight lexicographically smallest rank keys among the 22 unburned worlds"
+  },
+  "status": "FROZEN_BEFORE_SELECTED_FILE_BODY_DOWNLOAD",
+  "text": "whitespace-normalized title plus reconstructed abstract_inverted_index",
+  "worlds": [
+    {
+      "files": [
+        {
+          "bytes": 451336,
+          "file_id": 359930,
+          "name": "labels.csv",
+          "sha1": "c3be8bf101251aadce5caad3fda01de922b3ced0"
+        },
+        {
+          "bytes": 10396095,
+          "file_id": 359820,
+          "name": "works_1.zip",
+          "sha1": "b95c37f175390ae54b7b51439b7edba2ec57edda"
+        }
+      ],
+      "selection_key_sha256": "1db405271b9a4955d8ffe45ef55d113769ac4f2bfb34c32d8e173c5b2cbd9f56",
+      "world_id": "Radjenovic_2013"
+    },
+    {
+      "files": [
+        {
+          "bytes": 317928,
+          "file_id": 359898,
+          "name": "labels.csv",
+          "sha1": "aec170a4d881a62c2679a893a4d51a80c4075626"
+        },
+        {
+          "bytes": 8164831,
+          "file_id": 359809,
+          "name": "works_1.zip",
+          "sha1": "79497328dcb5e535a2ba8a18e31e2afb52f006c8"
+        }
+      ],
+      "selection_key_sha256": "1ebebf9ea5122cbf3bc1011cafce839cd486a21b85a92aaeb3b1b8a445c99eb0",
+      "world_id": "Muthu_2021"
+    },
+    {
+      "files": [
+        {
+          "bytes": 746832,
+          "file_id": 359936,
+          "name": "labels.csv",
+          "sha1": "e18e53c7ba55f1bcf75f8dca76d94d5d560521d3"
+        },
+        {
+          "bytes": 18534723,
+          "file_id": 359883,
+          "name": "works_1.zip",
+          "sha1": "9beee9f32fe8b5a160653f2316173b1aed5c278f"
+        }
+      ],
+      "selection_key_sha256": "249c592719b6ef6a6eff09889f1f7759f22d82be75fcfafcedf1c7d9805d44f8",
+      "world_id": "Leenaars_2020"
+    },
+    {
+      "files": [
+        {
+          "bytes": 215250,
+          "file_id": 359806,
+          "name": "labels.csv",
+          "sha1": "07572cfa34f80601be283d7797bf5fda5cf165cd"
+        },
+        {
+          "bytes": 4411063,
+          "file_id": 359909,
+          "name": "works_1.zip",
+          "sha1": "1731968731a69db84bbd12c32963c5960849e4ae"
+        }
+      ],
+      "selection_key_sha256": "341db257c505b52a372117ccee1e7ec2157d60194e46c4a544cdcc4d3bba527d",
+      "world_id": "Chou_2003"
+    },
+    {
+      "files": [
+        {
+          "bytes": 187163,
+          "file_id": 359836,
+          "name": "labels.csv",
+          "sha1": "c2b4d6ab46d100abe713882a440454bb17e67e09"
+        },
+        {
+          "bytes": 3560967,
+          "file_id": 359888,
+          "name": "works_1.zip",
+          "sha1": "e3e545d711b5d1fe7ba6f67aa46b61b87bcb3ff1"
+        }
+      ],
+      "selection_key_sha256": "3517fff524f9ba2dd9e0f916acc59279fed241bf75a749327f659b6786995848",
+      "world_id": "Chou_2004"
+    },
+    {
+      "files": [
+        {
+          "bytes": 234822,
+          "file_id": 359834,
+          "name": "labels.csv",
+          "sha1": "d42441e9bd0950e3c41761da55984a48bf697202"
+        },
+        {
+          "bytes": 5749455,
+          "file_id": 359886,
+          "name": "works_1.zip",
+          "sha1": "5b25141447205f50035f6f7988baee655612af54"
+        }
+      ],
+      "selection_key_sha256": "3e0a7fb767f9346b6d7d09c9aefb48715bd4ded2e9edb66b6dca773d75ec51b9",
+      "world_id": "Smid_2020"
+    },
+    {
+      "files": [
+        {
+          "bytes": 103010,
+          "file_id": 359917,
+          "name": "labels.csv",
+          "sha1": "8362968272b45fd001c0159bb4b55458deffc55a"
+        },
+        {
+          "bytes": 2404439,
+          "file_id": 359814,
+          "name": "works_1.zip",
+          "sha1": "663d4bbb283df1b2c819e81643d15b9d4f7755c7"
+        }
+      ],
+      "selection_key_sha256": "3e967ff88763557dcc1fbc6bb2a9703b68328fa4f4c7889095272be3db33f98a",
+      "world_id": "Oud_2018"
+    },
+    {
+      "files": [
+        {
+          "bytes": 989865,
+          "file_id": 359916,
+          "name": "labels.csv",
+          "sha1": "93d604e2ac3491ef783fd221017a1f397c35c0ef"
+        },
+        {
+          "bytes": 24619707,
+          "file_id": 359881,
+          "name": "works_1.zip",
+          "sha1": "e44ff0294f596f6dc0d6a3a5d5a3e5ee2757e9b5"
+        }
+      ],
+      "selection_key_sha256": "480a1f20a4f471ca06f529f915ada9f392f64f8889476a8afad52f61ba8709aa",
+      "world_id": "van_Dis_2020"
+    }
+  ]
+}

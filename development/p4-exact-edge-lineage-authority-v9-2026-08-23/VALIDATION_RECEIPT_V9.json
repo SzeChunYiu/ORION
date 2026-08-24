@@ -1,0 +1,133 @@
+{
+  "check_count": 30,
+  "checks": [
+    {
+      "check": "all_json_parse",
+      "pass": true
+    },
+    {
+      "check": "protocol_hash",
+      "pass": true
+    },
+    {
+      "check": "seven_frozen_targets",
+      "pass": true
+    },
+    {
+      "check": "closed_2_of_7",
+      "pass": true
+    },
+    {
+      "check": "remaining_5_of_7",
+      "pass": true
+    },
+    {
+      "check": "cumulative_75_of_80",
+      "pass": true
+    },
+    {
+      "check": "index_165_exact_293",
+      "pass": true
+    },
+    {
+      "check": "index_190_exact_355",
+      "pass": true
+    },
+    {
+      "check": "index_190_rights",
+      "pass": true
+    },
+    {
+      "check": "index_91_adverse_head",
+      "pass": true
+    },
+    {
+      "check": "index_199_provider_fail_closed",
+      "pass": true
+    },
+    {
+      "check": "index_199_swh_fail_closed",
+      "pass": true
+    },
+    {
+      "check": "orcid_counts",
+      "pass": true
+    },
+    {
+      "check": "lineage_fail_closed",
+      "pass": true
+    },
+    {
+      "check": "natural_pair_fail_closed",
+      "pass": true
+    },
+    {
+      "check": "primary_probe_70_bodies_retained",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_EDGE_133_REPRODUCIBLE_SDIST_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_EDGE_185_REPRODUCIBLE_SDIST_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_EDGE_190_COMMIT_RIGHTS_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_EDGE_190_CONTENT_COMPARISON_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_EDGE_199_FULL_COMMIT_PROVIDER_VERIFICATION_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_EDGE_199_GHARCHIVE_DISCOVERY_RECEIPT_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_EDGE_199_SWH_FULL_REVISION_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_EDGE_91_EMBEDDED_GIT_AUTHORITY_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_EXACT_EDGE_PAYLOAD_COMPARISON_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_LINEAGE_NATURAL_PAIR_AUTHORITY_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_PRIMARY_AUTHORITY_PROBE_RECEIPT_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_PROTOCOL_V9.json",
+      "pass": true
+    },
+    {
+      "check": "evidence_hash_PYPI_INTEGRITY_PROVENANCE_V9.json",
+      "pass": true
+    },
+    {
+      "check": "no_scientific_authority",
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "git_operation_run": false,
+  "json_file_count_excluding_receipt": 99,
+  "passed": 30,
+  "pytest_run": false,
+  "repository_ci_run": false,
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v9.validation",
+  "validation_basis": "deterministic packet-local structural, hash and scientific-boundary checks"
+}

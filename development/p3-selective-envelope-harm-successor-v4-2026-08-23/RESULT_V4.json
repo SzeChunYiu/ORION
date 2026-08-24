@@ -1,0 +1,123 @@
+{
+  "schema_version": "orion.p3.selective-envelope-harm-successor-result.v4",
+  "protocol_id": "P3.PUBLIC.OAEI.SELECTIVE.ENVELOPE.HARM.SUCCESSOR.DEV.V4",
+  "result_id": "P3.V4.PRE_OUTCOME.FEASIBILITY.RESULT.2026-08-23",
+  "authority": "PUBLIC_DEVELOPMENT_PRE_OUTCOME_FEASIBILITY_AND_FORMAL_IDENTIFICATION_ONLY__NO_PROTECTED_OR_PERFORMANCE_AUTHORITY",
+  "execution_status": "TERMINATED_BEFORE_NEW_FAMILY_OUTCOME_ACCESS",
+  "primary_terminal": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+  "joint_terminal": "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK__PUBLIC_V4_SOURCE_FAMILY_DISJOINT_REPLICATION_CANNOT_CHECK__PUBLIC_V4_BINARY_OBSTRUCTION_SEMANTICS_CANNOT_CHECK__PUBLIC_V4_COMPARATOR_IDENTITY_CANNOT_CHECK",
+  "panel_terminal": "P3_V4_PROSPECTIVE_SOURCE_FAMILY_DISJOINT_PUBLIC_PANEL_CANNOT_FREEZE__ZERO_OF_SEVEN_FULL_RIGHTS_IMMUTABILITY_RECORDS",
+  "outcome_boundary": {
+    "new_family_payloads_opened": false,
+    "new_family_reference_alignments_opened": false,
+    "new_family_labels_or_relation_values_opened": false,
+    "new_family_matcher_outputs_opened": false,
+    "new_family_performance_results_opened": false,
+    "protected_evidence_opened": false,
+    "reason_for_stopping": "The frozen protocol requires rights, immutable identities, licensed binary truth, at least three source-disjoint eligible families, and executable comparator identities before outcomes. Those preconditions failed, so opening outcomes would violate the protocol."
+  },
+  "source_panel": {
+    "candidate_track_families_audited": 7,
+    "official_track_page_identities_bound": 7,
+    "families_meeting_all_source_requirements": 0,
+    "minimum_independent_families_required": 3,
+    "explicit_reference_alignment_licences_bound": 0,
+    "published_cryptographic_dataset_checksums_bound": 0,
+    "families_with_metadata_licensed_absence_as_binary_obstruction": 0,
+    "metadata_only_source_lineage_upper_bound_after_definite_collapses": 5,
+    "definite_dependence_collapses": [
+      "OAEI_ANATOMY + OAEI_LARGEBIO share NCI Thesaurus and biomedical lineage",
+      "OAEI_CONFERENCE + OAEI_MULTIFARM share OntoFarm; MultiFarm is a translation derivative"
+    ],
+    "availability_witness": "The advertised OAEI 2025 Biodiv archive returned HTTP 404 at the audit cutoff.",
+    "receipt_path": "SOURCE_FAMILY_RIGHTS.json",
+    "receipt_sha256": "8ebaf13247fb8ebf7e4aa14da925f6793290aa3bf29f100fbe36e0c7fcf5e3e8"
+  },
+  "comparator_panel": {
+    "exact_slot_identities_bound": [
+      "K1 AML v3.2 at d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6",
+      "K2 LogMap 4.0 source at b3b57d0d8bfb5872bdffb49329d764acb4735713",
+      "K3 BERTMap through DeepOnto 0.9.3 at 74ca8d47f01bad0b8739f19ee2c392bdf6d9c090"
+    ],
+    "execution_ready_comparators": 0,
+    "strongest_selection": "CANNOT_CHECK__PERFORMANCE_INSPECTION_WAS_FORBIDDEN",
+    "remaining_identity_blockers": [
+      "family syntax and support matrix",
+      "dependency, container, JVM, Python, model and resource identities",
+      "runtime, timeout, retry, seed and device policies",
+      "complete native artifact parsers",
+      "positive-only selective adapters",
+      "candidate/ideal information-equivalence manifest"
+    ],
+    "terminal": "PUBLIC_V4_COMPARATOR_IDENTITY_CANNOT_CHECK__EXACT_CANDIDATES_BOUND_BUT_STRONGEST_SELECTION_RUNTIME_FAMILY_SUPPORT_AND_INFORMATION_EQUIVALENT_SELECTIVE_ADAPTERS_UNFROZEN",
+    "receipt_path": "COMPARATOR_RESEARCH.json",
+    "receipt_sha256": "52698373c471f6cb34455dd1fff3835cec4813b530281aa4d706e8f378cfe57b"
+  },
+  "gate_results": [
+    {
+      "gate": "lawful immutable source/reference identities",
+      "status": "CANNOT_CHECK",
+      "value": "0/7 eligible families"
+    },
+    {
+      "gate": "source-family-disjoint replication",
+      "status": "CANNOT_CHECK",
+      "value": "0 eligible versus 3 required"
+    },
+    {
+      "gate": "binary obstruction truth",
+      "status": "CANNOT_CHECK",
+      "value": "0/7 families authorize absence as a negative label"
+    },
+    {
+      "gate": "runnable frozen comparator panel",
+      "status": "CANNOT_CHECK",
+      "value": "3 slot identities bound; 0 execution-ready"
+    },
+    {
+      "gate": "proper-envelope rate per family",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "gate": "binary coverage overall and per family",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "gate": "information-equivalent ideal exact tie",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "gate": "harm noninferiority per family and regime",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "formal_results": {
+    "conditional_selectivity_harm_frontier": {
+      "status": "PROVED_UNDER_FROZEN_V3_LOSS_AND_V3_BINARY_CONSTRUCTION",
+      "formula": "H = 0.25 * full_envelope_rate",
+      "strictest_v3_aml_required_correct_singleton_rate": 0.8991977203724748,
+      "v3_registry_selection_rate": 0.003061553335481792,
+      "v3_registry_projected_harm": 0.24923461166612956,
+      "interpretation": "The one frozen zero-failure positive cell is far too sparse for conditional V3 harm noninferiority. This is arithmetic, not transport evidence."
+    },
+    "open_world_reference_nonidentification": {
+      "status": "PROVED",
+      "statement": "Without an authoritative exhaustivity certificate, a candidate absent from a positive reference is compatible with both GLUE and OBSTRUCTION; absence alone cannot license obstruction or point-valued harm.",
+      "v3_witness": {
+        "explicit_glue_pairs": 1399,
+        "absence_derived_obstruction_pairs": 116515
+      },
+      "artifact_path": "OPEN_WORLD_REFERENCE_IDENTIFICATION_THEOREM_V4.json"
+    }
+  },
+  "scientific_conclusion": "The V4 blocker is logically prior to model quality: the audited public sources do not yet supply a lawful immutable source-disjoint panel with identified binary negative truth. Consequently no coverage, harm, noninferiority or superiority result may be computed. The wider positive contribution is an open-world non-identification theorem showing why positive-reference absence cannot be converted into obstruction without an explicit closure authority.",
+  "next_discriminator": "Before any new reference access, acquire or author at least three rights-cleared source-disjoint families with content-addressed inputs and references plus either explicit negative/disjointness truth or an authoritative exhaustivity certificate over a frozen candidate universe; then freeze comparator runtimes, positive-only adapters, predictions and the candidate/ideal information manifest.",
+  "preserved_boundaries": {
+    "v1_v2_v3_terminals_unchanged": true,
+    "v3_harm_retyped_as_conditional_not_retracted": true,
+    "protected_claims": "CANNOT_CHECK",
+    "p3_coordinate_claims": "CANNOT_CHECK",
+    "population_transport": "CANNOT_CHECK",
+    "top_tier_publication_readiness": "NOT_ESTABLISHED"
+  }
+}

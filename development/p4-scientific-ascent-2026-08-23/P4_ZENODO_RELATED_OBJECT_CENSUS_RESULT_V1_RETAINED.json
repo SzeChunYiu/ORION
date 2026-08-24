@@ -1,0 +1,29 @@
+{
+  "date": "2026-08-23",
+  "http_status": 400,
+  "identity": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1",
+  "model_outcome_executed": false,
+  "protocol_sha256": "d71615b812bc582d528f1d6058f5dc57b9522142bb2d96c9a877dffac77bf1b2",
+  "provider_payload": {
+    "errors": [
+      {
+        "field": "size",
+        "messages": [
+          "Page size cannot be greater than 25. Please use authenticated requests to increase the limit to 100."
+        ]
+      }
+    ],
+    "message": "A validation error occurred.",
+    "status": 400
+  },
+  "query_id": "EARTH_DATA",
+  "raw_response_bytes": 207,
+  "raw_response_file_outside_git": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/open-data-cache/P4_ZENODO_RELATED_OBJECT_CENSUS_V1/V1_HTTP_RESPONSE.json",
+  "raw_response_sha256": "8105c5098c3b8051ed4e35cc510a7c4af8dcca8edb46986c9a37ba5469c6985c",
+  "repair_policy": "V1_RETAINED_UNCHANGED__ANY_PAGE_SIZE_OR_PAGINATION_REPAIR_REQUIRES_DISTINCT_V2_IDENTITY",
+  "reproduction_observed_at_utc": "2026-08-23T13:42:37.712393+00:00",
+  "request_url_sha256": "25dad42f6da5197794354dc136ae88f2bf46ee65f16b5452e775296afb85179b",
+  "requested_page_size": 200,
+  "schema_version": "orion.p4.zenodo-related-object-census-retained-transport-failure.v1",
+  "terminal": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1_TRANSPORT_CANNOT_CHECK_HTTP_400"
+}

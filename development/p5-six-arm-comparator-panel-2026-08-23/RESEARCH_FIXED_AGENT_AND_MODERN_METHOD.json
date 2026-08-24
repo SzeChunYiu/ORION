@@ -1,0 +1,125 @@
+{
+  "schema_version": "orion.p5.fixed-and-modern-comparator-research.v1",
+  "captured_at_utc": "2026-08-23",
+  "authority": "SOURCE_IDENTITY_AND_INTERFACE_PREFLIGHT_ONLY",
+  "comparators": [
+    {
+      "slot_id": "C1_FIXED_AGENT",
+      "identity_name": "SWE-agent",
+      "paper_and_exact_version": {
+        "title": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+        "canonical_version": "arxiv:2405.15793v3",
+        "paper_linked_repo_evidence": "pinned README links arXiv 2405.15793"
+      },
+      "official_repository": "https://github.com/SWE-agent/SWE-agent",
+      "commit_sha": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+      "official_or_reimplementation_status": "OFFICIAL_PAPER_LINKED_IMPLEMENTATION",
+      "licence_spdx_or_terminal": "MIT",
+      "licence_file_path": "LICENSE",
+      "licence_byte_sha256": "7610ed3916f6674e34b78417894abd57ff538b3cfdda3085e3643d82acbaf31f",
+      "install_entrypoint": "install the pinned repository per its source-install documentation; exact dependency lock/container identity remains to be frozen",
+      "run_entrypoint": "project script `sweagent = sweagent.run.run:main`; invoke `sweagent` with prospectively frozen run configuration",
+      "candidate_visible_information": [
+        "issue/problem statement",
+        "task repository checkout at a pinned base revision",
+        "agent YAML/model/provider/tool configuration",
+        "environment observations returned by allowed commands"
+      ],
+      "legal_actions_and_write_surface": [
+        "shell/editor actions exposed by the agent-computer interface inside an isolated task checkout",
+        "candidate repository patch/submission",
+        "no protected evaluator, label, fresh split, host promotion registry or sibling-arm state may be readable or writable"
+      ],
+      "token_tool_time_compute_retry_envelope": {
+        "native_configurability": "model/config driven",
+        "p5_matched_values": "UNBOUND",
+        "must_freeze": [
+          "model/provider revision",
+          "prompt/config bytes",
+          "wall time",
+          "step/tool-call limit",
+          "token and monetary cap",
+          "container/CPU/RAM",
+          "network policy",
+          "retry policy"
+        ]
+      },
+      "native_outputs": [
+        "repository patch/submission",
+        "trajectory/action-observation record",
+        "run metadata and native termination"
+      ],
+      "native_errors_timeouts_and_abstentions": [
+        "retain setup failure, tool error, invalid patch, timeout, budget exhaustion and no submission as distinct typed terminals; do not score missing as zero silently"
+      ],
+      "p5_eight_class_adapter": "External scorer evaluates the native action/patch against protected minimal-revision, preservation, fresh-transfer and harm obligations. The adapter must not infer an eight-class responsibility label from issue resolution, and must not grant actions outside the fixed-agent interface. Unsupported non-code classes remain native failures/unresolved outcomes rather than rewritten successes.",
+      "rights_and_service_dependencies": "MIT source; task/upstream repository rights are separate; provider credentials/model terms/container images remain unbound",
+      "semantic_fit": "EXACT_FIXED_AGENT_ROLE",
+      "feasibility_terminal": "IDENTITY_BOUND__P5_RESOURCE_ACTION_TERMINAL_AND_PROTECTED_SCORER_ADAPTER_CANNOT_CHECK"
+    },
+    {
+      "slot_id": "C6_STRONGEST_SOURCE_GROUNDED_MODERN_METHOD",
+      "identity_name": "ScienceClaw / Self-Revising Discovery Systems for Science",
+      "paper_and_exact_version": {
+        "title": "Self-Revising Discovery Systems for Science: A Categorical Framework for Agentic Artificial Intelligence",
+        "canonical_version": "arxiv:2606.01444v1",
+        "paper_licence": "CC BY-NC-ND 4.0",
+        "paper_linked_repo_evidence": "primary paper links lamm-mit/scienceclaw and categoryscienceclaw-mechanics"
+      },
+      "official_repository": "https://github.com/lamm-mit/scienceclaw",
+      "branch": "categoryscienceclaw-mechanics",
+      "commit_sha": "38b2f681e87272cd505c9b2671760fc3729756c2",
+      "official_or_reimplementation_status": "OFFICIAL_PAPER_LINKED_IMPLEMENTATION_BRANCH",
+      "licence_spdx_or_terminal": "Apache-2.0",
+      "licence_file_path": "LICENSE",
+      "licence_byte_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "install_entrypoint": "pinned repository setup.py/profile installation; optional skill dependencies and external services must be prospectively enumerated",
+      "run_entrypoint": "`scienceclaw-post --agent <id> --topic <topic> --dry-run`; Python `autonomous.deep_investigation.run_deep_investigation(agent_name, topic, ...)`",
+      "entrypoint_byte_identities": {
+        "setup.py": "0302ab0d1436ead7f587c9e241cf67dd26b93ad2eb1ead9c316d149d8e151d12",
+        "bin/scienceclaw-post": "edf23cc94775cc19d9dc63d11818211e61f618127b8baddb0c39a6270f16ebaf",
+        "autonomous/deep_investigation.py": "72493b0e60b9ede93a945cc73f89780a30e9fc405bfc957dc8532e37711fa556"
+      },
+      "candidate_visible_information": [
+        "prospectively frozen topic/case packet",
+        "agent profile and preferred-tool set",
+        "allowed scientific service observations",
+        "candidate-side artifact lineage only"
+      ],
+      "legal_actions_and_write_surface": [
+        "skill invocations and network requests allowed by frozen profile",
+        "candidate-side immutable artifact store and JSONL ledgers",
+        "dry-run draft output; no Infinite posting in the P5 comparator lane",
+        "no write/read authority over protected label, fresh evaluator, host promotion or sibling-arm state"
+      ],
+      "token_tool_time_compute_retry_envelope": {
+        "native_profile": "LLM plus selectable scientific tools/services; open-ended unless frozen",
+        "p5_matched_values": "UNBOUND",
+        "must_freeze": [
+          "provider/model revision",
+          "profile/tool list and tool code hashes",
+          "API/service revisions and credentials",
+          "topic/case bytes",
+          "wall/token/tool/compute/retry budgets",
+          "network allowlist",
+          "artifact store reset semantics"
+        ]
+      },
+      "native_outputs": [
+        "immutable typed artifacts with UUID/content hash/agent/skill/topic/parent lineage",
+        "agent and global JSONL metadata ledgers",
+        "investigation result/draft",
+        "open needs and status mutations"
+      ],
+      "native_errors_timeouts_and_abstentions": [
+        "retain login/service timeout, tool failure, missing optional dependency, invalid/empty artifact, open need, draft-only and no-post states separately"
+      ],
+      "p5_eight_class_adapter": "Freeze a topic-to-case adapter and external protected scorer. Native artifact/status mutations are not P5 revision classes. The adapter may expose ScienceClaw outputs and candidate-side artifacts but may neither relabel an open need as UNRESOLVED nor manufacture a minimal revision decision. Any candidate modification must remain within isolated candidate artifacts and be scored for preservation/fresh transfer externally.",
+      "rights_and_service_dependencies": "Apache-2.0 repository; paper is CC BY-NC-ND 4.0; external scientific APIs, Infinite service, models, tool datasets and generated artifact rights require separate terms",
+      "semantic_fit": "STRONGEST_RELEASED_SOURCE_GROUNDED_MODERN_SUBSTRATE_UNDER_FROZEN_NONPERFORMANCE_CRITERIA__NOT_NATIVE_P5_SELECTOR",
+      "feasibility_terminal": "IDENTITY_ENTRYPOINT_AND_TYPED_ARTIFACT_SUBSTRATE_BOUND__P5_EIGHT_CLASS_RESOURCE_SERVICE_AND_FRESHNESS_ADAPTER_CANNOT_CHECK"
+    }
+  ],
+  "selection_statement": "ScienceClaw is selected for C6 by the frozen source-grounding and interface-completeness ordering, not by observed P5 performance. MDA v3 is methodologically relevant but its paper-linked NeuronBench repository is a benchmark, not released official solver code.",
+  "outcomes_accessed": false
+}

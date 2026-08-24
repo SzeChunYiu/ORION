@@ -1,0 +1,28 @@
+{
+  "amended_launcher": {
+    "environment_guards_unchanged": true,
+    "executable_literal": ".venv/bin/python",
+    "must_not_resolve_symlink": true,
+    "remaining_command": "scripts/bertmap.py -s SOURCE -t TARGET -c FROZEN_CONFIG.yaml",
+    "timeout_seconds_unchanged": 1800
+  },
+  "amendment_id": "P3_V6_K3_VENV_SYMLINK_EXECUTOR_CORRECTION",
+  "cause": "The supervisory wrapper used Path.resolve() on .venv/bin/python. Resolving the symlink discarded the virtual-environment launch path, so Python did not activate the installed environment.",
+  "frozen_at": "2026-08-23T17:34:55.449092+00:00",
+  "observed_facts": {
+    "attempt_record_sha256": "7c387eb8266931b10f759b82cb53438b0ba83ebc78f35e9fa3b34bea72f8f0d4",
+    "attempted_executable": "/Users/billy/.local/share/uv/python/cpython-3.10.20-macos-aarch64-none/bin/python3.10",
+    "matcher_import_completed": false,
+    "native_artifact_files_created": 0,
+    "stderr_terminal": "ModuleNotFoundError: No module named deeponto",
+    "stdout_bytes": 0
+  },
+  "schema_version": "orion.p3.comparator-native-preflight.k3-launcher-amendment.v6",
+  "scientific_invariance": [
+    "No source, target, config, model, dependency, threshold, seed, or parser value changes.",
+    "The failed supervisory attempt ended before importing DeepOnto and produced no native artifact.",
+    "The corrected invocation is counted as the single native comparator execution; it is not outcome-conditioned.",
+    "Gold, protected data, scoring, tuning, harm, coverage, and superiority remain forbidden."
+  ],
+  "trigger_class": "SUPERVISORY_LAUNCHER_PATH_DEFECT_BEFORE_NATIVE_IMPORT"
+}

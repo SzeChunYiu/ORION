@@ -1,0 +1,225 @@
+{
+  "schema_version": "orion.p5.official-remote-evaluator-audit.v1",
+  "audit_id": "P5.OFFICIAL.REMOTE.EVALUATOR.AUDIT.V1",
+  "captured_at_utc": "2026-08-23T13:17:50Z",
+  "authority": "OFFICIAL_PRIMARY_SOURCE_REMOTE_EVALUATOR_PREFLIGHT_ONLY__NO_SUBMISSION__NO_DATASET_ROW_ACCESS__NO_EMPIRICAL_OUTCOME",
+  "dataset_rows_accessed": 0,
+  "label_values_accessed": 0,
+  "predictions_submitted": 0,
+  "protected_outcomes_accessed": false,
+  "services": [
+    {
+      "service_id": "SWE_BENCH_MULTIMODAL_SB_CLI",
+      "classification": "REMOTE_PUBLIC_EVALUATION_ONLY__NOT_PROTECTED",
+      "client": {
+        "repository": "https://github.com/SWE-bench/sb-cli",
+        "commit_sha": "b679692b8b7e274a6c89fd0842f25b02da4b9256",
+        "tree_sha": "369891cbb845f25983d82583520e02f0349f3ea7",
+        "license": "MIT",
+        "api_base_url_in_pinned_source": "https://api.swebench.com",
+        "capabilities": [
+          "submit model_patch predictions",
+          "quota-limited swe-bench-m test execution",
+          "retrieve full evaluation report and response JSON"
+        ],
+        "missing_identity_fields": [
+          "server evaluator revision",
+          "served dataset revision",
+          "test and container digests",
+          "evaluation epoch",
+          "backend access log and verifier receipt"
+        ]
+      },
+      "current_public_dataset": {
+        "repository": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal",
+        "revision_sha": "4e6662d51c48e475f7f346e4fa09a6f8b31fcaa5",
+        "public": true,
+        "gated": false,
+        "dataset_license_field": null,
+        "machine_metadata_split_counts": {
+          "dev": 100,
+          "test": 480
+        },
+        "narrative_split_counts": {
+          "dev": 102,
+          "test": 510
+        },
+        "public_gold_indicators": [
+          "patch is described as the gold patch",
+          "test_patch, FAIL_TO_PASS, and PASS_TO_PASS are in the public schema",
+          "the card documents local test evaluation",
+          "the card documents predictions_path gold for reference solutions"
+        ],
+        "selected_file_identities": [
+          {
+            "path": "data/dev-00000-of-00001.parquet",
+            "lfs_sha256": "714f4b815680608168d620c87c6b3420b3d4690d6656fc85b1da6511bfb55931",
+            "bytes": 3220440
+          },
+          {
+            "path": "data/test-00000-of-00001.parquet",
+            "lfs_sha256": "ce21141e0b2aadb6b91cf21d27c93e4c159afb1c4c25b7b4ea9222d823dd9da7",
+            "bytes": 8083200
+          }
+        ]
+      },
+      "current_official_harness": {
+        "repository": "https://github.com/SWE-bench/SWE-bench",
+        "commit_sha": "7a21e05772954cc81471ae19d56f436cecf43c54",
+        "tree_sha": "e667352e125abfd369a6129673d5289aa168e78b",
+        "license": "MIT",
+        "current_usage_evidence": [
+          "swebench eval multimodal --gold is documented",
+          "local evaluation results are written to evaluation_results"
+        ],
+        "historical_news_evidence": "A 2025 news item still says the multimodal test evaluation was kept private and submitted through sb-cli.",
+        "disposition": "The historical private-route sentence cannot override the current public test/gold/local-evaluation surface."
+      },
+      "current_official_task_repository": {
+        "repository": "https://github.com/SWE-bench/swe-bench-multimodal-tasks",
+        "commit_sha": "8d3ed32f37af9ceb8b5778b92a0088384ed057d4",
+        "tree_sha": "9b333aa5c7c9900d75dd860fe9b26d7fb9a22ced",
+        "license": "CANNOT_CHECK_NO_REPOSITORY_LICENSE_ASSERTION",
+        "public_gold_evidence": "README documents running gold evaluation and regenerating task Dockerfiles and eval scripts."
+      },
+      "exact_adverse_finding": "The official route does provide remote submission and report export, but current test gold and local evaluation are public, dataset rights are not bound, split counts conflict within the current official card, and the API client does not pin the backend evaluator. It cannot serve as P5 protected freshness.",
+      "terminal": "SWE_BENCH_MULTIMODAL_PRIVATE_EVALUATION_CLAIM_SUPERSEDED_BY_PUBLIC_TEST_GOLD_AND_LOCAL_EVAL__RIGHTS_AND_BACKEND_IDENTITY_CANNOT_CHECK"
+    },
+    {
+      "service_id": "SWE_BENCH_PRO_COMMERCIAL_PRIVATE",
+      "classification": "STRONGEST_CONTRACTUAL_PROVIDER_CANDIDATE__NOT_EXECUTION_BOUND",
+      "official_sources": [
+        {
+          "url": "https://static.scale.com/uploads/654197dc94d34f66c0f5184e/SWEAP_Eval_Scale%20(9).pdf",
+          "observed_sha256": "9952394066c11d4992e24a9d3c2c35288efee0ecd2ec3cd67bc918efcf717e93"
+        },
+        {
+          "url": "https://labs.scale.com/leaderboard/swe_bench_pro_private"
+        },
+        {
+          "url": "https://github.com/scaleapi/SWE-bench_Pro-os/tree/ca10a60a5fcae51e6948ffe1485d4153d421e6c5",
+          "commit_sha": "ca10a60a5fcae51e6948ffe1485d4153d421e6c5"
+        }
+      ],
+      "provider_statements": [
+        "The commercial set has 276 problems from 18 private proprietary repositories obtained through partnerships.",
+        "The provider says private repositories remain inaccessible to model developers and public results are reported.",
+        "The held-out set is reserved for future overfitting checks and its results are not promised for public external execution."
+      ],
+      "strengths": [
+        "real organizationally separate provider",
+        "provider-held proprietary repositories",
+        "existing private evaluation experience",
+        "public aggregate leaderboard for the commercial set"
+      ],
+      "missing_for_p5": [
+        "a written external scholarly-evaluation and publication-rights agreement",
+        "task, split, test, harness, image, and evaluator commitments",
+        "candidate-visible boundary and access telemetry",
+        "genuinely new post-freeze cases",
+        "six-arm matched execution",
+        "machine-readable per-task result and harm receipts",
+        "external verifier access",
+        "evidence, measurement, model, representation, evaluator, and unresolved classes"
+      ],
+      "terminal": "P5_PROTECTED_PROVIDER_AND_FRESH_TRANSFER_CANNOT_CHECK"
+    },
+    {
+      "service_id": "SWE_BENCH_LIVE_FUTURE_RELEASE",
+      "classification": "FUTURE_PUBLIC_FRESHNESS_AUXILIARY_ONLY",
+      "official_sources": [
+        {
+          "url": "https://github.com/microsoft/SWE-bench-Live",
+          "commit_sha": "bc09878a5d192d0804dbd647dc6e650372fcb0ac"
+        },
+        {
+          "url": "https://huggingface.co/datasets/SWE-bench-Live/SWE-bench-Live",
+          "revision_sha": "a637bd46829f3132e12938c8a0ca93173a977b8e"
+        }
+      ],
+      "provider_statements": [
+        "The official repository says 50 newly verified issues will be added monthly to the test split.",
+        "Evaluation operates on public Hugging Face datasets.",
+        "The public schema includes gold patch, test patch, FAIL_TO_PASS, and PASS_TO_PASS."
+      ],
+      "lawful_use": "Freeze every subject and comparator before a future release, then allow an external host to run a temporal-freshness auxiliary without post-release modification, after per-project rights clearance.",
+      "missing_for_p5": [
+        "inaccessible gold after release",
+        "independent protected custody",
+        "eight-class minimal-revision responsibility gold",
+        "same-symptom blocks and harm adjudication"
+      ],
+      "terminal": "TEMPORAL_FRESHNESS_AUXILIARY_ONLY__NOT_PROTECTED_CONFIRMATION"
+    }
+  ],
+  "official_receipts": [
+    {
+      "url": "https://api.github.com/repos/SWE-bench/SWE-bench",
+      "local_response_sha256": "60eec6d8108da7e37406d07f71626a97fde73b75e42d84e4d66c3258a7fd9bca"
+    },
+    {
+      "url": "https://api.github.com/repos/SWE-bench/SWE-bench/commits/main",
+      "local_response_sha256": "00931fa124bbf2a4d964d3ce84e84bea0b018f1c95e83db59af59492f5ab8282"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/main/README.md",
+      "local_response_sha256": "7f6c99470e27965d4220a41f703766fb98ae2bf1b3bc5633deed76d6b30d1088"
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/SWE-bench/SWE-bench_Multimodal",
+      "local_response_sha256": "03be7bfe6999b86cfd4afb60c116160452f59b145251ae42ed767ae689f0cd28"
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/SWE-bench/SWE-bench_Multimodal/tree/4e6662d51c48e475f7f346e4fa09a6f8b31fcaa5/data?recursive=false&expand=false",
+      "local_response_sha256": "f911aa9daad57be5939443248d3ca0a9b6b88b086b78a2bcd658a88bdbbe4cd6"
+    },
+    {
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multimodal/raw/4e6662d51c48e475f7f346e4fa09a6f8b31fcaa5/README.md",
+      "local_response_sha256": "dbff146d57bbc200cb584c300d045bc81ab738cec0c07ae405e4f5ebbf5dc6ea"
+    },
+    {
+      "url": "https://api.github.com/repos/SWE-bench/swe-bench-multimodal-tasks",
+      "local_response_sha256": "64db92f55f2c02852a55fd0e7d4985e2a239a042997578da8774a8f09fb02696"
+    },
+    {
+      "url": "https://api.github.com/repos/SWE-bench/swe-bench-multimodal-tasks/commits/main",
+      "local_response_sha256": "33438a8a4d3f9f708c526fcdb165301255b9661125f337435e35c41b0a8aabe0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-multimodal-tasks/main/README.md",
+      "local_response_sha256": "5f264188b83544921221f98e012cdf92a695f1be2c0b14868d977d59f7372ae6"
+    },
+    {
+      "url": "https://api.github.com/repos/SWE-bench/sb-cli",
+      "local_response_sha256": "55cfd3f0ef1d9cf6831f7655c4bba384606a9928b8e009c293c6e4ef5f130a69"
+    },
+    {
+      "url": "https://api.github.com/repos/SWE-bench/sb-cli/commits/main",
+      "local_response_sha256": "40bd76df9b90b9eea74ba16aa79c9dc5ad0c3c9525f23bc7212f09d2bd6bb41d"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SWE-bench/sb-cli/b679692b8b7e274a6c89fd0842f25b02da4b9256/sb_cli/config.py",
+      "local_response_sha256": "51c8d6ab6d51fdec984e67a1df610cf8b3bbbcc96edd532cd3b4bd36ac1fb36c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SWE-bench/sb-cli/b679692b8b7e274a6c89fd0842f25b02da4b9256/sb_cli/submit.py",
+      "local_response_sha256": "5ea3eabec9ff7ac65a5e6e546cc15eeb42d40900078b4a3a3f0548614b28fe22"
+    },
+    {
+      "url": "https://api.swebench.com/",
+      "http_status": 200,
+      "body_sha256": "08c0799fcc6abd5ed3b149aec875133dee3ce5c85ccad5635ca6253a0264897a",
+      "body": {
+        "message": "Hello from the SWE-bench API!"
+      },
+      "version_field_present": false
+    }
+  ],
+  "decision": {
+    "current_public_remote_services_closing_p5_protected_freshness": 0,
+    "strongest_conditional_provider": "SWE_BENCH_PRO_COMMERCIAL_PRIVATE",
+    "strongest_public_temporal_auxiliary": "SWE_BENCH_LIVE_FUTURE_RELEASE",
+    "required_next_action": "Negotiate a signed identity-complete external evaluation under PROTECTED_FRESHNESS_PROVIDER_CONTRACT_V1.json and commission the missing non-implementation revision classes.",
+    "scientific_terminal": "P5_PROTECTED_PROVIDER_AND_FRESH_TRANSFER_CANNOT_CHECK"
+  }
+}

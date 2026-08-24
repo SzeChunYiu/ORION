@@ -1,0 +1,391 @@
+{
+  "all_four_m5_cells_pass_combined_frozen_signal_gate": false,
+  "authority": "PUBLIC_DATACITE_METADATA_SOURCE_FEASIBILITY_ONLY",
+  "candidate_content_bytes_requested_or_accessed": false,
+  "candidate_jsonl_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidate_rows": 0,
+  "captured_at_utc": "2026-08-23T14:41:53+00:00",
+  "case_outcomes_accessed": false,
+  "cross_domain_candidate_dois": 0,
+  "dataset_content_permission": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+  "date": "2026-08-23",
+  "evidence_assertions_passed": true,
+  "evidence_records": [
+    {
+      "all_assertions_present": true,
+      "assertion_checks": [
+        {
+          "assertion": "Public API (No authentication)",
+          "assertion_sha256": "d85aefd2095739b86d8d119a1924ae0a70c51c0f8fb868549988285bbf4f7581",
+          "present": true
+        },
+        {
+          "assertion": "retrieve and search for DOI metadata",
+          "assertion_sha256": "46e8121a688e9bdc7f541a506c962f06dcdfe1d3217d21a07fffdeab8b5833ca",
+          "present": true
+        }
+      ],
+      "assertions": [
+        "Public API (No authentication)",
+        "retrieve and search for DOI metadata"
+      ],
+      "body_archived": false,
+      "captured_at_utc": "2026-08-23T14:41:27+00:00",
+      "evidence_id": "DATACITE_PUBLIC_REST_API_DOC",
+      "receipt": {
+        "attempt": 1,
+        "content_type": "text/markdown; charset=utf-8",
+        "etag": "W/\"922bada637601fc0761f108990fbb4fb901540fd:expanded|f2c37d8f\"",
+        "final_url": "https://support.datacite.org/docs/rest-api.md",
+        "http_status": 200,
+        "last_modified": null,
+        "request_url": "https://support.datacite.org/docs/rest-api.md",
+        "response_bytes": 1936,
+        "response_sha256": "d0266ae5408a49bc0dfe236b1f43744d7ca4a3f4edfb0304c055c299ab50c918"
+      },
+      "url": "https://support.datacite.org/docs/rest-api.md"
+    },
+    {
+      "all_assertions_present": true,
+      "assertion_checks": [
+        {
+          "assertion": "OpenSearch [query string syntax]",
+          "assertion_sha256": "8995d1b8180e12b00bc77bde60bf5ab6b0b5106af34eacc264a134e1a7d645ff",
+          "present": true
+        },
+        {
+          "assertion": "relatedIdentifiers.relatedIdentifier",
+          "assertion_sha256": "c2330a79fb377c460b987cece35b12271ae53e79e9a0c04ac0c35206389d2330",
+          "present": true
+        },
+        {
+          "assertion": "relatedIdentifiers.relationType",
+          "assertion_sha256": "330c9717d5f10e91d19736f3db861daf7f318a6fc792c091e9999f6e388dc700",
+          "present": true
+        }
+      ],
+      "assertions": [
+        "OpenSearch [query string syntax]",
+        "relatedIdentifiers.relatedIdentifier",
+        "relatedIdentifiers.relationType"
+      ],
+      "body_archived": false,
+      "captured_at_utc": "2026-08-23T14:41:28+00:00",
+      "evidence_id": "DATACITE_QUERY_DOC",
+      "receipt": {
+        "attempt": 1,
+        "content_type": "text/markdown; charset=utf-8",
+        "etag": "W/\"c4a4181f9343908503e63b4415fda36fde333d0e:expanded|f2c37d8f\"",
+        "final_url": "https://support.datacite.org/docs/queries.md",
+        "http_status": 200,
+        "last_modified": null,
+        "request_url": "https://support.datacite.org/docs/queries.md",
+        "response_bytes": 12639,
+        "response_sha256": "4e1eb38d0bc68a196430c7440d4bc0df80966d70c19798364315814c97b40c89"
+      },
+      "url": "https://support.datacite.org/docs/queries.md"
+    },
+    {
+      "all_assertions_present": true,
+      "assertion_checks": [
+        {
+          "assertion": "allowed values in range 0-1000",
+          "assertion_sha256": "4d905352dc98bad7a4414308b75cf6fc34e5675f199ec4c9f742bc5eda6eea45",
+          "present": true
+        },
+        {
+          "assertion": "page[size]",
+          "assertion_sha256": "2ee479a6d868125daae39f7d5c13d70466bb4e0a112050f96ae61915cb234c05",
+          "present": true
+        }
+      ],
+      "assertions": [
+        "allowed values in range 0-1000",
+        "page[size]"
+      ],
+      "body_archived": false,
+      "captured_at_utc": "2026-08-23T14:41:28+00:00",
+      "evidence_id": "DATACITE_PAGINATION_DOC",
+      "receipt": {
+        "attempt": 1,
+        "content_type": "text/markdown; charset=utf-8",
+        "etag": "W/\"b5c34222acaf21c53134c9fdc599ecb31ece6b0a:expanded|f2c37d8f\"",
+        "final_url": "https://support.datacite.org/docs/pagination.md",
+        "http_status": 200,
+        "last_modified": null,
+        "request_url": "https://support.datacite.org/docs/pagination.md",
+        "response_bytes": 3093,
+        "response_sha256": "fda2c7335e0a6176123ea927f903be52d764396a08f44a0118df5cd0f352e459"
+      },
+      "url": "https://support.datacite.org/docs/pagination.md"
+    },
+    {
+      "all_assertions_present": true,
+      "assertion_checks": [
+        {
+          "assertion": "all metadata registered with DataCite part of the public domain",
+          "assertion_sha256": "fb5987a6372c8f6260db7b3913aac6be47717521f86bb6a3e879093baf46b195",
+          "present": true
+        },
+        {
+          "assertion": "CC0 copyright waiver",
+          "assertion_sha256": "4b1403274676f2a74fd124c31030258e39b60fcd08e3ff1db56464ec7075cd19",
+          "present": true
+        },
+        {
+          "assertion": "REST API",
+          "assertion_sha256": "41a52587276c392bfdf0c5086b78662e089895fe2bf22e3d413af8e75f98bc3d",
+          "present": true
+        }
+      ],
+      "assertions": [
+        "all metadata registered with DataCite part of the public domain",
+        "CC0 copyright waiver",
+        "REST API"
+      ],
+      "body_archived": false,
+      "captured_at_utc": "2026-08-23T14:41:29+00:00",
+      "evidence_id": "DATACITE_CC0_METADATA_DOC",
+      "receipt": {
+        "attempt": 1,
+        "content_type": "text/html; charset=UTF-8",
+        "etag": null,
+        "final_url": "https://datacite.org/blog/announcing-datacites-first-public-data-file/",
+        "http_status": 200,
+        "last_modified": null,
+        "request_url": "https://datacite.org/blog/announcing-datacites-first-public-data-file/",
+        "response_bytes": 108872,
+        "response_sha256": "faf770d333e289078c4275e6bff0a2b7a20a1784495d2a04a0389f6f105fa2cc"
+      },
+      "url": "https://datacite.org/blog/announcing-datacites-first-public-data-file/"
+    }
+  ],
+  "explicit_nonclaim": "A DataCite metadata signal and deposited rights declaration do not establish repository content permission, linked-publication rights, natural-pair identity, case eligibility, scientific performance, confirmation, provider generality, or ORION superiority.",
+  "files_downloaded": false,
+  "forbidden_claims": [
+    "natural-pair eligibility",
+    "article identity equivalence without adjudication",
+    "content permission inferred from DataCite CC0 metadata",
+    "depositor authority",
+    "linked publication rights",
+    "case resolution",
+    "scientific performance",
+    "confirmation",
+    "provider generality",
+    "ORION superiority"
+  ],
+  "identity": "P4_DATACITE_M5_DISJOINT_PROVIDER_CENSUS_V2",
+  "lineage": {
+    "governing_source_expansion_freeze_path": "papers/paper-04-verified-scientific-discovery/protocol/P4_NATURAL_PAIR_SOURCE_EXPANSION_FREEZE_V1.json",
+    "governing_source_expansion_freeze_sha256": "8d46e93702ef4f57798bdd6f0bcbd2d2381139c8fa9746290a410874c5d0ffeb",
+    "negative_identities_immutable": true,
+    "v1_candidate_file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "v1_identity": "P4_DATACITE_M5_DISJOINT_PROVIDER_CENSUS_V1",
+    "v1_protocol_file_sha256": "210b446ff205c6f9cf25cc7c3231d388bfd4187e97006f3c897aabbecb16f691",
+    "v1_result_file_sha256": "793d2698957529653e708aff9c886ec9cdbc99beaca4247e1350a8fab877c5f7",
+    "v1_result_payload_sha256": "c9e55d910438b8fa0331a1810d6d3600ac8020846984a4e195c0cecbb2c39b20",
+    "v1_retained_terminal": "P4_DATACITE_M5_CENSUS_V1_CANNOT_CHECK_TRANSPORT_OR_SCHEMA",
+    "v1_terminal_immutable": true,
+    "v2_is_distinct_mechanics_successor": true,
+    "zenodo_v1_retained_terminal": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1_TRANSPORT_CANNOT_CHECK_HTTP_400",
+    "zenodo_v2_candidates_sha256": "d6f767e88cdc401dd1f7643ed76e4460645fcc3dff9744dc504fed01351c1247",
+    "zenodo_v2_result_sha256": "683c2ec074c04d92276dcd185f3c06750f6e1dd9817310ecd6e879f87f99e62d",
+    "zenodo_v2_retained_terminal": "P4_ZENODO_RELATED_OBJECT_V2_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_PROVIDER"
+  },
+  "linked_publication_rights": "CANNOT_CHECK",
+  "metadata_descriptions_requested_or_accessed": false,
+  "metadata_permission": "DATACITE_METADATA_CC0_ROOT_BOUND",
+  "model_outcomes_executed": false,
+  "natural_pair_eligibility": "NOT_ADJUDICATED",
+  "pagination_integrity_passed": true,
+  "per_cell": {
+    "EARTH_ENVIRONMENT": {
+      "combined_unique_signal_count": 37,
+      "content_rights_terminal": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "datacite_disjoint_signal_count": 0,
+      "deficit_or_surplus_to_48": -11,
+      "frozen_gate": 48,
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "natural_pair_eligibility": "NOT_ADJUDICATED",
+      "overlap_with_zenodo_v2": 0,
+      "passes_combined_frozen_signal_gate": false,
+      "zenodo_v2_signal_count": 37
+    },
+    "LIFE_BIOMEDICAL": {
+      "combined_unique_signal_count": 44,
+      "content_rights_terminal": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "datacite_disjoint_signal_count": 0,
+      "deficit_or_surplus_to_48": -4,
+      "frozen_gate": 48,
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "natural_pair_eligibility": "NOT_ADJUDICATED",
+      "overlap_with_zenodo_v2": 0,
+      "passes_combined_frozen_signal_gate": false,
+      "zenodo_v2_signal_count": 44
+    },
+    "PHYSICAL_ENGINEERING": {
+      "combined_unique_signal_count": 29,
+      "content_rights_terminal": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "datacite_disjoint_signal_count": 0,
+      "deficit_or_surplus_to_48": -19,
+      "frozen_gate": 48,
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "natural_pair_eligibility": "NOT_ADJUDICATED",
+      "overlap_with_zenodo_v2": 0,
+      "passes_combined_frozen_signal_gate": false,
+      "zenodo_v2_signal_count": 29
+    },
+    "SCIENTIFIC_SOFTWARE": {
+      "combined_unique_signal_count": 30,
+      "content_rights_terminal": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "datacite_disjoint_signal_count": 0,
+      "deficit_or_surplus_to_48": -18,
+      "frozen_gate": 48,
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "natural_pair_eligibility": "NOT_ADJUDICATED",
+      "overlap_with_zenodo_v2": 0,
+      "passes_combined_frozen_signal_gate": false,
+      "zenodo_v2_signal_count": 30
+    }
+  },
+  "prefreeze_disclosure_file_sha256": "18dd9ca008aa4e02110a61c6157715b57cd2a7b2c33729db8a3c2ccda839cdab",
+  "prefreeze_disclosure_payload_sha256": "af79d50ebac3c5282dc9ac19c3c7d6df3d84103d8df34d9a3921e2a99d31cf73",
+  "prefreeze_unique_disclosed_dois": 3479,
+  "protocol_file_sha256": "2f2b78793781fca66a1b614f8c4c4df2e100e6ed2467badcf84fbbf79021a62a",
+  "protocol_payload_sha256": "982ee0a2ecf7a64048e2c32c84c4c8c49867b31ecd7e2eeff99bc9aded1023fb",
+  "provider_schema_passed": true,
+  "query_count": 4,
+  "query_receipts": [
+    {
+      "domain_id": "EARTH_ENVIRONMENT",
+      "exact_rights_declaration_eligible": 678,
+      "findable_active_dataset_eligible": 701,
+      "http_receipt": {
+        "attempt": 1,
+        "content_type": "application/json; charset=utf-8",
+        "etag": "W/\"c60bb9f374cb8c8714dd6857177c2226\"",
+        "final_url": "https://api.datacite.org/dois?resource-type-id=dataset&query=%28climate+OR+geophysics+OR+ocean+OR+atmospheric+OR+earth%29+AND+NOT+publisher%3AZenodo+AND+NOT+prefix%3A%2210.5281%22&page%5Bsize%5D=1000&page%5Bnumber%5D=1&sort=-updated&disable-facets=true&fields%5Bdois%5D=doi%2Ctitles%2Ccreators%2CpublicationYear%2Ctypes%2CrightsList%2CcontentUrl%2CrelatedIdentifiers%2Cpublisher%2Cstate%2CisActive%2Ccreated%2Cupdated%2Curl%2Cclient",
+        "http_status": 200,
+        "last_modified": null,
+        "request_url": "https://api.datacite.org/dois?resource-type-id=dataset&query=%28climate+OR+geophysics+OR+ocean+OR+atmospheric+OR+earth%29+AND+NOT+publisher%3AZenodo+AND+NOT+prefix%3A%2210.5281%22&page%5Bsize%5D=1000&page%5Bnumber%5D=1&sort=-updated&disable-facets=true&fields%5Bdois%5D=doi%2Ctitles%2Ccreators%2CpublicationYear%2Ctypes%2CrightsList%2CcontentUrl%2CrelatedIdentifiers%2Cpublisher%2Cstate%2CisActive%2Ccreated%2Cupdated%2Curl%2Cclient",
+        "response_bytes": 3166695,
+        "response_sha256": "c60bb9f374cb8c8714dd6857177c22261627fa0a7ac58227a42f09a3120f3011"
+      },
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "pagination_passed": true,
+      "parse_error": null,
+      "provider_disjoint_eligible": 701,
+      "query_id": "DATACITE_EARTH_DATA_V2",
+      "raw_hits": 1000,
+      "raw_response_bytes": 3166695,
+      "raw_response_file": "01_DATACITE_EARTH_DATA_V2_page_01.json",
+      "raw_response_sha256": "c60bb9f374cb8c8714dd6857177c22261627fa0a7ac58227a42f09a3120f3011",
+      "reported_total_hits": 1100442,
+      "request_url_sha256": "722aa8d53efe04b0fdf186e0fe39171c873615e75b2e95d9204010906103b442",
+      "returned_hits": 1000,
+      "schema_passed": true,
+      "unique_raw_dois": 1000,
+      "v1_prefreeze_exclusions": 299
+    },
+    {
+      "domain_id": "LIFE_BIOMEDICAL",
+      "exact_rights_declaration_eligible": 525,
+      "findable_active_dataset_eligible": 576,
+      "http_receipt": {
+        "attempt": 1,
+        "content_type": "application/json; charset=utf-8",
+        "etag": "W/\"47c164e88c1403788502a8c9903449ac\"",
+        "final_url": "https://api.datacite.org/dois?resource-type-id=dataset&query=%28biology+OR+biomedical+OR+genomics+OR+ecology+OR+health%29+AND+NOT+publisher%3AZenodo+AND+NOT+prefix%3A%2210.5281%22&page%5Bsize%5D=1000&page%5Bnumber%5D=1&sort=-updated&disable-facets=true&fields%5Bdois%5D=doi%2Ctitles%2Ccreators%2CpublicationYear%2Ctypes%2CrightsList%2CcontentUrl%2CrelatedIdentifiers%2Cpublisher%2Cstate%2CisActive%2Ccreated%2Cupdated%2Curl%2Cclient",
+        "http_status": 200,
+        "last_modified": null,
+        "request_url": "https://api.datacite.org/dois?resource-type-id=dataset&query=%28biology+OR+biomedical+OR+genomics+OR+ecology+OR+health%29+AND+NOT+publisher%3AZenodo+AND+NOT+prefix%3A%2210.5281%22&page%5Bsize%5D=1000&page%5Bnumber%5D=1&sort=-updated&disable-facets=true&fields%5Bdois%5D=doi%2Ctitles%2Ccreators%2CpublicationYear%2Ctypes%2CrightsList%2CcontentUrl%2CrelatedIdentifiers%2Cpublisher%2Cstate%2CisActive%2Ccreated%2Cupdated%2Curl%2Cclient",
+        "response_bytes": 1669365,
+        "response_sha256": "47c164e88c1403788502a8c9903449acaee2192275c9c659806ca956cf0d108e"
+      },
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "pagination_passed": true,
+      "parse_error": null,
+      "provider_disjoint_eligible": 576,
+      "query_id": "DATACITE_LIFE_DATA_V2",
+      "raw_hits": 1000,
+      "raw_response_bytes": 1669365,
+      "raw_response_file": "02_DATACITE_LIFE_DATA_V2_page_01.json",
+      "raw_response_sha256": "47c164e88c1403788502a8c9903449acaee2192275c9c659806ca956cf0d108e",
+      "reported_total_hits": 2405738,
+      "request_url_sha256": "4440e6bb89b89bc6e7daa9d53220510bac3e1ebb89881ef70ac424fbf733ea14",
+      "returned_hits": 1000,
+      "schema_passed": true,
+      "unique_raw_dois": 1000,
+      "v1_prefreeze_exclusions": 424
+    },
+    {
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "exact_rights_declaration_eligible": 762,
+      "findable_active_dataset_eligible": 868,
+      "http_receipt": {
+        "attempt": 1,
+        "content_type": "application/json; charset=utf-8",
+        "etag": "W/\"041ad76f5659a4f19971588a37f3dab9\"",
+        "final_url": "https://api.datacite.org/dois?resource-type-id=dataset&query=%28physics+OR+engineering+OR+robotics+OR+electronics+OR+materials%29+AND+NOT+publisher%3AZenodo+AND+NOT+prefix%3A%2210.5281%22&page%5Bsize%5D=1000&page%5Bnumber%5D=1&sort=-updated&disable-facets=true&fields%5Bdois%5D=doi%2Ctitles%2Ccreators%2CpublicationYear%2Ctypes%2CrightsList%2CcontentUrl%2CrelatedIdentifiers%2Cpublisher%2Cstate%2CisActive%2Ccreated%2Cupdated%2Curl%2Cclient",
+        "http_status": 200,
+        "last_modified": null,
+        "request_url": "https://api.datacite.org/dois?resource-type-id=dataset&query=%28physics+OR+engineering+OR+robotics+OR+electronics+OR+materials%29+AND+NOT+publisher%3AZenodo+AND+NOT+prefix%3A%2210.5281%22&page%5Bsize%5D=1000&page%5Bnumber%5D=1&sort=-updated&disable-facets=true&fields%5Bdois%5D=doi%2Ctitles%2Ccreators%2CpublicationYear%2Ctypes%2CrightsList%2CcontentUrl%2CrelatedIdentifiers%2Cpublisher%2Cstate%2CisActive%2Ccreated%2Cupdated%2Curl%2Cclient",
+        "response_bytes": 5369964,
+        "response_sha256": "041ad76f5659a4f19971588a37f3dab9661fa709e87314cfb65ea407fa09d01d"
+      },
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "pagination_passed": true,
+      "parse_error": null,
+      "provider_disjoint_eligible": 868,
+      "query_id": "DATACITE_PHYSICAL_DATA_V2",
+      "raw_hits": 1000,
+      "raw_response_bytes": 5369964,
+      "raw_response_file": "03_DATACITE_PHYSICAL_DATA_V2_page_01.json",
+      "raw_response_sha256": "041ad76f5659a4f19971588a37f3dab9661fa709e87314cfb65ea407fa09d01d",
+      "reported_total_hits": 19383977,
+      "request_url_sha256": "f3106b5a42323fce66d22fbb13c3e2806d94886036f2a728e19f6ac261bad1fe",
+      "returned_hits": 1000,
+      "schema_passed": true,
+      "unique_raw_dois": 1000,
+      "v1_prefreeze_exclusions": 132
+    },
+    {
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "exact_rights_declaration_eligible": 754,
+      "findable_active_dataset_eligible": 887,
+      "http_receipt": {
+        "attempt": 1,
+        "content_type": "application/json; charset=utf-8",
+        "etag": "W/\"eab2efc83cecdf88ec23dde4339ad2dc\"",
+        "final_url": "https://api.datacite.org/dois?resource-type-id=dataset&query=%28software+OR+computational+OR+simulation+OR+benchmark+OR+algorithm%29+AND+NOT+publisher%3AZenodo+AND+NOT+prefix%3A%2210.5281%22&page%5Bsize%5D=1000&page%5Bnumber%5D=1&sort=-updated&disable-facets=true&fields%5Bdois%5D=doi%2Ctitles%2Ccreators%2CpublicationYear%2Ctypes%2CrightsList%2CcontentUrl%2CrelatedIdentifiers%2Cpublisher%2Cstate%2CisActive%2Ccreated%2Cupdated%2Curl%2Cclient",
+        "http_status": 200,
+        "last_modified": null,
+        "request_url": "https://api.datacite.org/dois?resource-type-id=dataset&query=%28software+OR+computational+OR+simulation+OR+benchmark+OR+algorithm%29+AND+NOT+publisher%3AZenodo+AND+NOT+prefix%3A%2210.5281%22&page%5Bsize%5D=1000&page%5Bnumber%5D=1&sort=-updated&disable-facets=true&fields%5Bdois%5D=doi%2Ctitles%2Ccreators%2CpublicationYear%2Ctypes%2CrightsList%2CcontentUrl%2CrelatedIdentifiers%2Cpublisher%2Cstate%2CisActive%2Ccreated%2Cupdated%2Curl%2Cclient",
+        "response_bytes": 2850710,
+        "response_sha256": "eab2efc83cecdf88ec23dde4339ad2dc11216534dc4ca20b92999d0ac9386e6c"
+      },
+      "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+      "pagination_passed": true,
+      "parse_error": null,
+      "provider_disjoint_eligible": 887,
+      "query_id": "DATACITE_SOFTWARE_DATA_V2",
+      "raw_hits": 1000,
+      "raw_response_bytes": 2850710,
+      "raw_response_file": "04_DATACITE_SOFTWARE_DATA_V2_page_01.json",
+      "raw_response_sha256": "eab2efc83cecdf88ec23dde4339ad2dc11216534dc4ca20b92999d0ac9386e6c",
+      "reported_total_hits": 456229,
+      "request_url_sha256": "e8ecf5899ff4348d0219f37ad2bb8e85cb977fe35ca03d96d6f7dc072de7a564",
+      "returned_hits": 1000,
+      "schema_passed": true,
+      "unique_raw_dois": 1000,
+      "v1_prefreeze_exclusions": 113
+    }
+  ],
+  "raw_response_count": 4,
+  "result_payload_sha256": "e31c2fe27062ce02253cda0945e0eece859ae60bd9c18514397cc60690ac99bb",
+  "schema_version": "orion.p4.datacite-m5-disjoint-provider-census-result.v2",
+  "scientific_terminal": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+  "source_signal_terminal": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+  "unique_candidate_dois": 0,
+  "v1_retained_terminal": "P4_DATACITE_M5_CENSUS_V1_CANNOT_CHECK_TRANSPORT_OR_SCHEMA"
+}

@@ -1,0 +1,49 @@
+{
+  "authority_boundary": {
+    "candidate_author_session_may_prepare_packet": true,
+    "candidate_author_session_may_self_attest_source_custody": false,
+    "independent_source_custodian_required_before_census": true
+  },
+  "coherent_repair_selected_by_source_authority_not_outcomes": {
+    "commit": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "index_bytes": 22135,
+    "index_git_blob_sha1": "f4f5007156cb71e7d54e99057037fb75d44f87c4",
+    "index_path": "index_v1.json",
+    "index_sha256": "f34c17b3dca9d609585e5fcc9d24c5433d4ad240ef91e5c2e9a48edee1e0959a",
+    "reason": "Preserve the exact V13-frozen commit and its candidate-dataset template; repair only the incompatible inherited index hash in a new successor.",
+    "repository": "asreview/synergy-dataset",
+    "root_tree_sha1": "49f437c367cc45a90867418fcef77c9ff3614456"
+  },
+  "current_authorization": {
+    "independent_source_custody": false,
+    "performance_run": false,
+    "seven_review_census": false
+  },
+  "disallowed_alternative": {
+    "commit": "dc2dadfdbb98eb1b4259604789abd640aa3b693e",
+    "index_git_blob_sha1": "ada2668adfbb33d61e11a6bec02b10637e419bde",
+    "index_sha256": "5d829c669f744cc6e91165b15dd3364554320d684398b841764b2609bb857d4b",
+    "reason": "It owns the inherited expected bytes but was not the V13-frozen snapshot and cannot be substituted after discovery."
+  },
+  "identity": "P2_V15_COHERENT_SINGLE_COMMIT_INDEX_AND_DATASET_LOCK_WITH_INDEPENDENT_SOURCE_CUSTODY",
+  "independent_source_custodian_microgate": [
+    "Bind repository, commit, root tree, index path, index Git blob SHA-1, index bytes and SHA-256 as one exact tuple.",
+    "Bind the repository licence and every candidate review file to the same commit before any index content or review field is interpreted.",
+    "Attest that the later dc2dadf index was not substituted and that no route switch is allowed after census starts.",
+    "Then and only then execute the unchanged label-blind seven-review selection rule from V14.",
+    "Stop without another source if the coherent frozen-commit snapshot cannot supply all seven exact-rights keyword-capable units."
+  ],
+  "matched_performance_contract_unchanged": {
+    "active_loop": "V10 exact",
+    "balancer": 9.8,
+    "costs": "All parsing, vectorization, fitting and ranking costs charged",
+    "fallback": "Exact u4 on any binding or signal failure",
+    "gates": "V10 G3-G9 unchanged and simultaneous",
+    "learner": "LinearSVC C=0.11 squared_hinge random_state=20260823"
+  },
+  "no_post_census_substitution": true,
+  "schema_version": "orion.p2.state-expanding-acquisition.next-discriminator.v15",
+  "selection_rule_change": "NONE",
+  "success_terminal": "P2_V15_INDEPENDENT_CUSTODIAN_BINDS_COHERENT_38B35218_COMMIT_TREE_BLOB_INDEX_AND_SAME_SNAPSHOT_RIGHTS__SEVEN_REVIEW_CENSUS_AUTHORIZED",
+  "terminal": "P2_V15_COHERENT_SINGLE_SNAPSHOT_LOCK_AND_INDEPENDENT_SOURCE_CUSTODY_NOT_YET_BOUND"
+}

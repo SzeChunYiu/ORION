@@ -1,0 +1,110 @@
+{
+  "schema_version": "orion.p3.provider-native-identity.protocol.v15",
+  "protocol_id": "P3_V15_OAEI2004_101_103_PROVIDER_NATIVE_IDENTITY_PREFREEZE",
+  "frozen_before_execution": true,
+  "scope": "Identity, rights, exact input/reference bytes, and same-universe comparator binding only; no matcher or scientific scoring execution.",
+  "predecessor": {
+    "packet": "development/p3-public-reference-alignment-v14-2026-08-23",
+    "terminal": "P3_V14_PROVIDER_NATIVE_REFERENCE_IDENTITY_CANNOT_CHECK__FROZEN_PAIR_IS_SYNTHETIC_AND_MATCHES_NO_OAEI_BIOML_CASE__NO_PUBLIC_GOLD_ADMITTED__NO_METRICS_OR_COMPARATOR_COMPUTED",
+    "next_discriminator": "Freeze a provider-native exact ontology pair with version, rights, ontology hashes, reference hash, and same-universe comparator identity before one prospective matcher run."
+  },
+  "provider_record": {
+    "api_url": "https://zenodo.org/api/records/15827226",
+    "expected_record_id": 15827226,
+    "expected_doi": "10.5281/zenodo.15827226",
+    "expected_title": "OAEI 2004 (Ontology alignment contest) benchmark tests (oacontest17)",
+    "expected_publication_date": "2004-10-10",
+    "expected_license_id": "cc-by-4.0",
+    "archive_key": "oacontest17.zip",
+    "archive_size": 486043,
+    "archive_md5": "31676c68912a22622f6ca6d031519df9",
+    "archive_sha256": "f22aac206773e4eacdd54cf9519ffe997332a430326bdae29f4210a24efab0b4"
+  },
+  "selected_provider_native_pair": {
+    "pair_id": "OAEI2004_OACONTEST17_101_TO_103",
+    "selection_basis": "Provider index names test 103 as Concept test: Language generalisation; nonempty exact public reference and pre-gold AML output already have hash-bound receipts.",
+    "independence_warning": "All numbered tests are systematic alterations of one bibliographic seed ontology and are one donor cluster, not independent studies.",
+    "source": {
+      "member": "101/onto.rdf",
+      "bytes": 69721,
+      "sha256": "d6143780103217a4a562e4982f0d4c724c09d3a3e7dc146a6b42cecc3e9f1064"
+    },
+    "target": {
+      "member": "103/onto.rdf",
+      "bytes": 70677,
+      "sha256": "e3643a6fcd237a162d120e58227df2e24e0398668c6f2428e4fea850180405cf"
+    },
+    "reference": {
+      "member": "103/refalign.rdf",
+      "bytes": 29568,
+      "sha256": "0afb0f2c9764201d91c226c5fb60d4b25425168acf6c2604fb191be906e9ec16",
+      "semantic_content_must_remain_unparsed_in_v15": true
+    }
+  },
+  "rights_gate": {
+    "expected_license": "CC-BY-4.0",
+    "required_conditions": [
+      "ATTRIBUTION",
+      "DOI_CITATION",
+      "INDICATE_ADAPTATIONS"
+    ],
+    "allowed_operations": [
+      "LOCAL_DOWNLOAD",
+      "INPUT_ONTOLOGY_PARSE",
+      "PUBLIC_REFERENCE_EVALUATION",
+      "DERIVED_METRICS"
+    ],
+    "archive_redistribution": "FORBIDDEN_BY_THIS_PACKET_POLICY_EVEN_THOUGH_PROVIDER_LICENSE_PERMITS_CONDITIONAL_REUSE",
+    "legal_advice": false
+  },
+  "candidate_identity": {
+    "name": "BERTMap maintained in DeepOnto",
+    "paper_title": "BERTMap: A BERT-Based Ontology Alignment System",
+    "paper_doi": "10.1609/aaai.v36i5.20510",
+    "paper_arxiv": "2112.02682",
+    "original_repository": "https://github.com/KRR-Oxford/BERTMap",
+    "original_commit": "ce848402b40e2f9513bf2d004894d3f82635022c",
+    "maintained_repository": "https://github.com/KRR-Oxford/DeepOnto",
+    "maintained_commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+    "package_version": "0.9.3",
+    "required_lineage": [
+      "P3 V8 exact dp.Score table-reader repair",
+      "P3 V11 exact 90-of-90 LogMap manifest classpath",
+      "P3 V12 Java add-opens direct-child propagation adapter",
+      "P3 V13 fail-closed typed Optional decoder with exact role-universe membership"
+    ]
+  },
+  "same_universe_comparator": {
+    "system_id": "AML_V3_2_AUTO_SOURCE_NATIVE",
+    "name": "AgreementMakerLight",
+    "repository": "https://github.com/AgreementMakerLight/AML-Project",
+    "tag": "v3.2",
+    "tag_commit": "d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6",
+    "license": "Apache-2.0",
+    "jar_sha256": "a5b831a6c000e49aa4702b16486dabdf38e40bb68203a16a8019414fecc2ecf3",
+    "release_asset_sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27",
+    "expected_target_103_output_sha256": "0141182140af358cf6bed245d2ed307efc8302551f272d0bf89811d0c0520657",
+    "reference_alignment_argument_supplied": false,
+    "authority_limit": "Source-native public-development comparator; not a current-SOTA or protected-confirmation certificate."
+  },
+  "v15_success_gate": [
+    "Live Zenodo metadata matches the frozen record, DOI, date, license, file name, size, and MD5.",
+    "The downloaded archive matches both frozen MD5 and SHA-256.",
+    "Source, target, and reference members match their frozen paths, byte counts, and SHA-256 hashes.",
+    "Source and target ontologies parse as XML; the reference member is read only for hashing and is not semantically parsed.",
+    "Existing OAEI rights, ontology inventory, and public-reference hash receipts agree exactly.",
+    "The frozen BERTMap source/runtime/decoder lineage receipts agree exactly.",
+    "AML v3.2 identity and its pre-gold, same-input target-103 output hash agree exactly.",
+    "No matcher, Java, training, prediction, repair, reference scoring, metric, pytest, CI, Git, or prohibited C4 validator runs."
+  ],
+  "authorized_next_execution": {
+    "status_if_v15_passes": "ONE_SEPARATELY_FROZEN_PROVIDER_NATIVE_BERTMAP_ATTEMPT_AUTHORIZED",
+    "input_pair": "OAEI2004_OACONTEST17_101_TO_103",
+    "attempts": 1,
+    "retries": 0,
+    "tuning_after_output": false,
+    "reference_rule": "Freeze all candidate artifacts and structural/typed-decoder receipts before parsing 103/refalign.rdf or computing any metric.",
+    "failure_rule": "Any identity, rights, runtime, artifact, decoder, universe-membership, or direct-child failure yields CANNOT_CHECK; it may not be converted to a score.",
+    "scientific_scope": "At most one public nonprotected single-seed-family development observation; no transport, protected confirmation, broad superiority, or top-tier readiness claim."
+  }
+}

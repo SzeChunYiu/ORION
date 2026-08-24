@@ -1,0 +1,160 @@
+{
+  "archive_attestation_status": 404,
+  "authority_gate": "Pass a path only if a provider-native signed build/release statement binds the exact checksum-bound archive (or exact file digest), full revision aa021231..., that path, and executable mode 0755. A historical 100755 commit, matching bytes, current Git mode, TAR header, local chmod, README wording or unsigned metadata alone is insufficient.",
+  "both_paths_authoritative": false,
+  "frozen_differences": [
+    {
+      "archive": {
+        "bytes": 409071,
+        "entry_type": "regular",
+        "normalized_path": "cpp/PAIpp.exe",
+        "sha256": "23887c1ec55e689014298c8e276a4bafbfbd3ba9fbbb0e317505f33816c5f4d6",
+        "unix_executable_bit": true
+      },
+      "archive_tar_mode": "0755",
+      "embedded_git_index_mode": "100644",
+      "immutable_revision": {
+        "bytes": 409071,
+        "entry_type": "regular",
+        "normalized_path": "cpp/PAIpp.exe",
+        "sha256": "23887c1ec55e689014298c8e276a4bafbfbd3ba9fbbb0e317505f33816c5f4d6",
+        "unix_executable_bit": false
+      },
+      "path": "cpp/PAIpp.exe"
+    },
+    {
+      "archive": {
+        "bytes": 352,
+        "entry_type": "regular",
+        "normalized_path": "run.sh",
+        "sha256": "20464879ee7dfd8db06c1f7978488f8e78c021df6b97df530a86628835ca90d1",
+        "unix_executable_bit": true
+      },
+      "archive_tar_mode": "0755",
+      "embedded_git_index_mode": "100644",
+      "immutable_revision": {
+        "bytes": 352,
+        "entry_type": "regular",
+        "normalized_path": "run.sh",
+        "sha256": "20464879ee7dfd8db06c1f7978488f8e78c021df6b97df530a86628835ca90d1",
+        "unix_executable_bit": false
+      },
+      "path": "run.sh"
+    }
+  ],
+  "github_release_count": 1,
+  "github_releases_status": 200,
+  "matching_bytes_do_not_establish_authority": true,
+  "paths": {
+    "cpp/PAIpp.exe": {
+      "exact_file_attestation_status": 404,
+      "github_history_status": 200,
+      "history_commit_count": 1,
+      "history_returned_shas": [
+        "6e7f7b5c8e4502cb3e6f6ee20d30b72ebbe697f5"
+      ],
+      "inspected_revisions": [
+        {
+          "commit_sha": "6e7f7b5c8e4502cb3e6f6ee20d30b72ebbe697f5",
+          "commit_verification": {
+            "payload": null,
+            "reason": "unsigned",
+            "signature": null,
+            "verified": false,
+            "verified_at": null
+          },
+          "path_entries": [
+            {
+              "mode": "100644",
+              "path": "cpp/PAIpp.exe",
+              "sha": "2488a6769086da39198b471d1e58110b5ad6cbd6",
+              "size": 409071,
+              "type": "blob",
+              "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/git/blobs/2488a6769086da39198b471d1e58110b5ad6cbd6"
+            }
+          ],
+          "tree_sha": "4a13829d2090894fa53b2d57be5777616423ba6e"
+        },
+        {
+          "commit_sha": "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+          "commit_verification": {
+            "payload": "tree d5620f3acf4e5a163cfdfdefc2432ebd5709008a\nparent 0600d876e04861902324f76b04025babb1bad754\nauthor stsiori <stsiori@clemson.edu> 1778706225 -0400\ncommitter GitHub <noreply@github.com> 1778706225 -0400\n\nUpdate README.md",
+            "reason": "valid",
+            "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqBOcxCRC1aQ7uu5UhlAAAv0QQAEQaLw1Xia8axM+hSnySWrXx\nOlEeHg4hgm/WrAqOfmXJQyoMdJ8+oi+w9c8URGmCInDo8eWFKut2R/9BQ/zA9JPb\niNyqAzIlmTyDUTrzGDYTHn/ZxcNxIQsQMTm05CAzUsGAPwYSlN8I1EdZXo+strne\nmyzb2d7xMfz6mTDkP2EgjKCG9+morr5tPvROq6jI5lNDmeOSx/OP81+uYa/+Qt/P\nAZC5Strkz+8PzkSjtWT/v2LFK+G31IEIR3Tb7Bur2vCT3NAF7dfoIOoZE6xEu5WR\nKdyE8zpDe1MXn03SFmMlpPQaDVruAEXFkyCDZPl8WHIj8fWfCG8ktLtgRJwW6Aq4\n40UKduJuQ+QLOmj5fesuMkwib6YsAapEBnj/3tZU2OuIDedzxl8vDCAqLorNrLNS\nMQq82TF2Fb2UV55uCJzWDZv8vBdulKuFCXaf2Ju/mptYBZBxHXCCE/p23vu+GBSw\n6I5g2SV57vFUBrefkhsUYGQjqsRpuyebnkmPaxevuQJBo/Woj+0ItDwb7EdU2U/Y\n6xIlRRsBGbRLmQrFuhYg6XcQUfUeJEHbiMvHGcAUGuqzoxDZ+xkF1DoTTo2Y18jW\ngq/lW+qWuz1San5MmXfTvE2vsQPC+59viupPkfHOGcXuz7VakVmXAai1aEYHAsvb\n6oLhYavg49FhvV6fNwLC\n=DSRn\n-----END PGP SIGNATURE-----\n",
+            "verified": true,
+            "verified_at": "2026-05-13T21:03:46Z"
+          },
+          "path_entries": [
+            {
+              "mode": "100644",
+              "path": "cpp/PAIpp.exe",
+              "sha": "2488a6769086da39198b471d1e58110b5ad6cbd6",
+              "size": 409071,
+              "type": "blob",
+              "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/git/blobs/2488a6769086da39198b471d1e58110b5ad6cbd6"
+            }
+          ],
+          "tree_sha": "d5620f3acf4e5a163cfdfdefc2432ebd5709008a"
+        }
+      ],
+      "provider_native_signed_mode_authority": false,
+      "terminal": "provider_native_signed_release_statement_binding_archive_revision_path_and_mode"
+    },
+    "run.sh": {
+      "exact_file_attestation_status": 404,
+      "github_history_status": 200,
+      "history_commit_count": 1,
+      "history_returned_shas": [
+        "6e7f7b5c8e4502cb3e6f6ee20d30b72ebbe697f5"
+      ],
+      "inspected_revisions": [
+        {
+          "commit_sha": "6e7f7b5c8e4502cb3e6f6ee20d30b72ebbe697f5",
+          "commit_verification": {
+            "payload": null,
+            "reason": "unsigned",
+            "signature": null,
+            "verified": false,
+            "verified_at": null
+          },
+          "path_entries": [
+            {
+              "mode": "100644",
+              "path": "run.sh",
+              "sha": "11aa0299f89abd31a430dcc41a33df903ab018bf",
+              "size": 352,
+              "type": "blob",
+              "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/git/blobs/11aa0299f89abd31a430dcc41a33df903ab018bf"
+            }
+          ],
+          "tree_sha": "4a13829d2090894fa53b2d57be5777616423ba6e"
+        },
+        {
+          "commit_sha": "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+          "commit_verification": {
+            "payload": "tree d5620f3acf4e5a163cfdfdefc2432ebd5709008a\nparent 0600d876e04861902324f76b04025babb1bad754\nauthor stsiori <stsiori@clemson.edu> 1778706225 -0400\ncommitter GitHub <noreply@github.com> 1778706225 -0400\n\nUpdate README.md",
+            "reason": "valid",
+            "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqBOcxCRC1aQ7uu5UhlAAAv0QQAEQaLw1Xia8axM+hSnySWrXx\nOlEeHg4hgm/WrAqOfmXJQyoMdJ8+oi+w9c8URGmCInDo8eWFKut2R/9BQ/zA9JPb\niNyqAzIlmTyDUTrzGDYTHn/ZxcNxIQsQMTm05CAzUsGAPwYSlN8I1EdZXo+strne\nmyzb2d7xMfz6mTDkP2EgjKCG9+morr5tPvROq6jI5lNDmeOSx/OP81+uYa/+Qt/P\nAZC5Strkz+8PzkSjtWT/v2LFK+G31IEIR3Tb7Bur2vCT3NAF7dfoIOoZE6xEu5WR\nKdyE8zpDe1MXn03SFmMlpPQaDVruAEXFkyCDZPl8WHIj8fWfCG8ktLtgRJwW6Aq4\n40UKduJuQ+QLOmj5fesuMkwib6YsAapEBnj/3tZU2OuIDedzxl8vDCAqLorNrLNS\nMQq82TF2Fb2UV55uCJzWDZv8vBdulKuFCXaf2Ju/mptYBZBxHXCCE/p23vu+GBSw\n6I5g2SV57vFUBrefkhsUYGQjqsRpuyebnkmPaxevuQJBo/Woj+0ItDwb7EdU2U/Y\n6xIlRRsBGbRLmQrFuhYg6XcQUfUeJEHbiMvHGcAUGuqzoxDZ+xkF1DoTTo2Y18jW\ngq/lW+qWuz1San5MmXfTvE2vsQPC+59viupPkfHOGcXuz7VakVmXAai1aEYHAsvb\n6oLhYavg49FhvV6fNwLC\n=DSRn\n-----END PGP SIGNATURE-----\n",
+            "verified": true,
+            "verified_at": "2026-05-13T21:03:46Z"
+          },
+          "path_entries": [
+            {
+              "mode": "100644",
+              "path": "run.sh",
+              "sha": "11aa0299f89abd31a430dcc41a33df903ab018bf",
+              "size": 352,
+              "type": "blob",
+              "url": "https://api.github.com/repos/NutritionalLungImmunity/PAI/git/blobs/11aa0299f89abd31a430dcc41a33df903ab018bf"
+            }
+          ],
+          "tree_sha": "d5620f3acf4e5a163cfdfdefc2432ebd5709008a"
+        }
+      ],
+      "provider_native_signed_mode_authority": false,
+      "terminal": "provider_native_signed_release_statement_binding_archive_revision_path_and_mode"
+    }
+  },
+  "protocol_sha256": "9bc43bfae807d3d69ac01696786987e0e7e583421dc0e77d1af3f22ef7bec1dd",
+  "schema_version": "orion.p4.exact-edge-build-provenance.v12.mode-authority"
+}

@@ -1,0 +1,135 @@
+{
+  "actions": {
+    "attestation_json_parses": 1,
+    "class_counts_inspected_or_retained": false,
+    "commit_json_parses": 1,
+    "index_json_parses": 0,
+    "index_json_requests": 0,
+    "label_values_inspected_or_retained": false,
+    "learner_or_model_runs": 0,
+    "license_json_parses": 1,
+    "manuscript_updated": false,
+    "network_requests": 7,
+    "performance_arms": 0,
+    "pytest_or_repository_ci_runs": 0,
+    "ranking_or_metric_runs": 0,
+    "release_json_parses": 1,
+    "repository_json_parses": 1,
+    "review_csv_requests": 0,
+    "review_population_censuses": 0,
+    "shared_ledger_updated": false,
+    "tag_json_parses": 1,
+    "tree_json_parses": 1
+  },
+  "adjudicated_at_utc": "2026-08-24T06:53:34.464251+00:00",
+  "authority": "PROVIDER_AUTHENTICATED_COHERENT_SINGLE_SNAPSHOT_METADATA_WITNESS_ONLY",
+  "claim_boundary": "A validly signed provider commit/tree contains the exact repaired index entry and 61 dataset blobs. This is source-state availability, not an eligible population or performance result.",
+  "custody": {
+    "closed_roles": 0,
+    "independent_outcome_custody": false,
+    "independent_result_verifier": false,
+    "independent_source_population_custody": false,
+    "provider_snapshot_authentication": true,
+    "required_roles": 3
+  },
+  "evidence": {
+    "HANDOFF_V15.md": {
+      "bytes": 1062,
+      "sha256": "2d776a51de7ebeca7414f56a6e7aa98e60220eac3b60325343f3958099340534"
+    },
+    "IMPLEMENTATION_CORRECTION_V15B.json": {
+      "bytes": 1386,
+      "sha256": "55dda1c29a0e0a619f7234888ffdf0d20a2e35d4b8782972343254d694607980"
+    },
+    "INDEPENDENT_SOURCE_CUSTODY_REQUEST_V15.json": {
+      "bytes": 2900,
+      "sha256": "f07c8185c48d5e0a40d02e7bee4dcc0530922fe68e111c0a4cbd83c7c36e2a58"
+    },
+    "INDEPENDENT_SOURCE_CUSTODY_REQUEST_V15.md": {
+      "bytes": 1289,
+      "sha256": "4df0611883a156d051559007dc1a9b23fce3caf39f63b4459615989ddb0e1adc"
+    },
+    "NEGATIVE_RESULT_LEDGER_V15.json": {
+      "bytes": 1723,
+      "sha256": "28f5f7c262b9082137e441b1e0782914b9d332b65f76eb15c2ffc59fb83edf12"
+    },
+    "PROBE_RECEIPT_V15.json": {
+      "bytes": 7824,
+      "sha256": "3d79ddd56ab1cf729eda5f0d3476468fce39aaf6f827dcb7bb45b9e87e833375"
+    },
+    "PROTOCOL_FREEZE_RECEIPT_V15.json": {
+      "bytes": 717,
+      "sha256": "e3467742dd1306875f1c804119b480c342fee9589b07001228020645faf05c4f"
+    },
+    "PROTOCOL_V15.json": {
+      "bytes": 7281,
+      "sha256": "a492bf47620651b35542b64ac9bc1da115ef793d0998e14a3fa43ab98f64c29c"
+    },
+    "PROVIDER_QUALIFICATION_V15.json": {
+      "bytes": 18302,
+      "sha256": "ddc40d08e2a2a40554e8271391ee99818b7b98f27d39c2eabebcf10be43f6cf5"
+    },
+    "SCIENTIFIC_REPORT_V15.md": {
+      "bytes": 3023,
+      "sha256": "0d80b4fa5e166422fb6b3daad4d95a4013c3bd6d5ce9f85a2bf80b3df9f07f64"
+    },
+    "development/p2-state-expanding-acquisition-v14-2026-08-24/RESULT_V14.json": {
+      "bytes": 3263,
+      "sha256": "95496f053d762173285b9fbb436ff19bad08f47a82e278bb44715b565a0cd333"
+    }
+  },
+  "exact_terminal": "P2_V15_SIGNED_COHERENT_SINGLE_SNAPSHOT_PASS__INDEX_F4F5007_AND_61_DATASET_BLOBS_BOUND__V15_TEMPLATE_TRANSCRIPTION_FAIL_CLOSED_AND_V14_TEMPLATE_RESTORED_FOR_SUCCESSOR_ONLY__EXACT_ROOT_LICENSE_MIT_CURRENT_METADATA_CC0_NOT_BLENDED__ATTESTATION_404__INDEPENDENT_CUSTODY_NOT_CLOSED__STOP_BEFORE_INDEX_PARSE_CENSUS_PERFORMANCE",
+  "gates": {
+    "coherent_provider_snapshot": true,
+    "independent_source_custody": false,
+    "label_blind_census_authorized": false,
+    "matched_performance_authorized": false
+  },
+  "identity": "P2_V15_COHERENT_SINGLE_COMMIT_INDEX_AND_DATASET_LOCK_WITH_PROVIDER_QUALIFICATION",
+  "implementation_correction": {
+    "authorization": {
+      "candidate_request": false,
+      "census": false,
+      "index_parse": false,
+      "performance": false,
+      "reuse_provider_metadata_as_descriptive_witness": true
+    },
+    "chronology": "The V15 provider gate completed before the candidate-template transcription error was checked against immutable V14. The frozen V15 protocol remains unchanged.",
+    "corrected_successor_template": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/{review}/output/{review}.csv",
+    "error": "FROZEN_V15_CANDIDATE_TEMPLATE_DIVERGES_FROM_IMMUTABLE_V14_TEMPLATE",
+    "immutable_v14_template": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/{review}/output/{review}.csv",
+    "schema_version": "orion.p2.state-expanding-acquisition.v15b.implementation-correction",
+    "scientific_effect": "No index or candidate body was requested, no census or outcome occurred, and the erroneous template was never executed. The seven provider metadata responses are not reinterpreted as prospective evidence under the correction.",
+    "v15_frozen_template": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/{review_id}.csv",
+    "v15_protocol_sha256": "a492bf47620651b35542b64ac9bc1da115ef793d0998e14a3fa43ab98f64c29c"
+  },
+  "next_causal_discriminator": "An external outcome-blind source-population custodian signs the coherent tuple, exact immutable-V14 route, 61-blob manifest, per-review CC-BY-4.0/CC0 rights and no-route-switch contract; only then execute one unchanged label-blind census.",
+  "positive_result": {
+    "commit_tree_index_coherent": true,
+    "dataset_bodies_requested": false,
+    "index_body_requested_or_parsed": false,
+    "provider_commit_signature_valid": true,
+    "provider_tag_exact": "refs/tags/metadata-v1-final",
+    "provider_tag_target": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "recursive_tree_complete": true,
+    "same_snapshot_dataset_csv_count": 61,
+    "same_snapshot_dataset_manifest_sha256": "fe93857d5566fd63c9f681939fc1bfd347d6ae9496a1a01f6edd09428ce3c30a",
+    "tree_blob_count": 140,
+    "tree_entry_count": 169
+  },
+  "preserved_v14": {
+    "adverse_terminal": "P2_V14_FROZEN_INDEX_IDENTITY_MISMATCH__PINNED_COMMIT_PATH_RESOLVES_F4F5007_BLOB_SHA256_F34C17B3__EXPECTED_ADA2668_BLOB_SHA256_5D829C66_BELONGS_TO_DC2DADF__STOP_BEFORE_CENSUS_AND_PERFORMANCE",
+    "historical_owner_substituted": false,
+    "result_sha256": "95496f053d762173285b9fbb436ff19bad08f47a82e278bb44715b565a0cd333"
+  },
+  "protocol_sha256": "a492bf47620651b35542b64ac9bc1da115ef793d0998e14a3fa43ab98f64c29c",
+  "rights": {
+    "current_metadata_substituted_as_historical_rights": false,
+    "current_repository_metadata_license_spdx": "CC0-1.0",
+    "exact_snapshot_root_license_sha256": "f1e934ccb74b86e49caa93146e16d342c86885d06a4b8d087679c3ac5689bbad",
+    "exact_snapshot_root_license_spdx": "MIT",
+    "per_review_exact_rights_closed": false
+  },
+  "schema_version": "orion.p2.state-expanding-acquisition.v15.result",
+  "verdict": "POSITIVE_COHERENT_PROVIDER_SNAPSHOT__CENSUS_AND_PERFORMANCE_WITHHELD"
+}

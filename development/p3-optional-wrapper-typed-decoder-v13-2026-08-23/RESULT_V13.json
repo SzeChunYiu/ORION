@@ -1,0 +1,91 @@
+{
+  "authority": "LEXICAL_TYPE_RECOVERY_AND_STRUCTURAL_INTERFACE_CONFORMANCE_ONLY__NO_MAPPING_TRUTH_CORRECTNESS_PERFORMANCE_HARM_COVERAGE_TRANSPORT_OR_SUPERIORITY_AUTHORITY",
+  "claim_boundary": {
+    "correctness": "CANNOT_CHECK",
+    "coverage": "CANNOT_CHECK",
+    "harm": "CANNOT_CHECK",
+    "mapping_truth": "CANNOT_CHECK",
+    "performance": "CANNOT_CHECK",
+    "superiority": "CANNOT_CHECK",
+    "transport": "CANNOT_CHECK"
+  },
+  "execution": {
+    "decoder_attempts": 1,
+    "downloads": 0,
+    "logmap_attempts": 0,
+    "native_attempts": 0,
+    "parser_attempts": 1,
+    "parser_runtime_nanoseconds": 31007000,
+    "retries": 0,
+    "runtime_nanoseconds": 33283000,
+    "runtime_seconds": 0.033283,
+    "training_attempts": 0
+  },
+  "next_discriminator": {
+    "identity": "PROSPECTIVE_TYPED_DECODER_ADAPTER_OR_NO_GOLD_COMPARATOR_HANDOFF",
+    "rule": "Use the exact V13 grammar and membership/injectivity gates as an explicit, separately receipted adapter. Preserve original LogMap rows. Do not repeat BERTMap merely to re-demonstrate the 16-row lexical result."
+  },
+  "raw_v12_unchanged": {
+    "byte_identical_v13_copy_sha256": "694d281361f3bc73dfdc947ae1a864ddc56c8d0860a8fe518797fd5bfeb3b635",
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/results/bertmap-out/bertmap/match/repaired_mappings.tsv",
+    "sha256_after": "694d281361f3bc73dfdc947ae1a864ddc56c8d0860a8fe518797fd5bfeb3b635",
+    "sha256_before": "694d281361f3bc73dfdc947ae1a864ddc56c8d0860a8fe518797fd5bfeb3b635",
+    "unchanged": true
+  },
+  "readiness": {
+    "five_artifact_structural_contract": "PASS",
+    "native_execution": "3/3 from V12",
+    "scientific_comparator": "0/3",
+    "top_tier_submission_ready": false,
+    "typed_lexical_interface": "PASS"
+  },
+  "schema_version": "orion.p3.optional-wrapper-typed-decoder.result.v13",
+  "terminal": "P3_V13_TYPED_OPTIONAL_DECODER_PASS__SIXTEEN_OF_SIXTEEN_EXACT_ROLE_UNIVERSE_MEMBERS__INJECTIVE__TWELVE_OF_TWELVE_ADVERSARIAL_MICROCASES_PASS__UNCHANGED_V7_STRUCTURAL_PARSER_PASS__RAW_V12_UNCHANGED",
+  "typed_decoder": {
+    "adversarial_microcases": {
+      "checks": "12/12",
+      "receipt_sha256": "6dfb91c378303efb78bb02df6cd9b77ea698117460cff364a80c4ef8ee0c4f56"
+    },
+    "decoded_artifact": {
+      "bytes": 1530,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/runtime/decoded-match/repaired_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "c67ee88d541013f41984b239f9cdeaebdcd81573f2080d8af24c7688207dd0f3"
+    },
+    "decoded_rows": 16,
+    "exact_role_membership": {
+      "source": 16,
+      "target": 16
+    },
+    "grammar": {
+      "acceptance_requirements": [
+        "whole string matches anchored grammar exactly",
+        "no whitespace, nested parentheses, second fragment, missing fragment, or alternative constructor",
+        "decoded entity IRI is an exact member of the role-specific frozen universe",
+        "decoder is injective separately for source and target observed strings"
+      ],
+      "anchored_regex": "\\AOptional\\.of\\((?P<ontology_iri>[A-Za-z][A-Za-z0-9+.-]*:[^()\\s#]+)\\)(?P<fragment>#[^#()\\s]+)\\Z",
+      "decode_rule": "decoded_entity_iri = ontology_iri + fragment",
+      "name": "OWLAPI_OPTIONAL_ONTOLOGY_IRI_PLUS_ENTITY_FRAGMENT_V1",
+      "normalization_forbidden": "No trim, substring replacement, case fold, URL decoding, heuristic repair, or outcome-dependent mutation.",
+      "surface_form": "Optional.of(<ontology-IRI>)<fragment>"
+    },
+    "injective": {
+      "source": true,
+      "target": true
+    },
+    "input_rows": 16
+  },
+  "unchanged_parser": {
+    "exit_code": 0,
+    "receipt_sha256": "a9a56a5387e2ffbb627e99d9a6ab2117faa6b43370e2a5a5b973ff985b9e8cd8",
+    "row_counts": {
+      "extended": 16,
+      "filtered": 16,
+      "raw_json": 16,
+      "raw_tsv": 16,
+      "repaired": 16
+    },
+    "terminal": "STRUCTURAL_NATIVE_ARTIFACT_CONTRACT_PASS"
+  }
+}

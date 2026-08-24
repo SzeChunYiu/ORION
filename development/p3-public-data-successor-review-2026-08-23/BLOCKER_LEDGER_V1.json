@@ -1,0 +1,92 @@
+{
+  "audit_date": "2026-08-23",
+  "blockers": [
+    {
+      "evidence": "PLURAL and invalid actions are scored as obstruction; robust floor omits PLURAL.",
+      "id": "P3PUB.C1",
+      "repair": "Freeze and validate a complete action-by-state loss matrix.",
+      "severity": "CRITICAL",
+      "status": "OPEN",
+      "topic": "FOUR_TERMINAL_LOSS_SEMANTICS"
+    },
+    {
+      "evidence": "Adversarial probes passed forbidden inventory fields, nested gold, duplicates, fake digests and injected clusters.",
+      "id": "P3PUB.C2",
+      "repair": "Closed schemas, recursive guards, signed manifests, unique complete predictions and authority-owned clusters.",
+      "severity": "CRITICAL",
+      "status": "OPEN",
+      "topic": "OUTCOME_AND_UNIT_BINDING"
+    },
+    {
+      "evidence": "No donor source-to-case builder, P3 candidate or identified-relations builder exists.",
+      "id": "P3PUB.C3",
+      "repair": "Implement one frozen donor lane end to end before outcome access.",
+      "severity": "CRITICAL",
+      "status": "OPEN",
+      "topic": "END_TO_END_EXECUTABILITY"
+    },
+    {
+      "evidence": "Coordinate opportunity, coverage, external comparator and no-pooling gates are not consumed by scorer.",
+      "id": "P3PUB.H1",
+      "repair": "Machine-enforce each noncompensatory gate before scoring.",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "topic": "GATE_ENFORCEMENT"
+    },
+    {
+      "evidence": "Generic weak comparators lack matched four-action semantics and no source-native comparator is bound.",
+      "id": "P3PUB.H2",
+      "repair": "Bind exact source-native systems and match information/action/candidate-universe/coverage.",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "topic": "COMPARATOR_FAIRNESS"
+    },
+    {
+      "evidence": "Boolean acknowledgements lack decision authority; SciREX body lacks expected checksum but is called verified.",
+      "id": "P3PUB.H3",
+      "repair": "Human rights receipt, immutable body hashes, licence propagation and separate evaluator custody.",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "topic": "RIGHTS_AND_INTEGRITY"
+    },
+    {
+      "evidence": "Only descriptive per-system rates; no paired contrasts, intervals, multiplicity or donor strata.",
+      "id": "P3PUB.H4",
+      "repair": "Freeze cluster-level donor-specific estimands; never infer from 21 OAEI tests as independent units.",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "topic": "INFERENCE"
+    },
+    {
+      "evidence": "No donor has natural temporal-context mapping opportunities.",
+      "id": "P3PUB.B1",
+      "repair": "Add a lawful independent temporal donor; never proxy with dates/test numbers.",
+      "severity": "BLOCKING_BOUNDARY",
+      "status": "CANNOT_CHECK",
+      "topic": "TEMPORAL_CONTEXT"
+    },
+    {
+      "evidence": "Inventory parses complete public inline-labelled rows to retain doc_id.",
+      "id": "P3PUB.B2",
+      "repair": "Procedural custodian separation only; never claim protected outcome blindness.",
+      "severity": "BLOCKING_BOUNDARY",
+      "status": "PUBLIC_ONLY",
+      "topic": "SCIREX_PUBLIC_INLINE_OUTCOMES"
+    }
+  ],
+  "paper_id": "P3",
+  "promotion_boundary": "A positive repaired OAEI lane remains a public one-seed-family ontology-perturbation result and cannot promote raw-text, temporal, multi-domain, protected, or frozen-768-cluster claims.",
+  "protected_evidence_authorized": false,
+  "pytest_or_ci_run": false,
+  "reviewed_protocol_id": "P3.PUBLIC.TRANSPORT.CRAFT_SCIREX_OAEI.V1",
+  "safe_execution": {
+    "empirical_outputs_generated_by_audit": false,
+    "end_to_end_public_empirical_run": "NOT_EXECUTABLE",
+    "oaei_input_inventory_and_sample_replay": "PASS_BYTE_IDENTICAL",
+    "public_gold_opened_by_audit": false,
+    "synthetic_adversarial_outputs_generated": true
+  },
+  "schema_version": "orion.p3.public-successor-readiness-audit.v1",
+  "scientific_result_authorized": false,
+  "terminal": "ADVERSARIAL_AUDIT_FAIL__OAEI_INPUT_INDEX_REPLAY_ONLY__NO_END_TO_END_PUBLIC_RESULT"
+}

@@ -1,0 +1,22 @@
+P3 V15 identity-gate first technical invocation
+
+Command: rtk python run_identity_gate_v15.py
+Disposition: FAILED_BEFORE_RESULT_OR_RECEIPT
+Matcher/training/Java/prediction/repair/scoring attempts: 0/0/0/0/0/0
+Provider requests completed before failure: metadata and archive bytes
+Reference semantics parsed: false
+Scientific outcomes opened: false
+
+Exact terminal exception:
+Traceback (most recent call last):
+  File "run_identity_gate_v15.py", line 351, in <module>
+    main()
+  File "run_identity_gate_v15.py", line 201, in main
+    ensure(v13["outcome_boundary"]["gold_or_reference_opened"] is False, "v13_no_gold_boundary", checks)
+KeyError: 'outcome_boundary'
+
+Cause: V13 records the no-gold boundary at execution.gold_or_reference_opened,
+not outcome_boundary.gold_or_reference_opened. The runner was corrected to read
+the frozen existing field. No protocol, expected provider identity, selected
+pair, rights gate, candidate identity, comparator identity, success gate, or
+future scientific execution rule changed.

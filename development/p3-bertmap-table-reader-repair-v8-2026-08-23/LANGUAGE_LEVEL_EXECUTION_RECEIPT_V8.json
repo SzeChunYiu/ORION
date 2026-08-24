@@ -1,0 +1,198 @@
+{
+  "authority": "EXACT_SOURCE_PATCH_AND_OUTCOME_BLIND_SYNTHETIC_LANGUAGE_LEVEL_EXECUTION_ONLY__NOT_DEEPONTO_OR_NATIVE_BERTMAP_EXECUTION",
+  "environment": {
+    "implementation": "CPython",
+    "machine": "arm64",
+    "platform": "macOS-26.4-arm64-arm-64bit-Mach-O",
+    "python": "3.13.12"
+  },
+  "executed_at": "2026-08-23T19:21:47.428331+00:00",
+  "forbidden_operations": {
+    "deeponto_imported": false,
+    "gold_or_reference_opened": false,
+    "jvm_started": false,
+    "model_opened_or_run": false,
+    "ontology_or_benchmark_opened_or_run": false,
+    "paper_data_zip_opened": false,
+    "protected_outcomes_opened": false,
+    "training_prediction_repair_or_scoring": false
+  },
+  "next_discriminator": "Bind a complete content-addressed repaired Python/JVM runtime with component-level rights/SBOM, then run the unchanged no-gold five-artifact smoke; stop if any actual artifact is absent or fails the frozen V7 parser.",
+  "parser_compatibility": {
+    "actual_native_artifacts_present": 0,
+    "actual_native_artifacts_required": 5,
+    "authority": "SYNTHETIC_INTERFACE_COMPATIBILITY_ONLY__NOT_NATIVE_BERTMAP_ARTIFACTS_OR_SMOKE",
+    "native_smoke_claimed": false,
+    "parser_sha256": "d1184dc129082bdcf18b415b551f244a695b4e34417286afc37a3f3a5d788bc5",
+    "row_counts": {
+      "extended": 2,
+      "filtered": 1,
+      "raw_json": 2,
+      "raw_tsv": 2,
+      "repaired": 1
+    },
+    "synthetic_artifact_hashes": {
+      "extended_mappings.tsv": "efe062749a93b9fc2c8ddae650d62b203eaf0a2880bd83c52fe76ffdc12af51e",
+      "filtered_mappings.tsv": "7c835357a2eaee91431d5053d15577f2bd8c4a8d460ae5754e5be05562926303",
+      "raw_mappings.json": "e18c3d81d853bc3b527af83cbd78113d4e43b2adc7712f4f33255277bae05d46",
+      "raw_mappings.tsv": "efe062749a93b9fc2c8ddae650d62b203eaf0a2880bd83c52fe76ffdc12af51e",
+      "repaired_mappings.tsv": "7c835357a2eaee91431d5053d15577f2bd8c4a8d460ae5754e5be05562926303"
+    },
+    "synthetic_files_created_then_deleted": [
+      "raw_mappings.json",
+      "raw_mappings.tsv",
+      "extended_mappings.tsv",
+      "filtered_mappings.tsv",
+      "repaired_mappings.tsv"
+    ],
+    "terminal": "STRUCTURAL_NATIVE_ARTIFACT_CONTRACT_PASS"
+  },
+  "protocol_id": "P3_V8_BERTMAP_PROSPECTIVE_MINIMAL_TABLE_READER_REPAIR",
+  "readiness_delta": {
+    "actual_native_artifacts_present": 0,
+    "actual_native_artifacts_required": 5,
+    "native_smoke_ready_after": "2/3",
+    "native_smoke_ready_before": "2/3",
+    "net_native_smoke_readiness_change": 0,
+    "net_scientific_comparator_readiness_change": 0,
+    "scientific_comparator_ready_after": "0/3",
+    "scientific_comparator_ready_before": "0/3",
+    "table_reader_truthy_threshold_source_defect": "BLOCKING_TO_REPAIRED_AT_EXACT_PATCH_AND_SYNTHETIC_LANGUAGE_LEVEL_BOUNDARY"
+  },
+  "remaining_blockers": [
+    "complete content-addressed DeepOnto Python runtime beyond the V7 constructor-only 26-distribution island",
+    "component-level provenance, rights decisions and SBOM closure for the JVM/JAR layer",
+    "one fresh isolated no-gold native BERTMap run under the exact repaired source producing all five actual parseable artifacts",
+    "independently custodied rights-valid evaluation before correctness, coverage, harm, transport, performance or superiority claims"
+  ],
+  "schema_version": "orion.p3.bertmap-table-reader-repair.language-level-execution.v8",
+  "semantic_equivalence_boundary": {
+    "ast_equivalent_after_normalizing_only_frozen_access": true,
+    "changed_behavior": "Truthy-threshold comparison now reads the itertuples namedtuple Score attribute and can apply the existing >= threshold rule.",
+    "changed_expression": {
+      "after": "dp.Score",
+      "before": "dp[\"Score\"]"
+    },
+    "unchanged_behavior": [
+      "empty non-reference tables return an empty list",
+      "falsey thresholds short-circuit comparison and retain all rows",
+      "EntityMapping construction, source/target fields, relation and stored score are unchanged",
+      "reference branch text and behavior are unchanged and were not executed",
+      "table acquisition, model behavior, mapping generation, repair algorithms and evaluation are outside this patch"
+    ],
+    "v7_scope_correction": "The V7 statement that any nonempty non-reference table triggers TypeError was too broad: the defective subscript executes only when threshold is truthy."
+  },
+  "source_identity": {
+    "changed_expression_count": 1,
+    "changed_source_lines_added": 1,
+    "changed_source_lines_removed": 1,
+    "commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+    "expected_repaired_sha256": "d0b3b6cfdee45019783707c4bd623cc76f8325142828cf1e10ebb74ad628d70f",
+    "original_sha256": "9cf0dce1c5bd142e4175f628f8f3267f54ed6deac9f31e165a25b4a073eedff0",
+    "patch_file": "mapping_dp_score_v8.patch",
+    "patch_sha256": "412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b",
+    "path": "src/deeponto/align/mapping.py",
+    "repaired_sha256": "d0b3b6cfdee45019783707c4bd623cc76f8325142828cf1e10ebb74ad628d70f",
+    "repository": "https://github.com/KRR-Oxford/DeepOnto",
+    "root_license_spdx": "Apache-2.0",
+    "tree": "b499cb5780bbe749f7db44d0bc872d275a2737ea",
+    "upstream_license_sha256": "340ebaff716578e1b620521eeb740febbdcb24b8bd0c1de12c37b916aadf4d36"
+  },
+  "synthetic_execution": {
+    "case_count": 8,
+    "cases": [
+      {
+        "id": "SYN_EMPTY_NONREFERENCE",
+        "original": [],
+        "pass": true,
+        "repaired": []
+      },
+      {
+        "id": "SYN_NONEMPTY_THRESHOLD_NONE",
+        "original": [
+          {
+            "head": "urn:synthetic:source:A",
+            "relation": "<?rel>",
+            "score": 0.9,
+            "tail": "urn:synthetic:target:X"
+          },
+          {
+            "head": "urn:synthetic:source:B",
+            "relation": "<?rel>",
+            "score": 0.4,
+            "tail": "urn:synthetic:target:Y"
+          }
+        ],
+        "pass": true,
+        "repaired": [
+          {
+            "head": "urn:synthetic:source:A",
+            "relation": "<?rel>",
+            "score": 0.9,
+            "tail": "urn:synthetic:target:X"
+          },
+          {
+            "head": "urn:synthetic:source:B",
+            "relation": "<?rel>",
+            "score": 0.4,
+            "tail": "urn:synthetic:target:Y"
+          }
+        ],
+        "scope_correction": "The V7 defect does not trigger when threshold is None or another falsey value because Python short-circuits before dp[\"Score\"]."
+      },
+      {
+        "id": "SYN_NONEMPTY_THRESHOLD",
+        "original_error": "TypeError: tuple indices must be integers or slices, not str",
+        "pass": true,
+        "repaired": [
+          {
+            "head": "urn:synthetic:source:A",
+            "relation": "<?rel>",
+            "score": 0.9,
+            "tail": "urn:synthetic:target:X"
+          }
+        ]
+      },
+      {
+        "error": "AttributeError: 'Pandas' object has no attribute 'Score'",
+        "id": "MALFORMED_MISSING_SCORE",
+        "pass": true
+      },
+      {
+        "error": "TypeError: '>=' not supported between instances of 'str' and 'float'",
+        "id": "MALFORMED_NONNUMERIC_SCORE",
+        "pass": true
+      },
+      {
+        "error": "SourceIdentityError: source SHA-256 is not the prospectively frozen DeepOnto mapping.py identity",
+        "id": "STALE_SOURCE_HASH",
+        "pass": true
+      },
+      {
+        "error": "ProhibitedOperation: reference-mode access is prohibited in V8",
+        "id": "PROHIBITED_REFERENCE_MODE",
+        "pass": true,
+        "table_access_delta": 0
+      },
+      {
+        "error": "ProhibitedOperation: external or unregistered table access is prohibited in V8",
+        "id": "PROHIBITED_EXTERNAL_FIXTURE",
+        "pass": true,
+        "table_access_delta": 0
+      }
+    ],
+    "fixture_authority": "authored in-memory IRIs and scores only; not an ontology, benchmark, gold/reference or protected outcome",
+    "pandas_itertuples_source_path": "/Users/billy/miniforge3/lib/python3.13/site-packages/pandas/core/frame.py",
+    "pandas_itertuples_source_sha256": "f2edd11fa07e96db34e0d006025b9b66200f67ebe016c1e011dd23ec173dec5b",
+    "pandas_version": "2.3.3",
+    "pass_count": 8
+  },
+  "terminal": "P3_V8_BERTMAP_TABLE_READER_MINIMAL_REPAIR_SOURCE_HASH_AND_SYNTHETIC_EMPTY_NONEMPTY_EXECUTION_BOUND__MALFORMED_STALE_AND_PROHIBITED_CASES_FAIL_CLOSED__V7_PARSER_SYNTHETIC_COMPATIBILITY_BOUND__NATIVE_SMOKE_AND_SCIENTIFIC_READINESS_UNCHANGED",
+  "v7_compatibility_island": {
+    "boundary": "The pandas language-level harness is not promoted into the V7 26-distribution island or a complete DeepOnto runtime.",
+    "distribution_count": 26,
+    "lock_sha256": "6a31875e9b6315c3a07a58c1cfc401f704d0f1d187f28323d4f49806b0290293",
+    "manifest_sha256": "d02ac442491f92c51aae156cc009cc306fdecedb971c5c07f05854bd44221014",
+    "status": "UNCHANGED_AND_NOT_REEXECUTED__CONSTRUCTOR_ONLY"
+  }
+}

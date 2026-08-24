@@ -1,0 +1,755 @@
+{
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "authority": "OUTCOME_BLIND_SOURCE_RUNTIME_PREFLIGHT_ONLY",
+  "execution": {
+    "benchmark_or_protected_or_gold_opened": false,
+    "git_or_shared_checkout_edited": false,
+    "native_dgm_or_model_run": false,
+    "pytest_run": false,
+    "raw_or_large_final_payload_retained": false,
+    "repository_ci_run": false
+  },
+  "frozen_at_utc": "2026-08-23T18:15:39Z",
+  "readiness": {
+    "blocker_delta": -3,
+    "panel_ready_arms": 0,
+    "panel_required_arms": 6,
+    "v3_blocking_fields": 18,
+    "v3_bound_fields": 3,
+    "v4_blocking_fields": 15,
+    "v4_bound_fields": 6
+  },
+  "schema_version": "orion.p5.c3.audit-receipt.v4",
+  "smoke_summary": {
+    "native_dgm_smoke": "CANNOT_CHECK",
+    "parser_adapter_output": "UNRESOLVED",
+    "parser_patch_captured_exit": 0,
+    "parser_patch_captured_native_status": "COMPLETE_SUCCESS",
+    "parser_prohibited_key_refusal_exit": 2,
+    "preflight_refusal_exit": 3
+  },
+  "source_receipt": {
+    "archive_format": "git archive --format=tar <commit>",
+    "archive_sha256": "bb92fc4c9f1a2a930059a9fa92db32f0d2ee81e030dd6925a9afbb4b2f3f1ee4",
+    "commit_sha": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+    "outcome_initial_blob_bytes_metadata_only": 49707333,
+    "outcome_initial_files_metadata_only": 1595,
+    "outcome_payload_contents_opened": false,
+    "repository": "https://github.com/jennyzzt/dgm",
+    "tree_sha": "dc58ea5c481124afdb97468c1bed4e0debb425c4"
+  },
+  "terminal": "P5_C3_V4_DGM_SOURCE_NATIVE_PARSER_EMPTY_FALLBACK_AND_OUTER_WALLCLOCK_BOUND__UNPINNED_DEPENDENCIES_NOT_MISLABELED_AS_LOCK__FIFTEEN_C3_FIELDS_BLOCKING__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK",
+  "validation": {
+    "checks": [
+      {
+        "name": "json_valid::AUDIT_RECEIPT_V4.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::CLEANUP_AUDIT_V4.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_CUSTODY_HANDOFF_SCHEMA.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_EXECUTION_BINDING_PROTOCOL.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_FIELD_REGISTRY.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_NATIVE_OUTPUT_SCHEMA.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_NATIVE_TERMINAL_RULES.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_NEGATIVE_LEDGER.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_PATCH_CAPTURE_SCHEMA.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_RESOURCE_REGISTRY.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_RESULT.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_SMOKE_RECEIPT.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_SOURCE_RIGHTS_MANIFEST.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "json_valid::P5_C3_V4_WRITE_SURFACE_SCHEMA.json",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "arm_id_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "required_fields_21",
+        "observed": 21,
+        "passed": true
+      },
+      {
+        "name": "required_fields_unique",
+        "observed": 21,
+        "passed": true
+      },
+      {
+        "name": "all_required_fields_present",
+        "observed": [],
+        "passed": true
+      },
+      {
+        "name": "all_fields_have_state",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "all_fields_have_recursive_discriminator",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "bound_fields_6",
+        "observed": 6,
+        "passed": true
+      },
+      {
+        "name": "bound_fields_exact",
+        "observed": [
+          "adapter.native_parser_binding",
+          "identity.native_entrypoint_bytes",
+          "identity.source_license_bytes",
+          "identity.source_repository_commit",
+          "model_provider.fallbacks",
+          "resources.wallclock"
+        ],
+        "passed": true
+      },
+      {
+        "name": "blocking_fields_15",
+        "observed": 15,
+        "passed": true
+      },
+      {
+        "name": "blocking_fields_exact",
+        "observed": [
+          "adapter.isolated_write_surface",
+          "custody.external_protected_scorer",
+          "custody.one_shot_no_feedback_barrier",
+          "custody.protected_panel_freshness",
+          "inputs.candidate_visible_case_bytes",
+          "model_provider.primary",
+          "resources.calls_tokens_usd",
+          "resources.retry_network",
+          "rights.container_and_generated_artifacts",
+          "rights.model_provider_and_services",
+          "rights.task_and_benchmark_content",
+          "runtime.compute",
+          "runtime.container_or_environment",
+          "runtime.dependency_lock",
+          "runtime.task_environment"
+        ],
+        "passed": true
+      },
+      {
+        "name": "states_recompute_bound",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "states_recompute_blocking",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "execution_not_ready",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "panel_zero_of_six_registry",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "empty_fallback_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "wallclock_bound",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "runtime_launcher_absent",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "dependency_lock_unbound",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "dependency_exact_pins_zero",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "dependency_declarations_23",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "lockfiles_zero",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_hash_bound",
+        "observed": "a1912202b36b7a6b522a99e2466dd71d2c70c0ade51798a3330afead4a7781a9",
+        "passed": true
+      },
+      {
+        "name": "runner_hash_bound",
+        "observed": "5a3a6be750f84d1c3ad11c1cf7012eb411138d72778011699ce38e5132423e97",
+        "passed": true
+      },
+      {
+        "name": "output_schema_hash_bound",
+        "observed": "d4d62f2b3faade2b8c79d147f48c2402a249c1845a729df003d40e3ceae125cb",
+        "passed": true
+      },
+      {
+        "name": "source_commit_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "source_tree_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "source_archive_format_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "source_archive_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "rights_source_identity_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "tree_files_1650",
+        "observed": 1650,
+        "passed": true
+      },
+      {
+        "name": "tree_bytes_53195497",
+        "observed": 53195497,
+        "passed": true
+      },
+      {
+        "name": "outcome_union_files_1595",
+        "observed": 1595,
+        "passed": true
+      },
+      {
+        "name": "outcome_union_bytes_49707333",
+        "observed": 49707333,
+        "passed": true
+      },
+      {
+        "name": "nonoutcome_union_files_55",
+        "observed": 55,
+        "passed": true
+      },
+      {
+        "name": "nonoutcome_union_bytes_3488164",
+        "observed": 3488164,
+        "passed": true
+      },
+      {
+        "name": "census_file_sum",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "census_byte_sum",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "outcome_contents_not_opened",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "outcome_prefixes_three",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "reference_outcome_metadata_two",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "licence_hash_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "source_rights_layers_separate",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "result_bound_fields_6",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "result_blocking_fields_15",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "result_delta_minus_three",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "result_new_bindings_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "result_dependency_adjudication",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "result_not_executed",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "panel_zero_of_six_result",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "raw_singletons_zero",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "raw_patch_unresolved",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "v3_counts_preserved",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "conditional_support_set_four",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "claims_cannot_check",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "publication_not_established",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "resource_dependency_not_bound",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "released_future_timeout_marked_ineffective",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_patch_captured_success",
+        "observed": "COMPLETE_SUCCESS",
+        "passed": true
+      },
+      {
+        "name": "parser_patch_captured_unresolved",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_raw_singleton_false",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_no_outcome_mapping",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::INITIALIZED",
+        "observed": "PARTIAL",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::INITIALIZED",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::DIAGNOSIS_READY",
+        "observed": "PARTIAL",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::DIAGNOSIS_READY",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::SELF_EDIT_STARTED",
+        "observed": "PARTIAL",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::SELF_EDIT_STARTED",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::NO_PROBLEM_STATEMENT",
+        "observed": "PARTIAL",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::NO_PROBLEM_STATEMENT",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::NO_ENTRY",
+        "observed": "EMPTY",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::NO_ENTRY",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::MISSING_PATCH",
+        "observed": "EMPTY",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::MISSING_PATCH",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::EMPTY_PATCH",
+        "observed": "EMPTY",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::EMPTY_PATCH",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::ARGPARSE_INTEGRITY_ERROR",
+        "observed": "ERROR",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::ARGPARSE_INTEGRITY_ERROR",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::PROVIDER_ERROR",
+        "observed": "ERROR",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::PROVIDER_ERROR",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::RUNTIME_ERROR",
+        "observed": "ERROR",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::RUNTIME_ERROR",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_status::TIMEOUT",
+        "observed": "TIMEOUT",
+        "passed": true
+      },
+      {
+        "name": "parser_unresolved::TIMEOUT",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_incoherent_patch_invalid",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_refuses_prohibited::gold_future",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_refuses_prohibited::heldout_future",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_refuses_prohibited::protected_future",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_refuses_prohibited::scorer_future",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_refuses_prohibited::benchmark_outcome",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_refuses_prohibited::test_output",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_refuses_unknown_key",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_refuses_wrong_arm",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_refuses_patch_stage_mismatch",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "parser_refuses_nonpatch_with_patch",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "runner_preflight_refuses",
+        "observed": 3,
+        "passed": true
+      },
+      {
+        "name": "runner_preflight_count_15",
+        "observed": 15,
+        "passed": true
+      },
+      {
+        "name": "runner_preflight_not_ready",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "smoke_valid_exit_zero",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "smoke_native_complete",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "smoke_adapter_unresolved",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "smoke_raw_singleton_false",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "smoke_prohibited_exit_two",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "smoke_preflight_exit_three",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "smoke_preflight_count_15",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "smoke_full_native_cannot_check",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "smoke_no_raw_retention",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "negative_ledger_entries_nine",
+        "observed": 9,
+        "passed": true
+      },
+      {
+        "name": "negative_ledger_recursive_fields",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "required_source_defects_retained",
+        "observed": [
+          "P5.C3.V4.ARGPARSE.CHOICE.CONCATENATION",
+          "P5.C3.V4.CUSTODY.PANEL",
+          "P5.C3.V4.INEFFECTIVE.FUTURE.TIMEOUT",
+          "P5.C3.V4.MODEL.RESOURCE.BINDING",
+          "P5.C3.V4.MUTABLE.ENVIRONMENT",
+          "P5.C3.V4.NATIVE.PARSER.BOUNDARY",
+          "P5.C3.V4.OUTCOME.PAYLOAD.CUSTODY",
+          "P5.C3.V4.TASK.RIGHTS.RUNTIME",
+          "P5.C3.V4.UNTRUSTED.GENERATED.CODE"
+        ],
+        "passed": true
+      },
+      {
+        "name": "negative_markdown_present",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "report_terminal_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "report_counts_explicit",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "report_dependency_honesty",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "audit_no_forbidden_execution",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "audit_readiness_exact",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "cleanup_no_payloads",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "name": "no_raw_or_large_artifact_types",
+        "observed": [],
+        "passed": true
+      },
+      {
+        "name": "no_file_over_one_mib",
+        "observed": [],
+        "passed": true
+      },
+      {
+        "name": "no_python_cache",
+        "observed": [],
+        "passed": true
+      }
+    ],
+    "checks_failed": 0,
+    "checks_passed": 134,
+    "checks_total": 134,
+    "passed": true,
+    "validator": "p5_c3_v4_validator.py",
+    "validator_sha256": "f645a75545722f55ab5442180b39f0e69d1ce0320859b8d12583b54b9394c1b5"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "claim_scope": "PUBLIC_DEVELOPMENT_MULTI_REVIEW_TRANSPORT_ONLY",
+  "command": "rtk python run_swift_cross_review_controller_transport_v2.py --root . --source-freeze SOURCE_AND_RIGHTS_FREEZE_V1.json --protocol PROTOCOL_FREEZE_V2.json --implementation IMPLEMENTATION_FREEZE_V2.json --out RESULT_V2.json",
+  "date": "2026-08-23",
+  "implementation_notes": {
+    "active_loop": "Unchanged from V1: refit from scratch after every cadence-matched batch and produce a complete deterministic ordering.",
+    "candidate": "Unchanged frozen TF-IDF plus SGD log-loss controller.",
+    "comparator": "Unchanged pinned ASReview ELAS u4 cadence-matched components.",
+    "mechanics_only_repair": "Content identity is now the SHA-256 of the case-sensitive whitespace-normalized concatenation title + one space + abstract, exactly matching the pinned pre-outcome structure audit.",
+    "privacy": "Source text is used in memory but never emitted to result artifacts."
+  },
+  "label_counts_observed_before_v2_freeze": true,
+  "model_outcomes_observed_before_v2_freeze": false,
+  "protocol_freeze_sha256": "724dbdb7a71787fca116baad9362e88e223dbfdc6538fc0bffa7407e97b5e715",
+  "retained_v1": {
+    "diagnosis_sha256": "0d4c0052eec2b4e0b1ee3e354ee4156fdac6054c0270f38650a64c9541499781",
+    "result_sha256": "bb368453688929d5e5305f40407cb6c488b3ecc8b28715a069c060776acee40e",
+    "terminal": "P2_SWIFT_CROSS_REVIEW_CONTROLLER_TRANSPORT_CANNOT_CHECK_BINDING_OR_POPULATION"
+  },
+  "runner": "run_swift_cross_review_controller_transport_v2.py",
+  "runner_bytes": 24615,
+  "runner_sha256": "ece2c03c3cf83ee30ae5b2aa751e7013529c8a89c827d20557ed71b0e331e5d5",
+  "software": {
+    "numpy": "2.4.4",
+    "openpyxl": "3.1.5",
+    "pandas": "2.3.3",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.1"
+  },
+  "source_and_rights_freeze_sha256": "489ba4b823b40276586367f5f49581ee0cfeda685e5f8be3bdcf9731b50558ab",
+  "status": "V2_IMPLEMENTATION_FROZEN_AFTER_LABEL_COUNTS_BUT_BEFORE_ANY_CONTROLLER_OR_COMPARATOR_OUTCOME"
+}

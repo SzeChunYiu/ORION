@@ -1,0 +1,136 @@
+{
+  "authority": "OUTCOME_BLIND_STRUCTURED_METADATA_SEMANTICS_AND_REUSE_FEASIBILITY_ONLY",
+  "boundary": {
+    "case_text_semantically_accessed": false,
+    "identifier_or_record_pairings_retained_in_result": false,
+    "model_or_comparator_executed": false,
+    "owner_algebra_fields_assigned": 0,
+    "protected_outcomes_accessed": false,
+    "raw_responses_persisted": false,
+    "scientific_action_gold_assigned": 0,
+    "title_abstract_author_journal_or_reason_fields_accessed": false
+  },
+  "classified_exact_rights_relations": {
+    "CORRECTION_OR_ERRATUM": 256,
+    "EXPRESSION_OF_CONCERN": 470,
+    "OTHER_OR_CANNOT_CHECK": 15,
+    "RETRACTION": 11297
+  },
+  "classified_structured_action_records": {
+    "ambiguous_multiple_strata": 0,
+    "other_or_cannot_check": 15,
+    "single_stratum_counts": {
+      "CORRECTION_OR_ERRATUM": 256,
+      "EXPRESSION_OF_CONCERN": 469,
+      "RETRACTION": 11251
+    }
+  },
+  "cross_provider_structural_agreement": {
+    "comparable_notice_records": 11991,
+    "exact_publication_type_set_matches": 1,
+    "exact_relation_type_set_matches": 1,
+    "interpretation": "Agreement is metadata conformance only, not independent gold or owner semantics."
+  },
+  "epmc_core": {
+    "batch_count": 320,
+    "hit_count_sum": 25588,
+    "notice_records": 11991,
+    "provider_version": "6.9",
+    "publication_type_record_frequencies": {
+      "Comment": 5,
+      "Editorial": 13,
+      "English Abstract": 2,
+      "Expression of Concern": 469,
+      "Journal Article": 2306,
+      "News": 4,
+      "Published Erratum": 256,
+      "Research Support, Non-U.S. Gov't": 2,
+      "Retracted Publication": 23,
+      "Retraction Notice": 11255,
+      "Retraction of Publication": 11251,
+      "Review": 1,
+      "Systematic Review": 1,
+      "addendum": 2,
+      "article-commentary": 7,
+      "correction": 261,
+      "expression-of-concern": 455,
+      "other": 12,
+      "research-article": 2
+    },
+    "queried_candidate_pmids": 25588,
+    "relation_type_record_frequencies": {
+      "Comment in": 7,
+      "Comment on": 5,
+      "Erratum for": 256,
+      "Erratum in": 23,
+      "Expression of concern for": 469,
+      "Preprint in": 1,
+      "Retractedand republished from": 2,
+      "Retractedand republished in": 2,
+      "Retraction in": 23,
+      "Retraction of": 11253,
+      "Update of": 1
+    },
+    "response_sha256_multiset_digest": "d3ec6ab9ad80a37a128d5937f9a4f442e11a55e92a08713017eab5f594e4f94f",
+    "returned_records": 25588,
+    "structured_relation_row_total": 12101,
+    "structured_relation_rows_with_related_identifier": 12100
+  },
+  "generated_at": "2026-08-23T18:01:00.916204+00:00",
+  "parser_rules_sha256": "e76df190ec24df30c4653c04192b8cb5506c2d6218ad6ab782e69cc7c18ed767",
+  "protocol_sha256": "cd653aec420249d98355478164c95ed6bfd1137e33279529ae06c011bf5114c3",
+  "pubmed_efetch": {
+    "batch_count": 60,
+    "publication_type_record_frequencies": {
+      "Comment": 5,
+      "Editorial": 13,
+      "English Abstract": 2,
+      "Expression of Concern": 469,
+      "Journal Article": 2306,
+      "News": 4,
+      "Published Erratum": 256,
+      "Research Support, Non-U.S. Gov't": 2,
+      "Retracted Publication": 23,
+      "Retraction Notice": 11255,
+      "Review": 1,
+      "Systematic Review": 1
+    },
+    "queried_notice_pmids": 11991,
+    "relation_type_record_frequencies": {
+      "CommentIn": 7,
+      "CommentOn": 5,
+      "ErratumFor": 256,
+      "ErratumIn": 23,
+      "ExpressionOfConcernFor": 469,
+      "RetractedandRepublishedFrom": 2,
+      "RetractedandRepublishedIn": 2,
+      "RetractionIn": 23,
+      "RetractionOf": 11255,
+      "UpdateOf": 1
+    },
+    "response_sha256_multiset_digest": "23bdb4c7e1c1b5c60661b22e81bf605b64697e4d4d8dff46fe50a2c1de4cea1b",
+    "returned_records": 11991,
+    "structured_relation_row_total": 12102,
+    "structured_relation_rows_with_related_identifier": 12099
+  },
+  "schema_version": "orion.p1.structured-action-semantics.provider-census.v3",
+  "v2_pool_reconstruction": {
+    "admitted_relations": 49878,
+    "both_pmid_relations": 29768,
+    "endpoint_license_status_counts": {
+      "ALLOW_CC0": 50,
+      "ALLOW_CC_BY": 25534,
+      "ALLOW_CC_BY_SA": 4
+    },
+    "exact_rights_families": 11602,
+    "exact_rights_relations": 12038,
+    "matches_v2_relations_and_families": true,
+    "relation_status_counts": {
+      "CANNOT_CHECK_EPMC_ALLOWLIST_SEARCH_ABSENCE": 17730,
+      "EXACT_BOTH_ENDPOINT_CONTENT_RIGHTS_PASS": 12038
+    },
+    "search_candidate_pmids": 25588,
+    "unique_endpoint_pmids": 57444,
+    "unique_notice_records": 11991
+  }
+}

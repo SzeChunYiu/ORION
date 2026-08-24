@@ -1,0 +1,66 @@
+{
+  "claim_scope": "POST_OUTCOME_PUBLIC_DEVELOPMENT_MECHANISM_DIAGNOSIS_ONLY",
+  "command": "rtk python /Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p2-swift-controller-factorization-v4/run_swift_controller_factorization_v4.py --source-root /Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p2-cross-review-controller-transport --target-root /Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p2-swift-controller-factorization-v4 --protocol-v4 /Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p2-swift-controller-factorization-v4/NEXT_CONTROLLER_SUCCESSOR_PROTOCOL_V4.json --implementation-v4 /Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p2-swift-controller-factorization-v4/IMPLEMENTATION_FREEZE_V4.json --out /Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p2-swift-controller-factorization-v4/RESULT_V4.json",
+  "date": "2026-08-23",
+  "execution_contract": {
+    "arms": [
+      "R0_L0",
+      "R0_L1",
+      "R1_L0",
+      "R1_L1"
+    ],
+    "corner_reproducibility_required": true,
+    "population": "Exact five V3 review decisions and 96,241 canonical rows.",
+    "rerun_corners": true,
+    "review_level_unweighted_aggregation": true,
+    "source_text_must_not_be_emitted": true
+  },
+  "identity": "P2_SWIFT_CONTROLLER_COMPONENT_FACTORIZATION_IMPLEMENTATION_V4",
+  "implementation_v3_sha256": "637108060a38fadef04fc7609b4ec0e0a934aa585b78cd17346d87d9304ad6d9",
+  "nonpromotion_rule": "No V4 arm may replace the candidate or support superiority on SWIFT. Any selected mechanism requires a new content-disjoint outcome-unopened review family.",
+  "preserved_adverse_terminals": [
+    "P2_ZENODO_V2_ACTIVE_COMPARATOR_TIES_OR_WINS_REQUIRES_CONTROLLER_SUCCESSOR",
+    "P2_SWIFT_CROSS_REVIEW_CONTROLLER_TRANSPORT_CANNOT_CHECK_BINDING_OR_POPULATION",
+    "P2_SWIFT_V2_CROSS_REVIEW_CONTROLLER_TRANSPORT_CANNOT_CHECK_BINDING_OR_POPULATION",
+    "P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR"
+  ],
+  "private_source_omitted_from_v4_handoff": {
+    "bytes": 90520080,
+    "path_role": "V3 private-source/pubmed-snapshot.jsonl",
+    "reason": "Local-only PubMed title/abstract snapshot; V4 emits hashes and aggregates only.",
+    "sha256": "962aeb56416dc72fe54336eb4867d14e17505b9b28cb7baf2fd469e82439a568"
+  },
+  "protocol_v3_sha256": "ae1b398d9fc95bb09dffcef88092bcc18103d762d005a0c3397665182685a24f",
+  "protocol_v4_sha256": "95d9ad298bc202ec0d42d49e08b088cb405e80017dfd27e883a1113d4b1fc163",
+  "public_source_bodies_omitted_from_v4_handoff": [
+    {
+      "bytes": 18129827,
+      "path_role": "V3 source-audit/swift-camarades.xlsx",
+      "sha256": "6977a713486f31c390d582e9de9e1488374a8c9f80c04788d5a43c03b0691c69"
+    },
+    {
+      "bytes": 4119296,
+      "path_role": "V3 source-audit/swift-ohat.xlsx",
+      "sha256": "0d326731f82e41a665a036bcca3d72ce1ee2b3d4af9e783a3dea319c31556462"
+    },
+    {
+      "bytes": 429158,
+      "path_role": "V3 source-audit/swift-article.html",
+      "sha256": "2bdf377ea7a910f0cefbad39eebede02a217d2d7d259dcab9396cb4f10355821"
+    }
+  ],
+  "runner_v3_sha256": "348b7aa1fe708d480da178bdfd4736ec08df86a2d177337b94af205eefbe649a",
+  "runner_v4": "run_swift_controller_factorization_v4.py",
+  "runner_v4_bytes": 20282,
+  "runner_v4_sha256": "ed18d84549ccf9ec65895539dfafb0dfef897d97f34923dc8f5d59ebe332a003",
+  "source_and_rights_v1_sha256": "489ba4b823b40276586367f5f49581ee0cfeda685e5f8be3bdcf9731b50558ab",
+  "source_handoff_manifest": {
+    "bytes": 2984,
+    "sha256": "455adae1b0a15182ed793f4753d8566b550b9c681dedfa3200ccb9defe807947"
+  },
+  "status": "FROZEN_IMPLEMENTATION_FOR_POST_OUTCOME_PUBLIC_DEVELOPMENT_DIAGNOSIS",
+  "v3_result": {
+    "bytes": 18836,
+    "sha256": "a42b4c82a0a8be7dcd9426f9e0fda9a77dfb935e25a55d22d19372417cfee04b"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "arm_code": "C2",
+  "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+  "arm_or_model_executed": false,
+  "authority": "BYTE_LEVEL_PREFLIGHT_ONLY",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "future_or_planned_bytes_promoted_to_evidence": false,
+  "missing_byte_artifacts": [
+    "case-specific authored/licensed native session bytes",
+    "host-issued pre-action minimal-class certificate instance",
+    "closed public evaluator implementation bytes",
+    "complete write-root declaration bytes"
+  ],
+  "next_discriminator": "Freeze one separately named P5-native MOSS successor containing the session, certificate, evaluator, and write-root bytes with explicit rights, or obtain the authoritative benchmark companion release.",
+  "observations": [
+    "No benchmark companion payload was found in the V4 packet or development tree."
+  ],
+  "predecessor": {
+    "candidate_requirements": {
+      "path": "development/p5-moss-execution-binding-v4-2026-08-23/P5_C2_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json",
+      "sha256": "2a89abde2691564cddc22897babf849107965d8c99d841aecab40188a739cd12",
+      "size_bytes": 873
+    },
+    "field_registry": {
+      "path": "development/p5-moss-execution-binding-v4-2026-08-23/P5_C2_V4_FIELD_REGISTRY.json",
+      "sha256": "a7639cbcc51fa14a35eb6a0d25c15759fc66a0cda86e718bcb88fa0a4d36182f",
+      "size_bytes": 16797
+    }
+  },
+  "residual": "MOSS commit 5453f1feebad44c199f5887f852fc5bc7fb7d4da requires but omits benchmark/claw-eval/runner/benchmark.py, benchmark/claw-eval/src, and the manifests/tasks/results layout; V4 schemas do not instantiate the four missing artifacts.",
+  "satisfied_criteria": [
+    "shared core identity and rights"
+  ],
+  "schema_version": "orion.p5.native-task-environment-manifest.v7",
+  "shared_core": {
+    "case_body": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/CASE_BODY_V6.json",
+      "sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+      "size_bytes": 2799
+    },
+    "core_index": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_CORE_INDEX_V6.json",
+      "sha256": "aeddff407dcd73326a6b1f123131463c5ae550f74aaab7f7e522a29dce247b8e",
+      "size_bytes": 2399
+    },
+    "rights_manifest": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/P5_SHARED_CASE_RIGHTS_MANIFEST_V6.json",
+      "sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+      "size_bytes": 4082
+    },
+    "source_archive": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+      "sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+      "size_bytes": 681034
+    },
+    "task_specification": {
+      "path": "development/p5-common-visible-case-rights-v6-2026-08-23/candidate_visible/TASK_SPECIFICATION_V6.md",
+      "sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+      "size_bytes": 1070
+    }
+  },
+  "status": "BLOCKING"
+}

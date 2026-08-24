@@ -1,0 +1,95 @@
+{
+  "$id": "https://orion.invalid/p5/v4/c1-isolated-write-audit.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "frozen_policy": {
+    "capabilities": "DROP_ALL",
+    "ephemeral_candidate_write_root": "/work/task",
+    "host_read_only_mounts": [
+      "/input/source",
+      "/input/task"
+    ],
+    "host_writable_output_root": "/run/p5-output",
+    "network": "NONE_UNTIL_PROVIDER_AND_ALLOWLIST_BOUND",
+    "privilege_escalation": "FORBIDDEN",
+    "reset": "NEW_CONTAINER_AND_COPY_FROM_READ_ONLY_SEED_PER_ATTEMPT",
+    "root_filesystem": "READ_ONLY"
+  },
+  "properties": {
+    "arm_id": {
+      "const": "C1_FIXED_AGENT__SWE_AGENT"
+    },
+    "attempt_id": {
+      "pattern": "^P5C1-[A-Z0-9_.-]+$",
+      "type": "string"
+    },
+    "forbidden_write_attempts": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "post_tree_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "reset_verified": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "orion.p5.c1.isolated-write-audit.v4"
+    },
+    "seed_tree_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "writes": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "after_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "before_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "operation": {
+            "enum": [
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ]
+          },
+          "relative_path": {
+            "pattern": "^(?!/)(?!.*\\.\\.).+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "relative_path",
+          "operation",
+          "before_sha256",
+          "after_sha256"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "arm_id",
+    "attempt_id",
+    "seed_tree_sha256",
+    "post_tree_sha256",
+    "writes",
+    "forbidden_write_attempts",
+    "reset_verified"
+  ],
+  "title": "P5 C1 isolated write/reset audit",
+  "type": "object"
+}

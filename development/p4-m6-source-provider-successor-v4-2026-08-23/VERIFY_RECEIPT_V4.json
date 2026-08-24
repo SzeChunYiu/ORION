@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "checkout_written_by_v4_scripts": false,
+    "domain_counts": {
+      "EARTH_ENVIRONMENT": 5,
+      "LIFE_BIOMEDICAL": 7,
+      "PHYSICAL_ENGINEERING": 6,
+      "SCIENTIFIC_SOFTWARE": 62
+    },
+    "freeze_hashes": true,
+    "jsonl_rows_parsed": 200,
+    "natural_pair_promotions": 0,
+    "negative_ledger_entries": 9,
+    "predecessor_hashes": true,
+    "provider_qualified_exact_stage_checks": true,
+    "provider_qualified_rows": 80,
+    "release_aligned_promotions": 0,
+    "result_artifact_hashes": true,
+    "secret_scan": true,
+    "top_level_json_parse_count": 9,
+    "write_scope": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p4-m6-source-provider-successor-v4"
+  },
+  "created_at": "2026-08-23T16:03:48.722403+00:00",
+  "failures": [],
+  "passed": true,
+  "protocol_id": "P4.PUBLIC.M6.JOSS_GITHUB.SOURCE_PROVIDER.SUCCESSOR.DEV.V4",
+  "schema_version": "orion.p4.m6.source-provider-successor.verification-receipt.v4",
+  "verification_boundary": "JSON, JSONL, hash, identity, rights, relation, domain, terminal and claim-boundary verification only; no pytest, repository CI, natural-pair adjudication or system outcome"
+}

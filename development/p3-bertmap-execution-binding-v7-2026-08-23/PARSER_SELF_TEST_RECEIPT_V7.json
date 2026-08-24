@@ -1,0 +1,58 @@
+{
+  "check_count": 7,
+  "checks": [
+    {
+      "check": "complete_nonempty_fixture",
+      "error": null,
+      "expected_pass": true,
+      "observed_pass": true,
+      "pass": true
+    },
+    {
+      "check": "complete_empty_fixture_absence_not_obstruction",
+      "error": null,
+      "expected_pass": true,
+      "observed_pass": true,
+      "pass": true
+    },
+    {
+      "check": "partial_raw_json_refused",
+      "error": "raw_mappings.json source-key coverage mismatch; missing=['urn:source:B'], extra=[]",
+      "expected_pass": false,
+      "observed_pass": false,
+      "pass": true
+    },
+    {
+      "check": "raw_tsv_mismatch_refused",
+      "error": "raw JSON/TSV row multiset mismatch",
+      "expected_pass": false,
+      "observed_pass": false,
+      "pass": true
+    },
+    {
+      "check": "filtered_threshold_mismatch_refused",
+      "error": "filtered_mappings.tsv is not the exact thresholded extended set",
+      "expected_pass": false,
+      "observed_pass": false,
+      "pass": true
+    },
+    {
+      "check": "missing_repaired_artifact_refused",
+      "error": "repaired_mappings.tsv: required regular non-symlink artifact is absent",
+      "expected_pass": false,
+      "observed_pass": false,
+      "pass": true
+    },
+    {
+      "check": "prohibited_manifest_key_refused",
+      "error": "$.gold_path: prohibited outcome-bearing manifest key",
+      "expected_pass": false,
+      "observed_pass": false,
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "passed": 7,
+  "schema_version": "orion.p3.bertmap-native-parser.self-test.v7",
+  "terminal": "PASS"
+}

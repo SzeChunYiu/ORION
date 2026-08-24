@@ -1,0 +1,634 @@
+{
+  "checks": [
+    {
+      "check": "protocol_frozen",
+      "detail": "ecdaa4dd2ae82d3d0633e085bfe6392a6981032b18902045756dd5744334f4f9",
+      "pass": true
+    },
+    {
+      "check": "python_3_10_20",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "python_base_binary",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "distribution_set_exact",
+      "detail": {
+        "count": 126,
+        "extra": [],
+        "mismatch": {},
+        "missing": []
+      },
+      "pass": true
+    },
+    {
+      "check": "installed_mapping_exact_v8",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "installed_runtime_adapter_exact",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "installed_logmap_closure_90_of_90",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "model_6_of_6",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "source_input_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "target_input_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "universe_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "parser_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "java_hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "output_absent",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "no_gold_tokens_in_inputs",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "checks_passed": 15,
+  "checks_total": 15,
+  "closure_entries": [
+    {
+      "expected_sha256": "0addec670fedcd3f113c5c8091d783280d23f75e3acb841b61a9cdb079376a08",
+      "manifest_path": "java-dependencies/aopalliance-1.0.jar",
+      "match": true,
+      "observed_sha256": "0addec670fedcd3f113c5c8091d783280d23f75e3acb841b61a9cdb079376a08"
+    },
+    {
+      "expected_sha256": "4d7434c68f94b81a253c12f28e6bbb4d6239c361d6086a46e22e594bb43ac660",
+      "manifest_path": "java-dependencies/apache-mime4j-core-0.7.2.jar",
+      "match": true,
+      "observed_sha256": "4d7434c68f94b81a253c12f28e6bbb4d6239c361d6086a46e22e594bb43ac660"
+    },
+    {
+      "expected_sha256": "a24475f6ccfe1cc7a4fe9e34e05ce687b0ce0c6e8cb781e0eced3b186482c61e",
+      "manifest_path": "java-dependencies/automaton-1.11-8.jar",
+      "match": true,
+      "observed_sha256": "a24475f6ccfe1cc7a4fe9e34e05ce687b0ce0c6e8cb781e0eced3b186482c61e"
+    },
+    {
+      "expected_sha256": "17731fe321a7a7cc3b56cb797634b8ec29fa0322004886a1523bbc7bc7eecf71",
+      "manifest_path": "java-dependencies/avalon-framework-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "17731fe321a7a7cc3b56cb797634b8ec29fa0322004886a1523bbc7bc7eecf71"
+    },
+    {
+      "expected_sha256": "c17b35199ff938240ac18f70e0750888269432375029e15d8e5d49ce294a654d",
+      "manifest_path": "java-dependencies/axiom-api-1.2.14.jar",
+      "match": true,
+      "observed_sha256": "c17b35199ff938240ac18f70e0750888269432375029e15d8e5d49ce294a654d"
+    },
+    {
+      "expected_sha256": "082da81c99890e2007452c6231483120c6c7d0374fcb4b8bfcc61ba858833a87",
+      "manifest_path": "java-dependencies/axiom-c14n-1.2.14.jar",
+      "match": true,
+      "observed_sha256": "082da81c99890e2007452c6231483120c6c7d0374fcb4b8bfcc61ba858833a87"
+    },
+    {
+      "expected_sha256": "7f3aaf83dfbcfbec5d5ad915f77349d884323f6a28134e1a11e28de0d1792bb1",
+      "manifest_path": "java-dependencies/axiom-dom-1.2.14.jar",
+      "match": true,
+      "observed_sha256": "7f3aaf83dfbcfbec5d5ad915f77349d884323f6a28134e1a11e28de0d1792bb1"
+    },
+    {
+      "expected_sha256": "cfafc9dab48292b86932b29b1e3c08b4dd2fa1f1e2a7bc9cd0f0f88868edf222",
+      "manifest_path": "java-dependencies/axiom-impl-1.2.14.jar",
+      "match": true,
+      "observed_sha256": "cfafc9dab48292b86932b29b1e3c08b4dd2fa1f1e2a7bc9cd0f0f88868edf222"
+    },
+    {
+      "expected_sha256": "c058e39c7c64203d3a448f3adb588cb03d6378ed808485618f26e137f29dae73",
+      "manifest_path": "java-dependencies/commons-beanutils-1.9.3.jar",
+      "match": true,
+      "observed_sha256": "c058e39c7c64203d3a448f3adb588cb03d6378ed808485618f26e137f29dae73"
+    },
+    {
+      "expected_sha256": "54b34e941b8e1414bd3e40d736efd3481772dc26db3296f6aa45cec9f6203d86",
+      "manifest_path": "java-dependencies/commons-codec-1.6.jar",
+      "match": true,
+      "observed_sha256": "54b34e941b8e1414bd3e40d736efd3481772dc26db3296f6aa45cec9f6203d86"
+    },
+    {
+      "expected_sha256": "eeeae917917144a68a741d4c0dff66aa5c5c5fd85593ff217bced3fc8ca783b8",
+      "manifest_path": "java-dependencies/commons-collections-3.2.2.jar",
+      "match": true,
+      "observed_sha256": "eeeae917917144a68a741d4c0dff66aa5c5c5fd85593ff217bced3fc8ca783b8"
+    },
+    {
+      "expected_sha256": "4547858fff38bbf15262d520685b184a3dce96897bc1844871f055b96e8f6e95",
+      "manifest_path": "java-dependencies/commons-io-2.7.jar",
+      "match": true,
+      "observed_sha256": "4547858fff38bbf15262d520685b184a3dce96897bc1844871f055b96e8f6e95"
+    },
+    {
+      "expected_sha256": "2c73b940c91250bc98346926270f13a6a10bb6e29d2c9316a70d134e382c873e",
+      "manifest_path": "java-dependencies/commons-lang-2.4.jar",
+      "match": true,
+      "observed_sha256": "2c73b940c91250bc98346926270f13a6a10bb6e29d2c9316a70d134e382c873e"
+    },
+    {
+      "expected_sha256": "8ac96fc686512d777fca85e144f196cd7cfe0c0aec23127229497d1a38ff651c",
+      "manifest_path": "java-dependencies/commons-lang3-3.5.jar",
+      "match": true,
+      "observed_sha256": "8ac96fc686512d777fca85e144f196cd7cfe0c0aec23127229497d1a38ff651c"
+    },
+    {
+      "expected_sha256": "9e8d01f172301b966f1f404aa6fc0bdbec478ae9197256ad95bfcad1ef927601",
+      "manifest_path": "java-dependencies/commons-logging-1.1.jar",
+      "match": true,
+      "observed_sha256": "9e8d01f172301b966f1f404aa6fc0bdbec478ae9197256ad95bfcad1ef927601"
+    },
+    {
+      "expected_sha256": "549f3007c6290f6a901e57d1d331b4ed0e6bf7384f78bf10316ffceeca834de6",
+      "manifest_path": "java-dependencies/dom4j-2.1.3.jar",
+      "match": true,
+      "observed_sha256": "549f3007c6290f6a901e57d1d331b4ed0e6bf7384f78bf10316ffceeca834de6"
+    },
+    {
+      "expected_sha256": "4a66cae5220403917537d186a7a7db48747854ed346d283384a9f336581a1fe1",
+      "manifest_path": "java-dependencies/elk-owl-implementation-0.4.3.jar",
+      "match": true,
+      "observed_sha256": "4a66cae5220403917537d186a7a7db48747854ed346d283384a9f336581a1fe1"
+    },
+    {
+      "expected_sha256": "fa6f69b421f5521714227e697448d9b65a91b1361f575aa64cba698f70b6b060",
+      "manifest_path": "java-dependencies/elk-owl-model-0.4.3.jar",
+      "match": true,
+      "observed_sha256": "fa6f69b421f5521714227e697448d9b65a91b1361f575aa64cba698f70b6b060"
+    },
+    {
+      "expected_sha256": "fae00180d8c2d62770c81203a4607b2a0582f6c0514b5f72ca3636efd57ff442",
+      "manifest_path": "java-dependencies/elk-owlapi-0.4.3.jar",
+      "match": true,
+      "observed_sha256": "fae00180d8c2d62770c81203a4607b2a0582f6c0514b5f72ca3636efd57ff442"
+    },
+    {
+      "expected_sha256": "44e989141cfa167cddba60f5cf982094891ed5bcdfdec4788d6d64a4a856100a",
+      "manifest_path": "java-dependencies/elk-reasoner-0.4.3.jar",
+      "match": true,
+      "observed_sha256": "44e989141cfa167cddba60f5cf982094891ed5bcdfdec4788d6d64a4a856100a"
+    },
+    {
+      "expected_sha256": "3c90c5c7830b15fa8a88065969999e6293a9e111f0a3e4d866da6356959186c1",
+      "manifest_path": "java-dependencies/elk-util-collections-0.4.3.jar",
+      "match": true,
+      "observed_sha256": "3c90c5c7830b15fa8a88065969999e6293a9e111f0a3e4d866da6356959186c1"
+    },
+    {
+      "expected_sha256": "78bc5f69b258bb8c68a386ef27ce6d103421a801ef96605aea9ff4eeea7e8505",
+      "manifest_path": "java-dependencies/elk-util-common-0.4.3.jar",
+      "match": true,
+      "observed_sha256": "78bc5f69b258bb8c68a386ef27ce6d103421a801ef96605aea9ff4eeea7e8505"
+    },
+    {
+      "expected_sha256": "a1ec15943f9f04929b4594856c995cffb57153b24f6a3ec1b4332b574a2278aa",
+      "manifest_path": "java-dependencies/elk-util-concurrent-0.4.3.jar",
+      "match": true,
+      "observed_sha256": "a1ec15943f9f04929b4594856c995cffb57153b24f6a3ec1b4332b574a2278aa"
+    },
+    {
+      "expected_sha256": "706da4cc452ccb28eceea1866e03cadf2525edd42e8238fc24a0813ad5fb7027",
+      "manifest_path": "java-dependencies/elk-util-hashing-0.4.3.jar",
+      "match": true,
+      "observed_sha256": "706da4cc452ccb28eceea1866e03cadf2525edd42e8238fc24a0813ad5fb7027"
+    },
+    {
+      "expected_sha256": "630c41aa82fded7a83bd631ae1e64a76fbcc9cb5883c74ca22229cc91c0cd4d6",
+      "manifest_path": "java-dependencies/elk-util-io-0.4.3.jar",
+      "match": true,
+      "observed_sha256": "630c41aa82fded7a83bd631ae1e64a76fbcc9cb5883c74ca22229cc91c0cd4d6"
+    },
+    {
+      "expected_sha256": "eedcb169253ae7812c7ea66b5b0893ad9a11e587250b46bb745104b659487fd4",
+      "manifest_path": "java-dependencies/elk-util-logging-0.4.3.jar",
+      "match": true,
+      "observed_sha256": "eedcb169253ae7812c7ea66b5b0893ad9a11e587250b46bb745104b659487fd4"
+    },
+    {
+      "expected_sha256": "3910d9f8b331b2ae573e16591ac246058e088cac97f3ec064f46b10a8801fcb9",
+      "manifest_path": "java-dependencies/geronimo-activation_1.1_spec-1.1.jar",
+      "match": true,
+      "observed_sha256": "3910d9f8b331b2ae573e16591ac246058e088cac97f3ec064f46b10a8801fcb9"
+    },
+    {
+      "expected_sha256": "6f1e85d9c66135f5a9dbc9f78cbf8132e52f8a85884d618ccf0dbe9344c5a330",
+      "manifest_path": "java-dependencies/geronimo-javamail_1.4_spec-1.7.1.jar",
+      "match": true,
+      "observed_sha256": "6f1e85d9c66135f5a9dbc9f78cbf8132e52f8a85884d618ccf0dbe9344c5a330"
+    },
+    {
+      "expected_sha256": "124235815fba376b0c20ed37f79d691fa26b4e00297a4ab27b6ca05ceb591348",
+      "manifest_path": "java-dependencies/geronimo-stax-api_1.0_spec-1.0.1.jar",
+      "match": true,
+      "observed_sha256": "124235815fba376b0c20ed37f79d691fa26b4e00297a4ab27b6ca05ceb591348"
+    },
+    {
+      "expected_sha256": "66d69723a9468a95b68eff10ef1717d4a433a981f056a4ed7d1a5bff648d7fda",
+      "manifest_path": "java-dependencies/google-api-translate-java-0.97.jar",
+      "match": true,
+      "observed_sha256": "66d69723a9468a95b68eff10ef1717d4a433a981f056a4ed7d1a5bff648d7fda"
+    },
+    {
+      "expected_sha256": "d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99",
+      "manifest_path": "java-dependencies/guava-18.0.jar",
+      "match": true,
+      "observed_sha256": "d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99"
+    },
+    {
+      "expected_sha256": "b378ffc35e7f7125b3c5f3a461d4591ae1685e3c781392f0c854ed7b7581d6d2",
+      "manifest_path": "java-dependencies/guice-4.0.jar",
+      "match": true,
+      "observed_sha256": "b378ffc35e7f7125b3c5f3a461d4591ae1685e3c781392f0c854ed7b7581d6d2"
+    },
+    {
+      "expected_sha256": "ed44e4d809e6b3bc41ccd6e8b5acf43fb517234f4ac4c1125d7a82c44826f147",
+      "manifest_path": "java-dependencies/guice-assistedinject-4.0.jar",
+      "match": true,
+      "observed_sha256": "ed44e4d809e6b3bc41ccd6e8b5acf43fb517234f4ac4c1125d7a82c44826f147"
+    },
+    {
+      "expected_sha256": "79d1d122ce059ed2c55d5acfd77eb31e3891f6a4aa997257ec0e7aec3d10f078",
+      "manifest_path": "java-dependencies/guice-multibindings-4.0.jar",
+      "match": true,
+      "observed_sha256": "79d1d122ce059ed2c55d5acfd77eb31e3891f6a4aa997257ec0e7aec3d10f078"
+    },
+    {
+      "expected_sha256": "c7fb05b793a586633d2d801a889e0846f3f21c7f8dc3dab776421383f49ebb8c",
+      "manifest_path": "java-dependencies/httpclient-4.2.5.jar",
+      "match": true,
+      "observed_sha256": "c7fb05b793a586633d2d801a889e0846f3f21c7f8dc3dab776421383f49ebb8c"
+    },
+    {
+      "expected_sha256": "ff4e0ddcd53c51f12a4775106cccd74815c309bef7a80292344f4c4d7195b880",
+      "manifest_path": "java-dependencies/httpclient-cache-4.2.5.jar",
+      "match": true,
+      "observed_sha256": "ff4e0ddcd53c51f12a4775106cccd74815c309bef7a80292344f4c4d7195b880"
+    },
+    {
+      "expected_sha256": "bda2b9e0464f7a0e122d5e9bff7b384f3bc3a91af18ad51e029deaaa599e5db3",
+      "manifest_path": "java-dependencies/httpcore-4.2.4.jar",
+      "match": true,
+      "observed_sha256": "bda2b9e0464f7a0e122d5e9bff7b384f3bc3a91af18ad51e029deaaa599e5db3"
+    },
+    {
+      "expected_sha256": "17a42f998094173439bde4f6804cd50553780a1ba245bff1731aefc764eb0ae5",
+      "manifest_path": "java-dependencies/ictclas4j-1.0.1.jar",
+      "match": true,
+      "observed_sha256": "17a42f998094173439bde4f6804cd50553780a1ba245bff1731aefc764eb0ae5"
+    },
+    {
+      "expected_sha256": "045e61b0b4a347d12b86cf2d0e776dea6a79204ae12095c2b08906d29e594a5a",
+      "manifest_path": "java-dependencies/jackson-annotations-2.11.1.jar",
+      "match": true,
+      "observed_sha256": "045e61b0b4a347d12b86cf2d0e776dea6a79204ae12095c2b08906d29e594a5a"
+    },
+    {
+      "expected_sha256": "25461dbfb431cb48e30118a0277671de8e8a56a3b1198492e24b2fb605d7575e",
+      "manifest_path": "java-dependencies/jackson-core-2.11.1.jar",
+      "match": true,
+      "observed_sha256": "25461dbfb431cb48e30118a0277671de8e8a56a3b1198492e24b2fb605d7575e"
+    },
+    {
+      "expected_sha256": "b486be39d9ff4ae8bc7782792f2ea70f3a7bdaee5bd13780d295d7674231afd6",
+      "manifest_path": "java-dependencies/jackson-databind-2.11.1.jar",
+      "match": true,
+      "observed_sha256": "b486be39d9ff4ae8bc7782792f2ea70f3a7bdaee5bd13780d295d7674231afd6"
+    },
+    {
+      "expected_sha256": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff",
+      "manifest_path": "java-dependencies/javax.inject-1.jar",
+      "match": true,
+      "observed_sha256": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff"
+    },
+    {
+      "expected_sha256": "5da6c3bfc2aaf0fd7d43dc76829164a815fb9a9567eca9b7ccf67998fa70e3b5",
+      "manifest_path": "java-dependencies/jaxen-1.1.4.jar",
+      "match": true,
+      "observed_sha256": "5da6c3bfc2aaf0fd7d43dc76829164a815fb9a9567eca9b7ccf67998fa70e3b5"
+    },
+    {
+      "expected_sha256": "c6472b5950e1c23202e567c6334e4832d1db46fad604b7a0d7af71d4a014bce2",
+      "manifest_path": "java-dependencies/jcl-over-slf4j-1.7.7.jar",
+      "match": true,
+      "observed_sha256": "c6472b5950e1c23202e567c6334e4832d1db46fad604b7a0d7af71d4a014bce2"
+    },
+    {
+      "expected_sha256": "055be110a570f9cda3eba8d70a006ff46c77a048bc67868524879211c48b330a",
+      "manifest_path": "java-dependencies/json-20090211.jar",
+      "match": true,
+      "observed_sha256": "055be110a570f9cda3eba8d70a006ff46c77a048bc67868524879211c48b330a"
+    },
+    {
+      "expected_sha256": "2d9484f4c649f708f47f9a479465fc729770ee65617dca3011836602264f6439",
+      "manifest_path": "java-dependencies/json-simple-1.1.jar",
+      "match": true,
+      "observed_sha256": "2d9484f4c649f708f47f9a479465fc729770ee65617dca3011836602264f6439"
+    },
+    {
+      "expected_sha256": "7bd3c137e8a1e12148a706015618d3b8ad01be7ac641a348d289933ecc63b8b4",
+      "manifest_path": "java-dependencies/jsonld-java-0.5.0.jar",
+      "match": true,
+      "observed_sha256": "7bd3c137e8a1e12148a706015618d3b8ad01be7ac641a348d289933ecc63b8b4"
+    },
+    {
+      "expected_sha256": "7f642489bd4f949137573e70402d7bf4c2b388d0264312ef0c92b0eb4d87c19d",
+      "manifest_path": "java-dependencies/jsonld-java-sesame-0.5.0.jar",
+      "match": true,
+      "observed_sha256": "7f642489bd4f949137573e70402d7bf4c2b388d0264312ef0c92b0eb4d87c19d"
+    },
+    {
+      "expected_sha256": "1e7f53fa5b8b5c807e986ba335665da03f18d660802d8bf061823089d1bee468",
+      "manifest_path": "java-dependencies/jsr305-2.0.1.jar",
+      "match": true,
+      "observed_sha256": "1e7f53fa5b8b5c807e986ba335665da03f18d660802d8bf061823089d1bee468"
+    },
+    {
+      "expected_sha256": "e3bff9ab64a09b1ac2800f3b5fb1e3d99728064acb6dd3924938507638a404fb",
+      "manifest_path": "java-dependencies/log4j-1.2.14.jar",
+      "match": true,
+      "observed_sha256": "e3bff9ab64a09b1ac2800f3b5fb1e3d99728064acb6dd3924938507638a404fb"
+    },
+    {
+      "expected_sha256": "2b4b1965c9dce7f3732a0fbf5c8493199c1e6bf8cf65c3e235b57d98da5f36af",
+      "manifest_path": "java-dependencies/log4j-api-2.13.3.jar",
+      "match": true,
+      "observed_sha256": "2b4b1965c9dce7f3732a0fbf5c8493199c1e6bf8cf65c3e235b57d98da5f36af"
+    },
+    {
+      "expected_sha256": "9529c55814264ab96b0eeba2920ac0805170969c994cc479bd3d4d7eb24a35a8",
+      "manifest_path": "java-dependencies/log4j-core-2.13.3.jar",
+      "match": true,
+      "observed_sha256": "9529c55814264ab96b0eeba2920ac0805170969c994cc479bd3d4d7eb24a35a8"
+    },
+    {
+      "expected_sha256": "7ea93b4fc21f3d05ed224b168a025f864db75ddfddc2343e1ec29a386d7501e0",
+      "manifest_path": "java-dependencies/logkit-1.0.1.jar",
+      "match": true,
+      "observed_sha256": "7ea93b4fc21f3d05ed224b168a025f864db75ddfddc2343e1ec29a386d7501e0"
+    },
+    {
+      "expected_sha256": "dd550b891e9b0cad6a021eba56a7163487aa2697a8038436d641e0f0854985af",
+      "manifest_path": "java-dependencies/microsoft-translator-java-api-0.6.2.jar",
+      "match": true,
+      "observed_sha256": "dd550b891e9b0cad6a021eba56a7163487aa2697a8038436d641e0f0854985af"
+    },
+    {
+      "expected_sha256": "ffab8b106d42c8e89868cc0bb34c5a832e48d2d8a260565667b0f997da7cbe5a",
+      "manifest_path": "java-dependencies/opencsv-3.10.jar",
+      "match": true,
+      "observed_sha256": "ffab8b106d42c8e89868cc0bb34c5a832e48d2d8a260565667b0f997da7cbe5a"
+    },
+    {
+      "expected_sha256": "bdc093e458c0f5fc56329d359a389ea60ef767c82a7d2ab052ef0970ccef631d",
+      "manifest_path": "java-dependencies/org.semanticweb.hermit-1.3.8.413.jar",
+      "match": true,
+      "observed_sha256": "bdc093e458c0f5fc56329d359a389ea60ef767c82a7d2ab052ef0970ccef631d"
+    },
+    {
+      "expected_sha256": "c7cf7b3764adf672c642272c31301917e39e7f64079159ebc3181d58eb36b286",
+      "manifest_path": "java-dependencies/owlapi-api-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "c7cf7b3764adf672c642272c31301917e39e7f64079159ebc3181d58eb36b286"
+    },
+    {
+      "expected_sha256": "f1d39b813afdf6264abcce1dcf107fb3fa488c1ab2a83b26867c1908d5740dd2",
+      "manifest_path": "java-dependencies/owlapi-apibinding-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "f1d39b813afdf6264abcce1dcf107fb3fa488c1ab2a83b26867c1908d5740dd2"
+    },
+    {
+      "expected_sha256": "a848ba83e22aed505891608e221e8f0cacb1eb806214d7d0b395955417ff55d6",
+      "manifest_path": "java-dependencies/owlapi-contract-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "a848ba83e22aed505891608e221e8f0cacb1eb806214d7d0b395955417ff55d6"
+    },
+    {
+      "expected_sha256": "76e4d45fe7e4da28534a8e5085fc8d11525c5cc4133339256fab45b07171afbe",
+      "manifest_path": "java-dependencies/owlapi-distribution-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "76e4d45fe7e4da28534a8e5085fc8d11525c5cc4133339256fab45b07171afbe"
+    },
+    {
+      "expected_sha256": "1c2bd325cd5da181a1209379bb3c44430ba27bc5742a5dff1028aaa71b545291",
+      "manifest_path": "java-dependencies/owlapi-fixers-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "1c2bd325cd5da181a1209379bb3c44430ba27bc5742a5dff1028aaa71b545291"
+    },
+    {
+      "expected_sha256": "700adceebc80dd4648778d1520de6981b01e9da038d8c838f627f13eec60a557",
+      "manifest_path": "java-dependencies/owlapi-impl-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "700adceebc80dd4648778d1520de6981b01e9da038d8c838f627f13eec60a557"
+    },
+    {
+      "expected_sha256": "ca74bae83abd22c1194ea57deaa42cdcf89c3a1bdc2c6b1f332cf66cfb14e238",
+      "manifest_path": "java-dependencies/owlapi-oboformat-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "ca74bae83abd22c1194ea57deaa42cdcf89c3a1bdc2c6b1f332cf66cfb14e238"
+    },
+    {
+      "expected_sha256": "dd909b0e93fb0b2cdc103a0c1efd675126b243169e7aa89a054ad15bace9c143",
+      "manifest_path": "java-dependencies/owlapi-parsers-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "dd909b0e93fb0b2cdc103a0c1efd675126b243169e7aa89a054ad15bace9c143"
+    },
+    {
+      "expected_sha256": "3bf18b99c1617290312bcd6c3e8ed15e700b35daa5cf670223f617c791a34081",
+      "manifest_path": "java-dependencies/owlapi-rio-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "3bf18b99c1617290312bcd6c3e8ed15e700b35daa5cf670223f617c791a34081"
+    },
+    {
+      "expected_sha256": "db5304d08f346013844797e031ca28c506ed6c3bb6b78ad0bde1896f1b058452",
+      "manifest_path": "java-dependencies/owlapi-tools-4.1.3.jar",
+      "match": true,
+      "observed_sha256": "db5304d08f346013844797e031ca28c506ed6c3bb6b78ad0bde1896f1b058452"
+    },
+    {
+      "expected_sha256": "52fb01e35f67e6965030d847858f44c7ce5340267703236cfa612a54c6e8a1af",
+      "manifest_path": "java-dependencies/semargl-core-0.6.1.jar",
+      "match": true,
+      "observed_sha256": "52fb01e35f67e6965030d847858f44c7ce5340267703236cfa612a54c6e8a1af"
+    },
+    {
+      "expected_sha256": "758180228feae7a65b5ed910f36046cf4a8343ce25630e6738b384d5e6fd8db2",
+      "manifest_path": "java-dependencies/semargl-rdf-0.6.1.jar",
+      "match": true,
+      "observed_sha256": "758180228feae7a65b5ed910f36046cf4a8343ce25630e6738b384d5e6fd8db2"
+    },
+    {
+      "expected_sha256": "1af7df3b1da6d120e2dc2653f9cb3a401bde1116d6568914287f83ab4830c46e",
+      "manifest_path": "java-dependencies/semargl-rdfa-0.6.1.jar",
+      "match": true,
+      "observed_sha256": "1af7df3b1da6d120e2dc2653f9cb3a401bde1116d6568914287f83ab4830c46e"
+    },
+    {
+      "expected_sha256": "59f6f188b2aacaa56f3b1509e688e48bd8f6c20cddac26fdde1d54244c216ea6",
+      "manifest_path": "java-dependencies/semargl-sesame-0.6.1.jar",
+      "match": true,
+      "observed_sha256": "59f6f188b2aacaa56f3b1509e688e48bd8f6c20cddac26fdde1d54244c216ea6"
+    },
+    {
+      "expected_sha256": "81b3e81ec98a5a8f077655ef32bca162aed9ac268e296fcd808026e23ee53c97",
+      "manifest_path": "java-dependencies/sesame-model-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "81b3e81ec98a5a8f077655ef32bca162aed9ac268e296fcd808026e23ee53c97"
+    },
+    {
+      "expected_sha256": "9f78268498e0fb4d6ea907048a0b8d671fc18e5198b95435e2796d509f290bc7",
+      "manifest_path": "java-dependencies/sesame-rio-api-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "9f78268498e0fb4d6ea907048a0b8d671fc18e5198b95435e2796d509f290bc7"
+    },
+    {
+      "expected_sha256": "51810e228fa40f9a9eae0ea7f6d801fc2f0fc039827e45d437bcf45389176327",
+      "manifest_path": "java-dependencies/sesame-rio-binary-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "51810e228fa40f9a9eae0ea7f6d801fc2f0fc039827e45d437bcf45389176327"
+    },
+    {
+      "expected_sha256": "3914d9e6b7e29ced6ab49c7cd9b5e50a1ae837dc4d1ecbe9061f2112a0777fda",
+      "manifest_path": "java-dependencies/sesame-rio-datatypes-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "3914d9e6b7e29ced6ab49c7cd9b5e50a1ae837dc4d1ecbe9061f2112a0777fda"
+    },
+    {
+      "expected_sha256": "eba69bacd5f07969c8c0cbf4ef49d19c85b85026077e04eabf29ee4a9f51b683",
+      "manifest_path": "java-dependencies/sesame-rio-languages-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "eba69bacd5f07969c8c0cbf4ef49d19c85b85026077e04eabf29ee4a9f51b683"
+    },
+    {
+      "expected_sha256": "1a8518b953fe5e0f60ae662cdb1f18d27cb3bea76fc695bb573129bb7e5ba154",
+      "manifest_path": "java-dependencies/sesame-rio-n3-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "1a8518b953fe5e0f60ae662cdb1f18d27cb3bea76fc695bb573129bb7e5ba154"
+    },
+    {
+      "expected_sha256": "4288e7762df82834a742194510440a95265bf805c6a72ae0063a85dcba031c52",
+      "manifest_path": "java-dependencies/sesame-rio-nquads-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "4288e7762df82834a742194510440a95265bf805c6a72ae0063a85dcba031c52"
+    },
+    {
+      "expected_sha256": "09fab75b4c08661ba107d0256c3758d9e7dc1b62d81ea7a1e3d8293f0616a7b1",
+      "manifest_path": "java-dependencies/sesame-rio-ntriples-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "09fab75b4c08661ba107d0256c3758d9e7dc1b62d81ea7a1e3d8293f0616a7b1"
+    },
+    {
+      "expected_sha256": "344af499246739166c564f2d1954dc07b5642082f3e82c10e064a6c16b4de57e",
+      "manifest_path": "java-dependencies/sesame-rio-rdfjson-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "344af499246739166c564f2d1954dc07b5642082f3e82c10e064a6c16b4de57e"
+    },
+    {
+      "expected_sha256": "ed15595c429816a043bcd24d922aefd16905b9f0886c184a3a71573813423fde",
+      "manifest_path": "java-dependencies/sesame-rio-rdfxml-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "ed15595c429816a043bcd24d922aefd16905b9f0886c184a3a71573813423fde"
+    },
+    {
+      "expected_sha256": "cb9e7453b6317a46a8f01a76b0f49d61c67199de39b1dcd1810f72b4074a2cf2",
+      "manifest_path": "java-dependencies/sesame-rio-trig-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "cb9e7453b6317a46a8f01a76b0f49d61c67199de39b1dcd1810f72b4074a2cf2"
+    },
+    {
+      "expected_sha256": "e18ba3e1c89f1d1bc61896c82b282dd20e7b33b5205779939dd67f21c2705c08",
+      "manifest_path": "java-dependencies/sesame-rio-trix-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "e18ba3e1c89f1d1bc61896c82b282dd20e7b33b5205779939dd67f21c2705c08"
+    },
+    {
+      "expected_sha256": "b1c78bd92134b581ea8328fdd1f2219d87571e03267580cd9575ab8675f48f66",
+      "manifest_path": "java-dependencies/sesame-rio-turtle-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "b1c78bd92134b581ea8328fdd1f2219d87571e03267580cd9575ab8675f48f66"
+    },
+    {
+      "expected_sha256": "76b02a2ea76b49897c4808b94da415a5bcaba60297d76edc29bbc147b078082b",
+      "manifest_path": "java-dependencies/sesame-util-2.7.12.jar",
+      "match": true,
+      "observed_sha256": "76b02a2ea76b49897c4808b94da415a5bcaba60297d76edc29bbc147b078082b"
+    },
+    {
+      "expected_sha256": "cda862aa69683ac072ee2afd0b93d070ceab291ef5b857d318b24c1595b36b8a",
+      "manifest_path": "java-dependencies/slf4j-api-1.7.31.jar",
+      "match": true,
+      "observed_sha256": "cda862aa69683ac072ee2afd0b93d070ceab291ef5b857d318b24c1595b36b8a"
+    },
+    {
+      "expected_sha256": "2de655f6cbd91107982e1d6ab297a7f919f12fa179573e8c6449b14c12191361",
+      "manifest_path": "java-dependencies/slf4j-log4j12-1.7.31.jar",
+      "match": true,
+      "observed_sha256": "2de655f6cbd91107982e1d6ab297a7f919f12fa179573e8c6449b14c12191361"
+    },
+    {
+      "expected_sha256": "850bbbbaaa1e7ecc4ebecdb8a283ff36d1f2451c6797b0175bc40ae2ad9b31c4",
+      "manifest_path": "java-dependencies/stax2-api-3.1.1.jar",
+      "match": true,
+      "observed_sha256": "850bbbbaaa1e7ecc4ebecdb8a283ff36d1f2451c6797b0175bc40ae2ad9b31c4"
+    },
+    {
+      "expected_sha256": "3c8616203d61a12a7e3487e8b34f3c198c2b5ba9e90da0c7ea32d99cd4958012",
+      "manifest_path": "java-dependencies/trove4j-3.0.3.jar",
+      "match": true,
+      "observed_sha256": "3c8616203d61a12a7e3487e8b34f3c198c2b5ba9e90da0c7ea32d99cd4958012"
+    },
+    {
+      "expected_sha256": "d24cf82fa3f2b30a847036ff4c198dde397e43c4599aef9e93fcbe1e49186bc2",
+      "manifest_path": "java-dependencies/woodstox-core-asl-4.1.4.jar",
+      "match": true,
+      "observed_sha256": "d24cf82fa3f2b30a847036ff4c198dde397e43c4599aef9e93fcbe1e49186bc2"
+    },
+    {
+      "expected_sha256": "86f30fa8775fa3a62cdb39d1ed78a6019164c1058864048d42cbee244e26e840",
+      "manifest_path": "java-dependencies/xz-1.5.jar",
+      "match": true,
+      "observed_sha256": "86f30fa8775fa3a62cdb39d1ed78a6019164c1058864048d42cbee244e26e840"
+    }
+  ],
+  "distribution_count": 126,
+  "gold_or_outcomes_opened": false,
+  "native_execution_authorized": true,
+  "protocol_sha256": "ecdaa4dd2ae82d3d0633e085bfe6392a6981032b18902045756dd5744334f4f9",
+  "schema_version": "orion.p3.full-native-runtime.preflight.v12",
+  "terminal": "P3_V12_FULL_NATIVE_IDENTITY_PREFLIGHT_PASS"
+}

@@ -1,0 +1,71 @@
+{
+  "causal_code": "FROZEN_INDEX_SHA_DOES_NOT_MATCH_PINNED_COMMIT_PATH",
+  "diagnostic_reproduction_passed": true,
+  "executed_at_utc": "2026-08-24T06:25:11.684250+00:00",
+  "frozen_expected_identity": {
+    "bytes": 23118,
+    "git_blob_sha1": "ada2668adfbb33d61e11a6bec02b10637e419bde",
+    "sha256": "5d829c669f744cc6e91165b15dd3364554320d684398b841764b2609bb857d4b"
+  },
+  "frozen_route": {
+    "commit": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "commit_api_url": "https://api.github.com/repos/asreview/synergy-dataset/git/commits/38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "index_path": "index_v1.json",
+    "raw_identity": {
+      "body_parsed": false,
+      "body_retained": false,
+      "bytes": 22135,
+      "git_blob_sha1": "f4f5007156cb71e7d54e99057037fb75d44f87c4",
+      "sha256": "f34c17b3dca9d609585e5fcc9d24c5433d4ad240ef91e5c2e9a48edee1e0959a"
+    },
+    "raw_url": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/index_v1.json",
+    "repository": "asreview/synergy-dataset",
+    "root_tree_api_url": "https://api.github.com/repos/asreview/synergy-dataset/git/trees/49f437c367cc45a90867418fcef77c9ff3614456?recursive=1",
+    "root_tree_sha1": "49f437c367cc45a90867418fcef77c9ff3614456",
+    "tree_entry": {
+      "api_url": "https://api.github.com/repos/asreview/synergy-dataset/git/blobs/f4f5007156cb71e7d54e99057037fb75d44f87c4",
+      "bytes": 22135,
+      "git_blob_sha1": "f4f5007156cb71e7d54e99057037fb75d44f87c4",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  "frozen_route_acquisition_passed": false,
+  "gate_id": "G1_COMMIT_TREE_BLOB_INDEX_IDENTITY",
+  "historical_expected_identity": {
+    "bytes": 23118,
+    "git_blob_sha1": "ada2668adfbb33d61e11a6bec02b10637e419bde",
+    "sha256": "5d829c669f744cc6e91165b15dd3364554320d684398b841764b2609bb857d4b"
+  },
+  "historical_owner_authorized_as_v14_substitute": false,
+  "historical_owner_provenance_passed": true,
+  "historical_owner_route": {
+    "commit": "dc2dadfdbb98eb1b4259604789abd640aa3b693e",
+    "commit_api_url": "https://api.github.com/repos/asreview/synergy-dataset/git/commits/dc2dadfdbb98eb1b4259604789abd640aa3b693e",
+    "index_path": "index_v1.json",
+    "raw_identity": {
+      "body_parsed": false,
+      "body_retained": false,
+      "bytes": 23118,
+      "git_blob_sha1": "ada2668adfbb33d61e11a6bec02b10637e419bde",
+      "sha256": "5d829c669f744cc6e91165b15dd3364554320d684398b841764b2609bb857d4b"
+    },
+    "raw_url": "https://raw.githubusercontent.com/asreview/synergy-dataset/dc2dadfdbb98eb1b4259604789abd640aa3b693e/index_v1.json",
+    "repository": "asreview/synergy-dataset",
+    "root_tree_api_url": "https://api.github.com/repos/asreview/synergy-dataset/git/trees/2173535d1bb1c918e127acd9145fd42d37ee82a2?recursive=1",
+    "root_tree_sha1": "2173535d1bb1c918e127acd9145fd42d37ee82a2",
+    "tree_entry": {
+      "api_url": "https://api.github.com/repos/asreview/synergy-dataset/git/blobs/ada2668adfbb33d61e11a6bec02b10637e419bde",
+      "bytes": 23118,
+      "git_blob_sha1": "ada2668adfbb33d61e11a6bec02b10637e419bde",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  "schema_version": "orion.p2.state-expanding-acquisition.identity-mismatch-gate-receipt.v14",
+  "stopped_before_index_parse": true,
+  "stopped_before_labels_models_rankings_metrics": true,
+  "stopped_before_review_census": true,
+  "stopped_before_review_csv_download": true,
+  "terminal": "P2_V14_FROZEN_INDEX_IDENTITY_MISMATCH__PINNED_COMMIT_PATH_RESOLVES_F4F5007_BLOB_SHA256_F34C17B3__EXPECTED_ADA2668_BLOB_SHA256_5D829C66_BELONGS_TO_DC2DADF__STOP_BEFORE_CENSUS_AND_PERFORMANCE"
+}

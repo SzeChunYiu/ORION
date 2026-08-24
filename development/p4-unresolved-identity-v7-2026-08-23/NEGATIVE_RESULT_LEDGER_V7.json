@@ -1,0 +1,199 @@
+{
+  "by_domain": {
+    "EARTH_ENVIRONMENT": {
+      "entering_v7": 1,
+      "remaining_unresolved": 1,
+      "v7_repairs": 0
+    },
+    "LIFE_BIOMEDICAL": {
+      "entering_v7": 3,
+      "remaining_unresolved": 1,
+      "v7_repairs": 2
+    },
+    "PHYSICAL_ENGINEERING": {
+      "entering_v7": 3,
+      "remaining_unresolved": 2,
+      "v7_repairs": 1
+    },
+    "SCIENTIFIC_SOFTWARE": {
+      "entering_v7": 17,
+      "remaining_unresolved": 6,
+      "v7_repairs": 11
+    }
+  },
+  "created_at": "2026-08-23T20:13:39.104058+00:00",
+  "entries": [
+    {
+      "cause": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+      "identity": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY",
+      "next_discriminator": "Seek a source-native authenticated edge for the same frozen identity; retain CANNOT_CHECK otherwise.",
+      "observed": "3/10 remaining identities fail this primary gate.",
+      "residual": "The V7 exact publication/archive/tag/commit chain is incomplete at this gate."
+    },
+    {
+      "cause": "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+      "identity": "EXACT_ARCHIVE_SOFTWARE_RIGHTS",
+      "next_discriminator": "Obtain source-native accepted software rights on the same archive DOI, or retain CANNOT_CHECK.",
+      "observed": "2/10 remaining identities have no accepted software license bound at the exact archive record.",
+      "residual": "A publication/editorial tag relation does not transfer repository license rights onto an archive carrying a non-software or unaccepted license."
+    },
+    {
+      "cause": "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+      "identity": "EXACT_ARCHIVE_VERSION_IDENTITY",
+      "next_discriminator": "Obtain an immutable provider version relation for the same frozen DOI identity; do not substitute a later version DOI.",
+      "observed": "2/10 remaining identities use a concept or mutable latest DOI rather than the exact immutable version DOI.",
+      "residual": "JOSS metadata can bind a publication to the cited DOI, but cannot convert that concept DOI into a version DOI."
+    },
+    {
+      "cause": "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+      "identity": "EXACT_TAG_TO_IMMUTABLE_COMMIT",
+      "next_discriminator": "Seek a source-native authenticated edge for the same frozen identity; retain CANNOT_CHECK otherwise.",
+      "observed": "3/10 remaining identities fail this primary gate.",
+      "residual": "The V7 exact publication/archive/tag/commit chain is incomplete at this gate."
+    }
+  ],
+  "overlapping_gate_counts": {
+    "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK": 9,
+    "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED": 4,
+    "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK": 2,
+    "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED": 3,
+    "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK": 3,
+    "PUBLIC_TRANSPORT_CANNOT_CHECK": 2
+  },
+  "preserved_programme_terminal": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK",
+  "primary_mutually_exclusive_counts": {
+    "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK": 3,
+    "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED": 2,
+    "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK": 2,
+    "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK": 3
+  },
+  "research_boundary": "Each negative is a same-identity research topic; none is relabelled positive and no replacement publication is introduced.",
+  "row_level_unresolved": [
+    {
+      "archive_doi": "10.5281/zenodo.21221061",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 36,
+      "overlapping_failures": [
+        "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+        "PUBLIC_TRANSPORT_CANNOT_CHECK"
+      ],
+      "primary_failure": "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09542",
+      "repository": "jaxionproject/jaxion"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.21226146",
+      "domain": "EARTH_ENVIRONMENT",
+      "frozen_index": 59,
+      "overlapping_failures": [
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_failure": "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+      "publication_doi": "10.21105/joss.09411",
+      "repository": "mohd-afeef-badri/psd"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20171460",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 91,
+      "overlapping_failures": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+      ],
+      "primary_failure": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.10245",
+      "repository": "nutritionallungimmunity/pai"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20272994",
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 108,
+      "overlapping_failures": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+      ],
+      "primary_failure": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09628",
+      "repository": "cwru-sdle/fairlinked"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.20026885",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 133,
+      "overlapping_failures": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK"
+      ],
+      "primary_failure": "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.10112",
+      "repository": "artefactory/woodtapper"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19661454",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 165,
+      "overlapping_failures": [
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_failure": "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+      "publication_doi": "10.21105/joss.10223",
+      "repository": "alek050/databallpy"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19051387",
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 185,
+      "overlapping_failures": [
+        "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_failure": "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09364",
+      "repository": "mit-psfc/disruption-py"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19335435",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 190,
+      "overlapping_failures": [
+        "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_failure": "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09481",
+      "repository": "ugurdar/datadriftr"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19141362",
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 196,
+      "overlapping_failures": [
+        "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_ARCHIVE_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED",
+        "PUBLIC_TRANSPORT_CANNOT_CHECK"
+      ],
+      "primary_failure": "EXACT_ARCHIVE_VERSION_DOI_RELATION_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.08851",
+      "repository": "watershedswildfireresearchcollaborative/separate"
+    },
+    {
+      "archive_doi": "10.5281/zenodo.19202203",
+      "domain": "LIFE_BIOMEDICAL",
+      "frozen_index": 199,
+      "overlapping_failures": [
+        "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+        "ARCHIVE_TO_COMMIT_AUTHENTICATED_IDENTITY_CANNOT_CHECK",
+        "EXACT_COMMIT_SOFTWARE_RIGHTS_CANNOT_CHECK_OR_NOT_ACCEPTED"
+      ],
+      "primary_failure": "EXACT_TAG_TO_IMMUTABLE_COMMIT_CANNOT_CHECK",
+      "publication_doi": "10.21105/joss.09603",
+      "repository": "targene/targene-pipeline"
+    }
+  ],
+  "schema_version": "orion.p4.targeted-identity.negative-result-ledger.v7",
+  "terminal": "OPEN_NO_SOLUTION_CERTIFICATE",
+  "unresolved_identity_count": 10
+}

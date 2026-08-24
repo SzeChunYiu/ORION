@@ -1,0 +1,480 @@
+{
+  "authority": "PUBLIC_DATA_BINDING_PREFLIGHT_ONLY__NOT_EMPIRICAL_EVIDENCE__NOT_LEGAL_ADVICE",
+  "captured_at_utc": "2026-08-23T11:50:10+00:00",
+  "closure_summary": {
+    "closed_preflight_fact_classes": [
+      "IMMUTABLE_PUBLIC_SOURCE_IDENTITIES",
+      "SOME_CONTENT_CLASS_LICENSES",
+      "SOME_PUBLIC_LABEL_SCHEMAS",
+      "SOME_RUNNABLE_DONOR_TOOLKITS"
+    ],
+    "not_closed": [
+      "CASE_ELIGIBILITY_FOR_ANY_REGISTERED_WIDE_PANEL",
+      "PROTECTED_FRESHNESS_OR_EXTERNAL_CUSTODY",
+      "ANY_COMPLETE_COMPARATOR_FAMILY",
+      "ANY_PROSPECTIVE_PAPER_ENDPOINT"
+    ],
+    "paper_level_empirical_blockers_closed": 0,
+    "paper_level_empirical_blockers_still_open": 4,
+    "papers_audited": 4,
+    "scientific_terminal": "PUBLIC_SOURCE_SUBSTRATE_PARTIALLY_BOUND__NO_PAPER_LEVEL_EMPIRICAL_BLOCKER_CLOSED"
+  },
+  "dataset_rows_accessed": 0,
+  "endpoint_sources": {
+    "P1": {
+      "claim_id": "P1.H1.R7A.MAXT_POWERED",
+      "current_terminal": "P1_R7A_READY_FOR_EXTERNAL_BINDING_NOT_A_SCIENTIFIC_RESULT",
+      "design": {
+        "independent_unit": "unique_source_study_artifact_family_cluster",
+        "not_independent_units": [
+          "pair_member",
+          "episode_row",
+          "model_sample",
+          "probe",
+          "bootstrap_draw",
+          "family_domain_cell"
+        ],
+        "planned_independent_units": 384,
+        "source_clusters_per_wave": 448,
+        "source_disjoint_replication": true,
+        "stratum_count": 32,
+        "technical_rows_do_not_increase_n": true,
+        "total_source_clusters_both_waves": 896,
+        "units_per_stratum": 12,
+        "unresolved_safety_clusters_per_wave": 64,
+        "wave_count": 2
+      },
+      "external_bindings_required": [
+        "PRIMARY_AND_REPLICATION_SOURCE_SNAPSHOTS",
+        "STRONGEST_RUNNABLE_EXTERNAL_COMPARATOR",
+        "PRIMARY_AND_CHANGED_REPLICATION_SEMANTIC_HOST_CUSTODY",
+        "INDEPENDENT_PRIMARY_AND_REPLICATION_SCORER_CUSTODY",
+        "PROTECTED_EXECUTION_ENVIRONMENT"
+      ],
+      "path": "research/claim_expansion/p1/gpt_r7/R7A_MAXT_POWER_AMENDMENT_V2.json",
+      "sha256": "01d5870023ce9867fc8328e60a3f3e6d4468785a7efb32626140d8b37ba25db5"
+    },
+    "P2": {
+      "claim_id": "P2.OPEN_WORLD.SUCCESSOR.V2",
+      "current_terminal": "P2_V2_READY_FOR_EXTERNAL_TASK_WORLD_BINDING_NOT_A_SCIENTIFIC_RESULT",
+      "design": {
+        "all_arms_receive_identical_query_provider_budget_and_scoring_namespace": true,
+        "arena_count": 4,
+        "baseline_identity_reproduction_required": true,
+        "independent_unit": "source_disjoint_task_world_cluster",
+        "matched_admissible_route_exposure": true,
+        "not_independent_units": [
+          "retrieved_record",
+          "provider_request",
+          "ranked_identifier",
+          "route",
+          "metric_cell"
+        ],
+        "planned_independent_units": 768,
+        "primary_endpoint": "paired_task_world_gold_recall_success_without_false_inclusion",
+        "stratum_count": 4,
+        "task_world_clusters_source_disjoint": true,
+        "units_per_stratum": 192
+      },
+      "external_bindings_required": [
+        "ARCHIVED_BASELINE_TASK_WORLD_REPRODUCTION",
+        "FOUR_SOURCE_DISJOINT_ARENA_SNAPSHOTS",
+        "CAPABILITY_MATCHED_EXTERNAL_COMPARATOR",
+        "INDEPENDENT_EVALUATOR_AND_GOLD_CUSTODY",
+        "LIVE_PROVIDER_RESPONSE_AND_COST_RECEIPTS"
+      ],
+      "path": "papers/paper-02-open-world-scientific-discovery/protocol/P2_TASK_WORLD_SUCCESSOR_V2.json",
+      "sha256": "37859b74bf9f50f9a2e0be5d7f2637f841a9aa41a7af1b088569b466f638434a"
+    },
+    "P3": {
+      "claim_id": "P3.PARTIAL_IDENTIFICATION.EXCESS_HARM.V1",
+      "current_terminal": "P3_PARTIAL_IDENTIFICATION_READY_FOR_EXTERNAL_ATLAS_NOT_A_SCIENTIFIC_RESULT",
+      "design": {
+        "coordinates_with_required_nonzero_variation": [
+          "REFERENT",
+          "CONSTRUCT",
+          "MEASUREMENT",
+          "TEMPORAL_CONTEXT"
+        ],
+        "domain_count": 4,
+        "independent_gold_and_raw_text_attack_required": true,
+        "independent_unit": "unique_source_artifact_family_cluster",
+        "not_independent_units": [
+          "atlas_coordinate",
+          "annotation",
+          "pair_member",
+          "probe",
+          "metric_cell"
+        ],
+        "opportunity_rule": "OBSERVATIONALLY_SEPARABLE_PROTECTED_DISTINCTION",
+        "planned_independent_units": 768,
+        "primary_endpoint": "avoidable_false_merge_or_downstream_decision_harm_above_the_proven_observation_floor",
+        "stratum_count": 16,
+        "units_per_stratum": 48,
+        "zero_opportunity_stratum_cannot_authorize_a_claim": true
+      },
+      "external_bindings_required": [
+        "SOURCE_DISJOINT_MULTI_DOMAIN_ATLAS_WITH_NONZERO_VARIATION_ON_ALL_FOUR_COORDINATES",
+        "INDEPENDENT_PROTECTED_GOLD_LABELS",
+        "RAW_TEXT_ATTACK_CORPUS",
+        "DOWNSTREAM_DECISION_EVALUATOR_CUSTODY"
+      ],
+      "path": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json",
+      "sha256": "63e093f44a645e6475952b0221f33ec6bc9afc50a8d143481f945268b51a7264"
+    },
+    "P5": {
+      "claim_id": "P5.REVISION_LEVEL.WIDE.V1",
+      "current_terminal": "P5_WIDE_READY_FOR_EXTERNAL_PROJECT_PANEL_NOT_A_SCIENTIFIC_RESULT",
+      "design": {
+        "domain_count": 8,
+        "independent_unit": "source_disjoint_project_issue_family_cluster",
+        "not_independent_units": [
+          "issue_comment",
+          "candidate_edit",
+          "test",
+          "rerun",
+          "metric_cell",
+          "revision_class"
+        ],
+        "planned_independent_units": 768,
+        "primary_endpoint": "correct_minimal_revision_with_preservation_and_fresh_transfer_success",
+        "project_issue_family_source_disjointness_required": true,
+        "protected_fresh_transfer_and_harm_gates_noncompensatory": true,
+        "revision_classes": [
+          "EVIDENCE_REPAIR",
+          "MEASUREMENT_REPAIR",
+          "WITHIN_CLASS_MODEL_REPAIR",
+          "MODEL_CLASS_EXPANSION",
+          "REPRESENTATION_REGIME_REPAIR",
+          "EXECUTION_REPAIR",
+          "EVALUATOR_REPAIR",
+          "UNRESOLVED"
+        ],
+        "same_visible_symptom_blocking_required": true,
+        "stratum_count": 64,
+        "units_per_stratum": 12
+      },
+      "external_bindings_required": [
+        "M_OPEN_ONLY_SOURCE_GROUNDED_STRUCTURAL_BINDING",
+        "SOURCE_DISJOINT_PROTECTED_PROJECT_ISSUE_PANEL",
+        "FINAL_SPLIT_COMMITMENT",
+        "INDEPENDENT_PROTECTED_EVALUATOR_AND_FRESH_TRANSFER_EVALUATOR",
+        "SUBJECT_CANDIDATE_BASELINE_AND_EPOCH_IDENTITIES",
+        "EXTERNAL_RESULT_VERIFIER_CUSTODY"
+      ],
+      "path": "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json",
+      "sha256": "ab871b23ca9b8dfed8447057671e21c0fa37ad86d93fdf2605dae8d7a765c39d"
+    }
+  },
+  "excluded_papers": [
+    "P4"
+  ],
+  "paper_bindings": [
+    {
+      "candidate_bindings": [
+        {
+          "canonical_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+          "downloadable_bytes": "YES__ONE_PINNED_PARQUET_LFS_OBJECT",
+          "eligibility": "SOFTWARE_ONLY__NO_FOUR_DOMAIN_OR_MIXED_FIBRE_ELIGIBILITY_AUDIT",
+          "freshness_custody": "PUBLIC_GOLD_AND_TEST_PATCH_FIELDS__NOT_PROTECTED_OR_FRESH",
+          "immutable_revision": "846e647b9f33c0b51b739d005d13d85493c9af09",
+          "labels": "PUBLIC_ISSUE_PATCH_TEST_TRANSITION__NO_RESPONSIBILITY_OR_MINIMAL_SCIENTIFIC_LAYER_GOLD",
+          "rights": "MIT_IN_DATASET_CARD_AT_PINNED_REVISION",
+          "runnable_comparator": "SWE_AGENT_CAN_RUN_ON_THE_NATIVE_INTERFACE__NOT_AN_R7_ADAPTER",
+          "source_id": "SWE-BENCH__SWE-BENCH_MULTILINGUAL",
+          "terminal": "PARTIAL_SOURCE_BYTES_ONLY__P1_ENDPOINT_OPEN"
+        },
+        {
+          "canonical_url": "https://github.com/rjust/defects4j",
+          "downloadable_bytes": "YES__COMMIT_ARCHIVE_AND_REPRODUCIBLE_BUG_FRAMEWORK",
+          "eligibility": "REPRODUCIBLE_SOFTWARE_BUGS_ONLY",
+          "freshness_custody": "PUBLIC_BUG_IDENTITIES_AND_FIXES__NO_PROTECTED_WAVE",
+          "immutable_revision": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+          "labels": "BUGGY_FIXED_REVISION_AND_TRIGGERING_TEST__NO_EPISTEMIC_TRANSITION_AUTHORITY_LABEL",
+          "rights": "MIT_TEXT_AT_PINNED_license.txt",
+          "runnable_comparator": "FRAMEWORK_RUNNABLE__NO_NINE_ARM_R7_INTERFACE",
+          "source_id": "DEFECTS4J",
+          "terminal": "PARTIAL_REPRODUCIBLE_TRANSITION_ONLY__P1_ENDPOINT_OPEN"
+        },
+        {
+          "canonical_url": "https://huggingface.co/datasets/allenai/peer_read",
+          "downloadable_bytes": "BUILDER_AND_DATASET_CARD_PUBLIC__EXTERNAL_DATA_PAYLOAD_ROUTE",
+          "eligibility": "SCIENTIFIC_REVIEW_MODALITY_ONLY__CONTENT_CLASS_PERMISSION_UNBOUND",
+          "freshness_custody": "PUBLIC_HISTORICAL_RECORDS__NO_PROTECTED_SCORER",
+          "immutable_revision": "53e19322c88bb01c1b0c6a61bde68bc2b1c3028e",
+          "labels": "REVIEWS_HISTORIES_AND_ACCEPTANCE__NO_MINIMAL_REVISION_OR_RESPONSIBILITY_GOLD",
+          "rights": "CANNOT_CHECK__CARD_LICENSE_UNKNOWN_AND_REPOSITORY_LICENSE_FILE_ABSENT",
+          "runnable_comparator": "NONE_BOUND_TO_R7",
+          "source_id": "ALLENAI__PEER_READ",
+          "terminal": "CANNOT_CHECK_RIGHTS_AND_ENDPOINT_LABELS"
+        }
+      ],
+      "closed_cells": [
+        "PINNED_PUBLIC_SOFTWARE_TRANSITION_BYTES_EXIST",
+        "ONE_DATASET_CARD_LICENSE_AND_ONE_BUG_FRAMEWORK_LICENSE_ARE_EXPLICIT"
+      ],
+      "comparator_candidate": {
+        "canonical_url": "https://github.com/SWE-agent/SWE-agent",
+        "immutable_revision": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+        "license": "MIT",
+        "missing_for_p1": "BYTE_EQUIVALENT_R7_DOSSIER_ACTION_RESPONSIBILITY_AND_MATCHED_RESOURCE_ADAPTER",
+        "native_function": "AUTONOMOUS_GITHUB_ISSUE_RESOLUTION_AND_SWE_BENCH_BATCH_RUNNER",
+        "source_id": "SWE_AGENT_COMPARATOR",
+        "status": "RUNNABLE_ISSUE_SOLVER__NOT_A_FROZEN_R7_ARM"
+      },
+      "exact_endpoint": "minimal licensed scientific transition from noisy natural evidence, with protected recovery/utility, no excess high-level rewrite, preservation and dependency-impact gates, against nine exact comparator arms in two source-disjoint waves",
+      "paper_id": "P1",
+      "paper_level_blocker_closed": false,
+      "still_open": [
+        "PRIMARY_AND_REPLICATION_SOURCE_SNAPSHOTS",
+        "STRONGEST_RUNNABLE_EXTERNAL_COMPARATOR",
+        "PRIMARY_AND_CHANGED_REPLICATION_SEMANTIC_HOST_CUSTODY",
+        "INDEPENDENT_PRIMARY_AND_REPLICATION_SCORER_CUSTODY",
+        "PROTECTED_EXECUTION_ENVIRONMENT",
+        "PROTECTED_RESPONSIBILITY_AND_MINIMAL_TRANSITION_GOLD",
+        "FOUR_DOMAIN_PROVIDER_MODALITY_ELIGIBILITY",
+        "ISSUE_REVIEW_ATTACHMENT_CONTENT_RIGHTS",
+        "NINE_LAWFUL_R7_COMPARATOR_ADAPTERS"
+      ],
+      "successor_identity": "P1.NATURALISTIC.TRANSITION.TRANSPORT.V1"
+    },
+    {
+      "candidate_bindings": [
+        {
+          "canonical_url": "https://doi.org/10.34894/HE6NAQ",
+          "downloadable_bytes": "YES__144_VERSIONED_FILES_WITH_PROVIDER_SHA1_CHECKSUMS",
+          "eligibility": "NATURALISTIC_BOUNDED_SCREENING_WORLDS__NOT_OPEN_WEB_ROUTE_WORLDS",
+          "freshness_custody": "LABELS_PUBLIC__NO_PROTECTED_OBLIGATION_GOLD",
+          "immutable_revision": "1.0",
+          "labels": "26_SYSTEMATIC_REVIEW_INCLUSION_LABEL_FILES_AND_ELIGIBILITY_CRITERIA",
+          "rights": "CC0_1_0_AT_DATAVERSE_DATASET_VERSION_1_0",
+          "runnable_comparator": "ASREVIEW_PINNED_SEPARATELY__NATIVE_SCREENING_NOT_CLOSURE_AUTHORITY",
+          "source_id": "SYNERGY_DATAVERSE_V1_0",
+          "terminal": "LICENSED_BOUNDED_SCREENING_GOLD_BOUND__P2_OPEN_WORLD_ENDPOINT_OPEN"
+        },
+        {
+          "canonical_url": "https://zenodo.org/records/10423427",
+          "downloadable_bytes": "YES__ONE_PINNED_53_881_052_BYTE_CSV_WITH_MD5",
+          "eligibility": "ONE_PHYSIOTHERAPY_SYSTEMATIC_REVIEW_UPDATE__ONE_ARENA_ONLY",
+          "freshness_custody": "PUBLIC_LABELS__NO_PROTECTED_GOLD",
+          "immutable_revision": "10423427",
+          "labels": "25_540_DEDUPLICATED_CITATIONS_LABELLED_INCLUDE_EXCLUDE_BY_TWO_REVIEWERS",
+          "rights": "CC_BY_4_0_IN_ZENODO_RECORD",
+          "runnable_comparator": "ASREVIEW_FORMAT_ADAPTER_FEASIBLE_BUT_NOT_FROZEN",
+          "source_id": "ZENODO_10423427",
+          "terminal": "ONE_LICENSED_NATURALISTIC_POOL_BOUND__MULTI_ARENA_ENDPOINT_OPEN"
+        },
+        {
+          "canonical_url": "https://huggingface.co/datasets/allenai/scifact",
+          "downloadable_bytes": "BUILDER_AND_CARD_PINNED__CANONICAL_S3_LATEST_DATA_URL_IS_MUTABLE",
+          "eligibility": "BOUNDED_CLAIM_VERIFICATION_NOT_OPEN_WORLD_TASK_CLOSURE",
+          "freshness_custody": "ORIGINAL_TEST_LABELS_PROVIDER_HELD_BUT_CAMPAIGN_IDENTITY_AND_EPOCH_UNBOUND",
+          "immutable_revision": "1fe54665deee011033b2dd98db5752e0d586fdfb",
+          "labels": "SCIENTIFIC_CLAIM_EVIDENCE_LABELS__ORIGINAL_TEST_GOLD_WITHHELD",
+          "rights": "CONTENT_CLASS_SPECIFIC__CLAIMS_CC_BY_4_0__ABSTRACTS_ODC_BY_1_0__CODE_APACHE_2_0__HF_CARD_SAYS_CC_BY_NC_2_0",
+          "runnable_comparator": "OFFICIAL_PIPELINE_EXISTS__NO_P2_CLOSURE_TERMINAL_ADAPTER",
+          "source_id": "ALLENAI__SCIFACT",
+          "terminal": "LICENCE_SCHEMA_CONFLICT_AND_ENDPOINT_MISMATCH__P2_OPEN"
+        }
+      ],
+      "closed_cells": [
+        "PUBLIC_LICENSED_NATURALISTIC_SYSTEMATIC_REVIEW_POOLS_EXIST",
+        "INCLUSION_LABEL_AND_ELIGIBILITY_CRITERIA_FILES_HAVE_VERSIONED_IDENTITIES",
+        "ONE_RUNNABLE_SCREENING_DONOR_IS_PINNED"
+      ],
+      "comparator_candidate": {
+        "canonical_url": "https://github.com/asreview/asreview",
+        "immutable_revision": "1788bc97ff5b5652dbe1e5b5ad5253bef1b03aef",
+        "license": "APACHE_2_0",
+        "missing_for_p2": "ROUTE_TRACE_EXPOSURE_COST_AND_THREE_VALUED_TASK_CLOSURE_ADAPTER",
+        "native_function": "ACTIVE_LEARNING_SCREENING_AND_SIMULATION",
+        "source_id": "ASREVIEW_COMPARATOR",
+        "status": "RUNNABLE_DONOR_CANDIDATE__NOT_A_FROZEN_P2_ARM"
+      },
+      "exact_endpoint": "paired task-world gold-recall success without false inclusion across four source-disjoint arenas under identical query, provider, budget and scoring exposure, with independent obligation custody and three frozen comparators",
+      "paper_id": "P2",
+      "paper_level_blocker_closed": false,
+      "still_open": [
+        "ARCHIVED_BASELINE_TASK_WORLD_REPRODUCTION",
+        "FOUR_SOURCE_DISJOINT_ARENA_SNAPSHOTS",
+        "CAPABILITY_MATCHED_EXTERNAL_COMPARATOR",
+        "INDEPENDENT_EVALUATOR_AND_GOLD_CUSTODY",
+        "LIVE_PROVIDER_RESPONSE_AND_COST_RECEIPTS",
+        "OPEN_WEB_PROVIDER_AND_ROUTE_WORLD_BINDING",
+        "FUTURE_OPTION_AND_TASK_CLOSURE_GOLD",
+        "ASREVIEW_OR_SIEVE_TERMINAL_PRESERVING_ADAPTER"
+      ],
+      "successor_identity": "P2.GUARDED.ENVELOPE.EXTERNAL.V1"
+    },
+    {
+      "candidate_bindings": [
+        {
+          "canonical_url": "https://zenodo.org/records/3460908",
+          "downloadable_bytes": "YES__THREE_PINNED_ARCHIVES_WITH_MD5",
+          "eligibility": "RAW_TEXT_AND_GOLD_AVAILABLE__SINGLE_BIOMEDICAL_DOMAIN",
+          "freshness_custody": "EVALUATION_GOLD_PUBLICLY_DOWNLOADABLE__NOT_INTRINSICALLY_PROTECTED",
+          "immutable_revision": "3460908",
+          "labels": "BIOMEDICAL_FULL_TEXT_CONCEPT_ANNOTATION_COREFERENCE_AND_SEPARATE_EVALUATION_GOLD",
+          "rights": "CC_BY_NC_SA_3_0_IN_ZENODO_RECORD",
+          "runnable_comparator": "SHARED_TASK_FORMAT__NO_P3_SET_VALUED_TERMINAL_ADAPTER",
+          "source_id": "ZENODO_3460908",
+          "terminal": "RAW_TEXT_GOLD_SOURCE_BOUND__MULTI_DOMAIN_ENVELOPE_ENDPOINT_OPEN"
+        },
+        {
+          "canonical_url": "https://github.com/allenai/SciREX",
+          "downloadable_bytes": "YES__PINNED_7_318_844_BYTE_RELEASE_ARCHIVE_HEAD_WITH_STRONG_ETAG",
+          "eligibility": "README_REPORTS_APPROXIMATELY_HALF_OF_RELATIONS_HAVE_AN_ENTITY_WITH_NO_RETAINED_MENTION",
+          "freshness_custody": "PUBLIC_RELEASE__NO_PROTECTED_GOLD",
+          "immutable_revision": "7daad660fe94f504433590b7a781cfabe1e179c6",
+          "labels": "METHOD_METRIC_TASK_MATERIAL_SCORE_RELATIONS_AND_COREFERENCE",
+          "rights": "APACHE_2_0_REPOSITORY__UNDERLYING_ARTICLE_TEXT_CONTENT_CLASS_NOT_INDEPENDENTLY_CLEARED",
+          "runnable_comparator": "OFFICIAL_MODEL_CODE_EXISTS__NO_P3_PORTRAIT_TERMINAL",
+          "source_id": "SCIREX",
+          "terminal": "ADVERSE_OBSERVATION_COVERAGE_AND_RIGHTS_AUDIT_REQUIRED"
+        },
+        {
+          "canonical_url": "https://zenodo.org/records/15827226",
+          "downloadable_bytes": "YES__PINNED_486_043_BYTE_ZIP_WITH_MD5",
+          "eligibility": "SYSTEMATIC_ALTERATIONS_OF_ONE_BIBLIOGRAPHIC_SEED__NOT_NATURALISTIC_MULTI_DOMAIN_RAW_TEXT",
+          "freshness_custody": "PUBLIC_REFERENCE_ALIGNMENTS__NO_PROTECTED_GOLD",
+          "immutable_revision": "15827226",
+          "labels": "REFERENCE_ONTOLOGY_ALIGNMENTS",
+          "rights": "CC_BY_4_0_IN_ZENODO_RECORD",
+          "runnable_comparator": "OAEI_MATCHERS_POSSIBLE__NO_FOUR_EXACT_ARMS_BOUND",
+          "source_id": "ZENODO_15827226",
+          "terminal": "LICENSED_ALIGNMENT_CONTROL_BOUND__P3_ENDPOINT_OPEN"
+        }
+      ],
+      "closed_cells": [
+        "PINNED_LICENSED_RAW_TEXT_CONCEPT_GOLD_EXISTS_IN_ONE_DOMAIN",
+        "PINNED_LICENSED_REFERENCE_ALIGNMENT_CONTROL_EXISTS",
+        "ONE_GENERAL_ENTITY_ALIGNMENT_TOOLKIT_IS_PINNED"
+      ],
+      "comparator_candidate": {
+        "canonical_url": "https://github.com/nju-websoft/OpenEA",
+        "immutable_revision": "b59e014153c27c7166d78475e3474c7e86a10be9",
+        "license": "GPL_3_0",
+        "missing_for_p3": "SCIENCE_SPECIFIC_COORDINATES_SET_VALUED_INVALID_TERMINAL_AND_UNDERLYING_KG_RIGHTS_MATRIX",
+        "native_function": "ENTITY_ALIGNMENT_BENCHMARK_AND_TWELVE_REPRESENTATIVE_METHODS",
+        "source_id": "OPENEA",
+        "status": "RUNNABLE_DONOR_TOOLKIT__NOT_FOUR_FROZEN_P3_ARMS"
+      },
+      "exact_endpoint": "floor-adjusted avoidable false merge or downstream decision harm on 768 source-artifact-family clusters, with nonzero referent/construct/measurement/temporal variation, independent gold, raw-text attack and four comparators",
+      "paper_id": "P3",
+      "paper_level_blocker_closed": false,
+      "still_open": [
+        "SOURCE_DISJOINT_MULTI_DOMAIN_ATLAS_WITH_NONZERO_VARIATION_ON_ALL_FOUR_COORDINATES",
+        "INDEPENDENT_PROTECTED_GOLD_LABELS",
+        "RAW_TEXT_ATTACK_CORPUS",
+        "DOWNSTREAM_DECISION_EVALUATOR_CUSTODY",
+        "NONZERO_VARIATION_ON_ALL_FOUR_SCIENTIFIC_COORDINATES",
+        "PUBLICATION_TEXT_CONTENT_CLASS_RIGHTS_PER_ARTICLE",
+        "FOUR_EXACT_COMPARATOR_ADAPTERS",
+        "PROTECTED_DOWNSTREAM_LOSS_AND_DECISION_AUTHORITY"
+      ],
+      "successor_identity": "P3.ENVELOPE.COVERAGE.TRANSPORT.V1"
+    },
+    {
+      "candidate_bindings": [
+        {
+          "canonical_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+          "downloadable_bytes": "YES__ONE_PINNED_PARQUET_LFS_OBJECT__300_TASKS",
+          "eligibility": "IMPLEMENTATION_OR_EXECUTION_REPAIR_ONLY__NO_EIGHT_REVISION_CLASS_GOLD",
+          "freshness_custody": "ALL_GOLD_FIELDS_PUBLIC__NOT_PROTECTED_FRESH_TRANSFER",
+          "immutable_revision": "846e647b9f33c0b51b739d005d13d85493c9af09",
+          "labels": "PUBLIC_ISSUE_GOLD_PATCH_TEST_PATCH_AND_TEST_LISTS",
+          "rights": "MIT_IN_DATASET_CARD",
+          "runnable_comparator": "SWE_AGENT_PINNED_SEPARATELY_AS_FIXED_ISSUE_SOLVER",
+          "source_id": "SWE-BENCH__SWE-BENCH_MULTILINGUAL",
+          "terminal": "ONE_PUBLIC_SOFTWARE_TASK_SOURCE_BOUND__P5_PRIMARY_ENDPOINT_OPEN"
+        },
+        {
+          "canonical_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified",
+          "downloadable_bytes": "YES__ONE_PINNED_PARQUET_LFS_OBJECT__500_TASKS",
+          "eligibility": "IMPLEMENTATION_BUG_ONLY__NO_HIDDEN_REVISION_RESPONSIBILITY",
+          "freshness_custody": "PUBLIC_GOLD__NO_PROTECTED_EVALUATOR",
+          "immutable_revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+          "labels": "PUBLIC_HUMAN_VALIDATED_ISSUE_PATCH_AND_TEST_FIELDS",
+          "rights": "CANNOT_CHECK__CURRENT_DATASET_CARD_HAS_NO_LICENSE_FIELD_OR_LICENSE_TAG",
+          "runnable_comparator": "SWE_BENCH_HARNESS_RUNNABLE__NOT_SELF_EVOLUTION",
+          "source_id": "SWE-BENCH__SWE-BENCH_VERIFIED",
+          "terminal": "CANNOT_CHECK_DATASET_RIGHTS__P5_ENDPOINT_OPEN"
+        },
+        {
+          "canonical_url": "https://github.com/rjust/defects4j",
+          "downloadable_bytes": "YES__854_ACTIVE_REPRODUCIBLE_BUGS_REPORTED_AT_PIN",
+          "eligibility": "IMPLEMENTATION_CLASS_ONLY",
+          "freshness_custody": "PUBLIC_FIXES__NO_PROTECTED_SPLIT",
+          "immutable_revision": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+          "labels": "BUGGY_FIXED_REVISION_AND_TRIGGERING_TEST",
+          "rights": "MIT_TEXT_AT_PINNED_license.txt",
+          "runnable_comparator": "REPRODUCTION_FRAMEWORK_ONLY",
+          "source_id": "DEFECTS4J",
+          "terminal": "REPRODUCIBLE_IMPLEMENTATION_STRATUM_CANDIDATE__P5_OPEN"
+        },
+        {
+          "canonical_url": "https://github.com/BugSwarm/bugswarm",
+          "downloadable_bytes": "PUBLIC_REST_API_AND_DOCKER_ARTIFACT_ROUTE__NO_ARTIFACT_BODY_FETCHED",
+          "eligibility": "ENVIRONMENT_EXECUTION_FAILURE_CANDIDATE_ONLY",
+          "freshness_custody": "PUBLIC_MINED_ARTIFACTS__NO_FRESH_HOST_CUSTODY",
+          "immutable_revision": "2b276ac5c475bcc71c9d62384943206c7768408f",
+          "labels": "REAL_CI_FAIL_PASS_PAIRS__NO_PROTECTED_CAUSAL_REVISION_LABEL",
+          "rights": "BSD_3_CLAUSE_FOR_INFRASTRUCTURE__UNDERLYING_PROJECT_AND_CONTAINER_CONTENT_RIGHTS_UNBOUND",
+          "runnable_comparator": "BUGSWARM_TOOLING_AVAILABLE__NO_SELF_REVISION_ARMS",
+          "source_id": "BUGSWARM",
+          "terminal": "CANNOT_CHECK_ARTIFACT_RIGHTS_AND_CAUSAL_LABELS"
+        },
+        {
+          "canonical_url": "https://github.com/soarsmu/BugsInPy",
+          "downloadable_bytes": "YES__PINNED_REPOSITORY_ARCHIVE",
+          "eligibility": "IMPLEMENTATION_BUG_ONLY",
+          "freshness_custody": "PUBLIC_FIXES__NO_PROTECTED_SPLIT",
+          "immutable_revision": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+          "labels": "BUGGY_FIXED_PROJECT_VERSIONS",
+          "rights": "CANNOT_CHECK__NO_ROOT_LICENSE_FILE_AT_PIN",
+          "runnable_comparator": "FRAMEWORK_RUNNABLE",
+          "source_id": "BUGSINPY",
+          "terminal": "CANNOT_CHECK_RIGHTS__P5_ENDPOINT_OPEN"
+        }
+      ],
+      "closed_cells": [
+        "PINNED_LICENSED_MULTILINGUAL_ISSUE_PATCH_TASK_BYTES_EXIST",
+        "PINNED_REPRODUCIBLE_BUG_FRAMEWORK_EXISTS",
+        "ONE_RUNNABLE_FIXED_ISSUE_SOLVER_BASELINE_IS_PINNED"
+      ],
+      "comparator_candidate": {
+        "canonical_url": "https://github.com/SWE-agent/SWE-agent",
+        "immutable_revision": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+        "license": "MIT",
+        "missing_for_p5": "PERSISTENT_ISSUE_STATE_SELF_EDIT_SELF_EVOLUTION_REVISION_CLASS_AND_HOST_PROMOTION_INTERFACES",
+        "native_function": "AUTONOMOUS_GITHUB_ISSUE_RESOLUTION_AND_SWE_BENCH_BATCH_RUNNER",
+        "source_id": "SWE_AGENT_COMPARATOR",
+        "status": "ONE_FIXED_AGENT_BASELINE_PINNED__SIX_ARM_FREEZE_OPEN"
+      },
+      "exact_endpoint": "correct minimal revision with preservation and protected fresh-transfer success across eight revision classes and eight domains, with six frozen comparators and every harm gate noncompensatory",
+      "paper_id": "P5",
+      "paper_level_blocker_closed": false,
+      "still_open": [
+        "M_OPEN_ONLY_SOURCE_GROUNDED_STRUCTURAL_BINDING",
+        "SOURCE_DISJOINT_PROTECTED_PROJECT_ISSUE_PANEL",
+        "FINAL_SPLIT_COMMITMENT",
+        "INDEPENDENT_PROTECTED_EVALUATOR_AND_FRESH_TRANSFER_EVALUATOR",
+        "SUBJECT_CANDIDATE_BASELINE_AND_EPOCH_IDENTITIES",
+        "EXTERNAL_RESULT_VERIFIER_CUSTODY",
+        "PROTECTED_EIGHT_CLASS_REVISION_RESPONSIBILITY_GOLD",
+        "SAME_VISIBLE_SYMPTOM_BLOCKING",
+        "FRESH_TRANSFER_AND_HARM_OUTCOMES",
+        "SIX_EXACT_SELF_EDIT_OR_SELF_EVOLUTION_ARMS"
+      ],
+      "successor_identity": "P5.FRESH.AUTHORITY.CAMPAIGN.V1"
+    }
+  ],
+  "papers": [
+    "P1",
+    "P2",
+    "P3",
+    "P5"
+  ],
+  "protected_outcome_bytes_accessed": false,
+  "schema_version": "orion.public-empirical-data-binding.v1"
+}

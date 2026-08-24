@@ -1,0 +1,84 @@
+{
+  "identity": "P2_KIFMS_V8_U4_DONOR_ENVELOPMENT_NESTED_LORO_DEVELOPMENT",
+  "status": "FROZEN_AFTER_V7_OUTCOME_ACCESS_BEFORE_V8_RESIDUAL_EXECUTION",
+  "frozen_at_utc": "2026-08-23T19:30:00+00:00",
+  "scope": "OPEN_KIFMS_DEVELOPMENT_ONLY__NOT_CONFIRMATION_OR_INDEPENDENT_CUSTODY",
+  "development_population": {
+    "source": "The exact 14-review, 4934-row V7 KIFMS population",
+    "unit": "review decision, unweighted across reviews",
+    "outcome_status": "All KIFMS V7 outcomes are open and may be used only for development",
+    "review_deletion": "Forbidden; every outer fold holds out exactly one of all fourteen reviews"
+  },
+  "mandatory_base": {
+    "identity": "unchanged V7 R1_L1 u4",
+    "representation": "word TF-IDF ngram_range=(1,2), min_df=1, max_df=0.95, sublinear_tf=True, lowercase=True",
+    "learner": "LinearSVC(loss=squared_hinge, C=0.11, random_state=20260823)",
+    "balancer_ratio": 9.8,
+    "active_loop": "The V7 seed, batch, refit, complete-order and stable-tie rules are unchanged",
+    "equality_requirement": "V8 base metrics and order hashes must equal V7 R1_L1 exactly in all fourteen reviews"
+  },
+  "residual_score_definition": {
+    "learner": "The same u4 LinearSVC and 9.8 balancer are fitted on the residual representation; only representation changes",
+    "normalization": "At each active batch, base and residual pool scores are separately transformed to population z scores with ddof=0; a zero-variance score becomes all zeros",
+    "combination": "combined = z_base + alpha * (z_residual - z_base)",
+    "fallback": "If no configuration passes the other-thirteen-review support rule, execute the unchanged raw-score u4 base; equality to the separately executed base order is mandatory",
+    "strengths": [
+      0.1,
+      0.25
+    ]
+  },
+  "residual_families": [
+    {
+      "id": "F1_WORD_PRUNED",
+      "mechanism": "Suppress singleton vocabulary while retaining word unigrams and bigrams",
+      "representation": "word TF-IDF ngram_range=(1,2), min_df=2, max_features=50000, sublinear_tf=True, lowercase=True"
+    },
+    {
+      "id": "F2_TITLE_EMPHASIS",
+      "mechanism": "Double the title contribution relative to the abstract before applying the u4 word representation",
+      "representation": "word TF-IDF over title + title + abstract, ngram_range=(1,2), min_df=1, max_df=0.95, sublinear_tf=True, lowercase=True"
+    },
+    {
+      "id": "F3_CHAR_MORPHOLOGY",
+      "mechanism": "Add morphology and spelling-sensitive character evidence without changing the u4 learner",
+      "representation": "char_wb TF-IDF ngram_range=(3,5), min_df=2, max_features=30000, sublinear_tf=True, lowercase=True"
+    }
+  ],
+  "configuration_count": 6,
+  "nested_leave_one_review_out": {
+    "outer_folds": 14,
+    "selection_data": "For outer held-out review h, use configuration outcomes from exactly the other thirteen reviews",
+    "support_rule": {
+      "mean_delta_CRE20": "> 0",
+      "mean_delta_WSS95": ">= 0",
+      "worst_review_delta_R10": ">= -0.05"
+    },
+    "selection": "Among supported configurations choose greatest mean delta CRE20, then greatest mean delta WSS95, then greatest worst-review delta R10, then lower alpha, then declared family order",
+    "unsupported_action": "Exact u4 fallback",
+    "outer_estimate": "Apply the selected configuration or exact fallback only to h; aggregate one held-out result per review"
+  },
+  "reported_estimands": [
+    "cross-fitted unweighted mean delta CRE20 versus exact u4",
+    "cross-fitted unweighted mean delta R@10 versus exact u4",
+    "cross-fitted unweighted mean delta WSS95 versus exact u4",
+    "cross-fitted worst-review delta R@10",
+    "strictly positive held-out-review counts for CRE20 and R@10",
+    "exact-u4 fallback frequency and selected-configuration counts",
+    "complete six-configuration review-level diagnostic grid"
+  ],
+  "development_decision": {
+    "no_residual_survives": "P2_V8_DONOR_ENVELOPMENT_SELECTS_EXACT_U4_FALLBACK__NO_SUPPORTED_ORION_RESIDUAL",
+    "one_or_more_outer_folds_select_residual": "P2_V8_NESTED_LORO_DONOR_ENVELOPMENT_DEVELOPMENT_SELECTED__SOURCE_DISJOINT_EXECUTION_REQUIRED",
+    "binding_or_base_drift": "P2_V8_DONOR_ENVELOPMENT_CANNOT_CHECK_BINDING_POPULATION_OR_U4_IDENTITY"
+  },
+  "preserved_terminal": "P2_KIFMS_V7_TRANSPARENT_PUBLIC_EXECUTION_FAILS_ONE_OR_MORE_LOCKED_PERFORMANCE_GATES_REQUIRES_SUCCESSOR",
+  "forbidden_claims": [
+    "KIFMS confirmation, validation, or independent custody",
+    "source-general, domain-general, workflow-general, or application-exact superiority",
+    "relaxation or reinterpretation of any V7 threshold",
+    "post-outcome review deletion or endpoint substitution",
+    "standalone candidate superiority",
+    "source-disjoint performance before a separately frozen execution"
+  ],
+  "next_discriminator": "Freeze one deterministic donor-envelopment controller from this development rule and compare it with unchanged u4 plus a residual ablation on a lawful source family disjoint from SWIFT, SYNERGY V5, and KIFMS V7."
+}

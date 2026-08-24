@@ -1,0 +1,47 @@
+{
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "blocking_observations": [
+    "No aggregate calls/tokens/USD hard stop is released.",
+    "The future.result timeout is reached only after as_completed and does not bound a running future.",
+    "The Docker base tag and all Python dependency declarations are mutable.",
+    "No VM/cgroup-wide compute or final endpoint allowlist is enforced."
+  ],
+  "bound": {
+    "fallbacks": [],
+    "wallclock_seconds": {
+      "per_case": 21600,
+      "termination_grace": 120,
+      "whole_c3_run": 21600
+    }
+  },
+  "dependency_declarations_not_a_lock": {
+    "requirements_dev_entries": 4,
+    "requirements_dev_exact_pins": 0,
+    "requirements_entries": 19,
+    "requirements_exact_pins": 0
+  },
+  "frozen_at_utc": "2026-08-23T18:15:39Z",
+  "proposed_but_unbound": {
+    "calls_tokens_usd": null,
+    "compute": {
+      "gpus": 0,
+      "parallelism": 1,
+      "pids_limit": 2048,
+      "ram_gib": 16,
+      "vcpus": 8
+    },
+    "dependency_resolution": null,
+    "network": "deny except exact bound endpoints"
+  },
+  "schema_version": "orion.p5.c3.resource-registry.v4",
+  "source_defaults_not_adopted_as_matched_p5_values": {
+    "coding_agent_timeout_seconds": 1800,
+    "future_result_timeout_effective": false,
+    "future_result_timeout_seconds": 5400,
+    "max_generation": 80,
+    "num_swe_evals": 1,
+    "selfimprove_size": 2,
+    "selfimprove_workers": 2,
+    "swe_harness_timeout_seconds": 32400
+  }
+}

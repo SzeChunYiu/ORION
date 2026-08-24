@@ -1,0 +1,140 @@
+{
+  "adjudicated_at": "2026-08-24T06:42:55.647739+00:00",
+  "class_findings": {
+    "class_major_version_counts": {
+      "61": 106
+    },
+    "different_byte_count": 0,
+    "expected_count": 106,
+    "extra_count": 0,
+    "fresh_source_compilation_exact": null,
+    "fresh_source_compiler_executed": false,
+    "missing_count": 0,
+    "observed_count": 106,
+    "provider_native_signed_build_provenance": false,
+    "tracked_jar_projection_exact": true
+  },
+  "cumulative_exact_bridge": "76/80",
+  "cumulative_exact_by_domain": {
+    "EARTH_ENVIRONMENT": 5,
+    "LIFE_BIOMEDICAL": 7,
+    "PHYSICAL_ENGINEERING": 4,
+    "SCIENTIFIC_SOFTWARE": 60
+  },
+  "evidence": {
+    "AUTHOR_PROVIDER_SIGNING_CONTRACT_V12.json": {
+      "bytes": 2911,
+      "sha256": "fbfa5eabe493c4a3699eccb5bae4f6c0068b1df3bd3493cfb96a03ba09933f34"
+    },
+    "AUTHOR_PROVIDER_SIGNING_CONTRACT_V12.md": {
+      "bytes": 1297,
+      "sha256": "7ecc9a255609047b15b05f53efd3d4061024d78af8bd83a832ae3421c86e7874"
+    },
+    "COMPILER_PROBE_V12.json": {
+      "bytes": 3162,
+      "sha256": "775c5aa5e97c69673962048dcfe4b1162a361a1b09d7bb1841a056be2aaf960c"
+    },
+    "HANDOFF_V12.md": {
+      "bytes": 804,
+      "sha256": "00ee69f107e08dd29b5e02b1ea96690025854615c31fc38a0efe3035cadff681"
+    },
+    "JAR_PROJECTION_V12.json": {
+      "bytes": 72689,
+      "sha256": "0a12e76359b6c4b779df666ac875f8c4bb9842ad8bf44dee9e8c0e9d1f8c5e83"
+    },
+    "MODE_AUTHORITY_V12.json": {
+      "bytes": 7972,
+      "sha256": "c32580376a2ab3b1301694969282a6bd3bcadaa850b9423c0a6f3117e4b6593e"
+    },
+    "NEGATIVE_RESULT_LEDGER_V12.json": {
+      "bytes": 1828,
+      "sha256": "3d1e5dad993cb7875864866a191bbe08ca9f89cfea883038a1f64329b03e7546"
+    },
+    "OMITTED_LARGE_ARTIFACTS_V12.md": {
+      "bytes": 576,
+      "sha256": "434dcd352f889bb84535b3950804b1490e2a304ddfa3a17a270079a1a5876308"
+    },
+    "PROBE_RECEIPT_V12.json": {
+      "bytes": 12685,
+      "sha256": "5667ce10b79cc0dc80bd10c723494704b153489c23571fa16e4053751e8eec61"
+    },
+    "PROTOCOL_FREEZE_RECEIPT_V12.json": {
+      "bytes": 654,
+      "sha256": "97719689518aabd39c1bb6283c5ede98e8f16dbfc31ab0922f4ecc3286d67083"
+    },
+    "PROTOCOL_V12.json": {
+      "bytes": 67627,
+      "sha256": "9bc43bfae807d3d69ac01696786987e0e7e583421dc0e77d1af3f22ef7bec1dd"
+    },
+    "RESULTS_V12.md": {
+      "bytes": 3108,
+      "sha256": "b114a46daa134faa30a2b9033a37e287324762a47368e745222cdfcb1bae7db7"
+    },
+    "SBOM_V12.json": {
+      "bytes": 86752,
+      "sha256": "843c53b4b1db750863b028152b0d9a0fb8d3126e2788889aa52e1f90fe1b96d6"
+    },
+    "TOOL_PROVENANCE_V12.json": {
+      "bytes": 4830,
+      "sha256": "b76cfd2af6e6e4acaf472ade70248a30a97d62c4bf655f37ac3aec1a01287274"
+    },
+    "development/p4-exact-edge-lineage-authority-v11-2026-08-24/RESULT_V11.json": {
+      "bytes": 8429,
+      "sha256": "dee86c33a0347df5da2425ebc606c12020cfffdff6ac21cea6b23b570ad8fef4"
+    }
+  },
+  "exact_terminal": "EXACT_JAR_PROJECTION_POSITIVE_BUT_PINNED_SOURCE_COMPILE_UNAVAILABLE_AND_SIGNED_REVISION_MODES_CONTRADICT_ARCHIVE_0755",
+  "frozen_index": 91,
+  "gates": {
+    "all_index_91_closure_gates": false,
+    "complete_tracked_jar_projection_exact": true,
+    "cpp_PAIpp_exe_signed_archive_mode_authority": false,
+    "fresh_source_compilation_exact": false,
+    "provider_native_signed_class_build_provenance": false,
+    "run_sh_signed_archive_mode_authority": false
+  },
+  "identity": "P4.M6.JOSS.EXACT.EDGE.BUILD.PROVENANCE.V12",
+  "manuscript_or_claim_ledger_modified": false,
+  "mode_findings": {
+    "archive_modes": {
+      "cpp/PAIpp.exe": "0755",
+      "run.sh": "0755"
+    },
+    "current_revision_signature_valid": true,
+    "exact_subject_attestation_statuses": {
+      "cpp/PAIpp.exe": 404,
+      "run.sh": 404,
+      "zenodo_archive": 404
+    },
+    "github_release_asset_count": 0,
+    "github_release_count": 1,
+    "provider_native_signed_mode_authority": {
+      "cpp/PAIpp.exe": false,
+      "run.sh": false
+    },
+    "signed_current_revision_modes": {
+      "cpp/PAIpp.exe": "100644",
+      "run.sh": "100644"
+    }
+  },
+  "natural_pair_and_scientific_boundary": {
+    "author_lineage_adjudications_added": 0,
+    "comparator_outcomes_accessed": false,
+    "eligible_natural_pairs_added": 0,
+    "external_custody_added": false,
+    "programme_terminal": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK",
+    "scientific_authority_granted": false
+  },
+  "next_causal_discriminator": "Use the frozen compiler image only after OCI-runtime/disk availability changes, then require the provider signing contract; or provider-replace the checksum-bound archive so every non-.git path, byte and executable bit exactly equals the signed immutable revision.",
+  "protocol_sha256": "9bc43bfae807d3d69ac01696786987e0e7e583421dc0e77d1af3f22ef7bec1dd",
+  "pytest_run": false,
+  "repository_ci_run": false,
+  "schema_version": "orion.p4.exact-edge-build-provenance.v12.result",
+  "v12_closed_count": 0,
+  "v12_closed_indices": [],
+  "v12_remaining_count": 1,
+  "v12_remaining_indices": [
+    91
+  ],
+  "verdict": "REMAINS_CANNOT_CHECK"
+}

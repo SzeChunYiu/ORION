@@ -1,0 +1,34 @@
+{
+  "schema_version": "orion.p3.open-world-reference-identification-theorem.v4",
+  "claim_id": "P3.V4.OPEN.WORLD.REFERENCE.NONIDENTIFICATION",
+  "authority": "FORMAL_CONSEQUENCE_OF_POSITIVE_REFERENCE_OBSERVATIONS_WITHOUT_EXHAUSTIVITY",
+  "statement": "For a frozen candidate universe U and observed positive reference R+, if source authority does not certify R+ exhaustive over U, then every x in U minus R+ is compatible with both GLUE and OBSTRUCTION. Absence alone cannot identify OBSTRUCTION or license a point-valued harm score.",
+  "proof_witness": {
+    "world_glue": "x is a true equivalence omitted by a non-exhaustive positive reference",
+    "world_obstruction": "x is not an equivalence",
+    "observational_equivalence": "both worlds expose the same U and R+",
+    "conclusion": "binary truth at x is not identified; the identified set is {GLUE,OBSTRUCTION}"
+  },
+  "v3_audit": {
+    "implementation_path": "work/lane-handoffs/p3-cross-construct-successor/p3_cross_construct_successor.py",
+    "implementation_sha256": "9031e9fd245e6e70ad9dc8fd7acb965294d89b4c9d3f0208e00b9e669da0681e",
+    "relevant_lines": "526-534",
+    "join_receipt_path": "work/lane-handoffs/p3-cross-construct-successor/PUBLIC_GOLD_JOIN_RECEIPT_V3.json",
+    "join_receipt_sha256": "e3f8a6fbdd31f206c5bfd57473dc6a02db0eae36e6333ad6d9125a81fd35ab24",
+    "explicit_glue_pairs": 1399,
+    "residual_else_branch_obstruction_pairs": 116515,
+    "interpretation": "V3 obstruction truth was constructed by within-domain reference absence after explicit equivalence and non-binary cells were removed. The receipt does not itself certify source-level exhaustivity."
+  },
+  "v3_immutability": "V3 terminal and artifacts remain unchanged; V3 harm is typed as conditional on its retained closed-world construction.",
+  "v4_gate": {
+    "binary_scorable_requires_one_of": [
+      "authoritative explicit negative or disjointness truth",
+      "authoritative exhaustivity certificate over an immutable frozen candidate universe"
+    ],
+    "positive_only_omission": "CANNOT_CHECK_OR_FULL_IDENTIFICATION_ENVELOPE",
+    "matcher_nonselection": "NOT_NEGATIVE_TRUTH",
+    "runnable_comparator_repairs_missing_truth": false
+  },
+  "wider_scope": "Any discovery-style benchmark without certified exhaustive negatives supports set-valued identification for unlabelled candidates, not unconditional point-valued evaluation.",
+  "boundary": "The theorem does not decide whether a particular new family is exhaustive; metadata and rights must establish that prospectively. Protected evidence, P3 coordinate claims, and population transport remain CANNOT_CHECK."
+}

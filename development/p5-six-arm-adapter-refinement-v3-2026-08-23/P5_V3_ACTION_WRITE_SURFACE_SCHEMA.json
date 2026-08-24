@@ -1,0 +1,186 @@
+{
+  "$id": "https://orion.invalid/p5/v3/complete-action-write-surface.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A synthetic action record enumerates every mutation and before/after digest for all seven actionable fronts; nonselected drift invalidates singleton emission.",
+  "properties": {
+    "action_id": {
+      "pattern": "^P5V3-ACT-[A-Z0-9_.-]+$",
+      "type": "string"
+    },
+    "arm_id": {
+      "enum": [
+        "C1_FIXED_AGENT__SWE_AGENT",
+        "C2_DIRECT_SELF_EDIT__MOSS",
+        "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+        "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+        "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY",
+        "C6_MODERN_SOURCE_GROUNDED__SCIENCECLAW"
+      ]
+    },
+    "arm_specific_guards": {
+      "additionalProperties": false,
+      "properties": {
+        "development_validity_passed": {
+          "type": "boolean"
+        },
+        "evaluator_only_mutation": {
+          "type": "boolean"
+        },
+        "solver_bytes_unchanged": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "solver_bytes_unchanged",
+        "evaluator_only_mutation",
+        "development_validity_passed"
+      ],
+      "type": "object"
+    },
+    "certificate_id": {
+      "pattern": "^P5V3-CERT-[A-Z0-9_.-]+$",
+      "type": "string"
+    },
+    "declared_complete": {
+      "const": true
+    },
+    "external_scorer_surface_touched": {
+      "const": false
+    },
+    "front_snapshots": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "after_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "before_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "changed": {
+            "type": "boolean"
+          },
+          "class": {
+            "enum": [
+              "EVIDENCE_REPAIR",
+              "MEASUREMENT_REPAIR",
+              "WITHIN_CLASS_MODEL_REPAIR",
+              "MODEL_CLASS_EXPANSION",
+              "REPRESENTATION_REGIME_REPAIR",
+              "EXECUTION_REPAIR",
+              "EVALUATOR_REPAIR"
+            ]
+          }
+        },
+        "required": [
+          "class",
+          "before_sha256",
+          "after_sha256",
+          "changed"
+        ],
+        "type": "object"
+      },
+      "maxItems": 7,
+      "minItems": 7,
+      "type": "array"
+    },
+    "mutations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "after_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "before_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "mutation_id": {
+            "pattern": "^MUT-[A-Z0-9_.-]+$",
+            "type": "string"
+          },
+          "operation": {
+            "enum": [
+              "CREATE",
+              "UPDATE",
+              "DELETE",
+              "CONFIGURE"
+            ]
+          },
+          "registry_front": {
+            "enum": [
+              "EVIDENCE_REPAIR",
+              "MEASUREMENT_REPAIR",
+              "WITHIN_CLASS_MODEL_REPAIR",
+              "MODEL_CLASS_EXPANSION",
+              "REPRESENTATION_REGIME_REPAIR",
+              "EXECUTION_REPAIR",
+              "EVALUATOR_REPAIR"
+            ]
+          },
+          "target_uri": {
+            "pattern": "^synthetic://front/",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mutation_id",
+          "operation",
+          "target_uri",
+          "registry_front",
+          "before_sha256",
+          "after_sha256"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "observation_id": {
+      "pattern": "^P5V3-OBS-[A-Z0-9_.-]+$",
+      "type": "string"
+    },
+    "protected_surface_touched": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "orion.p5.complete-action-write-surface.v3"
+    },
+    "selected_front": {
+      "enum": [
+        "EVIDENCE_REPAIR",
+        "MEASUREMENT_REPAIR",
+        "WITHIN_CLASS_MODEL_REPAIR",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REPAIR",
+        "EXECUTION_REPAIR",
+        "EVALUATOR_REPAIR"
+      ]
+    },
+    "write_set_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "action_id",
+    "arm_id",
+    "observation_id",
+    "certificate_id",
+    "selected_front",
+    "declared_complete",
+    "mutations",
+    "front_snapshots",
+    "write_set_sha256",
+    "protected_surface_touched",
+    "external_scorer_surface_touched",
+    "arm_specific_guards"
+  ],
+  "title": "P5 V3 complete action and write-surface record",
+  "type": "object"
+}

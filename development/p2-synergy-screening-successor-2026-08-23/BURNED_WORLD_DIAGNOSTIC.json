@@ -1,0 +1,69 @@
+{
+  "authority": "POST_V2_BURNED_WORLD_DIAGNOSTIC_ONLY__NOT_CONFIRMATORY",
+  "worlds": {
+    "Hall_2012": {
+      "deterministic_k_positive_centroid_recall_at_10pct_diagnostic": {
+        "1": 0.7019230769230769,
+        "10": 0.9903846153846154,
+        "3": 0.9615384615384616,
+        "5": 0.9903846153846154
+      },
+      "empty_texts": 0,
+      "negative_similarity_median": 0.026206942903210014,
+      "negative_similarity_q99": 0.06125893235120586,
+      "positive_similarity_median": 0.04963144689822648,
+      "positive_similarity_q90": 0.09205702898406999,
+      "positives": 104,
+      "records": 8793,
+      "seed_positive_zero_similarity_fraction": 0.0
+    },
+    "Moran_2021": {
+      "deterministic_k_positive_centroid_recall_at_10pct_diagnostic": {
+        "1": 0.0990990990990991,
+        "10": 0.26126126126126126,
+        "3": 0.25225225225225223,
+        "5": 0.23423423423423423
+      },
+      "empty_texts": 0,
+      "negative_similarity_median": 0.025326647620015325,
+      "negative_similarity_q99": 0.08266170788694228,
+      "positive_similarity_median": 0.02865222304423906,
+      "positive_similarity_q90": 0.04395846748890235,
+      "positives": 111,
+      "records": 5214,
+      "seed_positive_zero_similarity_fraction": 0.0
+    },
+    "Walker_2018": {
+      "deterministic_k_positive_centroid_recall_at_10pct_diagnostic": {
+        "1": 0.2073490813648294,
+        "10": 0.5643044619422573,
+        "3": 0.4763779527559055,
+        "5": 0.5275590551181102
+      },
+      "empty_texts": 5,
+      "negative_similarity_median": 0.01031467297158063,
+      "negative_similarity_q99": 0.04941513373758598,
+      "positive_similarity_median": 0.0141259596335158,
+      "positive_similarity_q90": 0.0349951205777825,
+      "positives": 762,
+      "records": 48375,
+      "seed_positive_zero_similarity_fraction": 0.01968503937007874
+    },
+    "Wolters_2018": {
+      "deterministic_k_positive_centroid_recall_at_10pct_diagnostic": {
+        "1": 0.8947368421052632,
+        "10": 1.0,
+        "3": 0.8947368421052632,
+        "5": 0.9473684210526315
+      },
+      "empty_texts": 2,
+      "negative_similarity_median": 0.03372515376273037,
+      "negative_similarity_q99": 0.09499322216580602,
+      "positive_similarity_median": 0.07457971934740036,
+      "positive_similarity_q90": 0.11694918595204325,
+      "positives": 19,
+      "records": 4280,
+      "seed_positive_zero_similarity_fraction": 0.0
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "command_template": "rtk python run_kifms_transparent_execution_v7.py --packet . --v6 ../p2-continuous-recall-effort-v6-2026-08-23 --stage <exact_revision_one_csv_directory> --out RESULT_V7.json",
+  "custody_boundary": "Same-workspace transparent public development execution. Independent confirmation is explicitly false and cannot be inferred from hashes.",
+  "fixed_sha256": {
+    "pinned_active_core_v3": "348b7aa1fe708d480da178bdfd4736ec08df86a2d177337b94af205eefbe649a",
+    "pinned_factorial_core_v4": "ed18d84549ccf9ec65895539dfafb0dfef897d97f34923dc8f5d59ebe332a003",
+    "protocol_v7": "0e7e9979dd4f4cb9869d6dea2ad613928e8495de2e5bd384e01a6fc070327b31",
+    "runner_v7": "e888f4e4d57cf46d92241dabd61a7e2c3459a8c4d7465c522a167050970ae79a",
+    "v6_overlap": "bdf20de65cd28ffc1d984e755250604b0ce0e1550cad27da52a0ab9890164254",
+    "v6_population": "3bbd1c56fa770836bc674ab56d890151f8975d14709aa2dd3586ccb2d7f4af87",
+    "v6_protocol": "55a5363e6f9360c4722979d0cb11751575f050ce2eea2147a7883d679ea09633",
+    "v6_rights": "0c7211591ba5799721d5b8b00e11564b221a3e07526467df350adef2a29ddbeb"
+  },
+  "frozen_at_utc": "2026-08-23T18:05:00+00:00",
+  "identity": "P2_KIFMS_V7_IMPLEMENTATION_FREEZE",
+  "outcome_access_status": "NO KIFMS LABEL VALUES, CLASS COUNTS, SEEDS, V7 ORDERS, ARM METRICS, OR COMPARATIVE OUTCOMES ACCESSED BEFORE THIS FREEZE",
+  "population_reconstruction": "Outcome-blind unique single-deletion reconstruction must reproduce every exact V6 per-review and union hash; no label participates in this choice.",
+  "software_expected": {
+    "numpy": "2.4.4",
+    "python": "3.13.12",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.1"
+  },
+  "source_text_boundary": "Titles, abstracts, and row labels are used in memory only. The result contains counts, hashes, metrics, effects, gates, and terminals but no source text or row-level labels.",
+  "status": "FROZEN_BEFORE_LABEL_OR_OUTCOME_ACCESS"
+}

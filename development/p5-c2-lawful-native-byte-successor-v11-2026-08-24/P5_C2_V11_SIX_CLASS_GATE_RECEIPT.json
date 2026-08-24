@@ -1,0 +1,171 @@
+{
+  "attempt_destruction_verified": true,
+  "authority": "BYTE_ROUTE_AND_RUNTIME_TASK_ENVIRONMENT_ONLY__NOT_PERFORMANCE",
+  "candidate_regular_file_count": 302,
+  "candidate_tree_after_sha256": "df7b03d9b0ac6725b44af2eacacd2410523fe801b756a60ae5b5ed1c97ed0b90",
+  "candidate_tree_before_sha256": "df7b03d9b0ac6725b44af2eacacd2410523fe801b756a60ae5b5ed1c97ed0b90",
+  "class_receipts": [
+    {
+      "class_id": "session",
+      "evidence": "FlagSnapshot and complete chunk manifest are frozen; no candidate outcome, run output, evaluator feedback, tool dispatch, or protected byte is present.",
+      "passed": true
+    },
+    {
+      "class_id": "source_mount",
+      "evidence": "V6 archive/tree identity passed for 302 files and 5122012 bytes; read-only source plus one-file ephemeral write overlay materialized.",
+      "passed": true
+    },
+    {
+      "class_id": "pre_action_certificate",
+      "evidence": "Host-issued V3-compatible sequence-0 certificate is candidate-visible and input-native; its separate receipt denies natural-case fibre proof and revision authority.",
+      "passed": true
+    },
+    {
+      "class_id": "public_evaluator",
+      "evidence": "Frozen public evaluator, public cases, and pinned JDK lock were mounted outside candidate write authority and were not executed.",
+      "passed": true
+    },
+    {
+      "class_id": "write_reset_policy",
+      "evidence": "Allowed/forbidden roots were enforced; before/after digests matched and the attempt directory was destroyed.",
+      "passed": true
+    },
+    {
+      "class_id": "route_adapter",
+      "evidence": "The separately named content-addressed ORION V11 adapter mounted every preceding byte class and does not claim released MOSS identity.",
+      "passed": true
+    }
+  ],
+  "executed": {
+    "benchmark": false,
+    "coding_agent": false,
+    "model": false,
+    "moss": false,
+    "protected_data": false,
+    "protected_scorer": false,
+    "public_evaluator": false,
+    "repository_ci": false,
+    "route_gate": true,
+    "test_framework": false
+  },
+  "forbidden_attempt_path_hits": 0,
+  "forbidden_recursive_key_hits": 0,
+  "json_files_scanned_for_forbidden_keys": 19,
+  "mount_count": 17,
+  "mounts": [
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "066e8e105d85011dda0970033a64f13fc8fb6a3f5608e2e3bba9dde7367b38db",
+      "relative_mount": "candidate_inputs/FLAG_SNAPSHOT_V11.json",
+      "source_sha256": "066e8e105d85011dda0970033a64f13fc8fb6a3f5608e2e3bba9dde7367b38db"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "8f2341ff2ccfdeed352dd5c3b98e81e5fc28b7604c0a1e75018a531a3351333b",
+      "relative_mount": "candidate_inputs/P5_C2_V11_SESSION_MANIFEST.json",
+      "source_sha256": "8f2341ff2ccfdeed352dd5c3b98e81e5fc28b7604c0a1e75018a531a3351333b"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "48a614fa2f4f3a3e719194ee305091a2e4fd4ab438b2bbf038bb50f993576bf2",
+      "relative_mount": "candidate_inputs/chunk-0001.json",
+      "source_sha256": "48a614fa2f4f3a3e719194ee305091a2e4fd4ab438b2bbf038bb50f993576bf2"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "39c8073ce4ead5a2c815b53a8d1b09b013a75fdbd73c4e458b7ec1c4109c6e4c",
+      "relative_mount": "candidate_inputs/P5_C2_V11_PRE_ACTION_CERTIFICATE.json",
+      "source_sha256": "39c8073ce4ead5a2c815b53a8d1b09b013a75fdbd73c4e458b7ec1c4109c6e4c"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "080be9195570f6220efecf01632f77f630991057d5ef11b0e597c5fa52d0b305",
+      "relative_mount": "candidate_inputs/P5_C2_V11_CERTIFICATE_AUTHORITY_BOUNDARY.json",
+      "source_sha256": "080be9195570f6220efecf01632f77f630991057d5ef11b0e597c5fa52d0b305"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921",
+      "relative_mount": "candidate_inputs/CASE_BODY_V6.json",
+      "source_sha256": "3e5d001eee38d62c93c5f00acf59adba0a55cadf6df7040bdb2c432c1c16f921"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098",
+      "relative_mount": "candidate_inputs/TASK_SPECIFICATION_V6.md",
+      "source_sha256": "a455eec2d32b031b6e49d06c73e0cf3befbe9e2cd461e5417efbade5f39f5098"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "e2e6c5435cd5a27b4b98182d6608a02e44d2b74916bab264a622f53e63e9d99a",
+      "relative_mount": "host_controlled/public_hex_classifier_evaluator.py",
+      "source_sha256": "e2e6c5435cd5a27b4b98182d6608a02e44d2b74916bab264a622f53e63e9d99a"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "643ff5efda06009057f9c23c6fe37541ed6433690894d7f2c7f32f4496681a7d",
+      "relative_mount": "host_controlled/PUBLIC_HEX_CLASSIFICATION_CASES_V11.json",
+      "source_sha256": "643ff5efda06009057f9c23c6fe37541ed6433690894d7f2c7f32f4496681a7d"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "410ac4202561fef3b4e349d1030f9685bf0805ca98f020e7028eb5fad69ea78f",
+      "relative_mount": "host_controlled/P5_C2_V11_JDK_RUNTIME_LOCK.json",
+      "source_sha256": "410ac4202561fef3b4e349d1030f9685bf0805ca98f020e7028eb5fad69ea78f"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "2f2cd90b15070de916c11b48e8436a0b45f7257203597cd81fb2499dab4acb38",
+      "relative_mount": "host_controlled/P5_C2_V11_RIGHTS_MANIFEST.json",
+      "source_sha256": "2f2cd90b15070de916c11b48e8436a0b45f7257203597cd81fb2499dab4acb38"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "e1b4cdcc625bee2728ba6b2b612c7f67cb64c37e754bc00724c34911fda09097",
+      "relative_mount": "host_controlled/P5_C2_V11_WRITE_RESET_POLICY.json",
+      "source_sha256": "e1b4cdcc625bee2728ba6b2b612c7f67cb64c37e754bc00724c34911fda09097"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "dcbaa8d11ff073bc8feb4b928d7b0a37b15a1ba90f12653f2508da6e2d65efee",
+      "relative_mount": "host_controlled/P5_C2_V11_EXECUTION_FREEZE.json",
+      "source_sha256": "dcbaa8d11ff073bc8feb4b928d7b0a37b15a1ba90f12653f2508da6e2d65efee"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "relative_mount": "host_controlled/CC0-1.0.txt",
+      "source_sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "relative_mount": "host_controlled/APACHE-2.0.txt",
+      "source_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "3b1830189d4da56ebc6e43f32a96b92caa3392cdc0c5ba4af7c399f81696545d",
+      "relative_mount": "host_controlled/APACHE-NOTICE.txt",
+      "source_sha256": "3b1830189d4da56ebc6e43f32a96b92caa3392cdc0c5ba4af7c399f81696545d"
+    },
+    {
+      "mounted_mode": "0o444",
+      "mounted_sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726",
+      "relative_mount": "host_controlled/OPENJDK-17-LICENSE.txt",
+      "source_sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+    }
+  ],
+  "mutable_target_after_sha256": "14ebbdea51d9028d433e3605258f12ca2a2b658c0c3316017bc3031e4ac490d2",
+  "mutable_target_before_sha256": "14ebbdea51d9028d433e3605258f12ca2a2b658c0c3316017bc3031e4ac490d2",
+  "passed_class_count": 6,
+  "protocol_id": "P5.C2.LAWFUL.NATIVE.BYTE.SUCCESSOR.V11",
+  "released_moss_identity_claimed": false,
+  "required_class_count": 6,
+  "schema_version": "orion.p5.c2.six-class-route-gate-receipt.v11",
+  "source_archive_sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+  "source_tree_manifest_sha256": "4fbe1517b1bf3c549986272fe16fead6a8e4eb6f3cfa47f09c3a92bf94162abc",
+  "status": "PASS",
+  "successor_identity": "C2_LAWFUL_NATIVE_BYTE_SUCCESSOR__ORION_V11",
+  "terminal": "P5_C2_V11_SIX_OF_SIX_FROZEN_BYTE_CLASSES_PASS__DISTINCT_SUCCESSOR_ROUTE_MATERIALIZED__NO_MODEL_BENCHMARK_SCORER_OR_OUTCOME_EXECUTED"
+}

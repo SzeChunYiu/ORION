@@ -1,0 +1,2300 @@
+{
+  "boundary": "This inventory is provenance of the V12 investigation, not provider-native signed build provenance for the Zenodo archive.",
+  "compiler_execution": {
+    "docker_desktop_start_exact_terminal": "Unable to find application named 'Docker'",
+    "executed": false,
+    "initial_docker_pull_exact_terminal": "failed to connect to the docker API at unix:///var/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /var/run/docker.sock: connect: no such file or directory",
+    "initial_docker_pull_returncode": 1,
+    "lawful_disposable_runtime_attempt": {
+      "first_start_terminal": "failed to download cache artifact: exit status 1; error starting vm: error at 'creating and starting': exit status 1",
+      "homebrew_formula": "colima 0.10.3 with lima 2.2.0",
+      "second_start_observation": "VM entered running state but guest SSH/runtime did not become available; colima status returned error retrieving current runtime: empty value; docker API remained unavailable."
+    },
+    "next_contract": "Provider-native signed statement must bind the frozen 106-output manifest SHA-256, tracked JAR SHA-256, full revision/tree, exact compiler and build command; alternatively a new prospective lane may retry this exact frozen image digest in an available linux/arm64 OCI runtime.",
+    "pinned_image": {
+      "license_boundary": "Public Eclipse Temurin OpenJDK image; runtime labels and component/license inventory must be captured in the SBOM.",
+      "manifest_digest": "sha256:38e51c132b7e3bd6c5b131303792ece0a8a6f32ee1039eee2c04a87678760861",
+      "platform": "linux/arm64/v8",
+      "registry": "docker.io/library/eclipse-temurin",
+      "required_runtime_check": "javac -version must print javac 17.0.14 and java -version must identify OpenJDK 17.0.14+7 before compilation",
+      "tag_observed_before_freeze": "17.0.14_7-jdk"
+    },
+    "substitute_compiler_used": false,
+    "terminal": "PINNED_COMPILER_RUNTIME_UNAVAILABLE_NO_BUILD_EXECUTED"
+  },
+  "compiler_image": {
+    "license_boundary": "Public Eclipse Temurin OpenJDK image; runtime labels and component/license inventory must be captured in the SBOM.",
+    "manifest_digest": "sha256:38e51c132b7e3bd6c5b131303792ece0a8a6f32ee1039eee2c04a87678760861",
+    "platform": "linux/arm64/v8",
+    "registry": "docker.io/library/eclipse-temurin",
+    "required_runtime_check": "javac -version must print javac 17.0.14 and java -version must identify OpenJDK 17.0.14+7 before compilation",
+    "tag_observed_before_freeze": "17.0.14_7-jdk"
+  },
+  "document_name": "PAI index-91 exact class reproduction inputs and observed projection",
+  "expected_archive_only_outputs": [
+    {
+      "bytes": 4890,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/ADI.class",
+      "sha256": "359ecc2bd8282c3cf78ce0e5958187350d20de3680b29806dacefbc17f325205",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 141,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/Diffuse.class",
+      "sha256": "42e2156e94119f25f9d893a2064c62385d6f0f5a0018039d058c8fc20dfd79a4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 355,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADI.class",
+      "sha256": "6223a8957aa5b57e24da5346e5f616d8fbbc09760f05de39382660b4e970d7b6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 5119,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADIClosed.class",
+      "sha256": "a7997bf0300790cc0651472cbf9759821172684c0f8c896c3eaf9ed2b67d2f4d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4703,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADIOpen.class",
+      "sha256": "bc0e98cb2fd9e490184f6f37abb0aff9dee11437bcb1c5a501087e5faeee66ba",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 7330,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADIPeriodic.class",
+      "sha256": "212debb3d2e70f8a780c6cdcae1e8cd9f2497fc749c8955d8fdb0da2a7da94f6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1852,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/GridFactory.class",
+      "sha256": "5ea1e47b8bfc6e6c09d5ea0a620683734817a65621b793f395e2fb79aba64269",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1978,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/MacrophageRecruiter.class",
+      "sha256": "801e9a1d4c7923d1d4d91e0f265196e38780a6ea3bbfaa2431e7be020aabf6a5",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1578,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/MacrophageReplenisher.class",
+      "sha256": "ee5baa63d84f9d6f999014e7487fc7f6a9b9bb8edc773ec36452e2023b8392c3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1398,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/NeutrophilRecruiter.class",
+      "sha256": "39512fa1e26a30312ccef7239b0a8c502d7e215052470adc8a25c196a4ec71dd",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1048,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/NeutrophilReplenisher.class",
+      "sha256": "964499d9dd9c8b899a4b45659f1e53966f39937a94ab7948f525f2b546826c2d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 979,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/Recruiter.class",
+      "sha256": "97d06b754bd97a1dd1daf2a8c08c94b148dd69db68fb36f2328b745207bfbab2",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 10892,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/Voxel.class",
+      "sha256": "1ca5a44ddea59984f5a3b3833c916260385d24df4c569493ca49d904df6ae9ad",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4060,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/control/Exec.class",
+      "sha256": "70f72104cc3889c9839cf167d75c45ee564490a0913852cb44b7b652f567e8e6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1700,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/control/MultiThreadExec.class",
+      "sha256": "26dd35414042989003f80df8afbc5b7519be68bb05e339d5a96c091c59092492",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 926,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/control/MultiThreadExecDiffusion.class",
+      "sha256": "1df65fb92f24075d04211eea0da5e9531335c0928d933dbd885951bcd1f8f088",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2329,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Adenosine.class",
+      "sha256": "c046eafbe61746d37554e19a9dbd60b1663972586dee3107821d825248225b06",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 11077,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/Afumigatus.class",
+      "sha256": "df79ee1a2f872cd84deeb5b706b83859a943f926733ca9415fa90163fa86359d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 514,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/AfumigatusNoIron.class",
+      "sha256": "ab34a46e276ec066250ec28338ce12338b03aa493f832d65b22356cec7eea144",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2722,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/TAFC.class",
+      "sha256": "da68d81c34fb1b11464994e7929890624561b293e1653a4a62d22d3765a740c9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1626,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/TranexamicAcid.class",
+      "sha256": "717edd0aafe514a3c41bb224cbbc705acc0e76c789ebcf28a11fee66539f2c4b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1950,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Albumin.class",
+      "sha256": "06fdd94ab3607c31d4485edb718fb1214bf78e655fee76c97830c58becee807f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 146,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Binder.class",
+      "sha256": "00433f9d5be45a73bfdbe8934ada1c108f16042e7169fc73758a346b744167bf",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3669,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Blood.class",
+      "sha256": "aec9a19fbabb7bc25467da9aea576756b9017c60d5de49fd7ab828e4730d9e58",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2805,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Cell.class",
+      "sha256": "6714b24e0e562c2df9a1566f02e55a44181a8ade8fbc6bd177d51bdb6a7ba66c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 311,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Chemokine.class",
+      "sha256": "5563054f01ce8673b756c6e4791523951996a657f80208134eac8f0ccce92683",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 656,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/DectinBinder.class",
+      "sha256": "c604bfc88aef22eae91582c810189a061b9cee6ec0b49fb077ebd110633bb703",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2010,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/DeltaGammaT.class",
+      "sha256": "20377bd2833cd5da67aea86dae4269f43b2eeb08f7a95957c31ce5ef9b49723c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2755,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/EndothelialCell.class",
+      "sha256": "0ebc1adc45754dfd9ad954632416fb520384e5c3e3400375a1ccf3bb343264c0",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2282,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Granule.class",
+      "sha256": "55ae860a9315554364eac1e651ae4ff856a3a16931c7c9f1dc30f46799b090e5",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2722,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Heme.class",
+      "sha256": "034eb664988a6b04543a140cf6ca225b8fd9a571f0ba686b97e9953abb80bc1f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2033,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Hepcidin.class",
+      "sha256": "73ad71c1731ed3b8c32698c0e94afe9fe56af0e1b415f7086a0764879ec3c30a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2157,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IFN_I.class",
+      "sha256": "861930abab4e67d42c28ac30fcca88588c5d44e405723940ad0403c511b23c9a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2328,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IFN_II.class",
+      "sha256": "49416730062f47cf414c9883825106e0e876f9b21ee42052947fe9e31a616780",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2320,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IFN_III.class",
+      "sha256": "ddde2e1c61c7f5a9b1869356e044a44081ddcbaf7531c9950990d16804d4e5f4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2813,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL1.class",
+      "sha256": "17a694979940d4288c114ffd4a5110abb41f7ea1ca452af5da67a4b2e64ba4a0",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2307,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL10.class",
+      "sha256": "ca4c5f5ee6f6b653dd9ebdbb42781e483d4439e7cce52fac29ce7213a4435b3a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2307,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL13.class",
+      "sha256": "65a34c087ef52cba042ce4afc96cceefe62dc58db3fae4f206f6d14fcc315340",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2421,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL17.class",
+      "sha256": "9e1617b97d5321f017457d0c1ffee011477f569f0a7bfe0a743b76d633b6c493",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2328,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL23.class",
+      "sha256": "bad0f75bbf99113e8ea69b1df3581ad394444a9cefe0354d18df06317645a13e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2458,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL4.class",
+      "sha256": "50e8d5a530a52c1e0abd4f3835317f379ed1adafb949d1070eb64987059b7fb8",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2220,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL6.class",
+      "sha256": "4105762d76902106e92d1c963a1aae772405bf7e29ee67a1cc9ab520b116ccb6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 549,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/InfectiousAgent.class",
+      "sha256": "1dcdf48d5162cb1ffd2f56413b802a98092f5f0d858998996f7d8d188a836acb",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1115,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Interactable.class",
+      "sha256": "664c505049c543d71cf4537ddf7c1a6f6d6c0f2a4ad6e4b199454c915e7de9b9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 161,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Internalizable.class",
+      "sha256": "b52932bf3227eeea26a36809b30083ed72220859368889799d5b546dbea2b1d3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2076,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Iron.class",
+      "sha256": "225e8cf6d237f6aaebb3fa5cf7dfe7c180cfb24986aa03682701c8446d68425d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2344,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/LPS.class",
+      "sha256": "d43a7839d26b5586f9a08d782c6867c4625685b82dd523d34c59619ec4a7109b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3167,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Lactoferrin.class",
+      "sha256": "72c2a439870e263e44f139683a66943421e977fc1c7f10c3ae90584245aa763f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2846,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Leukocyte.class",
+      "sha256": "7a52755f3a55c3aa6cafd4f95431f9d516c2353910640bc3c94063b190da5bee",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2666,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Lipocalin2.class",
+      "sha256": "b9d51d4be27dfa835db10ec103a247aafe412ca2971d1b393f09ebb0287e4b7a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4320,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Liver.class",
+      "sha256": "9305ec9a8eb2ebdf5c082eb19f9c7593dd6fc63b2387e09ca03ccca0d50467d7",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2660,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/MCP1.class",
+      "sha256": "ac72efaf7982c10325b30218a35316eaf1dd83a92dd09623d7674343ab65e4ff",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2494,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/MIP1B.class",
+      "sha256": "264d1d1dc8a683bd34730e8b3c08a671da83c450e2bb290c852dc6f6334d312d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2730,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/MIP2.class",
+      "sha256": "e5a97996690cc2c2ac524090b54dae89dc77e2040adb8bc8182f66efb6fa80ad",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2738,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Macrophage.class",
+      "sha256": "8d903acc9dbbe0893bd4e256f396e4af187bc82f411ceb97fd94055bf90095d1",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3902,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Molecule.class",
+      "sha256": "f107ae69a3592ecf03c7e3450172182fda78ed82bc487bbe8e291f8f5c5629f4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2192,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/NK.class",
+      "sha256": "4858e7c63f9648fb092a8852eb1eccbfb5b790af09829f1d85dc6c6588794dd9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3920,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Neutrophil.class",
+      "sha256": "7078503f18b4be088d3a065597f7c675c088492912af04abb2972e6a34d8e00c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2293,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PneumocyteI.class",
+      "sha256": "e11902d3095117d508401c710eceb2bd9c91712461c3cfc11d5cd6df801b29c4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2547,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PneumocyteII.class",
+      "sha256": "af9f2a3dc1894e3101d466e033859cd020ae92335611cf4560065c551f8c6a76",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 234,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PositionalAgent.class",
+      "sha256": "0317d72259140dad35f96ba3bee90a9f63ccbee95a5eebafae3402ea16958032",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 839,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PositionalInfectiousAgent.class",
+      "sha256": "0f5328d1c30f223ed1c7c131b8f112690ff4482dec6ecdf91fe55f1b46dc87f8",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 648,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PtSRBinder.class",
+      "sha256": "b9a63c724a87f1381c4b3736966bb78ef51f74312bae6e88d63a1ef30ab118d6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2449,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/ROS.class",
+      "sha256": "c605c18bf5bac12dd13261fcf5b108e160d0eaff23c367ac54625d4f74e665c9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1916,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Setter.class",
+      "sha256": "5b23dc49d0769a21a8be4159e7a57aac738303868295347865112c29260afe0b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1597,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Siderophore.class",
+      "sha256": "6a1199c259ca09510db98e0e8cf379b5ecf22c2778c8ad35bd7c1068eeacbafe",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2304,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/TGFb.class",
+      "sha256": "46befca7e86a854ba80ab6189f94d0fc53b6710ed5a050ad545f2aa63c0032b0",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 644,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/TLRBinder.class",
+      "sha256": "635a14f03313098f20b7b6741e3a4d11d15fb3e5feaf1c18ecce5b7f0e2ef393",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2312,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/TNFa.class",
+      "sha256": "c483e51a0d47fff7d7d399ef1765b356f8877643a3b26e87ecdceb423f183174",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2982,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Transferrin.class",
+      "sha256": "824b483e5fbe7551bf7953adb9190c45427bef1bd6f00298e9d7258888cb77de",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4502,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/AspergillusIntracellularModel.class",
+      "sha256": "7c3dabcbec311ef30a7b23af325b73f2837c1f2d176838d0e712c523e9a1081e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3456,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/AspergillusMacrophage.class",
+      "sha256": "78c365a453e78acab74bfb3e8a334804303faa57317afafd211ceabc7ff299d3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1569,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/ECIntracellularModel.class",
+      "sha256": "c5e9d382054878fc774da9ceb43478982665bb0fc849266cc015529892ce6776",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4814,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/FMacrophageBooleanNetwork.class",
+      "sha256": "73fe6f6f291618287a7b1caf9fdef58fee796876733ec256ede3360b0137d960",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3702,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/IntracellularModel.class",
+      "sha256": "1551d2cbfc0eae11e7785218d0bc64d142b12292fa0fadd7ab24612c011bda1a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1129,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/IntracellularModelFactory.class",
+      "sha256": "c29f59b79373c492460653c86eee89aab5bdbc7d1ae20404852da7c3b8327fb9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3415,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/NeutrophilNetwork.class",
+      "sha256": "af6fbaf4df4bee8bdb564271005e6d89a8b4cc62997f2c1fb27706e14c0b9772",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4640,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/NeutrophilStateModel.class",
+      "sha256": "a440a2fa966572e5c2edab29b48aca35bbadf1234acd5d0bdde8d73e69a27542",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 384,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/Phenotype.class",
+      "sha256": "c53eb212b15cd7a3c680b641a63945522208e40cfebcf09f1d6fd29f7c84ae46",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 463,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/PneumocyteIEmptyModel.class",
+      "sha256": "76a55c9dfc3bc62568075b754eae4ff6950f038b1e20ac4c79a7823222858d86",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2140,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/PneumocyteStateModel.class",
+      "sha256": "baefcbc742ef76f9a6fbda9356b5579c0bf6c68f70f2b7e21dbe4dd4f5c05a52",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2587,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/Main.class",
+      "sha256": "718f64a0b8074742bdb1ff79ca494abc8ea9c7d111907e5c68314268f96e8b8e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1577,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/Initialize.class",
+      "sha256": "837568f6b80d3b78761a49629076d92f2365fd40b71335494689fd2dfeca3e7a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 590,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeBaseInvitroModel.class",
+      "sha256": "568dbe5c0617e01647ff37724cd0eec4db748ca72218e0eeac0d87c68a7f1f97",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 6463,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeBaseModel.class",
+      "sha256": "a5c80957f2933ab836c46f0c5d25ad01c9cb09e552e090f91178bae4aa1b5a48",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2991,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeBaseWholeLung.class",
+      "sha256": "e77ee4b814bd536258ece0851638fadcd62913be9bf0a3d9a1876ba91328fc62",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3505,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeExample.class",
+      "sha256": "1ecb1b028e95792cff5fe49f7421fe1ae55f1660801a95b51935fc37131c9403",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3089,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeTranexamicModel.class",
+      "sha256": "25862a672eb5101c2e683e6a1c89399b0b1ab5616361cc5d84cee18ebdd1048e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1477,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintBaseInVitro.class",
+      "sha256": "6d4beb8be9b69f56f1325379bb9dcd19cdd53784991db8b7f8a814fc73882ea3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3043,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintBaseModel.class",
+      "sha256": "d5b60a20ab3b5936e20574b8325b4c233f0a79e4ad3ad8bbc8d483987f711870",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1968,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintCoinjury.class",
+      "sha256": "f2d48011ef884d716c17851189f9235d320c6e7214f9c813628284220052236d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2080,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintExample.class",
+      "sha256": "f8912ed3885f4b8f220d39198a4fc503bfc6d26318619a8c71c30523a0cdde46",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3369,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintHemeModel.class",
+      "sha256": "fa8af03f7dc94eb4bbf8e238dcbd6deb6a77857ead2a01e14e297f30a5c70b5a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 299,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintNull.class",
+      "sha256": "042540cf78f2184654a5da5b775cf3272e4476544dd79a3f26e90d5b227cb8fb",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 611,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintStat.class",
+      "sha256": "bc2381dffbb44a8ba5a1e7fe1e56892d7897db6837019b00aaf457e3bfef2986",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 632,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/run/Run.class",
+      "sha256": "3bc0ae8b0474edae091910eb5b99cd1bdd94d9fe29a9409ad3ca2cb5a40d16cd",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2508,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/run/RunMultiThread.class",
+      "sha256": "359b6bc9ae42a4e36709374c4eb320b3e3d95ac94cdcfeb6ae83140ddf4a6bf3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1664,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/run/RunSingleThread.class",
+      "sha256": "f2087e0f45cbccf40f19300d4f9042deff7edbf32419603703bcacf4193aa0c7",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4619,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/primitives/CoupledInteractions.class",
+      "sha256": "dbdfe4498fc9a21e570b5a7d0388d24ebfbe20a31944c35ad1c394a0bf9335e9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 9780,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/primitives/Interactions.class",
+      "sha256": "d49a59b50355a12fe1ad122a3de70284e574b2b885256d059da85d3907f15f03",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 834,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/time/Clock.class",
+      "sha256": "c84bb02ff23744a1ce79e5751ad48736d4a46b6cfae19f86ff500ecd0b8d1ff5",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 13777,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Constants.class",
+      "sha256": "4049ad1b359738385c35b7121b9bb9889f4a7ced2149675d90f69aff4cb4633b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 340,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Id.class",
+      "sha256": "51b19af9c3ff239ae404dd4c606848ca791f914a1f9726a0ab8d5322641ebe34",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 5870,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/LinAlg.class",
+      "sha256": "078ecad538e03f95a8b68b596d46de1e45a9ed908fd6c53ea500a6cf2c13aa1d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1582,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Rand.class",
+      "sha256": "697843d091e6c382d931dcd7db8cac5c8361d49f5a8648718eb11be3943e5e03",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4566,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Util.class",
+      "sha256": "d65928f7d6675d22e6f6f359411e8ec474dc25839ff465833ae0bb899647da8c",
+      "unix_executable_bit": false
+    }
+  ],
+  "jar_reader": {
+    "executable": "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "executable_sha256": "4f00ea2ad53d62437a6a3946b73c73614a97e8accdc5b96dc095ea1a0d9c6a56",
+    "implementation": "CPython standard-library zipfile; read-only extraction and CRC verification",
+    "license_boundary": "Python Software Foundation licensed local runtime; no private or restricted tool used.",
+    "python_version": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]"
+  },
+  "licenses": [
+    {
+      "component": "PAI revision and checksum-bound archive",
+      "declared": "MIT",
+      "evidence": "V11 exact LICENSE byte equality and Zenodo mit-license declaration"
+    },
+    {
+      "component": "CPython standard-library projection reader",
+      "declared": "PSF",
+      "evidence": "Python Software Foundation licensed local runtime; no private or restricted tool used."
+    },
+    {
+      "component": "Eclipse Temurin compiler image",
+      "declared": "OpenJDK/GPLv2 with Classpath Exception; image inventory unavailable because runtime acquisition failed",
+      "evidence": "Public Eclipse Temurin OpenJDK image; runtime labels and component/license inventory must be captured in the SBOM."
+    }
+  ],
+  "observed_jar_projection_outputs": [
+    {
+      "bytes": 4890,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/ADI.class",
+      "sha256": "359ecc2bd8282c3cf78ce0e5958187350d20de3680b29806dacefbc17f325205",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 141,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/Diffuse.class",
+      "sha256": "42e2156e94119f25f9d893a2064c62385d6f0f5a0018039d058c8fc20dfd79a4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 355,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADI.class",
+      "sha256": "6223a8957aa5b57e24da5346e5f616d8fbbc09760f05de39382660b4e970d7b6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 5119,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADIClosed.class",
+      "sha256": "a7997bf0300790cc0651472cbf9759821172684c0f8c896c3eaf9ed2b67d2f4d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4703,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADIOpen.class",
+      "sha256": "bc0e98cb2fd9e490184f6f37abb0aff9dee11437bcb1c5a501087e5faeee66ba",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 7330,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/Diffusion/FADIPeriodic.class",
+      "sha256": "212debb3d2e70f8a780c6cdcae1e8cd9f2497fc749c8955d8fdb0da2a7da94f6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1852,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/GridFactory.class",
+      "sha256": "5ea1e47b8bfc6e6c09d5ea0a620683734817a65621b793f395e2fb79aba64269",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1978,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/MacrophageRecruiter.class",
+      "sha256": "801e9a1d4c7923d1d4d91e0f265196e38780a6ea3bbfaa2431e7be020aabf6a5",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1578,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/MacrophageReplenisher.class",
+      "sha256": "ee5baa63d84f9d6f999014e7487fc7f6a9b9bb8edc773ec36452e2023b8392c3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1398,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/NeutrophilRecruiter.class",
+      "sha256": "39512fa1e26a30312ccef7239b0a8c502d7e215052470adc8a25c196a4ec71dd",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1048,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/NeutrophilReplenisher.class",
+      "sha256": "964499d9dd9c8b899a4b45659f1e53966f39937a94ab7948f525f2b546826c2d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 979,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/Recruiter.class",
+      "sha256": "97d06b754bd97a1dd1daf2a8c08c94b148dd69db68fb36f2328b745207bfbab2",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 10892,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/compartments/Voxel.class",
+      "sha256": "1ca5a44ddea59984f5a3b3833c916260385d24df4c569493ca49d904df6ae9ad",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4060,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/control/Exec.class",
+      "sha256": "70f72104cc3889c9839cf167d75c45ee564490a0913852cb44b7b652f567e8e6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1700,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/control/MultiThreadExec.class",
+      "sha256": "26dd35414042989003f80df8afbc5b7519be68bb05e339d5a96c091c59092492",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 926,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/control/MultiThreadExecDiffusion.class",
+      "sha256": "1df65fb92f24075d04211eea0da5e9531335c0928d933dbd885951bcd1f8f088",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2329,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Adenosine.class",
+      "sha256": "c046eafbe61746d37554e19a9dbd60b1663972586dee3107821d825248225b06",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 11077,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/Afumigatus.class",
+      "sha256": "df79ee1a2f872cd84deeb5b706b83859a943f926733ca9415fa90163fa86359d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 514,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/AfumigatusNoIron.class",
+      "sha256": "ab34a46e276ec066250ec28338ce12338b03aa493f832d65b22356cec7eea144",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2722,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/TAFC.class",
+      "sha256": "da68d81c34fb1b11464994e7929890624561b293e1653a4a62d22d3765a740c9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1626,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Afumigatus/TranexamicAcid.class",
+      "sha256": "717edd0aafe514a3c41bb224cbbc705acc0e76c789ebcf28a11fee66539f2c4b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1950,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Albumin.class",
+      "sha256": "06fdd94ab3607c31d4485edb718fb1214bf78e655fee76c97830c58becee807f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 146,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Binder.class",
+      "sha256": "00433f9d5be45a73bfdbe8934ada1c108f16042e7169fc73758a346b744167bf",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3669,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Blood.class",
+      "sha256": "aec9a19fbabb7bc25467da9aea576756b9017c60d5de49fd7ab828e4730d9e58",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2805,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Cell.class",
+      "sha256": "6714b24e0e562c2df9a1566f02e55a44181a8ade8fbc6bd177d51bdb6a7ba66c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 311,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Chemokine.class",
+      "sha256": "5563054f01ce8673b756c6e4791523951996a657f80208134eac8f0ccce92683",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 656,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/DectinBinder.class",
+      "sha256": "c604bfc88aef22eae91582c810189a061b9cee6ec0b49fb077ebd110633bb703",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2010,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/DeltaGammaT.class",
+      "sha256": "20377bd2833cd5da67aea86dae4269f43b2eeb08f7a95957c31ce5ef9b49723c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2755,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/EndothelialCell.class",
+      "sha256": "0ebc1adc45754dfd9ad954632416fb520384e5c3e3400375a1ccf3bb343264c0",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2282,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Granule.class",
+      "sha256": "55ae860a9315554364eac1e651ae4ff856a3a16931c7c9f1dc30f46799b090e5",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2722,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Heme.class",
+      "sha256": "034eb664988a6b04543a140cf6ca225b8fd9a571f0ba686b97e9953abb80bc1f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2033,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Hepcidin.class",
+      "sha256": "73ad71c1731ed3b8c32698c0e94afe9fe56af0e1b415f7086a0764879ec3c30a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2157,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IFN_I.class",
+      "sha256": "861930abab4e67d42c28ac30fcca88588c5d44e405723940ad0403c511b23c9a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2328,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IFN_II.class",
+      "sha256": "49416730062f47cf414c9883825106e0e876f9b21ee42052947fe9e31a616780",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2320,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IFN_III.class",
+      "sha256": "ddde2e1c61c7f5a9b1869356e044a44081ddcbaf7531c9950990d16804d4e5f4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2813,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL1.class",
+      "sha256": "17a694979940d4288c114ffd4a5110abb41f7ea1ca452af5da67a4b2e64ba4a0",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2307,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL10.class",
+      "sha256": "ca4c5f5ee6f6b653dd9ebdbb42781e483d4439e7cce52fac29ce7213a4435b3a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2307,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL13.class",
+      "sha256": "65a34c087ef52cba042ce4afc96cceefe62dc58db3fae4f206f6d14fcc315340",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2421,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL17.class",
+      "sha256": "9e1617b97d5321f017457d0c1ffee011477f569f0a7bfe0a743b76d633b6c493",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2328,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL23.class",
+      "sha256": "bad0f75bbf99113e8ea69b1df3581ad394444a9cefe0354d18df06317645a13e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2458,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL4.class",
+      "sha256": "50e8d5a530a52c1e0abd4f3835317f379ed1adafb949d1070eb64987059b7fb8",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2220,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/IL6.class",
+      "sha256": "4105762d76902106e92d1c963a1aae772405bf7e29ee67a1cc9ab520b116ccb6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 549,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/InfectiousAgent.class",
+      "sha256": "1dcdf48d5162cb1ffd2f56413b802a98092f5f0d858998996f7d8d188a836acb",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1115,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Interactable.class",
+      "sha256": "664c505049c543d71cf4537ddf7c1a6f6d6c0f2a4ad6e4b199454c915e7de9b9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 161,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Internalizable.class",
+      "sha256": "b52932bf3227eeea26a36809b30083ed72220859368889799d5b546dbea2b1d3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2076,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Iron.class",
+      "sha256": "225e8cf6d237f6aaebb3fa5cf7dfe7c180cfb24986aa03682701c8446d68425d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2344,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/LPS.class",
+      "sha256": "d43a7839d26b5586f9a08d782c6867c4625685b82dd523d34c59619ec4a7109b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3167,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Lactoferrin.class",
+      "sha256": "72c2a439870e263e44f139683a66943421e977fc1c7f10c3ae90584245aa763f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2846,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Leukocyte.class",
+      "sha256": "7a52755f3a55c3aa6cafd4f95431f9d516c2353910640bc3c94063b190da5bee",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2666,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Lipocalin2.class",
+      "sha256": "b9d51d4be27dfa835db10ec103a247aafe412ca2971d1b393f09ebb0287e4b7a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4320,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Liver.class",
+      "sha256": "9305ec9a8eb2ebdf5c082eb19f9c7593dd6fc63b2387e09ca03ccca0d50467d7",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2660,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/MCP1.class",
+      "sha256": "ac72efaf7982c10325b30218a35316eaf1dd83a92dd09623d7674343ab65e4ff",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2494,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/MIP1B.class",
+      "sha256": "264d1d1dc8a683bd34730e8b3c08a671da83c450e2bb290c852dc6f6334d312d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2730,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/MIP2.class",
+      "sha256": "e5a97996690cc2c2ac524090b54dae89dc77e2040adb8bc8182f66efb6fa80ad",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2738,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Macrophage.class",
+      "sha256": "8d903acc9dbbe0893bd4e256f396e4af187bc82f411ceb97fd94055bf90095d1",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3902,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Molecule.class",
+      "sha256": "f107ae69a3592ecf03c7e3450172182fda78ed82bc487bbe8e291f8f5c5629f4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2192,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/NK.class",
+      "sha256": "4858e7c63f9648fb092a8852eb1eccbfb5b790af09829f1d85dc6c6588794dd9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3920,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Neutrophil.class",
+      "sha256": "7078503f18b4be088d3a065597f7c675c088492912af04abb2972e6a34d8e00c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2293,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PneumocyteI.class",
+      "sha256": "e11902d3095117d508401c710eceb2bd9c91712461c3cfc11d5cd6df801b29c4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2547,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PneumocyteII.class",
+      "sha256": "af9f2a3dc1894e3101d466e033859cd020ae92335611cf4560065c551f8c6a76",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 234,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PositionalAgent.class",
+      "sha256": "0317d72259140dad35f96ba3bee90a9f63ccbee95a5eebafae3402ea16958032",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 839,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PositionalInfectiousAgent.class",
+      "sha256": "0f5328d1c30f223ed1c7c131b8f112690ff4482dec6ecdf91fe55f1b46dc87f8",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 648,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/PtSRBinder.class",
+      "sha256": "b9a63c724a87f1381c4b3736966bb78ef51f74312bae6e88d63a1ef30ab118d6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2449,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/ROS.class",
+      "sha256": "c605c18bf5bac12dd13261fcf5b108e160d0eaff23c367ac54625d4f74e665c9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1916,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Setter.class",
+      "sha256": "5b23dc49d0769a21a8be4159e7a57aac738303868295347865112c29260afe0b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1597,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Siderophore.class",
+      "sha256": "6a1199c259ca09510db98e0e8cf379b5ecf22c2778c8ad35bd7c1068eeacbafe",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2304,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/TGFb.class",
+      "sha256": "46befca7e86a854ba80ab6189f94d0fc53b6710ed5a050ad545f2aa63c0032b0",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 644,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/TLRBinder.class",
+      "sha256": "635a14f03313098f20b7b6741e3a4d11d15fb3e5feaf1c18ecce5b7f0e2ef393",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2312,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/TNFa.class",
+      "sha256": "c483e51a0d47fff7d7d399ef1765b356f8877643a3b26e87ecdceb423f183174",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2982,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/interactable/Transferrin.class",
+      "sha256": "824b483e5fbe7551bf7953adb9190c45427bef1bd6f00298e9d7258888cb77de",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4502,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/AspergillusIntracellularModel.class",
+      "sha256": "7c3dabcbec311ef30a7b23af325b73f2837c1f2d176838d0e712c523e9a1081e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3456,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/AspergillusMacrophage.class",
+      "sha256": "78c365a453e78acab74bfb3e8a334804303faa57317afafd211ceabc7ff299d3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1569,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/ECIntracellularModel.class",
+      "sha256": "c5e9d382054878fc774da9ceb43478982665bb0fc849266cc015529892ce6776",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4814,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/FMacrophageBooleanNetwork.class",
+      "sha256": "73fe6f6f291618287a7b1caf9fdef58fee796876733ec256ede3360b0137d960",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3702,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/IntracellularModel.class",
+      "sha256": "1551d2cbfc0eae11e7785218d0bc64d142b12292fa0fadd7ab24612c011bda1a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1129,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/IntracellularModelFactory.class",
+      "sha256": "c29f59b79373c492460653c86eee89aab5bdbc7d1ae20404852da7c3b8327fb9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3415,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/NeutrophilNetwork.class",
+      "sha256": "af6fbaf4df4bee8bdb564271005e6d89a8b4cc62997f2c1fb27706e14c0b9772",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4640,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/NeutrophilStateModel.class",
+      "sha256": "a440a2fa966572e5c2edab29b48aca35bbadf1234acd5d0bdde8d73e69a27542",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 384,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/Phenotype.class",
+      "sha256": "c53eb212b15cd7a3c680b641a63945522208e40cfebcf09f1d6fd29f7c84ae46",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 463,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/PneumocyteIEmptyModel.class",
+      "sha256": "76a55c9dfc3bc62568075b754eae4ff6950f038b1e20ac4c79a7823222858d86",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2140,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/intracellularState/PneumocyteStateModel.class",
+      "sha256": "baefcbc742ef76f9a6fbda9356b5579c0bf6c68f70f2b7e21dbe4dd4f5c05a52",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2587,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/Main.class",
+      "sha256": "718f64a0b8074742bdb1ff79ca494abc8ea9c7d111907e5c68314268f96e8b8e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1577,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/Initialize.class",
+      "sha256": "837568f6b80d3b78761a49629076d92f2365fd40b71335494689fd2dfeca3e7a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 590,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeBaseInvitroModel.class",
+      "sha256": "568dbe5c0617e01647ff37724cd0eec4db748ca72218e0eeac0d87c68a7f1f97",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 6463,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeBaseModel.class",
+      "sha256": "a5c80957f2933ab836c46f0c5d25ad01c9cb09e552e090f91178bae4aa1b5a48",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2991,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeBaseWholeLung.class",
+      "sha256": "e77ee4b814bd536258ece0851638fadcd62913be9bf0a3d9a1876ba91328fc62",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3505,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeExample.class",
+      "sha256": "1ecb1b028e95792cff5fe49f7421fe1ae55f1660801a95b51935fc37131c9403",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3089,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/initialize/InitializeTranexamicModel.class",
+      "sha256": "25862a672eb5101c2e683e6a1c89399b0b1ab5616361cc5d84cee18ebdd1048e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1477,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintBaseInVitro.class",
+      "sha256": "6d4beb8be9b69f56f1325379bb9dcd19cdd53784991db8b7f8a814fc73882ea3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3043,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintBaseModel.class",
+      "sha256": "d5b60a20ab3b5936e20574b8325b4c233f0a79e4ad3ad8bbc8d483987f711870",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1968,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintCoinjury.class",
+      "sha256": "f2d48011ef884d716c17851189f9235d320c6e7214f9c813628284220052236d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2080,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintExample.class",
+      "sha256": "f8912ed3885f4b8f220d39198a4fc503bfc6d26318619a8c71c30523a0cdde46",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3369,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintHemeModel.class",
+      "sha256": "fa8af03f7dc94eb4bbf8e238dcbd6deb6a77857ead2a01e14e297f30a5c70b5a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 299,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintNull.class",
+      "sha256": "042540cf78f2184654a5da5b775cf3272e4476544dd79a3f26e90d5b227cb8fb",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 611,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/print/PrintStat.class",
+      "sha256": "bc2381dffbb44a8ba5a1e7fe1e56892d7897db6837019b00aaf457e3bfef2986",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 632,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/run/Run.class",
+      "sha256": "3bc0ae8b0474edae091910eb5b99cd1bdd94d9fe29a9409ad3ca2cb5a40d16cd",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2508,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/run/RunMultiThread.class",
+      "sha256": "359b6bc9ae42a4e36709374c4eb320b3e3d95ac94cdcfeb6ae83140ddf4a6bf3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1664,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/main/run/RunSingleThread.class",
+      "sha256": "f2087e0f45cbccf40f19300d4f9042deff7edbf32419603703bcacf4193aa0c7",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4619,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/primitives/CoupledInteractions.class",
+      "sha256": "dbdfe4498fc9a21e570b5a7d0388d24ebfbe20a31944c35ad1c394a0bf9335e9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 9780,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/primitives/Interactions.class",
+      "sha256": "d49a59b50355a12fe1ad122a3de70284e574b2b885256d059da85d3907f15f03",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 834,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/time/Clock.class",
+      "sha256": "c84bb02ff23744a1ce79e5751ad48736d4a46b6cfae19f86ff500ecd0b8d1ff5",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 13777,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Constants.class",
+      "sha256": "4049ad1b359738385c35b7121b9bb9889f4a7ced2149675d90f69aff4cb4633b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 340,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Id.class",
+      "sha256": "51b19af9c3ff239ae404dd4c606848ca791f914a1f9726a0ab8d5322641ebe34",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 5870,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/LinAlg.class",
+      "sha256": "078ecad538e03f95a8b68b596d46de1e45a9ed908fd6c53ea500a6cf2c13aa1d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1582,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Rand.class",
+      "sha256": "697843d091e6c382d931dcd7db8cac5c8361d49f5a8648718eb11be3943e5e03",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4566,
+      "entry_type": "regular",
+      "normalized_path": "java/bin/edu/uf/utils/Util.class",
+      "sha256": "d65928f7d6675d22e6f6f359411e8ec474dc25839ff465833ae0bb899647da8c",
+      "unix_executable_bit": false
+    }
+  ],
+  "protocol_sha256": "9bc43bfae807d3d69ac01696786987e0e7e583421dc0e77d1af3f22ef7bec1dd",
+  "schema_version": "orion.p4.exact-edge-build-provenance.v12.sbom",
+  "source_files": [
+    {
+      "bytes": 9348,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/Diffusion/ADI.java",
+      "sha256": "0c5a0edfc0a4cf8e438f547b58d672e76bc13bd591709270058980e2f2219191",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 642,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/Diffusion/Diffuse.java",
+      "sha256": "6a70bb129eb93c7983edff87310793ce161f49155ba42e7f95b14f9006c27952",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 288,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/Diffusion/FADI.java",
+      "sha256": "0afbb5bfae62259d1f9c6e89689538cf523d68383b933e7734cb3db8d4f2c9c1",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 10341,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/Diffusion/FADIClosed.java",
+      "sha256": "5c7cf6bfac81e3b3a1d81d4790a7b77388707d9aefdd96d92ce0fbcceec829b3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 6369,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/Diffusion/FADIOpen.java",
+      "sha256": "57e3580e393307792cfdc3d5f548dca9c7d46cd08765d75e9a5e827a55e2435a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 10111,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/Diffusion/FADIPeriodic.java",
+      "sha256": "7a44112fb7e5a8cb1cf0b4b86c088b679f6c28455d8aef911107b8a081aa1e23",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3264,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/compartments/GridFactory.java",
+      "sha256": "249b5fe0bc169e31ee94473c9a50d5a0139fa7cf9d1a70d7b223c4431680cade",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1638,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/compartments/MacrophageRecruiter.java",
+      "sha256": "ec7f7311f024082b873d6ccfd1d4972d70982ccbb05e51d33eebce08a5025340",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1634,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/compartments/MacrophageReplenisher.java",
+      "sha256": "6eda3b283214defc35acd0c1d85d4dea6dacb162d7c9184ab2e31d8292a9cafd",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1366,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/compartments/NeutrophilRecruiter.java",
+      "sha256": "dc8871a787ab3a5250316b369ca676b6ca72ad95d8c02d327f330b70f1d83e87",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1374,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/compartments/NeutrophilReplenisher.java",
+      "sha256": "e47365cc0281a47d8a51f3c74d6a929224c66b36581ffaec37b66e6beed6ec1a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2440,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/compartments/Recruiter.java",
+      "sha256": "880ebb5890a852d8c0853b18aebc8fa500f973283ad78b2c217a2521e3243372",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 20608,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/compartments/Voxel.java",
+      "sha256": "369d78725934bc53a35706f8348dac21e414201f82fa983f4e505eebc18e8a5f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 7922,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/control/Exec.java",
+      "sha256": "ef55122361aea8854407c9f47df22d2641c3c3a60251977ccb89692b69ecedf4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2261,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/control/MultiThreadExec.java",
+      "sha256": "fe510d99edb6f86a7ffa680c9d093dfdf9e705c643c277b937c0bfef63a4e925",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 627,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/control/MultiThreadExecDiffusion.java",
+      "sha256": "4113a97bc32598165e0df4921a219a6912997801e5cc05da2784c1a2b60b214f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2099,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Adenosine.java",
+      "sha256": "4783d0f084891fe5c739de7a4458aeac09b0ac0c7e320978bc9996e56e1aa4db",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 20694,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Afumigatus/Afumigatus.java",
+      "sha256": "1fc6359113e2811eb5c430b53f46c5373dcb01ff9e20dd16585fe941d05c2c76",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1003,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Afumigatus/AfumigatusNoIron.java",
+      "sha256": "c923bb84c2576bfa341a0083328accf7e7e1c9feeec7b2b22f6eaed41ba34e17",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2714,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Afumigatus/TAFC.java",
+      "sha256": "5156d507a8228eb497e4112a3e917d41e5b9d114519deb133a8049a3d3ccab60",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1305,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Afumigatus/TranexamicAcid.java",
+      "sha256": "648253fc530958aceebaf584f0296c40397a2cc880dca2103c32d6cb7520385e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1786,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Albumin.java",
+      "sha256": "49d3171daed9cf94728c57ad4a672da889776bbe81044d0e06cf981fa86657e3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 93,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Binder.java",
+      "sha256": "a001898e6dbc08360289b61d3880de4b4931ac3a9b209cdefdfdcd26644cdc49",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4781,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Blood.java",
+      "sha256": "958649d607e6de429173b9bb36c1d66ac19aee9f69df110287713bc0191d7fc7",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 6807,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Cell.java",
+      "sha256": "bbaf3288ccf0c5c867e42837ffc3729a0b166cec242eb520bc758b1bb7bba95e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 620,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Chemokine.java",
+      "sha256": "367abdfdeeaa88ec980d4d2a0c379644011dc6ca60c22b998db979aa05039f94",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 536,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/DectinBinder.java",
+      "sha256": "149b6f8be1e27990a33c590e9ce26b23b07984d1a2e42e2468c5e08338f8843e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1629,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/DeltaGammaT.java",
+      "sha256": "518abad54766b4db3099364c50ceee46272e028b2c9bc3816f8973a67f7a6168",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2609,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/EndothelialCell.java",
+      "sha256": "76395789898b78a330598407197ac38bee03be54c57d27906503e07f32ad2961",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1992,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Granule.java",
+      "sha256": "f5f19499c95cf1217d9912bbef3767a06a06ca5cd19fdd28f6d031666b524df8",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2369,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Heme.java",
+      "sha256": "95795cd8c472eb2b77630373dcac9de60dfb45583f611fb8a50665a33e5ed895",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1755,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Hepcidin.java",
+      "sha256": "3c2f8a3a5326f899919d79140a9fbe15d5bf225485ea9a026e9a9201de159f4c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1843,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/IFN_I.java",
+      "sha256": "7aacd82f488f95c5c3c9de4385abeef1e0ee1f7073e483beefb43389f0f142ac",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1968,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/IFN_II.java",
+      "sha256": "33fba1cdc09f304dee6a007752a00ecd41c93e09f7b4e3b6c268327532075801",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1991,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/IFN_III.java",
+      "sha256": "3e91dd13022b7969cfa3a65e3333a68bc21822a13570686a83f1d688d6d81fdf",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2882,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/IL1.java",
+      "sha256": "7606b9499dbd92b2c3b84a876daaa5ff9576e8d1e2d668a599de9571a354f9ef",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1978,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/IL10.java",
+      "sha256": "39695df2b8aaab0c6889f2aeb68aa5be161cd7302b2f2ad55e443dd12706cd01",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1975,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/IL13.java",
+      "sha256": "277bf9c7bcb42ccf3815276796e8fdba3b63083753e9054318422c6358229513",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2159,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/IL17.java",
+      "sha256": "9fa6b11ffc313374c628c2aff6d0cf257112b9df06ff69a02722866e35eab807",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1966,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/IL23.java",
+      "sha256": "6f6f85501a5ffbfc5a9a22edd7e6189df1382ba645d53219601db6738dc9e50f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2059,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/IL4.java",
+      "sha256": "bfe831afcfec1aafadb2796680285783416fd969ddb8897c63f6339e0be1641e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1995,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/IL6.java",
+      "sha256": "3d46c4ecc8447ec11746fa4e4e6a5f3e9b00f26d0db0b313b96164f0698f8139",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3332,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/InfectiousAgent.java",
+      "sha256": "6e76805c62c224c19d414b5acdf2e6ba092111cfbf5fcd04ef076d6f093a6839",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 5259,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Interactable.java",
+      "sha256": "5f4c6c9898996b20555ab0c0a42ef2e60322398e2bdbaa380dd1eed69975dad7",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 796,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Internalizable.java",
+      "sha256": "8a1a29ef5c43a91e558a8a17d54402a7224408b1fb275d2781494844171ff994",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1844,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Iron.java",
+      "sha256": "e87a1d63dcfe69058d90f2d24c6f03364f7eee06f8d5c99bbe8e76274421ff78",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2579,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/LPS.java",
+      "sha256": "e0a79efb2c85257b3cbb409d5efda987f4108d3c93a65d6d05353da950700f91",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2973,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Lactoferrin.java",
+      "sha256": "22e6c82130a8c2c53601872f91b13beb9c0c4b3ce22e29da46f2923c990b3d95",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3103,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Leukocyte.java",
+      "sha256": "342811a12d020747288f7b6cabc216e93dcbc53a4689fb7e4d2d48e8cdf68f29",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2192,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Lipocalin2.java",
+      "sha256": "6419b159ff9d41494798fd6b0b67af8893066b4e8aa1d52063ba27ec761ab188",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 15454,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Liver.java",
+      "sha256": "de62f2e26696f8588b5ddd08dad05656ca83cf2590b6ad28d27cafc8c9d28d69",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2416,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/MCP1.java",
+      "sha256": "1dc6df1537ec4ba54e2a9719fdd480e53b86a53891bef6b2f31c1955ecd364ea",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2386,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/MIP1B.java",
+      "sha256": "4155c7c4372a683ee471a1a5ba32ecfea96bcad174eae004ff93223559aa5f12",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2736,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/MIP2.java",
+      "sha256": "6a3f3d4cd65ab78ab5ce7733ecd29ef1671f0b0a0c3734c62c7a74bf3ae8c24d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2859,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Macrophage.java",
+      "sha256": "df81f514674ec285ce403d5710d5b7928bbbc8e31cbf9c42d0357ea9e7096650",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 21854,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Molecule.java",
+      "sha256": "2e349b40970dcad502bb6ac08f6519fd376114a4b4ad9b8bd89c3c5d987dbdfd",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1734,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/NK.java",
+      "sha256": "c3ec331afa306a9a566050c31fa1b7a9dd4d1089b7eee707a42f28db52b69607",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3915,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Neutrophil.java",
+      "sha256": "3f2f6ae79c8f97a629e45d94c6a238a9d4e57e2e52b860e3d006aa8f3edac0c6",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2077,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/PneumocyteI.java",
+      "sha256": "02b0e1d73e0d150578e0ddf8c39112ad5d3c45ac68947a4c0be740eb1bd98880",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2828,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/PneumocyteII.java",
+      "sha256": "fd8dd0687aa7ed833387c84df8efe9e7b9000b532b3a173e222ad48235199081",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 226,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/PositionalAgent.java",
+      "sha256": "7d1000ef3a6d1eb7dbbc529de78b919bef26695cc5a2d703178a0a0db72d6253",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 705,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/PositionalInfectiousAgent.java",
+      "sha256": "9f80389e6ed568de2f434659715be3573ca4c99d7369a06b2d1747719de6e511",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 548,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/PtSRBinder.java",
+      "sha256": "846caa7a813f4828eb668beeeffd792d9d268c787128f505dbbe7d78149295e3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2206,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/ROS.java",
+      "sha256": "94eee3ddce31d4a72d59f40eff54d7dec02227eac379fa45286437c42f68ad51",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3794,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Setter.java",
+      "sha256": "78a618109e28dd024dbaf644b0f59b67bdd066e3523d1dfbe2a5dde9278c53a8",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2017,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Siderophore.java",
+      "sha256": "830a54c6006fe95ab1ab2575c71e6a038222d1f7eaf80c593142f4ec89da92d3",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1988,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/TGFb.java",
+      "sha256": "805793858d25691453acfc42b4a03da54df905d91a8adcaeafd08fe3e114caba",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 602,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/TLRBinder.java",
+      "sha256": "0d8520d40f34709598105fc06df7639687cb12375c6d93a883d488bd6edc9988",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2144,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/TNFa.java",
+      "sha256": "def55a633cfd14e980015893dedb583c114f93e7c2f1a8b6b2a10d52fc323557",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2658,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/interactable/Transferrin.java",
+      "sha256": "c588ec57430e1286413a9ce09aaabb23d72816a3cfe38d69f44bbf43839374c1",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 7470,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/AspergillusIntracellularModel.java",
+      "sha256": "0116a5a6014056113f1840ad0187d60a7738c15fc3dc674e13244d521509e761",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4217,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/AspergillusMacrophage.java",
+      "sha256": "88930c4b3986cad5cad085720f7600ceb1bd0a616fcaee15d632ebd52f11d5ef",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 972,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/ECIntracellularModel.java",
+      "sha256": "ab59147e904e4bf1f1a78661b4b285c2ced8b19839f9e3e9f93c023f93489204",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 7298,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/FMacrophageBooleanNetwork.java",
+      "sha256": "81a3251f4a72769f2dd9f21b898955b45cbb2c2fa76172d9cf33cef23d8d1689",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 26402,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/IntracellularModel.java",
+      "sha256": "1efd70e4203868143197acd702b02d40e1f6f72b9572dbad33e109384f2cd377",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1320,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/IntracellularModelFactory.java",
+      "sha256": "0e4b3abc3e4ce85339fde9b6e12544cbdf8abac0ec70f3700e5cf9fd557b1902",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2878,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/NeutrophilNetwork.java",
+      "sha256": "0992e61fafd8034a93e1618cb195feadb4c11492ff08a329c60c75f37d456c49",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4707,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/NeutrophilStateModel.java",
+      "sha256": "b024f1af1ed9ae31f3b60d8badcf445780bdf8cca50795a640fe926adbaec430",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 526,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/Phenotype.java",
+      "sha256": "ddd36217305b57a82709b03f84d4c61524f006994c5d295fc852c295c24d0976",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 411,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/PneumocyteIEmptyModel.java",
+      "sha256": "0118dd8c4e0e005651d9fa2bdf93530518e016467f5dd35d706d8a06c8b0906f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2985,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/intracellularState/PneumocyteStateModel.java",
+      "sha256": "0188f4f61ed31f54e6b68f3ccd42ea66e73eee85c33cdbcb0c7bc1190e521ed4",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3849,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/Main.java",
+      "sha256": "e674c6d21cb0742701054482a3cdcac0b0dc45be85ed92e651eb64f490488963",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2129,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/initialize/Initialize.java",
+      "sha256": "46e87b3550a3e480c221678a9922aa95ce6a8e543f66adf1d26835a9228df373",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 547,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/initialize/InitializeBaseInvitroModel.java",
+      "sha256": "2ebbdc075b6f1c153005981c7b887d21dd6c7017d899dfd30c719d6beb9413bc",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 9325,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/initialize/InitializeBaseModel.java",
+      "sha256": "2a2fda051d0ed7cf9dde00d2ee7fbd6e259b051869fed095e60b0abd896bda9f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3147,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/initialize/InitializeBaseWholeLung.java",
+      "sha256": "a325e24e2195267fd72cfab6321df60999cd484a6069ea76d056f5e11879eb55",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3876,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/initialize/InitializeExample.java",
+      "sha256": "8c0271f59ef2bb8735d61a4f1c69d9ca3247e7931f642eaa6dd840930a09e08c",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3150,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/initialize/InitializeTranexamicModel.java",
+      "sha256": "c763d91f45bf11c175816499bd316879c7872ba99e4509d487c0ab8879e6e284",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 800,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/print/PrintBaseInVitro.java",
+      "sha256": "e76827b353df4cc8ae57bc5e8c431b2d957681f1bab945c8f2def219abd5b5e1",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 3190,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/print/PrintBaseModel.java",
+      "sha256": "f9ac18a3cbe824c781afe3b939b34090d2c1f6ebf7be9f259920083c8b9c081f",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1584,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/print/PrintCoinjury.java",
+      "sha256": "fa491de6a5ddc95c6091466b2d48acb79672e91486aac4584e6624553ccf66fc",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1530,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/print/PrintExample.java",
+      "sha256": "bbfd4bf9fb35c3a4e128c2a1cf91a44355e5918d23175c86645db961be8e95ef",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2937,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/print/PrintHemeModel.java",
+      "sha256": "2bc20942452c0cce0af19c6f160e3ed6a9ce6c44dd9ce52dba95b901f269a112",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 199,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/print/PrintNull.java",
+      "sha256": "e8bf5b1fa48fb4c8db6738df0405c158911e95ea5df3229a1094046c757bb1e9",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 684,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/print/PrintStat.java",
+      "sha256": "0628a5163e0d9d6b28e7d4e1d02ebce5cd24329c8aa66174a5da752d172d9a59",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1551,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/run/Run.java",
+      "sha256": "c2c883666fcbe7b1dc9909a7872fc37dbf2c142ab97bd81d8dc85b54c7f656e7",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 1973,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/run/RunMultiThread.java",
+      "sha256": "7c0e0f49494cd28c88755374fe477bd995c05319ed3158f6b6401332c7b850eb",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2175,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/main/run/RunSingleThread.java",
+      "sha256": "3a2a9f49001aed8053bead1cd02e6dfcd0535f416d590beb9aad23211711a32e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 11847,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/primitives/CoupledInteractions.java",
+      "sha256": "a0d5c6235460b92ed96bb2de78671cd61db720742dd62c28534a455e4077e31a",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 34182,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/primitives/Interactions.java",
+      "sha256": "ed0328ae368f12e0394d74f4e543c1485d5c277a2c4397bee23d18f747953819",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 2251,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/time/Clock.java",
+      "sha256": "20b7ff90777dabd810e3f9a8510e320b8365dc62546a648b70ee9a1da373fd3e",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 21422,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/utils/Constants.java",
+      "sha256": "7a44f3fe955eff139fe653a944095be683133b416f4493bcd8e6d25355f9fe0b",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 465,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/utils/Id.java",
+      "sha256": "10364c5f5171e261192f22a46c73007cca0af0e2a144a757fff8dc0116361a1d",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 16713,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/utils/LinAlg.java",
+      "sha256": "41afbf8eedeabacdb1d7445c14e6e0ca5c78f61aaed1a5a3c5aafe3950689be1",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 4250,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/utils/Rand.java",
+      "sha256": "7bbe2c5c515f8c9a336044bfddaff1dadef7b31ed1f3825e0a0d58ac835398b8",
+      "unix_executable_bit": false
+    },
+    {
+      "bytes": 16054,
+      "entry_type": "regular",
+      "normalized_path": "java/src/edu/uf/utils/Util.java",
+      "sha256": "3d1c850a9a1cb906c03c379ec2e12fb6954ad447a153b156856358f910e3b4b5",
+      "unix_executable_bit": false
+    }
+  ],
+  "source_revision": "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+  "source_tree": "d5620f3acf4e5a163cfdfdefc2432ebd5709008a",
+  "tracked_jar": {
+    "bytes": 164121,
+    "git_blob": "3cfbeb5d147a3c37ab0f4e5b4a4caa8c0c09b882",
+    "path": "java/jPAI.jar",
+    "sha256": "ff49482838e3a761913df327a48e819d4f9e552bfeab29655a82675c60c47162"
+  }
+}

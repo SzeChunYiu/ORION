@@ -1,0 +1,144 @@
+{
+  "finished_at": "2026-08-24T05:52:01.871076+00:00",
+  "large_payloads": [
+    {
+      "bytes": 4237826,
+      "identity": "zenodo_v0.13.4_zip",
+      "md5": "3409352bdc0926acfafc39bf121f4263",
+      "sha256": "5eaf4bc23f11cf14d6b1f41510a7b99cf3107cb906a7b7e9aa2945a2a64baeba"
+    },
+    {
+      "bytes": 4247426,
+      "identity": "github_codeload_revision_a85df681d29a5cf3406d529144a7c0645e543e61",
+      "md5": "a316dd8374fb6ba8b6e27c24ddf3a9d6",
+      "sha256": "b468f53c66e751ae242a039ba94c43788ec059363f8d2a2691207b4d4015a0b7"
+    }
+  ],
+  "large_payloads_retained": false,
+  "protocol_sha256": "8eda26f0fef9a9545e7393651601050e9a34e4843af7463f5e5cbd90f7d214f2",
+  "request_count": 6,
+  "requests": [
+    {
+      "body_bytes": 353,
+      "body_md5": "b37210823245f9d6b152c7db5558779a",
+      "body_path": "evidence/199_v10b_github_ref_v0_13_5.body",
+      "body_retained": true,
+      "body_sha256": "4e55e074121df10bf3c614d5b0700cb72fdb5ccd17d95611a4642c1b127edd7a",
+      "error": null,
+      "final_url": "https://api.github.com/repos/TARGENE/targene-pipeline/git/ref/tags/v0.13.5",
+      "finished_at": "2026-08-24T05:51:53.501085+00:00",
+      "headers": {
+        "Content-Length": "353",
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"eb69a0ce926273227440f8f183d71a34626a770737c609add18e0f4247822f38\"",
+        "Last-Modified": "Tue, 12 May 2026 20:05:46 GMT",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "10",
+        "X-RateLimit-Reset": "1787551623"
+      },
+      "started_at": "2026-08-24T05:51:53.104225+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/TARGENE/targene-pipeline/git/ref/tags/v0.13.5"
+    },
+    {
+      "body_bytes": 464998,
+      "body_md5": "f7162cf4899721d8265e70c9c55024e3",
+      "body_path": "evidence/199_v10b_github_commit.body",
+      "body_retained": true,
+      "body_sha256": "7d7b965a7d67ea522d920ae803ea876679025a52b68c21b0eec133112089de1f",
+      "error": null,
+      "final_url": "https://api.github.com/repos/TARGENE/targene-pipeline/commits/a85df681d29a5cf3406d529144a7c0645e543e61",
+      "finished_at": "2026-08-24T05:51:54.410804+00:00",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"a7347f4d84bada8dbd0a76f2995d9f999de38c0bd6fe5bdf09a6164a90a6cd1a\"",
+        "Last-Modified": "Mon, 11 May 2026 14:20:36 GMT",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "9",
+        "X-RateLimit-Reset": "1787551623"
+      },
+      "started_at": "2026-08-24T05:51:53.711371+00:00",
+      "status": 200,
+      "url": "https://api.github.com/repos/TARGENE/targene-pipeline/commits/a85df681d29a5cf3406d529144a7c0645e543e61"
+    },
+    {
+      "body_bytes": 1072,
+      "body_md5": "e17adc431a4ba9ef16f8dea2fb9a3199",
+      "body_path": "evidence/199_v10b_github_raw_license.body",
+      "body_retained": true,
+      "body_sha256": "20122bc48a8c893915be5ce8a4f4a10785d8eee7fec36c5f930a208d0e575230",
+      "error": null,
+      "final_url": "https://raw.githubusercontent.com/TARGENE/targene-pipeline/a85df681d29a5cf3406d529144a7c0645e543e61/LICENSE",
+      "finished_at": "2026-08-24T05:51:54.930339+00:00",
+      "headers": {
+        "Content-Length": "1072",
+        "Content-Type": "text/plain; charset=utf-8",
+        "ETag": "\"aa157732af1813596c8714ccf7d5bb2cc3655c070a71e3b42339bc29965a5b44\""
+      },
+      "started_at": "2026-08-24T05:51:54.623251+00:00",
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/TARGENE/targene-pipeline/a85df681d29a5cf3406d529144a7c0645e543e61/LICENSE"
+    },
+    {
+      "body_bytes": 5027,
+      "body_md5": "e2f4078137c21b7579b30787c033ff9b",
+      "body_path": "evidence/199_v10b_zenodo_record.body",
+      "body_retained": true,
+      "body_sha256": "f7feb743cc4cec8e1c7d0a7a7638642c087bb8df764895ecb696d9c70688ceb6",
+      "error": null,
+      "final_url": "https://zenodo.org/api/records/19202203",
+      "finished_at": "2026-08-24T05:51:55.478938+00:00",
+      "headers": {
+        "content-length": "5027",
+        "content-type": "application/json",
+        "etag": "\"3\"",
+        "x-ratelimit-limit": "133",
+        "x-ratelimit-remaining": "132",
+        "x-ratelimit-reset": "1787550776"
+      },
+      "started_at": "2026-08-24T05:51:55.133142+00:00",
+      "status": 200,
+      "url": "https://zenodo.org/api/records/19202203"
+    },
+    {
+      "body_bytes": 4237826,
+      "body_md5": "3409352bdc0926acfafc39bf121f4263",
+      "body_path": null,
+      "body_retained": false,
+      "body_sha256": "5eaf4bc23f11cf14d6b1f41510a7b99cf3107cb906a7b7e9aa2945a2a64baeba",
+      "error": null,
+      "final_url": "https://zenodo.org/api/records/19202203/files/TARGENE/targene-pipeline-v0.13.4.zip/content",
+      "finished_at": "2026-08-24T05:51:58.399885+00:00",
+      "headers": {
+        "content-disposition": "attachment; filename=targene-pipeline-v0.13.4.zip",
+        "content-length": "4237826",
+        "content-type": "application/octet-stream",
+        "x-ratelimit-limit": "133",
+        "x-ratelimit-remaining": "131",
+        "x-ratelimit-reset": "1787550776"
+      },
+      "started_at": "2026-08-24T05:51:55.688031+00:00",
+      "status": 200,
+      "url": "https://zenodo.org/api/records/19202203/files/TARGENE/targene-pipeline-v0.13.4.zip/content"
+    },
+    {
+      "body_bytes": 4247426,
+      "body_md5": "a316dd8374fb6ba8b6e27c24ddf3a9d6",
+      "body_path": null,
+      "body_retained": false,
+      "body_sha256": "b468f53c66e751ae242a039ba94c43788ec059363f8d2a2691207b4d4015a0b7",
+      "error": null,
+      "final_url": "https://codeload.github.com/TARGENE/targene-pipeline/zip/a85df681d29a5cf3406d529144a7c0645e543e61",
+      "finished_at": "2026-08-24T05:52:01.589312+00:00",
+      "headers": {
+        "Content-Type": "application/zip",
+        "ETag": "\"2002e9c0cf4a4336bf54ff70ef8f12a29601721dfaf902498f786fc3e98f2f8f\"",
+        "content-disposition": "attachment; filename=targene-pipeline-a85df681d29a5cf3406d529144a7c0645e543e61.zip"
+      },
+      "started_at": "2026-08-24T05:51:58.620697+00:00",
+      "status": 200,
+      "url": "https://codeload.github.com/TARGENE/targene-pipeline/zip/a85df681d29a5cf3406d529144a7c0645e543e61"
+    }
+  ],
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v10b.probe-receipt"
+}

@@ -1,0 +1,21 @@
+{
+  "adapter_output": "always UNRESOLVED; zero raw native singleton licences",
+  "closed_input_policy": "unknown root keys and prohibited exact/prefix key families are refused",
+  "mapping": {
+    "ARGPARSE_INTEGRITY_ERROR | PROVIDER_ERROR | RUNTIME_ERROR": "ERROR",
+    "INITIALIZED | DIAGNOSIS_READY | SELF_EDIT_STARTED | NO_PROBLEM_STATEMENT": "PARTIAL",
+    "NO_ENTRY | MISSING_PATCH | EMPTY_PATCH": "EMPTY",
+    "PATCH_CAPTURED + capture_patch + exit 0 + positive patch bytes + SHA-256": "COMPLETE_SUCCESS",
+    "TIMEOUT": "TIMEOUT",
+    "incoherent patch capture": "INVALID"
+  },
+  "outcome_policy": "no benchmark, archive-admission, gold, protected, scorer, held-out or comparator field may be parsed or used for mapping",
+  "retention": [
+    "exact native_code and stage",
+    "exact exit code",
+    "hashes rather than raw run/parent identifiers",
+    "patch SHA-256 and byte count but not patch payload"
+  ],
+  "schema_version": "orion.p5.c3.native-terminal-rules.v4",
+  "source_boundary": "adapter-authored pre-evaluation patch capture; not a released DGM result schema"
+}

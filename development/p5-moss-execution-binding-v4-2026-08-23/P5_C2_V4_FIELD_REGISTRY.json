@@ -1,0 +1,320 @@
+{
+  "arm_id": "C2_DIRECT_SELF_EDIT__MOSS",
+  "blocking_field_count": 14,
+  "blocking_fields": [
+    "adapter.isolated_write_surface",
+    "custody.external_protected_scorer",
+    "custody.one_shot_no_feedback_barrier",
+    "custody.protected_panel_freshness",
+    "inputs.candidate_visible_case_bytes",
+    "model_provider.primary",
+    "resources.calls_tokens_usd",
+    "resources.retry_network",
+    "rights.container_and_generated_artifacts",
+    "rights.model_provider_and_services",
+    "rights.task_and_benchmark_content",
+    "runtime.compute",
+    "runtime.container_or_environment",
+    "runtime.task_environment"
+  ],
+  "bound_execution_envelope": {
+    "fallbacks": [],
+    "runtime_launcher": null,
+    "wallclock_seconds": {
+      "per_case": 21600,
+      "termination_grace": 120,
+      "whole_c2_run": 21600
+    }
+  },
+  "bound_field_count": 7,
+  "bound_fields": [
+    "adapter.native_parser_binding",
+    "identity.native_entrypoint_bytes",
+    "identity.source_license_bytes",
+    "identity.source_repository_commit",
+    "model_provider.fallbacks",
+    "resources.wallclock",
+    "runtime.dependency_lock"
+  ],
+  "execution_ready": false,
+  "fields": {
+    "adapter.isolated_write_surface": {
+      "binding": {
+        "fail_closed_gate": "p5_c2_fail_closed_runner.py",
+        "gate_sha256": "c5665107f6b11d5448ab1d9552fbd6e4d49ea063085831653b31eada390f80ef",
+        "released_native_writes": [
+          "writable inner OpenClaw Git repository",
+          "MOSS_DATA_DIR session/evolution state",
+          "Docker images and containers through a host daemon",
+          "temporary Unix socket and generated local configuration"
+        ]
+      },
+      "cause": "The released architecture requires host-side source mutation and Docker control. The pinned compose file does not isolate the daemon, dynamic trial workers have no CPU/RAM/PID flags, and no content-addressed disposable VM or rootless Docker endpoint is bound.",
+      "next_discriminator": "Run the exact source in a disposable content-addressed VM with a dedicated rootless Docker daemon; prove host/source/protected mounts are absent and produce a complete before/after mutation digest.",
+      "residual": "The gate prevents accidental execution, but it is not an arm-native write-isolation proof and therefore does not close this field.",
+      "state": "CANNOT_CHECK"
+    },
+    "adapter.native_parser_binding": {
+      "binding": {
+        "input": "pinned MOSS evolution manifest schemaVersion 6",
+        "output_schema": "P5_C2_V4_NATIVE_OUTPUT_SCHEMA.json",
+        "path": "p5_c2_native_parser.py",
+        "protected_key_policy": "fail closed",
+        "raw_native_singletons_licensed": 0,
+        "sha256": "2e1617527cb1b10c8030e8c5555892c47332a2dde85eb0a539f1eb04043b1470"
+      },
+      "cause": null,
+      "next_discriminator": "Keep the parser byte-frozen and run the separate V3 certificate/action/fibre operation outside candidate custody.",
+      "residual": "The parser retains exact manifest status/latest verdict and hashes candidate identifiers while emitting only UNRESOLVED; it does not classify scientific responsibility.",
+      "state": "BOUND"
+    },
+    "custody.external_protected_scorer": {
+      "binding": null,
+      "cause": "No independent scorer principal, immutable scorer digest, access control or signed acceptance exists.",
+      "next_discriminator": "An independent custodian supplies scorer identity, digest and access-control attestation without revealing protected bytes.",
+      "residual": "C2 is not licensed for confirmatory execution.",
+      "state": "CANNOT_CHECK"
+    },
+    "custody.one_shot_no_feedback_barrier": {
+      "binding": null,
+      "cause": "Local code cannot self-attest independent custody, one accepted successor, one score event and no return channel.",
+      "next_discriminator": "An independent custodian binds an append-only one-shot receipt and verifies no candidate/adaptation feedback path.",
+      "residual": "C2 is not licensed for confirmatory execution.",
+      "state": "CANNOT_CHECK"
+    },
+    "custody.protected_panel_freshness": {
+      "binding": null,
+      "cause": "No protected panel identity or post-freeze freshness attestation was available.",
+      "next_discriminator": "An independent custodian freezes a fresh panel after protocol lock and reveals only the authorized closing receipt.",
+      "residual": "C2 is not licensed for confirmatory execution.",
+      "state": "CANNOT_CHECK"
+    },
+    "identity.native_entrypoint_bytes": {
+      "binding": {
+        "cli_path": "host-daemon/src/cli/moss",
+        "cli_sha256": "bd9aa0dbcbe953bafd24d60121ddceb868dae25f005f34cb5d448e0f671f0140",
+        "compose_sha256": "ea2dec83a2e47930ac2c391d207e1b54e9a62b8a910b82cf9a5d46cd8143e783",
+        "daemon_entrypoint": "python -m src.main",
+        "daemon_sha256": "cf335c86905efd86bf47de6d7fbad00fcb5a3a786b5a208e883ab427df101107",
+        "native_commands": [
+          "status",
+          "batches",
+          "batch",
+          "start",
+          "stop",
+          "restart",
+          "apply",
+          "flag",
+          "catch-up"
+        ]
+      },
+      "cause": null,
+      "next_discriminator": "Reverify these raw bytes immediately before any native image build.",
+      "residual": "Exact official CLI/daemon/compose bytes are retained.",
+      "state": "BOUND"
+    },
+    "identity.source_license_bytes": {
+      "binding": {
+        "root_license_sha256": "3903e8b0fd6b4f6fc83f194c1e7b8525f1b40a284e4682ba1cec7e77eb765b63",
+        "root_notice_sha256": "da9dce4d4fbd44a4feb37a54e27220788fbcc6887e4367d479b1bd402f63dd19",
+        "root_spdx": "Apache-2.0",
+        "vendored_openclaw_license_sha256": "62316704df7426e5a79d2827ff8aca36e9abb3a73b8e68557030749ebefec667",
+        "vendored_openclaw_spdx": "MIT"
+      },
+      "cause": null,
+      "next_discriminator": "Carry all applicable notices into any eventual runtime/source bundle.",
+      "residual": "Exact source licence/notice bytes are retained; this does not close dependency, task, service or generated-artifact rights.",
+      "state": "BOUND"
+    },
+    "identity.source_repository_commit": {
+      "binding": {
+        "archive_sha256": "de6bb0e480749757d8e9b05a66c37c82228ea6d9d1e1cb92b6b32a3b28e5610e",
+        "commit_date_utc": "2026-05-23T03:57:09Z",
+        "commit_sha": "5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+        "repository": "https://github.com/hkgai-official/Moss",
+        "tree_sha": "ebfcd6ac3ae00749240a5e2d8a96ad570adaf63f"
+      },
+      "cause": null,
+      "next_discriminator": "Fetch by commit and reverify the archive immediately before a build.",
+      "residual": "The official paper-linked public source identity is byte-addressed.",
+      "state": "BOUND"
+    },
+    "inputs.candidate_visible_case_bytes": {
+      "binding": null,
+      "cause": "No exact rights-cleared P5 failure batch/session packet is frozen. The authored parser fixture is schema-only and not a substantive P5 case.",
+      "next_discriminator": "Author or license a minimal P5 batch satisfying P5_C2_V4_CANDIDATE_VISIBLE_CASE_REQUIREMENTS.json without gold, protected outcomes or scorer feedback.",
+      "residual": "C2 is not licensed for execution.",
+      "state": "UNBOUND"
+    },
+    "model_provider.fallbacks": {
+      "binding": {
+        "closed_behavior": "FAIL_WITH_NATIVE_TERMINAL; DO_NOT_SWITCH_MODEL_PROVIDER_OR_CODING_AGENT",
+        "fallbacks": [],
+        "per_role_provider_override": "FORBIDDEN"
+      },
+      "cause": null,
+      "next_discriminator": "Retain the empty list and override prohibition when the primary identities are selected.",
+      "residual": "The P5 C2 fallback set is the closed empty list even though native MOSS supports mixed-provider overrides.",
+      "state": "BOUND"
+    },
+    "model_provider.primary": {
+      "binding": null,
+      "cause": "MOSS requires both a chat/trial model endpoint and one authenticated coding-agent CLI. No exact model, provider, endpoint, CLI version, service revision, credential principal or per-role model is selected.",
+      "next_discriminator": "Freeze one chat/trial model and one coding-agent CLI/model/provider with complete effective config and independent service terms.",
+      "residual": "C2 is not licensed for execution.",
+      "state": "UNBOUND"
+    },
+    "resources.calls_tokens_usd": {
+      "binding": {
+        "source_observation": "provider runners may report tokens/cost, but Codex reports cost_usd=None and DeepSeek may not report tokens; no source-wide hard ceiling exists"
+      },
+      "cause": "No provider-reconciled hard stop exists for aggregate calls, input/output tokens or USD across all MOSS roles and trial workers.",
+      "next_discriminator": "After primary binding, enforce exact aggregate counters before every call, define overshoot semantics, and reconcile to provider receipts.",
+      "residual": "C2 is not licensed for execution.",
+      "state": "UNBOUND"
+    },
+    "resources.retry_network": {
+      "binding": {
+        "frozen_policy": {
+          "fallbacks": [],
+          "network_default": "DENY_EXCEPT_EXACT_BOUND_ENDPOINTS"
+        },
+        "source_depth": "shallow"
+      },
+      "cause": "The primary endpoints, DNS/TLS identities and task-fetch policy are unbound; released dynamic trial containers use bridge networking and no final egress allowlist is enforced.",
+      "next_discriminator": "Bind exact endpoints or local offline services and enforce a deny-by-default egress policy for gateway, daemon, coding agents and every dynamic worker.",
+      "residual": "C2 is not licensed for execution.",
+      "state": "UNBOUND"
+    },
+    "resources.wallclock": {
+      "binding": {
+        "enforcer": "p5_c2_fail_closed_runner.py",
+        "enforcer_sha256": "c5665107f6b11d5448ab1d9552fbd6e4d49ea063085831653b31eada390f80ef",
+        "per_case_seconds": 21600,
+        "termination_grace_seconds": 120,
+        "timeout_terminal": "TIMEOUT/exit 124",
+        "whole_c2_run_seconds": 21600
+      },
+      "cause": null,
+      "next_discriminator": "Verify TERM/KILL and container cleanup on the eventual disposable runtime before custody execution.",
+      "residual": "A prospective process-group wallclock is byte-frozen; Docker/container isolation and cleanup remain separately unbound.",
+      "state": "BOUND"
+    },
+    "rights.container_and_generated_artifacts": {
+      "binding": {
+        "base_image": "node:22-bookworm@sha256:cd7bcd2e7a1e6f72052feb023c7f6b722205d3fcab7bbcbd2d1bfdab10b1e935"
+      },
+      "cause": "The base image is pinned, but no complete built-image SBOM/licence bundle or authority for session, transcript, diff, image and evolution-state retention/publication is closed.",
+      "next_discriminator": "Build the complete image, capture SBOM/licences, and obtain explicit generated-artifact retention/disclosure authority.",
+      "residual": "C2 is not licensed for execution or artifact redistribution.",
+      "state": "UNBOUND"
+    },
+    "rights.model_provider_and_services": {
+      "binding": null,
+      "cause": "No model/coding-agent provider is selected and no study-use, data-retention, region or publication terms are captured.",
+      "next_discriminator": "Bind terms and data policy for both chat/trial and coding-agent services before credentials enter the runtime.",
+      "residual": "C2 is not licensed for execution.",
+      "state": "UNBOUND"
+    },
+    "rights.task_and_benchmark_content": {
+      "binding": {
+        "authoritative_tree_benchmark_paths": 0,
+        "missing_expected_path": "benchmark/claw-eval/runner/benchmark.py"
+      },
+      "cause": "The pinned source trial runner requires benchmark/claw-eval, but the complete Git tree contains zero benchmark paths; no alternative task/benchmark packet or rights file is released in this commit.",
+      "next_discriminator": "Obtain an upstream content-addressed release of the missing benchmark/runtime with its licence, or bind an authored P5-native evaluator as an explicitly named successor rather than silently patching the comparator.",
+      "residual": "The native replay/evaluation path and all P5 task-content reuse rights are CANNOT_CHECK.",
+      "state": "UNBOUND"
+    },
+    "runtime.compute": {
+      "binding": {
+        "prospective": {
+          "gpus": 0,
+          "parallelism": 1,
+          "pids_limit": 2048,
+          "ram_gib": 16,
+          "vcpus": 8
+        }
+      },
+      "cause": "Values are proposed but not enforced across the gateway, host daemon, coding-agent subprocesses, Docker build and dynamic trial workers; native worker docker run lacks CPU/RAM/PID limit flags.",
+      "next_discriminator": "Enforce one cgroup/VM-wide cap and verify every dynamic child stays inside it.",
+      "residual": "C2 is not licensed for matched execution.",
+      "state": "UNBOUND"
+    },
+    "runtime.container_or_environment": {
+      "binding": {
+        "base_image": "node:22-bookworm@sha256:cd7bcd2e7a1e6f72052feb023c7f6b722205d3fcab7bbcbd2d1bfdab10b1e935",
+        "source_archive_sha256": "de6bb0e480749757d8e9b05a66c37c82228ea6d9d1e1cb92b6b32a3b28e5610e"
+      },
+      "cause": "No complete arm64/amd64 derived MOSS/OpenClaw image, host-daemon environment, Docker daemon identity or runtime SBOM was built. The local Docker client has no reachable daemon and pnpm 10.23.0 is absent.",
+      "next_discriminator": "On a rights-cleared disposable Linux executor, install pnpm 10.23.0, build exact source from both locks, and capture image, host environment and SBOM digests.",
+      "residual": "Only source and lock identities are frozen; native runtime execution is CANNOT_CHECK.",
+      "state": "UNBOUND"
+    },
+    "runtime.dependency_lock": {
+      "binding": {
+        "host": {
+          "package_entries": 11,
+          "path": "MOSS_HOST_DEPENDENCY_LOCK_V4.uv.lock",
+          "python_request": ">=3.11",
+          "resolver": "uv 0.11.1",
+          "sha256": "382c5d3ad1eaa6ca85e970dca53b7c423f68878c23ceada8c3f17138c2b84b72"
+        },
+        "openclaw": {
+          "identical_to_upstream_lock": true,
+          "node_engine": ">=22.12.0",
+          "package_entries": 1196,
+          "package_manager": "pnpm@10.23.0",
+          "path": "MOSS_OPENCLAW_DEPENDENCY_LOCK_V4.pnpm-lock.yaml",
+          "sha256": "17a36bc38c1817eaee7a7c4264d58b127f5edb6a5054e4952545450cfde0337c"
+        }
+      },
+      "cause": null,
+      "next_discriminator": "Materialize both locks on the selected Linux platform and retain fetched package/archive digests plus licence inventory.",
+      "residual": "Both released dependency resolutions are byte-frozen; build success, platform wheels, licences and missing benchmark dependencies remain separate blockers.",
+      "state": "BOUND"
+    },
+    "runtime.task_environment": {
+      "binding": {
+        "released_trial_runner_sha256": "40e60a8e3393caf1a4efdf6b433873883f07049038a95364b70f7f7d2c7524d7",
+        "required_but_absent": [
+          "benchmark/claw-eval/runner/benchmark.py",
+          "benchmark/claw-eval/src",
+          "benchmark/claw-eval manifests/tasks/results layout"
+        ]
+      },
+      "cause": "The native runtime hard-codes a benchmark tree that is absent from the authoritative commit; no exact P5 session/batch, trial service, setup bytes or generated task manifest is bound.",
+      "next_discriminator": "Acquire an authoritative content-addressed benchmark companion release, or preregister and name a P5-native successor runtime with its own semantics and rights.",
+      "residual": "A source-native evolution/replay smoke cannot reach the trial stage without unversioned external bytes or source modification.",
+      "state": "CANNOT_CHECK"
+    }
+  },
+  "frozen_at_utc": "2026-08-23T17:38:58Z",
+  "panel_confirmatory_ready_arms": 0,
+  "registry_id": "P5.C2.MOSS.FIELD.REGISTRY.V4",
+  "required_field_paths": [
+    "adapter.isolated_write_surface",
+    "adapter.native_parser_binding",
+    "custody.external_protected_scorer",
+    "custody.one_shot_no_feedback_barrier",
+    "custody.protected_panel_freshness",
+    "identity.native_entrypoint_bytes",
+    "identity.source_license_bytes",
+    "identity.source_repository_commit",
+    "inputs.candidate_visible_case_bytes",
+    "model_provider.fallbacks",
+    "model_provider.primary",
+    "resources.calls_tokens_usd",
+    "resources.retry_network",
+    "resources.wallclock",
+    "rights.container_and_generated_artifacts",
+    "rights.model_provider_and_services",
+    "rights.task_and_benchmark_content",
+    "runtime.compute",
+    "runtime.container_or_environment",
+    "runtime.dependency_lock",
+    "runtime.task_environment"
+  ],
+  "schema_version": "orion.p5.c2.field-registry.v4",
+  "terminal": "C2_PARTIAL_BINDING__FOURTEEN_REQUIRED_FIELDS_NOT_BOUND__EXECUTION_REFUSED"
+}

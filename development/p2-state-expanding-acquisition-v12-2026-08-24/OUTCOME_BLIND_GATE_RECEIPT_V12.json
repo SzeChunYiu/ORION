@@ -1,0 +1,105 @@
+{
+  "actions": {
+    "class_counts_computed": false,
+    "label_values_interpreted_or_retained": false,
+    "model_executions": 0,
+    "network_requests": 0,
+    "performance_arms": 0,
+    "performance_outcomes_computed": false,
+    "rankings_computed": 0,
+    "retries": 0
+  },
+  "binding_receipts": [
+    {
+      "actual": "8aa6438b470a7facd7e630a8280afdbc034120c631eac4fdfe744d48a0e63e75",
+      "expected": "8aa6438b470a7facd7e630a8280afdbc034120c631eac4fdfe744d48a0e63e75",
+      "passed": true,
+      "path": "development/p2-donor-envelopment-v8-2026-08-23/RESULT_V8.json"
+    },
+    {
+      "actual": "c69e5634b8d0e82a1fa393dbae276d728e9a2f7ba4c9db81a27c0329e2e66742",
+      "expected": "c69e5634b8d0e82a1fa393dbae276d728e9a2f7ba4c9db81a27c0329e2e66742",
+      "passed": true,
+      "path": "development/p2-title-emphasis-conflict-resolved-v10-2026-08-23/RESULT_V10.json"
+    },
+    {
+      "actual": "f16cbca74e968d238475666311a1f0977230fa242b5574329bbe47d9747e3125",
+      "expected": "f16cbca74e968d238475666311a1f0977230fa242b5574329bbe47d9747e3125",
+      "passed": true,
+      "path": "development/p2-title-emphasis-conflict-resolved-v10-2026-08-23/POPULATION_FREEZE_V10.json"
+    },
+    {
+      "actual": "a3c9107ad152766efc2a08d722657d550781f1f181f47f3ceeba041c0a710176",
+      "expected": "a3c9107ad152766efc2a08d722657d550781f1f181f47f3ceeba041c0a710176",
+      "passed": true,
+      "path": "development/p2-safe-residual-envelope-theory-v11-2026-08-23/THEORY.md"
+    },
+    {
+      "actual": "2c9bc51875cc33dc7c0e97a9184eed36548233e44ff4398d209bae157c829999",
+      "expected": "2c9bc51875cc33dc7c0e97a9184eed36548233e44ff4398d209bae157c829999",
+      "passed": true,
+      "path": "development/top-tier-scientific-takeover-2026-08-23/P1_P5_RECURSIVE_GAP_LEDGER_V1.md"
+    }
+  ],
+  "executed_at_utc": "2026-08-24T06:00:41.213690+00:00",
+  "execution_number": 1,
+  "frozen_pair": {
+    "expected_shared_content_identity": "d1b054eda2f1fb8dea2e3ad78c9d32aba9819f9d2465b6509949ec11f4117bd4",
+    "keyword_hashes_distinct": true,
+    "record_ids": [
+      "1003",
+      "1018"
+    ],
+    "review": "Appenzeller-Herzog_2020",
+    "row_ids_bound": true,
+    "row_receipts": {
+      "1003": {
+        "content_identity": "77baa6675fd97c3c630fdd971baddd5250d864260d31cf2ac6632fa2a93943fa",
+        "keyword": {
+          "normalized_bytes": 282,
+          "normalized_nonempty": true,
+          "normalized_sha256": "84d5e7ad0f936aeb53d05447d6784452990a776916d33711f5f1c719f01c7c42"
+        }
+      },
+      "1018": {
+        "content_identity": "77baa6675fd97c3c630fdd971baddd5250d864260d31cf2ac6632fa2a93943fa",
+        "keyword": {
+          "normalized_bytes": 572,
+          "normalized_nonempty": true,
+          "normalized_sha256": "3a376c64afe24454b1d3caff6d2fe46de471851aeee999659b20054ef3477d7e"
+        }
+      }
+    },
+    "same_exact_u4_donor_fibre": false
+  },
+  "gate": {
+    "id": "G1_PROVIDER_NATIVE_KEYWORD_FIBRE_SEPARATION",
+    "passed": false
+  },
+  "identity": "P2_V12_PROVIDER_NATIVE_KEYWORD_FIBRE_SEPARATOR_GATE_RECEIPT",
+  "matched_contract_sha256": "e158fb0fe799b38cd328cda9a09b332d7bc555939cfe0e4f662dbaeeb5b3ef14",
+  "protocol_sha256": "7588ecdddc7d421178e4eb18b140977bb18eb11e8ed2523d071f53a5ed5f09b7",
+  "schema": {
+    "allowlisted_fields_present": true,
+    "header_sha256": "b5af619fac46cfc82b5aeef169b5746448359d6deaaed3ed7c2ba83c46929d32",
+    "label_or_outcome_headers_may_exist": true,
+    "label_or_outcome_values_interpreted_or_retained": false,
+    "value_fields_selected": [
+      "record_id",
+      "title",
+      "abstract",
+      "keywords"
+    ]
+  },
+  "schema_version": "orion.p2.state-expanding-acquisition.outcome-blind-gate-receipt.v12",
+  "scope": "OUTCOME_BLIND_SIGNAL_STATE_WITNESS_ONLY",
+  "source_binding": {
+    "actual_bytes": 5807809,
+    "actual_sha256": "456f9306b0ce1aee840ac0244f11df3b2a168aa46007a92f5dcf59916d309a69",
+    "expected_bytes": 5807809,
+    "expected_sha256": "456f9306b0ce1aee840ac0244f11df3b2a168aa46007a92f5dcf59916d309a69",
+    "passed": true,
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/private-sources/p2-systematic-review-datasets-v9/Appenzeller-Herzog_2020.csv"
+  },
+  "terminal": "P2_V12_PROVIDER_NATIVE_KEYWORD_FIBRE_SEPARATION_FAIL_CLOSED"
+}

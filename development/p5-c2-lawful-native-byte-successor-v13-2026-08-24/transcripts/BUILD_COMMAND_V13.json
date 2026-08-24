@@ -1,0 +1,22 @@
+{
+  "command": [
+    "docker",
+    "buildx",
+    "build",
+    "--platform",
+    "linux/arm64",
+    "--load",
+    "--no-cache",
+    "--network=none",
+    "--provenance=false",
+    "--sbom=false",
+    "-t",
+    "orion-p5-c2-v13:20260824",
+    "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/build-context"
+  ],
+  "environment": {
+    "SOURCE_DATE_EPOCH": "1787529600"
+  },
+  "network": "none",
+  "returncode": 0
+}

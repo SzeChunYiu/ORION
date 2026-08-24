@@ -1,0 +1,58 @@
+{
+  "campaign_role": "PUBLIC_DEVELOPMENT_ONLY",
+  "candidate_interface": {
+    "arm_neutral": true,
+    "candidate_does_not_receive": [
+      "the known public fix patch or fixed source tree",
+      "expected patch bytes",
+      "run outputs or per-case rewards",
+      "hidden test bodies or evaluator feedback",
+      "any final-panel case identifier or result"
+    ],
+    "candidate_receives": [
+      "this case body",
+      "the task specification",
+      "the frozen buggy-source archive",
+      "the component licence and notice bytes"
+    ],
+    "feedback": "NONE_IN_SHARED_CORE",
+    "seed": "NOT_APPLICABLE__DETERMINISTIC_SOURCE_TASK"
+  },
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "problem": {
+    "allowed_change_surface": [
+      "src/main/java/org/apache/commons/lang3/math/NumberUtils.java"
+    ],
+    "disallowed_change_surface": [
+      "src/test/**",
+      "LICENSE.txt",
+      "NOTICE.txt"
+    ],
+    "statement": "Repair Apache Commons Lang NumberUtils.createNumber so positive hexadecimal magnitudes are classified by the signed positive capacity of Integer and Long rather than by raw hexadecimal width alone. Values that exceed Integer but fit Long must remain representable as Long; values above signed Long capacity must remain representable as BigInteger; leading zeroes must not change the effective magnitude class. Preserve the public API and unrelated numeric parsing behavior.",
+    "success_interface": "A later arm-native public-development adapter must compile the frozen source and evaluate a separately frozen public test interface. That environment is not part of this shared case core.",
+    "target_symbol": "org.apache.commons.lang3.math.NumberUtils.createNumber(String)"
+  },
+  "schema_version": "orion.p5.arm-neutral-public-development-case.v6",
+  "selection": {
+    "copied_issue_prose_or_attachments": false,
+    "issue_identifier": "LANG-747",
+    "source_family": "Defects4J Lang-1 / Apache Commons Lang LANG-747",
+    "split_id": "P5_PUBLIC_DEVELOPMENT_V6",
+    "split_membership": [
+      "P5-PUBLIC-LANG1-COMMON-001"
+    ]
+  },
+  "source": {
+    "archive_path": "candidate_visible/source/commons-lang-396afc3e4693cfee182efe582455f2d97058c068.tar.gz",
+    "archive_root": "commons-lang-396afc3e4693cfee182efe582455f2d97058c068/",
+    "archive_sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08",
+    "commit": "396afc3e4693cfee182efe582455f2d97058c068",
+    "mutable_paths": [
+      "src/main/java/org/apache/commons/lang3/math/NumberUtils.java"
+    ],
+    "read_only_path_policy": "Every other archive member is read-only for this case.",
+    "repository": "https://github.com/apache/commons-lang",
+    "tree": "34e33cca607f33ffcf8661e3a6c4b7fc5aca9701"
+  },
+  "task_id": "DEFECTS4J-LANG-1__LANG-747__PUBLIC-DEVELOPMENT"
+}

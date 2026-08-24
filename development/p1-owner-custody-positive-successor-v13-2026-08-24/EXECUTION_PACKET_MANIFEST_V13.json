@@ -1,0 +1,74 @@
+{
+  "administrative_packet_components": [
+    {
+      "bytes": 7813,
+      "path": "PROTOCOL_V13.json",
+      "sha256": "31a6b48c143bc1a041b6c2e415b67e12b731c0421926a4d8f02f80c5f6930d14"
+    },
+    {
+      "bytes": 2252,
+      "path": "SIGNING_CANONICALIZATION_V13.json",
+      "sha256": "b9569ee67a3242f7a9eab45691361495e9f1773e2553c1281f3f082e38e483ac"
+    },
+    {
+      "bytes": 1844,
+      "path": "OWNER_DELEGATION_AND_ACCEPTANCE_TEMPLATE_V13.json",
+      "sha256": "a180a50c5af6df0693ceb96ee13bd75a3a3bcc6cb14d5bd412031b2a2eb29cfb"
+    },
+    {
+      "bytes": 2561,
+      "path": "ADAPTER_BLIND_CUSTODY_TEMPLATE_V13.json",
+      "sha256": "a322f6f276f3258a6dfb033a212114dd986721a814435001569ef3c492be8f28"
+    },
+    {
+      "bytes": 1591,
+      "path": "OWNER_ALGEBRA_COMPLETION_COVERSHEET_V13.json",
+      "sha256": "b69273bba7d39d466f2c626ff01193970d8a3e00a28dd25aad97543d3fa0fae2"
+    },
+    {
+      "bytes": 1486,
+      "path": "HOST_AND_RIGHTS_ACCEPTANCE_TEMPLATE_V13.json",
+      "sha256": "79fd430857aa4d73fd0a7a3ba26fa8e7c08ee9e5779b32a66ba4c0bec8eb6947"
+    },
+    {
+      "bytes": 1094,
+      "path": "INDEPENDENT_SEMANTIC_REVIEW_TEMPLATE_V13.json",
+      "sha256": "512d48dbeb03841521f88de4d3bb5c0bc1ca50d9878eca984ca560af97866141"
+    },
+    {
+      "bytes": 5442,
+      "path": "EXTERNAL_EXECUTION_INSTRUCTIONS_V13.md",
+      "sha256": "b1259be3b02676581572dfa8cfc3a23a077066bac002f53bd96f24934c35b800"
+    }
+  ],
+  "authority": "CONTENT_ADDRESSED_UNSIGNED_EXECUTION_PACKET__NOT_EXTERNAL_AUTHORITY",
+  "forbidden_precommitment_classes": [
+    "P1 source-native terminal profiles",
+    "source-target crosswalks or compatibility matrices",
+    "720 survivor maps or audit results",
+    "case text, labels, dossiers or protected gold",
+    "models, comparators, scores, performance or outcomes"
+  ],
+  "manifest_id": "P1.V13.EXTERNAL.AUTHORITY.EXECUTION.PACKET.MANIFEST",
+  "schema_version": "orion.p1.owner-custody-positive-successor.execution-packet-manifest.v13",
+  "semantic_inputs": [
+    {
+      "bytes": 9400,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+      "sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55"
+    },
+    {
+      "bytes": 13063,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_TARGET_SEMANTIC_REGISTRY.json",
+      "sha256": "fc3ff7435d291e8581eeefaab30b16a119bb005fd99f720090ef147c6b2944ba"
+    },
+    {
+      "bytes": 31001,
+      "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_PUBLIC_TARGET_SOURCE_REGISTRY.json",
+      "sha256": "7f16c0c6b036b1d257b917744fe63b562ff693cf9f41992dd1c93424e248c17d"
+    }
+  ],
+  "semantic_input_rule": "Only these three byte-exact target-side artifacts plus primary public standards independently retrieved by the external actor may inform algebra completion before commitment.",
+  "signing_cycle_resolution": "RATIFIABLE_PAYLOAD_THEN_REVIEW_THEN_FINAL_V8_ENVELOPE__NO_SELF_HASH_OR_SIGNATURE_CYCLE",
+  "status": "READY_FOR_EXTERNAL_DELIVERY__UNSIGNED"
+}

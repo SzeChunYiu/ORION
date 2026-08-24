@@ -1,0 +1,66 @@
+{
+  "actions": {
+    "case_or_outcome_accessed": false,
+    "external_custody_claimed": false,
+    "manuscript_updated": false,
+    "map_audit_rerun": false,
+    "route_retries": 0,
+    "same_workspace_authority_promoted": false,
+    "shared_ledger_updated": false
+  },
+  "authority": "PUBLIC_RECORD_BYTE_AUDIT_ONLY",
+  "authority_closure": {
+    "acts_closed": 0,
+    "acts_total": 4,
+    "host_authority": false,
+    "independent_semantic_review": false,
+    "target_corpus_rights": false,
+    "vocabulary_owner_or_delegate": false
+  },
+  "delegation_result": {
+    "fields_passed": 0,
+    "fields_required": 7,
+    "formal_delegation_bound": false,
+    "r7_owner_identity_bound": false
+  },
+  "frozen_counts": {
+    "cannot_check_maps": 720,
+    "certified_maps": 0,
+    "map_space": 117649,
+    "named_custodian_or_delegation_groups": 0,
+    "owner_requirement_groups": 12,
+    "rejected_maps": 116929,
+    "scientific_action_gold_cells": 0,
+    "structural_analogue_groups": 9,
+    "sufficient_owner_groups": 0
+  },
+  "map_audit_authorized": false,
+  "next_discriminator": "P1_V13_EXTERNAL_OWNER_DELEGATION_AND_ADAPTER_BLIND_COMPLETION_EXECUTION",
+  "not_warranted": [
+    "Issue authorship identifies the R7 vocabulary owner.",
+    "Issue text or repository ownership formally delegates algebra completion or ratification.",
+    "A public licence over the completed algebra is bound.",
+    "The V8 schema is a completed algebra instance.",
+    "Any authority act, owner group, gold cell or map is newly certified.",
+    "P1 is submission-ready."
+  ],
+  "positive_components": {
+    "exact_issue_body_bytes_bound": true,
+    "issue_created_before_cutoff_seconds": 136,
+    "issue_created_before_target_program_cutoff": true,
+    "official_issue_identity_bound": true,
+    "source_routes_http_200": 1,
+    "source_routes_total": 3
+  },
+  "preserved_v10_terminal": "P1_V10_FOUR_AUTHORITY_ACTS_REMAIN_NECESSARY__ADAPTER_BLIND_PRECOMMITMENT_OR_HISTORICAL_PRECEDENCE_CANNOT_CHECK__720_MAPS_UNCHANGED",
+  "readiness": "NOT_SUBMISSION_READY",
+  "result_id": "P1.V12.OWNER.CUSTODY.POSITIVE.SUCCESSOR.RESULT",
+  "rights_and_algebra_result": {
+    "applicable_completed_algebra_rights_bound": false,
+    "completed_algebra_instance_bound": false,
+    "exact_commit_license_public_route_http_status": 404,
+    "exact_commit_schema_public_route_http_status": 404
+  },
+  "schema_version": "orion.p1.owner-custody-positive-successor.result.v12",
+  "terminal": "P1_V12_PRE_CUTOFF_ISSUE_IDENTITY_BOUND__ZERO_OF_SEVEN_FORMAL_DELEGATION_FIELDS__EXACT_COMMIT_LICENSE_AND_SCHEMA_PUBLIC_ROUTES_404__ZERO_OF_FOUR_AUTHORITY_ACTS_CLOSED__720_MAPS_UNCHANGED"
+}

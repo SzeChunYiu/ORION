@@ -1,0 +1,29 @@
+{
+  "adverse_result": "The official per-PMCID OA service is exact but would require 25,588 serial requests for all search candidates; without an API key, the NCBI 3-requests/second boundary makes the full census disproportionate. This route is not silently accelerated.",
+  "amends_reducer_prefreeze_sha256": "4a80d9408aa594141f1d9c475a2145b7349ae129a006117c832830071db898c9",
+  "case_text_semantic_access_authorized": false,
+  "exact_admission": "Require one MED row for the requested PMID, a PMCID, isOpenAccess=Y/true, inPMC=Y/true, and exact machine-readable license normalized to CC0, CC BY or CC BY-SA, optionally with numeric version. NC, ND, custom, missing, multiple rows or ID mismatch fail closed.",
+  "frozen_at_utc": "2026-08-23T17:18:06.332793+00:00",
+  "identity": "P1.RW.EPMC.CORE.LICENSE.GATEWAY.AMENDMENT.C.V2",
+  "post_search_pre_license_disclosure": {
+    "allowlist_search_input_pmids": 57444,
+    "exact_licenses_opened": 0,
+    "search_batches": 719,
+    "source_native_action_queries_run": 0,
+    "unique_search_match_pmids": 25588
+  },
+  "query_contract": {
+    "base_clause": "SRC:MED",
+    "format": "json",
+    "input_pmids": "the 25,588 unique search-filter candidates only",
+    "pageSize": 1000,
+    "pmids_per_query": 80,
+    "resultType": "core",
+    "synonym": "false"
+  },
+  "raw_core_payload_retention": false,
+  "repair": "Use Europe PMC resultType=core only as a sealed license-field gateway on the already-frozen PMID set. Transport JSON may contain nonallowlisted fields, but the reducer may index, compare, aggregate, or persist only id, source, pmid, pmcid, license, isOpenAccess and inPMC. It must never print, persist, tokenize, hash individually, normalize, compare, aggregate, or branch on title, author, abstract, journal, comment/correction, keyword or other case-bearing fields. Raw responses are hashed as whole transport receipts and immediately discarded.",
+  "schema_version": "orion.p1.epmc-core-license-gateway-amendment-c.v2",
+  "scientific_outcome_or_action_access_authorized": false,
+  "status": "FROZEN_BEFORE_FIRST_CORE_REQUEST"
+}

@@ -1,0 +1,51 @@
+{
+  "claim_boundary": "Same-session cryptographic preregistration before V5 label values and model outcomes; not third-party registration, independent custody, or external execution.",
+  "date": "2026-08-23",
+  "events": [
+    {
+      "event": "source_family_selection_frozen",
+      "outcome_status": "FROZEN_BEFORE_LOCAL_SOURCE_DOWNLOAD_LABEL_ACCESS_OR_ANY_V5_MODEL_OUTCOME",
+      "sha256": "8a9c5ffedb4d758e8a8819bd3bae98ac8cc4b84ca82caa5882754e15a673ff5b",
+      "time_utc": "2026-08-23T16:57:22.242565+00:00"
+    },
+    {
+      "event": "source_download_bound",
+      "outcome_status": "LABEL_HEADERS_ONLY; NO_LABEL_VALUES, CLASS COUNTS, SEEDS, ACTIVE ORDERS, OR MODEL OUTCOMES OPENED",
+      "sha256": "e2e807bb9df6518877f89a76b76f855bca49a63495b5669230b7de5878a74ebb",
+      "time_utc": "2026-08-23T16:58:36.442560+00:00"
+    },
+    {
+      "event": "population_frozen",
+      "outcome_status": "NO_LABEL_VALUES, CLASS COUNTS, SEEDS, ACTIVE ORDERS, OR MODEL OUTCOMES ACCESSED",
+      "sha256": "cc818935af09021638736fc240b96c240488f6e39271c7be389ad1bc8ad07ead",
+      "time_utc": "2026-08-23T17:01:38.328643+00:00"
+    },
+    {
+      "event": "protocol_frozen",
+      "outcome_status": "FROZEN_BEFORE_LABEL_VALUES_CLASS_COUNTS_SEEDS_OR_ANY_V5_MODEL_OUTCOME",
+      "sha256": "b49e97485b30a5361378dd181cdd20e694a1f8e87f8f2119fe50f6207f86c3d4",
+      "time_utc": "2026-08-23T17:01:38.329069+00:00"
+    },
+    {
+      "event": "implementation_frozen",
+      "outcome_status": "NO LABEL VALUES, CLASS COUNTS, SEEDS, ACTIVE ORDERS, OR V5 MODEL OUTCOMES OPENED BEFORE THIS FREEZE",
+      "sha256": "7816fe9f671134dc1c1bca7528ed1b9104a3ab40bb0be2187f5a606de75f00b6",
+      "time_utc": "2026-08-23T17:04:15.500602+00:00"
+    },
+    {
+      "event": "labels_and_model_execution_opened",
+      "outcome_status": "OPENED_ONLY_AFTER_ALL_PRECEDING_FREEZES",
+      "sha256": null,
+      "time_utc": "2026-08-23T17:04:26.078269+00:00"
+    },
+    {
+      "event": "execution_completed",
+      "outcome_status": "TERMINAL_FROZEN_IN_RESULT",
+      "sha256": "2514fe842e0feaff9c3b979fabc390de0308d281313e9ec769779685d0504de6",
+      "time_utc": "2026-08-23T17:39:08.656693+00:00"
+    }
+  ],
+  "identity": "P2_SYNERGY_V5_PREREGISTRATION_BEFORE_OUTCOME_RECEIPT",
+  "temporal_order_passed": true,
+  "terminal": "P2_SYNERGY_V5_CONTENT_DISJOINT_LEARNER_BALANCER_ATTRIBUTION_FAILS_ONE_OR_MORE_FROZEN_TRANSPORT_GATES_REQUIRES_SUCCESSOR"
+}

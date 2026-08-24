@@ -1,0 +1,49 @@
+{
+  "current_authorization": {
+    "independent_custody": false,
+    "performance_run": false,
+    "source_census": false
+  },
+  "custody_requirements": [
+    "Independent source/population custodian binds the label-blind family.",
+    "Independent outcome custodian executes the one frozen run.",
+    "Content-addressed result verifier receives outputs without candidate authorship."
+  ],
+  "frozen_first_route": {
+    "candidate_template": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/{review}/output/{review}.csv",
+    "commit": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "index_path": "index_v1.json",
+    "index_sha256": "5d829c669f744cc6e91165b15dd3364554320d684398b841764b2609bb857d4b",
+    "no_substitution": "If the complete pinned family cannot supply seven new exact-rights keyword-capable reviews, stop this route; do not add post-census sources.",
+    "repository": "asreview/synergy-dataset"
+  },
+  "identity": "P2_V14_SOURCE_DISJOINT_KEYWORD_CAPABLE_SEVEN_REVIEW_FAMILY",
+  "matched_arms": [
+    "EXACT_U4",
+    "EXACT_U4_PLUS_PROVIDER_KEYWORDS with only the frozen typed field added"
+  ],
+  "minimum_support": {
+    "keyword_capable_units": 7,
+    "review_units": 7,
+    "why_seven": "Seven of seven avoids a structural sign ceiling and preserves the unchanged 6/7 sign gates without threshold relaxation."
+  },
+  "prospective_selection_rule": [
+    "Enumerate the complete pinned index without label values or model outcomes.",
+    "Exclude every SWIFT, SYNERGY V5, KIFMS V7 and V9/V10 review identity and every frozen prior content identity.",
+    "Require title, abstract, provider-native keywords and binary label schema plus exact CC-BY-4.0 or CC0 rights.",
+    "Require nonempty provider-native keywords in the frozen predeclared completeness fraction; never impute keywords from title/abstract.",
+    "Select the seven smallest eligible label-blind raw row counts, breaking ties by review identity; retain all seven.",
+    "Freeze exact source bytes, canonical population, content disjointness, keyword coverage, u4 and keyword-only representation before labels/outcomes."
+  ],
+  "reason": "V13 binds one real provider-native keyword state outside exact u4, but the current V10 population exposes keywords in only 4/7 reviews, making the unchanged 6/7 sign gates structurally unreachable under exact-u4 fallback.",
+  "schema_version": "orion.p2.state-expanding-acquisition.next-discriminator.v14",
+  "terminal": "P2_V14_KEYWORD_CAPABLE_SOURCE_DISJOINT_FAMILY_AND_CUSTODY_NOT_YET_BOUND",
+  "unchanged_contract": {
+    "active_loop": "V10 exact",
+    "balancer": 9.8,
+    "costs": "All parsing/vectorization/fitting/ranking costs charged",
+    "fallback": "Exact u4 on any binding or signal failure",
+    "gates": "V10 G3-G9 unchanged and simultaneous",
+    "learner": "LinearSVC C=0.11 squared_hinge random_state=20260823"
+  }
+}

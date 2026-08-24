@@ -1,0 +1,20 @@
+{
+  "amendment": "Compare str(args.evaluation_strategy) to steps after removing an optional IntervalStrategy. prefix; constructor arguments, versions, source, environment guards and allowed operations remain unchanged.",
+  "cause": "Transformers 4.46.3 stores evaluation_strategy as the string steps in this environment; the supervisory check incorrectly assumed an enum with a .value attribute.",
+  "frozen_at": "2026-08-23T18:58:08.467893+00:00",
+  "observed": {
+    "receipt_written": false,
+    "stage": "supervisory inspection of args.evaluation_strategy after constructor returned",
+    "terminal": "AttributeError: 'str' object has no attribute 'value'",
+    "training_arguments_constructor_returned": true
+  },
+  "pre_amendment_probe_sha256": "ec24331f0a191c13bb69513ca6a394c43f5f75eceaf7a6f6028d6e720df2c328",
+  "schema_version": "orion.p3.bertmap-execution-binding.probe-assertion-amendment.v7",
+  "scientific_invariance": [
+    "No DeepOnto import, JVM, model, ontology, benchmark, gold/reference, protected outcome, training, prediction, repair or scoring occurred.",
+    "The first attempt had already established that TrainingArguments accepted evaluation_strategy and returned; only the checker crashed.",
+    "No dependency or protocol value changes."
+  ],
+  "scope": "SUPERVISORY_POST_CONSTRUCTOR_ASSERTION_ONLY",
+  "status": "FROZEN_BEFORE_CORRECTED_SUPERVISORY_ASSERTION"
+}

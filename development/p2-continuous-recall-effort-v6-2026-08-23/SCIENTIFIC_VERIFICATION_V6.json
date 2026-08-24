@@ -1,0 +1,66 @@
+{
+  "checks": [
+    {
+      "check": "JSON parse",
+      "expected": 14,
+      "status": "PASS"
+    },
+    {
+      "check": "Python AST parse",
+      "expected": 3,
+      "status": "PASS"
+    },
+    {
+      "check": "OSF exact CSV identity",
+      "expected": "14 revision-one CSVs, 9,684,901 bytes, CC-BY-4.0 node declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "label-blind population",
+      "expected": "5,074 raw; 4,934 canonical; zero final SWIFT/V5 content overlap",
+      "status": "PASS"
+    },
+    {
+      "check": "negative preservation",
+      "expected": "one raw V5 content match; 65 shared KIFMS identities/132 rows; all PMID values absent; V5 adverse R@10 retained",
+      "status": "PASS"
+    },
+    {
+      "check": "outcome boundary",
+      "expected": "no KIFMS label value/class count/seed/ranking/comparative score accessed",
+      "status": "PASS"
+    },
+    {
+      "check": "continuous protocol",
+      "expected": "CRE20 and unchanged R@10 coprimary; unchanged u4/harm/work-saving gates",
+      "status": "PASS"
+    },
+    {
+      "check": "custody boundary",
+      "expected": "independent confirmatory execution remains CANNOT_CHECK",
+      "status": "PASS"
+    },
+    {
+      "check": "SHA256SUMS",
+      "expected": "all packet files except manifest itself",
+      "status": "PASS"
+    }
+  ],
+  "commands": [
+    "rtk python development/p2-continuous-recall-effort-v6-2026-08-23/validate_p2_v6_packet.py",
+    "rtk git diff --check -- development/p2-continuous-recall-effort-v6-2026-08-23"
+  ],
+  "date": "2026-08-23",
+  "excluded_by_instruction": [
+    "pytest",
+    "repository CI",
+    "comparative scoring",
+    "KIFMS label or class inspection",
+    "PDF build",
+    "commit/push/merge/rebase"
+  ],
+  "identity": "P2_KIFMS_V6_SCIENTIFIC_VERIFICATION",
+  "result": "PASS_PACKET_INTEGRITY_SOURCE_FEASIBILITY_AND_OUTCOME_BOUNDARY__NO_PERFORMANCE_EXECUTED",
+  "scope": "packet integrity, exact public source identity, label-blind population, continuous-estimand freeze and claim-boundary validation only",
+  "terminal": "P2_KIFMS_V6_LAWFUL_EXACT_SOURCE_AND_LABEL_BLIND_DISJOINT_POPULATION_FROZEN__INDEPENDENT_PROTECTED_EXECUTION_CANNOT_CHECK"
+}

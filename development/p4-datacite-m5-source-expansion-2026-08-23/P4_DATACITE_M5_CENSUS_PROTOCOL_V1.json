@@ -1,0 +1,254 @@
+{
+  "authoritative_evidence": [
+    {
+      "assertions": [
+        "Public API (No authentication)",
+        "retrieve and search for DOI metadata"
+      ],
+      "evidence_id": "DATACITE_PUBLIC_REST_API_DOC",
+      "url": "https://support.datacite.org/docs/rest-api.md"
+    },
+    {
+      "assertions": [
+        "OpenSearch query string syntax",
+        "relatedIdentifiers.relatedIdentifier",
+        "relatedIdentifiers.relationType"
+      ],
+      "evidence_id": "DATACITE_QUERY_DOC",
+      "url": "https://support.datacite.org/docs/queries.md"
+    },
+    {
+      "assertions": [
+        "allowed values in range 0-1000",
+        "page[size]"
+      ],
+      "evidence_id": "DATACITE_PAGINATION_DOC",
+      "url": "https://support.datacite.org/docs/pagination.md"
+    },
+    {
+      "assertions": [
+        "all metadata registered with DataCite part of the public domain",
+        "CC0 copyright waiver",
+        "REST API"
+      ],
+      "evidence_id": "DATACITE_CC0_METADATA_DOC",
+      "url": "https://datacite.org/blog/announcing-datacites-first-public-data-file/"
+    }
+  ],
+  "authority": "PUBLIC_DATACITE_METADATA_SOURCE_FEASIBILITY_ONLY",
+  "candidate_filter": {
+    "accepted_exact_record_rights_identifiers": [
+      "cc-by-4.0",
+      "cc-zero",
+      "cc0-1.0"
+    ],
+    "accepted_exact_record_rights_uris": [
+      "https://creativecommons.org/licenses/by/4.0",
+      "http://creativecommons.org/licenses/by/4.0",
+      "https://creativecommons.org/publicdomain/zero/1.0",
+      "http://creativecommons.org/publicdomain/zero/1.0"
+    ],
+    "accepted_publication_target_resource_types": [
+      "JournalArticle",
+      "ConferencePaper",
+      "Preprint",
+      "DataPaper",
+      "BookChapter",
+      "Report",
+      "Dissertation"
+    ],
+    "accepted_relation_identifier_types": [
+      "DOI",
+      "Handle",
+      "URL",
+      "arXiv"
+    ],
+    "accepted_relations": [
+      "Cites",
+      "Documents",
+      "IsCitedBy",
+      "IsDerivedFrom",
+      "IsDocumentedBy",
+      "IsIdenticalTo",
+      "IsReferencedBy",
+      "IsSourceOf",
+      "IsSupplementTo",
+      "IsSupplementedBy",
+      "References"
+    ],
+    "candidate_boundary": "DATACITE_CC0_METADATA_DISCOVERY_ONLY__REPOSITORY_RIGHTS_CONTENT_URL_AND_PUBLICATION_RELATION_DECLARATIONS_UNVERIFIED__PAIR_IDENTITY_ELIGIBILITY_AND_OUTCOMES_UNACCESSED",
+    "content_url_is_permission": false,
+    "datacite_metadata_cc0_is_metadata_reuse_only": true,
+    "depositor_authority_verified": false,
+    "findable_active_dataset_required": true,
+    "linked_publication_rights_bound": false,
+    "natural_pair_identity_adjudicated": false,
+    "public_file_evidence": "at least one HTTPS attributes.contentUrl value exposed by the DataCite DOI metadata response",
+    "publication_typed_relation_required": true,
+    "sequential": true
+  },
+  "counts_reported": [
+    "raw_hits",
+    "unique_raw_dois",
+    "provider_disjoint_eligible",
+    "exact_rights_declaration_eligible",
+    "public_content_url_eligible",
+    "accepted_typed_relation_eligible",
+    "publication_typed_relation_eligible",
+    "datacite_unique_candidates",
+    "overlap_with_zenodo_v2",
+    "combined_unique_signal",
+    "deficit_or_surplus_to_48"
+  ],
+  "date": "2026-08-23",
+  "files_downloaded": false,
+  "forbidden_claims": [
+    "natural-pair eligibility",
+    "article identity equivalence without adjudication",
+    "content permission inferred from DataCite CC0 metadata",
+    "depositor authority",
+    "linked publication rights",
+    "case resolution",
+    "scientific performance",
+    "confirmation",
+    "provider generality",
+    "ORION superiority"
+  ],
+  "frozen_at_utc": "2026-08-23T14:12:08+00:00",
+  "frozen_gate": {
+    "allocation_components": {
+      "primary": 24,
+      "reserve": 16,
+      "source_disjoint_replication": 8
+    },
+    "combined_gate_rule": "For each frozen M5 domain, unique Zenodo V2 DOI roots plus new provider-disjoint DataCite DOI roots must total at least 48; counts cannot be moved across domains.",
+    "domains": [
+      "EARTH_ENVIRONMENT",
+      "LIFE_BIOMEDICAL",
+      "PHYSICAL_ENGINEERING",
+      "SCIENTIFIC_SOFTWARE"
+    ],
+    "existing_zenodo_m5_signal_counts": {
+      "EARTH_ENVIRONMENT": 37,
+      "LIFE_BIOMEDICAL": 44,
+      "PHYSICAL_ENGINEERING": 29,
+      "SCIENTIFIC_SOFTWARE": 30
+    },
+    "frozen_disjoint_expansion_deficits": {
+      "EARTH_ENVIRONMENT": 11,
+      "LIFE_BIOMEDICAL": 4,
+      "PHYSICAL_ENGINEERING": 19,
+      "SCIENTIFIC_SOFTWARE": 18
+    },
+    "minimum_unique_signal_records_per_domain_mechanism_cell": 48,
+    "no_pooling_across_domains": true,
+    "standalone_datacite_count_also_reported": true
+  },
+  "identity": "P4_DATACITE_M5_DISJOINT_PROVIDER_CENSUS_V1",
+  "lineage": {
+    "distinct_successor_provider": "DataCite Public REST API",
+    "governing_source_expansion_freeze_path": "papers/paper-04-verified-scientific-discovery/protocol/P4_NATURAL_PAIR_SOURCE_EXPANSION_FREEZE_V1.json",
+    "governing_source_expansion_freeze_sha256": "8d46e93702ef4f57798bdd6f0bcbd2d2381139c8fa9746290a410874c5d0ffeb",
+    "negative_identities_immutable": true,
+    "zenodo_v1_protocol_sha256": "d71615b812bc582d528f1d6058f5dc57b9522142bb2d96c9a877dffac77bf1b2",
+    "zenodo_v1_retained_result_sha256": "433968a0d98c858781b6cd45a48dbd34b12e359dfe479b95ae0b14016c5d398c",
+    "zenodo_v1_retained_terminal": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1_TRANSPORT_CANNOT_CHECK_HTTP_400",
+    "zenodo_v2_candidates_sha256": "d6f767e88cdc401dd1f7643ed76e4460645fcc3dff9744dc504fed01351c1247",
+    "zenodo_v2_protocol_sha256": "01c1bb250accfaee4103a162565cd2107515cd306adf690713a5c1372e953d1f",
+    "zenodo_v2_result_sha256": "683c2ec074c04d92276dcd185f3c06750f6e1dd9817310ecd6e879f87f99e62d",
+    "zenodo_v2_retained_terminal": "P4_ZENODO_RELATED_OBJECT_V2_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_PROVIDER"
+  },
+  "mechanism_id": "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+  "model_outcomes_executed": false,
+  "outcomes_accessed": false,
+  "prefreeze_disclosure": {
+    "candidate_query_probes_executed": false,
+    "known_zenodo_record_schema_check_doi": "10.5281/zenodo.18092984",
+    "known_zenodo_record_was_already_bound_and_is_excluded": true,
+    "new_candidate_identities_seen_before_freeze": 0,
+    "official_documentation_pages_opened": true
+  },
+  "protocol_payload_sha256": "494089214d5509850c7812fea2a68ac753e8eaa8e09491b0ba170e8dc7b14456",
+  "provider": {
+    "authentication": "none",
+    "candidate_content_bytes_requested": false,
+    "disable_facets": true,
+    "endpoint": "https://api.datacite.org/dois",
+    "field_minimization_boundary": "Descriptions, subjects, funding, geolocations, metrics, XML, and content bytes are not requested.",
+    "fields_dois": [
+      "doi",
+      "titles",
+      "creators",
+      "publicationYear",
+      "types",
+      "rightsList",
+      "contentUrl",
+      "relatedIdentifiers",
+      "publisher",
+      "state",
+      "isActive",
+      "created",
+      "updated",
+      "url"
+    ],
+    "inter_request_seconds": 1.0,
+    "name": "DataCite",
+    "official_public_api": true,
+    "page_size": 1000,
+    "pages": [
+      1
+    ],
+    "raw_response_cache_outside_git": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/open-data-cache/P4_DATACITE_M5_DISJOINT_PROVIDER_CENSUS_V1",
+    "resource_type_id": "dataset",
+    "sort": "-updated"
+  },
+  "provider_disjointness": {
+    "cross_domain_overlap_reported_not_reassigned": true,
+    "dedup_key": "normalized DOI within cell; normalized DOI also excludes all bound Zenodo V2 candidate roots",
+    "exclude_datacite_client_ids": [
+      "cern.zenodo"
+    ],
+    "exclude_doi_prefixes_casefold": [
+      "10.5281/zenodo."
+    ],
+    "exclude_every_doi_in_bound_zenodo_v2_candidate_file": true,
+    "exclude_publishers_casefold": [
+      "zenodo"
+    ],
+    "zenodo_candidate_file_path": "development/p4-scientific-ascent-2026-08-23/P4_ZENODO_RELATED_OBJECT_CANDIDATES_V2.jsonl"
+  },
+  "queries": [
+    {
+      "base_zenodo_query_id": "EARTH_DATA",
+      "domain_id": "EARTH_ENVIRONMENT",
+      "query": "(climate OR geophysics OR ocean OR atmospheric OR earth)",
+      "query_id": "DATACITE_EARTH_DATA"
+    },
+    {
+      "base_zenodo_query_id": "LIFE_DATA",
+      "domain_id": "LIFE_BIOMEDICAL",
+      "query": "(biology OR biomedical OR genomics OR ecology OR health)",
+      "query_id": "DATACITE_LIFE_DATA"
+    },
+    {
+      "base_zenodo_query_id": "PHYSICAL_DATA",
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "query": "(physics OR engineering OR robotics OR electronics OR materials)",
+      "query_id": "DATACITE_PHYSICAL_DATA"
+    },
+    {
+      "base_zenodo_query_id": "SOFTWARE_DATA",
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "query": "(software OR computational OR simulation OR benchmark OR algorithm)",
+      "query_id": "DATACITE_SOFTWARE_DATA"
+    }
+  ],
+  "schema_version": "orion.p4.datacite-m5-disjoint-provider-census-protocol.v1",
+  "terminals": {
+    "combined_signal_gate_passed_rights_unbound": "P4_NATURAL_PAIR_SOURCE_RIGHTS_CANNOT_CHECK",
+    "execution_ready": "P4_NATURAL_PAIR_32_CELL_SOURCE_FRAME_READY_FOR_EXTERNAL_ADJUDICATION",
+    "execution_ready_forbidden_in_metadata_lane": true,
+    "source_shortfall": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+    "transport_or_schema": "P4_DATACITE_M5_CENSUS_V1_CANNOT_CHECK_TRANSPORT_OR_SCHEMA"
+  }
+}

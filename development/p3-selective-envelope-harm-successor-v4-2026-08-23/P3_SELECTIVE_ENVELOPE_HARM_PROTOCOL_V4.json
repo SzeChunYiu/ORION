@@ -1,0 +1,162 @@
+{
+  "schema_version": "orion.p3.selective-envelope-harm-successor.v4",
+  "protocol_id": "P3.PUBLIC.OAEI.SELECTIVE.ENVELOPE.HARM.SUCCESSOR.DEV.V4",
+  "paper_id": "P3",
+  "frozen_at_utc": "2026-08-23T15:22:14Z",
+  "status": "PROSPECTIVE_NEW_FAMILY_OUTCOME_BLIND_DESIGN_FREEZE__SOURCE_RIGHTS_AND_COMPARATOR_IDENTITIES_PENDING",
+  "authority": "PUBLIC_DEVELOPMENT_DISCRIMINATOR_ONLY__NO_PROTECTED_OR_CONFIRMATORY_AUTHORITY",
+  "new_family_outcomes_accessed_before_freeze": false,
+  "protected_outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "predecessor": {
+    "protocol_id": "P3.PUBLIC.OAEI.CROSS_CONSTRUCT.IDENTIFICATION_ENVELOPE.DEV.V3",
+    "result_terminal": "PUBLIC_V3_MAXIMAL_BINARY_ENVELOPE_COVERAGE_PASS__PUBLIC_V3_NO_HARM_SUPERIORITY__PUBLIC_NONPROTECTED_ONE_SEED_FAMILY_ONLY",
+    "protocol_path": "development/p3-oaei-cross-construct-successor-2026-08-23/P3_CROSS_CONSTRUCT_PROTOCOL_V3.json",
+    "protocol_sha256": "1015bb1d430525b4163b6be84a7fa4d67883e67f33e4d6f0f3970da5a76c9de2",
+    "result_path": "development/p3-oaei-cross-construct-successor-2026-08-23/RESULT_V3.json",
+    "result_sha256": "2c9e59dc323cf65200152ffc259341131e60bb040175f9f109872f35d5d468d4",
+    "preserved_facts": {
+      "binary_coverage": 1.0,
+      "candidate_minus_aml_harm": [
+        0.2247994300931187,
+        0.22473158403582272,
+        0.19352239767966484
+      ],
+      "independent_families": 1,
+      "predecessor_rule_failures": 333
+    },
+    "immutability": "V1_V2_V3_IDENTITIES_RESULTS_AND_TERMINALS_ARE_READ_ONLY"
+  },
+  "scientific_question": "Can a genuinely proper set-valued controller use only input-native certificates and frozen comparator outputs to retain binary gold-in-envelope coverage 1.0 while being harm-noninferior in every regime on at least three source/family-disjoint public OAEI families?",
+  "eligible_family_frame": {
+    "candidate_metadata_only_order": [
+      "OAEI_ANATOMY",
+      "OAEI_CONFERENCE",
+      "OAEI_MULTIFARM",
+      "OAEI_LARGEBIO",
+      "OAEI_BIODIV",
+      "OAEI_KNOWLEDGE_GRAPH",
+      "OAEI_COMMON_KNOWLEDGE"
+    ],
+    "inclusion_requires": [
+      "immutable input and reference identities/checksums",
+      "explicit lawful research/execution disposition for input ontologies and reference alignments",
+      "no outcome access by this V4 lane before final freeze",
+      "distinct originating ontology/source family, not another systematic perturbation of one seed",
+      "binary equivalence truth expressible without treating missing/non-equivalence as obstruction",
+      "at least one exact runnable source-native comparator and one additional information-equivalent comparator identity"
+    ],
+    "deterministic_selection": "After metadata-only audit, include every eligible family in lexicographic source_id order; no performance or outcome may affect inclusion.",
+    "minimum_independent_families": 3,
+    "top_level_unit": "ontology_source_family",
+    "not_independent_units": [
+      "entity pair",
+      "correspondence",
+      "ontology version",
+      "matcher seed",
+      "matcher output row",
+      "loss regime",
+      "coordinate label",
+      "language variant sharing the same ontology source family"
+    ],
+    "fewer_than_three_terminal": "PUBLIC_V4_SOURCE_FAMILY_DISJOINT_REPLICATION_CANNOT_CHECK"
+  },
+  "comparator_slots": [
+    {
+      "slot_id": "K1_AML",
+      "selection": "retain exact AML v3.2 identity/config used in V3 only if source-native runtime can be reproduced at its declared Java identity; otherwise typed runtime deviation"
+    },
+    {
+      "slot_id": "K2_STRONG_LOGICAL_LEXICAL",
+      "selection": "strongest primary-paper-linked OSI/source-available logical or lexical ontology matcher with immutable code/licence/entrypoint and lawful selected-family support"
+    },
+    {
+      "slot_id": "K3_STRONG_NEURAL_OR_HYBRID",
+      "selection": "strongest primary-paper-linked source-available neural or hybrid matcher with immutable code/licence/entrypoint and lawful selected-family support; absent identity stays CANNOT_CHECK"
+    },
+    {
+      "slot_id": "K0_MAXIMAL_ENVELOPE",
+      "selection": "V3 full {GLUE,OBSTRUCTION} coverage/harm boundary"
+    },
+    {
+      "slot_id": "KIDEAL_INFORMATION_EQUIVALENT",
+      "selection": "independent deterministic reference implementation receives exactly the same frozen input features/comparator terminals as the candidate and no gold/outcome"
+    }
+  ],
+  "candidate_controller": {
+    "id": "P3_CERTIFIED_CONSENSUS_SELECTIVE_ENVELOPE_V4",
+    "output_alphabet": [
+      "{GLUE}",
+      "{OBSTRUCTION}",
+      "{GLUE,OBSTRUCTION}",
+      "CANNOT_CHECK"
+    ],
+    "visible_information": [
+      "input ontology declarations and input-only graph/label/type features",
+      "direct cross-ontology logical equivalence/disjointness certificates if present in candidate-visible inputs",
+      "frozen native comparator outputs with typed error/timeout/unsupported terminals",
+      "V3 public-development zero-failure certificate-cell registry frozen before new-family outcomes"
+    ],
+    "forbidden_information": [
+      "new-family reference alignments or labels",
+      "case-level gold, outcome feedback or loss",
+      "protected atlas or evaluator",
+      "post-outcome family/comparator selection",
+      "coordinate labels treated as extra observations"
+    ],
+    "rule_order": [
+      "If rights, expressibility, comparator identity, or candidate-universe licensing fails: CANNOT_CHECK.",
+      "If a machine-checkable input-native direct equivalence proof is valid under the frozen reasoner/axiom profile: {GLUE}.",
+      "If a machine-checkable input-native logical disjointness/contradiction proof is valid under the frozen reasoner/axiom profile: {OBSTRUCTION}.",
+      "Else compute the frozen comparator-terminal and input-certificate cell. Emit its singleton only if that exact cell is in the pre-frozen V3 zero-failure registry, has the same information interface, and all required comparator terminals are valid.",
+      "Otherwise emit {GLUE,OBSTRUCTION}; never infer OBSTRUCTION merely from matcher nonselection or closed-world absence."
+    ],
+    "zero_failure_registry_rule": "A singleton cell may be registered from V3 only when it has zero public-development coverage failures, nonzero support in at least three distinct OAEI-2004 target transformations, at least 25 cases total, and a predeclared syntactic/logical interpretation. These transformations remain one calibration family and provide no replication credit.",
+    "nontriviality_gate": "For every evaluation family, at least one proper singleton and a proper-envelope rate >=0.05 among binary-scorable cases; report singleton counts descriptively without treating them as independent units.",
+    "no_outcome_adaptation": "No threshold, cell, proof profile, comparator subset, family, or loss rule changes after any new-family reference outcome is opened."
+  },
+  "primary_gates": {
+    "binary_candidate_universe_recall": 1.0,
+    "gold_in_envelope_coverage_overall": 1.0,
+    "gold_in_envelope_coverage_each_family": 1.0,
+    "proper_envelope_rate_each_family_min": 0.05,
+    "information_equivalent_ideal_exact_tie": true,
+    "harm_noninferiority_each_family_each_regime": "candidate mean floor-adjusted harm <= every frozen runnable source-native comparator mean harm; zero margin; missing comparator output is not a pass",
+    "family_replication_min": 3,
+    "all_gates_intersection_required": true
+  },
+  "loss_and_statistics": {
+    "loss_regimes": "exact three inherited V3 regimes, unchanged and hashed in final execution freeze",
+    "analysis_unit": "ontology_source_family",
+    "case_level_rates": "descriptive only",
+    "inference": "No population interval or case-level p-value. Report family-by-regime vectors and worst-family deltas.",
+    "no_inflation": [
+      "do not count pairs, seeds, matchers, regimes, coordinate contrasts, or language variants as independent replication",
+      "do not pool families to hide a failing regime",
+      "do not introduce new coordinate claims from ontology features"
+    ]
+  },
+  "execution_freeze_required_before_new_family_outcomes": [
+    "eligible family IDs and byte hashes",
+    "input/reference rights receipt",
+    "candidate-universe builder and hash",
+    "V3 zero-failure singleton-cell registry and hash",
+    "every comparator repository/commit/licence/config/runtime/container",
+    "candidate and ideal implementations/hashes",
+    "three loss functions/hashes",
+    "resource/error/timeout policies",
+    "prediction manifest and outcome-access custody"
+  ],
+  "fail_closed_terminals": [
+    "PUBLIC_V4_SOURCE_RIGHTS_CANNOT_CHECK",
+    "PUBLIC_V4_COMPARATOR_IDENTITY_CANNOT_CHECK",
+    "PUBLIC_V4_SOURCE_FAMILY_DISJOINT_REPLICATION_CANNOT_CHECK",
+    "PUBLIC_V4_NONTRIVIALITY_FAIL",
+    "PUBLIC_V4_BINARY_COVERAGE_FAIL",
+    "PUBLIC_V4_INFORMATION_EQUIVALENT_TIE_FAIL",
+    "PUBLIC_V4_HARM_NONINFERIORITY_FAIL",
+    "PUBLIC_V4_CANNOT_CHECK"
+  ],
+  "possible_positive_terminal": "PUBLIC_V4_PROPER_SELECTIVE_ENVELOPE_COVERAGE_ONE_AND_HARM_NONINFERIOR_ACROSS_FROZEN_FAMILIES__PUBLIC_DEVELOPMENT_ONLY",
+  "protected_and_p3_coordinate_claims": "CANNOT_CHECK"
+}

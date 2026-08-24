@@ -1,0 +1,147 @@
+{
+  "adversarial_microcases": {
+    "checks": "12/12",
+    "receipt_sha256": "6dfb91c378303efb78bb02df6cd9b77ea698117460cff364a80c4ef8ee0c4f56"
+  },
+  "authority": "LEXICAL_TYPE_RECOVERY_AND_STRUCTURAL_INTERFACE_CONFORMANCE_ONLY__NO_MAPPING_TRUTH_CORRECTNESS_PERFORMANCE_HARM_COVERAGE_TRANSPORT_OR_SUPERIORITY_AUTHORITY",
+  "decoder_attempts": 1,
+  "downloads": 0,
+  "finished_at": "2026-08-23T20:58:38.505068+00:00",
+  "five_artifact_interface": {
+    "extended_mappings.tsv": {
+      "bytes": 1530,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/runtime/decoded-match/extended_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+    },
+    "filtered_mappings.tsv": {
+      "bytes": 1530,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/runtime/decoded-match/filtered_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+    },
+    "raw_mappings.json": {
+      "bytes": 3474,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/runtime/decoded-match/raw_mappings.json",
+      "regular_non_symlink": true,
+      "sha256": "d72fc7a406183918339593bd69aa4c6ed9fedfbf4b5c544e712dc304cef553ce"
+    },
+    "raw_mappings.tsv": {
+      "bytes": 1530,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/runtime/decoded-match/raw_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+    },
+    "repaired_mappings.tsv": {
+      "bytes": 1530,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/runtime/decoded-match/repaired_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "c67ee88d541013f41984b239f9cdeaebdcd81573f2080d8af24c7688207dd0f3"
+    }
+  },
+  "gold_or_reference_opened": false,
+  "grammar": {
+    "acceptance_requirements": [
+      "whole string matches anchored grammar exactly",
+      "no whitespace, nested parentheses, second fragment, missing fragment, or alternative constructor",
+      "decoded entity IRI is an exact member of the role-specific frozen universe",
+      "decoder is injective separately for source and target observed strings"
+    ],
+    "anchored_regex": "\\AOptional\\.of\\((?P<ontology_iri>[A-Za-z][A-Za-z0-9+.-]*:[^()\\s#]+)\\)(?P<fragment>#[^#()\\s]+)\\Z",
+    "decode_rule": "decoded_entity_iri = ontology_iri + fragment",
+    "name": "OWLAPI_OPTIONAL_ONTOLOGY_IRI_PLUS_ENTITY_FRAGMENT_V1",
+    "normalization_forbidden": "No trim, substring replacement, case fold, URL decoding, heuristic repair, or outcome-dependent mutation.",
+    "surface_form": "Optional.of(<ontology-IRI>)<fragment>"
+  },
+  "logmap_attempts": 0,
+  "native_attempts": 0,
+  "parser": {
+    "command": [
+      "/Users/billy/miniforge3/bin/python",
+      "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/bertmap_native_parser_v7.py",
+      "--output-dir",
+      "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/runtime/decoded-match",
+      "--manifest",
+      "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/UNIVERSE_MANIFEST_V13.json",
+      "--write-receipt",
+      "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/PARSER_RECEIPT_V13.json"
+    ],
+    "exit_code": 0,
+    "receipt": {
+      "absence_rule": "Zero mapping rows are permitted when every expected source key is present; absence is never obstruction.",
+      "artifacts": {
+        "extended_mappings.tsv": {
+          "bytes": 1530,
+          "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+        },
+        "filtered_mappings.tsv": {
+          "bytes": 1530,
+          "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+        },
+        "raw_mappings.json": {
+          "bytes": 3474,
+          "sha256": "d72fc7a406183918339593bd69aa4c6ed9fedfbf4b5c544e712dc304cef553ce"
+        },
+        "raw_mappings.tsv": {
+          "bytes": 1530,
+          "sha256": "62fe4224cb12f53fa74a385011ebe3fd2ea90fd83c90aad008f8db4736368ae8"
+        },
+        "repaired_mappings.tsv": {
+          "bytes": 1530,
+          "sha256": "c67ee88d541013f41984b239f9cdeaebdcd81573f2080d8af24c7688207dd0f3"
+        }
+      },
+      "authority": "INTERFACE_CONFORMANCE_ONLY__NO_MAPPING_TRUTH_OR_PERFORMANCE_AUTHORITY",
+      "completed_source_key_count": 16,
+      "expected_source_key_count": 16,
+      "row_counts": {
+        "extended": 16,
+        "filtered": 16,
+        "raw_json": 16,
+        "raw_tsv": 16,
+        "repaired": 16
+      },
+      "schema_version": "orion.p3.bertmap-native-parser.v7",
+      "terminal": "STRUCTURAL_NATIVE_ARTIFACT_CONTRACT_PASS"
+    },
+    "receipt_sha256": "a9a56a5387e2ffbb627e99d9a6ab2117faa6b43370e2a5a5b973ff985b9e8cd8",
+    "runtime_nanoseconds": 31007000,
+    "runtime_seconds": 0.031007,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "a9a56a5387e2ffbb627e99d9a6ab2117faa6b43370e2a5a5b973ff985b9e8cd8"
+  },
+  "parser_attempts": 1,
+  "protected_outcome_opened": false,
+  "protocol_id": "P3_V13_NO_GOLD_TYPED_OPTIONAL_WRAPPER_DECODER_MICROGATE",
+  "protocol_sha256": "894f63983de9d850dd4465c79950343fce8a2e2aafb3c5b3c8c234f58d4c78c1",
+  "raw_v12": {
+    "byte_identical_v13_copy_sha256": "694d281361f3bc73dfdc947ae1a864ddc56c8d0860a8fe518797fd5bfeb3b635",
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-full-native-runtime-v12-2026-08-23/runtime/results/bertmap-out/bertmap/match/repaired_mappings.tsv",
+    "sha256_after": "694d281361f3bc73dfdc947ae1a864ddc56c8d0860a8fe518797fd5bfeb3b635",
+    "sha256_before": "694d281361f3bc73dfdc947ae1a864ddc56c8d0860a8fe518797fd5bfeb3b635",
+    "unchanged": true
+  },
+  "real_decode": {
+    "decoded_artifact": {
+      "bytes": 1530,
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/orion-takeover/development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/runtime/decoded-match/repaired_mappings.tsv",
+      "regular_non_symlink": true,
+      "sha256": "c67ee88d541013f41984b239f9cdeaebdcd81573f2080d8af24c7688207dd0f3"
+    },
+    "decoded_rows": 16,
+    "exact_source_members": 16,
+    "exact_target_members": 16,
+    "input_rows": 16,
+    "source_injective": true,
+    "target_injective": true
+  },
+  "retries": 0,
+  "runtime_nanoseconds": 33283000,
+  "runtime_seconds": 0.033283,
+  "schema_version": "orion.p3.optional-wrapper-typed-decoder.receipt.v13",
+  "scientific_scoring_performed": false,
+  "started_at": "2026-08-23T20:58:38.471764+00:00",
+  "success": true,
+  "terminal": "P3_V13_TYPED_OPTIONAL_DECODER_PASS__SIXTEEN_OF_SIXTEEN_EXACT_ROLE_UNIVERSE_MEMBERS__INJECTIVE__TWELVE_OF_TWELVE_ADVERSARIAL_MICROCASES_PASS__UNCHANGED_V7_STRUCTURAL_PARSER_PASS__RAW_V12_UNCHANGED",
+  "training_attempts": 0
+}

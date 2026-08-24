@@ -1,0 +1,38 @@
+{
+  "authority": "UNSIGNED_EXTERNAL_EXECUTION_COVERSHEET__NOT_COMPLETED_ALGEBRA",
+  "completion_requirements": {
+    "closed_world": true,
+    "exact_schema_path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json",
+    "exact_schema_sha256": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55",
+    "ratifiable_payload_rule": "Use SIGNING_CANONICALIZATION_V13.json ALGEBRA_PAYLOAD projection; exclude top-level ratification, sign the payload hash, obtain review, then construct the final schema-conformant V8 instance.",
+    "required_unique_target_count": 7,
+    "required_unique_targets": [
+      "KEEP_SEARCH",
+      "KEEP_COMPILE",
+      "KEEP_REPAIR",
+      "REVISE_MEASUREMENT",
+      "REFORMULATE_OBJECTIVE",
+      "REFORMULATE_BOUNDARY",
+      "UNRESOLVED"
+    ]
+  },
+  "final_algebra_envelope": {
+    "detached_signature_filename": "OWNER_COMPLETED_R7_ALGEBRA_V13.sig",
+    "envelope_sha256": null,
+    "filename": "OWNER_COMPLETED_R7_ALGEBRA_V13.json",
+    "key_id": null,
+    "signature_scheme": null,
+    "verification_material_or_uri": null
+  },
+  "ratifiable_algebra_payload": null,
+  "ratifiable_algebra_payload_sha256": null,
+  "ratifiable_payload_signature": {
+    "key_id": null,
+    "signature": null,
+    "signature_scheme": null,
+    "verification_material_or_uri": null
+  },
+  "schema_version": "orion.p1.owner-custody-positive-successor.algebra-completion-coversheet.v13",
+  "signing_specification": "SIGNING_CANONICALIZATION_V13.json",
+  "status": "NO_ALGEBRA_PAYLOAD_ENVELOPE_OR_SIGNATURE_BOUND"
+}

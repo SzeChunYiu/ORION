@@ -1,0 +1,58 @@
+{
+  "authority": "OUTCOME_BLIND_INTERFACE_SMOKE_ONLY",
+  "frozen_at_utc": "2026-08-23T17:38:58Z",
+  "full_native_smoke": {
+    "causes": [
+      "authoritative commit omits required benchmark/claw-eval tree",
+      "Docker daemon unreachable",
+      "pnpm 10.23.0 unavailable",
+      "primary chat/trial model and coding-agent CLI/service identities unbound",
+      "no substantive rights-cleared P5 case"
+    ],
+    "next_discriminator": "Supply the missing authoritative benchmark companion release and execute only on a disposable rights-cleared Linux runtime after all 21 fields bind.",
+    "state": "CANNOT_CHECK"
+  },
+  "local_environment": {
+    "available_disk_gib_approx": 7.1,
+    "docker_client": "29.3.0 arm64",
+    "docker_daemon_reachable": false,
+    "node": "26.0.0",
+    "platform": "Darwin arm64",
+    "pnpm_present": false,
+    "python_exact": "3.14.6 arm64",
+    "required_pnpm": "10.23.0"
+  },
+  "native_cli_load": {
+    "command_semantics": "exact pinned host-daemon/src/cli/moss --help",
+    "exit_code": 0,
+    "pass": true,
+    "stderr_bytes": 0,
+    "stdout_bytes": 232,
+    "stdout_sha256": "17c74822d9cbd18d19020ea615d1cdbfb85459b3254bb4807e6fad51761c064e"
+  },
+  "native_status_without_gateway": {
+    "command_semantics": "exact pinned CLI evo status --json against closed localhost port",
+    "exit_code": 1,
+    "stderr_bytes": 102,
+    "stderr_sha256": "d6b52fb257b18311a97943da00ae29279a1e1e58d41b61398b0785ddf5fd5cc0",
+    "stdout_bytes": 0,
+    "terminal": "NATIVE_GATEWAY_UNREACHABLE_ERROR_PRESERVED"
+  },
+  "parser_conformance": {
+    "adapter_output": "UNRESOLVED",
+    "authored_outcome_free_manifest_retained": false,
+    "exit_code": 0,
+    "input_bytes": 694,
+    "input_sha256": "0a244f020d7ce6b0d4afe6bfe29eae185141d686d3d733e8406ab8b6260faf3f",
+    "native_status": "PARTIAL",
+    "parser_output_sha256": "cf538aec6f7baf36721cd43e6f8b1266a9ce1735f246b197b1e2f4dd1a3c9d4e",
+    "protected_key_refusal_exit_code": 2,
+    "protected_key_refusal_stderr_sha256": "dcfbf6e05ec83772cc7530fe56748f3de8f5604bf28b3ae3538cefbd70d66143"
+  },
+  "raw_or_large_payloads_retained": false,
+  "schema_version": "orion.p5.c2.outcome-blind-smoke-receipt.v4",
+  "source": {
+    "cli_sha256": "bd9aa0dbcbe953bafd24d60121ddceb868dae25f005f34cb5d448e0f671f0140",
+    "commit_sha": "5453f1feebad44c199f5887f852fc5bc7fb7d4da"
+  }
+}

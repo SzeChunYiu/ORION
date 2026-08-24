@@ -1,0 +1,259 @@
+{
+  "active_model": {
+    "alpha": 1e-05,
+    "batch_size": "max(10,ceil(0.002*N))",
+    "class_weight": "balanced",
+    "loss": "log_loss",
+    "max_iter": 2000,
+    "random_state": 20260823,
+    "tol": 0.0001
+  },
+  "arms": {
+    "ACTIVE_LOGREG": "certainty-based class-balanced SGD active acquisition",
+    "ADAPTIVE_ROUTE_PORTFOLIO": "until 5 percent screened, each batch allocates 30 percent active, 30 percent query, 30 percent seed and the remainder deterministic random without duplication; choose the best nonactive route only if its pilot positive rate exceeds the active rate by at least 0.075, otherwise choose active; thereafter allocate 90 percent to the chosen route and 10 percent deterministic random",
+    "RANDOM": "20 frozen permutations",
+    "STATIC_REVIEW_QUERY": "review-query cosine",
+    "STATIC_SEED_CENTROID": "seed cosine"
+  },
+  "candidate_text": "title plus reconstructed abstract",
+  "cannot_check_terminal": "P2_SYNERGY_ADAPTIVE_ROUTE_PORTFOLIO_CANNOT_CHECK_BINDING",
+  "claim_scope": "PUBLIC_BOUNDED_SCREENING_ADAPTIVE_CONTROLLER_SELECTION_CONFIRMATION_ONLY",
+  "dataset": {
+    "doi": "10.34894/HE6NAQ",
+    "licence": "CC0-1.0",
+    "metadata_receipt_sha256": "6014c6557f6305e284e0c24d3a62a321e6cf1bc2faf80204961d4c627a827c37",
+    "name": "SYNERGY",
+    "version": "V1"
+  },
+  "date": "2026-08-23",
+  "development_only": {
+    "authority": "POST_OUTCOME_DEVELOPMENT_ONLY",
+    "pilot_fraction": 0.05,
+    "post_switch_exploration_fraction": 0.1,
+    "switch_margin": 0.075,
+    "worlds": [
+      "Brouwer_2019",
+      "Donners_2021",
+      "Jeyaraman_2020",
+      "Menon_2022",
+      "Nelson_2002",
+      "Wassenaar_2017",
+      "van_der_Valk_2021",
+      "van_der_Waal_2022"
+    ]
+  },
+  "eligibility": "exact binary label/work joins; missing text remains eligible",
+  "features": {
+    "fit_corpus": "candidate texts plus review query",
+    "max_features": 50000,
+    "min_df": 2,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "sublinear_tf": true,
+    "vectorizer": "TfidfVectorizer"
+  },
+  "forbidden_claims": [
+    "overwriting predecessor terminals",
+    "ORION-specific superiority",
+    "open-world route invention or closure",
+    "protected freshness or independent custody",
+    "generality outside bounded public systematic-review screening",
+    "confirmation beyond the final six worlds"
+  ],
+  "gates": {
+    "G1_BINDING": "every frozen file and join passes and all six worlds execute",
+    "G2_ACTIVE_GAIN": "macro recall-at-10-percent gain over ACTIVE_LOGREG >= 0.02 and exact one-sided sign-flip p <= 0.10",
+    "G3_CONTROLLER_REPLICATION": "candidate strictly beats ACTIVE_LOGREG in at least 4 of 6 worlds",
+    "G4_NEAR_ORACLE": "macro candidate regret against the strongest per-world comparator >= -0.03 and no world regret < -0.10",
+    "G5_WORK_SAVING": "candidate WSS@95 > 0 in every world and macro WSS difference versus ACTIVE_LOGREG >= -0.05",
+    "G6_RANDOM_HARM": "candidate recall at 10 percent is no more than 0.05 below RANDOM in every world"
+  },
+  "initial_seed": "stable-key-minimum included and excluded records shared by every arm",
+  "negative_successor_terminal": "P2_SYNERGY_ADAPTIVE_ROUTE_PORTFOLIO_REQUIRES_NEW_DATA_FAMILY_OR_CONTROLLER",
+  "outcomes": {
+    "analysis_unit": "review world",
+    "primary": "macro paired recall-at-10-percent difference ADAPTIVE_ROUTE_PORTFOLIO minus ACTIVE_LOGREG",
+    "strongest_comparator_regret": "candidate recall minus max of all four comparators within world",
+    "uncertainty": "exact one-sided sign-flip and 100000 world bootstrap replicates seed 20260823"
+  },
+  "paper_id": "P2",
+  "positive_terminal": "P2_SYNERGY_ADAPTIVE_ROUTE_PORTFOLIO_CONFIRMED_ON_FINAL_SIX_PUBLIC_WORLDS",
+  "predecessor": {
+    "preserved_failure": "fixed rank fusion paired macro regret -0.047816 and WSS regret -0.138554",
+    "result": "../p2-synergy-safe-acquisition-successor-2026-08-23/RESULT.json",
+    "sha256": "49d00c2319f1cd493943f02fe4396b8d952a323bc8be435ad2595dc7d702d290",
+    "terminal": "P2_SYNERGY_SAFE_QUERY_CONDITIONED_ACQUISITION_REQUIRES_SUCCESSOR"
+  },
+  "random_seeds": [
+    20260823,
+    20260824,
+    20260825,
+    20260826,
+    20260827,
+    20260828,
+    20260829,
+    20260830,
+    20260831,
+    20260832,
+    20260833,
+    20260834,
+    20260835,
+    20260836,
+    20260837,
+    20260838,
+    20260839,
+    20260840,
+    20260841,
+    20260842
+  ],
+  "review_query": "metadata_publication title plus reconstructed abstract",
+  "schema_version": "orion.p2.synergy-adaptive-portfolio-successor.v1",
+  "selection": {
+    "eligible": "all SYNERGY V1 worlds not used in the preceding 20-world development or confirmation waves",
+    "outcomes_opened_before_freeze": false,
+    "rule": "all six remaining worlds in lexicographic order; no outcome-based selection"
+  },
+  "status": "FROZEN_BEFORE_FINAL_SIX_FILE_BODY_DOWNLOAD",
+  "worlds": [
+    {
+      "files": [
+        {
+          "bytes": 298011,
+          "file_id": 359843,
+          "name": "labels.csv",
+          "sha1": "71a82b9e270ab3bb3d8143aba958a72533f7f203"
+        },
+        {
+          "bytes": 25491,
+          "file_id": 359833,
+          "name": "metadata_publication.json",
+          "sha1": "7641c92f97940d57dc3d382bb36976a22ac091c0"
+        },
+        {
+          "bytes": 5543909,
+          "file_id": 359847,
+          "name": "works_1.zip",
+          "sha1": "214b94fff853cbe65e95cccc82322f3a83ba970e"
+        }
+      ],
+      "world_id": "Appenzeller-Herzog_2019"
+    },
+    {
+      "files": [
+        {
+          "bytes": 490660,
+          "file_id": 359819,
+          "name": "labels.csv",
+          "sha1": "3204c71b68433c34a76fe3c4d34c2f34c8b110b3"
+        },
+        {
+          "bytes": 19490,
+          "file_id": 359872,
+          "name": "metadata_publication.json",
+          "sha1": "4ae1380a45b815f68e4e5471bbebd1f33543f556"
+        },
+        {
+          "bytes": 14007470,
+          "file_id": 359903,
+          "name": "works_1.zip",
+          "sha1": "2a94beff8a4ddb83fe9ae616ccf19464d186f465"
+        }
+      ],
+      "world_id": "Bos_2018"
+    },
+    {
+      "files": [
+        {
+          "bytes": 654705,
+          "file_id": 359861,
+          "name": "labels.csv",
+          "sha1": "b2d21f99d4cdaa1891755ff10f18633a92a14834"
+        },
+        {
+          "bytes": 25908,
+          "file_id": 359938,
+          "name": "metadata_publication.json",
+          "sha1": "18a3459aeface72cb08b0b71a2ee45537c2c2925"
+        },
+        {
+          "bytes": 16028323,
+          "file_id": 359884,
+          "name": "works_1.zip",
+          "sha1": "2f0ed856aac9971da8602f0bca29e7b36b7537fb"
+        }
+      ],
+      "world_id": "Leenaars_2019"
+    },
+    {
+      "files": [
+        {
+          "bytes": 96153,
+          "file_id": 359879,
+          "name": "labels.csv",
+          "sha1": "5ed96926eadb15bffcbb6a13511e82155241d210"
+        },
+        {
+          "bytes": 26090,
+          "file_id": 359818,
+          "name": "metadata_publication.json",
+          "sha1": "a98a2cc9f6462ae54a7ba8bac202a2bd3149e7b2"
+        },
+        {
+          "bytes": 2355371,
+          "file_id": 359912,
+          "name": "works_1.zip",
+          "sha1": "213c22db5caa398b5c480247b12f25070b2a912f"
+        }
+      ],
+      "world_id": "Meijboom_2021"
+    },
+    {
+      "files": [
+        {
+          "bytes": 31919,
+          "file_id": 359893,
+          "name": "labels.csv",
+          "sha1": "08c98417a91cbbba3247848e55efbbf420234044"
+        },
+        {
+          "bytes": 22778,
+          "file_id": 359901,
+          "name": "metadata_publication.json",
+          "sha1": "927ec556a1f199bed2e89f861858b8688de1fd79"
+        },
+        {
+          "bytes": 835096,
+          "file_id": 359864,
+          "name": "works_1.zip",
+          "sha1": "680cb70dbb7fa58119597ef0be97c647beeb93e2"
+        }
+      ],
+      "world_id": "Sep_2021"
+    },
+    {
+      "files": [
+        {
+          "bytes": 388378,
+          "file_id": 359857,
+          "name": "labels.csv",
+          "sha1": "afedc5e0b97a35f175d330b02da1bc042e5b814b"
+        },
+        {
+          "bytes": 23550,
+          "file_id": 359878,
+          "name": "metadata_publication.json",
+          "sha1": "3657e95d94813634dd694234c60deae1363a3170"
+        },
+        {
+          "bytes": 11840006,
+          "file_id": 359870,
+          "name": "works_1.zip",
+          "sha1": "684b24a9257a5128d8d0a98f7ddd90b3d7dc36c7"
+        }
+      ],
+      "world_id": "van_de_Schoot_2018"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "all_passed": true,
+  "checks": {
+    "corner_reproduction": {
+      "passed": true,
+      "review_count": 5
+    },
+    "factorial_effects": {
+      "max_cell_formula_error": 0,
+      "max_full_contrast_identity_error": 0,
+      "max_mean_error": 6.938893903907228e-18,
+      "passed": true
+    },
+    "frozen_classification": {
+      "effective_threshold": 0.010858985820770889,
+      "interaction_dominant": false,
+      "interaction_same_sign_count": 3,
+      "learner_balancer_pass": true,
+      "learner_balancer_same_sign_count": 5,
+      "passed": true,
+      "reported_category": "STABLE_COMPONENT",
+      "representation_pass": false,
+      "representation_same_sign_count": 1
+    },
+    "metric_invariants": {
+      "passed": true,
+      "review_arm_cells": 20,
+      "violations": []
+    },
+    "population": {
+      "actual": 96241,
+      "expected": 96241,
+      "passed": true
+    },
+    "result_payload_sha256": {
+      "actual": "63d07a8a9243be22e7d15e1dff347e5739a0814cd88593d89ec755c0b7e5c303",
+      "expected": "63d07a8a9243be22e7d15e1dff347e5739a0814cd88593d89ec755c0b7e5c303",
+      "passed": true
+    },
+    "source_and_freeze_binding": {
+      "manifest_file_count": 30,
+      "passed": true
+    },
+    "source_text_boundary": {
+      "forbidden_content_keys": [],
+      "passed": true
+    },
+    "terminal_nonpromotion": {
+      "nonpromotion_rule_present": true,
+      "passed": true,
+      "terminal": "P2_SWIFT_V4_POST_OUTCOME_FACTORIZATION_IDENTIFIES_STABLE_COMPONENT_REQUIRES_CONTENT_DISJOINT_OUTCOME_UNOPENED_FAMILY"
+    },
+    "unweighted_arm_means": {
+      "max_absolute_error": 2.220446049250313e-16,
+      "passed": true
+    }
+  },
+  "date": "2026-08-23",
+  "identity": "P2_SWIFT_V4_SCIENTIFIC_VERIFICATION",
+  "tests_excluded": [
+    "pytest",
+    "repository CI"
+  ],
+  "verification_scope": "JSON, hashes, frozen scientific execution outputs and arithmetic invariants only."
+}

@@ -1,0 +1,39 @@
+{
+  "components": [
+    {
+      "license_sha256": "84b7504ce8dda1f37f592cdf67ad21371864583720d79ea289b0b0c75bfcdb17",
+      "scope": "55-file filtered DGM source",
+      "source_commit": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+      "spdx": "Apache-2.0"
+    },
+    {
+      "rights_manifest_sha256": "ac99e42088648c313329fed5815db8717aae3e6ca1de83d8a8d042852a6b73b3",
+      "scope": "unchanged six-component P5 Lang-1 shared core",
+      "status": "BOUND_FOR_LISTED_SHARED_CASE_COMPONENTS"
+    },
+    {
+      "authorship_assertion_is_local_not_independent": true,
+      "license_path": "candidate/shared_core/PACKET-CONTENT-CC0-1.0.txt",
+      "paths": [
+        "candidate/control/P5_C3_CASE_ACTION_DOMAIN_V8.json",
+        "candidate/control/P5_C3_ENDPOINT_TOOL_WRITE_POLICY_V8.json",
+        "candidate/control/P5_C3_FIBRE_CONSTANCY_PROOF_V8.json",
+        "candidate/control/P5_C3_INPUT_NATIVE_CERTIFICATE_V8.json",
+        "candidate/control/P5_C3_INVOCATION_ENVIRONMENT_V8.json",
+        "candidate/control/P5_C3_MUTABLE_IMMUTABLE_SPLIT_V8.json",
+        "candidate/control/P5_C3_PROVENANCE_V8.json",
+        "candidate/control/P5_C3_RIGHTS_MANIFEST_V8.json"
+      ],
+      "scope": "V8 control JSON authored in this lane",
+      "spdx": "CC0-1.0"
+    }
+  ],
+  "frozen_at_utc": "2026-08-23T21:00:00Z",
+  "legal_advice": false,
+  "not_included_or_licensed": [
+    "DGM initial/ and initial_polyglot/ prior-result payloads",
+    "swe_bench/ref_agent_results/",
+    "dependencies, containers, model services, generated artifacts, protected scorers and outcomes"
+  ],
+  "schema_version": "orion.p5.c3.candidate-safe-rights.v8"
+}

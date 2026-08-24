@@ -1,0 +1,82 @@
+{
+  "all_pass": true,
+  "checks": [
+    {
+      "error_a": "2/5",
+      "error_b": "7/20",
+      "id": "N1_MI_NOT_ZERO_ONE",
+      "mi_a_bits": 0.10803154614560014,
+      "mi_b_bits": 0.07310400793180984,
+      "pass": true
+    },
+    {
+      "common_positive_transcripts": 16,
+      "horizon": 4,
+      "id": "N2_POSITIVE_KL_NOT_FINITE_EXACT",
+      "oriented_kl_nats": 0.5493061443340548,
+      "pass": true
+    },
+    {
+      "bellman_at_most_one_test": "1/2",
+      "bellman_at_most_two_tests": "1/5",
+      "gamma_sizes": [
+        2,
+        8,
+        56
+      ],
+      "id": "N3_PARITY_SYNERGY",
+      "individual_target_information_bits": 0,
+      "joint_target_information_bits": 1,
+      "one_test_total_risk": "3/5",
+      "pass": true,
+      "stop_risk": "1/2",
+      "two_test_total_risk": "1/5"
+    },
+    {
+      "budget": 4,
+      "greedy_first": "A",
+      "greedy_information_bits": 5,
+      "id": "N4_RATIO_GREEDY_KNAPSACK",
+      "optimal_information_bits": 6,
+      "pass": true
+    },
+    {
+      "ex_ante_minimax_error": "1/10",
+      "id": "N5_NONRECTANGULAR_CREDAL",
+      "lower_bound_identity": "R_A + R_B = 1/5 + (4/5)(q0+q1) >= 1/5",
+      "pass": true,
+      "posterior_local_rectangular_error": "1/2"
+    },
+    {
+      "deterministic_robust_error": "1",
+      "fair_randomized_robust_error": "1/2",
+      "id": "N6_RANDOMIZATION_CAN_HELP",
+      "pass": true
+    },
+    {
+      "common_identified_set": [
+        0,
+        1
+      ],
+      "concentrated_bayes_error": "1/100",
+      "id": "N7_SAME_SUPPORT_DIFFERENT_RISK",
+      "pass": true,
+      "uniform_bayes_error": "1/2"
+    },
+    {
+      "id": "N8_WORLD_INFORMATION_NOT_TARGET_INFORMATION",
+      "nuisance_test_target_information_bits": 0,
+      "nuisance_test_world_information_bits": 10,
+      "pass": true,
+      "target_test_target_information_bits": 1,
+      "target_test_world_information_bits": 1
+    }
+  ],
+  "checks_passed": 8,
+  "checks_total": 8,
+  "empirical_authority": false,
+  "protected_evaluation": false,
+  "schema": "active-identification-counterexample-receipt-v1",
+  "scope": "finite local mathematical witnesses only",
+  "script_sha256": "d46a45581f1c6a070d3a541ff0ee5d5df38db4841be725e4967f0cebc2741b89"
+}

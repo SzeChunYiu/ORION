@@ -1,0 +1,29 @@
+--- a/src/deeponto/utils/file_utils.py
++++ b/src/deeponto/utils/file_utils.py
+@@ -127,12 +127,24 @@
+ 
+ 
+ def run_jar(jar_command: str, timeout=3600):
+-    """Run jar command using subprocess."""
++    """Run one jar command, add the frozen Java-17 opening, and propagate its status."""
+     print(f"Run jar command with timeout: {timeout}s.")
+-    proc = subprocess.Popen(jar_command.split(" "))
++    command = jar_command.split(" ")
++    add_opens = "--add-opens=java.base/java.lang=ALL-UNNAMED"
++    if not command or command[0] != "java" or "-jar" not in command:
++        raise ValueError("expected a direct java -jar command")
++    if any(part.startswith("--add-opens") for part in command):
++        raise ValueError("unexpected pre-existing --add-opens option")
++    command.insert(command.index("-jar"), add_opens)
++    print("ORION_LOGMAP_EFFECTIVE_COMMAND=" + " ".join(command), flush=True)
++    proc = subprocess.Popen(command)
+     try:
+         _, _ = proc.communicate(timeout=timeout)
+     except subprocess.TimeoutExpired:
+         warnings.warn("kill the jar process as timed out")
+         proc.kill()
+         _, _ = proc.communicate()
++    print(f"ORION_LOGMAP_DIRECT_CHILD_EXIT_CODE={proc.returncode}", flush=True)
++    if proc.returncode != 0:
++        raise subprocess.CalledProcessError(proc.returncode, command)
++    return proc.returncode

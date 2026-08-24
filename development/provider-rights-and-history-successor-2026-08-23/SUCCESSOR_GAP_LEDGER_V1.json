@@ -1,0 +1,670 @@
+{
+  "captured_at_utc": "2026-08-23T11:22:16+00:00",
+  "gap_count": 66,
+  "gap_ledger_payload_sha256": "e3ccd49fa94afe933424c9dcff8cfac068a366e691476a5c7473adccc63ceb22",
+  "gaps": [
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES",
+      "negative_condition": "The preserved bytes differ from the current assumed fields or no pre-cutoff root exists.",
+      "next_discriminator": "Obtain the member's original pre-cutoff XML deposit plus Crossref submission receipt and hash, or an independently preserved January 2026 Metadata Plus snapshot with root extraction proof.",
+      "positive_condition": "Exact bytes, timestamp, DOI identity, and independent digest agree across provider/depositor or snapshot custody.",
+      "root_id": "10.1016/j.bj.2025.100874",
+      "successor_identity": "CROSSREF_MEMBER_DEPOSIT_OR_2026_01_SNAPSHOT_BYTE_BINDING__10_1016_J_BJ_2025_100874",
+      "unresolved_cell": "EXACT_PRE_CUTOFF_METADATA_BYTES"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The provider expressly excludes one or more retained fields or the planned use.",
+      "next_discriminator": "Obtain an authoritative Crossref public-REST/public-data licence applying to member-supplied record fields, including exclusions for abstracts or other copyrighted fields.",
+      "positive_condition": "The authoritative grant covers the exact retained field whitelist and permits the frozen processing and retention.",
+      "root_id": "10.1016/j.bj.2025.100874",
+      "successor_identity": "CROSSREF_PUBLIC_REST_METADATA_REUSE_GRANT__10_1016_J_BJ_2025_100874",
+      "unresolved_cell": "PROVIDER_METADATA_REUSE"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "negative_condition": "The publisher disclaims the declared licence, restricts the intended use, or maps it to a different version.",
+      "next_discriminator": "Without acquiring article text, bind a publisher-signed root-specific VOR licence assertion and its effective date to the DOI and intended processing.",
+      "positive_condition": "The publisher-root assertion covers the exact VOR and intended processing at acquisition time.",
+      "root_id": "10.1016/j.bj.2025.100874",
+      "successor_identity": "PUBLISHER_ROOT_LICENSE_SCOPE_BINDING__10_1016_J_BJ_2025_100874",
+      "unresolved_cell": "ARTICLE_BODY_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The host excludes or separately licenses a required class.",
+      "next_discriminator": "Bind a publisher root policy enumerating supplement and attachment rights separately from the article licence before any bytes are opened.",
+      "positive_condition": "Every intended supplement/attachment class is covered by a root-bound permission.",
+      "root_id": "10.1016/j.bj.2025.100874",
+      "successor_identity": "PUBLISHER_SUPPLEMENT_ATTACHMENT_RIGHTS_BINDING__10_1016_J_BJ_2025_100874",
+      "unresolved_cell": "SUPPLEMENT_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The root has zero eligible cases under the frozen rules.",
+      "next_discriminator": "An external custodian applies frozen metadata and rights gates and reports counts/exclusions only before content or outcomes are released.",
+      "positive_condition": "The root supplies at least one legally admissible eligible case under the frozen cell.",
+      "root_id": "10.1016/j.bj.2025.100874",
+      "successor_identity": "OUTCOME_BLIND_ARTICLE_ROOT_ELIGIBILITY_CUSTODY__10_1016_J_BJ_2025_100874",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "negative_condition": "The uploader lacks authority or one file falls outside the declared licence.",
+      "next_discriminator": "Obtain a depositor-signed authority statement or independent rights audit binding CC BY 4.0 to the exact version DOI and all intended files.",
+      "positive_condition": "Uploader authority and file-level scope are independently established.",
+      "root_id": "18092984",
+      "successor_identity": "ZENODO_UPLOADER_RIGHTS_ASSURANCE__18092984",
+      "unresolved_cell": "DATASET_FILE_UPLOADER_AUTHORITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "Any required linked object is unlicensed or incompatible.",
+      "next_discriminator": "Enumerate only metadata links under external custody and bind each external object's own licence before retrieval.",
+      "positive_condition": "Every intended linked object has an independently verified root-bound permission.",
+      "root_id": "18092984",
+      "successor_identity": "ZENODO_LINKED_OBJECT_RIGHTS_BINDING__18092984",
+      "unresolved_cell": "LINKED_DERIVED_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "No file in the root satisfies the frozen case rules.",
+      "next_discriminator": "An external custodian opens files only after rights assurance and returns eligibility counts/exclusions without labels or outcomes.",
+      "positive_condition": "The root supplies an eligible case in its frozen cell.",
+      "root_id": "18092984",
+      "successor_identity": "OUTCOME_BLIND_ZENODO_ROOT_ELIGIBILITY_CUSTODY__18092984",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES",
+      "negative_condition": "The preserved bytes differ from the current assumed fields or no pre-cutoff root exists.",
+      "next_discriminator": "Obtain the member's original pre-cutoff XML deposit plus Crossref submission receipt and hash, or an independently preserved January 2026 Metadata Plus snapshot with root extraction proof.",
+      "positive_condition": "Exact bytes, timestamp, DOI identity, and independent digest agree across provider/depositor or snapshot custody.",
+      "root_id": "10.53941/eesus.2025.100001",
+      "successor_identity": "CROSSREF_MEMBER_DEPOSIT_OR_2026_01_SNAPSHOT_BYTE_BINDING__10_53941_EESUS_2025_100001",
+      "unresolved_cell": "EXACT_PRE_CUTOFF_METADATA_BYTES"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The provider expressly excludes one or more retained fields or the planned use.",
+      "next_discriminator": "Obtain an authoritative Crossref public-REST/public-data licence applying to member-supplied record fields, including exclusions for abstracts or other copyrighted fields.",
+      "positive_condition": "The authoritative grant covers the exact retained field whitelist and permits the frozen processing and retention.",
+      "root_id": "10.53941/eesus.2025.100001",
+      "successor_identity": "CROSSREF_PUBLIC_REST_METADATA_REUSE_GRANT__10_53941_EESUS_2025_100001",
+      "unresolved_cell": "PROVIDER_METADATA_REUSE"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "negative_condition": "The publisher disclaims the declared licence, restricts the intended use, or maps it to a different version.",
+      "next_discriminator": "Without acquiring article text, bind a publisher-signed root-specific VOR licence assertion and its effective date to the DOI and intended processing.",
+      "positive_condition": "The publisher-root assertion covers the exact VOR and intended processing at acquisition time.",
+      "root_id": "10.53941/eesus.2025.100001",
+      "successor_identity": "PUBLISHER_ROOT_LICENSE_SCOPE_BINDING__10_53941_EESUS_2025_100001",
+      "unresolved_cell": "ARTICLE_BODY_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The host excludes or separately licenses a required class.",
+      "next_discriminator": "Bind a publisher root policy enumerating supplement and attachment rights separately from the article licence before any bytes are opened.",
+      "positive_condition": "Every intended supplement/attachment class is covered by a root-bound permission.",
+      "root_id": "10.53941/eesus.2025.100001",
+      "successor_identity": "PUBLISHER_SUPPLEMENT_ATTACHMENT_RIGHTS_BINDING__10_53941_EESUS_2025_100001",
+      "unresolved_cell": "SUPPLEMENT_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The root has zero eligible cases under the frozen rules.",
+      "next_discriminator": "An external custodian applies frozen metadata and rights gates and reports counts/exclusions only before content or outcomes are released.",
+      "positive_condition": "The root supplies at least one legally admissible eligible case under the frozen cell.",
+      "root_id": "10.53941/eesus.2025.100001",
+      "successor_identity": "OUTCOME_BLIND_ARTICLE_ROOT_ELIGIBILITY_CUSTODY__10_53941_EESUS_2025_100001",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "negative_condition": "The uploader lacks authority or one file falls outside the declared licence.",
+      "next_discriminator": "Obtain a depositor-signed authority statement or independent rights audit binding CC BY 4.0 to the exact version DOI and all intended files.",
+      "positive_condition": "Uploader authority and file-level scope are independently established.",
+      "root_id": "18108141",
+      "successor_identity": "ZENODO_UPLOADER_RIGHTS_ASSURANCE__18108141",
+      "unresolved_cell": "DATASET_FILE_UPLOADER_AUTHORITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "Any required linked object is unlicensed or incompatible.",
+      "next_discriminator": "Enumerate only metadata links under external custody and bind each external object's own licence before retrieval.",
+      "positive_condition": "Every intended linked object has an independently verified root-bound permission.",
+      "root_id": "18108141",
+      "successor_identity": "ZENODO_LINKED_OBJECT_RIGHTS_BINDING__18108141",
+      "unresolved_cell": "LINKED_DERIVED_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "No file in the root satisfies the frozen case rules.",
+      "next_discriminator": "An external custodian opens files only after rights assurance and returns eligibility counts/exclusions without labels or outcomes.",
+      "positive_condition": "The root supplies an eligible case in its frozen cell.",
+      "root_id": "18108141",
+      "successor_identity": "OUTCOME_BLIND_ZENODO_ROOT_ELIGIBILITY_CUSTODY__18108141",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES",
+      "negative_condition": "The preserved bytes differ from the current assumed fields or no pre-cutoff root exists.",
+      "next_discriminator": "Obtain the member's original pre-cutoff XML deposit plus Crossref submission receipt and hash, or an independently preserved January 2026 Metadata Plus snapshot with root extraction proof.",
+      "positive_condition": "Exact bytes, timestamp, DOI identity, and independent digest agree across provider/depositor or snapshot custody.",
+      "root_id": "10.1016/j.envsoft.2025.106834",
+      "successor_identity": "CROSSREF_MEMBER_DEPOSIT_OR_2026_01_SNAPSHOT_BYTE_BINDING__10_1016_J_ENVSOFT_2025_106834",
+      "unresolved_cell": "EXACT_PRE_CUTOFF_METADATA_BYTES"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The provider expressly excludes one or more retained fields or the planned use.",
+      "next_discriminator": "Obtain an authoritative Crossref public-REST/public-data licence applying to member-supplied record fields, including exclusions for abstracts or other copyrighted fields.",
+      "positive_condition": "The authoritative grant covers the exact retained field whitelist and permits the frozen processing and retention.",
+      "root_id": "10.1016/j.envsoft.2025.106834",
+      "successor_identity": "CROSSREF_PUBLIC_REST_METADATA_REUSE_GRANT__10_1016_J_ENVSOFT_2025_106834",
+      "unresolved_cell": "PROVIDER_METADATA_REUSE"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The publisher disclaims the declared licence, restricts the intended use, or maps it to a different version.",
+      "next_discriminator": "Without acquiring article text, bind a publisher-signed root-specific VOR licence assertion and its effective date to the DOI and intended processing.",
+      "positive_condition": "The publisher-root assertion covers the exact VOR and intended processing at acquisition time.",
+      "root_id": "10.1016/j.envsoft.2025.106834",
+      "successor_identity": "PUBLISHER_ROOT_LICENSE_SCOPE_BINDING__10_1016_J_ENVSOFT_2025_106834",
+      "unresolved_cell": "ARTICLE_BODY_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The host excludes or separately licenses a required class.",
+      "next_discriminator": "Bind a publisher root policy enumerating supplement and attachment rights separately from the article licence before any bytes are opened.",
+      "positive_condition": "Every intended supplement/attachment class is covered by a root-bound permission.",
+      "root_id": "10.1016/j.envsoft.2025.106834",
+      "successor_identity": "PUBLISHER_SUPPLEMENT_ATTACHMENT_RIGHTS_BINDING__10_1016_J_ENVSOFT_2025_106834",
+      "unresolved_cell": "SUPPLEMENT_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The root has zero eligible cases under the frozen rules.",
+      "next_discriminator": "An external custodian applies frozen metadata and rights gates and reports counts/exclusions only before content or outcomes are released.",
+      "positive_condition": "The root supplies at least one legally admissible eligible case under the frozen cell.",
+      "root_id": "10.1016/j.envsoft.2025.106834",
+      "successor_identity": "OUTCOME_BLIND_ARTICLE_ROOT_ELIGIBILITY_CUSTODY__10_1016_J_ENVSOFT_2025_106834",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "ACCESS_ONLY_NOT_REUSE",
+      "negative_condition": "The API or project owner forbids a required use.",
+      "next_discriminator": "Obtain GitLab and project-owner authorization for the exact retained project metadata fields and non-bulk frozen acquisition pattern.",
+      "positive_condition": "Both API terms and project-owner rights permit the exact processing and retention.",
+      "root_id": "gromacs/gromacs",
+      "successor_identity": "GITLAB_BOUNDED_API_DATA_REUSE_SCOPE__GROMACS_GROMACS",
+      "unresolved_cell": "PROJECT_METADATA_REUSE"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "Required user prose lacks permission or consent.",
+      "next_discriminator": "Obtain a project-owner policy or contributor consent mechanism covering issue and comment prose before any text is opened.",
+      "positive_condition": "Every intended issue/comment unit is covered by an authoritative permission.",
+      "root_id": "gromacs/gromacs",
+      "successor_identity": "GITLAB_PROJECT_ISSUE_COMMENT_RIGHTS_BINDING__GROMACS_GROMACS",
+      "unresolved_cell": "ISSUE_COMMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "Any required attachment is prohibited, private, or unlicensed.",
+      "next_discriminator": "Bind upload/attachment ownership and licence separately and respect provider acquisition policy before any attachment URL is followed.",
+      "positive_condition": "Every intended attachment is covered and lawfully retrievable.",
+      "root_id": "gromacs/gromacs",
+      "successor_identity": "GITLAB_PROJECT_ATTACHMENT_RIGHTS_BINDING__GROMACS_GROMACS",
+      "unresolved_cell": "ISSUE_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The project yields zero eligible cases.",
+      "next_discriminator": "After rights binding, an external custodian reports only eligible counts and exclusion codes for the frozen project root.",
+      "positive_condition": "The project yields an eligible case in the frozen cell.",
+      "root_id": "gromacs/gromacs",
+      "successor_identity": "OUTCOME_BLIND_GITLAB_ROOT_ELIGIBILITY_CUSTODY__GROMACS_GROMACS",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES",
+      "negative_condition": "The preserved bytes differ from the current assumed fields or no pre-cutoff root exists.",
+      "next_discriminator": "Obtain the member's original pre-cutoff XML deposit plus Crossref submission receipt and hash, or an independently preserved January 2026 Metadata Plus snapshot with root extraction proof.",
+      "positive_condition": "Exact bytes, timestamp, DOI identity, and independent digest agree across provider/depositor or snapshot custody.",
+      "root_id": "10.35896/ijecie.v9i1.914",
+      "successor_identity": "CROSSREF_MEMBER_DEPOSIT_OR_2026_01_SNAPSHOT_BYTE_BINDING__10_35896_IJECIE_V9I1_914",
+      "unresolved_cell": "EXACT_PRE_CUTOFF_METADATA_BYTES"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The provider expressly excludes one or more retained fields or the planned use.",
+      "next_discriminator": "Obtain an authoritative Crossref public-REST/public-data licence applying to member-supplied record fields, including exclusions for abstracts or other copyrighted fields.",
+      "positive_condition": "The authoritative grant covers the exact retained field whitelist and permits the frozen processing and retention.",
+      "root_id": "10.35896/ijecie.v9i1.914",
+      "successor_identity": "CROSSREF_PUBLIC_REST_METADATA_REUSE_GRANT__10_35896_IJECIE_V9I1_914",
+      "unresolved_cell": "PROVIDER_METADATA_REUSE"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "negative_condition": "The publisher disclaims the declared licence, restricts the intended use, or maps it to a different version.",
+      "next_discriminator": "Without acquiring article text, bind a publisher-signed root-specific VOR licence assertion and its effective date to the DOI and intended processing.",
+      "positive_condition": "The publisher-root assertion covers the exact VOR and intended processing at acquisition time.",
+      "root_id": "10.35896/ijecie.v9i1.914",
+      "successor_identity": "PUBLISHER_ROOT_LICENSE_SCOPE_BINDING__10_35896_IJECIE_V9I1_914",
+      "unresolved_cell": "ARTICLE_BODY_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The host excludes or separately licenses a required class.",
+      "next_discriminator": "Bind a publisher root policy enumerating supplement and attachment rights separately from the article licence before any bytes are opened.",
+      "positive_condition": "Every intended supplement/attachment class is covered by a root-bound permission.",
+      "root_id": "10.35896/ijecie.v9i1.914",
+      "successor_identity": "PUBLISHER_SUPPLEMENT_ATTACHMENT_RIGHTS_BINDING__10_35896_IJECIE_V9I1_914",
+      "unresolved_cell": "SUPPLEMENT_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The root has zero eligible cases under the frozen rules.",
+      "next_discriminator": "An external custodian applies frozen metadata and rights gates and reports counts/exclusions only before content or outcomes are released.",
+      "positive_condition": "The root supplies at least one legally admissible eligible case under the frozen cell.",
+      "root_id": "10.35896/ijecie.v9i1.914",
+      "successor_identity": "OUTCOME_BLIND_ARTICLE_ROOT_ELIGIBILITY_CUSTODY__10_35896_IJECIE_V9I1_914",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "NOAA identifies a restriction or third-party field incompatible with use.",
+      "next_discriminator": "Obtain an authoritative NOAA NCEI root-specific metadata licence or public-domain statement tied to the EXISINCAL native identifier.",
+      "positive_condition": "The NOAA statement covers the exact metadata root and intended retention/reuse.",
+      "root_id": "C2107094645-NOAA_NCEI",
+      "successor_identity": "NOAA_NCEI_ROOT_METADATA_RIGHTS_BINDING__C2107094645_NOAA_NCEI",
+      "unresolved_cell": "NOAA_COLLECTION_METADATA_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The files are restricted or permission cannot be granted.",
+      "next_discriminator": "Obtain a root-specific NOAA file-use statement before any collection file is opened.",
+      "positive_condition": "The exact collection files have a compatible authoritative permission.",
+      "root_id": "C2107094645-NOAA_NCEI",
+      "successor_identity": "NOAA_NCEI_EXISINCAL_FILE_RIGHTS_BINDING__C2107094645_NOAA_NCEI",
+      "unresolved_cell": "NOAA_COLLECTION_FILE_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "A required item is third-party restricted or unlicensed.",
+      "next_discriminator": "Enumerate document/attachment metadata under external custody and bind NASA versus third-party provenance and permission before retrieval.",
+      "positive_condition": "Every intended document/attachment has compatible provenance and permission.",
+      "root_id": "C2107094645-NOAA_NCEI",
+      "successor_identity": "CMR_DOCUMENT_ATTACHMENT_PROVENANCE_BINDING__C2107094645_NOAA_NCEI",
+      "unresolved_cell": "DOCUMENTATION_THIRD_PARTY_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The root supplies zero eligible cases.",
+      "next_discriminator": "After content-class rights close, an external custodian reports eligibility counts/exclusions without releasing file content or outcomes.",
+      "positive_condition": "The root supplies an eligible case in its frozen cell.",
+      "root_id": "C2107094645-NOAA_NCEI",
+      "successor_identity": "OUTCOME_BLIND_CMR_ROOT_ELIGIBILITY_CUSTODY__C2107094645_NOAA_NCEI",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES",
+      "negative_condition": "The preserved bytes differ from the current assumed fields or no pre-cutoff root exists.",
+      "next_discriminator": "Obtain the member's original pre-cutoff XML deposit plus Crossref submission receipt and hash, or an independently preserved January 2026 Metadata Plus snapshot with root extraction proof.",
+      "positive_condition": "Exact bytes, timestamp, DOI identity, and independent digest agree across provider/depositor or snapshot custody.",
+      "root_id": "10.31354/globalce.v6isi6.283",
+      "successor_identity": "CROSSREF_MEMBER_DEPOSIT_OR_2026_01_SNAPSHOT_BYTE_BINDING__10_31354_GLOBALCE_V6ISI6_283",
+      "unresolved_cell": "EXACT_PRE_CUTOFF_METADATA_BYTES"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The provider expressly excludes one or more retained fields or the planned use.",
+      "next_discriminator": "Obtain an authoritative Crossref public-REST/public-data licence applying to member-supplied record fields, including exclusions for abstracts or other copyrighted fields.",
+      "positive_condition": "The authoritative grant covers the exact retained field whitelist and permits the frozen processing and retention.",
+      "root_id": "10.31354/globalce.v6isi6.283",
+      "successor_identity": "CROSSREF_PUBLIC_REST_METADATA_REUSE_GRANT__10_31354_GLOBALCE_V6ISI6_283",
+      "unresolved_cell": "PROVIDER_METADATA_REUSE"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "negative_condition": "The publisher disclaims the declared licence, restricts the intended use, or maps it to a different version.",
+      "next_discriminator": "Without acquiring article text, bind a publisher-signed root-specific VOR licence assertion and its effective date to the DOI and intended processing.",
+      "positive_condition": "The publisher-root assertion covers the exact VOR and intended processing at acquisition time.",
+      "root_id": "10.31354/globalce.v6isi6.283",
+      "successor_identity": "PUBLISHER_ROOT_LICENSE_SCOPE_BINDING__10_31354_GLOBALCE_V6ISI6_283",
+      "unresolved_cell": "ARTICLE_BODY_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The host excludes or separately licenses a required class.",
+      "next_discriminator": "Bind a publisher root policy enumerating supplement and attachment rights separately from the article licence before any bytes are opened.",
+      "positive_condition": "Every intended supplement/attachment class is covered by a root-bound permission.",
+      "root_id": "10.31354/globalce.v6isi6.283",
+      "successor_identity": "PUBLISHER_SUPPLEMENT_ATTACHMENT_RIGHTS_BINDING__10_31354_GLOBALCE_V6ISI6_283",
+      "unresolved_cell": "SUPPLEMENT_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The root has zero eligible cases under the frozen rules.",
+      "next_discriminator": "An external custodian applies frozen metadata and rights gates and reports counts/exclusions only before content or outcomes are released.",
+      "positive_condition": "The root supplies at least one legally admissible eligible case under the frozen cell.",
+      "root_id": "10.31354/globalce.v6isi6.283",
+      "successor_identity": "OUTCOME_BLIND_ARTICLE_ROOT_ELIGIBILITY_CUSTODY__10_31354_GLOBALCE_V6ISI6_283",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "negative_condition": "The uploader lacks authority or one file falls outside the declared licence.",
+      "next_discriminator": "Obtain a depositor-signed authority statement or independent rights audit binding CC BY 4.0 to the exact version DOI and all intended files.",
+      "positive_condition": "Uploader authority and file-level scope are independently established.",
+      "root_id": "17852132",
+      "successor_identity": "ZENODO_UPLOADER_RIGHTS_ASSURANCE__17852132",
+      "unresolved_cell": "DATASET_FILE_UPLOADER_AUTHORITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "Any required linked object is unlicensed or incompatible.",
+      "next_discriminator": "Enumerate only metadata links under external custody and bind each external object's own licence before retrieval.",
+      "positive_condition": "Every intended linked object has an independently verified root-bound permission.",
+      "root_id": "17852132",
+      "successor_identity": "ZENODO_LINKED_OBJECT_RIGHTS_BINDING__17852132",
+      "unresolved_cell": "LINKED_DERIVED_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "No file in the root satisfies the frozen case rules.",
+      "next_discriminator": "An external custodian opens files only after rights assurance and returns eligibility counts/exclusions without labels or outcomes.",
+      "positive_condition": "The root supplies an eligible case in its frozen cell.",
+      "root_id": "17852132",
+      "successor_identity": "OUTCOME_BLIND_ZENODO_ROOT_ELIGIBILITY_CUSTODY__17852132",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES",
+      "negative_condition": "The preserved bytes differ from the current assumed fields or no pre-cutoff root exists.",
+      "next_discriminator": "Obtain the member's original pre-cutoff XML deposit plus Crossref submission receipt and hash, or an independently preserved January 2026 Metadata Plus snapshot with root extraction proof.",
+      "positive_condition": "Exact bytes, timestamp, DOI identity, and independent digest agree across provider/depositor or snapshot custody.",
+      "root_id": "10.30564/jees.v7i4.8039",
+      "successor_identity": "CROSSREF_MEMBER_DEPOSIT_OR_2026_01_SNAPSHOT_BYTE_BINDING__10_30564_JEES_V7I4_8039",
+      "unresolved_cell": "EXACT_PRE_CUTOFF_METADATA_BYTES"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The provider expressly excludes one or more retained fields or the planned use.",
+      "next_discriminator": "Obtain an authoritative Crossref public-REST/public-data licence applying to member-supplied record fields, including exclusions for abstracts or other copyrighted fields.",
+      "positive_condition": "The authoritative grant covers the exact retained field whitelist and permits the frozen processing and retention.",
+      "root_id": "10.30564/jees.v7i4.8039",
+      "successor_identity": "CROSSREF_PUBLIC_REST_METADATA_REUSE_GRANT__10_30564_JEES_V7I4_8039",
+      "unresolved_cell": "PROVIDER_METADATA_REUSE"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "negative_condition": "The publisher disclaims the declared licence, restricts the intended use, or maps it to a different version.",
+      "next_discriminator": "Without acquiring article text, bind a publisher-signed root-specific VOR licence assertion and its effective date to the DOI and intended processing.",
+      "positive_condition": "The publisher-root assertion covers the exact VOR and intended processing at acquisition time.",
+      "root_id": "10.30564/jees.v7i4.8039",
+      "successor_identity": "PUBLISHER_ROOT_LICENSE_SCOPE_BINDING__10_30564_JEES_V7I4_8039",
+      "unresolved_cell": "ARTICLE_BODY_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The host excludes or separately licenses a required class.",
+      "next_discriminator": "Bind a publisher root policy enumerating supplement and attachment rights separately from the article licence before any bytes are opened.",
+      "positive_condition": "Every intended supplement/attachment class is covered by a root-bound permission.",
+      "root_id": "10.30564/jees.v7i4.8039",
+      "successor_identity": "PUBLISHER_SUPPLEMENT_ATTACHMENT_RIGHTS_BINDING__10_30564_JEES_V7I4_8039",
+      "unresolved_cell": "SUPPLEMENT_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The root has zero eligible cases under the frozen rules.",
+      "next_discriminator": "An external custodian applies frozen metadata and rights gates and reports counts/exclusions only before content or outcomes are released.",
+      "positive_condition": "The root supplies at least one legally admissible eligible case under the frozen cell.",
+      "root_id": "10.30564/jees.v7i4.8039",
+      "successor_identity": "OUTCOME_BLIND_ARTICLE_ROOT_ELIGIBILITY_CUSTODY__10_30564_JEES_V7I4_8039",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "negative_condition": "The uploader lacks authority or one file falls outside the declared licence.",
+      "next_discriminator": "Obtain a depositor-signed authority statement or independent rights audit binding CC BY 4.0 to the exact version DOI and all intended files.",
+      "positive_condition": "Uploader authority and file-level scope are independently established.",
+      "root_id": "18109101",
+      "successor_identity": "ZENODO_UPLOADER_RIGHTS_ASSURANCE__18109101",
+      "unresolved_cell": "DATASET_FILE_UPLOADER_AUTHORITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "Any required linked object is unlicensed or incompatible.",
+      "next_discriminator": "Enumerate only metadata links under external custody and bind each external object's own licence before retrieval.",
+      "positive_condition": "Every intended linked object has an independently verified root-bound permission.",
+      "root_id": "18109101",
+      "successor_identity": "ZENODO_LINKED_OBJECT_RIGHTS_BINDING__18109101",
+      "unresolved_cell": "LINKED_DERIVED_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "No file in the root satisfies the frozen case rules.",
+      "next_discriminator": "An external custodian opens files only after rights assurance and returns eligibility counts/exclusions without labels or outcomes.",
+      "positive_condition": "The root supplies an eligible case in its frozen cell.",
+      "root_id": "18109101",
+      "successor_identity": "OUTCOME_BLIND_ZENODO_ROOT_ELIGIBILITY_CUSTODY__18109101",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES",
+      "negative_condition": "The preserved bytes differ from the current assumed fields or no pre-cutoff root exists.",
+      "next_discriminator": "Obtain the member's original pre-cutoff XML deposit plus Crossref submission receipt and hash, or an independently preserved January 2026 Metadata Plus snapshot with root extraction proof.",
+      "positive_condition": "Exact bytes, timestamp, DOI identity, and independent digest agree across provider/depositor or snapshot custody.",
+      "root_id": "10.1016/j.sciaf.2025.e03156",
+      "successor_identity": "CROSSREF_MEMBER_DEPOSIT_OR_2026_01_SNAPSHOT_BYTE_BINDING__10_1016_J_SCIAF_2025_E03156",
+      "unresolved_cell": "EXACT_PRE_CUTOFF_METADATA_BYTES"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The provider expressly excludes one or more retained fields or the planned use.",
+      "next_discriminator": "Obtain an authoritative Crossref public-REST/public-data licence applying to member-supplied record fields, including exclusions for abstracts or other copyrighted fields.",
+      "positive_condition": "The authoritative grant covers the exact retained field whitelist and permits the frozen processing and retention.",
+      "root_id": "10.1016/j.sciaf.2025.e03156",
+      "successor_identity": "CROSSREF_PUBLIC_REST_METADATA_REUSE_GRANT__10_1016_J_SCIAF_2025_E03156",
+      "unresolved_cell": "PROVIDER_METADATA_REUSE"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+      "negative_condition": "The publisher disclaims the declared licence, restricts the intended use, or maps it to a different version.",
+      "next_discriminator": "Without acquiring article text, bind a publisher-signed root-specific VOR licence assertion and its effective date to the DOI and intended processing.",
+      "positive_condition": "The publisher-root assertion covers the exact VOR and intended processing at acquisition time.",
+      "root_id": "10.1016/j.sciaf.2025.e03156",
+      "successor_identity": "PUBLISHER_ROOT_LICENSE_SCOPE_BINDING__10_1016_J_SCIAF_2025_E03156",
+      "unresolved_cell": "ARTICLE_BODY_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The host excludes or separately licenses a required class.",
+      "next_discriminator": "Bind a publisher root policy enumerating supplement and attachment rights separately from the article licence before any bytes are opened.",
+      "positive_condition": "Every intended supplement/attachment class is covered by a root-bound permission.",
+      "root_id": "10.1016/j.sciaf.2025.e03156",
+      "successor_identity": "PUBLISHER_SUPPLEMENT_ATTACHMENT_RIGHTS_BINDING__10_1016_J_SCIAF_2025_E03156",
+      "unresolved_cell": "SUPPLEMENT_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The root has zero eligible cases under the frozen rules.",
+      "next_discriminator": "An external custodian applies frozen metadata and rights gates and reports counts/exclusions only before content or outcomes are released.",
+      "positive_condition": "The root supplies at least one legally admissible eligible case under the frozen cell.",
+      "root_id": "10.1016/j.sciaf.2025.e03156",
+      "successor_identity": "OUTCOME_BLIND_ARTICLE_ROOT_ELIGIBILITY_CUSTODY__10_1016_J_SCIAF_2025_E03156",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "ACCESS_ONLY_NOT_REUSE",
+      "negative_condition": "The API or project owner forbids a required use.",
+      "next_discriminator": "Obtain GitLab and project-owner authorization for the exact retained project metadata fields and non-bulk frozen acquisition pattern.",
+      "positive_condition": "Both API terms and project-owner rights permit the exact processing and retention.",
+      "root_id": "QEF/q-e",
+      "successor_identity": "GITLAB_BOUNDED_API_DATA_REUSE_SCOPE__QEF_Q_E",
+      "unresolved_cell": "PROJECT_METADATA_REUSE"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "Required user prose lacks permission or consent.",
+      "next_discriminator": "Obtain a project-owner policy or contributor consent mechanism covering issue and comment prose before any text is opened.",
+      "positive_condition": "Every intended issue/comment unit is covered by an authoritative permission.",
+      "root_id": "QEF/q-e",
+      "successor_identity": "GITLAB_PROJECT_ISSUE_COMMENT_RIGHTS_BINDING__QEF_Q_E",
+      "unresolved_cell": "ISSUE_COMMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "Any required attachment is prohibited, private, or unlicensed.",
+      "next_discriminator": "Bind upload/attachment ownership and licence separately and respect provider acquisition policy before any attachment URL is followed.",
+      "positive_condition": "Every intended attachment is covered and lawfully retrievable.",
+      "root_id": "QEF/q-e",
+      "successor_identity": "GITLAB_PROJECT_ATTACHMENT_RIGHTS_BINDING__QEF_Q_E",
+      "unresolved_cell": "ISSUE_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The project yields zero eligible cases.",
+      "next_discriminator": "After rights binding, an external custodian reports only eligible counts and exclusion codes for the frozen project root.",
+      "positive_condition": "The project yields an eligible case in the frozen cell.",
+      "root_id": "QEF/q-e",
+      "successor_identity": "OUTCOME_BLIND_GITLAB_ROOT_ELIGIBILITY_CUSTODY__QEF_Q_E",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK_EXACT_CROSSREF_HISTORICAL_BYTES",
+      "negative_condition": "The preserved bytes differ from the current assumed fields or no pre-cutoff root exists.",
+      "next_discriminator": "Obtain the member's original pre-cutoff XML deposit plus Crossref submission receipt and hash, or an independently preserved January 2026 Metadata Plus snapshot with root extraction proof.",
+      "positive_condition": "Exact bytes, timestamp, DOI identity, and independent digest agree across provider/depositor or snapshot custody.",
+      "root_id": "10.1208/s12248-025-01156-0",
+      "successor_identity": "CROSSREF_MEMBER_DEPOSIT_OR_2026_01_SNAPSHOT_BYTE_BINDING__10_1208_S12248_025_01156_0",
+      "unresolved_cell": "EXACT_PRE_CUTOFF_METADATA_BYTES"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The provider expressly excludes one or more retained fields or the planned use.",
+      "next_discriminator": "Obtain an authoritative Crossref public-REST/public-data licence applying to member-supplied record fields, including exclusions for abstracts or other copyrighted fields.",
+      "positive_condition": "The authoritative grant covers the exact retained field whitelist and permits the frozen processing and retention.",
+      "root_id": "10.1208/s12248-025-01156-0",
+      "successor_identity": "CROSSREF_PUBLIC_REST_METADATA_REUSE_GRANT__10_1208_S12248_025_01156_0",
+      "unresolved_cell": "PROVIDER_METADATA_REUSE"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The publisher disclaims the declared licence, restricts the intended use, or maps it to a different version.",
+      "next_discriminator": "Without acquiring article text, bind a publisher-signed root-specific VOR licence assertion and its effective date to the DOI and intended processing.",
+      "positive_condition": "The publisher-root assertion covers the exact VOR and intended processing at acquisition time.",
+      "root_id": "10.1208/s12248-025-01156-0",
+      "successor_identity": "PUBLISHER_ROOT_LICENSE_SCOPE_BINDING__10_1208_S12248_025_01156_0",
+      "unresolved_cell": "ARTICLE_BODY_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "The host excludes or separately licenses a required class.",
+      "next_discriminator": "Bind a publisher root policy enumerating supplement and attachment rights separately from the article licence before any bytes are opened.",
+      "positive_condition": "Every intended supplement/attachment class is covered by a root-bound permission.",
+      "root_id": "10.1208/s12248-025-01156-0",
+      "successor_identity": "PUBLISHER_SUPPLEMENT_ATTACHMENT_RIGHTS_BINDING__10_1208_S12248_025_01156_0",
+      "unresolved_cell": "SUPPLEMENT_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The root has zero eligible cases under the frozen rules.",
+      "next_discriminator": "An external custodian applies frozen metadata and rights gates and reports counts/exclusions only before content or outcomes are released.",
+      "positive_condition": "The root supplies at least one legally admissible eligible case under the frozen cell.",
+      "root_id": "10.1208/s12248-025-01156-0",
+      "successor_identity": "OUTCOME_BLIND_ARTICLE_ROOT_ELIGIBILITY_CUSTODY__10_1208_S12248_025_01156_0",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "CANNOT_CHECK",
+      "negative_condition": "A required item is third-party restricted or unlicensed.",
+      "next_discriminator": "Enumerate document/attachment metadata under external custody and bind NASA versus third-party provenance and permission before retrieval.",
+      "positive_condition": "Every intended document/attachment has compatible provenance and permission.",
+      "root_id": "C2210183595-GES_DISC",
+      "successor_identity": "CMR_DOCUMENT_ATTACHMENT_PROVENANCE_BINDING__C2210183595_GES_DISC",
+      "unresolved_cell": "DOCUMENTATION_THIRD_PARTY_ATTACHMENT_RIGHTS"
+    },
+    {
+      "cannot_check_condition": "The named authoritative byte, permission scope, identity, or independent custody evidence remains absent.",
+      "current_status": "NOT_ACCESSED",
+      "negative_condition": "The root supplies zero eligible cases.",
+      "next_discriminator": "After content-class rights close, an external custodian reports eligibility counts/exclusions without releasing file content or outcomes.",
+      "positive_condition": "The root supplies an eligible case in its frozen cell.",
+      "root_id": "C2210183595-GES_DISC",
+      "successor_identity": "OUTCOME_BLIND_CMR_ROOT_ELIGIBILITY_CUSTODY__C2210183595_GES_DISC",
+      "unresolved_cell": "CASE_ELIGIBILITY"
+    }
+  ],
+  "overall_terminal": "CANNOT_CHECK_RIGHTS_AND_HISTORY_BINDING",
+  "recursion_rule": "Every unresolved root/content-class or historical-byte cell retains its negative status and receives a narrower successor identity and discriminator; no missing evidence is converted to permission or positivity.",
+  "schema_version": "orion.provider-rights-history-successor.gap-ledger.v1"
+}

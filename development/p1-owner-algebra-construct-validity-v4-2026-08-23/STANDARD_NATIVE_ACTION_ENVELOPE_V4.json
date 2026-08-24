@@ -1,0 +1,85 @@
+{
+  "authority": "SOURCE_NATIVE_STANDARD_SCAFFOLD_ONLY__NO_R7_CROSSWALK",
+  "exact_construction": {
+    "construction": "A four-family typed envelope whose observations are native editorial events, notices, statuses, update relations and publisher policies; no total or partial function to an R7 decision is defined.",
+    "families_distinguishing_status_relation_policy_or_notice_roles": 4,
+    "families_with_explicit_postpublication_native_token": 4,
+    "institutional_families_byte_bound": 4,
+    "scaffold_gate_pass": true
+  },
+  "forbidden_promotions": [
+    "No native token is scientific-action gold.",
+    "No source event is mapped to KEEP_SEARCH, KEEP_COMPILE, KEEP_REPAIR, REVISE_MEASUREMENT, REFORMULATE_OBJECTIVE, REFORMULATE_BOUNDARY or UNRESOLVED.",
+    "No publisher/editor authority is transferred to Orion or the R7 vocabulary owner.",
+    "No standard document is an independent semantic review of an R7 algebra."
+  ],
+  "nonidentification_witnesses": [
+    "COPE treats correction or expression of concern as boundary alternatives to retraction while delegating case decisions to editors; the public standard is not a case adjudication.",
+    "CREC treats retraction, removal and expression of concern as metadata communication objects and excludes other postpublication notices from its principal scope.",
+    "Crossmark communicates current publisher-supplied status and policy rather than defining an exhaustive universal action terminal.",
+    "JATS related-article-type names a relation/purpose and supplies examples; it is not execution or recommendation authority."
+  ],
+  "schema_version": "orion.p1.owner-algebra-construct-validity.standard-native-action-envelope.v4",
+  "source_families": [
+    {
+      "bounded_scope": "Corrections/errata/corrigenda/addenda are expressly outside the principal CREC scope even though mentioned.",
+      "closed_r7_action_algebra": false,
+      "family": "NISO_CREC_RP45_2024",
+      "native_objects": [
+        "retraction",
+        "removal",
+        "expression of concern",
+        "retraction notice",
+        "retraction-related metadata"
+      ],
+      "r7_owner_or_delegation": false,
+      "source_native_role": "Recommended metadata creation, transfer, display, linking and preservation practices for specified editorial events."
+    },
+    {
+      "bounded_scope": "Guideline concerns scholarly retraction; corrections and expressions of concern are covered elsewhere except as alternatives/boundaries.",
+      "closed_r7_action_algebra": false,
+      "family": "COPE_RETRACTION_GUIDELINES_V3_2025",
+      "native_objects": [
+        "retraction",
+        "correction",
+        "expression of concern",
+        "retraction with replacement",
+        "retraction with removal"
+      ],
+      "r7_owner_or_delegation": false,
+      "source_native_role": "Formal COPE policy advising editors and publishers when retraction is or is not appropriate and who issues it."
+    },
+    {
+      "bounded_scope": "Crossref exposes record status/relations and publisher policy, not an exhaustive case-level scientific action decision.",
+      "closed_r7_action_algebra": false,
+      "family": "CROSSREF_CROSSMARK_AND_RELATIONSHIPS",
+      "native_objects": [
+        "current status",
+        "corrections",
+        "retractions",
+        "updates",
+        "update policy",
+        "isReplacedBy",
+        "Replaces",
+        "isVersionOf",
+        "hasVersion"
+      ],
+      "r7_owner_or_delegation": false,
+      "source_native_role": "Publisher-deposited status/update/relationship metadata and policy-page interface; Crossref records information supplied by members."
+    },
+    {
+      "bounded_scope": "The element page gives examples of relationship purpose; it does not close or authorize an R7 action vocabulary.",
+      "closed_r7_action_algebra": false,
+      "family": "NLM_JATS_1_4_RELATED_ARTICLE",
+      "native_objects": [
+        "related-article",
+        "related-article-type",
+        "corrected-article",
+        "companion"
+      ],
+      "r7_owner_or_delegation": false,
+      "source_native_role": "Markup relation naming and linking between separately published journal articles."
+    }
+  ],
+  "terminal": "P1_V4_FOUR_FAMILY_SOURCE_NATIVE_POSTPUBLICATION_STANDARD_SCAFFOLD_FEASIBLE__NO_R7_DECISION_CROSSWALK"
+}

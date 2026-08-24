@@ -1,0 +1,38 @@
+{
+  "arm_id": "C4_ISSUE_CENTRIC_OPTIMIZATION__ADIAS",
+  "authority": "PUBLIC_SOURCE_IDENTITY_AND_OUTCOME_BLIND_PREFLIGHT_ONLY",
+  "current_blocking_fields": 15,
+  "current_bound_fields": 6,
+  "current_execution_ready": false,
+  "execution_rule": "REFUSE NATIVE EXECUTION UNTIL ALL 21 C4 FIELDS ARE BOUND AND ALL SIX ARMS SHARE ONE MATCHED PANEL CONTRACT",
+  "fail_closed_gate": {
+    "path": "p5_c4_fail_closed_runner.py",
+    "sha256": "ef984aafeacc32e99597814b383542202fb5eba67ebf72a0839349230f09260c"
+  },
+  "fallback_rule": "empty fallback list; no model/provider/role switching",
+  "field_registry": "P5_C4_V4_FIELD_REGISTRY.json",
+  "forbidden_launchers": [
+    "scripts/run_*.sh",
+    "nohup",
+    "background ampersand"
+  ],
+  "forced_flags": [
+    "--no_final_test",
+    "--no-enable_external_search"
+  ],
+  "native_entrypoint": "python -u generate_loop.py",
+  "native_parser": {
+    "path": "p5_c4_native_parser.py",
+    "sha256": "2048aae10c1ba4e03d3925a1040d9ec75bc41e4c52fe9e674400fca3ae12e64e"
+  },
+  "outcome_rule": "native reports are candidate-visible execution artifacts only; protected scoring is external, one-shot, and no-feedback",
+  "panel_confirmatory_ready_arms": 0,
+  "panel_required_arms": 6,
+  "protocol_id": "P5.C4.ADIAS.EXECUTION.BINDING.V4",
+  "schema_version": "orion.p5.c4.adias-execution-binding-protocol.v4",
+  "source": {
+    "commit_sha": "fbcf0c73d12d30a4ee0d13c2e64b4c40d00b2993",
+    "repository": "https://github.com/scylj1/adias",
+    "tree_sha": "98fc19e691c31b635ec432b6240db775a9527fd0"
+  }
+}

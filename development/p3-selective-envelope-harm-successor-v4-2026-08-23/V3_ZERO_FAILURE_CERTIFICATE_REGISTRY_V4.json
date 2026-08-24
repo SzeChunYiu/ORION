@@ -1,0 +1,106 @@
+{
+  "schema_version": "orion.p3.v3-zero-failure-certificate-registry.v4",
+  "registry_id": "P3.V4.V3.ZERO_FAILURE.CELLS.V1",
+  "authority": "POST_PUBLIC_GOLD_INFORMED_CALIBRATION_ONLY__NO_NEW_FAMILY_AUTHORITY",
+  "source_protocol": "P3.PUBLIC.OAEI.CROSS_CONSTRUCT.IDENTIFICATION_ENVELOPE.DEV.V3",
+  "source_result_sha256": "2c9e59dc323cf65200152ffc259341131e60bb040175f9f109872f35d5d468d4",
+  "new_family_outcomes_accessed": false,
+  "selection_rule": {
+    "zero_coverage_failures": true,
+    "minimum_total_support": 25,
+    "minimum_distinct_target_transformations": 3,
+    "requires_predeclared_interpretation": true,
+    "targets_are_not_independent_families": true
+  },
+  "cells": [
+    {
+      "cell_id": "AML_GLUE_AND_DOCUMENT_AWARE_EXACT_LABEL_EQUALITY",
+      "visible_conditions": [
+        "AML native terminal GLUE",
+        "document-aware normalized label equality true",
+        "binary reference expressibility and rights gate satisfied"
+      ],
+      "output_envelope": [
+        "GLUE"
+      ],
+      "v3_scorable_support": 361,
+      "v3_coverage_failures": 0,
+      "v3_distinct_target_transformations_with_support": 15,
+      "per_target_support": {
+        "103": {
+          "tp": 33,
+          "fp": 0
+        },
+        "104": {
+          "tp": 33,
+          "fp": 0
+        },
+        "204": {
+          "tp": 22,
+          "fp": 0
+        },
+        "205": {
+          "tp": 5,
+          "fp": 0
+        },
+        "221": {
+          "tp": 33,
+          "fp": 0
+        },
+        "222": {
+          "tp": 28,
+          "fp": 0
+        },
+        "223": {
+          "tp": 28,
+          "fp": 0
+        },
+        "224": {
+          "tp": 33,
+          "fp": 0
+        },
+        "225": {
+          "tp": 33,
+          "fp": 0
+        },
+        "228": {
+          "tp": 29,
+          "fp": 0
+        },
+        "230": {
+          "tp": 25,
+          "fp": 0
+        },
+        "301": {
+          "tp": 13,
+          "fp": 0
+        },
+        "302": {
+          "tp": 9,
+          "fp": 0
+        },
+        "303": {
+          "tp": 12,
+          "fp": 0
+        },
+        "304": {
+          "tp": 25,
+          "fp": 0
+        }
+      },
+      "interpretation": "Positive source-native alignment plus exact document-aware label equality licenses only a provisional GLUE singleton; it provides no obstruction licence and no replication credit."
+    }
+  ],
+  "rejected_cells": [
+    {
+      "cell_id": "AML_OBSTRUCTION_AND_LABEL_INEQUALITY",
+      "reason": "333 V3 public GLUE pairs were falsely collapsed to OBSTRUCTION; shared negative evidence is not a certificate."
+    },
+    {
+      "cell_id": "ANY_MATCHER_NONSELECTION",
+      "reason": "Closed-world absence and nonselection are not obstruction evidence."
+    }
+  ],
+  "direct_logic_profiles": "The protocol separately permits machine-checked input-native equivalence/disjointness proofs, but no reasoner/runtime identity or nonzero V3 support is claimed here.",
+  "registry_terminal": "ONE_V3_ZERO_FAILURE_GLUE_CELL_FROZEN__NEW_FAMILY_NONTRIVIALITY_AND_COVERAGE_CANNOT_CHECK"
+}

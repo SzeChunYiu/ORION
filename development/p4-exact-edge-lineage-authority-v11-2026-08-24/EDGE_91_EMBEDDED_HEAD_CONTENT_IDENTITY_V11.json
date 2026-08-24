@@ -1,0 +1,293 @@
+{
+  "accepted_identity_method": null,
+  "accepted_tag_commit": "9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59",
+  "all_closure_gates_pass": false,
+  "comparison": {
+    "common_count": 338,
+    "differing": [
+      {
+        "left": {
+          "bytes": 409071,
+          "entry_type": "regular",
+          "normalized_path": "cpp/PAIpp.exe",
+          "sha256": "23887c1ec55e689014298c8e276a4bafbfbd3ba9fbbb0e317505f33816c5f4d6",
+          "unix_executable_bit": true
+        },
+        "normalized_path": "cpp/PAIpp.exe",
+        "right": {
+          "bytes": 409071,
+          "entry_type": "regular",
+          "normalized_path": "cpp/PAIpp.exe",
+          "sha256": "23887c1ec55e689014298c8e276a4bafbfbd3ba9fbbb0e317505f33816c5f4d6",
+          "unix_executable_bit": false
+        }
+      },
+      {
+        "left": {
+          "bytes": 352,
+          "entry_type": "regular",
+          "normalized_path": "run.sh",
+          "sha256": "20464879ee7dfd8db06c1f7978488f8e78c021df6b97df530a86628835ca90d1",
+          "unix_executable_bit": true
+        },
+        "normalized_path": "run.sh",
+        "right": {
+          "bytes": 352,
+          "entry_type": "regular",
+          "normalized_path": "run.sh",
+          "sha256": "20464879ee7dfd8db06c1f7978488f8e78c021df6b97df530a86628835ca90d1",
+          "unix_executable_bit": false
+        }
+      }
+    ],
+    "differing_count": 2,
+    "exact": false,
+    "left_count": 444,
+    "only_left": [
+      "java/bin/edu/uf/Diffusion/ADI.class",
+      "java/bin/edu/uf/Diffusion/Diffuse.class",
+      "java/bin/edu/uf/Diffusion/FADI.class",
+      "java/bin/edu/uf/Diffusion/FADIClosed.class",
+      "java/bin/edu/uf/Diffusion/FADIOpen.class",
+      "java/bin/edu/uf/Diffusion/FADIPeriodic.class",
+      "java/bin/edu/uf/compartments/GridFactory.class",
+      "java/bin/edu/uf/compartments/MacrophageRecruiter.class",
+      "java/bin/edu/uf/compartments/MacrophageReplenisher.class",
+      "java/bin/edu/uf/compartments/NeutrophilRecruiter.class",
+      "java/bin/edu/uf/compartments/NeutrophilReplenisher.class",
+      "java/bin/edu/uf/compartments/Recruiter.class",
+      "java/bin/edu/uf/compartments/Voxel.class",
+      "java/bin/edu/uf/control/Exec.class",
+      "java/bin/edu/uf/control/MultiThreadExec.class",
+      "java/bin/edu/uf/control/MultiThreadExecDiffusion.class",
+      "java/bin/edu/uf/interactable/Adenosine.class",
+      "java/bin/edu/uf/interactable/Afumigatus/Afumigatus.class",
+      "java/bin/edu/uf/interactable/Afumigatus/AfumigatusNoIron.class",
+      "java/bin/edu/uf/interactable/Afumigatus/TAFC.class",
+      "java/bin/edu/uf/interactable/Afumigatus/TranexamicAcid.class",
+      "java/bin/edu/uf/interactable/Albumin.class",
+      "java/bin/edu/uf/interactable/Binder.class",
+      "java/bin/edu/uf/interactable/Blood.class",
+      "java/bin/edu/uf/interactable/Cell.class",
+      "java/bin/edu/uf/interactable/Chemokine.class",
+      "java/bin/edu/uf/interactable/DectinBinder.class",
+      "java/bin/edu/uf/interactable/DeltaGammaT.class",
+      "java/bin/edu/uf/interactable/EndothelialCell.class",
+      "java/bin/edu/uf/interactable/Granule.class",
+      "java/bin/edu/uf/interactable/Heme.class",
+      "java/bin/edu/uf/interactable/Hepcidin.class",
+      "java/bin/edu/uf/interactable/IFN_I.class",
+      "java/bin/edu/uf/interactable/IFN_II.class",
+      "java/bin/edu/uf/interactable/IFN_III.class",
+      "java/bin/edu/uf/interactable/IL1.class",
+      "java/bin/edu/uf/interactable/IL10.class",
+      "java/bin/edu/uf/interactable/IL13.class",
+      "java/bin/edu/uf/interactable/IL17.class",
+      "java/bin/edu/uf/interactable/IL23.class",
+      "java/bin/edu/uf/interactable/IL4.class",
+      "java/bin/edu/uf/interactable/IL6.class",
+      "java/bin/edu/uf/interactable/InfectiousAgent.class",
+      "java/bin/edu/uf/interactable/Interactable.class",
+      "java/bin/edu/uf/interactable/Internalizable.class",
+      "java/bin/edu/uf/interactable/Iron.class",
+      "java/bin/edu/uf/interactable/LPS.class",
+      "java/bin/edu/uf/interactable/Lactoferrin.class",
+      "java/bin/edu/uf/interactable/Leukocyte.class",
+      "java/bin/edu/uf/interactable/Lipocalin2.class",
+      "java/bin/edu/uf/interactable/Liver.class",
+      "java/bin/edu/uf/interactable/MCP1.class",
+      "java/bin/edu/uf/interactable/MIP1B.class",
+      "java/bin/edu/uf/interactable/MIP2.class",
+      "java/bin/edu/uf/interactable/Macrophage.class",
+      "java/bin/edu/uf/interactable/Molecule.class",
+      "java/bin/edu/uf/interactable/NK.class",
+      "java/bin/edu/uf/interactable/Neutrophil.class",
+      "java/bin/edu/uf/interactable/PneumocyteI.class",
+      "java/bin/edu/uf/interactable/PneumocyteII.class",
+      "java/bin/edu/uf/interactable/PositionalAgent.class",
+      "java/bin/edu/uf/interactable/PositionalInfectiousAgent.class",
+      "java/bin/edu/uf/interactable/PtSRBinder.class",
+      "java/bin/edu/uf/interactable/ROS.class",
+      "java/bin/edu/uf/interactable/Setter.class",
+      "java/bin/edu/uf/interactable/Siderophore.class",
+      "java/bin/edu/uf/interactable/TGFb.class",
+      "java/bin/edu/uf/interactable/TLRBinder.class",
+      "java/bin/edu/uf/interactable/TNFa.class",
+      "java/bin/edu/uf/interactable/Transferrin.class",
+      "java/bin/edu/uf/intracellularState/AspergillusIntracellularModel.class",
+      "java/bin/edu/uf/intracellularState/AspergillusMacrophage.class",
+      "java/bin/edu/uf/intracellularState/ECIntracellularModel.class",
+      "java/bin/edu/uf/intracellularState/FMacrophageBooleanNetwork.class",
+      "java/bin/edu/uf/intracellularState/IntracellularModel.class",
+      "java/bin/edu/uf/intracellularState/IntracellularModelFactory.class",
+      "java/bin/edu/uf/intracellularState/NeutrophilNetwork.class",
+      "java/bin/edu/uf/intracellularState/NeutrophilStateModel.class",
+      "java/bin/edu/uf/intracellularState/Phenotype.class",
+      "java/bin/edu/uf/intracellularState/PneumocyteIEmptyModel.class",
+      "java/bin/edu/uf/intracellularState/PneumocyteStateModel.class",
+      "java/bin/edu/uf/main/Main.class",
+      "java/bin/edu/uf/main/initialize/Initialize.class",
+      "java/bin/edu/uf/main/initialize/InitializeBaseInvitroModel.class",
+      "java/bin/edu/uf/main/initialize/InitializeBaseModel.class",
+      "java/bin/edu/uf/main/initialize/InitializeBaseWholeLung.class",
+      "java/bin/edu/uf/main/initialize/InitializeExample.class",
+      "java/bin/edu/uf/main/initialize/InitializeTranexamicModel.class",
+      "java/bin/edu/uf/main/print/PrintBaseInVitro.class",
+      "java/bin/edu/uf/main/print/PrintBaseModel.class",
+      "java/bin/edu/uf/main/print/PrintCoinjury.class",
+      "java/bin/edu/uf/main/print/PrintExample.class",
+      "java/bin/edu/uf/main/print/PrintHemeModel.class",
+      "java/bin/edu/uf/main/print/PrintNull.class",
+      "java/bin/edu/uf/main/print/PrintStat.class",
+      "java/bin/edu/uf/main/run/Run.class",
+      "java/bin/edu/uf/main/run/RunMultiThread.class",
+      "java/bin/edu/uf/main/run/RunSingleThread.class",
+      "java/bin/edu/uf/primitives/CoupledInteractions.class",
+      "java/bin/edu/uf/primitives/Interactions.class",
+      "java/bin/edu/uf/time/Clock.class",
+      "java/bin/edu/uf/utils/Constants.class",
+      "java/bin/edu/uf/utils/Id.class",
+      "java/bin/edu/uf/utils/LinAlg.class",
+      "java/bin/edu/uf/utils/Rand.class",
+      "java/bin/edu/uf/utils/Util.class"
+    ],
+    "only_left_count": 106,
+    "only_right": [],
+    "only_right_count": 0,
+    "right_count": 338
+  },
+  "content_witness_revision": "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+  "embedded_git": {
+    "commands": {
+      "diff_files": {
+        "args": [
+          "diff-files",
+          "--quiet"
+        ],
+        "returncode": 1,
+        "stderr": "",
+        "stdout": ""
+      },
+      "diff_index": {
+        "args": [
+          "diff-index",
+          "--cached",
+          "--quiet",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": ""
+      },
+      "fsck": {
+        "args": [
+          "fsck",
+          "--full",
+          "--no-reflogs"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "dangling commit a3e19d9137d9c5e08b447cecccd9bc0c3331602a\n"
+      },
+      "head": {
+        "args": [
+          "rev-parse",
+          "HEAD"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "aa021231cdafb6d74ce9ab5f55f824a3032058a4\n"
+      },
+      "origin": {
+        "args": [
+          "config",
+          "--get",
+          "remote.origin.url"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "https://github.com/NutritionalLungImmunity/PAI.git\n"
+      },
+      "status": {
+        "args": [
+          "status",
+          "--porcelain=v1",
+          "--untracked-files=all"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": ""
+      },
+      "tree": {
+        "args": [
+          "rev-parse",
+          "HEAD^{tree}"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "d5620f3acf4e5a163cfdfdefc2432ebd5709008a\n"
+      }
+    },
+    "diff_files_clean": false,
+    "diff_index_clean": true,
+    "fsck_returncode": 0,
+    "fsck_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "head": "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+    "origin": "https://github.com/NutritionalLungImmunity/PAI.git",
+    "status_porcelain": [],
+    "tree": "d5620f3acf4e5a163cfdfdefc2432ebd5709008a"
+  },
+  "frozen_index": 91,
+  "gates": {
+    "archive_and_revision_mit_rights": true,
+    "embedded_git_tree_equals_github_tree": true,
+    "embedded_git_valid_clean_head": false,
+    "exact_non_git_archive_to_codeload_manifest": false,
+    "github_full_revision_authenticated": true,
+    "zenodo_archive_checksum": true,
+    "zenodo_exact_record_version_file_rights": true
+  },
+  "github_codeload": {
+    "bytes": 6909445,
+    "md5": "13e0ae26ce46457adf1a8126f027e4a5",
+    "sha256": "d43c827568d1acef62cea08990580a95ea5869f9eef4106fb3da8b941377e5af"
+  },
+  "github_commit": {
+    "html_url": "https://github.com/NutritionalLungImmunity/PAI/commit/aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+    "sha": "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+    "tree_sha": "d5620f3acf4e5a163cfdfdefc2432ebd5709008a"
+  },
+  "licenses": {
+    "archive_license": {
+      "bytes": 1080,
+      "entry_type": "regular",
+      "normalized_path": "LICENSE",
+      "sha256": "32d6e5b56b27a50adfa6101c632ebf641f7cae6b0bcb8917716880802eecf250",
+      "unix_executable_bit": false
+    },
+    "codeload_license": {
+      "bytes": 1080,
+      "entry_type": "regular",
+      "normalized_path": "LICENSE",
+      "sha256": "32d6e5b56b27a50adfa6101c632ebf641f7cae6b0bcb8917716880802eecf250",
+      "unix_executable_bit": false
+    },
+    "exact_license_byte_equal": true,
+    "raw_license_bytes": 1080,
+    "raw_license_is_mit": true,
+    "raw_license_sha256": "32d6e5b56b27a50adfa6101c632ebf641f7cae6b0bcb8917716880802eecf250",
+    "zenodo_declared": "mit-license"
+  },
+  "next_discriminator": "Repair the first failed frozen V11 index-91 conjunction; no subset or compensatory rule is allowed.",
+  "publication_version": "v1.0.0",
+  "repository": "nutritionallungimmunity/pai",
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v11.index-91-embedded-head-content-identity",
+  "tag_mismatch_boundary": "The exact content witness is embedded HEAD aa021231cdafb6d74ce9ab5f55f824a3032058a4, not accepted tag commit 9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59. No equality, ancestry or restoration relation between those commits is asserted.",
+  "verdict": "REMAINS_CANNOT_CHECK",
+  "zenodo_archive": {
+    "bytes": 17147954,
+    "md5": "506a29c006cbf81161acf21bca60e021",
+    "provider_checksum": "md5:506a29c006cbf81161acf21bca60e021",
+    "sha256": "2a94e0ed7e61e18ea4135aa559d6a06a407adcabd84dbbc52ebface6bba5b407"
+  }
+}

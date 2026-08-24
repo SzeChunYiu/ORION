@@ -1,0 +1,141 @@
+{
+  "authoritative_tree_audit": {
+    "benchmark_prefixed_paths": 0,
+    "checked_utc": "2026-08-23T17:38:58Z",
+    "github_tree_truncated": false,
+    "native_source_requires": [
+      "benchmark/claw-eval/runner/benchmark.py",
+      "benchmark/claw-eval/src"
+    ],
+    "root_paths": [
+      ".env.example",
+      ".gitignore",
+      "LICENSE",
+      "NOTICE",
+      "README.md",
+      "docker-compose.yml",
+      "host-daemon",
+      "openclaw",
+      "scripts",
+      "tec_report.pdf"
+    ],
+    "terminal": "RELEASED_SOURCE_TRIAL_RUNTIME_INCOMPLETE__CANNOT_CHECK"
+  },
+  "authority": "PUBLIC_SOURCE_IDENTITY_AND_RIGHTS_INVENTORY_ONLY__NOT_LEGAL_ADVICE",
+  "frozen_at_utc": "2026-08-23T17:38:58Z",
+  "hashed_authoritative_files": [
+    {
+      "path": "LICENSE",
+      "sha256": "3903e8b0fd6b4f6fc83f194c1e7b8525f1b40a284e4682ba1cec7e77eb765b63"
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "da9dce4d4fbd44a4feb37a54e27220788fbcc6887e4367d479b1bd402f63dd19"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1b081f3eab744bd67c020343698ca567cf28dfd199310772232a7c83bf89ca62"
+    },
+    {
+      "path": ".env.example",
+      "sha256": "89c070dd14f4ca1cdda8ee6825852eb878ef2b42a724a843a024a133f93d72db"
+    },
+    {
+      "path": "docker-compose.yml",
+      "sha256": "ea2dec83a2e47930ac2c391d207e1b54e9a62b8a910b82cf9a5d46cd8143e783"
+    },
+    {
+      "path": "scripts/setup.sh",
+      "sha256": "bb591cbbca65b46941a8f2949f53bf6e5a5083d36f24c10329935bbfe14707a8"
+    },
+    {
+      "path": "host-daemon/pyproject.toml",
+      "sha256": "66ac3d9d64a434c3f39f3b2d06b277f3f6c4e7a42851121f9d76e2d92c2ceebf"
+    },
+    {
+      "path": "host-daemon/src/cli/moss",
+      "sha256": "bd9aa0dbcbe953bafd24d60121ddceb868dae25f005f34cb5d448e0f671f0140"
+    },
+    {
+      "path": "host-daemon/src/main.py",
+      "sha256": "cf335c86905efd86bf47de6d7fbad00fcb5a3a786b5a208e883ab427df101107"
+    },
+    {
+      "path": "host-daemon/src/ops/trial_runner.py",
+      "sha256": "40e60a8e3393caf1a4efdf6b433873883f07049038a95364b70f7f7d2c7524d7"
+    },
+    {
+      "path": "host-daemon/src/ops/docker_rpc.py",
+      "sha256": "d9f321e0bc9182e90ba81597c6893029e8e12e4dc19756826a67e71687c00d08"
+    },
+    {
+      "path": "openclaw/LICENSE",
+      "sha256": "62316704df7426e5a79d2827ff8aca36e9abb3a73b8e68557030749ebefec667"
+    },
+    {
+      "path": "openclaw/package.json",
+      "sha256": "83087d14b19f93b1e0a3f79ea09c7aeba07679c95a0d160941fcc4530d98b7ec"
+    },
+    {
+      "path": "openclaw/pnpm-lock.yaml",
+      "sha256": "17a36bc38c1817eaee7a7c4264d58b127f5edb6a5054e4952545450cfde0337c"
+    },
+    {
+      "path": "openclaw/Dockerfile",
+      "sha256": "3543bf34913a30e1a9fc51bcf6cfe95916f8beabd92f4d0a6e57e5b022d12dc9"
+    },
+    {
+      "path": "openclaw/src/evolution/state.ts",
+      "sha256": "431d796f36579ba4eadf56992b3660a5eee27f1b06b15ea3a373a5027eb1b428"
+    },
+    {
+      "path": "openclaw/src/evolution/verdict.ts",
+      "sha256": "356b0b21d0dda17cf71fdb7a8c7cc8cd2f99d69bf4c13421cd82b97e5ffaae78"
+    },
+    {
+      "path": "openclaw/src/evolution/loop.ts",
+      "sha256": "96e51ff3e187e085e886314aa3723c72858c04b209f9fb2e32c1e99206d8f837"
+    }
+  ],
+  "licence_layers": [
+    {
+      "license_sha256": "3903e8b0fd6b4f6fc83f194c1e7b8525f1b40a284e4682ba1cec7e77eb765b63",
+      "notice_sha256": "da9dce4d4fbd44a4feb37a54e27220788fbcc6887e4367d479b1bd402f63dd19",
+      "scope": "MOSS root additions",
+      "spdx": "Apache-2.0"
+    },
+    {
+      "license_sha256": "62316704df7426e5a79d2827ff8aca36e9abb3a73b8e68557030749ebefec667",
+      "scope": "vendored openclaw",
+      "spdx": "MIT"
+    },
+    {
+      "scope": "vendored a2ui and other third parties",
+      "spdx": "MIXED",
+      "status": "INDIVIDUAL_NOTICES_RETAINED_UPSTREAM__TRANSITIVE_CLOSURE_NOT_ESTABLISHED"
+    }
+  ],
+  "rights_closed": [
+    "public source inspection",
+    "root Apache-2.0 source layer",
+    "vendored OpenClaw MIT source layer"
+  ],
+  "rights_not_closed": [
+    "missing benchmark/task bytes",
+    "transitive dependency licence/SBOM",
+    "container distribution",
+    "model and coding-agent services",
+    "session/failure content",
+    "generated transcripts/diffs/images",
+    "protected scorer/panel"
+  ],
+  "schema_version": "orion.p5.c2.source-rights-manifest.v4",
+  "source": {
+    "archive_bytes_retained_in_lane": false,
+    "archive_sha256": "de6bb0e480749757d8e9b05a66c37c82228ea6d9d1e1cb92b6b32a3b28e5610e",
+    "commit_sha": "5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+    "paper": "arXiv:2605.22794v2",
+    "repository": "https://github.com/hkgai-official/Moss",
+    "tree_sha": "ebfcd6ac3ae00749240a5e2d8a96ad570adaf63f"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "acceptance_gate": "Every tuple, manifest, exact rights and independence clause must be signed by a source-population custodian not controlled by the candidate-author session. Generic commit verification, tag existence or a self-attestation does not pass.",
+  "candidate_author_session_must_not_sign": true,
+  "contract_identity": "P2_V15_INDEPENDENT_SOURCE_POPULATION_CUSTODY_V1",
+  "frozen_tuple": {
+    "candidate_dataset_template": "https://raw.githubusercontent.com/asreview/synergy-dataset/38b35218e4d0f99621cec5a8a25a0147bb88c654/datasets/{review_id}.csv",
+    "commit": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "index_bytes": 22135,
+    "index_git_blob_sha1": "f4f5007156cb71e7d54e99057037fb75d44f87c4",
+    "index_path": "index_v1.json",
+    "index_sha256": "f34c17b3dca9d609585e5fcc9d24c5433d4ad240ef91e5c2e9a48edee1e0959a",
+    "repair_boundary": "Preserve the V13/V14 frozen commit and candidate-dataset route; replace only the incompatible inherited index byte identity in this new protocol.",
+    "repository": "asreview/synergy-dataset",
+    "root_tree_sha1": "49f437c367cc45a90867418fcef77c9ff3614456"
+  },
+  "post_acceptance_authorization": "Only a valid signature authorizes one unchanged label-blind census. It does not authorize performance; outcome and result custody remain separately required.",
+  "provider_witness": {
+    "commit_signature_reason": "valid",
+    "commit_signature_valid": true,
+    "current_repository_metadata_license_spdx_not_snapshot_bound": "CC0-1.0",
+    "provider_tag": "refs/tags/metadata-v1-final",
+    "provider_tag_target": "38b35218e4d0f99621cec5a8a25a0147bb88c654",
+    "recursive_tree_entry_count": 169,
+    "root_license_blob": "72f8c206ed3b5e333f94f3dffde2b525fb449954",
+    "root_license_sha256": "f1e934ccb74b86e49caa93146e16d342c86885d06a4b8d087679c3ac5689bbad",
+    "root_license_spdx": "MIT",
+    "same_snapshot_dataset_csv_count": 61,
+    "same_snapshot_dataset_manifest_sha256": "fe93857d5566fd63c9f681939fc1bfd347d6ae9496a1a01f6edd09428ce3c30a"
+  },
+  "required_independent_acts": [
+    "Verify and sign the exact commit/tree/index tuple and the 61-entry dataset path/blob manifest without candidate-author involvement.",
+    "Use the immutable V14 candidate template, not the erroneous frozen V15 transcription, and attest that no candidate request has yet occurred.",
+    "Adjudicate exact per-review third-party rights for all candidate identities needed by the unchanged label-blind rule; the root MIT file and current CC0 repository metadata must not be blended or substituted for per-review CC-BY-4.0/CC0 evidence.",
+    "Attest that dc2dadf... and every other source/route remain disallowed after the lock.",
+    "Sign independence from labels, class counts, screening outcomes, models and candidate authorship."
+  ],
+  "schema_version": "orion.p2.state-expanding-acquisition.v15.independent-source-custody-request"
+}

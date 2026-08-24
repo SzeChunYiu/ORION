@@ -1,0 +1,41 @@
+{
+  "schema_version": "orion.p3.public-outcome-blind-precommitment.v1",
+  "protocol_id": "P3.PUBLIC.TRANSPORT.CRAFT_SCIREX_OAEI.V1",
+  "design_epoch": "2026-08-23",
+  "dataset_archive_bodies_opened_during_design": 0,
+  "gold_objects_opened_during_design": 0,
+  "post_design_input_preflight": {
+    "source_id": "OAEI_2004_ZENODO_15827226",
+    "archive_downloaded_and_provider_md5_verified": true,
+    "archive_contains_public_reference_bytes": true,
+    "reference_alignment_content_interpreted": false,
+    "input_ontology_directories_inventoried": 21,
+    "independent_seed_family_clusters": 1,
+    "empirical_system_outputs_observed": 0,
+    "synthetic_adapter_smoke_outputs_observed": 8
+  },
+  "allowed_sampling_fields": [
+    "source_id",
+    "pinned_revision",
+    "official_split",
+    "unit_id",
+    "rights_terminal"
+  ],
+  "forbidden_sampling_fields": [
+    "gold_relation",
+    "gold_annotation_count",
+    "candidate_output",
+    "comparator_output",
+    "error_type",
+    "effect_size"
+  ],
+  "selection_algorithm": "Census of provider evaluation/test units; deterministic SHA-256 ordering for serialization only.",
+  "separation": {
+    "CRAFT": "Evaluation input and evaluation gold are separate provider archives; gold archive is skipped by default fetch.",
+    "SCIREX": "Labels are inline; inventory code retains only doc_id and official split, and data body is rights-gated. This is procedural blindness, not protected custody.",
+    "OAEI": "Input ontology paths and refalign.rdf gold paths are separable; inventory excludes refalign content."
+  },
+  "authority_boundary": "Public gold may support development transport and adverse coverage findings only. It may not be described as protected, fresh, independently commissioned, or completion of P3.PARTIAL_IDENTIFICATION.EXCESS_HARM.V1.",
+  "current_terminal": "OUTCOME_BLIND_PUBLIC_DESIGN_FROZEN__NO_EMPIRICAL_OUTCOME",
+  "empirical_system_outputs_observed": 0
+}

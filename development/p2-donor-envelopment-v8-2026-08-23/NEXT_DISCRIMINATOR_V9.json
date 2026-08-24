@@ -1,0 +1,40 @@
+{
+  "forbidden": [
+    "KIFMS retuning after the source-disjoint outcomes",
+    "review deletion",
+    "threshold relaxation",
+    "claiming independent confirmation from same-workspace execution",
+    "averaging away a worst-review harm failure"
+  ],
+  "frozen_development_choice": {
+    "comparators": [
+      "unchanged exact u4",
+      "F2 title-emphasis representation alone with the same u4 learner/balancer",
+      "u4 plus the frozen alpha=0.25 residual"
+    ],
+    "controller": "unchanged u4 plus F2_TITLE_EMPHASIS at alpha=0.25",
+    "fallback": "Exact u4 whenever source binding, both-class execution, or the frozen controller cannot be reproduced.",
+    "why_this_one": "It had the largest full-grid mean CRE20 delta (+0.010693125060) while retaining positive mean WSS95 (+0.002042792819); its -0.0625 KIFMS harm is the explicit falsifier, not hidden."
+  },
+  "identity": "P2_V9_SOURCE_DISJOINT_TITLE_RESIDUAL_STABILITY_DISCRIMINATOR",
+  "interpretation": {
+    "all_gates_pass": "Source-disjoint development transport of this one residual only; KIFMS remains adverse and independent confirmation remains required.",
+    "any_gate_fails": "Discard title emphasis as a donor-envelopment residual and retain exact u4; recurse on a new mechanism rather than relax thresholds.",
+    "mixed_family_result": "A positive new family cannot overwrite the KIFMS harm; it identifies review-family heterogeneity requiring a separately frozen gate."
+  },
+  "parent_terminal": "P2_V8_DONOR_ENVELOPMENT_CROSSFIT_FAILS_CRE20_WSS95_AND_HARM__NO_RESIDUAL_ADMITTED__EXACT_U4_FALLBACK",
+  "scientific_question": "Does the bounded title-emphasis residual transport without the exclusion-sensitive R@10 harm seen on KIFMS?",
+  "source": {
+    "requirement": "A lawful public review family disjoint in named review identity and normalized title-abstract content from SWIFT, SYNERGY V5, and KIFMS V7.",
+    "status": "SOURCE_IDENTITY_AND_OUTCOME_CUSTODY_NOT_YET_BOUND",
+    "unit_rule": "Predeclare every available eligible review; no outcome-based unit deletion."
+  },
+  "unchanged_gates": {
+    "absolute_work_saving": "controller WSS95 > 0 in every review",
+    "mean_delta_CRE20": ">= 0.010858985820770889",
+    "mean_delta_R10": ">= 0.010858985820770889",
+    "mean_delta_WSS95": ">= 0",
+    "positive_sign_fraction_each_coprimary": ">= 6/7 of all predeclared review units, the unchanged 12/14 fraction",
+    "worst_review_delta_R10": ">= -0.05"
+  }
+}

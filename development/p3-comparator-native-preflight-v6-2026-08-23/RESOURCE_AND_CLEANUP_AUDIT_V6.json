@@ -1,0 +1,27 @@
+{
+  "audited_at": "2026-08-23T17:44:54.534246+00:00",
+  "post_cleanup": {
+    "pyc_file_count": 0,
+    "pyc_files": [],
+    "pycache_directories": [],
+    "pycache_directory_count": 0,
+    "raw_or_large_residue_file_count": 0,
+    "raw_or_large_residue_files": [],
+    "temporary_runtime_exists": false
+  },
+  "pre_cleanup": {
+    "staged_components": [
+      "AML release/JAR",
+      "Maven distribution/cache",
+      "LogMap source/build/dependencies/raw outputs",
+      "DeepOnto source/uv environment",
+      "Bio_ClinicalBERT exact model",
+      "BERTMap partial data/logs",
+      "candidate compatibility wheel/source"
+    ],
+    "temporary_runtime_kib": 1927520,
+    "temporary_runtime_path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/.p3v6-runtime"
+  },
+  "retained_boundary": "Only protocols, synthetic smoke inputs, bounded hashes/counts/manifests, scientific reports, validators, and checksums are retained; no model, dependency, raw native output, partial corpus, or execution log remains.",
+  "schema_version": "orion.p3.comparator-native-preflight.resource-cleanup-audit.v6"
+}

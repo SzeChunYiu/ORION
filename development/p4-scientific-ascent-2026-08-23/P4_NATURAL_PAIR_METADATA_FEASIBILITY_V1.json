@@ -1,0 +1,555 @@
+{
+  "authority": "OUTCOME_FREE_METADATA_SIGNAL_CENSUS_ONLY__NOT_CASE_ELIGIBILITY_OR_SCIENTIFIC_RESULT",
+  "binding_findings": {
+    "M1_ABSTRACT_TO_FULLTEXT": "all rows expose provider-native abstract and exact article-version identities; full-text bytes and eligibility remain unbound",
+    "M2_EARLIER_TO_LATER_VERSION": "version-history signals exist, but earlier-version licence and content bytes are not inherited from the latest version",
+    "M3_TO_M8": "keyword signals do not prove a linked object, identity match, separate reuse permission, natural information-state pair, or resolving evidence"
+  },
+  "current_terminal": "P4_NATURAL_PAIR_METADATA_SIGNALS_COUNTED__32_CELL_ELIGIBILITY_CANNOT_CHECK",
+  "date": "2026-08-23",
+  "domains": [
+    "EARTH_ENVIRONMENT",
+    "LIFE_BIOMEDICAL",
+    "SCIENTIFIC_SOFTWARE",
+    "PHYSICAL_ENGINEERING"
+  ],
+  "highest_signal_count_by_mechanism": {
+    "M1_ABSTRACT_TO_FULLTEXT": 384,
+    "M2_EARLIER_TO_LATER_VERSION": 138,
+    "M3_PROTOCOL_TO_RESULTS": 9,
+    "M4_ARTICLE_TO_CORRECTION": 12,
+    "M5_ARTICLE_TO_DATA_DOCUMENTATION": 74,
+    "M6_ARTICLE_TO_CODE_RELEASE": 72,
+    "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER": 100,
+    "M8_ARTICLE_TO_LICENSED_SUPPLEMENT": 27
+  },
+  "lowest_signal_count_by_mechanism": {
+    "M1_ABSTRACT_TO_FULLTEXT": 384,
+    "M2_EARLIER_TO_LATER_VERSION": 75,
+    "M3_PROTOCOL_TO_RESULTS": 2,
+    "M4_ARTICLE_TO_CORRECTION": 5,
+    "M5_ARTICLE_TO_DATA_DOCUMENTATION": 38,
+    "M6_ARTICLE_TO_CODE_RELEASE": 6,
+    "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER": 16,
+    "M8_ARTICLE_TO_LICENSED_SUPPLEMENT": 2
+  },
+  "mechanisms": [
+    "M1_ABSTRACT_TO_FULLTEXT",
+    "M2_EARLIER_TO_LATER_VERSION",
+    "M3_PROTOCOL_TO_RESULTS",
+    "M4_ARTICLE_TO_CORRECTION",
+    "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+    "M6_ARTICLE_TO_CODE_RELEASE",
+    "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER",
+    "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+  ],
+  "nominal_rows_needed_per_cell": 48,
+  "pool_rows": 1536,
+  "pool_sha256": "47dd24657752731cdf45bab95852f3e18b50946af8a29b5acee95956ec81d895",
+  "protocol_sha256": "fafbdcbbcb27a62b3546f2f82bd82698f52183f6e9fabe69dc64f4435eb5f237",
+  "schema_version": "orion.p4.natural-pair-metadata-feasibility.v1",
+  "signal_overlap_patterns": [
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT"
+      ],
+      "rows": 762
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION"
+      ],
+      "rows": 241
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "rows": 134
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION"
+      ],
+      "rows": 82
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION"
+      ],
+      "rows": 50
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M6_ARTICLE_TO_CODE_RELEASE"
+      ],
+      "rows": 39
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "rows": 28
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "rows": 26
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+      ],
+      "rows": 20
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M6_ARTICLE_TO_CODE_RELEASE",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "rows": 18
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+        "M6_ARTICLE_TO_CODE_RELEASE"
+      ],
+      "rows": 16
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M6_ARTICLE_TO_CODE_RELEASE"
+      ],
+      "rows": 15
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M3_PROTOCOL_TO_RESULTS"
+      ],
+      "rows": 14
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+        "M6_ARTICLE_TO_CODE_RELEASE"
+      ],
+      "rows": 13
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+      ],
+      "rows": 13
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M4_ARTICLE_TO_CORRECTION"
+      ],
+      "rows": 11
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M4_ARTICLE_TO_CORRECTION"
+      ],
+      "rows": 9
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "rows": 7
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M6_ARTICLE_TO_CODE_RELEASE",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "rows": 4
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M4_ARTICLE_TO_CORRECTION",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION"
+      ],
+      "rows": 4
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M3_PROTOCOL_TO_RESULTS"
+      ],
+      "rows": 3
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M4_ARTICLE_TO_CORRECTION",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "rows": 3
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M3_PROTOCOL_TO_RESULTS",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "rows": 3
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+        "M6_ARTICLE_TO_CODE_RELEASE",
+        "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+      ],
+      "rows": 3
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+        "M6_ARTICLE_TO_CODE_RELEASE",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "rows": 2
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER",
+        "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+      ],
+      "rows": 2
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M3_PROTOCOL_TO_RESULTS",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION"
+      ],
+      "rows": 2
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M3_PROTOCOL_TO_RESULTS",
+        "M6_ARTICLE_TO_CODE_RELEASE"
+      ],
+      "rows": 2
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M4_ARTICLE_TO_CORRECTION",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER"
+      ],
+      "rows": 2
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M3_PROTOCOL_TO_RESULTS",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION"
+      ],
+      "rows": 1
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M3_PROTOCOL_TO_RESULTS",
+        "M6_ARTICLE_TO_CODE_RELEASE"
+      ],
+      "rows": 1
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M4_ARTICLE_TO_CORRECTION",
+        "M6_ARTICLE_TO_CODE_RELEASE"
+      ],
+      "rows": 1
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M2_EARLIER_TO_LATER_VERSION",
+        "M6_ARTICLE_TO_CODE_RELEASE",
+        "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+      ],
+      "rows": 1
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M3_PROTOCOL_TO_RESULTS",
+        "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+      ],
+      "rows": 1
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M4_ARTICLE_TO_CORRECTION",
+        "M6_ARTICLE_TO_CODE_RELEASE"
+      ],
+      "rows": 1
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M5_ARTICLE_TO_DATA_DOCUMENTATION",
+        "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+      ],
+      "rows": 1
+    },
+    {
+      "mechanisms": [
+        "M1_ABSTRACT_TO_FULLTEXT",
+        "M6_ARTICLE_TO_CODE_RELEASE",
+        "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER",
+        "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+      ],
+      "rows": 1
+    }
+  ],
+  "signal_table": {
+    "EARTH_ENVIRONMENT": {
+      "M1_ABSTRACT_TO_FULLTEXT": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 384,
+        "rights_bound_pairs": null
+      },
+      "M2_EARLIER_TO_LATER_VERSION": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 102,
+        "rights_bound_pairs": null
+      },
+      "M3_PROTOCOL_TO_RESULTS": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 2,
+        "rights_bound_pairs": null
+      },
+      "M4_ARTICLE_TO_CORRECTION": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 12,
+        "rights_bound_pairs": null
+      },
+      "M5_ARTICLE_TO_DATA_DOCUMENTATION": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 41,
+        "rights_bound_pairs": null
+      },
+      "M6_ARTICLE_TO_CODE_RELEASE": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 6,
+        "rights_bound_pairs": null
+      },
+      "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 16,
+        "rights_bound_pairs": null
+      },
+      "M8_ARTICLE_TO_LICENSED_SUPPLEMENT": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 10,
+        "rights_bound_pairs": null
+      }
+    },
+    "LIFE_BIOMEDICAL": {
+      "M1_ABSTRACT_TO_FULLTEXT": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 384,
+        "rights_bound_pairs": null
+      },
+      "M2_EARLIER_TO_LATER_VERSION": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 138,
+        "rights_bound_pairs": null
+      },
+      "M3_PROTOCOL_TO_RESULTS": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 9,
+        "rights_bound_pairs": null
+      },
+      "M4_ARTICLE_TO_CORRECTION": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 7,
+        "rights_bound_pairs": null
+      },
+      "M5_ARTICLE_TO_DATA_DOCUMENTATION": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 54,
+        "rights_bound_pairs": null
+      },
+      "M6_ARTICLE_TO_CODE_RELEASE": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 25,
+        "rights_bound_pairs": null
+      },
+      "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 31,
+        "rights_bound_pairs": null
+      },
+      "M8_ARTICLE_TO_LICENSED_SUPPLEMENT": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 27,
+        "rights_bound_pairs": null
+      }
+    },
+    "PHYSICAL_ENGINEERING": {
+      "M1_ABSTRACT_TO_FULLTEXT": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 384,
+        "rights_bound_pairs": null
+      },
+      "M2_EARLIER_TO_LATER_VERSION": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 75,
+        "rights_bound_pairs": null
+      },
+      "M3_PROTOCOL_TO_RESULTS": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 7,
+        "rights_bound_pairs": null
+      },
+      "M4_ARTICLE_TO_CORRECTION": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 7,
+        "rights_bound_pairs": null
+      },
+      "M5_ARTICLE_TO_DATA_DOCUMENTATION": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 74,
+        "rights_bound_pairs": null
+      },
+      "M6_ARTICLE_TO_CODE_RELEASE": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 14,
+        "rights_bound_pairs": null
+      },
+      "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 100,
+        "rights_bound_pairs": null
+      },
+      "M8_ARTICLE_TO_LICENSED_SUPPLEMENT": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 2,
+        "rights_bound_pairs": null
+      }
+    },
+    "SCIENTIFIC_SOFTWARE": {
+      "M1_ABSTRACT_TO_FULLTEXT": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 384,
+        "rights_bound_pairs": null
+      },
+      "M2_EARLIER_TO_LATER_VERSION": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 81,
+        "rights_bound_pairs": null
+      },
+      "M3_PROTOCOL_TO_RESULTS": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 9,
+        "rights_bound_pairs": null
+      },
+      "M4_ARTICLE_TO_CORRECTION": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 5,
+        "rights_bound_pairs": null
+      },
+      "M5_ARTICLE_TO_DATA_DOCUMENTATION": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 38,
+        "rights_bound_pairs": null
+      },
+      "M6_ARTICLE_TO_CODE_RELEASE": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 72,
+        "rights_bound_pairs": null
+      },
+      "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER": {
+        "at_least_nominal_48_candidate_signal_rows": true,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 83,
+        "rights_bound_pairs": null
+      },
+      "M8_ARTICLE_TO_LICENSED_SUPPLEMENT": {
+        "at_least_nominal_48_candidate_signal_rows": false,
+        "eligible_natural_pairs": null,
+        "metadata_signal_rows": 3,
+        "rights_bound_pairs": null
+      }
+    }
+  }
+}

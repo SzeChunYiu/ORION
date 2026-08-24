@@ -1,0 +1,68 @@
+{
+  "schema_version": "orion.p5.c3.outcome-free-initialization-adapter-preregistration.v9",
+  "protocol_id": "P5.C3.DGM.OUTCOME_FREE_INITIALIZATION.SUCCESSOR.V9",
+  "adapter_id": "DGM_OUTCOME_FREE_INITIALIZATION_ADAPTER_V9",
+  "arm_id": "C3_ARCHIVE_BASED_SELF_EDIT__DGM",
+  "case_id": "P5-PUBLIC-LANG1-COMMON-001",
+  "frozen_before_microgate": true,
+  "predecessor": {
+    "packet": "development/p5-c3-native-environment-v8-2026-08-23",
+    "candidate_seed": "P5_C3_CANDIDATE_SAFE_SEED_V8.tar.gz",
+    "candidate_seed_sha256": "8d7197f581cad11695ae4c867ad8f941d86f7eeec8d0e8e4e7b79895d72b8f2d",
+    "receipt": "P5_C3_NATIVE_TASK_ENVIRONMENT_RECEIPT_V8.json",
+    "receipt_sha256": "fafca0ece9654e7c0b0e738628648fea9b74a917b29440c16513b53a7b21a4d2",
+    "residual": "UNCHANGED_DGM_REQUIRES_EXCLUDED_INITIAL_OUTCOME_METADATA_TO_INITIALIZE"
+  },
+  "immutable_identities": {
+    "dgm_source_commit": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+    "dgm_source_tree": "dc58ea5c481124afdb97468c1bed4e0debb425c4",
+    "dgm_outer_member": "candidate/dgm/DGM_outer.py",
+    "dgm_outer_sha256": "239bc76f0e1b78210b8f7b3757b1082f6ca07db3537d6af50a45bf97709795ed",
+    "lang1_shared_core_members": 6,
+    "lang1_source_archive_sha256": "f97c316795a6ba124f693bce9e8019b1735bc976affa9bce8d4c52f668575f08"
+  },
+  "allowed_adapter_action": "Translate a genuinely outcome-free native initialization interface into the unchanged native archive contract without changing parent selection, self-edit, evaluation, archive-update, Lang-1 task or terminal semantics.",
+  "forbidden_actions": [
+    "read or restore initial/ or initial_polyglot/",
+    "read or restore swe_bench/ref_agent_results/",
+    "invent, default, zero-fill or impute overall_performance",
+    "execute DGM, model, benchmark, scorer, tests or protected outcomes",
+    "modify DGM_outer.py or any other DGM source byte",
+    "modify, extract for mutation or replace any Lang-1 shared-core byte",
+    "use an empty archive, zero self-improvement size or zero generations as evidence of a runnable C3 self-edit",
+    "replace score/count-dependent native parent eligibility or selection with a new rule",
+    "mutate any V8 file"
+  ],
+  "cheapest_decisive_microgate": {
+    "type": "STATIC_EXACT_BYTE_AND_AST_DATAFLOW_GATE",
+    "only_source_member_opened": "candidate/dgm/DGM_outer.py",
+    "checks": [
+      "fresh native initialization fixes archive to a nonempty initial parent",
+      "fresh native initialization requires an initial directory",
+      "native parent eligibility dereferences overall_performance",
+      "required prior fields include accuracy_score and resolved/unresolved/empty-patch identifiers",
+      "missing metadata removes the only initial parent from candidates",
+      "all nondegenerate native parent-selection routes require a nonempty candidate set",
+      "no released outcome-free initialization argument or branch exists"
+    ],
+    "outcome_execution_allowed": false
+  },
+  "acceptance_gate": {
+    "native_dgm_bytes_unchanged": true,
+    "lang1_shared_core_bytes_unchanged": true,
+    "excluded_prior_outcome_prefixes_absent": true,
+    "prior_performance_fields_created": false,
+    "native_parent_selection_semantics_unchanged": true,
+    "nonempty_initial_parent_eligible_without_outcome_metadata": true,
+    "nondegenerate_self_edit_route_preserved": true
+  },
+  "stop_rule": "If the exact native source requires prior outcome metadata for every nondegenerate initial parent, stop without materializing an adapter or changing native semantics.",
+  "claims_if_stopped": {
+    "runtime.task_environment": "BLOCKING",
+    "field_instances_closed": 0,
+    "execution_readiness": "NOT_ESTABLISHED",
+    "performance": "CANNOT_CHECK",
+    "superiority": "CANNOT_CHECK"
+  },
+  "preregistered_at_utc": "2026-08-23T21:20:00Z"
+}

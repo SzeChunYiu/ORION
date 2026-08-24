@@ -1,0 +1,65 @@
+{
+  "$id": "https://orion.invalid/p5/v4/c5-double-ratchet-native-terminal.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "arm_id": {
+      "const": "C5_EVALUATOR_ONLY__DOUBLE_RATCHET_METRIC_ONLY"
+    },
+    "evaluator_artifact_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "metric_db_sha256": {
+      "type": "string"
+    },
+    "native_result_sha256": {
+      "type": "string"
+    },
+    "native_terminal": {
+      "enum": [
+        "SUCCESS",
+        "TIMEOUT",
+        "ERROR",
+        "EMPTY",
+        "DOUBLE_RATCHET_GUARD_FAILURE"
+      ]
+    },
+    "performance": {
+      "const": "CANNOT_CHECK"
+    },
+    "protected_outcome_accessed": {
+      "const": false
+    },
+    "reason": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "orion.p5.c5.double-ratchet-native-terminal.v4"
+    },
+    "solver_bytes_preserved": {
+      "type": "boolean"
+    },
+    "terminal_class": {
+      "enum": [
+        "EVALUATOR_REPAIR",
+        "UNRESOLVED"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "arm_id",
+    "terminal_class",
+    "native_terminal",
+    "reason",
+    "evaluator_artifact_sha256",
+    "solver_bytes_preserved",
+    "performance",
+    "protected_outcome_accessed"
+  ],
+  "title": "Outcome-blind C5 native terminal",
+  "type": "object"
+}

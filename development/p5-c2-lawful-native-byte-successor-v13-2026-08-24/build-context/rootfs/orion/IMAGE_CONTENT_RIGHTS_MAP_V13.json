@@ -1,0 +1,73 @@
+{
+  "all_entries_retention_disclosure_publication_addressed": true,
+  "base_image": "scratch",
+  "base_image_third_party_files": 0,
+  "boundary": "Completeness is accepted only if the exported layer inventory equals this exact path set and each byte hash equals the frozen rootfs manifest.",
+  "entries": [
+    {
+      "disposition": "New deterministic syscall-only probe",
+      "license_concluded": "CC0-1.0",
+      "path": "/orion/probe",
+      "type": "regular_file"
+    },
+    {
+      "disposition": "Exact V6 Apache Commons Lang archive; NOTICE retained",
+      "license_concluded": "Apache-2.0",
+      "path": "/orion/input/commons-lang-source.tar.gz",
+      "type": "regular_file"
+    },
+    {
+      "disposition": "Exact V6 authored case body",
+      "license_concluded": "CC0-1.0",
+      "path": "/orion/input/CASE_BODY_V6.json",
+      "type": "regular_file"
+    },
+    {
+      "disposition": "Exact V6 authored task specification",
+      "license_concluded": "CC0-1.0",
+      "path": "/orion/input/TASK_SPECIFICATION_V6.md",
+      "type": "regular_file"
+    },
+    {
+      "disposition": "Retained Apache-2.0 license text",
+      "license_concluded": "Apache-2.0",
+      "path": "/orion/licenses/APACHE-2.0.txt",
+      "type": "regular_file"
+    },
+    {
+      "disposition": "Retained Apache NOTICE",
+      "license_concluded": "Apache-2.0",
+      "path": "/orion/licenses/APACHE-NOTICE.txt",
+      "type": "regular_file"
+    },
+    {
+      "disposition": "Retained CC0-1.0 legal text",
+      "license_concluded": "CC0-1.0",
+      "path": "/orion/licenses/CC0-1.0.txt",
+      "type": "regular_file"
+    },
+    {
+      "disposition": "New explicit generated-artifact authority",
+      "license_concluded": "CC0-1.0",
+      "path": "/orion/GENERATED_ARTIFACT_AUTHORITY_V13.json",
+      "type": "regular_file"
+    },
+    {
+      "disposition": "New complete image-content rights map",
+      "license_concluded": "CC0-1.0",
+      "path": "/orion/IMAGE_CONTENT_RIGHTS_MAP_V13.json",
+      "type": "regular_file"
+    }
+  ],
+  "legal_advice": false,
+  "license_bundle_paths": [
+    "/orion/licenses/APACHE-2.0.txt",
+    "/orion/licenses/APACHE-NOTICE.txt",
+    "/orion/licenses/CC0-1.0.txt"
+  ],
+  "regular_file_count": 9,
+  "schema_version": "orion.p5.c2.image-content-rights-map.v13",
+  "status": "COMPLETE_FOR_EVERY_REGULAR_FILE_OR_SYMLINK_EXPECTED_IN_SCRATCH_ROOTFS",
+  "successor_identity": "C2_RIGHTS_CLEARED_SCRATCH_IMAGE_SUCCESSOR__ORION_V13",
+  "symlink_count": 0
+}

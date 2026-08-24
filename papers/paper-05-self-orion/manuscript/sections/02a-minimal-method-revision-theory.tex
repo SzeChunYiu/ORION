@@ -35,8 +35,11 @@ G(\theta)=
 \end{cases}
 \]
 Returning an antichain rather than silently choosing one incomparable element
-is deliberate. Further measurement is required when the evidence does not
-select a unique member.
+is deliberate. Additional licensed measurement may shrink a front when the
+plurality is caused by unresolved latent information. If several revisions
+remain minimal even with the situation fixed, measurement alone need not choose
+among them; an explicit downstream loss, host preference or retained antichain
+is then required.
 
 A reviser observes an interface $\phi:\Theta\to\mathcal Z$, not $\theta$
 itself. The interface can include a failure transcript, retrieved records,
@@ -58,6 +61,14 @@ Conversely, if $G$ is constant on each fibre of $\phi$, define $g(z)$ to be
 $G(\theta)$ for any $\theta$ satisfying $\phi(\theta)=z$. Fibre constancy
 makes the definition independent of the representative. \hfill$\square$
 
+Theorem~1 is set-theoretic.  Fibre constancy alone does not guarantee that the
+induced factor is measurable or computable.  For a measurable reviser one must
+equip the spaces with sigma algebras and additionally require the induced $g$
+to be measurable on $\phi(\Theta)$.  In the standard-Borel, finite-decision
+formulation below, measurable factorization is equivalently the requirement
+that $G$ be $\sigma(\phi)$-measurable.  The distributional result imposes these
+conditions rather than silently promoting the set-theoretic theorem.
+
 Thus exact selection requires decision sufficiency, not recovery of every
 latent cause. A compressed interface is enough if it separates all situations
 that require different revision fronts. An arbitrarily rich interface is
@@ -68,22 +79,29 @@ theory below is claimed as a new general statistical principle.
 
 \subsection{Irreducible revision risk}
 
-Let $\Theta\sim\mu$, $Z=\phi(\Theta)$, and $Y=G(\Theta)$, with finite decision
-alphabet $\mathcal Y$. Let $\mathcal D$ be a finite action set that may include
-revision fronts and abstention, and let
+For the distributional result, assume $\Theta$ and $\mathcal Z$ are standard
+Borel spaces and $\phi$ and $G$ are measurable. Let $H\sim\mu$ on $\Theta$,
+$Z=\phi(H)$, and $Y=G(H)$, with finite nonempty decision alphabet $\mathcal Y$
+carrying its discrete sigma algebra. Let
+$\mathcal D$ be a finite nonempty action set that may include revision fronts and
+abstention, and let
 $L:\mathcal D\times\mathcal Y\to[0,\infty)$ encode the cost of under-revision,
 false broad revision, harmful transfer, or abstention. Write
-$p_y(z)=\Pr\{Y=y\mid Z=z\}$.
+$p_y(z)=\Pr\{Y=y\mid Z=z\}$ for a regular conditional version, which exists
+under these assumptions.
 
 \paragraph{Theorem 2 (mixed-fibre Bayes bound).}
-Every deterministic or randomized rule using only $Z$ has risk at least
+Every measurable deterministic rule or measurable randomized Markov-kernel
+rule using only $Z$ has risk at least
 \[
   R^*(\phi,L)=
   \mathbb E_Z\!\left[
     \min_{a\in\mathcal D}\sum_{y\in\mathcal Y}L(a,y)p_y(Z)
   \right],
 \]
-and a fibrewise Bayes action attains equality. For zero--one loss this becomes
+and a fibrewise Bayes action attains equality.  Because both alphabets are
+finite, a fixed ordering supplies a measurable tie-break among minimizers. If
+$\mathcal D=\mathcal Y$ and $L(a,y)=\mathbf 1\{a\ne y\}$, this becomes
 \[
   R^*(\phi)=1-\mathbb E_Z\!\left[\max_y p_y(Z)\right].
 \]
@@ -123,7 +141,7 @@ An always-abstain rule can remain sound, but it is not complete.
 Theorems~1--2 say when an interface is insufficient; the next result identifies
 exactly what a finite intervention programme must separate. Fix an observed
 value $z$ and a finite ambiguous fibre
-$F_z=\{\theta:\phi(\theta)=z\}$. Let $\mathcal T$ be candidate tests or
+$F_z=\{\theta:\phi(\theta)=z\}$. Let $\mathcal T$ be a finite set of candidate tests or
 controlled interventions, with deterministic protected outcomes
 $o_t(\theta)$ for $t\in\mathcal T$. Define the cross-decision pair universe
 \[
@@ -142,10 +160,11 @@ selection on $F_z$ if and only if
 \[
   \bigcup_{t\in S}D_t=U_z.
 \]
-Consequently, for test costs $c_t\ge0$, a minimum-cost exact panel is exactly
-the weighted set-cover optimum of the induced instance
-$(U_z,\{D_t:t\in\mathcal T\},c)$. If some pair in $U_z$ belongs to no $D_t$,
-no panel drawn from $\mathcal T$ can resolve the revision decision.
+Consequently, for test costs $c_t\ge0$, whenever an exact panel exists, a
+minimum-cost exact panel exists and is exactly a weighted set-cover optimum of
+the finite induced instance $(U_z,\{D_t:t\in\mathcal T\},c)$. If some pair in
+$U_z$ belongs to no $D_t$, no panel drawn from $\mathcal T$ can resolve the
+revision decision.
 
 \paragraph{Proof.}
 The joint signature of $\theta$ under $S$ is
@@ -154,8 +173,18 @@ no two situations with different $G$ values share a joint signature. A
 cross-decision pair has different joint signatures precisely when at least one
 selected test distinguishes it, which is precisely the stated cover condition.
 Minimizing the additive test cost over all such panels is the induced weighted
-set-cover problem. The last claim follows when a required pair is uncovered by
-the full candidate family. \hfill$\square$
+set-cover problem.  Finiteness of $\mathcal T$ makes its feasible family finite,
+so a nonnegative-cost optimum is attained whenever it is feasible. The last
+claim follows when a required pair is uncovered by the full candidate family.
+\hfill$\square$
+
+For an arbitrary candidate-test family, the cover equivalence remains valid
+for finite panels and the infimum exact-panel cost equals the corresponding
+weighted set-cover infimum, but an optimizer need not exist.  For example,
+tests with one common required incidence pattern and costs $1/n$ have infimum
+zero without an attaining test.  Any claim of a minimum beyond the finite
+setting therefore needs an explicit compactness or least-cost-representative
+condition.
 
 \paragraph{Proposition 1 (adaptive leaf-purity criterion).}
 For deterministic test outcomes, a terminating adaptive test policy permits an
@@ -171,18 +200,142 @@ agree. Applying this condition to every reachable leaf proves both directions.
 These are structural equivalences in the classical minimum-test-set
 neighbourhood \cite{moret1985}, not claims that every real experiment is
 deterministic or that a generic set-cover heuristic is statistically optimal.
-With stochastic outcomes, tests must instead separate protected outcome
-distributions to a declared error tolerance. Adaptivity can reduce expected
-cost but cannot separate a pair whose outcome distributions are identical under
-every available intervention. This connects method
-revision to active diagnosis and sequential experimental design
+
+\paragraph{Theorem 4 (stochastic adaptive-transcript criterion).}
+Fix a possibly randomized terminating adaptive policy $\pi$ and let $T_\pi$
+be its complete action--outcome transcript in a common standard-Borel transcript
+space.  For each $\theta\in F_z$, let $P_\theta^\pi$ be the law of $T_\pi$.
+A measurable transcript decoder is exact almost surely for every situation in
+$F_z$ if and only if there is a measurable partition
+$\{B_y:y\in G(F_z)\}$ such that
+\[
+  P_\theta^\pi(B_{G(\theta)})=1
+  \qquad\text{for every }\theta\in F_z.
+\]
+For $F_{z,y}=\{\theta\in F_z:G(\theta)=y\}$, define the uniform class mixture
+\[
+  Q_y^\pi=|F_{z,y}|^{-1}\sum_{\theta\in F_{z,y}}P_\theta^\pi.
+\]
+Equivalently, the finite family $\{Q_y^\pi:y\in G(F_z)\}$ is pairwise mutually
+singular. Under any prior $H\sim\nu$ on $F_z$, the smallest zero--one
+transcript-decoding error is
+\[
+  1-\mathbb E_{T_\pi}\!\left[
+    \max_{y\in G(F_z)}\Pr\{G(H)=y\mid T_\pi\}
+  \right],
+\]
+and a measurable fixed-order Bayes decoder attains it.
+
+\emph{Proof.} An exact decoder's inverse images give the displayed decision
+regions. Conversely, the partition defines an exact decoder. Since $F_z$ and
+its decision image are finite, existence of that partition is equivalent to
+mutual singularity of the finite decision-class mixtures. The risk identity
+and attainment follow from Theorem~2 with $T_\pi$ as the interface.
+\hfill$\square$
+
+In particular, adaptivity cannot exactly separate a cross-decision pair whose
+complete transcript laws under the fixed policy are identical.  A stronger
+policy-uniform sufficient condition is equality of the history-conditional
+outcome kernels for every available intervention at every common reachable
+history; with world-independent policy randomization that may depend on observed
+history, this makes the complete
+transcript laws identical by induction for every policy.  The converse need
+not hold for a fixed policy, because it may never select an intervention on
+which the kernels differ. Equality of one-test marginals is also insufficient:
+joint dependence can carry information. Optimizing risk plus experimental cost
+over an unrestricted adaptive-policy class may yield only an infimum; no
+optimal policy is asserted without a finite policy class or suitable
+compactness and lower-semicontinuity conditions. This connects method revision
+to active diagnosis and sequential experimental design
 \cite{reiter1987,dekleer1987,chernoff1959,golovin2011} while making the target
 the minimal authorized revision, rather than latent-cause recovery alone.
+
+
+\subsection{Controlled-state active revision with legal laboratory transitions}
+
+The stochastic transcript criterion fixes one policy.  Choosing a policy also
+requires representing which discriminator remains legal after each outcome.
+For a finite nonempty ambiguous situation set $W$, let $G(w)$ be the required
+revision front and let $\mathcal S$ be a finite nonempty observable
+laboratory-state set.  In state $s\in\mathcal S$, let $\mathcal D(s)$ be a
+finite nonempty terminal-action set (including revision, deferral, or unresolved
+actions) and let $\mathcal E(s)$ be a finite, possibly empty, legal intervention
+set.  For $e\in\mathcal E(s)$, let $c(s,e)\geq0$ be its cost, let $B(s,e)$ be a
+finite nonempty joint outcome--next-state branch set, and let
+$K_{s,e}(o,s'\mid w)$ be a known probability mass function on $B(s,e)$.  The
+recorded state is assumed Markov-sufficient for intervention legality, costs,
+and these kernels.  A destructive intervention moves to a state where it is no
+longer in $\mathcal E(s')$; a
+no-repeat restriction is therefore a transition law, not a prose instruction.
+
+For terminal loss $L_s(d,G(w))$, set
+$\ell_{s,d}(w)=L_s(d,G(w))$ and define
+\[
+ \mathfrak V_{0,s}=\{\ell_{s,d}:d\in\mathcal D(s)\},
+\]
+\[
+\begin{aligned}
+ \mathfrak V_{n,s}=\mathfrak V_{0,s}\cup
+ \bigcup_{e\in\mathcal E(s)}\Bigl\{v:\quad
+ v(w)={}&c(s,e)+\sum_{(o,s')\in B(s,e)}
+     K_{s,e}(o,s'\mid w)v_{o,s'}(w),\\
+ &v_{o,s'}\in\mathfrak V_{n-1,s'}
+ \quad\text{for every }(o,s')\in B(s,e)\Bigr\}.
+\end{aligned}
+\]
+Stopping is permitted before the at-most-$n$ budget is exhausted.
+
+\paragraph{Theorem 5 (finite state-indexed revision frontier;
+donor-derived).}
+The set $\mathfrak V_{n,s}$ is exactly the world-risk-vector set of all legal
+deterministic revision-discriminator trees from $s$.  For an arbitrary
+nonempty fixed ex-ante credal set $\Pi\subseteq\Delta(W)$, deterministic and
+world-independent randomized perfect-recall minimax values are
+\[
+ \min_{v\in\mathfrak V_{n,s}}\sup_{p\in\Pi}p\!\cdot\!v,
+ \qquad
+ \min_{v\in\operatorname{conv}(\mathfrak V_{n,s})}
+      \sup_{p\in\Pi}p\!\cdot\!v.
+\]
+Both policy minima are attained, although an inner maximizing licensed prior
+need not exist when $\Pi$ is nonclosed.
+
+\emph{Proof.} Backward induction enumerates stops and, for every legal root
+intervention, one depth-$(n-1)$ continuation per observed $(o,s')$ branch.
+Conditional expectation gives the recurrence in one direction; attaching the
+inductively supplied continuation trees gives the converse.  Finite perfect
+recall makes world-independent behavioural randomization outcome-law
+equivalent to a mixture over deterministic trees, hence the convex hull.  The
+risk frontier is finite, its convex hull compact, and the credal support
+function is Lipschitz. \hfill$\square$
+
+With one prior, scalarization gives the ordinary controlled posterior Bellman
+equation, conditioning on outcome and observed next state.  With a fixed
+nonrectangular prior set, the risk vectors must remain coupled until the root.
+A posterior-local adversary that independently pastes conditionals at different
+histories solves the rectangular path-law hull.  For each fixed policy, its
+fixed-prior and rectangular robust expectations agree for every bounded path
+loss exactly when that policy's induced closed convex path-law family is already
+stable under positive-history pasting \cite{epstein2003}. Equality of the
+optimized control values is weaker: it requires at least one fixed-prior-optimal
+policy whose value is not raised by rectangularization.
+
+The recurrence and pasting boundary are inherited from finite POMDP,
+multiple-priors, and robust-control theory
+\cite{smallwood1973,iyengar2005,nakao2021}; P5 does not claim a new alpha-vector
+or robust-POMDP theorem.  Its use is claim-relative and fail-closed.  An
+observed next state can be informative; an unavailable test cannot appear in a
+plan; randomization is only an executable scientific action if the protocol
+licenses it; and a zero-cost separating path defeats a positive acquisition-
+cost obligation.  The nine retained failures S1--S9 remain separate successor
+research identities.  The exact seven-witness receipt is a local arithmetic
+and exhaustive-tree check, not empirical evidence that any real discriminator
+kernel or laboratory state is valid.
 
 \subsection{The three retained errors as new experiments}
 
 The diagnostic archive contains three observed collisions between neighbouring
-revision levels. They are not evidence for Theorems~1--3 and are not repaired
+revision levels. They are not evidence for Theorems~1--5 and are not repaired
 by renaming their labels. Each instead defines a successor pair universe and a
 factorial discriminator.
 
@@ -202,6 +355,11 @@ factorial discriminator.
   under a frozen representation. Improvement only under the joint treatment
   identifies an interaction, not a license to credit either component alone.
 \end{enumerate}
+
+P5-RD-01 and P5-RD-03 remain unexecuted. P5-RD-02 has only its immutable
+public-development V1/V2 observations and post-outcome V3 archival audit; those
+records neither correct P5-HC-012 nor supply protected freshness or H1--H4
+authority.
 
 These interventions refine the visible-symptom fibres that produced
 P5-HC-002, P5-HC-012 and P5-HC-018. The separate wide successor then asks

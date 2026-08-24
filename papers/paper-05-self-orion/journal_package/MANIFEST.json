@@ -1,96 +1,23 @@
 {
   "schema_version": "orion.journal-package.v1",
   "paper_id": "P5",
-  "package_status": "SUBMISSION_READY",
-  "declared_paper_terminal": "P5_SCOPED_NON_SELF_PROMOTION_SUPPORTED__FRESH_IMPROVEMENT_CANNOT_CHECK",
-  "claim_boundary": "SCOPED_SELF_IMPROVEMENT_AUTHORITY_SEPARATION__NO_TRANSFERABLE_IMPROVEMENT_SUPERIORITY",
-  "audit_subject_revision": "6dd510c811deb20a10f722e40d915cb5bda13548",
-  "audit_date": "2026-08-20",
+  "package_status": "SCAFFOLDING",
+  "declared_paper_terminal": "CANNOT_CHECK",
+  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
+  "audit_date": "2026-08-24",
   "issue": 160,
   "required_files": [
     {
-      "path": "journal_package/manuscript.pdf",
-      "role": "compiled-and-audited-scoped-governance-manuscript"
-    },
-    {
       "path": "manuscript/main.tex",
-      "role": "canonical-manuscript-source"
-    },
-    {
-      "path": "manuscript/bibliography.bib",
-      "role": "manuscript-bibliography"
-    },
-    {
-      "path": "manuscript/sections/01-scope.tex",
-      "role": "scope"
-    },
-    {
-      "path": "manuscript/sections/02-failure-as-knowledge.tex",
-      "role": "failure-as-knowledge"
-    },
-    {
-      "path": "manuscript/sections/03-attribution-issue-state.tex",
-      "role": "attribution-and-issue-state"
-    },
-    {
-      "path": "manuscript/sections/04-challengers-invention.tex",
-      "role": "challenger-and-invention-governance"
-    },
-    {
-      "path": "manuscript/sections/05-change-control.tex",
-      "role": "change-control"
-    },
-    {
-      "path": "manuscript/sections/06-protected-assurance.tex",
-      "role": "protected-assurance"
-    },
-    {
-      "path": "manuscript/sections/06a-related-work.tex",
-      "role": "related-work"
-    },
-    {
-      "path": "manuscript/sections/07-evaluation.tex",
-      "role": "evaluation-design"
-    },
-    {
-      "path": "manuscript/sections/09-results-attribution.tex",
-      "role": "diagnostic-results"
-    },
-    {
-      "path": "manuscript/sections/10-limitations.tex",
-      "role": "limitations"
-    },
-    {
-      "path": "manuscript/sections/11-ethics-reproducibility.tex",
-      "role": "ethics-and-reproducibility"
-    },
-    {
-      "path": "manuscript/sections/08-claim-boundary.tex",
-      "role": "claim-boundary-and-conclusion"
-    },
-    {
-      "path": "figures/p5_1_governed_development_loop.pdf",
-      "role": "rendered-governance-loop-figure"
+      "role": "manuscript-source"
     },
     {
       "path": "evidence/FALSIFIER_V1.md",
-      "role": "local-hostile-governance-falsifier"
+      "role": "local-falsifier"
     },
     {
       "path": "evidence/glm-5.2-attribution/report.json",
-      "role": "bounded-diagnostic-attribution-report"
-    },
-    {
-      "path": "evidence/CLAIM_LEDGER_V1.md",
-      "role": "claim-ledger"
-    },
-    {
-      "path": "evidence/PEER_REVIEW_READY_SCOPED_V1.md",
-      "role": "scoped-peer-review-readiness-attestation"
-    },
-    {
-      "path": "SCOPED_PUBLICATION_TRACK_V1.md",
-      "role": "scoped-non-self-promotion-publication-decision"
+      "role": "attribution-report"
     },
     {
       "path": "REPRODUCE.md",
@@ -98,62 +25,56 @@
     },
     {
       "path": "JOURNAL_READINESS.md",
-      "role": "scoped-readiness-gate"
+      "role": "gate-checklist"
+    },
+    {
+      "path": "evidence/CLAIM_LEDGER_V1.md",
+      "role": "claim-ledger"
+    },
+    {
+      "path": "evidence/P5_C2_V11_V13_INTEGRATION_AUDIT.json",
+      "role": "distinct-successor-integration-audit"
+    },
+    {
+      "path": "evidence/CLAIM_LEDGER_V1.json",
+      "role": "machine-readable-claim-ledger"
+    },
+    {
+      "path": "THEORY_CLAIM_LEDGER_V2.md",
+      "role": "theory-and-evidence-claim-ledger"
+    },
+    {
+      "path": "manuscript/main.pdf",
+      "role": "local-working-pdf-not-submission-package"
     }
   ],
-  "missing_artifacts": [],
-  "submission_operations": [
+  "missing_artifacts": [
     {
-      "path": "journal_package/COVER_LETTER_FINAL.md",
-      "role": "venue-specific-cover-letter",
-      "status": "SUBMISSION_OPERATION",
-      "reason": "Finalize for the actual venue and submission metadata."
-    },
-    {
-      "path": "journal_package/AUTHOR_ATTESTATION_FINAL.md",
-      "role": "authors-contributions-funding-conflicts",
-      "status": "SUBMISSION_OPERATION",
-      "reason": "Requires actual author/host declarations at upload."
-    },
-    {
-      "path": "journal_package/PERMANENT_ARCHIVE_RECEIPT.json",
-      "role": "permanent-archive-or-doi",
-      "status": "SUBMISSION_OPERATION",
-      "reason": "Create only for the exact deposited bytes."
-    },
-    {
-      "path": "journal_package/LITERATURE_REFRESH_SUBMISSION.md",
-      "role": "submission-date-literature-refresh",
-      "status": "SUBMISSION_OPERATION",
-      "reason": "Refresh immediately before actual upload if needed."
-    }
-  ],
-  "follow_up_science": [
-    {
-      "id": "P5.H1-H4",
+      "path": "journal_package/manuscript.pdf",
+      "role": "compiled-pdf",
       "status": "CANNOT_CHECK",
-      "reason": "The protected fresh-transfer/self-improvement performance campaign remains a separate empirical extension and is not a premise of the scoped governance paper."
+      "reason": "Working draft only. This package does not fabricate a PDF."
+    },
+    {
+      "path": "journal_package/DOI.txt",
+      "role": "permanent-archive-doi",
+      "status": "CANNOT_CHECK",
+      "reason": "No DOI."
+    },
+    {
+      "path": "evidence/fresh-transfer/RESULT_ARCHIVE_V1.json",
+      "role": "fresh-transfer-result",
+      "status": "CANNOT_CHECK",
+      "reason": "Protected fresh-transfer / self-improvement campaign has not been archived."
+    },
+    {
+      "path": "journal_package/cover_letter.md",
+      "role": "journal-cover-letter",
+      "status": "CANNOT_CHECK",
+      "reason": "No cover letter; paper is not PEER_REVIEW_READY."
     }
   ],
   "claims": [
-    {
-      "id": "P5.AUTHORITY_SEPARATION",
-      "text": "Within the registered Self-ORION architecture, internal diagnosis, revision responsibility, candidate mechanics and the composed T7 controller can recommend next research actions but cannot grant scientific revision, adoption, promotion, merge or global-task-stop authority; final adoption remains protected and host-owned.",
-      "artifacts": [
-        "evidence/CLAIM_LEDGER_V1.md",
-        "evidence/FALSIFIER_V1.md"
-      ],
-      "status": "SUPPORTED"
-    },
-    {
-      "id": "P5.ERROR_CONTAINMENT",
-      "text": "The retained 21/24 hidden-cause attribution archive contains three real errors, while the registered authority structure prevents an attribution result by itself from constituting an adoption certificate; this supports a bounded architectural error-containment interpretation, not an empirical self-improvement benefit claim.",
-      "artifacts": [
-        "evidence/glm-5.2-attribution/report.json",
-        "evidence/CLAIM_LEDGER_V1.md"
-      ],
-      "status": "BOUNDED"
-    },
     {
       "id": "P5.FALSIFIER",
       "text": "Local hostile suite exercises recurrence-not-cause, negative-history, replay/fresh separation, invention readiness and protected-path attacks.",
@@ -179,13 +100,22 @@
       "status": "CANNOT_CHECK"
     },
     {
-      "id": "P5.PDF",
-      "text": "The tracked scoped non-self-promotion PDF is built from the canonical final source and passes the package and claim audit.",
+      "id": "P5.C2.V11-V13",
+      "text": "V11, V12 and V13 close different C2 successor obligations without aggregation; released MOSS remains 7/21 bound and 14 blocking, 0/6 arms are ready, and no performance or superiority claim follows.",
       "artifacts": [
-        "journal_package/manuscript.pdf",
+        "evidence/P5_C2_V11_V13_INTEGRATION_AUDIT.json"
+      ],
+      "status": "BOUNDED"
+    },
+    {
+      "id": "P5.PDF",
+      "text": "Local Tectonic build and full 39-page visual inspection completed; independent external PDF proofread remains open.",
+      "artifacts": [
+        "manuscript/main.pdf",
         "journal_package/CLAIM_PDF_AUDIT.md"
       ],
-      "status": "SUPPORTED"
+      "status": "BOUNDED",
+      "boundary": "Local build and visual QA only; independent external proofread and submission-format PDF remain open."
     }
   ],
   "scientific_result_verification": {

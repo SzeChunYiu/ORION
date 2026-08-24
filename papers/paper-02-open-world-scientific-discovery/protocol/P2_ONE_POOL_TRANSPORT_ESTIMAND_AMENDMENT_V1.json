@@ -1,0 +1,76 @@
+{
+  "schema_version": "orion.p2.one-pool-transport-estimand-amendment.v1",
+  "frozen_on": "2026-08-23",
+  "paper": "P2",
+  "authority": "POST_SCHEMA_REPAIR_PUBLIC_LABEL_ONE_POOL_DEVELOPMENT_ONLY",
+  "preserved_predecessor_terminal": "P2_ZENODO_ACTIVE_ACQUISITION_TRANSPORT_CANNOT_CHECK_BINDING",
+  "authorized_paper_terminal": "P2_NARROWED",
+  "source_result": {
+    "path": "development/p2-zenodo-transport-successor-2026-08-23/RESULT_V2.json",
+    "sha256": "60c050a0bb1580c279d80ac365a80c9122de25fa0c796190ab897f2ed8119b3b",
+    "canonical_population": 25534,
+    "included_records": 2259,
+    "active_recall_at_10_percent": 0.703409,
+    "static_seed_centroid_recall_at_10_percent": 0.335989,
+    "conditional_difference_exact_from_receipt": 0.367419212040726,
+    "conditional_difference_reported_6dp": 0.367419,
+    "active_wss_at_95": 0.744744
+  },
+  "estimand": {
+    "symbol": "Delta_10(P,z)",
+    "definition": "R_active(P,z;0.10)-max_{k in registered baselines} R_k(P,z;0.10)",
+    "conditioning": [
+      "one canonical post-schema-repair physiotherapy pool P",
+      "one disclosed target-label-informed warm-seed rule z",
+      "the frozen source-specific representation and identity adapter"
+    ],
+    "statistical_unit": "ONE_POOL",
+    "cross_world_inference": false
+  },
+  "reused_across_source_families": [
+    "active SGD update rule",
+    "declared learner hyperparameters",
+    "batch-size rule"
+  ],
+  "target_adapted_or_target_informed": [
+    "TF-IDF representation",
+    "record identity adapter",
+    "newly fitted target-pool model",
+    "warm-start selection after scanning complete public labels"
+  ],
+  "verification_boundary": {
+    "producing_lane_reports_byte_identical_rerun": true,
+    "separate_archived_replay_receipt": false,
+    "independent_verification": false,
+    "scientific_replication": false
+  },
+  "not_authorized": [
+    "fitted-model transport",
+    "representation transport",
+    "identity-adapter transport",
+    "initialization-policy transport",
+    "cold-start screening",
+    "population-average transport effect",
+    "multi-review replication",
+    "source-general or cross-domain superiority",
+    "ORION-specific superiority",
+    "open-world route invention",
+    "task-closure authority"
+  ],
+  "next_discriminator": {
+    "design": "prospectively population-frozen source-disjoint multi-review family",
+    "review_level_estimand": "Delta_j(b)=R_active,j(b)-max_k R_k,j(b)",
+    "population_summaries": [
+      "across-review mean with hierarchical uncertainty",
+      "lower-tail or worst-review behavior under a prespecified rule",
+      "WSS@95 as a co-primary or hierarchically gated endpoint"
+    ],
+    "requirements": [
+      "externally custodied labels and seed selection",
+      "strong modern source-native screening comparator",
+      "prespecified hierarchical population estimand",
+      "independent replay and source-disjoint replication",
+      "no reuse of the V2 repaired population as confirmation"
+    ]
+  }
+}

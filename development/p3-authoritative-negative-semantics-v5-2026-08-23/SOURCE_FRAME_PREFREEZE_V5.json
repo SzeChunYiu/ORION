@@ -1,0 +1,392 @@
+{
+  "boundaries": {
+    "comparator_outputs_opened": false,
+    "explicit_negative_counts_observed": false,
+    "ontology_axiom_payloads_opened": false,
+    "positive_reference_absence_as_negative": false,
+    "protected_outcomes_opened": false
+  },
+  "counts": {
+    "advertised_bytes": 11076252,
+    "families": 3,
+    "frozen_files": 61,
+    "governance_families": 3
+  },
+  "created_at": "2026-08-23T16:41:03.912600+00:00",
+  "families": {
+    "ENVO_2026_06_26": {
+      "commit": "a2455d1a77e46bb8a664d65a157166b539269042",
+      "files": [
+        {
+          "advertised_bytes": 9614229,
+          "git_blob_sha1": "54a8273c22d570590ea87daeee26196035f84c1f",
+          "path": "envo.owl"
+        }
+      ],
+      "governance_family": "ENVIRONMENT_ONTOLOGY_OBO",
+      "repository": "EnvironmentOntology/envo",
+      "rights_identity": "CC0-1.0 repository licence at exact release commit",
+      "rights_urls": [
+        "https://raw.githubusercontent.com/EnvironmentOntology/envo/a2455d1a77e46bb8a664d65a157166b539269042/LICENSE"
+      ],
+      "tag": "v2026-06-26",
+      "tree": "c58dbb82d3985d84c549236bc0184704867a8fc6"
+    },
+    "FIBO_FND_2026Q2": {
+      "commit": "f59157fe156e3d91b1c045222d0a7dc06b7d78a2",
+      "files": [
+        {
+          "advertised_bytes": 11047,
+          "git_blob_sha1": "85c2ca077946d14dda74c52338a7523a1b44c1e3",
+          "path": "FND/Accounting/AccountingEquity.rdf"
+        },
+        {
+          "advertised_bytes": 9714,
+          "git_blob_sha1": "1f7a1929708bcd827bf695e74f94005095a4b25d",
+          "path": "FND/Accounting/CashFlows.rdf"
+        },
+        {
+          "advertised_bytes": 36093,
+          "git_blob_sha1": "f06b766f11fe040a0f4d2d511c8a7a856045a05c",
+          "path": "FND/Accounting/CurrencyAmount.rdf"
+        },
+        {
+          "advertised_bytes": 215229,
+          "git_blob_sha1": "b9a3e1cf3952eaebb370b60c1a6fe8969dacf294",
+          "path": "FND/Accounting/ISO4217-CurrencyCodes.rdf"
+        },
+        {
+          "advertised_bytes": 5859,
+          "git_blob_sha1": "1f08e6194e39005a284a48fe80124550a0091382",
+          "path": "FND/Accounting/MetadataFNDAccounting.rdf"
+        },
+        {
+          "advertised_bytes": 8910,
+          "git_blob_sha1": "613c97d22944db00972f3b74c0a56f652d68de58",
+          "path": "FND/AgentsAndPeople/Agents.rdf"
+        },
+        {
+          "advertised_bytes": 3573,
+          "git_blob_sha1": "a908d17aa05bc9035437f6038626eaeeef7ba88f",
+          "path": "FND/AgentsAndPeople/MetadataFNDAgentsAndPeople.rdf"
+        },
+        {
+          "advertised_bytes": 56638,
+          "git_blob_sha1": "035b7497fdc163c860206f1b121088e923adc8b8",
+          "path": "FND/AgentsAndPeople/People.rdf"
+        },
+        {
+          "advertised_bytes": 15669,
+          "git_blob_sha1": "4d70259221e3d5f708f3b34b3ea517befa0d4dea",
+          "path": "FND/Agreements/Agreements.rdf"
+        },
+        {
+          "advertised_bytes": 73907,
+          "git_blob_sha1": "90e96983bfb78e300875cdff01ef4dff3a4a2d3b",
+          "path": "FND/Agreements/Contracts.rdf"
+        },
+        {
+          "advertised_bytes": 3905,
+          "git_blob_sha1": "ec1c928c045e03ce8c07a0f2546ed53fded32c5c",
+          "path": "FND/Agreements/MetadataFNDAgreements.rdf"
+        },
+        {
+          "advertised_bytes": 4772,
+          "git_blob_sha1": "8b7a94c82161c7de8e8acbc001818ada24e84e37",
+          "path": "FND/AllFND-NorthAmerica.rdf"
+        },
+        {
+          "advertised_bytes": 16474,
+          "git_blob_sha1": "2405b673a602fe6538c2ab85c3dbb135df87d3fd",
+          "path": "FND/AllFND.rdf"
+        },
+        {
+          "advertised_bytes": 7830,
+          "git_blob_sha1": "26cadce9820cfe9415e22ca926a16138ed2861a5",
+          "path": "FND/Arrangements/Arrangements.rdf"
+        },
+        {
+          "advertised_bytes": 25147,
+          "git_blob_sha1": "f8685f1414e8e06a8a5d9a924432634d190e4723",
+          "path": "FND/Arrangements/Assessments.rdf"
+        },
+        {
+          "advertised_bytes": 7659,
+          "git_blob_sha1": "7ac5bd7633f699dfcea3dd8d08d014b297a27657",
+          "path": "FND/Arrangements/ClassificationSchemes.rdf"
+        },
+        {
+          "advertised_bytes": 9932,
+          "git_blob_sha1": "b02fe19b14ed17f436cecb9a6a1e2ded5c084c94",
+          "path": "FND/Arrangements/Documents.rdf"
+        },
+        {
+          "advertised_bytes": 12662,
+          "git_blob_sha1": "5829023d405112dd26ada43ca37931834bbea61d",
+          "path": "FND/Arrangements/IdentifiersAndIndices.rdf"
+        },
+        {
+          "advertised_bytes": 14476,
+          "git_blob_sha1": "873ebe9e2b48608a4b87c685ee62af3861faea53",
+          "path": "FND/Arrangements/Lifecycles.rdf"
+        },
+        {
+          "advertised_bytes": 4247,
+          "git_blob_sha1": "352d5581fd33ed460032418c6fca688e4bd1b79c",
+          "path": "FND/Arrangements/MetadataFNDArrangements.rdf"
+        },
+        {
+          "advertised_bytes": 24338,
+          "git_blob_sha1": "86d4fc4edfe07c639eab6058562a87ccd5ce5fd8",
+          "path": "FND/Arrangements/Ratings.rdf"
+        },
+        {
+          "advertised_bytes": 17482,
+          "git_blob_sha1": "02d84dc4c06ebebc4a46a8bc98186fd6739903f2",
+          "path": "FND/Arrangements/Reporting.rdf"
+        },
+        {
+          "advertised_bytes": 19594,
+          "git_blob_sha1": "492fffac81aa4d72b2be458a7282772820f9fe81",
+          "path": "FND/DatesAndTimes/BusinessDates.rdf"
+        },
+        {
+          "advertised_bytes": 45044,
+          "git_blob_sha1": "b372b7681fe597fc8d515605c1508c5b7fa3c985",
+          "path": "FND/DatesAndTimes/FinancialDates.rdf"
+        },
+        {
+          "advertised_bytes": 3927,
+          "git_blob_sha1": "cdd20d3dbcfe28be0d98c05867fa30d607532aec",
+          "path": "FND/DatesAndTimes/MetadataFNDDatesAndTimes.rdf"
+        },
+        {
+          "advertised_bytes": 21054,
+          "git_blob_sha1": "a01185ba81909112bf28465b5ba695f66a2fb246",
+          "path": "FND/DatesAndTimes/Occurrences.rdf"
+        },
+        {
+          "advertised_bytes": 3641,
+          "git_blob_sha1": "384e1f4080017923d8a8d80ad226be4217778dd5",
+          "path": "FND/GoalsAndObjectives/MetadataFNDGoalsAndObjectives.rdf"
+        },
+        {
+          "advertised_bytes": 30110,
+          "git_blob_sha1": "3f5ea8888d0a476d1fedcfc5db4ac9405bd7e3e5",
+          "path": "FND/GoalsAndObjectives/Objectives.rdf"
+        },
+        {
+          "advertised_bytes": 42397,
+          "git_blob_sha1": "a18926b52696d4810c15d7afb8802e70b60f633c",
+          "path": "FND/Law/LegalCapacity.rdf"
+        },
+        {
+          "advertised_bytes": 11520,
+          "git_blob_sha1": "af240b5c11926b0feb535f53094d92d24b3c0749",
+          "path": "FND/Law/LegalCore.rdf"
+        },
+        {
+          "advertised_bytes": 5893,
+          "git_blob_sha1": "731ef8bfcbc0bf50a83ee2d9ee4c0452a05bdb1e",
+          "path": "FND/Law/MetadataFNDLaw.rdf"
+        },
+        {
+          "advertised_bytes": 12828,
+          "git_blob_sha1": "8b8ccbc5f36de46f03897449fe26f075dd6e28e6",
+          "path": "FND/MetadataFND.rdf"
+        },
+        {
+          "advertised_bytes": 19012,
+          "git_blob_sha1": "7580090266b905c1b7dddc739f39ac9705df807b",
+          "path": "FND/Organizations/FormalOrganizations.rdf"
+        },
+        {
+          "advertised_bytes": 6080,
+          "git_blob_sha1": "517ef074301abe4d11a758f894b983b4deea62fd",
+          "path": "FND/Organizations/MetadataFNDOrganizations.rdf"
+        },
+        {
+          "advertised_bytes": 15925,
+          "git_blob_sha1": "7e827b792f34bf875ff8fc496d0eac49f242dc3c",
+          "path": "FND/OwnershipAndControl/Control.rdf"
+        },
+        {
+          "advertised_bytes": 3905,
+          "git_blob_sha1": "c01110ad6aeef5ebb145232c9d2ba35db48a25ff",
+          "path": "FND/OwnershipAndControl/MetadataFNDOwnershipAndControl.rdf"
+        },
+        {
+          "advertised_bytes": 29922,
+          "git_blob_sha1": "0b6fec0a5e01fef5ba49c2560fbf6ac42cabe05a",
+          "path": "FND/OwnershipAndControl/Ownership.rdf"
+        },
+        {
+          "advertised_bytes": 6995,
+          "git_blob_sha1": "9f84a8dd3c29fa4cb385a5668171738261c86c8d",
+          "path": "FND/OwnershipAndControl/OwnershipAndControl.rdf"
+        },
+        {
+          "advertised_bytes": 3333,
+          "git_blob_sha1": "8d8fffb33a882724591150eeb94a4d8c78e94a25",
+          "path": "FND/Parties/MetadataFNDParties.rdf"
+        },
+        {
+          "advertised_bytes": 18545,
+          "git_blob_sha1": "33c12a127838572afba5fb2b84a86a77d264e8e4",
+          "path": "FND/Parties/Parties.rdf"
+        },
+        {
+          "advertised_bytes": 57050,
+          "git_blob_sha1": "f0a407680d4e772636b2cb8a655d40e7d60ccac5",
+          "path": "FND/Places/Addresses.rdf"
+        },
+        {
+          "advertised_bytes": 9531,
+          "git_blob_sha1": "479aea4128aa3149a864a2c3d4271757b4245bb5",
+          "path": "FND/Places/Facilities.rdf"
+        },
+        {
+          "advertised_bytes": 6014,
+          "git_blob_sha1": "62caf33ea96716d5aa2caf06af7a80feac77f109",
+          "path": "FND/Places/MetadataFNDPlaces.rdf"
+        },
+        {
+          "advertised_bytes": 35698,
+          "git_blob_sha1": "cc3b1ad9bd1a25f0b2391b1283c53eb3518c091e",
+          "path": "FND/Places/NorthAmerica/USPostalServiceAddresses.rdf"
+        },
+        {
+          "advertised_bytes": 165966,
+          "git_blob_sha1": "b863f8cc402bfbcd0750ccb054ae514c03dd3017",
+          "path": "FND/Places/NorthAmerica/USPostalServiceAddressesIndividuals.rdf"
+        },
+        {
+          "advertised_bytes": 16425,
+          "git_blob_sha1": "2b148815bc00827218bcc912a960e9df0cef447b",
+          "path": "FND/Places/RealProperty.rdf"
+        },
+        {
+          "advertised_bytes": 10284,
+          "git_blob_sha1": "04a82dcd9e5d52dec55d33a48cb81ad52ed1510c",
+          "path": "FND/Places/VirtualPlaces.rdf"
+        },
+        {
+          "advertised_bytes": 3724,
+          "git_blob_sha1": "134e7d626cd8cc1e1bf2d7cd7620bb45e3e74a30",
+          "path": "FND/ProductsAndServices/MetadataFNDProductsAndServices.rdf"
+        },
+        {
+          "advertised_bytes": 15908,
+          "git_blob_sha1": "47711e456ca372401715aded04e83d5190ac860a",
+          "path": "FND/ProductsAndServices/PaymentsAndSchedules.rdf"
+        },
+        {
+          "advertised_bytes": 35295,
+          "git_blob_sha1": "3d68d2d48fb85ef8cdcc167898b7231126d4a4d2",
+          "path": "FND/ProductsAndServices/ProductsAndServices.rdf"
+        },
+        {
+          "advertised_bytes": 3533,
+          "git_blob_sha1": "3e67028f21c2324d68173fb756550aaf44b77b63",
+          "path": "FND/Relations/MetadataFNDRelations.rdf"
+        },
+        {
+          "advertised_bytes": 23946,
+          "git_blob_sha1": "49844659bbd359013597adcf736fca4ea8e72fde",
+          "path": "FND/Relations/Relations.rdf"
+        },
+        {
+          "advertised_bytes": 8308,
+          "git_blob_sha1": "30fe36e672c42a8641f7ce30ae9f8189fdb4d223",
+          "path": "FND/TransactionsExt/MarketTransactions.rdf"
+        },
+        {
+          "advertised_bytes": 4137,
+          "git_blob_sha1": "b87ef29d868eabdaaeff0c1c0f7947b04982ec29",
+          "path": "FND/TransactionsExt/MetadataFNDTransactionsExt.rdf"
+        },
+        {
+          "advertised_bytes": 34265,
+          "git_blob_sha1": "a5ec7e51d6730764c10c4631a0b4683874fe5ead",
+          "path": "FND/TransactionsExt/REATransactions.rdf"
+        },
+        {
+          "advertised_bytes": 11427,
+          "git_blob_sha1": "809c4607e2c78bb37e78489cd0c490ef65fec3fa",
+          "path": "FND/TransactionsExt/SecuritiesTransactions.rdf"
+        },
+        {
+          "advertised_bytes": 52098,
+          "git_blob_sha1": "00980a537f4d32cd666fcb43b5d8dfccd031197d",
+          "path": "FND/Utilities/Analytics.rdf"
+        },
+        {
+          "advertised_bytes": 10870,
+          "git_blob_sha1": "09852d9612ebb559433e77b78a57dd055cca8ffd",
+          "path": "FND/Utilities/AnnotationVocabulary.rdf"
+        },
+        {
+          "advertised_bytes": 3461,
+          "git_blob_sha1": "966ef192a8a5a075478fae982f48c4d35307facc",
+          "path": "FND/Utilities/MetadataFNDUtilities.rdf"
+        }
+      ],
+      "governance_family": "EDM_COUNCIL_FIBO",
+      "repository": "edmcouncil/fibo",
+      "rights_identity": "MIT repository licence at exact release commit",
+      "rights_urls": [
+        "https://raw.githubusercontent.com/edmcouncil/fibo/f59157fe156e3d91b1c045222d0a7dc06b7d78a2/LICENSE"
+      ],
+      "tag": "master_2026Q2",
+      "tree": "82d3273e1e93a98152b730538761b9e3264a37ea"
+    },
+    "W3C_PROV_O_REC_20130430": {
+      "commit": "aa82bd71b6bb1f7b735bf3f7f5b948fae87764f0",
+      "files": [
+        {
+          "advertised_bytes": 68795,
+          "git_blob_sha1": "8b4d4b18d73d1e8f3e671e879c6c242205b6a729",
+          "path": "ontology/releases/REC-prov-o-20130430/ns/prov-o.ttl"
+        }
+      ],
+      "governance_family": "W3C_PROV_WORKING_GROUP",
+      "repository": "w3c/prov",
+      "rights_identity": "W3C Software and Document License; dated W3C Recommendation copyright and document-use notice",
+      "rights_urls": [
+        "https://www.w3.org/TR/2013/REC-prov-o-20130430/",
+        "https://www.w3.org/copyright/software-license-2023/"
+      ],
+      "tree": "5afb605675880080abcb4d1baedcafd18e42737e"
+    }
+  },
+  "rights_captures": [
+    {
+      "family_id": "W3C_PROV_O_REC_20130430",
+      "http_body_bytes": 464179,
+      "http_body_sha256": "6b96671ab84faf12ce3f041aca12c3f93a6df2ed242348810743179a68e69555",
+      "url": "https://www.w3.org/TR/2013/REC-prov-o-20130430/"
+    },
+    {
+      "family_id": "W3C_PROV_O_REC_20130430",
+      "http_body_bytes": 26600,
+      "http_body_sha256": "aab6d2da3de7e0c6158551b2fd8f43ffe2a3373f2ffecb0f1c6db9fa79b0690b",
+      "url": "https://www.w3.org/copyright/software-license-2023/"
+    },
+    {
+      "family_id": "ENVO_2026_06_26",
+      "http_body_bytes": 7048,
+      "http_body_sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "url": "https://raw.githubusercontent.com/EnvironmentOntology/envo/a2455d1a77e46bb8a664d65a157166b539269042/LICENSE"
+    },
+    {
+      "family_id": "FIBO_FND_2026Q2",
+      "http_body_bytes": 1121,
+      "http_body_sha256": "59f852c87fa59411aa7dc527bd5629074d2caced7de4a48bbe7c5763359d8559",
+      "url": "https://raw.githubusercontent.com/edmcouncil/fibo/f59157fe156e3d91b1c045222d0a7dc06b7d78a2/LICENSE"
+    }
+  ],
+  "schema_version": "orion.p3.authoritative-negative-semantics.source-frame-prefreeze.v5",
+  "selection_authority": "PUBLIC_SOURCE_METADATA_ONLY__NO_ONTOLOGY_AXIOM_OR_COMPARATOR_OUTCOME_INSPECTION",
+  "selection_rule": "One independently governed W3C, OBO environmental-science, and EDM Council finance ontology family; exact release/commit/blob path identities; permissive public rights; selection made without opening frozen ontology bytes or relation axioms.",
+  "status": "SOURCE_IDENTITIES_PATHS_AND_RIGHTS_FROZEN_BEFORE_AXIOM_ACCESS"
+}

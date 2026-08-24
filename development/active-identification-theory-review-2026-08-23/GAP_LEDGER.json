@@ -1,0 +1,320 @@
+{
+  "date": "2026-08-23",
+  "displayed_theorem_verdict": "NO_COUNTEREXAMPLE_FOUND_UNDER_STATED_FINITE_STATIONARY_ASSUMPTIONS",
+  "entries": [
+    {
+      "cannot_check_condition": "No systematic full-text novelty search or external specialist review is available.",
+      "diagnosis": "The deterministic vector recursion is the static-state finite-horizon POMDP policy-tree/alpha-vector construction; robust scalarization is finite minimax decision theory, and robust POMDP work is a direct neighbor.",
+      "id": "AITR-G01",
+      "nearest_work": [
+        "10.1287/opre.21.5.1071",
+        "10.1137/19M1268410",
+        "10.1287/moor.1120.0566"
+      ],
+      "negative_condition": "The claim reduces to policy-tree vector enumeration plus support-function minimization.",
+      "next_discriminator": "Prove a result unavailable from Smallwood-Sondik plus standard minimax, such as an exact nonrectangular dynamic-consistency characterization, credal-specific frontier complexity bound, or misspecified-kernel coverage theorem.",
+      "positive_condition": "A formal reduction shows the donor product cannot derive the claimed residual and a theorem with a proof survives expert literature review.",
+      "predecessor_claim": "The risk-vector Bellman frontier could be presented as a new theorem-level contribution.",
+      "severity": "blocking_novelty",
+      "smallest_counterexample": null,
+      "source_locations": [
+        "THEORY.md:203-257",
+        "THEORY.md:401-423"
+      ],
+      "status": "OPEN_RESEARCH_IDENTITY",
+      "successor_identity": "A genuinely new theorem beyond alpha-vector enumeration and finite zero-sum convexification."
+    },
+    {
+      "cannot_check_condition": "Operational availability/transition semantics are not frozen.",
+      "corrected_statement": "For a finite controlled experimental state s, define Gamma_{n,s} using only e in E(s), state-dependent c(s,e), K(o,s_next|s,e,w), and continuation vectors in Gamma_{n-1,s_next}. The displayed Gamma_n theorem applies only to the stationary always-available model.",
+      "diagnosis": "The displayed recursion uses the same E and K_e at every node. A controlled experimental state needs state-indexed action sets, kernels, costs, and a state transition; augmenting a label without changing the recursion does not enforce legality.",
+      "id": "AITR-G02",
+      "nearest_work": [
+        "10.1287/opre.21.5.1071"
+      ],
+      "negative_condition": "A legal restriction is only described in prose while the recurrence still admits an unavailable test.",
+      "next_discriminator": "State and prove the controlled-state recursion and verify a destructive-test example against exhaustive policy enumeration.",
+      "positive_condition": "The state-indexed recursion equals exhaustive legal policy-tree risks.",
+      "predecessor_claim": "History-dependent availability/no-repeat restrictions are represented merely by placing state in W or policy state while retaining the displayed stationary Gamma recursion.",
+      "severity": "blocking_extension",
+      "smallest_counterexample": {
+        "initial_availability": [],
+        "legal_controlled_state_value": 0.5,
+        "prior": [
+          0.5,
+          0.5
+        ],
+        "stationary_recursion_value": 0,
+        "stationary_test": {
+          "cost": 0,
+          "name": "e",
+          "outcome": "o=w deterministically"
+        },
+        "target": "g(w)=w",
+        "terminal_loss": "zero-one",
+        "worlds": [
+          0,
+          1
+        ]
+      },
+      "source_locations": [
+        "THEORY.md:53-64",
+        "THEORY.md:432-434"
+      ],
+      "status": "NEGATIVE_RESULT_RETAINED",
+      "successor_identity": "State-indexed active-identification frontiers for destructive, replenishing, or no-repeat experiments."
+    },
+    {
+      "cannot_check_condition": "The operational credal registry is not frozen.",
+      "corrected_statement": "The robust value uses sup_{p in Pi}; an optimizing policy is attained on the finite/convex policy frontier, but a worst-case licensed prior need not exist unless additional compactness is imposed.",
+      "diagnosis": "Theorem 3 correctly uses a supremum and proves policy attainment only. Nature/prior attainment can fail when Pi is not closed.",
+      "id": "AITR-G03",
+      "nearest_work": [
+        "10.1016/S0022-0531(03)00097-8"
+      ],
+      "negative_condition": "A report names a worst-case prior for an open Pi without an attainment proof.",
+      "next_discriminator": "Require Pi compact or report epsilon-worst priors without calling one least favourable.",
+      "positive_condition": "Pi is closed in the finite simplex, hence compact, and the linear risk functional attains its supremum.",
+      "predecessor_claim": "An arbitrary nonclosed credal set supplies an attained worst-case prior.",
+      "severity": "major_claim_boundary",
+      "smallest_counterexample": {
+        "attaining_prior": null,
+        "credal_set": "p_theta=(theta,1-theta), 0<theta<1",
+        "risk_vector": [
+          1,
+          0
+        ],
+        "support_value": 1,
+        "worlds": [
+          0,
+          1
+        ]
+      },
+      "source_locations": [
+        "THEORY.md:66-68",
+        "THEORY.md:227-257"
+      ],
+      "status": "NEGATIVE_RESULT_RETAINED",
+      "successor_identity": "Approximate least-favourable-prior certificates for open credal sets."
+    },
+    {
+      "cannot_check_condition": "The P3/P5 protocol has not declared fixed-prior versus rectangular semantics.",
+      "diagnosis": "N5 correctly refutes this. The fixed ex-ante prior set and rectangular historywise ambiguity are different games; a policy protocol must license one nature move.",
+      "id": "AITR-G04",
+      "nearest_work": [
+        "10.1016/S0022-0531(03)00097-8",
+        "10.1287/moor.1040.0129",
+        "10.1287/opre.1050.0216"
+      ],
+      "negative_condition": "Independent posterior worst cases are selected under a fixed nonrectangular prior registry.",
+      "next_discriminator": "Freeze the nature protocol and verify whether every historywise posterior splice corresponds to one licensed ex-ante prior.",
+      "positive_condition": "The ambiguity set is explicitly rectangular or the vector frontier is scalarized only at the root.",
+      "predecessor_claim": "The ex-ante nonrectangular robust value is interchangeable with posterior-local minimax control.",
+      "severity": "major_semantics",
+      "smallest_counterexample": "Retained source witness N5: two priors on (Z,Y), ex-ante minimax error 0.1 versus posterior-rectangular error 0.5.",
+      "source_locations": [
+        "THEORY.md:261-292",
+        "NEGATIVE_RESULT_LEDGER.md:N5"
+      ],
+      "status": "OPEN_RESEARCH_IDENTITY",
+      "successor_identity": "Dynamic provenance and rectangularity audit for licensed ambiguity."
+    },
+    {
+      "cannot_check_condition": "Randomization admissibility is not frozen.",
+      "corrected_statement": "Report deterministic and randomized robust values separately unless the protocol licenses an auditable random seed and randomized terminal action.",
+      "diagnosis": "Mathematically, behavioral randomization gives conv(Gamma_n) under world-independent randomization and perfect recall. Operationally, random terminal scientific claims or revisions may be inadmissible or unauditable.",
+      "id": "AITR-G05",
+      "nearest_work": [
+        "finite minimax decision theory",
+        "Kuhn behavioral-mixed strategy equivalence"
+      ],
+      "negative_condition": "A convexified theoretical comparator is reported as an executable scientific authority.",
+      "next_discriminator": "Specify seed custody, decoder access, repeatability, and whether deferral dominates random proclamation.",
+      "positive_condition": "Behavioral randomization is world-independent, uses perfect recall, and is operationally licensed.",
+      "predecessor_claim": "The convexified robust value is automatically an admissible scientific decision procedure.",
+      "severity": "major_operational",
+      "smallest_counterexample": "Retained source witness N6: two point-mass worlds, deterministic minimax error 1, fair randomized error 1/2.",
+      "source_locations": [
+        "THEORY.md:59-64",
+        "THEORY.md:238-257",
+        "THEORY.md:264-267"
+      ],
+      "status": "OPEN_RESEARCH_IDENTITY",
+      "successor_identity": "Protocol-governed scientific randomization."
+    },
+    {
+      "cannot_check_condition": "Acquisition costs/resources are not licensed.",
+      "corrected_statement": "Keep the positive-cost assumption in every statement. For zero-cost acquisitions use a separate test-count/resource vector, or quotient out the zero-cost closure before applying a positive-cost bound.",
+      "diagnosis": "Theorem 4 explicitly requires c_e>0. The base model allows c_e=0, where KL/c is undefined or infinite and no positive cost lower bound follows.",
+      "id": "AITR-G06",
+      "nearest_work": [
+        "10.1214/13-AOS1144",
+        "10.1109/TAC.2013.2261188"
+      ],
+      "negative_condition": "A positive cost obligation is inferred when a zero-cost separating path exists.",
+      "next_discriminator": "Define a strictly positive resource gauge or characterize the zero-cost reachability closure first.",
+      "positive_condition": "Every available informative test has a declared strictly positive charged resource.",
+      "predecessor_claim": "The information-cost lower bound covers zero-cost tests.",
+      "severity": "major_scope",
+      "smallest_counterexample": {
+        "cost": 0,
+        "expected_cost": 0,
+        "test": "perfectly reveals w",
+        "uniform_error": 0,
+        "worlds": [
+          0,
+          1
+        ]
+      },
+      "source_locations": [
+        "THEORY.md:48-51",
+        "THEORY.md:307-339"
+      ],
+      "status": "OPEN_RESEARCH_IDENTITY",
+      "successor_identity": "Multi-resource lower bounds with free preprocessing/tests."
+    },
+    {
+      "cannot_check_condition": "No full systematic priority search was completed.",
+      "diagnosis": "Its proof is the standard event data-processing plus adaptive likelihood-ratio chain rule/change-of-measure argument used in controlled sensing, active sequential hypothesis testing, and best-arm identification.",
+      "id": "AITR-G07",
+      "nearest_work": [
+        "10.1214/13-AOS1144",
+        "10.1109/TAC.2013.2261188",
+        "10.1109/JSTSP.2013.2261279",
+        "https://proceedings.mlr.press/v49/garivier16a.html"
+      ],
+      "negative_condition": "Only the standard oriented pairwise KL obligation is proved.",
+      "next_discriminator": "Derive a tight class-level lower bound and matching policy under costs, rather than restating pairwise change of measure.",
+      "positive_condition": "A new class-level allocation theorem has matching upper and lower bounds.",
+      "predecessor_claim": "Theorem 4 is a new adaptive lower-bound mechanism.",
+      "severity": "major_novelty",
+      "smallest_counterexample": null,
+      "source_locations": [
+        "THEORY.md:294-365"
+      ],
+      "status": "DONOR_OWNED",
+      "successor_identity": "Composite-target achievability/exponent theory beyond pairwise necessity."
+    },
+    {
+      "cannot_check_condition": "No asymptotic/composite-class analysis exists.",
+      "corrected_statement": "Describe Theorem 4 as a necessary oriented pairwise obligation with no achievability claim.",
+      "diagnosis": "They are necessary only. They neither prove simultaneous achievability nor specify the optimal allocation across all cross-target pairs.",
+      "id": "AITR-G08",
+      "nearest_work": [
+        "10.1214/13-AOS1144",
+        "10.1109/TAC.2013.2261188"
+      ],
+      "negative_condition": "Meeting every isolated pairwise inequality is treated as a certificate of a global policy.",
+      "next_discriminator": "Optimize a common acquisition allocation against all cross-target pairs and construct a policy attaining the resulting exponent/cost constant.",
+      "positive_condition": "A matching upper bound holds uniformly over each composite target class.",
+      "predecessor_claim": "Pairwise lower bounds characterize the composite-target optimum.",
+      "severity": "major_scope",
+      "smallest_counterexample": null,
+      "source_locations": [
+        "THEORY.md:304-365",
+        "THEORY.md:442-444"
+      ],
+      "status": "OPEN_RESEARCH_IDENTITY",
+      "successor_identity": "Target-class Chernoff allocation and matching error exponents."
+    },
+    {
+      "cannot_check_condition": "No general-space proof is present.",
+      "corrected_statement": "All displayed results remain finite-horizon and finite-alphabet; the standard-Borel/infinite-horizon program is open.",
+      "diagnosis": "Finite transcript support arguments avoid measurable partitions, regular conditional probabilities, measurable selection, and infinite-horizon existence issues.",
+      "id": "AITR-G09",
+      "nearest_work": [
+        "measure-theoretic statistical decision theory",
+        "POMDP measurable-selection literature"
+      ],
+      "negative_condition": "Finite support labels are reused on uncountable transcript spaces without a measurable partition proof.",
+      "next_discriminator": "State standard-Borel assumptions and prove a measurable decoder/selector theorem; separately establish infinite-horizon value existence.",
+      "positive_condition": "Regular conditional kernels and measurable selectors exist and the value operator satisfies an attainment/contraction or proper-policy theorem.",
+      "predecessor_claim": "The finite support/singularity proofs extend automatically to continuous observations or infinite horizons.",
+      "severity": "major_scope",
+      "smallest_counterexample": null,
+      "source_locations": [
+        "THEORY.md:102-145",
+        "THEORY.md:425-431"
+      ],
+      "status": "OPEN_RESEARCH_IDENTITY",
+      "successor_identity": "Measurable active identification with singular target-class experiments."
+    },
+    {
+      "cannot_check_condition": "No operational invalid-history route is defined.",
+      "corrected_statement": "Zero-denominator histories terminate the licensed model and cannot be assigned an envelope or posterior without a separately authorized model-expansion rule.",
+      "diagnosis": "The packet correctly declares such a history invalid; it supplies no recovery policy for model/interface falsification.",
+      "id": "AITR-G10",
+      "nearest_work": [
+        "robust Bayesian model checking",
+        "imprecise probability conditioning"
+      ],
+      "negative_condition": "An arbitrary posterior is used to make a scientific claim after a globally impossible history.",
+      "next_discriminator": "Specify a model-expansion/contamination protocol whose new prior mass and authority are independently licensed.",
+      "positive_condition": "The history has positive probability under at least one licensed prior, or an explicit recovery model is invoked.",
+      "predecessor_claim": "Conditioning and Bellman policies remain scientifically valid when an observed history has zero likelihood under every licensed prior.",
+      "severity": "major_model_risk",
+      "smallest_counterexample": {
+        "licensed_model": "all priors assign probability 0 to history h",
+        "observed_event": "h occurs",
+        "posterior": "undefined (0/0)"
+      },
+      "source_locations": [
+        "THEORY.md:73-93",
+        "THEORY.md:155-163"
+      ],
+      "status": "OPEN_RESEARCH_IDENTITY",
+      "successor_identity": "Fail-closed recovery after licensed-model falsification."
+    },
+    {
+      "cannot_check_condition": "No protected kernel validation exists.",
+      "corrected_statement": "Do not transfer any mathematical value or bound to an empirical acquisition unless kernel provenance and finite-sample uncertainty are separately certified.",
+      "diagnosis": "All exactness, posterior, KL, and Bellman values are conditional on correct K_e. Estimation on reused traces creates uncertainty and selection bias not represented by Pi over W.",
+      "id": "AITR-G11",
+      "nearest_work": [
+        "10.1137/19M1268410",
+        "10.1080/24725854.2025.2505980"
+      ],
+      "negative_condition": "Point estimates from development traces are treated as licensed transition laws.",
+      "next_discriminator": "Construct confidence sets for K from held-out data and prove uniform policy-risk coverage under adaptive selection.",
+      "positive_condition": "The true kernels lie in a protected confidence/ambiguity set with declared coverage and the policy accounts for it.",
+      "predecessor_claim": "Known licensed kernels can be replaced by fitted kernels without changing theorem authority.",
+      "severity": "major_model_risk",
+      "smallest_counterexample": null,
+      "source_locations": [
+        "THEORY.md:48-57",
+        "THEORY.md:445-447"
+      ],
+      "status": "OPEN_RESEARCH_IDENTITY",
+      "successor_identity": "Joint world-and-kernel ambiguity with finite-sample coverage."
+    },
+    {
+      "cannot_check_condition": "No concrete P3/P5 utility/kernel pair has been frozen.",
+      "corrected_statement": "Treat the guarantee as a conditional donor theorem and prove its hypotheses for each concrete utility before use.",
+      "diagnosis": "Proposition 2 is correct only under declared adaptive monotonicity and adaptive submodularity. The packet itself does not establish those properties for its scientific objectives.",
+      "id": "AITR-G12",
+      "nearest_work": [
+        "https://jair.org/index.php/jair/article/view/11095",
+        "https://arxiv.org/abs/1003.3967"
+      ],
+      "negative_condition": "The guarantee is inferred from information terminology alone.",
+      "next_discriminator": "Check the adaptive diminishing-returns inequality on all partial realizations of the proposed acquisition utility.",
+      "positive_condition": "Normalized adaptive monotone/submodular utility and the matching equal-cost cardinality protocol are formally proved.",
+      "predecessor_claim": "Adaptive greedy inherits a 1-1/e guarantee for entropy, Bayes-risk, or credal-risk objectives without a property proof.",
+      "severity": "major_applicability",
+      "smallest_counterexample": "Retained source N3 parity synergy shows a zero one-step marginal for each test but positive joint value, obstructing a naive diminishing-returns inference.",
+      "source_locations": [
+        "THEORY.md:389-399",
+        "NEGATIVE_RESULT_LEDGER.md:N3"
+      ],
+      "status": "DONOR_OWNED",
+      "successor_identity": "Loss-aligned adaptive-submodularity diagnostics or counterexamples."
+    }
+  ],
+  "external_independent_review": false,
+  "integration_verdict": "INTEGRATE_ONLY_AS_DONOR_OWNED_FINITE_SYNTHESIS_AFTER_MANDATORY_SCOPE_EDITS",
+  "protected_evaluation": false,
+  "review_scope": "finite scientific theorem audit and primary-literature novelty boundary; no empirical validation",
+  "schema": "active-identification-adversarial-gap-ledger-v1",
+  "source_directory": "development/active-identification-theory-2026-08-23",
+  "systematic_novelty_search_complete": false
+}

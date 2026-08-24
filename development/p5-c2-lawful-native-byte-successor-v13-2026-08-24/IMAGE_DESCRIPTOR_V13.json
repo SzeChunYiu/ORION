@@ -1,0 +1,39 @@
+{
+  "architecture": "arm64",
+  "base_image": "scratch",
+  "config_digest": "sha256:b14dd4b7d5631707ba718cf5df8991d53d40a606c81521d313874c5810a710b5",
+  "docker_save_archive_members": [
+    "blobs",
+    "blobs/sha256",
+    "blobs/sha256/48d9ce5ea9f66eaa7ec428f5c06088db1a0fa13b55bbe64561d939d0cf670797",
+    "blobs/sha256/58daba4a70db3f0a2fb0533eee3280ad1bd6c2abb6281ce6a8049c71379051bb",
+    "blobs/sha256/b14dd4b7d5631707ba718cf5df8991d53d40a606c81521d313874c5810a710b5",
+    "blobs/sha256/df9bf599dc8ca43dbf02ccdcf76fa364107988a33f3c3957cae0bd8587e13e50",
+    "index.json",
+    "manifest.json",
+    "oci-layout",
+    "repositories"
+  ],
+  "docker_save_layer_members": [
+    "blobs/sha256/58daba4a70db3f0a2fb0533eee3280ad1bd6c2abb6281ce6a8049c71379051bb"
+  ],
+  "entrypoint": [
+    "/orion/probe"
+  ],
+  "image_id": "sha256:b14dd4b7d5631707ba718cf5df8991d53d40a606c81521d313874c5810a710b5",
+  "labels": {
+    "org.opencontainers.image.licenses": "Apache-2.0-AND-CC0-1.0",
+    "org.opencontainers.image.title": "ORION-P5-C2-V13-rights-cleared-probe"
+  },
+  "layer_archive_sha256": "58daba4a70db3f0a2fb0533eee3280ad1bd6c2abb6281ce6a8049c71379051bb",
+  "layer_archive_size_bytes": 718336,
+  "os": "linux",
+  "parent": "",
+  "rootfs_diff_ids": [
+    "sha256:58daba4a70db3f0a2fb0533eee3280ad1bd6c2abb6281ce6a8049c71379051bb"
+  ],
+  "schema_version": "orion.p5.c2.image-descriptor.v13",
+  "successor_identity": "C2_RIGHTS_CLEARED_SCRATCH_IMAGE_SUCCESSOR__ORION_V13",
+  "tag": "orion-p5-c2-v13:20260824",
+  "variant": null
+}

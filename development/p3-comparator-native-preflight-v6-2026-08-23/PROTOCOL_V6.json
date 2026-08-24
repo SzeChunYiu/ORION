@@ -1,0 +1,139 @@
+{
+  "authority": "RUNTIME_AND_NATIVE_ARTIFACT_PREFLIGHT_ONLY__NO_PERFORMANCE_OR_SCIENTIFIC_OUTCOME_AUTHORITY",
+  "forbidden": [
+    "opening any gold or reference alignment",
+    "performance, harm, coverage, superiority or transport scoring",
+    "tuning from native smoke rows",
+    "interpreting nonselection as obstruction",
+    "protected outcome access",
+    "relaxing the three-family V5 gate"
+  ],
+  "frozen_at": "2026-08-23T17:21:51.394267+00:00",
+  "global_rules": {
+    "failure": "Build, dependency, model, runtime, timeout, nonzero process, missing/partial/invalid artifact, or matcher-time network dependency is CANNOT_CHECK for that slot; never an empty alignment or negative outcome.",
+    "network": "Allowed only while staging exact source, dependency and model bytes. Matcher execution receives local ontology paths and no reference alignment; any matcher-time network requirement is a CANNOT_CHECK blocker.",
+    "outcome_blind": true,
+    "prediction_interpretation": "Native rows are validated structurally but not scored. Row presence is not treated as correctness; row absence is not obstruction.",
+    "raw_or_large_retention": "Temporary sources, dependency caches, models, logs and raw native outputs are deleted after hashes, byte counts, parser counts and bounded failure excerpts are recorded.",
+    "success": "The pinned native entrypoint completes within its budget and every prospectively required native artifact exists, is non-partial, parses under the frozen parser, and receives a SHA-256 digest."
+  },
+  "inherited_bindings": {
+    "v3_comparator_identity": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p3-cross-construct-successor/COMPARATOR_IDENTITY_AUDIT_V3.json",
+      "sha256": "df7c842c482ae584f4f2fc4e48979c186bb5e832365e96c18befa10df1a91c6d"
+    },
+    "v4_result": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p3-selective-envelope-harm-successor-v4/RESULT_V4.json",
+      "sha256": "580bc76eb64d6678a45adb6fac900d8ad18d597548b883bef18471740b50b81b"
+    },
+    "v5_adapters": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p3-authoritative-negative-semantics-v5/COMPARATOR_ADAPTERS_V5.json",
+      "sha256": "55ac61950f897b6af30043ff8fead72441a729af7ab138a6c93c193de56d1816"
+    },
+    "v5_result": {
+      "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p3-authoritative-negative-semantics-v5/RESULT_V5.json",
+      "sha256": "5e468fc319fcc70e2f1058912cd34da7290831e2c20801f73e495ee7339cded7"
+    }
+  },
+  "inputs": {
+    "construction": "Two synthetic, separately named ontology views with parallel three-class hierarchies and labels; no mapping reference, negative label, disjointness, evaluation row, or protected datum is supplied.",
+    "gold_or_reference_alignment": null,
+    "source": {
+      "named_classes": 3,
+      "path": "SMOKE_SOURCE_V6.owl",
+      "sha256": "ed08a0deaacf9be7b8c5057deaff12c004501f3a7b6b31e89a0691573729948e"
+    },
+    "target": {
+      "named_classes": 3,
+      "path": "SMOKE_TARGET_V6.owl",
+      "sha256": "c5fef225730aaa43020971dc8badc5e50c308492ebb9f051e7485383cbb7839c"
+    }
+  },
+  "preserved_terminals": {
+    "v3": "PUBLIC_V3_MAXIMAL_BINARY_ENVELOPE_COVERAGE_PASS__PUBLIC_V3_NO_HARM_SUPERIORITY__PUBLIC_NONPROTECTED_ONE_SEED_FAMILY_ONLY",
+    "v4_comparator_readiness": "0/3",
+    "v4_source_admission": "0/7",
+    "v5_comparator_readiness": "0/3",
+    "v5_family_admission": "3/3_DIRECT_CERTIFICATE_CALIBRATION_ONLY"
+  },
+  "protocol_id": "P3_V6_OUTCOME_BLIND_NATIVE_ARTIFACT_PREFLIGHT",
+  "schema_version": "orion.p3.comparator-native-preflight.protocol.v6",
+  "slots": {
+    "K1_AML": {
+      "budget": {
+        "cpu_threads_requested": 1,
+        "max_heap": "2G",
+        "retries": 0,
+        "wall_seconds": 300
+      },
+      "commit": "d54a6650818d3474fe36090c2bc7dfe5bf4dfcb6",
+      "entrypoint": "java -jar AgreementMakerLight.jar -s SOURCE -t TARGET -o OUTPUT -a",
+      "expected_jar_sha256": "a5b831a6c000e49aa4702b16486dabdf38e40bb68203a16a8019414fecc2ecf3",
+      "expected_release_sha256": "7855c2d8efa131f012595313814a6466ad48f4e7ba26906c4f54801cd5a21f27",
+      "identity": "AML v3.2",
+      "licence": "Apache-2.0",
+      "parser": "XML parse plus Alignment/Cell count; declared output must exist even when cell count is zero",
+      "release_asset": "https://github.com/AgreementMakerLight/AML-Project/releases/download/v3.2/AML_v3.2.zip",
+      "repository": "https://github.com/AgreementMakerLight/AML-Project",
+      "required_native_artifacts": [
+        "declared AML alignment RDF/XML"
+      ]
+    },
+    "K2_LOGMAP": {
+      "budget": {
+        "cpu_threads_requested": 1,
+        "max_heap": "2G",
+        "retries": 0,
+        "wall_seconds": 600
+      },
+      "commit": "b3b57d0d8bfb5872bdffb49329d764acb4735713",
+      "entrypoint": "java -Xms256M -Xmx2G -DentityExpansionLimit=10000000 --add-opens=java.base/java.lang=ALL-UNNAMED -jar logmap-matcher-4.0.jar MATCHER SOURCE_URI TARGET_URI OUTPUT_DIRECTORY false",
+      "forbidden_modes": [
+        "EVALUATION",
+        "MATCHER-BIO"
+      ],
+      "identity": "LogMap 4.0 source",
+      "licence": "Apache-2.0",
+      "mode": "MATCHER",
+      "parser": "XML parse plus Alignment/Cell relation/type/confidence structural validation; expected artifact required because LogMap can catch exceptions without a failing exit code",
+      "repository": "https://github.com/ernestojimenezruiz/logmap-matcher",
+      "required_native_artifacts": [
+        "logmap_mappings.rdf"
+      ]
+    },
+    "K3_BERTMAP": {
+      "budget": {
+        "cpu_threads_requested": 1,
+        "device": "cpu",
+        "retries": 0,
+        "wall_seconds": 1800
+      },
+      "commit": "74ca8d47f01bad0b8739f19ee2c392bdf6d9c090",
+      "entrypoint": "python scripts/bertmap.py -s SOURCE -t TARGET -c FROZEN_CONFIG.yaml",
+      "identity": "BERTMap via DeepOnto 0.9.3",
+      "licence": "Apache-2.0",
+      "no_gold": {
+        "auxiliary_ontos": [],
+        "known_mappings": null,
+        "reference_alignment": null
+      },
+      "package_version": "0.9.3",
+      "parser": "JSON object and TSV row-shape validation with completion evidence; resumable or checkpoint-only partial files fail",
+      "pretrained_model": "emilyalsentzer/Bio_ClinicalBERT",
+      "pretrained_model_lfs_sha256": "a18c4c260fb5c0978b86658615106d5617050b5f14dac6ceb5e0d8beb2f9f719",
+      "pretrained_revision": "d5892b39a4adaed74b92212a44081509db72f87b",
+      "repository": "https://github.com/KRR-Oxford/DeepOnto",
+      "required_native_artifacts": [
+        "bertmap/match/raw_mappings.json",
+        "bertmap/match/raw_mappings.tsv",
+        "bertmap/match/extended_mappings.tsv",
+        "bertmap/match/filtered_mappings.tsv",
+        "bertmap/match/repaired_mappings.tsv"
+      ],
+      "thresholds": {
+        "mapping_extension_threshold": 0.9,
+        "mapping_filtered_threshold": 0.9995
+      }
+    }
+  }
+}

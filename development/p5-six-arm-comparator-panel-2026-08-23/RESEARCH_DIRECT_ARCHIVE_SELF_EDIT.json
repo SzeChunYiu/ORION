@@ -1,0 +1,533 @@
+{
+  "schema_version": "orion.p5.direct-archive-self-edit-source-research.v1",
+  "artifact_id": "P5.C2.C3.PRIMARY_SOURCE.IDENTITY.RESEARCH.V1",
+  "audited_at_utc": "2026-08-23T15:03:10Z",
+  "protocol_binding": {
+    "path": "/Users/billy/Documents/Codex/2026-08-23/can-x20/work/lane-handoffs/p5-six-arm-comparator-panel/P5_OUTCOME_BLIND_COMPARATOR_AND_PUBLIC_PANEL_PROTOCOL_V1.json",
+    "protocol_id": "P5.SIX_ARM.IDENTITY_AND.PUBLIC_PANEL.PREFLIGHT.V1",
+    "frozen_before_this_source_audit": true,
+    "dataset_rows_labels_gold_patches_test_bodies_or_outcomes_opened": false,
+    "protected_results_opened": false,
+    "runtime_execution_performed": false,
+    "allowed_evidence_used": [
+      "arXiv version metadata and abstract",
+      "paper-linked project website",
+      "paper-linked official repository",
+      "immutable repository archive",
+      "README",
+      "packaging manifests",
+      "source entrypoints",
+      "licence and notice bytes"
+    ]
+  },
+  "scope": {
+    "owned_slots": [
+      "C2_DIRECT_SELF_EDIT",
+      "C3_ARCHIVE_BASED_SELF_EDIT"
+    ],
+    "candidate_set_frozen_without_p5_performance": [
+      "MOSS arXiv:2605.22794",
+      "Darwin Godel Machine arXiv:2505.22954",
+      "ADAS arXiv:2408.08435"
+    ],
+    "performance_blind_selection": true,
+    "not_a_performance_evaluation": true
+  },
+  "slot_decisions": [
+    {
+      "slot_id": "C2_DIRECT_SELF_EDIT",
+      "selected_identity": "MOSS",
+      "selection_reason": "The official implementation is a single active evolution lineage that rewrites the deployed OpenClaw TypeScript source, replays a curated failure batch, and gates an in-place successor swap; the repository does not describe population/archive parent selection.",
+      "identity_terminal": "C2_DIRECT_SELF_EDIT_IDENTITY_BOUND_OFFICIAL_MOSS_V2",
+      "execution_terminal": "C2_DIRECT_SELF_EDIT_P5_EXECUTION_CANNOT_CHECK_EIGHT_CLASS_OUTCOME_BLIND_ADAPTER_NOT_RELEASED"
+    },
+    {
+      "slot_id": "C3_ARCHIVE_BASED_SELF_EDIT",
+      "selected_identity": "Darwin Godel Machine",
+      "selection_reason": "The official paper and code explicitly combine self-modification of the agent implementation with an archive, archived-parent sampling, branching successors, and empirical validation.",
+      "identity_terminal": "C3_ARCHIVE_BASED_SELF_EDIT_IDENTITY_BOUND_OFFICIAL_DGM_V3",
+      "execution_terminal": "C3_ARCHIVE_BASED_SELF_EDIT_P5_EXECUTION_CANNOT_CHECK_EIGHT_CLASS_OUTCOME_BLIND_ADAPTER_NOT_RELEASED",
+      "rejected_substitution": "ADAS is archive-based meta-agent search over generated agent programs, but its released search controller does not rewrite itself; it is a valid neighboring agent-design baseline, not an exact substitute for the frozen self-edit semantic."
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "MOSS",
+      "slot_id": "C2_DIRECT_SELF_EDIT",
+      "semantic_role": "single-lineage direct source self-edit with replay and user-gated promotion",
+      "paper_and_exact_version": {
+        "id": "arXiv:2605.22794v2",
+        "title": "MOSS: Self-Evolution through Source-Level Rewriting in Autonomous Agent Systems",
+        "updated_utc": "2026-05-23T13:08:16Z",
+        "paper_url": "https://arxiv.org/abs/2605.22794v2",
+        "paper_code_statement": "Code: https://github.com/hkgai-official/Moss"
+      },
+      "official_repository": "https://github.com/hkgai-official/Moss",
+      "commit_sha": "5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+      "commit_committer_date_utc": "2026-05-23T03:57:09Z",
+      "default_branch_at_audit": "main",
+      "immutable_tree_url": "https://github.com/hkgai-official/Moss/tree/5453f1feebad44c199f5887f852fc5bc7fb7d4da",
+      "official_or_reimplementation_status": "OFFICIAL_PAPER_LINKED_IMPLEMENTATION",
+      "source_archive_sha256": "de6bb0e480749757d8e9b05a66c37c82228ea6d9d1e1cb92b6b32a3b28e5610e",
+      "licence_spdx_or_terminal": "COMPOSITE_APACHE_2_0_ROOT__VENDORED_OPENCLAW_MIT__VENDORED_A2UI_MIXED",
+      "licence_file_path": "LICENSE",
+      "licence_byte_count": 11277,
+      "licence_byte_sha256": "3903e8b0fd6b4f6fc83f194c1e7b8525f1b40a284e4682ba1cec7e77eb765b63",
+      "additional_licence_evidence": [
+        {
+          "path": "NOTICE",
+          "bytes": 1002,
+          "sha256": "da9dce4d4fbd44a4feb37a54e27220788fbcc6887e4367d479b1bd402f63dd19"
+        },
+        {
+          "path": "openclaw/LICENSE",
+          "bytes": 1074,
+          "sha256": "62316704df7426e5a79d2827ff8aca36e9abb3a73b8e68557030749ebefec667"
+        }
+      ],
+      "install_entrypoint": {
+        "documented": [
+          "git clone https://github.com/hkgai-official/Moss.git moss",
+          "cp .env.example .env",
+          "fill MOSS_MODEL_API_KEY and endpoint/model variables",
+          "./scripts/setup.sh"
+        ],
+        "prerequisites": [
+          "Docker 24+",
+          "Node 22+",
+          "pnpm 10",
+          "Python 3.11+",
+          "jq",
+          "OpenAI-completions-compatible LLM endpoint",
+          "one authenticated external coding-agent CLI: Claude Code, Codex, DeepSeek-TUI, or OpenCode"
+        ],
+        "packaging": "host-daemon/pyproject.toml declares Python >=3.11 with pyyaml>=6.0 and tomli-w>=1.0; OpenClaw uses package.json/pnpm-lock.yaml; setup builds and starts Docker services."
+      },
+      "run_entrypoint": {
+        "native_control": [
+          "moss evo flag --agent <id> --session <id>",
+          "moss evo start [<batch-id>] [--depth shallow|standard|deep]",
+          "moss evo status",
+          "moss evo stop",
+          "moss evo apply <batch-id>"
+        ],
+        "host_form": "docker exec moss-gateway moss <command>",
+        "json_mode": "All documented CLI commands accept --json."
+      },
+      "candidate_visible_information": [
+        "OpenClaw source tree and the active source revision",
+        "curated failure-batch chunks derived from recent session content or an explicitly flagged conversation",
+        "baseline and candidate replay traces used by Locate and Task-Evaluate",
+        "diagnoses, plans, proposed diffs, reviews, scoring matrices, and evolution state",
+        "LLM/coding-agent outputs and tool results available to the spawned roles"
+      ],
+      "legal_actions_and_write_surface": {
+        "native_actions": [
+          "scan/flag session evidence",
+          "spawn coding-agent roles",
+          "edit OpenClaw TypeScript source in an inner local Git repository",
+          "build candidate Docker images",
+          "replay a batch on ephemeral trial workers",
+          "write evolution artifacts under MOSS_DATA_DIR",
+          "request an explicitly authorized in-place container swap",
+          "rollback after failed health probes"
+        ],
+        "write_locations": [
+          "openclaw/ inner local Git repository and evo-* branches",
+          "${MOSS_DATA_DIR:-$HOME/.moss}",
+          "Docker images/containers",
+          ".env-derived local configuration",
+          "/tmp/moss.sock"
+        ],
+        "licence_boundary": "Root MOSS additions are Apache-2.0; vendored openclaw/ remains MIT; vendored third-party components retain their licences. Modification/redistribution must preserve applicable notices and terms. This is a source-rights inventory, not legal advice."
+      },
+      "token_tool_time_compute_retry_envelope": {
+        "depth_tiers": {
+          "shallow": {
+            "max_iter": 3,
+            "max_plan_rounds": 1,
+            "max_code_retries": 0,
+            "trials_per_task": 2,
+            "plateau_no_improvement_iters": 1
+          },
+          "standard": {
+            "max_iter": 5,
+            "max_plan_rounds": 2,
+            "max_code_retries": 1,
+            "trials_per_task": 3,
+            "plateau_no_improvement_iters": 2
+          },
+          "deep": {
+            "max_iter": 8,
+            "max_plan_rounds": 3,
+            "max_code_retries": 2,
+            "trials_per_task": 5,
+            "plateau_no_improvement_iters": 3
+          }
+        },
+        "other_default_timeouts_seconds": {
+          "task_trial": 300,
+          "validation_trials": 1,
+          "build_smoke": 240,
+          "docker_build": 600,
+          "locator": 1800,
+          "planner": 1800,
+          "plan_reviewer": 1500,
+          "implementer": 3600,
+          "code_reviewer": 1800,
+          "task_evaluator": 1500,
+          "reviewer": 1200,
+          "swap_window": 90
+        },
+        "token_and_cost_accounting": "Spawned coding-agent terminals report provider, model, elapsed_s, cost_usd, and token fields when the provider exposes them; no hard whole-run token or USD ceiling is documented in the manifest.",
+        "compute": "Multiple LLM/coding-agent sessions plus Docker builds and per-task replay workers; first setup README estimates an OpenClaw image build of about five minutes."
+      },
+      "native_outputs": [
+        "CLI status/batch/apply JSON or human-readable records",
+        "intermediate diagnosis, plan, diff, review, task-evaluation, and scoring-matrix artifacts",
+        "spawn terminal {exit_code, elapsed_s, session_id, cost_usd, tokens, provider, model}",
+        "loop verdict CONVERGED, NEED_MORE_WORK, FUNDAMENTAL_LIMIT_MODEL, or FUNDAMENTAL_LIMIT_ARCHITECTURE",
+        "manifest status initialized, in_progress, swap_pending, converged, rolled_back, failed, aborted_max_iter, or aborted_streak"
+      ],
+      "native_errors_timeouts_and_abstentions": [
+        "unknown provider error",
+        "coding-agent spawn error or role timeout",
+        "Docker build timeout",
+        "consecutive build-failure/session-crash/no-progress aborts",
+        "FUNDAMENTAL_LIMIT_MODEL and FUNDAMENTAL_LIMIT_ARCHITECTURE are typed non-success terminals",
+        "apply may roll back after the health-probe window"
+      ],
+      "p5_eight_class_adapter": {
+        "native_support": false,
+        "required_contract": "An outcome-blind adapter must provide only the frozen candidate-visible P5 motivating packet; prohibit protected labels, outcomes, gold patches and evaluator responses; constrain edits to an isolated candidate workspace; convert the final frozen successor to exactly one of the eight revision-class actions or UNRESOLVED; emit native error/timeout terminals; and send the frozen output to an evaluator outside candidate custody.",
+        "released_adapter_found": false,
+        "mismatch": "MOSS natively rewrites an application agent from replayed production failures and promotes a container; it does not natively select the P5 eight-class revision action. Its native replay scores/traces cannot be exposed on the protected path.",
+        "adapter_terminal": "MOSS_P5_OUTCOME_BLIND_EIGHT_CLASS_ADAPTER_NOT_RELEASED"
+      },
+      "rights_and_service_dependencies": [
+        "Apache-2.0/MIT/mixed vendored notice compliance",
+        "external provider terms and credentials",
+        "Docker and host mutation authority",
+        "rights to each supplied session/failure artifact",
+        "no inference that a public benchmark licence covers underlying project content"
+      ],
+      "semantic_fit_verdict": "EXACT_C2_DIRECT_SELF_EDIT",
+      "feasibility_terminal": "IDENTITY_BOUND__OFFICIAL_SOURCE_RUNNABLE_IN_NATIVE_OPENCLAW_SETTING__P5_CONFIRMATORY_EXECUTION_CANNOT_CHECK",
+      "evidence": [
+        {
+          "url": "https://arxiv.org/abs/2605.22794v2",
+          "quote": "Each evolution is anchored to an automatically curated batch of production-failure evidence ... Candidates are verified by replaying the batch ... then promoted via user-consent-gated, in-place container swap."
+        },
+        {
+          "url": "https://github.com/hkgai-official/Moss/blob/5453f1feebad44c199f5887f852fc5bc7fb7d4da/README.md#L17",
+          "quote": "MOSS ... rewrites its own TypeScript source ... verifies the candidate by replaying the batch ... after explicit user authorization ... performs an in-place container swap with health-probe-gated rollback."
+        },
+        {
+          "url": "https://github.com/hkgai-official/Moss/blob/5453f1feebad44c199f5887f852fc5bc7fb7d4da/README.md#L125",
+          "quote": "Each iteration runs a deterministic seven-stage pipeline: Locate → Plan → Plan-Review → Implement → Code-Review → Task-Evaluate → Verdict."
+        }
+      ]
+    },
+    {
+      "candidate_id": "DGM",
+      "slot_id": "C3_ARCHIVE_BASED_SELF_EDIT",
+      "semantic_role": "archive-based branching self-modification of a coding-agent implementation",
+      "paper_and_exact_version": {
+        "id": "arXiv:2505.22954v3",
+        "title": "Darwin Godel Machine: Open-Ended Evolution of Self-Improving Agents",
+        "updated_utc": "2026-03-12T23:47:40Z",
+        "paper_url": "https://arxiv.org/abs/2505.22954v3",
+        "paper_code_statement": "Code at https://github.com/jennyzzt/dgm"
+      },
+      "official_repository": "https://github.com/jennyzzt/dgm",
+      "commit_sha": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+      "commit_committer_date_utc": "2025-08-13T10:40:14Z",
+      "default_branch_at_audit": "main",
+      "immutable_tree_url": "https://github.com/jennyzzt/dgm/tree/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+      "official_or_reimplementation_status": "OFFICIAL_PAPER_LINKED_IMPLEMENTATION",
+      "source_archive_sha256": "3c98ae6bfa7b6597cbcddaf02bcce46e56ff97cdf6d14867251211be8069d961",
+      "licence_spdx_or_terminal": "Apache-2.0",
+      "licence_file_path": "LICENSE",
+      "licence_byte_count": 11361,
+      "licence_byte_sha256": "84b7504ce8dda1f37f592cdf67ad21371864583720d79ea289b0b0c75bfcdb17",
+      "install_entrypoint": {
+        "documented": [
+          "export OPENAI_API_KEY and ANTHROPIC_API_KEY",
+          "verify Docker",
+          "python3 -m venv venv",
+          "pip install -r requirements.txt",
+          "clone SWE-bench separately and checkout dc4c087c2b9e4cefebf2e3d201d27e36",
+          "pip install -e the separate SWE-bench checkout",
+          "optionally prepare Polyglot"
+        ],
+        "packaging": "Raw Python scripts with requirements.txt; no pyproject/setup entrypoint. Requirements are mostly unpinned.",
+        "safety": "README explicitly warns that the repository executes untrusted model-generated code."
+      },
+      "run_entrypoint": {
+        "outer": "python DGM_outer.py",
+        "outer_options": [
+          "--max_generation",
+          "--selfimprove_size",
+          "--selfimprove_workers",
+          "--choose_selfimproves_method",
+          "--continue_from",
+          "--update_archive",
+          "--num_swe_evals",
+          "--post_improve_diagnose",
+          "--shallow_eval",
+          "--polyglot",
+          "--eval_noise",
+          "--no_full_eval",
+          "--run_baseline"
+        ],
+        "single_step": "python self_improve_step.py --parent_commit ... --output_dir ... --entry ...",
+        "coding_agent": "python coding_agent.py --problem_statement ... --git_dir ... --base_commit ... --chat_history_file ... [--self_improve]"
+      },
+      "candidate_visible_information": [
+        "DGM source tree and tools",
+        "archive of prior agent variants and parent-child metadata",
+        "per-variant benchmark performance metadata including resolved, unresolved and empty-patch identifiers",
+        "evaluation logs used to diagnose an improvement target",
+        "parent patch chain, generated problem statement, test description, and current source diff"
+      ],
+      "legal_actions_and_write_surface": {
+        "native_actions": [
+          "select an archived parent",
+          "diagnose an unresolved/empty/stochasticity/context-length target",
+          "apply the parent patch chain inside a Docker container",
+          "edit the DGM/coding-agent source under /dgm",
+          "create model_patch.diff",
+          "run benchmark harnesses",
+          "append compiled variants to the archive"
+        ],
+        "write_locations": [
+          "output_dgm/<run-id>/",
+          "per-variant metadata/log/diff files",
+          "temporary Docker container /dgm worktree",
+          "prepared external benchmark checkouts"
+        ],
+        "licence_boundary": "Repository code is Apache-2.0. README says its evaluation framework implementations are based on SWE-bench and Polyglot; those frameworks, datasets, repositories and task content require separate rights and provenance audits. The DGM root licence must not be projected onto them."
+      },
+      "token_tool_time_compute_retry_envelope": {
+        "outer_defaults": {
+          "max_generations": 80,
+          "self_improvement_attempts_per_generation": 2,
+          "parallel_self_improvement_workers": 2,
+          "swe_evaluations_per_attempt": 1,
+          "archive_update": "keep_all",
+          "parent_choice": "score_child_prop"
+        },
+        "models": {
+          "diagnosis": "o1-2024-12-17",
+          "coding_agent": "bedrock/us.anthropic.claude-3-5-sonnet-20241022-v2:0",
+          "max_output_tokens_for_supported chat/tool calls": 4096
+        },
+        "retry_and_timeout": {
+          "diagnosis_recursive_retries_after_initial": 3,
+          "tool_response_recursive_retries_after_initial": 3,
+          "tool_call_backoff_max_time_seconds": 600,
+          "coding_agent_process_timeout_seconds": 1800,
+          "declared_outer_future_timeout_seconds": 5400
+        },
+        "compute": "Docker image/container per self-improvement attempt plus repeated benchmark harness evaluation; full cost depends on metadata-only subset sizes not inspected here and is not globally capped by tokens or USD.",
+        "static_timeout_caveat": "The 5400-second future.result timeout is called only after as_completed yields the future, so it does not act as a watchdog for the running future. Only the inner coding-agent command has the explicit 1800-second timeout; other harness/build stages lack a proven whole-attempt cap."
+      },
+      "native_outputs": [
+        "output_dgm/<run-id>/dgm_outer.log",
+        "output_dgm/<run-id>/dgm_metadata.jsonl with generation, self-improve entries, children, compiled children, and archive",
+        "per-child metadata.json and self_improve.log",
+        "self_evo.md coding-agent trace",
+        "model_patch.diff",
+        "benchmark harness metadata/report artifacts"
+      ],
+      "native_errors_timeouts_and_abstentions": [
+        "RuntimeError when cached initial evaluation results are not configured",
+        "candidate excluded as a parent when metadata/evaluation/compilation access fails",
+        "missing or empty model_patch.diff returns metadata without admission",
+        "evaluation exceptions are logged and retained",
+        "coding-agent subprocess returns after GNU timeout 1800",
+        "context-length failure is detected from repeated provider error text",
+        "no native P5 UNRESOLVED class or structured abstention",
+        "static CLI defect at the pinned commit: a missing comma concatenates score_child_prop and best in argparse choices, so documented best is not a valid separate choice and score_child_prop acceptance is suspect"
+      ],
+      "p5_eight_class_adapter": {
+        "native_support": false,
+        "required_contract": "Train/evolve only on a frozen public development pool; never expose protected labels, patches, outcomes or evaluator messages to parent selection or diagnosis; freeze the final archive-selection policy before protected evaluation; map the final response to exactly one P5 revision class or UNRESOLVED; prevent DGM from writing outside its isolated candidate workspace; retain every failure, timeout and invalid patch terminal.",
+        "released_adapter_found": false,
+        "mismatch": "The released DGM is coupled to coding benchmark issue IDs, resolution/patch outcomes, performance-weighted archive selection, Python self-code patches, and benchmark harnesses. It has no P5 eight-class action schema, source-disjoint cluster unit, candidate/evaluator custody split, or protected-fresh adapter.",
+        "adapter_terminal": "DGM_P5_OUTCOME_BLIND_EIGHT_CLASS_ADAPTER_NOT_RELEASED"
+      },
+      "rights_and_service_dependencies": [
+        "Apache-2.0 repository obligations",
+        "OpenAI/Anthropic or AWS Bedrock credentials and terms",
+        "Docker daemon",
+        "separate SWE-bench framework checkout at documented commit",
+        "separate benchmark task/project/content rights",
+        "untrusted model-generated code isolation"
+      ],
+      "semantic_fit_verdict": "EXACT_C3_ARCHIVE_BASED_SELF_EDIT",
+      "feasibility_terminal": "IDENTITY_BOUND__OFFICIAL_NATIVE_DGM_RUN_PATH_DOCUMENTED__P5_CONFIRMATORY_EXECUTION_CANNOT_CHECK",
+      "evidence": [
+        {
+          "url": "https://arxiv.org/abs/2505.22954v3",
+          "quote": "DGM ... iteratively modifies its own code ... maintains an archive of generated coding agents ... grows the archive by sampling an agent from it and using a foundation model to create a new ... version."
+        },
+        {
+          "url": "https://github.com/jennyzzt/dgm/blob/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2/README.md#L14",
+          "quote": "a novel self-improving system that iteratively modifies its own code ... and empirically validates each change using coding benchmarks."
+        },
+        {
+          "url": "https://github.com/jennyzzt/dgm/blob/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2/DGM_outer.py#L50-L150",
+          "quote": "choose_selfimproves selects parent commits from the archive; update_archive retains admitted children."
+        }
+      ]
+    },
+    {
+      "candidate_id": "ADAS_META_AGENT_SEARCH",
+      "slot_id": "C3_ARCHIVE_BASED_SELF_EDIT_NEAR_MISS",
+      "semantic_role": "archive-based meta-agent search over generated agent programs, not controller self-edit",
+      "paper_and_exact_version": {
+        "id": "arXiv:2408.08435v2",
+        "title": "Automated Design of Agentic Systems",
+        "updated_utc": "2025-03-02T05:13:28Z",
+        "paper_url": "https://arxiv.org/abs/2408.08435v2",
+        "paper_project_url": "https://shengranhu.com/ADAS",
+        "project_code_link": "https://github.com/ShengranHu/ADAS"
+      },
+      "official_repository": "https://github.com/ShengranHu/ADAS",
+      "commit_sha": "2702bee8fefda42255efc5be9f60e3bd3db96ae4",
+      "commit_committer_date_utc": "2025-01-28T06:37:51Z",
+      "default_branch_at_audit": "main",
+      "immutable_tree_url": "https://github.com/ShengranHu/ADAS/tree/2702bee8fefda42255efc5be9f60e3bd3db96ae4",
+      "official_or_reimplementation_status": "OFFICIAL_PAPER_LINKED_META_AGENT_SEARCH_IMPLEMENTATION",
+      "source_archive_sha256": "cae3cc86151a1bc1f3a75f7f1c764ecef2ecca4d50e111d009b1ced85843c4e6",
+      "licence_spdx_or_terminal": "Apache-2.0_FOR_REPOSITORY_CODE__BUNDLED_DATA_CONTENT_RIGHTS_SEPARATE_CANNOT_CHECK",
+      "licence_file_path": "LICENSE",
+      "licence_byte_count": 11341,
+      "licence_byte_sha256": "2591bb5c650dc96c48e4244d52c7bc179ff904e3129d65dcb9180bc726a4b3ad",
+      "install_entrypoint": {
+        "documented": [
+          "conda create -n adas python=3.11",
+          "conda activate adas",
+          "pip install -r requirements.txt",
+          "export OPENAI_API_KEY"
+        ],
+        "dependencies": [
+          "numpy",
+          "tqdm",
+          "pandas",
+          "openai",
+          "backoff",
+          "scipy",
+          "blobfile"
+        ],
+        "packaging": "Raw self-contained domain directories and unpinned requirements; no generic package/console entrypoint."
+      },
+      "run_entrypoint": {
+        "documented": "python {DOMAIN}/search.py",
+        "released_domains": [
+          "_arc",
+          "_drop",
+          "_gpqa",
+          "_mgsm",
+          "_mmlu"
+        ],
+        "custom_domain_instruction": "Modify evaluate_forward_fn, formatting prompts, available functions, and domain-specific prompts before running search.py."
+      },
+      "candidate_visible_information": [
+        "ever-growing archive of prior generated agent design records",
+        "prior design name, thought, code, generation and fitness",
+        "domain validation inputs and evaluation feedback/errors inside evaluate_forward_fn",
+        "two reflexion prompts after each proposal"
+      ],
+      "legal_actions_and_write_surface": {
+        "native_actions": [
+          "generate Python agent code",
+          "execute generated code in-process",
+          "evaluate generated agents on a domain validation set",
+          "append successful proposals to a JSON archive",
+          "evaluate the archive on a domain test split"
+        ],
+        "write_locations": [
+          "results/<expr>_run_archive.json",
+          "results/<expr>_run_archive_evaluate.json",
+          "process memory during generated-code exec"
+        ],
+        "critical_boundary": "The meta-agent generates new candidate-agent programs; the released controller/search.py is not rewritten by the candidate and no archived parent becomes a self-modified controller successor."
+      },
+      "token_tool_time_compute_retry_envelope": {
+        "defaults": {
+          "arc_generations": 25,
+          "other_shown_generations": 30,
+          "arc_workers": 32,
+          "drop_gpqa_mgsm_workers": 48,
+          "debug_attempts_per_generated_agent": 3,
+          "arc_repetitions": 5,
+          "default_model": "gpt-4o-2024-05-13"
+        },
+        "per_generation_meta_calls": "one proposal plus two reflexion calls, each configured for up to 4096 output tokens",
+        "task_calls": "additional model calls for every validation/test task and repetition; total depends on descriptive task counts and was not computed from rows.",
+        "retry_timeout": "OpenAI RateLimitError uses exponential backoff with no explicit source-level max_time/max_tries; there is no whole-run, per-call, token, USD, or process timeout in the released scripts."
+      },
+      "native_outputs": [
+        "JSON run archive containing generated code/design metadata/fitness/generation",
+        "separate evaluated-archive JSON",
+        "console progress and bootstrap confidence interval summaries"
+      ],
+      "native_errors_timeouts_and_abstentions": [
+        "malformed/non-JSON model response raises then generation is skipped",
+        "evaluation error triggers up to debug_max repair attempts",
+        "all-zero validation triggers an error in search mode",
+        "task exceptions are converted to zero score in several domains",
+        "no structured abstention or whole-run timeout",
+        "untrusted generated code is executed in-process"
+      ],
+      "p5_eight_class_adapter": {
+        "native_support": false,
+        "released_adapter_found": false,
+        "possible_protocol_reimplementation": "A declared non-official adapter could replace evaluate_forward_fn with a public-development-only P5 action evaluator and constrain generated code to an eight-class interface, but it must sandbox exec, separate evaluator custody, freeze promotion before protected use, and match resource budgets.",
+        "mismatch": "No released P5 action schema, no issue-family/source-disjoint unit, no protected evaluator split, and no exact self-edit semantics.",
+        "adapter_terminal": "ADAS_P5_META_AGENT_ADAPTER_NOT_RELEASED"
+      },
+      "rights_and_service_dependencies": [
+        "Apache-2.0 code licence",
+        "OpenAI credentials and service terms",
+        "separate rights for bundled or supplied domain data",
+        "sandboxing required for generated Python code"
+      ],
+      "semantic_fit_verdict": "NEAR_MISS_ARCHIVE_AGENT_DESIGN_NOT_SELF_EDIT",
+      "feasibility_terminal": "OFFICIAL_ADAS_IDENTITY_BOUND__REJECT_AS_EXACT_C3_SUBSTITUTE__PROTOCOL_REIMPLEMENTATION_CANNOT_CHECK",
+      "evidence": [
+        {
+          "url": "https://arxiv.org/abs/2408.08435v2",
+          "quote": "a meta agent programming ever better ones in code ... based on an ever-growing archive of previous discoveries"
+        },
+        {
+          "url": "https://www.shengranhu.com/ADAS/",
+          "quote": "The project page Code control links to https://github.com/ShengranHu/ADAS."
+        },
+        {
+          "url": "https://github.com/ShengranHu/ADAS/blob/2702bee8fefda42255efc5be9f60e3bd3db96ae4/README.md#L24",
+          "quote": "a meta agent iteratively programs interesting new agents in code based on previous discoveries"
+        },
+        {
+          "url": "https://github.com/ShengranHu/ADAS/blob/2702bee8fefda42255efc5be9f60e3bd3db96ae4/README.md#L53-L64",
+          "quote": "Customizing for a new domain requires modifying evaluate_forward_fn, formatting prompts, available functions, and domain information."
+        }
+      ]
+    }
+  ],
+  "source_identity_notes": [
+    "All three GitHub identities are tied to the primary paper or primary author project page; none is a benchmark repository substituted for solver code.",
+    "DGM is official solver/self-improvement code. SWE-bench and Polyglot are separately acknowledged evaluation frameworks and must never be described as DGM solver code.",
+    "ADAS is official Meta Agent Search code but is not an exact archive-self-edit identity under the frozen P5 definition.",
+    "Repository-root licences do not establish rights to external or bundled benchmark/task/project content."
+  ],
+  "final_terminals": {
+    "c2_identity": "BOUND_MOSS_V2_OFFICIAL_5453F1FEEBAD44C199F5887F852FC5BC7FB7D4DA",
+    "c3_identity": "BOUND_DGM_V3_OFFICIAL_A565FD2D1DCA504EF5104A7CC0F3BDC4AB9B4FD2",
+    "adas_disposition": "NEAR_MISS_NOT_EXACT_C3_SELF_EDIT",
+    "p5_execution": "P5_C2_C3_IDENTITY_BOUND__EIGHT_CLASS_OUTCOME_BLIND_ADAPTERS_CANNOT_CHECK",
+    "h1_h4_and_protected_freshness": "CANNOT_CHECK"
+  }
+}

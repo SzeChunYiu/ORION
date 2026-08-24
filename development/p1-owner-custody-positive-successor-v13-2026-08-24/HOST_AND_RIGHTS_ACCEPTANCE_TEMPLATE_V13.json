@@ -1,0 +1,46 @@
+{
+  "authority": "UNSIGNED_EXTERNAL_EXECUTION_TEMPLATE__NOT_HOST_AUTHORITY_OR_RIGHTS",
+  "host_authority_payload": {
+    "adoption_boundary": null,
+    "algebra_envelope_sha256": null,
+    "authority_basis_sha256": null,
+    "authority_basis_uri": null,
+    "execution_boundary": null,
+    "host_identity": null,
+    "recommendation_boundary": null,
+    "signed_at_utc": null
+  },
+  "host_authority_payload_sha256": null,
+  "host_authority_signature": {
+    "key_id": null,
+    "signature": null,
+    "signature_scheme": null,
+    "verification_material_or_uri": null
+  },
+  "output_filename": "HOST_AND_RIGHTS_ACCEPTANCE_SIGNED_V13.json",
+  "rights_grant_payload": {
+    "algebra_envelope_sha256": null,
+    "exact_corpus_or_artifact_sha256_list": [],
+    "granted_acts": [
+      "STORE_EXACT_BYTES",
+      "MACHINE_PROCESS_EXACT_BYTES",
+      "DERIVE_SEMANTIC_ADJUDICATION",
+      "QUOTE_FOR_AUDIT",
+      "RELEASE_CONTENT_ADDRESSED_RESULT"
+    ],
+    "licence_or_grant_sha256": null,
+    "licence_or_grant_uri": null,
+    "rights_holder_identity": null,
+    "signed_at_utc": null
+  },
+  "rights_grant_payload_sha256": null,
+  "rights_grant_signature": {
+    "key_id": null,
+    "signature": null,
+    "signature_scheme": null,
+    "verification_material_or_uri": null
+  },
+  "schema_version": "orion.p1.owner-custody-positive-successor.host-rights-template.v13",
+  "signing_specification": "SIGNING_CANONICALIZATION_V13.json",
+  "status": "UNSIGNED__ZERO_HOST_OR_RIGHTS_AUTHORITY"
+}

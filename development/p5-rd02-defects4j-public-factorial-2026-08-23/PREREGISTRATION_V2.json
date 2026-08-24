@@ -1,0 +1,121 @@
+{
+  "schema_version": "orion.p5.rd02.public-development-preregistration.v2",
+  "study_id": "P5-RD-02.DEFECTS4J.LANG1.V2",
+  "registered_at_utc": "2026-08-23T13:47:00Z",
+  "parent_study_id": "P5-RD-02",
+  "successor_of": "P5-RD-02.DEFECTS4J.LANG1.V1",
+  "bridge_identity": "P5.PUBLIC_DEVELOPMENT_TO_PROTECTED_FRESHNESS_BRIDGE.V1",
+  "authority": "PUBLIC_DEVELOPMENT_FACTORIAL_ONLY__NOT_PROTECTED__NOT_FRESH__NOT_GENERAL",
+  "protocol_status": "FROZEN_BEFORE_V2_FACTORIAL_OUTCOMES",
+  "outcomes_accessed_at_freeze": false,
+  "historical_results_immutable": true,
+  "predecessor_result": {
+    "path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/RESULT_V1.json",
+    "terminal": "CANNOT_CHECK",
+    "adverse_modifier": "HARMFUL_OR_ADVERSE_CELL_PRESENT",
+    "causes": [
+      "Defects4J 3.0.1 refuses non-Java-11 execution before checkout, making both registered JDK-17 cells invalid.",
+      "Defects4J creates prepared local checkout commits and trees, so comparison to raw upstream tree IDs incorrectly rejected both Java-11 checkouts."
+    ],
+    "silent_repair_prohibited": true
+  },
+  "material_change": "V2 keeps both runtime arms inside Defects4J's documented Java-11 contract and binds the deterministic Defects4J-prepared checkout trees plus .defects4j.config identities rather than incorrectly requiring raw upstream tree equality.",
+  "research_problem": "Within one licensed public defect, test whether the public implementation fix or a content-addressed Java-11 distribution reconstruction changes the exact Defects4J developer-test outcome.",
+  "source": {
+    "source_id": "DEFECTS4J",
+    "revision_sha": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+    "project_bug": "Lang-1",
+    "upstream_buggy_revision": "396afc3e4693cfee182efe582455f2d97058c068",
+    "upstream_fixed_revision": "d1a45e9738de5b3e299bb51e987565dcce55fee6",
+    "upstream_license": "Apache-2.0",
+    "upstream_license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "issue_prose_accessed": false,
+    "attachments_accessed": false
+  },
+  "factors": {
+    "candidate_bytes": [
+      {
+        "level_id": "C0_DEFECTS4J_PREPARED_ORIGINAL",
+        "defects4j_version": "1b",
+        "upstream_revision": "396afc3e4693cfee182efe582455f2d97058c068",
+        "prepared_tree_sha": "eaec8f08f7e0fc2d10a39a6480878a338e1a7090",
+        "config_sha256": "9f566faf05152c1365d5af98e8815dc6adf386318bf9017ce4b6ac31b6b3a984"
+      },
+      {
+        "level_id": "C1_DEFECTS4J_PREPARED_PUBLIC_FIX_REPLAY",
+        "defects4j_version": "1f",
+        "upstream_revision": "d1a45e9738de5b3e299bb51e987565dcce55fee6",
+        "prepared_tree_sha": "5890638f92d023d4bb6df6625508326009924c76",
+        "config_sha256": "d9eaa4710bebdc29e3c4d4323344756c135c90032f13b05112583cbae970cc87",
+        "public_fix_patch_sha256": "2bacab48cc56c962cc906a3e95878735cacb2f231d4a64717a8798f1eb41090f"
+      }
+    ],
+    "environment": [
+      {
+        "level_id": "E0_OBSERVED_HOMEBREW_OPENJDK11",
+        "java_home": "/opt/homebrew/Cellar/openjdk@11/11.0.32.1/libexec/openjdk.jdk/Contents/Home",
+        "java_version": "11.0.32.1+0",
+        "java_binary_sha256": "c7ec15111335d5c7ef3c9a3ddcb67642ef3cfbbd8efc98d90b90526628b245b4",
+        "vendor": "Homebrew"
+      },
+      {
+        "level_id": "E1_RECONSTRUCTED_TEMURIN_OPENJDK11",
+        "java_home": "/tmp/p5-rd02-defects4j/jdk11/Contents/Home",
+        "java_version": "11.0.32+9",
+        "java_archive_sha256": "3e3687488e472035b7a27732f0f6127d59903ba9fd0cb6c815f1a182f4160109",
+        "java_binary_sha256": "e561d7ba57da3bb04df5db5da06a7a164811fa3981c1cfaed0516c70f784b301",
+        "vendor": "Eclipse Temurin"
+      }
+    ]
+  },
+  "held_fixed": {
+    "task": "Resolve Defects4J Lang-1 under its public developer test suite.",
+    "input": "Exact Defects4J-prepared candidate tree; issue prose and attachments excluded.",
+    "evaluator": "Defects4J test at 8c16da8230843cdc918eaf4ddb449637f02b83c6",
+    "evaluator_script_sha256": "c1d3a517c9e9c82b7467df910660412fd3f4d47521a048279301dbedb1183706",
+    "success_criterion": "valid evaluator execution with zero failing developer tests",
+    "triggering_test": "org.apache.commons.lang3.math.NumberUtilsTest::TestLang747",
+    "timezone": "America/Los_Angeles",
+    "locale": "C",
+    "host_os_and_architecture": "native arm64 macOS",
+    "defects4j_installation": "one shared initialized installation",
+    "timeout_seconds_per_cell": 1200
+  },
+  "run_order_rule": "Ascending SHA-256 of study_id + ':' + cell_id.",
+  "run_order": [
+    "C1E0",
+    "C0E0",
+    "C0E1",
+    "C1E1"
+  ],
+  "analysis": {
+    "implementation_effect": "mean(success at C1) minus mean(success at C0)",
+    "environment_effect": "mean(success at E1) minus mean(success at E0)",
+    "interaction": "(C1E1-C0E1) minus (C1E0-C0E0)",
+    "terminal_rule": [
+      "Any invalid, timeout, byte-drift, unparseable, or tool-error cell -> CANNOT_CHECK.",
+      "Nonzero interaction, or simultaneous nonzero implementation and environment effects -> COUPLED_INTERACTION.",
+      "Only nonzero environment effect -> ENVIRONMENT_MAIN_EFFECT.",
+      "Only nonzero implementation effect -> IMPLEMENTATION_MAIN_EFFECT.",
+      "All effects zero -> JOINT_NULL_UNRESOLVED."
+    ],
+    "adverse_rule": "Retain every failure. Any fixed-challenger failure, failure outside the registered original trigger, timeout, crash, or tool error yields HARMFUL_OR_ADVERSE_CELL_PRESENT."
+  },
+  "registered_terminals": [
+    "ENVIRONMENT_MAIN_EFFECT",
+    "IMPLEMENTATION_MAIN_EFFECT",
+    "COUPLED_INTERACTION",
+    "JOINT_NULL_UNRESOLVED",
+    "CANNOT_CHECK"
+  ],
+  "fixed_limitations": [
+    "n=1 public development cluster provides no population or transport inference",
+    "the challenger is a public known fix, not a generated revision",
+    "the environment factor changes JDK distribution and patch version while sharing host OS and build tools",
+    "local evaluator custody is not independent or protected",
+    "public gold gives no protected freshness or P5 H1-H4 authority"
+  ],
+  "protected_freshness_status": "CANNOT_CHECK",
+  "h1_h4_status": "CANNOT_CHECK",
+  "grants_scientific_authority": false
+}

@@ -1,0 +1,439 @@
+{
+  "checks": [
+    {
+      "check": "protocol_payload_hash",
+      "expected": "982ee0a2ecf7a64048e2c32c84c4c8c49867b31ecd7e2eeff99bc9aded1023fb",
+      "observed": "982ee0a2ecf7a64048e2c32c84c4c8c49867b31ecd7e2eeff99bc9aded1023fb",
+      "passed": true
+    },
+    {
+      "check": "disclosure_payload_hash",
+      "expected": "af79d50ebac3c5282dc9ac19c3c7d6df3d84103d8df34d9a3921e2a99d31cf73",
+      "observed": "af79d50ebac3c5282dc9ac19c3c7d6df3d84103d8df34d9a3921e2a99d31cf73",
+      "passed": true
+    },
+    {
+      "check": "result_payload_hash",
+      "expected": "e31c2fe27062ce02253cda0945e0eece859ae60bd9c18514397cc60690ac99bb",
+      "observed": "e31c2fe27062ce02253cda0945e0eece859ae60bd9c18514397cc60690ac99bb",
+      "passed": true
+    },
+    {
+      "check": "protocol_file_link",
+      "expected": "2f2b78793781fca66a1b614f8c4c4df2e100e6ed2467badcf84fbbf79021a62a",
+      "observed": "2f2b78793781fca66a1b614f8c4c4df2e100e6ed2467badcf84fbbf79021a62a",
+      "passed": true
+    },
+    {
+      "check": "disclosure_file_link",
+      "expected": "18dd9ca008aa4e02110a61c6157715b57cd2a7b2c33729db8a3c2ccda839cdab",
+      "observed": "18dd9ca008aa4e02110a61c6157715b57cd2a7b2c33729db8a3c2ccda839cdab",
+      "passed": true
+    },
+    {
+      "check": "candidate_file_link",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": true
+    },
+    {
+      "check": "v1_lineage_and_terminal_immutable",
+      "expected": {
+        "v1_candidates": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "v1_protocol": "210b446ff205c6f9cf25cc7c3231d388bfd4187e97006f3c897aabbecb16f691",
+        "v1_result": "793d2698957529653e708aff9c886ec9cdbc99beaca4247e1350a8fab877c5f7",
+        "v1_terminal": "P4_DATACITE_M5_CENSUS_V1_CANNOT_CHECK_TRANSPORT_OR_SCHEMA",
+        "v1_terminal_immutable": true
+      },
+      "observed": {
+        "v1_candidates": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "v1_protocol": "210b446ff205c6f9cf25cc7c3231d388bfd4187e97006f3c897aabbecb16f691",
+        "v1_result": "793d2698957529653e708aff9c886ec9cdbc99beaca4247e1350a8fab877c5f7",
+        "v1_terminal": "P4_DATACITE_M5_CENSUS_V1_CANNOT_CHECK_TRANSPORT_OR_SCHEMA",
+        "v1_terminal_immutable": true
+      },
+      "passed": true
+    },
+    {
+      "check": "zenodo_negative_identities_immutable",
+      "expected": {
+        "immutable": true,
+        "v1": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1_TRANSPORT_CANNOT_CHECK_HTTP_400",
+        "v2": "P4_ZENODO_RELATED_OBJECT_V2_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_PROVIDER"
+      },
+      "observed": {
+        "immutable": true,
+        "v1": "P4_ZENODO_RELATED_OBJECT_CENSUS_V1_TRANSPORT_CANNOT_CHECK_HTTP_400",
+        "v2": "P4_ZENODO_RELATED_OBJECT_V2_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_PROVIDER"
+      },
+      "passed": true
+    },
+    {
+      "check": "v1_disclosure_query_rows",
+      "expected": 4000,
+      "observed": 4000,
+      "passed": true
+    },
+    {
+      "check": "v1_disclosure_unique_dois",
+      "expected": {
+        "declared": 3479,
+        "rows": 3479,
+        "unique": 3479
+      },
+      "observed": {
+        "declared": 3479,
+        "rows": 3479,
+        "unique": 3479
+      },
+      "passed": true
+    },
+    {
+      "check": "v1_disclosure_cross_query_dois",
+      "expected": 468,
+      "observed": 468,
+      "passed": true
+    },
+    {
+      "check": "disclosure_no_content_or_outcomes",
+      "expected": {
+        "descriptions": false,
+        "files": false,
+        "outcomes": false
+      },
+      "observed": {
+        "descriptions": false,
+        "files": false,
+        "outcomes": false
+      },
+      "passed": true
+    },
+    {
+      "check": "four_query_page_receipts",
+      "expected": 4,
+      "observed": 4,
+      "passed": true
+    },
+    {
+      "check": "all_evidence_assertions_pass",
+      "expected": {
+        "pass": 4,
+        "records": 4
+      },
+      "observed": {
+        "pass": 4,
+        "records": 4
+      },
+      "passed": true
+    },
+    {
+      "check": "provider_schema_and_pagination",
+      "expected": {
+        "pagination": true,
+        "schema": true
+      },
+      "observed": {
+        "pagination": true,
+        "schema": true
+      },
+      "passed": true
+    },
+    {
+      "check": "exact_per_query_counts",
+      "expected": {
+        "DATACITE_EARTH_DATA_V2": {
+          "content_url": 0,
+          "prefreeze": 299,
+          "provider": 701,
+          "raw": 1000,
+          "rights": 678
+        },
+        "DATACITE_LIFE_DATA_V2": {
+          "content_url": 0,
+          "prefreeze": 424,
+          "provider": 576,
+          "raw": 1000,
+          "rights": 525
+        },
+        "DATACITE_PHYSICAL_DATA_V2": {
+          "content_url": 0,
+          "prefreeze": 132,
+          "provider": 868,
+          "raw": 1000,
+          "rights": 762
+        },
+        "DATACITE_SOFTWARE_DATA_V2": {
+          "content_url": 0,
+          "prefreeze": 113,
+          "provider": 887,
+          "raw": 1000,
+          "rights": 754
+        }
+      },
+      "observed": {
+        "DATACITE_EARTH_DATA_V2": {
+          "content_url": 0,
+          "prefreeze": 299,
+          "provider": 701,
+          "raw": 1000,
+          "rights": 678
+        },
+        "DATACITE_LIFE_DATA_V2": {
+          "content_url": 0,
+          "prefreeze": 424,
+          "provider": 576,
+          "raw": 1000,
+          "rights": 525
+        },
+        "DATACITE_PHYSICAL_DATA_V2": {
+          "content_url": 0,
+          "prefreeze": 132,
+          "provider": 868,
+          "raw": 1000,
+          "rights": 762
+        },
+        "DATACITE_SOFTWARE_DATA_V2": {
+          "content_url": 0,
+          "prefreeze": 113,
+          "provider": 887,
+          "raw": 1000,
+          "rights": 754
+        }
+      },
+      "passed": true
+    },
+    {
+      "check": "exact_aggregate_counts",
+      "expected": {
+        "content_url": 0,
+        "missing_client": 0,
+        "prefreeze": 968,
+        "provider": 3032,
+        "publication_typed": 0,
+        "raw": 4000,
+        "rights": 2719,
+        "typed_relation": 0
+      },
+      "observed": {
+        "content_url": 0,
+        "missing_client": 0,
+        "prefreeze": 968,
+        "provider": 3032,
+        "publication_typed": 0,
+        "raw": 4000,
+        "rights": 2719,
+        "typed_relation": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "raw_response_hashes",
+      "expected": [
+        "c60bb9f374cb8c8714dd6857177c22261627fa0a7ac58227a42f09a3120f3011",
+        "47c164e88c1403788502a8c9903449acaee2192275c9c659806ca956cf0d108e",
+        "041ad76f5659a4f19971588a37f3dab9661fa709e87314cfb65ea407fa09d01d",
+        "eab2efc83cecdf88ec23dde4339ad2dc11216534dc4ca20b92999d0ac9386e6c"
+      ],
+      "observed": [
+        "c60bb9f374cb8c8714dd6857177c22261627fa0a7ac58227a42f09a3120f3011",
+        "47c164e88c1403788502a8c9903449acaee2192275c9c659806ca956cf0d108e",
+        "041ad76f5659a4f19971588a37f3dab9661fa709e87314cfb65ea407fa09d01d",
+        "eab2efc83cecdf88ec23dde4339ad2dc11216534dc4ca20b92999d0ac9386e6c"
+      ],
+      "passed": true
+    },
+    {
+      "check": "zero_admitted_candidates",
+      "expected": {
+        "file_bytes": 0,
+        "rows": 0,
+        "unique": 0
+      },
+      "observed": {
+        "file_bytes": 0,
+        "rows": 0,
+        "unique": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "unchanged_m5_48_signal_shortfalls",
+      "expected": {
+        "EARTH_ENVIRONMENT": {
+          "combined": 37,
+          "datacite": 0,
+          "delta": -11,
+          "zenodo": 37
+        },
+        "LIFE_BIOMEDICAL": {
+          "combined": 44,
+          "datacite": 0,
+          "delta": -4,
+          "zenodo": 44
+        },
+        "PHYSICAL_ENGINEERING": {
+          "combined": 29,
+          "datacite": 0,
+          "delta": -19,
+          "zenodo": 29
+        },
+        "SCIENTIFIC_SOFTWARE": {
+          "combined": 30,
+          "datacite": 0,
+          "delta": -18,
+          "zenodo": 30
+        }
+      },
+      "observed": {
+        "EARTH_ENVIRONMENT": {
+          "combined": 37,
+          "datacite": 0,
+          "delta": -11,
+          "zenodo": 37
+        },
+        "LIFE_BIOMEDICAL": {
+          "combined": 44,
+          "datacite": 0,
+          "delta": -4,
+          "zenodo": 44
+        },
+        "PHYSICAL_ENGINEERING": {
+          "combined": 29,
+          "datacite": 0,
+          "delta": -19,
+          "zenodo": 29
+        },
+        "SCIENTIFIC_SOFTWARE": {
+          "combined": 30,
+          "datacite": 0,
+          "delta": -18,
+          "zenodo": 30
+        }
+      },
+      "passed": true
+    },
+    {
+      "check": "unchanged_m6_48_signal_shortfalls",
+      "expected": {
+        "EARTH_ENVIRONMENT": 6,
+        "LIFE_BIOMEDICAL": 10,
+        "PHYSICAL_ENGINEERING": 10,
+        "SCIENTIFIC_SOFTWARE": 7
+      },
+      "observed": {
+        "EARTH_ENVIRONMENT": 6,
+        "LIFE_BIOMEDICAL": 10,
+        "PHYSICAL_ENGINEERING": 10,
+        "SCIENTIFIC_SOFTWARE": 7
+      },
+      "passed": true
+    },
+    {
+      "check": "no_m5_m6_gate_passes",
+      "expected": false,
+      "observed": false,
+      "passed": true
+    },
+    {
+      "check": "no_content_or_outcome_access",
+      "expected": "all true",
+      "observed": {
+        "candidate_content_bytes": true,
+        "files": true,
+        "metadata_descriptions": true,
+        "models": true,
+        "outcomes": true
+      },
+      "passed": true
+    },
+    {
+      "check": "metadata_only_rights_boundary",
+      "expected": {
+        "dataset": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+        "eligibility": "NOT_ADJUDICATED",
+        "linked": "CANNOT_CHECK",
+        "metadata": "DATACITE_METADATA_CC0_ROOT_BOUND"
+      },
+      "observed": {
+        "dataset": "DECLARED_PERMISSION_AUTHORITY_UNVERIFIED",
+        "eligibility": "NOT_ADJUDICATED",
+        "linked": "CANNOT_CHECK",
+        "metadata": "DATACITE_METADATA_CC0_ROOT_BOUND"
+      },
+      "passed": true
+    },
+    {
+      "check": "exact_source_shortfall_terminal",
+      "expected": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+      "observed": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+      "passed": true
+    }
+  ],
+  "explicit_nonclaim": "V2 repairs client/evidence mechanics but yields no candidate after the unchanged HTTPS contentUrl gate; it does not establish repository-content rights, natural-pair eligibility, or scientific performance.",
+  "hard_failure_count": 0,
+  "hard_failures": [],
+  "input_file_sha256": {
+    "P4_DATACITE_M5_CANDIDATES_V2.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "P4_DATACITE_M5_CENSUS_PROTOCOL_V1.json": "210b446ff205c6f9cf25cc7c3231d388bfd4187e97006f3c897aabbecb16f691",
+    "P4_DATACITE_M5_CENSUS_PROTOCOL_V2.json": "2f2b78793781fca66a1b614f8c4c4df2e100e6ed2467badcf84fbbf79021a62a",
+    "P4_DATACITE_M5_CENSUS_RESULT_V1.json": "793d2698957529653e708aff9c886ec9cdbc99beaca4247e1350a8fab877c5f7",
+    "P4_DATACITE_M5_CENSUS_RESULT_V2.json": "a8e65f7cfe7f2cdaed413ece8f14b9072f3b283eb943e76aa080d742939e156f",
+    "P4_DATACITE_M5_V2_PREFREEZE_DISCLOSURE.json": "18dd9ca008aa4e02110a61c6157715b57cd2a7b2c33729db8a3c2ccda839cdab",
+    "P4_ZENODO_RELATED_OBJECT_CENSUS_RESULT_V2.json": "683c2ec074c04d92276dcd185f3c06750f6e1dd9817310ecd6e879f87f99e62d"
+  },
+  "schema_version": "orion.p4.datacite-m5-census-verification.v2",
+  "summary": {
+    "aggregate_counts": {
+      "content_url": 0,
+      "missing_client": 0,
+      "prefreeze": 968,
+      "provider": 3032,
+      "publication_typed": 0,
+      "raw": 4000,
+      "rights": 2719,
+      "typed_relation": 0
+    },
+    "all_eight_m5_m6_cells_pass": false,
+    "candidate_rows": 0,
+    "m5_cells": {
+      "EARTH_ENVIRONMENT": {
+        "combined": 37,
+        "datacite": 0,
+        "delta": -11,
+        "zenodo": 37
+      },
+      "LIFE_BIOMEDICAL": {
+        "combined": 44,
+        "datacite": 0,
+        "delta": -4,
+        "zenodo": 44
+      },
+      "PHYSICAL_ENGINEERING": {
+        "combined": 29,
+        "datacite": 0,
+        "delta": -19,
+        "zenodo": 29
+      },
+      "SCIENTIFIC_SOFTWARE": {
+        "combined": 30,
+        "datacite": 0,
+        "delta": -18,
+        "zenodo": 30
+      }
+    },
+    "pages": 4,
+    "provider_count": 1,
+    "queries": 4,
+    "scientific_terminal": "P4_NATURAL_PAIR_SOURCE_CELL_SHORTFALL__EXPAND_DISJOINT_SOURCE_UNIVERSE",
+    "unchanged_m6_signal_counts": {
+      "EARTH_ENVIRONMENT": 6,
+      "LIFE_BIOMEDICAL": 10,
+      "PHYSICAL_ENGINEERING": 10,
+      "SCIENTIFIC_SOFTWARE": 7
+    }
+  },
+  "verification_receipt_payload_sha256": "1d64579b571fe000a8886c4a16a3157dae26553553539dd4b4616df7f10fb75b",
+  "verification_scope": "STRUCTURAL_INTEGRITY_MECHANICS_REPAIR_AND_RETAINED_SOURCE_SHORTFALL_ONLY",
+  "verification_status": "PASS_STRUCTURAL_INTEGRITY_WITH_RETAINED_SOURCE_SIGNAL_SHORTFALL",
+  "verified_at_utc": "2026-08-23T14:47:32+00:00"
+}

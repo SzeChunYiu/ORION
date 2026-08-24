@@ -1,0 +1,829 @@
+{
+  "authority": "SOURCE_METADATA_ONLY__NOT_A_CASE_PANEL__NOT_SCIENTIFIC_EVIDENCE",
+  "captured_at_utc": "2026-08-23T10:16:48+00:00",
+  "cutoff_utc": "2025-12-31T23:59:59Z",
+  "domain_counts": {
+    "BIOMEDICAL_CLINICAL": 3,
+    "COMPUTATIONAL_SCIENTIFIC_SOFTWARE": 3,
+    "EARTH_ENVIRONMENTAL": 3,
+    "PHYSICAL_ENGINEERING": 3
+  },
+  "errors": [],
+  "explicit_nonclaims": [
+    "No issue or pull-request family was acquired or adjudicated.",
+    "No record was shown to contain an adverse/control pair.",
+    "No record was assigned a causal family, coordinate opportunity, unidentifiability mechanism, or revision class.",
+    "No source-disjoint primary or replication frame was completed.",
+    "No independent protected gold, evaluator, comparator, scorer, host, split, or verifier custody was bound.",
+    "Repository code licensing does not by itself license third-party issue text, linked papers, datasets, or attachments."
+  ],
+  "licence_spdx_counts": {
+    "Apache-2.0": 1,
+    "BSD-3-Clause": 7,
+    "MIT": 1,
+    "NOASSERTION": 3
+  },
+  "outcomes_accessed": false,
+  "protected_case_fields_accessed": false,
+  "provider_api_version": "2022-11-28",
+  "purpose": "outcome-blind candidate source-family identity, revision, URL, and licence preflight",
+  "records": [
+    {
+      "api_identity_url": "https://api.github.com/repos/scverse/scanpy",
+      "candidate_source_family_id": "github:scverse/scanpy",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"5bd0c98669e9c94df7137f8ae686c530a68ada936bbbfba8093bb6197917bf4f\"",
+          "final_url": "https://api.github.com/repos/scverse/scanpy/license?ref=b103908761ed9f5337b98629fcb54d03281d1fcf",
+          "http_status": 200,
+          "last_modified": "Tue, 30 Dec 2025 16:16:00 GMT",
+          "request_url": "https://api.github.com/repos/scverse/scanpy/license?ref=b103908761ed9f5337b98629fcb54d03281d1fcf",
+          "response_bytes": 3261,
+          "response_sha256": "4ddbfdf0588614732731d959d83ce2d68e439094e2c811d8409fd7df8df9f470"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"92834542dc096b6672c7d04685f0ad7140ce70be50d58ae7c29a974894124b00\"",
+          "final_url": "https://api.github.com/repos/scverse/scanpy/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Tue, 30 Dec 2025 16:16:00 GMT",
+          "request_url": "https://api.github.com/repos/scverse/scanpy/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 4637,
+          "response_sha256": "452d670adbde3075c099f8639bf69b5443e44a404f14b12783af272552899cf4"
+        },
+        "repository_identity": {
+          "etag": "W/\"2838157d14e7b40b6eaa7877bc10bc579819777e717f713cf780e8f6da0818cb\"",
+          "final_url": "https://api.github.com/repos/scverse/scanpy",
+          "http_status": 200,
+          "last_modified": "Sun, 23 Aug 2026 05:32:21 GMT",
+          "request_url": "https://api.github.com/repos/scverse/scanpy",
+          "response_bytes": 6206,
+          "response_sha256": "f0f0b0c9d9322806c6b735a9c943125106480bbaa383cf94e22f7e992e4f776a"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/scverse/scanpy/b103908761ed9f5337b98629fcb54d03281d1fcf/LICENSE",
+        "archived_local_path": "raw/licences/scverse__scanpy__b103908761ed.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/scverse/scanpy/b103908761ed9f5337b98629fcb54d03281d1fcf/LICENSE",
+        "html_url_at_selected_revision": "https://github.com/scverse/scanpy/blob/b103908761ed9f5337b98629fcb54d03281d1fcf/LICENSE",
+        "name_at_selected_revision": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "path_at_selected_revision": "LICENSE",
+        "spdx_id_at_selected_revision": "BSD-3-Clause",
+        "text_bytes": 1568,
+        "text_sha256": "fb02749e4f251401f2c4023b7a30e71f40a21e138b87025036f74c980cfa63b2"
+      },
+      "official_repository_identity": "scverse/scanpy",
+      "primary_source_url": "https://github.com/scverse/scanpy",
+      "protected_domain_candidate": "BIOMEDICAL_CLINICAL",
+      "provider": "GitHub",
+      "record_sha256": "1f81157016609fd15dba5aad5469e481661c95772810b59562e0601dbb88f9e9",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-30T16:16:00Z",
+      "selected_revision_sha": "b103908761ed9f5337b98629fcb54d03281d1fcf",
+      "selected_revision_url": "https://github.com/scverse/scanpy/commit/b103908761ed9f5337b98629fcb54d03281d1fcf",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/biopython/biopython",
+      "candidate_source_family_id": "github:biopython/biopython",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"d4253f628c3b304bf0179122976e95228871eb59e2cd055201bcf89166fef523\"",
+          "final_url": "https://api.github.com/repos/biopython/biopython/license?ref=54a8eda898997b98ecdc0da77f26cf5e0b87ee9a",
+          "http_status": 200,
+          "last_modified": "Fri, 26 Dec 2025 06:23:00 GMT",
+          "request_url": "https://api.github.com/repos/biopython/biopython/license?ref=54a8eda898997b98ecdc0da77f26cf5e0b87ee9a",
+          "response_bytes": 5548,
+          "response_sha256": "8be5a23320d6b646d4d39d049deded06584cd4856f416985c3d10561f542210d"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"5bdd9f7808b1fd57edfa12d6c6c0013c4c62bec95e860a989cf0118971c1689f\"",
+          "final_url": "https://api.github.com/repos/biopython/biopython/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Fri, 26 Dec 2025 06:23:00 GMT",
+          "request_url": "https://api.github.com/repos/biopython/biopython/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 5012,
+          "response_sha256": "da85e54a41877258e58c6c28d862d283ad80c8173e6701b52961ca34aabdd435"
+        },
+        "repository_identity": {
+          "etag": "W/\"6cf5e628fd34fba2f3052a8eec8725b76b7dd8434818eb3f72391bbd1ec4abe6\"",
+          "final_url": "https://api.github.com/repos/biopython/biopython",
+          "http_status": 200,
+          "last_modified": "Sun, 23 Aug 2026 09:01:27 GMT",
+          "request_url": "https://api.github.com/repos/biopython/biopython",
+          "response_bytes": 6414,
+          "response_sha256": "a39bc910d8bcf8e167b2c05066214b9a8d1ba1510ab3d3eda3e5a5652187d14b"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/biopython/biopython/54a8eda898997b98ecdc0da77f26cf5e0b87ee9a/LICENSE",
+        "archived_local_path": "raw/licences/biopython__biopython__54a8eda89899.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/biopython/biopython/54a8eda898997b98ecdc0da77f26cf5e0b87ee9a/LICENSE.rst",
+        "html_url_at_selected_revision": "https://github.com/biopython/biopython/blob/54a8eda898997b98ecdc0da77f26cf5e0b87ee9a/LICENSE",
+        "name_at_selected_revision": "Other",
+        "path_at_selected_revision": "LICENSE",
+        "spdx_id_at_selected_revision": "NOASSERTION",
+        "text_bytes": 3267,
+        "text_sha256": "11d1ebcaad2eb9f0f09a3df1deb4aca99a4da366ae9ae70f828c7447a24de453"
+      },
+      "official_repository_identity": "biopython/biopython",
+      "primary_source_url": "https://github.com/biopython/biopython",
+      "protected_domain_candidate": "BIOMEDICAL_CLINICAL",
+      "provider": "GitHub",
+      "record_sha256": "9db9a8ebe32556417c250fc7814e4743fe836aa8a4ebeddbb53b57a1b8caf150",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-26T06:23:00Z",
+      "selected_revision_sha": "54a8eda898997b98ecdc0da77f26cf5e0b87ee9a",
+      "selected_revision_url": "https://github.com/biopython/biopython/commit/54a8eda898997b98ecdc0da77f26cf5e0b87ee9a",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/nipy/nibabel",
+      "candidate_source_family_id": "github:nipy/nibabel",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"b182719b96a674705f0a853b0156d069d67d412106163108ac2c19edd7c43f80\"",
+          "final_url": "https://api.github.com/repos/nipy/nibabel/license?ref=927be9130b42ff636f665ece106e8be6cc44208d",
+          "http_status": 200,
+          "last_modified": "Fri, 19 Dec 2025 22:34:07 GMT",
+          "request_url": "https://api.github.com/repos/nipy/nibabel/license?ref=927be9130b42ff636f665ece106e8be6cc44208d",
+          "response_bytes": 14543,
+          "response_sha256": "ef73833c5c4638e8c5a1343be618d62e3270d556d9cb899be73dfc7830739ce5"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"8619d721ca63b37d6ae02b4eeb3ed0101cfc4858ea38b4d4afbc2e630764601e\"",
+          "final_url": "https://api.github.com/repos/nipy/nibabel/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Fri, 19 Dec 2025 22:34:07 GMT",
+          "request_url": "https://api.github.com/repos/nipy/nibabel/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 3299,
+          "response_sha256": "af4fc3d3ae6edae25ad4a077d7e7d53f292c78790df2a162a50cd099d17f0e23"
+        },
+        "repository_identity": {
+          "etag": "W/\"988523e95fb0ddb29ea2aabc3fc5e37c4843479370a4f0d1bc09634d08b3676c\"",
+          "final_url": "https://api.github.com/repos/nipy/nibabel",
+          "http_status": 200,
+          "last_modified": "Sun, 23 Aug 2026 04:26:52 GMT",
+          "request_url": "https://api.github.com/repos/nipy/nibabel",
+          "response_bytes": 6016,
+          "response_sha256": "c305bf12d5e59685a851e39ddf3d30d4e7cd5982bcc1079a9662dc08e85db9be"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/nipy/nibabel/927be9130b42ff636f665ece106e8be6cc44208d/COPYING",
+        "archived_local_path": "raw/licences/nipy__nibabel__927be9130b42.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/nipy/nibabel/927be9130b42ff636f665ece106e8be6cc44208d/COPYING",
+        "html_url_at_selected_revision": "https://github.com/nipy/nibabel/blob/927be9130b42ff636f665ece106e8be6cc44208d/COPYING",
+        "name_at_selected_revision": "Other",
+        "path_at_selected_revision": "COPYING",
+        "spdx_id_at_selected_revision": "NOASSERTION",
+        "text_bytes": 9830,
+        "text_sha256": "5ab0638392203d737b4d6c70e3920a61888efdee7de84a8374f3626522306dc7"
+      },
+      "official_repository_identity": "nipy/nibabel",
+      "primary_source_url": "https://github.com/nipy/nibabel",
+      "protected_domain_candidate": "BIOMEDICAL_CLINICAL",
+      "provider": "GitHub",
+      "record_sha256": "69723da0fbf1737a6899bc4874fd09ae6a4b3d7513aecd1a2bb985984619e4d9",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-19T22:34:07Z",
+      "selected_revision_sha": "927be9130b42ff636f665ece106e8be6cc44208d",
+      "selected_revision_url": "https://github.com/nipy/nibabel/commit/927be9130b42ff636f665ece106e8be6cc44208d",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/pydata/xarray",
+      "candidate_source_family_id": "github:pydata/xarray",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"16e947c0c48b5a0daab210106a76a63a3f29cff021bbfac8730df733fd3fd9bb\"",
+          "final_url": "https://api.github.com/repos/pydata/xarray/license?ref=18ebe981d2924a07bff4cefec2f0904eb763bd4c",
+          "http_status": 200,
+          "last_modified": "Mon, 29 Dec 2025 21:18:49 GMT",
+          "request_url": "https://api.github.com/repos/pydata/xarray/license?ref=18ebe981d2924a07bff4cefec2f0904eb763bd4c",
+          "response_bytes": 15212,
+          "response_sha256": "436a7db4c3ea91b54e7304ab5714b5e6c7ac706e3929c5a0fe4c38147c7350ee"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"664d5155cde5cb3701cf71edbd7d932494e528a3b9ad861e746a86a74cc608d3\"",
+          "final_url": "https://api.github.com/repos/pydata/xarray/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Mon, 29 Dec 2025 21:18:49 GMT",
+          "request_url": "https://api.github.com/repos/pydata/xarray/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 5440,
+          "response_sha256": "de664c0c08259ed01c341a2cd8fa14b3e83a81df265d15920c36b8e343e1d7a2"
+        },
+        "repository_identity": {
+          "etag": "W/\"02fd8c7c24a1f39171fd37deb4194fd20d7e9d673a69c41cd5921bc48f6826e7\"",
+          "final_url": "https://api.github.com/repos/pydata/xarray",
+          "http_status": 200,
+          "last_modified": "Sun, 23 Aug 2026 02:07:00 GMT",
+          "request_url": "https://api.github.com/repos/pydata/xarray",
+          "response_bytes": 6055,
+          "response_sha256": "d2011b295d5f03f4b6f61e0773064e9354224783510bc372703ee88deca7fe99"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/pydata/xarray/18ebe981d2924a07bff4cefec2f0904eb763bd4c/LICENSE",
+        "archived_local_path": "raw/licences/pydata__xarray__18ebe981d292.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/pydata/xarray/18ebe981d2924a07bff4cefec2f0904eb763bd4c/LICENSE",
+        "html_url_at_selected_revision": "https://github.com/pydata/xarray/blob/18ebe981d2924a07bff4cefec2f0904eb763bd4c/LICENSE",
+        "name_at_selected_revision": "Apache License 2.0",
+        "path_at_selected_revision": "LICENSE",
+        "spdx_id_at_selected_revision": "Apache-2.0",
+        "text_bytes": 10268,
+        "text_sha256": "533d735a2bbc40eccebe20014c38a2bf6fb1afd488398d2c508006496099af17"
+      },
+      "official_repository_identity": "pydata/xarray",
+      "primary_source_url": "https://github.com/pydata/xarray",
+      "protected_domain_candidate": "EARTH_ENVIRONMENTAL",
+      "provider": "GitHub",
+      "record_sha256": "55a03325b4e49b9a694f122e2b1e9f20b420a5f1dcbdb1c096b6b9ba4ade0fd7",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-29T21:18:49Z",
+      "selected_revision_sha": "18ebe981d2924a07bff4cefec2f0904eb763bd4c",
+      "selected_revision_url": "https://github.com/pydata/xarray/commit/18ebe981d2924a07bff4cefec2f0904eb763bd4c",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/SciTools/cartopy",
+      "candidate_source_family_id": "github:scitools/cartopy",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"039a6e7a18ce0644b02b62d5e96a2d95f911205dc4290d4da22ee3426748d16a\"",
+          "final_url": "https://api.github.com/repos/SciTools/cartopy/license?ref=6e0bd94b20511a7a0b1766402ca64c05ef502676",
+          "http_status": 200,
+          "last_modified": "Thu, 18 Dec 2025 21:57:47 GMT",
+          "request_url": "https://api.github.com/repos/SciTools/cartopy/license?ref=6e0bd94b20511a7a0b1766402ca64c05ef502676",
+          "response_bytes": 3227,
+          "response_sha256": "09aac502f8079ce2a78d2fe6d09ca66d85a74305c07a72c9145318672970e1a2"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"a490c8ee0eb0860aaa5758467f4754e214178ae929a2a3c4e3f5b250e3a0e5d8\"",
+          "final_url": "https://api.github.com/repos/SciTools/cartopy/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Thu, 18 Dec 2025 21:57:47 GMT",
+          "request_url": "https://api.github.com/repos/SciTools/cartopy/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 4795,
+          "response_sha256": "bfd295307c8f16ac31dd10e34c97fb9409c07076a04d42920f0da06190304644"
+        },
+        "repository_identity": {
+          "etag": "W/\"43723369f5d022bc9e0a2d568032bf0c2a1b8a7906e5532a16899fda938d3526\"",
+          "final_url": "https://api.github.com/repos/SciTools/cartopy",
+          "http_status": 200,
+          "last_modified": "Sat, 22 Aug 2026 04:03:57 GMT",
+          "request_url": "https://api.github.com/repos/SciTools/cartopy",
+          "response_bytes": 6313,
+          "response_sha256": "d613ca9b4829e5e707fb862d0f2fe89be272654aa8bd83fedcfe52507c127af6"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/SciTools/cartopy/6e0bd94b20511a7a0b1766402ca64c05ef502676/LICENSE",
+        "archived_local_path": "raw/licences/SciTools__cartopy__6e0bd94b2051.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/SciTools/cartopy/6e0bd94b20511a7a0b1766402ca64c05ef502676/LICENSE",
+        "html_url_at_selected_revision": "https://github.com/SciTools/cartopy/blob/6e0bd94b20511a7a0b1766402ca64c05ef502676/LICENSE",
+        "name_at_selected_revision": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "path_at_selected_revision": "LICENSE",
+        "spdx_id_at_selected_revision": "BSD-3-Clause",
+        "text_bytes": 1533,
+        "text_sha256": "3fd7b39ad7368cc65ddbaac3b382440eb54d461c51043e377dfe36070b861a36"
+      },
+      "official_repository_identity": "SciTools/cartopy",
+      "primary_source_url": "https://github.com/SciTools/cartopy",
+      "protected_domain_candidate": "EARTH_ENVIRONMENTAL",
+      "provider": "GitHub",
+      "record_sha256": "2ea61e2cbfcdaa82e89fe4efa1e069c47ad069eb819465cb56269a619511d34f",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-18T21:57:47Z",
+      "selected_revision_sha": "6e0bd94b20511a7a0b1766402ca64c05ef502676",
+      "selected_revision_url": "https://github.com/SciTools/cartopy/commit/6e0bd94b20511a7a0b1766402ca64c05ef502676",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/Unidata/netcdf4-python",
+      "candidate_source_family_id": "github:unidata/netcdf4-python",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"7a147e975182c22e6efac524ffabf993f3d305401ed8884d7542ee1c858d0df9\"",
+          "final_url": "https://api.github.com/repos/Unidata/netcdf4-python/license?ref=34e3a44e627b6143876c7c35830067fc5a18a3b7",
+          "http_status": 200,
+          "last_modified": "Wed, 24 Dec 2025 15:48:56 GMT",
+          "request_url": "https://api.github.com/repos/Unidata/netcdf4-python/license?ref=34e3a44e627b6143876c7c35830067fc5a18a3b7",
+          "response_bytes": 2552,
+          "response_sha256": "9ac2d3e74c832cf3538bc2fbd5e7310a18f553d09e66535e99876d3febeffe03"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"da938f0144a6c2729c82b988f9b78b161fcfd64542a2262ef4c2b8a24b0c3520\"",
+          "final_url": "https://api.github.com/repos/Unidata/netcdf4-python/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Wed, 24 Dec 2025 15:48:56 GMT",
+          "request_url": "https://api.github.com/repos/Unidata/netcdf4-python/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 1454,
+          "response_sha256": "686ed0b4b8d28e4fad07f96ff34a1f1eb86c0b844197849917698d0bc10a9db1"
+        },
+        "repository_identity": {
+          "etag": "W/\"ded72e2881959ddaed6d0c9d31003cbd5b3ecec79a68df87030e449cc148385e\"",
+          "final_url": "https://api.github.com/repos/Unidata/netcdf4-python",
+          "http_status": 200,
+          "last_modified": "Thu, 20 Aug 2026 08:43:21 GMT",
+          "request_url": "https://api.github.com/repos/Unidata/netcdf4-python",
+          "response_bytes": 6485,
+          "response_sha256": "7d47cab86d1eef2fbcfe791e360591d261d0b90f2b261ab7a863bcc6a3cc78e7"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/Unidata/netcdf4-python/34e3a44e627b6143876c7c35830067fc5a18a3b7/LICENSE",
+        "archived_local_path": "raw/licences/Unidata__netcdf4-python__34e3a44e627b.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/Unidata/netcdf4-python/34e3a44e627b6143876c7c35830067fc5a18a3b7/LICENSE",
+        "html_url_at_selected_revision": "https://github.com/Unidata/netcdf4-python/blob/34e3a44e627b6143876c7c35830067fc5a18a3b7/LICENSE",
+        "name_at_selected_revision": "MIT License",
+        "path_at_selected_revision": "LICENSE",
+        "spdx_id_at_selected_revision": "MIT",
+        "text_bytes": 1056,
+        "text_sha256": "7fdd0c2647de9ed5aa549c21c46778374867793c2f874497b5480df22c7778ff"
+      },
+      "official_repository_identity": "Unidata/netcdf4-python",
+      "primary_source_url": "https://github.com/Unidata/netcdf4-python",
+      "protected_domain_candidate": "EARTH_ENVIRONMENTAL",
+      "provider": "GitHub",
+      "record_sha256": "21bce4eddc0f97a49e449121d3811b51b19947cbce3ec9b4cc51d7ff228a171d",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-24T15:48:56Z",
+      "selected_revision_sha": "34e3a44e627b6143876c7c35830067fc5a18a3b7",
+      "selected_revision_url": "https://github.com/Unidata/netcdf4-python/commit/34e3a44e627b6143876c7c35830067fc5a18a3b7",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/numpy/numpy",
+      "candidate_source_family_id": "github:numpy/numpy",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"89a2435a784d3db41495133cfe9afba2937b0959faf1b9c696bf7c8955d6ad72\"",
+          "final_url": "https://api.github.com/repos/numpy/numpy/license?ref=3556042ac2576a7bc4ec5a5bba9954fd07b4167e",
+          "http_status": 200,
+          "last_modified": "Wed, 31 Dec 2025 18:08:32 GMT",
+          "request_url": "https://api.github.com/repos/numpy/numpy/license?ref=3556042ac2576a7bc4ec5a5bba9954fd07b4167e",
+          "response_bytes": 3148,
+          "response_sha256": "151a4c51490441b3dd3fee36c17688343a23412c2e4dc81935ee11fd717cd1f8"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"be1a32b721f5fc72f0c58842df2e52e4e035c9a516c875055a6c17b6030c0a7c\"",
+          "final_url": "https://api.github.com/repos/numpy/numpy/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Wed, 31 Dec 2025 18:08:32 GMT",
+          "request_url": "https://api.github.com/repos/numpy/numpy/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 4708,
+          "response_sha256": "f7c2ffca8fc177272d41b3647ccd1159b2799da924ab63b3c083bd4f33cee5d5"
+        },
+        "repository_identity": {
+          "etag": "W/\"9f57e537c4ea950049c5ab3eeb5715ebb927f5d512a111a0a797d66ae5edb13f\"",
+          "final_url": "https://api.github.com/repos/numpy/numpy",
+          "http_status": 200,
+          "last_modified": "Sun, 23 Aug 2026 09:43:29 GMT",
+          "request_url": "https://api.github.com/repos/numpy/numpy",
+          "response_bytes": 5870,
+          "response_sha256": "eadf629cbc40a4dcc8f79b3c3d91efdcea93d6cc800611c309d5879394ea67c1"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/numpy/numpy/3556042ac2576a7bc4ec5a5bba9954fd07b4167e/LICENSE.txt",
+        "archived_local_path": "raw/licences/numpy__numpy__3556042ac257.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/numpy/numpy/3556042ac2576a7bc4ec5a5bba9954fd07b4167e/LICENSE.txt",
+        "html_url_at_selected_revision": "https://github.com/numpy/numpy/blob/3556042ac2576a7bc4ec5a5bba9954fd07b4167e/LICENSE.txt",
+        "name_at_selected_revision": "Other",
+        "path_at_selected_revision": "LICENSE.txt",
+        "spdx_id_at_selected_revision": "NOASSERTION",
+        "text_bytes": 1543,
+        "text_sha256": "1be1df33863f97a7bc1c4d67980bd6c69c9a6fef0a5ee76e6ad6cb91e56e8491"
+      },
+      "official_repository_identity": "numpy/numpy",
+      "primary_source_url": "https://github.com/numpy/numpy",
+      "protected_domain_candidate": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "provider": "GitHub",
+      "record_sha256": "924e449fe04107e4449f057541edf9b3fda93eb9561f53a7d79646f377aebafd",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-31T18:08:32Z",
+      "selected_revision_sha": "3556042ac2576a7bc4ec5a5bba9954fd07b4167e",
+      "selected_revision_url": "https://github.com/numpy/numpy/commit/3556042ac2576a7bc4ec5a5bba9954fd07b4167e",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/scipy/scipy",
+      "candidate_source_family_id": "github:scipy/scipy",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"01e45b4e3bfead756d7a9dae099552cb9589ef2161f4286d3bd1a53608ebcb79\"",
+          "final_url": "https://api.github.com/repos/scipy/scipy/license?ref=2335807e25747c4dd41ba0c939b181168512a7c2",
+          "http_status": 200,
+          "last_modified": "Wed, 31 Dec 2025 17:12:51 GMT",
+          "request_url": "https://api.github.com/repos/scipy/scipy/license?ref=2335807e25747c4dd41ba0c939b181168512a7c2",
+          "response_bytes": 3220,
+          "response_sha256": "daf8b88b573e3c7a3f0108eb44fb06d2eaf185ceeac4b6861cdaf34649cc9d5a"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"994860ccd9d45f5dca6893c039eca22dc4ea806e17a5a18c3a150d49c728b5d5\"",
+          "final_url": "https://api.github.com/repos/scipy/scipy/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Wed, 31 Dec 2025 17:12:51 GMT",
+          "request_url": "https://api.github.com/repos/scipy/scipy/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 4730,
+          "response_sha256": "41a148da8c3ebe2ad217d5b20e70b29cb02f011af15d39c722baf10b2f5ee124"
+        },
+        "repository_identity": {
+          "etag": "W/\"9e10c4d16ede7bdd2877154d9a5f186685968ad7e5b7671c3559cea0320a078c\"",
+          "final_url": "https://api.github.com/repos/scipy/scipy",
+          "http_status": 200,
+          "last_modified": "Sun, 23 Aug 2026 09:38:56 GMT",
+          "request_url": "https://api.github.com/repos/scipy/scipy",
+          "response_bytes": 5972,
+          "response_sha256": "cb3059eb48e8ded88576955d63af3c9725dea9967593c51e33fc73e8fcc5c35b"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/scipy/scipy/2335807e25747c4dd41ba0c939b181168512a7c2/LICENSE.txt",
+        "archived_local_path": "raw/licences/scipy__scipy__2335807e2574.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/scipy/scipy/2335807e25747c4dd41ba0c939b181168512a7c2/LICENSE.txt",
+        "html_url_at_selected_revision": "https://github.com/scipy/scipy/blob/2335807e25747c4dd41ba0c939b181168512a7c2/LICENSE.txt",
+        "name_at_selected_revision": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "path_at_selected_revision": "LICENSE.txt",
+        "spdx_id_at_selected_revision": "BSD-3-Clause",
+        "text_bytes": 1531,
+        "text_sha256": "221e59f5e910fd7f94e44f0dac77436a11338c285c6346232e4a850a50da0e94"
+      },
+      "official_repository_identity": "scipy/scipy",
+      "primary_source_url": "https://github.com/scipy/scipy",
+      "protected_domain_candidate": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "provider": "GitHub",
+      "record_sha256": "0d77deb35506c3d95e85d19436455d629cd04e36a9d9036a7cfffda07f838651",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-31T17:12:51Z",
+      "selected_revision_sha": "2335807e25747c4dd41ba0c939b181168512a7c2",
+      "selected_revision_url": "https://github.com/scipy/scipy/commit/2335807e25747c4dd41ba0c939b181168512a7c2",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/scikit-learn/scikit-learn",
+      "candidate_source_family_id": "github:scikit-learn/scikit-learn",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"ef6518af1c7f2f7400c4a818641969f73fbae74abe03fbfd375fca7b8bcba275\"",
+          "final_url": "https://api.github.com/repos/scikit-learn/scikit-learn/license?ref=04c9f3eee9dafa76b92bc589e55e700398ca6e10",
+          "http_status": 200,
+          "last_modified": "Wed, 31 Dec 2025 15:19:53 GMT",
+          "request_url": "https://api.github.com/repos/scikit-learn/scikit-learn/license?ref=04c9f3eee9dafa76b92bc589e55e700398ca6e10",
+          "response_bytes": 3290,
+          "response_sha256": "b082ae3dd012e4b46bb3611c92326b61b006e69668a64250b137b599a37a12be"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"c6d0716df26e6c05da2e66c308fbf772ef4892215e2ee19859438dc6bcdf346f\"",
+          "final_url": "https://api.github.com/repos/scikit-learn/scikit-learn/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Wed, 31 Dec 2025 15:19:53 GMT",
+          "request_url": "https://api.github.com/repos/scikit-learn/scikit-learn/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 4594,
+          "response_sha256": "748a50e12b59b5891b90f2dc414514b3a4dd9f393fcafbb971fc22e3a92bc135"
+        },
+        "repository_identity": {
+          "etag": "W/\"0949c123b2d1c69f115bc7d76e6402a96ff9b6d193b15510965acc30d98f1432\"",
+          "final_url": "https://api.github.com/repos/scikit-learn/scikit-learn",
+          "http_status": 200,
+          "last_modified": "Sun, 23 Aug 2026 09:47:43 GMT",
+          "request_url": "https://api.github.com/repos/scikit-learn/scikit-learn",
+          "response_bytes": 6776,
+          "response_sha256": "40562573f062ce652733395aed9da6704ec1dcfcce0f33c6a1e5ce333ce9d893"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/scikit-learn/scikit-learn/04c9f3eee9dafa76b92bc589e55e700398ca6e10/COPYING",
+        "archived_local_path": "raw/licences/scikit-learn__scikit-learn__04c9f3eee9da.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/scikit-learn/scikit-learn/04c9f3eee9dafa76b92bc589e55e700398ca6e10/COPYING",
+        "html_url_at_selected_revision": "https://github.com/scikit-learn/scikit-learn/blob/04c9f3eee9dafa76b92bc589e55e700398ca6e10/COPYING",
+        "name_at_selected_revision": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "path_at_selected_revision": "COPYING",
+        "spdx_id_at_selected_revision": "BSD-3-Clause",
+        "text_bytes": 1532,
+        "text_sha256": "75684d16f4662ab842ed5af9482ac01939aee83c8243d89993616d959d3053f8"
+      },
+      "official_repository_identity": "scikit-learn/scikit-learn",
+      "primary_source_url": "https://github.com/scikit-learn/scikit-learn",
+      "protected_domain_candidate": "COMPUTATIONAL_SCIENTIFIC_SOFTWARE",
+      "provider": "GitHub",
+      "record_sha256": "fdac2e5c4853ca89f8af5ccc72a8f5d6313367d419709bb5ab81e784a8b97425",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-31T15:19:53Z",
+      "selected_revision_sha": "04c9f3eee9dafa76b92bc589e55e700398ca6e10",
+      "selected_revision_url": "https://github.com/scikit-learn/scikit-learn/commit/04c9f3eee9dafa76b92bc589e55e700398ca6e10",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/astropy/astropy",
+      "candidate_source_family_id": "github:astropy/astropy",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"f7cbf73eab1759e77a91095518bbfb2915d3980879b52213d4fe3a202170f2b3\"",
+          "final_url": "https://api.github.com/repos/astropy/astropy/license?ref=6156e3ad24f6c3ed34fac4ea9bfeaf3e2b0134c8",
+          "http_status": 200,
+          "last_modified": "Tue, 30 Dec 2025 15:40:34 GMT",
+          "request_url": "https://api.github.com/repos/astropy/astropy/license?ref=6156e3ad24f6c3ed34fac4ea9bfeaf3e2b0134c8",
+          "response_bytes": 3198,
+          "response_sha256": "7ee2534f65e378cdd8e4d8f8a4ef5b6c5b0bffbb2fb28e93b0a9f73b12b32018"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"201dc380ec9e01fc483ac7802d5aa7ef02f7fd30e8915b8c42583a23d25c7145\"",
+          "final_url": "https://api.github.com/repos/astropy/astropy/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Tue, 30 Dec 2025 15:40:34 GMT",
+          "request_url": "https://api.github.com/repos/astropy/astropy/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 4792,
+          "response_sha256": "ada24bed9f6a15ee051d6ab957eca5af9b7f0a973d9451507d840114f236d04b"
+        },
+        "repository_identity": {
+          "etag": "W/\"cc2b4ae2ff784b2d9d1b53ea43ce5a766c2c65830d777c17b96be5e7c4eaef53\"",
+          "final_url": "https://api.github.com/repos/astropy/astropy",
+          "http_status": 200,
+          "last_modified": "Sun, 23 Aug 2026 07:33:20 GMT",
+          "request_url": "https://api.github.com/repos/astropy/astropy",
+          "response_bytes": 6198,
+          "response_sha256": "fc3d4ee2f4faf8ab3be7ed6fb9c64ca9f704fa48577fc812815bf96fa9b12c3f"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/astropy/astropy/6156e3ad24f6c3ed34fac4ea9bfeaf3e2b0134c8/LICENSE.rst",
+        "archived_local_path": "raw/licences/astropy__astropy__6156e3ad24f6.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/astropy/astropy/6156e3ad24f6c3ed34fac4ea9bfeaf3e2b0134c8/LICENSE.rst",
+        "html_url_at_selected_revision": "https://github.com/astropy/astropy/blob/6156e3ad24f6c3ed34fac4ea9bfeaf3e2b0134c8/LICENSE.rst",
+        "name_at_selected_revision": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "path_at_selected_revision": "LICENSE.rst",
+        "spdx_id_at_selected_revision": "BSD-3-Clause",
+        "text_bytes": 1496,
+        "text_sha256": "1e79badb026dba4036780dbccda549ebc71bc1e3e6699083c2bb5ca5801cf838"
+      },
+      "official_repository_identity": "astropy/astropy",
+      "primary_source_url": "https://github.com/astropy/astropy",
+      "protected_domain_candidate": "PHYSICAL_ENGINEERING",
+      "provider": "GitHub",
+      "record_sha256": "4100fb4a4de48893d42b276841279b76153787d82fa9718f5180258eda2dedc2",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-30T15:40:34Z",
+      "selected_revision_sha": "6156e3ad24f6c3ed34fac4ea9bfeaf3e2b0134c8",
+      "selected_revision_url": "https://github.com/astropy/astropy/commit/6156e3ad24f6c3ed34fac4ea9bfeaf3e2b0134c8",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/qutip/qutip",
+      "candidate_source_family_id": "github:qutip/qutip",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"8311d5fdd48487b26642454a8f7fd6f3de24e7d389dfcae042983773bbf1cbf2\"",
+          "final_url": "https://api.github.com/repos/qutip/qutip/license?ref=4445247f8ba5ba2b3e2a206cb6210aab74dc5398",
+          "http_status": 200,
+          "last_modified": "Fri, 26 Dec 2025 05:30:51 GMT",
+          "request_url": "https://api.github.com/repos/qutip/qutip/license?ref=4445247f8ba5ba2b3e2a206cb6210aab74dc5398",
+          "response_bytes": 3228,
+          "response_sha256": "25a0d0ea11c2842ca039da96be98a9e4b334cd732e238fde24eeab2ec0c5a574"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"49a032e658993cb26e48d5e36785ea82a8f6d9ab127e9e6725aee4107ccf7c3a\"",
+          "final_url": "https://api.github.com/repos/qutip/qutip/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Fri, 26 Dec 2025 05:30:51 GMT",
+          "request_url": "https://api.github.com/repos/qutip/qutip/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 3312,
+          "response_sha256": "f23e804dab7caca53c8fd5444e539e7c9f78e5bdbbdae48d41cbec386cde2ab1"
+        },
+        "repository_identity": {
+          "etag": "W/\"368211dcf5f0130fa3fbf458b2972dd2b35f687761f08bf3fca6ca69e7d7fdd4\"",
+          "final_url": "https://api.github.com/repos/qutip/qutip",
+          "http_status": 200,
+          "last_modified": "Fri, 21 Aug 2026 13:20:54 GMT",
+          "request_url": "https://api.github.com/repos/qutip/qutip",
+          "response_bytes": 6043,
+          "response_sha256": "86a8e0fc942bfb347b89910eade6f92402c2409220b4938fe691a3c9f296171d"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/qutip/qutip/4445247f8ba5ba2b3e2a206cb6210aab74dc5398/LICENSE.txt",
+        "archived_local_path": "raw/licences/qutip__qutip__4445247f8ba5.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/qutip/qutip/4445247f8ba5ba2b3e2a206cb6210aab74dc5398/LICENSE.txt",
+        "html_url_at_selected_revision": "https://github.com/qutip/qutip/blob/4445247f8ba5ba2b3e2a206cb6210aab74dc5398/LICENSE.txt",
+        "name_at_selected_revision": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "path_at_selected_revision": "LICENSE.txt",
+        "spdx_id_at_selected_revision": "BSD-3-Clause",
+        "text_bytes": 1538,
+        "text_sha256": "d2e0c990188a815f7da2b2d847710b1766a68134abb6edf1c2c65499ba30f892"
+      },
+      "official_repository_identity": "qutip/qutip",
+      "primary_source_url": "https://github.com/qutip/qutip",
+      "protected_domain_candidate": "PHYSICAL_ENGINEERING",
+      "provider": "GitHub",
+      "record_sha256": "fec7a1cc41f386613b72746eb0d9252a170dc686e1e1edba10927e40ab3c2f58",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-26T05:30:51Z",
+      "selected_revision_sha": "4445247f8ba5ba2b3e2a206cb6210aab74dc5398",
+      "selected_revision_url": "https://github.com/qutip/qutip/commit/4445247f8ba5ba2b3e2a206cb6210aab74dc5398",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    },
+    {
+      "api_identity_url": "https://api.github.com/repos/scikit-rf/scikit-rf",
+      "candidate_source_family_id": "github:scikit-rf/scikit-rf",
+      "http_receipts": {
+        "licence_at_selected_revision": {
+          "etag": "W/\"53cf07b09a54dd56cf68bbd4acf0a7bebda96b7c925ccd5e6d0463b8eea4d1ac\"",
+          "final_url": "https://api.github.com/repos/scikit-rf/scikit-rf/license?ref=28b032ee26dbf5b7e274f250b0e0081a94208b99",
+          "http_status": 200,
+          "last_modified": "Fri, 12 Dec 2025 15:43:51 GMT",
+          "request_url": "https://api.github.com/repos/scikit-rf/scikit-rf/license?ref=28b032ee26dbf5b7e274f250b0e0081a94208b99",
+          "response_bytes": 3304,
+          "response_sha256": "646f5b8184dcc869443c21221b8df4cdffc741df4daa2a6ee7419370649f5fce"
+        },
+        "pre_cutoff_revision_query": {
+          "etag": "W/\"0ad92be5fb71207919c700aa710277d9f191283b7da9ebf1f4aa88fc2964fb99\"",
+          "final_url": "https://api.github.com/repos/scikit-rf/scikit-rf/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "http_status": 200,
+          "last_modified": "Fri, 12 Dec 2025 15:43:51 GMT",
+          "request_url": "https://api.github.com/repos/scikit-rf/scikit-rf/commits?until=2025-12-31T23%3A59%3A59Z&per_page=1",
+          "response_bytes": 4798,
+          "response_sha256": "0f9b7a7ae9eac0956a602076ce1a584bbf9ca69a8c5c8c20348ed1f2914d3a03"
+        },
+        "repository_identity": {
+          "etag": "W/\"294bc5d9f8f4b86cb46f76d09d71b9b4b3c28330831da5e530339969039fae68\"",
+          "final_url": "https://api.github.com/repos/scikit-rf/scikit-rf",
+          "http_status": 200,
+          "last_modified": "Fri, 21 Aug 2026 17:05:52 GMT",
+          "request_url": "https://api.github.com/repos/scikit-rf/scikit-rf",
+          "response_bytes": 6425,
+          "response_sha256": "e7a173922efa276055dddf4e472f0832bb8c5c32e8c8d2cb7554ba30843448c6"
+        }
+      },
+      "licence": {
+        "api_reported_download_url_at_selected_revision": "https://raw.githubusercontent.com/scikit-rf/scikit-rf/28b032ee26dbf5b7e274f250b0e0081a94208b99/LICENSE.txt",
+        "archived_local_path": "raw/licences/scikit-rf__scikit-rf__28b032ee26db.txt",
+        "download_url_at_selected_revision": "https://raw.githubusercontent.com/scikit-rf/scikit-rf/28b032ee26dbf5b7e274f250b0e0081a94208b99/LICENSE.txt",
+        "html_url_at_selected_revision": "https://github.com/scikit-rf/scikit-rf/blob/28b032ee26dbf5b7e274f250b0e0081a94208b99/LICENSE.txt",
+        "name_at_selected_revision": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "path_at_selected_revision": "LICENSE.txt",
+        "spdx_id_at_selected_revision": "BSD-3-Clause",
+        "text_bytes": 1553,
+        "text_sha256": "299e52a519304ca8d51105cdc3d404c221d74e29f885555e06ab998868322025"
+      },
+      "official_repository_identity": "scikit-rf/scikit-rf",
+      "primary_source_url": "https://github.com/scikit-rf/scikit-rf",
+      "protected_domain_candidate": "PHYSICAL_ENGINEERING",
+      "provider": "GitHub",
+      "record_sha256": "72f6b9f6a3e01595aa37e4ccefc4d7e5fef0977b6dcfba165b4509769940d4ae",
+      "revision_cutoff_utc": "2025-12-31T23:59:59Z",
+      "selected_revision_committer_date": "2025-12-12T15:43:51Z",
+      "selected_revision_sha": "28b032ee26dbf5b7e274f250b0e0081a94208b99",
+      "selected_revision_url": "https://github.com/scikit-rf/scikit-rf/commit/28b032ee26dbf5b7e274f250b0e0081a94208b99",
+      "study_fields_intentionally_not_accessed": [
+        "issues",
+        "pull_requests",
+        "discussions",
+        "scientific_case_text",
+        "adverse_or_control_pair_role",
+        "causal_family",
+        "revision_class",
+        "protected_gold",
+        "candidate_or_comparator_output",
+        "evaluator_disposition",
+        "fresh_transfer_outcome"
+      ]
+    }
+  ],
+  "records_requested": 12,
+  "records_verified": 12,
+  "repository_provider": "api.github.com",
+  "schema_version": "orion.shared-naturalistic-source-metadata.v1",
+  "snapshot_payload_sha256": "7dd283acd81e63e84887d82ee7761e89e62a47d31afceca8628e456b76f73e01"
+}

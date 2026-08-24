@@ -1,0 +1,46 @@
+{
+  "authority": "SYNTHETIC_OUTCOME_FREE_ADAPTER_AND_GATE_SMOKE_ONLY",
+  "fail_closed_preflight": {
+    "blocking_field_count": 15,
+    "execution_ready": false,
+    "exit_code": 3,
+    "stderr_bytes": 0,
+    "stdout_sha256": "d21332636fded8ab65f27343284d373a3d484e7da0af9bbd2290d00e8e552004"
+  },
+  "frozen_at_utc": "2026-08-23T18:15:39Z",
+  "full_native_smoke": {
+    "causes": [
+      "Docker daemon unreachable",
+      "base image and dependencies mutable/unbound",
+      "primary models, endpoints and credentials unbound",
+      "no substantive rights-cleared P5 case or task environment",
+      "write isolation and custody unbound"
+    ],
+    "next_discriminator": "Execute only after all 21 fields bind on a disposable rights-cleared Linux runtime; no native DGM smoke is licensed in this lane.",
+    "state": "CANNOT_CHECK"
+  },
+  "parser_conformance": {
+    "adapter_output": "UNRESOLVED",
+    "exit_code": 0,
+    "native_code": "PATCH_CAPTURED",
+    "native_status": "COMPLETE_SUCCESS",
+    "prohibited_exit_code": 2,
+    "prohibited_fixture_retained": false,
+    "prohibited_input_sha256": "aa02475e53755775a300b04e1d5ac5eca3d2bcf4e76095bc94618ab52d260a21",
+    "prohibited_key_family": "gold_*",
+    "prohibited_stderr_sha256": "123f019d365a79bb74571ccdcab856335ea0ee65dce45c79534cf1b90c3b0f26",
+    "raw_native_singleton_licensed": false,
+    "stderr_bytes": 0,
+    "stdout_bytes": 1424,
+    "stdout_sha256": "9fc6369ba2c0d6f8da3f4828eb390790ff6512e9d6bc0e28526a8e3e43758344",
+    "valid_fixture_retained": false,
+    "valid_input_bytes": 330,
+    "valid_input_sha256": "2c3ec1ff8d03441599a70dfa3ac251546577461e0dd5500c8f7e7baa8a7a93f7"
+  },
+  "raw_or_large_payloads_retained": false,
+  "schema_version": "orion.p5.c3.outcome-blind-smoke-receipt.v4",
+  "source": {
+    "commit_sha": "a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2",
+    "dgm_executed": false
+  }
+}

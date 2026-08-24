@@ -1,0 +1,75 @@
+{
+  "amendment_id": "P1_V3_SOURCE_INTERFACE_NORMALIZATION_AMENDMENT_A",
+  "authority": "SOURCE_INTERFACE_FORMAT_REPAIR_ONLY__NO_SCIENTIFIC_SEMANTIC_PROMOTION",
+  "frozen_at": "2026-08-23T18:04:39.512038+00:00",
+  "invariants": [
+    "No case text, title, abstract, author, reason, notes, model output, protected data, or scientific gold may be accessed.",
+    "Normalization cannot change the frozen high-level stratum classification.",
+    "Normalization cannot bind any owner-algebra requirement group.",
+    "Provider agreement remains metadata conformance, not independent validation, R7-owner custody, recommendation/execution authority, or scientific-action gold.",
+    "Unknown or absent values remain CANNOT_CHECK."
+  ],
+  "publication_type_normalization": {
+    "comparison": "Compare PubMed exact set to Europe PMC set after excluding only the frozen EPMC-added lowercase JATS/PMC tokens; report excluded token frequencies and affected-record count separately.",
+    "epmc_added_jats_pmc_tokens": [
+      "addendum",
+      "article-commentary",
+      "correction",
+      "expression-of-concern",
+      "other",
+      "research-article"
+    ],
+    "pubmed_tokens": "Preserve exact PubMed PublicationType text.",
+    "unknown_lowercase_or_unlisted_rule": "Do not exclude; preserve exact and count as mismatch."
+  },
+  "relation_type_normalization": {
+    "comparison": "Compare sets after exact frozen surface normalization only. Do not collapse direction, action class, or relation meaning.",
+    "epmc_display_to_pubmed_dtd_token": {
+      "Associated dataset": "AssociatedDataset",
+      "Associated publication": "AssociatedPublication",
+      "Cites": "Cites",
+      "Comment in": "CommentIn",
+      "Comment on": "CommentOn",
+      "Corrected and republished from": "CorrectedandRepublishedFrom",
+      "Corrected and republished in": "CorrectedandRepublishedIn",
+      "Correctedand republished from": "CorrectedandRepublishedFrom",
+      "Correctedand republished in": "CorrectedandRepublishedIn",
+      "Erratum for": "ErratumFor",
+      "Erratum in": "ErratumIn",
+      "Expression of concern for": "ExpressionOfConcernFor",
+      "Expression of concern in": "ExpressionOfConcernIn",
+      "Original report in": "OriginalReportIn",
+      "Reprint in": "ReprintIn",
+      "Reprint of": "ReprintOf",
+      "Republished from": "RepublishedFrom",
+      "Republished in": "RepublishedIn",
+      "Retracted and republished from": "RetractedandRepublishedFrom",
+      "Retracted and republished in": "RetractedandRepublishedIn",
+      "Retractedand republished from": "RetractedandRepublishedFrom",
+      "Retractedand republished in": "RetractedandRepublishedIn",
+      "Retraction in": "RetractionIn",
+      "Retraction of": "RetractionOf",
+      "Summary for patients in": "SummaryForPatientsIn",
+      "Update in": "UpdateIn",
+      "Update of": "UpdateOf"
+    },
+    "unmapped_rule": "Preserve as EPMC_UNMAPPED::<exact token>, report frequency separately, and count the affected record as a normalized mismatch."
+  },
+  "schema_version": "orion.p1.structured-action-semantics.interface-normalization-amendment.v3",
+  "source_evidence": {
+    "jats_related_article_type": {
+      "sha256": "915635dc5d23d382b9c00426428d0d69ad924254a843b3149b6e1cbfc82fb07e",
+      "url": "https://jats.nlm.nih.gov/archiving/tag-library/1.4/attribute/related-article-type.html"
+    },
+    "pubmed_dtd": {
+      "sha256": "8c9a3c520259bb79ca87c04021671eb47fd300646aa1813bd884c418217d1573",
+      "url": "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd"
+    }
+  },
+  "trigger": {
+    "observed_interface_failure": "Europe PMC emits human-readable relation labels and additional lowercase JATS/PMC publication types; PubMed emits DTD RefType tokens and controlled publication types. Raw exact-set comparison conflated surface serialization with structural disagreement.",
+    "preservation_rule": "The raw comparison remains immutable evidence of an interface-format failure and is never silently overwritten.",
+    "raw_census_path": "PROVIDER_STRUCTURED_ACTION_CENSUS_RAW_INTERFACE_V3.json",
+    "raw_census_sha256": "38ce1bb820911f7813bd73d44b0597f1efb5e846c8cb1af3f7cac47f7d68dfad"
+  }
+}

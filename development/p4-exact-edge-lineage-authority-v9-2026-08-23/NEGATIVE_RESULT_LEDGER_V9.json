@@ -1,0 +1,79 @@
+{
+  "finished_at": "2026-08-23T21:46:11.902008+00:00",
+  "immutable_predecessor": "P4 V8 73/80",
+  "lineage_residual": {
+    "author_lineage_adjudications_added": 0,
+    "author_lineage_independence": "CANNOT_CHECK",
+    "author_lineage_reason": "The replication rule applies across the full exact source frame and requires a pre-adjudication primary/replication partition. Seven residual records cannot establish the full conflict graph; names and missing ORCIDs cannot prove inequality; no external normalization adjudication is present.",
+    "counts": {
+      "cross_provider_exact_orcid_matches": 26,
+      "crossref_only_orcid": 1,
+      "crossref_orcid_identified": 27,
+      "name_only_publication_authors": 3,
+      "publication_authors": 30,
+      "zenodo_orcid_identified": 26
+    },
+    "identity_progress": "26 of 30 exact publication-author positions have the same ORCID on Crossref and Zenodo; one additional publication author has a Crossref ORCID absent from Zenodo; three positions remain name-only. These counts bind person identifiers only for the exact seven-record subset.",
+    "natural_pair_eligibility": "CANNOT_CHECK",
+    "natural_pair_reason": "Exact source edges and author identifiers are source-frame prerequisites only. No independent material-claim/one-coordinate/target-purity/nuisance adjudication, comparator outcome, evaluator custody or source-disjoint replication partition was opened.",
+    "natural_pairs_added": 0,
+    "outcomes_accessed": false
+  },
+  "natural_pair_boundary": {
+    "author_lineage_adjudications_added": 0,
+    "comparator_outcomes_accessed": false,
+    "eligible_natural_pairs_added": 0,
+    "external_custody_added": false,
+    "programme_terminal": "P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK",
+    "scientific_authority_granted": false
+  },
+  "next_discriminator": "Repair five exact edges only when named provider-native authority appears. Independently build the full 75-edge ORCID/name conflict graph and freeze primary/replication partitions under external adjudication; then open natural-pair eligibility and external custody. Do not treat five edge residuals as the current source-cell quota bottleneck: Life, Earth and Physical remain structurally short, and Scientific Software source-disjoint replication remains separate.",
+  "remaining": [
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 36,
+      "new_evidence": "Current provider pass still exposes concept DOI 10.5281/zenodo.21221061 through child 10.5281/zenodo.21221062 with no exact 0.0.3 version field, while GitHub binds tag 0.0.3 to 069ab4f56d100d765d46c594ac1b06add7e49f9e. The archive is a later repository state, not the exact tag root.",
+      "next_discriminator": "Zenodo/provider correction must bind the frozen DOI to 0.0.3 and authenticate the archive root to commit 069ab4f56d100d765d46c594ac1b06add7e49f9e.",
+      "repository": "jaxionproject/jaxion",
+      "residual": "EXACT_ARCHIVE_VERSION_DOI_RELATION_AND_ARCHIVE_ROOT_TO_TAG_COMMIT_IDENTITY_CANNOT_CHECK",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 91,
+      "new_evidence": "The checksum-bound archive embeds a complete Git repository whose HEAD, local main and origin/main all authenticate aa021231cdafb6d74ce9ab5f55f824a3032058a4. The accepted v1.0.0 commit 9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59 is absent from the embedded object store. The archive has 209 extra paths and one differing common path relative to the tag commit.",
+      "next_discriminator": "A corrected exact archive for v1.0.0 or provider-authenticated statement that binds the frozen bytes to tag commit 9fa30e9f405de4446c792bd59cb7c5a4bb7ecb59; current bytes authenticate a different HEAD.",
+      "repository": "nutritionallungimmunity/pai",
+      "residual": "ARCHIVE_TO_ACCEPTED_TAG_COMMIT_IDENTITY_CONTRADICTED_BY_EMBEDDED_GIT_HEAD",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "SCIENTIFIC_SOFTWARE",
+      "frozen_index": 133,
+      "new_evidence": "Zenodo and PyPI bind the same sdist SHA-256 b509f6469b9ff8888195751c811d689559f45e24aeb35bb173b9680c99c8dbf3. A local source build from tag commit 7ac6d23d504404c4004faad663f6b889427109e6 reproduces all 34 paths, but two generated C files differ. PyPI exposes no provenance attestation for the sdist.",
+      "next_discriminator": "Provider-native trusted-publisher/Sigstore provenance or an exact build receipt binding sdist hash b509f646... to commit 7ac6d23d..., including Cython/build versions.",
+      "repository": "artefactory/woodtapper",
+      "residual": "SDIST_TO_FULL_COMMIT_AUTHENTICATED_BUILD_PROVENANCE_CANNOT_CHECK",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "PHYSICAL_ENGINEERING",
+      "frozen_index": 185,
+      "new_evidence": "GitHub binds source tag v0.14 to commit dec5c58a3e3970bc6817f33efb615fea11057fce, whose pyproject version is 0.14.0. Zenodo and PyPI bind the same sdist SHA-256 775f92dbcbd6d1523db241494998e4b0867d51a84236feb7accc86b63b033a19. All 64 source paths common to the sdist and commit are byte-identical, but the sdist is a projection plus PKG-INFO; a local rebuild omitted three tracked ignored CSV files and no PyPI provenance attestation exists.",
+      "next_discriminator": "Provider-native build attestation binding the exact PyPI/Zenodo sdist hash to source tag v0.14/commit dec5c58..., including the tracked-ignored CSV inclusion state.",
+      "repository": "mit-psfc/disruption-py",
+      "residual": "SDIST_PROJECTION_TO_TAG_COMMIT_AUTHENTICATED_BUILD_PROVENANCE_CANNOT_CHECK",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    },
+    {
+      "domain": "LIFE_BIOMEDICAL",
+      "frozen_index": 199,
+      "new_evidence": "Outcome-free third-party GH Archive discovery identifies prefix 0f8b2db as full push head 0f8b2dbca06a3bb7031de9058ee9882995e04412 on 2026-03-24. However current GitHub commit, codeload and raw-license endpoints all return 404, and Software Heritage reports that full revision absent. SWH authenticates only deposit release -> outer directory ba731454... -> inner directory 178315b..., not a revision. The third-party event cannot be promoted to provider-native source authority.",
+      "next_discriminator": "GitHub restoration or Software Heritage ingestion of full revision 0f8b2dbca06a3bb7031de9058ee9882995e04412 with directory 178315b57afafc1f20ab9929b4de893430524c62 and exact-commit rights.",
+      "repository": "targene/targene-pipeline",
+      "residual": "FULL_COMMIT_DISCOVERED_BUT_PROVIDER_NATIVE_REVISION_AUTHORITY_CANNOT_CHECK",
+      "verdict": "REMAINS_CANNOT_CHECK"
+    }
+  ],
+  "schema_version": "orion.p4.exact-edge-lineage-authority.v9.negative-ledger"
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "orion.p5.self-orion-v3-mda-source-binding-amendment.v1",
+  "paper_id": "P5",
+  "protocol_id": "P5.self-orion-v3.revision-level.v1",
+  "amendment_id": "P5.self-orion-v3.mda-source-binding.2026-08-23",
+  "amendment_scope": "SOURCE_GROUNDING_METADATA_ONLY",
+  "amends": [
+    {
+      "path": "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
+      "sha256": "e694d8b4bcddbf2dab6cbf990c6b7ff67854f68a996efa6f838076fd30416e55"
+    },
+    {
+      "path": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json",
+      "sha256": "b09e9a69d6864938cb581b77590c09a697ea8d8ea18811524ba05ef39beafdbf"
+    }
+  ],
+  "outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "grants_official_reproduction": false,
+  "historical_records_immutable": true,
+  "superseded_metadata_blocker": "MDA_PRIMARY_FULL_TEXT_NOT_SOURCE_GROUNDED_2026-08-19",
+  "supersession_reason": "The prior ABSTRACT_ONLY diagnosis is stale. arXiv 2608.09696v3 exposes full HTML, method text, pseudocode, prompts, and appendices sufficient for a declared source-grounded mechanism interpretation.",
+  "primary_source_binding": {
+    "donor_id": "arxiv:2608.09696v3",
+    "canonical_version_url": "https://arxiv.org/abs/2608.09696v3",
+    "title": "Model Discovery Agent: LLM-assisted Bayesian experiment design for data-efficient discovery of mechanistic world models",
+    "revision_date": "2026-08-13",
+    "paper_license_url": "http://creativecommons.org/licenses/by/4.0/",
+    "source_grounded_behaviors": [
+      "posterior_over_mechanistic_hypotheses",
+      "predictive_check_triggered_m_open_expansion",
+      "novel_unnamed_mechanism_proposal",
+      "smc_structure_and_parameter_inference",
+      "value_of_information_experiment_selection",
+      "hypothesis_space_shrinking",
+      "posterior_forecasts_on_unseen_interventions"
+    ]
+  },
+  "linked_repository_binding": {
+    "repository": "https://github.com/murphyk/neuronbench",
+    "commit": "c354622458c460b419cab821d482c879f0578377",
+    "licence": "MIT",
+    "paper_linked": true,
+    "repository_role": "BENCHMARK_NOT_SOLVER",
+    "contains_official_mda_solver": false,
+    "official_reproduction": false
+  },
+  "binding_disposition": "DECLARED_SOURCE_GROUNDED_MECHANISM__NOT_OFFICIAL_REPRODUCTION",
+  "replacement_blocker": "MDA_V3_FULL_SOURCE_BOUND__OFFICIAL_SOLVER_CODE_NOT_RELEASED",
+  "confirmatory_rule": "The M-open arm may be described as source-grounded at the mechanism level only. It may not be labelled an official reproduction or executable MDA comparator until an exact solver repository/revision is author-bound, or a separately named independent reimplementation and its equivalence envelope are frozen.",
+  "possible_next_terminals": [
+    "MDA_OFFICIAL_SOLVER_BOUND",
+    "MDA_DECLARED_REIMPLEMENTATION_BOUND_WITH_EQUIVALENCE_ENVELOPE",
+    "MDA_REIMPLEMENTATION_NOT_EQUIVALENT",
+    "MDA_SOLVER_BINDING_CANNOT_CHECK"
+  ],
+  "evidence": [
+    {
+      "path": "development/comparator-binding-harness-2026-08-23/COMPARATOR_BINDING_LEDGER_V1.json",
+      "sha256": "060f9df106a82f86c7fcfb8e92515c881123ab9808ee1b02d9675211b73857e0"
+    },
+    {
+      "path": "development/comparator-binding-harness-2026-08-23/PRIMARY_PAPER_METADATA_2026-08-23.json",
+      "sha256": "6220c201ae07bab43a0bcb4907f9765354b250b3077faa5f9d8ca95048499bf1"
+    },
+    {
+      "path": "development/comparator-binding-harness-2026-08-23/REMOTE_REPOSITORY_METADATA_2026-08-23.json",
+      "sha256": "f92a7060a68d1af645ace65db387af62c2e83c304b6865aa1bdf215b390db125"
+    }
+  ],
+  "current_terminal": "MDA_V3_FULL_SOURCE_BOUND__OFFICIAL_SOLVER_CODE_NOT_RELEASED"
+}
