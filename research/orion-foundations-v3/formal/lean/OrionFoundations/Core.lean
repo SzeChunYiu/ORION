@@ -41,8 +41,9 @@ def FiberConstant (interface : α → β) (target : α → γ) : Prop :=
 
 noncomputable def decoderOfFiberConstant [Inhabited γ]
     (interface : α → β) (target : α → γ)
-    (h : FiberConstant interface target) : β → γ :=
-  fun z =>
+    (h : FiberConstant interface target) : β → γ := by
+  classical
+  exact fun z =>
     if hz : ∃ x, interface x = z then
       target (Classical.choose hz)
     else
@@ -297,18 +298,24 @@ theorem ostc_t11_exact_revocation
   classical
   constructor
   · intro noSurvivor family hfamily
-    by_contra noBrokenToken
+    apply Classical.byContradiction
+    intro noBrokenToken
     apply noSurvivor
     refine ⟨family, hfamily, ?_⟩
     intro token htoken hrevoked
-    exact noBrokenToken ⟨token, htoken, hrevoked⟩
-  · intro everyBroken survivor
+    apply noBrokenToken
+    exact ⟨token, htoken, hrevoked⟩
+  · intro everyBroken
+    intro survivor
     cases survivor with
     | intro family hrest =>
         cases hrest with
         | intro hfamily valid =>
-            obtain ⟨token, htoken, hrevoked⟩ := everyBroken family hfamily
-            exact valid token htoken hrevoked
+            have broken := everyBroken family hfamily
+            cases broken with
+            | intro token htokenAndRevoked =>
+                cases htokenAndRevoked with
+                | intro htoken hrevoked => exact valid token htoken hrevoked
 
 /-! T12/T14/T19: indistinguishability impossibilities. -/
 theorem ostc_t12_open_world_impossibility
@@ -386,7 +393,7 @@ theorem ostc_t17_coarsened_signal_regret
       caseTwoFalse < (if policy signal then caseTwoTrue else caseTwoFalse)) ∨
     (policy signal = false ∧
       caseOneTrue < (if policy signal then caseOneTrue else caseOneFalse)) := by
-  cases h : policy signal <;> simp [h, caseOnePrefersTrue, caseTwoPrefersFalse]
+  cases h : policy signal <;> simp [caseOnePrefersTrue, caseTwoPrefersFalse]
 
 /-! T18: responsibility-relative state sufficiency. -/
 def SufficientFor (state : Ω → Stored) (target : Ω → Decision) : Prop :=
