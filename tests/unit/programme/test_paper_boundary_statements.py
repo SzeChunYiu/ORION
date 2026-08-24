@@ -54,3 +54,31 @@ def test_p5_names_its_three_residual_errors() -> None:
         assert case in text, f"{case} is a residual error but is not named"
     assert "RETRIEVAL_MISS" in text and "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE" in text
     assert "21/24" in text
+
+
+def test_p6_reads_its_counts_with_their_multiplicity() -> None:
+    """320/25/155/1,055 are loop repeats, not independent facts."""
+    text = _flat(PAPERS / "paper-06-formal-epistemic-structures-and-mechanics/README.md")
+    assert "Read with their multiplicity" in text
+    assert "5 separations counted five times" in text
+    assert "31 and 211 counted five times" in text
+    assert "Only the **31** product countermodels are 31 distinct facts" in text
+
+
+def test_p6_separates_donor_validity_from_scientific_standing() -> None:
+    text = _flat(PAPERS / "paper-06-formal-epistemic-structures-and-mechanics/README.md")
+    assert "laundering lower-level validity into unchanged scientific standing" in text
+    assert "donor-owned lower-level objects" in text
+
+
+def test_p14a_is_a_measurement_not_a_comparative_negative() -> None:
+    """Gates unreachable under the frozen support: CANNOT_CHECK, not a loss."""
+    text = _flat(PAPERS / "paper-14-orion-rse/MANUSCRIPT.md")
+    assert "unreachable under its own frozen sampling support" in text
+    assert "measurement that could not be taken rather than a comparative negative" in text
+
+
+def test_p14b_is_marked_diagnostic_for_gold_reuse() -> None:
+    text = _flat(PAPERS / "paper-14-orion-rse/MANUSCRIPT.md")
+    assert "directly reuses its adjudication function" in text
+    assert "removes that implementation circularity" in text
