@@ -1,0 +1,403 @@
+{
+ "schema_version": "orion.p8.native-cross-system-results.v1",
+ "executes_contract": "P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1",
+ "campaign_executed": true,
+ "results_exist": true,
+ "outcome_accessed": true,
+ "polarity_controls": {
+  "OPA": {
+   "positive": "AUTHORIZED",
+   "negative": "NOT_AUTHORIZED",
+   "usable": true
+  },
+  "CDR": {
+   "positive": "AUTHORIZED",
+   "negative": "NOT_AUTHORIZED",
+   "usable": true
+  },
+  "SIG": {
+   "positive": "AUTHORIZED",
+   "negative": "NOT_AUTHORIZED",
+   "usable": true
+  },
+  "ITT": {
+   "positive": "AUTHORIZED",
+   "negative": "NOT_AUTHORIZED",
+   "usable": true
+  }
+ },
+ "slot_count": 24,
+ "slots": [
+  {
+   "emitter": "OPA",
+   "consumer": "CDR",
+   "case": "clean",
+   "case_id": "P8.NC.OPA_CDR.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "out": "ALLOW"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "OPA",
+   "consumer": "CDR",
+   "case": "hostile",
+   "case_id": "P8.NC.OPA_CDR.HOSTILE",
+   "hostile_mechanism": "untyped policy allow presented as a typed action permit: type-confused principal",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 2,
+    "out": "DENY"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "CDR",
+   "consumer": "OPA",
+   "case": "clean",
+   "case_id": "P8.NC.CDR_OPA.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "raw": "true"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "CDR",
+   "consumer": "OPA",
+   "case": "hostile",
+   "case_id": "P8.NC.CDR_OPA.HOSTILE",
+   "hostile_mechanism": "schema-typed entity name reused as an untyped Rego role string: role-name collision",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "raw": "false"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "OPA",
+   "consumer": "ITT",
+   "case": "clean",
+   "case_id": "P8.NC.OPA_ITT.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "out": ""
+   },
+   "finding": null
+  },
+  {
+   "emitter": "OPA",
+   "consumer": "ITT",
+   "case": "hostile",
+   "case_id": "P8.NC.OPA_ITT.HOSTILE",
+   "hostile_mechanism": "allow decision replayed as a step fulfillment: no artifact-digest binding",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 1,
+    "out": "', 'root.layout', 'func.pub']\nAvailable products:\n['build.py', 'artifact.txt', 'root.layout', 'func.pub']\nQueue after 'MATCH artifact.txt WITH PRODUCTS FROM build':\n['build.py', 'func.pub', 'artifact.txt', 'root.layout']"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "ITT",
+   "consumer": "OPA",
+   "case": "clean",
+   "case_id": "P8.NC.ITT_OPA.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "raw": "true"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "ITT",
+   "consumer": "OPA",
+   "case": "hostile",
+   "case_id": "P8.NC.ITT_OPA.HOSTILE",
+   "hostile_mechanism": "attestation fed as policy input although not signed for this consumer",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "raw": "false"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "OPA",
+   "consumer": "SIG",
+   "case": "clean",
+   "case_id": "P8.NC.OPA_SIG.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "out": "t has been deprecated, this will be the only supported format in future versions\nWARNING: Skipping tlog verification is an insecure practice that lacks transparency and auditability verification for the blob.\nVerified OK"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "OPA",
+   "consumer": "SIG",
+   "case": "hostile",
+   "case_id": "P8.NC.OPA_SIG.HOSTILE",
+   "hostile_mechanism": "policy grant presented as a signing identity: no keyless identity proof",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 1,
+    "out": "ot verify message: invalid signature when validating ASN.1 encoded signature\nerror during command execution: failed to verify signature: could not verify message: invalid signature when validating ASN.1 encoded signature"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "SIG",
+   "consumer": "OPA",
+   "case": "clean",
+   "case_id": "P8.NC.SIG_OPA.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "raw": "true"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "SIG",
+   "consumer": "OPA",
+   "case": "hostile",
+   "case_id": "P8.NC.SIG_OPA.HOSTILE",
+   "hostile_mechanism": "certificate SAN presented as a policy principal outside its scope",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "raw": "false"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "CDR",
+   "consumer": "ITT",
+   "case": "clean",
+   "case_id": "P8.NC.CDR_ITT.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "out": ""
+   },
+   "finding": null
+  },
+  {
+   "emitter": "CDR",
+   "consumer": "ITT",
+   "case": "hostile",
+   "case_id": "P8.NC.CDR_ITT.HOSTILE",
+   "hostile_mechanism": "typed permit presented as a layout step completion: no link metadata",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 1,
+    "out": "', 'root.layout', 'func.pub']\nAvailable products:\n['build.py', 'artifact.txt', 'root.layout', 'func.pub']\nQueue after 'MATCH artifact.txt WITH PRODUCTS FROM build':\n['build.py', 'func.pub', 'root.layout', 'artifact.txt']"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "ITT",
+   "consumer": "CDR",
+   "case": "clean",
+   "case_id": "P8.NC.ITT_CDR.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "out": "ALLOW"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "ITT",
+   "consumer": "CDR",
+   "case": "hostile",
+   "case_id": "P8.NC.ITT_CDR.HOSTILE",
+   "hostile_mechanism": "unverified link fields forged into Cedar entity attributes",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 2,
+    "out": "DENY"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "CDR",
+   "consumer": "SIG",
+   "case": "clean",
+   "case_id": "P8.NC.CDR_SIG.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "out": "t has been deprecated, this will be the only supported format in future versions\nWARNING: Skipping tlog verification is an insecure practice that lacks transparency and auditability verification for the blob.\nVerified OK"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "CDR",
+   "consumer": "SIG",
+   "case": "hostile",
+   "case_id": "P8.NC.CDR_SIG.HOSTILE",
+   "hostile_mechanism": "policy-local principal presented as a signature identity",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 1,
+    "out": "ot verify message: invalid signature when validating ASN.1 encoded signature\nerror during command execution: failed to verify signature: could not verify message: invalid signature when validating ASN.1 encoded signature"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "SIG",
+   "consumer": "CDR",
+   "case": "clean",
+   "case_id": "P8.NC.SIG_CDR.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "out": "ALLOW"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "SIG",
+   "consumer": "CDR",
+   "case": "hostile",
+   "case_id": "P8.NC.SIG_CDR.HOSTILE",
+   "hostile_mechanism": "cosign identity presented as an entity the schema does not declare",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 2,
+    "out": "DENY"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "ITT",
+   "consumer": "SIG",
+   "case": "clean",
+   "case_id": "P8.NC.ITT_SIG.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "out": "t has been deprecated, this will be the only supported format in future versions\nWARNING: Skipping tlog verification is an insecure practice that lacks transparency and auditability verification for the blob.\nVerified OK"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "ITT",
+   "consumer": "SIG",
+   "case": "hostile",
+   "case_id": "P8.NC.ITT_SIG.HOSTILE",
+   "hostile_mechanism": "attestation bundle presented as a signature over the artifact bytes",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 1,
+    "out": "ot verify message: invalid signature when validating ASN.1 encoded signature\nerror during command execution: failed to verify signature: could not verify message: invalid signature when validating ASN.1 encoded signature"
+   },
+   "finding": null
+  },
+  {
+   "emitter": "SIG",
+   "consumer": "ITT",
+   "case": "clean",
+   "case_id": "P8.NC.SIG_ITT.CLEAN",
+   "hostile_mechanism": null,
+   "native_verdict": "AUTHORIZED",
+   "baseline_verdict": "AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 0,
+    "out": ""
+   },
+   "finding": null
+  },
+  {
+   "emitter": "SIG",
+   "consumer": "ITT",
+   "case": "hostile",
+   "case_id": "P8.NC.SIG_ITT.HOSTILE",
+   "hostile_mechanism": "artifact signature presented as a step-execution link",
+   "native_verdict": "NOT_AUTHORIZED",
+   "baseline_verdict": "NOT_AUTHORIZED",
+   "diverges_from_baseline": false,
+   "detail": {
+    "rc": 1,
+    "out": "', 'root.layout', 'func.pub']\nAvailable products:\n['build.py', 'artifact.txt', 'root.layout', 'func.pub']\nQueue after 'MATCH artifact.txt WITH PRODUCTS FROM build':\n['func.pub', 'root.layout', 'artifact.txt', 'build.py']"
+   },
+   "finding": null
+  }
+ ],
+ "summary": {
+  "slots_filled": 24,
+  "cannot_check": 0,
+  "hostile_authorized": 0,
+  "clean_not_authorized": 0
+ },
+ "acceptance": {
+  "all_24_slots_carry_records": true,
+  "zero_hostile_authorized": true
+ },
+ "boundary": "cosign verification runs offline against a local keypair with --insecure-ignore-tlog; no transparency-log or keyless-identity claim is made. The typed-product baseline is the protocol's construction, not any native system's internals."
+}
