@@ -203,3 +203,105 @@ def test_the_family_map_covers_every_paper_the_issue_lists():
         "P9", "P10", "P11", "P12", "P13+P14", "P15+Q3",
     }
     assert all(entries for entries in ISSUE_SOURCE_FAMILIES.values())
+
+
+# --------------------------------------------------------------------------
+# #1131: record cross-paper reuse AND prohibit independence claims on it.
+# --------------------------------------------------------------------------
+
+
+def test_a_shared_substrate_called_independent_replication_is_refused():
+    """P1 shares ScienceAgentBench with P12 and P15+Q3."""
+
+    from orion.programme.portfolio_integrity import (
+        EXIT_SHARED_SUBSTRATE_CLAIM,
+        check_no_shared_substrate_independence_claim,
+    )
+
+    audit = check_no_shared_substrate_independence_claim(
+        {"P1": "We report an independent replication on ScienceAgentBench."}
+    )
+    assert audit.exit_code == EXIT_SHARED_SUBSTRATE_CLAIM
+    assert "ScienceAgentBench" in audit.problems[0]
+    assert "P12" in audit.problems[0] and "P15+Q3" in audit.problems[0]
+
+
+def test_using_a_shared_substrate_without_claiming_independence_is_allowed():
+    """The prohibition is on the claim, not on the reuse."""
+
+    from orion.programme.portfolio_integrity import check_no_shared_substrate_independence_claim
+
+    audit = check_no_shared_substrate_independence_claim(
+        {"P1": "We evaluate on ScienceAgentBench under the frozen protocol."}
+    )
+    assert audit.exit_code == EXIT_PASS
+
+
+def test_an_unshared_substrate_may_be_called_independent():
+    """P2's TREC-COVID is used by no other paper, so the bullet does not bite."""
+
+    from orion.programme.portfolio_integrity import check_no_shared_substrate_independence_claim
+
+    audit = check_no_shared_substrate_independence_claim(
+        {"P2": "This is an independent validation on TREC-COVID."}
+    )
+    assert audit.exit_code == EXIT_PASS
+
+
+@pytest.mark.parametrize(
+    "phrase",
+    [
+        "independent replication",
+        "independent portfolio replication",
+        "independently replicated",
+        "independent validation",
+        "portfolio replication",
+    ],
+)
+def test_every_independence_wording_is_caught_on_a_shared_substrate(phrase):
+    from orion.programme.portfolio_integrity import (
+        EXIT_SHARED_SUBSTRATE_CLAIM,
+        check_no_shared_substrate_independence_claim,
+    )
+
+    audit = check_no_shared_substrate_independence_claim({"P6": f"WorkflowHub gives us {phrase}."})
+    assert audit.exit_code == EXIT_SHARED_SUBSTRATE_CLAIM
+
+
+def test_the_workflowhub_trio_is_named_in_the_refusal():
+    """WorkflowHub is shared by P6, P7 and P9."""
+
+    from orion.programme.portfolio_integrity import check_no_shared_substrate_independence_claim
+
+    audit = check_no_shared_substrate_independence_claim(
+        {"P9": "an independent replication over WorkflowHub"}
+    )
+    assert "P6" in audit.problems[0] and "P7" in audit.problems[0]
+
+
+def test_a_paper_with_no_claims_at_all_passes():
+    from orion.programme.portfolio_integrity import check_no_shared_substrate_independence_claim
+
+    assert check_no_shared_substrate_independence_claim({}).exit_code == EXIT_PASS
+
+
+@pytest.mark.parametrize("bad", [None, "claims", 3, [], {"P1": 5}])
+def test_malformed_claims_cannot_be_checked(bad):
+    from orion.programme.portfolio_integrity import (
+        EXIT_CANNOT_CHECK,
+        check_no_shared_substrate_independence_claim,
+    )
+
+    assert check_no_shared_substrate_independence_claim(bad).exit_code == EXIT_CANNOT_CHECK
+
+
+def test_recording_and_prohibiting_are_two_separate_functions():
+    """The bullet asks for both; neither substitutes for the other."""
+
+    from orion.programme.portfolio_integrity import (
+        check_no_shared_substrate_independence_claim,
+        shared_source_families,
+    )
+
+    assert callable(shared_source_families) and callable(check_no_shared_substrate_independence_claim)
+    assert len(shared_source_families()) == 6
