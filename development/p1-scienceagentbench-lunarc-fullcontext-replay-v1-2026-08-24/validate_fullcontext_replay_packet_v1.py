@@ -118,6 +118,9 @@ def verify_condition(job, name, expect_sensitivity, prompt_count, prompt_sha, pr
 
 def main():
     protocol = load(ROOT / "FROZEN_FULLCONTEXT_REPLAY_PROTOCOL_V1.json")
+    development = (ROOT / "DEVELOPMENT_PACKET.md").read_text()
+    require("does not isolate prompt length,\nprompt content, context, sampling, or cap effects relative to PR #1139" in development, "non-causal comparison boundary")
+    require("It isolates prompt" not in development, "causal isolation overclaim")
     require(protocol["request_order"] == [101, 202, 101, 202, 101, 202], "protocol order")
     require(protocol["conditions"]["short_pr1130_replay"]["prompt_sha256"] == "afb432d64085e79f36da380ce0dbc79aa8b5efe221921da06d511480947b4a3b", "short protocol hash")
     require(protocol["conditions"]["long_pr1130_six_marker"]["prompt_sha256"] == "6c52c9055c03367832e9e61c31f49489194cecd94e732fbc7ca59caeb40cf918", "long protocol hash")

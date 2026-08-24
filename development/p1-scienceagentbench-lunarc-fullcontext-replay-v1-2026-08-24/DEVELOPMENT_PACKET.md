@@ -21,15 +21,17 @@ ScienceAgentBench material?
 
 ## Saturation and challenge
 
-The discriminator changes neither the model nor the backend. It isolates prompt
-length/context geometry from the prior PR #1139 70-token diagnostic. The
+The discriminator changes neither the model nor the backend. This packet tests
+two prompt-specific full-context conditions; it does not isolate prompt length,
+prompt content, context, sampling, or cap effects relative to PR #1139. The
 prospective gate is not weakened after observation. A failure remains adverse;
 a pass is only a bounded synthetic infrastructure witness.
 
 Competing explanations left open include backend nondeterminism at full context,
 prompt-length-dependent kernels, seed handling, and application-level caching.
-The direct route with `cache_prompt=false`, one slot, and no continuous batching
-discriminates the last explanation without claiming to exhaust the first three.
+The direct route records `cache_prompt=false`, one slot, no continuous batching,
+and observed `cache_n`; these observations do not causally isolate application
+caching from the other changed conditions or competing explanations.
 
 ## Reopen triggers
 
