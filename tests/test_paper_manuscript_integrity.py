@@ -18,6 +18,10 @@ INPUT_RE = re.compile(r"\\input\{([^}]+)\}")
 CITE_RE = re.compile(r"\\cite(?:t|p)?\{([^}]+)\}")
 BIB_KEY_RE = re.compile(r"@\w+\{\s*([^,\s]+)\s*,", re.MULTILINE)
 BIBLIOGRAPHY_DECLARATION_RE = re.compile(r"\\bibliography\{([^}]+)\}")
+LATEX_MACRO_DEFINITION_RE = re.compile(r"\\(?:gdef|def)\s*\\([A-Za-z@]+)\s*\{([^{}]*)\}")
+NEWCOMMAND_DEFINITION_RE = re.compile(
+    r"\\(?:re)?newcommand\*?\s*\{\s*\\([A-Za-z@]+)\s*\}\s*\{([^{}]*)\}"
+)
 
 
 def _collect_tex(manuscript: Path) -> tuple[list[Path], str]:
@@ -55,12 +59,31 @@ def _bibliography_names(tex: str, paper_id: str) -> list[str]:
     `\\bibliography{bibliography}` made every key defined in a second file look
     like a missing entry, which reads as a broken manuscript and invites deleting
     real citations to satisfy the checker. Reading the declaration keeps the
-    check on what LaTeX will actually resolve.
+    check on what LaTeX will actually resolve. A declaration may also name the
+    databases through a preamble macro (paper-01 guards the literal underscores
+    in its database names behind `\\gdef`), so macro references are expanded one
+    level from the manuscript's own definitions; an undefined macro fails loudly
+    rather than silently demanding a `\\macroname.bib` that was never meant to
+    exist.
     """
 
     match = BIBLIOGRAPHY_DECLARATION_RE.search(tex)
     assert match, f"{paper_id} manuscript declares no \\bibliography{{...}}"
-    return [part.strip() for part in match.group(1).split(",") if part.strip()]
+    macros: dict[str, str] = {}
+    for pattern in (LATEX_MACRO_DEFINITION_RE, NEWCOMMAND_DEFINITION_RE):
+        for name, body in pattern.findall(tex):
+            macros[name] = body
+    names: list[str] = []
+    for part in match.group(1).split(","):
+        part = part.strip()
+        if part.startswith("\\"):
+            macro_name = part[1:].strip()
+            assert macro_name in macros, (
+                f"{paper_id} loads a bibliography through an undefined macro: {part}"
+            )
+            part = macros[macro_name]
+        names.extend(piece.strip() for piece in part.split(",") if piece.strip())
+    return names
 
 
 def _bibliography_keys(manuscript: Path, tex: str, paper_id: str) -> list[str]:

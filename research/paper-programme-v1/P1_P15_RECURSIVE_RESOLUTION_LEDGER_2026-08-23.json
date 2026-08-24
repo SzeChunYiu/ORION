@@ -502,10 +502,10 @@
           "post_hoc_relabeling_prohibited": true,
           "one_stage_failure_attribution": "Suite expectation modeling: the confirmatory generator registered two diagnostics in every hypothesis expectation map while the frozen T7 protocol observes exactly one discriminator per bounded session; assess_responsibility stays UNRESOLVED while any modeled discriminator of a surviving hypothesis is unobserved (REQUIRED_DISCRIMINATOR_OBSERVATION_MISSING), so the responsibility gate never identified and FULL_T7 never promoted. The committed development suite models one discriminator per hypothesis, which is why development instrumentation reached FULL_T7 accuracy 1.0. Policy code and gate semantics are internally consistent; the frozen panel is retained unregenerated as genuine evidence of the subject's observational-completeness requirement.",
           "source_refs": [
-            {"path": "research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json", "availability": "THIS_PR"},
-            {"path": "research/self-orion-v3/confirmatory/run_confirmatory_execution_v1.py", "availability": "THIS_PR"},
-            {"path": "research/self-orion-v3/confirmatory/CONFIRMATORY_DECISION_RULES_V1.json", "availability": "PR_1062"},
-            {"path": "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json", "availability": "THIS_PR"},
+            {"path": "research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json", "availability": "EXISTING_PR", "ref": "PR #1083 (4ba814ee)"},
+            {"path": "research/self-orion-v3/confirmatory/run_confirmatory_execution_v1.py", "availability": "EXISTING_PR", "ref": "PR #1083 (4ba814ee)"},
+            {"path": "research/self-orion-v3/confirmatory/CONFIRMATORY_DECISION_RULES_V1.json", "availability": "EXISTING_PR", "ref": "PR #1062 (7aa2797e)"},
+            {"path": "papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json", "availability": "EXISTING_PR", "ref": "PR #1083 (4ba814ee)"},
             {"path": "src/orion/transfer/v2/epistemic_responsibility.py", "availability": "BASE_REVISION"}
           ],
           "secondary_analyses_measured": {
@@ -515,6 +515,7 @@
           },
           "next_executable_step": {
             "kind": "SUCCESSOR_PANEL",
+            "command": "Author the P5.H1-H4.V4 successor rules file with completable hypothesis expectation sets and preservation-conflict cases, then run PYTHONPATH=src python research/paper-programme-v1/run_p1_p5_successor_preflight.py",
             "successor_claim_id": "P5.H1-H4.V4",
             "mechanic_change": "Hypothesis expectation sets completable within the bounded single-observation protocol (the committed development-suite contract), plus preservation-conflict cases that exercise the revision-gate blocking branch; strictly more coverage than the V3 panel (all V3 case families retained).",
             "success_condition": "New frozen rules file authored before the successor execution and surjective onto the measured outcome space, including the region this execution exposed (subject below the accuracy bar while a comparator is above it).",
@@ -711,60 +712,71 @@
             "P7-U-T5_DUAL_INDEPENDENT_REVIEW"
           ],
           "positive_authority_granted": true,
-          "authority_scope": "Synthetic-grounded multi-domain navigation-decision correctness under sealed-label custody only. Grants no naturalistic-corpus, live-agent, or deployed-system authority; the original external requirement remains separately tracked.",
+          "scope": "Synthetic-grounded multi-domain navigation-decision correctness under sealed-label custody only. Grants no naturalistic-corpus, live-agent, or deployed-system authority; the original external requirement remains separately tracked.",
+          "authority_artifact": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CAMPAIGN_RECEIPT_V1.json",
           "post_hoc_relabeling_prohibited": true,
           "source_refs": [
             {
               "path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CAMPAIGN_PROTOCOL_V1.md",
               "sha256": "5376317b35b073848535287c215985c206d312b31bf2c09fecc8eef985c1ebc9",
-              "availability": "IN_THIS_PR"
+              "availability": "EXISTING_PR",
+              "ref": "PR #1065 (93cf5f41)"
             },
             {
               "path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/p7_substitute_custodian_v1.py",
               "sha256": "2a6eeadaa7ad1eeba32320b2a7154f23a2654c565a36e5ff4ea2574bb8a86afb",
-              "availability": "IN_THIS_PR"
+              "availability": "EXISTING_PR",
+              "ref": "PR #1065 (93cf5f41)"
             },
             {
               "path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CORPUS_V1.jsonl",
               "sha256": "3f5830c69084d6e2896b03b63d845a6e536367e8cfc58b6c13f0743ddb2e7e72",
-              "availability": "IN_THIS_PR"
+              "availability": "EXISTING_PR",
+              "ref": "PR #1065 (93cf5f41)"
             },
             {
               "path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_SEALED_LABELS_V1.json",
               "sha256": "c42ab561ba76d098ae028b42ef606d2f0b5cb149e12f7ac188466c81cc71833e",
-              "availability": "IN_THIS_PR",
+              "availability": "EXISTING_PR",
+              "ref": "PR #1065 (93cf5f41)",
               "payload_digest": "sha256:d9feb9c9b612dbfc10df09435058db823fc0726e0d6d4512847bd46ac850b133"
             },
             {
               "path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/p7_substitute_campaign_v1.py",
               "sha256": "4f2a94c54ce1d1ab6f5b1f7953fbae71f9a2b3287e5531ea51229faa9e3a923b",
-              "availability": "IN_THIS_PR"
+              "availability": "EXISTING_PR",
+              "ref": "PR #1065 (93cf5f41)"
             },
             {
               "path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_PREDICTIONS_V1.json",
               "sha256": "6e1ab764dd5b2da0cd8a2943dfc537ff3460b8d07dde45d6d6bf1c43e3157453",
-              "availability": "IN_THIS_PR"
+              "availability": "EXISTING_PR",
+              "ref": "PR #1065 (93cf5f41)"
             },
             {
               "path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_LABELS_REVEALED_V1.json",
               "sha256": "48bf5d9e10c9a3126472b5d51afa465851a850a1c30de8acc46d2499df11c185",
-              "availability": "IN_THIS_PR",
+              "availability": "EXISTING_PR",
+              "ref": "PR #1065 (93cf5f41)",
               "matches_committed_digest": "sha256:5db74f18d7615ee1e0fbc009c7b391b9e18990305729fea435ae9a8fc80f4e96"
             },
             {
               "path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CAMPAIGN_RECEIPT_V1.json",
               "sha256": "ecaedd102016dba257001c1b51e2d1c8b689a17aa0f913171d3edff398df7116",
-              "availability": "IN_THIS_PR",
+              "availability": "EXISTING_PR",
+              "ref": "PR #1065 (93cf5f41)",
               "payload_digest": "sha256:e347acfc6a0f483b6ca8d8372f9f2fc5358dfe0f8d0f884a9622d128f6a9989c"
             },
             {
               "path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/check_p7_substitute_campaign_v1.py",
               "sha256": "614ff9067fa997e357920a92e32fc45a92eb22feb734d5657766196683d57877",
-              "availability": "IN_THIS_PR"
+              "availability": "EXISTING_PR",
+              "ref": "PR #1065 (93cf5f41)"
             },
             {
               "path": "papers/paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_V4.md",
-              "availability": "IN_THIS_PR",
+              "availability": "EXISTING_PR",
+              "ref": "PR #1065 (93cf5f41)",
               "new_row": "P7.V4.11"
             }
           ],
