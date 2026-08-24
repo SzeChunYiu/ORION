@@ -1,5 +1,11 @@
 # P15 — Scientific Execution Integrity
 
+The installable P15 evaluator is composed with Q3's typed frontier records in
+`../P15_Q3_SHARED_INSTRUMENT_PACKAGE_V1.json`. This is an in-repository 0.1.0
+release candidate under Apache-2.0, not an external release or a new scientific
+result. Independent replay, public runtime evidence and site independence remain
+`CANNOT_CHECK`.
+
 **Stable ID:** ORION-P15  
 **Paper issue:** #979  
 **Promotion programme:** #977  
@@ -139,6 +145,12 @@ The earlier `NO_SCIENTIFIC_RESULT` states are historical, not current. They are 
 - `top_tier/P15_ATTESTATION_COMPOSITION_PROTOCOL_V2.md`;
 - `top_tier/P15_INTEROP_LITERATURE_DELTA_2026-08-23.md`;
 - `top_tier/P15_NEAREST_WORK_DELTA_2026-08-23.md`.
+
+The shared P15+Q3 package surface is bound by
+`../P15_Q3_SHARED_INSTRUMENT_PACKAGE_V1.json`. It emits only `DECLARED_*`
+science labels from caller-supplied booleans and binds the complete execution
+record digest. Its Apache-2.0 expression is mechanically declared; rights-holder
+relicensing authority for pre-existing package files remains `CANNOT_CHECK`.
 
 ## Remaining top-tier work
 

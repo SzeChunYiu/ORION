@@ -1,5 +1,12 @@
 # Q-paper-03 — Deferred scientific outcome benchmark
 
+The typed Q3 frontier record is exposed with P15's scientific-execution-integrity
+evaluator through `../P15_Q3_SHARED_INSTRUMENT_PACKAGE_V1.json`. The package is
+an in-repository 0.1.0 release candidate and grants no reliability, scientific,
+independent-replay or site-independence authority. Its metadata declares
+Apache-2.0, while rights-holder relicensing authority for pre-existing package
+files remains `CANNOT_CHECK`.
+
 **Canonical manuscript:** `MANUSCRIPT_V3_REFINED.md`  
 **Canonical claim ledger:** `CLAIM_LEDGER_V3.md`  
 **Benchmark comparison matrix:** `RELATED_WORK_AND_BENCHMARK_MATRIX_V3.md`  

@@ -60,6 +60,12 @@ from .publication_contract import (
     q3_publication_contract,
     validate_q3_publication_contract,
 )
+from .p15_q3_instrument import (
+    P15_Q3_INSTRUMENT_SCHEMA,
+    P15Q3InstrumentReceipt,
+    receipt_from_mapping,
+)
+from .scientific_execution_integrity import ScientificDisposition, ScientificExecutionRecord
 from .recursive_runner import RecursiveRunLimits, run_problem_recursive
 from .recursive_budget_hardening import install_recursive_budget_hardening
 from .recursive_cost_hardening import install_recursive_cost_hardening
@@ -98,6 +104,8 @@ __all__ = [
     "PaperConcern",
     "PaperRefinementState",
     "PaperReviewReceipt",
+    "P15_Q3_INSTRUMENT_SCHEMA",
+    "P15Q3InstrumentReceipt",
     "ProtectedReference",
     "Q3_HARNESS_PUBLICATION_CONTRACT_ID",
     "Q3_HARNESS_REQUIRED_PROPERTIES",
@@ -105,6 +113,8 @@ __all__ = [
     "RefinementTerminal",
     "RepairRoute",
     "ResearchWorkspace",
+    "ScientificDisposition",
+    "ScientificExecutionRecord",
     "VenueReadinessProfile",
     "WorkspaceRecursiveLLMResearchReasoner",
     "assess_refinement_terminal",
@@ -129,6 +139,7 @@ __all__ = [
     "method_fibre_surface",
     "navigate_mechanics",
     "q3_publication_contract",
+    "receipt_from_mapping",
     "rank_workspace_development_fibres",
     "request_benchmark",
     "request_independent_review",
