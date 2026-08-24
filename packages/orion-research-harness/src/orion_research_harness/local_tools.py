@@ -280,7 +280,6 @@ def service_local_request(workspace: ResearchWorkspace, request_id: str):
     if request.capability not in _LOCAL_CAPABILITIES:
         raise KeyError(f"{request.capability} requires an external host")
     try:
-        output=execute_local(workspace,request.capability,request.payload)
         output = execute_local(workspace, request.capability, request.payload)
     except subprocess.TimeoutExpired as expired:
         # A budget exhaustion is not a failed computation. Reported as a bare
