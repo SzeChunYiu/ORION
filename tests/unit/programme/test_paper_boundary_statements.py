@@ -112,3 +112,26 @@ def test_p4_states_the_finite_battery_estimand() -> None:
     assert "Artifacts are not population units" in text
     assert "Bridge identities are not population units" in text
     assert "there is no population from which the battery is a sample" in text
+
+
+def test_p10_separates_unexecuted_hypotheses_from_the_earned_claim() -> None:
+    """Not-executed is a fourth state, distinct from PASS, FAIL and CANNOT_CHECK."""
+    text = _flat(PAPERS / "paper-10-structured-problem-solving/CLAIM_EVIDENCE_LEDGER.md")
+    assert "PROSPECTIVE_NOT_EXECUTED" in text
+    assert "discharges none of H1–H6" in text
+    assert "they have not entered the outcome lifecycle" in text
+
+
+def test_p10_refuses_open_ended_invention_language() -> None:
+    text = _flat(PAPERS / "paper-10-structured-problem-solving/TOP_TIER_PROMOTION_V1.md")
+    assert "unrestricted autonomous mathematical invention" in text
+    assert "prospectively supplied by the experiment" in text
+    assert "did not invent its own unbounded grammar" in text
+
+
+def test_p10_preserves_the_zero_eligible_transition_result() -> None:
+    """0 of 11,842 eligible: CANNOT_CHECK, and not convertible after the fact."""
+    text = _flat(PAPERS / "paper-10-structured-problem-solving/TOP_TIER_PROMOTION_V1.md")
+    assert "CANNOT_CHECK_NATIVE_STATE_COVERAGE" in text
+    assert "zero eligible transitions out of 11,842 extracted transitions" in text
+    assert "may not be converted into a positive native-state claim by relaxing eligibility post hoc" in text
