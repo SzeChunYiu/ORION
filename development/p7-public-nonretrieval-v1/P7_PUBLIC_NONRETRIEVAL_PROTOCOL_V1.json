@@ -1,0 +1,144 @@
+{
+  "schema": "ORION.P7.PublicNonretrievalProtocol.v1",
+  "status": "FROZEN_NO_RESULTS",
+  "frozen_utc": "2026-08-24T14:33:56Z",
+  "issue": 1086,
+  "paper": "P7_COMPONENT_OF_P6_P8_UNIFIED_CALCULUS",
+  "outcome_accessed": false,
+  "results_exist": false,
+  "primary_system": "EXACT_CONTAINMENT",
+  "comparators": [
+    "PARTITION_REFINEMENT_ORACLE",
+    "NO_BRIDGE_REOPEN_CONTROL",
+    "ALWAYS_PRESERVE"
+  ],
+  "exact_rule": "PRESERVE iff every target separation obligation is present in the source contract; otherwise REOPEN",
+  "dataset_contract": {
+    "public_material_used": "class-vocabulary metadata only; no observations or features",
+    "fine_partition": "one singleton block per public class label",
+    "coarse_partitions": "first 25 canonical nontrivial bipartitions with the first label fixed in block A",
+    "obligation": "an unordered class-label pair in different partition blocks",
+    "directions": [
+      "FINE_TO_COARSE",
+      "COARSE_TO_FINE"
+    ],
+    "gold": "objective set inclusion over the frozen source and target separation obligations",
+    "gold_independence_boundary": "gold and implementation instantiate the same mathematical predicate; accuracy is conformance, not external construct validation"
+  },
+  "datasets": [
+    {
+      "id": "uci_zoo_class_ontology",
+      "domain": "animal_taxonomy",
+      "class_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "class_count": 7,
+      "class_labels_sha256": "3b771ad062cb1aa864f86075e4d2534b2f5a027932a3159b0376c1c3a0456d6c",
+      "source_url": "https://archive.ics.uci.edu/dataset/111/zoo",
+      "license_evidence_url": "https://archive.ics.uci.edu/dataset/111/zoo",
+      "license_verified_utc": "2026-08-24T14:33:56Z",
+      "source_doi": "10.24432/C5R59V",
+      "data_license": "CC-BY-4.0",
+      "upstream_rows_downloaded": false,
+      "upstream_rows_redistributed": false
+    },
+    {
+      "id": "uci_letter_recognition_class_ontology",
+      "domain": "character_recognition",
+      "class_labels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z"
+      ],
+      "class_count": 26,
+      "class_labels_sha256": "1988ff86892c1a3f51ad2568e2136d764f867999951006113a2d74ce96015f05",
+      "source_url": "https://archive.ics.uci.edu/dataset/59/letter+recognition",
+      "license_evidence_url": "https://archive.ics.uci.edu/dataset/59/letter+recognition",
+      "license_verified_utc": "2026-08-24T14:33:56Z",
+      "source_doi": "10.24432/C5ZP40",
+      "data_license": "CC-BY-4.0",
+      "upstream_rows_downloaded": false,
+      "upstream_rows_redistributed": false
+    }
+  ],
+  "runtime": {
+    "python": "3.12",
+    "dependencies": "stdlib_only"
+  },
+  "estimand": {
+    "inference_unit": "dataset_domain",
+    "minimum_domain_count": 2,
+    "partition_count_per_domain": 25,
+    "minimum_unique_directed_transitions_per_domain": 50,
+    "transition_identity": "source partition, target partition, and direction; never an observation index",
+    "row_counts_are_not_independent_replications": true,
+    "structural_family_count": 1,
+    "population_inference": false
+  },
+  "data_coverage_gate": {
+    "minimum_domain_count": 2,
+    "minimum_unique_directed_transitions_per_domain": 50,
+    "every_transition_contract_unique_within_domain": true,
+    "exact_false_closure_retention": 0,
+    "preserve_and_reopen_in_every_domain": true,
+    "all_mutations_killed": true
+  },
+  "scientific_superiority_gate": {
+    "strongest_donor": "PARTITION_REFINEMENT_ORACLE",
+    "required": "EXACT_CONTAINMENT must have fewer unnecessary reopenings than the strongest donor in every domain",
+    "pre_execution_relation": "The donor computes the same frozen set-inclusion predicate, so equivalence rather than superiority is expected and must be retained."
+  },
+  "retention": {
+    "every_partition_and_directed_transition": true,
+    "null_harmful_and_failed_rows": true,
+    "raw_features_labels_or_observations": false,
+    "public_class_vocabulary_metadata": true
+  },
+  "runner": {
+    "path": "development/p7-public-nonretrieval-v1/run_p7_public_nonretrieval_v1.py",
+    "sha256": "8eb046dbbe426aceafe0ad8f5c3f0a970f9dbc41d5082c71371010bca5d151e7"
+  },
+  "authority": {
+    "closes_issue_box": false,
+    "scientific_authority_delta": "NONE",
+    "independent_adjudication": "CANNOT_CHECK",
+    "population_inference": false,
+    "family_boundary": "Zoo and Letter Recognition are two public subject domains but one constructed classification-partition structural family; they do not establish cross-family generality or independent replication."
+  },
+  "non_bypass_boundaries": [
+    "The transitions are deterministic prospective constructions over public class vocabularies, not observed upstream ontology changes.",
+    "Public metadata does not create independent adjudication, protected custody, or outcome confirmation.",
+    "Fifty directed transitions per domain do not create fifty independent inference units.",
+    "The partition-refinement oracle is extensionally equivalent under equal information; no novelty or superiority over partition lattices is claimed.",
+    "The protocol closes no issue box; a later unchanged clean-main execution and review are required."
+  ]
+}
