@@ -3,11 +3,11 @@
   "authority": "SYNTHETIC_NONBENCHMARK_VALIDATION_ONLY__NO_PRODUCTION_OR_SCIENTIFIC_AUTHORITY",
   "status": "PASS_SYNTHETIC_HOSTILE_VALIDATION",
   "artifact_sha256": {
-    "PROTECTED_PROMPT_FIT_CONTRACT_V1.json": "d029da6f87f2dd10c222f9fcff743c8efe647b6398e94d9b7499fe5d9b5d9074",
-    "protected_prompt_fit_preflight_v1.py": "fd462439a1f9d6e39a87fb1045ae0bfe2356b0de3f72cbb2b022def389f20d86",
-    "validate_protected_prompt_fit_preflight_v1.py": "36cf6ea99d0caf3e78c8b07b37773b6ae0f40a9a0d5ff17314eb40df1f318b99"
+    "PROTECTED_PROMPT_FIT_CONTRACT_V1.json": "a2c1dd159f662f019697a3f3a12d7cd06a3d6533258f73d24ed6390a236e51d1",
+    "protected_prompt_fit_preflight_v1.py": "4b605096e3421acd9f826e20864d96eda793f6a9b97879a264d4d8be2acac136",
+    "validate_protected_prompt_fit_preflight_v1.py": "a8695272b06de55df3dce282c299a17a0f8a28f619b4966ea07fd39092329031"
   },
-  "tests": 26,
+  "tests": 28,
   "synthetic_rows": 2,
   "synthetic_state_independent_prompt_records": 24,
   "synthetic_dynamic_rr_phase1_records": 6,
@@ -18,7 +18,10 @@
     "reviewer_hardening_red": "Added test 20 errored with uncaught TypeError for unhashable task ID; prior behavior tests stayed green",
     "independent_no_go_repair_red": "Four new blocker tests failed: mutable tokenizer identity, missing live staging binding, missing held-input API, and missing openat parent-swap defense",
     "post_write_input_swap_red": "Added test 25 raised on the input swap but proved the newly created receipt was initially left behind",
-    "output_name_swap_red": "Added test 26 proved a replaced output name required identity-aware failure and rollback that never deletes the replacement"
+    "output_name_swap_red": "Added test 26 proved a replaced output name required identity-aware failure and rollback that never deletes the replacement",
+    "renderer_collision_red": "ContractError: prompt template OS_PHASE1 has unreplaced marker or missing LF",
+    "structural_marker_validation_red": "AssertionError: ContractError not raised for a missing required template marker",
+    "receipt_refresh_red": "Ran 28 tests; FAILED (failures=1); synthetic receipt still declared 26 tests"
   },
   "exact_gguf_tokenizer_invoked": false,
   "substitute_tokenizer_invoked": false,
@@ -34,5 +37,14 @@
   "scientific_authority_delta": "NONE",
   "live_gguf_opened": 0,
   "independent_live_staging_receipts_opened": 0,
-  "descriptor_swap_tests": "PASS_HELD_INPUT_PARENT_RACE_POST_WRITE_ROLLBACK_AND_OUTPUT_NAME_IDENTITY"
+  "descriptor_swap_tests": "PASS_HELD_INPUT_PARENT_RACE_POST_WRITE_ROLLBACK_AND_OUTPUT_NAME_IDENTITY",
+  "synthetic_recovered_literal_open_brace_patterns": 4,
+  "synthetic_os_nr_phase1_collision_records": 24,
+  "template_marker_structure_regressions": 6,
+  "template_marker_validation_scope": "FROZEN_TEMPLATE_UTF8_BYTES_BEFORE_SUBSTITUTION",
+  "template_substitution": "SINGLE_PASS_TEMPLATE_SEGMENT_INSERTION",
+  "injected_json_double_braces": "DATA_NOT_TEMPLATE_SYNTAX",
+  "reported_adverse_result_packet_rewritten": false,
+  "production_preflight_reexecuted": false,
+  "reported_production_rerun_required": true
 }

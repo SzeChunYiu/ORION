@@ -692,10 +692,24 @@ class ProtectedPromptFitPreflightSyntheticTests(unittest.TestCase):
         self.assertTrue(RECEIPT_PATH.is_file(), "synthetic validation receipt is missing")
         receipt = load_json(RECEIPT_PATH)
         self.assertEqual(receipt["status"], "PASS_SYNTHETIC_HOSTILE_VALIDATION")
-        self.assertEqual(receipt["tests"], 26)
+        self.assertEqual(receipt["tests"], 28)
         self.assertEqual(receipt["official_tasks_opened"], 0)
         self.assertEqual(receipt["official_outcomes_opened"], 0)
         self.assertEqual(receipt["scientific_authority_delta"], "NONE")
+        self.assertEqual(receipt["synthetic_recovered_literal_open_brace_patterns"], 4)
+        self.assertEqual(receipt["synthetic_os_nr_phase1_collision_records"], 24)
+        self.assertEqual(receipt["template_marker_structure_regressions"], 6)
+        self.assertEqual(
+            receipt["template_marker_validation_scope"],
+            "FROZEN_TEMPLATE_UTF8_BYTES_BEFORE_SUBSTITUTION",
+        )
+        self.assertEqual(
+            receipt["template_substitution"],
+            "SINGLE_PASS_TEMPLATE_SEGMENT_INSERTION",
+        )
+        self.assertFalse(receipt["reported_adverse_result_packet_rewritten"])
+        self.assertFalse(receipt["production_preflight_reexecuted"])
+        self.assertTrue(receipt["reported_production_rerun_required"])
         self.assertEqual(
             receipt["artifact_sha256"],
             {
@@ -916,6 +930,97 @@ class ProtectedPromptFitPreflightSyntheticTests(unittest.TestCase):
                     )
             self.assertEqual(output.read_bytes(), b"attacker-output-replacement\n")
             self.assertTrue(displaced.exists())
+
+    def test_27_four_recovered_literal_open_brace_patterns_render_all_os_nr_prompts(self) -> None:
+        patterns = (
+            ("4", "domain_knowledge", "SYNTHETIC_LITERAL_OPEN_BRACES_{{_ALPHA"),
+            ("10", "dataset_folder_tree", "synthetic/tree/{{/branch"),
+            ("88", "dataset_preview", '{"synthetic_literal":"{{inside-json-text"}'),
+            ("89", "domain_knowledge", "synthetic line one\n{{HOSTILE_UNKNOWN}}\nline three"),
+        )
+        rows: list[dict[str, Any]] = []
+        for instance_id, field, value in patterns:
+            row = copy.deepcopy(invented_rows()[0])
+            row["instance_id"] = instance_id
+            row["output_fname"] = f"synthetic_{instance_id}.json"
+            row[field] = value
+            rows.append(row)
+
+        receipt, _, manifest, _ = self.build_receipt(rows=rows)
+        prompt = load_json(PROMPT_PATH)
+        self.assertEqual(receipt["counts"]["tasks"], 4)
+        self.assertEqual(receipt["counts"]["state_independent_prompt_records"], 48)
+        self.assertEqual(receipt["counts"]["dynamic_rr_phase1_records"], 12)
+        for row, record, task in zip(rows, manifest["records"], receipt["task_receipts"]):
+            packets = self.api("packetize_bound_row")(row, record)
+            recovered_json = canonical_bytes(packets["recovered_packet"])
+            phase1_records = [
+                item
+                for item in task["state_independent_prompts"]
+                if item["phase_id"] in {"OS_PHASE1", "NR_PHASE1"}
+            ]
+            self.assertEqual(len(phase1_records), 6)
+            for item in phase1_records:
+                rendered = self.api("_render_static_prompt")(
+                    prompt,
+                    item["phase_id"],
+                    item["attempt"],
+                    packets["masked_packet"],
+                    packets["recovered_packet"],
+                )
+                self.assertIn(recovered_json, rendered)
+                self.assertEqual(item["prompt_bytes"], len(rendered))
+                self.assertEqual(item["prompt_sha256"], sha256_bytes(rendered))
+
+    def test_28_template_bytes_reject_missing_duplicate_and_unknown_markers(self) -> None:
+        validate_prompt = self.api("_validate_prompt_bundle")
+        base = load_json(PROMPT_PATH)
+        marker = "{{RECOVERED_PACKET_JSON}}"
+
+        missing = copy.deepcopy(base)
+        missing["templates"]["OS_PHASE1"]["text"] = missing["templates"]["OS_PHASE1"]["text"].replace(marker, "")
+        self.assert_contract_error(
+            lambda: validate_prompt(missing),
+            "missing required template marker",
+        )
+
+        duplicate = copy.deepcopy(base)
+        duplicate["templates"]["OS_PHASE1"]["text"] = duplicate["templates"]["OS_PHASE1"]["text"].replace(marker, marker + marker)
+        self.assert_contract_error(
+            lambda: validate_prompt(duplicate),
+            "duplicate template marker",
+        )
+
+        unknown = copy.deepcopy(base)
+        unknown["templates"]["OS_PHASE1"]["text"] = unknown["templates"]["OS_PHASE1"]["text"].replace(
+            marker,
+            marker + "\n{{HOSTILE_UNKNOWN}}",
+        )
+        self.assert_contract_error(
+            lambda: validate_prompt(unknown),
+            "unknown template marker",
+        )
+
+        declared_missing = copy.deepcopy(base)
+        declared_missing["templates"]["OS_PHASE1"]["markers"].pop()
+        self.assert_contract_error(
+            lambda: validate_prompt(declared_missing),
+            "marker declaration mismatch",
+        )
+
+        declared_duplicate = copy.deepcopy(base)
+        declared_duplicate["templates"]["OS_PHASE1"]["markers"].append(marker)
+        self.assert_contract_error(
+            lambda: validate_prompt(declared_duplicate),
+            "duplicate marker declaration",
+        )
+
+        declared_unknown = copy.deepcopy(base)
+        declared_unknown["templates"]["OS_PHASE1"]["markers"][-1] = "{{HOSTILE_UNKNOWN}}"
+        self.assert_contract_error(
+            lambda: validate_prompt(declared_unknown),
+            "marker declaration mismatch",
+        )
 
 
 if __name__ == "__main__":
