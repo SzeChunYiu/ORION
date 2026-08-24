@@ -135,3 +135,33 @@ def test_p10_preserves_the_zero_eligible_transition_result() -> None:
     assert "CANNOT_CHECK_NATIVE_STATE_COVERAGE" in text
     assert "zero eligible transitions out of 11,842 extracted transitions" in text
     assert "may not be converted into a positive native-state claim by relaxing eligibility post hoc" in text
+
+
+def test_p7_keeps_denominators_cannot_checks_and_reopen_failures() -> None:
+    """All three change classes, with the numbers a reader needs to check them."""
+    text = _flat(PAPERS / "paper-07-epistemic-navigation-open-worlds/README.md")
+    for denominator in ("14 frozen cases", "712 protected rows", "10 cells"):
+        assert denominator in text, denominator
+    for cannot_check in ("4 correct `CANNOT_CHECK`", "238 correct `CANNOT_CHECK`", "5 correct `CANNOT_CHECK`"):
+        assert cannot_check in text, cannot_check
+    for reopen in ("6 unnecessary reopens", "474 unnecessary reopens"):
+        assert reopen in text, reopen
+
+
+def test_p9_reports_its_positives_null_and_negative_together() -> None:
+    """A positive shown without its null beside it is a selected result."""
+    text = _flat(PAPERS / "paper-09-structured-epistemic-learning/README.md")
+    assert "breast-cancer and digits are positive" in text
+    assert "Wine is retained as a null cell" in text
+    assert "authoritative negative, not repaired after the fact" in text
+
+
+def test_p9_refuses_a_scalar_exchange_rate() -> None:
+    text = _flat(PAPERS / "paper-09-structured-epistemic-learning/README.md")
+    assert "I/A/C/M/R" in text
+    assert "no scalar exchange rate across the resource vector" in text
+
+
+def test_p12_refuses_a_cross_domain_scalar_exchange_rate() -> None:
+    text = _flat(PAPERS / "paper-12-adaptive-state-reasoning/README.md")
+    assert "no cross-domain scalar exchange rate between heterogeneous charged units" in text
