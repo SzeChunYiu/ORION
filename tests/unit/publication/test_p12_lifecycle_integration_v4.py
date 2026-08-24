@@ -32,7 +32,17 @@ def test_p12_lifecycle_is_bound_and_external_gate_stays_closed():
         (lambda d: d.update(schema="mutant"), "wrong schema"),
         (lambda d: d.update(active_claim_leaf={}), "active_claim_leaf"),
         (lambda d: d.update(top_tier_submission_allowed=True), "submission gate"),
+        (lambda d: d.pop("artifact_identity_note"), "P12C identity boundary"),
+        (
+            lambda d: d["forbidden_promotions"].remove("P12C_ARTIFACT_IDENTITY"),
+            "lifecycle forbidden promotions",
+        ),
         (lambda d: d["robustness_boundary_leaf"].update(price_axis="ROBUST"), "robustness negative"),
+        (lambda d: d["robustness_boundary_leaf"].update(terminal="mutant"), "robustness negative"),
+        (
+            lambda d: d["price_aware_successor_leaf"].update(status="UNCONDITIONAL"),
+            "successor conditional status",
+        ),
         (lambda d: d["price_aware_successor_leaf"].update(forward_time_deployability="SUPPORTED"), "forward-time"),
         (lambda d: d["evidence_bindings"].pop("robustness_result_receipt"), "robustness_result_receipt"),
     ],
