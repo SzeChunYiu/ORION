@@ -1,0 +1,94 @@
+{
+  "authority_scope": "FROZEN_STRUCTURAL_GRAMMAR_M_GE_5_ONLY",
+  "checks": {
+    "authority_bounded": true,
+    "independent_symbolic_checks": true,
+    "independent_zero_mismatches": true,
+    "m4_optimum_23_vs_unary_27": true,
+    "m4_p4_holds": true,
+    "m4_single_block_witness": true,
+    "m5_n1_complete": true,
+    "m5_n2_complete": true,
+    "m6_n1_complete": true,
+    "no_novelty_or_physical_claim": true,
+    "no_value_or_optimizer_authority": true,
+    "partition_counts": true,
+    "protocol_hash": true,
+    "regression_digests_match": true,
+    "source_digest": true,
+    "source_gates": true,
+    "source_schema": true,
+    "source_terminal": true
+  },
+  "decision": "ACCEPT_EXACT_FROZEN_ALL_M_DECISION_THEOREM",
+  "independent_m4_sharpness": {
+    "best_partition": [
+      [
+        0,
+        1,
+        2,
+        3
+      ]
+    ],
+    "gains": [
+      0,
+      0,
+      -1,
+      0,
+      -1,
+      -1
+    ],
+    "optimum_cost": 23,
+    "p4": true,
+    "unary_cost": 27,
+    "unary_optimal": false,
+    "weights": [
+      2,
+      2,
+      2,
+      3
+    ]
+  },
+  "independent_regressions": {
+    "m5_n1": {
+      "count": 21,
+      "enumeration_sha256": "f91313c5f39f540dd7b8354609e8f3d4591ba97ed35a6e2fbc0e53a95717ff1b",
+      "mismatches": [],
+      "p4_true": 0,
+      "unary_optimal": 0,
+      "zero_mismatches": true
+    },
+    "m5_n2": {
+      "count": 11628,
+      "enumeration_sha256": "9577bc4752852c4982de8098fcc66e7d154e5efc35f82181b0933db70f45451c",
+      "mismatches": [],
+      "p4_true": 75,
+      "unary_optimal": 75,
+      "zero_mismatches": true
+    },
+    "m6_n1": {
+      "count": 28,
+      "enumeration_sha256": "1bdeef11271811c6768ff2c22664907c161c8b678355de7b7b32b2202d27d4b3",
+      "mismatches": [],
+      "p4_true": 0,
+      "unary_optimal": 0,
+      "zero_mismatches": true
+    }
+  },
+  "independent_symbolic_checks": {
+    "block_bound_3_to_256": true,
+    "converse_partitions": true,
+    "depth_values": true,
+    "integer_disjoint_pair_lemma": true,
+    "shape_credit": true,
+    "shape_credit_nonpositive_5_to_256": true,
+    "single_17_plus_sign": true,
+    "single_5_to_8": true,
+    "single_9_to_16": true
+  },
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "schema": "ORION.PaperC.C1.GenericVerification.v1",
+  "source_result_digest": "455883f266c0294e10e451346c123ed27e1a807ff72312142c7c43bb4c5e3a53",
+  "verification_digest": "a5060a42897d29ce6db722e0be911c158f78a465d1793a8466dca54512a6d00e"
+}
