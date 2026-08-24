@@ -1,0 +1,412 @@
+{
+  "facts": {
+    "authority_boundary": "Converts P7.OPEN_WORLD.NAVIGATION.EMPIRICAL.V1 from EXTERNAL_EVIDENCE_BLOCKER to SUBSTITUTE_SEALED_LABEL_CAMPAIGN_GREEN under the operator-approved substitute protocol: synthetic-grounded six-domain corpus, donor-complete comparison, sealed hidden labels, independently implemented custodian/evaluator/checker. Grants no naturalistic-corpus, live-agent, or deployed-system authority; the original external requirement remains separately tracked.",
+    "campaign_unit": "p7_substitute_campaign_v1",
+    "claim_id": "P7.SUBSTITUTE_NAVIGATION_CAMPAIGN.MULTI_DOMAIN_V1",
+    "commit_phase_commit": "a01312d17401e5d5ecbc9ff026938a70c3237a6d",
+    "disjoint_code_path": {
+      "notes": [
+        "predict phase imports no custodian code and opens no label-bearing file",
+        "adjudicate phase reconstructs the reveal through the frozen custodian law, verified against the committed digest"
+      ],
+      "predict_phase_imports": [
+        "stdlib",
+        "cryptography",
+        "corpus file only"
+      ]
+    },
+    "execution_kind": "SUBSTITUTE_SEALED_LABEL_CAMPAIGN",
+    "gates": {
+      "b3_unnecessary_reframe_present": true,
+      "donor_discrimination": true,
+      "donor_premature_stop_present": true,
+      "label_agreement_all_432": true,
+      "navigator_premature_stop_rate_zero": true,
+      "navigator_terminal_coverage_complete_every_domain": true,
+      "navigator_unnecessary_reframe_rate_zero": true,
+      "seal_chain_corpus_matches_sealed_manifest": true,
+      "seal_chain_predictions_bound_corpus_and_manifest": true,
+      "seal_chain_protocol_digest_matches_sealed_manifest": true,
+      "worst_domain_accuracy_is_one": true
+    },
+    "headline": {
+      "domains": [
+        "diagnosis",
+        "experimental_design",
+        "goal_evolution",
+        "graph_navigation",
+        "retrieval",
+        "workflow_orchestration"
+      ],
+      "donor_overall_accuracy": {
+        "B0_FIXED_CHART_EXHAUSTIVE": 0.4444444444444444,
+        "B1_FIXED_CHART_ROUTE_PRUNING": 0.5555555555555556,
+        "B3_REPRESENTATION_CHANGE_DONOR": 0.2337962962962963
+      },
+      "instances": 432,
+      "navigator_overall_accuracy": 1.0,
+      "navigator_worst_domain_accuracy": 1.0
+    },
+    "paper_id": "P7",
+    "predictions": {
+      "commit_phase_context": "a01312d17401e5d5ecbc9ff026938a70c3237a6d",
+      "payload_digest": "sha256:8d69932ac3bd0c77877e8de25ab4203a525a4af3ed5b5ce5097a987dec925234",
+      "public_key_hex": "5ef156043ca2c55ef93ba5092c22cbd7811d889ad8a1a6989186714c30a94171"
+    },
+    "receipt_date": "2026-08-24",
+    "results": {
+      "contenders": {
+        "B0_FIXED_CHART_EXHAUSTIVE": {
+          "correct": 192,
+          "min_wrong_per_domain": 40,
+          "overall_accuracy": 0.4444444444444444,
+          "per_domain": {
+            "diagnosis": {
+              "accuracy": 0.4444444444444444,
+              "correct": 32,
+              "total": 72,
+              "wrong": 40
+            },
+            "experimental_design": {
+              "accuracy": 0.4444444444444444,
+              "correct": 32,
+              "total": 72,
+              "wrong": 40
+            },
+            "goal_evolution": {
+              "accuracy": 0.4444444444444444,
+              "correct": 32,
+              "total": 72,
+              "wrong": 40
+            },
+            "graph_navigation": {
+              "accuracy": 0.4444444444444444,
+              "correct": 32,
+              "total": 72,
+              "wrong": 40
+            },
+            "retrieval": {
+              "accuracy": 0.4444444444444444,
+              "correct": 32,
+              "total": 72,
+              "wrong": 40
+            },
+            "workflow_orchestration": {
+              "accuracy": 0.4444444444444444,
+              "correct": 32,
+              "total": 72,
+              "wrong": 40
+            }
+          },
+          "predicted_terminals_per_domain": {
+            "diagnosis": [
+              "TASK_STOP"
+            ],
+            "experimental_design": [
+              "TASK_STOP"
+            ],
+            "goal_evolution": [
+              "TASK_STOP"
+            ],
+            "graph_navigation": [
+              "TASK_STOP"
+            ],
+            "retrieval": [
+              "TASK_STOP"
+            ],
+            "workflow_orchestration": [
+              "TASK_STOP"
+            ]
+          },
+          "predicts_all_terminals_every_domain": false,
+          "premature_stop_rate": 1.0,
+          "total": 432,
+          "unnecessary_reframe_rate_on_negative_controls": 0.0,
+          "worst_domain_accuracy": 0.4444444444444444,
+          "wrong_true_classes": [
+            "CANNOT_CHECK",
+            "REFRAME",
+            "ROUTE_STOP"
+          ]
+        },
+        "B1_FIXED_CHART_ROUTE_PRUNING": {
+          "correct": 240,
+          "min_wrong_per_domain": 32,
+          "overall_accuracy": 0.5555555555555556,
+          "per_domain": {
+            "diagnosis": {
+              "accuracy": 0.5555555555555556,
+              "correct": 40,
+              "total": 72,
+              "wrong": 32
+            },
+            "experimental_design": {
+              "accuracy": 0.5555555555555556,
+              "correct": 40,
+              "total": 72,
+              "wrong": 32
+            },
+            "goal_evolution": {
+              "accuracy": 0.5555555555555556,
+              "correct": 40,
+              "total": 72,
+              "wrong": 32
+            },
+            "graph_navigation": {
+              "accuracy": 0.5555555555555556,
+              "correct": 40,
+              "total": 72,
+              "wrong": 32
+            },
+            "retrieval": {
+              "accuracy": 0.5555555555555556,
+              "correct": 40,
+              "total": 72,
+              "wrong": 32
+            },
+            "workflow_orchestration": {
+              "accuracy": 0.5555555555555556,
+              "correct": 40,
+              "total": 72,
+              "wrong": 32
+            }
+          },
+          "predicted_terminals_per_domain": {
+            "diagnosis": [
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ],
+            "experimental_design": [
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ],
+            "goal_evolution": [
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ],
+            "graph_navigation": [
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ],
+            "retrieval": [
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ],
+            "workflow_orchestration": [
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ]
+          },
+          "predicts_all_terminals_every_domain": false,
+          "premature_stop_rate": 1.0,
+          "total": 432,
+          "unnecessary_reframe_rate_on_negative_controls": 0.0,
+          "worst_domain_accuracy": 0.5555555555555556,
+          "wrong_true_classes": [
+            "CANNOT_CHECK",
+            "REFRAME"
+          ]
+        },
+        "B3_REPRESENTATION_CHANGE_DONOR": {
+          "correct": 101,
+          "min_wrong_per_domain": 52,
+          "overall_accuracy": 0.2337962962962963,
+          "per_domain": {
+            "diagnosis": {
+              "accuracy": 0.2777777777777778,
+              "correct": 20,
+              "total": 72,
+              "wrong": 52
+            },
+            "experimental_design": {
+              "accuracy": 0.19444444444444445,
+              "correct": 14,
+              "total": 72,
+              "wrong": 58
+            },
+            "goal_evolution": {
+              "accuracy": 0.20833333333333334,
+              "correct": 15,
+              "total": 72,
+              "wrong": 57
+            },
+            "graph_navigation": {
+              "accuracy": 0.2777777777777778,
+              "correct": 20,
+              "total": 72,
+              "wrong": 52
+            },
+            "retrieval": {
+              "accuracy": 0.2361111111111111,
+              "correct": 17,
+              "total": 72,
+              "wrong": 55
+            },
+            "workflow_orchestration": {
+              "accuracy": 0.20833333333333334,
+              "correct": 15,
+              "total": 72,
+              "wrong": 57
+            }
+          },
+          "predicted_terminals_per_domain": {
+            "diagnosis": [
+              "REFRAME",
+              "TASK_STOP"
+            ],
+            "experimental_design": [
+              "REFRAME",
+              "TASK_STOP"
+            ],
+            "goal_evolution": [
+              "REFRAME",
+              "TASK_STOP"
+            ],
+            "graph_navigation": [
+              "REFRAME",
+              "TASK_STOP"
+            ],
+            "retrieval": [
+              "REFRAME",
+              "TASK_STOP"
+            ],
+            "workflow_orchestration": [
+              "REFRAME",
+              "TASK_STOP"
+            ]
+          },
+          "predicts_all_terminals_every_domain": false,
+          "premature_stop_rate": 0.16666666666666666,
+          "total": 432,
+          "unnecessary_reframe_rate_on_negative_controls": 0.7083333333333334,
+          "worst_domain_accuracy": 0.19444444444444445,
+          "wrong_true_classes": [
+            "CANNOT_CHECK",
+            "ROUTE_STOP",
+            "TASK_STOP"
+          ]
+        },
+        "P7_ATLAS_NAVIGATOR": {
+          "correct": 432,
+          "min_wrong_per_domain": 0,
+          "overall_accuracy": 1.0,
+          "per_domain": {
+            "diagnosis": {
+              "accuracy": 1.0,
+              "correct": 72,
+              "total": 72,
+              "wrong": 0
+            },
+            "experimental_design": {
+              "accuracy": 1.0,
+              "correct": 72,
+              "total": 72,
+              "wrong": 0
+            },
+            "goal_evolution": {
+              "accuracy": 1.0,
+              "correct": 72,
+              "total": 72,
+              "wrong": 0
+            },
+            "graph_navigation": {
+              "accuracy": 1.0,
+              "correct": 72,
+              "total": 72,
+              "wrong": 0
+            },
+            "retrieval": {
+              "accuracy": 1.0,
+              "correct": 72,
+              "total": 72,
+              "wrong": 0
+            },
+            "workflow_orchestration": {
+              "accuracy": 1.0,
+              "correct": 72,
+              "total": 72,
+              "wrong": 0
+            }
+          },
+          "predicted_terminals_per_domain": {
+            "diagnosis": [
+              "CANNOT_CHECK",
+              "REFRAME",
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ],
+            "experimental_design": [
+              "CANNOT_CHECK",
+              "REFRAME",
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ],
+            "goal_evolution": [
+              "CANNOT_CHECK",
+              "REFRAME",
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ],
+            "graph_navigation": [
+              "CANNOT_CHECK",
+              "REFRAME",
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ],
+            "retrieval": [
+              "CANNOT_CHECK",
+              "REFRAME",
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ],
+            "workflow_orchestration": [
+              "CANNOT_CHECK",
+              "REFRAME",
+              "ROUTE_STOP",
+              "TASK_STOP"
+            ]
+          },
+          "predicts_all_terminals_every_domain": true,
+          "premature_stop_rate": 0.0,
+          "total": 432,
+          "unnecessary_reframe_rate_on_negative_controls": 0.0,
+          "worst_domain_accuracy": 1.0,
+          "wrong_true_classes": []
+        }
+      },
+      "negative_control_count": 96
+    },
+    "reveal": {
+      "labels_payload_digest": "sha256:5db74f18d7615ee1e0fbc009c7b391b9e18990305729fea435ae9a8fc80f4e96",
+      "revealed_rows": 432
+    },
+    "schema_version": "orion.p7.substitute-campaign-receipt.v1",
+    "sealed_manifest": {
+      "outcome": "P7_SUBSTITUTE_LABELS_SEALED",
+      "payload_digest": "sha256:d9feb9c9b612dbfc10df09435058db823fc0726e0d6d4512847bd46ac850b133",
+      "power_counts": {
+        "negative_controls": 96,
+        "per_domain": {
+          "diagnosis": 72,
+          "experimental_design": 72,
+          "goal_evolution": 72,
+          "graph_navigation": 72,
+          "retrieval": 72,
+          "workflow_orchestration": 72
+        },
+        "terminals": {
+          "CANNOT_CHECK": 144,
+          "REFRAME": 48,
+          "ROUTE_STOP": 48,
+          "TASK_STOP": 192
+        }
+      },
+      "public_key_hex": "9aa5d8ca408022a4bc7cb0c6f0e0f9f43aefa13a6b83f2128761120c7e36f44c"
+    }
+  },
+  "key_derivation": "sha256('P7-SUBSTITUTE-EVALUATOR-V1-KEY') as Ed25519 seed",
+  "outcome": "P7_SUBSTITUTE_CAMPAIGN_GREEN",
+  "payload_digest": "sha256:e347acfc6a0f483b6ca8d8372f9f2fc5358dfe0f8d0f884a9622d128f6a9989c",
+  "public_key_hex": "5ef156043ca2c55ef93ba5092c22cbd7811d889ad8a1a6989186714c30a94171",
+  "signature_ed25519_hex": "245bb9dec15575987341a8ef650a9e0978ba19333eb6cbbfcc95faa25a6ca0cce4e41052d0025e83bc83f6b93b1579ef49693cca594b441d0f100e67c2e85909"
+}
