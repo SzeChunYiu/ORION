@@ -168,7 +168,17 @@ The original P14B harness defines `ORION_RSE_FULL` by directly invoking the same
 
 ## 8. P14C — specification-separated conformance benchmark
 
-P14C was frozen after the circularity issue was identified. It does not alter P14A or P14B.
+P14C is the paper's **sole central empirical authority**. That is a deliberate
+narrowing, not a summary of everything run. P14A is a measurement whose gates
+were unreachable under its frozen support, so it licenses no comparative reading
+in either direction, and P14B is retained as diagnostic because it reused gold it
+had a hand in producing. Neither carries the empirical claim; P14C does, and the
+active authority record binds its terminal
+(`P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED`) to the result
+receipt rather than to either predecessor.
+
+P14C was frozen after the circularity issue was identified. It does not alter
+P14A or P14B.
 
 ### 8.1 Independent artifacts
 
