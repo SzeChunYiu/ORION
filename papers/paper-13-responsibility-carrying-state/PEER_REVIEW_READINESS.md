@@ -1,11 +1,17 @@
 # P13 Peer-Review Readiness Report
 
-**Decision:** `READY_FOR_CONTROLLED_P13B_CLAIM__EXTERNAL_VALIDATION_OPEN`
+Authority here is split by sub-claim: the two decisions below govern P13B and
+P13A respectively, and neither overrides the other.
+
+**Decision (P13B, authenticated-certificate claim):**
+`READY_FOR_CONTROLLED_P13B_CLAIM__EXTERNAL_VALIDATION_OPEN`
 
 Active terminal: `P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`,
 from `P13_ACTIVE_CLAIM_AUTHORITY_V2.json`. P13A's self-scored result remains
 historical and withheld under `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`.
-**Decision:** `NOT_READY__P13A_SELF_SCORED_SAFETY_ENDPOINT`
+
+**Decision (P13A, empirical safety-cost endpoint):**
+`NOT_READY__P13A_SELF_SCORED_SAFETY_ENDPOINT`
 
 Active terminal: `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`, from
 `P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`.
@@ -102,6 +108,3 @@ unsafe reuse.
 > construction.** In P13B's controlled finite panel, authenticated RCS rejects
 > omitted, overbroad, forged and stale certificates with zero gold-scored unsafe
 > reuse; external witness correctness and real-agent safety remain open.
-> construction.** The current RCS interface conditionally refuses reuse outside
-> declared support. Whether it prevents unsafe reuse under wrong or stale
-> certificates is an open P13B question.
