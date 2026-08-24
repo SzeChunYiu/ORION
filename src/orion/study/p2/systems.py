@@ -6,11 +6,15 @@ task, a world or a gold set, so the protocol's `hidden_labels` policy is enforce
 by the signature rather than by discipline.
 
 The custody split matters. A system returns a `SystemReport`: its claims, and
-nothing else. The *record* of what it did — every route call, every read, every
-stop decision, every unit of budget — is built host-side by the session as those
-actions happen. A system therefore cannot under-report a route it used, over-
-report a document it never retrieved, or edit its own trace after the fact, which
-is what "candidate outputs cannot modify evaluator state" has to mean in code.
+nothing else. The *record* of what it did — every route trial, every read
+encounter, every stop decision, every unit of budget — is built host-side by the
+session as those actions happen. A system therefore cannot under-report a route
+it used, over-report a document it never retrieved, or edit its own trace after
+the fact, which is what "candidate outputs cannot modify evaluator state" has to
+mean in code.
+
+Field names follow `STATISTICAL_PLAN_V1.json` `required_bindings` exactly, so the
+analysis lane binds names rather than translating them.
 
 This module deliberately holds no scoring and no retrieval logic. Whatever
 lexical, dense or hybrid machinery the baselines need is next-phase work; freezing
@@ -36,6 +40,17 @@ class TransportStatus(str, Enum):
     ERROR = "ERROR"
 
 
+#: O4: any of these opens an unavailability obligation on the route.
+OBLIGATION_STATUSES: frozenset[str] = frozenset(
+    {
+        TransportStatus.RATE_LIMITED.value,
+        TransportStatus.UNAVAILABLE.value,
+        TransportStatus.TIMEOUT.value,
+        TransportStatus.ERROR.value,
+    }
+)
+
+
 class StopScope(str, Enum):
     """Route-stop and task-stop are different claims and are typed separately.
 
@@ -48,28 +63,14 @@ class StopScope(str, Enum):
     TASK = "TASK"
 
 
-class ReadClassification(str, Enum):
-    """Why a read was or was not new work.
-
-    Mirrors `orion.knowledge.identity.ReadDecision` on purpose but is computed
-    independently by the host. An evaluator that classified reads by calling the
-    subsystem under test would hide that subsystem's bugs inside its own score.
-    """
-
-    FIRST_READ = "FIRST_READ"
-    DUPLICATE = "DUPLICATE"
-    REVISION_REREAD = "REVISION_REREAD"
-    NEW_QUESTION_REREAD = "NEW_QUESTION_REREAD"
-
-
 @dataclass(frozen=True)
 class ResourceUse:
-    """Matched-budget accounting. A system that wins by spending more has not won."""
+    """Matched-budget accounting, in the plan's capped-resource currency."""
 
     wallclock_seconds: float = 0.0
     model_tokens: int = 0
     tool_calls: int = 0
-    search_queries: int = 0
+    query_count: int = 0
     reads: int = 0
 
     def as_json(self) -> dict[str, Any]:
@@ -77,7 +78,7 @@ class ResourceUse:
             "wallclock_seconds": self.wallclock_seconds,
             "model_tokens": self.model_tokens,
             "tool_calls": self.tool_calls,
-            "search_queries": self.search_queries,
+            "query_count": self.query_count,
             "reads": self.reads,
         }
 
@@ -121,65 +122,106 @@ class RouteOutcome:
 
 @dataclass(frozen=True)
 class ReadOutcome:
-    """What one read returned. `classification` is the host's verdict, not a hint."""
+    """What one read returned. `decision` is the host's verdict, not a hint."""
 
     doc_id: str
-    content_identity: str
+    merged_source_id: str
     content_digest: str
     extraction_question: str
-    classification: ReadClassification
+    extraction_schema: str
+    decision: str
     text: str
 
 
 @dataclass(frozen=True)
-class RouteEvent:
-    """Host record of one route call, in the order it happened."""
+class Capture:
+    """One work caught by a route trial (B4, B7).
+
+    `merged_source_id` is the post-`merge_identities` primary key, never a raw
+    retrieval id: two routes that found one paper under different locators must
+    not look disjoint, which is the failure that inflates every overlap and
+    coverage estimate built on top of them.
+    """
+
+    merged_source_id: str
+    content_digest: str
+    doc_id: str
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "merged_source_id": self.merged_source_id,
+            "content_digest": self.content_digest,
+            "doc_id": self.doc_id,
+        }
+
+
+@dataclass(frozen=True)
+class RouteTrial:
+    """Host record of one route call. Field names are the plan's `route_trial.*`."""
 
     index: int
-    route: str
+    route_id: str
+    attempt_index: int
     probe: str
     backend_identity: str
     query_derivation_identity: str
-    status: str
-    retrieved_doc_ids: tuple[str, ...]
-    retrieved_content_identities: tuple[str, ...]
-    novel_content_identities: tuple[str, ...]
+    transport_status: str
+    consecutive_zero_novelty_before: int
+    captures: tuple[Capture, ...]
+    novel_merged_source_ids: tuple[str, ...]
+    open_obligation_ids: tuple[str, ...]
+    opened_obligation_id: str = ""
+    probe_admissible: bool = True
     note: str = ""
 
     def as_json(self) -> dict[str, Any]:
         return {
             "index": self.index,
-            "route": self.route,
+            "route_id": self.route_id,
+            "attempt_index": self.attempt_index,
             "probe": self.probe,
             "backend_identity": self.backend_identity,
             "query_derivation_identity": self.query_derivation_identity,
-            "status": self.status,
-            "retrieved_doc_ids": list(self.retrieved_doc_ids),
-            "retrieved_content_identities": list(self.retrieved_content_identities),
-            "novel_content_identities": list(self.novel_content_identities),
+            "transport_status": self.transport_status,
+            "consecutive_zero_novelty_before": self.consecutive_zero_novelty_before,
+            "captures": [item.as_json() for item in self.captures],
+            "novel_merged_source_ids": list(self.novel_merged_source_ids),
+            "open_obligation_ids": list(self.open_obligation_ids),
+            "opened_obligation_id": self.opened_obligation_id,
+            "probe_admissible": self.probe_admissible,
             "note": self.note,
         }
 
 
 @dataclass(frozen=True)
-class ReadEvent:
-    """Host record of one read, keyed on the four coordinates a reread turns on."""
+class ReadEncounter:
+    """One presentation of a work under a frame (B14, B15).
+
+    The denominator O3 insists on. An execution-only denominator hides
+    suppression: a system that silently refuses legitimate rereads never executes
+    them, so they vanish from numerator and denominator together and the rate
+    looks healthy. Recording the presentation is what makes the refusal visible.
+    """
 
     index: int
-    doc_id: str
-    content_identity: str
+    merged_source_id: str
     content_digest: str
-    extraction_question: str
-    classification: str
+    schema_version: str
+    frame_id: str
+    decision_before_execution: str
+    executed: bool
+    doc_id: str = ""
 
     def as_json(self) -> dict[str, Any]:
         return {
             "index": self.index,
-            "doc_id": self.doc_id,
-            "content_identity": self.content_identity,
+            "merged_source_id": self.merged_source_id,
             "content_digest": self.content_digest,
-            "extraction_question": self.extraction_question,
-            "classification": self.classification,
+            "schema_version": self.schema_version,
+            "frame_id": self.frame_id,
+            "decision_before_execution": self.decision_before_execution,
+            "executed": self.executed,
+            "doc_id": self.doc_id,
         }
 
 
@@ -194,17 +236,19 @@ class StopDecision:
 
     index: int
     scope: str
-    route: str
+    route_id: str
+    attempt_index: int
     reason: str
-    claimed_complete: bool = False
+    declared: bool = False
 
     def as_json(self) -> dict[str, Any]:
         return {
             "index": self.index,
             "scope": self.scope,
-            "route": self.route,
+            "route_id": self.route_id,
+            "attempt_index": self.attempt_index,
             "reason": self.reason,
-            "claimed_complete": self.claimed_complete,
+            "declared": self.declared,
         }
 
 
@@ -212,7 +256,7 @@ class StopDecision:
 class SystemReport:
     """Everything a system returns. Claims only; the record of its actions is host-owned."""
 
-    claimed_relevant_content_identities: tuple[str, ...] = ()
+    claimed_relevant_merged_source_ids: tuple[str, ...] = ()
     task_closed_as_complete: bool = False
     abstained: bool = False
     notes: str = ""
@@ -220,39 +264,60 @@ class SystemReport:
 
 @dataclass(frozen=True)
 class SystemTrace:
-    """One system's full run on one task, assembled host-side.
-
-    `route_events`, `read_events` and `resources` come from the session, not from
-    the system. Only the fields under `report` are the system's own words.
-    """
+    """One system's full run on one task, assembled host-side."""
 
     task_id: str
     system_id: str
     seed: int
+    repeat_index: int
     report: SystemReport
-    route_events: tuple[RouteEvent, ...] = ()
-    read_events: tuple[ReadEvent, ...] = ()
+    route_trials: tuple[RouteTrial, ...] = ()
+    read_encounters: tuple[ReadEncounter, ...] = ()
     stop_decisions: tuple[StopDecision, ...] = ()
     resources: ResourceUse = field(default_factory=ResourceUse)
-    budget_exhausted: str = ""
+    truncated_at_cap: str = ""
     error_class: str = ""
+    unresolved_obligation_ids: tuple[str, ...] = ()
+
+    @property
+    def task_closure(self) -> dict[str, Any]:
+        """B9. Distinguishes a declared closure from cap truncation."""
+
+        declared = next(
+            (
+                item
+                for item in self.stop_decisions
+                if item.scope == StopScope.TASK.value and item.declared
+            ),
+            None,
+        )
+        return {
+            "declared": declared is not None,
+            "index": declared.index if declared else None,
+            "wallclock_seconds": self.resources.wallclock_seconds,
+            "truncated_at_cap": bool(self.truncated_at_cap),
+            "truncating_resource": self.truncated_at_cap,
+            "unresolved_obligation_ids": list(self.unresolved_obligation_ids),
+        }
 
     def as_json(self) -> dict[str, Any]:
         return {
             "task_id": self.task_id,
             "system_id": self.system_id,
             "seed": self.seed,
-            "claimed_relevant_content_identities": list(
-                self.report.claimed_relevant_content_identities
+            "repeat_index": self.repeat_index,
+            "claimed_relevant_merged_source_ids": list(
+                self.report.claimed_relevant_merged_source_ids
             ),
             "task_closed_as_complete": self.report.task_closed_as_complete,
             "abstained": self.report.abstained,
-            "route_events": [item.as_json() for item in self.route_events],
-            "read_events": [item.as_json() for item in self.read_events],
+            "route_trials": [item.as_json() for item in self.route_trials],
+            "read_encounters": [item.as_json() for item in self.read_encounters],
             "stop_decisions": [item.as_json() for item in self.stop_decisions],
             "resources": self.resources.as_json(),
-            "budget_exhausted": self.budget_exhausted,
+            "truncated_at_cap": self.truncated_at_cap,
             "error_class": self.error_class,
+            "unresolved_obligation_ids": list(self.unresolved_obligation_ids),
             "notes": self.report.notes,
         }
 
@@ -260,10 +325,10 @@ class SystemTrace:
 class DiscoverySession(Protocol):
     """The only handle a system has on the world. Host-owned and recording.
 
-    Every method call is metered and logged before it returns. Once a budget
-    dimension is spent the session stays closed and keeps raising, so a system
-    that swallows the exception gains nothing by continuing — budget enforcement
-    is a property of the harness, not a courtesy the candidate extends.
+    Every method call is metered and logged before it returns. Once a capped
+    resource is spent the session stays closed and keeps raising, so a system that
+    swallows the exception gains nothing by continuing — budget enforcement is a
+    property of the harness, not a courtesy the candidate extends.
     """
 
     @property
@@ -271,12 +336,17 @@ class DiscoverySession(Protocol):
         """The frame reads are currently charged against. Host-controlled."""
         ...
 
+    @property
+    def current_extraction_schema(self) -> str:
+        """The extraction schema version in force. Host-controlled."""
+        ...
+
     def query(self, route: str, probe: str) -> RouteOutcome:
-        """Spend one route call. Raises `BudgetExhausted` when none remain."""
+        """Spend one query. Raises `CapReached` when the cap is hit."""
         ...
 
     def read(self, doc_id: str) -> ReadOutcome:
-        """Spend one read of an already-retrieved document."""
+        """Spend one tool call to extract from an already-retrieved document."""
         ...
 
     def declare_route_stop(self, route: str, reason: str) -> None:
@@ -299,14 +369,15 @@ class SystemUnderTest(Protocol):
 
 
 __all__ = [
+    "Capture",
     "DiscoverySession",
-    "ReadClassification",
-    "ReadEvent",
+    "OBLIGATION_STATUSES",
+    "ReadEncounter",
     "ReadOutcome",
     "ResourceUse",
     "RetrievedRecord",
-    "RouteEvent",
     "RouteOutcome",
+    "RouteTrial",
     "StopDecision",
     "StopScope",
     "SystemReport",
