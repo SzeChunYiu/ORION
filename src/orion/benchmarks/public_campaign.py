@@ -259,12 +259,16 @@ def _valid_finite_number(value: object) -> bool:
     )
 
 
-def _valid_url(value: str) -> bool:
+def _valid_url(value: object) -> bool:
+    if not isinstance(value, str):
+        return False
     parsed = urlparse(value)
     return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
 
 
-def _identity_missing(value: str, *, allow_none: bool = False) -> bool:
+def _identity_missing(value: object, *, allow_none: bool = False) -> bool:
+    if not isinstance(value, str):
+        return True
     normalized = value.strip().upper()
     if not normalized:
         return True
@@ -273,7 +277,9 @@ def _identity_missing(value: str, *, allow_none: bool = False) -> bool:
     return normalized in _UNKNOWN_IDENTITY_MARKERS
 
 
-def _timestamp(value: str) -> datetime | None:
+def _timestamp(value: object) -> datetime | None:
+    if not isinstance(value, str):
+        return None
     try:
         parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
     except (TypeError, ValueError):
@@ -299,8 +305,12 @@ def _source_metadata_blockers(source: SourceBinding) -> list[str]:
         blockers.append(f"{prefix}:pinned_revision_missing")
     if not _valid_sha256(source.sha256):
         blockers.append(f"{prefix}:sha256_invalid")
-    license_upper = source.license_expression.upper()
-    if not source.license_expression.strip() or any(
+    license_upper = (
+        source.license_expression.upper()
+        if isinstance(source.license_expression, str)
+        else ""
+    )
+    if _identity_missing(source.license_expression) or any(
         marker in license_upper for marker in _UNKNOWN_LICENSE_MARKERS
     ):
         blockers.append(f"{prefix}:license_ambiguous")
@@ -441,6 +451,8 @@ def _freeze_blockers(freeze: CampaignFreeze, result_created_at_utc: str) -> list
     ):
         blockers.append("arm_ids_invalid_or_duplicated")
     roles = [arm.role for arm in freeze.arms]
+    if any(not isinstance(role, ArmRole) for role in roles):
+        blockers.append("arm_role_invalid")
     if ArmRole.TREATMENT not in roles or not any(
         role in {ArmRole.BASELINE, ArmRole.EXACT_ORACLE} for role in roles
     ):
@@ -556,6 +568,8 @@ def _observation_blockers(
         prefix = f"record:{item.record_id}"
         if assignments.get(item.task_id) != item.split_id:
             blockers.append(f"{prefix}:split_drift")
+        if type(item.seed) is not int or item.seed < 0:
+            blockers.append(f"{prefix}:seed_not_nonnegative_integer")
         if item.arm_id not in arm_ids or item.seed not in freeze.seeds:
             blockers.append(f"{prefix}:unfrozen_arm_or_seed")
         if _identity_missing(item.inference_unit_id):
@@ -701,6 +715,8 @@ def _surface_blockers(
 ) -> list[str]:
     blockers: list[str] = []
     kinds = [surface.kind for surface in surfaces]
+    if any(not isinstance(kind, SurfaceKind) for kind in kinds):
+        blockers.append("authority_surface_kind_invalid")
     if Counter(kinds) != Counter(SurfaceKind):
         blockers.append("authority_surface_set_incomplete_or_duplicated")
     paths = [surface.path for surface in surfaces]

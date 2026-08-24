@@ -146,8 +146,9 @@ def _observations() -> tuple[Observation, ...]:
 def _gate(
     terminal: CampaignTerminal = CampaignTerminal.PASS,
     included: int = 4,
+    observations: tuple[Observation, ...] | None = None,
 ) -> GateResult:
-    observations = _observations()
+    observations = observations or _observations()
     return GateResult(
         terminal=terminal,
         decision_id="official-gate-v1",
@@ -745,6 +746,43 @@ def test_booleans_cannot_masquerade_as_numeric_fields() -> None:
     assert "gate_confidence_level_not_95_percent" in receipt.blockers
     assert "gate_inference_unit_count_not_integer" in receipt.blockers
     assert "gate_nonfinite_estimate_interval_or_cost" in receipt.blockers
+
+
+def test_every_arm_role_must_be_an_exact_enum_member() -> None:
+    extra_arm = _arm("extra", "INVALID")
+    freeze = _freeze(arms=_freeze().arms + (extra_arm,))
+    extra_rows = tuple(
+        replace(
+            item,
+            arm_id="extra",
+            raw_output_sha256=_digest(f"raw:{item.task_id}:extra"),
+        )
+        for item in _observations()
+        if item.arm_id == "strong-baseline"
+    )
+    observations = _observations() + extra_rows
+    gate = _gate(included=6, observations=observations)
+    receipt = _run(
+        freeze=freeze,
+        observations=observations,
+        gate=gate,
+        replay=_replay(gate, observations),
+    )
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert "arm_role_invalid" in receipt.blockers
+
+
+def test_observation_boolean_seed_cannot_alias_frozen_integer_seed() -> None:
+    observations = tuple(replace(item, seed=True) for item in _observations())
+    gate = _gate(observations=observations)
+    receipt = _run(
+        freeze=_freeze(seeds=(1,)),
+        observations=observations,
+        gate=gate,
+        replay=_replay(gate, observations),
+    )
+    assert receipt.terminal is CampaignTerminal.CANNOT_CHECK
+    assert any("seed_not_nonnegative_integer" in item for item in receipt.blockers)
 
 
 def test_post_outcome_freeze_cannot_check() -> None:

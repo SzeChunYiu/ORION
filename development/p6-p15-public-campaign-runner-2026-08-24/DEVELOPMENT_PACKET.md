@@ -79,6 +79,8 @@ such as `UNKNOWN`, `CANNOT_CHECK`, `TBD`, and `UNSET`.
 Security-relevant flags require exact Boolean values; truthy strings do not
 coerce. Budgets, usage, seeds, counts, intervals, and costs reject Booleans as
 numbers and reject non-finite numeric values.
+Enum fields and observation seeds also require exact runtime types, preventing
+string roles and Python's `True == 1` equality from satisfying frozen identities.
 
 ## Saturation-basis challenge
 
