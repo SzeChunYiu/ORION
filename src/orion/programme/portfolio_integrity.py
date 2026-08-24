@@ -45,6 +45,9 @@ __all__ = [
     "CONSOLIDATION_GROUPS",
     "ISSUE_SOURCE_FAMILIES",
     "shared_source_families",
+    "INDEPENDENCE_CLAIM_MARKERS",
+    "EXIT_SHARED_SUBSTRATE_CLAIM",
+    "check_no_shared_substrate_independence_claim",
     "EXIT_CANNOT_CHECK",
     "EXIT_MISSING_CONSOLIDATION",
     "EXIT_PARTITION_COLLISION",
@@ -276,3 +279,72 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":  # pragma: no cover
     raise SystemExit(main())
+
+
+#: Wordings by which a paper would assert that its use of a shared public
+#: substrate is independent replication. Matched case-insensitively.
+INDEPENDENCE_CLAIM_MARKERS: tuple[str, ...] = (
+    "independent replication",
+    "independent portfolio replication",
+    "independently replicated",
+    "replicated independently",
+    "independent validation",
+    "portfolio replication",
+)
+
+EXIT_SHARED_SUBSTRATE_CLAIM = 6
+
+
+def check_no_shared_substrate_independence_claim(
+    claims: dict[str, str],
+    families: dict[str, tuple[str, ...]] | None = None,
+) -> PortfolioAudit:
+    """Refuse a paper that calls a SHARED public substrate independent replication.
+
+    ``claims`` maps a paper key (matching :data:`ISSUE_SOURCE_FAMILIES`) to the
+    text in which it describes its evidence. A paper may say whatever it likes
+    about a substrate it alone uses; the prohibition bites only where the
+    substrate is shared, because that is where "independent replication" would
+    be counting one corpus twice across the portfolio.
+
+    Recording the reuse is :func:`shared_source_families`. This is the other
+    half the bullet asks for: the prohibition, enforced rather than stated.
+    """
+
+    if not isinstance(claims, dict):
+        return PortfolioAudit(
+            EXIT_CANNOT_CHECK, "PORTFOLIO_INTEGRITY_CANNOT_CHECK", ("claims is not a mapping",)
+        )
+
+    source = ISSUE_SOURCE_FAMILIES if families is None else families
+    shared: dict[str, tuple[str, ...]] = dict(shared_source_families(source))
+    shared_by_paper: dict[str, list[str]] = {}
+    for family, papers in shared.items():
+        for paper in papers:
+            shared_by_paper.setdefault(paper, []).append(family)
+
+    problems: list[str] = []
+    for paper, text in claims.items():
+        if not isinstance(text, str):
+            return PortfolioAudit(
+                EXIT_CANNOT_CHECK, "PORTFOLIO_INTEGRITY_CANNOT_CHECK", (f"{paper}: claim text is not a string",)
+            )
+        families_shared = shared_by_paper.get(paper)
+        if not families_shared:
+            continue
+        lowered = text.lower()
+        hit = next((m for m in INDEPENDENCE_CLAIM_MARKERS if m in lowered), None)
+        if hit is None:
+            continue
+        others = sorted({q for f in families_shared for q in shared[f] if q != paper})
+        problems.append(
+            f"{paper}: claims {hit!r} while its substrate(s) {sorted(families_shared)} "
+            f"are shared with {others}; a shared public corpus is not independent "
+            "portfolio replication"
+        )
+
+    if problems:
+        return PortfolioAudit(
+            EXIT_SHARED_SUBSTRATE_CLAIM, "PORTFOLIO_INTEGRITY_FAIL", tuple(sorted(problems))
+        )
+    return PortfolioAudit(EXIT_PASS, "PORTFOLIO_INTEGRITY_PASS")
