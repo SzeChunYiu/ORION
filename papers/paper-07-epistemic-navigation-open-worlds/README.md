@@ -1,7 +1,8 @@
 # P7 candidate — Epistemic Navigation in Open Worlds
 
 **Current science:** `SCIENCE_CLOSED_V3`; PDF/typesetting refresh deferred.  
-**Current science manuscript:** `manuscript/FINAL_V3.md`.  
+**Current science manuscript:** `manuscript/FINAL_V4.md`.  
+**Historical:** `manuscript/FINAL_V3.md` preserved as the prior scientific version.  
 **Historical V2 submission source/PDF:** preserved and not relabelled V3.
 
 **Parent:** #332. Theory #336. Literature #337. Evaluation #338. Anti-overlap #343. Claim-expansion successor #534.

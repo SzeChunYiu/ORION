@@ -207,6 +207,53 @@ composition pair is discussed in §20. The counts remain
 correct and remain reproducible; they are support for a bounded instance, and
 the general claims are now carried by §§18–19 instead.
 
+## Non-synthetic evidence in three change classes
+
+The support enumerated above is bounded and synthetic. Three executed studies
+carry the same separation into real data, one per change class, each frozen
+before execution and reproduced by a second implementation sharing no facts or
+gold code with the first.
+
+**Representation change.** The public RO-Crate `1.2 -> 1.3` transition, where
+four Bioschemas workflow terms changed canonical URI bindings while ordinary
+value-level JSON usage can appear unchanged. Across 14 frozen cases,
+witness-aware transport is exact (**1.0**) with **0** false closures, **0**
+unnecessary reopens and **4** correct `CANNOT_CHECK`. Value-only reaches
+**0.428571** with **8** false closures; always-reopen **0.285714** with **6**
+unnecessary reopens.
+
+**Responsibility/ontology change.** The 178-example UCI Wine data, where the
+coarse responsibility `class0_vs_other` makes the reverse coarse-to-fine map
+non-injective because coarse `0` merges fine classes `1` and `2`. Across 712
+protected transport rows, witness-aware transport is **1.0** with **238**
+correct `CANNOT_CHECK`; value-only reaches **0.665730**, converting those same
+238 into false closures; always-reopen reaches **0.0** with **474** unnecessary
+reopens. The **119** ambiguous coarse-0 examples are where locally well-formed
+representation changes require different dispositions depending on retained
+support history.
+
+**Objective/obligation change.** The 569-example Wisconsin Diagnostic Breast
+Cancer data under a frozen `StratifiedKFold(n_splits=5, shuffle=True,
+random_state=20261217)` split, with the obligation moving from aggregate
+accuracy to malignant recall. The two obligations come apart in both directions:
+fold 0 satisfies the old (`0.965 >= 0.95`) and fails the new (`0.907 < 0.95`),
+while fold 1 fails the old (`0.947 < 0.95`) and satisfies the new
+(`0.953 >= 0.95`). All five accuracy-only cells are `CANNOT_CHECK`, because
+malignant recall is not inferable from aggregate accuracy; value-only produces
+**5** false closures and always-reopen **4** unnecessary reopens.
+
+Witness-aware transport is **1.0** in all three classes and both degenerate
+policies separate in every one: value preservation alone closes transitions it
+has not earned, and always reopening pays for transitions already witnessed.
+
+**What this does not establish.** Three executed change classes, not a universal
+claim. It does not establish scientific-regime transport across arbitrary
+world-model, objective or research-agent changes, and the agreement is between
+two implementations inside the same workflow, not an external adjudication. The
+breast-cancer study is a transport experiment over a frozen split: no clinical
+use is claimed and no classifier or medical decision rule is offered.
+
+
 ## Wider P7 claim (V4 wording)
 
 > Scientific navigation can reuse mature planning/refinement,

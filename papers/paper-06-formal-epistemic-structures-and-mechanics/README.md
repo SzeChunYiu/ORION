@@ -1,8 +1,8 @@
 # P6 candidate — Formal Epistemic Structures and Mechanics
 
 **Current science:** `SCIENCE_CLOSED_V4`; PDF/typesetting refresh deferred.  
-**Current science manuscript:** `manuscript/FINAL_V4.md`.  
-**Historical bases:** V2.1 and V3 remain preserved as prior scientific versions; the old rendered submission bytes are not relabelled V4.
+**Current science manuscript:** `manuscript/FINAL_V5.md`.  
+**Historical bases:** V2.1, V3 and V4 remain preserved as prior scientific versions; the old rendered submission bytes are not relabelled V5.
 
 **Parent:** #332. Theory #333. Literature #334. Evaluation #335. Anti-overlap #343. Claim-expansion successor #533.
 
@@ -46,7 +46,8 @@ P6 does **not** claim proof of execution, certified traces, proof-carrying agent
 
 ## Current source map
 
-- `manuscript/FINAL_V4.md` — current science manuscript overlay;
+- `manuscript/FINAL_V5.md` — current science manuscript overlay;
+- `manuscript/FINAL_V4.md` — preserved prior version, superseded by V5;
 - `CLAIM_LEDGER_V4.md` — current claim authority;
 - `submission/P6_X2_CERTIFICATE_LIFTING_SECTION.tex` — render-ready successor section;
 - `research/claim_expansion/p6/P6_X2_DONOR_ENGULFMENT_V1.md` — donor extraction/improvement map;
