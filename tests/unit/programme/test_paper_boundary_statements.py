@@ -256,3 +256,14 @@ def test_p15_manuscript_carries_the_three_study_arc() -> None:
         assert run in text, run
     assert "detects `0/6`" in text
     assert "verifies exactly as well as one over an honest set" in text
+
+
+def test_p2_has_one_compact_claim_evidence_authority_table() -> None:
+    """Claims readable without reconstructing them from packet chronology."""
+    text = _flat(PAPERS / "paper-02-open-world-scientific-discovery/README.md")
+    assert "Claim, evidence, authority" in text
+    assert "| Claim | Evidence | Authority |" in text
+    # the gate failure and the non-gate positive must sit together
+    assert "+175.7%" in text
+    assert "not a gate criterion" in text
+    assert "cannot rescue the row above" in text
