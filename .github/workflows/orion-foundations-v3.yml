@@ -55,11 +55,14 @@ jobs:
             echo "Execution/finalizer path entered theory PR" >&2
             exit 1
           fi
-      - name: Validate theory package
+      - name: Validate programme theory package
         run: python research/orion-foundations-v3/check_foundations_v3.py
+      - name: Validate P1-P15 theorem crosswalk
+        run: python research/orion-foundations-v3/check_paper_theorem_ledger_v1.py
       - name: Parse JSON artifacts
         run: |
           python -m json.tool research/orion-foundations-v3/THEOREM_LEDGER_V1.json >/dev/null
+          python -m json.tool research/orion-foundations-v3/PAPER_THEOREM_LEDGER_V1.json >/dev/null
           python -m json.tool research/orion-foundations-v3/ASSUMPTION_LEDGER_V1.json >/dev/null
           python -m json.tool research/orion-foundations-v3/EXECUTION_ONLY_BACKLOG_V1.json >/dev/null
       - name: Reject incomplete Lean proofs
