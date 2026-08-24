@@ -479,7 +479,12 @@ def execute(
         error_class=error_class,
     )
 
-    evaluation = evaluate(EvaluationInputs(world=world, task=task, trace=trace))
+    # EvaluationInputs requires caps; omitting it raised TypeError. The
+    # budget is the task's own, which is what the evaluator compares the
+    # recorded spend against.
+    evaluation = evaluate(
+        EvaluationInputs(world=world, task=task, trace=trace, caps=task.budget)
+    )
     artifact = {
         "schema_version": "orion.p2.run-artifact.v1",
         "task_id": task.task_id,
