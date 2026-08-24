@@ -1,0 +1,131 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.codex-run-plan-candidate.v1",
+  "candidate_id": "P1_SAB_CODEX_0147_ROUTE_20260824_V1",
+  "authority": "BLOCKED_OUTCOME_BLIND_RUN_PLAN_CANDIDATE_ONLY__NOT_RUNNER_ADMISSIBLE_OR_EXECUTION_AUTHORITY",
+  "status": "BLOCKED_CANNOT_CHECK_IMMUTABLE_MODEL_TOKENIZER_SEED_AND_BILLED_COST",
+  "merged_runner_dependency": {
+    "path": "development/p1-scienceagentbench-runner-v1-2026-08-24/sab_verified_runner_v1.py",
+    "merge_commit": "e4026dc81a8ccc44841cd2d44115bb05873a03da"
+  },
+  "fixed_population": {
+    "split": "verified",
+    "verified_parquet_sha256": "c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147",
+    "mask_manifest_sha256": "442d9793024a91c752d34b9ad3185af612d1db3759458e91a61911b385cbe758",
+    "task_ids": "1..102"
+  },
+  "client_route": {
+    "package": "@openai/codex",
+    "version": "0.147.0",
+    "provider_id": "openai",
+    "model_slug": "gpt-5.6-sol",
+    "model_snapshot": "CANNOT_CHECK_MUTABLE_ALIAS_NO_RESOLVED_SNAPSHOT_IN_JSONL",
+    "reasoning_effort": "low",
+    "reasoning_summary": "none",
+    "verbosity": "low",
+    "service_tier": "default",
+    "tokenizer_revision": "CANNOT_CHECK_NOT_EXPOSED_BY_CLI_CATALOG_OR_JSONL",
+    "provider_seed_capability": "CANNOT_CHECK_STRICT_CODEX_CONFIG_REJECTS_SEED",
+    "credential_route": "OWNER_CONTROLLED_CLEAN_CODEX_HOME_AUTH_REFERENCE__SECRET_BYTES_NOT_OPENED_OR_HASHED",
+    "credential_route_descriptor_sha256": "e3d3fb57b664a775bb62b7aa9f96b0ed7668210691344ae8fccf98b3d99fec1e",
+    "sandbox": "read-only",
+    "approval_policy": "never",
+    "user_config": "ignored",
+    "project_rules": "ignored",
+    "web_search": "not enabled",
+    "mcp_servers": "none in clean CODEX_HOME",
+    "optional_context_features_disabled": [
+      "plugins",
+      "remote_plugin",
+      "skill_search"
+    ],
+    "session_policy": {
+      "RR": "phase 1 resumes exactly the phase-0 thread",
+      "OS": "one fresh phase-1 thread and no phase-0 model call",
+      "NR": "phase-0 thread is sealed then discarded; phase 1 uses a distinct fresh thread"
+    }
+  },
+  "prompt_bundle": {
+    "path": "PROMPT_BUNDLE_V1.json",
+    "sha256": "c075d410320db98456ed4aa8e84c824e6b856223be9565af5cd6c404be2f2ad9"
+  },
+  "attempt_schedule": {
+    "attempt_ordinals": [
+      1,
+      2,
+      3
+    ],
+    "seed_status": "UNSEEDED_CANNOT_CHECK",
+    "attempt_ordinals_are_seeds": false,
+    "paired_across_arms": true
+  },
+  "matched_acceptance_budget_by_arm": {
+    "RR": {
+      "total_input_token_cap": 100000,
+      "total_output_token_cap": 8192,
+      "tool_call_cap": 16,
+      "wall_time_seconds_cap": 240.0,
+      "local_execution_seconds_cap": 30.0,
+      "final_candidates_per_attempt": 1
+    },
+    "OS": {
+      "total_input_token_cap": 100000,
+      "total_output_token_cap": 8192,
+      "tool_call_cap": 16,
+      "wall_time_seconds_cap": 240.0,
+      "local_execution_seconds_cap": 30.0,
+      "final_candidates_per_attempt": 1
+    },
+    "NR": {
+      "total_input_token_cap": 100000,
+      "total_output_token_cap": 8192,
+      "tool_call_cap": 16,
+      "wall_time_seconds_cap": 240.0,
+      "local_execution_seconds_cap": 30.0,
+      "final_candidates_per_attempt": 1
+    }
+  },
+  "cap_semantics": {
+    "wall_time": "externally enforced total attempt deadline",
+    "input_output_and_tools": "post-event fail-closed acceptance caps because Codex 0.147.0 exposes no hard per-exec controls",
+    "provider_side_enforcement_claimed": false
+  },
+  "usage_and_cost": {
+    "jsonl_usage_fields": [
+      "input_tokens",
+      "cached_input_tokens",
+      "cache_write_input_tokens",
+      "output_tokens",
+      "reasoning_output_tokens"
+    ],
+    "tool_calls": "counted from JSONL item types",
+    "wall_time_seconds": "measured by the local adapter monotonic clock",
+    "billed_cost_usd": null,
+    "billed_cost_status": "CANNOT_CHECK_NOT_EMITTED_BY_CHATGPT_AUTH_CODEX_JSONL",
+    "all_attempts_retained": true
+  },
+  "runner_admissible": false,
+  "blockers": [
+    {
+      "field": "model_id",
+      "status": "CANNOT_CHECK_IMMUTABLE_SNAPSHOT",
+      "next_discriminator": "Provider returns a durable resolved snapshot identifier joined to each Codex turn."
+    },
+    {
+      "field": "tokenizer_revision",
+      "status": "CANNOT_CHECK_NOT_EXPOSED",
+      "next_discriminator": "Provider or Codex receipts the exact tokenizer name and immutable revision used for terminal usage."
+    },
+    {
+      "field": "seed_schedule",
+      "status": "CANNOT_CHECK_UNSUPPORTED",
+      "next_discriminator": "A strict supported seed option is added and the provider confirms its semantics for this model route."
+    },
+    {
+      "field": "billed_cost_usd",
+      "status": "CANNOT_CHECK_NOT_EMITTED",
+      "next_discriminator": "An owner-authoritative per-attempt billed-USD record is joinable to the same attempt identifier."
+    }
+  ],
+  "outcomes_opened": false,
+  "scientific_authority_delta": "NONE"
+}

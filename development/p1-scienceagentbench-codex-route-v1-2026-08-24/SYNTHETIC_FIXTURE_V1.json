@@ -1,0 +1,36 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.codex-synthetic-fixture.v1",
+  "fixture_id": "SYNTHETIC_NONBENCHMARK_MEAN_V1",
+  "authority": "SYNTHETIC_NONBENCHMARK_ONLY",
+  "masked_packet": {
+    "instance_id": "synthetic-1",
+    "domain": "SYNTHETIC_ARITHMETIC",
+    "task_inst": "Write a self-contained Python program that computes the arithmetic mean of the recovered values and writes the required JSON output file.",
+    "output_fname": "synthetic_result.json",
+    "domain_knowledge": "<MASKED:domain_knowledge>",
+    "dataset_folder_tree": "<MASKED:dataset_folder_tree>",
+    "dataset_preview": "<MASKED:dataset_preview>",
+    "dataset_filesystem": "NOT_MOUNTED"
+  },
+  "recovered_packet": {
+    "instance_id": "synthetic-1",
+    "domain": "SYNTHETIC_ARITHMETIC",
+    "task_inst": "Write a self-contained Python program that computes the arithmetic mean of the recovered values and writes the required JSON output file.",
+    "output_fname": "synthetic_result.json",
+    "domain_knowledge": "Use the arithmetic mean: sum(values) divided by len(values).",
+    "dataset_folder_tree": [
+      "synthetic_numbers.json"
+    ],
+    "dataset_preview": {
+      "values": [
+        2,
+        4,
+        6
+      ]
+    },
+    "dataset_filesystem": "SYNTHETIC_INLINE_ONLY_NO_MOUNT"
+  },
+  "official_task_content": false,
+  "outcomes_opened": false,
+  "scientific_authority_delta": "NONE"
+}

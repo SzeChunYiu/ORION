@@ -1,0 +1,176 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.codex-route-preflight.v1",
+  "preflight_id": "P1_SAB_CODEX_ROUTE_PREFLIGHT_20260824_V1",
+  "authority": "OUTCOME_BLIND_LOCAL_ROUTE_PREFLIGHT_ONLY__NOT_RUNNER_OR_EXECUTION_AUTHORITY",
+  "observation_date": "2026-08-24",
+  "base_subject": "e4026dc81a8ccc44841cd2d44115bb05873a03da",
+  "repository_integration": {
+    "origin_main_commit": "2c96d32e552aba43bc4a5bed2da624f6083740cf",
+    "pf01_artifact_identity_commit": "63490a4da9b103c1d17eb6154abd9c241be8cdb3",
+    "pf01_status": "CLOSED_EXACT_ARTIFACT_IDENTITY_BOUND",
+    "remaining_preflight_blockers": [
+      "PF-02",
+      "PF-03",
+      "PF-04",
+      "PF-05",
+      "PF-06"
+    ],
+    "pf01_authorizes_official_execution": false
+  },
+  "decision": "TRANSPORT_CAPABLE_SYNTHETIC_ONLY__RUNNER_BLOCKED",
+  "runner_admissible": false,
+  "client_installation": {
+    "version_stdout": "codex-cli 0.147.0",
+    "package_name": "@openai/codex",
+    "package_version": "0.147.0",
+    "package_json": {
+      "bytes": 1082,
+      "sha256": "bbaf3b9597b54bc1d4cf4aea93870e9035629d79bdaba58234011c31f0cfcf3d"
+    },
+    "launcher": {
+      "bytes": 7236,
+      "sha256": "134063e133f0b4244fa3b251acf973d4fe4b4aeeacbdc135211bf480f59f1477"
+    },
+    "native_binary": {
+      "platform": "aarch64-apple-darwin",
+      "bytes": 219997536,
+      "sha256": "19c4f144c5226a9f17c58e6f0fa854843b0f77a6eb420f40e2745a12f10f5d37"
+    }
+  },
+  "credential_route_descriptor": {
+    "account_identity_committed": false,
+    "authentication_status": "Logged in using ChatGPT",
+    "authentication_status_source": "codex login status under owner-controlled temporary CODEX_HOME",
+    "codex_home_kind": "OWNER_CONTROLLED_TEMPORARY_CLEAN_HOME",
+    "credential_bytes_hashed_by_receipt_process": false,
+    "credential_bytes_opened_by_receipt_process": false,
+    "credential_contents_committed": false,
+    "credential_path_committed": false,
+    "credential_reference_kind": "SYMLINK_TO_OWNER_MANAGED_CODEX_AUTH"
+  },
+  "credential_route_descriptor_canonicalization": "json.dumps(value,sort_keys=True,separators=(',',':'),ensure_ascii=False)+LF",
+  "credential_route_descriptor_bytes": 481,
+  "credential_route_descriptor_sha256": "e3d3fb57b664a775bb62b7aa9f96b0ed7668210691344ae8fccf98b3d99fec1e",
+  "execution_route": {
+    "provider_id": "openai",
+    "model_slug": "gpt-5.6-sol",
+    "reasoning_effort": "low",
+    "reasoning_summary": "none",
+    "verbosity": "low",
+    "service_tier": "default",
+    "sandbox": "read-only",
+    "approval_policy": "never",
+    "user_config": "ignored",
+    "project_rules": "ignored",
+    "optional_context_features_disabled": [
+      "plugins",
+      "remote_plugin",
+      "skill_search"
+    ],
+    "prompt_transport": "frozen UTF-8 bytes on stdin",
+    "output_transport": "JSONL stdout plus output-last-message file",
+    "external_attempt_deadline_seconds": 240.0,
+    "token_tool_caps": "POST_EVENT_FAIL_CLOSED_NOT_PROVIDER_SIDE"
+  },
+  "prompt_bundle_sha256": "c075d410320db98456ed4aa8e84c824e6b856223be9565af5cd6c404be2f2ad9",
+  "clean_jsonl_probe": {
+    "event_types": [
+      "thread.started",
+      "turn.started",
+      "item.completed:agent_message",
+      "turn.completed"
+    ],
+    "input_tokens": 17503,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 32,
+    "reasoning_output_tokens": 0,
+    "tool_calls": 0,
+    "raw_jsonl_bytes": 410,
+    "raw_jsonl_sha256": "39dea88e8715ba184377b114b0042a4d2df996b5012020759c6b8600d15c45c7",
+    "last_message_bytes": 62,
+    "last_message_sha256": "62f7324f9af638ccf102e2ef365899df986826a5610f9dd308246103fe3c2c94",
+    "stderr_bytes": 0,
+    "resolved_model_snapshot_emitted": false,
+    "tokenizer_revision_emitted": false,
+    "seed_emitted": false,
+    "wall_time_emitted": false,
+    "billed_cost_usd_emitted": false
+  },
+  "strict_seed_probe": {
+    "config_override": "seed=101",
+    "generation_started": false,
+    "stderr_exact": "Error loading config.toml: unknown configuration field `seed` in -c/--config override",
+    "stderr_bytes": 86,
+    "stderr_sha256": "4211f0f01e6c0f5a1e3cfd5b32f7b1bd4165bf5d36c66501140cd49be640b6d1",
+    "conclusion": "CANNOT_CHECK_STRICT_CODEX_CONFIG_REJECTS_SEED"
+  },
+  "model_alias_probe": {
+    "bundled_catalog": {
+      "bytes": 315324,
+      "sha256": "e4cd013dd3bb8864e76fad74fc2200690361d64c874038d645048f39c188fd72",
+      "slug": "gpt-5.6-sol",
+      "context_window": 272000,
+      "max_context_window": 272000,
+      "comp_hash": "3000"
+    },
+    "refreshed_catalog": {
+      "bytes": 354626,
+      "sha256": "4f2513c1e2f737deee2756d84592801913954b9c3a0b1771be7a01a75acdc870",
+      "slug": "gpt-5.6-sol",
+      "context_window": 272000,
+      "max_context_window": 872000,
+      "comp_hash": "3000"
+    },
+    "conclusion": "CANNOT_CHECK_MUTABLE_ALIAS_NO_RESOLVED_SNAPSHOT_IN_JSONL"
+  },
+  "synthetic_arm_probe": {
+    "attempts_per_arm": 1,
+    "attempt_ordinal": 1,
+    "seed": null,
+    "seed_status": "UNSEEDED_CANNOT_CHECK",
+    "arms": [
+      "RR",
+      "OS",
+      "NR"
+    ],
+    "transport_status": "PASS",
+    "stderr_empty_for_all_phases": true,
+    "tool_calls_total": 0,
+    "generated_programs_executed": false,
+    "raw_jsonl_committed": false,
+    "model_outputs_committed": false,
+    "runner_status": "CANNOT_CHECK_BILLED_COST"
+  },
+  "unsupported_guarantees": [
+    {
+      "field": "immutable_resolved_model_snapshot",
+      "status": "CANNOT_CHECK",
+      "next_discriminator": "Provider returns a durable resolved snapshot identifier joined to each Codex turn."
+    },
+    {
+      "field": "tokenizer_revision",
+      "status": "CANNOT_CHECK",
+      "next_discriminator": "Provider or Codex receipts the exact tokenizer name and immutable revision used for terminal usage."
+    },
+    {
+      "field": "provider_seed_capability_and_schedule",
+      "status": "CANNOT_CHECK",
+      "next_discriminator": "A strict supported seed option is added and the provider confirms its semantics for this model route."
+    },
+    {
+      "field": "per_attempt_billed_cost_usd",
+      "status": "CANNOT_CHECK",
+      "next_discriminator": "An owner-authoritative per-attempt billed-USD record is joinable to the same attempt identifier."
+    },
+    {
+      "field": "provider_side_hard_token_tool_and_time_caps",
+      "status": "CANNOT_CHECK",
+      "next_discriminator": "Provider receipts enforceable per-attempt input, output, tool, and wall-time limits before resource use."
+    }
+  ],
+  "official_tasks_run": 0,
+  "official_data_opened": false,
+  "outcomes_opened": false,
+  "scientific_authority_delta": "NONE"
+}
