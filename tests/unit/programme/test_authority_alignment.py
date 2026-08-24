@@ -31,8 +31,18 @@ def test_all_three_citing_the_same_version_passes(tmp_path: Path) -> None:
     assert main(["--root", str(_paper(tmp_path, CITE, CITE, CITE))]) == EXIT_PASS
 
 
-def test_a_free_floating_surface_is_misaligned(tmp_path: Path) -> None:
-    assert main(["--root", str(_paper(tmp_path, CITE, CITE, "No authority named.\n"))]) == EXIT_MISALIGNED
+def test_a_surface_naming_no_authority_is_cannot_check(tmp_path: Path) -> None:
+    """Unreadable is not the same as unbound, so it must not fail the gate.
+
+    This asserted MISALIGNED until the rule was checked against the papers. Six
+    of seven flags were wrong: P10's manuscript is bound by sha256 *from* the
+    authority record, P10 also ships a PDF with no citable text, and P12, P13,
+    P15 and P11 each phrase the designation in a way a proximity rule misreads.
+    Acting on the P10 flag would have meant editing bytes that record binds by
+    digest -- breaking a tamper-evident receipt to satisfy a prose convention.
+    """
+    root = _paper(tmp_path, CITE, CITE, "No authority named.\n")
+    assert main(["--root", str(root)]) == EXIT_CANNOT_CHECK
 
 
 def test_surfaces_bound_to_different_versions_disagree(tmp_path: Path) -> None:
@@ -90,3 +100,37 @@ def test_p15_manuscript_and_ledger_agree_on_v3() -> None:
     rec = records["paper-15-orion-research-harness"]
     assert not rec.disagreeing, rec.cited
     assert rec.cited.get("manuscript") == {"3"}
+
+
+def test_authority_binding_a_surface_by_digest_counts_as_a_citation(tmp_path: Path) -> None:
+    """P10's case: the tie runs from the authority record to the manuscript.
+
+    ``P10_ACTIVE_CLAIM_AUTHORITY_V1.json`` binds ``manuscript/main.tex`` by
+    sha256. The manuscript names no record, so reading only the prose says it is
+    free-floating -- when in fact it carries the strongest tie in the paper, one
+    that breaks if either side changes.
+    """
+    import json
+
+    d = tmp_path / "papers" / "paper-99-fake"
+    d.mkdir(parents=True)
+    (d / "P99_ACTIVE_CLAIM_AUTHORITY_V1.json").write_text(
+        json.dumps(
+            {
+                "evidence_bindings": {
+                    "manuscript": {
+                        "artifact": "papers/paper-99-fake/MANUSCRIPT.md",
+                        "sha256": "0" * 64,
+                    }
+                }
+            }
+        )
+    )
+    (d / "MANUSCRIPT.md").write_text("This manuscript names no authority record.\n")
+    (d / "CLAIM_EVIDENCE_LEDGER.md").write_text(CITE)
+
+    records = audit_repository(tmp_path)
+    assert len(records) == 1
+    assert records[0].cited["manuscript"] == {"1"}
+    assert records[0].reverse_bound == ["manuscript"]
+    assert main(["--root", str(tmp_path)]) == EXIT_PASS

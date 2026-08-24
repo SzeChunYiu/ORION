@@ -34,8 +34,10 @@
 The historical P12A terminal remains `P12A_SUPERIORITY_AUTHORITY_WITHHELD` in
 `P12_ACTIVE_CLAIM_AUTHORITY_V1.json`. Current bounded authority is
 `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED` in
-`P12_ACTIVE_CLAIM_AUTHORITY_V4.json`, which preserves V3's active P12B leaf and
-binds the transfer support, robustness negative, conditional successor and
+`P12_ACTIVE_CLAIM_AUTHORITY_V5.json`, the sole active authority record. That
+terminal is inherited unchanged from the superseded
+`P12_ACTIVE_CLAIM_AUTHORITY_V4.json`, which preserved V3's active P12B leaf and
+bound the transfer support, robustness negative, conditional successor and
 exact-certificate boundary as separate lifecycle leaves.
 `P12_ACTIVE_CLAIM_AUTHORITY_V5.json` preserves every V4 leaf, terminal, binding
 and forbidden promotion unchanged and adds only the frozen stop/go campaign
