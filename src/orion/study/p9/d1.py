@@ -21,6 +21,7 @@ class D1Domain(str, Enum):
     NUMERICAL = "numerical_methods"
     GRAPH = "graph_algorithms"
     WORKFLOW = "transactional_workflows"
+    CACHE = "cache_admission"
 
 
 class D1Split(str, Enum):
@@ -227,6 +228,74 @@ def _base_method(name: str) -> MethodRealization:
             unknown_coordinates=("progress_measure", "reconstruction_map"),
             **common,
         )
+    if name == "lru_eviction":
+        return build_method_realization(
+            method_id=name,
+            target_role="bounded_residency_reclamation",
+            preconditions=(
+                "bounded_residency_budget",
+                "recency_stamp_observable",
+                "reuse_locality_present",
+            ),
+            assumptions=("stable_residency_budget",),
+            resources=("recency_index",),
+            representation_in="occupied_residency_set",
+            representation_out="reclaimed_residency_set",
+            mechanics=("consult_recency_stamp", "release_least_recent_entry"),
+            dependencies=(("consult_recency_stamp", "release_least_recent_entry"),),
+            invariants=("residency_never_exceeds_budget",),
+            progress_measure="stale_residency_fraction_decreases",
+            effects=("release_stale_residency",),
+            terminal_condition="residency_within_budget",
+            reconstruction_map="return_surviving_residency_set",
+            failure_modes=("uniform_reuse_profile", "recency_stamp_unavailable"),
+            lineage=("donor:recency_reclamation",),
+            **common,
+        )
+    if name == "clock_sweep_eviction":
+        return build_method_realization(
+            method_id=name,
+            target_role="bounded_residency_reclamation",
+            preconditions=(
+                "bounded_residency_budget",
+                "recency_stamp_observable",
+                "reuse_locality_present",
+            ),
+            assumptions=("stable_residency_budget",),
+            resources=("recency_index",),
+            representation_in="occupied_residency_set",
+            representation_out="reclaimed_residency_set",
+            mechanics=("advance_sweep_hand", "release_unmarked_entry"),
+            dependencies=(("advance_sweep_hand", "release_unmarked_entry"),),
+            invariants=("residency_never_exceeds_budget",),
+            progress_measure="stale_residency_fraction_decreases",
+            effects=("release_stale_residency",),
+            terminal_condition="residency_within_budget",
+            reconstruction_map="return_surviving_residency_set",
+            failure_modes=("uniform_reuse_profile", "recency_stamp_unavailable"),
+            lineage=("donor:sweep_reclamation",),
+            **common,
+        )
+    if name == "uniform_random_release":
+        return build_method_realization(
+            method_id=name,
+            target_role="unbounded_residency_release",
+            preconditions=("bounded_residency_budget",),
+            assumptions=("stable_residency_budget",),
+            resources=("uniform_sampler",),
+            representation_in="occupied_residency_set",
+            representation_out="reclaimed_residency_set",
+            mechanics=("draw_uniform_entry", "release_drawn_entry"),
+            dependencies=(("draw_uniform_entry", "release_drawn_entry"),),
+            invariants=("residency_count_is_finite",),
+            progress_measure="residency_count_decreases",
+            effects=("release_arbitrary_residency",),
+            terminal_condition="residency_within_budget",
+            reconstruction_map="return_remaining_residency_set",
+            failure_modes=("hot_entry_released",),
+            lineage=("donor:uniform_release",),
+            **common,
+        )
     raise KeyError(name)
 
 
@@ -234,12 +303,14 @@ DOMAIN_ANALOGUES: Mapping[D1Domain, tuple[str, str]] = {
     D1Domain.NUMERICAL: ("bisection", "threshold_calibration"),
     D1Domain.GRAPH: ("queue_bfs", "layer_frontier_bfs"),
     D1Domain.WORKFLOW: ("transaction_rollback", "deployment_rollback"),
+    D1Domain.CACHE: ("lru_eviction", "clock_sweep_eviction"),
 }
 
 DOMAIN_FALSE_CONTROLS: Mapping[D1Domain, tuple[str, str | None]] = {
     D1Domain.NUMERICAL: ("bisection", "nonmonotone_midpoint"),
     D1Domain.GRAPH: ("queue_bfs", "stack_dfs"),
     D1Domain.WORKFLOW: ("transaction_rollback", None),
+    D1Domain.CACHE: ("lru_eviction", "uniform_random_release"),
 }
 
 
