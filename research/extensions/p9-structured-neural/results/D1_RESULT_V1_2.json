@@ -1,0 +1,4321 @@
+{
+  "claim_ceiling": "exact authored/procedural method-structure transfer across three bounded domains",
+  "dataset_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+  "exact_typed_relational_comparator": {
+    "accuracy": 1.0,
+    "correct_count": 128,
+    "double_corruption_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "per_label_accuracy": {
+      "ALIGNED": 1.0,
+      "OBSTRUCTION": 1.0,
+      "UNRESOLVED": 1.0
+    },
+    "sample_count": 128,
+    "unresolved_accuracy": 1.0
+  },
+  "grants_paper_readiness": false,
+  "protocol": "P9.D1MethodTransferProtocol.v1.2",
+  "result_digest": "sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a",
+  "results": {
+    "TRANSCRIPT_BAG": {
+      "dev_configurations": [
+        {
+          "complexity_rank": 0,
+          "config_id": "logistic-C0.1",
+          "dev": {
+            "accuracy": 0.3333333333333333,
+            "correct_count": 32,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.16666666666666666,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.0,
+              "UNRESOLVED": 0.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 0.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 0.1
+          }
+        },
+        {
+          "complexity_rank": 1,
+          "config_id": "logistic-C1",
+          "dev": {
+            "accuracy": 0.3333333333333333,
+            "correct_count": 32,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.16666666666666666,
+            "per_label_accuracy": {
+              "ALIGNED": 0.0,
+              "OBSTRUCTION": 0.0,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 1.0
+          }
+        },
+        {
+          "complexity_rank": 2,
+          "config_id": "logistic-C10",
+          "dev": {
+            "accuracy": 0.3333333333333333,
+            "correct_count": 32,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.16666666666666666,
+            "per_label_accuracy": {
+              "ALIGNED": 0.0,
+              "OBSTRUCTION": 0.0,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 10.0
+          }
+        },
+        {
+          "complexity_rank": 10,
+          "config_id": "tree-depth3",
+          "dev": {
+            "accuracy": 0.3333333333333333,
+            "correct_count": 32,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.16666666666666666,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.0,
+              "UNRESOLVED": 0.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 0.0
+          },
+          "family": "tree",
+          "params": {
+            "max_depth": 3
+          }
+        },
+        {
+          "complexity_rank": 11,
+          "config_id": "tree-depth6",
+          "dev": {
+            "accuracy": 0.3333333333333333,
+            "correct_count": 32,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.16666666666666666,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.0,
+              "UNRESOLVED": 0.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 0.0
+          },
+          "family": "tree",
+          "params": {
+            "max_depth": 6
+          }
+        },
+        {
+          "complexity_rank": 20,
+          "config_id": "rf-depth6",
+          "dev": {
+            "accuracy": 0.3333333333333333,
+            "correct_count": 32,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.16666666666666666,
+            "per_label_accuracy": {
+              "ALIGNED": 0.0,
+              "OBSTRUCTION": 1.0,
+              "UNRESOLVED": 0.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 0.0
+          },
+          "family": "rf",
+          "params": {
+            "max_depth": 6,
+            "n_estimators": 200
+          }
+        },
+        {
+          "complexity_rank": 21,
+          "config_id": "rf-none",
+          "dev": {
+            "accuracy": 0.3333333333333333,
+            "correct_count": 32,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.16666666666666666,
+            "per_label_accuracy": {
+              "ALIGNED": 0.0,
+              "OBSTRUCTION": 1.0,
+              "UNRESOLVED": 0.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 0.0
+          },
+          "family": "rf",
+          "params": {
+            "max_depth": null,
+            "n_estimators": 300
+          }
+        }
+      ],
+      "selected": {
+        "complexity_rank": 0,
+        "config_id": "logistic-C0.1",
+        "family": "logistic",
+        "params": {
+          "C": 0.1
+        }
+      },
+      "test": {
+        "accuracy": 0.25,
+        "correct_count": 32,
+        "double_corruption_accuracy": 0.0,
+        "macro_f1": 0.13333333333333333,
+        "per_label_accuracy": {
+          "ALIGNED": 1.0,
+          "OBSTRUCTION": 0.0,
+          "UNRESOLVED": 0.0
+        },
+        "sample_count": 128,
+        "unresolved_accuracy": 0.0
+      },
+      "test_predictions": [
+        {
+          "correct": true,
+          "instance_id": "ibaf10a231e2fa487",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i9791c12ed1d8be17",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ie47dac10992f07ee",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i4a8371b1d87c891b",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i227ea48efa193fe8",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i50f2740f36cdd4bf",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i3b4e1387bfca0340",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i9e7fd72be37c957b",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6cb2085ba82e22e7",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i2f03d1830ea44df6",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i4b44fe3693cc99de",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i45c96e0d6835acaa",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5bd00034b5cf9772",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i63f3b63b6e5f0206",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i2da7f3780787c049",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i10496b8fbe7c7352",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6fa521195164b5f8",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i7f6f92cc2b5581eb",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i80bc2153ade73026",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i5a9f5193c85c7bee",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9558a3df74c146b9",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "idd38eb7d2d561f33",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i7a3e7dad76c255a8",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "id094734df8fdce88",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i8e733e328280118a",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i418e1429446fa366",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ib2f509e622b76213",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ifa97473da6081196",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic5902b72ff4d27e0",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ibb3122efd4b5015a",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i74fe6bc33d3127dc",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i4f1c8f785c7ee445",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic102cb48610e3047",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i41a2fd35b0193172",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i90c27527ecaf7b55",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ifbb62d4dd9ff728e",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i520d3a6bc060ac63",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ief6e858b8e883d25",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i03e3b3fc2eb9dc23",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i82e869d50b03bcf7",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i58e5f848fa10cfa5",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i6e542bd78138d323",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i959ab007cb407523",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i29425a777a3cc1e4",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i31bc0ced5e0f7d75",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ibae834e47ed65c4a",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "iac3198b5198a2b5d",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "iba4aedccea2ec301",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "idccdff8291bb332e",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "id6c2af1770282c3b",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i81e685eb8d1f04a1",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i105930b875f846e1",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9452e34b2ca53412",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i29b40a6cce915a08",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ia55f61fb5a104fd7",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i7cc56894f843075f",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i09ed1595b0db75f1",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "idaf29f5952987067",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i3d939ab4f9501194",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i774c1ff6acb0047a",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "iedfa11b27721203c",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i85ec567f63fd044f",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "iafabb15b10d8ccb1",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i1927398c5951751d",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i0cce3a253e195680",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ic11ee90bca694605",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "id0d52627fe7da536",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i66fa6a0f58ceb73a",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic4730fe327458fd2",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i5e2d76b87c260db0",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i103e7996084ce3de",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ifc02fb73de36e62a",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i54e95a5bc76b0fd7",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "icbbc71a22792d5fc",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i08fec30fab1c2e90",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i5921fad8a323329d",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i313e28fb292dcd6b",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i242dc155fb622a87",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "if9c18d409d199b59",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i88dc195de4d6c40a",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1ac3a27ba7489e15",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ibaa3844744b1f3c7",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i8c91b8909e7b2642",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "icd6803c52297f7c2",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i112decafecf169df",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "id17d5d6ec8f24c5e",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i507c79d7d90e674d",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "icc7713d3dbcdc3ca",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7a3a9854a0e01d90",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "iddcc738a91e1879f",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i43a2010b6c1ed03d",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i7ce4b499a937c541",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6ce9d01d49d7943f",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i354b17359ba9f0f6",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i91983e392b481fdb",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i1874895c79e8d757",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1fc213d2ca137218",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ifd9b1706329a3e55",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i8b1ce710b778f59f",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i9f9ddb7fd037954f",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "icf3a7bf5a0030557",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i04301ff0ccf369c4",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i10f839ca01243f3e",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ib9558c932df72214",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic0721099d06c4f03",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i74ce8632632b4c3a",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i637a014ade7e951e",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i3d85361ad7c9f3fc",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6ccd1ad70cae1f90",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i5fb8f98458d2ff90",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ie59cf40bd855b6e2",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i62eb52116268d056",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7ebc2f79ce8eb204",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i391c55204cd6fe61",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "id8dcbce0f0e5313a",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i4f02fad19d8bcf13",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i84f81bd5a8057a07",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "if86bcfcbf70c7495",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ibbc4aee08c6b1909",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i55706d5d6e6540fa",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i8e14115f2429c125",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i787c7c59ae2cf4b7",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "id443fdb1fc665093",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i5599ff54fdffe635",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "iade9f6bb51536636",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i94133b4c4991e750",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "if78aea878f507a8a",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i97cbe77e55e6e887",
+          "mutation_count": 2,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        }
+      ]
+    },
+    "TYPED_RELATIONAL": {
+      "dev_configurations": [
+        {
+          "complexity_rank": 0,
+          "config_id": "logistic-C0.1",
+          "dev": {
+            "accuracy": 1.0,
+            "correct_count": 96,
+            "double_corruption_accuracy": null,
+            "macro_f1": 1.0,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 1.0,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 0.1
+          }
+        },
+        {
+          "complexity_rank": 1,
+          "config_id": "logistic-C1",
+          "dev": {
+            "accuracy": 1.0,
+            "correct_count": 96,
+            "double_corruption_accuracy": null,
+            "macro_f1": 1.0,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 1.0,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 1.0
+          }
+        },
+        {
+          "complexity_rank": 2,
+          "config_id": "logistic-C10",
+          "dev": {
+            "accuracy": 1.0,
+            "correct_count": 96,
+            "double_corruption_accuracy": null,
+            "macro_f1": 1.0,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 1.0,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 10.0
+          }
+        },
+        {
+          "complexity_rank": 10,
+          "config_id": "tree-depth3",
+          "dev": {
+            "accuracy": 0.75,
+            "correct_count": 72,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.7090909090909091,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.25,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "tree",
+          "params": {
+            "max_depth": 3
+          }
+        },
+        {
+          "complexity_rank": 11,
+          "config_id": "tree-depth6",
+          "dev": {
+            "accuracy": 0.875,
+            "correct_count": 84,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.8704453441295547,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.625,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "tree",
+          "params": {
+            "max_depth": 6
+          }
+        },
+        {
+          "complexity_rank": 20,
+          "config_id": "rf-depth6",
+          "dev": {
+            "accuracy": 1.0,
+            "correct_count": 96,
+            "double_corruption_accuracy": null,
+            "macro_f1": 1.0,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 1.0,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "rf",
+          "params": {
+            "max_depth": 6,
+            "n_estimators": 200
+          }
+        },
+        {
+          "complexity_rank": 21,
+          "config_id": "rf-none",
+          "dev": {
+            "accuracy": 1.0,
+            "correct_count": 96,
+            "double_corruption_accuracy": null,
+            "macro_f1": 1.0,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 1.0,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "rf",
+          "params": {
+            "max_depth": null,
+            "n_estimators": 300
+          }
+        }
+      ],
+      "selected": {
+        "complexity_rank": 0,
+        "config_id": "logistic-C0.1",
+        "family": "logistic",
+        "params": {
+          "C": 0.1
+        }
+      },
+      "test": {
+        "accuracy": 1.0,
+        "correct_count": 128,
+        "double_corruption_accuracy": 1.0,
+        "macro_f1": 1.0,
+        "per_label_accuracy": {
+          "ALIGNED": 1.0,
+          "OBSTRUCTION": 1.0,
+          "UNRESOLVED": 1.0
+        },
+        "sample_count": 128,
+        "unresolved_accuracy": 1.0
+      },
+      "test_predictions": [
+        {
+          "correct": true,
+          "instance_id": "ibaf10a231e2fa487",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9791c12ed1d8be17",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ie47dac10992f07ee",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4a8371b1d87c891b",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i227ea48efa193fe8",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i50f2740f36cdd4bf",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i3b4e1387bfca0340",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9e7fd72be37c957b",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6cb2085ba82e22e7",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i2f03d1830ea44df6",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4b44fe3693cc99de",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i45c96e0d6835acaa",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5bd00034b5cf9772",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i63f3b63b6e5f0206",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i2da7f3780787c049",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i10496b8fbe7c7352",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6fa521195164b5f8",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7f6f92cc2b5581eb",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i80bc2153ade73026",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5a9f5193c85c7bee",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9558a3df74c146b9",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "idd38eb7d2d561f33",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7a3e7dad76c255a8",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "id094734df8fdce88",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i8e733e328280118a",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i418e1429446fa366",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ib2f509e622b76213",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifa97473da6081196",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic5902b72ff4d27e0",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ibb3122efd4b5015a",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i74fe6bc33d3127dc",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4f1c8f785c7ee445",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic102cb48610e3047",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i41a2fd35b0193172",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i90c27527ecaf7b55",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifbb62d4dd9ff728e",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i520d3a6bc060ac63",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ief6e858b8e883d25",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i03e3b3fc2eb9dc23",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i82e869d50b03bcf7",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i58e5f848fa10cfa5",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6e542bd78138d323",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i959ab007cb407523",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i29425a777a3cc1e4",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i31bc0ced5e0f7d75",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ibae834e47ed65c4a",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "iac3198b5198a2b5d",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "iba4aedccea2ec301",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "idccdff8291bb332e",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "id6c2af1770282c3b",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i81e685eb8d1f04a1",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i105930b875f846e1",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9452e34b2ca53412",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i29b40a6cce915a08",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ia55f61fb5a104fd7",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7cc56894f843075f",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i09ed1595b0db75f1",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "idaf29f5952987067",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i3d939ab4f9501194",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i774c1ff6acb0047a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "iedfa11b27721203c",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i85ec567f63fd044f",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "iafabb15b10d8ccb1",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1927398c5951751d",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i0cce3a253e195680",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic11ee90bca694605",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "id0d52627fe7da536",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i66fa6a0f58ceb73a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic4730fe327458fd2",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5e2d76b87c260db0",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i103e7996084ce3de",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifc02fb73de36e62a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i54e95a5bc76b0fd7",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "icbbc71a22792d5fc",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i08fec30fab1c2e90",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5921fad8a323329d",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i313e28fb292dcd6b",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i242dc155fb622a87",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "if9c18d409d199b59",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i88dc195de4d6c40a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1ac3a27ba7489e15",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ibaa3844744b1f3c7",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i8c91b8909e7b2642",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "icd6803c52297f7c2",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i112decafecf169df",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "id17d5d6ec8f24c5e",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i507c79d7d90e674d",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "icc7713d3dbcdc3ca",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7a3a9854a0e01d90",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "iddcc738a91e1879f",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i43a2010b6c1ed03d",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7ce4b499a937c541",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6ce9d01d49d7943f",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i354b17359ba9f0f6",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i91983e392b481fdb",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1874895c79e8d757",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1fc213d2ca137218",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifd9b1706329a3e55",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i8b1ce710b778f59f",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9f9ddb7fd037954f",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "icf3a7bf5a0030557",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i04301ff0ccf369c4",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i10f839ca01243f3e",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ib9558c932df72214",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic0721099d06c4f03",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i74ce8632632b4c3a",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i637a014ade7e951e",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i3d85361ad7c9f3fc",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6ccd1ad70cae1f90",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5fb8f98458d2ff90",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ie59cf40bd855b6e2",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i62eb52116268d056",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7ebc2f79ce8eb204",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i391c55204cd6fe61",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "id8dcbce0f0e5313a",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4f02fad19d8bcf13",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i84f81bd5a8057a07",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "if86bcfcbf70c7495",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ibbc4aee08c6b1909",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i55706d5d6e6540fa",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i8e14115f2429c125",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i787c7c59ae2cf4b7",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "id443fdb1fc665093",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5599ff54fdffe635",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "iade9f6bb51536636",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i94133b4c4991e750",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "if78aea878f507a8a",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i97cbe77e55e6e887",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        }
+      ]
+    },
+    "TYPED_SERIALIZED_BAG": {
+      "dev_configurations": [
+        {
+          "complexity_rank": 0,
+          "config_id": "logistic-C0.1",
+          "dev": {
+            "accuracy": 0.8958333333333334,
+            "correct_count": 86,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.8932265598932266,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.6875,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 0.1
+          }
+        },
+        {
+          "complexity_rank": 1,
+          "config_id": "logistic-C1",
+          "dev": {
+            "accuracy": 0.9583333333333334,
+            "correct_count": 92,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.9581699346405229,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.875,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 1.0
+          }
+        },
+        {
+          "complexity_rank": 2,
+          "config_id": "logistic-C10",
+          "dev": {
+            "accuracy": 0.9583333333333334,
+            "correct_count": 92,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.9581699346405229,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.875,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 10.0
+          }
+        },
+        {
+          "complexity_rank": 10,
+          "config_id": "tree-depth3",
+          "dev": {
+            "accuracy": 0.7708333333333334,
+            "correct_count": 74,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.7650984317650984,
+            "per_label_accuracy": {
+              "ALIGNED": 0.5,
+              "OBSTRUCTION": 0.8125,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "tree",
+          "params": {
+            "max_depth": 3
+          }
+        },
+        {
+          "complexity_rank": 11,
+          "config_id": "tree-depth6",
+          "dev": {
+            "accuracy": 0.9375,
+            "correct_count": 90,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.9369458128078817,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.8125,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "tree",
+          "params": {
+            "max_depth": 6
+          }
+        },
+        {
+          "complexity_rank": 20,
+          "config_id": "rf-depth6",
+          "dev": {
+            "accuracy": 0.9166666666666666,
+            "correct_count": 88,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.9153439153439153,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.75,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "rf",
+          "params": {
+            "max_depth": 6,
+            "n_estimators": 200
+          }
+        },
+        {
+          "complexity_rank": 21,
+          "config_id": "rf-none",
+          "dev": {
+            "accuracy": 0.9166666666666666,
+            "correct_count": 88,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.9153439153439153,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.75,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "rf",
+          "params": {
+            "max_depth": null,
+            "n_estimators": 300
+          }
+        }
+      ],
+      "selected": {
+        "complexity_rank": 1,
+        "config_id": "logistic-C1",
+        "family": "logistic",
+        "params": {
+          "C": 1.0
+        }
+      },
+      "test": {
+        "accuracy": 0.5,
+        "correct_count": 64,
+        "double_corruption_accuracy": 1.0,
+        "macro_f1": 0.2222222222222222,
+        "per_label_accuracy": {
+          "ALIGNED": 0.0,
+          "OBSTRUCTION": 1.0,
+          "UNRESOLVED": 0.0
+        },
+        "sample_count": 128,
+        "unresolved_accuracy": 0.0
+      },
+      "test_predictions": [
+        {
+          "correct": false,
+          "instance_id": "ibaf10a231e2fa487",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9791c12ed1d8be17",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ie47dac10992f07ee",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4a8371b1d87c891b",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i227ea48efa193fe8",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i50f2740f36cdd4bf",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i3b4e1387bfca0340",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9e7fd72be37c957b",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i6cb2085ba82e22e7",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i2f03d1830ea44df6",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i4b44fe3693cc99de",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i45c96e0d6835acaa",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i5bd00034b5cf9772",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i63f3b63b6e5f0206",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i2da7f3780787c049",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i10496b8fbe7c7352",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i6fa521195164b5f8",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7f6f92cc2b5581eb",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i80bc2153ade73026",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5a9f5193c85c7bee",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i9558a3df74c146b9",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "idd38eb7d2d561f33",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i7a3e7dad76c255a8",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "id094734df8fdce88",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i8e733e328280118a",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i418e1429446fa366",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ib2f509e622b76213",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifa97473da6081196",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ic5902b72ff4d27e0",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ibb3122efd4b5015a",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i74fe6bc33d3127dc",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4f1c8f785c7ee445",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ic102cb48610e3047",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i41a2fd35b0193172",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i90c27527ecaf7b55",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifbb62d4dd9ff728e",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i520d3a6bc060ac63",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ief6e858b8e883d25",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i03e3b3fc2eb9dc23",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i82e869d50b03bcf7",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i58e5f848fa10cfa5",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6e542bd78138d323",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i959ab007cb407523",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i29425a777a3cc1e4",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i31bc0ced5e0f7d75",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ibae834e47ed65c4a",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "iac3198b5198a2b5d",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "iba4aedccea2ec301",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "idccdff8291bb332e",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "id6c2af1770282c3b",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i81e685eb8d1f04a1",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i105930b875f846e1",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i9452e34b2ca53412",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i29b40a6cce915a08",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ia55f61fb5a104fd7",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7cc56894f843075f",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i09ed1595b0db75f1",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "idaf29f5952987067",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i3d939ab4f9501194",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i774c1ff6acb0047a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "iedfa11b27721203c",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i85ec567f63fd044f",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "iafabb15b10d8ccb1",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1927398c5951751d",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i0cce3a253e195680",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic11ee90bca694605",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "id0d52627fe7da536",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i66fa6a0f58ceb73a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ic4730fe327458fd2",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5e2d76b87c260db0",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i103e7996084ce3de",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifc02fb73de36e62a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i54e95a5bc76b0fd7",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "icbbc71a22792d5fc",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i08fec30fab1c2e90",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5921fad8a323329d",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i313e28fb292dcd6b",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i242dc155fb622a87",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "if9c18d409d199b59",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i88dc195de4d6c40a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i1ac3a27ba7489e15",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ibaa3844744b1f3c7",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i8c91b8909e7b2642",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "icd6803c52297f7c2",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i112decafecf169df",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "id17d5d6ec8f24c5e",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i507c79d7d90e674d",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "icc7713d3dbcdc3ca",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i7a3a9854a0e01d90",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "iddcc738a91e1879f",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i43a2010b6c1ed03d",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7ce4b499a937c541",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i6ce9d01d49d7943f",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i354b17359ba9f0f6",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i91983e392b481fdb",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1874895c79e8d757",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i1fc213d2ca137218",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifd9b1706329a3e55",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i8b1ce710b778f59f",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9f9ddb7fd037954f",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "icf3a7bf5a0030557",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i04301ff0ccf369c4",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i10f839ca01243f3e",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ib9558c932df72214",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ic0721099d06c4f03",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i74ce8632632b4c3a",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i637a014ade7e951e",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i3d85361ad7c9f3fc",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i6ccd1ad70cae1f90",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5fb8f98458d2ff90",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ie59cf40bd855b6e2",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i62eb52116268d056",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i7ebc2f79ce8eb204",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i391c55204cd6fe61",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "id8dcbce0f0e5313a",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4f02fad19d8bcf13",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i84f81bd5a8057a07",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "if86bcfcbf70c7495",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "ibbc4aee08c6b1909",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i55706d5d6e6540fa",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "i8e14115f2429c125",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i787c7c59ae2cf4b7",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "id443fdb1fc665093",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5599ff54fdffe635",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "iade9f6bb51536636",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i94133b4c4991e750",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": false,
+          "instance_id": "if78aea878f507a8a",
+          "mutation_count": 0,
+          "prediction": "OBSTRUCTION",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i97cbe77e55e6e887",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        }
+      ]
+    },
+    "UNTYPED_PAIR": {
+      "dev_configurations": [
+        {
+          "complexity_rank": 0,
+          "config_id": "logistic-C0.1",
+          "dev": {
+            "accuracy": 0.875,
+            "correct_count": 84,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.8704453441295547,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.625,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 0.1
+          }
+        },
+        {
+          "complexity_rank": 1,
+          "config_id": "logistic-C1",
+          "dev": {
+            "accuracy": 0.875,
+            "correct_count": 84,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.8704453441295547,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.625,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 1.0
+          }
+        },
+        {
+          "complexity_rank": 2,
+          "config_id": "logistic-C10",
+          "dev": {
+            "accuracy": 0.875,
+            "correct_count": 84,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.8704453441295547,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.625,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "logistic",
+          "params": {
+            "C": 10.0
+          }
+        },
+        {
+          "complexity_rank": 10,
+          "config_id": "tree-depth3",
+          "dev": {
+            "accuracy": 0.75,
+            "correct_count": 72,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.7090909090909091,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.25,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "tree",
+          "params": {
+            "max_depth": 3
+          }
+        },
+        {
+          "complexity_rank": 11,
+          "config_id": "tree-depth6",
+          "dev": {
+            "accuracy": 0.875,
+            "correct_count": 84,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.8704453441295547,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.625,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "tree",
+          "params": {
+            "max_depth": 6
+          }
+        },
+        {
+          "complexity_rank": 20,
+          "config_id": "rf-depth6",
+          "dev": {
+            "accuracy": 0.875,
+            "correct_count": 84,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.8704453441295547,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.625,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "rf",
+          "params": {
+            "max_depth": 6,
+            "n_estimators": 200
+          }
+        },
+        {
+          "complexity_rank": 21,
+          "config_id": "rf-none",
+          "dev": {
+            "accuracy": 0.875,
+            "correct_count": 84,
+            "double_corruption_accuracy": null,
+            "macro_f1": 0.8704453441295547,
+            "per_label_accuracy": {
+              "ALIGNED": 1.0,
+              "OBSTRUCTION": 0.625,
+              "UNRESOLVED": 1.0
+            },
+            "sample_count": 96,
+            "unresolved_accuracy": 1.0
+          },
+          "family": "rf",
+          "params": {
+            "max_depth": null,
+            "n_estimators": 300
+          }
+        }
+      ],
+      "selected": {
+        "complexity_rank": 0,
+        "config_id": "logistic-C0.1",
+        "family": "logistic",
+        "params": {
+          "C": 0.1
+        }
+      },
+      "test": {
+        "accuracy": 0.90625,
+        "correct_count": 116,
+        "double_corruption_accuracy": 1.0,
+        "macro_f1": 0.9128856624319419,
+        "per_label_accuracy": {
+          "ALIGNED": 1.0,
+          "OBSTRUCTION": 0.8125,
+          "UNRESOLVED": 1.0
+        },
+        "sample_count": 128,
+        "unresolved_accuracy": 1.0
+      },
+      "test_predictions": [
+        {
+          "correct": true,
+          "instance_id": "ibaf10a231e2fa487",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9791c12ed1d8be17",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ie47dac10992f07ee",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4a8371b1d87c891b",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i227ea48efa193fe8",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i50f2740f36cdd4bf",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i3b4e1387bfca0340",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9e7fd72be37c957b",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6cb2085ba82e22e7",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i2f03d1830ea44df6",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4b44fe3693cc99de",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i45c96e0d6835acaa",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5bd00034b5cf9772",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i63f3b63b6e5f0206",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i2da7f3780787c049",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i10496b8fbe7c7352",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6fa521195164b5f8",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i7f6f92cc2b5581eb",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i80bc2153ade73026",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5a9f5193c85c7bee",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9558a3df74c146b9",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "idd38eb7d2d561f33",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7a3e7dad76c255a8",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "id094734df8fdce88",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i8e733e328280118a",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i418e1429446fa366",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ib2f509e622b76213",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifa97473da6081196",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic5902b72ff4d27e0",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ibb3122efd4b5015a",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i74fe6bc33d3127dc",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4f1c8f785c7ee445",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic102cb48610e3047",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i41a2fd35b0193172",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i90c27527ecaf7b55",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifbb62d4dd9ff728e",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i520d3a6bc060ac63",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ief6e858b8e883d25",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i03e3b3fc2eb9dc23",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i82e869d50b03bcf7",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i58e5f848fa10cfa5",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6e542bd78138d323",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i959ab007cb407523",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i29425a777a3cc1e4",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i31bc0ced5e0f7d75",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ibae834e47ed65c4a",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "iac3198b5198a2b5d",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "iba4aedccea2ec301",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "idccdff8291bb332e",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "id6c2af1770282c3b",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i81e685eb8d1f04a1",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i105930b875f846e1",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9452e34b2ca53412",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i29b40a6cce915a08",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ia55f61fb5a104fd7",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7cc56894f843075f",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i09ed1595b0db75f1",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "idaf29f5952987067",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i3d939ab4f9501194",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i774c1ff6acb0047a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "iedfa11b27721203c",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i85ec567f63fd044f",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "iafabb15b10d8ccb1",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1927398c5951751d",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i0cce3a253e195680",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic11ee90bca694605",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "id0d52627fe7da536",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i66fa6a0f58ceb73a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic4730fe327458fd2",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5e2d76b87c260db0",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i103e7996084ce3de",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifc02fb73de36e62a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i54e95a5bc76b0fd7",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "icbbc71a22792d5fc",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i08fec30fab1c2e90",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5921fad8a323329d",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i313e28fb292dcd6b",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i242dc155fb622a87",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "if9c18d409d199b59",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i88dc195de4d6c40a",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1ac3a27ba7489e15",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "ibaa3844744b1f3c7",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i8c91b8909e7b2642",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "icd6803c52297f7c2",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i112decafecf169df",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "id17d5d6ec8f24c5e",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i507c79d7d90e674d",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "icc7713d3dbcdc3ca",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7a3a9854a0e01d90",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "iddcc738a91e1879f",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i43a2010b6c1ed03d",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7ce4b499a937c541",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6ce9d01d49d7943f",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i354b17359ba9f0f6",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i91983e392b481fdb",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1874895c79e8d757",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i1fc213d2ca137218",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ifd9b1706329a3e55",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i8b1ce710b778f59f",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i9f9ddb7fd037954f",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "icf3a7bf5a0030557",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i04301ff0ccf369c4",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i10f839ca01243f3e",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "ib9558c932df72214",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ic0721099d06c4f03",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i74ce8632632b4c3a",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i637a014ade7e951e",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i3d85361ad7c9f3fc",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i6ccd1ad70cae1f90",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i5fb8f98458d2ff90",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ie59cf40bd855b6e2",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i62eb52116268d056",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i7ebc2f79ce8eb204",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "i391c55204cd6fe61",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "id8dcbce0f0e5313a",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i4f02fad19d8bcf13",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i84f81bd5a8057a07",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": false,
+          "instance_id": "if86bcfcbf70c7495",
+          "mutation_count": 1,
+          "prediction": "ALIGNED",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "ibbc4aee08c6b1909",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i55706d5d6e6540fa",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "i8e14115f2429c125",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i787c7c59ae2cf4b7",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "id443fdb1fc665093",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i5599ff54fdffe635",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "iade9f6bb51536636",
+          "mutation_count": 0,
+          "prediction": "ALIGNED",
+          "target": "ALIGNED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i94133b4c4991e750",
+          "mutation_count": 1,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        },
+        {
+          "correct": true,
+          "instance_id": "if78aea878f507a8a",
+          "mutation_count": 0,
+          "prediction": "UNRESOLVED",
+          "target": "UNRESOLVED"
+        },
+        {
+          "correct": true,
+          "instance_id": "i97cbe77e55e6e887",
+          "mutation_count": 2,
+          "prediction": "OBSTRUCTION",
+          "target": "OBSTRUCTION"
+        }
+      ]
+    }
+  },
+  "schema": "P9.D1MethodTransferResult.v1",
+  "scientific_authority": "NONE_UNTIL_INDEPENDENT_VERIFICATION",
+  "subject_sha": "e69606d5ee7e5e035ab6374202f9e62c154579ae",
+  "terminal": "D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED",
+  "test_domain": "transactional_workflows",
+  "train_domains": [
+    "numerical_methods",
+    "graph_algorithms"
+  ],
+  "typed_minus_same_information_serialized": 0.5,
+  "typed_minus_transcript": 0.75
+}

@@ -9,12 +9,11 @@ on:
 
 permissions:
   contents: read
-  copilot-requests: write
 
 jobs:
   live-phase2:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       ORION_PROTECTED_VERIFIER_URL: ${{ secrets.ORION_PROTECTED_VERIFIER_URL }}
@@ -22,9 +21,22 @@ jobs:
       ORION_PROTECTED_VERIFIER_ARTIFACT_HASH: ${{ secrets.ORION_PROTECTED_VERIFIER_ARTIFACT_HASH }}
       ORION_PHASE2_EVALUATION_EPOCH_ID: ${{ secrets.ORION_PHASE2_EVALUATION_EPOCH_ID }}
       CROSSREF_MAILTO: ${{ secrets.CROSSREF_MAILTO }}
-      COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ORION_PHASE2_REASONER_MODEL: ${{ vars.ORION_PHASE2_REASONER_MODEL || 'gpt-5.6' }}
       ORION_PHASE2_RESOURCE_BUDGET_UNITS: ${{ vars.ORION_PHASE2_RESOURCE_BUDGET_UNITS || '32' }}
+      ORION_LLAMA_RUNTIME_RELEASE_TAG: b10218
+      ORION_LLAMA_RUNTIME_COMMIT: de699957b92f490efebad149665b0dccf127eaff
+      ORION_LLAMA_RUNTIME_ASSET_SHA256: 78ec7a1964710918030e85c132a0995b10b07e4f43001bdf54fe0fd48d1eb85b
+      ORION_LLAMA_RUNTIME_URL: https://github.com/ggml-org/llama.cpp/releases/download/b10218/llama-b10218-bin-ubuntu-x64.tar.gz
+      ORION_OPEN_WEIGHT_REASONER_REPO: bartowski/Qwen2.5-1.5B-Instruct-GGUF
+      ORION_OPEN_WEIGHT_REASONER_REVISION: 02938d9fe88f34a3a9960128b5092f20940e7553
+      ORION_OPEN_WEIGHT_REASONER_FILENAME: Qwen2.5-1.5B-Instruct-Q4_K_M.gguf
+      ORION_OPEN_WEIGHT_REASONER_SHA256: 50961d9b7d3b89e46be230528fc66d38bbdda8ac3748323dd34f129a714124fc
+      ORION_OPEN_WEIGHT_REASONER_FAMILY: qwen2.5
+      ORION_OPEN_WEIGHT_EVALUATOR_REPO: bartowski/SmolLM2-1.7B-Instruct-GGUF
+      ORION_OPEN_WEIGHT_EVALUATOR_REVISION: 0f0ce936387870522d587f83d01d404e9d726b33
+      ORION_OPEN_WEIGHT_EVALUATOR_FILENAME: SmolLM2-1.7B-Instruct-Q4_K_M.gguf
+      ORION_OPEN_WEIGHT_EVALUATOR_SHA256: 77665ea4815999596525c636fbeb56ba8b080b46ae85efef4f0d986a139834d7
+      ORION_OPEN_WEIGHT_EVALUATOR_FAMILY: smollm2
     steps:
       - uses: actions/checkout@v4
         with:
@@ -55,75 +67,101 @@ jobs:
           done
           if (( present == ${#names[@]} )); then
             echo 'provider_lane=private' >> "$GITHUB_OUTPUT"
+            echo 'ORION_PHASE2_PROVIDER_LANE=private' >> "$GITHUB_ENV"
             echo 'Provider lane: fully configured private OpenAI + protected HTTPS verifier.'
           elif (( present == 0 )); then
-            if [[ -z "${COPILOT_GITHUB_TOKEN:-}" ]]; then
-              echo 'Built-in GitHub token is unavailable for Copilot CLI fallback.'
-              exit 3
-            fi
-            echo 'provider_lane=copilot' >> "$GITHUB_OUTPUT"
-            echo 'Provider lane: GitHub Copilot CLI prompt-only reasoner + protected evaluator.'
+            echo 'provider_lane=open-weight' >> "$GITHUB_OUTPUT"
+            echo 'ORION_PHASE2_PROVIDER_LANE=open-weight' >> "$GITHUB_ENV"
+            echo 'Provider lane: pinned open-weight llama.cpp reasoner + distinct protected evaluator model.'
           else
             printf 'Partial private provider configuration is forbidden. Missing names: %s\n' "${missing[*]}"
             exit 3
           fi
           echo 'No credential values are printed.'
 
-      - uses: actions/setup-node@v4
-        if: steps.provider-lane.outputs.provider_lane == 'copilot'
-        with:
-          node-version: '22'
-
-      - name: Install and freeze Copilot CLI runtime
-        if: steps.provider-lane.outputs.provider_lane == 'copilot'
+      - name: Download and freeze open-weight runtime/models
+        if: steps.provider-lane.outputs.provider_lane == 'open-weight'
         shell: bash
         run: |
           set -euo pipefail
-          npm install -g @github/copilot
-          version=$(copilot --version | head -n 1 | tr -d '\r\n')
-          if [[ -z "$version" ]]; then
-            echo 'Copilot CLI did not report a version.'
+          out="$RUNNER_TEMP/p5-phase2-live"
+          runtime="$RUNNER_TEMP/orion-llama-runtime"
+          models="$RUNNER_TEMP/orion-open-weight-models"
+          mkdir -p "$out" "$runtime" "$models"
+
+          archive="$RUNNER_TEMP/llama-${ORION_LLAMA_RUNTIME_RELEASE_TAG}-ubuntu-x64.tar.gz"
+          curl -L --fail --retry 3 --retry-all-errors --retry-delay 2 --silent --show-error \
+            "$ORION_LLAMA_RUNTIME_URL" -o "$archive"
+          echo "$ORION_LLAMA_RUNTIME_ASSET_SHA256  $archive" | sha256sum -c -
+          tar -xzf "$archive" -C "$runtime"
+          mapfile -t cli_candidates < <(find "$runtime" -type f -name llama-cli -perm -u+x | sort)
+          if (( ${#cli_candidates[@]} != 1 )); then
+            printf 'Expected exactly one executable llama-cli, found %s\n' "${#cli_candidates[@]}"
             exit 3
           fi
-          printf 'ORION_COPILOT_CLI_VERSION=%s\n' "$version" >> "$GITHUB_ENV"
-          echo "Frozen Copilot CLI runtime: $version"
+          llama_cli="${cli_candidates[0]}"
+          llama_cli_sha=$(sha256sum "$llama_cli" | awk '{print $1}')
 
-      - name: Probe and freeze explicit Copilot model pair
-        if: steps.provider-lane.outputs.provider_lane == 'copilot'
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/p5-phase2-live"
+          reasoner="$models/$ORION_OPEN_WEIGHT_REASONER_FILENAME"
+          reasoner_url="https://huggingface.co/$ORION_OPEN_WEIGHT_REASONER_REPO/resolve/$ORION_OPEN_WEIGHT_REASONER_REVISION/$ORION_OPEN_WEIGHT_REASONER_FILENAME?download=true"
+          curl -L --fail --retry 3 --retry-all-errors --retry-delay 2 --silent --show-error \
+            "$reasoner_url" -o "$reasoner"
+          echo "$ORION_OPEN_WEIGHT_REASONER_SHA256  $reasoner" | sha256sum -c -
+
+          evaluator="$models/$ORION_OPEN_WEIGHT_EVALUATOR_FILENAME"
+          evaluator_url="https://huggingface.co/$ORION_OPEN_WEIGHT_EVALUATOR_REPO/resolve/$ORION_OPEN_WEIGHT_EVALUATOR_REVISION/$ORION_OPEN_WEIGHT_EVALUATOR_FILENAME?download=true"
+          curl -L --fail --retry 3 --retry-all-errors --retry-delay 2 --silent --show-error \
+            "$evaluator_url" -o "$evaluator"
+          echo "$ORION_OPEN_WEIGHT_EVALUATOR_SHA256  $evaluator" | sha256sum -c -
+
+          {
+            echo "ORION_LLAMA_CLI_PATH=$llama_cli"
+            echo "ORION_LLAMA_CLI_SHA256=$llama_cli_sha"
+            echo "ORION_OPEN_WEIGHT_REASONER_PATH=$reasoner"
+            echo "ORION_OPEN_WEIGHT_EVALUATOR_PATH=$evaluator"
+          } >> "$GITHUB_ENV"
+
           python - <<'PY'
-          from __future__ import annotations
-
-          import hashlib
-          import json
-          import os
+          import hashlib, json, os
           from pathlib import Path
 
-          from orion.providers.live_phase2 import probe_copilot_model_pair
-
           out = Path(os.environ['RUNNER_TEMP']) / 'p5-phase2-live'
-          report = probe_copilot_model_pair(
-              token=os.environ['COPILOT_GITHUB_TOKEN'],
-              cli_version=os.environ['ORION_COPILOT_CLI_VERSION'],
-          )
-          encoded = json.dumps(report, indent=2, sort_keys=True) + '\n'
-          (out / 'COPILOT_MODEL_PROBE_SAFE_SUMMARY.json').write_text(encoded, encoding='utf-8')
+          summary = {
+              'schema': 'P5OpenWeightRuntimeFreeze.v1',
+              'study_data_used': False,
+              'runtime': {
+                  'release_tag': os.environ['ORION_LLAMA_RUNTIME_RELEASE_TAG'],
+                  'commit': os.environ['ORION_LLAMA_RUNTIME_COMMIT'],
+                  'asset_sha256': os.environ['ORION_LLAMA_RUNTIME_ASSET_SHA256'],
+                  'binary_sha256': os.environ['ORION_LLAMA_CLI_SHA256'],
+              },
+              'reasoner': {
+                  'repo_id': os.environ['ORION_OPEN_WEIGHT_REASONER_REPO'],
+                  'revision': os.environ['ORION_OPEN_WEIGHT_REASONER_REVISION'],
+                  'filename': os.environ['ORION_OPEN_WEIGHT_REASONER_FILENAME'],
+                  'sha256': os.environ['ORION_OPEN_WEIGHT_REASONER_SHA256'],
+                  'family': os.environ['ORION_OPEN_WEIGHT_REASONER_FAMILY'],
+                  'size_bytes': Path(os.environ['ORION_OPEN_WEIGHT_REASONER_PATH']).stat().st_size,
+              },
+              'evaluator': {
+                  'repo_id': os.environ['ORION_OPEN_WEIGHT_EVALUATOR_REPO'],
+                  'revision': os.environ['ORION_OPEN_WEIGHT_EVALUATOR_REVISION'],
+                  'filename': os.environ['ORION_OPEN_WEIGHT_EVALUATOR_FILENAME'],
+                  'sha256': os.environ['ORION_OPEN_WEIGHT_EVALUATOR_SHA256'],
+                  'family': os.environ['ORION_OPEN_WEIGHT_EVALUATOR_FAMILY'],
+                  'size_bytes': Path(os.environ['ORION_OPEN_WEIGHT_EVALUATOR_PATH']).stat().st_size,
+              },
+          }
+          encoded = json.dumps(summary, indent=2, sort_keys=True) + '\n'
+          (out / 'OPEN_WEIGHT_RUNTIME_SAFE_SUMMARY.json').write_text(encoded, encoding='utf-8')
           digest = hashlib.sha256(
-              json.dumps(report, sort_keys=True, separators=(',', ':')).encode('utf-8')
+              json.dumps(summary, sort_keys=True, separators=(',', ':')).encode('utf-8')
           ).hexdigest()
-          print('P5_COPILOT_MODEL_PROBE_SAFE_SUMMARY_BEGIN')
+          with Path(os.environ['GITHUB_ENV']).open('a', encoding='utf-8') as handle:
+              handle.write(f'ORION_OPEN_WEIGHT_FREEZE_HASH={digest}\n')
+          print('P5_OPEN_WEIGHT_FREEZE_SAFE_SUMMARY_BEGIN')
           print(encoded.rstrip())
-          print('P5_COPILOT_MODEL_PROBE_SAFE_SUMMARY_END')
-          if report['status'] != 'READY':
-              raise SystemExit(3)
-          env_path = Path(os.environ['GITHUB_ENV'])
-          with env_path.open('a', encoding='utf-8') as handle:
-              handle.write(f"ORION_PHASE2_COPILOT_REASONER_MODEL={report['reasoner_model']}\n")
-              handle.write(f"ORION_PHASE2_COPILOT_EVALUATOR_MODEL={report['evaluator_model']}\n")
-              handle.write(f"ORION_COPILOT_MODEL_PROBE_HASH={digest}\n")
+          print('P5_OPEN_WEIGHT_FREEZE_SAFE_SUMMARY_END')
           PY
 
       - name: Freeze bindings and execute matched wide/deep trial
@@ -139,9 +177,10 @@ jobs:
           from pathlib import Path
 
           from orion.providers.live_phase2 import (
-              build_phase2_auto_provider_stack_from_env,
+              build_phase2_live_provider_stack_from_env,
               write_live_phase2_provider_manifest,
           )
+          from orion.providers.open_weight_phase2 import build_phase2_open_weight_provider_stack
           from orion.self_orion.baseline import baseline_bundle_to_dict, write_baseline_bundle
           from orion.self_orion.live_campaign_factory import build_live_phase2_trial_harness
           from orion.self_orion.phase2_io import load_phase2_binding, write_phase2_binding
@@ -168,20 +207,47 @@ jobs:
           subject = attest_repository_subject('.', repository_identity='github.com/SzeChunYiu/ORION')
           write_repository_subject_attestation(subject, out / 'SUBJECT_ATTESTATION.json')
 
-          copilot_epoch = (
-              f"github-actions-{os.environ.get('GITHUB_RUN_ID', 'unknown')}"
-              f"-attempt-{os.environ.get('GITHUB_RUN_ATTEMPT', '1')}"
-          )
-          stack, provider_mode = build_phase2_auto_provider_stack_from_env(
-              private_reasoner_model=os.environ['ORION_PHASE2_REASONER_MODEL'].strip(),
-              copilot_reasoner_model=os.environ.get('ORION_PHASE2_COPILOT_REASONER_MODEL', '').strip(),
-              copilot_evaluator_model=os.environ.get('ORION_PHASE2_COPILOT_EVALUATOR_MODEL', '').strip(),
-              copilot_evaluation_epoch_id=copilot_epoch,
-          )
+          provider_lane = os.environ['ORION_PHASE2_PROVIDER_LANE']
+          if provider_lane == 'private':
+              stack = build_phase2_live_provider_stack_from_env(
+                  reasoner_model=os.environ['ORION_PHASE2_REASONER_MODEL'].strip()
+              )
+              provider_mode = 'private-openai-protected-http'
+              external_freeze_hash = ''
+          elif provider_lane == 'open-weight':
+              epoch = (
+                  f"github-actions-{os.environ.get('GITHUB_RUN_ID', 'unknown')}"
+                  f"-attempt-{os.environ.get('GITHUB_RUN_ATTEMPT', '1')}-open-weight"
+              )
+              stack = build_phase2_open_weight_provider_stack(
+                  llama_cli_path=os.environ['ORION_LLAMA_CLI_PATH'],
+                  llama_cli_sha256=os.environ['ORION_LLAMA_CLI_SHA256'],
+                  llama_runtime_release_tag=os.environ['ORION_LLAMA_RUNTIME_RELEASE_TAG'],
+                  llama_runtime_commit=os.environ['ORION_LLAMA_RUNTIME_COMMIT'],
+                  llama_runtime_asset_sha256=os.environ['ORION_LLAMA_RUNTIME_ASSET_SHA256'],
+                  reasoner_model_path=os.environ['ORION_OPEN_WEIGHT_REASONER_PATH'],
+                  reasoner_model_sha256=os.environ['ORION_OPEN_WEIGHT_REASONER_SHA256'],
+                  reasoner_model_repo_id=os.environ['ORION_OPEN_WEIGHT_REASONER_REPO'],
+                  reasoner_model_revision=os.environ['ORION_OPEN_WEIGHT_REASONER_REVISION'],
+                  reasoner_model_filename=os.environ['ORION_OPEN_WEIGHT_REASONER_FILENAME'],
+                  reasoner_model_family=os.environ['ORION_OPEN_WEIGHT_REASONER_FAMILY'],
+                  evaluator_model_path=os.environ['ORION_OPEN_WEIGHT_EVALUATOR_PATH'],
+                  evaluator_model_sha256=os.environ['ORION_OPEN_WEIGHT_EVALUATOR_SHA256'],
+                  evaluator_model_repo_id=os.environ['ORION_OPEN_WEIGHT_EVALUATOR_REPO'],
+                  evaluator_model_revision=os.environ['ORION_OPEN_WEIGHT_EVALUATOR_REVISION'],
+                  evaluator_model_filename=os.environ['ORION_OPEN_WEIGHT_EVALUATOR_FILENAME'],
+                  evaluator_model_family=os.environ['ORION_OPEN_WEIGHT_EVALUATOR_FAMILY'],
+                  evaluation_epoch_id=epoch,
+                  crossref_mailto=os.environ.get('CROSSREF_MAILTO', ''),
+              )
+              provider_mode = 'github-hosted-open-weight-llama-cpp'
+              external_freeze_hash = os.environ['ORION_OPEN_WEIGHT_FREEZE_HASH']
+          else:
+              raise RuntimeError(f'unknown provider lane: {provider_lane!r}')
+
           write_live_phase2_provider_manifest(stack, out / 'PROVIDER_MANIFEST.json')
           reasoner_identity = dict(stack.manifest.reasoner_provider)
           verifier_identity = dict(stack.manifest.verification_provider)
-          model_probe_hash = os.environ.get('ORION_COPILOT_MODEL_PROBE_HASH', '')
 
           preflight = Phase2ClosurePreflight(
               protocol_id='phase2-shadow-closure-v1',
@@ -210,7 +276,7 @@ jobs:
               'provider_manifest_hash': stack.provider_manifest_hash,
               'reasoner_identity': reasoner_identity,
               'verifier_identity': verifier_identity,
-              'model_probe_hash': model_probe_hash,
+              'external_freeze_hash': external_freeze_hash,
               'evaluator_artifact_hash': stack.evaluator_artifact_hash,
               'evaluation_epoch_id': stack.evaluation_epoch_id,
               'protocol_id': preflight.protocol_id,
@@ -276,7 +342,7 @@ jobs:
               'provider_manifest_hash': stack.provider_manifest_hash,
               'reasoner_identity': reasoner_identity,
               'verifier_identity': verifier_identity,
-              'model_probe_hash': model_probe_hash,
+              'external_freeze_hash': external_freeze_hash,
               'evaluator_artifact_hash': stack.evaluator_artifact_hash,
               'evaluation_epoch_id': stack.evaluation_epoch_id,
               'protocol_id': preflight.protocol_id,
