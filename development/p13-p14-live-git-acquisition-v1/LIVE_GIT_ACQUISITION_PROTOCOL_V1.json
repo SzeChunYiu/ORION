@@ -1,0 +1,62 @@
+{
+  "schema": "ORION.P13P14.LiveGitAcquisitionProtocol.v1",
+  "status": "FROZEN_AWAITING_POST_MERGE_EXECUTION",
+  "frozen_at": "2026-08-24T14:00:00+00:00",
+  "issue": 1086,
+  "corpus": {
+    "path": "papers/paper-13-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json",
+    "sha256": "368cbfabefb69257d7cbce0de6b82c06c62ce3a7e9bc83a792d01df79e473b9c",
+    "repository_count": 45,
+    "eligible_repository_count": 31,
+    "eligible_organization_count": 14
+  },
+  "objective_gold_contract": {
+    "path": "papers/paper-13-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json",
+    "sha256": "43af90733fb1a1f7fadd261d1a9ff41fcb20c1ec2e394626be2850ed8f65aed0"
+  },
+  "runner": {
+    "path": "development/p13-p14-live-git-acquisition-v1/run_live_git_acquisition_v1.py",
+    "sha256": "328fe1c9b78e6844ce45c605708c8c81ddb451d3ddca7f65bb3995268e57d056"
+  },
+  "required_observations": [
+    "pinned_commit_object_exists",
+    "all_direct_parent_objects_exist",
+    "committer_epoch_recorded",
+    "license_blob_path_resolved",
+    "license_blob_sha256_matches_frozen_hash",
+    "command_receipt_digest"
+  ],
+  "allowed_repository_redirects": {
+    "jquery/qunit": "qunitjs/qunit",
+    "vuejs/vite": "vitejs/vite"
+  },
+  "execution_source_contract": {
+    "required_branch": "main",
+    "clean_worktree_required": true,
+    "committed_blob_equality_required": true,
+    "protocol_raw_file_sha256_required": true
+  },
+  "fetch_contract": {
+    "transport": "https_git",
+    "depth": 2,
+    "tags": false,
+    "partial_clone_filter": "blob:none",
+    "timeout_seconds_per_command": 300
+  },
+  "retention": {
+    "all_45_rows_required": true,
+    "license_ineligible_rows": "EXCLUDED_LICENSE_CANNOT_CHECK",
+    "failed_eligible_rows": "CANNOT_CHECK",
+    "observed_digest_mismatch_rows": "OBJECTIVE_MISMATCH",
+    "upstream_repository_or_license_bytes_redistributed": false
+  },
+  "authority": {
+    "creates_campaign_result": false,
+    "closes_issue_external_campaign_gate": false,
+    "grants_objective_gold_before_live_execution": false,
+    "grants_independent_adjudication": false,
+    "grants_protected_custody": false,
+    "grants_population_inference": false,
+    "scientific_authority_delta": "NONE"
+  }
+}
