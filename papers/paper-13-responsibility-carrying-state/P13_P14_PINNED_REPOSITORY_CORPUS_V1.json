@@ -1,0 +1,930 @@
+{
+ "schema": "ORION.P13P14.PinnedRepositoryCorpus.v1",
+ "study_id": "P13_P14_LIFECYCLE_CONTRACT_CAMPAIGN_V1",
+ "artifact_class": "FROZEN_CORPUS_PINNING",
+ "results_exist": false,
+ "campaign_executed": false,
+ "outcome_accessed": false,
+ "labeling_rule": "This artifact pins the external repository corpus only. It contains no derived gold, no campaign results and no outcomes, and must never be cited as evidence that any lifecycle-contract campaign ran or passed.",
+ "issue_binding": "SzeChunYiu/ORION#1086 P13+P14: 'Use 30-50 pinned repositories from >=5 unrelated organizations; never use ORION as external subject.'",
+ "protocol_doc": "papers/paper-13-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.md",
+ "frozen_utc": "2026-08-24T11:11:29+00:00",
+ "execution_status": "CANNOT_CHECK__NO_P13_P14_LIFECYCLE_CAMPAIGN_EXECUTION_IN_REPOSITORY",
+ "binding": {
+  "rule": {
+   "artifact": "papers/paper-13-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md",
+   "sha256": "3656565539ea89742dd0f876347ba0b7ec918dfe605d95ab691c5323b77f8ce9",
+   "relation": "Corpus gold eligibility and every future gold label are governed by the V1 rule of record, bound by hash."
+  },
+  "derivation_contract": {
+   "artifact": "papers/paper-13-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json",
+   "sha256": "43af90733fb1a1f7fadd261d1a9ff41fcb20c1ec2e394626be2850ed8f65aed0",
+   "relation": "Gold may be derived from these repositories only under the frozen five-fact-class contract, bound by hash."
+  }
+ },
+ "construction": {
+  "method": "GitHub REST API via gh CLI: repos/{owner}/{repo} for default branch and license.spdx_id; repos/{owner}/{repo}/commits/{branch} for the pinned SHA; repos/{owner}/{repo}/license raw response hashed (evidence_fetch_sha256) for license verification.",
+  "pinning_rule": "pinned_ref is the repository's default branch as reported by the API at retrieval time; pinned_sha is the commit SHA of that branch's head at retrieval time (retrieval_utc). No tag pinning was attempted; tags were not audited in this freeze.",
+  "exclusions": [
+   "rust-lang/clippy and git/git-gui returned HTTP 404 at retrieval time and were dropped before freezing.",
+   "No SzeChunYiu-owned repository was considered; ORION is never a subject of its own campaign."
+  ],
+  "license_fail_closed_note": "GitHub license detection only recognizes standard SPDX texts; repositories with custom or dual licensing (e.g. CPython's PSF licence, Redis dual RSALv2/SSPLv1) report no SPDX id and are pinned as CANNOT_CHECK__LICENSE_UNCLEAR rather than manually asserted.",
+  "limits": [
+   "License status is the GitHub-reported SPDX id cross-checked against the license endpoint; it is not legal review.",
+   "Entries with license.verification CANNOT_CHECK__LICENSE_UNCLEAR are pinned for record only and yield no gold under the frozen contract.",
+   "Ancestry, tag/signature, test-exit and timestamp facts have NOT been derived for any entry in this freeze."
+  ]
+ },
+ "summary": {
+  "repository_count": 45,
+  "distinct_org_count": 22,
+  "org_logins": [
+   "apache",
+   "curl",
+   "emberjs",
+   "erlang",
+   "git",
+   "golang",
+   "jquery",
+   "lodash",
+   "matplotlib",
+   "microsoft",
+   "networkx",
+   "nodejs",
+   "numpy",
+   "pallets",
+   "pandas-dev",
+   "psf",
+   "pydata",
+   "python",
+   "redis",
+   "rust-lang",
+   "scipy",
+   "vuejs"
+  ],
+  "gold_eligible_count": 31,
+  "gold_eligible_org_count": 14,
+  "gold_eligible_org_logins": [
+   "apache",
+   "emberjs",
+   "erlang",
+   "golang",
+   "jquery",
+   "microsoft",
+   "pallets",
+   "pandas-dev",
+   "psf",
+   "pydata",
+   "redis",
+   "rust-lang",
+   "scipy",
+   "vuejs"
+  ],
+  "cannot_check_license_count": 14,
+  "box_minimums": {
+   "repositories": [
+    30,
+    50
+   ],
+   "unrelated_organizations_min": 5
+  },
+  "box_minimums_met": {
+   "repository_count_in_30_50": true,
+   "distinct_orgs_ge_5": true,
+   "gold_eligible_repository_count_in_30_50": true,
+   "gold_eligible_orgs_ge_5": true
+  }
+ },
+ "entries": [
+  {
+   "repo_id": "apache/kafka",
+   "org_login": "apache",
+   "owner_entity": "Organization",
+   "url": "https://github.com/apache/kafka",
+   "pinned_ref": "trunk",
+   "pinned_sha": "808bbe535b1ca8e4c80e2e124db01184ef907858",
+   "retrieval_utc": "2026-08-24T11:10:55+00:00",
+   "license": {
+    "spdx_id": "Apache-2.0",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "GET repos/{owner}/{repo}/license (GitHub REST)",
+    "evidence_field": "license.spdx_id = Apache-2.0",
+    "evidence_url": "https://github.com/apache/kafka/blob/trunk/LICENSE",
+    "evidence_fetch_sha256": "4d800379e86fc4f9197455eb28c46eee5521fd4b09736f9255cd584c19846f5e"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "curl/curl",
+   "org_login": "curl",
+   "owner_entity": "curl project (Daniel Stenberg)",
+   "url": "https://github.com/curl/curl",
+   "pinned_ref": "master",
+   "pinned_sha": "c2676bf9e639e31e44b12a2cc82cf2046231b056",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/curl/curl/license",
+    "evidence_field": "license.spdx_id = NOASSERTION",
+    "evidence_url": "https://github.com/curl/curl/blob/master/COPYING",
+    "evidence_fetch_sha256": "a83bd30ef5f2a68a864eb70248f0d2876b4c9125112ebcb71382f263ca36ab63"
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "emberjs/ember.js",
+   "org_login": "emberjs",
+   "owner_entity": "Organization",
+   "url": "https://github.com/emberjs/ember.js",
+   "pinned_ref": "main",
+   "pinned_sha": "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb",
+   "retrieval_utc": "2026-08-24T11:10:55+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "GET repos/{owner}/{repo}/license (GitHub REST)",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/emberjs/ember.js/blob/main/LICENSE",
+    "evidence_fetch_sha256": "27410f3506e695dc396365f4c5628a5f82f7196ee9eacaf5975b558caadd5e7e"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "erlang/otp",
+   "org_login": "erlang",
+   "owner_entity": "Ericsson / Erlang OTP team",
+   "url": "https://github.com/erlang/otp",
+   "pinned_ref": "master",
+   "pinned_sha": "4542a0b14fa904c235fa5d03787ad3a7b2ebd368",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "Apache-2.0",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/erlang/otp/license",
+    "evidence_field": "license.spdx_id = Apache-2.0",
+    "evidence_url": "https://github.com/erlang/otp/blob/master/LICENSE.txt",
+    "evidence_fetch_sha256": "2ca23314391c69a3d02f86452ea0fb8a12e9dd58580a2fffa35117c3c7c0ad60"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "git/git",
+   "org_login": "git",
+   "owner_entity": "Git project maintainers",
+   "url": "https://github.com/git/git",
+   "pinned_ref": "master",
+   "pinned_sha": "1a3e64c6c4a623626ff0687008732a8e007e2a1c",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/git/git/license",
+    "evidence_field": "license.spdx_id = NOASSERTION",
+    "evidence_url": "https://github.com/git/git/blob/master/COPYING",
+    "evidence_fetch_sha256": "4986ff23300e4216fd0f2ccbe44cd5550bdfd89aecaa20fc3f3875ea5419c151"
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "golang/crypto",
+   "org_login": "golang",
+   "owner_entity": "Go project maintainers",
+   "url": "https://github.com/golang/crypto",
+   "pinned_ref": "master",
+   "pinned_sha": "71488c48c2dfecf900e52caa55f88ef4fef62d54",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/golang/crypto/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/golang/crypto/blob/master/LICENSE",
+    "evidence_fetch_sha256": "045021c2a2aafa114e7c37ce9575ebc61a342ec07608fc0442ca7a29ea777fac"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "golang/go",
+   "org_login": "golang",
+   "owner_entity": "Go project (Google-backed, independent governance)",
+   "url": "https://github.com/golang/go",
+   "pinned_ref": "master",
+   "pinned_sha": "a0044c2d09d47f2e2308538c70da4d7d359ed24a",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/golang/go/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/golang/go/blob/master/LICENSE",
+    "evidence_fetch_sha256": "c9ef9cac44bfa4f6085d27c5787b658f5e8a980fbd607c2f459e90591e0ac745"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "golang/net",
+   "org_login": "golang",
+   "owner_entity": "Go project maintainers",
+   "url": "https://github.com/golang/net",
+   "pinned_ref": "master",
+   "pinned_sha": "fc715e5c972bf4ec70ca609630538e6b71d6480c",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/golang/net/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/golang/net/blob/master/LICENSE",
+    "evidence_fetch_sha256": "8c0e32cf179136b41da8b1617bd0301f9ec66e90261b03873bd91b56f9f9fce9"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "golang/sys",
+   "org_login": "golang",
+   "owner_entity": "Go project maintainers",
+   "url": "https://github.com/golang/sys",
+   "pinned_ref": "master",
+   "pinned_sha": "e8c1c3274309bd87f360205f5706e986ceccb317",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/golang/sys/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/golang/sys/blob/master/LICENSE",
+    "evidence_fetch_sha256": "b08c549cd2d6b19b1558c77ef7f3abdbde75fa98d21c0165c3922c624b7a7d26"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "golang/text",
+   "org_login": "golang",
+   "owner_entity": "Go project maintainers",
+   "url": "https://github.com/golang/text",
+   "pinned_ref": "master",
+   "pinned_sha": "dac6be3876335b7e1d2ea7d209d9bfb930306291",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/golang/text/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/golang/text/blob/master/LICENSE",
+    "evidence_fetch_sha256": "5ea3d8dc8b95c043959132cb9c575bf8561aa646e82f2cfd9367abc07a0af28a"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "golang/tools",
+   "org_login": "golang",
+   "owner_entity": "Go project maintainers",
+   "url": "https://github.com/golang/tools",
+   "pinned_ref": "master",
+   "pinned_sha": "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/golang/tools/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/golang/tools/blob/master/LICENSE",
+    "evidence_fetch_sha256": "f8cc9df0db370ac13b4c996db35454d16e46a827793addc1be9a27916e7e6899"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "jquery/jquery",
+   "org_login": "jquery",
+   "owner_entity": "jQuery Foundation / OpenJS Foundation",
+   "url": "https://github.com/jquery/jquery",
+   "pinned_ref": "main",
+   "pinned_sha": "71c0dd14927c41d1aab5ce5ef2687d7808a4186b",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/jquery/jquery/license",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/jquery/jquery/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "c28d0fd73de2021ae6eb5ee0087ec65cee11b0dc3a4184ec6db996e712ce23c1"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "jquery/jquery-ui",
+   "org_login": "jquery",
+   "owner_entity": "jQuery Foundation / OpenJS Foundation",
+   "url": "https://github.com/jquery/jquery-ui",
+   "pinned_ref": "main",
+   "pinned_sha": "dcf10556bbcfdf3e10e3ea30966482e201191411",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/jquery/jquery-ui/license",
+    "evidence_field": "license.spdx_id = NOASSERTION",
+    "evidence_url": "https://github.com/jquery/jquery-ui/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "c6300b4304581c6ef4cd3c662de57097d60a5393e758aba01c6170c82f23cc56"
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "jquery/qunit",
+   "org_login": "jquery",
+   "owner_entity": "OpenJS Foundation (QUnit project)",
+   "url": "https://github.com/jquery/qunit",
+   "pinned_ref": "main",
+   "pinned_sha": "d304f6ee3cf7645a78e3f3882c901d0206990edc",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/jquery/qunit/license",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/qunitjs/qunit/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "fe1bfe9ccffcc0171e2c54ecab3d5a1fd7e9e9d9df2ce84d2f6d292ec2675f19"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "jquery/sizzle",
+   "org_login": "jquery",
+   "owner_entity": "jQuery Foundation / OpenJS Foundation",
+   "url": "https://github.com/jquery/sizzle",
+   "pinned_ref": "main",
+   "pinned_sha": "aec9caa8a4e545b28db63ea0e212b46e53a4cf89",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/jquery/sizzle/license",
+    "evidence_field": "license.spdx_id = NOASSERTION",
+    "evidence_url": "https://github.com/jquery/sizzle/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "f720beea68c87d8ec75e4cc22e5a6d404b7f8eeacaa6719377c1435cd3e8d4b3"
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "lodash/lodash",
+   "org_login": "lodash",
+   "owner_entity": "Organization",
+   "url": "https://github.com/lodash/lodash",
+   "pinned_ref": "main",
+   "pinned_sha": "a666ba591064c8011988275790ad7d625279f09c",
+   "retrieval_utc": "2026-08-24T11:10:55+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": null,
+    "evidence_field": null,
+    "evidence_url": null,
+    "evidence_fetch_sha256": null
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "matplotlib/matplotlib",
+   "org_login": "matplotlib",
+   "owner_entity": "Matplotlib project maintainers",
+   "url": "https://github.com/matplotlib/matplotlib",
+   "pinned_ref": "main",
+   "pinned_sha": "adecc563eabdfeb103ca338b50d5191b838ae8e9",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/matplotlib/matplotlib/license",
+    "evidence_field": "license.spdx_id = None",
+    "evidence_url": "https://github.com/matplotlib/matplotlib/blob/main/LICENSE",
+    "evidence_fetch_sha256": null
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "microsoft/vscode",
+   "org_login": "microsoft",
+   "owner_entity": "Organization",
+   "url": "https://github.com/microsoft/vscode",
+   "pinned_ref": "main",
+   "pinned_sha": "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6",
+   "retrieval_utc": "2026-08-24T11:10:55+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "GET repos/{owner}/{repo}/license (GitHub REST)",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/microsoft/vscode/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "daf2e3e37dd9aab79da203446793f76feee0011df5d91ad0db0a604bd7a7de02"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "networkx/networkx",
+   "org_login": "networkx",
+   "owner_entity": "Organization",
+   "url": "https://github.com/networkx/networkx",
+   "pinned_ref": "main",
+   "pinned_sha": "cfc6b79fc53f583aa15a79b2187ae30bd4f480ed",
+   "retrieval_utc": "2026-08-24T11:10:55+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": null,
+    "evidence_field": null,
+    "evidence_url": null,
+    "evidence_fetch_sha256": null
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "nodejs/node",
+   "org_login": "nodejs",
+   "owner_entity": "Organization",
+   "url": "https://github.com/nodejs/node",
+   "pinned_ref": "main",
+   "pinned_sha": "214cf0693bee80d31150d21d2ad21186d2d055cf",
+   "retrieval_utc": "2026-08-24T11:10:55+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": null,
+    "evidence_field": null,
+    "evidence_url": null,
+    "evidence_fetch_sha256": null
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "numpy/numpy",
+   "org_login": "numpy",
+   "owner_entity": "NumPy project steering council",
+   "url": "https://github.com/numpy/numpy",
+   "pinned_ref": "main",
+   "pinned_sha": "71596b96a678b2d769f81e8b2fb84b2b43a99f68",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/numpy/numpy/license",
+    "evidence_field": "license.spdx_id = NOASSERTION",
+    "evidence_url": "https://github.com/numpy/numpy/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "3b6c4c60c0d55583307942cb3f64208c09df3608e619a091a7943908d67dd3fd"
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "numpy/numpydoc",
+   "org_login": "numpy",
+   "owner_entity": "NumPy project maintainers",
+   "url": "https://github.com/numpy/numpydoc",
+   "pinned_ref": "main",
+   "pinned_sha": "c127da1c69ec84f9be4f84656c6435b43f949b0d",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/numpy/numpydoc/license",
+    "evidence_field": "license.spdx_id = NOASSERTION",
+    "evidence_url": "https://github.com/numpy/numpydoc/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "7f14558c8a4ee513e6651afcfdcd4f02b785300065090f14b4cea6facf4d3830"
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "pallets/flask",
+   "org_login": "pallets",
+   "owner_entity": "Pallets Projects",
+   "url": "https://github.com/pallets/flask",
+   "pinned_ref": "main",
+   "pinned_sha": "d318b683471101618febed18996405ad26462110",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/pallets/flask/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/pallets/flask/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "5af831784f6e895e00275e42264fad84042d613c504a8ce4f3b783354f188f66"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "pallets/jinja",
+   "org_login": "pallets",
+   "owner_entity": "Pallets Projects",
+   "url": "https://github.com/pallets/jinja",
+   "pinned_ref": "main",
+   "pinned_sha": "5ef70112a1ff19c05324ff889dd30405b1002044",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/pallets/jinja/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/pallets/jinja/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "ff15b00423ffd18e01eca0be6626fba10a1b93405401be3586de13012b1cff06"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "pallets/werkzeug",
+   "org_login": "pallets",
+   "owner_entity": "Pallets Projects",
+   "url": "https://github.com/pallets/werkzeug",
+   "pinned_ref": "main",
+   "pinned_sha": "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/pallets/werkzeug/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/pallets/werkzeug/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "9ea6f4ab9bed1527a6e7a5370b10c81bb266ffcb9e14efffd8b16492eead66d5"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "pandas-dev/pandas",
+   "org_login": "pandas-dev",
+   "owner_entity": "pandas project maintainers (NumFOCUS fiscal sponsor)",
+   "url": "https://github.com/pandas-dev/pandas",
+   "pinned_ref": "main",
+   "pinned_sha": "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/pandas-dev/pandas/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/pandas-dev/pandas/blob/main/LICENSE",
+    "evidence_fetch_sha256": "5d412b2d38005dd226420dbec7cefd57bc7112a6f405aa5801ac1c774801e0c4"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "pandas-dev/pandas-stubs",
+   "org_login": "pandas-dev",
+   "owner_entity": "pandas project maintainers",
+   "url": "https://github.com/pandas-dev/pandas-stubs",
+   "pinned_ref": "main",
+   "pinned_sha": "af30812c6901331be77e8ed76db8f099f20d00b8",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/pandas-dev/pandas-stubs/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/pandas-dev/pandas-stubs/blob/main/LICENSE",
+    "evidence_fetch_sha256": "8fd5174509d8c9362b1098bab43ee182ca6240a27f1e9fb5111e827c7e9d3ed2"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "psf/black",
+   "org_login": "psf",
+   "owner_entity": "Organization",
+   "url": "https://github.com/psf/black",
+   "pinned_ref": "main",
+   "pinned_sha": "8947c48ef2077c3a301b03c1e814dc2e3f78436e",
+   "retrieval_utc": "2026-08-24T11:10:55+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "GET repos/{owner}/{repo}/license (GitHub REST)",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/psf/black/blob/main/LICENSE",
+    "evidence_fetch_sha256": "71b02e597c82cdf8f59eced0c83f335d2d1a65c903b66a8217e16c9d8a2c18ed"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "pydata/xarray",
+   "org_login": "pydata",
+   "owner_entity": "Organization",
+   "url": "https://github.com/pydata/xarray",
+   "pinned_ref": "main",
+   "pinned_sha": "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a",
+   "retrieval_utc": "2026-08-24T11:10:55+00:00",
+   "license": {
+    "spdx_id": "Apache-2.0",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "GET repos/{owner}/{repo}/license (GitHub REST)",
+    "evidence_field": "license.spdx_id = Apache-2.0",
+    "evidence_url": "https://github.com/pydata/xarray/blob/main/LICENSE",
+    "evidence_fetch_sha256": "47a8b8daa58f431a3fd2ad920f522ed5c36f8b1da5c8a355587736352c1496c4"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "python/cpython",
+   "org_login": "python",
+   "owner_entity": "Python Software Foundation (cpython repo governance)",
+   "url": "https://github.com/python/cpython",
+   "pinned_ref": "main",
+   "pinned_sha": "9cbd578e38a5ef59f9462b61d1e03338b208cba6",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/python/cpython/license",
+    "evidence_field": "license.spdx_id = NOASSERTION",
+    "evidence_url": "https://github.com/python/cpython/blob/main/LICENSE",
+    "evidence_fetch_sha256": "54ef3225698986c6ffb9150f12b0073756b435835c9b1f7c6c030905c2a20d34"
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "python/peps",
+   "org_login": "python",
+   "owner_entity": "Python Software Foundation (PEP editorial board)",
+   "url": "https://github.com/python/peps",
+   "pinned_ref": "main",
+   "pinned_sha": "344e58976964e61bc206c38cc3e81742b599b5f4",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/python/peps/license",
+    "evidence_field": "license.spdx_id = None",
+    "evidence_url": "https://github.com/python/peps/blob/main/LICENSE",
+    "evidence_fetch_sha256": null
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "python/typeshed",
+   "org_login": "python",
+   "owner_entity": "Python Software Foundation (typeshed maintainers)",
+   "url": "https://github.com/python/typeshed",
+   "pinned_ref": "main",
+   "pinned_sha": "28b0c4d114f3d4bc28b022385d096038b73fc436",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/python/typeshed/license",
+    "evidence_field": "license.spdx_id = NOASSERTION",
+    "evidence_url": "https://github.com/python/typeshed/blob/main/LICENSE",
+    "evidence_fetch_sha256": "c2187c65a4acb375903cd5145b24c8f37c7b8ce0b5236570f60e78e1d482280b"
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "redis/jedis",
+   "org_login": "redis",
+   "owner_entity": "Redis Ltd",
+   "url": "https://github.com/redis/jedis",
+   "pinned_ref": "master",
+   "pinned_sha": "fdc5606a67c1b6f9567c6f738e541e18467c60e6",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/redis/jedis/license",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/redis/jedis/blob/master/LICENSE",
+    "evidence_fetch_sha256": "1649e40c12e5523308292007e933bb7c40729a40b53dcfdab55faadba10564f1"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "redis/redis",
+   "org_login": "redis",
+   "owner_entity": "Redis Ltd",
+   "url": "https://github.com/redis/redis",
+   "pinned_ref": "unstable",
+   "pinned_sha": "86c0e60769812557ecf38bcdcd1c70010efebf20",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": null,
+    "verification": "CANNOT_CHECK__LICENSE_UNCLEAR",
+    "evidence_api": "https://api.github.com/repos/redis/redis/license",
+    "evidence_field": "license.spdx_id = NOASSERTION",
+    "evidence_url": "https://github.com/redis/redis/blob/unstable/LICENSE.txt",
+    "evidence_fetch_sha256": "aa51dc22f0f6902b724385d9fd4f9806384fed65e673cb17d27e8f004cba6c95"
+   },
+   "gold_eligible": false
+  },
+  {
+   "repo_id": "redis/redis-py",
+   "org_login": "redis",
+   "owner_entity": "Redis Ltd",
+   "url": "https://github.com/redis/redis-py",
+   "pinned_ref": "master",
+   "pinned_sha": "afe6523ec5e07b49fe15e1748c049cc2ab2644a6",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/redis/redis-py/license",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/redis/redis-py/blob/master/LICENSE",
+    "evidence_fetch_sha256": "23dc65c86779fe2eada34f3811d503aa5f9e8a2397a3c3c10cf6b8d95fe9f46f"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "rust-lang/cargo",
+   "org_login": "rust-lang",
+   "owner_entity": "Rust Foundation / cargo team",
+   "url": "https://github.com/rust-lang/cargo",
+   "pinned_ref": "master",
+   "pinned_sha": "bb983ad0bd166bd151db189a066bba32039a223b",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "Apache-2.0",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/rust-lang/cargo/license",
+    "evidence_field": "license.spdx_id = Apache-2.0",
+    "evidence_url": "https://github.com/rust-lang/cargo/blob/master/LICENSE-APACHE",
+    "evidence_fetch_sha256": "02c0647f1007b83d37a2ade8fc2c92d0f82a02250c867fdf8a1ced75cafd37e2"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "rust-lang/miri",
+   "org_login": "rust-lang",
+   "owner_entity": "Rust Foundation / miri team",
+   "url": "https://github.com/rust-lang/miri",
+   "pinned_ref": "master",
+   "pinned_sha": "a854cde861f2142584e2d7ed49ca66827d4b749a",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "Apache-2.0",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/rust-lang/miri/license",
+    "evidence_field": "license.spdx_id = Apache-2.0",
+    "evidence_url": "https://github.com/rust-lang/miri/blob/master/LICENSE-APACHE",
+    "evidence_fetch_sha256": "e9ddff93d39512dabccb66222a3368872b8ba464cfce39668bace6c4d27daba3"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "rust-lang/rust",
+   "org_login": "rust-lang",
+   "owner_entity": "Rust Foundation / rust project",
+   "url": "https://github.com/rust-lang/rust",
+   "pinned_ref": "main",
+   "pinned_sha": "347a1dbf428ab92f284e3afafacfa7eb46341a5d",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "Apache-2.0",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/rust-lang/rust/license",
+    "evidence_field": "license.spdx_id = Apache-2.0",
+    "evidence_url": "https://github.com/rust-lang/rust/blob/main/LICENSE-APACHE",
+    "evidence_fetch_sha256": "c60f4cf1f37577d0d02a1a0860481ad991907a68e7ed5611c12e185f2b66be45"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "rust-lang/rustfmt",
+   "org_login": "rust-lang",
+   "owner_entity": "Rust Foundation / rustfmt team",
+   "url": "https://github.com/rust-lang/rustfmt",
+   "pinned_ref": "main",
+   "pinned_sha": "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "Apache-2.0",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/rust-lang/rustfmt/license",
+    "evidence_field": "license.spdx_id = Apache-2.0",
+    "evidence_url": "https://github.com/rust-lang/rustfmt/blob/main/LICENSE-APACHE",
+    "evidence_fetch_sha256": "e74a6a02a93279824d861be6caffc02e8862871db2a40c49e7528248c19bfb6d"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "scipy/scipy",
+   "org_login": "scipy",
+   "owner_entity": "SciPy project maintainers",
+   "url": "https://github.com/scipy/scipy",
+   "pinned_ref": "main",
+   "pinned_sha": "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "BSD-3-Clause",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/scipy/scipy/license",
+    "evidence_field": "license.spdx_id = BSD-3-Clause",
+    "evidence_url": "https://github.com/scipy/scipy/blob/main/LICENSE.txt",
+    "evidence_fetch_sha256": "62121d0da7f358efd679da9e980dcadfcefe1ece0f777d7f257998b06cdb340f"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "vuejs/pinia",
+   "org_login": "vuejs",
+   "owner_entity": "Vue.js project core team",
+   "url": "https://github.com/vuejs/pinia",
+   "pinned_ref": "v4",
+   "pinned_sha": "5d6ac5b86491041aa83a663a9a31189c707aff08",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/vuejs/pinia/license",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/vuejs/pinia/blob/v4/LICENSE",
+    "evidence_fetch_sha256": "e92e0f2eb8e461781487de7db4820e7e1fd55f5cce1038b563bed1c0779b96a9"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "vuejs/vite",
+   "org_login": "vuejs",
+   "owner_entity": "Vite team (VoidZero)",
+   "url": "https://github.com/vuejs/vite",
+   "pinned_ref": "main",
+   "pinned_sha": "c32e784c95b51f7969cebc7522a5037f14fb6606",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/vuejs/vite/license",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/vitejs/vite/blob/main/LICENSE",
+    "evidence_fetch_sha256": "e220ef13aa602eec5e94eddc163d68e9442f403ddee4f5a1a98c3834e1be336f"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "vuejs/vue",
+   "org_login": "vuejs",
+   "owner_entity": "Vue.js project (Evan You / core team)",
+   "url": "https://github.com/vuejs/vue",
+   "pinned_ref": "main",
+   "pinned_sha": "9e88707940088cb1f4cd7dd210c9168a50dc347c",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/vuejs/vue/license",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/vuejs/vue/blob/main/LICENSE",
+    "evidence_fetch_sha256": "545a60f7e68e9adb445acc89c6ee9d00d7be80852b8db1bc3d673bd41d58a3cd"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "vuejs/vue-router",
+   "org_login": "vuejs",
+   "owner_entity": "Vue.js project core team",
+   "url": "https://github.com/vuejs/vue-router",
+   "pinned_ref": "dev",
+   "pinned_sha": "680ccc68c506cca9be6207745043245d61fa715a",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/vuejs/vue-router/license",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/vuejs/vue-router/blob/dev/LICENSE",
+    "evidence_fetch_sha256": "f2dd66f29bc55aa350245f05ff38108ce37d9749334a169d2b8c44012519b9c0"
+   },
+   "gold_eligible": true
+  },
+  {
+   "repo_id": "vuejs/vuex",
+   "org_login": "vuejs",
+   "owner_entity": "Vue.js project core team",
+   "url": "https://github.com/vuejs/vuex",
+   "pinned_ref": "main",
+   "pinned_sha": "bd907467b8392d6671bb115738285ff7f63d0cf6",
+   "retrieval_utc": "2026-08-24T11:04:48+00:00",
+   "license": {
+    "spdx_id": "MIT",
+    "verification": "VERIFIED_WITH_URL_AND_DATE",
+    "evidence_api": "https://api.github.com/repos/vuejs/vuex/license",
+    "evidence_field": "license.spdx_id = MIT",
+    "evidence_url": "https://github.com/vuejs/vuex/blob/main/LICENSE",
+    "evidence_fetch_sha256": "1c5a333e13fdf12f8e63aac91743f00eccd22bb47c76316cad98333f851d686e"
+   },
+   "gold_eligible": true
+  }
+ ],
+ "non_bypass_boundaries": [
+  "ORION (and every SzeChunYiu-owned repository) is excluded as an external subject.",
+  "Pinning a corpus does not execute a campaign and does not create results.",
+  "Public repository data does not create independent adjudication.",
+  "Missing license remains CANNOT_CHECK; no weak substitute is applied."
+ ],
+ "box_verdicts": {
+  "box_pinned_repository_corpus": {
+   "verdict": "CORPUS_FROZEN__CAMPAIGN_USE_PENDING",
+   "detail": "45 repositories across 22 distinct organization logins are pinned to exact SHAs with URL, retrieval date and license verification; the gold-eligible subset is 31 repositories across 14 organizations, meeting the 30-50/>=5 box minimums on both the full and eligible-only counts. No ORION-owned repository is a subject.",
+   "open_remainder": "the frozen corpus has not yet been used by an executed campaign; gold derivation and the lifecycle/RCS-vs-baselines comparison remain open."
+  }
+ },
+ "scientific_authority_delta": "NONE",
+ "freeze_discipline": {
+  "checker": "papers/paper-13-responsibility-carrying-state/check_p13_p14_pinned_corpus_v1.py",
+  "tests": "tests/unit/study/p13/test_p13_p14_pinned_corpus_v1.py",
+  "protocol_freeze_sha_live_recompute": true
+ }
+}
