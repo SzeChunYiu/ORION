@@ -1,0 +1,97 @@
+name: p12-price-aware-successor-postoutcome-replay-v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_*'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_allocator_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_price_aware_successor_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_price_aware_successor_independent_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/audit_p12_price_aware_successor_surface_v1.py'
+      - '.github/workflows/p12-price-aware-successor-postoutcome-replay-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_*'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_allocator_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_price_aware_successor_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_price_aware_successor_independent_v1.py'
+      - 'papers/paper-12-adaptive-state-reasoning/top_tier/audit_p12_price_aware_successor_surface_v1.py'
+      - '.github/workflows/p12-price-aware-successor-postoutcome-replay-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  replay-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: papers/paper-12-adaptive-state-reasoning/top_tier
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Reproduce primary result twice
+        run: |
+          set -euo pipefail
+          python run_p12_price_aware_successor_v1.py > p12_price_aware_successor_v1.json
+          python run_p12_price_aware_successor_v1.py > p12_price_aware_successor_replay_v1.json
+          cmp p12_price_aware_successor_v1.json p12_price_aware_successor_replay_v1.json
+          cmp p12_price_aware_successor_v1.json P12_PRICE_AWARE_SUCCESSOR_RESULT_V1.json
+
+      - name: Reproduce independent checker twice
+        run: |
+          set -euo pipefail
+          python check_p12_price_aware_successor_independent_v1.py > p12_price_aware_successor_checker_v1.json
+          python check_p12_price_aware_successor_independent_v1.py > p12_price_aware_successor_checker_replay_v1.json
+          cmp p12_price_aware_successor_checker_v1.json p12_price_aware_successor_checker_replay_v1.json
+
+      - name: Reproduce hostile surface audit twice
+        run: |
+          set -euo pipefail
+          python audit_p12_price_aware_successor_surface_v1.py > p12_price_aware_successor_surface_audit_v1.json
+          python audit_p12_price_aware_successor_surface_v1.py > p12_price_aware_successor_surface_audit_replay_v1.json
+          cmp p12_price_aware_successor_surface_audit_v1.json p12_price_aware_successor_surface_audit_replay_v1.json
+
+      - name: Assert frozen scientific terminals
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('.')
+          result = json.loads((root / 'p12_price_aware_successor_v1.json').read_text())
+          checker = json.loads((root / 'p12_price_aware_successor_checker_v1.json').read_text())
+          audit = json.loads((root / 'p12_price_aware_successor_surface_audit_v1.json').read_text())
+
+          sc = result['success_criteria']
+          assert sc['SC1_FLAT_replication_constraint']['ok'] is True
+          assert sc['SC2_price_axis']['ok'] is True
+          assert sc['SC3_shift_axis']['ok'] is True
+          assert sc['SC6_price_responsiveness_liveness']['ok'] is True
+          assert result['verdicts']['successor_price_axis'] == 'ROBUST'
+          assert result['verdicts']['successor_distribution_shift_axis'] == 'ROBUST'
+          assert result['verdicts']['original_allocator_price_axis'] == 'BROKEN'
+          assert result['verdicts']['original_allocator_distribution_shift_axis'] == 'BROKEN'
+          assert checker['terminal'] == 'P12_PRICE_AWARE_SUCCESSOR_SECOND_CHECKER_GREEN'
+          assert checker['discrepancy_count'] == 0
+          assert audit['terminal'] == 'P12_PRICE_AWARE_SUCCESSOR_SURFACE_AUDIT_GREEN'
+          assert audit['self_validation_valid'] is True
+          print('P12 NR-13 post-outcome replay verification GREEN')
+          PY
+
+      - name: Upload replay evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p12-price-aware-successor-postoutcome-replay-v1
+          path: |
+            papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_successor_v1.json
+            papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_successor_replay_v1.json
+            papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_successor_checker_v1.json
+            papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_successor_checker_replay_v1.json
+            papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_successor_surface_audit_v1.json
+            papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_successor_surface_audit_replay_v1.json
