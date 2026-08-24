@@ -12,8 +12,22 @@ This schema is **not** `ScientificResultVerification.v1`. Issue #283 owns that r
 
 ```bash
 python3 research/paper-programme-v1/journal_package/check_journal_package.py
+python3 research/paper-programme-v1/journal_package/check_journal_package.py --paper P1
+python3 research/paper-programme-v1/journal_package/check_journal_package.py --paper P1 --write-hashes
 python3 research/paper-programme-v1/journal_package/check_journal_package.py --write-hashes
 pytest -q tests/unit/publication/test_journal_package.py
 ```
 
-`package_status` stays `SCAFFOLDING` while compiled PDFs, DOIs, or paper-level `PEER_REVIEW_READY` evidence are absent from the tree. P1 H1 remains `NOT_SUPPORTED`.
+`package_status` has three non-overlapping authority states:
+
+- `SCAFFOLDING`: no PDF is retained; at least one package claim remains `OPEN`.
+- `SUPERSEDED`: a required and checksummed historical PDF is retained, the
+  generator-owned `RENDER_CLOSURE_STATE.json` says `SUPERSEDED`, current
+  submission authority is explicitly false, and at least one current package
+  claim remains `OPEN`.
+- `SUBMISSION_READY`: a required and checksummed current PDF is present and no
+  package-level missing artifact or `OPEN` claim remains.
+
+`SUPERSEDED` preserves an earlier inspected record without relabelling it as a
+current render. It is not an alias for `SCAFFOLDING` or a weakened
+`SUBMISSION_READY`. P1 H1 remains `NOT_SUPPORTED` under every package state.

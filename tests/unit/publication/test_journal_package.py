@@ -20,6 +20,7 @@ from check_journal_package import (  # noqa: E402
 )
 
 P5 = ROOT / PAPER_DIRS["P5"]
+P1 = ROOT / PAPER_DIRS["P1"]
 
 
 def test_all_five_packages_pass_on_committed_tree() -> None:
@@ -44,7 +45,10 @@ def test_p1_current_claim_query_excludes_immutable_negative_history() -> None:
 
     assert "P1.H1" not in active_ids
     assert "P1.NECESSITY.V2.2.4" in active_ids
-    assert not [claim for claim in active if claim["status"] in {"NOT_SUPPORTED", "CANNOT_CHECK", "OPEN"}]
+    assert {
+        claim["id"] for claim in active if claim["status"] == "OPEN"
+    } == {"P1.CURRENT_PACKAGE"}
+    assert not [claim for claim in active if claim["status"] in {"NOT_SUPPORTED", "CANNOT_CHECK"}]
 
     h1 = next(claim for claim in manifest["claims"] if claim["id"] == "P1.H1")
     assert h1["status"] == "NOT_SUPPORTED"
@@ -71,7 +75,7 @@ def test_p1_narrow_successor_cannot_launder_historical_h1(tmp_path: Path) -> Non
     assert any("narrower, not a scientific supersession" in error for error in report.errors)
 
 
-def test_scaffolding_packages_flag_an_open_claim() -> None:
+def test_nonready_packages_flag_an_open_claim() -> None:
     for paper_id, relative in PAPER_DIRS.items():
         manifest = load_manifest(ROOT / relative / "journal_package")
         if manifest["package_status"] == "SUBMISSION_READY":
@@ -81,16 +85,30 @@ def test_scaffolding_packages_flag_an_open_claim() -> None:
         assert all(claim["artifacts"] == [] for claim in pdf_claims)
 
 
-def test_pdfs_exist_only_in_submission_ready_packages() -> None:
+def test_pdf_presence_matches_the_three_package_states() -> None:
     for relative in PAPER_DIRS.values():
         manifest = load_manifest(ROOT / relative / "journal_package")
         pdfs = list((ROOT / relative / "journal_package").glob("*.pdf"))
-        if manifest["package_status"] == "SUBMISSION_READY":
+        if manifest["package_status"] in {"SUPERSEDED", "SUBMISSION_READY"}:
             assert pdfs
             required = {entry["path"] for entry in manifest["required_files"]}
             assert all(f"journal_package/{pdf.name}" in required for pdf in pdfs)
         else:
+            assert manifest["package_status"] == "SCAFFOLDING"
             assert pdfs == []
+
+
+def test_p1_superseded_contract_is_internally_consistent() -> None:
+    manifest = load_manifest(P1 / "journal_package")
+    assert manifest["package_status"] == "SUPERSEDED"
+    assert manifest["package_authority"]["current_submission_authorized"] is False
+    assert any(
+        claim["status"] == "OPEN" and claim.get("current_claim") is True
+        for claim in manifest["claims"]
+    )
+    state = json.loads((P1 / "journal_package" / "RENDER_CLOSURE_STATE.json").read_text())
+    assert state["state"] == "SUPERSEDED"
+    assert check_package("P1", P1, repo_root=ROOT).ok
 
 
 def test_does_not_fork_scientific_result_verification_schema() -> None:
@@ -99,6 +117,11 @@ def test_does_not_fork_scientific_result_verification_schema() -> None:
     )
     assert schema["$id"] == "orion.journal-package.v1"
     assert schema["$id"] != "ScientificResultVerification.v1"
+    assert schema["properties"]["package_status"]["enum"] == [
+        "SCAFFOLDING",
+        "SUPERSEDED",
+        "SUBMISSION_READY",
+    ]
     for relative in PAPER_DIRS.values():
         manifest = load_manifest(ROOT / relative / "journal_package")
         block = manifest["scientific_result_verification"]
@@ -111,6 +134,75 @@ def _copy_p5(tmp_path: Path) -> Path:
     target = tmp_path / "paper-05-self-orion"
     shutil.copytree(P5, target, ignore=shutil.ignore_patterns("__pycache__"))
     return target
+
+
+def _copy_p1(tmp_path: Path) -> Path:
+    repo = tmp_path / "repo"
+    target = repo / PAPER_DIRS["P1"]
+    target.parent.mkdir(parents=True)
+    shutil.copytree(P1, target, ignore=shutil.ignore_patterns("__pycache__"))
+    (repo / "research").symlink_to(ROOT / "research", target_is_directory=True)
+    return target
+
+
+def _write_manifest_and_hashes(paper: Path, manifest: dict) -> None:
+    (paper / "journal_package" / "MANIFEST.json").write_text(
+        json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
+    )
+    write_sha256sums(paper, hashed_paths(manifest))
+
+
+def test_superseded_package_requires_retained_pdf(tmp_path: Path) -> None:
+    paper = _copy_p1(tmp_path)
+    (paper / "journal_package" / "manuscript.pdf").unlink()
+    report = check_package("P1", paper)
+    assert not report.ok
+    assert any("SUPERSEDED package has no retained PDF" in error for error in report.errors)
+
+
+def test_superseded_package_requires_generator_state(tmp_path: Path) -> None:
+    paper = _copy_p1(tmp_path)
+    state_path = paper / "journal_package" / "RENDER_CLOSURE_STATE.json"
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    state["state"] = "CURRENT"
+    state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    manifest = load_manifest(paper / "journal_package")
+    _write_manifest_and_hashes(paper, manifest)
+    report = check_package("P1", paper)
+    assert not report.ok
+    assert any("render-closure state SUPERSEDED" in error for error in report.errors)
+
+
+def test_superseded_package_denies_current_submission_authority(tmp_path: Path) -> None:
+    paper = _copy_p1(tmp_path)
+    manifest = load_manifest(paper / "journal_package")
+    manifest["package_authority"]["current_submission_authorized"] = True
+    _write_manifest_and_hashes(paper, manifest)
+    report = check_package("P1", paper)
+    assert not report.ok
+    assert any("current_submission_authorized=false" in error for error in report.errors)
+
+
+def test_superseded_package_requires_current_open_claim(tmp_path: Path) -> None:
+    paper = _copy_p1(tmp_path)
+    manifest = load_manifest(paper / "journal_package")
+    manifest["claims"] = [
+        claim for claim in manifest["claims"] if claim["id"] != "P1.CURRENT_PACKAGE"
+    ]
+    _write_manifest_and_hashes(paper, manifest)
+    report = check_package("P1", paper)
+    assert not report.ok
+    assert any("current OPEN claim" in error for error in report.errors)
+
+
+def test_scaffolding_still_forbids_retained_pdf(tmp_path: Path) -> None:
+    paper = _copy_p1(tmp_path)
+    manifest = load_manifest(paper / "journal_package")
+    manifest["package_status"] = "SCAFFOLDING"
+    _write_manifest_and_hashes(paper, manifest)
+    report = check_package("P1", paper)
+    assert not report.ok
+    assert any("SCAFFOLDING package contains a PDF" in error for error in report.errors)
 
 
 def test_missing_required_package_file_fails(tmp_path: Path) -> None:

@@ -8,7 +8,7 @@
 > `evidence/NEAREST_WORK_MATRIX_V2.md`. Historical package-readiness statements
 > below are read subject to the current two-axis terminal and blockers.
 
-**Current terminal:** bounded mechanical claim `SUPPORTED`; current enlarged manuscript and journal package `NOT_SUBMISSION_READY` (`journal_package/MANIFEST.json` status `SCAFFOLDING`).
+**Current terminal:** bounded mechanical claim `SUPPORTED`; current enlarged manuscript and journal package `NOT_SUBMISSION_READY` (`journal_package/MANIFEST.json` status `SUPERSEDED`).
 **Already present:** scoped manuscript, explicit K/W/M formulation, mechanic-cell self-audit, hidden-shift local falsifier, negative controls, local failure/repair record.
 
 The bounded result and the package are different authorities. The primary and

@@ -12,13 +12,13 @@ The current status is deliberately split along two axes:
   remains `NOT_SUPPORTED`; neither result authorizes model-general,
   naturalistic, or open-ended superiority.
 - **Submission package:** `NOT_SUBMISSION_READY`. The current
-  `journal_package/MANIFEST.json` is `SCAFFOLDING`, and
+  `journal_package/MANIFEST.json` is `SUPERSEDED`, and
   `journal_package/RENDER_CLOSURE_STATE.json` is the authority for render
-  currency. The PDF, closure record, checksum manifest, package README, and
-  PDF audit under `journal_package/` are retained as an earlier inspected
-  package record only. Their earlier readiness language is superseded for the
-  enlarged manuscript; the historical PDF must not be relabelled or submitted
-  as current.
+  currency. The PDF and pinned render-input closure are retained as an earlier
+  inspected package record only. The current manifest, generator-owned render
+  state, package README, claim/PDF audit, and refreshed checksum inventory name
+  that historical role explicitly. The historical PDF must not be relabelled
+  or submitted as current.
 
 A clean checkout still lacks (1) a fresh content-bound PDF and visual audit for
 the current source, (2) an immutable public archive/DOI, (3) repository-level
