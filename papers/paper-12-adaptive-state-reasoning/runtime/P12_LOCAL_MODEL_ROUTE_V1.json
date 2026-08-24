@@ -1,0 +1,40 @@
+{
+  "schema": "P12.LocalModelRoute.v1",
+  "purpose": "a second model family on the compute host, requiring no credential",
+  "why_this_exists": "P12's campaign_scope_minimums require >=2 model families. Gemini is reachable from the operator's workstation but NOT from LUNARC (HTTP 000, no proxy configured), and LUNARC is where the compute is. A local GGUF model closes that gap with weights distinct from Gemini's, which is what 'model family' means; two versions of one vendor's model would not be two families.",
+  "host": "LUNARC",
+  "runtime": {
+    "package": "llama-cpp-python",
+    "version": "0.3.35",
+    "built_from_source": true,
+    "toolchain": {"gcc": "13.2.0", "cmake": "3.31.8"},
+    "verified": "import succeeds AND a chat completion returns the requested string"
+  },
+  "model": {
+    "family": "Qwen2.5",
+    "artifact": "qwen2.5-1.5b-instruct-q4_k_m.gguf",
+    "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+    "bytes": 1117320736,
+    "sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+    "path": "~/orion-work/models/qwen2.5-1.5b-instruct-q4_k_m.gguf"
+  },
+  "generation_check": {
+    "prompt": "Reply with exactly: LUNARC_LOCAL_OK",
+    "output": "LUNARC_LOCAL_OK",
+    "usage": {"prompt_tokens": 38, "completion_tokens": 5, "total_tokens": 43},
+    "elapsed_seconds": 47.4,
+    "note": "elapsed includes model load; an importable package is not evidence of inference, so generation is checked rather than assumed"
+  },
+  "what_this_does_and_does_not_unblock": {
+    "unblocks": "the structural requirement of a second model family on the compute host",
+    "does_not_establish": "that a 1.5B model is adequate for P12's stop/go episodes. If it proves too weak, the honest report is that the arm ran and was inadequate at this scale, not a number presented as a finding.",
+    "still_required_for_the_box": "a campaign actually USING >=20 task families across >=3 domains on both families; p12_stopgo_frozen_menus_v1.json records satisfied_by_this_artifact=false, and this artifact does not change that"
+  },
+  "substrate_availability": {
+    "benchmark": "ScienceAgentBench",
+    "annotation_sheet_sha256": "7f490f17f721a9c7e9415d36",
+    "task_families_present": 24,
+    "domains_present": 4,
+    "license_excluded_instances": [3, 32, 46, 53, 54, 84]
+  }
+}
