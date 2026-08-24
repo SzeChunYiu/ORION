@@ -1,0 +1,32 @@
+name: ORION foundations local derivations
+
+on:
+  pull_request:
+    paths:
+      - "src/orion/foundations/**"
+      - "tests/foundations/**"
+      - "research/orion-foundations-v2/**"
+      - ".github/workflows/orion-foundations.yml"
+  push:
+    paths:
+      - "src/orion/foundations/**"
+      - "tests/foundations/**"
+      - "research/orion-foundations-v2/**"
+      - ".github/workflows/orion-foundations.yml"
+
+jobs:
+  local-foundations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -e ".[dev]"
+      - run: pytest tests/foundations -q
+      - run: >-
+          python -m orion.foundations.cli
+          --output /tmp/LOCAL_THEOREM_RECEIPT_V1.json
+          --assumptions-output /tmp/ASSUMPTION_LEDGER_V1.json
+          --countermodels-output /tmp/COUNTERMODEL_ATLAS_V1.json
+          --theorem-ledger-output /tmp/THEOREM_LEDGER_V1.json
