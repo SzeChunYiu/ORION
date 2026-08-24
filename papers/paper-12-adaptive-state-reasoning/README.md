@@ -7,7 +7,7 @@
 
 ## Canonical manuscript
 
-`manuscript/sections/*.md` are the canonical publication source and `manuscript/main.pdf` is the rendered paper. `MANUSCRIPT.md` is a historical integrated review snapshot. Current claim authority is `P12_ACTIVE_CLAIM_AUTHORITY_V4.json`.
+`manuscript/sections/*.md` are the canonical publication source and `manuscript/main.pdf` is the rendered paper. `MANUSCRIPT.md` is a historical integrated review snapshot. Current claim authority is `P12_ACTIVE_CLAIM_AUTHORITY_V5.json`, which extends the lifecycle `P12_ACTIVE_CLAIM_AUTHORITY_V4.json` without altering any of its leaves.
 
 ## Current scientific state
 
@@ -59,6 +59,37 @@ A separately preregistered successor reads the charging environment's exact per-
 
 Selection-sufficiency and certificate-necessity falsifiers support the exact-certificate boundary in the registered finite environment. They do not establish external transfer.
 
+## Stop/go public-data campaign — frozen protocol (not executed)
+
+Issue #1086 (P12 boxes) freezes the protocol for a public-data stop/go campaign
+**before any data collection**. The campaign itself has **not** been executed:
+no runner, datum, score, gate verdict or terminal exists for it, and nothing in
+these artifacts may be cited as evidence of any empirical outcome.
+
+- Frozen menus: `top_tier/p12_stopgo_frozen_menus_v1.json` (machine-readable)
+  and `top_tier/P12_STOPGO_FROZEN_MENUS_V1.md` (protocol doc). Identical
+  four-action menu `((0,0),(2,0),(0,2),(1,1))` and identical closed four-signal
+  menu across the adaptive arm and both one-signal arms; task-family/domain
+  inference unit; clean-license ScienceAgentBench substrate with the six
+  upstream-license instances excluded; preregistered pass gate and a binding
+  fail action (stop and publish the boundary/null result; do not iterate until
+  positive).
+- Binding prior adverse evidence (SHA-bound in the menus JSON and in
+  `P12_ACTIVE_CLAIM_AUTHORITY_V5.json`): `P12A_SUPERIORITY_AUTHORITY_WITHHELD`
+  (actions must be held symmetric), `P12_ROBUSTNESS_STRESS_V1_EXECUTED` with
+  `price_axis=BROKEN` and `distribution_shift_axis=BROKEN` (no robustness
+  wording available to this campaign), and `P12_PRICE_AWARE_SUCCESSOR_SUPPORTED`
+  (preregistered readable-surface widening is the only sanctioned revival
+  pattern).
+- Label honesty: issue #1086 asks to integrate "P12C's negative public-data
+  result". **No repository artifact labelled P12C exists** (working tree, all
+  refs, PRs and issues searched); none was invented. The integrated priors are
+  the landed adverse chain above.
+- Fail-closed audit: `check_p12_stopgo_integration_v1.py` (paper root)
+  validates menu identity across arms, the inference unit, scope minimums, the
+  prior bindings and authority V5-over-V4 preservation; it reports
+  `scientific_authority_delta: NONE` and `external_validation: CANNOT_CHECK`.
+
 ## Manuscript integration rule
 
 The final manuscript should use P12A/P12B as the **comparison-design history**, then make the verifier-backed location law and unchanged three-domain allocator the primary empirical contribution. It should not lead with the old `0.858154` P12A score or imply that signal count alone caused that historical margin.
@@ -77,6 +108,13 @@ Manuscript-facing integration notes are in `top_tier/P12_TOP_TIER_MANUSCRIPT_INT
 - `top_tier/P12_TOP_TIER_MANUSCRIPT_INTEGRATION_2026-08-23.md`
 
 The transfer, robustness, price-aware successor and theorem receipts are content-bound by V4.
+
+Issue #1086 stop/go protocol artifacts (added by the P11/P12 lane):
+
+- `P12_ACTIVE_CLAIM_AUTHORITY_V5.json` (V4 preserved; adds the frozen-campaign leaf)
+- `check_p12_stopgo_integration_v1.py` (fail-closed audit)
+- `top_tier/p12_stopgo_frozen_menus_v1.json`
+- `top_tier/P12_STOPGO_FROZEN_MENUS_V1.md`
 
 ## Explicit nonclaims
 
