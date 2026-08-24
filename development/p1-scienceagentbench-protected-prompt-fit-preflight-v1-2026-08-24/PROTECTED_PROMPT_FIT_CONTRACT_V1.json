@@ -2,6 +2,28 @@
   "schema_version": "orion.p1.scienceagentbench.protected-prompt-fit-preflight.v1",
   "contract_id": "P1_SAB_PROTECTED_PROMPT_FIT_PREFLIGHT_20260824_V1",
   "authority": "OUTCOME_BLIND_PROTECTED_INPUT_BINDING_AND_PROMPT_FIT_PREFLIGHT_ONLY__NO_EXECUTION_EVALUATION_OR_SCIENTIFIC_AUTHORITY",
+  "renderer_collision_repair_boundary": {
+    "reported_pre_receipt_status": "FAIL_BEFORE_RECEIPT",
+    "reported_probe_counts": {
+      "total": 1224,
+      "pass": 1200,
+      "fail": 24
+    },
+    "reported_affected_instance_ids": [
+      "4",
+      "10",
+      "88",
+      "89"
+    ],
+    "reported_failures_by_phase": {
+      "OS_PHASE1": 12,
+      "NR_PHASE1": 12
+    },
+    "reported_failure_cause": "ALL_AND_ONLY_RECOVERED_PACKET_LITERAL_DOUBLE_OPEN_BRACE_COLLISIONS",
+    "adverse_result_packet": "PRESERVED_UNCHANGED_IN_SEPARATE_SOURCE_LANE",
+    "repair_validation": "SYNTHETIC_ONLY",
+    "production_rerun_required": true
+  },
   "upstream_bindings": [
     {
       "path": "development/p1-scienceagentbench-preflight-2026-08-24/MASK_MANIFEST_V1.json",
@@ -114,6 +136,37 @@
     "dynamic_rr_phase1_records_per_task": 3,
     "dynamic_rr_phase1_records_for_102_tasks": 306,
     "rr_phase1_status": "CANNOT_CHECK_DYNAMIC_RR_PHASE0_STATE_REQUIRED",
+    "template_marker_policy": {
+      "validation_scope": "FROZEN_TEMPLATE_UTF8_BYTES_BEFORE_SUBSTITUTION",
+      "allowed_markers_by_phase": {
+        "RR_PHASE0": [
+          "{{ATTEMPT_ORDINAL}}",
+          "{{MASKED_PACKET_JSON}}"
+        ],
+        "RR_PHASE1": [
+          "{{ATTEMPT_ORDINAL}}",
+          "{{PHASE0_STATE_JSON}}",
+          "{{PHASE0_STATE_SHA256}}",
+          "{{RECOVERED_PACKET_JSON}}"
+        ],
+        "OS_PHASE1": [
+          "{{ATTEMPT_ORDINAL}}",
+          "{{RECOVERED_PACKET_JSON}}"
+        ],
+        "NR_PHASE0": [
+          "{{ATTEMPT_ORDINAL}}",
+          "{{MASKED_PACKET_JSON}}"
+        ],
+        "NR_PHASE1": [
+          "{{ATTEMPT_ORDINAL}}",
+          "{{RECOVERED_PACKET_JSON}}"
+        ]
+      },
+      "marker_multiplicity": "EACH_ALLOWED_MARKER_EXACTLY_ONCE",
+      "unknown_template_markers": "FORBIDDEN",
+      "substitution": "SINGLE_PASS_TEMPLATE_SEGMENT_INSERTION",
+      "injected_json_double_braces": "DATA_NOT_TEMPLATE_SYNTAX"
+    },
     "prompt_bodies_retained_in_receipt": 0,
     "truncation_or_context_shift": "FORBIDDEN"
   },

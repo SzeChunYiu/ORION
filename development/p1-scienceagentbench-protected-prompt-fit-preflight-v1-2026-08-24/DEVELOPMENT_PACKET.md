@@ -23,6 +23,23 @@ The question is split into independently checkable fibers:
    unavailable prospectively;
 10. descriptor-held input reads and `openat` new-file-only receipt output.
 
+## Renderer-collision repair provenance
+
+The first owner-authorized no-ledger production preflight failed before it
+could emit a receipt:
+
+```text
+P1_SAB_PROTECTED_PROMPT_FIT_PREFLIGHT_V1_FAIL: prompt template OS_PHASE1 has unreplaced marker or missing LF
+```
+
+The retained adverse packet reports 1,224 probes: 1,200 pass and 24 fail. The
+failures are all and only instance IDs `4`, `10`, `88`, and `89`, with 12
+`OS_PHASE1` and 12 `NR_PHASE1` failures caused by literal `{{` bytes inside the
+recovered packet JSON. That adverse packet remains authoritative for the run
+that produced it and is preserved unchanged in its separate lane. This repair
+does not rewrite or promote that result; a new owner-authorized production
+preflight would be required to establish any later result.
+
 ## Saturation assessment and challenge
 
 The relevant local search universe is bounded by the merged mask manifest,
@@ -72,6 +89,12 @@ The standard-library unittest gate will cover:
 - task-ID/domain/source-field mismatch, wrong type, extra field, duplicate
   ID, missing task, manifest drift, prompt-bundle drift, and source-hash drift;
 - exact seed/phase matrix and rendered prompt hash retention;
+- structural validation of exact allowed placeholders in frozen template
+  UTF-8 bytes before substitution, with missing, duplicate, and unknown marker
+  rejection;
+- single-pass template-segment insertion that never scans injected canonical
+  JSON for template syntax, including four synthetic literal-`{{` collision
+  patterns across all 24 OS/NR phase-1 attempt records;
 - absence of source values, packet bodies, and prompt bodies from receipts;
 - explicit RR phase-1 dynamic status;
 - absent, incomplete, duplicate, extra, mismatched-hash, wrong-runtime, and
@@ -87,6 +110,8 @@ Reopen the design rather than weakening checks if:
 
 - the upstream manifest, prompt bundle, direct-route contract, seeds, caps,
   or model/runtime identity drifts;
+- a new template placeholder is proposed, an allowed marker is missing or
+  duplicated, or injected packet bytes are interpreted as template syntax;
 - the authorized extraction cannot preserve exact JSON values represented by
   the manifest;
 - exact GGUF tokenizer evidence cannot bind each prompt hash uniquely;
@@ -182,6 +207,14 @@ phase-0 state. The receipt instead retains 306 dynamic records with:
 CANNOT_CHECK_DYNAMIC_RR_PHASE0_STATE_REQUIRED
 ```
 
+For every frozen phase, the implementation validates the exact allowed marker
+declaration and the original template UTF-8 bytes before substitution. Each
+allowed marker must occur exactly once and any unknown template marker is
+rejected. Rendering then performs one pass over template segments: replacement
+text is inserted as data and is never searched or replaced again. Therefore a
+literal `{{`, `}}`, or marker-shaped string inside injected canonical packet
+JSON is data, while the same syntax in the frozen template remains fail-closed.
+
 The exact inference tokenizer is the hardcoded GGUF identity: repository,
 revision, filename, 18,556,689,568 bytes, and SHA-256
 `fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad`.
@@ -227,6 +260,13 @@ post-green hardening audit and also followed red/green order.
    rollback behavior that never deletes the replacement.
 9. GREEN: all 26 tests passed after final output identity verification and
    identity-aware rollback were added.
+10. Renderer-collision RED: the four-pattern synthetic reproduction raised
+    exact `ContractError: prompt template OS_PHASE1 has unreplaced marker or
+    missing LF`; the structural template validator also failed with
+    `AssertionError: ContractError not raised` for a missing marker.
+11. GREEN: all 28 tests passed after template-byte validation and single-pass
+    segment insertion; the synthetic matrix retained all 24 OS/NR phase-1
+    records for the four affected ID patterns.
 
 Hostile coverage includes field/type/hash drift, source task-set/order drift,
 duplicate JSON members, non-finite JSON, every principal token-ledger mismatch,
@@ -237,7 +277,10 @@ ledger agrees, rejects receipt-only live identity, retains descriptor bytes
 across an input rename, races an output-parent rename inside `openat`, and
 forces an input swap immediately after output write to prove receipt rollback.
 It also replaces the output name after write to prove detection without
-deleting the replacement.
+deleting the replacement. The renderer repair adds exact allowed-placeholder
+validation, missing/duplicate/unknown marker rejection, and four invented
+literal-double-open-brace recovered-packet patterns. No protected body from the
+adverse run is embedded in this packet.
 
 ## Focused verification
 

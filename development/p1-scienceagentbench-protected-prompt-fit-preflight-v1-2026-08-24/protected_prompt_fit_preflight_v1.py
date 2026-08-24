@@ -77,6 +77,39 @@ PHASE_TO_ARM = {
     "NR_PHASE0": "NR",
     "NR_PHASE1": "NR",
 }
+ALLOWED_TEMPLATE_MARKERS_BY_PHASE = {
+    "RR_PHASE0": ("{{ATTEMPT_ORDINAL}}", "{{MASKED_PACKET_JSON}}"),
+    "RR_PHASE1": (
+        "{{ATTEMPT_ORDINAL}}",
+        "{{PHASE0_STATE_JSON}}",
+        "{{PHASE0_STATE_SHA256}}",
+        "{{RECOVERED_PACKET_JSON}}",
+    ),
+    "OS_PHASE1": ("{{ATTEMPT_ORDINAL}}", "{{RECOVERED_PACKET_JSON}}"),
+    "NR_PHASE0": ("{{ATTEMPT_ORDINAL}}", "{{MASKED_PACKET_JSON}}"),
+    "NR_PHASE1": ("{{ATTEMPT_ORDINAL}}", "{{RECOVERED_PACKET_JSON}}"),
+}
+TEMPLATE_MARKER_POLICY = {
+    "validation_scope": "FROZEN_TEMPLATE_UTF8_BYTES_BEFORE_SUBSTITUTION",
+    "allowed_markers_by_phase": {
+        phase_id: list(markers)
+        for phase_id, markers in ALLOWED_TEMPLATE_MARKERS_BY_PHASE.items()
+    },
+    "marker_multiplicity": "EACH_ALLOWED_MARKER_EXACTLY_ONCE",
+    "unknown_template_markers": "FORBIDDEN",
+    "substitution": "SINGLE_PASS_TEMPLATE_SEGMENT_INSERTION",
+    "injected_json_double_braces": "DATA_NOT_TEMPLATE_SYNTAX",
+}
+RENDERER_COLLISION_REPAIR_BOUNDARY = {
+    "reported_pre_receipt_status": "FAIL_BEFORE_RECEIPT",
+    "reported_probe_counts": {"total": 1224, "pass": 1200, "fail": 24},
+    "reported_affected_instance_ids": ["4", "10", "88", "89"],
+    "reported_failures_by_phase": {"OS_PHASE1": 12, "NR_PHASE1": 12},
+    "reported_failure_cause": "ALL_AND_ONLY_RECOVERED_PACKET_LITERAL_DOUBLE_OPEN_BRACE_COLLISIONS",
+    "adverse_result_packet": "PRESERVED_UNCHANGED_IN_SEPARATE_SOURCE_LANE",
+    "repair_validation": "SYNTHETIC_ONLY",
+    "production_rerun_required": True,
+}
 SEED_SCHEDULE = {"1": 101, "2": 202, "3": 303}
 PHASE_OUTPUT_CAPS = {
     "RR_PHASE0": 1024,
@@ -229,6 +262,8 @@ def _contract_semantics(contract: Mapping[str, Any]) -> None:
         raise ContractError("protected prompt-fit contract cannot grant execution authority")
     if contract.get("official_outcomes_opened") != 0:
         raise ContractError("protected prompt-fit contract outcomes boundary mismatch")
+    if contract.get("renderer_collision_repair_boundary") != RENDERER_COLLISION_REPAIR_BOUNDARY:
+        raise ContractError("renderer collision repair boundary mismatch")
     prompt_matrix = _mapping(contract.get("prompt_matrix"), "prompt matrix")
     if prompt_matrix.get("context_window_tokens") != CONTEXT_WINDOW_TOKENS:
         raise ContractError("prompt matrix context window mismatch")
@@ -242,6 +277,8 @@ def _contract_semantics(contract: Mapping[str, Any]) -> None:
         raise ContractError("prompt matrix static record count mismatch")
     if prompt_matrix.get("dynamic_rr_phase1_records_for_102_tasks") != 306:
         raise ContractError("prompt matrix dynamic record count mismatch")
+    if prompt_matrix.get("template_marker_policy") != TEMPLATE_MARKER_POLICY:
+        raise ContractError("prompt matrix template marker policy mismatch")
     token_policy = _mapping(contract.get("token_measurement_policy"), "token policy")
     if token_policy.get("substitute_tokenizer_allowed") is not False:
         raise ContractError("substitute tokenizer must remain forbidden")
@@ -436,6 +473,13 @@ def _validate_prompt_bundle(prompt_bundle: Mapping[str, Any]) -> None:
         "NR_PHASE1",
     ):
         raise ContractError("direct-route prompt template order mismatch")
+    for phase_id in ALLOWED_TEMPLATE_MARKERS_BY_PHASE:
+        template = _mapping(templates.get(phase_id), f"prompt template {phase_id}")
+        text = template.get("text")
+        markers = template.get("markers")
+        if not isinstance(text, str) or not isinstance(markers, list):
+            raise ContractError(f"prompt template {phase_id} text or markers invalid")
+        _validate_template_marker_structure(phase_id, text, markers)
 
 
 def _manifest_record_binding(record: Mapping[str, Any]) -> str:
@@ -525,6 +569,44 @@ def packetize_bound_row(
     }
 
 
+def _validate_template_marker_structure(
+    phase_id: str,
+    text: str,
+    markers: Sequence[Any],
+) -> tuple[str, ...]:
+    expected = ALLOWED_TEMPLATE_MARKERS_BY_PHASE.get(phase_id)
+    if expected is None:
+        raise ContractError(f"prompt template phase is unknown: {phase_id}")
+    if any(not isinstance(marker, str) for marker in markers):
+        raise ContractError(f"prompt template {phase_id} marker declaration is invalid")
+    if len(markers) != len(set(markers)):
+        raise ContractError(f"prompt template {phase_id} has duplicate marker declaration")
+    if tuple(markers) != expected:
+        raise ContractError(f"prompt template {phase_id} marker declaration mismatch")
+    try:
+        template_bytes = text.encode("utf-8")
+    except UnicodeEncodeError as exc:
+        raise ContractError(f"prompt template {phase_id} is not UTF-8") from exc
+    if not template_bytes.endswith(b"\n"):
+        raise ContractError(f"prompt template {phase_id} is missing terminal LF")
+    residual = template_bytes
+    for marker in expected:
+        marker_bytes = marker.encode("ascii")
+        count = template_bytes.count(marker_bytes)
+        if count == 0:
+            raise ContractError(
+                f"prompt template {phase_id} is missing required template marker: {marker}"
+            )
+        if count != 1:
+            raise ContractError(
+                f"prompt template {phase_id} has duplicate template marker: {marker}"
+            )
+        residual = residual.replace(marker_bytes, b"", 1)
+    if b"{{" in residual or b"}}" in residual:
+        raise ContractError(f"prompt template {phase_id} has unknown template marker syntax")
+    return expected
+
+
 def _render_template(
     prompt_bundle: Mapping[str, Any], phase_id: str, replacements: Mapping[str, str]
 ) -> bytes:
@@ -534,18 +616,21 @@ def _render_template(
     markers = template.get("markers")
     if not isinstance(text, str) or not isinstance(markers, list):
         raise ContractError(f"prompt template {phase_id} text or markers invalid")
-    if len(markers) != len(set(markers)) or set(markers) != set(replacements):
+    expected = _validate_template_marker_structure(phase_id, text, markers)
+    if set(expected) != set(replacements):
         raise ContractError(f"prompt template {phase_id} replacement markers mismatch")
-    rendered = text
-    for marker in markers:
-        if not isinstance(marker, str) or rendered.count(marker) != 1:
-            raise ContractError(f"prompt template {phase_id} marker count mismatch")
+    for marker in expected:
         replacement = replacements[marker]
         if not isinstance(replacement, str):
             raise ContractError(f"prompt template {phase_id} replacement must be text")
-        rendered = rendered.replace(marker, replacement)
-    if "{{" in rendered or "}}" in rendered or not rendered.endswith("\n"):
-        raise ContractError(f"prompt template {phase_id} has unreplaced marker or missing LF")
+    segments: list[str] = []
+    cursor = 0
+    for offset, marker in sorted((text.index(marker), marker) for marker in expected):
+        segments.append(text[cursor:offset])
+        segments.append(replacements[marker])
+        cursor = offset + len(marker)
+    segments.append(text[cursor:])
+    rendered = "".join(segments)
     try:
         return rendered.encode("utf-8")
     except UnicodeEncodeError as exc:

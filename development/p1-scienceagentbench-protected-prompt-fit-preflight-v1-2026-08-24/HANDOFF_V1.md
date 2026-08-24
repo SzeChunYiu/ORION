@@ -12,6 +12,14 @@ The packet does **not** establish production admissibility. It does not modify
 or authorize the Runner, adapter, direct generation driver, evaluator,
 analysis, or any other lane.
 
+The first owner-authorized no-ledger preflight remains an adverse
+`FAIL_BEFORE_RECEIPT` result: 1,200/1,224 probes passed and 24 failed, all and
+only IDs `4`, `10`, `88`, and `89`, split 12 `OS_PHASE1` and 12 `NR_PHASE1`,
+because literal `{{` bytes in recovered packet JSON were incorrectly treated
+as unreplaced template syntax. Its result packet is preserved unchanged in the
+separate source lane. This repair is synthetic only and does not revise that
+historical result.
+
 ## What is now bound
 
 - Exact merged mask manifest and verified Parquet identity.
@@ -23,6 +31,12 @@ analysis, or any other lane.
   held descriptor. An external source-receipt SHA-256 is provenance only.
 - Exact direct-route contract, prompt bundle, driver, canonical insertion
   rule, paired seeds, context window, and phase output caps.
+- Exact allowed marker declarations and marker occurrences in the original
+  frozen template UTF-8 bytes before substitution. Missing, duplicate, and
+  unknown template markers fail closed.
+- One-pass template-segment insertion: injected canonical JSON is data and is
+  never rescanned for `{{...}}` syntax. Four invented collision patterns retain
+  all 24 OS/NR phase-1 attempt bindings in synthetic validation.
 - Exact seven-field authorized row shape with no extra fields.
 - Every task ID/domain and all five source values against the corresponding
   manifest record's type, canonical byte count, field SHA-256, and aggregate
@@ -137,6 +151,11 @@ If any supplied static token count plus its frozen phase cap exceeds 32,768,
 the adverse `DOES_NOT_FIT_FROM_BOUND_TOKEN_LEDGER` result is retained. Do not
 truncate, shift context, change the cap, drop the task, or revise the design
 after seeing tasks or outcomes.
+
+The prior 24 renderer failures are not retroactively converted to passes. A
+fresh owner-authorized preflight must be run after this repair, must retain its
+own receipt or typed pre-receipt failure, and must be interpreted independently
+under the same lower claim boundary.
 
 ## Review and next authority gate
 
