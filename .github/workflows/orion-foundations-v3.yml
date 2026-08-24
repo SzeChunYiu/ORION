@@ -23,24 +23,26 @@ jobs:
       - name: Reject execution-lane edits
         shell: bash
         env:
-          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           PUSH_BEFORE_SHA: ${{ github.event.before }}
           EVENT_SHA: ${{ github.sha }}
         run: |
           if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
-            base="$PR_BASE_SHA"
             head="$PR_HEAD_SHA"
+            git cat-file -e "$head^{commit}" 2>/dev/null || git fetch origin "$head"
+            git fetch origin main
+            base="$(git merge-base origin/main "$head")"
           else
             base="$PUSH_BEFORE_SHA"
             head="$EVENT_SHA"
             if [[ -z "$base" || "$base" == "0000000000000000000000000000000000000000" ]]; then
               base="$head^"
             fi
+            git cat-file -e "$base^{commit}" 2>/dev/null || git fetch origin "$base"
+            git cat-file -e "$head^{commit}" 2>/dev/null || git fetch origin "$head"
           fi
 
-          git cat-file -e "$base^{commit}" 2>/dev/null || git fetch origin "$base"
-          git cat-file -e "$head^{commit}" 2>/dev/null || git fetch origin "$head"
+          echo "Auditing authored diff: $base..$head"
           git diff --name-only "$base" "$head" | tee /tmp/foundations-v3-paths.txt
 
           unexpected="$(grep -Ev '^(research/orion-foundations-v3/.*|\.github/workflows/orion-foundations-v3\.yml)$' /tmp/foundations-v3-paths.txt || true)"
