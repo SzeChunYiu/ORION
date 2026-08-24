@@ -3,11 +3,11 @@
   "authority": "SYNTHETIC_NONBENCHMARK_VALIDATION_ONLY__NO_PRODUCTION_OR_SCIENTIFIC_AUTHORITY",
   "status": "PASS_SYNTHETIC_HOSTILE_VALIDATION",
   "artifact_sha256": {
-    "DIRECT_ROUTE_FREEZE_CONTRACT_V1.json": "d927498d78d8adea3f9362e86699e89846e47fc55217bb83c8dd707a606509bd",
+    "DIRECT_ROUTE_FREEZE_CONTRACT_V1.json": "67e586c59f6b30beac7cab6e94cf2d176b2a1536a20ac8e9138fc8c7860e98f4",
     "DIRECT_ROUTE_PROMPT_BUNDLE_V1.json": "03bfbf7e0870f9b385ee8ff9258df9e083fa9baa0813471795b9c80bafd1ebe6",
-    "direct_route_generation_driver_v1.py": "d74e8c1ed1558b613860d8ae4ee7d49b95afef8ce4060549f93a7484b91f4c90"
+    "direct_route_generation_driver_v1.py": "23d0a7a1bfee2060f44e26a418564061d8aca412093ba930351ecf33a913f480"
   },
-  "tests": 17,
+  "tests": 23,
   "synthetic_arm_attempts": {
     "RR": 1,
     "OS": 1,
@@ -16,8 +16,18 @@
   "tdd_witness": {
     "bootstrap_red": "AssertionError: False is not true : direct-route driver is not implemented",
     "full_suite_red": "Ran 17 tests; FAILED (failures=17)",
-    "pre_receipt_red": "Ran 17 tests; FAILED (failures=1); synthetic receipt is missing"
+    "pre_receipt_red": "Ran 17 tests; FAILED (failures=1); synthetic receipt is missing",
+    "reviewer_repair_red": "Ran 23 tests; 17 prior tests passed and 6 new wall-time/output-integrity regressions failed"
   },
+  "wall_time_source": "EXACT_ADAPTER_CLOCK_MONOTONIC_RAW_FIRST_TO_FINAL_ELAPSED_NS",
+  "client_or_server_duration_trusted": false,
+  "local_execution_usage": {
+    "semantics": "ACTUAL_TOOL_OR_CANDIDATE_PROGRAM_EXECUTION_ONLY",
+    "tool_calls": 0,
+    "candidate_execution_count": 0,
+    "actual_seconds": 0.0
+  },
+  "output_policy": "NEW_ABSOLUTE_O_EXCL_MODE_0600_NOFOLLOW__PRE_READ_LEXICAL_RESOLVED_CASEFOLD_INODE_ALIAS_REJECTION__FSYNC_REREAD_HASH_IDENTITY__ROLLBACK_UNCHANGED_CREATED_FILE",
   "owner_prospective_budget_status": "FROZEN_BEFORE_TASK_OR_OUTCOME_OPENING",
   "task_fit_status": "CANNOT_CHECK_BEFORE_TASK_OPENING",
   "adapter_capture_status": "TIMING_CAPTURED__ALLOCATION_FINALIZATION_PENDING",

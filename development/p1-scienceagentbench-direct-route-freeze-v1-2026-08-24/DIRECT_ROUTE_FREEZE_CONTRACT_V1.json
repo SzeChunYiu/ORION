@@ -190,7 +190,8 @@
         "NR_PHASE1": 7168
       }
     },
-    "rationale": "With context 32768, the two-phase arms can admit at most 31744 phase-0 prompt tokens plus 25600 phase-1 prompt tokens under the fixed phase caps, for the widest route-feasible equal cumulative input envelope 57344; OS retains the same acceptance envelope and the full 8192 output cap. The positive 30-second local cap covers bounded serialization, validation, and state handling and is required by unchanged Runner V1/V2.",
+    "rationale": "With context 32768, the two-phase arms can admit at most 31744 phase-0 prompt tokens plus 25600 phase-1 prompt tokens under the fixed phase caps, for the widest route-feasible equal cumulative input envelope 57344; OS retains the same acceptance envelope and the full 8192 output cap. The positive 30-second local cap is a matched prospective reserve required by unchanged Runner V1/V2; this generation-only driver forbids tool and candidate-program execution and therefore records actual local execution usage as zero.",
+    "local_execution_usage_semantics": "ACTUAL_TOOL_OR_CANDIDATE_PROGRAM_EXECUTION_ONLY__DIRECT_GENERATION_ROUTE_HAS_ZERO_EVENTS",
     "live_context_rule": "For every call, observed timings.prompt_n plus frozen phase n_predict must be less than or equal to 32768.",
     "truncation_allowed": false,
     "context_shift_allowed": false,

@@ -16,6 +16,8 @@ import http.client
 import importlib.util
 import json
 import math
+import os
+import stat
 from pathlib import Path
 from types import ModuleType
 from typing import Any, Mapping, Sequence
@@ -30,6 +32,23 @@ ADAPTER_PATH = (
     / "development/p1-scienceagentbench-lunarc-generation-adapter-v1-2026-08-24/sab_lunarc_generation_adapter_v1.py"
 )
 ADAPTER_SHA256 = "e46434fd37872a4ca7abce35375043bca2035fce52e3f36d611b1a03b98aefb9"
+DRIVER_PATH = Path(__file__).resolve()
+STATIC_UPSTREAM_RELATIVE_PATHS = (
+    "development/p1-scienceagentbench-runner-v1-2026-08-24/RUNNER_CONTRACT_V1.json",
+    "development/p1-scienceagentbench-runner-v1-2026-08-24/sab_verified_runner_v1.py",
+    "development/p1-scienceagentbench-runner-v2-cost-amendment-2026-08-24/RUNNER_V2_COST_AMENDMENT_CONTRACT.json",
+    "development/p1-scienceagentbench-runner-v2-cost-amendment-2026-08-24/sab_runner_v2_cost_amendment.py",
+    "development/p1-scienceagentbench-analysis-freeze-v1-2026-08-24/ANALYSIS_CONTRACT_V1.json",
+    "development/p1-scienceagentbench-lunarc-generation-adapter-v1-2026-08-24/LUNARC_GENERATION_ADAPTER_CONTRACT_V1.json",
+    "development/p1-scienceagentbench-lunarc-generation-adapter-v1-2026-08-24/sab_lunarc_generation_adapter_v1.py",
+    "development/p1-scienceagentbench-lunarc-generation-adapter-v1-2026-08-24/run_lunarc_attempt_v1.sh",
+    "development/p1-scienceagentbench-lunarc-longseed-mechanism-v1-2026-08-24/FROZEN_LONGSEED_MECHANISM_PROTOCOL_V1.json",
+    "development/p1-scienceagentbench-lunarc-longseed-mechanism-v1-2026-08-24/LONGSEED_MECHANISM_RECEIPT_V1.json",
+    "development/p1-scienceagentbench-lunarc-longseed-mechanism-v1-2026-08-24/PROMPT_PROVENANCE_V1.json",
+    "development/p1-scienceagentbench-lunarc-longseed-structured-v1-2026-08-24/FROZEN_LONGSEED_STRUCTURED_PROTOCOL_V1.json",
+    "development/p1-scienceagentbench-lunarc-longseed-structured-v1-2026-08-24/LONGSEED_STRUCTURED_RECEIPT_V1.json",
+    "development/p1-scienceagentbench-lunarc-longseed-structured-v1-2026-08-24/FROZEN_OUTPUT_SCHEMA_V1.json",
+)
 CONTEXT_WINDOW_TOKENS = 32768
 SEED_SCHEDULE = {"1": 101, "2": 202, "3": 303}
 PHASE_SEQUENCE_BY_ARM = {
@@ -525,6 +544,38 @@ def validate_completion_response(
     return copy.deepcopy(observed)
 
 
+def validate_no_local_execution_usage(
+    *,
+    tool_calls: int,
+    candidate_execution_count: int,
+    local_execution_wall_time_seconds: float,
+) -> float:
+    """Bind actual zero local candidate execution for this generation-only route.
+
+    Local JSON serialization and state validation are generation-driver
+    overhead inside the captured attempt interval; this Runner field denotes
+    local tool/candidate-program execution.  Neither operation exists in this
+    driver, so any nonzero event count or duration fails closed.
+    """
+
+    if isinstance(tool_calls, bool) or not isinstance(tool_calls, int) or tool_calls != 0:
+        raise ContractError("local execution usage requires tool_calls to equal zero")
+    if (
+        isinstance(candidate_execution_count, bool)
+        or not isinstance(candidate_execution_count, int)
+        or candidate_execution_count != 0
+    ):
+        raise ContractError("local execution usage requires candidate execution count zero")
+    if (
+        isinstance(local_execution_wall_time_seconds, bool)
+        or not isinstance(local_execution_wall_time_seconds, (int, float))
+        or not math.isfinite(local_execution_wall_time_seconds)
+        or local_execution_wall_time_seconds != 0.0
+    ):
+        raise ContractError("local execution wall time must equal actual zero")
+    return 0.0
+
+
 def _render_template(
     prompt_bundle: Mapping[str, Any], phase_id: str, replacements: Mapping[str, str]
 ) -> str:
@@ -637,6 +688,13 @@ def execute_attempt(
     if not callable(raw_clock):
         raise ContractError("injected raw clock must be callable")
 
+    capture_clock_readings: list[int] = []
+
+    def recorded_capture_clock() -> int:
+        value = raw_clock()
+        capture_clock_readings.append(value)
+        return value
+
     try:
         capture = adapter_module.GenerationAttemptCapture(
             plan=validated_plan,
@@ -646,7 +704,7 @@ def execute_attempt(
             attempt=attempt,
             slurm_job_identity=slurm_job_identity,
             slurm_in_job_snapshot_sha256=slurm_in_job_snapshot_sha256,
-            raw_clock=raw_clock,
+            raw_clock=recorded_capture_clock,
         )
     except Exception as exc:
         raise ContractError(f"adapter capture initialization failed: {exc}") from exc
@@ -724,10 +782,26 @@ def execute_attempt(
         raise ContractError("cumulative input tokens exceed the equal acceptance budget")
     if output_tokens > budget["total_output_token_cap"]:
         raise ContractError("cumulative output tokens exceed the equal acceptance budget")
-    wall_seconds = sum(
-        value
-        for value in (record.get("client_wall_seconds", 0.0) for record in response_records)
-        if isinstance(value, (int, float)) and not isinstance(value, bool)
+    if len(capture_clock_readings) != 2:
+        raise ContractError("adapter capture did not expose exactly two raw clock boundaries")
+    start_ns, end_ns = capture_clock_readings
+    if (
+        isinstance(start_ns, bool)
+        or isinstance(end_ns, bool)
+        or not isinstance(start_ns, int)
+        or not isinstance(end_ns, int)
+        or start_ns < 0
+        or end_ns < start_ns
+    ):
+        raise ContractError("adapter capture raw clock boundaries are invalid")
+    elapsed_ns = end_ns - start_ns
+    wall_seconds = elapsed_ns / 1_000_000_000
+    if wall_seconds > budget["wall_time_seconds_cap"]:
+        raise ContractError("actual capture wall_time_seconds exceeds the matched wall cap")
+    local_execution_wall_time_seconds = validate_no_local_execution_usage(
+        tool_calls=0,
+        candidate_execution_count=0,
+        local_execution_wall_time_seconds=0.0,
     )
     raw_outputs = [
         {"phase_id": phase, "content": response_records[index]["content"]}
@@ -742,16 +816,21 @@ def execute_attempt(
         "output_tokens": output_tokens,
         "tool_calls": 0,
         "wall_time_seconds": wall_seconds,
-        "local_execution_wall_time_seconds": 0.0,
+        "local_execution_wall_time_seconds": local_execution_wall_time_seconds,
         "billed_cost_usd": None,
         "failure": None,
         "raw_output_sha256": canonical_hash(raw_outputs),
         "candidate_program_sha256": sha256_bytes(final["program"].encode("utf-8")),
     }
     try:
-        return capture.finish(base_record)
+        receipt = capture.finish(base_record)
     except Exception as exc:
         raise ContractError(f"adapter capture finalization failed: {exc}") from exc
+    if receipt.get("monotonic_elapsed_ns") != str(elapsed_ns):
+        raise ContractError("adapter receipt elapsed time differs from recorded raw clock interval")
+    if receipt["base_candidate_record"].get("wall_time_seconds") != wall_seconds:
+        raise ContractError("adapter receipt wall time differs from recorded raw clock interval")
+    return receipt
 
 
 class LoopbackCompletionClient:
@@ -793,8 +872,223 @@ def load_adapter_module() -> ModuleType:
     return module
 
 
-def _write_canonical_json(path: Path, value: Any) -> None:
-    path.write_bytes(canonical_json_bytes(value) + b"\n")
+def _write_new_canonical_json_with_identity(
+    path: Path | str, value: Any
+) -> tuple[str, tuple[int, int]]:
+    """Create one output with O_EXCL/no-follow and verify bytes and identity."""
+
+    candidate = Path(path)
+    if not candidate.is_absolute():
+        raise ContractError("output destination must be absolute")
+    _ensure_output_parent_has_no_symlink(candidate, "output destination")
+    payload = canonical_json_bytes(value) + b"\n"
+    flags = os.O_RDWR | os.O_CREAT | os.O_EXCL
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    try:
+        fd = os.open(candidate, flags, 0o600)
+    except FileExistsError as exc:
+        raise ContractError(f"output destination already exists: {candidate}") from exc
+    except OSError as exc:
+        raise ContractError(f"output destination cannot be created: {candidate}") from exc
+    try:
+        view = memoryview(payload)
+        while view:
+            written = os.write(fd, view)
+            if written <= 0:
+                raise ContractError(f"output write made no progress: {candidate}")
+            view = view[written:]
+        os.fsync(fd)
+        info = os.fstat(fd)
+        if not stat.S_ISREG(info.st_mode):
+            raise ContractError(f"output destination is not a regular file: {candidate}")
+        os.lseek(fd, 0, os.SEEK_SET)
+        chunks: list[bytes] = []
+        while True:
+            chunk = os.read(fd, 1024 * 1024)
+            if not chunk:
+                break
+            chunks.append(chunk)
+        observed = b"".join(chunks)
+        if observed != payload:
+            raise ContractError(f"output byte/hash verification failed: {candidate}")
+        path_info = candidate.lstat()
+        identity = (info.st_dev, info.st_ino)
+        if not stat.S_ISREG(path_info.st_mode) or (
+            path_info.st_dev,
+            path_info.st_ino,
+        ) != identity:
+            raise ContractError(f"output destination identity changed: {candidate}")
+        return sha256_bytes(observed), identity
+    except Exception as exc:
+        try:
+            info = os.fstat(fd)
+            path_info = candidate.lstat()
+            if stat.S_ISREG(path_info.st_mode) and (
+                path_info.st_dev,
+                path_info.st_ino,
+            ) == (info.st_dev, info.st_ino):
+                candidate.unlink()
+        except OSError:
+            pass
+        if isinstance(exc, ContractError):
+            raise
+        raise ContractError(f"output write or verification failed: {candidate}") from exc
+    finally:
+        os.close(fd)
+
+
+def write_new_canonical_json(path: Path | str, value: Any) -> str:
+    digest, _ = _write_new_canonical_json_with_identity(path, value)
+    return digest
+
+
+def _rollback_unchanged_output(
+    path: Path | str, expected_sha256: str, expected_identity: tuple[int, int]
+) -> bool:
+    """Remove only a process-created regular output that remains unchanged."""
+
+    candidate = Path(path)
+    flags = os.O_RDONLY
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    try:
+        fd = os.open(candidate, flags)
+    except OSError:
+        return False
+    try:
+        info = os.fstat(fd)
+        if not stat.S_ISREG(info.st_mode) or (
+            info.st_dev,
+            info.st_ino,
+        ) != expected_identity:
+            return False
+        chunks: list[bytes] = []
+        while True:
+            chunk = os.read(fd, 1024 * 1024)
+            if not chunk:
+                break
+            chunks.append(chunk)
+        if sha256_bytes(b"".join(chunks)) != expected_sha256:
+            return False
+        path_info = candidate.lstat()
+        if not stat.S_ISREG(path_info.st_mode) or (
+            path_info.st_dev,
+            path_info.st_ino,
+        ) != expected_identity:
+            return False
+        candidate.unlink()
+        return True
+    except OSError:
+        return False
+    finally:
+        os.close(fd)
+
+
+def _ensure_output_parent_has_no_symlink(path: Path, label: str) -> None:
+    current = path.parent
+    while True:
+        try:
+            info = current.lstat()
+        except OSError as exc:
+            raise ContractError(f"{label} parent cannot be inspected: {current}") from exc
+        if stat.S_ISLNK(info.st_mode):
+            raise ContractError(f"{label} parent contains a symlink component: {current}")
+        if not stat.S_ISDIR(info.st_mode):
+            raise ContractError(f"{label} parent is not a directory: {current}")
+        if current.parent == current:
+            break
+        current = current.parent
+
+
+def validate_cli_paths(
+    inputs: Mapping[str, Path],
+    outputs: Mapping[str, Path],
+    upstream_paths: Mapping[str, Path],
+) -> None:
+    """Reject every lexical, resolved, case-fold, symlink, or inode alias."""
+
+    all_paths: dict[str, Path] = {}
+    for group_name, group in (
+        ("input", inputs),
+        ("output", outputs),
+        ("upstream", upstream_paths),
+    ):
+        for label, path in group.items():
+            candidate = Path(path)
+            composite = f"{group_name} {label}"
+            if composite in all_paths:
+                raise ContractError(f"duplicate CLI path label: {composite}")
+            if not candidate.is_absolute():
+                raise ContractError(f"{composite} must be absolute")
+            all_paths[composite] = candidate
+
+    lexical: dict[str, Path] = {}
+    resolved: dict[str, Path] = {}
+    lexical_casefold: dict[str, str] = {}
+    resolved_casefold: dict[str, str] = {}
+    identities: dict[str, tuple[int, int]] = {}
+    lstat_info: dict[str, os.stat_result] = {}
+    for label, path in all_paths.items():
+        lexical[label] = Path(os.path.normpath(os.fspath(path)))
+        resolved[label] = path.resolve(strict=False)
+        lexical_casefold[label] = os.fspath(lexical[label]).casefold()
+        resolved_casefold[label] = os.fspath(resolved[label]).casefold()
+        try:
+            link_info = path.lstat()
+        except FileNotFoundError:
+            continue
+        except OSError as exc:
+            raise ContractError(f"{label} cannot be inspected: {path}") from exc
+        lstat_info[label] = link_info
+        try:
+            info = path.stat()
+        except OSError as exc:
+            raise ContractError(f"{label} target cannot be inspected: {path}") from exc
+        identities[label] = (info.st_dev, info.st_ino)
+
+    labels = list(all_paths)
+    for left_index, left in enumerate(labels):
+        for right in labels[left_index + 1 :]:
+            if lexical[left] == lexical[right]:
+                raise ContractError(f"CLI paths alias lexically: {left} and {right}")
+            if resolved[left] == resolved[right]:
+                raise ContractError(f"CLI paths alias after resolution: {left} and {right}")
+            if lexical_casefold[left] == lexical_casefold[right]:
+                raise ContractError(f"CLI paths alias after lexical case-fold: {left} and {right}")
+            if resolved_casefold[left] == resolved_casefold[right]:
+                raise ContractError(f"CLI paths alias after resolved case-fold: {left} and {right}")
+            if (
+                left in identities
+                and right in identities
+                and identities[left] == identities[right]
+            ):
+                raise ContractError(f"CLI paths alias by device/inode: {left} and {right}")
+
+    output_labels = {f"output {label}" for label in outputs}
+    for label, path in all_paths.items():
+        if label in output_labels:
+            _ensure_output_parent_has_no_symlink(path, label)
+            if label in lstat_info or path.is_symlink():
+                raise ContractError(f"output destination already exists: {label}: {path}")
+            continue
+        if label not in lstat_info:
+            raise ContractError(f"{label} does not exist: {path}")
+        if stat.S_ISLNK(lstat_info[label].st_mode):
+            raise ContractError(f"{label} is a symlink and is forbidden: {path}")
+        if not stat.S_ISREG(lstat_info[label].st_mode):
+            raise ContractError(f"{label} is not a regular file: {path}")
+
+
+def _static_upstream_paths() -> dict[str, Path]:
+    result = {
+        "direct route driver": DRIVER_PATH,
+        "direct route contract": CONTRACT_PATH,
+        "direct route prompt bundle": PROMPT_BUNDLE_PATH,
+    }
+    for index, relative in enumerate(STATIC_UPSTREAM_RELATIVE_PATHS, 1):
+        result[f"frozen dependency {index:02d}"] = REPO_ROOT / relative
+    return result
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -818,6 +1112,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
 
+    validate_cli_paths(
+        {
+            "run plan": args.run_plan,
+            "owner selection": args.owner_selection,
+            "runtime binding": args.runtime_binding,
+            "masked packet": args.masked_packet,
+            "recovered packet": args.recovered_packet,
+            "SLURM job identity": args.slurm_job_identity,
+        },
+        {"attempt receipt": args.output},
+        _static_upstream_paths(),
+    )
     plan = strict_json_object_from_file(args.run_plan, "run plan")
     if sha256_file(args.run_plan) != args.run_plan_sha256:
         raise ContractError("run-plan exact-byte SHA-256 mismatch")
@@ -849,7 +1155,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         slurm_job_identity=job_identity,
         slurm_in_job_snapshot_sha256=args.slurm_in_job_snapshot_sha256,
     )
-    _write_canonical_json(args.output, receipt)
+    write_new_canonical_json(args.output, receipt)
     return 0
 
 

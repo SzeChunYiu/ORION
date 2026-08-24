@@ -13,9 +13,12 @@ import copy
 import hashlib
 import importlib.util
 import json
+import os
+import tempfile
 import unittest
 from pathlib import Path
 from typing import Any
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parent
@@ -178,7 +181,6 @@ class SyntheticClient:
             "timings": {"cache_n": 0, "prompt_n": 100, "predicted_n": 12},
             "tokens_predicted": 12,
             "truncated": False,
-            "client_wall_seconds": 0.25,
         }
 
 
@@ -193,11 +195,17 @@ class DirectRouteFreezeSyntheticTests(unittest.TestCase):
         self.assertTrue(PROMPT_PATH.is_file(), "prompt bundle is missing")
         return json.loads(CONTRACT_PATH.read_text()), json.loads(PROMPT_PATH.read_text())
 
-    def execute(self, arm: str, client: SyntheticClient | None = None):
+    def execute(
+        self,
+        arm: str,
+        client: SyntheticClient | Any | None = None,
+        *,
+        clock_values: tuple[int, int] = (10_000_000_000, 12_000_000_000),
+    ):
         contract, prompt = self.packet()
         plan = synthetic_plan(contract, prompt)
         chosen_client = client or SyntheticClient()
-        ticks = iter((10_000_000_000, 12_000_000_000))
+        ticks = iter(clock_values)
         receipt = self.api("execute_attempt")(
             plan=plan,
             contract=contract,
@@ -474,6 +482,211 @@ class DirectRouteFreezeSyntheticTests(unittest.TestCase):
             "direct_route_generation_driver_v1.py": sha256_file(DRIVER_PATH),
         }
         self.assertEqual(receipt["artifact_sha256"], expected)
+
+    def test_18_real_loopback_client_uses_capture_clock_for_actual_wall_time(self) -> None:
+        response_body = canonical_bytes(
+            {
+                "content": '{"kind":"FINAL_PROGRAM","program":"print(1)"}',
+                "timings": {"cache_n": 0, "prompt_n": 100, "predicted_n": 12},
+                "tokens_predicted": 12,
+                "truncated": False,
+            }
+        )
+        calls: list[tuple[Any, ...]] = []
+
+        class FakeResponse:
+            status = 200
+
+            def read(self) -> bytes:
+                return response_body
+
+        class FakeConnection:
+            def __init__(self, host: str, port: int, timeout: float) -> None:
+                calls.append(("connect", host, port, timeout))
+
+            def request(self, method: str, path: str, **kwargs: Any) -> None:
+                calls.append(("request", method, path, kwargs))
+
+            def getresponse(self) -> FakeResponse:
+                return FakeResponse()
+
+            def close(self) -> None:
+                calls.append(("close",))
+
+        with mock.patch.object(driver.http.client, "HTTPConnection", FakeConnection):
+            receipt, _, _, _ = self.execute(
+                "OS",
+                driver.LoopbackCompletionClient(),
+                clock_values=(10_000_000_000, 12_500_000_000),
+            )
+        self.assertEqual(receipt["monotonic_elapsed_ns"], "2500000000")
+        self.assertEqual(receipt["base_candidate_record"]["wall_time_seconds"], 2.5)
+        self.assertEqual(calls[0][0], "connect")
+        self.assertEqual(calls[1][1:3], ("POST", "/completion"))
+
+        with self.assertRaises(driver.ContractError) as caught:
+            self.execute(
+                "OS",
+                SyntheticClient(),
+                clock_values=(0, 1_800_000_000_001),
+            )
+        self.assertIn("wall", str(caught.exception))
+
+    def test_19_local_execution_zero_is_validated_actual_no_execution_usage(self) -> None:
+        validate = self.api("validate_no_local_execution_usage")
+        contract, _ = self.packet()
+        self.assertEqual(
+            contract["budget_owner_selection_interface"]["local_execution_usage_semantics"],
+            "ACTUAL_TOOL_OR_CANDIDATE_PROGRAM_EXECUTION_ONLY__DIRECT_GENERATION_ROUTE_HAS_ZERO_EVENTS",
+        )
+        self.assertEqual(
+            validate(
+                tool_calls=0,
+                candidate_execution_count=0,
+                local_execution_wall_time_seconds=0.0,
+            ),
+            0.0,
+        )
+        for kwargs in (
+            {"tool_calls": 1, "candidate_execution_count": 0, "local_execution_wall_time_seconds": 0.0},
+            {"tool_calls": 0, "candidate_execution_count": 1, "local_execution_wall_time_seconds": 0.0},
+            {"tool_calls": 0, "candidate_execution_count": 0, "local_execution_wall_time_seconds": 0.1},
+        ):
+            self.assert_contract_error(lambda kwargs=kwargs: validate(**kwargs), "local execution")
+        receipt, _, _, _ = self.execute("RR")
+        base = receipt["base_candidate_record"]
+        self.assertEqual(base["tool_calls"], 0)
+        self.assertEqual(base["local_execution_wall_time_seconds"], 0.0)
+
+    def test_20_new_output_is_exclusive_no_follow_and_never_overwrites_aliases(self) -> None:
+        write_new = self.api("write_new_canonical_json")
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
+            root = Path(directory)
+            source = root / "input.json"
+            source.write_bytes(b"sentinel-input\n")
+            before = source.read_bytes()
+
+            existing = root / "existing.json"
+            existing.write_bytes(b"sentinel-existing\n")
+            self.assert_contract_error(lambda: write_new(existing, {"x": 1}), "already exists")
+            self.assertEqual(existing.read_bytes(), b"sentinel-existing\n")
+
+            symlink_output = root / "symlink-output.json"
+            symlink_output.symlink_to(source)
+            self.assert_contract_error(lambda: write_new(symlink_output, {"x": 1}), "already exists")
+            self.assertEqual(source.read_bytes(), before)
+
+            hardlink_output = root / "hardlink-output.json"
+            os.link(source, hardlink_output)
+            self.assert_contract_error(lambda: write_new(hardlink_output, {"x": 1}), "already exists")
+            self.assertEqual(source.read_bytes(), before)
+
+            real_parent = root / "real-parent"
+            real_parent.mkdir()
+            linked_parent = root / "linked-parent"
+            linked_parent.symlink_to(real_parent, target_is_directory=True)
+            self.assert_contract_error(
+                lambda: write_new(linked_parent / "new.json", {"x": 1}), "symlink"
+            )
+            self.assertFalse((real_parent / "new.json").exists())
+
+            fresh = root / "fresh.json"
+            digest = write_new(fresh, {"x": 1})
+            self.assertEqual(digest, hashlib.sha256(b'{"x":1}\n').hexdigest())
+            self.assertEqual(fresh.read_bytes(), b'{"x":1}\n')
+
+    def test_21_cli_paths_reject_lexical_resolved_hardlink_and_casefold_aliases(self) -> None:
+        validate = self.api("validate_cli_paths")
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
+            root = Path(directory)
+            first = root / "CaseInput.json"
+            second = root / "second.json"
+            first.write_text("first")
+            second.write_text("second")
+            upstream = {"contract": CONTRACT_PATH.resolve(), "adapter": driver.ADAPTER_PATH.resolve()}
+            validate({"first": first, "second": second}, {"output": root / "fresh.json"}, upstream)
+            frozen_upstream = driver._static_upstream_paths()
+            self.assertEqual(len(frozen_upstream), 17)
+            self.assertEqual(len(set(frozen_upstream.values())), 17)
+            self.assertTrue(all(path.is_file() for path in frozen_upstream.values()))
+            self.assert_contract_error(
+                lambda: validate({"first": first}, {"output": CONTRACT_PATH.resolve()}, frozen_upstream),
+                "alias",
+            )
+
+            cases = [
+                ({"first": first}, {"output": first}, "alias"),
+                ({"first": first}, {"output": root / "caseinput.JSON"}, "alias"),
+                ({"first": Path("relative.json")}, {"output": root / "fresh.json"}, "absolute"),
+            ]
+            for inputs, outputs, fragment in cases:
+                self.assert_contract_error(
+                    lambda inputs=inputs, outputs=outputs: validate(inputs, outputs, upstream),
+                    fragment,
+                )
+
+            hardlink = root / "hardlink.json"
+            os.link(first, hardlink)
+            self.assert_contract_error(
+                lambda: validate({"first": first, "hardlink": hardlink}, {"output": root / "fresh2.json"}, upstream),
+                "device/inode",
+            )
+
+            real_parent = root / "real-parent"
+            real_parent.mkdir()
+            target = real_parent / "target.json"
+            target.write_text("target")
+            linked_parent = root / "linked-parent"
+            linked_parent.symlink_to(real_parent, target_is_directory=True)
+            self.assert_contract_error(
+                lambda: validate({"target": target}, {"output": linked_parent / "target.json"}, upstream),
+                "alias",
+            )
+
+    def test_22_failed_exclusive_write_rolls_back_only_created_output(self) -> None:
+        write_new = self.api("write_new_canonical_json")
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
+            output = Path(directory) / "failed.json"
+            with mock.patch.object(driver.os, "write", side_effect=OSError("synthetic write failure")):
+                self.assert_contract_error(lambda: write_new(output, {"x": 1}), "write")
+            self.assertFalse(output.exists())
+
+    def test_23_cli_alias_failure_preserves_every_input_byte(self) -> None:
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
+            root = Path(directory)
+            files = {}
+            for name in (
+                "run-plan.json",
+                "owner.json",
+                "runtime.json",
+                "masked.json",
+                "recovered.json",
+                "job.json",
+            ):
+                path = root / name
+                path.write_bytes(("sentinel:" + name + "\n").encode())
+                files[name] = path
+            before = {name: path.read_bytes() for name, path in files.items()}
+            argv = [
+                "--run-plan", str(files["run-plan.json"]),
+                "--owner-selection", str(files["owner.json"]),
+                "--runtime-binding", str(files["runtime.json"]),
+                "--masked-packet", str(files["masked.json"]),
+                "--recovered-packet", str(files["recovered.json"]),
+                "--task-id", "1",
+                "--arm-id", "OS",
+                "--attempt", "1",
+                "--run-plan-sha256", synthetic_hash("plan"),
+                "--slurm-job-identity", str(files["job.json"]),
+                "--slurm-in-job-snapshot-sha256", synthetic_hash("snapshot"),
+                "--output", str(files["run-plan.json"]),
+            ]
+            with self.assertRaises(driver.ContractError) as caught:
+                driver.main(argv)
+            self.assertIn("alias", str(caught.exception))
+            self.assertEqual(
+                {name: path.read_bytes() for name, path in files.items()}, before
+            )
 
 
 if __name__ == "__main__":

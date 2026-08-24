@@ -28,9 +28,24 @@ unchanged.
   requires `prompt_n + phase_cap <= 32768` without truncation.
 
 The 30-second positive local cap is deliberate: an earlier zero-cap proposal
-failed the unchanged Runner V1/V2 positive-cap invariant. The validator binds
-the corrected budget through the public adapter validator and rejects the zero
-mutation.
+failed the unchanged Runner V1/V2 positive-cap invariant. It is a matched
+prospective reserve. Actual local-execution usage is `0.0` because this
+generation-only driver has no tool or candidate-program execution path; the
+driver explicitly validates both event counts and the duration as zero. The
+validator binds the corrected cap through the public adapter validator,
+rejects a zero-cap mutation, and rejects unsupported nonzero actual usage.
+
+Actual attempt wall time comes from the exact first-to-final
+`CLOCK_MONOTONIC_RAW` boundaries already consumed by
+`GenerationAttemptCapture`, not a server or client duration field. The driver
+checks the matched cap and verifies nanosecond/second agreement in the final
+adapter receipt.
+
+CLI receipt output is new-file-only and input-safe: all input and frozen
+upstream paths are checked for lexical, resolved, case-fold, symlink, hardlink,
+and device/inode aliases before any caller input is read. Creation uses
+`O_EXCL`, mode `0600`, `O_NOFOLLOW`, fsync, descriptor reread, exact-byte hash
+and identity verification, with unchanged-created-file rollback on failure.
 
 ## What the synthetic gate establishes
 
@@ -43,6 +58,8 @@ mutation.
 - strict raw JSON and fail-closed cache/context/truncation handling;
 - RR state sealing, OS one-shot behavior, and NR reset isolation;
 - reuse of `GenerationAttemptCapture` with allocation finalization pending;
+- raw-clock-derived wall usage and explicit actual-zero local execution;
+- alias-safe, no-overwrite receipt creation and failure rollback;
 - exact lower claim boundary.
 
 It uses synthetic packets only and establishes no official task fit, candidate

@@ -90,6 +90,14 @@ Every `/completion` call passes through one existing
 `TIMING_CAPTURED__ALLOCATION_FINALIZATION_PENDING` and requires unchanged
 Runner V2 scheduler finalization before any allocation claim.
 
+Actual `wall_time_seconds` is derived only from the same two
+`CLOCK_MONOTONIC_RAW` nanosecond boundaries used by that adapter capture. The
+driver records the injected raw-clock reads without adding calls, converts the
+exact first-to-final elapsed nanoseconds to seconds, checks the 1,800-second
+cap, then confirms the finalized adapter receipt contains the same elapsed
+nanoseconds and base-record wall value. Server fields and client-supplied
+duration floats are not trusted as wall evidence.
+
 ## Owner-prospective equal budget freeze
 
 The owner selected the widest route-feasible equal acceptance envelope before
@@ -121,10 +129,30 @@ an over-limit task must fail closed rather than truncate or change caps.
 An initial owner proposal used `local_execution_seconds_cap=0`. The unchanged
 Runner V1 invariant inherited by Runner V2 requires both wall-time and local
 execution caps to be positive, so zero was not Runner-admissible. The final
-owner decision freezes 30 seconds equally across arms to cover bounded local
-serialization, validation, and state handling. The hostile validator includes
-a regression that sends the 30-second plan through the unchanged adapter and
-Runner V2, then confirms a zero-cap mutation is rejected.
+owner decision freezes a matched prospective 30-second reserve equally across
+arms. The ledger's actual `local_execution_wall_time_seconds` field denotes
+local tool or candidate-program execution, not JSON serialization or state
+validation. This generation-only driver has no such execution path: tools and
+candidate execution are both forbidden, their event counts are validated as
+zero, and actual local-execution usage is therefore exactly `0.0`. The hostile
+validator sends the positive-cap plan through unchanged Runner V2, rejects a
+zero-cap mutation, and rejects any nonzero local-execution event or duration.
+
+### Output evidence integrity
+
+The CLI validates paths before opening any caller input. Every caller input,
+the driver, contract, prompt bundle, and all fourteen exact upstream/repaired
+dependencies participate in pairwise lexical, resolved, case-folded, and
+device/inode alias checks. Paths must be absolute; input/upstream paths must be
+existing nonsymlink regular files; output parents may contain no symlink
+component; and the output must not exist or alias any input or upstream file.
+
+Receipt creation uses `O_EXCL`, mode `0600`, and `O_NOFOLLOW` where available.
+It fsyncs, rereads through the same descriptor, verifies exact bytes/hash and
+device/inode identity, and never overwrites. Any write or verification failure
+removes only the unchanged regular file created by this process. Hostile tests
+cover existing-file, direct-symlink, parent-symlink, hardlink, case-fold,
+resolved-path, write-failure rollback, and CLI input-preservation cases.
 
 ## TDD and synthetic validation
 
@@ -134,7 +162,11 @@ The validator was written before the implementation. Witnessed states were:
 2. Full hostile RED: `Ran 17 tests` and `FAILED (failures=17)`
 3. Core implementation RED: `Ran 17 tests` and `FAILED (failures=1)` because
    the final synthetic receipt was intentionally still absent.
-4. GREEN: all 17 hostile tests pass.
+4. Reviewer-repair RED: the suite expanded to 23 tests; the 17 prior tests
+   stayed green and six new tests failed on the unmeasured real-client wall
+   value, unvalidated local-execution zero, unsafe output creation/aliases,
+   missing rollback, and late CLI alias detection.
+5. GREEN: all 23 hostile tests pass.
 
 The suite uses invented packet objects and an injected in-memory client. It
 opens zero official tasks and outcomes, invokes no model, provider, scheduler,
