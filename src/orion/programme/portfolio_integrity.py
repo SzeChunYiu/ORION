@@ -348,3 +348,103 @@ def check_no_shared_substrate_independence_claim(
             EXIT_SHARED_SUBSTRATE_CLAIM, "PORTFOLIO_INTEGRITY_FAIL", tuple(sorted(problems))
         )
     return PortfolioAudit(EXIT_PASS, "PORTFOLIO_INTEGRITY_PASS")
+
+
+# ---------------------------------------------------------------------------
+# repository-level independence-claim audit
+# ---------------------------------------------------------------------------
+#: Words that turn a marker occurrence into a disclaimer rather than a claim.
+#: A paper writing "rather than independent validation" is doing the right
+#: thing, and a checker that flags it is worse than no checker at all.
+NEGATION_CUES: tuple[str, ...] = (
+    "rather than",
+    "not ",
+    "no ",
+    "without",
+    "pending",
+    "cannot_check",
+    "is not",
+    "never",
+    "absent",
+    "lacks",
+    "instead of",
+)
+
+#: How far back to look for a cue. Long enough for "we treat it as an internal
+#: semantic-discriminator result rather than independent validation", short
+#: enough not to swallow an unrelated preceding sentence.
+NEGATION_WINDOW = 140
+
+READER_FACING_PATTERNS: tuple[str, ...] = (
+    "MANUSCRIPT.md",
+    "README.md",
+    "CLAIM_EVIDENCE_LEDGER*.md",
+    "CLAIM_LEDGER*.md",
+)
+
+
+def classify_independence_occurrence(text: str, start: int) -> str:
+    """``NEGATED`` when the marker sits inside a disclaimer, else ``AFFIRMED``."""
+    window = text[max(0, start - NEGATION_WINDOW) : start].lower()
+    return "NEGATED" if any(cue in window for cue in NEGATION_CUES) else "AFFIRMED"
+
+
+def independence_claim_occurrences(root: "Path | None" = None) -> list[dict[str, str]]:
+    """Every independence-claim marker in reader-facing documents, classified."""
+    import re
+
+    root = root or Path(__file__).resolve().parents[3]
+    papers = root / "papers"
+    if not papers.is_dir():
+        raise FileNotFoundError(papers)
+    pattern = re.compile(
+        "|".join(re.escape(m) for m in INDEPENDENCE_CLAIM_MARKERS), re.IGNORECASE
+    )
+    out: list[dict[str, str]] = []
+    for paper_dir in sorted(p for p in papers.iterdir() if p.is_dir()):
+        for glob in READER_FACING_PATTERNS:
+            for path in sorted(paper_dir.glob(glob)):
+                text = path.read_text(errors="replace")
+                for match in pattern.finditer(text):
+                    out.append(
+                        {
+                            "paper": paper_dir.name,
+                            "document": path.name,
+                            "marker": match.group(0),
+                            "verdict": classify_independence_occurrence(text, match.start()),
+                            "context": " ".join(
+                                text[
+                                    max(0, match.start() - 110) : match.end() + 40
+                                ].split()
+                            ),
+                        }
+                    )
+    return out
+
+
+def audit_repository_independence_claims(root: "Path | None" = None) -> PortfolioAudit:
+    """No paper may call a shared public substrate an independent validation.
+
+    Reads the live tree rather than a caller-supplied dict, so the prohibition
+    is enforced against what the papers actually say.
+    """
+    try:
+        occurrences = independence_claim_occurrences(root)
+    except FileNotFoundError as exc:
+        return PortfolioAudit(
+            EXIT_CANNOT_CHECK, "PORTFOLIO_INTEGRITY_CANNOT_CHECK", (str(exc),)
+        )
+    # Every paper in the portfolio draws on at least one shared source family
+    # (see shared_source_families), so any affirmed independence claim in a
+    # reader-facing document is reportable. Scoping by family would only
+    # narrow the check, never widen it.
+    violations = tuple(
+        f"{o['paper']}/{o['document']}: {o['marker']!r} -- {o['context']}"
+        for o in occurrences
+        if o["verdict"] == "AFFIRMED"
+    )
+    if violations:
+        return PortfolioAudit(
+            EXIT_SHARED_SUBSTRATE_CLAIM, "PORTFOLIO_INTEGRITY_SHARED_SUBSTRATE_CLAIM", violations
+        )
+    return PortfolioAudit(EXIT_PASS, "PORTFOLIO_INDEPENDENCE_CLAIMS_PASS", ())
