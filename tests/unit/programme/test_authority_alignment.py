@@ -68,3 +68,25 @@ def test_p11_and_p14_are_aligned_on_the_live_tree() -> None:
         rec = records[name]
         assert not rec.unbound, f"{name} has a free-floating surface: {rec.unbound}"
         assert not rec.disagreeing, f"{name} surfaces disagree: {rec.cited}"
+
+
+def test_a_superseded_table_row_is_not_an_active_citation() -> None:
+    """P15 lists superseded records in a table.
+
+    The heading sits beyond any fixed window for the second row, so a proximity
+    rule read a superseded record as active. Scope is the governing heading.
+    """
+    text = (
+        "| Superseded authority | Lifecycle |\n"
+        "| --- | --- |\n"
+        "| `P15_ACTIVE_CLAIM_AUTHORITY_V2.json` | frozen |\n"
+        "| `P15_ACTIVE_CLAIM_AUTHORITY_V1.json` | methods only |\n"
+    )
+    assert _active_versions(text) == set()
+
+
+def test_p15_manuscript_and_ledger_agree_on_v3() -> None:
+    records = {r.paper: r for r in audit_repository()}
+    rec = records["paper-15-orion-research-harness"]
+    assert not rec.disagreeing, rec.cited
+    assert rec.cited.get("manuscript") == {"3"}

@@ -8,7 +8,38 @@ We introduce **Scientific Execution Integrity (SEI)** as a fail-closed interface
 
 On this bounded benchmark, a nominal log/exit-status policy achieves 27.8% exact disposition accuracy and falsely authorizes 13 results; a structured execution-receipt policy and a replay/agreement policy each achieve 72.2% accuracy but still admit two scientifically invalid results. The SEI reference contract obtains 18/18 exact dispositions, with zero false scientific authorization and zero false rejection of clean authorized cases. Executable witnesses also show that complete execution properties can be identical for valid and invalid scientific results, and that lane agreement can coexist with invalid science while lane disagreement can coexist with independently verified valid science.
 
-The contribution is not a new provenance format. RO-Crate, Workflow Run RO-Crate, execution-provenance systems and recent claim-aware scientific-agent observability are treated as donor layers. SEI instead specifies the evidence-admission boundary that must sit above those layers. Our present result is a bounded semantics/fault study; real-system interoperability, broad fault injection, overhead measurement and independent implementation remain required before claiming production superiority.
+The contribution is not a new provenance format. RO-Crate, Workflow Run RO-Crate, execution-provenance systems and recent claim-aware scientific-agent observability are treated as donor layers. SEI instead specifies the evidence-admission boundary that must sit above those layers. Our present result is three bounded studies rather than one, and real-system
+interoperability is no longer among what remains required. Broad fault
+injection, overhead measurement and production comparators still are, and
+nothing below claims production superiority.
+
+**The three-study arc.** All three are executed and receipt-bound on the same
+frozen 22-case corpus — the 18 hostile SEI cases plus 4 real ORION workflow
+receipts — each with an independent second implementation and deterministic
+replay.
+
+1. **SEI fault benchmark** (run `32645458435`) — the bounded comparative result
+   this manuscript already carried.
+2. **W3C PROV / RO-Crate 1.3 interoperability** (run `32655587115`) — the SEI
+   admission boundary survives representation through standard research-object
+   and provenance structures, so the separation is not obtained only by forcing
+   users into an ORION-specific receipt format.
+3. **Ed25519 attestation composition V2** (canonical run `32664075763`, with an
+   independent deterministic-replay run `32665597624` whose artifact-member
+   SHA-256 digests are identical).
+
+**The third study's load-bearing result is a negative, and it is the reason the
+arc matters.** Composed-signature validity is evidence about the key set, not
+about key custody or fact truth. Under full key-set compromise the signature
+layer detects `0/6`; hostile chain-as-science collapse false-promotes `12`
+cases; the properly scoped cryptographic-only reading stays `CANNOT_CHECK`.
+False rejection over the full valid workload is `0/11` at the chain layer and
+`0/5` at disposition level.
+
+That negative is the paper's own argument against reading attestation as
+scientific validity: a correct signature over a compromised key set verifies
+exactly as well as one over an honest set. Active authority for all three:
+`P15_ACTIVE_CLAIM_AUTHORITY_V3.json`.
 
 ## 1. Introduction
 

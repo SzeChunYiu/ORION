@@ -246,3 +246,13 @@ def test_p11_readiness_scopes_itself_to_the_width_conditioned_result() -> None:
     assert "P11_WIDTH_CONDITIONED_AUTHORITY_SUPPORTED" in text
     assert "LINEAR 3/10, RBF 5/10, KNN 5/10" in text
     assert "not for the family-scale claim that failed" in text
+
+
+def test_p15_manuscript_carries_the_three_study_arc() -> None:
+    """SEI-only understates the paper; the attestation negative is the point."""
+    text = _flat(PAPERS / "paper-15-orion-research-harness/MANUSCRIPT.md")
+    assert "22-case corpus" in text
+    for run in ("32645458435", "32655587115", "32664075763"):
+        assert run in text, run
+    assert "detects `0/6`" in text
+    assert "verifies exactly as well as one over an honest set" in text
