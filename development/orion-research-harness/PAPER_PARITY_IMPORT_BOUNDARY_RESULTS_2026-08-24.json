@@ -1,0 +1,40 @@
+{
+  "schema": "ORION.ResearchHarness.PaperParityImportBoundaryRepair.v1",
+  "base_revision": "a46fe8237225f3f72232d6f3ee68109dfbd06be3",
+  "terminal": "PAPER_PARITY_RUNTIME_IMPORT_BOUNDARY_REPAIRED",
+  "authority": "PYTHON_IMPORT_BOUNDARY_ONLY",
+  "protocol": "development/orion-research-harness/PAPER_PARITY_IMPORT_BOUNDARY_REPAIR_2026-08-24.md",
+  "protocol_sha256": "fefcb2605a9799d24f950b251e3b63c82d5f6aa840e3263d2cc145f7fbd3be7d",
+  "implementation_sha256": {
+    "src/orion/engine/navigation.py": "03de5a01fbdd4e788c20d3bcb725e72a96921073e73e737e9c5885567b1eae1b",
+    "tests/unit/runtime/test_import_boundaries.py": "fbaa39a82c054521363c649f653bf2ee335a9cdd29af3b91d85400153d445698"
+  },
+  "verification": {
+    "command": "PYTHONPATH=src /tmp/orion-harness-fix-venv-20260824/bin/python -m pytest tests/unit/runtime/test_import_boundaries.py tests/unit/runtime/test_paper_parity_runtime.py tests/unit/runtime/test_runtime.py -q",
+    "result": "9 passed in 5.87s",
+    "typed_probe_command": "PYTHONPATH=src /tmp/orion-harness-fix-venv-20260824/bin/python -c \"from orion.engine.navigation import PaperParityNavigator; assert PaperParityNavigator(cells=())._cells; from orion.runtime import OrionRuntime; print('PAPER_PARITY_RUNTIME_IMPORT_BOUNDARY_REPAIRED')\"",
+    "typed_probe_terminal": "PAPER_PARITY_RUNTIME_IMPORT_BOUNDARY_REPAIRED",
+    "fresh_subprocess_roots": [
+      "KERNEL_THEN_PUBLIC_RUNTIME",
+      "NAVIGATION_FIRST_DEFAULT_CONSTRUCTION",
+      "PUBLIC_RUNTIME_THEN_TOP_LEVEL_ORION",
+      "HARNESS_IMPORT_CYCLE_SIGNATURE_ABSENT"
+    ]
+  },
+  "preserved_adverse": {
+    "full_harness_importable": false,
+    "next_terminal": "HARNESS_IMPORT_BLOCKED_BY_P2_READCLASSIFICATION_SYMBOL_MISMATCH",
+    "next_trace": "paper_programme_conformance -> orion.study.p2.runner -> missing ReadClassification in orion.study.p2.systems",
+    "additional_known_collection_blocker": "build_donor_campaign_manifest is not exported from the harness package root",
+    "scientific_negative": false,
+    "classification": "CANNOT_CHECK_NEXT_IMPORT_LAYER"
+  },
+  "remaining_boundary": {
+    "paper_parity_solver_validated": false,
+    "full_harness_importable": false,
+    "dual_harness_executable": false,
+    "historical_receipts_revalidated": false,
+    "scientific_authority": false,
+    "publication_authority": false
+  }
+}
