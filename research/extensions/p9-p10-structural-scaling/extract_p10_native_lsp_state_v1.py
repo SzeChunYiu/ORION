@@ -17,13 +17,14 @@ from typing import Any
 # framework before importing the shared feature helpers.
 ROOT = Path(__file__).resolve().parents[3]
 FRAMEWORK = ROOT / "papers" / "orion-learning-machine" / "framework"
+P10 = ROOT / "papers" / "paper-xx-content-bound-math-evaluation"
+MANIFEST = P10 / "benchmark" / "MATHLIB_CORPUS_V2_MANIFEST.json"
 sys.path.insert(0, str(FRAMEWORK))
 
 from extract_p10_native_trace_state_v1 import (  # noqa: E402
     BULLET,
     EXTRACTOR_SCHEMA,
     LEAN_TOOLCHAIN,
-    MANIFEST,
     MATHLIB_COMMIT,
     sha_bytes,
     sha_file,

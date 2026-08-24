@@ -9,6 +9,7 @@ on:
       - 'research/extensions/p9-p10-structural-scaling/check_p10_native_lsp_access_v1.py'
       - 'research/extensions/p9-p10-structural-scaling/fit_p10_native_state_v1.py'
       - 'research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_novelty_v1.py'
+      - 'tests/unit/study/p10/test_p10_native_lsp_access_import.py'
       - '.github/workflows/p10-native-lsp-access-successor-v1.yml'
   workflow_dispatch:
 
@@ -32,6 +33,8 @@ jobs:
             research/extensions/p9-p10-structural-scaling/check_p10_native_lsp_access_v1.py
           python research/extensions/p9-p10-structural-scaling/extract_p10_native_lsp_state_v1.py \
             --help >/dev/null
+          python -m pytest -q \
+            tests/unit/study/p10/test_p10_native_lsp_access_import.py
       - name: Assert preregistration predates implementation
         run: |
           set -euo pipefail
