@@ -4,8 +4,9 @@
 This checker owns Gate 7–9 *inventory*: required files exist, hashes match,
 missing submission artifacts stay CANNOT_CHECK, and claims without artifacts
 stay OPEN. It does not mint ScientificResultVerification.v1 (issue #283).
-Compiled PDFs are admitted only for packages that declare ``SUBMISSION_READY``
-and bind the PDF as a required, checksummed file.
+Compiled PDFs are admitted for current ``SUBMISSION_READY`` packages or as
+retained historical records in ``SUPERSEDED`` packages. ``SCAFFOLDING`` never
+admits a PDF. Every admitted PDF is a required, checksummed file.
 """
 from __future__ import annotations
 
@@ -16,6 +17,8 @@ from pathlib import Path
 from typing import Any
 
 SCHEMA_VERSION = "orion.journal-package.v1"
+ALLOWED_PACKAGE_STATUS = {"SCAFFOLDING", "SUPERSEDED", "SUBMISSION_READY"}
+RENDER_CLOSURE_STATE = "journal_package/RENDER_CLOSURE_STATE.json"
 PAPER_DIRS = {
     "P1": Path("papers/paper-01-recursive-epistemic-reconstruction"),
     "P2": Path("papers/paper-02-open-world-scientific-discovery"),
@@ -224,7 +227,8 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
         report.errors.append(f"wrong schema_version: {manifest.get('schema_version')!r}")
     if manifest.get("paper_id") != paper_id:
         report.errors.append(f"paper_id mismatch: {manifest.get('paper_id')!r} != {paper_id!r}")
-    if manifest.get("package_status") not in {"SCAFFOLDING", "SUBMISSION_READY"}:
+    package_status = manifest.get("package_status")
+    if package_status not in ALLOWED_PACKAGE_STATUS:
         report.errors.append(f"invalid package_status: {manifest.get('package_status')!r}")
     revision = manifest.get("audit_subject_revision")
     if not isinstance(revision, str) or not _is_sha(revision, 40):
@@ -295,18 +299,38 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
                 f"claim {claim_id!r} is CANNOT_CHECK while cited artifacts exist; keep if authority is still insufficient"
             )
 
-    if manifest.get("package_status") == "SUBMISSION_READY":
+    open_claims = [
+        claim.get("id")
+        for claim in claims
+        if isinstance(claim, dict) and claim.get("status") == "OPEN"
+    ]
+    current_open_claims = [
+        claim.get("id")
+        for claim in claims
+        if isinstance(claim, dict)
+        and claim.get("status") == "OPEN"
+        and claim.get("current_claim") is True
+    ]
+
+    if package_status == "SUBMISSION_READY":
         if missing:
             report.errors.append("SUBMISSION_READY package must not list missing_artifacts")
-        open_claims = [
-            claim.get("id")
-            for claim in claims
-            if isinstance(claim, dict) and claim.get("status") == "OPEN"
-        ]
         if open_claims:
             report.errors.append(
                 "SUBMISSION_READY package has OPEN claims: " + ", ".join(map(str, open_claims))
             )
+    elif package_status == "SUPERSEDED":
+        authority = manifest.get("package_authority")
+        if (
+            not isinstance(authority, dict)
+            or authority.get("current_submission_authorized") is not False
+        ):
+            report.errors.append(
+                "SUPERSEDED package must declare package_authority."
+                "current_submission_authorized=false"
+            )
+        if not current_open_claims:
+            report.errors.append("SUPERSEDED package must carry at least one current OPEN claim")
 
     verification = manifest.get("scientific_result_verification")
     if not isinstance(verification, dict):
@@ -329,12 +353,38 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
     required_paths = {
         str(entry.get("path")) for entry in required if isinstance(entry, dict)
     }
-    if pdfs and manifest.get("package_status") != "SUBMISSION_READY":
+    if package_status == "SCAFFOLDING" and pdfs:
         report.errors.append(
-            "journal_package/ contains a PDF but the package is not SUBMISSION_READY: "
+            "SCAFFOLDING package contains a PDF: "
             + ", ".join(path.name for path in pdfs)
         )
-    if manifest.get("package_status") == "SUBMISSION_READY":
+    if package_status == "SUPERSEDED":
+        if not pdfs:
+            report.errors.append("SUPERSEDED package has no retained PDF")
+        for pdf in pdfs:
+            relative = f"journal_package/{pdf.name}"
+            if relative not in required_paths:
+                report.errors.append(f"retained historical PDF is not a required file: {relative}")
+        if RENDER_CLOSURE_STATE not in required_paths:
+            report.errors.append(
+                f"SUPERSEDED package must require {RENDER_CLOSURE_STATE}"
+            )
+        state_path = paper_root / RENDER_CLOSURE_STATE
+        if not state_path.is_file():
+            report.errors.append(f"SUPERSEDED package is missing {RENDER_CLOSURE_STATE}")
+        else:
+            try:
+                render_state = json.loads(state_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError) as exc:
+                report.errors.append(f"{RENDER_CLOSURE_STATE} unreadable: {exc}")
+            else:
+                if not isinstance(render_state, dict) or render_state.get("state") != "SUPERSEDED":
+                    actual = render_state.get("state") if isinstance(render_state, dict) else None
+                    report.errors.append(
+                        "SUPERSEDED package requires render-closure state SUPERSEDED, "
+                        f"not {actual!r}"
+                    )
+    if package_status == "SUBMISSION_READY":
         if not pdfs:
             report.errors.append("SUBMISSION_READY package has no compiled PDF")
         for pdf in pdfs:
@@ -441,6 +491,7 @@ def check_repository(repo_root: Path) -> list[PackageReport]:
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
+    parser.add_argument("--paper", choices=sorted(PAPER_DIRS), help="check one package only")
     parser.add_argument("--write-hashes", action="store_true")
     return parser
 
@@ -448,13 +499,18 @@ def _parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = _parser().parse_args()
     root = args.root.resolve()
+    paper_ids = [args.paper] if args.paper else list(PAPER_DIRS)
     if args.write_hashes:
-        for paper_id, relative in PAPER_DIRS.items():
+        for paper_id in paper_ids:
+            relative = PAPER_DIRS[paper_id]
             paper_root = root / relative
             manifest = load_manifest(paper_root / "journal_package")
             write_sha256sums(paper_root, hashed_paths(manifest))
             print(f"wrote {relative}/journal_package/SHA256SUMS")
-    reports = check_repository(root)
+    reports = [
+        check_package(paper_id, root / PAPER_DIRS[paper_id], repo_root=root)
+        for paper_id in paper_ids
+    ]
     payload = [
         {
             "paper_id": report.paper_id,

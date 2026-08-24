@@ -1,17 +1,20 @@
 # ORION-P1 journal-readiness plan — Recursive Epistemic Reconstruction
 
-> **Annotated 2026-08-22 after the manuscript house-style rewrite.** This
-> checklist records a readiness audit of the manuscript as it stood when the
-> audit was run, and is annotated rather than restated. Two of its rows now
-> point at a file that no longer exists: the nearest-work mechanism matrix
-> (Table P1-1 / P1-T1) was removed from the manuscript and its content is now
-> discussed in prose in the Related work section, which retains every citation
-> the table carried. The matrix itself is unchanged and still archived as
-> `evidence/NEAREST_WORK_MATRIX_V2.md`. No gate verdict, artifact digest or
-> claim status in this checklist changed in the rewrite.
+> **Authority correction 2026-08-24.** This checklist preserves the scientific
+> audit and its historical negative evidence, but it no longer promotes that
+> audit into current submission-package authority. Two rows refer to the
+> removed nearest-work mechanism matrix (Table P1-1 / P1-T1); its content is
+> now prose in Related work, while the unchanged matrix remains archived as
+> `evidence/NEAREST_WORK_MATRIX_V2.md`. Historical package-readiness statements
+> below are read subject to the current two-axis terminal and blockers.
 
-**Current terminal:** `PEER_REVIEW_READY` for the bounded credential-free mechanical claim; model-general/open-ended superiority is not claimed.
+**Current terminal:** bounded mechanical claim `SUPPORTED`; current enlarged manuscript and journal package `NOT_SUBMISSION_READY` (`journal_package/MANIFEST.json` status `SUPERSEDED`).
 **Already present:** scoped manuscript, explicit K/W/M formulation, mechanic-cell self-audit, hidden-shift local falsifier, negative controls, local failure/repair record.
+
+The bounded result and the package are different authorities. The primary and
+disjoint replication retain the registered mechanical result; the historical
+PDF does not render the current source and remains `SUPERSEDED`. Model-general,
+naturalistic, and open-ended superiority are not claimed.
 
 ## 1. Novelty closure — required before external experiment freeze
 
@@ -158,14 +161,36 @@ Freeze plotting code/spec before final outcome analysis.
 - [x] clean-environment reproduction instructions and expected runtime/cost;
 - [ ] permanent archive snapshot/DOI for final artifact where possible;
 - [x] independent reproduction of headline result.
+- [ ] fresh content-bound PDF and visual audit for the current manuscript;
+- [ ] repository-level redistribution licence;
+- [ ] clean-checkout access to the externally held 47-entry source-native
+  adapter handoff and its independent checksum receipt.
 
-**Status:** 8/9 done. `REPRODUCE.md` documents SHA-256 verification, exact decompression, independent rescoring, terminal comparison, and deterministic figure regeneration. An independent implementation recomputes both 40,348-row runs with zero mismatches. **Missing only:** permanent DOI/archive snapshot, a submission-time operation rather than a peer-review-content blocker.
+**Scientific status:** the tracked result package remains complete for the
+bounded mechanical claim. `REPRODUCE.md` documents SHA-256 verification, exact
+decompression, independent rescoring, terminal comparison, and deterministic
+figure regeneration. An independent implementation recomputes both 40,348-row
+runs with zero mismatches.
 
-## Done definition
+**Submission-package status:** not complete. A clean checkout lacks the four
+unchecked authorities listed above. The historical PDF and its historical
+render audit do not close the current-render rows, and a recorded digest for an
+externally held handoff does not make its bytes repository-available.
 
-`ORION-P1 = PEER_REVIEW_READY` when every scientific/content gate is complete for the explicitly bounded claim, the terminal is independently reproducible, and the final literature-closure pass leaves no unresolved route capable of changing that claim. DOI deposition and venue identifiers are submission operations.
+## Done definitions
 
-## Immediate blockers before submission
+The **bounded scientific result** is retained when its frozen claim, negative
+history, independent recomputation, and scope ceiling remain intact. That
+condition is satisfied for `P1.NECESSITY.V2.2.4` and does not authorize broader
+superiority.
+
+The **current submission package** is ready only after the current source has a
+fresh immutable render and visual audit, an archive/DOI, repository-level
+redistribution terms, and repository-available or otherwise admissibly
+delivered evidence for every cited external handoff. That condition is not
+satisfied.
+
+## Historical scientific completion record
 
 1. ~~**Figure P1-1 (protocol diagram):**~~ DONE — `manuscript/figures/P1-1_protocol_diagram.pdf`, included in §05a-methods.
 2. ~~**Table P1-1 (nearest-work matrix):**~~ DONE — `manuscript/tables/P1-T1_nearest_work.tex`, included via `\input` in §06.
@@ -173,8 +198,25 @@ Freeze plotting code/spec before final outcome analysis.
 4. ~~**MAST mode-name check:**~~ DONE — all 14 mode names retrieved from full text (Appendix A); none targets a formulation/search-universe/representation/decomposition/measurement coordinate; P1.D2 not narrowed further. Recorded in §06 and the matrix. No remaining open check can move the P1.D2 verdict.
 5. ~~**Surfaced-but-unfetched cluster:**~~ DONE — TRAIL, AEGIS, AgenTracer, AgentErrorBench, ErrorProbe, AgentRx, REFLECT and span-level/DRIFT all retrieved and read; none attaches a permission to modify the formulation or search universe on the basis of the diagnosed error type; P1.D2 safe against the failure-attribution family. Recorded in §06 and the matrix.
 
-**Remaining pre-submission checks (no longer blockers):**
+**Retained scientific checks:**
 6. **SCION checkpoint-failure semantics:** DONE — full paper text read (pdftotext via extracted PDF). SCION's failure handling is two-layer: precompiled fallback conditions in the REP, and a runtime rollback mechanism where critic checkpoints trigger rollback/branch-termination/re-routing/resource-reallocation on procedural anomalies (drift, hallucination, unproductive branch, constraint violation). No dependency-directed reopening of completed dependent stages conditional on a responsibility *type* — that residual trigger remains ORION-specific. Gap closed; no verdict change (EviGraph already establishes dependency-directed reopening).
 7. ~~**Fresh literature-closure pass:**~~ DONE — 8 papers from the 2608 cs.AI series surfaced and checked (AgentRewind 2608.14380, ScienceFlow 2608.14354, Demystifying Agent Skills 2608.14036, Drift Diagnosis 2608.14109, Wrong but Useful 2608.14375, Session Handover 2608.14528, SAFARI 2608.14339, Past and Future of AI Scientists 2608.14407). None attaches a responsibility-typed reformulation/authority licence; P1.D2 unaffected. AgentRewind and ScienceFlow (state recovery/re-anchoring without a typed responsibility→authority gate) added as DEFER rows in the matrix (36 rows total). SCION bib-title correction already applied. Documented in §06, the matrix, its JSON twin, and the LaTeX table.
 
-**All scientific pre-submission checks complete for the bounded mechanical claim. Primary and disjoint replication are supported and independently reproduced. Model-general/open-ended superiority is outside the claim rather than an unresolved promotion gate. Permanent archive/DOI deposition remains a submission-time operation.**
+## Current submission blockers
+
+1. Produce a fresh content-bound PDF from the current source and complete a
+   page-level visual audit; do not relabel the historical PDF.
+2. Deposit the exact current release in an immutable public archive and record
+   its DOI.
+3. Establish repository-level redistribution terms; the package-local licence
+   records the present uncertainty and does not grant missing rights.
+4. Acquire an admissible repository-available copy of the source-native
+   adapter handoff and independent checksum receipt, or remove any dependency
+   on those unavailable bytes. The recorded manifest digest alone leaves
+   clean-checkout verification `CANNOT_CHECK`.
+
+**Bounded scientific checks remain complete and the primary plus disjoint
+replication remain supported and independently reproduced. The current
+submission package is nevertheless `NOT_SUBMISSION_READY`. Model-general and
+open-ended superiority remain outside the claim, and no unavailable handoff or
+licensing assumption is promoted into evidence.**

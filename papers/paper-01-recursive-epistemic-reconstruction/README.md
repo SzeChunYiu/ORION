@@ -3,6 +3,31 @@
 **Stable ID:** ORION-P1  
 **Status:** historical bounded V2 `PEER_REVIEW_READY_FOR_FROZEN_MECHANICAL_SUBJECT`; current enlarged manuscript `NOT_SUBMISSION_READY`. The later owner-algebra and V11--V13 programme has 0 certified maps, 720 `CANNOT_CHECK` maps, 0/7 signed external outputs and 0/4 closed authority acts; it does not rewrite the bounded mechanical result.
 
+## Current package authority
+
+The current status is deliberately split along two axes:
+
+- **Scientific result:** `P1.NECESSITY.V2.2.4` remains supported only on the
+  frozen credential-free mechanical world family. The historical broad H1
+  remains `NOT_SUPPORTED`; neither result authorizes model-general,
+  naturalistic, or open-ended superiority.
+- **Submission package:** `NOT_SUBMISSION_READY`. The current
+  `journal_package/MANIFEST.json` is `SUPERSEDED`, and
+  `journal_package/RENDER_CLOSURE_STATE.json` is the authority for render
+  currency. The PDF and pinned render-input closure are retained as an earlier
+  inspected package record only. The current manifest, generator-owned render
+  state, package README, claim/PDF audit, and refreshed checksum inventory name
+  that historical role explicitly. The historical PDF must not be relabelled
+  or submitted as current.
+
+A clean checkout still lacks (1) a fresh content-bound PDF and visual audit for
+the current source, (2) an immutable public archive/DOI, (3) repository-level
+redistribution terms, and (4) the externally held 47-entry source-native
+adapter handoff and its independent checksum receipt. Only the recorded
+handoff manifest digest is retained in the manuscript, so clean-checkout byte
+verification of that handoff is `CANNOT_CHECK`. No private or large handoff
+payload has been imported by this authority repair.
+
 ## Scoped paper
 
 Paper I has one job: test whether a research system benefits from **explicit recursive epistemic reconstruction when the problem formulation or relevant search universe itself must change**.
