@@ -1,0 +1,120 @@
+{
+ "schema_version": "orion.p13p14.policy-comparison.v1",
+ "campaign_executed": true,
+ "results_exist": true,
+ "outcome_accessed": true,
+ "repositories": 31,
+ "cases": 93,
+ "case_classes": {
+  "VALID": 31,
+  "FORGED": 31,
+  "STALE": 31
+ },
+ "arms": {
+  "always-raw": {
+   "valid_accept_rate": 1.0,
+   "forged_false_accepts": 0,
+   "stale_false_accept_rate": 0.0,
+   "git_ops": 310,
+   "cost_reduction_vs_always_raw": 0.0
+  },
+  "provenance-only": {
+   "valid_accept_rate": 1.0,
+   "forged_false_accepts": 0,
+   "stale_false_accept_rate": 1.0,
+   "git_ops": 155,
+   "cost_reduction_vs_always_raw": 0.5
+  },
+  "confidence-only": {
+   "valid_accept_rate": 0.0,
+   "forged_false_accepts": 0,
+   "stale_false_accept_rate": 0.0,
+   "git_ops": 93,
+   "cost_reduction_vs_always_raw": 0.7
+  },
+  "lifecycle-rcs": {
+   "valid_accept_rate": 1.0,
+   "forged_false_accepts": 0,
+   "stale_false_accept_rate": 0.0,
+   "git_ops": 217,
+   "cost_reduction_vs_always_raw": 0.3
+  }
+ },
+ "detail": {
+  "always-raw": {
+   "accept": {
+    "VALID": {
+     "n": 31,
+     "accepted": 31
+    },
+    "FORGED": {
+     "n": 31,
+     "accepted": 0
+    },
+    "STALE": {
+     "n": 31,
+     "accepted": 0
+    }
+   },
+   "ops": 310
+  },
+  "provenance-only": {
+   "accept": {
+    "VALID": {
+     "n": 31,
+     "accepted": 31
+    },
+    "FORGED": {
+     "n": 31,
+     "accepted": 0
+    },
+    "STALE": {
+     "n": 31,
+     "accepted": 31
+    }
+   },
+   "ops": 155
+  },
+  "confidence-only": {
+   "accept": {
+    "VALID": {
+     "n": 31,
+     "accepted": 0
+    },
+    "FORGED": {
+     "n": 31,
+     "accepted": 0
+    },
+    "STALE": {
+     "n": 31,
+     "accepted": 0
+    }
+   },
+   "ops": 93
+  },
+  "lifecycle-rcs": {
+   "accept": {
+    "VALID": {
+     "n": 31,
+     "accepted": 31
+    },
+    "FORGED": {
+     "n": 31,
+     "accepted": 0
+    },
+    "STALE": {
+     "n": 31,
+     "accepted": 0
+    }
+   },
+   "ops": 217
+  }
+ },
+ "pass_gate_evaluation": {
+  "zero_forged_false_accepts": true,
+  "stale_false_accepts_at_most_1pct": true,
+  "valid_accepts_at_least_95pct": true,
+  "cost_reduction_at_least_25pct_vs_always_raw": true
+ },
+ "boundary": "Case classes are objectively decidable from git. No governance, quality or responsibility judgment is made anywhere; those remain CANNOT_CHECK without two independent experts plus tie-break/custodian."
+}
