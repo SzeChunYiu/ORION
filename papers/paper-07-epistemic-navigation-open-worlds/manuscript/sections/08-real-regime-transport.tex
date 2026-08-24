@@ -1,0 +1,52 @@
+\section{Non-synthetic evidence in three change classes}
+
+The support enumerated in \S5 is bounded and synthetic. Three executed studies
+carry the same separation into real data, one per change class: representation,
+responsibility/ontology, and objective/obligation. Each was frozen before
+execution and reproduced by a second implementation that shares no facts or gold
+code with the first.
+
+\paragraph{Representation change.} The public RO-Crate \idt{1.2 -> 1.3}
+transition, in which four Bioschemas workflow terms changed canonical URI
+bindings while ordinary value-level JSON usage can appear unchanged. Across 14
+frozen standard-transition cases, witness-aware transport is exact
+(\textbf{1.0}), with \textbf{0} false closures, \textbf{0} unnecessary reopens
+and \textbf{4} correct \idt{CANNOT\_CHECK} dispositions. Value-only transport
+reaches \textbf{0.428571} with \textbf{8} false closures; always-reopen reaches
+\textbf{0.285714} with \textbf{6} unnecessary reopens.
+
+\paragraph{Responsibility/ontology change.} The 178-example UCI Wine recognition
+data, where the coarse responsibility \idt{class0\_vs\_other} makes the reverse
+coarse-to-fine map non-injective: coarse value \idt{0} merges fine classes
+\idt{1} and \idt{2}. Across 712 protected transport rows, witness-aware
+transport is exact (\textbf{1.0}) with \textbf{238} correct
+\idt{CANNOT\_CHECK}; value-only reaches \textbf{0.665730} and converts those
+same 238 into false closures; always-reopen reaches \textbf{0.0} with
+\textbf{474} unnecessary reopens. The \textbf{119} ambiguous coarse-0 examples
+are the cases where locally well-formed representation changes require different
+dispositions depending on retained support history.
+
+\paragraph{Objective/obligation change.} The 569-example Wisconsin Diagnostic
+Breast Cancer data, under a frozen \idt{StratifiedKFold(n\_splits=5,
+shuffle=True, random\_state=20261217)} split. The obligation changes from
+aggregate accuracy to malignant recall, and the two obligations come apart in
+both directions: fold 0 satisfies the old accuracy obligation
+(\idt{0.965 >= 0.95}) but fails the new recall obligation
+(\idt{0.907 < 0.95}), while fold 1 fails the old (\idt{0.947 < 0.95}) and
+satisfies the new (\idt{0.953 >= 0.95}). All five accuracy-only cells are
+\idt{CANNOT\_CHECK} under the changed obligation, because malignant recall is
+not inferable from aggregate accuracy; value-only produces \textbf{5} false
+closures and always-reopen \textbf{4} unnecessary reopens.
+
+Witness-aware transport is \textbf{1.0} in all three classes, and the two
+degenerate policies separate in every one: value preservation alone closes
+transitions it has not earned, and always reopening pays for transitions that
+were already witnessed.
+
+\paragraph{What this does not establish.} These are three executed change
+classes, not a universal claim. The result does not establish scientific-regime
+transport across arbitrary world-model, objective or research-agent changes, and
+it does not establish independent scientific authority: the agreement is between
+two implementations inside the same workflow, not an external adjudication. The
+breast-cancer study is a transport experiment over a frozen split. No clinical
+use is claimed, and no classifier or medical decision rule is offered.
