@@ -2,6 +2,22 @@
 
 **Decision:** `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_GOVERNANCE-CONFORMANCE_RESULT`
 
+**Active authority:** `P14_ACTIVE_CLAIM_AUTHORITY_V1.json` — active claim
+`P14.CURRENT.CONTROLLED_CONFORMANCE`, scientific terminal
+`P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED`, scoped to the
+frozen 28-case seven-implementation register. **`external_validity: OPEN`.**
+
+This report named no authority, while `MANUSCRIPT.md` and
+`CLAIM_EVIDENCE_LEDGER.md` both cite V1. A readiness decision bound to nothing
+cannot be flagged when the authority moves, because it is not reading from one.
+
+The decision above is scoped by that terminal and by what the authority holds
+open. Readiness is for the controlled conformance result on the frozen register;
+external validity is `OPEN`, P14A remains a measurement that could not be taken
+rather than a comparative negative, and P14B remains diagnostic because it
+reuses its adjudication function. None of those becomes a real-science claim by
+being declared ready for review.
+
 ## Five-lens hostile review
 
 ### Scientific-method lens
