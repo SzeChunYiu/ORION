@@ -696,7 +696,7 @@ class _Run:
         self.trace.open_obligation_ids_at_closure = tuple(sorted(self.open_obligations))
         self.trace.truncated_at_cap = self.exhausted
         return SystemReport(
-            claimed_relevant_content_identities=tuple(sorted(supported)),
+            claimed_relevant_merged_source_ids=tuple(sorted(supported)),
             task_closed_as_complete=bool(closed and self.may_close()),
             abstained=not supported,
             notes=notes,
