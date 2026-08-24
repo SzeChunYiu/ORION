@@ -1,0 +1,161 @@
+{
+ "schema_version": "orion.p7.closure-retention-transitions.v1",
+ "campaign_executed": true,
+ "results_exist": true,
+ "outcome_accessed": true,
+ "domains": [
+  {
+   "domain": "numpy",
+   "package": "numpy",
+   "usable": true,
+   "modules": 426,
+   "import_edges": 1076,
+   "commits_examined": 700,
+   "changes_used": 347,
+   "certificate_decisions": 147822,
+   "policies": {
+    "always-reopen": {
+     "preserve": 0,
+     "reopen": 147822,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 112482,
+     "preserve_rate": 0.0,
+     "both_outcomes_occur": false
+    },
+    "donor-coarse": {
+     "preserve": 117532,
+     "reopen": 30290,
+     "false_closure_retention": 27348,
+     "unnecessary_reopenings": 22298,
+     "preserve_rate": 0.7951,
+     "both_outcomes_occur": true
+    },
+    "exact-containment": {
+     "preserve": 112482,
+     "reopen": 35340,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 0,
+     "preserve_rate": 0.7609,
+     "both_outcomes_occur": true
+    }
+   }
+  },
+  {
+   "domain": "scipy",
+   "package": "scipy",
+   "usable": true,
+   "modules": 813,
+   "import_edges": 2156,
+   "commits_examined": 700,
+   "changes_used": 552,
+   "certificate_decisions": 448776,
+   "policies": {
+    "always-reopen": {
+     "preserve": 0,
+     "reopen": 448776,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 382044,
+     "preserve_rate": 0.0,
+     "both_outcomes_occur": false
+    },
+    "donor-coarse": {
+     "preserve": 400140,
+     "reopen": 48636,
+     "false_closure_retention": 50282,
+     "unnecessary_reopenings": 32186,
+     "preserve_rate": 0.8916,
+     "both_outcomes_occur": true
+    },
+    "exact-containment": {
+     "preserve": 382044,
+     "reopen": 66732,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 0,
+     "preserve_rate": 0.8513,
+     "both_outcomes_occur": true
+    }
+   }
+  },
+  {
+   "domain": "flask",
+   "package": "src/flask",
+   "usable": true,
+   "modules": 24,
+   "import_edges": 19,
+   "commits_examined": 371,
+   "changes_used": 331,
+   "certificate_decisions": 7944,
+   "policies": {
+    "always-reopen": {
+     "preserve": 0,
+     "reopen": 7944,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 7096,
+     "preserve_rate": 0.0,
+     "both_outcomes_occur": false
+    },
+    "donor-coarse": {
+     "preserve": 0,
+     "reopen": 7944,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 7096,
+     "preserve_rate": 0.0,
+     "both_outcomes_occur": false
+    },
+    "exact-containment": {
+     "preserve": 7096,
+     "reopen": 848,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 0,
+     "preserve_rate": 0.8933,
+     "both_outcomes_occur": true
+    }
+   }
+  }
+ ],
+ "summary": {
+  "domains_usable": 3,
+  "transitions_per_domain": {
+   "numpy": 347,
+   "scipy": 552,
+   "flask": 331
+  },
+  "zero_false_closure_retention": {
+   "numpy": true,
+   "scipy": true,
+   "flask": true
+  },
+  "donor_false_closure_retention": {
+   "numpy": 27348,
+   "scipy": 50282,
+   "flask": 0
+  },
+  "both_outcomes_occur": {
+   "numpy": true,
+   "scipy": true,
+   "flask": true
+  },
+  "unnecessary_reopenings": {
+   "numpy": {
+    "always-reopen": 112482,
+    "donor-coarse": 22298,
+    "exact-containment": 0
+   },
+   "scipy": {
+    "always-reopen": 382044,
+    "donor-coarse": 32186,
+    "exact-containment": 0
+   },
+   "flask": {
+    "always-reopen": 7096,
+    "donor-coarse": 7096,
+    "exact-containment": 0
+   }
+  },
+  "fewer_unnecessary_reopenings_than_donor": {
+   "numpy": true,
+   "scipy": true,
+   "flask": true
+  }
+ }
+}
