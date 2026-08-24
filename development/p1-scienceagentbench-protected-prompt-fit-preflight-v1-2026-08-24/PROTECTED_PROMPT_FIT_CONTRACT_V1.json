@@ -1,0 +1,176 @@
+{
+  "schema_version": "orion.p1.scienceagentbench.protected-prompt-fit-preflight.v1",
+  "contract_id": "P1_SAB_PROTECTED_PROMPT_FIT_PREFLIGHT_20260824_V1",
+  "authority": "OUTCOME_BLIND_PROTECTED_INPUT_BINDING_AND_PROMPT_FIT_PREFLIGHT_ONLY__NO_EXECUTION_EVALUATION_OR_SCIENTIFIC_AUTHORITY",
+  "upstream_bindings": [
+    {
+      "path": "development/p1-scienceagentbench-preflight-2026-08-24/MASK_MANIFEST_V1.json",
+      "sha256": "442d9793024a91c752d34b9ad3185af612d1db3759458e91a61911b385cbe758"
+    },
+    {
+      "path": "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/DIRECT_ROUTE_PROMPT_BUNDLE_V1.json",
+      "sha256": "03bfbf7e0870f9b385ee8ff9258df9e083fa9baa0813471795b9c80bafd1ebe6"
+    },
+    {
+      "path": "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/DIRECT_ROUTE_FREEZE_CONTRACT_V1.json",
+      "sha256": "67e586c59f6b30beac7cab6e94cf2d176b2a1536a20ac8e9138fc8c7860e98f4"
+    },
+    {
+      "path": "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/direct_route_generation_driver_v1.py",
+      "sha256": "23d0a7a1bfee2060f44e26a418564061d8aca412093ba930351ecf33a913f480"
+    }
+  ],
+  "production_source_binding": {
+    "dataset": "osunlp/ScienceAgentBench",
+    "revision": "9c6e96c9e74572e979b0930ee735041cef528cb7",
+    "split": "verified",
+    "verified_parquet_sha256": "c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147",
+    "task_count": 102,
+    "instance_ids": "DECIMAL_STRINGS_1_THROUGH_102_IN_ASCENDING_ORDER",
+    "parquet_reader": "NOT_IMPLEMENTED_STANDARD_LIBRARY_ONLY",
+    "accepted_input": "OWNER_AUTHORIZED_STRICT_JSON_EXTRACTION_FROM_EXACT_VERIFIED_PARQUET",
+    "extraction_is_independently_verified_here": false
+  },
+  "authorized_row_source_contract": {
+    "schema_version": "orion.p1.scienceagentbench.authorized-row-source.v1",
+    "production_authority": "OWNER_AUTHORIZED_PROTECTED_INPUT_ONLY__NO_OUTCOME_AUTHORITY",
+    "production_extraction_mode": "STRICT_JSON_AUTHORIZED_EXTRACTION",
+    "file_encoding": "UTF-8_CANONICAL_JSON_PLUS_ONE_LF",
+    "top_level_fields": [
+      "schema_version",
+      "authority",
+      "source",
+      "rows"
+    ],
+    "source_fields": [
+      "dataset",
+      "revision",
+      "split",
+      "verified_parquet_sha256",
+      "extraction_mode",
+      "official_outcomes_opened"
+    ],
+    "row_fields": [
+      "instance_id",
+      "domain",
+      "task_inst",
+      "output_fname",
+      "domain_knowledge",
+      "dataset_folder_tree",
+      "dataset_preview"
+    ],
+    "value_rule": "INSTANCE_ID_AND_DOMAIN_ARE_NONEMPTY_STRINGS; FIVE_SOURCE_FIELDS_ARE_STRING_OR_NULL_EXACTLY_AS_MANIFEST_TYPES_DECLARE",
+    "extra_fields": "FORBIDDEN",
+    "gold_evaluator_rubric_outcome_or_candidate_fields": "FORBIDDEN"
+  },
+  "packet_contract": {
+    "masked_packet_fields": [
+      "instance_id",
+      "domain",
+      "task_inst",
+      "output_fname",
+      "domain_knowledge",
+      "dataset_folder_tree",
+      "dataset_preview"
+    ],
+    "recovered_packet_fields": [
+      "instance_id",
+      "domain",
+      "task_inst",
+      "output_fname",
+      "domain_knowledge",
+      "dataset_folder_tree",
+      "dataset_preview"
+    ],
+    "masked_field_marker": {
+      "state": "MASKED_UNTIL_PHASE1",
+      "source_value_type": "MANIFEST_DECLARED_STRING_OR_NULL"
+    },
+    "canonical_json": "json.dumps(value,allow_nan=False,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode('utf-8')",
+    "packet_bodies_retained_in_receipt": 0
+  },
+  "prompt_matrix": {
+    "context_window_tokens": 32768,
+    "seed_schedule": {
+      "1": 101,
+      "2": 202,
+      "3": 303
+    },
+    "phase_output_caps": {
+      "RR_PHASE0": 1024,
+      "RR_PHASE1": 7168,
+      "OS_PHASE1": 8192,
+      "NR_PHASE0": 1024,
+      "NR_PHASE1": 7168
+    },
+    "state_independent_phases_in_order": [
+      "RR_PHASE0",
+      "OS_PHASE1",
+      "NR_PHASE0",
+      "NR_PHASE1"
+    ],
+    "state_independent_records_per_task": 12,
+    "state_independent_records_for_102_tasks": 1224,
+    "dynamic_rr_phase1_records_per_task": 3,
+    "dynamic_rr_phase1_records_for_102_tasks": 306,
+    "rr_phase1_status": "CANNOT_CHECK_DYNAMIC_RR_PHASE0_STATE_REQUIRED",
+    "prompt_bodies_retained_in_receipt": 0,
+    "truncation_or_context_shift": "FORBIDDEN"
+  },
+  "tokenizer_binding": {
+    "model_repository": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+    "model_revision": "b17cb02dd882d5b6ab62fc777ad2995f19668350",
+    "model_filename": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
+    "model_bytes": 18556689568,
+    "model_sha256": "fadc3e5f8d42bf7e894a785b05082e47daee4df26680389817e2093056f088ad",
+    "inference_tokenizer_binding": "GGUF_BYTES",
+    "llama_server_sha256": "234b05b2138264f8fb263c3205e85f4c290e8afe5067e280a4f6f90cdac5696b",
+    "llama_cpp_version": "b10434",
+    "llama_cpp_commit": "7e4c0a96880dae4fc4268ad441f8a6446bd5460a"
+  },
+  "live_gguf_staging_policy": {
+    "production_required": true,
+    "receipt_schema": "orion.p1.scienceagentbench.live-gguf-staging-receipt.v1",
+    "receipt_authority": "INDEPENDENT_LIVE_GGUF_STAGING_MEASUREMENT__NO_TASK_OR_OUTCOME_AUTHORITY",
+    "independent_verification": {
+      "completed_before_preflight": true,
+      "measurement_method": "FULL_FILE_SHA256_AND_BYTE_COUNT",
+      "verifier_role": "INDEPENDENT_STAGING_PROCESS"
+    },
+    "preflight_live_measurement": "HELD_FILE_DESCRIPTOR_FSTAT_AND_FULL_SHA256",
+    "source_receipt_sha256": "OPTIONAL_EXTERNAL_BINDING_ONLY__NEVER_SUBSTITUTES_PREFLIGHT_LIVE_BYTE_COUNT_OR_FULL_SHA256",
+    "accept_receipt_without_live_gguf_remeasurement": false
+  },
+  "token_measurement_policy": {
+    "exact_gguf_tokenizer_available_in_this_lane": false,
+    "substitute_tokenizer_allowed": false,
+    "missing_ledger_status": "CANNOT_CHECK_EXACT_GGUF_TOKEN_LEDGER_NOT_SUPPLIED",
+    "ledger_authority": "OWNER_SUPPLIED_EXACT_GGUF_TOKENIZER_MEASUREMENT_ONLY__NO_OUTCOME_AUTHORITY",
+    "ledger_verification_scope": "IDENTITY_SOURCE_BINDING_PROMPT_HASH_COMPLETENESS_AND_CONTEXT_ARITHMETIC_ONLY__TOKEN_COUNTS_NOT_INDEPENDENTLY_REMEASURED_HERE",
+    "fit_rule": "prompt_tokens + frozen_phase_output_cap <= 32768",
+    "dynamic_rr_phase1_never_in_static_ledger": true
+  },
+  "output_policy": {
+    "receipt_bodies": "HASHES_COUNTS_AND_TYPED_STATUSES_ONLY",
+    "destination": "NEW_ABSOLUTE_REGULAR_FILE_ONLY",
+    "creation": "HELD_PARENT_DESCRIPTOR_OPENAT_O_EXCL_MODE_0600_NOFOLLOW",
+    "input_reads": "HELD_VERIFIED_REGULAR_FILE_DESCRIPTORS_ONLY",
+    "path_identity_reverified_before_AND_AFTER_OUTPUT": true,
+    "path_aliases": "LEXICAL_RESOLVED_CASEFOLD_DEVICE_INODE_AND_SYMLINK_ALIASES_FORBIDDEN",
+    "overwrite": false
+  },
+  "claim_boundary": {
+    "production_admissibility": "CANNOT_CHECK",
+    "semantic_choice_sensitivity": "NOT_ESTABLISHED",
+    "billed_cost_usd": null,
+    "billed_cost_status": "CANNOT_CHECK",
+    "official_tasks_executed": 0,
+    "official_outcomes_opened": 0,
+    "scientific_authority_delta": "NONE"
+  },
+  "production_execution_authority": false,
+  "official_tasks_opened_during_synthetic_validation": 0,
+  "production_preflight_requires_authorized_protected_task_opening": 102,
+  "official_outcomes_opened": 0,
+  "scientific_authority_delta": "NONE"
+}
