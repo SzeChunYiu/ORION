@@ -1,0 +1,36 @@
+{
+  "schema": "ORION.ResearchHarness.P2EagerImportContainment.v1",
+  "base_revision": "96f6082f492da96e31edfd6a5ece5bfdea753f73",
+  "terminal": "P2_EAGER_IMPORT_CONTAINED__HARNESS_PACKAGE_IMPORT_STILL_BLOCKED",
+  "authority": "PYTHON_IMPORT_CONTAINMENT_ONLY",
+  "protocol": "development/orion-research-harness/P2_EAGER_IMPORT_CONTAINMENT_2026-08-24.md",
+  "protocol_sha256": "8672b8d1b3034bda9062d618227361584450f5f80efb9e26aebceb36d65b36d1",
+  "implementation_sha256": {
+    "packages/orion-research-harness/src/orion_research_harness/paper_programme_conformance.py": "8e6afccfb6850d53435776cc5487e27e63cc46afe18178843e2b988b746c53e0",
+    "tests/unit/runtime/test_import_boundaries.py": "bb576e2b5df85d12dddbb0aad4a3f551fc60d000ac751ebcd81e6ad4a3a27ecf"
+  },
+  "verification": {
+    "command": "PYTHONPATH=src /tmp/orion-harness-fix-venv-20260824/bin/python -m pytest tests/unit/runtime/test_import_boundaries.py tests/unit/runtime/test_paper_parity_runtime.py tests/unit/runtime/test_runtime.py -q",
+    "result": "10 passed in 6.00s",
+    "p2_direct_import_terminal": "P2_RUNNER_SCHEMA_INTERLEAVING_PRESERVED",
+    "package_import_terminal": "HARNESS_PACKAGE_IMPORT_STILL_BLOCKED"
+  },
+  "preserved_adverse": {
+    "p2_runner_importable": false,
+    "p2_runner_signature": "missing ReadClassification in orion.study.p2.systems",
+    "harness_package_importable": false,
+    "next_signature": "missing CAMPAIGN_DECISION_SCHEMA in orion_research_harness.campaign_protocol",
+    "p2_programme_conformance_executable": false,
+    "scientific_negative": false,
+    "classification": "PARTIAL_IMPORT_CONTAINMENT"
+  },
+  "remaining_boundary": {
+    "p2_schema_reconciled": false,
+    "p2_evaluator_validated": false,
+    "full_harness_importable": false,
+    "dual_harness_executable": false,
+    "historical_receipts_revalidated": false,
+    "scientific_authority": false,
+    "publication_authority": false
+  }
+}
