@@ -416,6 +416,28 @@
             "success_condition": "A third party reproduces the bounded formal artifact byte-for-byte and any empirical extension has a separately frozen claim identity.",
             "failure_terminal": "P6_INDEPENDENT_REPRODUCTION_NOT_ESTABLISHED"
           }
+        },
+        {
+          "item_id": "P6.CLEANROOM_REPLAY.SUBSTITUTE.ACTIVE",
+          "category": "ACTIVE_POSITIVE_AUTHORITY",
+          "claim_id": "P6.CLEANROOM_REPLAY.INDEPENDENT_UNIT.V1",
+          "disposition": "The substitute for the external reproduction gate is executed: a second, independently implemented clean-room execution unit with a disjoint code path (no import of the local generator module, the formal/ package, or any make target) re-executes the frozen V2 manifest + V3 local replay bundle. All 21 contract/manifest digests recompute; the countermodel register re-derives byte-for-byte from the unit's own serializer and schema walk; all 12 hostile-kind verdicts agree under the unit's own six decision procedures; the certificate-lifting SMT obligation re-discharges UNSAT by exhaustive two-Boolean enumeration plus a z3 cross-check, with three weakened mutants live with witnesses. The receipt is Ed25519-signed under the committed deterministic house key and independently checked by a no-shared-code verifier (tamper-tested). Status converts LOCAL_REPLAY_ONLY -> INDEPENDENT_UNIT_REPLAY_MATCH within the programme; true external custodianship remains unclaimed.",
+          "scope": "Substitute independent-unit replay of the frozen bounded formal bundle only; grants no empirical, deployed, population, or cross-domain authority and does not widen the Claim Ledger V4 formal scope.",
+          "authority_artifact": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/P6_CLEANROOM_REPLAY_RECEIPT_V1.json",
+          "positive_authority_granted": true,
+          "post_hoc_relabeling_prohibited": true,
+          "source_refs": [
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/p6_cleanroom_replay_v1.py", "availability": "EXISTING_PR", "ref": "lane-b/p6-cleanroom-replay"},
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/check_p6_cleanroom_replay_v1.py", "availability": "EXISTING_PR", "ref": "lane-b/p6-cleanroom-replay"},
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/P6_CLEANROOM_REPLAY_RECEIPT_V1.json", "availability": "EXISTING_PR", "ref": "lane-b/p6-cleanroom-replay", "sha256": "c2cc98ce10cf249cb16746487ef986f9697d97786355b4fc53478ffab84dc157"},
+            {"path": "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md", "availability": "EXISTING_PR", "ref": "lane-b/p6-cleanroom-replay"}
+          ],
+          "next_executable_step": {
+            "kind": "AUTHORITY_REPLAY",
+            "command": "python papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/check_p6_cleanroom_replay_v1.py",
+            "success_condition": "The independent verifier confirms the committed receipt: signature, payload digest, deterministic key, all bundle digests, byte-for-byte register rebuild, all 12 verdicts under Kahn-peel cycle detection, truth-table UNSAT, three live mutants, and the gate table.",
+            "failure_terminal": "P6_CLEANROOM_REPLAY_AUTHORITY_INVALID"
+          }
         }
       ]
     },

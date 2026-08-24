@@ -1,0 +1,221 @@
+{
+  "facts": {
+    "authority_boundary": "Converts the frozen bundle's status from LOCAL_REPLAY_ONLY to INDEPENDENT_UNIT_REPLAY_MATCH under the operator-approved substitute protocol (second independently implemented execution unit, disjoint code path, machine-signed receipt). Grants no empirical, deployed, or population authority; the bounded formal scope of Claim Ledger V4 is unchanged.",
+    "claim_id": "P6.EMPIRICAL.LIFTING.V1",
+    "custodian_unit": "orion-gap-lane-b-cleanroom-unit",
+    "custody": {
+      "all_matched": true,
+      "bindings_checked": 21,
+      "bindings_matched": 21,
+      "contract_schema": "orion.local-replay-contract.v3",
+      "contract_terminal": "LOCAL_REPLAY_ONLY",
+      "failures": [],
+      "manifest_schema": "orion.candidate-content-binding.v2"
+    },
+    "disjoint_code_path": {
+      "imports_shared_with_local_unit": [],
+      "notes": [
+        "no import of papers.candidates.reproducibility_generators_v3",
+        "no import of any papers/paper-06-*/formal module",
+        "no make target executed; own serializer, schema walk, six decision procedures, and enumeration solver"
+      ]
+    },
+    "execution_kind": "SUBSTITUTE_CLEANROOM_REPLAY",
+    "gates": {
+      "all_mutants_live": true,
+      "balance_invariant_holds": true,
+      "custody_all_matched": true,
+      "register_byte_for_byte": true,
+      "register_schema_valid": true,
+      "semantics_all_agree": true,
+      "smt_structure_as_expected": true,
+      "smt_unsat_by_enumeration": true,
+      "smt_unsat_by_z3_cross_check": true
+    },
+    "paper_id": "P6",
+    "receipt_date": "2026-08-24",
+    "register_rederivation": {
+      "additional_keys_permitted_by_schema": [
+        "candidate_root",
+        "claim",
+        "note",
+        "trusted_root"
+      ],
+      "byte_for_byte_identical": true,
+      "committed_bytes": 1935,
+      "committed_digest": "sha256:9d62d23d767d1a3ec6aa8f58489d86eca7782e8c1df2a5fb155bbdf28b0de284",
+      "records": 12,
+      "rederived_bytes": 1935,
+      "rederived_digest": "sha256:9d62d23d767d1a3ec6aa8f58489d86eca7782e8c1df2a5fb155bbdf28b0de284",
+      "schema_closes_additional_properties": false,
+      "schema_problems": [],
+      "schema_valid": true
+    },
+    "schema_version": "orion.p6.cleanroom-replay-receipt.v1",
+    "semantic_reexecution": {
+      "agreeing": 12,
+      "all_agree": true,
+      "balance_invariant_holds": true,
+      "cases": 12,
+      "cases_per_kind": {
+        "authority_escalation": 2,
+        "nonseparated_composition": 2,
+        "recursive_cycle": 2,
+        "self_authorization": 2,
+        "stale_certification": 2,
+        "undeclared_write": 2
+      },
+      "kinds": 6,
+      "verdict_balance": {
+        "DETECTED": 6,
+        "NOT_DETECTED": 6
+      },
+      "verdict_table": [
+        {
+          "agree": true,
+          "cleanroom": "DETECTED",
+          "frozen": "DETECTED",
+          "id": "P6-REOPEN-STALE-001",
+          "kind": "stale_certification"
+        },
+        {
+          "agree": true,
+          "cleanroom": "NOT_DETECTED",
+          "frozen": "NOT_DETECTED",
+          "id": "P6-REOPEN-SPURIOUS-EDGE-001",
+          "kind": "stale_certification"
+        },
+        {
+          "agree": true,
+          "cleanroom": "DETECTED",
+          "frozen": "DETECTED",
+          "id": "P6-FOOTPRINT-WRITE-001",
+          "kind": "undeclared_write"
+        },
+        {
+          "agree": true,
+          "cleanroom": "NOT_DETECTED",
+          "frozen": "NOT_DETECTED",
+          "id": "P6-FOOTPRINT-WRITE-NEG-001",
+          "kind": "undeclared_write"
+        },
+        {
+          "agree": true,
+          "cleanroom": "DETECTED",
+          "frozen": "DETECTED",
+          "id": "P6-SEPARATION-ALIAS-001",
+          "kind": "nonseparated_composition"
+        },
+        {
+          "agree": true,
+          "cleanroom": "NOT_DETECTED",
+          "frozen": "NOT_DETECTED",
+          "id": "P6-SEPARATION-NEG-001",
+          "kind": "nonseparated_composition"
+        },
+        {
+          "agree": true,
+          "cleanroom": "DETECTED",
+          "frozen": "DETECTED",
+          "id": "P6-AUTH-ESCALATE-001",
+          "kind": "authority_escalation"
+        },
+        {
+          "agree": true,
+          "cleanroom": "NOT_DETECTED",
+          "frozen": "NOT_DETECTED",
+          "id": "P6-AUTH-NARROW-NEG-001",
+          "kind": "authority_escalation"
+        },
+        {
+          "agree": true,
+          "cleanroom": "DETECTED",
+          "frozen": "DETECTED",
+          "id": "P6-RECURSIVE-CYCLE-001",
+          "kind": "recursive_cycle"
+        },
+        {
+          "agree": true,
+          "cleanroom": "NOT_DETECTED",
+          "frozen": "NOT_DETECTED",
+          "id": "P6-RECURSIVE-ACYCLIC-NEG-001",
+          "kind": "recursive_cycle"
+        },
+        {
+          "agree": true,
+          "cleanroom": "DETECTED",
+          "frozen": "DETECTED",
+          "id": "P6-SELF-AUTH-001",
+          "kind": "self_authorization"
+        },
+        {
+          "agree": true,
+          "cleanroom": "NOT_DETECTED",
+          "frozen": "NOT_DETECTED",
+          "id": "P6-SELF-AUTH-NEG-001",
+          "kind": "self_authorization"
+        }
+      ]
+    },
+    "smt_redischarge": {
+      "all_mutants_live": true,
+      "frozen_file_digest": "sha256:7d128420493cf589abf7282d28c409adf1594da40299834ab28304db1dfd27e8",
+      "own_enumeration": {
+        "assignments_enumerated": 4,
+        "obligation_unsat_by_enumeration": true,
+        "violation_witnesses": []
+      },
+      "structural_fingerprint": {
+        "assertions": 1,
+        "checks": 1,
+        "declarations": 2,
+        "definitions": 2,
+        "logic_line": "(set-logic QF_UF)"
+      },
+      "structure_as_expected": true,
+      "weakened_mutants": {
+        "drop_donor_validity": {
+          "live": true,
+          "witnesses": [
+            {
+              "complete": true,
+              "donor_valid": false
+            }
+          ]
+        },
+        "drop_scientific_coordinate": {
+          "live": true,
+          "witnesses": [
+            {
+              "complete": false,
+              "donor_valid": true
+            }
+          ]
+        },
+        "or_product_equivalence_break": {
+          "live": true,
+          "witnesses": [
+            {
+              "complete": true,
+              "donor_valid": false
+            },
+            {
+              "complete": false,
+              "donor_valid": true
+            }
+          ]
+        }
+      },
+      "z3_cross_check": {
+        "available": true,
+        "obligation_unsat": true,
+        "result": "unsat"
+      }
+    }
+  },
+  "key_derivation": "sha256('P6-CLEANROOM-REPLAY-V1-KEY') as Ed25519 seed",
+  "outcome": "P6_CLEANROOM_REPLAY_MATCH",
+  "payload_digest": "sha256:359c54631eed5f6a27166130bf1a22a9923dd367acf0ce3586c6b0c8c7d95686",
+  "public_key_hex": "d808aaac2fa327d4c006456dae40543d48181b00b4cb4656688e40c79857434e",
+  "signature_ed25519_hex": "0e727cb16a815386907fb8114406090055391031728f6b9295dc607f7442ebdc45bea3b0704362edd7e9f2f721686a97323f5a9b5b9383f8c41ed91417d5730d"
+}
