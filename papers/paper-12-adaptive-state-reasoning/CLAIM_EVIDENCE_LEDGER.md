@@ -24,6 +24,10 @@
 | exact charge fields are necessary and sufficient for guaranteed-everywhere selection | **SUPPORTED / REGISTERED FORMAL ENVIRONMENT** | selection-sufficiency and certificate-necessity receipts | each registered coarsening has a witness; no claim beyond the declared additive model |
 | ScienceAgentBench/public-data transfer or a P12C result exists | **CANNOT_CHECK / NO BOUND ARTIFACT** | repository inventory | no `P12C` artifact exists; do not infer public validation from internal exact domains |
 | real LLM/prover superiority | OPEN | no real-system result | not authorized |
+| a repository artifact labelled P12C exists | **FALSE — NO ARTIFACT / LABEL WITHOUT REFERENT** | working tree, all refs, PRs and issues searched | no P12C artifact, commit, PR or issue exists; none was invented; the integrated priors are the landed adverse chain below |
+| the landed adverse terminals bind as priors on any successor campaign | **BINDING PRIOR / PROTOCOL-LEVEL** | `top_tier/p12_stopgo_frozen_menus_v1.json` `prior_adverse_evidence` (SHA-bound) | `P12A_SUPERIORITY_AUTHORITY_WITHHELD`, `P12_ROBUSTNESS_STRESS_V1_EXECUTED` (`price_axis=BROKEN`, `distribution_shift_axis=BROKEN`), `P12_PRICE_AWARE_SUCCESSOR_SUPPORTED`; no price/shift-robustness wording is available at any outcome |
+| the stop/go public-data campaign has identical frozen action and signal menus across arms | **FROZEN PROTOCOL / NO RESULTS** | `top_tier/p12_stopgo_frozen_menus_v1.json` + `top_tier/P12_STOPGO_FROZEN_MENUS_V1.md` | campaign not executed; no datum, gate verdict or terminal exists; this artifact must never be cited as evidence of an empirical outcome |
+| the campaign's inference unit is the task family, aggregated by domain | SUPPORTED / PROTOCOL DECLARATION | same frozen-menus artifact | generated rows, seeds, episodes and individual instances are not independent units for any interval, gate or claim |
 
 ## Evidence correction
 
@@ -33,6 +37,12 @@ The historical P12A terminal remains `P12A_SUPERIORITY_AUTHORITY_WITHHELD` in
 `P12_ACTIVE_CLAIM_AUTHORITY_V4.json`, which preserves V3's active P12B leaf and
 binds the transfer support, robustness negative, conditional successor and
 exact-certificate boundary as separate lifecycle leaves.
+`P12_ACTIVE_CLAIM_AUTHORITY_V5.json` preserves every V4 leaf, terminal, binding
+and forbidden promotion unchanged and adds only the frozen stop/go campaign
+leaf (`FROZEN_PROTOCOL_PENDING_EXECUTION`, no results) with its three SHA-bound
+evidence bindings and two new forbidden promotions; audited fail-closed by
+`check_p12_stopgo_integration_v1.py` (scientific_authority_delta = NONE,
+external_validation = CANNOT_CHECK).
 
 The V1 P12B receipt is preserved unchanged. Its scientific counts and estimates
 reconstruct under the repository lock, but strict whole-core replay rejects its

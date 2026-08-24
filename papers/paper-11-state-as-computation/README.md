@@ -52,6 +52,7 @@ Historical failures remain first-class artifacts. P11D, P11H and the ten-respons
 - `top_tier/P11_LOW_WIDTH_GAP_REVIVAL_RECEIPT_V1.md` — NR-07 capacity attribution and proven width law for the `r=3` boundary
 - P11D/P11H adverse results, P11E replicated sparse, P11G arm-scoped nonlinear and P11I wide high-width receipts
 - `P11G_ARM_PLACEMENT_ADJUDICATION_V1.md` — arm-axis adjudication and decoder/state decomposition
+- `P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md` — exact requirements, CANNOT_CHECK reasons and pass gate for the three open issue #1086 external-validation boxes (comparator breadth, resource matching, optionality/LOBO)
 
 ## Not authorized
 
