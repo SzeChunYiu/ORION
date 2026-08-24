@@ -1,0 +1,182 @@
+{
+  "schema_version": "orion.smt-scale-campaign.v1",
+  "identity": "P6_P8_SMT_SCALE_CAMPAIGN_LUNARC_V1",
+  "issue": "SzeChunYiu/ORION#1086",
+  "artifact_class": "EXECUTED_VERIFICATION_RECEIPT",
+  "campaign_executed": true,
+  "outcome_accessed": false,
+  "results_exist": true,
+  "what_this_is": "Execution of the P6/P7/P8 SMT calculi at scales above their CI defaults, on LUNARC compute nodes with z3 5.1.0. No LLM, no credentials, no external benchmark data: these are self-contained formal verifications over the repository's own calculi.",
+  "why_it_was_not_previously_run": "All three CI jobs install '.[dev,candidates]' and never the 'proofs' extra, so z3 is absent and the theorem tests degrade to skips. pyproject's own comment predicts this: a suite that silently skips them reports 'no theorem failed' for 'no theorem was checked'.",
+  "environment": {
+    "site": "LUNARC",
+    "scheduler": "SLURM",
+    "array_job": "3534164",
+    "python": "3.11.5",
+    "z3": "5.1.0",
+    "repo_head": "59b103f"
+  },
+  "runs": [
+    {
+      "paper": "P6",
+      "calculus": "separation_calculus",
+      "scale_parameter": "node-count",
+      "scale_value": 6,
+      "theorems_proved": 5,
+      "theorems": [
+        "SEPARATED_COMMUTATION",
+        "SEPARATION_IS_NECESSARY",
+        "WRITE_LOCALITY",
+        "FRAME_DETERMINACY",
+        "IDEMPOTENT_ON_FIXPOINT"
+      ],
+      "agreement_line": "31104/31104 frame-respecting, 30720 perturbations outside the frame",
+      "output_sha256": "eb4dd22081c30820654110db8e86b1a12a4c8895938e507c65dbae0407cd4c80",
+      "ci_default": 5,
+      "scale_multiple_of_default": 1.2
+    },
+    {
+      "paper": "P6",
+      "calculus": "separation_calculus",
+      "scale_parameter": "node-count",
+      "scale_value": 7,
+      "theorems_proved": 5,
+      "theorems": [
+        "SEPARATED_COMMUTATION",
+        "SEPARATION_IS_NECESSARY",
+        "WRITE_LOCALITY",
+        "FRAME_DETERMINACY",
+        "IDEMPOTENT_ON_FIXPOINT"
+      ],
+      "agreement_line": "172928/172928 frame-respecting, 172032 perturbations outside the frame",
+      "output_sha256": "25aa16a8f3852225515beb417e667ad1f0003f2b386c1af8133b085f625392f7",
+      "ci_default": 5,
+      "scale_multiple_of_default": 1.4
+    },
+    {
+      "paper": "P7",
+      "calculus": "composition_calculus",
+      "scale_parameter": "differential-trials",
+      "scale_value": 5000,
+      "theorems_proved": 18,
+      "theorems": [
+        "IDENTITY_CARRIES",
+        "LEFT_IDENTITY",
+        "RIGHT_IDENTITY",
+        "IDENTITY_STRICT",
+        "ASSOCIATIVITY_OBSERVABLE",
+        "ASSOCIATIVITY_CARRIES",
+        "ASSOCIATIVITY_STRICT",
+        "INTERMEDIATE_CONTRACT_COMPOSITION",
+        "UNMATCHED_INTERMEDIATE_CONTRACT_BLOCKS",
+        "COMPOSITION_NON_AMPLIFICATION",
+        "SINGLE_COORDINATE_SEPARATION",
+        "DONOR_CONSERVATIVITY",
+        "IDENTITY_NEEDS_A_REFLEXIVE_CONTRACT_TEST",
+        "STRICT_LAWS_NEED_EXTENSIONALITY",
+        "TOTALITY_COMPOSES_UNDER_MATCH",
+        "CONTAINMENT_IS_THE_EXACT_CONDITION",
+        "MATCH_IS_NOT_NECESSARY",
+        "CONTAINMENT_FAILURE_ADMITS_A_COUNTERMODEL"
+      ],
+      "agreement_line": "5072/5072 agree, 801 positive, both verdicts exercised: True",
+      "output_sha256": "e1800ebf8fabbef6370a780608fd01ef498f3afbeb06454ed8f883ae93cf6ae4",
+      "ci_default": 120,
+      "scale_multiple_of_default": 41.7
+    },
+    {
+      "paper": "P7",
+      "calculus": "composition_calculus",
+      "scale_parameter": "differential-trials",
+      "scale_value": 20000,
+      "theorems_proved": 18,
+      "theorems": [
+        "IDENTITY_CARRIES",
+        "LEFT_IDENTITY",
+        "RIGHT_IDENTITY",
+        "IDENTITY_STRICT",
+        "ASSOCIATIVITY_OBSERVABLE",
+        "ASSOCIATIVITY_CARRIES",
+        "ASSOCIATIVITY_STRICT",
+        "INTERMEDIATE_CONTRACT_COMPOSITION",
+        "UNMATCHED_INTERMEDIATE_CONTRACT_BLOCKS",
+        "COMPOSITION_NON_AMPLIFICATION",
+        "SINGLE_COORDINATE_SEPARATION",
+        "DONOR_CONSERVATIVITY",
+        "IDENTITY_NEEDS_A_REFLEXIVE_CONTRACT_TEST",
+        "STRICT_LAWS_NEED_EXTENSIONALITY",
+        "TOTALITY_COMPOSES_UNDER_MATCH",
+        "CONTAINMENT_IS_THE_EXACT_CONDITION",
+        "MATCH_IS_NOT_NECESSARY",
+        "CONTAINMENT_FAILURE_ADMITS_A_COUNTERMODEL"
+      ],
+      "agreement_line": "20072/20072 agree, 3148 positive, both verdicts exercised: True",
+      "output_sha256": "e1eb6b80443083c32b795a7d9eb5f2c2e2b931c96730615da2d53014bf9ecbfc",
+      "ci_default": 120,
+      "scale_multiple_of_default": 166.7
+    },
+    {
+      "paper": "P8",
+      "calculus": "authority_calculus",
+      "scale_parameter": "differential-trials",
+      "scale_value": 20000,
+      "theorems_proved": 10,
+      "theorems": [
+        "SCOPE_NON_AMPLIFICATION",
+        "DOMAIN_CONFINEMENT",
+        "NO_LAUNDERING_GENERAL",
+        "NON_COMPENSATORY",
+        "DEFEATER_MONOTONICITY",
+        "EPOCH_ISOLATION",
+        "ONE_STEP_LEMMA",
+        "CONV_IMPLIES_REACH",
+        "CYCLE_COLLAPSE",
+        "ACYCLIC_STRICTNESS"
+      ],
+      "agreement_line": "20000/20000 agree, 2723 authorised",
+      "output_sha256": "67183e8e1b88f4d98646d88fd88a105d890489cb935510fcb8e155667e34bddf",
+      "ci_default": 400,
+      "scale_multiple_of_default": 50.0
+    },
+    {
+      "paper": "P8",
+      "calculus": "authority_calculus",
+      "scale_parameter": "differential-trials",
+      "scale_value": 100000,
+      "theorems_proved": 10,
+      "theorems": [
+        "SCOPE_NON_AMPLIFICATION",
+        "DOMAIN_CONFINEMENT",
+        "NO_LAUNDERING_GENERAL",
+        "NON_COMPENSATORY",
+        "DEFEATER_MONOTONICITY",
+        "EPOCH_ISOLATION",
+        "ONE_STEP_LEMMA",
+        "CONV_IMPLIES_REACH",
+        "CYCLE_COLLAPSE",
+        "ACYCLIC_STRICTNESS"
+      ],
+      "agreement_line": "100000/100000 agree, 13416 authorised",
+      "output_sha256": "6182ac57cfcf368343c173a79c55ff630606ef6975aa0cdfbbfe720c1d31f5e6",
+      "ci_default": 400,
+      "scale_multiple_of_default": 250.0
+    }
+  ],
+  "totals": {
+    "runs": 6,
+    "distinct_theorems": 33,
+    "all_theorems_proved": true,
+    "any_disagreement": false
+  },
+  "boxes_this_does_NOT_close": [
+    "P8: Execute actual type-distinct native systems and ideal typed-product baseline -- this is calculus verification, not native system execution.",
+    "P8: Cover every ordered cross-system pair with clean and hostile cases -- differential trials are not cross-system pairs.",
+    "P7: Use >=2 non-retrieval domains and >=50 transitions/domain -- SMT trials are not domains."
+  ],
+  "claim_boundary": "Strengthens the formal-verification evidence behind P6, P7 and P8 by executing their calculi far beyond the scale CI has ever run. It establishes no empirical result, no external validation and no cross-system coverage.",
+  "still_running_at_write_time": [
+    "orion.study.p6.reopening_calculus_smt --node-count 6",
+    "orion.study.p6.reopening_calculus_smt --node-count 7",
+    "orion.study.p6.reopening_calculus_smt --node-count 8"
+  ]
+}
