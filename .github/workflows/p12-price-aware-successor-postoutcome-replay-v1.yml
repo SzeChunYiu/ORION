@@ -40,7 +40,6 @@ jobs:
           python run_p12_price_aware_successor_v1.py > p12_price_aware_successor_v1.json
           python run_p12_price_aware_successor_v1.py > p12_price_aware_successor_replay_v1.json
           cmp p12_price_aware_successor_v1.json p12_price_aware_successor_replay_v1.json
-          cmp p12_price_aware_successor_v1.json P12_PRICE_AWARE_SUCCESSOR_RESULT_V1.json
 
       - name: Reproduce independent checker twice
         run: |
@@ -56,30 +55,51 @@ jobs:
           python audit_p12_price_aware_successor_surface_v1.py > p12_price_aware_successor_surface_audit_replay_v1.json
           cmp p12_price_aware_successor_surface_audit_v1.json p12_price_aware_successor_surface_audit_replay_v1.json
 
-      - name: Assert frozen scientific terminals
+      - name: Cross-check replay against compact bound receipt
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
           root = Path('.')
-          result = json.loads((root / 'p12_price_aware_successor_v1.json').read_text())
+          run = json.loads((root / 'p12_price_aware_successor_v1.json').read_text())
+          receipt = json.loads((root / 'P12_PRICE_AWARE_SUCCESSOR_RESULT_V1.json').read_text())
           checker = json.loads((root / 'p12_price_aware_successor_checker_v1.json').read_text())
           audit = json.loads((root / 'p12_price_aware_successor_surface_audit_v1.json').read_text())
 
-          sc = result['success_criteria']
+          sc = run['success_criteria']
           assert sc['SC1_FLAT_replication_constraint']['ok'] is True
           assert sc['SC2_price_axis']['ok'] is True
           assert sc['SC3_shift_axis']['ok'] is True
           assert sc['SC6_price_responsiveness_liveness']['ok'] is True
-          assert result['verdicts']['successor_price_axis'] == 'ROBUST'
-          assert result['verdicts']['successor_distribution_shift_axis'] == 'ROBUST'
-          assert result['verdicts']['original_allocator_price_axis'] == 'BROKEN'
-          assert result['verdicts']['original_allocator_distribution_shift_axis'] == 'BROKEN'
+
+          assert run['verdicts']['successor_price_axis'] == 'ROBUST'
+          assert run['verdicts']['successor_distribution_shift_axis'] == 'ROBUST'
+          assert run['verdicts']['original_allocator_price_axis'] == 'BROKEN'
+          assert run['verdicts']['original_allocator_distribution_shift_axis'] == 'BROKEN'
+          assert run['total_priced_regret_mass'] == receipt['before_after']['total_priced_regret_mass']
+
+          assert receipt['terminal'] == 'P12_PRICE_AWARE_SUCCESSOR_SUPPORTED'
+          assert receipt['before_after']['successor_positive_cells'] == 0
+          assert receipt['before_after']['original_allocator_positive_cells'] == 45
+          assert receipt['before_after']['verdicts_before'] == {
+              'price_axis': 'BROKEN', 'distribution_shift_axis': 'BROKEN'}
+          assert receipt['before_after']['verdicts_after'] == {
+              'price_axis': 'ROBUST', 'distribution_shift_axis': 'ROBUST'}
+          assert receipt['success_criteria']['SC1_FLAT_replication_constraint'] == sc['SC1_FLAT_replication_constraint']
+          assert receipt['success_criteria']['SC2_price_axis']['ok'] == sc['SC2_price_axis']['ok']
+          assert receipt['success_criteria']['SC3_shift_axis']['ok'] == sc['SC3_shift_axis']['ok']
+          assert receipt['success_criteria']['SC6_price_responsiveness_liveness'] == sc['SC6_price_responsiveness_liveness']
+
           assert checker['terminal'] == 'P12_PRICE_AWARE_SUCCESSOR_SECOND_CHECKER_GREEN'
           assert checker['discrepancy_count'] == 0
+          assert checker['cells_cross_checked'] == receipt['success_criteria']['SC4_two_implementations']['cells_cross_checked']
+          assert receipt['success_criteria']['SC4_two_implementations']['discrepancy_count'] == 0
+
           assert audit['terminal'] == 'P12_PRICE_AWARE_SUCCESSOR_SURFACE_AUDIT_GREEN'
           assert audit['self_validation_valid'] is True
+          assert audit['dynamic_ledger_regime_checks'] == receipt['success_criteria']['SC5_successor_surface_audit']['dynamic_ledger_regime_checks']
+
           print('P12 NR-13 post-outcome replay verification GREEN')
           PY
 
