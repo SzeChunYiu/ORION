@@ -1,0 +1,182 @@
+name: p10-native-lsp-access-successor-v1
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/P10_NATIVE_ACCESS_ROOT_CAUSE_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/P10_NATIVE_LSP_ACCESS_SUCCESSOR_PREREG_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/extract_p10_native_lsp_state_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/check_p10_native_lsp_access_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/fit_p10_native_state_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_novelty_v1.py'
+      - '.github/workflows/p10-native-lsp-access-successor-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile successor access code
+        run: |
+          python -m py_compile \
+            research/extensions/p9-p10-structural-scaling/extract_p10_native_lsp_state_v1.py \
+            research/extensions/p9-p10-structural-scaling/check_p10_native_lsp_access_v1.py
+      - name: Assert preregistration predates implementation
+        run: |
+          set -euo pipefail
+          test -n "$(git log --format=%H -- research/extensions/p9-p10-structural-scaling/P10_NATIVE_LSP_ACCESS_SUCCESSOR_PREREG_V1.md | tail -1)"
+          prereg=$(git log --format=%ct -- research/extensions/p9-p10-structural-scaling/P10_NATIVE_LSP_ACCESS_SUCCESSOR_PREREG_V1.md | tail -1)
+          impl=$(git log --format=%ct -- research/extensions/p9-p10-structural-scaling/extract_p10_native_lsp_state_v1.py | tail -1)
+          test "$prereg" -le "$impl"
+
+  trace:
+    needs: static-contract
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION analysis dependencies
+        run: python -m pip install -e '.[candidates]'
+      - name: Install elan
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Checkout exact source Mathlib revision and precompiled cache
+        run: |
+          git init /tmp/mathlib
+          git -C /tmp/mathlib remote add origin https://github.com/leanprover-community/mathlib4.git
+          git -C /tmp/mathlib fetch --depth 1 origin e72c1e277f31441626621f7d0c7207862fc25569
+          git -C /tmp/mathlib checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/mathlib rev-parse HEAD)" = e72c1e277f31441626621f7d0c7207862fc25569
+          test "$(cat /tmp/mathlib/lean-toolchain)" = leanprover/lean4:v4.34.0-rc1
+          cd /tmp/mathlib
+          lake --version
+          lake exe cache get
+      - name: Query original source through frozen Lean LSP positions
+        run: |
+          mkdir -p out
+          python research/extensions/p9-p10-structural-scaling/extract_p10_native_lsp_state_v1.py \
+            --mathlib-checkout /tmp/mathlib \
+            --shard-index '${{ matrix.shard }}' \
+            --shard-count 8 \
+            --request-timeout 240 \
+            --output 'out/p10-lsp-shard-${{ matrix.shard }}.json'
+      - name: Show shard coverage without changing outcome gates
+        run: |
+          python - <<'PY'
+          import glob,json
+          p=glob.glob('out/p10-lsp-shard-*.json')[0]
+          d=json.load(open(p))
+          print(json.dumps({k:d[k] for k in (
+              'shard_index','selected_files','transition_denominator','eligible_transitions',
+              'eligibility_fraction','terminal')},indent=2,sort_keys=True))
+          from collections import Counter
+          print('statuses',Counter(x['status'] for x in d['files']))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-lsp-shard-${{ matrix.shard }}-${{ github.sha }}
+          path: out/p10-lsp-shard-${{ matrix.shard }}.json
+          if-no-files-found: error
+
+  aggregate-access:
+    needs: trace
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION analysis dependencies
+        run: python -m pip install -e '.[candidates]'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p10-lsp-shard-*-${{ github.sha }}
+          path: lsp-shards
+          merge-multiple: true
+      - name: Independently verify frozen population, positions and receipts
+        run: |
+          python research/extensions/p9-p10-structural-scaling/check_p10_native_lsp_access_v1.py \
+            --shards lsp-shards/p10-lsp-shard-0.json lsp-shards/p10-lsp-shard-1.json lsp-shards/p10-lsp-shard-2.json lsp-shards/p10-lsp-shard-3.json lsp-shards/p10-lsp-shard-4.json lsp-shards/p10-lsp-shard-5.json lsp-shards/p10-lsp-shard-6.json lsp-shards/p10-lsp-shard-7.json \
+            --output P10_NATIVE_LSP_ACCESS_AGGREGATE_V1.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-native-lsp-access-aggregate-${{ github.sha }}
+          path: P10_NATIVE_LSP_ACCESS_AGGREGATE_V1.json
+          if-no-files-found: error
+
+  fit-and-analyze:
+    needs: [trace, aggregate-access]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen fitting dependencies
+        run: python -m pip install numpy==2.5.2 scikit-learn==1.9.0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p10-lsp-shard-*-${{ github.sha }}
+          path: lsp-shards
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p10-native-lsp-access-aggregate-${{ github.sha }}
+          path: access
+          merge-multiple: true
+      - name: Run the unchanged frozen B1-B4 fitter
+        run: |
+          python research/extensions/p9-p10-structural-scaling/fit_p10_native_state_v1.py \
+            --shards lsp-shards/p10-lsp-shard-0.json lsp-shards/p10-lsp-shard-1.json lsp-shards/p10-lsp-shard-2.json lsp-shards/p10-lsp-shard-3.json lsp-shards/p10-lsp-shard-4.json lsp-shards/p10-lsp-shard-5.json lsp-shards/p10-lsp-shard-6.json lsp-shards/p10-lsp-shard-7.json \
+            --output P10_NATIVE_LSP_PREDICTIONS_V1.json
+      - name: Run frozen scientific analyzer only when coverage/controls permit
+        run: |
+          python - <<'PY'
+          import json,pathlib,subprocess,sys
+          access=json.load(open('access/P10_NATIVE_LSP_ACCESS_AGGREGATE_V1.json'))
+          pred=json.load(open('P10_NATIVE_LSP_PREDICTIONS_V1.json'))
+          out={'access':access,'predictions':{
+              k:pred.get(k) for k in (
+                  'terminal','eligibility_coverage','transition_denominator','eligible_transitions',
+                  'controls','shuffle_control','near_duplicate_control','secondary_accuracy')}}
+          if pred['terminal']=='PREDICTIONS_READY_FOR_FROZEN_NATIVE_ANALYZER':
+              inputs=pathlib.Path('research/extensions/p9-p10-structural-scaling/inputs')
+              inputs.mkdir(exist_ok=True)
+              target=inputs/'P10_NATIVE_STATE_PREDICTIONS_V1.json'
+              target.write_text(json.dumps(pred,indent=2,sort_keys=True)+'\n')
+              subprocess.run([sys.executable,'research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_novelty_v1.py'],check=True)
+              source=pathlib.Path('research/extensions/p9-p10-structural-scaling/results/RUNTIME_GATED_NOVELTY_ANALYSIS_V1.json')
+              result=json.loads(source.read_text())
+              out['native']=result.get('native')
+          else:
+              out['native']={'terminal':pred['terminal'],'coverage':pred.get('eligibility_coverage')}
+          pathlib.Path('P10_NATIVE_LSP_SCIENTIFIC_ANALYSIS_V1.json').write_text(json.dumps(out,indent=2,sort_keys=True)+'\n')
+          print(json.dumps(out,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-native-lsp-scientific-analysis-${{ github.sha }}
+          path: |
+            P10_NATIVE_LSP_PREDICTIONS_V1.json
+            P10_NATIVE_LSP_SCIENTIFIC_ANALYSIS_V1.json
+          if-no-files-found: error
