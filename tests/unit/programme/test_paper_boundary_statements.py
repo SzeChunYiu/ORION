@@ -219,3 +219,13 @@ def test_p7_readiness_record_carries_the_three_landed_classes() -> None:
         assert denominator in text, denominator
     assert "474 unnecessary reopens" in text
     assert "not universal regime transport" in text
+
+
+def test_p15_c156_reflects_the_landed_interoperability_study() -> None:
+    """The study landed; the row must not still read PROPOSED."""
+    text = _flat(PAPERS / "paper-15-orion-research-harness/CLAIM_EVIDENCE_LEDGER_V1.md")
+    assert "SUPPORTED_BOUNDED" in text
+    assert "22 cases" in text
+    # and must not over-claim: the other half and C15.5 stay CANNOT_CHECK
+    assert "does not support the claim-aware observability half" in text
+    assert "C15.5 remains `CANNOT_CHECK`" in text
