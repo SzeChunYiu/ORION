@@ -1,0 +1,29 @@
+{
+  "schema": "orion.p1.scienceagentbench.fullcontext-source-prompt-provenance.v1",
+  "status": "PASS_EXACT_PROMPT_BYTES_EXTRACTED_FROM_FIXED_GIT_OBJECTS",
+  "source_pr": 1130,
+  "source_commit": "92f078040c9e5248af44ae2e7ec8930124d41ca5",
+  "prompt_bodies_retained_in_this_packet": false,
+  "records": [
+    {
+      "condition": "short_pr1130_replay",
+      "source_path": "development/p1-scienceagentbench-lunarc-openweight-v1-2026-08-24/remote-job-3533966/raw/replay_seed101_1.request.json",
+      "git_blob_oid": "d4a27bf1734a8c9b4428f2236c34392489aee67d",
+      "source_request_raw_bytes": 449,
+      "source_request_raw_sha256": "68b4bf4bf0c5c59e603bb1c17d0c40edb552ea2173739d4910765b2a5d7e702d",
+      "extracted_prompt_bytes": 186,
+      "extracted_prompt_sha256": "afb432d64085e79f36da380ce0dbc79aa8b5efe221921da06d511480947b4a3b"
+    },
+    {
+      "condition": "long_pr1130_six_marker",
+      "source_path": "development/p1-scienceagentbench-lunarc-openweight-v1-2026-08-24/remote-job-3533966/raw/long_context_seed101.request.json",
+      "git_blob_oid": "93925929822c6117928f1a81a60bb67ba632f8f6",
+      "source_request_raw_bytes": 92046,
+      "source_request_raw_sha256": "d805240571bd59617e0ee8ee0a8f3d1604cd439fbdf79e23f267c7340dac1e1c",
+      "extracted_prompt_bytes": 90575,
+      "extracted_prompt_sha256": "6c52c9055c03367832e9e61c31f49489194cecd94e732fbc7ca59caeb40cf918"
+    }
+  ],
+  "forbidden_inputs_opened": false,
+  "scientific_authority_delta": "NONE"
+}

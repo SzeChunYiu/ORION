@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/projects/hep/fs10/scratch/scyiu/orion_p1_sab_fullcontext_replay_v1_20260824/code/direct_fullcontext_replay_v1.py", line 325, in <module>
+    raise SystemExit(main())
+  File "/projects/hep/fs10/scratch/scyiu/orion_p1_sab_fullcontext_replay_v1_20260824/code/direct_fullcontext_replay_v1.py", line 296, in main
+    receipt, passed = run_condition(
+  File "/projects/hep/fs10/scratch/scyiu/orion_p1_sab_fullcontext_replay_v1_20260824/code/direct_fullcontext_replay_v1.py", line 82, in run_condition
+    require(
+  File "/projects/hep/fs10/scratch/scyiu/orion_p1_sab_fullcontext_replay_v1_20260824/code/direct_fullcontext_replay_v1.py", line 45, in require
+    raise RuntimeError(message)
+RuntimeError: short_pr1130_replay: raw prompt-token count
