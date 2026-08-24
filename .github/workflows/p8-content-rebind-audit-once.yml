@@ -1,0 +1,30 @@
+name: p8-content-rebind-audit-once
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-08-epistemic-authority-autonomous-science/**'
+      - 'scripts/regen_paper_manifests.py'
+      - '.github/workflows/p8-content-rebind-audit-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rebind-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Regenerate P8 bindings in worktree only
+        run: python scripts/regen_paper_manifests.py --papers paper-08
+      - name: Print exact binding delta
+        run: |
+          git diff -- papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json \
+            papers/paper-08-epistemic-authority-autonomous-science/SHA256SUMS
+      - name: Show corrected document SHA-256
+        run: |
+          sha256sum papers/paper-08-epistemic-authority-autonomous-science/README.md
+          sha256sum papers/paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V3.md
