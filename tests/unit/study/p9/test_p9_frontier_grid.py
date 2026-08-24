@@ -10,6 +10,7 @@ files are fixtures for the *detector*; none of them is evidence about P9.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -267,7 +268,21 @@ def test_the_module_runs_as_a_subprocess_and_exits_four_for_cannot_check(tmp_pat
             str(tmp_path / "status.json"),
         ],
         cwd=str(REPO_ROOT),
-        env={"PYTHONPATH": str(REPO_ROOT / "src"), "PATH": "/usr/bin:/bin:/usr/local/bin"},
+        env={
+            "PYTHONPATH": str(REPO_ROOT / "src"),
+            "PATH": "/usr/bin:/bin:/usr/local/bin",
+            # The interpreter binary needs its own runtime loader path. A
+            # Python installed outside a default prefix (an HPC module, pyenv,
+            # some conda layouts) keeps libpython there, and scrubbing this
+            # kills the child with exit 127 before Python starts. Carrying it
+            # does not weaken the isolation this env is for: it is the
+            # loader's path, not an import path.
+            **{
+                key: value
+                for key, value in os.environ.items()
+                if key in ("LD_LIBRARY_PATH", "DYLD_LIBRARY_PATH")
+            },
+        },
         capture_output=True,
         text=True,
     )

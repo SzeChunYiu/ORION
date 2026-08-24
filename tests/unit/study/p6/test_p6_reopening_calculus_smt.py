@@ -9,6 +9,7 @@ written to demonstrate.
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -145,7 +146,21 @@ class TestTheRunner:
             text=True,
             timeout=180,
             check=False,
-            env={"PYTHONPATH": "src", "PATH": "/usr/bin:/bin:/usr/local/bin"},
+            env={
+                "PYTHONPATH": "src",
+                "PATH": "/usr/bin:/bin:/usr/local/bin",
+                # The interpreter binary needs its own runtime loader path.
+                # A Python installed outside a default prefix (an HPC module,
+                # pyenv, some conda layouts) keeps libpython there, and
+                # scrubbing this kills the child with exit 127 before Python
+                # starts. Carrying it does not weaken the isolation this env
+                # is for: it is the loader's path, not an import path.
+                **{
+                    key: value
+                    for key, value in os.environ.items()
+                    if key in ("LD_LIBRARY_PATH", "DYLD_LIBRARY_PATH")
+                },
+            },
         )
         assert completed.returncode == 0, completed.stderr
         assert "orion-p6-reopening-calculus" in completed.stdout
