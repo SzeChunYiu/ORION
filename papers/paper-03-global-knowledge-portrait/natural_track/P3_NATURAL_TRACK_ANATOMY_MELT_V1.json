@@ -1,0 +1,62 @@
+{
+  "schema_version": "orion.p3.natural-track-melt-scoring.v1",
+  "identity": "P3_NATURAL_TRACK_ANATOMY_MELT_V1",
+  "issue": "SzeChunYiu/ORION#1086",
+  "boxes_addressed": [
+    "Use official RDF reference alignments and MELT scoring.",
+    "Add at least one natural ontology-pair track; bench23 alone is generated from one seed ontology."
+  ],
+  "campaign_executed": true,
+  "results_exist": true,
+  "outcome_accessed": true,
+  "why_this_track": "OAEI Anatomy pairs the Adult Mouse Anatomy ontology with the human anatomy portion of NCI Thesaurus. Both are independently authored biomedical ontologies with their own editorial histories -- a natural pair, not two views generated from a single seed, which is the objection the box raises against bench23 standing alone.",
+  "track": {
+    "name": "OAEI Anatomy",
+    "test_case": "mouse-human",
+    "source": "mouse.owl (Adult Mouse Anatomy)",
+    "target": "human.owl (NCI Thesaurus human anatomy)",
+    "dataset_url": "https://oaei.ontologymatching.org/2019/anatomy/anatomy-dataset.zip",
+    "digests": {
+      "anatomy-dataset.zip": "29b3203b6f6ac7a9992d99eee14cadf903f05e114bd0a9272bf15187bd47015a",
+      "anatomy-dataset/reference.rdf": "b6a6b12f3e7a786e5b58c4898024f0f483426e9036bdc3939aa61b046dbc26c4",
+      "anatomy-dataset/mouse.owl": "93756393d6306c8f332c884401aa447cc4b2557f0a6be3e0efd988a943cb68f8",
+      "anatomy-dataset/human.owl": "5c1ca432d9845f1abb36ecfce313df46d8c56d2fb4137d0590ec4e4a6a9b05bf",
+      "logmap-out/logmap2_mappings.rdf": "cd0710a7d64b110c4297ec4d1258a9bc7dfbdf6a97fe91712dd56d36eb96a40e"
+    }
+  },
+  "reference_alignment": {
+    "file": "reference.rdf",
+    "official": true,
+    "correspondences": 1516,
+    "note": "the official OAEI reference alignment shipped with the track, used unmodified"
+  },
+  "matcher_arm": {
+    "system": "LogMap 4.0",
+    "mode": "MATCHING (not repair)",
+    "jar_source": "development/p3-logmap-manifest-classpath-v11-2026-08-23/runtime/logmap-matcher-4.0.jar",
+    "invocation": "java -jar logmap-matcher-4.0.jar MATCHER file:mouse.owl file:human.owl <out> true",
+    "output": "logmap2_mappings.rdf",
+    "correspondences": 1412,
+    "note": "This is LogMap's own alignment, produced in matching mode. Prior LogMap artifacts in this repository were repair-mode outputs over another system's mappings, which is why the comparator disposition recorded LogMap as CANNOT_CHECK as a scored arm."
+  },
+  "scoring": {
+    "tool": "MELT 3.3",
+    "metric": "de.uni_mannheim.informatik.dws.melt.matching_eval.evaluator.metric.cm.ConfusionMatrixMetric",
+    "note": "MELT computes the confusion matrix; no metric is recomputed locally.",
+    "true_positives": 1285,
+    "false_positives": 127,
+    "false_negatives": 231,
+    "precision": 0.910056657223796,
+    "recall": 0.8476253298153035,
+    "f1": 0.8777322404371585
+  },
+  "sanity_signal": "Precision 0.910 / recall 0.848 / F1 0.878 sits in the range LogMap reports for OAEI Anatomy. Agreement with the published range is evidence the pipeline is wired correctly; it is not itself a new scientific claim.",
+  "environment": {
+    "site": "LUNARC",
+    "java": "OpenJDK 17",
+    "maven": "3.9.6",
+    "melt": "3.3 from Maven Central"
+  },
+  "recorded_limitation": "MELT's EvaluatorCSV pulls matching-jena-matchers, whose transitive dependencies (babelnet, babelscape-data-commons) resolve only from breda.informatik.uni-mannheim.de, which is unreachable from this network. Scoring therefore uses MELT's ConfusionMatrixMetric directly, which is the same metric EvaluatorCSV reports. This is the concrete form of the comparator research's note that MELT is 'provenance, not a reproducible runtime until dependency and image digests are frozen'.",
+  "boundary": "One natural track, one matcher arm, one reference. No population claim, no cross-system superiority claim."
+}
