@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import replace
 
 from orion.knowledge.mechanism_assimilation import AssimilationAuthority
-from orion.knowledge.scientific_structure_assimilation import (
+from orion.knowledge.scientific_structure_assimilation_review import (
     ScientificStructureAssimilationDraft,
     StructuralAssimilationVerdict,
     StructuralCoordinate,

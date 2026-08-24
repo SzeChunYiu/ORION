@@ -69,9 +69,24 @@ FORBIDDEN_LOG_PATTERNS = (
 #: names a class of defect and leaves the reader to rebuild the document to find
 #: the instance.
 _DIAGNOSTIC_LINE = re.compile(
-    r"^(?:Overfull|Underfull)\s+\\[hv]box.*$|^LaTeX Warning: (?:Citation|Reference).*$",
+    r"^(?:Overfull|Underfull)\s+\\[hv]box.*$"
+    r"|^LaTeX Warning: (?:Citation|Reference).*$"
+    r"|^There were undefined references\.?$",
     re.MULTILINE,
 )
+
+
+def audit_log(log_text: str) -> tuple[str, ...]:
+    """Return distinct forbidden warning labels found in one LaTeX log."""
+    return tuple(
+        sorted(
+            {
+                label
+                for pattern, label in FORBIDDEN_LOG_PATTERNS
+                if pattern.search(log_text)
+            }
+        )
+    )
 
 
 def _explain(log_text: str, limit: int = 25) -> str:
@@ -149,11 +164,10 @@ def build(manuscript: Manuscript, output_root: Path) -> dict[str, object]:
         raise AssertionError(f"{manuscript.paper} emitted an invalid or empty PDF")
 
     log_text = log.read_text(encoding="utf-8", errors="replace")
-    violations = [label for pattern, label in FORBIDDEN_LOG_PATTERNS if pattern.search(log_text)]
+    violations = audit_log(log_text)
     if violations:
         raise AssertionError(
-            f"{manuscript.paper} PDF audit failed: {', '.join(sorted(set(violations)))}\n"
-            + _explain(log_text)
+            f"{manuscript.paper} PDF audit failed: {', '.join(violations)}\n" + _explain(log_text)
         )
 
     return {
