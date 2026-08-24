@@ -220,7 +220,7 @@ class BudgetedSession:
             wallclock_seconds=max(0.0, self._clock() - self._started),
             model_tokens=self.__model_tokens,
             tool_calls=self.__tool_calls,
-            search_queries=self.__route_calls_made,
+            query_count=self.__route_calls_made,
             reads=self.__reads_made,
         )
 
@@ -329,10 +329,14 @@ class BudgetedSession:
         )
         return ReadOutcome(
             doc_id=doc_id,
-            content_identity=document.content_identity,
+            # post-#1078 names: the record's identity is the merged source it
+            # resolves to, and the host's verdict is a decision, not a
+            # classification. Renames only; the values are unchanged.
+            merged_source_id=document.content_identity,
             content_digest=document.content_digest,
             extraction_question=question,
-            classification=classification,
+            extraction_schema=self.current_extraction_schema,
+            decision=classification.value,
             text=f"{document.title}\n\n{document.abstract}",
         )
 
