@@ -321,6 +321,46 @@ lifecycle-contract campaign must derive gold only from the objective facts
 enumerated in `P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md` and must never
 use ORION itself as an external subject.
 
+### 8.2 Drift-bounded transport: the 60-case result
+
+Section 8 argues that support is conditional on evidence identity and that a
+semantic change may require preserve, reopen, revoke or `CANNOT_CHECK`. That
+argument is tested on a prospectively frozen 60-case grid (20 per stratum;
+protocol and gold dispositions frozen before execution, two independent
+implementations agreeing byte-for-byte on the result JSON).
+
+| arm | verifier-correct | unsound transport | needless re-issue | mean literal reads |
+|---|---|---|---|---|
+| `UNCONDITIONAL` | 40/60 | 40 | 0 | 6.0 |
+| `SIGNATURE_ONLY` | 60/60 | 0 | 20 | 11.333 |
+| `CONDITIONAL_DRIFT_BOUNDED` | 60/60 | 0 | 0 | 10.0 |
+| `ALWAYS_RE_ISSUE` | 60/60 | 0 | 20 | 11.333 |
+
+The two failure modes are opposite and both are real. `UNCONDITIONAL` transports
+40 certificates it has not earned; those decompose as 20 `CONFLICTING` cases,
+where the stored model violates the shifted formula and the served certificate is
+content-invalid, and 20 `MIXED` cases, which are unsound under the frozen
+transport predicate because the justification set changed, though the content may
+still satisfy. That decomposition is why verifier-correct is 40/60 rather than
+20/60: half the unsound transports are unsound as protocol, not as content.
+`SIGNATURE_ONLY` fails in the other direction, refusing all 20 sound redundant
+transports -- a missed-efficiency witness, not a safety failure.
+
+`CONDITIONAL_DRIFT_BOUNDED` is exact on this grid, with zero unsound transports,
+zero needless re-issues and 60/60 verifier-correct, and on the redundant stratum
+it is cheaper than always re-issuing (8.0 against 12.0 mean literal reads, with
+payload accounting held identical at six reads per served certificate so the arms
+differ only in verification).
+
+What this does not earn is stated with the result. It is bounded to CNF
+clause-add, clause-drop and strengthening drift: it says nothing about
+adversarially chosen drift or non-monotone formula rewrites, nothing about
+transport in real agent workflows, and it does not establish that the frozen
+predicate is the *unique* correct transport policy. What it establishes is that
+the predicate is exact on this grid and that its two named competitors fail in
+the directions predicted for them in advance.
+
+
 ## 9. Relation to certified reuse and proof-carrying agents
 
 Recent proof-carrying agent-action work attaches model-agnostic certificates to agent actions and runtime governance. Provenance systems trace evidence and execution. Memory-staleness systems detect that stored state is no longer valid. These donors make it insufficient to claim that “state should carry a certificate.”
