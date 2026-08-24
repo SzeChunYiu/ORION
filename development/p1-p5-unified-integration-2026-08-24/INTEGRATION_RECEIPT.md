@@ -2,7 +2,8 @@
 
 - Branch: `codex/p1-p5-unified-20260824`
 - Selective overlay: `6474c52149393230a91ecd655010305f4959c801`
-- Latest main integrated: `4ba814eebfbcc4cb9ec9de0618e0e6442c7f3799`
+- Scientific main integrated: `4ba814eebfbcc4cb9ec9de0618e0e6442c7f3799`
+- Post-package main integrated: `77df4b898a179de8a780011ae34f7da02dac554a`
 - Resolved scientific subject: `c6c71c6c758aa605fa414ff8eaeb87f1ef4b0672`
 - Pytest/repository CI: **not run**, by explicit user direction.
 
