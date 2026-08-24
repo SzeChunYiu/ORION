@@ -1,23 +1,46 @@
 {
   "analysis_authority": {
+    "committed_required_n": 385,
     "frozen_minimum_inferential_n": 97,
-    "n_tasks": 20,
-    "rule": "No offline primary, p-value, CI superiority verdict, or promotion is permitted.",
-    "status": "DESCRIPTIVE_ONLY"
+    "n_tasks": 390,
+    "primary_promoted": false,
+    "rule": "n meets the frozen TIER_B_committed precision tier, so the family is no longer labelled DESCRIPTIVE_ONLY. That lifts one of the six conditions the frozen decision rule requires and is not the other five: no primary, p-value or superiority verdict is promoted by this run, and achieved half-widths are reported from an observed bootstrap rather than read off the planning table.",
+    "status": "TIER_B_committed"
   },
   "code_bindings": {
     "gold_evaluator_git_blob": "ebe1b4380195e20356cfe10fc28cd656e9eb64be",
-    "offline_analysis_git_blob": "dff98f771923eef8e099585491bd0033a162582e",
+    "offline_analysis_git_blob": "bc947d1ce4f71dc5628763256d1b71af0e6c4a73",
     "offline_systems_git_blob": "0a4300435fa497e35e56c1fd5d47aced7580be6d",
     "protocol_git_blob": "8090535ad2e3db04f5b4eb2175cc431145572414",
-    "runner_git_blob": "9fe58f8c896eac7c0846f0a0068a448f13f8481d",
+    "runner_git_blob": "0cb89447d3e50e4fb3f6625b7c4c2f287e8e05bb",
     "statistical_plan_git_blob": "d07a377af8a254ead4aa39ffe1ba375a89a28502"
   },
   "dataset_binding": {
+    "documents": 1210,
     "seed": 20260816,
-    "suite_fingerprint_sha256": "8d0b826821fc8dc6468e9641fc6bef6dd375f3ea1128a0e28089f28641e4ea65",
-    "tasks": 20,
-    "world_content_hash_sha256": "d3405f686204e50cee28a0e768d6b69a40ab2fb9d823de44a62283eef1428469"
+    "shards": {
+      "tasks": [
+        "tasks-000.json",
+        "tasks-001.json"
+      ],
+      "topics": [
+        "topics.json"
+      ],
+      "world": [
+        "world-000.json",
+        "world-001.json"
+      ]
+    },
+    "suite_fingerprint_sha256": "2f6936ba52fb12dbee7614b6409fe35ee8f34f443088a11fe5f8916552649c1c",
+    "supersedes": {
+      "reason": "The frozen statistical plan committed this family to TIER_B_committed (required_n=385) and its n is host-owned, so a 20-task world could not carry the precision the plan had already fixed outcome-blind. The world was enlarged to meet the pre-registered N; no system was configured against either world, and the plan was not edited.",
+      "suite_fingerprint_sha256": "8d0b826821fc8dc6468e9641fc6bef6dd375f3ea1128a0e28089f28641e4ea65",
+      "tasks": 20,
+      "world_content_hash_sha256": "d3405f686204e50cee28a0e768d6b69a40ab2fb9d823de44a62283eef1428469"
+    },
+    "tasks": 390,
+    "topics": 78,
+    "world_content_hash_sha256": "f93b1f55c0e0db4f32ed4e4b507a84a51f01d1dd62c28c393296724a82aa89a7"
   },
   "execution": {
     "clock": "synthetic_zero_seconds_for_hash_stable_offline_artifacts",

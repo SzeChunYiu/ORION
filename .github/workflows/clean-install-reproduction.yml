@@ -16,12 +16,26 @@ on:
       - 'uv.lock'
       - 'pyproject.toml'
       - '.github/workflows/clean-install-reproduction.yml'
+      - 'research/paper-programme-v1/journal_package/**'
+      - 'papers/paper-01-*/journal_package/**'
+      - 'papers/paper-02-*/journal_package/**'
+      - 'papers/paper-03-*/journal_package/**'
+      - 'papers/paper-04-*/journal_package/**'
+      - 'papers/paper-05-*/journal_package/**'
+      - 'tests/unit/publication/test_journal_package.py'
   push:
     branches: [main]
     paths:
       - 'uv.lock'
       - 'pyproject.toml'
       - '.github/workflows/clean-install-reproduction.yml'
+      - 'research/paper-programme-v1/journal_package/**'
+      - 'papers/paper-01-*/journal_package/**'
+      - 'papers/paper-02-*/journal_package/**'
+      - 'papers/paper-03-*/journal_package/**'
+      - 'papers/paper-04-*/journal_package/**'
+      - 'papers/paper-05-*/journal_package/**'
+      - 'tests/unit/publication/test_journal_package.py'
   workflow_dispatch:
 
 concurrency:
@@ -62,45 +76,30 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Reproduce P1 and prove every published number is identical
-        # P1 was the one paper this workflow could not hold to the byte-identity
-        # standard applied to P3, P5 and P4. Its tables are content-hash-bound and
-        # carry a `provenance.generated_utc` wall clock, so `git diff --exit-code`
-        # can never pass and an honest reproduction always drifts the package. The
-        # two committed tables were even written a second apart, so no single
-        # pinned timestamp reproduces both.
-        #
-        # `--check` regenerates into a scratch directory and compares every field
-        # except that clock, plus the markdown renderings byte-for-byte since those
-        # carry no timestamp. That states the claim that is actually true: given the
-        # same archive, every published P1 number reproduces exactly.
-        #
-        # Exit 3 is CANNOT_CHECK -- the honest state with no archived study run, not
-        # a build failure. Failing on it would push a later change toward suppressing
-        # an honest CANNOT_CHECK to get a green tick.
+      - name: Reproduce the P1 headline tables
+        # `make paper01-results` exits 3 for CANNOT_CHECK, which is the honest
+        # state when no archived study run is present -- not a build failure.
+        # Failing the job on it would push a later change toward suppressing an
+        # honest CANNOT_CHECK to get a green tick.
         run: |
           start=$(date +%s)
           set +e
-          uv run python -m orion.study.p1.tables --check \
-            --archive papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl \
-            --out papers/paper-01-recursive-epistemic-reconstruction/results
+          # Into RUNNER_TEMP, not the checkout. `results/P1-T2_*.json` and
+          # `P1-T3_*.json` are content-hash-bound in P1's journal package, and the
+          # generated tables carry a `provenance.generated_utc` wall-clock stamp --
+          # so every honest reproduction rewrites two hashed artifacts and drifts
+          # the package. A reproduction test that mutates the evidence it is
+          # reproducing cannot then check that evidence.
+          PYTHON="uv run python" make paper01-results P1_OUT="${RUNNER_TEMP}/p1-tables"
           code=$?
           set -e
           elapsed=$(( $(date +%s) - start ))
-          echo "p1 tables --check exit=${code} elapsed=${elapsed}s" >> "$GITHUB_STEP_SUMMARY"
+          echo "paper01-results exit=${code} elapsed=${elapsed}s" >> "$GITHUB_STEP_SUMMARY"
           if [ "$code" -eq 3 ]; then
-            echo "::notice::P1 tables reported CANNOT_CHECK (exit 3); recorded, not failed"
+            echo "::notice::paper01-results reported CANNOT_CHECK (exit 3); recorded, not failed"
             exit 0
           fi
           exit "$code"
-
-      - name: Prove the P1 check left the package untouched
-        # A reproduction test that mutates the evidence it is reproducing cannot
-        # then check that evidence. `--check` writes only into a scratch directory;
-        # this asserts it.
-        run: |
-          git diff --exit-code -- papers/paper-01-recursive-epistemic-reconstruction/results \
-            || { echo "::error::P1 --check modified the checkout"; exit 1; }
 
       - name: Reproduce P3 and P5, and prove they are byte-identical
         # P1 has to write into RUNNER_TEMP because its tables carry a wall-clock

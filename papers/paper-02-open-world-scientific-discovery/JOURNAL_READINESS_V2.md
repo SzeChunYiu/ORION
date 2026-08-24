@@ -8,9 +8,21 @@
 
 **Rule:** V2 may strengthen the paper only prospectively. It cannot rewrite, delete, or relabel V1 evidence.
 
+## 2026-08-23 scientific-ascent status
+
+The manuscript now develops **The Acquisition--Authority Envelope for
+Open-World Scientific Discovery**, a wider analytic comparison theory above the
+original acquisition/closure boundary.  New theorem identities cover the
+run-conditional acquisition ceiling, closure factorization, the
+indistinguishable-world error lower bound and a contract-relative maximally
+permissive authority completion.  This theoretical ascent does **not** change
+the empirical terminal.  Cross-arena superiority remains the untested
+`P2-H-ENVELOPE-768` hypothesis bound to the frozen 768-cluster successor and its
+still-missing external worlds, comparator reproductions and independent custody.
+
 ## Completed widening infrastructure
 
-- [x] stronger manuscript thesis: **Acquisition Is Not Closure**;
+- [x] original thesis **Acquisition Is Not Closure** retained as the first layer of the wider acquisition--authority envelope;
 - [x] donor-composable architecture section and Figure P2-7;
 - [x] 2026 nearest-work donor matrix covering SAGE, AgentIR, SIEVE, bibliography expansion, HALT, MiCP/conformal stopping, Search-R1, DeepControl, decision-theoretic stopping and stage-separated evaluation;
 - [x] prospectively frozen widening protocol;
@@ -117,4 +129,4 @@ These remain human/external inputs rather than scientific blockers:
 
 ## Done definition
 
-For this V2 campaign, `P2_V2_COMPLETE` is satisfied by the stable negative/non-promotion path: the final valid development result is archived, the prospective fresh confirmation was not opened because its precondition failed, no outcome-dependent threshold or slice changes were made, and the existing `P2_NARROWED` paper remains intact and submission-safe.
+For this V2 campaign, `P2_V2_COMPLETE` is satisfied by the stable negative/non-promotion path: the final valid development result is archived, the prospective fresh confirmation was not opened because its precondition failed, no outcome-dependent threshold or slice changes were made, and the paper's `P2_NARROWED` empirical boundary remains intact.  The later scientific-ascent theory requires a fresh manuscript/package review before submission; it does not retroactively reopen V2 outcomes.

@@ -1,0 +1,44 @@
+{
+  "schema": "P10NativeVerificationProtocol.v1",
+  "status": "FROZEN_BEFORE_NATIVE_OUTCOMES",
+  "frozen_at": "2026-08-18",
+  "purpose": "Audit that exact revision-bound files from the programme-scale source sample are accepted by the named native Lean runtime; this is not an all-corpus correctness claim.",
+  "source": {
+    "repository": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e72c1e277f31441626621f7d0c7207862fc25569",
+    "branch": "master",
+    "lean_toolchain": "leanprover/lean4:v4.34.0-rc1",
+    "lean_release_sha256": "41dc6a6ec143ece8ed4ba4c4c6978c91f21ad5cbe3c4e7728ad31b869961dc17",
+    "dependency_manifest_sha256": "b184f0fbaec995b8c8ba017ea0407adbb1720fa8be8785b0940e5dc7741b21a5",
+    "corpus_manifest_sha256": "373e621b918f7a686e4a1eab4f16f4f808b0d735911ca6f5dfc54dd0ac767564"
+  },
+  "selection": {
+    "population": "The 457 files in MATHLIB_CORPUS_V2_MANIFEST.json.",
+    "rule": "Rank active top-module labels by sha256(label + NUL + ORION-P10-NATIVE-MODULES-V1), retain the first eight, then within each retained label rank paths by sha256(path + NUL + ORION-P10-NATIVE-FILE-V1) and retain the first path.",
+    "sample_size": 8,
+    "justification": "A prospectively frozen, outcome-blind, top-module-stratified audit balances native ecosystem breadth against the cost of materializing exact Mathlib dependencies. Transfer measurements still use all 457 files. Native acceptance is claimed only for the eight receipt subjects."
+  },
+  "verifier": {
+    "command": "lake env lean <selected-path>",
+    "success_rule": "Exit status zero maps to SUCCESS; every nonzero status maps to FAIL.",
+    "receipt_fields": [
+      "selected path and source sha256",
+      "repository, branch and commit",
+      "Lean toolchain and reported native version",
+      "dependency and corpus manifest sha256",
+      "environment sha256",
+      "verifier command and exit status",
+      "stdout and stderr sha256"
+    ]
+  },
+  "negative_control": {
+    "source": "import Mathlib.Computability.TMComputable\nexample : False := by\n  trivial\n",
+    "expected": "Native Lean exits nonzero and the receipt records FAIL."
+  },
+  "nonclaims": [
+    "No native-acceptance claim is made for the other 449 corpus files.",
+    "Lean acceptance does not establish statement faithfulness, theorem importance, scientific truth or verifier authority.",
+    "A source or environment digest establishes identity, not correctness.",
+    "Cached dependencies are performance inputs, not substitute verifier receipts."
+  ]
+}

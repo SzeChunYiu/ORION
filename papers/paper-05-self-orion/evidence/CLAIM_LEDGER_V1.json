@@ -233,6 +233,14 @@
       "artifact": "papers/paper-05-self-orion/evidence/glm-5.2-attribution-v2/report.json; papers/paper-05-self-orion/top_tier/P5_RESIDUAL_ERROR_REVIVAL_DISPOSITION_2026-08-24.json",
       "support_type": "POST_OUTCOME_PUBLIC_SUITE_INSTRUMENT_DIAGNOSIS_ONLY__PREREGISTRATION_CHRONOLOGY_CANNOT_CHECK__NO_FRESH_TRANSFER_OR_MODEL_CAPABILITY_CLAIM",
       "status": "SUPPORTED"
+    },
+    {
+      "claim_id": "P5-C22",
+      "region": "abstract-methods-results-limitations-claim-boundary-reproducibility",
+      "sentence": "On the frozen 96-case revision-level panel, FULL_T7 records accuracy 0.125, false-broad rate 0, harmful-regression rate 0 and fresh-transfer success 0.125; generic causal diagnosis records 1.0 accuracy/fresh transfer and the random-diagnostic control records 0.8333333333333334. Independent checks agree, but none of seven frozen decision terminals fires.",
+      "artifact": "papers/paper-05-self-orion/evidence/revision-level-v3/CONFIRMATORY_EXECUTION_RESULT_2026-08-24.md; research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json; papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
+      "support_type": "FROZEN_CONSTRUCTED_PANEL_NO_TERMINAL_RESULT__H3_H4_BOUNDED_SECONDARIES_ONLY__NO_GENERAL_SCIENTIFIC_AUTHORITY_OR_SUPERIORITY",
+      "status": "SUPPORTED_BOUNDED_NO_TERMINAL"
     }
   ],
   "empirical_authority": "CANNOT_CHECK",
@@ -252,7 +260,16 @@
   },
   "paper_id": "P5",
   "peer_review_ready": false,
-  "purpose": "Bind abstract/conclusion/results claims to archived evidence. 21/24 is recomputed from glm-5.2-attribution/results.jsonl. The three residual errors remain errors. H1–H4 stay CANNOT_CHECK. Claim sentences were rebound on 2026-08-22 to the wording of the house-style manuscript rewrite: no number, support type, status or supporting artifact moved, only the prose each claim quotes.",
+  "purpose": "Bind abstract, methods, results, limitations and conclusion claims to archived evidence. The historical 21/24 diagnostic and three errors remain immutable; the post-outcome 24/24 instrument result is diagnosis-only; the frozen 96-case revision-level execution closes with NO_TERMINAL_UNDER_FROZEN_RULES and no general scientific authority.",
   "schema_version": "orion.p5.claim-ledger.v1",
-  "stale_perfect_score_rejected": true
+  "stale_perfect_score_rejected": true,
+  "revision_level_v3_confirmatory": {
+    "status": "NO_TERMINAL_UNDER_FROZEN_RULES",
+    "H1": "NO_REGISTERED_TERMINAL",
+    "H2": "NOT_CONFIRMED_AT_SAFETY_FLOOR",
+    "H3": "BOUNDED_PANEL_SECONDARY_CONFIRMED_NO_GENERAL_AUTHORITY",
+    "H4": "BOUNDED_PANEL_SECONDARY_CONFIRMED_NO_GENERAL_AUTHORITY",
+    "grants_scientific_authority": false,
+    "grants_peer_review_ready": false
+  }
 }

@@ -1,0 +1,37 @@
+{
+  "schema": "ORION.P14E.SuperiorityClaimAuthority.v1",
+  "paper_id": "P14",
+  "claim_id": "P14E.SPECIFICATION_SEPARATED_SUPERIORITY.V1",
+  "active_claim": {
+    "status": "SUPPORTED",
+    "scientific_terminal": "P14E_SPECIFICATION_SEPARATED_SUPERIORITY_SUPPORTED",
+    "scope": "controlled specification-separated strata-balanced hidden-gold governance superiority over 6,720 randomized cases (12 families x 7 strata x 80), at P14A's unchanged thresholds (strongest-baseline false promotion >= 0.05; accuracy gain >= 0.08)",
+    "result_artifact": "P14E_SUPERIORITY_RESULT_RECEIPT_V1.md",
+    "result_json": "P14E_SUPERIORITY_RESULT_V1.json",
+    "result_sha256": "410db4554585e5ce9b6f94b01cc92d7f116f9fd693b60bca2e1ac1eeb4f51679",
+    "replay_core_sha256": "9950c27c2eebf885",
+    "protocol_artifact": "P14E_SPECIFICATION_SEPARATED_SUPERIORITY_PROTOCOL_V1.md",
+    "rule_table_artifact": "P14E_ADJUDICATION_RULES_V1.json",
+    "realized_statistics": {
+      "orion_rse_full_false_promotion": 0.0,
+      "orion_rse_full_disposition_accuracy": 1.0,
+      "orion_rse_full_useful_discovery_recall": 1.0,
+      "strongest_baseline": "MULTI_REVIEW",
+      "strongest_baseline_false_promotion": 0.14285714285714285,
+      "accuracy_gain_vs_strongest": 0.14285714285714285
+    }
+  },
+  "repairs_of_recorded_defects": {
+    "P14A_gate_unattainability": "balanced 7-strata mixture replaces the incidental Bernoulli mixture that capped the discriminator at 0.018375 prevalence",
+    "P14B_circularity": "gold assigned by interpreting the frozen rule table; ORION_RSE_FULL independently implemented facts-only; no-gold-leak gate verified on all 6,720 cases",
+    "P14B_conformance": "per-stratum free-coordinate sets frozen in the rule table; both-values-in-every-cell reminting verification"
+  },
+  "predecessor_authority_untouched": {
+    "conformance_claim_selector": "P14_ACTIVE_CLAIM_AUTHORITY_V1.json (digest-bound in SHA256SUMS; P14.CURRENT.CONTROLLED_CONFORMANCE unchanged)",
+    "P14A_negative": "RETAINED_GATE_ATTAINABILITY_DEFECT, authority NONE, unchanged",
+    "P14B": "diagnostic/non-authoritative, unchanged",
+    "P14D_external_validity": "OPEN; acquisition protocol frozen, execution unauthorized"
+  },
+  "external_validity": "OPEN",
+  "authority_boundary": "Controlled benchmark authority only. No real-agent, cross-domain, blinded external, longitudinal human-review, or autonomous-scientist superiority."
+}

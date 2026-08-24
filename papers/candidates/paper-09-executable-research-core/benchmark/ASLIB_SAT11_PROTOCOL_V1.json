@@ -1,0 +1,66 @@
+{
+  "schema": "P9AslibSat11Protocol.v1",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "frozen_at": "2026-08-18",
+  "research_question": "Does retained failure evidence support useful fail-closed abstention on a public algorithm-selection scenario beyond a standard non-abstaining random-forest router?",
+  "source": {
+    "repository": "https://github.com/coseal/aslib_data",
+    "commit": "551b22beef8df17de59286b4822ef720e0aa4d6f",
+    "scenario": "SAT11-HAND-ALGO",
+    "license": "GPL-3.0-only",
+    "citation": "Bischl et al., ASlib: A Benchmark Library for Algorithm Selection, Artificial Intelligence 237 (2016) 41-58",
+    "files": {
+      "algorithm_runs.arff": "a34fb8d2c6f389b095aebc90f1faeaaee809c8a55212fad770df368a07babfa0",
+      "citation.bib": "ffb9ad24707ca17f81c96f3e2f08d66b922c5e5fdfd0fd0b40738ce6769e3b0e",
+      "cv.arff": "3896fef81ee8c90c21a8963531c96fabd3cecf84c7238bb81444ef709def2414",
+      "description.txt": "8631ec532f65f3a1af39706b36e63fe6c3d5279e6f039d9ff6c84bd617de0907",
+      "feature_values.arff": "42084d51566aff75e9fedec7def8991718ce933ef0b10108cea60cdba7b15157",
+      "readme.txt": "182e2874eac98ff344532306fb5794f96cbfd4a153c1a88127144f9f83bc1b1c"
+    }
+  },
+  "unit": "ASlib instance_id",
+  "cutoff_seconds": 5000.0,
+  "loss": "PAR10: observed runtime for ok runs; 10 * cutoff for every other runstatus",
+  "outer_split": "The scenario-provided cv.arff fold assignments; each repetition/fold is evaluated once and predictions are pooled by instance.",
+  "feature_policy": {
+    "features": "All numeric feature_values.arff columns except instance_id and repetition.",
+    "missing": "Training-fold median imputation; a feature missing throughout a training fold is set to zero.",
+    "leakage_barrier": "No runtime, runstatus, solver identity, ground truth, held-out label, or test-fold statistic is a model feature."
+  },
+  "systems": {
+    "SBS": "Best single solver by training-fold mean PAR10.",
+    "VBS": "Per-instance virtual best solver; descriptive unattainable ceiling.",
+    "RF_ROUTER": "Independent scikit-learn RandomForestRegressor per solver on log1p(PAR10), 300 trees, max_features=sqrt, min_samples_leaf=2, random_state=20260818 plus solver index; choose minimum predicted PAR10.",
+    "FAILURE_AWARE_RF": "The same RF runtime router plus independent RandomForestClassifier solve-probability models. It abstains only when the maximum predicted probability of an ok run is below a threshold selected inside the training fold.",
+    "FAILURE_MEMORY_KNN": "RF_ROUTER plus a five-nearest-neighbour retained-failure rule in standardized/imputed feature space; abstain when all five neighbours are VBS-unsolved."
+  },
+  "threshold_selection": {
+    "candidate_thresholds": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+    "inner_split": "Five deterministic folds assigned by sha256(instance_id + ':p9-inner') modulo 5 within the outer training set.",
+    "constraint": "Among thresholds retaining at least 95% of RF_ROUTER's solved instances, select the one with the largest reduction in attempts on VBS-unsolved instances; break ties toward the lower threshold. If none qualifies, use 0.1 and report the miss."
+  },
+  "metrics": [
+    "PAR10 among all test instances, counting abstention as PAR10",
+    "solve rate",
+    "attempt coverage",
+    "attempt rate on VBS-unsolved instances",
+    "abstention precision and recall for VBS-unsolved instances",
+    "PAR10 regret relative to VBS",
+    "paired instance-level bootstrap 95% intervals with 10000 resamples"
+  ],
+  "primary_comparison": "FAILURE_AWARE_RF versus RF_ROUTER on attempt rate among VBS-unsolved instances, subject to retaining at least 95% of RF_ROUTER's solved instances.",
+  "standalone_decision_rule": "KEEP_STANDALONE_P9 only if the failure-aware system reduces attempts on VBS-unsolved instances by at least 0.20 absolute, its 95% paired bootstrap interval excludes zero, it retains at least 95% of RF_ROUTER solved instances, and a residual remains after nearest-work/ownership pressure. Otherwise MERGE_P9_INTO_P8_PROGRAMME.",
+  "nonclaims": [
+    "No AutoFolio, ASlib-wide, SAT-solver, meta-learning, algorithm-portfolio, selective-prediction, LLM-routing, or general superiority claim.",
+    "The VBS is not runnable and is not a baseline the system can attain without outcome access.",
+    "Abstention is a routing terminal, not scientific or operational authority to act.",
+    "The single public scenario is a bounded discriminator, not evidence of cross-domain transfer."
+  ],
+  "reopen_triggers": [
+    "Input digest or ASlib revision mismatch.",
+    "Any test-fold statistic enters training, imputation, threshold selection, or features.",
+    "A stronger faithful algorithm-selection baseline reverses the disposition.",
+    "The number of VBS-unsolved instances is too small to estimate the primary outcome.",
+    "Nearest work absorbs the remaining governed-capability residual."
+  ]
+}

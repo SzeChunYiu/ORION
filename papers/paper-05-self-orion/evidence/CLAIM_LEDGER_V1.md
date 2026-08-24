@@ -346,6 +346,22 @@ transfer, H1--H4, comparative performance or superiority. The historical
 21/24 result remains immutable. Evidence and the import disposition are under
 `evidence/glm-5.2-attribution-v2/` and `top_tier/`.
 
+## Frozen revision-level V3 execution, 2026-08-24
+
+All eight confirmatory bindings verified before ten frozen policies executed
+on the 96-case constructed panel. FULL_T7 records revision-label accuracy
+`0.125`, false-broad rate `0`, harmful-regression rate `0` and fresh-transfer
+success `0.125`; generic causal diagnosis records `1.0` accuracy/fresh transfer
+and the random-diagnostic control records `0.8333333333333334`. The independent
+decision- and execution-layer checks agree. None of the seven registered
+terminals fires because the panel models two expected diagnostics per
+hypothesis while the bounded policy observes one. The frozen result is
+`NO_TERMINAL_UNDER_FROZEN_RULES` and grants no scientific authority. H3
+cannot-check blocking and H4 history-blind re-admission are bounded secondary
+observations only; H2 is not confirmed and H1 has no terminal. Evidence is
+`evidence/revision-level-v3/CONFIRMATORY_EXECUTION_RESULT_2026-08-24.md` and
+`research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json`.
+
 ## Residual errors (not successes)
 
 These three rows are incorrect attributions. They are not retries, exclusions, or successes.
@@ -358,6 +374,6 @@ These three rows are incorrect attributions. They are not retries, exclusions, o
 
 ## Promotion rule
 
-No row marked `CANNOT_CHECK` may be rewritten as positive evidence. The 21/24 attribution result is descriptive-only and does not support H1–H4. The V3 T1–T7 mechanics are implementation/formal contracts only, and the T8 development fixture is instrumentation only: a selected computation or revision candidate, an in-scope containment result, a bounded social-independence state, or a development-panel score still requires the owning scientific evidence, isolated execution where relevant, replay, protected fresh transfer, protected assurance and external host disposition before any self-improvement or scientific claim. T8 confirmatory execution is specifically blocked until its final subject/split/evaluator/protected-suite hashes and the load-bearing #454 comparator structural bindings are concrete. A stale perfect-score report is an `EXECUTION_IDENTITY_BOUNDARY_MIXUP`-class failure (`research/failures/2026-08-p5-live-artifact-branch-identity-mismatch/`) and is refused by `python -m orion.study.p5.tables`.
+No row marked `CANNOT_CHECK` may be rewritten as positive evidence. The 21/24 attribution result is descriptive-only and does not support H1–H4. The V3 T1–T7 mechanics are implementation/formal contracts, the development fixture is instrumentation, and the later 96-case execution must retain its no-terminal result: a selected computation or revision candidate, an in-scope containment result, a bounded social-independence state, a development-panel score or a bounded secondary check still requires external transfer, protected assurance and external host disposition before any general self-improvement or superiority claim. A stale perfect-score report is an `EXECUTION_IDENTITY_BOUNDARY_MIXUP`-class failure (`research/failures/2026-08-p5-live-artifact-branch-identity-mismatch/`) and is refused by `python -m orion.study.p5.tables`.
 
-A new live result remains `CANNOT_CHECK` in this revision: the original P5 V1 execution bindings remain unbound, and the additive V3 protocol is implemented but not confirmatory-frozen or executed.
+The original P5 V1 execution bindings and the broad 768-cluster campaign remain unbound or unexecuted. The additive V3 panel is frozen and executed, but it closes with `NO_TERMINAL_UNDER_FROZEN_RULES` and `grants_scientific_authority=false`.

@@ -15,7 +15,7 @@ is written as a question under test, never as an expected direction.
 
 ## 1. Citation integrity sweep — result
 
-23 bibliography keys, 23 live fetches (arXiv API or Crossref), 0 `CANNOT_CHECK`.
+28 bibliography keys, 28 live fetch records (arXiv API or Crossref), 0 `CANNOT_CHECK`.
 
 **Scope of the recorded verdict — read this before quoting the counts.** The
 `verdict` field in every evidence record is a **title comparison only**. Author,
@@ -29,14 +29,14 @@ a mismatch in either mode.
 
 | class | n | VERIFIED | MISMATCH |
 |---|---|---|---|
-| pre-existing claim (independent test) | 5 | 3 | **2** |
+| pre-existing claim (independent test) | 10 | 7 | **3** |
 | added by this audit (provenance record only) | 18 | 18 | 0 |
 
-The two classes must not be summed: for added entries the claim was transcribed
-*from* the fetch, so `VERIFIED` is provenance, not corroboration. See
-`../evidence/literature/README.md`.
+The two classes must not be summed as corroboration: for added entries the claim
+was transcribed *from* the fetch, so `VERIFIED` is provenance, not independent
+support. See `../evidence/literature/README.md`.
 
-### Both mismatches were live defects in the shipped bibliography
+### Three mismatches were live defects in the shipped bibliography
 
 - **`agentslr2026`** — claimed title `AgentSLR: Automating Systematic Literature
   Reviews in Epidemiology with Agentic AI` does not exist. The real title of
@@ -51,9 +51,16 @@ The two classes must not be summed: for added entries the claim was transcribed
   `main.tex` change and no key rename are required.
 - **`metasyn2026`** — claimed title dropped the leading `MetaSyn: A Benchmark
   for`, and the author list omitted Min Zhang. Not previously reported. Fixed.
+- **`knowplan2026`** — the post-P2-X bibliography paired arXiv:2608.06530 with
+  the wrong title and authors. The primary record is *KNOWPLAN: Knowledge-Driven
+  AI Agents for Smart Degree Pathway Planning*. The key remains mechanism-relevant
+  because the paper uses finite atomic catalog obligations plus an explicit
+  closure certificate; the bibliography metadata is repaired, while the stored
+  fetch verdict intentionally remains `MISMATCH` so the defect stays auditable.
 
 Evidence: `../evidence/literature/agentslr2026.json`,
-`../evidence/literature/metasyn2026.json`.
+`../evidence/literature/metasyn2026.json`, and
+`../evidence/literature/knowplan2026.json`.
 
 ---
 

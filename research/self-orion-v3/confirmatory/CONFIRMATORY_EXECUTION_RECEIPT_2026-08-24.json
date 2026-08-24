@@ -1,0 +1,1042 @@
+{
+  "schema_version": "orion.p5.revision-level-v3.confirmatory-execution-receipt.v1",
+  "record": "P5_H1_H4_V3_CONFIRMATORY_EXECUTION",
+  "date": "2026-08-24",
+  "protocol_id": "P5.self-orion-v3.revision-level.v1",
+  "outcome_accessed_now": true,
+  "frozen_binding_verification": {
+    "preflight": {
+      "schema": "SelfOrionV3ConfirmatoryPreflightCommand.v1",
+      "protocol_id": "P5.self-orion-v3.revision-level.v1",
+      "status": "READY_TO_FREEZE_CONFIRMATORY",
+      "blockers": [],
+      "baseline_binding_digests": [
+        "sha256:3ad92519281178472f992c741cc98cf2485f7cd2594611f4c24249cc41e73323",
+        "sha256:74bd0c6e80a8dd6b2f45f081b4bced20f9bb08d50c34875ac29a72a5d11683fd",
+        "sha256:dd1b056a37d9ef80714482042497c86839a103a69cba5a9c5fb2f4724fcdc96a"
+      ],
+      "authorizes_execution": true,
+      "grants_scientific_authority": false,
+      "grants_p5_peer_review_ready": false
+    },
+    "checks": {
+      "preflight_status": "READY_TO_FREEZE_CONFIRMATORY",
+      "protected_suite_commitment": true,
+      "candidate_packet_file_sha256": true,
+      "candidate_packet_regenerates": true,
+      "candidate_packet_canonical_sha256": "4984dc6a4a0a5e384bdb3ad9256ca489d8675a235eb653c5b670013461c94b3c",
+      "final_split_sha256": true,
+      "evaluator_sha256": true,
+      "fresh_transfer_evaluator_sha256": true,
+      "baseline_config_sha256": true,
+      "subject_revision": true
+    },
+    "subject_bundle_files": [
+      "src/orion/study/p5/revision_level_v3_development.py",
+      "src/orion/study/p5/revision_level_v3_freeze.py",
+      "src/orion/study/p5/revision_level_v3_policies.py",
+      "src/orion/study/p5/revision_level_v3_preflight.py",
+      "src/orion/study/p5/revision_level_v3_score.py"
+    ]
+  },
+  "decision_layer_by_policy": {
+    "NO_REVISION": {
+      "revision_label_accuracy": 0.0,
+      "correct_revision_count": 0,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 0.0,
+      "total_diagnostic_cost": 0.0,
+      "analysis_only": false
+    },
+    "DIRECT_SELF_EDIT": {
+      "revision_label_accuracy": 0.0,
+      "correct_revision_count": 0,
+      "false_broad_revision_count": 96,
+      "false_broad_revision_rate": 1.0,
+      "correct_unresolved_rate": 0.0,
+      "total_diagnostic_cost": 0.0,
+      "analysis_only": false
+    },
+    "M_OPEN_ONLY": {
+      "revision_label_accuracy": 0.125,
+      "correct_revision_count": 12,
+      "false_broad_revision_count": 72,
+      "false_broad_revision_rate": 0.75,
+      "correct_unresolved_rate": 0.0,
+      "total_diagnostic_cost": 0.0,
+      "analysis_only": false
+    },
+    "WORLD_MODEL_REVISION": {
+      "revision_label_accuracy": 0.125,
+      "correct_revision_count": 12,
+      "false_broad_revision_count": 48,
+      "false_broad_revision_rate": 0.5,
+      "correct_unresolved_rate": 0.0,
+      "total_diagnostic_cost": 0.0,
+      "analysis_only": false
+    },
+    "REPRESENTATION_REGIME_ONLY": {
+      "revision_label_accuracy": 0.125,
+      "correct_revision_count": 12,
+      "false_broad_revision_count": 84,
+      "false_broad_revision_rate": 0.875,
+      "correct_unresolved_rate": 0.0,
+      "total_diagnostic_cost": 0.0,
+      "analysis_only": false
+    },
+    "GENERIC_CAUSAL_DIAGNOSIS": {
+      "revision_label_accuracy": 1.0,
+      "correct_revision_count": 96,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 1.0,
+      "total_diagnostic_cost": 82.0,
+      "analysis_only": false
+    },
+    "FULL_T7": {
+      "revision_label_accuracy": 0.125,
+      "correct_revision_count": 12,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 1.0,
+      "total_diagnostic_cost": 82.0,
+      "analysis_only": false
+    },
+    "RANDOM_DIAGNOSTIC": {
+      "revision_label_accuracy": 0.8333333333333334,
+      "correct_revision_count": 80,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 1.0,
+      "total_diagnostic_cost": 70.5,
+      "analysis_only": false
+    },
+    "ALWAYS_UNRESOLVED": {
+      "revision_label_accuracy": 0.125,
+      "correct_revision_count": 12,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 1.0,
+      "total_diagnostic_cost": 0.0,
+      "analysis_only": false
+    },
+    "ORACLE_CEILING": {
+      "revision_label_accuracy": 1.0,
+      "correct_revision_count": 96,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 1.0,
+      "total_diagnostic_cost": 0.0,
+      "analysis_only": true
+    }
+  },
+  "execution_layer_by_policy": {
+    "NO_REVISION": {
+      "policy_id": "NO_REVISION",
+      "n_cases": 96,
+      "fresh_transfer_denominator": 96,
+      "fresh_transfer_success_count": 0,
+      "fresh_transfer_success_rate": 0.0,
+      "harmful_regression_count": 0,
+      "harmful_regression_rate": 0.0,
+      "preservation_violation_count": 0,
+      "preservation_violation_rate": 0.0,
+      "authority_violation_count": 6,
+      "authority_violation_rate": 0.0625
+    },
+    "DIRECT_SELF_EDIT": {
+      "policy_id": "DIRECT_SELF_EDIT",
+      "n_cases": 96,
+      "fresh_transfer_denominator": 96,
+      "fresh_transfer_success_count": 0,
+      "fresh_transfer_success_rate": 0.0,
+      "harmful_regression_count": 34,
+      "harmful_regression_rate": 0.3541666666666667,
+      "preservation_violation_count": 34,
+      "preservation_violation_rate": 0.3541666666666667,
+      "authority_violation_count": 6,
+      "authority_violation_rate": 0.0625
+    },
+    "M_OPEN_ONLY": {
+      "policy_id": "M_OPEN_ONLY",
+      "n_cases": 96,
+      "fresh_transfer_denominator": 96,
+      "fresh_transfer_success_count": 12,
+      "fresh_transfer_success_rate": 0.125,
+      "harmful_regression_count": 24,
+      "harmful_regression_rate": 0.25,
+      "preservation_violation_count": 24,
+      "preservation_violation_rate": 0.25,
+      "authority_violation_count": 6,
+      "authority_violation_rate": 0.0625
+    },
+    "WORLD_MODEL_REVISION": {
+      "policy_id": "WORLD_MODEL_REVISION",
+      "n_cases": 96,
+      "fresh_transfer_denominator": 96,
+      "fresh_transfer_success_count": 12,
+      "fresh_transfer_success_rate": 0.125,
+      "harmful_regression_count": 19,
+      "harmful_regression_rate": 0.19791666666666666,
+      "preservation_violation_count": 15,
+      "preservation_violation_rate": 0.15625,
+      "authority_violation_count": 6,
+      "authority_violation_rate": 0.0625
+    },
+    "REPRESENTATION_REGIME_ONLY": {
+      "policy_id": "REPRESENTATION_REGIME_ONLY",
+      "n_cases": 96,
+      "fresh_transfer_denominator": 96,
+      "fresh_transfer_success_count": 12,
+      "fresh_transfer_success_rate": 0.125,
+      "harmful_regression_count": 29,
+      "harmful_regression_rate": 0.3020833333333333,
+      "preservation_violation_count": 29,
+      "preservation_violation_rate": 0.3020833333333333,
+      "authority_violation_count": 6,
+      "authority_violation_rate": 0.0625
+    },
+    "GENERIC_CAUSAL_DIAGNOSIS": {
+      "policy_id": "GENERIC_CAUSAL_DIAGNOSIS",
+      "n_cases": 96,
+      "fresh_transfer_denominator": 96,
+      "fresh_transfer_success_count": 96,
+      "fresh_transfer_success_rate": 1.0,
+      "harmful_regression_count": 0,
+      "harmful_regression_rate": 0.0,
+      "preservation_violation_count": 0,
+      "preservation_violation_rate": 0.0,
+      "authority_violation_count": 0,
+      "authority_violation_rate": 0.0
+    },
+    "FULL_T7": {
+      "policy_id": "FULL_T7",
+      "n_cases": 96,
+      "fresh_transfer_denominator": 96,
+      "fresh_transfer_success_count": 12,
+      "fresh_transfer_success_rate": 0.125,
+      "harmful_regression_count": 0,
+      "harmful_regression_rate": 0.0,
+      "preservation_violation_count": 0,
+      "preservation_violation_rate": 0.0,
+      "authority_violation_count": 0,
+      "authority_violation_rate": 0.0
+    },
+    "RANDOM_DIAGNOSTIC": {
+      "policy_id": "RANDOM_DIAGNOSTIC",
+      "n_cases": 96,
+      "fresh_transfer_denominator": 96,
+      "fresh_transfer_success_count": 80,
+      "fresh_transfer_success_rate": 0.8333333333333334,
+      "harmful_regression_count": 0,
+      "harmful_regression_rate": 0.0,
+      "preservation_violation_count": 0,
+      "preservation_violation_rate": 0.0,
+      "authority_violation_count": 0,
+      "authority_violation_rate": 0.0
+    },
+    "ALWAYS_UNRESOLVED": {
+      "policy_id": "ALWAYS_UNRESOLVED",
+      "n_cases": 96,
+      "fresh_transfer_denominator": 96,
+      "fresh_transfer_success_count": 12,
+      "fresh_transfer_success_rate": 0.125,
+      "harmful_regression_count": 0,
+      "harmful_regression_rate": 0.0,
+      "preservation_violation_count": 0,
+      "preservation_violation_rate": 0.0,
+      "authority_violation_count": 0,
+      "authority_violation_rate": 0.0
+    },
+    "ORACLE_CEILING": {
+      "policy_id": "ORACLE_CEILING",
+      "n_cases": 96,
+      "fresh_transfer_denominator": 96,
+      "fresh_transfer_success_count": 96,
+      "fresh_transfer_success_rate": 1.0,
+      "harmful_regression_count": 0,
+      "harmful_regression_rate": 0.0,
+      "preservation_violation_count": 0,
+      "preservation_violation_rate": 0.0,
+      "authority_violation_count": 0,
+      "authority_violation_rate": 0.0
+    }
+  },
+  "independent_cross_check": {
+    "NO_REVISION": {
+      "accuracy_agrees": true,
+      "false_broad_agrees": true,
+      "independent": {
+        "revision_label_accuracy": 0.0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 0.0,
+        "authority_violation_count": 6,
+        "authority_violation_rate": 0.0625,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 0.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        }
+      }
+    },
+    "DIRECT_SELF_EDIT": {
+      "accuracy_agrees": true,
+      "false_broad_agrees": true,
+      "independent": {
+        "revision_label_accuracy": 0.0,
+        "false_broad_revision_rate": 1.0,
+        "correct_unresolved_rate": 0.0,
+        "authority_violation_count": 6,
+        "authority_violation_rate": 0.0625,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 0.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        }
+      }
+    },
+    "M_OPEN_ONLY": {
+      "accuracy_agrees": true,
+      "false_broad_agrees": true,
+      "independent": {
+        "revision_label_accuracy": 0.125,
+        "false_broad_revision_rate": 0.75,
+        "correct_unresolved_rate": 0.0,
+        "authority_violation_count": 6,
+        "authority_violation_rate": 0.0625,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 1.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 0.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        }
+      }
+    },
+    "WORLD_MODEL_REVISION": {
+      "accuracy_agrees": true,
+      "false_broad_agrees": true,
+      "independent": {
+        "revision_label_accuracy": 0.125,
+        "false_broad_revision_rate": 0.5,
+        "correct_unresolved_rate": 0.0,
+        "authority_violation_count": 6,
+        "authority_violation_rate": 0.0625,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 0.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 1.0
+        }
+      }
+    },
+    "REPRESENTATION_REGIME_ONLY": {
+      "accuracy_agrees": true,
+      "false_broad_agrees": true,
+      "independent": {
+        "revision_label_accuracy": 0.125,
+        "false_broad_revision_rate": 0.875,
+        "correct_unresolved_rate": 0.0,
+        "authority_violation_count": 6,
+        "authority_violation_rate": 0.0625,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 1.0,
+          "UNRESOLVED": 0.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        }
+      }
+    },
+    "GENERIC_CAUSAL_DIAGNOSIS": {
+      "accuracy_agrees": true,
+      "false_broad_agrees": true,
+      "independent": {
+        "revision_label_accuracy": 1.0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 1.0,
+          "EVIDENCE_REPAIR": 1.0,
+          "EXECUTION_REPAIR": 1.0,
+          "MEASUREMENT_REPAIR": 1.0,
+          "MODEL_CLASS_EXPANSION": 1.0,
+          "REPRESENTATION_REGIME_REPAIR": 1.0,
+          "UNRESOLVED": 1.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 1.0
+        }
+      }
+    },
+    "FULL_T7": {
+      "accuracy_agrees": true,
+      "false_broad_agrees": true,
+      "independent": {
+        "revision_label_accuracy": 0.125,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 1.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        }
+      }
+    },
+    "RANDOM_DIAGNOSTIC": {
+      "accuracy_agrees": true,
+      "false_broad_agrees": true,
+      "independent": {
+        "revision_label_accuracy": 0.8333333333333334,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.5833333333333334,
+          "EVIDENCE_REPAIR": 0.6666666666666666,
+          "EXECUTION_REPAIR": 0.5833333333333334,
+          "MEASUREMENT_REPAIR": 1.0,
+          "MODEL_CLASS_EXPANSION": 1.0,
+          "REPRESENTATION_REGIME_REPAIR": 1.0,
+          "UNRESOLVED": 1.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.8333333333333334
+        }
+      }
+    },
+    "ALWAYS_UNRESOLVED": {
+      "accuracy_agrees": true,
+      "false_broad_agrees": true,
+      "independent": {
+        "revision_label_accuracy": 0.125,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 1.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        }
+      }
+    },
+    "ORACLE_CEILING": {
+      "accuracy_agrees": true,
+      "false_broad_agrees": true,
+      "independent": {
+        "revision_label_accuracy": 1.0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 1.0,
+          "EVIDENCE_REPAIR": 1.0,
+          "EXECUTION_REPAIR": 1.0,
+          "MEASUREMENT_REPAIR": 1.0,
+          "MODEL_CLASS_EXPANSION": 1.0,
+          "REPRESENTATION_REGIME_REPAIR": 1.0,
+          "UNRESOLVED": 1.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 1.0
+        }
+      }
+    }
+  },
+  "cross_check_agrees": true,
+  "repair_class_accuracy_by_policy": {
+    "NO_REVISION": 0.0,
+    "DIRECT_SELF_EDIT": 0.0,
+    "M_OPEN_ONLY": 0.14285714285714285,
+    "WORLD_MODEL_REVISION": 0.14285714285714285,
+    "REPRESENTATION_REGIME_ONLY": 0.14285714285714285,
+    "GENERIC_CAUSAL_DIAGNOSIS": 1.0,
+    "FULL_T7": 0.0,
+    "RANDOM_DIAGNOSTIC": 0.8095238095238095,
+    "ALWAYS_UNRESOLVED": 0.0,
+    "ORACLE_CEILING": 1.0
+  },
+  "full_t7_feedback_sensitivity": {
+    "NORMAL": {
+      "revision_label_accuracy": 0.125,
+      "correct_revision_count": 12,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 1.0,
+      "total_diagnostic_cost": 82.0,
+      "analysis_only": false
+    },
+    "PERMUTED": {
+      "revision_label_accuracy": 0.125,
+      "correct_revision_count": 12,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 1.0,
+      "total_diagnostic_cost": 82.0,
+      "analysis_only": false
+    },
+    "NONE": {
+      "revision_label_accuracy": 0.125,
+      "correct_revision_count": 12,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 1.0,
+      "total_diagnostic_cost": 82.0,
+      "analysis_only": false
+    },
+    "CONTRADICTORY": {
+      "revision_label_accuracy": 0.125,
+      "correct_revision_count": 12,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 1.0,
+      "total_diagnostic_cost": 82.0,
+      "analysis_only": false
+    },
+    "RANDOM": {
+      "revision_label_accuracy": 0.125,
+      "correct_revision_count": 12,
+      "false_broad_revision_count": 0,
+      "false_broad_revision_rate": 0.0,
+      "correct_unresolved_rate": 1.0,
+      "total_diagnostic_cost": 82.0,
+      "analysis_only": false
+    }
+  },
+  "split_half_by_arm": {
+    "PRIMARY_A": {
+      "NO_REVISION": {
+        "revision_label_accuracy": 0.0,
+        "correct_revision_count": 0,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 0.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.0,
+        "harmful_regression_rate": 0.0
+      },
+      "DIRECT_SELF_EDIT": {
+        "revision_label_accuracy": 0.0,
+        "correct_revision_count": 0,
+        "false_broad_revision_count": 48,
+        "false_broad_revision_rate": 1.0,
+        "correct_unresolved_rate": 0.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.0,
+        "harmful_regression_rate": 0.22916666666666666
+      },
+      "M_OPEN_ONLY": {
+        "revision_label_accuracy": 0.125,
+        "correct_revision_count": 6,
+        "false_broad_revision_count": 36,
+        "false_broad_revision_rate": 0.75,
+        "correct_unresolved_rate": 0.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.125,
+        "harmful_regression_rate": 0.125
+      },
+      "WORLD_MODEL_REVISION": {
+        "revision_label_accuracy": 0.125,
+        "correct_revision_count": 6,
+        "false_broad_revision_count": 24,
+        "false_broad_revision_rate": 0.5,
+        "correct_unresolved_rate": 0.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.125,
+        "harmful_regression_rate": 0.08333333333333333
+      },
+      "REPRESENTATION_REGIME_ONLY": {
+        "revision_label_accuracy": 0.125,
+        "correct_revision_count": 6,
+        "false_broad_revision_count": 42,
+        "false_broad_revision_rate": 0.875,
+        "correct_unresolved_rate": 0.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.125,
+        "harmful_regression_rate": 0.16666666666666666
+      },
+      "GENERIC_CAUSAL_DIAGNOSIS": {
+        "revision_label_accuracy": 1.0,
+        "correct_revision_count": 48,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "total_diagnostic_cost": 41.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 1.0,
+        "harmful_regression_rate": 0.0
+      },
+      "FULL_T7": {
+        "revision_label_accuracy": 0.125,
+        "correct_revision_count": 6,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "total_diagnostic_cost": 41.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.125,
+        "harmful_regression_rate": 0.0
+      },
+      "RANDOM_DIAGNOSTIC": {
+        "revision_label_accuracy": 0.8333333333333334,
+        "correct_revision_count": 40,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "total_diagnostic_cost": 35.5,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.8333333333333334,
+        "harmful_regression_rate": 0.0
+      },
+      "ALWAYS_UNRESOLVED": {
+        "revision_label_accuracy": 0.125,
+        "correct_revision_count": 6,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.125,
+        "harmful_regression_rate": 0.0
+      },
+      "ORACLE_CEILING": {
+        "revision_label_accuracy": 1.0,
+        "correct_revision_count": 48,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": true,
+        "protected_fresh_transfer_success_rate": 1.0,
+        "harmful_regression_rate": 0.0
+      }
+    },
+    "REPLICATION_B": {
+      "NO_REVISION": {
+        "revision_label_accuracy": 0.0,
+        "correct_revision_count": 0,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 0.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.0,
+        "harmful_regression_rate": 0.0
+      },
+      "DIRECT_SELF_EDIT": {
+        "revision_label_accuracy": 0.0,
+        "correct_revision_count": 0,
+        "false_broad_revision_count": 48,
+        "false_broad_revision_rate": 1.0,
+        "correct_unresolved_rate": 0.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.0,
+        "harmful_regression_rate": 0.4791666666666667
+      },
+      "M_OPEN_ONLY": {
+        "revision_label_accuracy": 0.125,
+        "correct_revision_count": 6,
+        "false_broad_revision_count": 36,
+        "false_broad_revision_rate": 0.75,
+        "correct_unresolved_rate": 0.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.125,
+        "harmful_regression_rate": 0.375
+      },
+      "WORLD_MODEL_REVISION": {
+        "revision_label_accuracy": 0.125,
+        "correct_revision_count": 6,
+        "false_broad_revision_count": 24,
+        "false_broad_revision_rate": 0.5,
+        "correct_unresolved_rate": 0.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.125,
+        "harmful_regression_rate": 0.3125
+      },
+      "REPRESENTATION_REGIME_ONLY": {
+        "revision_label_accuracy": 0.125,
+        "correct_revision_count": 6,
+        "false_broad_revision_count": 42,
+        "false_broad_revision_rate": 0.875,
+        "correct_unresolved_rate": 0.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.125,
+        "harmful_regression_rate": 0.4375
+      },
+      "GENERIC_CAUSAL_DIAGNOSIS": {
+        "revision_label_accuracy": 1.0,
+        "correct_revision_count": 48,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "total_diagnostic_cost": 41.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 1.0,
+        "harmful_regression_rate": 0.0
+      },
+      "FULL_T7": {
+        "revision_label_accuracy": 0.125,
+        "correct_revision_count": 6,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "total_diagnostic_cost": 41.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.125,
+        "harmful_regression_rate": 0.0
+      },
+      "RANDOM_DIAGNOSTIC": {
+        "revision_label_accuracy": 0.8333333333333334,
+        "correct_revision_count": 40,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "total_diagnostic_cost": 35.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.8333333333333334,
+        "harmful_regression_rate": 0.0
+      },
+      "ALWAYS_UNRESOLVED": {
+        "revision_label_accuracy": 0.125,
+        "correct_revision_count": 6,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": false,
+        "protected_fresh_transfer_success_rate": 0.125,
+        "harmful_regression_rate": 0.0
+      },
+      "ORACLE_CEILING": {
+        "revision_label_accuracy": 1.0,
+        "correct_revision_count": 48,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "total_diagnostic_cost": 0.0,
+        "analysis_only": true,
+        "protected_fresh_transfer_success_rate": 1.0,
+        "harmful_regression_rate": 0.0
+      }
+    }
+  },
+  "split_half_direction_agreement": true,
+  "h4_round2_negative_history_readmission": {
+    "reading_a_subject_shared_set": {
+      "n_cases_whose_round1_full_t7_execution_harmful_or_over_broad": 0,
+      "per_policy": {
+        "NO_REVISION": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "DIRECT_SELF_EDIT": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "M_OPEN_ONLY": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "WORLD_MODEL_REVISION": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "REPRESENTATION_REGIME_ONLY": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "GENERIC_CAUSAL_DIAGNOSIS": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "FULL_T7": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "RANDOM_DIAGNOSTIC": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "ALWAYS_UNRESOLVED": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        }
+      }
+    },
+    "reading_b_per_policy_own_set": {
+      "per_policy": {
+        "NO_REVISION": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "DIRECT_SELF_EDIT": {
+          "n_readmitted_cases": 96,
+          "re_promotion_rate": 1.0,
+          "repeated_harmful_admission_rate": 0.3541666666666667
+        },
+        "M_OPEN_ONLY": {
+          "n_readmitted_cases": 72,
+          "re_promotion_rate": 1.0,
+          "repeated_harmful_admission_rate": 0.3333333333333333
+        },
+        "WORLD_MODEL_REVISION": {
+          "n_readmitted_cases": 52,
+          "re_promotion_rate": 1.0,
+          "repeated_harmful_admission_rate": 0.36538461538461536
+        },
+        "REPRESENTATION_REGIME_ONLY": {
+          "n_readmitted_cases": 84,
+          "re_promotion_rate": 1.0,
+          "repeated_harmful_admission_rate": 0.34523809523809523
+        },
+        "GENERIC_CAUSAL_DIAGNOSIS": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "FULL_T7": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "RANDOM_DIAGNOSTIC": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "ALWAYS_UNRESOLVED": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        }
+      }
+    },
+    "ambiguity_note": "The frozen sentence 'cases whose round-1 execution was harmful or over-broad ... repeated_harmful_admission_rate per policy' admits both readings; both are reported. The pre-registered expectation (history-blind frozen policies) is identical under each."
+  },
+  "frozen_rule_evaluation": {
+    "rule_trace": {
+      "HARMFUL_REFUTED": false,
+      "M_OPEN_SUFFICIENT": false,
+      "OVERCONSERVATIVE": false,
+      "DIAGNOSIS_ONLY": false,
+      "NO_INCREMENTAL_VALUE": false,
+      "REVISION_LEVEL_DISCRIMINATION_SUPPORTED": false,
+      "CANNOT_CHECK": false
+    },
+    "terminal": "NO_TERMINAL_UNDER_FROZEN_RULES",
+    "no_frozen_terminal_fired": true,
+    "no_terminal_interpretation": "None of the seven frozen terminals' conditions holds for the measured endpoints: the subject (FULL_T7) sat at the safety floor (accuracy 12/96, no promotion, no fresh transfer), so every rule that requires the R1 accuracy bar or the R3 fresh-transfer noninferiority fails, while no binding failed, the independent cross-check agreed, and both split halves agreed on direction. Recorded verbatim per the frozen negative-result policy: no terminal is invented and no rule is retuned after outcome access.",
+    "full_t7_performance_content": {
+      "accuracy_bar": false,
+      "false_broad_no_worse_than_non_floor": true,
+      "harm_no_worse_than_non_floor": true,
+      "fresh_noninferior_to_strong": false
+    },
+    "m_open_performance_content": {
+      "accuracy_bar": false,
+      "false_broad_no_worse_than_non_floor": false,
+      "harm_no_worse_than_non_floor": false,
+      "fresh_noninferior_to_strong": false
+    },
+    "r1_strict_highest": false,
+    "r2_strict_lowest_false_broad_and_harm": false,
+    "r4_strict_beats_count_per_strong_comparator": {
+      "DIRECT_SELF_EDIT": 4,
+      "M_OPEN_ONLY": 2,
+      "WORLD_MODEL_REVISION": 2,
+      "REPRESENTATION_REGIME_ONLY": 2,
+      "GENERIC_CAUSAL_DIAGNOSIS": 0,
+      "RANDOM_DIAGNOSTIC": 0
+    },
+    "r4_holds": false,
+    "r5_holds": true,
+    "r6_holds": true,
+    "strong_comparators_matching_within_margins": [
+      "GENERIC_CAUSAL_DIAGNOSIS",
+      "RANDOM_DIAGNOSTIC"
+    ],
+    "halves_direction_ok": true
+  },
+  "secondary_analyses": {
+    "feedback_non_compensation": {
+      "accuracy_drop_NORMAL_minus_NONE": 0.0,
+      "accuracy_drop_NORMAL_minus_PERMUTED": 0.0,
+      "expected_direction_confirmed": false
+    },
+    "cannot_check_blocking": {
+      "full_t7_authority_violation_rate": 0.0,
+      "strong_comparators_above_zero": [
+        "DIRECT_SELF_EDIT",
+        "M_OPEN_ONLY",
+        "WORLD_MODEL_REVISION",
+        "REPRESENTATION_REGIME_ONLY"
+      ],
+      "expected_direction_confirmed": true
+    },
+    "negative_history_repeat_admission": {
+      "per_policy_own_set": {
+        "NO_REVISION": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "DIRECT_SELF_EDIT": {
+          "n_readmitted_cases": 96,
+          "re_promotion_rate": 1.0,
+          "repeated_harmful_admission_rate": 0.3541666666666667
+        },
+        "M_OPEN_ONLY": {
+          "n_readmitted_cases": 72,
+          "re_promotion_rate": 1.0,
+          "repeated_harmful_admission_rate": 0.3333333333333333
+        },
+        "WORLD_MODEL_REVISION": {
+          "n_readmitted_cases": 52,
+          "re_promotion_rate": 1.0,
+          "repeated_harmful_admission_rate": 0.36538461538461536
+        },
+        "REPRESENTATION_REGIME_ONLY": {
+          "n_readmitted_cases": 84,
+          "re_promotion_rate": 1.0,
+          "repeated_harmful_admission_rate": 0.34523809523809523
+        },
+        "GENERIC_CAUSAL_DIAGNOSIS": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "FULL_T7": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "RANDOM_DIAGNOSTIC": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "ALWAYS_UNRESOLVED": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        }
+      },
+      "per_policy_subject_set": {
+        "NO_REVISION": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "DIRECT_SELF_EDIT": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "M_OPEN_ONLY": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "WORLD_MODEL_REVISION": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "REPRESENTATION_REGIME_ONLY": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "GENERIC_CAUSAL_DIAGNOSIS": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "FULL_T7": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "RANDOM_DIAGNOSTIC": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        },
+        "ALWAYS_UNRESOLVED": {
+          "n_readmitted_cases": 0,
+          "re_promotion_rate": null,
+          "repeated_harmful_admission_rate": null
+        }
+      },
+      "pre_registered_expectation": "frozen policy set is history-blind at its input interface; round-2 rates equal round-1 by construction unless a policy reads the appended head"
+    }
+  },
+  "margins_applied": {
+    "uniform_margin": 0.02,
+    "interpretation_note": "The single declared margin 0.02 applies uniformly to all four primary endpoints (accuracy, false-broad, harm, fresh transfer) wherever a margin is referenced. Frozen in this runner before any outcome access.",
+    "tie_interpretation_note": "Under exact endpoint ties the strict-superiority clauses of R1(b)/R2 cannot hold; the performance content of R1-R3 plus the margin-based match test routes ties to NO_INCREMENTAL_VALUE, and REVISION_LEVEL_DISCRIMINATION_SUPPORTED additionally requires strict superiority (R1(b), R2), R4, R5 and R6. Frozen in this runner before any outcome access."
+  },
+  "custody": {
+    "post_outcome_runner_note": "Two post-outcome edits were made to this runner, neither altering any frozen rule condition: (1) the no-terminal branch, which originally raised, was changed to record the empty first-match result verbatim; (2) the H4 secondary, whose frozen sentence admits two readings (subject-shared vs per-policy readmit set), was changed to report both. All rule predicates are byte-identical to the pre-execution file.",
+    "failure_attribution": "One-stage attribution of the subject's collapse to the safety floor: the confirmatory generator modeled TWO diagnostics in every hypothesis's expectation map (the weak probe and the discriminating probe), while the frozen T7 protocol observes exactly ONE discriminator per bounded session; assess_responsibility keeps the state UNRESOLVED while any modeled discriminator of a surviving hypothesis is unobserved (REQUIRED_DISCRIMINATOR_OBSERVATION_MISSING), so FULL_T7 could never complete a responsibility identification on any case. The committed development suite models exactly one discriminator per hypothesis, which is why the development instrumentation reached FULL_T7 accuracy 1.0. The frozen policy code and the gate semantics are internally consistent; the mismatch is in this suite's expectation modeling, authored before execution and frozen in PR #1062. The suite is NOT regenerated: the measured behavior (T7 requires complete observational coverage of every modeled discriminator before any promotion) is a genuine property of the subject mechanism under a bounded single-probe session and is retained as evidence. Revival lever for the successor panel: hypothesis expectation sets completable within the bounded protocol (the dev-suite contract) plus preservation-conflict cases that exercise the revision-gate blocking branch.",
+    "suite_sha256": "bde0b68200e6be135f175bbaadda70d0ce66676dd30a2070aaf841286519d9a4",
+    "candidate_packet_sha256": "07dac1fe8daeca08a7db7fc635726d293e525b3737aebd98de4b6fa03e1a6e47",
+    "final_split_sha256": "9a09c6c2166eddd64f3dfdb31402f8b27f4aac004f1b7344b31f48373e4c6c2a",
+    "rules_sha256": "fa32cd6ab4adfb8faacf7513fb0d3265b7f672b6d86b4361234134165a261d76",
+    "evaluator_sha256": "8e65fad265d478d7b06af0574751d69e6f42ee02cb10d141e3d01663d00eee13",
+    "fresh_transfer_evaluator_sha256": "dd48a1aeb174c791a22f4a295e48c8926973426f7e9ec85ee9ca30c2a2fe3e8c",
+    "runner_sha256": "267b505ff675aa463fbc8dc02a1ab763d43a4758f702dbaf2e6c4068e6e6c28b"
+  },
+  "grants": "Scientific terminal for P5.H1-H4.V3 under the frozen rules only. No self-promotion: scientific authority and peer-review readiness remain governed by the programme's result-verification owner (#283)."
+}

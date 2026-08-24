@@ -13,6 +13,9 @@ on:
       - 'research/extensions/p9-p10-structural-scaling/P10_CROSS_REVISION_ANALYSIS_AMENDMENT_V1.md'
       - 'research/extensions/p9-p10-structural-scaling/extract_p10_native_trace_state_v1.py'
       - 'research/extensions/p9-p10-structural-scaling/extract_p10_cross_revision_trace_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/p10_lean_json_transport_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/run_p10_native_trace_state_json_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/run_p10_cross_revision_trace_json_v1.py'
       - 'research/extensions/p9-p10-structural-scaling/fit_p10_native_state_v1.py'
       - 'research/extensions/p9-p10-structural-scaling/analyze_p10_cross_revision_v1.py'
       - 'research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_novelty_v1.py'
@@ -39,6 +42,8 @@ jobs:
           python-version: '3.12'
       - name: Install ORION analysis dependencies
         run: python -m pip install -e '.[candidates]'
+      - name: Verify structured Lean JSON transport contract
+        run: python research/extensions/p9-p10-structural-scaling/p10_lean_json_transport_v1.py
       - name: Install elan
         run: |
           curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
@@ -58,7 +63,7 @@ jobs:
       - name: Extract source-revision native pre-tactic states
         run: |
           mkdir -p out
-          python research/extensions/p9-p10-structural-scaling/extract_p10_native_trace_state_v1.py \
+          python research/extensions/p9-p10-structural-scaling/run_p10_native_trace_state_json_v1.py \
             --mathlib-checkout /tmp/mathlib \
             --shard-index '${{ matrix.shard }}' \
             --shard-count 8 \
@@ -96,6 +101,8 @@ jobs:
           python-version: '3.12'
       - name: Install ORION analysis dependencies
         run: python -m pip install -e '.[candidates]'
+      - name: Verify structured Lean JSON transport contract
+        run: python research/extensions/p9-p10-structural-scaling/p10_lean_json_transport_v1.py
       - name: Install elan
         run: |
           curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
@@ -115,7 +122,7 @@ jobs:
       - name: Extract target-revision native pre-tactic states
         run: |
           mkdir -p target-out
-          python research/extensions/p9-p10-structural-scaling/extract_p10_cross_revision_trace_v1.py \
+          python research/extensions/p9-p10-structural-scaling/run_p10_cross_revision_trace_json_v1.py \
             --mathlib-checkout /tmp/mathlib-target \
             --shard-index '${{ matrix.shard }}' \
             --shard-count 8 \

@@ -1,8 +1,8 @@
 # ORION-P5 journal-readiness plan — Self-ORION
 
-**Current terminal:** `CANNOT_CHECK` for governed self-improvement benefit / **not** peer-review ready.  
-**Audit date:** 2026-08-24 against the current shared worktree and the immutable V11--V13 C2 successor packets.  
-**Headline empirical number:** diagnostic glm-5.2 attribution is **21/24** from `evidence/glm-5.2-attribution/results.jsonl` (three residual errors retained). A stale perfect-score report is refused.
+**Current terminal:** `NO_TERMINAL_UNDER_FROZEN_RULES` for the bounded 96-case revision-level panel; general governed self-improvement benefit remains `CANNOT_CHECK` / **not** peer-review ready.  
+**Audit date:** 2026-08-24 against the current shared worktree, the immutable V11--V13 C2 successor packets and the frozen V3 confirmatory receipt.  
+**Headline empirical records:** historical diagnostic attribution is **21/24** from `evidence/glm-5.2-attribution/results.jsonl` (three residual errors retained); the frozen revision-level panel places FULL_T7 at **12/96** with no registered terminal. A stale perfect-score report is refused.
 
 A checked design/protocol item does **not** convert `CANNOT_CHECK` into empirical PASS.
 
@@ -19,7 +19,7 @@ A checked design/protocol item does **not** convert `CANNOT_CHECK` into empirica
 - [x] related work + bibliography and 2026 novelty contraction exist;
 - [x] ADIAS, SAGE, CausalFlow, Learning-from-Failure, PAST-Bench and SEVA are explicit nearest work.
 
-**Still blocked:** governed self-improvement benefit, causal-attribution *utility*, fresh-transfer benefit and integrity advantage remain `CANNOT_CHECK`.
+**Still blocked:** general governed self-improvement benefit, source-disjoint causal-attribution *utility*, external fresh-transfer benefit and comparative superiority remain `CANNOT_CHECK`. The bounded V3 panel's H3/H4 secondary checks do not grant that authority.
 
 ## 1. Novelty closure
 
@@ -38,6 +38,7 @@ A checked design/protocol item does **not** convert `CANNOT_CHECK` into empirica
 
 - [x] freeze H1 as primary (protocol V1).
 - [x] freeze H2–H4 as secondary.
+- [x] execute the separately bound 96-case V3 revision-level panel; retain `NO_TERMINAL_UNDER_FROZEN_RULES`, FULL_T7 12/96, bounded H3/H4 secondary observations and no scientific-authority grant.
 - [x] freeze V2 non-compensatory `STATIC -> REPLAY -> FRESH -> PROTECTED` without rewriting V1.
 - [x] freeze V1-vs-V2 margins, negative controls, matched acceptance baselines and fail-closed manifest/archive validators.
 - [ ] freeze evaluator custody, splits, budgets, statistical plan and plots *as execution identities* (policy frozen; exact hashes remain `UNBOUND`).
@@ -153,7 +154,7 @@ Live rerun in this session: **`CANNOT_CHECK`** (credentials unset; #8 packet `co
 - [x] claim ledger maps abstract/conclusion/results claims to exact evidence, including 21/24.
 - [x] V11--V13 C2 successor evidence integrated without aggregating their distinct 8/21, 9/21 and 8/21 states or changing released MOSS (7/21, 14 blocking).
 - [x] V13 nine-file frozen-rootfs/exported-layer/rights-map/SPDX path bijection independently recomputed in a read-only integration audit.
-- [x] local Tectonic build and visual inspection of all 39 rendered pages completed on 2026-08-24.
+- [x] local Tectonic build and visual inspection of all 37 rendered pages completed on 2026-08-24 after removing duplicate figure inclusions; PDF SHA-256 `d5832ca4dd7139b8af3fabb6e693e52afb5ff492e193b241f05616d529122482`.
 - [ ] exact benchmark/evaluator Methods frozen before a *final campaign* run;
 - [ ] compute/cost of protected validated improvement (attribution-only tokens are not a substitute);
 - [ ] venue/template/cover letter / independent external PDF proofread.

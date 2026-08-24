@@ -19,14 +19,14 @@ All three errors attribute to the **same single stage: the attribution mechanism
 
 **Common structure**: the three lost cases are exactly those whose designed competitor (per the sealed `competing_cause_set`) is the more "deeply causal" attractor — representation deeper than search, code defect deeper than environment trigger, method deeper than representation. The V1 instrument rewards depth of causal narrative; the suite's discriminative structure lives in what the text *states*.
 
-## 2. Lever (pre-registered before any V2 outcome)
+## 2. Lever (protocol-declared and hash-bound; independent chronology cannot be checked)
 
 `papers/paper-05-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json` — **V2 licensed-evidence staged attribution**:
 
 - **Stage A (model, extraction only)**: structured, verbatim-quote-backed extraction of four fields — `failing_subject`, `stated_cause`, `working_failing_delta`, `stated_code_defect` — over a 9-value locus vocabulary that restates the eight published family definitions. No diagnosis, no family names, no outside knowledge.
 - **Stage B (deterministic code)**: priority rules R1–R6 (conflict→CANNOT_DISTINGUISH; stated code defect→IMPLEMENTATION_BUG; stated cause→locus family; environment/data regime delta→ENVIRONMENT_DEPENDENCY_TOOL_FAILURE; failing subject→locus family; else CANNOT_DISTINGUISH).
 
-No case identifiers and no family-pair-specific provisions anywhere in the instrument; rules are stated only over general linguistic structure (stated-cause clause, concessive regime delta, defect-locus assertion, failing subject). The protocol file is deliberately left byte-frozen: its SHA256 is bound into the run's `report.json` (`protocol_sha256`), which is what makes the pre-registration verifiable.
+No case identifiers and no family-pair-specific provisions occur in the instrument; rules are stated only over general linguistic structure (stated-cause clause, concessive regime delta, defect-locus assertion, failing subject). The protocol SHA256 is bound into the run's `report.json`. However, protocol and outcomes first appear in the same repository commit, so independent pre-outcome registration chronology is `CANNOT_CHECK`; hash binding establishes byte identity, not preregistration timing.
 
 ## 3. Re-run design (two arms, identical serving)
 
@@ -44,7 +44,7 @@ No case identifiers and no family-pair-specific provisions anywhere in the instr
 | Treatment — V2 (served glm-5.3) | **24/24 = 1.0** | **1.0** | 0 | 0 |
 
 - The control arm reproduces the historical failure **exactly**: same three errors, same attributed labels (HC-002→REPRESENTATION_GAP, HC-012→IMPLEMENTATION_BUG, HC-018→METHOD_BASIS_GAP). This pins the failure on the instrument, not on the model-version change.
-- The treatment arm resolves all three previously-lost cases through the pre-registered rules — HC-002 via R5 (failing subject = search), HC-012 via R4 (environment/data regime delta), HC-018 via R3 (stated cause = representation) — **with zero degradation elsewhere**: all 21 previously-correct cases remain correct (full-matrix result: 24/24, no case-specific rescue).
+- The treatment arm resolves all three previously-lost cases through the protocol-declared rules — HC-002 via R5 (failing subject = search), HC-012 via R4 (environment/data regime delta), HC-018 via R3 (stated cause = representation) — **with zero degradation elsewhere**: all 21 previously-correct cases remain correct (full-matrix result: 24/24, no case-specific rescue).
 - Rule usage across the suite: R5×10, R3×10, R2×3, R4×1, R1×0, R6×0.
 - Extraction audit (post-run, independent check): 0 out-of-vocabulary loci, 0 extraction flags, and every quote field verified to be a verbatim substring of the case's visible text.
 
@@ -67,7 +67,7 @@ No case identifiers and no family-pair-specific provisions anywhere in the instr
 
 | Artifact | Path (repo-relative) |
 |----------|----------------------|
-| Pre-registered protocol (byte-frozen, hash-bound) | `papers/paper-05-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json` |
+| Protocol (hash-bound; independent pre-outcome chronology `CANNOT_CHECK`) | `papers/paper-05-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json` |
 | Two-arm driver (stdlib-only) | `scripts/run_p5_glm_attribution_v2.py` |
 | Control results (V1 replay) | `papers/paper-05-self-orion/evidence/glm-5.2-attribution-v2/results_control_v1replay.jsonl` |
 | Treatment results (V2) | `papers/paper-05-self-orion/evidence/glm-5.2-attribution-v2/results_treatment_v2.jsonl` |
