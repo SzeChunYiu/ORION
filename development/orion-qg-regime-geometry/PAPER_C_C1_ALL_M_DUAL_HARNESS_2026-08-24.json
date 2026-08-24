@@ -1,0 +1,41 @@
+{
+  "both_accept": true,
+  "ci_authority": false,
+  "cross_grammar_transfer": false,
+  "cross_objective_transfer": false,
+  "exact_value_authority": false,
+  "executions": {
+    "analyzer": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "generic_verifier": {
+      "returncode": 0,
+      "sandboxed": false,
+      "single_service_local_request_call": true
+    },
+    "native_auto_service_local": true
+  },
+  "generic_decision": "ACCEPT_EXACT_FROZEN_ALL_M_DECISION_THEOREM",
+  "generic_verification_digest": "a5060a42897d29ce6db722e0be911c158f78a465d1793a8466dca54512a6d00e",
+  "m4_counterexample_preserved": true,
+  "maximum_clause_support_terms": 4,
+  "native_cycle_count": 2,
+  "native_cycle_statuses": [
+    "ADVANCED",
+    "TERMINAL"
+  ],
+  "native_decision": "ACCEPT_EXACT_FROZEN_ALL_M_DECISION_THEOREM",
+  "native_manifest_digest": "57f622e23ad4dba219350ab907186e89978f91dfb499307d75f7a3f4770ceec6",
+  "native_run_status": "TERMINAL",
+  "native_terminal_phase": "ACCEPT_RECORDED",
+  "novelty_authority": false,
+  "optimizer_witness_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "receipt_digest": "e88a137789cd304769450a0486d53072aa9331b28f99e485f3e6ea1f1491796a",
+  "schema": "ORION.PaperC.C1.DualHarness.v1",
+  "source_result_digest": "455883f266c0294e10e451346c123ed27e1a807ff72312142c7c43bb4c5e3a53",
+  "terminal": "PAPER_C_C1_ALL_M_GE_5_FOUR_INDEX_DECISION_THEOREM_MACHINE_CORROBORATED__M4_SHARP_COUNTEREXAMPLE",
+  "theorem_authority": "FROZEN_STRUCTURAL_GRAMMAR_M_GE_5_ONLY"
+}
