@@ -1,0 +1,22 @@
+{
+  "schema_version": "orion.independent-checker-receipt.v1",
+  "job_id": "EXEC-P9-01",
+  "imports_runner": false,
+  "method_difference": "Identifiability by pairwise row comparison vs collision count; minimality by independent ascending subset search.",
+  "independent_findings": {
+    "cells": 116480,
+    "identifiable": 55280,
+    "unidentifiable": 61200,
+    "biconditional_violations": 0,
+    "both_outcomes_occur": true,
+    "verified_minimum": 1820,
+    "non_minimum": 0,
+    "greedy_strictly_worse_cases": 0,
+    "greedy_ever_beats_exact": false,
+    "set_cover_reduction_exercised_on_declared_grid": false
+  },
+  "disagreements": [],
+  "terminal": "EXEC_P9_01_SECOND_INDEPENDENT_CHECKER_GREEN",
+  "note": "The checker confirms the runner's numbers including the frozen negative: greedy never differs from exact on the declared 4x4 grid, so the set-cover half of T14 is unexercised there. That is a fact about the grid, and the checker reports it rather than smoothing it.",
+  "independence_boundary": "Two implementations inside one programme; not external adjudication."
+}

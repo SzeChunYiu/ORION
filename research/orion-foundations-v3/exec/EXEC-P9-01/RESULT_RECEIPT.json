@@ -1,0 +1,80 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P9-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T14"
+  ],
+  "terminal": "P9_IDENTIFIABILITY_MODEL_INCOMPLETE",
+  "terminal_reading": "A frozen negative condition fired: greedy never differed from the exact minimum on the declared grid, so the set-cover half of T14 was not exercised. The negative is about the grid's discriminating power, not about the theorem, and it is reported as frozen rather than resolved by redeclaring the grid after outcome access.",
+  "executed_on": {
+    "host": "LUNARC (cosmos2.int.lunarc)",
+    "wallclock_seconds": 0.582,
+    "cells_enumerated": 116480
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "c598383a8c0c5df291829c3e5e7dbec725e54056c3ebaba80ae1b235aa4f9757"
+    },
+    "run_intervention_identifiability_v1.py": {
+      "artifact": "run_intervention_identifiability_v1.py",
+      "sha256": "3c8a001e677edc7d106baae8e8acc5625aa7e59d8b1f75b4cc6fad7701ecb6d7"
+    },
+    "check_intervention_identifiability_independent_v1.py": {
+      "artifact": "check_intervention_identifiability_independent_v1.py",
+      "sha256": "0acbda95253945d561981021a6e17dfc4eb0b5b285651641d25a42577d51de60"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "21c75dc4c0d5f9917f19eafb6ac0c23382181bb146fe0a18b3d978adcda6e881"
+    },
+    "INDEPENDENT_CHECKER_RECEIPT.json": {
+      "artifact": "INDEPENDENT_CHECKER_RECEIPT.json",
+      "sha256": "cb2bbdc7a61c761b71fc2baecaa4d60006e5a1d04e7c2733b1668ca0c6661857"
+    },
+    "GRID_SUFFICIENCY_PROBE_V1.md": {
+      "artifact": "GRID_SUFFICIENCY_PROBE_V1.md",
+      "sha256": "d32758c19de2d54eb1a24f41ee363eb0993a559ff55abe25302a734e82ef1544"
+    }
+  },
+  "results": {
+    "T14_identifiability_biconditional": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Exact identifiability and row-distinctness on the selected columns agree on all 116,480 cells, zero violations either direction. Both outcomes occur -- 55,280 identifiable and 61,200 unidentifiable -- so the criterion discriminates.",
+      "cells": 116480,
+      "identifiable": 55280,
+      "unidentifiable": 61200,
+      "violations": 0
+    },
+    "T14_minimum_is_minimum": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Every reported minimum separating set was verified minimum by exhaustive search over all strictly smaller subsets, across all 1,820 matrices. Zero non-minimal.",
+      "matrices": 1820,
+      "verified_minimum": 1820,
+      "non_minimum": 0
+    },
+    "T14_set_cover_reduction": {
+      "verdict": "NOT_EXERCISED_ON_DECLARED_GRID",
+      "detail": "Greedy tied the exact minimum on all 1,820 matrices: 0 strictly worse, 0 better. Greedy never beating exact is the direction that would have indicated the exact search was not exact, and that held. But with no gap at all the reduction to set cover does no work here, which the protocol pre-registered as a negative.",
+      "ties": 1820,
+      "greedy_worse": 0,
+      "greedy_better": 0
+    }
+  },
+  "post_hoc_probe": {
+    "artifact": "GRID_SUFFICIENCY_PROBE_V1.md",
+    "status": "RUN_AFTER_OUTCOME_ACCESS__NOT_EVIDENCE",
+    "finding": "The greedy gap appears from 5x6 onward (83/3,400 at 5x6 rising to 495/3,688 at 7x8) and greedy never beats exact at any size. The declared 4x4 grid is simply too small: greedy is optimal on instances that size.",
+    "why_the_grid_was_not_redeclared": "#1234 forbids moving a gate after outcome access. The declared grid stays declared and the negative stays reported. A successor job should freeze a >=5x6 grid BEFORE running and cite this probe as the reason."
+  },
+  "what_this_does_not_establish": [
+    "T14 is not refuted. Its biconditional and its minimality claim were both confirmed with zero violations; only the set-cover half went untested on this grid.",
+    "The probe is post-hoc and sampled, not a frozen total enumeration. It motivates a successor grid; it is not evidence for the theorem.",
+    "No proof-assistant correspondence; EXEC-PA-01 remains open.",
+    "No external adjudication. Runner and checker are two implementations inside one programme."
+  ],
+  "independent_checker": "EXEC_P9_01_SECOND_INDEPENDENT_CHECKER_GREEN, 0 disagreements, including reproduction of the frozen negative",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}
