@@ -1,0 +1,31 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-P10-01",
+  "grid": {
+    "universe": 8,
+    "cnf_vars": 5,
+    "cnf_clauses": 4,
+    "seed": 20260825
+  },
+  "t15": {
+    "checked": 376,
+    "genuine_extensions": 203,
+    "macros": 143,
+    "macro_extended_closure_violations": 0,
+    "minimal_witness": null
+  },
+  "t22": {
+    "formulas": 4001,
+    "sat": 4000,
+    "unsat": 0,
+    "total_search_steps": 6532,
+    "worst_case_search_steps": 9,
+    "checks": 4000,
+    "max_possible_assignments": 32,
+    "unsat_present": false
+  },
+  "totals": {
+    "cells_enumerated": 4377,
+    "wallclock_seconds": 0.046
+  }
+}

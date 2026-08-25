@@ -1,0 +1,57 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P15-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T20"
+  ],
+  "terminal": "P15_EXECUTION_SCIENCE_NONINTERFERENCE_SUPPORTED",
+  "executed_on": {
+    "host": "LUNARC",
+    "wallclock_seconds": 0.032,
+    "cells_enumerated": 250000
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "5af51d155e59ec16b219c266b811c03e2fec472748d4a75adbc7a579fd517124"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "0e838719b5b639a977a0a2c0ca9edd8e35e1ebc9f162b3f15b6b181c8c347fd7"
+    }
+  },
+  "results": {
+    "OSTC-T20_noninterference": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Across 250,000 (execution-only transformation, state) cells, validity and authority were never altered. Zero interference.",
+      "checked": 250000,
+      "interference_cases": 0
+    },
+    "bridge_premise_required": {
+      "verdict": "SUPPORTED",
+      "detail": "Over 6,400 bridge evaluations, zero V or A updates occurred without an explicit premise. A bridge may read E and update V or A, but only as a stated premise.",
+      "evaluations": 6400,
+      "updates_without_premise": 0
+    },
+    "key_compromise": {
+      "verdict": "COMPUTED_NOT_ASSERTED",
+      "detail": "31 adversary capability sets enumerated. Detection is DERIVED from whether each capability is caught by an observable signal, with SIGNATURE_VALID the only observable. 3 detected, 28 undetected. Both outcomes occur, so detection is possible in principle and the undetected cases are undetected because custody is not observable -- not because the arm was built to say so.",
+      "cases": 31,
+      "detected": 3,
+      "undetected": 28,
+      "observable_signals": [
+        "SIGNATURE_VALID"
+      ],
+      "both_outcomes_occur": true
+    }
+  },
+  "what_was_fixed": "The first, unfrozen probe's key-compromise arm was TAUTOLOGICAL: it looped over a hardcoded compromised flag and incremented false promotions when that flag was true, reporting 0/6 detection by construction. That figure matched P15's real paper finding, which is precisely what made it dangerous -- a constructed result agreeing with a true one is indistinguishable from confirmation. The arm now computes detection from an observable-signal set and produces both detected and undetected cases.",
+  "what_this_does_not_establish": [
+    "This is a structural enumeration, not production fault injection. The job title asks for production host/process faults and a production attestation comparator; neither was run and both remain open.",
+    "No proof-assistant correspondence; EXEC-PA-01 remains open.",
+    "No external adjudication."
+  ],
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}

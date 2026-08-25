@@ -1,0 +1,56 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P10-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T15",
+    "OSTC-T22"
+  ],
+  "terminal": "P10_EXPANSION_MODEL_INCOMPLETE",
+  "terminal_reading": "A frozen negative fired for the SECOND time on the same estimand. T15 is confirmed; T22's separation remains unexercised because the formula family again contained no unsatisfiable member. The negative is about grid design, not about T22.",
+  "executed_on": {
+    "host": "LUNARC",
+    "wallclock_seconds": 0.046,
+    "cells_enumerated": 4377
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "2618c6ece4fead6b6e68d686a50e10eb37d0c873ce199b4b4479b604a47ae586"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "80a3f9a6dd2f03ec5834ae97112228ea8b51c2d5cf78cc14c5e73b64749f4020"
+    }
+  },
+  "results": {
+    "OSTC-T15": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Over 376 (seed set, target, extension) triples: 203 genuine semantic extensions and 143 macros, with ZERO cases where adding an operator already inside the closure changed the closure. That is T15's core claim -- search, repair, synthesis or evolution restricted to L cannot reach a target outside Cl(L), and an in-closure operator is only a macro.",
+      "checked": 376,
+      "genuine_extensions": 203,
+      "macros": 143,
+      "macro_extended_closure_violations": 0
+    },
+    "OSTC-T22": {
+      "verdict": "NOT_EXERCISED__GRID_BELOW_PHASE_TRANSITION",
+      "detail": "4,001 formulas, 4,000 satisfiable, ZERO unsatisfiable. Worst-case search was 9 of 32 possible assignments. The diagnosis is exact: the clause-to-variable ratio is 4/5 = 0.8, and the random 3-SAT satisfiability phase transition sits near 4.27. At 0.8 almost every instance is satisfiable and is solved within a few assignments, so the hard side of T22's separation is never touched. A correct grid needs roughly 21 clauses at 5 variables, not 4.",
+      "formulas": 4001,
+      "sat": 4000,
+      "unsat": 0,
+      "clause_variable_ratio": 0.8,
+      "phase_transition_reference": 4.27,
+      "worst_case_search_steps": 9,
+      "max_possible_assignments": 32
+    }
+  },
+  "why_this_is_reported_twice": "The first, unfrozen probe produced 0 UNSAT from 2-literal clauses. The fix widened clauses to 3 literals but left the clause COUNT at 4, which was the wrong variable to change -- satisfiability is governed by the clause/variable ratio, not by clause width. Reporting the repeat rather than quietly widening again is the point: two failures on the same estimand from two different mistakes is information about my grid design, and hiding the second would make the first look like bad luck.",
+  "successor_recommendation": "Freeze a grid at ratio >= 4.27 -- about 21 clauses over 5 variables, or 43 over 10 -- BEFORE running, and verify the family contains UNSAT members as a precondition rather than as an outcome.",
+  "what_this_does_not_establish": [
+    "T22 is not refuted. It was not tested. Checking remained a single pass on every supplied assignment, which is the easy half.",
+    "No proof-assistant correspondence; EXEC-PA-01 remains open.",
+    "No external adjudication."
+  ],
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}
