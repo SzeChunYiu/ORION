@@ -191,8 +191,32 @@ def main() -> int:
             archive_integrity[key][f"{kind}_zip_valid"] = test.returncode == 0
             with zipfile.ZipFile(archive_path) as archive:
                 archive_names = set(archive.namelist())
+                archive_surface_hits: dict[str, list[str]] = {}
+                for name in archive_names:
+                    if name not in {
+                        "main.tex",
+                        "README.md",
+                        "cover_letter.md",
+                        "submission_checklist.md",
+                    }:
+                        continue
+                    try:
+                        archive_text = archive.read(name).decode("utf-8")
+                    except UnicodeDecodeError:
+                        continue
+                    hits = sorted(
+                        {
+                            match.group(0)
+                            for match in FORBIDDEN_MANUSCRIPT_SURFACE.finditer(
+                                archive_text
+                            )
+                        }
+                    )
+                    if hits:
+                        archive_surface_hits[name] = hits
             archive_integrity[key][f"{kind}_has_main_tex"] = "main.tex" in archive_names
             archive_integrity[key][f"{kind}_has_ancillary_license"] = "anc/LICENSE_CODE.txt" in archive_names
+            archive_integrity[key][f"{kind}_reader_surface_clean"] = not archive_surface_hits
             if kind == "arxiv":
                 archive_integrity[key]["arxiv_excludes_editor_files"] = not any(
                     name in archive_names
