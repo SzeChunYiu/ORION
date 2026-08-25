@@ -1,7 +1,7 @@
 # ORION Discovery V1 — theorem-identifying research and genuine generative reach
 
-**Base:** `main@0a82fd324b02c8ceecc8fed3605f3fe73f1ce518`
-**Parents:** #632, #669, #980, #283, #287, closed #1220/#1234
+**Base:** `main@0a82fd324b02c8ceecc8fed3605f3fe73f1ce518`  
+**Parents:** #632, #669, #980, #283, #287, closed #1220/#1234  
 **Status:** `PROSPECTIVE_THEORY_AND_HARNESS_SUCCESSOR__NO_SCIENTIFIC_OR_NOVELTY_AUTHORITY_DELTA`
 
 ## Why this successor exists

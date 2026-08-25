@@ -1,8 +1,8 @@
 # Historical–Counterfactual–Prospective Discovery Triangulation V1
 
-**Status:** prospective protocol and formal eligibility theory.
-**Parent:** #632 historical reconstruction.
-**Related:** #980 discovery layer, #283 verification, #287 novelty, #669 research-machine evaluation.
+**Status:** prospective protocol and formal eligibility theory.  
+**Parent:** #632 historical reconstruction.  
+**Related:** #980 discovery layer, #283 verification, #287 novelty, #669 research-machine evaluation.  
 **Authority:** no claim that ORION has rediscovered historical science or made a prospective discovery.
 
 ## 1. Why one discovery benchmark is insufficient

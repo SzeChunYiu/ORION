@@ -1,7 +1,7 @@
 # Generative Reach and Discovery Credit V1
 
-**Status:** prospective theory and protocol.
-**Purpose:** distinguish genuine scientific expansion from selection, search, renaming, macro formation, hidden-answer construction, or retrospective novelty narration.
+**Status:** prospective theory and protocol.  
+**Purpose:** distinguish genuine scientific expansion from selection, search, renaming, macro formation, hidden-answer construction, or retrospective novelty narration.  
 **Authority:** no present-day discovery or novelty claim.
 
 ## 1. Scientific regime
