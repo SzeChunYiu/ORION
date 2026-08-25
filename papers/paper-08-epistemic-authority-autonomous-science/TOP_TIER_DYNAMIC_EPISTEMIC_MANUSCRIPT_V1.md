@@ -12,7 +12,7 @@ job = P8-DES-01
 
 ## Abstract
 
-Scientific authority is neither confidence nor generic permission. P8 represents authority as a dynamic scope-indexed partial order with typed coercions, support families, epochs, and revocations. It absorbs authorization logic, policy languages, proof-carrying authorization, capability security, and evidence governance. We prove no scientific-authority amplification by repetition, aggregation, optimization, provenance, agreement, replay, signatures, or action permission; typed cross-domain coercion; least authorization closure; exact support-family revocation; and ideal-product equivalence. Native authorization and attestation systems will be connected to scientific obligations under hostile cross-system cases.
+Scientific authority is neither confidence nor generic permission. P8 represents authority as a dynamic scope-indexed partial order with typed coercions, support families, epochs, and revocations. It absorbs authorization logic, policy languages, proof-carrying authorization, capability security, and evidence governance. We prove no scientific-authority amplification by repetition, aggregation, optimization, provenance, agreement, replay, signatures, or action permission; typed cross-domain coercion; least authorization closure; exact support-family revocation; and ideal-product equivalence. Native authorization and attestation systems will be compared against generic authorization, provenance-only, action-permission, and ideal typed-product baselines under every ordered clean and hostile cross-system pair.
 
 ## Theory
 
@@ -21,6 +21,10 @@ Scientific authority is neither confidence nor generic permission. P8 represents
 - `P8-T3`: ORION computes the least set closed under native validity, sound derivation, narrowing, delegation, revalidation, and protected coercion.
 - `P8-T4`: authorization survives iff a complete support family survives.
 - `P8-T5`: decentralized and ideal typed-product implementations tie with identical facts and rules.
+
+## Ideal donor comparison
+
+The donor envelope contains every runnable native policy or attestation system, generic proof-carrying authorization, provenance-only and action-permission products, and the ideal typed product receiving the same objects, facts, scopes, resources, and bridge rules. P8 may claim superiority only through a scientifically material strict extension beyond that envelope; exact equivalence remains a positive theorem.
 
 ## Decisive computation
 

@@ -12,7 +12,7 @@ job = P12-DES-01
 
 ## Abstract
 
-Adaptive allocation is scientifically meaningful only when signals vary, policies choose different actions, outcomes are scoreable, and resource ceilings are not mistaken for capability. P12 models informative signals, state/reasoning actions, vector prices, censoring, uncertainty, and regret as a dynamic allocation state. It absorbs metareasoning, budgeted inference, routing, value-of-information, and online regret. We prove signal non-identifiability, policy non-degeneracy, censoring boundaries, coarsened-signal regret, and the requirement for prospectively frozen price and domain shifts. The current FLAT-price campaign remains a two-informative-signal stop/go study; a non-FLAT successor receives a new identity.
+Adaptive allocation is scientifically meaningful only when signals vary, policies choose different actions, outcomes are scoreable, and resource ceilings are not mistaken for capability. P12 models informative signals, state/reasoning actions, vector prices, censoring, uncertainty, and regret as a dynamic allocation state. It absorbs metareasoning, budgeted inference, routing, value-of-information, and online regret. We prove signal non-identifiability, policy non-degeneracy, censoring boundaries, coarsened-signal regret, and the requirement for prospectively frozen price and domain shifts. The current FLAT-price campaign will compare adaptive allocation against state-only, reason-only, fixed balanced, best fixed, oracle, and ideal value-of-information products as a two-informative-signal stop/go study; a non-FLAT successor receives a new identity and fresh freeze.
 
 ## Theory
 
@@ -21,6 +21,10 @@ Adaptive allocation is scientifically meaningful only when signals vary, policie
 - `P12-T3`: exact cap hits are censored, not incapability.
 - `P12-T4`: observation-equivalent worlds requiring different actions imply positive worst-case regret.
 - `P12-T5`: broad adaptation requires prospectively frozen vector-price and distribution-shift robustness.
+
+## Ideal donor comparison
+
+All policies receive identical state/reasoning menus, signals, model/tool access, budgets, and outcome information. The adaptive policy must reproduce the best fixed frontier and add a non-dominated action or outcome point. If an oracle or ideal value-of-information policy closes the gap under matched observables, the correct result is donor equivalence or certificate insufficiency.
 
 ## Decisive computation
 

@@ -12,7 +12,7 @@ job = P9-DES-01
 
 ## Abstract
 
-Final performance does not reveal whether a system lacks information, cannot access available structure, lacks compute or model capacity, is trapped inside an inadequate method language, or entered a different numerical attractor. P9 defines a dynamic capability state and uses interventions to identify these causes when possible. It absorbs representation learning, probing, causal diagnosis, scaling, test-time compute, and reproducible numerical computing. We prove observational non-identifiability, intervention-signature identification, accessibility deficiency, version-manifest insufficiency for claim-level numerical identity, and a minimum execution-certificate target. Open-weight model factorials and prospectively frozen build/provider/architecture matrices will measure cause identification and scientific-terminal stability.
+Final performance does not reveal whether a system lacks information, cannot access available structure, lacks compute or model capacity, is trapped inside an inadequate method language, or entered a different numerical attractor. P9 defines a dynamic capability state and uses interventions to identify these causes when possible. It absorbs representation learning, probing, causal diagnosis, scaling, test-time compute, and reproducible numerical computing. We prove observational non-identifiability, intervention-signature identification, accessibility deficiency, version-manifest insufficiency for claim-level numerical identity, and a minimum execution-certificate target. Open-weight model factorials and prospectively frozen build/provider/architecture matrices will compare ORION against raw/serialized controls, stronger decoders, inference-budget scaling, architecture-prior donors, package manifests, binary identities, numerical canaries, and reproducible-reduction methods.
 
 ## Theory
 
@@ -21,6 +21,10 @@ Final performance does not reveal whether a system lacks information, cannot acc
 - `P9-T3`: equal semantic information can impose different decoder and compute requirements.
 - `P9-T4`: a version manifest is insufficient when equal manifests yield different claim terminals.
 - `P9-T5`: the minimum numerical identity is the smallest feature set predicting or preventing all registered terminal flips.
+
+## Ideal donor comparison
+
+The ideal donor product receives the same semantic information, representation, tools, model family, inference budget, numerical builds, and execution fingerprints. P9 must reproduce every donor frontier point and strictly extend at least one claim-relevant diagnosis or terminal-stability coordinate; otherwise the result is donor equivalence or a boundary theorem.
 
 ## Decisive computation
 
