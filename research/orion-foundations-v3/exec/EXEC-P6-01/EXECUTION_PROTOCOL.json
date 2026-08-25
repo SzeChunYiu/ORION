@@ -1,0 +1,67 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-P6-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {"location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": ["OSTC-T10", "OSTC-T11"]},
+  "frozen_before_outcomes": true,
+  "task": "General dependency-hypergraph selective-revalidation study with alternative supports and minimum-cost repair.",
+
+  "what_each_theorem_asserts": {
+    "OSTC-T11": "Let MinSup(j) be the antichain of inclusion-minimal complete support families for j. Under revoked token set R, j survives iff there exists F in MinSup(j) with F disjoint from R. Forward: such an F replays. Converse: every valid derivation contains a complete support family, and minimising it gives an element of MinSup(j) disjoint from R.",
+    "OSTC-T10": "Certificates compose exactly when the intermediate contracts match or are bridged; composition unions support while RETAINING unresolved blockers. Tested here on dependency hypergraphs rather than on the flat contract vectors of EXEC-CM-01."
+  },
+
+  "code_identity": {
+    "runner": "run_revalidation_hypergraph_v1.py",
+    "independent_checker": "check_revalidation_hypergraph_independent_v1.py",
+    "checker_independence": "The checker does not import the runner. Survival is recomputed by forward derivation replay from surviving tokens rather than by the MinSup-disjointness predicate, so the theorem's two sides are computed by genuinely different means and can disagree."
+  },
+  "data_identity": {"generated": true, "generator_seed": 20260825, "no_external_data": true},
+  "comparator_identity": {
+    "any_support_donor": "A donor that admits survival whenever ANY support family (not necessarily minimal) avoids R. T11 says minimality is not needed for the existence check, so this donor should TIE with the MinSup predicate. A disagreement would mean one of the two is wrong, and the direction identifies which.",
+    "cardinality_repair_donor": "A repair heuristic that restores the fewest TOKENS rather than the minimum-COST support. It should be beaten or tied on cost, never beat the optimum; a donor win would indicate the cost model is not what the optimum optimises."
+  },
+  "information_and_tool_access": {"runner": "declared grid only; no network, no model calls", "checker": "raw manifest only"},
+  "resource_vector": {"compute": "single-process CPU enumeration", "wallclock_bound_seconds": 1800},
+
+  "independent_unit": "The (hypergraph, revocation-set) cell. Derivations inside a cell are exhaustively enumerated, not sampled; no interval is computed.",
+  "estimands": {
+    "T11_biconditional": "Over every (hypergraph, revocation set): is (j survives by forward replay) exactly equivalent to (some minimal support family is disjoint from R), checked in both directions with zero exceptions?",
+    "T11_both_outcomes_occur": "Do both survival and non-survival occur in the enumeration? A grid where j always survives, or never does, cannot test a survival criterion.",
+    "T10_blockers_retained": "Under composition, is an unresolved blocker in either input always present in the output, with zero losses?",
+    "repair_optimality": "Does minimum-cost repair never cost more than the cardinality heuristic, and does it strictly beat it at least once (otherwise the cost model is doing no work)?"
+  },
+  "multiplicity": "No hypothesis test; universal and existence claims over total enumeration.",
+
+  "positive_terminal": "P6_GENERAL_REVALIDATION_LAW_SUPPORTED",
+  "positive_conditions": [
+    "T11 biconditional holds with zero exceptions in both directions",
+    "both survival and non-survival occur in the enumeration",
+    "zero blocker losses under composition",
+    "minimum-cost repair never exceeds the cardinality heuristic and strictly beats it at least once",
+    "the any-support donor ties with the MinSup predicate"
+  ],
+  "negative_terminal": "P6_DEPENDENCY_MODEL_INCOMPLETE",
+  "negative_conditions": [
+    "any cell where forward replay and MinSup-disjointness disagree",
+    "any composition that loses an unresolved blocker",
+    "any cell where the cardinality heuristic strictly beats minimum-cost repair",
+    "survival is constant across the grid, making the criterion untestable here",
+    "the any-support donor disagrees with the MinSup predicate"
+  ],
+  "cannot_check_terminal": "P6_DONOR_DATA_UNAVAILABLE",
+  "cannot_check_conditions": ["grid not exhausted within the wallclock bound", "independent checker cannot be run"],
+
+  "raw_output_schema": {"file": "RAW_RESULT_MANIFEST.json",
+    "fields": {"grid": "echoed", "t11": "cells, survived, died, biconditional_violations, minimal_witness",
+      "t10": "compositions, blocker_losses", "repair": "cells, heuristic_wins, optimum_strictly_better, ties",
+      "donor": "agreements, disagreements", "totals": "cells_enumerated, wallclock_seconds"}},
+  "checker_and_authority_owner": {"checker": "check_revalidation_hypergraph_independent_v1.py",
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Two implementations inside one programme; not external adjudication."},
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem, move a gate, weaken a comparator, hide a negative, or rewrite theory after outcome access."
+}
