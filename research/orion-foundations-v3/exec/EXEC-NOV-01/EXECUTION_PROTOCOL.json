@@ -1,0 +1,39 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-NOV-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "PROTECTED_EXECUTION",
+  "theory_source": {
+    "location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": []
+  },
+  "frozen_before_outcomes": true,
+  "task": "Independent novelty and prior-art review.",
+  "external_access_blocker": {
+    "terminal": "INACCESSIBLE_PRIOR_ART_OR_REVIEWER_ABSENT",
+    "verified_absent": true,
+    "what_the_job_requires": "A reviewer who did not write the work. I can SEARCH prior art -- that is labour, not independence -- but I cannot certify my own search as an independent review, and a search that misses a paper cannot report that it missed it.",
+    "frozen_before_any_structural_work": true,
+    "note": "This terminal is frozen BEFORE the structural work below and is not upgradeable by it. Structural verification of a theorem is not the protected campaign the job names."
+  },
+  "what_is_attempted_instead": {
+    "scope": "none; no decidable core exists for a prior-art review",
+    "cores": [],
+    "not_claimed": [
+      "the protected campaign",
+      "external adjudication",
+      "discharge of the job as specified"
+    ]
+  },
+  "resource_vector": {
+    "compute": "single-process CPU enumeration",
+    "wallclock_bound_seconds": 900
+  },
+  "checker_and_authority_owner": {
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Total enumeration is complete but self-authored."
+  },
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May not substitute structural verification for the campaign the job names."
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-P5-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "PROTECTED_EXECUTION",
+  "theory_source": {
+    "location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": [
+      "OSTC-T19",
+      "OSTC-T21"
+    ]
+  },
+  "frozen_before_outcomes": true,
+  "task": "Adoption-gate campaign under external evaluator custody.",
+  "external_access_blocker": {
+    "terminal": "P5_EXTERNAL_CUSTODY_ABSENT",
+    "verified_absent": true,
+    "what_the_job_requires": "T19 is precisely the theorem that a candidate controlling evaluator and evidence cannot soundly self-promote. Running its campaign under my own custody would instantiate the failure the theorem describes, not test it.",
+    "frozen_before_any_structural_work": true,
+    "note": "This terminal is frozen BEFORE the structural work below and is not upgradeable by it. Structural verification of a theorem is not the protected campaign the job names."
+  },
+  "what_is_attempted_instead": {
+    "scope": "decidable structural cores only",
+    "cores": [
+      "t19",
+      "t21"
+    ],
+    "not_claimed": [
+      "the protected campaign",
+      "external adjudication",
+      "discharge of the job as specified"
+    ]
+  },
+  "resource_vector": {
+    "compute": "single-process CPU enumeration",
+    "wallclock_bound_seconds": 900
+  },
+  "checker_and_authority_owner": {
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Total enumeration is complete but self-authored."
+  },
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May not substitute structural verification for the campaign the job names."
+}

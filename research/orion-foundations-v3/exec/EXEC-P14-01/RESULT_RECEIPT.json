@@ -1,0 +1,37 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P14-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T19",
+    "OSTC-T21"
+  ],
+  "terminal": "P14_INDEPENDENT_ADJUDICATION_ABSENT",
+  "terminal_reading": "Same structure as P8. The adjudicator must not be the programme that produced the claim.",
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "06fe0ecaf394e6e2e7fa9b549e92b78f5772e5e4651876519789091ff9175d9f"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "85344fcb85b37f5cb00643213d584fe63cc5498f005a98f1b5bd2bf6d0309354"
+    },
+    "run_structural_cores_v1.py": {
+      "artifact": "run_structural_cores_v1.py",
+      "sha256": "1d5e2f5fd77015af7b56ae8b48cc129db03573265e4d00eab0891fbb4de86f41"
+    }
+  },
+  "structural_cores_attempted": [
+    "T19's structural core was ATTEMPTED and the attempt is reported as INCONCLUSIVE, not as verification. My encoding sets the two worlds' transcripts equal by construction, so the enumeration can only ever report 'internally indistinguishable' -- it cannot fail. That is the same tautology shape caught earlier in the P15 key-compromise arm: a test whose result is fixed by its own setup. The 6 indistinguishable cells therefore restate the theorem's premise rather than confirm its consequence. A real test needs an encoding where the transcripts COULD differ.",
+    "T21 (governed recursive evolution) holds over 24 enumerated adoption sequences: all 24 terminate, ZERO infinite. Every sequence carrying a strictly decreasing well-founded rank or consuming a finite protected budget halts."
+  ],
+  "what_this_does_not_establish": [
+    "This is NOT the campaign the job specifies. No protected evaluator, no external custody, no independent adjudicator was involved.",
+    "Structural verification of a theorem's decidable content says nothing about how it behaves under a protected campaign against a real comparator.",
+    "The enumerations are complete at their sizes but self-authored: one programme, one author."
+  ],
+  "what_would_discharge_this_job": "Peer review supplies exactly the independence this job lacks, and costs nothing. TMLR is diamond open access -- DOAJ lists it with no publication fees -- with double-blind review under an assigned action editor, and JOSS review is free and public. The reviewers are outside the programme by construction. For custody specifically, OSF preregistration timestamps a protocol before outcomes are accessible. None of these was used here, and none of them requires resources the author lacks.",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}

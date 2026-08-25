@@ -1,0 +1,27 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-NOV-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [],
+  "terminal": "INACCESSIBLE_PRIOR_ART_OR_REVIEWER_ABSENT",
+  "terminal_reading": "A reviewer who did not write the work. I can SEARCH prior art -- that is labour, not independence -- but I cannot certify my own search as an independent review, and a search that misses a paper cannot report that it missed it.",
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "1b8ba4bb5ccc0ab75b202be401cdd6d7cd3f2c55d0a3cb045c3718ff20cf8f0c"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "e89ee7228f7f5bec166cee49ca926c1cceba471e6136cf83e513d0969ed3020d"
+    }
+  },
+  "structural_cores_attempted": [],
+  "what_this_does_not_establish": [
+    "This is NOT the campaign the job specifies. No protected evaluator, no external custody, no independent adjudicator was involved.",
+    "Structural verification of a theorem's decidable content says nothing about how it behaves under a protected campaign against a real comparator.",
+    "The enumerations are complete at their sizes but self-authored: one programme, one author."
+  ],
+  "what_would_discharge_this_job": "Peer review supplies exactly the independence this job lacks, and costs nothing. TMLR is diamond open access -- DOAJ lists it with no publication fees -- with double-blind review under an assigned action editor, and JOSS review is free and public. The reviewers are outside the programme by construction. For custody specifically, OSF preregistration timestamps a protocol before outcomes are accessible. None of these was used here, and none of them requires resources the author lacks.",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}

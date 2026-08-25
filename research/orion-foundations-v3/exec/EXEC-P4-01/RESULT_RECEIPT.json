@@ -1,0 +1,37 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P4-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T2",
+    "OSTC-T3"
+  ],
+  "terminal": "P4_PROTECTED_PANEL_UNAVAILABLE",
+  "terminal_reading": "A naturalistic panel of evaluators whose identifiability is the object of study. A panel I construct cannot test whether evaluators are identifiable, because I fix their identities.",
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "f266c2271bb28c0b56149302e8173b7a4dd80be2ba841864b4df6e5dcc65a685"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "f08317edfc1f019b52284ebc57db43bbbe143181fbdcf0e273aa4226856e2057"
+    },
+    "run_structural_cores_v1.py": {
+      "artifact": "run_structural_cores_v1.py",
+      "sha256": "1d5e2f5fd77015af7b56ae8b48cc129db03573265e4d00eab0891fbb4de86f41"
+    }
+  },
+  "structural_cores_attempted": [
+    "T2 (exact target-sufficiency fibre theorem) holds over 6,561 enumerated (Phi,T) pairs with ZERO violations: a decoder g with T = g o Phi exists exactly when Phi's fibres are T-constant. The test is non-vacuous -- 1,359 pairs factor and 5,202 have mixed fibres, so both sides of the biconditional occur. A grid where every pair factored would prove nothing.",
+    "T3 (exact Bayes risk under an interface) holds over 20,736 enumerated cells with ZERO violations. The closed-form risk was checked against BRUTE-FORCE minimisation over every deterministic decision rule on fibres, not against itself, so the formula had a way to be wrong."
+  ],
+  "what_this_does_not_establish": [
+    "This is NOT the campaign the job specifies. No protected evaluator, no external custody, no independent adjudicator was involved.",
+    "Structural verification of a theorem's decidable content says nothing about how it behaves under a protected campaign against a real comparator.",
+    "The enumerations are complete at their sizes but self-authored: one programme, one author."
+  ],
+  "what_would_discharge_this_job": "Peer review supplies exactly the independence this job lacks, and costs nothing. TMLR is diamond open access -- DOAJ lists it with no publication fees -- with double-blind review under an assigned action editor, and JOSS review is free and public. The reviewers are outside the programme by construction. For custody specifically, OSF preregistration timestamps a protocol before outcomes are accessible. None of these was used here, and none of them requires resources the author lacks.",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}
