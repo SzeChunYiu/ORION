@@ -1,0 +1,1405 @@
+{
+  "schema": "orion.discovery-v2.knowledge-web.v1",
+  "job_id": "DISC-WEB-01",
+  "slice": "OSTC T0-T23 and its registered execution evidence",
+  "theory_source_sha256": "39c641a0a61fb52787325be84e7387381d57833233118c4140100d9e489cc375",
+  "counts": {
+    "nodes": 90,
+    "edges": 79,
+    "load_bearing_edges": 63,
+    "theorems": 24,
+    "support_families": 39,
+    "theorems_with_a_complete_family": 19
+  },
+  "node_kinds_present": [
+    "EVIDENCE",
+    "EXPERIMENT",
+    "FAILURE",
+    "OPEN_MOVE_CLASS",
+    "THEORY",
+    "VALIDATOR"
+  ],
+  "edge_kinds_present": [
+    "DEPENDS_ON",
+    "OBSTRUCTS",
+    "VALIDATES"
+  ],
+  "gate": {
+    "all_nodes_content_identified": true,
+    "unidentified_nodes": [],
+    "non_circular": true,
+    "cycles": [],
+    "passed": true
+  },
+  "terminal": "REGISTERED_KNOWLEDGE_WEB_AND_SUPPORT_FAMILIES_GREEN",
+  "nodes": [
+    {
+      "id": "THEORY:T0",
+      "kind": "THEORY",
+      "content_sha256": "c6640aa4e1e11c106c379f1b9eec6ba6df84d582ac8cdfbe809dc9d195ce2d93",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T1",
+      "kind": "THEORY",
+      "content_sha256": "c20c24dae8166235fd30c99d84d847f305931a29abd0961a2a1f382c226a7490",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T2",
+      "kind": "THEORY",
+      "content_sha256": "b82a37ea92ce8480e8272d63fb0787b1b656e9b8f15cc1ae93aca1ed2a784dba",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T3",
+      "kind": "THEORY",
+      "content_sha256": "c78ed7612234afbdd922eabd96d7d4d1199cc6e4616cc0f9da3dccc1621ad3cb",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T4",
+      "kind": "THEORY",
+      "content_sha256": "ec65d57d1066b5617ba3b0c389a3b0cb37b05172158f448747f805034c5b5cd8",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T5",
+      "kind": "THEORY",
+      "content_sha256": "14bf145bf1f7949a0ba6e8abcdc5411d07e2ad5e9ebc330b794515ee8b5bd138",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T6",
+      "kind": "THEORY",
+      "content_sha256": "5901d88b6b7155841e1b86dbfbaaef53142794b9503e7704a98341c2f44be025",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T7",
+      "kind": "THEORY",
+      "content_sha256": "c7a7d1746cc3aab001bb9ab7673cd4575b662649e6bbfa40f2867b8675ac593a",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T8",
+      "kind": "THEORY",
+      "content_sha256": "2a2c314cb4de363e7c58b2a34e65a5579f5b9ea432e4d2cbc7f0bbdf6dc738fb",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T9",
+      "kind": "THEORY",
+      "content_sha256": "a2367b5655aab68e7a3214d70d53d78f480d51fc16053211f2d2d351ae65068b",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T10",
+      "kind": "THEORY",
+      "content_sha256": "0c993c99ad67b87e85e383a85f0d86daf43998c607be57e22cb43b18d33b9801",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T11",
+      "kind": "THEORY",
+      "content_sha256": "f85d5aae5d315663685224882aebbf2e97b5349cc6f4bd0db006d1b747f403e5",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T12",
+      "kind": "THEORY",
+      "content_sha256": "784e9e5f79377c7e221b6b6aceaf42dc32d2c732ea9a0a4c5351e9a574a3beac",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T13",
+      "kind": "THEORY",
+      "content_sha256": "807bce06b494b31d0ed85f39662f58aebe6dcb862a53aca78597c9205f90b400",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T14",
+      "kind": "THEORY",
+      "content_sha256": "87b6ec3b79606a424f1a14f1cb331c86ee329ad8c82064d844abfe5eb7bbea4f",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T15",
+      "kind": "THEORY",
+      "content_sha256": "0e1ee58cb07e281d0da42478f6cf237977d4c25cd180a4db0e0f4feace2459a1",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T16",
+      "kind": "THEORY",
+      "content_sha256": "64f41d7f91f6b1477ede492e6719420ee9f677c5490296c82fa42febf5e7d882",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T17",
+      "kind": "THEORY",
+      "content_sha256": "9524adc3fc80ebe7a1e32c57509684baa5343c88a6191347ace8a22a7075f5ff",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T18",
+      "kind": "THEORY",
+      "content_sha256": "79c71c2ec93531d1e387565821318f3627d72ab92256c83207cd64f6eff2250c",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T19",
+      "kind": "THEORY",
+      "content_sha256": "30854902defa81304b64c756f2f531381390a29c47ba7eed6c639283edc445a7",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T20",
+      "kind": "THEORY",
+      "content_sha256": "e60aab3cd3001539a2efce6eddd4ddd05dbe43ff55c7192d4cf3bf28c4639173",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T21",
+      "kind": "THEORY",
+      "content_sha256": "2f4a45204bdd5cc4a95367834a83aa2cd00346d04016c33e82e72b7dae6e3b7d",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T22",
+      "kind": "THEORY",
+      "content_sha256": "8e6429d54f22176128da1dc3d7814f4a012c2ad37425a3ce353d51108b01a218",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "THEORY:T23",
+      "kind": "THEORY",
+      "content_sha256": "acca34ff94aa761a4c20b9cbf7ba725c3716802485a1936329ea2b8c9979db81",
+      "domain": "OSTC",
+      "scope": "foundations-v3",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-CM-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "7979168d7aab478eb9a23c14eec3380251b5e03176b25af9393e28e42d853a22",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-CM-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-CM-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "a0f759ac345b2a1378a4f4622c84b76d868454525b60a4b53c3209e96f895051",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "LARGE_COUNTERMODEL_ATLAS_COMPLETE",
+      "source": "research/orion-foundations-v3/exec/EXEC-CM-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "VALIDATOR:EXEC-CM-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "d6bcfd3eaf466f4b9788c7903f9e9ee00750ccb0af086b2162fcfd5c28ea57f5",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-NOV-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "1b8ba4bb5ccc0ab75b202be401cdd6d7cd3f2c55d0a3cb045c3718ff20cf8f0c",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-NOV-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-NOV-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "ebf0ba1f8f704a842856824c58494c64915c601963231075b3f7230080d16e9e",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "INACCESSIBLE_PRIOR_ART_OR_REVIEWER_ABSENT",
+      "source": "research/orion-foundations-v3/exec/EXEC-NOV-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "FAILURE:EXEC-NOV-01",
+      "kind": "FAILURE",
+      "content_sha256": "ebf0ba1f8f704a842856824c58494c64915c601963231075b3f7230080d16e9e",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "INACCESSIBLE_PRIOR_ART_OR_REVIEWER_ABSENT"
+    },
+    {
+      "id": "VALIDATOR:EXEC-NOV-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "9d0f868ecb971b6d6c6d45bfabb92fb9c6099884b37efe497df701d453f12893",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P1-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "7302196290d2e6e0cca5e74d213d2c875e441b1758da2006be54306cddbf4628",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P1-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P1-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "9d567fe1bfb7592fa05ac6cc3045c0ba1a6d3ee0f246b3672c592b403b560848",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P1_PROTECTED_EXECUTION_INVALID",
+      "source": "research/orion-foundations-v3/exec/EXEC-P1-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "FAILURE:EXEC-P1-01",
+      "kind": "FAILURE",
+      "content_sha256": "9d567fe1bfb7592fa05ac6cc3045c0ba1a6d3ee0f246b3672c592b403b560848",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P1_PROTECTED_EXECUTION_INVALID"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P1-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "a9a50926881433a25a1ee0bd4cbb29b8b757b0d367b756da7c8da03e90f30a8f",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P10-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "2618c6ece4fead6b6e68d686a50e10eb37d0c873ce199b4b4479b604a47ae586",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P10-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P10-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "9bffa14c9d2b3f1b3d388072b71fd7903e4a46a73e91f15b79721ad500db5413",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P10_EXPANSION_MODEL_INCOMPLETE",
+      "source": "research/orion-foundations-v3/exec/EXEC-P10-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P10-02",
+      "kind": "EXPERIMENT",
+      "content_sha256": "a584109d4e863cf5a90cd2e5f51a2c285149e6a7dd81c8ca36f45028b29a073a",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P10-02/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P10-02",
+      "kind": "EVIDENCE",
+      "content_sha256": "b7c8a923da5b8664a391d1a21972fdef60be5bef7dd75da7106fa43661950ab2",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P10_SYNTHESIS_CHECKING_SEPARATION_SUPPORTED",
+      "source": "research/orion-foundations-v3/exec/EXEC-P10-02/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P10-02",
+      "kind": "VALIDATOR",
+      "content_sha256": "0578335c7a573834f0e51db2d5a1bdf61914c2c041ec0f1d28f2f5a70b96c8c5",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P11-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "7f8e06dbcd9b03f1865162bcb8eab9df15db4bd6a2d37dac3e0e2934d3738e5a",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P11-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P11-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "1d5a5a3ff2d289ee8f966a7d8e77265ba8edbb17bb8c0dcd5fe13fe61b486f46",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P11_PHASE_PREDICTIONS_SUPPORTED",
+      "source": "research/orion-foundations-v3/exec/EXEC-P11-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P11-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "3693b0a138ea93b30b012e313f905db700dc1684970d316c5a58b78a411160e6",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P12-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "0337a6a9f1d35011d357a23227c49915806011d98d91b1e5640d0ebfb0f52fc1",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P12-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P12-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "b22eddcc8a49af98816b8774435e01651dd8f15686b05600b6246f3f5bfe7a5b",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P12_ALLOCATOR_TRANSFER_OR_ROBUSTNESS_FAILS",
+      "source": "research/orion-foundations-v3/exec/EXEC-P12-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P12-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "d55a59917af5eef1b7916c4e27cdd79822c1ef5cc9a02c15dad7905be5148be8",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P13-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "cdbb032c8927469e4d45a081b5347d95db01f58a129568ae8c0dd351ec58c6a3",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P13-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P13-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "33ce7d8f15ddb5081244b15cae860220ef141698a446bb6b4d384cebe6ab5373",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P13_DRIFT_TRANSPORT_SUPPORTED",
+      "source": "research/orion-foundations-v3/exec/EXEC-P13-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P14-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "06fe0ecaf394e6e2e7fa9b549e92b78f5772e5e4651876519789091ff9175d9f",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P14-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P14-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "085f1bdb87a377d2c31b952bd1dc52d3e95712364e5b8b0a95767014250c3788",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P14_INDEPENDENT_ADJUDICATION_ABSENT",
+      "source": "research/orion-foundations-v3/exec/EXEC-P14-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "FAILURE:EXEC-P14-01",
+      "kind": "FAILURE",
+      "content_sha256": "085f1bdb87a377d2c31b952bd1dc52d3e95712364e5b8b0a95767014250c3788",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P14_INDEPENDENT_ADJUDICATION_ABSENT"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P14-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "de4522faa5d33bca453daef2f451665893759f49d11541434d16ba5bcac39ce0",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P15-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "5af51d155e59ec16b219c266b811c03e2fec472748d4a75adbc7a579fd517124",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P15-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P15-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "4d5810d088bcdfeb63c9e2636d2d3abcaee5b77cbbc178fe850fb18d3c67e3b0",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P15_EXECUTION_SCIENCE_NONINTERFERENCE_SUPPORTED",
+      "source": "research/orion-foundations-v3/exec/EXEC-P15-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P2-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "7d02e8e22c427fd99f9504d20a7c3e8d7d152db09e2cf9dc48aed9ca6d8d7c13",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P2-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P2-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "6aaa8eb0f09051b9a9e5958d8b0e84935c46b851ce56e1f4e2d48947c3021cec",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P2_CLOSURE_IMPOSSIBILITY_SUPPORTED",
+      "source": "research/orion-foundations-v3/exec/EXEC-P2-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P2-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "d5c05375a9b46837fe8d32a9efe68d3d20d74c153fe5e242db0b2edc7d344e22",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P3-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "1eb6f9d8e38c0939ef4aeb78563e0a3fab5cc178ec840e0961c224125bd4ab54",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P3-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P3-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "07032109ec995ce7502cbb1bb25d316794353365f81838b349722e7f55155bce",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P3_GLOBAL_CONE_OBSTRUCTIONS_SUPPORTED",
+      "source": "research/orion-foundations-v3/exec/EXEC-P3-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P3-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "15d51e78070897c631d2b930af36d29f78da18db838261587c2faf8dbe6452ab",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P4-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "f266c2271bb28c0b56149302e8173b7a4dd80be2ba841864b4df6e5dcc65a685",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P4-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P4-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "7a2891b915af77d66b95248370c7c586912087bd1452f50d74dfab1de9739209",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P4_PROTECTED_PANEL_UNAVAILABLE",
+      "source": "research/orion-foundations-v3/exec/EXEC-P4-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "FAILURE:EXEC-P4-01",
+      "kind": "FAILURE",
+      "content_sha256": "7a2891b915af77d66b95248370c7c586912087bd1452f50d74dfab1de9739209",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P4_PROTECTED_PANEL_UNAVAILABLE"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P4-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "de9b827a65a04ccbf5ee9dfc9d596f712a713bed125f1f5ff7e7f3fe1b266c19",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P5-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "7cc0d4bdda5afa6f725a79355098a446d88590a4c8bacf16216c9777dfa8b5c8",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P5-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P5-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "90d4de0fb0ddbdc85909709a99451c00285e5b6d51233a3cc0ebf7265ddad872",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P5_EXTERNAL_CUSTODY_ABSENT",
+      "source": "research/orion-foundations-v3/exec/EXEC-P5-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "FAILURE:EXEC-P5-01",
+      "kind": "FAILURE",
+      "content_sha256": "90d4de0fb0ddbdc85909709a99451c00285e5b6d51233a3cc0ebf7265ddad872",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P5_EXTERNAL_CUSTODY_ABSENT"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P5-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "cdb23e0b42068e20f019de892e8ac716f5636d3ae59721029cfa1f1d883e337e",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P6-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "f630ef59a24fe05844dd6b3258eb09ff4f2d0f8d84861965aa20570faf901690",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P6-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P6-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "7ccac8e56e030b0ad57e21f951151579712f76df88e3a3eb1a503fbd9a3e65a7",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P6_GENERAL_REVALIDATION_LAW_SUPPORTED",
+      "source": "research/orion-foundations-v3/exec/EXEC-P6-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P6-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "0ec57a1cd2bd9b69005b7193d030d7b80038489bab6ab1f55b296d5707017581",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P7-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "9f5410a0b4e2fa483022a5b7e1dfbb46132a7d77da9b2a28ee448032a46ddc70",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P7-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P7-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "260cfda612a88f97bfeb538317ed4a652aa589bd1a0d438549341275f0d22bfe",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P7_REGIME_COHERENCE_PREDICTIONS_SUPPORTED",
+      "source": "research/orion-foundations-v3/exec/EXEC-P7-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P7-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "64f9a4231c72eea7b8daa30a5258daaf499c0ee804e1b8df51a3f8ee410f4099",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P8-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "0aa6ff657d37a53106c535b6653693bb962b6478f73bc6574e8d2c1b99852016",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P8-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P8-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "b473a65ae7de42ac4e6f9c38c8b1943df5b75592ec0e36ad06354bd53d89296b",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P8_EXTERNAL_ADJUDICATION_ABSENT",
+      "source": "research/orion-foundations-v3/exec/EXEC-P8-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "FAILURE:EXEC-P8-01",
+      "kind": "FAILURE",
+      "content_sha256": "b473a65ae7de42ac4e6f9c38c8b1943df5b75592ec0e36ad06354bd53d89296b",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P8_EXTERNAL_ADJUDICATION_ABSENT"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P8-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "437a031006f23fcfc1c90a0b40fe36f73fcae26797ec2ddd3d52f5bd61ff24be",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-P9-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "c598383a8c0c5df291829c3e5e7dbec725e54056c3ebaba80ae1b235aa4f9757",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-P9-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-P9-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "535874171b0d7b3edf54f84fcb88e5ed6fdb0a54280835bfbd0117b7f8770f42",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "P9_IDENTIFIABILITY_MODEL_INCOMPLETE",
+      "source": "research/orion-foundations-v3/exec/EXEC-P9-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "VALIDATOR:EXEC-P9-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "cb2bbdc7a61c761b71fc2baecaa4d60006e5a1d04e7c2733b1668ca0c6661857",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-PA-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "e4103caef0a70c268708a68122ffe71dd42d27b77c0222d238e966a23c4a7bc4",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-PA-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-PA-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "e7ae1572418716155964982106cf16efaf256feb4ddfd48f2e037df4bb6d631c",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "PROOF_ASSISTANT_OR_REVIEWER_UNAVAILABLE",
+      "source": "research/orion-foundations-v3/exec/EXEC-PA-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "FAILURE:EXEC-PA-01",
+      "kind": "FAILURE",
+      "content_sha256": "e7ae1572418716155964982106cf16efaf256feb4ddfd48f2e037df4bb6d631c",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "PROOF_ASSISTANT_OR_REVIEWER_UNAVAILABLE"
+    },
+    {
+      "id": "VALIDATOR:EXEC-PA-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "38ca83e6dc918b92c341cc49257c88093933858765938c6897841fc20cf3f6e8",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "EXPERIMENT:EXEC-XP-01",
+      "kind": "EXPERIMENT",
+      "content_sha256": "1ecfd67b7afb4bfaf479ce4e2c91b837866a198af97277a5a69b054dfff55d69",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "source": "research/orion-foundations-v3/exec/EXEC-XP-01/EXECUTION_PROTOCOL.json"
+    },
+    {
+      "id": "EVIDENCE:EXEC-XP-01",
+      "kind": "EVIDENCE",
+      "content_sha256": "987b758fda9596c17110a121d2b016ad466ea8fb1ff51171c9e13550a7654f4e",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "INDEPENDENT_CUSTODY_OR_DOMAINS_ABSENT",
+      "source": "research/orion-foundations-v3/exec/EXEC-XP-01/RESULT_RECEIPT.json"
+    },
+    {
+      "id": "FAILURE:EXEC-XP-01",
+      "kind": "FAILURE",
+      "content_sha256": "987b758fda9596c17110a121d2b016ad466ea8fb1ff51171c9e13550a7654f4e",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1",
+      "terminal": "INDEPENDENT_CUSTODY_OR_DOMAINS_ABSENT"
+    },
+    {
+      "id": "VALIDATOR:EXEC-XP-01",
+      "kind": "VALIDATOR",
+      "content_sha256": "79a6e46611e9dce967fb1c324a1e01bf76bf23c3b9bc15587854b17bf809f1c5",
+      "domain": "OSTC",
+      "scope": "execution",
+      "version": "V1"
+    },
+    {
+      "id": "OPEN_MOVE_CLASS:unclassified-discovery",
+      "kind": "OPEN_MOVE_CLASS",
+      "content_sha256": "e0c440b66beba5488fa0ed60ccb195b41f7859860f86b7d13ceba14f13994884",
+      "domain": "OSTC",
+      "scope": "meta",
+      "version": "V1",
+      "note": "Reserved for moves this taxonomy cannot express. A fixed node/edge vocabulary is an experimental language, not a proof that every future discovery fits inside it."
+    }
+  ],
+  "edges": [
+    {
+      "source": "EVIDENCE:EXEC-CM-01",
+      "target": "EXPERIMENT:EXEC-CM-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-CM-01",
+      "target": "THEORY:T8",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-CM-01",
+      "target": "THEORY:T10",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-CM-01",
+      "target": "THEORY:T13",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-CM-01",
+      "target": "EVIDENCE:EXEC-CM-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-NOV-01",
+      "target": "EXPERIMENT:EXEC-NOV-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "FAILURE:EXEC-NOV-01",
+      "target": "EXPERIMENT:EXEC-NOV-01",
+      "kind": "OBSTRUCTS",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "VALIDATOR:EXEC-NOV-01",
+      "target": "EVIDENCE:EXEC-NOV-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P1-01",
+      "target": "EXPERIMENT:EXEC-P1-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "FAILURE:EXEC-P1-01",
+      "target": "EXPERIMENT:EXEC-P1-01",
+      "kind": "OBSTRUCTS",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P1-01",
+      "target": "THEORY:T14",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P1-01",
+      "target": "THEORY:T21",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P1-01",
+      "target": "EVIDENCE:EXEC-P1-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P10-01",
+      "target": "EXPERIMENT:EXEC-P10-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P10-01",
+      "target": "THEORY:T15",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P10-01",
+      "target": "THEORY:T22",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P10-02",
+      "target": "EXPERIMENT:EXEC-P10-02",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P10-02",
+      "target": "THEORY:T22",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P10-02",
+      "target": "EVIDENCE:EXEC-P10-02",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P11-01",
+      "target": "EXPERIMENT:EXEC-P11-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P11-01",
+      "target": "THEORY:T16",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P11-01",
+      "target": "THEORY:T18",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P11-01",
+      "target": "EVIDENCE:EXEC-P11-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P12-01",
+      "target": "EXPERIMENT:EXEC-P12-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P12-01",
+      "target": "THEORY:T17",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P12-01",
+      "target": "EVIDENCE:EXEC-P12-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P13-01",
+      "target": "EXPERIMENT:EXEC-P13-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P13-01",
+      "target": "THEORY:T18",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P13-01",
+      "target": "THEORY:T11",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P14-01",
+      "target": "EXPERIMENT:EXEC-P14-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "FAILURE:EXEC-P14-01",
+      "target": "EXPERIMENT:EXEC-P14-01",
+      "kind": "OBSTRUCTS",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P14-01",
+      "target": "THEORY:T19",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P14-01",
+      "target": "THEORY:T21",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P14-01",
+      "target": "EVIDENCE:EXEC-P14-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P15-01",
+      "target": "EXPERIMENT:EXEC-P15-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P15-01",
+      "target": "THEORY:T20",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P2-01",
+      "target": "EXPERIMENT:EXEC-P2-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P2-01",
+      "target": "THEORY:T12",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P2-01",
+      "target": "EVIDENCE:EXEC-P2-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P3-01",
+      "target": "EXPERIMENT:EXEC-P3-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P3-01",
+      "target": "THEORY:T9",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P3-01",
+      "target": "EVIDENCE:EXEC-P3-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P4-01",
+      "target": "EXPERIMENT:EXEC-P4-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "FAILURE:EXEC-P4-01",
+      "target": "EXPERIMENT:EXEC-P4-01",
+      "kind": "OBSTRUCTS",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P4-01",
+      "target": "THEORY:T2",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P4-01",
+      "target": "THEORY:T3",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P4-01",
+      "target": "EVIDENCE:EXEC-P4-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P5-01",
+      "target": "EXPERIMENT:EXEC-P5-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "FAILURE:EXEC-P5-01",
+      "target": "EXPERIMENT:EXEC-P5-01",
+      "kind": "OBSTRUCTS",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P5-01",
+      "target": "THEORY:T19",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P5-01",
+      "target": "THEORY:T21",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P5-01",
+      "target": "EVIDENCE:EXEC-P5-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P6-01",
+      "target": "EXPERIMENT:EXEC-P6-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P6-01",
+      "target": "THEORY:T10",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P6-01",
+      "target": "THEORY:T11",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P6-01",
+      "target": "EVIDENCE:EXEC-P6-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P7-01",
+      "target": "EXPERIMENT:EXEC-P7-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P7-01",
+      "target": "THEORY:T13",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P7-01",
+      "target": "EVIDENCE:EXEC-P7-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P8-01",
+      "target": "EXPERIMENT:EXEC-P8-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "FAILURE:EXEC-P8-01",
+      "target": "EXPERIMENT:EXEC-P8-01",
+      "kind": "OBSTRUCTS",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P8-01",
+      "target": "THEORY:T4",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P8-01",
+      "target": "THEORY:T10",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P8-01",
+      "target": "THEORY:T11",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P8-01",
+      "target": "EVIDENCE:EXEC-P8-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-P9-01",
+      "target": "EXPERIMENT:EXEC-P9-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-P9-01",
+      "target": "THEORY:T14",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-P9-01",
+      "target": "EVIDENCE:EXEC-P9-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-PA-01",
+      "target": "EXPERIMENT:EXEC-PA-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "FAILURE:EXEC-PA-01",
+      "target": "EXPERIMENT:EXEC-PA-01",
+      "kind": "OBSTRUCTS",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-PA-01",
+      "target": "THEORY:T8",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-PA-01",
+      "target": "THEORY:T10",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-PA-01",
+      "target": "THEORY:T11",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "EVIDENCE:EXEC-PA-01",
+      "target": "THEORY:T20",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-PA-01",
+      "target": "EVIDENCE:EXEC-PA-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-XP-01",
+      "target": "EXPERIMENT:EXEC-XP-01",
+      "kind": "DEPENDS_ON",
+      "load_bearing": true,
+      "reopens_target": true
+    },
+    {
+      "source": "FAILURE:EXEC-XP-01",
+      "target": "EXPERIMENT:EXEC-XP-01",
+      "kind": "OBSTRUCTS",
+      "load_bearing": true,
+      "reopens_target": false
+    },
+    {
+      "source": "EVIDENCE:EXEC-XP-01",
+      "target": "THEORY:T23",
+      "kind": "VALIDATES",
+      "load_bearing": false,
+      "reopens_target": true
+    },
+    {
+      "source": "VALIDATOR:EXEC-XP-01",
+      "target": "EVIDENCE:EXEC-XP-01",
+      "kind": "VALIDATES",
+      "load_bearing": true,
+      "reopens_target": false
+    }
+  ]
+}
