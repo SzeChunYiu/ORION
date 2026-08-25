@@ -25,6 +25,7 @@ X1B_K4_ANCHORED_REPLAY_CAMPAIGN_MANIFEST = {
                 ],
                 "cwd": ".",
                 "timeout": 180,
+                "max_output_bytes": 400_000,
             },
             "declared_read_paths": [
                 "research/domains/orion-rg/X1B_K4_13PT_ANCHORED_SCALAR_PROTOCOL.md",

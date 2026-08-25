@@ -1,0 +1,34 @@
+{
+  "authority_ceiling": "ENGINEERING_REFERENCE_CHECK_ONLY",
+  "inputs": {
+    "commands": [
+      "check_orion_discovery_v3",
+      "check_orion_execution_takeover",
+      "focused_hostile_tests",
+      "finite_census_byte_comparison",
+      "compileall"
+    ],
+    "dependency_requirements": [
+      "pytest==9.1.1",
+      "cryptography>=45",
+      "defusedxml>=0.7"
+    ]
+  },
+  "job_id": "V3-ENGINEERING-REFERENCE-01",
+  "matched_contract": {
+    "environment": "LUNARC_PRIVATE_JOB_VENV",
+    "outcomes_accessed": false,
+    "source": "EXACT_GIT_ARCHIVE"
+  },
+  "paper_authority_delta": "NONE",
+  "protocol_sha256": "19ae6ed17d71d5d17134ff6ed2e54acc0e324d06546a4fc078460251de8307fe",
+  "resource_vector": {
+    "cpus": 2,
+    "memory_mb": 8192,
+    "minutes": 15,
+    "nodes": 1
+  },
+  "schema": "orion.discovery.v3.execution-protocol.v1",
+  "source_git_sha": "4a2f1d5d5f565687b14140cbefec040b5edc5804",
+  "state": "FROZEN"
+}

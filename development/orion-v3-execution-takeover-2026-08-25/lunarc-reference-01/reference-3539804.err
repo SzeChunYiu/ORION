@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 189, in _run_module_as_main
+  File "<frozen runpy>", line 148, in _get_module_details
+  File "<frozen runpy>", line 112, in _get_module_details
+  File "/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a/private-venv/lib/python3.11/site-packages/pytest/__init__.py", line 8, in <module>
+    from _pytest._code import ExceptionInfo
+  File "/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a/private-venv/lib/python3.11/site-packages/_pytest/_code/__init__.py", line 5, in <module>
+    from .code import Code
+  File "/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a/private-venv/lib/python3.11/site-packages/_pytest/_code/code.py", line 41, in <module>
+    from _pytest._io import TerminalWriter
+  File "/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a/private-venv/lib/python3.11/site-packages/_pytest/_io/__init__.py", line 3, in <module>
+    from .terminalwriter import get_terminal_width
+  File "/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a/private-venv/lib/python3.11/site-packages/_pytest/_io/terminalwriter.py", line 13, in <module>
+    import pygments
+ModuleNotFoundError: No module named 'pygments'

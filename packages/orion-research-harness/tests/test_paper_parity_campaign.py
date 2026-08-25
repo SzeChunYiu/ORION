@@ -92,7 +92,8 @@ def test_donor_campaign_rejects_authority_escalation(tmp_path: Path):
         },
         executor="hostile-donor",
     )
-    import pytest
-
-    with pytest.raises(ValueError, match="authority escalation"):
-        run_campaign_cycle(workspace, manifest, auto_service_local=False)
+    rejected = run_campaign_cycle(workspace, manifest, auto_service_local=False)
+    assert rejected["status"] == "CAPABILITY_CONTRACT_FAILED"
+    assert "authority escalation" in rejected["error"]
+    assert rejected["grants_scientific_authority"] is False
+    assert rejected["state"]["cycle_index"] == 0
