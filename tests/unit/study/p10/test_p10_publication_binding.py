@@ -23,7 +23,6 @@ from orion.programme.content_binding_coverage import (
     inspect_paper,
 )
 from orion.programme.manifest_membership import (
-    ManifestMembershipNotClosed,
     assess_drift,
     assess_membership,
     audit_outcome,
