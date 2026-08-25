@@ -137,6 +137,17 @@ class ProtectedGold:
     censored_content_identities: tuple[str, ...]
     unreachable_content_identities: tuple[str, ...]
     relevance_rule_concepts: tuple[str, ...]
+    #: Whether `gold_content_identities` is the COMPLETE relevant set, which is
+    #: what makes a recall denominator valid. True by construction in this
+    #: study: the world is synthetic and enumerable, and the gold set is built
+    #: from every relevant document in it, so nothing relevant exists outside
+    #: the label set.
+    #:
+    #: A task built over a real corpus must set this False. Recall against a
+    #: partial gold set is not a lower bound on recall -- it is a ratio whose
+    #: denominator is unknown, and reporting it as recall is the failure this
+    #: flag exists to prevent.
+    gold_set_complete: bool = True
 
     def reachable_via(self, route: DiscoveryRoute) -> tuple[str, ...]:
         for name, identities in self.route_reachable_identities:

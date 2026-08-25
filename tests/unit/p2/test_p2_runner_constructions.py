@@ -9,11 +9,9 @@ This is the audit that finds them all at once. It is the guard the refactor
 lacked: any future rename that leaves a caller behind fails here rather than
 at runtime, months later, inside a study that then reports zeros.
 
-`SystemTrace` is a known-open exception, recorded rather than skipped. Its
-migration is not a rename: route_events/read_events carry the deprecated
-RouteEvent/ReadEvent types while the field now expects RouteTrial and
-ReadEncounter, so fixing it needs a real type conversion and a decision about
-repeat_index. Half-fixing it would be worse than leaving it visible.
+`SystemTrace` was the last known-open exception and is now migrated: runner.py
+builds RouteTrial and ReadEncounter directly, and repeat_index comes from the
+sweep. KNOWN_OPEN is empty, which is the state this audit exists to reach.
 """
 
 from __future__ import annotations
@@ -26,13 +24,12 @@ import pathlib
 P2 = pathlib.Path(__file__).resolve().parents[3] / "src/orion/study/p2"
 
 #: Constructions known to be stale, with why they are not fixed here.
-KNOWN_OPEN = {
-    "SystemTrace": (
-        "route_events/read_events hold the deprecated RouteEvent/ReadEvent "
-        "types; the fields now expect RouteTrial/ReadEncounter. A type "
-        "conversion plus a repeat_index decision, not a rename."
-    )
-}
+KNOWN_OPEN: dict[str, str] = {}
+#: SystemTrace was the last entry here. Its migration is done: runner.py now
+#: builds RouteTrial and ReadEncounter directly, and repeat_index comes from
+#: the sweep, whose own docstring says repeats are nested seeds rather than
+#: pooled. Emptying this dict is the point of the audit -- an entry is a debt
+#: to be discharged, not a permanent exemption.
 
 
 def _stale() -> dict[str, dict[str, list[str]]]:

@@ -45,8 +45,8 @@ from orion.self_orion.readiness import (
 )
 from orion.study.p2.corpus import DiscoveryRoute
 from orion.study.p2.freeze import load_suite
+from orion.study.p2.systems import SystemReport
 from orion.study.p2.runner import execute
-from orion.study.p2.systems import StopScope, SystemReport
 
 
 FIXTURE_RUN_MANIFEST_HASH = "c" * 64
@@ -148,14 +148,14 @@ def check_p2_route_stop_vs_task_stop() -> None:
     )
     assert local_only.record["metrics"]["premature_task_closure"] == 0.0
     assert local_only.record["failure_class"] != "premature_closure"
-    route_audits = [
-        item
-        for item in local_only.artifact["evaluation"]["stop_audits"]
-        if item["scope"] == StopScope.ROUTE.value
-    ]
+    # Post-#1078: route stops live in their own list. RouteStopAudit is
+    # route-scoped by construction, so there is nothing left to filter -- the
+    # old "scope" discriminator does not exist because the split into
+    # route_stop_audits and route_exhaustion_audits replaced it.
+    route_audits = list(local_only.artifact["evaluation"]["route_stop_audits"])
     assert route_audits
-    assert route_audits[0]["premature"] is False
-    assert route_audits[0]["still_reachable_count"] == 0
+    assert route_audits[0]["false_positive"] is False
+    assert route_audits[0]["residual_yield_at_stop"] == 0
 
     global_claim = execute(
         _P2SingleRoute(close=True),
@@ -167,14 +167,16 @@ def check_p2_route_stop_vs_task_stop() -> None:
     assert global_claim.record["status"] == "FAIL"
     assert global_claim.record["failure_class"] == "premature_closure"
     assert global_claim.record["metrics"]["premature_task_closure"] == 1.0
-    task_audit = next(
-        item
-        for item in global_claim.artifact["evaluation"]["stop_audits"]
-        if item["scope"] == StopScope.TASK.value
-    )
-    assert task_audit["still_reachable_count"] > 0
-    assert task_audit["remaining_route_calls"] > 0
-    assert task_audit["premature"] is True
+    # Post-#1078 there is no TASK-scoped stop audit. The scoped list was split
+    # into route_stop_audits and route_exhaustion_audits, and task-level closure
+    # became fields on the evaluation itself. The three assertions below are the
+    # same three claims against the new shape: the task closed prematurely,
+    # residual work was still discoverable within budget, and the closure was
+    # actually declared rather than forced by a cap.
+    evaluation = global_claim.artifact["evaluation"]
+    assert evaluation["metrics"]["premature_task_closure"] == 1.0
+    assert evaluation["metrics"]["task_residual_discoverable_within_budget"] > 0
+    assert evaluation["metrics"]["task_closure_declared"] == 1.0
 
 
 def _projection(

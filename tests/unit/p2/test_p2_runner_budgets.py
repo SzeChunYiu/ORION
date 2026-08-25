@@ -199,8 +199,8 @@ def test_the_session_stays_closed_once_exhausted(suite) -> None:
     # A different budget dimension is refused too: exhaustion closes the session,
     # it does not merely close one counter.
     with pytest.raises(BudgetExhausted):
-        session.read(session.route_events[0].retrieved_doc_ids[0])
-    assert len(session.route_events) == task.budget.max_route_calls
+        session.read(session.route_trials[0].retrieved_doc_ids[0])
+    assert len(session.route_trials) == task.budget.max_route_calls
 
 
 def test_a_frugal_system_is_not_flagged_as_exhausted(suite) -> None:

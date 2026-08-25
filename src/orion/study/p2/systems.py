@@ -196,6 +196,24 @@ class RouteTrial:
     probe_admissible: bool = True
     note: str = ""
 
+    @property
+    def retrieved_merged_source_ids(self) -> tuple[str, ...]:
+        """Merged source ids this trial caught, sorted and deduplicated.
+
+        Derived from `captures` rather than stored, so it cannot drift from
+        them. Pre-#1078 this was the flat field `retrieved_content_identities`;
+        consumers that only need the ids should use this instead of unpacking
+        captures at every call site.
+        """
+
+        return tuple(sorted({item.merged_source_id for item in self.captures}))
+
+    @property
+    def retrieved_doc_ids(self) -> tuple[str, ...]:
+        """Document ids this trial caught, sorted and deduplicated."""
+
+        return tuple(sorted({item.doc_id for item in self.captures}))
+
     def as_json(self) -> dict[str, Any]:
         return {
             "index": self.index,

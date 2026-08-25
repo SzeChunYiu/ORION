@@ -223,7 +223,7 @@ class TaskClosureReceipt:
                 f"{self.system_id}/{self.task_id}: {self.kind.value} cannot be a false "
                 "closure; falsity is a property of a completeness claim"
             )
-        routes = [item.route for item in self.route_receipts]
+        routes = [item.route_id for item in self.route_receipts]
         if len(routes) != len(set(routes)):
             raise ValueError(f"{self.system_id}/{self.task_id}: duplicate route receipts")
 
@@ -264,12 +264,12 @@ class OutcomesNotAdmissible(RuntimeError):
 def _route_receipt(
     route: DiscoveryRoute, evaluation: Evaluation, trace: SystemTrace
 ) -> RouteClosureReceipt:
-    events = [item for item in trace.route_events if item.route == route.value]
-    unavailable = any(item.status == TransportStatus.UNAVAILABLE.value for item in events)
+    events = [item for item in trace.route_trials if item.route_id == route.value]
+    unavailable = any(item.transport_status == TransportStatus.UNAVAILABLE.value for item in events)
     audits = [
         item
         for item in evaluation.stop_audits
-        if item.scope == StopScope.ROUTE.value and item.route == route.value
+        if item.scope == StopScope.ROUTE.value and item.route_id == route.value
     ]
 
     if audits:

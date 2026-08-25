@@ -516,7 +516,7 @@ def _route_audits(
 
     residual_map = {route_id: dict(entries) for route_id, entries in residual}
     trials_by_index = {item.index: item for item in inputs.trace.route_trials}
-    cap = inputs.caps.query_count
+    cap = inputs.caps.max_route_calls
 
     stops: list[RouteStopAudit] = []
     for decision in inputs.trace.stop_decisions:
@@ -583,7 +583,7 @@ def _task_residual(inputs: EvaluationInputs, gold: frozenset[str]) -> int:
         if trial.transport_status == TransportStatus.UNAVAILABLE.value:
             dead.add(trial.route_id)
 
-    remaining = max(0, inputs.caps.query_count - len(trace.route_trials))
+    remaining = max(0, inputs.caps.max_route_calls - len(trace.route_trials))
     if remaining <= 0:
         # Nothing is discoverable with no budget left, so closing then is not
         # premature — it is truncation, and truncation is accounted separately.
@@ -617,10 +617,10 @@ def _status_and_failure(
     # enforcement can be reached around; what cannot is the host comparing the
     # recorded run against the frozen caps afterwards.
     if (
-        len(trace.route_trials) > caps.query_count
-        or trace.resources.query_count > caps.query_count
-        or trace.resources.tool_calls > caps.tool_calls
-        or trace.resources.model_tokens > caps.model_tokens
+        len(trace.route_trials) > caps.max_route_calls
+        or trace.resources.query_count > caps.max_route_calls
+        or trace.resources.tool_calls > caps.max_tool_calls
+        or trace.resources.model_tokens > caps.max_model_tokens
     ):
         return "INVALID", "harness_tamper"
     if unsupported:

@@ -21,11 +21,11 @@ from .systems import StopScope
 def _trace_signature(outcome: RunOutcome) -> tuple[Any, ...]:
     return (
         tuple(
-            (event.index, event.route, event.status, event.retrieved_content_identities)
-            for event in outcome.trace.route_events
+            (event.index, event.route_id, event.transport_status, event.retrieved_merged_source_ids)
+            for event in outcome.trace.route_trials
         ),
         tuple(
-            (item.index, item.scope, item.route, item.reason, item.claimed_complete)
+            (item.index, item.scope, item.route_id, item.reason, item.claimed_complete)
             for item in outcome.trace.stop_decisions
         ),
     )
@@ -61,15 +61,15 @@ class RouteOracleReplay:
 
 def _found_before(outcome: RunOutcome, index: int) -> set[str]:
     found: set[str] = set()
-    for event in outcome.trace.route_events:
+    for event in outcome.trace.route_trials:
         if event.index >= index:
             break
-        found.update(event.retrieved_content_identities)
+        found.update(event.retrieved_merged_source_ids)
     return found
 
 
 def _calls_before(outcome: RunOutcome, index: int) -> int:
-    return sum(1 for event in outcome.trace.route_events if event.index < index)
+    return sum(1 for event in outcome.trace.route_trials if event.index < index)
 
 
 def replay_task_route(
@@ -83,7 +83,7 @@ def replay_task_route(
     route_stops = [
         item
         for item in outcome.trace.stop_decisions
-        if item.scope == StopScope.ROUTE.value and item.route == route.value
+        if item.scope == StopScope.ROUTE.value and item.route_id == route.value
     ]
     false_positive_stops = 0
     for decision in route_stops:
@@ -96,8 +96,8 @@ def replay_task_route(
 
     found: set[str] = set()
     exhaustion_index: int | None = 0 if not route_gold else None
-    for event in outcome.trace.route_events:
-        found.update(event.retrieved_content_identities)
+    for event in outcome.trace.route_trials:
+        found.update(event.retrieved_merged_source_ids)
         if exhaustion_index is None and not (route_gold - found):
             exhaustion_index = event.index
 
@@ -105,8 +105,8 @@ def replay_task_route(
     if exhaustion_index is not None:
         attempts_after = sum(
             1
-            for event in outcome.trace.route_events
-            if event.route == route.value and event.index > exhaustion_index
+            for event in outcome.trace.route_trials
+            if event.route_id == route.value and event.index > exhaustion_index
         )
 
     return RouteOracleReplay(
