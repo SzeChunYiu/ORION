@@ -1,0 +1,29 @@
+{
+  "all_passed": true,
+  "controls": [
+    {
+      "control_id": "CASE_ORDER_REVERSAL",
+      "passed": true,
+      "reading": "case order does not alter case-ID keyed decisions"
+    },
+    {
+      "control_id": "CASE_ID_RENAMING",
+      "passed": true,
+      "reading": "projection values are unchanged when identity labels are replaced"
+    },
+    {
+      "control_id": "FACTOR_LABEL_ALIAS_ROUND_TRIP",
+      "passed": true,
+      "reading": "factor names carry no outcome shortcut after frozen inverse decoding"
+    },
+    {
+      "control_id": "LABEL_ONLY_SINGLE_STATE_INVERSE",
+      "passed": true,
+      "reading": "the negative control fails to reconstruct a unique state for every reachable label, as required by DES-T1"
+    }
+  ],
+  "filename_or_case_id_used_by_projection": false,
+  "job_id": "DES-PROJECTION-01",
+  "leakage_detected": false,
+  "schema": "orion.dynamic-epistemic-state.des-projection-negative-controls.v1"
+}

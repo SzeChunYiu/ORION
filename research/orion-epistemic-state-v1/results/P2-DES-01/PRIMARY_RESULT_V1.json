@@ -1,0 +1,189 @@
+{
+  "aggregate": {
+    "licensed_jump_topic_count": 0,
+    "licensed_jump_topics": [],
+    "policy_summaries": {
+      "ANALOGY_PRF": {
+        "declared_task_closures": 0,
+        "harmful_topics_vs_local_multiform_rrf": 28,
+        "mean_calibrated_unresolvedness_brier": 0.05933249227245427,
+        "mean_judged_fraction_at_returned_depth": 0.6628000000000001,
+        "mean_ndcg_at_10": 0.6473710168713389,
+        "mean_qrels_bounded_residual_fraction": 0.8871235422040917,
+        "mean_recall_at_100_budget": 0.11287645779590834,
+        "mean_relevant_yield_per_100_reads": 48.16,
+        "premature_task_closures": 0,
+        "tied_topics_vs_local_multiform_rrf": 3,
+        "topic_rows": 50
+      },
+      "BM25_QUESTION": {
+        "declared_task_closures": 0,
+        "harmful_topics_vs_local_multiform_rrf": 42,
+        "mean_calibrated_unresolvedness_brier": 0.06475754082169502,
+        "mean_judged_fraction_at_returned_depth": 0.6696,
+        "mean_ndcg_at_10": 0.5551685394091783,
+        "mean_qrels_bounded_residual_fraction": 0.9030292506232699,
+        "mean_recall_at_100_budget": 0.0969707493767301,
+        "mean_relevant_yield_per_100_reads": 42.96,
+        "premature_task_closures": 0,
+        "tied_topics_vs_local_multiform_rrf": 0,
+        "topic_rows": 50
+      },
+      "DIVERSIFIED_ROUND_ROBIN": {
+        "declared_task_closures": 0,
+        "harmful_topics_vs_local_multiform_rrf": 41,
+        "mean_calibrated_unresolvedness_brier": 0.0600216121321363,
+        "mean_judged_fraction_at_returned_depth": 0.7092,
+        "mean_ndcg_at_10": 0.5394831235913202,
+        "mean_qrels_bounded_residual_fraction": 0.8935826555192139,
+        "mean_recall_at_100_budget": 0.10641734448078609,
+        "mean_relevant_yield_per_100_reads": 47.4,
+        "premature_task_closures": 0,
+        "tied_topics_vs_local_multiform_rrf": 5,
+        "topic_rows": 50
+      },
+      "IDEAL_DONOR_PRODUCT_RRF": {
+        "declared_task_closures": 0,
+        "harmful_topics_vs_local_multiform_rrf": 14,
+        "mean_calibrated_unresolvedness_brier": 0.05314893538017444,
+        "mean_judged_fraction_at_returned_depth": 0.7918000000000001,
+        "mean_ndcg_at_10": 0.686975070044535,
+        "mean_qrels_bounded_residual_fraction": 0.8753406020537047,
+        "mean_recall_at_100_budget": 0.12465939794629531,
+        "mean_relevant_yield_per_100_reads": 54.4,
+        "premature_task_closures": 0,
+        "tied_topics_vs_local_multiform_rrf": 3,
+        "topic_rows": 50
+      },
+      "LOCAL_MULTIFORM_RRF": {
+        "declared_task_closures": 0,
+        "harmful_topics_vs_local_multiform_rrf": 0,
+        "mean_calibrated_unresolvedness_brier": 0.054875302746342405,
+        "mean_judged_fraction_at_returned_depth": 0.7787999999999999,
+        "mean_ndcg_at_10": 0.6598772093241463,
+        "mean_qrels_bounded_residual_fraction": 0.8795588282954508,
+        "mean_recall_at_100_budget": 0.12044117170454913,
+        "mean_relevant_yield_per_100_reads": 53.06,
+        "premature_task_closures": 0,
+        "tied_topics_vs_local_multiform_rrf": 50,
+        "topic_rows": 50
+      },
+      "LOCAL_SATURATION_STOP": {
+        "declared_task_closures": 0,
+        "harmful_topics_vs_local_multiform_rrf": 0,
+        "mean_calibrated_unresolvedness_brier": 0.054875302746342405,
+        "mean_judged_fraction_at_returned_depth": 0.7787999999999999,
+        "mean_ndcg_at_10": 0.6598772093241463,
+        "mean_qrels_bounded_residual_fraction": 0.8795588282954508,
+        "mean_recall_at_100_budget": 0.12044117170454913,
+        "mean_relevant_yield_per_100_reads": 53.06,
+        "premature_task_closures": 0,
+        "tied_topics_vs_local_multiform_rrf": 50,
+        "topic_rows": 50
+      },
+      "RANDOM_REMOTE": {
+        "declared_task_closures": 0,
+        "harmful_topics_vs_local_multiform_rrf": 0,
+        "mean_calibrated_unresolvedness_brier": 0.054875302746342405,
+        "mean_judged_fraction_at_returned_depth": 0.7787999999999999,
+        "mean_ndcg_at_10": 0.6598772093241463,
+        "mean_qrels_bounded_residual_fraction": 0.8795588282954508,
+        "mean_recall_at_100_budget": 0.12044117170454913,
+        "mean_relevant_yield_per_100_reads": 53.06,
+        "premature_task_closures": 0,
+        "tied_topics_vs_local_multiform_rrf": 50,
+        "topic_rows": 50
+      },
+      "STRUCTURAL_JUMP": {
+        "declared_task_closures": 0,
+        "harmful_topics_vs_local_multiform_rrf": 0,
+        "mean_calibrated_unresolvedness_brier": 0.054875302746342405,
+        "mean_judged_fraction_at_returned_depth": 0.7787999999999999,
+        "mean_ndcg_at_10": 0.6598772093241463,
+        "mean_qrels_bounded_residual_fraction": 0.8795588282954508,
+        "mean_recall_at_100_budget": 0.12044117170454913,
+        "mean_relevant_yield_per_100_reads": 53.06,
+        "premature_task_closures": 0,
+        "tied_topics_vs_local_multiform_rrf": 50,
+        "topic_rows": 50
+      }
+    },
+    "primary_beneficial_topics": 14,
+    "primary_contrast": {
+      "lower_95": -0.008443952803971921,
+      "mean": -0.004218226241746187,
+      "n": 50,
+      "resamples": 10000,
+      "seed": 20260825,
+      "upper_95": -0.0005050264080027203
+    },
+    "primary_harmful_topics": 33,
+    "primary_tied_topics": 3,
+    "remote_beneficial_topics": 0,
+    "remote_harmful_topics": 0,
+    "remote_jump_contrast_on_licensed_topics": {
+      "lower_95": 0.0,
+      "mean": 0.0,
+      "n": 0,
+      "upper_95": 0.0
+    },
+    "remote_tied_topics": 0
+  },
+  "claim_ceiling": "Public TREC-COVID qrels-bounded internal comparison only; no full P2 superiority, global closure, transfer, external independence, or paper-authority claim.",
+  "denominators": {
+    "case_policy_rows_expected": 400,
+    "case_policy_rows_retained": 400,
+    "crashed_case_policy_rows": 0,
+    "dropped_case_policy_rows": 0,
+    "dropped_topics": 0,
+    "frozen_topics": 50,
+    "policies": 8,
+    "scored_topics": 50
+  },
+  "exact_terminal": "CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE",
+  "hard_preconditions": [
+    {
+      "attained": true,
+      "id": "HP1_INPUTS_PRESENT_AND_DIGESTED"
+    },
+    {
+      "attained": true,
+      "id": "HP2_EXACT_50_FROZEN_TOPICS_NO_DROPS"
+    },
+    {
+      "attained": true,
+      "id": "HP3_POLICY_OUTPUTS_HASHED_BEFORE_QRELS_OPEN"
+    },
+    {
+      "attained": true,
+      "id": "HP4_NO_FORBIDDEN_LABEL_FIELDS_IN_POLICY_INPUT"
+    },
+    {
+      "attained": true,
+      "id": "HP5_MATCHED_100_READ_AND_4_QUERY_MAXIMA"
+    },
+    {
+      "attained": false,
+      "id": "HP6_MATERIAL_BIOMEDICAL_NEURAL_DONOR_BOUND",
+      "reason": "No frozen model, tokenizer, weights, and revision were supplied; the internal lexical/PRF product is not substituted for this donor."
+    },
+    {
+      "attained": false,
+      "id": "HP7_LICENSED_REVIEW_AND_REMINTED_TRANSFER_WORLDS_BOUND",
+      "reason": "Neither an independently licensed review corpus nor an independent reminted cross-domain world with gold custody was supplied."
+    },
+    {
+      "attained": false,
+      "id": "HP8_EXTERNAL_INDEPENDENT_GOLD_CUSTODY",
+      "reason": "TREC-COVID qrels are public and evaluator access is same-session; this is not external independent custody."
+    }
+  ],
+  "job_id": "P2-DES-01",
+  "schema": "orion.p2-des-01.primary-result.v1",
+  "terminal_reason": "The full positive is precluded by prospectively frozen unmet material-donor, transfer-world, and independent-custody hard preconditions. TREC-COVID internal rows remain scored and retained.",
+  "unmet_hard_preconditions": [
+    "HP6_MATERIAL_BIOMEDICAL_NEURAL_DONOR_BOUND",
+    "HP7_LICENSED_REVIEW_AND_REMINTED_TRANSFER_WORLDS_BOUND",
+    "HP8_EXTERNAL_INDEPENDENT_GOLD_CUSTODY"
+  ]
+}

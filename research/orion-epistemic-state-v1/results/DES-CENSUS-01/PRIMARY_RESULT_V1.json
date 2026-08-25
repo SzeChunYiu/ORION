@@ -1,0 +1,95 @@
+{
+  "claim_ceiling": "INTERNAL_SOURCE_TREE_CENSUS_ONLY__NO_EMPIRICAL_NOVELTY_OR_PAPER_AUTHORITY",
+  "denominators": {
+    "blob_entries": 11434,
+    "classified_occurrences": 194857,
+    "family_cannot_check_reason": 24537,
+    "family_composite_label": 244153,
+    "family_dependency": 9502,
+    "family_status": 45319,
+    "family_terminal": 9267,
+    "family_transition": 42054,
+    "file_rows": 11434,
+    "occurrences": 316842,
+    "parsed_text_files": 11240,
+    "retained_excluded_files": 194,
+    "tracked_entries": 11434,
+    "unclassified_occurrences": 121985,
+    "unique_labels": 63017
+  },
+  "external_authority_state": "NONE",
+  "freeze_sha256": "913ed3f146fb2d4418d2e949ba91cba216fdf8c1ba684c9e16db2793d2aeb887",
+  "hard_preconditions": [
+    {
+      "attained": true,
+      "evidence": {
+        "subject": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+        "tree": "ec9455ccfdded0c2a27c97b425ad001b228151de"
+      },
+      "id": "HP1"
+    },
+    {
+      "attained": true,
+      "evidence": {
+        "entries": 11434,
+        "rows": 11434
+      },
+      "id": "HP2"
+    },
+    {
+      "attained": true,
+      "evidence": {
+        "freeze_commit": "57b85f9118b7f72ad89b8513afbe0174cc159561"
+      },
+      "id": "HP3"
+    },
+    {
+      "attained": true,
+      "evidence": {
+        "blob_entries": 11434,
+        "classified_occurrences": 194857,
+        "family_cannot_check_reason": 24537,
+        "family_composite_label": 244153,
+        "family_dependency": 9502,
+        "family_status": 45319,
+        "family_terminal": 9267,
+        "family_transition": 42054,
+        "file_rows": 11434,
+        "occurrences": 316842,
+        "parsed_text_files": 11240,
+        "retained_excluded_files": 194,
+        "tracked_entries": 11434,
+        "unclassified_occurrences": 121985,
+        "unique_labels": 63017
+      },
+      "id": "HP4"
+    },
+    {
+      "attained": true,
+      "evidence": {
+        "excluded": 194,
+        "unclassified": 121985
+      },
+      "id": "HP5"
+    },
+    {
+      "attained": true,
+      "evidence": {
+        "disallowed_paths": []
+      },
+      "id": "HP6"
+    }
+  ],
+  "job_id": "DES-CENSUS-01",
+  "likely_text_cap_censored_count": 2,
+  "likely_text_unreadable_count": 0,
+  "paper_authority_delta": "NONE",
+  "positive_terminal_attained": false,
+  "retained_adverse_null_harmful_unresolved": 38725,
+  "retained_cannot_check": 24537,
+  "retained_exclusions": 194,
+  "retained_unclassified": 121985,
+  "schema": "orion.dynamic-epistemic-state.des-census.primary-result.v1",
+  "subject_commit": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "terminal": "RESOURCE_CAP_CENSORED"
+}

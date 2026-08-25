@@ -1,0 +1,327 @@
+{
+  "schema": "orion.p10-des.freeze.v1",
+  "job_id": "P10-DES-01",
+  "frozen_at": "2026-08-25T19:08:06Z",
+  "base_main": "f049e30391a09213240f6325ee319f9fa811189a",
+  "subject_revision": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "task": "Lean, SyGuS, IPC, and code: exact search, synthesis, retrieval and repair, library and evolutionary donors, certified obstruction, generated edit, hidden transfer, and false-invention controls.",
+  "source_bindings": {
+    "executor_prompt": {
+      "path": "research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md",
+      "sha256": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce"
+    },
+    "backlog": {
+      "path": "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json",
+      "sha256": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4"
+    },
+    "calculus": {
+      "path": "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md",
+      "sha256": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05"
+    },
+    "paper_programme": {
+      "path": "papers/P1_P15_TOP_TIER_DYNAMIC_STATE_PROGRAMME_V1.md",
+      "sha256": "19a97b88c1ec49d014c6352ec8cd2ae4da0da57851f206589d36dfe9849175ce"
+    },
+    "successor_manuscript": {
+      "path": "papers/paper-10-structured-problem-solving/TOP_TIER_DYNAMIC_EPISTEMIC_MANUSCRIPT_V1.md",
+      "sha256": "95864a27f366ae86091e5fc84cbcfb094a5818c878e18aabe6a272226dbd1933"
+    },
+    "active_authority": {
+      "path": "papers/paper-10-structured-problem-solving/P10_ACTIVE_CLAIM_AUTHORITY_V1.json",
+      "sha256": "6a5f952c82e9e6b461b1ac2afa3c1693229d1bf667eb228b53e5bc8ef278579b"
+    },
+    "h1_h6_protocol": {
+      "path": "papers/paper-10-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json",
+      "sha256": "8e32c2bee514d246bcd503fc2f0ef078bcc52adb7f40abdbcb642b703aec355c"
+    },
+    "domain_source_freeze": {
+      "path": "papers/paper-10-structured-problem-solving/protocol/P10_DOMAIN_SOURCE_FREEZE_V1.json",
+      "sha256": "b0e72be12ba6c2f243741f683e9a493082b47bb3b45545ae3b20cf0a17881e26"
+    },
+    "native_lean_adverse_handoff": {
+      "path": "papers/paper-10-structured-problem-solving/top_tier/P10_NATIVE_LEAN_CANNOT_CHECK_HANDOFF_V1.md",
+      "sha256": "add09b2c0b1f32cb2010750b5e8dc8c71fe3ab522799056819005aac402e0ce3"
+    },
+    "generated_exact_setting_receipt": {
+      "path": "papers/paper-10-structured-problem-solving/top_tier/P10_GENERATED_OCME_RESULT_RECEIPT_V1.md",
+      "sha256": "0a3062bcc20c6fc553d079d4d749100160b43349d649cb22d6eca18acdc1dafd"
+    },
+    "nearest_work": {
+      "path": "papers/paper-10-structured-problem-solving/top_tier/P10_NEAREST_WORK_REFRESH_2026-08-23.md",
+      "sha256": "df1506d38b80de26eaff0b2e60393662b92304ad8f7479caa51aaba12defaed6"
+    }
+  },
+  "implementation": {
+    "runner": {
+      "path": "research/orion-epistemic-state-v1/results/P10-DES-01/run_p10_des_01.py",
+      "sha256": "8d4246b1a0f4ece69a5ade4e23cf8d4394a2032d72eba16de1871d8d81d2eef3"
+    },
+    "test": {
+      "path": "research/orion-epistemic-state-v1/results/P10-DES-01/test_p10_des_01.py",
+      "sha256": "bcc86205b9aacbce16427e1d2027c38777a1b6e479b0cf6e78ec099fef582c00"
+    }
+  },
+  "study": {
+    "independent_unit": "one protected native-verifier-backed theorem or task",
+    "not_independent_units": [
+      "arm",
+      "seed",
+      "search node",
+      "candidate method edit",
+      "verifier call",
+      "technical rerun",
+      "metric cell"
+    ],
+    "domains": [
+      {
+        "domain_id": "LEAN_INTERACTIVE_THEOREM_PROVING",
+        "slug": "lean",
+        "verifier": "Lean elaborator through an exact transferred LeanDojo adapter",
+        "source_candidates": ["LEANDOJO", "MINIF2F"],
+        "source_state": "DOMAIN_METADATA_ONLY_EXACT_TASKS_RIGHTS_RUNNER_AND_EVALUATOR_UNBOUND"
+      },
+      {
+        "domain_id": "SYGUS_SYNTAX_GUIDED_SYNTHESIS",
+        "slug": "sygus",
+        "verifier": "cvc5 SyGuS exact oracle",
+        "source_candidates": ["CVC5", "SYGUS_COMP_ARCHIVES"],
+        "source_state": "DOMAIN_METADATA_ONLY_EXACT_TASKS_RIGHTS_RUNNER_AND_EVALUATOR_UNBOUND"
+      },
+      {
+        "domain_id": "IPC_PLANNING",
+        "slug": "ipc",
+        "verifier": "Fast Downward with VAL plan validation",
+        "source_candidates": ["FAST_DOWNWARD", "VAL", "DOWNWARD_BENCHMARKS"],
+        "source_state": "DOMAIN_METADATA_ONLY_EXACT_TASKS_RIGHTS_RUNNER_AND_EVALUATOR_UNBOUND"
+      },
+      {
+        "domain_id": "CODE_GENERATION",
+        "slug": "code",
+        "verifier": "EvalPlus hidden augmented tests",
+        "source_candidates": ["EVALPLUS"],
+        "source_state": "DOMAIN_METADATA_ONLY_EXACT_TASKS_RIGHTS_RUNNER_AND_EVALUATOR_UNBOUND"
+      }
+    ],
+    "protected_tasks_per_domain": 100,
+    "known_method_controls_per_domain": 20,
+    "protected_task_split_per_domain": {
+      "primary": 50,
+      "protected_replication": 50
+    },
+    "known_method_control_split_per_domain": {
+      "primary": 10,
+      "protected_replication": 10
+    },
+    "protected_task_denominator": 400,
+    "known_method_control_denominator": 80,
+    "case_denominator": 480,
+    "case_identity": "p10-protected:<domain>:task:001..100 and p10-protected:<domain>:known-method-control:001..020; exact provider IDs remain absent and are not invented",
+    "exact_provider_case_manifest_state": "NOT_TRANSFERRED",
+    "arms": [
+      "orion_dynamic_method_expansion",
+      "no_jump_control",
+      "exact_exhaustive_search",
+      "retrieval_and_repair",
+      "program_or_tactic_synthesis",
+      "representation_only_transform",
+      "library_learning",
+      "evolutionary_search",
+      "ideal_donor_composed_search"
+    ],
+    "donor_arms": [
+      "exact_exhaustive_search",
+      "retrieval_and_repair",
+      "program_or_tactic_synthesis",
+      "representation_only_transform",
+      "library_learning",
+      "evolutionary_search"
+    ],
+    "strongest_donor": {
+      "arm": "ideal_donor_composed_search",
+      "definition": "Pareto closure of exact search, retrieval and repair, native program or tactic synthesis, representation-only transforms, library learning, evolutionary search, and every lawful composition under the identical old grammar, primitives, verifier, retrieval, candidate information, hidden-access boundary, and resource vector",
+      "first_refusal": true,
+      "weak_proxy_forbidden": true,
+      "timeout_or_crash_never_counts_as_outside_closure": true
+    },
+    "seeds": [1010, 1011, 1012],
+    "seed_denominator": 3,
+    "planned_run_cell_denominator": 12960,
+    "primary_endpoints": [
+      "verified_solve_or_success_utility",
+      "verifier_calls_and_time_to_first_correct",
+      "obstruction_certificate_validity",
+      "false_method_language_escalation",
+      "outside_closure_expansion",
+      "primitive_minimality",
+      "false_invention_on_known_method_controls",
+      "protected_held_out_transfer",
+      "donor_frontier_strict_extension"
+    ],
+    "hypotheses": {
+      "H1": "verified solve/success utility",
+      "H2": "verifier calls and time-to-first-correct at matched quality",
+      "H3": "false method-language escalation against blinded obstruction gold",
+      "H4": "independently certified outside-closure method-language expansion",
+      "H5": "false expansion on known-method controls",
+      "H6": "cross-domain transfer without target-specific refitting"
+    },
+    "statistics": {
+      "analysis_unit": "protected native-verifier-backed theorem or task",
+      "paired_interval": "domain-stratified paired bootstrap 95 percent with 10000 resamples",
+      "false_invention_interval": "one-sided 95 percent Clopper-Pearson",
+      "multiplicity": "Holm-Bonferroni familywise alpha 0.05 over H1 H2 H3 H5 H6",
+      "H4": "nonstatistical certificate conjunction",
+      "worst_domain_gates": "NONCOMPENSATORY",
+      "unit_retention": "every case-arm-seed row retained including adverse, null, harmful, crash, timeout, censored, donor-equivalent, and CANNOT_CHECK"
+    }
+  },
+  "decision_rule": {
+    "scalarization": "FORBIDDEN",
+    "positive_requires_all": [
+      "H1 paired ORION-minus-ideal-donor margin is at least +0.10 with simultaneous 95 percent lower bound above zero",
+      "H2 verifier-call or time reduction is at least 0.15 and every domain difference is at least -0.05 at matched verified quality",
+      "H3 false method-language escalation is at most 0.05 and improves by at least 0.10 versus the ideal donor",
+      "H4 contains at least two independently witnessed OCME cases in two domains with positive protected transfer, minimal edit, old-closure exclusion, and zero hidden-access widening",
+      "H5 one-sided 95 percent upper bound on false expansion across all 80 controls is at most 0.05",
+      "H6 transfers without target-specific refitting across all four domains and every domain is noninferior at margin -0.05",
+      "every donor receives identical old grammar, primitives, verifier, retrieval, candidate information, seeds, and full resource vector",
+      "every target and generated edit is checked by the exact native verifier and external obstruction custodian",
+      "proposal origin is bound before the evaluator or protected replication split is opened",
+      "all leakage, hidden-access, shortcut, false-invention, chronology, and censoring probes pass"
+    ],
+    "catastrophic_guards": {
+      "semantic_failures_allowed": 0,
+      "hidden_access_model_widening_allowed": 0,
+      "false_resolution_of_unknown_obstruction_allowed": 0
+    },
+    "donor_equivalence_or_absorption": "retained negative; no invention or superiority claim",
+    "timeout_or_donor_failure": "censored or crash; never an obstruction certificate",
+    "missing_hard_precondition": "CANNOT_CHECK_WITHOUT_CHANGING_H1_H6_TO_AN_OUTCOME"
+  },
+  "resources": {
+    "matched_across_arms": true,
+    "per_case_per_arm_seed": {
+      "max_attempts": 3,
+      "max_model_tokens": 100000,
+      "max_tool_calls": 200,
+      "max_native_verifier_calls": 2000,
+      "max_search_nodes": 100000,
+      "max_wall_seconds": 7200,
+      "max_cpu_cores": 16,
+      "max_memory_gib": 64,
+      "max_gpu_count": 1,
+      "max_gpu_seconds": 7200,
+      "same_old_grammar_and_primitives": true,
+      "same_native_verifier_identity": true,
+      "same_retrieval_corpus": true,
+      "same_candidate_visible_information": true,
+      "same_hidden_access_boundary": true,
+      "isolated_cache_and_write_surface": true
+    },
+    "total_caps": {
+      "planned_run_cells": 12960,
+      "max_model_tokens": 1296000000,
+      "max_tool_calls": 2592000,
+      "max_native_verifier_calls": 25920000,
+      "money_usd": 0,
+      "wall_days": 30
+    }
+  },
+  "hard_preconditions": [
+    "all 480 exact protected task and control identities, rights, payload commitments, split commitments, and native evaluator identities are transferred",
+    "native verifier-backed runners are frozen for Lean, SyGuS, IPC, and code",
+    "all exact donor executables and terminal-preserving adapters are transferred, including the ideal donor composition",
+    "blinded obstruction gold is held by a custodian independent of proposal generation",
+    "independent OCME witnesses bind old closure, edit minimality, new closure, proposal origin, and hidden-access equality",
+    "protected replication is not accessible for candidate selection or refitting",
+    "independent scorer and external review custody are transferred",
+    "prospective power and attainability are bound to the exact cases, arms, evaluators, and resource vector",
+    "positive and violating strata exist for obstruction, known-method, hidden-access, and no-jump hard conditions",
+    "all arms receive matched information and total resources"
+  ],
+  "access": {
+    "candidate_receives": [
+      "candidate-visible task bytes",
+      "old grammar and primitive library",
+      "frozen matched retrieval",
+      "native verifier interface under the matched call cap"
+    ],
+    "candidate_never_receives": [
+      "blinded obstruction gold",
+      "protected replication tasks or verifier internals",
+      "independent OCME witness verdict",
+      "peer-arm traces or caches",
+      "scorer or review-custody credentials"
+    ],
+    "preflight_may_probe": "file existence, byte count, digest, binary presence, scheduler state, and transfer receipts without rendering protected content",
+    "preflight_may_not_treat_as_outcome": "source metadata, toy OCME receipts, internal exact settings, historical native-Lean failures, existing unbound remote runs, or tool availability"
+  },
+  "leakage_probes": {
+    "run_before_promotion": true,
+    "required": [
+      "case identifier and filename obstruction prediction",
+      "generator and template prediction",
+      "known-method label prediction",
+      "benchmark solution and proof retrieval audit",
+      "proposal-origin chronology audit",
+      "hidden-access model equality audit",
+      "cross-arm trace and cache isolation",
+      "native verifier and model chronology disclosure"
+    ]
+  },
+  "censoring": {
+    "timeout": "CENSORED_NOT_OBSTRUCTION",
+    "token_cap": "CENSORED_NOT_FAILURE",
+    "verifier_call_cap": "CENSORED_NOT_OBSTRUCTION",
+    "search_node_cap": "CENSORED_NOT_OBSTRUCTION",
+    "gpu_or_memory_cap": "CENSORED_NOT_FAILURE",
+    "infrastructure_crash": "CRASH_RETAINED_NOT_DROPPED",
+    "missing_transfer": "CANNOT_CHECK_NOT_ZERO",
+    "candidate_failure": "NEGATIVE_RETAINED",
+    "donor_equivalence": "NEGATIVE_RETAINED",
+    "rows_dropped": 0
+  },
+  "exclusions": {
+    "generated_exact_setting_ocme": "EXACT_SETTING_ONLY_NOT_A_NATIVE_DOMAIN_DONOR_OR_HELD_TRANSFER_RESULT",
+    "native_lean_11842_transition_lineage": "CANNOT_CHECK_NATIVE_STATE_COVERAGE_NOT_ELIGIBLE",
+    "shared_local_reproducible_core": "IMPLEMENTATION_INPUT_ONLY_DOES_NOT_DISCHARGE_H1_H6",
+    "remote_exec_p10_01_p10_02": "UNBOUND_INTERNAL_RUNS_OUTCOMES_UNOPENED_NOT_ELIGIBLE",
+    "public_or_authored_tasks_as_protected_transfer": "FORBIDDEN",
+    "weak_donor_proxy": "FORBIDDEN",
+    "timeout_as_outside_closure": "FORBIDDEN",
+    "post_outcome_retuning": "FORBIDDEN"
+  },
+  "required_transfer_files": {
+    "protected_task_manifest": "P10_PROTECTED_TASK_MANIFEST_V1.json",
+    "native_verifier_runners": "P10_NATIVE_VERIFIER_RUNNERS_V1.json",
+    "strongest_donor_executables": "P10_STRONGEST_DONOR_EXECUTABLES_V1.json",
+    "blinded_obstruction_custody": "P10_BLINDED_OBSTRUCTION_CUSTODY_V1.json",
+    "independent_ocme_witness": "P10_INDEPENDENT_OCME_WITNESS_V1.json",
+    "protected_replication_split": "P10_PROTECTED_REPLICATION_SPLIT_V1.json",
+    "independent_scorer_review": "P10_INDEPENDENT_SCORER_REVIEW_CUSTODY_V1.json",
+    "power_attainability": "P10_POWER_ATTAINABILITY_RECEIPT_V1.json"
+  },
+  "terminals": {
+    "positive": "VERIFIED_METHOD_SPACE_EXPANSION_BEYOND_IDEAL_DONOR_COMPOSED_SEARCH",
+    "negative": "DONOR_COMPOSED_SEARCH_SUFFICIENT_OR_FALSE_INVENTION_OR_NO_TRANSFER",
+    "censored": "P10_RESOURCE_OR_SEARCH_CAP_CENSORED",
+    "cannot_check": "P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT"
+  },
+  "output_schema": [
+    "RAW_MANIFEST_V1.json",
+    "PRIMARY_RESULT_V1.json",
+    "IDEAL_DONOR_RESULT_V1.json",
+    "NEGATIVE_CONTROLS_V1.json",
+    "RESOURCE_LEDGER_V1.json",
+    "TRANSFER_RESULT_V1.json",
+    "RESULT_BINDING_PACKET_V1.json"
+  ],
+  "custom_outputs": [
+    "LUNARC_PREFLIGHT_V1.json",
+    "P10_OBSTRUCTION_AND_FALSE_INVENTION_RESULT_V1.json"
+  ],
+  "claim_ceiling": "FROZEN_ACQUISITION_PREFLIGHT_OR_PROTECTED_NATIVE_VERIFIER_RESULT_ONLY__NO_UNRESTRICTED_INVENTION_GENERAL_SUPERIORITY_OR_EXTERNAL_AUTHORITY",
+  "external_authority_state": "CANNOT_CHECK",
+  "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+  "paper_authority_delta": "NONE"
+}

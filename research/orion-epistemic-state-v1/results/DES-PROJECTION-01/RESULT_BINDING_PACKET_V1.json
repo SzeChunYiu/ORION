@@ -1,0 +1,219 @@
+{
+  "artifacts": [
+    {
+      "bytes": 473,
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/IDEAL_DONOR_RESULT_V1.json",
+      "sha256": "fe61f52e78f01e7fc54558cacc18048cc4abc02d6badf60557accf1f5190cb63"
+    },
+    {
+      "bytes": 1191,
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/LEGACY_PROJECTION_CORRESPONDENCE_V1.json",
+      "sha256": "db8e59b54f56e50b7aaa2487cf8d3e0d88c711682e03f15d3c303855bf1b55bf"
+    },
+    {
+      "bytes": 937,
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/NEGATIVE_CONTROLS_V1.json",
+      "sha256": "7a8f2ae7333b4a658e02c2fb0929e8b34cb4cdee56ebcc7ca1e3105ce68ab97b"
+    },
+    {
+      "bytes": 15649,
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/NONRECONSTRUCTION_WITNESSES_V1.json",
+      "sha256": "e9ef75571cfc69f59b8387b11cb4e05fef9b0cd983a571286ba11eae7b767993"
+    },
+    {
+      "bytes": 1035,
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/PRIMARY_RESULT_V1.json",
+      "sha256": "e29e3e3540ca0dc9b341f1dfc36bfb6dda309facc536b1d9cd468d20e0d7ae32"
+    },
+    {
+      "bytes": 10623305,
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/RAW_MANIFEST_V1.json",
+      "sha256": "dbc5fef600041bbd3cef15f7b98a4cab4d1dc3d121a134a75f189f14324e108d"
+    },
+    {
+      "bytes": 341,
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/TRANSFER_RESULT_V1.json",
+      "sha256": "d39ba244143fdd24f293bdcf20de4430af3d71b1274a31bde585726ba8e53828"
+    },
+    {
+      "bytes": 722,
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/RESOURCE_LEDGER_V1.json",
+      "sha256": "e7448317db4a0645838ac42337b47c5ebedc0f668c0d31ae73d66d738a1ac503"
+    }
+  ],
+  "base_subject_sha": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "case_level_outcomes": {
+    "dropped_cases": 0,
+    "exceptions": 0,
+    "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/RAW_MANIFEST_V1.json",
+    "projection_row_denominator": 5760,
+    "sha256": "dbc5fef600041bbd3cef15f7b98a4cab4d1dc3d121a134a75f189f14324e108d",
+    "state_case_denominator": 2880
+  },
+  "censoring": {
+    "partial_rows_authorize_positive": false,
+    "resource_censored": false
+  },
+  "claim_ceiling": "FINITE_REFERENCE_CLASS_INTERNAL_REPLAY_ONLY__NO_EMPIRICAL_SUPERIORITY__NO_EXTERNAL_INDEPENDENCE",
+  "execution_code": {
+    "bytes": 40445,
+    "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/run_des_projection_01.py",
+    "sha256": "ceec957b207356de0420e1fa3e49f9fc7c314bc507dc67987abcce05517b2920"
+  },
+  "execution_head_sha": "128e8b41f735dd94229d27f9b48e1fd56d35a7ef",
+  "external_authority_state": "CANNOT_CHECK",
+  "freeze": {
+    "bytes": 9890,
+    "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/FREEZE_V1.json",
+    "sha256": "4370746ba88c8f7caa77b6c50d128b8196bd3c912d8a3a1101cf3752aaa0619a"
+  },
+  "freeze_commit_sha": "010a0986b5b96248f16a3b1c18cb48b0ba2259b6",
+  "frozen_inputs": [
+    {
+      "bytes": 7987,
+      "path": "src/orion/epistemic_state_v1/model.py",
+      "sha256": "679afd19e39445f7d4d496b2b56df73d908e57a6d8c0ae4ee4e1b86364940e5f"
+    },
+    {
+      "bytes": 6077,
+      "path": "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md",
+      "sha256": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05"
+    },
+    {
+      "bytes": 10199,
+      "path": "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json",
+      "sha256": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4"
+    },
+    {
+      "bytes": 2479,
+      "path": "research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md",
+      "sha256": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce"
+    },
+    {
+      "bytes": 2184,
+      "path": "papers/P1_P15_TOP_TIER_DYNAMIC_STATE_PROGRAMME_V1.md",
+      "sha256": "19a97b88c1ec49d014c6352ec8cd2ae4da0da57851f206589d36dfe9849175ce"
+    }
+  ],
+  "handoff": [
+    "MANUSCRIPT_WRITING_OWNER = P1_P15_REWRITE_LANE",
+    "COMPUTATION_SESSION_PAPER_AUTHORITY_DELTA = NONE"
+  ],
+  "hard_preconditions": [
+    {
+      "actual": "679afd19e39445f7d4d496b2b56df73d908e57a6d8c0ae4ee4e1b86364940e5f",
+      "expected": "679afd19e39445f7d4d496b2b56df73d908e57a6d8c0ae4ee4e1b86364940e5f",
+      "id": "input_sha256:src/orion/epistemic_state_v1/model.py",
+      "passed": true
+    },
+    {
+      "actual": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05",
+      "expected": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05",
+      "id": "input_sha256:research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md",
+      "passed": true
+    },
+    {
+      "actual": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4",
+      "expected": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4",
+      "id": "input_sha256:research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json",
+      "passed": true
+    },
+    {
+      "actual": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce",
+      "expected": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce",
+      "id": "input_sha256:research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md",
+      "passed": true
+    },
+    {
+      "actual": "19a97b88c1ec49d014c6352ec8cd2ae4da0da57851f206589d36dfe9849175ce",
+      "expected": "19a97b88c1ec49d014c6352ec8cd2ae4da0da57851f206589d36dfe9849175ce",
+      "id": "input_sha256:papers/P1_P15_TOP_TIER_DYNAMIC_STATE_PROGRAMME_V1.md",
+      "passed": true
+    },
+    {
+      "actual": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+      "expected": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+      "id": "base_subject_is_freeze_parent",
+      "passed": true
+    },
+    {
+      "execution_head": "128e8b41f735dd94229d27f9b48e1fd56d35a7ef",
+      "freeze_commit": "010a0986b5b96248f16a3b1c18cb48b0ba2259b6",
+      "id": "freeze_commit_is_ancestor_of_execution_head",
+      "passed": true
+    },
+    {
+      "actual": "3.14.6",
+      "expected": "3.14.6",
+      "id": "python_version",
+      "passed": true
+    },
+    {
+      "actual": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "expected": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "id": "python_executable",
+      "passed": true
+    },
+    {
+      "expected_projection_rows": 5760,
+      "expected_state_cases": 2880,
+      "id": "factor_denominator",
+      "passed": true
+    },
+    {
+      "actual": 20,
+      "expected": 20,
+      "id": "reference_state_field_count",
+      "passed": true
+    },
+    {
+      "id": "no_preexisting_outcome_consumed",
+      "passed": true
+    }
+  ],
+  "job_id": "DES-PROJECTION-01",
+  "leakage_and_negative_controls": {
+    "all_passed": true,
+    "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/NEGATIVE_CONTROLS_V1.json",
+    "sha256": "7a8f2ae7333b4a658e02c2fb0929e8b34cb4cdee56ebcc7ca1e3105ce68ab97b"
+  },
+  "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+  "paper_authority_delta": "NONE",
+  "resource_vector": {
+    "cap_binding": [],
+    "censored": false,
+    "frozen_vector": {
+      "cpu_processes": 1,
+      "disk_output_bytes_cap": 52428800,
+      "external_api_calls": 0,
+      "gpu_count": 0,
+      "money_usd": 0,
+      "network_access": false,
+      "resident_memory_mib_cap": 512,
+      "threads": 1,
+      "wall_seconds_cap": 120
+    },
+    "job_id": "DES-PROJECTION-01",
+    "observed": {
+      "bound_artifact_bytes_excluding_resource_and_binding": 10642931,
+      "maximum_resident_memory_mib": 101.203125,
+      "maximum_resident_memory_raw_platform_units": 106119168,
+      "system_cpu_seconds": 0.016033,
+      "user_cpu_seconds": 0.303302,
+      "wall_seconds": 0.34863
+    },
+    "schema": "orion.dynamic-epistemic-state.des-projection-resource-ledger.v1"
+  },
+  "schema": "orion.dynamic-epistemic-state.result-binding-packet.v1",
+  "strongest_donor": "FROZEN_REFERENCE_PROMOTION_POLICY_PLUS_EXPLICIT_READINESS_RULE",
+  "terminal": "LEGACY_DECISIONS_REPRODUCED_AND_COLLISIONS_RESOLVED",
+  "transfer": {
+    "claim_ceiling": "NO_EXTERNAL_TRANSFER_OR_GENERALIZATION",
+    "external_cases": 0,
+    "internal_case_denominator": 2880,
+    "internal_finite_class_exhaustive": true,
+    "job_id": "DES-PROJECTION-01",
+    "schema": "orion.dynamic-epistemic-state.des-projection-transfer.v1",
+    "status": "CANNOT_CHECK__NO_EXTERNAL_TRANSFER_POPULATION_FROZEN"
+  }
+}

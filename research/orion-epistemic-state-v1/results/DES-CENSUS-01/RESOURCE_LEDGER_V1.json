@@ -1,0 +1,30 @@
+{
+  "caps": {
+    "binding_cap_hit": false,
+    "max_blob_bytes": 5000000,
+    "max_wallclock_seconds": 1800
+  },
+  "censoring": {
+    "likely_text_cap_censored_paths": [
+      "development/p3-repaired-native-runtime-v9-2026-08-23/PYTHON_RUNTIME_SBOM_V9.json",
+      "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_COMMUTATION_KERNEL_MECHANIZED_2026-08-24.json"
+    ],
+    "likely_text_unreadable_paths": []
+  },
+  "job_id": "DES-CENSUS-01",
+  "resource_vector": {
+    "cpu_seconds": 44.425092,
+    "eligible_text_bytes_parsed": 178504258,
+    "external_model_calls": 0,
+    "gpu_count": 0,
+    "hardware": "local CPU",
+    "max_rss_platform_units": 1081049088,
+    "network_calls_during_census": 0,
+    "processes": 1,
+    "total_blob_bytes_read": 291285191,
+    "tracked_entries": 11434,
+    "wallclock_seconds": 46.35902895801701
+  },
+  "schema": "orion.dynamic-epistemic-state.des-census.resource-ledger.v1",
+  "subject_commit": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37"
+}

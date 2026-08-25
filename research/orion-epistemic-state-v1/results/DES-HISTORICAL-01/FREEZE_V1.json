@@ -1,0 +1,334 @@
+{
+  "chronology": {
+    "conflicting_date": "CANNOT_CHECK",
+    "cutoff_rule": "presented evidence item must have independently supported creation/publication timestamp <= episode cutoff; a later transcription or compilation does not inherit an early date without item-level custody",
+    "cutoff_timezone": "UTC where a day is known; date-only comparisons are inclusive",
+    "post_cutoff_role": "evaluator_only_ground_truth_or_reconstruction_only_context",
+    "retrieval_date_not_creation_date": true,
+    "source_page_postdates_cutoff_but_embeds_earlier_document": "CANNOT_CHECK unless the embedded item has an independently verifiable identifier, date, and unchanged byte range",
+    "unknown_date": "CANNOT_CHECK"
+  },
+  "computation_session_paper_authority_delta": "NONE",
+  "contamination_and_memorization_probes": {
+    "counterfactual_causal_flip": "swap the decisive causal edge while preserving surface form; failure to flip action is a memorization alarm",
+    "direct_outcome_probe": "ask for action before showing admissible evidence; historically correct famous answer triggers memorization alarm, not credit",
+    "entity_renamed_isomorph": "rename all entities while preserving evidence graph; action must map isomorphically",
+    "famous_name_mask": "replace people, locations, dates, object names and outcome phrases before scoring",
+    "filename_mask": "episode identifiers and source filenames are replaced by opaque case ids",
+    "generator_label_probe": "scorers receive no twin type, expected action, episode id, source path or constructor seed",
+    "verbatim_overlap": "measure normalized 8-gram overlap between scorer rationale and post-cutoff evaluator-only sources"
+  },
+  "counterfactual_twins": {
+    "construction_inputs": "only chronology-admissible structured evidence cards; if none, twin outcome is CANNOT_CHECK",
+    "constructor_version": "DES-HISTORICAL-01.twin.v1",
+    "minimum_total": 20,
+    "no_manual_post_outcome_edits": true,
+    "per_episode": [
+      {
+        "count": 2,
+        "expected": "same action under inverse entity mapping",
+        "type": "ENTITY_RENAMED_ISOMORPH"
+      },
+      {
+        "count": 2,
+        "expected": "action changes to the prospectively registered alternative cause",
+        "type": "CAUSAL_EDGE_FLIP"
+      },
+      {
+        "count": 1,
+        "expected": "CANNOT_CHECK or collect decisive discriminator",
+        "type": "EVIDENCE_REMOVAL"
+      }
+    ],
+    "seed": 20260825
+  },
+  "denominators": {
+    "episode_denominator": 4,
+    "formula": "4 episodes * 6 scorers * (1 original + 5 twins) = 144",
+    "primary_case_denominator_if_attained": 144,
+    "registered_source_denominator": 5,
+    "retention": "every scheduled cell emitted, including NOT_RUN_CANNOT_CHECK when a hard precondition blocks execution",
+    "scorer_denominator": 6,
+    "twin_denominator_if_preconditions_attained": 20
+  },
+  "endpoint": {
+    "forbidden_inference": [
+      "post-cutoff source content is never presented as pre-cutoff evidence",
+      "famous-episode recall is not discovery",
+      "timeout or source failure is not historical impossibility",
+      "internal deterministic scorer is not external adjudication",
+      "counterfactual twin construction is not empirical history"
+    ],
+    "primary": "chronology_safe_reconstruction_and_counterfactual_twin_transfer",
+    "primary_metrics": [
+      "chronology_admissible_reconstruction_accuracy",
+      "counterfactual_twin_action_consistency",
+      "causal_flip_sensitivity",
+      "memorization_alarm_rate"
+    ],
+    "success_requires": [
+      "at least three domains with chronology-admissible pre-cutoff evidence",
+      "public-source byte and publication-date custody for every presented item",
+      "at least one attained and one violating chronology stratum",
+      "externally identified model endpoint and release/custody receipt",
+      "all registered alternative scorers run on matched evidence and resources",
+      "entity-renamed and causal-flip twins remain hidden from any scorer configuration",
+      "all adverse, reconstruction-only, memorization-alarm, crash, and CANNOT_CHECK rows remain in denominators"
+    ],
+    "unit": "one frozen historical episode x scorer x original_or_twin case"
+  },
+  "episodes": [
+    {
+      "cutoff": "1847-05-15",
+      "decision": "select the minimum discriminator/intervention for excess puerperal-fever mortality",
+      "domain": "medicine",
+      "episode_id": "HIST-SEMMELWEIS-1847",
+      "public_sources": [
+        {
+          "expected_publication_date": "1861-01-01",
+          "expected_role": "post_cutoff_evaluator_only",
+          "expected_title": "Die Aetiologie, der Begriff und die Prophylaxis des Kindbettfiebers",
+          "source_id": "SEMMELWEIS-1861",
+          "url": "https://archive.org/download/dieaetiologie00semmgoog/dieaetiologie00semmgoog_djvu.txt"
+        }
+      ],
+      "registered_actions": [
+        "hand_disinfection_at_clinician_contact",
+        "ventilation_or_miasma_intervention",
+        "general_hygiene_bundle",
+        "collect_more_undirected_observations",
+        "cannot_check"
+      ]
+    },
+    {
+      "cutoff": "1854-09-07",
+      "decision": "select the minimum discriminator/intervention for the Soho cholera cluster",
+      "domain": "epidemiology",
+      "episode_id": "HIST-SNOW-1854",
+      "public_sources": [
+        {
+          "expected_publication_date": "1855-01-01",
+          "expected_role": "post_cutoff_evaluator_only",
+          "expected_title": "On the Mode of Communication of Cholera",
+          "source_id": "SNOW-1855",
+          "url": "https://www.gutenberg.org/cache/epub/72838/pg72838.txt"
+        }
+      ],
+      "registered_actions": [
+        "remove_or_disable_suspected_water_source",
+        "miasma_area_intervention",
+        "general_sanitation_bundle",
+        "collect_more_undirected_observations",
+        "cannot_check"
+      ]
+    },
+    {
+      "cutoff": "1912-01-06",
+      "decision": "select the next discriminator for continental displacement versus fixed-continent explanations",
+      "domain": "earth_science",
+      "episode_id": "HIST-WEGENER-1912",
+      "public_sources": [
+        {
+          "expected_publication_date": "1915-01-01",
+          "expected_role": "post_cutoff_evaluator_only",
+          "expected_title": "Die Entstehung der Kontinente und Ozeane",
+          "source_id": "WEGENER-1915",
+          "url": "https://archive.org/download/dieentstehungde00wege/dieentstehungde00wege_djvu.txt"
+        }
+      ],
+      "registered_actions": [
+        "test_cross_continent_geological_and_fossil_correspondence",
+        "fit_fixed_continent_land_bridge_explanation",
+        "assert_mechanism_without_discriminator",
+        "collect_more_undirected_observations",
+        "cannot_check"
+      ]
+    },
+    {
+      "cutoff": "1986-01-27",
+      "decision": "select the responsible-layer intervention for low-temperature O-ring risk before launch",
+      "domain": "aerospace_engineering",
+      "episode_id": "HIST-CHALLENGER-1986",
+      "public_sources": [
+        {
+          "expected_publication_date": "1986-06-06",
+          "expected_role": "post_cutoff_evaluator_only",
+          "expected_title": "Report of the Presidential Commission on the Space Shuttle Challenger Accident, Chapter V",
+          "source_id": "ROGERS-1986-CH5",
+          "url": "https://history.nasa.gov/rogersrep/v1ch5.htm"
+        },
+        {
+          "expected_publication_date": "1986-06-06",
+          "expected_role": "post_cutoff_evaluator_only",
+          "expected_title": "Personal observations on reliability of Shuttle",
+          "source_id": "FEYNMAN-APPENDIX-F",
+          "url": "https://science.ksc.nasa.gov/shuttle/missions/51-l/docs/rogers-commission/Appendix-F.txt"
+        }
+      ],
+      "registered_actions": [
+        "delay_launch_and_test_temperature_seal_interaction",
+        "accept_management_risk_summary",
+        "inspect_unrelated_vehicle_components",
+        "collect_more_undirected_observations",
+        "cannot_check"
+      ]
+    }
+  ],
+  "execution_owner": "COMPUTATION_ONLY_SESSIONS",
+  "frozen_at_utc": "2026-08-25T18:27:47Z",
+  "hard_preconditions": [
+    {
+      "id": "HP1",
+      "predicate": "exact subject commit/tree and pre-outcome freeze ancestry",
+      "violating_terminal": "SUBJECT_OR_FREEZE_IDENTITY_INVALID"
+    },
+    {
+      "id": "HP2",
+      "predicate": "at least three domains contain chronology-admissible pre-cutoff evidence with item-level date and byte custody",
+      "violating_terminal": "CHRONOLOGY_SAFE_SOURCE_SET_CANNOT_CHECK"
+    },
+    {
+      "id": "HP3",
+      "predicate": "external model endpoint/custodian receipt complete before model scoring",
+      "violating_terminal": "EXTERNAL_MODEL_CUSTODY_CANNOT_CHECK"
+    },
+    {
+      "id": "HP4",
+      "predicate": "at least one attained and one violating chronology stratum",
+      "violating_terminal": "CHRONOLOGY_PRECONDITION_UNEXERCISED"
+    },
+    {
+      "id": "HP5",
+      "predicate": "all 144 scheduled cells retained or explicitly NOT_RUN_CANNOT_CHECK",
+      "violating_terminal": "DENOMINATOR_INCOMPLETE_INVALID"
+    },
+    {
+      "id": "HP6",
+      "predicate": "no filename, episode id, expected action, post-cutoff content, or twin label reaches any chronology-safe scorer",
+      "violating_terminal": "CONTAMINATION_INVALID"
+    },
+    {
+      "id": "HP7",
+      "predicate": "only job-result path changes; no writing surface modified",
+      "violating_terminal": "WRITING_AUTHORITY_BOUNDARY_VIOLATION"
+    }
+  ],
+  "job_id": "DES-HISTORICAL-01",
+  "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+  "negative_controls": [
+    "known post-cutoff source must be rejected from admissible evidence",
+    "unknown publication date must yield CANNOT_CHECK",
+    "direct famous-answer success before evidence must raise memorization alarm",
+    "causal-flip-insensitive answer must raise memorization alarm",
+    "dropped scheduled cell must fail denominator reconciliation",
+    "external model without custody receipt must be NOT_RUN_CANNOT_CHECK",
+    "source HTTP failure must remain retrieval CANNOT_CHECK"
+  ],
+  "output_rules": {
+    "case_rows": "all 144 scheduled cells",
+    "claim_ceiling": "CHRONOLOGY_AUDIT_AND_INTERNAL_RECONSTRUCTION_ONLY__NO_EXTERNAL_HISTORICAL_DISCOVERY_AUTHORITY",
+    "digest": "SHA-256 exact bytes",
+    "serialization": "UTF-8 JSON sort_keys=true indent=2 trailing newline"
+  },
+  "paper_authority_delta": "NONE",
+  "protocol_timing": "COMMITTED_BEFORE_EPISODE_SOURCE_RETRIEVAL_OR_OUTCOME_INSPECTION",
+  "required_outputs": [
+    "FREEZE_V1.json",
+    "RAW_MANIFEST_V1.json",
+    "PRIMARY_RESULT_V1.json",
+    "IDEAL_DONOR_RESULT_V1.json",
+    "NEGATIVE_CONTROLS_V1.json",
+    "RESOURCE_LEDGER_V1.json",
+    "TRANSFER_RESULT_V1.json",
+    "HISTORICAL_COUNTERFACTUAL_ATLAS_V1.json",
+    "MODEL_CHRONOLOGY_RECEIPTS_V1.json",
+    "RESULT_BINDING_PACKET_V1.json"
+  ],
+  "resources": {
+    "cpu": "local CPU",
+    "external_model_budget": "0 unless a complete external custody receipt is available before execution",
+    "gpu": "not required for deterministic scorers",
+    "max_memory_bytes": 4000000000,
+    "max_source_bytes": 20000000,
+    "max_wallclock_seconds": 1800,
+    "network": "HTTPS retrieval of five frozen public URLs only",
+    "processes": 1
+  },
+  "schema": "orion.dynamic-epistemic-state.des-historical.freeze.v1",
+  "scorers": {
+    "alternative_causal_graph": {
+      "rule": "prefer intervention on the node with the greatest frozen observed-dependency count; abstain if graph cannot be chronology-admissibly built",
+      "type": "deterministic_internal"
+    },
+    "dynamic_epistemic_state": {
+      "rule": "admit only chronology-valid evidence; retain obligations, contamination alarms and responsible-layer scope; choose unique minimum discriminator or CANNOT_CHECK",
+      "type": "deterministic_internal"
+    },
+    "evidence_only": {
+      "rule": "score registered actions by frozen evidence-marker overlap without responsibility or chronology state",
+      "type": "deterministic_internal"
+    },
+    "external_model": {
+      "missing_receipt_terminal": "EXTERNAL_MODEL_CUSTODY_CANNOT_CHECK",
+      "required_receipt_fields": [
+        "provider",
+        "model_id",
+        "model_release_date",
+        "weights_or_endpoint_digest",
+        "prompt_digest",
+        "temperature",
+        "seed",
+        "external_custodian",
+        "no_episode_specific_tuning_attestation"
+      ],
+      "type": "externally_identified_endpoint_required"
+    },
+    "falsification_first": {
+      "rule": "prefer the action naming a registered discriminator; abstain on ties",
+      "type": "deterministic_internal"
+    },
+    "terminal_only_narrative": {
+      "rule": "select any action explicitly named in post-cutoff narrative; invalid for chronology-safe primary endpoint",
+      "type": "deterministic_internal"
+    }
+  },
+  "source_access": {
+    "allowed_protocols": [
+      "https"
+    ],
+    "full_source_bytes_committed": false,
+    "max_bytes_per_source": 20000000,
+    "network_retries": 1,
+    "reason": "bind public bytes by digest without redistributing source payloads",
+    "redirect_limit": 5,
+    "retained_fields": [
+      "requested_url",
+      "final_url",
+      "http_status",
+      "redirect_chain",
+      "retrieved_at_utc",
+      "byte_count",
+      "sha256",
+      "content_type",
+      "last_modified",
+      "etag",
+      "retrieval_error"
+    ],
+    "timeout_seconds": 30,
+    "user_agent": "ORION-DES-HISTORICAL-01/1.0 chronology-audit"
+  },
+  "subject": {
+    "branch": "codex/des-historical-01-execution-20260825",
+    "fresh_origin_main": "f049e30391a09213240f6325ee319f9fa811189a",
+    "git_commit": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+    "git_tree": "ec9455ccfdded0c2a27c97b425ad001b228151de"
+  },
+  "terminals": {
+    "cannot_check": "EXTERNAL_CUSTODY_OR_CHRONOLOGY_CANNOT_CHECK",
+    "censored": "RESOURCE_CAP_CENSORED",
+    "invalid": "DENOMINATOR_OR_CONTAMINATION_CONTROL_INVALID",
+    "negative": "HISTORICAL_RECONSTRUCTION_ONLY_OR_MEMORIZATION",
+    "positive": "CHRONOLOGY_SAFE_RECONSTRUCTION_WITH_COUNTERFACTUAL_TRANSFER"
+  },
+  "writing_owner": "P1_P15_REWRITE_LANE"
+}

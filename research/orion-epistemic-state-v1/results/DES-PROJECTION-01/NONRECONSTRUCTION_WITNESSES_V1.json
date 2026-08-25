@@ -1,0 +1,446 @@
+{
+  "all_reachable_groups_noninjective": true,
+  "authority": "FINITE_REFERENCE_CLASS_INTERNAL_REPLAY_ONLY",
+  "group_count": 7,
+  "groups_with_action_divergence": 6,
+  "interpretation": "Every reachable legacy label has multiple full-state preimages. A terminal therefore cannot reconstruct the state that produced it; action-divergent witnesses additionally show where retaining the state changes the next move.",
+  "job_id": "DES-PROJECTION-01",
+  "schema": "orion.dynamic-epistemic-state.nonreconstruction-witnesses.v1",
+  "witnesses": [
+    {
+      "inverse_status": "SET_VALUED__NO_FAITHFUL_SINGLE_STATE_INVERSE",
+      "minimal_action_divergent_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0000",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "STOP",
+        "right_case_id": "DES-PROJECTION-01-CASE-0001",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": true,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "SEARCH_LOCAL",
+        "status": "FOUND"
+      },
+      "minimal_state_distinct_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0000",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "STOP",
+        "right_case_id": "DES-PROJECTION-01-CASE-0001",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": true,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "SEARCH_LOCAL"
+      },
+      "noninjective": true,
+      "preimage_size": 10,
+      "surface_id": "PROMOTION_V1",
+      "terminal": "ADMISSIBLE"
+    },
+    {
+      "inverse_status": "SET_VALUED__NO_FAITHFUL_SINGLE_STATE_INVERSE",
+      "minimal_action_divergent_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0010",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": false,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "REVALIDATE",
+        "right_case_id": "DES-PROJECTION-01-CASE-0050",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": false,
+          "custody_external": null,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "OBTAIN_EXTERNAL_CUSTODY",
+        "status": "FOUND"
+      },
+      "minimal_state_distinct_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0010",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": false,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "REVALIDATE",
+        "right_case_id": "DES-PROJECTION-01-CASE-0011",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": false,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": true,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "REVALIDATE"
+      },
+      "noninjective": true,
+      "preimage_size": 1360,
+      "surface_id": "PROMOTION_V1",
+      "terminal": "BLOCKED"
+    },
+    {
+      "inverse_status": "SET_VALUED__NO_FAITHFUL_SINGLE_STATE_INVERSE",
+      "minimal_action_divergent_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0020",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": false,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "OBTAIN_EXTERNAL_CUSTODY",
+        "right_case_id": "DES-PROJECTION-01-CASE-0980",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": false,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "CANNOT_CHECK",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "DISCRIMINATE",
+        "status": "FOUND"
+      },
+      "minimal_state_distinct_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0020",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": false,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "OBTAIN_EXTERNAL_CUSTODY",
+        "right_case_id": "DES-PROJECTION-01-CASE-0021",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": false,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": true,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "OBTAIN_EXTERNAL_CUSTODY"
+      },
+      "noninjective": true,
+      "preimage_size": 1510,
+      "surface_id": "PROMOTION_V1",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "inverse_status": "SET_VALUED__NO_FAITHFUL_SINGLE_STATE_INVERSE",
+      "minimal_action_divergent_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0000",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "STOP",
+        "right_case_id": "DES-PROJECTION-01-CASE-0001",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": true,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "SEARCH_LOCAL",
+        "status": "FOUND"
+      },
+      "minimal_state_distinct_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0000",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "STOP",
+        "right_case_id": "DES-PROJECTION-01-CASE-0001",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_TRUE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": true,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "SEARCH_LOCAL"
+      },
+      "noninjective": true,
+      "preimage_size": 2,
+      "surface_id": "READINESS_V1",
+      "terminal": "ADMISSIBLE"
+    },
+    {
+      "inverse_status": "SET_VALUED__NO_FAITHFUL_SINGLE_STATE_INVERSE",
+      "minimal_action_divergent_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0002",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_FALSE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "ACQUIRE_EVIDENCE",
+        "right_case_id": "DES-PROJECTION-01-CASE-0008",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "REVOKED",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "REVALIDATE",
+        "status": "FOUND"
+      },
+      "minimal_state_distinct_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0002",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_FALSE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "ACQUIRE_EVIDENCE",
+        "right_case_id": "DES-PROJECTION-01-CASE-0003",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "KNOWN_FALSE",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": true,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "ACQUIRE_EVIDENCE"
+      },
+      "noninjective": true,
+      "preimage_size": 1364,
+      "surface_id": "READINESS_V1",
+      "terminal": "BLOCKED"
+    },
+    {
+      "inverse_status": "SET_VALUED__NO_FAITHFUL_SINGLE_STATE_INVERSE",
+      "minimal_action_divergent_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0006",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "CANNOT_CHECK",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "ACQUIRE_EVIDENCE",
+        "right_case_id": "DES-PROJECTION-01-CASE-0026",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": false,
+          "evidence_mode": "CANNOT_CHECK",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "OBTAIN_EXTERNAL_CUSTODY",
+        "status": "FOUND"
+      },
+      "minimal_state_distinct_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0006",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "CANNOT_CHECK",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "ACQUIRE_EVIDENCE",
+        "right_case_id": "DES-PROJECTION-01-CASE-0007",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "CANNOT_CHECK",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": true,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "ACQUIRE_EVIDENCE"
+      },
+      "noninjective": true,
+      "preimage_size": 1512,
+      "surface_id": "READINESS_V1",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "inverse_status": "SET_VALUED__NO_FAITHFUL_SINGLE_STATE_INVERSE",
+      "minimal_action_divergent_pair": {
+        "status": "CANNOT_CHECK__NO_ACTION_DIVERGENT_PAIR_IN_GROUP"
+      },
+      "minimal_state_distinct_pair": {
+        "hamming_distance": 1,
+        "left_case_id": "DES-PROJECTION-01-CASE-0004",
+        "left_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "PARTIAL",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": false,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "left_next_action": "ACQUIRE_EVIDENCE",
+        "right_case_id": "DES-PROJECTION-01-CASE-0005",
+        "right_factors": {
+          "active_defeater": false,
+          "authority_present": true,
+          "custody_external": true,
+          "evidence_mode": "PARTIAL",
+          "identified": "TRUE",
+          "obligations_complete": true,
+          "open_method_gap": true,
+          "responsibility_matches": true,
+          "support_complete": true
+        },
+        "right_next_action": "ACQUIRE_EVIDENCE"
+      },
+      "noninjective": true,
+      "preimage_size": 2,
+      "surface_id": "READINESS_V1",
+      "terminal": "PROVISIONAL"
+    }
+  ]
+}
