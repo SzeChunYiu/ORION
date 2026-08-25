@@ -1,0 +1,35 @@
+{
+  "pair_family": {
+    "ordered_weights_identical": true,
+    "complete_labeled_pair_features_identical": true,
+    "A_t1_improvement": 10,
+    "B_t1_improvement": 9,
+    "A_t2_improvement": 22,
+    "B_t2_improvement": 19,
+    "one_gadget_partitions_checked_per_family": 52,
+    "two_gadget_partitions_checked_per_family": 115975,
+    "A_all_checked_optima_contain_triple": true,
+    "B_all_checked_optima_use_only_pairs_and_singletons": true,
+    "no_checked_two_gadget_optimum_has_mixed_gadget_block": true
+  },
+  "parity_family": {
+    "m5": {
+      "all_labeled_counts_through_order": 3,
+      "features_identical": true,
+      "one_block_unique_on_both_sides": true,
+      "value_gap": 19,
+      "expected_gap": 19,
+      "partitions_checked_per_side": 52
+    },
+    "m6": {
+      "all_labeled_counts_through_order": 4,
+      "features_identical": true,
+      "one_block_unique_on_both_sides": true,
+      "value_gap": 23,
+      "expected_gap": 23,
+      "partitions_checked_per_side": 203
+    }
+  },
+  "implementation_independence": "fresh restricted-growth partition generator and direct objective evaluator",
+  "status": "PASS"
+}
