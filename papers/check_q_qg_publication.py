@@ -3,8 +3,10 @@
 
 This checker grants no scientific or submission authority. It protects pre-existing frozen
 science from publication-owned mutation and enforces final-manuscript / evidence-cut bindings.
-Q3 is the one prospectively authorized science extension in this branch; only its exact,
-newly-created QG19/QG20 protocol/analyzer/result paths are allowed through the science guard.
+Q3 is the one prospectively authorized science extension in the original publication chronology;
+only its exact, newly-created QG19/QG20 protocol/analyzer/result paths are allowed through the
+science guard. A pull-request merge base scopes branch-owned changes; it does not approve the
+base's scientific content or weaken the original-cut chronology checks.
 """
 
 from __future__ import annotations
@@ -131,17 +133,74 @@ def publication_head() -> str:
     return "HEAD"
 
 
-def changed_from_original_cut() -> tuple[str, list[str]]:
+def changed_for_publication_branch() -> tuple[str, str, list[str]]:
     target = publication_head()
-    proc = subprocess.run(["git", "diff", "--name-only", f"{ORIGINAL_CUT}..{target}"],
-                          cwd=ROOT, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    return target, [x.strip() for x in proc.stdout.splitlines() if x.strip()]
+    base_name = os.environ.get("GITHUB_BASE_REF", "").strip()
+    if base_name:
+        base_ref = f"origin/{base_name}"
+        subprocess.run(
+            ["git", "rev-parse", "--verify", base_ref],
+            cwd=ROOT,
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        merge_base_proc = subprocess.run(
+            ["git", "merge-base", base_ref, target],
+            cwd=ROOT,
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        scope_base = merge_base_proc.stdout.strip()
+        if not scope_base:
+            raise RuntimeError(f"empty merge base for {base_ref} and {target}")
+    elif os.environ.get("GITHUB_HEAD_REF", "").strip():
+        raise RuntimeError("GITHUB_HEAD_REF is set but GITHUB_BASE_REF is missing")
+    else:
+        scope_base = ORIGINAL_CUT
+
+    proc = subprocess.run(
+        ["git", "diff", "--name-only", f"{scope_base}..{target}"],
+        cwd=ROOT,
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    return target, scope_base, [x.strip() for x in proc.stdout.splitlines() if x.strip()]
 
 
 def path_exists_at(ref: str, rel: str) -> bool:
     proc = subprocess.run(["git", "cat-file", "-e", f"{ref}:{rel}"], cwd=ROOT,
                           stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     return proc.returncode == 0
+
+
+def science_change_errors(
+    scope_base: str, target: str, changed: list[str]
+) -> tuple[list[str], set[str]]:
+    errors: list[str] = []
+    authorized_q3_present = {
+        rel for rel in Q3_AUTHORIZED_NEW_SCIENCE if path_exists_at(target, rel)
+    }
+    for rel in changed:
+        if not rel.startswith(SCIENCE_PREFIXES):
+            continue
+        if rel in Q3_AUTHORIZED_NEW_SCIENCE:
+            # An authorized path already present at the PR scope boundary is frozen for this PR.
+            # The scope boundary is not an approval or a replacement for ORIGINAL_CUT chronology.
+            if path_exists_at(scope_base, rel):
+                errors.append(f"Q3_AUTHORIZED_EXISTING_PATH_MUTATED_OR_DELETED:{rel}")
+            elif path_exists_at(ORIGINAL_CUT, rel):
+                errors.append(f"Q3_AUTHORIZED_PATH_WAS_NOT_NEW:{rel}")
+            elif rel not in authorized_q3_present:
+                errors.append(f"Q3_AUTHORIZED_NEW_PATH_MISSING_AT_HEAD:{rel}")
+            continue
+        errors.append(f"PREEXISTING_OR_UNAUTHORIZED_SCIENCE_MUTATED_BY_PUBLICATION_BRANCH:{rel}")
+    return errors, authorized_q3_present
 
 
 def main() -> int:
@@ -157,24 +216,22 @@ def main() -> int:
         return 1
 
     try:
-        target, changed = changed_from_original_cut()
+        target, scope_base, changed = changed_for_publication_branch()
     except Exception as exc:  # pragma: no cover
         errors.append(f"CANNOT_CHECK_GIT_DIFF:{exc}")
-        target, changed = "UNRESOLVED", []
+        target, scope_base, changed = "UNRESOLVED", "UNRESOLVED", []
 
-    authorized_q3_seen: set[str] = set()
-    for rel in changed:
-        if not rel.startswith(SCIENCE_PREFIXES):
-            continue
-        if rel in Q3_AUTHORIZED_NEW_SCIENCE:
-            authorized_q3_seen.add(rel)
-            # Q3 science must be genuinely new relative to the original publication cut.
-            if path_exists_at(ORIGINAL_CUT, rel):
-                errors.append(f"Q3_AUTHORIZED_PATH_WAS_NOT_NEW:{rel}")
-            continue
-        errors.append(f"PREEXISTING_OR_UNAUTHORIZED_SCIENCE_MUTATED_BY_PUBLICATION_BRANCH:{rel}")
-    if authorized_q3_seen != Q3_AUTHORIZED_NEW_SCIENCE:
-        errors.append(f"Q3_AUTHORIZED_SCIENCE_SET_INCOMPLETE:{sorted(Q3_AUTHORIZED_NEW_SCIENCE-authorized_q3_seen)}")
+    science_errors, authorized_q3_present = science_change_errors(scope_base, target, changed)
+    errors.extend(science_errors)
+    for rel in authorized_q3_present:
+        # ORIGINAL_CUT remains the chronology authority even when a PR scope base is newer.
+        if path_exists_at(ORIGINAL_CUT, rel):
+            errors.append(f"Q3_AUTHORIZED_PATH_WAS_NOT_NEW:{rel}")
+    if authorized_q3_present != Q3_AUTHORIZED_NEW_SCIENCE:
+        errors.append(
+            "Q3_AUTHORIZED_SCIENCE_SET_INCOMPLETE:"
+            f"{sorted(Q3_AUTHORIZED_NEW_SCIENCE - authorized_q3_present)}"
+        )
 
     for paper_id, rel, cut in FINAL_MANUSCRIPTS:
         body = text(rel)
@@ -257,10 +314,11 @@ def main() -> int:
     print(f"QG1_REFRESH_CUT={QG1_REFRESH_CUT}")
     print(f"Q3_RESULT_CUT={Q3_RESULT_CUT}")
     print(f"PUBLICATION_HEAD={target}")
+    print(f"PUBLICATION_CHANGE_SCOPE_BASE={scope_base}")
     print(f"PUBLICATION_BRANCH_CHANGED_FILES={len(changed)}")
     print("FINAL_MANUSCRIPTS=Q1V3,Q2V3,Q3V3,Q4V3,QG1V3,QG2V3")
     print("PREEXISTING_SCIENTIFIC_RECEIPT_MUTATIONS_BY_PUBLICATION_BRANCH=0")
-    print(f"Q3_AUTHORIZED_NEW_SCIENCE_FILES={len(authorized_q3_seen)}")
+    print(f"Q3_AUTHORIZED_NEW_SCIENCE_FILES={len(authorized_q3_present)}")
     print(f"Q3_PUBLICATION_AUTHORITY={Q3_COMPLETE_TERMINAL}")
     print("SUBMISSION_AUTHORITY=NOT_GRANTED_BY_THIS_CHECK")
     return 0

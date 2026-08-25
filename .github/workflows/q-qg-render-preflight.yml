@@ -41,7 +41,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended poppler-utils
+            lmodern pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended poppler-utils
       - name: Generate cited masters
         run: python papers/build_q_qg_cited_masters.py --clean
       - name: Generate debuggable generic LaTeX

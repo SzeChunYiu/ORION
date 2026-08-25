@@ -367,11 +367,16 @@ def _inspect_q_series_cross_binding(
         elif git_blob_sha1(target.read_bytes()) != expected:
             drifted.append(path_value)
 
-    state = (
-        PaperBindingState.BOUND_DRIFTED
-        if drifted or missing
-        else PaperBindingState.BOUND_CURRENT
-    )
+    if drifted or missing:
+        state = PaperBindingState.BOUND_DRIFTED
+    elif len(rows) < files_on_disk:
+        # The Q-series binding watches the canonical publication subset, not
+        # every historical/navigation file retained in each paper directory.
+        # Keep that denominator visible instead of promoting a clean subset to
+        # whole-directory coverage.
+        state = PaperBindingState.BOUND_PARTIAL
+    else:
+        state = PaperBindingState.BOUND_CURRENT
     if state is PaperBindingState.BOUND_DRIFTED:
         detail = (
             f"{relative}: Q-series canonical binding has {len(drifted)} changed and "

@@ -232,7 +232,12 @@ class TestAgainstTheRealTree:
         """Red if any watched canonical byte changes without regenerating its binding."""
 
         record = inspect_paper(REPO_ROOT, REPO_ROOT / "papers" / paper)
-        assert record.state is PaperBindingState.BOUND_CURRENT, record.detail
+        expected = (
+            PaperBindingState.BOUND_CURRENT
+            if paper in DIRECT_BOUND_PAPERS
+            else PaperBindingState.BOUND_PARTIAL
+        )
+        assert record.state is expected, record.detail
         assert record.drifted_paths == ()
         assert record.missing_paths == ()
         assert assess_paper(record).outcome is Outcome.PASS
@@ -240,12 +245,13 @@ class TestAgainstTheRealTree:
     @pytest.mark.parametrize("paper", Q_SERIES_BOUND_PAPERS)
     def test_q_series_cross_binding_is_visible_and_partial(self, paper: str) -> None:
         record = inspect_paper(REPO_ROOT, REPO_ROOT / "papers" / paper)
-        assert record.state is PaperBindingState.BOUND_CURRENT, record.detail
+        assert record.state is PaperBindingState.BOUND_PARTIAL, record.detail
         assert record.files_bound > 0
         assert "Q-series" in record.detail
         # Historical snapshots / navigation files are intentionally outside the
         # canonical submission binding and remain visible in the denominator report.
-        assert record.unbound_files >= 0
+        assert record.unbound_files > 0
+        assert record.coverage_outcome is Outcome.CANNOT_CHECK
 
     def test_the_survey_covers_every_paper_directory(self) -> None:
         bindings = survey_paper_bindings(REPO_ROOT)
@@ -276,7 +282,7 @@ class TestAgainstTheRealTree:
         complete = {
             item.paper_id for item in bindings if item.state.covers_the_whole_paper
         }
-        assert complete >= set(BOUND_PAPERS), sorted(complete)
+        assert complete >= set(DIRECT_BOUND_PAPERS), sorted(complete)
 
     def test_the_survey_reports_cannot_check_while_papers_are_unbound(self) -> None:
         bound = [
@@ -287,20 +293,30 @@ class TestAgainstTheRealTree:
         assert len(bound) >= 7, [item.paper_id for item in bound]
         assert {item.paper_id for item in bound} >= set(BOUND_PAPERS)
 
-    def test_the_survey_reports_cannot_check_while_other_papers_are_unbound(self) -> None:
-        """Honest today, and it flips to PASS on its own once every paper binds."""
+    def test_the_survey_reports_the_worst_live_outcome(self) -> None:
+        """Detected drift outranks absent coverage; neither may be hidden."""
 
         report = survey_report(survey_paper_bindings(REPO_ROOT))
         assert report["papers_unbound"] > 0
-        assert report["outcome"] == Outcome.CANNOT_CHECK.value
+        expected = (
+            Outcome.FAIL.value
+            if report["pooled_exercise"]["violations"]
+            else Outcome.CANNOT_CHECK.value
+        )
+        assert report["outcome"] == expected
         assert report["files_bound"] > 0
         for paper in Q_SERIES_BOUND_PAPERS:
-            assert report["by_paper"][paper]["state"] == PaperBindingState.BOUND_CURRENT.value
+            assert report["by_paper"][paper]["state"] == PaperBindingState.BOUND_PARTIAL.value
+            assert report["by_paper"][paper]["coverage_outcome"] == Outcome.CANNOT_CHECK.value
 
-    def test_the_pooled_exercise_is_reported_but_is_not_the_verdict(self) -> None:
-        report = survey_report(survey_paper_bindings(REPO_ROOT))
+    def test_the_pooled_exercise_and_rollup_are_reported_truthfully(self) -> None:
+        bindings = survey_paper_bindings(REPO_ROOT)
+        report = survey_report(bindings)
         pooled = report["pooled_exercise"]
         assert pooled["guard_id"] == CONTENT_DRIFT_GUARD_ID
-        assert pooled["violations"] == 0
-        # Pooled alone would read as a clean pass; the survey does not say that.
-        assert report["outcome"] != Outcome.PASS.value
+        assert pooled["violations"] == sum(item.violations for item in bindings)
+        if pooled["violations"]:
+            assert report["outcome"] == Outcome.FAIL.value
+        else:
+            # A clean watched subset still cannot compensate for unbound papers.
+            assert report["outcome"] == Outcome.CANNOT_CHECK.value
