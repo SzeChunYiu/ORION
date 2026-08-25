@@ -1,0 +1,63 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-P7-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {"location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": ["OSTC-T13"]},
+  "frozen_before_outcomes": true,
+  "task": "Prospective multi-step ontology/objective/evidence-interface loops and path-dependence tests.",
+
+  "what_the_theorem_asserts": {
+    "OSTC-T13": "For regime morphisms f and g, transport is path independent iff every load-bearing coordinate satisfies a commuting coherence square, and T_{g o f} is isomorphic to T_g o T_f. Where a square fails, an object supported on the differing coordinate produces different obligations or terminals."
+  },
+  "relation_to_EXEC_CM_01": "EXEC-CM-01 tested the two-step case. This job extends to THREE-step chains and to CLOSED LOOPS, which the two-step case cannot reach: associativity of transport across three morphisms, and whether a declared round trip is the identity exactly when every square in the cycle commutes. No code is shared between the two jobs.",
+
+  "code_identity": {"runner": "run_regime_loops_v1.py",
+    "independent_checker": "check_regime_loops_independent_v1.py",
+    "checker_independence": "The checker does not import the runner. Loop closure is recomputed by tracking each object around the cycle and comparing to its start, rather than by composing morphism tables; three-step associativity is recomputed by explicit left/right grouping over objects rather than over tables."},
+  "data_identity": {"generated": true, "generator_seed": 20260825, "no_external_data": true},
+  "comparator_identity": {
+    "endpoint_only_donor": "A donor that declares two paths equivalent whenever their endpoint regimes match, ignoring the route taken. T13 says path dependence is real, so this donor MUST be observed to fail -- admitting at least one pair of same-endpoint routes that transport differently. A donor that never fails would mean the enumeration contains no genuine path dependence and cannot test the theorem."
+  },
+  "information_and_tool_access": {"runner": "declared grid only; no network, no model calls", "checker": "raw manifest only"},
+  "resource_vector": {"compute": "single-process CPU enumeration", "wallclock_bound_seconds": 1800},
+
+  "independent_unit": "The (chain-or-loop, declared-transport) cell. Objects inside a cell are exhaustively enumerated, not sampled.",
+  "estimands": {
+    "three_step_associativity": "Over all three-morphism chains: does (h o g) o f transport every object identically to h o (g o f), with zero exceptions?",
+    "loop_biconditional": "Over all closed loops: is (round trip is the identity on every object) exactly equivalent to (every square in the cycle commutes), checked in both directions?",
+    "path_dependence_is_real": "Do path-dependent cases actually occur? A grid in which every route agrees cannot test path dependence and is recorded as a negative.",
+    "donor_fails": "Does the endpoint-only donor admit at least one same-endpoint route pair that transports differently?"
+  },
+  "multiplicity": "No hypothesis test; universal and existence claims over total enumeration.",
+
+  "positive_terminal": "P7_REGIME_COHERENCE_PREDICTIONS_SUPPORTED",
+  "positive_conditions": [
+    "zero three-step associativity violations",
+    "loop biconditional holds with zero exceptions in both directions",
+    "path-dependent cases occur (the theorem is testable on this grid)",
+    "the endpoint-only donor fails at least once"
+  ],
+  "negative_terminal": "P7_TRANSPORT_CALCULUS_INCOMPLETE",
+  "negative_conditions": [
+    "any three-step chain where the two groupings disagree",
+    "any loop where identity-round-trip and all-squares-commute come apart in either direction",
+    "no path-dependent case exists in the grid, making the theorem vacuous here",
+    "the endpoint-only donor never fails, which means the same thing"
+  ],
+  "cannot_check_terminal": "P7_REGIME_GOLD_UNAVAILABLE",
+  "cannot_check_conditions": ["grid not exhausted within the wallclock bound", "independent checker cannot be run"],
+
+  "raw_output_schema": {"file": "RAW_RESULT_MANIFEST.json",
+    "fields": {"grid": "echoed", "assoc": "chains, violations, minimal_witness",
+      "loops": "loops, identity_round_trips, all_squares_commute, biconditional_violations, minimal_witness",
+      "path_dependence": "route_pairs, divergent_pairs", "donor": "failures",
+      "totals": "cells_enumerated, wallclock_seconds"}},
+  "checker_and_authority_owner": {"checker": "check_regime_loops_independent_v1.py",
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Two implementations inside one programme; not external adjudication."},
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem, move a gate, weaken a comparator, hide a negative, or rewrite theory after outcome access."
+}
