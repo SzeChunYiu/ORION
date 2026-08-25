@@ -53,6 +53,19 @@ def test_complete_gold_hashes_match_committed_390_task_summary() -> None:
     )
     assert gold_block["suite_fingerprint"] == gold["suite_fingerprint"]
 
+    repair = gold_block["read_encounter_budget_reprojection"]
+    adverse = repair["no_content_identity_dedup_adverse_change"]
+    no_dedup = summary["systems"]["no_content_identity_dedup"]
+    assert repair["authority"] == "HOST_BUDGET_CONTRACT_CORRECTION__NO_CLAIM_PROMOTION"
+    assert adverse["corrected"]["PASS"] == no_dedup["status_counts"]["PASS"] == 144
+    assert adverse["corrected"]["FAIL"] == no_dedup["status_counts"]["FAIL"] == 193
+    assert adverse["corrected"]["CANNOT_CHECK"] == no_dedup["status_counts"][
+        "CANNOT_CHECK"
+    ] == 53
+    assert adverse["corrected"]["budget_exhaustion_failures"] == no_dedup[
+        "failure_counts"
+    ]["budget_exhausted"] == 193
+
 
 def test_deep_official_null_is_not_relabelled_positive() -> None:
     receipt = _load(RECEIPT)
