@@ -25,6 +25,7 @@ from typing import Any, Iterable, Sequence
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 FREEZE_PATH = HERE / "FREEZE_V1.json"
+ERRATUM_PATH = HERE / "FREEZE_ARITHMETIC_ERRATUM_V1.json"
 RAW_PATH = HERE / "RAW_CASES_V1.jsonl"
 SUBJECT_COMMIT = "3c97b87f4f4c8c0365226019236c83d3c4c7bb37"
 MODEL_PATH = ROOT / "src/orion/epistemic_state_v1/model.py"
@@ -253,7 +254,9 @@ def git_bytes_at(commit: str, path: str) -> bytes:
     return subprocess.check_output(["git", "show", f"{commit}:{path}"], cwd=ROOT)
 
 
-def hard_preconditions(freeze: dict[str, Any], states: Sequence[tuple[str, Any]]) -> dict[str, Any]:
+def hard_preconditions(
+    freeze: dict[str, Any], erratum: dict[str, Any], states: Sequence[tuple[str, Any]]
+) -> dict[str, Any]:
     checks: list[dict[str, Any]] = []
     for path, expected in freeze["subject_bindings"].items():
         observed = sha256_bytes(git_bytes_at(SUBJECT_COMMIT, path))
@@ -265,22 +268,34 @@ def hard_preconditions(freeze: dict[str, Any], states: Sequence[tuple[str, Any]]
         text=True,
     ).splitlines()
     freeze_commit = freeze_commits[-1] if freeze_commits else ""
+    erratum_commits = subprocess.check_output(
+        ["git", "log", "--format=%H", "--", str(ERRATUM_PATH.relative_to(ROOT))],
+        cwd=ROOT,
+        text=True,
+    ).splitlines()
+    erratum_commit = erratum_commits[-1] if erratum_commits else ""
     ancestor_rc = subprocess.run(
         ["git", "merge-base", "--is-ancestor", freeze_commit, head], cwd=ROOT, check=False
     ).returncode if freeze_commit else 1
+    erratum_ancestor_rc = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", erratum_commit, head], cwd=ROOT, check=False
+    ).returncode if erratum_commit else 1
+    expected_states = erratum["corrected_expected_counts"]["unique_initial_states"]
+    expected_event_instances = erratum["corrected_expected_counts"]["event_instances"]
     checks.extend(
         [
             {"check": "subject_commit_is_ancestor", "passed": subprocess.run(["git", "merge-base", "--is-ancestor", SUBJECT_COMMIT, head], cwd=ROOT, check=False).returncode == 0},
             {"check": "freeze_committed_before_execution", "passed": bool(freeze_commit) and freeze_commit != head and ancestor_rc == 0, "freeze_commit": freeze_commit, "execution_head": head},
-            {"check": "finite_state_count", "passed": len(states) == 384, "observed": len(states), "expected": 384},
-            {"check": "finite_state_uniqueness", "passed": len({state_digest(state) for _, state in states}) == 384},
+            {"check": "arithmetic_erratum_committed_before_law_execution", "passed": bool(erratum_commit) and erratum_commit != head and erratum_ancestor_rc == 0, "erratum_commit": erratum_commit, "execution_head": head},
+            {"check": "finite_state_count", "passed": len(states) == expected_states, "observed": len(states), "expected": expected_states},
+            {"check": "finite_state_uniqueness", "passed": len({state_digest(state) for _, state in states}) == expected_states, "observed": len({state_digest(state) for _, state in states}), "expected": expected_states},
             {"check": "event_template_count", "passed": len(TEMPLATE_IDS) == 14, "observed": len(TEMPLATE_IDS), "expected": 14},
-            {"check": "event_instance_count", "passed": len(states) * len(TEMPLATE_IDS) == 5376, "observed": len(states) * len(TEMPLATE_IDS), "expected": 5376},
+            {"check": "event_instance_count", "passed": len(states) * len(TEMPLATE_IDS) == expected_event_instances, "observed": len(states) * len(TEMPLATE_IDS), "expected": expected_event_instances},
             {"check": "network_access", "passed": True, "observed": "NOT_USED_BY_RUNNER"},
             {"check": "random_sampling", "passed": True, "observed": "NONE_EXHAUSTIVE_ENUMERATION"},
         ]
     )
-    return {"all_passed": all(item["passed"] for item in checks), "checks": checks, "execution_head_sha": head, "freeze_commit_sha": freeze_commit}
+    return {"all_passed": all(item["passed"] for item in checks), "checks": checks, "execution_head_sha": head, "freeze_commit_sha": freeze_commit, "erratum_commit_sha": erratum_commit}
 
 
 class Recorder:
@@ -511,8 +526,9 @@ def main() -> int:
     started_wall = time.perf_counter()
     started_cpu = time.process_time()
     freeze = json.loads(FREEZE_PATH.read_text())
+    erratum = json.loads(ERRATUM_PATH.read_text())
     states = initial_states()
-    preconditions = hard_preconditions(freeze, states)
+    preconditions = hard_preconditions(freeze, erratum, states)
     if not preconditions["all_passed"]:
         print(json.dumps({"terminal": "CANNOT_CHECK_EXECUTION_PRECONDITION", "hard_preconditions": preconditions}, sort_keys=True))
         return 2
@@ -636,6 +652,8 @@ def main() -> int:
 
     bound_names = [
         "FREEZE_V1.json",
+        "FREEZE_ARITHMETIC_ERRATUM_V1.json",
+        "PREFLIGHT_FAILURE_V1.json",
         "RAW_CASES_V1.jsonl",
         "RAW_MANIFEST_V1.json",
         "PRIMARY_RESULT_V1.json",
@@ -653,6 +671,7 @@ def main() -> int:
         "base_sha": SUBJECT_COMMIT,
         "execution_subject_head_sha": preconditions["execution_head_sha"],
         "freeze_commit_sha": preconditions["freeze_commit_sha"],
+        "freeze_erratum_commit_sha": preconditions["erratum_commit_sha"],
         "bindings": [file_receipt(HERE / name) for name in bound_names],
         "all_case_level_outcomes": raw_receipt,
         "denominators": recorder.counts,
