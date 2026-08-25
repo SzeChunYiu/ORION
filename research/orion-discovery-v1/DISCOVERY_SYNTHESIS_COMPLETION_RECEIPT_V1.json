@@ -3,7 +3,7 @@
   "stack_base_pr": 1280,
   "stack_base_sha": "7261c306947f357779ff279b0d400c90ab8822a9",
   "branch": "shadow/orion-discovery-three-mode-v1-20260825",
-  "status": "LOCAL_REFERENCE_GREEN__HOSTED_REVIEW_PENDING",
+  "status": "HOSTED_REFERENCE_GREEN__EXTERNAL_AUTHORITY_PENDING",
   "theorem_entries": 20,
   "compute_jobs_frozen": 7,
   "focused_tests_passed": 15,
@@ -12,6 +12,15 @@
     "python -m pytest -q tests/unit/discovery/test_synthesis_modes.py tests/unit/discovery/test_structural_navigation.py",
     "python -m compileall -q src/orion/discovery/synthesis_modes.py src/orion/discovery/structural_navigation.py scripts/check_orion_discovery_synthesis_v1.py"
   ],
+  "hosted_verification": {
+    "workflow": "orion-discovery-synthesis-v1",
+    "run_id": 32820548443,
+    "conclusion": "success",
+    "validated_theorem_entries": 20,
+    "validated_compute_jobs": 7,
+    "hostile_tests_passed": 15,
+    "inherited_unrelated_red": "p6-p8-candidate-ci/check_p1_p5_native_embedding_v1.py; same failure present on stack base SHA"
+  },
   "content_sha256": {
     ".github/workflows/orion-discovery-synthesis-v1.yml": "f3e3a43868cd1044c0f731604baf0c1d3c7764d790434c6e323defd7f31fbd57",
     "development/orion-discovery-three-mode-v1-2026-08-25/README.md": "9c272e31d587f608a6eea8350af7fda45b221cd5c4412153676c7f470f12cf79",
