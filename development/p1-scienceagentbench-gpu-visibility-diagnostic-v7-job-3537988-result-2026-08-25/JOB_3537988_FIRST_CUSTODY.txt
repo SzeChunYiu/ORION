@@ -1,0 +1,20 @@
+P1_V7_CUSTODY_ROOTS
+label=ROOT type=directory mode=500 owner=scyiu group=hep links=3 bytes=33 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-gpu-visibility-v7-20260825
+label=RUN state=ABSENT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825
+label=OUTPUT state=ABSENT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825/evidence
+label=LOG type=directory mode=700 owner=scyiu group=hep links=2 bytes=10 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825-submit-logs
+P1_V7_CUSTODY_FILES
+FILE state=PRESENT bytes=0 sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 stat=55:597008592524:0:600:scyiu:1:1787635434 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825-submit-logs/slurm-3537988.out
+FILE state=PRESENT bytes=172 sha256=aedf4ea5358a0d37bc6f1ddbc3b78b0e392adab3a1093b241665961c2bee495c stat=55:597008592525:172:600:scyiu:1:1787635434 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825-submit-logs/slurm-3537988.err
+FILE state=ABSENT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825/evidence/GPU_VISIBILITY_DIAGNOSTIC_RESULT_V1.json
+FILE state=ABSENT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825/evidence/GPU_VISIBILITY_DIAGNOSTIC_CANNOT_CHECK_V1.json
+--- STDOUT BEGIN ---
+--- STDOUT END ---
+--- STDERR BEGIN ---
+P1_SAB_GPU_VISIBILITY_DIAGNOSTIC_TRAMPOLINE_V1_CANNOT_CHECK failure_code=SUBMIT_ROOT_INVALID detail_sha256=1e0b0ccad8cab36771b3dc63311de1f26ba7a08dc692d14a02fa47ce1780b759
+--- STDERR END ---
+--- SACCT ---
+JobIDRaw|JobName|State|ExitCode|ElapsedRaw|NodeList|AllocTRES|Start|End
+3537988|p1_sab_gpu_visibility_v1|FAILED|2:0|0|cg15|billing=1,cpu=1,gres/gpu:a40=1,gres/gpu=1,mem=4G,node=1|2026-08-25T07:23:54|2026-08-25T07:23:54
+3537988.batch|batch|FAILED|2:0|0|cg15|cpu=1,gres/gpu:a40=1,gres/gpu=1,mem=4G,node=1|2026-08-25T07:23:54|2026-08-25T07:23:54
+3537988.extern|extern|COMPLETED|0:0|0|cg15|billing=1,cpu=1,gres/gpu:a40=1,gres/gpu=1,mem=4G,node=1|2026-08-25T07:23:54|2026-08-25T07:23:54
