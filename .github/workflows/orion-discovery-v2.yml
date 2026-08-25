@@ -1,0 +1,39 @@
+name: orion-discovery-v2
+
+on:
+  pull_request:
+    paths:
+      - "research/orion-discovery-v2/**"
+      - "src/orion/discovery/knowledge_web.py"
+      - "tests/unit/discovery/test_knowledge_web.py"
+      - "scripts/check_orion_discovery_v2.py"
+      - ".github/workflows/orion-discovery-v2.yml"
+  push:
+    branches: [main]
+    paths:
+      - "research/orion-discovery-v2/**"
+      - "src/orion/discovery/knowledge_web.py"
+      - "tests/unit/discovery/test_knowledge_web.py"
+      - "scripts/check_orion_discovery_v2.py"
+      - ".github/workflows/orion-discovery-v2.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  knowledge-web-reference-core:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install ORION
+        run: python -m pip install -e '.[dev]'
+      - name: Validate theory and execution ledgers
+        run: python scripts/check_orion_discovery_v2.py
+      - name: Run hostile knowledge-web tests
+        run: python -m pytest -q tests/unit/discovery/test_knowledge_web.py
+      - name: Compile reference core
+        run: python -m compileall -q src/orion/discovery/knowledge_web.py
