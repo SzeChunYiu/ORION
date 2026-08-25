@@ -1,0 +1,137 @@
+{
+  "schema": "orion.discovery-v2.old-closure-certificate.v1",
+  "job_id": "DISC-SELF-01",
+  "purpose": "record what was already closed before this study so that a re-discovery is not counted as a new finding",
+  "closure_states_used": [
+    "CLOSED_BY_DESIGN",
+    "REGISTERED_AND_OPEN",
+    "UNDISCOVERED"
+  ],
+  "search_scope_justification": "searched by identifier rather than by topic: the two artifact digests, the binder basename, and the field name, each with git grep over all tracked files; plus git log on both the binder and the bound artifact; plus the 107 ISSUE nodes in DISC-WEB-01's KNOWLEDGE_WEB_V1.json",
+  "findings": [
+    {
+      "item": "the P15_V1 -> pyproject.toml hash difference itself",
+      "state": "CLOSED_BY_DESIGN",
+      "evidence": {
+        "declared_intent": "Bind a historical record to its frozen digest. Historical authorities are immutable records: they must rebuild from the digests recorded when they were frozen, never from the current working tree (the harness package legitimately evolves after a V1 freeze).",
+        "declared_intent_source": "src/orion/study/p15/active_claim_authority.py (_frozen_binding docstring)",
+        "chain_head_confirms_v1_is_superseded": "orion.programme.authority_staleness reports paper-15-orion-research-harness active=P15_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
+        "commits_that_moved_the_artifact_after_the_freeze": [
+          {
+            "commit": "7b97888f",
+            "role": "binder frozen here",
+            "artifact_sha256": "bfe497e0c16cde06431799a5a7f1e260757c9744402f40b16c2cff76643dcec7"
+          },
+          {
+            "commit": "f1c6e791",
+            "role": "changed the bound artifact after the freeze",
+            "subject": "2026-08-23 Make paper-defined research mechanics operational in shared harness (#871)",
+            "artifact_sha256": "f29df9d7433c44ac1c4b34633f1453e0239b89670b766e4b56d72072662312dc"
+          },
+          {
+            "commit": "b337eeb3",
+            "role": "changed the bound artifact after the freeze",
+            "subject": "2026-08-24 [skip ci] P15+Q3: package shared non-authorizing instrument (#1137)",
+            "artifact_sha256": "d75778a3c6b06e395e418ce9fb63db0cc85b5cebaa5a47cee696e3bf722ea6e9"
+          }
+        ]
+      },
+      "consequence": "a re-report of this hash as a new defect would be a re-discovery, and is not counted as one by this job",
+      "correction_to_the_briefing_of_this_job": "this job was briefed that the binder is a LIVE claim authority. ORION's own chain reader shows it is a superseded historical record. The correction is recorded rather than reconciled."
+    },
+    {
+      "item": "the 56 drifts as a set",
+      "state": "REGISTERED_AND_OPEN",
+      "evidence": "DISC-IMPACT-01 registered them on 2026-08-25 with terminal UNTRACKED_SEMANTIC_IMPACT_OR_AUTHORITY_DRIFT; no closure record was found"
+    },
+    {
+      "item": "P15 build_active_claim_authority carries a MISSING_CUSTODY entry",
+      "state": "REGISTERED_AND_OPEN",
+      "evidence": "research/development/cannot_check_inventory.json registers this constructor under category MISSING_CUSTODY",
+      "relation_to_this_deficiency": "adjacent but not the same: that entry concerns custody of the emitted record, not the absence of a binding-type field"
+    },
+    {
+      "item": "the missing per-binding verification-mode field",
+      "state": "UNDISCOVERED",
+      "evidence": "no tracked JSON binder outside this discovery layer carries verification_mode, binding_type or historical_binding; see donor_probe"
+    }
+  ],
+  "donor_probe": {
+    "authority_staleness": {
+      "status": "CLEAN",
+      "exit_code": 0,
+      "stdout_tail": [
+        "  paper-12-adaptive-state-reasoning: active=P12_ACTIVE_CLAIM_AUTHORITY_V5.json superseded=4",
+        "  paper-13-responsibility-carrying-state: active=P13_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
+        "  paper-15-orion-research-harness: active=P15_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
+        "AUTHORITY_STALENESS_PASS"
+      ],
+      "what_it_checks": "whether a surface cites a superseded authority version as current",
+      "covers_this_deficiency": false,
+      "why_not": "it audits citation currency, never the freshness or the type of an authority's artifact bindings"
+    },
+    "diagnostic_inputs_verifier_search": {
+      "status": "CLEAN",
+      "scope": "git grep -l diagnostic_inputs over all tracked files",
+      "files": [
+        "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json",
+        "research/development/cannot_check_inventory.json",
+        "src/orion/study/p15/active_claim_authority.py"
+      ],
+      "verifier_found": false,
+      "why": "the only code file among them constructs the bindings; no tracked file recomputes a diagnostic_inputs digest against its artifact"
+    },
+    "binding_type_field_search": {
+      "status": "CLEAN",
+      "scope": "git grep over tracked *.json for a per-binding verification-mode field, excluding this discovery layer's own outputs",
+      "hits_outside_discovery_layer": [],
+      "field_exists_in_authority_binders": false
+    },
+    "donor_sufficient": false
+  },
+  "issue_node_search": {
+    "registered_issue_nodes": {
+      "status": "CANNOT_CHECK",
+      "where": "research/orion-discovery-v2/exec/DISC-IMPACT-01/CHANGE_IMPACT_GRAPH_V1.json",
+      "issue_nodes_present": 107,
+      "issue_nodes_carrying_title_or_body": 0,
+      "reason": "the nodes carry an issue number only, with no title or body (their own provenance field says they were parsed from git log subjects with no network), so they cannot be searched by topic offline",
+      "what_would_resolve_it": "network access to the issue tracker, or a registered issue corpus carrying titles"
+    },
+    "commit_subject_search": {
+      "status": "CLEAN",
+      "scope": "git log --format=%s over the full reachable history of HEAD",
+      "commits_scanned": 2887,
+      "terms": [
+        "binding drift",
+        "authority binding",
+        "verification_mode",
+        "historical binding",
+        "re-freeze",
+        "refreeze",
+        "stale binding",
+        "frozen binding"
+      ],
+      "matches": [
+        "[skip ci] Execute DISC-IMPACT-01: 56 real binding drifts, one in a live authority (#1305) (#1322)",
+        "feat(p3): pre-freeze Phase-3 Governed Self-ORION study protocol (#209, inert \u2014 closes no gate) (#269)"
+      ],
+      "prior_registration_found": true,
+      "interpretation": "a match here is not by itself a prior registration of THIS deficiency. Each match is classified below.",
+      "match_classification": [
+        {
+          "subject_contains": "Execute DISC-IMPACT-01",
+          "registers": "the 56 drifts as a set",
+          "registers_the_missing_binding_type_field": false,
+          "note": "this commit subject carries the same 'live authority' characterisation of the P15 binder that this job corrects; the mischaracterisation is therefore committed to history"
+        },
+        {
+          "subject_contains": "pre-freeze Phase-3",
+          "registers": "an unrelated protocol freeze",
+          "registers_the_missing_binding_type_field": false
+        }
+      ],
+      "this_deficiency_previously_registered": false
+    }
+  }
+}

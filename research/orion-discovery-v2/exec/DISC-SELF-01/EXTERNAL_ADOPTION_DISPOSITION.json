@@ -1,0 +1,30 @@
+{
+  "schema": "orion.discovery-v2.external-adoption-disposition.v1",
+  "job_id": "DISC-SELF-01",
+  "adoption_authority": "EXTERNAL",
+  "adoption_authority_holder": "EXTERNAL_REPOSITORY_OWNER (unassigned, not exercised)",
+  "disposition": "PENDING_WITHHELD",
+  "adoption_performed": false,
+  "adoptions_recorded": [],
+  "evaluation_authority": "EXTERNAL",
+  "evaluation_authority_holder": "EXTERNAL_INDEPENDENT_EVALUATOR (unassigned, not exercised)",
+  "evaluation_performed_by_this_job": false,
+  "what_this_job_did": [
+    "registered a deficiency in R0",
+    "generated four alternatives with recorded origin",
+    "surfaced consequences, including one authority-gated reopen edge",
+    "recorded what was already closed"
+  ],
+  "what_this_job_did_not_do": [
+    "score, rank, recommend or otherwise evaluate any proposal",
+    "adopt or apply any proposal",
+    "modify any file outside research/orion-discovery-v2/exec/DISC-SELF-01/"
+  ],
+  "what_an_external_adopter_would_need": [
+    "an independent evaluator to assess the four alternatives",
+    "a decision on whether a historical record may ever be re-frozen (this decides P3 outright)",
+    "a census of evidence bindings across all authority binders to price P4"
+  ],
+  "rollback": "no repository state was changed, so no rollback is required",
+  "negative_history_policy": "this job's outputs are additive; nothing here rewrites an outcome-bearing record of R0"
+}

@@ -1,0 +1,106 @@
+{
+  "schema": "orion.discovery-v2.self-application-contract.v1",
+  "job_id": "DISC-SELF-01",
+  "class": "PROSPECTIVE_PROTECTED_SELF_STUDY",
+  "authority": "external evaluator/adopter required",
+  "incumbent_version_R0": {
+    "commit": "6f296f3173894e19458f475db88d2ce717db106b",
+    "branch": "main",
+    "frozen_before_study": true
+  },
+  "principals": {
+    "proposal": "DISC-SELF-01 (proposing agent, this run)",
+    "evaluator": "EXTERNAL_INDEPENDENT_EVALUATOR (unassigned, not exercised)",
+    "adopter": "EXTERNAL_REPOSITORY_OWNER (unassigned, not exercised)",
+    "pairwise_distinct": true,
+    "evaluator_slot_exercised": false,
+    "adopter_slot_exercised": false,
+    "why_unexercised_is_not_a_failure": "design section 9.2 step 10 lists 'leaves unresolved' as a legitimate end state; section 9.1 forbids the proposal principal from certifying value or adoption, it does not require a certifier to appear"
+  },
+  "self_evaluation_prohibition": {
+    "rule": "this job emits no adequacy, soundness, quality or recommendation verdict on its own proposals",
+    "enforcement": "an automated scan of this job's own outputs for proposer-authored verdict vocabulary; see verdict_scan below"
+  },
+  "problem_target": {
+    "registered_deficiency": "authority evidence bindings carry no machine-readable field distinguishing an immutable historical record (drift expected) from a live verifying binding (drift is a defect); the distinction exists only in a Python docstring, not in the artifact an auditor reads",
+    "how_it_surfaced": "DISC-IMPACT-01 ran a binding auditor over the repository and returned 56 drifts with no way to separate the benign from the defective",
+    "subject_binding": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json -> packages/orion-research-harness/pyproject.toml"
+  },
+  "subjects_considered_and_declined": [
+    {
+      "candidate": "DISC-WEB-01: 5 of 24 theorems with no complete support family",
+      "declined_because": "WEB-01's own atlas states this is a statement about the web's coverage, not about the theorems; a repair reduces to 'register more evidence', which an external adopter cannot evaluate as a repair"
+    },
+    {
+      "candidate": "DISC-PROOF-ECONOMY-01: hardening INDEPENDENT_VALIDATOR_PRESENT drives adequate plans 32 -> 0",
+      "declined_because": "a counterfactual about a hardening that has not been applied, not a present defect state of R0"
+    }
+  ],
+  "scope_limits": {
+    "in_scope": "the single authority.evidence_binding drift",
+    "out_of_scope": "the other 55 drifts, all manifest.SHA256SUMS; their intent was not established by this job and SHA256SUMS drift has a different discriminator",
+    "not_performed": [
+      "no file outside this job's exec directory was modified",
+      "no binding was re-frozen",
+      "no commit, push or pull request"
+    ]
+  },
+  "facts": {
+    "binder": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json",
+    "binder_sha256_now": "1d023194cf2fc9fe0fb9399322d30f13be162343ed99afa93eadea318059d05e",
+    "recorded_harness_package_sha256": "bfe497e0c16cde06431799a5a7f1e260757c9744402f40b16c2cff76643dcec7",
+    "recorded_dual_protocol_sha256": "af686698c0e9acca6e9a5f9c385473d14bff058cfcf4fe55c971c702ebbaec0c",
+    "actual_harness_package_sha256": "d75778a3c6b06e395e418ce9fb63db0cc85b5cebaa5a47cee696e3bf722ea6e9",
+    "actual_dual_protocol_sha256": "af686698c0e9acca6e9a5f9c385473d14bff058cfcf4fe55c971c702ebbaec0c",
+    "binder_frozen_at_commit": "7b97888f",
+    "artifact_history_since_freeze": [
+      {
+        "commit": "7b97888f",
+        "role": "binder frozen here",
+        "artifact_sha256": "bfe497e0c16cde06431799a5a7f1e260757c9744402f40b16c2cff76643dcec7"
+      },
+      {
+        "commit": "f1c6e791",
+        "role": "changed the bound artifact after the freeze",
+        "subject": "2026-08-23 Make paper-defined research mechanics operational in shared harness (#871)",
+        "artifact_sha256": "f29df9d7433c44ac1c4b34633f1453e0239b89670b766e4b56d72072662312dc"
+      },
+      {
+        "commit": "b337eeb3",
+        "role": "changed the bound artifact after the freeze",
+        "subject": "2026-08-24 [skip ci] P15+Q3: package shared non-authorizing instrument (#1137)",
+        "artifact_sha256": "d75778a3c6b06e395e418ce9fb63db0cc85b5cebaa5a47cee696e3bf722ea6e9"
+      }
+    ],
+    "declared_intent_quote": "Bind a historical record to its frozen digest. Historical authorities are immutable records: they must rebuild from the digests recorded when they were frozen, never from the current working tree (the harness package legitimately evolves after a V1 freeze).",
+    "declared_intent_source": "src/orion/study/p15/active_claim_authority.py (_frozen_binding docstring)"
+  },
+  "detector_polarity_test": {
+    "detector": "superseded-chain-member classifier for authority.evidence_binding drift",
+    "chain_reader": "CLEAN: imported ORION's own chain reader",
+    "positive_control": {
+      "binding": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json -> packages/orion-research-harness/pyproject.toml",
+      "expected": "EXPECTED_HISTORICAL_DRIFT",
+      "observed": "EXPECTED_HISTORICAL_DRIFT",
+      "detail": {
+        "classification": "EXPECTED_HISTORICAL_DRIFT",
+        "actual_sha256": "d75778a3c6b06e395e418ce9fb63db0cc85b5cebaa5a47cee696e3bf722ea6e9",
+        "reason": "binder P15_ACTIVE_CLAIM_AUTHORITY_V1.json is superseded; chain head is P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+        "chain_active": "P15_ACTIVE_CLAIM_AUTHORITY_V3.json"
+      }
+    },
+    "negative_control": {
+      "binding": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json -> development/orion-q-max-r0/DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_PROTOCOL.md",
+      "expected": "CLEAN",
+      "observed": "CLEAN",
+      "detail": {
+        "classification": "CLEAN",
+        "actual_sha256": "af686698c0e9acca6e9a5f9c385473d14bff058cfcf4fe55c971c702ebbaec0c",
+        "reason": "recorded digest equals working-tree digest"
+      },
+      "why_this_control": "it lives inside the same binder as the positive control, so a pass proves the detector discriminates the binding and not merely the file"
+    },
+    "discriminates": true,
+    "known_limitation": "the detector classifies by BINDER version, while the repository's intent is per-BINDING. A live binding carried inside a superseded authority would be misclassified as benign. This limitation is an argument for proposal REGIME-CHANGE (a per-binding type field), not evidence against it."
+  }
+}
