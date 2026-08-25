@@ -1,0 +1,26 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-PA-01",
+  "toolchain": {
+    "lean": "4.33.1 (x86_64-unknown-linux-gnu, commit 819816b2e0a3)",
+    "installed_via": "elan, on LUNARC, during this session",
+    "z3_also_present": "4.13.0 (module) -- not used for the reconstruction"
+  },
+  "lean": {
+    "file": "OSTC_Decidable.lean",
+    "exit_code": 0,
+    "theorems": 18,
+    "sorryAx_occurrences": 0,
+    "axiom_report": {
+      "OSTC.t8_no_factor_eliminable": "no axioms",
+      "OSTC.t10_no_blocker_lost": "propext",
+      "OSTC.t11_survival_iff_some_family_clean": "propext, Quot.sound",
+      "OSTC.t20_noninterference": "no axioms",
+      "OSTC.guard_survival_not_constant": "no axioms"
+    }
+  },
+  "totals": {
+    "theorems_checked": 18,
+    "unexpected_results": 0
+  }
+}
