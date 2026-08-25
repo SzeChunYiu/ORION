@@ -1,0 +1,316 @@
+# Typed Evidence-License Propagation and Retraction in Positive Scientific Rule Graphs
+
+## Abstract
+
+A falsifier should retract claims by derivation and by evidence type. Boolean
+dependency graphs address only the first requirement: they can report whether a
+claim remains reachable, but not whether the surviving derivation licenses a
+theorem, a finite exact statement, a prospective claim, or a post-outcome
+repair. We define a finite typed component for positive conjunctive scientific
+rule graphs. Let \(\Lambda\) be a finite set of evidence licenses and label each
+claim by a subset of \(\Lambda\). Independent seeds carry declared licenses.
+Every rule has an explicit cap and transmits only the intersection of its
+premises' licenses with that cap. Directly refuted claims are fixed at the empty
+label. The resulting monotone operator has a least fixed point on the finite
+powerset lattice.
+
+We prove finite convergence, rule-order independence, and a typed proof-tree
+theorem: a license reaches a claim exactly when a finite untainted proof tree
+carries that license through every leaf seed and rule cap. Unsupported cycles
+remain empty; seeded cycles propagate only permitted licenses; added
+refutations can only remove licenses; and the removed claim-license pairs form
+the unique minimal retraction relative to the declared seeds, rules, caps, and
+refutations. Caps enforce nonpromotion: a post-outcome repair cannot acquire a
+prospective license, and bounded computational evidence cannot acquire theorem
+status merely because the untyped conclusion is reachable.
+
+A deterministic evaluator and public JSON schema implement the semantics. Three
+bounded case encodings illustrate forecast falsification, query-specific
+information falsification, and nonpromotion of a computational support
+frontier. The component is deliberately restricted to finite positive rule
+graphs. It does not model negation, probability, inconsistency, or general
+scientific judgment.
+
+## 1. Introduction
+
+Scientific records mix claims supported by different evidence types: analytic
+proof, constructive bounds, finite exact computation, prospective prediction,
+forecast-only evidence, post-outcome repair, and bounded computation awaiting
+external replay. A counterexample can invalidate one layer while leaving
+another intact.
+
+An untyped dependency graph can preserve independent derivations, but it can
+still overpromote a surviving repair. If a post-outcome predictor becomes exact
+on the observed panel, it should not inherit prospective status merely because
+the old predictor and the repair share a conclusion string. Similarly, a
+bounded exact search should not acquire theorem authority by passing through a
+rule whose conclusion is a theorem-shaped sentence.
+
+We attach evidence licenses to the least fixed point of a positive rule graph.
+The substrate stays close to positive Datalog and provenance: finite claims,
+positive conjunctive rules, monotone iteration, and finite proof trees. The
+scientific addition is explicit nonpromotion. Derivability and evidence license
+must travel together.
+
+Our contributions are:
+
+1. powerset labels for typed evidence licenses on finite claims;
+2. capped conjunctive transfer, which admits a license only when every premise
+   and the rule cap admit it;
+3. a proof-tree characterization of the least fixed point;
+4. monotone and uniquely minimal typed retraction under direct refutation;
+5. a deterministic reusable evaluator and machine-readable schema; and
+6. three bounded cases that expose the difference between reachability and
+   licensed scientific use.
+
+## 2. Claims, licenses, and rules
+
+Let \(Q\) be a finite claim set and \(\Lambda\) a finite license set. Example
+licenses are
+
+\[
+\begin{gathered}
+\textsf{THEOREM}, \quad \textsf{CONSTRUCTIVE\_BOUND}, \quad
+\textsf{FINITE\_EXACT}, \quad \textsf{PROSPECTIVE}, \\
+\textsf{FORECAST\_ONLY}, \quad \textsf{POST\_OUTCOME}, \quad
+\textsf{BOUNDED\_COMPUTATION}, \quad \textsf{EXTERNAL\_REPLAY}.
+\end{gathered}
+\]
+
+A label is a subset of \(\Lambda\), ordered by inclusion. Its join is union and
+its bottom element is the empty set. Each claim \(q\) has an independent seed
+label \(\sigma(q)\subseteq\Lambda\).
+
+A positive rule is a triple
+
+\[
+r=(A\to h, K_r),
+\]
+
+where \(A\subseteq Q\) is a nonempty finite body, \(h\in Q\) is the head, and
+\(K_r\subseteq\Lambda\) is the rule cap. For premise labels
+\((\ell_a)_{a\in A}\), define
+
+\[
+\tau_r((\ell_a)_{a\in A})
+=K_r\cap\bigcap_{a\in A}\ell_a.
+\]
+
+A license crosses a rule only when every premise carries it and the cap permits
+it. Rules with empty bodies are represented as independent seeds. Let
+\(R\subseteq Q\) be the directly refuted claims.
+
+## 3. Least-fixed-point semantics
+
+For a label assignment \(x\in(2^\Lambda)^Q\), define
+
+\[
+F_R(x)_q=
+\begin{cases}
+\varnothing,&q\in R, \\
+\displaystyle\sigma(q)\cup
+\bigcup_{\substack{r\,\mid\,\operatorname{head}(r)=q}}
+\tau_r(x|_{\operatorname{body}(r)}),&q\notin R.
+\end{cases}
+\]
+
+The operator is monotone. Starting from all-empty labels, iterate to
+stabilization and denote the result by
+
+\[
+\operatorname{Lic}(R)=\operatorname{lfp}(F_R).
+\]
+
+**Theorem 1 (finite convergence and order independence).** Bottom-up iteration
+converges after at most \(|Q||\Lambda|+1\) strict license-addition rounds. Every
+fair rule order reaches the same least fixed point.
+
+**Proof.** With \(R\) fixed, labels can only gain licenses. There are at most
+\(|Q||\Lambda|\) claim-license pairs. The least fixed point of the monotone
+operator is independent of the operational scan order. ∎
+
+## 4. Typed proof trees
+
+A proof tree for \((q, \lambda)\) is valid under \(R\) when:
+
+1. its root is \(q\), and no node is directly refuted;
+2. a leaf \(a\) satisfies \(\lambda\in\sigma(a)\); and
+3. an internal node applies a registered rule \(A\to h\) whose cap contains
+   \(\lambda\), with one child proof tree carrying \(\lambda\) for every
+   antecedent in \(A\).
+
+**Theorem 2 (proof-tree equivalence).** A license \(\lambda\) belongs to
+\(\operatorname{Lic}(R)_q\) if and only if a finite valid proof tree exists for
+\((q, \lambda)\).
+
+**Proof.** Induction on the first iteration round in which \(\lambda\) enters
+the label of \(q\) constructs a tree. Conversely, induction on tree height
+shows that each leaf license enters from a seed and crosses every internal rule
+through its cap. ∎
+
+Discarding labels and keeping only claims with nonempty labels recovers the
+ordinary reachability view, but loses the evidence distinction.
+
+## 5. Cycles and nonpromotion
+
+Rules \(a\to b\) and \(b\to a\) with no seed labels have the all-empty least
+fixed point. A cycle supplies a derivation shape, not evidence. If \(a\) has a
+theorem seed and both caps permit \(\textsf{THEOREM}\), that license propagates
+to \(b\). If either cap excludes it, the license stops at that edge.
+
+**Corollary 3 (license conservation).** Every license at a conclusion occurs
+in every leaf seed and every rule cap along at least one finite proof tree.
+
+A repair rule whose cap includes \(\textsf{POST\_OUTCOME}\) but excludes
+\(\textsf{PROSPECTIVE}\) cannot transmit prospective authority, even when one
+of its premises happens to carry both. Nonpromotion is therefore enforced by
+the rule semantics rather than by an informal note attached after evaluation.
+
+## 6. Retraction under refutation
+
+**Theorem 4 (refutation monotonicity).** If \(R\subseteq R'\), then
+
+\[
+\operatorname{Lic}(R')_q\subseteq\operatorname{Lic}(R)_q
+\]
+
+for every claim \(q\).
+
+**Proof.** For every \(x\), \(F_{R'}(x)\) is pointwise contained in \(F_R(x)\).
+Iteration from bottom preserves containment. ∎
+
+Let \(L_{\mathrm{pre}}=\operatorname{Lic}(\varnothing)\) and
+\(L_{\mathrm{post}}=\operatorname{Lic}(R)\). Define
+
+\[
+\operatorname{Ret}(R)
+=\{(q, \lambda):
+\lambda\in L_{\mathrm{pre}}(q)\setminus L_{\mathrm{post}}(q)\}.
+\]
+
+**Theorem 5 (relative minimality).** Relative to the declared seeds, rules,
+caps, and refutations, \(L_{\mathrm{post}}\) is the unique assignment retaining
+exactly the claim-license pairs with a finite untainted proof tree. Hence
+\(\operatorname{Ret}(R)\) is the unique minimum well-founded retraction.
+
+This is a semantic minimum: no supported license is removed and no unsupported
+license remains. It makes no claim that the input license policy is the only
+reasonable scientific policy.
+
+## 7. Executable semantics
+
+The reference evaluator validates a finite JSON object containing the license
+set, claim identifiers, seed labels, capped conjunctive rules, and refutations.
+It then performs deterministic bottom-up iteration. Output records the final
+label of every claim, the number of iterations, and the typed retraction from
+the unrefuted baseline.
+
+The implementation rejects undeclared claims or licenses, empty rule bodies,
+duplicate rule identifiers, and malformed caps. Canonical sorting makes equal
+inputs produce byte-stable semantic outputs. The evaluator is deliberately
+small enough for line-by-line comparison with \(F_R\); it does not infer caps or
+scientific policy.
+
+## 8. Bounded case encodings
+
+### 8.1 Forecast falsification
+
+A compiler record contains an explicit feasible construction, an independent
+all-size support theorem, and a compact equality forecast supported by a finite
+prospective panel. A fresh exact row satisfies \(C_{\mathrm{exact}}=10<11\),
+directly refuting the equality and its regime label. The construction and the
+independent support theorem retain their licenses.
+
+A repaired support-two forecast can carry theorem authority inherited from the
+independent theorem and post-outcome authority from its construction. Its repair
+cap excludes \(\textsf{PROSPECTIVE}\), so it cannot be counted as prospective
+confirmation. The old and repaired panels remain distinct evidence objects.
+
+### 8.2 Decision survives value and witness falsifiers
+
+A separate compiler theorem gives a four-index certificate for unary
+optimality. Exact counterexamples show that complete pair information does not
+determine exact improvement or the presence of a triple block, and that all
+proper interaction marginals do not determine exact value.
+
+Decision, value, and optimizer-structure claims occupy separate nodes. Refuting
+pair-value sufficiency removes its licenses without touching the independently
+seeded decision theorem. This is query typing: one representation can carry a
+theorem license for a decision query and no exact-value license.
+
+### 8.3 A bounded support frontier does not decide an exact constant
+
+A finite-group record has analytic licenses for a width-one
+generalized-Davenport corridor and a saturation-defect lemma. An exact internal
+search excludes a registered length-31 obstruction through support 22, but its
+evidence contract labels the result as bounded computation awaiting external
+replay.
+
+Any rule from that frontier to a support claim is capped by the same licenses.
+No proof tree carries \(\textsf{THEOREM}\) to either exact candidate value of
+the generalized Davenport constant or to the associated extremal-spectrum
+statement. Repeated internal implementations do not become independent
+mathematical replication.
+
+## 9. Relation to prior work
+
+Truth-maintenance systems and belief revision own dependency-directed update.
+Positive Datalog owns least-fixed-point rule semantics. Annotated and semiring
+provenance owns typed query annotations, alternative derivations, recursion,
+and deletion behavior. Work on recursive-query causality relates minimal
+supports, causes, responsibility, and deletion robustness.
+
+We claim no generic novelty for fixed points, proof trees, provenance labels,
+minimal supports, hitting sets, causality, or deletion robustness. The residual
+is a narrowly scoped scientific component: a finite evidence-license vocabulary,
+cap-preserving nonpromotion, exact typed retraction, a deterministic evaluator,
+and bounded cases in which the license distinction changes what may be reported.
+
+## 10. Reproducibility and limitations
+
+The evaluator is checked against exhaustive fixed-point enumeration on bounded
+random rule graphs, and unit tests cover unsupported and seeded cycles, cap
+blocking, alternative derivations, and refutation monotonicity. The proofs carry
+the general finite authority.
+
+The component handles positive conjunctive rules only. Stratified negation,
+defaults, probabilistic evidence, and inconsistency are out of scope. The
+license set and caps are curated policy inputs, not inferred truths. Powerset
+intersection is one transparent transfer choice. The cases demonstrate
+machine-checkable behavior in registered records; they are not evidence of
+broad human-science usability.
+
+## 11. Conclusion
+
+Reachability alone is not scientific authority. A claim can remain reachable
+under a weaker license, and a repaired claim can regain exactness without
+regaining prospective status. The typed least fixed point makes those
+distinctions explicit and executable.
+
+The component fails closed in two directions: unsupported cycles create no
+licenses, and underlicensed derivations create no stronger evidence types. It
+is also minimally destructive relative to its declared inputs, because every
+surviving proof tree preserves exactly the licenses it carries.
+
+## Data and code availability
+
+The submission package includes the JSON schema, deterministic Python
+evaluator, unit tests, and bounded case fixtures required to reproduce every
+executable claim. A permanent archival identifier should be added before final
+submission.
+
+## References
+
+1. J. Doyle, “A Truth Maintenance System,” *Artificial Intelligence* **12**,
+   231–272 (1979). DOI: 10.1016/0004-3702(79)90008-0
+2. J. P. Martins and S. C. Shapiro, “A Model for Belief Revision,”
+   *Artificial Intelligence* **35**, 25–79 (1988).
+3. C. Bourgaux, P. Bourhis, L. Peterfreund, and M. Thomazo, “Revisiting
+   Semiring Provenance for Datalog,” in *KR 2022* (2022).
+   DOI: 10.24963/kr.2022/10
+4. M. Abo Khamis et al., “Convergence of Datalog over (Pre-)Semirings,”
+   arXiv:2105.14435.
+5. R. B. Thapa and S. Staab, “Causality and Minimal Supports in Recursive
+   Datalog,” arXiv:2607.16443 (2026).
+6. R. B. Thapa and S. Staab, “Causal Explanations for Stratified Datalog,”
+   arXiv:2608.21141 (2026).

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orion.invalid/schemas/evidence-license-system-v1.json",
+  "title": "Finite typed evidence-license rule graph",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "licenses", "claims", "rules", "refutations"],
+  "properties": {
+    "version": {"const": "1.0"},
+    "licenses": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "seeds"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "seeds": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "body", "head", "cap"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "body": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "head": {"type": "string", "minLength": 1},
+          "cap": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "refutations": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

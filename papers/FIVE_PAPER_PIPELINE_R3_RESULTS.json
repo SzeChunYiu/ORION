@@ -1,0 +1,33 @@
+{
+  "schema": "orion.five-paper-publication-pipeline-r3.v1",
+  "all_checks": true,
+  "checks": {
+    "all_controls_present": true,
+    "all_manuscripts_present": true,
+    "bounded_frontier_does_not_gain_theorem": true,
+    "closure_frozen_in_all_controls": true,
+    "editor_synthesis_recorded": true,
+    "five_terminal_states_recorded": true,
+    "inline_math_balanced": true,
+    "pandoc_parses_all_manuscripts": true,
+    "paper_d_examples_evaluate": true,
+    "paper_d_retired_framing_absent": true,
+    "paper_d_unit_tests_pass": true,
+    "post_outcome_repair_not_prospective": true,
+    "r2_scientific_authority_passes": true,
+    "required_claim_surfaces_present": true,
+    "submission_surface_clean": true
+  },
+  "word_counts": {
+    "A": 1667,
+    "B": 1510,
+    "C": 1673,
+    "D": 1918,
+    "N": 1850
+  },
+  "surface_qa": {
+    "academic_paper_skills_merge": "8a2ff684eb4b777b88592e57637984f08544f56e",
+    "strict_error_findings": 0,
+    "pandoc_math_parse": "pass"
+  }
+}

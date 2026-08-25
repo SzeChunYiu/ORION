@@ -1,0 +1,311 @@
+# Low-Order Optimality Certificates and Sharp Value-Estimation Limits in Structured Quantum Compilation
+
+## Abstract
+
+A compact statistic can determine whether optimization is necessary while
+remaining provably inadequate for the value and structure of an optimum. We
+establish this hierarchy for a Pauli partition compiler with a fixed structural
+SELECT–PREPARE–width objective. For every number of terms \(m\ge5\), the unary
+compiler is globally optimal if and only if two clause families hold: every
+pair gain is nonpositive, and the sum of any two disjoint pair gains plus one is
+nonpositive. Thus a search over all set partitions has a decision certificate
+whose largest clause touches four term indices. The threshold is sharp at
+\(m=4\).
+
+Decision sufficiency does not imply value or witness sufficiency. For every
+\(t\ge1\), we construct two \(5t\)-term instances with identical ordered weights
+and identical complete labeled pair-gain matrices. Both strictly improve on the
+unary baseline, but their exact improvements are \(12t-2\) and \(10t-1\).
+Every estimator restricted to that pair representation therefore has worst-case
+real additive error at least \((2t-1)/2\), worst-case integer error at least
+\(t\), and symmetric multiplicative factor at least
+\(\sqrt{(12t-2)/(10t-1)}\). No uniform factor below \(\sqrt{6/5}\) is possible.
+The same fiber forces incompatible optimizer structures: one family requires a
+triple block, whereas the other uses only pairs and singletons.
+
+The limitation persists at high order. For every \(m\ge5\) and \(L\ge1\), two
+instances agree on every labeled common-factor count through order \(m-2\) but
+have improvements separated by
+\([m(\lceil\log_2m\rceil+1)-1]L\). Möbius inversion shows that every nonzero
+integer trade preserving all proper labeled marginals is an integer multiple of
+the parity trade and touches all \(2^{m-1}\) Boolean cells. The result separates
+exact low-order decision from value estimation and optimizer recovery without
+invoking computational hardness.
+
+## 1. Introduction
+
+Global combinatorial optimization supports several distinct downstream
+questions: whether a baseline is optimal, how much improvement is available,
+what structure an optimizer must contain, and whether a feature representation
+approximates the optimum uniformly. A representation can be complete for one
+question and incomplete for another.
+
+We give an exact scalable example in structured quantum compilation. The
+compiler partitions \(m\) Pauli terms into arbitrary blocks, extracts common
+Pauli factors, and pays a structural cost. Although its candidate space contains
+every set partition, unary optimality is decided by inequalities involving at
+most four indices. This makes pair information appear unusually powerful. Our
+remaining theorems locate its exact limits.
+
+The contributions are:
+
+1. a four-index decision theorem for every \(m\ge5\), with an exact four-term
+   counterexample;
+2. two pair-indistinguishable product families with unbounded additive value
+   gap and forced triple-versus-pair optimizer structure;
+3. exact real, integer, symmetric multiplicative, and one-sided minimax lower
+   bounds;
+4. a construction showing that interactions through order \(m-2\) do not
+   determine exact value; and
+5. a primitive-kernel theorem showing that the corresponding invisible
+   difference trade must be the dense parity direction.
+
+## 2. Compiler and objective
+
+An instance is an ordered tuple of nonidentity Pauli strings
+\(p_1, \ldots, p_m\). Let \(w_i\) be the weight of term \(i\), let
+\(W=\sum_iw_i\), and let \(f(S)\) count the columns on which every term in a
+nonempty block \(S\) has the same nonidentity Pauli.
+
+The compiler chooses a set partition \(\Pi\) and factor/ancilla options. Under
+the fixed equal-weight structural objective, factoring and shared width dominate
+their alternatives. For \(|\Pi|\ge2\), the reduced cost is
+
+\[
+\begin{aligned}
+C(\Pi)={}&2m+|\Pi|-3+\sum_{S\in\Pi}d(|S|)
++\max_{S\in\Pi}b(|S|)\\
+&+\sum_{S\in\Pi}\left[2f(S)+(b(|S|)+2)
+\bigl(w(S)-|S|f(S)\bigr)\right],
+\end{aligned}
+\]
+
+where \(b(s)=\lceil\log_2s\rceil\), \(b(1)=0\), and
+
+\[
+d(1)=0, \qquad
+d(s)=d(\lceil s/2\rceil)+d(\lfloor s/2\rfloor)+s-2.
+\]
+
+The unary incumbent has cost \(C_U=2W+3m-3\). The one-block flag convention is
+evaluated separately. These are structural compiler costs, not physical T
+counts, depth, runtime, qubits, or fault-tolerant overhead.
+
+## 3. A four-index decision certificate
+
+For every pair, define
+
+\[
+g_{ij}=4f(\{i, j\})-(w_i+w_j).
+\]
+
+Let \(\mathcal P_4(m)\) require
+
+\[
+g_{ij}\le0
+\]
+
+for every pair and
+
+\[
+g_{ij}+g_{k\ell}+1\le0
+\]
+
+for every two disjoint pairs.
+
+**Theorem 1.** For every \(m\ge5\),
+
+\[
+\min_\Pi C(\Pi)=C_U
+\quad\Longleftrightarrow\quad
+\mathcal P_4(m).
+\]
+
+**Proof outline.** Expanding \(C_U-C(\Pi)\) gives an exact sum of block gains.
+For a block of size at least three, a matching or cycle decomposition bounds its
+gain by sums of pair gains. The first clause controls isolated pair gains. The
+second controls the only way two disjoint pair blocks can jointly evade the
+single-pair bound; integrality supplies the extra unit. The exceptional
+one-block convention is bounded separately when \(m\ge5\). Conversely, every
+failed clause directly constructs either a profitable pair partition or a
+profitable two-pair partition. ∎
+
+The four-term instance
+
+\[
+XXII, \quad XYII, \quad XZII, \quad XIXX
+\]
+
+satisfies both clause families, yet has \(C_U=27\) and one-block cost \(23\).
+The term-count threshold is therefore sharp.
+
+## 4. Complete pair information, different values and optimizers
+
+For every \(t\ge1\), construct \(t\) disjoint five-term gadgets. Families
+\(A_t\) and \(B_t\) have the same ordered term weights and the same common-factor
+count for every labeled pair, hence the same complete pair-gain matrix. Both
+violate \(\mathcal P_4\) and strictly beat the unary baseline. Exact
+decomposition yields
+
+\[
+\Delta_A(t)=12t-2,
+\qquad
+\Delta_B(t)=10t-1.
+\]
+
+Their value gap is \(2t-1\). Every optimum in \(A_t\) contains a distinguished
+triple block and one pair per gadget. Every optimum in \(B_t\) uses only pairs
+and singletons. Thus complete pair information determines neither the exact
+improvement nor the presence of a triple block in an optimizer.
+
+## 5. Exact minimax consequences
+
+Let \(\Phi\) be any deterministic real-valued estimator whose input is exactly
+the term count, ordered weights, and complete labeled pair-gain matrix. The two
+fiber members have identical inputs, so \(\Phi\) returns one value \(y_t\) for
+both.
+
+**Theorem 2 (additive minimax radius).** For every \(t\ge1\),
+
+\[
+\max\{|y_t-\Delta_A|,|y_t-\Delta_B|\}
+\ge \frac{2t-1}{2}.
+\]
+
+The midpoint attains equality. If the estimator must return an integer, the
+minimum worst-case error is exactly \(t\).
+
+**Proof.** Two real values at distance \(2t-1\) cannot both lie within a smaller
+radius of one estimate. The integer radius is the ceiling of half the distance.
+∎
+
+### 5.1 Symmetric multiplicative estimation
+
+For positive improvements, use the convention
+
+\[
+\Delta/\rho\le y\le\rho\Delta,
+\qquad \rho\ge1.
+\]
+
+**Theorem 3.** A common estimate valid for both fiber members requires
+
+\[
+\rho\ge
+\sqrt{\frac{\Delta_A}{\Delta_B}}
+=\sqrt{\frac{12t-2}{10t-1}}.
+\]
+
+The geometric mean attains equality. The bound increases with \(t\) and tends
+to \(\sqrt{6/5}\). Hence no estimator using only the stated pair information
+has a uniform symmetric factor strictly below \(\sqrt{6/5}\) on this family.
+
+For one-sided certificates, a common upper estimate must be at least
+\(\Delta_A\) but at most \(\alpha\Delta_B\) to approximate \(B_t\); the same
+ratio applies to a common lower estimate. Thus the asymptotic one-sided factor
+is at least \(6/5\). These are information lower bounds, not computational
+hardness results.
+
+## 6. Proper interactions still miss exact value
+
+Fix \(m\ge5\), set \(q=m-1\), and distinguish one anchor from \(q\) variable
+terms. Use every anchor-plus-variable support from one parity class in one
+instance and the opposite parity class in the other, each with multiplicity
+\(L\ge1\). Add identical all-term padding that makes the single block uniquely
+optimal in both instances.
+
+The resulting pair agrees on ordered weights and on every labeled common-factor
+count for subsets of size at most \(m-2\), yet
+
+\[
+\Delta(A)-\Delta(B)
+=\left[m(\lceil\log_2m\rceil+1)-1\right]L.
+\]
+
+For fixed \(m\), the ambiguity is unbounded in \(L\).
+
+## 7. The unique invisible direction
+
+Represent a trade column by a subset of \([q]\). Let
+\(\delta:2^{[q]}\to\mathbb Z\) be the signed multiplicity difference, and
+define its upper marginal by
+
+\[
+M(T)=\sum_{S\supseteq T}\delta(S).
+\]
+
+Equality of all proper labeled marginals is \(M(T)=0\) for every proper
+\(T\subsetneq[q]\).
+
+**Theorem 4 (proper-marginal kernel).** If every proper upper marginal vanishes,
+then
+
+\[
+\delta(S)=(-1)^{q-|S|}c,
+\qquad c=\delta([q]).
+\]
+
+**Proof.** Möbius inversion on the Boolean lattice expresses \(\delta(S)\) as
+the alternating sum of upper marginals over supersets of \(S\). Only the top
+marginal can remain. ∎
+
+If \(c\ne0\), every Boolean cell is used and exactly half occur on each signed
+side. A primitive integer trade therefore has mass at least
+\(2^{q-1}=2^{m-2}\) on each side. The parity construction with \(L=1\) attains
+this bound. The statement proves minimality of the *difference trade*; it does
+not prove that the common padding is minimal.
+
+## 8. Relation to prior work
+
+Markov-basis and hierarchical-model theory owns the generic language of
+fibers, marginal-preserving moves, toric ideals, and higher-order interactions
+invisible to lower marginals. Boolean-lattice Möbius inversion is classical.
+
+The residual result is the exact conjunction for the fixed compiler objective:
+a four-index certificate decides global unary optimality for all \(m\ge5\), the
+same pair representation has exact unbounded and multiplicative value limits,
+optimizer block structure is not identifiable, and even order-\(m-2\)
+information misses exact value through the primitive parity direction.
+
+## 9. Reproducibility and limitations
+
+The four-term witness, pair-indistinguishable gadgets, product formulas,
+minimax optima, and Boolean-lattice kernel have been checked with independent
+exact implementations; the analytic arguments provide all-parameter authority.
+
+The results apply to the stated structural objective. The decision theorem
+does not reconstruct an optimizer. The minimax bounds apply to estimators
+restricted to the exact declared representation. The high-order construction
+uses conservative common padding whose minimality is open. The work proves
+information nonidentifiability, not a complexity-class lower bound. Transfer to
+other compiler grammars or physical resource models remains open.
+
+## 10. Conclusion
+
+Information sufficiency is query-dependent. Complete pair information decides
+whether the unary compiler is optimal, yet it cannot recover the improvement
+value within arbitrarily small additive or fixed multiplicative error and
+cannot determine optimizer block structure. Even all labeled interactions
+below the top two orders fail to determine exact value, and the invisible
+integer direction is necessarily dense.
+
+A perfect decision statistic is therefore not automatically a useful value
+statistic. In this compiler, the distinction is exact, scalable, and
+independent of computational assumptions.
+
+## References
+
+1. P. Diaconis and B. Sturmfels, “Algebraic Algorithms for Sampling from
+   Conditional Distributions,” *The Annals of Statistics* **26**, 363–397
+   (1998). DOI: 10.1214/aos/1030563990
+2. A. Dobra, “Markov Bases for Decomposable Graphical Models,” *Bernoulli*
+   **9**, 1093–1108 (2003). DOI: 10.3150/bj/1072215202
+3. S. Hosten and S. Sullivant, “A Finiteness Theorem for Markov Bases of
+   Hierarchical Models,” *Journal of Combinatorial Theory, Series A* **114**,
+   311–321 (2007). DOI: 10.1016/j.jcta.2006.06.001
+4. M. Develin and S. Sullivant, “Markov Bases of Binary Graph Models,”
+   *Annals of Combinatorics* **7**, 441–466 (2003).
+   arXiv: math/0308280
+5. D. Král', S. Norine, and O. Pangrác, “Markov Bases of Binary Graph Models
+   of \(K_4\)-Minor-Free Graphs,” *Journal of Combinatorial Theory, Series A*
+   **117**, 759–765 (2010). DOI: 10.1016/j.jcta.2009.07.007
