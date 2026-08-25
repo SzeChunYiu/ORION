@@ -1,0 +1,54 @@
+P1_V7_V6_PRESERVATION_PASS root=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-gpu-visibility-v6-20260825 script=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/.p1-v6-deploy-79865e46.sh
+P1_V7_ARCHIVE_PASS merge=87a1f6f76dcefbc79d00c397a5aa9c7047a760b7 bytes=368640 sha256=88017af9faa0ed4d020c155af026a2edc597146c872b8b77550cc977bff2d6d8 members=42 regular_files=38
+P1_V7_DEPLOYMENT_ABSENT label=ROOT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-gpu-visibility-v7-20260825
+P1_V7_DEPLOYMENT_ABSENT label=RUN path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825
+P1_V7_DEPLOYMENT_ABSENT label=OUTPUT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825/evidence
+P1_V7_DEPLOYMENT_ABSENT label=LOG path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825-submit-logs
+P1_V7_DEPLOYMENT_MODE_SEAL_PASS regular=0400 entry=0500 directories=0500
+BODY_FREE_DIAGNOSTIC_EXPORT_MANIFEST_V1.json: OK
+DEVELOPMENT_PACKET.md: OK
+GPU_VISIBILITY_DIAGNOSTIC_CONTRACT_V1.json: OK
+GPU_VISIBILITY_DIAGNOSTIC_OUTPUT_SCHEMA_V1.json: OK
+HANDOFF_V1.md: OK
+JOB_3537915_PREDECESSOR_BINDING_V1.json: OK
+SYNTHETIC_VALIDATION_RECEIPT_V1.json: OK
+V6_DEPLOYMENT_VALIDATION_FAILURE_BINDING_V1.json: OK
+gpu_visibility_diagnostic_v1.py: OK
+run_gpu_visibility_diagnostic_v1.sh: OK
+validate_gpu_visibility_diagnostic_v1.py: OK
+P1_V7_LANE_INTEGRITY_PASS lane=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-gpu-visibility-v7-20260825/development/p1-scienceagentbench-gpu-visibility-diagnostic-v7-2026-08-25
+.gitattributes: OK
+DEPLOYMENT_PRE_SUBMIT_EVIDENCE.txt: OK
+DEVELOPMENT_PACKET.md: OK
+GPU_IDENTITY_FAILURE_CLASSIFICATION_V2.json: OK
+HANDOFF_V1.md: OK
+JOB_3537915_BACKEND_CANONICAL_MAP_DISCRIMINATOR_CANNOT_CHECK_V2.json: OK
+JOB_3537915_BODY_FREE_CANNOT_CHECK_CERTIFICATE_V2.json: OK
+JOB_3537915_OPERATOR_EVIDENCE.txt: OK
+NVIDIA_SMI_RETURN_VALUE_SOURCE_V1.txt: OK
+POST_MERGE_CLEAN_ARCHIVE_EVIDENCE.txt: OK
+RESULT_EXPORT_MANIFEST_V2.json: OK
+SUBMISSION_EVIDENCE.txt: OK
+SUBMIT_LINE_AND_RESIDUAL_EVIDENCE.txt: OK
+slurm-3537915.err: OK
+slurm-3537915.out: OK
+validate_gpu_identity_failure_classification_v2.py: OK
+validate_job_3537915_body_free_cannot_check_certificate_v2.py: OK
+P1_V7_LANE_INTEGRITY_PASS lane=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-gpu-visibility-v7-20260825/development/p1-scienceagentbench-backend-canonical-map-discriminator-v5-job-3537915-result-2026-08-25
+DEPLOYMENT_EVIDENCE.txt: OK
+DEPLOYMENT_VALIDATION_FAILURE_V1.json: OK
+DEVELOPMENT_PACKET.md: OK
+REMOTE_DEPLOYMENT_SCRIPT_V1.sh: OK
+RESULT_EXPORT_MANIFEST_V1.json: OK
+SANITIZED_INTERPRETER_PROBE.txt: OK
+VALIDATOR_FAILURE_OUTPUT.txt: OK
+P1_V7_LANE_INTEGRITY_PASS lane=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-gpu-visibility-v7-20260825/development/p1-scienceagentbench-gpu-visibility-diagnostic-v6-deployment-validation-result-2026-08-25
+P1_V7_DEPLOYMENT_VALIDATION_PASS label=normal bytes=8395 sha256=cb6b8a92cbbd7e0a1b261b57396ab1e2f7b407ffb90b2c4e5479a13ed0b39456 terminal=P1_SAB_GPU_VISIBILITY_DIAGNOSTIC_V1_SYNTHETIC_VALIDATION_PASS tests=50 protected_bodies=0 task_routes=0 tokenize=0 completion=0 generation=0 jobs=0 outcomes=0 production_admissibility=CANNOT_CHECK scientific_authority=NONE
+P1_V7_DEPLOYMENT_VALIDATION_PASS label=optimized bytes=8395 sha256=4c765ae8b282385545dc302bd0421d8b1010be86c1b3d29d309bd90473d447f4 terminal=P1_SAB_GPU_VISIBILITY_DIAGNOSTIC_V1_SYNTHETIC_VALIDATION_PASS tests=50 protected_bodies=0 task_routes=0 tokenize=0 completion=0 generation=0 jobs=0 outcomes=0 production_admissibility=CANNOT_CHECK scientific_authority=NONE
+P1_V7_DEPLOYMENT_VALIDATION_PASS label=isolated bytes=8395 sha256=01e9bc8d4000eacef422c2fe9c367d9e56f0d04c031bf10afefffaf7a8237219 terminal=P1_SAB_GPU_VISIBILITY_DIAGNOSTIC_V1_SYNTHETIC_VALIDATION_PASS tests=50 protected_bodies=0 task_routes=0 tokenize=0 completion=0 generation=0 jobs=0 outcomes=0 production_admissibility=CANNOT_CHECK scientific_authority=NONE
+P1_V7_DEPLOYMENT_VALIDATION_PASS label=exact_system_isolated bytes=5533 sha256=a89bd0e99b66876885513e12df3a56a6e6384acad6688fc08f618377bc41167c terminal=P1_SAB_GPU_VISIBILITY_DIAGNOSTIC_V1_SYNTHETIC_VALIDATION_PASS tests=50 protected_bodies=0 task_routes=0 tokenize=0 completion=0 generation=0 jobs=0 outcomes=0 production_admissibility=CANNOT_CHECK scientific_authority=NONE
+P1_V7_DEPLOYMENT_POST_VALIDATION_INTEGRITY_PASS
+P1_V7_POST_VALIDATION_ABSENT label=RUN path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825
+P1_V7_POST_VALIDATION_ABSENT label=OUTPUT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825/evidence
+P1_V7_POST_VALIDATION_ABSENT label=LOG path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825-submit-logs
+P1_V7_DEPLOYMENT_READY root=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-gpu-visibility-v7-20260825 log=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v7-20260825-submit-logs run_absent=true output_absent=true merge=87a1f6f76dcefbc79d00c397a5aa9c7047a760b7 archive_sha256=88017af9faa0ed4d020c155af026a2edc597146c872b8b77550cc977bff2d6d8
