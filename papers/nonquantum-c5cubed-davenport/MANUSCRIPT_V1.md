@@ -303,7 +303,7 @@ A true top-tier submission should add an independently auditable proof/replay pa
 
 ## 13. Limitations
 
-1. `D_4(C_5^3)` remains unresolved between 30 and 31.
+1. D_4(C_5^3) remains unresolved between 30 and 31.
 2. `31 in C_0(C_5^3)` is not proved.
 3. The width-one recurrence and lower bound are donor mathematics; the paper's value is their exact interaction with the early constants and the unresolved boundary.
 4. The support-23 frontier is bounded computational evidence, not promoted theorem authority in the current repository.

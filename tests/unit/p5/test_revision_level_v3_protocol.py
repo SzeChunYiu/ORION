@@ -55,15 +55,19 @@ def _load_preflight():
     )
 
 
-def test_current_v3_protocol_is_implemented_but_confirmatory_cannot_check() -> None:
+def test_current_v3_protocol_preserves_adverse_confirmatory_execution() -> None:
     protocol, baselines, report = _load_preflight()
-    assert protocol["protocol_status"] == "PROSPECTIVE_IMPLEMENTED_NOT_CONFIRMATORY_FROZEN"
-    assert protocol["outcome_accessed"] is False
+    assert (
+        protocol["protocol_status"]
+        == "CONFIRMATORY_EXECUTED_2026-08-24_NO_TERMINAL_UNDER_FROZEN_RULES"
+    )
+    assert protocol["outcome_accessed"] is True
     assert protocol["grants_scientific_authority"] is False
     assert protocol["grants_peer_review_ready"] is False
     assert report.status is ConfirmatoryPreflightStatus.CANNOT_CHECK
-    assert any("subject_revision" in blocker for blocker in report.blockers)
+    assert "outcome_accessed_before_confirmatory_freeze" in report.blockers
     assert any("m_open_only" in blocker for blocker in report.blockers)
+    assert not any("subject_revision" in blocker for blocker in report.blockers)
     assert not any("world_model_revision" in blocker for blocker in report.blockers)
     assert not any("representation_regime_revision" in blocker for blocker in report.blockers)
 
