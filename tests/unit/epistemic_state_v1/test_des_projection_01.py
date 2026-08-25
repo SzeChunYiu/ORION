@@ -2,6 +2,7 @@ from dataclasses import fields
 import importlib.util
 import json
 from pathlib import Path
+import subprocess
 import sys
 
 import pytest
@@ -21,6 +22,18 @@ assert SPEC is not None and SPEC.loader is not None
 RUNNER = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = RUNNER
 SPEC.loader.exec_module(RUNNER)
+
+
+def test_frozen_runner_import_has_no_unrelated_package_dependency():
+    completed = subprocess.run(
+        [RUNNER.EXPECTED_EXECUTABLE, str(RUNNER_PATH), "--help"],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode == 0, completed.stderr
 
 
 def test_freeze_denominator_matches_cartesian_class():

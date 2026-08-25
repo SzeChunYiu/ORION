@@ -11,6 +11,7 @@ from collections import Counter, defaultdict
 from dataclasses import fields
 from fractions import Fraction
 import hashlib
+import importlib.util
 import itertools
 import json
 import os
@@ -24,20 +25,22 @@ from typing import Any, Iterable
 
 
 ROOT = Path(__file__).resolve().parents[4]
-SRC = ROOT / "src"
-if str(SRC) not in sys.path:
-    sys.path.insert(0, str(SRC))
+MODEL_PATH = ROOT / "src" / "orion" / "epistemic_state_v1" / "model.py"
+MODEL_SPEC = importlib.util.spec_from_file_location("orion_des_projection_frozen_model", MODEL_PATH)
+if MODEL_SPEC is None or MODEL_SPEC.loader is None:
+    raise RuntimeError(f"cannot load frozen reference model: {MODEL_PATH}")
+MODEL = importlib.util.module_from_spec(MODEL_SPEC)
+sys.modules[MODEL_SPEC.name] = MODEL
+MODEL_SPEC.loader.exec_module(MODEL)
 
-from orion.epistemic_state_v1.model import (  # noqa: E402
-    Action,
-    Coordinate,
-    ResourceVector,
-    State,
-    Status,
-    SupportFamily,
-    Terminal,
-    promotion_policy,
-)
+Action = MODEL.Action
+Coordinate = MODEL.Coordinate
+ResourceVector = MODEL.ResourceVector
+State = MODEL.State
+Status = MODEL.Status
+SupportFamily = MODEL.SupportFamily
+Terminal = MODEL.Terminal
+promotion_policy = MODEL.promotion_policy
 
 
 JOB_ID = "DES-PROJECTION-01"
