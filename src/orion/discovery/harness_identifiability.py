@@ -164,6 +164,8 @@ def assess_precondition(
     case_ids: Sequence[str], eligibility: Mapping[str, bool]
 ) -> PreconditionReport:
     ordered_cases = tuple(case_ids)
+    if not ordered_cases or len(set(ordered_cases)) != len(ordered_cases):
+        raise ValueError("case identities must be non-empty and unique")
     if set(ordered_cases) != set(eligibility):
         raise ValueError("eligibility map must cover exactly the frozen case set")
     eligible = tuple(case_id for case_id in ordered_cases if eligibility[case_id])
@@ -177,22 +179,32 @@ def minimal_distinguishing_case_sets(
     target_id: str,
     case_ids: Sequence[str],
 ) -> tuple[tuple[str, ...], ...]:
-    """Enumerate minimum subsets identifying target against all alternatives.
+    """Enumerate minimum nonempty subsets identifying the target.
 
     Intended for small frozen case families.  An empty result means the full
     harness support is itself non-identifying relative to the registered
-    alternatives.
+    alternatives.  We require at least one concrete case even when only the
+    target variant is registered, because an empty scientific harness carries
+    no observational evidence.
     """
 
     ordered_cases = tuple(case_ids)
     full = assess_identifiability(variants, target_id=target_id, case_ids=ordered_cases)
     if not full.target_identified:
         return ()
-    for size in range(len(ordered_cases) + 1):
+    for size in range(1, len(ordered_cases) + 1):
         winners: list[tuple[str, ...]] = []
         for subset in combinations(ordered_cases, size):
+            subset_variants = tuple(
+                ClaimVariant(
+                    variant_id=variant.variant_id,
+                    outcomes={case_id: variant.outcomes[case_id] for case_id in subset},
+                    description=variant.description,
+                )
+                for variant in variants
+            )
             report = assess_identifiability(
-                variants, target_id=target_id, case_ids=subset
+                subset_variants, target_id=target_id, case_ids=subset
             )
             if report.target_identified:
                 winners.append(tuple(subset))
