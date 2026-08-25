@@ -1,0 +1,287 @@
+{
+  "schema": "orion.discovery.execution-backlog.v1",
+  "theory_identity": "research/orion-discovery-v1@V1",
+  "base_main_sha": "0a82fd324b02c8ceecc8fed3605f3fe73f1ce518",
+  "paper_authority_delta_default": "NONE",
+  "jobs": [
+    {
+      "job_id": "DISC-EDG-01",
+      "class": "LOCAL_EXACT",
+      "title": "Exhaustive finite Epistemic Decision Geometry correspondence",
+      "owned_theorems": ["EDG-T1", "EDG-T2", "EDG-T3", "EDG-T4", "EDG-T5", "EDG-T6", "EDG-T7"],
+      "frozen_inputs": {
+        "state_counts": [2, 3, 4],
+        "action_counts": [2, 3, 4],
+        "integer_loss_values": [0, 1, 2, 3],
+        "probability_families": ["uniform", "small_rational"],
+        "partition_families": "all set partitions within tractable scope"
+      },
+      "required_outputs": [
+        "EXECUTION_PROTOCOL.json",
+        "RAW_RESULT_MANIFEST.json",
+        "RESULT_RECEIPT.json",
+        "INDEPENDENT_CHECKER_RECEIPT.json",
+        "THEOREM_IDENTIFYING_HARNESS_RECEIPT.json",
+        "CLAIM_DELTA.json"
+      ],
+      "positive_terminal": "EDG_FINITE_CORRESPONDENCE_GREEN",
+      "negative_terminal": "EDG_COUNTEREXAMPLE_FOUND",
+      "cannot_check_terminal": "EDG_CANNOT_CHECK",
+      "gate": "all exact identities and refinement inequalities agree; canonical hedge witnesses retained",
+      "authority": "finite exact only"
+    },
+    {
+      "job_id": "DISC-HIF-01",
+      "class": "LOCAL_REPOSITORY_AUDIT",
+      "title": "Theorem-identifiability audit of all completed OSTC executions",
+      "owned_theorems": ["HIF-T1", "HIF-T3", "HIF-T4", "HIF-T5", "HIF-T6", "HIF-T7", "HIF-T8", "HIF-T9"],
+      "frozen_inputs": {
+        "execution_root": "research/orion-foundations-v3/exec/",
+        "required_jobs": "all completed directories present at frozen main SHA",
+        "registered_mutations": [
+          "constant_terminal",
+          "premise_deletion",
+          "reference_circularity",
+          "precondition_empty",
+          "outcome_leakage",
+          "information_equivalent_tie"
+        ]
+      },
+      "required_outputs": [
+        "OSTC_EXECUTION_IDENTIFIABILITY_MATRIX.json",
+        "VACUITY_AND_REPAIR_ATLAS.md",
+        "per-job THEOREM_IDENTIFYING_HARNESS_RECEIPT.json"
+      ],
+      "positive_terminal": "ALL_LOAD_BEARING_OSTC_EXECUTIONS_IDENTIFIABILITY_CLASSIFIED",
+      "negative_terminal": "UNRECORDED_VACUITY_OR_CIRCULARITY_FOUND",
+      "cannot_check_terminal": "EXECUTION_ARTIFACT_GAP",
+      "gate": "every job has explicit surviving alternative class and clause/precondition coverage",
+      "authority": "repository audit only"
+    },
+    {
+      "job_id": "DISC-T19-01",
+      "class": "LOCAL_FORMAL_AND_COUNTERMODEL",
+      "title": "Replace the tautological T19 transcript core with a genuine reflexive-custody game",
+      "owned_theorems": ["HIF-T2", "GRT-T10"],
+      "frozen_inputs": {
+        "candidate_types": ["honest_improvement", "evaluator_gaming"],
+        "control_regimes": ["candidate_controls_evaluator", "protected_root"],
+        "observable_contract": "derived from executions, never hard-coded equal",
+        "required_mixed_outcome": true
+      },
+      "required_outputs": [
+        "formal game definition",
+        "minimum indistinguishable pair or refutation",
+        "positive protected-root construction",
+        "Lean or exhaustive correspondence",
+        "THEOREM_IDENTIFYING_HARNESS_RECEIPT.json"
+      ],
+      "positive_terminal": "REFLEXIVE_CUSTODY_IMPOSSIBILITY_NONTAUTOLOGICAL",
+      "negative_terminal": "T19_STRUCTURAL_CORE_REFUTED",
+      "cannot_check_terminal": "T19_GAME_CANNOT_CHECK",
+      "gate": "equal observations must emerge from the game rather than the fixture",
+      "authority": "same-programme formal result"
+    },
+    {
+      "job_id": "DISC-P9-SETCOVER-01",
+      "class": "HEAVY_EXACT",
+      "title": "Freeze and execute an identifying intervention-panel/set-cover grid",
+      "owned_theorems": ["EDG-T9", "HIF-T5"],
+      "frozen_inputs": {
+        "minimum_matrix_shape": [5, 6],
+        "larger_shapes": [[6, 7], [7, 8]],
+        "matrix_sources": ["complete where tractable", "prospectively seeded random"],
+        "comparators": ["exact minimum separating set", "greedy set cover"],
+        "precondition": "at least one certified greedy-suboptimal instance before aggregate scoring"
+      },
+      "required_outputs": [
+        "all exact minima",
+        "greedy gaps",
+        "minimum greedy-suboptimal witness",
+        "cross-implementation checker",
+        "CLAIM_DELTA.json"
+      ],
+      "positive_terminal": "T14_SET_COVER_REDUCTION_EXERCISED",
+      "negative_terminal": "DECLARED_GRID_STILL_NONIDENTIFYING",
+      "cannot_check_terminal": "EXACT_SEARCH_RESOURCE_LIMIT",
+      "gate": "greedy strictly worse on at least one frozen eligible instance",
+      "authority": "finite exact"
+    },
+    {
+      "job_id": "DISC-ORIGIN-01",
+      "class": "LOCAL_IMPLEMENTATION",
+      "title": "Integrate ProposalOrigin.v1 into concept, method, and instrument candidates",
+      "owned_theorems": ["GRT-T1", "GRT-T2", "GRT-T5", "GRT-T9"],
+      "frozen_inputs": {
+        "candidate_classes": ["ConceptCandidate", "method edit", "instrument edit"],
+        "forbidden": ["target oracle", "supplied hidden operator counted as invention", "missing generation trace"]
+      },
+      "required_outputs": [
+        "schema migration",
+        "backward-compatible readers",
+        "hostile tests",
+        "proposal-origin manifest for every discovery candidate"
+      ],
+      "positive_terminal": "PROPOSAL_ORIGIN_ENFORCED_ACROSS_DISCOVERY_CANDIDATES",
+      "negative_terminal": "ORIGIN_MODEL_INSUFFICIENT",
+      "cannot_check_terminal": "ORIGIN_INTEGRATION_CANNOT_CHECK",
+      "gate": "no outside-closure terminal without generated primitive and reducibility evidence",
+      "authority": "engineering conformance"
+    },
+    {
+      "job_id": "DISC-HIST-01",
+      "class": "CURATION_AND_MODEL_EXECUTION",
+      "title": "Chronology-safe historical discovery pilot",
+      "owned_theorems": ["HCP-T1", "HCP-T3"],
+      "frozen_inputs": {
+        "breakthrough_episode_count": 12,
+        "matched_control_count": 12,
+        "domain_strata": ["mathematics", "physics", "chemistry_or_materials", "biology_or_engineering"],
+        "required_objects": ["ModelChronologyContract.v1", "DiscoveryEquivalenceWitness.v1"],
+        "candidate_packet": "source-projected pre-cutoff only"
+      },
+      "required_outputs": [
+        "episode/source manifests",
+        "model chronology receipts",
+        "candidate outputs sealed before evaluator reveal",
+        "validity and equivalence adjudication",
+        "leakage audit",
+        "false certainty and CORRECT_UNRESOLVED counts"
+      ],
+      "positive_terminal": "HISTORICAL_RECONSTRUCTION_MECHANISM_SUPPORTED",
+      "negative_terminal": "HISTORICAL_RECONSTRUCTION_NO_INCREMENTAL_VALUE_OR_LEAKAGE",
+      "cannot_check_terminal": "MODEL_CHRONOLOGY_CANNOT_CHECK",
+      "gate": "success must survive famous-name, terminology, metadata, and post-cutoff leakage attacks",
+      "authority": "historical mechanism only"
+    },
+    {
+      "job_id": "DISC-CF-01",
+      "class": "GENERATED_EXACT_BENCHMARK",
+      "title": "Counterfactual twin and no-jump discovery benchmark",
+      "owned_theorems": ["HCP-T2", "GRT-T3", "GRT-T6"],
+      "frozen_inputs": {
+        "parent_episodes": "eligible DISC-HIST-01 episodes",
+        "twins_per_episode": 1,
+        "no_jump_controls_per_domain": 3,
+        "required_changes": ["solution-bearing law or mechanism", "surface names", "constants or entities"],
+        "preserved": ["obstruction type", "validation semantics", "resource envelope class"]
+      },
+      "required_outputs": [
+        "CounterfactualTwinContract.v1",
+        "generator leakage checker",
+        "old-closure referee",
+        "hidden transformation labels",
+        "transfer and false-invention results"
+      ],
+      "positive_terminal": "COUNTERFACTUAL_DISCOVERY_MECHANISM_TRANSFER_SUPPORTED",
+      "negative_terminal": "HISTORICAL_SUCCESS_DOES_NOT_TRANSFER",
+      "cannot_check_terminal": "COUNTERFACTUAL_TWIN_VALIDITY_CANNOT_CHECK",
+      "gate": "historical answer must be invalid or insufficient in each twin",
+      "authority": "generated-world transfer"
+    },
+    {
+      "job_id": "DISC-FRONTIER-MATH-01",
+      "class": "PROSPECTIVE_FRONTIER_ESCROW",
+      "title": "First present-day exact-domain discovery campaign",
+      "owned_theorems": ["GRT-T3", "GRT-T4", "GRT-T6", "GRT-T7", "GRT-T8", "GRT-T9", "HCP-T4"],
+      "frozen_inputs": {
+        "domain": "finite or constructive mathematics with exact checker",
+        "target_selection": "open or externally escrowed before candidate output",
+        "old_language": "frozen primitive and donor closure",
+        "comparators": ["exact search", "program synthesis", "evolutionary search", "strong LLM research agent", "domain-native solver"],
+        "custody": "external or cryptographically and procedurally independent"
+      },
+      "required_outputs": [
+        "ProspectiveFrontierEscrow.v1",
+        "ProposalOrigin.v1 for every candidate",
+        "old-closure obstruction certificate",
+        "hidden proof/counterexample validation",
+        "held-out family transfer",
+        "donor subtraction",
+        "all false candidates"
+      ],
+      "positive_terminal": "PROSPECTIVE_EXACT_DOMAIN_VALIDATED_RESIDUAL",
+      "negative_terminal": "DONOR_COMPOSITION_SUFFICIENT_OR_FALSE_DISCOVERY",
+      "cannot_check_terminal": "EXTERNAL_ESCROW_OR_VALIDITY_CANNOT_CHECK",
+      "gate": "no target or solution access before proposal sealing",
+      "authority": "validity external; novelty separate"
+    },
+    {
+      "job_id": "DISC-RSE-01",
+      "class": "BLINDED_RESEARCH_MACHINE_TRIAL",
+      "title": "Does the strengthened harness improve scientific research decisions?",
+      "owned_theorems": ["HIF-T8", "GRT-T9", "HCP-T5"],
+      "frozen_inputs": {
+        "parent": "#669",
+        "systems": ["raw research agent", "reflection", "multi-agent review", "donor-composed governance", "ORION Discovery V1"],
+        "case_types": ["positive", "null", "negative", "donor-subsumed", "non-identifiable", "leaky", "regime-change"],
+        "hard_guard": "useful discovery cannot fall below frozen noninferiority margin"
+      },
+      "required_outputs": [
+        "false novelty and claim-widening rates",
+        "useful discovery rate",
+        "post-hoc drift",
+        "donor-subsumption detection",
+        "cost",
+        "independent blinded dispositions"
+      ],
+      "positive_terminal": "ORION_DISCOVERY_HARNESS_IMPROVES_RESEARCH_DECISIONS",
+      "negative_terminal": "DONOR_GOVERNANCE_SUFFICIENT_OR_OVERCONSERVATIVE",
+      "cannot_check_terminal": "BLINDED_ADJUDICATION_CANNOT_CHECK",
+      "gate": "candidate and evaluator identities separated",
+      "authority": "external scientific adjudication required"
+    },
+    {
+      "job_id": "DISC-NOV-01",
+      "class": "EXTERNAL_NOVELTY",
+      "title": "Hostile prior-art and novelty adjudication of the Discovery V1 residual",
+      "owned_theorems": ["GRT-T11"],
+      "frozen_inputs": {
+        "claims": [
+          "Epistemic Decision Geometry integration",
+          "Theorem-Identifying Harness receipt",
+          "Generative Reach and Discovery Credit factorization",
+          "Historical-Counterfactual-Prospective triangulation"
+        ],
+        "routes": ["exact term", "function", "parent discipline", "benchmark", "cited-by", "hostile already solved"],
+        "independence": "reviewer not author/programme proposer"
+      },
+      "required_outputs": [
+        "ScientificNoveltyCertificate per atomic residual",
+        "donor ownership matrix",
+        "struck and narrowed claims",
+        "external reviewer record"
+      ],
+      "positive_terminal": "DISCOVERY_V1_RESIDUAL_NOVELTY_EXTERNALLY_SUPPORTED",
+      "negative_terminal": "ALREADY_SOLVED_OR_NOVELTY_NARROWED",
+      "cannot_check_terminal": "NOVELTY_CANNOT_CHECK",
+      "gate": "no LLM novelty score can authorize the outcome",
+      "authority": "external"
+    },
+    {
+      "job_id": "DISC-NATSCI-01",
+      "class": "FUTURE_NATURAL_SCIENCE",
+      "title": "Instrument and intervention discovery pilot",
+      "owned_theorems": ["GRT-T3", "GRT-T6", "HCP-T5"],
+      "depends_on": ["DISC-EDG-01", "DISC-HIF-01", "DISC-ORIGIN-01", "DISC-CF-01", "DISC-FRONTIER-MATH-01"],
+      "frozen_inputs": {
+        "minimum_domains": ["one physics digital twin", "one chemistry or materials simulator"],
+        "candidate_edit_types": ["INSTRUMENT_OR_INTERVENTION_EDIT", "VALIDATION_OR_MEASUREMENT_EDIT"],
+        "require_physical_or_simulated_consequence": true
+      },
+      "required_outputs": [
+        "instrument semantics",
+        "construction feasibility",
+        "measurement error model",
+        "hidden prediction",
+        "donor instrument-design baselines",
+        "external domain review"
+      ],
+      "positive_terminal": "SCOPED_INSTRUMENT_DISCOVERY_VALUE_SUPPORTED",
+      "negative_terminal": "TEXT_PROPOSAL_ONLY_OR_DONOR_SUFFICIENT",
+      "cannot_check_terminal": "NATURAL_SCIENCE_INTERFACE_CANNOT_CHECK",
+      "gate": "textual plausibility alone never counts as instrument discovery",
+      "authority": "external domain validity required"
+    }
+  ]
+}
