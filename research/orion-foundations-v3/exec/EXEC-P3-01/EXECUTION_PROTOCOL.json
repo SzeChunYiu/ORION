@@ -1,0 +1,58 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-P3-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {"location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": ["OSTC-T9"]},
+  "frozen_before_outcomes": true,
+  "task": "Compute global-cone/gluing obstructions on source-disjoint ontology and schema families.",
+  "what_the_theorem_asserts": {
+    "OSTC-T9": "Two implementations I,J are scientifically fully abstract for responsibility family R0 when obs_I(s)=obs_I(t) iff obs_J(s)=obs_J(t) for every pair distinguished by some target terminal in R0. If both expose the same quotient partition and implement the same bridge rules, they induce identical target judgments. Each target map factors through the common quotient, so equal quotient classes give equal decoder inputs and equal terminals. This establishes ideal-product TIES and forbids inherent centralization claims without an additional measurable property."
+  },
+  "why_this_matters_to_the_papers": "The 'ideal product ties' consequence is the formal basis for a nonclaim several papers carry: P6 and P7 record IDEAL_PRODUCT_EQUIVALENT in their terminals, P8 claims no generic authorization novelty, and #1131's routing forbids inherent-expressivity and centralization claims. If the tie failed, those nonclaims would be understated rather than overstated -- the papers would be conceding something the theory does not require.",
+
+  "code_identity": {"runner": "run_full_abstraction_v1.py",
+    "independent_checker": "check_full_abstraction_independent_v1.py",
+    "checker_independence": "The checker does not import the runner. Quotients are recomputed as explicit equivalence-class sets and compared by set equality, rather than by the runner's pairwise-agreement predicate. Terminal agreement is recomputed by decoding each class independently."},
+  "data_identity": {"generated": true, "generator_seed": 20260825, "no_external_data": true},
+  "comparator_identity": {
+    "centralized_implementation": "An implementation permitted an extra observable coordinate the other lacks. T9 forbids inherent centralization claims WITHOUT an additional measurable property, so this comparator must WIN only when its extra coordinate is target-relevant, and must TIE whenever the extra coordinate distinguishes no pair any terminal distinguishes. Both behaviours must be observed; a comparator that always wins would mean the extra property is always measurable here and the tie is untested."
+  },
+  "information_and_tool_access": {"runner": "declared grid only; no network, no model calls", "checker": "raw manifest only"},
+  "resource_vector": {"compute": "single-process CPU enumeration", "wallclock_bound_seconds": 1800},
+  "independent_unit": "The (implementation pair, responsibility family) cell. Object pairs within a cell are exhaustively enumerated.",
+  "estimands": {
+    "full_abstraction_biconditional": "Over every implementation pair and responsibility family: is (identical target judgments on all objects) exactly equivalent to (equal quotient partitions restricted to terminal-distinguished pairs), with zero exceptions in both directions?",
+    "ideal_product_ties": "Over every fully abstract pair: do the two implementations produce identical terminals on every object, with zero divergences? This is the tie the theorem claims.",
+    "both_outcomes": "Do fully abstract and non-fully-abstract pairs both occur? A grid where all pairs are equivalent cannot test the criterion.",
+    "centralization_needs_measurability": "Does the centralized comparator TIE whenever its extra coordinate distinguishes no terminal-relevant pair, and WIN only when it does? Both must occur."
+  },
+  "multiplicity": "No hypothesis test; universal and existence claims over total enumeration.",
+  "positive_terminal": "P3_GLOBAL_CONE_OBSTRUCTIONS_SUPPORTED",
+  "positive_conditions": [
+    "full-abstraction biconditional holds with zero exceptions in both directions",
+    "every fully abstract pair produces identical terminals on every object (the ideal-product tie)",
+    "both fully abstract and non-fully-abstract pairs occur",
+    "the centralized comparator both ties and wins, in the predicted conditions"
+  ],
+  "negative_terminal": "P3_MAPPING_OBSTRUCTION_MODEL_INCOMPLETE",
+  "negative_conditions": [
+    "any pair where full abstraction and quotient equality come apart in either direction",
+    "any fully abstract pair whose terminals diverge, which would break the ideal-product tie the papers rely on",
+    "all pairs fully abstract or none, making the criterion untestable here",
+    "the centralized comparator wins even when its extra coordinate is target-irrelevant, which would mean centralization pays without a measurable property"
+  ],
+  "cannot_check_terminal": "P3_ONTOLOGY_GRID_INCOMPLETE",
+  "cannot_check_conditions": ["grid not exhausted within the wallclock bound", "independent checker cannot be run"],
+  "raw_output_schema": {"file": "RAW_RESULT_MANIFEST.json",
+    "fields": {"grid": "echoed", "abstraction": "pairs, fully_abstract, not_fully_abstract, biconditional_violations, minimal_witness",
+      "tie": "fully_abstract_pairs, terminal_divergences", "centralization": "cases, ties_when_irrelevant, wins_when_relevant, wins_when_irrelevant",
+      "totals": "cells_enumerated, wallclock_seconds"}},
+  "checker_and_authority_owner": {"checker": "check_full_abstraction_independent_v1.py",
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Two implementations inside one programme; not external adjudication."},
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem, move a gate, weaken a comparator, hide a negative, or rewrite theory after outcome access."
+}
