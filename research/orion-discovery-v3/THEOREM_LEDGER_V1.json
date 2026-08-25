@@ -1,0 +1,313 @@
+{
+  "schema": "orion.discovery.v3.theorem-ledger.v1",
+  "date": "2026-08-25",
+  "theorems": [
+    {
+      "theorem_id": "FD-T0",
+      "name": "Matched comparison well-posedness",
+      "statement": "If candidate and donors do not share frozen task, information, tool, evaluator and resource contracts, no frontier-dominance terminal is defined.",
+      "assumptions": [
+        "same task identities",
+        "same candidate-visible information",
+        "same tool access",
+        "frozen before outcomes"
+      ],
+      "proof_or_reference_artifact": "ComparisonContract.verify / matched_and_frozen",
+      "smallest_boundary_or_counterexample": "Unmatched information lets an answer-bearing candidate appear superior.",
+      "status": "DERIVED_FOR_DECLARED_CONTRACT_CLASS",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "FD-T1",
+      "name": "Weak scientific dominance preorder",
+      "statement": "Under one fixed comparison contract, donor conservativity, false-promotion non-amplification and componentwise resource noninferiority form a reflexive and transitive relation.",
+      "assumptions": [
+        "fixed task/evaluator/resource dimensions",
+        "componentwise resource order"
+      ],
+      "proof_or_reference_artifact": "SCIENTIFIC_FRONTIER_DOMINANCE_V1.md \u00a76",
+      "smallest_boundary_or_counterexample": "Incomparable resource dimensions prevent a total order but not a preorder.",
+      "status": "MATHEMATICALLY_DERIVED",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "FD-T2",
+      "name": "Strict expansion preservation",
+      "statement": "A conservative successor preserving a previous outside-closure witness also strictly expands the original donor family.",
+      "assumptions": [
+        "previous strict witness remains valid",
+        "successor weakly dominates predecessor"
+      ],
+      "proof_or_reference_artifact": "SCIENTIFIC_FRONTIER_DOMINANCE_V1.md \u00a76",
+      "smallest_boundary_or_counterexample": "Deleting the witness or changing its contract defeats the theorem.",
+      "status": "MATHEMATICALLY_DERIVED",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "FD-T3",
+      "name": "Finite frontier-dominance normal form",
+      "statement": "On a finite frozen task class, matched contract plus empty conservativity/calibration/resource violation sets and a nonempty strict-frontier set is equivalent to frontier dominance.",
+      "assumptions": [
+        "finite complete task enumeration",
+        "registered donor envelope complete for declared class"
+      ],
+      "proof_or_reference_artifact": "assess_frontier_dominance",
+      "smallest_boundary_or_counterexample": "A frontier win with one old-task regression is rejected.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "FD-T4",
+      "name": "No scalar-free total superiority order",
+      "statement": "Pareto-incomparable resource vectors cannot be ranked uniquely without an external price/preference vector.",
+      "assumptions": [
+        "at least two resource dimensions"
+      ],
+      "proof_or_reference_artifact": "ResourceVector.weakly_dominates / scalar_cost",
+      "smallest_boundary_or_counterexample": "(1,10) versus (10,1) is incomparable.",
+      "status": "MATHEMATICALLY_DERIVED",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "FD-T5",
+      "name": "Ideal donor-product first refusal",
+      "statement": "Residual novelty relative to an expanded donor/product family cannot be larger when old explanations remain admissible.",
+      "assumptions": [
+        "new donor family contains old explanations"
+      ],
+      "proof_or_reference_artifact": "donor_expansion_is_residual_monotone",
+      "smallest_boundary_or_counterexample": "Replacing rather than extending the explanation family invalidates the premise.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "FD-T6",
+      "name": "Theorem-identifying superiority necessity",
+      "statement": "If target and an alternative scientific claim have identical outcome signatures on frozen support, the harness cannot identify which explains a performance difference.",
+      "assumptions": [
+        "registered alternatives",
+        "deterministic observed signatures"
+      ],
+      "proof_or_reference_artifact": "Discovery V1 harness-identifiability theorem; V3 integration",
+      "smallest_boundary_or_counterexample": "Constant-positive or leaky harnesses may agree with both models.",
+      "status": "DERIVED_AND_PARENT_MECHANIZED",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "FD-T7",
+      "name": "Authority noninterference",
+      "statement": "Computing frontier dominance or a nonempty residual does not grant external scientific validity, novelty, adoption or paper authority.",
+      "assumptions": [
+        "separate authority channel"
+      ],
+      "proof_or_reference_artifact": "FrontierDominanceReport authority properties",
+      "smallest_boundary_or_counterexample": "A local boolean field cannot create an independent reviewer.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "FD-T8",
+      "name": "Collective interaction residual",
+      "statement": "All component atoms may be donor-owned while an unabsorbed composition hyperedge remains a nonempty residual.",
+      "assumptions": [
+        "candidate hypergraph",
+        "donor covers every node but not every edge"
+      ],
+      "proof_or_reference_artifact": "ResidualFamily.interaction_only",
+      "smallest_boundary_or_counterexample": "Two known methods connected by a new load-bearing bridge.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "FD-T9",
+      "name": "Triangulated frontier criterion",
+      "statement": "Historical or in-sample frontier success alone does not establish transfer; the reference strong terminal additionally requires held-out and counterfactual strict wins, with prospective and external authority remaining separate.",
+      "assumptions": [
+        "marked held-out and counterfactual tasks"
+      ],
+      "proof_or_reference_artifact": "FrontierDominanceReport.triangulated_frontier_dominant",
+      "smallest_boundary_or_counterexample": "Memorized historical answer passes history but fails a reminted twin.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T1",
+      "name": "Donor-expansion residual monotonicity",
+      "statement": "Adding admissible donor explanations cannot increase every minimal semantic residual.",
+      "assumptions": [
+        "old explanations retained"
+      ],
+      "proof_or_reference_artifact": "minimal_residual_families / donor_expansion_is_residual_monotone",
+      "smallest_boundary_or_counterexample": "Dropping an old explanation is not donor expansion.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T2",
+      "name": "Semantic-isomorphism invariance",
+      "statement": "Layer- and relation-preserving renaming transports the residual family isomorphically.",
+      "assumptions": [
+        "semantic graph isomorphism",
+        "transported donor correspondences"
+      ],
+      "proof_or_reference_artifact": "RESIDUAL_NOVELTY_CALCULUS_V1.md \u00a74",
+      "smallest_boundary_or_counterexample": "Surface renaming with changed relations is not an isomorphism.",
+      "status": "MATHEMATICALLY_DERIVED",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T3",
+      "name": "Interaction novelty theorem",
+      "statement": "Zero residual nodes do not imply zero residual edges.",
+      "assumptions": [
+        "typed hypergraph semantics"
+      ],
+      "proof_or_reference_artifact": "minimal_residual_families",
+      "smallest_boundary_or_counterexample": "All nodes covered, composition edge uncovered.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T4",
+      "name": "Residual-value separation",
+      "statement": "A nonempty semantic residual does not imply a useful discovery unless it changes a hidden consequence, target obligation or verified reach.",
+      "assumptions": [
+        "independent target evaluator"
+      ],
+      "proof_or_reference_artifact": "RESIDUAL_NOVELTY_CALCULUS_V1.md \u00a74",
+      "smallest_boundary_or_counterexample": "Decorative unused operator has nonempty syntax and zero scientific effect.",
+      "status": "MATHEMATICALLY_DERIVED",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T5",
+      "name": "Set-valued residual necessity",
+      "statement": "Incomparable donor explanations can produce multiple inclusion-minimal residuals; choosing one without a target criterion is unjustified.",
+      "assumptions": [
+        "multiple admissible explanations"
+      ],
+      "proof_or_reference_artifact": "minimal_residual_families",
+      "smallest_boundary_or_counterexample": "Donor A covers atom a; donor B covers atom b.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T6",
+      "name": "Residual subadditivity with bridge term",
+      "statement": "The minimal residual of a composition is bounded by component residuals plus unabsorbed bridge structure.",
+      "assumptions": [
+        "independent composability",
+        "registered bridge set"
+      ],
+      "proof_or_reference_artifact": "RESIDUAL_NOVELTY_CALCULUS_V1.md \u00a74",
+      "smallest_boundary_or_counterexample": "Omitting the bridge term fails for interaction-only novelty.",
+      "status": "MATHEMATICALLY_DERIVED",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T7",
+      "name": "No finite universal discovery morphology",
+      "statement": "For every fixed finite move language there exists a registered target requiring a primitive outside its closure.",
+      "assumptions": [
+        "target languages may add a fresh primitive"
+      ],
+      "proof_or_reference_artifact": "RESIDUAL_NOVELTY_CALCULUS_V1.md \u00a74",
+      "smallest_boundary_or_counterexample": "Diagonal fresh-primitive target.",
+      "status": "MATHEMATICALLY_DERIVED",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T8",
+      "name": "Fair-dovetail relative completeness",
+      "statement": "Diagonal scheduling eventually visits every finite generator/program-index pair.",
+      "assumptions": [
+        "enumerable generator sequence",
+        "terminating candidate verifier for positive witness"
+      ],
+      "proof_or_reference_artifact": "fair_dovetail_schedule",
+      "smallest_boundary_or_counterexample": "A useful move absent from all generators remains unreachable.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T9",
+      "name": "Pareto identifying-portfolio completeness",
+      "statement": "Finite exhaustive subset search returns exactly the nondominated experiment portfolios covering every registered alternative pair.",
+      "assumptions": [
+        "finite experiments and pair universe",
+        "exact coverage and vector costs"
+      ],
+      "proof_or_reference_artifact": "pareto_minimum_identifying_portfolios",
+      "smallest_boundary_or_counterexample": "A cheaper non-identifying experiment is correctly excluded.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T10",
+      "name": "Explicit scalarization law",
+      "statement": "A unique minimum-cost experiment is licensed only by a complete nonnegative price vector supplied independently of outcomes.",
+      "assumptions": [
+        "same resource dimensions",
+        "prospective prices"
+      ],
+      "proof_or_reference_artifact": "select_scalarized_portfolios",
+      "smallest_boundary_or_counterexample": "Omitting memory price raises an error rather than silently treating memory as free.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T11",
+      "name": "No-man\u2019s-land certificate soundness",
+      "statement": "Within a declared closure/verifier class, a certificate with old-closure exhaustion, unsupplied origin, nonempty load-bearing residual, hidden consequence, transfer, donor first refusal and independent validity supports bounded outside-closure discovery candidacy.",
+      "assumptions": [
+        "all certificate premises independently checked"
+      ],
+      "proof_or_reference_artifact": "RESIDUAL_NOVELTY_CALCULUS_V1.md \u00a75",
+      "smallest_boundary_or_counterexample": "Any omitted premise has a supplied, donor-absorbed, inert or invalid countermodel.",
+      "status": "THEOREM_TARGET_COMPLETE__EXECUTION_PENDING",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    },
+    {
+      "theorem_id": "RN-T12",
+      "name": "Minimal load-bearing superiority witness",
+      "statement": "Given independently executed residual-deletion mutations, the inclusion-minimal removed atom sets that destroy every strict frontier win are exactly the minimal causal witness candidates registered by the mutation family.",
+      "assumptions": [
+        "mutation outcomes independently executed",
+        "strict frontier wins frozen",
+        "mutation family class-relative"
+      ],
+      "proof_or_reference_artifact": "minimal_superiority_destroying_mutations",
+      "smallest_boundary_or_counterexample": "No single deletion need be sufficient when two residual atoms are jointly load-bearing.",
+      "status": "EXECUTABLE_REFERENCE_COMPLETE",
+      "authority_delta": "NONE",
+      "paper_authority_delta": "NONE"
+    }
+  ],
+  "programme_authority": {
+    "theory": "COMPLETE_FOR_DECLARED_CLASSES",
+    "present_day_superiority": "NONE",
+    "external_novelty": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE"
+  }
+}
