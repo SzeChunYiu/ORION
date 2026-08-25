@@ -1,0 +1,61 @@
+{
+  "artifacts": [
+    {
+      "bytes": 1079125,
+      "path": "PRE_SCORE_POLICY_OUTPUTS_V1.json",
+      "sha256": "7e2baa19a82c51eaec6dd8fcb8f05b93fb662b8cd6d599fbd012dcbf27b80cdb"
+    },
+    {
+      "bytes": 347793,
+      "path": "RAW_POLICY_OUTCOMES_V1.json",
+      "sha256": "b00b7c1a059bd015f3f6311945663383c0693948b4ef06afe1f85b780366eff7"
+    }
+  ],
+  "denominators": {
+    "case_policy_rows_expected": 400,
+    "case_policy_rows_retained": 400,
+    "crashed_case_policy_rows": 0,
+    "dropped_case_policy_rows": 0,
+    "dropped_topics": 0,
+    "frozen_topics": 50,
+    "policies": 8,
+    "scored_topics": 50
+  },
+  "execution_bindings": {
+    "freeze_commit": "2b2d73dd874bfff26f4298c9eb3ef594b5e6234b",
+    "freeze_sha256": "0acbfc52fdd7ffc18b18de00745410704442eba1d81a93a98577af5c13e9eda3",
+    "implementation_sha": "61122f3f6fd2857fba7c8891b19ee9fa29eec72a",
+    "source_archive_sha256": "c8b4f37af9a7901b371f57798f5e157616a6e0aa75ef053876527ab7f5fa0031",
+    "subject_sha": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37"
+  },
+  "input_bindings": {
+    "corpus_documents": 171332,
+    "corpus_sha256": "aded69896598665082316d00df487d22212cc5a8611db05db34eb40d04ed00d7",
+    "corpus_top_level_keys": [
+      "_id",
+      "metadata",
+      "text",
+      "title"
+    ],
+    "duplicate_topic_document_pairs": 0,
+    "forbidden_policy_keys_found": [],
+    "qrels_bytes": 980831,
+    "qrels_opened_only_after_pre_score_policy_outputs_sha256": "7e2baa19a82c51eaec6dd8fcb8f05b93fb662b8cd6d599fbd012dcbf27b80cdb",
+    "qrels_rows": 66336,
+    "qrels_sha256": "10669ab7d526cb04f52079139fd88c3d467a0776441b046567f540582798982b",
+    "qrels_stat_before_policy_phase": {
+      "bytes": 980831,
+      "sha256": "DEFERRED_UNTIL_AFTER_POLICY_OUTPUT_HASH"
+    },
+    "queries_sha256": "78f4b76bfef251a0baf37a6cea5c4ba8376cb4536c34635709aaa4a2783b208c",
+    "query_top_level_keys": [
+      "_id",
+      "metadata",
+      "text"
+    ],
+    "topics": 50
+  },
+  "job_id": "P2-DES-01",
+  "qrels_access_sequence": "PRE_SCORE_POLICY_OUTPUTS_V1.json written and hashed before qrels/test.tsv open",
+  "schema": "orion.p2-des-01.raw-manifest.v1"
+}
