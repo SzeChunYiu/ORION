@@ -5,7 +5,7 @@ on:
     branches:
       - shadow/orion-discovery-harness-v1-20260825
     paths:
-      - development/orion-discovery-harness-v1-2026-08-25/PAYLOAD.b64
+      - development/orion-discovery-harness-v1-2026-08-25/PAYLOAD.ready
   workflow_dispatch:
 
 permissions:
@@ -23,10 +23,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          payload=development/orion-discovery-harness-v1-2026-08-25/PAYLOAD.b64
-          test -s "$payload"
-          base64 -d "$payload" | tar -xzf -
-          rm -f "$payload" .github/workflows/orion-discovery-v1-bootstrap.yml
+          dir=development/orion-discovery-harness-v1-2026-08-25
+          test -f "$dir/PAYLOAD.ready"
+          parts=("$dir"/PAYLOAD.b64.part*)
+          test ${#parts[@]} -gt 0
+          cat "${parts[@]}" | base64 -d | tar -xzf -
+          rm -f "$dir"/PAYLOAD.b64.part* "$dir/PAYLOAD.ready" \
+            .github/workflows/orion-discovery-v1-bootstrap.yml
           git config user.name "ORION discovery bootstrap"
           git config user.email "actions@users.noreply.github.com"
           git add -A
