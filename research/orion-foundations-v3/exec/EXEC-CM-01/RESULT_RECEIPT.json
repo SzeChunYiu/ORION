@@ -1,0 +1,86 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-CM-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T8",
+    "OSTC-T10",
+    "OSTC-T13"
+  ],
+  "terminal": "LARGE_COUNTERMODEL_ATLAS_COMPLETE",
+  "executed_on": {
+    "host": "LUNARC (cosmos2.int.lunarc)",
+    "why_not_local": "The workstation data volume is at 100% with 200GiB of unrelated user data; heavy compute belongs on the cluster regardless.",
+    "wallclock_seconds": 54.529,
+    "models_enumerated": 6910818
+  },
+  "binding": {
+    "protocol": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "7979168d7aab478eb9a23c14eec3380251b5e03176b25af9393e28e42d853a22"
+    },
+    "runner": {
+      "artifact": "run_countermodel_atlas_v1.py",
+      "sha256": "a7b6d6aa7a735775928ba66e496baee5a778c2f084e9bc501feb6c35d0981320"
+    },
+    "checker": {
+      "artifact": "check_countermodel_atlas_independent_v1.py",
+      "sha256": "704c3185120fbb8bd1559b16fcf4711d58b5969308ef93eb02128af3a037536e"
+    },
+    "raw": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "763b3074e8bf9451eab0902a07f2bad2137998ebb962fa939a078fcd1f14f93b"
+    },
+    "checker_receipt": {
+      "artifact": "INDEPENDENT_CHECKER_RECEIPT.json",
+      "sha256": "d6bcfd3eaf466f4b9788c7903f9e9ee00750ccb0af086b2162fcfd5c28ea57f5"
+    }
+  },
+  "results": {
+    "OSTC-T8": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "All six SANF factors (R,V,X,S,E,B) have a matched countermodel: exactly one each, which is the whole population -- there is a single admitting witness (all six hold) and dropping any one factor yields exactly one non-admitting model. No factor is eliminable in this class.",
+      "per_factor_countermodels": {
+        "R": 1,
+        "V": 1,
+        "X": 1,
+        "S": 1,
+        "E": 1,
+        "B": 1
+      }
+    },
+    "OSTC-T10": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Over 1,701 certificate triples: 0 associativity violations, 0 identity-law violations, and 0 silent compositions across 2,268 contract mismatches. The mismatch path is the one the theorem exists to constrain and it was exercised 2,268 times; every mismatch produced a typed non-composition.",
+      "triples": 1701,
+      "composable": 189,
+      "mismatches": 2268,
+      "silent_compositions": 0
+    },
+    "OSTC-T13": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Biconditional holds exactly over 6,908,733 triples: path-independent iff every load-bearing square commutes, 0 violations in either direction. 531,441 commute and 6,377,292 do not, so both sides were exercised.",
+      "triples": 6908733,
+      "squares_commute": 531441,
+      "non_commuting": 6377292,
+      "forward_violations": 0,
+      "backward_violations": 0
+    }
+  },
+  "comparator": {
+    "information_equivalent_donor": "TIE",
+    "detail": "64/64 agreement, 0 donor wins, 0 witness wins. This is the outcome the issue's execution discipline predicts. A donor win would have indicated hidden information or resource asymmetry rather than superiority."
+  },
+  "non_vacuity": {
+    "why_this_matters": "A first draft of the T13 enumeration constructed the declared composite as g o f coordinatewise, which made the commuting-square test vacuously true: it would have reported zero violations on any theory whatsoever. The declared composite is now enumerated independently over the true composite plus its single-point perturbations, so it is free to disagree.",
+    "evidence": "6,377,292 of 6,908,733 T13 triples do not commute; 2,268 T10 mismatches exercised."
+  },
+  "what_this_does_not_establish": [
+    "Nothing about W-dagger beyond the enumerated grid. These are total enumerations over a declared finite class, not samples from a population, and no interval is computed.",
+    "No proof-assistant correspondence. EXEC-PA-01 remains open and OSTC-T8/T10/T13 keep remaining_verification as recorded in THEOREM_LEDGER_V1.json.",
+    "No external scientific adjudication. Runner and checker are two implementations inside one programme, written in the same session."
+  ],
+  "independent_checker": "EXEC_CM_01_SECOND_INDEPENDENT_CHECKER_GREEN, 0 disagreements",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}

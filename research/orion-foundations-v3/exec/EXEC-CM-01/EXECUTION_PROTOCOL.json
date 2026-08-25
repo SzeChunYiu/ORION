@@ -1,0 +1,91 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-CM-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {
+    "location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": ["OSTC-T8", "OSTC-T10", "OSTC-T13"]
+  },
+  "frozen_before_outcomes": true,
+  "task": "Enumerate and minimize countermodels over larger typed workflow graphs, alternative supports, cycles, and regime paths.",
+
+  "what_each_theorem_asserts": {
+    "OSTC-T8": "For every one of the six SANF witness factors (R,V,X,S,E,B) there exists a matched countermodel in W-dagger in which that factor alone fails, all others held fixed, and the admitting terminal changes. Therefore no factor is eliminable from a class containing these models.",
+    "OSTC-T10": "Two certificates compose exactly when the produced and consumed intermediate object, content, responsibility, scope, epoch, authority and blocker contracts match or are related by a registered bridge. Composition is associative, identity certificates are empty traces with reflexive bridges, and mismatched contracts yield a typed countermodel rather than a coercion by convention.",
+    "OSTC-T13": "For regime morphisms f and g, transport is path independent iff every load-bearing coordinate satisfies a commuting coherence square. Where a square fails, an object supported on the differing coordinate yields different obligations or terminals."
+  },
+
+  "code_identity": {
+    "runner": "research/orion-foundations-v3/exec/EXEC-CM-01/run_countermodel_atlas_v1.py",
+    "independent_checker": "research/orion-foundations-v3/exec/EXEC-CM-01/check_countermodel_atlas_independent_v1.py",
+    "checker_independence": "The checker must not import the runner. It recomputes each verdict from the raw atlas through a separately written predicate set and must be able to disagree."
+  },
+  "data_identity": {
+    "generated": true,
+    "generator_seed": 20260825,
+    "no_external_data": "This job consumes no external corpus. The enumeration is total over the declared parameter grid, not sampled."
+  },
+  "comparator_identity": {
+    "information_equivalent_donor": "A donor witness carrying the same information as the six-factor witness but without factor typing. Per the issue's execution discipline it should TIE on admitting decisions; any apparent superiority is to be investigated as hidden information or resource asymmetry, not reported as a win."
+  },
+  "information_and_tool_access": {
+    "runner": "declared parameter grid only; no network, no model calls, no external corpus",
+    "checker": "raw atlas JSON only; no access to runner internals"
+  },
+  "resource_vector": {
+    "compute": "single-process CPU enumeration",
+    "wallclock_bound_seconds": 1800,
+    "memory_bound_note": "atlas held in memory; counts and minimal witnesses persisted, not the full cross product"
+  },
+
+  "independent_unit": "The (theorem, factor-or-coordinate) cell. Individual enumerated models within a cell are exhaustive enumeration points, not independent samples, and no interval is computed over them.",
+  "estimands": {
+    "T8": "For each of the six factors, does at least one matched countermodel exist in the enumerated class (existence, not rate)?",
+    "T10": "Over all enumerated certificate triples: does associativity hold wherever composition is defined; do identity laws hold; and does every contract mismatch produce a typed countermodel rather than a silent composition (universally quantified, not a rate)?",
+    "T13": "Over all enumerated regime-morphism pairs: is path-independence exactly equivalent to all load-bearing coordinate squares commuting (biconditional, checked in both directions)?"
+  },
+  "multiplicity": "No hypothesis test is performed and no p-value is computed. The estimands are existence and universal claims over a total enumeration, so multiplicity correction does not apply. Counts are reported with their denominators.",
+
+  "positive_terminal": "LARGE_COUNTERMODEL_ATLAS_COMPLETE",
+  "positive_conditions": [
+    "all six T8 factors have at least one matched countermodel in the enumerated class",
+    "zero associativity violations and zero identity-law violations where composition is defined",
+    "zero silent compositions under contract mismatch (every mismatch is typed)",
+    "the T13 biconditional holds in both directions with zero exceptions",
+    "the information-equivalent donor ties on admitting decisions"
+  ],
+  "negative_terminal": "NEW_COUNTEREXAMPLE_NARROWS_THEORY",
+  "negative_conditions": [
+    "any T8 factor has no countermodel in the enumerated class (that factor may be eliminable in this class)",
+    "any associativity or identity violation where composition is defined",
+    "any contract mismatch that composes silently",
+    "any regime pair where path-independence and square-commutation come apart in either direction",
+    "the donor strictly beats the six-factor witness on admitting decisions"
+  ],
+  "cannot_check_terminal": "RESOURCE_BOUND_REACHED",
+  "cannot_check_conditions": [
+    "the declared grid is not exhausted within the wallclock bound",
+    "the independent checker cannot be run"
+  ],
+
+  "raw_output_schema": {
+    "file": "RAW_RESULT_MANIFEST.json",
+    "fields": {
+      "grid": "declared enumeration parameters, echoed",
+      "t8": "per-factor: models_examined, countermodels_found, minimal_witness",
+      "t10": "triples_examined, composable, associativity_violations, identity_violations, mismatches, silent_compositions",
+      "t13": "pairs_examined, squares_commute, path_independent, biconditional_violations, minimal_witness",
+      "donor": "decisions_compared, agreements, donor_wins, witness_wins",
+      "totals": "models_enumerated, wallclock_seconds"
+    }
+  },
+  "checker_and_authority_owner": {
+    "checker": "research/orion-foundations-v3/exec/EXEC-CM-01/check_countermodel_atlas_independent_v1.py",
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Both runner and checker are written in this session. This is two implementations inside one programme, not external adjudication, and the receipt must say so. EXTERNAL_SCIENTIFIC_ADJUDICATION remains CANNOT_CHECK for this job."
+  },
+  "claim_delta_default": "NONE",
+  "constitutional_note": "This job may confirm, refute or narrow an instantiation. It may not redesign a theorem, move a gate, weaken the comparator, hide a negative, or rewrite theory after outcome access. If a genuine counterexample appears it is recorded here and narrows the theorem in a separately identified successor record; the merged theory is not mutated."
+}
