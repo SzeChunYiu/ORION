@@ -17,7 +17,7 @@
 | `route_stop_can_close_task` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 390 | 0 |
 | `no_unavailable_route_open_state` | 260 | 0 | 0 | 0 | 0 | 0 | 0 | 71 | 59 |
 | `coverage_diagnostic_controls_stopping` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 390 | 0 |
-| `no_content_identity_dedup` | 192 | 53 | 0 | 0 | 0 | 0 | 0 | 0 | 145 |
+| `no_content_identity_dedup` | 144 | 53 | 0 | 0 | 0 | 0 | 0 | 0 | 193 |
 
 ## Interpretation
 
@@ -27,7 +27,7 @@ The publication-bearing distinctions are:
 
 - full ORION converts 71 materially censored cases into `CANNOT_CHECK` rather than a completeness claim;
 - the `no_unavailable_route_open_state` ablation converts those same safety cases into 71 premature-closure failures;
-- the `no_content_identity_dedup` ablation creates 145 budget-exhaustion failures after duplicate work consumes the read budget;
+- the `no_content_identity_dedup` ablation creates 193 budget-exhaustion failures after duplicate work consumes the read budget;
 - simple/single-pass baselines terminate with premature closure because reachable relevant material remains on unexercised routes;
 - the exploratory adaptive comparator retains 78 censored tasks as `CANNOT_CHECK`; under the current canonical vocabulary, 0 of those remain encoded as terminal `transport_failure` labels rather than being promoted into failures.
 
