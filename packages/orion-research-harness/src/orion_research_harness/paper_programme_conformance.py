@@ -158,7 +158,6 @@ def _p1() -> tuple[bool, bool, str]:
 
 def _p2() -> tuple[bool, bool, str]:
     from orion.study.p2.runner import execute as execute_p2
-    from orion.study.p2.systems import StopScope
 
     suite, task = _p2_fixture()
     local = execute_p2(
@@ -169,11 +168,13 @@ def _p2() -> tuple[bool, bool, str]:
         run_manifest_hash="c" * 64,
     )
     positive = local.record["metrics"]["premature_task_closure"] == 0.0
-    route_audits = [
-        item for item in local.artifact["evaluation"]["stop_audits"]
-        if item["scope"] == StopScope.ROUTE.value
-    ]
-    positive = positive and bool(route_audits) and route_audits[0]["premature"] is False
+    route_audits = local.artifact["evaluation"]["route_stop_audits"]
+    positive = (
+        positive
+        and bool(route_audits)
+        and route_audits[0]["false_positive"] is False
+        and route_audits[0]["cannot_check"] is False
+    )
 
     global_claim = execute_p2(
         _P2SingleRoute(close=True),
@@ -182,15 +183,12 @@ def _p2() -> tuple[bool, bool, str]:
         seed=1,
         run_manifest_hash="c" * 64,
     )
-    task_audit = next(
-        item for item in global_claim.artifact["evaluation"]["stop_audits"]
-        if item["scope"] == StopScope.TASK.value
-    )
+    task_evaluation = global_claim.artifact["evaluation"]
     fail_closed = (
         global_claim.record["status"] == "FAIL"
         and global_claim.record["failure_class"] == "premature_closure"
-        and task_audit["premature"] is True
-        and task_audit["still_reachable_count"] > 0
+        and task_evaluation["premature_closure"] is True
+        and task_evaluation["metrics"]["task_residual_discoverable_within_budget"] > 0
     )
     return positive, fail_closed, "live P2 discovery suite route-stop/task-stop evaluator"
 
