@@ -1,0 +1,95 @@
+{
+  "host": "cosmos2.lunarc.lu.se",
+  "job_id": "P12-DES-01",
+  "model_artifact_inventory": {
+    "count": 4,
+    "gguf_files": [
+      {
+        "bytes": 2019377696,
+        "path": "/home/scyiu/orion-work/models/Llama-3.2-3B-Instruct-Q4_K_M.gguf",
+        "present": true
+      },
+      {
+        "bytes": 2393232672,
+        "path": "/home/scyiu/orion-work/models/Phi-3.5-mini-instruct-Q4_K_M.gguf",
+        "present": true
+      },
+      {
+        "bytes": 1708582752,
+        "path": "/home/scyiu/orion-work/models/gemma-2-2b-it-Q4_K_M.gguf",
+        "present": true
+      },
+      {
+        "bytes": 1117320736,
+        "path": "/home/scyiu/orion-work/models/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+        "present": true
+      }
+    ],
+    "root": "/home/scyiu/orion-work/models"
+  },
+  "observed_at_utc": "2026-08-25T19:11:37.614277Z",
+  "protected_outcome_accessed": false,
+  "schema": "orion.p12-des-01.lunarc-preflight.v1",
+  "scienceagentbench": {
+    "annotation_csv": {
+      "bytes": 278626,
+      "path": "/home/scyiu/orion-work/sab/ScienceAgentBench.csv",
+      "present": true,
+      "scientific_role": "PUBLIC_METADATA_ONLY",
+      "sha256": "7f490f17f721a9c7e9415d3608a1a37d1a5315a26862cf556e3096ac4062face"
+    },
+    "annotation_parquet": {
+      "bytes": 129086,
+      "path": "/home/scyiu/orion-work/sab/verified-00000-of-00001.parquet",
+      "present": true,
+      "scientific_role": "PUBLIC_METADATA_ONLY",
+      "sha256": "c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147"
+    },
+    "archive_password_environment_presence": {
+      "BENCHMARK_VERIFIED_PASSWORD": false,
+      "SAB_ARCHIVE_PASSWORD": false,
+      "SCIENCEAGENTBENCH_PASSWORD": false
+    },
+    "cleartext_components": {
+      "datasets": {
+        "bytes": 0,
+        "files": 0,
+        "path": "/home/scyiu/orion-work/ScienceAgentBench/benchmark/datasets",
+        "present": true
+      },
+      "eval_programs": {
+        "bytes": 0,
+        "files": 0,
+        "path": "/home/scyiu/orion-work/ScienceAgentBench/benchmark/eval_programs",
+        "present": true
+      },
+      "gold_programs": {
+        "bytes": 0,
+        "files": 0,
+        "path": "/home/scyiu/orion-work/ScienceAgentBench/benchmark/gold_programs",
+        "present": true
+      },
+      "scoring_rubrics": {
+        "bytes": 0,
+        "files": 0,
+        "path": "/home/scyiu/orion-work/ScienceAgentBench/benchmark/scoring_rubrics",
+        "present": true
+      }
+    },
+    "official_archive": {
+      "all_entries_encrypted": true,
+      "bytes": 1769478786,
+      "encrypted_entries": 845,
+      "entries": 845,
+      "path": "/home/scyiu/orion-work/ScienceAgentBench/benchmark_verified.zip",
+      "present": true,
+      "sha256": "46e715d3b2196d459d2dff52aa487f506a95ec44b44262e82208d086ea879610",
+      "state": "ENCRYPTED_PROTECTED_ARCHIVE",
+      "zip_readable": true
+    },
+    "official_evaluation_runnable": false
+  },
+  "scientific_result": "PREFLIGHT_ONLY",
+  "slurm_job_submitted": false,
+  "socket_check": "CONNECTED"
+}
