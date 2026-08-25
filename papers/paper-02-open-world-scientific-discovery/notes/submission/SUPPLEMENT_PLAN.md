@@ -11,7 +11,7 @@ No item below is included unless it already exists in the repository. Unavailabl
 
 | Item | Source | Why it belongs |
 | --- | --- | --- |
-| Complete-gold world and tasks | `evidence/offline_gold/{world.json,tasks.json}` | Synthetic denominator that makes misses and premature closure observable. |
+| Complete-gold world and tasks | `evidence/offline_gold/{topics.json,world-000.json,world-001.json,tasks-000.json,tasks-001.json}` | Manifest-declared synthetic denominator that makes misses and premature closure observable. |
 | World manifest | `evidence/offline_gold/MANIFEST.json` | Task/document counts, seed, file hashes and suite fingerprint. |
 | Run manifest + digest | `protocol/OFFLINE_RUN_MANIFEST_V1.{json,sha256}` | Prospective subject/data/system binding for the controlled campaign. |
 | Subject code | `src/orion/study/p2/**` | Systems, ablations and evaluator under test. |

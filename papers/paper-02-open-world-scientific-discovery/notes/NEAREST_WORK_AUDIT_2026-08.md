@@ -15,7 +15,13 @@ is written as a question under test, never as an expected direction.
 
 ## 1. Citation integrity sweep — result
 
-28 bibliography keys, 28 live fetch records (arXiv API or Crossref), 0 `CANNOT_CHECK`.
+At the time of the original sweep: 28 bibliography keys, 28 live fetch records
+(arXiv API or Crossref), 0 `CANNOT_CHECK`. The current closure after later
+campaign and transport additions is 39 keys, 39 stored records, 0
+`CANNOT_CHECK`; the original provenance-stratified table below is retained as a
+historical sweep rather than retroactively reclassifying later citations. The
+two public-screening substrate additions are audited in
+[public-screening-transport](nearest-work/public-screening-transport.md).
 
 **Scope of the recorded verdict — read this before quoting the counts.** The
 `verdict` field in every evidence record is a **title comparison only**. Author,

@@ -14,7 +14,7 @@
 | Tasks (n) | 390 |
 | Systems (total) | 14 |
 | Result records | 16380 |
-| Results SHA256 | `27b8e55b68a65906fe0971ed2f24a814…` |
+| Results SHA256 | `4722cf82b514d4ebfbea343970d079df…` |
 
 ## Resource limits (per-task budgets)
 
@@ -40,24 +40,24 @@
 
 | System | Recall | Premature closure | Duplicate processing | Routes used | Legitimate rereads | Pass | Cannot check |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ORION full | 0.979487 | 0.0 | 0.0 | 4.989744 | 1.533333 | 0.817949 | 0.030769 |
+| ORION full | 0.979487 | 0.0 | 0.0 | 4.989744 | 1.533333 | 0.666667 | 0.182051 |
 
 ## Safety ablations
 
 | System | Recall | Premature closure | Duplicate processing | Routes used | Legitimate rereads | Pass | Cannot check |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Ablation: no route-independence check | 0.444444 | 1.0 | 0.0 | 2.0 | 0.6 | 0.0 | 0.0 |
-| Ablation: no question-conditioned read ledger | 0.979487 | 0.0 | 0.0 | 4.989744 | 1.0 | 0.817949 | 0.030769 |
+| Ablation: no question-conditioned read ledger | 0.979487 | 0.0 | 0.0 | 4.989744 | 1.0 | 0.666667 | 0.182051 |
 | Ablation: route stop can close task | 0.333333 | 1.0 | 0.0 | 1.0 | 0.6 | 0.0 | 0.0 |
-| Ablation: no unavailable-route open state | 0.979487 | 0.0 | 0.0 | 4.989744 | 1.533333 | 0.817949 | 0.0 |
+| Ablation: no unavailable-route open state | 0.979487 | 0.0 | 0.0 | 4.989744 | 1.533333 | 0.666667 | 0.0 |
 | Ablation: coverage diagnostic controls stopping | 0.555556 | 1.0 | 0.0 | 2.0 | 1.6 | 0.0 | 0.0 |
-| Ablation: no content-identity dedup | 0.952707 | 0.0 | 0.101446 | 4.969231 | 1.235897 | 0.605128 | 0.023077 |
+| Ablation: no content-identity dedup | 0.952707 | 0.0 | 1.0 | 4.969231 | 1.235897 | 0.492308 | 0.135897 |
 
 ## Exploratory comparator (non-confirmatory)
 
 | System | Recall | Premature closure | Duplicate processing | Routes used | Legitimate rereads | Pass | Cannot check |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Exploratory: adaptive multiroute | 0.774074 | 0.758974 | 0.0 | 4.0 | 1.6 | 0.0 | 0.033333 |
+| Exploratory: adaptive multiroute | 0.774074 | 0.758974 | 0.0 | 4.0 | 1.6 | 0.0 | 0.2 |
 
 ## Interpretation
 

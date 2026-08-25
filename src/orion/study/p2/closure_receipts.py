@@ -65,8 +65,9 @@ a guard's denominator, so a slice on which nothing closed produces a
 ``GuardExercise`` with zero opportunities and
 :func:`orion.programme.guard_exercise.assess_guard` returns ``CANNOT_CHECK``.
 
-This module reads evaluations, never gold: it consumes the ``StopAudit`` objects
-the host evaluator already produced. The package boundary rule in
+This module reads evaluations and host traces, never gold. It consumes canonical
+``StopDecision`` records plus the split evaluator route audits introduced by
+#1078. The package boundary rule in
 ``orion.study.p2`` --- nothing but ``gold`` reads ``protected_gold`` --- holds.
 """
 
@@ -223,7 +224,7 @@ class TaskClosureReceipt:
                 f"{self.system_id}/{self.task_id}: {self.kind.value} cannot be a false "
                 "closure; falsity is a property of a completeness claim"
             )
-        routes = [item.route_id for item in self.route_receipts]
+        routes = [item.route for item in self.route_receipts]
         if len(routes) != len(set(routes)):
             raise ValueError(f"{self.system_id}/{self.task_id}: duplicate route receipts")
 
@@ -266,13 +267,14 @@ def _route_receipt(
 ) -> RouteClosureReceipt:
     events = [item for item in trace.route_trials if item.route_id == route.value]
     unavailable = any(item.transport_status == TransportStatus.UNAVAILABLE.value for item in events)
-    audits = [
+    decisions = [
         item
-        for item in evaluation.stop_audits
+        for item in trace.stop_decisions
         if item.scope == StopScope.ROUTE.value and item.route_id == route.value
     ]
+    audits = [item for item in evaluation.route_stop_audits if item.route_id == route.value]
 
-    if audits:
+    if decisions:
         kind = RouteClosureKind.STOP_DECLARED
     elif unavailable:
         kind = RouteClosureKind.ABANDONED_TRANSPORT_UNAVAILABLE
@@ -286,14 +288,16 @@ def _route_receipt(
         route=route.value,
         kind=kind,
         attempts=len(events),
-        premature_stops=sum(1 for item in audits if item.premature),
-        still_reachable_at_stop=last.still_reachable_count if last else 0,
-        remaining_route_calls_at_stop=last.remaining_route_calls if last else 0,
+        premature_stops=sum(1 for item in audits if item.false_positive),
+        still_reachable_at_stop=last.residual_yield_at_stop if last else 0,
+        remaining_route_calls_at_stop=last.remaining_query_budget if last else 0,
     )
 
 
 def _task_kind(evaluation: Evaluation, trace: SystemTrace) -> tuple[TaskClosureKind, str]:
-    task_stops = [item for item in evaluation.stop_audits if item.scope == StopScope.TASK.value]
+    task_stops = [
+        item for item in trace.stop_decisions if item.scope == StopScope.TASK.value
+    ]
     if not task_stops:
         return (
             TaskClosureKind.NO_CLOSURE_DECISION,
@@ -301,16 +305,20 @@ def _task_kind(evaluation: Evaluation, trace: SystemTrace) -> tuple[TaskClosureK
         )
 
     decision = task_stops[-1]
-    if decision.claimed_complete:
+    if decision.declared:
         return TaskClosureKind.CLOSED_COMPLETE, decision.reason
     if trace.error_class:
         return TaskClosureKind.ABANDONED_RUN_ERROR, trace.error_class
-    if trace.budget_exhausted:
-        return TaskClosureKind.ABANDONED_BUDGET_EXHAUSTED, trace.budget_exhausted
+    if trace.truncated_at_cap:
+        return TaskClosureKind.ABANDONED_BUDGET_EXHAUSTED, trace.truncated_at_cap
     # A refusal is only a refusal if something was actually left open. Ending
     # with nothing outstanding and no claim is a run that simply stopped, and
     # calling that a governed refusal would credit the mechanism for silence.
-    if evaluation.censored_identities or decision.still_reachable_count:
+    if (
+        evaluation.censored_ids
+        or evaluation.task_residual_discoverable_within_budget
+        or trace.unresolved_obligation_ids
+    ):
         return TaskClosureKind.REFUSED_OPEN_OBLIGATIONS, decision.reason
     return TaskClosureKind.STOPPED_WITHOUT_CLOSURE_CLAIM, decision.reason
 
@@ -326,10 +334,9 @@ def _false_closure_kind(
 
     if not kind.exercises_false_closure_guard:
         return FalseClosureKind.NONE
-    task_stops = [item for item in evaluation.stop_audits if item.scope == StopScope.TASK.value]
-    if any(item.premature for item in task_stops):
+    if evaluation.premature_closure:
         return FalseClosureKind.REACHABLE_GOLD_OUTSTANDING
-    if evaluation.censored_identities:
+    if evaluation.censored_ids or evaluation.closure_cannot_check:
         return FalseClosureKind.CENSORED_MATERIAL_OUTSTANDING
     return FalseClosureKind.NONE
 
@@ -344,8 +351,11 @@ def build_task_receipt(evaluation: Evaluation, trace: SystemTrace) -> TaskClosur
         )
 
     kind, reason = _task_kind(evaluation, trace)
-    task_stops = [item for item in evaluation.stop_audits if item.scope == StopScope.TASK.value]
+    task_stops = [
+        item for item in trace.stop_decisions if item.scope == StopScope.TASK.value
+    ]
     last = task_stops[-1] if task_stops else None
+    used_route_calls = int(dict(evaluation.resources).get("query_count", 0))
     return TaskClosureReceipt(
         system_id=evaluation.system_id,
         task_id=evaluation.task_id,
@@ -353,8 +363,12 @@ def build_task_receipt(evaluation: Evaluation, trace: SystemTrace) -> TaskClosur
         kind=kind,
         false_closure=_false_closure_kind(evaluation, kind),
         reason=reason,
-        still_reachable_at_closure=last.still_reachable_count if last else 0,
-        remaining_route_calls_at_closure=last.remaining_route_calls if last else 0,
+        still_reachable_at_closure=(
+            evaluation.task_residual_discoverable_within_budget if last else 0
+        ),
+        remaining_route_calls_at_closure=(
+            max(0, evaluation.max_route_calls - used_route_calls) if last else 0
+        ),
         route_receipts=tuple(_route_receipt(route, evaluation, trace) for route in DiscoveryRoute),
     )
 

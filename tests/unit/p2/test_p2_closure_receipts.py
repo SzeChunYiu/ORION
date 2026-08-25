@@ -32,10 +32,10 @@ from orion.study.p2.closure_receipts import (
     require_closure_receipts,
 )
 from orion.study.p2.corpus import build_world
-from orion.study.p2.gold import Evaluation, EvaluationInputs, StopAudit, evaluate
+from orion.study.p2.gold import Evaluation, EvaluationInputs, evaluate
 from orion.study.p2.offline_systems import system_by_id
 from orion.study.p2.runner import build_public_index, execute
-from orion.study.p2.systems import StopScope, SystemReport, SystemTrace
+from orion.study.p2.systems import StopDecision, StopScope, SystemReport, SystemTrace
 
 SEED = 20260816
 SLICE = 12
@@ -57,21 +57,27 @@ def _replay(system_id: str, count: int = SLICE):
         outcome = execute(
             system, world, task, seed=SEED, run_manifest_hash="0" * 64, index=index
         )
-        pairs.append((evaluate(EvaluationInputs(world=world, task=task, trace=outcome.trace)), outcome.trace))
+        pairs.append(
+            (
+                evaluate(
+                    EvaluationInputs(
+                        world=world, task=task, trace=outcome.trace, caps=task.budget
+                    )
+                ),
+                outcome.trace,
+            )
+        )
     return pairs
 
 
-def _audit(*, scope: str, claimed: bool, premature: bool = False, route: str = "") -> StopAudit:
-    return StopAudit(
+def _task_stop(*, declared: bool) -> StopDecision:
+    return StopDecision(
         index=1,
-        scope=scope,
-        route=route,
+        scope=StopScope.TASK.value,
+        route_id="",
+        attempt_index=0,
         reason="r",
-        claimed_complete=claimed,
-        still_reachable_count=1 if premature else 0,
-        still_reachable_identities=("x",) if premature else (),
-        remaining_route_calls=5 if premature else 0,
-        premature=premature,
+        declared=declared,
     )
 
 
@@ -95,7 +101,7 @@ def _evaluation(**overrides) -> Evaluation:
         route_contributions=(), route_pair_overlap=(), marginal_relevant_gain=(),
         route_residual_yield=(), route_stop_audits=(), route_exhaustion_audits=(),
         closure_declared=False, truncated_at_cap="",
-        task_residual_discoverable_within_budget=(), premature_closure=False,
+        task_residual_discoverable_within_budget=0, premature_closure=False,
         closure_cannot_check=False,
         censored_ids=(), unavailable_trial_count=0, unresolved_obligation_ids=(),
         # Read accounting is encounters-and-executions now, not flat counts.
@@ -103,7 +109,7 @@ def _evaluation(**overrides) -> Evaluation:
         # executed is a refusal, and a pure count of executions hides it.
         encounter_pairs=(), legitimate_encounters=0, legitimate_executed=0,
         already_read_encounters=0, already_read_executed=0, unseen_encounters=0,
-        resources=(),
+        resources=(("query_count", 0.0),), max_route_calls=12,
     )
     base.update(overrides)
     return Evaluation(**base)
@@ -123,25 +129,29 @@ class TestTaskTaxonomyIsTotal:
 
         cases = {
             TaskClosureKind.CLOSED_COMPLETE: (
-                _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=True),)), _trace()
+                _evaluation(closure_declared=True),
+                _trace(stop_decisions=(_task_stop(declared=True),)),
             ),
             TaskClosureKind.ABANDONED_RUN_ERROR: (
-                _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=False),)),
-                _trace(error_class="candidate_error"),
+                _evaluation(),
+                _trace(
+                    stop_decisions=(_task_stop(declared=False),),
+                    error_class="candidate_error",
+                ),
             ),
             TaskClosureKind.ABANDONED_BUDGET_EXHAUSTED: (
-                _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=False),)),
-                _trace(budget_exhausted="route_calls"),
+                _evaluation(truncated_at_cap="route_calls"),
+                _trace(
+                    stop_decisions=(_task_stop(declared=False),),
+                    truncated_at_cap="route_calls",
+                ),
             ),
             TaskClosureKind.REFUSED_OPEN_OBLIGATIONS: (
-                _evaluation(
-                    route_stop_audits=(_audit(scope="TASK", claimed=False),),
-                    censored_ids=("c1",),
-                ),
-                _trace(),
+                _evaluation(censored_ids=("c1",), closure_cannot_check=True),
+                _trace(stop_decisions=(_task_stop(declared=False),)),
             ),
             TaskClosureKind.STOPPED_WITHOUT_CLOSURE_CLAIM: (
-                _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=False),)), _trace()
+                _evaluation(), _trace(stop_decisions=(_task_stop(declared=False),))
             ),
             TaskClosureKind.NO_CLOSURE_DECISION: (_evaluation(), _trace()),
         }
@@ -153,7 +163,7 @@ class TestTaskTaxonomyIsTotal:
         """24 of 24 external tasks ended here; the V1 counters could not say so."""
 
         receipt = build_task_receipt(
-            _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=False),)), _trace()
+            _evaluation(), _trace(stop_decisions=(_task_stop(declared=False),))
         )
         assert receipt.kind is TaskClosureKind.STOPPED_WITHOUT_CLOSURE_CLAIM
         assert receipt.kind.exercises_false_closure_guard is False
@@ -166,8 +176,12 @@ class TestTaskTaxonomyIsTotal:
 class TestFalseClosureGrounds:
     def test_reachable_gold_outstanding(self) -> None:
         receipt = build_task_receipt(
-            _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=True, premature=True),)),
-            _trace(),
+            _evaluation(
+                closure_declared=True,
+                premature_closure=True,
+                task_residual_discoverable_within_budget=1,
+            ),
+            _trace(stop_decisions=(_task_stop(declared=True),)),
         )
         assert receipt.false_closure is FalseClosureKind.REACHABLE_GOLD_OUTSTANDING
         assert receipt.premature_closure is True
@@ -177,9 +191,11 @@ class TestFalseClosureGrounds:
 
         receipt = build_task_receipt(
             _evaluation(
-                route_stop_audits=(_audit(scope="TASK", claimed=True),), censored_ids=("c1",)
+                closure_declared=True,
+                closure_cannot_check=True,
+                censored_ids=("c1",),
             ),
-            _trace(),
+            _trace(stop_decisions=(_task_stop(declared=True),)),
         )
         assert receipt.false_closure is FalseClosureKind.CENSORED_MATERIAL_OUTSTANDING
         assert receipt.premature_closure is True
@@ -189,9 +205,9 @@ class TestFalseClosureGrounds:
 
         receipt = build_task_receipt(
             _evaluation(
-                route_stop_audits=(_audit(scope="TASK", claimed=False),), censored_ids=("c1",)
+                closure_cannot_check=True, censored_ids=("c1",)
             ),
-            _trace(),
+            _trace(stop_decisions=(_task_stop(declared=False),)),
         )
         assert receipt.kind is TaskClosureKind.REFUSED_OPEN_OBLIGATIONS
         assert receipt.false_closure is FalseClosureKind.NONE

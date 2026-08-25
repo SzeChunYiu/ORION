@@ -12,10 +12,9 @@ Fixture numbers here prove code behaviour. They are not results about any system
 from __future__ import annotations
 
 from dataclasses import FrozenInstanceError
-from pathlib import Path
-
 import pytest
 
+from orion.knowledge.identity import ReadDecision
 from orion.study.p2.cases import DiscoveryTask, ProtectedGold
 from orion.study.p2.corpus import DiscoveryRoute, DiscoveryWorld, Document
 from orion.study.p2.freeze import load_suite
@@ -26,7 +25,7 @@ from orion.study.p2.runner import (
     build_public_index,
     execute,
 )
-from orion.study.p2.systems import ReadClassification, StopScope, SystemReport
+from orion.study.p2.systems import StopScope, SystemReport
 
 FIXTURE_RUN_MANIFEST_HASH = "c" * 64
 
@@ -135,11 +134,11 @@ def test_gold_and_evaluation_structures_are_frozen(suite) -> None:
     outcome = execute(
         Hostile(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
-    evaluation = evaluate(EvaluationInputs(suite.world, task, outcome.trace))
+    evaluation = evaluate(EvaluationInputs(suite.world, task, outcome.trace, task.budget))
     with pytest.raises(FrozenInstanceError):
         evaluation.status = "PASS"  # type: ignore[misc]
     with pytest.raises(AttributeError):
-        evaluation.discovered_gold_identities.append("x")  # type: ignore[attr-defined]
+        evaluation.discovered_gold_ids.append("x")  # type: ignore[attr-defined]
 
 
 class Fabricator:
@@ -226,7 +225,7 @@ def test_clearing_the_event_log_does_not_buy_extra_budget(suite) -> None:
         system, suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
     assert system.calls_completed <= task.budget.max_route_calls
-    assert outcome.trace.resources.search_queries <= task.budget.max_route_calls
+    assert outcome.trace.resources.query_count <= task.budget.max_route_calls
 
 
 class CounterSuppressor:
@@ -304,14 +303,15 @@ def test_closing_a_task_with_material_still_reachable_is_premature(suite) -> Non
     assert outcome.record["failure_class"] == "premature_closure"
     assert outcome.record["metrics"]["premature_task_closure"] == 1.0
 
-    task_audit = next(
+    evaluation = outcome.artifact["evaluation"]
+    task_stop = next(
         item
-        for item in outcome.artifact["evaluation"]["stop_audits"]
+        for item in outcome.artifact["trace"]["stop_decisions"]
         if item["scope"] == StopScope.TASK.value
     )
-    assert task_audit["still_reachable_count"] > 0
-    assert task_audit["remaining_route_calls"] > 0
-    assert task_audit["premature"] is True
+    assert task_stop["declared"] is True
+    assert evaluation["task_residual_discoverable_within_budget"] > 0
+    assert evaluation["premature_closure"] is True
 
 
 def test_not_claiming_completeness_is_not_premature_closure(suite) -> None:
@@ -332,18 +332,14 @@ def test_a_route_stop_is_audited_against_what_that_route_could_still_reach(suite
     outcome = execute(
         SingleRoute(close=False), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
-    route_audits = [
-        item
-        for item in outcome.artifact["evaluation"]["stop_audits"]
-        if item["scope"] == StopScope.ROUTE.value
-    ]
+    route_audits = outcome.artifact["evaluation"]["route_stop_audits"]
     assert route_audits
     audit = route_audits[0]
-    assert audit["route"] == DiscoveryRoute.LEXICAL.value
+    assert audit["route_id"] == DiscoveryRoute.LEXICAL.value
     # It exhausted the lexical probes, so nothing lexical remained: stopping that
     # route was correct even though the task was nowhere near answered.
-    assert audit["still_reachable_count"] == 0
-    assert audit["premature"] is False
+    assert audit["residual_yield_at_stop"] == 0
+    assert audit["false_positive"] is False
 
 
 class DeadProviderChaser:
@@ -447,18 +443,20 @@ def test_route_contribution_separates_unique_evidence_from_echo(suite) -> None:
         MultiRoute(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
     contributions = {
-        item["route"]: item for item in outcome.artifact["evaluation"]["route_contributions"]
+        item["route_id"]: item for item in outcome.artifact["evaluation"]["route_contributions"]
     }
     lexical = contributions[DiscoveryRoute.LEXICAL.value]
     semantic = contributions[DiscoveryRoute.SEMANTIC.value]
 
     # The cross-listed work is reachable both ways, so it is unique to neither.
     shared = "work:measurement-invariance:multi-a"
-    assert shared in lexical["relevant_identities"]
-    assert shared in semantic["relevant_identities"]
-    assert shared not in lexical["unique_relevant_identities"]
-    assert shared not in semantic["unique_relevant_identities"]
-    assert lexical["unique_relevant_identities"], "lexical still contributed something of its own"
+    assert shared in lexical["relevant_merged_source_ids"]
+    assert shared in semantic["relevant_merged_source_ids"]
+    assert shared not in lexical["unique_relevant_merged_source_ids"]
+    assert shared not in semantic["unique_relevant_merged_source_ids"]
+    assert lexical["unique_relevant_merged_source_ids"], (
+        "lexical still contributed something of its own"
+    )
 
     overlap = {
         (item["left"], item["right"]): item
@@ -476,7 +474,7 @@ def test_routes_carry_the_backend_identity_independence_turns_on(suite) -> None:
         MultiRoute(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
     contributions = {
-        item["route"]: item for item in outcome.artifact["evaluation"]["route_contributions"]
+        item["route_id"]: item for item in outcome.artifact["evaluation"]["route_contributions"]
     }
     lexical = contributions[DiscoveryRoute.LEXICAL.value]
     reformulation = contributions[DiscoveryRoute.REFORMULATION.value]
@@ -531,22 +529,23 @@ def test_duplicate_processing_and_legitimate_reread_are_distinguishable(suite) -
         "measurement-invariance:sem-a-v2",
         "measurement-invariance:lex-a",
     ]
-    assert [item["classification"] for item in events] == [
-        ReadClassification.FIRST_READ.value,
+    assert [item["decision_before_execution"] for item in events] == [
+        ReadDecision.UNSEEN.value,
         # Same work, same bytes, different locator — nothing new was learned.
-        ReadClassification.DUPLICATE.value,
-        ReadClassification.FIRST_READ.value,
+        ReadDecision.ALREADY_READ.value,
+        ReadDecision.UNSEEN.value,
         # Same work, different bytes — a revision genuinely has to be read again.
-        ReadClassification.REVISION_REREAD.value,
+        ReadDecision.CONTENT_CHANGED.value,
         # The same rendition under the same question, a second time.
-        ReadClassification.DUPLICATE.value,
+        ReadDecision.ALREADY_READ.value,
     ]
 
     evaluation = outcome.artifact["evaluation"]
-    assert evaluation["duplicate_processing_count"] == 2  # the mirror, and lex-a re-read
-    assert evaluation["legitimate_reread_count"] == 1
-    assert evaluation["first_read_count"] == 2
-    assert 0.0 < outcome.record["metrics"]["duplicate_processing_rate"] < 1.0
+    metrics = evaluation["metrics"]
+    assert metrics["duplicate_processing_executed"] == 2  # mirror and lex-a re-read
+    assert metrics["legitimate_reread_executed"] == 1
+    assert metrics["unseen_encounters"] == 2
+    assert outcome.record["metrics"]["duplicate_processing_rate"] == 1.0
 
 
 def test_processing_pairs_are_keyed_by_work_and_question(suite) -> None:
@@ -556,16 +555,16 @@ def test_processing_pairs_are_keyed_by_work_and_question(suite) -> None:
     outcome = execute(
         Rereader(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
-    pairs = outcome.artifact["evaluation"]["processing_pairs"]
-    assert pairs and all({"content_identity", "extraction_question"} == set(item) for item in pairs)
+    pairs = outcome.artifact["evaluation"]["encounter_pairs"]
+    assert pairs and all({"merged_source_id", "frame_id"} == set(item) for item in pairs)
     # Five reads collapse to two (work, question) pairs: the republication shares
     # a work with `lex-a` and the revision shares one with `sem-a`. Counting
     # locators would have reported five, which is the inflation the study exists
     # to detect.
     assert len(outcome.artifact["trace"]["read_encounters"]) == 5
     assert len(pairs) == 2
-    assert len({item["extraction_question"] for item in pairs}) == 1
-    assert {item["content_identity"] for item in pairs} == {
+    assert len({item["frame_id"] for item in pairs}) == 1
+    assert {item["merged_source_id"] for item in pairs} == {
         "work:measurement-invariance:lex-a",
         "work:measurement-invariance:sem-a",
     }
@@ -601,11 +600,15 @@ def test_a_reread_under_a_changed_question_is_legitimate(suite) -> None:
         ShiftAware(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
     events = outcome.artifact["trace"]["read_encounters"]
-    assert events[-1]["classification"] == ReadClassification.NEW_QUESTION_REREAD.value
-    assert events[-1]["content_identity"] == events[0]["content_identity"]
-    assert events[-1]["extraction_question"] != events[0]["extraction_question"]
-    assert outcome.artifact["evaluation"]["duplicate_processing_count"] == 0
-    assert outcome.artifact["evaluation"]["legitimate_reread_count"] == 1
+    assert (
+        events[-1]["decision_before_execution"]
+        == ReadDecision.NEW_FRAME.value
+    )
+    assert events[-1]["merged_source_id"] == events[0]["merged_source_id"]
+    assert events[-1]["frame_id"] != events[0]["frame_id"]
+    metrics = outcome.artifact["evaluation"]["metrics"]
+    assert metrics["duplicate_processing_executed"] == 0
+    assert metrics["legitimate_reread_executed"] == 1
 
 
 def test_the_frame_is_host_controlled_not_system_declared(suite) -> None:
