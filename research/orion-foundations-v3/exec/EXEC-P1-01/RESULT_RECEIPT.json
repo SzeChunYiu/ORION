@@ -1,0 +1,36 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P1-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T14",
+    "OSTC-T21"
+  ],
+  "terminal": "P1_PROTECTED_EXECUTION_INVALID",
+  "terminal_reading": "A PROTECTED execution: the discriminator must be scored by an evaluator the candidate does not control, over repairs it has not seen. Four local model families are provisioned on LUNARC, so COMPUTE is not the blocker. The blocker is custody -- I would author the repairs, the discriminator and the scoring.",
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "7302196290d2e6e0cca5e74d213d2c875e441b1758da2006be54306cddbf4628"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "5431bcb8a3836f57b36110bf834bc5dc2931dcd55347c106f89a950a8675798c"
+    },
+    "run_structural_cores_v1.py": {
+      "artifact": "run_structural_cores_v1.py",
+      "sha256": "1d5e2f5fd77015af7b56ae8b48cc129db03573265e4d00eab0891fbb4de86f41"
+    }
+  },
+  "structural_cores_attempted": [
+    "T21 (governed recursive evolution) holds over 24 enumerated adoption sequences: all 24 terminate, ZERO infinite. Every sequence carrying a strictly decreasing well-founded rank or consuming a finite protected budget halts."
+  ],
+  "what_this_does_not_establish": [
+    "This is NOT the campaign the job specifies. No protected evaluator, no external custody, no independent adjudicator was involved.",
+    "Structural verification of a theorem's decidable content says nothing about how it behaves under a protected campaign against a real comparator.",
+    "The enumerations are complete at their sizes but self-authored: one programme, one author."
+  ],
+  "what_would_discharge_this_job": "Peer review supplies exactly the independence this job lacks, and costs nothing. TMLR is diamond open access -- DOAJ lists it with no publication fees -- with double-blind review under an assigned action editor, and JOSS review is free and public. The reviewers are outside the programme by construction. For custody specifically, OSF preregistration timestamps a protocol before outcomes are accessible. None of these was used here, and none of them requires resources the author lacks.",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}

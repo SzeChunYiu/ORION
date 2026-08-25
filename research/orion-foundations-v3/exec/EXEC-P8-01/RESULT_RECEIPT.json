@@ -1,0 +1,37 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P8-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T4",
+    "OSTC-T10",
+    "OSTC-T11"
+  ],
+  "terminal": "P8_EXTERNAL_ADJUDICATION_ABSENT",
+  "terminal_reading": "Adjudication from outside the programme. I am inside it; the author is the author. Neither supplies independence to their own work, however careful the method.",
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "0aa6ff657d37a53106c535b6653693bb962b6478f73bc6574e8d2c1b99852016"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "e44a7465fda8104ba1791561bbac817302d5929802d90719c5f83d9c0fd5f7bf"
+    },
+    "run_structural_cores_v1.py": {
+      "artifact": "run_structural_cores_v1.py",
+      "sha256": "1d5e2f5fd77015af7b56ae8b48cc129db03573265e4d00eab0891fbb4de86f41"
+    }
+  },
+  "structural_cores_attempted": [
+    "T4 (no silent scientific-authority amplification) holds over 213 enumerated closure cells: ZERO amplifications. For authority-neutral F whose outputs already lie in Cl_R(A), the closure of F(A) never exceeded the closure of A."
+  ],
+  "what_this_does_not_establish": [
+    "This is NOT the campaign the job specifies. No protected evaluator, no external custody, no independent adjudicator was involved.",
+    "Structural verification of a theorem's decidable content says nothing about how it behaves under a protected campaign against a real comparator.",
+    "The enumerations are complete at their sizes but self-authored: one programme, one author."
+  ],
+  "what_would_discharge_this_job": "Peer review supplies exactly the independence this job lacks, and costs nothing. TMLR is diamond open access -- DOAJ lists it with no publication fees -- with double-blind review under an assigned action editor, and JOSS review is free and public. The reviewers are outside the programme by construction. For custody specifically, OSF preregistration timestamps a protocol before outcomes are accessible. None of these was used here, and none of them requires resources the author lacks.",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}
