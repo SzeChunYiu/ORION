@@ -1,0 +1,82 @@
+{
+  "schema_version": "orion.independent-checker-receipt.v1",
+  "job_id": "EXEC-P12-01",
+  "imports_runner": false,
+  "method_difference": "Universal clause verified by exhaustive search over every deterministic certificate-only allocator per class, not by an argument about one; bound re-derived from a separate loss table.",
+  "independent_findings": {
+    "oracle_positive_regret_cases": 0,
+    "ambiguous_classes": 588,
+    "allocators_escaping_with_zero_regret": 0,
+    "half_gap_bound_violations": 3,
+    "violations_that_are_hedge_actions": 3,
+    "violations_not_hedge_actions": 0,
+    "tight_classes": 585,
+    "bound_is_tight_somewhere": true,
+    "ambiguity_exists": true
+  },
+  "witnesses": [
+    {
+      "cv1": [
+        0,
+        1,
+        3
+      ],
+      "cv2": [
+        3,
+        1,
+        0
+      ],
+      "optima": [
+        0,
+        2
+      ],
+      "best_expected": 1.0,
+      "bound": 1.5,
+      "argmin_action": 1,
+      "is_hedge": true
+    },
+    {
+      "cv1": [
+        0,
+        3,
+        1
+      ],
+      "cv2": [
+        3,
+        0,
+        1
+      ],
+      "optima": [
+        0,
+        1
+      ],
+      "best_expected": 1.0,
+      "bound": 1.5,
+      "argmin_action": 2,
+      "is_hedge": true
+    },
+    {
+      "cv1": [
+        1,
+        0,
+        3
+      ],
+      "cv2": [
+        1,
+        3,
+        0
+      ],
+      "optima": [
+        1,
+        2
+      ],
+      "best_expected": 1.0,
+      "bound": 1.5,
+      "argmin_action": 0,
+      "is_hedge": true
+    }
+  ],
+  "disagreements": [],
+  "terminal": "EXEC_P12_01_SECOND_INDEPENDENT_CHECKER_GREEN",
+  "independence_boundary": "Two implementations inside one programme; not external adjudication."
+}

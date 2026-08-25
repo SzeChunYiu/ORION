@@ -1,0 +1,16 @@
+{
+  "schema_version": "orion.claim-delta.v1",
+  "job_id": "EXEC-P12-01",
+  "claim_delta": "THEOREM_NARROWED",
+  "affected_theorem": "OSTC-T17",
+  "clause_affected": "second clause (half-gap expected-regret bound)",
+  "clause_unaffected": "first clause (every certificate-only deterministic allocator pays on at least one member)",
+  "successor_record": "OSTC_T17_SUCCESSOR_NARROWING_V1.md",
+  "merged_theory_mutated": false,
+  "rationale": "#1234's constitutional rule requires a genuine counterexample to narrow the theorem in a separately identified successor record rather than silently mutating it. THEOREM_DERIVATIONS_T0_T23_V1.md and THEOREM_LEDGER_V1.json are NOT edited by this job.",
+  "papers_affected": [
+    "P12"
+  ],
+  "paper_authority_delta": "NONE",
+  "paper_note": "P12's paper terminal does not move. Its manuscript already reports the price-aware successor as a conditional construction-level result requiring exact charge certificates, consistent with and independent of this narrowing."
+}

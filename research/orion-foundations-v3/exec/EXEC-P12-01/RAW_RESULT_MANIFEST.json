@@ -1,0 +1,43 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-P12-01",
+  "grid": {
+    "n_actions": 3,
+    "n_costs": 4,
+    "n_certs": 3,
+    "seed": 20260825
+  },
+  "oracle": {
+    "cases": 64,
+    "positive_regret_cases": 0
+  },
+  "ambiguity": {
+    "classes_found": 588,
+    "allocators_per_class": 3,
+    "classes_with_zero_regret_allocator": 0
+  },
+  "bound": {
+    "classes_checked": 588,
+    "violations": 3,
+    "tight_classes": 585,
+    "minimal_witness": {
+      "cv1": [
+        0,
+        1,
+        3
+      ],
+      "cv2": [
+        3,
+        1,
+        0
+      ],
+      "best_expected": 1.0,
+      "bound": 1.5,
+      "smaller_gap": 3
+    }
+  },
+  "totals": {
+    "cases_enumerated": 652,
+    "wallclock_seconds": 0.003
+  }
+}
