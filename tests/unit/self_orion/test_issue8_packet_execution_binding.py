@@ -167,15 +167,33 @@ def test_binding_receipt_is_cannot_check_and_elects_no_registry():
     )
 
 
-def test_receipt_blob_identities_match_the_observed_tree():
+def test_receipt_keeps_its_historical_blob_identity_and_current_drift_is_explicit():
+    """A later provider-lane edit did not retroactively rewrite the receipt.
+
+    The receipt observed workflow blob ``8bbc...`` at commit ``5a9a...``. The
+    open-weight provider change in ``61ab033c`` moved the workflow to ``4be3...``
+    without making it load or pass the frozen packet. Treat the old blob as the
+    historical observation and pin the current unbound tree separately; equating
+    the two would either erase provenance or silently bless a registry.
+    """
+
     receipt = json.loads(RECEIPT_PATH.read_text(encoding="utf-8"))
     assert receipt["frozen_packet"]["blob_sha"] == _git_blob_sha(PROTOCOL_PATH)
-    assert receipt["workflow_registry"]["workflow_blob_sha"] == _git_blob_sha(
-        WORKFLOW_PATH
+    assert receipt["observed_at_commit"] == "5a9a35b53b7f01000ed5f001c16da9492212549b"
+    assert receipt["workflow_registry"]["workflow_blob_sha"] == (
+        "8bbc5884cde50dc84bb8f3b477cfdb29fe9845f9"
     )
+    current_workflow_blob = _git_blob_sha(WORKFLOW_PATH)
+    assert current_workflow_blob == "4be3f42da2696dd662391cbef8a1b3ed1feee8c0"
+    assert current_workflow_blob != receipt["workflow_registry"]["workflow_blob_sha"]
     assert receipt["workflow_registry"]["preflight_blob_sha"] == _git_blob_sha(
         REPO_ROOT / "src" / "orion" / "self_orion" / "phase2_preflight.py"
     )
+
+    observed = observed_packet_workflow_divergence()
+    assert observed["divergent"] is True
+    assert observed["loads_published_packet"] is False
+    assert observed["passes_frozen_packet"] is False
 
 
 def test_runbook_forbids_unbound_launch_and_silent_registry_election():
