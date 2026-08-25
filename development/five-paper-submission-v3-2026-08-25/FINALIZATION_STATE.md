@@ -1,0 +1,1 @@
+V3 finalization is in progress on the shadow branch. This note will remain as provenance for the content-freeze and submission-package integration.
