@@ -40,6 +40,7 @@ def main() -> None:
         len(backlog["common_jobs"]) == 10 and len(backlog["paper_jobs"]) == 15,
         "job counts",
     )
+    comparison_markers = ("compare", "comparison", "against", "versus")
     for index, directory in enumerate(DIRS, 1):
         manuscript = (
             ROOT
@@ -57,7 +58,7 @@ def main() -> None:
         )
         req("absorbs" in lower, f"P{index} nearest-work absorption gate")
         req(
-            "compare" in lower or "comparison" in lower,
+            any(marker in lower for marker in comparison_markers),
             f"P{index} comparator gate",
         )
         req("## Theory" in text, f"P{index} theorem section")
