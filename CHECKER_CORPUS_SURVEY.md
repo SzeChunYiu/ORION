@@ -107,3 +107,66 @@ find papers -name 'check_*.py' | while read c; do
 done
 ```
 
+
+---
+
+# Update: the orphaned checkers were never orphaned
+
+The section above reported eight independent checkers failing on a subject
+JSON that "does not exist anywhere in the repository". That was measured
+correctly and concluded wrongly.
+
+The subjects are not committed artifacts. They are **runner output**. Each
+independent checker has a sibling runner in the same directory that emits the
+JSON on **stdout**, and nothing had ever connected the two. Redirect the
+runner into the filename the checker expects, and the verification runs.
+
+## Executed
+
+| independent checker | runner | terminal |
+|---|---|---|
+| `check_decoder_attacks_independent_v1.py` | `run_decoder_attacks_v1.py` | `P11_DECODER_ATTACK_V1_INDEPENDENT_GREEN` |
+| `check_donor_comparator_independent_v1.py` | `run_donor_compiler_comparator_v1.py` | `P11_DONOR_COMPARATOR_V1_INDEPENDENT_GREEN` |
+| `check_p12_robustness_independent_v1.py` | `run_p12_robustness_v1.py` | `P12_ROBUSTNESS_SECOND_CHECKER_GREEN` |
+| `check_transfer_allocation_independent_v1.py` | `run_transfer_allocation_v1.py` | `P12_TRANSFER_ALLOCATION_SECOND_INDEPENDENT_CHECKER_GREEN` |
+
+These are genuine second-implementation checks, not reruns. The P11
+decoder-attack checker re-derives every runner claim through exact
+Fourier/Möbius spectra in `Fraction` arithmetic, explicit witness pairs, and
+the Kraft identity — where the runner used direct truth-table comparison. Its
+`run_receipt_sha256` matches the runner receipt, so it verified the run that
+was just produced rather than a stored one.
+
+## A real verdict, not a crash
+
+`check_query_family_phase_independent_v1.py` returns
+`P11_QUERY_FAMILY_PHASE_SECOND_CHECKER_GATE_NOT_MET` (runner exit 1). That is
+the second checker declining to confirm, which is a result and is recorded as
+one.
+
+## Still unresolved
+
+- `check_unified_resource_ledger_v1.py` / `_v2.py` (P9) — no runner in
+  `paper-09-.../top_tier` produces `p9_unified_resource_ledger_v1.json`. All
+  three candidates were tried.
+- `check_attestation_composition_independent_v1.py` / `_v2.py` (P15) — runner
+  exits non-zero.
+- `check_provenance_interop_independent_v1.py` (P15).
+
+## How the wrong conclusion happened
+
+The first pass ran each checker bare, saw `FileNotFoundError`, searched the
+repository for the filename, found nothing, and concluded the subject did not
+exist. Every step was correct except the last: a file absent from a
+repository has not been shown to be unproducible, only uncommitted.
+
+The corrected search was for the checker's distinctive **field names** rather
+than its input filename — `kraft_identity`, `minimal_degree` — which found
+the runner immediately, sitting in the same directory.
+
+Two automated pairing harnesses were written before this table and both
+produced false REDs: one selected runners with `ls run_*.py | head -1`, and
+one wrote the runner's output to an absolute path escaping its scratch
+directory. Both were caught because a case already verified by hand came back
+RED. Without that fixed point the harness output would have been reported as
+the finding.
