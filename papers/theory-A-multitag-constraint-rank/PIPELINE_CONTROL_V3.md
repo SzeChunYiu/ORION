@@ -18,7 +18,7 @@ Terminal goal: `simulated_publication_ready_for_target`
   not additional V3 claims.
 - Worktree/branch: isolated checkout on
   `codex/orion-publication-rewrite-20260825`, based on
-  `634241328eaa0865615659d0d078a6034c0bbd45`.
+  `cb3b73f1a971716022b7c5ee25e561b755218a31`.
 
 ## Claim and evidence lock
 

@@ -9,7 +9,7 @@ Paper-D component, editor synthesis, and final QA complete.
 
 - ORION checkout: `/workspace/scratch/d9c618f2e1ef/orion-publication-rewrite`
 - Rewrite branch: `codex/orion-publication-rewrite-20260825`
-- ORION base commit: `634241328eaa0865615659d0d078a6034c0bbd45`
+- ORION base commit: `cb3b73f1a971716022b7c5ee25e561b755218a31`
 - Academic-paper-skills merge commit: `8a2ff684eb4b777b88592e57637984f08544f56e`
 - Academic-paper-skills final implementation head: `680165e0b315093c5d82b6ae7c9dfaf03151c750`
 - Imported publication portfolio SHA-256:

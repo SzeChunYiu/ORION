@@ -1,7 +1,7 @@
 # Five-paper publication handoff R3
 
 Date: 2026-08-25
-ORION base: `634241328eaa0865615659d0d078a6034c0bbd45`
+ORION base: `cb3b73f1a971716022b7c5ee25e561b755218a31`
 Writing implementation: `academic-paper-skills@8a2ff684eb4b777b88592e57637984f08544f56e`
 Branch: `codex/orion-publication-rewrite-20260825`
 Worktree: `/workspace/scratch/d9c618f2e1ef/orion-publication-rewrite`

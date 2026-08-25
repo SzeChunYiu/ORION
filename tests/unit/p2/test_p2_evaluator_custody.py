@@ -226,7 +226,7 @@ def test_clearing_the_event_log_does_not_buy_extra_budget(suite) -> None:
         system, suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
     assert system.calls_completed <= task.budget.max_route_calls
-    assert outcome.trace.resources.query_count <= task.budget.max_route_calls
+    assert outcome.trace.resources.search_queries <= task.budget.max_route_calls
 
 
 class CounterSuppressor:

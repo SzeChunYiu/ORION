@@ -96,7 +96,7 @@ def test_every_frozen_system_respects_host_budgets_and_never_emits_invalid_claim
         )
         assert len(outcome.trace.route_trials) <= task.budget.max_route_calls
         assert len(outcome.trace.read_encounters) <= task.budget.max_reads
-        assert outcome.trace.resources.query_count <= task.budget.max_route_calls
+        assert outcome.trace.resources.search_queries <= task.budget.max_route_calls
         assert outcome.trace.resources.reads <= task.budget.max_reads
 
 
