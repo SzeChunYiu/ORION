@@ -5,7 +5,12 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from .campaign_control import decide_campaign, manifest_digest, validate_manifest
-from .campaign_protocol import CampaignState, CampaignTransition, ProtectedReference, authority_false
+from .campaign_protocol import (
+    CampaignState,
+    CampaignTransition,
+    ProtectedReference,
+    authority_false,
+)
 from .campaign_store import CampaignStore
 from .local_tools import service_local_request
 from .protocol import content_digest
@@ -59,7 +64,9 @@ def _extract(value: Any, path: list[str] | tuple[str, ...]) -> Any:
 
 def _transform(value: Any, transform: str) -> str:
     if transform == "STRING":
-        return str(value)
+        if not isinstance(value, str):
+            raise TypeError("STRING transform requires a string")
+        return value
     if transform == "BOOL_YES_NO":
         if not isinstance(value, bool):
             raise TypeError("BOOL_YES_NO requires boolean")
@@ -203,7 +210,9 @@ def initialize_campaign(
         return state
     initial_phase = str(manifest["initial_phase"])
     phase = _phase(manifest, initial_phase)
-    protected = tuple(ProtectedReference.from_dict(item) for item in manifest.get("protected_refs", ()))
+    protected = tuple(
+        ProtectedReference.from_dict(item) for item in manifest.get("protected_refs", ())
+    )
     initial_observations = manifest.get("initial_observations", {})
     if not isinstance(initial_observations, Mapping):
         raise TypeError("initial_observations must be an object")
@@ -216,10 +225,34 @@ def initialize_campaign(
         observations={str(k): str(v) for k, v in initial_observations.items()},
         active_hard_obligations=tuple(map(str, phase.get("active_hard_obligations", ()))),
         protected_refs=protected,
-        authority_ceiling=str(manifest.get("authority_ceiling", "NON_AUTHORIZING_RESEARCH_CONTROL")),
+        authority_ceiling=str(
+            manifest.get("authority_ceiling", "NON_AUTHORIZING_RESEARCH_CONTROL")
+        ),
     )
     store.save_state(campaign_id, state.as_dict())
     return state
+
+
+def _contract_failure(
+    *,
+    state: CampaignState,
+    decision,
+    request,
+    result,
+    exc: Exception,
+) -> dict[str, Any]:
+    return {
+        "schema": "ORION.ResearchCampaignOutcome.v1",
+        "status": "CAPABILITY_CONTRACT_FAILED",
+        "campaign_id": state.campaign_id,
+        "phase_id": state.phase_id,
+        "decision": decision.as_dict(),
+        "request": request.as_dict(),
+        "result": result.as_dict(),
+        "error": f"{type(exc).__name__}: {exc}",
+        "state": state.as_dict(),
+        **authority_false(),
+    }
 
 
 def run_campaign_cycle(
@@ -316,8 +349,17 @@ def run_campaign_cycle(
     contract = capability_spec.get("result_contract", {})
     if not isinstance(contract, Mapping):
         raise TypeError("result_contract must be an object")
-    payload = _parsed_payload(result.output, contract)
-    updates = _evidence_updates(payload, contract)
+    try:
+        payload = _parsed_payload(result.output, contract)
+        updates = _evidence_updates(payload, contract)
+    except (KeyError, TypeError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
+        return _contract_failure(
+            state=state,
+            decision=decision,
+            request=request,
+            result=result,
+            exc=exc,
+        )
     next_phase = str(capability_spec["next_phase"])
     if next_phase not in manifest["phases"]:
         raise ValueError(f"capability points to unknown next phase: {next_phase}")
@@ -403,11 +445,17 @@ def run_campaign(
         )
         outcomes.append(outcome)
         if outcome["status"] != "ADVANCED":
+            projection = {
+                key: outcome[key]
+                for key in ("phase_id", "terminal", "state", "error")
+                if key in outcome
+            }
             return {
                 "schema": "ORION.ResearchCampaignRun.v1",
                 "campaign_id": str(manifest["campaign_id"]),
                 "status": outcome["status"],
                 "cycles": outcomes,
+                **projection,
                 **authority_false(),
             }
     return {

@@ -67,7 +67,7 @@ class ProtectedReference:
         _string(self.path, "path", allow_empty=True)
         _string(self.blob, "blob", allow_empty=True)
         if not isinstance(self.released, bool):
-            raise TypeError("released must be a boolean")
+            raise TypeError("protected released must be a boolean")
         if not self.path and not self.blob:
             raise ValueError("protected reference requires path or blob")
 
@@ -85,7 +85,7 @@ class ProtectedReference:
             raise TypeError("protected reference must be an object")
         released = raw.get("released", False)
         if not isinstance(released, bool):
-            raise TypeError("released must be a boolean")
+            raise TypeError("protected released must be a boolean")
         return cls(
             ref_id=_string(raw.get("ref_id"), "ref_id"),
             path=_string(raw.get("path", ""), "path", allow_empty=True),
@@ -139,8 +139,10 @@ class CampaignState:
         _string(self.campaign_id, "campaign_id")
         _string(self.claim_id, "claim_id")
         _string(self.phase_id, "phase_id")
-        if not isinstance(self.cycle_index, int) or isinstance(self.cycle_index, bool) or self.cycle_index < 0:
-            raise ValueError("cycle_index must be a non-negative integer")
+        if not isinstance(self.cycle_index, int) or isinstance(self.cycle_index, bool):
+            raise TypeError("cycle_index must be an integer")
+        if self.cycle_index < 0:
+            raise ValueError("cycle_index must be non-negative")
         _digest(self.manifest_digest, "manifest_digest")
         _string(self.authority_ceiling, "authority_ceiling")
         if len(self.observations) != len({k for k, _ in self.observations}):
@@ -177,7 +179,12 @@ class CampaignState:
     ) -> "CampaignState":
         if not isinstance(observations, Mapping):
             raise TypeError("observations must be an object")
-        rows = tuple(sorted((_string(k, "observation key"), _string(v, "observation value")) for k, v in observations.items()))
+        rows = tuple(
+            sorted(
+                (_string(k, "observation key"), _string(v, "observation value"))
+                for k, v in observations.items()
+            )
+        )
         obligations = _strings(tuple(active_hard_obligations), "active_hard_obligations")
         refs = tuple(protected_refs)
         history = tuple(history_digests)
@@ -210,7 +217,9 @@ class CampaignState:
         for row in obs_raw:
             if not isinstance(row, list) or len(row) != 2:
                 raise ValueError("observation row must contain two entries")
-            observations.append((_string(row[0], "observation key"), _string(row[1], "observation value")))
+            observations.append(
+                (_string(row[0], "observation key"), _string(row[1], "observation value"))
+            )
         state = cls(
             campaign_id=_string(raw.get("campaign_id"), "campaign_id"),
             claim_id=_string(raw.get("claim_id"), "claim_id"),
@@ -218,8 +227,12 @@ class CampaignState:
             cycle_index=raw.get("cycle_index"),
             manifest_digest=_digest(raw.get("manifest_digest"), "manifest_digest"),
             observations=tuple(observations),
-            active_hard_obligations=_strings(raw.get("active_hard_obligations", ()), "active_hard_obligations"),
-            protected_refs=tuple(ProtectedReference.from_dict(item) for item in raw.get("protected_refs", ())),
+            active_hard_obligations=_strings(
+                raw.get("active_hard_obligations", ()), "active_hard_obligations"
+            ),
+            protected_refs=tuple(
+                ProtectedReference.from_dict(item) for item in raw.get("protected_refs", ())
+            ),
             history_digests=_strings(raw.get("history_digests", ()), "history_digests"),
             authority_ceiling=_string(raw.get("authority_ceiling"), "authority_ceiling"),
             state_digest=_digest(raw.get("state_digest"), "state_digest"),
@@ -238,6 +251,7 @@ class CampaignDecision:
     revision: Mapping[str, Any]
     computation: Mapping[str, Any]
     control: Mapping[str, Any]
+    shadow_control: Mapping[str, Any] | None
     decision_digest: str
     schema: str = _DECISION_SCHEMA
 
@@ -252,6 +266,7 @@ class CampaignDecision:
             "revision": dict(self.revision),
             "computation": dict(self.computation),
             "control": dict(self.control),
+            "shadow_control": (None if self.shadow_control is None else dict(self.shadow_control)),
             **authority_false(),
         }
 
@@ -267,6 +282,17 @@ class CampaignDecision:
             _string(self.selected_kind, "selected_kind")
         if self.selected_id is not None:
             _string(self.selected_id, "selected_id")
+        for name, value in (
+            ("responsibility", self.responsibility),
+            ("interface", self.interface),
+            ("revision", self.revision),
+            ("computation", self.computation),
+            ("control", self.control),
+        ):
+            if not isinstance(value, Mapping):
+                raise TypeError(f"{name} must be an object")
+        if self.shadow_control is not None and not isinstance(self.shadow_control, Mapping):
+            raise TypeError("shadow_control must be an object or null")
         _digest(self.decision_digest, "decision_digest")
         if self.decision_digest != content_digest(self.unsigned()):
             raise ValueError("campaign decision digest mismatch")
@@ -307,8 +333,10 @@ class CampaignTransition:
         if self.schema != _TRANSITION_SCHEMA:
             raise ValueError("unsupported campaign transition schema")
         _string(self.campaign_id, "campaign_id")
-        if not isinstance(self.cycle_index, int) or isinstance(self.cycle_index, bool) or self.cycle_index < 0:
-            raise ValueError("cycle_index must be a non-negative integer")
+        if not isinstance(self.cycle_index, int) or isinstance(self.cycle_index, bool):
+            raise TypeError("cycle_index must be an integer")
+        if self.cycle_index < 0:
+            raise ValueError("cycle_index must be non-negative")
         for value, name in (
             (self.before_state_digest, "before_state_digest"),
             (self.decision_digest, "decision_digest"),

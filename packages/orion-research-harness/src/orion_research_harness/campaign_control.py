@@ -49,6 +49,12 @@ def _strict_bool(value: Any, name: str) -> bool:
     return value
 
 
+def _array(value: Any, name: str) -> tuple[Any, ...]:
+    if isinstance(value, (str, bytes)) or not isinstance(value, (list, tuple)):
+        raise TypeError(f"{name} must be an array")
+    return tuple(value)
+
+
 def validate_manifest(manifest: Mapping[str, Any]) -> None:
     if not isinstance(manifest, Mapping):
         raise TypeError("campaign manifest must be an object")
@@ -90,21 +96,79 @@ def validate_manifest(manifest: Mapping[str, Any]) -> None:
         ):
             if field not in phase:
                 raise ValueError(f"phase {phase_id} missing {field}")
-        hypothesis_ids = [str(row["hypothesis_id"]) for row in phase["responsibility_hypotheses"]]
-        mechanic_ids = [str(row["mechanic_id"]) for row in phase["revision_mechanics"]]
-        action_ids = [str(row["action_id"]) for row in phase["computation_actions"]]
+        hypothesis_ids = []
+        for row in _array(phase["responsibility_hypotheses"], "responsibility_hypotheses"):
+            if not isinstance(row, Mapping):
+                raise TypeError("responsibility hypothesis must be an object")
+            hypothesis_id = row.get("hypothesis_id")
+            if not isinstance(hypothesis_id, str) or not hypothesis_id.strip():
+                raise TypeError("hypothesis_id must be a non-empty string")
+            hypothesis_ids.append(hypothesis_id)
+            expected = row.get("expected_observations")
+            if not isinstance(expected, Mapping):
+                raise TypeError("expected_observations must be an object")
+            for values in expected.values():
+                _array(values, "expected observation values")
+
+        mechanic_ids = []
+        for row in _array(phase["revision_mechanics"], "revision_mechanics"):
+            if not isinstance(row, Mapping):
+                raise TypeError("revision mechanic must be an object")
+            mechanic_id = row.get("mechanic_id")
+            if not isinstance(mechanic_id, str) or not mechanic_id.strip():
+                raise TypeError("mechanic_id must be a non-empty string")
+            mechanic_ids.append(mechanic_id)
+
+        action_ids = []
+        for row in _array(phase["computation_actions"], "computation_actions"):
+            if not isinstance(row, Mapping):
+                raise TypeError("computation action must be an object")
+            action_id = row.get("action_id")
+            if not isinstance(action_id, str) or not action_id.strip():
+                raise TypeError("action_id must be a non-empty string")
+            action_ids.append(action_id)
+
+        for row in _array(phase["interface_checks"], "interface_checks"):
+            if not isinstance(row, Mapping):
+                raise TypeError("interface check must be an object")
+            _strict_bool(row.get("required", True), "interface required")
+
         if len(hypothesis_ids) != len(set(hypothesis_ids)):
             raise ValueError(f"phase {phase_id} duplicates responsibility hypothesis")
         if len(mechanic_ids) != len(set(mechanic_ids)):
             raise ValueError(f"phase {phase_id} duplicates revision mechanic")
         if len(action_ids) != len(set(action_ids)):
             raise ValueError(f"phase {phase_id} duplicates computation action")
+        bindings = phase["responsibility_bindings"]
+        if not isinstance(bindings, Mapping):
+            raise TypeError("responsibility_bindings must be an object")
+        for hypothesis_id, bound_ids in bindings.items():
+            if str(hypothesis_id) not in hypothesis_ids:
+                raise ValueError(f"binding references unknown hypothesis: {hypothesis_id}")
+            unknown = set(map(str, _array(bound_ids, "binding mechanic ids"))) - set(mechanic_ids)
+            if unknown:
+                raise ValueError(f"binding references unknown mechanics: {sorted(unknown)}")
+        shadow_ids = phase.get("shadow_allowed_revision_ids")
+        if shadow_ids is not None:
+            allowed = tuple(map(str, _array(shadow_ids, "shadow_allowed_revision_ids")))
+            if not allowed:
+                raise ValueError("configured shadow revision allowlist cannot be empty")
+            unknown = set(allowed) - set(mechanic_ids)
+            if unknown:
+                raise ValueError(
+                    f"shadow allowlist references unknown mechanics: {sorted(unknown)}"
+                )
         selected = phase.get("selected_capabilities", {})
         if not isinstance(selected, Mapping):
             raise TypeError("selected_capabilities must be an object")
         for _, capability_id in selected.items():
             if str(capability_id) not in capabilities:
                 raise ValueError(f"phase {phase_id} selects unknown capability {capability_id}")
+    for capability_id, spec in capabilities.items():
+        if spec["next_phase"] not in phases:
+            raise ValueError(
+                f"capability {capability_id} points to unknown phase {spec['next_phase']}"
+            )
 
 
 def _responsibility(state: CampaignState, phase: Mapping[str, Any]):
@@ -113,8 +177,7 @@ def _responsibility(state: CampaignState, phase: Mapping[str, Any]):
             hypothesis_id=str(row["hypothesis_id"]),
             claim_id=state.claim_id,
             expected_observations={
-                str(key): tuple(map(str, values))
-                for key, values in row["expected_observations"].items()
+                str(key): tuple(values) for key, values in row["expected_observations"].items()
             },
             support_evidence_ids=tuple(map(str, row.get("support_evidence_ids", ()))),
             defeater_evidence_ids=tuple(map(str, row.get("defeater_evidence_ids", ()))),
@@ -197,7 +260,9 @@ def _computation(state: CampaignState, phase: Mapping[str, Any]):
         assess_computation_action(
             action,
             requirement_states=requirement_states,
-            available_authorities=tuple(map(str, phase.get("available_computation_authorities", ()))),
+            available_authorities=tuple(
+                map(str, phase.get("available_computation_authorities", ()))
+            ),
         )
         for action in actions
     )
@@ -206,6 +271,18 @@ def _computation(state: CampaignState, phase: Mapping[str, Any]):
         assessments,
         active_hard_obligations=state.active_hard_obligations,
     )
+
+
+def _bindings(
+    phase: Mapping[str, Any], *, allowed: set[str] | None = None
+) -> dict[str, tuple[str, ...]]:
+    bindings: dict[str, tuple[str, ...]] = {}
+    for hypothesis_id, mechanic_ids in phase["responsibility_bindings"].items():
+        ids = tuple(map(str, mechanic_ids))
+        if allowed is not None:
+            ids = tuple(item for item in ids if item in allowed)
+        bindings[str(hypothesis_id)] = ids
+    return bindings
 
 
 def decide_campaign(state: CampaignState, manifest: Mapping[str, Any]) -> CampaignDecision:
@@ -219,19 +296,37 @@ def decide_campaign(state: CampaignState, manifest: Mapping[str, Any]) -> Campai
     responsibility = _responsibility(state, phase)
     interface = _interface(phase)
     mechanics, assessments = _mechanics(state, phase)
-    bindings = {
-        str(key): tuple(map(str, value))
-        for key, value in phase["responsibility_bindings"].items()
-    }
     revision = assess_revision_gate(
         responsibility=responsibility,
         interface=interface,
         mechanics=mechanics,
         assessments=assessments,
-        responsibility_bindings=bindings,
+        responsibility_bindings=_bindings(phase),
     )
     computation = _computation(state, phase)
     control = compose_epistemic_control(revision=revision, computation=computation)
+    shadow_control = None
+    shadow_ids = phase.get("shadow_allowed_revision_ids")
+    if shadow_ids is not None:
+        allowed = set(map(str, shadow_ids))
+        pairs = [
+            (mechanic, assessment)
+            for mechanic, assessment in zip(mechanics, assessments, strict=True)
+            if mechanic.mechanic_id in allowed
+        ]
+        if not pairs:
+            raise ValueError("configured shadow control selected no registered mechanics")
+        shadow_revision = assess_revision_gate(
+            responsibility=responsibility,
+            interface=interface,
+            mechanics=tuple(row[0] for row in pairs),
+            assessments=tuple(row[1] for row in pairs),
+            responsibility_bindings=_bindings(phase, allowed=allowed),
+        )
+        shadow_control = compose_epistemic_control(
+            revision=shadow_revision,
+            computation=computation,
+        )
     if control.selected_computation_action_id is not None:
         selected_kind = "COMPUTATION"
         selected_id = control.selected_computation_action_id
@@ -251,6 +346,7 @@ def decide_campaign(state: CampaignState, manifest: Mapping[str, Any]) -> Campai
         "revision": revision.unsigned(),
         "computation": computation.unsigned(),
         "control": control.unsigned(),
+        "shadow_control": (None if shadow_control is None else shadow_control.unsigned()),
         **authority_false(),
     }
     decision = CampaignDecision(
@@ -262,6 +358,7 @@ def decide_campaign(state: CampaignState, manifest: Mapping[str, Any]) -> Campai
         revision=revision.unsigned(),
         computation=computation.unsigned(),
         control=control.unsigned(),
+        shadow_control=None if shadow_control is None else shadow_control.unsigned(),
         decision_digest=content_digest(unsigned),
     )
     decision.validate()

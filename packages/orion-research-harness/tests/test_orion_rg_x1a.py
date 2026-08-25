@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-from orion_research_harness.campaign_control import decide_campaign, manifest_digest, validate_manifest
+from orion_research_harness.campaign_control import (
+    decide_campaign,
+    manifest_digest,
+    validate_manifest,
+)
 from orion_research_harness.campaign_protocol import CampaignState
 from orion_research_harness.domains.orion_rg import X1A_DAVENPORT_3_5_CAMPAIGN_MANIFEST
 from orion_research_harness.domains.registry import builtin_campaign_ids, load_builtin_campaign
@@ -28,7 +32,10 @@ def test_x1a_manifest_is_registered_and_non_authorizing():
     assert load_builtin_campaign(manifest["campaign_id"]) is manifest
     assert manifest["authority_ceiling"] == "NON_AUTHORIZING_MATH_DISCOVERY_FIBRE"
     terminal = manifest["phases"]["FRONTIER_FROZEN"]
-    assert terminal["terminal_name"] == "X1A_ONE_BLOCK_DEFICIT_DISCOVERY_FIBRE_FROZEN__NO_THEOREM_AUTHORITY"
+    assert (
+        terminal["terminal_name"]
+        == "X1A_ONE_BLOCK_DEFICIT_DISCOVERY_FIBRE_FROZEN__NO_THEOREM_AUTHORITY"
+    )
 
 
 def test_x1a_control_orders_donor_refusal_before_deficit_reframe():
@@ -57,7 +64,7 @@ def test_x1a_control_orders_donor_refusal_before_deficit_reframe():
     )
     d2 = decide_campaign(blocked, manifest)
     assert d2.selected_id == "COMPUTE:X1A_ONE_BLOCK_DEFICIT"
-    assert d2.revision["selected_revision_mechanic_id"] == "REV:X1A_REFRAME_TO_LIFT_COMPATIBLE_OBSTRUCTION"
+    assert d2.revision["selected_mechanic_id"] == "REV:X1A_REFRAME_TO_LIFT_COMPATIBLE_OBSTRUCTION"
 
 
 def test_x1a_finite_calibration_cannot_claim_family_theorem():
