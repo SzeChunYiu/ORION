@@ -9,7 +9,12 @@
       ],
       "claim_ledger_cannot_check": [
         "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER_V1.md :: Abstract: EXTERNAL NOT EXECUTED",
-        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER_V1.md :: Conclusion: EXTERNAL NOT EXECUTED"
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER_V1.md :: Conclusion: EXTERNAL NOT EXECUTED",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md :: P1-PUBLICSRC2: Metadata-level development-pool feasibility only. Zero case texts, scientific terminals, action gold, models, protected scores, eligible R7A dossiers, construct-validity decisions, effects, or external-custody claims. Europe PMC search absence and non-PMID residuals remain `CANNOT_CHECK`.",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md :: P1-ADAPTER-V8: The stronger public provenance does not change the R7 terminal or counts: 0 certified, 116,929 rejected and 720 `CANNOT_CHECK`. Public visibility is not a reuse licence, process anchors are not exhaustive extensional denotations, and type separation is not a one-to-one postpublication action bridge. No manuscript headline or performance claim is promoted.",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md :: P1-OWNER-V11: NISO standards governance is not R7 ownership. No R7 owner, delegate, complete algebra, host authority, rights, custody, independent review, case/outcome or scientific gold is bound. The map state remains 116,929 rejected, 720 `CANNOT_CHECK`, 0 certified.",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md :: P1-OWNER-V13: Unsigned packet readiness is not scientific evidence. External outputs received: 0/7; authority acts closed: 0/4. No identity, signature, delegation, right, custody, independent review, scientific-action gold, effect, superiority or top-tier readiness is established. The map state remains 116,929 rejected, 720 `CANNOT_CHECK`, 0 certified.",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md :: P1-FD2: `UNRESOLVED/CANNOT_CHECK` is then a meta-level status, not an action with imputed loss. Operational deferral must be explicitly included in the action alphabet and made legal. A wrapper that adds missing decision semantics is a new proxy."
       ],
       "claim_ledgers": [
         "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER_V1.md",
@@ -17,10 +22,20 @@
       ],
       "issue": 98,
       "journal_readiness": "papers/paper-01-recursive-epistemic-reconstruction/JOURNAL_READINESS.md",
-      "journal_readiness_terminal": "PEER_REVIEW_READY",
-      "missing_artifacts": [],
+      "journal_readiness_terminal": "CANNOT_CHECK",
+      "missing_artifacts": [
+        "papers/paper-01-recursive-epistemic-reconstruction/JOURNAL_READINESS.md: current terminal is CANNOT_CHECK, not PEER_REVIEW_READY",
+        "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json: protocol_status=EXECUTION_FROZEN with outcome_accessed=false; V1 protocol has not authorized outcome access",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER_V1.md :: Abstract: EXTERNAL NOT EXECUTED",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER_V1.md :: Conclusion: EXTERNAL NOT EXECUTED",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md :: P1-PUBLICSRC2: Metadata-level development-pool feasibility only. Zero case texts, scientific terminals, action gold, models, protected scores, eligible R7A dossiers, construct-validity decisions, effects, or external-custody claims. Europe PMC search absence and non-PMID residuals remain `CANNOT_CHECK`.",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md :: P1-ADAPTER-V8: The stronger public provenance does not change the R7 terminal or counts: 0 certified, 116,929 rejected and 720 `CANNOT_CHECK`. Public visibility is not a reuse licence, process anchors are not exhaustive extensional denotations, and type separation is not a one-to-one postpublication action bridge. No manuscript headline or performance claim is promoted.",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md :: P1-OWNER-V11: NISO standards governance is not R7 ownership. No R7 owner, delegate, complete algebra, host authority, rights, custody, independent review, case/outcome or scientific gold is bound. The map state remains 116,929 rejected, 720 `CANNOT_CHECK`, 0 certified.",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md :: P1-OWNER-V13: Unsigned packet readiness is not scientific evidence. External outputs received: 0/7; authority acts closed: 0/4. No identity, signature, delegation, right, custody, independent review, scientific-action gold, effect, superiority or top-tier readiness is established. The map state remains 116,929 rejected, 720 `CANNOT_CHECK`, 0 certified.",
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER.md :: P1-FD2: `UNRESOLVED/CANNOT_CHECK` is then a meta-level status, not an action with imputed loss. Operational deferral must be explicitly included in the action alphabet and made legal. A wrapper that adds missing decision semantics is a new proxy."
+      ],
       "notes": [
-        "JOURNAL_READINESS declares PEER_REVIEW_READY and the paper-specific artifact/evidence gate corroborates it."
+        "Artifacts exist and the paper is not PEER_REVIEW_READY; listed missing_artifacts are the blockers."
       ],
       "outcome_accessed": false,
       "paper_id": "P1",
@@ -28,14 +43,16 @@
       "protocol_id": "P1.hidden-formulation.v1",
       "protocol_status": "EXECUTION_FROZEN",
       "readme": "papers/paper-01-recursive-epistemic-reconstruction/README.md",
-      "readme_records_peer_review_ready": true,
+      "readme_records_peer_review_ready": false,
       "root": "papers/paper-01-recursive-epistemic-reconstruction",
-      "status": "PEER_REVIEW_READY",
+      "status": "BLOCKED",
       "title": "Recursive Epistemic Reconstruction",
       "unbound_execution_bindings": [],
       "v2_protocol": "research/paper-programme-v2/protocols/P1_V2.json",
       "v2_protocol_status": "DESIGN_FROZEN",
-      "warnings": []
+      "warnings": [
+        "papers/paper-01-recursive-epistemic-reconstruction/README.md: README does not record PEER_REVIEW_READY"
+      ]
     },
     {
       "attestation_paths": [
@@ -54,7 +71,12 @@
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-C15: CANNOT_CHECK",
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R47: CANNOT_CHECK",
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R48: CANNOT_CHECK",
-        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-X25: CANNOT_CHECK"
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-X25: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R55: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R57: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R58: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R59: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R60: CANNOT_CHECK"
       ],
       "claim_ledgers": [
         "papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md",
@@ -174,17 +196,23 @@
       "claim_ledger_cannot_check": [
         "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Abstract: EXTERNAL NOT EXECUTED",
         "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Results: EXTERNAL NOT EXECUTED",
-        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Conclusion / prospective extension: EXTERNAL NOT EXECUTED"
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Conclusion: EXTERNAL NOT EXECUTED"
       ],
       "claim_ledgers": [
         "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md"
       ],
       "issue": 102,
       "journal_readiness": "papers/paper-05-self-orion/JOURNAL_READINESS.md",
-      "journal_readiness_terminal": "PEER_REVIEW_READY",
-      "missing_artifacts": [],
+      "journal_readiness_terminal": "CANNOT_CHECK",
+      "missing_artifacts": [
+        "papers/paper-05-self-orion/JOURNAL_READINESS.md: current terminal is CANNOT_CHECK, not PEER_REVIEW_READY",
+        "papers/paper-05-self-orion/protocol/PROTOCOL_V1.json: protocol_status=DESIGN_FROZEN; UNBOUND identities remain: $.baseline_config_hashes, $.dataset_revisions.fresh_transfer_split, $.dataset_revisions.hidden_cause_suite, $.dataset_revisions.motivating_replay_split, $.evaluation_epoch, $.evaluator_hash, $.model_provider_revisions, $.split_hashes, $.subject_revision",
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Abstract: EXTERNAL NOT EXECUTED",
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Results: EXTERNAL NOT EXECUTED",
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Conclusion: EXTERNAL NOT EXECUTED"
+      ],
       "notes": [
-        "JOURNAL_READINESS declares PEER_REVIEW_READY and the paper-specific artifact/evidence gate corroborates it."
+        "Artifacts exist and the paper is not PEER_REVIEW_READY; listed missing_artifacts are the blockers."
       ],
       "outcome_accessed": false,
       "paper_id": "P5",
@@ -194,7 +222,7 @@
       "readme": "papers/paper-05-self-orion/README.md",
       "readme_records_peer_review_ready": false,
       "root": "papers/paper-05-self-orion",
-      "status": "PEER_REVIEW_READY",
+      "status": "BLOCKED",
       "title": "Self-ORION",
       "unbound_execution_bindings": [
         "$.baseline_config_hashes",
@@ -210,22 +238,20 @@
       "v2_protocol": "research/paper-programme-v2/protocols/P5_V2.json",
       "v2_protocol_status": "DESIGN_FROZEN",
       "warnings": [
-        "papers/paper-05-self-orion/README.md: canonical README does not yet record PEER_REVIEW_READY (programme close still wants this; JOURNAL_READINESS remains the scoring terminal)"
+        "papers/paper-05-self-orion/README.md: README does not record PEER_REVIEW_READY"
       ]
     }
   ],
   "programme": {
-    "close_allowed": true,
+    "close_allowed": false,
     "issue": 97,
     "papers_peer_review_ready": [
-      "P1",
       "P2",
       "P3",
-      "P4",
-      "P5"
+      "P4"
     ],
-    "reason": "All five papers are PEER_REVIEW_READY on repository artifacts.",
-    "status": "PEER_REVIEW_READY"
+    "reason": "Issue #97 may close only when P1–P5 are PEER_REVIEW_READY on main. ready=P2,P3,P4; blocked=P1,P5",
+    "status": "BLOCKED"
   },
   "schema_version": "orion.publication-status.v1"
 }
