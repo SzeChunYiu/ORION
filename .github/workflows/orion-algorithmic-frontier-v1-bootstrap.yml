@@ -14,13 +14,16 @@ permissions:
 jobs:
   materialize:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
           ref: codex/orion-algorithmic-frontier-v1-20260825
           fetch-depth: 0
-      - name: Materialize content-bound algorithmic payload
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Materialize and verify content-bound algorithmic payload
         shell: bash
         run: |
           set -euo pipefail
@@ -29,15 +32,52 @@ jobs:
             echo "bootstrap payload not ready"
             exit 0
           fi
+
+          test "$(git hash-object "$root/PAYLOAD.part.000")" = "febab0f52cc59387484d029cf7ec2c4dafbf7368"
+          test "$(git hash-object "$root/PAYLOAD.part.001")" = "c7fd0d20bdccad2d0c84439c27be7a5573a0e07b"
+
           cat "$root"/PAYLOAD.part.* > /tmp/orion-alg-v1.b64
-          test "$(sha256sum /tmp/orion-alg-v1.b64 | awk '{print $1}')" = "$(cat "$root/PAYLOAD_B64_SHA256")"
           base64 -d /tmp/orion-alg-v1.b64 > /tmp/orion-alg-v1.tgz
-          test "$(sha256sum /tmp/orion-alg-v1.tgz | awk '{print $1}')" = "$(cat "$root/PAYLOAD_TGZ_SHA256")"
-          tar -xzf /tmp/orion-alg-v1.tgz
+          gzip -t /tmp/orion-alg-v1.tgz
+          mkdir -p /tmp/orion-alg-v1
+
+          python - <<'PY'
+          from pathlib import PurePosixPath
+          import tarfile
+
+          archive = "/tmp/orion-alg-v1.tgz"
+          forbidden = ("rr1", "finalizer", "slurm", "lunarc", "immutable_oid", "immutable-oid")
+          with tarfile.open(archive, "r:gz") as tf:
+              members = tf.getmembers()
+              if not members:
+                  raise SystemExit("empty algorithmic payload")
+              for member in members:
+                  path = PurePosixPath(member.name)
+                  if path.is_absolute() or ".." in path.parts:
+                      raise SystemExit(f"unsafe archive path: {member.name}")
+                  lower = member.name.lower()
+                  if any(token in lower for token in forbidden):
+                      raise SystemExit(f"protected execution path in payload: {member.name}")
+                  if member.issym() or member.islnk() or member.isdev():
+                      raise SystemExit(f"unsupported archive member: {member.name}")
+              tf.extractall("/tmp/orion-alg-v1", filter="data")
+          PY
+
+          rsync -a /tmp/orion-alg-v1/ ./
           rm -rf "$root" .github/workflows/orion-algorithmic-frontier-v1-bootstrap.yml
+
+          test -f scripts/check_orion_algorithmic_frontier_v1.py
+          python scripts/check_orion_algorithmic_frontier_v1.py
+          if [[ -d tests/unit/algorithmic_frontier_v1 ]]; then
+            PYTHONPATH=src python -m pytest -q tests/unit/algorithmic_frontier_v1
+          elif [[ -d tests/unit/algorithmic_frontier ]]; then
+            PYTHONPATH=src python -m pytest -q tests/unit/algorithmic_frontier
+          fi
+          python -m compileall -q src/orion/algorithmic_frontier_v1 scripts/check_orion_algorithmic_frontier_v1.py
+
           git config user.name "ORION Algorithmic Frontier bootstrap"
           git config user.email "actions@users.noreply.github.com"
           git add -A
           git diff --cached --check
-          git commit -m "Add ORION algorithmic frontier kernel and paper addenda"
+          git commit -m "Materialize ORION Algorithmic Frontier V1"
           git push origin HEAD:codex/orion-algorithmic-frontier-v1-20260825
