@@ -1,0 +1,54 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P10-02",
+  "successor_to": "EXEC-P10-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T22"
+  ],
+  "terminal": "P10_SYNTHESIS_CHECKING_SEPARATION_SUPPORTED",
+  "executed_on": {
+    "host": "LUNARC",
+    "wallclock_seconds": 0.447
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "a584109d4e863cf5a90cd2e5f51a2c285149e6a7dd81c8ca36f45028b29a073a"
+    },
+    "run_sat_sep.py": {
+      "artifact": "run_sat_sep.py",
+      "sha256": "89cd52b05eeccd2a98b4c65eafea353c5f0da969c163a90e99823d9e3647ae9e"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "6bd21e8fa83ebdd29bb1bffa8d7f19c773ce6d168449ff7cf6391b3f29651110"
+    }
+  },
+  "precondition": {
+    "unsat_present": true,
+    "detail": "797 of 3,000 formulas are unsatisfiable. The predecessor failed twice by discovering an all-SAT family at the END and reporting a separation that had never been tested. Here UNSAT membership is checked BEFORE any separation result is computed, and the run aborts without it."
+  },
+  "results": {
+    "OSTC-T22": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "The separation is now visible because the family spans the phase transition. Deciding an unsatisfiable formula exhausts the whole assignment space -- mean 32.0 of 32 possible assignments, necessarily, since no assignment satisfies it. Satisfiable formulas stop at mean 12.99. That is a 2.46x search asymmetry between deciding and not. Checking is unaffected by either: all 2,203 supplied satisfying assignments verified in a single independent pass, zero failures. Polynomial checking, exhaustive finding.",
+      "formulas": 3000,
+      "sat": 2203,
+      "unsat": 797,
+      "mean_search_steps_sat": 12.99,
+      "mean_search_steps_unsat": 32.0,
+      "search_asymmetry": 2.46,
+      "check_passes": 2203,
+      "check_failures": 0
+    }
+  },
+  "what_fixed_it": "Ratio, not clause width. The predecessor's two failures both came from families below the random 3-SAT phase transition near 4.27: ratio 0.8 in both cases, once with 2-literal clauses and once with 3. This family uses 21 and 26 clauses over 5 variables -- ratios 4.2 and 5.2 -- spanning the transition from below to above, which is why UNSAT appears at 27% rather than 0%.",
+  "what_this_does_not_establish": [
+    "This is a 5-variable enumeration. It exhibits the asymmetry; it does not measure asymptotic complexity, and 2.46x is a fact about this grid, not a growth rate.",
+    "T22 also claims richer method languages may make synthesis undecidable while checking stays decidable. That half is not tested here.",
+    "No external adjudication."
+  ],
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}
