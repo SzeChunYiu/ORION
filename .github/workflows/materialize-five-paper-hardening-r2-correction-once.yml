@@ -1,0 +1,76 @@
+name: materialize-five-paper-hardening-r2-correction-once
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-correction:
+    if: github.head_ref == 'shadow/five-paper-hardening-r2-20260825' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install focused test dependency
+        run: python -m pip install pytest
+      - name: Reconstruct and materialize the hostile-review correction
+        run: |
+          set -euo pipefail
+          cat .integration/five-paper-hardening-r2-correction/corr_*.b64 | base64 -d > /tmp/r2-correction.tar.gz
+          echo 'f59994ab0c8713623581a068302e7e318f78e6db89fe3366966cef562a6a7833  /tmp/r2-correction.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/r2-correction.tar.gz
+      - name: Verify corrected theorem obligations and publication boundaries
+        run: |
+          set -euo pipefail
+          python papers/verify_five_theory_hardening_r2.py > /tmp/observed-five-r2.json
+          diff -u papers/FIVE_THEORY_HARDENING_R2_RESULTS.json /tmp/observed-five-r2.json
+          pytest -q tests/unit/publication/test_five_theory_hardening_r2.py
+          python -m py_compile \
+            papers/verify_five_theory_hardening_r2.py \
+            papers/theory-D-falsification-authority/typed_authority_evaluator.py \
+            tests/unit/publication/test_five_theory_hardening_r2.py
+          ! grep -R -n -E 'binary alphabet.*strictly below.*rank|zsf\(H_R;A_R\).*<.*rank|below-rank binary' \
+            papers/theory-A-multitag-constraint-rank \
+            papers/theory-B-certificate-complexity \
+            papers/FIVE_PAPER_REVIEW_SYNTHESIS_R2_2026-08-25.md
+          git diff --check
+      - name: Commit the corrected package and remove transport artifacts
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/materialize-five-paper-hardening-r2-correction-once.yml
+          git rm -r .integration/five-paper-hardening-r2-correction
+          git add \
+            development/five-paper-hardening-r2-2026-08-25/DEVELOPMENT_PACKET.md \
+            development/five-paper-hardening-r2-2026-08-25/EXPERT_ROUND_LEDGER.md \
+            development/five-paper-hardening-r2-2026-08-25/R2_FILE_MANIFEST.json \
+            papers/FIVE_PAPER_PRIMARY_SOURCE_CLOSURE_R2_2026-08-25.md \
+            papers/FIVE_PAPER_REVIEW_SYNTHESIS_R2_2026-08-25.md \
+            papers/FIVE_PAPER_FIGURE_CONTRACTS_R2_2026-08-25.md \
+            papers/FIVE_THEORY_HARDENING_R2_RESULTS.json \
+            papers/verify_five_theory_hardening_r2.py \
+            papers/theory-A-multitag-constraint-rank/MANUSCRIPT_V2.md \
+            papers/theory-A-multitag-constraint-rank/CLAIM_LEDGER_R2.md \
+            papers/theory-B-certificate-complexity/MANUSCRIPT_V2.md \
+            papers/theory-B-certificate-complexity/CLAIM_LEDGER_R2.md \
+            papers/theory-C-low-order-information/MANUSCRIPT_V2.md \
+            papers/theory-C-low-order-information/CLAIM_LEDGER_R2.md \
+            papers/theory-D-falsification-authority/MANUSCRIPT_V2.md \
+            papers/theory-D-falsification-authority/CLAIM_LEDGER_R2.md \
+            papers/theory-D-falsification-authority/typed_authority_evaluator.py \
+            papers/theory-D-falsification-authority/cases/TARE_CASE.json \
+            papers/theory-D-falsification-authority/cases/PAPER_C_CASE.json \
+            papers/theory-D-falsification-authority/cases/NONQUANTUM_CASE.json \
+            tests/unit/publication/test_five_theory_hardening_r2.py
+          git diff --cached --check
+          git commit -m 'fix(theory): correct binary alphabet claim and harden C/D'
+          git push origin HEAD:${GITHUB_HEAD_REF}
