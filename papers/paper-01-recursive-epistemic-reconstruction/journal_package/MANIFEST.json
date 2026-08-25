@@ -32,46 +32,216 @@
     "bridge_rule": "The V3 render subject and PDF remain historical and are not relabelled or rebound to the current revision. Current tracked TeX inputs have drifted, so this closure cannot authorize the enlarged manuscript; a fresh immutable build and visual audit are required."
   },
   "required_files": [
-    {"path": "manuscript/main.tex", "role": "manuscript-source"},
-    {"path": "manuscript/bibliography.bib", "role": "bibliography"},
-    {"path": "evidence/CLAIM_LEDGER.md", "role": "current-claim-ledger"},
-    {"path": "evidence/CLAIM_LEDGER_V1.md", "role": "immutable-historical-v1-claim-ledger"},
-    {"path": "evidence/PEER_REVIEW_READY_BOUNDED_V2.md", "role": "bounded-readiness-attestation"},
-    {"path": "protocol/PROTOCOL_V1.json", "role": "historical-v1-frozen-protocol"},
-    {"path": "results/P1-T2_baseline_ablation_results.json", "role": "historical-v1-headline-table"},
-    {"path": "results/P1-T2_STATUS_ONTOLOGY_CORRECTION_V1.json", "role": "historical-table-status-ontology-correction"},
-    {"path": "results/P1-T3_failure_taxonomy.json", "role": "historical-v1-failure-taxonomy"},
-    {"path": "REPRODUCE.md", "role": "reproduction-path"},
-    {"path": "JOURNAL_READINESS.md", "role": "gate-checklist"},
-    {"path": "../../research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json", "role": "powered-primary-result"},
-    {"path": "../../research/revival/p1/confirmatory/v2.2/primary/INDEPENDENT_VERIFICATION.json", "role": "primary-independent-verification"},
-    {"path": "../../research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json", "role": "disjoint-replication-result"},
-    {"path": "../../research/revival/p1/confirmatory/v2.2/replication/INDEPENDENT_VERIFICATION.json", "role": "replication-independent-verification"},
-    {"path": "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json", "role": "cross-run-concordance"},
-    {"path": "evidence/FINAL_SATURATION_AUDIT.md", "role": "historical-render-visual-and-package-audit"},
-    {"path": "journal_package/RENDER_INPUT_CLOSURE.json", "role": "historical-exact-render-repository-input-closure"},
-    {"path": "journal_package/RENDER_CLOSURE_STATE.json", "role": "generator-derived-current-render-closure-state"},
-    {"path": "journal_package/manuscript.pdf", "role": "historical-compiled-and-visually-reviewed-manuscript"}
+    {
+      "path": "manuscript/main.tex",
+      "role": "manuscript-source"
+    },
+    {
+      "path": "manuscript/bibliography.bib",
+      "role": "bibliography"
+    },
+    {
+      "path": "evidence/CLAIM_LEDGER.md",
+      "role": "current-claim-ledger"
+    },
+    {
+      "path": "evidence/CLAIM_LEDGER_V1.md",
+      "role": "immutable-historical-v1-claim-ledger"
+    },
+    {
+      "path": "evidence/PEER_REVIEW_READY_BOUNDED_V2.md",
+      "role": "bounded-readiness-attestation"
+    },
+    {
+      "path": "protocol/PROTOCOL_V1.json",
+      "role": "historical-v1-frozen-protocol"
+    },
+    {
+      "path": "results/P1-T2_baseline_ablation_results.json",
+      "role": "historical-v1-headline-table"
+    },
+    {
+      "path": "results/P1-T2_STATUS_ONTOLOGY_CORRECTION_V1.json",
+      "role": "historical-table-status-ontology-correction"
+    },
+    {
+      "path": "results/P1-T3_failure_taxonomy.json",
+      "role": "historical-v1-failure-taxonomy"
+    },
+    {
+      "path": "REPRODUCE.md",
+      "role": "reproduction-path"
+    },
+    {
+      "path": "JOURNAL_READINESS.md",
+      "role": "gate-checklist"
+    },
+    {
+      "path": "../../research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json",
+      "role": "powered-primary-result"
+    },
+    {
+      "path": "../../research/revival/p1/confirmatory/v2.2/primary/INDEPENDENT_VERIFICATION.json",
+      "role": "primary-independent-verification"
+    },
+    {
+      "path": "../../research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json",
+      "role": "disjoint-replication-result"
+    },
+    {
+      "path": "../../research/revival/p1/confirmatory/v2.2/replication/INDEPENDENT_VERIFICATION.json",
+      "role": "replication-independent-verification"
+    },
+    {
+      "path": "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json",
+      "role": "cross-run-concordance"
+    },
+    {
+      "path": "evidence/FINAL_SATURATION_AUDIT.md",
+      "role": "historical-render-visual-and-package-audit"
+    },
+    {
+      "path": "journal_package/RENDER_INPUT_CLOSURE.json",
+      "role": "historical-exact-render-repository-input-closure"
+    },
+    {
+      "path": "journal_package/RENDER_CLOSURE_STATE.json",
+      "role": "generator-derived-current-render-closure-state"
+    },
+    {
+      "path": "journal_package/manuscript.pdf",
+      "role": "historical-compiled-and-visually-reviewed-manuscript"
+    }
   ],
   "missing_artifacts": [
-    {"path": "journal_package/current_revision/manuscript.pdf", "role": "current-revision-content-bound-pdf", "status": "CANNOT_CHECK", "reason": "The tracked PDF renders an earlier manuscript. No fresh immutable PDF for the enlarged current source is present in a clean checkout."},
-    {"path": "journal_package/current_revision/RENDER_AND_VISUAL_AUDIT.md", "role": "current-revision-render-and-page-level-visual-audit", "status": "CANNOT_CHECK", "reason": "No build receipt and page-level visual audit bind the enlarged current source to a current PDF."},
-    {"path": "journal_package/DOI.txt", "role": "immutable-public-archive-doi", "status": "CANNOT_CHECK", "reason": "No immutable public deposit or DOI binds the exact current release."},
-    {"path": "../../LICENSE", "role": "repository-level-redistribution-license", "status": "CANNOT_CHECK", "reason": "The repository has no root license and pyproject.toml declares no project license; redistribution rights must not be assumed."},
-    {"path": "evidence/external-custody/p1-source-native-action-adapter-v2/SHA256SUMS", "role": "source-native-adapter-47-entry-handoff-manifest", "status": "CANNOT_CHECK", "reason": "The handoff remains in external custody and is absent from a clean checkout. Only its recorded manifest digest is retained."},
-    {"path": "evidence/external-custody/p1-source-native-action-adapter-integration-v3/INDEPENDENT_SHA256_VERIFICATION_V1.json", "role": "independent-source-native-adapter-checksum-receipt", "status": "CANNOT_CHECK", "reason": "The independent receipt remains in external custody and is absent from a clean checkout, so the recorded zero-failure statement cannot be reverified here."}
+    {
+      "path": "journal_package/current_revision/manuscript.pdf",
+      "role": "current-revision-content-bound-pdf",
+      "status": "CANNOT_CHECK",
+      "reason": "The tracked PDF renders an earlier manuscript. No fresh immutable PDF for the enlarged current source is present in a clean checkout."
+    },
+    {
+      "path": "journal_package/current_revision/RENDER_AND_VISUAL_AUDIT.md",
+      "role": "current-revision-render-and-page-level-visual-audit",
+      "status": "CANNOT_CHECK",
+      "reason": "No build receipt and page-level visual audit bind the enlarged current source to a current PDF."
+    },
+    {
+      "path": "journal_package/DOI.txt",
+      "role": "immutable-public-archive-doi",
+      "status": "CANNOT_CHECK",
+      "reason": "No immutable public deposit or DOI binds the exact current release."
+    },
+    {
+      "path": "evidence/external-custody/p1-source-native-action-adapter-v2/SHA256SUMS",
+      "role": "source-native-adapter-47-entry-handoff-manifest",
+      "status": "CANNOT_CHECK",
+      "reason": "The handoff remains in external custody and is absent from a clean checkout. Only its recorded manifest digest is retained."
+    },
+    {
+      "path": "evidence/external-custody/p1-source-native-action-adapter-integration-v3/INDEPENDENT_SHA256_VERIFICATION_V1.json",
+      "role": "independent-source-native-adapter-checksum-receipt",
+      "status": "CANNOT_CHECK",
+      "reason": "The independent receipt remains in external custody and is absent from a clean checkout, so the recorded zero-failure statement cannot be reverified here."
+    }
   ],
   "submission_operations": [
-    {"path": "journal_package/cover_letter.md", "role": "venue-specific-cover-letter", "status": "SUBMISSION_OPERATION", "reason": "No target venue was selected; the scientific package does not invent venue metadata."}
+    {
+      "path": "journal_package/cover_letter.md",
+      "role": "venue-specific-cover-letter",
+      "status": "SUBMISSION_OPERATION",
+      "reason": "No target venue was selected; the scientific package does not invent venue metadata."
+    }
   ],
   "claims": [
-    {"id": "P1.H1", "text": "The historical 48-case hidden-formulation study supports broad external superiority.", "artifacts": ["results/P1-T2_baseline_ablation_results.json"], "status": "NOT_SUPPORTED", "lifecycle": "HISTORICAL_IMMUTABLE", "current_claim": false, "design_adequacy": "BLOCKED_METHODS_INCONSISTENCY", "narrower_successor": "P1.NECESSITY.V2.2.4"},
-    {"id": "P1.NECESSITY.V2.2.4", "text": "On the frozen credential-free mechanical worlds, the protected mutation-necessity composition improves recovery over every assimilated strong parent while satisfying every registered safety, non-regression, control, and cost gate.", "artifacts": ["../../research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json", "../../research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json", "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json"], "status": "SUPPORTED", "lifecycle": "ACTIVE_CENTRAL", "current_claim": true, "relationship_to_previous": {"type": "NARROWER_SUCCESSOR_OF", "claim_id": "P1.H1", "scientific_supersession": false}, "scope_ceiling": "generator_relative_exact_contract", "authority": {"external_superiority_authorized": false, "naturalistic_evidence": false, "publication_novelty_authorized": false}},
-    {"id": "P1.KWM", "text": "ORION explicitly separates object knowledge K, search-universe W, and governed method state M.", "artifacts": ["manuscript/main.tex", "evidence/CLAIM_LEDGER.md"], "status": "BOUNDED", "lifecycle": "ACTIVE_SUPPORTING", "current_claim": true},
-    {"id": "P1.FALSIFIER", "text": "A frozen local falsifier exposed and repaired an over-broad reframe gate.", "artifacts": ["evidence/FALSIFIER_V1.md"], "status": "SUPPORTED", "lifecycle": "ACTIVE_SUPPORTING", "current_claim": true},
-    {"id": "P1.MODEL_GENERAL_BOUNDARY", "text": "The mechanical successor is explicitly bounded away from model-general or open-ended scientific superiority.", "artifacts": ["evidence/PEER_REVIEW_READY_BOUNDED_V2.md", "manuscript/main.tex"], "status": "BOUNDED", "lifecycle": "ACTIVE_SUPPORTING", "current_claim": true},
-    {"id": "P1.PDF", "text": "The independently inspected 33-page PDF, its exact rendered bytes, and tracked TeX input closure are retained as a historical package record only; they do not render or authorize the enlarged current manuscript.", "artifacts": ["journal_package/manuscript.pdf", "journal_package/RENDER_INPUT_CLOSURE.json", "journal_package/CLAIM_PDF_AUDIT.md", "evidence/FINAL_SATURATION_AUDIT.md"], "status": "BOUNDED", "lifecycle": "HISTORICAL_IMMUTABLE", "current_claim": false},
-    {"id": "P1.CURRENT_PACKAGE", "text": "The enlarged current manuscript has a fresh immutable PDF, page-level visual audit, public archive binding, repository redistribution licence, and clean-checkout access to every cited external handoff.", "artifacts": [], "status": "OPEN", "lifecycle": "ACTIVE_SUPPORTING", "current_claim": true}
+    {
+      "id": "P1.H1",
+      "text": "The historical 48-case hidden-formulation study supports broad external superiority.",
+      "artifacts": [
+        "results/P1-T2_baseline_ablation_results.json"
+      ],
+      "status": "NOT_SUPPORTED",
+      "lifecycle": "HISTORICAL_IMMUTABLE",
+      "current_claim": false,
+      "design_adequacy": "BLOCKED_METHODS_INCONSISTENCY",
+      "narrower_successor": "P1.NECESSITY.V2.2.4"
+    },
+    {
+      "id": "P1.NECESSITY.V2.2.4",
+      "text": "On the frozen credential-free mechanical worlds, the protected mutation-necessity composition improves recovery over every assimilated strong parent while satisfying every registered safety, non-regression, control, and cost gate.",
+      "artifacts": [
+        "../../research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json",
+        "../../research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json",
+        "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json"
+      ],
+      "status": "SUPPORTED",
+      "lifecycle": "ACTIVE_CENTRAL",
+      "current_claim": true,
+      "relationship_to_previous": {
+        "type": "NARROWER_SUCCESSOR_OF",
+        "claim_id": "P1.H1",
+        "scientific_supersession": false
+      },
+      "scope_ceiling": "generator_relative_exact_contract",
+      "authority": {
+        "external_superiority_authorized": false,
+        "naturalistic_evidence": false,
+        "publication_novelty_authorized": false
+      }
+    },
+    {
+      "id": "P1.KWM",
+      "text": "ORION explicitly separates object knowledge K, search-universe W, and governed method state M.",
+      "artifacts": [
+        "manuscript/main.tex",
+        "evidence/CLAIM_LEDGER.md"
+      ],
+      "status": "BOUNDED",
+      "lifecycle": "ACTIVE_SUPPORTING",
+      "current_claim": true
+    },
+    {
+      "id": "P1.FALSIFIER",
+      "text": "A frozen local falsifier exposed and repaired an over-broad reframe gate.",
+      "artifacts": [
+        "evidence/FALSIFIER_V1.md"
+      ],
+      "status": "SUPPORTED",
+      "lifecycle": "ACTIVE_SUPPORTING",
+      "current_claim": true
+    },
+    {
+      "id": "P1.MODEL_GENERAL_BOUNDARY",
+      "text": "The mechanical successor is explicitly bounded away from model-general or open-ended scientific superiority.",
+      "artifacts": [
+        "evidence/PEER_REVIEW_READY_BOUNDED_V2.md",
+        "manuscript/main.tex"
+      ],
+      "status": "BOUNDED",
+      "lifecycle": "ACTIVE_SUPPORTING",
+      "current_claim": true
+    },
+    {
+      "id": "P1.PDF",
+      "text": "The independently inspected 33-page PDF, its exact rendered bytes, and tracked TeX input closure are retained as a historical package record only; they do not render or authorize the enlarged current manuscript.",
+      "artifacts": [
+        "journal_package/manuscript.pdf",
+        "journal_package/RENDER_INPUT_CLOSURE.json",
+        "journal_package/CLAIM_PDF_AUDIT.md",
+        "evidence/FINAL_SATURATION_AUDIT.md"
+      ],
+      "status": "BOUNDED",
+      "lifecycle": "HISTORICAL_IMMUTABLE",
+      "current_claim": false
+    },
+    {
+      "id": "P1.CURRENT_PACKAGE",
+      "text": "The enlarged current manuscript has a fresh immutable PDF, page-level visual audit, public archive binding, and clean-checkout access to every cited external handoff.",
+      "artifacts": [],
+      "status": "OPEN",
+      "lifecycle": "ACTIVE_SUPPORTING",
+      "current_claim": true
+    }
   ],
   "scientific_result_verification": {
     "owner_issue": 283,

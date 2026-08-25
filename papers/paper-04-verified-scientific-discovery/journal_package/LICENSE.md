@@ -1,9 +1,10 @@
 # ORION-P4 package license and restrictions
 
-Repository-level license is `CANNOT_CHECK`.
+Repository code is Apache-2.0 under the root `LICENSE`; paper text is CC BY 4.0
+under `LICENSE-PAPERS-CC-BY-4.0.txt`. Protected evidence and third-party style or
+comparator licences remain separate.
 
-Protected gold, hidden labels, and raw `strace` remain in evaluator custody and are **absent** from this package and from the public GitHub Release. Safe aggregates, public verdicts, and the TMLR cover note may be redistributed with the manuscript once a root license exists.
-
-Comparator arms are protocol-matched reimplementations. This package does not include the original ProvenAI/FIRE/ProvenanceGuard codebases.
-
-TMLR style files remain under their upstream license and must be obtained unmodified.
+Protected gold, hidden labels, and raw `strace` remain in evaluator custody and
+are absent from this package and the public release. Comparator arms are
+protocol-matched reimplementations, not redistributed upstream code. TMLR style
+files must be obtained unmodified under their upstream licence.

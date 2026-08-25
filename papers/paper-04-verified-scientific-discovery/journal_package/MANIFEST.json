@@ -209,12 +209,19 @@
     },
     {
       "id": "P4.PDF",
-      "text": "Independent final PDF proofread of the in-tree journal PDF. An in-tree PDF now exists (manuscript/main.pdf, hash-bound) and passed a programmatic render + content audit on 2026-08-24 (26 pages; title/abstract/sections/P4-X successor section/H1 and H3 figures present; recorded in CLAIM_PDF_AUDIT.md addendum). The independent human proofread itself has not been performed.",
+      "text": "An independent final proofread of the current in-tree manuscript PDF remains to be completed.",
+      "artifacts": [],
+      "status": "OPEN"
+    },
+    {
+      "id": "P4.LOCAL_RENDER",
+      "text": "The 26-page in-tree working PDF passed a same-session programmatic render and content audit; this is local conformance, not an independent proofread or submission package.",
       "artifacts": [
         "manuscript/main.pdf",
         "journal_package/CLAIM_PDF_AUDIT.md"
       ],
-      "status": "OPEN"
+      "status": "BOUNDED",
+      "boundary": "Local render conformance only; journal_package remains SCAFFOLDING and independent proofread/submission authority remain OPEN."
     }
   ],
   "scientific_result_verification": {
