@@ -21,6 +21,7 @@ READY = "READY_TO_FREEZE"
 LATER_STATES = {"FROZEN", "SUBMITTED", "TERMINAL", "VALIDATED"}
 ALIAS_RELATIONSHIPS = {"EXACT_ALIAS", "POTENTIAL_PREDECESSOR_NOT_ALIAS"}
 PROTOCOL_SCHEMA = "orion.discovery.v3.execution-protocol.v1"
+SCIENTIFIC_STUDY = "SCIENTIFIC_STUDY"
 _OUTCOME_KEYS = {
     "metrics",
     "observed_results",
@@ -174,7 +175,175 @@ def _canonical_json(value: Mapping[str, Any]) -> str:
         raise ManifestError(f"protocol must be canonical JSON: {exc}") from exc
 
 
-def freeze_protocol(protocol: Mapping[str, Any]) -> dict[str, Any]:
+def _require_sha256(mapping: Mapping[str, Any], name: str, context: str) -> str:
+    value = mapping.get(name)
+    _require(
+        isinstance(value, str) and bool(re.fullmatch(r"[0-9a-f]{64}", value)),
+        f"{context}.{name} must be a full lowercase SHA-256 identity",
+    )
+    return value
+
+
+def _validate_scientific_protocol(protocol: Mapping[str, Any]) -> None:
+    inputs = protocol["inputs"]
+    _require(isinstance(inputs, Mapping), "scientific protocol inputs are required")
+    for name in (
+        "source_archive_sha256",
+        "input_bundle_sha256",
+        "task_manifest_sha256",
+        "candidate_artifact_sha256",
+        "evaluator_sha256",
+        "donor_registry_sha256",
+    ):
+        _require_sha256(inputs, name, "protocol inputs")
+
+    task_ids = inputs.get("task_ids")
+    _require(
+        isinstance(task_ids, list)
+        and bool(task_ids)
+        and all(isinstance(value, str) and value for value in task_ids),
+        "protocol inputs.task_ids must be a non-empty identity list",
+    )
+    _require(len(set(task_ids)) == len(task_ids), "protocol inputs.task_ids must be unique")
+
+    donor_family = inputs.get("donor_family")
+    _require(
+        isinstance(donor_family, list) and bool(donor_family),
+        "protocol inputs.donor_family must contain executable donor records",
+    )
+    donor_ids: list[str] = []
+    donor_fields = {"donor_id", "artifact_sha256", "interface_contract_sha256"}
+    for donor in donor_family:
+        _require(
+            isinstance(donor, Mapping) and donor_fields <= set(donor),
+            "protocol inputs.donor_family must contain content-bound donor records",
+        )
+        donor_id = donor.get("donor_id")
+        _require(
+            isinstance(donor_id, str) and donor_id,
+            "protocol inputs.donor_family donor_id is required",
+        )
+        donor_ids.append(donor_id)
+        _require_sha256(donor, "artifact_sha256", f"protocol inputs.donor_family[{donor_id}]")
+        _require_sha256(
+            donor,
+            "interface_contract_sha256",
+            f"protocol inputs.donor_family[{donor_id}]",
+        )
+    _require(len(set(donor_ids)) == len(donor_ids), "protocol inputs.donor_family IDs must be unique")
+
+    ideal_product = inputs.get("ideal_donor_product")
+    _require(
+        isinstance(ideal_product, Mapping),
+        "protocol inputs.ideal_donor_product must be an executable product record",
+    )
+    product_id = ideal_product.get("product_id")
+    _require(
+        isinstance(product_id, str) and product_id,
+        "protocol inputs.ideal_donor_product product_id is required",
+    )
+    component_ids = ideal_product.get("component_donor_ids")
+    _require(
+        isinstance(component_ids, list)
+        and len(component_ids) == len(donor_ids)
+        and len(set(component_ids)) == len(component_ids)
+        and set(component_ids) == set(donor_ids),
+        "protocol inputs.ideal_donor_product component_donor_ids must cover the exact donor family",
+    )
+    _require_sha256(
+        ideal_product,
+        "composition_runner_sha256",
+        "protocol inputs.ideal_donor_product",
+    )
+    _require_sha256(
+        ideal_product,
+        "interface_contract_sha256",
+        "protocol inputs.ideal_donor_product",
+    )
+
+    matched = protocol["matched_contract"]
+    for name in (
+        "information_contract_sha256",
+        "tool_contract_sha256",
+        "resource_contract_sha256",
+    ):
+        _require_sha256(matched, name, "protocol matched_contract")
+    for name in (
+        "same_candidate_visible_information",
+        "same_tool_access",
+        "donor_first_refusal",
+        "frozen_before_outcomes",
+    ):
+        _require(
+            matched.get(name) is True,
+            f"protocol matched_contract.{name} must be exactly true",
+        )
+    dimensions = matched.get("resource_dimensions")
+    _require(
+        isinstance(dimensions, list)
+        and bool(dimensions)
+        and all(isinstance(value, str) and value for value in dimensions),
+        "protocol matched_contract.resource_dimensions must be a non-empty identity list",
+    )
+    _require(
+        len(set(dimensions)) == len(dimensions),
+        "protocol matched_contract.resource_dimensions must be unique",
+    )
+    _require(
+        matched.get("resource_order") == "PARETO_COMPONENTWISE",
+        "protocol matched_contract.resource_order must be PARETO_COMPONENTWISE",
+    )
+    scalarization = matched.get("scalarization")
+    _require(
+        scalarization in {"NONE", "FROZEN_PRICE_VECTOR"},
+        "protocol matched_contract.scalarization must be NONE or FROZEN_PRICE_VECTOR",
+    )
+    price_vector = matched.get("price_vector")
+    if scalarization == "NONE":
+        _require(
+            price_vector is None,
+            "protocol matched_contract.price_vector must be null when scalarization is NONE",
+        )
+    else:
+        _require(
+            isinstance(price_vector, Mapping)
+            and set(price_vector) == set(dimensions)
+            and all(type(value) in {int, float} and value > 0 for value in price_vector.values()),
+            "protocol matched_contract.price_vector must positively price every resource dimension",
+        )
+        price_vector_sha256 = _require_sha256(
+            matched,
+            "price_vector_sha256",
+            "protocol matched_contract",
+        )
+        _require(
+            price_vector_sha256 == _sha256_text(_canonical_json(price_vector)),
+            "protocol matched_contract.price_vector_sha256 mismatch",
+        )
+
+    terminals = protocol.get("terminals")
+    _require(isinstance(terminals, Mapping), "scientific protocol terminals are required")
+    _require(
+        isinstance(terminals.get("positive"), str) and bool(terminals["positive"]),
+        "scientific protocol terminals.positive is required",
+    )
+    adverse = terminals.get("adverse")
+    _require(
+        isinstance(adverse, list)
+        and bool(adverse)
+        and all(isinstance(value, str) and value for value in adverse),
+        "scientific protocol terminals.adverse must be a non-empty identity list",
+    )
+    _require(len(set(adverse)) == len(adverse), "scientific protocol terminals.adverse must be unique")
+    _require(
+        isinstance(terminals.get("cannot_check"), str) and bool(terminals["cannot_check"]),
+        "scientific protocol terminals.cannot_check is required",
+    )
+
+
+def freeze_protocol(
+    protocol: Mapping[str, Any], *, expected_source_git_sha: str | None = None
+) -> dict[str, Any]:
     """Return a deterministic content-addressed protocol in the FROZEN state."""
 
     _require(protocol.get("schema") == PROTOCOL_SCHEMA, "unsupported execution protocol schema")
@@ -185,6 +354,12 @@ def freeze_protocol(protocol: Mapping[str, Any]) -> dict[str, Any]:
         isinstance(source_sha, str) and bool(re.fullmatch(r"[0-9a-f]{40}", source_sha)),
         "protocol source Git SHA must be a full lowercase object identity",
     )
+    if expected_source_git_sha is not None:
+        _require(
+            bool(re.fullmatch(r"[0-9a-f]{40}", expected_source_git_sha)),
+            "expected source Git SHA must be a full lowercase object identity",
+        )
+        _require(source_sha == expected_source_git_sha, "stale source Git SHA")
     _require(protocol.get("paper_authority_delta") == "NONE", "execution cannot grant paper authority")
     _require(bool(protocol.get("authority_ceiling")), "protocol authority ceiling is required")
     inputs = protocol.get("inputs")
@@ -208,6 +383,19 @@ def freeze_protocol(protocol: Mapping[str, Any]) -> dict[str, Any]:
     matched = protocol.get("matched_contract")
     _require(isinstance(matched, Mapping), "matched contract is required")
     _require(matched.get("outcomes_accessed") is False, "outcomes_accessed must be exactly false before freeze")
+
+    execution_class = protocol.get("execution_class")
+    if job_id.startswith("V3-ENGINEERING-REFERENCE-"):
+        _require(
+            execution_class in {None, "ENGINEERING_REFERENCE"},
+            "engineering protocol has an invalid execution_class",
+        )
+    else:
+        _require(
+            execution_class == SCIENTIFIC_STUDY,
+            "scientific protocol execution_class must be SCIENTIFIC_STUDY",
+        )
+        _validate_scientific_protocol(protocol)
 
     _reject_outcomes(protocol)
     canonical = _canonical_json(protocol)

@@ -12,11 +12,17 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("draft", type=Path)
     parser.add_argument("output", type=Path)
+    parser.add_argument("--expected-source-git-sha")
     args = parser.parse_args()
 
     with args.draft.open(encoding="utf-8") as handle:
         draft = json.load(handle)
-    frozen = freeze_protocol(draft)
+    if draft.get("execution_class") == "SCIENTIFIC_STUDY" and not args.expected_source_git_sha:
+        parser.error("scientific protocol freeze requires --expected-source-git-sha")
+    frozen = freeze_protocol(
+        draft,
+        expected_source_git_sha=args.expected_source_git_sha,
+    )
     with args.output.open("x", encoding="utf-8") as handle:
         json.dump(frozen, handle, sort_keys=True, indent=2)
         handle.write("\n")
@@ -28,4 +34,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -71,3 +71,8 @@ This is an engineering/governance hypothesis only. It creates no scientific, nov
 
 Reopen before submission if #1325/#1329/PR #1326 or the shared session changes identity, if the V3 branch head moves, if a scheduler job exists for the same protocol hash, if a job lacks exact donors/inputs/evaluator/resources, or if results are already visible to the protocol author. Reopen after execution if a failed premise motivates a successor; never rewrite the predecessor.
 
+## First scientific-job audit — 2026-08-25
+
+`V3-DONOR-ENVELOPE-01` is not executable. Issue #1329 describes 24 atomic targets, while the bound atomic map contains 25. The map provides 75 nearest-work taxonomy labels but registers zero content-bound executable donor records or ideal-product composition records to this job. The repository contains useful donor-envelope gates, finite authored reference profiles and a P1/SAGE theory specification; none is an empirical full-envelope execution over the unresolved V3 denominator.
+
+`V3_DONOR_ENVELOPE_01_SPECIFICATION_AUDIT_V1.json` binds this finding and the exact missing contracts. Scientific protocol freezing now additionally requires content hashes for source, input bundle, task manifest, candidate, evaluator and donor registry; executable donor/interface records; an ideal product covering the exact donor family; matched information/tool/vector-resource contracts; prospective Pareto/scalarization rules; and positive, adverse and `CANNOT_CHECK` terminals. The operational CLI also requires the expected live source Git identity. No scientific job is submitted while these fields remain absent.
