@@ -134,3 +134,27 @@ def test_authority_binding_a_surface_by_digest_counts_as_a_citation(tmp_path: Pa
     assert records[0].cited["manuscript"] == {"1"}
     assert records[0].reverse_bound == ["manuscript"]
     assert main(["--root", str(tmp_path)]) == EXIT_PASS
+
+
+def test_no_paper_on_the_live_tree_has_contradictory_authority_language() -> None:
+    """CI must fail on contradictory terminal language, not only on named papers.
+
+    The other live-tree assertions here pin P11, P14 and P15 individually, which
+    means a contradiction introduced in any other paper passes unnoticed. #1131
+    asks for the general property: no paper's reader-facing surfaces may name
+    different records as active.
+
+    Scoped to DISAGREE deliberately. A surface whose authority cannot be read is
+    CANNOT_CHECK and is not a contradiction -- P10's manuscript is bound by
+    sha256 from the authority side and names no record in prose, which is a
+    stronger tie than a citation rather than a missing one.
+    """
+    bad = {
+        rec.paper: {k: sorted(v) for k, v in rec.cited.items() if v}
+        for rec in audit_repository()
+        if rec.disagreeing
+    }
+    assert not bad, (
+        "these papers name different authority records as active on different "
+        f"surfaces; at most one can be right: {bad}"
+    )
