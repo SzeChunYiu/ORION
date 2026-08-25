@@ -1,0 +1,58 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-P2-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {"location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": ["OSTC-T12"]},
+  "frozen_before_outcomes": true,
+  "task": "Test assumption-indexed closure rules under bounded-universe, censoring, and adversarial-coverage conditions.",
+  "what_the_theorem_asserts": {
+    "OSTC-T12": "If a workflow class contains two worlds with identical finite observable history h but different correct closure terminals, no deterministic history-only rule is sound on both. The rule receives the same h and returns one terminal, so it disagrees with at least one world; under equal prior its error is at least 1/2. Positive closure therefore requires a coverage model, bounded universe, capture assumption, or protected witness."
+  },
+  "relation_to_EXEC_P12_01": "EXEC-P12-01 found that T17, stated as the allocation analogue of T12, has a clause that fails when a hedge action exists. T12 itself is 0/1 error over terminals, where no hedge is available: a rule returns one terminal and is simply wrong on the other world. This job tests whether the 1/2 bound is TIGHT in the 0/1 setting -- i.e. whether the disanalogy identified there is real, by confirming here what failed there.",
+
+  "code_identity": {"runner": "run_closure_impossibility_v1.py",
+    "independent_checker": "check_closure_impossibility_independent_v1.py",
+    "checker_independence": "The checker does not import the runner. It enumerates every deterministic history-only rule explicitly as a function table and evaluates its error, rather than reasoning about a best rule. The universal quantifier is therefore verified rather than argued."},
+  "data_identity": {"generated": true, "generator_seed": 20260825, "no_external_data": true},
+  "comparator_identity": {
+    "assumption_indexed_rule": "A rule permitted to read a bounded-universe / coverage assumption in addition to the history. T12 says positive closure REQUIRES such an assumption, so this comparator must strictly beat the history-only rule on at least one ambiguous class. If it never does, the assumption is doing no work and the theorem's escape clause is unexercised."
+  },
+  "information_and_tool_access": {"runner": "declared grid only; no network, no model calls", "checker": "raw manifest only"},
+  "resource_vector": {"compute": "single-process CPU enumeration", "wallclock_bound_seconds": 1800},
+  "independent_unit": "The ambiguous history class. Worlds within a class are exhaustively enumerated.",
+  "estimands": {
+    "no_sound_rule": "Over every ambiguous class and EVERY deterministic history-only rule: does each rule err on at least one world, with zero exceptions?",
+    "half_bound_tight": "Is the minimum achievable expected error exactly 1/2 on every ambiguous class -- not merely at least 1/2? In 0/1 error no hedge exists, so the bound should be attained, unlike T17's half-gap bound which EXEC-P12-01 found beatable by hedging.",
+    "ambiguity_exists": "Do ambiguous classes occur? A grid without them cannot test the theorem.",
+    "assumption_helps": "Does the assumption-indexed comparator strictly beat history-only on at least one class?"
+  },
+  "multiplicity": "No hypothesis test; universal and existence claims over total enumeration.",
+  "positive_terminal": "P2_CLOSURE_IMPOSSIBILITY_SUPPORTED",
+  "positive_conditions": [
+    "every deterministic history-only rule errs on at least one world of every ambiguous class",
+    "minimum expected error is exactly 1/2 on every ambiguous class, confirming the bound is tight and unhedgeable",
+    "ambiguous classes occur in the grid",
+    "the assumption-indexed comparator strictly beats history-only at least once"
+  ],
+  "negative_terminal": "P2_CLOSURE_MODEL_INCOMPLETE",
+  "negative_conditions": [
+    "any ambiguous class admitting a sound history-only rule",
+    "any class where minimum expected error falls BELOW 1/2, which would mean a hedge exists in 0/1 error and would contradict the disanalogy EXEC-P12-01 identified",
+    "no ambiguous class exists in the grid",
+    "the assumption-indexed comparator never helps"
+  ],
+  "cannot_check_terminal": "P2_CLOSURE_GRID_INCOMPLETE",
+  "cannot_check_conditions": ["grid not exhausted within the wallclock bound", "independent checker cannot be run"],
+  "raw_output_schema": {"file": "RAW_RESULT_MANIFEST.json",
+    "fields": {"grid": "echoed", "classes": "ambiguous_classes, rules_per_class, sound_rules_found",
+      "bound": "classes_checked, min_expected_error_below_half, exactly_half, minimal_witness",
+      "assumption": "classes, strict_improvements", "totals": "cells_enumerated, wallclock_seconds"}},
+  "checker_and_authority_owner": {"checker": "check_closure_impossibility_independent_v1.py",
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Two implementations inside one programme; not external adjudication."},
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem, move a gate, weaken a comparator, hide a negative, or rewrite theory after outcome access."
+}
