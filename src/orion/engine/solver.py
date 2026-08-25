@@ -114,6 +114,16 @@ class OrionSolver:
             ),
         )
 
+    def bind_initial_state(self, problem: Problem, state: OrionState) -> OrionState:
+        """Prepare a caller-supplied state before the runtime captures its endpoint.
+
+        The kernel solver has no additional state bindings, so its implementation is
+        deliberately the identity.  Solver variants override this hook when their
+        method contract adds deterministic bindings such as paper-parity navigation.
+        """
+
+        return state
+
     @staticmethod
     def _state_hash(state: OrionState) -> str:
         return hashlib.sha256(repr(state).encode("utf-8")).hexdigest()
