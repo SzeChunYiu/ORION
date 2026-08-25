@@ -1,0 +1,20 @@
+{
+  "schema_version": "orion.independent-checker-receipt.v1",
+  "job_id": "EXEC-P2-01",
+  "imports_runner": false,
+  "method_difference": "Every rule materialised as an explicit dict function table and scored directly; the universal claim is exhausted rather than argued.",
+  "independent_findings": {
+    "ambiguous_classes": 9,
+    "rules_per_class": 27,
+    "sound_history_only_rules": 0,
+    "min_expected_error_exactly_half": 9,
+    "min_expected_error_below_half": 0,
+    "bound_is_tight_and_unhedgeable": true,
+    "assumption_strict_improvements": 9,
+    "ambiguity_exists": true
+  },
+  "disagreements": [],
+  "cross_job_note": "Confirms the disanalogy EXEC-P12-01 identified. In 0/1 error the 1/2 bound is ATTAINED, with no rule doing better; T17's half-gap bound in real-valued loss was beatable by a hedge action. Same argument shape, different loss structure, different outcome.",
+  "terminal": "EXEC_P2_01_SECOND_INDEPENDENT_CHECKER_GREEN",
+  "independence_boundary": "Two implementations inside one programme; not external adjudication."
+}

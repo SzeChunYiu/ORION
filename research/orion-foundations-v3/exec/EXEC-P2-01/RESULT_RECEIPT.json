@@ -1,0 +1,67 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P2-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T12"
+  ],
+  "terminal": "P2_CLOSURE_IMPOSSIBILITY_SUPPORTED",
+  "executed_on": {
+    "host": "LUNARC (cosmos2.int.lunarc)",
+    "wallclock_seconds": 0.0,
+    "cells_enumerated": 243
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "7d02e8e22c427fd99f9504d20a7c3e8d7d152db09e2cf9dc48aed9ca6d8d7c13"
+    },
+    "run_closure_impossibility_v1.py": {
+      "artifact": "run_closure_impossibility_v1.py",
+      "sha256": "1b0deedff2ed15c4f07981e3bf4ac26949f19fa441e3403d9ce646db5af5bbe5"
+    },
+    "check_closure_impossibility_independent_v1.py": {
+      "artifact": "check_closure_impossibility_independent_v1.py",
+      "sha256": "f7c49c52b7b80d603b609e03385fd06ffb6d015af446d4badfd259e630f4e0a0"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "2aa69651be8ade242bee297815c66c9db40460d369e07b1059bc8f802ba9a08f"
+    },
+    "INDEPENDENT_CHECKER_RECEIPT.json": {
+      "artifact": "INDEPENDENT_CHECKER_RECEIPT.json",
+      "sha256": "d5c05375a9b46837fe8d32a9efe68d3d20d74c153fe5e242db0b2edc7d344e22"
+    }
+  },
+  "results": {
+    "no_sound_history_only_rule": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Across 9 ambiguous classes and all 27 deterministic history-only rules on each, ZERO rules were sound on both worlds. Every rule was materialised as an explicit function table and scored, so the universal claim is exhausted rather than argued.",
+      "ambiguous_classes": 9,
+      "rules_per_class": 27,
+      "sound_rules_found": 0
+    },
+    "half_bound_tight": {
+      "verdict": "TIGHT_AND_UNHEDGEABLE",
+      "detail": "Minimum expected error is EXACTLY 1/2 on all 9 classes, with zero classes below. The estimand was frozen as tightness rather than validity, because confirming merely 'at least 1/2' would have been compatible with the hedging escape that broke T17.",
+      "exactly_half": 9,
+      "below_half": 0
+    }
+  },
+  "cross_job_finding": {
+    "claim": "This job was designed against EXEC-P12-01's result and confirms the explanation it gave. T17 is stated as the allocation analogue of T12. P12-01 found one T17 clause fails because real-valued loss admits a hedge -- a third action near-optimal for both cases. T12 is 0/1 error over terminals, where no hedge exists: a rule returns one terminal and is simply wrong on the other world. Here the 1/2 bound is ATTAINED on every class; there the half-gap bound was beaten. Same argument shape, different loss structure, different outcome, and the difference is exactly the one named in OSTC_T17_SUCCESSOR_NARROWING_V1.",
+    "significance": "This is a cross-check rather than an independent confirmation: it shows the narrowing's stated mechanism predicts correctly in the setting where it says the bound should hold. It does not re-prove T17 or T12."
+  },
+  "comparator": {
+    "assumption_indexed_rule": "STRICTLY_HELPS_ON_ALL_9",
+    "detail": "The assumption-indexed comparator strictly beat every history-only rule on all 9 classes. T12 says positive closure REQUIRES a coverage model, bounded universe, capture assumption or protected witness; an assumption that never helped would have left that escape clause unexercised, which was frozen as a negative."
+  },
+  "what_this_does_not_establish": [
+    "The grid is small: 3 histories, 3 terminals, 2 worlds per class, giving 9 ambiguous classes and 27 rules each. It is a TOTAL enumeration of that grid, not a sample, but it is a small grid and the receipt says so rather than implying scale.",
+    "No proof-assistant correspondence; EXEC-PA-01 remains open.",
+    "No external adjudication. Runner and checker are two implementations inside one programme."
+  ],
+  "independent_checker": "EXEC_P2_01_SECOND_INDEPENDENT_CHECKER_GREEN, 0 disagreements",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}
