@@ -1,0 +1,40 @@
+name: Restore parent discovery bytes
+
+on:
+  push:
+    branches:
+      - shadow/orion-discovery-three-mode-v1-20260825
+    paths:
+      - development/orion-discovery-three-mode-v1-2026-08-25/RESTORE_READY
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/orion-discovery-three-mode-v1-20260825
+          fetch-depth: 0
+      - name: Restore parent-owned theory bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          base=7261c306947f357779ff279b0d400c90ab8822a9
+          git checkout "$base" -- \
+            research/orion-discovery-v1/EPISTEMIC_DECISION_GEOMETRY_V1.md \
+            research/orion-discovery-v1/GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md \
+            research/orion-discovery-v1/HISTORICAL_COUNTERFACTUAL_PROSPECTIVE_TRIANGULATION_V1.md \
+            research/orion-discovery-v1/README.md \
+            research/orion-discovery-v1/THEOREM_IDENTIFYING_HARNESS_V1.md \
+            research/orion-discovery-v1/VACUITY_AND_REPAIR_ATLAS_V1.md
+          rm -f development/orion-discovery-three-mode-v1-2026-08-25/RESTORE_READY
+          git config user.name "ORION discovery byte restore"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Restore parent-owned discovery theory bytes"
+          git push origin HEAD:shadow/orion-discovery-three-mode-v1-20260825
