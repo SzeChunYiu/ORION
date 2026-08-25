@@ -1,0 +1,65 @@
+SACCT_BEGIN
+JobID|JobName|State|Elapsed|ExitCode|AllocTRES|NodeList|Submit|Start|End
+3537910|p1_sab_backend_map_v1|FAILED|00:01:26|1:0|billing=8,cpu=8,gres/gpu:a40=1,gres/gpu=1,mem=64G,node=1|cg14|2026-08-25T04:09:24|2026-08-25T04:09:24|2026-08-25T04:10:50
+3537910.batch|batch|FAILED|00:01:26|1:0|cpu=8,gres/gpu:a40=1,gres/gpu=1,mem=64G,node=1|cg14|2026-08-25T04:09:24|2026-08-25T04:09:24|2026-08-25T04:10:50
+3537910.extern|extern|COMPLETED|00:01:26|0:0|billing=8,cpu=8,gres/gpu:a40=1,gres/gpu=1,mem=64G,node=1|cg14|2026-08-25T04:09:24|2026-08-25T04:09:24|2026-08-25T04:10:50
+SCONTROL_BEGIN
+JobId=3537910 JobName=p1_sab_backend_map_v1
+   UserId=scyiu(6350) GroupId=hep(6300) MCS_label=N/A
+   Priority=66240 Nice=0 Account=lu2026-2-51 QOS=normal
+   JobState=FAILED Reason=NonZeroExitCode Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=1:0
+   DerivedExitCode=0:0
+   RunTime=00:01:26 TimeLimit=01:00:00 TimeMin=N/A
+   SubmitTime=2026-08-25T04:09:24 EligibleTime=2026-08-25T04:09:24
+   AccrueTime=2026-08-25T04:09:24
+   StartTime=2026-08-25T04:09:24 EndTime=2026-08-25T04:10:50 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-08-25T04:09:24 Scheduler=Main
+   Partition=gpua40i AllocNode:Sid=cosmos2:3645577
+   ReqNodeList=(null) ExcNodeList=cg13
+   NodeList=cg14
+   BatchHost=cg14
+   NumNodes=1 NumCPUs=8 NumTasks=1 CPUs/Task=8 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=8,mem=64G,node=1,billing=8,gres/gpu=1,gres/gpu:a40=1
+   AllocTRES=cpu=8,mem=64G,node=1,billing=8,gres/gpu=1,gres/gpu:a40=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   JOB_GRES=gpu:a40:1
+     Nodes=cg14 CPU_IDs=0-3,16-19 Mem=65536 GRES=
+   MinCPUsNode=8 MinMemoryNode=64G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-exec-successor-v4-20260825/development/p1-scienceagentbench-backend-canonical-map-discriminator-v4-2026-08-25/run_backend_canonical_map_discriminator_v1.sh
+   WorkDir=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-exec-successor-v4-20260825
+   StdErr=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs/slurm-3537910.err
+   StdIn=/dev/null
+   StdOut=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs/slurm-3537910.out
+   Power=
+   TresPerNode=gres/gpu:a40:1
+   TresPerTask=cpu:8
+   
+
+STREAM_CUSTODY /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs/slurm-3537910.out mode=600 bytes=0 uid=6350 gid=6300 nlink=1 dev=55 ino=40814679563
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs/slurm-3537910.out
+STREAM_CONTENT_BEGIN /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs/slurm-3537910.out
+STREAM_CONTENT_END /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs/slurm-3537910.out
+STREAM_CUSTODY /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs/slurm-3537910.err mode=600 bytes=169 uid=6350 gid=6300 nlink=1 dev=55 ino=40814679564
+27c5fda40d52f578c90f18d155ae90d3a89fe06049a652b1150a609fe6380dfc  /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs/slurm-3537910.err
+STREAM_CONTENT_BEGIN /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs/slurm-3537910.err
+P1_SAB_BACKEND_CANONICAL_MAP_DISCRIMINATOR_CANNOT_CHECK failure_code=GPU_IDENTITY_INVALID detail_sha256=a31dfb1a2c932320ecf692f380dfd8aca87a7afb107026347fed63e2c4a490c4
+STREAM_CONTENT_END /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs/slurm-3537910.err
+ROOT_CUSTODY
+mode=500 bytes=33 uid=6350 gid=6300 nlink=3 dev=55 ino=270595352407 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-exec-successor-v4-20260825
+mode=700 bytes=30 uid=6350 gid=6300 nlink=3 dev=55 ino=42959044215 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825
+mode=500 bytes=78 uid=6350 gid=6300 nlink=2 dev=55 ino=45107019354 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825/evidence
+mode=700 bytes=68 uid=6350 gid=6300 nlink=2 dev=55 ino=40814679562 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825-submit-logs
+RUN_TREE
+d 500 78 scyiu hep 2 /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825/evidence
+d 700 30 scyiu hep 3 /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825
+f 400 1464 scyiu hep 1 /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825/evidence/BACKEND_CANONICAL_MAP_DISCRIMINATOR_CANNOT_CHECK_V1.json
+RUN_FILE_HASHES
+cf62273ddb03288e23a7933332367794f0712e14103c4fe7fdb99579d112448a  /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825/evidence/BACKEND_CANONICAL_MAP_DISCRIMINATOR_CANNOT_CHECK_V1.json
+RECEIPTS_BEGIN
+RECEIPT_CONTENT_BEGIN /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825/evidence/BACKEND_CANONICAL_MAP_DISCRIMINATOR_CANNOT_CHECK_V1.json
+{"authority":"BODY_FREE_CANONICAL_MAP_DISCRIMINATOR_FAILURE_ONLY__NO_TASK_OUTCOME_OR_SCIENTIFIC_AUTHORITY","base_commit":"a2fdc2854740dcde0652a17e447d8a9c1328208f","body_free_http_request_types_allowed":["GET /health","GET /slots"],"cleanup":{"pid":130837,"process_absent_after_cleanup":true,"process_group_absent_after_cleanup":true,"process_group_id":130837,"process_started":true,"return_code":0,"termination_signal":"SIGTERM"},"completed_stages":["CONTRACT_BOUND","RUNTIME_FILES_BOUND","SERVER_STARTED","SERVER_READY_BODY_FREE","CANONICAL_MAP_ATTESTATION_1","SERVER_CLEANUP_PASS"],"completion_requests":0,"contract_sha256":"8101ce3deacb650ef5607b78a1cfc378f5827fe49f954d5eff7dd87c75ee995c","failure_code":"GPU_IDENTITY_INVALID","failure_detail_sha256":"a31dfb1a2c932320ecf692f380dfd8aca87a7afb107026347fed63e2c4a490c4","generation_invocations":0,"official_evaluator_invoked":false,"official_outcomes_opened":0,"production_admissibility":"CANNOT_CHECK","protected_packet_bodies_opened":0,"protected_prompt_bodies_opened":0,"schema_version":"orion.p1.scienceagentbench.backend-canonical-map-discriminator-cannot-check.v1","scientific_authority_delta":"NONE","server_log_bindings":{"stderr":{"bytes":1641,"sha256":"7d63416db0da43ec4813235bb7ce6d383cc497577714a3c8051b73820826a764"},"stdout":{"bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},"status":"CANNOT_CHECK_BACKEND_CANONICAL_MAP_DISCRIMINATOR","tokenize_requests":0}
+RECEIPT_CONTENT_END /projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-rr1-exec-successor-v4-20260825/evidence/BACKEND_CANONICAL_MAP_DISCRIMINATOR_CANNOT_CHECK_V1.json
+ACTIVE_MATCHING_PROCESSES
