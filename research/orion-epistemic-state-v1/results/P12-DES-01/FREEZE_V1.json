@@ -1,0 +1,335 @@
+{
+  "schema": "orion.p12-des-01.freeze.v1",
+  "job_id": "P12-DES-01",
+  "paper_id": "ORION-P12",
+  "frozen_at_utc": "2026-08-25T19:09:08Z",
+  "prospective_for_this_execution": true,
+  "protected_outcomes_accessed_before_freeze": false,
+  "writing_owner": "P1_P15_REWRITE_LANE",
+  "execution_owner": "COMPUTATION_ONLY_SESSIONS",
+  "paper_authority_delta": "NONE",
+  "git": {
+    "subject_sha": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+    "fresh_origin_main_sha": "f049e30391a09213240f6325ee319f9fa811189a",
+    "branch": "codex/p12-des-01-execution-20260825"
+  },
+  "source_bindings": [
+    {
+      "role": "executor_prompt",
+      "path": "research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md",
+      "sha256": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce"
+    },
+    {
+      "role": "compute_backlog",
+      "path": "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json",
+      "sha256": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4"
+    },
+    {
+      "role": "dynamic_state_calculus",
+      "path": "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md",
+      "sha256": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05"
+    },
+    {
+      "role": "p12_successor",
+      "path": "papers/paper-12-adaptive-state-reasoning/TOP_TIER_DYNAMIC_EPISTEMIC_MANUSCRIPT_V1.md",
+      "sha256": "6b6ca62da1fc1151ba254c16acb488fcc5135f8fa83548b66a50c16ffe6e873c"
+    },
+    {
+      "role": "current_active_authority_read_only",
+      "path": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V5.json",
+      "sha256": "c96055098cc6339221c5139f1ddb28f1d776ac094ae202a259f8699241da5add"
+    },
+    {
+      "role": "current_stopgo_protocol_doc",
+      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/P12_STOPGO_FROZEN_MENUS_V1.md",
+      "sha256": "e9c6878cc7c0f5e0feb87e8df1767831af9944c8a5ef0cb856c56a5aab213055"
+    },
+    {
+      "role": "current_stopgo_protocol_machine",
+      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/p12_stopgo_frozen_menus_v1.json",
+      "sha256": "51ebe98ad70ba8081196150bb0fbd4244299a153cdc0479d572b7acf99eb6554"
+    },
+    {
+      "role": "current_stopgo_prereg_and_blocker",
+      "path": "papers/paper-12-adaptive-state-reasoning/runtime/P12_CAMPAIGN_PREREG_V1.md",
+      "sha256": "1f1ea680e7141c3e152343a996f7b9f1cb1371779eea40a898662d681cb5f676"
+    },
+    {
+      "role": "current_preoutcome_plan",
+      "path": "papers/paper-12-adaptive-state-reasoning/runtime/P12_CAMPAIGN_PLAN_V1.json",
+      "sha256": "3013f68c0af9938f002a2ec0328fc9fcc989ae18b9a390ef5500e5489d6a8936"
+    },
+    {
+      "role": "current_local_model_route_evidence",
+      "path": "papers/paper-12-adaptive-state-reasoning/runtime/P12_LOCAL_MODEL_ROUTE_V1.json",
+      "sha256": "b7d3a79618f979e13f1471404a56d524670c7a75394d6cc6ea9890f41a3760f9"
+    },
+    {
+      "role": "current_stopgo_internal_checker",
+      "path": "papers/paper-12-adaptive-state-reasoning/check_p12_stopgo_integration_v1.py",
+      "sha256": "1c25f573cbcd2c8fd2bdfa5364fa5f7ac713e95e540d0867bb0bd404fab95de5"
+    },
+    {
+      "role": "historical_nonflat_prereg_identity_only_not_reused",
+      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_PROTOCOL_PREREG_V1.json",
+      "sha256": "db6fda439725623362c5a45b21b97bb73a33f26e0d4a2c61e226ce746d378b54"
+    }
+  ],
+  "contract": {
+    "task": "Run current stop/go on real substrate, then separately freeze non-FLAT vector-price and shift successors across models/domains.",
+    "primary_vector": [
+      "task_gain",
+      "regret",
+      "cost",
+      "domain_stability",
+      "censoring",
+      "action_diversity",
+      "signal_contribution"
+    ],
+    "intended_positive_terminal": "VECTOR_BUDGET_STATE_REASONING_CODESIGN_SURVIVES_CENSORING_PRICE_AND_DOMAIN_SHIFT",
+    "claim_boundary": "A resource cap or missing protected custody is not incapability; existing internal synthetic and post-outcome successor results are not reused as a new public-data or non-FLAT result."
+  },
+  "current_flat_stopgo": {
+    "study_id": "P12_STOPGO_PUBLICDATA_V1",
+    "substrate": "ScienceAgentBench",
+    "official_instance_universe": 102,
+    "license_excluded_instance_ids": [
+      3,
+      32,
+      46,
+      53,
+      54,
+      84
+    ],
+    "clean_license_case_denominator": 96,
+    "task_family_denominator": 24,
+    "domain_denominator": 4,
+    "domain_case_counts": {
+      "Computational Chemistry": 19,
+      "Geographical Information Science": 22,
+      "Bioinformatics": 27,
+      "Psychology and Cognitive science": 28
+    },
+    "available_model_family_names_from_prereg": [
+      "Qwen",
+      "Llama",
+      "Phi",
+      "Gemma"
+    ],
+    "exact_model_execution_denominator": "CANNOT_CHECK_NOT_FIXED_BY_EXISTING_STOPGO_PROTOCOL",
+    "stochastic_repeat_denominator": "CANNOT_CHECK_NOT_FIXED_BY_EXISTING_STOPGO_PROTOCOL",
+    "run_cell_denominator": "CANNOT_CHECK_NOT_INFERRED_FROM_AVAILABLE_MODEL_FAMILIES",
+    "frozen_arms": [
+      "ADAPTIVE",
+      "ONE_SIGNAL_STATE",
+      "ONE_SIGNAL_REASON"
+    ],
+    "successor_requested_but_not_frozen_in_current_stopgo": [
+      "FIXED_BALANCED",
+      "BEST_FIXED",
+      "ORACLE",
+      "IDEAL_VALUE_OF_INFORMATION_PRODUCT"
+    ],
+    "canonical_action_menu": [
+      {
+        "action_id": "A_RETAIN_MINIMAL",
+        "state_construction_units": 0,
+        "reasoning_units": 0,
+        "charge_units": 0
+      },
+      {
+        "action_id": "A_STATE_MAX",
+        "state_construction_units": 2,
+        "reasoning_units": 0,
+        "charge_units": 2
+      },
+      {
+        "action_id": "A_REASON_MAX",
+        "state_construction_units": 0,
+        "reasoning_units": 2,
+        "charge_units": 2
+      },
+      {
+        "action_id": "A_BALANCED",
+        "state_construction_units": 1,
+        "reasoning_units": 1,
+        "charge_units": 2
+      }
+    ],
+    "canonical_signal_menu": [
+      "S_PENDING_MULTIPLICITY",
+      "S_DECLARED_MATERIALIZATION_COST",
+      "S_DECLARED_SERVE_EXCHANGE_RATE",
+      "S_FAMILY_DIFFICULTY_PRIOR"
+    ],
+    "informative_signals_under_flat_prices": [
+      "S_PENDING_MULTIPLICITY",
+      "S_FAMILY_DIFFICULTY_PRIOR"
+    ],
+    "constant_signals_under_flat_prices": [
+      "S_DECLARED_MATERIALIZATION_COST",
+      "S_DECLARED_SERVE_EXCHANGE_RATE"
+    ],
+    "preoutcome_action_distribution": {
+      "ADAPTIVE": {
+        "A_BALANCED": 17,
+        "A_STATE_MAX": 40,
+        "A_REASON_MAX": 13,
+        "A_RETAIN_MINIMAL": 26
+      },
+      "ONE_SIGNAL_STATE": {
+        "A_STATE_MAX": 57,
+        "A_RETAIN_MINIMAL": 39
+      },
+      "ONE_SIGNAL_REASON": {
+        "A_REASON_MAX": 30,
+        "A_RETAIN_MINIMAL": 66
+      }
+    },
+    "preoutcome_action_disagreement": {
+      "adaptive_vs_state_cases": 30,
+      "adaptive_vs_reason_cases": 57
+    },
+    "inference_unit": {
+      "primary": "task_family",
+      "aggregation": "domain",
+      "forbidden_independent_units": [
+        "generated_row",
+        "seed",
+        "episode",
+        "individual_instance"
+      ]
+    },
+    "stopgo_gate": {
+      "pass_requires_all": [
+        "adaptive gain at least 3 normalized points over the stronger one-signal arm",
+        "family-block bootstrap 95 percent lower bound greater than 0",
+        "positive in at least 2 of 3 domains and every leave-one-domain-out analysis",
+        "maximum regret at most 2 normalized points"
+      ],
+      "fail_action": "stop the positive complementarity claim and publish the boundary or null result; do not iterate until positive"
+    },
+    "protected_input_preflight": {
+      "official_archive_path": "/home/scyiu/orion-work/ScienceAgentBench/benchmark_verified.zip",
+      "password_environment_names_checked": [
+        "SCIENCEAGENTBENCH_PASSWORD",
+        "SAB_ARCHIVE_PASSWORD",
+        "BENCHMARK_VERIFIED_PASSWORD"
+      ],
+      "required_cleartext_components": [
+        "benchmark/datasets",
+        "benchmark/eval_programs excluding gold_results-only placeholders",
+        "benchmark/gold_programs",
+        "benchmark/scoring_rubrics or official task scorers"
+      ],
+      "annotation_metadata_paths": [
+        "/home/scyiu/orion-work/sab/ScienceAgentBench.csv",
+        "/home/scyiu/orion-work/sab/verified-00000-of-00001.parquet"
+      ],
+      "live_observation_deferred_until_after_freeze": true
+    }
+  },
+  "nonflat_successor": {
+    "run_allowed": false,
+    "reason": "No fresh P12-DES-01 non-FLAT multi-model/domain identity, exact case split, exact model artifacts, run-cell denominator, vector-price schedule, shift schedule, comparator implementation set, or protected scorer custody was already frozen for this job before the execution handoff.",
+    "historical_protocol_not_reused": "P12_PRICE_AWARE_SUCCESSOR_V1 is a different, already outcome-used finite SAT/path/knapsack exact-certificate study. Reusing its post-outcome result as this fresh multi-model/domain successor is forbidden.",
+    "required_fresh_identity_fields": [
+      "new study id distinct from P12_PRICE_AWARE_SUCCESSOR_V1",
+      "exact clean-license case and domain split",
+      "exact model artifact path, bytes, digest, tokenizer, runtime and decoding identity for every arm",
+      "exact vector-price regimes and price provenance",
+      "exact prospective distribution shifts",
+      "all comparators including fixed balanced, best fixed, oracle and ideal value-of-information product",
+      "exact run-cell and repeat denominators",
+      "protected scorer and custody identities",
+      "leakage and censoring probes",
+      "positive, negative and CANNOT_CHECK terminals"
+    ],
+    "terminal": "CANNOT_CHECK_NONFLAT_SUCCESSOR_NOT_FRESHLY_FROZEN"
+  },
+  "hard_preconditions": [
+    {
+      "id": "HP1_OFFICIAL_ARCHIVE_CLEAR_AND_HASH_BOUND",
+      "required": true
+    },
+    {
+      "id": "HP2_DATASETS_EVALUATORS_GOLD_AND_SCORERS_RUNNABLE",
+      "required": true
+    },
+    {
+      "id": "HP3_96_CASES_RETAIN_PROTECTED_OUTCOME_CUSTODY",
+      "required": true
+    },
+    {
+      "id": "HP4_EXACT_MODEL_AND_RUN_CELL_MANIFEST_FROZEN",
+      "required": true
+    },
+    {
+      "id": "HP5_ALL_SUCCESSOR_COMPARATORS_FROZEN_AND_RUNNABLE",
+      "required": true
+    },
+    {
+      "id": "HP6_MATCHED_ACTION_SIGNAL_INFORMATION_AND_VECTOR_RESOURCES",
+      "required": true
+    },
+    {
+      "id": "HP7_POSITIVE_AND_VIOLATING_STRATA_FOR_EVERY_HARD_CONDITION",
+      "required": true
+    },
+    {
+      "id": "HP8_LABEL_FILENAME_TEMPLATE_MODEL_AND_CROSS_ARM_LEAKAGE_PROBES_PASS",
+      "required": true
+    },
+    {
+      "id": "HP9_FRESH_NONFLAT_MULTI_MODEL_DOMAIN_SUCCESSOR_FROZEN",
+      "required_for_full_p12_des_positive": true
+    },
+    {
+      "id": "HP10_NONFLAT_PRICE_AND_SHIFT_TRANSFER_EXECUTED_WITHOUT_CENSORING",
+      "required_for_full_p12_des_positive": true
+    }
+  ],
+  "terminal_precedence": [
+    "CANNOT_CHECK_PROTECTED_SUBSTRATE_AND_NONFLAT_SUCCESSOR_NOT_RUN",
+    "RESOURCE_CAP_CENSORED",
+    "STOPGO_BOUNDARY_OR_NULL_RESULT",
+    "VECTOR_BUDGET_STATE_REASONING_CODESIGN_SURVIVES_CENSORING_PRICE_AND_DOMAIN_SHIFT"
+  ],
+  "blocked_execution_rule": {
+    "if_official_archive_is_encrypted_or_password_unavailable": "do not submit a placeholder SLURM job and do not infer task outcomes from metadata or parseability; emit denominator-complete CANNOT_CHECK",
+    "if_nonflat_successor_identity_is_not_already_complete": "do not create a post-outcome or identity-colliding successor in this lane; emit CANNOT_CHECK",
+    "weak_proxy_substitution": false,
+    "historical_post_outcome_reuse": false
+  },
+  "output_schema": {
+    "required": [
+      "FREEZE_V1.json",
+      "RAW_MANIFEST_V1.json",
+      "PRIMARY_RESULT_V1.json",
+      "IDEAL_DONOR_RESULT_V1.json",
+      "NEGATIVE_CONTROLS_V1.json",
+      "RESOURCE_LEDGER_V1.json",
+      "TRANSFER_RESULT_V1.json",
+      "RESULT_BINDING_PACKET_V1.json"
+    ],
+    "case_level_outcomes": "one explicit row for every one of the 96 clean-license cases even when all are CANNOT_CHECK",
+    "digest_algorithm": "SHA256"
+  },
+  "authority_ceiling": {
+    "allowed": "preflight and protocol-conformance evidence plus explicit protected-substrate/non-FLAT CANNOT_CHECK result",
+    "forbidden": [
+      "task gain",
+      "regret",
+      "domain stability",
+      "signal contribution",
+      "price robustness",
+      "shift robustness",
+      "ScienceAgentBench superiority",
+      "cross-model generalization",
+      "external validation",
+      "top-tier readiness delta"
+    ],
+    "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+    "computation_session_paper_authority_delta": "NONE"
+  }
+}
