@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import math
 
-from orion_research_harness.paper_programme_conformance import paper_programme_conformance
+from orion_research_harness.paper_programme_conformance import _p2, paper_programme_conformance
 from orion_research_harness.paper_programme_runtime import (
     P13Action,
     p11_accessible_rank_dimension,
@@ -86,6 +86,13 @@ def test_p14_gold_or_private_fields_are_not_policy_inputs():
         pass
     else:
         raise AssertionError("gold disposition must never be accepted as a policy input")
+
+
+def test_p2_programme_probe_consumes_current_route_stop_audit_schema():
+    positive, fail_closed, owner = _p2()
+    assert positive is True
+    assert fail_closed is True
+    assert owner == "live P2 discovery suite route-stop/task-stop evaluator"
 
 
 def test_p1_p15_programme_semantic_matrix_is_fully_operational():
