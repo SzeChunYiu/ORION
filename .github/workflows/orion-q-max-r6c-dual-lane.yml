@@ -129,8 +129,8 @@ jobs:
           if mechanics.get('mechanic_cell_count') != 59 or mechanics.get('structurally_discoverable') is not True:
               raise SystemExit(f'canonical mechanics incomplete: {mechanics}')
           qstate=json.loads(Path('/tmp/q-state.json').read_text())
-          if qstate.get('phase_id') != 'P10_RESULT':
-              raise SystemExit(f'ORION-Q campaign did not reach P10_RESULT: {qstate.get("phase_id")}')
+          if qstate.get('phase_id') != 'R6_VERDICT':
+              raise SystemExit(f'ORION-Q campaign did not reach R6_VERDICT: {qstate.get("phase_id")}')
           refs=qstate.get('protected_refs',[])
           if len(refs)!=1 or refs[0].get('released') is not False:
               raise SystemExit('ORION-Q campaign released protected stretched N2')
