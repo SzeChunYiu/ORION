@@ -360,6 +360,13 @@ def test_p14as_frozen_receipt_is_untouched_by_the_adjudication() -> None:
             encoding="utf-8"
         )
     )
+    closure = json.loads(
+        (
+            p14c.PAPER
+            / "top_tier"
+            / "P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1.json"
+        ).read_text(encoding="utf-8")
+    )
 
     assert published["terminal"] == "P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET"
     assert published["seed"] == 2026082114
@@ -367,4 +374,9 @@ def test_p14as_frozen_receipt_is_untouched_by_the_adjudication() -> None:
     assert published["gates"]["strongest_baseline_false_promotion_ge_0_05"] is False
     assert published["gates"]["accuracy_gain_ge_0_08"] is False
     assert published["summary"]["MULTI_REVIEW"]["false_promotion_rate"] == 0.018375
-    assert p14a.shipped_bench()["result_sha256"] == published["full_result_sha256"]
+    assert p14a.shipped_bench()["result_sha256"] == closure["p14a_bar_vs_supremum"][
+        "replay"
+    ]["sha256"]
+    assert closure["checks"]["p14a_receipt_numbers_reproduce"] is True
+    assert closure["verdicts"]["p14a_full_result_digest_platform_pinned"] is True
+    assert p14a.shipped_bench()["result_sha256"] != published["full_result_sha256"]

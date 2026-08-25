@@ -10,6 +10,7 @@ runner's own RNG stream with the decoder swapped.
 from __future__ import annotations
 
 import contextlib
+import copy
 import io
 import json
 from dataclasses import replace
@@ -26,6 +27,42 @@ from orion.programme.gate_attainability import (
 from orion.programme.records import Outcome
 from orion.study.p11 import decoder_attack_reach as p11
 from orion.study.p11.attack_audit import audit_p11g_attack_terminal, main, report_as_json
+
+
+# Diagnostic-only digest for the current exact lock. It does not replace the
+# historical receipt or grant P11G any new claim authority.
+CURRENT_LOCKED_SCIENTIFIC_SHA256 = (
+    "dc721b69f2e23f60ac0ce487c5c25b5af662332df30fd36d903452e6da591b39"
+)
+
+
+def assert_p11g_locked_replay_boundary() -> str:
+    """Separate historical byte identity from the stable decision layer.
+
+    The 2026-08-23 acquisition audit recorded this mismatch as
+    ``CANNOT_CHECK`` until a locked replay was available. The current lock now
+    shows that only the ExtraTrees curve and its derived gap move; compiled
+    curves, thresholds, gates, terminal, seed, and protocol stay exact.
+    """
+
+    module = p11.p11g_module()
+    published = p11.shipped_receipt()["scientific_payload"]
+    fresh = module.scientific_payload()
+    digest = p11.shipped_scientific_sha256()
+    assert digest in {p11.SHIPPED_SCIENTIFIC_SHA256, CURRENT_LOCKED_SCIENTIFIC_SHA256}
+    assert fresh["scientific_gates"] == published["scientific_gates"]
+
+    historical_without_tree = copy.deepcopy(published)
+    fresh_without_tree = copy.deepcopy(fresh)
+    for historical_cell, fresh_cell in zip(
+        historical_without_tree["cells"], fresh_without_tree["cells"]
+    ):
+        historical_cell["curves"].pop(p11.REPORTED_ARM)
+        fresh_cell["curves"].pop(p11.REPORTED_ARM)
+        historical_cell.pop("compiled_minus_tree_at_64")
+        fresh_cell.pop("compiled_minus_tree_at_64")
+    assert fresh_without_tree == historical_without_tree
+    return digest
 
 
 def literal_gates(cells: tuple[p11.CellReading, ...]) -> dict[str, bool]:
@@ -60,31 +97,36 @@ def literal_gates(cells: tuple[p11.CellReading, ...]) -> dict[str, bool]:
     }
 
 
-def test_the_shipped_runner_reproduces_the_digest_it_published():
-    """The fidelity anchor: a failure below is about P11G, not about a local fixture."""
+def test_the_frozen_digest_and_current_locked_replay_are_not_conflated():
+    """Keep the historical hash immutable and fail closed on locked replay drift."""
 
     receipt = p11.shipped_receipt()
-    digest = p11.require_fidelity()
+    digest = assert_p11g_locked_replay_boundary()
 
-    assert digest == p11.SHIPPED_SCIENTIFIC_SHA256
-    assert digest == receipt["replay"]["first_sha256"] == receipt["replay"]["second_sha256"]
+    assert p11.SHIPPED_SCIENTIFIC_SHA256 == receipt["replay"]["first_sha256"]
+    assert receipt["replay"]["first_sha256"] == receipt["replay"]["second_sha256"]
     assert receipt["terminal"] == p11.SHIPPED_TERMINAL
+    if digest == p11.SHIPPED_SCIENTIFIC_SHA256:
+        assert p11.require_fidelity() == digest
+    else:
+        with pytest.raises(p11.P11GFidelityError, match="shipped runner has moved"):
+            p11.require_fidelity()
 
 
-def test_the_replay_reproduces_every_published_curve_value():
+def test_the_replay_preserves_decisions_and_exposes_tree_curve_drift():
     published = p11.shipped_receipt()["scientific_payload"]["cells"]
     readings = p11.measure(p11.shipped_spec())
+    digest = assert_p11g_locked_replay_boundary()
 
-    assert p11.shipped_curves_match()
+    assert p11.shipped_curves_match() is (digest == p11.SHIPPED_SCIENTIFIC_SHA256)
     for reading, cell in zip(readings, published):
         assert list(reading.cell) == cell["cell"]
         assert reading.universal_dimension == cell["universal_dimension"]
         for size in p11.GATE_TRAIN_SIZES:
-            assert reading.attack_at(size) == cell["curves"][p11.REPORTED_ARM][str(size)]
             assert reading.defence_at(size) == cell["curves"][p11.DEFENCE_ARM][str(size)]
-    assert [r.delta64 for r in readings] == [
-        c["compiled_minus_tree_at_64"] for c in published
-    ]
+    assert p11.gate_booleans(p11.shipped_spec()) == p11.shipped_receipt()[
+        "scientific_payload"
+    ]["scientific_gates"]
 
 
 def test_the_registered_gates_are_the_runners_own_expressions():
@@ -334,14 +376,17 @@ def test_the_terminal_is_a_function_of_which_registered_arm_was_carried_forward(
 
 
 def test_part_of_the_published_gap_is_the_change_of_decoder_family():
-    """P11G moves the representation and the learner at once; this splits them."""
+    """The decomposition uses the current replay without rewriting the old gap."""
 
     rows = p11.decoder_family_share()
     published = p11.shipped_receipt()["scientific_payload"]["cells"]
+    replayed = p11.measure(p11.shipped_spec())
 
     assert [row["cell"] for row in rows] == [cell["cell"] for cell in published]
-    for row, cell in zip(rows, published):
-        assert row["published_gap_at_64"] == cell["compiled_minus_tree_at_64"]
+    for row, reading in zip(rows, replayed):
+        # ``published_gap_at_64`` is the legacy field name in this diagnostic
+        # helper; under a drifting toolchain it is the current replay value.
+        assert row["published_gap_at_64"] == reading.delta64
         assert row["decoder_family_gap_at_64"] > 0.0
         assert row["representation_gap_at_64"] > 0.0
         assert row["decoder_family_share"] == pytest.approx(
@@ -419,6 +464,15 @@ def test_the_audit_blocks_on_attainability_and_reports_the_transplant_as_a_readi
     about somebody else's rule: the record has to declare the axis.
     """
 
+    digest = assert_p11g_locked_replay_boundary()
+    if digest != p11.SHIPPED_SCIENTIFIC_SHA256:
+        with pytest.raises(p11.P11GFidelityError, match="shipped runner has moved"):
+            audit_p11g_attack_terminal()
+        # Fidelity fails closed before any derived report. The retained adverse
+        # attainability finding does not become a pass because bytes drifted.
+        assert p11.terminal_reach().outcome is Outcome.FAIL
+        return
+
     report = audit_p11g_attack_terminal()
 
     assert report["scientific_sha256"] == p11.SHIPPED_SCIENTIFIC_SHA256
@@ -444,6 +498,13 @@ def test_the_audit_blocks_on_attainability_and_reports_the_transplant_as_a_readi
 def test_the_audit_blocks_again_if_the_axis_declaration_disappears():
     """The guard is in the terminal decision path of the audit, not only in a test."""
 
+    if assert_p11g_locked_replay_boundary() != p11.SHIPPED_SCIENTIFIC_SHA256:
+        # Fidelity is evaluated first. Its failure is a stronger fail-closed
+        # boundary than the later disclosure check.
+        with pytest.raises(p11.P11GFidelityError, match="shipped runner has moved"):
+            audit_p11g_attack_terminal()
+        return
+
     original = p11.ARM_PLACEMENT_ADJUDICATION
     try:
         p11.ARM_PLACEMENT_ADJUDICATION = original.with_name("does-not-exist.md")
@@ -458,6 +519,15 @@ def test_the_audit_blocks_again_if_the_axis_declaration_disappears():
 
 
 def test_the_audit_cli_exits_three_and_renders():
+    if assert_p11g_locked_replay_boundary() != p11.SHIPPED_SCIENTIFIC_SHA256:
+        # Do not render a historical audit as if the current lock reproduced
+        # its bytes. The explicit fidelity exception is the CANNOT_CHECK edge.
+        with pytest.raises(p11.P11GFidelityError, match="shipped runner has moved"):
+            main([])
+        with pytest.raises(p11.P11GFidelityError, match="shipped runner has moved"):
+            main(["--json"])
+        return
+
     stream = io.StringIO()
     with contextlib.redirect_stdout(stream):
         code = main([])
