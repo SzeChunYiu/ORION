@@ -1,0 +1,1097 @@
+{
+  "schema": "orion.discovery-v2.support-family-status.v1",
+  "job_id": "DISC-WEB-01",
+  "families": [
+    {
+      "target": "THEORY:T0",
+      "family_id": "S0(THEORY:T0)",
+      "present_nodes": [],
+      "missing_nodes": [
+        "EVIDENCE:<none registered>"
+      ],
+      "present_edges": [],
+      "missing_edges": [],
+      "complete": false,
+      "best_remaining_gap": "no execution evidence binds this theorem",
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T1",
+      "family_id": "S0(THEORY:T1)",
+      "present_nodes": [],
+      "missing_nodes": [
+        "EVIDENCE:<none registered>"
+      ],
+      "present_edges": [],
+      "missing_edges": [],
+      "complete": false,
+      "best_remaining_gap": "no execution evidence binds this theorem",
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T10",
+      "family_id": "S1(THEORY:T10)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-CM-01",
+        "EXPERIMENT:EXEC-CM-01",
+        "VALIDATOR:EXEC-CM-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-CM-01",
+          "EXPERIMENT:EXEC-CM-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-CM-01",
+          "THEORY:T10",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-CM-01",
+          "EVIDENCE:EXEC-CM-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T10",
+      "family_id": "S2(THEORY:T10)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P6-01",
+        "EXPERIMENT:EXEC-P6-01",
+        "VALIDATOR:EXEC-P6-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P6-01",
+          "EXPERIMENT:EXEC-P6-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P6-01",
+          "THEORY:T10",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P6-01",
+          "EVIDENCE:EXEC-P6-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T10",
+      "family_id": "S3(THEORY:T10)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P8-01",
+        "EXPERIMENT:EXEC-P8-01",
+        "VALIDATOR:EXEC-P8-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P8-01",
+          "EXPERIMENT:EXEC-P8-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P8-01",
+          "THEORY:T10",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P8-01",
+          "EVIDENCE:EXEC-P8-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T10",
+      "family_id": "S4(THEORY:T10)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-PA-01",
+        "EXPERIMENT:EXEC-PA-01",
+        "VALIDATOR:EXEC-PA-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-PA-01",
+          "EXPERIMENT:EXEC-PA-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-PA-01",
+          "THEORY:T10",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-PA-01",
+          "EVIDENCE:EXEC-PA-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T11",
+      "family_id": "S1(THEORY:T11)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P13-01",
+        "EXPERIMENT:EXEC-P13-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P13-01",
+          "EXPERIMENT:EXEC-P13-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P13-01",
+          "THEORY:T11",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T11",
+      "family_id": "S2(THEORY:T11)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P6-01",
+        "EXPERIMENT:EXEC-P6-01",
+        "VALIDATOR:EXEC-P6-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P6-01",
+          "EXPERIMENT:EXEC-P6-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P6-01",
+          "THEORY:T11",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P6-01",
+          "EVIDENCE:EXEC-P6-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T11",
+      "family_id": "S3(THEORY:T11)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P8-01",
+        "EXPERIMENT:EXEC-P8-01",
+        "VALIDATOR:EXEC-P8-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P8-01",
+          "EXPERIMENT:EXEC-P8-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P8-01",
+          "THEORY:T11",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P8-01",
+          "EVIDENCE:EXEC-P8-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T11",
+      "family_id": "S4(THEORY:T11)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-PA-01",
+        "EXPERIMENT:EXEC-PA-01",
+        "VALIDATOR:EXEC-PA-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-PA-01",
+          "EXPERIMENT:EXEC-PA-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-PA-01",
+          "THEORY:T11",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-PA-01",
+          "EVIDENCE:EXEC-PA-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T12",
+      "family_id": "S1(THEORY:T12)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P2-01",
+        "EXPERIMENT:EXEC-P2-01",
+        "VALIDATOR:EXEC-P2-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P2-01",
+          "EXPERIMENT:EXEC-P2-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P2-01",
+          "THEORY:T12",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P2-01",
+          "EVIDENCE:EXEC-P2-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T13",
+      "family_id": "S1(THEORY:T13)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-CM-01",
+        "EXPERIMENT:EXEC-CM-01",
+        "VALIDATOR:EXEC-CM-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-CM-01",
+          "EXPERIMENT:EXEC-CM-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-CM-01",
+          "THEORY:T13",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-CM-01",
+          "EVIDENCE:EXEC-CM-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T13",
+      "family_id": "S2(THEORY:T13)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P7-01",
+        "EXPERIMENT:EXEC-P7-01",
+        "VALIDATOR:EXEC-P7-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P7-01",
+          "EXPERIMENT:EXEC-P7-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P7-01",
+          "THEORY:T13",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P7-01",
+          "EVIDENCE:EXEC-P7-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T14",
+      "family_id": "S1(THEORY:T14)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P1-01",
+        "EXPERIMENT:EXEC-P1-01",
+        "VALIDATOR:EXEC-P1-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P1-01",
+          "EXPERIMENT:EXEC-P1-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P1-01",
+          "THEORY:T14",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P1-01",
+          "EVIDENCE:EXEC-P1-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T14",
+      "family_id": "S2(THEORY:T14)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P9-01",
+        "EXPERIMENT:EXEC-P9-01",
+        "VALIDATOR:EXEC-P9-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P9-01",
+          "EXPERIMENT:EXEC-P9-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P9-01",
+          "THEORY:T14",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P9-01",
+          "EVIDENCE:EXEC-P9-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T15",
+      "family_id": "S1(THEORY:T15)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P10-01",
+        "EXPERIMENT:EXEC-P10-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P10-01",
+          "EXPERIMENT:EXEC-P10-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P10-01",
+          "THEORY:T15",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T16",
+      "family_id": "S1(THEORY:T16)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P11-01",
+        "EXPERIMENT:EXEC-P11-01",
+        "VALIDATOR:EXEC-P11-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P11-01",
+          "EXPERIMENT:EXEC-P11-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P11-01",
+          "THEORY:T16",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P11-01",
+          "EVIDENCE:EXEC-P11-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T17",
+      "family_id": "S1(THEORY:T17)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P12-01",
+        "EXPERIMENT:EXEC-P12-01",
+        "VALIDATOR:EXEC-P12-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P12-01",
+          "EXPERIMENT:EXEC-P12-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P12-01",
+          "THEORY:T17",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P12-01",
+          "EVIDENCE:EXEC-P12-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T18",
+      "family_id": "S1(THEORY:T18)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P11-01",
+        "EXPERIMENT:EXEC-P11-01",
+        "VALIDATOR:EXEC-P11-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P11-01",
+          "EXPERIMENT:EXEC-P11-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P11-01",
+          "THEORY:T18",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P11-01",
+          "EVIDENCE:EXEC-P11-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T18",
+      "family_id": "S2(THEORY:T18)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P13-01",
+        "EXPERIMENT:EXEC-P13-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P13-01",
+          "EXPERIMENT:EXEC-P13-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P13-01",
+          "THEORY:T18",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T19",
+      "family_id": "S1(THEORY:T19)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P14-01",
+        "EXPERIMENT:EXEC-P14-01",
+        "VALIDATOR:EXEC-P14-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P14-01",
+          "EXPERIMENT:EXEC-P14-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P14-01",
+          "THEORY:T19",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P14-01",
+          "EVIDENCE:EXEC-P14-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T19",
+      "family_id": "S2(THEORY:T19)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P5-01",
+        "EXPERIMENT:EXEC-P5-01",
+        "VALIDATOR:EXEC-P5-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P5-01",
+          "EXPERIMENT:EXEC-P5-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P5-01",
+          "THEORY:T19",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P5-01",
+          "EVIDENCE:EXEC-P5-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T2",
+      "family_id": "S1(THEORY:T2)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P4-01",
+        "EXPERIMENT:EXEC-P4-01",
+        "VALIDATOR:EXEC-P4-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P4-01",
+          "EXPERIMENT:EXEC-P4-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P4-01",
+          "THEORY:T2",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P4-01",
+          "EVIDENCE:EXEC-P4-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T20",
+      "family_id": "S1(THEORY:T20)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P15-01",
+        "EXPERIMENT:EXEC-P15-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P15-01",
+          "EXPERIMENT:EXEC-P15-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P15-01",
+          "THEORY:T20",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T20",
+      "family_id": "S2(THEORY:T20)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-PA-01",
+        "EXPERIMENT:EXEC-PA-01",
+        "VALIDATOR:EXEC-PA-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-PA-01",
+          "EXPERIMENT:EXEC-PA-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-PA-01",
+          "THEORY:T20",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-PA-01",
+          "EVIDENCE:EXEC-PA-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T21",
+      "family_id": "S1(THEORY:T21)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P1-01",
+        "EXPERIMENT:EXEC-P1-01",
+        "VALIDATOR:EXEC-P1-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P1-01",
+          "EXPERIMENT:EXEC-P1-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P1-01",
+          "THEORY:T21",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P1-01",
+          "EVIDENCE:EXEC-P1-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T21",
+      "family_id": "S2(THEORY:T21)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P14-01",
+        "EXPERIMENT:EXEC-P14-01",
+        "VALIDATOR:EXEC-P14-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P14-01",
+          "EXPERIMENT:EXEC-P14-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P14-01",
+          "THEORY:T21",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P14-01",
+          "EVIDENCE:EXEC-P14-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T21",
+      "family_id": "S3(THEORY:T21)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P5-01",
+        "EXPERIMENT:EXEC-P5-01",
+        "VALIDATOR:EXEC-P5-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P5-01",
+          "EXPERIMENT:EXEC-P5-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P5-01",
+          "THEORY:T21",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P5-01",
+          "EVIDENCE:EXEC-P5-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T22",
+      "family_id": "S1(THEORY:T22)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P10-01",
+        "EXPERIMENT:EXEC-P10-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P10-01",
+          "EXPERIMENT:EXEC-P10-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P10-01",
+          "THEORY:T22",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T22",
+      "family_id": "S2(THEORY:T22)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P10-02",
+        "EXPERIMENT:EXEC-P10-02",
+        "VALIDATOR:EXEC-P10-02"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P10-02",
+          "EXPERIMENT:EXEC-P10-02",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P10-02",
+          "THEORY:T22",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P10-02",
+          "EVIDENCE:EXEC-P10-02",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T23",
+      "family_id": "S1(THEORY:T23)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-XP-01",
+        "EXPERIMENT:EXEC-XP-01",
+        "VALIDATOR:EXEC-XP-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-XP-01",
+          "EXPERIMENT:EXEC-XP-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-XP-01",
+          "THEORY:T23",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-XP-01",
+          "EVIDENCE:EXEC-XP-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T3",
+      "family_id": "S1(THEORY:T3)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P4-01",
+        "EXPERIMENT:EXEC-P4-01",
+        "VALIDATOR:EXEC-P4-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P4-01",
+          "EXPERIMENT:EXEC-P4-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P4-01",
+          "THEORY:T3",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P4-01",
+          "EVIDENCE:EXEC-P4-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T4",
+      "family_id": "S1(THEORY:T4)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P8-01",
+        "EXPERIMENT:EXEC-P8-01",
+        "VALIDATOR:EXEC-P8-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P8-01",
+          "EXPERIMENT:EXEC-P8-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P8-01",
+          "THEORY:T4",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P8-01",
+          "EVIDENCE:EXEC-P8-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T5",
+      "family_id": "S0(THEORY:T5)",
+      "present_nodes": [],
+      "missing_nodes": [
+        "EVIDENCE:<none registered>"
+      ],
+      "present_edges": [],
+      "missing_edges": [],
+      "complete": false,
+      "best_remaining_gap": "no execution evidence binds this theorem",
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T6",
+      "family_id": "S0(THEORY:T6)",
+      "present_nodes": [],
+      "missing_nodes": [
+        "EVIDENCE:<none registered>"
+      ],
+      "present_edges": [],
+      "missing_edges": [],
+      "complete": false,
+      "best_remaining_gap": "no execution evidence binds this theorem",
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T7",
+      "family_id": "S0(THEORY:T7)",
+      "present_nodes": [],
+      "missing_nodes": [
+        "EVIDENCE:<none registered>"
+      ],
+      "present_edges": [],
+      "missing_edges": [],
+      "complete": false,
+      "best_remaining_gap": "no execution evidence binds this theorem",
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T8",
+      "family_id": "S1(THEORY:T8)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-CM-01",
+        "EXPERIMENT:EXEC-CM-01",
+        "VALIDATOR:EXEC-CM-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-CM-01",
+          "EXPERIMENT:EXEC-CM-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-CM-01",
+          "THEORY:T8",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-CM-01",
+          "EVIDENCE:EXEC-CM-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    },
+    {
+      "target": "THEORY:T8",
+      "family_id": "S2(THEORY:T8)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-PA-01",
+        "EXPERIMENT:EXEC-PA-01",
+        "VALIDATOR:EXEC-PA-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-PA-01",
+          "EXPERIMENT:EXEC-PA-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-PA-01",
+          "THEORY:T8",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-PA-01",
+          "EVIDENCE:EXEC-PA-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": true
+    },
+    {
+      "target": "THEORY:T9",
+      "family_id": "S1(THEORY:T9)",
+      "present_nodes": [
+        "EVIDENCE:EXEC-P3-01",
+        "EXPERIMENT:EXEC-P3-01",
+        "VALIDATOR:EXEC-P3-01"
+      ],
+      "missing_nodes": [],
+      "present_edges": [
+        [
+          "EVIDENCE:EXEC-P3-01",
+          "EXPERIMENT:EXEC-P3-01",
+          "DEPENDS_ON"
+        ],
+        [
+          "EVIDENCE:EXEC-P3-01",
+          "THEORY:T9",
+          "VALIDATES"
+        ],
+        [
+          "VALIDATOR:EXEC-P3-01",
+          "EVIDENCE:EXEC-P3-01",
+          "VALIDATES"
+        ]
+      ],
+      "missing_edges": [],
+      "complete": true,
+      "best_remaining_gap": null,
+      "blocked_by_failure": false
+    }
+  ],
+  "complete": 34,
+  "incomplete": 5
+}
