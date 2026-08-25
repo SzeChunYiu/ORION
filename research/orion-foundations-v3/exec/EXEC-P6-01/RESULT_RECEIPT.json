@@ -1,0 +1,73 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P6-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T10",
+    "OSTC-T11"
+  ],
+  "terminal": "P6_GENERAL_REVALIDATION_LAW_SUPPORTED",
+  "executed_on": {
+    "host": "LUNARC (cosmos2.int.lunarc)",
+    "wallclock_seconds": 0.446,
+    "cells_enumerated": 73024
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "f630ef59a24fe05844dd6b3258eb09ff4f2d0f8d84861965aa20570faf901690"
+    },
+    "run_revalidation_hypergraph_v1.py": {
+      "artifact": "run_revalidation_hypergraph_v1.py",
+      "sha256": "b290d0cf4fc0181dcdda63f45dd642250a8f1874c25e78c0e4f91b7394959fa0"
+    },
+    "check_revalidation_hypergraph_independent_v1.py": {
+      "artifact": "check_revalidation_hypergraph_independent_v1.py",
+      "sha256": "759223d974b36ef6b14668eb493d0a10e9b95737f60690412eadb61f702c51db"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "ecca6214f06bb793073b1e50225ae72090b2d6f8f93384c372c804411b6730d9"
+    },
+    "INDEPENDENT_CHECKER_RECEIPT.json": {
+      "artifact": "INDEPENDENT_CHECKER_RECEIPT.json",
+      "sha256": "0ec57a1cd2bd9b69005b7193d030d7b80038489bab6ab1f55b296d5707017581"
+    }
+  },
+  "results": {
+    "OSTC-T11": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Survival by forward closure and survival by MinSup-disjointness agree on all 72,960 (hypergraph, revocation-set) cells, zero violations in either direction. Both outcomes occur: 19,380 survive and 53,580 die, so the criterion is discriminating rather than constant. Runner and checker compute the two sides by different means -- family-revocation intersection versus subset-of-surviving-tokens -- so agreement is not a shared implementation agreeing with itself.",
+      "cells": 72960,
+      "survived": 19380,
+      "died": 53580,
+      "biconditional_violations": 0
+    },
+    "OSTC-T10": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Composition retained every unresolved blocker across all 64 compositions, zero losses. This is the hypergraph setting; EXEC-CM-01 tested the same theorem on flat contract vectors, and the two do not share code.",
+      "compositions": 64,
+      "blocker_losses": 0
+    }
+  },
+  "repair": {
+    "verdict": "MINIMUM_COST_REPAIR_NEVER_BEATEN",
+    "detail": "Over 53,580 repair cells the cardinality heuristic never beat minimum-cost repair, and minimum-cost was strictly cheaper in 7,611. That second number is the one that matters: it shows the cost model is doing work rather than reducing to counting tokens. Had fewest-tokens always matched least-cost, reporting optimality would have overstated the finding.",
+    "cells": 53580,
+    "heuristic_wins": 0,
+    "optimum_strictly_better": 7611,
+    "ties": 45969
+  },
+  "comparator": {
+    "any_support_donor": "TIE",
+    "detail": "72,960 agreements, 0 disagreements. T11's existence check does not require minimality, so a tie is the predicted outcome and a disagreement would have shown one of the two predicates wrong."
+  },
+  "what_this_does_not_establish": [
+    "Nothing beyond the declared grid: 6 tokens, 3 families of size 3. Total enumeration over a finite class, not a sample; no interval computed.",
+    "No proof-assistant correspondence; EXEC-PA-01 remains open.",
+    "No external adjudication. Runner and checker are two implementations inside one programme."
+  ],
+  "independent_checker": "EXEC_P6_01_SECOND_INDEPENDENT_CHECKER_GREEN, 0 disagreements",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}
