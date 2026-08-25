@@ -5,14 +5,14 @@
 **Responsibility-Conditioned Scientific Reconstruction: Minimal Reframing under Identifiability and Protected Adoption**
 
 ```text
-status = MANUSCRIPT_READY_FOR_RESULT_BINDING
+status = RESULT_LEDGER_BOUND__PROTECTED_CUSTODY_BLOCKED
 paper_authority_delta = NONE
 job = P1-DES-01
 ```
 
 ## Abstract
 
-Scientific agents often react to failure by searching longer, reflecting again, or rewriting the problem without first identifying which scientific layer is responsible. We model recursive reconstruction as a dynamic state over formulation, search universe, method language, evidence, responsibility, support families, negative history, and adoption authority. The paper absorbs diagnosis, abductive reformulation, metareasoning, and protected self-improvement donors. Its candidate residual is the exact coupling of responsibility identifiability, minimum repair, selective reopening, and non-self-issued adoption. We prove that responsibility is recoverable exactly when it is constant on transcript fibres; that minimum diagnostic campaigns are separating-family problems; and that minimum repairs are obstruction-cover problems. A prospectively frozen ScienceAgentBench and counterfactual hidden-formulation study will compare dynamic reconstruction with one-shot, reflection, no-reconstruction, and donor-complete diagnosis agents. The headline is admitted only if the method reduces wrong-layer interventions and improves held-out task resolution under matched resources and protected adoption.
+Scientific agents often react to failure by searching longer, reflecting again, or rewriting the problem without first identifying which scientific layer is responsible. We model recursive reconstruction as a dynamic state over formulation, search universe, method language, evidence, responsibility, support families, negative history, and adoption authority. The paper absorbs diagnosis, abductive reformulation, metareasoning, and protected self-improvement donors. Its candidate residual is the exact coupling of responsibility identifiability, minimum repair, selective reopening, and non-self-issued adoption. We prove that responsibility is recoverable exactly when it is constant on transcript fibres; that minimum diagnostic campaigns are separating-family problems; and that minimum repairs are obstruction-cover problems. The frozen empirical successor registered 102 ScienceAgentBench cases, 48 counterfactual cases, five arms, five repeats, and 3,750 planned run cells, but zero cells were eligible because protected benchmark and fresh counterfactual custody were unavailable. The present manuscript therefore advances the theory and protected-study contract without claiming prospective task, diagnosis, or adoption superiority.
 
 ## Theory
 
@@ -32,8 +32,17 @@ Absorb model-based debugging, causal diagnosis, abductive reasoning, scientific 
 
 ## Decisive computation
 
-`P1-DES-01`: run full ScienceAgentBench plus hidden/counterfactual reformulation tasks. Primary vector: responsible-layer accuracy, solve-rate gain, wrong-layer interventions, decisive-evidence cost, harmful reopening, adoption false positives. Required terminal: `RESPONSIBILITY_CONDITIONED_MINIMAL_RECONSTRUCTION_PROSPECTIVELY_SUPPORTED`.
+`P1-DES-01`: full ScienceAgentBench plus hidden/counterfactual reformulation tasks. Primary vector: responsible-layer accuracy, solve-rate gain, wrong-layer interventions, decisive-evidence cost, harmful reopening, adoption false positives. Intended positive terminal: `RESPONSIBILITY_CONDITIONED_MINIMAL_RECONSTRUCTION_PROSPECTIVELY_SUPPORTED`.
+
+## Authoritative computation disposition
+
+- Authoritative result SHA: `8c01199f5a0927e1a6f66b99e37057ee18f566a1`.
+- Exact terminal: `PROTECTED_SCIENCEAGENTBENCH_AND_FRESH_COUNTERFACTUAL_CUSTODY_UNAVAILABLE`.
+- Attained evidence: a complete content-bound protected-study preflight over 150 registered cases and 3,750 planned cells; all 150 case rows remain `CANNOT_CHECK`; zero run cells were executed.
+- Allowed manuscript claims: the formal identifiability, separating-family, obstruction-cover, selective-reopening, and protected-adoption results; the exact custody/access boundary; the frozen prospective protocol.
+- Not established: responsible-layer accuracy, solve-rate gain, wrong-layer reduction, harmful-reopening reduction, protected-adoption benefit, model-general transfer, or empirical superiority.
+- Writing action: present this successor as a theory-and-protocol paper unless a separately identified externally held campaign later supplies the missing custody.
 
 ## Journal spine
 
-Problem; dynamic state; identifiability and repair theorems; protected algorithm; frozen study; ideal donor frontier; held-out transfer; negative results; adoption boundary. The computation session fills result packets only; this writing lane produces the final paper.
+Problem; dynamic state; identifiability and repair theorems; protected algorithm; frozen study design; exact unavailable-custody result; donor frontier and novelty boundary; adoption boundary. The candidate abstract is now result-bound but is not release text until the atomic claim ledger and target-journal adaptation are complete.
