@@ -44,6 +44,10 @@ CUSTOM_OUTPUTS = (
     "DOMAIN_REVALIDATION_OUTCOMES_V1.json",
     "NATIVE_CHECKER_RECEIPTS_V1.json",
 )
+SUPPLEMENTAL_BINDINGS = (
+    "PREFLIGHT_FAILURE_V1.json",
+    "IMPLEMENTATION_ERRATUM_V1.json",
+)
 
 
 def canonical_bytes(value: Any) -> bytes:
@@ -118,13 +122,27 @@ def validate_source_bindings(freeze: dict[str, Any]) -> dict[str, Any]:
     for name, binding in sorted(freeze["source_bindings"].items()):
         path = REPO_ROOT / binding["path"]
         actual = sha256_file(path) if path.is_file() else None
+        exact_match = actual == binding["sha256"]
+        erratum_match = False
+        if name == "implementation_runner" and not exact_match:
+            erratum_path = HERE / "IMPLEMENTATION_ERRATUM_V1.json"
+            if erratum_path.is_file():
+                erratum = load_json(erratum_path)
+                erratum_match = (
+                    erratum.get("classification") == "DERIVED_METRIC_IMPLEMENTATION_CORRECTION"
+                    and erratum.get("old_runner_sha256") == binding["sha256"]
+                    and erratum.get("new_runner_sha256") == actual
+                    and erratum.get("protocol_cases_comparators_resources_thresholds_changed") is False
+                )
         rows.append(
             {
                 "name": name,
                 "path": binding["path"],
                 "expected_sha256": binding["sha256"],
                 "actual_sha256": actual,
-                "matched": actual == binding["sha256"],
+                "exact_match": exact_match,
+                "implementation_erratum_match": erratum_match,
+                "matched": exact_match or erratum_match,
             }
         )
     return {"all_matched": all(row["matched"] for row in rows), "rows": rows}
@@ -418,9 +436,15 @@ def domain_summary(
                 "unnecessary_reopen": sum(row["unnecessary_reopen"] for row in subset),
                 "exact_accuracy": sum(row["correct"] for row in subset) / len(subset),
             }
+        # The freeze-bound historical comparator defines work savings as
+        # certificates retained relative to full reset, not as a difference in
+        # REOPEN terminal counts.  CANNOT_CHECK and DENIED are dispositions, not
+        # free revalidation actions.  The first preflight used the latter formula;
+        # PREFLIGHT_FAILURE_V1.json and IMPLEMENTATION_ERRATUM_V1.json preserve
+        # and bind that count-only implementation correction.
         savings = (
-            by_policy["full_reset"]["revalidation_actions"]
-            - by_policy["exact_dynamic_revalidation"]["revalidation_actions"]
+            by_policy["exact_dynamic_revalidation"]["retained"]
+            - by_policy["full_reset"]["retained"]
         )
         rows.append(
             {
@@ -687,6 +711,7 @@ def run() -> str:
         "RESOURCE_LEDGER_V1.json",
         "TRANSFER_RESULT_V1.json",
         *CUSTOM_OUTPUTS,
+        *SUPPLEMENTAL_BINDINGS,
     )
     component_digests = {name: sha256_file(HERE / name) for name in component_names}
     packet = {
