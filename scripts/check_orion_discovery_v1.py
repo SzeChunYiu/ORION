@@ -20,6 +20,8 @@ REQUIRED_FILES = (
     "EXECUTION_BACKLOG_V1.json",
     "AI_EXECUTOR_PROMPT_V1.md",
     "EXPERT_REVIEW_AND_ATOMIC_GAP_MAP_V1.md",
+    "run_edg_finite_census.py",
+    "EDG_FINITE_CENSUS_V1.json",
 )
 
 FORBIDDEN_AUTHORITY_PHRASES = (
@@ -154,9 +156,41 @@ def main() -> int:
             if not row.get(field):
                 fail(f"job {row.get('job_id')} missing required field {field}")
 
+    census = load_json(PACKAGE / "EDG_FINITE_CENSUS_V1.json")
+    if census.get("terminal") != "EDG_FINITE_CORRESPONDENCE_GREEN":
+        fail("EDG finite census is not green")
+    totals = census.get("totals")
+    if not isinstance(totals, dict):
+        fail("EDG finite census totals must be an object")
+    expected_totals = {
+        "loss_tables": 139520,
+        "common_optimum_tables": 59264,
+        "unique_distinct_optima_tables": 16800,
+        "hedge_present_tables": 210,
+        "no_hedge_tables": 16590,
+        "all_correspondence_violations": 0,
+    }
+    for field, expected in expected_totals.items():
+        if totals.get(field) != expected:
+            fail(
+                f"EDG finite census total mismatch for {field}: "
+                f"expected={expected}, actual={totals.get(field)}"
+            )
+    partition = census.get("partition_refinement")
+    if not isinstance(partition, dict):
+        fail("EDG partition-refinement result must be an object")
+    if partition.get("comparisons") != 49152 or partition.get("violations") != 0:
+        fail("EDG partition-refinement correspondence mismatch")
+    census_authority = census.get("authority")
+    if not isinstance(census_authority, dict):
+        fail("EDG census authority must be an object")
+    if census_authority.get("paper_claim_delta") != "NONE":
+        fail("EDG census may not promote paper claims")
+
     print(
         "ORION_DISCOVERY_V1_STRUCTURE_GREEN "
-        f"theorems={len(theorem_ids)} jobs={len(job_ids)} files={len(REQUIRED_FILES)}"
+        f"theorems={len(theorem_ids)} jobs={len(job_ids)} files={len(REQUIRED_FILES)} "
+        f"edg_tables={totals['loss_tables']}"
     )
     return 0
 
