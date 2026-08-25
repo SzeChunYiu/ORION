@@ -43,3 +43,5 @@
 **Correct response:** Preserve job `3539804` as failed. Create a separately named and content-addressed successor whose runner hash is bound into the protocol, clears `PYTHONPATH` for every private-environment installation and dependency probe, and self-checks its runner bytes before executing any repository check.
 
 **Authority boundary:** No scientific job or outcome ran. This is engineering evidence only; external novelty remains `CANNOT_CHECK`, and paper authority changes by `NONE`.
+
+**Successor terminal:** `V3-ENGINEERING-REFERENCE-02` passed only as a local dry run and was not submitted because its runner did not compare the source archive directly to the frozen protocol. The separately frozen `V3-ENGINEERING-REFERENCE-03` closed that boundary and completed on LUNARC as scheduler job `3539808` in 15 seconds with exit `0:0`. This resolves the engineering-environment retry only; all 13 scientific jobs remain independently specification-blocked.

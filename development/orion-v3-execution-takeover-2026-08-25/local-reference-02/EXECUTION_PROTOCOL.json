@@ -1,0 +1,40 @@
+{
+  "authority_ceiling": "ENGINEERING_REFERENCE_CHECK_ONLY",
+  "inputs": {
+    "commands": [
+      "runner_hash_self_check",
+      "private_environment_self_check",
+      "check_orion_discovery_v3",
+      "check_orion_execution_takeover",
+      "focused_hostile_tests",
+      "finite_census_byte_comparison",
+      "compileall"
+    ],
+    "dependency_requirements": [
+      "pytest==9.1.1",
+      "pygments==2.19.2",
+      "cryptography==50.0.0",
+      "defusedxml==0.7.1"
+    ],
+    "expected_finite_receipt_sha256": "10f8879f7cbe6b617eaddc1c2154043debf2a1df3c92a99b2895ba0c45394dc4",
+    "runner_sha256": "47d4bb0fa80ac114fd02450f7e72a0665658e1330b8e2836d4ba9c5d92006172",
+    "source_archive_sha256": "ec71e6b106b8c4bb1f7ba6bdce2be2154a1aee0ff30f8e73f0008671db9efaf1"
+  },
+  "job_id": "V3-ENGINEERING-REFERENCE-02",
+  "matched_contract": {
+    "environment": "LUNARC_PRIVATE_JOB_VENV_WITH_UNSET_INSTALL_PYTHONPATH",
+    "outcomes_accessed": false,
+    "source": "EXACT_NARROW_GIT_ARCHIVE"
+  },
+  "paper_authority_delta": "NONE",
+  "protocol_sha256": "8f382dd2bf8d5ae78a55e495d01d441a503d4223b0fd19942b2f06dcbf610eb6",
+  "resource_vector": {
+    "cpus": 2,
+    "memory_mb": 8192,
+    "minutes": 15,
+    "nodes": 1
+  },
+  "schema": "orion.discovery.v3.execution-protocol.v1",
+  "source_git_sha": "fc1d46c5f63cb992dcf71c765475010f56a3e9fa",
+  "state": "FROZEN"
+}
