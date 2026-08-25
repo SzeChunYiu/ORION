@@ -1,0 +1,235 @@
+{
+  "schema": "orion.p1-des.freeze.v1",
+  "job_id": "P1-DES-01",
+  "frozen_at": "2026-08-25T18:42:52Z",
+  "base_main": "f049e30391a09213240f6325ee319f9fa811189a",
+  "subject_revision": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "task": "ScienceAgentBench and fresh counterfactual hidden-formulation study: dynamic reconstruction versus one-shot, reflection, no-reconstruction, and donor-complete diagnosis.",
+  "source_bindings": {
+    "executor_prompt": {
+      "path": "research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md",
+      "sha256": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce"
+    },
+    "backlog": {
+      "path": "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json",
+      "sha256": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4"
+    },
+    "calculus": {
+      "path": "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md",
+      "sha256": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05"
+    },
+    "paper_programme": {
+      "path": "papers/P1_P15_TOP_TIER_DYNAMIC_STATE_PROGRAMME_V1.md",
+      "sha256": "19a97b88c1ec49d014c6352ec8cd2ae4da0da57851f206589d36dfe9849175ce"
+    },
+    "successor_manuscript": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/TOP_TIER_DYNAMIC_EPISTEMIC_MANUSCRIPT_V1.md",
+      "sha256": "bd5af1819590e95b44d9e9bec4d58fa7ceb104cd8435dc51c46b4097010eb106"
+    },
+    "active_authority": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER_V1.md",
+      "sha256": "951a9fc3a261407a6067d4d15d758757155ad13b5c1ef3e06028821a13b5b97d"
+    },
+    "scienceagentbench_acquisition_record": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/acquisition/SAB_ACQUISITION_BLOCKER_V1.json",
+      "sha256": "7e905fa30bbff33a48c0bef713c7543ee27672d8522fda08d8fbaf03b2c03dc7"
+    },
+    "scienceagentbench_masking_metadata": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/masking/P1_MASKING_FREEZE_V1.json",
+      "sha256": "11d81ccfaffaaac5dcdd38bfde1d7dcad897be9dfd8d6a1f6891921aeeb027ac"
+    },
+    "historical_hidden_protocol": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json",
+      "sha256": "91d5dca84d927ccb5cc5a54fece12502f23c8cba22f8eb8e5a48377539eca0b7"
+    },
+    "historical_hidden_manifest": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/EXECUTION_MANIFEST_V1.md",
+      "sha256": "8cd94b16fb0074fd427c462c2793afc6d5ecb237c0e948017b2da2894956a8b9"
+    }
+  },
+  "implementation": {
+    "runner_path": "research/orion-epistemic-state-v1/results/P1-DES-01/run_p1_des_01.py",
+    "runner_sha256": "f58624d7e33928cd25b0d353dae3be87603075f4b28baec8ea18639167ecfc19",
+    "test_path": "research/orion-epistemic-state-v1/results/P1-DES-01/test_p1_des_01.py",
+    "test_sha256": "7858cb4d56790c014d7f90c8b355cfc092140c99698055bf96693417d8c56dcd"
+  },
+  "study": {
+    "unit": "protected task by frozen arm by frozen seed",
+    "cohorts": [
+      {
+        "cohort_id": "scienceagentbench_official_102",
+        "case_denominator": 102,
+        "case_identity": "the 102 unique instance_id rows bound by P1_MASKING_FREEZE_V1.json",
+        "required_inputs": [
+          "cleartext contents of official benchmark archive sha256 46e715d3b2196d459d2dff52aa487f506a95ec44b44262e82208d086ea879610",
+          "official per-task evaluator programs and scoring rubrics",
+          "official datasets and gold programs",
+          "license-compatible authorization to execute and retain outcomes"
+        ],
+        "metadata_only_is_not_execution": true
+      },
+      {
+        "cohort_id": "fresh_counterfactual_hidden_formulation_48",
+        "case_denominator": 48,
+        "case_slots": "counterfactual-remint:001 through counterfactual-remint:048",
+        "required_inputs": [
+          "fresh prospectively sequestered public views",
+          "protected responsibility and reframe gold",
+          "chronology proving no candidate or executor outcome access before freeze",
+          "independent custody or exact external transfer receipt"
+        ],
+        "historical_66_case_lineage": "DIAGNOSTIC_ONLY_NOT_ELIGIBLE_FOR_PRIMARY",
+        "historical_reason": "outcomes already accessed and active authority records a 66/66 prompt-template leak"
+      }
+    ],
+    "case_denominator": 150,
+    "arms": [
+      "dynamic_responsibility_conditioned_minimal_reconstruction",
+      "one_shot_reconstruction",
+      "reflection_reconstruction",
+      "no_reconstruction",
+      "donor_complete_diagnosis"
+    ],
+    "strongest_donor": {
+      "arm": "donor_complete_diagnosis",
+      "definition": "ideal information-equivalent product of causal diagnosis, abductive reformulation, value-of-information discriminator selection, dependency-aware rollback, and protected adoption logic",
+      "first_refusal": true,
+      "weak_or_metadata_only_proxy_forbidden": true
+    },
+    "stochastic_repeats": 5,
+    "seeds": [0, 1, 2, 3, 4],
+    "planned_run_cell_denominator": 3750,
+    "primary_endpoints": [
+      "responsible_layer_accuracy",
+      "root_task_solve_rate",
+      "wrong_layer_intervention_rate",
+      "harmful_reopening_rate",
+      "protected_adoption_false_positive_rate"
+    ],
+    "secondary_endpoints": [
+      "minimum_discriminator_accuracy",
+      "reframe_target_accuracy",
+      "reopen_precision",
+      "reopen_recall",
+      "decisive_evidence_cost",
+      "wallclock_seconds",
+      "model_tokens",
+      "tool_calls",
+      "abstention_rate"
+    ],
+    "statistics": {
+      "standalone_binary_interval": "Wilson 95 percent",
+      "matched_difference_interval": "paired percentile bootstrap with 10000 resamples",
+      "multiplicity": "Holm correction across secondary inferential families",
+      "unit_retention": "every task-arm-seed row retained, including null, harmful, crash, timeout, censored, and CANNOT_CHECK"
+    }
+  },
+  "decision_rule": {
+    "scalarization": "FORBIDDEN",
+    "positive_requires_all": [
+      "responsible_layer_accuracy is higher than every comparator with paired 95 percent interval lower bound above zero",
+      "root_task_solve_rate gain versus strongest donor is at least +0.05 and paired 95 percent interval lower bound above zero",
+      "wrong_layer_intervention_rate is lower than every comparator with paired 95 percent interval upper bound below zero",
+      "harmful_reopening_rate is noninferior to strongest donor at frozen +0.02 absolute margin",
+      "protected_adoption_false_positive_rate equals zero and is not worse than strongest donor",
+      "all five arms satisfy identical access and resource ceilings",
+      "both protected cohorts pass leakage, contamination, chronology, and custody probes"
+    ],
+    "donor_equivalence_or_absorption": "retained as negative; no superiority claim",
+    "any_safety_gate_failure": "retained as harmful or negative; no compensatory ranking",
+    "missing_hard_precondition": "CANNOT_CHECK"
+  },
+  "resources": {
+    "matched_across_arms": true,
+    "per_case_per_arm": {
+      "max_attempts": 3,
+      "max_model_tokens": 60000,
+      "max_tool_calls": 40,
+      "same_model_family": true,
+      "same_retrieval_and_code_tools": true,
+      "same_hidden_information_boundary": true
+    },
+    "total_caps": {
+      "planned_run_cells": 3750,
+      "max_model_tokens": 225000000,
+      "max_tool_calls": 150000,
+      "money_usd": 0,
+      "wall_days": 7
+    }
+  },
+  "hard_preconditions": [
+    "official ScienceAgentBench archive is available in cleartext and hash-bound",
+    "official evaluator, datasets, gold programs, and scoring rubrics are runnable",
+    "all 102 ScienceAgentBench cases remain protected from candidate outcome access",
+    "fresh 48-case counterfactual cohort and protected gold are externally transferred with chronology",
+    "all five exact arms including donor-complete diagnosis are frozen and runnable",
+    "every arm receives matched information, tools, model family, tokens, calls, and attempts",
+    "protected-adoption scorer and custody are independent of proposing arms",
+    "positive and violating strata exist for every hard precondition",
+    "generator, filename, prompt-template, benchmark-solution, and cross-arm contamination probes pass"
+  ],
+  "access": {
+    "evaluated_arm_receives": [
+      "public task statement",
+      "public task artifacts",
+      "frozen matched tools",
+      "frozen matched resource envelope"
+    ],
+    "evaluated_arm_never_receives": [
+      "protected evaluator",
+      "gold program",
+      "responsible-layer label",
+      "required reframe",
+      "peer arm trace",
+      "adoption verdict"
+    ],
+    "executor_may_probe_before_execution": "file existence, byte counts, digests, transfer receipts, and credential presence without printing secrets",
+    "executor_may_not_treat_as_outcome": "public annotation metadata, encrypted archive presence, or historical constructed-suite scores"
+  },
+  "leakage_probes": {
+    "run_before_promotion": true,
+    "required": [
+      "case_id and filename label prediction",
+      "generator/template label prediction",
+      "prompt phrase label prediction",
+      "benchmark solution retrieval audit",
+      "candidate access-log audit",
+      "cross-arm trace and cache isolation",
+      "model chronology and training-contamination disclosure"
+    ],
+    "historical_66_case_template_leak": "RETAIN_AND_EXCLUDE_FROM_PROSPECTIVE_PRIMARY"
+  },
+  "censoring": {
+    "timeout": "CENSORED_NOT_FAILURE",
+    "token_cap": "CENSORED_NOT_FAILURE",
+    "tool_call_cap": "CENSORED_NOT_FAILURE",
+    "infrastructure_crash": "CRASH_RETAINED_NOT_DROPPED",
+    "missing_protected_transfer": "CANNOT_CHECK_NOT_ZERO",
+    "candidate_failure": "NEGATIVE_RETAINED",
+    "rows_dropped": 0
+  },
+  "required_transfer_files": {
+    "scienceagentbench": "SCIENCEAGENTBENCH_TRANSFER_V1.json",
+    "fresh_counterfactual": "FRESH_COUNTERFACTUAL_TRANSFER_V1.json",
+    "arms": "ARM_IMPLEMENTATION_TRANSFER_V1.json",
+    "protected_adoption": "PROTECTED_ADOPTION_TRANSFER_V1.json"
+  },
+  "terminals": {
+    "positive": "RESPONSIBILITY_CONDITIONED_MINIMAL_RECONSTRUCTION_PROSPECTIVELY_SUPPORTED",
+    "negative": "DONOR_COMPLETE_DIAGNOSIS_EQUIVALENT_OR_SUPERIOR_OR_DYNAMIC_RECONSTRUCTION_HARMFUL",
+    "cannot_check": "PROTECTED_SCIENCEAGENTBENCH_AND_FRESH_COUNTERFACTUAL_CUSTODY_UNAVAILABLE"
+  },
+  "output_schema": [
+    "RAW_MANIFEST_V1.json",
+    "PRIMARY_RESULT_V1.json",
+    "IDEAL_DONOR_RESULT_V1.json",
+    "NEGATIVE_CONTROLS_V1.json",
+    "RESOURCE_LEDGER_V1.json",
+    "TRANSFER_RESULT_V1.json",
+    "RESULT_BINDING_PACKET_V1.json"
+  ],
+  "claim_ceiling": "PROTECTED_PREFLIGHT_OR_PROSPECTIVE_MATCHED_STUDY_RESULT_ONLY__NO_MODEL_GENERAL_OPEN_ENDED_OR_EXTERNAL_SUPERIORITY_AUTHORITY",
+  "external_authority_state": "CANNOT_CHECK",
+  "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+  "paper_authority_delta": "NONE"
+}
