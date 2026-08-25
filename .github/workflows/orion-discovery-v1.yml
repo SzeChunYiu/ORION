@@ -40,10 +40,13 @@ jobs:
             tests/unit/discovery/test_harness_identifiability.py \
             tests/unit/discovery/test_proposal_origin.py \
             tests/unit/discovery/test_model_chronology.py
-      - name: Compile discovery modules
+      - name: Replay exhaustive finite EDG census
+        run: python research/orion-discovery-v1/run_edg_finite_census.py --check
+      - name: Compile discovery modules and census runner
         run: |
           python -m compileall -q \
             src/orion/discovery/decision_geometry.py \
             src/orion/discovery/harness_identifiability.py \
             src/orion/discovery/proposal_origin.py \
-            src/orion/discovery/model_chronology.py
+            src/orion/discovery/model_chronology.py \
+            research/orion-discovery-v1/run_edg_finite_census.py
