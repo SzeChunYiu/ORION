@@ -1,0 +1,45 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-P11-01",
+  "grid": {
+    "t16_Kmax": 40,
+    "t16_vmax": 8,
+    "t16_umax": 400,
+    "t18_n": 4,
+    "seed": 20260825
+  },
+  "t16": {
+    "cells": 1476,
+    "closed_form_mismatches": 0,
+    "compiled_dominant_cells": 1476,
+    "nondominant_cells_examined": 1476,
+    "spurious_dominance_in_nondominant_branch": 0,
+    "spurious_witness": null,
+    "vector_pareto_incomparable": 72,
+    "vector_witness": {
+      "cost_vector_a": [
+        1,
+        2
+      ],
+      "cost_vector_b": [
+        2,
+        1
+      ],
+      "note": "neither Pareto-dominates; no scalar crossover without prices"
+    },
+    "minimal_witness": null
+  },
+  "t18": {
+    "pairs": 225,
+    "sufficiency_violations": 0,
+    "families_examined": 105,
+    "coarsest_violations": 0,
+    "freshness_admits_unsafe": 165,
+    "freshness_refuses_safe": 60,
+    "minimal_witness": null
+  },
+  "totals": {
+    "cells_enumerated": 1806,
+    "wallclock_seconds": 0.035
+  }
+}
