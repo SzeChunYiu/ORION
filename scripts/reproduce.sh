@@ -43,6 +43,12 @@ print(f"checks registered: {len(ALL_CHECKS)}")
 assert len(ALL_CHECK_IDS) == len(set(ALL_CHECK_IDS)), "duplicate check ids"
 PY
 
+step "import sweep"
+# A two-module smoke test passes on a package with incomplete dependency
+# metadata. This walks every module and separates core failures (a real
+# defect) from optional-extra failures (expected on a base install).
+python "$ROOT/scripts/import_sweep.py" || { echo "FAILED: a core module does not import with declared dependencies alone"; exit 1; }
+
 step "check battery self-consistency"
 python - <<'PY' || { echo "FAILED: check battery is internally inconsistent"; exit 1; }
 from orion.programme.catalogue import validate_catalogue
