@@ -1,0 +1,43 @@
+name: Bootstrap ORION Algorithmic Frontier V1
+
+on:
+  push:
+    branches:
+      - codex/orion-algorithmic-frontier-v1-20260825
+    paths:
+      - development/orion-algorithmic-frontier-v1-bootstrap/**
+      - .github/workflows/orion-algorithmic-frontier-v1-bootstrap.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/orion-algorithmic-frontier-v1-20260825
+          fetch-depth: 0
+      - name: Materialize content-bound algorithmic payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=development/orion-algorithmic-frontier-v1-bootstrap
+          if [[ ! -f "$root/READY" ]]; then
+            echo "bootstrap payload not ready"
+            exit 0
+          fi
+          cat "$root"/PAYLOAD.part.* > /tmp/orion-alg-v1.b64
+          test "$(sha256sum /tmp/orion-alg-v1.b64 | awk '{print $1}')" = "$(cat "$root/PAYLOAD_B64_SHA256")"
+          base64 -d /tmp/orion-alg-v1.b64 > /tmp/orion-alg-v1.tgz
+          test "$(sha256sum /tmp/orion-alg-v1.tgz | awk '{print $1}')" = "$(cat "$root/PAYLOAD_TGZ_SHA256")"
+          tar -xzf /tmp/orion-alg-v1.tgz
+          rm -rf "$root" .github/workflows/orion-algorithmic-frontier-v1-bootstrap.yml
+          git config user.name "ORION Algorithmic Frontier bootstrap"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Add ORION algorithmic frontier kernel and paper addenda"
+          git push origin HEAD:codex/orion-algorithmic-frontier-v1-20260825
