@@ -1,0 +1,240 @@
+{
+  "schema": "orion.discovery-v2.matched-resource-receipt.v1",
+  "job_id": "DISC-Q-TRANSFER-01",
+  "class": "EXACT_CROSS_DOMAIN_TRANSFER",
+  "authority": "TARGET_DOMAIN_RESULT_ONLY",
+  "quantum_authority_transferred": false,
+  "physical_or_quantum_advantage_claim": false,
+  "arithmetic": "integers only; no float constructed",
+  "input_sha256": {
+    "PROOF_OBLIGATION_REGISTER.json": "38ab118cb9508ba677f58e4650890794dbeb6a1bdf1b9896e6f67e21a8e7ab88",
+    "KNOWLEDGE_WEB_V1.json": "29574263b6629734410c0c4e409ed1c7c09e721dbaf90960f7530b5582db12b0",
+    "QG-paper-03 MANUSCRIPT_V1.md": "f29edbad739e86dd61181e7162c2d579c219d64f765e6b5612c446df9b8a6c2e"
+  },
+  "terminal": "SURFACE_ANALOGY_OR_RESOURCE_ADVANTAGE_ONLY",
+  "terminal_reading": {
+    "disjuncts_fired": [
+      "RESOURCE_ADVANTAGE_DOES_NOT_SURVIVE_ORACLE_CHARGING",
+      "DONOR_SUBTRACTION_RESIDUAL_CAPABILITY_EMPTY"
+    ],
+    "correspondence_was_surface_only": false,
+    "structurally_preserved_relations": [
+      "R1",
+      "R2",
+      "R3"
+    ],
+    "clarification": "The negative terminal here is reached through the donor-subtraction and resource disjuncts, NOT because the correspondence was mere vocabulary. R1-R3 are structural relations that were checked and hold. What fails is that nothing the transfer supplies survives subtraction of the donor, and the apparent search saving does not survive charging the oracle that produced kappa."
+  },
+  "gate": {
+    "survives_donor_subtraction": false,
+    "survives_matched_resource_accounting": false,
+    "relational_correspondence_complete": false,
+    "passed": false
+  },
+  "cannot_check_subclaims": [
+    {
+      "subclaim": "RELATION_R4_OBJECTIVE_INDEXING",
+      "reason": "NOT_EXERCISED_INSTANCE_SATURATED_AT_COVERAGE_FLOOR -- Every strictly monotone objective attains its optimum at a Pareto non-dominated cost vector. All 2 frontier costs here are attained at minimum support [9], so kappa = 9 for every such objective. The instance is saturated at the coverage floor; objective indexing cannot be exercised on it."
+    },
+    {
+      "subclaim": "RELATION_R5_COST_PRESERVING_SUPPORT_REDUCING_EXCHANGE",
+      "reason": "NOT_EXERCISED_PREMISE_CLASS_EMPTY -- Every optimum is attained exactly at the coverage floor, so the set of optimum-attaining configurations ABOVE minimum support is empty. A descent ladder has nothing to descend. This is vacuity, not refutation, and must not be recorded as a failed relation."
+    },
+    {
+      "subclaim": "RELATION_R6_FAMILY_UNIVERSALITY",
+      "reason": "A per-instance support number is a strictly weaker object than a family-intrinsic one. No instance family exists in the target slice, and manufacturing one would be fabrication."
+    },
+    {
+      "subclaim": "R5_DETECTOR_NEGATIVE_BRANCH_UNEXERCISED",
+      "reason": "In every objective where the R5 premise class was non-empty the detector found an exchange, so no run exercised its no-exchange verdict. Its positive branch is demonstrated; its negative branch is not."
+    }
+  ],
+  "components": [
+    "subsets_enumerated",
+    "coverage_evaluations",
+    "cost_vector_evaluations",
+    "dominance_comparisons",
+    "oracle_subsets_enumerated"
+  ],
+  "scalarization_used": false,
+  "ordering_relation": "Pareto dominance on integer resource vectors",
+  "matched_conditions": {
+    "same_target_instance": true,
+    "same_obligation_set": true,
+    "same_adequacy_predicate": true,
+    "same_objective": true,
+    "same_validator": true,
+    "difference_is_only_the_search_restriction": true
+  },
+  "arms": {
+    "D1_donor_total_enumeration": {
+      "resource_vector": [
+        524287,
+        524287,
+        1536,
+        763,
+        0
+      ],
+      "as_dict": {
+        "subsets_enumerated": 524287,
+        "coverage_evaluations": 524287,
+        "cost_vector_evaluations": 1536,
+        "dominance_comparisons": 763,
+        "oracle_subsets_enumerated": 0
+      }
+    },
+    "D2_donor_classical_support_bound": {
+      "resource_vector": [
+        507623,
+        507623,
+        642,
+        346,
+        0
+      ],
+      "as_dict": {
+        "subsets_enumerated": 507623,
+        "coverage_evaluations": 507623,
+        "cost_vector_evaluations": 642,
+        "dominance_comparisons": 346,
+        "oracle_subsets_enumerated": 0
+      }
+    },
+    "T1_transfer_support_bounded_kappa": {
+      "resource_vector": [
+        262143,
+        262143,
+        2,
+        2,
+        0
+      ],
+      "as_dict": {
+        "subsets_enumerated": 262143,
+        "coverage_evaluations": 262143,
+        "cost_vector_evaluations": 2,
+        "dominance_comparisons": 2,
+        "oracle_subsets_enumerated": 0
+      }
+    },
+    "T1_oracle_charged": {
+      "resource_vector": [
+        786430,
+        786430,
+        1538,
+        765,
+        0
+      ],
+      "as_dict": {
+        "subsets_enumerated": 786430,
+        "coverage_evaluations": 786430,
+        "cost_vector_evaluations": 1538,
+        "dominance_comparisons": 765,
+        "oracle_subsets_enumerated": 0
+      }
+    }
+  },
+  "comparisons": {
+    "transfer_vs_donor_uncharged": {
+      "transfer_dominates_donor": true,
+      "donor_dominates_transfer": false,
+      "incomparable": false
+    },
+    "transfer_vs_donor_oracle_charged": {
+      "oracle_charged_dominates_donor": false,
+      "donor_dominates_oracle_charged": true,
+      "incomparable": false
+    },
+    "classical_bound_vs_donor": {
+      "classical_dominates_donor": true
+    }
+  },
+  "rejected_split_axis_accounting": {
+    "resource_vector": [
+      262143,
+      262143,
+      2,
+      2,
+      524287
+    ],
+    "as_dict": {
+      "subsets_enumerated": 262143,
+      "coverage_evaluations": 262143,
+      "cost_vector_evaluations": 2,
+      "dominance_comparisons": 2,
+      "oracle_subsets_enumerated": 524287
+    },
+    "donor_dominates": false,
+    "incomparable": true,
+    "why_rejected": "Parking the oracle's enumeration on its own axis makes the arms Pareto-incomparable and leaves the comparison undecidable without a preference vector. But an oracle call that enumerates subsets spends the same physical resource as enumerating subsets, so it belongs in subsets_enumerated. Axis-splitting here would manufacture incomparability and hide the cost."
+  },
+  "resource_vector_ordering_redundancy": [
+    {
+      "redundant": "coverage_evaluations",
+      "determined_by": "subsets_enumerated"
+    },
+    {
+      "redundant": "cost_vector_evaluations",
+      "determined_by": "subsets_enumerated"
+    },
+    {
+      "redundant": "dominance_comparisons",
+      "determined_by": "subsets_enumerated"
+    },
+    {
+      "redundant": "oracle_subsets_enumerated",
+      "determined_by": "subsets_enumerated"
+    },
+    {
+      "redundant": "subsets_enumerated",
+      "determined_by": "coverage_evaluations"
+    },
+    {
+      "redundant": "cost_vector_evaluations",
+      "determined_by": "coverage_evaluations"
+    },
+    {
+      "redundant": "dominance_comparisons",
+      "determined_by": "coverage_evaluations"
+    },
+    {
+      "redundant": "oracle_subsets_enumerated",
+      "determined_by": "coverage_evaluations"
+    },
+    {
+      "redundant": "subsets_enumerated",
+      "determined_by": "cost_vector_evaluations"
+    },
+    {
+      "redundant": "coverage_evaluations",
+      "determined_by": "cost_vector_evaluations"
+    },
+    {
+      "redundant": "dominance_comparisons",
+      "determined_by": "cost_vector_evaluations"
+    },
+    {
+      "redundant": "oracle_subsets_enumerated",
+      "determined_by": "cost_vector_evaluations"
+    },
+    {
+      "redundant": "subsets_enumerated",
+      "determined_by": "dominance_comparisons"
+    },
+    {
+      "redundant": "coverage_evaluations",
+      "determined_by": "dominance_comparisons"
+    },
+    {
+      "redundant": "cost_vector_evaluations",
+      "determined_by": "dominance_comparisons"
+    },
+    {
+      "redundant": "oracle_subsets_enumerated",
+      "determined_by": "dominance_comparisons"
+    }
+  ],
+  "resource_vector_constant_components": [
+    "oracle_subsets_enumerated"
+  ],
+  "anti_laundering_note": "kappa is not available a priori in the target. It was produced by the same total enumeration the donor arm performs, so the transferred arm is charged oracle_subsets_enumerated = 524287. Reporting only the uncharged arm would be answer laundering through preprocessing (spec 8.2).",
+  "verdict": "APPARENT_ADVANTAGE_DISAPPEARS_UNDER_ORACLE_CHARGING"
+}
