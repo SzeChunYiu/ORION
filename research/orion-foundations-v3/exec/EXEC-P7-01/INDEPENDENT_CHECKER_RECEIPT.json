@@ -1,0 +1,21 @@
+{
+  "schema_version": "orion.independent-checker-receipt.v1",
+  "job_id": "EXEC-P7-01",
+  "imports_runner": false,
+  "method_difference": "Loop closure by walking objects around the cycle; associativity by sequential application to objects. The runner composed tables.",
+  "independent_findings": {
+    "assoc_chains": 68921,
+    "assoc_violations": 0,
+    "loops": 21853,
+    "all_squares_commute": 1681,
+    "non_commuting": 20172,
+    "identity_round_trips": 1681,
+    "loop_biconditional_violations": 0,
+    "loop_test_is_non_vacuous": true,
+    "path_dependence_is_real": true,
+    "endpoint_only_donor_fails": true
+  },
+  "disagreements": [],
+  "terminal": "EXEC_P7_01_SECOND_INDEPENDENT_CHECKER_GREEN",
+  "independence_boundary": "Two implementations inside one programme; not external adjudication."
+}
