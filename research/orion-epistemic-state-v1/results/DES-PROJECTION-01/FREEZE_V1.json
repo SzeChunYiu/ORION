@@ -1,0 +1,247 @@
+{
+  "schema": "orion.dynamic-epistemic-state.des-projection-01.freeze.v1",
+  "job_id": "DES-PROJECTION-01",
+  "freeze_status": "PROSPECTIVE_FROZEN_BEFORE_REPLAY_OR_OUTCOME_INSPECTION",
+  "created_utc": "2026-08-25T18:30:00Z",
+  "base_subject_sha": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "branch": "codex/des-projection-01-execution-20260825",
+  "paper_authority_delta": "NONE",
+  "writing_owner": "P1_P15_REWRITE_LANE",
+  "scope": {
+    "task": "Reproduce the declared finite legacy decisions from the full dynamic state, demonstrate that reachable noninjective labels have no faithful inverse, and retain every unresolved case.",
+    "claim_ceiling": "FINITE_REFERENCE_CLASS_INTERNAL_REPLAY_ONLY__NO_EMPIRICAL_SUPERIORITY__NO_EXTERNAL_INDEPENDENCE",
+    "forbidden_edits": [
+      "manuscripts",
+      "claim ledgers",
+      "active authorities",
+      "PDFs",
+      "figures",
+      "tables",
+      "journal packages"
+    ]
+  },
+  "frozen_inputs": {
+    "reference_implementation": {
+      "path": "src/orion/epistemic_state_v1/model.py",
+      "sha256": "679afd19e39445f7d4d496b2b56df73d908e57a6d8c0ae4ee4e1b86364940e5f"
+    },
+    "calculus": {
+      "path": "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md",
+      "sha256": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05"
+    },
+    "backlog": {
+      "path": "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json",
+      "sha256": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4"
+    },
+    "executor_prompt": {
+      "path": "research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md",
+      "sha256": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce"
+    },
+    "programme": {
+      "path": "papers/P1_P15_TOP_TIER_DYNAMIC_STATE_PROGRAMME_V1.md",
+      "sha256": "19a97b88c1ec49d014c6352ec8cd2ae4da0da57851f206589d36dfe9849175ce"
+    }
+  },
+  "legacy_decision_surfaces": [
+    {
+      "surface_id": "PROMOTION_V1",
+      "implementation": "orion.epistemic_state_v1.model.promotion_policy('paper:write').project",
+      "rule_order": [
+        "responsibility mismatch -> CANNOT_CHECK",
+        "identified false -> BLOCKED; identified CANNOT_CHECK is retained as unknown",
+        "unresolved obligation -> BLOCKED",
+        "no surviving complete support family -> BLOCKED",
+        "active defeater -> BLOCKED",
+        "external custody false -> CANNOT_CHECK; external custody unknown is retained as unknown",
+        "missing paper:write authority -> BLOCKED",
+        "any retained unknown -> CANNOT_CHECK",
+        "otherwise -> ADMISSIBLE"
+      ],
+      "declared_reachable_terminals": [
+        "ADMISSIBLE",
+        "BLOCKED",
+        "CANNOT_CHECK"
+      ],
+      "declared_unreachable_terminal": "PROVISIONAL"
+    },
+    {
+      "surface_id": "READINESS_V1",
+      "implementation": "frozen job-local wrapper over PROMOTION_V1",
+      "rule_order": [
+        "return any non-ADMISSIBLE PROMOTION_V1 decision unchanged",
+        "evidence KNOWN_TRUE -> ADMISSIBLE",
+        "evidence PARTIAL -> PROVISIONAL",
+        "evidence CANNOT_CHECK -> CANNOT_CHECK",
+        "evidence KNOWN_FALSE or REVOKED -> BLOCKED"
+      ],
+      "declared_reachable_terminals": [
+        "ADMISSIBLE",
+        "PROVISIONAL",
+        "BLOCKED",
+        "CANNOT_CHECK"
+      ]
+    }
+  ],
+  "case_denominator": {
+    "construction": "exhaustive Cartesian product in the factor order and value order written below",
+    "factors": [
+      {
+        "name": "responsibility_matches",
+        "values": [true, false]
+      },
+      {
+        "name": "identified",
+        "values": ["TRUE", "FALSE", "CANNOT_CHECK"]
+      },
+      {
+        "name": "obligations_complete",
+        "values": [true, false]
+      },
+      {
+        "name": "support_complete",
+        "values": [true, false]
+      },
+      {
+        "name": "active_defeater",
+        "values": [false, true]
+      },
+      {
+        "name": "custody_external",
+        "values": [true, false, null]
+      },
+      {
+        "name": "authority_present",
+        "values": [true, false]
+      },
+      {
+        "name": "evidence_mode",
+        "values": [
+          "KNOWN_TRUE",
+          "KNOWN_FALSE",
+          "PARTIAL",
+          "CANNOT_CHECK",
+          "REVOKED"
+        ]
+      },
+      {
+        "name": "open_method_gap",
+        "values": [false, true]
+      }
+    ],
+    "state_cases": 2880,
+    "projection_rows": 5760,
+    "case_id": "DES-PROJECTION-01-CASE-{zero-based Cartesian ordinal:04d}",
+    "drops_allowed": 0,
+    "exceptions_policy": "retain the case with CANNOT_CHECK execution status and block the positive terminal"
+  },
+  "state_encoding": {
+    "subject_id": "DES-PROJECTION-01-SUBJECT",
+    "expected_responsibility_id": "paper:write",
+    "mismatched_responsibility_id": "paper:other",
+    "epoch": 1,
+    "required_obligation": "O:claim-support",
+    "complete_support_family": "SF:complete",
+    "defeater": "D:active",
+    "authority_scope": "paper:write",
+    "open_method_gap_id": "M:open-local-gap",
+    "all nonfactor coordinates": "fixed constants serialized in every raw case"
+  },
+  "next_action_rule": {
+    "purpose": "show what the full state can retain after a lossy label projection; this action does not alter the legacy decision",
+    "priority": [
+      "responsibility mismatch -> REVALIDATE",
+      "identified FALSE or CANNOT_CHECK -> DISCRIMINATE",
+      "obligations incomplete -> ACQUIRE_EVIDENCE",
+      "support incomplete -> ACQUIRE_EVIDENCE",
+      "active defeater -> DISCRIMINATE",
+      "custody false or unknown -> OBTAIN_EXTERNAL_CUSTODY",
+      "authority absent -> REVALIDATE",
+      "evidence CANNOT_CHECK, PARTIAL, or KNOWN_FALSE -> ACQUIRE_EVIDENCE",
+      "evidence REVOKED -> REVALIDATE",
+      "open method gap -> SEARCH_LOCAL",
+      "otherwise -> STOP"
+    ]
+  },
+  "noninjective_witness_search": {
+    "group_key": ["surface_id", "terminal"],
+    "state_identity": "canonical JSON of all frozen factors",
+    "distance": "Hamming distance over the nine frozen factors",
+    "selection": "minimum positive Hamming distance; then lexicographically smallest ordered pair of case IDs",
+    "required_groups": 7,
+    "required_witnesses": "one state-distinct pair for every reachable surface/terminal group",
+    "action_divergence": "search separately with the same ordering for a same-label pair whose frozen next actions differ; retain CANNOT_CHECK when none exists",
+    "faithful_inverse_test": "FAILS when any reachable label has more than one canonically distinct preimage; no representative state is promoted as the inverse"
+  },
+  "hard_preconditions": [
+    "repository base subject equals 3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+    "all five frozen input hashes match",
+    "FREEZE_V1.json is committed before execution code or result files",
+    "Python executable is /opt/homebrew/opt/python@3.14/bin/python3.14 and version is 3.14.6",
+    "the case denominator is exactly 2880 and projection denominator is exactly 5760",
+    "the reference model imports without modification",
+    "no pre-existing DES-PROJECTION-01 outcome is consumed"
+  ],
+  "leakage_controls": [
+    "projection and next-action functions receive State/factors, never case ID or filename",
+    "the independent oracle is coded from this freeze and receives no observed output",
+    "case-order permutation must preserve the case-ID keyed result map",
+    "factor-label renaming probe must preserve decisions after inverse decoding",
+    "expected terminals are not stored in case inputs",
+    "no manuscript, claim ledger, active authority, result directory from another job, network service, or protected lane is an input"
+  ],
+  "censoring_controls": {
+    "wall_seconds": 120,
+    "maximum_output_bytes": 52428800,
+    "maximum_resident_memory_mib": 512,
+    "on_binding_cap": "CANNOT_CHECK__RESOURCE_CENSORED",
+    "partial_rows_never_authorize_positive_terminal": true
+  },
+  "resource_vector": {
+    "cpu_processes": 1,
+    "threads": 1,
+    "gpu_count": 0,
+    "network_access": false,
+    "external_api_calls": 0,
+    "money_usd": 0,
+    "wall_seconds_cap": 120,
+    "resident_memory_mib_cap": 512,
+    "disk_output_bytes_cap": 52428800,
+    "runtime": "Python 3.14.6 standard library plus the frozen repository reference implementation"
+  },
+  "terminal_rules": {
+    "positive": {
+      "terminal": "LEGACY_DECISIONS_REPRODUCED_AND_COLLISIONS_RESOLVED",
+      "requires_all": [
+        "5760/5760 projection rows retained",
+        "reference implementation equals the independent frozen oracle on every PROMOTION_V1 case",
+        "READINESS_V1 equals its independent frozen oracle on every case",
+        "observed reachable terminal sets equal the declarations for both surfaces",
+        "all seven reachable surface/terminal groups are noninjective",
+        "all unresolved obligations, defeaters, unknown custody/identifiability states, and open method gaps remain case-visible",
+        "permutation and factor-label leakage probes pass",
+        "no resource cap binds"
+      ]
+    },
+    "negative": "LEGACY_DECISION_REPLAY_MISMATCH_OR_RECONSTRUCTION_COUNTEREXAMPLE",
+    "cannot_check": [
+      "SOURCE_IDENTITY_CANNOT_CHECK",
+      "DENOMINATOR_INCOMPLETE",
+      "LEAKAGE_PROBE_FAILED",
+      "RESOURCE_CENSORED",
+      "EXECUTION_EXCEPTION_RETAINED"
+    ],
+    "no_post_outcome_retuning": "Any change to factors, projection rules, witness ordering, preconditions, caps, or terminals requires a new job identity and freeze."
+  },
+  "standard_outputs": [
+    "FREEZE_V1.json",
+    "RAW_MANIFEST_V1.json",
+    "PRIMARY_RESULT_V1.json",
+    "IDEAL_DONOR_RESULT_V1.json",
+    "NEGATIVE_CONTROLS_V1.json",
+    "RESOURCE_LEDGER_V1.json",
+    "TRANSFER_RESULT_V1.json",
+    "LEGACY_PROJECTION_CORRESPONDENCE_V1.json",
+    "NONRECONSTRUCTION_WITNESSES_V1.json",
+    "RESULT_BINDING_PACKET_V1.json"
+  ]
+}
