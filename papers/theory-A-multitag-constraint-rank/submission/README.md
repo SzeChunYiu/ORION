@@ -2,11 +2,13 @@
 
 Target: Quantum
 
-- `main.pdf`: portable review PDF generated from the controlled manuscript.
-- `main.tex`: self-contained review source generated from the same manuscript.
-- `cover_letter.md`: optional editor note with author placeholders.
+- `Zero-Sum_Deletion_Normal_Forms_for_Multi-Tag_Quantum_Compilation.pdf`:
+  portable review PDF generated from the controlled manuscript.
+- The matching `.tex` file is the self-contained review source.
+- `cover_letter.md`: optional editor note.
 - `submission_checklist.md`: final author/arXiv actions.
-- `source.zip`: reproducible source bundle.
+- The matching `_journal_source.zip` and `_arxiv_source.zip` files are the
+  journal and arXiv source bundles.
 
 The scientific source of record is `../MANUSCRIPT_V3_PIPELINE.md`. Do not edit
 the generated TeX without reflecting the change in that Markdown source.

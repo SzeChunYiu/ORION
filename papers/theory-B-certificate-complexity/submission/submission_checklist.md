@@ -4,7 +4,8 @@
 - [x] Algorithmic scope limitations accompany the enumeration result.
 - [x] Critical Freeze–Schmid DOI corrected and bibliography checked.
 - [x] Portable one-column review PDF/source compile without LaTeX errors.
-- [ ] Insert author order, affiliations, emails, and ORCIDs.
+- [x] Insert author name and corresponding email.
+- [ ] Confirm affiliation and ORCID, if applicable.
 - [ ] Confirm the current `acmart` review template and portal requirements.
 - [ ] Complete human proof, production-realization, and reference review.
 - [ ] Archive verification artifacts and insert a permanent identifier.

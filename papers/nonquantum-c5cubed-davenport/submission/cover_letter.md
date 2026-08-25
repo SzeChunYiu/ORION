@@ -1,7 +1,7 @@
 Dear Editors of The Electronic Journal of Combinatorics,
 
-Please consider “A Width-One Generalized-Davenport Corridor in (C_5^3) and a
-Rank-Forcing Obstruction Phase” by [AUTHOR NAMES REQUIRED].
+Please consider “A Width-One Corridor for Generalized Davenport Constants of
+\(C_5^3\)” by Sze Chun Yiu.
 
 The paper proves that (5k+10\le D_k(C_5^3)\le5k+11) for all (k\ge4), together
 with a conditional exact tail if the lower value occurs at (k=4). It then
@@ -16,4 +16,5 @@ problem is within E-JC’s scope and is self-contained for specialist review.
 
 Sincerely,
 
-[CORRESPONDING AUTHOR NAME, AFFILIATION, AND EMAIL REQUIRED]
+Sze Chun Yiu
+sze-chun.yiu@fysik.su.se

@@ -1,7 +1,7 @@
 Dear Editors of the Journal of Automated Reasoning,
 
-Please consider “Typed Evidence-License Propagation and Retraction in Positive
-Scientific Rule Graphs” by [AUTHOR NAMES REQUIRED].
+Please consider “Typed Evidence Propagation and Retraction in Positive
+Scientific Rule Graphs” by Sze Chun Yiu.
 
 The paper defines a finite positive-rule semantics in which evidence licenses
 propagate only through capped conjunctive derivations. It proves fixed-point and
@@ -18,4 +18,5 @@ nonpromoting specialization and its auditable implementation.
 
 Sincerely,
 
-[CORRESPONDING AUTHOR NAME, AFFILIATION, AND EMAIL REQUIRED]
+Sze Chun Yiu
+sze-chun.yiu@fysik.su.se

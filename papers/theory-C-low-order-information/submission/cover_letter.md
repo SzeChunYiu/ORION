@@ -1,7 +1,7 @@
 Dear Quantum Editorial Board,
 
-Please consider “Low-Order Optimality Certificates and Sharp Value-Estimation
-Limits in Structured Quantum Compilation” by [AUTHOR NAMES REQUIRED].
+Please consider “Low-Order Decision Certificates and Value-Estimation Limits in
+Structured Quantum Compilation” by Sze Chun Yiu.
 
 The manuscript establishes a query-dependent information hierarchy for a Pauli
 partition compiler. Four indices decide global unary optimality for every
@@ -18,4 +18,5 @@ software audience.
 
 Sincerely,
 
-[CORRESPONDING AUTHOR NAME, AFFILIATION, AND EMAIL REQUIRED]
+Sze Chun Yiu
+sze-chun.yiu@fysik.su.se

@@ -8,8 +8,8 @@ Terminal goal: `simulated_publication_ready_for_target`
 
 ## Identity and source lock
 
-- Submission identity: *Typed Evidence-License Propagation and Retraction in
-  Positive Scientific Rule Graphs*.
+- Submission identity: *Typed Evidence Propagation and Retraction in Positive
+  Scientific Rule Graphs*.
 - Direct manuscript parent: `MANUSCRIPT_V2.md`, with the former system-wide
   framing removed.
 - Claim parent: `CLAIM_LEDGER_R2.md`.
@@ -25,7 +25,7 @@ Terminal goal: `simulated_publication_ready_for_target`
 |---|---|---|---|
 | D2-C1–C4 | finite positive fixed-point proofs | proof-tree equivalence, monotonicity, executable examples | negation, probability, arbitrary inconsistency |
 | D2-C5 | relative minimality proof | declared seeds/rules/caps and dependency order | universal retraction optimality |
-| D2-C6–C7 | registered typing result | explicit cap policies for post-outcome and frontier evidence | prospective or theorem authority |
+| D2-C6–C7 | specified typing result | explicit cap policies for post-outcome and frontier evidence | prospective or theorem authority |
 | D2-C8 | donor-owned | cited provenance/Datalog/truth-maintenance literature | novelty for fixed points or provenance |
 | D2-C9–C10 | open/forbidden | none | broad scientific reasoning or usability |
 
@@ -38,7 +38,7 @@ Donor-owned material includes positive Datalog, least fixed points, truth
 maintenance, semiring provenance, minimal supports, and deletion robustness.
 The residual is a finite typed evidence-license component with explicit caps,
 refutation taint, proof-tree semantics, deterministic retraction, and executable
-registered case encodings.
+specified case encodings.
 
 ## Display contract
 

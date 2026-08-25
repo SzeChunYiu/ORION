@@ -9,8 +9,8 @@ Terminal goal: `simulated_publication_ready_for_target`
 
 ## Identity and source lock
 
-- Submission identity: *Low-Order Optimality Certificates and Sharp
-  Value-Estimation Limits in Structured Quantum Compilation*.
+- Submission identity: *Low-Order Decision Certificates and Value-Estimation
+  Limits in Structured Quantum Compilation*.
 - Direct manuscript parent: `MANUSCRIPT_V2.md`.
 - Claim parent: `CLAIM_LEDGER_R2.md`.
 - Proof parents: the Paper-C protocols and signed generic/dual records under
@@ -25,7 +25,7 @@ Terminal goal: `simulated_publication_ready_for_target`
 
 | Claim | Authority | Evidence | Forbidden expansion |
 |---|---|---|---|
-| C2-C1–C2 | all-size proof plus exact counterexample | four-index decision theorem; registered `m=4` witness | lower-order value recovery |
+| C2-C1–C2 | all-size proof plus exact counterexample | four-index decision theorem; specified `m=4` witness | lower-order value recovery |
 | C2-C3–C7 | exact all-parameter proofs | indistinguishable gadget products and minimax calculation | computational hardness |
 | C2-C8–C9 | all-parameter proof | parity-kernel/Möbius argument | novelty for fiber or Markov-basis theory |
 | C2-C10 | open | none | minimal common padding |
@@ -36,7 +36,7 @@ No evidence from A, B, D, or N can upgrade these claims.
 ## Source and novelty lock
 
 Donor-owned work includes Markov bases, integer fibers, Möbius inversion, and
-minimal-support parity trades. The residual contribution is the frozen compiler
+minimal-support parity trades. The residual contribution is the specified compiler
 hierarchy: four-index decision sufficiency, sharp failure at four terms, exact
 pair-indistinguishability radii, and proper-marginal value nonidentifiability.
 
@@ -54,5 +54,5 @@ a hardness result or expose project artifacts in submission prose.
 3. The parity trade establishes information nonidentifiability, not runtime
    hardness.
 4. Common padding minimality is not proved.
-5. Quantum fit requires the frozen optimizer grammar to be explained before
+5. Quantum fit requires the stated optimizer grammar to be explained before
    the abstract combinatorics.

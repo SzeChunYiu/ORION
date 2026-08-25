@@ -51,7 +51,8 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdfauthor={Author information to be supplied before submission},
+  pdftitle={Low-Order Decision Certificates and Value-Estimation Limits in Structured Quantum Compilation},
+  pdfauthor={Sze Chun Yiu},
   colorlinks=true,
   linkcolor={Maroon},
   filecolor={Maroon},
@@ -59,49 +60,41 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-\title{Low-Order Optimality Certificates and Sharp Value-Estimation Limits in Structured Quantum Compilation}
-\author{Author information to be supplied before submission}
-\date{Review source - 25 August 2026}
+\title{Low-Order Decision Certificates and Value-Estimation Limits in Structured Quantum Compilation}
+\author{Sze Chun Yiu\\\texttt{sze-chun.yiu@fysik.su.se}}
+\date{25 August 2026}
 
 \begin{document}
 \maketitle
 
-\hypertarget{abstract}{%
-\section{Abstract}\label{abstract}}
+\begin{abstract}
+Low-order statistics can decide whether optimization is needed while
+failing to determine an optimum's value or structure. We prove this
+hierarchy for a Pauli partition compiler with a fixed structural
+SELECT-PREPARE-width objective. For every \(m\ge5\), the unary compiler
+is globally optimal exactly when every pair gain is nonpositive and the
+sum of any two disjoint pair gains plus one is nonpositive. The largest
+clause touches four term indices, and an explicit \(m=4\) instance
+proves the threshold sharp.
 
-A compact statistic can determine whether optimization is necessary
-while remaining provably inadequate for the value and structure of an
-optimum. We establish this hierarchy for a Pauli partition compiler with
-a fixed structural SELECT-PREPARE-width objective. For every number of
-terms \(m\ge5\), the unary compiler is globally optimal if and only if
-two clause families hold: every pair gain is nonpositive, and the sum of
-any two disjoint pair gains plus one is nonpositive. Thus a search over
-all set partitions has a decision certificate whose largest clause
-touches four term indices. The threshold is sharp at \(m=4\).
+For every \(t\ge1\), two explicit \(5t\)-term families have identical
+ordered weights and complete labeled pair-gain matrices, yet their exact
+improvements are \(12t-2\) and \(10t-1\). Pair-only estimators therefore
+incur real additive error at least \((2t-1)/2\), integer error at least
+\(t\), and symmetric factor at least \(\sqrt{(12t-2)/(10t-1)}\); no
+uniform factor below \(\sqrt{6/5}\) is possible. One family forces a
+triple block, while the other uses only pairs and singletons.
 
-Decision sufficiency does not imply value or witness sufficiency. For
-every \(t\ge1\), we construct two \(5t\)-term instances with identical
-ordered weights and identical complete labeled pair-gain matrices. Both
-strictly improve on the unary baseline, but their exact improvements are
-\(12t-2\) and \(10t-1\). Every estimator restricted to that pair
-representation therefore has worst-case real additive error at least
-\((2t-1)/2\), worst-case integer error at least \(t\), and symmetric
-multiplicative factor at least \(\sqrt{(12t-2)/(10t-1)}\). No uniform
-factor below \(\sqrt{6/5}\) is possible. The same fiber forces
-incompatible optimizer structures: one family requires a triple block,
-whereas the other uses only pairs and singletons.
+For every \(m\ge5\) and \(L\ge1\), a second pair of instances agrees on
+every labeled common-factor count through order \(m-2\) but has value
+gap \([m(\lceil\log_2m\rceil+1)-1]L\). Moebius inversion proves that the
+parity trade is the unique nonzero integer direction invisible to all
+proper labeled marginals. These are representation limits, not
+computational-hardness claims.
 
-The limitation persists at high order. For every \(m\ge5\) and
-\(L\ge1\), two instances agree on every labeled common-factor count
-through order \(m-2\) but have improvements separated by
-\([m(\lceil\log_2m\rceil+1)-1]L\). Möbius inversion shows that every
-nonzero integer trade preserving all proper labeled marginals is an
-integer multiple of the parity trade and touches all \(2^{m-1}\) Boolean
-cells. The result separates exact low-order decision from value
-estimation and optimizer recovery without invoking computational
-hardness.
+\end{abstract}
 
-\textbf{Keywords:} quantum compilation; low-order certificates;
+\noindent\textbf{Keywords:} quantum compilation; low-order certificates;
 information lower bounds; minimax estimation; Markov bases; Möbius
 inversion
 
@@ -211,15 +204,63 @@ for every two disjoint pairs.
 \mathcal P_4(m).
 \]
 
-\textbf{Proof outline.} Expanding \(C_U-C(\Pi)\) gives an exact sum of
-block gains. For a block of size at least three, a matching or cycle
-decomposition bounds its gain by sums of pair gains. The first clause
-controls isolated pair gains. The second controls the only way two
-disjoint pair blocks can jointly evade the single-pair bound;
-integrality supplies the extra unit. The exceptional one-block
-convention is bounded separately when \(m\ge5\). Conversely, every
-failed clause directly constructs either a profitable pair partition or
-a profitable two-pair partition. ∎
+\textbf{Proof.} First suppose \(|\Pi|\ge2\). For a block \(S\) of size
+\(s\), set
+
+\[
+T_s(S)=[s(b(s)+2)-2]f(S)-b(s)w(S),
+\qquad h_s=s-1-d(s).
+\]
+
+Direct expansion of the cost gives
+
+\[
+C_U-C(\Pi)=\sum_{S\in\Pi}\bigl(T_{|S|}(S)+h_{|S|}\bigr)
+-\max_{S\in\Pi}b(|S|).
+\]
+
+The depth recurrence yields \(h_s=1\) for \(s=2,3,4\), \(h_5=0\), and
+\(h_s\le0\) for \(s\ge5\). For a block of size \(s\ge3\), take a perfect
+matching if \(s\) is even and an \(s\)-cycle if \(s\) is odd. Summing
+the pair clauses counts every term once or twice and uses
+\(f(\{i,j\})\ge f(S)\), giving \(w(S)\ge2s f(S)\). Therefore
+
+\[
+T_s(S)\le[s(2-b(s))-2]f(S)\le-2;
+\]
+
+when \(f(S)=0\), the stronger bound \(T_s(S)=-b(s)w(S)\le-b(s)s\)
+applies. Thus every block of size at least three has total credit
+\(T_s+h_s\le-1\).
+
+For a pair, \(T_2+h_2=g_{ij}+1\). Pair blocks in one partition are
+disjoint. Their gains are integers, every \(g_{ij}\le0\), and the
+two-pair clause prevents two of them from being zero. Hence any
+collection of pair blocks has total credit at most one. If the partition
+contains only pairs and singletons, the final width term is one and the
+total gain is nonpositive. If it contains a larger block, that block
+cancels the possible unit of pair credit and the width term is at least
+two, again making the gain nonpositive.
+
+For the exceptional one-block partition, write \(b=b(m)\), \(F=f([m])\),
+and \(d=d(m)\). Direct calculation gives
+
+\[
+C_U-C_{\mathrm{one}}
+=(1-b)W+[m(b+1)-1]F+2m-2-d-b.
+\]
+
+The same matching/cycle sum gives \(W\ge2mF\). If \(F=0\), then
+\(W\ge m\) and the gain is negative. If \(F\ge1\), the recurrence closes
+\(5\le m\le8\) with \(b=3,d=2m-6\), closes \(9\le m\le16\) with
+\(b=4,d\ge m-1\), and \(b\ge5\) makes the remaining coefficient negative
+for \(m\ge17\). Thus no partition improves on unary when
+\(\mathcal P_4(m)\) holds.
+
+Conversely, a failed pair clause is witnessed by that pair and all
+remaining singletons; a failed disjoint-pair clause is witnessed by
+those two pairs and the remaining singletons. Their gains are
+respectively \(g_{ij}\) and \(g_{ij}+g_{k\ell}+1\). ∎
 
 The four-term instance
 
@@ -234,11 +275,33 @@ satisfies both clause families, yet has \(C_U=27\) and one-block cost
 \section{4. Complete pair information, different values and
 optimizers}\label{complete-pair-information-different-values-and-optimizers}}
 
-For every \(t\ge1\), construct \(t\) disjoint five-term gadgets.
-Families \(A_t\) and \(B_t\) have the same ordered term weights and the
-same common-factor count for every labeled pair, hence the same complete
-pair-gain matrix. Both violate \(\mathcal P_4\) and strictly beat the
-unary baseline. Exact decomposition yields
+The local five-term gadgets act on six qubits. Written with the first
+qubit on the left, they are
+
+\[
+\begin{aligned}
+A_1={}&(\mathrm{XXXXII},\mathrm{XXXIXI},\mathrm{XXXIIX},
+        \mathrm{XXIIII},\mathrm{XXIIII}),\\
+B_1={}&(\mathrm{XXXXII},\mathrm{XXXIXI},\mathrm{XXIXXI},
+        \mathrm{XXIIII},\mathrm{XXIIII}).
+\end{aligned}
+\]
+
+Both have ordered weights \((4,4,4,2,2)\), and direct intersection of
+their supports gives the same common-factor count for every labeled
+pair. For \(t\ge1\), let \(A_t\) and \(B_t\) be \(t\) copies on disjoint
+six-qubit coordinate sets.
+
+To determine their optima, use the block credit
+\(U(S)=T_{|S|}(S)+h_{|S|}\) from the proof of Theorem 1. Enumerating the
+31 nonempty subsets and 52 partitions of one five-term gadget gives a
+unique maximum \(\sum U=12\) for \(A_1\), at the triple-plus-pair
+partition \(\{\{1,2,3\},\{4,5\}\}\). For \(B_1\), the maximum is 10 and
+is attained only by pair-and-singleton partitions. A block meeting two
+gadgets has \(f(S)=0\) and strictly negative credit; splitting it by
+gadget increases \(\sum U\) without increasing the maximum index width.
+The global optimum therefore decomposes by gadgets. Accounting once for
+the shared maximum-width term yields
 
 \[
 \Delta_A(t)=12t-2,
@@ -246,11 +309,14 @@ unary baseline. Exact decomposition yields
 \Delta_B(t)=10t-1.
 \]
 
-Their value gap is \(2t-1\). Every optimum in \(A_t\) contains a
-distinguished triple block and one pair per gadget. Every optimum in
+Their value gap is \(2t-1\). Every optimum in \(A_t\) contains the
+distinguished triple block and one pair in each gadget. Every optimum in
 \(B_t\) uses only pairs and singletons. Thus complete pair information
 determines neither the exact improvement nor the presence of a triple
-block in an optimizer.
+block in an optimizer. The ancillary verifier reproduces every local
+subset/partition row and performs direct full-partition checks for
+\(t=1,2\); the scalable formulas follow from the displayed
+decomposition.
 
 \hypertarget{exact-minimax-consequences}{%
 \section{5. Exact minimax
@@ -310,11 +376,18 @@ bounds, not computational hardness results.
 \section{6. Proper interactions still miss exact
 value}\label{proper-interactions-still-miss-exact-value}}
 
-Fix \(m\ge5\), set \(q=m-1\), and distinguish one anchor from \(q\)
-variable terms. Use every anchor-plus-variable support from one parity
-class in one instance and the opposite parity class in the other, each
-with multiplicity \(L\ge1\). Add identical all-term padding that makes
-the single block uniquely optimal in both instances.
+Fix \(m\ge5\), set \(q=m-1\), \(b=\lceil\log_2m\rceil\), and distinguish
+one anchor from \(q\) variable terms. For every subset \(S\subseteq[q]\)
+of one parity, place \(L\) columns supported on the anchor together with
+the variables in \(S\); use the opposite parity in the second instance.
+Each side therefore has \(N=2^{m-2}L\) trade columns. Add to both
+instances
+
+\[
+K=Nm(b+1)+m-1+d(m)+b+1
+\]
+
+columns supported on all \(m\) terms.
 
 The resulting pair agrees on ordered weights and on every labeled
 common-factor count for subsets of size at most \(m-2\), yet
@@ -324,7 +397,20 @@ common-factor count for subsets of size at most \(m-2\), yet
 =\left[m(\lceil\log_2m\rceil+1)-1\right]L.
 \]
 
-For fixed \(m\), the ambiguity is unbounded in \(L\).
+\textbf{Proof.} For every proper labeled subset of terms, the two parity
+classes contain the same number of supersets, so all common-factor
+counts through order \(m-2\) agree. The common padding also makes the
+one-block partition uniquely optimal: for any proper partition, the
+exact cost difference from the full block is bounded below by
+
+\[
+3K-Nm(b+1)-[m-1+d(m)+b]>0.
+\]
+
+Only the full common-factor count differs. Its coefficient in the
+one-block improvement is \(1-m(b+1)\), while the parity imbalance is
+\(L\), giving the displayed absolute gap. Thus, for fixed \(m\), the
+ambiguity is unbounded in \(L\). ∎
 
 \hypertarget{the-unique-invisible-direction}{%
 \section{7. The unique invisible

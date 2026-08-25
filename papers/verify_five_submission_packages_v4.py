@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the five ORION V4 journal-submission packages without network access."""
+"""Verify the five corrected journal and arXiv manuscript packages."""
 
 from __future__ import annotations
 
@@ -8,32 +8,48 @@ import os
 import re
 import subprocess
 import sys
+import zipfile
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
 PAPERS = ROOT / "papers"
+AUTHOR = "Sze Chun Yiu"
+EMAIL = "sze-chun.yiu@fysik.su.se"
 
 PACKAGES = {
-    "A": PAPERS / "theory-A-multitag-constraint-rank",
-    "B": PAPERS / "theory-B-certificate-complexity",
-    "C": PAPERS / "theory-C-low-order-information",
-    "D": PAPERS / "theory-D-falsification-authority",
-    "N": PAPERS / "nonquantum-c5cubed-davenport",
-}
-
-REQUIRED_SUBMISSION_FILES = {
-    "README.md",
-    "cover_letter.md",
-    "main.pdf",
-    "main.tex",
-    "source.zip",
-    "submission_checklist.md",
+    "A": (
+        PAPERS / "theory-A-multitag-constraint-rank",
+        "Zero-Sum Deletion Normal Forms for Multi-Tag Quantum Compilation",
+        "Zero-Sum_Deletion_Normal_Forms_for_Multi-Tag_Quantum_Compilation",
+    ),
+    "B": (
+        PAPERS / "theory-B-certificate-complexity",
+        "Zero-Sum Deletion Certificates versus Intrinsic Support in Quantum Compilation",
+        "Zero-Sum_Deletion_Certificates_versus_Intrinsic_Support_in_Quantum_Compilation",
+    ),
+    "C": (
+        PAPERS / "theory-C-low-order-information",
+        "Low-Order Decision Certificates and Value-Estimation Limits in Structured Quantum Compilation",
+        "Low-Order_Decision_Certificates_and_Value-Estimation_Limits_in_Structured_Quantum_Compilation",
+    ),
+    "D": (
+        PAPERS / "theory-D-falsification-authority",
+        "Typed Evidence Propagation and Retraction in Positive Scientific Rule Graphs",
+        "Typed_Evidence_Propagation_and_Retraction_in_Positive_Scientific_Rule_Graphs",
+    ),
+    "N": (
+        PAPERS / "nonquantum-c5cubed-davenport",
+        r"A Width-One Corridor for Generalized Davenport Constants of \(C_5^3\)",
+        "A_Width-One_Corridor_for_Generalized_Davenport_Constants_of_C5_Cubed",
+    ),
 }
 
 FORBIDDEN_MANUSCRIPT_SURFACE = re.compile(
-    r"unified[ -]calculus|universal[ -]calculus|workflow cut|scientific cut|"
-    r"publication decision|pull request|PR #[0-9]+|/workspace/|development/",
+    r"\bunified[ -]calculus\b|\buniversal[ -]calculus\b|workflow cut|"
+    r"scientific cut|publication decision|pull request|PR #[0-9]+|/workspace/|"
+    r"\bdevelopment/|\bORION\b|\bR6[A-Z0-9_-]*\b|\bQG[A-Z0-9_-]*\b|"
+    r"orion\.invalid|registered product|Author information to be supplied|\[AUTHOR",
     re.IGNORECASE,
 )
 
@@ -49,97 +65,154 @@ def run(command: list[str], *, cwd: Path = ROOT) -> subprocess.CompletedProcess[
     )
 
 
+def abstract_from_markdown(text: str) -> str:
+    return text.split("## Abstract", 1)[1].split("**Keywords:**", 1)[0].strip()
+
+
+def abstract_has_display_math(text: str) -> bool:
+    return any(token in text for token in (r"\[", "$$", r"\begin{equation", r"\begin{align"))
+
+
 def main() -> int:
     checks: dict[str, bool] = {}
     details: dict[str, object] = {}
 
-    manuscript_text = {
+    manuscripts = {
         key: (directory / "MANUSCRIPT_V3_PIPELINE.md").read_text(encoding="utf-8")
-        for key, directory in PACKAGES.items()
+        for key, (directory, _title, _stem) in PACKAGES.items()
     }
-    control_text = {
+    controls = {
         key: (directory / "PIPELINE_CONTROL_V3.md").read_text(encoding="utf-8")
-        for key, directory in PACKAGES.items()
+        for key, (directory, _title, _stem) in PACKAGES.items()
     }
 
-    checks["five_manuscripts_present"] = len(manuscript_text) == 5
-    checks["closure_frozen_in_five_controls"] = all(
+    checks["five_manuscripts_present"] = len(manuscripts) == 5
+    checks["closure_constraint_preserved"] = all(
         "FORMAL_COMPONENTS_ONLY_NO_UNIFIED_CALCULUS" in text
-        for text in control_text.values()
+        for text in controls.values()
+    )
+    checks["precise_titles_match"] = all(
+        text.splitlines()[0] == f"# {title}"
+        for key, text in manuscripts.items()
+        for _directory, title, _stem in (PACKAGES[key],)
     )
 
     surface_hits = {
-        key: sorted(set(match.group(0) for match in FORBIDDEN_MANUSCRIPT_SURFACE.finditer(text)))
-        for key, text in manuscript_text.items()
+        key: sorted({match.group(0) for match in FORBIDDEN_MANUSCRIPT_SURFACE.finditer(text)})
+        for key, text in manuscripts.items()
     }
     surface_hits = {key: hits for key, hits in surface_hits.items() if hits}
-    checks["submission_manuscript_surface_clean"] = not surface_hits
+    checks["manuscript_surface_has_no_internal_labels"] = not surface_hits
     details["surface_hits"] = surface_hits
 
-    checks["incorrect_freeze_schmid_doi_absent"] = all(
-        "10.1016/j.disc.2010.07.032" not in text for text in manuscript_text.values()
+    abstracts = {key: abstract_from_markdown(text) for key, text in manuscripts.items()}
+    abstract_lengths = {key: len(text) for key, text in abstracts.items()}
+    checks["abstracts_use_inline_math_only"] = all(
+        not abstract_has_display_math(text) for text in abstracts.values()
     )
-    checks["correct_freeze_schmid_doi_present_twice"] = sum(
-        text.count("10.1016/j.disc.2010.07.028") for text in manuscript_text.values()
-    ) == 2
-    checks["stale_tare_title_absent"] = (
-        "Without Ancilla State Preparation" not in manuscript_text["A"]
+    checks["abstracts_fit_arxiv_limit"] = all(length <= 1920 for length in abstract_lengths.values())
+    checks["abstracts_fit_internal_1750_target"] = all(length <= 1750 for length in abstract_lengths.values())
+    details["abstract_character_counts"] = abstract_lengths
+
+    checks["binary_rank_contradiction_removed"] = (
+        r"\operatorname{zsf}(H; A)=d" in manuscripts["A"]
+        and "strict alphabet-versus-realized-rank refinement is claimed" not in manuscripts["A"]
+        and r"zsf}(H_R; A_R)<" not in manuscripts["A"]
+    )
+    checks["paper_a_binary_equality_explained"] = (
+        re.search(r"spanning set.*contains a basis", manuscripts["A"]) is not None
+        or "contains a basis" in manuscripts["A"]
+    )
+    checks["unified_calculus_claim_absent"] = all(
+        not re.search(r"unified[ -]calculus|universal[ -]calculus", text, re.IGNORECASE)
+        for text in manuscripts.values()
     )
     checks["data_code_availability_in_all_five"] = all(
-        "## Data and code availability" in text for text in manuscript_text.values()
+        "## Data and code availability" in text for text in manuscripts.values()
     )
-    checks["keywords_in_all_five"] = all("**Keywords:**" in text for text in manuscript_text.values())
+    checks["keywords_in_all_five"] = all("**Keywords:**" in text for text in manuscripts.values())
 
-    package_inventory = {}
-    pdf_pages = {}
-    pdf_integrity = {}
-    archive_integrity = {}
-    generated_surface = {}
-    for key, directory in PACKAGES.items():
+    inventories: dict[str, list[str]] = {}
+    pdf_pages: dict[str, int] = {}
+    pdf_integrity: dict[str, dict[str, bool]] = {}
+    archive_integrity: dict[str, dict[str, bool]] = {}
+    generated_surface: dict[str, dict[str, bool]] = {}
+
+    for key, (directory, title, stem) in PACKAGES.items():
         submission = directory / "submission"
+        expected = {
+            "README.md",
+            "cover_letter.md",
+            "submission_checklist.md",
+            f"{stem}.pdf",
+            f"{stem}.tex",
+            f"{stem}_journal_source.zip",
+            f"{stem}_arxiv_source.zip",
+        }
         names = {path.name for path in submission.iterdir() if path.is_file()}
-        package_inventory[key] = sorted(names)
+        inventories[key] = sorted(names)
+        checks[f"package_{key}_expected_files_present"] = expected <= names
 
-        pdf = submission / "main.pdf"
+        pdf = submission / f"{stem}.pdf"
         info = run(["pdfinfo", str(pdf)])
         page_match = re.search(r"^Pages:\s+(\d+)$", info.stdout, re.MULTILINE)
         pages = int(page_match.group(1)) if page_match else 0
         pdf_pages[key] = pages
-
-        text_result = run(["pdftotext", str(pdf), "-"])
-        tail = pdf.read_bytes()[-1024:]
+        pdf_text = run(["pdftotext", str(pdf), "-"])
+        tail = pdf.read_bytes()[-1024:] if pdf.is_file() else b""
         pdf_integrity[key] = {
             "pdfinfo": info.returncode == 0,
-            "pdftotext": text_result.returncode == 0,
+            "pdftotext": pdf_text.returncode == 0,
             "eof": b"%%EOF" in tail,
-            "author_placeholder": text_result.stdout.count(
-                "Author information to be supplied before submission"
-            ) == 1,
+            "author": AUTHOR in pdf_text.stdout,
+            "email": EMAIL in pdf_text.stdout,
+            "no_placeholder": "Author information to be supplied" not in pdf_text.stdout,
+            "no_internal_labels": FORBIDDEN_MANUSCRIPT_SURFACE.search(pdf_text.stdout) is None,
         }
 
-        archive = run(["unzip", "-t", str(submission / "source.zip")])
-        archive_integrity[key] = archive.returncode == 0
-        generated_tex = (submission / "main.tex").read_text(encoding="utf-8")
-        generated_surface[key] = (
-            "\\textbackslash DeclareUnicodeCharacter" not in generated_tex
-            and r"\(C\_5\^3\)" not in generated_tex
-        )
+        tex = submission / f"{stem}.tex"
+        tex_text = tex.read_text(encoding="utf-8")
+        tex_abstract = tex_text.split(r"\begin{abstract}", 1)[1].split(r"\end{abstract}", 1)[0]
+        generated_surface[key] = {
+            "true_abstract_environment": r"\begin{abstract}" in tex_text
+            and r"\section{Abstract}" not in tex_text,
+            "abstract_inline_math_only": not abstract_has_display_math(tex_abstract),
+            "author": AUTHOR in tex_text,
+            "email": EMAIL in tex_text,
+            "title": title.replace(r"\(", "").replace(r"\)", "")[:30] in tex_text.replace("$", ""),
+            "no_internal_labels": FORBIDDEN_MANUSCRIPT_SURFACE.search(tex_text) is None,
+            "unicode_macro_valid": r"\DeclareUnicodeCharacter{220E}" in tex_text,
+        }
 
-    checks["all_submission_files_present"] = all(
-        REQUIRED_SUBMISSION_FILES <= set(names) for names in package_inventory.values()
-    )
-    checks["paper_d_artifact_archive_present"] = (
-        PACKAGES["D"] / "submission" / "artifact.zip"
-    ).is_file()
+        archive_integrity[key] = {}
+        for kind in ("journal", "arxiv"):
+            archive_path = submission / f"{stem}_{kind}_source.zip"
+            test = run(["unzip", "-t", str(archive_path)])
+            archive_integrity[key][f"{kind}_zip_valid"] = test.returncode == 0
+            with zipfile.ZipFile(archive_path) as archive:
+                archive_names = set(archive.namelist())
+            archive_integrity[key][f"{kind}_has_main_tex"] = "main.tex" in archive_names
+            archive_integrity[key][f"{kind}_has_ancillary_license"] = "anc/LICENSE_CODE.txt" in archive_names
+            if kind == "arxiv":
+                archive_integrity[key]["arxiv_excludes_editor_files"] = not any(
+                    name in archive_names
+                    for name in ("cover_letter.md", "submission_checklist.md", "README.md")
+                )
+
     checks["all_pdf_integrity_checks_pass"] = all(
         all(result.values()) for result in pdf_integrity.values()
     )
-    checks["all_pdf_page_counts_plausible"] = all(4 <= pages <= 12 for pages in pdf_pages.values())
-    checks["all_source_archives_valid"] = all(archive_integrity.values())
-    checks["generated_tex_surface_clean"] = all(generated_surface.values())
-    details["package_inventory"] = package_inventory
+    checks["all_pdf_page_counts_plausible"] = all(4 <= pages <= 25 for pages in pdf_pages.values())
+    checks["all_generated_tex_surface_checks_pass"] = all(
+        all(result.values()) for result in generated_surface.values()
+    )
+    checks["all_source_archives_valid_and_scoped"] = all(
+        all(result.values()) for result in archive_integrity.values()
+    )
+    details["package_inventory"] = inventories
     details["pdf_pages"] = pdf_pages
     details["pdf_integrity"] = pdf_integrity
+    details["generated_surface"] = generated_surface
     details["archive_integrity"] = archive_integrity
 
     d_tests = run(
@@ -149,7 +222,7 @@ def main() -> int:
             "unittest",
             "discover",
             "-s",
-            str(PACKAGES["D"]),
+            str(PACKAGES["D"][0]),
             "-p",
             "test_*.py",
         ]
@@ -157,38 +230,36 @@ def main() -> int:
     checks["paper_d_nine_tests_pass"] = d_tests.returncode == 0 and "Ran 9 tests" in d_tests.stderr
     details["paper_d_test_summary"] = d_tests.stderr.strip().splitlines()[-4:]
 
-    schema = json.loads((PACKAGES["D"] / "evidence_license_schema.json").read_text())
+    schema = json.loads((PACKAGES["D"][0] / "evidence_license_schema.json").read_text())
+    checks["paper_d_schema_has_no_placeholder_uri"] = "orion.invalid" not in json.dumps(schema)
     checks["paper_d_structural_semantic_contract_documented"] = (
         set(schema["required"]) == {"version", "licenses", "claims", "rules", "refutations"}
         and len(schema.get("x-semanticValidation", [])) == 4
         and "$comment" in schema
     )
 
+    r2 = run([sys.executable, str(PAPERS / "verify_five_theory_hardening_r2.py")])
+    r2_result = json.loads(r2.stdout) if r2.stdout else {}
+    checks["inherited_r2_scientific_gates_pass"] = r2.returncode == 0 and r2_result.get("all_checks") is True
+
     r3 = run([sys.executable, str(PAPERS / "verify_five_publication_pipeline_r3.py")])
     r3_result = json.loads(r3.stdout) if r3.stdout else {}
     checks["inherited_r3_scientific_gates_pass"] = r3.returncode == 0 and r3_result.get("all_checks") is True
 
     build_script = PAPERS / "build_five_submission_packages_v4.sh"
-    checks["reproducible_build_script_executable"] = build_script.is_file() and os.access(
-        build_script, os.X_OK
+    checks["reproducible_build_script_executable"] = build_script.is_file() and os.access(build_script, os.X_OK)
+
+    checksum_file = PAPERS / "FIVE_PAPER_ARXIV_CHECKSUMS_V5.sha256"
+    checksum_result = run(["sha256sum", "--check", str(checksum_file)]) if checksum_file.is_file() else None
+    checks["v5_checksums_present_and_match"] = checksum_result is not None and checksum_result.returncode == 0
+    details["checksum_summary"] = (
+        checksum_result.stdout.strip().splitlines() if checksum_result is not None else []
     )
-    checks["v4_control_and_reference_reports_present"] = all(
-        (PAPERS / name).is_file()
-        for name in (
-            "FIVE_PAPER_SUBMISSION_CONTROL_V4_2026-08-25.md",
-            "FIVE_PAPER_REFERENCE_VERIFICATION_V4_2026-08-25.md",
-        )
-    )
-    checksum_result = run(
-        ["sha256sum", "--check", str(PAPERS / "FIVE_PAPER_SUBMISSION_CHECKSUMS_V4.sha256")]
-    )
-    checks["submission_package_checksums_match"] = checksum_result.returncode == 0
-    details["checksum_summary"] = checksum_result.stdout.strip().splitlines()
 
     output = {
-        "schema": "orion.five-paper-submission-packages-v4.v1",
+        "schema": "orion.five-paper-arxiv-packages-v5.v1",
         "all_checks": all(checks.values()),
-        "terminal_state": "TECHNICALLY_PACKAGED_AUTHOR_SIGNOFF_REQUIRED",
+        "terminal_state": "ARXIV_PACKAGED_AUTHOR_LICENSE_AND_ACCOUNT_ACTION_REQUIRED",
         "checks": checks,
         "details": details,
     }

@@ -8,12 +8,12 @@ Terminal goal: `simulated_publication_ready_for_target`
 
 ## Identity and source lock
 
-- Submission identity: *Alphabet-Davenport Normal Forms for Multi-Tag Quantum Compilation*.
+- Submission identity: *Zero-Sum Deletion Normal Forms for Multi-Tag Quantum Compilation*.
 - Direct manuscript parent: `MANUSCRIPT_V2.md`.
 - Claim parent: `CLAIM_LEDGER_R2.md`.
 - Reproducibility parent: `../FIVE_THEORY_HARDENING_R2_RESULTS.json` and
   `../verify_five_theory_hardening_r2.py`.
-- Historical proof parents: R6M and SixLCU protocols under
+- Historical proof parents: the one-Tag, three-block and six-term protocols under
   `development/orion-qg-regime-geometry/`; those records supply provenance,
   not additional V3 claims.
 - Worktree/branch: isolated checkout on
@@ -26,7 +26,7 @@ Terminal goal: `simulated_publication_ready_for_target`
 |---|---|---|---|
 | A2-C1–C2 | all-size proof | manuscript proof; deterministic invariant checks | novelty for the generic invariant |
 | A2-C3–C4 | all-block/all-size proof | explicit Restore accounting and deletion theorem | necessity of `s+1`; statement outside the cone |
-| A2-C5 | exact frozen-family result | R6M parent upper theorem and support-one obstruction | extension to other grammars or objectives |
+| A2-C5 | exact one-Tag, three-block result | parent upper theorem and support-one obstruction | extension to other grammars or objectives |
 | A2-C6–C7 | open | none | any lower-bound or outside-cone necessity claim |
 | A2-C8 | forbidden | no physical model | time, depth, qubit, or hardware advantage |
 
@@ -38,14 +38,14 @@ does not confer authority on it.
 Donor-owned mathematics includes Davenport/zero-sum invariants and general
 sparse-support theory. The residual contribution is the deletion-dominant
 compiler instantiation, arbitrary-block Restore sensitivity, the certified
-parameter cone, and the sharp R6M control. Submission-date novelty remains an
+parameter cone, and the sharp one-Tag, three-block control. Submission-date novelty remains an
 external author responsibility and is not represented as proved.
 
 ## Display contract
 
 No figure is required for the theorem chain. One theorem-summary table is
 permitted if it distinguishes generic certificate, MultiTag corollary, and
-R6M sharpness. No artifact names, repository paths, workflow labels, or
+one-Tag, three-block sharpness. No artifact names, repository paths, workflow labels, or
 publication decisions may appear in the submission manuscript.
 
 ## Editor/reviewer concern lock
@@ -54,5 +54,5 @@ publication decisions may appear in the submission manuscript.
 2. Simultaneous deletion requires closure of the admitted grammar and
    persistence of the dominance assumptions after every deletion.
 3. The parameter cone is sufficient only.
-4. R6M sharpness is local to the frozen one-Tag unit objective.
+4. Sharpness is local to the stated one-Tag, three-block unit objective.
 5. Quantum fit depends on explaining the compiler consequence on page one.

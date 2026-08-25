@@ -29,13 +29,14 @@ CONTROLS = {
 FORBIDDEN_SURFACE = re.compile(
     r"unified[ -]calculus|universal[ -]calculus|authority[ -]calculus|"
     r"workflow cut|scientific cut|publication decision|hardened manuscript|"
-    r"pull request|PR #[0-9]+|/workspace/|development/",
+    r"pull request|PR #[0-9]+|/workspace/|development/|\bORION\b|"
+    r"\bR6[A-Z0-9_-]*\b|\bQG[A-Z0-9_-]*\b|orion\.invalid|registered product",
     re.IGNORECASE,
 )
 
 REQUIRED = {
-    "A": ["alphabet-Davenport normal form", "deletion closure", "kappa_{\\mathrm{R6M}}=2"],
-    "B": ["exact abstract certificate complexity", "R6I", "Theta(n^{4t})"],
+    "A": ["zero-sum deletion normal form", "deletion closure", "kappa_{\\mathrm{1T3B}}=2"],
+    "B": ["exact abstract certificate complexity", "dependent-triple", "Theta(n^{4t})"],
     "C": ["four-index decision certificate", "sqrt{6/5}", "proper-marginal kernel"],
     "D": ["least-fixed-point semantics", "proof-tree equivalence", "Executable semantics"],
     "N": ["5k+10", "rank-forcing phase", "remains open"],
@@ -89,6 +90,12 @@ def main() -> int:
     )
     checks["paper_d_retired_framing_absent"] = not re.search(
         r"\bcalculus\b", MANUSCRIPTS["D"].read_text(encoding="utf-8"), re.IGNORECASE
+    )
+    paper_a = MANUSCRIPTS["A"].read_text(encoding="utf-8")
+    checks["paper_a_binary_alphabet_rank_equality"] = (
+        r"\operatorname{zsf}(H; A)=d" in paper_a
+        and "equality is automatic" in paper_a
+        and "strict alphabet-versus-realized-rank refinement is claimed" not in paper_a
     )
 
     r2 = run_json([sys.executable, str(PAPERS / "verify_five_theory_hardening_r2.py")])

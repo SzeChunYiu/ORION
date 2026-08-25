@@ -8,8 +8,8 @@ Terminal goal: `simulated_publication_ready_for_target`
 
 ## Identity and source lock
 
-- Submission identity: *Certificate Complexity Can Exceed Intrinsic Support in
-  Quantum Compilation*.
+- Submission identity: *Zero-Sum Deletion Certificates versus Intrinsic Support
+  in Quantum Compilation*.
 - Direct manuscript parent: `MANUSCRIPT_V2.md`.
 - Claim parent: `CLAIM_LEDGER_R2.md`.
 - Reproducibility parent: `../FIVE_THEORY_HARDENING_R2_RESULTS.json` and
@@ -24,8 +24,8 @@ Terminal goal: `simulated_publication_ready_for_target`
 |---|---|---|---|
 | B2-C1 | exact abstract proof | terminal-word theorem | unrestricted proof complexity |
 | B2-C2 | conditional production theorem | realized alphabet plus no-extra-rule premise | compiler lower bound without realization |
-| B2-C3–C4 | exact frozen-family results | independent R6M/R6I parent theorems and verifier | other objectives or production grammars |
-| B2-C5 | exact registered product result | componentwise proof and formula checks | cross-component transformations |
+| B2-C3–C4 | exact family results | independent one-Tag and dependent-triple parent theorems and verifier | other objectives or production grammars |
+| B2-C5 | exact disjoint-product result | componentwise proof and formula checks | cross-component transformations |
 | B2-C6 | declared-enumerator asymptotic | fixed-budget subset counting | algorithm-independent lower bound |
 | B2-C7–C9 | open/forbidden | none | local-proof universality, independent mechanism, hardware speedup |
 
@@ -36,8 +36,8 @@ the B namespace.
 
 Donor-owned material includes zero-sum constants, sparse integer support, and
 the general distinction between object difficulty and proof-language lower
-bounds. The residual is the exact R6M tight control, the R6I five-versus-one
-separation, and its registered product amplification.
+bounds. The residual is the exact one-Tag tight control, the dependent-triple
+five-versus-one separation, and its disjoint-product amplification.
 
 ## Display contract
 

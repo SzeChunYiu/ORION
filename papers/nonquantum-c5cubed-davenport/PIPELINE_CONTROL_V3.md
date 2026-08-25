@@ -8,8 +8,8 @@ Terminal goal: `simulated_publication_ready_for_target`
 
 ## Identity and source lock
 
-- Submission identity: *A Width-One Generalized-Davenport Corridor in
-  `C_5^3` and a Rank-Forcing Obstruction Phase*.
+- Submission identity: *A Width-One Corridor for Generalized Davenport
+  Constants of `C_5^3`*.
 - Direct manuscript parent: `MANUSCRIPT_V2.md`.
 - Claim parent: `CLAIM_LEDGER_R2.md`.
 - Proof parents: M1–M3 signed protocols and generic/dual records under

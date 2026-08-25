@@ -1,15 +1,10 @@
-# A Width-One Generalized-Davenport Corridor in \(C_5^3\) and a Rank-Forcing Obstruction Phase
+# A Width-One Corridor for Generalized Davenport Constants of \(C_5^3\)
 
 ## Abstract
 
 Let \(D_k(G)\) be the least length that forces \(k\) pairwise disjoint nonempty
 zero-sum subsequences. We show that the generalized Davenport constants of
-\(C_5^3\) lie in the width-one corridor
-
-\[
-5k+10\le D_k(C_5^3)\le5k+11
-\qquad(k\ge4).
-\]
+\(C_5^3\) satisfy \(5k+10\le D_k(C_5^3)\le5k+11\) for every \(k\ge4\).
 
 If \(D_4(C_5^3)=30\), then the lower line is exact for every \(k\ge2\). To
 analyze the remaining alternative, we study a hypothetical total-zero sequence
@@ -17,13 +12,8 @@ of length \(31\) with no nonempty zero-sum subsequence of length at most five.
 For saturated short-free sequences over elementary abelian groups of odd prime
 exponent, we prove a defect certificate that excludes multiplicity \(p-2\). In
 the case \(p=5\), only multiplicities \(1,2,4\) remain. If \(s\) is support size
-and \(c_i\) counts multiplicity \(i\), then
-
-\[
-c_2=31-s-3c_4,
-\qquad
-c_1=2s-31+2c_4.
-\]
+and \(c_i\) counts multiplicity \(i\), then \(c_2=31-s-3c_4\) and
+\(c_1=2s-31+2c_4\).
 
 The subsequence of points of multiplicity at least two has length
 \(62-2s-2c_4\). Using \(\eta(C_5^2)=13\), we prove that this stratum must span
@@ -32,7 +22,7 @@ support deficit, repetitions inside zero-sum atoms, and overlaps between atom
 supports. Together with a theorem-grade exclusion through support ten, these
 results isolate the residual obstruction phase without deciding it.
 
-The exact value remains \(D_4(C_5^3)\in\{30,31\}\). A larger internal search
+The exact value remains \(D_4(C_5^3)\in\{30,31\}\). A larger bounded search
 through support 22 is reported only as bounded computational evidence and is
 not used as theorem authority.
 
@@ -88,7 +78,7 @@ D_{k+1}(G)
 \]
 
 and the known lower bound \(D_k(C_5^3)\ge5k+10\) in the range considered here.
-The exact registered inputs are
+The exact values used below are
 
 \[
 D_2=20, \qquad D_3=25, \qquad s_{\le6}=24,
@@ -135,16 +125,24 @@ that later terms lie on the upper line.
 
 ## 4. The hypothetical length-31 obstruction
 
-The upper candidate yields a sequence \(S\) over \(C_5^3\) satisfying
+Assume \(D_4(C_5^3)=31\). The extremal characterization of Freeze and Schmid
+provides a total-zero sequence \(S\) of length 31 whose maximum factorization
+length is four. If \(M\) is the minimum length of an atom dividing \(S\), their
+recurrence gives \(31=D_4\le D_3+M=25+M\), so \(M\ge6\). On the other hand,
+\(s_{\le6}(C_5^3)=24\) forces every 31-term sequence to contain a zero-sum
+subsequence of length at most six; an inclusion-minimal such subsequence is an
+atom. Hence \(M=6\), and \(S\) contains no zero-sum subsequence of length at
+most five. Thus the upper candidate yields a sequence satisfying
 
 \[
 |S|=31, \qquad \sigma(S)=0,
 \]
 
 with no nonempty zero-sum subsequence of length at most five. Every element has
-multiplicity at most four. In the support case relevant here, the established
-extension dichotomy forces saturation: appending any support element destroys
-short-freeness.
+multiplicity at most four. If its support exceeds eight, it is saturated:
+otherwise a short-free one-term extension would have length 32, whereas
+Property C for \(C_5^3\) forces every length-32 short-free sequence to have
+exactly eight support points.
 
 **Theorem 3 (saturation defect).** Let \(p\) be odd and let \(S\) be a saturated
 \(p\)-short-free sequence over an elementary abelian exponent-\(p\) group. If a
@@ -241,13 +239,38 @@ different argument.
 
 ## 7. Theorem-grade low-support exclusion and bounded evidence
 
-Signed symbolic reductions combined with two exact state representations
-exclude every support size through ten.
+Symbolic reductions combined with two exact state representations exclude
+every support size through ten.
 
 **Theorem 6.** Every length-31 total-zero 5-short-free sequence over \(C_5^3\),
 if one exists, has support at least eleven.
 
-A larger internal computation found no such sequence through support 22. That
+**Computer-assisted proof.** Multiplicity at most four first excludes supports
+at most seven. At support eight, the only length pattern is \(4^7 3\). Adding
+the missing fourth copy of the triple point preserves short-freeness; total sum
+then forces that point to equal the negative support sum. After normalizing a
+basis by \(\mathrm{GL}(3,5)\), two exact subset-sum representations enumerate
+all 564 normalized supports and find none satisfying this condition.
+
+For supports nine and ten, saturation and Corollary 4 exclude multiplicity
+three. The support-nine equations leave only \(4^7 2 1\); a canonical search
+with the last point forced by total sum visits 6,537,270 states in each of two
+independent exact-weight subset-sum engines and finds no solution. At support
+ten, the only patterns are \(1^3 4^7\) and \(1,2^3 4^6\). Four
+multiplicity-four points must span rank three because 16 terms in a rank-two
+subgroup would contradict \(\eta(C_5^2)=13\). Normalizing an independent triple
+to the standard basis makes the remaining enumeration complete. The two
+engines agree exactly: they visit respectively 210,700 states with 3,558 leaves
+and 272,119 states with no leaves, finding zero solutions in both patterns.
+
+Both engines reject a branch exactly when adding a term creates a zero-sum
+subsequence of one of the lengths one through five; one stores explicit byte
+reachability by weight and group sum, while the other stores translation masks
+in a 128-bit representation. Their source, build instructions, expected rows,
+and machine-readable results are included as ancillary files. Thus every
+support stratum through ten is exhausted. ∎
+
+A larger bounded computation found no such sequence through support 22. That
 search has not received an external independent replay and is not used in any
 proof above or below. Its bounded conclusion is useful for prioritizing the
 next case split, but it does not establish support at least 23 as a theorem.
@@ -342,7 +365,7 @@ The exact value of \(D_4(C_5^3)\) remains open, as does the associated
 length-31 extremal-spectrum statement. The support-22 frontier is bounded
 computation pending external replay. The rank phase is one-way, and the atom
 identity is a compression principle rather than a contradiction. No additional
-internal implementation can substitute for an independently auditable final
+implementation can substitute for an independently auditable final
 obstruction proof.
 
 ## 12. Conclusion

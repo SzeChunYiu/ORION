@@ -6,7 +6,8 @@
 - [x] Nine evaluator tests and three fixtures pass.
 - [x] Bibliography uses numbered references and complete DOI links/records.
 - [x] Portable PDF, editable source, and artifact archive are present.
-- [ ] Insert title-page authors, affiliations, corresponding email, and ORCIDs.
+- [x] Insert title-page author and corresponding email.
+- [ ] Confirm affiliation and ORCID, if applicable.
 - [ ] Complete human proof, implementation, and threat-model review.
 - [ ] Insert Data Availability Statement archive identifier.
 - [ ] Supply funding, author contributions, competing interests, and other Statements & Declarations.

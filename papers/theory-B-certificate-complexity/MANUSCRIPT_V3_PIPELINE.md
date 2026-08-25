@@ -1,4 +1,4 @@
-# Certificate Complexity Can Exceed Intrinsic Support in Quantum Compilation
+# Zero-Sum Deletion Certificates versus Intrinsic Support in Quantum Compilation
 
 ## Abstract
 
@@ -14,12 +14,13 @@ a longest zero-sum-free word is a matching terminal witness. A production
 compiler inherits the matching lower bound only if that witness is realizable
 and no additional rule can reduce it.
 
-Two quantum-compilation families give opposite controls. In one-Tag R6M, the
-production alphabet realizes \(\mathbb F_2^2\); the deletion certificate and
-the independently proved intrinsic support are both two. In R6I, the production
-alphabets realize basis obstructions in \(\mathbb F_2^5\), so the rank-only
-certificate is exactly five, whereas an independent whole-system Tag-relocation
-theorem gives intrinsic support exactly one. For \(t\) registered independent
+Two quantum-compilation families give opposite controls. In a one-Tag,
+three-block compiler, the production alphabet realizes \(\mathbb F_2^2\); the
+deletion certificate and independently proved intrinsic support are both two.
+In a two-block dependent-triple compiler with a shared two-bit Tag, the
+production alphabets realize basis obstructions in \(\mathbb F_2^5\), so the
+rank-only certificate is exactly five, whereas a whole-system Tag-relocation
+theorem gives intrinsic support exactly one. For a disjoint product of \(t\)
 components, the corresponding budgets are \(5t\) and \(t\). A direct support
 enumerator therefore has search-volume ratio \(\Theta(n^{4t})\) under the stated
 fixed-budget model. This is not an unrestricted proof or algorithm lower bound.
@@ -55,10 +56,11 @@ Our contributions are:
 1. an exact terminal-complexity theorem for zero-sum deletion;
 2. a realization criterion separating abstract terminal words from production
    compiler states;
-3. a tight R6M control with certificate and intrinsic support two;
-4. a strict R6I separation between exact certificate complexity five and
-   intrinsic support one; and
-5. a registered product construction with additive gap \(4t\) and a precisely
+3. a tight one-Tag, three-block control with certificate and intrinsic support
+   two;
+4. a strict dependent-triple separation between exact certificate complexity
+   five and intrinsic support one; and
+5. a disjoint-product construction with additive gap \(4t\) and a precisely
    scoped direct-enumeration consequence.
 
 ## 2. Three support quantities
@@ -124,63 +126,83 @@ the certificate language has no other rule that reduces that state.
 For \(H=\mathbb F_2^d\),
 \(\operatorname{zsf}(H; A)\le d\); an alphabet containing a basis has equality.
 
-## 4. Tight control: R6M
+## 4. Tight control: one-Tag, three-block compiler
 
-A one-Tag R6M frame coordinate carries partner and Tag bits. The production
+A frame coordinate in the one-Tag, three-block compiler carries partner and
+Tag bits. Denote this family by \(\mathcal C_{\mathrm{1T3B}}\). Its production
 alphabet realizes a basis of \(\mathbb F_2^2\), giving
 
 \[
-\beta_{\mathrm{rank}}(\mathrm{R6M})=2.
+\beta_{\mathrm{del}}(\mathcal C_{\mathrm{1T3B}})=2.
 \]
 
-An independent all-size normalization proves support at most two, while an
-exact support-one obstruction proves necessity. Therefore
+The all-size zero-sum exchange proves support at most two. A complete exact
+\(n=2\) production instance supplies the lower witness: its unrestricted
+optimum has cost 5 and support two, whereas exhaustive minimization over all
+13,824 feasible support-at-most-one configurations has cost 6. Therefore
 
 \[
-\kappa_{\mathrm{R6M}}=2
-=\beta_{\mathrm{rank}}(\mathrm{R6M}).
+\kappa(\mathcal C_{\mathrm{1T3B}})=2
+=\beta_{\mathrm{del}}(\mathcal C_{\mathrm{1T3B}}).
 \]
 
 This control shows that the certificate is not inherently loose. Tightness
 depends on whether its terminal obstruction is also an intrinsic compiler
 obstruction.
 
-## 5. Strict separation: R6I
+## 5. Strict separation: dependent-triple compiler
 
-R6I has two rank-two dependent-triple blocks with a shared two-bit Tag. Its two
-production block-deletion alphabets span five-dimensional binary quotients and
-realize basis words. Theorem 1 and production realization therefore give
+The second family, denoted \(\mathcal C_{\mathrm{DT}}\), has two rank-two
+dependent-triple blocks with a shared two-bit Tag under the unit structural
+objective. Each block has generators \(R_0,R_1,R_2\) with \(R_2=R_0R_1\). The
+partner, block, and Tag syndromes form a five-bit quotient. Direct evaluation
+maps the five realized Pauli words
+\((\mathrm{XIIIII},\mathrm{IXIXII},\mathrm{IYIYII},\mathrm{IIXIXI},
+\mathrm{IIYIYI})\) and, for the second block,
+\((\mathrm{YIIIII},\mathrm{IXIIII},\mathrm{IYIIII},\mathrm{IIXIII},
+\mathrm{IIYIII})\) to basis words of the quotient. Thus the production
+block-deletion alphabets span the quotient and realize basis words.
+Theorem 1 and production realization therefore give
 
 \[
-\beta_{\mathrm{rank}}(\mathrm{R6I})=5.
+\beta_{\mathrm{del}}(\mathcal C_{\mathrm{DT}})=5.
 \]
 
-A stronger transformation goes beyond rank-only deletion. It localizes each
-block to an anticommuting core and then relocates and reconstructs the shared
-Tag at the whole-system level. The all-size theorem proves support at most one,
-and support zero is infeasible. Hence
+A stronger transformation goes beyond rank-only deletion. First, the
+support-two parent theorem localizes each dependent triple to an anticommuting
+core. At every non-core column, deleting the redundant frame letters refunds
+at least four units. If the two blocks choose distinct cores, the previous Tag
+has cost at least four and the new two-core Tag costs eight, so the combined
+credit pays the reconstruction. If they choose the same core, the new Tag costs
+four and the remaining alignment penalty is at most three. These exhaustive
+local inequalities are independent of the number of untouched columns and
+therefore compose to all sizes. The resulting whole-system Tag relocation
+leaves each frame generator at support at most one without increasing cost.
+Support zero is infeasible because an identity frame cannot anticommute with
+its partner. Hence
 
 \[
-\kappa_{\mathrm{R6I}}=1,
+\kappa(\mathcal C_{\mathrm{DT}})=1,
 \qquad
-\beta_{\mathrm{rank}}(\mathrm{R6I})-\kappa_{\mathrm{R6I}}=4.
+\beta_{\mathrm{del}}(\mathcal C_{\mathrm{DT}})
+-\kappa(\mathcal C_{\mathrm{DT}})=4.
 \]
 
 There is no contradiction: a basis word blocks zero-XOR deletion while the
 successful proof changes auxiliary Tag structure that the rank-only language
 holds fixed.
 
-## 6. Registered product amplification
+## 6. Disjoint product amplification
 
-Let \(\mathrm{R6I}^{\times t}\) be the registered product of \(t\) components
+Let \(\mathcal C_{\mathrm{DT}}^{\times t}\) be the disjoint product of \(t\) components
 on disjoint coordinates, with additive support and no cross-component move.
 
 **Theorem 3.** For every \(t\ge1\),
 
 \[
-\beta_{\mathrm{rank}}(\mathrm{R6I}^{\times t})=5t,
+\beta_{\mathrm{del}}(\mathcal C_{\mathrm{DT}}^{\times t})=5t,
 \qquad
-\kappa(\mathrm{R6I}^{\times t})=t.
+\kappa(\mathcal C_{\mathrm{DT}}^{\times t})=t.
 \]
 
 **Proof.** Componentwise upper bounds add. A realized basis obstruction in each
@@ -196,7 +218,7 @@ not evidence for a second, independent source of separation.
 
 For fixed local alphabet and fixed budget \(B\), an enumerator that explicitly
 visits all coordinate supports of size at most \(B\) has leading growth
-\(\Theta(n^B)\). Under that declared model, the registered product yields
+\(\Theta(n^B)\). Under that declared model, the disjoint product yields
 
 \[
 \Theta(n^{5t})\quad\text{versus}\quad\Theta(n^t),
@@ -216,9 +238,10 @@ Proof-complexity and formal-methods research already distinguishes object
 difficulty from lower bounds internal to a proof language.
 
 The residual contribution is the exact production separation in quantum
-compilation. The same algebraic certificate is tight for R6M, loose by a factor
-of five for R6I, and additively unbounded under registered products. The R6I
-normalization also identifies the missing proof operation - whole-system Tag
+compilation. The same algebraic certificate is tight for the one-Tag,
+three-block compiler, loose by a factor of five for the dependent-triple
+compiler, and additively unbounded under disjoint products. The latter
+normalization also identifies the missing proof operation--whole-system Tag
 reconstruction - instead of merely reporting a smaller number.
 
 ## 8. Reproducibility and limitations
@@ -230,7 +253,7 @@ Theorems 1 and 3 supply all-size authority.
 The exact abstract theorem concerns only the stated deletion language. A
 production lower bound requires realization of its terminal witness. We prove
 no lower bound for every local, syndrome-preserving, or unrestricted proof
-system. The registered product forbids cross-component transformations by
+system. The disjoint product forbids cross-component transformations by
 definition. The enumeration ratio belongs only to the direct support model.
 Finally, structural support does not imply a hardware speedup or any physical
 quantum-resource advantage.
@@ -239,9 +262,10 @@ quantum-resource advantage.
 
 A certificate can be sound, useful, and internally exact while measuring the
 wrong layer for an intrinsic interpretation. The alphabet-restricted invariant
-identifies the expressive ceiling of zero-sum deletion. R6M shows that this
-ceiling can coincide with intrinsic support. R6I shows that a whole-system
-transformation can cross it sharply.
+identifies the expressive ceiling of zero-sum deletion. The one-Tag,
+three-block compiler shows that this ceiling can coincide with intrinsic
+support. The dependent-triple compiler shows that a whole-system transformation
+can cross it sharply.
 
 The reporting rule is therefore simple: call a support number intrinsic only
 after an independent compiler lower witness. Otherwise identify the
@@ -249,11 +273,13 @@ normalization or proof language that owns it.
 
 ## Data and code availability
 
-Deterministic verification scripts for the finite-group controls, production
-alphabets, basis obstructions, and product formulas accompany the submission
-source. Those computations corroborate the finite instances; Theorems 1 and 3
-carry the all-size claims. A permanent archival identifier must be inserted
-before final upload.
+The arXiv ancillary package contains the production-alphabet records, exact
+one-Tag, three-block lower witness, dependent-triple support-one normalization
+checks, and product-formula
+verifier. The finite enumerations corroborate the displayed construction and
+local inequalities; Theorems 1 and 3 carry the abstract and product claims. A
+permanent archival identifier will replace the ancillary-package reference in
+the journal version.
 
 ## References
 
