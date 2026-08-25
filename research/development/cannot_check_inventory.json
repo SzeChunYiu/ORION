@@ -1521,7 +1521,7 @@
       "file": "engine/solver.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1050,
+      "lineno": 1060,
       "missing_obligation": null,
       "reasons": [
         "Bounded saturation reached but no verified evidence supports a final answer."
@@ -1535,7 +1535,7 @@
       "file": "engine/solver.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1118,
+      "lineno": 1128,
       "missing_obligation": null,
       "reasons": [
         "Resource bound reached before bounded saturation. Open saturation coordinates:"
@@ -10719,7 +10719,7 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "e267d643ec238bb4753894a9d5573d4cbed3ab48",
+  "subject_commit": "14c9b28291eb6b9af84439c0781f668fe052bd88",
   "total_sites": 722,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 115,
