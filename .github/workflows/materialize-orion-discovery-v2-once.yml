@@ -1,0 +1,53 @@
+name: materialize-orion-discovery-v2-once
+
+on:
+  push:
+    branches:
+      - "codex/orion-discovery-v2-knowledge-web-20260825"
+    paths:
+      - ".integration/orion-discovery-v2-20260825/**"
+      - ".github/workflows/materialize-orion-discovery-v2-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/orion-discovery-v2-knowledge-web-20260825
+          fetch-depth: 0
+      - name: Reconstruct the reviewed package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .integration/orion-discovery-v2-20260825/part-* > /tmp/orion-discovery-v2.tar.gz.b64
+          base64 -d /tmp/orion-discovery-v2.tar.gz.b64 > /tmp/orion-discovery-v2.tar.gz
+          echo "e1f9ba02a15affce6d40fd0e4d2802381d7d3c08440cb10b9aebd316bc76b1ab  /tmp/orion-discovery-v2.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/orion-discovery-v2.tar.gz -C .
+          rm -rf .integration/orion-discovery-v2-20260825
+          rm -f .github/workflows/materialize-orion-discovery-v2-once.yml
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install ORION
+        run: python -m pip install -e '.[dev]'
+      - name: Validate theory and execution ledgers
+        run: python scripts/check_orion_discovery_v2.py
+      - name: Run hostile knowledge-web tests
+        run: python -m pytest -q tests/unit/discovery/test_knowledge_web.py
+      - name: Compile the reference core
+        run: python -m compileall -q src/orion/discovery/knowledge_web.py scripts/check_orion_discovery_v2.py
+      - name: Materialize the package on the branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Add Discovery V2 knowledge-web and proof-economy successor"
+          git push origin HEAD:codex/orion-discovery-v2-knowledge-web-20260825
