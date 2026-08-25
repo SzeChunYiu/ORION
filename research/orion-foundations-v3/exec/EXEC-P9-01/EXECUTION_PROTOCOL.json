@@ -1,0 +1,57 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-P9-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {"location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": ["OSTC-T14"]},
+  "frozen_before_outcomes": true,
+  "task": "Representation x model family x compute x method-coverage intervention grid.",
+  "what_the_theorem_asserts": {
+    "OSTC-T14": "Let causes be rows of an intervention-response matrix H and available interventions be columns. A cause is exactly identifiable iff its row is distinct from every other row on the selected columns. A minimum diagnostic experiment set is therefore a minimum separating column set, reducible to set cover / hitting set."
+  },
+  "code_identity": {"runner": "run_intervention_identifiability_v1.py",
+    "independent_checker": "check_intervention_identifiability_independent_v1.py",
+    "checker_independence": "The checker does not import the runner. Identifiability is recomputed by pairwise row comparison over selected columns; minimum separating sets are recomputed by brute-force ascending search over ALL column subsets rather than by the runner's greedy-plus-verify. The two can disagree, and a greedy set that is not minimum is exactly the disagreement to catch."},
+  "data_identity": {"generated": true, "generator_seed": 20260825, "no_external_data": true},
+  "comparator_identity": {
+    "greedy_hitting_set_donor": "Standard greedy set cover on the separation constraints. It is expected to TIE or LOSE against the exact minimum, never win. A greedy win would mean the exact search is not exact. It must also be observed to LOSE at least once, otherwise greedy and optimal coincide on this grid and the reduction to set cover is doing no work here."
+  },
+  "information_and_tool_access": {"runner": "declared grid only; no network, no model calls", "checker": "raw manifest only"},
+  "resource_vector": {"compute": "single-process CPU enumeration", "wallclock_bound_seconds": 1800},
+  "independent_unit": "The intervention-response matrix. Column subsets within a matrix are exhaustively enumerated, not sampled.",
+  "estimands": {
+    "identifiability_biconditional": "Over every (matrix, column subset, cause): is exact identifiability equivalent to row-distinctness on those columns, with zero exceptions in both directions?",
+    "both_outcomes": "Do identifiable and unidentifiable causes both occur? A grid where every cause is always identifiable cannot test an identifiability criterion.",
+    "minimum_is_minimum": "Is the reported minimum separating set genuinely minimum, i.e. no smaller column subset separates all pairs?",
+    "greedy_gap_exists": "Does greedy ever exceed the exact minimum? If never, greedy and optimal coincide here and the set-cover reduction is not exercised."
+  },
+  "multiplicity": "No hypothesis test; universal and existence claims over total enumeration.",
+  "positive_terminal": "P9_INTERVENTION_IDENTIFIABILITY_SUPPORTED",
+  "positive_conditions": [
+    "identifiability biconditional holds with zero exceptions",
+    "both identifiable and unidentifiable causes occur",
+    "every reported minimum separating set is verified minimum by exhaustive smaller-subset search",
+    "greedy never beats the exact minimum, and is strictly worse at least once"
+  ],
+  "negative_terminal": "P9_IDENTIFIABILITY_MODEL_INCOMPLETE",
+  "negative_conditions": [
+    "any cell where identifiability and row-distinctness disagree",
+    "any reported minimum that a smaller subset also separates",
+    "greedy strictly beats the exact minimum anywhere",
+    "all causes identifiable everywhere, making the criterion untestable here",
+    "greedy never differs from optimal, leaving the set-cover reduction unexercised"
+  ],
+  "cannot_check_terminal": "P9_INTERVENTION_GRID_INCOMPLETE",
+  "cannot_check_conditions": ["grid not exhausted within the wallclock bound", "independent checker cannot be run"],
+  "raw_output_schema": {"file": "RAW_RESULT_MANIFEST.json",
+    "fields": {"grid": "echoed", "identifiability": "cells, identifiable, unidentifiable, violations, minimal_witness",
+      "minimum": "matrices, verified_minimum, non_minimum", "greedy": "matrices, ties, greedy_worse, greedy_better",
+      "totals": "cells_enumerated, wallclock_seconds"}},
+  "checker_and_authority_owner": {"checker": "check_intervention_identifiability_independent_v1.py",
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Two implementations inside one programme; not external adjudication."},
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem, move a gate, weaken a comparator, hide a negative, or rewrite theory after outcome access."
+}

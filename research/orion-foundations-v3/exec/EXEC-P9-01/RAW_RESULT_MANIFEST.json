@@ -1,0 +1,31 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-P9-01",
+  "grid": {
+    "nrows": 4,
+    "ncols": 4,
+    "nvals": 2,
+    "seed": 20260825
+  },
+  "identifiability": {
+    "cells": 116480,
+    "identifiable": 55280,
+    "unidentifiable": 61200,
+    "violations": 0,
+    "minimal_witness": null
+  },
+  "minimum": {
+    "matrices": 1820,
+    "verified_minimum": 1820,
+    "non_minimum": 0
+  },
+  "greedy": {
+    "ties": 1820,
+    "greedy_worse": 0,
+    "greedy_better": 0
+  },
+  "totals": {
+    "cells_enumerated": 116480,
+    "wallclock_seconds": 0.582
+  }
+}
