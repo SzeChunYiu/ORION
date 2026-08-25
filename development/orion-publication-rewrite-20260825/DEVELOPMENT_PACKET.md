@@ -2,8 +2,10 @@
 
 Date: 2026-08-25
 
-Status: authority reconciliation, V3 manuscripts, sealed ledgers, executable
-Paper-D component, editor synthesis, and final QA complete.
+Status: historical intake and authority-reconciliation record. Final manuscript
+dispositions, narrowed targets, source hashes, and release QA are superseded by
+`papers/FIVE_PAPER_ATOMIC_VERIFICATION_V7_2026-08-25.md` and
+`papers/FIVE_PAPER_REVIEW_SYNTHESIS_R4_2026-08-25.md`.
 
 ## Frozen inputs
 

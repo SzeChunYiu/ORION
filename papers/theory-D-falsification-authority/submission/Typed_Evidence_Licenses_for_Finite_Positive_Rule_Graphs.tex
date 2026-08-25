@@ -85,8 +85,8 @@ Unsupported cycles stay empty, added refutations can only remove
 licenses, and the retraction contains exactly the claim-license pairs
 that lose every untainted proof tree. Caps also prevent promotion:
 post-outcome repairs cannot regain prospective authority, and bounded
-computation cannot acquire theorem status merely because an untyped
-conclusion remains reachable.
+computation cannot acquire a \(\textsf{THEOREM}\) license merely because
+an untyped conclusion remains reachable.
 
 A deterministic evaluator implements the semantics, while a JSON schema
 validates document shape. Three bounded cases illustrate forecast
@@ -114,7 +114,7 @@ can still overpromote a surviving repair. If a post-outcome predictor
 becomes exact on the observed panel, it should not inherit prospective
 status merely because the old predictor and the repair share a
 conclusion string. Similarly, a bounded exact search should not acquire
-theorem authority by passing through a rule whose conclusion is a
+a theorem-grade license by passing through a rule whose conclusion is a
 theorem-shaped sentence.
 
 We attach evidence licenses to the least fixed point of a positive rule
@@ -210,8 +210,12 @@ stabilization and denote the result by
 Call an asynchronous evaluation \emph{accumulating} if it initializes
 every unrefuted claim \(q\) with \(\sigma(q)\), initializes every
 refuted claim with the empty label, and thereafter only unions a
-nonempty rule transfer into an unrefuted rule head. It is \emph{fair} if
-every rule that remains enabled is eventually fired.
+nonempty rule transfer into an unrefuted rule head. A rule instance is
+\emph{enabled} for a license \(\lambda\) when every body claim currently
+carries \(\lambda\), the rule cap contains \(\lambda\), the head is
+unrefuted, and the head does not yet carry \(\lambda\). It is
+\emph{fair} if every enabled instance is eventually fired; after each
+label growth, all rule instances are reconsidered.
 
 \textbf{Theorem 1 (finite convergence and order independence).}
 Synchronous bottom-up iteration has at most \(|Q||\Lambda|\) changing
@@ -340,7 +344,8 @@ evaluator is deliberately small enough for line-by-line comparison with
 \section{8. Bounded case encodings}\label{bounded-case-encodings}}
 
 The following are synthetic fixtures used to test the typed semantics.
-No license or evidence object transfers between manuscript namespaces.
+Each fixture is self-contained and supplies its own seeds, rules, caps,
+and refutations.
 
 \hypertarget{forecast-falsification}{%
 \subsection{8.1 Forecast falsification}\label{forecast-falsification}}
@@ -352,20 +357,21 @@ synthetic result satisfies \(C_{\mathrm{exact}}=10<11\), directly
 refuting the equality and its regime label. The construction and the
 independent support theorem retain their licenses.
 
-A repaired support-two forecast can carry theorem authority inherited
-from the independent theorem and post-outcome authority from its
-construction. Its repair cap excludes \(\textsf{PROSPECTIVE}\), so it
-cannot be counted as prospective confirmation. The old and repaired
+A repaired support-two forecast can carry a theorem-grade license
+inherited from the independent theorem and a post-outcome license from
+its construction. Its repair cap excludes \(\textsf{PROSPECTIVE}\), so
+it cannot be counted as prospective confirmation. The old and repaired
 panels remain distinct evidence objects.
 
 \hypertarget{decision-survives-value-and-witness-falsifiers}{%
 \subsection{8.2 Decision survives value and witness
 falsifiers}\label{decision-survives-value-and-witness-falsifiers}}
 
-A separate compiler theorem gives a four-index certificate for unary
-optimality. Exact counterexamples show that complete pair information
-does not determine exact improvement or the presence of a triple block,
-and that all proper interaction marginals do not determine exact value.
+A second self-contained fixture seeds a four-index certificate for unary
+optimality. Its declared counterexamples show that complete pair
+information does not determine exact improvement or the presence of a
+triple block, and that all proper interaction marginals do not determine
+exact value.
 
 Decision, value, and optimizer-structure claims occupy separate nodes.
 Refuting pair-value sufficiency removes its licenses without touching
@@ -377,17 +383,17 @@ exact-value license.
 \subsection{8.3 A bounded support frontier does not decide an exact
 constant}\label{a-bounded-support-frontier-does-not-decide-an-exact-constant}}
 
-A finite-group record has analytic licenses for a width-one
+A third self-contained fixture assigns analytic licenses to a width-one
 generalized-Davenport corridor and a saturation-defect lemma. An exact
-bounded search excludes a specified length-31 obstruction through
-support 22, but its evidence contract labels the result as bounded
-computation awaiting external replay.
+bounded search excludes a specified obstruction through a declared
+finite support frontier, but its evidence contract labels the result as
+bounded computation awaiting external replay.
 
 Any rule from that frontier to a support claim is capped by the same
 licenses. No proof tree carries \(\textsf{THEOREM}\) to either exact
 candidate value of the generalized Davenport constant or to the
-associated extremal-spectrum statement. Repeated implementations by the
-same research group do not become independent mathematical replication.
+associated extremal classification. Repeated implementations by the same
+research group do not become independent mathematical replication.
 
 \hypertarget{relation-to-prior-work}{%
 \section{9. Relation to prior work}\label{relation-to-prior-work}}

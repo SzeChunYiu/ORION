@@ -1,5 +1,9 @@
 # Five-Paper Atomic Verification V6
 
+> Historical fail-closed audit. Superseded by
+> `FIVE_PAPER_ATOMIC_VERIFICATION_V7_2026-08-25.md` after the cited blockers
+> were repaired or the affected claims were removed.
+
 Date: 2026-08-25
 
 ## Control state

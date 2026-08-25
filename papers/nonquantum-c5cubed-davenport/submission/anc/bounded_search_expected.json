@@ -1,0 +1,28 @@
+{
+  "schema": "conditional-width-one-bounds.public-expected-rows.v1",
+  "scope": "Bounded support-eight through support-ten rows only; no support-through-22 or exact-value authority.",
+  "support_eight": {
+    "engine_byte": {"nodes": 80202, "normalized_supports": 564},
+    "engine_bit_reverse": {"nodes": 80202, "normalized_supports": 564},
+    "engines_agree": true,
+    "expected_discovery_row": true
+  },
+  "support_nine": {
+    "byte_engine": {
+      "nodes": 6537270,
+      "forced_final_candidates": 138785,
+      "solutions": 0
+    },
+    "bit_reverse_engine": {
+      "nodes": 6537270,
+      "forced_final_candidates": 146788,
+      "solutions": 0
+    },
+    "both_engines_unsat": true
+  },
+  "support_ten": {
+    "1_3_6": {"support": 10, "nodes": 272119, "leaves": 0, "solutions": 0},
+    "3_0_7": {"support": 10, "nodes": 210700, "leaves": 3558, "solutions": 0}
+  }
+}
+

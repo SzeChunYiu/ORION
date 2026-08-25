@@ -2,7 +2,7 @@
 
 Target: Quantum
 
-- `Zero-Sum_Deletion_Normal_Forms_for_Multi-Tag_Quantum_Compilation.pdf`:
+- `Zero-Sum_Deletion_Normal_Forms_for_a_Multi-Tag_Pauli_Grammar.pdf`:
   portable review PDF generated from the controlled manuscript.
 - The matching `.tex` file is the self-contained review source.
 - `cover_letter.md`: optional editor note.

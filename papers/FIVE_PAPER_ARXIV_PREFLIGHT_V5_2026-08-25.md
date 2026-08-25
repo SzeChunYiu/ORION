@@ -1,5 +1,8 @@
 # Five-paper arXiv preflight V5
 
+> Historical report. Superseded by `FIVE_PAPER_ARXIV_PREFLIGHT_V7_2026-08-25.md`;
+> its titles, targets, package claims, and readiness decisions are not current.
+
 Date: 2026-08-25
 
 Branch: `codex/orion-publication-rewrite-20260825`

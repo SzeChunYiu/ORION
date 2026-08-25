@@ -1,5 +1,9 @@
 # Five-paper independent review synthesis R3
 
+> Historical synthesis. Superseded by
+> `FIVE_PAPER_REVIEW_SYNTHESIS_R4_2026-08-25.md`; R3 predates the final
+> formal-validity and clean-room package passes.
+
 Date: 2026-08-25
 
 ## Review protocol

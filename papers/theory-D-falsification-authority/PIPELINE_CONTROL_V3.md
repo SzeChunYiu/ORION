@@ -3,8 +3,9 @@
 Seal date: 2026-08-25
 Namespace: D only
 Closure: `FORMAL_COMPONENTS_ONLY_NO_UNIFIED_CALCULUS`
-Primary target: Journal of Automated Reasoning
-Terminal goal: `simulated_publication_ready_for_target`
+Primary target: arXiv `cs.LO`/`cs.AI` formal-semantics note
+Journal status: hold for a substantive provenance-separation theorem and independent case study
+Terminal goal: scientifically closed preprint package; journal expansion open
 
 ## Identity and source lock
 

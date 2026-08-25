@@ -3,14 +3,14 @@
 Seal date: 2026-08-25
 Namespace: C only
 Closure: `FORMAL_COMPONENTS_ONLY_NO_UNIFIED_CALCULUS`
-Primary target: Quantum
-Fallback: Quantum Information Processing
-Terminal goal: `simulated_publication_ready_for_target`
+Primary target: Journal of Combinatorial Optimization or Discrete Applied Mathematics
+Preprint category: `math.OC`; `cs.DM` cross-list if eligible
+Terminal goal: scientifically closed, honestly scoped preprint package
 
 ## Identity and source lock
 
-- Submission identity: *Low-Order Decision Certificates and Value-Estimation
-  Limits in Structured Quantum Compilation*.
+- Submission identity: *Low-Order Decision Certificates and Value Limits in a
+  Pauli-String Partition Model*.
 - Direct manuscript parent: `MANUSCRIPT_V2.md`.
 - Claim parent: `CLAIM_LEDGER_R2.md`.
 - Proof parents: the Paper-C protocols and signed generic/dual records under
@@ -54,5 +54,5 @@ a hardness result or expose project artifacts in submission prose.
 3. The parity trade establishes information nonidentifiability, not runtime
    hardness.
 4. Common padding minimality is not proved.
-5. Quantum fit requires the stated optimizer grammar to be explained before
-   the abstract combinatorics.
+5. The model is motivated by Pauli compilation but is not a proved production
+   compiler cost model.

@@ -3,13 +3,14 @@
 Seal date: 2026-08-25
 Namespace: N only
 Closure: `FORMAL_COMPONENTS_ONLY_NO_UNIFIED_CALCULUS`
-Primary target: Electronic Journal of Combinatorics
-Terminal goal: `simulated_publication_ready_for_target`
+Primary target: Integers or Discrete Mathematics research note
+Preprint category: `math.CO`
+Terminal goal: scientifically closed, explicitly conditional preprint package
 
 ## Identity and source lock
 
-- Submission identity: *Conditional Width-One Bounds for Generalized Davenport
-  Constants of `C_5^3`*.
+- Submission identity: *Conditional Davenport Corridors and Saturated
+  Obstructions in `C_5^3`*.
 - Direct manuscript parent: `MANUSCRIPT_V2.md`.
 - Claim parent: `CLAIM_LEDGER_R2.md`.
 - Proof parents: M1–M3 signed protocols and generic/dual records under
@@ -28,7 +29,7 @@ Terminal goal: `simulated_publication_ready_for_target`
 | N2-C3 | analytic proof | saturation-defect lemma | external replication claim |
 | N2-C4 | bounded computer-assisted evidence | two internal exact representations through support 10 | theorem or external-replay authority |
 | N2-C5–C7 | exact structural proofs | multiplicity algebra, rank forcing, atom identity | converse rank phase |
-| N2-C8 | bounded computation only | support-frontier search through 22 | theorem authority |
+| N2-C8 | removed from manuscript | no package-local public replay | any scientific claim |
 | N2-C9–C11 | open | none | either value of `D_4` or `31 in C_0` |
 | N2-C12–C13 | forbidden | none | converse phase or independent replay |
 
@@ -36,8 +37,9 @@ No quantum-paper evidence is admissible in this namespace.
 
 ## Source and novelty lock
 
-Known generalized-Davenport recurrences, exact early constants, cap-set bounds,
-and `eta(C_5^2)=13` are donor mathematics. The residual is their width-one tail
+Known generalized-Davenport recurrences, `D_2(C_5^3)=20`, cap-set bounds,
+Property C, and `eta(C_5^2)=13` are donor mathematics. Hypotheses H1 and H2
+remain explicit. The residual is the conditional width-one tail
 synthesis together with the defect, multiplicity, rank-forcing, and atom-overlap
 obstruction package. Novelty is phrased as the combined corridor/obstruction
 phase, never as resolution of `D_4(C_5^3)`.
@@ -54,6 +56,6 @@ belong only in data/code availability, not in the theorem narrative.
 1. The exact value of `D_4(C_5^3)` remains open.
 2. The conditional tail has no converse.
 3. The rank phase is one-way and applies only when `s+c_4 <= 24`.
-4. Bounded support exclusion through 22 is not a theorem.
+4. Bounded support exclusion through 10 is packaged evidence, not an analytic theorem.
 5. The result must be judged as a corridor and obstruction paper, not as an
    exact Davenport-constant paper.

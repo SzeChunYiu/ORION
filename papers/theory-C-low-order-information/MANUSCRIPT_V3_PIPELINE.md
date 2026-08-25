@@ -1,11 +1,11 @@
-# Low-Order Decision Certificates and Value-Estimation Limits in Structured Quantum Compilation
+# Low-Order Decision Certificates and Value Limits in a Pauli-String Partition Model
 
 ## Abstract
 
 Low-order statistics can decide whether optimization is needed while failing
 to determine an optimum's value or structure. We prove this hierarchy for a
-Pauli partition compiler with a fixed structural block-encoding objective.
-For every \(m\ge5\), the unary compiler is globally optimal exactly
+Pauli-string partition model with a fixed structural objective.
+For every \(m\ge5\), the unary partition is globally optimal exactly
 when every pair gain is nonpositive and the sum of any two disjoint pair gains
 plus one is nonpositive. The largest clause touches four term indices, and an
 explicit \(m=4\) instance proves the threshold sharp.
@@ -24,7 +24,7 @@ labeled common-factor count through order \(m-2\) but has value gap
 trade is the unique nonzero integer direction invisible to all proper labeled
 marginals. These are representation limits, not computational-hardness claims.
 
-**Keywords:** quantum compilation; low-order certificates; information lower
+**Keywords:** Pauli-string partitioning; low-order certificates; information lower
 bounds; minimax estimation; Markov bases; Möbius inversion
 
 ## 1. Introduction
@@ -35,8 +35,8 @@ what structure an optimizer must contain, and whether a feature representation
 approximates the optimum uniformly. A representation can be complete for one
 question and incomplete for another.
 
-We give an exact scalable example in structured quantum compilation. The
-compiler partitions \(m\) Pauli terms into arbitrary blocks, extracts common
+We give an exact scalable example in an explicitly defined Pauli-string
+partition model. The model partitions \(m\) Pauli terms into arbitrary blocks, extracts common
 Pauli factors, and pays a structural cost. Although its candidate space contains
 every set partition, unary optimality is decided by inequalities involving at
 most four indices. This makes pair information appear unusually powerful. Our
@@ -55,14 +55,14 @@ The contributions are:
 5. a primitive-kernel theorem showing that the corresponding invisible
    difference trade must be the dense parity direction.
 
-## 2. Compiler and objective
+## 2. Pauli-string partition model and objective
 
 An instance is an ordered tuple of nonidentity Pauli strings
 \(p_1, \ldots, p_m\). Let \(w_i\) be the weight of term \(i\), let
 \(W=\sum_iw_i\), write \(w(S)=\sum_{i\in S}w_i\), and let \(f(S)\) count the columns on which every term in a
 nonempty block \(S\) has the same nonidentity Pauli.
 
-The compiler chooses a set partition \(\Pi\). We define the fixed equal-weight
+The optimization selects a set partition \(\Pi\). We define the fixed equal-weight
 structural objective directly. For \(|\Pi|\ge2\), its cost is
 
 \[
@@ -89,10 +89,12 @@ C_{\mathrm{one}}=(b(m)+1)W+m-1+d(m)+b(m)
 -[m(b(m)+1)-1]f([m]).
 \]
 
-Together these equations completely define the mathematical compiler studied
-below; no unstated dominance claim is used. These are structural compiler
-costs, not physical T-gate counts, depth, runtime, qubits, or fault-tolerant
-overhead.
+Together these equations completely define the mathematical model studied
+below; no unstated dominance claim is used. Grouping Pauli terms and exploiting
+common Pauli structure are genuine operations in block-wise Pauli compilers
+[6,7], but the displayed objective is introduced here as a mathematical model,
+not derived from either cited production compiler. Its costs are not physical
+T-gate counts, depth, runtime, qubits, or fault-tolerant overhead.
 
 ## 3. A four-index decision certificate
 
@@ -293,7 +295,9 @@ hardness results.
 Fix \(m\ge5\), set \(q=m-1\), \(b=\lceil\log_2m\rceil\), and distinguish one
 anchor from \(q\) variable terms. For every subset \(S\subseteq[q]\) of one
 parity, place \(L\) columns supported on the anchor together with the variables
-in \(S\); use the opposite parity in the second instance. Each side therefore
+in \(S\); use the opposite parity in the second instance. In every trade or
+padding column used below, each occupied entry carries the same fixed
+nonidentity Pauli \(X\), and every unoccupied entry is \(I\). Each side therefore
 has \(N=2^{m-2}L\) trade columns. Add to both instances
 
 \[
@@ -350,8 +354,9 @@ then
 the alternating sum of upper marginals over supersets of \(S\). Only the top
 marginal can remain. ∎
 
-If \(c\ne0\), every Boolean cell is used and exactly half occur on each signed
-side. A primitive integer trade therefore has mass at least
+Call an integer trade *primitive* when the greatest common divisor of all its
+signed coefficients is one. If \(c\ne0\), every Boolean cell is used and
+exactly half occur on each signed side. A primitive integer trade therefore has mass at least
 \(2^{q-1}=2^{m-2}\) on each side. The parity construction with \(L=1\) attains
 this bound. The statement proves minimality of the *difference trade*; it does
 not prove that the common padding is minimal.
@@ -362,11 +367,14 @@ Markov-basis and hierarchical-model theory [1-5] owns the generic language of
 fibers, marginal-preserving moves, toric ideals, and higher-order interactions
 invisible to lower marginals. Boolean-lattice Möbius inversion is classical.
 
-The residual result is the exact conjunction for the fixed compiler objective:
+The residual result is the exact conjunction for the fixed partition objective:
 a four-index certificate decides global unary optimality for all \(m\ge5\), the
 same pair representation has exact unbounded and multiplicative value limits,
 optimizer block structure is not identifiable, and even order-\(m-2\)
-information misses exact value through the primitive parity direction.
+information misses exact value through the primitive parity direction. The
+Paulihedral and TARE systems [6,7] motivate Pauli grouping and common-structure
+operations, but no theorem in this paper is asserted for their production cost
+models.
 
 ## 9. Reproducibility and limitations
 
@@ -384,15 +392,22 @@ other compiler grammars or physical resource models remains open.
 ## 10. Conclusion
 
 Information sufficiency is query-dependent. Complete pair information decides
-whether the unary compiler is optimal, yet it cannot recover the improvement
+whether the unary partition is optimal, yet it cannot recover the improvement
 value within arbitrarily small additive or fixed multiplicative error and
 cannot determine optimizer block structure. Even all labeled interactions
 below the top two orders fail to determine exact value, and the invisible
 integer direction is necessarily dense.
 
 A perfect decision statistic is therefore not automatically a useful value
-statistic. In this compiler, the distinction is exact, scalable, and
-independent of computational assumptions.
+statistic. In this Pauli-string partition model, the distinction is exact,
+scalable, and independent of computational assumptions.
+
+## Tool-use disclosure
+
+A generative language model assisted manuscript organization, language
+revision, and submission-package preparation. The listed author remains
+responsible for the mathematical statements, proofs, references, executable
+claims, and final text.
 
 ## Data and code availability
 
@@ -418,3 +433,10 @@ source archive accompanying this version.
 5. D. Král', S. Norine, and O. Pangrác, “Markov Bases of Binary Graph Models
    of \(K_4\)-Minor-Free Graphs,” *Journal of Combinatorial Theory, Series A*
    **117**, 759-765 (2010). DOI: 10.1016/j.jcta.2009.07.007
+6. G. Li, A. Wu, Y. Shi, A. Javadi-Abhari, Y. Ding, and Y. Xie,
+   “Paulihedral: A Generalized Block-Wise Compiler Optimization Framework for
+   Quantum Simulation Kernels,” in *Proceedings of ASPLOS 2022*, 554-569
+   (2022). DOI: 10.1145/3503222.3507715
+7. N. Schillo, A. Sturm, and R. Quay, “TARE: Block Encoding Linear
+   Combinations of Pauli Strings Without Ancilla State Preparation,”
+   arXiv:2601.05740v4 [quant-ph] (2026).

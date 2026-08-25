@@ -51,10 +51,10 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Low-Order Decision Certificates and Value-Estimation Limits in Structured Quantum Compilation},
+  pdftitle={Low-Order Decision Certificates and Value Limits in a Pauli-String Partition Model},
   pdfauthor={Sze Chun Yiu},
-  pdfsubject={Information limits for a structured Pauli partition compiler},
-  pdfkeywords={quantum compilation, low-order certificates, information lower bounds, Mobius inversion},
+  pdfsubject={Information limits in a Pauli-string partition model},
+  pdfkeywords={Pauli-string partitions, low-order certificates, information lower bounds, Mobius inversion},
   colorlinks=true,
   linkcolor={Maroon},
   filecolor={Maroon},
@@ -62,7 +62,7 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-\title{Low-Order Decision Certificates and Value-Estimation Limits in Structured Quantum Compilation}
+\title{Low-Order Decision Certificates and Value Limits in a Pauli-String Partition Model}
 \author{Sze Chun Yiu\\\texttt{sze-chun.yiu@fysik.su.se}}
 \date{25 August 2026}
 
@@ -72,12 +72,12 @@
 \begin{abstract}
 Low-order statistics can decide whether optimization is needed while
 failing to determine an optimum's value or structure. We prove this
-hierarchy for a Pauli partition compiler with a fixed structural
-block-encoding objective. For every \(m\ge5\), the unary compiler is
-globally optimal exactly when every pair gain is nonpositive and the sum
-of any two disjoint pair gains plus one is nonpositive. The largest
-clause touches four term indices, and an explicit \(m=4\) instance
-proves the threshold sharp.
+hierarchy for a Pauli-string partition model with a fixed structural
+objective. For every \(m\ge5\), the unary partition is globally optimal
+exactly when every pair gain is nonpositive and the sum of any two
+disjoint pair gains plus one is nonpositive. The largest clause touches
+four term indices, and an explicit \(m=4\) instance proves the threshold
+sharp.
 
 For every \(t\ge1\), two explicit \(5t\)-term families have identical
 ordered weights and complete labeled pair-gain matrices, yet their exact
@@ -96,7 +96,7 @@ computational-hardness claims.
 
 \end{abstract}
 
-\noindent\textbf{Keywords:} quantum compilation; low-order certificates;
+\noindent\textbf{Keywords:} Pauli-string partitioning; low-order certificates;
 information lower bounds; minimax estimation; Markov bases; Möbius
 inversion
 
@@ -110,13 +110,13 @@ feature representation approximates the optimum uniformly. A
 representation can be complete for one question and incomplete for
 another.
 
-We give an exact scalable example in structured quantum compilation. The
-compiler partitions \(m\) Pauli terms into arbitrary blocks, extracts
-common Pauli factors, and pays a structural cost. Although its candidate
-space contains every set partition, unary optimality is decided by
-inequalities involving at most four indices. This makes pair information
-appear unusually powerful. Our remaining theorems locate its exact
-limits.
+We give an exact scalable example in an explicitly defined Pauli-string
+partition model. The model partitions \(m\) Pauli terms into arbitrary
+blocks, extracts common Pauli factors, and pays a structural cost.
+Although its candidate space contains every set partition, unary
+optimality is decided by inequalities involving at most four indices.
+This makes pair information appear unusually powerful. Our remaining
+theorems locate its exact limits.
 
 The contributions are:
 
@@ -140,8 +140,9 @@ The contributions are:
   difference trade must be the dense parity direction.
 \end{enumerate}
 
-\hypertarget{compiler-and-objective}{%
-\section{2. Compiler and objective}\label{compiler-and-objective}}
+\hypertarget{pauli-string-partition-model-and-objective}{%
+\section{2. Pauli-string partition model and
+objective}\label{pauli-string-partition-model-and-objective}}
 
 An instance is an ordered tuple of nonidentity Pauli strings
 \(p_1, \ldots, p_m\). Let \(w_i\) be the weight of term \(i\), let
@@ -149,7 +150,7 @@ An instance is an ordered tuple of nonidentity Pauli strings
 the columns on which every term in a nonempty block \(S\) has the same
 nonidentity Pauli.
 
-The compiler chooses a set partition \(\Pi\). We define the fixed
+The optimization selects a set partition \(\Pi\). We define the fixed
 equal-weight structural objective directly. For \(|\Pi|\ge2\), its cost
 is
 
@@ -177,10 +178,13 @@ C_{\mathrm{one}}=(b(m)+1)W+m-1+d(m)+b(m)
 -[m(b(m)+1)-1]f([m]).
 \]
 
-Together these equations completely define the mathematical compiler
-studied below; no unstated dominance claim is used. These are structural
-compiler costs, not physical T-gate counts, depth, runtime, qubits, or
-fault-tolerant overhead.
+Together these equations completely define the mathematical model
+studied below; no unstated dominance claim is used. Grouping Pauli terms
+and exploiting common Pauli structure are genuine operations in
+block-wise Pauli compilers {[}6,7{]}, but the displayed objective is
+introduced here as a mathematical model, not derived from either cited
+production compiler. Its costs are not physical T-gate counts, depth,
+runtime, qubits, or fault-tolerant overhead.
 
 \hypertarget{a-four-index-decision-certificate}{%
 \section{3. A four-index decision
@@ -399,7 +403,9 @@ Fix \(m\ge5\), set \(q=m-1\), \(b=\lceil\log_2m\rceil\), and distinguish
 one anchor from \(q\) variable terms. For every subset \(S\subseteq[q]\)
 of one parity, place \(L\) columns supported on the anchor together with
 the variables in \(S\); use the opposite parity in the second instance.
-Each side therefore has \(N=2^{m-2}L\) trade columns. Add to both
+In every trade or padding column used below, each occupied entry carries
+the same fixed nonidentity Pauli \(X\), and every unoccupied entry is
+\(I\). Each side therefore has \(N=2^{m-2}L\) trade columns. Add to both
 instances
 
 \[
@@ -459,12 +465,13 @@ marginal vanishes, then
 \(\delta(S)\) as the alternating sum of upper marginals over supersets
 of \(S\). Only the top marginal can remain. ∎
 
-If \(c\ne0\), every Boolean cell is used and exactly half occur on each
-signed side. A primitive integer trade therefore has mass at least
-\(2^{q-1}=2^{m-2}\) on each side. The parity construction with \(L=1\)
-attains this bound. The statement proves minimality of the
-\emph{difference trade}; it does not prove that the common padding is
-minimal.
+Call an integer trade \emph{primitive} when the greatest common divisor
+of all its signed coefficients is one. If \(c\ne0\), every Boolean cell
+is used and exactly half occur on each signed side. A primitive integer
+trade therefore has mass at least \(2^{q-1}=2^{m-2}\) on each side. The
+parity construction with \(L=1\) attains this bound. The statement
+proves minimality of the \emph{difference trade}; it does not prove that
+the common padding is minimal.
 
 \hypertarget{relation-to-prior-work}{%
 \section{8. Relation to prior work}\label{relation-to-prior-work}}
@@ -474,12 +481,14 @@ language of fibers, marginal-preserving moves, toric ideals, and
 higher-order interactions invisible to lower marginals. Boolean-lattice
 Möbius inversion is classical.
 
-The residual result is the exact conjunction for the fixed compiler
+The residual result is the exact conjunction for the fixed partition
 objective: a four-index certificate decides global unary optimality for
 all \(m\ge5\), the same pair representation has exact unbounded and
 multiplicative value limits, optimizer block structure is not
 identifiable, and even order-\(m-2\) information misses exact value
-through the primitive parity direction.
+through the primitive parity direction. The Paulihedral and TARE systems
+{[}6,7{]} motivate Pauli grouping and common-structure operations, but
+no theorem in this paper is asserted for their production cost models.
 
 \hypertarget{reproducibility-and-limitations}{%
 \section{9. Reproducibility and
@@ -502,15 +511,23 @@ physical resource models remains open.
 \section{10. Conclusion}\label{conclusion}}
 
 Information sufficiency is query-dependent. Complete pair information
-decides whether the unary compiler is optimal, yet it cannot recover the
-improvement value within arbitrarily small additive or fixed
+decides whether the unary partition is optimal, yet it cannot recover
+the improvement value within arbitrarily small additive or fixed
 multiplicative error and cannot determine optimizer block structure.
 Even all labeled interactions below the top two orders fail to determine
 exact value, and the invisible integer direction is necessarily dense.
 
 A perfect decision statistic is therefore not automatically a useful
-value statistic. In this compiler, the distinction is exact, scalable,
-and independent of computational assumptions.
+value statistic. In this Pauli-string partition model, the distinction
+is exact, scalable, and independent of computational assumptions.
+
+\hypertarget{tool-use-disclosure}{%
+\section{Tool-use disclosure}\label{tool-use-disclosure}}
+
+A generative language model assisted manuscript organization, language
+revision, and submission-package preparation. The listed author remains
+responsible for the mathematical statements, proofs, references,
+executable claims, and final text.
 
 \hypertarget{data-and-code-availability}{%
 \section{Data and code availability}\label{data-and-code-availability}}
@@ -548,6 +565,15 @@ distributed in the source archive accompanying this version.
   Models of \(K_4\)-Minor-Free Graphs,'' \emph{Journal of Combinatorial
   Theory, Series A} \textbf{117}, 759-765 (2010). DOI:
   10.1016/j.jcta.2009.07.007
+\item
+  G. Li, A. Wu, Y. Shi, A. Javadi-Abhari, Y. Ding, and Y. Xie,
+  ``Paulihedral: A Generalized Block-Wise Compiler Optimization
+  Framework for Quantum Simulation Kernels,'' in \emph{Proceedings of
+  ASPLOS 2022}, 554-569 (2022). DOI: 10.1145/3503222.3507715
+\item
+  N. Schillo, A. Sturm, and R. Quay, ``TARE: Block Encoding Linear
+  Combinations of Pauli Strings Without Ancilla State Preparation,''
+  arXiv:2601.05740v4 {[}quant-ph{]} (2026).
 \end{enumerate}
 
 \end{document}

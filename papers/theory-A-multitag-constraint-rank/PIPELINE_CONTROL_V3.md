@@ -3,12 +3,13 @@
 Seal date: 2026-08-25
 Namespace: A only
 Closure: `FORMAL_COMPONENTS_ONLY_NO_UNIFIED_CALCULUS`
-Primary target: Quantum
-Terminal goal: `simulated_publication_ready_for_target`
+Primary target: Journal of Combinatorial Optimization or Discrete Applied Mathematics
+Preprint category: `math.OC`; `cs.DM` cross-list if eligible
+Terminal goal: scientifically closed, honestly scoped preprint package
 
 ## Identity and source lock
 
-- Submission identity: *Zero-Sum Deletion Normal Forms for Multi-Tag Quantum Compilation*.
+- Submission identity: *Zero-Sum Deletion Normal Forms for a Multi-Tag Pauli Grammar*.
 - Direct manuscript parent: `MANUSCRIPT_V2.md`.
 - Claim parent: `CLAIM_LEDGER_R2.md`.
 - Reproducibility parent: `../FIVE_THEORY_HARDENING_R2_RESULTS.json` and
@@ -26,7 +27,7 @@ Terminal goal: `simulated_publication_ready_for_target`
 |---|---|---|---|
 | A2-C1–C2 | all-size proof | manuscript proof; deterministic invariant checks | novelty for the generic invariant |
 | A2-C3–C4 | all-block/all-size proof | explicit Restore accounting and deletion theorem | necessity of `s+1`; statement outside the cone |
-| A2-C5 | exact one-Tag, three-block result | parent upper theorem and support-one obstruction | extension to other grammars or objectives |
+| A2-C5 | removed from this paper | companion Paper B | duplicated finite-record contribution |
 | A2-C6–C7 | open | none | any lower-bound or outside-cone necessity claim |
 | A2-C8 | forbidden | no physical model | time, depth, qubit, or hardware advantage |
 
@@ -37,8 +38,8 @@ does not confer authority on it.
 
 Donor-owned mathematics includes Davenport/zero-sum invariants and general
 sparse-support theory. The residual contribution is the deletion-dominant
-compiler instantiation, arbitrary-block Restore sensitivity, the certified
-parameter cone, and the one-Tag, three-block finite record. Submission-date novelty remains an
+Pauli-grammar instantiation, arbitrary-block Restore sensitivity, and the certified
+parameter cone. Submission-date novelty remains an
 external author responsibility and is not represented as proved.
 
 ## Display contract
@@ -55,4 +56,4 @@ publication decisions may appear in the submission manuscript.
    persistence of the dominance assumptions after every deletion.
 3. The parameter cone is sufficient only.
 4. Sharpness is local to the stated one-Tag, three-block unit objective.
-5. Quantum fit depends on explaining the compiler consequence on page one.
+5. The title and category must not imply equivalence with a production quantum compiler.

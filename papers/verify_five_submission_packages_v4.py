@@ -20,18 +20,18 @@ EMAIL = "sze-chun.yiu@fysik.su.se"
 PACKAGES = {
     "A": (
         PAPERS / "theory-A-multitag-constraint-rank",
-        "Zero-Sum Deletion Normal Forms for Multi-Tag Quantum Compilation",
-        "Zero-Sum_Deletion_Normal_Forms_for_Multi-Tag_Quantum_Compilation",
+        "Zero-Sum Deletion Normal Forms for a Multi-Tag Pauli Grammar",
+        "Zero-Sum_Deletion_Normal_Forms_for_a_Multi-Tag_Pauli_Grammar",
     ),
     "B": (
         PAPERS / "theory-B-certificate-complexity",
-        "Zero-Sum Deletion Certificates versus Intrinsic Support in Quantum Compilation",
-        "Zero-Sum_Deletion_Certificates_versus_Intrinsic_Support_in_Quantum_Compilation",
+        "Abstract Zero-Sum Deletion Complexity and Support-One Normalization in a Pauli Model",
+        "Abstract_Zero-Sum_Deletion_Complexity_and_Support-One_Normalization_in_a_Pauli_Model",
     ),
     "C": (
         PAPERS / "theory-C-low-order-information",
-        "Low-Order Decision Certificates and Value-Estimation Limits in Structured Quantum Compilation",
-        "Low-Order_Decision_Certificates_and_Value-Estimation_Limits_in_Structured_Quantum_Compilation",
+        "Low-Order Decision Certificates and Value Limits in a Pauli-String Partition Model",
+        "Low-Order_Decision_Certificates_and_Value_Limits_in_a_Pauli-String_Partition_Model",
     ),
     "D": (
         PAPERS / "theory-D-falsification-authority",
@@ -40,9 +40,59 @@ PACKAGES = {
     ),
     "N": (
         PAPERS / "nonquantum-c5cubed-davenport",
-        r"Conditional Width-One Bounds for Generalized Davenport Constants of \(C_5^3\)",
-        "Conditional_Width-One_Bounds_for_Generalized_Davenport_Constants_of_C5_Cubed",
+        r"Conditional Davenport Corridors and Saturated Obstructions in \(C_5^3\)",
+        "Conditional_Davenport_Corridors_and_Saturated_Obstructions_in_C5_Cubed",
     ),
+}
+
+LEGACY_STEMS = {
+    "A": ("Zero-Sum_Deletion_Normal_Forms_for_Multi-Tag_Quantum_Compilation",),
+    "B": (
+        "Zero-Sum_Deletion_Certificates_versus_Intrinsic_Support_in_Quantum_Compilation",
+        "Zero-Sum_Deletion_Certificates_versus_Intrinsic_Support_in_Pauli_Compiler_Models",
+    ),
+    "C": ("Low-Order_Decision_Certificates_and_Value-Estimation_Limits_in_Structured_Quantum_Compilation",),
+    "D": ("Typed_Evidence_Licenses_for_Finite_Positive_Rule_Graphs",),
+    "N": ("Conditional_Width-One_Bounds_for_Generalized_Davenport_Constants_of_C5_Cubed",),
+}
+
+ANCILLARY_EXPECTED = {
+    "A": {
+        "anc/LICENSE_CODE.txt",
+        "anc/README.md",
+        "anc/finite_records.json",
+    },
+    "B": {
+        "anc/LICENSE_CODE.txt",
+        "anc/README.md",
+        "anc/certificate_control_records.json",
+        "anc/verify_dependent_triple_lemmas.py",
+    },
+    "C": {
+        "anc/LICENSE_CODE.txt",
+        "anc/README.md",
+        "anc/verify_public_claims.py",
+    },
+    "D": {
+        "anc/LICENSE_CODE.txt",
+        "anc/README.md",
+        "anc/evidence_license_evaluator.py",
+        "anc/evidence_license_schema.json",
+        "anc/test_evidence_license_evaluator.py",
+        "anc/examples/bounded_frontier.json",
+        "anc/examples/forecast_falsification.json",
+        "anc/examples/query_specific_falsification.json",
+    },
+    "N": {
+        "anc/LICENSE_CODE.txt",
+        "anc/README.md",
+        "anc/bounded_search_expected.json",
+        "anc/support_eight_search.c",
+        "anc/support_nine_search.c",
+        "anc/support_ten_search_bytes.c",
+        "anc/support_ten_search_u128.c",
+        "anc/verify_bounded_search.py",
+    },
 }
 
 FORBIDDEN_MANUSCRIPT_SURFACE = re.compile(
@@ -50,6 +100,13 @@ FORBIDDEN_MANUSCRIPT_SURFACE = re.compile(
     r"scientific cut|publication decision|pull request|PR #[0-9]+|/workspace/|"
     r"\bdevelopment/|\bORION\b|\bR6[A-Z0-9_-]*\b|\bQG[A-Z0-9_-]*\b|"
     r"orion\.invalid|registered product|Author information to be supplied|\[AUTHOR",
+    re.IGNORECASE,
+)
+
+FORBIDDEN_PUBLIC_ANCILLARY_SURFACE = re.compile(
+    r"\bORION\b|\bR6[A-Z0-9_-]*\b|\bQG[A-Z0-9_-]*\b|\bX1K[A-Z0-9_-]*\b|"
+    r"/workspace/|\bdevelopment/|\bresearch/|"
+    r"FORMAL_COMPONENTS_ONLY_NO_UNIFIED_CALCULUS|orion\.invalid",
     re.IGNORECASE,
 )
 
@@ -152,6 +209,21 @@ def main() -> int:
         names = {path.name for path in submission.iterdir() if path.is_file()}
         inventories[key] = sorted(names)
         checks[f"package_{key}_expected_files_present"] = expected <= names
+        checks[f"package_{key}_legacy_title_files_absent"] = (
+            all(
+                legacy == stem
+                or not any(
+                    name in names
+                    for name in {
+                        f"{legacy}.pdf",
+                        f"{legacy}.tex",
+                        f"{legacy}_journal_source.zip",
+                        f"{legacy}_arxiv_source.zip",
+                    }
+                )
+                for legacy in LEGACY_STEMS[key]
+            )
+        )
 
         pdf = submission / f"{stem}.pdf"
         info = run(["pdfinfo", str(pdf)])
@@ -192,31 +264,65 @@ def main() -> int:
             with zipfile.ZipFile(archive_path) as archive:
                 archive_names = set(archive.namelist())
                 archive_surface_hits: dict[str, list[str]] = {}
+                ancillary_surface_hits: dict[str, list[str]] = {}
                 for name in archive_names:
-                    if name not in {
+                    is_reader_surface = name in {
                         "main.tex",
                         "README.md",
                         "cover_letter.md",
                         "submission_checklist.md",
-                    }:
+                    }
+                    is_public_ancillary = (
+                        name.startswith("anc/")
+                        and not name.endswith("/")
+                        and name != "anc/LICENSE_CODE.txt"
+                    )
+                    if not is_reader_surface and not is_public_ancillary:
                         continue
                     try:
                         archive_text = archive.read(name).decode("utf-8")
                     except UnicodeDecodeError:
                         continue
-                    hits = sorted(
-                        {
-                            match.group(0)
-                            for match in FORBIDDEN_MANUSCRIPT_SURFACE.finditer(
-                                archive_text
-                            )
-                        }
-                    )
-                    if hits:
-                        archive_surface_hits[name] = hits
+                    if is_reader_surface:
+                        hits = sorted(
+                            {
+                                match.group(0)
+                                for match in FORBIDDEN_MANUSCRIPT_SURFACE.finditer(
+                                    archive_text
+                                )
+                            }
+                        )
+                        if hits:
+                            archive_surface_hits[name] = hits
+                    if is_public_ancillary:
+                        hits = sorted(
+                            {
+                                match.group(0)
+                                for match in FORBIDDEN_PUBLIC_ANCILLARY_SURFACE.finditer(
+                                    archive_text
+                                )
+                            }
+                        )
+                        if hits:
+                            ancillary_surface_hits[name] = hits
+            actual_ancillary_files = {
+                name
+                for name in archive_names
+                if name.startswith("anc/") and not name.endswith("/")
+            }
             archive_integrity[key][f"{kind}_has_main_tex"] = "main.tex" in archive_names
             archive_integrity[key][f"{kind}_has_ancillary_license"] = "anc/LICENSE_CODE.txt" in archive_names
             archive_integrity[key][f"{kind}_reader_surface_clean"] = not archive_surface_hits
+            archive_integrity[key][f"{kind}_ancillary_inventory_exact"] = (
+                actual_ancillary_files == ANCILLARY_EXPECTED[key]
+            )
+            archive_integrity[key][f"{kind}_ancillary_surface_clean"] = (
+                not ancillary_surface_hits
+            )
+            archive_integrity[key][f"{kind}_has_no_compiled_cache"] = not any(
+                "__pycache__" in name or name.endswith(".pyc")
+                for name in archive_names
+            )
             if kind == "arxiv":
                 archive_integrity[key]["arxiv_excludes_editor_files"] = not any(
                     name in archive_names
@@ -273,15 +379,15 @@ def main() -> int:
     build_script = PAPERS / "build_five_submission_packages_v4.sh"
     checks["reproducible_build_script_executable"] = build_script.is_file() and os.access(build_script, os.X_OK)
 
-    checksum_file = PAPERS / "FIVE_PAPER_ARXIV_CHECKSUMS_V5.sha256"
+    checksum_file = PAPERS / "FIVE_PAPER_ARXIV_CHECKSUMS_V7.sha256"
     checksum_result = run(["sha256sum", "--check", str(checksum_file)]) if checksum_file.is_file() else None
-    checks["v5_checksums_present_and_match"] = checksum_result is not None and checksum_result.returncode == 0
+    checks["v7_checksums_present_and_match"] = checksum_result is not None and checksum_result.returncode == 0
     details["checksum_summary"] = (
         checksum_result.stdout.strip().splitlines() if checksum_result is not None else []
     )
 
     output = {
-        "schema": "orion.five-paper-mechanical-packages-v6.v1",
+        "schema": "orion.five-paper-mechanical-packages-v7.v1",
         "all_checks": all(checks.values()),
         "terminal_state": "MECHANICAL_PACKAGE_CHECKS_ONLY_NO_SCIENTIFIC_READINESS_AUTHORITY",
         "checks": checks,

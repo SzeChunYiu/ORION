@@ -15,7 +15,7 @@ proof tree carries it through every seed and rule cap. Unsupported cycles stay
 empty, added refutations can only remove licenses, and the retraction contains
 exactly the claim-license pairs that lose every untainted proof tree. Caps also
 prevent promotion: post-outcome repairs cannot regain prospective authority,
-and bounded computation cannot acquire theorem status merely because an
+and bounded computation cannot acquire a \(\textsf{THEOREM}\) license merely because an
 untyped conclusion remains reachable.
 
 A deterministic evaluator implements the semantics, while a JSON schema
@@ -40,7 +40,7 @@ An untyped dependency graph can preserve independent derivations, but it can
 still overpromote a surviving repair. If a post-outcome predictor becomes exact
 on the observed panel, it should not inherit prospective status merely because
 the old predictor and the repair share a conclusion string. Similarly, a
-bounded exact search should not acquire theorem authority by passing through a
+bounded exact search should not acquire a theorem-grade license by passing through a
 rule whose conclusion is a theorem-shaped sentence.
 
 We attach evidence licenses to the least fixed point of a positive rule graph.
@@ -122,8 +122,11 @@ stabilization and denote the result by
 Call an asynchronous evaluation *accumulating* if it initializes every
 unrefuted claim \(q\) with \(\sigma(q)\), initializes every refuted claim with
 the empty label, and thereafter only unions a nonempty rule transfer into an
-unrefuted rule head. It is *fair* if every rule that remains enabled is
-eventually fired.
+unrefuted rule head. A rule instance is *enabled* for a license \(\lambda\)
+when every body claim currently carries \(\lambda\), the rule cap contains
+\(\lambda\), the head is unrefuted, and the head does not yet carry
+\(\lambda\). It is *fair* if every enabled instance is eventually fired; after
+each label growth, all rule instances are reconsidered.
 
 **Theorem 1 (finite convergence and order independence).** Synchronous
 bottom-up iteration has at most \(|Q||\Lambda|\) changing rounds, followed by
@@ -231,8 +234,9 @@ scientific policy.
 
 ## 8. Bounded case encodings
 
-The following are synthetic fixtures used to test the typed semantics. No
-license or evidence object transfers between manuscript namespaces.
+The following are synthetic fixtures used to test the typed semantics. Each
+fixture is self-contained and supplies its own seeds, rules, caps, and
+refutations.
 
 ### 8.1 Forecast falsification
 
@@ -243,15 +247,15 @@ by a forecast-labeled seed set. A held-out synthetic result satisfies
 directly refuting the equality and its regime label. The construction and the
 independent support theorem retain their licenses.
 
-A repaired support-two forecast can carry theorem authority inherited from the
-independent theorem and post-outcome authority from its construction. Its repair
+A repaired support-two forecast can carry a theorem-grade license inherited from the
+independent theorem and a post-outcome license from its construction. Its repair
 cap excludes \(\textsf{PROSPECTIVE}\), so it cannot be counted as prospective
 confirmation. The old and repaired panels remain distinct evidence objects.
 
 ### 8.2 Decision survives value and witness falsifiers
 
-A separate compiler theorem gives a four-index certificate for unary
-optimality. Exact counterexamples show that complete pair information does not
+A second self-contained fixture seeds a four-index certificate for unary
+optimality. Its declared counterexamples show that complete pair information does not
 determine exact improvement or the presence of a triple block, and that all
 proper interaction marginals do not determine exact value.
 
@@ -262,16 +266,16 @@ theorem license for a decision query and no exact-value license.
 
 ### 8.3 A bounded support frontier does not decide an exact constant
 
-A finite-group record has analytic licenses for a width-one
+A third self-contained fixture assigns analytic licenses to a width-one
 generalized-Davenport corridor and a saturation-defect lemma. An exact bounded
-search excludes a specified length-31 obstruction through support 22, but its
-evidence contract labels the result as bounded computation awaiting external
-replay.
+search excludes a specified obstruction through a declared finite support
+frontier, but its evidence contract labels the result as bounded computation
+awaiting external replay.
 
 Any rule from that frontier to a support claim is capped by the same licenses.
 No proof tree carries \(\textsf{THEOREM}\) to either exact candidate value of
-the generalized Davenport constant or to the associated extremal-spectrum
-statement. Repeated implementations by the same research group do not become independent
+the generalized Davenport constant or to the associated extremal
+classification. Repeated implementations by the same research group do not become independent
 mathematical replication.
 
 ## 9. Relation to prior work

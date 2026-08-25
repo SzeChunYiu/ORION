@@ -1,20 +1,21 @@
-Dear Editors of ACM Transactions on Quantum Computing,
+Dear Editors,
 
-Please consider “Zero-Sum Deletion Certificates versus Intrinsic Support in
-Quantum Compilation” by Sze Chun Yiu.
+Please consider “Abstract Zero-Sum Deletion Complexity and Support-One
+Normalization in a Pauli Model” by Sze Chun Yiu.
 
 The article isolates an exact separation that matters when algebraic support
-certificates drive compiler search. A zero-sum deletion language is internally
-exact in both controls, yet it is tight for the one-Tag, three-block family and
-loose by a factor of five for the dependent-triple family because a whole-system
-Tag reconstruction uses an operation unavailable to the certificate language.
-Disjoint products amplify the additive separation.
+certificates drive model search. A zero-sum deletion language is internally
+exact, while a separately defined dependent-triple Pauli grammar admits a
+whole-system Tag reconstruction unavailable to that language. The manuscript
+does not identify the abstract five-letter terminal word with a production
+state; its factor-five number compares separately defined budgets. Disjoint
+products amplify that numerical comparison.
 The stated enumeration consequence is restricted to direct support enumeration;
 the paper makes no unrestricted algorithmic or complexity-class lower bound.
 
-The work is intended for TQC’s quantum-software and compilation readership: it
-connects a formal support certificate to concrete production compiler states and
-identifies the precise missing proof operation.
+The work is intended as a mathematical optimization and proof-language paper.
+Pauli compilers motivate the examples, but the theorem is not claimed for a
+production quantum compiler.
 
 Sincerely,
 
