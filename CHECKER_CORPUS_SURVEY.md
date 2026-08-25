@@ -144,7 +144,49 @@ was just produced rather than a stored one.
 the second checker declining to confirm, which is a result and is recorded as
 one.
 
-## Still unresolved
+## All nine, executed
+
+Every independent checker in the set now runs and returns a verdict.
+
+| independent checker | producer | terminal |
+|---|---|---|
+| `check_decoder_attacks_independent_v1.py` | `run_decoder_attacks_v1.py` | `P11_DECODER_ATTACK_V1_INDEPENDENT_GREEN` |
+| `check_donor_comparator_independent_v1.py` | `run_donor_compiler_comparator_v1.py` | `P11_DONOR_COMPARATOR_V1_INDEPENDENT_GREEN` |
+| `check_p12_robustness_independent_v1.py` | `run_p12_robustness_v1.py` | `P12_ROBUSTNESS_SECOND_CHECKER_GREEN` |
+| `check_transfer_allocation_independent_v1.py` | `run_transfer_allocation_v1.py` | `P12_TRANSFER_ALLOCATION_SECOND_INDEPENDENT_CHECKER_GREEN` |
+| `check_unified_resource_ledger_v1.py` | `build_unified_resource_ledger_v1.py` | `P9_UNIFIED_RESOURCE_LEDGER_SECOND_CHECKER_GREEN` |
+| `check_unified_resource_ledger_v2.py` | `build_unified_resource_ledger_v2.py` | `P9_UNIFIED_RESOURCE_LEDGER_SECOND_CHECKER_V2_GREEN` |
+| `check_attestation_composition_independent_v1.py` | `run_attestation_composition_v1.py` | `P15_ATTESTATION_COMPOSITION_SECOND_CHECKER_GREEN` |
+| `check_attestation_composition_independent_v2.py` | `run_attestation_composition_v2.py` | `P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN` |
+| `check_provenance_interop_independent_v1.py` | `run_provenance_interop_v1.py` | `P15_PROVENANCE_INTEROP_SECOND_INDEPENDENT_CHECKER_GREEN` |
+
+Nine green. One further checker,
+`check_query_family_phase_independent_v1.py`, returns
+`P11_QUERY_FAMILY_PHASE_SECOND_CHECKER_GATE_NOT_MET` — a second checker
+declining to confirm, recorded as the result it is.
+
+### What had actually blocked them
+
+Three things, none of them a defect in any checker:
+
+1. **Nobody connected runner to checker.** The subject JSON is stdout.
+2. **The producer is not always named `run_*`.** P9's is
+   `build_unified_resource_ledger_v1.py`, so a `ls run_*.py` search missed it
+   and reported "no runner exists".
+3. **An undeclared dependency.** `prov` is imported unguarded by both the P15
+   provenance runner and its independent checker, and was in no extra. The
+   checker failed with `ModuleNotFoundError` rather than a verdict, which
+   reads as a broken checker when the environment was simply never told what
+   it needs. Now declared as the `independent-checks` extra, folded into
+   `dev`.
+
+A fourth cause was mine: the scratch copy took `*.py *.json *.md` and not
+`*.jsonl`, so the P15 attestation runner could not find
+`sei_fault_cases_v1.jsonl`. Three of my own harness bugs produced false REDs
+across this investigation, each caught only by a case already verified by
+hand.
+
+## Previously unresolved
 
 - `check_unified_resource_ledger_v1.py` / `_v2.py` (P9) — no runner in
   `paper-09-.../top_tier` produces `p9_unified_resource_ledger_v1.json`. All

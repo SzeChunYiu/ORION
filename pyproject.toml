@@ -18,7 +18,7 @@ dependencies = [
 
 [project.optional-dependencies]
 # pytest-split shards the suite across CI runners; see .github/workflows/ci.yml.
-dev = ["pytest>=8", "pytest-split>=0.9", "pytest-xdist>=3.6", "orion-research-os[candidates]", "pytest-timeout>=2.3"]
+dev = ["pytest>=8", "pytest-split>=0.9", "pytest-xdist>=3.6", "orion-research-os[candidates]", "pytest-timeout>=2.3", "orion-research-os[independent-checks]"]
 plots = ["matplotlib>=3.10"]
 # The P9/P10 candidate lane re-derives phase 2A live in CI to prove the committed
 # result still reproduces. That needs numpy: the lane's framework package re-exports
@@ -30,6 +30,13 @@ candidates = ["numpy>=2", "scikit-learn>=1.5", "scipy>=1.11"]
 # silently skips them reports "no theorem failed" for "no theorem was checked" --
 # so the tests importorskip and say why, and this extra is how CI gets them.
 proofs = ["z3-solver>=4.13"]
+
+# run_provenance_interop_v1.py and its INDEPENDENT checker both do
+# `from prov.model import ProvDocument`, with no ImportError guard. Undeclared,
+# the independent P15 provenance check failed with ModuleNotFoundError instead
+# of returning a verdict -- which reads as "the checker is broken" when the
+# truth is "the environment was never told what it needs".
+independent-checks = ["prov>=2.0"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
