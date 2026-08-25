@@ -1,0 +1,75 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-P11-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {
+    "location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": ["OSTC-T16", "OSTC-T18"]
+  },
+  "frozen_before_outcomes": true,
+  "task": "Prospective state-width/decoder/responsibility/horizon phase diagram with full vector accounting.",
+
+  "what_each_theorem_asserts": {
+    "OSTC-T16": "For one-time compilation cost K, direct per-query cost d, compiled per-query cost c and horizon U, compilation dominates iff K+Uc<Ud. If d>c the least integer horizon is U*=floor(K/(d-c))+1. For vector resources dominance is Pareto or price-vector relative; no universal scalar crossover follows without prices.",
+    "OSTC-T18": "A state representation with partition Pi_Z is sufficient for responsibility r iff Pi_Z refines Pi_r. For a responsibility family R0 the coarsest jointly sufficient partition is the common refinement of the Pi_r. Safe reuse after r->r' holds iff the stored state still refines Pi_{r'} and the bridge is valid. Provenance freshness alone is neither necessary nor sufficient."
+  },
+
+  "code_identity": {
+    "runner": "research/orion-foundations-v3/exec/EXEC-P11-01/run_phase_diagram_v1.py",
+    "independent_checker": "research/orion-foundations-v3/exec/EXEC-P11-01/check_phase_diagram_independent_v1.py",
+    "checker_independence": "The checker does not import the runner. T16 is recomputed by direct search over horizons rather than by the closed form, so the closed form is checked against the thing it claims to compute. T18 is recomputed by explicit block containment rather than by partition-refinement predicate."
+  },
+  "data_identity": {"generated": true, "generator_seed": 20260825, "no_external_data": true},
+  "comparator_identity": {
+    "provenance_freshness_donor": "A donor that admits reuse whenever the stored state is fresh, ignoring partition refinement. T18 asserts freshness is neither necessary nor sufficient, so this donor must be observed to fail in BOTH directions -- admitting an unsafe reuse and refusing a safe one. A donor that only ever errs one way would mean the enumeration does not exercise the claim."
+  },
+  "information_and_tool_access": {"runner": "declared grid only; no network, no model calls", "checker": "raw manifest only"},
+  "resource_vector": {"compute": "single-process CPU enumeration", "wallclock_bound_seconds": 1800},
+
+  "independent_unit": "The (theorem, grid-cell) pair. Enumerated points inside a cell are exhaustive, not sampled, so no interval is computed and no multiplicity correction applies.",
+  "estimands": {
+    "T16_closed_form": "Over the full (K,d,c) grid with d>c: does floor(K/(d-c))+1 equal the least integer U at which K+Uc<Ud, with zero exceptions?",
+    "T16_no_scalar_crossover": "Over vector-resource cases: does a Pareto-incomparable pair exist for which no scalar crossover horizon is well defined, confirming that dominance requires prices?",
+    "T18_sufficiency": "Over all partition pairs: is (Pi_Z sufficient for r) exactly equivalent to (Pi_Z refines Pi_r), checked in both directions?",
+    "T18_coarsest": "Is the common refinement of a responsibility family the coarsest jointly sufficient partition -- sufficient, and no strictly coarser partition is?",
+    "T18_freshness": "Do both failure directions of the freshness donor occur: at least one fresh-but-insufficient state and at least one stale-but-sufficient state?"
+  },
+  "multiplicity": "No hypothesis test; estimands are universal/existence claims over total enumeration. Counts reported with denominators.",
+
+  "positive_terminal": "P11_PHASE_PREDICTIONS_SUPPORTED",
+  "positive_conditions": [
+    "T16 closed form matches the searched least horizon with zero exceptions over the whole grid",
+    "at least one Pareto-incomparable vector case exists with no scalar crossover",
+    "T18 sufficiency biconditional holds with zero exceptions in both directions",
+    "the common refinement is jointly sufficient and no strictly coarser partition is",
+    "the freshness donor fails in both directions"
+  ],
+  "negative_terminal": "P11_COMPILED_STATE_REGION_COLLAPSES",
+  "negative_conditions": [
+    "any grid point where the closed form disagrees with the searched least horizon",
+    "any partition pair where sufficiency and refinement come apart in either direction",
+    "a strictly coarser jointly sufficient partition than the common refinement",
+    "the compiled-dominant region is empty over the declared grid, which would make the phase law vacuous here"
+  ],
+  "cannot_check_terminal": "P11_RESOURCE_GRID_INCOMPLETE",
+  "cannot_check_conditions": ["the declared grid is not exhausted within the wallclock bound", "the independent checker cannot be run"],
+
+  "raw_output_schema": {
+    "file": "RAW_RESULT_MANIFEST.json",
+    "fields": {
+      "grid": "declared parameters, echoed",
+      "t16": "cells, closed_form_mismatches, compiled_dominant_cells, vector_pareto_incomparable, minimal_witness",
+      "t18": "pairs, sufficiency_violations, coarsest_violations, freshness_admits_unsafe, freshness_refuses_safe, minimal_witness",
+      "totals": "cells_enumerated, wallclock_seconds"
+    }
+  },
+  "checker_and_authority_owner": {
+    "checker": "check_phase_diagram_independent_v1.py",
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Two implementations inside one programme, written in one session. Not external adjudication; EXTERNAL_SCIENTIFIC_ADJUDICATION remains CANNOT_CHECK."
+  },
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem, move a gate, weaken the comparator, hide a negative, or rewrite theory after outcome access."
+}
