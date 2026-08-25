@@ -1,82 +1,68 @@
-# P2 vocabulary migration is incomplete (#1078)
+# P2 vocabulary migration (#1078) — RESOLVED
 
-**64 of 205 current test failures come from one cause.** Recorded here
-rather than fixed, because the remaining work is a design decision this
-lane should not make alone. The reasoning is below so the owner can make it
-quickly.
+**Status: resolved.** This file previously recorded the migration as blocked
+on a design decision. That assessment was wrong, and the record is kept
+rather than deleted because the error is the useful part.
 
-## What happened
+## What was claimed here
 
-PR #1078 landed a vocabulary refactor in `orion/study/p2`:
+That `consecutive_zero_novelty_before`, `open_obligation_ids` and
+`attempt_index` had *no source in the repository*, so completing the port
+meant deciding what opens an obligation in the P2 protocol — the study's
+scientific content, not a rename.
 
-| Old | New |
+## Why that was wrong
+
+The search stopped at `runner.py`. Two working implementations already
+existed:
+
+- `baselines.py` — computes all three, with the rationale written beside them
+- `arb_systems.py` — a second, independent site doing the same
+
+Nothing needed inventing. It needed reading.
+
+The semantics, taken verbatim from `baselines.py`:
+
+| field | rule |
 |---|---|
-| `RouteEvent` | `RouteTrial` |
-| `ReadEvent` | `ReadEncounter` |
-| `SystemTrace.route_events` | `SystemTrace.route_trials` |
-| `SystemTrace.read_events` | `SystemTrace.read_encounters` |
-| `SystemTrace.budget_exhausted` | `SystemTrace.truncated_at_cap` |
-| `Evaluation.gold_denominator` | (removed) |
+| `attempt_index` | counts per **route**; read before the call, incremented after |
+| `consecutive_zero_novelty_before` | advances only when a route **answered** and returned nothing new — a route that did not answer has said nothing about novelty either way |
+| `open_obligation_ids` | a non-OK transport opens `"<route>:<attempt>"`, because *"a provider that did not answer censors what it holds"* |
 
-It propagated the new `systems.py` and `gold.py`, but **not `runner.py` or
-the p2 test suite**. The old classes were later restored verbatim from
-`2a692316` so imports would resolve, and `systems.py` says so plainly:
+`repeat_index` came from the sweep's own docstring: *"Every task, every seed,
+in a fixed order. Repeats are nested, never pooled."* A repeat **is** a
+seed's position.
 
-> *Deprecated: superseded by `RouteTrial` in the vocabulary refactor landed
-> as #1078. Restored verbatim from 2a692316 (pre-landing main) because the
-> landing propagated the new `systems`/`gold` without migrating `runner.py`
-> or the p2 test suite, leaving imports of this name broken.*
+## What the chain actually contained
 
-Restoring the classes fixed the imports. It did not fix `SystemTrace`, which
-still accepts only the new field names. So `runner.py:469` constructs a trace
-the dataclass rejects:
+Each fix exposed the next, all the same refactor's residue:
+
+1. `SystemTrace(route_events=…)` — the deprecated types
+2. `caps.query_count` against a `Budget` that has `max_route_calls`
+3. `ProtectedGold` missing `gold_set_complete`
+4. `trace.resources.search_queries` where `ResourceUse` has `query_count`
+5. the candidate checker filtering a `"scope"` discriminator removed by the
+   split into `route_stop_audits` / `route_exhaustion_audits`
+
+## Result
+
+Measured on LUNARC against `main`, comparing failing **sets**:
 
 ```
-TypeError: SystemTrace.__init__() got an unexpected keyword argument 'route_events'   x58
-TypeError: Evaluation.__init__() got an unexpected keyword argument 'gold_denominator' x6
+tests/unit/p2:  81 failed / 607 passed  ->  62 failed / 626 passed
+fixed: 19    broken: 0
 ```
 
-## Why this is not a rename
+`check_p1_p5_native_embedding_v1.py`, which was failing `p6-p8-candidate-ci`,
+exits 0: `P1-P5 NATIVE EMBEDDING V1: PASS`.
 
-Most fields port directly:
+Both `KNOWN_OPEN` registries — in `test_p2_runner_constructions.py` and
+`test_dataclass_drift.py` — are now empty.
 
-| `RouteEvent` | `RouteTrial` |
-|---|---|
-| `index` | `index` |
-| `route` | `route_id` |
-| `probe` | `probe` |
-| `backend_identity` | `backend_identity` |
-| `query_derivation_identity` | `query_derivation_identity` |
-| `status` | `transport_status` |
+## The lesson worth keeping
 
-Three do not, and they are the reason this is blocked:
-
-- **`captures: tuple[Capture, ...]`** — the old record carried
-  `retrieved_doc_ids` and `retrieved_content_identities` as flat tuples. The
-  new one wants structured `Capture` objects. Pairing the flat tuples is a
-  guess about which identity belongs to which document.
-- **`attempt_index`** — the session tracks `_route_calls: dict[str, int]`,
-  so this is probably derivable, but whether an attempt counts per route or
-  per probe is a design question.
-- **`consecutive_zero_novelty_before`** and **`open_obligation_ids` /
-  `opened_obligation_id`** — the runner tracks neither. It has no concept of
-  an obligation at all: `obligation`, `attempt`, `zero_novelty` and
-  `Capture` appear three times in the entire file, none of them as state.
-
-## Why this was not fixed here
-
-Completing the migration means deciding what opens and closes an obligation
-in the P2 protocol, and how captures pair with identities. Those are the
-study's scientific content.
-
-Values invented to satisfy a constructor would flow through `evaluate()`
-into the P2 results, and they would look exactly like measurements. A test
-suite going green on fabricated obligation semantics is worse than one that
-stays red and says why.
-
-## What would resolve it
-
-The owner decides the three semantics above; the port is then mechanical.
-The 48 affected test files are already identified by the failure log, and
-`offline_mechanisms.py` (lines 58 and 94) reads `trace.route_events` and
-must move with the runner.
+A blocker asserted from a partial search is not a blocker. The claim "no
+source exists" requires a search whose **scope** was justified, not one that
+merely returned nothing — the same rule that applies to any absence claim.
+One `grep` across the package would have settled it before the record was
+written.
