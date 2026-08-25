@@ -1,0 +1,66 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-P12-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {"location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": ["OSTC-T17"]},
+  "frozen_before_outcomes": true,
+  "task": "Online allocation under price/shift uncertainty and optional certificate acquisition.",
+
+  "what_the_theorem_asserts": {
+    "OSTC-T17": "With a finite action set A, an exact per-case cost vector and an independently supplied objective, selecting the minimum feasible action has zero hindsight regret. If two cases share the same visible certificate but have different unique optimal actions, every certificate-only deterministic allocator incurs positive regret on at least one; under an equal prior its expected regret is at least half the smaller cross-action loss gap. This is the allocation analogue of T12 and explains why exact hidden charge certificates cannot be silently assumed available."
+  },
+
+  "code_identity": {
+    "runner": "run_allocation_regret_v1.py",
+    "independent_checker": "check_allocation_regret_independent_v1.py",
+    "checker_independence": "The checker does not import the runner. It recomputes the bound by exhaustive search over ALL deterministic certificate-only allocators rather than by the argmin construction, so the universally-quantified 'every allocator' is verified by enumeration rather than by an argument about one."
+  },
+  "data_identity": {"generated": true, "generator_seed": 20260825, "no_external_data": true},
+  "comparator_identity": {
+    "oracle_allocator": "Sees the exact per-case cost vector. Must achieve exactly zero hindsight regret; any positive regret is a defect in the harness, not a result.",
+    "certificate_only_allocator": "Sees only the visible certificate. On ambiguous pairs it must incur positive regret on at least one case -- this is the theorem's content, not a comparator loss."
+  },
+  "information_and_tool_access": {"runner": "declared grid only; no network, no model calls", "checker": "raw manifest only"},
+  "resource_vector": {"compute": "single-process CPU enumeration", "wallclock_bound_seconds": 1800},
+
+  "independent_unit": "The ambiguous certificate class. Cases inside a class are exhaustively enumerated, not sampled; no interval is computed.",
+  "estimands": {
+    "oracle_zero_regret": "Over every enumerated case: is the exact-cost allocator's hindsight regret exactly zero, with no exceptions?",
+    "every_allocator_pays": "Over every ambiguous certificate class, and over EVERY deterministic certificate-only allocator on that class: does each incur positive regret on at least one member? Universally quantified over allocators, not demonstrated on one.",
+    "half_gap_bound": "Under an equal prior, is the best achievable expected regret at least half the smaller cross-action loss gap, with zero violations?",
+    "bound_tightness": "Is the bound attained by some class, i.e. is it tight rather than merely valid? A bound never approached would be true but uninformative here."
+  },
+  "multiplicity": "No hypothesis test; universal and existence claims over total enumeration. Counts reported with denominators.",
+
+  "positive_terminal": "P12_VECTOR_METAREASONING_REGRET_BOUND_SUPPORTED",
+  "positive_conditions": [
+    "oracle allocator achieves exactly zero regret on every case",
+    "on every ambiguous class, every deterministic certificate-only allocator incurs positive regret on at least one member",
+    "best expected regret is >= half the smaller cross-action loss gap on every ambiguous class, zero violations",
+    "at least one class attains the bound, showing it is tight"
+  ],
+  "negative_terminal": "P12_ALLOCATOR_TRANSFER_OR_ROBUSTNESS_FAILS",
+  "negative_conditions": [
+    "any case where the exact-cost allocator has positive regret",
+    "any ambiguous class admitting a certificate-only allocator with zero regret on all members",
+    "any class where best expected regret falls below half the smaller gap",
+    "no ambiguous class exists in the enumerated grid, which would make the theorem vacuous here"
+  ],
+  "cannot_check_terminal": "P12_PUBLIC_OR_PROTECTED_CAMPAIGN_ABSENT",
+  "cannot_check_conditions": ["the declared grid is not exhausted within the wallclock bound", "the independent checker cannot be run"],
+
+  "raw_output_schema": {"file": "RAW_RESULT_MANIFEST.json",
+    "fields": {"grid": "echoed parameters",
+      "oracle": "cases, positive_regret_cases",
+      "ambiguity": "classes_found, allocators_per_class, classes_with_zero_regret_allocator",
+      "bound": "classes_checked, violations, tight_classes, minimal_witness",
+      "totals": "cases_enumerated, wallclock_seconds"}},
+  "checker_and_authority_owner": {"checker": "check_allocation_regret_independent_v1.py",
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Two implementations inside one programme; not external adjudication. EXTERNAL_SCIENTIFIC_ADJUDICATION remains CANNOT_CHECK."},
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem, move a gate, weaken a comparator, hide a negative, or rewrite theory after outcome access."
+}
