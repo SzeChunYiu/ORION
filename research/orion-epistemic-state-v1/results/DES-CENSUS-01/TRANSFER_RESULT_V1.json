@@ -1,0 +1,43 @@
+{
+  "claim_boundary": "mechanical frozen-rule transfer only",
+  "folds": {
+    "0": {
+      "classified": 38044,
+      "files": 2250,
+      "occurrences": 61277,
+      "unclassified": 23233
+    },
+    "1": {
+      "classified": 29738,
+      "files": 2329,
+      "occurrences": 52100,
+      "unclassified": 22362
+    },
+    "2": {
+      "classified": 45643,
+      "files": 2283,
+      "occurrences": 79659,
+      "unclassified": 34016
+    },
+    "3": {
+      "classified": 28840,
+      "files": 2252,
+      "occurrences": 47825,
+      "unclassified": 18985
+    },
+    "4": {
+      "classified": 52592,
+      "files": 2320,
+      "occurrences": 75981,
+      "unclassified": 23389
+    }
+  },
+  "held_out_classification_rate": 0.6921730432608152,
+  "held_out_fold": 4,
+  "job_id": "DES-CENSUS-01",
+  "retuning": "NONE",
+  "rules_frozen_before_outcome_access": true,
+  "schema": "orion.dynamic-epistemic-state.des-census.transfer.v1",
+  "split": "sha256(path) modulo 5; folds 0-3 development, fold 4 held out",
+  "terminal": "MECHANICAL_TRANSFER_RECONCILED"
+}
