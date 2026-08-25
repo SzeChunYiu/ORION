@@ -1,0 +1,22 @@
+P1_V8_CUSTODY_ROOTS
+label=ROOT type=directory mode=500 owner=scyiu group=hep links=3 bytes=33 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-gpu-visibility-v8-20260825
+label=RUN state=ABSENT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v8-20260825
+label=OUTPUT state=ABSENT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v8-20260825/evidence
+label=LOG type=directory mode=700 owner=scyiu group=hep links=2 bytes=10 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v8-20260825-submit-logs
+P1_V8_CUSTODY_FILES
+FILE state=PRESENT bytes=77 sha256=8230b7d0b95aa98e354f3e2c527fc2eb773dff4f18a99bfb05ae232f37524796 stat=55:612042605605:77:600:scyiu:1:1787638246 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v8-20260825-submit-logs/slurm-3538042.out
+FILE state=PRESENT bytes=0 sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 stat=55:612042605627:0:600:scyiu:1:1787638244 path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v8-20260825-submit-logs/slurm-3538042.err
+FILE state=ABSENT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v8-20260825/evidence/GPU_VISIBILITY_DIAGNOSTIC_RESULT_V1.json
+FILE state=ABSENT path=/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/live-gpu-visibility-v8-20260825/evidence/GPU_VISIBILITY_DIAGNOSTIC_CANNOT_CHECK_V1.json
+--- STDOUT BEGIN ---
+P1_SAB_GPU_VISIBILITY_DIAGNOSTIC_V1_PASS decision=VISIBLE_A40_IDENTITY_BOUND
+--- STDOUT END ---
+--- STDERR BEGIN ---
+--- STDERR END ---
+--- RECEIPT BEGIN ---
+--- RECEIPT END ---
+--- SACCT ---
+JobIDRaw|JobName|State|ExitCode|ElapsedRaw|NodeList|AllocTRES|Start|End
+3538042|p1_sab_gpu_visibility_v1|COMPLETED|0:0|3|cg15|billing=1,cpu=1,gres/gpu:a40=1,gres/gpu=1,mem=4G,node=1|2026-08-25T08:10:43|2026-08-25T08:10:46
+3538042.batch|batch|COMPLETED|0:0|3|cg15|cpu=1,gres/gpu:a40=1,gres/gpu=1,mem=4G,node=1|2026-08-25T08:10:43|2026-08-25T08:10:46
+3538042.extern|extern|COMPLETED|0:0|3|cg15|billing=1,cpu=1,gres/gpu:a40=1,gres/gpu=1,mem=4G,node=1|2026-08-25T08:10:43|2026-08-25T08:10:46
