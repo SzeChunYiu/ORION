@@ -1,0 +1,1031 @@
+{
+  "schema": "orion.discovery-v2.pareto-proof-frontier.v1",
+  "job_id": "DISC-PROOF-ECONOMY-01",
+  "class": "LOCAL_EXACT",
+  "authority": "finite exact only (integers and fractions.Fraction; no float constructed)",
+  "input_sha256": {
+    "KNOWLEDGE_WEB_V1.json": "29574263b6629734410c0c4e409ed1c7c09e721dbaf90960f7530b5582db12b0",
+    "SUPPORT_FAMILY_STATUS_V1.json": "a1f195ea9d2aadfef196a00464a4885abce3a21185ad3a2fdbb86a3463bd26f2"
+  },
+  "spec": "research/orion-discovery-v2/KNOWLEDGE_WEB_NAVIGATION_PROOF_ECONOMY_AND_SELF_APPLICATION_V1.md section 6 (branch codex/orion-discovery-v2-knowledge-web-20260825)",
+  "terminal": "BOUNDED_PROOF_ECONOMY_CORRESPONDENCE_GREEN",
+  "cannot_check_subclaims": [
+    {
+      "subclaim": "PRECONDITION_EMPTY_NOT_EXERCISED:EVIDENCE_CONTENT_IDENTIFIED",
+      "reason": "no option in the slice violates this hard precondition, so it cannot have caused any adequacy verdict here; its discriminating power is untested"
+    },
+    {
+      "subclaim": "PRECONDITION_EMPTY_NOT_EXERCISED:EXPERIMENT_CONTENT_IDENTIFIED",
+      "reason": "no option in the slice violates this hard precondition, so it cannot have caused any adequacy verdict here; its discriminating power is untested"
+    },
+    {
+      "subclaim": "SUPPORT_BINDING_TAMPER_EVIDENCE",
+      "reason": "support status is keyed on theorem ID, not on theorem content_sha256; theorem-content tampering is undetected (HC-05)"
+    }
+  ],
+  "headline_caveats": [
+    "Adequacy in this slice is decided by exactly one binding hard precondition (ROUTE_NOT_OBSTRUCTED); 2 of 3 declared hard preconditions have an empty violating stratum.",
+    "Census C: making INDEPENDENT_VALIDATOR_PRESENT hard drives adequate plans from 32 to 0. The slice registers no per-theorem authority requirement, so the adequate/inadequate split is contingent on that unregistered typing (HC-06).",
+    "2 of 5 declared cost components are ordering-redundant (a monotone function of another component over the full census): ['distinct_evidence_nodes', 'distinct_support_edges']. Pareto results are unaffected; the declared vector overstates the number of real axes.",
+    "obstructed_discharges is constant (0) over adequate plans by construction; it is live only across the full census."
+  ],
+  "ordering": {
+    "relation": "Pareto dominance on integer cost vectors",
+    "scalarization_used": false,
+    "components": [
+      "distinct_evidence_nodes",
+      "distinct_support_nodes",
+      "distinct_support_edges",
+      "obstructed_discharges",
+      "unvalidated_discharges"
+    ],
+    "live_components": [
+      "distinct_evidence_nodes",
+      "distinct_support_nodes",
+      "distinct_support_edges",
+      "unvalidated_discharges"
+    ]
+  },
+  "counts": {
+    "adequate_plans": 32,
+    "frontier": 5,
+    "dominated": 27
+  },
+  "frontier": [
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        9,
+        24,
+        28,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        9,
+        25,
+        29,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        28,
+        31,
+        0,
+        2
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        9,
+        25,
+        29,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        28,
+        31,
+        0,
+        2
+      ]
+    }
+  ],
+  "dominated": [
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        27,
+        30,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        9,
+        24,
+        28,
+        0,
+        5
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        27,
+        30,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        27,
+        30,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        30,
+        32,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        27,
+        30,
+        0,
+        5
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        30,
+        32,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        27,
+        30,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        30,
+        32,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        28,
+        31,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        31,
+        33,
+        0,
+        2
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        30,
+        32,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S1(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        12,
+        33,
+        34,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        27,
+        30,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        30,
+        32,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        27,
+        30,
+        0,
+        5
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        30,
+        32,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        30,
+        32,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        12,
+        33,
+        34,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        30,
+        32,
+        0,
+        5
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S1(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        12,
+        33,
+        34,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        27,
+        30,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S1(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        30,
+        32,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        10,
+        28,
+        31,
+        0,
+        3
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S1(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        31,
+        33,
+        0,
+        2
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S1(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        11,
+        30,
+        32,
+        0,
+        4
+      ]
+    },
+    {
+      "selection": [
+        "S2(THEORY:T10)",
+        "S2(THEORY:T11)",
+        "S1(THEORY:T12)",
+        "S2(THEORY:T13)",
+        "S2(THEORY:T14)",
+        "S1(THEORY:T15)",
+        "S1(THEORY:T16)",
+        "S1(THEORY:T17)",
+        "S2(THEORY:T18)",
+        "S1(THEORY:T20)",
+        "S2(THEORY:T22)",
+        "S1(THEORY:T8)",
+        "S1(THEORY:T9)"
+      ],
+      "cost_vector": [
+        12,
+        33,
+        34,
+        0,
+        3
+      ]
+    }
+  ],
+  "PE_T5_verification_errors": [],
+  "cost_component_ordering_redundancy": [
+    {
+      "redundant_component": "distinct_evidence_nodes",
+      "determined_by": "distinct_support_nodes",
+      "relation": "monotone non-decreasing function over the full census",
+      "map": {
+        "23": 8,
+        "24": 9,
+        "25": 9,
+        "26": 9,
+        "27": 10,
+        "28": 10,
+        "29": 10,
+        "30": 11,
+        "31": 11,
+        "32": 11,
+        "33": 12,
+        "34": 12,
+        "35": 12,
+        "36": 13,
+        "37": 13
+      },
+      "consequence": "cannot flip any Pareto comparison the determining component does not already decide"
+    },
+    {
+      "redundant_component": "distinct_support_edges",
+      "determined_by": "distinct_support_nodes",
+      "relation": "monotone non-decreasing function over the full census",
+      "map": {
+        "23": 28,
+        "24": 28,
+        "25": 29,
+        "26": 30,
+        "27": 30,
+        "28": 31,
+        "29": 32,
+        "30": 32,
+        "31": 33,
+        "32": 34,
+        "33": 34,
+        "34": 35,
+        "35": 36,
+        "36": 36,
+        "37": 37
+      },
+      "consequence": "cannot flip any Pareto comparison the determining component does not already decide"
+    }
+  ],
+  "reduced_axis_frontier_cross_check": {
+    "kept_components": [
+      "distinct_support_nodes",
+      "obstructed_discharges",
+      "unvalidated_discharges"
+    ],
+    "dropped_components": [
+      "distinct_evidence_nodes",
+      "distinct_support_edges"
+    ],
+    "frontier_identical": true,
+    "reduced_frontier_size": 5,
+    "full_frontier_size": 5,
+    "claim": "dropping an ordering-redundant component cannot change the Pareto frontier; a difference would refute the redundancy claim"
+  },
+  "distinct_frontier_cost_vectors": [
+    [
+      9,
+      24,
+      28,
+      0,
+      4
+    ],
+    [
+      9,
+      25,
+      29,
+      0,
+      3
+    ],
+    [
+      10,
+      28,
+      31,
+      0,
+      2
+    ]
+  ],
+  "PE_T1_incomparable_witness": {
+    "law": "PE-T1",
+    "plan_a": [
+      "S1(THEORY:T10)",
+      "S1(THEORY:T11)",
+      "S1(THEORY:T12)",
+      "S1(THEORY:T13)",
+      "S2(THEORY:T14)",
+      "S1(THEORY:T15)",
+      "S1(THEORY:T16)",
+      "S1(THEORY:T17)",
+      "S1(THEORY:T18)",
+      "S1(THEORY:T20)",
+      "S1(THEORY:T22)",
+      "S1(THEORY:T8)",
+      "S1(THEORY:T9)"
+    ],
+    "cost_a": [
+      9,
+      24,
+      28,
+      0,
+      4
+    ],
+    "plan_b": [
+      "S1(THEORY:T10)",
+      "S2(THEORY:T11)",
+      "S1(THEORY:T12)",
+      "S1(THEORY:T13)",
+      "S2(THEORY:T14)",
+      "S1(THEORY:T15)",
+      "S1(THEORY:T16)",
+      "S1(THEORY:T17)",
+      "S1(THEORY:T18)",
+      "S1(THEORY:T20)",
+      "S1(THEORY:T22)",
+      "S1(THEORY:T8)",
+      "S1(THEORY:T9)"
+    ],
+    "cost_b": [
+      9,
+      25,
+      29,
+      0,
+      3
+    ],
+    "conclusion": "NO_UNIQUE_CHEAPEST_WITHOUT_PREFERENCES"
+  },
+  "scalarization_reachability": [
+    {
+      "cost_vector": [
+        9,
+        24,
+        28,
+        0,
+        4
+      ],
+      "inside_convex_hull_of_other_frontier_costs": false,
+      "checked_completely": true,
+      "reduced_axes": [
+        "distinct_support_nodes",
+        "unvalidated_discharges"
+      ],
+      "reduced_axis_cost": [
+        24,
+        4
+      ],
+      "inside_hull_on_reduced_axes": false,
+      "reduced_checked_completely": true,
+      "meaning": "supported point (some positive weighting selects it)"
+    },
+    {
+      "cost_vector": [
+        9,
+        25,
+        29,
+        0,
+        3
+      ],
+      "inside_convex_hull_of_other_frontier_costs": false,
+      "checked_completely": true,
+      "reduced_axes": [
+        "distinct_support_nodes",
+        "unvalidated_discharges"
+      ],
+      "reduced_axis_cost": [
+        25,
+        3
+      ],
+      "inside_hull_on_reduced_axes": false,
+      "reduced_checked_completely": true,
+      "meaning": "supported point (some positive weighting selects it)"
+    },
+    {
+      "cost_vector": [
+        10,
+        28,
+        31,
+        0,
+        2
+      ],
+      "inside_convex_hull_of_other_frontier_costs": false,
+      "checked_completely": true,
+      "reduced_axes": [
+        "distinct_support_nodes",
+        "unvalidated_discharges"
+      ],
+      "reduced_axis_cost": [
+        28,
+        2
+      ],
+      "inside_hull_on_reduced_axes": false,
+      "reduced_checked_completely": true,
+      "meaning": "supported point (some positive weighting selects it)"
+    }
+  ],
+  "scalarization_probe_complete": true,
+  "terminal_for_frontier": "PROOF_PLAN_PARETO_SET_RETURNED"
+}
