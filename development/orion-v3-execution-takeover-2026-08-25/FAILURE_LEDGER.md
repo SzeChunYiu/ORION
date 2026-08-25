@@ -34,3 +34,12 @@
 
 **Correct response:** Preserve the exact logs, group failures by earliest shared boundary, reproduce one group at a time, and add a regression test before each correction.
 
+## F-004 — LUNARC private environment was resolved against global `PYTHONPATH`
+
+**Observed:** Engineering reference job `3539804` (`V3-ENGINEERING-REFERENCE-01`) failed on `cx04` after 19 seconds with exit `1:0`. Frozen-protocol validation, the V3 structural checker, and the 13-job takeover-manifest checker completed before hostile-test collection failed with `ModuleNotFoundError: No module named 'pygments'`.
+
+**Root cause:** LUNARC exported a global Jupyter/Python package path while the runner installed its private environment. Pip saw packages on that inherited `PYTHONPATH` and treated some dependencies as satisfied outside the private environment. A post-failure private-only probe contains `pytest==9.1.1` and `cryptography==50.0.0` but cannot import `pygments` or `defusedxml`. The runtime then intentionally set `PYTHONPATH=source/src`, making the resolver/runtime environment mismatch terminal.
+
+**Correct response:** Preserve job `3539804` as failed. Create a separately named and content-addressed successor whose runner hash is bound into the protocol, clears `PYTHONPATH` for every private-environment installation and dependency probe, and self-checks its runner bytes before executing any repository check.
+
+**Authority boundary:** No scientific job or outcome ran. This is engineering evidence only; external novelty remains `CANNOT_CHECK`, and paper authority changes by `NONE`.

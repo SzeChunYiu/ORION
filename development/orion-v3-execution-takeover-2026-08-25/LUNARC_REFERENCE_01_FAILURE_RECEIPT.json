@@ -1,0 +1,63 @@
+{
+  "authority_ceiling": "ENGINEERING_REFERENCE_CHECK_ONLY",
+  "checks_completed_before_failure": [
+    "frozen_protocol_hash",
+    "discovery_v3_structure",
+    "execution_takeover_manifest"
+  ],
+  "environment_identity_status": "PARTIAL_POST_FAILURE_PROBE_ONLY",
+  "evidence": {
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-01/EXECUTION_PROTOCOL.json": {
+      "bytes": 930,
+      "sha256": "d58fc47c0f8eb1a5013f4a9328895275242839597f0bc42a26233f50b55470b3"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-01/PACKAGE_IDENTITY.json": {
+      "bytes": 339,
+      "sha256": "a175986a657458ae4a025ddc0f0bbd8f665b767d465de0f4ef0983b727962648"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-01/SUBMISSION.json": {
+      "bytes": 283,
+      "sha256": "07cef2d413381106076c78dc6be755725a8207bd764afdb37d190199c60c1673"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-01/post-failure-environment-probe.txt": {
+      "bytes": 2596,
+      "sha256": "6b98d0796ac56c5006bff37441826299319db539c5cadd01d9b4294de3930615"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-01/reference-3539804.err": {
+      "bytes": 1550,
+      "sha256": "61e454a669aef3b7264bfa4f96b590e35adeabcb1041e66fc7d6c170e2b3f122"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-01/reference-3539804.out": {
+      "bytes": 168,
+      "sha256": "8d0e9c1b6bf3d7d10f78483dc86108e7eeca7fda06abd8ed96ee9d74184a9dbd"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-01/run_reference.sh": {
+      "bytes": 2891,
+      "sha256": "88ce3a818a2a5d5d64fcbfa4767d29b514f84326b8d49553024ab0d20483593e"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-01/sacct-3539804.txt": {
+      "bytes": 399,
+      "sha256": "334443e6354afea9d07b9c0018debcb4d8371ffefcc8642772f79caccad199ed"
+    }
+  },
+  "exit_code": "1:0",
+  "failed_boundary": "focused hostile-test collection",
+  "failure": "ModuleNotFoundError: No module named 'pygments'",
+  "job_id": "V3-ENGINEERING-REFERENCE-01",
+  "paper_authority_delta": "NONE",
+  "protocol_sha256": "19ae6ed17d71d5d17134ff6ed2e54acc0e324d06546a4fc078460251de8307fe",
+  "recorded_at": "2026-08-25T15:32:27Z",
+  "remote_directory": "/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a",
+  "root_cause": "The inherited LUNARC PYTHONPATH exposed global packages to pip's resolver. Pip therefore omitted dependencies it considered globally satisfied, but the runtime narrowed PYTHONPATH to source/src, leaving the private environment without pygments and defusedxml.",
+  "scheduler_job_id": "3539804",
+  "scheduler_state": "FAILED",
+  "scientific_outcome": "NOT_STARTED",
+  "source_archive": {
+    "bytes": 2117016,
+    "sha256": "0addcd1084764908f67408b811847a0e311fa376951f724e61ed5cd4bc6fd65d"
+  },
+  "source_git_sha": "4a2f1d5d5f565687b14140cbefec040b5edc5804",
+  "submission_key": "40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a",
+  "terminal": "ENGINEERING_REFERENCE_CHECK_ONLY_FAILED",
+  "wall_time": "00:00:19"
+}

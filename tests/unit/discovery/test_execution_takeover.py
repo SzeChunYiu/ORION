@@ -87,7 +87,10 @@ def _engineering_protocol() -> dict:
         "source_git_sha": "5f4a83dceffbc783e0df946b22378524b123ec7e",
         "authority_ceiling": "ENGINEERING_REFERENCE_CHECK_ONLY",
         "paper_authority_delta": "NONE",
-        "inputs": {"commands": ["check", "hostile", "census", "compile"]},
+        "inputs": {
+            "commands": ["check", "hostile", "census", "compile"],
+            "runner_sha256": "a" * 64,
+        },
         "resource_vector": {"nodes": 1, "cpus": 2, "memory_mb": 4096, "minutes": 10},
         "matched_contract": {"environment": "pinned", "outcomes_accessed": False},
     }
@@ -112,6 +115,19 @@ def test_protocol_freeze_rejects_outcome_bearing_inputs() -> None:
     protocol["inputs"]["observed_results"] = ["winner=A"]
 
     with pytest.raises(api.ManifestError, match="outcome-bearing key"):
+        api.freeze_protocol(protocol)
+
+
+@pytest.mark.parametrize("runner_hash", [None, "A" * 64, "a" * 63, "g" * 64])
+def test_protocol_freeze_requires_content_bound_runner(runner_hash: str | None) -> None:
+    api = _takeover_api()
+    protocol = _engineering_protocol()
+    if runner_hash is None:
+        del protocol["inputs"]["runner_sha256"]
+    else:
+        protocol["inputs"]["runner_sha256"] = runner_hash
+
+    with pytest.raises(api.ManifestError, match="runner_sha256"):
         api.freeze_protocol(protocol)
 
 

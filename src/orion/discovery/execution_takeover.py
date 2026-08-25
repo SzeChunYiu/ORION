@@ -187,6 +187,13 @@ def freeze_protocol(protocol: Mapping[str, Any]) -> dict[str, Any]:
     )
     _require(protocol.get("paper_authority_delta") == "NONE", "execution cannot grant paper authority")
     _require(bool(protocol.get("authority_ceiling")), "protocol authority ceiling is required")
+    inputs = protocol.get("inputs")
+    _require(isinstance(inputs, Mapping), "protocol inputs are required")
+    runner_sha256 = inputs.get("runner_sha256")
+    _require(
+        isinstance(runner_sha256, str) and bool(re.fullmatch(r"[0-9a-f]{64}", runner_sha256)),
+        "protocol inputs.runner_sha256 must be a full lowercase SHA-256 identity",
+    )
 
     resources = protocol.get("resource_vector")
     required_resources = {"nodes", "cpus", "memory_mb", "minutes"}
