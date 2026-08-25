@@ -1,0 +1,188 @@
+{
+  "schema": "orion.discovery-v2.execution-backlog.v1",
+  "identity": "research/orion-discovery-v2@V1",
+  "paper_authority_delta_default": "NONE",
+  "jobs": [
+    {
+      "job_id": "DISC-WEB-01",
+      "class": "LOCAL_REPOSITORY_AUDIT",
+      "title": "Populate a typed knowledge web and alternative support families for a bounded ORION research slice",
+      "depends_on": [],
+      "required_outputs": [
+        "KNOWLEDGE_WEB_V1.json",
+        "SUPPORT_FAMILY_STATUS_V1.json",
+        "MISSING_INGREDIENT_ATLAS.md",
+        "THEOREM_IDENTIFYING_HARNESS_RECEIPT.json"
+      ],
+      "positive_terminal": "REGISTERED_KNOWLEDGE_WEB_AND_SUPPORT_FAMILIES_GREEN",
+      "negative_terminal": "SUPPORT_MODEL_INCOMPLETE_OR_CIRCULAR",
+      "cannot_check_terminal": "KNOWLEDGE_IDENTITY_OR_SCOPE_CANNOT_CHECK",
+      "gate": "all load-bearing ingredients and alternative support families are content-identified and non-circular",
+      "authority": "repository/reference model only"
+    },
+    {
+      "job_id": "DISC-PROOF-ECONOMY-01",
+      "class": "LOCAL_EXACT",
+      "title": "Exact bounded proof-economy correspondence and hostile precondition exercise",
+      "depends_on": [
+        "DISC-WEB-01"
+      ],
+      "required_outputs": [
+        "PROOF_OBLIGATION_REGISTER.json",
+        "ADEQUATE_PLAN_CENSUS.json",
+        "PARETO_PROOF_FRONTIER.json",
+        "COUNTEREXAMPLE_ECONOMY_CASES.json"
+      ],
+      "positive_terminal": "BOUNDED_PROOF_ECONOMY_CORRESPONDENCE_GREEN",
+      "negative_terminal": "PARETO_OR_ADEQUACY_LAW_COUNTEREXAMPLE",
+      "cannot_check_terminal": "PROOF_OPTION_SPACE_TOO_LARGE_OR_UNBOUND",
+      "gate": "every plan discharges exact obligations with attained preconditions; no implicit scalarization",
+      "authority": "finite exact only"
+    },
+    {
+      "job_id": "DISC-IMPACT-01",
+      "class": "LOCAL_REPOSITORY_AUDIT",
+      "title": "Change-impact audit across theory, code, harness, papers, authority, issues, and manifests",
+      "depends_on": [
+        "DISC-WEB-01"
+      ],
+      "required_outputs": [
+        "CHANGE_IMPACT_GRAPH_V1.json",
+        "per-change CHANGE_IMPACT_RECEIPT_V1.json",
+        "SYNC_OBLIGATION_MATRIX.md",
+        "DRIFT_AND_BINDING_BOUNDARY.md"
+      ],
+      "positive_terminal": "REGISTERED_CHANGE_IMPACT_AND_SYNC_CLOSURE_GREEN",
+      "negative_terminal": "UNTRACKED_SEMANTIC_IMPACT_OR_AUTHORITY_DRIFT",
+      "cannot_check_terminal": "IMPACT_IDENTITY_CANNOT_CHECK",
+      "gate": "all registered reopen edges produce exact successor obligations; claim updates remain authority-gated",
+      "authority": "repository synchronization only"
+    },
+    {
+      "job_id": "DISC-Q-TRANSFER-01",
+      "class": "EXACT_CROSS_DOMAIN_TRANSFER",
+      "title": "ORION-Q structural navigation transfer under target-native validation and matched resources",
+      "depends_on": [
+        "DISC-WEB-01",
+        "DISC-PROOF-ECONOMY-01"
+      ],
+      "required_outputs": [
+        "Q_TRANSFER_CONTRACT_V1.json",
+        "RELATIONAL_CORRESPONDENCE_WITNESS.json",
+        "TARGET_NATIVE_VALIDATION_RECEIPT.json",
+        "MATCHED_RESOURCE_RECEIPT.json",
+        "DONOR_FIRST_REFUSAL.md"
+      ],
+      "positive_terminal": "ORION_Q_STRUCTURAL_METHOD_TRANSFER_SUPPORTED",
+      "negative_terminal": "SURFACE_ANALOGY_OR_RESOURCE_ADVANTAGE_ONLY",
+      "cannot_check_terminal": "TARGET_VALIDATOR_OR_CORRESPONDENCE_CANNOT_CHECK",
+      "gate": "target result survives donor subtraction and matched vector resource accounting",
+      "authority": "target-domain result only; no quantum authority transfer"
+    },
+    {
+      "job_id": "DISC-SELF-01",
+      "class": "PROSPECTIVE_PROTECTED_SELF_STUDY",
+      "title": "Apply frozen ORION to a frozen ORION deficiency without self-evaluation or self-adoption",
+      "depends_on": [
+        "DISC-WEB-01",
+        "DISC-PROOF-ECONOMY-01",
+        "DISC-IMPACT-01"
+      ],
+      "required_outputs": [
+        "SELF_APPLICATION_CONTRACT_V1.json",
+        "PROPOSAL_ORIGIN_V1.json",
+        "OLD_CLOSURE_CERTIFICATE.json",
+        "HIDDEN_CONSEQUENCE_RECEIPT.json",
+        "EXTERNAL_ADOPTION_DISPOSITION.json",
+        "CHANGE_IMPACT_RECEIPT_V1.json"
+      ],
+      "positive_terminal": "ORION_SELF_STUDY_PROTECTED_VALUE_SUPPORTED",
+      "negative_terminal": "NO_IMPROVEMENT_DONOR_SUFFICIENT_OR_OVERCONSERVATIVE",
+      "cannot_check_terminal": "SELF_STUDY_EVALUATOR_OR_ADOPTER_CANNOT_CHECK",
+      "gate": "proposal, evaluator, and adopter principals are pairwise distinct",
+      "authority": "external evaluator/adopter required"
+    },
+    {
+      "job_id": "DISC-HUMAN-DECOMP-01",
+      "class": "CHRONOLOGY_SAFE_HISTORICAL_AND_CONTROLLED",
+      "title": "Compare six-space decomposition against dual-space, four-space, analogy, mechanism, insight, and C-K parents",
+      "depends_on": [
+        "DISC-WEB-01"
+      ],
+      "required_outputs": [
+        "EPISODE_AND_CONTROL_MANIFEST.json",
+        "MODEL_CHRONOLOGY_RECEIPTS",
+        "DECOMPOSITION_EQUIVALENCE_MATRIX.json",
+        "FALSE_CERTAINTY_AND_OPEN_MOVE_COUNTS.json"
+      ],
+      "positive_terminal": "SIX_SPACE_DECOMPOSITION_INCREMENTAL_VALUE_SUPPORTED",
+      "negative_terminal": "DONOR_DECOMPOSITIONS_SUFFICIENT_OR_MODEL_CONTAMINATION",
+      "cannot_check_terminal": "HISTORICAL_COGNITIVE_INFERENCE_CANNOT_CHECK",
+      "gate": "private cognition is never inferred; matched controls and counterfactual twins are included",
+      "authority": "historical mechanism only"
+    },
+    {
+      "job_id": "DISC-OOD-MORPH-01",
+      "class": "GENERATED_COUNTERFACTUAL",
+      "title": "Test open-morphology handling on worlds whose useful move is outside the registered basis",
+      "depends_on": [
+        "DISC-WEB-01",
+        "DISC-HUMAN-DECOMP-01"
+      ],
+      "required_outputs": [
+        "OPEN_MOVE_CLASS_GENERATOR.json",
+        "GENERATOR_LEAKAGE_CHECKER.json",
+        "REGISTERED_BASIS_FAILURES.json",
+        "SUCCESSOR_MOVE_OR_CANNOT_CHECK_RECEIPTS.json"
+      ],
+      "positive_terminal": "OPEN_MORPHOLOGY_RECOVERY_SUPPORTED",
+      "negative_terminal": "FIXED_BASIS_FALSE_CERTAINTY_OR_GENERATOR_LEAKAGE",
+      "cannot_check_terminal": "COUNTERFACTUAL_REALISM_CANNOT_CHECK",
+      "gate": "the generator does not encode the missing move in labels, metadata, or evaluator hints",
+      "authority": "generated-world mechanism only"
+    },
+    {
+      "job_id": "DISC-WEB-FRONTIER-MATH-01",
+      "class": "PROSPECTIVE_FRONTIER_ESCROW",
+      "title": "Prospective exact-domain discovery with knowledge-web and proof-economy receipts",
+      "depends_on": [
+        "DISC-WEB-01",
+        "DISC-PROOF-ECONOMY-01",
+        "DISC-Q-TRANSFER-01",
+        "DISC-OOD-MORPH-01"
+      ],
+      "required_outputs": [
+        "FRONTIER_ESCROW_V1.json",
+        "KNOWLEDGE_WEB_SNAPSHOT.json",
+        "PROPOSAL_ORIGIN_V1.json",
+        "PARETO_PROOF_PLAN.json",
+        "HIDDEN_PROOF_OR_COUNTEREXAMPLE",
+        "DONOR_SUBTRACTION.json"
+      ],
+      "positive_terminal": "PROSPECTIVE_KNOWLEDGE_WEB_DISCOVERY_RESIDUAL_VALIDATED",
+      "negative_terminal": "DONOR_COMPOSITION_SUFFICIENT_OR_FALSE_DISCOVERY",
+      "cannot_check_terminal": "EXTERNAL_ESCROW_OR_VALIDITY_CANNOT_CHECK",
+      "gate": "no solution or target-oracle access before proposal and proof-plan sealing",
+      "authority": "validity external; novelty separate"
+    },
+    {
+      "job_id": "DISC-NOV-02",
+      "class": "EXTERNAL_NOVELTY",
+      "title": "Independent novelty review of the knowledge-web, proof-economy, transfer, and self-application residual",
+      "depends_on": [
+        "DISC-WEB-FRONTIER-MATH-01"
+      ],
+      "required_outputs": [
+        "ATOMIC_NOVELTY_CERTIFICATES",
+        "DONOR_OWNERSHIP_MATRIX.json",
+        "STRUCK_OR_NARROWED_CLAIMS.md",
+        "EXTERNAL_REVIEWER_RECORD.json"
+      ],
+      "positive_terminal": "DISCOVERY_V2_ATOMIC_RESIDUAL_NOVELTY_EXTERNALLY_SUPPORTED",
+      "negative_terminal": "DONOR_SUBSUMED_OR_NOVELTY_NARROWED",
+      "cannot_check_terminal": "EXTERNAL_NOVELTY_CANNOT_CHECK",
+      "gate": "same-programme search or model score cannot authorize novelty",
+      "authority": "external only"
+    }
+  ]
+}
