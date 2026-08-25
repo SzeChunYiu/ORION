@@ -29,6 +29,10 @@ jobs:
           base64 -d /tmp/payload.b64 > /tmp/payload.tar.gz
           test "$(sha256sum /tmp/payload.tar.gz | awk '{print $1}')" = "$(cat "$root/PAYLOAD_TGZ_SHA256")"
           tar -xzf /tmp/payload.tar.gz
+          find research/orion-discovery-v1 \
+               development/orion-discovery-three-mode-v1-2026-08-25 \
+               -type f -name '*.md' -print0 \
+            | xargs -0 -r sed -i 's/[[:space:]]\+$//'
           rm -rf "$root" .github/workflows/orion-discovery-synthesis-bootstrap.yml
           git config user.name "ORION discovery synthesis bootstrap"
           git config user.email "actions@users.noreply.github.com"
