@@ -1,0 +1,43 @@
+{
+  "adverse_and_null_retention": {
+    "primary_harmful_topics": 33,
+    "primary_tied_topics": 3,
+    "rows_retained": 400,
+    "structural_jump_harmful_topics_vs_local": 0,
+    "structural_jump_tied_topics_vs_local": 50
+  },
+  "job_id": "P2-DES-01",
+  "label_leakage_probe": {
+    "external_independence": false,
+    "forbidden_policy_visible_keys_found": [],
+    "qrels_loaded_after_pre_score_artifact_sha256": "7e2baa19a82c51eaec6dd8fcb8f05b93fb662b8cd6d599fbd012dcbf27b80cdb",
+    "status": "PASS_INTERNAL_CONFORMANCE"
+  },
+  "local_saturation_stop": {
+    "declared_task_closures": 0,
+    "harmful_topics_vs_local_multiform_rrf": 0,
+    "mean_calibrated_unresolvedness_brier": 0.054875302746342405,
+    "mean_judged_fraction_at_returned_depth": 0.7787999999999999,
+    "mean_ndcg_at_10": 0.6598772093241463,
+    "mean_qrels_bounded_residual_fraction": 0.8795588282954508,
+    "mean_recall_at_100_budget": 0.12044117170454913,
+    "mean_relevant_yield_per_100_reads": 53.06,
+    "premature_task_closures": 0,
+    "tied_topics_vs_local_multiform_rrf": 50,
+    "topic_rows": 50
+  },
+  "random_remote": {
+    "declared_task_closures": 0,
+    "harmful_topics_vs_local_multiform_rrf": 0,
+    "mean_calibrated_unresolvedness_brier": 0.054875302746342405,
+    "mean_judged_fraction_at_returned_depth": 0.7787999999999999,
+    "mean_ndcg_at_10": 0.6598772093241463,
+    "mean_qrels_bounded_residual_fraction": 0.8795588282954508,
+    "mean_recall_at_100_budget": 0.12044117170454913,
+    "mean_relevant_yield_per_100_reads": 53.06,
+    "premature_task_closures": 0,
+    "tied_topics_vs_local_multiform_rrf": 50,
+    "topic_rows": 50
+  },
+  "schema": "orion.p2-des-01.negative-controls.v1"
+}

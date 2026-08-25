@@ -1,0 +1,15 @@
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+Traceback (most recent call last):
+  File "/local/slurmtmp.3539863/scyiu/p2-des-01-3539863/source/run_p2_des_01.py", line 943, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/local/slurmtmp.3539863/scyiu/p2-des-01-3539863/source/run_p2_des_01.py", line 675, in main
+    policy_outputs = generate_policy_outputs(index, topics)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/local/slurmtmp.3539863/scyiu/p2-des-01-3539863/source/run_p2_des_01.py", line 438, in generate_policy_outputs
+    "qrels_opened": false,
+                    ^^^^^
+NameError: name 'false' is not defined. Did you mean: 'False'?
