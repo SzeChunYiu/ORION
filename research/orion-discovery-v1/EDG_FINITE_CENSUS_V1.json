@@ -1,0 +1,225 @@
+{
+  "authority": {
+    "external_proof_review": "CANNOT_CHECK",
+    "finite_exact_only": true,
+    "naturalistic_transfer": "CANNOT_CHECK",
+    "paper_claim_delta": "NONE"
+  },
+  "interpretation": [
+    "zero deterministic minimax regret iff a common fibre optimum exists",
+    "uniform Bayes regret equals the exact fibrewise envelope",
+    "two-action tables admit no third-action hedge",
+    "hedge actions are rare but real once the action set has at least three actions",
+    "information refinement never increased optimal Bayes regret in the complete registered scope"
+  ],
+  "partition_refinement": {
+    "comparisons": 49152,
+    "equalities": 39720,
+    "loss_tables": 4096,
+    "n_actions": 2,
+    "n_states": 3,
+    "partition_count": 5,
+    "refinement_pair_count": 12,
+    "strict_improvements": 9432,
+    "violations": 0
+  },
+  "schema": "orion.discovery.edg-finite-census.v1",
+  "scope": {
+    "loss_values": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "partition_refinement_scope": [
+      3,
+      2
+    ],
+    "probability": "uniform for Bayes correspondence",
+    "state_action_scopes": [
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ]
+  },
+  "scope_results": [
+    {
+      "common_minimax_correspondence_violations": 0,
+      "common_optimum_tables": 184,
+      "first_hedge_witness": null,
+      "hedge_gain_histogram": {
+        "0": 72
+      },
+      "hedge_identity_violations": 0,
+      "hedge_present_tables": 0,
+      "loss_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_actions": 2,
+      "n_states": 2,
+      "no_hedge_tables": 72,
+      "tables": 256,
+      "uniform_bayes_correspondence_violations": 0,
+      "unique_distinct_optima_tables": 72,
+      "zero_minimax_regret_tables": 184
+    },
+    {
+      "common_minimax_correspondence_violations": 0,
+      "common_optimum_tables": 2416,
+      "first_hedge_witness": {
+        "best_action": 1,
+        "cross_action_gap": 3.0,
+        "exact_equal_prior_regret": 1.0,
+        "half_gap_value": 1.5,
+        "hedge_gain": 1.0,
+        "losses": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            3,
+            1,
+            0
+          ]
+        ]
+      },
+      "hedge_gain_histogram": {
+        "0": 1170,
+        "1": 6
+      },
+      "hedge_identity_violations": 0,
+      "hedge_present_tables": 6,
+      "loss_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_actions": 3,
+      "n_states": 2,
+      "no_hedge_tables": 1170,
+      "tables": 4096,
+      "uniform_bayes_correspondence_violations": 0,
+      "unique_distinct_optima_tables": 1176,
+      "zero_minimax_regret_tables": 2416
+    },
+    {
+      "common_minimax_correspondence_violations": 0,
+      "common_optimum_tables": 34984,
+      "first_hedge_witness": {
+        "best_action": 1,
+        "cross_action_gap": 3.0,
+        "exact_equal_prior_regret": 1.0,
+        "half_gap_value": 1.5,
+        "hedge_gain": 1.0,
+        "losses": [
+          [
+            0,
+            1,
+            1,
+            3
+          ],
+          [
+            3,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "hedge_gain_histogram": {
+        "0": 15348,
+        "1": 204
+      },
+      "hedge_identity_violations": 0,
+      "hedge_present_tables": 204,
+      "loss_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_actions": 4,
+      "n_states": 2,
+      "no_hedge_tables": 15348,
+      "tables": 65536,
+      "uniform_bayes_correspondence_violations": 0,
+      "unique_distinct_optima_tables": 15552,
+      "zero_minimax_regret_tables": 34984
+    },
+    {
+      "common_minimax_correspondence_violations": 0,
+      "common_optimum_tables": 1936,
+      "first_hedge_witness": null,
+      "hedge_gain_histogram": {},
+      "hedge_identity_violations": 0,
+      "hedge_present_tables": 0,
+      "loss_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_actions": 2,
+      "n_states": 3,
+      "no_hedge_tables": 0,
+      "tables": 4096,
+      "uniform_bayes_correspondence_violations": 0,
+      "unique_distinct_optima_tables": 0,
+      "zero_minimax_regret_tables": 1936
+    },
+    {
+      "common_minimax_correspondence_violations": 0,
+      "common_optimum_tables": 19744,
+      "first_hedge_witness": null,
+      "hedge_gain_histogram": {},
+      "hedge_identity_violations": 0,
+      "hedge_present_tables": 0,
+      "loss_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "n_actions": 2,
+      "n_states": 4,
+      "no_hedge_tables": 0,
+      "tables": 65536,
+      "uniform_bayes_correspondence_violations": 0,
+      "unique_distinct_optima_tables": 0,
+      "zero_minimax_regret_tables": 19744
+    }
+  ],
+  "terminal": "EDG_FINITE_CORRESPONDENCE_GREEN",
+  "theory_identity": "EPISTEMIC_DECISION_GEOMETRY_V1",
+  "totals": {
+    "all_correspondence_violations": 0,
+    "common_optimum_tables": 59264,
+    "hedge_present_tables": 210,
+    "loss_tables": 139520,
+    "no_hedge_tables": 16590,
+    "unique_distinct_optima_tables": 16800
+  }
+}
