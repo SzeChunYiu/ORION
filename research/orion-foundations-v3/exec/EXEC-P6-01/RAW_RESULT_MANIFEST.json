@@ -1,0 +1,35 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-P6-01",
+  "grid": {
+    "n_tokens": 6,
+    "max_fam": 3,
+    "fam_size": 3,
+    "seed": 20260825
+  },
+  "t11": {
+    "cells": 72960,
+    "survived": 19380,
+    "died": 53580,
+    "biconditional_violations": 0,
+    "minimal_witness": null
+  },
+  "t10": {
+    "compositions": 64,
+    "blocker_losses": 0
+  },
+  "repair": {
+    "cells": 53580,
+    "heuristic_wins": 0,
+    "optimum_strictly_better": 7611,
+    "ties": 45969
+  },
+  "donor": {
+    "agreements": 72960,
+    "disagreements": 0
+  },
+  "totals": {
+    "cells_enumerated": 73024,
+    "wallclock_seconds": 0.446
+  }
+}

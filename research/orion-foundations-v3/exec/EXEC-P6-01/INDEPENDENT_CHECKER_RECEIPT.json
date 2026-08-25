@@ -1,0 +1,22 @@
+{
+  "schema_version": "orion.independent-checker-receipt.v1",
+  "job_id": "EXEC-P6-01",
+  "imports_runner": false,
+  "method_difference": "Survival recomputed by forward closure from the surviving token set (F subset-of alive) rather than by family-revocation intersection; minimality by pairwise strict-superset elimination.",
+  "independent_findings": {
+    "cells": 72960,
+    "survived": 19380,
+    "died": 53580,
+    "biconditional_violations": 0,
+    "both_outcomes_occur": true,
+    "blocker_losses": 0,
+    "repair_cells": 53580,
+    "heuristic_wins": 0,
+    "optimum_strictly_better": 7611,
+    "ties": 45969,
+    "cost_model_does_work": true
+  },
+  "disagreements": [],
+  "terminal": "EXEC_P6_01_SECOND_INDEPENDENT_CHECKER_GREEN",
+  "independence_boundary": "Two implementations inside one programme; not external adjudication."
+}
