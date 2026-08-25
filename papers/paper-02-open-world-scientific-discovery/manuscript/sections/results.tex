@@ -105,9 +105,9 @@ custody remained open, and zero index, census, ranking or metric run occurred.
 
 The offline campaign is summarized by a single immutable publication record.
 It binds the full 16,380-record set by SHA-256
-\idt{4722cf82b514d4ebfbea343970d079dff24244f5795584262afa52d26edc4a6f}
+\idt{c6430a651810f8e7a794aa0c1091794963c43389a1e5080c02c2807a2fc2c574}
 and the corresponding rich-artifact hash list by
-\idt{a88938efb3c0eeefbdb2be6cb27540d8aa5a464edae43fcdebb883faa7ed5760}.
+\idt{d851f168faaf50969198180ecc61a6ac361c72556ceeb992f011af307dd00c37}.
 The exact run manifest was committed before the first outcome snapshot.  The
 mechanism projection used for Figures~\ref{fig:p2-4}--\ref{fig:p2-5} is archived
 separately; it records the same two source digests and is regenerated from
@@ -189,8 +189,8 @@ serve as competitive systems.
 
 Removing content-identity deduplication is less catastrophic but measurably
 wasteful in the controlled world: mean duplicate-processing rate rises from 0
-to 1.0, 145 of \OfflineTaskCount{} tasks exhaust the read budget, pass rate falls from 0.666667
-to 0.492308, and mean recall falls to 0.952707.  Removing the question coordinate
+to 0.31453, 193 of \OfflineTaskCount{} tasks exhaust the read budget, pass rate falls from 0.666667
+to 0.369231, and mean recall falls to 0.939031.  Removing the question coordinate
 from the read ledger leaves aggregate recall unchanged at 0.979487 but changes
 the extraction-question-shift mechanism exactly where expected: the mean count
 of legitimate rereads on that family falls from 3.666667 to 1.0.  This is a mechanism
@@ -275,7 +275,7 @@ bounded probe fails; they do not establish superiority for the full system.
 Under the evaluator's fixed terminal-failure precedence, the exploratory
 adaptive comparator exposes 296 premature-closure and 16 present-but-missed
 classifications while retaining 78 cases as CANNOT_CHECK; the no-dedup ablation
-exposes 145 budget-exhaustion failures.  The governed system's only terminal
+exposes 193 budget-exhaustion failures.  The governed system's only terminal
 failure classification is honest budget exhaustion on 59 tasks: 260 tasks pass,
 71 are censored, and premature closure remains at zero.
 The full per-system taxonomy is archived beside the publication summary.

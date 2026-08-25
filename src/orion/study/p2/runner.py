@@ -195,6 +195,7 @@ class BudgetedSession:
         # `gold._status_and_failure`, which compares the recorded event count
         # against the frozen budget and voids any run that exceeded it.
         self.__route_calls_made = 0
+        self.__read_encounters_made = 0
         self.__reads_made = 0
         self.__model_tokens = 0
         self.__tool_calls = 0
@@ -386,8 +387,15 @@ class BudgetedSession:
         question = self.current_extraction_question
         schema = self.current_extraction_schema
         decision = self._classify_read(document, question, schema)
+        # ``max_reads`` is the frozen host interaction cap for B14/B15
+        # presentations, not only for extractions that the candidate accepts.
+        # Charge against a monotone counter before recording either an executed
+        # or suppressed encounter so clearing the event log cannot buy budget.
+        self._charge(
+            "reads", self.__read_encounters_made, self._task.budget.max_reads
+        )
+        self.__read_encounters_made += 1
         if execute:
-            self._charge("reads", self.__reads_made, self._task.budget.max_reads)
             self.__reads_made += 1
         self._read_encounters.append(
             ReadEncounter(

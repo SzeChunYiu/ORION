@@ -14,7 +14,7 @@
 | Tasks (n) | 390 |
 | Systems (total) | 14 |
 | Result records | 16380 |
-| Results SHA256 | `4722cf82b514d4ebfbea343970d079df…` |
+| Results SHA256 | `c6430a651810f8e7a794aa0c10917949…` |
 
 ## Resource limits (per-task budgets)
 
@@ -51,7 +51,7 @@
 | Ablation: route stop can close task | 0.333333 | 1.0 | 0.0 | 1.0 | 0.6 | 0.0 | 0.0 |
 | Ablation: no unavailable-route open state | 0.979487 | 0.0 | 0.0 | 4.989744 | 1.533333 | 0.666667 | 0.0 |
 | Ablation: coverage diagnostic controls stopping | 0.555556 | 1.0 | 0.0 | 2.0 | 1.6 | 0.0 | 0.0 |
-| Ablation: no content-identity dedup | 0.952707 | 0.0 | 1.0 | 4.969231 | 1.235897 | 0.492308 | 0.135897 |
+| Ablation: no content-identity dedup | 0.939031 | 0.0 | 0.31453 | 4.969231 | 1.235897 | 0.369231 | 0.135897 |
 
 ## Exploratory comparator (non-confirmatory)
 
