@@ -1,0 +1,38 @@
+name: Bootstrap ORION discovery synthesis V1
+
+on:
+  push:
+    branches:
+      - shadow/orion-discovery-three-mode-v1-20260825
+    paths:
+      - development/orion-discovery-three-mode-v1-2026-08-25/bootstrap/READY
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/orion-discovery-three-mode-v1-20260825
+          fetch-depth: 0
+      - name: Verify and unpack content-bound payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=development/orion-discovery-three-mode-v1-2026-08-25/bootstrap
+          cat "$root"/PAYLOAD.part.* > /tmp/payload.b64
+          test "$(sha256sum /tmp/payload.b64 | awk '{print $1}')" = "$(cat "$root/PAYLOAD_B64_SHA256")"
+          base64 -d /tmp/payload.b64 > /tmp/payload.tar.gz
+          test "$(sha256sum /tmp/payload.tar.gz | awk '{print $1}')" = "$(cat "$root/PAYLOAD_TGZ_SHA256")"
+          tar -xzf /tmp/payload.tar.gz
+          rm -rf "$root" .github/workflows/orion-discovery-synthesis-bootstrap.yml
+          git config user.name "ORION discovery synthesis bootstrap"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Add composition-transfer-completion discovery calculus"
+          git push origin HEAD:shadow/orion-discovery-three-mode-v1-20260825
