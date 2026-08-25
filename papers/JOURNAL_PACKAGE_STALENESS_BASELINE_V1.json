@@ -1,0 +1,32 @@
+{
+  "schema": "JOURNAL_PACKAGE_STALENESS_BASELINE_V1",
+  "purpose": "Debt record, not approval. Each entry is a submission package whose manifest no longer describes its own source. Recorded so CI can fail on new staleness without first failing on staleness that predates the check.",
+  "not_to_be_regenerated": "Refreshing a package manifest to match moved source deletes the evidence that the package is no longer what it claims to be. Entries leave this file by rebuilding the package, never by rewriting digests.",
+  "packages": {
+    "paper-01-recursive-epistemic-reconstruction": {
+      "stale": 1,
+      "missing": 0,
+      "entries": 25
+    },
+    "paper-02-open-world-scientific-discovery": {
+      "stale": 1,
+      "missing": 0,
+      "entries": 38
+    },
+    "paper-03-global-knowledge-portrait": {
+      "stale": 6,
+      "missing": 0,
+      "entries": 36
+    },
+    "paper-04-verified-scientific-discovery": {
+      "stale": 1,
+      "missing": 0,
+      "entries": 38
+    },
+    "paper-05-self-orion": {
+      "stale": 1,
+      "missing": 0,
+      "entries": 64
+    }
+  }
+}
