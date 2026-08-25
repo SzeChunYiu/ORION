@@ -38,14 +38,14 @@ does not confer authority on it.
 Donor-owned mathematics includes Davenport/zero-sum invariants and general
 sparse-support theory. The residual contribution is the deletion-dominant
 compiler instantiation, arbitrary-block Restore sensitivity, the certified
-parameter cone, and the sharp one-Tag, three-block control. Submission-date novelty remains an
+parameter cone, and the one-Tag, three-block finite record. Submission-date novelty remains an
 external author responsibility and is not represented as proved.
 
 ## Display contract
 
 No figure is required for the theorem chain. One theorem-summary table is
 permitted if it distinguishes generic certificate, MultiTag corollary, and
-one-Tag, three-block sharpness. No artifact names, repository paths, workflow labels, or
+one-Tag, three-block record. No artifact names, repository paths, workflow labels, or
 publication decisions may appear in the submission manuscript.
 
 ## Editor/reviewer concern lock

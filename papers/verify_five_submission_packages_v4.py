@@ -35,13 +35,13 @@ PACKAGES = {
     ),
     "D": (
         PAPERS / "theory-D-falsification-authority",
-        "Typed Evidence Propagation and Retraction in Positive Scientific Rule Graphs",
-        "Typed_Evidence_Propagation_and_Retraction_in_Positive_Scientific_Rule_Graphs",
+        "Typed Evidence Licenses for Finite Positive Rule Graphs",
+        "Typed_Evidence_Licenses_for_Finite_Positive_Rule_Graphs",
     ),
     "N": (
         PAPERS / "nonquantum-c5cubed-davenport",
-        r"A Width-One Corridor for Generalized Davenport Constants of \(C_5^3\)",
-        "A_Width-One_Corridor_for_Generalized_Davenport_Constants_of_C5_Cubed",
+        r"Conditional Width-One Bounds for Generalized Davenport Constants of \(C_5^3\)",
+        "Conditional_Width-One_Bounds_for_Generalized_Davenport_Constants_of_C5_Cubed",
     ),
 }
 
@@ -281,9 +281,9 @@ def main() -> int:
     )
 
     output = {
-        "schema": "orion.five-paper-arxiv-packages-v5.v1",
+        "schema": "orion.five-paper-mechanical-packages-v6.v1",
         "all_checks": all(checks.values()),
-        "terminal_state": "ARXIV_PACKAGED_AUTHOR_LICENSE_AND_ACCOUNT_ACTION_REQUIRED",
+        "terminal_state": "MECHANICAL_PACKAGE_CHECKS_ONLY_NO_SCIENTIFIC_READINESS_AUTHORITY",
         "checks": checks,
         "details": details,
     }

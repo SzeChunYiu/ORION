@@ -8,7 +8,7 @@ Terminal goal: `simulated_publication_ready_for_target`
 
 ## Identity and source lock
 
-- Submission identity: *A Width-One Corridor for Generalized Davenport
+- Submission identity: *Conditional Width-One Bounds for Generalized Davenport
   Constants of `C_5^3`*.
 - Direct manuscript parent: `MANUSCRIPT_V2.md`.
 - Claim parent: `CLAIM_LEDGER_R2.md`.
@@ -24,8 +24,9 @@ Terminal goal: `simulated_publication_ready_for_target`
 
 | Claim | Authority | Evidence | Forbidden expansion |
 |---|---|---|---|
-| N2-C1–C2 | human proof / conditional corollary | recurrence, exact early inputs, corridor derivation | deciding `D_4` |
-| N2-C3–C4 | theorem-grade signed proof | saturation defect and support-10 exclusion | external replication claim |
+| N2-C1–C2 | conditional analytic proof | recurrence, declared exact inputs, corridor derivation | treating inputs as proved here; deciding `D_4` |
+| N2-C3 | analytic proof | saturation-defect lemma | external replication claim |
+| N2-C4 | bounded computer-assisted evidence | two internal exact representations through support 10 | theorem or external-replay authority |
 | N2-C5–C7 | exact structural proofs | multiplicity algebra, rank forcing, atom identity | converse rank phase |
 | N2-C8 | bounded computation only | support-frontier search through 22 | theorem authority |
 | N2-C9–C11 | open | none | either value of `D_4` or `31 in C_0` |

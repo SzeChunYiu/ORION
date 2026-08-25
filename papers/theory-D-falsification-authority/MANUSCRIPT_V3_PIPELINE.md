@@ -1,4 +1,4 @@
-# Typed Evidence Propagation and Retraction in Positive Scientific Rule Graphs
+# Typed Evidence Licenses for Finite Positive Rule Graphs
 
 ## Abstract
 
@@ -18,7 +18,8 @@ prevent promotion: post-outcome repairs cannot regain prospective authority,
 and bounded computation cannot acquire theorem status merely because an
 untyped conclusion remains reachable.
 
-A deterministic evaluator and JSON schema implement the semantics. Three
+A deterministic evaluator implements the semantics, while a JSON schema
+validates document shape. Three
 bounded cases illustrate forecast falsification, query-specific information
 falsification, and nonpromotion of a computational frontier. The component is
 restricted to finite positive rule graphs; it does not model negation,
@@ -54,7 +55,7 @@ Our contributions are:
 2. capped conjunctive transfer, which admits a license only when every premise
    and the rule cap admit it;
 3. a proof-tree characterization of the least fixed point;
-4. monotone and uniquely minimal typed retraction under direct refutation;
+4. monotone and canonical semantic retraction under direct refutation;
 5. a deterministic reusable evaluator and machine-readable schema; and
 6. three bounded cases that expose the difference between reachability and
    licensed scientific use.
@@ -118,13 +119,23 @@ stabilization and denote the result by
 \operatorname{Lic}(R)=\operatorname{lfp}(F_R).
 \]
 
-**Theorem 1 (finite convergence and order independence).** Bottom-up iteration
-converges after at most \(|Q||\Lambda|+1\) strict license-addition rounds. Every
-fair rule order reaches the same least fixed point.
+Call an asynchronous evaluation *accumulating* if it initializes every
+unrefuted claim \(q\) with \(\sigma(q)\), initializes every refuted claim with
+the empty label, and thereafter only unions a nonempty rule transfer into an
+unrefuted rule head. It is *fair* if every rule that remains enabled is
+eventually fired.
+
+**Theorem 1 (finite convergence and order independence).** Synchronous
+bottom-up iteration has at most \(|Q||\Lambda|\) changing rounds, followed by
+one stability check. Every fair accumulating rule schedule reaches the same
+least fixed point.
 
 **Proof.** With \(R\) fixed, labels can only gain licenses. There are at most
-\(|Q||\Lambda|\) claim-license pairs. The least fixed point of the monotone
-operator is independent of the operational scan order. ∎
+\(|Q||\Lambda|\) claim-license pairs. Under a fair accumulating schedule, each
+pair having a finite proof tree is eventually added by induction on tree
+height; no unsupported pair can be added because every firing is an instance
+of the defining operator. The stable assignment is therefore exactly the
+least fixed point, independently of schedule. ∎
 
 ## 4. Typed proof trees
 
@@ -220,11 +231,15 @@ scientific policy.
 
 ## 8. Bounded case encodings
 
+The following are synthetic fixtures used to test the typed semantics. No
+license or evidence object transfers between manuscript namespaces.
+
 ### 8.1 Forecast falsification
 
-A compiler record contains an explicit feasible construction, an independent
-all-size support theorem, and a compact equality forecast supported by a finite
-prospective panel. A fresh exact row satisfies \(C_{\mathrm{exact}}=10<11\),
+A synthetic optimization record contains an explicit feasible construction, an
+independent all-size support theorem, and a compact equality forecast supported
+by a forecast-labeled seed set. A held-out synthetic result satisfies
+\(C_{\mathrm{exact}}=10<11\),
 directly refuting the equality and its regime label. The construction and the
 independent support theorem retain their licenses.
 
@@ -262,10 +277,11 @@ mathematical replication.
 ## 9. Relation to prior work
 
 Truth-maintenance systems and belief revision own dependency-directed update
-[1,2]. Positive Datalog owns least-fixed-point rule semantics [3,4]. Annotated and semiring
-provenance owns typed query annotations, alternative derivations, recursion,
-and deletion behavior. Work on recursive-query causality relates minimal
-supports, causes, responsibility, and deletion robustness [5,6].
+[1,2]. Positive Datalog owns least-fixed-point rule semantics [3,4]. Annotated
+and semiring provenance owns typed query annotations, alternative derivations,
+recursion, trust annotations, and deletion behavior [5,6]. Work on
+recursive-query causality relates minimal supports, causes, responsibility, and
+deletion robustness [7,8].
 
 We claim no generic novelty for fixed points, proof trees, provenance labels,
 minimal supports, hitting sets, causality, or deletion robustness. The residual
@@ -295,24 +311,24 @@ regaining prospective status. The typed least fixed point makes those
 distinctions explicit and executable.
 
 The component fails closed in two directions: unsupported cycles create no
-licenses, and underlicensed derivations create no stronger evidence types. It
-is also minimally destructive relative to its declared inputs, because every
-surviving proof tree preserves exactly the licenses it carries.
+licenses, and underlicensed derivations create no stronger evidence types. Its
+retraction is canonical relative to the declared inputs: it removes exactly
+the pairs that lose every valid proof tree. No separate inclusion-minimality
+claim is made.
 
 ## Tool-use disclosure
 
 A generative language model assisted manuscript organization, language
 revision, and submission-package preparation. The listed author remains
 responsible for the mathematical statements, proofs, references, executable
-claims, and final text. Funding, competing-interest, and contribution
-declarations will be completed separately for journal submission.
+claims, and final text.
 
 ## Data and code availability
 
 The submission package includes the JSON schema, deterministic Python
 evaluator, unit tests, and bounded case fixtures required to reproduce every
-executable claim. A permanent archival identifier should be added before final
-submission.
+executable claim. These files are distributed in the source archive
+accompanying this version.
 
 ## References
 
@@ -329,7 +345,14 @@ submission.
    ACM SIGMOD-SIGACT-SIGAI Symposium on Principles of Database Systems* (PODS
    2022), 105-117 (2022).
    DOI: 10.1145/3517804.3524140
-5. R. B. Thapa and S. Staab, “Causality and Minimal Supports in Recursive
+5. T. J. Green, G. Karvounarakis, and V. Tannen, “Provenance Semirings,” in
+   *Proceedings of PODS 2007*, 31-40 (2007).
+   DOI: 10.1145/1265530.1265535
+6. P. A. Bonatti, A. Hogan, A. Polleres, and L. Sauro, “Robust and Scalable
+   Linked Data Reasoning Incorporating Provenance and Trust Annotations,”
+   *Journal of Web Semantics* **9**(2), 165-201 (2011).
+   DOI: 10.1016/j.websem.2011.06.003
+7. R. B. Thapa and S. Staab, “Causality and Minimal Supports in Recursive
    Datalog,” arXiv:2607.16443 (2026).
-6. R. B. Thapa and S. Staab, “Causal Explanations for Stratified Datalog,”
+8. R. B. Thapa and S. Staab, “Causal Explanations for Stratified Datalog,”
    arXiv:2608.21141 (2026).

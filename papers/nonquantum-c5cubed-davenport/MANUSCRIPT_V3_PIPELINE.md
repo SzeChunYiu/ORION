@@ -1,30 +1,34 @@
-# A Width-One Corridor for Generalized Davenport Constants of \(C_5^3\)
+# Conditional Width-One Bounds for Generalized Davenport Constants of \(C_5^3\)
 
 ## Abstract
 
 Let \(D_k(G)\) be the least length that forces \(k\) pairwise disjoint nonempty
-zero-sum subsequences. We show that the generalized Davenport constants of
-\(C_5^3\) satisfy \(5k+10\le D_k(C_5^3)\le5k+11\) for every \(k\ge4\).
+zero-sum subsequences. Conditional on the exact inputs \(D_3(C_5^3)=25\),
+\(s_{\le6}(C_5^3)=24\), \(s_{\le5}(C_5^3)=33\), and the lower line
+\(D_k(C_5^3)\ge5k+10\), we derive
+\(5k+10\le D_k(C_5^3)\le5k+11\) for every \(k\ge4\).
 
 If \(D_4(C_5^3)=30\), then the lower line is exact for every \(k\ge2\). To
 analyze the remaining alternative, we study a hypothetical total-zero sequence
 of length \(31\) with no nonempty zero-sum subsequence of length at most five.
 For saturated short-free sequences over elementary abelian groups of odd prime
 exponent, we prove a defect certificate that excludes multiplicity \(p-2\). In
-the case \(p=5\), only multiplicities \(1,2,4\) remain. If \(s\) is support size
+the case \(p=5\), a saturated obstruction (in particular, every obstruction
+with support at least nine) has only multiplicities \(1,2,4\). If \(s\) is support size
 and \(c_i\) counts multiplicity \(i\), then \(c_2=31-s-3c_4\) and
 \(c_1=2s-31+2c_4\).
 
 The subsequence of points of multiplicity at least two has length
-\(62-2s-2c_4\). Using \(\eta(C_5^2)=13\), we prove that this stratum must span
-rank three whenever \(s+c_4\le24\). We also prove an exact identity coupling
+\(62-2s-2c_4\). Using the short-zero-sum threshold \(\eta(C_5^2)=13\), we prove
+that this stratum must span rank three whenever \(s+c_4\le24\). We also prove an exact identity coupling
 support deficit, repetitions inside zero-sum atoms, and overlaps between atom
-supports. Together with a theorem-grade exclusion through support ten, these
-results isolate the residual obstruction phase without deciding it.
+supports. Two separate exact implementations found no obstruction through
+support ten within the supplied computational model. Because this computation
+has not been independently replicated, we report it only as bounded
+computational evidence.
 
-The exact value remains \(D_4(C_5^3)\in\{30,31\}\). A larger bounded search
-through support 22 is reported only as bounded computational evidence and is
-not used as theorem authority.
+The exact value remains \(D_4(C_5^3)\in\{30,31\}\). A larger search through
+support 22 is also bounded evidence and has no theorem authority.
 
 **Keywords:** generalized Davenport constants; zero-sum sequences; elementary
 abelian groups; short zero sums; inverse zero-sum problems
@@ -36,8 +40,8 @@ several pairwise disjoint zero sums. Rank-two groups exhibit strong eventual
 structure, whereas rank-three groups can depart from the expected arithmetic
 progression.
 
-For \(C_5^3\), the exact values \(D_2=20\) and \(D_3=25\), together with known
-short-zero-sum thresholds, reduce the next value to
+Under the declared inputs below, the values \(D_2=20\) and \(D_3=25\), together
+with short-zero-sum thresholds, reduce the next value to
 
 \[
 D_4(C_5^3)\in\{30,31\}.
@@ -48,27 +52,31 @@ This one-bit ambiguity controls the tail: the lower candidate \(D_4=30\) forces
 length-31 total-zero sequence with no zero sum of length at most five.
 
 We combine the recurrence with symbolic analysis of that hypothetical
-obstruction. The purpose is twofold: to obtain a rigorous width-one theorem for
+obstruction. The purpose is twofold: to obtain a conditional width-one theorem for
 the full tail and to identify exactly where existing rank reductions cease to
 be automatic. Computation is kept in a separate evidence class.
 
 Our contributions are:
 
-1. the width-one corridor for every \(k\ge4\);
+1. the conditional width-one corridor for every \(k\ge4\);
 2. the conditional exact tail if \(D_4=30\);
 3. an odd-prime saturation-defect lemma excluding multiplicity \(p-2\);
-4. a theorem-grade support-at-least-eleven result for the length-31 obstruction;
+4. bounded computational evidence through support ten;
 5. an exact multiplicity parameterization for every remaining support stratum;
 6. the rank-forcing phase \(s+c_4\le24\) for the high-multiplicity stratum; and
 7. an identity coupling support deficit to internal atom repetition and
    cross-atom overlap.
 
-## 2. Definitions and known inputs
+## 2. Definitions and declared inputs
 
 For a finite abelian group \(G\), \(D_k(G)\) is the least integer \(n\) such
 that every sequence of length at least \(n\) over \(G\) contains \(k\) pairwise
 disjoint nonempty zero-sum subsequences. Let \(s_{\le\ell}(G)\) denote the least
-length forcing a nonempty zero-sum subsequence of length at most \(\ell\).
+length forcing a nonempty zero-sum subsequence of length at most \(\ell\). For
+an odd prime \(p\), a sequence is *\(p\)-short-free* if it has no nonempty
+zero-sum subsequence of length at most \(p\). It is *saturated* relative to
+this property if appending any group element destroys it. Thus
+*5-short-free* and *saturated* below are the specializations at \(p=5\).
 
 We use the generalized-Davenport recurrence framework [1]
 
@@ -77,15 +85,19 @@ D_{k+1}(G)
 \le\max\{D_k(G)+\ell, \ s_{\le\ell}(G)-1\},
 \]
 
-and the known lower bound \(D_k(C_5^3)\ge5k+10\) in the range considered here.
-The exact values used below are
+and take the lower bound \(D_k(C_5^3)\ge5k+10\) in the range considered here as
+an explicit input. The other exact inputs are
 
 \[
 D_2=20, \qquad D_3=25, \qquad s_{\le6}=24,
 \]
 
-while \(s_{\le5}(C_5^3)=\eta(C_5^3)=33\). We also use the rank-two value
-\(\eta(C_5^2)=13\).
+while \(s_{\le5}(C_5^3)=\eta(C_5^3)=33\). We also condition the structural
+analysis on the inverse-theorem input that every length-32 5-short-free
+sequence has exactly eight support points. These rank-three statements are
+explicit hypotheses, not results proved in this manuscript; every corridor
+statement below is conditional on them. We also use the published rank-two
+value \(\eta(C_5^2)=13\).
 
 ## 3. A width-one tail
 
@@ -98,7 +110,7 @@ D_4\le\max\{25+6,24-1\}=31.
 Together with the lower bound, this proves
 \(D_4\in\{30,31\}\).
 
-**Theorem 1.** For every \(k\ge4\),
+**Theorem 1 (conditional corridor).** Under the declared exact inputs, for every \(k\ge4\),
 
 \[
 5k+10\le D_k(C_5^3)\le5k+11.
@@ -106,10 +118,10 @@ Together with the lower bound, this proves
 
 **Proof.** The base case is \(D_4\le31\). Apply the recurrence with
 \(\ell=5\) and \(s_{\le5}-1=32\). If \(D_k\le5k+11\), then both terms in the
-maximum are at most \(5(k+1)+11\). The known lower bound supplies the lower
+maximum are at most \(5(k+1)+11\). The declared lower-bound input supplies the lower
 line. ∎
 
-**Theorem 2.** If \(D_4(C_5^3)=30\), then
+**Theorem 2 (conditional tail).** Under the declared exact inputs, if \(D_4(C_5^3)=30\), then
 
 \[
 D_k(C_5^3)=5k+10
@@ -118,7 +130,7 @@ D_k(C_5^3)=5k+10
 
 **Proof.** The statement holds for \(k=2,3,4\). Applying the same recurrence
 with \(\ell=5\) propagates the upper bound \(5(k+1)+10\), which matches the
-known lower bound. ∎
+declared lower-bound input. ∎
 
 There is no converse here: the assumption \(D_4=31\) does not by itself prove
 that later terms lie on the upper line.
@@ -140,9 +152,9 @@ most five. Thus the upper candidate yields a sequence satisfying
 
 with no nonempty zero-sum subsequence of length at most five. Every element has
 multiplicity at most four. If its support exceeds eight, it is saturated:
-otherwise a short-free one-term extension would have length 32, whereas
-Property C for \(C_5^3\) forces every length-32 short-free sequence to have
-exactly eight support points.
+otherwise a short-free one-term extension would have length 32, whereas the
+declared inverse-theorem input forces every length-32 5-short-free sequence to
+have exactly eight support points.
 
 **Theorem 3 (saturation defect).** Let \(p\) be odd and let \(S\) be a saturated
 \(p\)-short-free sequence over an elementary abelian exponent-\(p\) group. If a
@@ -170,6 +182,7 @@ length at most three and two, respectively.
 
 ## 5. Exact multiplicity grammar
 
+For the saturated case \(s\ge9\), Corollary 4 excludes multiplicity three.
 Let \(s=|\operatorname{supp}(S)|\), and let \(c_1, c_2, c_4\) count points of
 multiplicity one, two, and four. Then
 
@@ -214,8 +227,8 @@ If \(H\) were contained in a subgroup of rank at most two, it would be a
 \(\eta(C_5^2)=13\) forces a short zero sum once \(|H|\ge13\). Since \(|H|\) is
 even, the contradiction begins at \(|H|\ge14\).
 
-**Theorem 5 (rank-forcing phase).** The high-multiplicity stratum spans rank
-three whenever
+**Theorem 5 (rank-forcing phase).** For a saturated obstruction with
+\(s\ge9\), the high-multiplicity stratum spans rank three whenever
 
 \[
 s+c_4\le24.
@@ -237,15 +250,15 @@ The theorem gives the following exact boundary:
 Silence is not a converse. Outside the phase, rank three may follow from a
 different argument.
 
-## 7. Theorem-grade low-support exclusion and bounded evidence
+## 7. Bounded low-support exclusion
 
 Symbolic reductions combined with two exact state representations exclude
 every support size through ten.
 
-**Theorem 6.** Every length-31 total-zero 5-short-free sequence over \(C_5^3\),
-if one exists, has support at least eleven.
+**Computational result.** In the supplied exact search model, no length-31
+total-zero 5-short-free sequence over \(C_5^3\) exists with support at most ten.
 
-**Computer-assisted proof.** Multiplicity at most four first excludes supports
+**Exact search description.** Multiplicity at most four first excludes supports
 at most seven. At support eight, the only length pattern is \(4^7 3\). Adding
 the missing fourth copy of the triple point preserves short-freeness; total sum
 then forces that point to equal the negative support sum. After normalizing a
@@ -263,12 +276,14 @@ to the standard basis makes the remaining enumeration complete. The two
 engines agree exactly: they visit respectively 210,700 states with 3,558 leaves
 and 272,119 states with no leaves, finding zero solutions in both patterns.
 
-Both engines reject a branch exactly when adding a term creates a zero-sum
+Both engines prune a partial candidate exactly when adding a term creates a zero-sum
 subsequence of one of the lengths one through five; one stores explicit byte
 reachability by weight and group sum, while the other stores translation masks
 in a 128-bit representation. Their source, build instructions, expected rows,
 and machine-readable results are included as ancillary files. Thus every
-support stratum through ten is exhausted. ∎
+support stratum through ten is exhausted within the declared model. Because a
+clean-room external replay has not been completed, this result is not used as
+theorem authority.
 
 A larger bounded computation found no such sequence through support 22. That
 search has not received an external independent replay and is not used in any
@@ -277,14 +292,17 @@ next case split, but it does not establish support at least 23 as a theorem.
 
 ## 8. Atom repetition and overlap
 
-Under the conditional assumption \(D_4=31\), extremal factorization arguments
-force one of the atom-length types
+Conditionally suppose that an independently verified extremal-factorization
+argument establishes one of the candidate atom-length types
 
 \[
 (6,6,6,13)
 \qquad\text{or}\qquad
 (6,6,7,12).
 \]
+
+The identity below then applies; in fact, it holds for every
+occurrence-disjoint atom factorization.
 
 Let \(S=U_1\cdots U_r\) be an occurrence-disjoint atom factorization. For each
 group element \(g\), let \(r_g\) be the number of atom supports containing \(g\),
@@ -319,8 +337,10 @@ while cross-atom overlap equals
 Adding the two identities proves the claim. ∎
 
 Thus any independently established lower support bound \(s_0\) gives a total
-internal-repetition plus cross-overlap budget of at most \(31-s_0\). The proven
-value \(s_0=11\) gives budget 20. If the bounded support-22 computation is later
+internal-repetition plus cross-overlap budget of at most \(31-s_0\). The
+internally reproduced support-ten computation suggests \(s_0=11\) and hence
+budget 20, but that numerical consequence remains computational evidence. If
+the bounded support-22 computation is later
 independently certified, the budget sharpens to eight; that sharper value is
 conditional and not used as theorem authority here.
 
@@ -355,11 +375,11 @@ extremal bit.
 
 ## 11. Reproducibility and limitations
 
-The corridor, defect lemma, and support-ten exclusion are separately bound to
-exact records. An independent verifier enumerates all multiplicity patterns for
+The conditional corridor, defect lemma, and support-ten exclusion are separately bound to
+exact records. A separate implementation enumerates all multiplicity patterns for
 supports 8-31, checks the rank-phase equivalence, reproduces the support-23 and
 support-24 tables, and validates the atom identity on independently generated
-factorizations. The displayed proofs carry all-parameter authority.
+factorizations. Only the displayed analytic proofs carry all-parameter authority.
 
 The exact value of \(D_4(C_5^3)\) remains open, as does the associated
 length-31 extremal-spectrum statement. The support-22 frontier is bounded
@@ -370,9 +390,9 @@ obstruction proof.
 
 ## 12. Conclusion
 
-The generalized Davenport constants of \(C_5^3\) remain within one unit of the
-line \(5k+10\) for every \(k\ge4\), and the lower choice at \(k=4\) would fix the
-entire tail. The hypothetical upper-line obstruction has substantially more
+Conditional on the declared exact inputs, the generalized Davenport constants
+of \(C_5^3\) remain within one unit of the line \(5k+10\) for every \(k\ge4\),
+and the lower choice at \(k=4\) would fix the entire tail. The hypothetical upper-line obstruction has substantially more
 structure than this corridor alone reveals: its multiplicities have an exact
 grammar, its high-multiplicity stratum enters a sharp rank-forcing phase, and
 its atom factorization obeys a global repetition-overlap budget.
@@ -384,8 +404,8 @@ resolved it.
 ## Data and code availability
 
 The verification package contains exact multiplicity enumeration, rank-phase
-checks, atom-identity tests, and separately labeled bounded-search records. A
-permanent archival identifier should be added before final submission.
+checks, atom-identity tests, and separately labeled bounded-search records.
+These files are distributed in the source archive accompanying this version.
 
 ## References
 

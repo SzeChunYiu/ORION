@@ -7,26 +7,26 @@ loose as a description of the compiler it certifies. We formalize this
 separation with an alphabet-restricted zero-sum invariant. For a finite abelian
 signature group \(H\) and allowed alphabet \(A\subseteq H\), let
 \(\operatorname{zsf}(H; A)\) be the largest length of a zero-sum-free word over
-\(A\). In the deletion language whose only shortening step removes a nonempty
-proper zero-sum subword from a nonzero-total word, the exact uniform terminal
+\(A\). Assume that \(A\) contains a nonzero element. In the deletion language
+whose only shortening step removes a nonempty proper zero-sum subsequence from
+a nonzero-total word, the exact uniform terminal
 complexity is \(\operatorname{zsf}(H; A)\). Every longer word is reducible, while
 a longest zero-sum-free word is a matching terminal witness. A production
 compiler inherits the matching lower bound only if that witness is realizable
 and no additional rule can reduce it.
 
-Two quantum-compilation families give opposite controls. In a one-Tag,
-three-block compiler, the production alphabet realizes \(\mathbb F_2^2\); the
+Two controls give opposite outcomes. In a one-Tag, three-block compiler, the
 deletion certificate and independently proved intrinsic support are both two.
-In a two-block dependent-triple compiler with a shared two-bit Tag, the
-production alphabets realize basis obstructions in \(\mathbb F_2^5\), so the
-rank-only certificate is exactly five, whereas a whole-system Tag-relocation
-theorem gives intrinsic support exactly one. For a disjoint product of \(t\)
-components, the corresponding budgets are \(5t\) and \(t\). A direct support
-enumerator therefore has search-volume ratio \(\Theta(n^{4t})\) under the stated
-fixed-budget model. This is not an unrestricted proof or algorithm lower bound.
-It shows that a support number belongs to a compiler only after an intrinsic
-lower witness; otherwise it belongs to a named normalization or certificate
-language.
+The abstract standard-basis alphabet in \(\mathbb F_2^5\) instead has exact
+terminal complexity five. A two-block dependent-triple compiler using
+the same syndrome coordinates admits a whole-system Tag relocation with
+intrinsic support one. We do not assert that its production states realize the
+five-letter abstract terminal word. For \(t\) components, the separately
+defined certificate and product-support budgets are \(5t\) and \(t\). A direct
+support enumerator has ratio \(\Theta(n^{4t})\) for fixed \(t\) under the stated
+model; this is no unrestricted proof or algorithm lower bound. A support number
+belongs to a compiler only after an intrinsic lower witness; otherwise it
+belongs to a named normalization or certificate language.
 
 **Keywords:** quantum compilation; certificate complexity; support
 normalization; zero-sum deletion; exact optimization
@@ -58,10 +58,10 @@ Our contributions are:
    compiler states;
 3. a tight one-Tag, three-block control with certificate and intrinsic support
    two;
-4. a strict dependent-triple separation between exact certificate complexity
-   five and intrinsic support one; and
-5. a disjoint-product construction with additive gap \(4t\) and a precisely
-   scoped direct-enumeration consequence.
+4. a strict comparison between an exact abstract five-bit deletion language
+   and intrinsic dependent-triple compiler support one; and
+5. a direct-sum/product comparison with numerical difference \(4t\) and a precisely
+   scoped consequence for enumerators that adopt the abstract certificate.
 
 ## 2. Three support quantities
 
@@ -100,9 +100,11 @@ but equality requires additional mathematics.
 
 ## 3. Exact zero-sum deletion complexity
 
-Let \(H\) be a finite abelian group and \(A\subseteq H\). A certificate word
-\(v_1\cdots v_w\) has nonzero total. The only legal shortening removes a
-nonempty proper subword whose sum is zero. Define
+Let \(H\) be a finite abelian group and let \(A\subseteq H\) contain at least
+one nonzero element. A certificate word \(v_1\cdots v_w\) has nonzero total.
+A subsequence is selected by an arbitrary set of positions and need not be
+contiguous. The only legal shortening removes a nonempty proper subsequence
+whose sum is zero. Define
 
 \[
 \operatorname{zsf}(H; A)
@@ -114,12 +116,13 @@ length among all nonzero-total words over \(A\) is exactly
 \(\operatorname{zsf}(H; A)\).
 
 **Proof.** A word longer than \(\operatorname{zsf}(H; A)\) contains a nonempty
-zero-sum subword. Its nonzero total prevents that subword from being the whole
+zero-sum subsequence. Its nonzero total prevents that subsequence from being the whole
 word, so a legal deletion exists. Conversely, a longest zero-sum-free word has
 nonzero total and admits no legal deletion. ∎
 
-**Corollary 2 (production realization).** If every production word lies over
-\(A\), its certificate ceiling is at most \(\operatorname{zsf}(H; A)\). The
+**Corollary 2 (production realization).** If every nonzero-total production
+word lies over \(A\), its certificate ceiling is at most
+\(\operatorname{zsf}(H; A)\). The
 ceiling is exact only if production realizes a longest zero-sum-free word and
 the certificate language has no other rule that reduces that state.
 
@@ -129,11 +132,11 @@ For \(H=\mathbb F_2^d\),
 ## 4. Tight control: one-Tag, three-block compiler
 
 A frame coordinate in the one-Tag, three-block compiler carries partner and
-Tag bits. Denote this family by \(\mathcal C_{\mathrm{1T3B}}\). Its production
+Tag bits. Denote this family by \(\mathcal C_{\mathrm{one\text{-}Tag}}\). Its production
 alphabet realizes a basis of \(\mathbb F_2^2\), giving
 
 \[
-\beta_{\mathrm{del}}(\mathcal C_{\mathrm{1T3B}})=2.
+\beta_{\mathrm{del}}(\mathcal C_{\mathrm{one\text{-}Tag}})=2.
 \]
 
 The all-size zero-sum exchange proves support at most two. A complete exact
@@ -142,50 +145,70 @@ optimum has cost 5 and support two, whereas exhaustive minimization over all
 13,824 feasible support-at-most-one configurations has cost 6. Therefore
 
 \[
-\kappa(\mathcal C_{\mathrm{1T3B}})=2
-=\beta_{\mathrm{del}}(\mathcal C_{\mathrm{1T3B}}).
+\kappa(\mathcal C_{\mathrm{one\text{-}Tag}})=2
+=\beta_{\mathrm{del}}(\mathcal C_{\mathrm{one\text{-}Tag}}).
 \]
 
 This control shows that the certificate is not inherently loose. Tightness
 depends on whether its terminal obstruction is also an intrinsic compiler
 obstruction.
 
-## 5. Strict separation: dependent-triple compiler
+## 5. Abstract certificate versus dependent-triple compiler
 
-The second family, denoted \(\mathcal C_{\mathrm{DT}}\), has two rank-two
-dependent-triple blocks with a shared two-bit Tag under the unit structural
-objective. Each block has generators \(R_0,R_1,R_2\) with \(R_2=R_0R_1\). The
-partner, block, and Tag syndromes form a five-bit quotient. Direct evaluation
-maps the five realized Pauli words
-\((\mathrm{XIIIII},\mathrm{IXIXII},\mathrm{IYIYII},\mathrm{IIXIXI},
-\mathrm{IIYIYI})\) and, for the second block,
-\((\mathrm{YIIIII},\mathrm{IXIIII},\mathrm{IYIIII},\mathrm{IIXIII},
-\mathrm{IIYIII})\) to basis words of the quotient. Thus the production
-block-deletion alphabets span the quotient and realize basis words.
-Theorem 1 and production realization therefore give
+Define the abstract change alphabet directly by
+\(A_5=\{e_1,\ldots,e_5\}\subset\mathbb F_2^5\), where the \(e_i\) are the
+standard basis vectors. The word \(e_1\cdots e_5\) is zero-sum-free, and the
+binary rank bound gives \(\operatorname{zsf}(\mathbb F_2^5;A_5)=5\).
+Theorem 1 therefore gives the exact terminal complexity of this explicitly
+defined abstract five-bit deletion language,
 
 \[
-\beta_{\mathrm{del}}(\mathcal C_{\mathrm{DT}})=5.
+\beta_{\mathrm{abstract\,del}}=5.
 \]
 
-A stronger transformation goes beyond rank-only deletion. First, the
-support-two parent theorem localizes each dependent triple to an anticommuting
-core. At every non-core column, deleting the redundant frame letters refunds
-at least four units. If the two blocks choose distinct cores, the previous Tag
-has cost at least four and the new two-core Tag costs eight, so the combined
-credit pays the reconstruction. If they choose the same core, the new Tag costs
-four and the remaining alignment penalty is at most three. These exhaustive
-local inequalities are independent of the number of untouched columns and
-therefore compose to all sizes. The resulting whole-system Tag relocation
+The compiler comparison below uses the same five syndrome coordinates, but no
+claim is made that a single feasible production configuration realizes the
+abstract word \(e_1\cdots e_5\). Accordingly, we do not identify
+\(\beta_{\mathrm{abstract\,del}}\) with the production certificate complexity
+of the compiler.
+
+The compiler family \(\mathcal C_{\mathrm{dep}}\) has two blocks
+\(j\in\{A,B\}\), each with an anticommuting pair \(R_{j0},R_{j1}\) and
+\(R_{j2}=R_{j0}R_{j1}\). Each block may permute its three targets, and the two
+blocks share Tag strings \(S_0,S_1\). With Pauli weight \(w\), restored targets
+\(T_{jk}=P_{j,\pi_j(k)}R_{jk}\), and multipliers \(m_{jk}=4\) except for the
+declared central case where \(m_{jk}=2\), the structural objective is
+
+\[
+C=\sum_{j\in\{A,B\}}\left(\sum_{k=0}^2m_{jk}w(R_{jk})-10\right)
+  +2\bigl(w(S_0)+w(S_1)\bigr)+\sum_{j,k}w(T_{jk}).
+\]
+
+The shared Tag must assign the same three nonzero, distinct labels in both
+blocks, where
+\(c_{jk}=2\langle S_0,R_{jk}\rangle+\langle S_1,R_{jk}\rangle\).
+These equations, the Pauli commutation constraints, and target permutations
+are the complete feasibility grammar used here.
+
+A stronger transformation goes beyond rank-only deletion. The parent
+support-two exchange first localizes each dependent triple to an anticommuting
+core. At every non-core column, direct substitution in the displayed objective
+shows that deleting the redundant frame letters refunds at least four units.
+For distinct chosen cores, the old Tag has weight-cost at least four and the
+canonical two-core Tag has cost eight, so the deletion credit pays the
+reconstruction. For a common chosen core, the canonical Tag costs four and the
+remaining target-alignment penalty is at most three. These are finite local
+Pauli cases: the supplied record exhausts deletion, alignment, same-core, and
+distinct-core cases, while the inequalities themselves are the premises of
+the all-size composition. Because each replacement removes a non-core support
+column and leaves untouched columns unchanged, repeating the replacement
+terminates. The resulting whole-system Tag relocation
 leaves each frame generator at support at most one without increasing cost.
 Support zero is infeasible because an identity frame cannot anticommute with
 its partner. Hence
 
 \[
-\kappa(\mathcal C_{\mathrm{DT}})=1,
-\qquad
-\beta_{\mathrm{del}}(\mathcal C_{\mathrm{DT}})
--\kappa(\mathcal C_{\mathrm{DT}})=4.
+\kappa(\mathcal C_{\mathrm{dep}})=1.
 \]
 
 There is no contradiction: a basis word blocks zero-XOR deletion while the
@@ -194,39 +217,45 @@ holds fixed.
 
 ## 6. Disjoint product amplification
 
-Let \(\mathcal C_{\mathrm{DT}}^{\times t}\) be the disjoint product of \(t\) components
-on disjoint coordinates, with additive support and no cross-component move.
+Let \(\mathcal C_{\mathrm{dep}}^{\times t}\) be the disjoint product of \(t\) components
+on disjoint coordinates, with no cross-component move. Define its product
+support as the sum, over components, of the maximum Pauli support used by any
+frame in that component.
 
 **Theorem 3.** For every \(t\ge1\),
 
 \[
-\beta_{\mathrm{del}}(\mathcal C_{\mathrm{DT}}^{\times t})=5t,
+\beta_{\mathrm{abstract\,del}}^{\oplus t}=5t,
 \qquad
-\kappa(\mathcal C_{\mathrm{DT}}^{\times t})=t.
+\kappa(\mathcal C_{\mathrm{dep}}^{\times t})=t.
 \]
 
-**Proof.** Componentwise upper bounds add. A realized basis obstruction in each
-component gives a certificate lower bound of five per component. Support zero
+**Proof.** Direct-sum abstract certificate complexities add, and a basis word
+in each five-bit component gives the lower bound of five per component. Support zero
 is infeasible in every component, and the support-one normalization acts
 independently. Thus both lower and upper intrinsic bounds equal one per
 component. ∎
 
-The additive gap is \(4t\). This construction amplifies one mechanism; it is
+The numerical difference between these separately defined budgets is \(4t\).
+This construction amplifies one mechanism; it is
 not evidence for a second, independent source of separation.
 
 ### 6.1 Consequence for direct support enumeration
 
-For fixed local alphabet and fixed budget \(B\), an enumerator that explicitly
+For fixed \(t\), fixed local alphabet, and fixed budget \(B\), an enumerator that explicitly
 visits all coordinate supports of size at most \(B\) has leading growth
-\(\Theta(n^B)\). Under that declared model, the disjoint product yields
+\(\Theta(n^B)\). If such an implementation adopts the direct-sum abstract
+certificate budget rather than the intrinsic compiler budget, the declared
+model yields
 
 \[
 \Theta(n^{5t})\quad\text{versus}\quad\Theta(n^t),
 \]
 
-and therefore ratio \(\Theta(n^{4t})\). The statement is not a complexity-class
-lower bound and does not constrain algorithms that avoid direct support
-enumeration.
+and therefore ratio \(\Theta(n^{4t})\). This conditional bookkeeping statement
+does not establish that the five-bit abstract budget is necessary on the
+production compiler. It is not a complexity-class lower bound and does not
+constrain algorithms that avoid direct support enumeration.
 
 ## 7. Relation to prior work
 
@@ -237,17 +266,18 @@ direct sums [2,3].
 Proof-complexity and formal-methods research already distinguishes object
 difficulty from lower bounds internal to a proof language.
 
-The residual contribution is the exact production separation in quantum
-compilation. The same algebraic certificate is tight for the one-Tag,
-three-block compiler, loose by a factor of five for the dependent-triple
-compiler, and additively unbounded under disjoint products. The latter
+The residual contribution is a calibrated comparison in quantum compilation.
+The same algebraic certificate is tight for the one-Tag, three-block compiler,
+while the abstract five-bit deletion language is five times larger than the
+dependent-triple compiler's intrinsic support. Proving the same factor for the
+production certificate remains open. The latter
 normalization also identifies the missing proof operation--whole-system Tag
 reconstruction - instead of merely reporting a smaller number.
 
 ## 8. Reproducibility and limitations
 
 Finite-group controls, binary basis obstructions, production alphabets, and
-product formulas have been checked with an independent deterministic verifier.
+product formulas have been checked with a separate deterministic verifier.
 Theorems 1 and 3 supply all-size authority.
 
 The exact abstract theorem concerns only the stated deletion language. A
@@ -273,13 +303,11 @@ normalization or proof language that owns it.
 
 ## Data and code availability
 
-The arXiv ancillary package contains the production-alphabet records, exact
-one-Tag, three-block lower witness, dependent-triple support-one normalization
-checks, and product-formula
-verifier. The finite enumerations corroborate the displayed construction and
-local inequalities; Theorems 1 and 3 carry the abstract and product claims. A
-permanent archival identifier will replace the ancillary-package reference in
-the journal version.
+The source package accompanying this manuscript contains the change-alphabet records, exact
+one-Tag, three-block lower witness, and dependent-triple support-one normalization
+checks. The finite enumerations corroborate the displayed construction and
+local inequalities; Theorems 1 and 3 carry the abstract and product claims.
+These files are distributed in the source archive accompanying this version.
 
 ## References
 

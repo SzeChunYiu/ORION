@@ -4,8 +4,8 @@
 
 Low-order statistics can decide whether optimization is needed while failing
 to determine an optimum's value or structure. We prove this hierarchy for a
-Pauli partition compiler with a fixed structural SELECT-PREPARE-width
-objective. For every \(m\ge5\), the unary compiler is globally optimal exactly
+Pauli partition compiler with a fixed structural block-encoding objective.
+For every \(m\ge5\), the unary compiler is globally optimal exactly
 when every pair gain is nonpositive and the sum of any two disjoint pair gains
 plus one is nonpositive. The largest clause touches four term indices, and an
 explicit \(m=4\) instance proves the threshold sharp.
@@ -20,7 +20,7 @@ singletons.
 
 For every \(m\ge5\) and \(L\ge1\), a second pair of instances agrees on every
 labeled common-factor count through order \(m-2\) but has value gap
-\([m(\lceil\log_2m\rceil+1)-1]L\). Moebius inversion proves that the parity
+\([m(\lceil\log_2m\rceil+1)-1]L\). Möbius inversion proves that the parity
 trade is the unique nonzero integer direction invisible to all proper labeled
 marginals. These are representation limits, not computational-hardness claims.
 
@@ -59,12 +59,11 @@ The contributions are:
 
 An instance is an ordered tuple of nonidentity Pauli strings
 \(p_1, \ldots, p_m\). Let \(w_i\) be the weight of term \(i\), let
-\(W=\sum_iw_i\), and let \(f(S)\) count the columns on which every term in a
+\(W=\sum_iw_i\), write \(w(S)=\sum_{i\in S}w_i\), and let \(f(S)\) count the columns on which every term in a
 nonempty block \(S\) has the same nonidentity Pauli.
 
-The compiler chooses a set partition \(\Pi\) and factor/ancilla options. Under
-the fixed equal-weight structural objective, factoring and shared width dominate
-their alternatives. For \(|\Pi|\ge2\), the reduced cost is
+The compiler chooses a set partition \(\Pi\). We define the fixed equal-weight
+structural objective directly. For \(|\Pi|\ge2\), its cost is
 
 \[
 \begin{aligned}
@@ -82,9 +81,18 @@ d(1)=0, \qquad
 d(s)=d(\lceil s/2\rceil)+d(\lfloor s/2\rfloor)+s-2.
 \]
 
-The unary incumbent has cost \(C_U=2W+3m-3\). The one-block flag convention is
-evaluated separately. These are structural compiler costs, not physical T
-counts, depth, runtime, qubits, or fault-tolerant overhead.
+The unary incumbent has cost \(C_U=2W+3m-3\). For the one-block partition, the
+declared flag convention gives
+
+\[
+C_{\mathrm{one}}=(b(m)+1)W+m-1+d(m)+b(m)
+-[m(b(m)+1)-1]f([m]).
+\]
+
+Together these equations completely define the mathematical compiler studied
+below; no unstated dominance claim is used. These are structural compiler
+costs, not physical T-gate counts, depth, runtime, qubits, or fault-tolerant
+overhead.
 
 ## 3. A four-index decision certificate
 
@@ -130,8 +138,9 @@ C_U-C(\Pi)=\sum_{S\in\Pi}\bigl(T_{|S|}(S)+h_{|S|}\bigr)
 -\max_{S\in\Pi}b(|S|).
 \]
 
-The depth recurrence yields \(h_s=1\) for \(s=2,3,4\), \(h_5=0\), and
-\(h_s\le0\) for \(s\ge5\). For a block of size \(s\ge3\), take a perfect
+The depth recurrence gives
+\(h_s=3-s+h_{\lceil s/2\rceil}+h_{\lfloor s/2\rfloor}\), and hence
+\(h_2=h_3=h_4=1\), \(h_5=0\), and \(h_s\le0\) for \(s\ge5\). For a block of size \(s\ge3\), take a perfect
 matching if \(s\) is even and an \(s\)-cycle if \(s\) is odd. Summing the pair
 clauses counts every term once or twice and uses
 \(f(\{i,j\})\ge f(S)\), giving \(w(S)\ge2s f(S)\). Therefore
@@ -204,10 +213,16 @@ To determine their optima, use the block credit
 \(U(S)=T_{|S|}(S)+h_{|S|}\) from the proof of Theorem 1. Enumerating the 31
 nonempty subsets and 52 partitions of one five-term gadget gives a unique
 maximum \(\sum U=12\) for \(A_1\), at the triple-plus-pair partition
-\(\{\{1,2,3\},\{4,5\}\}\). For \(B_1\), the maximum is 10 and is attained only
-by pair-and-singleton partitions. A block meeting two gadgets has
-\(f(S)=0\) and strictly negative credit; splitting it by gadget increases
-\(\sum U\) without increasing the maximum index width. The global optimum
+\(\{\{1,2,3\},\{4,5\}\}\). For \(B_1\), the maximum of \(\sum U\) is 10.
+Besides pair-and-singleton partitions, three triple-plus-pair partitions also
+attain this credit maximum: \(\{\{1,4,5\},\{2,3\}\}\),
+\(\{\{1,3\},\{2,4,5\}\}\), and \(\{\{1,2\},\{3,4,5\}\}\). Their width
+penalty is two, so their improvement is eight; a pair-and-singleton maximizer
+pays width one and improves by nine. Consequently every cost-optimal \(B_1\)
+partition uses only pairs and singletons. A block meeting two gadgets has
+\(f(S)=0\) and strictly negative credit. Replacing every such mixed block by
+singleton blocks changes its credit to zero and cannot increase the maximum
+index width. Repeating this replacement removes all mixed blocks, so the global optimum
 therefore decomposes by gadgets. Accounting once for the shared maximum-width
 term yields
 
@@ -295,9 +310,9 @@ count for subsets of size at most \(m-2\), yet
 =\left[m(\lceil\log_2m\rceil+1)-1\right]L.
 \]
 
-**Proof.** For every proper labeled subset of terms, the two parity classes
-contain the same number of supersets, so all common-factor counts through order
-\(m-2\) agree. The common padding also makes the one-block partition uniquely
+**Proof.** For every labeled subset of terms of size at most \(m-2\), the two
+parity classes contain the same number of supersets, so all common-factor counts
+through order \(m-2\) agree. The common padding also makes the one-block partition uniquely
 optimal: for any proper partition, the exact cost difference from the full
 block is bounded below by
 
@@ -356,7 +371,7 @@ information misses exact value through the primitive parity direction.
 ## 9. Reproducibility and limitations
 
 The four-term witness, pair-indistinguishable gadgets, product formulas,
-minimax optima, and Boolean-lattice kernel have been checked with independent
+minimax optima, and Boolean-lattice kernel have been checked with separate
 exact implementations; the analytic arguments provide all-parameter authority.
 
 The results apply to the stated structural objective. The decision theorem
@@ -384,8 +399,8 @@ independent of computational assumptions.
 Exact implementations reproducing the four-term witness, paired gadget
 families, product formulas, minimax calculations, and Boolean-lattice kernel
 accompany the submission source. They are verification aids; the displayed
-arguments carry the all-parameter claims. A permanent archival identifier must
-be inserted before final upload.
+arguments carry the all-parameter claims. These files are distributed in the
+source archive accompanying this version.
 
 ## References
 

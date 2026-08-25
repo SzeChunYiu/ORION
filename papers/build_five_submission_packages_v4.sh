@@ -16,16 +16,16 @@ declare -A title=(
   [A]="Zero-Sum Deletion Normal Forms for Multi-Tag Quantum Compilation"
   [B]="Zero-Sum Deletion Certificates versus Intrinsic Support in Quantum Compilation"
   [C]="Low-Order Decision Certificates and Value-Estimation Limits in Structured Quantum Compilation"
-  [D]="Typed Evidence Propagation and Retraction in Positive Scientific Rule Graphs"
-  [N]='A Width-One Corridor for Generalized Davenport Constants of \(C_5^3\)'
+  [D]="Typed Evidence Licenses for Finite Positive Rule Graphs"
+  [N]='Conditional Width-One Bounds for Generalized Davenport Constants of \(C_5^3\)'
 )
 
 declare -A stem=(
   [A]="Zero-Sum_Deletion_Normal_Forms_for_Multi-Tag_Quantum_Compilation"
   [B]="Zero-Sum_Deletion_Certificates_versus_Intrinsic_Support_in_Quantum_Compilation"
   [C]="Low-Order_Decision_Certificates_and_Value-Estimation_Limits_in_Structured_Quantum_Compilation"
-  [D]="Typed_Evidence_Propagation_and_Retraction_in_Positive_Scientific_Rule_Graphs"
-  [N]="A_Width-One_Corridor_for_Generalized_Davenport_Constants_of_C5_Cubed"
+  [D]="Typed_Evidence_Licenses_for_Finite_Positive_Rule_Graphs"
+  [N]="Conditional_Width-One_Bounds_for_Generalized_Davenport_Constants_of_C5_Cubed"
 )
 
 unlink_if_file() {

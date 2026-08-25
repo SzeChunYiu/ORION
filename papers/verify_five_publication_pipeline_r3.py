@@ -35,7 +35,7 @@ FORBIDDEN_SURFACE = re.compile(
 )
 
 REQUIRED = {
-    "A": ["zero-sum deletion normal form", "deletion closure", "kappa_{\\mathrm{1T3B}}=2"],
+    "A": ["zero-sum deletion normal form", "deletion closure", "no intrinsic"],
     "B": ["exact abstract certificate complexity", "dependent-triple", "Theta(n^{4t})"],
     "C": ["four-index decision certificate", "sqrt{6/5}", "proper-marginal kernel"],
     "D": ["least-fixed-point semantics", "proof-tree equivalence", "Executable semantics"],
@@ -159,19 +159,20 @@ def main() -> int:
     else:
         details["pandoc"] = "not installed; optional portable check skipped"
 
-    handoff = (PAPERS / "FIVE_PAPER_PUBLICATION_HANDOFF_R3_2026-08-25.md").read_text(
+    handoff = (PAPERS / "FIVE_PAPER_ATOMIC_VERIFICATION_V6_2026-08-25.md").read_text(
         encoding="utf-8"
     )
     review = (PAPERS / "FIVE_PAPER_REVIEW_SYNTHESIS_R3_2026-08-25.md").read_text(
         encoding="utf-8"
     )
     checks["five_terminal_states_recorded"] = (
-        handoff.count("simulated_publication_ready_for_target") == 5
+        handoff.count("| `BLOCKED`") >= 5
+        and "`BLOCKED_NO_PUBLIC_POSTING`" in handoff
     )
     checks["editor_synthesis_recorded"] = "Editor synthesis" in review
 
     output = {
-        "schema": "orion.five-paper-publication-pipeline-r3.v1",
+        "schema": "orion.five-paper-publication-pipeline-r3-v6-gate.v1",
         "all_checks": all(checks.values()),
         "checks": checks,
         "details": details,
