@@ -1,0 +1,71 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P7-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T13"
+  ],
+  "terminal": "P7_REGIME_COHERENCE_PREDICTIONS_SUPPORTED",
+  "executed_on": {
+    "host": "LUNARC (cosmos2.int.lunarc)",
+    "wallclock_seconds": 1.248,
+    "cells_enumerated": 90774
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "9f5410a0b4e2fa483022a5b7e1dfbb46132a7d77da9b2a28ee448032a46ddc70"
+    },
+    "run_regime_loops_v1.py": {
+      "artifact": "run_regime_loops_v1.py",
+      "sha256": "ca7e9de2415fbdcc8de1737784264f282adf9c577f68664fdaed684b38e2ce9b"
+    },
+    "check_regime_loops_independent_v1.py": {
+      "artifact": "check_regime_loops_independent_v1.py",
+      "sha256": "bdea8f35f7290ecdf54607fbc8d7605cbffc8b7c8d841d9ab38a629bed02d7d3"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "b85ad57ac17f20e1f86f081f391201d9aba0e3850f322792226abb77add395fc"
+    },
+    "INDEPENDENT_CHECKER_RECEIPT.json": {
+      "artifact": "INDEPENDENT_CHECKER_RECEIPT.json",
+      "sha256": "64f9a4231c72eea7b8daa30a5258daaf499c0ee804e1b8df51a3f8ee410f4099"
+    }
+  },
+  "results": {
+    "three_step_associativity": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Zero violations over 68,921 three-morphism chains. EXEC-CM-01 could not reach this: two-step transport cannot exhibit an associativity failure.",
+      "chains": 68921,
+      "violations": 0
+    },
+    "loop_biconditional": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Over 21,853 closed loops the declared round trip is the identity on every object exactly when every square in the cycle commutes -- zero violations in either direction. 1,681 commute and 20,172 do not, so both sides were exercised and the biconditional is not vacuously satisfied.",
+      "loops": 21853,
+      "all_squares_commute": 1681,
+      "non_commuting": 20172,
+      "identity_round_trips": 1681,
+      "biconditional_violations": 0
+    }
+  },
+  "path_dependence": {
+    "verdict": "REAL_ON_THIS_GRID",
+    "detail": "7,140 of 8,000 same-endpoint route pairs transport at least one object differently. Path dependence is the phenomenon T13 is about, and a grid without it could not test the theorem -- that condition was frozen as a negative before the run.",
+    "route_pairs": 8000,
+    "divergent_pairs": 7140
+  },
+  "comparator": {
+    "endpoint_only_donor": "FAILS_AS_REQUIRED",
+    "detail": "7,140 failures. The donor declares routes equivalent whenever their endpoints match; T13 says the route matters, so a donor that never failed would have meant the enumeration never produced path dependence."
+  },
+  "what_this_does_not_establish": [
+    "Nothing beyond the declared grid: 2 coordinates, 3 values, a 40-morphism sample of the full morphism space. The morphism space is sampled rather than exhausted, so loop and chain claims are over the sampled class.",
+    "No proof-assistant correspondence; EXEC-PA-01 remains open.",
+    "No external adjudication. Runner and checker are two implementations inside one programme."
+  ],
+  "independent_checker": "EXEC_P7_01_SECOND_INDEPENDENT_CHECKER_GREEN, 0 disagreements",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}

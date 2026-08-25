@@ -1,0 +1,32 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-P7-01",
+  "grid": {
+    "n_coords": 2,
+    "n_values": 3,
+    "seed": 20260825
+  },
+  "assoc": {
+    "chains": 68921,
+    "violations": 0,
+    "minimal_witness": null
+  },
+  "loops": {
+    "loops": 21853,
+    "identity_round_trips": 1681,
+    "all_squares_commute": 1681,
+    "biconditional_violations": 0,
+    "minimal_witness": null
+  },
+  "path_dependence": {
+    "route_pairs": 8000,
+    "divergent_pairs": 7140
+  },
+  "donor": {
+    "failures": 7140
+  },
+  "totals": {
+    "cells_enumerated": 90774,
+    "wallclock_seconds": 1.248
+  }
+}
