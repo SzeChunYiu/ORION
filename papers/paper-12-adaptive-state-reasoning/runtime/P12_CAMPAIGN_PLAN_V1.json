@@ -1,0 +1,1574 @@
+{
+  "schema": "orion.p12.campaign-plan.v1",
+  "status": "PLAN_ONLY__NO_OUTCOMES",
+  "gold_leak_guard": {
+    "verified_fires_on_denied_path": true,
+    "denied": [
+      "gold_programs",
+      "scoring_rubrics",
+      "gold_results"
+    ]
+  },
+  "instances": 96,
+  "families": 24,
+  "domains": 4,
+  "multiplicity_median": 2.0,
+  "action_distribution": {
+    "ADAPTIVE": {
+      "A_BALANCED": 17,
+      "A_STATE_MAX": 40,
+      "A_REASON_MAX": 13,
+      "A_RETAIN_MINIMAL": 26
+    },
+    "ONE_SIGNAL_STATE": {
+      "A_STATE_MAX": 57,
+      "A_RETAIN_MINIMAL": 39
+    },
+    "ONE_SIGNAL_REASON": {
+      "A_REASON_MAX": 30,
+      "A_RETAIN_MINIMAL": 66
+    }
+  },
+  "arms_differ": {
+    "adaptive_vs_state": 30,
+    "adaptive_vs_reason": 57
+  },
+  "plan": [
+    {
+      "instance_id": "1",
+      "domain": "Computational Chemistry",
+      "family": "Feature Engineering, Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "2",
+      "domain": "Computational Chemistry",
+      "family": "Feature Selection, Machine Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "4",
+      "domain": "Geographical Information Science",
+      "family": "Statistical Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "5",
+      "domain": "Bioinformatics",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "6",
+      "domain": "Bioinformatics",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "7",
+      "domain": "Bioinformatics",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "8",
+      "domain": "Bioinformatics",
+      "family": "Feature Selection, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "9",
+      "domain": "Computational Chemistry",
+      "family": "Statistical Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "10",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "11",
+      "domain": "Bioinformatics",
+      "family": "Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "12",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering, Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "13",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering, Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "14",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "15",
+      "domain": "Bioinformatics",
+      "family": "Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "16",
+      "domain": "Computational Chemistry",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "17",
+      "domain": "Computational Chemistry",
+      "family": "Feature Engineering, Statistical Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 3,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "18",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering, Machine Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "19",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering, Machine Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "20",
+      "domain": "Bioinformatics",
+      "family": "Statistical Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "21",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "22",
+      "domain": "Computational Chemistry",
+      "family": "Data Selection",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "23",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "24",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "25",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "26",
+      "domain": "Computational Chemistry",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "27",
+      "domain": "Bioinformatics",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "28",
+      "domain": "Computational Chemistry",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "29",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "30",
+      "domain": "Computational Chemistry",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "31",
+      "domain": "Computational Chemistry",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "33",
+      "domain": "Geographical Information Science",
+      "family": "Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "34",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "35",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "36",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "37",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "38",
+      "domain": "Computational Chemistry",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "39",
+      "domain": "Computational Chemistry",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "40",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering, Machine Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "41",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering, Machine Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "42",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "43",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "44",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "45",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "47",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "48",
+      "domain": "Geographical Information Science",
+      "family": "Computational Analysis, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "49",
+      "domain": "Geographical Information Science",
+      "family": "Computational Analysis, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "50",
+      "domain": "Geographical Information Science",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "51",
+      "domain": "Computational Chemistry",
+      "family": "Feature Engineering, Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "52",
+      "domain": "Computational Chemistry",
+      "family": "Feature Engineering, Deep Learning, Computational Analysis, Molecule Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 4,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "55",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "56",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "57",
+      "domain": "Psychology and Cognitive science",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "58",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "59",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "60",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "61",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "62",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "63",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "64",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "65",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "66",
+      "domain": "Psychology and Cognitive science",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "67",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "68",
+      "domain": "Psychology and Cognitive science",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "69",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering, Statistical Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 3,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "70",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering, Deep Learning, Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 4,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "71",
+      "domain": "Psychology and Cognitive science",
+      "family": "Feature Engineering, Machine Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "72",
+      "domain": "Psychology and Cognitive science",
+      "family": "Feature Engineering, Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "73",
+      "domain": "Psychology and Cognitive science",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "74",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "75",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering, Machine Learning, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 3,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "76",
+      "domain": "Geographical Information Science",
+      "family": "Feature Engineering, Machine Learning, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 3,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "77",
+      "domain": "Geographical Information Science",
+      "family": "Statistical Analysis, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "78",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering, Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "79",
+      "domain": "Bioinformatics",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "80",
+      "domain": "Bioinformatics",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "81",
+      "domain": "Bioinformatics",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "82",
+      "domain": "Bioinformatics",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "83",
+      "domain": "Geographical Information Science",
+      "family": "Geospatial Analysis, Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "85",
+      "domain": "Bioinformatics",
+      "family": "Feature Engineering",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "86",
+      "domain": "Geographical Information Science",
+      "family": "Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "87",
+      "domain": "Geographical Information Science",
+      "family": "Statistical Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "88",
+      "domain": "Geographical Information Science",
+      "family": "Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "89",
+      "domain": "Geographical Information Science",
+      "family": "Map Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "90",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "91",
+      "domain": "Psychology and Cognitive science",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "92",
+      "domain": "Psychology and Cognitive science",
+      "family": "Computational Analysis",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "MID"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "93",
+      "domain": "Psychology and Cognitive science",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "94",
+      "domain": "Computational Chemistry",
+      "family": "Molecule Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "95",
+      "domain": "Computational Chemistry",
+      "family": "Feature Engineering, Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_BALANCED",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "96",
+      "domain": "Bioinformatics",
+      "family": "Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "HIGH"
+      },
+      "actions": {
+        "ADAPTIVE": "A_REASON_MAX",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_REASON_MAX"
+      }
+    },
+    {
+      "instance_id": "97",
+      "domain": "Computational Chemistry",
+      "family": "Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "98",
+      "domain": "Bioinformatics",
+      "family": "Computational Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "99",
+      "domain": "Bioinformatics",
+      "family": "Statistical Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "100",
+      "domain": "Bioinformatics",
+      "family": "Statistical Analysis, Data Visualization",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 2,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_STATE_MAX",
+        "ONE_SIGNAL_STATE": "A_STATE_MAX",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "101",
+      "domain": "Computational Chemistry",
+      "family": "Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    },
+    {
+      "instance_id": "102",
+      "domain": "Computational Chemistry",
+      "family": "Deep Learning",
+      "signals": {
+        "S_PENDING_MULTIPLICITY": 1,
+        "S_DECLARED_MATERIALIZATION_COST": 1.0,
+        "S_DECLARED_SERVE_EXCHANGE_RATE": 1.0,
+        "S_FAMILY_DIFFICULTY_PRIOR": "LOW"
+      },
+      "actions": {
+        "ADAPTIVE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_STATE": "A_RETAIN_MINIMAL",
+        "ONE_SIGNAL_REASON": "A_RETAIN_MINIMAL"
+      }
+    }
+  ]
+}
