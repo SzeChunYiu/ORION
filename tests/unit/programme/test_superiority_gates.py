@@ -74,6 +74,7 @@ from orion.programme.superiority_report import (
 from orion.programme.superiority_terminals import (
     ALL_GATES,
     FUTURE_PAPER_DIRECTORIES,
+    FUTURE_RETIRED_PAPER_DIRECTORIES,
     PAPER_DIRECTORIES,
     PAPER_DIRECTORIES_BY_ID,
     PAPER_GATES,
@@ -1010,11 +1011,13 @@ def test_paper_identity_cannot_check_without_a_papers_tree(tmp_path: Path) -> No
     assert paper_identity_findings(tmp_path) is None
 
 
-def test_every_paper_carries_exactly_one_directory() -> None:
-    """P9 and P10 no longer sit beside a second paper-numbered directory."""
+def test_every_paper_carries_one_active_directory_and_documented_history() -> None:
+    """Historical snapshots never compete with the one active directory."""
 
     for entry in PAPER_DIRECTORIES:
-        assert entry.retired == (), entry.paper_id
+        retired = {directory for directory, _ in entry.retired}
+        assert entry.active not in retired, entry.paper_id
+        assert len(retired) == len(entry.retired), entry.paper_id
 
 
 def test_vacated_numbers_are_recorded_and_are_not_identities() -> None:
@@ -1038,10 +1041,11 @@ def test_vacated_numbers_are_recorded_and_are_not_identities() -> None:
         assert directory not in actives
 
 
-def test_no_paper_declares_a_retired_directory() -> None:
+def test_every_retired_directory_states_why_it_is_not_active() -> None:
     for entry in PAPER_DIRECTORIES:
-        if entry.paper_id not in ("P9", "P10"):
-            assert entry.retired == (), entry.paper_id
+        for directory, reason in entry.retired:
+            assert (REPO_ROOT / directory).is_dir(), directory
+            assert any(word in reason for word in ("historical", "preserved")), reason
 
 
 def test_the_ledger_cites_only_known_paper_directories() -> None:
@@ -1301,7 +1305,7 @@ def test_build_residue_is_not_a_paper_identity(tmp_path: Path) -> None:
         for directory, _ in entry.retired:
             (tmp_path / directory).mkdir(parents=True, exist_ok=True)
 
-    residue = tmp_path / "papers" / "candidates" / "paper-06-formal-epistemic-structures-and-mechanics"
+    residue = tmp_path / "papers" / "candidates" / "paper-99-build-residue"
     (residue / "formal" / "__pycache__").mkdir(parents=True)
     (residue / "formal" / "__pycache__" / "check.cpython-311.pyc").write_bytes(b"\x00")
     assert paper_identity_findings(tmp_path) == ()
@@ -1309,7 +1313,7 @@ def test_build_residue_is_not_a_paper_identity(tmp_path: Path) -> None:
     # Real content in the same place is still a finding.
     (residue / "README.md").write_text("a real paper", encoding="utf-8")
     assert paper_identity_findings(tmp_path) == (
-        "papers/candidates/paper-06-formal-epistemic-structures-and-mechanics",
+        "papers/candidates/paper-99-build-residue",
     )
 
 
@@ -1330,11 +1334,15 @@ def test_the_q_paper_namespace_is_out_of_scope(tmp_path: Path) -> None:
 def test_future_identities_are_registered_under_both_layouts() -> None:
     """PR #715 was authored pre-refactor; either landing order must be clean."""
 
-    for directory in FUTURE_PAPER_DIRECTORIES.values():
+    for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items():
         assert directory.startswith("papers/paper-1")
         assert directory in REGISTERED_PAPER_DIRECTORIES
         legacy = directory.replace("papers/", "papers/candidates/", 1)
         assert legacy in REGISTERED_PAPER_DIRECTORIES
+        if paper_id in FUTURE_RETIRED_PAPER_DIRECTORIES:
+            assert legacy in {
+                path for path, _ in FUTURE_RETIRED_PAPER_DIRECTORIES[paper_id]
+            }
 
 
 # --- P11-P14 folders, shared lanes, split identity ----------------------------
@@ -1386,7 +1394,7 @@ def test_split_paper_identity_fails(tmp_path: Path) -> None:
         for directory, _ in entry.retired:
             (tmp_path / directory).mkdir(parents=True, exist_ok=True)
 
-    slug = "paper-11-state-as-computation"
+    slug = "paper-99-unregistered-split"
     new = tmp_path / "papers" / slug
     new.mkdir()
     (new / "README.md").write_text("here", encoding="utf-8")

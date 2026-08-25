@@ -1,18 +1,18 @@
 {
-  "blocker_sites": 616,
+  "blocker_sites": 657,
   "classification": {
-    "INSUFFICIENT_EVIDENCE": 16,
-    "MISSING_ACCESS": 6,
-    "MISSING_CUSTODY": 44,
-    "MISSING_DECLARATION": 94,
-    "MISSING_IDENTITY": 32,
+    "INSUFFICIENT_EVIDENCE": 17,
+    "MISSING_ACCESS": 7,
+    "MISSING_CUSTODY": 49,
+    "MISSING_DECLARATION": 97,
+    "MISSING_IDENTITY": 36,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 412
+    "UNCLASSIFIED": 439
   },
   "closes_gate": null,
   "grants_authority": "NONE",
   "issue": 322,
-  "observing_sites": 62,
+  "observing_sites": 65,
   "schema_version": "orion.cannot-check-inventory.v2",
   "sites": [
     {
@@ -625,6 +625,157 @@
     },
     {
       "category": "UNCLASSIFIED",
+      "context": "CampaignTerminal",
+      "file": "benchmarks/public_campaign.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 25,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "ObservationOutcome",
+      "file": "benchmarks/public_campaign.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 33,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "",
+      "file": "benchmarks/public_campaign.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 244,
+      "missing_obligation": null,
+      "reasons": [
+        "UNKNOWN",
+        "UNLICENSED",
+        "TBD"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "",
+      "file": "benchmarks/public_campaign.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 246,
+      "missing_obligation": null,
+      "reasons": [
+        "UNKNOWN",
+        "TBD",
+        "UNSET",
+        "N/A",
+        "NULL"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_IDENTITY",
+      "context": "fetch_and_hash_sources",
+      "file": "benchmarks/public_campaign.py",
+      "has_reason": false,
+      "kind": "EXPRESSION",
+      "lineno": 360,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_IDENTITY",
+      "context": "fetch_and_hash_sources",
+      "file": "benchmarks/public_campaign.py",
+      "has_reason": true,
+      "kind": "EXPRESSION",
+      "lineno": 372,
+      "missing_obligation": null,
+      "reasons": [
+        "fetch_failed:"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_IDENTITY",
+      "context": "fetch_and_hash_sources",
+      "file": "benchmarks/public_campaign.py",
+      "has_reason": true,
+      "kind": "EXPRESSION",
+      "lineno": 383,
+      "missing_obligation": null,
+      "reasons": [
+        "source_hash_mismatch"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "run_fail_closed_campaign",
+      "file": "benchmarks/public_campaign.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 954,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_CUSTODY",
+      "context": "run_fail_closed_campaign",
+      "file": "benchmarks/public_campaign.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 978,
+      "missing_obligation": null,
+      "reasons": [
+        "campaign_id",
+        "terminal",
+        "blockers",
+        "gate_rationale",
+        "observation_counts",
+        "source_receipts",
+        "freeze_sha256",
+        "observations_sha256",
+        "gate_result_sha256",
+        "replay_sha256",
+        "authority_surfaces_sha256",
+        "independent_authority",
+        "authority_boundary",
+        "Public availability, hashes, official evaluators, containers and same-owner replay do not establish protected custody, independent semantic adjudication, external proof review or legal permission."
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "run_fail_closed_campaign",
+      "file": "benchmarks/public_campaign.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 997,
+      "missing_obligation": null,
+      "reasons": [
+        "authority_boundary"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
       "context": "BenchmarkStatus",
       "file": "benchmarks/result.py",
       "has_reason": false,
@@ -1068,6 +1219,138 @@
     },
     {
       "category": "UNCLASSIFIED",
+      "context": "ModelChronologyState",
+      "file": "discovery/model_chronology.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 25,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "HistoricalEligibilityState",
+      "file": "discovery/model_chronology.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 219,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "HistoricalEligibilityEvidence.state",
+      "file": "discovery/model_chronology.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 234,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "TriangulationState",
+      "file": "discovery/model_chronology.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 261,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "TriangulationEvidence.state",
+      "file": "discovery/model_chronology.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 273,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "ReducibilityState",
+      "file": "discovery/proposal_origin.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 34,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_ACCESS",
+      "context": "TargetOracleAccess",
+      "file": "discovery/proposal_origin.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 41,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "DiscoveryCreditState",
+      "file": "discovery/proposal_origin.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 53,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "DiscoveryCreditEvidence.maximum_state",
+      "file": "discovery/proposal_origin.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 248,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_DECLARATION",
+      "context": "DiscoveryCreditEvidence.maximum_state",
+      "file": "discovery/proposal_origin.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 250,
+      "missing_obligation": "self.proposal_origin_verified must be present at this guard",
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": "self.proposal_origin_verified"
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "supplied_menu_is_outside_closure_candidate",
+      "file": "discovery/proposal_origin.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 280,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
       "context": "RecursiveAtomCalculusTerminal",
       "file": "discovery/recursive_atom_calculus_closure.py",
       "has_reason": false,
@@ -1238,7 +1521,7 @@
       "file": "engine/solver.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1044,
+      "lineno": 1050,
       "missing_obligation": null,
       "reasons": [
         "Bounded saturation reached but no verified evidence supports a final answer."
@@ -1252,10 +1535,96 @@
       "file": "engine/solver.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1112,
+      "lineno": 1118,
       "missing_obligation": null,
       "reasons": [
         "Resource bound reached before bounded saturation. Open saturation coordinates:"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "Status",
+      "file": "epistemic_state_v1/model.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 13,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "Terminal",
+      "file": "epistemic_state_v1/model.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 15,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "Policy.project",
+      "file": "epistemic_state_v1/model.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 123,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "Policy.project",
+      "file": "epistemic_state_v1/model.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 129,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_CUSTODY",
+      "context": "promotion_policy",
+      "file": "epistemic_state_v1/model.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 133,
+      "missing_obligation": null,
+      "reasons": [
+        "promotion:v1",
+        "identified",
+        "obligations",
+        "support",
+        "defeaters",
+        "custody"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_CUSTODY",
+      "context": "promotion_policy",
+      "file": "epistemic_state_v1/model.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 137,
+      "missing_obligation": null,
+      "reasons": [
+        "promotion:v1",
+        "identified",
+        "obligations",
+        "support",
+        "defeaters",
+        "custody"
       ],
       "role": "EMITS",
       "unmet_precondition": null
@@ -3134,6 +3503,30 @@
     },
     {
       "category": "UNCLASSIFIED",
+      "context": "StructuralAssimilationVerdict",
+      "file": "knowledge/scientific_structure_assimilation_review.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 72,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "seal_structural_assimilation",
+      "file": "knowledge/scientific_structure_assimilation_review.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 277,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
       "context": "WitnessVerdict",
       "file": "knowledge/similarity.py",
       "has_reason": false,
@@ -4091,7 +4484,7 @@
       "file": "programme/checks_superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 81,
+      "lineno": 83,
       "missing_obligation": null,
       "reasons": [
         "check raised"
@@ -4105,7 +4498,7 @@
       "file": "programme/checks_superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 87,
+      "lineno": 89,
       "missing_obligation": null,
       "reasons": [
         "check returned a result for a different check id"
@@ -4119,12 +4512,27 @@
       "file": "programme/checks_superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 204,
+      "lineno": 206,
       "missing_obligation": null,
       "reasons": [
         "a campaign that terminated before producing an outcome is recorded as evidence for a terminal; preserving a CANNOT_CHECK campaign is right, counting it is not"
       ],
       "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "NOT_A_BLOCKER",
+      "context": "audit_cannot_check_retention",
+      "file": "programme/claim_boundary_audit.py",
+      "has_reason": true,
+      "kind": "BRANCH",
+      "lineno": 154,
+      "missing_obligation": null,
+      "reasons": [
+        "P5 empirical_authority is",
+        ", expected CANNOT_CHECK"
+      ],
+      "role": "OBSERVES",
       "unmet_precondition": null
     },
     {
@@ -4811,6 +5219,49 @@
       "unmet_precondition": null
     },
     {
+      "category": "MISSING_DECLARATION",
+      "context": "build",
+      "file": "programme/specialist_readiness_matrix.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 128,
+      "missing_obligation": "matches must be present at this guard",
+      "reasons": [
+        "directory",
+        "fields",
+        "reason",
+        "expected directory",
+        "does not exist"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": "matches"
+    },
+    {
+      "category": "INSUFFICIENT_EVIDENCE",
+      "context": "build",
+      "file": "programme/specialist_readiness_matrix.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 139,
+      "missing_obligation": null,
+      "reasons": [
+        "schema",
+        "fields",
+        "semantics",
+        "derivation",
+        "papers",
+        "ORION.SpecialistReadinessMatrix.v1",
+        "every value is read from the paper's own files; none is asserted",
+        "PRESENT",
+        "ABSENT",
+        "evidence found in the tree; value and source path recorded",
+        "no evidence found; the reason names what was looked for",
+        "the question could not be asked, distinct from answered no"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
       "category": "UNCLASSIFIED",
       "context": "EvidenceGrade",
       "file": "programme/superiority.py",
@@ -5035,7 +5486,7 @@
       "file": "providers/live_phase2.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 206,
+      "lineno": 215,
       "missing_obligation": null,
       "reasons": [
         "schema",
@@ -6844,6 +7295,67 @@
       "unmet_precondition": null
     },
     {
+      "category": "MISSING_IDENTITY",
+      "context": "build_active_claim_authority",
+      "file": "study/p12/successor_authority.py",
+      "has_reason": true,
+      "kind": "EXPRESSION",
+      "lineno": 181,
+      "missing_obligation": null,
+      "reasons": [
+        "schema",
+        "paper_level_outcome",
+        "top_tier_submission_allowed",
+        "external_public_benchmark_status",
+        "artifact_identity_note",
+        "transfer_claim_leaf",
+        "robustness_boundary_leaf",
+        "price_aware_successor_leaf",
+        "selection_information_boundary",
+        "SUPPORTED_WITH_TRANSFER_AND_CERTIFICATE_BOUNDS",
+        "CANNOT_CHECK_NO_BOUND_PUBLIC_DATA_RESULT",
+        "No P12C artifact exists. The adverse landed study is P12_ROBUSTNESS_STRESS_V1; the later successor is conditional on exact published charge certificates and is not public-data validation.",
+        "claim_id",
+        "terminal",
+        "scope",
+        "P12.TRANSFER.EXACT.THREE_DOMAIN.V1",
+        "SUPPORTED_BOUNDED_INTERNAL_EXACT_DOMAINS",
+        "P12_TRANSFER_ALLOCATION_V1_SUPPORTED",
+        "price_axis",
+        "distribution_shift_axis",
+        "flat_replication",
+        "retuned",
+        "P12.TRANSFER.ROBUSTNESS.STRESS.V1",
+        "BINDING_NEGATIVE_BOUNDARY",
+        "P12_ROBUSTNESS_STRESS_V1_EXECUTED",
+        "BROKEN",
+        "SUPPORTED",
+        "successor_positive_cells",
+        "battery_cells_cross_checked",
+        "new_free_parameters",
+        "forward_time_deployability",
+        "P12.PRICE_AWARE.EXACT_CERTIFICATE.SUCCESSOR.V1",
+        "SUPPORTED_CONDITIONAL_ON_EXACT_PUBLISHED_CERTIFICATES",
+        "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED",
+        "sufficiency_terminal",
+        "necessity_terminal",
+        "maximum_authorized_use",
+        "P12_SELECTION_SUFFICIENCY_THEOREM_FALSIFIER_GREEN",
+        "P12_CERTIFICATE_NECESSITY_THEOREM_FALSIFIER_GREEN",
+        "Exact additive charge certificates are sufficient for optimal selection, and each registered coarsening admits an impossibility witness in the registered reduced environment. Certificate availability before action is not established.",
+        "domains",
+        "cases",
+        "domain_specific_parameters",
+        "allocator_regret_positive_cells",
+        "exact_outputs_all_arms",
+        "SAT_PROPAGATION",
+        "PATH_PLANNING",
+        "KNAPSACK"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
       "category": "UNCLASSIFIED",
       "context": "rcs_action",
       "file": "study/p13/outcome_authority.py",
@@ -6965,7 +7477,7 @@
       "file": "study/p15/active_claim_authority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 59,
+      "lineno": 106,
       "missing_obligation": null,
       "reasons": [
         "schema",
@@ -7146,12 +7658,26 @@
       "unmet_precondition": null
     },
     {
+      "category": "MISSING_DECLARATION",
+      "context": "_status_and_failure",
+      "file": "study/p2/gold.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 630,
+      "missing_obligation": "gold_set_complete must be present at this guard",
+      "reasons": [
+        "incomplete_gold_denominator"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": "gold_set_complete"
+    },
+    {
       "category": "UNCLASSIFIED",
       "context": "_status_and_failure",
       "file": "study/p2/gold.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 446,
+      "lineno": 640,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -7163,7 +7689,7 @@
       "file": "study/p2/gold.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 448,
+      "lineno": 642,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -7301,6 +7827,41 @@
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "",
+      "file": "study/p3/comparator_arm_disposition.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 66,
+      "missing_obligation": null,
+      "reasons": [
+        "SCORED",
+        "OUT_OF_SCOPE"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "NOT_A_BLOCKER",
+      "context": "check_disposition",
+      "file": "study/p3/comparator_arm_disposition.py",
+      "has_reason": true,
+      "kind": "BRANCH",
+      "lineno": 181,
+      "missing_obligation": null,
+      "reasons": [
+        "scored_against_reference",
+        "blocking_conditions",
+        "promotion_conditions",
+        ": CANNOT_CHECK but scored_against_reference is true",
+        ": CANNOT_CHECK without blocking_conditions",
+        ": CANNOT_CHECK without promotion_conditions -- a dead end, not a verdict",
+        "blocking"
+      ],
+      "role": "OBSERVES",
       "unmet_precondition": null
     },
     {
@@ -8890,7 +9451,7 @@
       "file": "study/p5_attribution_publication.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 107,
+      "lineno": 130,
       "missing_obligation": null,
       "reasons": [
         "campaign_id",
@@ -8911,7 +9472,7 @@
       "file": "study/p5_attribution_publication.py",
       "has_reason": true,
       "kind": "EXPRESSION",
-      "lineno": 121,
+      "lineno": 144,
       "missing_obligation": null,
       "reasons": [
         "TABLE_P5_2_REPLAY_VS_FRESH.json",
@@ -8936,7 +9497,7 @@
       "file": "study/p5_attribution_publication.py",
       "has_reason": true,
       "kind": "EXPRESSION",
-      "lineno": 181,
+      "lineno": 204,
       "missing_obligation": null,
       "reasons": [
         "TABLE_P5_4_LONGITUDINAL.json",
@@ -8957,7 +9518,7 @@
       "file": "study/p5_attribution_publication.py",
       "has_reason": true,
       "kind": "EXPRESSION",
-      "lineno": 195,
+      "lineno": 218,
       "missing_obligation": null,
       "reasons": [
         "TABLE_P5_5_IMPROVEMENT_INTEGRITY_FRONTIER.json",
@@ -8978,7 +9539,7 @@
       "file": "study/p5_attribution_publication.py",
       "has_reason": true,
       "kind": "EXPRESSION",
-      "lineno": 209,
+      "lineno": 232,
       "missing_obligation": null,
       "reasons": [
         "TABLE_P5_6_FAILURE_RECURRENCE.json",
@@ -9378,6 +9939,132 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 1450,
+      "missing_obligation": null,
+      "reasons": [
+        "outcome"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "check",
+      "file": "study/p9/invariant_profile_checker.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 279,
+      "missing_obligation": null,
+      "reasons": [
+        "C8_frozen_components_as_preregistered",
+        "green",
+        "verdicts"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_CUSTODY",
+      "context": "margin_survival_component",
+      "file": "study/p9/representation_hardening.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 817,
+      "missing_obligation": null,
+      "reasons": [
+        "C-3_MARGIN_SURVIVAL",
+        "H_FMT",
+        "protected cases",
+        "; a constant or unresponsive comparator cannot carry the successor claim, and this is recorded as unmeasurable, not as held"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_CUSTODY",
+      "context": "margin_survival_component",
+      "file": "study/p9/representation_hardening.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 831,
+      "missing_obligation": null,
+      "reasons": [
+        "C-3_MARGIN_SURVIVAL",
+        "H_FMT",
+        "base gap",
+        "over",
+        "protected cases",
+        "the",
+        "gap is",
+        ", below the",
+        "floor of four protected cases; halving it is not separable from tie-breaking noise"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "run_study",
+      "file": "study/p9/representation_hardening.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 910,
+      "missing_obligation": null,
+      "reasons": [
+        "outcome"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "run_study",
+      "file": "study/p9/representation_hardening.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 944,
+      "missing_obligation": null,
+      "reasons": [
+        "outcome"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "run_study",
+      "file": "study/p9/representation_hardening.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 1063,
+      "missing_obligation": null,
+      "reasons": [
+        "outcome"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "NOT_A_BLOCKER",
+      "context": "run_study",
+      "file": "study/p9/representation_hardening.py",
+      "has_reason": true,
+      "kind": "BRANCH",
+      "lineno": 1080,
+      "missing_obligation": null,
+      "reasons": [
+        "outcome",
+        "detail"
+      ],
+      "role": "OBSERVES",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "run_study",
+      "file": "study/p9/representation_hardening.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 1082,
       "missing_obligation": null,
       "reasons": [
         "outcome"
@@ -10032,9 +10719,9 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "533a5e3e6d543c992ceb16ab46349f281e35e7e0",
-  "total_sites": 678,
+  "subject_commit": "baec482aa37fee6ecd49e93f3847f7af46e18b4f",
+  "total_sites": 722,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
-  "with_derived_obligation": 112,
-  "with_reason": 291
+  "with_derived_obligation": 115,
+  "with_reason": 311
 }

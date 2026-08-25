@@ -43,6 +43,8 @@ from orion.programme.superiority import (
 )
 from orion.programme.superiority_ledger import SuperiorityLedger
 from orion.programme.superiority_terminals import (
+    FUTURE_PAPER_DIRECTORIES,
+    FUTURE_RETIRED_PAPER_DIRECTORIES,
     PAPER_DIRECTORIES,
     PAPER_GATES,
     REGISTERED_PAPER_DIRECTORIES,
@@ -568,7 +570,7 @@ def paper_identity_findings(repo_root: Path) -> tuple[str, ...] | None:
 
 
 def split_identity_findings(repo_root: Path) -> tuple[str, ...] | None:
-    """Registered directory *names* that hold content in more than one location.
+    """Unresolved directory *names* that hold content in more than one location.
 
     Distinct from an unregistered directory, and distinct from P9/P10's two
     directories: those are two different slugs, one active and one a recorded
@@ -600,10 +602,29 @@ def split_identity_findings(repo_root: Path) -> tuple[str, ...] | None:
             locations.setdefault(child.name, []).append(
                 child.relative_to(repo_root).as_posix()
             )
+    recorded_successions = [
+        frozenset((entry.active, *(directory for directory, _ in entry.retired)))
+        for entry in PAPER_DIRECTORIES
+    ]
+    recorded_successions.extend(
+        frozenset(
+            (
+                active,
+                *(
+                    directory
+                    for directory, _ in FUTURE_RETIRED_PAPER_DIRECTORIES.get(
+                        paper_id, ()
+                    )
+                ),
+            )
+        )
+        for paper_id, active in FUTURE_PAPER_DIRECTORIES.items()
+    )
     return tuple(
         f"{name} holds content in {' and '.join(paths)}"
         for name, paths in sorted(locations.items())
         if len(paths) > 1
+        and not any(set(paths) <= succession for succession in recorded_successions)
     )
 
 

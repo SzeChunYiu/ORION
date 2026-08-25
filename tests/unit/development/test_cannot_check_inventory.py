@@ -306,12 +306,23 @@ def test_the_precision_fix_lost_no_classification() -> None:
     Both name their blocker in the returning statement so this inventory records
     an examined site rather than one carrying no extractable reason, and
     ``UNCLASSIFIED`` is unchanged at 385 across both.
+
+    The current integration adds fourteen further classified emitters without
+    removing any prior classified site: four public-campaign source/custody
+    boundaries; two discovery proposal-origin boundaries; two epistemic-state
+    custody refusals; two specialist-readiness missing-evidence states; and one
+    each in the P12 successor authority, P2 gold denominator, and the two P9
+    margin-survival branches. Their category increments are +4
+    ``MISSING_IDENTITY``, +5 ``MISSING_CUSTODY``, +3
+    ``MISSING_DECLARATION``, +1 ``MISSING_ACCESS``, and +1
+    ``INSUFFICIENT_EVIDENCE``. That takes the exact classified-emitter ratchet
+    from 204 to 218 while retaining every adverse and unresolved state.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    # Current source derives 204 classified emitters; keep this exact, not a lower bound.
-    assert sum(classified.values()) == 204, classified
+    # Current source derives 218 classified emitters; keep this exact, not a lower bound.
+    assert sum(classified.values()) == 218, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"

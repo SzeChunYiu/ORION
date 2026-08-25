@@ -71,7 +71,7 @@ def test_no_callable_in_the_package_returns_the_terminal_marker() -> None:
                 continue
             try:
                 result = member()
-            except Exception:  # a callable that refuses to run emits nothing
+            except (Exception, SystemExit):  # argparse refusal emits nothing
                 continue
             if REFUSED_TERMINAL_MARKER in repr(result):
                 emitted.append(f"{module_name}.{name}")

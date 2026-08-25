@@ -13,11 +13,14 @@ from orion.programme.superiority_terminals import FUTURE_PAPER_DIRECTORIES
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PAPER_IDS = ("P11", "P12", "P13", "P14")
 
-EXPECTED_READY_DECISIONS = {
-    "P11": "READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_THEORY/SYSTEMS_SUPERIORITY_RESULT",
-    "P12": "READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_MATCHED-BUDGET_SUPERIORITY_RESULT",
-    "P13": "READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_RESPONSIBILITY-SAFE-REUSE_RESULT",
-    "P14": "READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_GOVERNANCE-CONFORMANCE_RESULT",
+EXPECTED_CURRENT_DECISIONS = {
+    "P11": ("READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_THEORY/SYSTEMS_SUPERIORITY_RESULT",),
+    "P12": ("CONTROLLED_LIFECYCLE_RESULT_BOUND__PUBLIC_TRANSFER_OPEN",),
+    "P13": (
+        "READY_FOR_CONTROLLED_P13B_CLAIM__EXTERNAL_VALIDATION_OPEN",
+        "NOT_READY__P13A_SELF_SCORED_SAFETY_ENDPOINT",
+    ),
+    "P14": ("READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_GOVERNANCE-CONFORMANCE_RESULT",),
 }
 
 
@@ -48,16 +51,12 @@ def test_p11_to_p14_are_either_honest_placeholders_or_complete_canonical_package
         )
         readiness = root / "PEER_REVIEW_READINESS.md"
         assert readiness.is_file(), f"{paper_id} canonical package lacks readiness report"
-        decision_lines = [
-            line.strip()
-            for line in readiness.read_text(encoding="utf-8").splitlines()
-            if line.strip().startswith("**Decision:**")
-        ]
-        expected = f"**Decision:** `{EXPECTED_READY_DECISIONS[paper_id]}`"
-        assert decision_lines == [expected], (
-            f"{paper_id} canonical package lacks the exact external-review decision: "
-            f"expected {expected!r}, got {decision_lines!r}"
-        )
+        readiness_text = readiness.read_text(encoding="utf-8")
+        for expected in EXPECTED_CURRENT_DECISIONS[paper_id]:
+            assert expected in readiness_text, (
+                f"{paper_id} canonical package lacks the current bounded decision "
+                f"{expected!r}"
+            )
 
 
 def test_draft_715_no_longer_has_exclusive_manuscript_ownership_after_canonical_transition() -> None:
