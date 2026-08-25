@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import ast
 import importlib.util
 import unittest
 from pathlib import Path
@@ -52,6 +53,31 @@ class RunnerTests(unittest.TestCase):
 
     def test_bootstrap_empty_is_explicit(self) -> None:
         self.assertEqual(RUNNER.bootstrap_mean_interval([], seed=1)["n"], 0)
+
+    def test_pre_score_envelope_uses_python_boolean(self) -> None:
+        class StubIndex:
+            count = 500
+            doc_ids = [f"d{index:03d}" for index in range(500)]
+
+            def search(self, query, depth=300):
+                return self.doc_ids[:depth]
+
+            def bridge_terms(self, feedback_doc_ids, excluded):
+                return []
+
+        topic = {
+            "topic_id": "1",
+            "question": "alpha question",
+            "keyword_query": "alpha keyword",
+            "narrative": "alpha narrative",
+        }
+        output = RUNNER.generate_policy_outputs(StubIndex(), [topic])
+        self.assertIs(output["qrels_opened"], False)
+
+    def test_runner_contains_no_json_literal_names(self) -> None:
+        tree = ast.parse((HERE / "run_p2_des_01.py").read_text(encoding="utf-8"))
+        names = {node.id for node in ast.walk(tree) if isinstance(node, ast.Name)}
+        self.assertTrue({"false", "true", "null"}.isdisjoint(names))
 
 
 if __name__ == "__main__":

@@ -435,7 +435,7 @@ def generate_policy_outputs(index: Bm25Index, topics: Sequence[Mapping[str, str]
     return {
         "schema": f"{SCHEMA_PREFIX}.pre-score-policy-outputs.v1",
         "job_id": JOB_ID,
-        "qrels_opened": false,
+        "qrels_opened": False,
         "cases": cases,
     }
 
@@ -747,9 +747,9 @@ def main() -> int:
         "material_donor": {
             "id": "BIOMEDICAL_NEURAL_HYBRID",
             "status": "CANNOT_CHECK_UNAVAILABLE_NOT_SUBSTITUTED",
-            "proxy_substitution": false,
+            "proxy_substitution": False,
         },
-        "oracle_selection_used": false,
+        "oracle_selection_used": False,
         "claim_boundary": "The runnable product is an internal donor envelope and is not the missing material biomedical neural donor.",
     }
     ideal_path = output_dir / "IDEAL_DONOR_RESULT_V1.json"
@@ -765,7 +765,7 @@ def main() -> int:
             "status": "PASS_INTERNAL_CONFORMANCE",
             "forbidden_policy_visible_keys_found": [],
             "qrels_loaded_after_pre_score_artifact_sha256": pre_score_sha,
-            "external_independence": false,
+            "external_independence": False,
         },
         "adverse_and_null_retention": {
             "structural_jump_harmful_topics_vs_local": aggregate_result["policy_summaries"]["STRUCTURAL_JUMP"]["harmful_topics_vs_local_multiform_rrf"],
@@ -818,7 +818,20 @@ def main() -> int:
                 "frozen": freeze["resource_freeze"]["partition"],
                 "actual": os.environ.get("SLURM_JOB_PARTITION", "NOT_IN_SLURM"),
                 "reason": "The frozen association label lu was rejected by the live scheduler as an invalid partition. Live sinfo and completed reference job 3539855 identify lu48 as the active CPU partition. This environment-only correction occurred before policy execution and changed no case, endpoint, comparator, threshold, or terminal rule.",
-                "scientific_rule_changed": false,
+                "scientific_rule_changed": False,
+            }
+        ],
+        "prior_failed_attempts": [
+            {
+                "job_id": "3539863",
+                "state": "FAILED",
+                "exit_code": "1:0",
+                "elapsed": "00:01:05",
+                "max_rss_kib": 229304,
+                "failure": "NameError: lowercase JSON boolean in the pre-score envelope after all 50 policy cases were generated",
+                "qrels_opened": False,
+                "scientific_outcomes_generated": False,
+                "scientific_rule_changed_by_repair": False,
             }
         ],
         "runtime": {
@@ -839,12 +852,12 @@ def main() -> int:
             "maximum_returned_depth": max(row["returned_depth"] for row in rows),
             "maximum_registered_query_calls": max(row["registered_query_calls"] for row in rows),
             "case_policy_rows": len(rows),
-            "resource_cap_binding": false,
+            "resource_cap_binding": False,
         },
         "censoring": {
             "status": "NOT_CENSORED",
-            "timeouts_as_obstruction": false,
-            "cap_hits_as_incapability": false,
+            "timeouts_as_obstruction": False,
+            "cap_hits_as_incapability": False,
         },
     }
     resource_path = output_dir / "RESOURCE_LEDGER_V1.json"
@@ -914,7 +927,7 @@ def main() -> int:
         "hard_precondition_attainment": hard_preconditions,
         "leakage_and_censoring": {
             "policy_label_leakage": "NOT_DETECTED_INTERNAL_CONFORMANCE",
-            "qrels_access_after_policy_hash": true,
+            "qrels_access_after_policy_hash": True,
             "resource_censoring": "NOT_CENSORED",
         },
         "strongest_donor": {
