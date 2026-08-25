@@ -558,16 +558,73 @@ class PaperDirectories:
 PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
     PaperDirectories("P1", "papers/paper-01-recursive-epistemic-reconstruction"),
     PaperDirectories("P2", "papers/paper-02-open-world-scientific-discovery"),
-    PaperDirectories("P3", "papers/paper-03-global-knowledge-portrait"),
-    PaperDirectories("P4", "papers/paper-04-verified-scientific-discovery"),
-    PaperDirectories("P5", "papers/paper-05-self-orion"),
     PaperDirectories(
-        "P6", "papers/paper-06-formal-epistemic-structures-and-mechanics"
+        "P3",
+        "papers/paper-03-global-knowledge-portrait",
+        (("papers/paper-02-global-knowledge-portrait", "historical planning redirect to P3"),),
     ),
-    PaperDirectories("P7", "papers/paper-07-epistemic-navigation-open-worlds"),
-    PaperDirectories("P8", "papers/paper-08-epistemic-authority-autonomous-science"),
-    PaperDirectories("P9", "papers/paper-09-structured-epistemic-learning"),
-    PaperDirectories("P10", "papers/paper-10-structured-problem-solving"),
+    PaperDirectories(
+        "P4",
+        "papers/paper-04-verified-scientific-discovery",
+        (("papers/paper-03-verified-discovery", "historical planning redirect to P4"),),
+    ),
+    PaperDirectories(
+        "P5",
+        "papers/paper-05-self-orion",
+        (("papers/paper-04-self-orion", "historical planning redirect to P5"),),
+    ),
+    PaperDirectories(
+        "P6",
+        "papers/paper-06-formal-epistemic-structures-and-mechanics",
+        ((
+            "papers/candidates/paper-06-formal-epistemic-structures-and-mechanics",
+            "preserved pre-refactor candidate snapshot; the root-level package is active",
+        ),),
+    ),
+    PaperDirectories(
+        "P7",
+        "papers/paper-07-epistemic-navigation-open-worlds",
+        ((
+            "papers/candidates/paper-07-epistemic-navigation-open-worlds",
+            "preserved pre-refactor candidate snapshot; the root-level package is active",
+        ),),
+    ),
+    PaperDirectories(
+        "P8",
+        "papers/paper-08-epistemic-authority-autonomous-science",
+        ((
+            "papers/candidates/paper-08-epistemic-authority-autonomous-science",
+            "preserved pre-refactor candidate snapshot; the root-level package is active",
+        ),),
+    ),
+    PaperDirectories(
+        "P9",
+        "papers/paper-09-structured-epistemic-learning",
+        (
+            (
+                "papers/candidates/paper-09-structured-epistemic-learning",
+                "preserved pre-refactor candidate snapshot; the root-level package is active",
+            ),
+            (
+                "papers/candidates/paper-09-executable-research-core",
+                "historical candidate later vacated into paper-xx-executable-research-core",
+            ),
+        ),
+    ),
+    PaperDirectories(
+        "P10",
+        "papers/paper-10-structured-problem-solving",
+        (
+            (
+                "papers/candidates/paper-10-structured-problem-solving",
+                "preserved successor-manuscript snapshot; the root-level package is active",
+            ),
+            (
+                "papers/candidates/paper-10-content-bound-math-evaluation",
+                "historical candidate later vacated into paper-xx-content-bound-math-evaluation",
+            ),
+        ),
+    ),
 )
 
 
@@ -624,6 +681,18 @@ FUTURE_PAPER_DIRECTORIES: dict[str, str] = {
     "P15": "papers/paper-15-orion-research-harness",
 }
 
+#: Pre-refactor manuscript snapshots retained after the root-level P11-P14
+#: packages became canonical. Recording these as historical locations resolves
+#: the otherwise ambiguous same-slug split without deleting provenance.
+FUTURE_RETIRED_PAPER_DIRECTORIES: dict[str, tuple[tuple[str, str], ...]] = {
+    paper_id: ((
+        directory.replace("papers/", "papers/candidates/", 1),
+        "preserved pre-refactor manuscript snapshot; the root-level package is active",
+    ),)
+    for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items()
+    if paper_id in {"P11", "P12", "P13", "P14"}
+}
+
 #: Directories under ``papers/`` that are **not** paper identities.
 #:
 #: ``orion-learning-machine/`` is the shared code, experiments and committed
@@ -674,6 +743,11 @@ REGISTERED_PAPER_DIRECTORIES: frozenset[str] = frozenset(
     [entry.active for entry in PAPER_DIRECTORIES]
     + [directory for entry in PAPER_DIRECTORIES for directory, _ in entry.retired]
     + list(FUTURE_PAPER_DIRECTORIES.values())
+    + [
+        directory
+        for entries in FUTURE_RETIRED_PAPER_DIRECTORIES.values()
+        for directory, _ in entries
+    ]
     # PR #715 was authored against the pre-refactor layout. Registering the
     # ``candidates/`` spelling too means whichever order the two land in, a
     # legitimate new identity never reads as identity rot.
@@ -747,6 +821,7 @@ __all__ = [
     "ALL_GATES",
     "ALL_GATE_IDS",
     "FUTURE_PAPER_DIRECTORIES",
+    "FUTURE_RETIRED_PAPER_DIRECTORIES",
     "PAPER_DIRECTORIES",
     "PAPER_DIRECTORIES_BY_ID",
     "PAPER_GATES",
