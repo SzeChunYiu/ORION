@@ -1,0 +1,97 @@
+P1_V6_DEPLOYMENT_FAILURE_EVIDENCE_BEGIN
+root_mode=500
+runner_mode=500
+RUN=ABSENT
+OUTPUT=ABSENT
+LOG=ABSENT
+validator_rc=1
+test_01_packet_inputs_are_canonical_and_frozen (__main__.GPUVisibilityDiagnosticTests.test_01_packet_inputs_are_canonical_and_frozen) ... ok
+test_02_fresh_root_geometry_is_exact (__main__.GPUVisibilityDiagnosticTests.test_02_fresh_root_geometry_is_exact) ... ok
+test_03_allocation_is_small_and_excludes_cg14 (__main__.GPUVisibilityDiagnosticTests.test_03_allocation_is_small_and_excludes_cg14) ... ok
+test_04_different_node_is_diagnostic_not_causal (__main__.GPUVisibilityDiagnosticTests.test_04_different_node_is_diagnostic_not_causal) ... ok
+test_05_body_free_truth_boundary_is_all_zero (__main__.GPUVisibilityDiagnosticTests.test_05_body_free_truth_boundary_is_all_zero) ... ok
+test_06_forbidden_operations_close_server_model_network_and_task_routes (__main__.GPUVisibilityDiagnosticTests.test_06_forbidden_operations_close_server_model_network_and_task_routes) ... ok
+test_07_module_imports_are_stdlib_and_have_no_network_stack (__main__.GPUVisibilityDiagnosticTests.test_07_module_imports_are_stdlib_and_have_no_network_stack) ... ok
+test_08_module_has_no_server_model_or_task_route_literals (__main__.GPUVisibilityDiagnosticTests.test_08_module_has_no_server_model_or_task_route_literals) ... ok
+test_09_environment_allowlist_and_caps_are_exact (__main__.GPUVisibilityDiagnosticTests.test_09_environment_allowlist_and_caps_are_exact) ... ok
+test_10_device_inventory_is_metadata_and_open_only_bounded (__main__.GPUVisibilityDiagnosticTests.test_10_device_inventory_is_metadata_and_open_only_bounded) ... ok
+test_11_cgroup_sources_and_caps_are_exact (__main__.GPUVisibilityDiagnosticTests.test_11_cgroup_sources_and_caps_are_exact) ... ok
+test_12_three_command_argv_templates_are_exact (__main__.GPUVisibilityDiagnosticTests.test_12_three_command_argv_templates_are_exact) ... ok
+test_13_raw_capture_schema_binds_body_hash_bytes_and_completeness (__main__.GPUVisibilityDiagnosticTests.test_13_raw_capture_schema_binds_body_hash_bytes_and_completeness) ... ok
+test_14_parse_gate_is_only_rc0_and_empty_stderr (__main__.GPUVisibilityDiagnosticTests.test_14_parse_gate_is_only_rc0_and_empty_stderr) ... ok
+test_15_output_custody_is_new_create_only_and_read_only (__main__.GPUVisibilityDiagnosticTests.test_15_output_custody_is_new_create_only_and_read_only) ... ok
+test_16_predecessor_binding_is_exact_and_nonpromoting (__main__.GPUVisibilityDiagnosticTests.test_16_predecessor_binding_is_exact_and_nonpromoting) ... ok
+test_17_predecessor_gpu_capture_and_rc6_are_exact (__main__.GPUVisibilityDiagnosticTests.test_17_predecessor_gpu_capture_and_rc6_are_exact) ... ok
+test_18_predecessor_artifact_bytes_and_hashes_are_exact (__main__.GPUVisibilityDiagnosticTests.test_18_predecessor_artifact_bytes_and_hashes_are_exact) ... ok
+test_19_predecessor_cost_is_exact_and_v6_cost_not_preclaimed (__main__.GPUVisibilityDiagnosticTests.test_19_predecessor_cost_is_exact_and_v6_cost_not_preclaimed) ... ok
+test_20_all_decisions_remain_diagnostic_only (__main__.GPUVisibilityDiagnosticTests.test_20_all_decisions_remain_diagnostic_only) ... ok
+test_21_environment_capture_retains_only_allowlist_with_raw_bindings (__main__.GPUVisibilityDiagnosticTests.test_21_environment_capture_retains_only_allowlist_with_raw_bindings) ... ok
+test_22_environment_rejects_cg14_alias_token_and_oversize (__main__.GPUVisibilityDiagnosticTests.test_22_environment_rejects_cg14_alias_token_and_oversize) ... ok
+test_23_scoped_argv_accepts_one_decimal_or_uuid_and_rejects_aliases (__main__.GPUVisibilityDiagnosticTests.test_23_scoped_argv_accepts_one_decimal_or_uuid_and_rejects_aliases) ... ok
+test_24_bounded_command_retains_exact_bodies_hashes_and_rc (__main__.GPUVisibilityDiagnosticTests.test_24_bounded_command_retains_exact_bodies_hashes_and_rc) ... FAIL
+test_25_bounded_command_fails_closed_at_stream_cap (__main__.GPUVisibilityDiagnosticTests.test_25_bounded_command_fails_closed_at_stream_cap) ... FAIL
+test_26_parse_one_a40_binds_exact_identity_body (__main__.GPUVisibilityDiagnosticTests.test_26_parse_one_a40_binds_exact_identity_body) ... ok
+test_27_list_parse_one_a40_binds_exact_identity_body (__main__.GPUVisibilityDiagnosticTests.test_27_list_parse_one_a40_binds_exact_identity_body) ... ok
+test_28_nonzero_or_nonempty_stderr_is_never_parsed (__main__.GPUVisibilityDiagnosticTests.test_28_nonzero_or_nonempty_stderr_is_never_parsed) ... ok
+test_29_malformed_identity_bodies_fail_closed_after_eligible_parse (__main__.GPUVisibilityDiagnosticTests.test_29_malformed_identity_bodies_fail_closed_after_eligible_parse) ... ok
+test_30_corrupt_raw_binding_is_rejected_not_reinterpreted (__main__.GPUVisibilityDiagnosticTests.test_30_corrupt_raw_binding_is_rejected_not_reinterpreted) ... ok
+test_31_positive_unscoped_a40_classification_requires_three_matches (__main__.GPUVisibilityDiagnosticTests.test_31_positive_unscoped_a40_classification_requires_three_matches) ... ok
+test_32_scoped_recovery_classification_requires_nonzero_unscoped (__main__.GPUVisibilityDiagnosticTests.test_32_scoped_recovery_classification_requires_nonzero_unscoped) ... ok
+test_33_generic_rc6_and_no_device_classification_follow_frozen_order (__main__.GPUVisibilityDiagnosticTests.test_33_generic_rc6_and_no_device_classification_follow_frozen_order) ... ok
+test_34_incomplete_and_access_restricted_classifications_fail_closed (__main__.GPUVisibilityDiagnosticTests.test_34_incomplete_and_access_restricted_classifications_fail_closed) ... ok
+test_35_device_inventory_never_reads_or_follows_aliases (__main__.GPUVisibilityDiagnosticTests.test_35_device_inventory_never_reads_or_follows_aliases) ... ok
+test_36_device_entry_cap_marks_inventory_incomplete (__main__.GPUVisibilityDiagnosticTests.test_36_device_entry_cap_marks_inventory_incomplete) ... ok
+test_37_cgroup_capture_filters_exact_lines_and_enforces_caps (__main__.GPUVisibilityDiagnosticTests.test_37_cgroup_capture_filters_exact_lines_and_enforces_caps) ... ok
+test_38_source_alias_and_byte_cap_are_rejected (__main__.GPUVisibilityDiagnosticTests.test_38_source_alias_and_byte_cap_are_rejected) ... ok
+test_39_receipt_write_is_create_only_and_preserves_existing_receipt (__main__.GPUVisibilityDiagnosticTests.test_39_receipt_write_is_create_only_and_preserves_existing_receipt) ... ok
+test_40_cli_and_trampoline_enforce_zero_operator_argv (__main__.GPUVisibilityDiagnosticTests.test_40_cli_and_trampoline_enforce_zero_operator_argv) ... ok
+test_41_synthetic_run_calls_exact_three_commands_and_seals_receipt (__main__.GPUVisibilityDiagnosticTests.test_41_synthetic_run_calls_exact_three_commands_and_seals_receipt) ... ok
+test_42_output_root_is_create_only_and_alias_geometry_rejected (__main__.GPUVisibilityDiagnosticTests.test_42_output_root_is_create_only_and_alias_geometry_rejected) ... ok
+test_43_trampoline_exact_geometry_and_source_bindings_are_frozen (__main__.GPUVisibilityDiagnosticTests.test_43_trampoline_exact_geometry_and_source_bindings_are_frozen) ... ok
+test_44_cannot_check_receipt_is_create_only_and_sealed (__main__.GPUVisibilityDiagnosticTests.test_44_cannot_check_receipt_is_create_only_and_sealed) ... ok
+test_45_full_run_scoped_recovery_binds_exact_decision_and_custody (__main__.GPUVisibilityDiagnosticTests.test_45_full_run_scoped_recovery_binds_exact_decision_and_custody) ... ok
+test_46_full_run_absent_devices_precedes_generic_rc6 (__main__.GPUVisibilityDiagnosticTests.test_46_full_run_absent_devices_precedes_generic_rc6) ... ok
+test_47_full_run_generic_rc6_requires_all_three_exact_calls (__main__.GPUVisibilityDiagnosticTests.test_47_full_run_generic_rc6_requires_all_three_exact_calls) ... ok
+test_48_full_run_access_restriction_precedes_generic_rc6 (__main__.GPUVisibilityDiagnosticTests.test_48_full_run_access_restriction_precedes_generic_rc6) ... ok
+test_49_full_run_complete_but_unmatched_evidence_is_inconclusive (__main__.GPUVisibilityDiagnosticTests.test_49_full_run_complete_but_unmatched_evidence_is_inconclusive) ... ok
+test_50_full_run_invalid_scope_token_seals_schema_complete_cannot_receipt (__main__.GPUVisibilityDiagnosticTests.test_50_full_run_invalid_scope_token_seals_schema_complete_cannot_receipt) ... ok
+
+======================================================================
+FAIL: test_24_bounded_command_retains_exact_bodies_hashes_and_rc (__main__.GPUVisibilityDiagnosticTests.test_24_bounded_command_retains_exact_bodies_hashes_and_rc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-gpu-visibility-v6-20260825/development/p1-scienceagentbench-gpu-visibility-diagnostic-v6-2026-08-25/validate_gpu_visibility_diagnostic_v1.py", line 619, in test_24_bounded_command_retains_exact_bodies_hashes_and_rc
+    self.assertEqual(capture["return_code"], 6)
+AssertionError: 127 != 6
+
+======================================================================
+FAIL: test_25_bounded_command_fails_closed_at_stream_cap (__main__.GPUVisibilityDiagnosticTests.test_25_bounded_command_fails_closed_at_stream_cap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/projects/hep/fs10/scratch/scyiu/orion_p1_sab_protected_rr1_direct_route_v1_20260824/repo-gpu-visibility-v6-20260825/development/p1-scienceagentbench-gpu-visibility-diagnostic-v6-2026-08-25/validate_gpu_visibility_diagnostic_v1.py", line 632, in test_25_bounded_command_fails_closed_at_stream_cap
+    self.assertEqual(capture["stdout"], raw_binding(b"x" * 64, complete=False))
+AssertionError: {'base64': '', 'bytes': 0, 'complete': False, 'encodi[87 chars]855'} != {'base64': 'eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e[176 chars]93c'}
+- {'base64': '',
++ {'base64': 'eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eA==',
+-  'bytes': 0,
+?           ^
+
++  'bytes': 64,
+?           ^^
+
+   'complete': False,
+   'encoding': 'base64',
+-  'sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}
++  'sha256': '7ce100971f64e7001e8fe5a51973ecdfe1ced42befe7ee8d5fd6219506b5393c'}
+
+----------------------------------------------------------------------
+Ran 50 tests in 0.081s
+
+FAILED (failures=2)
+SANITIZED_EXACT_PYTHON_PROBE_BEGIN
+sanitized_exact_python_rc=127
+SANITIZED_EXACT_PYTHON_PROBE_END
+SANITIZED_SYSTEM_PYTHON_PROBE_BEGIN
+probe-out\nsanitized_system_python_rc=6
+SANITIZED_SYSTEM_PYTHON_PROBE_END
+P1_V6_DEPLOYMENT_FAILURE_EVIDENCE_END
