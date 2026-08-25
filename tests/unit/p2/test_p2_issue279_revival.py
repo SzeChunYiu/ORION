@@ -13,8 +13,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import pytest
-
 from orion.study.p2.one_stage_attribution import (
     FailureStage,
     ItemTrace,
