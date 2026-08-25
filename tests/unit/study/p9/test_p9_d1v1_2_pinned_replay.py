@@ -59,7 +59,28 @@ def replay() -> dict:
     )
     if proc.returncode == 3:
         pytest.skip("pinned replay CANNOT_CHECK in this environment")
-    assert proc.returncode == 0, proc.stderr[-2000:]
+    if proc.returncode == 5:
+        # 5 is a DESIGNED outcome, not a crash: the numeric canary did not
+        # predict the attractor this build lands on. The replay still emits a
+        # complete receipt on stdout before returning it.
+        #
+        # Asserting returncode == 0 turned that finding into a fixture ERROR
+        # that took the whole module down and reported it as an exception.
+        # Skipping instead would have been just as wrong in the other
+        # direction: it would silence the canary contract on exactly the
+        # builds where it fails.
+        #
+        # So the payload is returned. The incoherence then surfaces where it
+        # belongs -- as a failure of
+        # test_the_canary_predicts_the_attractor_on_this_build, which asserts
+        # canary_attractor == observed_attractor -- while the dataset-digest
+        # and knife-edge tests stay meaningful, because both measure things
+        # the replay recorded regardless of which attractor it reached.
+        return json.loads(proc.stdout)
+    assert proc.returncode == 0, (
+        f"pinned replay exited {proc.returncode} (0=coherent, 3=cannot-check, "
+        f"4=attractor mismatch, 5=incoherent); stderr: {proc.stderr[-2000:]}"
+    )
     return json.loads(proc.stdout)
 
 
