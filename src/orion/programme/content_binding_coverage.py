@@ -476,6 +476,41 @@ def inspect_paper(repo_root: Path, directory: Path) -> PaperBinding:
             ):
                 covered[target] = digest
 
+    # A successor manifest binds files that V1 deliberately excludes from its
+    # frozen identity, and it carries its own sha256 per file. Reading only
+    # SHA256SUMS therefore reported those files as watched by nothing, which
+    # was false: for P6 that produced "the other 10 can change without any
+    # check noticing" while CONTENT_MANIFEST_V2 was watching all ten with
+    # current, matching digests.
+    #
+    # This still reads only COMMITTED digest artifacts and never derives what a
+    # binding ought to say -- a V2 manifest is such an artifact.
+    for manifest_path in sorted(directory.glob("CONTENT_MANIFEST_V*.json")):
+        try:
+            payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            # An unreadable successor manifest must not be treated as coverage,
+            # and must not mask the V1 result either. Leave it uncounted.
+            continue
+        for entry in payload.get("bound_files", ()):
+            if not isinstance(entry, dict):
+                continue
+            digest = entry.get("sha256")
+            recorded_path = entry.get("path")
+            if not digest or not recorded_path:
+                continue
+            target = _resolve_recorded(
+                str(recorded_path), repo_root, manifest_path.parent, directory
+            )
+            if target is None:
+                continue
+            if (
+                root in target.parents
+                and target.name != SUMS_NAME
+                and not is_build_artifact(target)
+            ):
+                covered.setdefault(target, digest)
+
     drifted = sorted(
         path.relative_to(repo_root).as_posix()
         for path, digest in covered.items()
