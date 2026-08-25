@@ -1,0 +1,373 @@
+{
+  "schema": "orion.discovery.ostc-execution-identifiability-matrix.v1",
+  "subject_main_sha": "da5294fb3ccce94194d59c6b682cf0fa9bd18061",
+  "source_issue": 1234,
+  "audit_status": "ALL_EXECUTED_OR_BLOCKED_JOBS_CLASSIFIED",
+  "authority": {
+    "repository_receipt_audit_only": true,
+    "executions_rerun_by_this_audit": false,
+    "external_scientific_authority": "CANNOT_CHECK",
+    "paper_claim_delta": "NONE"
+  },
+  "classification_vocabulary": [
+    "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+    "STRUCTURAL_IDENTIFYING_EXTERNAL_CAMPAIGN_BLOCKED",
+    "PARTIALLY_IDENTIFYING",
+    "NON_IDENTIFYING_VACUOUS",
+    "EXTERNAL_AUTHORITY_ONLY_CANNOT_CHECK"
+  ],
+  "rows": [
+    {
+      "job_id": "EXEC-CM-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-CM-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T8", "OSTC-T10", "OSTC-T13"],
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "one-factor deletion for R/V/X/S/E/B",
+        "contract mismatch",
+        "commuting composite",
+        "independently perturbed noncommuting composite",
+        "information-equivalent donor tie"
+      ],
+      "known_defect": "first T13 draft defined the composite as g∘f and was tautological",
+      "repair_state": "REPAIRED_BEFORE_RECORDED_RESULT",
+      "surviving_equivalence_class": ["target finite theorem model"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-PA-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-PA-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T8", "OSTC-T10", "OSTC-T11", "OSTC-T20"],
+      "classification": "STRUCTURAL_IDENTIFYING_EXTERNAL_CAMPAIGN_BLOCKED",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "six factor deletions",
+        "blocker present/absent guards",
+        "support survives/dies guards",
+        "execution-only transformation"
+      ],
+      "known_defect": "initial blocker claim checked installation rather than installability",
+      "repair_state": "LEAN_4_33_1_INSTALLED_AND_18_THEOREMS_MACHINE_CHECKED",
+      "surviving_equivalence_class": ["same-author Lean formalization", "unreviewed encoding mismatch possibility"],
+      "external_authority": "INDEPENDENT_PROOF_REVIEW_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-NOV-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-NOV-01/RESULT_RECEIPT.json",
+      "theorems": [],
+      "classification": "EXTERNAL_AUTHORITY_ONLY_CANNOT_CHECK",
+      "mixed_or_separating_outcomes": false,
+      "preconditions_attained": false,
+      "reference_independent_of_candidate_relation": false,
+      "registered_alternatives_exercised": [],
+      "known_defect": null,
+      "repair_state": "NO_INTERNAL_SUBSTITUTE_PERMITTED",
+      "surviving_equivalence_class": ["novel", "narrowed", "already solved", "inaccessible prior art"],
+      "external_authority": "INDEPENDENT_NOVELTY_REVIEW_REQUIRED"
+    },
+    {
+      "job_id": "EXEC-P1-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P1-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T14", "OSTC-T21"],
+      "classification": "PARTIALLY_IDENTIFYING",
+      "mixed_or_separating_outcomes": false,
+      "preconditions_attained": false,
+      "reference_independent_of_candidate_relation": false,
+      "registered_alternatives_exercised": ["24 well-founded or budget-consuming terminating sequences"],
+      "known_defect": "no non-well-founded/cyclic control and no protected evaluator campaign",
+      "repair_state": "T21_POSITIVE_CORE_ONLY__PROTECTED_P1_CAMPAIGN_BLOCKED",
+      "surviving_equivalence_class": ["well-founded termination theorem", "always-terminate-on-this-grid rule"],
+      "external_authority": "PROTECTED_EVALUATOR_CUSTODY_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P2-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P2-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T12"],
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "all 27 deterministic history-only rules per ambiguous class",
+        "assumption-indexed comparator",
+        "no-hedge exact half-error condition"
+      ],
+      "known_defect": null,
+      "repair_state": "NO_REPAIR_REQUIRED",
+      "surviving_equivalence_class": ["T12 finite terminal-loss model"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P3-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P3-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T9"],
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "fully abstract and non-fully-abstract pairs",
+        "information-equivalent ideal product",
+        "centralized extra coordinate relevant and irrelevant"
+      ],
+      "known_defect": null,
+      "repair_state": "NO_REPAIR_REQUIRED",
+      "surviving_equivalence_class": ["T9 full-abstraction model"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P4-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P4-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T2", "OSTC-T3"],
+      "classification": "STRUCTURAL_IDENTIFYING_EXTERNAL_CAMPAIGN_BLOCKED",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "factorable and mixed-fibre interfaces",
+        "closed-form Bayes risk versus brute-force decision rules"
+      ],
+      "known_defect": null,
+      "repair_state": "FINITE_CORE_IDENTIFIED__NATURALISTIC_PANEL_UNAVAILABLE",
+      "surviving_equivalence_class": ["finite fibre theorem", "unexecuted naturalistic evaluator-identifiability claim"],
+      "external_authority": "PROTECTED_PANEL_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P5-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P5-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T19", "OSTC-T21"],
+      "classification": "NON_IDENTIFYING_VACUOUS",
+      "mixed_or_separating_outcomes": false,
+      "preconditions_attained": false,
+      "reference_independent_of_candidate_relation": false,
+      "registered_alternatives_exercised": ["terminating well-founded sequences only"],
+      "known_defect": "T19 transcripts were set equal by construction; T21 had no cycling/non-descent control",
+      "repair_state": "SUCCESSOR_DISC-T19-01_REQUIRED",
+      "surviving_equivalence_class": ["T19 consequence", "fixture-imposed equality", "always-terminate-on-grid"],
+      "external_authority": "EXTERNAL_CUSTODY_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P6-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P6-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T10", "OSTC-T11"],
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "support survives and dies",
+        "minimum-cost versus minimum-cardinality repair",
+        "any-support donor tie",
+        "blocker retention"
+      ],
+      "known_defect": null,
+      "repair_state": "CROSS_JOB_T10_MISMATCH_CONTROL_IN_EXEC-CM-01",
+      "surviving_equivalence_class": ["T10/T11 finite hypergraph model"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P7-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P7-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T13"],
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "commuting and noncommuting loops",
+        "identity and nonidentity round trips",
+        "same-endpoint path divergence",
+        "endpoint-only donor"
+      ],
+      "known_defect": null,
+      "repair_state": "NO_REPAIR_REQUIRED",
+      "surviving_equivalence_class": ["T13 sampled finite morphism model"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P8-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P8-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T4", "OSTC-T10", "OSTC-T11"],
+      "classification": "PARTIALLY_IDENTIFYING",
+      "mixed_or_separating_outcomes": false,
+      "preconditions_attained": false,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": ["213 authority-neutral closure cells"],
+      "known_defect": "no amplification-producing mutant or real adjudicated scientific target in this job",
+      "repair_state": "STRUCTURAL_NONAMPLIFICATION_ONE_SIDED__EXTERNAL_ADJUDICATION_BLOCKED",
+      "surviving_equivalence_class": ["T4 nonamplification", "constant no-amplification implementation"],
+      "external_authority": "EXTERNAL_ADJUDICATION_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P9-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P9-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T14"],
+      "classification": "PARTIALLY_IDENTIFYING",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": false,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "identifiable and unidentifiable signatures",
+        "exact minimum verification",
+        "greedy comparator"
+      ],
+      "known_defect": "4×4 grid contains no greedy-suboptimal set-cover instance",
+      "repair_state": "SUCCESSOR_DISC-P9-SETCOVER-01_FROZEN_AT_5x6_PLUS",
+      "surviving_equivalence_class": ["exact set-cover reduction", "greedy-equals-exact-on-small-grid"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P10-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P10-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T15", "OSTC-T22"],
+      "classification": "PARTIALLY_IDENTIFYING",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": false,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": ["genuine extensions", "macros", "satisfiable formulas"],
+      "known_defect": "clause/variable ratio 0.8 produced zero UNSAT cases for T22",
+      "repair_state": "T15_IDENTIFIED__T22_REPAIRED_BY_EXEC-P10-02",
+      "surviving_equivalence_class": ["T22 separation", "easy all-SAT family"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P10-02",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P10-02/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T22"],
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "SAT and UNSAT strata",
+        "search versus one-pass checking",
+        "below and above transition ratios"
+      ],
+      "known_defect": null,
+      "repair_state": "UNSAT_PRECONDITION_CHECKED_BEFORE_SCORING",
+      "surviving_equivalence_class": ["finite 5-variable synthesis/checking separation"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P11-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P11-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T16", "OSTC-T18"],
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "compiled-dominant and nondominant phases",
+        "Pareto-incomparable vectors",
+        "safe and unsafe reuse",
+        "fresh-but-unsafe and stale-but-safe donors"
+      ],
+      "known_defect": null,
+      "repair_state": "NO_REPAIR_REQUIRED",
+      "surviving_equivalence_class": ["T16/T18 finite phase and partition laws"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P12-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P12-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T17"],
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "all deterministic certificate-only allocators",
+        "oracle allocator",
+        "no-hedge classes",
+        "third-action hedge classes"
+      ],
+      "known_defect": "historical universal half-gap clause was false",
+      "repair_state": "THEOREM_COUNTEREXAMPLE_PRESERVED__EDG_SUCCESSOR_CREATED",
+      "surviving_equivalence_class": ["positive-regret impossibility", "no-hedge half-gap special case"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P13-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P13-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T18", "OSTC-T11"],
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "safe and unsafe successor responsibility reuse",
+        "fresh-for-old but unsafe-for-new",
+        "support survives and dies"
+      ],
+      "known_defect": null,
+      "repair_state": "NO_REPAIR_REQUIRED",
+      "surviving_equivalence_class": ["T18/T11 finite responsibility and support model"],
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P14-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P14-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T19", "OSTC-T21"],
+      "classification": "NON_IDENTIFYING_VACUOUS",
+      "mixed_or_separating_outcomes": false,
+      "preconditions_attained": false,
+      "reference_independent_of_candidate_relation": false,
+      "registered_alternatives_exercised": ["terminating well-founded sequences only"],
+      "known_defect": "T19 transcripts imposed equal; no useful-discovery/adjudication campaign",
+      "repair_state": "SUCCESSOR_DISC-T19-01_AND_DISC-RSE-01_REQUIRED",
+      "surviving_equivalence_class": ["T19 consequence", "fixture-imposed equality", "governance benefit unknown"],
+      "external_authority": "INDEPENDENT_ADJUDICATION_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P15-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P15-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T20"],
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "execution-only transformations",
+        "bridge with and without explicit premise",
+        "detected and undetected capability sets"
+      ],
+      "known_defect": "first key-compromise probe counted hidden compromise flag directly",
+      "repair_state": "REPAIRED_TO_OBSERVABLE_SIGNAL_DERIVATION_WITH_BOTH_OUTCOMES",
+      "surviving_equivalence_class": ["T20 finite noninterference model"],
+      "external_authority": "PRODUCTION_FAULT_INJECTION_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-XP-01",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-XP-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T23"],
+      "classification": "STRUCTURAL_IDENTIFYING_EXTERNAL_CAMPAIGN_BLOCKED",
+      "mixed_or_separating_outcomes": true,
+      "preconditions_attained": true,
+      "reference_independent_of_candidate_relation": true,
+      "registered_alternatives_exercised": [
+        "reachable but unauthorized",
+        "well-specified but unreachable",
+        "compute cannot rescue missing admission",
+        "governance cannot rescue unreachability"
+      ],
+      "known_defect": null,
+      "repair_state": "STRUCTURAL_T23_IDENTIFIED__PREDICTION_TOURNAMENT_NOT_RUN",
+      "surviving_equivalence_class": ["T23 structural law", "prospective predictive value unknown"],
+      "external_authority": "OUTCOME_CUSTODY_CANNOT_CHECK"
+    }
+  ],
+  "summary": {
+    "rows": 20,
+    "identifying_in_registered_finite_class": 10,
+    "structural_identifying_external_campaign_blocked": 3,
+    "partially_identifying": 5,
+    "non_identifying_vacuous": 2,
+    "external_authority_only_cannot_check": 1,
+    "note": "Counts overlap conceptually only through successor EXEC-P10-02; each row is classified exactly once. The numeric category totals must be recomputed by checker rather than treated as authority if the matrix changes."
+  }
+}
