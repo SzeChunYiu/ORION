@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,6 +52,11 @@ def main() -> None:
     )
     req(len(writing_ledger["common_results"]) == 10, "common result count")
     req(len(writing_ledger["papers"]) == 15, "paper result count")
+    for row in writing_ledger["common_results"] + writing_ledger["papers"]:
+        req(
+            re.fullmatch(r"[0-9a-f]{40}", row.get("sha", "")) is not None,
+            f"{row.get('job_id', 'unknown job')} result SHA format",
+        )
     req(writing_ledger["acknowledgement_token"] == ACK, "acknowledgement token")
     req(ACK in writing_plan_path.read_text(), "writing plan acknowledgement")
     req(
