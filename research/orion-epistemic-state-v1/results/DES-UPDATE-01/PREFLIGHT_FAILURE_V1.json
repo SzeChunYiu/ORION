@@ -1,0 +1,42 @@
+{
+  "schema": "orion.dynamic-epistemic-state.des-update-preflight-failure.v1",
+  "job_id": "DES-UPDATE-01",
+  "status": "CANNOT_CHECK_EXECUTION_PRECONDITION",
+  "execution_subject_head_sha": "9d10b96397ffa4d1bac7ec84e40b058971d837ce",
+  "freeze_commit_sha": "fa2a3ad2ff45d3693e71bc74c694522b2a778f3c",
+  "failed_checks": [
+    {
+      "check": "finite_state_count",
+      "frozen_derived_value": 384,
+      "observed_cartesian_value": 768
+    },
+    {
+      "check": "finite_state_uniqueness",
+      "frozen_expected_value": 384,
+      "observed_unique_states": 768
+    },
+    {
+      "check": "event_instance_count",
+      "frozen_derived_value": 5376,
+      "observed_cartesian_value": 10752
+    }
+  ],
+  "passed_checks": {
+    "subject_bindings": "5/5",
+    "subject_commit_is_ancestor": true,
+    "freeze_committed_before_execution": true,
+    "event_template_count": "14/14",
+    "network_access": "NOT_USED_BY_RUNNER",
+    "random_sampling": "NONE_EXHAUSTIVE_ENUMERATION"
+  },
+  "execution_boundary": {
+    "law_cases_executed": 0,
+    "mutation_cases_executed": 0,
+    "raw_case_file_created": false,
+    "scientific_outcomes_inspected": false,
+    "paper_authority_delta": "NONE"
+  },
+  "cause": "The frozen factor lists define 2*2*2*4*2*3*4 = 768 states, but FREEZE_V1.json recorded the arithmetic product as 384. The event-instance count inherited the same factor-of-two error.",
+  "correct_response": "Preserve FREEZE_V1.json and this failure, commit a derived-count-only erratum before any law or mutation execution, then rerun the unchanged state/event semantics.",
+  "authority": "PREFLIGHT_FAILURE_ONLY"
+}

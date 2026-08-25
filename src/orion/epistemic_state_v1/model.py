@@ -65,8 +65,15 @@ class State:
 @dataclass(frozen=True)
 class Event:
     event_id: str; subject_id: str; kind: str; digest: str; epoch: int; writes: Mapping[str,Any]
+    authorized_coordinate_writes: FrozenSet[str]=frozenset()
+    receipt_ids: tuple[str,...]=()
+    dependency_ids: tuple[str,...]=()
+    estimator_version: str="unspecified"
     def __post_init__(self):
         if not self.event_id or not self.subject_id or not self.kind or not self.digest or self.epoch<0: raise ValueError("invalid event")
+        if len(self.receipt_ids)!=len(set(self.receipt_ids)): raise ValueError("duplicate event receipt")
+        if len(self.dependency_ids)!=len(set(self.dependency_ids)): raise ValueError("duplicate event dependency")
+        if not self.estimator_version: raise ValueError("invalid event estimator version")
 
 _WRITABLE=frozenset({"evidence","identifiability","coverage","obligations_required","obligations_satisfied","provenance","verification","authority_scopes","support_families","active_defeaters","custody_external","method_reach_ids","knowledge_node_ids","knowledge_edge_ids","resources","revoked_premise_ids"})
 def apply_event(state:State,event:Event)->State:
@@ -75,7 +82,32 @@ def apply_event(state:State,event:Event)->State:
     if event.epoch<state.epoch: raise ValueError("backward epoch")
     unknown=set(event.writes)-_WRITABLE
     if unknown: raise ValueError(f"unregistered writes {sorted(unknown)}")
-    return replace(state,epoch=event.epoch,applied_event_ids=state.applied_event_ids|{event.event_id},**dict(event.writes))
+    unknown_authorizations=set(event.authorized_coordinate_writes)-_WRITABLE
+    if unknown_authorizations: raise ValueError(f"unregistered authorized writes {sorted(unknown_authorizations)}")
+    writes=dict(event.writes)
+    if "revoked_premise_ids" in writes:
+        try:
+            revoked=frozenset(writes["revoked_premise_ids"])
+        except TypeError as exc:
+            raise ValueError("invalid revoked premises") from exc
+        if event.kind=="revocation":
+            revoked=state.revoked_premise_ids|revoked
+        writes["revoked_premise_ids"]=revoked
+    if "authority_scopes" in writes:
+        try:
+            next_authority=frozenset(writes["authority_scopes"])
+        except TypeError as exc:
+            raise ValueError("invalid authority scopes") from exc
+        if not next_authority.issubset(state.authority_scopes):
+            authority_grant_is_bound=(
+                event.kind=="external_adjudication"
+                and "authority_scopes" in event.authorized_coordinate_writes
+                and bool(event.receipt_ids)
+            )
+            if not authority_grant_is_bound:
+                raise ValueError("unauthorized authority amplification")
+        writes["authority_scopes"]=next_authority
+    return replace(state,epoch=event.epoch,applied_event_ids=state.applied_event_ids|{event.event_id},**writes)
 def replay(initial:State,events:Sequence[Event])->State:
     state=initial
     for event in events: state=apply_event(state,event)
