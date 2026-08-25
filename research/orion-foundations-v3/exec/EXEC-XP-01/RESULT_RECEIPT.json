@@ -1,0 +1,49 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-XP-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T23"
+  ],
+  "terminal": "INDEPENDENT_CUSTODY_OR_DOMAINS_ABSENT",
+  "terminal_reading": "The job asks for a prospectively frozen prediction TOURNAMENT over held-out families. A tournament requires someone other than the predictor to hold the outcomes until predictions are locked. In this session I would be both predictor and custodian, and splitting data while promising not to look is not custody -- it is the predictor holding the answers. The terminal was frozen before the work below and stands regardless of it.",
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "1ecfd67b7afb4bfaf479ce4e2c91b837866a198af97277a5a69b054dfff55d69"
+    },
+    "run_t23_coupling_v1.py": {
+      "artifact": "run_t23_coupling_v1.py",
+      "sha256": "55c0cb008aba1f156b3f43022da0c9995a823afebd619c9dfd95ec58e489738f"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "2715e513f5c7b37a176761639099280838b3497a6720da2c1a7b7e8d9db7d4ca"
+    }
+  },
+  "structural_verification": {
+    "verdict": "T23_STRUCTURE_VERIFIED",
+    "detail": "T23's decidable content holds over a total enumeration of 100 cells with zero violations: ScientificAdvance is exactly Available AND Admit. Both independence countermodels the theorem names are present -- 25 reachable-but-unauthorized cells and 25 well-specified-but-unreachable cells -- so independence is witnessed in both directions rather than assumed. A grid containing only one would not witness it.",
+    "cells": 100,
+    "biconditional_violations": 0,
+    "countermodels": {
+      "reachable_unauthorized": 25,
+      "wellspecified_unreachable": 25,
+      "both_present": true
+    }
+  },
+  "impossibility_clauses": {
+    "verdict": "BOTH_HOLD",
+    "detail": "T23 says more compute cannot replace missing authority and stronger governance cannot manufacture unreachable methods. Raising compute to maximum produced an advance in ZERO cells where Admit was false; raising governance to maximum produced an advance in ZERO cells where Available was false. These are the two clauses that make the coupling a constraint rather than a definition.",
+    "compute_rescues_missing_authority": 0,
+    "governance_rescues_unreachability": 0
+  },
+  "what_this_does_not_establish": [
+    "This is NOT the tournament. No prediction was made, nothing was held out, and no outcome was concealed from the predictor.",
+    "Structural verification of a biconditional is not prospective evidence. T23 could be structurally sound and still fail to predict anything about held-out families.",
+    "The enumeration is complete but self-authored. Not external adjudication."
+  ],
+  "what_would_discharge_this_job": "A third party holding outcomes for held-out families while predictions are registered. Free routes exist: OSF preregistration timestamps a prediction before outcomes are accessible, and a public leaderboard with server-side labels supplies custody the predictor does not control. Neither was used here.",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}

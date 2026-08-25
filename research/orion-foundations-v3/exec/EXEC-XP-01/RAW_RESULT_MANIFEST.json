@@ -1,0 +1,22 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-XP-01",
+  "grid": {
+    "levels": 5,
+    "seed": 20260825
+  },
+  "cells": 100,
+  "biconditional_violations": 0,
+  "countermodels": {
+    "reachable_unauthorized": 25,
+    "wellspecified_unreachable": 25,
+    "both_present": true
+  },
+  "impossibility": {
+    "compute_rescues_missing_authority": 0,
+    "governance_rescues_unreachability": 0
+  },
+  "totals": {
+    "wallclock_seconds": 0.0
+  }
+}
