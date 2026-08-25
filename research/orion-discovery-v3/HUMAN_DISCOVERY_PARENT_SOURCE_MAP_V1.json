@@ -1,0 +1,216 @@
+{
+  "schema": "orion.discovery.v3.human-parent-source-map.v1",
+  "date": "2026-08-25",
+  "orion_spaces": [
+    "PROBLEM_QUESTION",
+    "HYPOTHESIS_MECHANISM",
+    "REPRESENTATION_ONTOLOGY",
+    "EXPERIMENT_INSTRUMENT",
+    "PROOF_EVIDENCE",
+    "AUTHORITY_ADOPTION"
+  ],
+  "mapping_status_vocabulary": [
+    "SUPPORTED_*",
+    "PARTIAL_*",
+    "NOT_STATED*"
+  ],
+  "parents": [
+    {
+      "parent_id": "KLAHR_DUNBAR_DUAL_SPACE_1988",
+      "source_type": "PRIMARY_JOURNAL_ARTICLE",
+      "title": "Dual Space Search During Scientific Reasoning",
+      "authors": [
+        "David Klahr",
+        "Kevin Dunbar"
+      ],
+      "year": 1988,
+      "doi": "10.1207/s15516709cog1201_1",
+      "source_url": "https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog1201_1",
+      "source_status": "PRIMARY_SOURCE_FOUND",
+      "source_claims": [
+        "Scientific reasoning is modeled as coordinated search in hypothesis and experiment spaces.",
+        "Hypothesis generation can draw on memory or generalization from experimental results.",
+        "Hypothesis generation, experiment design, and evaluation interact."
+      ],
+      "space_mapping": {
+        "PROBLEM_QUESTION": "PARTIAL_GOAL_SUPPLIED_NOT_OWNED_AS_SEARCH_SPACE",
+        "HYPOTHESIS_MECHANISM": "SUPPORTED_HYPOTHESIS_SPACE",
+        "REPRESENTATION_ONTOLOGY": "NOT_STATED_AS_SEPARATE_SPACE",
+        "EXPERIMENT_INSTRUMENT": "SUPPORTED_EXPERIMENT_SPACE",
+        "PROOF_EVIDENCE": "PARTIAL_EVALUATION_OF_HYPOTHESES",
+        "AUTHORITY_ADOPTION": "NOT_STATED"
+      },
+      "orion_absorption": "Absorb coordinated hypothesis/experiment search and evidence feedback; do not claim them as novel."
+    },
+    {
+      "parent_id": "SCHUNN_KLAHR_FOUR_SPACE_1995",
+      "source_type": "PRIMARY_CONFERENCE_PAPER",
+      "title": "A 4-Space Model of Scientific Discovery",
+      "authors": [
+        "Christian D. Schunn",
+        "David Klahr"
+      ],
+      "year": 1995,
+      "doi": null,
+      "source_url": "https://escholarship.org/uc/item/40q1p8f6",
+      "source_status": "PRIMARY_SOURCE_FOUND",
+      "source_claims": [
+        "Extends dual-space discovery with data-representation and experimental-paradigm spaces.",
+        "New terms/features and new experimental procedures can be discovery moves."
+      ],
+      "space_mapping": {
+        "PROBLEM_QUESTION": "PARTIAL_GOAL_SUPPLIED",
+        "HYPOTHESIS_MECHANISM": "SUPPORTED_HYPOTHESIS_SPACE",
+        "REPRESENTATION_ONTOLOGY": "SUPPORTED_DATA_REPRESENTATION_SPACE",
+        "EXPERIMENT_INSTRUMENT": "SUPPORTED_EXPERIMENT_AND_PARADIGM_SPACES",
+        "PROOF_EVIDENCE": "PARTIAL_DATA_EVALUATION",
+        "AUTHORITY_ADOPTION": "NOT_STATED"
+      },
+      "orion_absorption": "Absorb explicit representation and experimental-paradigm search; ORION residual must exceed a relabeled six-space taxonomy."
+    },
+    {
+      "parent_id": "GENTNER_STRUCTURE_MAPPING_1983",
+      "source_type": "PRIMARY_JOURNAL_ARTICLE",
+      "title": "Structure-Mapping: A Theoretical Framework for Analogy",
+      "authors": [
+        "Dedre Gentner"
+      ],
+      "year": 1983,
+      "doi": "10.1016/S0364-0213(83)80009-3",
+      "source_url": "https://doi.org/10.1016/S0364-0213(83)80009-3",
+      "source_status": "PRIMARY_SOURCE_IDENTITY_FOUND",
+      "source_claims": [
+        "Analogical transfer is organized around relational structure rather than surface attributes.",
+        "Systematic relational correspondences are preferred."
+      ],
+      "space_mapping": {
+        "PROBLEM_QUESTION": "PARTIAL_TARGET_SELECTION",
+        "HYPOTHESIS_MECHANISM": "PARTIAL_TRANSFERRED_RELATIONAL_HYPOTHESIS",
+        "REPRESENTATION_ONTOLOGY": "SUPPORTED_RELATIONAL_CORRESPONDENCE",
+        "EXPERIMENT_INSTRUMENT": "NOT_STATED",
+        "PROOF_EVIDENCE": "PARTIAL_MAPPING_CONSISTENCY",
+        "AUTHORITY_ADOPTION": "NOT_STATED"
+      },
+      "orion_absorption": "Absorb relation-preserving analogy; require target-native validity, broken-correspondence debt, negative twins, and authority non-transfer."
+    },
+    {
+      "parent_id": "MACHAMER_DARDEN_CRAVER_MECHANISMS_2000",
+      "source_type": "PRIMARY_JOURNAL_ARTICLE",
+      "title": "Thinking about Mechanisms",
+      "authors": [
+        "Peter Machamer",
+        "Lindley Darden",
+        "Carl F. Craver"
+      ],
+      "year": 2000,
+      "doi": "10.1086/392759",
+      "source_url": "https://www.cambridge.org/core/journals/philosophy-of-science/article/thinking-about-mechanisms/CF5B6D178B59809DBED15FF80D22A1EF",
+      "source_status": "PRIMARY_SOURCE_FOUND",
+      "source_claims": [
+        "Mechanisms consist of entities and activities organized to produce regular changes.",
+        "Mechanistic thinking informs explanation, causality, reduction, and scientific change."
+      ],
+      "space_mapping": {
+        "PROBLEM_QUESTION": "PARTIAL_PHENOMENON_TO_EXPLAIN",
+        "HYPOTHESIS_MECHANISM": "SUPPORTED_MECHANISM_STRUCTURE",
+        "REPRESENTATION_ONTOLOGY": "SUPPORTED_ENTITIES_ACTIVITIES_ORGANIZATION",
+        "EXPERIMENT_INSTRUMENT": "PARTIAL_MECHANISM_DISCOVERY_PRACTICE",
+        "PROOF_EVIDENCE": "SUPPORTED_MECHANISTIC_EXPLANATORY_EVIDENCE",
+        "AUTHORITY_ADOPTION": "NOT_STATED"
+      },
+      "orion_absorption": "Absorb mechanistic ontology and organization; ORION residual is executable responsibility diagnosis and cross-lifecycle admission."
+    },
+    {
+      "parent_id": "KAPLAN_SIMON_INSIGHT_1990",
+      "source_type": "PRIMARY_JOURNAL_ARTICLE",
+      "title": "In Search of Insight",
+      "authors": [
+        "Craig A. Kaplan",
+        "Herbert A. Simon"
+      ],
+      "year": 1990,
+      "doi": "10.1016/0010-0285(90)90008-R",
+      "source_url": "https://www.sciencedirect.com/science/article/abs/pii/001002859090008R",
+      "source_status": "PRIMARY_SOURCE_ABSTRACT_FOUND",
+      "source_claims": [
+        "Insight depends on finding an effective problem representation.",
+        "Generators and constraints shape representation search.",
+        "Noticing invariants can focus search toward a successful representation."
+      ],
+      "space_mapping": {
+        "PROBLEM_QUESTION": "SUPPORTED_PROBLEM_REPRESENTATION_SEARCH",
+        "HYPOTHESIS_MECHANISM": "PARTIAL_GENERATORS_AND_CONSTRAINTS",
+        "REPRESENTATION_ONTOLOGY": "SUPPORTED_EFFECTIVE_REPRESENTATION",
+        "EXPERIMENT_INSTRUMENT": "NOT_STATED_AS_GENERAL_SPACE",
+        "PROOF_EVIDENCE": "PARTIAL_INVARIANT_AND_SOLUTION_EVIDENCE",
+        "AUTHORITY_ADOPTION": "NOT_STATED"
+      },
+      "orion_absorption": "Absorb invariant-guided representation search; add donor subtraction, target sufficiency, instrumentation, and authority."
+    },
+    {
+      "parent_id": "KNOBLICH_OHLSSON_REPRESENTATIONAL_CHANGE_1999",
+      "source_type": "PRIMARY_JOURNAL_ARTICLE",
+      "title": "Constraint Relaxation and Chunk Decomposition in Insight Problem Solving",
+      "authors": [
+        "Günther Knoblich",
+        "Stellan Ohlsson",
+        "Hilde Haider",
+        "Detlef Rhenius"
+      ],
+      "year": 1999,
+      "doi": "10.1037/0278-7393.25.6.1534",
+      "source_url": "https://research.ceu.edu/en/publications/constraint-relaxation-and-chunk-decomposition-in-insight-problem-/",
+      "source_status": "PRIMARY_SOURCE_METADATA_AND_ABSTRACT_FOUND",
+      "source_claims": [
+        "Impasses can be broken by changing the problem representation.",
+        "Constraint relaxation and perceptual chunk decomposition are specified mechanisms of representational change."
+      ],
+      "space_mapping": {
+        "PROBLEM_QUESTION": "PARTIAL_IMPASSE_RELATIVE_TO_CURRENT_PROBLEM",
+        "HYPOTHESIS_MECHANISM": "PARTIAL_RESTRUCTURING_MECHANISMS",
+        "REPRESENTATION_ONTOLOGY": "SUPPORTED_CONSTRAINT_RELAXATION_AND_CHUNK_DECOMPOSITION",
+        "EXPERIMENT_INSTRUMENT": "NOT_STATED_AS_GENERAL_SPACE",
+        "PROOF_EVIDENCE": "PARTIAL_BEHAVIORAL_PREDICTIONS",
+        "AUTHORITY_ADOPTION": "NOT_STATED"
+      },
+      "orion_absorption": "Absorb constraint relaxation and chunk decomposition as registered move classes, while retaining OPEN_MOVE_CLASS."
+    },
+    {
+      "parent_id": "HATCHUEL_WEIL_CK_2003",
+      "source_type": "PRIMARY_CONFERENCE_PAPER",
+      "title": "A New Approach of Innovative Design: An Introduction to C-K Theory",
+      "authors": [
+        "Armand Hatchuel",
+        "Benoît Weil"
+      ],
+      "year": 2003,
+      "doi": null,
+      "source_url": "https://iced.designsociety.org/publication/24204/a_new_approach_of_innovative_design_an_introduction_to_c-k_theory",
+      "source_status": "PRIMARY_SOURCE_IDENTITY_FOUND_ACCESS_RESTRICTED",
+      "source_claims": [
+        "Innovative design is described through interaction between concept and knowledge spaces.",
+        "Concepts are not settled as true or false by current knowledge and can drive knowledge expansion."
+      ],
+      "space_mapping": {
+        "PROBLEM_QUESTION": "SUPPORTED_CONCEPT_SPACE",
+        "HYPOTHESIS_MECHANISM": "PARTIAL_CONCEPT_PROPOSITIONS",
+        "REPRESENTATION_ONTOLOGY": "PARTIAL_CONCEPT_EXPANSION",
+        "EXPERIMENT_INSTRUMENT": "NOT_STATED_AS_SEPARATE_SPACE",
+        "PROOF_EVIDENCE": "SUPPORTED_KNOWLEDGE_SPACE",
+        "AUTHORITY_ADOPTION": "NOT_STATED"
+      },
+      "orion_absorption": "Absorb C-K expansion; ORION adds exact validity, donor closure, resource accounting, support families, and authority."
+    }
+  ],
+  "coverage": {
+    "parent_count": 7,
+    "cell_count": 42,
+    "source_found_count": 7,
+    "historical_private_cognition_inferred": false
+  },
+  "authority": {
+    "historical_discovery_superiority": "NOT_ESTABLISHED",
+    "novelty": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE"
+  }
+}

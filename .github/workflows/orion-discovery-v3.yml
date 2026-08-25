@@ -1,0 +1,93 @@
+name: ORION Discovery V3
+
+on:
+  push:
+    branches:
+      - codex/orion-discovery-v3-frontier-dominance-20260825
+    paths:
+      - development/orion-discovery-v3-bootstrap/**
+      - research/orion-discovery-v3/**
+      - src/orion/discovery/frontier_dominance.py
+      - tests/unit/discovery/test_frontier_dominance.py
+      - scripts/check_orion_discovery_v3.py
+      - scripts/run_frontier_dominance_census_v1.py
+      - .github/workflows/orion-discovery-v3.yml
+  pull_request:
+    paths:
+      - research/orion-discovery-v3/**
+      - src/orion/discovery/frontier_dominance.py
+      - tests/unit/discovery/test_frontier_dominance.py
+      - scripts/check_orion_discovery_v3.py
+      - scripts/run_frontier_dominance_census_v1.py
+      - .github/workflows/orion-discovery-v3.yml
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - name: Materialize content-bound V3 payload when present
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=development/orion-discovery-v3-bootstrap
+          if [[ ! -f "$root/READY" ]]; then
+            echo "no bootstrap payload"
+            exit 0
+          fi
+          cat "$root"/PAYLOAD.part.* > /tmp/orion-v3.b64
+          test "$(sha256sum /tmp/orion-v3.b64 | awk '{print $1}')" = "$(cat "$root/PAYLOAD_B64_SHA256")"
+          base64 -d /tmp/orion-v3.b64 > /tmp/orion-v3.tar.gz
+          test "$(sha256sum /tmp/orion-v3.tar.gz | awk '{print $1}')" = "$(cat "$root/PAYLOAD_TGZ_SHA256")"
+          tar -xzf /tmp/orion-v3.tar.gz
+          rm -rf "$root"
+          git config user.name "ORION Discovery V3 bootstrap"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Add scientific frontier dominance and residual novelty calculus"
+          git push origin HEAD:${{ github.ref_name }}
+
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Skip only while the content-bound bootstrap is pending
+        id: bootstrap_state
+        shell: bash
+        run: |
+          if [[ -f development/orion-discovery-v3-bootstrap/READY ]]; then
+            echo "pending=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "pending=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Install test dependencies
+        if: steps.bootstrap_state.outputs.pending == 'false'
+        run: python -m pip install pytest 'cryptography>=45'
+      - name: Structural checker
+        if: steps.bootstrap_state.outputs.pending == 'false'
+        run: PYTHONPATH=src python scripts/check_orion_discovery_v3.py
+      - name: Focused hostile tests
+        if: steps.bootstrap_state.outputs.pending == 'false'
+        run: PYTHONPATH=src python -m pytest -q tests/unit/discovery/test_frontier_dominance.py
+      - name: Recompute exact finite receipt
+        if: steps.bootstrap_state.outputs.pending == 'false'
+        run: |
+          cp research/orion-discovery-v3/FINITE_REFERENCE_RECEIPT_V1.json /tmp/expected.json
+          PYTHONPATH=src python scripts/run_frontier_dominance_census_v1.py
+          cmp /tmp/expected.json research/orion-discovery-v3/FINITE_REFERENCE_RECEIPT_V1.json
+      - name: Compile
+        if: steps.bootstrap_state.outputs.pending == 'false'
+        run: python -m compileall -q src/orion/discovery/frontier_dominance.py scripts/check_orion_discovery_v3.py scripts/run_frontier_dominance_census_v1.py
