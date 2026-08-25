@@ -1,0 +1,412 @@
+{
+  "schema": "orion.discovery.theorem-ledger.v1",
+  "base_main_sha": "0a82fd324b02c8ceecc8fed3605f3fe73f1ce518",
+  "programme_status": "PROSPECTIVE_SUCCESSOR_NO_SCIENTIFIC_OR_NOVELTY_AUTHORITY_DELTA",
+  "historical_ostc_theory_mutated": false,
+  "theorem_count": 38,
+  "theorems": [
+    {
+      "id": "EDG-T1",
+      "title": "Exact fibre support theorem",
+      "statement_class": "finite state and action sets",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["common action set", "finite losses"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#3-edg-t1--exact-fibre-support-theorem",
+      "executable_artifact": "src/orion/discovery/decision_geometry.py",
+      "falsifier": "one fibre with empty common-optimum intersection",
+      "owners": ["P4", "P13"]
+    },
+    {
+      "id": "EDG-T2",
+      "title": "Fibrewise Bayes envelope",
+      "statement_class": "finite probability space",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["known conditional distribution", "finite losses"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#4-edg-t2--fibrewise-bayes-envelope",
+      "executable_artifact": "src/orion/discovery/decision_geometry.py",
+      "falsifier": "computed policy below conditional Bayes minimum",
+      "owners": ["P4", "P9", "P12"]
+    },
+    {
+      "id": "EDG-T3",
+      "title": "Fibrewise minimax regret radius",
+      "statement_class": "finite state and action sets",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["finite regret table"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#5-edg-t3--fibrewise-minimax-regret-radius",
+      "executable_artifact": "src/orion/discovery/decision_geometry.py",
+      "falsifier": "policy with lower global worst regret than maximum fibre radius",
+      "owners": ["P12", "P13"]
+    },
+    {
+      "id": "EDG-T4",
+      "title": "Exact two-world hedge decomposition",
+      "statement_class": "two hidden states under equal prior",
+      "status": "PROVED_SCHEMA_AND_EXECUTION_TRIGGERED",
+      "assumptions": ["finite common action set", "unique optima for gap form"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#6-edg-t4--exact-two-world-hedge-decomposition",
+      "executable_artifact": "src/orion/discovery/decision_geometry.py",
+      "source_counterexample": "research/orion-foundations-v3/exec/EXEC-P12-01/OSTC_T17_SUCCESSOR_NARROWING_V1.md",
+      "falsifier": "hedge identity fails on an enumerated finite loss table",
+      "owners": ["P12"]
+    },
+    {
+      "id": "EDG-T5",
+      "title": "Terminal prediction is the no-hedge special case",
+      "statement_class": "zero-one terminal loss",
+      "status": "PROVED_SCHEMA_AND_FINITE_CROSS_CHECK",
+      "assumptions": ["actions are terminal choices", "zero-one error"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#7-edg-t5--terminal-prediction-as-the-no-hedge-special-case",
+      "execution_artifact": "research/orion-foundations-v3/exec/EXEC-P2-01",
+      "falsifier": "interface-only policy below one-half error on a balanced indistinguishable pair",
+      "owners": ["P2"]
+    },
+    {
+      "id": "EDG-T6",
+      "title": "Positive regret iff no common optimum",
+      "statement_class": "finite fibre",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["finite action set"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#8-edg-t6--positive-regret-and-decision-identifiability",
+      "executable_artifact": "src/orion/discovery/decision_geometry.py",
+      "falsifier": "zero minimax regret with empty optimum intersection",
+      "owners": ["P4", "P13"]
+    },
+    {
+      "id": "EDG-T7",
+      "title": "Information refinement monotonicity",
+      "statement_class": "partition refinement",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["unchanged policy and resource class"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#9-edg-t7--information-refinement-monotonicity",
+      "executable_artifact": "src/orion/discovery/decision_geometry.py",
+      "falsifier": "refined interface has strictly larger optimum decision loss",
+      "owners": ["P9", "P11", "P13"]
+    },
+    {
+      "id": "EDG-T8",
+      "title": "Responsibility joins",
+      "statement_class": "finite responsibility families",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["registered responsibility-specific partitions"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#10-edg-t8--responsibility-joins",
+      "falsifier": "state safe for join while failing one component responsibility",
+      "owners": ["P13"]
+    },
+    {
+      "id": "EDG-T9",
+      "title": "Intervention panels are target-partition refinements",
+      "statement_class": "finite intervention signatures",
+      "status": "PROVED_SCHEMA_PARTIALLY_EXECUTED",
+      "assumptions": ["deterministic registered outcome signatures"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#11-edg-t9--intervention-panels-as-partition-refinements",
+      "execution_artifact": "research/orion-foundations-v3/exec/EXEC-P9-01",
+      "falsifier": "row-distinct signature fails to identify target class",
+      "owners": ["P1", "P9"]
+    },
+    {
+      "id": "EDG-T10",
+      "title": "Value of scientific information",
+      "statement_class": "finite Bayesian acquisition",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["registered experiment refinement", "known probability law"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#12-edg-t10--value-of-scientific-information",
+      "falsifier": "experiment increases optimal Bayes value under unchanged costs",
+      "owners": ["P2", "P9", "P12"]
+    },
+    {
+      "id": "EDG-T11",
+      "title": "Decision sufficiency is weaker than world recovery",
+      "statement_class": "finite fibres",
+      "status": "PROVED_BY_WITNESS_AND_SCHEMA",
+      "assumptions": ["set-valued acceptable actions"],
+      "proof_artifact": "EPISTEMIC_DECISION_GEOMETRY_V1.md#13-edg-t11--decision-state-sufficiency-is-weaker-than-world-state-recovery",
+      "falsifier": "all multi-state fibres require hidden-state recovery for every responsibility",
+      "owners": ["P11", "P13"]
+    },
+    {
+      "id": "HIF-T1",
+      "title": "Claim identifiability by signature injectivity",
+      "statement_class": "finite registered alternative family",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["complete case-level signatures"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#3-hif-t1--claim-identifiability-theorem",
+      "executable_artifact": "src/orion/discovery/harness_identifiability.py",
+      "falsifier": "two alternatives share a signature yet are reported distinguished",
+      "owners": ["P4", "P14", "P15"]
+    },
+    {
+      "id": "HIF-T2",
+      "title": "Observational-equivalence impossibility",
+      "statement_class": "arbitrary adjudicator on identical harness record",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["adjudicator sees only harness record"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#4-hif-t2--observational-equivalence-impossibility",
+      "falsifier": "same record yields different deterministic output without hidden input",
+      "owners": ["P4", "P9", "P14"]
+    },
+    {
+      "id": "HIF-T3",
+      "title": "Constant-terminal and mixed-outcome criterion",
+      "statement_class": "binary finite harness",
+      "status": "PROVED_SCHEMA_AND_MULTIPLE_EXECUTION_WITNESSES",
+      "assumptions": ["constant mutation registered"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#5-hif-t3--constant-terminal-and-mixed-outcome-criterion",
+      "falsifier": "all-positive target distinguished from constant true on same observations",
+      "owners": ["P10", "P11", "P15"]
+    },
+    {
+      "id": "HIF-T4",
+      "title": "Clause-necessity theorem",
+      "statement_class": "finite deletion-mutation family",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["one mutation per claimed clause"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#6-hif-t4--clause-necessity-theorem",
+      "executable_artifact": "src/orion/discovery/harness_identifiability.py",
+      "falsifier": "clause called necessary without witness or independent proof",
+      "owners": ["P6", "P8", "P15"]
+    },
+    {
+      "id": "HIF-T5",
+      "title": "Precondition-attainability theorem",
+      "statement_class": "conditional estimand",
+      "status": "PROVED_SCHEMA_AND_EXECUTION_WITNESSES",
+      "assumptions": ["explicit eligibility predicate"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#7-hif-t5--precondition-attainability-theorem",
+      "falsifier": "conditional effect tested with zero eligible cases",
+      "owners": ["P9", "P10", "P14"]
+    },
+    {
+      "id": "HIF-T6",
+      "title": "Independent-reference construction",
+      "statement_class": "candidate/reference comparison",
+      "status": "PROVED_SCHEMA_AND_REPAIRED_EXECUTION",
+      "assumptions": ["reference lineage recorded"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#8-hif-t6--independent-reference-construction",
+      "execution_artifact": "research/orion-foundations-v3/exec/EXEC-CM-01",
+      "falsifier": "reference computed definitionally from candidate relation",
+      "owners": ["P6", "P7", "P8"]
+    },
+    {
+      "id": "HIF-T7",
+      "title": "Observable-cause requirement",
+      "statement_class": "causal/adversarial detection",
+      "status": "PROVED_SCHEMA_AND_REPAIRED_EXECUTION",
+      "assumptions": ["hidden cause distinct from candidate observables"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#9-hif-t7--observable-cause-requirement",
+      "execution_artifact": "research/orion-foundations-v3/exec/EXEC-P15-01",
+      "falsifier": "detection score increments directly from hidden construction flag",
+      "owners": ["P5", "P15"]
+    },
+    {
+      "id": "HIF-T8",
+      "title": "Alternative-family adequacy",
+      "statement_class": "nested alternative families",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["alternatives explicitly registered"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#10-hif-t8--alternative-family-adequacy",
+      "falsifier": "bounded identification reported as universal",
+      "owners": ["P4", "P14"]
+    },
+    {
+      "id": "HIF-T9",
+      "title": "Mutation completeness is class-relative",
+      "statement_class": "finite mutation family",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["mutation family frozen"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#11-hif-t9--mutation-completeness-is-class-relative",
+      "falsifier": "mutation score interpreted beyond registered mutants",
+      "owners": ["P4", "P15"]
+    },
+    {
+      "id": "HIF-T10",
+      "title": "Adaptive protocol separation",
+      "statement_class": "chronology-bound protocols",
+      "status": "PROVED_BY_IDENTITY_AND_PROGRAMME_RULE",
+      "assumptions": ["outcome accessed before successor design"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#12-hif-t10--adaptive-protocol-separation",
+      "falsifier": "post-outcome redesign retroactively changes old terminal",
+      "owners": ["P5", "P9", "P10", "P14"]
+    },
+    {
+      "id": "HIF-T11",
+      "title": "Custody and prediction separation",
+      "statement_class": "prospective hidden outcomes",
+      "status": "PROVED_AUTHORITY_BOUNDARY",
+      "assumptions": ["candidate or author can access hidden store"],
+      "proof_artifact": "THEOREM_IDENTIFYING_HARNESS_V1.md#13-hif-t11--custody-and-prediction",
+      "execution_artifact": "research/orion-foundations-v3/exec/EXEC-XP-01",
+      "falsifier": "local hash treated as independent outcome custody",
+      "owners": ["P5", "P14"]
+    },
+    {
+      "id": "GRT-T1",
+      "title": "Supplied-menu closure theorem",
+      "statement_class": "closure-preserving finite controller traces",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["all supplied candidates and controller operations lie in old closure"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#4-grt-t1--supplied-menu-closure-theorem",
+      "executable_artifact": "src/orion/discovery/proposal_origin.py",
+      "falsifier": "outside-closure output generated using only closure-preserving operations",
+      "owners": ["P10"]
+    },
+    {
+      "id": "GRT-T2",
+      "title": "Macro versus semantic expansion",
+      "statement_class": "registered behavioral equivalence",
+      "status": "DEFINITION_AND_PROOF_OBLIGATION",
+      "assumptions": ["equivalence and resource class frozen"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#5-grt-t2--macro-versus-semantic-expansion",
+      "falsifier": "new primitive equivalent to old construction",
+      "owners": ["P10"]
+    },
+    {
+      "id": "GRT-T3",
+      "title": "Obstruction-extension theorem",
+      "statement_class": "bounded reachability",
+      "status": "THEOREM_TARGET_WITH_FINITE_INSTANCES",
+      "assumptions": ["old closure frozen", "correspondence and resource contract frozen"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#6-grt-t3--obstructionextension-theorem",
+      "falsifier": "old regime already reaches target or new edit fails hidden target",
+      "owners": ["P1", "P10"]
+    },
+    {
+      "id": "GRT-T4",
+      "title": "Minimum expansion",
+      "statement_class": "registered edit poset",
+      "status": "THEOREM_TARGET",
+      "assumptions": ["strictly weaker edit relation frozen"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#7-grt-t4--minimum-expansion",
+      "falsifier": "strictly weaker edit reaches target",
+      "owners": ["P1", "P10"]
+    },
+    {
+      "id": "GRT-T5",
+      "title": "No-answer-laundering theorem",
+      "statement_class": "matched-information comparison",
+      "status": "PROVED_AUTHORITY_BOUNDARY",
+      "assumptions": ["protected target oracle defined"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#8-grt-t5--no-answer-laundering-theorem",
+      "falsifier": "candidate-only oracle access described as representation gain",
+      "owners": ["P4", "P9", "P10", "P11"]
+    },
+    {
+      "id": "GRT-T6",
+      "title": "Hidden-consequence requirement",
+      "statement_class": "development/protected split",
+      "status": "SCIENTIFIC_PROTOCOL_THEOREM",
+      "assumptions": ["independent unit disjointness"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#9-grt-t6--hidden-consequence-requirement",
+      "falsifier": "development evidence reused as protected consequence",
+      "owners": ["P5", "P10"]
+    },
+    {
+      "id": "GRT-T7",
+      "title": "Transfer requirement",
+      "statement_class": "registered changed-coordinate contract",
+      "status": "SCIENTIFIC_PROTOCOL_THEOREM",
+      "assumptions": ["material transfer axis frozen"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#10-grt-t7--transfer-requirement",
+      "falsifier": "candidate succeeds only on originating instance",
+      "owners": ["P5", "P10", "P11"]
+    },
+    {
+      "id": "GRT-T8",
+      "title": "Donor first-refusal theorem",
+      "statement_class": "information-equivalent systems",
+      "status": "PROVED_BY_FULL_ABSTRACTION_BOUNDARY",
+      "assumptions": ["matched information, tools, primitives, and resources"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#11-grt-t8--donor-first-refusal-theorem",
+      "falsifier": "architectural superiority claimed under extensional tie",
+      "owners": ["P3", "P8", "P10"]
+    },
+    {
+      "id": "GRT-T9",
+      "title": "Discovery-credit factorization",
+      "statement_class": "typed evidence authority",
+      "status": "AUTHORITY_SCHEMA",
+      "assumptions": ["all factors independently validated"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#12-grt-t9--discovery-credit-factorization",
+      "executable_artifact": "src/orion/discovery/proposal_origin.py",
+      "falsifier": "strong discovery terminal emitted with a missing factor",
+      "owners": ["P10", "P14"]
+    },
+    {
+      "id": "GRT-T10",
+      "title": "Proposal and adoption separation",
+      "statement_class": "candidate-controlled systems",
+      "status": "PROVED_AUTHORITY_BOUNDARY",
+      "assumptions": ["candidate can affect one or more evaluation coordinates"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#13-grt-t10--proposal-and-adoption-separation",
+      "falsifier": "candidate output directly grants merge or promotion",
+      "owners": ["P5", "P14"]
+    },
+    {
+      "id": "GRT-T11",
+      "title": "Internal search cannot prove global novelty",
+      "statement_class": "open-world prior-art search",
+      "status": "OPEN_WORLD_AUTHORITY_BOUNDARY",
+      "assumptions": ["material inaccessible work may exist"],
+      "proof_artifact": "GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md#14-grt-t11--novelty-is-not-derivable-from-internal-search-alone",
+      "falsifier": "finite internal search treated as universal absence proof",
+      "owners": ["P14"]
+    },
+    {
+      "id": "HCP-T1",
+      "title": "Source chronology is necessary but insufficient",
+      "statement_class": "historical reconstruction",
+      "status": "PROVED_AUTHORITY_BOUNDARY",
+      "assumptions": ["model parameters may encode post-cutoff information"],
+      "proof_artifact": "HISTORICAL_COUNTERFACTUAL_PROSPECTIVE_TRIANGULATION_V1.md#6-hcp-t1--source-projection-is-necessary-but-insufficient",
+      "falsifier": "source-safe packet asserted to guarantee model ignorance",
+      "owners": ["P10", "P14"]
+    },
+    {
+      "id": "HCP-T2",
+      "title": "Counterfactual twin criterion",
+      "statement_class": "paired historical/reminted episodes",
+      "status": "PROTOCOL_THEOREM_TARGET",
+      "assumptions": ["preserved and reminted coordinates frozen"],
+      "proof_artifact": "HISTORICAL_COUNTERFACTUAL_PROSPECTIVE_TRIANGULATION_V1.md#7-hcp-t2--counterfactual-twin-criterion",
+      "falsifier": "historical answer remains directly valid or transformation label leaks",
+      "owners": ["P10", "P14"]
+    },
+    {
+      "id": "HCP-T3",
+      "title": "Historical answer non-uniqueness",
+      "statement_class": "cutoff-consistent candidate framework set",
+      "status": "PROVED_SCHEMA",
+      "assumptions": ["responsibility-relative equivalence defined"],
+      "proof_artifact": "HISTORICAL_COUNTERFACTUAL_PROSPECTIVE_TRIANGULATION_V1.md#8-hcp-t3--historical-answer-non-uniqueness",
+      "falsifier": "multiple inequivalent frameworks fit cutoff evidence but one is forced as gold",
+      "owners": ["P3", "P10"]
+    },
+    {
+      "id": "HCP-T4",
+      "title": "Prospective escrow requirement",
+      "statement_class": "present-day hidden outcomes",
+      "status": "AUTHORITY_PROTOCOL",
+      "assumptions": ["independent outcome custody"],
+      "proof_artifact": "HISTORICAL_COUNTERFACTUAL_PROSPECTIVE_TRIANGULATION_V1.md#10-hcp-t4--prospective-escrow-requirement",
+      "falsifier": "predictor can access or modify hidden outcome store",
+      "owners": ["P5", "P10", "P14"]
+    },
+    {
+      "id": "HCP-T5",
+      "title": "Triangulation interpretation",
+      "statement_class": "historical, counterfactual, prospective evidence vector",
+      "status": "SCIENTIFIC_INTERPRETATION_SCHEMA",
+      "assumptions": ["lane terminals separately validated"],
+      "proof_artifact": "HISTORICAL_COUNTERFACTUAL_PROSPECTIVE_TRIANGULATION_V1.md#11-hcp-t5--triangulation-interpretation",
+      "falsifier": "one lane promoted to general discovery capability",
+      "owners": ["P10", "P14"]
+    }
+  ],
+  "authority": {
+    "mathematical_schema_authority": "SAME_PROGRAMME_ONLY",
+    "external_proof_review": "CANNOT_CHECK",
+    "naturalistic_transfer": "CANNOT_CHECK",
+    "present_day_novelty": "CANNOT_CHECK",
+    "paper_claim_delta": "NONE"
+  }
+}
