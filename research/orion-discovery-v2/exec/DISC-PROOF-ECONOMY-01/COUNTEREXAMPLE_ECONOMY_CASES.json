@@ -1,0 +1,316 @@
+{
+  "schema": "orion.discovery-v2.counterexample-economy-cases.v1",
+  "job_id": "DISC-PROOF-ECONOMY-01",
+  "class": "LOCAL_EXACT",
+  "authority": "finite exact only (integers and fractions.Fraction; no float constructed)",
+  "input_sha256": {
+    "KNOWLEDGE_WEB_V1.json": "29574263b6629734410c0c4e409ed1c7c09e721dbaf90960f7530b5582db12b0",
+    "SUPPORT_FAMILY_STATUS_V1.json": "a1f195ea9d2aadfef196a00464a4885abce3a21185ad3a2fdbb86a3463bd26f2"
+  },
+  "spec": "research/orion-discovery-v2/KNOWLEDGE_WEB_NAVIGATION_PROOF_ECONOMY_AND_SELF_APPLICATION_V1.md section 6 (branch codex/orion-discovery-v2-knowledge-web-20260825)",
+  "terminal": "BOUNDED_PROOF_ECONOMY_CORRESPONDENCE_GREEN",
+  "cannot_check_subclaims": [
+    {
+      "subclaim": "PRECONDITION_EMPTY_NOT_EXERCISED:EVIDENCE_CONTENT_IDENTIFIED",
+      "reason": "no option in the slice violates this hard precondition, so it cannot have caused any adequacy verdict here; its discriminating power is untested"
+    },
+    {
+      "subclaim": "PRECONDITION_EMPTY_NOT_EXERCISED:EXPERIMENT_CONTENT_IDENTIFIED",
+      "reason": "no option in the slice violates this hard precondition, so it cannot have caused any adequacy verdict here; its discriminating power is untested"
+    },
+    {
+      "subclaim": "SUPPORT_BINDING_TAMPER_EVIDENCE",
+      "reason": "support status is keyed on theorem ID, not on theorem content_sha256; theorem-content tampering is undetected (HC-05)"
+    }
+  ],
+  "headline_caveats": [
+    "Adequacy in this slice is decided by exactly one binding hard precondition (ROUTE_NOT_OBSTRUCTED); 2 of 3 declared hard preconditions have an empty violating stratum.",
+    "Census C: making INDEPENDENT_VALIDATOR_PRESENT hard drives adequate plans from 32 to 0. The slice registers no per-theorem authority requirement, so the adequate/inadequate split is contingent on that unregistered typing (HC-06).",
+    "2 of 5 declared cost components are ordering-redundant (a monotone function of another component over the full census): ['distinct_evidence_nodes', 'distinct_support_edges']. Pareto results are unaffected; the declared vector overstates the number of real axes.",
+    "obstructed_discharges is constant (0) over adequate plans by construction; it is live only across the full census."
+  ],
+  "n_cases": 7,
+  "law_counterexamples_found": [],
+  "adequacy_law_counterexample": null,
+  "cases": [
+    {
+      "case_id": "HC-01",
+      "name": "COMPLETE_FAMILY_WITH_UNATTAINED_PRECONDITION",
+      "question": "Does 'support family complete' imply adequate?",
+      "finding": "16 of 34 complete families carry a registered FAILURE that obstructs the producing experiment. They are node-complete and therefore look adequate, but ROUTE_NOT_OBSTRUCTED is unattained.",
+      "witnesses": [
+        "S1(THEORY:T14)",
+        "S1(THEORY:T19)",
+        "S1(THEORY:T2)",
+        "S1(THEORY:T21)",
+        "S1(THEORY:T23)",
+        "S1(THEORY:T3)",
+        "S1(THEORY:T4)",
+        "S2(THEORY:T19)",
+        "S2(THEORY:T20)",
+        "S2(THEORY:T21)",
+        "S2(THEORY:T8)",
+        "S3(THEORY:T10)",
+        "S3(THEORY:T11)",
+        "S3(THEORY:T21)",
+        "S4(THEORY:T10)",
+        "S4(THEORY:T11)"
+      ],
+      "verdict": "COMPLETENESS_DOES_NOT_IMPLY_ADEQUACY",
+      "consequence": "DISC-WEB-01 reports theorems_with_a_complete_family=19; the number whose support survives hard preconditions is 13."
+    },
+    {
+      "case_id": "HC-02",
+      "name": "DERIVED_PREDICATE_MASQUERADING_AS_INDEPENDENT_PRECONDITION",
+      "question": "Is VALIDATES_EDGE_LOAD_BEARING an independent hard precondition?",
+      "finding": "No. disc_web_01.py builds the VALIDATES->THEORY edge with load_bearing = (not blocked), so the predicate is definitionally equal to ROUTE_NOT_OBSTRUCTED. Options where they differ: 0.",
+      "witnesses": [],
+      "verdict": "EXCLUDED_FROM_HARD_SET_TO_AVOID_DOUBLE_COUNTING",
+      "consequence": "Counting it separately would inflate the apparent number of binding preconditions from 1 to 2 on identical evidence."
+    },
+    {
+      "case_id": "HC-03",
+      "name": "PRECONDITION_EMPTY_NOT_EXERCISED",
+      "question": "Does every declared hard precondition actually bind on real data?",
+      "strata": {
+        "EVIDENCE_CONTENT_IDENTIFIED": {
+          "n_violating_options": 0,
+          "violating_options": [],
+          "exercised": false
+        },
+        "EXPERIMENT_CONTENT_IDENTIFIED": {
+          "n_violating_options": 0,
+          "violating_options": [],
+          "exercised": false
+        },
+        "ROUTE_NOT_OBSTRUCTED": {
+          "n_violating_options": 16,
+          "violating_options": [
+            "S1(THEORY:T14)",
+            "S1(THEORY:T19)",
+            "S1(THEORY:T2)",
+            "S1(THEORY:T21)",
+            "S1(THEORY:T23)",
+            "S1(THEORY:T3)",
+            "S1(THEORY:T4)",
+            "S2(THEORY:T19)",
+            "S2(THEORY:T20)",
+            "S2(THEORY:T21)",
+            "S2(THEORY:T8)",
+            "S3(THEORY:T10)",
+            "S3(THEORY:T11)",
+            "S3(THEORY:T21)",
+            "S4(THEORY:T10)",
+            "S4(THEORY:T11)"
+          ],
+          "exercised": true
+        }
+      },
+      "unexercised": [
+        "EVIDENCE_CONTENT_IDENTIFIED",
+        "EXPERIMENT_CONTENT_IDENTIFIED"
+      ],
+      "verdict": "PRECONDITION_EMPTY_NOT_EXERCISED",
+      "consequence": "An unexercised precondition is decorative: it cannot have caused any adequacy verdict in this slice."
+    },
+    {
+      "case_id": "HC-04",
+      "name": "FULL_COVER_OBLIGATION_SET_IS_UNSATISFIABLE",
+      "question": "Can any plan discharge every registered obligation?",
+      "witness_obligations_with_zero_attained_routes": [
+        "THEORY:T19",
+        "THEORY:T2",
+        "THEORY:T21",
+        "THEORY:T23",
+        "THEORY:T3",
+        "THEORY:T4"
+      ],
+      "proof": "Each listed obligation has n_precondition_attained_options = 0, so every choice function over the registered obligations selects at least one option with an unattained hard precondition. No enumeration is needed; the 6 witnesses settle it.",
+      "enumeration_confirmation": {
+        "space_size": 6144,
+        "n_adequate": 0,
+        "n_inadequate": 6144
+      },
+      "verdict": "UNSATISFIABLE_IN_SLICE",
+      "consequence": "The slice cannot support the claim 'OSTC T0-T23 is backed by registered execution evidence'. 5 of 24 theorems are unregistered and 6 have only obstructed routes."
+    },
+    {
+      "case_id": "HC-05",
+      "name": "MUTATION_DISCRIMINATION_HARNESS",
+      "question": "DISC-WEB-01 deferred this: does perturbing one theorem turn only its own families red?",
+      "results": [
+        {
+          "mutation_class": "M1_THEOREM_CONTENT_PERTURBATION",
+          "mutated": "THEORY:T10",
+          "layers_exercised": [
+            "option_typing (this module)",
+            "support_family_derivation (DISC-WEB-01 logic, re-run)"
+          ],
+          "n_options_moved": 0,
+          "n_families_moved": 0,
+          "own_families_moved": [],
+          "foreign_families_moved": [],
+          "discriminating": false,
+          "verdict": "NOT_DISCRIMINATING_SUPPORT_IS_ID_BOUND_NOT_CONTENT_BOUND",
+          "note": "Both layers are re-run on the mutated web. Families are keyed on theorem ID through the VALIDATES edge; the theorem's content_sha256 is recorded but never read when deciding support status, so zero movement is a discrimination FAILURE, not a pass."
+        },
+        {
+          "mutation_class": "M1_THEOREM_CONTENT_PERTURBATION",
+          "mutated": "THEORY:T13",
+          "layers_exercised": [
+            "option_typing (this module)",
+            "support_family_derivation (DISC-WEB-01 logic, re-run)"
+          ],
+          "n_options_moved": 0,
+          "n_families_moved": 0,
+          "own_families_moved": [],
+          "foreign_families_moved": [],
+          "discriminating": false,
+          "verdict": "NOT_DISCRIMINATING_SUPPORT_IS_ID_BOUND_NOT_CONTENT_BOUND",
+          "note": "Both layers are re-run on the mutated web. Families are keyed on theorem ID through the VALIDATES edge; the theorem's content_sha256 is recorded but never read when deciding support status, so zero movement is a discrimination FAILURE, not a pass."
+        },
+        {
+          "mutation_class": "M2_ROUTE_OBSTRUCTION_PERTURBATION",
+          "n_families_moved": 3,
+          "families_moved": [
+            "S1(THEORY:T10)",
+            "S1(THEORY:T13)",
+            "S1(THEORY:T8)"
+          ],
+          "mutated": "EVIDENCE:EXEC-CM-01",
+          "n_options_moved": 3,
+          "options_moved": [
+            "S1(THEORY:T10)",
+            "S1(THEORY:T13)",
+            "S1(THEORY:T8)"
+          ],
+          "expected_movable": [
+            "S1(THEORY:T10)",
+            "S1(THEORY:T13)",
+            "S1(THEORY:T8)"
+          ],
+          "locality_held": true,
+          "family_layer_locality_held": true,
+          "discriminating": true,
+          "verdict": "DISCRIMINATES_LOCALLY"
+        },
+        {
+          "mutation_class": "M2_ROUTE_OBSTRUCTION_PERTURBATION",
+          "n_families_moved": 2,
+          "families_moved": [
+            "S1(THEORY:T15)",
+            "S1(THEORY:T22)"
+          ],
+          "mutated": "EVIDENCE:EXEC-P10-01",
+          "n_options_moved": 2,
+          "options_moved": [
+            "S1(THEORY:T15)",
+            "S1(THEORY:T22)"
+          ],
+          "expected_movable": [
+            "S1(THEORY:T15)",
+            "S1(THEORY:T22)"
+          ],
+          "locality_held": true,
+          "family_layer_locality_held": true,
+          "discriminating": true,
+          "verdict": "DISCRIMINATES_LOCALLY"
+        }
+      ],
+      "verdict": "BINDING_IS_ID_BOUND_NOT_CONTENT_BOUND",
+      "consequence": "Theorem content can change without any support family changing status: the support relation is not tamper-evident with respect to theorem text. M2 shows the harness is not inert -- route obstruction does move exactly the affected families."
+    },
+    {
+      "case_id": "HC-06",
+      "name": "ADEQUACY_CONTINGENT_ON_UNREGISTERED_AUTHORITY_TYPING",
+      "question": "If INDEPENDENT_VALIDATOR_PRESENT were a hard precondition (spec 6.1: cheaper evidence lacking required authority is not adequate), does the census survive?",
+      "census_B_n_adequate": 32,
+      "census_C_n_adequate": 0,
+      "self_reported_only_obligations": [
+        "THEORY:T15",
+        "THEORY:T20"
+      ],
+      "verdict": "ADEQUACY_COLLAPSES_UNDER_AUTHORITY_HARDENING",
+      "consequence": "The slice registers no per-theorem authority requirement, so the adequate/inadequate split reported here is contingent on that gap. This is a typing debt, not a licence."
+    },
+    {
+      "case_id": "HC-07",
+      "name": "IMPLICIT_SCALARIZATION_PROBE",
+      "question": "Was any cost vector collapsed to a scalar for ordering?",
+      "ordering_relation": "Pareto dominance on integer vectors only",
+      "scalarization_reachability": [
+        {
+          "cost_vector": [
+            9,
+            24,
+            28,
+            0,
+            4
+          ],
+          "inside_convex_hull_of_other_frontier_costs": false,
+          "checked_completely": true,
+          "reduced_axes": [
+            "distinct_support_nodes",
+            "unvalidated_discharges"
+          ],
+          "reduced_axis_cost": [
+            24,
+            4
+          ],
+          "inside_hull_on_reduced_axes": false,
+          "reduced_checked_completely": true,
+          "meaning": "supported point (some positive weighting selects it)"
+        },
+        {
+          "cost_vector": [
+            9,
+            25,
+            29,
+            0,
+            3
+          ],
+          "inside_convex_hull_of_other_frontier_costs": false,
+          "checked_completely": true,
+          "reduced_axes": [
+            "distinct_support_nodes",
+            "unvalidated_discharges"
+          ],
+          "reduced_axis_cost": [
+            25,
+            3
+          ],
+          "inside_hull_on_reduced_axes": false,
+          "reduced_checked_completely": true,
+          "meaning": "supported point (some positive weighting selects it)"
+        },
+        {
+          "cost_vector": [
+            10,
+            28,
+            31,
+            0,
+            2
+          ],
+          "inside_convex_hull_of_other_frontier_costs": false,
+          "checked_completely": true,
+          "reduced_axes": [
+            "distinct_support_nodes",
+            "unvalidated_discharges"
+          ],
+          "reduced_axis_cost": [
+            28,
+            2
+          ],
+          "inside_hull_on_reduced_axes": false,
+          "reduced_checked_completely": true,
+          "meaning": "supported point (some positive weighting selects it)"
+        }
+      ],
+      "checked_completely": true,
+      "unsupported_frontier_points": [],
+      "unsupported_frontier_points_on_reduced_axes": [],
+      "verdict": "NO_IMPLICIT_SCALARIZATION",
+      "consequence": "Any frontier point inside the hull of the others cannot be the unique minimiser of a positive-weight scalarization, so no single price vector reproduces this frontier."
+    }
+  ]
+}
