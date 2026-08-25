@@ -1,0 +1,26 @@
+{
+  "schema_version": "orion.independent-checker-receipt.v1",
+  "job_id": "EXEC-CM-01",
+  "checker": "check_countermodel_atlas_independent_v1.py",
+  "imports_runner": false,
+  "recomputed": [
+    "T8",
+    "T10",
+    "T13"
+  ],
+  "independent_findings": {
+    "t8_factors_with_countermodels": "6/6",
+    "t10_associativity_violations": 0,
+    "t10_identity_violations": 0,
+    "t10_silent_compositions": 0,
+    "t10_mismatches_exercised": 2268,
+    "t13_triples": 6908733,
+    "t13_squares_commute": 531441,
+    "t13_non_commuting": 6377292,
+    "t13_biconditional_violations": 0,
+    "t13_test_is_non_vacuous": true
+  },
+  "disagreements": [],
+  "terminal": "EXEC_CM_01_SECOND_INDEPENDENT_CHECKER_GREEN",
+  "independence_boundary": "Two implementations inside one programme. Not external scientific adjudication; EXTERNAL_SCIENTIFIC_ADJUDICATION remains CANNOT_CHECK."
+}

@@ -1,0 +1,180 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-CM-01",
+  "grid": {
+    "factors": 6,
+    "coords": 7,
+    "t10_values": 3,
+    "t13_values": 3,
+    "t13_load_bearing": 2,
+    "seed": 20260825
+  },
+  "t8": {
+    "R": {
+      "models_examined": 64,
+      "countermodels_found": 1,
+      "minimal_witness": {
+        "admitting": {
+          "R": true,
+          "V": true,
+          "X": true,
+          "S": true,
+          "E": true,
+          "B": true
+        },
+        "counter": {
+          "R": false,
+          "V": true,
+          "X": true,
+          "S": true,
+          "E": true,
+          "B": true
+        },
+        "dropped": "R"
+      }
+    },
+    "V": {
+      "models_examined": 64,
+      "countermodels_found": 1,
+      "minimal_witness": {
+        "admitting": {
+          "R": true,
+          "V": true,
+          "X": true,
+          "S": true,
+          "E": true,
+          "B": true
+        },
+        "counter": {
+          "R": true,
+          "V": false,
+          "X": true,
+          "S": true,
+          "E": true,
+          "B": true
+        },
+        "dropped": "V"
+      }
+    },
+    "X": {
+      "models_examined": 64,
+      "countermodels_found": 1,
+      "minimal_witness": {
+        "admitting": {
+          "R": true,
+          "V": true,
+          "X": true,
+          "S": true,
+          "E": true,
+          "B": true
+        },
+        "counter": {
+          "R": true,
+          "V": true,
+          "X": false,
+          "S": true,
+          "E": true,
+          "B": true
+        },
+        "dropped": "X"
+      }
+    },
+    "S": {
+      "models_examined": 64,
+      "countermodels_found": 1,
+      "minimal_witness": {
+        "admitting": {
+          "R": true,
+          "V": true,
+          "X": true,
+          "S": true,
+          "E": true,
+          "B": true
+        },
+        "counter": {
+          "R": true,
+          "V": true,
+          "X": true,
+          "S": false,
+          "E": true,
+          "B": true
+        },
+        "dropped": "S"
+      }
+    },
+    "E": {
+      "models_examined": 64,
+      "countermodels_found": 1,
+      "minimal_witness": {
+        "admitting": {
+          "R": true,
+          "V": true,
+          "X": true,
+          "S": true,
+          "E": true,
+          "B": true
+        },
+        "counter": {
+          "R": true,
+          "V": true,
+          "X": true,
+          "S": true,
+          "E": false,
+          "B": true
+        },
+        "dropped": "E"
+      }
+    },
+    "B": {
+      "models_examined": 64,
+      "countermodels_found": 1,
+      "minimal_witness": {
+        "admitting": {
+          "R": true,
+          "V": true,
+          "X": true,
+          "S": true,
+          "E": true,
+          "B": true
+        },
+        "counter": {
+          "R": true,
+          "V": true,
+          "X": true,
+          "S": true,
+          "E": true,
+          "B": false
+        },
+        "dropped": "B"
+      }
+    }
+  },
+  "t10": {
+    "triples_examined": 1701,
+    "composable": 189,
+    "associativity_violations": 0,
+    "identity_violations": 0,
+    "mismatches": 2268,
+    "silent_compositions": 0,
+    "examples": []
+  },
+  "t13": {
+    "triples_examined": 6908733,
+    "squares_commute": 531441,
+    "path_independent": 531441,
+    "biconditional_violations": 0,
+    "forward_violations": 0,
+    "backward_violations": 0,
+    "minimal_witness": null
+  },
+  "donor": {
+    "decisions_compared": 64,
+    "agreements": 64,
+    "donor_wins": 0,
+    "witness_wins": 0
+  },
+  "totals": {
+    "models_enumerated": 6910818,
+    "wallclock_seconds": 54.529
+  }
+}
