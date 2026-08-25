@@ -72,7 +72,7 @@ class Hostile:
         except AttributeError:
             self.blocked.append("route_records_immutable")
         try:
-            session.route_events.append("forged")  # type: ignore[attr-defined]
+            session.route_trials.append("forged")  # type: ignore[attr-defined]
         except AttributeError:
             self.blocked.append("event_log_immutable")
 
@@ -208,7 +208,7 @@ class LogClearer:
         probe = view.probes_for(DiscoveryRoute.LEXICAL)[0]
         for _ in range(60):
             try:
-                session._route_events.clear()  # noqa: SLF001 - that is the point
+                session._route_trials.clear()  # noqa: SLF001 - that is the point
                 session._exhausted = ""  # noqa: SLF001
                 session.query(DiscoveryRoute.LEXICAL.value, probe)
                 self.calls_completed += 1
@@ -255,7 +255,7 @@ def test_a_run_that_exceeded_its_budget_is_voided_by_the_host(suite) -> None:
     outcome = execute(
         CounterSuppressor(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
-    assert len(outcome.trace.route_events) > task.budget.max_route_calls
+    assert len(outcome.trace.route_trials) > task.budget.max_route_calls
     assert outcome.record["status"] == "INVALID"
     assert outcome.record["failure_class"] == "harness_tamper"
 
@@ -267,7 +267,7 @@ def test_the_overrun_check_stays_silent_on_a_lawful_run(suite) -> None:
     outcome = execute(
         SingleRoute(close=False), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
-    assert len(outcome.trace.route_events) <= task.budget.max_route_calls
+    assert len(outcome.trace.route_trials) <= task.budget.max_route_calls
     assert outcome.record["failure_class"] != "harness_tamper"
     assert outcome.record["status"] != "INVALID"
 
@@ -376,8 +376,8 @@ def test_refusing_closure_over_censored_evidence_is_cannot_check(suite) -> None:
         run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH,
     )
     evaluation = outcome.artifact["evaluation"]
-    assert evaluation["unavailable_route_events"], "the provider really did go down"
-    assert evaluation["censored_identities"], "and it really did hold unreached gold"
+    assert evaluation["unavailable_trial_count"] > 0, "the provider really did go down"
+    assert evaluation["censored_ids"], "and it really did hold unreached gold"
     assert outcome.record["status"] == "CANNOT_CHECK"
     assert outcome.record["failure_class"] is None
     assert outcome.record["authority_flags"]["closed_over_censored_evidence"] is False
@@ -406,8 +406,8 @@ def test_an_untouched_dead_route_censors_nothing(suite) -> None:
         SingleRoute(close=False), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
     evaluation = outcome.artifact["evaluation"]
-    assert evaluation["unavailable_route_events"] == []
-    assert evaluation["censored_identities"] == []
+    assert evaluation["unavailable_trial_count"] == 0
+    assert evaluation["censored_ids"] == []
     assert outcome.record["status"] != "CANNOT_CHECK"
 
 
@@ -523,7 +523,7 @@ def test_duplicate_processing_and_legitimate_reread_are_distinguishable(suite) -
     )
     # Indexed by position, not by document: `lex-a` is read twice, and the second
     # read is the one that matters.
-    events = outcome.artifact["trace"]["read_events"]
+    events = outcome.artifact["trace"]["read_encounters"]
     assert [item["doc_id"] for item in events] == [
         "measurement-invariance:lex-a",
         "measurement-invariance:lex-a-mirror",
@@ -562,7 +562,7 @@ def test_processing_pairs_are_keyed_by_work_and_question(suite) -> None:
     # a work with `lex-a` and the revision shares one with `sem-a`. Counting
     # locators would have reported five, which is the inflation the study exists
     # to detect.
-    assert len(outcome.artifact["trace"]["read_events"]) == 5
+    assert len(outcome.artifact["trace"]["read_encounters"]) == 5
     assert len(pairs) == 2
     assert len({item["extraction_question"] for item in pairs}) == 1
     assert {item["content_identity"] for item in pairs} == {
@@ -600,7 +600,7 @@ def test_a_reread_under_a_changed_question_is_legitimate(suite) -> None:
     outcome = execute(
         ShiftAware(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
-    events = outcome.artifact["trace"]["read_events"]
+    events = outcome.artifact["trace"]["read_encounters"]
     assert events[-1]["classification"] == ReadClassification.NEW_QUESTION_REREAD.value
     assert events[-1]["content_identity"] == events[0]["content_identity"]
     assert events[-1]["extraction_question"] != events[0]["extraction_question"]

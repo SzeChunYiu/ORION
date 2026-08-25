@@ -32,13 +32,14 @@ from .corpus import (
 )
 from .gold import EvaluationInputs, evaluate
 from .systems import (
+    Capture,
     ReadClassification,
-    ReadEvent,
+    ReadEncounter,
     ReadOutcome,
     ResourceUse,
     RetrievedRecord,
-    RouteEvent,
     RouteOutcome,
+    RouteTrial,
     StopDecision,
     StopScope,
     SystemReport,
@@ -170,15 +171,23 @@ class BudgetedSession:
         self._started = clock()
         self._sequence = 0
         self._route_calls: dict[str, int] = {}
-        self._route_events: list[RouteEvent] = []
-        self._read_events: list[ReadEvent] = []
+        self._route_trials: list[RouteTrial] = []
+        self._read_encounters: list[ReadEncounter] = []
+        # Post-#1078 trial state. The semantics are taken from the working
+        # implementation in baselines.py rather than invented here: attempts
+        # count per route, the zero-novelty run advances only when a route
+        # ANSWERED and returned nothing new, and a non-OK transport opens an
+        # obligation keyed "<route>:<attempt_index>".
+        self._route_attempts: dict[str, int] = {}
+        self._route_zero_novelty: dict[str, int] = {}
+        self._open_obligations: dict[str, str] = {}
         self._stop_decisions: list[StopDecision] = []
         self._seen_identities: set[str] = set()
         self._retrieved_doc_ids: set[str] = set()
         self._read_keys: set[tuple[str, str, str]] = set()
         self._read_identity_digests: set[tuple[str, str]] = set()
         # Spend is charged against monotone counters that only ever increment,
-        # never against `len(self._route_events)`. The event log is an ordinary
+        # never against `len(self._route_trials)`. The event log is an ordinary
         # list, so charging against its length let a system clear the log and
         # keep querying forever — the budget was enforced against a number the
         # candidate could edit. These are name-mangled, which is obfuscation and
@@ -199,7 +208,7 @@ class BudgetedSession:
         questions = self._task.extraction_questions
         if shift is None or len(questions) < 2:
             return questions[0]
-        stage = min(len(self._read_events) // shift, len(questions) - 1)
+        stage = min(len(self._read_encounters) // shift, len(questions) - 1)
         return questions[stage]
 
     @property
@@ -215,12 +224,23 @@ class BudgetedSession:
         return self._task.extraction_schema
 
     @property
-    def route_events(self) -> tuple[RouteEvent, ...]:
-        return tuple(self._route_events)
+    def open_obligations(self) -> tuple[str, ...]:
+        """Obligations still open when the run ended.
+
+        An obligation opens when a provider did not answer. One still open at
+        the end means the run finished without ever learning what that provider
+        held, which is exactly what must not be reported as absence.
+        """
+
+        return tuple(sorted(self._open_obligations))
 
     @property
-    def read_events(self) -> tuple[ReadEvent, ...]:
-        return tuple(self._read_events)
+    def route_trials(self) -> tuple[RouteTrial, ...]:
+        return tuple(self._route_trials)
+
+    @property
+    def read_encounters(self) -> tuple[ReadEncounter, ...]:
+        return tuple(self._read_encounters)
 
     @property
     def stop_decisions(self) -> tuple[StopDecision, ...]:
@@ -301,17 +321,43 @@ class BudgetedSession:
         spec = ROUTE_SPEC_BY_ROUTE.get(DiscoveryRoute(route)) if route in {
             item.value for item in DiscoveryRoute
         } else None
-        self._route_events.append(
-            RouteEvent(
+        attempt_index = self._route_attempts.get(route, 0)
+        zero_novelty_before = self._route_zero_novelty.get(route, 0)
+        self._route_attempts[route] = attempt_index + 1
+
+        opened_obligation_id = ""
+        if status is TransportStatus.OK:
+            # Only an ANSWERED route can extend a zero-novelty run. A route that
+            # did not answer has said nothing about novelty either way.
+            self._route_zero_novelty[route] = 0 if novel else zero_novelty_before + 1
+        else:
+            # A provider that did not answer censors what it holds. Recording an
+            # obligation is what stops the run treating silence as absence.
+            opened_obligation_id = f"{route}:{attempt_index}"
+            self._open_obligations[opened_obligation_id] = status.value
+            self._route_zero_novelty[route] = zero_novelty_before
+
+        self._route_trials.append(
+            RouteTrial(
                 index=self._next_index(),
-                route=route,
+                route_id=route,
+                attempt_index=attempt_index,
                 probe=probe,
                 backend_identity=spec.backend_identity if spec else "unknown",
                 query_derivation_identity=spec.query_derivation_identity if spec else "unknown",
-                status=status.value,
-                retrieved_doc_ids=tuple(sorted(item.doc_id for item in documents)),
-                retrieved_content_identities=identities,
-                novel_content_identities=novel,
+                transport_status=status.value,
+                consecutive_zero_novelty_before=zero_novelty_before,
+                captures=tuple(
+                    Capture(
+                        merged_source_id=item.content_identity,
+                        content_digest=item.content_digest,
+                        doc_id=item.doc_id,
+                    )
+                    for item in documents
+                ),
+                novel_merged_source_ids=novel,
+                open_obligation_ids=tuple(sorted(self._open_obligations)),
+                opened_obligation_id=opened_obligation_id,
                 note=note,
             )
         )
@@ -333,14 +379,18 @@ class BudgetedSession:
         classification = self._classify_read(document, question)
         self._read_keys.add((document.content_identity, document.content_digest, question))
         self._read_identity_digests.add((document.content_identity, document.content_digest))
-        self._read_events.append(
-            ReadEvent(
+        self._read_encounters.append(
+            ReadEncounter(
                 index=self._next_index(),
-                doc_id=doc_id,
-                content_identity=document.content_identity,
+                merged_source_id=document.content_identity,
                 content_digest=document.content_digest,
-                extraction_question=question,
-                classification=classification.value,
+                schema_version=self.current_extraction_schema,
+                frame_id=question,
+                # Computed BEFORE the read is registered above, which is what
+                # makes it a decision *before execution* rather than after.
+                decision_before_execution=classification.value,
+                executed=True,
+                doc_id=doc_id,
             )
         )
         return ReadOutcome(
@@ -434,6 +484,7 @@ def execute(
     run_manifest_hash: str,
     clock: Callable[[], float] = time.monotonic,
     index: PublicIndex | None = None,
+    repeat_index: int = 0,
 ) -> RunOutcome:
     """Run one system on one task once, and normalize the outcome.
 
@@ -470,13 +521,19 @@ def execute(
         task_id=task.task_id,
         system_id=system.system_id,
         seed=seed,
+        # The sweep runs every task against every seed and its own docstring
+        # says repeats are nested, never pooled -- so a repeat IS a seed's
+        # position in that tuple, and the sweep passes it. A single execute()
+        # call is repeat 0 of one.
+        repeat_index=repeat_index,
         report=report,
-        route_events=session.route_events,
-        read_events=session.read_events,
+        route_trials=session.route_trials,
+        read_encounters=session.read_encounters,
         stop_decisions=session.stop_decisions,
         resources=session.resources,
-        budget_exhausted=session.exhausted_dimension,
+        truncated_at_cap=session.exhausted_dimension,
         error_class=error_class,
+        unresolved_obligation_ids=tuple(sorted(session.open_obligations)),
     )
 
     # EvaluationInputs requires caps; omitting it raised TypeError. The
@@ -510,7 +567,11 @@ def execute(
             "wallclock_seconds": trace.resources.wallclock_seconds,
             "model_tokens": float(trace.resources.model_tokens),
             "tool_calls": float(trace.resources.tool_calls),
-            "search_queries": float(trace.resources.search_queries),
+            # The record key stays "search_queries" -- it is the external
+            # contract other consumers read. The SOURCE field is query_count;
+            # ResourceUse has never had a search_queries attribute, so this
+            # line raised on every run that reached it.
+            "search_queries": float(trace.resources.query_count),
         },
         "failure_class": evaluation.failure_class,
         "raw_artifact_hash": sha256_digest(artifact),
@@ -534,7 +595,7 @@ def run_suite(
     if not seeds:
         raise ValueError("at least one seed is required")
     for task in sorted(tasks, key=lambda item: item.task_id):
-        for seed in seeds:
+        for repeat_index, seed in enumerate(seeds):
             yield execute(
                 system,
                 world,
@@ -542,6 +603,7 @@ def run_suite(
                 seed=seed,
                 run_manifest_hash=run_manifest_hash,
                 clock=clock,
+                repeat_index=repeat_index,
             )
 
 

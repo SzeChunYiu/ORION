@@ -45,17 +45,17 @@ def _route_signature(outcome: RunOutcome) -> tuple[tuple[Any, ...], ...]:
     return tuple(
         (
             event.index,
-            event.route,
+            event.route_id,
             event.probe,
             event.backend_identity,
             event.query_derivation_identity,
-            event.status,
+            event.transport_status,
             event.retrieved_doc_ids,
-            event.retrieved_content_identities,
-            event.novel_content_identities,
+            event.retrieved_merged_source_ids,
+            event.novel_merged_source_ids,
             event.note,
         )
-        for event in outcome.trace.route_events
+        for event in outcome.trace.route_trials
     )
 
 
@@ -91,9 +91,9 @@ def _representatives(
 def _capture_for_route(outcome: RunOutcome, route: DiscoveryRoute) -> RouteCapture:
     spec = ROUTE_SPEC_BY_ROUTE[route]
     captured: set[str] = set()
-    for event in outcome.trace.route_events:
-        if event.route == route.value:
-            captured.update(event.retrieved_content_identities)
+    for event in outcome.trace.route_trials:
+        if event.route_id == route.value:
+            captured.update(event.retrieved_merged_source_ids)
     return RouteCapture(
         route_kind=SearchRouteKind(spec.orion_route_kind),
         backend=spec.backend_identity,
@@ -108,8 +108,8 @@ def _trajectory(
     gold = set(task.protected_gold.gold_content_identities)
     seen: set[str] = set()
     counts = [0]
-    for event in outcome.trace.route_events:
-        seen.update(set(event.retrieved_content_identities) & gold)
+    for event in outcome.trace.route_trials:
+        seen.update(set(event.retrieved_merged_source_ids) & gold)
         counts.append(len(seen))
     while len(counts) <= max_queries:
         counts.append(counts[-1])
@@ -151,10 +151,10 @@ def _route_contributions(
         gold = set(tasks_by_id[task_id].protected_gold.gold_content_identities)
         seen: set[str] = set()
         contribution = {route.value: 0 for route in DiscoveryRoute}
-        for event in outcome.trace.route_events:
-            relevant = set(event.retrieved_content_identities) & gold
+        for event in outcome.trace.route_trials:
+            relevant = set(event.retrieved_merged_source_ids) & gold
             novel = relevant - seen
-            contribution[event.route] += len(novel)
+            contribution[event.route_id] += len(novel)
             seen.update(relevant)
         for route in DiscoveryRoute:
             per_route[route.value].append(contribution[route.value])
@@ -232,8 +232,8 @@ def build_offline_mechanism_projection(
         raise ValueError("mechanism projection requires every frozen task for both systems")
 
     max_queries = max(
-        max(len(item.trace.route_events) for item in orion.values()),
-        max(len(item.trace.route_events) for item in baseline.values()),
+        max(len(item.trace.route_trials) for item in orion.values()),
+        max(len(item.trace.route_trials) for item in baseline.values()),
     )
     return {
         "schema_version": "orion.p2.offline-mechanisms.v1",

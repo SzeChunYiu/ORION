@@ -23,13 +23,10 @@ import pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[3] / "src/orion"
 
 #: Constructions known stale, with why they are not fixed here.
-KNOWN_OPEN = {
-    ("study/p2/runner.py", "SystemTrace"): (
-        "route_events/read_events hold the deprecated RouteEvent/ReadEvent "
-        "types while the fields expect RouteTrial/ReadEncounter: a type "
-        "conversion plus a repeat_index decision, not a rename."
-    )
-}
+KNOWN_OPEN: dict[tuple[str, str], str] = {}
+#: study/p2/runner.py SystemTrace was the last entry and is now migrated:
+#: runner.py builds RouteTrial and ReadEncounter, and repeat_index comes from
+#: the sweep. An entry here is a debt to discharge, not a standing exemption.
 
 
 def _definitions() -> dict[str, list[tuple[str, set[str], set[str]]]]:

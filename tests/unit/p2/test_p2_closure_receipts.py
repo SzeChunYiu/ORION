@@ -76,21 +76,43 @@ def _audit(*, scope: str, claimed: bool, premature: bool = False, route: str = "
 
 
 def _evaluation(**overrides) -> Evaluation:
+    """A minimal valid Evaluation in the post-#1078 vocabulary.
+
+    Every field is listed rather than defaulted, because Evaluation has no
+    optional fields: all 35 are required, deliberately, so a new verdict
+    dimension cannot be silently omitted by a caller that predates it. That is
+    also why this helper went stale -- it was written against the pre-#1078
+    names and every construction raised TypeError on the first one Python
+    happened to check.
+    """
+
     base = dict(
-        task_id="t1", case_family="f", system_id="s1", seed=SEED, status="PASS",
-        failure_class=None, gold_denominator=1, discovered_gold_identities=(),
-        missed_gold_identities=(), claimed_identities=(), unsupported_claimed_identities=(),
-        false_positive_identities=(), route_contributions=(), route_pair_overlap=(),
-        marginal_relevant_gain=(), stop_audits=(), censored_identities=(),
-        unavailable_route_events=(), processing_pairs=(), duplicate_processing_count=0,
-        legitimate_reread_count=0, first_read_count=0, resources=(),
+        task_id="t1", case_family="f", system_id="s1", seed=SEED, repeat_index=0,
+        status="PASS", failure_class=None,
+        gold_items=("g1",), gold_set_complete=True,
+        discovered_gold_ids=(), missed_gold_ids=(),
+        claimed_ids=(), unsupported_claimed_ids=(), false_positive_ids=(),
+        route_contributions=(), route_pair_overlap=(), marginal_relevant_gain=(),
+        route_residual_yield=(), route_stop_audits=(), route_exhaustion_audits=(),
+        closure_declared=False, truncated_at_cap="",
+        task_residual_discoverable_within_budget=(), premature_closure=False,
+        closure_cannot_check=False,
+        censored_ids=(), unavailable_trial_count=0, unresolved_obligation_ids=(),
+        # Read accounting is encounters-and-executions now, not flat counts.
+        # The split is what makes suppression visible: an encounter that never
+        # executed is a refusal, and a pure count of executions hides it.
+        encounter_pairs=(), legitimate_encounters=0, legitimate_executed=0,
+        already_read_encounters=0, already_read_executed=0, unseen_encounters=0,
+        resources=(),
     )
     base.update(overrides)
     return Evaluation(**base)
 
 
 def _trace(**overrides) -> SystemTrace:
-    base = dict(task_id="t1", system_id="s1", seed=SEED, report=SystemReport())
+    base = dict(
+        task_id="t1", system_id="s1", seed=SEED, repeat_index=0, report=SystemReport()
+    )
     base.update(overrides)
     return SystemTrace(**base)
 
@@ -101,25 +123,25 @@ class TestTaskTaxonomyIsTotal:
 
         cases = {
             TaskClosureKind.CLOSED_COMPLETE: (
-                _evaluation(stop_audits=(_audit(scope="TASK", claimed=True),)), _trace()
+                _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=True),)), _trace()
             ),
             TaskClosureKind.ABANDONED_RUN_ERROR: (
-                _evaluation(stop_audits=(_audit(scope="TASK", claimed=False),)),
+                _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=False),)),
                 _trace(error_class="candidate_error"),
             ),
             TaskClosureKind.ABANDONED_BUDGET_EXHAUSTED: (
-                _evaluation(stop_audits=(_audit(scope="TASK", claimed=False),)),
+                _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=False),)),
                 _trace(budget_exhausted="route_calls"),
             ),
             TaskClosureKind.REFUSED_OPEN_OBLIGATIONS: (
                 _evaluation(
-                    stop_audits=(_audit(scope="TASK", claimed=False),),
-                    censored_identities=("c1",),
+                    route_stop_audits=(_audit(scope="TASK", claimed=False),),
+                    censored_ids=("c1",),
                 ),
                 _trace(),
             ),
             TaskClosureKind.STOPPED_WITHOUT_CLOSURE_CLAIM: (
-                _evaluation(stop_audits=(_audit(scope="TASK", claimed=False),)), _trace()
+                _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=False),)), _trace()
             ),
             TaskClosureKind.NO_CLOSURE_DECISION: (_evaluation(), _trace()),
         }
@@ -131,7 +153,7 @@ class TestTaskTaxonomyIsTotal:
         """24 of 24 external tasks ended here; the V1 counters could not say so."""
 
         receipt = build_task_receipt(
-            _evaluation(stop_audits=(_audit(scope="TASK", claimed=False),)), _trace()
+            _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=False),)), _trace()
         )
         assert receipt.kind is TaskClosureKind.STOPPED_WITHOUT_CLOSURE_CLAIM
         assert receipt.kind.exercises_false_closure_guard is False
@@ -144,7 +166,7 @@ class TestTaskTaxonomyIsTotal:
 class TestFalseClosureGrounds:
     def test_reachable_gold_outstanding(self) -> None:
         receipt = build_task_receipt(
-            _evaluation(stop_audits=(_audit(scope="TASK", claimed=True, premature=True),)),
+            _evaluation(route_stop_audits=(_audit(scope="TASK", claimed=True, premature=True),)),
             _trace(),
         )
         assert receipt.false_closure is FalseClosureKind.REACHABLE_GOLD_OUTSTANDING
@@ -155,7 +177,7 @@ class TestFalseClosureGrounds:
 
         receipt = build_task_receipt(
             _evaluation(
-                stop_audits=(_audit(scope="TASK", claimed=True),), censored_identities=("c1",)
+                route_stop_audits=(_audit(scope="TASK", claimed=True),), censored_ids=("c1",)
             ),
             _trace(),
         )
@@ -167,7 +189,7 @@ class TestFalseClosureGrounds:
 
         receipt = build_task_receipt(
             _evaluation(
-                stop_audits=(_audit(scope="TASK", claimed=False),), censored_identities=("c1",)
+                route_stop_audits=(_audit(scope="TASK", claimed=False),), censored_ids=("c1",)
             ),
             _trace(),
         )
