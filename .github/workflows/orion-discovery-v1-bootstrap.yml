@@ -1,0 +1,35 @@
+name: Bootstrap ORION discovery V1 payload
+
+on:
+  push:
+    branches:
+      - shadow/orion-discovery-harness-v1-20260825
+    paths:
+      - development/orion-discovery-harness-v1-2026-08-25/PAYLOAD.b64
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/orion-discovery-harness-v1-20260825
+          fetch-depth: 0
+      - name: Unpack content-bound discovery payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          payload=development/orion-discovery-harness-v1-2026-08-25/PAYLOAD.b64
+          test -s "$payload"
+          base64 -d "$payload" | tar -xzf -
+          rm -f "$payload" .github/workflows/orion-discovery-v1-bootstrap.yml
+          git config user.name "ORION discovery bootstrap"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Add chronology-safe ORION discovery harness V1"
+          git push origin HEAD:shadow/orion-discovery-harness-v1-20260825
