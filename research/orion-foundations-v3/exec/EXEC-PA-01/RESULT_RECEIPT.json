@@ -1,0 +1,57 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-PA-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T8",
+    "OSTC-T10",
+    "OSTC-T11",
+    "OSTC-T20"
+  ],
+  "terminal": "PROOF_ASSISTANT_OR_REVIEWER_UNAVAILABLE",
+  "terminal_reading": "The job as specified asks for independent Lean/Coq/Isabelle reconstruction AND executable correspondence, reviewed independently. A Lean reconstruction of the decidable fragment now exists and machine-checks. INDEPENDENT REVIEW does not, and no reviewer outside this programme has seen it. The frozen terminal therefore stands: this is machine-checked, not independently reviewed.",
+  "correction_to_an_earlier_claim": "This job was initially reported as blocked because no proof assistant was present on any reachable host. That was wrong in a way worth recording: I checked whether Lean was INSTALLED and never whether it was INSTALLABLE. It installs via elan in about 25 seconds and the network was already known reachable. A blocker that dissolves when I try harder was mine, not the world's.",
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "e4103caef0a70c268708a68122ffe71dd42d27b77c0222d238e966a23c4a7bc4"
+    },
+    "OSTC_Decidable.lean": {
+      "artifact": "OSTC_Decidable.lean",
+      "sha256": "44ca973d39397d7e5e679c8009de6eaaa938ee4f2aa0ae90f8145314c5e3a008"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "61d2449a56035ea99917fb1c45d4d3fe8a7515094fb93f35bb369635a7d0c7eb"
+    },
+    "lean_out.txt": {
+      "artifact": "lean_out.txt",
+      "sha256": "6d06ac8c6e54f928ce664386626a0cb63ac87fbf7801526285f2ae90629e11d0"
+    }
+  },
+  "results": {
+    "lean_reconstruction": {
+      "verdict": "MACHINE_CHECKED",
+      "detail": "18 theorems, Lean 4.33.1, exit code 0. T8 factor independence for all six factors, T10 blocker retention including that composition never silently clears a blocker, T11 survival as a biconditional over support families, and T20 noninterference for arbitrary execution-only transformations and arbitrary states.",
+      "theorems": 18,
+      "exit_code": 0
+    },
+    "vacuity_and_honesty_checks": {
+      "verdict": "PASSED",
+      "detail": "sorryAx appears ZERO times, so nothing is admitted unproven -- that is the check that matters in Lean, because a file full of `sorry` compiles happily. Axiom dependencies are reported per theorem: t8 and t20 depend on NO axioms at all; t10 uses propext; t11 uses propext and Quot.sound. All are standard and none were introduced by me. Three guard theorems additionally show the encodings are not constant -- admits, blocker composition and survival each produce both true and false, so the results are not artifacts of a predicate that can only say yes.",
+      "sorryAx_occurrences": 0
+    },
+    "relation_to_the_python_jobs": {
+      "verdict": "INDEPENDENT_ENGINE",
+      "detail": "These obligations were also enumerated in EXEC-CM-01, EXEC-P6-01 and EXEC-P15-01 in Python. Lean is a different engine with a different encoding and a kernel that checks the proof term, so agreement is not one implementation agreeing with itself. It is still the same author."
+    }
+  },
+  "what_this_does_not_establish": [
+    "EXEC-PA-01 is NOT discharged. Independent review is the part that is missing, and it is missing structurally: a reviewer inside this programme is not independent, and neither is its author.",
+    "Only the decidable fragment is reconstructed. T0, T4, T6 and T7 involve induction over operational traces and are not covered here.",
+    "Executable correspondence to THEOREM_DERIVATIONS_T0_T23_V1.md is not established. These are Lean statements of the obligations, not a translation of the written proofs.",
+    "Coq and Isabelle remain uninstalled; only Lean was attempted."
+  ],
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}

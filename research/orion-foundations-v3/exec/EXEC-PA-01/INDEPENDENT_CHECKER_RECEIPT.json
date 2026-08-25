@@ -1,0 +1,8 @@
+{
+  "schema_version": "orion.independent-checker-receipt.v1",
+  "job_id": "EXEC-PA-01",
+  "status": "CANNOT_CHECK",
+  "reason": "No independent checker exists for this job. The Lean kernel checks the proof terms, which is machine verification, but the statements and proofs were written in this session. Independent REVIEW requires a party outside this programme and none is available.",
+  "what_the_kernel_did_verify": "18 theorems, 0 sorryAx, per-theorem axiom dependencies reported.",
+  "independence_boundary": "Lean is an independent engine. It is not an independent reviewer."
+}

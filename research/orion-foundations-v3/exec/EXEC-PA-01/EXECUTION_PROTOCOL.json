@@ -1,0 +1,63 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-PA-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "EXTERNAL_PROOF_REVIEW",
+  "theory_source": {"location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": ["OSTC-T0","OSTC-T4","OSTC-T6","OSTC-T7","OSTC-T10","OSTC-T11","OSTC-T20"]},
+  "frozen_before_outcomes": true,
+  "task": "Independent Lean/Coq/Isabelle reconstruction plus executable correspondence.",
+
+  "availability_finding": {
+    "checked_on": "LUNARC (cosmos2.int.lunarc), 2026-08-25",
+    "absent": ["lean","lake","coqc","isabelle","agda","cvc5"],
+    "present": ["Z3 4.13.0 (module)"],
+    "consequence": ("The job as specified is BLOCKED. Z3 is an SMT solver, not a proof "
+      "assistant, and cannot produce a Lean/Coq/Isabelle reconstruction. Reporting Z3 output "
+      "as if it discharged this job would substitute a weaker instrument for the one named.")
+  },
+  "what_is_attempted_instead": {
+    "scope": ("Machine-checked verification of the DECIDABLE fragment of the listed theorems, "
+      "encoded as SMT queries and discharged by Z3. This is independent of the Python "
+      "enumerations in the other jobs -- a different engine, a different encoding -- but it is "
+      "strictly weaker than proof-assistant reconstruction and is labelled as such."),
+    "not_claimed": ["proof-assistant reconstruction","executable correspondence to the derivations",
+                    "discharge of EXEC-PA-01"]
+  },
+
+  "code_identity": {"encoder": "encode_smt_v1.py", "solver": "Z3 4.13.0 via module load"},
+  "information_and_tool_access": {"encoder":"theorem statements only; no network","solver":"SMT-LIB input only"},
+  "resource_vector": {"compute":"single-process Z3","wallclock_bound_seconds":600},
+  "independent_unit": "The theorem obligation. Each is a separate SMT query.",
+  "estimands": {
+    "decidable_fragment_discharged": "For each encodable obligation: does Z3 return the expected sat/unsat, with zero unexpected results?",
+    "negations_are_refuted": "For each obligation, is its NEGATION unsat? Checking only that the positive form is sat would pass on a trivially satisfiable encoding.",
+    "encoding_is_not_vacuous": "Does at least one deliberately FALSE variant of each obligation come back unsat, proving the encoding can reject?"
+  },
+  "multiplicity": "No hypothesis test; each query is a decision procedure result.",
+  "positive_terminal": "PA_DECIDABLE_FRAGMENT_MACHINE_CHECKED__PROOF_ASSISTANT_STILL_REQUIRED",
+  "positive_conditions": [
+    "every encoded obligation returns the expected result",
+    "every obligation's negation is unsat",
+    "every deliberately false variant is rejected, proving the encoding is not vacuous"
+  ],
+  "negative_terminal": "PA_ENCODED_OBLIGATION_REFUTED",
+  "negative_conditions": [
+    "any obligation whose expected result does not hold",
+    "any false variant the encoding accepts, which would mean the encoding proves nothing"
+  ],
+  "cannot_check_terminal": "PROOF_ASSISTANT_OR_REVIEWER_UNAVAILABLE",
+  "cannot_check_conditions": [
+    "no Lean, Coq or Isabelle is available on any reachable host -- CONFIRMED ABSENT, so this terminal applies to the job as specified regardless of the SMT outcome",
+    "no independent reviewer is available"
+  ],
+  "raw_output_schema": {"file":"RAW_RESULT_MANIFEST.json",
+    "fields":{"queries":"per obligation: name, expected, actual, vacuity_check","totals":"queries, unexpected"}},
+  "checker_and_authority_owner": {"authority_owner":"Programme (#1234 execution lane)",
+    "independence_boundary": ("Z3 is an independent ENGINE relative to the Python enumerations, "
+      "but the encoding is written in this session. This is not external scientific "
+      "adjudication and not proof review.")},
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem or substitute a weaker instrument for the one the job names."
+}
