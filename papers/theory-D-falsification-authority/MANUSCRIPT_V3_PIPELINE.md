@@ -31,6 +31,9 @@ frontier. The component is deliberately restricted to finite positive rule
 graphs. It does not model negation, probability, inconsistency, or general
 scientific judgment.
 
+**Keywords:** automated reasoning; scientific evidence; provenance; least fixed
+points; belief revision; executable semantics
+
 ## 1. Introduction
 
 Scientific records mix claims supported by different evidence types: analytic
@@ -71,8 +74,9 @@ licenses are
 \[
 \begin{gathered}
 \textsf{THEOREM}, \quad \textsf{CONSTRUCTIVE\_BOUND}, \quad
-\textsf{FINITE\_EXACT}, \quad \textsf{PROSPECTIVE}, \\
-\textsf{FORECAST\_ONLY}, \quad \textsf{POST\_OUTCOME}, \quad
+\textsf{FINITE\_EXACT}, \\
+\textsf{PROSPECTIVE}, \quad \textsf{FORECAST\_ONLY}, \quad
+\textsf{POST\_OUTCOME}, \\
 \textsf{BOUNDED\_COMPUTATION}, \quad \textsf{EXTERNAL\_REPLAY}.
 \end{gathered}
 \]
@@ -199,11 +203,13 @@ reasonable scientific policy.
 
 ## 7. Executable semantics
 
-The reference evaluator validates a finite JSON object containing the license
-set, claim identifiers, seed labels, capped conjunctive rules, and refutations.
-It then performs deterministic bottom-up iteration. Output records the final
-label of every claim, the number of iterations, and the typed retraction from
-the unrefuted baseline.
+The public JSON Schema first validates document shape and required fields. The
+reference evaluator then performs semantic validation: claim and rule
+identifiers must be unique, and every license, rule-body claim, rule head, and
+refutation must refer to a declared object. After both layers pass, the evaluator
+performs deterministic bottom-up iteration. Output records the final label of
+every claim, the number of iterations, and the typed retraction from the
+unrefuted baseline.
 
 The implementation rejects undeclared claims or licenses, empty rule bodies,
 duplicate rule identifiers, and malformed caps. Canonical sorting makes equal
@@ -254,11 +260,11 @@ mathematical replication.
 
 ## 9. Relation to prior work
 
-Truth-maintenance systems and belief revision own dependency-directed update.
-Positive Datalog owns least-fixed-point rule semantics. Annotated and semiring
+Truth-maintenance systems and belief revision own dependency-directed update
+[1,2]. Positive Datalog owns least-fixed-point rule semantics [3,4]. Annotated and semiring
 provenance owns typed query annotations, alternative derivations, recursion,
 and deletion behavior. Work on recursive-query causality relates minimal
-supports, causes, responsibility, and deletion robustness.
+supports, causes, responsibility, and deletion robustness [5,6].
 
 We claim no generic novelty for fixed points, proof trees, provenance labels,
 minimal supports, hitting sets, causality, or deletion robustness. The residual
@@ -292,6 +298,18 @@ licenses, and underlicensed derivations create no stronger evidence types. It
 is also minimally destructive relative to its declared inputs, because every
 surviving proof tree preserves exactly the licenses it carries.
 
+## Statements and declarations
+
+- **Funding:** [AUTHOR INPUT REQUIRED]
+- **Competing interests:** [AUTHOR INPUT REQUIRED]
+- **Author contributions:** [AUTHOR INPUT REQUIRED]
+
+**Generative-tool disclosure:** A generative language model assisted manuscript
+organization and language revision. Before submission, the human authors must
+verify every mathematical statement, proof, reference, executable claim, and
+sentence, then replace this drafting note with the journal's truthful final
+disclosure.
+
 ## Data and code availability
 
 The submission package includes the JSON schema, deterministic Python
@@ -302,14 +320,18 @@ submission.
 ## References
 
 1. J. Doyle, “A Truth Maintenance System,” *Artificial Intelligence* **12**,
-   231–272 (1979). DOI: 10.1016/0004-3702(79)90008-0
+   231-272 (1979). DOI: 10.1016/0004-3702(79)90008-0
 2. J. P. Martins and S. C. Shapiro, “A Model for Belief Revision,”
-   *Artificial Intelligence* **35**, 25–79 (1988).
+   *Artificial Intelligence* **35**, 25-79 (1988).
+   DOI: 10.1016/0004-3702(88)90031-8
 3. C. Bourgaux, P. Bourhis, L. Peterfreund, and M. Thomazo, “Revisiting
    Semiring Provenance for Datalog,” in *KR 2022* (2022).
    DOI: 10.24963/kr.2022/10
-4. M. Abo Khamis et al., “Convergence of Datalog over (Pre-)Semirings,”
-   arXiv:2105.14435.
+4. M. Abo Khamis, H. Q. Ngo, R. Pichler, D. Suciu, and Y. R. Wang,
+   “Convergence of Datalog over (Pre-)Semirings,” in *Proceedings of the 41st
+   ACM SIGMOD-SIGACT-SIGAI Symposium on Principles of Database Systems* (PODS
+   2022), 105-117 (2022).
+   DOI: 10.1145/3517804.3524140
 5. R. B. Thapa and S. Staab, “Causality and Minimal Supports in Recursive
    Datalog,” arXiv:2607.16443 (2026).
 6. R. B. Thapa and S. Staab, “Causal Explanations for Stratified Datalog,”

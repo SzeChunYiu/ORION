@@ -1,0 +1,532 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\DeclareUnicodeCharacter{220E}{\ensuremath{\square}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdfauthor={Author information to be supplied before submission},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{A Width-One Generalized-Davenport Corridor in \(C_5^3\) and a Rank-Forcing Obstruction Phase}
+\author{Author information to be supplied before submission}
+\date{Review source - 25 August 2026}
+
+\begin{document}
+\maketitle
+
+\hypertarget{abstract}{%
+\section{Abstract}\label{abstract}}
+
+Let \(D_k(G)\) be the least length that forces \(k\) pairwise disjoint
+nonempty zero-sum subsequences. We show that the generalized Davenport
+constants of \(C_5^3\) lie in the width-one corridor
+
+\[
+5k+10\le D_k(C_5^3)\le5k+11
+\qquad(k\ge4).
+\]
+
+If \(D_4(C_5^3)=30\), then the lower line is exact for every \(k\ge2\).
+To analyze the remaining alternative, we study a hypothetical total-zero
+sequence of length \(31\) with no nonempty zero-sum subsequence of
+length at most five. For saturated short-free sequences over elementary
+abelian groups of odd prime exponent, we prove a defect certificate that
+excludes multiplicity \(p-2\). In the case \(p=5\), only multiplicities
+\(1,2,4\) remain. If \(s\) is support size and \(c_i\) counts
+multiplicity \(i\), then
+
+\[
+c_2=31-s-3c_4,
+\qquad
+c_1=2s-31+2c_4.
+\]
+
+The subsequence of points of multiplicity at least two has length
+\(62-2s-2c_4\). Using \(\eta(C_5^2)=13\), we prove that this stratum
+must span rank three whenever \(s+c_4\le24\). We also prove an exact
+identity coupling support deficit, repetitions inside zero-sum atoms,
+and overlaps between atom supports. Together with a theorem-grade
+exclusion through support ten, these results isolate the residual
+obstruction phase without deciding it.
+
+The exact value remains \(D_4(C_5^3)\in\{30,31\}\). A larger internal
+search through support 22 is reported only as bounded computational
+evidence and is not used as theorem authority.
+
+\textbf{Keywords:} generalized Davenport constants; zero-sum sequences;
+elementary abelian groups; short zero sums; inverse zero-sum problems
+
+\hypertarget{introduction}{%
+\section{1. Introduction}\label{introduction}}
+
+Generalized Davenport constants measure the sequence length required to
+force several pairwise disjoint zero sums. Rank-two groups exhibit
+strong eventual structure, whereas rank-three groups can depart from the
+expected arithmetic progression.
+
+For \(C_5^3\), the exact values \(D_2=20\) and \(D_3=25\), together with
+known short-zero-sum thresholds, reduce the next value to
+
+\[
+D_4(C_5^3)\in\{30,31\}.
+\]
+
+This one-bit ambiguity controls the tail: the lower candidate \(D_4=30\)
+forces \(D_k=5k+10\) for every \(k\ge2\). The upper candidate would
+yield a rigid length-31 total-zero sequence with no zero sum of length
+at most five.
+
+We combine the recurrence with symbolic analysis of that hypothetical
+obstruction. The purpose is twofold: to obtain a rigorous width-one
+theorem for the full tail and to identify exactly where existing rank
+reductions cease to be automatic. Computation is kept in a separate
+evidence class.
+
+Our contributions are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the width-one corridor for every \(k\ge4\);
+\item
+  the conditional exact tail if \(D_4=30\);
+\item
+  an odd-prime saturation-defect lemma excluding multiplicity \(p-2\);
+\item
+  a theorem-grade support-at-least-eleven result for the length-31
+  obstruction;
+\item
+  an exact multiplicity parameterization for every remaining support
+  stratum;
+\item
+  the rank-forcing phase \(s+c_4\le24\) for the high-multiplicity
+  stratum; and
+\item
+  an identity coupling support deficit to internal atom repetition and
+  cross-atom overlap.
+\end{enumerate}
+
+\hypertarget{definitions-and-known-inputs}{%
+\section{2. Definitions and known
+inputs}\label{definitions-and-known-inputs}}
+
+For a finite abelian group \(G\), \(D_k(G)\) is the least integer \(n\)
+such that every sequence of length at least \(n\) over \(G\) contains
+\(k\) pairwise disjoint nonempty zero-sum subsequences. Let
+\(s_{\le\ell}(G)\) denote the least length forcing a nonempty zero-sum
+subsequence of length at most \(\ell\).
+
+We use the generalized-Davenport recurrence framework {[}1{]}
+
+\[
+D_{k+1}(G)
+\le\max\{D_k(G)+\ell, \ s_{\le\ell}(G)-1\},
+\]
+
+and the known lower bound \(D_k(C_5^3)\ge5k+10\) in the range considered
+here. The exact registered inputs are
+
+\[
+D_2=20, \qquad D_3=25, \qquad s_{\le6}=24,
+\]
+
+while \(s_{\le5}(C_5^3)=\eta(C_5^3)=33\). We also use the rank-two value
+\(\eta(C_5^2)=13\).
+
+\hypertarget{a-width-one-tail}{%
+\section{3. A width-one tail}\label{a-width-one-tail}}
+
+Taking \(\ell=6\) gives
+
+\[
+D_4\le\max\{25+6,24-1\}=31.
+\]
+
+Together with the lower bound, this proves \(D_4\in\{30,31\}\).
+
+\textbf{Theorem 1.} For every \(k\ge4\),
+
+\[
+5k+10\le D_k(C_5^3)\le5k+11.
+\]
+
+\textbf{Proof.} The base case is \(D_4\le31\). Apply the recurrence with
+\(\ell=5\) and \(s_{\le5}-1=32\). If \(D_k\le5k+11\), then both terms in
+the maximum are at most \(5(k+1)+11\). The known lower bound supplies
+the lower line. ∎
+
+\textbf{Theorem 2.} If \(D_4(C_5^3)=30\), then
+
+\[
+D_k(C_5^3)=5k+10
+\qquad(k\ge2).
+\]
+
+\textbf{Proof.} The statement holds for \(k=2,3,4\). Applying the same
+recurrence with \(\ell=5\) propagates the upper bound \(5(k+1)+10\),
+which matches the known lower bound. ∎
+
+There is no converse here: the assumption \(D_4=31\) does not by itself
+prove that later terms lie on the upper line.
+
+\hypertarget{the-hypothetical-length-31-obstruction}{%
+\section{4. The hypothetical length-31
+obstruction}\label{the-hypothetical-length-31-obstruction}}
+
+The upper candidate yields a sequence \(S\) over \(C_5^3\) satisfying
+
+\[
+|S|=31, \qquad \sigma(S)=0,
+\]
+
+with no nonempty zero-sum subsequence of length at most five. Every
+element has multiplicity at most four. In the support case relevant
+here, the established extension dichotomy forces saturation: appending
+any support element destroys short-freeness.
+
+\textbf{Theorem 3 (saturation defect).} Let \(p\) be odd and let \(S\)
+be a saturated \(p\)-short-free sequence over an elementary abelian
+exponent-\(p\) group. If a nonzero element \(x\) has multiplicity
+\(m<p\), then there is a subsequence \(R\) such that
+
+\[
+|R|\le p-1-m,
+\qquad x\notin\operatorname{supp}(R),
+\qquad \sigma(R)=-(m+1)x.
+\]
+
+\textbf{Proof.} Append one further copy of \(x\). Saturation supplies a
+zero-sum subsequence of length at most \(p\) that uses the appended
+occurrence. It must also use every original copy of \(x\); otherwise
+replacing the appended copy by an unused original occurrence would give
+a short zero sum already contained in \(S\). Removing the \(m+1\) copies
+of \(x\) leaves the required \(R\). ∎
+
+\textbf{Corollary 4.} Multiplicity \(p-2\) is impossible.
+
+Indeed, the defect subsequence would have length at most one and sum
+\(x\), forcing a forbidden additional copy of \(x\). For \(p=5\),
+multiplicity three is absent. Singleton and double points also acquire
+defect certificates of length at most three and two, respectively.
+
+\hypertarget{exact-multiplicity-grammar}{%
+\section{5. Exact multiplicity
+grammar}\label{exact-multiplicity-grammar}}
+
+Let \(s=|\operatorname{supp}(S)|\), and let \(c_1, c_2, c_4\) count
+points of multiplicity one, two, and four. Then
+
+\[
+c_1+c_2+c_4=s,
+\qquad
+c_1+2c_2+4c_4=31.
+\]
+
+Writing \(c_4=j\) gives
+
+\[
+c_2=31-s-3j,
+\qquad
+c_1=2s-31+2j.
+\]
+
+Thus \(c_1\) is odd, and nonnegativity determines the complete
+admissible range for every support size. For example, the support-23
+patterns are
+
+\[
+1^{15}2^8, \qquad 1^{17}2^5 4, \qquad 1^{19}2^2 4^2,
+\]
+
+and the support-24 patterns are
+
+\[
+1^{17}2^7, \qquad 1^{19}2^4 4, \qquad 1^{21}2 4^2.
+\]
+
+\hypertarget{the-rank-forcing-phase}{%
+\section{6. The rank-forcing phase}\label{the-rank-forcing-phase}}
+
+Let \(H\) be the subsequence consisting of all points of multiplicity
+two or four. Its length is
+
+\[
+|H|=2c_2+4c_4=62-2s-2c_4.
+\]
+
+If \(H\) were contained in a subgroup of rank at most two, it would be a
+5-short-free sequence over \(C_5^2\). The value \(\eta(C_5^2)=13\)
+forces a short zero sum once \(|H|\ge13\). Since \(|H|\) is even, the
+contradiction begins at \(|H|\ge14\).
+
+\textbf{Theorem 5 (rank-forcing phase).} The high-multiplicity stratum
+spans rank three whenever
+
+\[
+s+c_4\le24.
+\]
+
+\textbf{Proof.} The condition \(|H|\ge14\) is equivalent to
+\(62-2s-2c_4\ge14\), hence to \(s+c_4\le24\). ∎
+
+The theorem gives the following exact boundary:
+
+\begin{longtable}[]{@{}rrl@{}}
+\toprule\noalign{}
+Support & \(c_4\) & Consequence from Theorem 5 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+23 & 0 or 1 & rank three forced \\
+23 & 2 & threshold is silent \\
+24 & 0 & rank three forced \\
+24 & 1 or 2 & threshold is silent \\
+at least 25 & any admissible value & threshold is silent \\
+\end{longtable}
+
+Silence is not a converse. Outside the phase, rank three may follow from
+a different argument.
+
+\hypertarget{theorem-grade-low-support-exclusion-and-bounded-evidence}{%
+\section{7. Theorem-grade low-support exclusion and bounded
+evidence}\label{theorem-grade-low-support-exclusion-and-bounded-evidence}}
+
+Signed symbolic reductions combined with two exact state representations
+exclude every support size through ten.
+
+\textbf{Theorem 6.} Every length-31 total-zero 5-short-free sequence
+over \(C_5^3\), if one exists, has support at least eleven.
+
+A larger internal computation found no such sequence through support 22.
+That search has not received an external independent replay and is not
+used in any proof above or below. Its bounded conclusion is useful for
+prioritizing the next case split, but it does not establish support at
+least 23 as a theorem.
+
+\hypertarget{atom-repetition-and-overlap}{%
+\section{8. Atom repetition and
+overlap}\label{atom-repetition-and-overlap}}
+
+Under the conditional assumption \(D_4=31\), extremal factorization
+arguments force one of the atom-length types
+
+\[
+(6,6,6,13)
+\qquad\text{or}\qquad
+(6,6,7,12).
+\]
+
+Let \(S=U_1\cdots U_r\) be an occurrence-disjoint atom factorization.
+For each group element \(g\), let \(r_g\) be the number of atom supports
+containing \(g\), and define the internal deficit
+
+\[
+\delta_i=|U_i|-|\operatorname{supp}(U_i)|.
+\]
+
+\textbf{Theorem 7 (repetition-overlap identity).} Every
+occurrence-disjoint factorization satisfies
+
+\[
+|S|-|\operatorname{supp}(S)|
+=\sum_i\delta_i
++\sum_{g\in\operatorname{supp}(S)}(r_g-1).
+\]
+
+\textbf{Proof.} Summing the atom support sizes counts every global
+support point \(r_g\) times. Hence
+
+\[
+\sum_i\delta_i=|S|-\sum_g r_g,
+\]
+
+while cross-atom overlap equals
+
+\[
+\sum_g r_g-|\operatorname{supp}(S)|.
+\]
+
+Adding the two identities proves the claim. ∎
+
+Thus any independently established lower support bound \(s_0\) gives a
+total internal-repetition plus cross-overlap budget of at most
+\(31-s_0\). The proven value \(s_0=11\) gives budget 20. If the bounded
+support-22 computation is later independently certified, the budget
+sharpens to eight; that sharper value is conditional and not used as
+theorem authority here.
+
+\hypertarget{the-residual-obstruction-phase}{%
+\section{9. The residual obstruction
+phase}\label{the-residual-obstruction-phase}}
+
+A decisive next analysis should impose simultaneously:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the multiplicity pattern from Section 5;
+\item
+  the rank status from Theorem 5;
+\item
+  the saturation-defect certificate at every singleton and double point;
+\item
+  one of the two conditional atom-length types;
+\item
+  the repetition-overlap identity; and
+\item
+  total sum zero with exclusion of zero sums of lengths one through
+  five.
+\end{enumerate}
+
+This intersection is substantially smaller than an unstructured support
+search. A surviving sequence would require independent factorization
+verification before establishing \(D_4=31\). A complete, independently
+replayed infeasibility proof for the length-31 target would establish
+the lower candidate \(D_4=30\).
+
+\hypertarget{relation-to-prior-work}{%
+\section{10. Relation to prior work}\label{relation-to-prior-work}}
+
+The generalized-Davenport recurrence, lower-bound framework, extremal
+factorization language, and eventual-linearity context are established
+results {[}1{]}. The \(C_0\) framework and short-zero-sum localization
+are also prior work {[}2{]}, as are the inverse zero-sum program {[}3{]}
+and rank-two inverse results {[}4{]}.
+
+The residual contribution is the width-one synthesis for \(C_5^3\), the
+saturation-defect specialization, the exact multiplicity grammar, the
+rank-forcing phase, and the coupling of support deficit with atom
+repetition and overlap. These are structural compression results; they
+do not decide the final extremal bit.
+
+\hypertarget{reproducibility-and-limitations}{%
+\section{11. Reproducibility and
+limitations}\label{reproducibility-and-limitations}}
+
+The corridor, defect lemma, and support-ten exclusion are separately
+bound to exact records. An independent verifier enumerates all
+multiplicity patterns for supports 8-31, checks the rank-phase
+equivalence, reproduces the support-23 and support-24 tables, and
+validates the atom identity on independently generated factorizations.
+The displayed proofs carry all-parameter authority.
+
+The exact value of \(D_4(C_5^3)\) remains open, as does the associated
+length-31 extremal-spectrum statement. The support-22 frontier is
+bounded computation pending external replay. The rank phase is one-way,
+and the atom identity is a compression principle rather than a
+contradiction. No additional internal implementation can substitute for
+an independently auditable final obstruction proof.
+
+\hypertarget{conclusion}{%
+\section{12. Conclusion}\label{conclusion}}
+
+The generalized Davenport constants of \(C_5^3\) remain within one unit
+of the line \(5k+10\) for every \(k\ge4\), and the lower choice at
+\(k=4\) would fix the entire tail. The hypothetical upper-line
+obstruction has substantially more structure than this corridor alone
+reveals: its multiplicities have an exact grammar, its high-multiplicity
+stratum enters a sharp rank-forcing phase, and its atom factorization
+obeys a global repetition-overlap budget.
+
+These results explain where the residual difficulty begins and define a
+smaller intersection problem for the unresolved extremal bit. They do
+not claim to have resolved it.
+
+\hypertarget{data-and-code-availability}{%
+\section{Data and code availability}\label{data-and-code-availability}}
+
+The verification package contains exact multiplicity enumeration,
+rank-phase checks, atom-identity tests, and separately labeled
+bounded-search records. A permanent archival identifier should be added
+before final submission.
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  M. Freeze and W. A. Schmid, ``Remarks on a Generalization of the
+  Davenport Constant,'' \emph{Discrete Mathematics} \textbf{310},
+  3373-3389 (2010). DOI: 10.1016/j.disc.2010.07.028
+\item
+  Y. Fan, W. Gao, G. Wang, Q. Zhong, and J. Zhuang, ``On Short Zero-Sum
+  Subsequences of Zero-Sum Sequences,'' \emph{Electronic Journal of
+  Combinatorics} \textbf{19}(3), P31 (2012). DOI: 10.37236/2602
+\item
+  W. Gao, A. Geroldinger, and W. A. Schmid, ``Inverse Zero-Sum
+  Problems,'' \emph{Acta Arithmetica} \textbf{128}, 245-279 (2007). DOI:
+  10.4064/aa128-3-5
+\item
+  Q. Zhong, ``On the Inverse Problem of the \(k\)-th Davenport Constants
+  for Groups of Rank 2,'' \emph{Combinatorica} \textbf{45}, article 31
+  (2025). DOI: 10.1007/s00493-025-00153-3
+\end{enumerate}
+
+\end{document}

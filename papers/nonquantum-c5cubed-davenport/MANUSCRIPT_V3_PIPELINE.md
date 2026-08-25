@@ -36,6 +36,9 @@ The exact value remains \(D_4(C_5^3)\in\{30,31\}\). A larger internal search
 through support 22 is reported only as bounded computational evidence and is
 not used as theorem authority.
 
+**Keywords:** generalized Davenport constants; zero-sum sequences; elementary
+abelian groups; short zero sums; inverse zero-sum problems
+
 ## 1. Introduction
 
 Generalized Davenport constants measure the sequence length required to force
@@ -77,7 +80,7 @@ that every sequence of length at least \(n\) over \(G\) contains \(k\) pairwise
 disjoint nonempty zero-sum subsequences. Let \(s_{\le\ell}(G)\) denote the least
 length forcing a nonempty zero-sum subsequence of length at most \(\ell\).
 
-We use the recurrence
+We use the generalized-Davenport recurrence framework [1]
 
 \[
 D_{k+1}(G)
@@ -317,9 +320,9 @@ for the length-31 target would establish the lower candidate \(D_4=30\).
 ## 10. Relation to prior work
 
 The generalized-Davenport recurrence, lower-bound framework, extremal
-factorization language, and eventual-linearity context are established results.
-The \(C_0\) framework and short-zero-sum localization are also prior work, as
-are the inverse zero-sum program and rank-two inverse results.
+factorization language, and eventual-linearity context are established results
+[1]. The \(C_0\) framework and short-zero-sum localization are also prior work
+[2], as are the inverse zero-sum program [3] and rank-two inverse results [4].
 
 The residual contribution is the width-one synthesis for \(C_5^3\), the
 saturation-defect specialization, the exact multiplicity grammar, the
@@ -331,7 +334,7 @@ extremal bit.
 
 The corridor, defect lemma, and support-ten exclusion are separately bound to
 exact records. An independent verifier enumerates all multiplicity patterns for
-supports 8–31, checks the rank-phase equivalence, reproduces the support-23 and
+supports 8-31, checks the rank-phase equivalence, reproduces the support-23 and
 support-24 tables, and validates the atom identity on independently generated
 factorizations. The displayed proofs carry all-parameter authority.
 
@@ -364,13 +367,13 @@ permanent archival identifier should be added before final submission.
 ## References
 
 1. M. Freeze and W. A. Schmid, “Remarks on a Generalization of the Davenport
-   Constant,” *Discrete Mathematics* **310**, 3373–3389 (2010).
-   DOI: 10.1016/j.disc.2010.07.032
+   Constant,” *Discrete Mathematics* **310**, 3373-3389 (2010).
+   DOI: 10.1016/j.disc.2010.07.028
 2. Y. Fan, W. Gao, G. Wang, Q. Zhong, and J. Zhuang, “On Short Zero-Sum
    Subsequences of Zero-Sum Sequences,” *Electronic Journal of Combinatorics*
    **19**(3), P31 (2012). DOI: 10.37236/2602
 3. W. Gao, A. Geroldinger, and W. A. Schmid, “Inverse Zero-Sum Problems,”
-   *Acta Arithmetica* **128**, 245–279 (2007).
+   *Acta Arithmetica* **128**, 245-279 (2007).
    DOI: 10.4064/aa128-3-5
 4. Q. Zhong, “On the Inverse Problem of the \(k\)-th Davenport Constants for
    Groups of Rank 2,” *Combinatorica* **45**, article 31 (2025).

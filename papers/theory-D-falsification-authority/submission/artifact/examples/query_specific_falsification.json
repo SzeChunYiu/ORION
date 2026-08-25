@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "licenses": ["THEOREM", "FINITE_EXACT"],
+  "claims": [
+    {"id": "four_index_decision", "seeds": ["THEOREM"]},
+    {"id": "pair_value_sufficiency", "seeds": ["FINITE_EXACT"]},
+    {"id": "pair_optimizer_sufficiency", "seeds": ["FINITE_EXACT"]}
+  ],
+  "rules": [],
+  "refutations": ["pair_value_sufficiency", "pair_optimizer_sufficiency"]
+}

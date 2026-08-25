@@ -5,7 +5,7 @@
 A compact statistic can determine whether optimization is necessary while
 remaining provably inadequate for the value and structure of an optimum. We
 establish this hierarchy for a Pauli partition compiler with a fixed structural
-SELECT–PREPARE–width objective. For every number of terms \(m\ge5\), the unary
+SELECT-PREPARE-width objective. For every number of terms \(m\ge5\), the unary
 compiler is globally optimal if and only if two clause families hold: every
 pair gain is nonpositive, and the sum of any two disjoint pair gains plus one is
 nonpositive. Thus a search over all set partitions has a decision certificate
@@ -31,6 +31,9 @@ integer trade preserving all proper labeled marginals is an integer multiple of
 the parity trade and touches all \(2^{m-1}\) Boolean cells. The result separates
 exact low-order decision from value estimation and optimizer recovery without
 invoking computational hardness.
+
+**Keywords:** quantum compilation; low-order certificates; information lower
+bounds; minimax estimation; Markov bases; Möbius inversion
 
 ## 1. Introduction
 
@@ -257,7 +260,7 @@ not prove that the common padding is minimal.
 
 ## 8. Relation to prior work
 
-Markov-basis and hierarchical-model theory owns the generic language of
+Markov-basis and hierarchical-model theory [1-5] owns the generic language of
 fibers, marginal-preserving moves, toric ideals, and higher-order interactions
 invisible to lower marginals. Boolean-lattice Möbius inversion is classical.
 
@@ -293,19 +296,27 @@ A perfect decision statistic is therefore not automatically a useful value
 statistic. In this compiler, the distinction is exact, scalable, and
 independent of computational assumptions.
 
+## Data and code availability
+
+Exact implementations reproducing the four-term witness, paired gadget
+families, product formulas, minimax calculations, and Boolean-lattice kernel
+accompany the submission source. They are verification aids; the displayed
+arguments carry the all-parameter claims. A permanent archival identifier must
+be inserted before final upload.
+
 ## References
 
 1. P. Diaconis and B. Sturmfels, “Algebraic Algorithms for Sampling from
-   Conditional Distributions,” *The Annals of Statistics* **26**, 363–397
+   Conditional Distributions,” *The Annals of Statistics* **26**, 363-397
    (1998). DOI: 10.1214/aos/1030563990
 2. A. Dobra, “Markov Bases for Decomposable Graphical Models,” *Bernoulli*
-   **9**, 1093–1108 (2003). DOI: 10.3150/bj/1072215202
+   **9**, 1093-1108 (2003). DOI: 10.3150/bj/1072215202
 3. S. Hosten and S. Sullivant, “A Finiteness Theorem for Markov Bases of
    Hierarchical Models,” *Journal of Combinatorial Theory, Series A* **114**,
-   311–321 (2007). DOI: 10.1016/j.jcta.2006.06.001
+   311-321 (2007). DOI: 10.1016/j.jcta.2006.06.001
 4. M. Develin and S. Sullivant, “Markov Bases of Binary Graph Models,”
-   *Annals of Combinatorics* **7**, 441–466 (2003).
+   *Annals of Combinatorics* **7**, 441-466 (2003).
    arXiv: math/0308280
 5. D. Král', S. Norine, and O. Pangrác, “Markov Bases of Binary Graph Models
    of \(K_4\)-Minor-Free Graphs,” *Journal of Combinatorial Theory, Series A*
-   **117**, 759–765 (2010). DOI: 10.1016/j.jcta.2009.07.007
+   **117**, 759-765 (2010). DOI: 10.1016/j.jcta.2009.07.007

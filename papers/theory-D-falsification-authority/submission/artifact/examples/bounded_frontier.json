@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "licenses": ["THEOREM", "BOUNDED_COMPUTATION", "EXTERNAL_REPLAY"],
+  "claims": [
+    {"id": "corridor", "seeds": ["THEOREM"]},
+    {"id": "frontier_through_22", "seeds": ["BOUNDED_COMPUTATION", "EXTERNAL_REPLAY"]},
+    {"id": "support_at_least_23", "seeds": []},
+    {"id": "exact_D4", "seeds": []}
+  ],
+  "rules": [
+    {
+      "id": "frontier_to_support",
+      "body": ["frontier_through_22"],
+      "head": "support_at_least_23",
+      "cap": ["BOUNDED_COMPUTATION", "EXTERNAL_REPLAY"]
+    },
+    {
+      "id": "support_to_exact_value",
+      "body": ["support_at_least_23"],
+      "head": "exact_D4",
+      "cap": ["THEOREM"]
+    }
+  ],
+  "refutations": []
+}

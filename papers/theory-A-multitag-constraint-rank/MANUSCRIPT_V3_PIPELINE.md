@@ -39,12 +39,15 @@ multiple Tags or outside the sufficient cone. The result separates the
 alphabet-sensitive certificate, the compiler semantics that make deletion
 sound, and the objective inequality that makes deletion profitable.
 
+**Keywords:** quantum compilation; block encoding; exact normal forms; zero-sum
+sequences; sparse optimization
+
 ## 1. Introduction
 
 TARE is an upstream block-encoding construction that exposes frame, Tag,
 branch, and Restore choices. The present work studies exact normal forms for
 those auxiliary compiler choices; it does not claim the underlying
-block-encoding primitive.
+block-encoding primitive [1].
 
 A standard support proof attaches a finite binary syndrome to every active
 coordinate. When support exceeds the syndrome dimension, linear dependence
@@ -233,7 +236,8 @@ Only this frozen specialization receives an intrinsic sharpness claim.
 
 ## 9. Relation to prior work
 
-Sparse optimal solutions, Davenport constants, restricted zero-sum invariants,
+Sparse optimal solutions [2], Davenport constants, restricted zero-sum
+invariants [3],
 finite-field dependence, Pauli symplectic algebra, and exact synthesis are
 established areas. In particular, general sparse integer optimization provides
 objective-independent support bounds, while zero-sum theory provides sequence
@@ -259,6 +263,14 @@ result applies only to the explicit grammar and objective. Outside
 is necessary. General multi-Tag sharpness remains open. Structural support is
 not physical T count, runtime, circuit depth, qubit count, or quantum advantage.
 
+## Data and code availability
+
+The exact bounded controls and deterministic verification scripts supporting the
+finite-group, basis-obstruction, and Restore-sensitivity checks accompany the
+submission source. They are corroborative: the displayed proofs carry the
+all-size claims. A permanent archival identifier must be inserted before the
+final journal upload.
+
 ## 11. Conclusion
 
 Ambient rank is not the primitive deletion threshold. The exact threshold is
@@ -274,12 +286,12 @@ Beyond that case, the result is a strong normal form, not a necessity theorem.
 
 ## References
 
-1. N. Schillo, A. Sturm, and R. Quay, “TARE: Block Encoding Linear
-   Combinations of Pauli Strings Without Ancilla State Preparation,”
-   arXiv:2601.05740v4 (2026).
+1. N. Schillo, A. Sturm, and R. Quay, “Block Encoding Linear Combinations of
+   Pauli Strings Using the Stabilizer Formalism,” arXiv:2601.05740 (2026).
 2. I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel, and R. Weismantel,
    “The Support of Integer Optimal Solutions,” *SIAM Journal on Optimization*
-   **28**, 2152–2157 (2018). DOI: 10.1137/17M1162792
+   **28**, 2152-2157 (2018). DOI: 10.1137/17M1162792
 3. G. Wang, “The universal zero-sum invariant and weighted zero-sum for
-   infinite abelian groups,” *Communications in Algebra* **53** (2025).
+   infinite abelian groups,” *Communications in Algebra* **53**(4), 1581-1599
+   (2025).
    DOI: 10.1080/00927872.2024.2418017

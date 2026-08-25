@@ -27,6 +27,9 @@ It shows that a support number belongs to a compiler only after an intrinsic
 lower witness; otherwise it belongs to a named normalization or certificate
 language.
 
+**Keywords:** quantum compilation; certificate complexity; support
+normalization; zero-sum deletion; exact optimization
+
 ## 1. Introduction
 
 Support bounds turn unbounded exact compiler searches into finite ones. Their
@@ -206,16 +209,17 @@ enumeration.
 ## 7. Relation to prior work
 
 Sparse integer optimization already studies support bounds and lower
-constructions. Classical and modern zero-sum theory owns Davenport constants,
-restricted alphabets, weighted variants, basis obstructions, and direct sums.
+constructions [1]. Classical and modern zero-sum theory owns Davenport
+constants, restricted alphabets, weighted variants, basis obstructions, and
+direct sums [2,3].
 Proof-complexity and formal-methods research already distinguishes object
 difficulty from lower bounds internal to a proof language.
 
 The residual contribution is the exact production separation in quantum
 compilation. The same algebraic certificate is tight for R6M, loose by a factor
 of five for R6I, and additively unbounded under registered products. The R6I
-normalization also identifies the missing proof operation—whole-system Tag
-reconstruction—instead of merely reporting a smaller number.
+normalization also identifies the missing proof operation - whole-system Tag
+reconstruction - instead of merely reporting a smaller number.
 
 ## 8. Reproducibility and limitations
 
@@ -243,14 +247,22 @@ The reporting rule is therefore simple: call a support number intrinsic only
 after an independent compiler lower witness. Otherwise identify the
 normalization or proof language that owns it.
 
+## Data and code availability
+
+Deterministic verification scripts for the finite-group controls, production
+alphabets, basis obstructions, and product formulas accompany the submission
+source. Those computations corroborate the finite instances; Theorems 1 and 3
+carry the all-size claims. A permanent archival identifier must be inserted
+before final upload.
+
 ## References
 
 1. I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel, and R. Weismantel,
    “The Support of Integer Optimal Solutions,” *SIAM Journal on Optimization*
-   **28**, 2152–2157 (2018). DOI: 10.1137/17M1162792
+   **28**, 2152-2157 (2018). DOI: 10.1137/17M1162792
 2. G. Wang, “The universal zero-sum invariant and weighted zero-sum for
    infinite abelian groups,” *Communications in Algebra* **53** (2025).
    DOI: 10.1080/00927872.2024.2418017
 3. M. Freeze and W. A. Schmid, “Remarks on a generalization of the Davenport
-   constant,” *Discrete Mathematics* **310**, 3373–3389 (2010).
-   DOI: 10.1016/j.disc.2010.07.032
+   constant,” *Discrete Mathematics* **310**, 3373-3389 (2010).
+   DOI: 10.1016/j.disc.2010.07.028
