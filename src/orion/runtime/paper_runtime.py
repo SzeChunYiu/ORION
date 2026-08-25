@@ -4,6 +4,8 @@ from orion.engine.guards import MechanicGuard
 from orion.engine.navigation import PaperParityNavigator
 from orion.engine.paper_parity_solver import PaperParityOrionSolver
 from orion.engine.solver import SolverConfig
+from orion.core.problem import Problem
+from orion.core.state import OrionState
 from orion.providers.experience.base import ExperienceStore
 from orion.providers.llm.base import LLMProvider
 from orion.providers.reasoner.llm import LLMResearchReasoner
@@ -57,6 +59,28 @@ class OrionRuntime(_KernelOrionRuntime):
     @property
     def navigation_plan(self):
         return getattr(self._solver, "last_navigation_plan", None)
+
+    def solve(
+        self,
+        problem: Problem,
+        *,
+        initial_state: OrionState | None = None,
+        variation_signature: tuple[str, ...] = (),
+        evaluation_epoch_id: str = "evaluation:unfrozen",
+        split_id: str = "split:unassigned",
+    ) -> RuntimeResult:
+        # Navigation binding is a deterministic composition-root step and is
+        # part of M_t.  Perform it before the kernel runtime captures its trace
+        # endpoint so the episode and the solver trace bind the same state.
+        if initial_state is not None:
+            initial_state = self._solver.bind_initial_state(problem, initial_state)
+        return super().solve(
+            problem,
+            initial_state=initial_state,
+            variation_signature=variation_signature,
+            evaluation_epoch_id=evaluation_epoch_id,
+            split_id=split_id,
+        )
 
 
 __all__ = ["OrionRuntime", "RuntimeResult"]

@@ -143,7 +143,14 @@ class SREObservableEvidence:
             for relation in self.relations
         ]
         payload["typed_nodes"] = sorted(typed_nodes)
-        payload["typed_relations"] = sorted(typed_relations)
+        # The opaque endpoint names intentionally change with ``remint_seed``.
+        # Ordering by those names would therefore make the semantic relation
+        # sequence change under a surface-only remint.  Keep relation kind as
+        # the primary structural coordinate and use endpoints only to make
+        # multiple relations of the same kind deterministic.
+        payload["typed_relations"] = sorted(
+            typed_relations, key=lambda row: (row[2], row[0], row[1])
+        )
         return payload
 
 

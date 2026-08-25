@@ -21,6 +21,12 @@ from orion.providers.retrieval import InMemoryRetrievalProvider
 from orion.providers.verification import InMemoryVerificationProvider
 from orion.runtime import OrionRuntime
 
+_EMPTY_RESULT_SEARCH_PLAN = (
+    '{"queries":[{"query_id":"q:fixture","text":"fixture query",'
+    '"route_id":"route:fixture","route_kind":"PARENT_DISCIPLINE",'
+    '"domain_hint":null}]}'
+)
+
 
 class _FakeSolver:
     def __init__(self, status: SolutionStatus, *, atomic_failure: bool = False) -> None:
@@ -222,7 +228,7 @@ def test_real_solver_trace_projects_every_mechanic_receipt_into_experience():
     store = InMemoryExperienceStore()
     runtime = OrionRuntime.from_providers(
         llm=CallableLLMProvider(
-            lambda request: '{"queries":[]}', model_id="known-world"
+            lambda request: _EMPTY_RESULT_SEARCH_PLAN, model_id="known-world"
         ),
         retrieval=InMemoryRetrievalProvider({}),
         verification=InMemoryVerificationProvider(frozenset()),
@@ -270,7 +276,7 @@ def test_real_runtime_records_executed_failure_pattern_guard_action():
     )
     runtime = OrionRuntime.from_providers(
         llm=CallableLLMProvider(
-            lambda request: '{"queries":[]}', model_id="guard-fixture"
+            lambda request: _EMPTY_RESULT_SEARCH_PLAN, model_id="guard-fixture"
         ),
         retrieval=InMemoryRetrievalProvider({}),
         verification=InMemoryVerificationProvider(frozenset()),
@@ -343,7 +349,7 @@ def test_root_solve_guard_rejects_before_any_provider_or_operator_side_effect():
     runtime = OrionRuntime.from_providers(
         llm=CallableLLMProvider(
             lambda request: (
-                provider_calls.append(request) or '{"queries":[]}'
+                provider_calls.append(request) or _EMPTY_RESULT_SEARCH_PLAN
             ),
             model_id="must-not-run",
         ),
@@ -380,7 +386,7 @@ def test_root_solve_guard_executes_once_for_one_root_invocation():
     )
     runtime = OrionRuntime.from_providers(
         llm=CallableLLMProvider(
-            lambda request: '{"queries":[]}', model_id="root-guard-once"
+            lambda request: _EMPTY_RESULT_SEARCH_PLAN, model_id="root-guard-once"
         ),
         retrieval=InMemoryRetrievalProvider({}),
         verification=InMemoryVerificationProvider(frozenset()),
@@ -444,7 +450,7 @@ def test_search_guard_is_rechecked_at_current_epoch_and_rejection_is_not_executi
     )
     runtime = OrionRuntime.from_providers(
         llm=CallableLLMProvider(
-            lambda request: '{"queries":[]}', model_id="guard-current-state-fixture"
+            lambda request: _EMPTY_RESULT_SEARCH_PLAN, model_id="guard-current-state-fixture"
         ),
         retrieval=InMemoryRetrievalProvider({}),
         verification=InMemoryVerificationProvider(frozenset()),

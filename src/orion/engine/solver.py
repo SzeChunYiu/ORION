@@ -430,7 +430,13 @@ class OrionSolver:
         initial_state: OrionState | None = None,
         trace_id: str | None = None,
     ) -> tuple[Solution, OrionState, SolveTrace]:
-        state = initial_state or self.initial_state(problem)
+        # Only ``None`` requests construction of a fresh state; preserve the
+        # identity of every caller-supplied state explicitly.
+        state = (
+            initial_state
+            if initial_state is not None
+            else self.initial_state(problem)
+        )
         events: list[TraceEvent] = []
         trace_id = trace_id or f"trace:{problem.problem_id}:{uuid4().hex}"
 

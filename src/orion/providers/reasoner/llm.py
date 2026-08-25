@@ -23,6 +23,43 @@ You may propose interpretations, queries, diagnoses and prose, but you do not cr
 Return only JSON matching the requested schema. Preserve uncertainty and do not invent source evidence.
 For search planning, do not remain inside the current vocabulary: deliberately use independent route families such as function-only, parent-discipline, adversarial-omission and freshness searches when they remain uncovered."""
 
+_PLAN_SEARCH_REQUIRED = (
+    "query_id",
+    "text",
+    "route_id",
+    "route_kind",
+    "domain_hint",
+)
+_PLAN_SEARCH_SCHEMA = json.dumps(
+    {
+        "type": "object",
+        "properties": {
+            "queries": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "query_id": {"type": "string", "minLength": 1},
+                        "text": {"type": "string", "minLength": 1},
+                        "route_id": {"type": "string", "minLength": 1},
+                        "route_kind": {
+                            "type": "string",
+                            "enum": [kind.value for kind in SearchRouteKind],
+                        },
+                        "domain_hint": {"type": ["string", "null"]},
+                    },
+                    "required": list(_PLAN_SEARCH_REQUIRED),
+                    "additionalProperties": False,
+                },
+            }
+        },
+        "required": ["queries"],
+        "additionalProperties": False,
+    },
+    sort_keys=True,
+)
+
 
 class LLMResearchReasoner:
     """Maps the ORION reasoner contract onto any LLMProvider."""
@@ -58,11 +95,28 @@ class LLMResearchReasoner:
                 "covered_route_kinds": state.search_universe.route_kind_ids,
                 "representations": state.search_universe.representation_ids,
             },
-            '{"queries":[{"query_id":"...","text":"...","route_id":"...","route_kind":"PARENT_DISCIPLINE","domain_hint":null}]}',
+            _PLAN_SEARCH_SCHEMA,
         )
-        queries = data.get("queries", [])
+        queries = data.get("queries")
         if not isinstance(queries, list):
             raise TypeError("plan_search.queries must be a list")
+        if not queries:
+            raise ValueError("plan_search.queries must contain at least one query")
+        for index, item in enumerate(queries):
+            if not isinstance(item, dict):
+                raise ValueError(f"plan_search.queries[{index}] must be an object")
+            missing = [key for key in _PLAN_SEARCH_REQUIRED if key not in item]
+            if missing:
+                raise ValueError(
+                    f"plan_search.queries[{index}] missing required field(s): "
+                    + ", ".join(missing)
+                )
+            extra = sorted(set(item) - set(_PLAN_SEARCH_REQUIRED))
+            if extra:
+                raise ValueError(
+                    f"plan_search.queries[{index}] has unexpected field(s): "
+                    + ", ".join(extra)
+                )
         return tuple(
             SearchQuery(
                 query_id=str(item["query_id"]),
