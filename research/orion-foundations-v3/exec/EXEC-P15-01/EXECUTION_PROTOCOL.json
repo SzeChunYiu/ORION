@@ -1,0 +1,56 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {
+    "location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": [
+      "OSTC-T20"
+    ]
+  },
+  "frozen_before_outcomes": true,
+  "prior_unfrozen_probe": {
+    "disclosure": "An earlier run of this job was executed WITHOUT a frozen protocol, during a push to parallelise. #1234 requires the freeze before protected outcome access, so that run is NOT admissible as evidence and its terminal is not claimed. It is recorded as an unfrozen exploratory probe.",
+    "consequence": "This protocol governs a DIFFERENT and larger grid whose outcomes have not been accessed. Re-freezing the same grid after seeing its results would be post-hoc dressed as procedure.",
+    "what_the_probe_exposed": "The unfrozen probe's key-compromise arm was TAUTOLOGICAL. It looped over a hardcoded compromised flag and incremented false_promotions when compromised was true, so it reported 0/6 detection by construction rather than by test. That number matched P15's paper finding, which is exactly why it was dangerous: a constructed result agreeing with a real one is indistinguishable from confirmation. The arm is replaced with an enumeration over adversary capabilities in which detection is COMPUTED from what the signature layer can observe.",
+    "grid_change": "State space widened to 5x4x4, and the key-compromise arm REPLACED with a real adversary enumeration rather than a hardcoded outcome."
+  },
+  "information_and_tool_access": {
+    "runner": "declared grid only; no network, no model calls",
+    "checker": "raw manifest only"
+  },
+  "resource_vector": {
+    "compute": "single-process CPU enumeration",
+    "wallclock_bound_seconds": 1800
+  },
+  "multiplicity": "No hypothesis test; universal and existence claims over total enumeration.",
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem, move a gate, weaken a comparator, hide a negative, or rewrite theory after outcome access.",
+  "job_id": "EXEC-P15-01",
+  "task": "Production host/process fault injection, production attestation comparator, custody compromise, overhead.",
+  "estimands": {
+    "T20_noninterference": "Over every execution-only transformation (f, id, id) and every state: are validity and authority unchanged, with zero exceptions?",
+    "bridge_is_explicit": "Does every V or A update require a bridge premise, i.e. never occur under an execution-only transformation?",
+    "key_compromise_computed": "Over an enumeration of adversary capabilities: is detection by the signature layer COMPUTED from observable facts, and does the signature layer fail to detect custody compromise because custody is not among them?"
+  },
+  "positive_terminal": "P15_EXECUTION_SCIENCE_NONINTERFERENCE_SUPPORTED",
+  "positive_conditions": [
+    "zero interference cases",
+    "zero V/A updates without a bridge premise",
+    "the key-compromise arm computes detection from observables rather than asserting it",
+    "both detected and undetected adversary cases occur"
+  ],
+  "negative_terminal": "P15_NONINTERFERENCE_MODEL_INCOMPLETE",
+  "negative_conditions": [
+    "any execution-only transformation altering V or A",
+    "any V/A update without a bridge premise",
+    "the key-compromise arm cannot produce a detected case, which would mean detection is impossible by construction rather than by custody being unobservable"
+  ],
+  "cannot_check_terminal": "P15_PRODUCTION_FAULT_HARNESS_UNAVAILABLE",
+  "independent_unit": "The declared grid cell; points within a cell are exhaustively enumerated, not sampled.",
+  "checker_and_authority_owner": {
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Two implementations inside one programme; not external adjudication."
+  }
+}

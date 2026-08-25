@@ -1,0 +1,58 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {
+    "location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": [
+      "OSTC-T18",
+      "OSTC-T11"
+    ]
+  },
+  "frozen_before_outcomes": true,
+  "prior_unfrozen_probe": {
+    "disclosure": "An earlier run of this job was executed WITHOUT a frozen protocol, during a push to parallelise. #1234 requires the freeze before protected outcome access, so that run is NOT admissible as evidence and its terminal is not claimed. It is recorded as an unfrozen exploratory probe.",
+    "consequence": "This protocol governs a DIFFERENT and larger grid whose outcomes have not been accessed. Re-freezing the same grid after seeing its results would be post-hoc dressed as procedure.",
+    "what_the_probe_exposed": "The unfrozen probe was sound but small. Its structure is retained; only the grid is enlarged, and its outcomes on the new grid have not been accessed.",
+    "grid_change": "Elements raised from 4 to 5 and tokens from 5 to 6, enlarging both partition and revocation spaces."
+  },
+  "information_and_tool_access": {
+    "runner": "declared grid only; no network, no model calls",
+    "checker": "raw manifest only"
+  },
+  "resource_vector": {
+    "compute": "single-process CPU enumeration",
+    "wallclock_bound_seconds": 1800
+  },
+  "multiplicity": "No hypothesis test; universal and existence claims over total enumeration.",
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem, move a gate, weaken a comparator, hide a negative, or rewrite theory after outcome access.",
+  "job_id": "EXEC-P13-01",
+  "task": "Externally determined responsibility changes and semantic-drift transport.",
+  "estimands": {
+    "T18_external_change": "Under a successor responsibility chosen WITHOUT regard to the stored state: is safe reuse exactly partition refinement, in both directions?",
+    "T18_freshness_insufficient": "Do states fresh for the OLD responsibility but unsafe for the NEW one occur? This is the failure T18 predicts and a grid without it cannot test the claim.",
+    "T11_survival": "Is survival under revocation exactly existence of a minimal support family disjoint from the revoked set, in both directions?",
+    "both_outcomes": "Do safe and unsafe, survived and died, all occur?"
+  },
+  "positive_terminal": "P13_DRIFT_TRANSPORT_SUPPORTED",
+  "positive_conditions": [
+    "zero T18 violations",
+    "zero T11 violations",
+    "fresh-but-unsafe cases occur",
+    "both outcomes occur on both theorems"
+  ],
+  "negative_terminal": "P13_TRANSPORT_MODEL_INCOMPLETE",
+  "negative_conditions": [
+    "any T18 or T11 violation",
+    "no fresh-but-unsafe case, leaving T18's central claim unexercised",
+    "either outcome constant"
+  ],
+  "cannot_check_terminal": "P13_EXTERNAL_RESPONSIBILITY_GOLD_UNAVAILABLE",
+  "independent_unit": "The declared grid cell; points within a cell are exhaustively enumerated, not sampled.",
+  "checker_and_authority_owner": {
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Two implementations inside one programme; not external adjudication."
+  }
+}
