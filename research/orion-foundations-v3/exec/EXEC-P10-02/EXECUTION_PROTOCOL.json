@@ -1,0 +1,63 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "job_id": "EXEC-P10-02",
+  "successor_to": "EXEC-P10-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {"location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": ["OSTC-T22"]},
+  "frozen_before_outcomes": true,
+  "task": "Re-run T22's synthesis/checking separation on a formula family that actually contains unsatisfiable members.",
+  "why_a_successor_exists": {
+    "predecessor_terminal": "P10_EXPANSION_MODEL_INCOMPLETE",
+    "what_failed_twice": ("EXEC-P10-01 confirmed T15 but left T22 unexercised, twice. The first "
+      "probe used 2-literal clauses and produced zero UNSAT. The fix widened clause WIDTH to 3 "
+      "but left the clause COUNT at 4, which was the wrong variable: satisfiability is governed "
+      "by the clause-to-variable RATIO, not by width. At 4/5 = 0.8 against a random 3-SAT phase "
+      "transition near 4.27, nearly every instance is satisfiable and falls within a few "
+      "assignments, so the hard side of the separation is never touched."),
+    "fix": "Ratio raised to >= 4.27 by taking 21 clauses over 5 variables (ratio 4.2) and 26 over 5 (ratio 5.2), spanning the transition."
+  },
+  "precondition_not_outcome": {
+    "rule": ("UNSAT membership is checked as a PRECONDITION. If the generated family contains no "
+      "unsatisfiable member the run ABORTS before reporting any separation result, rather than "
+      "reporting a separation that was never tested. Two runs already failed by discovering this "
+      "at the end; this one refuses to proceed without it.")
+  },
+  "code_identity": {"runner": "run_sat_separation_v1.py",
+    "independent_checker": "Verification is self-checking: every satisfying assignment found is re-verified by a single pass, and every UNSAT verdict is confirmed by exhaustive assignment enumeration, which is decisive at 5 variables (32 assignments)."},
+  "data_identity": {"generated": true, "generator_seed": 20260825, "no_external_data": true},
+  "information_and_tool_access": {"runner": "declared grid only; no network, no model calls"},
+  "resource_vector": {"compute": "single-process CPU", "wallclock_bound_seconds": 900},
+  "independent_unit": "The formula. Assignments within a formula are exhaustively enumerated.",
+  "estimands": {
+    "unsat_present": "PRECONDITION: does the family contain at least one unsatisfiable formula?",
+    "checking_is_cheap": "For every satisfiable formula, is verifying a supplied assignment a single pass over the clauses, independent of the search that found it?",
+    "finding_is_expensive": "Do unsatisfiable formulas require exhausting all 2^n assignments, while satisfiable ones typically stop early -- i.e. is there a measurable search asymmetry between deciding and checking?",
+    "both_classes_present": "Do both SAT and UNSAT formulas occur, so the asymmetry is measured across both?"
+  },
+  "multiplicity": "No hypothesis test; counts reported with denominators.",
+  "positive_terminal": "P10_SYNTHESIS_CHECKING_SEPARATION_SUPPORTED",
+  "positive_conditions": [
+    "the family contains unsatisfiable members (precondition met)",
+    "every supplied satisfying assignment verifies in a single pass",
+    "unsatisfiable formulas exhaust the assignment space while satisfiable ones stop earlier on average",
+    "both SAT and UNSAT classes are populated"
+  ],
+  "negative_terminal": "P10_SEPARATION_NOT_OBSERVED",
+  "negative_conditions": [
+    "no unsatisfiable member after generation (precondition fails, run aborts)",
+    "any supplied assignment that does not verify",
+    "no measurable search asymmetry between the SAT and UNSAT classes"
+  ],
+  "cannot_check_terminal": "P10_SAT_GRID_INCOMPLETE",
+  "cannot_check_conditions": ["grid not exhausted within the wallclock bound"],
+  "raw_output_schema": {"file": "RAW_RESULT_MANIFEST.json",
+    "fields": {"grid": "echoed", "precondition": "unsat_present, checked_before_reporting",
+      "separation": "formulas, sat, unsat, mean_search_sat, mean_search_unsat, check_passes, check_failures"}},
+  "checker_and_authority_owner": {"authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Self-checking by exhaustive enumeration; not external adjudication."},
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem or move a gate after outcome access."
+}
