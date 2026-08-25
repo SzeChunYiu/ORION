@@ -22,6 +22,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from orion.knowledge.identity import ReadDecision, ReadReceipt, decide_read
+
 from .cases import DiscoveryTask, PROTOCOL_TASK_FAMILY
 from .corpus import (
     ROUTE_SPEC_BY_ROUTE,
@@ -33,7 +35,6 @@ from .corpus import (
 from .gold import EvaluationInputs, evaluate
 from .systems import (
     Capture,
-    ReadClassification,
     ReadEncounter,
     ReadOutcome,
     ResourceUse,
@@ -184,8 +185,7 @@ class BudgetedSession:
         self._stop_decisions: list[StopDecision] = []
         self._seen_identities: set[str] = set()
         self._retrieved_doc_ids: set[str] = set()
-        self._read_keys: set[tuple[str, str, str]] = set()
-        self._read_identity_digests: set[tuple[str, str]] = set()
+        self._read_receipts: list[ReadReceipt] = []
         # Spend is charged against monotone counters that only ever increment,
         # never against `len(self._route_trials)`. The event log is an ordinary
         # list, so charging against its length let a system clear the log and
@@ -208,7 +208,10 @@ class BudgetedSession:
         questions = self._task.extraction_questions
         if shift is None or len(questions) < 2:
             return questions[0]
-        stage = min(len(self._read_encounters) // shift, len(questions) - 1)
+        # A suppressed presentation is an encounter, not a read. Advancing the
+        # host frame on encounters would let suppression move the experiment's
+        # read-count intervention without spending a read.
+        stage = min(self.__reads_made // shift, len(questions) - 1)
         return questions[stage]
 
     @property
@@ -370,27 +373,43 @@ class BudgetedSession:
         )
 
     def read(self, doc_id: str) -> ReadOutcome:
-        self._charge("reads", self.__reads_made, self._task.budget.max_reads)
+        outcome = self.encounter_read(doc_id, execute=True)
+        assert outcome is not None
+        return outcome
+
+    def encounter_read(self, doc_id: str, *, execute: bool) -> ReadOutcome | None:
+        """Record one B14/B15 presentation and optionally execute extraction."""
+
         if doc_id not in self._retrieved_doc_ids:
             raise ValueError(f"{doc_id} has not been retrieved by any route")
-        self.__reads_made += 1
         document = self._index.by_id[doc_id]
         question = self.current_extraction_question
-        classification = self._classify_read(document, question)
-        self._read_keys.add((document.content_identity, document.content_digest, question))
-        self._read_identity_digests.add((document.content_identity, document.content_digest))
+        schema = self.current_extraction_schema
+        decision = self._classify_read(document, question, schema)
+        if execute:
+            self._charge("reads", self.__reads_made, self._task.budget.max_reads)
+            self.__reads_made += 1
         self._read_encounters.append(
             ReadEncounter(
                 index=self._next_index(),
                 merged_source_id=document.content_identity,
                 content_digest=document.content_digest,
-                schema_version=self.current_extraction_schema,
+                schema_version=schema,
                 frame_id=question,
-                # Computed BEFORE the read is registered above, which is what
-                # makes it a decision *before execution* rather than after.
-                decision_before_execution=classification.value,
-                executed=True,
+                decision_before_execution=decision.value,
+                executed=execute,
                 doc_id=doc_id,
+            )
+        )
+        if not execute:
+            return None
+
+        self._read_receipts.append(
+            ReadReceipt(
+                source_id=document.content_identity,
+                content_digest=document.content_digest,
+                schema_version=schema,
+                frame_id=question,
             )
         )
         return ReadOutcome(
@@ -401,26 +420,28 @@ class BudgetedSession:
             merged_source_id=document.content_identity,
             content_digest=document.content_digest,
             extraction_question=question,
-            extraction_schema=self.current_extraction_schema,
-            decision=classification.value,
+            extraction_schema=schema,
+            decision=decision.value,
             text=f"{document.title}\n\n{document.abstract}",
         )
 
-    def _classify_read(self, document: RetrievedRecord, question: str) -> ReadClassification:
-        """Classify independently of the subsystem under test."""
+    def _classify_read(
+        self, document: RetrievedRecord, question: str, schema: str
+    ) -> ReadDecision:
+        """Decide independently of the subsystem under test.
 
-        key = (document.content_identity, document.content_digest, question)
-        if key in self._read_keys:
-            return ReadClassification.DUPLICATE
-        identity_seen = any(
-            identity == document.content_identity
-            for identity, _ in self._read_identity_digests
+        These are the canonical post-#1078 values consumed by the evaluator.
+        Returning the restored legacy ``ReadClassification`` values made every
+        encounter invisible to the new UNSEEN/ALREADY_READ/reread counters.
+        """
+
+        return decide_read(
+            source_id=document.content_identity,
+            content_digest=document.content_digest,
+            schema_version=schema,
+            frame_id=question,
+            receipts=tuple(self._read_receipts),
         )
-        if not identity_seen:
-            return ReadClassification.FIRST_READ
-        if (document.content_identity, document.content_digest) not in self._read_identity_digests:
-            return ReadClassification.REVISION_REREAD
-        return ReadClassification.NEW_QUESTION_REREAD
 
     def declare_route_stop(self, route: str, reason: str) -> None:
         self._stop_decisions.append(

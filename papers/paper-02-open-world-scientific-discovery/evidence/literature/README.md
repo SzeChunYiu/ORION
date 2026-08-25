@@ -7,9 +7,11 @@ One JSON per bibliography key. Regenerate with:
 python3 fetch_literature_evidence.py
 ```
 
-The script re-fetches from the arXiv API (`export.arxiv.org/api/query`) or
-Crossref (`api.crossref.org/works/<doi>`), writes a fresh record per key with a
-new UTC timestamp, and never writes a field from recall.
+The script re-fetches from the arXiv API (`export.arxiv.org/api/query`),
+Crossref (`api.crossref.org/works/<doi>`), or DataCite
+(`api.datacite.org/dois/<doi>` for repository objects whose DOI is not in
+Crossref), writes a fresh record per key with a new UTC timestamp, and never
+writes a field from recall.
 
 ## Record schema
 

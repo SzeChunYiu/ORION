@@ -135,6 +135,10 @@ class _RunContext:
             self.held.setdefault(record.doc_id, record)
             key = self._ledger_key(record)
             if key in self.read_keys:
+                # The route result presented this work again. Record the host's
+                # pre-execution decision even though this policy suppresses the
+                # extraction; otherwise O3 has no suppression denominator.
+                self.session.encounter_read(record.doc_id, execute=False)
                 continue
             try:
                 outcome = self.session.read(record.doc_id)

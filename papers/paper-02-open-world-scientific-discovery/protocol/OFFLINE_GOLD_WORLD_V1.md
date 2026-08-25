@@ -1,12 +1,14 @@
 # ORION-P2 offline complete-gold world V1
 
-**Artifact:** `../evidence/offline_gold/` (`world.json`, `tasks.json`, `MANIFEST.json`)
+**Artifact:** `../evidence/offline_gold/` (`world-000.json`, `world-001.json`,
+`topics.json`, `tasks-000.json`, `tasks-001.json`, `MANIFEST.json`)
 **Generator:** `src/orion/study/p2/` — `corpus.py`, `cases.py`, `systems.py`, `runner.py`, `gold.py`, `freeze.py`
 **Seed:** `20260816`
-**Suite fingerprint:** `8d0b826821fc8dc6468e9641fc6bef6dd375f3ea1128a0e28089f28641e4ea65`
-**World content hash:** `d3405f686204e50cee28a0e768d6b69a40ab2fb9d823de44a62283eef1428469`
-**Status:** frozen before any system was configured against it. No system, baseline
-or ablation exists in this package, deliberately.
+**Suite fingerprint:** `2f6936ba52fb12dbee7614b6409fe35ee8f34f443088a11fe5f8916552649c1c`
+**World content hash:** `f93b1f55c0e0db4f32ed4e4b507a84a51f01d1dd62c28c393296724a82aa89a7`
+**Status:** the gold suite was frozen before any system was configured against it.
+Systems, baselines, ablations and their results now exist as separately bound
+artifacts; they are not inputs to this generator.
 
 ## Why an offline world at all
 
@@ -19,8 +21,13 @@ a rule over authored content, so the gold set is complete by construction.
 
 ## What it contains
 
-100 documents, 4 topics, 20 tasks (5 case families × 4 topics), 9 relevant works
-per topic. Every emitted record carries `task_family = "offline_complete_gold"`,
+1,210 documents, 78 topics and 390 tasks (5 case families × 78 topics), meeting
+the outcome-blind 385-task commitment recorded in `STATISTICAL_PLAN_V1.json`.
+Each topic has 9 relevant content identities represented by 11 relevant records:
+one republication shares a content identity and one revision shares an identity
+while changing its digest. Four distractors per topic and 40 unrelated filler
+records complete the corpus. Every emitted record carries
+`task_family = "offline_complete_gold"`,
 one of the five families `PROTOCOL_V1.json` froze; the case family is internal
 structure and never travels as a protocol family.
 
@@ -94,9 +101,10 @@ remaining budget), censored identities, unavailable-route events,
 and full resource use. The field list is a superset of the obvious needs; new
 quantities belong in the artifact, which extends without touching the record shape.
 
-`run_manifest_hash` is supplied by the caller, never minted here: a run manifest
-binds a subject revision, provider revisions and an evaluator hash, none of which
-exist while the world is outcome-blind. Manifest binding is next-phase work.
+`run_manifest_hash` is supplied by the caller, never minted here. The executed
+controlled campaign is bound separately by `OFFLINE_RUN_MANIFEST_V1.json` and its
+recorded digest; regenerating this gold suite does not rewrite that execution
+identity.
 
 ## Regenerating and verifying
 
@@ -143,6 +151,8 @@ are what vary; MetaSyn-style screening difficulty is a separate task family.
 Finally, no cost model, no provider latency and no contamination surface exists
 here, because nothing is fetched.
 
-Live-provider evidence against AutoResearchBench, SAGE and MetaSyn remains
-required and remains `CANNOT_CHECK`. This world makes those results reproducible
-when web results change; it does not stand in for them.
+An exact matched live-provider superiority campaign remains unavailable. The
+later diagnostic probes and adverse public-screening successors do not convert
+that missing comparison into a positive result. This world preserves the
+controlled mechanism result when web providers change; it does not stand in for
+provider-native execution, population transport or independent custody.

@@ -4,6 +4,7 @@
     "deep_official_archive": "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json",
     "deep_stage_attribution": "evidence/external_results/DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json",
     "external_access_audit": "protocol/EXTERNAL_ACCESS_AUDIT_V1.json",
+    "integrated_claims": "evidence/P2_INTEGRATED_CLAIM_BINDINGS_V1.json",
     "lexical_echo_successor": "evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json",
     "metasyn_fn_ledger": "evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json",
     "metasyn_probe": "evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json",
@@ -27,7 +28,8 @@
   "claims": [
     {
       "claim_id": "P2-C01",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "Headline abstract comparison on the frozen controlled index.",
       "numeric_bindings": [
         {
@@ -60,7 +62,8 @@
     },
     {
       "claim_id": "P2-C02",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "Authority self-limitation; the artifact records DESCRIPTIVE_ONLY.",
       "numeric_bindings": [],
       "region": "abstract",
@@ -80,7 +83,8 @@
     },
     {
       "claim_id": "P2-C03",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "Abstract-level status of the archived transport-invalid Wide campaign; its zero effect is not scientific evidence.",
       "numeric_bindings": [],
       "region": "abstract",
@@ -100,7 +104,8 @@
     },
     {
       "claim_id": "P2-C04",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "Conclusion mechanism statement.",
       "numeric_bindings": [],
       "region": "conclusion",
@@ -116,7 +121,8 @@
     },
     {
       "claim_id": "P2-C05",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "Conclusion preserves the external superiority claim as unpromoted after the invalid Wide campaign.",
       "numeric_bindings": [],
       "region": "conclusion",
@@ -262,7 +268,8 @@
         "artifact": "metasyn_probe",
         "key": "authority"
       },
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "Abstract-level external probe result with its scope limitation stated in the same sentence; not an ORION superiority claim.",
       "numeric_bindings": [
         {
@@ -406,7 +413,7 @@
         }
       ],
       "region": "results",
-      "sentence": "It binds the full 16,380-record set by SHA-256 27b8e55b68a65906fe0971ed2f24a814d31d66a1423d38782bb121c7f06e1525 and the corresponding rich-artifact hash list by ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe.",
+      "sentence": "It binds the full 16,380-record set by SHA-256 4722cf82b514d4ebfbea343970d079dff24244f5795584262afa52d26edc4a6f and the corresponding rich-artifact hash list by a88938efb3c0eeefbdb2be6cb27540d8aa5a464edae43fcdebb883faa7ed5760.",
       "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
@@ -463,7 +470,7 @@
         }
       ],
       "region": "results",
-      "sentence": "It passes 319 of 390 tasks, fails on 59 tasks after honestly exhausting its route-call budgets without certifying completeness, and leaves 12 tasks undetermined because a route holding unretrieved relevant material becomes unavailable; it never certifies a censored task complete.",
+      "sentence": "It passes 260 of 390 tasks, fails on 59 tasks after honestly exhausting its route-call budgets without certifying completeness, and leaves 71 tasks undetermined because a route holding unretrieved relevant material becomes unavailable; it never certifies a censored task complete.",
       "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
@@ -700,7 +707,7 @@
         }
       ],
       "region": "results",
-      "sentence": "Removing content-identity deduplication is less catastrophic but measurably wasteful in the controlled world: mean duplicate-processing rate rises from 0 to 0.101446, 145 of 390 tasks exhaust the read budget, pass rate falls from 0.817949 to 0.605128, and mean recall falls to 0.952707.",
+      "sentence": "Removing content-identity deduplication is less catastrophic but measurably wasteful in the controlled world: mean duplicate-processing rate rises from 0 to 1.0, 145 of 390 tasks exhaust the read budget, pass rate falls from 0.666667 to 0.492308, and mean recall falls to 0.952707.",
       "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
@@ -819,7 +826,7 @@
         }
       ],
       "region": "results",
-      "sentence": "The governed system's only terminal failure classification is honest budget exhaustion on 59 tasks: 319 tasks pass, 12 are censored, and premature closure remains at zero.",
+      "sentence": "The governed system's only terminal failure classification is honest budget exhaustion on 59 tasks: 260 tasks pass, 71 are censored, and premature closure remains at zero.",
       "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
@@ -931,7 +938,7 @@
         }
       ],
       "region": "results",
-      "sentence": "Finally, removing the unavailable-route open state leaves mean recall numerically unchanged but turns the 12 censored undetermined cases into asserted completions and premature-closure failures.",
+      "sentence": "Finally, removing the unavailable-route open state leaves mean recall numerically unchanged but turns the 71 censored undetermined cases into asserted completions and premature-closure failures.",
       "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
@@ -956,7 +963,15 @@
       "numeric_bindings": [
         {
           "artifact": "results_summary",
-          "key": "systems.adaptive_multiroute_exploratory.failure_counts.transport_failure"
+          "key": "systems.adaptive_multiroute_exploratory.failure_counts.premature_closure"
+        },
+        {
+          "artifact": "results_summary",
+          "key": "systems.adaptive_multiroute_exploratory.failure_counts.present_but_missed"
+        },
+        {
+          "artifact": "results_summary",
+          "key": "systems.adaptive_multiroute_exploratory.status_counts.CANNOT_CHECK"
         },
         {
           "artifact": "results_summary",
@@ -964,12 +979,20 @@
         }
       ],
       "region": "results",
-      "sentence": "Under the evaluator's fixed terminal-failure precedence, premature closure is the dominant failure class in the controlled companion; the exploratory adaptive comparator also exposes 65 transport-failure classifications, while the no-dedup ablation exposes 145 budget-exhaustion failures.",
+      "sentence": "Under the evaluator's fixed terminal-failure precedence, the exploratory adaptive comparator exposes 296 premature-closure and 16 present-but-missed classifications while retaining 78 cases as CANNOT_CHECK; the no-dedup ablation exposes 145 budget-exhaustion failures.",
       "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "results_summary",
-          "key": "systems.adaptive_multiroute_exploratory.failure_counts.transport_failure"
+          "key": "systems.adaptive_multiroute_exploratory.failure_counts.premature_closure"
+        },
+        {
+          "artifact": "results_summary",
+          "key": "systems.adaptive_multiroute_exploratory.failure_counts.present_but_missed"
+        },
+        {
+          "artifact": "results_summary",
+          "key": "systems.adaptive_multiroute_exploratory.status_counts.CANNOT_CHECK"
         },
         {
           "artifact": "results_summary",
@@ -1599,7 +1622,8 @@
     },
     {
       "claim_id": "P2-X20",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "P2-X abstract headline; bounded exact heterogeneous-acquisition contract only.",
       "numeric_bindings": [
         {
@@ -1664,7 +1688,8 @@
     },
     {
       "claim_id": "P2-X21",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "P2-X conclusion headline; does not imply deployed retriever/provider generality.",
       "numeric_bindings": [
         {
@@ -1717,7 +1742,8 @@
     },
     {
       "claim_id": "P2-X22",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "Failure localization from the protected P2-X result.",
       "numeric_bindings": [
         {
@@ -1742,7 +1768,8 @@
     },
     {
       "claim_id": "P2-X23",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "Ideal-product non-expressivity boundary.",
       "numeric_bindings": [
         {
@@ -1771,7 +1798,8 @@
     },
     {
       "claim_id": "P2-X24",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "Bounded A2 architecture-principle statement; novelty remains donor-subtracted.",
       "numeric_bindings": [],
       "region": "conclusion",
@@ -1791,7 +1819,8 @@
     },
     {
       "claim_id": "P2-X25",
-      "manuscript_status": "ASSERTED",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript withdrew or replaced this stronger/older wording; retained as audit history and not restored. Current conservative prose is bound by P2-I-* claims.",
       "note": "A3 remains explicitly unpromoted.",
       "numeric_bindings": [],
       "region": "conclusion",
@@ -2249,6 +2278,1513 @@
         }
       ],
       "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-I-A01",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "suite_facts",
+          "key": "OfflineTaskCount"
+        }
+      ],
+      "region": "abstract",
+      "sentence": "A 390-task controlled index is descriptive; external screening does not establish superiority.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.note"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-I-A02",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v13.keyword_capable_review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v13.review_count"
+        }
+      ],
+      "region": "abstract",
+      "sentence": "V13 validates a provider-native fibre-separating coordinate, but only 4/7 reviews support it.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v13.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-A03",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.dataset_blob_count"
+        }
+      ],
+      "region": "abstract",
+      "sentence": "V15 binds a signed coherent snapshot containing 61 dataset blobs, without index parsing, census or performance.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-A04",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.closed_custody_roles"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.required_custody_roles"
+        }
+      ],
+      "region": "abstract",
+      "sentence": "Independent custody remains 0/3.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.terminal"
+        }
+      ],
+      "support_type": "NONE_YET"
+    },
+    {
+      "claim_id": "P2-I-A05",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "abstract",
+      "sentence": "Thus the framework identifies when new state or acquisition is necessary, but open-world benefit remains unconfirmed.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.matched_performance_authorized"
+        }
+      ],
+      "support_type": "NONE_YET"
+    },
+    {
+      "claim_id": "P2-I-C02",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "The controlled-index campaign supports mechanism behavior but remains underpowered for its frozen superiority margin.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.note"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-I-C03",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.acquisition_ceiling.emitted_gold"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.acquisition_ceiling.gold_total"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "The external 7/229 exposure result is an adverse candidate-generation diagnosis, and the provider-invalid matched campaign remains undetermined.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.acquisition_ceiling.adverse_candidate_generation_diagnosis"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C04",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.v2_candidate_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.v2_best_passive_recall_at_10"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "A source-disjoint public screening pool does show a large conditional within-pool contrast after reuse of the same active update rule, hyperparameters and batch-size rule under a source-specific representation and label-informed warm start--0.703409 recall at 10% screened versus 0.335989 for the better-performing of two registered passive within-pool baselines.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.v2_terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C05",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.active_audit_u4_recall_at_10"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "A post-V2 active audit found 0.722444 for cadence-matched pinned ELAS u4, so the candidate did not beat the stronger active comparator.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.active_audit_terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C06",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.canonical_rows"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.wss_target_recall_percent"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.mean_candidate_minus_u4_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.mean_candidate_minus_u4_wss_at_95"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "A subsequent five-review SWIFT successor made the adverse boundary more general within public development: on 96,241 canonical rows, candidate-minus-u4 unweighted review-level mean recall@10% and WSS@95 were -0.021717971642 and -0.050396333672, respectively, and u4 was better on both endpoints in every review.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C08",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.task_world_successor.planned_cluster_count"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "The registered 768-cluster, four-arena target is designed to test that claim, but its worlds and comparator identities are not frozen for execution; it has not run and cannot change the current terminal.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.task_world_successor.current_terminal"
+        }
+      ],
+      "support_type": "NONE_YET"
+    },
+    {
+      "claim_id": "P2-I-C09",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.synergy_v5.canonical_rows"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.synergy_v5.learner_balancer_mean_recall_at_10"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "The prospectively frozen SYNERGY V5 successor supplies that content-disjoint test over five review decisions and 101,044 canonical records, but the selected component fails its locked recall@10% magnitude and sign gates: its mean effect is +0.008834277869, strictly positive in three of five decisions and exactly zero in two.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.synergy_v5.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C10",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_5"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_20"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.wss_target_recall_percent"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.wss_target_recall_percent"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "Positive recall@5%, recall@20%, and WSS@95 diagnostics do not replace the failed primary rule, while the full candidate-minus-u4 arm remains adverse at recall@10% and WSS@95.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.synergy_v5.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C11",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "The next test must therefore use a new source family, retain recall@10% as an adverse coprimary endpoint, and freeze a continuous recall-effort estimand before outcomes.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.synergy_v5.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C12",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v6.review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v6.canonical_rows"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "V6 now binds that source/protocol layer without opening a KIFMS label or executing a comparison: 14 CC-BY-4.0 OSF review decisions yield 4,934 label-blind canonical rows after one raw V5 match and all within-family shared content are removed; final SWIFT and V5 content overlap is zero.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v6.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C13",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.continuous_recall_effort_screened_percent"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "The normalized recall-effort area over the first 20% screened is coprimary with the unchanged adverse recall@10% rule, and u4 plus every harm/work-saving gate is retained.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v6.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C14",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "Independent protected custody remains cannot-check.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v6.independent_protected_execution_cannot_check"
+        }
+      ],
+      "support_type": "NONE_YET"
+    },
+    {
+      "claim_id": "P2-I-C15",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.source_file_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.canonical_rows"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "V7 nevertheless removes the execution wait under a new, explicitly nonconfirmatory identity: all 14 exact files and the 4,934-row population reproduce, every review has both classes and all four rankings complete.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C16",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.learner_balancer_mean_cre20"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.learner_balancer_mean_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.learner_balancer_mean_wss_at_95"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.wss_target_recall_percent"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.learner_balancer_positive_cre20_review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.learner_balancer_positive_recall_at_10_review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.learner_balancer_worst_recall_at_10"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "Mean learner/balancer effects are +0.084472 on CRE20, +0.148820 on recall@10% and +0.119813 on WSS@95, but CRE20 and recall@10% are strictly positive in only 11/14 and 9/14 reviews, and the worst-review recall@10% effect is -0.125.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C17",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.full_candidate_minus_u4_mean_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.full_candidate_minus_u4_mean_wss_at_95"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.wss_target_recall_percent"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "The full candidate-minus-u4 means are -0.201648 at recall@10% and -0.119160 on WSS@95.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C18",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "The upward successor must envelop the strong u4 donor and learn only a cross-fitted residual with a hard u4 fallback, then test once on a new source-disjoint family; the V5/V7 adverse results and current manuscript terminal remain unchanged.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C19",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.u4_reproduced_review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.residual_execution_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.fallback_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.mean_delta_cre20"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.mean_delta_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.mean_delta_wss_at_95"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.worst_delta_recall_at_10"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "It reproduces exact u4 in 14/14 reviews, tests 84 residual executions, falls back to u4 in 12/14 outer folds and observes cross-fitted deltas of -0.002009 CRE20, -0.028274 R@10 and -0.000991 WSS95, with worst-review R@10 -0.333333.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C20",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "V9 reaches that family but stops before fitting because one normalized content identity has conflicting labels.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v9.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C21",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.canonical_rows"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "V10 freezes the provider-native nonduplicate disposition, retains both records, and executes once on 21,897 rows.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C22",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.mean_delta_cre20"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.mean_delta_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.mean_delta_wss_at_95"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.positive_cre20_review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.positive_recall_at_10_review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.review_count"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "Mean deltas versus exact u4 are +0.000780 CRE20, -0.005383 R@10 and +0.001765 WSS95; positive CRE20 and R@10 signs occur in 4/7 and 1/7 reviews.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C23",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "Four frozen gates fail, so title emphasis is discarded without tuning and exact u4 remains the fallback.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C24",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.dataset_blob_count"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "Provider-native keywords can separate records that exact u4 model text cannot, and the coherent signed snapshot exposes 61 dataset blobs under an exact historical identity.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-C25",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "These findings establish available state and a bound source frontier, not a screening benefit; population binding, matched outcomes and independent custody remain necessary for empirical ascent above P2_NARROWED.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.matched_performance_authorized"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L01",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "Its labels are public, its first row was exposed before protocol freeze, and V2's eligible population was frozen only after V1 revealed two noncanonical class rows and three duplicate identities.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.v2_terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L02",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "The active estimator family, hyperparameters and batch-size rule were frozen before V2 scoring and outperformed the registered passive comparators after re-instantiation on the source-specific representation and identity adapter, but the analysis contains one physiotherapy pool, no independent label custody, no application-exact source-native screening reproduction, no open-world route action and no task closure.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.v2_terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L03",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.active_audit_u4_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.active_audit_candidate_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.wss_target_recall_percent"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.active_audit_u4_wss_at_95"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.active_audit_candidate_wss_at_95"
+        }
+      ],
+      "region": "limitations",
+      "sentence": "In the separate post-V2 active-comparator audit, cadence-matched pinned ELAS u4 reached recall 0.722444 versus 0.703409 and WSS@95 0.746781 versus 0.744744, failing the candidate's strict-margin and dominance gates.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.active_audit_terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L04",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "The evidence therefore supports a large conditional within-pool contrast against passive screening under a disclosed post-schema repair and label-informed warm start, not active-controller superiority, fitted-model, representation, initialization, cold-start, system-level, population-average, or cross-domain transport.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.active_audit_terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L05",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "The later SWIFT cross-review successor broadens the number of public screening decisions but remains development evidence.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L06",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.canonical_rows"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.mean_candidate_minus_u4_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.mean_candidate_minus_u4_wss_at_95"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.wss_target_recall_percent"
+        }
+      ],
+      "region": "limitations",
+      "sentence": "Across five reviews and 96,241 canonical rows, the candidate-minus-u4 unweighted review-level means were -0.021717971642 for recall at 10% screened and -0.050396333672 for WSS@95; u4 was better on both endpoints in all five reviews.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L07",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.maximum_pairwise_shared_content_count"
+        }
+      ],
+      "region": "limitations",
+      "sentence": "The reviews are distinct screening decisions, not proven independent samples (maximum pairwise shared content count 68), and the execution is not cold-start evidence, an exact ASReview application run, protected confirmation, independent custody, population transport, ASReview software inferiority, or ORION-specific superiority.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.maximum_pairwise_shared_content_count"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L08",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "V13 establishes a genuine fibre-separating metadata coordinate, but only four of seven reviews support it, below the unchanged six-of-seven sign gates.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v13.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L09",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.dataset_blob_count"
+        }
+      ],
+      "region": "limitations",
+      "sentence": "V15 binds a coherent signed snapshot with 61 dataset blobs, but its exact root licence is MIT and must not be blended with current CC0 repository metadata.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L10",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.index_attestation_status"
+        }
+      ],
+      "region": "limitations",
+      "sentence": "Exact index attestation returned 404, all three independent custody roles remain open, and no population or performance conclusion is available.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-L11",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "SAGE's paper-linked repository is data-only at the audited revision and supplies neither an official runner nor a licence; its published retrieval setting therefore remains unavailable as an arm.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "external_access_audit",
+          "key": "official_evaluation_runnable_by_family.families.sage_scientific_retrieval"
+        }
+      ],
+      "support_type": "EXTERNAL_OFFICIAL"
+    },
+    {
+      "claim_id": "P2-I-L12",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "The outcome-blind adapter preflight forbids every such conversion and leaves the exact terminal P2_SIEVE_RUNNABLE_FIXTURE__NOT_A_FROZEN_ARM.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.sieve.current_terminal"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-I-L13",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "Archived task-world reproduction and equal provider, route, budget, model, terminal and scoring bindings remain mandatory before SIEVE becomes a comparator arm.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.sieve.grants_scientific_authority"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-I-L14",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.task_world_successor.planned_cluster_count"
+        }
+      ],
+      "region": "limitations",
+      "sentence": "The 768-cluster successor also remains entirely prospective.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.task_world_successor.current_terminal"
+        }
+      ],
+      "support_type": "NONE_YET"
+    },
+    {
+      "claim_id": "P2-I-L15",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "Its arithmetic freeze establishes neither that the task worlds exist in compliant form nor that the planned effect is real.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.task_world_successor.grants_scientific_authority"
+        }
+      ],
+      "support_type": "NONE_YET"
+    },
+    {
+      "claim_id": "P2-I-R01",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "results",
+      "sentence": "The one-pool Zenodo V1 binding failure, V2 post-schema-repair result and post-V2 active-comparator audit remain separate identities.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.zenodo.v2_terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R02",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.canonical_rows"
+        }
+      ],
+      "region": "results",
+      "sentence": "A later SWIFT successor retained two additional population-mechanics failures and then bound five review decisions with 96,241 canonical rows.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R03",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.mean_candidate_minus_u4_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.mean_candidate_minus_u4_wss_at_95"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.wss_target_recall_percent"
+        }
+      ],
+      "region": "results",
+      "sentence": "Its V3 unweighted review-level candidate-minus-u4 means were -0.021717971642 for recall at 10% screened and -0.050396333672 for WSS@95; u4 was better on both endpoints in all five reviews.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R04",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "results",
+      "sentence": "These screening studies inform downstream selection within acquired pools; they are not evidence about open-world route acquisition or closure, and V3 remains public-development evidence rather than population transport or confirmation.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.swift_v3.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R05",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v6.review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v6.canonical_rows"
+        }
+      ],
+      "region": "results",
+      "sentence": "The subsequent KIFMS V6 packet is not a fourth performance family: it binds a lawful 14-review source, a 4,934-row content-disjoint population and a continuous recall-effort coprimary before exact V6 outcome access, but executes no arm.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v6.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R06",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "results",
+      "sentence": "Its independent custody, label-semantic/class, harm, work-saving and performance coordinates therefore remain cannot-check; V5 remains the latest independently unopened comparative screening result.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v6.independent_protected_execution_cannot_check"
+        }
+      ],
+      "support_type": "NONE_YET"
+    },
+    {
+      "claim_id": "P2-I-R07",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.source_file_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.canonical_rows"
+        }
+      ],
+      "region": "results",
+      "sentence": "All 14 source files, 4,934 canonical rows and both-class checks pass.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R08",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.learner_balancer_mean_cre20"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.learner_balancer_mean_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.learner_balancer_mean_wss_at_95"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        }
+      ],
+      "region": "results",
+      "sentence": "The learner/balancer means are +0.084472 CRE20, +0.148820 R@10 and +0.119813 WSS95, while the locked sign and harm gates fail; the full candidate loses to u4 at both R@10 and WSS95.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v7.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R09",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.u4_reproduced_review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.fallback_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.review_count"
+        }
+      ],
+      "region": "results",
+      "sentence": "Exact u4 reproduces in 14/14 reviews, but 12/14 outer folds select fallback and both residual activations harm their held out review.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R10",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.mean_delta_cre20"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.mean_delta_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.mean_delta_wss_at_95"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.worst_delta_recall_at_10"
+        }
+      ],
+      "region": "results",
+      "sentence": "Aggregate deltas versus u4 are -0.002009 CRE20, -0.028274 R@10 and -0.000991 WSS95, with worst R@10 -0.333333; no residual is admitted.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.kifms_v8.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R11",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.provider_record_id_a"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.provider_record_id_b"
+        }
+      ],
+      "region": "results",
+      "sentence": "V10 resolves only the identity semantics: provider records 1003 and 1018 have distinct author/DOI hashes and no provider duplicate link, so both are retained without choosing a label.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R12",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.canonical_rows"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.elapsed_seconds"
+        }
+      ],
+      "region": "results",
+      "sentence": "Exactly one three-arm execution on 21,897 rows takes 357.789818 seconds.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R13",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.mean_delta_cre20"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.mean_delta_recall_at_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.mean_delta_wss_at_95"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.positive_cre20_review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.positive_recall_at_10_review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.review_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.metric_notation.recall_screened_percent_10"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.worst_delta_recall_at_10"
+        }
+      ],
+      "region": "results",
+      "sentence": "Candidate-minus-u4 means are +0.000779993 CRE20, -0.005382681 R@10 and +0.001765467 WSS95; positive CRE20 and R@10 occur in 4/7 and 1/7 reviews, while worst R@10 is -0.044444444.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R14",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "results",
+      "sentence": "The two coprimary magnitude gates and both sign gates fail, so the residual is discarded and exact u4 remains the fallback.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.title_v10.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R15",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [],
+      "region": "results",
+      "sentence": "It thus establishes one non-simulated provider-native coordinate that separates two records within an exact-u4-text fibre.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v13.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R16",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.index_bytes"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.dataset_blob_count"
+        }
+      ],
+      "region": "results",
+      "sentence": "The provider-valid signed commit, tag and recursive tree coherently expose the exact 22,135-byte index entry and 61 same-snapshot dataset CSV blobs.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R17",
+      "manuscript_status": "ASSERTED",
+      "note": "Current integrated-manuscript claim, reviewed against the source-derived binding sidecar.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.index_attestation_status"
+        }
+      ],
+      "region": "results",
+      "sentence": "The exact-index attestation endpoint returned 404, independent custody remained open, and zero index, census, ranking or metric run occurred.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.state_v15.terminal"
+        }
+      ],
+      "support_type": "EXTERNAL_DECLARED_DEVIATION"
     }
   ],
   "human_readable_view": "evidence/CLAIM_LEDGER_V1.md",
@@ -2302,6 +3838,11 @@
       "reason": "Arithmetic consequence of P2-R58, not a separate measurement: if the best arm's whole score is below the required delta, no deletion of a competitor produces it. Carries no number of its own.",
       "region": "results",
       "sentence": "Deleting a competing arm outright would not reach the threshold."
+    },
+    {
+      "reason": "Theorem synopsis. It states proved formal propositions and conditions rather than an empirical campaign outcome; theorem bodies carry the proof authority.",
+      "region": "conclusion",
+      "sentence": "The acquisition-ceiling theorem attributes failures before proposing a repair; the factorization theorem states exactly when a product has enough state to implement scientific closure; the indistinguishable-world bound proves when new acquisition or new assumptions are unavoidable; and the robust safe-set rule is maximally permissive, while the registered obligation rule reaches it only under an explicit completeness condition."
     }
   ],
   "purpose": "Machine-checkable binding between the claims the manuscript asserts and the archived evidence that supports them. Verified by scripts/check_claim_ledger.py. Sentences are curated, never auto-regenerated: when a sentence drifts the checker fails so a human re-verifies the claim instead of the ledger silently absorbing the change.",

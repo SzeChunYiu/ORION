@@ -17,21 +17,21 @@
   "close_issue": false,
   "close_reason": "Offline 390-task positivity cannot close #279.",
   "content_hashes": {
-    "raw_artifact_hash_list_digest_sha256": "ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe",
-    "record_digest_sha256": "27b8e55b68a65906fe0971ed2f24a814d31d66a1423d38782bb121c7f06e1525",
-    "results_summary_canonical_sha256": "fda18102007fb03a6644408ab7df9c34cc79acb4d2793073dc21e0f2fd7c6749",
-    "results_summary_file_sha256": "ee414173bbc8da7a564d697a1bab280e856891a0750de93f660735772973c03b",
-    "results_summary_git_blob": "71b9f37178dcfecdcf87d80b3d8d10d3aa586489"
+    "raw_artifact_hash_list_digest_sha256": "a88938efb3c0eeefbdb2be6cb27540d8aa5a464edae43fcdebb883faa7ed5760",
+    "record_digest_sha256": "4722cf82b514d4ebfbea343970d079dff24244f5795584262afa52d26edc4a6f",
+    "results_summary_canonical_sha256": "cb098c51f2bacb5328b2cfe5703626f2d1b2faf0be3b0cefff5fb3ca8e857114",
+    "results_summary_file_sha256": "73adfc8e8a7951e55c1aa06f4312bbea25e8c42dbe6be8867ae19b0f356c264b",
+    "results_summary_git_blob": "fe7361d8bf1f857941c70b56bf5f6c1169cd27a9"
   },
   "issue": 279,
   "issue279_numeric_bindings_match": true,
   "mechanism_checks": {
     "content_identity_dedup": {
       "ablated_budget_exhaustion_failures": 145,
-      "ablated_duplicate_processing_rate": 0.101446,
-      "ablated_pass_rate": 0.605128,
+      "ablated_duplicate_processing_rate": 1.0,
+      "ablated_pass_rate": 0.492308,
       "orion_duplicate_processing_rate": 0.0,
-      "orion_pass_rate": 0.817949
+      "orion_pass_rate": 0.666667
     },
     "coverage_diagnostic_non_authority": {
       "ablated_premature_closure_rate": 1.0,
@@ -56,9 +56,9 @@
     },
     "unavailable_route_open_state": {
       "ablated_cannot_check_rate": 0.0,
-      "ablated_premature_closure_failures": 12,
+      "ablated_premature_closure_failures": 71,
       "ablated_unavailable_case_recall": 0.97151,
-      "orion_cannot_check_rate": 0.030769,
+      "orion_cannot_check_rate": 0.182051,
       "orion_unavailable_case_recall": 0.97151
     }
   },
