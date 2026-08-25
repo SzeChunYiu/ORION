@@ -1,0 +1,26 @@
+{
+  "chronology_safe_comparison": "CANNOT_CHECK_NO_ADMISSIBLE_PRE_CUTOFF_EVIDENCE",
+  "claim_boundary": "deterministic internal scorers are not substitutes for external model/framework implementations",
+  "job_id": "DES-HISTORICAL-01",
+  "matched_resources": true,
+  "matched_source_access": true,
+  "reconstruction_only_cells": 2,
+  "registered_scorers": [
+    "terminal_only_narrative",
+    "evidence_only",
+    "falsification_first",
+    "alternative_causal_graph",
+    "dynamic_epistemic_state",
+    "external_model"
+  ],
+  "runnable_internal_scorers": [
+    "terminal_only_narrative",
+    "evidence_only",
+    "falsification_first",
+    "alternative_causal_graph",
+    "dynamic_epistemic_state"
+  ],
+  "schema": "orion.dynamic-epistemic-state.des-historical.ideal-donor.v1",
+  "strongest_external_donor": "CANNOT_CHECK_EXTERNAL_MODEL_CUSTODY_MISSING",
+  "terminal": "IDEAL_DONOR_FRONTIER_CANNOT_CHECK"
+}

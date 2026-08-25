@@ -1,0 +1,19 @@
+{
+  "adverse_preflight_retained": true,
+  "authority_delta": "NONE",
+  "classification": "DERIVED_METRIC_IMPLEMENTATION_CORRECTION",
+  "corrected_formula": "exact_retained_certificates - full_reset_retained_certificates",
+  "frozen_reference_path": "papers/paper-06-formal-epistemic-structures-and-mechanics/revalidation/compare_p6_revalidation_v1.py",
+  "frozen_reference_sha256": "0d84df9c584aeb90585c0cb4c56dd81a6bae95b101a718faac83ca6bf86e87db",
+  "job_id": "P6-DES-01",
+  "new_runner_sha256": "6581de15d0555a5c633503a5a8b810761520d1f0df126a2c33ccc91a3ee29bdc",
+  "old_formula": "full_reset_revalidation_actions - exact_revalidation_actions",
+  "old_runner_sha256": "2e4724b004493a3599876e452f939a5967caca01e698e291fb8800d6777ab47f",
+  "post_outcome_retuning": false,
+  "preflight_failure_path": "research/orion-epistemic-state-v1/results/P6-DES-01/PREFLIGHT_FAILURE_V1.json",
+  "preflight_failure_sha256": "f3812948cd779386b775357a31eea74205cacf6525a6f93ea81bc358c12dc4af",
+  "protocol_cases_comparators_resources_thresholds_changed": false,
+  "reason": "Restore the savings_vs_full_reset definition in the freeze-bound historical comparator. This changes only a derived work count; it does not change any case, gold, policy decision, comparator, resource vector, hard condition, threshold, or case-level outcome.",
+  "schema": "orion.p6-des.implementation-erratum.v1",
+  "scientific_case_outcomes_changed": false
+}

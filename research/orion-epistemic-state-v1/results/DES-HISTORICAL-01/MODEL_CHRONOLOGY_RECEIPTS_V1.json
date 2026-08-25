@@ -1,0 +1,243 @@
+{
+  "chronology_admissible_domain_count": 0,
+  "chronology_admissible_source_count": 0,
+  "chronology_assessments": [
+    {
+      "byte_custody_attained": false,
+      "chronology_admissible": false,
+      "cutoff": "1847-05-15",
+      "date_verdict": "POST_CUTOFF_EVALUATOR_ONLY",
+      "episode_id": "HIST-SEMMELWEIS-1847",
+      "expected_publication_date": "1861-01-01",
+      "final_reason": "POST_CUTOFF_EVALUATOR_ONLY",
+      "independent_publication_date_custody": false,
+      "source_id": "SEMMELWEIS-1861"
+    },
+    {
+      "byte_custody_attained": true,
+      "chronology_admissible": false,
+      "cutoff": "1854-09-07",
+      "date_verdict": "POST_CUTOFF_EVALUATOR_ONLY",
+      "episode_id": "HIST-SNOW-1854",
+      "expected_publication_date": "1855-01-01",
+      "final_reason": "POST_CUTOFF_EVALUATOR_ONLY",
+      "independent_publication_date_custody": false,
+      "source_id": "SNOW-1855"
+    },
+    {
+      "byte_custody_attained": false,
+      "chronology_admissible": false,
+      "cutoff": "1912-01-06",
+      "date_verdict": "POST_CUTOFF_EVALUATOR_ONLY",
+      "episode_id": "HIST-WEGENER-1912",
+      "expected_publication_date": "1915-01-01",
+      "final_reason": "POST_CUTOFF_EVALUATOR_ONLY",
+      "independent_publication_date_custody": false,
+      "source_id": "WEGENER-1915"
+    },
+    {
+      "byte_custody_attained": true,
+      "chronology_admissible": false,
+      "cutoff": "1986-01-27",
+      "date_verdict": "POST_CUTOFF_EVALUATOR_ONLY",
+      "episode_id": "HIST-CHALLENGER-1986",
+      "expected_publication_date": "1986-06-06",
+      "final_reason": "POST_CUTOFF_EVALUATOR_ONLY",
+      "independent_publication_date_custody": false,
+      "source_id": "ROGERS-1986-CH5"
+    },
+    {
+      "byte_custody_attained": false,
+      "chronology_admissible": false,
+      "cutoff": "1986-01-27",
+      "date_verdict": "POST_CUTOFF_EVALUATOR_ONLY",
+      "episode_id": "HIST-CHALLENGER-1986",
+      "expected_publication_date": "1986-06-06",
+      "final_reason": "POST_CUTOFF_EVALUATOR_ONLY",
+      "independent_publication_date_custody": false,
+      "source_id": "FEYNMAN-APPENDIX-F"
+    }
+  ],
+  "external_model": {
+    "counterfactual_probe": "NOT_RUN_CANNOT_CHECK",
+    "direct_outcome_probe": "NOT_RUN_CANNOT_CHECK",
+    "reason": "external endpoint/custodian receipt unavailable",
+    "receipt_state": "MISSING",
+    "verbatim_overlap_probe": "NOT_RUN_CANNOT_CHECK"
+  },
+  "job_id": "DES-HISTORICAL-01",
+  "schema": "orion.dynamic-epistemic-state.model-chronology-receipts.v1",
+  "source_receipts": [
+    {
+      "attempts": [
+        {
+          "attempt_index": 0,
+          "error": "HTTPError: HTTP Error 503: Service Unavailable",
+          "status": null,
+          "wallclock_seconds": 3.090186499990523
+        },
+        {
+          "attempt_index": 1,
+          "error": "HTTPError: HTTP Error 503: Service Unavailable",
+          "status": null,
+          "wallclock_seconds": 0.8684235000400804
+        }
+      ],
+      "byte_count": null,
+      "cap_hit": false,
+      "content_type": null,
+      "domain": "medicine",
+      "episode_id": "HIST-SEMMELWEIS-1847",
+      "etag": null,
+      "expected_publication_date": "1861-01-01",
+      "expected_role": "post_cutoff_evaluator_only",
+      "expected_title": "Die Aetiologie, der Begriff und die Prophylaxis des Kindbettfiebers",
+      "final_url": null,
+      "http_status": null,
+      "last_modified": null,
+      "redirect_chain": [],
+      "requested_url": "https://archive.org/download/dieaetiologie00semmgoog/dieaetiologie00semmgoog_djvu.txt",
+      "retrieval_error": "HTTPError: HTTP Error 503: Service Unavailable",
+      "retrieved_at_utc": "2026-08-25T18:35:09.305969+00:00",
+      "sha256": null,
+      "source_id": "SEMMELWEIS-1861",
+      "wallclock_seconds": 4.9725096670445055
+    },
+    {
+      "attempts": [
+        {
+          "attempt_index": 0,
+          "error": null,
+          "status": 200,
+          "wallclock_seconds": 1.3321907079662196
+        }
+      ],
+      "byte_count": 528629,
+      "cap_hit": false,
+      "content_type": "text/plain; charset=utf-8",
+      "domain": "epidemiology",
+      "episode_id": "HIST-SNOW-1854",
+      "etag": null,
+      "expected_publication_date": "1855-01-01",
+      "expected_role": "post_cutoff_evaluator_only",
+      "expected_title": "On the Mode of Communication of Cholera",
+      "final_url": "https://www.gutenberg.org/cache/epub/72838/pg72838.txt",
+      "http_status": 200,
+      "last_modified": "Wed, 29 Jul 2026 07:39:45 GMT",
+      "redirect_chain": [],
+      "requested_url": "https://www.gutenberg.org/cache/epub/72838/pg72838.txt",
+      "retrieval_error": null,
+      "retrieved_at_utc": "2026-08-25T18:35:14.278296+00:00",
+      "sha256": "253c8b80dbf7698406b396889f765223addb2570f2794f10d1672e2fc60b31c1",
+      "source_id": "SNOW-1855",
+      "wallclock_seconds": 1.3357601250172593
+    },
+    {
+      "attempts": [
+        {
+          "attempt_index": 0,
+          "error": "HTTPError: HTTP Error 503: Service Unavailable",
+          "status": null,
+          "wallclock_seconds": 3.192184665997047
+        },
+        {
+          "attempt_index": 1,
+          "error": "HTTPError: HTTP Error 503: Service Unavailable",
+          "status": null,
+          "wallclock_seconds": 0.8813587500480935
+        }
+      ],
+      "byte_count": null,
+      "cap_hit": false,
+      "content_type": null,
+      "domain": "earth_science",
+      "episode_id": "HIST-WEGENER-1912",
+      "etag": null,
+      "expected_publication_date": "1915-01-01",
+      "expected_role": "post_cutoff_evaluator_only",
+      "expected_title": "Die Entstehung der Kontinente und Ozeane",
+      "final_url": null,
+      "http_status": null,
+      "last_modified": null,
+      "redirect_chain": [],
+      "requested_url": "https://archive.org/download/dieentstehungde00wege/dieentstehungde00wege_djvu.txt",
+      "retrieval_error": "HTTPError: HTTP Error 503: Service Unavailable",
+      "retrieved_at_utc": "2026-08-25T18:35:15.614163+00:00",
+      "sha256": null,
+      "source_id": "WEGENER-1915",
+      "wallclock_seconds": 5.091267125040758
+    },
+    {
+      "attempts": [
+        {
+          "attempt_index": 0,
+          "error": null,
+          "status": 200,
+          "wallclock_seconds": 1.20290016598301
+        }
+      ],
+      "byte_count": 195589,
+      "cap_hit": false,
+      "content_type": "text/html;charset=utf-8",
+      "domain": "aerospace_engineering",
+      "episode_id": "HIST-CHALLENGER-1986",
+      "etag": null,
+      "expected_publication_date": "1986-06-06",
+      "expected_role": "post_cutoff_evaluator_only",
+      "expected_title": "Report of the Presidential Commission on the Space Shuttle Challenger Accident, Chapter V",
+      "final_url": "https://www.nasa.gov/history/rogersrep/v1ch5.htm",
+      "http_status": 200,
+      "last_modified": null,
+      "redirect_chain": [
+        {
+          "from": "https://history.nasa.gov/rogersrep/v1ch5.htm",
+          "status": 301,
+          "to": "https://www.nasa.gov/history/rogersrep/v1ch5.htm"
+        }
+      ],
+      "requested_url": "https://history.nasa.gov/rogersrep/v1ch5.htm",
+      "retrieval_error": null,
+      "retrieved_at_utc": "2026-08-25T18:35:20.705266+00:00",
+      "sha256": "a5c5b63aaccad7691fc3ce9a032f490410c73cb58e3c32feeaa2fe1eec3c11a4",
+      "source_id": "ROGERS-1986-CH5",
+      "wallclock_seconds": 1.207247250014916
+    },
+    {
+      "attempts": [
+        {
+          "attempt_index": 0,
+          "error": "URLError: <urlopen error timed out>",
+          "status": null,
+          "wallclock_seconds": 60.00515387498308
+        },
+        {
+          "attempt_index": 1,
+          "error": "URLError: <urlopen error timed out>",
+          "status": null,
+          "wallclock_seconds": 60.00400312501006
+        }
+      ],
+      "byte_count": null,
+      "cap_hit": false,
+      "content_type": null,
+      "domain": "aerospace_engineering",
+      "episode_id": "HIST-CHALLENGER-1986",
+      "etag": null,
+      "expected_publication_date": "1986-06-06",
+      "expected_role": "post_cutoff_evaluator_only",
+      "expected_title": "Personal observations on reliability of Shuttle",
+      "final_url": null,
+      "http_status": null,
+      "last_modified": null,
+      "redirect_chain": [],
+      "requested_url": "https://science.ksc.nasa.gov/shuttle/missions/51-l/docs/rogers-commission/Appendix-F.txt",
+      "retrieval_error": "URLError: <urlopen error timed out>",
+      "retrieved_at_utc": "2026-08-25T18:35:21.912586+00:00",
+      "sha256": null,
+      "source_id": "FEYNMAN-APPENDIX-F",
+      "wallclock_seconds": 121.02811483299593
+    }
+  ],
+  "subject_commit": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "terminal": "CHRONOLOGY_AND_MODEL_CUSTODY_CANNOT_CHECK"
+}

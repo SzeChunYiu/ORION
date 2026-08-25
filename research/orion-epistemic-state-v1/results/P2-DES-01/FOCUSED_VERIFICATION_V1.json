@@ -1,0 +1,74 @@
+{
+  "schema": "orion.p2-des-01.focused-verification.v1",
+  "job_id": "P2-DES-01",
+  "verified_at_utc": "2026-08-25T19:02:43Z",
+  "verification_scope": "Frozen P2-DES-01 runner, packet integrity, case-policy denominators, adverse/null retention, resource/custody boundaries, and exact terminal only.",
+  "checks": [
+    {
+      "id": "OUTCOME_FREE_UNIT_TESTS",
+      "status": "PASS",
+      "evidence": "8 focused tests passed, including the reproduced pre-score Boolean failure and an AST guard against JSON literal names in Python."
+    },
+    {
+      "id": "SYNTHETIC_END_TO_END_PACKET",
+      "status": "PASS",
+      "evidence": "A fresh 50-topic, 8-policy synthetic integration emitted and validated all 400 required case-policy rows before the second LUNARC submission."
+    },
+    {
+      "id": "LUNARC_COMPLETION",
+      "status": "PASS",
+      "evidence": "SLURM job 3539865 completed with ExitCode 0:0 on cn087 in 00:01:05."
+    },
+    {
+      "id": "REMOTE_DIGESTS",
+      "status": "PASS",
+      "evidence": "Remote archive digest and all 11 remote JSON digests passed sha256sum verification."
+    },
+    {
+      "id": "LOCAL_ARCHIVE_BINDING",
+      "status": "PASS",
+      "evidence": "Local archive sha256 1f0bcaa6b22c73e693ff2b393248089cb23793c53b24c9a7b85fc05e56c946e1 exactly matched the LUNARC receipt."
+    },
+    {
+      "id": "FOCUSED_PACKET_VALIDATOR",
+      "status": "PASS",
+      "evidence": "P2_DES_01_FOCUSED_VERIFICATION_PASS topics=50 policies=8 rows=400 terminal=CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE"
+    },
+    {
+      "id": "DENOMINATOR_COMPLETENESS",
+      "status": "PASS",
+      "evidence": "50/50 topics, 8/8 policies, and 400/400 case-policy rows retained; 0 topic drops, 0 row drops, and 0 scored-row crashes."
+    },
+    {
+      "id": "FAILED_ATTEMPT_RETENTION",
+      "status": "PASS",
+      "evidence": "Failed job 3539863, its logs, exact exception, zero-outcome boundary, resource use, and no-scientific-rule-change repair are retained."
+    },
+    {
+      "id": "AUTHORITY_BOUNDARY",
+      "status": "PASS",
+      "evidence": "Material biomedical neural donor, licensed-review transfer, reminted cross-domain transfer, and external independent custody remain explicitly unmet; no proxy substituted."
+    }
+  ],
+  "scientific_findings": {
+    "local_saturation_licensed_topics": 0,
+    "remote_jump_contrast_topics": 0,
+    "structural_jump_mean_recall_at_100": 0.12044117170454913,
+    "ideal_donor_product_mean_recall_at_100": 0.12465939794629531,
+    "structural_minus_ideal_mean_recall": -0.004218226241746187,
+    "structural_minus_ideal_95_percent_bootstrap_interval": [
+      -0.008443952803971921,
+      -0.0005050264080027203
+    ],
+    "structural_vs_ideal_topics": {
+      "harmful": 33,
+      "tied": 3,
+      "beneficial": 14
+    },
+    "interpretation": "The frozen saturation predicate licensed no remote jump on any TREC-COVID topic. STRUCTURAL_JUMP therefore remained the local policy and was worse on mean recall than the fixed ideal donor product. This adverse/null evidence is retained; it cannot be promoted to a global donor-sufficiency result because the material donor and transfer preconditions were unavailable."
+  },
+  "exact_terminal": "CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE",
+  "claim_ceiling": "Public TREC-COVID qrels-bounded internal comparison only; no full P2 superiority, global closure, transfer, external independence, or paper-authority claim.",
+  "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+  "computation_session_paper_authority_delta": "NONE"
+}

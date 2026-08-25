@@ -1,0 +1,59 @@
+{
+  "censoring": {
+    "cap_hits_as_incapability": false,
+    "status": "NOT_CENSORED",
+    "timeouts_as_obstruction": false
+  },
+  "execution_deviations": [
+    {
+      "actual": "lu48",
+      "field": "resource_freeze.partition",
+      "frozen": "lu",
+      "reason": "The frozen association label lu was rejected by the live scheduler as an invalid partition. Live sinfo and completed reference job 3539855 identify lu48 as the active CPU partition. This environment-only correction occurred before policy execution and changed no case, endpoint, comparator, threshold, or terminal rule.",
+      "scientific_rule_changed": false
+    }
+  ],
+  "frozen_maxima": {
+    "candidate_reads_per_topic_policy": 100,
+    "model_tokens": 0,
+    "registered_queries_per_topic_policy": 4
+  },
+  "job_id": "P2-DES-01",
+  "observed": {
+    "case_policy_rows": 400,
+    "maximum_registered_query_calls": 4,
+    "maximum_returned_depth": 100,
+    "resource_cap_binding": false
+  },
+  "prior_failed_attempts": [
+    {
+      "elapsed": "00:01:05",
+      "exit_code": "1:0",
+      "failure": "NameError: lowercase JSON boolean in the pre-score envelope after all 50 policy cases were generated",
+      "job_id": "3539863",
+      "max_rss_kib": 229304,
+      "qrels_opened": false,
+      "scientific_outcomes_generated": false,
+      "scientific_rule_changed_by_repair": false,
+      "state": "FAILED"
+    }
+  ],
+  "runtime": {
+    "index_seconds": 14.63538932800293,
+    "max_rss_platform_units": 1494792,
+    "platform": "Linux-5.14.0-687.24.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "python": "3.11.5 (main, Aug 26 2024, 11:58:39) [GCC 13.2.0]",
+    "system_cpu_seconds": 0.763977,
+    "user_cpu_seconds": 58.809199,
+    "wallclock_seconds": 59.85914492607117
+  },
+  "schema": "orion.p2-des-01.resource-ledger.v1",
+  "slurm": {
+    "actual_partition": "lu48",
+    "cpus_per_task": 4,
+    "frozen_partition": "lu",
+    "job_id": "3539865",
+    "job_name": "P2-DES-01",
+    "node": "cn087"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schema": "orion.p2-des-01.lunarc-execution-receipt.v1",
+  "job_id": "P2-DES-01",
+  "captured_at_utc": "2026-08-25T19:02:43Z",
+  "cluster": "LUNARC_COSMOS",
+  "account": "lu2026-2-51",
+  "socket_check": "CONNECTED",
+  "source_binding": {
+    "subject_sha": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+    "freeze_commit": "2b2d73dd874bfff26f4298c9eb3ef594b5e6234b",
+    "implementation_sha": "61122f3f6fd2857fba7c8891b19ee9fa29eec72a",
+    "freeze_sha256": "0acbfc52fdd7ffc18b18de00745410704442eba1d81a93a98577af5c13e9eda3",
+    "source_archive_sha256": "c8b4f37af9a7901b371f57798f5e157616a6e0aa75ef053876527ab7f5fa0031"
+  },
+  "input_bindings": {
+    "corpus_sha256": "aded69896598665082316d00df487d22212cc5a8611db05db34eb40d04ed00d7",
+    "queries_sha256": "78f4b76bfef251a0baf37a6cea5c4ba8376cb4536c34635709aaa4a2783b208c",
+    "qrels_sha256": "10669ab7d526cb04f52079139fd88c3d467a0776441b046567f540582798982b"
+  },
+  "attempts": [
+    {
+      "slurm_job_id": "3539863",
+      "state": "FAILED",
+      "exit_code": "1:0",
+      "partition": "lu48",
+      "node": "cn087",
+      "requested_memory": "32G",
+      "elapsed": "00:01:05",
+      "batch_max_rss": "229304K",
+      "submitted": "2026-08-25T20:56:32",
+      "started": "2026-08-25T20:56:33",
+      "ended": "2026-08-25T20:57:38",
+      "failure": "NameError from a lowercase JSON boolean while emitting the pre-score envelope after all 50 policy cases were generated.",
+      "qrels_opened": false,
+      "scientific_outcome_generated": false,
+      "repair": "Replace JSON literal names with Python Boolean constants, add a reproducing unit test plus an AST literal guard, and run a 50-topic synthetic end-to-end packet validation.",
+      "scientific_rule_changed": false,
+      "stdout_sha256": "91d927868e25f50ce84e65ab1434b696d90fa2da6469e98a05384574a67e5382",
+      "stderr_sha256": "9504aeaac67578d63036e6c92d27815945028d7a1449b45348052f990574183a"
+    },
+    {
+      "slurm_job_id": "3539865",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "partition": "lu48",
+      "node": "cn087",
+      "requested_memory": "32G",
+      "elapsed": "00:01:05",
+      "batch_max_rss": "225612K",
+      "submitted": "2026-08-25T20:59:52",
+      "started": "2026-08-25T20:59:52",
+      "ended": "2026-08-25T21:00:57",
+      "stdout_sha256": "90ad277e7a8a75f771148998d4c5969f2293b755820a039e86ef386e532fab6d",
+      "stderr_sha256": "e243831a8164fed7ac2b5e9a7323834f8c0d0b5ad5ffc09f945c7e4470d3651e"
+    }
+  ],
+  "pre_execution_scheduler_deviation": {
+    "frozen_partition": "lu",
+    "live_partition": "lu48",
+    "evidence": "The live scheduler rejected lu as invalid; live sinfo listed lu48 and completed reference job 3539855 used lu48.",
+    "scientific_rule_changed": false
+  },
+  "remote_packet": {
+    "path": "/home/scyiu/orion-executions/P2-DES-01/3539865",
+    "archive": "P2-DES-01_RESULT_ARCHIVE_V1.tar.gz",
+    "archive_bytes": 159116,
+    "archive_sha256": "1f0bcaa6b22c73e693ff2b393248089cb23793c53b24c9a7b85fc05e56c946e1",
+    "remote_archive_sha256_check": "PASS",
+    "remote_json_sha256_checks": "11_OF_11_PASS",
+    "local_archive_sha256_match": "PASS"
+  },
+  "exact_terminal": "CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE",
+  "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+  "computation_session_paper_authority_delta": "NONE"
+}
