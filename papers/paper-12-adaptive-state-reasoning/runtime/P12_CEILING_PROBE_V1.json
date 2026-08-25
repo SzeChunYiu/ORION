@@ -1,0 +1,97 @@
+{
+  "schema": "orion.p12.ceiling-probe.v1",
+  "model": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
+  "load_seconds": 8.4,
+  "tasks_probed": 6,
+  "parses_as_python": 4,
+  "has_import": 6,
+  "mentions_output_path": 5,
+  "mean_gen_seconds": 45.0,
+  "what_this_is_not": "Not a benchmark score. Structural plausibility only: whether output is syntactically Python that imports something and names its output file. A campaign gate needs executed eval scripts, not this.",
+  "results": [
+    {
+      "instance_id": "1",
+      "domain": "Computational Chemistry",
+      "family": "Feature Engineering, Deep Learning",
+      "gen_seconds": 66.4,
+      "completion_tokens": 1483,
+      "chars": 5998,
+      "has_import": true,
+      "has_def_or_main": true,
+      "mentions_output_path": true,
+      "parses_as_python": true
+    },
+    {
+      "instance_id": "2",
+      "domain": "Computational Chemistry",
+      "family": "Feature Selection, Machine Learning",
+      "gen_seconds": 69.5,
+      "completion_tokens": 1600,
+      "chars": 4782,
+      "has_import": true,
+      "has_def_or_main": false,
+      "mentions_output_path": false,
+      "parses_as_python": false
+    },
+    {
+      "instance_id": "3",
+      "domain": "Computational Chemistry",
+      "family": "Feature Engineering, Machine Learning",
+      "gen_seconds": 16.6,
+      "completion_tokens": 394,
+      "chars": 1611,
+      "has_import": true,
+      "has_def_or_main": false,
+      "mentions_output_path": true,
+      "parses_as_python": true
+    },
+    {
+      "instance_id": "4",
+      "domain": "Geographical Information Science",
+      "family": "Statistical Analysis, Data Visualization",
+      "gen_seconds": 69.6,
+      "completion_tokens": 1600,
+      "chars": 5605,
+      "has_import": true,
+      "has_def_or_main": true,
+      "mentions_output_path": true,
+      "parses_as_python": false
+    },
+    {
+      "instance_id": "5",
+      "domain": "Bioinformatics",
+      "family": "Data Visualization",
+      "gen_seconds": 25.9,
+      "completion_tokens": 636,
+      "chars": 2697,
+      "has_import": true,
+      "has_def_or_main": false,
+      "mentions_output_path": true,
+      "parses_as_python": true
+    },
+    {
+      "instance_id": "6",
+      "domain": "Bioinformatics",
+      "family": "Data Visualization",
+      "gen_seconds": 22.1,
+      "completion_tokens": 535,
+      "chars": 1976,
+      "has_import": true,
+      "has_def_or_main": false,
+      "mentions_output_path": true,
+      "parses_as_python": true
+    }
+  ],
+  "executed_on": {
+    "host": "LUNARC",
+    "partition": "hep",
+    "node_class": "cx",
+    "job_ids": [
+      3538312,
+      3538316
+    ],
+    "login_node_used": false
+  },
+  "why_this_ran_first": "The stop/go gate compares arms on task outcomes. If every arm floors at zero because the substrate cannot produce scoreable output, the gate compares noise. That degenerate-metric shape has already been recorded three times in this programme, so feasibility was measured before any protocol was preregistered.",
+  "harness_correction": "A first run capped generation at 420 tokens and scored 1/4 parseable. All three failures reported exactly 420 completion tokens -- they were truncated mid-program, not malformed. The cap was the defect. At 1600 tokens the rate is 4/6, and both remaining failures again report exactly 1600, so the ceiling is higher than measured here and is not yet the binding constraint."
+}
