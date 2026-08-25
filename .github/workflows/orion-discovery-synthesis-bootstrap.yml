@@ -29,11 +29,45 @@ jobs:
           base64 -d /tmp/payload.b64 > /tmp/payload.tar.gz
           test "$(sha256sum /tmp/payload.tar.gz | awk '{print $1}')" = "$(cat "$root/PAYLOAD_TGZ_SHA256")"
           tar -xzf /tmp/payload.tar.gz
+
+          # The local reference package contains tiny import stubs only for its
+          # isolated tests. Restore the authoritative parent-branch packages.
+          git checkout -- \
+            src/orion/__init__.py \
+            src/orion/discovery/__init__.py \
+            src/orion/transfer/__init__.py \
+            src/orion/transfer/v2/__init__.py \
+            src/orion/transfer/v2/canonical.py
+
+          # Workflow creation is performed by the authenticated GitHub API after
+          # this source commit because the Actions token lacks workflows scope.
+          rm -f .github/workflows/orion-discovery-synthesis-v1.yml
+
           find research/orion-discovery-v1 \
                development/orion-discovery-three-mode-v1-2026-08-25 \
                -type f -name '*.md' -print0 \
             | xargs -0 -r sed -i 's/[[:space:]]\+$//'
-          rm -rf "$root" .github/workflows/orion-discovery-synthesis-bootstrap.yml
+
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+
+          receipt = Path(
+              "research/orion-discovery-v1/"
+              "DISCOVERY_SYNTHESIS_COMPLETION_RECEIPT_V1.json"
+          )
+          payload = json.loads(receipt.read_text())
+          for relative in payload["content_sha256"]:
+              path = Path(relative)
+              if path.is_file():
+                  payload["content_sha256"][relative] = hashlib.sha256(
+                      path.read_bytes()
+                  ).hexdigest()
+          receipt.write_text(json.dumps(payload, indent=2) + "\n")
+          PY
+
+          rm -rf "$root"
           git config user.name "ORION discovery synthesis bootstrap"
           git config user.email "actions@users.noreply.github.com"
           git add -A
