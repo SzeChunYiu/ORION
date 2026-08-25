@@ -713,6 +713,7 @@ dev = [
     { name = "scikit-learn" },
     { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "scipy", version = "1.18.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "z3-solver" },
 ]
 independent-checks = [
     { name = "prov" },
@@ -732,6 +733,7 @@ requires-dist = [
     { name = "numpy", marker = "extra == 'candidates'", specifier = ">=2" },
     { name = "orion-research-os", extras = ["candidates"], marker = "extra == 'dev'" },
     { name = "orion-research-os", extras = ["independent-checks"], marker = "extra == 'dev'" },
+    { name = "orion-research-os", extras = ["proofs"], marker = "extra == 'dev'" },
     { name = "prov", marker = "extra == 'independent-checks'", specifier = ">=2.0" },
     { name = "pypdf", marker = "extra == 'dev'", specifier = ">=6" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8" },
