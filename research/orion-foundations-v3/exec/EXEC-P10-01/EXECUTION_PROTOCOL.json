@@ -1,0 +1,57 @@
+{
+  "schema_version": "orion.execution-protocol.v1",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "type": "HEAVY_COMPUTE",
+  "theory_source": {
+    "location": "main:research/orion-foundations-v3/",
+    "theory_merge_commit": "69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test": [
+      "OSTC-T15",
+      "OSTC-T22"
+    ]
+  },
+  "frozen_before_outcomes": true,
+  "prior_unfrozen_probe": {
+    "disclosure": "An earlier run of this job was executed WITHOUT a frozen protocol, during a push to parallelise. #1234 requires the freeze before protected outcome access, so that run is NOT admissible as evidence and its terminal is not claimed. It is recorded as an unfrozen exploratory probe.",
+    "consequence": "This protocol governs a DIFFERENT and larger grid whose outcomes have not been accessed. Re-freezing the same grid after seeing its results would be post-hoc dressed as procedure.",
+    "what_the_probe_exposed": "The unfrozen probe produced 3,276 formulas of which ZERO were unsatisfiable. T22's separation is between polynomial checking and NP-hard finding, and a formula family with no UNSAT members never exercises the hard side -- every instance was solved by the first few assignments. The grid, not the theorem, was the problem.",
+    "grid_change": "CNF widened to 5 variables and 4 clauses of 3 literals, drawn to include UNSAT instances."
+  },
+  "information_and_tool_access": {
+    "runner": "declared grid only; no network, no model calls",
+    "checker": "raw manifest only"
+  },
+  "resource_vector": {
+    "compute": "single-process CPU enumeration",
+    "wallclock_bound_seconds": 1800
+  },
+  "multiplicity": "No hypothesis test; universal and existence claims over total enumeration.",
+  "claim_delta_default": "NONE",
+  "constitutional_note": "May confirm, refute or narrow an instantiation. May not redesign a theorem, move a gate, weaken a comparator, hide a negative, or rewrite theory after outcome access.",
+  "job_id": "EXEC-P10-01",
+  "task": "Native verifier-backed obstruction-certified expansion with donor first refusal.",
+  "estimands": {
+    "T15_closure_law": "For every (seed set, target, extension): is 'genuine semantic extension' exactly (t not in Cl(L)) and (e not in Cl(L)) and (t in Cl(L+e)), and does adding an in-closure operator NEVER change the closure (a macro cannot extend reach)?",
+    "T22_separation": "Over a formula family containing BOTH satisfiable and unsatisfiable members: is checking a supplied assignment a single pass while deciding existence requires search, and does the UNSAT set force worst-case search?",
+    "unsat_present": "Does the formula family contain unsatisfiable members? Without them the separation is untested and the run says nothing about T22."
+  },
+  "positive_terminal": "P10_OBSTRUCTION_CERTIFIED_EXPANSION_SUPPORTED",
+  "positive_conditions": [
+    "zero macro-extends-closure violations",
+    "genuine extensions occur",
+    "the family contains both SAT and UNSAT members",
+    "checking is a single pass on every supplied certificate"
+  ],
+  "negative_terminal": "P10_EXPANSION_MODEL_INCOMPLETE",
+  "negative_conditions": [
+    "any in-closure operator that changes the closure",
+    "no genuine extension exists in the grid",
+    "the family contains no UNSAT member, leaving T22's separation unexercised"
+  ],
+  "cannot_check_terminal": "P10_NATIVE_VERIFIER_UNAVAILABLE",
+  "independent_unit": "The declared grid cell; points within a cell are exhaustively enumerated, not sampled.",
+  "checker_and_authority_owner": {
+    "authority_owner": "Programme (#1234 execution lane)",
+    "independence_boundary": "Two implementations inside one programme; not external adjudication."
+  }
+}

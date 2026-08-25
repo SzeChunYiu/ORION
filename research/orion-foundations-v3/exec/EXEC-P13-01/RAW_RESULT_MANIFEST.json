@@ -1,0 +1,26 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-P13-01",
+  "grid": {
+    "n_elements": 5,
+    "n_tokens": 6,
+    "seed": 20260825
+  },
+  "t18": {
+    "cells": 140608,
+    "safe": 18616,
+    "unsafe": 121992,
+    "violations": 0,
+    "fresh_for_old_but_unsafe_for_new": 12976
+  },
+  "t11": {
+    "cells": 29120,
+    "survived": 14755,
+    "died": 14365,
+    "violations": 0
+  },
+  "totals": {
+    "cells_enumerated": 169728,
+    "wallclock_seconds": 0.824
+  }
+}

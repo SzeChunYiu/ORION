@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P13-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T18",
+    "OSTC-T11"
+  ],
+  "terminal": "P13_DRIFT_TRANSPORT_SUPPORTED",
+  "executed_on": {
+    "host": "LUNARC",
+    "wallclock_seconds": 0.824,
+    "cells_enumerated": 169728
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "cdbb032c8927469e4d45a081b5347d95db01f58a129568ae8c0dd351ec58c6a3"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "8abb94446eb6201663561a880873e425bb10ecf3b805b7b102f0d66f4bf9c716"
+    }
+  },
+  "results": {
+    "OSTC-T18_external_change": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Under a successor responsibility chosen WITHOUT regard to the stored state -- the case P13's paper is about -- safe reuse is exactly partition refinement across all 140,608 cells, zero violations. Both outcomes occur: 18,616 safe, 121,992 unsafe.",
+      "cells": 140608,
+      "safe": 18616,
+      "unsafe": 121992,
+      "violations": 0
+    },
+    "OSTC-T18_freshness_insufficient": {
+      "verdict": "FAILURE_MODE_OBSERVED",
+      "detail": "12,976 states are fresh for the OLD responsibility yet unsafe for the NEW one. This is the failure T18 predicts and the one P13's digits study measures on real data; a grid without it could not test the claim, which is why its absence was frozen as a negative.",
+      "fresh_for_old_but_unsafe_for_new": 12976
+    },
+    "OSTC-T11_survival": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Survival under revocation is exactly existence of a minimal support family disjoint from the revoked set, across 29,120 cells, zero violations. Both outcomes occur, 14,755 surviving and 14,365 dying.",
+      "cells": 29120,
+      "survived": 14755,
+      "died": 14365,
+      "violations": 0
+    }
+  },
+  "what_this_does_not_establish": [
+    "Nothing beyond the declared grid: 5 elements, 6 tokens. Total enumeration of a finite class.",
+    "No proof-assistant correspondence; EXEC-PA-01 remains open.",
+    "No external adjudication."
+  ],
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}

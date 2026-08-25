@@ -1,0 +1,34 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-P15-01",
+  "grid": {
+    "nE": 5,
+    "nV": 4,
+    "nA": 4,
+    "seed": 20260825
+  },
+  "t20": {
+    "checked": 250000,
+    "interference_cases": 0,
+    "witness": null
+  },
+  "bridge": {
+    "evaluations": 6400,
+    "updates_without_premise": 0
+  },
+  "key_compromise": {
+    "cases": 31,
+    "detected": 3,
+    "undetected": 28,
+    "false_promotions": 28,
+    "observable_signals": [
+      "SIGNATURE_VALID"
+    ],
+    "detection_is_computed": true,
+    "both_outcomes_occur": true
+  },
+  "totals": {
+    "cells_enumerated": 250000,
+    "wallclock_seconds": 0.032
+  }
+}
