@@ -1,0 +1,100 @@
+{
+  "schema": "orion.discovery-v2.decomposition-equivalence-matrix.v1",
+  "job_id": "DISC-HUMAN-DECOMP-01",
+  "six_spaces": [
+    "problem_question",
+    "hypothesis_mechanism",
+    "representation_ontology",
+    "experiment_instrument",
+    "proof_evidence",
+    "authority_adoption"
+  ],
+  "matrix": [
+    {
+      "parent": "C_K_theory",
+      "status": "SOURCED",
+      "source": "research/extensions/orion-jump-recursive-atoms/DONOR_STRUCTURAL_MATRIX_V2.md",
+      "stated_spaces": [
+        "C: concepts/propositions undecidable in current knowledge",
+        "K: knowledge"
+      ],
+      "coverage": {
+        "problem_question": "PARTIAL",
+        "hypothesis_mechanism": "PRESENT",
+        "representation_ontology": "CANNOT_CHECK",
+        "experiment_instrument": "ABSENT_IN_STATED_SPACES",
+        "proof_evidence": "PARTIAL",
+        "authority_adoption": "ABSENT_IN_STATED_SPACES"
+      },
+      "coverage_basis": "mapped only from the two spaces the repository source states; no further structure inferred"
+    },
+    {
+      "parent": "dual_space",
+      "status": "CANNOT_CHECK",
+      "reason": "no primary-source statement of this parent's decomposition exists in this repository; asserting its spaces from recall would be unverifiable",
+      "coverage": {
+        "problem_question": "CANNOT_CHECK",
+        "hypothesis_mechanism": "CANNOT_CHECK",
+        "representation_ontology": "CANNOT_CHECK",
+        "experiment_instrument": "CANNOT_CHECK",
+        "proof_evidence": "CANNOT_CHECK",
+        "authority_adoption": "CANNOT_CHECK"
+      }
+    },
+    {
+      "parent": "four_space",
+      "status": "CANNOT_CHECK",
+      "reason": "no primary-source statement of this parent's decomposition exists in this repository; asserting its spaces from recall would be unverifiable",
+      "coverage": {
+        "problem_question": "CANNOT_CHECK",
+        "hypothesis_mechanism": "CANNOT_CHECK",
+        "representation_ontology": "CANNOT_CHECK",
+        "experiment_instrument": "CANNOT_CHECK",
+        "proof_evidence": "CANNOT_CHECK",
+        "authority_adoption": "CANNOT_CHECK"
+      }
+    },
+    {
+      "parent": "analogy_structure_mapping",
+      "status": "CANNOT_CHECK",
+      "reason": "no primary-source statement of this parent's decomposition exists in this repository; asserting its spaces from recall would be unverifiable",
+      "coverage": {
+        "problem_question": "CANNOT_CHECK",
+        "hypothesis_mechanism": "CANNOT_CHECK",
+        "representation_ontology": "CANNOT_CHECK",
+        "experiment_instrument": "CANNOT_CHECK",
+        "proof_evidence": "CANNOT_CHECK",
+        "authority_adoption": "CANNOT_CHECK"
+      }
+    },
+    {
+      "parent": "mechanism_MDC",
+      "status": "CANNOT_CHECK",
+      "reason": "no primary-source statement of this parent's decomposition exists in this repository; asserting its spaces from recall would be unverifiable",
+      "coverage": {
+        "problem_question": "CANNOT_CHECK",
+        "hypothesis_mechanism": "CANNOT_CHECK",
+        "representation_ontology": "CANNOT_CHECK",
+        "experiment_instrument": "CANNOT_CHECK",
+        "proof_evidence": "CANNOT_CHECK",
+        "authority_adoption": "CANNOT_CHECK"
+      }
+    },
+    {
+      "parent": "insight_representational_change",
+      "status": "CANNOT_CHECK",
+      "reason": "no primary-source statement of this parent's decomposition exists in this repository; asserting its spaces from recall would be unverifiable",
+      "coverage": {
+        "problem_question": "CANNOT_CHECK",
+        "hypothesis_mechanism": "CANNOT_CHECK",
+        "representation_ontology": "CANNOT_CHECK",
+        "experiment_instrument": "CANNOT_CHECK",
+        "proof_evidence": "CANNOT_CHECK",
+        "authority_adoption": "CANNOT_CHECK"
+      }
+    }
+  ],
+  "cells_total": 36,
+  "cells_cannot_check": 31,
+  "terminal": "HISTORICAL_COGNITIVE_INFERENCE_CANNOT_CHECK"
+}

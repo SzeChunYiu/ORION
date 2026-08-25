@@ -1,0 +1,145 @@
+{
+  "schema": "orion.discovery-v2.episode-and-control-manifest.v1",
+  "job_id": "DISC-HUMAN-DECOMP-01",
+  "historical_episodes": [],
+  "historical_episodes_note": "None registered. The job class is CHRONOLOGY_SAFE_HISTORICAL, and no licensed episode corpus with dated primary sources exists in this repository. Episodes written from recall could not be chronology-checked by a reader, and the gate forbids inferring private cognition, which is most of what an undocumented episode would supply.",
+  "controls": [
+    {
+      "control_id": "NULL_DECOMPOSITION",
+      "spaces": [],
+      "role": "floor: a model with no spaces must score no coverage",
+      "differs_from_full_model": true,
+      "missing_relative_to_full": [
+        "authority_adoption",
+        "experiment_instrument",
+        "hypothesis_mechanism",
+        "problem_question",
+        "proof_evidence",
+        "representation_ontology"
+      ]
+    },
+    {
+      "control_id": "FLAT_SINGLE_SPACE",
+      "spaces": [
+        "candidate_search"
+      ],
+      "role": "the flat candidate search the six-space model claims to improve on",
+      "differs_from_full_model": true,
+      "missing_relative_to_full": [
+        "authority_adoption",
+        "experiment_instrument",
+        "hypothesis_mechanism",
+        "problem_question",
+        "proof_evidence",
+        "representation_ontology"
+      ]
+    },
+    {
+      "control_id": "TRIVIALLY_COMPLETE",
+      "spaces": [
+        "problem_question",
+        "hypothesis_mechanism",
+        "representation_ontology",
+        "experiment_instrument",
+        "proof_evidence",
+        "authority_adoption",
+        "everything_else"
+      ],
+      "role": "ceiling: a model that covers everything discriminates nothing",
+      "differs_from_full_model": true,
+      "missing_relative_to_full": []
+    },
+    {
+      "control_id": "TWIN_DROP_problem_question",
+      "spaces": [
+        "hypothesis_mechanism",
+        "representation_ontology",
+        "experiment_instrument",
+        "proof_evidence",
+        "authority_adoption"
+      ],
+      "role": "counterfactual twin: six-space minus problem_question",
+      "differs_from_full_model": true,
+      "missing_relative_to_full": [
+        "problem_question"
+      ]
+    },
+    {
+      "control_id": "TWIN_DROP_hypothesis_mechanism",
+      "spaces": [
+        "problem_question",
+        "representation_ontology",
+        "experiment_instrument",
+        "proof_evidence",
+        "authority_adoption"
+      ],
+      "role": "counterfactual twin: six-space minus hypothesis_mechanism",
+      "differs_from_full_model": true,
+      "missing_relative_to_full": [
+        "hypothesis_mechanism"
+      ]
+    },
+    {
+      "control_id": "TWIN_DROP_representation_ontology",
+      "spaces": [
+        "problem_question",
+        "hypothesis_mechanism",
+        "experiment_instrument",
+        "proof_evidence",
+        "authority_adoption"
+      ],
+      "role": "counterfactual twin: six-space minus representation_ontology",
+      "differs_from_full_model": true,
+      "missing_relative_to_full": [
+        "representation_ontology"
+      ]
+    },
+    {
+      "control_id": "TWIN_DROP_experiment_instrument",
+      "spaces": [
+        "problem_question",
+        "hypothesis_mechanism",
+        "representation_ontology",
+        "proof_evidence",
+        "authority_adoption"
+      ],
+      "role": "counterfactual twin: six-space minus experiment_instrument",
+      "differs_from_full_model": true,
+      "missing_relative_to_full": [
+        "experiment_instrument"
+      ]
+    },
+    {
+      "control_id": "TWIN_DROP_proof_evidence",
+      "spaces": [
+        "problem_question",
+        "hypothesis_mechanism",
+        "representation_ontology",
+        "experiment_instrument",
+        "authority_adoption"
+      ],
+      "role": "counterfactual twin: six-space minus proof_evidence",
+      "differs_from_full_model": true,
+      "missing_relative_to_full": [
+        "proof_evidence"
+      ]
+    },
+    {
+      "control_id": "TWIN_DROP_authority_adoption",
+      "spaces": [
+        "problem_question",
+        "hypothesis_mechanism",
+        "representation_ontology",
+        "experiment_instrument",
+        "proof_evidence"
+      ],
+      "role": "counterfactual twin: six-space minus authority_adoption",
+      "differs_from_full_model": true,
+      "missing_relative_to_full": [
+        "authority_adoption"
+      ]
+    }
+  ],
+  "controls_informative": 9,
+  "controls_total": 9
+}
