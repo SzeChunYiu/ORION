@@ -48,6 +48,7 @@ _RESULT_RE = re.compile(
 )
 _BOUNDARY_RE = re.compile(
     r"\b(?:CANNOT_CHECK|cannot\s+check|do\s+not\s+claim|does\s+not\s+claim|"
+    r"not\s+evidence|"
     r"not\s+(?:yet\s+)?(?:claim(?:ed)?|established|demonstrated|evaluated)|"
     r"future\s+work|planned|prospective|will\s+(?:evaluate|test|measure)|"
     r"requires?\s+(?:future|independent|prospective|empirical)\s+(?:evaluation|"

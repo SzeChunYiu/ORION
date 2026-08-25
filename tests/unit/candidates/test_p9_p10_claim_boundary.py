@@ -33,6 +33,16 @@ def test_future_bounded_bridge_is_not_an_overclaim(checker, tmp_path: Path) -> N
     assert checker.violations([manuscript]) == []
 
 
+def test_explicit_not_evidence_boundary_is_not_an_overclaim(checker, tmp_path: Path) -> None:
+    manuscript = tmp_path / "bounded.md"
+    manuscript.write_text(
+        "This is a representation result, not evidence that the representation "
+        "is sufficient for neural structural learning.\n",
+        encoding="utf-8",
+    )
+    assert checker.violations([manuscript]) == []
+
+
 def test_empirical_p9_result_is_rejected(checker, tmp_path: Path) -> None:
     manuscript = tmp_path / "overclaim.md"
     manuscript.write_text(

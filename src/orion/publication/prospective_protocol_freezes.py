@@ -155,9 +155,19 @@ def validate_p10(root: Path, payload: Mapping[str, Any]) -> dict[str, Any]:
     lock_digest = subject.get("environment_lock_sha256")
     if not isinstance(lock, str) or not isinstance(lock_digest, str):
         raise ValueError("P10 environment binding is incomplete")
-    lock_path = root / lock
-    if not lock_path.is_file() or sha256_file(lock_path) != lock_digest:
-        raise ValueError("P10 environment lock binding is stale")
+    lock_path = Path(lock)
+    if lock_path.is_absolute() or ".." in lock_path.parts:
+        raise ValueError("P10 environment lock escapes the repository")
+    try:
+        frozen_lock = subprocess.run(
+            ["git", "-C", str(root), "show", f"{commit}:{lock_path.as_posix()}"],
+            check=True,
+            capture_output=True,
+        ).stdout
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise ValueError("P10 environment lock is absent from the frozen subject commit") from exc
+    if hashlib.sha256(frozen_lock).hexdigest() != lock_digest:
+        raise ValueError("P10 environment lock binding disagrees with the frozen subject commit")
     design = payload.get("design")
     if not isinstance(design, dict) or not (
         design.get("minimum_domains", 0) >= 4
