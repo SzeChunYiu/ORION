@@ -49,12 +49,17 @@ def main() -> None:
         )
         req(manuscript.is_file(), f"P{index} manuscript")
         text = manuscript.read_text()
+        lower = text.lower()
         req(f"P{index}-DES-01" in text, f"P{index} job binding")
         req(
             "paper_authority_delta = NONE" in text,
             f"P{index} authority boundary",
         )
-        req("donor" in text.lower(), f"P{index} donor absorption/comparison gate")
+        req("absorbs" in lower, f"P{index} nearest-work absorption gate")
+        req(
+            "compare" in lower or "comparison" in lower,
+            f"P{index} comparator gate",
+        )
         req("## Theory" in text, f"P{index} theorem section")
         req("## Decisive computation" in text, f"P{index} execution section")
     req(
