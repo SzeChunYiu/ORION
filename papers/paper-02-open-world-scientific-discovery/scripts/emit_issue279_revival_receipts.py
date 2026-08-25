@@ -29,7 +29,15 @@ from orion.study.p2.one_stage_attribution import ledger_from_artifacts
 
 PAPER = Path(__file__).resolve().parents[1]
 ROOT = PAPER.parents[1]
-SUMMARY = PAPER / "evidence" / "offline_results" / "RESULTS_SUMMARY_V1.json"
+# The 2026-08-17 receipt is historical verification evidence.  Rebuild it
+# against the exact summary bytes that were verified then, not against the
+# later canonical-vocabulary projection now living at RESULTS_SUMMARY_V1.json.
+SUMMARY = (
+    PAPER
+    / "evidence"
+    / "offline_results"
+    / "RESULTS_SUMMARY_PRE_CANONICAL_VOCABULARY_2026-08-25.json"
+)
 DEEP_ATTR = PAPER / "evidence" / "external_results" / "DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json"
 DEEP_ARCHIVE = PAPER / "evidence" / "external_results" / "DEEP_OFFICIAL_ARCHIVE_V1.json"
 WIDE_PROBE = PAPER / "evidence" / "external_results" / "AUTORESEARCHBENCH_WIDE_KEYLESS_PROBE_V1.json"
@@ -146,11 +154,13 @@ def build_reproduction_receipt(
     }
     if not all(checks.values()):
         failed = [name for name, ok in checks.items() if not ok]
-        raise ValueError("RESULTS_SUMMARY_V1.json failed issue #279 bindings: " + ", ".join(failed))
+        raise ValueError("historical results summary failed issue #279 bindings: " + ", ".join(failed))
     receipt = {
         "schema_version": "orion.p2.offline-390-reproduction-receipt.v1",
         "issue": 279,
         "subject_commit": subject_commit or _git_head(),
+        # Preserve the receipt exactly as issued: this was the artifact path at
+        # verification time.  SUMMARY above is its byte-identical dated copy.
         "artifact": "evidence/offline_results/RESULTS_SUMMARY_V1.json",
         "content_hashes": {
             "results_summary_file_sha256": _file_sha256(SUMMARY),

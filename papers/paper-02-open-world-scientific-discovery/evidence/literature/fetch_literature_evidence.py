@@ -234,6 +234,20 @@ ENTRIES: dict[str, tuple[str, str, str, str]] = {
         "Information foraging in information access environments",
         "derived_from_this_fetch",
     ),
+    # Added with the public-screening transport section in 6474c521. The
+    # titles already existed in the bibliography before this closure pass, so
+    # these live fetches are independent comparisons rather than provenance
+    # transcriptions. Zenodo DOIs are registered with DataCite, not Crossref.
+    "dhrangadhariya2023citationdataset": (
+        "datacite", "10.5281/zenodo.10423427",
+        "Dataset for Machine Learning Assisted Citation Screening for Systematic Reviews",
+        "pre_existing_independent_claim",
+    ),
+    "howard2016swiftreview": (
+        "doi", "10.1186/s13643-016-0263-z",
+        "SWIFT-Review: a text-mining workbench for systematic review",
+        "pre_existing_independent_claim",
+    ),
 }
 
 
@@ -295,6 +309,50 @@ def fetch_doi(doi: str) -> tuple[str, dict]:
     }
 
 
+def fetch_datacite(doi: str) -> tuple[str, dict]:
+    """Fetch DOI metadata from DataCite for repository-hosted research objects.
+
+    Crossref returns 404 for Zenodo DOIs. Treating every DOI as a Crossref DOI
+    would therefore turn an available primary-repository record into a false
+    ``CANNOT_CHECK``. DataCite is the DOI registry named by the Zenodo record.
+    """
+
+    url = f"https://api.datacite.org/dois/{urllib.parse.quote(doi)}"
+    attrs = json.loads(_get(url))["data"]["attributes"]
+    titles = attrs.get("titles") or []
+    issued = next(
+        (item.get("date") for item in attrs.get("dates", []) if item.get("dateType") == "Issued"),
+        None,
+    )
+    rights = attrs.get("rightsList") or []
+    types = attrs.get("types") or {}
+    return url, {
+        "fetched_title": " ".join((titles[0].get("title", "") if titles else "").split()),
+        "fetched_authors": [creator.get("name", "") for creator in attrs.get("creators", [])],
+        "fetched_year": attrs.get("publicationYear"),
+        "fetched_venue": attrs.get("publisher", ""),
+        "arxiv_id": None,
+        "doi": attrs.get("doi"),
+        "publication_date": issued,
+        "resource_type": types.get("resourceTypeGeneral") or types.get("resourceType"),
+        "version": attrs.get("version"),
+        "license": rights[0].get("rightsIdentifier") if rights else None,
+        "landing_url": attrs.get("url"),
+    }
+
+
+def fetch_entry(kind: str, ident: str) -> tuple[str, dict]:
+    """Dispatch a registered source kind without silently guessing."""
+
+    if kind == "arxiv":
+        return fetch_arxiv(ident)
+    if kind == "doi":
+        return fetch_doi(ident)
+    if kind == "datacite":
+        return fetch_datacite(ident)
+    raise ValueError(f"unknown literature source kind: {kind}")
+
+
 def main() -> None:
     """Fetch every key, or only the keys named on the command line.
 
@@ -313,7 +371,7 @@ def main() -> None:
     for key, (kind, ident, claimed, provenance) in entries.items():
         stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         try:
-            url, meta = fetch_arxiv(ident) if kind == "arxiv" else fetch_doi(ident)
+            url, meta = fetch_entry(kind, ident)
         except Exception as exc:  # noqa: BLE001 - CANNOT_CHECK is a real outcome
             record = {
                 "bib_key": key,
@@ -322,7 +380,11 @@ def main() -> None:
                 "fetch_url": (
                     f"https://export.arxiv.org/api/query?id_list={ident}"
                     if kind == "arxiv"
-                    else f"https://api.crossref.org/works/{ident}"
+                    else (
+                        f"https://api.datacite.org/dois/{ident}"
+                        if kind == "datacite"
+                        else f"https://api.crossref.org/works/{ident}"
+                    )
                 ),
                 "fetched_utc": stamp,
                 "verdict": "CANNOT_CHECK",
