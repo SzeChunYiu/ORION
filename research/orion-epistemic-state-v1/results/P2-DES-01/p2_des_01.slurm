@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=P2-DES-01
 #SBATCH --account=lu2026-2-51
-#SBATCH --partition=lu
+#SBATCH --partition=lu48
 #SBATCH --qos=normal
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -54,4 +54,3 @@ sha256sum "${REMOTE_RESULT}/P2-DES-01_RESULT_ARCHIVE_V1.tar.gz" \
   > "${REMOTE_RESULT}/P2-DES-01_RESULT_ARCHIVE_V1.tar.gz.sha256"
 sha256sum "${REMOTE_RESULT}"/*.json > "${REMOTE_RESULT}/SHA256SUMS"
 printf 'P2_DES_01_REMOTE_PACKET_READY %s\n' "${REMOTE_RESULT}"
-

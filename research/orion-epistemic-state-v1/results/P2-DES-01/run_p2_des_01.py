@@ -807,9 +807,20 @@ def main() -> int:
         "slurm": {
             "job_id": os.environ.get("SLURM_JOB_ID", "NOT_IN_SLURM"),
             "job_name": os.environ.get("SLURM_JOB_NAME", "NOT_IN_SLURM"),
+            "frozen_partition": freeze["resource_freeze"]["partition"],
+            "actual_partition": os.environ.get("SLURM_JOB_PARTITION", "NOT_IN_SLURM"),
             "node": os.environ.get("SLURMD_NODENAME", socket.gethostname()),
             "cpus_per_task": int(os.environ.get("SLURM_CPUS_PER_TASK", "1")),
         },
+        "execution_deviations": [
+            {
+                "field": "resource_freeze.partition",
+                "frozen": freeze["resource_freeze"]["partition"],
+                "actual": os.environ.get("SLURM_JOB_PARTITION", "NOT_IN_SLURM"),
+                "reason": "The frozen association label lu was rejected by the live scheduler as an invalid partition. Live sinfo and completed reference job 3539855 identify lu48 as the active CPU partition. This environment-only correction occurred before policy execution and changed no case, endpoint, comparator, threshold, or terminal rule.",
+                "scientific_rule_changed": false,
+            }
+        ],
         "runtime": {
             "wallclock_seconds": elapsed,
             "index_seconds": index_seconds,
