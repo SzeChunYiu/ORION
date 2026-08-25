@@ -18,9 +18,23 @@ All V1 claims about deterministic request identity, request/result digest bindin
 | Q3V2-5 | Current literature establishes that model self-consistency/cross-model agreement can be a weak, regime-dependent signal and that consensus can preserve correlated errors. Q3 therefore treats AGREE/DISAGREE as variables to score later, never as scientific authority. | `NOVELTY_RESEARCH_2026-08-22.md` and cited external literature | POSITIONING. Not an empirical claim from ORION. |
 | Q3V2-6 | A prospective multi-frontier protocol is frozen for a future >=20-item series across >=3 research programmes, with deferred ALIGNED/MISALIGNED/UNRESOLVED scoring and explicit CANNOT_CHECK outcomes. No outcome exists yet under this protocol. | `TOP_TIER_UPGRADE_PROTOCOL_2026-08-22.md` | REGISTERED RESEARCH ONLY. Do not describe the series as executed. |
 
+## Later synchronized three-question case-series terminal
+
+This later completion record does not rewrite V0, execute the still-open
+`>=20`-item cross-programme protocol in Q3V2-6, or authorize a reliability
+estimate. It synchronizes the separate three-question publication case series
+already recorded by `Q3_COMPLETION_RECEIPT_V3.md`: V0, Q3-R1/QG19, and
+Q3-R2/QG20 are the three valid units; Q3-V1/QG-7d and Q3-V2/QG-15c remain
+retired as contaminated. Q3-R2 is an explicit prospectively scored example in
+which inter-instrument agreement did not imply diagnostic correctness.
+
+| ID | Maximum permitted claim | Authority | Status / forbidden upgrade |
+|---|---|---|---|
+| Q3V2-7 | The separately completed publication case series contains exactly three valid frontier-question units. It preserves the contaminated retirements, reports the three rows descriptively, and includes one agreement-with-diagnostic-misalignment result. | `Q3_COMPLETION_RECEIPT_V3.md`; `check_q3_completion.py`; bound QG19/QG20 result digests | `Q3_PROSPECTIVE_CASE_SERIES_COMPLETE__N3_VALID__AGREEMENT_NOT_VALIDATION_COUNTEREXAMPLE_OBSERVED__NO_RELIABILITY_GENERALIZATION`; no rate, calibration, predictive-validity, independence, or generalized reliability authority |
+
 ## Updated allowed headline
 
-> We present a receipt-replay research harness and a typed non-LLM campaign controller together with a prospective scientific-instrument agreement benchmark. In the first frozen live frontier instance, the instruments independently agreed on the responsible layer and next move and the later registered scientific outcomes aligned with that move. The live run also exposed malformed-receipt recovery defects that current main now repairs with structured failure and audited invalid-content archival. V0 is one measurement; a preregistered multi-frontier study is required before any calibration or predictive-validity claim.
+> We present a receipt-replay research harness and a typed non-LLM campaign controller together with a prospective scientific-instrument agreement benchmark. Across the separately completed three-question publication case series, both instruments agreed on the primary responsibility/move coordinates in each valid unit, yet Q3-R2's later result made both frozen diagnoses misaligned while preserving move alignment. This is a descriptive agreement-not-validation counterexample, not a reliability estimate. Two contaminated candidate slots remain retired, the live-run malformed-receipt defects remain visible in provenance, and the registered `>=20`-item cross-programme study remains unexecuted and required before any calibration or predictive-validity claim.
 
 ## Still prohibited
 

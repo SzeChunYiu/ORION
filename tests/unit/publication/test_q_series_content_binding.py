@@ -49,3 +49,26 @@ def test_noncanonical_q1_constraint_rank_draft_is_not_promoted_by_the_binding():
     assert "`CANNOT_CHECK`" in historical
     assert "grants no novelty, publication, peer-review" in historical
     assert "not back-ported into Q1" in historical
+
+
+def test_legacy_publication_tokens_retain_scopes_and_adverse_q3_terminal():
+    q1 = (
+        REPO_ROOT / "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md"
+    ).read_text(encoding="utf-8")
+    assert "`PROVEN-ALL-N` **only within the frozen R6M grammar/objective**" in q1
+    assert "`PROSPECTIVE-BOUNDED`: one frozen public subject and 15 matchings" in q1
+    assert "`REFUTED` **only for uniform support-one sufficiency" in q1
+    assert "No internal authority string grants novelty or physical quantum advantage" in q1
+
+    q3 = (
+        REPO_ROOT / "papers/Q-paper-03-dual-instrument/CLAIM_LEDGER_V2.md"
+    ).read_text(encoding="utf-8")
+    terminal = (
+        "Q3_PROSPECTIVE_CASE_SERIES_COMPLETE__N3_VALID__"
+        "AGREEMENT_NOT_VALIDATION_COUNTEREXAMPLE_OBSERVED__NO_RELIABILITY_GENERALIZATION"
+    )
+    q3_normalized = " ".join(q3.split())
+    assert terminal in q3
+    assert "remain retired as contaminated" in q3_normalized
+    assert "no rate, calibration, predictive-validity" in q3
+    assert "still-open `>=20`-item cross-programme protocol" in q3_normalized
