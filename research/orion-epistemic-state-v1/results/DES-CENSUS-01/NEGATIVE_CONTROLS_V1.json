@@ -1,0 +1,76 @@
+{
+  "all_passed": true,
+  "authority": "INTERNAL_MECHANICAL_NEGATIVE_CONTROLS_ONLY",
+  "controls": [
+    {
+      "control_id": "filename_leakage_path_mask",
+      "observed": [
+        "C",
+        "R"
+      ],
+      "passed": true
+    },
+    {
+      "control_id": "lowercase_composite_not_promoted",
+      "observed": false,
+      "passed": true
+    },
+    {
+      "control_id": "cannot_check_nonzero_unresolved",
+      "observed": [
+        "C",
+        "R"
+      ],
+      "passed": true
+    },
+    {
+      "control_id": "unknown_composite_retained_unclassified",
+      "observed": [],
+      "passed": true
+    },
+    {
+      "control_id": "dropped_occurrence_kills_reconciliation",
+      "observed": "occurrence classification denominator mismatch",
+      "passed": true
+    },
+    {
+      "control_id": "corrupt_json_is_rejected",
+      "observed": "JSONDecodeError",
+      "passed": true
+    }
+  ],
+  "hard_precondition_violating_strata": [
+    {
+      "control": "simulated_subject_sha_mismatch_rejected",
+      "precondition_id": "HP1",
+      "violation_exercised": true
+    },
+    {
+      "control": "simulated_missing_tree_entry_rejected",
+      "precondition_id": "HP2",
+      "violation_exercised": true
+    },
+    {
+      "control": "simulated_missing_freeze_ancestor_rejected",
+      "precondition_id": "HP3",
+      "violation_exercised": true
+    },
+    {
+      "control": "dropped_occurrence_kills_reconciliation",
+      "precondition_id": "HP4",
+      "violation_exercised": true
+    },
+    {
+      "control": "simulated_unclassified_drop_rejected",
+      "precondition_id": "HP5",
+      "violation_exercised": true
+    },
+    {
+      "control": "protected_path_diff_detector_rejects_manuscript_change",
+      "precondition_id": "HP6",
+      "violation_exercised": true
+    }
+  ],
+  "job_id": "DES-CENSUS-01",
+  "schema": "orion.dynamic-epistemic-state.des-census.negative-controls.v1"
+}

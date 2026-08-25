@@ -1,0 +1,332 @@
+{
+  "access": {
+    "case_ids_family_labels_not_permitted_in_policy_logic": true,
+    "each_policy_receives": "Every field of the same 16 immutable case records; one deterministic decision evaluation per record.",
+    "external_secret_or_protected_data": false,
+    "gold_used_only_for_scoring": true,
+    "matched_across_policies": true,
+    "network_access": false,
+    "source_tokens_checked_before_gate": true
+  },
+  "base_main": "f049e30391a09213240f6325ee319f9fa811189a",
+  "censoring": {
+    "checker_crash": "CRASH_RETAINED",
+    "missing_source_or_digest": "CANNOT_CHECK_OR_HARD_PRECONDITION_FAILURE",
+    "resource_cap": "CENSORED_NOT_INCAPABILITY",
+    "rows_dropped": 0,
+    "timeout": "CENSORED_NOT_FAILURE"
+  },
+  "chronology": {
+    "authority_consequence": "No prospective or external-independence claim may be made from this run.",
+    "freeze_before_this_execution": true,
+    "historical_outcome_visibility": "PREEXISTING_SUBJECT_TREE_RESULTS_AND_GOLD_VISIBLE_BEFORE_THIS_JOB_FREEZE__THIS_IS_A_CONTENT_BOUND_REPLAY_AND_EXTENSION_NOT_A_BLINDED_PROSPECTIVE_STUDY",
+    "post_outcome_retuning_forbidden": true,
+    "preexisting_ets_protocol_and_gold_unchanged": true,
+    "preexisting_real_transition_protocol_and_gold_unchanged": true
+  },
+  "claim_ceiling": "BOUNDED_CONTENT_BOUND_REPLAY_OVER_16_PREEXISTING_REAL_TRANSITIONS_PLUS_INTERNAL_FINITE_CONTROLS__NO_BLINDED_PROSPECTIVE_EXTERNAL_NOVELTY_UNIVERSAL_MINIMALITY_OR_DEPLOYED_SYSTEM_SUPERIORITY_AUTHORITY",
+  "comparators": {
+    "exact_dynamic": {
+      "access": "same complete frozen record",
+      "definition": "Frozen exact scientific disposition over execution, provenance, source currency, evidence transport, obligations, and commit authority."
+    },
+    "full_reset": {
+      "access": "same complete frozen record",
+      "definition": "Reopen every otherwise evaluable and authorized certificate; fail closed rather than pretending unknown or denied state was repaired.",
+      "not_a_strawman": "Full reset is the canonical safe upper-work comparator and is not scored as a native selective donor."
+    },
+    "ideal_product": {
+      "access": "same complete frozen record",
+      "definition": "Information-equivalent ideal product of native dependency/provenance selection plus evidence transport, obligation, alternative-support, and commit-scope semantics.",
+      "expected_disposition": "Equivalence/absorption is retained and blocks any universal superiority claim.",
+      "name": "ideal_support_hypergraph_product"
+    },
+    "strongest_native": {
+      "access": "same complete frozen record",
+      "definition": "The execution/provenance/source-current/generic-permission selector actually represented in every frozen real-transition source record.",
+      "first_refusal": true,
+      "name": "native_dependency_selector",
+      "semantic_boundary": "It is not silently extended with responsibility-scoped evidence transport, scientific obligations, or scientific commit authority.",
+      "weak_proxy_substituted": false
+    }
+  },
+  "decision_rule": {
+    "any_cap_or_timeout": "CENSORED; do not call incapability",
+    "any_missing_hard_precondition": "NEGATIVE_OR_CANNOT_CHECK; no compensatory score",
+    "ideal_product_equivalence": "Retain as donor absorption, not superiority.",
+    "positive_requires_all": [
+      "all hard preconditions attained",
+      "exact dynamic revalidation has 16/16 exact dispositions, zero retained-invalid, and zero unnecessary reopen",
+      "exact dynamic revalidation saves positive revalidation work versus full reset in every domain",
+      "native dependency selection retains at least one invalid certificate in every domain",
+      "ideal support-hypergraph product agrees case-for-case with exact dynamic revalidation",
+      "all four read/write/dependency/support premise mutations are killed",
+      "all 18 ETS controls and seven bound native/internal checkers pass"
+    ],
+    "scalarization": "FORBIDDEN"
+  },
+  "external_authority_state": "CANNOT_CHECK",
+  "frozen_at": "2026-08-25T20:45:00Z",
+  "hard_preconditions": [
+    "all exact source, case, gold, checker, runner, and test digests match the freeze",
+    "exactly four immutable source families of four cases each are present",
+    "every domain contains an admissible control and a violating or unavailable stratum",
+    "all four policies receive identical case information and one decision evaluation per case",
+    "strongest native selector is executed without a weak substitute",
+    "ideal information-complete product is executed and donor equivalence is retained",
+    "source-token, label-remint, family-remint, censoring, and row-drop probes pass",
+    "all read, write, dependency-realizability, and alternative-support mutation strata are exercised",
+    "all adverse, denied, reopened, CANNOT_CHECK, and donor-equivalent rows remain in denominators"
+  ],
+  "implementation": {
+    "runner_path": "research/orion-epistemic-state-v1/results/P6-DES-01/run_p6_des_01.py",
+    "runner_sha256": "2e4724b004493a3599876e452f939a5967caca01e698e291fb8800d6777ab47f",
+    "test_path": "research/orion-epistemic-state-v1/results/P6-DES-01/test_p6_des_01.py",
+    "test_sha256": "dbf30af7a15f12e34aa03083d3a4e1a1badc4cad86e15180de0e349d7a8cd1e1"
+  },
+  "job_id": "P6-DES-01",
+  "leakage_probes": {
+    "case_id_remint": true,
+    "family_label_remint": true,
+    "historical_outcome_visibility_declared": true,
+    "same_programme_checks_external": false,
+    "source_token_binding": true
+  },
+  "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+  "native_checks": [
+    {
+      "id": "real_transition_primary",
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py",
+      "timeout_seconds": 120
+    },
+    {
+      "id": "real_transition_second",
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py",
+      "timeout_seconds": 120
+    },
+    {
+      "id": "ets_primary",
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_top_tier_v1.py",
+      "timeout_seconds": 120
+    },
+    {
+      "id": "ets_second",
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_independent_v1.py",
+      "timeout_seconds": 120
+    },
+    {
+      "id": "finite_models",
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py",
+      "timeout_seconds": 300
+    },
+    {
+      "id": "theory_closure",
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py",
+      "timeout_seconds": 300
+    },
+    {
+      "id": "refutation_audit",
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py",
+      "timeout_seconds": 300
+    }
+  ],
+  "output_schema": [
+    "RAW_MANIFEST_V1.json",
+    "PRIMARY_RESULT_V1.json",
+    "IDEAL_DONOR_RESULT_V1.json",
+    "NEGATIVE_CONTROLS_V1.json",
+    "RESOURCE_LEDGER_V1.json",
+    "TRANSFER_RESULT_V1.json",
+    "RESULT_BINDING_PACKET_V1.json",
+    "DOMAIN_REVALIDATION_OUTCOMES_V1.json",
+    "NATIVE_CHECKER_RECEIPTS_V1.json"
+  ],
+  "paper_authority_delta": "NONE",
+  "resources": {
+    "cpu_threads": 1,
+    "gpu_count": 0,
+    "matched_across_policies": true,
+    "model_calls": 0,
+    "native_checker_process_cap": 7,
+    "native_checker_timeout_seconds_each": [
+      120,
+      120,
+      120,
+      120,
+      300,
+      300,
+      300
+    ],
+    "network_calls": 0,
+    "per_policy_case_decision_evaluations": 16,
+    "primary_policy_decision_cap": 64,
+    "python": "system Python 3 standard library only"
+  },
+  "schema": "orion.p6-des.freeze.v1",
+  "source_bindings": {
+    "active_authority": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/P6_ACTIVE_CLAIM_AUTHORITY_V1.json",
+      "sha256": "b3c2b21acc164a2397549240956e701b74e12e49773ededdf693f3f7b70a19b6"
+    },
+    "assumption_countermodels": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.jsonl",
+      "sha256": "9d62d23d767d1a3ec6aa8f58489d86eca7782e8c1df2a5fb155bbdf28b0de284"
+    },
+    "backlog": {
+      "path": "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json",
+      "sha256": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4"
+    },
+    "calculus": {
+      "path": "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md",
+      "sha256": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05"
+    },
+    "ets_cases": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/ets_cases_v1.jsonl",
+      "sha256": "8868875a7d7e9db376543fe466409adf3b2f02bd03885c9fe3803d9c6b5d2ae2"
+    },
+    "ets_gold": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/ets_gold_v1.json",
+      "sha256": "57cc7707cc24a243bf0c40f2908fc316e4d2f24272f6b30554ffabceacbdec16"
+    },
+    "ets_primary_checker": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_top_tier_v1.py",
+      "sha256": "8f1cf48a75f4f60f1834d2e425120af2c1a22f0386184478c067f3f0491f8edb"
+    },
+    "ets_protocol": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/P6_ETS_PROTOCOL_V1.md",
+      "sha256": "416406b58a67cc76b7fe115a4adfcd3b72d90e482c1c0642c46a9158ef5e3b81"
+    },
+    "ets_second_checker": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_independent_v1.py",
+      "sha256": "b35d060573b9ffffe22e13eb163fdea221cd6da85d3b62aae32d61e522bb9d3b"
+    },
+    "executor_prompt": {
+      "path": "research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md",
+      "sha256": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce"
+    },
+    "finite_model_checker": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py",
+      "sha256": "00d0d3e7fbd431a8b4fc6fb1234a5168549dadb452333c183ebbff995d76ea34"
+    },
+    "historical_revalidation_result": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/revalidation/P6_REVALIDATION_COMPARISON_V1.json",
+      "sha256": "bb8792c4275d4cb318d4fc5c8d7304fb6cfa7acf9aa6dc3746b2d19936b778dd"
+    },
+    "historical_revalidation_runner": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/revalidation/compare_p6_revalidation_v1.py",
+      "sha256": "0d84df9c584aeb90585c0cb4c56dd81a6bae95b101a718faac83ca6bf86e87db"
+    },
+    "implementation_runner": {
+      "path": "research/orion-epistemic-state-v1/results/P6-DES-01/run_p6_des_01.py",
+      "sha256": "2e4724b004493a3599876e452f939a5967caca01e698e291fb8800d6777ab47f"
+    },
+    "implementation_test": {
+      "path": "research/orion-epistemic-state-v1/results/P6-DES-01/test_p6_des_01.py",
+      "sha256": "dbf30af7a15f12e34aa03083d3a4e1a1badc4cad86e15180de0e349d7a8cd1e1"
+    },
+    "paper_programme": {
+      "path": "papers/P1_P15_TOP_TIER_DYNAMIC_STATE_PROGRAMME_V1.md",
+      "sha256": "19a97b88c1ec49d014c6352ec8cd2ae4da0da57851f206589d36dfe9849175ce"
+    },
+    "real_transition_cases": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_cases_v1.json",
+      "sha256": "1c75ca9980c0539a2e2afe78c2538173508460191805c6fe2b8854717feaac97"
+    },
+    "real_transition_gold": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_gold_v1.json",
+      "sha256": "be7210be8c2407b630f7b7053ec556b4abd8e17535e0c45ac80077740edb34df"
+    },
+    "real_transition_primary_checker": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py",
+      "sha256": "c50d04557cc3b34ae0483b8031c75d651d921ff514c85952bd39b06a7101a0fe"
+    },
+    "real_transition_protocol": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/P6_REAL_TRANSITION_AUDIT_PROTOCOL_V1.md",
+      "sha256": "bed210611bd7b3feb72e842594d11b8b44a7898c142d15f446f69a468268ac14"
+    },
+    "real_transition_second_checker": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py",
+      "sha256": "698f49ca952f59ec015ff50aafec9f78a44c4a17481723dcede4a3b5e4c8c4db"
+    },
+    "refutation_audit": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py",
+      "sha256": "edbfffd51c6c591cf8bb7f21771de48023d0fd8445e0cf0a176e218f82a92f3c"
+    },
+    "successor_manuscript": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/TOP_TIER_DYNAMIC_EPISTEMIC_MANUSCRIPT_V1.md",
+      "sha256": "5d4694b832de379c94009e88e7394c8faa96d040247eb024afd1c76e08835eb1"
+    },
+    "theory_closure_checker": {
+      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py",
+      "sha256": "03c86bdfa75ebd5c0c54dc9a52b04bc5367c848a347a07bed6cb7f56c7c01391"
+    }
+  },
+  "study": {
+    "assumption_countermodel_denominator": 12,
+    "domain_asset_rule": "Only the four families already bound to extant immutable real-system receipts are eligible; no invented or weak-proxy domain may replace them.",
+    "domain_denominator": 4,
+    "family_domain_mapping": {
+      "p10-native-coverage": "proof-library-change",
+      "p15-provenance-import": "scientific-workflow-change",
+      "p9-artifact-recovery": "scientific-rule-graph-change",
+      "rocrate-standard": "ontology-regime-change"
+    },
+    "internal_ets_control_denominator": 18,
+    "mutation_ids": [
+      "omit_read_footprint",
+      "omit_write_scope",
+      "omit_dependency_realizability",
+      "omit_surviving_alternative_support"
+    ],
+    "policies": [
+      "full_reset",
+      "native_dependency_selector",
+      "exact_dynamic_revalidation",
+      "ideal_support_hypergraph_product"
+    ],
+    "policy_decision_denominator": 64,
+    "primary_case_denominator": 16,
+    "primary_case_ids": [
+      "RC-ALIAS-COMPLETE",
+      "RC-ALIAS-MISSING",
+      "RC-ALIAS-WRONG",
+      "RC-UNCHANGED",
+      "P9-RECOVERY-NEGATIVE",
+      "P9-DIGEST-MISMATCH",
+      "P9-ANALYZER-CHANGED",
+      "P9-WIDEN-ALL-LLMS",
+      "P10-NATIVE-SUPERIORITY",
+      "P10-COVERAGE-BOUNDARY",
+      "P10-RELAX-ELIGIBILITY",
+      "P10-PROCESS-ONLY",
+      "P15-INTEROP-WITH-SCIENCE",
+      "P15-PROVENANCE-ONLY",
+      "P15-DIGEST-CHANGED",
+      "P15-INVALID-SCIENCE"
+    ],
+    "primary_endpoints": [
+      "retained_invalid",
+      "exact_work_savings_vs_full_reset",
+      "exact_disposition_accuracy",
+      "unnecessary_reopen",
+      "mutation_kills",
+      "minimality"
+    ],
+    "secondary_endpoints": [
+      "per_domain_accuracy",
+      "CANNOT_CHECK_retention",
+      "authority_denial_retention",
+      "native_unsafe_domain_count",
+      "ideal_product_equivalence"
+    ],
+    "unit": "frozen real transition case by frozen policy"
+  },
+  "subject_revision": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "task": "Workflow, proof, ontology, and rule-graph changes: exact selective revalidation versus full reset and native dependencies.",
+  "terminals": {
+    "cannot_check": "REQUIRED_DOMAIN_OR_DONOR_CANNOT_CHECK",
+    "censored": "RESOURCE_CAP_CENSORED",
+    "negative": "EXACT_DYNAMIC_REVALIDATION_GATE_NOT_MET",
+    "positive": "EXACT_DYNAMIC_REVALIDATION_STRICTLY_EXTENDS_NATIVE_DEPENDENCY_SELECTION"
+  }
+}

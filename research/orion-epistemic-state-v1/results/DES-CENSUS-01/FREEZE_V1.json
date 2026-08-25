@@ -1,0 +1,438 @@
+{
+  "case_universe": {
+    "duplicate_policy": "occurrences are not collapsed across paths; unique-label tables additionally collapse exact normalized values",
+    "eligible_text": "blob decodes as strict UTF-8, contains no NUL byte, and has byte_count <= 5000000",
+    "enumeration": "git ls-tree -r --full-tree <subject_commit>",
+    "generated_and_historical_policy": "included when eligible text; provenance flags distinguish current, historical, generated, package, and test surfaces without removing them",
+    "line_policy": "LF-normalized decoding only for position calculation; raw blob SHA-256 and byte count bind original bytes",
+    "path_exclusions": [],
+    "retained_exclusions": [
+      "git_submodule",
+      "strict_utf8_decode_failure",
+      "nul_containing_blob",
+      "blob_over_5000000_bytes",
+      "blob_read_error"
+    ],
+    "tracked_blob_denominator": "all blob entries at the frozen subject tree"
+  },
+  "comparators": {
+    "claim_boundary": "comparator agreement measures census mechanics only, not external semantic adjudication",
+    "donor_access": "matched exact Git tree, CPU, memory, and parser libraries",
+    "ideal_donor_product": "union of the strongest runnable detector and all frozen coordinate rules under identical source-tree access",
+    "strongest_runnable_donor": "structured-key plus lexical detector with exact raw-context retention",
+    "terminal_only_donor": "exact lexical census without coordinate decomposition"
+  },
+  "computation_session_paper_authority_delta": "NONE",
+  "endpoint": {
+    "forbidden_inference": [
+      "no scientific truth from label frequency",
+      "no empirical or external novelty authority",
+      "no paper or claim authority update",
+      "no scalar quality or readiness score",
+      "no unclassified occurrence silently dropped"
+    ],
+    "primary": "denominator_complete_source_tree_label_to_coordinate_census",
+    "required_entity_families": [
+      "terminal",
+      "status",
+      "composite_label",
+      "cannot_check_reason",
+      "dependency",
+      "transition"
+    ],
+    "success_requires": [
+      "every tracked blob classified as parsed_text or retained_exclusion",
+      "every extracted occurrence retained in the raw manifest",
+      "every unique label assigned to one or more frozen DES coordinates or retained unclassified",
+      "all family and classification denominators reconcile exactly",
+      "all CANNOT_CHECK, adverse, null, harmful, error, crash, unresolved, and unclassified occurrences remain visible",
+      "all emitted JSON validates by parse and internal reconciliation"
+    ],
+    "unit": "one syntactic occurrence on one tracked subject blob"
+  },
+  "execution_owner": "COMPUTATION_ONLY_SESSIONS",
+  "extractor": {
+    "context_window_characters": 240,
+    "deduplication": "exact duplicate detections from the same detector/span/family are collapsed; cross-family membership is retained",
+    "lexical_label_pattern": "(?<![A-Za-z0-9])[A-Z][A-Z0-9]*(?:_{1,2}[A-Z0-9]+)+(?![A-Za-z0-9])",
+    "normalization": "Unicode text is preserved; semantic grouping trims surrounding whitespace only; case is not changed",
+    "occurrence_identity": "sha256(path, detector, byte_start, byte_end, raw_value, semantic_family)",
+    "standalone_statuses": [
+      "PASS",
+      "FAIL",
+      "FAILED",
+      "ERROR",
+      "CRASH",
+      "BLOCKED",
+      "READY",
+      "GREEN",
+      "RED",
+      "OPEN",
+      "CLOSED",
+      "COMPLETE",
+      "INCOMPLETE",
+      "VALID",
+      "INVALID",
+      "SUPPORTED",
+      "UNSUPPORTED",
+      "POSITIVE",
+      "NEGATIVE",
+      "NULL",
+      "HARMFUL",
+      "ADVERSE",
+      "CENSORED",
+      "UNRESOLVED",
+      "DENIED",
+      "AUTHORIZED",
+      "CANNOT_CHECK",
+      "UNKNOWN",
+      "UNCLASSIFIED"
+    ],
+    "structured_formats": [
+      "JSON"
+    ],
+    "structured_key_families": {
+      "cannot_check_reason": [
+        "cannot_check",
+        "reason",
+        "reasons",
+        "blocker",
+        "blockers"
+      ],
+      "dependency": [
+        "dependency",
+        "dependencies",
+        "depends_on",
+        "requires",
+        "prerequisite",
+        "prerequisites",
+        "upstream",
+        "blocked_by"
+      ],
+      "status": [
+        "status",
+        "state",
+        "outcome",
+        "result"
+      ],
+      "terminal": [
+        "terminal",
+        "verdict",
+        "decision",
+        "completion"
+      ],
+      "transition": [
+        "transition",
+        "transitions",
+        "from_state",
+        "to_state",
+        "previous_state",
+        "next_state",
+        "reopen",
+        "reopened",
+        "invalidate",
+        "invalidated",
+        "revoke",
+        "revoked",
+        "supersede",
+        "superseded"
+      ]
+    },
+    "unstructured_formats": "all eligible text blobs",
+    "version": "DES-CENSUS-01.detector.v1"
+  },
+  "frozen_at_utc": "2026-08-25T18:07:19Z",
+  "hard_preconditions": [
+    {
+      "id": "HP1",
+      "predicate": "census input commit and tree resolve exactly to frozen subject.git_commit and subject.git_tree; execution branch contains only the pre-outcome freeze commit before parsing",
+      "violating_terminal": "SUBJECT_IDENTITY_MISMATCH"
+    },
+    {
+      "id": "HP2",
+      "predicate": "Git tree is readable and every entry is enumerated",
+      "violating_terminal": "SOURCE_TREE_ENUMERATION_CANNOT_CHECK"
+    },
+    {
+      "id": "HP3",
+      "predicate": "freeze commit is an ancestor of the execution result commit",
+      "violating_terminal": "POST_OUTCOME_FREEZE_INVALID"
+    },
+    {
+      "id": "HP4",
+      "predicate": "all retained occurrence and file denominators reconcile",
+      "violating_terminal": "DENOMINATOR_RECONCILIATION_FAILED"
+    },
+    {
+      "id": "HP5",
+      "predicate": "unclassified and excluded rows remain in outputs",
+      "violating_terminal": "SILENT_EXCLUSION_INVALID"
+    },
+    {
+      "id": "HP6",
+      "predicate": "no manuscript, claim-ledger, authority, PDF, figure, table, or package path changed",
+      "violating_terminal": "WRITING_AUTHORITY_BOUNDARY_VIOLATION"
+    }
+  ],
+  "job_id": "DES-CENSUS-01",
+  "leakage_and_censoring_probes": {
+    "cap_hit": "wallclock or blob cap yields explicit CENSORED/CANNOT_CHECK terminal, never completion",
+    "censoring": "every non-eligible blob is retained with exact path, object id, byte count, and exclusion reason",
+    "filename_leakage": "rerun semantic assignment with path replaced by <MASKED>; assignments must match",
+    "generator_label_leakage": "classification uses only raw value and bounded context, never Git author, branch, issue, or generator identity",
+    "shortcut_probe": "unknown synthetic composite remains unclassified rather than inferred from path"
+  },
+  "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+  "negative_controls": [
+    "path_masked_reclassification_must_not_change_content_derived_coordinate_assignments",
+    "lowercased_composite_labels_must_not_be detected_by_uppercase_composite_detector",
+    "synthetic_CANNOT_CHECK_reason_must_remain_unresolved_and_nonzero",
+    "synthetic_unknown_composite_must_enter_unclassified_atlas",
+    "one_dropped_occurrence_must_fail_denominator_reconciliation",
+    "one_corrupted_JSON_output_must_fail_validation"
+  ],
+  "output_rules": {
+    "authority_ceiling": "INTERNAL_SOURCE_TREE_CENSUS_ONLY__NO_EMPIRICAL_NOVELTY_OR_PAPER_AUTHORITY",
+    "case_outcomes": "all file rows and occurrence rows, including exclusions/unclassified/adverse/CANNOT_CHECK",
+    "digest": "SHA-256 over exact emitted bytes",
+    "raw_manifest": "one row per tracked blob plus every extracted occurrence",
+    "serialization": "UTF-8 JSON, sort_keys=true, indent=2, trailing newline"
+  },
+  "paper_authority_delta": "NONE",
+  "protocol_timing": "COMMITTED_BEFORE_ANY_SUBJECT_OUTCOME_CONTENT_WAS_PARSED",
+  "required_outputs": [
+    "FREEZE_V1.json",
+    "RAW_MANIFEST_V1.json",
+    "PRIMARY_RESULT_V1.json",
+    "IDEAL_DONOR_RESULT_V1.json",
+    "NEGATIVE_CONTROLS_V1.json",
+    "RESOURCE_LEDGER_V1.json",
+    "TRANSFER_RESULT_V1.json",
+    "LABEL_CENSUS_V1.json",
+    "LABEL_SEMANTIC_DECOMPOSITION_V1.json",
+    "UNCLASSIFIED_BLOCKER_ATLAS_V1.json",
+    "RESULT_BINDING_PACKET_V1.json"
+  ],
+  "resources": {
+    "external_models": "forbidden",
+    "gpu": "not used",
+    "hardware": "local CPU",
+    "libraries": "standard library only",
+    "max_blob_bytes": 5000000,
+    "max_processes": 1,
+    "max_wallclock_seconds": 1800,
+    "network_during_census": "forbidden",
+    "python": "repository-compatible Python 3"
+  },
+  "schema": "orion.dynamic-epistemic-state.des-census.freeze.v1",
+  "semantic_decomposition": {
+    "ambiguous_policy": "retain every matching coordinate; do not force a single coordinate",
+    "assignment_method": "deterministic frozen keyword rules over raw value plus bounded local context",
+    "cannot_check_policy": "CANNOT_CHECK and its reason are retained as an outcome plus unresolved obligation/coverage semantics, never scored as failure or zero",
+    "coordinate_vocabulary": [
+      "E",
+      "Theta",
+      "C",
+      "R",
+      "P",
+      "F",
+      "V",
+      "A",
+      "S",
+      "Q",
+      "D",
+      "B",
+      "K",
+      "U",
+      "M",
+      "G"
+    ],
+    "dependency_projection": "dependency occurrences map only when frozen coordinate rules support a mapping; unresolved dependency semantics remain unclassified",
+    "multiple_assignment": "allowed and retained",
+    "rule_keywords": {
+      "A": [
+        "authority",
+        "promotion",
+        "adoption",
+        "authorized",
+        "denied",
+        "claim_ceiling",
+        "scope",
+        "revocation"
+      ],
+      "B": [
+        "resource",
+        "access",
+        "compute",
+        "memory",
+        "token",
+        "time",
+        "budget",
+        "cap",
+        "cost",
+        "unavailable"
+      ],
+      "C": [
+        "coverage",
+        "open_world",
+        "closure",
+        "complete",
+        "incomplete",
+        "residual",
+        "saturation",
+        "search_universe",
+        "cannot_check"
+      ],
+      "D": [
+        "defeater",
+        "contradiction",
+        "negative",
+        "harmful",
+        "adverse",
+        "null",
+        "failure",
+        "error",
+        "crash",
+        "invalid"
+      ],
+      "E": [
+        "evidence",
+        "effect",
+        "likelihood",
+        "posterior",
+        "interval",
+        "empirical",
+        "metric",
+        "precision",
+        "recall",
+        "significance"
+      ],
+      "F": [
+        "fresh",
+        "stale",
+        "epoch",
+        "validity",
+        "expiry",
+        "drift",
+        "supersede",
+        "invalidate",
+        "dependency"
+      ],
+      "G": [
+        "knowledge",
+        "graph",
+        "hypergraph",
+        "ontology",
+        "semantic",
+        "claim",
+        "transition",
+        "state"
+      ],
+      "K": [
+        "custody",
+        "lineage",
+        "independence",
+        "overlap",
+        "external",
+        "leakage",
+        "contamination"
+      ],
+      "M": [
+        "method",
+        "grammar",
+        "search_space",
+        "reachable_closure",
+        "donor",
+        "baseline",
+        "comparator",
+        "algorithm"
+      ],
+      "P": [
+        "provenance",
+        "receipt",
+        "manifest",
+        "digest",
+        "hash",
+        "binding",
+        "derivation",
+        "lineage"
+      ],
+      "Q": [
+        "reproduction",
+        "reproducibility",
+        "replication",
+        "heterogeneity",
+        "transfer",
+        "replay"
+      ],
+      "R": [
+        "obligation",
+        "required",
+        "requirement",
+        "unresolved",
+        "blocker",
+        "gate",
+        "precondition",
+        "cannot_check",
+        "dependency"
+      ],
+      "S": [
+        "support_family",
+        "support_families",
+        "alternative_support",
+        "witness_family"
+      ],
+      "Theta": [
+        "identified",
+        "identifiability",
+        "identified_set",
+        "estimand",
+        "target",
+        "partition",
+        "partial_identification"
+      ],
+      "U": [
+        "burden",
+        "latency",
+        "wallclock",
+        "runtime",
+        "cost",
+        "experimental_burden"
+      ],
+      "V": [
+        "verify",
+        "verification",
+        "checker",
+        "test",
+        "review",
+        "replication",
+        "green",
+        "pass",
+        "fail"
+      ]
+    },
+    "transition_projection": "transition occurrences retain source/target text and map only by frozen coordinate rules",
+    "unclassified_policy": "retain exact value, occurrence count, paths, contexts, and reason=no_frozen_coordinate_rule_matched"
+  },
+  "subject": {
+    "branch": "codex/des-census-01-execution-20260825",
+    "fresh_origin_main": "f049e30391a09213240f6325ee319f9fa811189a",
+    "git_commit": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+    "git_tree": "ec9455ccfdded0c2a27c97b425ad001b228151de",
+    "repository_relative_root": "."
+  },
+  "terminals": {
+    "boundary_violation": "WRITING_AUTHORITY_BOUNDARY_VIOLATION",
+    "cannot_check": "UNREADABLE_SURFACE",
+    "censored": "RESOURCE_CAP_CENSORED",
+    "negative": "LABEL_CENSUS_DENOMINATOR_OR_SEMANTIC_RECONCILIATION_FAILED",
+    "positive": "LABEL_CENSUS_COMPLETE_WITH_DENOMINATORS"
+  },
+  "transfer": {
+    "endpoint": "same detector and coordinate rules execute on held-out paths with denominator reconciliation",
+    "interpretation": "mechanical rule transfer only; not semantic or external scientific validity",
+    "retuning_after_split": "forbidden",
+    "split": "deterministic path-hash split modulo 5; folds 0-3 development census, fold 4 held-out mechanical transfer"
+  },
+  "writing_owner": "P1_P15_REWRITE_LANE"
+}

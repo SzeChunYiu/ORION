@@ -1,0 +1,99 @@
+{
+  "schema": "orion.discovery.execution-status.v1",
+  "branch": "codex/orion-discovery-v1-theory-harness-20260825",
+  "paper_authority_delta": "NONE",
+  "jobs": [
+    {
+      "job_id": "DISC-EDG-01",
+      "state": "COMPLETE_FINITE_REGISTERED_SCOPE",
+      "terminal": "EDG_FINITE_CORRESPONDENCE_GREEN",
+      "artifacts": [
+        "EDG_FINITE_CENSUS_V1.json",
+        "run_edg_finite_census.py",
+        "src/orion/discovery/decision_geometry.py",
+        "tests/unit/discovery/test_decision_geometry.py"
+      ],
+      "counts": {
+        "loss_tables": 139520,
+        "partition_refinement_comparisons": 49152,
+        "hedge_tables": 210,
+        "violations": 0
+      },
+      "remaining": ["external proof review", "larger/richer loss classes", "naturalistic transfer"]
+    },
+    {
+      "job_id": "DISC-HIF-01",
+      "state": "COMPLETE_REPOSITORY_RECEIPT_AUDIT_LAYER",
+      "terminal": "ALL_LOAD_BEARING_OSTC_EXECUTIONS_IDENTIFIABILITY_CLASSIFIED",
+      "artifacts": [
+        "OSTC_EXECUTION_IDENTIFIABILITY_MATRIX_V1.json",
+        "VACUITY_AND_REPAIR_ATLAS_V1.md",
+        "src/orion/discovery/harness_identifiability.py",
+        "tests/unit/discovery/test_harness_identifiability.py"
+      ],
+      "counts": {
+        "rows": 20,
+        "identifying": 10,
+        "structural_external_blocked": 3,
+        "partial": 4,
+        "non_identifying": 2,
+        "external_only": 1
+      },
+      "remaining": [
+        "retrofit per-run theorem-identifying receipts",
+        "rerun only the non-identifying/partial successors",
+        "external authority where classified"
+      ]
+    },
+    {
+      "job_id": "DISC-T19-01",
+      "state": "READY_TO_EXECUTE",
+      "terminal": null,
+      "remaining": ["non-tautological reflexive-custody game", "cycle/non-descent controls"]
+    },
+    {
+      "job_id": "DISC-P9-SETCOVER-01",
+      "state": "READY_TO_EXECUTE_HEAVY_EXACT",
+      "terminal": null,
+      "remaining": ["freeze >=5x6 grid", "guarantee greedy-suboptimal precondition", "exact search"]
+    },
+    {
+      "job_id": "DISC-ORIGIN-01",
+      "state": "REFERENCE_OBJECTS_IMPLEMENTED__INTEGRATION_OPEN",
+      "terminal": null,
+      "remaining": ["integrate ProposalOrigin.v1 into all generated candidate classes"]
+    },
+    {
+      "job_id": "DISC-HIST-01",
+      "state": "PROTOCOL_READY__CURATION_AND_EXECUTION_OPEN",
+      "terminal": null,
+      "remaining": ["12 breakthrough episodes", "12 controls", "model chronology contracts"]
+    },
+    {
+      "job_id": "DISC-CF-01",
+      "state": "PROTOCOL_READY__DEPENDS_ON_HISTORICAL_PILOT",
+      "terminal": null
+    },
+    {
+      "job_id": "DISC-FRONTIER-MATH-01",
+      "state": "PROTOCOL_READY__EXTERNAL_ESCROW_OPEN",
+      "terminal": null
+    },
+    {
+      "job_id": "DISC-RSE-01",
+      "state": "PROTOCOL_READY__BLINDED_ADJUDICATION_OPEN",
+      "terminal": null
+    },
+    {
+      "job_id": "DISC-NOV-01",
+      "state": "EXTERNAL_AUTHORITY_OPEN",
+      "terminal": null
+    },
+    {
+      "job_id": "DISC-NATSCI-01",
+      "state": "DEPENDENCY_GATED",
+      "terminal": null,
+      "remaining": ["instrument semantics", "simulator/physical correspondence", "domain authority"]
+    }
+  ]
+}

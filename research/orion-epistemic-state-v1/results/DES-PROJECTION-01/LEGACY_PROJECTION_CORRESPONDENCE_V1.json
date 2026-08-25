@@ -1,0 +1,47 @@
+{
+  "authority": "INTERNAL_REPLAY_NOT_EXTERNAL_INDEPENDENCE",
+  "declared_unreachable": {
+    "PROMOTION_V1": [
+      "PROVISIONAL"
+    ],
+    "READINESS_V1": []
+  },
+  "dropped_cases": 0,
+  "job_id": "DES-PROJECTION-01",
+  "matched_projection_rows": 5760,
+  "mismatches": [],
+  "projection_row_denominator": 5760,
+  "schema": "orion.dynamic-epistemic-state.legacy-projection-correspondence.v1",
+  "source_raw_manifest_sha256": "dbc5fef600041bbd3cef15f7b98a4cab4d1dc3d121a134a75f189f14324e108d",
+  "state_case_denominator": 2880,
+  "surface_results": {
+    "PROMOTION_V1": {
+      "reachable_terminals": [
+        "ADMISSIBLE",
+        "BLOCKED",
+        "CANNOT_CHECK"
+      ],
+      "terminal_counts": {
+        "ADMISSIBLE": 10,
+        "BLOCKED": 1360,
+        "CANNOT_CHECK": 1510
+      }
+    },
+    "READINESS_V1": {
+      "reachable_terminals": [
+        "ADMISSIBLE",
+        "BLOCKED",
+        "CANNOT_CHECK",
+        "PROVISIONAL"
+      ],
+      "terminal_counts": {
+        "ADMISSIBLE": 2,
+        "BLOCKED": 1364,
+        "CANNOT_CHECK": 1512,
+        "PROVISIONAL": 2
+      }
+    }
+  },
+  "terminal": "LEGACY_PROJECTION_REPLAY_EXACT",
+  "unresolved_semantics_retained": true
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "orion.dynamic-epistemic-state.des-update-freeze-arithmetic-erratum.v1",
+  "job_id": "DES-UPDATE-01",
+  "status": "FROZEN_DERIVED_COUNT_CORRECTION_BEFORE_LAW_EXECUTION",
+  "parent_freeze": "FREEZE_V1.json",
+  "parent_freeze_commit_sha": "fa2a3ad2ff45d3693e71bc74c694522b2a778f3c",
+  "preflight_failure": "PREFLIGHT_FAILURE_V1.json",
+  "corrections": {
+    "finite_class.cartesian_state_count": {
+      "from": 384,
+      "to": 768,
+      "derivation": "2 evidence * 2 identifiability * 2 authority * 4 satisfied-obligation * 2 defeater * 3 custody * 4 revoked-premise variants"
+    },
+    "event_universe.event_instance_count": {
+      "from": 5376,
+      "to": 10752,
+      "derivation": "768 states * 14 event templates"
+    }
+  },
+  "unchanged": [
+    "state axes and values",
+    "event templates and instantiation",
+    "laws",
+    "mutation operators",
+    "hard preconditions other than the corrected derived counts",
+    "resource vector",
+    "terminals",
+    "promotion rule",
+    "claim ceiling",
+    "external authority state"
+  ],
+  "execution_boundary": {
+    "law_cases_executed_before_erratum": 0,
+    "mutation_cases_executed_before_erratum": 0,
+    "scientific_outcomes_inspected_before_erratum": false,
+    "post_outcome_retuning": false
+  },
+  "corrected_expected_counts": {
+    "unique_initial_states": 768,
+    "event_templates": 14,
+    "event_instances": 10752
+  },
+  "paper_authority_delta": "NONE"
+}

@@ -1,0 +1,52 @@
+name: orion-discovery-v1
+
+on:
+  pull_request:
+    paths:
+      - "research/orion-discovery-v1/**"
+      - "src/orion/discovery/**"
+      - "tests/unit/discovery/**"
+      - "scripts/check_orion_discovery_v1.py"
+      - ".github/workflows/orion-discovery-v1.yml"
+  push:
+    branches: [main]
+    paths:
+      - "research/orion-discovery-v1/**"
+      - "src/orion/discovery/**"
+      - "tests/unit/discovery/**"
+      - "scripts/check_orion_discovery_v1.py"
+      - ".github/workflows/orion-discovery-v1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  structure-and-reference-core:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install ORION
+        run: python -m pip install -e '.[dev]'
+      - name: Validate machine-readable theory and backlog
+        run: python scripts/check_orion_discovery_v1.py
+      - name: Run Discovery V1 reference tests
+        run: |
+          python -m pytest -q \
+            tests/unit/discovery/test_decision_geometry.py \
+            tests/unit/discovery/test_harness_identifiability.py \
+            tests/unit/discovery/test_proposal_origin.py \
+            tests/unit/discovery/test_model_chronology.py
+      - name: Replay exhaustive finite EDG census
+        run: python research/orion-discovery-v1/run_edg_finite_census.py --check
+      - name: Compile discovery modules and census runner
+        run: |
+          python -m compileall -q \
+            src/orion/discovery/decision_geometry.py \
+            src/orion/discovery/harness_identifiability.py \
+            src/orion/discovery/proposal_origin.py \
+            src/orion/discovery/model_chronology.py \
+            research/orion-discovery-v1/run_edg_finite_census.py

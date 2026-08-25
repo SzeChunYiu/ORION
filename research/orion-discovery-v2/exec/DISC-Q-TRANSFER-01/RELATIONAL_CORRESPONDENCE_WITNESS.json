@@ -1,0 +1,348 @@
+{
+  "schema": "orion.discovery-v2.relational-correspondence-witness.v1",
+  "job_id": "DISC-Q-TRANSFER-01",
+  "class": "EXACT_CROSS_DOMAIN_TRANSFER",
+  "authority": "TARGET_DOMAIN_RESULT_ONLY",
+  "quantum_authority_transferred": false,
+  "physical_or_quantum_advantage_claim": false,
+  "arithmetic": "integers only; no float constructed",
+  "input_sha256": {
+    "PROOF_OBLIGATION_REGISTER.json": "38ab118cb9508ba677f58e4650890794dbeb6a1bdf1b9896e6f67e21a8e7ab88",
+    "KNOWLEDGE_WEB_V1.json": "29574263b6629734410c0c4e409ed1c7c09e721dbaf90960f7530b5582db12b0",
+    "QG-paper-03 MANUSCRIPT_V1.md": "f29edbad739e86dd61181e7162c2d579c219d64f765e6b5612c446df9b8a6c2e"
+  },
+  "terminal": "SURFACE_ANALOGY_OR_RESOURCE_ADVANTAGE_ONLY",
+  "terminal_reading": {
+    "disjuncts_fired": [
+      "RESOURCE_ADVANTAGE_DOES_NOT_SURVIVE_ORACLE_CHARGING",
+      "DONOR_SUBTRACTION_RESIDUAL_CAPABILITY_EMPTY"
+    ],
+    "correspondence_was_surface_only": false,
+    "structurally_preserved_relations": [
+      "R1",
+      "R2",
+      "R3"
+    ],
+    "clarification": "The negative terminal here is reached through the donor-subtraction and resource disjuncts, NOT because the correspondence was mere vocabulary. R1-R3 are structural relations that were checked and hold. What fails is that nothing the transfer supplies survives subtraction of the donor, and the apparent search saving does not survive charging the oracle that produced kappa."
+  },
+  "gate": {
+    "survives_donor_subtraction": false,
+    "survives_matched_resource_accounting": false,
+    "relational_correspondence_complete": false,
+    "passed": false
+  },
+  "cannot_check_subclaims": [
+    {
+      "subclaim": "RELATION_R4_OBJECTIVE_INDEXING",
+      "reason": "NOT_EXERCISED_INSTANCE_SATURATED_AT_COVERAGE_FLOOR -- Every strictly monotone objective attains its optimum at a Pareto non-dominated cost vector. All 2 frontier costs here are attained at minimum support [9], so kappa = 9 for every such objective. The instance is saturated at the coverage floor; objective indexing cannot be exercised on it."
+    },
+    {
+      "subclaim": "RELATION_R5_COST_PRESERVING_SUPPORT_REDUCING_EXCHANGE",
+      "reason": "NOT_EXERCISED_PREMISE_CLASS_EMPTY -- Every optimum is attained exactly at the coverage floor, so the set of optimum-attaining configurations ABOVE minimum support is empty. A descent ladder has nothing to descend. This is vacuity, not refutation, and must not be recorded as a failed relation."
+    },
+    {
+      "subclaim": "RELATION_R6_FAMILY_UNIVERSALITY",
+      "reason": "A per-instance support number is a strictly weaker object than a family-intrinsic one. No instance family exists in the target slice, and manufacturing one would be fabrication."
+    },
+    {
+      "subclaim": "R5_DETECTOR_NEGATIVE_BRANCH_UNEXERCISED",
+      "reason": "In every objective where the R5 premise class was non-empty the detector found an exchange, so no run exercised its no-exchange verdict. Its positive branch is demonstrated; its negative branch is not."
+    }
+  ],
+  "structure_preserving_map": {
+    "compilation family F": "obligation set O (13 OSTC theorems)",
+    "structural generator": "registered execution-evidence job",
+    "configuration": "subset of evidence jobs",
+    "global support": "cardinality of the selected subset",
+    "objective C": "integer cost vector ['distinct_support_nodes', 'distinct_support_edges', 'unvalidated_jobs', 'obstructed_jobs']",
+    "exact optimum": "Pareto non-dominated cost vector among adequate plans",
+    "kappa(F, C)": "kappa_t = max over optima of the minimum attaining support"
+  },
+  "preserved_relations": [
+    {
+      "id": "R1",
+      "name": "GRADED_SUPPORT_ON_A_LATTICE",
+      "donor_side": "global support of structural generators in a configuration",
+      "target_side": "cardinality of the selected evidence-job subset",
+      "preserved": true,
+      "load_bearing": true,
+      "evidence": "support is a grading on the subset lattice and {P : |P| <= B} is downward closed, as in the donor",
+      "check": "structural"
+    },
+    {
+      "id": "R2",
+      "name": "OPTIMUM_ATTAINMENT_AT_BOUNDED_SUPPORT",
+      "donor_side": "every instance optimum attained at support <= kappa",
+      "target_side": "every Pareto-optimal cost vector attained at support <= kappa",
+      "preserved": true,
+      "load_bearing": true,
+      "evidence": {
+        "kappa": 9,
+        "max_min_support": 9
+      },
+      "check": "exact"
+    },
+    {
+      "id": "R3",
+      "name": "TWO_SIDEDNESS",
+      "donor_side": "kappa valid and kappa-1 invalid, lower bound needs an infeasibility witness",
+      "target_side": "kappa valid and kappa-1 invalid, witnessed by the optimum forcing the max",
+      "preserved": true,
+      "load_bearing": true,
+      "evidence": {
+        "witness_costs": [
+          [
+            24,
+            29,
+            3,
+            0
+          ],
+          [
+            25,
+            30,
+            2,
+            0
+          ]
+        ]
+      },
+      "caveat": "two-sidedness is FREE here because the instance is totally enumerated; in the donor it requires a separate lower-bound witness over an infinite family. The discipline transfers, the difficulty does not.",
+      "check": "exact"
+    },
+    {
+      "id": "R4",
+      "name": "OBJECTIVE_INDEXING",
+      "donor_side": "kappa takes two arguments; bounds are objective-scoped",
+      "target_side": "kappa differs across the Pareto order and scalar projections",
+      "preserved": null,
+      "load_bearing": true,
+      "evidence": [
+        {
+          "objective": "pareto_vector",
+          "kappa": 9,
+          "n_optima": 2
+        },
+        {
+          "objective": "scalar_min_distinct_support_nodes",
+          "kappa": 9,
+          "n_optima": 1
+        },
+        {
+          "objective": "scalar_min_distinct_support_edges",
+          "kappa": 9,
+          "n_optima": 1
+        },
+        {
+          "objective": "scalar_min_unvalidated_jobs",
+          "kappa": 9,
+          "n_optima": 90
+        },
+        {
+          "objective": "scalar_min_obstructed_jobs",
+          "kappa": 9,
+          "n_optima": 9
+        }
+      ],
+      "check": "NOT_EXERCISED",
+      "testable_on_this_instance": false,
+      "note": "Every strictly monotone objective attains its optimum at a Pareto non-dominated cost vector. All 2 frontier costs here are attained at minimum support [9], so kappa = 9 for every such objective. The instance is saturated at the coverage floor; objective indexing cannot be exercised on it.",
+      "caveat": "Reporting R4 as REFUTED would overstate what a floor-saturated instance can show. It rests on the same coverage-floor fact that empties R5's premise class, and is carried as NOT_EXERCISED for the same reason."
+    },
+    {
+      "id": "R5",
+      "name": "COST_PRESERVING_SUPPORT_REDUCING_EXCHANGE",
+      "donor_side": "descent-ladder edit grammar: local edits push an optimum down in support while it stays an optimum; each rung consumes the previous obstruction census",
+      "target_side": "single-element removal or swap keeping the plan adequate AND preserving its exact cost vector",
+      "preserved": null,
+      "load_bearing": true,
+      "evidence": {
+        "exchanges_found": 0,
+        "witnesses": [],
+        "plans_above_min_support": 0,
+        "edits_checked": 0,
+        "exercised": false,
+        "exists": null,
+        "verdict": "NOT_EXERCISED_PREMISE_CLASS_EMPTY",
+        "note": "Every optimum is attained exactly at the coverage floor, so the set of optimum-attaining configurations ABOVE minimum support is empty. A descent ladder has nothing to descend. This is vacuity, not refutation, and must not be recorded as a failed relation."
+      },
+      "check": "NOT_EXERCISED",
+      "control_same_detector_under_scalar_objectives": [
+        {
+          "objective": "scalar_min_unvalidated_jobs",
+          "optimal_value": 2,
+          "min_support": 9,
+          "plans_above_min_support": 511,
+          "edits_checked": 1738,
+          "exercised": true,
+          "exchanges_found": 511,
+          "exists": true
+        },
+        {
+          "objective": "scalar_min_obstructed_jobs",
+          "optimal_value": 0,
+          "min_support": 9,
+          "plans_above_min_support": 10,
+          "edits_checked": 46,
+          "exercised": true,
+          "exchanges_found": 10,
+          "exists": true
+        }
+      ],
+      "note": "This is the precondition that makes kappa a METHOD rather than a notion. Without it the ladder has nothing to descend."
+    },
+    {
+      "id": "R6",
+      "name": "FAMILY_UNIVERSALITY",
+      "donor_side": "kappa(F, C) quantifies over every instance of an infinite family (all n)",
+      "target_side": "the slice supplies ONE finite instance, not an instance family",
+      "preserved": null,
+      "load_bearing": true,
+      "evidence": {
+        "target_instances": 1
+      },
+      "check": "CANNOT_CHECK",
+      "note": "A per-instance support number is a strictly weaker object than a family-intrinsic one. No instance family exists in the target slice, and manufacturing one would be fabrication."
+    }
+  ],
+  "counts": {
+    "load_bearing_preserved": 3,
+    "load_bearing_broken": 0,
+    "load_bearing_cannot_check": 3
+  },
+  "correspondence_type": "PARTIAL_RELATIONAL_UNRESOLVED",
+  "surface_only_carryover": [],
+  "kappa_by_objective": [
+    {
+      "objective": "pareto_vector",
+      "kappa": 9,
+      "n_optima": 2
+    },
+    {
+      "objective": "scalar_min_distinct_support_nodes",
+      "kappa": 9,
+      "n_optima": 1
+    },
+    {
+      "objective": "scalar_min_distinct_support_edges",
+      "kappa": 9,
+      "n_optima": 1
+    },
+    {
+      "objective": "scalar_min_unvalidated_jobs",
+      "kappa": 9,
+      "n_optima": 90
+    },
+    {
+      "objective": "scalar_min_obstructed_jobs",
+      "kappa": 9,
+      "n_optima": 9
+    }
+  ],
+  "objective_indexing_confirmed_in_target": false,
+  "objective_indexing_testable_on_this_instance": false,
+  "objective_indexing_argument": "Every strictly monotone objective attains its optimum at a Pareto non-dominated cost vector. All 2 frontier costs here are attained at minimum support [9], so kappa = 9 for every such objective. The instance is saturated at the coverage floor; objective indexing cannot be exercised on it.",
+  "scalar_objective_control": [
+    {
+      "objective": "scalar_min_distinct_support_nodes",
+      "optimal_value": 24,
+      "kappa_scalar": 9,
+      "n_optimum_cost_vectors": 1,
+      "attaining_supports": [
+        9
+      ],
+      "tie_class_nontrivial": false,
+      "support_reducing_move_available_within_optimum_class": false
+    },
+    {
+      "objective": "scalar_min_distinct_support_edges",
+      "optimal_value": 29,
+      "kappa_scalar": 9,
+      "n_optimum_cost_vectors": 1,
+      "attaining_supports": [
+        9
+      ],
+      "tie_class_nontrivial": false,
+      "support_reducing_move_available_within_optimum_class": false
+    },
+    {
+      "objective": "scalar_min_unvalidated_jobs",
+      "optimal_value": 2,
+      "kappa_scalar": 9,
+      "n_optimum_cost_vectors": 90,
+      "attaining_supports": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "tie_class_nontrivial": true,
+      "support_reducing_move_available_within_optimum_class": true
+    },
+    {
+      "objective": "scalar_min_obstructed_jobs",
+      "optimal_value": 0,
+      "kappa_scalar": 9,
+      "n_optimum_cost_vectors": 9,
+      "attaining_supports": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "tie_class_nontrivial": true,
+      "support_reducing_move_available_within_optimum_class": true
+    }
+  ],
+  "non_vacuity": {
+    "adequate_vs_inadequate": {
+      "adequate": 1536,
+      "inadequate": 522751
+    },
+    "adequacy_discriminates": true,
+    "frontier_vs_dominated": {
+      "frontier": 2,
+      "dominated": 224
+    },
+    "pareto_discriminates": true,
+    "R5_detector_exercised_under_scalar": [
+      {
+        "objective": "scalar_min_unvalidated_jobs",
+        "plans_above_min_support": 511,
+        "exchanges_found": 511
+      },
+      {
+        "objective": "scalar_min_obstructed_jobs",
+        "plans_above_min_support": 10,
+        "exchanges_found": 10
+      }
+    ],
+    "R5_detector_fires_somewhere": true,
+    "R5_premise_class_under_pareto_is_empty": true,
+    "detector_shows_both_outcomes": false,
+    "detector_not_inert": true,
+    "ballast_jobs_present": [
+      "EVIDENCE:EXEC-P1-01",
+      "EVIDENCE:EXEC-P14-01",
+      "EVIDENCE:EXEC-P4-01",
+      "EVIDENCE:EXEC-P5-01",
+      "EVIDENCE:EXEC-P8-01",
+      "EVIDENCE:EXEC-PA-01",
+      "EVIDENCE:EXEC-XP-01"
+    ],
+    "resource_vector_live_components": [
+      "subsets_enumerated",
+      "coverage_evaluations",
+      "cost_vector_evaluations",
+      "dominance_comparisons"
+    ],
+    "resource_vector_constant_components": [
+      "oracle_subsets_enumerated"
+    ],
+    "passed": true
+  }
+}

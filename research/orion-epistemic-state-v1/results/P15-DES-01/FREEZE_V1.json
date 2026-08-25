@@ -1,0 +1,252 @@
+{
+  "schema": "orion.p15-des.freeze.v1",
+  "job_id": "P15-DES-01",
+  "frozen_at": "2026-08-25T19:19:26Z",
+  "base_main": "f049e30391a09213240f6325ee319f9fa811189a",
+  "subject_revision": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "ownership": {
+    "result_directory": "research/orion-epistemic-state-v1/results/P15-DES-01",
+    "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+    "computation_session_paper_authority_delta": "NONE",
+    "forbidden_edits": [
+      "manuscripts",
+      "claims",
+      "active_authorities",
+      "figures",
+      "pdfs",
+      "journal_packages"
+    ]
+  },
+  "source_bindings": {
+    "executor_prompt": {
+      "path": "research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md",
+      "sha256": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce"
+    },
+    "execution_backlog": {
+      "path": "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json",
+      "sha256": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4"
+    },
+    "dynamic_calculus": {
+      "path": "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md",
+      "sha256": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05"
+    },
+    "paper_programme": {
+      "path": "papers/P1_P15_TOP_TIER_DYNAMIC_STATE_PROGRAMME_V1.md",
+      "sha256": "19a97b88c1ec49d014c6352ec8cd2ae4da0da57851f206589d36dfe9849175ce"
+    },
+    "successor_manuscript": {
+      "path": "papers/paper-15-orion-research-harness/TOP_TIER_DYNAMIC_EPISTEMIC_MANUSCRIPT_V1.md",
+      "sha256": "f49fe8541d9f5144c7428d2d2b87372256aa06e97792fd48a79496944bc6c287"
+    },
+    "active_authority": {
+      "path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+      "sha256": "7da36a4b3cd462e6f4e841e67faae25683c866ab6105be00029802aeb050db0a"
+    },
+    "acquisition_protocol": {
+      "path": "papers/paper-15-orion-research-harness/P15A_RESEARCH_HARNESS_ACQUISITION_PROTOCOL_V1.md",
+      "sha256": "315ca80bf38b43dc3ccf753b67e0606563b37699a4aa8c086b8b88c2baaea2fa"
+    },
+    "acquisition_preflight": {
+      "path": "papers/paper-15-orion-research-harness/P15A_ACQUISITION_PREFLIGHT_V1.json",
+      "sha256": "8fe16aba495bfdca1cfefc8d32373e3ed3af7a40b26e4357eb6960b679c75327"
+    },
+    "failure_ledger": {
+      "path": "papers/paper-15-orion-research-harness/P15_FAILURE_LEDGER_V1.md",
+      "sha256": "a11b00d004477dc1bb5bcab747db7f2f28982fae7247fe5c35e0701d64fe11db"
+    },
+    "internal_panel_binding": {
+      "path": "papers/paper-15-orion-research-harness/P15_INTERNAL_PANEL_EVIDENCE_BINDING_V1.json",
+      "sha256": "36ea80937a0f528c8211f0643c4179596ef160d5ff93fbbe51ac98e89d5436dc"
+    },
+    "shared_instrument_binding": {
+      "path": "papers/P15_Q3_SHARED_INSTRUMENT_PACKAGE_V1.json",
+      "sha256": "890341aa2d6543f6e0c362d10d7c9bc661e3d3db5973d7a17e122529dc37cd36"
+    },
+    "attestation_adverse_receipt": {
+      "path": "papers/paper-15-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md",
+      "sha256": "0a2c4d19a17079165ad4c8cb012acd33d798030f14b47b49ee14d292f1341077"
+    }
+  },
+  "implementation": {
+    "runner": {
+      "path": "research/orion-epistemic-state-v1/results/P15-DES-01/run_p15_des_01.py",
+      "sha256": "e59fb0b817a7779624ad7809c263d054dc7f1299be6bf45f21d4a75c087dc581"
+    },
+    "test": {
+      "path": "research/orion-epistemic-state-v1/results/P15-DES-01/test_p15_des_01.py",
+      "sha256": "400c2516d4785a2915506c2c1e87799feb4fc0334b3f0cd786db3c5bc873ac9d"
+    }
+  },
+  "study": {
+    "question": "Under production host, process, key, custody and publication-race faults, does dynamic scientific execution integrity improve attribution, replay and fault handling while leaving scientific validity and claim authority noninterfering, and does the result replicate at an independently controlled site?",
+    "case_denominator": 50,
+    "production_workload_denominator": 30,
+    "fault_denominator": 20,
+    "fault_strata": [
+      {
+        "fault_family": "host_resource_faults",
+        "planned_denominator": 5
+      },
+      {
+        "fault_family": "process_lifecycle_publication_race_faults",
+        "planned_denominator": 5
+      },
+      {
+        "fault_family": "key_attestation_custody_faults",
+        "planned_denominator": 5
+      },
+      {
+        "fault_family": "evaluator_site_custody_faults",
+        "planned_denominator": 5
+      }
+    ],
+    "case_identity_policy": "EXACT_EXTERNAL_WORKLOAD_IDS_FAULT_PAYLOADS_GOLD_AND_CUSTODY_UNAVAILABLE_UNTIL_TRANSFER__NAMED_SLOTS_FROZEN_NOT_INVENTED",
+    "runtime_images": [
+      "runtime_image_slot_01",
+      "runtime_image_slot_02",
+      "runtime_image_slot_03"
+    ],
+    "runtime_image_identity_policy": "EXACT_DIGESTS_SBOMS_AND_BUILD_CUSTODY_UNAVAILABLE_UNTIL_TRANSFER__SLOTS_FROZEN_NOT_INVENTED",
+    "sites": [
+      "primary_production_site",
+      "independent_cross_site_replay"
+    ],
+    "site_identity_policy": "EXACT_SITE_IDENTITIES_AND_CUSTODY_UNAVAILABLE_UNTIL_TRANSFER__ROLES_FROZEN_NOT_INVENTED",
+    "arms": [
+      "nominal_logs",
+      "structured_provenance",
+      "deterministic_replay",
+      "multi_lane_agreement",
+      "production_attestation_product",
+      "dynamic_sei",
+      "ideal_execution_science_product"
+    ],
+    "donor_arms": [
+      "nominal_logs",
+      "structured_provenance",
+      "deterministic_replay",
+      "multi_lane_agreement",
+      "production_attestation_product"
+    ],
+    "strongest_donor": "ideal_execution_science_product",
+    "seeds": [
+      1515,
+      1516,
+      1517
+    ],
+    "planned_run_cell_denominator": 6300,
+    "hypotheses": {
+      "H1": "Dynamic SEI improves exact occurrence attribution under host and process faults relative to the registered donor frontier.",
+      "H2": "Dynamic SEI improves replay correctness and stale-or-raced publication detection without treating replay as scientific validity.",
+      "H3": "Dynamic SEI covers all four frozen fault families without cross-arm access widening.",
+      "H4": "Production attestation adds tamper evidence but does not by itself authorize scientific validity or claim authority.",
+      "H5": "The ideal execution/science product is not strictly dominated by dynamic SEI under matched vector resources.",
+      "H6": "Valid production workloads remain below the frozen false-rejection and overhead constraints.",
+      "H7": "All claim-relevant findings reproduce under independently controlled cross-site replay with execution-science noninterference preserved."
+    },
+    "primary_endpoints": [
+      "attribution_accuracy",
+      "replay_equivalence",
+      "fault_coverage",
+      "publication_race_detection",
+      "runtime_and_storage_overhead",
+      "valid_workload_false_rejection",
+      "execution_science_noninterference"
+    ]
+  },
+  "hard_preconditions": {
+    "workload_fault_manifest": "P15_WORKLOAD_FAULT_MANIFEST_V1.json",
+    "runtime_image_locks_and_sboms": "P15_RUNTIME_IMAGE_LOCKS_AND_SBOMS_V1.json",
+    "production_harness_and_fault_injectors": "P15_PRODUCTION_HARNESS_AND_FAULT_INJECTORS_V1.json",
+    "comparator_implementations": "P15_COMPARATOR_IMPLEMENTATIONS_V1.json",
+    "key_custody_attestation": "P15_KEY_CUSTODY_ATTESTATION_V1.json",
+    "primary_site_custody": "P15_PRIMARY_SITE_CUSTODY_V1.json",
+    "independent_cross_site_replay": "P15_INDEPENDENT_CROSS_SITE_REPLAY_V1.json",
+    "external_gold_and_scorer": "P15_EXTERNAL_GOLD_AND_SCORER_V1.json",
+    "publication_race_event_capture": "P15_PUBLICATION_RACE_EVENT_CAPTURE_V1.json"
+  },
+  "resources": {
+    "matching_rule": "MATCH_CASE_IMAGE_SITE_SEED_INFORMATION_TOOLS_AND_CUSTODY_ACROSS_ALL_ARMS",
+    "per_case_image_site_arm_seed": {
+      "wall_time_seconds": "TRANSFER_BOUND_NOT_INVENTED",
+      "cpu_cores": "TRANSFER_BOUND_NOT_INVENTED",
+      "memory_bytes": "TRANSFER_BOUND_NOT_INVENTED",
+      "gpu_model_and_count": "TRANSFER_BOUND_NOT_INVENTED",
+      "storage_bytes": "TRANSFER_BOUND_NOT_INVENTED",
+      "network_access": "TRANSFER_BOUND_NOT_INVENTED",
+      "tool_and_harness_access": "MATCHED_ARM_SPECIFIC_ACCESS_TO_BE_DIGEST_BOUND",
+      "key_and_site_custody": "ROLE_SEPARATED_TO_BE_EXTERNALLY_ATTESTED"
+    }
+  },
+  "leakage_and_censoring": {
+    "external_gold_hidden_from_execution_arms": true,
+    "provider_ids_and_filenames_forbidden_as_labels": true,
+    "cross_arm_cache_reuse_forbidden": true,
+    "same_site_replay_is_not_independent": true,
+    "attestation_is_not_scientific_truth": true,
+    "unbound_internal_rehearsal_is_not_production_evidence": true,
+    "timeout_is_censored_not_noninterference": true,
+    "resource_cap_hit_is_censored_not_fault_tolerance": true,
+    "all_null_harmful_crashed_and_cannot_check_rows_retained": true
+  },
+  "decision_rule": {
+    "scalarization": "FORBIDDEN",
+    "primary_endpoint_vector": [
+      "attribution_accuracy",
+      "replay_equivalence",
+      "fault_coverage",
+      "publication_race_detection",
+      "runtime_and_storage_overhead",
+      "valid_workload_false_rejection",
+      "execution_science_noninterference"
+    ],
+    "positive_requires": [
+      "all_nine_transfer_preconditions_attained_before_outcome_access",
+      "all_6300_run_cells_retained_or_lawfully_censored",
+      "matched_access_and_vector_resources",
+      "no_label_metadata_generator_or_cross_arm_cache_leakage",
+      "claim_relevant_numerical_changes_do_not_silently_change_scientific_validity_or_authority",
+      "independently_controlled_cross_site_replay",
+      "external_gold_and_scorer_custody",
+      "no_unresolved_valid_workload_false_rejection_or_publication_race_failure"
+    ],
+    "no_post_outcome_retuning": true
+  },
+  "terminals": {
+    "positive": "DYNAMIC_EXECUTION_INTEGRITY_NONINTERFERENCE_PRODUCTION_REPLICATED",
+    "donor_equivalent": "P15_PRODUCTION_EXECUTION_INTEGRITY_IDEAL_DONOR_EQUIVALENT",
+    "negative_or_harmful": "P15_PRODUCTION_EXECUTION_INTEGRITY_NULL_HARMFUL_OR_INTERFERING",
+    "cannot_check": "P15_PRODUCTION_HOST_PROCESS_KEY_CUSTODY_AND_CROSS_SITE_REPLAY_CANNOT_CHECK"
+  },
+  "retained_bounded_evidence": {
+    "active_terminal": "P15_BOUNDED_SEI_PROVENANCE_ATTESTATION_EARNED",
+    "sei_case_denominator": 18,
+    "provenance_attestation_case_denominator": 22,
+    "full_key_compromise_attempts": 6,
+    "full_key_compromise_signature_detections": 0,
+    "full_key_compromise_false_promotions": 6,
+    "scope": "BOUNDED_INTERNAL_PANEL_NOT_PRODUCTION_NOT_INDEPENDENT_CROSS_SITE"
+  },
+  "exclusions": {
+    "bounded_sei_provenance_attestation_receipts": "RETAINED_BOUNDED_EVIDENCE_NOT_PRODUCTION_OR_CROSS_SITE_SUBSTITUTE",
+    "lunarc_exec_p15_01": "UNBOUND_INTERNAL_LINEAGE_NOT_PRODUCTION_OR_INDEPENDENT_SITE_AUTHORITY",
+    "deterministic_same_site_replay": "INTERNAL_REPLAY_NOT_EXTERNAL_SITE_INDEPENDENCE",
+    "internal_checkers": "SAME_PROGRAMME_CHECKERS_NOT_EXTERNAL_SCORER_CUSTODY",
+    "release_candidate_package": "UNTAGGED_RELEASE_CANDIDATE_NOT_EXTERNAL_ADOPTION_OR_PRODUCTION_VALIDATION"
+  },
+  "claim_ceiling": "P15-DES-01 may report only the frozen production study's attained terminal. Missing production transfers preserve all 50 planned cases and 6300 run cells as CANNOT_CHECK and add no production-scale, population, external-replication, site-independence, novelty, adoption or manuscript authority. Existing bounded positive and adverse P15 evidence remains unchanged.",
+  "output_schema": {
+    "required_common_outputs": [
+      "RAW_MANIFEST_V1.json",
+      "PRIMARY_RESULT_V1.json",
+      "IDEAL_DONOR_RESULT_V1.json",
+      "NEGATIVE_CONTROLS_V1.json",
+      "RESOURCE_LEDGER_V1.json",
+      "TRANSFER_RESULT_V1.json",
+      "RESULT_BINDING_PACKET_V1.json"
+    ],
+    "paper_specific_output": "P15_PRODUCTION_NONINTERFERENCE_RESULT_V1.json",
+    "canonical_json": true,
+    "rows_dropped": 0
+  }
+}

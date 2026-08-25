@@ -1,0 +1,213 @@
+{
+  "schema": "orion.p1-p15.result-bound-writing-ledger.v1",
+  "frozen_subject": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "authoritative_integration_merge": "906ad9d752ea088caf8c074fd8d117b8e142d62c",
+  "code_only_conformance_merge": "134c77a2f4ffd838806b0bbf8621d7064f4a8c45",
+  "writing_owner": "P1_P15_REWRITE_LANE",
+  "computation_session_paper_authority_delta": "NONE",
+  "acknowledgement_token": "P1_P15_REWRITE_LANE_ACKNOWLEDGES_25_OF_25_COMPUTATION_LEDGER",
+  "common_results": [
+    {
+      "job_id": "DES-CENSUS-01",
+      "sha": "9f957d9d1c4756565b1546b5ab4ed2e14df0b6a6",
+      "terminal": "RESOURCE_CAP_CENSORED",
+      "writing_status": "SUPPORTED_INTERNAL_CENSUS_WITH_CENSORING",
+      "claim_ceiling": "INTERNAL_SOURCE_TREE_CENSUS_ONLY"
+    },
+    {
+      "job_id": "DES-COLLISION-01",
+      "sha": "b5d5e37511b9b51f501af87a841f04d9c04e3546",
+      "terminal": "DYNAMIC_STATE_STRICTLY_DISTINGUISHES_LEGACY_COLLISIONS",
+      "writing_status": "SUPPORTED_INTERNAL_FINITE",
+      "claim_ceiling": "FINITE_DECLARED_STATE_CLASS_NONRECONSTRUCTION_WITNESS_ONLY"
+    },
+    {
+      "job_id": "DES-UPDATE-01",
+      "sha": "0116ec3fe206005a2b9f94487e9ca5c4b0ef7e03",
+      "terminal": "DYNAMIC_UPDATE_ALGEBRA_FINITE_CLASS_GREEN",
+      "writing_status": "SUPPORTED_INTERNAL_FINITE",
+      "claim_ceiling": "FINITE_DECLARED_CLASS_INTERNAL_REPLAY_AND_MUTATION_EVIDENCE_ONLY"
+    },
+    {
+      "job_id": "DES-PROJECTION-01",
+      "sha": "e44ea9d267b9279c86a19c66270acd45f3f5308b",
+      "terminal": "LEGACY_DECISIONS_REPRODUCED_AND_COLLISIONS_RESOLVED",
+      "writing_status": "SUPPORTED_INTERNAL_FINITE",
+      "claim_ceiling": "FINITE_REFERENCE_CLASS_INTERNAL_REPLAY_ONLY"
+    },
+    {
+      "job_id": "DES-DONOR-FRONTIER-01",
+      "sha": "d3a3cd4bd45ca034ad9cf5b88f437b16459bd340",
+      "terminal": "MATERIAL_DONOR_INACCESSIBLE",
+      "writing_status": "CANNOT_CHECK_EXTERNAL",
+      "forbidden": ["ideal donor frontier superiority", "external novelty", "metadata-as-donor substitution"]
+    },
+    {
+      "job_id": "DES-SATURATION-01",
+      "sha": "729f99b523a21ffe75fe58160474a18e018a7ee3",
+      "terminal": "CANNOT_CHECK_MATERIAL_DONOR_UNAVAILABLE",
+      "writing_status": "CANNOT_CHECK_EXTERNAL"
+    },
+    {
+      "job_id": "DES-RESPONSIBILITY-01",
+      "sha": "5255e3450463831302d170c113d23f88cb20e579",
+      "terminal": "EXTERNAL_INCIDENT_CUSTODY_UNAVAILABLE",
+      "writing_status": "ACQUISITION_OR_CUSTODY_BLOCKED"
+    },
+    {
+      "job_id": "DES-HISTORICAL-01",
+      "sha": "31a6a60d0557e5a11e94abb0f70088e87a7c6883",
+      "terminal": "EXTERNAL_CUSTODY_OR_CHRONOLOGY_CANNOT_CHECK",
+      "writing_status": "CANNOT_CHECK_EXTERNAL"
+    },
+    {
+      "job_id": "DES-FRONTIER-MATH-01",
+      "sha": "9c0be9004a93b1e53a9f18727075325923396260",
+      "terminal": "EXTERNALLY_ESCROWED_FRONTIER_TARGET_UNAVAILABLE",
+      "writing_status": "ACQUISITION_OR_CUSTODY_BLOCKED"
+    },
+    {
+      "job_id": "DES-NOVELTY-01",
+      "sha": "154aa49a1bcbe2fb42726aeb7159e2284099f461",
+      "terminal": "INACCESSIBLE_WORK_MAY_ABSORB_CLAIM",
+      "writing_status": "CANNOT_CHECK_EXTERNAL"
+    }
+  ],
+  "papers": [
+    {
+      "paper": "P1",
+      "job_id": "P1-DES-01",
+      "sha": "8c01199f5a0927e1a6f66b99e37057ee18f566a1",
+      "terminal": "PROTECTED_SCIENCEAGENTBENCH_AND_FRESH_COUNTERFACTUAL_CUSTODY_UNAVAILABLE",
+      "writing_class": "THEORY_PLUS_PROTECTED_PREFLIGHT",
+      "allowed": ["identifiability and repair theory", "exact custody boundary"],
+      "forbidden": ["prospective solve gain", "responsibility accuracy", "empirical superiority", "external adoption benefit"]
+    },
+    {
+      "paper": "P2",
+      "job_id": "P2-DES-01",
+      "sha": "7c3b3211a01710a637a0aa0aac556f36d8a01d38",
+      "terminal": "CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE",
+      "writing_class": "BOUNDED_NEGATIVE_BOUNDARY",
+      "allowed": ["50-topic internal TREC-COVID comparison", "no licensed structural-jump stratum", "unmet donor/transfer/custody preconditions"],
+      "forbidden": ["remote-jump value", "global closure", "external transfer", "superiority"]
+    },
+    {
+      "paper": "P3",
+      "job_id": "P3-DES-01",
+      "sha": "1f49f2cae717dff4a878734f505b4d6dbc1fad79",
+      "terminal": "P3_MULTI_CASE_LAWFUL_EVALUATION_UNAVAILABLE",
+      "writing_class": "THEORY_PLUS_RIGHTS_PREFLIGHT",
+      "allowed": ["gluing and obstruction theory", "zero lawful execution boundary"],
+      "forbidden": ["multi-case empirical superiority"]
+    },
+    {
+      "paper": "P4",
+      "job_id": "P4-DES-01",
+      "sha": "4b18afcfd9e2ed13b6b5551500a3869ec771be86",
+      "terminal": "EXTERNAL_PROMOTION_TERMINAL_GOLD_UNAVAILABLE",
+      "writing_class": "THEORY_PLUS_MECHANICAL_EXECUTION_BOUNDARY",
+      "allowed": ["900 mechanically executed arm-cases", "zero external terminal gold", "fibre and non-compensation theory"],
+      "forbidden": ["promotion-policy superiority", "external false-promotion reduction"]
+    },
+    {
+      "paper": "P5",
+      "job_id": "P5-DES-01",
+      "sha": "9ef4229ea0dfd7b162cd0e9c8f0ee119b34fafb1",
+      "terminal": "SWE_BENCH_RIGHTS_AND_PROTECTED_FRESH_ADOPTION_CUSTODY_UNAVAILABLE",
+      "writing_class": "THEORY_PLUS_PROTECTED_PREFLIGHT",
+      "allowed": ["reflexive-custody impossibility", "rights and adoption-custody boundary"],
+      "forbidden": ["self-improvement benefit", "resolved-rate gain", "protected adoption superiority"]
+    },
+    {
+      "paper": "P6",
+      "job_id": "P6-DES-01",
+      "sha": "006538622ae4819b12f215529056051b57cf082a",
+      "terminal": "EXACT_DYNAMIC_REVALIDATION_STRICTLY_EXTENDS_NATIVE_DEPENDENCY_SELECTION",
+      "writing_class": "SUPPORTED_BOUNDED_CONTENT_BOUND",
+      "allowed": ["16 pre-existing transitions", "four domains", "64 policy decisions", "exact gold match", "zero retained invalid", "zero unnecessary reopen", "native-selector failure boundary", "ideal-product equivalence"],
+      "forbidden": ["prospective deployed superiority", "universal minimality", "external novelty", "population authority"]
+    },
+    {
+      "paper": "P7",
+      "job_id": "P7-DES-01",
+      "sha": "64086d53e83df193be5446ad8fa060d37e685af9",
+      "terminal": "FROZEN_CASE_DENOMINATOR_DRIFT_INVALIDATES_EXECUTION",
+      "writing_class": "INVALID_EXECUTION_RETAINED",
+      "allowed": ["planned 738 versus observed 736 denominator drift", "zero valid cases", "execution invalidation rule"],
+      "forbidden": ["any empirical regime-transport result from this execution"]
+    },
+    {
+      "paper": "P8",
+      "job_id": "P8-DES-01",
+      "sha": "8b0cef005f606e52bfb53e0a00626aa46a60fc3f",
+      "terminal": "NATIVE_EQUIVALENCE_REPLAY_INTERNAL_ONLY_EXTERNAL_ADJUDICATION_UNAVAILABLE",
+      "writing_class": "SUPPORTED_INTERNAL_FINITE",
+      "allowed": ["44-case native binary replay", "same-programme scientific-gold correspondence", "non-amplification theory"],
+      "forbidden": ["external adjudication", "deployed ideal-product equivalence", "universal superiority"]
+    },
+    {
+      "paper": "P9",
+      "job_id": "P9-DES-01",
+      "sha": "2c51fc541ce28fe50fb11899ea23d2dc4a468fe9",
+      "terminal": "OPEN_WEIGHT_AND_NUMERICAL_BUILD_CUSTODY_UNAVAILABLE",
+      "writing_class": "THEORY_PLUS_ACQUISITION_RESULT",
+      "allowed": ["failure-origin theory", "numerical-identity theory", "exact missing artifact/custody requirements"],
+      "forbidden": ["cause accuracy", "compute substitution", "frontier shift", "terminal-flip prediction"]
+    },
+    {
+      "paper": "P10",
+      "job_id": "P10-DES-01",
+      "sha": "812b8133e82574bbf680d14535fb80ef1ca85d9e",
+      "terminal": "P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT",
+      "writing_class": "THEORY_PLUS_INPUT_PREFLIGHT",
+      "allowed": ["obstruction-certified invention theory", "480-case and 12960-cell frozen design", "zero eligible execution"],
+      "forbidden": ["method expansion", "invention", "primitive minimality", "donor-frontier extension", "held-out transfer"]
+    },
+    {
+      "paper": "P11",
+      "job_id": "P11-DES-01",
+      "sha": "6bc37888624d1427bb324893dcb4ae8f385c1d82",
+      "terminal": "P11_DATASETS_MODELS_TRANSCRIPTS_NOT_CONTENT_BOUND",
+      "writing_class": "THEORY_PLUS_ACQUISITION_AUDIT",
+      "allowed": ["state/resource/optionality theory", "eight missing content-bound acquisition requirements", "zero executed cases"],
+      "forbidden": ["learned-compiler superiority", "real-system replication", "resource-frontier extension"]
+    },
+    {
+      "paper": "P12",
+      "job_id": "P12-DES-01",
+      "sha": "f1a2bc3c636ef618fb72073472a0ed1231be1634",
+      "terminal": "CANNOT_CHECK_PROTECTED_SUBSTRATE_AND_NONFLAT_SUCCESSOR_NOT_RUN",
+      "writing_class": "THEORY_PLUS_STOP_GO_BOUNDARY",
+      "allowed": ["signal and censoring theory", "protected-substrate gap", "non-FLAT successor not frozen/run"],
+      "forbidden": ["task gain", "regret improvement", "price robustness", "domain robustness", "generalization"]
+    },
+    {
+      "paper": "P13",
+      "job_id": "P13-DES-01",
+      "sha": "773ffe49f70f041a9c84fe39c7bc9fa049c65d33",
+      "terminal": "BOUNDED_DYNAMIC_STATE_BEATS_TERMINAL_ONLY__FULL_P13_CONTROL_CANNOT_CHECK",
+      "writing_class": "SUPPORTED_BOUNDED_INTERNAL_CONTROL",
+      "allowed": ["144/144 dynamic decisions", "97/144 terminal-only decisions", "47 retained regret/error rows", "4355 collision pairs", "5760 legacy projection matches"],
+      "forbidden": ["full five-arm dominance", "external lifecycle governance", "safe-reuse benefit", "population claim"]
+    },
+    {
+      "paper": "P14",
+      "job_id": "P14-DES-01",
+      "sha": "4836d5c064426e1adcddb310ab08fbe422bb2e82",
+      "terminal": "P14D_EXTERNAL_ACQUISITION_BLOCKED",
+      "writing_class": "THEORY_PLUS_EXTERNAL_ACQUISITION_PREFLIGHT",
+      "allowed": ["governance-identifiability theory", "zero-execution external-acquisition boundary"],
+      "forbidden": ["causal governance benefit", "false-promotion control", "external reviewer agreement"]
+    },
+    {
+      "paper": "P15",
+      "job_id": "P15-DES-01",
+      "sha": "ed3ff59593b00eac11a19d1f96efcb645e46bae5",
+      "terminal": "P15_PRODUCTION_HOST_PROCESS_KEY_CUSTODY_AND_CROSS_SITE_REPLAY_CANNOT_CHECK",
+      "writing_class": "THEORY_PLUS_PRODUCTION_TRANSFER_BOUNDARY",
+      "allowed": ["50 frozen cases", "3 runtime images", "2 sites", "7 arms", "3 seeds", "6300 planned cells", "zero executed because nine mandatory transfers were absent"],
+      "forbidden": ["production fault coverage", "cross-site replay", "overhead", "false rejection", "production noninterference"]
+    }
+  ]
+}

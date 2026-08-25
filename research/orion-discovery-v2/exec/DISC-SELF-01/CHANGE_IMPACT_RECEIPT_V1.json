@@ -1,0 +1,258 @@
+{
+  "schema": "orion.discovery-v2.change-impact-receipt.v1",
+  "job_id": "DISC-SELF-01",
+  "class": "PROSPECTIVE_PROTECTED_SELF_STUDY",
+  "authority": "external evaluator/adopter required; this job holds proposal authority only",
+  "terminal": "ORION_SELF_STUDY_PROTECTED_VALUE_SUPPORTED",
+  "terminal_decision_rule": {
+    "SELF_STUDY_EVALUATOR_OR_ADOPTER_CANNOT_CHECK": "any output carries a proposer-authored evaluation, or the detector failed a polarity control",
+    "NO_IMPROVEMENT_DONOR_SUFFICIENT_OR_OVERCONSERVATIVE": "an existing donor already covers the deficiency, or no actionable proposal was produced",
+    "ORION_SELF_STUDY_PROTECTED_VALUE_SUPPORTED": "an actionable proposal exists with its origin sealed and its consequences surfaced, no donor covers it, and no self-evaluation or self-adoption occurred"
+  },
+  "gate": {
+    "proposal_evaluator_adopter_pairwise_distinct": true,
+    "evaluator_principal_is_external": true,
+    "adopter_principal_is_external": true,
+    "no_proposer_authored_evaluation_in_outputs": true,
+    "at_least_one_actionable_proposal": true,
+    "all_four_alternative_classes_present": true,
+    "detector_validated_both_polarities": true,
+    "no_file_modified_outside_exec_dir": true,
+    "passed": true
+  },
+  "gate_evidence": {
+    "actionable_proposals": 3,
+    "actionability_polarity_test": {
+      "negative_control_no_change_declares_no_target": {
+        "expected": false,
+        "observed": false
+      },
+      "positive_control_regime_change_declares_a_target": {
+        "expected": true,
+        "observed": true,
+        "why_this_control": "the prose-sniffing first version of this check missed exactly this proposal"
+      },
+      "per_class": {
+        "no-change": false,
+        "donor-product": true,
+        "local-patch": true,
+        "regime-change": true
+      },
+      "discriminates": true
+    },
+    "alternative_classes_seen": [
+      "donor-product",
+      "local-patch",
+      "no-change",
+      "regime-change"
+    ],
+    "working_tree": {
+      "status": "CLEAN",
+      "method": "git status --porcelain; a tracked modification outside this job's own directory is a violation, an untracked path outside it is skipped and counted",
+      "foreign_modifications": [],
+      "skipped_untracked_paths_outside_this_job": 2,
+      "blind_spot": "a newly created UNTRACKED file outside this job's directory would be skipped rather than reported; the count above is what makes that exclusion visible",
+      "polarity_test": {
+        "positive_control_tracked_edit_outside_this_job": {
+          "input": " M papers/paper-15-orion-research-harness/SHA256SUMS",
+          "expected": "violation",
+          "violations_returned": 1
+        },
+        "negative_control_untracked_path_of_another_job": {
+          "input": "?? research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/",
+          "expected": "no violation, counted as skipped",
+          "violations_returned": 0,
+          "skipped_counted": 1
+        },
+        "negative_control_edit_inside_this_job": {
+          "input": " M research/orion-discovery-v2/exec/DISC-SELF-01/CHANGE_IMPACT_RECEIPT_V1.json",
+          "expected": "no violation",
+          "violations_returned": 0
+        },
+        "discriminates": true
+      },
+      "clean": true
+    }
+  },
+  "verdict_scan": {
+    "status": "CLEAN",
+    "method": "structural scan of this job's own JSON outputs. A violation is a verdict term occurring in the same string as a proposal id, or any verdict-bearing key. Bare vocabulary elsewhere is not a violation.",
+    "verdict_terms": [
+      "adequate",
+      "inadequate",
+      "sound",
+      "unsound",
+      "correct",
+      "incorrect",
+      "good",
+      "bad",
+      "better",
+      "worse",
+      "best",
+      "preferred",
+      "recommend",
+      "superior",
+      "valid",
+      "invalid",
+      "should be adopted",
+      "safe to adopt"
+    ],
+    "verdict_keys": [
+      "verdict",
+      "score",
+      "rating",
+      "adequacy",
+      "recommendation",
+      "recommended",
+      "assessment",
+      "evaluation_result",
+      "quality",
+      "ranking",
+      "preferred"
+    ],
+    "polarity_test": {
+      "positive_control_verdict_attached_to_proposal": {
+        "input": "SELF-01-P4 is the sound and correct repair",
+        "expected": "alarm",
+        "alarmed": true
+      },
+      "positive_control_verdict_bearing_key": {
+        "input": "{\"verdict\": \"PASS\"}",
+        "expected": "alarm",
+        "alarmed": true
+      },
+      "negative_control_prohibition_and_quoted_metric": {
+        "input": "the sentence stating the prohibition, plus DISC-PROOF-ECONOMY-01's adequate-plan count",
+        "expected": "no alarm",
+        "alarmed": false,
+        "why_this_control": "these are the two strings the first version of this scanner falsely alarmed on"
+      },
+      "positive_control_same_verdict_outside_the_excluded_path": {
+        "input": "the identical verdict string placed at verdict_scan.notes rather than under verdict_scan.polarity_test",
+        "expected": "alarm",
+        "alarmed": true,
+        "why_this_control": "proves the fixture exclusion is scoped to one path prefix and does not blind the scanner to a real verdict placed anywhere else"
+      },
+      "excluded_path_prefix": "verdict_scan.polarity_test",
+      "why_excluded": "the scanner stores its own positive-control fixtures here; on the second pass it would otherwise detect its own test string as a violation",
+      "discriminates": true
+    },
+    "correction_log": [
+      "v1 matched bare verdict words anywhere in the outputs and returned 2 false positives on its first real run: 'adequate' from a quoted DISC-PROOF-ECONOMY-01 metric, and 'sound' from the sentence stating the prohibition itself. Replaced with the attachment rule above.",
+      "v2 then detected its own positive-control fixture string when it re-scanned the receipt that stores it. Narrowed by excluding exactly one path prefix, verdict_scan.polarity_test, and added a control proving the same verdict string still alarms at any other path.",
+      "both corrections were found by running the scanner on this job's real outputs, not on a fixture; neither was visible before that run."
+    ],
+    "hits": [],
+    "clean": true,
+    "limitation": "this cannot prove the absence of an evaluation phrased without any listed term and without naming a proposal id; it fails closed on attached verdicts and on verdict-bearing keys only",
+    "scan_covers": [
+      "CHANGE_IMPACT_RECEIPT_V1.json",
+      "EXTERNAL_ADOPTION_DISPOSITION.json",
+      "HIDDEN_CONSEQUENCE_RECEIPT.json",
+      "OLD_CLOSURE_CERTIFICATE.json",
+      "PROPOSAL_ORIGIN_V1.json",
+      "SELF_APPLICATION_CONTRACT_V1.json"
+    ]
+  },
+  "detector_polarity_test": {
+    "detector": "superseded-chain-member classifier for authority.evidence_binding drift",
+    "chain_reader": "CLEAN: imported ORION's own chain reader",
+    "positive_control": {
+      "binding": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json -> packages/orion-research-harness/pyproject.toml",
+      "expected": "EXPECTED_HISTORICAL_DRIFT",
+      "observed": "EXPECTED_HISTORICAL_DRIFT",
+      "detail": {
+        "classification": "EXPECTED_HISTORICAL_DRIFT",
+        "actual_sha256": "d75778a3c6b06e395e418ce9fb63db0cc85b5cebaa5a47cee696e3bf722ea6e9",
+        "reason": "binder P15_ACTIVE_CLAIM_AUTHORITY_V1.json is superseded; chain head is P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+        "chain_active": "P15_ACTIVE_CLAIM_AUTHORITY_V3.json"
+      }
+    },
+    "negative_control": {
+      "binding": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json -> development/orion-q-max-r0/DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_PROTOCOL.md",
+      "expected": "CLEAN",
+      "observed": "CLEAN",
+      "detail": {
+        "classification": "CLEAN",
+        "actual_sha256": "af686698c0e9acca6e9a5f9c385473d14bff058cfcf4fe55c971c702ebbaec0c",
+        "reason": "recorded digest equals working-tree digest"
+      },
+      "why_this_control": "it lives inside the same binder as the positive control, so a pass proves the detector discriminates the binding and not merely the file"
+    },
+    "discriminates": true,
+    "known_limitation": "the detector classifies by BINDER version, while the repository's intent is per-BINDING. A live binding carried inside a superseded authority would be misclassified as benign. This limitation is an argument for proposal REGIME-CHANGE (a per-binding type field), not evidence against it."
+  },
+  "donor_probe": {
+    "authority_staleness": {
+      "status": "CLEAN",
+      "exit_code": 0,
+      "stdout_tail": [
+        "  paper-12-adaptive-state-reasoning: active=P12_ACTIVE_CLAIM_AUTHORITY_V5.json superseded=4",
+        "  paper-13-responsibility-carrying-state: active=P13_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
+        "  paper-15-orion-research-harness: active=P15_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
+        "AUTHORITY_STALENESS_PASS"
+      ],
+      "what_it_checks": "whether a surface cites a superseded authority version as current",
+      "covers_this_deficiency": false,
+      "why_not": "it audits citation currency, never the freshness or the type of an authority's artifact bindings"
+    },
+    "diagnostic_inputs_verifier_search": {
+      "status": "CLEAN",
+      "scope": "git grep -l diagnostic_inputs over all tracked files",
+      "files": [
+        "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json",
+        "research/development/cannot_check_inventory.json",
+        "src/orion/study/p15/active_claim_authority.py"
+      ],
+      "verifier_found": false,
+      "why": "the only code file among them constructs the bindings; no tracked file recomputes a diagnostic_inputs digest against its artifact"
+    },
+    "binding_type_field_search": {
+      "status": "CLEAN",
+      "scope": "git grep over tracked *.json for a per-binding verification-mode field, excluding this discovery layer's own outputs",
+      "hits_outside_discovery_layer": [],
+      "field_exists_in_authority_binders": false
+    },
+    "donor_sufficient": false
+  },
+  "counts": {
+    "deficiencies_registered": 1,
+    "proposals": 4,
+    "alternative_classes": 4,
+    "reopen_edges_touching_subject": 2,
+    "authority_gated_reopen_edges": 1,
+    "adoptions": 0,
+    "evaluations_by_this_job": 0
+  },
+  "changes_applied_to_repository": [],
+  "not_performed": [
+    "no evaluation of any proposal",
+    "no adoption of any proposal",
+    "no re-freeze of any binding",
+    "no edit outside research/orion-discovery-v2/exec/DISC-SELF-01/",
+    "no commit, push or pull request"
+  ],
+  "out_of_scope_excluded": [
+    "the 55 manifest.SHA256SUMS drifts reported by DISC-IMPACT-01",
+    "the 17 CANNOT_CHECK bindings reported by DISC-IMPACT-01",
+    "DISC-IMPACT-01's audit itself, which was read and not re-derived"
+  ],
+  "cannot_check": [
+    {
+      "item": "whether the four proposals are good",
+      "reason": "evaluation authority is external and unexercised; this job is structurally forbidden from deciding it"
+    },
+    {
+      "item": "intent behind the 55 SHA256SUMS drifts",
+      "reason": "out of scope; a different discriminator applies and this job did not build it"
+    },
+    {
+      "item": "whether this deficiency was already raised as a tracker issue",
+      "reason": "the 107 registered ISSUE nodes carry an issue number only, with no title or body, so they cannot be searched by topic offline; the commit-subject search that IS possible was run and is reported separately"
+    },
+    {
+      "item": "per-binding correctness of the historical/live classification",
+      "reason": "the detector classifies by binder version; the repository's intent is per-binding and is not recorded in any artifact"
+    }
+  ]
+}

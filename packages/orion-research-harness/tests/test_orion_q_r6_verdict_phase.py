@@ -21,6 +21,18 @@ def test_r6_prospective_replay_capability_is_registered():
     } <= evidence_keys
 
 
+def test_r6_prospective_replay_budget_admits_the_measured_replay():
+    """Do not turn a slow frozen replay into a false campaign terminal.
+
+    The replay has previously taken more than 237 seconds.  The 120-second
+    request used by the campaign is therefore a known truncation boundary, not
+    an execution budget capable of reaching a verdict.
+    """
+
+    capability = MAX_R6_CAMPAIGN_MANIFEST["capabilities"]["orion_q.r6_prospective_replay"]
+    assert capability["payload"]["timeout"] == 600
+
+
 def test_r6_verdict_is_recorded_not_required():
     # The campaign must record the frozen gate outcome as evidence; it must
     # never make campaign success conditional on r6_earned being true, and it

@@ -1,0 +1,953 @@
+{
+  "cause": "The runner computed work savings as full-reset REOPEN decisions minus exact REOPEN decisions. The freeze-bound historical revalidation implementation defines savings versus full reset as retained certificates minus full-reset retained certificates. The erroneous formula therefore assigned zero savings in two domains even though exact revalidation retained one valid certificate and full reset retained zero in each.",
+  "cause_class": "DERIVED_METRIC_IMPLEMENTATION_ERROR",
+  "exact_terminal": "EXACT_DYNAMIC_REVALIDATION_GATE_NOT_MET",
+  "freeze_commit": "f702ccd20312400810c430b896ab90d0cf8f21bd",
+  "freeze_sha256": "e15d7fcd99ad0393353dfdab34171588ad861ada2069704f5f96eb5a04d2a70c",
+  "initial_output_sha256": {
+    "DOMAIN_REVALIDATION_OUTCOMES_V1.json": "5e4f8b695d07bbcdbfac6b7bc3a74dd12e64ec159b5fec07707ae567a4d4e4a1",
+    "IDEAL_DONOR_RESULT_V1.json": "26f09e8219d94c4bafb7107163d4ff36783e9d565596670009817d51a5891120",
+    "NATIVE_CHECKER_RECEIPTS_V1.json": "05c6e4dffd3f200d6851b35799189cb75b02483836572d5d658ea4b92ddfa030",
+    "NEGATIVE_CONTROLS_V1.json": "623d4977974a91ad0e230ee021d038849f4e36385ae0b83acb9a167a8bcb4334",
+    "PRIMARY_RESULT_V1.json": "636dc96d358983bdba30d7189e994e392215fa398e486b6092a57eef5ae2c068",
+    "RAW_MANIFEST_V1.json": "471746ecfed9ea25ad69a7cbc8287f7e50ccac6b9bec9bd4463d4411235784a9",
+    "RESOURCE_LEDGER_V1.json": "f06b5397b83d5dd950dc04640c1fce5a30fd345e532524e84bfb5ab8606c665d",
+    "RESULT_BINDING_PACKET_V1.json": "6faedeb8802ec67a2235f55b430c2e07ba3d31a60ea8ecd79a25771b72e569ac",
+    "TRANSFER_RESULT_V1.json": "88f1f5014982fc51d47ea98914a90a7c82d596dfb3f8430d7cccf9cc50af3382"
+  },
+  "job_id": "P6-DES-01",
+  "observed_after_freeze": true,
+  "preflight_primary_result": {
+    "claim_ceiling": "BOUNDED_CONTENT_BOUND_REPLAY_OVER_16_PREEXISTING_REAL_TRANSITIONS_PLUS_INTERNAL_FINITE_CONTROLS__NO_BLINDED_PROSPECTIVE_EXTERNAL_NOVELTY_UNIVERSAL_MINIMALITY_OR_DEPLOYED_SYSTEM_SUPERIORITY_AUTHORITY",
+    "counts": {
+      "assumption_control_case_denominator": 12,
+      "domain_denominator": 4,
+      "ets_control_case_denominator": 18,
+      "mutation_denominator": 4,
+      "mutations_killed": 4,
+      "native_checker_denominator": 7,
+      "native_checkers_passed": 7,
+      "policy_denominator": 4,
+      "primary_case_denominator": 16,
+      "primary_policy_decision_denominator": 64,
+      "rows_dropped": 0
+    },
+    "domain_results": [
+      {
+        "case_denominator": 4,
+        "case_ids": [
+          "RC-ALIAS-COMPLETE",
+          "RC-ALIAS-MISSING",
+          "RC-ALIAS-WRONG",
+          "RC-UNCHANGED"
+        ],
+        "domain": "ontology-regime-change",
+        "exact_work_savings_vs_full_reset": 2,
+        "gold_counts": {
+          "ADMISSIBLE": 2,
+          "CANNOT_CHECK": 1,
+          "REOPEN": 1
+        },
+        "policies": {
+          "exact_dynamic_revalidation": {
+            "exact_accuracy": 1.0,
+            "retained": 2,
+            "retained_invalid": 0,
+            "revalidation_actions": 1,
+            "unnecessary_reopen": 0
+          },
+          "full_reset": {
+            "exact_accuracy": 0.5,
+            "retained": 0,
+            "retained_invalid": 0,
+            "revalidation_actions": 3,
+            "unnecessary_reopen": 2
+          },
+          "ideal_support_hypergraph_product": {
+            "exact_accuracy": 1.0,
+            "retained": 2,
+            "retained_invalid": 0,
+            "revalidation_actions": 1,
+            "unnecessary_reopen": 0
+          },
+          "native_dependency_selector": {
+            "exact_accuracy": 0.5,
+            "retained": 4,
+            "retained_invalid": 2,
+            "revalidation_actions": 0,
+            "unnecessary_reopen": 0
+          }
+        },
+        "positive_and_violating_strata_attained": true,
+        "source_family": "rocrate-standard"
+      },
+      {
+        "case_denominator": 4,
+        "case_ids": [
+          "P10-NATIVE-SUPERIORITY",
+          "P10-COVERAGE-BOUNDARY",
+          "P10-RELAX-ELIGIBILITY",
+          "P10-PROCESS-ONLY"
+        ],
+        "domain": "proof-library-change",
+        "exact_work_savings_vs_full_reset": 0,
+        "gold_counts": {
+          "ADMISSIBLE": 1,
+          "CANNOT_CHECK": 2,
+          "REOPEN": 1
+        },
+        "policies": {
+          "exact_dynamic_revalidation": {
+            "exact_accuracy": 1.0,
+            "retained": 1,
+            "retained_invalid": 0,
+            "revalidation_actions": 1,
+            "unnecessary_reopen": 0
+          },
+          "full_reset": {
+            "exact_accuracy": 0.0,
+            "retained": 0,
+            "retained_invalid": 0,
+            "revalidation_actions": 1,
+            "unnecessary_reopen": 1
+          },
+          "ideal_support_hypergraph_product": {
+            "exact_accuracy": 1.0,
+            "retained": 1,
+            "retained_invalid": 0,
+            "revalidation_actions": 1,
+            "unnecessary_reopen": 0
+          },
+          "native_dependency_selector": {
+            "exact_accuracy": 0.25,
+            "retained": 4,
+            "retained_invalid": 3,
+            "revalidation_actions": 0,
+            "unnecessary_reopen": 0
+          }
+        },
+        "positive_and_violating_strata_attained": true,
+        "source_family": "p10-native-coverage"
+      },
+      {
+        "case_denominator": 4,
+        "case_ids": [
+          "P9-RECOVERY-NEGATIVE",
+          "P9-DIGEST-MISMATCH",
+          "P9-ANALYZER-CHANGED",
+          "P9-WIDEN-ALL-LLMS"
+        ],
+        "domain": "scientific-rule-graph-change",
+        "exact_work_savings_vs_full_reset": 1,
+        "gold_counts": {
+          "ADMISSIBLE": 1,
+          "CANNOT_CHECK": 1,
+          "DENIED": 1,
+          "REOPEN": 1
+        },
+        "policies": {
+          "exact_dynamic_revalidation": {
+            "exact_accuracy": 1.0,
+            "retained": 1,
+            "retained_invalid": 0,
+            "revalidation_actions": 1,
+            "unnecessary_reopen": 0
+          },
+          "full_reset": {
+            "exact_accuracy": 0.75,
+            "retained": 0,
+            "retained_invalid": 0,
+            "revalidation_actions": 2,
+            "unnecessary_reopen": 1
+          },
+          "ideal_support_hypergraph_product": {
+            "exact_accuracy": 1.0,
+            "retained": 1,
+            "retained_invalid": 0,
+            "revalidation_actions": 1,
+            "unnecessary_reopen": 0
+          },
+          "native_dependency_selector": {
+            "exact_accuracy": 0.5,
+            "retained": 3,
+            "retained_invalid": 2,
+            "revalidation_actions": 0,
+            "unnecessary_reopen": 0
+          }
+        },
+        "positive_and_violating_strata_attained": true,
+        "source_family": "p9-artifact-recovery"
+      },
+      {
+        "case_denominator": 4,
+        "case_ids": [
+          "P15-INTEROP-WITH-SCIENCE",
+          "P15-PROVENANCE-ONLY",
+          "P15-DIGEST-CHANGED",
+          "P15-INVALID-SCIENCE"
+        ],
+        "domain": "scientific-workflow-change",
+        "exact_work_savings_vs_full_reset": 0,
+        "gold_counts": {
+          "ADMISSIBLE": 1,
+          "CANNOT_CHECK": 2,
+          "REOPEN": 1
+        },
+        "policies": {
+          "exact_dynamic_revalidation": {
+            "exact_accuracy": 1.0,
+            "retained": 1,
+            "retained_invalid": 0,
+            "revalidation_actions": 1,
+            "unnecessary_reopen": 0
+          },
+          "full_reset": {
+            "exact_accuracy": 0.25,
+            "retained": 0,
+            "retained_invalid": 0,
+            "revalidation_actions": 1,
+            "unnecessary_reopen": 1
+          },
+          "ideal_support_hypergraph_product": {
+            "exact_accuracy": 1.0,
+            "retained": 1,
+            "retained_invalid": 0,
+            "revalidation_actions": 1,
+            "unnecessary_reopen": 0
+          },
+          "native_dependency_selector": {
+            "exact_accuracy": 0.5,
+            "retained": 3,
+            "retained_invalid": 2,
+            "revalidation_actions": 0,
+            "unnecessary_reopen": 0
+          }
+        },
+        "positive_and_violating_strata_attained": true,
+        "source_family": "p15-provenance-import"
+      }
+    ],
+    "exact_terminal": "EXACT_DYNAMIC_REVALIDATION_GATE_NOT_MET",
+    "hard_preconditions": {
+      "all_16_case_sources_pass_token_binding": true,
+      "all_four_policies_receive_same_16_records": true,
+      "all_frozen_source_digests_match": true,
+      "all_mutation_strata_exercised": true,
+      "four_domain_strata_present": true,
+      "ideal_product_executed_under_matched_case_access": true,
+      "internal_native_checkers_green": true,
+      "label_and_family_remint_probe_passes": true,
+      "positive_and_violating_strata_in_every_domain": true,
+      "strongest_native_lower_layer_executed_not_proxied": true
+    },
+    "job_id": "P6-DES-01",
+    "minimality": {
+      "exact_reopen_matches_gold_reopen": true,
+      "zero_retained_invalid": true,
+      "zero_unnecessary_reopen": true
+    },
+    "native_unsafe_domains": [
+      "ontology-regime-change",
+      "proof-library-change",
+      "scientific-rule-graph-change",
+      "scientific-workflow-change"
+    ],
+    "policy_results": {
+      "exact_dynamic_revalidation": {
+        "cannot_check": 6,
+        "case_denominator": 16,
+        "denied": 1,
+        "exact_accuracy": 1.0,
+        "retained": 5,
+        "retained_invalid": 0,
+        "revalidation_actions": 4,
+        "rows": [
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-COMPLETE",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-MISSING",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "REOPEN",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-WRONG",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "rocrate-standard",
+            "id": "RC-UNCHANGED",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "p9-artifact-recovery",
+            "id": "P9-RECOVERY-NEGATIVE",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p9-artifact-recovery",
+            "id": "P9-DIGEST-MISMATCH",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "REOPEN",
+            "family": "p9-artifact-recovery",
+            "id": "P9-ANALYZER-CHANGED",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "DENIED",
+            "family": "p9-artifact-recovery",
+            "id": "P9-WIDEN-ALL-LLMS",
+            "predicted": "DENIED",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p10-native-coverage",
+            "id": "P10-NATIVE-SUPERIORITY",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "p10-native-coverage",
+            "id": "P10-COVERAGE-BOUNDARY",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "REOPEN",
+            "family": "p10-native-coverage",
+            "id": "P10-RELAX-ELIGIBILITY",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p10-native-coverage",
+            "id": "P10-PROCESS-ONLY",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "p15-provenance-import",
+            "id": "P15-INTEROP-WITH-SCIENCE",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p15-provenance-import",
+            "id": "P15-PROVENANCE-ONLY",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p15-provenance-import",
+            "id": "P15-DIGEST-CHANGED",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "REOPEN",
+            "family": "p15-provenance-import",
+            "id": "P15-INVALID-SCIENCE",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          }
+        ],
+        "unnecessary_reopen": 0
+      },
+      "full_reset": {
+        "cannot_check": 3,
+        "case_denominator": 16,
+        "denied": 6,
+        "exact_accuracy": 0.375,
+        "retained": 0,
+        "retained_invalid": 0,
+        "revalidation_actions": 7,
+        "rows": [
+          {
+            "correct": false,
+            "expected": "ADMISSIBLE",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-COMPLETE",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": true
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-MISSING",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "REOPEN",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-WRONG",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "ADMISSIBLE",
+            "family": "rocrate-standard",
+            "id": "RC-UNCHANGED",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": true
+          },
+          {
+            "correct": false,
+            "expected": "ADMISSIBLE",
+            "family": "p9-artifact-recovery",
+            "id": "P9-RECOVERY-NEGATIVE",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": true
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p9-artifact-recovery",
+            "id": "P9-DIGEST-MISMATCH",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "REOPEN",
+            "family": "p9-artifact-recovery",
+            "id": "P9-ANALYZER-CHANGED",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "DENIED",
+            "family": "p9-artifact-recovery",
+            "id": "P9-WIDEN-ALL-LLMS",
+            "predicted": "DENIED",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "CANNOT_CHECK",
+            "family": "p10-native-coverage",
+            "id": "P10-NATIVE-SUPERIORITY",
+            "predicted": "DENIED",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "ADMISSIBLE",
+            "family": "p10-native-coverage",
+            "id": "P10-COVERAGE-BOUNDARY",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": true
+          },
+          {
+            "correct": false,
+            "expected": "REOPEN",
+            "family": "p10-native-coverage",
+            "id": "P10-RELAX-ELIGIBILITY",
+            "predicted": "DENIED",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "CANNOT_CHECK",
+            "family": "p10-native-coverage",
+            "id": "P10-PROCESS-ONLY",
+            "predicted": "DENIED",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "ADMISSIBLE",
+            "family": "p15-provenance-import",
+            "id": "P15-INTEROP-WITH-SCIENCE",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": true
+          },
+          {
+            "correct": false,
+            "expected": "CANNOT_CHECK",
+            "family": "p15-provenance-import",
+            "id": "P15-PROVENANCE-ONLY",
+            "predicted": "DENIED",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p15-provenance-import",
+            "id": "P15-DIGEST-CHANGED",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "REOPEN",
+            "family": "p15-provenance-import",
+            "id": "P15-INVALID-SCIENCE",
+            "predicted": "DENIED",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          }
+        ],
+        "unnecessary_reopen": 5
+      },
+      "ideal_support_hypergraph_product": {
+        "cannot_check": 6,
+        "case_denominator": 16,
+        "denied": 1,
+        "exact_accuracy": 1.0,
+        "retained": 5,
+        "retained_invalid": 0,
+        "revalidation_actions": 4,
+        "rows": [
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-COMPLETE",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-MISSING",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "REOPEN",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-WRONG",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "rocrate-standard",
+            "id": "RC-UNCHANGED",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "p9-artifact-recovery",
+            "id": "P9-RECOVERY-NEGATIVE",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p9-artifact-recovery",
+            "id": "P9-DIGEST-MISMATCH",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "REOPEN",
+            "family": "p9-artifact-recovery",
+            "id": "P9-ANALYZER-CHANGED",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "DENIED",
+            "family": "p9-artifact-recovery",
+            "id": "P9-WIDEN-ALL-LLMS",
+            "predicted": "DENIED",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p10-native-coverage",
+            "id": "P10-NATIVE-SUPERIORITY",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "p10-native-coverage",
+            "id": "P10-COVERAGE-BOUNDARY",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "REOPEN",
+            "family": "p10-native-coverage",
+            "id": "P10-RELAX-ELIGIBILITY",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p10-native-coverage",
+            "id": "P10-PROCESS-ONLY",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "p15-provenance-import",
+            "id": "P15-INTEROP-WITH-SCIENCE",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p15-provenance-import",
+            "id": "P15-PROVENANCE-ONLY",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p15-provenance-import",
+            "id": "P15-DIGEST-CHANGED",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "REOPEN",
+            "family": "p15-provenance-import",
+            "id": "P15-INVALID-SCIENCE",
+            "predicted": "REOPEN",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          }
+        ],
+        "unnecessary_reopen": 0
+      },
+      "native_dependency_selector": {
+        "cannot_check": 2,
+        "case_denominator": 16,
+        "denied": 0,
+        "exact_accuracy": 0.4375,
+        "retained": 14,
+        "retained_invalid": 9,
+        "revalidation_actions": 0,
+        "rows": [
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-COMPLETE",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "CANNOT_CHECK",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-MISSING",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": true,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "REOPEN",
+            "family": "rocrate-standard",
+            "id": "RC-ALIAS-WRONG",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": true,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "rocrate-standard",
+            "id": "RC-UNCHANGED",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "p9-artifact-recovery",
+            "id": "P9-RECOVERY-NEGATIVE",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p9-artifact-recovery",
+            "id": "P9-DIGEST-MISMATCH",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "REOPEN",
+            "family": "p9-artifact-recovery",
+            "id": "P9-ANALYZER-CHANGED",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": true,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "DENIED",
+            "family": "p9-artifact-recovery",
+            "id": "P9-WIDEN-ALL-LLMS",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": true,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "CANNOT_CHECK",
+            "family": "p10-native-coverage",
+            "id": "P10-NATIVE-SUPERIORITY",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": true,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "p10-native-coverage",
+            "id": "P10-COVERAGE-BOUNDARY",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "REOPEN",
+            "family": "p10-native-coverage",
+            "id": "P10-RELAX-ELIGIBILITY",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": true,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "CANNOT_CHECK",
+            "family": "p10-native-coverage",
+            "id": "P10-PROCESS-ONLY",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": true,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "ADMISSIBLE",
+            "family": "p15-provenance-import",
+            "id": "P15-INTEROP-WITH-SCIENCE",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "CANNOT_CHECK",
+            "family": "p15-provenance-import",
+            "id": "P15-PROVENANCE-ONLY",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": true,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": true,
+            "expected": "CANNOT_CHECK",
+            "family": "p15-provenance-import",
+            "id": "P15-DIGEST-CHANGED",
+            "predicted": "CANNOT_CHECK",
+            "retained": false,
+            "retained_invalid": false,
+            "unnecessary_reopen": false
+          },
+          {
+            "correct": false,
+            "expected": "REOPEN",
+            "family": "p15-provenance-import",
+            "id": "P15-INVALID-SCIENCE",
+            "predicted": "ADMISSIBLE",
+            "retained": true,
+            "retained_invalid": true,
+            "unnecessary_reopen": false
+          }
+        ],
+        "unnecessary_reopen": 0
+      }
+    },
+    "positive_gate_passed": false,
+    "schema": "orion.p6-des.primary-result.v1"
+  },
+  "protocol_cases_comparators_resources_thresholds_changed": false,
+  "retention": "This adverse preflight is retained in the final packet and is not a scientific negative result.",
+  "runner_sha256_at_failure": "2e4724b004493a3599876e452f939a5967caca01e698e291fb8800d6777ab47f",
+  "schema": "orion.p6-des.preflight-failure.v1",
+  "scientific_outcomes_affected": false
+}

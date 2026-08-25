@@ -1,0 +1,31 @@
+{
+  "claim_boundary": "The runnable product is an internal donor envelope and is not the missing material biomedical neural donor.",
+  "composition": [
+    "LOCAL_MULTIFORM_RRF",
+    "DIVERSIFIED_ROUND_ROBIN",
+    "ANALOGY_PRF"
+  ],
+  "composition_rule": "equal-weight RRF with k=60, frozen before outcomes",
+  "job_id": "P2-DES-01",
+  "material_donor": {
+    "id": "BIOMEDICAL_NEURAL_HYBRID",
+    "proxy_substitution": false,
+    "status": "CANNOT_CHECK_UNAVAILABLE_NOT_SUBSTITUTED"
+  },
+  "oracle_selection_used": false,
+  "result": {
+    "declared_task_closures": 0,
+    "harmful_topics_vs_local_multiform_rrf": 14,
+    "mean_calibrated_unresolvedness_brier": 0.05314893538017444,
+    "mean_judged_fraction_at_returned_depth": 0.7918000000000001,
+    "mean_ndcg_at_10": 0.686975070044535,
+    "mean_qrels_bounded_residual_fraction": 0.8753406020537047,
+    "mean_recall_at_100_budget": 0.12465939794629531,
+    "mean_relevant_yield_per_100_reads": 54.4,
+    "premature_task_closures": 0,
+    "tied_topics_vs_local_multiform_rrf": 3,
+    "topic_rows": 50
+  },
+  "schema": "orion.p2-des-01.ideal-donor-result.v1",
+  "strongest_runnable_donor": "IDEAL_DONOR_PRODUCT_RRF"
+}

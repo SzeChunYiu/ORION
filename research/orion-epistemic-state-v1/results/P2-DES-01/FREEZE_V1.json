@@ -1,0 +1,299 @@
+{
+  "schema": "orion.p2-des-01.freeze.v1",
+  "job_id": "P2-DES-01",
+  "paper_id": "ORION-P2",
+  "frozen_at_utc": "2026-08-25T18:46:08Z",
+  "prospective": true,
+  "outcomes_accessed_before_freeze": false,
+  "writing_owner": "P1_P15_REWRITE_LANE",
+  "execution_owner": "COMPUTATION_ONLY_SESSIONS",
+  "paper_authority_delta": "NONE",
+  "git": {
+    "subject_sha": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+    "fresh_origin_main_sha": "f049e30391a09213240f6325ee319f9fa811189a",
+    "branch": "codex/p2-des-01-execution-20260825"
+  },
+  "contract": {
+    "backlog_path": "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json",
+    "executor_prompt_path": "research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md",
+    "calculus_path": "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md",
+    "successor_path": "papers/paper-02-open-world-scientific-discovery/TOP_TIER_DYNAMIC_EPISTEMIC_MANUSCRIPT_V1.md",
+    "task": "TREC-COVID/licensed review and reminted open-world search: coverage, saturation, remote jumps, and premature stopping under equal budgets.",
+    "intended_positive_terminal": "ASSUMPTION_INDEXED_OPEN_WORLD_NAVIGATION_AND_REMOTE_JUMP_VALUE_SUPPORTED",
+    "claim_boundary": "No finite study establishes global completeness; donor-equivalent, null, harmful, crashed, censored, and CANNOT_CHECK outcomes remain visible."
+  },
+  "case_freeze": {
+    "primary_world": "BEIR_TREC_COVID_PUBLIC_GOLD",
+    "remote_logical_root": "/home/scyiu/orion-work/trec/trec-covid",
+    "required_relative_paths": [
+      "corpus.jsonl",
+      "queries.jsonl",
+      "qrels/test.tsv"
+    ],
+    "case_ids": [
+      "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+      "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+      "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
+      "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",
+      "41", "42", "43", "44", "45", "46", "47", "48", "49", "50"
+    ],
+    "independent_unit": "TREC_COVID_TOPIC",
+    "planned_independent_units": 50,
+    "case_selection": "all and only frozen topic ids 1 through 50; no topic may be dropped",
+    "chronology": "single BEIR TREC-COVID world scored against its bound qrels; no cross-round comparison",
+    "licensed_review_world": {
+      "required_for_full_positive": true,
+      "binding_at_freeze": "UNAVAILABLE_NO_LICENSED_CORPUS_PATH_OR_DIGEST_PROVIDED",
+      "substitution_allowed": false
+    },
+    "reminted_cross_domain_world": {
+      "required_for_full_positive": true,
+      "binding_at_freeze": "UNAVAILABLE_NO_INDEPENDENT_REMINT_OR_GOLD_CUSTODY_PROVIDED",
+      "substitution_allowed": false
+    }
+  },
+  "information_and_leakage": {
+    "policy_visible_fields": [
+      "topic_id",
+      "question",
+      "keyword_query",
+      "narrative",
+      "document_id_for_stable_tie_break_only",
+      "document_title",
+      "document_text"
+    ],
+    "policy_forbidden_fields": [
+      "qrel_label",
+      "relevance",
+      "gold",
+      "generator_label",
+      "family_label",
+      "metric",
+      "outcome"
+    ],
+    "qrels_load_order": "all policy rankings and stop/route decisions are materialized and hashed before qrels/test.tsv is opened",
+    "document_id_use": "stable deterministic tie break only, never a feature",
+    "pre_score_probes": [
+      "scan corpus JSON keys for forbidden label-like fields",
+      "verify exact frozen topic-id set",
+      "verify policy-ranking artifact exists and is hashed before qrels access",
+      "verify policies receive no qrels object or qrels path",
+      "verify no case is dropped after scoring"
+    ]
+  },
+  "retrieval_and_policy_freeze": {
+    "analyzer": "lowercase Unicode alphanumeric token runs of length at least 2",
+    "bm25": {
+      "k1": 1.2,
+      "b": 0.75,
+      "depth_per_registered_query": 300
+    },
+    "rrf": {
+      "k": 60,
+      "stable_tie_break": "ascending document id"
+    },
+    "candidate_read_budget": 100,
+    "registered_query_budget": 4,
+    "local_query_forms": [
+      "question",
+      "keyword_query",
+      "narrative"
+    ],
+    "policies": [
+      {
+        "policy_id": "BM25_QUESTION",
+        "role": "lexical_donor",
+        "rule": "top 100 from question-form BM25"
+      },
+      {
+        "policy_id": "LOCAL_MULTIFORM_RRF",
+        "role": "strongest_runnable_local_donor",
+        "rule": "equal-weight RRF of question, keyword, and narrative BM25 rankings; top 100"
+      },
+      {
+        "policy_id": "DIVERSIFIED_ROUND_ROBIN",
+        "role": "diversified_search_donor",
+        "rule": "deduplicated round-robin over the three local BM25 rankings; top 100"
+      },
+      {
+        "policy_id": "LOCAL_SATURATION_STOP",
+        "role": "premature_closure_control",
+        "rule": "when the frozen local-saturation predicate is true, return the first 60 LOCAL_MULTIFORM_RRF items and incorrectly declare task closure; otherwise return 100 and remain open"
+      },
+      {
+        "policy_id": "RANDOM_REMOTE",
+        "role": "random_remote_control",
+        "rule": "when local saturation is true, retain 60 LOCAL_MULTIFORM_RRF items and add 40 deterministic seed-20260825 corpus samples outside the local top 300; otherwise equal LOCAL_MULTIFORM_RRF"
+      },
+      {
+        "policy_id": "ANALOGY_PRF",
+        "role": "analogy_donor",
+        "rule": "derive eight non-query bridge terms prospectively from the first 20 LOCAL_MULTIFORM_RRF documents, requiring presence in at least three feedback documents and corpus df <= 10 percent; rank the corpus by BM25 over question plus bridge terms; top 100"
+      },
+      {
+        "policy_id": "STRUCTURAL_JUMP",
+        "role": "orion_dynamic_policy",
+        "rule": "when local saturation is true and at least one admissible bridge term exists, retain 60 LOCAL_MULTIFORM_RRF items and add up to 40 ANALOGY_PRF items outside the local top 300, then fill from local ranks if needed; otherwise remain LOCAL_MULTIFORM_RRF and retain the unresolved obligation"
+      },
+      {
+        "policy_id": "IDEAL_DONOR_PRODUCT_RRF",
+        "role": "strongest_runnable_ideal_donor_product",
+        "rule": "equal-weight RRF over LOCAL_MULTIFORM_RRF, DIVERSIFIED_ROUND_ROBIN, and ANALOGY_PRF rankings; top 100; fixed before outcomes and not an oracle per-topic selector"
+      }
+    ],
+    "local_saturation_predicate": {
+      "depth": 100,
+      "mean_pairwise_jaccard_min": 0.2,
+      "third_route_marginal_unique_fraction_max": 0.25,
+      "definition": "mean pairwise Jaccard across the three local top-100 sets is at least 0.20 and the final registered local form contributes at most 25 percent unique documents relative to the union of the first two forms"
+    },
+    "bridge_term_rule": {
+      "feedback_documents": 20,
+      "minimum_feedback_document_frequency": 3,
+      "maximum_corpus_document_frequency_fraction": 0.1,
+      "term_count": 8,
+      "score": "sum over feedback documents of log(1 + N/(df+1)) * log(1+tf)",
+      "exclude": "all tokens occurring in any of the three registered query forms"
+    },
+    "material_donor_requirements": {
+      "biomedical_neural_hybrid": {
+        "required_for_full_positive": true,
+        "binding_at_freeze": "UNAVAILABLE_NO_FROZEN_MODEL_TOKENIZER_WEIGHTS_OR_REVISION",
+        "substitution_allowed": false,
+        "hashed_distributional_proxy_forbidden": true
+      },
+      "strongest_runnable_donor": "IDEAL_DONOR_PRODUCT_RRF",
+      "interpretation": "The runnable product is an internal lexical and PRF donor envelope, not a substitute for an unavailable biomedical neural hybrid."
+    }
+  },
+  "endpoint_freeze": {
+    "primary_vector": [
+      "recall_at_100",
+      "premature_task_closure",
+      "judged_fraction_at_returned_depth",
+      "relevant_yield_per_100_reads",
+      "qrels_bounded_residual_fraction",
+      "remote_jump_recall_delta",
+      "calibrated_unresolvedness_brier"
+    ],
+    "secondary": [
+      "ndcg_at_10",
+      "unique_documents_returned",
+      "registered_query_calls",
+      "bridge_term_count",
+      "local_saturation_triggered"
+    ],
+    "primary_contrast": "paired topic-level STRUCTURAL_JUMP minus IDEAL_DONOR_PRODUCT_RRF recall_at_100",
+    "remote_contrast": "paired topic-level STRUCTURAL_JUMP minus LOCAL_MULTIFORM_RRF recall_at_100 among prospectively licensed jump topics",
+    "premature_closure_definition": "a policy declares task closure before depth 100 and its own precomputed full ranking contains at least one qrels-relevant document between returned depth plus 1 and 100",
+    "qrels_bounded_residual_fraction": "one minus recall at returned depth; explicitly not an open-world completeness estimate",
+    "unresolvedness_estimate": "one minus size(union of local top-100 sets)/size(union of local top-300 sets), clipped to [0,1] and computed before qrels",
+    "unresolvedness_observed_target": "one minus recall at returned depth, bounded to the public qrels only",
+    "uncertainty": {
+      "method": "paired topic bootstrap percentile interval",
+      "resamples": 10000,
+      "seed": 20260825,
+      "confidence": 0.95
+    },
+    "preference_vector": "NONE__RETURN_PARETO_VECTOR_NO_HIDDEN_SCALARIZATION"
+  },
+  "hard_preconditions": [
+    {
+      "id": "HP1_INPUTS_PRESENT_AND_DIGESTED",
+      "required": true,
+      "attainment_checked_before_scoring": true
+    },
+    {
+      "id": "HP2_EXACT_50_FROZEN_TOPICS_NO_DROPS",
+      "required": true,
+      "attainment_checked_before_scoring": true
+    },
+    {
+      "id": "HP3_POLICY_OUTPUTS_HASHED_BEFORE_QRELS_OPEN",
+      "required": true,
+      "attainment_checked_before_scoring": true
+    },
+    {
+      "id": "HP4_NO_FORBIDDEN_LABEL_FIELDS_IN_POLICY_INPUT",
+      "required": true,
+      "attainment_checked_before_scoring": true
+    },
+    {
+      "id": "HP5_MATCHED_100_READ_AND_4_QUERY_MAXIMA",
+      "required": true,
+      "attainment_checked_before_scoring": true
+    },
+    {
+      "id": "HP6_MATERIAL_BIOMEDICAL_NEURAL_DONOR_BOUND",
+      "required_for_full_positive": true,
+      "known_freeze_state": "UNMET"
+    },
+    {
+      "id": "HP7_LICENSED_REVIEW_AND_REMINTED_TRANSFER_WORLDS_BOUND",
+      "required_for_full_positive": true,
+      "known_freeze_state": "UNMET"
+    },
+    {
+      "id": "HP8_EXTERNAL_INDEPENDENT_GOLD_CUSTODY",
+      "required_for_full_positive": true,
+      "known_freeze_state": "UNMET_PUBLIC_GOLD"
+    }
+  ],
+  "terminal_rule": {
+    "precedence": [
+      "CANNOT_CHECK_INPUT_BINDING_OR_PRECONDITION_FAILED",
+      "CANNOT_CHECK_LEAKAGE_OR_PROTOCOL_VIOLATION",
+      "RESOURCE_CAP_CENSORED",
+      "CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE",
+      "ASSUMPTION_INDEXED_OPEN_WORLD_NAVIGATION_AND_REMOTE_JUMP_VALUE_SUPPORTED",
+      "LOCAL_OR_IDEAL_DONOR_POLICY_SUFFICIENT",
+      "REMOTE_STRUCTURAL_JUMP_VALUE_NOT_SUPPORTED"
+    ],
+    "positive_requires": [
+      "all eight hard preconditions required for full positive are attained",
+      "all 50 topics retained",
+      "primary paired recall difference 95 percent lower bound greater than or equal to -0.02",
+      "remote paired recall difference on licensed jump topics has 95 percent lower bound greater than 0",
+      "STRUCTURAL_JUMP has no more premature task closures than every donor",
+      "no leakage or censoring"
+    ],
+    "negative_donor_sufficient_when_full_envelope_available": "IDEAL_DONOR_PRODUCT_RRF weakly dominates STRUCTURAL_JUMP on every primary coordinate and is strictly better on at least one",
+    "missing_binding_terminal": "CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE"
+  },
+  "resource_freeze": {
+    "cluster": "LUNARC_COSMOS",
+    "account": "lu2026-2-51",
+    "partition": "lu",
+    "nodes": 1,
+    "tasks": 1,
+    "cpus_per_task": 4,
+    "memory_gib": 32,
+    "wallclock": "02:00:00",
+    "gpu": false,
+    "network_required": false,
+    "model_tokens": 0,
+    "data_staging": "copy the three bound files into job-local SNIC_TMP; never modify /home/scyiu/orion-work/ORION"
+  },
+  "output_schema": {
+    "required": [
+      "FREEZE_V1.json",
+      "RAW_MANIFEST_V1.json",
+      "RAW_POLICY_OUTCOMES_V1.json",
+      "PRIMARY_RESULT_V1.json",
+      "IDEAL_DONOR_RESULT_V1.json",
+      "NEGATIVE_CONTROLS_V1.json",
+      "RESOURCE_LEDGER_V1.json",
+      "TRANSFER_RESULT_V1.json",
+      "RESULT_BINDING_PACKET_V1.json"
+    ],
+    "case_level_rows": "50 topics times 8 policies = 400 retained rows unless an input precondition prevents scoring, in which case zero rows plus the exact failed precondition",
+    "digest_algorithm": "SHA256"
+  },
+  "authority_ceiling": {
+    "scientific_scope": "Public TREC-COVID qrels-bounded internal comparison only; full P2 positive is unavailable while material donor, transfer worlds, and independent gold custody are unmet.",
+    "external_independence": "CANNOT_CHECK",
+    "global_open_world_closure": "NOT_CLAIMED",
+    "top_tier_submission_readiness_delta": "NONE",
+    "computation_session_paper_authority_delta": "NONE"
+  }
+}

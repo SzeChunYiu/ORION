@@ -1,0 +1,132 @@
+{
+  "schema": "orion.discovery-v2.registered-basis-failures.v1",
+  "job_id": "DISC-OOD-MORPH-01",
+  "out_of_basis_total": 30,
+  "recovered_open_move_class": 11,
+  "false_certainty": 19,
+  "false_certainty_cases": [
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Raise the money to buy the reagent; the experimental paradigm and its measurements are already settled and unchanged.",
+      "asserted_space": "experiment_instrument",
+      "score": 3
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Purchase the compute allocation; the causal model and its laws are already fixed.",
+      "asserted_space": "hypothesis_mechanism",
+      "score": 3
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Obtain the funds for the observing fee, leaving the apparatus and measurements as designed.",
+      "asserted_space": "experiment_instrument",
+      "score": 2
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Secure funding for monitoring, without altering the intervention or its measurements.",
+      "asserted_space": "experiment_instrument",
+      "score": 2
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Acquire supply by procurement, the formal proof and its evidence being complete already.",
+      "asserted_space": "proof_evidence",
+      "score": 3
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Wait for the remaining nine years to elapse; no intervention, measurement, or apparatus change shortens it.",
+      "asserted_space": "experiment_instrument",
+      "score": 3
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Wait for the encounter date; the measurements are already specified.",
+      "asserted_space": "experiment_instrument",
+      "score": 1
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Wait for the season to pass, the experimental paradigm being unchanged.",
+      "asserted_space": "experiment_instrument",
+      "score": 2
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Wait for enough decays to accumulate; no apparatus change alters the rate.",
+      "asserted_space": "experiment_instrument",
+      "score": 1
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Wait for the embargo to lapse; the evidence itself is already constructed.",
+      "asserted_space": "proof_evidence",
+      "score": 1
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Negotiate the landowner's permission to enter; the owner does not validate, interpret, publish, or adopt anything.",
+      "asserted_space": "authority_adoption",
+      "score": 4
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Negotiate machine time with the firm, which neither validates nor publishes the result.",
+      "asserted_space": "authority_adoption",
+      "score": 1
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Obtain transit consent from a party that will neither interpret nor adopt the finding.",
+      "asserted_space": "authority_adoption",
+      "score": 2
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Change the navigator's own move-selection policy, which is a property of the searcher rather than of the objects it studies.",
+      "asserted_space": "representation_ontology",
+      "score": 1
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Rewrite the searcher's stopping rule itself, not any law, object, apparatus, or evidence in the domain.",
+      "asserted_space": "hypothesis_mechanism",
+      "score": 1
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Modify the searcher's preference ordering over its policies, which is not an object of the study.",
+      "asserted_space": "representation_ontology",
+      "score": 1
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "move": "Alter the agent's agenda traversal order, which belongs to the searcher, not to the studied objects.",
+      "asserted_space": "representation_ontology",
+      "score": 1
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "move": "Recruit a specialist who can carry the construction.",
+      "asserted_space": "proof_evidence",
+      "score": 1
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "move": "Solve the transport problem so the specimen arrives intact.",
+      "asserted_space": "problem_question",
+      "score": 1
+    }
+  ],
+  "forced_mode_note": "classify_forced shows what the basis returns when it may not say 'I cannot'. Every out-of-basis world receives an in-basis label under forcing, which is the false certainty a fixed taxonomy produces when abstention is unavailable.",
+  "forced_mode_labels": {
+    "experiment_instrument": 7,
+    "hypothesis_mechanism": 2,
+    "proof_evidence": 3,
+    "authority_adoption": 3,
+    "problem_question": 12,
+    "representation_ontology": 3
+  }
+}

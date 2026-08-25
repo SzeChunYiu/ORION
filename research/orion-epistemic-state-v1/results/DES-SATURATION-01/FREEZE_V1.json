@@ -1,0 +1,171 @@
+{
+  "schema": "orion.dynamic-epistemic-state.des-saturation-freeze.v1",
+  "job_id": "DES-SATURATION-01",
+  "freeze_status": "FROZEN_BEFORE_POLICY_OUTCOME_ACCESS",
+  "frozen_on": "2026-08-25",
+  "subject_commit": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "ownership": {
+    "computation_owner": "codex/des-saturation-01-execution-20260825",
+    "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+    "paper_authority_delta": "NONE",
+    "write_scope": ["research/orion-epistemic-state-v1/results/DES-SATURATION-01/"],
+    "forbidden_edits": ["manuscripts", "claim_ledgers", "active_authorities", "PDFs", "figures", "tables", "journal_packages"]
+  },
+  "subject_bindings": {
+    "research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce",
+    "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05",
+    "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4",
+    "research/orion-epistemic-state-v1/WRITING_AUTHORITY_AND_RESULT_BINDING_V1.md": "d23f00dd57b8de4185b507f7c6072739516038149d13ae97d4f00949594a6cb1",
+    "papers/P1_P15_TOP_TIER_DYNAMIC_STATE_PROGRAMME_V1.md": "19a97b88c1ec49d014c6352ec8cd2ae4da0da57851f206589d36dfe9849175ce",
+    "papers/paper-02-open-world-scientific-discovery/structural_extension/HISTORICAL_PANEL_V1.json": "7ebe7a8f2e0873c381bc2ce90d1f83ba2aef73d1a50a9367033f8ee98ad560c2",
+    "papers/paper-02-open-world-scientific-discovery/structural_extension/HISTORICAL_PILOT_SUMMARY_V1.json": "148e679d01a1f331f5dedb7862b369ad60de70c42dd6621726af69aae941ac1b",
+    "papers/paper-02-open-world-scientific-discovery/scripts/run_structural_discovery_pilot.py": "e385e0cbae53c970516db1b004eca95123211fed6cc41496c8bbbdf61643f655",
+    "src/orion/transfer/v2/p2_structure.py": "905c3c7e0b278ce770ebc1203eebcba9c5aa55d1d02675d6a72cd0606cd4f1a2",
+    "pyproject.toml": "b110f997e81e3b349115c2d5ab517eae384ddba91f40396fb170dedb8bb09f5e",
+    "uv.lock": "4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"
+  },
+  "substrate": {
+    "id": "P2.structural-discovery.historical-pilot.v1",
+    "authority": "BOUNDED_CURATED_HISTORICAL_PILOT",
+    "selection_reason": "This is the strongest existing local substrate with an exact target need, cross-domain candidate universe, pre-transfer chronology, source URLs, a transfer-validated candidate, and executable structural scoring for every case. It directly fits the five frozen acquisition policies.",
+    "case_ids": ["simulated_annealing", "graph_cut_segmentation", "sinkhorn_transport", "citation_influence_to_web_rank"],
+    "case_count": 4,
+    "candidates_per_case": 4,
+    "candidate_case_count": 16,
+    "case_order": "lexicographic case_id",
+    "candidate_tie_break": "sha256 of candidate public content excluding candidate_id, case_id, family, gold and source fields",
+    "public_policy_fields": ["target_text", "target_domain", "need", "candidate.surface_text", "candidate.domain", "candidate.assumptions", "candidate.invariants", "candidate.effects", "candidate.reconstruction"],
+    "evaluation_only_fields": ["gold_candidate_id"],
+    "forbidden_policy_fields": ["case_id", "family", "gold_candidate_id", "cutoff", "donor_primary_source", "transfer_validation_source", "lineage_note", "candidate_id"],
+    "material_unexecuted_strong_donors": ["dense embedding retrieval", "citation expansion", "LLM query reformulation"],
+    "donor_rule": "The material unexecuted donors are recorded as unavailable, not replaced by lexical or handcrafted proxies. Their absence blocks the positive superiority-style terminal but cannot erase a negative result if an executed local/donor policy is already sufficient."
+  },
+  "policies": [
+    {
+      "policy_id": "nearest-neighbour",
+      "rule": "Rank descending by token-set Jaccard(target_text, candidate.surface_text).",
+      "local": true
+    },
+    {
+      "policy_id": "diversified",
+      "rule": "Greedy maximal-marginal ranking. At each step score = 3/4 * lexical relevance + 1/4 * novelty, where novelty is 1 minus the maximum token-set Jaccard to an already selected candidate surface and equals 1 for the first step.",
+      "local": true,
+      "preference_vector": {"lexical_relevance": "3/4", "surface_novelty": "1/4"}
+    },
+    {
+      "policy_id": "random-remote",
+      "rule": "Rank candidates outside target_domain before same-domain candidates; within each group order by sha256(seed || candidate_public_content_digest). Report every seed, never the best seed.",
+      "local": false,
+      "seed_rule": "seed_i = 202608250601 + i for i in [0,63]",
+      "seed_count": 64
+    },
+    {
+      "policy_id": "analogy",
+      "rule": "Rank descending by token-set Jaccard(need.representation_signature union need.failure_signature, candidate.surface_text union candidate.domain); prefer remote-domain candidates only after analogy score.",
+      "local": false
+    },
+    {
+      "policy_id": "structural-jump",
+      "rule": "Use the bound StructuralNeed/CandidateMethodSignature and structural_match_score. Rank CANDIDATE before UNKNOWN before OBSTRUCTION, then descending structural score, then remote-domain before same-domain.",
+      "local": false,
+      "authority": "CANDIDATE_ACQUISITION_ONLY"
+    }
+  ],
+  "matched_information_and_resources": {
+    "information": "All policies receive identical public_policy_fields for all four candidates before ranking. No policy receives gold, family, identifier, chronology or source-lineage fields.",
+    "available_per_case": {
+      "candidate_records": 4,
+      "maximum_candidate_score_evaluations": 64,
+      "maximum_pairwise_similarity_evaluations": 64,
+      "acquisition_steps": 4,
+      "thought_experiments": 0,
+      "external_queries": 0
+    },
+    "budgets": [1, 2, 3, 4],
+    "random_estimator_rule": "Each of 64 random-remote seeds is a separate matched policy run; aggregate endpoints are exact arithmetic means and no seed selection is allowed.",
+    "cost_vector_coordinates": ["candidate_acquisitions", "candidate_score_evaluations", "pairwise_similarity_evaluations", "verification_calls", "wall_time_ns"]
+  },
+  "gain_vector": {
+    "required_atom_definition": "Each (assumptions|invariants|effects, value) pair plus a non-null (reconstruction, value) is one required atom.",
+    "coordinate_gain": "Fraction of nonempty need coordinate types for which the selected prefix contains every required value in at least one candidate or across the selected union.",
+    "obligation_gain": "Fraction of required atoms covered by the selected prefix union.",
+    "support_gain": "One iff at least one selected candidate has StructuralCandidateStatus.CANDIDATE, else zero.",
+    "validated_transfer_gain": "One iff gold_candidate_id occurs in the selected prefix, else zero; gold is exposed only to the evaluator after ranking.",
+    "remote_method_gain": "One iff at least one selected remote-domain candidate has status CANDIDATE, else zero.",
+    "frontier_gain": "The maximum normalized structural score (score + 1)/2 in the selected prefix.",
+    "false_analogy_harm": "One iff the first selected candidate has status OBSTRUCTION, else zero; lower is better.",
+    "aggregate": "Report exact per-case vectors and exact arithmetic means at every budget. Do not collapse them to a global scalar.",
+    "primary_endpoints": ["validated_transfer_gain", "coordinate_gain", "obligation_gain", "support_gain", "remote_method_gain", "frontier_gain", "false_analogy_harm"]
+  },
+  "semantic_yield_curve": {
+    "budgets": [1, 2, 3, 4],
+    "auc_rule": "For descriptive reporting only, endpoint AUC is the arithmetic mean over the four frozen budgets. AUC is not a global policy score.",
+    "pareto_rule": "At equal acquisition budget, policy A weakly dominates B only when A is no worse on all seven endpoints, treating false_analogy_harm as minimized, and is strict on at least one endpoint. Resource consumption is reported separately and can defeat a dominance claim if A exceeds the common availability vector."
+  },
+  "saturation_and_jump": {
+    "local_saturation": "For a case and nearest-neighbour prefix k<4, local search is saturated only if every remaining candidate has zero marginal gain on all public gain coordinates (coordinate, obligation, support, remote method and frontier). Budget exhaustion alone is not saturation.",
+    "structural_jump_candidate": "At a locally saturated prefix, take the first structural-jump-ranked candidate not already acquired.",
+    "remote_jump_value": "A jump has positive hidden value only if it is remote-domain, non-OBSTRUCTION, and adds validated_transfer_gain without using gold during ranking. Public gain and hidden validated gain are reported separately.",
+    "open_world_boundary": "Finite candidate-universe saturation is never global or open-world closure."
+  },
+  "negative_controls": [
+    {"control_id": "LEAK-GOLD", "mutation": "Expose gold_candidate_id to a policy payload", "expected": "PRECONDITION_REJECT"},
+    {"control_id": "LEAK-FAMILY", "mutation": "Expose family or source chronology fields to a policy payload", "expected": "PRECONDITION_REJECT"},
+    {"control_id": "ID-RENAME", "mutation": "Rename case and candidate identifiers while preserving public content", "expected": "RANKING_INVARIANT"},
+    {"control_id": "ORDER-PERMUTE", "mutation": "Reverse candidate input order", "expected": "RANKING_INVARIANT"},
+    {"control_id": "CUTOFF-VIOLATION", "mutation": "Set cutoff before donor source or at/after transfer validation", "expected": "PRECONDITION_REJECT"},
+    {"control_id": "SOURCE-UNBOUND", "mutation": "Remove a required primary-source URL", "expected": "PRECONDITION_REJECT"},
+    {"control_id": "RANDOM-BEST-SEED", "mutation": "Select the best random seed after outcomes", "expected": "ESTIMATOR_REJECT"}
+  ],
+  "hard_preconditions": [
+    "The exact subject commit and every subject binding match.",
+    "FREEZE_V1.json is committed before policy implementation or evaluation.",
+    "There are exactly four unique frozen cases and four unique public-content candidates per case.",
+    "For every case donor_year <= cutoff_year < transfer_validation_year and both source URLs are present.",
+    "Policies receive only public_policy_fields and all forbidden policy fields are rejected.",
+    "All candidate rankings are complete permutations with no crash, drop or duplicate.",
+    "Every policy receives the same candidate bytes and available vector resources.",
+    "All positive, negative, null, tie, obstruction and CANNOT_CHECK cases remain in denominators."
+  ],
+  "resource_vector": {
+    "cpu_cores": 1,
+    "gpu_count": 0,
+    "memory_bytes_limit": 536870912,
+    "wall_time_seconds_limit": 120,
+    "network_access": false,
+    "worker_processes": 1,
+    "persistent_storage_bytes_limit": 52428800,
+    "randomness": "FROZEN_SHA256_SEEDED_RANDOM_REMOTE_ONLY"
+  },
+  "terminal_order": [
+    "CANNOT_CHECK_SUBSTRATE_PRECONDITION",
+    "CANNOT_CHECK_LEAKAGE_OR_SHORTCUT",
+    "CANNOT_CHECK_RESOURCE_CENSORED",
+    "LOCAL_OR_DONOR_POLICY_SUFFICIENT",
+    "CANNOT_CHECK_MATERIAL_DONOR_UNAVAILABLE",
+    "REMOTE_STRUCTURAL_JUMP_PROSPECTIVE_VALUE_SUPPORTED",
+    "CANNOT_CHECK_PARETO_TRADEOFF_WITHOUT_PREFERENCE_VECTOR"
+  ],
+  "terminal_rules": {
+    "CANNOT_CHECK_SUBSTRATE_PRECONDITION": "Any hard substrate, chronology, uniqueness, binding or ranking-completeness precondition fails.",
+    "CANNOT_CHECK_LEAKAGE_OR_SHORTCUT": "Any leakage/identifier/order/random-seed negative control survives.",
+    "CANNOT_CHECK_RESOURCE_CENSORED": "Any frozen resource limit binds before all denominators complete.",
+    "LOCAL_OR_DONOR_POLICY_SUFFICIENT": "Any executed non-structural policy weakly dominates structural-jump at every budget, or matches/exceeds it on validated transfer at every budget while using no more resources; this adverse terminal is allowed even when stronger donors remain unavailable.",
+    "CANNOT_CHECK_MATERIAL_DONOR_UNAVAILABLE": "Structural-jump is not defeated by an executed policy, but at least one material strong donor remains unexecuted, so the positive terminal cannot be issued.",
+    "REMOTE_STRUCTURAL_JUMP_PROSPECTIVE_VALUE_SUPPORTED": "All material strong donors execute under matched access; structural-jump is on the Pareto frontier at every budget, strictly improves at least one primary endpoint without harming another at some budget, and at least one prospectively ranked remote jump adds hidden validated value after genuine local saturation.",
+    "CANNOT_CHECK_PARETO_TRADEOFF_WITHOUT_PREFERENCE_VECTOR": "The completed policies remain incomparable and no pre-frozen global preference vector exists."
+  },
+  "outputs": [
+    "FREEZE_V1.json",
+    "RAW_MANIFEST_V1.json",
+    "PRIMARY_RESULT_V1.json",
+    "IDEAL_DONOR_RESULT_V1.json",
+    "NEGATIVE_CONTROLS_V1.json",
+    "RESOURCE_LEDGER_V1.json",
+    "TRANSFER_RESULT_V1.json",
+    "RESULT_BINDING_PACKET_V1.json",
+    "SEARCH_SATURATION_AND_REMOTE_JUMP_RESULT_V1.json"
+  ],
+  "claim_ceiling": "CURATED_FOUR_CASE_INTERNAL_PROSPECTIVE_POLICY_COMPARISON_ONLY__NO_OPEN_WORLD_CLOSURE_OR_EXTERNAL_SUPERIORITY",
+  "external_authority_state": "NONE"
+}

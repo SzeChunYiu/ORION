@@ -75,7 +75,7 @@ jobs:
           fi
       - name: Install project and test dependencies
         if: steps.bootstrap_state.outputs.pending == 'false'
-        run: python -m pip install -e . pytest
+        run: python -m pip install -e . pytest 'cryptography>=45'
       - name: Structural checker
         if: steps.bootstrap_state.outputs.pending == 'false'
         run: PYTHONPATH=src python scripts/check_orion_discovery_v3.py

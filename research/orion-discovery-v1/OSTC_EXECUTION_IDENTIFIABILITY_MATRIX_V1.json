@@ -1,0 +1,229 @@
+{
+  "schema": "orion.discovery.ostc-execution-identifiability-matrix.v1",
+  "subject_main_sha": "da5294fb3ccce94194d59c6b682cf0fa9bd18061",
+  "source_issue": 1234,
+  "audit_status": "ALL_EXECUTED_OR_BLOCKED_JOBS_CLASSIFIED",
+  "classification_vocabulary": [
+    "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+    "STRUCTURAL_IDENTIFYING_EXTERNAL_CAMPAIGN_BLOCKED",
+    "PARTIALLY_IDENTIFYING",
+    "NON_IDENTIFYING_VACUOUS",
+    "EXTERNAL_AUTHORITY_ONLY_CANNOT_CHECK"
+  ],
+  "rows": [
+    {
+      "job_id": "EXEC-CM-01",
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-CM-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T8", "OSTC-T10", "OSTC-T13"],
+      "identifying_evidence": "factor deletions, contract mismatches, commuting and independently perturbed noncommuting composites, donor tie",
+      "defect": "first T13 draft defined the composite as g∘f",
+      "repair": "reference composite independently enumerated before recorded result",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-PA-01",
+      "classification": "STRUCTURAL_IDENTIFYING_EXTERNAL_CAMPAIGN_BLOCKED",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-PA-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T8", "OSTC-T10", "OSTC-T11", "OSTC-T20"],
+      "identifying_evidence": "18 Lean theorems, zero sorryAx, true/false guard theorems",
+      "defect": "initial report checked installation rather than installability",
+      "repair": "Lean 4.33.1 installed and machine-checked; same-author encoding remains",
+      "external_authority": "INDEPENDENT_PROOF_REVIEW_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-NOV-01",
+      "classification": "EXTERNAL_AUTHORITY_ONLY_CANNOT_CHECK",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-NOV-01/RESULT_RECEIPT.json",
+      "theorems": [],
+      "identifying_evidence": "none; novelty alternatives remain open",
+      "defect": null,
+      "repair": "no internal substitute permitted",
+      "external_authority": "INDEPENDENT_NOVELTY_REVIEW_REQUIRED"
+    },
+    {
+      "job_id": "EXEC-P1-01",
+      "classification": "PARTIALLY_IDENTIFYING",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P1-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T14", "OSTC-T21"],
+      "identifying_evidence": "24 well-founded or finite-budget sequences terminate",
+      "defect": "no cyclic/non-descent control and no protected discriminator campaign",
+      "repair": "T21 positive core only; external custody still required",
+      "external_authority": "PROTECTED_EVALUATOR_CUSTODY_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P2-01",
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P2-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T12"],
+      "identifying_evidence": "all 27 history-only rules, exact one-half error, assumption-indexed strict improvement",
+      "defect": null,
+      "repair": "none",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P3-01",
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P3-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T9"],
+      "identifying_evidence": "fully abstract and non-abstract pairs, ideal-product tie, relevant/irrelevant extra coordinates",
+      "defect": null,
+      "repair": "none",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P4-01",
+      "classification": "STRUCTURAL_IDENTIFYING_EXTERNAL_CAMPAIGN_BLOCKED",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P4-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T2", "OSTC-T3"],
+      "identifying_evidence": "factorable and mixed fibres; closed form checked against brute-force decisions",
+      "defect": null,
+      "repair": "finite core identified; naturalistic evaluator panel unavailable",
+      "external_authority": "PROTECTED_PANEL_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P5-01",
+      "classification": "NON_IDENTIFYING_VACUOUS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P5-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T19", "OSTC-T21"],
+      "identifying_evidence": "none for T19; positive termination core only for T21",
+      "defect": "T19 transcripts equal by construction; T21 lacks cycle/non-descent control",
+      "repair": "DISC-T19-01 successor required",
+      "external_authority": "EXTERNAL_CUSTODY_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P6-01",
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P6-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T10", "OSTC-T11"],
+      "identifying_evidence": "support survives/dies, minimum-cost beats cardinality, any-support tie, blocker retention",
+      "defect": null,
+      "repair": "T10 mismatch control supplied by EXEC-CM-01",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P7-01",
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P7-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T13"],
+      "identifying_evidence": "commuting/noncommuting loops, identity/nonidentity round trips, 7,140 path divergences, endpoint donor failure",
+      "defect": null,
+      "repair": "none",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P8-01",
+      "classification": "PARTIALLY_IDENTIFYING",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P8-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T4", "OSTC-T10", "OSTC-T11"],
+      "identifying_evidence": "213 authority-neutral closure cells",
+      "defect": "one-sided zero-amplification grid has no amplification mutant or real adjudicated target",
+      "repair": "add premise-deletion/amplification mutants and external scientific cases",
+      "external_authority": "EXTERNAL_ADJUDICATION_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P9-01",
+      "classification": "PARTIALLY_IDENTIFYING",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P9-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T14"],
+      "identifying_evidence": "identifiable/unidentifiable signatures and exact minima",
+      "defect": "4×4 grid has no greedy-suboptimal set-cover instance",
+      "repair": "DISC-P9-SETCOVER-01 frozen at 5×6 and larger",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P10-01",
+      "classification": "PARTIALLY_IDENTIFYING",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P10-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T15", "OSTC-T22"],
+      "identifying_evidence": "genuine extensions and macros identify T15",
+      "defect": "ratio 0.8 generated zero UNSAT cases, so T22 hard stratum absent",
+      "repair": "T22 replaced by separately frozen EXEC-P10-02",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P10-02",
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P10-02/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T22"],
+      "identifying_evidence": "2,203 SAT and 797 UNSAT formulas, search/check asymmetry, precondition checked before scoring",
+      "defect": null,
+      "repair": "ratio changed prospectively to 4.2/5.2 in new job identity",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P11-01",
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P11-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T16", "OSTC-T18"],
+      "identifying_evidence": "dominant/nondominant phases, Pareto incomparables, safe/unsafe reuse, freshness errors both ways",
+      "defect": null,
+      "repair": "none",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P12-01",
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P12-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T17"],
+      "identifying_evidence": "all deterministic allocators, oracle control, 585 no-hedge and 3 hedge classes",
+      "defect": "historical universal half-gap clause was false",
+      "repair": "counterexample preserved and EDG successor theory created",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P13-01",
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P13-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T18", "OSTC-T11"],
+      "identifying_evidence": "safe/unsafe changed responsibility, fresh-but-unsafe, support survives/dies",
+      "defect": null,
+      "repair": "none",
+      "external_authority": "CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P14-01",
+      "classification": "NON_IDENTIFYING_VACUOUS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P14-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T19", "OSTC-T21"],
+      "identifying_evidence": "none for T19; positive termination core only for T21",
+      "defect": "T19 equality imposed; no useful-discovery/adjudication campaign",
+      "repair": "DISC-T19-01 and DISC-RSE-01 required",
+      "external_authority": "INDEPENDENT_ADJUDICATION_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-P15-01",
+      "classification": "IDENTIFYING_IN_REGISTERED_FINITE_CLASS",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-P15-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T20"],
+      "identifying_evidence": "execution-only transformations, explicit bridge premise, detected/undetected observable-signal cases",
+      "defect": "first key-compromise probe counted hidden compromise flag directly",
+      "repair": "observable-signal derivation yields both outcomes",
+      "external_authority": "PRODUCTION_FAULT_INJECTION_CANNOT_CHECK"
+    },
+    {
+      "job_id": "EXEC-XP-01",
+      "classification": "STRUCTURAL_IDENTIFYING_EXTERNAL_CAMPAIGN_BLOCKED",
+      "receipt": "research/orion-foundations-v3/exec/EXEC-XP-01/RESULT_RECEIPT.json",
+      "theorems": ["OSTC-T23"],
+      "identifying_evidence": "reachable/unauthorized and well-specified/unreachable countermodels plus both impossibility clauses",
+      "defect": null,
+      "repair": "structural T23 identified; prediction tournament remains unrun",
+      "external_authority": "OUTCOME_CUSTODY_CANNOT_CHECK"
+    }
+  ],
+  "summary": {
+    "rows": 20,
+    "IDENTIFYING_IN_REGISTERED_FINITE_CLASS": 10,
+    "STRUCTURAL_IDENTIFYING_EXTERNAL_CAMPAIGN_BLOCKED": 3,
+    "PARTIALLY_IDENTIFYING": 4,
+    "NON_IDENTIFYING_VACUOUS": 2,
+    "EXTERNAL_AUTHORITY_ONLY_CANNOT_CHECK": 1
+  },
+  "authority": {
+    "repository_receipt_audit_only": true,
+    "executions_rerun_by_this_audit": false,
+    "external_scientific_authority": "CANNOT_CHECK",
+    "paper_claim_delta": "NONE"
+  }
+}

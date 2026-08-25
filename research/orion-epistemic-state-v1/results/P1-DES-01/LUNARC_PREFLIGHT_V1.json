@@ -1,0 +1,44 @@
+{
+  "schema": "orion.p1-des.lunarc-preflight.v1",
+  "job_id": "P1-DES-01",
+  "observed_at": "2026-08-25T18:47:12Z",
+  "host": "cosmos2.int.lunarc",
+  "socket_check": "CONNECTED",
+  "scienceagentbench": {
+    "annotation_csv": {
+      "path": "/home/scyiu/orion-work/sab/ScienceAgentBench.csv",
+      "present": true,
+      "bytes": 278626,
+      "scientific_role": "PUBLIC_METADATA_ONLY"
+    },
+    "annotation_parquet": {
+      "path": "/home/scyiu/orion-work/sab/verified-00000-of-00001.parquet",
+      "present": true,
+      "bytes": 129086,
+      "scientific_role": "PUBLIC_METADATA_ONLY"
+    },
+    "official_archive": {
+      "path": "/home/scyiu/orion-work/ScienceAgentBench/benchmark_verified.zip",
+      "present": true,
+      "bytes": 1769478786,
+      "sha256": "46e715d3b2196d459d2dff52aa487f506a95ec44b44262e82208d086ea879610",
+      "state": "ENCRYPTED_PROTECTED_ARCHIVE"
+    },
+    "cleartext_components": {
+      "datasets": false,
+      "eval_programs": false,
+      "gold_programs": false,
+      "scoring_rubrics": false
+    },
+    "archive_password_environment_presence": "UNSET",
+    "official_evaluation_runnable": false
+  },
+  "fresh_counterfactual_transfer": {
+    "present": false,
+    "external_custodian": false,
+    "protected_gold": false,
+    "prospective_chronology": false
+  },
+  "protected_outcome_accessed": false,
+  "scientific_result": "PREFLIGHT_ONLY"
+}

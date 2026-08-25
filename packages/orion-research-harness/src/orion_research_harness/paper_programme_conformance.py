@@ -188,9 +188,12 @@ def _p2() -> tuple[bool, bool, str]:
         run_manifest_hash="c" * 64,
     )
     global_evaluation = global_claim.artifact["evaluation"]
-    task_residual = global_evaluation["oracle"][
+    oracle_task_residual = global_evaluation["oracle"][
         "task_residual_discoverable_within_budget"
     ][task.task_id][global_claim.record["system_id"]]
+    task_residual = global_evaluation["metrics"][
+        "task_residual_discoverable_within_budget"
+    ]
     fail_closed = (
         global_claim.record["status"] == "FAIL"
         and global_claim.record["failure_class"] == "premature_closure"
@@ -198,6 +201,7 @@ def _p2() -> tuple[bool, bool, str]:
         and global_evaluation["premature_closure"] is True
         and global_evaluation["closure_cannot_check"] is False
         and global_evaluation["authority_flags"]["closed_task_as_complete"] is True
+        and oracle_task_residual == task_residual
         and task_residual > 0
     )
     return positive, fail_closed, "live P2 discovery suite route-stop/task-stop evaluator"

@@ -1,0 +1,158 @@
+{
+  "schema": "orion.dynamic-epistemic-state.des-update-freeze.v1",
+  "job_id": "DES-UPDATE-01",
+  "freeze_status": "FROZEN_BEFORE_EXECUTION_AND_OUTCOME_INSPECTION",
+  "frozen_on": "2026-08-25",
+  "subject_commit": "3c97b87f4f4c8c0365226019236c83d3c4c7bb37",
+  "subject_bindings": {
+    "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05",
+    "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json": "dc41b2059ecb308c2e21d6fe60a616fbe5f3d7463ce2429f3545d8d3b0c13df4",
+    "src/orion/epistemic_state_v1/model.py": "679afd19e39445f7d4d496b2b56df73d908e57a6d8c0ae4ee4e1b86364940e5f",
+    "pyproject.toml": "b110f997e81e3b349115c2d5ab517eae384ddba91f40396fb170dedb8bb09f5e",
+    "uv.lock": "4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"
+  },
+  "ownership": {
+    "computation_owner": "codex/des-update-01-execution-20260825",
+    "manuscript_writing_owner": "P1_P15_REWRITE_LANE",
+    "paper_authority_delta": "NONE",
+    "forbidden_edits": [
+      "manuscripts",
+      "claim_ledgers",
+      "active_authorities",
+      "PDFs",
+      "figures",
+      "tables",
+      "journal_packages"
+    ]
+  },
+  "finite_class": {
+    "subject_ids": ["subject:alpha"],
+    "responsibility_ids": ["PROMOTE:alpha"],
+    "initial_epochs": [0],
+    "required_obligations": ["o1", "o2"],
+    "satisfied_obligation_subsets": [[], ["o1"], ["o2"], ["o1", "o2"]],
+    "evidence_variants": [
+      {"value": "1/4", "status": "PARTIAL"},
+      {"value": "3/4", "status": "KNOWN"}
+    ],
+    "identifiability_variants": [
+      {"value": false, "status": "KNOWN"},
+      {"value": true, "status": "KNOWN"}
+    ],
+    "coverage": {"value": "1/2", "status": "PARTIAL"},
+    "provenance": {"value": true, "status": "KNOWN"},
+    "verification": {"value": true, "status": "KNOWN"},
+    "coordinate_scope": "scope:alpha",
+    "coordinate_estimator_version": "des-update-freeze-v1",
+    "coordinate_provenance_ids": ["receipt:seed"],
+    "authority_scope_subsets": [[], ["PROMOTE:alpha"]],
+    "active_defeater_subsets": [[], ["defeater:d1"]],
+    "custody_external_values": [null, false, true],
+    "revoked_premise_subsets": [[], ["p1"], ["p2"], ["p1", "p2"]],
+    "support_families": [
+      {"family_id": "family:p1", "premise_ids": ["p1"], "obligation_ids": ["o1", "o2"]},
+      {"family_id": "family:p2", "premise_ids": ["p2"], "obligation_ids": ["o1", "o2"]},
+      {"family_id": "family:p1p2", "premise_ids": ["p1", "p2"], "obligation_ids": ["o1", "o2"]}
+    ],
+    "method_reach_ids": ["method:m0"],
+    "knowledge_node_ids": ["node:n0"],
+    "knowledge_edge_ids": ["edge:e0"],
+    "initial_resource_vector": {
+      "acquisition": "0",
+      "state": "0",
+      "reasoning": "0",
+      "verification": "0",
+      "recovery": "0",
+      "latency": "0"
+    },
+    "cartesian_state_count": 384
+  },
+  "event_universe": {
+    "instantiation": "Every template is instantiated for every initial state at event epoch initial_state.epoch + 1; set-valued writes use the listed absolute value except revocation events, whose semantics is monotone union with the already revoked premise set.",
+    "templates": [
+      {"event_id": "e:evidence-high", "kind": "evidence", "writes": {"evidence": {"value": "7/8", "status": "KNOWN"}}},
+      {"event_id": "e:evidence-low", "kind": "evidence", "writes": {"evidence": {"value": "1/8", "status": "PARTIAL"}}},
+      {"event_id": "e:coverage-high", "kind": "evidence", "writes": {"coverage": {"value": "7/8", "status": "KNOWN"}}},
+      {"event_id": "e:custody-true", "kind": "custody_change", "writes": {"custody_external": true}},
+      {"event_id": "e:custody-false", "kind": "custody_change", "writes": {"custody_external": false}},
+      {"event_id": "e:defeater-add", "kind": "contradiction", "writes": {"active_defeaters": ["defeater:d1"]}},
+      {"event_id": "e:satisfy-o1", "kind": "evidence", "writes_rule": "initial obligations_satisfied union {o1}"},
+      {"event_id": "e:method-expand", "kind": "method_expansion", "writes_rule": "initial method_reach_ids union {method:m1}"},
+      {"event_id": "e:knowledge-expand", "kind": "evidence", "writes_rule": "initial knowledge_node_ids union {node:n1}"},
+      {"event_id": "e:revoke-p1", "kind": "revocation", "writes": {"revoked_premise_ids": ["p1"]}},
+      {"event_id": "e:revoke-p2", "kind": "revocation", "writes": {"revoked_premise_ids": ["p2"]}},
+      {"event_id": "e:authority-narrow", "kind": "responsibility_change", "writes": {"authority_scopes": []}},
+      {"event_id": "e:authority-widen-untrusted", "kind": "evidence", "writes": {"authority_scopes": ["PROMOTE:alpha"]}},
+      {"event_id": "e:authority-widen-adjudicated", "kind": "external_adjudication", "authorized_coordinate_writes": ["authority_scopes"], "receipt_ids": ["receipt:external-adjudication"], "writes": {"authority_scopes": ["PROMOTE:alpha"]}}
+    ],
+    "template_count": 14,
+    "event_instance_count": 5376
+  },
+  "laws": [
+    {
+      "law_id": "DES-T5-REPLAY-DETERMINISM",
+      "test": "Replaying the same frozen ordered sequence twice from equal initial states yields exactly equal full State values or exactly equal typed rejections.",
+      "sequences": "all singleton templates and every ordered pair of templates for every initial state"
+    },
+    {
+      "law_id": "DES-T5-IDEMPOTENCE",
+      "test": "Applying the same accepted content-bound event twice yields exactly the once-applied full State; rejected events remain rejected without state output.",
+      "cases": "every event template for every initial state"
+    },
+    {
+      "law_id": "DES-T6-INDEPENDENT-COMMUTATION",
+      "test": "Every frozen pair with disjoint authorized coordinates commutes at a common epoch, including the two revocation events under monotone-union revocation semantics.",
+      "pair_rule": "all unordered accepted-template pairs whose effective write sets are disjoint, plus {e:revoke-p1,e:revoke-p2}"
+    },
+    {
+      "law_id": "DES-T6-EXPLICIT-NONCOMMUTATION",
+      "test": "The ordered pairs {e:evidence-high,e:evidence-low} and {e:custody-true,e:custody-false} produce different full states in opposite orders.",
+      "pair_count_per_state": 2
+    },
+    {
+      "law_id": "DES-T7-REVOCATION-LOCALITY",
+      "test": "Revoking p removes exactly support families containing p, preserves every family disjoint from p, preserves all non-revocation coordinates, and multiple revocations accumulate by set union.",
+      "premises": ["p1", "p2"]
+    },
+    {
+      "law_id": "DES-AUTHORITY-NO-AMPLIFICATION",
+      "test": "No accepted non-adjudication event increases authority_scopes; an attempted non-adjudication widening is rejected. Widening is accepted only for external_adjudication with authority_scopes explicitly authorized and at least one bound receipt.",
+      "authority_granting_kind": "external_adjudication"
+    }
+  ],
+  "mutation_operators": [
+    {"mutation_id": "M-REPLAY-ORDER", "law_id": "DES-T5-REPLAY-DETERMINISM", "operator": "reverse the replay order while claiming to execute the frozen order", "kill_requirement": "at least one frozen ordered sequence detects a full-state mismatch"},
+    {"mutation_id": "M-IDEMPOTENCE-DUPLICATE", "law_id": "DES-T5-IDEMPOTENCE", "operator": "on duplicate event application add a synthetic active defeater", "kill_requirement": "at least one duplicate-event case detects inequality"},
+    {"mutation_id": "M-COMMUTATION-HIDDEN-WRITE", "law_id": "DES-T6-INDEPENDENT-COMMUTATION", "operator": "method expansion secretly overwrites coverage", "kill_requirement": "at least one designated independent pair fails to commute"},
+    {"mutation_id": "M-NONCOMMUTATION-CANONICALIZE", "law_id": "DES-T6-EXPLICIT-NONCOMMUTATION", "operator": "sort overlapping events by event_id before replay", "kill_requirement": "at least one designated noncommuting pair becomes spuriously equal"},
+    {"mutation_id": "M-REVOCATION-GLOBAL", "law_id": "DES-T7-REVOCATION-LOCALITY", "operator": "one revocation marks both p1 and p2 revoked", "kill_requirement": "at least one disjoint support family is incorrectly removed"},
+    {"mutation_id": "M-AUTHORITY-PERMIT", "law_id": "DES-AUTHORITY-NO-AMPLIFICATION", "operator": "permit non-adjudication authority widening", "kill_requirement": "at least one authority-absent state is silently widened"}
+  ],
+  "hard_preconditions": [
+    "The exact subject commit and all subject_bindings match.",
+    "FREEZE_V1.json is committed in an ancestor before any execution output commit.",
+    "The finite universe enumerates exactly 384 unique full initial states and 5376 event instances.",
+    "Execution uses the Python standard library plus the bound model only.",
+    "No network, protected data, manuscript input, random sampling, post-outcome tuning, or external-service output is used.",
+    "Every positive, rejected, failing, and mutation-survival case remains in its denominator."
+  ],
+  "resource_vector": {
+    "cpu_cores": 1,
+    "gpu_count": 0,
+    "memory_bytes_limit": 1073741824,
+    "wall_time_seconds_limit": 600,
+    "network_access": false,
+    "randomness": "NONE_EXHAUSTIVE_ENUMERATION",
+    "worker_processes": 1,
+    "persistent_storage_bytes_limit": 104857600
+  },
+  "terminals": {
+    "positive": "DYNAMIC_UPDATE_ALGEBRA_FINITE_CLASS_GREEN",
+    "negative": "UPDATE_LAW_COUNTEREXAMPLE",
+    "cannot_check_precondition": "CANNOT_CHECK_EXECUTION_PRECONDITION",
+    "cannot_check_resource": "CANNOT_CHECK_RESOURCE_CENSORED"
+  },
+  "promotion_rule": "The positive terminal requires every frozen law denominator to pass, every mutation operator to be killed, no hard-precondition failure, and no resource censoring. Otherwise select the negative terminal for an observed law counterexample or the applicable CANNOT_CHECK terminal.",
+  "claim_ceiling": "FINITE_DECLARED_CLASS_INTERNAL_REPLAY_AND_MUTATION_EVIDENCE_ONLY",
+  "external_authority_state": "NONE"
+}

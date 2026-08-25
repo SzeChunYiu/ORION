@@ -1,0 +1,50 @@
+{
+  "all_passed": true,
+  "authority": "SYNTHETIC_MECHANICAL_CONTROLS_ONLY",
+  "controls": [
+    {
+      "control_id": "post_cutoff_rejected",
+      "observed": "POST_CUTOFF_EVALUATOR_ONLY",
+      "passed": true
+    },
+    {
+      "control_id": "unknown_date_cannot_check",
+      "observed": "CANNOT_CHECK_UNKNOWN_DATE",
+      "passed": true
+    },
+    {
+      "control_id": "no_evidence_twins_cannot_check",
+      "observed": [
+        "CANNOT_CHECK_NO_ADMISSIBLE_EVIDENCE",
+        "CANNOT_CHECK_NO_ADMISSIBLE_EVIDENCE",
+        "CANNOT_CHECK_NO_ADMISSIBLE_EVIDENCE",
+        "CANNOT_CHECK_NO_ADMISSIBLE_EVIDENCE",
+        "CANNOT_CHECK_NO_ADMISSIBLE_EVIDENCE",
+        "CANNOT_CHECK_NO_ADMISSIBLE_EVIDENCE"
+      ],
+      "passed": true
+    },
+    {
+      "control_id": "dropped_cell_rejected",
+      "observed": "scheduled cell denominator mismatch: expected 144, got 0",
+      "passed": true
+    },
+    {
+      "control_id": "external_model_without_custody_not_run",
+      "observed": "EXTERNAL_MODEL_CUSTODY_RECEIPT_MISSING",
+      "passed": true
+    },
+    {
+      "control_id": "causal_flip_insensitivity_alarm",
+      "observed": "synthetic_same_answer_on_flipped_edge_is_alarm",
+      "passed": true
+    },
+    {
+      "control_id": "source_failure_retained",
+      "observed": "synthetic_HTTP_599_row_retained_as_CANNOT_CHECK",
+      "passed": true
+    }
+  ],
+  "job_id": "DES-HISTORICAL-01",
+  "schema": "orion.dynamic-epistemic-state.des-historical.negative-controls.v1"
+}

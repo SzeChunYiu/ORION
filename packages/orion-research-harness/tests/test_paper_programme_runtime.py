@@ -98,6 +98,13 @@ def test_p2_programme_probe_consumes_current_evaluator_projection():
     assert implementation == "live P2 discovery suite route-stop/task-stop evaluator"
 
 
+def test_p2_programme_probe_consumes_current_route_stop_audit_schema():
+    positive, fail_closed, owner = _p2()
+    assert positive is True
+    assert fail_closed is True
+    assert owner == "live P2 discovery suite route-stop/task-stop evaluator"
+
+
 def test_p1_p15_programme_semantic_matrix_is_fully_operational():
     report = paper_programme_conformance()
     assert report["schema"] == "ORION.HarnessPaperProgrammeConformance.v1"

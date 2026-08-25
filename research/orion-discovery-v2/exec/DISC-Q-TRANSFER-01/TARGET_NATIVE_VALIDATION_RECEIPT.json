@@ -1,0 +1,118 @@
+{
+  "schema": "orion.discovery-v2.target-native-validation-receipt.v1",
+  "job_id": "DISC-Q-TRANSFER-01",
+  "class": "EXACT_CROSS_DOMAIN_TRANSFER",
+  "authority": "TARGET_DOMAIN_RESULT_ONLY",
+  "quantum_authority_transferred": false,
+  "physical_or_quantum_advantage_claim": false,
+  "arithmetic": "integers only; no float constructed",
+  "input_sha256": {
+    "PROOF_OBLIGATION_REGISTER.json": "38ab118cb9508ba677f58e4650890794dbeb6a1bdf1b9896e6f67e21a8e7ab88",
+    "KNOWLEDGE_WEB_V1.json": "29574263b6629734410c0c4e409ed1c7c09e721dbaf90960f7530b5582db12b0",
+    "QG-paper-03 MANUSCRIPT_V1.md": "f29edbad739e86dd61181e7162c2d579c219d64f765e6b5612c446df9b8a6c2e"
+  },
+  "terminal": "SURFACE_ANALOGY_OR_RESOURCE_ADVANTAGE_ONLY",
+  "terminal_reading": {
+    "disjuncts_fired": [
+      "RESOURCE_ADVANTAGE_DOES_NOT_SURVIVE_ORACLE_CHARGING",
+      "DONOR_SUBTRACTION_RESIDUAL_CAPABILITY_EMPTY"
+    ],
+    "correspondence_was_surface_only": false,
+    "structurally_preserved_relations": [
+      "R1",
+      "R2",
+      "R3"
+    ],
+    "clarification": "The negative terminal here is reached through the donor-subtraction and resource disjuncts, NOT because the correspondence was mere vocabulary. R1-R3 are structural relations that were checked and hold. What fails is that nothing the transfer supplies survives subtraction of the donor, and the apparent search saving does not survive charging the oracle that produced kappa."
+  },
+  "gate": {
+    "survives_donor_subtraction": false,
+    "survives_matched_resource_accounting": false,
+    "relational_correspondence_complete": false,
+    "passed": false
+  },
+  "cannot_check_subclaims": [
+    {
+      "subclaim": "RELATION_R4_OBJECTIVE_INDEXING",
+      "reason": "NOT_EXERCISED_INSTANCE_SATURATED_AT_COVERAGE_FLOOR -- Every strictly monotone objective attains its optimum at a Pareto non-dominated cost vector. All 2 frontier costs here are attained at minimum support [9], so kappa = 9 for every such objective. The instance is saturated at the coverage floor; objective indexing cannot be exercised on it."
+    },
+    {
+      "subclaim": "RELATION_R5_COST_PRESERVING_SUPPORT_REDUCING_EXCHANGE",
+      "reason": "NOT_EXERCISED_PREMISE_CLASS_EMPTY -- Every optimum is attained exactly at the coverage floor, so the set of optimum-attaining configurations ABOVE minimum support is empty. A descent ladder has nothing to descend. This is vacuity, not refutation, and must not be recorded as a failed relation."
+    },
+    {
+      "subclaim": "RELATION_R6_FAMILY_UNIVERSALITY",
+      "reason": "A per-instance support number is a strictly weaker object than a family-intrinsic one. No instance family exists in the target slice, and manufacturing one would be fabrication."
+    },
+    {
+      "subclaim": "R5_DETECTOR_NEGATIVE_BRANCH_UNEXERCISED",
+      "reason": "In every objective where the R5 premise class was non-empty the detector found an exchange, so no run exercised its no-exchange verdict. Its positive branch is demonstrated; its negative branch is not."
+    }
+  ],
+  "validator": {
+    "name": "total exact enumeration of the OSTC evidence-selection subset lattice",
+    "native_to_target": true,
+    "uses_donor_machinery": false,
+    "uses_quantum_input": false,
+    "total_not_sampled": true,
+    "space_size": 524288,
+    "declared_bound": 1000000
+  },
+  "results": {
+    "n_adequate_plans": 1536,
+    "n_distinct_cost_vectors": 226,
+    "frontier_size": 2,
+    "frontier": [
+      {
+        "cost_vector": [
+          24,
+          29,
+          3,
+          0
+        ],
+        "min_support": 9
+      },
+      {
+        "cost_vector": [
+          25,
+          30,
+          2,
+          0
+        ],
+        "min_support": 9
+      }
+    ],
+    "kappa_t": 9,
+    "kappa_two_sided_witness": [
+      [
+        24,
+        29,
+        3,
+        0
+      ],
+      [
+        25,
+        30,
+        2,
+        0
+      ]
+    ],
+    "minimum_cover_size": 9,
+    "kappa_equals_classical_minimum_cover_size": true,
+    "covering_number_cross_check": {
+      "via_min_of_cost_keyed_minima": 9,
+      "via_smallest_feasible_support_bound": 9,
+      "agree": true
+    },
+    "irredundant_cover_check": {
+      "claim": "every minimum-support frontier plan is an irredundant cover",
+      "violations": [],
+      "n_violations": 0,
+      "holds": true
+    }
+  },
+  "transferred_method_reproduces_validator": {
+    "support_bounded_search_recovers_frontier": true,
+    "classical_bound_search_recovers_frontier": true
+  }
+}
