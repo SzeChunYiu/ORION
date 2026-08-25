@@ -1,0 +1,150 @@
+{
+  "schema": "orion.discovery-v2.hidden-consequence-receipt.v1",
+  "job_id": "DISC-SELF-01",
+  "method": "reopen edges were read from DISC-IMPACT-01's change-impact graph; second-order consequences were computed here by hashing the affected files",
+  "reopen_edge_source": {
+    "status": "CLEAN",
+    "source": "research/orion-discovery-v2/exec/DISC-IMPACT-01/CHANGE_IMPACT_GRAPH_V1.json",
+    "reopen_edges_total": 54,
+    "reopen_edges_touching_P15": [
+      {
+        "source": "EVIDENCE:EXEC-P15-01",
+        "target": "EXPERIMENT:EXEC-P15-01",
+        "kind": "SYNCHRONIZES",
+        "load_bearing": true,
+        "reopens_target": true,
+        "obligation_id": "SYNC-024",
+        "authority_gated": false
+      },
+      {
+        "source": "EVIDENCE:EXEC-P15-01",
+        "target": "THEORY:T20",
+        "kind": "SYNCHRONIZES",
+        "load_bearing": true,
+        "reopens_target": true,
+        "obligation_id": "SYNC-025",
+        "authority_gated": true
+      }
+    ]
+  },
+  "per_proposal": [
+    {
+      "proposal_id": "SELF-01-P1",
+      "first_order": [],
+      "second_order": [
+        "every future binding auditor must carry a special case it cannot derive from the artifact it reads; DISC-IMPACT-01 already paid this cost once"
+      ],
+      "reopen_edges_fired": []
+    },
+    {
+      "proposal_id": "SELF-01-P2",
+      "first_order": [
+        "changes checker behaviour only; no authority artifact bytes change, so no SHA256SUMS line goes stale"
+      ],
+      "second_order": [
+        "the classification would be inferred from binder version, not read from the binding, so a live binding inside a superseded authority stays misclassified"
+      ],
+      "reopen_edges_fired": []
+    },
+    {
+      "proposal_id": "SELF-01-P3",
+      "first_order": [
+        "rewrites papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json, changing its bytes",
+        "invalidates the papers/paper-15-orion-research-harness/SHA256SUMS line that records 1d023194cf2fc9fe0fb9399322d30f13be162343ed99afa93eadea318059d05e for that binder",
+        "breaks tests/unit/study/p15/test_p15_active_claim_authority.py::test_historical_methods_authority_still_rebuilds, which asserts the committed V1 equals what src/orion/study/p15/active_claim_authority.py rebuilds",
+        "requires editing HARNESS_PACKAGE_V1_SHA256 in src/orion/study/p15/active_claim_authority.py"
+      ],
+      "second_order": [
+        "destroys the historical record the _frozen_binding docstring exists to protect; the freeze-time digest would no longer be recoverable from the artifact",
+        "the same drift would recur on the next change to packages/orion-research-harness/pyproject.toml, so the repair is not stable"
+      ],
+      "reopen_edges_fired": [
+        {
+          "source": "EVIDENCE:EXEC-P15-01",
+          "target": "EXPERIMENT:EXEC-P15-01",
+          "kind": "SYNCHRONIZES",
+          "load_bearing": true,
+          "reopens_target": true,
+          "obligation_id": "SYNC-024",
+          "authority_gated": false
+        },
+        {
+          "source": "EVIDENCE:EXEC-P15-01",
+          "target": "THEORY:T20",
+          "kind": "SYNCHRONIZES",
+          "load_bearing": true,
+          "reopens_target": true,
+          "obligation_id": "SYNC-025",
+          "authority_gated": true
+        }
+      ],
+      "authority_gated_edges": [
+        {
+          "source": "EVIDENCE:EXEC-P15-01",
+          "target": "THEORY:T20",
+          "kind": "SYNCHRONIZES",
+          "load_bearing": true,
+          "reopens_target": true,
+          "obligation_id": "SYNC-025",
+          "authority_gated": true
+        }
+      ]
+    },
+    {
+      "proposal_id": "SELF-01-P4",
+      "first_order": [
+        "changes the schema of papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json and therefore its bytes",
+        "invalidates the papers/paper-15-orion-research-harness/SHA256SUMS line recording 1d023194cf2fc9fe0fb9399322d30f13be162343ed99afa93eadea318059d05e",
+        "the same schema change would propagate to every other authority binder carrying evidence bindings"
+      ],
+      "second_order": [
+        "reaches THEORY:T20 through an authority-gated reopen edge, so a schema change to P15's authority record has a theorem-level consequence that is not visible from the file being edited"
+      ],
+      "reopen_edges_fired": [
+        {
+          "source": "EVIDENCE:EXEC-P15-01",
+          "target": "EXPERIMENT:EXEC-P15-01",
+          "kind": "SYNCHRONIZES",
+          "load_bearing": true,
+          "reopens_target": true,
+          "obligation_id": "SYNC-024",
+          "authority_gated": false
+        },
+        {
+          "source": "EVIDENCE:EXEC-P15-01",
+          "target": "THEORY:T20",
+          "kind": "SYNCHRONIZES",
+          "load_bearing": true,
+          "reopens_target": true,
+          "obligation_id": "SYNC-025",
+          "authority_gated": true
+        }
+      ],
+      "authority_gated_edges": [
+        {
+          "source": "EVIDENCE:EXEC-P15-01",
+          "target": "THEORY:T20",
+          "kind": "SYNCHRONIZES",
+          "load_bearing": true,
+          "reopens_target": true,
+          "obligation_id": "SYNC-025",
+          "authority_gated": true
+        }
+      ]
+    }
+  ],
+  "executed_consequence_check": {
+    "status": "CLEAN",
+    "method": "in-process comparison of the committed V1 record against src/orion/study/p15/active_claim_authority.py.build_active_claim_authority(); no pytest run",
+    "committed_equals_rebuilt": true,
+    "digest_the_code_hardcodes": "bfe497e0c16cde06431799a5a7f1e260757c9744402f40b16c2cff76643dcec7",
+    "consequence_this_establishes": "the committed record and the code agree today, so proposal SELF-01-P3 cannot be applied to the JSON alone; the constant in src/orion/study/p15/active_claim_authority.py moves with it or the equality breaks"
+  },
+  "leaked_consequences": [],
+  "cannot_check": [
+    {
+      "item": "consequences of P4 for authority binders in other papers",
+      "reason": "this job scoped its binding census to the single authority.evidence_binding drift; it did not enumerate evidence bindings across all papers"
+    }
+  ]
+}
