@@ -37,7 +37,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            pandoc texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended \
+            lmodern pandoc texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended \
             poppler-utils curl zip
       - name: Re-run Q/QG publication integrity gates
         run: |
