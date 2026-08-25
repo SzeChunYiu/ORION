@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,6 +23,7 @@ REQUIRED_FILES = (
     "EXPERT_REVIEW_AND_ATOMIC_GAP_MAP_V1.md",
     "run_edg_finite_census.py",
     "EDG_FINITE_CENSUS_V1.json",
+    "OSTC_EXECUTION_IDENTIFIABILITY_MATRIX_V1.json",
 )
 
 FORBIDDEN_AUTHORITY_PHRASES = (
@@ -50,6 +52,37 @@ REQUIRED_JOB_IDS = {
     "DISC-RSE-01",
     "DISC-NOV-01",
     "DISC-NATSCI-01",
+}
+
+REQUIRED_OSTC_EXECUTION_ROWS = {
+    "EXEC-CM-01",
+    "EXEC-PA-01",
+    "EXEC-NOV-01",
+    "EXEC-P1-01",
+    "EXEC-P2-01",
+    "EXEC-P3-01",
+    "EXEC-P4-01",
+    "EXEC-P5-01",
+    "EXEC-P6-01",
+    "EXEC-P7-01",
+    "EXEC-P8-01",
+    "EXEC-P9-01",
+    "EXEC-P10-01",
+    "EXEC-P10-02",
+    "EXEC-P11-01",
+    "EXEC-P12-01",
+    "EXEC-P13-01",
+    "EXEC-P14-01",
+    "EXEC-P15-01",
+    "EXEC-XP-01",
+}
+
+EXPECTED_IDENTIFIABILITY_COUNTS = {
+    "IDENTIFYING_IN_REGISTERED_FINITE_CLASS": 10,
+    "STRUCTURAL_IDENTIFYING_EXTERNAL_CAMPAIGN_BLOCKED": 3,
+    "PARTIALLY_IDENTIFYING": 4,
+    "NON_IDENTIFYING_VACUOUS": 2,
+    "EXTERNAL_AUTHORITY_ONLY_CANNOT_CHECK": 1,
 }
 
 REQUIRED_CODE = (
@@ -187,10 +220,46 @@ def main() -> int:
     if census_authority.get("paper_claim_delta") != "NONE":
         fail("EDG census may not promote paper claims")
 
+    matrix = load_json(PACKAGE / "OSTC_EXECUTION_IDENTIFIABILITY_MATRIX_V1.json")
+    matrix_rows = matrix.get("rows")
+    if not isinstance(matrix_rows, list) or not matrix_rows:
+        fail("OSTC identifiability matrix requires rows")
+    matrix_ids = [str(row.get("job_id", "")) for row in matrix_rows if isinstance(row, dict)]
+    if len(matrix_ids) != len(matrix_rows) or len(matrix_ids) != len(set(matrix_ids)):
+        fail("OSTC identifiability rows require unique job IDs")
+    if set(matrix_ids) != REQUIRED_OSTC_EXECUTION_ROWS:
+        fail(
+            "OSTC identifiability row set mismatch: "
+            f"missing={sorted(REQUIRED_OSTC_EXECUTION_ROWS - set(matrix_ids))}, "
+            f"extra={sorted(set(matrix_ids) - REQUIRED_OSTC_EXECUTION_ROWS)}"
+        )
+    actual_classes = Counter(
+        str(row.get("classification", "")) for row in matrix_rows if isinstance(row, dict)
+    )
+    if dict(actual_classes) != EXPECTED_IDENTIFIABILITY_COUNTS:
+        fail(
+            "OSTC identifiability classification mismatch: "
+            f"expected={EXPECTED_IDENTIFIABILITY_COUNTS}, actual={dict(actual_classes)}"
+        )
+    summary = matrix.get("summary")
+    if not isinstance(summary, dict) or summary.get("rows") != len(matrix_rows):
+        fail("OSTC identifiability summary row count mismatch")
+    for classification, expected in EXPECTED_IDENTIFIABILITY_COUNTS.items():
+        if summary.get(classification) != expected:
+            fail(
+                f"OSTC identifiability summary mismatch for {classification}: "
+                f"expected={expected}, actual={summary.get(classification)}"
+            )
+    matrix_authority = matrix.get("authority")
+    if not isinstance(matrix_authority, dict):
+        fail("OSTC identifiability matrix authority must be an object")
+    if matrix_authority.get("paper_claim_delta") != "NONE":
+        fail("OSTC identifiability audit may not promote paper claims")
+
     print(
         "ORION_DISCOVERY_V1_STRUCTURE_GREEN "
         f"theorems={len(theorem_ids)} jobs={len(job_ids)} files={len(REQUIRED_FILES)} "
-        f"edg_tables={totals['loss_tables']}"
+        f"edg_tables={totals['loss_tables']} ostc_rows={len(matrix_rows)}"
     )
     return 0
 
