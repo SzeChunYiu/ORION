@@ -1,0 +1,69 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P11-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T16",
+    "OSTC-T18"
+  ],
+  "terminal": "P11_PHASE_PREDICTIONS_SUPPORTED",
+  "executed_on": {
+    "host": "LUNARC (cosmos2.int.lunarc)",
+    "wallclock_seconds": 0.035,
+    "cells_enumerated": 1806
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "7f8e06dbcd9b03f1865162bcb8eab9df15db4bd6a2d37dac3e0e2934d3738e5a"
+    },
+    "run_phase_diagram_v1.py": {
+      "artifact": "run_phase_diagram_v1.py",
+      "sha256": "87f54ed7c766ca6a5a164df070e425efc1f91f91ccb7e622ab610b3523820624"
+    },
+    "check_phase_diagram_independent_v1.py": {
+      "artifact": "check_phase_diagram_independent_v1.py",
+      "sha256": "90a6b6e839ff19f0a357296f87f7241364b7f35af70a01f60a14cc763cf791fc"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "11d0db3159cd3134359349098bd187818361fbd094821860eb2127cdad659169"
+    },
+    "INDEPENDENT_CHECKER_RECEIPT.json": {
+      "artifact": "INDEPENDENT_CHECKER_RECEIPT.json",
+      "sha256": "3693b0a138ea93b30b012e313f905db700dc1684970d316c5a58b78a411160e6"
+    }
+  },
+  "results": {
+    "OSTC-T16": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Closed form U*=floor(K/(d-c))+1 matches the least searched crossover horizon on all 1,476 cells with d>c, zero mismatches. The phase diagram has two phases and both were enumerated: a further 1,476 cells with d<=c produced ZERO spurious dominance, so 'compiled dominates' is falsifiable on this grid rather than true everywhere by construction.",
+      "dominant_cells": 1476,
+      "nondominant_cells": 1476,
+      "closed_form_mismatches": 0,
+      "spurious_dominance": 0,
+      "vector_caveat": "72 Pareto-incomparable cost-vector pairs exist for which no scalar crossover is defined, exercising the theorem's own limit that vector dominance is price-relative. Confirming only the scalar half would have reported support for a theorem whose stated caveat was never tested."
+    },
+    "OSTC-T18": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Sufficiency and partition refinement are exactly equivalent over all 225 partition pairs on 4 elements, zero violations in either direction. The common refinement is jointly sufficient for every 2-family and no strictly coarser partition is, over all families examined.",
+      "pairs": 225,
+      "sufficiency_violations": 0,
+      "coarsest_violations": 0
+    }
+  },
+  "comparator": {
+    "provenance_freshness_donor": "FAILS_IN_BOTH_DIRECTIONS",
+    "detail": "165 fresh-but-insufficient states admitted and 60 stale-but-sufficient states refused. T18 says freshness is neither necessary nor sufficient, and both halves were observed. A donor erring only one way would have meant the enumeration never reached the claim.",
+    "admits_unsafe": 165,
+    "refuses_safe": 60
+  },
+  "what_this_does_not_establish": [
+    "Nothing beyond the declared grid: K<=40, costs<=8, 4-element partitions. Total enumeration over a finite class, not a sample; no interval is computed.",
+    "No proof-assistant correspondence; EXEC-PA-01 remains open.",
+    "No external adjudication. Runner and checker are two implementations inside one programme."
+  ],
+  "independent_checker": "EXEC_P11_01_SECOND_INDEPENDENT_CHECKER_GREEN, 0 disagreements",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}

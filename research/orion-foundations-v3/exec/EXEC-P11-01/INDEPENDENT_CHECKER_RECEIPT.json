@@ -1,0 +1,19 @@
+{
+  "schema_version": "orion.independent-checker-receipt.v1",
+  "job_id": "EXEC-P11-01",
+  "imports_runner": false,
+  "method_difference": "T16 checked closed-form-first (verify U* is a crossover and U*-1 is not); the runner searched first. T18 sufficiency checked by element-pair separation; the runner used block containment.",
+  "independent_findings": {
+    "t16_closed_form_mismatches": 0,
+    "t16_dominant_cells": 1476,
+    "t16_nondominant_cells": 1476,
+    "t16_spurious_dominance": 0,
+    "t16_both_phases_exercised": true,
+    "t18_pairs": 225,
+    "t18_sufficiency_violations": 0,
+    "t18_freshness_donor_fails_both_directions": true
+  },
+  "disagreements": [],
+  "terminal": "EXEC_P11_01_SECOND_INDEPENDENT_CHECKER_GREEN",
+  "independence_boundary": "Two implementations inside one programme; not external adjudication."
+}
