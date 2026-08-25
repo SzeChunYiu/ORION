@@ -1,0 +1,54 @@
+{
+  "schema_version":"orion.execution-protocol.v1","job_id":"EXEC-XP-01",
+  "issue":"https://github.com/SzeChunYiu/ORION/issues/1234","type":"PROTECTED_EXECUTION",
+  "theory_source":{"location":"main:research/orion-foundations-v3/",
+    "theory_merge_commit":"69273d9b13f00f83838331fcf743d6e06d6a4875",
+    "theorems_under_test":["OSTC-T23"]},
+  "frozen_before_outcomes":true,
+  "task":"Prospectively frozen cross-paper prediction tournament using held-out families.",
+  "custody_finding":{
+    "what_the_job_requires":("A prediction tournament requires held-out families under INDEPENDENT "
+      "custody: someone other than the predictor must hold the outcomes until predictions are "
+      "locked. In this session I would be both predictor and custodian."),
+    "verified":("No third-party custody service is configured and no held-out family exists that "
+      "this session cannot read. Splitting data and promising not to look is not custody -- it is "
+      "the predictor holding the answers."),
+    "consequence":("The job's terminal is INDEPENDENT_CUSTODY_OR_DOMAINS_ABSENT and that is frozen "
+      "now, before any result, so it cannot be quietly upgraded by whatever the structural work "
+      "below produces.")},
+  "what_is_attempted_instead":{
+    "scope":("T23's structural content is decidable and is verified here: the biconditional "
+      "ScientificAdvance <=> Available AND Admit, the two independence countermodels it names, and "
+      "its two impossibility clauses -- more compute cannot replace missing authority, stronger "
+      "governance cannot manufacture unreachable methods."),
+    "not_claimed":["a prediction tournament","prospective held-out evidence","discharge of EXEC-XP-01"]},
+  "code_identity":{"runner":"run_t23_coupling_v1.py",
+    "checker_note":"Self-checking by total enumeration over a finite Boolean product; complete at this size."},
+  "data_identity":{"generated":true,"no_external_data":true},
+  "information_and_tool_access":{"runner":"declared grid only; no network, no model calls"},
+  "resource_vector":{"compute":"single-process CPU","wallclock_bound_seconds":300},
+  "independent_unit":"The (Available, Admit, compute, governance) cell; total enumeration.",
+  "estimands":{
+    "coupling_biconditional":"Is ScientificAdvance exactly Available AND Admit, over every cell, with zero exceptions?",
+    "both_countermodels_exist":"Do BOTH independence countermodels occur -- reachable-but-unauthorized, and well-specified-but-unreachable? A grid with only one would not witness independence.",
+    "compute_cannot_replace_authority":"Over every cell where Admit is false: does raising compute to its maximum ever produce an advance?",
+    "governance_cannot_manufacture_reachability":"Over every cell where Available is false: does raising governance to its maximum ever produce an advance?"},
+  "multiplicity":"No hypothesis test; universal and existence claims over total enumeration.",
+  "positive_terminal":"OSTC_T23_STRUCTURE_VERIFIED__TOURNAMENT_STILL_REQUIRED",
+  "positive_conditions":["biconditional holds with zero exceptions","both countermodels occur",
+    "no compute level rescues a missing Admit","no governance level rescues a missing Available"],
+  "negative_terminal":"OSTC_THEORY_NARROWED_BY_HELDOUT_FAILURES",
+  "negative_conditions":["any cell violating the biconditional",
+    "either countermodel absent, leaving independence unwitnessed",
+    "any cell where compute rescues missing authority or governance rescues unreachability"],
+  "cannot_check_terminal":"INDEPENDENT_CUSTODY_OR_DOMAINS_ABSENT",
+  "cannot_check_conditions":["no independent custody of held-out families -- CONFIRMED ABSENT, so this terminal applies to the job as specified regardless of the structural outcome"],
+  "raw_output_schema":{"file":"RAW_RESULT_MANIFEST.json",
+    "fields":{"cells":"enumerated","biconditional_violations":"count",
+      "countermodels":"reachable_unauthorized, wellspecified_unreachable",
+      "impossibility":"compute_rescues, governance_rescues"}},
+  "checker_and_authority_owner":{"authority_owner":"Programme (#1234 execution lane)",
+    "independence_boundary":"Total enumeration is complete but self-authored; not external adjudication and not a tournament."},
+  "claim_delta_default":"NONE",
+  "constitutional_note":"May confirm, refute or narrow an instantiation. May not substitute structural verification for the prospective tournament the job names."
+}
