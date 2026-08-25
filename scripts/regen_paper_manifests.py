@@ -146,6 +146,48 @@ def collect_files(repo: Path, paper: Path, bound_paths: list[str]) -> tuple[list
     return keep + fresh, dropped
 
 
+#: P6-P8 are ALSO validated by papers/candidates/checkers/check_content_binding_v1.py,
+#: which derives its own authoritative path set. That checker excludes
+#: SUCCESSOR_V2_PATHS from V1's identity and deliberately INCLUDES the manifest
+#: itself (written first, hashed second, the way P1-P5 do it).
+#:
+#: This script previously derived a rival set: it knew nothing about the V2
+#: successor paths and dropped the manifest. The two could never agree, so
+#: regenerating a candidate manifest produced a file the checker rejected --
+#: 26 test failures that no amount of re-running either tool could clear.
+#:
+#: Rather than duplicate the rules (the checker's own comment warns that a
+#: second hand-maintained list is free to disagree with the normative one),
+#: this defers to the checker when one applies.
+_CANDIDATE_CHECKER = Path("papers/candidates/checkers/check_content_binding_v1.py")
+
+
+def candidate_bound_paths(repo: Path, paper: Path) -> list[str] | None:
+    """Authoritative path set from the candidate checker, or None if it does
+    not govern this paper."""
+    checker_path = repo / _CANDIDATE_CHECKER
+    if not checker_path.is_file():
+        return None
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("_ccb_v1", checker_path)
+    if spec is None or spec.loader is None:
+        return None
+    mod = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(mod)
+    except Exception:
+        return None
+    rel = paper.relative_to(repo)
+    for cid, directory in getattr(mod, "CANDIDATE_DIRS", {}).items():
+        if Path(directory).name == rel.name:
+            try:
+                return list(mod.bound_paths(repo, cid))
+            except Exception:
+                return None
+    return None
+
+
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
     with open(path, "rb") as fh:
@@ -226,7 +268,13 @@ def main() -> int:
             prev_status = latest.get("subject_commit_status")
             prev_blocker = latest.get("subject_commit_blocker")
 
-        paths, dropped = collect_files(repo, paper, bound_paths)
+        governed = candidate_bound_paths(repo, paper)
+        if governed is not None:
+            paths, dropped = governed, [p for p in bound_paths if p not in set(governed)]
+            print(f"  {name}: using candidate checker's authoritative path set "
+                  f"({len(paths)} files)")
+        else:
+            paths, dropped = collect_files(repo, paper, bound_paths)
         for p in dropped:
             print(f"  {name}: dropping bound path absent from disk/git: {p}")
         entries = [{"path": p, "role": roles.get(p)} for p in paths]
@@ -266,9 +314,20 @@ def main() -> int:
         obj.setdefault("reproducibility_targets", {})
 
         manifest_text = json.dumps(obj, sort_keys=True, indent=2) + "\n"
-        sums_lines = sorted(
-            f"{sha256_file(repo / p)}  {p}\n" for p in paths
-        )
+
+        # The manifest may be one of its own bound paths (the candidate checker
+        # requires this: the digest file binds the manifest's bytes). Hashing
+        # the copy still on disk would record the digest of the PREVIOUS
+        # manifest, so the sums file would be stale the instant it was written.
+        # Hash the text about to be written instead of what is currently there.
+        manifest_rel = str(manifest.relative_to(repo))
+
+        def _digest(rel: str) -> str:
+            if rel == manifest_rel:
+                return hashlib.sha256(manifest_text.encode("utf-8")).hexdigest()
+            return sha256_file(repo / rel)
+
+        sums_lines = sorted(f"{_digest(p)}  {p}\n" for p in paths)
         sums_text = "".join(sums_lines)
 
         if args.dry_run:
