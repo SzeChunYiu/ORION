@@ -1,0 +1,31 @@
+{
+  "schema_version": "orion.raw-result-manifest.v1",
+  "job_id": "EXEC-P3-01",
+  "grid": {
+    "n_obj": 4,
+    "n_obs": 3,
+    "n_term": 2,
+    "seed": 20260825
+  },
+  "abstraction": {
+    "pairs": 104976,
+    "fully_abstract": 26280,
+    "not_fully_abstract": 78696,
+    "biconditional_violations": 0,
+    "minimal_witness": null
+  },
+  "tie": {
+    "fully_abstract_pairs": 26280,
+    "terminal_divergences": 0
+  },
+  "centralization": {
+    "cases": 57600,
+    "ties_when_irrelevant": 28980,
+    "wins_when_relevant": 20672,
+    "wins_when_irrelevant": 0
+  },
+  "totals": {
+    "cells_enumerated": 162576,
+    "wallclock_seconds": 0.715
+  }
+}

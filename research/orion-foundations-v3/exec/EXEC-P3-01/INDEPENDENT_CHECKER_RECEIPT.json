@@ -1,0 +1,20 @@
+{
+  "schema_version": "orion.independent-checker-receipt.v1",
+  "job_id": "EXEC-P3-01",
+  "imports_runner": false,
+  "method_difference": "Quotients as explicit class sets compared by membership, not pairwise agreement.",
+  "independent_findings": {
+    "pairs": 104976,
+    "fully_abstract": 26280,
+    "not_fully_abstract": 78696,
+    "biconditional_violations": 0,
+    "ideal_product_tie_divergences": 0,
+    "both_outcomes_occur": true,
+    "centralization_wins_when_irrelevant": 0,
+    "centralization_wins_when_relevant": 20672,
+    "centralization_behaves_as_theorem_requires": true
+  },
+  "disagreements": [],
+  "terminal": "EXEC_P3_01_SECOND_INDEPENDENT_CHECKER_GREEN",
+  "independence_boundary": "Two implementations inside one programme; not external adjudication."
+}

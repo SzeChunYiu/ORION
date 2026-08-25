@@ -1,0 +1,67 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P3-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T9"
+  ],
+  "terminal": "P3_GLOBAL_CONE_OBSTRUCTIONS_SUPPORTED",
+  "executed_on": {
+    "host": "LUNARC",
+    "wallclock_seconds": 0.715,
+    "cells_enumerated": 162576
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "1eb6f9d8e38c0939ef4aeb78563e0a3fab5cc178ec840e0961c224125bd4ab54"
+    },
+    "run_full_abstraction_v1.py": {
+      "artifact": "run_full_abstraction_v1.py",
+      "sha256": "68e9c6de4fa9745524f913e9283d4483cdd661b86724e6e07b6c4cc4dbfd0a54"
+    },
+    "check_full_abstraction_independent_v1.py": {
+      "artifact": "check_full_abstraction_independent_v1.py",
+      "sha256": "e8e96eaaa903bca51006e35507a4a0de675f4573f96f35d8bf9941a4e46e8a9b"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "33bc0e1c0f5557000c0d561aeb0a7d7a5b1a4d0b73ad53f93d30d6d55a9e69bc"
+    },
+    "INDEPENDENT_CHECKER_RECEIPT.json": {
+      "artifact": "INDEPENDENT_CHECKER_RECEIPT.json",
+      "sha256": "15d51e78070897c631d2b930af36d29f78da18db838261587c2faf8dbe6452ab"
+    }
+  },
+  "results": {
+    "full_abstraction_biconditional": {
+      "verdict": "SUPPORTED_IN_ENUMERATED_CLASS",
+      "detail": "Full abstraction and quotient equality on terminal-distinguished pairs agree on all 104,976 cells, zero violations either direction. Both outcomes occur: 26,280 fully abstract and 78,696 not, so the criterion discriminates.",
+      "pairs": 104976,
+      "fully_abstract": 26280,
+      "not_fully_abstract": 78696,
+      "violations": 0
+    },
+    "ideal_product_tie": {
+      "verdict": "HOLDS_WITH_ZERO_DIVERGENCES",
+      "detail": "Every one of the 26,280 fully abstract pairs produced identical terminals on every object. This is the consequence the papers depend on: P6 and P7 record IDEAL_PRODUCT_EQUIVALENT in their terminals and P8 claims no generic authorization novelty. A divergence here would have meant those nonclaims are understated -- the papers conceding something the theory does not require.",
+      "fully_abstract_pairs": 26280,
+      "terminal_divergences": 0
+    }
+  },
+  "comparator": {
+    "centralized_implementation": "BEHAVES_EXACTLY_AS_THE_THEOREM_REQUIRES",
+    "detail": "Zero wins when its extra coordinate is target-irrelevant, 20,672 wins when it is relevant, 28,980 ties when irrelevant. T9 forbids inherent centralization claims WITHOUT an additional measurable property, and the comparator paid off only when the extra property was measurable in the target sense. A win on an irrelevant coordinate was frozen as a negative and did not occur.",
+    "wins_when_relevant": 20672,
+    "wins_when_irrelevant": 0,
+    "ties_when_irrelevant": 28980
+  },
+  "what_this_does_not_establish": [
+    "Nothing beyond the declared grid: 4 objects, 3 observation values, 2 terminals. Total enumeration of a finite class.",
+    "No proof-assistant correspondence; EXEC-PA-01 remains open.",
+    "No external adjudication. Runner and checker are two implementations inside one programme."
+  ],
+  "independent_checker": "EXEC_P3_01_SECOND_INDEPENDENT_CHECKER_GREEN, 0 disagreements",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}
