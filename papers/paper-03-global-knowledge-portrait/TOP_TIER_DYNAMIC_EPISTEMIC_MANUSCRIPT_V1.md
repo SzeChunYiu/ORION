@@ -30,6 +30,9 @@ The novelty target is not generic alignment or a sheaf metaphor. It is responsib
 
 `P3-DES-01`: macro-F1, logical coherence, false merge/split rates, obstruction accuracy, plural-portrait calibration, and matched resource accounting. Intended positive terminal: `RESPONSIBILITY_INDEXED_SCIENTIFIC_GLUING_STRICTLY_EXTENDS_ALIGNMENT_DONOR_FRONTIER`.
 
+
+**Comparator contract.** The planned comparison against LogMap, AML, provenance-only systems, and the ideal typed gluing product was unexecuted because no lawful multi-case evaluation substrate was available.
+
 ## Authoritative computation disposition
 
 - Authoritative result SHA: `1f49f2cae717dff4a878734f505b4d6dbc1fad79`.

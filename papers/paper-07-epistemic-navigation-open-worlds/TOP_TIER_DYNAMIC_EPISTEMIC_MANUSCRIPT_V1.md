@@ -26,6 +26,9 @@ Evidence has no regime-independent meaning. Changes in ontology, objective, meas
 
 `P7-DES-01`: false retained closure, unnecessary reopening, path-dependence detection, bridge minimality, and opacity cost. Intended positive terminal: `DYNAMIC_REGIME_TRANSPORT_AND_PATH_DEPENDENCE_EXTERNALLY_VALIDATED`.
 
+
+**Comparator contract.** The planned comparison against opaque-registry, full-reset, exact-containment, and ideal-transport baselines produced no valid empirical comparison because the frozen 738-case denominator drifted to 736 generated cases.
+
 ## Authoritative computation disposition
 
 - Authoritative result SHA: `64086d53e83df193be5446ad8fa060d37e685af9`.

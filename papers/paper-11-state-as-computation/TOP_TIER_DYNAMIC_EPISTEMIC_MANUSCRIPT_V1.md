@@ -26,6 +26,9 @@ A scientific state is a placement of computation. Compiling a compact state may 
 
 `P11-DES-01`: learned non-oracle compiler under total accounting, stronger-decoder attack, future-query/leave-one-domain-out evaluation, drift, recovery, and real-system replication. Intended positive terminal: `LEARNED_RESPONSIBILITY_STATE_STRICTLY_EXTENDS_RAW_RETRIEVAL_RESOURCE_FRONTIER`.
 
+
+**Comparator contract.** The planned comparison against raw or full context, retrieval, oracle compilers, feature selection, partial evaluation, and stronger decoders was unexecuted because the required datasets, models, and transcripts were not content-bound.
+
 ## Authoritative computation disposition
 
 - Authoritative result SHA: `6bc37888624d1427bb324893dcb4ae8f385c1d82`.

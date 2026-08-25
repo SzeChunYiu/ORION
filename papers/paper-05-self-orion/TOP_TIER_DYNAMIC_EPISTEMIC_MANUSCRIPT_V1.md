@@ -26,6 +26,9 @@ A self-improving research system can generate useful changes while remaining una
 
 `P5-DES-01`: resolved-rate gain, PASS_TO_PASS regression, evaluator-gaming detection, held-out transfer, causal credit, cost, and false adoption. Intended positive terminal: `PROTECTED_RECURSIVE_IMPROVEMENT_WITHOUT_SELF_PROMOTION_EXTERNALLY_SUPPORTED`.
 
+
+**Comparator contract.** The planned comparison against no-edit, direct self-edit, strong donor systems, and protected ORION was unexecuted because SWE-bench rights and protected fresh-adoption custody were unavailable.
+
 ## Authoritative computation disposition
 
 - Authoritative result SHA: `9ef4229ea0dfd7b162cd0e9c8f0ee119b34fafb1`.

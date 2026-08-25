@@ -34,6 +34,9 @@ Absorb model-based debugging, causal diagnosis, abductive reasoning, scientific 
 
 `P1-DES-01`: full ScienceAgentBench plus hidden/counterfactual reformulation tasks. Primary vector: responsible-layer accuracy, solve-rate gain, wrong-layer interventions, decisive-evidence cost, harmful reopening, adoption false positives. Intended positive terminal: `RESPONSIBILITY_CONDITIONED_MINIMAL_RECONSTRUCTION_PROSPECTIVELY_SUPPORTED`.
 
+
+**Comparator contract.** The frozen comparison against one-shot, reflection, no-reconstruction, and donor-complete diagnosis agents was planned but unexecuted because protected ScienceAgentBench and fresh counterfactual custody inputs were unavailable.
+
 ## Authoritative computation disposition
 
 - Authoritative result SHA: `8c01199f5a0927e1a6f66b99e37057ee18f566a1`.

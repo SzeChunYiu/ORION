@@ -26,6 +26,9 @@ Perfect provenance does not make a scientific claim true. P15 models occurrence 
 
 `P15-DES-01`: host/process/key/custody faults, cross-site replay, production attestations, claim-relevant numerical changes, race conditions, overhead, and false rejection. Intended positive terminal: `DYNAMIC_EXECUTION_INTEGRITY_NONINTERFERENCE_PRODUCTION_REPLICATED`.
 
+
+**Comparator contract.** The planned comparison against provenance, replay, multi-lane agreement, attestation products, and an ideal execution-science product was unexecuted because all nine mandatory production and cross-site transfer artifacts were absent.
+
 ## Authoritative computation disposition
 
 - Authoritative result SHA: `ed3ff59593b00eac11a19d1f96efcb645e46bae5`.

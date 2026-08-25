@@ -61,6 +61,8 @@ def main() -> None:
     result_by_paper = {row["paper"]: row for row in writing_ledger["papers"]}
     req(set(result_by_paper) == {f"P{i}" for i in range(1, 16)}, "paper result identities")
 
+    comparison_markers = ("compare", "comparison", "against", "versus")
+
     for index, directory in enumerate(DIRS, 1):
         paper_id = f"P{index}"
         row = result_by_paper[paper_id]
@@ -71,6 +73,10 @@ def main() -> None:
         req(f"{paper_id}-DES-01" in text, f"{paper_id} job binding")
         req("paper_authority_delta = NONE" in text, f"{paper_id} authority boundary")
         req("absorbs" in lower, f"{paper_id} nearest-work absorption gate")
+        req(
+            any(marker in lower for marker in comparison_markers),
+            f"{paper_id} comparator gate",
+        )
         req("## Theory" in text, f"{paper_id} theorem section")
         req("## Decisive computation" in text, f"{paper_id} execution section")
         req(

@@ -26,6 +26,9 @@ Scientific state changes invalidate some certificates and leave others untouched
 
 `P6-DES-01`: zero retained invalid certificates, positive savings in every domain, minimality, and mutation kills for omitted read/write/dependency/support premises. Attained terminal: `EXACT_DYNAMIC_REVALIDATION_STRICTLY_EXTENDS_NATIVE_DEPENDENCY_SELECTION`.
 
+
+**Comparator contract.** In the bounded 16-transition study, exact dynamic revalidation was compared against full reset, native dependency selection, and the matched ideal support-hypergraph product; it strictly extended native selection and tied the ideal product, without prospective, deployed-system, or external-novelty authority.
+
 ## Authoritative computation disposition
 
 - Authoritative result SHA: `006538622ae4819b12f215529056051b57cf082a`.
