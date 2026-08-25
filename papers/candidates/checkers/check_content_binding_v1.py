@@ -69,39 +69,12 @@ CANDIDATE_DIRS = {
     "P8": PAPERS_DIR / "paper-08-epistemic-authority-autonomous-science",
 }
 
-# Successor reproducibility artifacts are deliberately outside the frozen V1
-# package identity.  V1 continues to validate its original bytes; a V2 manifest
-# binds these additive files after their own implementation commit.  Keeping an
-# exact allowlist prevents the V1 namespace from silently ignoring arbitrary
-# new paper files.
-SUCCESSOR_V2_PATHS = {
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/Makefile",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/REPRODUCE_V3.md",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/history/NEGATIVE_NULL_HISTORY_V1.jsonl",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_LOCAL_REPLAY_CONTRACT_V3.json",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.schema.json",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.source.json",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/certificate_lifting_scope_v1.smt2",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_certificate_lifting_scope_smt_v1.py",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/generate_assumption_countermodels_v2.py",
-    "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json",
-    "papers/paper-07-epistemic-navigation-open-worlds/Makefile",
-    "papers/paper-07-epistemic-navigation-open-worlds/REPRODUCE_V3.md",
-    "papers/paper-07-epistemic-navigation-open-worlds/benchmark/generate_instances_v2.py",
-    "papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.schema.json",
-    "papers/paper-07-epistemic-navigation-open-worlds/benchmark/navigation_trace_v2.json",
-    "papers/paper-07-epistemic-navigation-open-worlds/evidence/history/NEGATIVE_NULL_HISTORY_V1.jsonl",
-    "papers/paper-07-epistemic-navigation-open-worlds/evidence/local/P7_LOCAL_REPLAY_CONTRACT_V3.json",
-    "papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json",
-    "papers/paper-08-epistemic-authority-autonomous-science/Makefile",
-    "papers/paper-08-epistemic-authority-autonomous-science/REPRODUCE_V3.md",
-    "papers/paper-08-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.schema.json",
-    "papers/paper-08-epistemic-authority-autonomous-science/benchmark/generate_authority_cases_v2.py",
-    "papers/paper-08-epistemic-authority-autonomous-science/evidence/history/NEGATIVE_NULL_HISTORY_V1.jsonl",
-    "papers/paper-08-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json",
-    "papers/paper-08-epistemic-authority-autonomous-science/evidence/local/cross_capability_attack_replay_result_v2.json",
-}
+# Successor artifacts are deliberately outside the frozen V1 package identity.
+# Their exact set is not restated here: CONTENT_MANIFEST_V2 is the binding that
+# owns it.  A new paper file is excluded from V1 only when V2 names it, so an
+# unmanifested addition still turns this checker red instead of shrinking the
+# old binding by convention.
+SUCCESSOR_MANIFEST_NAME = "CONTENT_MANIFEST_V2.json"
 
 #: Reproduction-subject files that live outside the candidate directory. Every
 #: candidate's `REPRODUCE_V2_1.md` invokes the donor-envelope checker and the two
@@ -335,6 +308,44 @@ def parse_package_declaration(repo_root: Path) -> dict[str, dict[str, str]]:
     return roles
 
 
+def successor_v2_paths(repo_root: Path, candidate_id: str) -> set[str]:
+    """Paths added after V1 that the content-bound V2 successor owns.
+
+    V2 may also re-bind old V1 paths so current checkers have one complete,
+    commit-addressed view.  Only the V2-minus-V1 difference is excluded from
+    V1's historical enumeration; otherwise re-binding an old path in V2 would
+    silently delete it from the frozen V1 subject.
+    """
+
+    directory = repo_root / CANDIDATE_DIRS[candidate_id]
+    v1_path = directory / MANIFEST_NAME
+    v2_path = directory / SUCCESSOR_MANIFEST_NAME
+    successor = {(CANDIDATE_DIRS[candidate_id] / SUCCESSOR_MANIFEST_NAME).as_posix()}
+    try:
+        v1 = json.loads(v1_path.read_text(encoding="utf-8"))
+        v2 = json.loads(v2_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return successor
+    if not isinstance(v1, dict) or not isinstance(v2, dict):
+        return successor
+    if (
+        v2.get("schema_version") != "orion.candidate-content-binding.v2"
+        or v2.get("candidate_id") != candidate_id
+    ):
+        return successor
+    v1_bound = {
+        str(entry["path"])
+        for entry in v1.get("bound_files", ())
+        if isinstance(entry, dict) and isinstance(entry.get("path"), str)
+    }
+    v2_bound = {
+        str(entry["path"])
+        for entry in v2.get("bound_files", ())
+        if isinstance(entry, dict) and isinstance(entry.get("path"), str)
+    }
+    return successor | (v2_bound - v1_bound)
+
+
 
 def bound_paths(repo_root: Path, candidate_id: str) -> list[str]:
     """Every file this manifest binds, repo-relative and sorted.
@@ -345,13 +356,14 @@ def bound_paths(repo_root: Path, candidate_id: str) -> list[str]:
     """
 
     directory = repo_root / CANDIDATE_DIRS[candidate_id]
+    successor_paths = successor_v2_paths(repo_root, candidate_id)
     paths = {
         path.relative_to(repo_root).as_posix()
         for path in directory.rglob("*")
         if path.is_file()
         and path.name != SUMS_NAME
         and not _is_build_artifact(path)
-        and path.relative_to(repo_root).as_posix() not in SUCCESSOR_V2_PATHS
+        and path.relative_to(repo_root).as_posix() not in successor_paths
     }
     # Listed unconditionally: on a first `--write` the manifest does not exist
     # yet, and enumerating only what is on disk would omit it from its own set,
@@ -467,6 +479,22 @@ def derive_manifest(repo_root: Path, candidate_id: str) -> dict[str, Any]:
     paths = bound_paths(repo_root, candidate_id)
     declaration = parse_package_declaration(repo_root)
     roles = {**declaration[PROGRAMME_SECTION], **declaration[candidate_id]}
+    # V1 role labels are part of the frozen historical declaration. A later
+    # package document may add a role for the same path, but that does not
+    # retroactively rewrite V1; V2 owns the current binding surface.
+    try:
+        frozen = json.loads(
+            (repo_root / CANDIDATE_DIRS[candidate_id] / MANIFEST_NAME).read_text(
+                encoding="utf-8"
+            )
+        )
+    except (OSError, json.JSONDecodeError):
+        frozen = {}
+    frozen_roles = {
+        str(entry["path"]): entry.get("role")
+        for entry in frozen.get("bound_files", ())
+        if isinstance(entry, dict) and isinstance(entry.get("path"), str)
+    }
     return {
         "schema_version": SCHEMA_VERSION,
         "candidate_id": candidate_id,
@@ -476,7 +504,9 @@ def derive_manifest(repo_root: Path, candidate_id: str) -> dict[str, Any]:
         "claim_scope": CLAIM_SCOPE,
         **_subject_commit(repo_root, paths),
         "digest_file": (CANDIDATE_DIRS[candidate_id] / SUMS_NAME).as_posix(),
-        "bound_files": [{"path": path, "role": roles.get(path)} for path in paths],
+        "bound_files": [
+            {"path": path, "role": frozen_roles.get(path, roles.get(path))} for path in paths
+        ],
         "reproducibility_targets": reproducibility_targets(candidate_id),
     }
 
@@ -502,9 +532,26 @@ def write_binding(repo_root: Path, candidate_id: str) -> tuple[Path, Path]:
     directory = repo_root / CANDIDATE_DIRS[candidate_id]
     manifest_path = directory / MANIFEST_NAME
     sums_path = directory / SUMS_NAME
-    manifest = derive_manifest(repo_root, candidate_id)
-    manifest_path.write_text(_dumps(manifest), encoding="utf-8")
-    # Hash after the manifest lands so SHA256SUMS binds the manifest's real bytes.
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"frozen {MANIFEST_NAME} is unavailable or unreadable") from exc
+    derived = derive_manifest(repo_root, candidate_id)
+    provenance = {
+        "subject_commit",
+        "subject_commit_status",
+        "subject_commit_blocker",
+        "subject_commit_unbound_paths",
+    }
+    if {key: value for key, value in manifest.items() if key not in provenance} != {
+        key: value for key, value in derived.items() if key not in provenance
+    }:
+        raise ValueError(
+            f"frozen {MANIFEST_NAME} no longer describes the V1 subject; "
+            "bind additive files in CONTENT_MANIFEST_V2.json"
+        )
+    # V1 is historical and must not be rewritten merely because HEAD moved.
+    # SHA256SUMS remains the live digest layer for the paths V1 declared.
     lines = [
         f"{sha256_file(repo_root / entry['path'])}  {entry['path']}"
         for entry in manifest["bound_files"]

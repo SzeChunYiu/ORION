@@ -76,6 +76,14 @@ def test_subject_identity_falls_back_to_v1_only_when_v2_is_absent(tmp_path: Path
     assert not any(path.endswith("CONTENT_MANIFEST_V2.json") for path in target.evidence)
 
 
+def test_v2_subject_identity_rejects_a_moving_environment_lock(tmp_path: Path) -> None:
+    root = _copy_subject(tmp_path, "P6")
+    (root / "uv.lock").write_text("lock drift\n", encoding="utf-8")
+    target = checker.assess_targets(root, "P6")["exact_subject_commit_identities"]
+    assert target.status == "PARTIAL"
+    assert "environment lock drifted" in str(target.blocker)
+
+
 def test_schema_without_generator_cannot_promote_the_combined_target(tmp_path: Path) -> None:
     root = _copy_subject(tmp_path, "P7")
     benchmark = root / checker.PAPERS["P7"] / "benchmark"

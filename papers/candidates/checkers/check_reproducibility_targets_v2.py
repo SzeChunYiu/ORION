@@ -206,6 +206,31 @@ def _subject_identity(root: Path, candidate_id: str) -> Assessment:
         if actual_tree != tree:
             return Assessment("PARTIAL", evidence, "V2 subject_tree disagrees with subject_commit")
 
+        environment = manifest.get("environment_lock")
+        if not isinstance(environment, dict):
+            return Assessment("PARTIAL", evidence, "V2 manifest has no environment lock")
+        lock_path = environment.get("path")
+        lock_digest = environment.get("sha256")
+        if not (
+            isinstance(lock_path, str)
+            and isinstance(lock_digest, str)
+            and re.fullmatch(r"[0-9a-f]{64}", lock_digest)
+        ):
+            return Assessment("PARTIAL", evidence, "V2 environment-lock identity is invalid")
+        local_lock = root / lock_path
+        if not local_lock.is_file() or _sha256_file(local_lock) != lock_digest:
+            return Assessment("PARTIAL", evidence, f"V2 environment lock drifted: {lock_path}")
+        try:
+            committed_lock = subprocess.run(
+                ["git", "-C", str(root), "show", f"{commit}:{lock_path}"],
+                capture_output=True,
+                check=True,
+            ).stdout
+        except (OSError, subprocess.CalledProcessError):
+            return Assessment("PARTIAL", evidence, f"V2 subject commit lacks: {lock_path}")
+        if hashlib.sha256(committed_lock).hexdigest() != lock_digest:
+            return Assessment("PARTIAL", evidence, f"V2 commit bytes disagree: {lock_path}")
+
         entries = manifest.get("bound_files")
         if not isinstance(entries, list) or not entries:
             return Assessment("PARTIAL", evidence, "V2 manifest has no bound files")
