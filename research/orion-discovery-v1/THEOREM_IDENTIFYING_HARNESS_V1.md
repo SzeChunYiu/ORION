@@ -1,7 +1,7 @@
 # Theorem-Identifying Harnesses V1
 
-**Status:** prospective foundations successor.  
-**Trigger:** repeated non-vacuity defects discovered during the completed #1234 execution wave.  
+**Status:** prospective foundations successor.
+**Trigger:** repeated non-vacuity defects discovered during the completed #1234 execution wave.
 **Authority:** definitions and proofs for declared finite classes; no external scientific authority.
 
 ## 1. Problem

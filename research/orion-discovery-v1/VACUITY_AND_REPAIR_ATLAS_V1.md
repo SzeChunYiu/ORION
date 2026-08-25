@@ -1,7 +1,7 @@
 # Vacuity and repair atlas V1
 
-**Subject:** all completed or explicitly blocked jobs from closed execution issue #1234 at `main@da5294fb3ccce94194d59c6b682cf0fa9bd18061`.  
-**Machine ledger:** `OSTC_EXECUTION_IDENTIFIABILITY_MATRIX_V1.json`.  
+**Subject:** all completed or explicitly blocked jobs from closed execution issue #1234 at `main@da5294fb3ccce94194d59c6b682cf0fa9bd18061`.
+**Machine ledger:** `OSTC_EXECUTION_IDENTIFIABILITY_MATRIX_V1.json`.
 **Authority:** repository receipt audit; no execution was rerun by this audit and no paper claim is promoted.
 
 ## Portfolio result

@@ -1,0 +1,38 @@
+{
+  "schema": "orion.discovery.synthesis-completion-receipt.v1",
+  "stack_base_pr": 1280,
+  "stack_base_sha": "7261c306947f357779ff279b0d400c90ab8822a9",
+  "branch": "shadow/orion-discovery-three-mode-v1-20260825",
+  "status": "LOCAL_REFERENCE_GREEN__HOSTED_REVIEW_PENDING",
+  "theorem_entries": 20,
+  "compute_jobs_frozen": 7,
+  "focused_tests_passed": 15,
+  "verification_commands": [
+    "python scripts/check_orion_discovery_synthesis_v1.py",
+    "python -m pytest -q tests/unit/discovery/test_synthesis_modes.py tests/unit/discovery/test_structural_navigation.py",
+    "python -m compileall -q src/orion/discovery/synthesis_modes.py src/orion/discovery/structural_navigation.py scripts/check_orion_discovery_synthesis_v1.py"
+  ],
+  "content_sha256": {
+    ".github/workflows/orion-discovery-synthesis-v1.yml": "f3e3a43868cd1044c0f731604baf0c1d3c7764d790434c6e323defd7f31fbd57",
+    "development/orion-discovery-three-mode-v1-2026-08-25/README.md": "9c272e31d587f608a6eea8350af7fda45b221cd5c4412153676c7f470f12cf79",
+    "research/orion-discovery-v1/AI_EXECUTOR_PROMPT_SYNTHESIS_V1.md": "a4c114cd540b773aee8fe39e22dfa87ad5c4f4cb65fb80dbf8e9021830943449",
+    "research/orion-discovery-v1/COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md": "53e2e830a80333adbf9409ed38fe08ba7c88b9703cece85067454a2875afb734",
+    "research/orion-discovery-v1/DISCOVERY_EVENT_NORMAL_FORM_V1.md": "8d3666cecb37009b759b7d1706e51a05d29b716caaa9becc79435c4fd45ac59c",
+    "research/orion-discovery-v1/DISCOVERY_SYNTHESIS_COMPUTE_BACKLOG_V1.json": "b5cc0ccbffe728ca64664cdbfb435f78344a207df3b93a5dad93d9c1055936ca",
+    "research/orion-discovery-v1/DISCOVERY_SYNTHESIS_THEOREM_LEDGER_V1.json": "b311a28c26764212cd14b6369200142fd64ffbdf3fd4f9cf9b312ea25181ebdf",
+    "research/orion-discovery-v1/FRONTIER_MATH_NAVIGATION_PROTOCOL_V1.md": "5d52cbda62b7440fb8055abdf74783f2b69e8caca7befcec4b26048f6921bfc5",
+    "scripts/check_orion_discovery_synthesis_v1.py": "adb2ef38b87b42029aed14d95164adb968c996f53e9be9fc61189c13c3196477",
+    "src/orion/discovery/structural_navigation.py": "85563697e399778ce552a507606c9476951b5f6d4d0f656ae1fec39f039f560c",
+    "src/orion/discovery/synthesis_modes.py": "4cc15aabccff25db6eea11b36ad7f654b9ba21a610d637705031aea541d553c7",
+    "tests/unit/discovery/test_structural_navigation.py": "2f17bcebea563f7347766b616d3c7f795330960324363de7525429114db7f6ca",
+    "tests/unit/discovery/test_synthesis_modes.py": "b39dc89d753ff1f05d727775519d7509bc973c6a4334d1a6cf8ef4e284f60d1d"
+  },
+  "authority": {
+    "theory": "COMPLETE_FOR_DECLARED_FINITE_TYPED_CLASS",
+    "present_day_discovery": "NONE",
+    "historical_discovery": "CANNOT_CHECK",
+    "external_novelty": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE"
+  },
+  "protected_p1_path_changes": []
+}

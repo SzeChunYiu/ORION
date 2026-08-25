@@ -1,0 +1,279 @@
+{
+  "schema": "orion.discovery.synthesis-theorem-ledger.v1",
+  "stack_base_pr": 1280,
+  "stack_base_sha": "7261c306947f357779ff279b0d400c90ab8822a9",
+  "status": "THEORY_COMPLETE_FOR_DECLARED_CLASSES__NO_SCIENTIFIC_OR_NOVELTY_AUTHORITY_DELTA",
+  "theorem_count": 20,
+  "theorems": [
+    {
+      "id": "SYN-T1",
+      "title": "Class-relative provenance partition",
+      "statement_class": "finite semantic graph with decidable registered membership",
+      "status": "PROVED_SCHEMA_AND_EXECUTABLE_REFERENCE",
+      "assumptions": [
+        "frozen equivalence",
+        "frozen local closure",
+        "frozen donor maps",
+        "content-bound proposal origin"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t1--class-relative-provenance-partition",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "one element classified in two classes or no class",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T2",
+      "title": "Supplied donor-product closure",
+      "statement_class": "finite closure-preserving construction trace",
+      "status": "PROVED_SCHEMA",
+      "assumptions": [
+        "all fragments in registered product closure",
+        "all construction steps closure preserving"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t2--supplied-product-closure-theorem",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "outside-product result from only product-closure elements",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T3",
+      "title": "Finite minimal donor composition exists",
+      "statement_class": "finite donor registry",
+      "status": "PROVED_SCHEMA_AND_EXECUTABLE_REFERENCE",
+      "assumptions": [
+        "at least one successful subset"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t3--finite-minimal-composition-existence",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "successful finite family with no inclusion-minimal member",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T4",
+      "title": "Minimal-set load-bearing fragments and interaction order",
+      "statement_class": "finite successful subset family",
+      "status": "PROVED_SCHEMA_AND_EXECUTABLE_REFERENCE",
+      "assumptions": [
+        "inclusion-minimal success"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t4--load-bearing-fragment-theorem",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "proper subset of a reported minimal set succeeds",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T5",
+      "title": "Bridge/topology residual despite donor-owned nodes",
+      "statement_class": "finite semantic graph",
+      "status": "PROVED_BY_CONSTRUCTIVE_WITNESS_AND_REFERENCE",
+      "assumptions": [
+        "node and edge semantics distinguished"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t5--node-sufficiency-is-false",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "all graph effects reducible to node provenance",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T6",
+      "title": "Exact formal structural transfer soundness",
+      "statement_class": "finite proof derivation or registered interpretation",
+      "status": "PROVED_SCHEMA",
+      "assumptions": [
+        "premises map",
+        "every used inference rule preserved"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t6--exact-formal-transfer-soundness",
+      "executable_artifact": "src/orion/discovery/structural_navigation.py",
+      "falsifier": "mapped derivation invalid in target despite preserved premises/rules",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T7",
+      "title": "Partial transfer cannot authorize target",
+      "statement_class": "finite transfer debt ledger",
+      "status": "PROVED_BY_INDISTINGUISHABILITY_SCHEMA",
+      "assumptions": [
+        "at least one load-bearing relation/premise/boundary/validation debt"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t7--partial-transfer-non-promotion",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "sound target authorization with two debt-equivalent target worlds requiring different outcomes",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T8",
+      "title": "Domain/surface distance is not validity or novelty authority",
+      "statement_class": "arbitrary domain labels and renamings",
+      "status": "PROVED_BY_INVARIANCE_COUNTERARGUMENT",
+      "assumptions": [
+        "validity depends on structural/validation correspondence"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t8--domain-distance-is-not-authority",
+      "executable_artifact": "src/orion/discovery/structural_navigation.py",
+      "falsifier": "renaming alone changes theorem validity",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T9",
+      "title": "Finite minimal completion exists",
+      "statement_class": "finite edit poset",
+      "status": "PROVED_SCHEMA",
+      "assumptions": [
+        "nonempty successful completion set"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t9--finite-minimal-completion-existence",
+      "executable_artifact": null,
+      "falsifier": "successful finite edit family with no minimal member",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T10",
+      "title": "Minimal semantic residual need not be unique",
+      "statement_class": "finite candidate and donor decompositions",
+      "status": "PROVED_BY_COUNTEREXAMPLE_AND_EXECUTABLE_REFERENCE",
+      "assumptions": [
+        "multiple admissible donor decompositions"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t10--residual-non-uniqueness",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "residual uniqueness on the explicit three-element witness",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T11",
+      "title": "Conservative completion preserves registered old responsibilities",
+      "statement_class": "finite frozen old domain/responsibility family",
+      "status": "PROVED_EXTENSIONALLY",
+      "assumptions": [
+        "old terminal equality for all registered cases"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t11--conservative-extension-safety",
+      "executable_artifact": null,
+      "falsifier": "old-domain terminal changes under claimed conservative completion",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T12",
+      "title": "Hybrid provenance normal form",
+      "statement_class": "finite semantic graph",
+      "status": "PROVED_SCHEMA_AND_EXECUTABLE_REFERENCE",
+      "assumptions": [
+        "same assumptions as SYN-T1",
+        "nodes and edges included"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t12--hybrid-provenance-normal-form",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "candidate graph not reconstructible from classified partitions",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T13",
+      "title": "No-free-navigation outside closure",
+      "statement_class": "finite closure-preserving navigator trace",
+      "status": "PROVED_SCHEMA",
+      "assumptions": [
+        "no residual generator",
+        "all initial elements in closure"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t13--no-free-navigation-theorem",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "outside-closure output under only closure-preserving steps",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T14",
+      "title": "Finite navigation relative completeness",
+      "statement_class": "finite registered candidate universe",
+      "status": "PROVED_SCHEMA",
+      "assumptions": [
+        "fair enumeration",
+        "complete native validator"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t14--navigation-completeness-for-a-finite-registered-universe",
+      "executable_artifact": null,
+      "falsifier": "registered valid candidate never visited or recognized",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T15",
+      "title": "Minimum theorem-identifying experiment panel is set cover",
+      "statement_class": "finite alternative and experiment families",
+      "status": "PROVED_EXACT_REDUCTION_AND_EXECUTABLE_REFERENCE",
+      "assumptions": [
+        "pairwise signature separation is criterion"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t15--minimum-experiment-panel-is-set-cover",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "returned panel is not minimum or leaves an alternative pair uncovered",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T16",
+      "title": "Proof-counterexample missing-lemma separator criterion",
+      "statement_class": "finite positive/negative instance sets and predicate library",
+      "status": "PROVED_EXACT_REDUCTION",
+      "assumptions": [
+        "pairwise predicate outcomes available"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t16--missing-lemma-separator-criterion",
+      "executable_artifact": "src/orion/discovery/synthesis_modes.py",
+      "falsifier": "separator exists without covering all positive-negative pairs",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T17",
+      "title": "Registered Discovery Event Normal Form coverage criterion",
+      "statement_class": "finite source-grounded episode corpus",
+      "status": "EMPIRICAL_SCHEMA_NOT_UNIVERSAL_THEOREM",
+      "assumptions": [
+        "unknown values allowed",
+        "load-bearing distinctions evaluated"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t17--registered-trace-factorization-criterion",
+      "executable_artifact": null,
+      "falsifier": "episode needs a load-bearing coordinate absent from DENF",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "SYN-T18",
+      "title": "Finite historical atlas cannot prove universal morphology completeness",
+      "statement_class": "finite observation corpus",
+      "status": "PROVED_OPEN_WORLD_IMPOSSIBILITY",
+      "assumptions": [
+        "future episode space unrestricted"
+      ],
+      "proof_artifact": "COMPOSITION_TRANSFER_COMPLETION_CALCULUS_V1.md#syn-t18--finite-atlas-non-exhaustiveness",
+      "executable_artifact": null,
+      "falsifier": "finite corpus logically excludes every future new coordinate",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "NAV-T1",
+      "title": "Exact structural correspondence has zero registered distortion",
+      "statement_class": "finite structural address",
+      "status": "DEFINITION_AND_EXECUTABLE_REFERENCE",
+      "assumptions": [
+        "all target roles/relations/invariants/obstructions/interfaces mapped",
+        "validation correspondence"
+      ],
+      "proof_artifact": "FRONTIER_MATH_NAVIGATION_PROTOCOL_V1.md#5-lane-b--structural-transfer-search",
+      "executable_artifact": "src/orion/discovery/structural_navigation.py",
+      "falsifier": "zero-debt map with missing required target coordinate",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    },
+    {
+      "id": "NAV-T2",
+      "title": "Pareto navigation removes dominated routes and preserves tradeoffs",
+      "statement_class": "finite vector-valued option family",
+      "status": "PROVED_FROM_DOMINANCE_DEFINITION_AND_EXECUTABLE_REFERENCE",
+      "assumptions": [
+        "matching vector dimensions"
+      ],
+      "proof_artifact": "FRONTIER_MATH_NAVIGATION_PROTOCOL_V1.md#103-vector-navigation-frontier",
+      "executable_artifact": "src/orion/discovery/structural_navigation.py",
+      "falsifier": "dominated option retained or incomparable option removed",
+      "authority_ceiling": "DECLARED_CLASS_ONLY__EXTERNAL_REVIEW_PENDING"
+    }
+  ]
+}

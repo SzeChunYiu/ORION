@@ -1,7 +1,7 @@
 # Epistemic Decision Geometry V1
 
-**Status:** new successor theory. It does not silently modify OSTC-T17 or any historical receipt.  
-**Empirical trigger:** `EXEC-P12-01/OSTC_T17_SUCCESSOR_NARROWING_V1.md`.  
+**Status:** new successor theory. It does not silently modify OSTC-T17 or any historical receipt.
+**Empirical trigger:** `EXEC-P12-01/OSTC_T17_SUCCESSOR_NARROWING_V1.md`.
 **Authority:** mathematical derivation for the declared classes; external novelty and naturalistic transfer remain open.
 
 ## 1. Motivation

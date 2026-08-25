@@ -1,0 +1,176 @@
+{
+  "schema": "orion.discovery.synthesis-compute-backlog.v1",
+  "status": "COMPUTATION_AND_EXTERNAL_EXECUTION_ONLY",
+  "theory_redesign_allowed": false,
+  "job_count": 7,
+  "jobs": [
+    {
+      "job_id": "SYN-COMP-01",
+      "mode": "DONOR_COMPOSITION",
+      "question": "Can the frozen frontier target be reached by a typed product of registered donor fragments, and what are all inclusion-minimal donor sets and interaction orders?",
+      "reason_compute_needed": "Product closure and minimal subset enumeration may be combinatorial on a large donor hypergraph.",
+      "frozen_inputs": [
+        "MATH_FRONTIER_STATE.v1",
+        "donor fragment manifest",
+        "composition grammar",
+        "resource vector",
+        "native verifier"
+      ],
+      "required_outputs": [
+        "DONOR_SYNTHESIS_RECEIPT.v1",
+        "all minimal successful donor sets",
+        "negative/no-target products",
+        "resource ledger"
+      ],
+      "positive_terminal": "DONOR_COMPOSITION_SOLUTION",
+      "negative_terminal": "DONOR_PRODUCT_CLOSURE_EXHAUSTED_NO_TARGET",
+      "cannot_check_terminal": "DONOR_PRODUCT_CLOSURE_CANNOT_CHECK",
+      "external_authority_required": false
+    },
+    {
+      "job_id": "SYN-XFER-01",
+      "mode": "STRUCTURAL_TRANSFER",
+      "question": "Can an exact or low-debt structure from a materially different domain transport to the frontier target and survive a negative twin?",
+      "reason_compute_needed": "Requires structural indexing, map search, target-obligation checking, and possibly theorem proving across a large corpus.",
+      "frozen_inputs": [
+        "problem structural address",
+        "cross-domain address index",
+        "transfer-map grammar",
+        "negative twins",
+        "native target verifier"
+      ],
+      "required_outputs": [
+        "STRUCTURAL_TRANSFER_RECEIPT.v1",
+        "distortion/debt vectors",
+        "all exact and partial maps",
+        "negative-twin results"
+      ],
+      "positive_terminal": "TARGET_VALIDATED_STRUCTURAL_TRANSFER",
+      "negative_terminal": "NO_VALID_TRANSFER_IN_REGISTERED_INDEX",
+      "cannot_check_terminal": "TRANSFER_DEBT_CANNOT_CHECK",
+      "external_authority_required": false
+    },
+    {
+      "job_id": "SYN-COMPLETE-01",
+      "mode": "RESIDUAL_COMPLETION",
+      "question": "After composition and transfer first refusal, can a generated minimal residual close the exact remaining obligations and produce hidden consequences?",
+      "reason_compute_needed": "Requires candidate generation, closure/reducibility checking, strict-subedit search, proof/counterexample execution, and held-out transfer.",
+      "frozen_inputs": [
+        "residual obligation ledger",
+        "best donor/transfer partials",
+        "edit grammar",
+        "ProposalOrigin contract",
+        "hidden consequence set",
+        "native verifier"
+      ],
+      "required_outputs": [
+        "COMPLETION_CERTIFICATE.v1",
+        "minimal residual family",
+        "strict subedit results",
+        "counterexamples",
+        "hidden and transfer results"
+      ],
+      "positive_terminal": "HIDDEN_CONSEQUENCE_BEARING_MINIMAL_COMPLETION",
+      "negative_terminal": "RESIDUAL_GENERATOR_NO_VALID_COMPLETION",
+      "cannot_check_terminal": "COMPLETION_CANNOT_CHECK",
+      "external_authority_required": false
+    },
+    {
+      "job_id": "SYN-DENF-01",
+      "mode": "HISTORICAL_MORPHOLOGY",
+      "question": "Does DENF cover the 51 frozen episodes and add theorem-identifying value beyond the existing ten-coordinate artifact morphology?",
+      "reason_compute_needed": "Requires source-grounded reannotation, competing interpretations, adjudication, and challenge rounds.",
+      "frozen_inputs": [
+        "DISCOVERY_MORPHOLOGY_ATLAS_V1",
+        "DENF schema",
+        "annotation handbook",
+        "source cutoff manifests"
+      ],
+      "required_outputs": [
+        "DENF_51_EPISODE_LEDGER.json",
+        "inter-annotator/adjudication report",
+        "new-coordinate counterexamples",
+        "two challenge rounds"
+      ],
+      "positive_terminal": "DENF_ADDS_THEOREM_IDENTIFYING_VALUE",
+      "negative_terminal": "DENF_NO_INCREMENTAL_VALUE_OVER_MORPHOLOGY",
+      "cannot_check_terminal": "DENF_HISTORICAL_SOURCE_CANNOT_CHECK",
+      "external_authority_required": true
+    },
+    {
+      "job_id": "SYN-NAV-01",
+      "mode": "STRUCTURAL_NAVIGATION",
+      "question": "Does obstruction-address navigation retrieve useful mathematically distant donors beyond lexical/function baselines under matched budgets?",
+      "reason_compute_needed": "Requires a large cross-domain theorem/method index, retrieval, map construction, and prospective held-out evaluation.",
+      "frozen_inputs": [
+        "frontier problem addresses",
+        "donor corpus cutoff",
+        "retrieval baselines",
+        "resource budgets",
+        "target verifier"
+      ],
+      "required_outputs": [
+        "MATH_NAVIGATION_RECEIPT.v1",
+        "retrieval and mapping traces",
+        "Pareto frontiers",
+        "held-out donor utility"
+      ],
+      "positive_terminal": "STRUCTURAL_NAVIGATION_INCREMENTAL_VALUE",
+      "negative_terminal": "LEXICAL_OR_FUNCTIONAL_DONORS_SUFFICIENT",
+      "cannot_check_terminal": "NAVIGATION_CORPUS_OR_RIGHTS_CANNOT_CHECK",
+      "external_authority_required": false
+    },
+    {
+      "job_id": "SYN-MATH-01",
+      "mode": "HYBRID_FRONTIER_MATH",
+      "question": "Can the complete assemble-transfer-complete pipeline produce a machine-verified result on a prospectively frozen frontier mathematics target?",
+      "reason_compute_needed": "Requires donor search, proof and counterexample search, completion generation, verifier compute, and external novelty review.",
+      "frozen_inputs": [
+        "MATH_FRONTIER_STATE.v1",
+        "all synthesis receipts",
+        "hidden consequence escrow",
+        "proof assistant/checker",
+        "novelty cutoff"
+      ],
+      "required_outputs": [
+        "proof/counterexample artifact",
+        "candidate origin",
+        "tri-modal synthesis assessment",
+        "independent proof receipt",
+        "novelty certificate or CANNOT_CHECK"
+      ],
+      "positive_terminal": "EXTERNALLY_ADJUDICATED_FRONTIER_MATH_DISCOVERY",
+      "negative_terminal": "DONOR_EQUIVALENT_OR_NO_VALID_RESULT",
+      "cannot_check_terminal": "FRONTIER_MATH_EXTERNAL_AUTHORITY_CANNOT_CHECK",
+      "external_authority_required": true
+    },
+    {
+      "job_id": "SYN-PROOF-01",
+      "mode": "FORMAL_RECONSTRUCTION",
+      "question": "Can an independent proof assistant or reviewer reconstruct SYN-T1\u2013T18 and NAV-T1\u2013T2 and their executable correspondence?",
+      "reason_compute_needed": "Same-programme prose and unit tests do not create independent proof authority.",
+      "frozen_inputs": [
+        "theorem ledger",
+        "reference source",
+        "test corpus",
+        "formal statement translation"
+      ],
+      "required_outputs": [
+        "independent proof objects",
+        "executable correspondence report",
+        "counterexamples or scope narrowings"
+      ],
+      "positive_terminal": "SYNTHESIS_CALCULUS_INDEPENDENTLY_RECONSTRUCTED",
+      "negative_terminal": "SYNTHESIS_THEOREM_REFUTED_OR_NARROWED",
+      "cannot_check_terminal": "INDEPENDENT_PROOF_REVIEW_CANNOT_CHECK",
+      "external_authority_required": true
+    }
+  ],
+  "global_rules": [
+    "preserve all negative, null, donor-equivalent, harmful, and CANNOT_CHECK outcomes",
+    "do not change grammars, targets, margins, or hidden consequences after outcome access",
+    "same-owner execution is not independent proof or novelty authority",
+    "do not launch residual completion before fixed-regime, donor-product, and transfer first refusal",
+    "every positive must bind exact proposal origin and native validation"
+  ]
+}
