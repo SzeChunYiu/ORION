@@ -1,0 +1,433 @@
+{
+  "schema": "orion.discovery-v2.open-move-class-generator.v1",
+  "job_id": "DISC-OOD-MORPH-01",
+  "strata": {
+    "IN_BASIS": 30,
+    "OUT_CLEAN": 20,
+    "OUT_BORDERLINE": 10
+  },
+  "authoring_order": "basis_solver.py written FIRST from spec section 3 alone; worlds.py authored afterwards without consulting the parsed coverage-term lists. Independence is procedural, not perfect, and the leakage probe is the empirical control for it.",
+  "adversarial_design": "out-of-basis move text deliberately uses registered-basis vocabulary where natural. Scrubbing basis words from out-of-basis moves would manufacture recovery by vocabulary absence rather than by morphology.",
+  "worlds": [
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "problem_question",
+      "situation": "A programme reports no progress for six cycles.",
+      "problem": "Every attempt answers a question whose statement presupposes a fact that is false.",
+      "move": "Re-pose the problem: the responsibility as stated is defective and must be restated before any answer counts."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "problem_question",
+      "situation": "Two teams disagree about whether a result settles the question.",
+      "problem": "The question admits two readings and the teams answer different ones.",
+      "move": "Decide which responsibility is worth posing, and record that the prior problem statement was incomplete."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "problem_question",
+      "situation": "A benchmark is saturated at ceiling.",
+      "problem": "Every method scores identically, so the question separates nothing.",
+      "move": "Withdraw the question as posed: the problem statement is defective because it cannot discriminate."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "problem_question",
+      "situation": "A survey returns contradictory answers across sites.",
+      "problem": "The quantity asked about is not well defined at some sites.",
+      "move": "Restate the problem so the responsibility is well posed where it is asked."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "problem_question",
+      "situation": "A long study yields an answer nobody can use.",
+      "problem": "The posed question was not the one whose answer bears on the decision.",
+      "move": "Re-pose the responsibility so the problem statement matches the decision it must serve."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "hypothesis_mechanism",
+      "situation": "A rate constant varies with vessel geometry.",
+      "problem": "No proposed explanation predicts the geometry dependence.",
+      "move": "Propose a causal mechanism in which wall collisions mediate the reaction, and derive its law."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "hypothesis_mechanism",
+      "situation": "A correlation holds in every cohort but reverses in aggregate.",
+      "problem": "No current model explains the reversal.",
+      "move": "Advance a candidate causal model with a common cause that produces the reversal."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "hypothesis_mechanism",
+      "situation": "A material conducts below a threshold temperature.",
+      "problem": "The existing explanation predicts no threshold.",
+      "move": "Offer a mechanism whose candidate laws produce a threshold by pairing."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "hypothesis_mechanism",
+      "situation": "Populations crash every fourth generation.",
+      "problem": "No model in use generates the period.",
+      "move": "Propose a delayed-feedback causal mechanism whose laws yield the observed period."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "hypothesis_mechanism",
+      "situation": "A drug works in one tissue only.",
+      "problem": "No explanation accounts for the tissue specificity.",
+      "move": "Propose a receptor-density mechanism as the candidate causal model."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "representation_ontology",
+      "situation": "A proof is intractable in the current formulation.",
+      "problem": "The chosen variables entangle two effects.",
+      "move": "Change coordinates so the variables separate, expressing candidates in the new language."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "representation_ontology",
+      "situation": "Two results look unrelated.",
+      "problem": "They are stated over different objects.",
+      "move": "Introduce an equivalence relation identifying the objects, so both are expressed in one abstraction."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "representation_ontology",
+      "situation": "A classification has grown to two hundred cases.",
+      "problem": "The objects are described at the wrong grain.",
+      "move": "Re-ontologize: choose abstractions whose variables collapse the cases."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "representation_ontology",
+      "situation": "A simulation is unstable in one regime.",
+      "problem": "The coordinates are singular there.",
+      "move": "Adopt a coordinate language in which the regime is regular."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "representation_ontology",
+      "situation": "Two fields report incompatible units.",
+      "problem": "Their objects are not the same objects.",
+      "move": "Define the equivalence relation between the two ontologies so candidates are expressed comparably."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "experiment_instrument",
+      "situation": "A mechanism is not identifiable from observation.",
+      "problem": "Observation alone cannot separate the candidates.",
+      "move": "Design an intervention whose measurements separate them, using apparatus that sets the variable directly."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "experiment_instrument",
+      "situation": "A signal is below the noise floor.",
+      "problem": "Present apparatus lacks resolution.",
+      "move": "Build an instrument with finer measurement resolution, under the same experimental paradigm."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "experiment_instrument",
+      "situation": "Two explanations predict identical averages.",
+      "problem": "Averages cannot discriminate them.",
+      "move": "Run an intervention producing the counterfactual in which the predictions diverge."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "experiment_instrument",
+      "situation": "A field study cannot randomize.",
+      "problem": "Assignment is confounded.",
+      "move": "Introduce an experimental paradigm with a randomized intervention at the cluster level."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "experiment_instrument",
+      "situation": "An effect appears only in retrospective data.",
+      "problem": "Retrospective measurement is biased.",
+      "move": "Deploy a prospective apparatus taking measurements before the outcome."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "proof_evidence",
+      "situation": "A universal claim is asserted for all inputs.",
+      "problem": "No proof exists and the claim may be false.",
+      "move": "Exhibit a counterexample, which suffices to refute the universal statement."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "proof_evidence",
+      "situation": "A theorem is claimed over a finite domain.",
+      "problem": "The argument is informal.",
+      "move": "Run an exhaustive finite check over the domain, recording it as formal evidence."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "proof_evidence",
+      "situation": "A hard problem resists direct attack.",
+      "problem": "No construction is known.",
+      "move": "Give a reduction from a solved problem, supplying the proof."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "proof_evidence",
+      "situation": "An internal result is disputed.",
+      "problem": "Internal checks are not persuasive.",
+      "move": "Obtain external review as evidence for the claim."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "proof_evidence",
+      "situation": "A method works on one dataset.",
+      "problem": "One dataset is not general.",
+      "move": "Supply transfer evidence by formal construction on a second domain."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "authority_adoption",
+      "situation": "A finished result changes nothing in practice.",
+      "problem": "No body has taken it up.",
+      "move": "Identify who may adopt the result and route it to them."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "authority_adoption",
+      "situation": "A claim is contested as self-assessed.",
+      "problem": "The producer also judged it.",
+      "move": "Assign an independent party who may validate the result."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "authority_adoption",
+      "situation": "A dataset cannot be released.",
+      "problem": "No one has said who may publish it.",
+      "move": "Establish who may publish, and obtain that decision."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "authority_adoption",
+      "situation": "Two committees read the same finding oppositely.",
+      "problem": "No one is empowered to settle interpretation.",
+      "move": "Designate who may interpret the result authoritatively."
+    },
+    {
+      "stratum": "IN_BASIS",
+      "true_space": "authority_adoption",
+      "situation": "A standard is ignored by implementers.",
+      "problem": "Nobody has adopted it.",
+      "move": "Secure the adopting body that may adopt the result as normative."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A decisive assay exists and is fully specified.",
+      "problem": "The reagent costs more than the entire remaining budget.",
+      "move": "Raise the money to buy the reagent; the experimental paradigm and its measurements are already settled and unchanged."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "The needed model run is written and validated.",
+      "problem": "No compute allocation is available this year.",
+      "move": "Purchase the compute allocation; the causal model and its laws are already fixed."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A telescope programme is fully designed.",
+      "problem": "The consortium cannot pay the observing fee.",
+      "move": "Obtain the funds for the observing fee, leaving the apparatus and measurements as designed."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A trial protocol has cleared every scientific objection.",
+      "problem": "The site cannot afford the monitoring staff.",
+      "move": "Secure funding for monitoring, without altering the intervention or its measurements."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A verified construction needs a rare isotope.",
+      "problem": "The isotope's market supply is exhausted at any price this quarter.",
+      "move": "Acquire supply by procurement, the formal proof and its evidence being complete already."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A cohort study is correctly designed and running.",
+      "problem": "The outcome is defined at twenty years and eleven have elapsed.",
+      "move": "Wait for the remaining nine years to elapse; no intervention, measurement, or apparatus change shortens it."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A probe is en route and instrumented as planned.",
+      "problem": "The encounter happens on a fixed orbital date.",
+      "move": "Wait for the encounter date; the measurements are already specified."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A tree-ring series is the agreed evidence.",
+      "problem": "The next growth increment forms next season.",
+      "move": "Wait for the season to pass, the experimental paradigm being unchanged."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A decay measurement is under way.",
+      "problem": "The half-life sets the counting time and cannot be altered.",
+      "move": "Wait for enough decays to accumulate; no apparatus change alters the rate."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A pre-registered embargo governs a decisive dataset.",
+      "problem": "The embargo lifts on a fixed calendar date.",
+      "move": "Wait for the embargo to lapse; the evidence itself is already constructed."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "The sampling design is settled and adequate.",
+      "problem": "The only site sits on private land whose owner is not part of any scientific process.",
+      "move": "Negotiate the landowner's permission to enter; the owner does not validate, interpret, publish, or adopt anything."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A decisive archive is catalogued and known.",
+      "problem": "It is held by a family that grants access at its discretion.",
+      "move": "Persuade the family to grant access; they take no part in validating or adopting the result."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "An instrument exists and is calibrated.",
+      "problem": "It belongs to a firm that is not a scientific body.",
+      "move": "Negotiate machine time with the firm, which neither validates nor publishes the result."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A field site is fully characterized.",
+      "problem": "Access requires a neighbouring state's transit consent, granted on non-scientific grounds.",
+      "move": "Obtain transit consent from a party that will neither interpret nor adopt the finding."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A decisive specimen is identified in a private collection.",
+      "problem": "The collector responds only to personal introduction.",
+      "move": "Arrange the introduction; the collector plays no validating or adopting role."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "The navigator has run for many cycles.",
+      "problem": "It re-proposes near-identical moves and never revisits its own selection rule.",
+      "move": "Change the navigator's own move-selection policy, which is a property of the searcher rather than of the objects it studies."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A search repeatedly exhausts its budget.",
+      "problem": "Its stopping rule was fixed before the domain was understood.",
+      "move": "Rewrite the searcher's stopping rule itself, not any law, object, apparatus, or evidence in the domain."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A portfolio always selects the cheapest plan.",
+      "problem": "Its own preference ordering is the thing producing the failure.",
+      "move": "Modify the searcher's preference ordering over its policies, which is not an object of the study."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "A navigator ranks candidate moves by a learned prior.",
+      "problem": "The prior was fitted on episodes unlike the present one.",
+      "move": "Refit the navigator's internal prior, a property of the search procedure and not of the domain."
+    },
+    {
+      "stratum": "OUT_CLEAN",
+      "true_space": null,
+      "situation": "An agent never opens its residual queue.",
+      "problem": "The traversal order of its own agenda is the obstruction.",
+      "move": "Alter the agent's agenda traversal order, which belongs to the searcher, not to the studied objects."
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "true_space": null,
+      "situation": "A decisive assay is published in full detail.",
+      "problem": "Nobody on the team can perform it reliably.",
+      "move": "Train or recruit a technician with the tacit skill."
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "true_space": null,
+      "situation": "A proof strategy is sketched and plausible.",
+      "problem": "No one available has the required specialism.",
+      "move": "Recruit a specialist who can carry the construction."
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "true_space": null,
+      "situation": "A field protocol requires species identification by eye.",
+      "problem": "The team lacks a taxonomist.",
+      "move": "Bring in a taxonomist with the necessary expertise."
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "true_space": null,
+      "situation": "A legacy code base holds the decisive routine.",
+      "problem": "Its only maintainer retired.",
+      "move": "Rehire or retrain someone who understands the routine."
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "true_space": null,
+      "situation": "A surgical technique determines the outcome.",
+      "problem": "Operator skill varies more than the treatment.",
+      "move": "Train operators to a common standard."
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "true_space": null,
+      "situation": "A specimen and an instrument both exist.",
+      "problem": "They are on different continents and the specimen degrades in transit.",
+      "move": "Solve the transport problem so the specimen arrives intact."
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "true_space": null,
+      "situation": "A detector is built and tested.",
+      "problem": "It does not fit through the door of the hall it must occupy.",
+      "move": "Arrange disassembly and re-siting of the detector."
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "true_space": null,
+      "situation": "Samples are collected and stable.",
+      "problem": "The cold chain breaks at one border crossing.",
+      "move": "Re-route shipping to preserve the cold chain."
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "true_space": null,
+      "situation": "A survey needs simultaneous readings at two peaks.",
+      "problem": "The teams cannot reach both within the weather window.",
+      "move": "Solve the scheduling and access logistics for the two peaks."
+    },
+    {
+      "stratum": "OUT_BORDERLINE",
+      "true_space": null,
+      "situation": "An archive must be digitized on site.",
+      "problem": "The scanner cannot be powered at the location.",
+      "move": "Arrange power and equipment delivery to the site."
+    }
+  ]
+}
