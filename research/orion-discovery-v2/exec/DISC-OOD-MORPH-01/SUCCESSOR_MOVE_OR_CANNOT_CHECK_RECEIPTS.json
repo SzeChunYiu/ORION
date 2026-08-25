@@ -1,0 +1,21 @@
+{
+  "schema": "orion.discovery-v2.successor-move-receipts.v1",
+  "job_id": "DISC-OOD-MORPH-01",
+  "terminal": "FIXED_BASIS_FALSE_CERTAINTY_OR_GENERATOR_LEAKAGE",
+  "reason": "generator leakage: a trivial probe predicts out-of-basis membership above chance",
+  "in_basis_total": 30,
+  "in_basis_answered": 30,
+  "in_basis_space_correct": 29,
+  "non_vacuity": {
+    "always_abstain_would_recover": 30,
+    "solver_answers_in_basis_worlds": 30,
+    "discriminates": true,
+    "note": "an always-abstain solver would score perfect recovery and is the degenerate control; answering in-basis worlds is what shows the abstention is selective rather than constant"
+  },
+  "cannot_check": [
+    {
+      "subclaim": "COUNTERFACTUAL_REALISM",
+      "reason": "these worlds are synthetic. That the registered basis fails on them does not establish that real discovery episodes contain moves outside the six spaces; it establishes that the basis can fail and can report failing."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "orion.discovery-v2.generator-leakage-checker.v1",
+  "job_id": "DISC-OOD-MORPH-01",
+  "result": {
+    "probe": "unigram log-odds, add-one smoothing, move text only",
+    "folds": 5,
+    "accuracy": 0.7,
+    "chance_baseline_majority_class": 0.5,
+    "beats_chance": true,
+    "margin_over_chance": 0.2,
+    "reading": "a trivial probe seeing only the solver's input should not beat majority-class guessing; if it does, out-of-basis membership is readable from the text itself"
+  },
+  "why_a_weak_probe": "a weak probe beating chance is stronger evidence of a tell than a strong probe beating chance, because a strong probe may be reading genuine semantics"
+}
