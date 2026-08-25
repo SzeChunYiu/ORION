@@ -18,13 +18,13 @@ dependencies = [
 
 [project.optional-dependencies]
 # pytest-split shards the suite across CI runners; see .github/workflows/ci.yml.
-dev = ["pytest>=8", "pytest-split>=0.9", "pytest-xdist>=3.6"]
+dev = ["pytest>=8", "pytest-split>=0.9", "pytest-xdist>=3.6", "orion-research-os[candidates]", "pytest-timeout>=2.3"]
 plots = ["matplotlib>=3.10"]
 # The P9/P10 candidate lane re-derives phase 2A live in CI to prove the committed
 # result still reproduces. That needs numpy: the lane's framework package re-exports
 # competence.py, which imports it. Without this the guard degrades to a skip, and a
 # guard that never runs is not a guard.
-candidates = ["numpy>=2", "scikit-learn>=1.5"]
+candidates = ["numpy>=2", "scikit-learn>=1.5", "scipy>=1.11"]
 # P8's authority calculus is discharged by an SMT solver rather than asserted on
 # an authored enumeration. Without z3 the proofs do not run, and a suite that
 # silently skips them reports "no theorem failed" for "no theorem was checked" --
