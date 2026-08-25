@@ -1,0 +1,88 @@
+{
+  "schema_version": "orion.result-receipt.v1",
+  "job_id": "EXEC-P12-01",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1234",
+  "theorems_under_test": [
+    "OSTC-T17"
+  ],
+  "terminal": "P12_ALLOCATOR_TRANSFER_OR_ROBUSTNESS_FAILS",
+  "terminal_reading": "A frozen negative condition was met. This is a NARROWING of one clause of T17, not a refutation of the theorem. The failing clause is precisely identified and the other is confirmed universally.",
+  "executed_on": {
+    "host": "LUNARC (cosmos2.int.lunarc)",
+    "wallclock_seconds": 0.003,
+    "cases_enumerated": 652
+  },
+  "binding": {
+    "EXECUTION_PROTOCOL.json": {
+      "artifact": "EXECUTION_PROTOCOL.json",
+      "sha256": "0337a6a9f1d35011d357a23227c49915806011d98d91b1e5640d0ebfb0f52fc1"
+    },
+    "run_allocation_regret_v1.py": {
+      "artifact": "run_allocation_regret_v1.py",
+      "sha256": "32e869b7b2aba4ca3d8f7e380427f8b0a32bb7c9c80a5cc1d28cdb4ff57972d6"
+    },
+    "check_allocation_regret_independent_v1.py": {
+      "artifact": "check_allocation_regret_independent_v1.py",
+      "sha256": "8457735bbf5083d9ae70de4e9aab4a1962a22f4dff3a06ece3cb17ec8c8c5af3"
+    },
+    "RAW_RESULT_MANIFEST.json": {
+      "artifact": "RAW_RESULT_MANIFEST.json",
+      "sha256": "864ea60c69277ab40008bc7a19c7c9fc409ca2a2cc92c8ebcc14c265894da9a7"
+    },
+    "INDEPENDENT_CHECKER_RECEIPT.json": {
+      "artifact": "INDEPENDENT_CHECKER_RECEIPT.json",
+      "sha256": "d55a59917af5eef1b7916c4e27cdd79822c1ef5cc9a02c15dad7905be5148be8"
+    }
+  },
+  "results": {
+    "clause_1_every_allocator_pays": {
+      "verdict": "SUPPORTED_UNIVERSALLY_IN_CLASS",
+      "detail": "Over all 588 ambiguous certificate classes and EVERY deterministic certificate-only allocator on each, zero achieved zero regret on both members. Verified by exhaustive search over allocators, not by an argument about one. The oracle scored exactly zero regret on all 64 cases, confirming the harness.",
+      "classes": 588,
+      "escapes": 0,
+      "oracle_positive_regret": 0
+    },
+    "clause_2_half_gap_bound": {
+      "verdict": "REFUTED_IN_CLASS__NARROWS_TO_NO_HEDGE",
+      "detail": "Holds and is tight in 585 of 588 classes, FAILS in exactly 3. All 3 failures are hedges: the expected-regret-minimising action is a third action belonging to neither case's optimum. Zero non-hedge violations.",
+      "canonical_witness": {
+        "cost_vector_case_1": [
+          0,
+          1,
+          3
+        ],
+        "cost_vector_case_2": [
+          3,
+          1,
+          0
+        ],
+        "unique_optima": [
+          0,
+          2
+        ],
+        "cross_action_gaps": [
+          3,
+          3
+        ],
+        "claimed_bound": 1.5,
+        "achieved_expected_regret": 1.0,
+        "achieving_action": 1,
+        "why": "Action 1 costs 1 in both cases, suboptimal for each by only 1, while each case's own optimum is catastrophic for the other by 3. Hedging beats committing."
+      },
+      "violations": 3,
+      "all_violations_are_hedges": true,
+      "tight_classes": 585
+    }
+  },
+  "root_cause": "T17 is stated as the allocation analogue of T12, and the disanalogy is exactly where it breaks. T12 is 0/1 error over terminals: a deterministic rule returns one terminal and is simply wrong on one world, so expected error >= 1/2 follows with no escape. T17 carries that argument into real-valued loss, where a third action can be near-optimal for BOTH cases. There is no hedge in 0/1 error; there is one in a cost vector. The half-gap bound implicitly assumes the allocator must commit to one of the two optima -- true when |A|=2, false in general.",
+  "narrowed_statement": "Under an equal prior, expected regret is at least half the smaller cross-action loss gap PROVIDED no action is simultaneously suboptimal for both cases by less than half that gap -- in particular whenever |A|=2, or whenever the allocator is restricted to the two cases' optima. Clause 1 is unaffected for any |A|.",
+  "what_this_does_not_establish": [
+    "Clause 1 is untouched: every certificate-only deterministic allocator still pays on at least one member, for any action-set size.",
+    "Demonstrated on a 3-action, 4-cost grid. It shows the bound is not universal; it does not characterise every loss structure admitting a hedge.",
+    "No proof-assistant correspondence; EXEC-PA-01 remains open.",
+    "No external adjudication. Runner and checker are two implementations inside one programme."
+  ],
+  "independent_checker": "EXEC_P12_01_SECOND_INDEPENDENT_CHECKER_GREEN, 0 disagreements, hedge classification reproduced 3/3",
+  "external_validation": "CANNOT_CHECK",
+  "paper_authority_delta": "NONE"
+}
