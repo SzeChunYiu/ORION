@@ -1,0 +1,51 @@
+name: Five-paper R9 NQ clean LUNARC authorization v3
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/r9-nq-clean-lunarc-authorization-v3-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/NQ/ENGINE_A_CLEAN_INTEGRATION_R9.json'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/**'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-authorization-clean-r9-v3/**'
+      - '.github/workflows/five-paper-r9-nq-clean-lunarc-authorization-v3.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  static-authorization-v3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate recursively bound immutable payload and one-shot envelope
+        run: |
+          python papers/five-paper-top-tier-r8/NQ/lunarc-authorization-clean-r9-v3/validate_clean_lunarc_authorization_r9_v3.py \
+            | tee /tmp/NQ_CLEAN_LUNARC_AUTHORIZATION_VALIDATION_R9_V3.json
+      - name: Require authoritative V3 terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('/tmp/NQ_CLEAN_LUNARC_AUTHORIZATION_VALIDATION_R9_V3.json')
+          data = json.loads(p.read_text())
+          assert data['status'] == 'PASS_STATIC_AUTHORIZATION_V3'
+          assert data['superseded_authorizations_have_submission_authority'] is False
+          assert data['payload']['wrapper_tree_unchanged'] is True
+          assert data['validator']['recursive_tree_enumeration'] == 'git ls-tree -r -t'
+          assert data['submission_authority']['scientific_promotion'] is False
+          PY
+      - name: Archive V3 static authorization receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: nq-clean-lunarc-authorization-r9-v3
+          path: /tmp/NQ_CLEAN_LUNARC_AUTHORIZATION_VALIDATION_R9_V3.json
+          if-no-files-found: error
+          retention-days: 30
