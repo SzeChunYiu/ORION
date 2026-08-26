@@ -1,0 +1,347 @@
+{
+  "attacks": {
+    "aliases": "Tag/frame/partner aliases are covered because only symplectic signature bits enter the exchange",
+    "degeneracies": "00 signatures delete singly; duplicate signatures delete in pairs; full deletion is forbidden",
+    "support_0": {
+      "compressed_global_states": 0,
+      "max_frame_support": 0,
+      "optimum": null,
+      "optimum_witness_count": 0,
+      "raw_block_configurations": 0,
+      "terminal": "INFEASIBLE",
+      "witness": null
+    },
+    "support_1": {
+      "compressed_global_states": 4992,
+      "max_frame_support": 1,
+      "optimum": 6,
+      "optimum_witness_count": 30,
+      "raw_block_configurations": 1152,
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frame_cost": 0,
+            "frames": [
+              "IX",
+              "IY"
+            ],
+            "restores": [
+              "ZX",
+              "XX"
+            ],
+            "target_permutation": [
+              0,
+              1
+            ]
+          },
+          {
+            "central_branch": 0,
+            "frame_cost": 0,
+            "frames": [
+              "IX",
+              "IY"
+            ],
+            "restores": [
+              "II",
+              "IX"
+            ],
+            "target_permutation": [
+              0,
+              1
+            ]
+          },
+          {
+            "central_branch": 0,
+            "frame_cost": 0,
+            "frames": [
+              "IZ",
+              "IY"
+            ],
+            "restores": [
+              "II",
+              "IX"
+            ],
+            "target_permutation": [
+              0,
+              1
+            ]
+          }
+        ],
+        "maximum_frame_support": 1,
+        "orientation": [
+          1,
+          0
+        ],
+        "restore_cost": 4,
+        "tag": "IY",
+        "tag_cost": 2,
+        "total_cost": 6
+      }
+    },
+    "support_2_unrestricted_at_n2": {
+      "compressed_global_states": 3194880,
+      "max_frame_support": null,
+      "optimum": 5,
+      "optimum_witness_count": 2,
+      "raw_block_configurations": 11520,
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frame_cost": 2,
+            "frames": [
+              "XZ",
+              "ZI"
+            ],
+            "restores": [
+              "II",
+              "II"
+            ],
+            "target_permutation": [
+              1,
+              0
+            ]
+          },
+          {
+            "central_branch": 0,
+            "frame_cost": 0,
+            "frames": [
+              "IZ",
+              "IX"
+            ],
+            "restores": [
+              "II",
+              "II"
+            ],
+            "target_permutation": [
+              1,
+              0
+            ]
+          },
+          {
+            "central_branch": 0,
+            "frame_cost": 0,
+            "frames": [
+              "IZ",
+              "IX"
+            ],
+            "restores": [
+              "II",
+              "IY"
+            ],
+            "target_permutation": [
+              0,
+              1
+            ]
+          }
+        ],
+        "maximum_frame_support": 2,
+        "orientation": [
+          1,
+          0
+        ],
+        "restore_cost": 1,
+        "tag": "IX",
+        "tag_cost": 2,
+        "total_cost": 5
+      }
+    },
+    "support_3_and_above": "proper zero-sum exchange strictly reduces frame support while preserving feasibility and nonincreasing objective",
+    "ties": "m=2 and maximum F3 penalty produce an objective tie, retained as an optimum-preserving exchange",
+    "vanishing_coefficients": "numeric target amplitudes are absent from the frozen grammar and objective; any amplitude-dependent admission rule is outside this theorem"
+  },
+  "authority": {
+    "journal_authority": "CANNOT_CHECK",
+    "novelty": "CANNOT_CHECK",
+    "production_resource_interpretation": "CANNOT_CHECK",
+    "theorem_scope_only": true
+  },
+  "dependency_dag": {
+    "edges": [
+      [
+        "D0_PHASE_FREE_PAULI_ALGEBRA",
+        "L1_TWO_BIT_SIGNATURE_ENCODING"
+      ],
+      [
+        "D1_FROZEN_FEASIBILITY_AND_OBJECTIVE",
+        "L1_TWO_BIT_SIGNATURE_ENCODING"
+      ],
+      [
+        "L1_TWO_BIT_SIGNATURE_ENCODING",
+        "L2_PROPER_ZERO_SUM_SUBSET"
+      ],
+      [
+        "L2_PROPER_ZERO_SUM_SUBSET",
+        "L3_FEASIBILITY_PRESERVATION"
+      ],
+      [
+        "D1_FROZEN_FEASIBILITY_AND_OBJECTIVE",
+        "L3_FEASIBILITY_PRESERVATION"
+      ],
+      [
+        "D1_FROZEN_FEASIBILITY_AND_OBJECTIVE",
+        "L4_SINGLE_DONOR_F3_LIPSCHITZ_TWO"
+      ],
+      [
+        "L3_FEASIBILITY_PRESERVATION",
+        "L5_NONINCREASING_EXCHANGE"
+      ],
+      [
+        "L4_SINGLE_DONOR_F3_LIPSCHITZ_TWO",
+        "L5_NONINCREASING_EXCHANGE"
+      ],
+      [
+        "L5_NONINCREASING_EXCHANGE",
+        "L6_TERMINATING_OPTIMUM_DESCENT"
+      ],
+      [
+        "L6_TERMINATING_OPTIMUM_DESCENT",
+        "U1_SUPPORT_TWO_UPPER_BOUND"
+      ],
+      [
+        "W1_TWO_QUBIT_SHARPNESS_WITNESS",
+        "L7_EXACT_FINITE_MIN_PLUS_ENUMERATION"
+      ],
+      [
+        "L7_EXACT_FINITE_MIN_PLUS_ENUMERATION",
+        "W2_SUPPORT_ONE_LOWER_BOUND"
+      ],
+      [
+        "U1_SUPPORT_TWO_UPPER_BOUND",
+        "T1_KAPPA_R6M_EQUALS_TWO"
+      ],
+      [
+        "W2_SUPPORT_ONE_LOWER_BOUND",
+        "T1_KAPPA_R6M_EQUALS_TWO"
+      ]
+    ],
+    "nodes": [
+      "D0_PHASE_FREE_PAULI_ALGEBRA",
+      "D1_FROZEN_FEASIBILITY_AND_OBJECTIVE",
+      "L1_TWO_BIT_SIGNATURE_ENCODING",
+      "L2_PROPER_ZERO_SUM_SUBSET",
+      "L3_FEASIBILITY_PRESERVATION",
+      "L4_SINGLE_DONOR_F3_LIPSCHITZ_TWO",
+      "L5_NONINCREASING_EXCHANGE",
+      "L6_TERMINATING_OPTIMUM_DESCENT",
+      "U1_SUPPORT_TWO_UPPER_BOUND",
+      "W1_TWO_QUBIT_SHARPNESS_WITNESS",
+      "L7_EXACT_FINITE_MIN_PLUS_ENUMERATION",
+      "W2_SUPPORT_ONE_LOWER_BOUND",
+      "T1_KAPPA_R6M_EQUALS_TWO"
+    ]
+  },
+  "frozen_claim": {
+    "feasibility": "nonidentity anticommuting frame pair per block; one shared Tag; common opposite branch-Tag symplectic orientation; fixed assignment, central branch, partner, other blocks during exchange",
+    "instance_family": "six n-qubit phase-free Pauli targets in three ordered two-term blocks",
+    "invariant": "exact Pauli target semantics through Restore=P*R and unchanged frame-partner and frame-Tag symplectic parities",
+    "objective": "sum m_jk(w(R_jk)-1), m_jk in {2,4}; plus 2w(S); plus coordinate-local donor F3 over the three Restores of each branch",
+    "sharpness_statement": "the least uniform cap is two; the frozen n=2 witness has unrestricted optimum 5 and support-at-most-one optimum 6",
+    "support_functional": "maximum Pauli support of the six frame Paulis",
+    "theorem_kind": "existential normal-form theorem with a constructive descent; not a runtime or production-resource theorem",
+    "upper_statement": "for every admitted finite-n instance, an exact optimum exists with all frame supports at most two"
+  },
+  "hostile_controls": {
+    "broken_shared_tag_or_multi_frame_edit": "REJECTED_OUTSIDE_ONE-FRAME_UNCHANGED-TAG_EXCHANGE",
+    "maximum_single_donor_f3_increase": 2,
+    "maximum_single_donor_f3_witness": {
+      "after": [
+        "Y",
+        "X",
+        "X"
+      ],
+      "after_cost": 3,
+      "before": [
+        "X",
+        "X",
+        "X"
+      ],
+      "before_cost": 1,
+      "changed_donor": 0
+    },
+    "objective_multiplier_below_two": {
+      "after": [
+        "Y",
+        "X",
+        "X"
+      ],
+      "before": [
+        "X",
+        "X",
+        "X"
+      ],
+      "net_change_m1": 1,
+      "net_change_m2": 0,
+      "net_change_m4": -2,
+      "restore_penalty": 2
+    },
+    "odd_partner_parity_removed": {
+      "proper_zero_sum_subset": null,
+      "signatures": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "terminal": "EXPECTED_PREMISE_FAILURE",
+      "total": [
+        0,
+        0
+      ]
+    }
+  },
+  "independence": {
+    "external_independence": "CANNOT_CHECK",
+    "procedure": "clean-room same-program reconstruction from neutral definitions and claim ledger; transparent independent n=2 enumeration",
+    "same_program_internal": true
+  },
+  "phase_1_access_log": {
+    "allowed": [
+      "CLAIM_LEDGER_V3.md",
+      "MANUSCRIPT_V3_REFINED.md lines 66-107 neutral definitions and feasibility",
+      "INDEPENDENT_SUPPORT_TWO_AUDIT_PACKET_R9.md"
+    ],
+    "forbidden_not_read": [
+      "HUMAN_PROOF_R6S_2026-08-22.md content",
+      "MANUSCRIPT_V3_REFINED.md proof sections 3-4",
+      "registered ORION-Q solver/canonicalizer/checker source",
+      "registered ORION-Q result receipts"
+    ]
+  },
+  "phase_1_terminal": "PHASE1_LOCKED_BEFORE_REGISTERED_PROOF",
+  "schema_version": "q1-a-phase1-reconstruction-r9-v1",
+  "source_binding": {
+    "claim_ledger": {
+      "git_blob_sha1": "67459ecca65f160b52af470fe6a2582f6af95ed3",
+      "path": "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V3.md",
+      "sha256": "f278639f2606404be4276f20dc9f17e49e5b7702f906f7a4cb4a4c46074c994a"
+    },
+    "commit": "1e18787841d99d76a3c7661505838d2eca8780db",
+    "manuscript": {
+      "git_blob_sha1": "6c4c59452397024d96cf6d103f474b7b0a07e536",
+      "path": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
+      "phase1_read_scope": "neutral definitions and feasibility lines 66-107 only",
+      "sha256": "8522ab344c105866798ca64019f2e5bdf75f4c4445c0c6a0525a573a0c2b5377"
+    },
+    "q1_paper_tree_sha1": "d805ae36e6ad0f8844bd12aba32b3efae001dfce",
+    "registered_implementation_tree_sha1": "81c0d03d5f3da35c6f35dfdd6d523ac8f180847c",
+    "registered_proof": {
+      "git_blob_sha1": "a22754e8afef0e9914b75b37f0aee673ccd2ca95",
+      "path": "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md",
+      "phase1_content_access": "FORBIDDEN_NOT_READ",
+      "sha256": "ad4f3704cfac4569b74725cb8608ed5f5ba88b847d2d8a2820b3e184d9d1dae6"
+    },
+    "repository": "https://github.com/SzeChunYiu/ORION.git"
+  }
+}
