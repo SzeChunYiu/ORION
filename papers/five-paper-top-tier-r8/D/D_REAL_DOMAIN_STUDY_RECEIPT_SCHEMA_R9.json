@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ORION.D.RealDomainStudyReceiptR9.schema.json",
+  "title": "ORION D blinded real-domain validation receipt",
+  "type": "object",
+  "required": [
+    "schema",
+    "preregistration",
+    "domain",
+    "role_separation",
+    "frozen_systems",
+    "corpus",
+    "paired_outcomes",
+    "analysis",
+    "receipts",
+    "terminal",
+    "authority"
+  ],
+  "properties": {
+    "schema": {"const": "ORION.D.RealDomainStudyReceiptR9.v1"},
+    "preregistration": {
+      "type": "object",
+      "required": [
+        "timestamp_utc",
+        "protocol_sha256",
+        "materiality_thresholds_sha256",
+        "sample_rule_sha256",
+        "unblinding_timestamp_utc"
+      ],
+      "properties": {
+        "timestamp_utc": {"type": "string", "format": "date-time"},
+        "protocol_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "materiality_thresholds_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "sample_rule_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "unblinding_timestamp_utc": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": true
+    },
+    "domain": {
+      "type": "object",
+      "required": [
+        "name",
+        "independently_maintained",
+        "source_manifest_sha256",
+        "domain_expert_declaration_sha256",
+        "positive_horn_semantics_accepted_before_unblinding"
+      ],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "independently_maintained": {"const": true},
+        "source_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "domain_expert_declaration_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "positive_horn_semantics_accepted_before_unblinding": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "role_separation": {
+      "type": "object",
+      "required": ["curators", "encoders", "custodians", "adjudicators", "statistical_auditor", "conflicts"],
+      "properties": {
+        "curators": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+        "encoders": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "custodians": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "adjudicators": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+        "statistical_auditor": {"type": "string", "minLength": 1},
+        "conflicts": {"type": "array"}
+      },
+      "additionalProperties": true
+    },
+    "frozen_systems": {
+      "type": "object",
+      "required": [
+        "typed_source_sha256",
+        "typed_container_digest",
+        "erased_source_sha256",
+        "erased_container_digest",
+        "type_registry_sha256",
+        "origin_registry_sha256",
+        "bridge_registry_sha256",
+        "erasure_map_sha256"
+      ],
+      "properties": {
+        "typed_source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "typed_container_digest": {"type": "string", "minLength": 1},
+        "erased_source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "erased_container_digest": {"type": "string", "minLength": 1},
+        "type_registry_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "origin_registry_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bridge_registry_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "erasure_map_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": true
+    },
+    "corpus": {
+      "type": "object",
+      "required": [
+        "case_manifest_sha256",
+        "mutation_manifest_sha256",
+        "gold_manifest_sha256",
+        "cases_total",
+        "cases_analyzable",
+        "ambiguous_gold",
+        "excluded",
+        "stratum_counts",
+        "encoding_disagreements",
+        "blinding_breaches",
+        "leakage_cases"
+      ],
+      "properties": {
+        "case_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "mutation_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "gold_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "cases_total": {"type": "integer", "minimum": 0},
+        "cases_analyzable": {"type": "integer", "minimum": 0},
+        "ambiguous_gold": {"type": "integer", "minimum": 0},
+        "excluded": {"type": "integer", "minimum": 0},
+        "stratum_counts": {"type": "object"},
+        "encoding_disagreements": {"type": "integer", "minimum": 0},
+        "blinding_breaches": {"type": "integer", "minimum": 0},
+        "leakage_cases": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "paired_outcomes": {
+      "type": "object",
+      "required": [
+        "deny_cases",
+        "allow_cases",
+        "false_authorization_table",
+        "false_denial_table",
+        "out_of_model_cases",
+        "typed_correct_abstentions",
+        "erased_correct_abstentions"
+      ],
+      "properties": {
+        "deny_cases": {"type": "integer", "minimum": 0},
+        "allow_cases": {"type": "integer", "minimum": 0},
+        "false_authorization_table": {"$ref": "#/$defs/pairedTable"},
+        "false_denial_table": {"$ref": "#/$defs/pairedTable"},
+        "out_of_model_cases": {"type": "integer", "minimum": 0},
+        "typed_correct_abstentions": {"type": "integer", "minimum": 0},
+        "erased_correct_abstentions": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "analysis": {
+      "type": "object",
+      "required": [
+        "analysis_script_sha256",
+        "analysis_output_sha256",
+        "false_authorization_exact_p",
+        "false_authorization_effect",
+        "false_authorization_interval",
+        "false_denial_exact_p",
+        "false_denial_effect",
+        "false_denial_interval",
+        "materiality_gate_met",
+        "false_denial_gate_met",
+        "abstention_gate_met"
+      ],
+      "properties": {
+        "analysis_script_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "analysis_output_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "false_authorization_exact_p": {"type": "number", "minimum": 0, "maximum": 1},
+        "false_authorization_effect": {"type": "number", "minimum": -1, "maximum": 1},
+        "false_authorization_interval": {"$ref": "#/$defs/interval"},
+        "false_denial_exact_p": {"type": "number", "minimum": 0, "maximum": 1},
+        "false_denial_effect": {"type": "number", "minimum": -1, "maximum": 1},
+        "false_denial_interval": {"$ref": "#/$defs/interval"},
+        "materiality_gate_met": {"type": "boolean"},
+        "false_denial_gate_met": {"type": "boolean"},
+        "abstention_gate_met": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "receipts": {
+      "type": "object",
+      "required": [
+        "typed_case_receipts_sha256",
+        "erased_case_receipts_sha256",
+        "proof_tree_receipts_sha256",
+        "environment_manifest_sha256",
+        "exclusion_log_sha256",
+        "disagreement_log_sha256",
+        "independent_review_sha256"
+      ],
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "terminal": {
+      "enum": [
+        "REAL_DOMAIN_PRIMARY_GATE_PASS",
+        "REAL_DOMAIN_TYPED_NONINFERIOR",
+        "REAL_DOMAIN_SCOPE_ABSTENTION_PASS",
+        "REAL_DOMAIN_NO_ADVANTAGE",
+        "REAL_DOMAIN_FALSE_DENIAL_HARM",
+        "REAL_DOMAIN_TYPED_FALSE_AUTHORIZATION",
+        "POSITIVE_HORN_SEMANTICS_REJECTED_BY_DOMAIN",
+        "ENCODING_DISAGREEMENT",
+        "GOLD_DISAGREEMENT_TOO_HIGH",
+        "BLINDING_BREACH",
+        "CORPUS_LEAKAGE",
+        "INSUFFICIENT_DISCORDANT_PAIRS",
+        "RESOURCE_EXHAUSTED",
+        "LEGAL_OR_PRIVACY_BLOCK",
+        "CANNOT_CHECK"
+      ]
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "domain_specific",
+        "multi_domain_generalization",
+        "production_safety_authority",
+        "grants_journal_authority"
+      ],
+      "properties": {
+        "domain_specific": {"const": true},
+        "multi_domain_generalization": {"const": false},
+        "production_safety_authority": {"type": "boolean"},
+        "grants_journal_authority": {"const": false}
+      },
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "pairedTable": {
+      "type": "object",
+      "required": ["both_correct", "typed_only_error", "erased_only_error", "both_error"],
+      "properties": {
+        "both_correct": {"type": "integer", "minimum": 0},
+        "typed_only_error": {"type": "integer", "minimum": 0},
+        "erased_only_error": {"type": "integer", "minimum": 0},
+        "both_error": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "interval": {
+      "type": "object",
+      "required": ["level", "lower", "upper", "method"],
+      "properties": {
+        "level": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+        "lower": {"type": "number", "minimum": -1, "maximum": 1},
+        "upper": {"type": "number", "minimum": -1, "maximum": 1},
+        "method": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
