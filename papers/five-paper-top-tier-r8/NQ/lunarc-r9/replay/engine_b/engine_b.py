@@ -100,7 +100,9 @@ class CNF:
             if type(clause) is not tuple or not clause:
                 raise ValueError("CNF clauses must be nonempty exact tuples")
             if any(
-                type(literal) is not int or literal == 0 or abs(literal) > self.variable_count
+                type(literal) is not int
+                or literal == 0
+                or abs(literal) > self.variable_count
                 for literal in clause
             ):
                 raise ValueError("CNF clause contains an invalid literal")
@@ -142,7 +144,8 @@ class FactorizationEncoding:
         if len(label_tuple) != len(self.sequence):
             raise ValueError("label assignment length does not match sequence")
         if any(
-            type(label) is not int or not -1 <= label < self.required_bins for label in label_tuple
+            type(label) is not int or not -1 <= label < self.required_bins
+            for label in label_tuple
         ):
             raise ValueError("labels must be -1 or a declared bin index")
         model = {variable: False for variable in range(1, self.cnf.variable_count + 1)}
@@ -157,7 +160,9 @@ class FactorizationEncoding:
                 for index, label in enumerate(label_tuple):
                     if label == bin_index:
                         state = (state + coordinates[index][coordinate]) % 5
-                    model[self.state_variables[bin_index][coordinate][index + 1][state]] = True
+                    model[
+                        self.state_variables[bin_index][coordinate][index + 1][state]
+                    ] = True
         return model
 
     def extract_witness(self, model: Mapping[int, bool]) -> tuple[tuple[int, ...], ...]:
@@ -180,13 +185,17 @@ def _require_sequence(sequence: Sequence[int]) -> tuple[int, ...]:
     return tuple(_require_element(element) for element in value)
 
 
-def build_factorization_cnf(sequence: Sequence[int], required_bins: int) -> FactorizationEncoding:
+def build_factorization_cnf(
+    sequence: Sequence[int], required_bins: int
+) -> FactorizationEncoding:
     value = _require_sequence(sequence)
     if type(required_bins) is not int or not 1 <= required_bins <= 4:
         raise ValueError("required_bins must be an integer from one through four")
 
     builder = _Builder()
-    x_variables = tuple(tuple(builder.variable() for _ in range(required_bins)) for _ in value)
+    x_variables = tuple(
+        tuple(builder.variable() for _ in range(required_bins)) for _ in value
+    )
     for row in x_variables:
         for left, right in product(range(required_bins), repeat=2):
             if left < right:
@@ -196,7 +205,10 @@ def build_factorization_cnf(sequence: Sequence[int], required_bins: int) -> Fact
 
     state_variables = tuple(
         tuple(
-            tuple(tuple(builder.variable() for _ in range(5)) for _ in range(len(value) + 1))
+            tuple(
+                tuple(builder.variable() for _ in range(5))
+                for _ in range(len(value) + 1)
+            )
             for _ in range(3)
         )
         for _ in range(required_bins)
@@ -214,7 +226,9 @@ def build_factorization_cnf(sequence: Sequence[int], required_bins: int) -> Fact
                 selected = row[bin_index]
                 delta = coordinates[index][coordinate]
                 for prior in range(5):
-                    builder.clause(-states[index][prior], selected, states[index + 1][prior])
+                    builder.clause(
+                        -states[index][prior], selected, states[index + 1][prior]
+                    )
                     builder.clause(
                         -states[index][prior],
                         -selected,
@@ -248,7 +262,9 @@ def evaluate_cnf(cnf: CNF, model: Mapping[int, bool]) -> bool:
     )
 
 
-def _propagate(clauses: tuple[tuple[int, ...], ...], assignment: dict[int, bool]) -> bool:
+def _propagate(
+    clauses: tuple[tuple[int, ...], ...], assignment: dict[int, bool]
+) -> bool:
     changed = True
     while changed:
         changed = False
@@ -259,7 +275,9 @@ def _propagate(clauses: tuple[tuple[int, ...], ...], assignment: dict[int, bool]
                 for variable in (abs(literal),)
             ):
                 continue
-            unassigned = [literal for literal in clause if abs(literal) not in assignment]
+            unassigned = [
+                literal for literal in clause if abs(literal) not in assignment
+            ]
             if not unassigned:
                 return False
             if len(unassigned) == 1:
@@ -277,10 +295,12 @@ def _propagate(clauses: tuple[tuple[int, ...], ...], assignment: dict[int, bool]
 def solve_cnf_dpll(cnf: CNF, assumptions: Sequence[int] = ()) -> dict[int, bool] | None:
     initial: dict[int, bool] = {}
     for literal in assumptions:
+        if type(literal) is not int or literal == 0:
+            raise ValueError("DPLL assumption contains an invalid literal")
         variable = abs(literal)
         value = literal > 0
         if not 1 <= variable <= cnf.variable_count:
-            raise ValueError("DPLL assumption contains an invalid variable")
+            raise ValueError("DPLL assumption contains an invalid literal")
         if variable in initial and initial[variable] != value:
             return None
         initial[variable] = value
@@ -300,9 +320,12 @@ def solve_cnf_dpll(cnf: CNF, assumptions: Sequence[int] = ()) -> dict[int, bool]
         if not unresolved:
             return working
         clause = min(
-            unresolved, key=lambda item: sum(abs(literal) not in working for literal in item)
+            unresolved,
+            key=lambda item: sum(abs(literal) not in working for literal in item),
         )
-        variable = next(abs(literal) for literal in clause if abs(literal) not in working)
+        variable = next(
+            abs(literal) for literal in clause if abs(literal) not in working
+        )
         for value in (True, False):
             branch = working.copy()
             branch[variable] = value
@@ -322,18 +345,24 @@ def verify_witness(
     if len(bin_tuple) != required_bins or any(not selected for selected in bin_tuple):
         raise CertificateMismatch("witness must contain every declared nonempty bin")
     flattened = [index for selected in bin_tuple for index in selected]
-    if any(type(index) is not int or not 0 <= index < len(value) for index in flattened):
+    if any(
+        type(index) is not int or not 0 <= index < len(value) for index in flattened
+    ):
         raise CertificateMismatch("witness contains an out-of-range sequence index")
     if len(flattened) != len(set(flattened)):
         raise CertificateMismatch("witness bins are not pairwise disjoint")
     for selected in bin_tuple:
         if tuple(sorted(selected)) != selected or len(set(selected)) != len(selected):
-            raise CertificateMismatch("witness bin indices are not canonical and unique")
+            raise CertificateMismatch(
+                "witness bin indices are not canonical and unique"
+            )
         if sum_elements(value[index] for index in selected) != ZERO:
             raise CertificateMismatch("witness bin is not zero-sum")
 
 
-def has_k_disjoint_zero_sums_bruteforce(sequence: Sequence[int], required_bins: int) -> bool:
+def has_k_disjoint_zero_sums_bruteforce(
+    sequence: Sequence[int], required_bins: int
+) -> bool:
     value = tuple(_require_element(element) for element in sequence)
     if type(required_bins) is not int or not 1 <= required_bins <= 4:
         raise ValueError("required_bins must be an integer from one through four")
@@ -347,7 +376,8 @@ def has_k_disjoint_zero_sums_bruteforce(sequence: Sequence[int], required_bins: 
             for bin_index in range(required_bins)
         )
         if all(bins) and all(
-            sum_elements(value[index] for index in selected) == ZERO for selected in bins
+            sum_elements(value[index] for index in selected) == ZERO
+            for selected in bins
         ):
             return True
     return False
@@ -358,7 +388,9 @@ def _sequence_sha256(sequence: Sequence[int]) -> str:
 
 
 def _certificate_digest(certificate: Mapping[str, Any]) -> str:
-    payload = {key: value for key, value in certificate.items() if key != "certificate_sha256"}
+    payload = {
+        key: value for key, value in certificate.items() if key != "certificate_sha256"
+    }
     return hashlib.sha256(canonical_json_bytes(payload)).hexdigest()
 
 

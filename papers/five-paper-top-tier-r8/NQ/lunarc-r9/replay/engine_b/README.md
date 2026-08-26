@@ -9,6 +9,8 @@ copy existing NQ algorithms or result files.
 
 - exact `C_5^3` encoding and addition;
 - a no-pruning SAT automaton for one to four disjoint nonempty factors;
+- an independent literal-matrix `GL(r,5)` symmetry implementation for the
+  frozen rank-at-most-two pre-census controls;
 - a slow subset/partition reference for small controls;
 - SAT witness and hash-bound UNSAT-proof certificate formats;
 - canonical JSONL input records and coverage manifests;
@@ -30,3 +32,16 @@ exhaustion is `CANNOT_CHECK_RESOURCE_BOUND`, never a theorem or counterexample.
 
 No job is submitted from this directory before root review and a hash-bound
 input bundle is supplied.
+
+## Frozen two-engine discriminator
+
+`../control_replay.py` runs the issue-mandated smallest complete discriminator
+before any target census. It enumerates all 61 rank-two multisets of lengths
+2--4 over the exact five-symbol alphabet declared in `../CONTROL_PROTOCOL.json`.
+Every case is checked by Engine A, Engine B, and a tiny labelled-bin reference.
+The receipt binds per-case status, representative digest, matrix-action orbit
+digest, CNF digest, aggregate range digests, and any disagreement witness.
+
+This control is intentionally engineering-only. It does not execute the
+98,622- or 230,983-record censuses and cannot reach an issue-level scientific
+PASS terminal.

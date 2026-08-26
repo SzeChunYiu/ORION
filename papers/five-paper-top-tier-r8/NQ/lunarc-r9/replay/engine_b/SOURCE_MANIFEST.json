@@ -21,34 +21,34 @@
       "sha256": "6df920051d7f0f2bac55fd8850a6a80d8ca898db2d9dec030cbdd9ee49b6a578"
     },
     {
-      "bytes": 1414,
+      "bytes": 2208,
       "path": "README.md",
-      "sha256": "2232a0fe39ebf2e8b200b58e512ecbd1ec5adae7033c036fdf9f991fd8cd132f"
+      "sha256": "b522393430445dd74af07205caffe6d6ed4458d68cf671d45131f7e4f3464a41"
     },
     {
-      "bytes": 1167,
+      "bytes": 1507,
       "path": "SOURCE_PROTOCOL.json",
-      "sha256": "36acede8371b53be679dc192c2b5b0f94611c9bdb8ce6b274dda51cde359a81f"
+      "sha256": "9e7160560d4a361a0f4210de49242b4542ff5aaecf0966512e6af7387e3ffb1c"
     },
     {
-      "bytes": 469,
+      "bytes": 799,
       "path": "SUBMISSION_BLOCKER.json",
-      "sha256": "e81fde8cb5ca81959ca12a3f07db4123028e9fc6ce3b1db47f9579e1a734ccf1"
+      "sha256": "f05448c0debc93c6daeaec2c2161f30fac73a0d229bfbf32813bae5d4e732bbd"
     },
     {
-      "bytes": 19342,
+      "bytes": 20344,
       "path": "batch_engine_b.py",
-      "sha256": "2cc729d3aeef446483f3562d82b488037ef1e3dd47ed92dfc43f2407b105aa02"
+      "sha256": "d2f29cd31b852056fc1e0d59b5ca8153b1b4712493fb0c6d849ac0a69d311280"
     },
     {
-      "bytes": 5001,
+      "bytes": 5066,
       "path": "build_manifest.py",
-      "sha256": "1a7f277560c1b15c729a0a935f5d097c86419ade3d2add6fdcf1e35250d77edf"
+      "sha256": "52fd224ed22d817533f703a9c2ed29eb3d23be484f43efa2790c7a91e3d47bc9"
     },
     {
-      "bytes": 16186,
+      "bytes": 16663,
       "path": "engine_b.py",
-      "sha256": "5527168446ced0f4597d6db7a42ebb0a61eaa2cb62abfaa750f64428fa6217ca"
+      "sha256": "8d27052b45888320e2682695c0dcf83a851bf514611f056981e2fce9b54f48d8"
     },
     {
       "bytes": 34,
@@ -56,37 +56,42 @@
       "sha256": "ba67e21cc1f501c458e815a008651909825718e48f4d91674ce381f47ee9b491"
     },
     {
-      "bytes": 4930,
+      "bytes": 5353,
       "path": "run_engine_b.py",
-      "sha256": "1b1402858b4071095e94646759285364fd470d6394b2f819516797ca58df5c7a"
+      "sha256": "6d90610e89991c28ba8ddb797ede605950386bc74f202bdfe78a07371cb4e61b"
     },
     {
-      "bytes": 1707,
+      "bytes": 1972,
       "path": "slurm/job_nq_r8_engine_b.slurm",
-      "sha256": "d0aa3f41b30834ca9987d44fe715951628105378dec7bf640c1b86f19060ae2a"
+      "sha256": "e2956d5fffbfe39c997d6f6af7f41a31e718252377b80c60411ed61a37602e77"
     },
     {
-      "bytes": 8320,
+      "bytes": 5111,
+      "path": "symmetry.py",
+      "sha256": "05616f585bd52a260bc2fab4cf48b4660dbc5cf953579230aa72507c4cf2ec96"
+    },
+    {
+      "bytes": 10220,
       "path": "tests/test_batch_and_authority.py",
-      "sha256": "fc552a11b75eefb8401dc7290a57c57ff9b6da0f108603d612048d20f0e175a5"
+      "sha256": "db464c2a14da925902f03ef9dd359f71ca660ba6e791ad33156d3117ac4058f1"
     },
     {
-      "bytes": 4934,
+      "bytes": 4968,
       "path": "tests/test_engine_b_primitives.py",
-      "sha256": "1e933d543c1d0dea4df3db7813e9374de1a9a212c5ae405098703a0de54b3952"
+      "sha256": "291883b7bdf9515ab5b7e14616799876edfca7dac00163f0846c6d4b454d84df"
     },
     {
-      "bytes": 4078,
+      "bytes": 4150,
       "path": "tests/test_source_packet.py",
-      "sha256": "3788afb7d5cbd93ddf924cc889ec32cf46414796acd6d5d1997246ccef8cd8e9"
+      "sha256": "0ffe4a1ae661fa2dd33b1600fc84c95be805dcd5f7fcd83c6837a54cb3755313"
     },
     {
-      "bytes": 2342,
+      "bytes": 4585,
       "path": "verify_receipt.py",
-      "sha256": "ae82b156b2ee86e3f3a8cf26133cabe722ca720165501138292b9406ad18e5bc"
+      "sha256": "b7ae0b2d916f3055465d57f2a2f9879f8827164ad3db687577821a7a859fae6e"
     }
   ],
-  "manifest_sha256": "bb4c9ece122fc83cfe8e8b8327c4c4cf091fd58898465ad89799710656ad61a0",
+  "manifest_sha256": "daa673588db36afcc02bd346a9527664d0965b9b8a53894e67b2900124758162",
   "schema": "ORION.NQ.EngineB.SourceManifest.v1",
   "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
 }

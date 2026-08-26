@@ -13,13 +13,17 @@ set -euo pipefail
 # The frozen terminal on allocation exhaustion is CANNOT_CHECK_RESOURCE_BOUND.
 SUBJECT_COMMIT=0c451e862a0eeddac7c673813c4dc499f134b088
 REPOSITORY="${SLURM_SUBMIT_DIR:?submit from the exact Engine B checkout}"
-ENGINE_ROOT="${REPOSITORY}/papers/five-paper-top-tier-r8/NQ/cleanroom_engine_b"
+AUTHORIZED_COMMIT="${NQ_ENGINE_B_AUTHORIZED_COMMIT:?bind a separately reviewed authorization commit}"
+ENGINE_ROOT="${REPOSITORY}/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b"
 INPUT_ROOT="${NQ_ENGINE_B_INPUT_ROOT:?bind the audited input bundle root}"
 INPUT_MANIFEST="${NQ_ENGINE_B_INPUT_MANIFEST:?bind the audited input manifest}"
 OUTPUT_ROOT="${ENGINE_ROOT}/results/${SLURM_JOB_ID}"
 VENV="${SLURM_TMPDIR:?}/nq-engine-b-venv"
 
-test "$(git -C "${REPOSITORY}" rev-parse HEAD^)" = "${SUBJECT_COMMIT}"
+test "$(git -C "${REPOSITORY}" rev-parse HEAD)" = "${AUTHORIZED_COMMIT}"
+git -C "${REPOSITORY}" diff --quiet
+git -C "${REPOSITORY}" diff --cached --quiet
+git -C "${REPOSITORY}" merge-base --is-ancestor "${SUBJECT_COMMIT}" HEAD
 python3 -m venv "${VENV}"
 "${VENV}/bin/python" -m pip install --disable-pip-version-check --no-input \
   --no-deps -r "${ENGINE_ROOT}/requirements.txt"

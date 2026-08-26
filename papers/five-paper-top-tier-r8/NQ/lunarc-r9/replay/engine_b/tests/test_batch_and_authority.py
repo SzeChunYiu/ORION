@@ -30,7 +30,9 @@ def _write_bundle(root: Path, *, complete: bool = True) -> tuple[Path, Path]:
         },
     )
     stream = root / "records.jsonl"
-    stream.write_bytes(b"".join(eb.canonical_json_bytes(record) + b"\n" for record in records))
+    stream.write_bytes(
+        b"".join(eb.canonical_json_bytes(record) + b"\n" for record in records)
+    )
     coverage = root / "coverage.json"
     coverage.write_text(
         json.dumps(
@@ -86,7 +88,9 @@ def test_input_gate_rejects_incomplete_coverage_and_tamper(tmp_path: Path) -> No
         batch.verify_input_manifest(tmp_path, manifest)
 
 
-def test_record_parser_rejects_noncanonical_lines_and_duplicate_ids(tmp_path: Path) -> None:
+def test_record_parser_rejects_noncanonical_lines_and_duplicate_ids(
+    tmp_path: Path,
+) -> None:
     record = {
         "schema": "ORION.NQ.EngineB.SequenceRecord.v1",
         "record_id": "same",
@@ -108,7 +112,9 @@ def test_record_parser_rejects_noncanonical_lines_and_duplicate_ids(tmp_path: Pa
 
 def test_fixture_receipt_preserves_open_and_imperfect_blinding_boundaries() -> None:
     receipt = run_engine_b.build_fixture_receipt(source_manifest_sha256="b" * 64)
-    assert receipt["payload"]["terminal"] == "NQ_ENGINE_B_NON_OUTCOME_FIXTURES_VALIDATED"
+    assert (
+        receipt["payload"]["terminal"] == "NQ_ENGINE_B_NON_OUTCOME_FIXTURES_VALIDATED"
+    )
     assert receipt["payload"]["d4_c5_cubed"] == "OPEN"
     assert receipt["payload"]["blinded_independence"] == "NOT_CLAIMED"
     assert receipt["payload"]["full_strata_closed"] is False
@@ -130,7 +136,23 @@ def test_resource_limit_maps_only_to_cannot_check_resource_bound() -> None:
     assert receipt["payload"]["unprocessed_records"] == 83
 
 
-def test_unsat_certificate_binds_proof_without_claiming_it_was_checked(tmp_path: Path) -> None:
+def test_missing_solver_maps_only_to_cannot_check_environment() -> None:
+    receipt = batch.build_environment_receipt(
+        source_manifest_sha256="c" * 64,
+        input_manifest_sha256="d" * 64,
+        total_records=100,
+        reason="python-sat unavailable",
+    )
+    assert receipt["payload"]["terminal"] == "CANNOT_CHECK_ENVIRONMENT"
+    assert receipt["payload"]["processed_records"] == 0
+    assert receipt["payload"]["unprocessed_records"] == 100
+    assert receipt["payload"]["d4_c5_cubed"] == "OPEN"
+    verify_receipt.verify_receipt(receipt, expected_manifest_sha256="c" * 64)
+
+
+def test_unsat_certificate_binds_proof_without_claiming_it_was_checked(
+    tmp_path: Path,
+) -> None:
     encoded = eb.build_factorization_cnf((1, 4, 1), 2)
     proof = b"0\n"
     proof_path = tmp_path / "r1.drup"
@@ -168,6 +190,8 @@ def test_slurm_script_uses_frozen_smallest_adequate_envelope() -> None:
     assert "#SBATCH --time=24:00:00" in script
     assert "#SBATCH --partition" not in script
     assert "--subject-commit " + eb.SUBJECT_COMMIT in script
+    assert "NQ_ENGINE_B_AUTHORIZED_COMMIT" in script
+    assert "NQ/lunarc-r9/replay/engine_b" in script
     assert "CANNOT_CHECK_RESOURCE_BOUND" in script
 
 
@@ -191,12 +215,44 @@ def test_receipt_digest_is_tamper_evident() -> None:
     assert (
         digest
         == hashlib.sha256(
-            eb.canonical_json_bytes({k: v for k, v in receipt.items() if k != "receipt_sha256"})
+            eb.canonical_json_bytes(
+                {k: v for k, v in receipt.items() if k != "receipt_sha256"}
+            )
         ).hexdigest()
     )
     receipt["payload"]["d4_c5_cubed"] = "CLOSED"
     with pytest.raises(verify_receipt.ReceiptMismatch):
         verify_receipt.verify_receipt(receipt, expected_manifest_sha256="e" * 64)
+
+
+def test_receipt_rejects_issue_level_pass_and_incomplete_internal_completion() -> None:
+    promoted = batch.seal_receipt(
+        {
+            "terminal": "NQ_D2_D3_INDEPENDENT_REPLAY_PASS",
+            "d4_c5_cubed": "OPEN",
+            "full_strata_closed": False,
+        },
+        {"source_manifest_sha256": "f" * 64},
+    )
+    with pytest.raises(verify_receipt.ReceiptMismatch, match="allowed Engine B"):
+        verify_receipt.verify_receipt(promoted, expected_manifest_sha256="f" * 64)
+
+    incomplete = batch.seal_receipt(
+        {
+            "terminal": "NQ_ENGINE_B_STRUCTURAL_EXECUTION_COMPLETE",
+            "processed_records": 9,
+            "total_records": 10,
+            "unsat_proofs_requiring_external_check": 0,
+            "d4_c5_cubed": "OPEN",
+            "full_strata_closed": False,
+        },
+        {
+            "source_manifest_sha256": "f" * 64,
+            "input_manifest_sha256": "a" * 64,
+        },
+    )
+    with pytest.raises(verify_receipt.ReceiptMismatch, match="incomplete denominator"):
+        verify_receipt.verify_receipt(incomplete, expected_manifest_sha256="f" * 64)
 
 
 def test_parallel_dispatch_is_bounded_into_deterministic_chunks() -> None:

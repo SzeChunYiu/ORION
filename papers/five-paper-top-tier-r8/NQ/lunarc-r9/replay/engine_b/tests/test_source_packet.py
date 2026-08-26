@@ -15,11 +15,14 @@ def test_source_allowlist_is_exact_local_and_has_no_existing_nq_artifact() -> No
     assert paths == tuple(sorted(paths))
     assert len(paths) == len(set(paths))
     assert "engine_b.py" in paths
+    assert "symmetry.py" in paths
     assert "PROOF_OF_COMPLETENESS.md" in paths
     assert "requirements.txt" in paths
     assert "tests/test_engine_b_primitives.py" in paths
     assert all(not path.startswith("../") for path in paths)
-    assert all("x1f" not in path.lower() and "result" not in path.lower() for path in paths)
+    assert all(
+        "x1f" not in path.lower() and "result" not in path.lower() for path in paths
+    )
 
 
 def test_source_manifest_is_deterministic_and_tamper_evident(tmp_path: Path) -> None:
@@ -88,7 +91,10 @@ def test_input_schema_hash_is_stable_and_declares_exact_record_fields() -> None:
         "sequence",
         "required_bins",
     }
-    assert schema["sha256_policy"] == "canonical JSONL records plus byte-exact file manifests"
+    assert (
+        schema["sha256_policy"]
+        == "canonical JSONL records plus byte-exact file manifests"
+    )
     assert hashlib.sha256(raw).hexdigest() != "0" * 64
 
 
