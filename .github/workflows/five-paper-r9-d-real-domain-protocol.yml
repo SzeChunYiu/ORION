@@ -1,0 +1,49 @@
+name: Five-paper R9 D real-domain protocol
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/r9-d-blinded-domain-validation-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/D/BLINDED_REAL_DOMAIN_VALIDATION_PROTOCOL_R9.md'
+      - 'papers/five-paper-top-tier-r8/D/D_REAL_DOMAIN_STUDY_RECEIPT_SCHEMA_R9.json'
+      - 'papers/five-paper-top-tier-r8/D/analyze_blinded_real_domain_study_r9.py'
+      - '.github/workflows/five-paper-r9-d-real-domain-protocol.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  protocol-and-analysis-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install schema validator
+        run: python -m pip install --upgrade jsonschema
+      - name: Validate study-receipt JSON Schema
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          p = Path('papers/five-paper-top-tier-r8/D/D_REAL_DOMAIN_STUDY_RECEIPT_SCHEMA_R9.json')
+          schema = json.loads(p.read_text())
+          Draft202012Validator.check_schema(schema)
+          print('SCHEMA_PASS')
+          PY
+      - name: Run exact paired-analysis self-tests
+        run: |
+          python papers/five-paper-top-tier-r8/D/analyze_blinded_real_domain_study_r9.py --self-test \
+            | tee /tmp/D_REAL_DOMAIN_PAIRED_ANALYSIS_SELF_TEST_R9.json
+      - name: Archive protocol control receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: d-real-domain-protocol-controls-r9
+          path: /tmp/D_REAL_DOMAIN_PAIRED_ANALYSIS_SELF_TEST_R9.json
+          if-no-files-found: error
+          retention-days: 30
