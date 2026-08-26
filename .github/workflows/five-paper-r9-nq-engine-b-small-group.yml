@@ -1,0 +1,33 @@
+name: Five-paper R9 NQ Engine-B small-group oracle
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/r9-nq-engine-b-small-group-oracle-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/NQ/ENGINE_B_SMALL_GROUP_ORACLE_R9_ADDENDUM.md'
+      - 'papers/five-paper-top-tier-r8/NQ/engine_b_small_group_oracle_r9.py'
+      - 'papers/five-paper-top-tier-r8/NQ/ENGINE_B_SMALL_GROUP_ORACLE_R9_RESULTS.json'
+      - '.github/workflows/five-paper-r9-nq-engine-b-small-group.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  complete-small-group-oracle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Preserve registered result
+        run: cp papers/five-paper-top-tier-r8/NQ/ENGINE_B_SMALL_GROUP_ORACLE_R9_RESULTS.json /tmp/registered.json
+      - name: Replay complete small-group oracle
+        run: python papers/five-paper-top-tier-r8/NQ/engine_b_small_group_oracle_r9.py > /tmp/replay.stdout
+      - name: Require byte-exact registered result
+        run: cmp /tmp/registered.json papers/five-paper-top-tier-r8/NQ/ENGINE_B_SMALL_GROUP_ORACLE_R9_RESULTS.json
+      - name: Require clean artifact tree
+        run: git diff --exit-code -- papers/five-paper-top-tier-r8/NQ/ENGINE_B_SMALL_GROUP_ORACLE_R9_RESULTS.json
