@@ -1,0 +1,267 @@
+{
+  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "execution_owner": "CODEX_COMPUTATION_SESSION",
+  "jobs": [
+    {
+      "class": "LOCAL_CENSUS",
+      "depends_on": [],
+      "job_id": "V1-CENSUS-01",
+      "negative_terminals": [
+        "API_PAGINATION_INCOMPLETE",
+        "RATE_LIMIT_CENSORED",
+        "IDENTITY_DRIFT",
+        "CANNOT_CHECK"
+      ],
+      "paper_authority_delta": "NONE",
+      "protocol": [
+        "freeze base_main and retrieval timestamp before pagination",
+        "retrieve every page; retain raw page digests and Link/pagination receipts",
+        "exclude pull requests by pull_request field, never by title heuristic",
+        "emit one denominator-complete row per open issue",
+        "do not classify scientific status in this acquisition job"
+      ],
+      "question": "What is the complete set of open non-PR issues at the frozen base, with exact identities and update timestamps?",
+      "required_outputs": [
+        "FREEZE",
+        "RAW_MANIFEST",
+        "PRIMARY_RESULT",
+        "DONOR_RESULT",
+        "NEGATIVE_CONTROLS",
+        "RESOURCE_LEDGER",
+        "TRANSFER_RESULT",
+        "RESULT_BINDING_PACKET"
+      ],
+      "status": "READY",
+      "success_terminal": "V1_OPEN_ISSUE_CENSUS_COMPLETE"
+    },
+    {
+      "class": "LOCAL_QUANTUM_AUDIT",
+      "depends_on": [
+        "V1-CENSUS-01"
+      ],
+      "job_id": "V1-Q-CENSUS-01",
+      "negative_terminals": [
+        "ISSUE_RESULT_IDENTITY_AMBIGUOUS",
+        "RESOURCE_ACCOUNTING_ABSENT",
+        "CANNOT_CHECK"
+      ],
+      "paper_authority_delta": "NONE",
+      "protocol": [
+        "bind issue body/comments, linked PRs, merge commits, result files, and current-main presence",
+        "separate theorem, implementation, physical, resource, transfer, and novelty authority",
+        "classify duplicate and obsolete routes without deleting history",
+        "retain CANNOT_CHECK and negative terminals"
+      ],
+      "question": "Which open ORION-Q/QG/QN/quantum issues already have merged material results, and what exact authority remains?",
+      "required_outputs": [
+        "FREEZE",
+        "RAW_MANIFEST",
+        "PRIMARY_RESULT",
+        "DONOR_RESULT",
+        "NEGATIVE_CONTROLS",
+        "RESOURCE_LEDGER",
+        "TRANSFER_RESULT",
+        "RESULT_BINDING_PACKET"
+      ],
+      "status": "BLOCKED_ON_V1-CENSUS-01",
+      "success_terminal": "V1_QUANTUM_FRONTIER_CENSUS_COMPLETE"
+    },
+    {
+      "class": "LOCAL_CONTENT_BINDING",
+      "depends_on": [],
+      "job_id": "V1-COMPONENT-BIND-01",
+      "negative_terminals": [
+        "AMBIGUOUS_COMPONENT_OWNER",
+        "UNBOUND_INTERFACE",
+        "HASH_DRIFT",
+        "CANNOT_CHECK"
+      ],
+      "paper_authority_delta": "NONE",
+      "protocol": [
+        "walk the frozen Git tree, not a mutable working directory",
+        "bind blob OIDs and SHA-256 byte digests",
+        "record absent, ambiguous, and duplicate implementations separately",
+        "prove every dependency edge is backed by at least one typed interface or mark it open"
+      ],
+      "question": "What exact current-main files and digests implement each V1 component and interface?",
+      "required_outputs": [
+        "FREEZE",
+        "RAW_MANIFEST",
+        "PRIMARY_RESULT",
+        "DONOR_RESULT",
+        "NEGATIVE_CONTROLS",
+        "RESOURCE_LEDGER",
+        "TRANSFER_RESULT",
+        "RESULT_BINDING_PACKET"
+      ],
+      "status": "READY",
+      "success_terminal": "V1_COMPONENT_GRAPH_CONTENT_BOUND"
+    },
+    {
+      "class": "LOCAL_FORMAL_CENSUS",
+      "depends_on": [
+        "V1-COMPONENT-BIND-01"
+      ],
+      "job_id": "V1-THEOREM-CENSUS-01",
+      "negative_terminals": [
+        "THEOREM_IDENTITY_COLLISION",
+        "ASSUMPTION_UNBOUND",
+        "PROOF_STATUS_OVERCLAIM",
+        "CANNOT_CHECK"
+      ],
+      "paper_authority_delta": "NONE",
+      "protocol": [
+        "preserve theorem identity and all historical narrowing",
+        "distinguish proved schema, mechanized kernel, finite enumeration, empirical result, and governance rule",
+        "require falsifier and authority ceiling for every row",
+        "mark donor absorption/equivalence explicitly"
+      ],
+      "question": "What is every theorem/guard/countermodel, its assumptions, implementation, evidence class, and remaining verification?",
+      "required_outputs": [
+        "FREEZE",
+        "RAW_MANIFEST",
+        "PRIMARY_RESULT",
+        "DONOR_RESULT",
+        "NEGATIVE_CONTROLS",
+        "RESOURCE_LEDGER",
+        "TRANSFER_RESULT",
+        "RESULT_BINDING_PACKET"
+      ],
+      "status": "BLOCKED_ON_V1-COMPONENT-BIND-01",
+      "success_terminal": "V1_THEOREM_AUTHORITY_CENSUS_COMPLETE"
+    },
+    {
+      "class": "LOCAL_EXECUTION",
+      "depends_on": [],
+      "job_id": "V1-RED-CENSUS-01",
+      "negative_terminals": [
+        "RESOURCE_CAP_CENSORED",
+        "ENVIRONMENT_UNBOUND",
+        "MISSING_SHARD",
+        "CANNOT_CHECK"
+      ],
+      "paper_authority_delta": "NONE",
+      "protocol": [
+        "run the declared full matrix with no skipped failing shard",
+        "bind environment, commands, exit codes, logs, and denominator",
+        "classify every red as code defect, test defect, stale binding, missing dependency, external blocker, or valid adverse test",
+        "do not repair in the census job; emit successor identities"
+      ],
+      "question": "Which tests/checkers/builds are red on the exact frozen base under the declared environment, and why?",
+      "required_outputs": [
+        "FREEZE",
+        "RAW_MANIFEST",
+        "PRIMARY_RESULT",
+        "DONOR_RESULT",
+        "NEGATIVE_CONTROLS",
+        "RESOURCE_LEDGER",
+        "TRANSFER_RESULT",
+        "RESULT_BINDING_PACKET"
+      ],
+      "status": "READY",
+      "success_terminal": "V1_RED_CENSUS_COMPLETE"
+    },
+    {
+      "class": "THEORY_AND_HARNESS_REPAIR",
+      "depends_on": [
+        "V1-COMPONENT-BIND-01"
+      ],
+      "job_id": "V1-DISC-V3-SPEC-01",
+      "negative_terminals": [
+        "NON_IDENTIFYING_SPECIFICATION",
+        "DONOR_PRODUCT_UNDEFINED",
+        "EXTERNAL_INPUT_UNAVAILABLE",
+        "CANNOT_CHECK"
+      ],
+      "paper_authority_delta": "NONE",
+      "protocol": [
+        "one immutable specification per job",
+        "registered alternatives and negative twins",
+        "matched information/resources and donor-first comparison",
+        "explicit acquisition/custody gates"
+      ],
+      "question": "Can all 13 Discovery V3 jobs be made theorem-identifying and prospectively executable without outcome access?",
+      "required_outputs": [
+        "FREEZE",
+        "RAW_MANIFEST",
+        "PRIMARY_RESULT",
+        "DONOR_RESULT",
+        "NEGATIVE_CONTROLS",
+        "RESOURCE_LEDGER",
+        "TRANSFER_RESULT",
+        "RESULT_BINDING_PACKET"
+      ],
+      "status": "READY_FOR_THEORY_LANE_NOT_EXECUTION_OWNER",
+      "success_terminal": "DISCOVERY_V3_ALL_JOB_SPECIFICATIONS_FROZEN"
+    },
+    {
+      "class": "LOCAL_REPAIR_SUCCESSOR",
+      "depends_on": [
+        "V1-RED-CENSUS-01"
+      ],
+      "job_id": "V1-P7-DENOM-SUCCESSOR-01",
+      "negative_terminals": [
+        "ROOT_CAUSE_AMBIGUOUS",
+        "HISTORICAL_RESULT_MUTATION_REQUIRED",
+        "CANNOT_CHECK"
+      ],
+      "paper_authority_delta": "NONE",
+      "protocol": [
+        "historical P7-DES-01 artifacts remain byte-immutable",
+        "diff planned case identities against generated identities before any rerun",
+        "classify missing/duplicate cases and code path",
+        "freeze a new successor identity, denominator, runner hash, and negative controls before execution"
+      ],
+      "question": "Why did the frozen P7-DES-01 generator emit 736 rather than 738 rows, and what new prospective successor tests the intended estimand?",
+      "required_outputs": [
+        "FREEZE",
+        "RAW_MANIFEST",
+        "PRIMARY_RESULT",
+        "DONOR_RESULT",
+        "NEGATIVE_CONTROLS",
+        "RESOURCE_LEDGER",
+        "TRANSFER_RESULT",
+        "RESULT_BINDING_PACKET"
+      ],
+      "status": "BLOCKED_ON_ROOT_CAUSE_FREEZE",
+      "success_terminal": "P7_DENOMINATOR_ROOT_CAUSE_BOUND_AND_SUCCESSOR_FROZEN"
+    },
+    {
+      "class": "QUANTUM_RESOURCE_ACCOUNTING",
+      "depends_on": [
+        "V1-Q-CENSUS-01"
+      ],
+      "job_id": "V1-Q-RESOURCE-01",
+      "negative_terminals": [
+        "HIDDEN_ORACLE",
+        "COMPILER_COST_UNBOUND",
+        "VERIFICATION_COST_UNBOUND",
+        "DONOR_EQUIVALENT",
+        "CANNOT_CHECK"
+      ],
+      "paper_authority_delta": "NONE",
+      "protocol": [
+        "bind source theorem and target mapping",
+        "enumerate all information, oracle, compiler, verification, hardware, and recovery resources",
+        "construct information-matched classical/structural donor products",
+        "retain equality or adverse outcomes as first-class results"
+      ],
+      "question": "Do claimed quantum-structural gains survive complete oracle, compiler, verification, sampling, and recovery costs?",
+      "required_outputs": [
+        "FREEZE",
+        "RAW_MANIFEST",
+        "PRIMARY_RESULT",
+        "DONOR_RESULT",
+        "NEGATIVE_CONTROLS",
+        "RESOURCE_LEDGER",
+        "TRANSFER_RESULT",
+        "RESULT_BINDING_PACKET"
+      ],
+      "status": "BLOCKED_ON_V1-Q-CENSUS-01",
+      "success_terminal": "V1_QUANTUM_RESOURCE_ACCOUNTING_COMPLETE"
+    }
+  ],
+  "manuscript_edits_by_execution_owner": "FORBIDDEN",
+  "schema": "ORION.V1.ExecutionJobLedger.v1",
+  "writing_owner": "V1_FREEZE_THEORY_AND_SYSTEM_LANE"
+}

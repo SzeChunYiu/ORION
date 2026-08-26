@@ -1,0 +1,89 @@
+{
+  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "coverage": {
+    "complete": false,
+    "completion_dependencies": [
+      "V1-CENSUS-01",
+      "V1-RED-CENSUS-01",
+      "V1-Q-CENSUS-01"
+    ]
+  },
+  "gaps": [
+    {
+      "blocks_freeze": true,
+      "class": "INTERNAL_LOCAL",
+      "discharge_job": "V1-COMPONENT-BIND-01",
+      "gap_id": "GAP-INTERNAL-COMPONENT-BINDING",
+      "owner": "V1_FREEZE_THEORY_AND_SYSTEM_LANE",
+      "status": "OPEN"
+    },
+    {
+      "blocks_freeze": true,
+      "class": "INTERNAL_LOCAL",
+      "discharge_job": "V1-THEOREM-CENSUS-01",
+      "gap_id": "GAP-INTERNAL-THEOREM-CENSUS",
+      "owner": "V1_FREEZE_THEORY_AND_SYSTEM_LANE",
+      "status": "OPEN"
+    },
+    {
+      "blocks_freeze": true,
+      "class": "INTERNAL_LOCAL",
+      "discharge_job": "V1-CENSUS-01",
+      "gap_id": "GAP-INTERNAL-ISSUE-CENSUS",
+      "owner": "CODEX_COMPUTATION_SESSION",
+      "status": "OPEN"
+    },
+    {
+      "blocks_freeze": true,
+      "class": "INTERNAL_LOCAL",
+      "discharge_job": "V1-RED-CENSUS-01",
+      "gap_id": "GAP-INTERNAL-RED-CENSUS",
+      "owner": "CODEX_COMPUTATION_SESSION",
+      "status": "OPEN"
+    },
+    {
+      "blocks_freeze": true,
+      "class": "INTERNAL_LOCAL",
+      "discharge_job": "V1-Q-CENSUS-01",
+      "gap_id": "GAP-INTERNAL-QUANTUM-DISPOSITION",
+      "owner": "QUANTUM_TRANSFER_LEAD",
+      "status": "OPEN"
+    },
+    {
+      "blocks_freeze": true,
+      "class": "INTERNAL_LOCAL",
+      "discharge_job": "V1-DISC-V3-SPEC-01",
+      "gap_id": "GAP-INTERNAL-DISCOVERY-V3-SPECS",
+      "owner": "FORMAL_METHODS_LEAD",
+      "status": "OPEN"
+    },
+    {
+      "blocks_external_authority": true,
+      "blocks_local_freeze": false,
+      "class": "EXTERNAL_AUTHORITY",
+      "discharge_job": null,
+      "gap_id": "GAP-EXTERNAL-INDEPENDENT-PROOF",
+      "owner": "INDEPENDENT_REVIEWER",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "blocks_external_authority": true,
+      "blocks_local_freeze": false,
+      "class": "EXTERNAL_CUSTODY",
+      "discharge_job": null,
+      "gap_id": "GAP-EXTERNAL-PROSPECTIVE-CROSS-DOMAIN",
+      "owner": "INDEPENDENT_CUSTODIAN",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "blocks_external_authority": true,
+      "blocks_local_freeze": false,
+      "class": "EXTERNAL_AUTHORITY",
+      "discharge_job": null,
+      "gap_id": "GAP-EXTERNAL-NOVELTY",
+      "owner": "INDEPENDENT_NOVELTY_REVIEWER",
+      "status": "CANNOT_CHECK"
+    }
+  ],
+  "schema": "ORION.V1.ExecutionGapLedger.v1"
+}

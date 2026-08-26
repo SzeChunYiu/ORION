@@ -1,0 +1,197 @@
+{
+  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "coverage": {
+    "complete": false,
+    "completion_job": "V1-COMPONENT-BIND-01",
+    "status": "PARTIAL_PATH_LEVEL_CENSUS"
+  },
+  "nodes": [
+    {
+      "authority": "PROVED_SCHEMA_AND_INTERNAL_MECHANIZATION_ONLY",
+      "depends_on": [],
+      "id": "OSTC_FOUNDATIONS",
+      "layer": "formalism",
+      "paths": [
+        "research/orion-foundations-v3/",
+        "src/orion/foundations/"
+      ],
+      "status": "MERGED_INTERNAL_THEORY_REQUIRES_V1_DIGEST_BINDING"
+    },
+    {
+      "authority": "FINITE_AND_BOUND_RESULT_SPECIFIC",
+      "depends_on": [
+        "OSTC_FOUNDATIONS"
+      ],
+      "id": "DYNAMIC_EPISTEMIC_STATE",
+      "layer": "state_semantics",
+      "paths": [
+        "research/orion-epistemic-state-v1/"
+      ],
+      "status": "MERGED_FINITE_REFERENCE_AND_MIXED_RESULTS"
+    },
+    {
+      "authority": "DECLARED_FINITE_CLASS_ONLY",
+      "depends_on": [
+        "OSTC_FOUNDATIONS",
+        "DYNAMIC_EPISTEMIC_STATE"
+      ],
+      "id": "THEOREM_IDENTIFYING_DISCOVERY",
+      "layer": "discovery_semantics",
+      "paths": [
+        "research/orion-discovery-v1/",
+        "src/orion/discovery/"
+      ],
+      "status": "MERGED_INTERNAL_THEORY_REQUIRES_V1_DIGEST_BINDING"
+    },
+    {
+      "authority": "INTERNAL_REFERENCE_ONLY",
+      "depends_on": [
+        "THEOREM_IDENTIFYING_DISCOVERY"
+      ],
+      "id": "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "layer": "navigation_model",
+      "paths": [
+        "research/orion-discovery-v2/"
+      ],
+      "status": "MERGED_REFERENCE_IMPLEMENTATION_WITH_EXECUTION_REMAINDER"
+    },
+    {
+      "authority": "TYPED_REFERENCE_ONLY",
+      "depends_on": [
+        "KNOWLEDGE_WEB_AND_PROOF_ECONOMY"
+      ],
+      "id": "DISCOVERY_SYNTHESIS_MODES",
+      "layer": "candidate_generation",
+      "paths": [
+        "src/orion/discovery/synthesis_modes.py",
+        "src/orion/discovery/structural_navigation.py"
+      ],
+      "status": "PRESENT_REQUIRES_CANONICAL_MAIN_BINDING_AUDIT"
+    },
+    {
+      "authority": "NO_PRESENT_DAY_SUPERIORITY_OR_NOVELTY_AUTHORITY",
+      "depends_on": [
+        "DISCOVERY_SYNTHESIS_MODES"
+      ],
+      "id": "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "layer": "comparison_and_novelty",
+      "paths": [
+        "research/orion-discovery-v3/",
+        "src/orion/discovery/frontier_dominance.py"
+      ],
+      "status": "FINITE_ENGINEERING_REFERENCE_GREEN_SCIENTIFIC_JOBS_BLOCKED_SPECIFICATION"
+    },
+    {
+      "authority": "CANNOT_CHECK_AS_UNIFIED_LAYER",
+      "depends_on": [
+        "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+        "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY"
+      ],
+      "id": "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "layer": "algorithms",
+      "paths": [
+        "src/orion/"
+      ],
+      "status": "CENSUS_REQUIRED_EXACT_APPROXIMATE_HEURISTIC_BOUNDARIES_NOT_YET_UNIFIED"
+    },
+    {
+      "authority": "MECHANICAL_EXECUTION_ONLY",
+      "depends_on": [
+        "OSTC_FOUNDATIONS"
+      ],
+      "id": "EXECUTION_INTEGRITY_AND_RECEIPTS",
+      "layer": "execution",
+      "paths": [
+        "packages/orion-research-harness/",
+        "src/orion/kernel/",
+        "src/orion/execution/"
+      ],
+      "status": "MERGED_LARGE_SURFACE_REQUIRES_FULL_RED_AND_API_CENSUS"
+    },
+    {
+      "authority": "RESULT_AND_PAPER_SPECIFIC_MIXED",
+      "depends_on": [
+        "DYNAMIC_EPISTEMIC_STATE",
+        "EXECUTION_INTEGRITY_AND_RECEIPTS"
+      ],
+      "id": "P1_P15_SCIENTIFIC_PROGRAMME",
+      "layer": "applications",
+      "paths": [
+        "papers/",
+        "research/paper-programme-v1/"
+      ],
+      "status": "TWENTY_FIVE_PACKET_WAVE_INTEGRATED_MIXED_TERMINALS"
+    },
+    {
+      "authority": "STRUCTURAL_DONOR_ONLY",
+      "depends_on": [
+        "OSTC_FOUNDATIONS",
+        "THEOREM_IDENTIFYING_DISCOVERY"
+      ],
+      "id": "ORION_Q_TYPED_RESEARCH_STATE",
+      "layer": "quantum_structural_donor",
+      "paths": [
+        "research/extensions/orion-q/",
+        "development/orion-q-max-r0/"
+      ],
+      "status": "MATERIAL_RESULTS_PRESENT_GLOBAL_CENSUS_OPEN"
+    },
+    {
+      "authority": "NO_GLOBAL_PHYSICAL_OR_ADVANTAGE_AUTHORITY",
+      "depends_on": [
+        "ORION_Q_TYPED_RESEARCH_STATE"
+      ],
+      "id": "QUANTUM_QG_QN_FRONTIER",
+      "layer": "quantum_frontier",
+      "paths": [
+        "research/",
+        "development/"
+      ],
+      "status": "OPEN_ISSUE_FOREST_REQUIRES_NAMESPACE_AND_RESULT_AUDIT"
+    },
+    {
+      "authority": "NO_SCIENTIFIC_AUTHORITY_DELTA",
+      "depends_on": [
+        "OSTC_FOUNDATIONS",
+        "DYNAMIC_EPISTEMIC_STATE",
+        "THEOREM_IDENTIFYING_DISCOVERY",
+        "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+        "DISCOVERY_SYNTHESIS_MODES",
+        "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+        "CERTIFIED_ALGORITHMIC_NAVIGATION",
+        "EXECUTION_INTEGRITY_AND_RECEIPTS",
+        "P1_P15_SCIENTIFIC_PROGRAMME",
+        "ORION_Q_TYPED_RESEARCH_STATE",
+        "QUANTUM_QG_QN_FRONTIER"
+      ],
+      "id": "V1_FREEZE_CONTROL_PLANE",
+      "layer": "governance",
+      "paths": [
+        "research/orion-v1-freeze/",
+        "scripts/check_orion_v1_freeze.py"
+      ],
+      "status": "BOOTSTRAP_OPEN"
+    },
+    {
+      "authority": "NONE",
+      "depends_on": [
+        "V1_FREEZE_CONTROL_PLANE"
+      ],
+      "id": "P16_P18_PUBLICATION_CANDIDATES",
+      "layer": "publication",
+      "paths": [],
+      "status": "ISSUES_ONLY_NO_MANUSCRIPT_AUTHORIZED"
+    },
+    {
+      "authority": "CANNOT_CHECK_UNTIL_EXECUTED_AND_INDEPENDENTLY_ADMITTED",
+      "depends_on": [
+        "V1_FREEZE_CONTROL_PLANE"
+      ],
+      "id": "POST_FREEZE_EXTERNAL_EXECUTION",
+      "layer": "external_successor",
+      "paths": [],
+      "status": "FROZEN_JOB_LEDGER_BOOTSTRAP_ONLY"
+    }
+  ],
+  "schema": "ORION.V1.ComponentGraph.v1"
+}
