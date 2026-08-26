@@ -26,8 +26,22 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat development/five-paper-r8/payload/part-* | base64 --decode > /tmp/five-paper-r8-payload.tar.gz
-          echo "${PAYLOAD_SHA256}  /tmp/five-paper-r8-payload.tar.gz" | sha256sum -c -
+          python - <<'PY'
+          import base64, hashlib
+          from pathlib import Path
+          paths = sorted(Path('development/five-paper-r8/payload').glob('part-*'))
+          raw_parts = []
+          for path in paths:
+              data = path.read_bytes()
+              print(path.name, len(data), hashlib.sha256(data).hexdigest())
+              raw_parts.append(data)
+          compact = b''.join(b''.join(raw_parts).split())
+          decoded = base64.b64decode(compact, validate=True)
+          digest = hashlib.sha256(decoded).hexdigest()
+          print('payload bytes', len(decoded), 'sha256', digest)
+          assert digest == '4d0e0500ab56962fcc5ebf57dcc37bc91abec0e36cccb2c97559c43e81e717bc', digest
+          Path('/tmp/five-paper-r8-payload.tar.gz').write_bytes(decoded)
+          PY
           mkdir -p /tmp/five-paper-r8-materialized
           tar -xzf /tmp/five-paper-r8-payload.tar.gz -C /tmp/five-paper-r8-materialized
           test -f /tmp/five-paper-r8-materialized/papers/five-paper-top-tier-r8/PROGRAMME.md
