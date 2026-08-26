@@ -1,0 +1,10 @@
+{
+  "schema": "ORION.NQ.EngineBNeutralCorpusRevocationR9.v1",
+  "revoked_schema": "ORION.NQ.EngineBSmallGroupNeutralCorpusManifestR9.v1",
+  "revoked_exporter": "export_engine_b_small_group_corpus_r9.py",
+  "differential_authority": false,
+  "reason": "The V1 export contains only the registered minimum packing at each boundary, not the expected packing number of each sequence, and therefore cannot support case-by-case solver comparison.",
+  "replacement_exporter": "export_engine_b_small_group_corpus_r9_v2.py",
+  "replacement_manifest_schema": "ORION.NQ.EngineBSmallGroupNeutralCorpusManifestR9.v2",
+  "instruction": "Do not use a V1 corpus artifact for Engine-B agreement claims."
+}
