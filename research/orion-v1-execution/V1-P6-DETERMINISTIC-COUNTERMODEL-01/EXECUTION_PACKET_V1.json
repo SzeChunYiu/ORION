@@ -1,0 +1,178 @@
+{
+  "allowed_write_paths": [
+    "src/orion/study/p6/certificate_as_dependency_graph.py",
+    "tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py",
+    "tests/unit/orion_v1/test_p6_deterministic_countermodels.py",
+    ".github/workflows/orion-v1-p6-deterministic-countermodels.yml",
+    "development/orion-v1-p6-deterministic-countermodels-2026-08-26/**",
+    "research/orion-v1-execution/V1-P6-DETERMINISTIC-COUNTERMODEL-01/**"
+  ],
+  "authority_boundary": {
+    "external_formal_review": "CANNOT_CHECK",
+    "independent_reproduction": "CANNOT_CHECK_FROM_SAME_REPOSITORY_CI",
+    "novelty": "CANNOT_CHECK",
+    "orion_v1_freeze": "NOT_GRANTED_BY_THIS_JOB",
+    "p1_p15_manuscript_edits": "FORBIDDEN",
+    "paper_authority_delta": "NONE",
+    "publication": "NONE"
+  },
+  "codex_thread": "codex://threads/01a03963-d804-7320-b10a-2b828119df93",
+  "deterministic_witness_contract": {
+    "dual_verification": [
+      "pure Python evaluation of the serialized finite structure",
+      "independent fully grounded finite-domain Z3 verification with every relation/function value constrained"
+    ],
+    "forbidden_repairs": [
+      "increase timeout",
+      "increase repetition count as the substantive fix",
+      "accept an intermittent counterexample as a stable result",
+      "map UNKNOWN to COUNTERMODEL or PASS",
+      "weaken or delete the load-bearing assertion",
+      "skip, xfail, quarantine, or deselect the failing tests",
+      "change theorem statements or frame-condition meanings to fit the outcome",
+      "use a model produced after reading a hidden test result without recording a new packet identity"
+    ],
+    "required_explicit_models": [
+      {
+        "drop": "coordinates_support_the_certificate",
+        "minimum_refuted_theorem": "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+        "model_shape": "at least one changed coordinate, distinct certificate, no coordinate-to-certificate edge; all remaining frame conditions and closure axioms hold"
+      },
+      {
+        "drop": "coordinates_do_not_support_each_other",
+        "minimum_refuted_theorem": "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED",
+        "model_shape": "two coordinates plus certificate; required coordinate-to-certificate edges plus one changed-coordinate-to-unchanged-coordinate edge; all remaining frame conditions and closure axioms hold"
+      },
+      {
+        "drop": "the_certificate_is_not_a_coordinate",
+        "minimum_refuted_theorem": "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+        "model_shape": "certificate is a coordinate, with the coordinate-support condition forcing an edge from the certificate to itself; all remaining frame conditions and closure axioms hold"
+      }
+    ],
+    "semantic_requirements": [
+      "each witness satisfies every closure axiom",
+      "each witness satisfies every non-dropped frame condition",
+      "each witness falsifies at least one theorem from the existing theorem list",
+      "each witness is serialized canonically and replayed without solver model search",
+      "mutation of any load-bearing edge, coordinate membership, changed bit, reach bit, or rank witness causes at least one checker to fail",
+      "the original unbounded theorem proofs remain unchanged and fully discharged",
+      "the deterministic countermodels establish only load-bearing necessity, not completeness of the frame language"
+    ]
+  },
+  "execution_class": "LOCAL_FORMAL_ENGINEERING_REPAIR_NOT_LUNARC",
+  "execution_owner": "CODEX_COMPUTATION_SESSION",
+  "forbidden_write_paths": [
+    "papers/**",
+    "research/orion-epistemic-state-v1/results/**",
+    "active claim authorities",
+    "historical result or receipt bytes",
+    "P1 finalizer/Slurm/LUNARC/custody/immutable-OID paths",
+    "any non-P6 ORION or ORION-Q source path"
+  ],
+  "frozen_at_utc": "2026-08-26T09:02:00Z",
+  "honest_failure_terminals": [
+    "P6_FRAME_CONDITION_EXPLICIT_COUNTERMODEL_INVALID",
+    "P6_FRAME_CONDITION_DUAL_VERIFIER_DISAGREEMENT",
+    "P6_FRAME_CONDITION_NOT_LOAD_BEARING_UNDER_EXISTING_THEOREMS",
+    "P6_THEOREM_OR_FRAME_SEMANTICS_REQUIRE_NARROWING",
+    "P6_DETERMINISTIC_COUNTERMODEL_CANNOT_CHECK"
+  ],
+  "input_identities": {
+    "ci_failure_count": 4,
+    "ci_job_id": 98109129769,
+    "ci_passed_non_p2_tests": 6707,
+    "ci_run_id": 32946736266,
+    "implementation_blob": "e5d950739aa9285257eb8f685cc5e866b7bef993",
+    "implementation_path": "src/orion/study/p6/certificate_as_dependency_graph.py",
+    "known_failure_tests": [
+      "TestTheFrameConditionsCarryTheProof::test_every_condition_loses_at_least_one_theorem_when_dropped",
+      "TestTheFrameConditionsCarryTheProof::test_which_theorem_each_condition_always_carries[coordinates_do_not_support_each_other-expected_core1]",
+      "TestTheReport::test_the_report_is_clean_and_names_its_limits",
+      "TestTheReport::test_the_cli_writes_the_artifact"
+    ],
+    "reopening_semantics_blob": "3db37dae7c63f9b67e15738d07452ffc260d978c",
+    "reopening_semantics_path": "src/orion/study/p6/reopening_calculus_smt.py",
+    "source_commit": "4d80fe679bea289a00f19fb5a2ea393fe2fae669",
+    "source_tree": "14f36633a05cdf10d720e88fa3cd8db4c515f9d8",
+    "test_blob": "9d61879596e9545b3ba57f20602e55191b199cd1",
+    "test_path": "tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py",
+    "z3_solver_version": "5.1.0.0"
+  },
+  "observed_defect": {
+    "classification": "NONDETERMINISTIC_REFUTATION_SEARCH_CONTROLS_A_THEOREM_CARRYING_TERMINAL",
+    "current_behavior": "the bounded Z3 model search can return COUNTERMODEL on one identical run and UNDECIDED on another; the intersection-over-three rule then changes a theorem-carrying claim into CANNOT_CHECK under machine load",
+    "scientific_consequence": "the P6 report and CLI cannot reliably state that every declared frame condition carries a theorem",
+    "why_ci_must_not_be_waived": "the failure changes a theorem-bearing report, not only timing or formatting"
+  },
+  "packet_id": "V1-P6-DETERMINISTIC-COUNTERMODEL-01",
+  "pre_mutation_commands": [
+    "git fetch origin codex/orion-postmerge-clipping-repair-20260826",
+    "test \"$(git rev-parse refs/remotes/origin/codex/orion-postmerge-clipping-repair-20260826)\" = 4d80fe679bea289a00f19fb5a2ea393fe2fae669",
+    "test \"$(git rev-parse 4d80fe679bea289a00f19fb5a2ea393fe2fae669^{tree})\" = 14f36633a05cdf10d720e88fa3cd8db4c515f9d8",
+    "git checkout -b codex/orion-v1-p6-deterministic-countermodel-20260826 4d80fe679bea289a00f19fb5a2ea393fe2fae669",
+    "test -z \"$(git status --porcelain)\"",
+    "test \"$(git rev-parse HEAD:src/orion/study/p6/certificate_as_dependency_graph.py)\" = e5d950739aa9285257eb8f685cc5e866b7bef993",
+    "test \"$(git rev-parse HEAD:src/orion/study/p6/reopening_calculus_smt.py)\" = 3db37dae7c63f9b67e15738d07452ffc260d978c",
+    "test \"$(git rev-parse HEAD:tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py)\" = 9d61879596e9545b3ba57f20602e55191b199cd1",
+    "python -m pytest -q tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py --junitxml=/tmp/p6-red.xml -ra || test $? -eq 1"
+  ],
+  "question": "Can each P6 frame condition be shown load-bearing by a prospectively frozen explicit finite countermodel that is replayed deterministically and independently, eliminating machine-load-dependent theorem terminals without weakening the theorem or test?",
+  "repository": "SzeChunYiu/ORION",
+  "required_environment": {
+    "dependency_command": "python -m pip install -e '.[dev,candidates]' --constraint .github/ci-fast-replay-constraints.txt",
+    "minimum_cpu_cores": 2,
+    "minimum_free_disk_gib": 10,
+    "minimum_memory_gib": 7,
+    "python": "3.12.13",
+    "runner": "GitHub Actions ubuntu-24.04 or isolated Linux x86_64",
+    "wall_clock_limit_minutes": 45,
+    "z3_solver": "5.1.0.0"
+  },
+  "required_output_directory": "research/orion-v1-execution/V1-P6-DETERMINISTIC-COUNTERMODEL-01",
+  "required_outputs": [
+    "FREEZE.json",
+    "RAW_MANIFEST.json",
+    "PRIMARY_RESULT.json",
+    "DONOR_RESULT.json",
+    "NEGATIVE_CONTROLS.json",
+    "RESOURCE_LEDGER.json",
+    "TRANSFER_RESULT.json",
+    "RESULT_BINDING_PACKET.json",
+    "EXPLICIT_COUNTERMODELS.json",
+    "DUAL_VERIFIER_AGREEMENT.json",
+    "PROCESS_REPLAY_MATRIX.json",
+    "run-a.log",
+    "run-b.log"
+  ],
+  "schema": "ORION.V1.ExecutionPacket.v1",
+  "source_identity": {
+    "required_codex_branch": "codex/orion-v1-p6-deterministic-countermodel-20260826",
+    "required_source_branch": "codex/orion-postmerge-clipping-repair-20260826",
+    "required_source_commit": "4d80fe679bea289a00f19fb5a2ea393fe2fae669",
+    "required_source_tree": "14f36633a05cdf10d720e88fa3cd8db4c515f9d8"
+  },
+  "success_requirements": {
+    "changed_non_p6_source_paths": 0,
+    "explicit_countermodel_rows": 3,
+    "focused_p6_failures": 0,
+    "focused_p6_skips": 0,
+    "full_non_p2_ci_failures": 0,
+    "intermittent_conditions": 0,
+    "mutations_survived": 0,
+    "paper_authority_delta": "NONE",
+    "process_replay_failures": 0,
+    "process_replays": 20,
+    "theorem_proof_failures": 0,
+    "undecided_conditions": 0,
+    "verifier_disagreements": 0
+  },
+  "success_terminal": "P6_FRAME_CONDITION_COUNTERMODELS_DETERMINISTIC_AND_GREEN",
+  "verification_commands": [
+    "python -m py_compile src/orion/study/p6/certificate_as_dependency_graph.py tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py tests/unit/orion_v1/test_p6_deterministic_countermodels.py",
+    "python -m pytest -q tests/unit/orion_v1/test_p6_deterministic_countermodels.py tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py --junitxml=research/orion-v1-execution/V1-P6-DETERMINISTIC-COUNTERMODEL-01/focused.xml -ra",
+    "for i in $(seq 1 20); do PYTHONHASHSEED=$i python -m pytest -q tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py::TestTheFrameConditionsCarryTheProof tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py::TestTheReport || exit 1; done | tee research/orion-v1-execution/V1-P6-DETERMINISTIC-COUNTERMODEL-01/run-a.log",
+    "pytest -q --ignore=tests/unit/p2 --durations=10 | tee research/orion-v1-execution/V1-P6-DETERMINISTIC-COUNTERMODEL-01/run-b.log",
+    "python scripts/audit_manuscript_clipping.py --discover-current",
+    "git diff --check"
+  ]
+}
