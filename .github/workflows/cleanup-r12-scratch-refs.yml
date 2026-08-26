@@ -1,0 +1,42 @@
+name: cleanup-r12-scratch-refs
+
+on:
+  push:
+    branches:
+      - chatgpt/r12-manuscript-science-audit-20260826-d
+    paths:
+      - .github/workflows/cleanup-r12-scratch-refs.yml
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/r12-manuscript-science-audit-20260826-d
+          fetch-depth: 0
+      - name: Delete empty allocation refs only
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for ref in \
+            chatgpt/r12-manuscript-science-audit-20260826-a \
+            chatgpt/r12-manuscript-science-audit-20260826-b \
+            chatgpt/r12-manuscript-science-audit-20260826-c
+          do
+            gh api --method DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/$ref" || true
+          done
+      - name: Remove this one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/cleanup-r12-scratch-refs.yml
+          git commit -m 'ci(science): remove one-shot scratch-ref cleanup'
+          git push origin HEAD:chatgpt/r12-manuscript-science-audit-20260826-d
