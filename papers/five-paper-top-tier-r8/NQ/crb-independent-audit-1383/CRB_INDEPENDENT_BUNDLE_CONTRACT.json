@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orion.invalid/contracts/crb-independent-bundle-v1.schema.json",
+  "title": "CR-B independent bundle contract v1",
+  "description": "Syntactic contract. Cross-field coverage, normalization, digest, inventory, and external proof checks are enforced by verify_crb_bundle_independent.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "field",
+    "domain",
+    "aggregate",
+    "proof_root",
+    "external_checker",
+    "partitions"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "orion.crb.independent-bundle.v1"
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "vector_dimension"],
+      "properties": {
+        "order": {"const": 5},
+        "vector_dimension": {"const": 3}
+      }
+    },
+    "domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["size", "sequence_length"],
+      "properties": {
+        "size": {"type": "integer", "minimum": 1},
+        "sequence_length": {"type": "integer", "minimum": 3}
+      }
+    },
+    "aggregate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_count", "outcomes"],
+      "properties": {
+        "record_count": {"type": "integer", "minimum": 0},
+        "outcomes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["SAT", "UNSAT"],
+          "properties": {
+            "SAT": {"type": "integer", "minimum": 0},
+            "UNSAT": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "proof_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "external_checker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256"],
+      "properties": {
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "partitions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/partition"}
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "vector": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"type": "integer", "minimum": 0, "maximum": 4}
+    },
+    "representative": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"$ref": "#/$defs/vector"}
+    },
+    "proof_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "proof_id",
+        "proof_format",
+        "cnf_path",
+        "cnf_bytes",
+        "cnf_sha256",
+        "proof_path",
+        "proof_bytes",
+        "proof_sha256"
+      ],
+      "properties": {
+        "proof_id": {"type": "string", "minLength": 1},
+        "proof_format": {"enum": ["DRAT", "DRUP"]},
+        "cnf_path": {"type": "string", "minLength": 1},
+        "cnf_bytes": {"type": "integer", "minimum": 0},
+        "cnf_sha256": {"$ref": "#/$defs/sha256"},
+        "proof_path": {"type": "string", "minLength": 1},
+        "proof_bytes": {"type": "integer", "minimum": 0},
+        "proof_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "sat_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ordinal", "representative", "representative_sha256", "outcome"],
+      "properties": {
+        "ordinal": {"type": "integer", "minimum": 0},
+        "representative": {"$ref": "#/$defs/representative"},
+        "representative_sha256": {"$ref": "#/$defs/sha256"},
+        "outcome": {"const": "SAT"}
+      }
+    },
+    "unsat_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ordinal",
+        "representative",
+        "representative_sha256",
+        "outcome",
+        "proof"
+      ],
+      "properties": {
+        "ordinal": {"type": "integer", "minimum": 0},
+        "representative": {"$ref": "#/$defs/representative"},
+        "representative_sha256": {"$ref": "#/$defs/sha256"},
+        "outcome": {"const": "UNSAT"},
+        "proof": {"$ref": "#/$defs/proof_binding"}
+      }
+    },
+    "record": {
+      "oneOf": [
+        {"$ref": "#/$defs/sat_record"},
+        {"$ref": "#/$defs/unsat_record"}
+      ]
+    },
+    "partition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "partition_id",
+        "start",
+        "stop",
+        "range_sha256",
+        "record_count",
+        "records"
+      ],
+      "properties": {
+        "partition_id": {"type": "string", "minLength": 1},
+        "start": {"type": "integer", "minimum": 0},
+        "stop": {"type": "integer", "minimum": 1},
+        "range_sha256": {"$ref": "#/$defs/sha256"},
+        "record_count": {"type": "integer", "minimum": 0},
+        "records": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/record"}
+        }
+      }
+    }
+  }
+}
