@@ -5,6 +5,8 @@ REPOSITORY="https://github.com/SzeChunYiu/ORION.git"
 SOURCE_COMMIT="ce3ad440337c1bd413a8e5202c94a67374721403"
 SOURCE_TREE="75230e3fdb53822139817ff744925d63220c193a"
 AUTHORIZATION_PATH="papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/LUNARC_AUTHORIZATION_PACKET.json"
+ENGINE_PATH="papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1"
+LUNARC_PATH="papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1"
 RUNNER_PATH="papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/run_nq_engine_a_bounded_pilot.slurm"
 RUNNER_SHA256="26a8a32155ac204454d4f7ee68f898f706f21c15a817e7035052b6aae69e2ff7"
 SUBMIT_SCRIPT_PATH="papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/submit_nq_engine_a_bounded_pilot.sh"
@@ -84,7 +86,9 @@ ssh lunarc bash -s -- \
   "${PROTOCOL_SHA256}" \
   "${LOCAL_RECEIPT_SHA256}" \
   "${NON_DUPLICATION_KEY}" \
-  "${REMOTE_OUTPUT_ROOT}" <<'REMOTE_SCRIPT'
+  "${REMOTE_OUTPUT_ROOT}" \
+  "${ENGINE_PATH}" \
+  "${LUNARC_PATH}" <<'REMOTE_SCRIPT'
 set -euo pipefail
 umask 077
 
@@ -107,6 +111,8 @@ PROTOCOL_SHA256="${16}"
 LOCAL_RECEIPT_SHA256="${17}"
 NON_DUPLICATION_KEY="${18}"
 OUTPUT_ROOT="${19}"
+ENGINE_PATH="${20}"
+LUNARC_PATH="${21}"
 
 if test -e "${OUTPUT_ROOT}"; then
   echo "Refusing duplicate: non-duplication root already exists: ${OUTPUT_ROOT}" >&2
@@ -131,14 +137,21 @@ trap cleanup EXIT
 SOURCE_DIR="${OUTPUT_ROOT}/source"
 git init -q "${SOURCE_DIR}"
 git -C "${SOURCE_DIR}" remote add origin "${REPOSITORY}"
-git -C "${SOURCE_DIR}" fetch -q --no-tags --depth=1 origin "${SOURCE_COMMIT}"
+git -C "${SOURCE_DIR}" config remote.origin.promisor true
+git -C "${SOURCE_DIR}" config remote.origin.partialclonefilter blob:none
+git -C "${SOURCE_DIR}" sparse-checkout init --no-cone
+git -C "${SOURCE_DIR}" sparse-checkout set --no-cone \
+  "/${ENGINE_PATH}/" "/${LUNARC_PATH}/"
+git -C "${SOURCE_DIR}" fetch -q --no-tags --depth=1 --filter=blob:none \
+  origin "${SOURCE_COMMIT}"
 test "$(git -C "${SOURCE_DIR}" rev-parse FETCH_HEAD)" = "${SOURCE_COMMIT}"
 git -C "${SOURCE_DIR}" checkout -q --detach "${SOURCE_COMMIT}"
 test "$(git -C "${SOURCE_DIR}" rev-parse 'HEAD^{tree}')" = "${SOURCE_TREE}"
 test -z "$(git -C "${SOURCE_DIR}" status --porcelain)"
 test "$(sha256sum "${SOURCE_DIR}/${RUNNER_PATH}" | awk '{print $1}')" = "${RUNNER_SHA256}"
 
-git -C "${SOURCE_DIR}" fetch -q --no-tags --depth=1 origin "${AUTHORIZATION_COMMIT}"
+git -C "${SOURCE_DIR}" fetch -q --no-tags --depth=1 --filter=blob:none \
+  origin "${AUTHORIZATION_COMMIT}"
 test "$(git -C "${SOURCE_DIR}" rev-parse FETCH_HEAD)" = "${AUTHORIZATION_COMMIT}"
 test "$(git -C "${SOURCE_DIR}" rev-parse "${AUTHORIZATION_COMMIT}^{tree}")" = \
   "${AUTHORIZATION_TREE}"
@@ -149,7 +162,8 @@ test "$(sha256sum "${AUTHORIZATION_PACKET}" | awk '{print $1}')" = \
   "${AUTHORIZATION_SHA256}"
 test "$(git -C "${SOURCE_DIR}" rev-parse "${AUTHORIZATION_COMMIT}:${SUBMIT_SOURCE_PATH}")" = \
   "${SUBMIT_SOURCE_BLOB}"
-git -C "${SOURCE_DIR}" fetch -q --no-tags --depth=1 origin "${SUBMIT_SOURCE_COMMIT}"
+git -C "${SOURCE_DIR}" fetch -q --no-tags --depth=1 --filter=blob:none \
+  origin "${SUBMIT_SOURCE_COMMIT}"
 test "$(git -C "${SOURCE_DIR}" rev-parse FETCH_HEAD)" = "${SUBMIT_SOURCE_COMMIT}"
 test "$(git -C "${SOURCE_DIR}" rev-parse "${SUBMIT_SOURCE_COMMIT}^{tree}")" = \
   "${SUBMIT_SOURCE_TREE}"
