@@ -402,7 +402,13 @@ def test_the_audit_entry_point_exits_three_and_serialises(audit_report):
         "COMPARATOR_CONSTANT",
         "COMPARATOR_RESPONDED",
     }
-    assert report_as_json(audit_report) == payload
+    expected = json.loads(json.dumps(report_as_json(audit_report)))
+    transient = "v12_generator_installed_before_this_call"
+    assert isinstance(expected["dataset_provenance"][transient], bool)
+    assert payload["dataset_provenance"][transient] is True
+    expected["dataset_provenance"].pop(transient)
+    payload["dataset_provenance"].pop(transient)
+    assert expected == payload
 
 
 # --- The audit measures a regenerated dataset; these say which one.

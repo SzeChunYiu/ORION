@@ -160,6 +160,15 @@ class TestTheInterpretationIsProved:
             == cci.REFUTATION_TIMEOUT_MS
         )
 
+    def test_the_expensive_trust_refutation_runs_first_without_reordering_the_report(
+        self,
+    ) -> None:
+        assert cci.FRAME_CONDITION_REFUTATION_ORDER[0] == (
+            "every_donor_family_is_a_trusted_issuer"
+        )
+        assert set(cci.FRAME_CONDITION_REFUTATION_ORDER) == set(cci.FRAME_CONDITION_IDS)
+        assert len(cci.FRAME_CONDITION_REFUTATION_ORDER) == len(cci.FRAME_CONDITION_IDS)
+
     def test_the_ladder_bound_records_what_lies_past_it(self) -> None:
         # The bound was 8 until a length-eight query came back UNKNOWN under
         # load. Lowering it silently would have turned a measured solver limit

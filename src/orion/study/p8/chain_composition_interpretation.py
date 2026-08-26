@@ -171,6 +171,7 @@ __all__ = [
     "BLOCKER_SEVERITY",
     "CHAIN_LADDER_BOUND",
     "FRAME_CONDITION_IDS",
+    "FRAME_CONDITION_REFUTATION_ORDER",
     "LADDER_BEYOND_THE_BOUND",
     "PROOF_TIMEOUT_MS",
     "PUBLISHED_CHAIN_SUCCESSES",
@@ -386,6 +387,20 @@ FRAME_CONDITION_IDS: tuple[str, ...] = (
     "a_widening_hop_does_not_narrow",
     "the_blocker_takes_one_of_three_states",
     "every_donor_family_is_a_trusted_issuer",
+)
+
+#: Countermodel searches share a Z3 process. The trusted-issuer drop is the
+#: expensive one and became UNKNOWN when it ran after the other seven on a
+#: loaded hosted runner, while the same finite witness is found immediately in
+#: a fresh process. Search it first, but continue to report results in the
+#: canonical :data:`FRAME_CONDITION_IDS` order below.
+FRAME_CONDITION_REFUTATION_ORDER: tuple[str, ...] = (
+    "every_donor_family_is_a_trusted_issuer",
+    *(
+        condition
+        for condition in FRAME_CONDITION_IDS
+        if condition != "every_donor_family_is_a_trusted_issuer"
+    ),
 )
 
 
@@ -788,7 +803,7 @@ def frame_conditions_are_load_bearing(
     }
     per_condition: dict[str, list[str]] = {}
     unknowns: dict[str, list[str]] = {}
-    for condition in FRAME_CONDITION_IDS:
+    for condition in FRAME_CONDITION_REFUTATION_ORDER:
         dropped = prove_all(
             timeout_ms=timeout_ms, drop=condition, witness_world=True
         )
@@ -805,6 +820,15 @@ def frame_conditions_are_load_bearing(
         )
         if undecided:
             unknowns[condition] = undecided
+
+    # Stable report order is part of deterministic JSON output; search order is
+    # an operational detail, not a reclassification of the frame conditions.
+    per_condition = {condition: per_condition[condition] for condition in FRAME_CONDITION_IDS}
+    unknowns = {
+        condition: unknowns[condition]
+        for condition in FRAME_CONDITION_IDS
+        if condition in unknowns
+    }
 
     inert = sorted(name for name, refuted in per_condition.items() if not refuted)
     return {
