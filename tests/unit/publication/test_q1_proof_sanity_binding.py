@@ -9,10 +9,10 @@ from orion.programme.q_series_content_binding import load_q_series_content_bindi
 
 
 ROOT = Path(__file__).resolve().parents[3]
-SCRIPT = ROOT / "papers/Q-paper-01-tare-expressivity/independent_human_proof_sanity.py"
+SCRIPT = ROOT / "papers/orion-05-tare-expressivity/independent_human_proof_sanity.py"
 BOUND_RESULT = (
     ROOT
-    / "papers/Q-paper-01-tare-expressivity/"
+    / "papers/orion-05-tare-expressivity/"
     "INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json"
 )
 

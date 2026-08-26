@@ -6,7 +6,7 @@ ORION-P1..P5 is `PEER_REVIEW_READY`, `BLOCKED`, or `CANNOT_CHECK` from
 
 Authoritative inputs, in order:
 
-1. `papers/paper-0N-*/JOURNAL_READINESS.md` terminal line
+1. `papers/orion-1N-*/JOURNAL_READINESS.md` terminal line
 2. `protocol/PROTOCOL_V1.json` freeze status and UNBOUND execution bindings
 3. claim ledgers (`CLAIM_LEDGER*.md` / `CLAIM_LEDGER_V1.json`)
 4. optional `PEER_REVIEW_READY*.md` attestation files

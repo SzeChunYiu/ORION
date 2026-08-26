@@ -59,7 +59,7 @@ jobs:
           python /tmp/arb-upstream/decrypt_benchmark.py \
             --input-file /tmp/arb-wide-replay/AutoResearchBench.jsonl.obf.json \
             --output-file /tmp/arb-wide-replay/AutoResearchBench.jsonl
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
             --full /tmp/arb-wide-replay/AutoResearchBench.jsonl \
             --public /tmp/arb-wide-replay/reconstructed_public.jsonl \
             --gt /tmp/arb-wide-replay/wide_gt.jsonl \
@@ -83,7 +83,7 @@ jobs:
             --gt-file /tmp/arb-wide-replay/wide_gt.jsonl \
             --no-jina \
             --output-file /tmp/arb-wide-replay/official_evaluation.json
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py summarize \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py summarize \
             --split-manifest /tmp/arb-wide-replay/split_manifest.json \
             --run-manifest /tmp/arb-wide-replay/run_manifest.json \
             --evaluation /tmp/arb-wide-replay/official_evaluation.json \

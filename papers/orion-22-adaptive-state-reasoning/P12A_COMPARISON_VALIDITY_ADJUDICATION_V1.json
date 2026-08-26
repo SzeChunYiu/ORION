@@ -1,0 +1,112 @@
+{
+  "audit": {
+    "audit_artifact": "research/failures/2026-08-handicapped-baseline-unattainable-margin/README.md",
+    "audit_sha256": "d6b97cb4eda8964fef0a015e288321de53c49e936e42c67bc7bb591dafb8367d",
+    "capability_matched_reading": {
+      "failed_gates": [
+        "mean_joint_gain_ge_0_15",
+        "worst_family_joint_gain_ge_0_05"
+      ],
+      "family_block_bootstrap_95ci": [
+        0.031005859375,
+        0.0506591796875
+      ],
+      "mean_gain": 0.040771484375,
+      "one_axis_arms": [
+        "STATE_SIGNAL_ONLY_MATCHED",
+        "REASON_SIGNAL_ONLY_MATCHED"
+      ],
+      "terminal": "P12A_JOINT_ALLOCATION_SUPERIORITY_GATE_NOT_MET",
+      "worst_family_gain": 0.001953125
+    },
+    "comparisons": [
+      {
+        "contrast_id": "P12A_JOINT_VS_ADAPTIVE_STATE_ONLY",
+        "detail": "ADAPTIVE_STATE_ONLY tops out at 0.4754638671875 (best score reachable by ADAPTIVE_STATE_ONLY's allocation set {(0,0) (2,0)} under a perfect signal, with the same items and the same two-unit budget), below JOINT_FROZEN's achieved 0.858154296875; 0.3826904296875 of the 0.39501953125 margin was unreachable before the run, so the comparison measures ADAPTIVE_STATE_ONLY's capability (may allocate (0,0) (2,0); reads s_c) rather than the mechanism",
+        "margin": {
+          "attainable_margin": 0.0123291015625,
+          "baseline": {
+            "achieved": 0.463134765625,
+            "arm_id": "ADAPTIVE_STATE_ONLY",
+            "capability_definition": "may allocate (0,0) (2,0); reads s_c",
+            "ceiling": 0.4754638671875,
+            "ceiling_definition": "best score reachable by ADAPTIVE_STATE_ONLY's allocation set {(0,0) (2,0)} under a perfect signal, with the same items and the same two-unit budget",
+            "headroom": 0.0123291015625
+          },
+          "handicap": 0.3826904296875,
+          "handicap_share": 0.9687886279357231,
+          "reported_margin": 0.39501953125,
+          "winner": {
+            "achieved": 0.858154296875,
+            "arm_id": "JOINT_FROZEN",
+            "capability_definition": "may allocate (0,0) (1,1) (2,0) (0,2); reads s_c, s_r",
+            "ceiling": 1.0,
+            "ceiling_definition": "best score reachable by JOINT_FROZEN's allocation set {(0,0) (1,1) (2,0) (0,2)} under a perfect signal, with the same items and the same two-unit budget",
+            "headroom": 0.141845703125
+          }
+        },
+        "outcome": "CANNOT_CHECK",
+        "reason": "BASELINE_CEILING_BELOW_WINNER"
+      },
+      {
+        "contrast_id": "P12A_JOINT_VS_ADAPTIVE_REASON_ONLY",
+        "detail": "ADAPTIVE_REASON_ONLY tops out at 0.463623046875 (best score reachable by ADAPTIVE_REASON_ONLY's allocation set {(0,0) (0,2)} under a perfect signal, with the same items and the same two-unit budget), below JOINT_FROZEN's achieved 0.858154296875; 0.39453125 of the 0.4053955078125 margin was unreachable before the run, so the comparison measures ADAPTIVE_REASON_ONLY's capability (may allocate (0,0) (0,2); reads s_r) rather than the mechanism",
+        "margin": {
+          "attainable_margin": 0.0108642578125,
+          "baseline": {
+            "achieved": 0.4527587890625,
+            "arm_id": "ADAPTIVE_REASON_ONLY",
+            "capability_definition": "may allocate (0,0) (0,2); reads s_r",
+            "ceiling": 0.463623046875,
+            "ceiling_definition": "best score reachable by ADAPTIVE_REASON_ONLY's allocation set {(0,0) (0,2)} under a perfect signal, with the same items and the same two-unit budget",
+            "headroom": 0.0108642578125
+          },
+          "handicap": 0.39453125,
+          "handicap_share": 0.9732008431195424,
+          "reported_margin": 0.4053955078125,
+          "winner": {
+            "achieved": 0.858154296875,
+            "arm_id": "JOINT_FROZEN",
+            "capability_definition": "may allocate (0,0) (1,1) (2,0) (0,2); reads s_c, s_r",
+            "ceiling": 1.0,
+            "ceiling_definition": "best score reachable by JOINT_FROZEN's allocation set {(0,0) (1,1) (2,0) (0,2)} under a perfect signal, with the same items and the same two-unit budget",
+            "headroom": 0.141845703125
+          }
+        },
+        "outcome": "CANNOT_CHECK",
+        "reason": "BASELINE_CEILING_BELOW_WINNER"
+      }
+    ],
+    "failure_class": "HANDICAPPED_BASELINE_UNATTAINABLE_MARGIN",
+    "instrument_modules": [
+      "src/orion/study/p12/allocation_arms.py",
+      "src/orion/programme/attainable_margin.py"
+    ]
+  },
+  "claim_id": "P12A_TWO_SIGNAL_SUPERIORITY_OVER_ONE_SIGNAL_POLICIES",
+  "historical_evidence": {
+    "replay_artifact": "papers/orion-22-adaptive-state-reasoning/P12A_PROTOCOL_ADJUDICATION_V2.json",
+    "replay_does_not_establish": [
+      "comparator_capability_match",
+      "causal_signal_axis_attribution"
+    ],
+    "replay_establishes": [
+      "deterministic_reexecution",
+      "frozen_gate_execution"
+    ],
+    "replay_sha256": "301c43f14d6a0acd5df0976dbe6737e683dd261adc0ec3462a68899303fe7156",
+    "result_artifact": "papers/orion-22-adaptive-state-reasoning/P12A_MATCHED_BUDGET_RESULT_RECEIPT_V1.json",
+    "result_sha256": "aefe2558e6934cb92cc2ee19e079514c97b9ca3b819ab466c3261587a6e1121c"
+  },
+  "paper_id": "P12",
+  "schema": "ORION.P12A.ComparisonValidityAdjudication.v1",
+  "scientific_authority": {
+    "active_terminal": "P12A_SUPERIORITY_AUTHORITY_WITHHELD",
+    "detail": "The historical margin is not attributable to reading a second signal because both shipped one-axis baselines have action-set ceilings below the winner's achieved score. Matching the four-action capability flips the registered gate.",
+    "outcome": "CANNOT_CHECK",
+    "reason": "BASELINE_CEILING_BELOW_WINNER",
+    "superiority_claim": "NONE"
+  },
+  "successor_requirement": "Freeze P12B before outcomes with identical four-action sets for one- and two-signal arms, fixed policies, family/domain-block inference, and an attainable positive gate.",
+  "terminal_retained_verbatim": "P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED"
+}

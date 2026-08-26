@@ -25,9 +25,9 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[4]
-DIAGNOSTIC = ROOT / "papers/paper-09-structured-epistemic-learning/diagnose_d1v1_2_divergence.py"
+DIAGNOSTIC = ROOT / "papers/orion-19-structured-epistemic-learning/diagnose_d1v1_2_divergence.py"
 RECEIPT = ROOT / (
-    "papers/paper-09-structured-epistemic-learning/evidence/"
+    "papers/orion-19-structured-epistemic-learning/evidence/"
     "P9_D1V1_2_DIVERGENCE_ROOT_CAUSE_2026-08-23.json"
 )
 

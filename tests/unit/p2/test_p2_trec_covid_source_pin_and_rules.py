@@ -24,7 +24,7 @@ from orion.study.p2.trec_covid_rules import (
     resolve_rejudged,
 )
 
-PIN = "papers/paper-02-open-world-scientific-discovery/protocol/P2_TREC_COVID_ROUND5_SOURCE_PIN_V1.json"
+PIN = "papers/orion-12-open-world-scientific-discovery/protocol/P2_TREC_COVID_ROUND5_SOURCE_PIN_V1.json"
 
 
 def _root() -> Path:

@@ -1,4 +1,4 @@
-# P6–P8 cross-paper preservation theory V2 — the determination dichotomy
+# ORION-16–ORION-18 cross-paper preservation theory V2 — the determination dichotomy
 
 **Date:** 2026-08-23
 **Base:** `CROSS_PAPER_PRESERVATION_THEORY_V1.md` (2026-08-17), `DONOR_PROJECTION_SEPARATION_THEOREM_V1.md` (2026-08-18)
@@ -10,11 +10,11 @@
 ## 1. What changed, and why it matters
 
 V1 wrote down a five-level preservation ladder and a transport rule, then filed itself as
-`SYNTHESIS_ONLY` with novelty `CANNOT_CHECK`. It was never mechanized. Meanwhile P6, P7 and P8
+`SYNTHESIS_ONLY` with novelty `CANNOT_CHECK`. It was never mechanized. Meanwhile ORION-16, ORION-17 and ORION-18
 each proved *the same five laws* over a different subject matter, with three independently written
 finite enumerations that share no code:
 
-| Law | P6 (certificate lifting) | P7 (navigation closure) | P8 (authority discharge) |
+| Law | ORION-16 (certificate lifting) | ORION-17 (navigation closure) | ORION-18 (authority discharge) |
 |---|---|---|---|
 | donor engulfment | V4.1 | V3.1 | V3.1 |
 | separation | V4.2 | V3.2 | V3.2 |
@@ -77,18 +77,18 @@ validate it is §8 step 1, and only that.
 Each of `L0_identity`, `L1_support`, `L2_semantic`, `L3_obligation`, `L4_authority` is load-bearing
 in the sense above, and a planted inert sixth coordinate is correctly found redundant — so the
 engine can return both answers rather than only ever "load-bearing". This is *irredundancy in the
-registered model*, not universal minimality: P6.V4.4, P7.V3.4 and P8's ledger each forbid the
+registered model*, not universal minimality: ORION-16.V4.4, ORION-17.V3.4 and ORION-18's ledger each forbid the
 universal claim, and this does not make it.
 
 ### 3.3 Repairing part of what broke restores nothing
 
 Over every affected set and every repair of it: 31 total revalidations restore standing, and all
-211 proper-subset repairs are denied. P6.V4.4 and P7.V3.4, generalized — and see §3.1 on what these
+211 proper-subset repairs are denied. ORION-16.V4.4 and ORION-17.V3.4, generalized — and see §3.1 on what these
 counts are and are not.
 
 ## 4. The result that changes the programme's position
 
-P6, P7 and P8 each proved a **negative equivalence theorem**: an ideal donor product carrying
+ORION-16, ORION-17 and ORION-18 each proved a **negative equivalence theorem**: an ideal donor product carrying
 identical typed fields ties the centralized system extensionally, so centralization buys no
 expressivity. Three reviewers read those as weaknesses.
 
@@ -99,7 +99,7 @@ positive superiority result**, and the discriminating variable is the donor *int
 >
 > - If donors expose their coordinates, a product over them decides exactly what a centralized
 >   system retaining the same coordinates decides. Over all 1,024 (required, observed) pairs:
->   **0 mismatches.** This recovers P6.V4.5, P7.V3.6 and P8.V3.10 as one statement.
+>   **0 mismatches.** This recovers ORION-16.V4.5, ORION-17.V3.6 and ORION-18.V3.10 as one statement.
 > - If donors expose only their own native verdicts, the tie fails. Enumerating every two-donor
 >   stack over the required coordinates and **every join function over their verdicts**: of the 196
 >   stacks in which both donors answer something (non-constant), **96 admit no sound, decisive join
@@ -128,7 +128,7 @@ is worth recording because it was not looked for.
 
 Across the source tree, sequence-valued coordinates are canonicalized by
 `tuple(sorted({str(value) for value in values}))` before anything downstream sees them:
-**37 call sites in 30 modules, spanning study lanes P1, P2, P3, P5, P7 and P9 and the discovery,
+**37 call sites in 30 modules, spanning study lanes ORION-11, ORION-12, ORION-13, ORION-15, ORION-17 and ORION-19 and the discovery,
 engine, knowledge, study and transfer layers.** It is applied consistently — this is a design, not
 an accident. It buys canonical form, content-addressable digests that do not depend on authoring
 order, and equality insensitive to an irrelevant permutation.
@@ -137,7 +137,7 @@ What it costs is exactly what the theorem predicts. **Order and multiplicity are
 interface projects away**, so by the necessity direction no rule over this representation can decide
 a question whose answer depends on them.
 
-The measured consequence: P9's `ORDER_PERMUTATION` attack reverses each sequence coordinate and the
+The measured consequence: ORION-19's `ORDER_PERMUTATION` attack reverses each sequence coordinate and the
 constructor sorts it straight back. The attacked dataset carries the **same manifest digest** as the
 base one and **128 of 128** protected cases are identical, with 256 left-side coordinates long
 enough to reorder. An order- and multiplicity-preserving feature family, built to a freeze's own
@@ -213,14 +213,14 @@ they are one theorem with a positive half.
 
 1. **Re-derive the three registered instances through the general core — this now carries all the
    empirical weight.** Since §3.1 establishes that six of the seven laws are vacuous, instance
-   reproduction is the *only* thing that can validate the coordinate claim. Targets: P6's
-   320 / 25 / 31 / 155 / 1,055; P7's plus 25 compositions and 25 bridge countermodels; P8's
+   reproduction is the *only* thing that can validate the coordinate claim. Targets: ORION-16's
+   320 / 25 / 31 / 155 / 1,055; ORION-17's plus 25 compositions and 25 bridge countermodels; ORION-18's
    39,936 / 65 / 65+65 / 26 / 13 / 169 / 169. If the general engine reproduces those counts exactly,
    the unification is load-bearing rather than decorative. If any count differs, that is the finding —
    investigate before adjusting.
 
    **Known structural blocker.** The core enumerates `2ⁿ` bit-vectors over coordinates. But
-   320 = 2⁶ × 5 and 39,936 = 2¹⁰ × 39 are not powers of two — P8's 13 donor families are visible in
+   320 = 2⁶ × 5 and 39,936 = 2¹⁰ × 39 are not powers of two — ORION-18's 13 donor families are visible in
    its count — so the registered models are not bit-vectors and **the core as written cannot
    enumerate those state spaces at all**. Step 1 is a core-generalization task (coordinates with
    arbitrary finite domains, plus a donor-family index), not a parameterization task. Start there.

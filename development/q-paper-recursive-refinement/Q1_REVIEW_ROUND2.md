@@ -1,6 +1,6 @@
 # Q1 refinement round 2 — closure review on V3
 
-**Frozen manuscript:** `papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md`  
+**Frozen manuscript:** `papers/orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md`  
 **Stretch:** PRX Quantum  
 **Fallback:** npj Quantum Information  
 **Method donor:** pinned `academic-paper-skills` writing/reviewer/figure workflows  

@@ -4,18 +4,18 @@ on:
   pull_request:
     paths:
       - 'papers/Q_QG_FIGURE_SOURCE_V1.json'
-      - 'papers/build_q_qg_figures.py'
-      - 'papers/Q-paper-02-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json'
-      - 'papers/Q-paper-02-recursive-recovery/Q2_TRANSITION_GRAPH_V2.json'
+      - 'papers/archive/2026-08-pre-unification/build_q_qg_figures.py'
+      - 'papers/orion-06-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json'
+      - 'papers/orion-06-recursive-recovery/Q2_TRANSITION_GRAPH_V2.json'
       - '.github/workflows/q-qg-figures.yml'
   push:
     branches:
       - 'codex/q-qg-nature-skills-publication-closure-20260821'
     paths:
       - 'papers/Q_QG_FIGURE_SOURCE_V1.json'
-      - 'papers/build_q_qg_figures.py'
-      - 'papers/Q-paper-02-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json'
-      - 'papers/Q-paper-02-recursive-recovery/Q2_TRANSITION_GRAPH_V2.json'
+      - 'papers/archive/2026-08-pre-unification/build_q_qg_figures.py'
+      - 'papers/orion-06-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json'
+      - 'papers/orion-06-recursive-recovery/Q2_TRANSITION_GRAPH_V2.json'
       - '.github/workflows/q-qg-figures.yml'
 
 permissions:
@@ -34,7 +34,7 @@ jobs:
       - name: Install plotting dependencies
         run: python -m pip install --disable-pip-version-check --no-input matplotlib numpy
       - name: Build receipt-verified source data and figures
-        run: python papers/build_q_qg_figures.py --out build/q_qg_figures
+        run: python papers/archive/2026-08-pre-unification/build_q_qg_figures.py --out build/q_qg_figures
       - name: Verify expected outputs
         shell: bash
         run: |

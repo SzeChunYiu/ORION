@@ -1,0 +1,245 @@
+{
+  "schema": "ORION.P10.DomainSourceFreeze.v1",
+  "study_id": "P10_H1_H6_WIDE_MULTI_DOMAIN_V1",
+  "artifact_class": "FROZEN_PROTOCOL",
+  "results_exist": false,
+  "campaign_executed": false,
+  "outcome_accessed": false,
+  "labeling_rule": "This artifact is a frozen protocol. It contains no results and must never be cited as evidence of an empirical outcome. Domain and source commitments recorded here are minimums to be satisfied by a future lawful execution, not counts of anything executed.",
+  "issue_binding": "SzeChunYiu/ORION#1086 P10: populate the frozen design — four domains, 100 tasks/domain, 80 known-method controls; evaluate execution boxes; CANNOT_CHECK with precise reasons, never silent skips",
+  "protocol_doc": "papers/orion-20-structured-problem-solving/protocol/P10_DOMAIN_SOURCE_FREEZE_V1.md",
+  "frozen_utc": "2026-08-24T10:45:00Z",
+  "execution_status": "CANNOT_CHECK__NO_P10_EXECUTION_IN_REPOSITORY",
+  "protocol_freeze_binding": {
+    "artifact": "papers/orion-20-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json",
+    "sha256": "8e32c2bee514d246bcd503fc2f0ef078bcc52adb7f40abdbcb642b703aec355c",
+    "relation": "This artifact supplies the domain/source/license layer under the frozen H1-H6 design. It does not modify, reinterpret or discharge any H1-H6 gate. Where the two disagree, the H1-H6 freeze wins.",
+    "inputs_discharged_by_this_artifact": [],
+    "inputs_remaining_absent": [
+      "native_verifier_backed_runner",
+      "strongest_donor_complete_comparator_executables",
+      "blinded_obstruction_gold_and_custodian",
+      "independent_ocme_witness_protocol",
+      "protected_cross_domain_replication_split",
+      "independent_scorer_and_review_custody"
+    ],
+    "note": "required_inputs.protected_task_manifest stays partially supplied: this freeze fixes the four domains, their public sources and their licence statuses, but the per-task ID enumeration (100 verifier-backed tasks per domain) requires the pinned downloads and is NOT_POPULATED here."
+  },
+  "frozen_domains": [
+    {
+      "domain_id": "LEAN_INTERACTIVE_THEOREM_PROVING",
+      "verifier": "Lean elaborator driven through LeanDojo",
+      "sources": [
+        {
+          "source_id": "LEANDOJO",
+          "role": "framework",
+          "url": "https://github.com/yangky11/LeanDojo",
+          "license": {
+            "name": "MIT",
+            "verification": "VERIFIED_WITH_URL_AND_DATE",
+            "verified_utc": "2026-08-24T10:39:25Z",
+            "evidence_url": "https://github.com/yangky11/LeanDojo/blob/main/LICENSE",
+            "evidence_api": "https://api.github.com/repos/yangky11/LeanDojo/license",
+            "evidence_field": "license.spdx_id = MIT",
+            "evidence_fetch_sha256": "04bd793636dbaaabe74a65a394ba5bd021f3a8bee0c2271d74ccd238b3986d3d"
+          }
+        },
+        {
+          "source_id": "MINIF2F",
+          "role": "task-pool",
+          "url": "https://github.com/openai/miniF2F",
+          "license": {
+            "name": null,
+            "verification": "CANNOT_CHECK",
+            "reason": "The upstream openai/miniF2F repository exposes no licence file detectable by the GitHub licence API at verification time (API returns Not Found; fetch sha256 e80d8bd80b672a912a514abede3950704d7e2e93c561917510b5150e5889971a; repository itself exists, last push recorded 2023-08-16). Maintained mirrors do carry licences — facebookresearch/miniF2F MIT, google-deepmind/miniF2F Apache-2.0, yangky11/miniF2F-lean4 MIT (search-API evidence fetch sha256 c1cf42a340149f08f7e87283b24e1dcce86347aac88d9b4649a82b9bb6963bf4) — but a mirror's licence does not license the upstream original. Task content (competition/olympiad problem statements) carries separate rights that no repository licence covers.",
+            "selection_rule": "Before any download, pin exactly one miniF2F distribution and verify ITS licence with URL and date; downloading from openai/miniF2F as-is is forbidden under this freeze."
+          }
+        }
+      ],
+      "native_arm_prior": {
+        "artifact": "papers/orion-20-structured-problem-solving/top_tier/P10_NATIVE_LEAN_CANNOT_CHECK_HANDOFF_V1.md",
+        "sha256": "add09b2c0b1f32cb2010750b5e8dc8c71fe3ab522799056819005aac402e0ce3",
+        "binding_role": "the native Lean arm carries a recorded CANNOT_CHECK handoff; this freeze does not clear it"
+      }
+    },
+    {
+      "domain_id": "SYGUS_SYNTAX_GUIDED_SYNTHESIS",
+      "verifier": "cvc5 solver (sygus mode) as exact oracle",
+      "sources": [
+        {
+          "source_id": "CVC5",
+          "role": "solver",
+          "url": "https://github.com/cvc5/cvc5",
+          "license": {
+            "name": null,
+            "verification": "CANNOT_CHECK",
+            "reason": "The COPYING file exists and is bound (https://github.com/cvc5/cvc5/blob/main/COPYING, fetch sha256 c0ee8b2b0274c79f3bfad8b14b23fecf1e2220c388c7ecab141708288b7659bc), but GitHub reports spdx_id=NOASSERTION because cvc5 uses a composite licensing file. A single SPDX identity for the build actually used must be read from COPYING at pinned-revision download time before execution; no name is asserted here."
+          }
+        },
+        {
+          "source_id": "SYGUS_COMP_ARCHIVES",
+          "role": "task-pool",
+          "url": "https://sygus.org/",
+          "license": {
+            "name": null,
+            "verification": "CANNOT_CHECK",
+            "reason": "SyGuS-Comp benchmark archives carry no explicit licence statement on the competition pages; per-problem provenance (inventor-submitted versus organizer-authored) is unresolved."
+          }
+        }
+      ]
+    },
+    {
+      "domain_id": "IPC_PLANNING",
+      "verifier": "Fast Downward planner with VAL plan validation",
+      "sources": [
+        {
+          "source_id": "FAST_DOWNWARD",
+          "role": "solver",
+          "url": "https://github.com/aibasel/downward",
+          "license": {
+            "name": "GPL-3.0",
+            "verification": "VERIFIED_WITH_URL_AND_DATE",
+            "verified_utc": "2026-08-24T10:39:25Z",
+            "evidence_url": "https://github.com/aibasel/downward/blob/main/LICENSE.md",
+            "evidence_api": "https://api.github.com/repos/aibasel/downward/license",
+            "evidence_field": "license.spdx_id = GPL-3.0",
+            "evidence_fetch_sha256": "f1e6e01828a0da7cee2b3a901a616c9fe165e6bc76ff56db8689875559ad712f"
+          },
+          "copyleft_consequence": "Running Fast Downward as a comparator and reporting its outputs is lawful; redistributing a derivative work of the planner inside ORION artefacts is not without GPL compliance. This freeze permits execution-as-tool only."
+        },
+        {
+          "source_id": "VAL",
+          "role": "validator",
+          "url": "https://github.com/KCL-Planning/VAL",
+          "license": {
+            "name": "BSD-3-Clause",
+            "verification": "VERIFIED_WITH_URL_AND_DATE",
+            "verified_utc": "2026-08-24T10:39:25Z",
+            "evidence_url": "https://github.com/KCL-Planning/VAL/blob/master/LICENSE",
+            "evidence_api": "https://api.github.com/repos/KCL-Planning/VAL/license",
+            "evidence_field": "license.spdx_id = BSD-3-Clause",
+            "evidence_fetch_sha256": "14264d5a6a5599fb24236244cc5a7e2d209819b67874d05e8bbb8e02d73b3754"
+          }
+        },
+        {
+          "source_id": "DOWNWARD_BENCHMARKS",
+          "role": "task-pool",
+          "url": "https://github.com/aibasel/downward-benchmarks",
+          "license": {
+            "name": null,
+            "verification": "CANNOT_CHECK",
+            "reason": "The repository exists (API fetch sha256 788f85f911051c517436d2ce3e075d6ff218874b0e48b88b4462356e31d28f98) but reports no repository-level licence; the bundled IPC domain files originate from multiple competition authors with per-domain rights never consolidated. Per-domain licence clearance is required before selection."
+          }
+        }
+      ]
+    },
+    {
+      "domain_id": "CODE_GENERATION",
+      "verifier": "EvalPlus harness (HumanEval+ / MBPP+ augmented tests)",
+      "sources": [
+        {
+          "source_id": "EVALPLUS",
+          "role": "harness-and-task-pool",
+          "url": "https://github.com/evalplus/evalplus",
+          "license": {
+            "name": "Apache-2.0",
+            "verification": "VERIFIED_WITH_URL_AND_DATE",
+            "verified_utc": "2026-08-24T10:39:25Z",
+            "evidence_url": "https://github.com/evalplus/evalplus/blob/master/LICENSE",
+            "evidence_api": "https://api.github.com/repos/evalplus/evalplus/license",
+            "evidence_field": "license.spdx_id = Apache-2.0",
+            "evidence_fetch_sha256": "ab32be076424c49f184a7bad3d4efe50e6a9ae15e15969485b5104774ce17dc5"
+          },
+          "content_note": "Repository licence verified; the embedded task content is derivative of HumanEval and MBPP and inherits their per-task terms — recorded at pinned-revision selection, not blanket-cleared by the harness licence."
+        }
+      ]
+    }
+  ],
+  "committed_minimums": {
+    "domains": 4,
+    "independent_tasks_per_domain": 100,
+    "total_independent_tasks": 400,
+    "known_method_controls": 80,
+    "satisfied_by_this_artifact": false,
+    "semantics": "These are the H1-H6 freeze design minimums restated as commitments. They are NOT counts of anything selected, downloaded or executed. No task enumeration exists in this repository."
+  },
+  "inference_unit": {
+    "primary": "one protected verifier-backed theorem or task",
+    "aggregation": "domain",
+    "forbidden_units": ["search seed", "model sample", "generated row", "episode", "technical repeat"],
+    "provenance": "carried verbatim from P10_H1_H6_PROTOCOL_FREEZE_V1.json independent_unit and technical_repeats"
+  },
+  "box_verdicts": {
+    "box_1_populate_frozen_design": {
+      "verdict": "DONE_AT_DOMAIN_SOURCE_LICENSE_LAYER",
+      "detail": "Four domains frozen with named public sources and verified-or-CANNOT_CHECK licences; 100 tasks/domain and 80 controls committed as minimums. Task-level enumeration NOT_POPULATED — it requires the pinned, licence-cleared downloads recorded above.",
+      "open_remainder": "per-task ID enumeration (400 tasks + 80 controls) after licence selection"
+    },
+    "box_2_implement_baselines": {
+      "verdict": "CANNOT_CHECK",
+      "arms": [
+        {"arm_id": "NATIVE", "status": "CANNOT_CHECK", "reason": "native Lean arm carries the recorded cannot-check handoff (bound above); the other domains have no native arm implemented either"},
+        {"arm_id": "EXACT_SEARCH", "status": "NOT_IMPLEMENTED_IN_REPOSITORY", "reason": "no exhaustive/bounded exact-search baseline exists in this repository"},
+        {"arm_id": "SYNTHESIS", "status": "NOT_IMPLEMENTED_IN_REPOSITORY", "reason": "no synthesis baseline exists in this repository"},
+        {"arm_id": "REPRESENTATION_ONLY", "status": "NOT_IMPLEMENTED_IN_REPOSITORY", "reason": "no representation-only baseline exists in this repository"},
+        {"arm_id": "STRONGEST_DONOR", "status": "CANNOT_CHECK", "reason": "strongest donor-complete comparator executables are a required-absent input of the H1-H6 freeze; tool licences alone do not make an arm runnable"}
+      ],
+      "no_weak_proxy_substitution": "an unavailable arm is reported unavailable; substituting a weaker proxy for a missing comparator is forbidden"
+    },
+    "box_3_run_h1_h6": {
+      "verdict": "CANNOT_CHECK",
+      "reasons": [
+        "P10_H1_H6_PROTOCOL_FREEZE_V1 execution_authorized=false and lifecycle_state=PROSPECTIVE_FROZEN_NOT_EXECUTED",
+        "six of eight required inputs remain absent (listed in protocol_freeze_binding.inputs_remaining_absent)",
+        "H4 requires independently witnessed outside-closure cases; the issue hard boundary forbids self-certifying an external witness"
+      ]
+    },
+    "box_4_machine_check_candidate_edits": {
+      "verdict": "CANNOT_CHECK",
+      "frozen_contract": "When candidate edits exist, each is machine-checked against the frozen old grammar/closure exactly as the OCME formal protocol specifies: exhaustive non-membership of the target in the old method language, minimal-edit form, old-closure exclusion of the edit itself, and zero hidden access widening.",
+      "reason": "No H1-H6 execution has produced candidate edits; the only machine-checked edits in the repository are the frozen-toy GF(2) and formal-setting cases already receipted in top_tier/, which are not domain tasks.",
+      "prior_receipts": [
+        {
+          "artifact": "papers/orion-20-structured-problem-solving/top_tier/P10_OCME_FORMAL_NONVACUITY_PROTOCOL_V1.md",
+          "sha256": "8473bd78c083886460221edd6d9526176df1e5f198de7a7eb41c8087343a6b8c"
+        },
+        {
+          "artifact": "papers/orion-20-structured-problem-solving/top_tier/P10_OCME_FORMAL_RESULT_RECEIPT_V1.md",
+          "sha256": "3f83788097d3dc0109f74faf91f7c84e88cc32dd9eefdbad1f6fd273682d0351"
+        }
+      ]
+    }
+  },
+  "pass_gate_echo": {
+    "multiplicity": "familywise alpha 0.05, HOLM_BONFERRONI over [H1,H2,H3,H5,H6]; H4 is a nonstatistical certificate conjunction; worst-domain gates are noncompensatory",
+    "catastrophic_guards": {"semantic_failures_allowed": 0, "hidden_access_model_widening_allowed": 0, "false_resolution_of_unknown_obstruction_allowed": 0},
+    "missing_run_policy": "MISSING_OR_UNVERIFIED_TASK_COUNTS_AS_NOT_SOLVED_AND_CANNOT_GRANT_PASS",
+    "source": "P10_H1_H6_PROTOCOL_FREEZE_V1.json — authoritative; this echo is binding only by reference"
+  },
+  "prior_adverse_evidence": [
+    {
+      "artifact": "papers/orion-20-structured-problem-solving/evidence/P10_H1_H6_PROSPECTIVE_ATTAINABILITY_2026-08-23.json",
+      "sha256": "4188a41fd28e79bee221a34a0c16fbda99851278c701c165586f89edd92b17a8",
+      "terminal": "PROSPECTIVE_OUTCOME_BLIND_ONLY",
+      "binding_role": "attainability receipt discharges one required input and grants nothing; execution stays unauthorized"
+    },
+    {
+      "artifact": "papers/orion-20-structured-problem-solving/top_tier/P10_GENERATED_OCME_RESULT_RECEIPT_V1.md",
+      "sha256": "0a3062bcc20c6fc553d079d4d749100160b43349d649cb22d6eca18acdc1dafd",
+      "terminal": "P10_GENERATED_OCME_EXECUTED__EXACT_SETTING_ONLY",
+      "binding_role": "the only executed OCME evidence is exact-setting toy closures; it cannot stand in for domain-task outside-closure expansion"
+    }
+  ],
+  "non_bypass_boundaries": [
+    "Licence verification precedes download for every source; nothing in this artifact has been downloaded or executed.",
+    "A CANNOT_CHECK licence is never upgraded by mirror adjacency, elapsed time or inaction; only new explicit evidence upgrades it.",
+    "The committed minimums are not executed counts; reporting them as achieved counts is a protocol violation.",
+    "Changing domains, sources, minimums, arms or box verdicts after any H1-H6 data collection is forbidden and requires a new versioned freeze with a new identity.",
+    "No weak proxy may replace an unavailable comparator arm; unavailable arms stay CANNOT_CHECK in every report."
+  ],
+  "freeze_discipline": {
+    "checker": "papers/orion-20-structured-problem-solving/protocol/check_p10_domain_source_freeze_v1.py",
+    "tests": "tests/unit/p10/test_p10_domain_source_freeze.py",
+    "protocol_freeze_sha_live_recompute": true
+  }
+}

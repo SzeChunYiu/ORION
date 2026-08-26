@@ -7,7 +7,7 @@ from orion_research_harness.scientific_execution_integrity import ScientificExec
 
 ROOT = Path(__file__).resolve().parents[3]
 BINDING = ROOT / "papers/P15_Q3_SHARED_INSTRUMENT_PACKAGE_V1.json"
-P15 = ROOT / "papers/paper-15-orion-research-harness/top_tier"
+P15 = ROOT / "papers/orion-25-orion-research-harness/top_tier"
 
 
 def test_shared_package_binding_hashes_exact_files_and_denies_authority():

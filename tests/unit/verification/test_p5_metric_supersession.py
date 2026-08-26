@@ -10,7 +10,7 @@ from independent_scorers import score_p5_attribution
 
 
 ROOT = Path(__file__).resolve().parents[3]
-P5 = ROOT / "papers/paper-05-self-orion"
+P5 = ROOT / "papers/orion-15-self-orion"
 RESULTS = P5 / "evidence/glm-5.2-attribution/results.jsonl"
 REPORT = P5 / "evidence/glm-5.2-attribution/report.json"
 RECEIPT = P5 / "evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json"

@@ -18,7 +18,7 @@ FAMILIES: tuple[str, ...] = (
     "METHOD_BASIS_GAP",
 )
 
-SOURCE = "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl"
+SOURCE = "papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl"
 CAMPAIGN_ID = "p5-glm-5.2-attribution-v1"
 AUTHORITY = (
     "These tables are deterministic presentation artifacts of the archived "

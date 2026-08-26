@@ -37,24 +37,24 @@ The abstract reports governed selection with 97% answer-quality pass rate versus
 Provenance/version/integrity governance is a distinct layer from retrieval quality; deterministic governed context can prevent some stale/version failures and support reconstruction/audit.
 
 ## 11. Conclusion boundaries
-ContextNest directly owns broad claims about governed/versioned/provenanced agent context and hash-chained audit history. Q4 cannot claim novelty for such infrastructure generally.
+ContextNest directly owns broad claims about governed/versioned/provenanced agent context and hash-chained audit history. ORION-04 cannot claim novelty for such infrastructure generally.
 
 ## 12. Author-stated limitations
 Not fully assessable from abstract record. Full paper required before detailed claims about security strength, adversary model or generality.
 
 ## 13. Critical analysis
-Q4 must separate **container/context governance** from **decision sufficiency**. Its residual is not “store provenance and versions,” but whether typed/scoped knowledge changes rational downstream actions under identical visible facts—for example, which failure receipt to reopen, which interval to verify, or whether a transported certificate can be accepted.
+ORION-04 must separate **container/context governance** from **decision sufficiency**. Its residual is not “store provenance and versions,” but whether typed/scoped knowledge changes rational downstream actions under identical visible facts—for example, which failure receipt to reopen, which interval to verify, or whether a transported certificate can be accepted.
 
 ## 14. Learned knowledge
-A provenance-rich context layer can still leave the next decision unresolved. Q4 should state that governance supplies trustworthy state; its experiments test how type/scope information should be consumed by specific decisions.
+A provenance-rich context layer can still leave the next decision unresolved. ORION-04 should state that governance supplies trustworthy state; its experiments test how type/scope information should be consumed by specific decisions.
 
 ## 15. Knowledge connections
-Database provenance; P13 responsibility-carrying state; STALE; Q4 transport/remint; context retrieval governance.
+Database provenance; ORION-23 responsibility-carrying state; STALE; ORION-04 transport/remint; context retrieval governance.
 
 ## 16. Testable research ideas
-- Run Q4 decision policies over a ContextNest-like governed store to isolate storage governance from decision semantics.
+- Run ORION-04 decision policies over a ContextNest-like governed store to isolate storage governance from decision semantics.
 - Test whether responsibility-scoped support certificates can be encoded as governed context metadata.
 
 ## ORION claim effect
-**Removed from Q4 novelty:** generic provenance/version/context governance, deterministic retrieval governance, hash-chained context history.  
-**Q4 retained residual:** bounded matched-information evidence about how type/scope changes downstream decisions after state is available.
+**Removed from ORION-04 novelty:** generic provenance/version/context governance, deterministic retrieval governance, hash-chained context history.  
+**ORION-04 retained residual:** bounded matched-information evidence about how type/scope changes downstream decisions after state is available.

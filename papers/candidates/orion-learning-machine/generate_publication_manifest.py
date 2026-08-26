@@ -38,7 +38,7 @@ def included_files() -> list[Path]:
             ROOT / "VERIFY_LOCAL_CLOSURE.sh",
             ROOT / "generate_publication_manifest.py",
             CANDIDATES
-            / "paper-08-epistemic-authority-autonomous-science"
+            / "orion-18-epistemic-authority-autonomous-science"
             / "benchmark"
             / "P9_GOVERNED_CAPABILITY_COMPANION.md",
             CANDIDATES / "P6_P10_ISSUE_RECONCILIATION_2026-08-18.md",

@@ -52,7 +52,7 @@ PROVENANCE = (
 DEFAULT_ROOT = (
     Path(__file__).resolve().parents[4]
     / "papers"
-    / "paper-02-open-world-scientific-discovery"
+    / "orion-12-open-world-scientific-discovery"
     / "evidence"
     / "offline_gold"
 )

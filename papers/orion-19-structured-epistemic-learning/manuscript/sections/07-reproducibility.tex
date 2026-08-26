@@ -1,0 +1,12 @@
+\section{Reproducibility}
+
+The repository contains the exact generated corpora, protocols, run scripts, selected configurations, protected predictions, result digests, independent expectations, comparison receipts, claim ledgers, and the TMLR package. A fail-closed summary builder refuses to produce publication metrics if any required official result, terminal, digest, verification receipt, hostile check, or current integration-authority receipt is absent. Tables and manuscript macros are generated only from that summary. From a clean checkout, the reproduction path is:
+
+\begin{verbatim}
+python papers/orion-19-structured-epistemic-learning/reproduce_final.py
+\end{verbatim}
+
+The script regenerates the post-hoc paired D1 analysis, independently compares the integrated official result archives to the frozen expectation table, rebuilds the fail-closed evidence summary, result macros and headline tables, and runs the manuscript audit. Runtime dependencies are pinned in the repository environment; the raw M1 and D1 protected archives are committed rather than reconstructed from manuscript numbers.
+
+This paper is intentionally conservative about authority. Execution receipts prove that named computations occurred and matched bounded expectations. They do not grant scientific truth or adoption authority. Historical donor receipts that referred to superseded pull requests remain provenance, while the current integration receipt separately authorizes rendering of the exact grafted artifacts on this review branch.
+

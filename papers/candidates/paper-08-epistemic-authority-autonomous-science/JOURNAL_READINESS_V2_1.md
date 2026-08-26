@@ -1,4 +1,4 @@
-# P8 journal readiness V2.1
+# ORION-18 journal readiness V2.1
 
 **Normative manuscript:** `manuscript/FINAL.md`  
 **Formal core:** `manuscript/FORMAL_CORE_V2.md`  
@@ -27,4 +27,4 @@
 - [ ] venue-template conversion/copyedit/reference normalization;
 - [ ] archive exact commit/check outputs.
 
-P8 is complete as a theory/interface/negative-result paper. An empirical superiority claim over the ideal donor product is optional and currently not made.
+ORION-18 is complete as a theory/interface/negative-result paper. An empirical superiority claim over the ideal donor product is optional and currently not made.

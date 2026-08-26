@@ -1,0 +1,63 @@
+{
+  "schema_version": "orion.p4.naturalistic-identifiability-successor.v1",
+  "paper_id": "P4",
+  "claim_id": "P4.H3.NATURALISTIC.V1",
+  "protocol_status": "PROSPECTIVE_LOCAL_PREFLIGHT_COMPLETE__EXTERNAL_NATURALISTIC_PANEL_REQUIRED",
+  "outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "historical_results_immutable": true,
+  "successor_of": ["P4.H3.V2", "P4.H3.V3.CANNOT_CHECK"],
+  "material_change": "The successor pairs every naturalistic unidentifiable case with an identifiable same-source control and evaluates the exact CANNOT_CHECK claim axis across domains.",
+  "design": {
+    "independent_unit": "unique_naturalistic_source_case_family_cluster",
+    "not_independent_units": ["pair_member", "seed", "probe", "diagnostic_label", "metric_cell"],
+    "stratum_count": 32,
+    "units_per_stratum": 24,
+    "planned_independent_units": 768,
+    "domain_count": 4,
+    "unidentifiability_mechanism_count": 8,
+    "paired_identifiable_control_required": true,
+    "primary_endpoint": "correct_cannot_check_on_unidentifiable_member_and_correct_resolution_on_identifiable_control",
+    "worst_domain_gate_required": true,
+    "off_axis_failures_remain_diagnostic": true
+  },
+  "power": {
+    "method": "SIDAK_EXACT_MAX_T_UNDER_DECLARED_INDEPENDENT_CONTRAST_PLANNING_MODEL",
+    "planned_independent_units": 768,
+    "comparator_count": 4,
+    "planning_delta": 0.15,
+    "superiority_margin": 0.05,
+    "planning_discordance": 0.4,
+    "familywise_alpha": 0.05,
+    "target_joint_power": 0.9,
+    "protected_predecessor_outcomes_used_for_calibration": false,
+    "analysis_unit": "naturalistic_source_case_family_cluster",
+    "multiplicity_family": "all_four_frozen_primary_comparators_on_the_exact_identifiability_axis",
+    "claim_logic": "intersection_all_contrasts_and_worst_domain_gate_must_pass"
+  },
+  "local_bindings": [
+    {
+      "binding_id": "V3_EXACT_AXIS_ADJUDICATION",
+      "path": "papers/orion-14-verified-scientific-discovery/evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json",
+      "sha256": "c0c32de0335a9b3c9ecfa1bd10161d67d2e726812f91069648c8855ac35b9612"
+    },
+    {
+      "binding_id": "EXACT_AXIS_SELECTOR",
+      "path": "src/orion/study/p4/claim_axis.py",
+      "sha256": "ae14ab7be42241052d2e7f559682ef4792863bb9de85210683c4f456cca460a3"
+    }
+  ],
+  "external_bindings_required": [
+    "BLINDED_MULTI_DOMAIN_NATURALISTIC_CASE_PANEL",
+    "CANNOT_CHECK_CAPABLE_EXTERNAL_COMPARATORS",
+    "INDEPENDENT_EVALUATOR_AND_RAW_CASE_CUSTODY",
+    "SOURCE_DISJOINT_REPLICATION_PANEL"
+  ],
+  "missing_external_terminal": "P4_NATURALISTIC_IDENTIFIABILITY_CANNOT_CHECK_EXTERNAL_PANEL",
+  "possible_scientific_terminals_after_execution": [
+    "P4_NATURALISTIC_IDENTIFIABILITY_SUPERIORITY_SUPPORTED",
+    "P4_NATURALISTIC_IDENTIFIABILITY_SUPERIORITY_NOT_SUPPORTED",
+    "P4_NATURALISTIC_IDENTIFIABILITY_CANNOT_CHECK"
+  ],
+  "current_terminal": "P4_NATURALISTIC_READY_FOR_EXTERNAL_PANEL_NOT_A_SCIENTIFIC_RESULT"
+}

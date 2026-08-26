@@ -1,4 +1,4 @@
-# Reproduce the P9/P10 learning-machine lane
+# Reproduce the ORION-19/ORION-20 learning-machine lane
 
 **Papers:** `../paper-09-executable-research-core/`, `../paper-10-content-bound-math-evaluation/`
 **Status:** deterministic local reproduction; no external superiority or novelty authority
@@ -67,9 +67,9 @@ Both scripts are retained as delivered rather than repaired, so the gap stays vi
 
 ## 6. What these runs establish
 
-- A learned competence map routes solvers to the best fixed solver's success at ~1/3 its effort, and holds under distribution shift (P9, phase 0).
-- Failure-aware composition matches the oracle by **abstaining on opaque tasks at zero effort**, where imitation spends effort. It does *not* solve more than imitation — both reach the ceiling (P9, phase 1).
-- Macros mined from a 7-file Lean corpus are **not distinguishable from shuffled tactic order**, p = 0.83 at bigram order against a 1000-rep shuffle null (P10, phase 2A).
+- A learned competence map routes solvers to the best fixed solver's success at ~1/3 its effort, and holds under distribution shift (ORION-19, phase 0).
+- Failure-aware composition matches the oracle by **abstaining on opaque tasks at zero effort**, where imitation spends effort. It does *not* solve more than imitation — both reach the ceiling (ORION-19, phase 1).
+- Macros mined from a 7-file Lean corpus are **not distinguishable from shuffled tactic order**, p = 0.83 at bigram order against a 1000-rep shuffle null (ORION-20, phase 2A).
 
 ## 7. What they do not establish
 

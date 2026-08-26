@@ -13,7 +13,7 @@ The five functions in the VENDORED BLOCK below are copied **verbatim** from:
     Licence URL: https://www.apache.org/licenses/LICENSE-2.0
 
 The upstream repository tarball at that commit is hashed in
-``papers/paper-02-open-world-scientific-discovery/evidence/access/fetched_artifact_hashes.json``
+``papers/orion-12-open-world-scientific-discovery/evidence/access/fetched_artifact_hashes.json``
 (``CherYou/AutoResearchBench@a46c9bfb tarball`` ->
 ``0729109bae4115d9bea60d1213a953b647af6d4cdd0cfbe133dd4151b304021f``); the
 per-file hash above was taken from ``evaluate/evaluate_wide_search.py`` inside it.

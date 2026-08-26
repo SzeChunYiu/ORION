@@ -9,7 +9,7 @@ objects a case carries, which of its fields are null, or how long a string is.
 The battery's construction did. Each family is produced by applying one
 mutation to a shared base template, and some of those mutations changed the
 shape of the case as well as its content. Measured on batteries regenerated from
-``papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py``,
+``papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py``,
 which now carries every construction it has emitted behind ``--construction``:
 
 - ``v1`` --- the construction the published campaign ran against. ``len(evidence)

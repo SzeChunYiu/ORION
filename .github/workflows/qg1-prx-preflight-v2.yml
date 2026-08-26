@@ -3,7 +3,7 @@ name: qg1-prx-preflight-v2
 on:
   pull_request:
     paths:
-      - 'papers/QG-paper-01-compilation-regime-geometry/**'
+      - 'papers/orion-09-compilation-regime-geometry/**'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
       - 'papers/build_q_qg_cited_masters.py'
@@ -12,7 +12,7 @@ on:
     branches:
       - 'codex/q-qg-nature-skills-publication-closure-20260821'
     paths:
-      - 'papers/QG-paper-01-compilation-regime-geometry/**'
+      - 'papers/orion-09-compilation-regime-geometry/**'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
       - 'papers/build_q_qg_cited_masters.py'
@@ -48,14 +48,14 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p build/qg1_prx_v2/source build/qg1_prx_v2/rendered
-          python papers/QG-paper-01-compilation-regime-geometry/submission_prx/build_prx_source.py \
+          python papers/orion-09-compilation-regime-geometry/submission_prx/build_prx_source.py \
             --cited-master build/q_qg_cited/QG1/MANUSCRIPT_CITED.md \
-            --popular-summary papers/QG-paper-01-compilation-regime-geometry/submission_prx/POPULAR_SUMMARY.md \
+            --popular-summary papers/orion-09-compilation-regime-geometry/submission_prx/POPULAR_SUMMARY.md \
             --out build/qg1_prx_v2/prepared.md
           cp build/q_qg_cited/QG1/references.bib build/qg1_prx_v2/source/references.bib
-          cp papers/QG-paper-01-compilation-regime-geometry/submission_prx/prx_pandoc_template.tex \
+          cp papers/orion-09-compilation-regime-geometry/submission_prx/prx_pandoc_template.tex \
             build/qg1_prx_v2/source/pandoc_template.tex
-          cp papers/QG-paper-01-compilation-regime-geometry/submission_prx/POPULAR_SUMMARY.md \
+          cp papers/orion-09-compilation-regime-geometry/submission_prx/POPULAR_SUMMARY.md \
             build/qg1_prx_v2/source/POPULAR_SUMMARY.md
           pandoc build/qg1_prx_v2/prepared.md \
             --from=markdown+citations \

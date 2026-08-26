@@ -1,4 +1,4 @@
-# P11 submission declarations interface
+# ORION-21 submission declarations interface
 
 This file separates scientific closure from author-controlled submission attestations.
 

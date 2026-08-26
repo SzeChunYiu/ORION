@@ -1,4 +1,4 @@
-# P6 journal readiness V2.1
+# ORION-16 journal readiness V2.1
 
 **Normative manuscript:** `manuscript/FINAL_V2_1.md`  
 **Theory:** `FINISHED_V2_1`  
@@ -25,4 +25,4 @@
 - [ ] venue-template conversion/copyedit/reference formatting;
 - [ ] archive exact commit and check outputs.
 
-P6 must not revert to the older statement that support soundness alone proves minimality.
+ORION-16 must not revert to the older statement that support soundness alone proves minimality.

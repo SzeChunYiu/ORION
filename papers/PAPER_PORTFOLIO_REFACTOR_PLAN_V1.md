@@ -15,11 +15,11 @@ naming, extend beyond P1–P15 via the P16–P18 gates.
 
 | Paper (current id) | Defensible state | Decisive remaining gate |
 |---|---|---|
-| NQ — `nonquantum-c5cubed-davenport` | Universal rooted-completion + certificate theory suitable for specialist mathematical review | (a) proof-clean CR-B LUNARC replay before releasing the C₅³ headline; (b) rooted/unrooted D4 source search with duplicate accounting |
-| Q1 — `Q-paper-01-tare-expressivity` | Sharp support-two theorem + active-core architecture = substantial scoped theorem paper, CONTENT_READY | Q1-B2 proof-free pass; prospective active-core implementation; exact crossover/resource evaluation; independent quantum review; novelty adjudication |
-| AB — `theory-A-multitag-constraint-rank` + `theory-B-certificate-complexity` | Abstract certificate-realization theory coherent and reviewer-facing (merge A+B per ledger R8/AB) | Bind a real production grammar with complete executable move registry; prospective production result (positive, null, or adverse — all publishable) |
-| C — `theory-C-low-order-information` (FiberGuard) | Finite-fibre theory + static ASlib result + Bellman profiles + deterministic risk frontier + randomized theory + held-out falsification = strongest package | Exact equality failed as inductive relation; freeze a coverage-producing certified neighborhood/coarsening relation on DISJOINT development data; test on untouched scenarios vs strong current baselines |
-| D — `theory-D-falsification-authority` | Typed merge theory + complexity results + hostile OAuth controls + real safe-merge case = credible formal core | Blinded external-domain adjudication on an independently maintained policy corpus (compute cannot substitute) |
+| NQ — `orion-04-rooted-completion-certificates` | Universal rooted-completion + certificate theory suitable for specialist mathematical review | (a) proof-clean CR-B LUNARC replay before releasing the C₅³ headline; (b) rooted/unrooted D4 source search with duplicate accounting |
+| Q1 — `orion-05-tare-expressivity` | Sharp support-two theorem + active-core architecture = substantial scoped theorem paper, CONTENT_READY | Q1-B2 proof-free pass; prospective active-core implementation; exact crossover/resource evaluation; independent quantum review; novelty adjudication |
+| AB — `orion-01-certificate-realization` + `orion-01-certificate-realization` | Abstract certificate-realization theory coherent and reviewer-facing (merge A+B per ledger R8/AB) | Bind a real production grammar with complete executable move registry; prospective production result (positive, null, or adverse — all publishable) |
+| C — `orion-02-fiberguard-finite-fibre` (FiberGuard) | Finite-fibre theory + static ASlib result + Bellman profiles + deterministic risk frontier + randomized theory + held-out falsification = strongest package | Exact equality failed as inductive relation; freeze a coverage-producing certified neighborhood/coarsening relation on DISJOINT development data; test on untouched scenarios vs strong current baselines |
+| D — `orion-03-typed-merge-falsification` | Typed merge theory + complexity results + hostile OAuth controls + real safe-merge case = credible formal core | Blinded external-domain adjudication on an independently maintained policy corpus (compute cannot substitute) |
 | Q2/Q3/Q4/QG1/QG2 | CONTENT_READY, PACKAGE_OPEN | author-controlled package items + per-paper evidence blockers (readiness V3) |
 | P1–P15 | 25/25 result packets bound; Wave A rewrites pending | per-paper external gates; seven programme-level unearned boundaries |
 | P16/P17/P18 | `BLOCKED_NO_MANUSCRIPT_AUTHORIZED` | freeze-gate prerequisites (§4) |
@@ -27,6 +27,11 @@ naming, extend beyond P1–P15 via the P16–P18 gates.
 No manuscript has been submitted anywhere; every package terminal is PACKAGE_OPEN.
 
 ## 2. Wave R0 — naming unification + stale-file sweep (papers/ only)
+
+Status: **R0 EXECUTED 2026-08-27** — 25 dirs renamed to `orion-NN-<slug>/`, theory-A+B
+merged into `orion-01`, 525 files archived, 1688 files rebound, digest pins
+regenerated (926/926 OK), freeze checker green. Receipt:
+`papers/PAPER_RENAME_RECEIPT_V1.json`; alias registry: `papers/PAPER_ALIASES.md`.
 
 Operator: *"rename all papers — too many namings like pn and alphabets and others."*
 
@@ -37,7 +42,7 @@ One flat series **`ORION-NN`**, directory `papers/orion-NN-<slug>/`:
 | ORION-01 | theory-A + theory-B (merged) | certificate-realization |
 | ORION-02 | theory-C | fiberguard-finite-fibre |
 | ORION-03 | theory-D | typed-merge-falsification |
-| ORION-04 | nonquantum-c5cubed-davenport (NQ/NP) | rooted-completion-certificates |
+| ORION-04 | orion-04-rooted-completion-certificates (NQ/NP) | rooted-completion-certificates |
 | ORION-05..08 | Q-paper-01..04 | tare-expressivity / recursive-recovery / dual-instrument / typed-state |
 | ORION-09..10 | QG-paper-01..02 | compilation-regime-geometry / certified-static-forecasting |
 | ORION-11..25 | paper-01..paper-15 (Pn → 10+n) | per-paper existing slugs |

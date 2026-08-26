@@ -31,31 +31,31 @@ A binding names a file and a sha256. It is checked by hashing the file it names 
 | `papers/candidates/paper-07-epistemic-navigation-open-worlds/SHA256SUMS` | `papers/candidates/paper-07-epistemic-navigation-open-worlds/submission/P7_X2_CLOSURE_CARRYING_SECTION.tex` | named artifact could not be resolved to a file (unresolved_named_artifact_absent_from_named_location) |
 | `papers/candidates/paper-08-epistemic-authority-autonomous-science/SHA256SUMS` | `papers/candidates/paper-08-epistemic-authority-autonomous-science/submission/P8_X4_AUTHORITY_COMPOSITION_SECTION.tex` | named artifact could not be resolved to a file (unresolved_named_artifact_absent_from_named_location) |
 | `papers/candidates/paper-08-epistemic-authority-autonomous-science/SHA256SUMS` | `papers/candidates/paper-08-epistemic-authority-autonomous-science/submission/P8_X4_DONOR_REFERENCES.md` | named artifact could not be resolved to a file (unresolved_named_artifact_absent_from_named_location) |
-| `papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1/SHA256SUMS` | `artifacts/PROVENANCE.env` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
-| `papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1/SHA256SUMS` | `artifacts/build/cases.jsonl` | named artifact could not be resolved to a file (unresolved_named_artifact_absent_from_named_location) |
-| `papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1/SHA256SUMS` | `artifacts/evaluation/summary.json` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
-| `papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1/SHA256SUMS` | `artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
-| `papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1/SHA256SUMS` | `artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
-| `papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/SHA256SUMS` | `artifacts/evaluation/PROVENANCE.env` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
-| `papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/SHA256SUMS` | `artifacts/evaluation/SUMMARY.json` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
-| `papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/SHA256SUMS` | `artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
-| `papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/SHA256SUMS` | `artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
+| `papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1/SHA256SUMS` | `artifacts/PROVENANCE.env` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
+| `papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1/SHA256SUMS` | `artifacts/build/cases.jsonl` | named artifact could not be resolved to a file (unresolved_named_artifact_absent_from_named_location) |
+| `papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1/SHA256SUMS` | `artifacts/evaluation/summary.json` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
+| `papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1/SHA256SUMS` | `artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
+| `papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1/SHA256SUMS` | `artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
+| `papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/SHA256SUMS` | `artifacts/evaluation/PROVENANCE.env` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
+| `papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/SHA256SUMS` | `artifacts/evaluation/SUMMARY.json` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
+| `papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/SHA256SUMS` | `artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
+| `papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/SHA256SUMS` | `artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl` | named artifact could not be resolved to a file (ambiguous_within_binder_subtree(2_hits)) |
 
 ### Unpaired sha256 keys
 
 | binder | key |
 |---|---|
-| `papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V1.json` | `adjudication_sha256` |
-| `papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V3.json` | `active_claim_leaf.scope.locked_environment.uv_lock_sha256` |
-| `papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V4.json` | `active_claim_leaf.scope.locked_environment.uv_lock_sha256` |
-| `papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V5.json` | `active_claim_leaf.scope.locked_environment.uv_lock_sha256` |
-| `papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V1.json` | `adjudication_sha256` |
-| `papers/paper-13-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V3.json` | `active_claim_leaves.[].result.byte_identical_replay_core_sha256` |
-| `papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json` | `active_claim.result_sha256` |
-| `papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json` | `active_claim.replay_sha256` |
-| `papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json` | `prospective_external_validation.protocol_sha256` |
-| `papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json` | `prospective_external_validation.preflight_sha256` |
-| `papers/paper-14-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json` | `prospective_external_validation.validator_sha256` |
+| `papers/orion-22-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V1.json` | `adjudication_sha256` |
+| `papers/orion-22-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V3.json` | `active_claim_leaf.scope.locked_environment.uv_lock_sha256` |
+| `papers/orion-22-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V4.json` | `active_claim_leaf.scope.locked_environment.uv_lock_sha256` |
+| `papers/orion-22-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V5.json` | `active_claim_leaf.scope.locked_environment.uv_lock_sha256` |
+| `papers/orion-23-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V1.json` | `adjudication_sha256` |
+| `papers/orion-23-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V3.json` | `active_claim_leaves.[].result.byte_identical_replay_core_sha256` |
+| `papers/orion-24-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json` | `active_claim.result_sha256` |
+| `papers/orion-24-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json` | `active_claim.replay_sha256` |
+| `papers/orion-24-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json` | `prospective_external_validation.protocol_sha256` |
+| `papers/orion-24-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json` | `prospective_external_validation.preflight_sha256` |
+| `papers/orion-24-orion-rse/P14_ACTIVE_CLAIM_AUTHORITY_V1.json` | `prospective_external_validation.validator_sha256` |
 
 ## Deliberate, counted exclusions
 

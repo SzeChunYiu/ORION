@@ -367,9 +367,9 @@
         "residual_class": "D",
         "finding": "The bundle is runnable by a stranger; what is missing is the stranger. The verifier rejects a receipt from the candidate, one that reused the candidate's execution unit, one missing a step, and one with a wrong digest.",
         "artifacts": [
-          "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_THIRD_ENVIRONMENT_REPLAY_2026-08-23.json",
-          "papers/paper-06-formal-epistemic-structures-and-mechanics/P6_CLEAN_ROOM_REPLAY_PACKET_V1.json",
-          "papers/paper-06-formal-epistemic-structures-and-mechanics/verify_clean_room_receipt_v1.py"
+          "papers/orion-16-formal-epistemic-structures-and-mechanics/evidence/local/P6_THIRD_ENVIRONMENT_REPLAY_2026-08-23.json",
+          "papers/orion-16-formal-epistemic-structures-and-mechanics/P6_CLEAN_ROOM_REPLAY_PACKET_V1.json",
+          "papers/orion-16-formal-epistemic-structures-and-mechanics/verify_clean_room_receipt_v1.py"
         ]
       },
       {
@@ -380,7 +380,7 @@
         "residual_class": "none external; construction work plus the researcher's own compute",
         "finding": "Still not externally blocked, and not one download from execution either.",
         "artifacts": [
-          "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_EXECUTION_GAP_2026-08-23.json"
+          "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T3_EXECUTION_GAP_2026-08-23.json"
         ]
       },
       {
@@ -391,8 +391,8 @@
         "residual_class": "A and D for the blocker proper",
         "finding": "The CI failure was a comparison defect, not a result defect: bit-equality of a floating-point mean across library versions is an unattainable gate.",
         "artifacts": [
-          "papers/paper-02-open-world-scientific-discovery/diagnose_lexical_echo_reproduction.py",
-          "papers/paper-02-open-world-scientific-discovery/P2_LEXICAL_ECHO_REPRODUCTION_DIAGNOSIS_2026-08-23.json",
+          "papers/orion-12-open-world-scientific-discovery/diagnose_lexical_echo_reproduction.py",
+          "papers/orion-12-open-world-scientific-discovery/P2_LEXICAL_ECHO_REPRODUCTION_DIAGNOSIS_2026-08-23.json",
           "tests/unit/study/p2_open_world/test_p2_lexical_echo_successor.py"
         ]
       },
@@ -404,8 +404,8 @@
         "residual_class": "B and D",
         "finding": "The archived and replayed values are two sides of one boundary on an unresponsive comparator, not two measurements that disagree. Neither is evidence about representation quality.",
         "artifacts": [
-          "papers/paper-09-structured-epistemic-learning/diagnose_d1v1_2_divergence.py",
-          "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_DIVERGENCE_ROOT_CAUSE_2026-08-23.json",
+          "papers/orion-19-structured-epistemic-learning/diagnose_d1v1_2_divergence.py",
+          "papers/orion-19-structured-epistemic-learning/evidence/P9_D1V1_2_DIVERGENCE_ROOT_CAUSE_2026-08-23.json",
           "tests/unit/study/p9/test_p9_d1v1_2_divergence_root_cause.py"
         ]
       }
@@ -437,7 +437,7 @@
           "item_id": "P3.C6_C8.EXTERNAL",
           "measured": "REAL_BUT_THE_REMEDY_IS_WRONG",
           "detail": "measurement_ids and temporal_context_ids carry ONE distinct value across 64 projections, and it is the empty list. But referent_ids has 24 distinct values and construct_ids 12, and neither ever differs between the two sides of a case: 0 of 32. The ledger's remedy asks that these coordinates VARY, which an atlas can satisfy while reproducing every zero. The condition has to be non-zero WITHIN-CASE contrast. Two coordinates the ledger does not name, modality and predicate, behave the same way. polarity is the only semantic coordinate that contrasts, at 6 of 32.",
-          "artifact": "papers/paper-03-global-knowledge-portrait/evidence/P3_ATLAS_COORDINATE_OPPORTUNITY_2026-08-23.json"
+          "artifact": "papers/orion-13-global-knowledge-portrait/evidence/P3_ATLAS_COORDINATE_OPPORTUNITY_2026-08-23.json"
         },
         {
           "item_id": "P7.EMPIRICAL.NAVIGATION.EXTERNAL",
@@ -476,13 +476,13 @@
           "item_id": "P3.PARTIAL_OBSERVATION.SUCCESSOR",
           "measured": "GENUINELY_EXTERNAL_BUT_MISSTATED",
           "detail": "The protocol is well specified -- opportunity rule OBSERVATIONALLY_SEPARABLE_PROTECTED_DISTINCTION, zero-opportunity strata barred, Sidak exact max-T over 768 clusters at a conservative 0.4 planning discordance. But its acquisition binding is named ...WITH_NONZERO_VARIATION_ON_ALL_FOUR_COORDINATES, and variation is not separability: referent_ids already carries 24 distinct values with zero within-case contrast. An atlas bought to the letter of that binding reproduces every zero.",
-          "artifact": "papers/paper-03-global-knowledge-portrait/evidence/P3_SUCCESSOR_ACQUISITION_WORDING_2026-08-23.json"
+          "artifact": "papers/orion-13-global-knowledge-portrait/evidence/P3_SUCCESSOR_ACQUISITION_WORDING_2026-08-23.json"
         },
         {
           "item_id": "P10.PROTECTED.EXECUTION.EXTERNAL",
           "measured": "ONE_REQUIRED_INPUT_PRODUCED",
           "detail": "The prospective power and attainability receipt is now derived. H5 is a zero-tolerance gate: the exact Clopper-Pearson upper bound over 80 controls is 0.0368 at zero false expansions and 0.0579 at one, so a single slip fails it. H1 reaches only 0.46 power at 20 percent discordance under its own Holm correction, against 0.72 if the correction were ignored.",
-          "artifact": "papers/paper-10-structured-problem-solving/evidence/P10_H1_H6_PROSPECTIVE_ATTAINABILITY_2026-08-23.json"
+          "artifact": "papers/orion-20-structured-problem-solving/evidence/P10_H1_H6_PROSPECTIVE_ATTAINABILITY_2026-08-23.json"
         }
       ],
       "counterweights_recorded": [

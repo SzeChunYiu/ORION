@@ -50,7 +50,7 @@ from orion.programme.mechanized import (
 SCHEMA_VERSION = "orion.p6.reopening-calculus-smt.v1"
 
 EXECUTABLE_MODEL = (
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py"
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py"
 )
 
 

@@ -7,7 +7,7 @@ on:
       - '.github/workflows/p3-public-reference-publication.yml'
       - 'src/orion/study/p3_public_reference_publication.py'
       - 'tests/unit/study/test_p3_public_reference_publication.py'
-      - 'papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json'
+      - 'papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json'
 
 permissions:
   contents: write
@@ -37,7 +37,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          root=papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/publication
+          root=papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/publication
           test -s "$root/PUBLIC_REFERENCE_CONFIRMATORY_TABLES_V1.md"
           test -s "$root/PR3-F1_false_merge_by_system.svg"
           test -s "$root/PR3-F2_flat_false_merge_by_case_family.svg"
@@ -48,7 +48,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          root=papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/publication
+          root=papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/publication
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add "$root"

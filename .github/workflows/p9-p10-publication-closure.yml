@@ -5,8 +5,8 @@ on:
     paths:
       - 'papers/orion-learning-machine/**'
       - 'papers/paper-xx-executable-research-core/**'
-      - 'papers/paper-xx-content-bound-math-evaluation/**'
-      - 'papers/paper-08-epistemic-authority-autonomous-science/benchmark/P9_GOVERNED_CAPABILITY_COMPANION.md'
+      - 'papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/**'
+      - 'papers/orion-18-epistemic-authority-autonomous-science/benchmark/P9_GOVERNED_CAPABILITY_COMPANION.md'
       - 'papers/candidates/P6_P10_ISSUE_RECONCILIATION_2026-08-18.md'
       - '.github/workflows/p9-p10-publication-closure.yml'
   push:
@@ -14,8 +14,8 @@ on:
     paths:
       - 'papers/orion-learning-machine/**'
       - 'papers/paper-xx-executable-research-core/**'
-      - 'papers/paper-xx-content-bound-math-evaluation/**'
-      - 'papers/paper-08-epistemic-authority-autonomous-science/benchmark/P9_GOVERNED_CAPABILITY_COMPANION.md'
+      - 'papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/**'
+      - 'papers/orion-18-epistemic-authority-autonomous-science/benchmark/P9_GOVERNED_CAPABILITY_COMPANION.md'
       - 'papers/candidates/P6_P10_ISSUE_RECONCILIATION_2026-08-18.md'
       - '.github/workflows/p9-p10-publication-closure.yml'
 
@@ -54,8 +54,8 @@ jobs:
           python papers/paper-xx-executable-research-core/check_merged_ready.py
       - name: P10 corpus, corrected-result and technical-note gates
         run: |
-          python papers/paper-xx-content-bound-math-evaluation/benchmark/check_mathlib_corpus_v2.py
-          pytest -q papers/paper-xx-content-bound-math-evaluation/benchmark/test_mathlib_transfer_v2_1.py
-          python papers/paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
+          python papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/benchmark/check_mathlib_corpus_v2.py
+          pytest -q papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/benchmark/test_mathlib_transfer_v2_1.py
+          python papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
       - name: Current bounded publication manifest plus P10 review overlay
         run: bash papers/orion-learning-machine/VERIFY_LOCAL_CLOSURE_V2.sh

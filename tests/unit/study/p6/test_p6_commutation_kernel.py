@@ -21,7 +21,7 @@ from orion.study.p6 import commutation_kernel as ck
 REPO_ROOT = Path(__file__).resolve().parents[4]
 ARTIFACT = (
     REPO_ROOT
-    / "papers/paper-06-formal-epistemic-structures-and-mechanics"
+    / "papers/orion-16-formal-epistemic-structures-and-mechanics"
     / "formal/mechanized/P6_COMMUTATION_KERNEL_MECHANIZED_2026-08-24.json"
 )
 
@@ -194,7 +194,7 @@ class TestTheBinding:
 
         checker_path = (
             REPO_ROOT
-            / "papers/paper-06-formal-epistemic-structures-and-mechanics"
+            / "papers/orion-16-formal-epistemic-structures-and-mechanics"
             / "formal/check_commutation_kernel_binding_v1.py"
         )
         spec = importlib.util.spec_from_file_location(
@@ -212,7 +212,7 @@ class TestTheBinding:
 
         checker_path = (
             REPO_ROOT
-            / "papers/paper-06-formal-epistemic-structures-and-mechanics"
+            / "papers/orion-16-formal-epistemic-structures-and-mechanics"
             / "formal/check_commutation_contract_binding_v1.py"
         )
         spec = importlib.util.spec_from_file_location(

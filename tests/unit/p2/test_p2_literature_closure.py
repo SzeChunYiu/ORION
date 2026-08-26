@@ -21,7 +21,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery"
+PAPER = ROOT / "papers" / "orion-12-open-world-scientific-discovery"
 MAIN_TEX = PAPER / "manuscript" / "main.tex"
 PROTOCOL = PAPER / "protocol" / "PROTOCOL_V1.json"
 READINESS = PAPER / "JOURNAL_READINESS.md"

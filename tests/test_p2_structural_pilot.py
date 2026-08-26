@@ -13,7 +13,7 @@ from orion.transfer.v2.p2_structure import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery"
+PAPER = ROOT / "papers" / "orion-12-open-world-scientific-discovery"
 PANEL = PAPER / "structural_extension" / "HISTORICAL_PANEL_V1.json"
 SUMMARY = PAPER / "structural_extension" / "HISTORICAL_PILOT_SUMMARY_V1.json"
 _TOKEN = re.compile(r"[a-z0-9]+")

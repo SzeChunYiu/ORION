@@ -1,0 +1,741 @@
+{
+  "derivation": "every value is read from the paper's own files; none is asserted",
+  "fields": [
+    "SCIENTIFIC_RESULT",
+    "CURRENT_MANUSCRIPT",
+    "CURRENT_PDF",
+    "RIGHTS",
+    "REVIEWER_ACCESS",
+    "TARGET_FIT",
+    "INDEPENDENT_AUDIT",
+    "SUBMISSION_BYTES",
+    "TOP_TIER_GATE"
+  ],
+  "papers": {
+    "P1": {
+      "directory": "orion-11-recursive-epistemic-reconstruction",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "manuscript/main.tex",
+          "status": "PRESENT",
+          "value": "main.tex"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "independent reproduction"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "`CANNOT_CHECK` for submission readiness. The bounded mechanical claim is `SUPPORTED`, and that is unchanged; what cannot"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "content-bound"
+        },
+        "TARGET_FIT": {
+          "reason": "no target venue or journal named",
+          "status": "ABSENT"
+        },
+        "TOP_TIER_GATE": {
+          "reason": "optional field; no top-tier gate referenced",
+          "status": "ABSENT"
+        }
+      }
+    },
+    "P10": {
+      "directory": "orion-20-structured-problem-solving",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "manuscript/main.tex",
+          "status": "PRESENT",
+          "value": "main.tex"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "TOP_TIER_PROMOTION_V1.md",
+          "status": "PRESENT",
+          "value": "structurally independent"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "README.md",
+          "status": "PRESENT",
+          "value": "licence"
+        },
+        "SCIENTIFIC_RESULT": {
+          "authority": "P10_ACTIVE_CLAIM_AUTHORITY_V1.json",
+          "reason": "no **Terminal:** or **Current terminal:** line in any top-level document",
+          "status": "ABSENT"
+        },
+        "SUBMISSION_BYTES": {
+          "reason": "no submission-byte binding, SHA256SUMS or content binding found",
+          "status": "ABSENT"
+        },
+        "TARGET_FIT": {
+          "source": "TOP_TIER_PROMOTION_V1.md",
+          "status": "PRESENT",
+          "value": "three-input majority;"
+        },
+        "TOP_TIER_GATE": {
+          "source": "TOP_TIER_PROMOTION_V1.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    },
+    "P11": {
+      "directory": "orion-21-state-as-computation",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "MANUSCRIPT.md",
+          "status": "PRESENT",
+          "value": "MANUSCRIPT.md"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "README.md",
+          "status": "PRESENT",
+          "value": "independent checker"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "CLAIM_EVIDENCE_LEDGER.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "authority": "P11_ACTIVE_CLAIM_AUTHORITY_V2.json",
+          "source": "P11C_EXECUTION_RECEIPT_V1.md",
+          "status": "PRESENT",
+          "value": "`P11C_STRONGER_DECODER_GAP_SUPPORTED`"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "CLAIM_EVIDENCE_LEDGER.md",
+          "status": "PRESENT",
+          "value": "content-bound"
+        },
+        "TARGET_FIT": {
+          "source": "P11H_EXECUTION_RECEIPT_V1.md",
+          "status": "PRESENT",
+          "value": "the label is an `r`-sparse linear threshold on the bank, so a sparse"
+        },
+        "TOP_TIER_GATE": {
+          "source": "CLAIM_EVIDENCE_LEDGER.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    },
+    "P12": {
+      "directory": "orion-22-adaptive-state-reasoning",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "MANUSCRIPT.md",
+          "status": "PRESENT",
+          "value": "MANUSCRIPT.md"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "CLAIM_EVIDENCE_LEDGER.md",
+          "status": "PRESENT",
+          "value": "independent checker"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "CLAIM_EVIDENCE_LEDGER.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "authority": "P12_ACTIVE_CLAIM_AUTHORITY_V5.json",
+          "reason": "no **Terminal:** or **Current terminal:** line in any top-level document",
+          "status": "ABSENT"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "README.md",
+          "status": "PRESENT",
+          "value": "content-bound"
+        },
+        "TARGET_FIT": {
+          "reason": "no target venue or journal named",
+          "status": "ABSENT"
+        },
+        "TOP_TIER_GATE": {
+          "source": "CLAIM_EVIDENCE_LEDGER.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    },
+    "P13": {
+      "directory": "orion-23-responsibility-carrying-state",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "MANUSCRIPT.md",
+          "status": "PRESENT",
+          "value": "MANUSCRIPT.md"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "MANUSCRIPT_RESULT_ADDENDUM_V1.md",
+          "status": "PRESENT",
+          "value": "second independent"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "CLAIM_EVIDENCE_LEDGER.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "authority": "P13_ACTIVE_CLAIM_AUTHORITY_V3.json",
+          "source": "P13C_COMPOSED_RESULT_RECEIPT_V1.md",
+          "status": "PRESENT",
+          "value": "`P13C_COMPOSED_SAFETY_EFFICACY_SUPPORTED` (first execution; all eleven frozen gates green)"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "P13C_COMPOSED_RESULT_RECEIPT_V1.md",
+          "status": "PRESENT",
+          "value": "sha256"
+        },
+        "TARGET_FIT": {
+          "reason": "no target venue or journal named",
+          "status": "ABSENT"
+        },
+        "TOP_TIER_GATE": {
+          "source": "MANUSCRIPT_RESULT_ADDENDUM_V1.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    },
+    "P14": {
+      "directory": "orion-24-orion-rse",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "MANUSCRIPT.md",
+          "status": "PRESENT",
+          "value": "MANUSCRIPT.md"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "P14E_SUPERIORITY_RESULT_RECEIPT_V1.md",
+          "status": "PRESENT",
+          "value": "independent implementation"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "CLAIM_EVIDENCE_LEDGER.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "authority": "P14_ACTIVE_CLAIM_AUTHORITY_V1.json",
+          "source": "P14A_OUTCOME_ROOT_CAUSE_V1.md",
+          "status": "PRESENT",
+          "value": "`P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET`"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "MANUSCRIPT.md",
+          "status": "PRESENT",
+          "value": "sha256"
+        },
+        "TARGET_FIT": {
+          "reason": "no target venue or journal named",
+          "status": "ABSENT"
+        },
+        "TOP_TIER_GATE": {
+          "source": "TOP_TIER_PROMOTION_V1.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    },
+    "P15": {
+      "directory": "orion-25-orion-research-harness",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "MANUSCRIPT.md",
+          "status": "PRESENT",
+          "value": "MANUSCRIPT.md"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "CLAIM_EVIDENCE_LEDGER_V1.md",
+          "status": "PRESENT",
+          "value": "independent reproduction"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "CLAIM_EVIDENCE_LEDGER_V1.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "authority": "P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+          "reason": "no **Terminal:** or **Current terminal:** line in any top-level document",
+          "status": "ABSENT"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "CLAIM_EVIDENCE_LEDGER.md",
+          "status": "PRESENT",
+          "value": "CONTENT-BOUND"
+        },
+        "TARGET_FIT": {
+          "reason": "no target venue or journal named",
+          "status": "ABSENT"
+        },
+        "TOP_TIER_GATE": {
+          "source": "CLAIM_EVIDENCE_LEDGER_V1.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    },
+    "P2": {
+      "directory": "orion-12-open-world-scientific-discovery",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "manuscript/main.tex",
+          "status": "PRESENT",
+          "value": "main.tex"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "reason": "no independent reproduction, implementation or checker described",
+          "status": "ABSENT"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "`ORION-P2 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18."
+        },
+        "SUBMISSION_BYTES": {
+          "source": "REPRODUCE.md",
+          "status": "PRESENT",
+          "value": "sha256"
+        },
+        "TARGET_FIT": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "selected: IP&M."
+        },
+        "TOP_TIER_GATE": {
+          "reason": "optional field; no top-tier gate referenced",
+          "status": "ABSENT"
+        }
+      }
+    },
+    "P3": {
+      "directory": "orion-13-global-knowledge-portrait",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "manuscript/main.tex",
+          "status": "PRESENT",
+          "value": "main.tex"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "reason": "no independent reproduction, implementation or checker described",
+          "status": "ABSENT"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "`PEER_REVIEW_READY` for the scoped P3.C5/P3.C9 structured-mapping claim **only on a commit whose repository CI and `p3-m"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "content-bound"
+        },
+        "TARGET_FIT": {
+          "source": "JOURNAL_GATE_CHECK.md",
+          "status": "PRESENT",
+          "value": "a peer-reviewed venue. Inspired by the JOURNAL_READINESS.md Step 10 requirements"
+        },
+        "TOP_TIER_GATE": {
+          "reason": "optional field; no top-tier gate referenced",
+          "status": "ABSENT"
+        }
+      }
+    },
+    "P4": {
+      "directory": "orion-14-verified-scientific-discovery",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "manuscript/discovery_failure_authority_interface.tex",
+          "status": "PRESENT",
+          "value": "discovery_failure_authority_interface.tex"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "Independent reproduction"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "CLAIM_LEDGER_V3.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "`ORION-P4 = PEER_REVIEW_READY`"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "CLAIM_LEDGER_V4.md",
+          "status": "PRESENT",
+          "value": "SHA256SUMS"
+        },
+        "TARGET_FIT": {
+          "reason": "no target venue or journal named",
+          "status": "ABSENT"
+        },
+        "TOP_TIER_GATE": {
+          "reason": "optional field; no top-tier gate referenced",
+          "status": "ABSENT"
+        }
+      }
+    },
+    "P5": {
+      "directory": "orion-15-self-orion",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "manuscript/main.tex",
+          "status": "PRESENT",
+          "value": "main.tex"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "reason": "no independent reproduction, implementation or checker described",
+          "status": "ABSENT"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "`NO_TERMINAL_UNDER_FROZEN_RULES` for the bounded 96-case revision-level panel; general governed self-improvement benefit"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "THEORY_CLAIM_LEDGER_V2.md",
+          "status": "PRESENT",
+          "value": "SHA256SUMS"
+        },
+        "TARGET_FIT": {
+          "reason": "no target venue or journal named",
+          "status": "ABSENT"
+        },
+        "TOP_TIER_GATE": {
+          "source": "THEORY_CLAIM_LEDGER_V2.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    },
+    "P6": {
+      "directory": "orion-16-formal-epistemic-structures-and-mechanics",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "manuscript/main.tex",
+          "status": "PRESENT",
+          "value": "main.tex"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/FINAL_V4.pdf",
+          "status": "PRESENT",
+          "value": "FINAL_V4.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "CLAIM_LEDGER_V4.md",
+          "status": "PRESENT",
+          "value": "INDEPENDENT AUDIT"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "CLAIM_LEDGER_V1.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "source": "CLAIM_LEDGER_V4.md",
+          "status": "PRESENT",
+          "value": "`P6_CERTIFICATE_LIFTING_SEMANTICS_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT`"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "README.md",
+          "status": "PRESENT",
+          "value": "submission byte"
+        },
+        "TARGET_FIT": {
+          "reason": "no target venue or journal named",
+          "status": "ABSENT"
+        },
+        "TOP_TIER_GATE": {
+          "source": "TOP_TIER_PROMOTION_V1.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    },
+    "P7": {
+      "directory": "orion-17-epistemic-navigation-open-worlds",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "manuscript/main.tex",
+          "status": "PRESENT",
+          "value": "main.tex"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/FINAL_V3.pdf",
+          "status": "PRESENT",
+          "value": "FINAL_V3.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "CLAIM_LEDGER_V3.md",
+          "status": "PRESENT",
+          "value": "INDEPENDENT AUDIT"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "CLAIM_LEDGER_ADDENDUM_V3.md",
+          "status": "PRESENT",
+          "value": "license"
+        },
+        "SCIENTIFIC_RESULT": {
+          "source": "CLAIM_LEDGER_V3.md",
+          "status": "PRESENT",
+          "value": "`P7_CLOSURE_CARRYING_NAVIGATION_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT`"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "CLAIM_LEDGER_V1.md",
+          "status": "PRESENT",
+          "value": "Content-bound"
+        },
+        "TARGET_FIT": {
+          "reason": "no target venue or journal named",
+          "status": "ABSENT"
+        },
+        "TOP_TIER_GATE": {
+          "source": "CLAIM_LEDGER_V4.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    },
+    "P8": {
+      "directory": "orion-18-epistemic-authority-autonomous-science",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "manuscript/main.tex",
+          "status": "PRESENT",
+          "value": "main.tex"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/FINAL_V3.pdf",
+          "status": "PRESENT",
+          "value": "FINAL_V3.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "README.md",
+          "status": "PRESENT",
+          "value": "independent checker"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "CLAIM_LEDGER_ADDENDUM_V3.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "computed per commit, not asserted here. See"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "README.md",
+          "status": "PRESENT",
+          "value": "submission byte"
+        },
+        "TARGET_FIT": {
+          "reason": "no target venue or journal named",
+          "status": "ABSENT"
+        },
+        "TOP_TIER_GATE": {
+          "source": "README.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    },
+    "P9": {
+      "directory": "orion-19-structured-epistemic-learning",
+      "fields": {
+        "CURRENT_MANUSCRIPT": {
+          "source": "manuscript/applications_and_negative_to_positive.tex",
+          "status": "PRESENT",
+          "value": "applications_and_negative_to_positive.tex"
+        },
+        "CURRENT_PDF": {
+          "source": "manuscript/main.pdf",
+          "status": "PRESENT",
+          "value": "main.pdf"
+        },
+        "INDEPENDENT_AUDIT": {
+          "source": "P9_SCIENTIFIC_CLOSURE_RECEIPT_V1.md",
+          "status": "PRESENT",
+          "value": "independent implementation"
+        },
+        "REVIEWER_ACCESS": {
+          "reason": "no reviewer-access or controlled audit route described",
+          "status": "ABSENT"
+        },
+        "RIGHTS": {
+          "source": "APPLICATIONS_CLAIM_LEDGER_V1.md",
+          "status": "PRESENT",
+          "value": "mit"
+        },
+        "SCIENTIFIC_RESULT": {
+          "reason": "no **Terminal:** or **Current terminal:** line in any top-level document",
+          "status": "ABSENT"
+        },
+        "SUBMISSION_BYTES": {
+          "source": "CLAIM_LEDGER_V1.md",
+          "status": "PRESENT",
+          "value": "sha256"
+        },
+        "TARGET_FIT": {
+          "source": "JOURNAL_READINESS.md",
+          "status": "PRESENT",
+          "value": "TMLR"
+        },
+        "TOP_TIER_GATE": {
+          "source": "CLAIM_LEDGER_V1.md",
+          "status": "PRESENT",
+          "value": "top_tier"
+        }
+      }
+    }
+  },
+  "schema": "ORION.SpecialistReadinessMatrix.v1",
+  "semantics": {
+    "ABSENT": "no evidence found; the reason names what was looked for",
+    "CANNOT_CHECK": "the question could not be asked, distinct from answered no",
+    "PRESENT": "evidence found in the tree; value and source path recorded"
+  }
+}

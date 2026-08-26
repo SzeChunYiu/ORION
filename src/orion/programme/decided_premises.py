@@ -11,7 +11,7 @@ first. The case count is real, the enumeration is complete, and the quantity the
 claim is about was supplied by the caller.
 
 P7 is the live example, measured on the shipped artifacts. ``papers/
-paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py`` is
+orion-17-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py`` is
 the authority ``REPRODUCE_V2_1.md`` names for "all 64 transport-coordinate
 combinations", and its transport theorem reads::
 

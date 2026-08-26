@@ -3,7 +3,7 @@
 **Date:** 2026-08-20  
 **Working branch:** `codex/papers-1-8-academic-refine`  
 **Method source:** `SzeChunYiu/academic-paper-skills`  
-**Papers in scope:** P1–P8
+**Papers in scope:** ORION-11–ORION-18
 
 ## Objective
 
@@ -56,14 +56,14 @@ These are claim-type corrections, not changes to evidence.
 
 | Paper | Strongest authorized result | Widest positive headline |
 |---|---|---|
-| **P1** | Historical broad H1 remains NOT_SUPPORTED; the falsifier exposes an over-broad reframe rule. Powered v2.2.4 then achieves hidden-shift success 1.000 vs 0.494/0.483 in primary/replication with paired gains >0.50 and zero unnecessary high-level reframes/regressions/forbidden mutations. P1-X reaches 400/400 vs 275/400. | **Failure is evidence for diagnosis, not authority for reformulation. In the registered families, protected necessity evidence governs high-level scientific change; the historical failure supplies the falsifier and the prospective successor supplies the repaired, replicated result.** |
-| **P2** | P2-X reaches 400/400 exact closure vs donor-complete B1 250/400, +0.375 [0.3275,0.4225], zero false task closures and perfect clean closure across five acquisition families. MetaSyn localizes 0.1834 post-retrieval loss; Deep gives an extreme route-inadequacy stress result; Wide fails closed when provider validity is 0.666667 despite valid candidate contracts. | **Scientific closure is a proof obligation over material acquisition and processing routes, and evaluation transport is itself an authority-bearing route; route-local success, clean execution, or a produced benchmark score cannot self-authorize task-global completion.** |
-| **P3** | Confirmatory holdout: zero false merges vs 0.1875 flat canonicalization with no false-split penalty. P3-X: 400/400 vs strong semantic product 250/400 and canonical matching 50/400, +0.375, zero false GLUE, clean coverage 1.0; information-equivalent typed product also 400/400 with zero mismatches. | **Scientific identity is an explicit claim-relative authorization relation above representational compatibility. The protected identity contract is portable across information-equivalent implementations: alignment becomes reliable integration only when coupled to the scientific-identity rule.** |
-| **P4** | Protected V2: 0/360 false promotions vs 180/360 at identical 60/60 clean coverage. P4-X: 400/400 vs B1 250/400 and compensatory B2 50/400. H3 superiority is unsupported because evidence-list emptiness perfectly predicts the registered abstention label. | **Scientific promotion is a distinct non-compensatory authority transition, and benchmark scores themselves require authority before promotion into scientific conclusions: P4 both eliminates authority laundering and proves the registered H3 slice is non-identifying for abstention competence.** |
-| **P5** | The registered internal controller grants diagnosis/proposal/T7 recommendation no revision, adoption, promotion, merge or global-stop authority. GLM-5.2 hidden-cause attribution is 21/24 = 0.875, macro-F1 0.8726, with three retained errors that cannot become adoption certificates. | **Governed self-improvement can automate diagnosis and proposal without allowing either to self-promote into an adopted scientific method. In the registered architecture, fallible internal reasoning remains non-self-authorizing; adoption is a separate protected scientific-status transition.** |
-| **P6** | 320 formal states; zero donor-conservativity violations; 155 complete-revalidation restorations; 1,055 strict-subset countermodels; zero ideal-product mismatches. | **Within the registered lifting model, complete revalidation of the affected scientific bridge is necessary and sufficient for restoration of scientific standing, while unaffected native-valid operational certificates remain reusable and the semantics are representation-independent.** |
-| **P7** | 320 states; 155 complete-repair closure restorations; 1,055 strict-subset countermodels; 25 successful heterogeneous compositions + 25 matched missing-bridge cases; zero ideal-product mismatches. | **Within the registered navigation model, complete affected-contract repair is necessary and sufficient for restoring task-global closure under donor preservation, and heterogeneous closure-carrying transforms compose through exact intermediate contracts or certified bridges.** |
-| **P8** | 39,936 authority states; all 169 ordered donor pairs compose under compatible conditions; each has a matched widening countermodel; 65 coercion restorations + 65 bridge-necessity cases; exact blocker/revocation laws; zero decentralized-product mismatches. | **Across the complete registered 13×13 donor product, scientific authority obeys a monotone composition law: local authority may be preserved or narrowed, but cannot widen to a broader scientific target without an explicit protected bridge; the complete decision semantics are portable to a decentralized implementation.** |
+| **ORION-11** | Historical broad H1 remains NOT_SUPPORTED; the falsifier exposes an over-broad reframe rule. Powered v2.2.4 then achieves hidden-shift success 1.000 vs 0.494/0.483 in primary/replication with paired gains >0.50 and zero unnecessary high-level reframes/regressions/forbidden mutations. ORION-11-X reaches 400/400 vs 275/400. | **Failure is evidence for diagnosis, not authority for reformulation. In the registered families, protected necessity evidence governs high-level scientific change; the historical failure supplies the falsifier and the prospective successor supplies the repaired, replicated result.** |
+| **ORION-12** | ORION-12-X reaches 400/400 exact closure vs donor-complete B1 250/400, +0.375 [0.3275,0.4225], zero false task closures and perfect clean closure across five acquisition families. MetaSyn localizes 0.1834 post-retrieval loss; Deep gives an extreme route-inadequacy stress result; Wide fails closed when provider validity is 0.666667 despite valid candidate contracts. | **Scientific closure is a proof obligation over material acquisition and processing routes, and evaluation transport is itself an authority-bearing route; route-local success, clean execution, or a produced benchmark score cannot self-authorize task-global completion.** |
+| **ORION-13** | Confirmatory holdout: zero false merges vs 0.1875 flat canonicalization with no false-split penalty. ORION-13-X: 400/400 vs strong semantic product 250/400 and canonical matching 50/400, +0.375, zero false GLUE, clean coverage 1.0; information-equivalent typed product also 400/400 with zero mismatches. | **Scientific identity is an explicit claim-relative authorization relation above representational compatibility. The protected identity contract is portable across information-equivalent implementations: alignment becomes reliable integration only when coupled to the scientific-identity rule.** |
+| **ORION-14** | Protected V2: 0/360 false promotions vs 180/360 at identical 60/60 clean coverage. ORION-14-X: 400/400 vs B1 250/400 and compensatory B2 50/400. H3 superiority is unsupported because evidence-list emptiness perfectly predicts the registered abstention label. | **Scientific promotion is a distinct non-compensatory authority transition, and benchmark scores themselves require authority before promotion into scientific conclusions: ORION-14 both eliminates authority laundering and proves the registered H3 slice is non-identifying for abstention competence.** |
+| **ORION-15** | The registered internal controller grants diagnosis/proposal/T7 recommendation no revision, adoption, promotion, merge or global-stop authority. GLM-5.2 hidden-cause attribution is 21/24 = 0.875, macro-F1 0.8726, with three retained errors that cannot become adoption certificates. | **Governed self-improvement can automate diagnosis and proposal without allowing either to self-promote into an adopted scientific method. In the registered architecture, fallible internal reasoning remains non-self-authorizing; adoption is a separate protected scientific-status transition.** |
+| **ORION-16** | 320 formal states; zero donor-conservativity violations; 155 complete-revalidation restorations; 1,055 strict-subset countermodels; zero ideal-product mismatches. | **Within the registered lifting model, complete revalidation of the affected scientific bridge is necessary and sufficient for restoration of scientific standing, while unaffected native-valid operational certificates remain reusable and the semantics are representation-independent.** |
+| **ORION-17** | 320 states; 155 complete-repair closure restorations; 1,055 strict-subset countermodels; 25 successful heterogeneous compositions + 25 matched missing-bridge cases; zero ideal-product mismatches. | **Within the registered navigation model, complete affected-contract repair is necessary and sufficient for restoring task-global closure under donor preservation, and heterogeneous closure-carrying transforms compose through exact intermediate contracts or certified bridges.** |
+| **ORION-18** | 39,936 authority states; all 169 ordered donor pairs compose under compatible conditions; each has a matched widening countermodel; 65 coercion restorations + 65 bridge-necessity cases; exact blocker/revocation laws; zero decentralized-product mismatches. | **Across the complete registered 13×13 donor product, scientific authority obeys a monotone composition law: local authority may be preserved or narrowed, but cannot widen to a broader scientific target without an explicit protected bridge; the complete decision semantics are portable to a decentralized implementation.** |
 
 ## Fresh 2026 literature pressure test
 
@@ -71,27 +71,27 @@ The refinement search deliberately looks for work that could steal the apparent 
 
 ### Goal-driven evolution and downstream responsibility
 
-**GoalEvolve** (`arXiv:2608.16733`) localizes dominant downstream bottlenecks and uses stage-resolved evidence to direct algorithm evolution. This increases pressure on any generic P1 claim about reflection, responsibility attribution, or goal-driven change. P1 therefore leads with the protected necessity/authority coupling and its falsification-to-prospective-repair chronology, not generic adaptive iteration.
+**GoalEvolve** (`arXiv:2608.16733`) localizes dominant downstream bottlenecks and uses stage-resolved evidence to direct algorithm evolution. This increases pressure on any generic ORION-11 claim about reflection, responsibility attribution, or goal-driven change. ORION-11 therefore leads with the protected necessity/authority coupling and its falsification-to-prospective-repair chronology, not generic adaptive iteration.
 
 ### Verification-aware search stopping
 
-**HALT** (`arXiv:2608.02009`) and **Don't Stop Early** (ACL 2026 Industry) make evidence coverage and explicit sufficiency conditions strong donor mechanisms. P2 therefore claims the higher closure-authority relation over material routes and processing obligations, not generic evidence-aware stopping.
+**HALT** (`arXiv:2608.02009`) and **Don't Stop Early** (ACL 2026 Industry) make evidence coverage and explicit sufficiency conditions strong donor mechanisms. ORION-12 therefore claims the higher closure-authority relation over material routes and processing obligations, not generic evidence-aware stopping.
 
 ### Scientific schema infrastructure
 
-**SciSchema.org** (`arXiv:2607.27955`) raises the prior-art bar for generic structured scientific mapping. P3 therefore centers the scientific identity authorization relation after structured alignment rather than claiming structured semantics themselves.
+**SciSchema.org** (`arXiv:2607.27955`) raises the prior-art bar for generic structured scientific mapping. ORION-13 therefore centers the scientific identity authorization relation after structured alignment rather than claiming structured semantics themselves.
 
 ### Benchmark construction, saturation, and abstention
 
-**Evidence Absence Is Not Evidence Insufficiency** (`arXiv:2605.26663`) shows that insufficient-evidence constructions can teach shortcut recognition rather than the intended competence. **When AI Benchmarks Plateau** (`arXiv:2602.16763`) shows saturation is widespread and destroys resolving power. **AgentAbstain** (`arXiv:2607.10059`) separates should-act from should-abstain competence. These results strengthen P4's exact H3 interpretation: the registered battery is non-identifying for abstention competence because its label is perfectly recoverable from evidence-list emptiness.
+**Evidence Absence Is Not Evidence Insufficiency** (`arXiv:2605.26663`) shows that insufficient-evidence constructions can teach shortcut recognition rather than the intended competence. **When AI Benchmarks Plateau** (`arXiv:2602.16763`) shows saturation is widespread and destroys resolving power. **AgentAbstain** (`arXiv:2607.10059`) separates should-act from should-abstain competence. These results strengthen ORION-14's exact H3 interpretation: the registered battery is non-identifying for abstention competence because its label is perfectly recoverable from evidence-list emptiness.
 
 ### Recursive self-improvement and self-evolving agents
 
-The 2026 RSI/self-evolving-agent literature is already mature enough that P5 cannot claim generic self-editing, failure learning, acceptance gating, retained-experience learning, or transfer measurement. **PACE** (`arXiv:2606.08106`) provides anytime-valid candidate acceptance; **Self-Evolving Agents with Anytime-Valid Certificates** (`arXiv:2607.00871`) confines self-modification around a frozen base and emits auditable acceptance certificates; **PAST-Bench** (`arXiv:2608.04003`) directly tests whether retained experience causes later gains and whether the intended pathway carried them; and **Recursive Self-Improvement in AI** (`arXiv:2607.07663`) surveys 1,250 recent papers and places self-evaluation on a verification hierarchy. This pressure makes P5's surviving residual sharper: **internal scientific advice and scientific adoption are different authority relations**, and the former cannot silently mint the latter.
+The 2026 RSI/self-evolving-agent literature is already mature enough that ORION-15 cannot claim generic self-editing, failure learning, acceptance gating, retained-experience learning, or transfer measurement. **PACE** (`arXiv:2606.08106`) provides anytime-valid candidate acceptance; **Self-Evolving Agents with Anytime-Valid Certificates** (`arXiv:2607.00871`) confines self-modification around a frozen base and emits auditable acceptance certificates; **PAST-Bench** (`arXiv:2608.04003`) directly tests whether retained experience causes later gains and whether the intended pathway carried them; and **Recursive Self-Improvement in AI** (`arXiv:2607.07663`) surveys 1,250 recent papers and places self-evaluation on a verification hierarchy. This pressure makes ORION-15's surviving residual sharper: **internal scientific advice and scientific adoption are different authority relations**, and the former cannot silently mint the latter.
 
 ### Authorization propagation and proof-carrying action
 
-**Authorization Propagation in Multi-Agent AI Systems** (`arXiv:2605.05440`) makes workflow authorization propagation a strong donor for P8. **Proof of Execution** (`arXiv:2607.05397`) and **Proof-Carrying Agent Actions** (`arXiv:2606.04104`) make governed execution/action certificates strong donors for P6. The ORION residual is therefore the scientific lift/discharge relation above those mechanisms.
+**Authorization Propagation in Multi-Agent AI Systems** (`arXiv:2605.05440`) makes workflow authorization propagation a strong donor for ORION-18. **Proof of Execution** (`arXiv:2607.05397`) and **Proof-Carrying Agent Actions** (`arXiv:2606.04104`) make governed execution/action certificates strong donors for ORION-16. The ORION residual is therefore the scientific lift/discharge relation above those mechanisms.
 
 ### Scientific-agent benchmark integrity and contamination
 
@@ -103,14 +103,14 @@ The recursive adverse-result audit sharpens the shared ORION law:
 
 > **A locally valid success signal must not silently acquire authority over a different scientific obligation.**
 
-- P1: failure does not self-authorize reformulation.
-- P2: route success does not self-authorize task closure; a locally valid external run does not self-authorize a transported comparison.
-- P3: representational alignment does not self-authorize scientific identity.
-- P4: verification or generic permission does not self-authorize scientific promotion; a benchmark score does not self-authorize the competence claim it is intended to measure.
-- P5: diagnosis or self-revision proposal does not self-authorize adoption, promotion, merge, or global-stop.
-- P6: operational certificate validity does not self-authorize preservation of scientific standing after material change; complete affected-bridge repair characterizes restoration in the registered model.
-- P7: navigation/representation preservation does not self-authorize task-global closure; complete affected-contract repair and explicit intermediate binding characterize restoration/composition in the registered model.
-- P8: local authority does not self-authorize cross-domain widening; unbridged composition is monotone/non-widening in the registered 13×13 product.
+- ORION-11: failure does not self-authorize reformulation.
+- ORION-12: route success does not self-authorize task closure; a locally valid external run does not self-authorize a transported comparison.
+- ORION-13: representational alignment does not self-authorize scientific identity.
+- ORION-14: verification or generic permission does not self-authorize scientific promotion; a benchmark score does not self-authorize the competence claim it is intended to measure.
+- ORION-15: diagnosis or self-revision proposal does not self-authorize adoption, promotion, merge, or global-stop.
+- ORION-16: operational certificate validity does not self-authorize preservation of scientific standing after material change; complete affected-bridge repair characterizes restoration in the registered model.
+- ORION-17: navigation/representation preservation does not self-authorize task-global closure; complete affected-contract repair and explicit intermediate binding characterize restoration/composition in the registered model.
+- ORION-18: local authority does not self-authorize cross-domain widening; unbridged composition is monotone/non-widening in the registered 13×13 product.
 
 The current all-eight status vector is
 
@@ -128,12 +128,12 @@ Future refinements should expand claims only when a new result, theorem, counter
 
 The refinement is released only on a head where:
 
-- P2 immutable claim bindings, widening checks, and the review PDF compile pass;
-- P3 scoped scientific-identity claim wiring, bibliography, exact-source PDF, result receipt, and journal-package hashes pass;
-- P4 protected lifecycle, result regeneration, metric-headroom audit, and TMLR audit pass;
-- P5 scoped non-self-promotion claim wiring, mature-literature boundary, exact-source PDF, readiness attestation, and journal-package hashes pass;
-- P6–P8 theory, content-binding, submission, and PDF gates pass;
-- P1–P5 publication scoreboard is derived from the final tree rather than handwritten expectations;
+- ORION-12 immutable claim bindings, widening checks, and the review PDF compile pass;
+- ORION-13 scoped scientific-identity claim wiring, bibliography, exact-source PDF, result receipt, and journal-package hashes pass;
+- ORION-14 protected lifecycle, result regeneration, metric-headroom audit, and TMLR audit pass;
+- ORION-15 scoped non-self-promotion claim wiring, mature-literature boundary, exact-source PDF, readiness attestation, and journal-package hashes pass;
+- ORION-16–ORION-18 theory, content-binding, submission, and PDF gates pass;
+- ORION-11–ORION-15 publication scoreboard is derived from the final tree rather than handwritten expectations;
 - broad repository CI is green on the same exact head.
 
 Any later load-bearing prose change requires the affected source/PDF/content binding to be regenerated before the paper is treated as publication-ready.

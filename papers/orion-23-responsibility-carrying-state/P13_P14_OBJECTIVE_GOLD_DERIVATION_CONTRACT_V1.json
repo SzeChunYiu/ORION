@@ -1,0 +1,95 @@
+{
+ "schema": "ORION.P13P14.ObjectiveGoldDerivationContract.v1",
+ "study_id": "P13_P14_LIFECYCLE_CONTRACT_CAMPAIGN_V1",
+ "artifact_class": "FROZEN_DERIVATION_CONTRACT",
+ "results_exist": false,
+ "campaign_executed": false,
+ "outcome_accessed": false,
+ "labeling_rule": "This artifact is a frozen derivation contract. It contains no derived gold, no results and no campaign outcomes, and must never be cited as evidence that any lifecycle-contract campaign passed. Gold derived under this contract exists only after the campaign executes and its receipts land.",
+ "issue_binding": "SzeChunYiu/ORION#1086 P13+P14: 'Derive gold only from objective facts: object/hash existence, ancestry, tag/signature, test exit and timestamp order.'",
+ "protocol_doc": "papers/orion-23-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.md",
+ "frozen_utc": "2026-08-24T11:07:15+00:00",
+ "execution_status": "CANNOT_CHECK__NO_P13_P14_LIFECYCLE_CAMPAIGN_EXECUTION_IN_REPOSITORY",
+ "gold_rule_binding": {
+  "artifact": "papers/orion-23-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md",
+  "sha256": "3656565539ea89742dd0f876347ba0b7ec918dfe605d95ab691c5323b77f8ce9",
+  "relation": "The V1 rule of record is binding on this contract by hash. The five admissible fact classes below operationalise its five numbered items; nothing here relaxes, widens or reinterprets the rule."
+ },
+ "derivation_preconditions": {
+  "corpus_membership": "The subject repository must be an entry of P13_P14_PINNED_REPOSITORY_CORPUS_V1.json at the pinned_sha recorded there; derivation against any other revision of the same repository is inadmissible.",
+  "license_gate": "The entry's license.verification must be VERIFIED_WITH_URL_AND_DATE. An entry whose license.verification is CANNOT_CHECK__LICENSE_UNCLEAR is pinned for record only and yields no gold; every predicate on it returns CANNOT_CHECK.",
+  "clone_verification": "Gold may be derived only inside a clone whose HEAD equals the pinned_sha (git rev-parse HEAD equality asserted before and after derivation).",
+  "fail_closed": "Any predicate error, ambiguity, timeout or partial evidence yields the label CANNOT_CHECK for that fact. No label is ever inferred from absence of evidence, from model or author opinion, or by interpolating between recorded facts."
+ },
+ "admissible_fact_classes": [
+  {
+   "class_id": "OBJECT_HASH_EXISTENCE",
+   "rule_ref": "P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md item 1",
+   "fact": "Object O (commit, blob, tree or tag) exists in the pinned repository state, and its content digest equals the claimed digest.",
+   "predicate": {
+    "command_template": "git -C <clone> cat-file -e <object> && git -C <clone> rev-parse <object>",
+    "machine_check": "exit 0 and the printed object id equals the claimed id, with <clone> HEAD == corpus pinned_sha",
+    "label_type": "EXISTS_DIGEST_MATCH | ABSENT | DIGEST_MISMATCH | CANNOT_CHECK"
+   },
+   "inadmissible_interpretations": "Any claim about what the object's content means, represents or implies; existence is a label about graph membership only."
+  },
+  {
+   "class_id": "ANCESTRY",
+   "rule_ref": "P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md item 2",
+   "fact": "Commit A is an ancestor of commit B (or equal to it) in the pinned history.",
+   "predicate": {
+    "command_template": "git -C <clone> merge-base --is-ancestor <A> <B>",
+    "machine_check": "exit 0 -> TRUE; exit 1 -> FALSE; any other exit -> CANNOT_CHECK",
+    "label_type": "TRUE | FALSE | CANNOT_CHECK"
+   },
+   "inadmissible_interpretations": "Causal responsibility, authorship intent, or 'who introduced what' attribution beyond the bare ancestry relation."
+  },
+  {
+   "class_id": "TAG_SIGNATURE",
+   "rule_ref": "P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md item 3",
+   "fact": "Ref T resolves to the claimed target object, and a tag carries a cryptographic signature that verifies.",
+   "predicate": {
+    "command_template": "git -C <clone> rev-parse <T>^{} ; git -C <clone> verify-tag <T>",
+    "machine_check": "target equality asserted by rev-parse; verify-tag exit 0 -> SIGNATURE_VALID; exit 1 with an unsigned tag -> UNSIGNED; exit 1 with a malformed or failing signature -> SIGNATURE_INVALID",
+    "label_type": "TARGET_MATCH | TARGET_MISMATCH | SIGNATURE_VALID | UNSIGNED | SIGNATURE_INVALID | CANNOT_CHECK"
+   },
+   "inadmissible_interpretations": "Trust, identity or organisational-authority judgments; a valid signature is a label about cryptography, never about endorsement. UNSIGNED is a recorded state, not a defect."
+  },
+  {
+   "class_id": "TEST_EXIT",
+   "rule_ref": "P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md item 4",
+   "fact": "The recorded test command, executed on the pinned revision in the locked runtime recorded for the campaign, exited with the recorded status.",
+   "predicate": {
+    "command_template": "<recorded_test_command> ; echo $?",
+    "machine_check": "the exit status integer recorded verbatim at execution time inside the locked runtime, with the invocation and its output digest receipted; a status that cannot be re-observed in the receipt is CANNOT_CHECK",
+    "label_type": "EXIT_<code> | CANNOT_CHECK"
+   },
+   "inadmissible_interpretations": "Quality, correctness, maintainability or 'project health' inferences from an exit status; the label is the status only."
+  },
+  {
+   "class_id": "TIMESTAMP_ORDER",
+   "rule_ref": "P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md item 5",
+   "fact": "The committer (or author) timestamp recorded for commit A is strictly less than, equal to, or greater than that of commit B.",
+   "predicate": {
+    "command_template": "git -C <clone> show -s --format=%ct <A> ; git -C <clone> show -s --format=%ct <B>",
+    "machine_check": "integer comparison of the two recorded epoch values",
+    "label_type": "BEFORE | EQUAL | AFTER | CANNOT_CHECK"
+   },
+   "inadmissible_interpretations": "Wall-clock or real-world event-ordering claims; committed timestamps reflect committer clocks and can be skewed, so the label orders recorded values only."
+  }
+ ],
+ "prohibitions": [
+  "Gold labels of any other kind \u2014 semantic quality, responsibility, social appropriateness, governance correctness, model- or author-authored opinions \u2014 are inadmissible and remain CANNOT_CHECK at the campaign layer unless adjudicated under the blinded external protocol with two independent experts plus tie-break/custodian.",
+  "ORION itself is never an external subject of its own lifecycle-contract campaign; no SzeChunYiu-owned repository may appear as a subject.",
+  "Public online data does not create independent adjudication; a local hash proves chronology but not independence.",
+  "Missing license, gold, comparator, custody or semantic authority remains CANNOT_CHECK; no weak substitute may be silently substituted."
+ ],
+ "box_verdicts": {
+  "box_objective_gold_derivation": {
+   "verdict": "CONTRACT_FROZEN_EXECUTION_CANNOT_CHECK",
+   "detail": "The five objective fact classes are frozen as machine-checkable predicates with fail-closed CANNOT_CHECK semantics and hash-bound to the V1 rule of record. No gold has been derived; no campaign has executed.",
+   "open_remainder": "derive gold per these predicates on the license-eligible corpus subset; execute the lifecycle/RCS-vs-baselines campaign; comparators and custodial boundaries stay CANNOT_CHECK until they exist."
+  }
+ },
+ "scientific_authority_delta": "NONE"
+}

@@ -35,7 +35,7 @@ existing three-valued guard machinery of
 :mod:`orion.study.p3.identity_opportunity`, and executes the unblock's mining
 instruction as a census over every failure any arm commits.
 
-Protocol: ``papers/paper-03-global-knowledge-portrait/protocol/
+Protocol: ``papers/orion-13-global-knowledge-portrait/protocol/
 P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md`` and its JSON twin. The
 runner recomputes the twin's parameter digest from its own constants and refuses
 to run on a mismatch, and it refuses to report an arm number over a probe that
@@ -185,11 +185,11 @@ RESULT_SCHEMA_VERSION = "orion.p3.partial-observation-result.v1"
 PROBE_SCHEMA_VERSION = "orion.p3.partial-observation-probe-case.v1"
 
 FREEZE_DOCUMENT = (
-    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "papers/orion-13-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md"
 )
 ORIGINAL_FREEZE_TWIN = (
-    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "papers/orion-13-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.json"
 )
 
@@ -199,11 +199,11 @@ ORIGINAL_FREEZE_TWIN = (
 # runner binds to it. Nothing the original document decided is reopened --- no
 # threshold moves, no gate is renamed, no adjudicated case is touched.
 AMENDMENT_DOCUMENT = (
-    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "papers/orion-13-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.md"
 )
 AMENDMENT_TWIN = (
-    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "papers/orion-13-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.json"
 )
 
@@ -213,11 +213,11 @@ AMENDMENT_TWIN = (
 # different arm would be a relabelling rather than a repair. Amendment 001 and the
 # 2026-08-21 freeze are both left byte-identical.
 AMENDMENT_002_DOCUMENT = (
-    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "papers/orion-13-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.md"
 )
 AMENDMENT_002_TWIN = (
-    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "papers/orion-13-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.json"
 )
 
@@ -228,11 +228,11 @@ AMENDMENT_002_TWIN = (
 # No threshold moves and no gate changes its subject. Amendments 001 and 002 and
 # the 2026-08-21 freeze are all left byte-identical.
 AMENDMENT_003_DOCUMENT = (
-    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "papers/orion-13-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.md"
 )
 AMENDMENT_003_TWIN = (
-    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "papers/orion-13-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.json"
 )
 
@@ -242,11 +242,11 @@ AMENDMENT_003_TWIN = (
 # statement, its threshold, its subject and its FAIL. Amendments 001, 002 and 003
 # and the 2026-08-21 freeze are all left byte-identical.
 AMENDMENT_004_DOCUMENT = (
-    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "papers/orion-13-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.md"
 )
 AMENDMENT_004_TWIN = (
-    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "papers/orion-13-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.json"
 )
 
@@ -523,11 +523,11 @@ PROBE_HELDOUT_SYNTHETIC = "PROBE_HELDOUT_SYNTHETIC"
 
 INTACT_SOURCES: dict[str, str] = {
     INTACT_DERIVATION: (
-        "papers/paper-03-global-knowledge-portrait/gold/adjudicated/"
+        "papers/orion-13-global-knowledge-portrait/gold/adjudicated/"
         "public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl"
     ),
     INTACT_HELDOUT_REAL: (
-        "papers/paper-03-global-knowledge-portrait/gold/adjudicated/"
+        "papers/orion-13-global-knowledge-portrait/gold/adjudicated/"
         "public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl"
     ),
     INTACT_HELDOUT_SYNTHETIC: "research/p3-coordinate-necessity-v1/cases.jsonl",

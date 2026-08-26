@@ -1,10 +1,10 @@
-# P6–P8 mathematical nearest-work pressure ledger V1
+# ORION-16–ORION-18 mathematical nearest-work pressure ledger V1
 
 **Search date:** 2026-08-17  
 **Status:** first formal-methods pass; not saturated  
 **Rule:** entries below are pressure sources, not novelty conclusions. Full-text mechanism receipts and two no-material-change rounds remain required under #318/#334/#337/#340.
 
-## A. P6 — Formal Epistemic Structures and Mechanics
+## A. ORION-16 — Formal Epistemic Structures and Mechanics
 
 ### A1. Dynamic epistemic logic
 
@@ -12,7 +12,7 @@
 
 **Already supplied:** formal informational actions, action/model update, changing epistemic models, multi-agent knowledge/belief dynamics.
 
-**Consequence for P6:** no novelty claim for modeling epistemic change as actions or state/model transformations.
+**Consequence for ORION-16:** no novelty claim for modeling epistemic change as actions or state/model transformations.
 
 **Open discriminator:** whether a mechanic contract coupling typed responsibility/evidence obligations to coordinate-scoped mutation authority, dependency-minimal reopening and recursive self-audit is already represented by an existing action-logic composition.
 
@@ -24,7 +24,7 @@
 
 **Already supplied:** expansion/contraction/revision postulates and representation results; mechanized proofs of classical AGM operators and identities.
 
-**Consequence:** P6 must not present selective state change or belief revision itself as new, and should reuse formalized AGM results rather than reproving them.
+**Consequence:** ORION-16 must not present selective state change or belief revision itself as new, and should reuse formalized AGM results rather than reproving them.
 
 ### A3. Truth-maintenance and dependency-directed backtracking
 
@@ -32,7 +32,7 @@
 
 **Already supplied:** recorded justifications, consistency maintenance, incremental belief revision, explanation, dependency-directed backtracking and control structures over assumptions.
 
-**Consequence:** dependency graphs, justification records and downstream invalidation are prior art. P6.T1/T2 are useful structural lemmas but not automatically novel.
+**Consequence:** dependency graphs, justification records and downstream invalidation are prior art. ORION-16.T1/T2 are useful structural lemmas but not automatically novel.
 
 **Open discriminator:** authority-typed mutation and recursively composable mechanic contracts, not dependency reachability alone.
 
@@ -44,15 +44,15 @@
 
 **Already supplied:** modular memory/action/decision architecture; recent mechanism-level decomposition using state, control, transition, persistence, failure, learning and resource governance.
 
-**Consequence:** a catalog of agent modules or mechanic fields is not enough for P6. The paper needs formal properties and a surviving coupled residual.
+**Consequence:** a catalog of agent modules or mechanic fields is not enough for ORION-16. The paper needs formal properties and a surviving coupled residual.
 
 ### A5. Authorization and compositional state logic
 
 **Pressure families:** access-control authorization logic, process/separation logics, temporal/dynamic logics, design-by-contract and typed state-transition systems.
 
-**Consequence:** P6's read/write/authority typing and commutation theorem must be compared to established local-state and permission calculi. P8 owns the general authority layer.
+**Consequence:** ORION-16's read/write/authority typing and commutation theorem must be compared to established local-state and permission calculi. ORION-18 owns the general authority layer.
 
-## B. P7 — Epistemic Navigation in Open Worlds
+## B. ORION-17 — Epistemic Navigation in Open Worlds
 
 ### B1. Iterative graph navigation
 
@@ -60,7 +60,7 @@
 
 **Already supplied:** observe-then-navigate graph search, schema adaptation and local informed traversal.
 
-**Consequence:** P7 cannot claim iterative graph navigation or adaptive path choice.
+**Consequence:** ORION-17 cannot claim iterative graph navigation or adaptive path choice.
 
 **Open discriminator:** representation-changing topology plus support-preserving transfer/reopening and fail-closed global stopping.
 
@@ -70,7 +70,7 @@
 
 **Already supplied:** controlled interactive open-world search evaluation, evidence-collection/coverage pressure, evidence-sufficiency and when-to-stop failure analysis.
 
-**Consequence:** evidence-coverage and stopping failures are not unique to ORION. P7 must contribute a formal impossibility/authority result or a distinct evolving-topology benchmark.
+**Consequence:** evidence-coverage and stopping failures are not unique to ORION. ORION-17 must contribute a formal impossibility/authority result or a distinct evolving-topology benchmark.
 
 ### B3. Breadth, diversity and scientific-search concentration
 
@@ -80,7 +80,7 @@
 
 **Already supplied:** empirical evidence that scientific-agent exploration can remain concentrated; explicit quality/diversity/novelty search strategies and archives.
 
-**Consequence:** exploration breadth/diversity is prior empirical territory. P7 needs formal route/topology/stopping semantics, not merely a diversity metric.
+**Consequence:** exploration breadth/diversity is prior empirical territory. ORION-17 needs formal route/topology/stopping semantics, not merely a diversity metric.
 
 ### B4. POMDP/open-ended planning
 
@@ -88,15 +88,15 @@
 
 **Recent example:** Tang et al., “Tru-POMDP: Task Planning Under Uncertainty via Tree of Hypotheses and Open-Ended POMDPs,” arXiv:`2506.02860`.
 
-**Consequence:** partial observability and open-ended hypothesis spaces are established. P7.T1 must be positioned as a closure-authority indistinguishability result, and P7.T2 as a limited expressivity separation rather than a claim that changing models is new.
+**Consequence:** partial observability and open-ended hypothesis spaces are established. ORION-17.T1 must be positioned as a closure-authority indistinguishability result, and ORION-17.T2 as a limited expressivity separation rather than a claim that changing models is new.
 
-### B5. P2 ownership
+### B5. ORION-12 ownership
 
-P2 already owns route independence, question-conditioned memory, route/task stopping, censored obligations and recall-first promotion in literature discovery.
+ORION-12 already owns route independence, question-conditioned memory, route/task stopping, censored obligations and recall-first promotion in literature discovery.
 
-**Mandatory discriminator:** P7 must establish a general theorem or non-retrieval transfer result involving topology-changing reframes. Otherwise merge into P2/P1 rather than publish separately.
+**Mandatory discriminator:** ORION-17 must establish a general theorem or non-retrieval transfer result involving topology-changing reframes. Otherwise merge into ORION-12/ORION-11 rather than publish separately.
 
-## C. P8 — Epistemic Authority for Autonomous Science
+## C. ORION-18 — Epistemic Authority for Autonomous Science
 
 ### C1. Access-control authorization calculi
 
@@ -104,7 +104,7 @@ P2 already owns route independence, question-conditioned memory, route/task stop
 
 **Already supplied:** logical treatment of principals, requests, delegation/on-behalf-of relations, access-control lists and grant decisions.
 
-**Consequence:** typed issuers, delegation, scope and authorization derivations are established. P8's possible residual is not generic access control.
+**Consequence:** typed issuers, delegation, scope and authorization derivations are established. ORION-18's possible residual is not generic access control.
 
 ### C2. Deontic and input/output logics
 
@@ -114,7 +114,7 @@ P2 already owns route independence, question-conditioned memory, route/task stop
 
 **Already supplied:** formal obligations/permissions/norm outputs; recent action-model machinery deriving context-sensitive obligations with soundness/completeness results.
 
-**Consequence:** P8 must not claim permission, obligation or dynamic deontic action reasoning in isolation.
+**Consequence:** ORION-18 must not claim permission, obligation or dynamic deontic action reasoning in isolation.
 
 ### C3. Capability versus permission
 
@@ -122,7 +122,7 @@ P2 already owns route independence, question-conditioned memory, route/task stop
 
 **Already supplied:** explicit separation of allowed autonomy from technical capability, with risk/oversight/accountability-based governance levels.
 
-**Consequence:** the slogan `capability != permission` is directly prior work. P8 survives only through a formal cross-epistemic-action calculus, non-compensatory obligations, anti-laundering theorem and discriminating evidence.
+**Consequence:** the slogan `capability != permission` is directly prior work. ORION-18 survives only through a formal cross-epistemic-action calculus, non-compensatory obligations, anti-laundering theorem and discriminating evidence.
 
 ### C4. Agent abstention
 
@@ -130,7 +130,7 @@ P2 already owns route independence, question-conditioned memory, route/task stop
 
 **Already supplied:** paired should-act/should-abstain benchmark, agent-native abstention taxonomy and evidence that abstention differs from task capability.
 
-**Consequence:** P8 cannot claim abstention as new. It may use paired cases as a benchmark-design donor while distinguishing abstention from typed authority and revocation.
+**Consequence:** ORION-18 cannot claim abstention as new. It may use paired cases as a benchmark-design donor while distinguishing abstention from typed authority and revocation.
 
 ### C5. Provenance-based action guarding
 
@@ -138,7 +138,7 @@ P2 already owns route independence, question-conditioned memory, route/task stop
 
 **Already supplied:** structured provenance support for proposed tool actions and pre-execution allow/block decisions.
 
-**Consequence:** evidence-traceable action permission is prior work. P8 needs cross-domain authority composition and laundering resistance beyond provenance support alone.
+**Consequence:** evidence-traceable action permission is prior work. ORION-18 needs cross-domain authority composition and laundering resistance beyond provenance support alone.
 
 ### C6. Runtime shielding and formal enforcement
 
@@ -148,35 +148,35 @@ P2 already owns route independence, question-conditioned memory, route/task stop
 
 **Already supplied:** formally specified runtime action restriction/correction and safety guarantees under model/specification assumptions.
 
-**Consequence:** capability filtering by formal policy is established. P8's authority contracts must distinguish scientific/epistemic permission and cross-module derivation from ordinary safety shielding.
+**Consequence:** capability filtering by formal policy is established. ORION-18's authority contracts must distinguish scientific/epistemic permission and cross-module derivation from ordinary safety shielding.
 
 ### C7. Policy composition and multivalued decisions
 
 **Source family:** Belnap/bilattice access-control policy composition; grant/deny/conflict/unspecified semantics; defeasible and revocable policies.
 
-**Consequence:** P8's four-valued obligation status and policy composition require explicit comparison. Reusing a bilattice is not novelty.
+**Consequence:** ORION-18's four-valued obligation status and policy composition require explicit comparison. Reusing a bilattice is not novelty.
 
-### C8. P4/P5 ownership
+### C8. ORION-14/ORION-15 ownership
 
-P4 already owns protected non-compensatory scientific-authority promotion. P5 owns no-self-promotion and fresh/protected admission of self-change.
+ORION-14 already owns protected non-compensatory scientific-authority promotion. ORION-15 owns no-self-promotion and fresh/protected admission of self-change.
 
-**Mandatory discriminator:** P8 must prove and test cross-domain anti-laundering/revocation. If it merely generalizes P4/P5 terminology, merge it into programme synthesis.
+**Mandatory discriminator:** ORION-18 must prove and test cross-domain anti-laundering/revocation. If it merely generalizes ORION-14/ORION-15 terminology, merge it into programme synthesis.
 
 ## D. Immediate novelty contractions
 
 The first mathematical pass already forces these contractions:
 
-1. **P6:** not “a mathematics of changing epistemic state”; candidate residual is a contract-level coupling of responsibility/obligation, mutation authority, dependency-minimal reopening and recursive mechanics.
-2. **P7:** not “navigation for research agents”; candidate residual is evolving-topology navigation with support-preserving transfer and open-world completion authority.
-3. **P8:** not “capability differs from permission”; candidate residual is typed cross-domain anti-laundering and revocation across heterogeneous epistemic actions.
+1. **ORION-16:** not “a mathematics of changing epistemic state”; candidate residual is a contract-level coupling of responsibility/obligation, mutation authority, dependency-minimal reopening and recursive mechanics.
+2. **ORION-17:** not “navigation for research agents”; candidate residual is evolving-topology navigation with support-preserving transfer and open-world completion authority.
+3. **ORION-18:** not “capability differs from permission”; candidate residual is typed cross-domain anti-laundering and revocation across heterogeneous epistemic actions.
 
 ## E. Open full-text and mechanism work
 
 - formalize exact overlap with DEL action models and belief-revision operators;
-- compare P6 contracts against separation/process/authorization logics;
+- compare ORION-16 contracts against separation/process/authorization logics;
 - search historical navigation under changing representations/model spaces;
 - search formal impossibility/identification results for unknown-denominator completion;
-- compare P8 derivation rules against access-control, input/output, dynamic deontic and bilattice policy calculi;
+- compare ORION-18 derivation rules against access-control, input/output, dynamic deontic and bilattice policy calculi;
 - retrieve official code/proof artifacts where available;
 - create one MechanismAssimilationReceipt per atomic donor;
 - run hostile `already solved` searches for each full residual composition;

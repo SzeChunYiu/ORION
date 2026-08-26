@@ -34,9 +34,9 @@ owner-separated custody and endpoint-preserving comparator adapters.
 | paper | governing prospective endpoint | local authority |
 |---|---|---|
 | P1 | Minimal licensed scientific transition from noisy natural evidence, with protected recovery/utility, no excess broad rewrite, preservation and dependency-impact gates, versus nine arms in two source-disjoint waves (896 clusters). | `research/claim_expansion/p1/gpt_r7/R7A_MAXT_POWER_AMENDMENT_V2.json` |
-| P2 | Paired task-world gold-recall success without false inclusion across four source-disjoint arenas under identical query/provider/budget/scoring exposure, independent obligation custody and three comparators (768 clusters). | `papers/paper-02-open-world-scientific-discovery/protocol/P2_TASK_WORLD_SUCCESSOR_V2.json` |
-| P3 | Floor-adjusted avoidable false merge or downstream decision harm with nonzero referent, construct, measurement and temporal-context variation, raw-text attack, protected gold and four comparators (768 clusters). | `papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json` |
-| P5 | Correct minimal revision with preservation and protected fresh-transfer success across eight revision classes and eight domains, versus six arms with non-compensatory harm gates (768 clusters). | `papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json` |
+| P2 | Paired task-world gold-recall success without false inclusion across four source-disjoint arenas under identical query/provider/budget/scoring exposure, independent obligation custody and three comparators (768 clusters). | `papers/orion-12-open-world-scientific-discovery/protocol/P2_TASK_WORLD_SUCCESSOR_V2.json` |
+| P3 | Floor-adjusted avoidable false merge or downstream decision harm with nonzero referent, construct, measurement and temporal-context variation, raw-text attack, protected gold and four comparators (768 clusters). | `papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json` |
+| P5 | Correct minimal revision with preservation and protected fresh-transfer success across eight revision classes and eight domains, versus six arms with non-compensatory harm gates (768 clusters). | `papers/orion-15-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json` |
 
 The exact protocol payload hashes are recorded in
 `PUBLIC_SOURCE_BINDINGS.json`; the local files are pinned again in

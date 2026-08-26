@@ -25,7 +25,7 @@ Q3_COMPLETE_TERMINAL = "Q3_PROSPECTIVE_CASE_SERIES_COMPLETE__N3_VALID__AGREEMENT
 REQUIRED = [
     "papers/Q_QG_NATURE_SKILLS_PUBLICATION_CLOSURE_V1.md",
     "papers/Q_QG_PUBLICATION_READINESS_V3.md",
-    "papers/Q_QG_VENUE_TARGET_MATRIX_V1.md",
+    "papers/archive/2026-08-pre-unification/Q_QG_VENUE_TARGET_MATRIX_V1.md",
     "papers/Q_QG_DATA_CODE_AVAILABILITY_V1.md",
     "papers/Q_QG_REFERENCE_CANON_V1.md",
     "papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib",
@@ -36,50 +36,50 @@ REQUIRED = [
     "papers/Q_QG_CONSISTENCY_SWEEP_V1.md",
     "papers/Q_QG_SECOND_REVIEW_SYNTHESIS_V1.md",
     # Q1 final publication draft + evidence contracts
-    "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
-    "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md",
-    "papers/Q-paper-01-tare-expressivity/PUBLICATION_FOUNDATION_V2.md",
-    "papers/Q-paper-01-tare-expressivity/MOCK_REVIEW_V2.md",
-    "papers/Q-paper-01-tare-expressivity/PROOF_AND_EVIDENCE_MAP_V2.md",
-    "papers/Q-paper-01-tare-expressivity/TARE_FULLTEXT_DONOR_BOUNDARY_V3.md",
+    "papers/archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
+    "papers/orion-05-tare-expressivity/CLAIM_LEDGER_V2.md",
+    "papers/orion-05-tare-expressivity/PUBLICATION_FOUNDATION_V2.md",
+    "papers/orion-05-tare-expressivity/MOCK_REVIEW_V2.md",
+    "papers/orion-05-tare-expressivity/PROOF_AND_EVIDENCE_MAP_V2.md",
+    "papers/orion-05-tare-expressivity/TARE_FULLTEXT_DONOR_BOUNDARY_V3.md",
     # Q2 final V3
-    "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md",
-    "papers/Q-paper-02-recursive-recovery/PUBLICATION_FOUNDATION_V2.md",
-    "papers/Q-paper-02-recursive-recovery/MOCK_REVIEW_V2.md",
-    "papers/Q-paper-02-recursive-recovery/Q2_TRANSITION_GRAPH_V2.json",
-    "papers/Q-paper-02-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json",
-    "papers/Q-paper-02-recursive-recovery/check_transition_graph.py",
+    "papers/orion-06-recursive-recovery/MANUSCRIPT_V3.md",
+    "papers/orion-06-recursive-recovery/PUBLICATION_FOUNDATION_V2.md",
+    "papers/orion-06-recursive-recovery/MOCK_REVIEW_V2.md",
+    "papers/orion-06-recursive-recovery/Q2_TRANSITION_GRAPH_V2.json",
+    "papers/orion-06-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json",
+    "papers/orion-06-recursive-recovery/check_transition_graph.py",
     # Q3 final V3 + prospective custody/completion
-    "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md",
-    "papers/Q-paper-03-dual-instrument/CLAIM_LEDGER_V2.md",
-    "papers/Q-paper-03-dual-instrument/PUBLICATION_FOUNDATION_V2.md",
-    "papers/Q-paper-03-dual-instrument/Q3_ADDITIONAL_PROSPECTIVE_INSTANCES_PROTOCOL_V1.md",
-    "papers/Q-paper-03-dual-instrument/Q3_REPLACEMENT_PROSPECTIVE_PROTOCOL_V2.md",
-    "papers/Q-paper-03-dual-instrument/Q3_CONTAMINATION_DISPOSITION_2026-08-22.md",
-    "papers/Q-paper-03-dual-instrument/Q3_D2_D3_DISPOSITION_V2.md",
-    "papers/Q-paper-03-dual-instrument/Q3_NOVELTY_REFRESH_2026-08-22.md",
-    "papers/Q-paper-03-dual-instrument/Q3_COMPLETION_RECEIPT_V3.md",
-    "papers/Q-paper-03-dual-instrument/check_q3_completion.py",
-    "papers/Q-paper-03-dual-instrument/check_q3_result_bindings.py",
-    "papers/Q-paper-03-dual-instrument/replay_q3_v0.py",
+    "papers/orion-07-dual-instrument/MANUSCRIPT_V3.md",
+    "papers/orion-07-dual-instrument/CLAIM_LEDGER_V2.md",
+    "papers/orion-07-dual-instrument/PUBLICATION_FOUNDATION_V2.md",
+    "papers/orion-07-dual-instrument/Q3_ADDITIONAL_PROSPECTIVE_INSTANCES_PROTOCOL_V1.md",
+    "papers/orion-07-dual-instrument/Q3_REPLACEMENT_PROSPECTIVE_PROTOCOL_V2.md",
+    "papers/orion-07-dual-instrument/Q3_CONTAMINATION_DISPOSITION_2026-08-22.md",
+    "papers/orion-07-dual-instrument/Q3_D2_D3_DISPOSITION_V2.md",
+    "papers/orion-07-dual-instrument/Q3_NOVELTY_REFRESH_2026-08-22.md",
+    "papers/orion-07-dual-instrument/Q3_COMPLETION_RECEIPT_V3.md",
+    "papers/orion-07-dual-instrument/check_q3_completion.py",
+    "papers/orion-07-dual-instrument/check_q3_result_bindings.py",
+    "papers/orion-07-dual-instrument/replay_q3_v0.py",
     "research/extensions/orion-qg/QG19_OUTSIDE_CONE_SHARPNESS_RESULTS.json",
     "research/extensions/orion-qg/QG20_SIXLCU_OBJECTIVE_SCOPE_RESULTS.json",
     # Q4 final V3
-    "papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md",
-    "papers/Q-paper-04-typed-state/PUBLICATION_FOUNDATION_V2.md",
-    "papers/Q-paper-04-typed-state/MOCK_REVIEW_V2.md",
-    "papers/Q-paper-04-typed-state/INFORMATION_PARITY_AND_ARTIFACT_MAP_V2.md",
+    "papers/orion-08-typed-state/MANUSCRIPT_V3.md",
+    "papers/orion-08-typed-state/PUBLICATION_FOUNDATION_V2.md",
+    "papers/orion-08-typed-state/MOCK_REVIEW_V2.md",
+    "papers/orion-08-typed-state/INFORMATION_PARITY_AND_ARTIFACT_MAP_V2.md",
     # QG1 final refreshed V3
-    "papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md",
-    "papers/QG-paper-01-compilation-regime-geometry/PUBLICATION_FOUNDATION_V3.md",
-    "papers/QG-paper-01-compilation-regime-geometry/CROSS_FAMILY_EVIDENCE_MATRIX_V3.md",
-    "papers/QG-paper-01-compilation-regime-geometry/FIGURE_CONTRACT_V3.md",
-    "papers/QG-paper-01-compilation-regime-geometry/MOCK_REVIEW_V2.md",
+    "papers/orion-09-compilation-regime-geometry/MANUSCRIPT_V3.md",
+    "papers/orion-09-compilation-regime-geometry/PUBLICATION_FOUNDATION_V3.md",
+    "papers/orion-09-compilation-regime-geometry/CROSS_FAMILY_EVIDENCE_MATRIX_V3.md",
+    "papers/orion-09-compilation-regime-geometry/FIGURE_CONTRACT_V3.md",
+    "papers/orion-09-compilation-regime-geometry/MOCK_REVIEW_V2.md",
     # QG2 final V3
-    "papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md",
-    "papers/QG-paper-02-certified-static-forecasting/PUBLICATION_FOUNDATION_V2.md",
-    "papers/QG-paper-02-certified-static-forecasting/MOCK_REVIEW_V2.md",
-    "papers/QG-paper-02-certified-static-forecasting/FORECAST_CERTIFICATE_AND_BENCHMARK_MAP_V2.md",
+    "papers/orion-10-certified-static-forecasting/MANUSCRIPT_V3.md",
+    "papers/orion-10-certified-static-forecasting/PUBLICATION_FOUNDATION_V2.md",
+    "papers/orion-10-certified-static-forecasting/MOCK_REVIEW_V2.md",
+    "papers/orion-10-certified-static-forecasting/FORECAST_CERTIFICATE_AND_BENCHMARK_MAP_V2.md",
     # nearest-donor cards
     "papers/literature_cards/TARE_2601.05740_PAPER_CARD_V1.md",
     "papers/literature_cards/ISA_3572895_PAPER_CARD_V1.md",
@@ -92,12 +92,12 @@ REQUIRED = [
 ]
 
 FINAL_MANUSCRIPTS = [
-    ("Q1", "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md", ORIGINAL_CUT),
-    ("Q2", "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md", ORIGINAL_CUT),
-    ("Q3", "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md", Q3_RESULT_CUT),
-    ("Q4", "papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md", ORIGINAL_CUT),
-    ("QG1", "papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md", QG1_REFRESH_CUT),
-    ("QG2", "papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md", ORIGINAL_CUT),
+    ("Q1", "papers/archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md", ORIGINAL_CUT),
+    ("Q2", "papers/orion-06-recursive-recovery/MANUSCRIPT_V3.md", ORIGINAL_CUT),
+    ("Q3", "papers/orion-07-dual-instrument/MANUSCRIPT_V3.md", Q3_RESULT_CUT),
+    ("Q4", "papers/orion-08-typed-state/MANUSCRIPT_V3.md", ORIGINAL_CUT),
+    ("QG1", "papers/orion-09-compilation-regime-geometry/MANUSCRIPT_V3.md", QG1_REFRESH_CUT),
+    ("QG2", "papers/orion-10-certified-static-forecasting/MANUSCRIPT_V3.md", ORIGINAL_CUT),
 ]
 
 SCIENCE_PREFIXES = (
@@ -243,18 +243,18 @@ def main() -> int:
             errors.append(f"MISSING_REPRODUCIBILITY_SECTION:{paper_id}")
 
     # Q1: synchronized science + full donor subtraction.
-    q1_ledger = text("papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md")
+    q1_ledger = text("papers/orion-05-tare-expressivity/CLAIM_LEDGER_V2.md")
     for token in ("PROVEN-ALL-N", "PROSPECTIVE-BOUNDED", "REFUTED",
                   "MAX_R6S_ALL_N_COMPOSITION", "MAX_R6R_PROSPECTIVE_FRESH_SUBJECT"):
         if token not in q1_ledger:
             errors.append(f"Q1_MISSING_SYNCHRONIZED_TOKEN:{token}")
-    q1 = text("papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md").lower()
+    q1 = text("papers/archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md").lower()
     for token in ("user-selectable", "non-unique tag", "canonical anticommuting", "donor-exposed"):
         if token not in q1:
             errors.append(f"Q1_DONOR_SUBTRACTION_MISSING:{token}")
 
     # Q2: graph denominator/audit + scientific-agent donors must be load-bearing.
-    q2 = text("papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md").lower()
+    q2 = text("papers/orion-06-recursive-recovery/MANUSCRIPT_V3.md").lower()
     for token in ("23 result nodes", "13 asserted successor edges", "51-receipt", "scienceagentbench"):
         if token not in q2:
             errors.append(f"Q2_V3_GRAPH_OR_DONOR_MISSING:{token}")
@@ -263,8 +263,8 @@ def main() -> int:
 
     # Q3: completion, negative result and anti-reliability framing must be visible.
     readiness = text("papers/Q_QG_PUBLICATION_READINESS_V3.md")
-    q3 = text("papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md").lower()
-    q3_ledger = text("papers/Q-paper-03-dual-instrument/CLAIM_LEDGER_V2.md")
+    q3 = text("papers/orion-07-dual-instrument/MANUSCRIPT_V3.md").lower()
+    q3_ledger = text("papers/orion-07-dual-instrument/CLAIM_LEDGER_V2.md")
     if Q3_COMPLETE_TERMINAL not in readiness or Q3_COMPLETE_TERMINAL not in q3_ledger:
         errors.append("Q3_COMPLETE_TERMINAL_NOT_BOUND")
     for token in ("39,489", "zero p0/label mismatches", "agreement did not imply", "contaminated", "three valid units"):
@@ -277,19 +277,19 @@ def main() -> int:
             errors.append(f"Q3_ILLEGAL_AGGREGATE_REPORTING:{forbidden}")
 
     # Q4: stale memory/context governance/P13 are distinct from bounded Q4 result.
-    q4 = text("papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md").lower()
+    q4 = text("papers/orion-08-typed-state/MANUSCRIPT_V3.md").lower()
     for token in ("stale", "contextnest", "scope invalidation", "p13", "matched visible information"):
         if token not in q4:
             errors.append(f"Q4_V3_BOUNDARY_MISSING:{token}")
 
     # QG1: current-main refresh really entered final manuscript.
-    qg1 = text("papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md").lower()
+    qg1 = text("papers/orion-09-compilation-regime-geometry/MANUSCRIPT_V3.md").lower()
     for token in ("kappa_r6i = 1", "qg16", "syndrome", "proof-derived ceiling", "outside the cone"):
         if token not in qg1:
             errors.append(f"QG1_V3_FRESHNESS_RESULT_MISSING:{token}")
 
     # QG2: current static-analysis donors and anti-accuracy framing visible.
-    qg2 = text("papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md").lower()
+    qg2 = text("papers/orion-10-certified-static-forecasting/MANUSCRIPT_V3.md").lower()
     for token in ("qet", "qualtran", "99.99", "forecastcertificate", "timing is secondary"):
         if token not in qg2:
             errors.append(f"QG2_V3_BOUNDARY_MISSING:{token}")

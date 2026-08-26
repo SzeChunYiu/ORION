@@ -1,10 +1,10 @@
-# P7 candidate journal-readiness plan — Epistemic Navigation in Open Worlds
+# ORION-17 candidate journal-readiness plan — Epistemic Navigation in Open Worlds
 
 **Current terminal:** `CANNOT_CHECK` / not a promoted paper / not peer-review ready.
 
 ## 1. Distinct-object gate
-- [ ] #343 proves P7 is more than P2 route-governance terminology.
-- [ ] exact P2-owned mechanics are listed and excluded from P7 novelty.
+- [ ] #343 proves ORION-17 is more than ORION-12 route-governance terminology.
+- [ ] exact ORION-12-owned mechanics are listed and excluded from ORION-17 novelty.
 - [ ] topology-changing navigation residual has a formal definition and direct discriminator.
 
 ## 2. Nearest-work closure
@@ -39,7 +39,7 @@
 - [ ] graph-navigation baseline.
 - [ ] active-information/POMDP baseline where valid.
 - [ ] search-agent/replanning baseline.
-- [ ] P2-style route-governance baseline.
+- [ ] ORION-12-style route-governance baseline.
 - [ ] resource-matched random/exploratory baseline.
 - [ ] direct no-topology-change ablation.
 - [ ] direct no-censored-obligation ablation.
@@ -71,4 +71,4 @@
 
 ## Done definition
 
-Promote P7 only if topology-changing epistemic navigation shows a distinct, prospectively identified benefit beyond P2 and strong navigation/planning baselines, including a non-retrieval transfer test. Otherwise merge the useful navigation framing into P2.
+Promote ORION-17 only if topology-changing epistemic navigation shows a distinct, prospectively identified benefit beyond ORION-12 and strong navigation/planning baselines, including a non-retrieval transfer test. Otherwise merge the useful navigation framing into ORION-12.

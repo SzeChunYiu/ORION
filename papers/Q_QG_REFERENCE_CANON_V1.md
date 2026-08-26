@@ -17,11 +17,11 @@ This is not a complete related-work review. It is the **minimum mandatory canon*
 
 | ID | Verified reference | Identifier | Status | Required in |
 |---|---|---|---|---|
-| QC-1 | Niclas Schillo, Andreas Sturm, Rüdiger Quay. **TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation.** 2026. | arXiv:2601.05740v4; DOI `10.48550/arXiv.2601.05740` | `ARXIV_CURRENT` + `RECHECK_AT_SUBMISSION` | Q1, QG1, QG2 |
-| QC-2 | Artur F. Izmaylov, Tzu-Ching Yen, Robert A. Lang, Vladyslav Verteletskyi. **Unitary Partitioning Approach to the Measurement Problem in the Variational Quantum Eigensolver Method.** *J. Chem. Theory Comput.* 16(1), 190–195 (2020). | DOI `10.1021/acs.jctc.9b00791` | `VERIFIED_PRIMARY` | Q1 donor background; QG1 when anticommuting partitioning is discussed |
-| QC-3 | Matthew P. Harrigan et al. **Expressing and Analyzing Quantum Algorithms with Qualtran.** 2024. | arXiv:2409.04643 | `ARXIV_CURRENT` | QG2 resource-analysis donor; optional Q1/QG1 context |
-| QC-4 | Georg Moser, Michael Schaper. **Automated Expected Cost Analysis for Quantum Programs.** 2026. | arXiv:2604.03971 | `ARXIV_CURRENT` | QG2 mandatory static-analysis donor |
-| QC-5 | Tyler LeBlond, Christopher Dean, George Watkins, Ryan S. Bennink. **Realistic Cost to Execute Practical Quantum Circuits using Direct Clifford+T Lattice Surgery Compilation.** | arXiv:2311.10686 | `ARXIV_CURRENT` / publication status recheck | QG2 representative compilation/resource-estimation donor |
+| QC-1 | Niclas Schillo, Andreas Sturm, Rüdiger Quay. **TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation.** 2026. | arXiv:2601.05740v4; DOI `10.48550/arXiv.2601.05740` | `ARXIV_CURRENT` + `RECHECK_AT_SUBMISSION` | ORION-01, ORION-09, ORION-10 |
+| QC-2 | Artur F. Izmaylov, Tzu-Ching Yen, Robert A. Lang, Vladyslav Verteletskyi. **Unitary Partitioning Approach to the Measurement Problem in the Variational Quantum Eigensolver Method.** *J. Chem. Theory Comput.* 16(1), 190–195 (2020). | DOI `10.1021/acs.jctc.9b00791` | `VERIFIED_PRIMARY` | ORION-01 donor background; ORION-09 when anticommuting partitioning is discussed |
+| QC-3 | Matthew P. Harrigan et al. **Expressing and Analyzing Quantum Algorithms with Qualtran.** 2024. | arXiv:2409.04643 | `ARXIV_CURRENT` | ORION-10 resource-analysis donor; optional ORION-01/ORION-09 context |
+| QC-4 | Georg Moser, Michael Schaper. **Automated Expected Cost Analysis for Quantum Programs.** 2026. | arXiv:2604.03971 | `ARXIV_CURRENT` | ORION-10 mandatory static-analysis donor |
+| QC-5 | Tyler LeBlond, Christopher Dean, George Watkins, Ryan S. Bennink. **Realistic Cost to Execute Practical Quantum Circuits using Direct Clifford+T Lattice Surgery Compilation.** | arXiv:2311.10686 | `ARXIV_CURRENT` / publication status recheck | ORION-10 representative compilation/resource-estimation donor |
 
 ### QC-1 title-drift warning
 
@@ -31,14 +31,14 @@ Earlier repository prose sometimes uses **“Block Encoding Linear Combinations 
 
 | ID | Verified reference | Identifier | Status | Required in |
 |---|---|---|---|---|
-| AS-1 | John R. Rice. **The Algorithm Selection Problem.** *Advances in Computers* 15, 65–118 (1976). | DOI `10.1016/S0065-2458(08)60520-3` | `VERIFIED_PRIMARY/DBLP` | QG1 mandatory conceptual ancestor |
-| AS-2 | David H. Wolpert, William G. Macready. **No Free Lunch Theorems for Optimization.** *IEEE Trans. Evol. Comput.* 1(1), 67–82 (1997). | DOI `10.1109/4235.585893` | `VERIFIED_PRIMARY/IBM+DOI` | QG1 optional conceptual boundary; do not use as a novelty substitute |
-| AS-3 | Kate Smith-Miles, Mario Andrés Muñoz. **Instance Space Analysis for Algorithm Testing: Methodology and Software Tools.** *ACM Computing Surveys* 55(12), Article 255, 1–31 (2023). | DOI `10.1145/3572895` | `VERIFIED_PRIMARY` | QG1 **mandatory primary parent** |
-| AS-4 | Mario Andrés Muñoz et al. **instancespace: A Python package for insightful algorithm testing through Instance Space Analysis.** *SoftwareX* 31, 102246 (2025). | DOI `10.1016/j.softx.2025.102246` | `VERIFIED_PRIMARY` | QG1 current-tooling context, optional |
+| AS-1 | John R. Rice. **The Algorithm Selection Problem.** *Advances in Computers* 15, 65–118 (1976). | DOI `10.1016/S0065-2458(08)60520-3` | `VERIFIED_PRIMARY/DBLP` | ORION-09 mandatory conceptual ancestor |
+| AS-2 | David H. Wolpert, William G. Macready. **No Free Lunch Theorems for Optimization.** *IEEE Trans. Evol. Comput.* 1(1), 67–82 (1997). | DOI `10.1109/4235.585893` | `VERIFIED_PRIMARY/IBM+DOI` | ORION-09 optional conceptual boundary; do not use as a novelty substitute |
+| AS-3 | Kate Smith-Miles, Mario Andrés Muñoz. **Instance Space Analysis for Algorithm Testing: Methodology and Software Tools.** *ACM Computing Surveys* 55(12), Article 255, 1–31 (2023). | DOI `10.1145/3572895` | `VERIFIED_PRIMARY` | ORION-09 **mandatory primary parent** |
+| AS-4 | Mario Andrés Muñoz et al. **instancespace: A Python package for insightful algorithm testing through Instance Space Analysis.** *SoftwareX* 31, 102246 (2025). | DOI `10.1016/j.softx.2025.102246` | `VERIFIED_PRIMARY` | ORION-09 current-tooling context, optional |
 
-### QG1 positioning rule
+### ORION-09 positioning rule
 
-QG1 may **not** claim novelty for:
+ORION-09 may **not** claim novelty for:
 - mapping regions in feature/instance space where algorithms behave differently;
 - selecting algorithms from instance features;
 - discovering that performance depends on problem structure.
@@ -49,30 +49,30 @@ Its candidate residual must be stated more narrowly: exact/witness-carrying comp
 
 | ID | Verified reference | Identifier | Status | Required in |
 |---|---|---|---|---|
-| AR-1 | Chris Lu et al. **The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery.** 2024. | arXiv:2408.06292 | `ARXIV_CURRENT` | Q2 broad autonomous-research donor; Q3 context |
-| AR-2 | Deepak Nathani et al. **MLGym: A New Framework and Benchmark for Advancing AI Research Agents.** 2025. | arXiv:2502.14499 | `ARXIV_CURRENT` | Q3 benchmark parent |
-| AR-3 | Jonathan Bragg et al. **AstaBench: Rigorous Benchmarking of AI Agents with a Scientific Research Suite.** 2025. | arXiv:2510.21652 | `ARXIV_CURRENT` | Q2/Q3 mandatory benchmark donor |
-| AR-4 | Rui Meng et al. **ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence.** 2026. | arXiv:2605.26340 | `ARXIV_CURRENT` | Q2 **mandatory provenance/verifiability donor**; Q3 context |
-| AR-5 | Tianyu Liu et al. **Benchmarking AI Agents for Addressing Scientific Challenges Across Scales** (SciAgentArena). 2026. | arXiv:2606.12736 | `ARXIV_CURRENT` | Q3 mandatory current benchmark context; Q2 optional |
-| AR-6 | Yutaro Yamada et al. **Towards End-to-End Automation of AI Research.** 2026. | arXiv:2606.15497 | `ARXIV_CURRENT` | Q2 current end-to-end automation context, optional |
+| AR-1 | Chris Lu et al. **The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery.** 2024. | arXiv:2408.06292 | `ARXIV_CURRENT` | ORION-02 broad autonomous-research donor; ORION-03 context |
+| AR-2 | Deepak Nathani et al. **MLGym: A New Framework and Benchmark for Advancing AI Research Agents.** 2025. | arXiv:2502.14499 | `ARXIV_CURRENT` | ORION-03 benchmark parent |
+| AR-3 | Jonathan Bragg et al. **AstaBench: Rigorous Benchmarking of AI Agents with a Scientific Research Suite.** 2025. | arXiv:2510.21652 | `ARXIV_CURRENT` | ORION-02/ORION-03 mandatory benchmark donor |
+| AR-4 | Rui Meng et al. **ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence.** 2026. | arXiv:2605.26340 | `ARXIV_CURRENT` | ORION-02 **mandatory provenance/verifiability donor**; ORION-03 context |
+| AR-5 | Tianyu Liu et al. **Benchmarking AI Agents for Addressing Scientific Challenges Across Scales** (SciAgentArena). 2026. | arXiv:2606.12736 | `ARXIV_CURRENT` | ORION-03 mandatory current benchmark context; ORION-02 optional |
+| AR-6 | Yutaro Yamada et al. **Towards End-to-End Automation of AI Research.** 2026. | arXiv:2606.15497 | `ARXIV_CURRENT` | ORION-02 current end-to-end automation context, optional |
 
-### Q2/Q3 donor-subtraction rule
+### ORION-02/ORION-03 donor-subtraction rule
 
 - ScientistOne/Chain-of-Evidence owns the broad claim that research-agent outputs should be claim-to-evidence traceable and audited for references, scores and method-code alignment.
 - AstaBench, MLGym and SciAgentArena own substantial territory in controlled scientific-agent evaluation and benchmark design.
-- Q2 must therefore headline **negative-result successor discipline**, not evidence provenance or scientific-agent benchmarking generally.
-- Q3 must headline **inter-instrument diagnosis/agreement on unresolved frontier questions with deferred scoring**, not generic research-agent benchmarking.
+- ORION-02 must therefore headline **negative-result successor discipline**, not evidence provenance or scientific-agent benchmarking generally.
+- ORION-03 must headline **inter-instrument diagnosis/agreement on unresolved frontier questions with deferred scoring**, not generic research-agent benchmarking.
 
 ## Typed/scoped state and memory canon
 
 | ID | Verified reference | Identifier | Status | Required in |
 |---|---|---|---|---|
-| TS-1 | Hanxiang Chao, Yihan Bai, Rui Sheng, Tianle Li, Yushi Sun. **STALE: Can LLM Agents Know When Their Memories Are No Longer Valid?** 2026. | arXiv:2605.06527 | `ARXIV_CURRENT` | Q4 mandatory current stale-memory donor |
-| TS-2 | Misha Sulpovar, Benn R. Konsynski, Qaish Kanchwala, Gabe Goodhart. **ContextNest: Verifiable Context Governance for Autonomous AI Agent.** 2026. | arXiv:2607.02116 | `ARXIV_CURRENT` | Q4 mandatory current provenance/version-governance donor |
+| TS-1 | Hanxiang Chao, Yihan Bai, Rui Sheng, Tianle Li, Yushi Sun. **STALE: Can LLM Agents Know When Their Memories Are No Longer Valid?** 2026. | arXiv:2605.06527 | `ARXIV_CURRENT` | ORION-04 mandatory current stale-memory donor |
+| TS-2 | Misha Sulpovar, Benn R. Konsynski, Qaish Kanchwala, Gabe Goodhart. **ContextNest: Verifiable Context Governance for Autonomous AI Agent.** 2026. | arXiv:2607.02116 | `ARXIV_CURRENT` | ORION-04 mandatory current provenance/version-governance donor |
 
-### Q4 donor-subtraction rule
+### ORION-04 donor-subtraction rule
 
-Q4 may not claim novelty for:
+ORION-04 may not claim novelty for:
 - detecting or revising stale memories generally;
 - provenance/version tracking generally;
 - deterministic retrieval/context governance generally;
@@ -82,35 +82,35 @@ The retained manuscript object is bounded matched-information mechanism isolatio
 
 ## Mandatory citation insertion map
 
-### Q1
+### ORION-01
 - Introduction first TARE mention → QC-1.
 - Anticommuting/unitary-partitioning donor discussion → QC-2.
 - Related-work/resource-estimation paragraph if retained → representative QC-3/QC-5, without implying direct equivalence.
 
-### Q2
+### ORION-02
 - autonomous research systems → AR-1 and/or AR-6;
 - rigorous scientific-agent evaluation → AR-3;
 - claim/evidence verifiability → AR-4;
 - any statement about current science-agent limits → AR-3/AR-5, with exact scope.
 
-### Q3
+### ORION-03
 - research-agent benchmark landscape → AR-2, AR-3, AR-5;
 - end-to-end scientific agents → AR-1/AR-6;
-- explicitly state that these score task/system outputs, whereas Q3 proposes a different frontier inter-instrument object.
+- explicitly state that these score task/system outputs, whereas ORION-03 proposes a different frontier inter-instrument object.
 
-### Q4
+### ORION-04
 - stale-memory revision → TS-1;
 - governed/versioned/provenanced agent context → TS-2;
 - add classic VOI/provenance references only after exact metadata verification; do not rely on uncited textbook memory.
 
-### QG1
+### ORION-09
 - TARE family → QC-1;
 - algorithm-selection ancestry → AS-1;
 - primary instance-space parent → AS-3;
 - optional no-free-lunch context → AS-2;
 - current InstanceSpace tooling only if discussed → AS-4.
 
-### QG2
+### ORION-10
 - TARE family → QC-1;
 - compositional resource analysis → QC-3;
 - automated static quantum cost analysis → QC-4;
@@ -120,9 +120,9 @@ The retained manuscript object is bounded matched-information mechanism isolatio
 
 Before submission, run a complete manuscript-to-bibliography audit and add/verify:
 - the exact upstream DUCC Hamiltonian Library citation/metadata/licence;
-- any Clifford/stabilizer synthesis references named in Q1/QG1;
+- any Clifford/stabilizer synthesis references named in ORION-01/ORION-09;
 - any SixLCU/StabPrep donor references if those families rely on external published methods rather than repository-defined comparison families;
-- classic value-of-information and provenance references used in Q4;
+- classic value-of-information and provenance references used in ORION-04;
 - venue-specific references introduced during analogue-paper calibration.
 
 ## Reference-integrity hard gates

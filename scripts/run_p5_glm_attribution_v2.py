@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """P5 NR-01 revival driver: V1-prompt replay control + V2 licensed-evidence staged attribution.
 
-Frozen protocol: papers/paper-05-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json
+Frozen protocol: papers/orion-15-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json
 (pre-registered before any V2 outcome was produced).
 
 Runs the frozen 24-case suite (PROTECTED_SUITE_V1.json, untouched) in two arms under
@@ -10,7 +10,7 @@ identical serving conditions:
   control   -- verbatim V1 ATTRIBUTION_PROMPT (imported from run_p5_glm_attribution.py)
   treatment -- Stage A licensed-evidence extraction + deterministic Stage B mapping
 
-Outputs to papers/paper-05-self-orion/evidence/glm-5.2-attribution-v2/ (new directory;
+Outputs to papers/orion-15-self-orion/evidence/glm-5.2-attribution-v2/ (new directory;
 the historical V1 evidence dir is never written).
 
 Usage: python3 scripts/run_p5_glm_attribution_v2.py [--arm control|treatment|both]
@@ -29,9 +29,9 @@ import urllib.request
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-SUITE_PATH = REPO / "papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json"
-PROTOCOL_PATH = REPO / "papers/paper-05-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json"
-OUT_DIR = REPO / "papers/paper-05-self-orion/evidence/glm-5.2-attribution-v2"
+SUITE_PATH = REPO / "papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json"
+PROTOCOL_PATH = REPO / "papers/orion-15-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json"
+OUT_DIR = REPO / "papers/orion-15-self-orion/evidence/glm-5.2-attribution-v2"
 V1_SCRIPT = REPO / "scripts/run_p5_glm_attribution.py"
 
 ENDPOINT = "https://api.z.ai/api/anthropic/v1/messages"

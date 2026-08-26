@@ -1,0 +1,204 @@
+{
+  "schema_version": "orion.p5.hidden-cause-attribution.v1",
+  "paper_id": "P5",
+  "issue": 282,
+  "model": "glm-5.2",
+  "campaign_id": "p5-glm-5.2-attribution-v1",
+  "evidence_files": [
+    "papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl",
+    "papers/orion-15-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json"
+  ],
+  "summary_metrics": {
+    "total_cases": 24,
+    "correct_attributions": 21,
+    "incorrect_attributions": 3,
+    "errors": 0,
+    "accuracy": 0.875,
+    "macro_precision": 0.8958333333333334,
+    "macro_recall": 0.875,
+    "macro_f1": 0.8726190476190476,
+    "false_method_change_rate": 0.14285714285714285
+  },
+  "confidence_distribution": {
+    "MEDIUM": 9,
+    "HIGH": 15
+  },
+  "per_family_metrics": {
+    "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE": {
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "tp": 2,
+      "fp": 0,
+      "fn": 1,
+      "cases": [
+        "P5-HC-010",
+        "P5-HC-011",
+        "P5-HC-012"
+      ],
+      "correct": 2,
+      "total": 3
+    },
+    "EVALUATOR_METRIC_BUG": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "cases": [
+        "P5-HC-013",
+        "P5-HC-014",
+        "P5-HC-015"
+      ],
+      "correct": 3,
+      "total": 3
+    },
+    "IMPLEMENTATION_BUG": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.8571428571428571,
+      "tp": 3,
+      "fp": 1,
+      "fn": 0,
+      "cases": [
+        "P5-HC-007",
+        "P5-HC-008",
+        "P5-HC-009"
+      ],
+      "correct": 3,
+      "total": 3
+    },
+    "MEASUREMENT_SPECIFICATION_GAP": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "cases": [
+        "P5-HC-019",
+        "P5-HC-020",
+        "P5-HC-021"
+      ],
+      "correct": 3,
+      "total": 3
+    },
+    "METHOD_BASIS_GAP": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.8571428571428571,
+      "tp": 3,
+      "fp": 1,
+      "fn": 0,
+      "cases": [
+        "P5-HC-022",
+        "P5-HC-023",
+        "P5-HC-024"
+      ],
+      "correct": 3,
+      "total": 3
+    },
+    "REPRESENTATION_GAP": {
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "f1": 0.6666666666666666,
+      "tp": 2,
+      "fp": 1,
+      "fn": 1,
+      "cases": [
+        "P5-HC-016",
+        "P5-HC-017",
+        "P5-HC-018"
+      ],
+      "correct": 2,
+      "total": 3
+    },
+    "RETRIEVAL_MISS": {
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "tp": 2,
+      "fp": 0,
+      "fn": 1,
+      "cases": [
+        "P5-HC-001",
+        "P5-HC-002",
+        "P5-HC-003"
+      ],
+      "correct": 2,
+      "total": 3
+    },
+    "ROUTING_PLANNING_MISS": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "cases": [
+        "P5-HC-004",
+        "P5-HC-005",
+        "P5-HC-006"
+      ],
+      "correct": 3,
+      "total": 3
+    }
+  },
+  "confusion_matrix": {
+    "RETRIEVAL_MISS": {
+      "attributed_RETRIEVAL_MISS": 2,
+      "attributed_REPRESENTATION_GAP": 1
+    },
+    "ROUTING_PLANNING_MISS": {
+      "attributed_ROUTING_PLANNING_MISS": 3
+    },
+    "IMPLEMENTATION_BUG": {
+      "attributed_IMPLEMENTATION_BUG": 3
+    },
+    "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE": {
+      "attributed_ENVIRONMENT_DEPENDENCY_TOOL_FAILURE": 2,
+      "attributed_IMPLEMENTATION_BUG": 1
+    },
+    "EVALUATOR_METRIC_BUG": {
+      "attributed_EVALUATOR_METRIC_BUG": 3
+    },
+    "REPRESENTATION_GAP": {
+      "attributed_REPRESENTATION_GAP": 2,
+      "attributed_METHOD_BASIS_GAP": 1
+    },
+    "MEASUREMENT_SPECIFICATION_GAP": {
+      "attributed_MEASUREMENT_SPECIFICATION_GAP": 3
+    },
+    "METHOD_BASIS_GAP": {
+      "attributed_METHOD_BASIS_GAP": 3
+    }
+  },
+  "incorrect_cases": [
+    {
+      "case_id": "P5-HC-002",
+      "gold": "RETRIEVAL_MISS",
+      "attributed": "REPRESENTATION_GAP",
+      "confidence": "MEDIUM"
+    },
+    {
+      "case_id": "P5-HC-012",
+      "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "attributed": "IMPLEMENTATION_BUG",
+      "confidence": "HIGH"
+    },
+    {
+      "case_id": "P5-HC-018",
+      "gold": "REPRESENTATION_GAP",
+      "attributed": "METHOD_BASIS_GAP",
+      "confidence": "HIGH"
+    }
+  ],
+  "intervention_predictions": {
+    "YES": 19,
+    "NO": 4,
+    "CANNOT_DETERMINE": 1
+  },
+  "empirical_authority": "ATTRIBUTION_DIAGNOSIS_ONLY",
+  "limitations": "Archived single-model attribution replay. The original report.json is retained as a superseded historical aggregate because its per-family F1 column copied recall. Tables P5-2 and P5-4..P5-7 require a protected fresh-transfer campaign and remain CANNOT_CHECK."
+}

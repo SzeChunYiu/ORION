@@ -153,7 +153,7 @@ Tests are committed before implementation and must require at least:
 15. final result terminal is not derivable when execution/result bytes are absent;
 16. negative/null/harmful terminal values validate;
 17. development outcome cannot set `PEER_REVIEW_READY` or H1–H4 support;
-18. T8 does not mutate `papers/paper-05-self-orion/protocol/PROTOCOL_V1.json`.
+18. T8 does not mutate `papers/orion-15-self-orion/protocol/PROTOCOL_V1.json`.
 
 ## Paper policy
 

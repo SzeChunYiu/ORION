@@ -1,0 +1,518 @@
+{
+  "added_arm": null,
+  "added_corpus": null,
+  "amends": {
+    "amended_document_left_byte_identical": true,
+    "amended_document_parameters_sha256": "28d3e289d3dddddaef142e5756b77a825829836f1eadb900b80e49f985f73691",
+    "prior_amendments": [
+      {
+        "id": "AMENDMENT_001",
+        "left_byte_identical": true,
+        "parameters_sha256": "d4e97dcfc8a35d97656ec5eee60efc249a8e24dc682dd153c029fd9450b59ac8",
+        "twin": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.json"
+      },
+      {
+        "id": "AMENDMENT_002",
+        "left_byte_identical": true,
+        "parameters_sha256": "9292414c63a50f0f31ad832b45a891a1eaf90584751f90f10362d941ad36c28e",
+        "twin": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.json"
+      },
+      {
+        "id": "AMENDMENT_003",
+        "left_byte_identical": true,
+        "parameters_sha256": "a1057b6fe0d1d6fbe1f95c8e2202abe2936c913309aa549036a89a878a4d9b34",
+        "twin": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.json"
+      }
+    ],
+    "prose_freeze": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
+    "twin": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.json"
+  },
+  "arm_considered_and_not_registered": {
+    "correct_answers_destroyed_on_intact_record_gold": 1,
+    "g10_threshold": 0.0,
+    "name": "shared observed frame",
+    "over_resolution_violation_rate_on_every_probe_corpus": 1.0,
+    "principle_stated_before_measurement": "The record standard decides a relation by reading the coordinates in precedence order and taking the first on which the two records differ. A coordinate stated on one side only is not evidence of a difference and not evidence of an agreement; it is not evidence. So restrict both projections to the coordinates observed on both sides and apply the precedence order to that frame.",
+    "why_not_registered": "it destroys 1 instead of 9 by never abstaining at all: it answers a determinate relation on all 48 probe cases where the frozen probe gold is UNRESOLVED, so it surrenders the whole benefit A3 exists for and misses G10's threshold by the maximum possible margin. It is A0 with the modality absence read merge-ward. Registering a rule that fails the benefit gate outright, in order to put a smaller harm number beside A3's, would be the relabelling this study keeps refusing.",
+    "wrong_answers_repaired": 1
+  },
+  "artifacts_of_the_amended_documents_left_in_place": [
+    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
+    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-21.jsonl",
+    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_001.json",
+    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_001.jsonl",
+    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_002.json",
+    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_002.jsonl",
+    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_003.json",
+    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_003.jsonl"
+  ],
+  "date": "2026-08-22",
+  "defect_under_repair": {
+    "diagnosis": "The FAIL was correct and its meaning was open. A failing harm gate reads as a defect of the arm it names, i.e. as something a better candidate-visible rule would avoid, and that reading invites a fifth arm. It is the wrong reading here: on INTACT_RECORD_GOLD gold is not a function of the projections, so the nine are the price of the evidence and no candidate-visible rule can pay less while still abstaining where the projections do not determine the relation.",
+    "reported_by": "G9_HARM_A3",
+    "reported_detail": "A3 destroyed 9 correct answers on INTACT_RECORD_GOLD and repaired 0.",
+    "reported_outcome": "FAIL"
+  },
+  "expected_probe_artifact": "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_004.jsonl",
+  "expected_result_artifact": "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json",
+  "external_validity": "The bound is a bound over INTACT_RECORD_GOLD and its held-out redraws, which are synthetic. It says that on pairs of this shape the relation is not recoverable from the projections and quantifies what that costs any rule. It says nothing about how often scientific extraction drops a coordinate on one side only, and no accuracy, false-merge, false-split, superiority or optimality number over this corpus is evidence about ORION's competence on scientific text. 'A0 is optimal here' is a statement about 36 synthetic cases; A0 pays for that optimality with 8 false merges and 1 false split.",
+  "gate_outcome_changes": [],
+  "gate_served": "G9_HARM_A3",
+  "gate_statement": "A3_decisive_absence_only destroys 0 correct answers on every intact corpus, and at least one intact corpus supplies independent evidence for that zero.",
+  "gate_subject_changes": [],
+  "gates_added": {},
+  "gates_not_touched": [
+    "G5_MINING_YIELD",
+    "G6_HARM_A1",
+    "G7_COST_A2",
+    "G8_NOVELTY",
+    "G10_BENEFIT_A3"
+  ],
+  "parameters": {
+    "absence_reading_in_compare_meaning": {
+      "assumption_ids": "AGREEMENT",
+      "attribution_id": "AGREEMENT",
+      "construct_ids": "AGREEMENT",
+      "discourse_relation": "AGREEMENT",
+      "measurement_ids": "AGREEMENT",
+      "modality": "DISTINCT_VALUE",
+      "polarity": "AGREEMENT",
+      "referent_ids": "AGREEMENT",
+      "temporal_context_ids": "AGREEMENT"
+    },
+    "absent_values": {
+      "assumption_ids": [],
+      "attribution_id": "",
+      "construct_ids": [],
+      "discourse_relation": "",
+      "measurement_ids": [],
+      "modality": "UNKNOWN",
+      "polarity": "UNKNOWN",
+      "referent_ids": [],
+      "temporal_context_ids": []
+    },
+    "amendments": [
+      {
+        "changes": [
+          "adds INTACT_HARM_SYNTHETIC, a fourth intact corpus that does contain one-sided absences, built by orion.study.p3.partial_observation_harm_build",
+          "excludes that corpus from probe construction, because the redaction of section 4.2 is defined only on a parent with no one-sided absence",
+          "adds the same condition to redactable_coordinates, a no-op on the three corpora frozen on 2026-08-21",
+          "reports correct_answers_destroyed and a per-corpus breakdown on G6"
+        ],
+        "date": "2026-08-22",
+        "document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.md",
+        "id": "AMENDMENT_001",
+        "reason": "G6_HARM_A1 was pre-declared vacuous and ran as CANNOT_CHECK: the three intact corpora state every coordinate on both sides of every pair or on neither, so A1 could not fire and 0 changes was a structural zero",
+        "unchanged": [
+          "every gate threshold, including G6's 0",
+          "the coordinate table, the absent-value table, the arms and the probe gold",
+          "the three corpora frozen on 2026-08-21 and every case in them",
+          "the 2026-08-21 freeze document and its twin, both byte-identical"
+        ]
+      },
+      {
+        "changes": [
+          "adds A3_decisive_absence_only, a fourth arm that abstains only when the admissible completions of a one-sided absence disagree about the relation, alongside A1 and A2 and replacing neither",
+          "adds G9_HARM_A3, which reports A3's harm and refuses to read it off a corpus whose gold is derived by the criterion A3 decides by",
+          "adds G10_BENEFIT_A3, which reports whether A3 still abstains where the frozen probe gold says abstention is right, and whether anything separates A3 from A1",
+          "records each corpus's declared gold-derivation rule and each arm's exact agreement with gold, so the circularity check reads the corpus rather than a hard-coded list of corpus ids",
+          "reports a harm denominator per arm per corpus: the pairs A0 answers correctly that have a one-sided absence in them",
+          "scopes the G5_MINING_YIELD census to the three arms it was frozen over and reports A3's census beside it, so a published three-arm finding does not silently become a four-arm one"
+        ],
+        "date": "2026-08-22",
+        "document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.md",
+        "id": "AMENDMENT_002",
+        "reason": "G6_HARM_A1 came back FAIL on evidence: A1 abstains on the presence of a one-sided absence, so on the twelve H_UNDECISIVE_ABSENCE pairs --- where the absent coordinate is not what the answer turns on --- it destroys an answer A0 already had right. That is a defect in A1's design, not in the measurement. The science wants abstention when the absence changes the answer, and no arm on record decides that way",
+        "unchanged": [
+          "G6_HARM_A1: same statement, same threshold, same arm, same FAIL",
+          "every other gate threshold and every gate's subject",
+          "the coordinate table, the absent-value table, A0, A1, A2 and the probe gold",
+          "the four corpora and every case in them",
+          "the 2026-08-21 freeze, its twin, and amendment 001 and its twin, all byte-identical"
+        ]
+      },
+      {
+        "changes": [
+          "adds INTACT_RECORD_GOLD, a fifth intact corpus whose gold is the relation between two fully stated source records under identity:frozen-source-record-relation, with the projections carrying an extraction loss that blanks one coordinate on one side; built by orion.study.p3.partial_observation_record_gold_build",
+          "excludes that corpus from probe construction, for the same reason INTACT_HARM_SYNTHETIC is excluded: it has one-sided absences of its own",
+          "declares each intact corpus's role in a table rather than inferring it from whether the corpus happens to parent a probe",
+          "adds an extensional circularity check --- a corpus whose gold agrees with A3 on every pair A3 can fire on is withheld whatever derivation rule it declares --- so editing a corpus into circularity returns G9 to CANNOT_CHECK instead of passing it",
+          "reports which corpora A3 destroyed a correct answer on and which of those supply independent gold"
+        ],
+        "date": "2026-08-22",
+        "document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.md",
+        "id": "AMENDMENT_003",
+        "numbers_this_amendment_moves": "G5_MINING_YIELD, G6_HARM_A1 and G7_COST_A2 are totals over the intact corpora, so adding one moves them. Their per-corpus rows for the four earlier corpora are unchanged, their thresholds are unchanged, and their outcomes are unchanged: G5 and G6 were FAIL and stay FAIL. A gate reading 'changes 0 decisions' or 'every failure has a discriminating coordinate' cannot be passed by a corpus added to it.",
+        "reason": "G9_HARM_A3 ran as CANNOT_CHECK because no intact corpus supplied non-circular evidence for A3's zero harm: the three corpora frozen on 2026-08-21 have no one-sided absence for A3 to fire on, and INTACT_HARM_SYNTHETIC derives its gold by the completion-invariance criterion A3 decides by. Amendment 002 named what would discharge the gate and judged it unbuildable, on the ground that under partial observation the relation is genuinely underdetermined. That is true of the inference and false of the relation: a projection's silence is a fact about ORION's extraction, and the relation between the two source statements is fixed by the sources",
+        "unchanged": [
+          "every gate threshold, including G9's 0 and G6's 0",
+          "every gate's subject: G6 still names A1 and G9 still names A3",
+          "the coordinate table, the absent-value table, A0, A1, A2, A3 and the probe gold",
+          "the four corpora frozen before this amendment and every case in them",
+          "the 2026-08-21 freeze, its twin, amendments 001 and 002 and their twins, all byte-identical"
+        ]
+      },
+      {
+        "changes": [
+          "adds canonical_pair_form and identifiability_ceiling, which group a corpus's cases by what a rule reading only the projections can see --- bookkeeping stripped, opaque ids consistently renamed, left/right swap allowed --- and report the orbits on which gold is not constant",
+          "reports, per intact and probe corpus, the ceiling those orbits impose: how many cases no candidate-visible rule can answer correctly, the best reachable exact agreement, and which arms reach it",
+          "annotates G9_HARM_A3 with the harm floor and with whether A3's harm sits at it, so the FAIL reads as a floor rather than as a defect",
+          "checks mechanically that every arm on record is constant on every orbit, so the canonicalisation cannot be stripping something an arm actually reads",
+          "adds RecordDraw, fresh_draw and held_out_corpus to the corpus builder, so the whole corpus can be redrawn under a different seed and the finding re-measured on cases nobody proposed a rule against; the default draw emits the shipped corpus byte for byte",
+          "adds undecidability_witness_cases to the corpus builder, which constructs the witness in its sharpest form: an LA case and an LD case losing the same side, whose projections are then identical value for value"
+        ],
+        "date": "2026-08-22",
+        "document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.md",
+        "id": "AMENDMENT_004",
+        "numbers_this_amendment_moves": "none. No gate's outcome, threshold, subject or count changes. The amendment adds reported fields --- the ceiling per corpus, the floor on G9 --- and the arms, corpora and gold are untouched, so every number the runner published before it publishes after it.",
+        "reason": "G9_HARM_A3 came back FAIL on nine destroyed correct answers and left the question of what the nine mean. A failing harm gate reads as a repairable defect of the arm it names, and this one is not: the nine are the price of the evidence, and no rule reading only the projections can pay less while still abstaining where the projections do not determine the relation. That is a bound, it is provable from the corpus's own cases, and leaving it unstated would invite the next amendment to go looking for a fifth arm that cannot exist",
+        "unchanged": [
+          "every gate threshold, including G9's 0 and G6's 0",
+          "every gate's subject and every gate's outcome; G9 still names A3 and still FAILs",
+          "the arms: no fifth arm is registered, because the bound says none can help",
+          "the coordinate table, the absent-value table, A0, A1, A2, A3 and the probe gold",
+          "the five corpora and every case in them; record_gold_cases() with no argument still emits research/p3-partial-observation-record-gold-v1/cases.jsonl byte for byte",
+          "the 2026-08-21 freeze, its twin, amendments 001, 002 and 003 and their twins, all byte-identical"
+        ]
+      }
+    ],
+    "arms": [
+      "A0_orion_current",
+      "A1_observedness_asymmetric",
+      "A2_observedness_strict",
+      "A3_decisive_absence_only"
+    ],
+    "candidate_arms": [
+      "A1_observedness_asymmetric",
+      "A2_observedness_strict",
+      "A3_decisive_absence_only"
+    ],
+    "candidate_coordinate": {
+      "definition": "a per-coordinate value in {OBSERVED, NOT_OBSERVED} attached to each projection, so that 'this source states no measurement' and 'this source was never assessed for a measurement' are different states of the projection",
+      "is_a_new_identity_axis": false,
+      "mined_from": "silencing one side of the coordinate that carries the decision converts every separation ORION makes into a merge, reported with the same confidence",
+      "name": "observation_status",
+      "why_not": "it is constant across all fully observed pairs, so no two fully observed projections can differ on it; it is a third value on the existing axes, not a new axis"
+    },
+    "canonicalisation": {
+      "absent_token": "ABSENT",
+      "absent_values_are_never_relabelled": true,
+      "bookkeeping_fields_stripped": [
+        "projection_id",
+        "source_id",
+        "source_span"
+      ],
+      "closed_vocabulary_fields_relabelled": [
+        "polarity",
+        "modality"
+      ],
+      "field_census": {
+        "covers_every_field": true,
+        "named_but_not_a_projection_field": [],
+        "projection_fields": [
+          "projection_id",
+          "source_id",
+          "source_span",
+          "predicate",
+          "argument_roles",
+          "referent_ids",
+          "construct_ids",
+          "measurement_ids",
+          "temporal_context_ids",
+          "discourse_relation",
+          "attribution_id",
+          "polarity",
+          "modality",
+          "assumption_ids",
+          "unresolved_ambiguities"
+        ],
+        "relabelled_as_closed_vocabulary": [
+          "polarity",
+          "modality"
+        ],
+        "relabelled_as_open_vocabulary": [
+          "predicate",
+          "referent_ids",
+          "construct_ids",
+          "measurement_ids",
+          "temporal_context_ids",
+          "assumption_ids",
+          "attribution_id",
+          "discourse_relation",
+          "unresolved_ambiguities"
+        ],
+        "relabelled_as_role_structure": [
+          "argument_roles"
+        ],
+        "stripped_as_bookkeeping": [
+          "projection_id",
+          "source_id",
+          "source_span"
+        ],
+        "uncovered": []
+      },
+      "left_right_swap_allowed": true,
+      "open_vocabulary_fields_relabelled": [
+        "predicate",
+        "referent_ids",
+        "construct_ids",
+        "measurement_ids",
+        "temporal_context_ids",
+        "assumption_ids",
+        "attribution_id",
+        "discourse_relation",
+        "unresolved_ambiguities"
+      ],
+      "role_structure_fields_relabelled": [
+        "argument_roles"
+      ]
+    },
+    "claim_scope": "PARTIAL_OBSERVATION_OF_FROZEN_ATLASES_ONLY",
+    "completion_witness_prefix": "orion:p3:completion-witness",
+    "coordinates": [
+      "referent_ids",
+      "construct_ids",
+      "measurement_ids",
+      "temporal_context_ids",
+      "assumption_ids",
+      "attribution_id",
+      "discourse_relation",
+      "polarity",
+      "modality"
+    ],
+    "decisiveness_rule_marker": "completion-invariance",
+    "freeze_document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
+    "gates": {
+      "G10_BENEFIT_A3": {
+        "amendment_003": {
+          "note": "before amendment 003 the only corpus separating A3 from A1 was the one whose gold is A3's own criterion, so the separation count on non-circular gold was empty and the gate said so. INTACT_RECORD_GOLD separates them on gold anchored to the source records, and the separation is reported with which arm is right on each differing pair. That is a comparison between two candidate repairs, not evidence that either is safe: G9 carries A3's harm and G9 fails.",
+          "separating_corpus_added": "INTACT_RECORD_GOLD",
+          "threshold_unchanged": true
+        },
+        "blocking": false,
+        "max_violation_rate": 0.0,
+        "note": "probe gold is UNRESOLVED on every probe case, so an arm that abstains unconditionally scores the same 0.0. A1 and A2 do. This gate therefore shows that A3 keeps A1's intended benefit; it is not evidence that A3 is better than A1, and the separation fields say so with a number.",
+        "statement": "A3_decisive_absence_only's P3.OVERRESOLVED_UNRESOLVED_CASE violation rate is 0.0 on every probe corpus, i.e. it still abstains everywhere the frozen probe gold says abstention is right; and report whether any corpus separates A3 from A1"
+      },
+      "G1_CONSTRUCTION": {
+        "blocking": true,
+        "statement": "C1-C5 of freeze section 4.4 hold on every probe corpus"
+      },
+      "G2_CHANNEL_OPENED": {
+        "blocking": true,
+        "min_opportunities": 1,
+        "statement": "A0_orion_current's P3.OVERRESOLVED_UNRESOLVED_CASE exercise on PROBE_DERIVATION has opportunities >= 1"
+      },
+      "G3_FAILURE_ON_REAL_CASES": {
+        "blocking": true,
+        "min_violation_rate": 0.9,
+        "primary": true,
+        "statement": "A0_orion_current's over-resolution violation rate on PROBE_DERIVATION >= 0.90"
+      },
+      "G4_HELD_OUT": {
+        "blocking": false,
+        "min_violation_rate": 0.9,
+        "statement": "A0_orion_current's over-resolution violation rate >= 0.90 on PROBE_HELDOUT_REAL and on PROBE_HELDOUT_SYNTHETIC"
+      },
+      "G5_MINING_YIELD": {
+        "blocking": false,
+        "statement": "(a) every failure on an intact corpus has a non-empty discriminating-coordinate set drawn from the nine existing coordinates; (b) every over-resolution on a probe corpus has an empty set"
+      },
+      "G6_HARM_A1": {
+        "amendment_001": {
+          "denominator_corpus": "INTACT_HARM_SYNTHETIC",
+          "note": "the vacuity note above is a true statement about the three corpora frozen on 2026-08-21 and is left standing. It described a property of those corpora, not of what 'intact' means: observedness is a per-projection fact and compare_meaning carries branches reachable only on a one-sided absence. Amendment 001 adds an intact corpus that has them. The gate's threshold is not relaxed --- a harm gate reading 'changes 0 decisions' can only be left alone or failed by a corpus added to it, never passed, which is why supplying its denominator cannot manufacture a positive.",
+          "statement_as_amended": "A1_observedness_asymmetric changes 0 decisions on every intact corpus, now including INTACT_HARM_SYNTHETIC",
+          "threshold_unchanged": true
+        },
+        "blocking": true,
+        "pre_declared_vacuous": true,
+        "statement": "A1_observedness_asymmetric changes 0 decisions on all three intact corpora",
+        "vacuity_note": "the intact corpora contain zero one-sided-absent coordinates, so A1 cannot fire on them; this gate passes for a structural reason and may not be cited as evidence that A1 is safe"
+      },
+      "G7_COST_A2": {
+        "blocking": false,
+        "statement": "report the number and fraction of intact decisions A2_observedness_strict changes and how many destroy a correct answer"
+      },
+      "G8_NOVELTY": {
+        "blocking": true,
+        "fails_by_construction": true,
+        "statement": "a candidate counts as a new identity coordinate only if two fully observed projections can differ on it; observation_status is constant across all fully observed pairs, so this gate fails by construction"
+      },
+      "G9_HARM_A3": {
+        "amendment_003": {
+          "denominator_corpus": "INTACT_RECORD_GOLD",
+          "extensional_circularity_check_added": "supplies_independent_evidence now also fails on GOLD_COINCIDES_WITH_THE_ARM_WHEREVER_THE_ARM_CAN_FIRE, i.e. on a corpus whose gold agrees with A3 on every pair A3 can fire on regardless of the rule it declares. Editing the new corpus into circularity --- by deleting the strata on which its record-anchored gold and A3 disagree --- therefore returns the gate to CANNOT_CHECK rather than turning it into a PASS.",
+          "statement_unchanged": true,
+          "the_gate_can_now_be_measured_and_it_fails": "A3 destroys correct answers on the new corpus. The count is not a property of the cases: A3 returns UNRESOLVED on every pair whose one-sided absence is decisive, so on any such pair whose gold is determinate and which A0 already answers correctly it must destroy a correct answer. G9 can therefore be passed non-vacuously only by a corpus whose gold is determinate-and-matching exactly where the completions agree --- which is the completion-invariance criterion in extension, whatever rule string it declares. That is the same shape as the standing caveat about A1 and G6, one arm weaker, and it is reported rather than repaired.",
+          "threshold_unchanged": true,
+          "what_was_added": "the corpus the discharged_by clause above names. Its gold is the relation between two source *records*, each of which states all nine coordinates, under the rule identity:frozen-source-record-relation; the projections it ships are those records after an extraction loss that blanks one coordinate on one side. The rule is defined only on records that state everything and raises on anything else, so it has no branch that reads an absence and cannot be A3's criterion under another name.",
+          "why_amendment_002_thought_this_impossible": "amendment 002 recorded that 'under partial observation the relation is genuinely underdetermined, so an independent gold has to come from adjudicators rather than from a rule'. That conflates the relation with the inference. What a one-sided absence underdetermines is what a procedure reading only the projections may conclude; the relation between the two source statements is fixed by the sources, and a projection's silence is a fact about ORION's extraction. INTACT_DERIVATION already carries gold of that kind: its MUSE cases state neither polarity nor modality on either side and their gold is COMPATIBLE anyway, because identity:upstream-coreference-edge reads the annotation rather than the coordinates."
+        },
+        "amendment_004": {
+          "arms_added": [],
+          "corpora_added": [],
+          "guard_against_fitting_the_measurement": "the bound is stated over the coordinate precedence the record standard declares and over the symmetries gold itself respects, not over the list of cases A3 fails; the runner checks mechanically that every arm on record is constant on every orbit, so the canonicalisation is not stripping something an arm reads; and the builder can redraw the whole corpus under a different seed --- new record vocabulary, new closed-vocabulary values, new loss sides --- on which the orbit count, the ceiling, the floor and A3's harm all reproduce.",
+          "outcome_unchanged": "FAIL",
+          "question_it_settles": "whether the nine correct answers A3 destroys on INTACT_RECORD_GOLD are a defect of A3 that some better candidate-visible rule could avoid, or the price of the evidence. They are the price.",
+          "statement_unchanged": true,
+          "subject_unchanged": true,
+          "the_bound": "Strip from a pair of projections everything gold does not read --- the bookkeeping fields, the identity of the opaque ids (every rule reads them only for equality, so a consistent renaming across both sides is invisible to all of them), and the left/right orientation (a meaning relation is symmetric) --- and nine pairs of INTACT_RECORD_GOLD's cases collapse onto each other with different gold. Gold is not a function of the projections there: what decides is the value the extraction destroyed. Nine of the thirty-six cases therefore cannot be answered correctly by any rule reading only the projections; the reachable ceiling is 27 of 36 and A0 already reaches it. On each of the nine orbits gold carries both COMPATIBLE and a separation, so a determinate answer is a false merge on one member or a false split on the other, and UNRESOLVED --- the only answer that is neither --- destroys the one answer A0 gets right there. The harm floor is 9 and A3 pays exactly 9.",
+          "threshold_unchanged": true,
+          "what_did_not_move": "no threshold, no gate statement, no gate subject, no arm, no corpus, no case. G9 still reads 'destroys 0 correct answers' and still fails. A harm gate that relaxed its threshold on learning the floor is above zero would be the relabelling this repository keeps finding; what a floor changes is what the FAIL means, not whether it fails.",
+          "why_no_fifth_arm": "a fifth arm would have to beat 9 while still abstaining where the projections do not determine the relation, and the bound says no such arm exists. The best principled candidate --- decide on the coordinates observed on both sides and ignore the rest, which is the record standard's precedence order applied to the shared observed frame --- destroys 1 instead of 9 and buys that by never abstaining at all: its P3.OVERRESOLVED_UNRESOLVED_CASE violation rate is 1.0 on all three probe corpora against G10's 0.0, i.e. it surrenders the entire benefit A3 exists for. Registering it as an arm would be registering A0 with a merge-ward modality reading."
+        },
+        "blocking": true,
+        "circularity_note": "research/p3-partial-observation-harm-v1/ derives its gold by identity:observed-coordinate-precedence-with-completion-invariance --- abstain where the admissible completions of the absent coordinate disagree. That is A3's decision rule. On that corpus A3 agrees with gold by construction, so neither its accuracy nor its harm there is a measurement of A3, and this gate refuses both. The three corpora frozen on 2026-08-21 have no one-sided absence at all, so A3 cannot fire on them and its zero there is structural, exactly the emptiness G6 carried before amendment 001.",
+        "discharged_by": "an intact corpus with one-sided absences whose gold is fixed by adjudication or by a rule that does not ask whether the completions agree, containing at least one partially observed pair A0 answers correctly",
+        "statement": "A3_decisive_absence_only destroys 0 correct answers on every intact corpus, and at least one intact corpus supplies independent evidence for that zero: it has a harm denominator (a pair A0 answers correctly and A3 can fire on), its gold is not derived by the completion-invariance criterion A3 decides by, and A3 does not reproduce its gold on every case",
+        "why_a_separate_gate": "G6_HARM_A1 names A1_observedness_asymmetric and reports a measured harm of 12 destroyed answers. That is a finding. Repointing it at the arm that repairs A1 would turn a failing gate into a passing one by changing its subject, which is the relabelling this repository keeps finding. G6 keeps failing for A1; this gate carries A3 and answers for A3 alone."
+      }
+    },
+    "intact_roles": {
+      "INTACT_DERIVATION": "HARM_AND_PROBE_PARENT",
+      "INTACT_HARM_SYNTHETIC": "HARM_MEASUREMENT_ONLY",
+      "INTACT_HELDOUT_REAL": "HARM_AND_PROBE_PARENT",
+      "INTACT_HELDOUT_SYNTHETIC": "HARM_AND_PROBE_PARENT",
+      "INTACT_RECORD_GOLD": "HARM_MEASUREMENT_ON_GOLD_ANCHORED_OUTSIDE_THE_PROJECTIONS"
+    },
+    "intact_sources": {
+      "INTACT_DERIVATION": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "INTACT_HARM_SYNTHETIC": "research/p3-partial-observation-harm-v1/cases.jsonl",
+      "INTACT_HELDOUT_REAL": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "INTACT_HELDOUT_SYNTHETIC": "research/p3-coordinate-necessity-v1/cases.jsonl",
+      "INTACT_RECORD_GOLD": "research/p3-partial-observation-record-gold-v1/cases.jsonl"
+    },
+    "max_violation_rate": 0.0,
+    "mining_census_arms": [
+      "A0_orion_current",
+      "A1_observedness_asymmetric",
+      "A2_observedness_strict"
+    ],
+    "partially_observed_intact_sources": [
+      "INTACT_HARM_SYNTHETIC",
+      "INTACT_RECORD_GOLD"
+    ],
+    "primary_outcome": "P3.OVERRESOLVED_UNRESOLVED_CASE for A0_orion_current on PROBE_DERIVATION, assessed by assess_guard at max_violation_rate = 0.0",
+    "probe_gold": "UNRESOLVED",
+    "probe_gold_derivation_rule": "freeze:probe-gold-is-unresolved-after-redaction",
+    "probe_of": {
+      "INTACT_DERIVATION": "PROBE_DERIVATION",
+      "INTACT_HELDOUT_REAL": "PROBE_HELDOUT_REAL",
+      "INTACT_HELDOUT_SYNTHETIC": "PROBE_HELDOUT_SYNTHETIC"
+    },
+    "record": "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE",
+    "redactability_conditions": [
+      "observed on both sides",
+      "observed values differ",
+      "parent gold is in NONMERGE_RELATIONS",
+      "compare_meaning reproduces parent gold on the untouched pair",
+      "the parent pair has no one-sided absence of its own (amendment 001)"
+    ],
+    "secondary_gold": "PARENT_GOLD",
+    "sides_per_redactable_pair": [
+      "left",
+      "right"
+    ],
+    "symmetric_intact_sources": [
+      "INTACT_DERIVATION",
+      "INTACT_HELDOUT_REAL",
+      "INTACT_HELDOUT_SYNTHETIC"
+    ],
+    "verdicts": {
+      "channel": "CHANNEL_OPENED_FAILURE_DEMONSTRATED",
+      "channel_not_opened": "CHANNEL_NOT_OPENED",
+      "construction_failed": "CONSTRUCTION_PRECONDITION_FAILED",
+      "failure_weaker": "FAILURE_WEAKER_THAN_STATED",
+      "heldout": "FAILURE_CARRIES_TO_HELDOUT_STRATA",
+      "no_new_coordinate": "NO_NEW_COORDINATE_DEMANDED_BY_ANY_FAILURE_ON_RECORD",
+      "t5": "T5_NOT_DISCHARGED__CANDIDATE_IS_NOT_A_NEW_IDENTITY_AXIS"
+    }
+  },
+  "parameters_sha256": "2dc106eee03666ccec7ec7df53a96933814418a296e30be43ad1a81f2e089d21",
+  "predictions_recorded_before_the_amended_run": {
+    "G9_HARM_A3": "FAIL, unchanged, with correct_answers_destroyed 9 and two new fields: harm_floor_for_any_candidate_visible_rule 9 and a3_harm_is_at_the_floor true.",
+    "unchanged": [
+      "every gate outcome: G1-G4, G7 and G10 PASS, G5, G6, G8 and G9 FAIL",
+      "every gate threshold and every gate's subject",
+      "every count on every gate, including G9's 9 destroyed and 27 changed",
+      "the overall outcome FAIL, exit code 3, and the T5 verdict",
+      "the four corpora frozen before amendment 003 and INTACT_RECORD_GOLD itself"
+    ]
+  },
+  "prose_amendment": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.md",
+  "record": "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_AMENDMENT_004",
+  "runner": "src/orion/study/p3/partial_observation_probe.py",
+  "schema_version": "orion.p3.partial-observation-coordinate-freeze-amendment.v1",
+  "status": "AMENDMENT_IN_FORCE",
+  "structural_finding": {
+    "argument": "Such a corpus contains, for each coordinate, a pair of cases whose projections are the same evidence and whose gold differs, because the extraction destroyed the value that decides. A rule reading only the projections answers one relation for both. If that answer is determinate it is a false merge or a false split; if it is UNRESOLVED it destroys the answer A0 has right. So the harm floor equals the number of such orbits, and it is above zero exactly when the corpus is non-circular.",
+    "claim": "G9_HARM_A3's threshold of zero is unreachable not only by A3 but by any candidate-visible rule that commits no false merge and no false split, on a corpus whose gold is anchored outside the projections and which carries both directions of every coordinate.",
+    "disposition": "Reported, not repaired. The threshold is not relaxed, the gate is not repointed, no arm is added and G9 fails. What the floor changes is what the FAIL means.",
+    "family": [
+      "amendment 001: A1 must destroy a correct answer on any partially observed pair with determinate gold that A0 answers correctly",
+      "amendment 003: A3 must destroy one on any such pair whose absence is decisive",
+      "amendment 004: no candidate-visible rule can avoid destroying one on a pair whose orbit carries conflicting gold, without committing a false merge or a false split instead"
+    ]
+  },
+  "the_bound": {
+    "accuracy_ceiling": {
+      "a1_and_a2_exact_agreement": 10,
+      "a3_exact_agreement": 18,
+      "arms_at_the_ceiling": [
+        "A0_orion_current"
+      ],
+      "max_exact_agreement": 27,
+      "n_cases_no_candidate_visible_rule_can_answer_correctly": 9,
+      "of": 36
+    },
+    "canonicalisation": "canonical_pair_form strips projection_id, source_id and source_span; relabels the open-vocabulary fields and the argument-role structure by first occurrence, which is a consistent renaming across both sides; relabels the stated values of polarity and modality, never their absent values; and takes the smaller of the two orientations, because a meaning relation is symmetric. canonicalisation_field_census checks the split against ScientificMeaningProjection itself, so a field the canonical form neither reads nor names as bookkeeping is reported as uncovered rather than silently ignored --- which is how a ceiling gets overstated.",
+    "checked_rather_than_assumed": "arm_is_constant_on_every_orbit is true for A0, A1, A2 and A3 on every corpus, so the canonicalisation is not stripping something an arm actually reads.",
+    "claim": "No rule that is a function of the two projections alone --- and does not read bookkeeping, the identity of the opaque ids, or the left/right orientation, none of which gold reads --- can destroy fewer than 9 correct answers on INTACT_RECORD_GOLD while committing no false merge and no false split.",
+    "corpora_with_no_undecidable_orbit": [
+      "INTACT_DERIVATION",
+      "INTACT_HELDOUT_REAL",
+      "INTACT_HELDOUT_SYNTHETIC",
+      "INTACT_HARM_SYNTHETIC",
+      "PROBE_DERIVATION",
+      "PROBE_HELDOUT_REAL",
+      "PROBE_HELDOUT_SYNTHETIC"
+    ],
+    "harm_floor": {
+      "a3_destroys": 9,
+      "a3_is_at_the_floor": true,
+      "argument": "every undecidable orbit carries COMPATIBLE on one member and a separation on the other, so a determinate answer is a false merge on one or a false split on the other, and UNRESOLVED --- the only answer that is neither --- destroys the one answer A0 has right on that orbit. Nine orbits, nine destroyed.",
+      "value": 9
+    },
+    "held_out_draws": {
+      "a1_correct_answers_destroyed": 17,
+      "a3_correct_answers_destroyed": 9,
+      "harm_floor": 9,
+      "max_exact_agreement": 27,
+      "mechanism": "RecordDraw, fresh_draw(seed) and held_out_corpus(seed) redraw the record vocabulary, the closed-vocabulary values and the side each extraction loss falls on, and re-run verify(). The default draw emits the shipped corpus byte for byte; a held-out draw is returned and never written.",
+      "seeds": [
+        7,
+        11,
+        23,
+        41,
+        101
+      ],
+      "undecidable_orbits": 9
+    },
+    "orbits": {
+      "n_cases": 36,
+      "n_orbits": 27,
+      "n_undecidable_orbits": 9,
+      "one_per_identity_coordinate": true,
+      "reason": "an LA case silences a coordinate on which the two records agreed and the LD case for the same coordinate silences one on which they differed. Silence is silence, so the projections are the same evidence and the gold is not: the information that decides is exactly the value the extraction destroyed."
+    },
+    "sharpest_witness": "undecidability_witness_cases(coordinate) builds, for each of the nine coordinates, an LA case and an LD case whose extraction loss falls on the same side. LD's surviving record keeps the base value and LA's records both hold it, so the two projection pairs are identical value for value and differ only in projection_id and source_span. Both are legal cases of this corpus, accepted by validate_case and by the stratum contract. No swap and no renaming are needed.",
+    "what_ties_the_floor_to_g10s_benefit": {
+      "g10_as_measured_does_not_force_it": "G10 is measured on the three probe corpora, and they share no canonical form with INTACT_RECORD_GOLD --- they are redactions of atlases that populate different coordinates. So a rule could score 0.0 on G10 and still answer determinately on the nine orbits. That rule would be reading the coordinate coverage of three particular atlases, and this amendment does not pretend otherwise.",
+      "the_floor_is_stated_over_failure_kinds": "a rule that commits no false merge and no false split on INTACT_RECORD_GOLD must abstain on all nine undecidable orbits and therefore destroys nine correct answers.",
+      "the_freezes_probe_gold_rule_does": "Every LD case's record pair states all nine coordinates, has a non-merge gold that compare_meaning reproduces, and carries no one-sided absence, so redactable_coordinates admits it on exactly the coordinate the records differ on. Redacting that coordinate --- the freeze's own section 4.2 construction --- yields a probe case whose projections are the orbit, with gold UNRESOLVED by freeze:probe-gold-is-unresolved-after-redaction. Checked for all nine coordinates. So the freeze itself says abstention is right on these pairs, and a determinate answer there is an over-resolution by the study's own criterion.",
+      "why_the_distinction_is_kept": "letting the stronger claim borrow the weaker claim's evidence is the substitution this lane exists to prevent. The shipped probe corpora do not contain these orbits; the freeze's rule, which is corpus-independent, assigns them UNRESOLVED anyway."
+    }
+  },
+  "threshold_changes": []
+}

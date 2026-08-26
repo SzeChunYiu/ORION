@@ -381,7 +381,7 @@ class TestTheReport:
 
     def test_reproduce_v4_checks_the_v2_receipt_without_overwriting_it(self) -> None:
         makefile = (
-            REPO_ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/Makefile"
+            REPO_ROOT / "papers/orion-16-formal-epistemic-structures-and-mechanics/Makefile"
         ).read_text(encoding="utf-8")
         assert "reproduce-v4: reproduce-v3" in makefile
         assert "P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_V2_2026-08-26.json" in makefile
@@ -392,7 +392,7 @@ class TestTheReport:
         import tomllib
 
         path = (
-            REPO_ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/"
+            REPO_ROOT / "papers/orion-16-formal-epistemic-structures-and-mechanics/evidence/local/"
             "P6_LOCAL_REPLAY_CONTRACT_V4.json"
         )
         assert path.is_file()
@@ -432,7 +432,7 @@ class TestTheReport:
             assert actual == expected, relative
 
         receipt = (
-            REPO_ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/"
+            REPO_ROOT / "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/"
             "mechanized/P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_V2_2026-08-26.json"
         )
         assert json.loads(receipt.read_text(encoding="utf-8")) == cg.build_report(

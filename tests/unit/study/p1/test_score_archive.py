@@ -8,7 +8,7 @@ import pytest
 from orion.study.p1.cases import Split, case_from_dict
 from orion.study.p1.score_archive import score_archive
 
-CASES = "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases"
+CASES = "papers/orion-11-recursive-epistemic-reconstruction/protocol/cases"
 
 
 def _case(index: int = 0):

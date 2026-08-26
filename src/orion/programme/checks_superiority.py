@@ -575,7 +575,7 @@ def split_identity_findings(repo_root: Path) -> tuple[str, ...] | None:
     Distinct from an unregistered directory, and distinct from P9/P10's two
     directories: those are two different slugs, one active and one a recorded
     predecessor. This is the *same* slug living under two parents at once ---
-    ``papers/paper-11-state-as-computation`` beside
+    ``papers/orion-21-state-as-computation`` beside
     ``papers/candidates/paper-11-state-as-computation`` --- which is one identity
     split across layouts rather than two identities.
 

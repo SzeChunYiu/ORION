@@ -12,7 +12,7 @@ from orion.transfer.v2.p4_method_authority import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPER = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+PAPER = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 BENCH = PAPER / "method_authority_extension" / "METHOD_AUTHORITY_BENCH_V1.json"
 SUMMARY = PAPER / "method_authority_extension" / "METHOD_AUTHORITY_BENCH_SUMMARY_V1.json"
 

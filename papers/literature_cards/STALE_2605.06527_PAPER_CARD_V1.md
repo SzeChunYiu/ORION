@@ -35,26 +35,26 @@ Systematic evaluation of frontier LLMs and specialized memory frameworks; the be
 Dynamic memory validity and downstream state adaptation are distinct from static retrieval; explicit state adjudication/consolidation is a promising approach.
 
 ## 11. Conclusion boundaries
-STALE owns broad novelty territory for **detecting/revising stale agent memory and testing downstream consequences**. Q4's N4-B may not be positioned as introducing stale-memory detection itself.
+STALE owns broad novelty territory for **detecting/revising stale agent memory and testing downstream consequences**. ORION-04's N4-B may not be positioned as introducing stale-memory detection itself.
 
 ## 12. Author-stated limitations
 Not fully assessable from abstract record; full paper required before detailed benchmark comparison.
 
 ## 13. Critical analysis
-Q4 survives by changing the object. N4-B asks whether a **failure receipt bound to the context coordinates that justified it** should reopen after a later representation/access change, under matched-information exact-synthetic controls. That is narrower than general memory staleness and should be presented as a scoped-dependency mechanism rather than an agent-memory benchmark.
+ORION-04 survives by changing the object. N4-B asks whether a **failure receipt bound to the context coordinates that justified it** should reopen after a later representation/access change, under matched-information exact-synthetic controls. That is narrower than general memory staleness and should be presented as a scoped-dependency mechanism rather than an agent-memory benchmark.
 
 ## 14. Learned knowledge
-“Stale” should not be used loosely in Q4. The manuscript should distinguish:
+“Stale” should not be used loosely in ORION-04. The manuscript should distinguish:
 - old information contradicted by later evidence (STALE-style memory invalidation);
-- a previously valid failure receipt whose **scope assumptions** have changed (Q4 N4-B).
+- a previously valid failure receipt whose **scope assumptions** have changed (ORION-04 N4-B).
 
 ## 15. Knowledge connections
-Truth maintenance; dependency-directed invalidation; ContextNest version governance; Q4 scoped reopening; P13 responsibility-carrying state.
+Truth maintenance; dependency-directed invalidation; ContextNest version governance; ORION-04 scoped reopening; ORION-23 responsibility-carrying state.
 
 ## 16. Testable research ideas
 - Compare explicit receipt-scope reopening against STALE-like semantic conflict detectors in environments where both can fire.
 - Test approximate learned scope certificates rather than exact synthetic scope labels.
 
 ## ORION claim effect
-**Removed from Q4 novelty:** generic stale-memory detection/revision.  
-**Q4 retained residual:** exact matched-information evidence that dependency/scope-bound failure receipts can avoid both stale reuse and unnecessary reopening in the frozen world.
+**Removed from ORION-04 novelty:** generic stale-memory detection/revision.  
+**ORION-04 retained residual:** exact matched-information evidence that dependency/scope-bound failure receipts can avoid both stale reuse and unnecessary reopening in the frozen world.

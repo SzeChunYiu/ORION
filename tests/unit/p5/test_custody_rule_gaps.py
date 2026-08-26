@@ -49,7 +49,7 @@ from orion.study.p5.sound_hidden_cause_suite import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-PROTOCOL_PATH = REPO_ROOT / "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md"
+PROTOCOL_PATH = REPO_ROOT / "papers/orion-15-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md"
 
 #: Eight distinct axis signatures, one per family, each carrying an independent
 #: axis so the fresh-transfer condition still passes. This is the generator the

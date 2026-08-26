@@ -101,7 +101,7 @@ inside it (§6.1).
 | A5 | Present-but-missed / retrieved-but-unused / interpretation / routing / saturation distinguished | **SO** | Taxonomy present in `src/orion/self_orion/live_packet.py` (`PRESENT_BUT_MISSED`, `RETRIEVED_BUT_UNUSED`, `SATURATION`, …) |
 | A6 | Matched simple LLM+retrieval baseline under resource parity | **SO** | `src/orion/self_orion/baseline.py`, `live_campaign_factory.py`; workflow blockers `live_trial_resources_not_matched`, `matched_baseline_task_coverage_incomplete` |
 | A7 | Null/harmful results preserved | **SO** | `src/orion/self_orion/live_trial.py`. **Defect demonstrated:** the same run reported `live_trial_failure_history_incomplete`, with both `comparison_statuses` `BLOCKED`. Same caveat as A4 |
-| A8 | Exact live artifact merged and bound to the same subject as the rest of the evidence | **AB** | No live-trial artifact is merged. `papers/paper-05-self-orion/phase2/LIVE_EXECUTION_TRIGGER.txt` is a trigger, not a result |
+| A8 | Exact live artifact merged and bound to the same subject as the rest of the evidence | **AB** | No live-trial artifact is merged. `papers/orion-15-self-orion/phase2/LIVE_EXECUTION_TRIGGER.txt` is a trigger, not a result |
 
 ### B. Shadow self-development trial
 
@@ -143,7 +143,7 @@ outcome (`REJECT` ×9, `CANNOT_CHECK` ×1). None has been executed against a Pha
 | C10 | Correct `CANNOT_CHECK` under insufficient evidence | **SO** | attack 9 |
 
 The one live authority campaign that exists —
-`papers/paper-04-verified-scientific-discovery/protocol/PROTECTED_RUN_BINDINGS_V2.json` (PR #144,
+`papers/orion-14-verified-scientific-discovery/protocol/PROTECTED_RUN_BINDINGS_V2.json` (PR #144,
 #165) — binds `subject_commit f6e51b5c8f905382b8e2f5568d9035fc14241aa1`, a **Paper-4** subject, and
 carries `campaign_execution_authorized: false`, `outcome_accessed: false`. It is real merged
 evidence for Paper 4 and is **not** admissible for #76's gate C, which requires the exact closure
@@ -166,7 +166,7 @@ subject.
 |---|---|---|---|
 | E1 | Repaired + replayed + fresh-transfer tested | **SO** | `phase2_terminal_receipts.py` `FailureReplayReceipt.v1` path `REPAIRED_REPLAYED_FRESH_TRANSFER` (PR #106) |
 | E2 | Retained explicit unresolved/blocking fibre with discriminator/reopen condition | **SO** | same module, path `RETAINED_BLOCKING_FIBRE` |
-| E3 | Same failure class does not recur unnoticed in the closure run | **SO** | `FrozenFailureIndex.v1` + campaign audit; no closure run to audit. `papers/paper-05-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json` (PR #230) self-declares `status: PROSPECTIVE_FROZEN`, `empirical_authority: "NONE"` |
+| E3 | Same failure class does not recur unnoticed in the closure run | **SO** | `FrozenFailureIndex.v1` + campaign audit; no closure run to audit. `papers/orion-15-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json` (PR #230) self-declares `status: PROSPECTIVE_FROZEN`, `empirical_authority: "NONE"` |
 
 ### F. Final integration
 

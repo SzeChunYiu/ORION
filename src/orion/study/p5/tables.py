@@ -51,7 +51,7 @@ EXPECTED_RESIDUAL_ERRORS = (
     ("P5-HC-018", "REPRESENTATION_GAP", "METHOD_BASIS_GAP"),
 )
 
-PAPER = Path("papers/paper-05-self-orion")
+PAPER = Path("papers/orion-15-self-orion")
 DEFAULT_ARCHIVE = PAPER / "evidence" / "glm-5.2-attribution" / "results.jsonl"
 DEFAULT_REPORT = PAPER / "evidence" / "glm-5.2-attribution" / "report.json"
 DEFAULT_OUTPUT = PAPER / "evidence" / "tables"
@@ -757,12 +757,12 @@ def scan_forbidden_success_prose(root: Path) -> list[str]:
     forbidden = ("24/24", "24 of 24", "all 24 cases correct", "perfect attribution")
     hits: list[str] = []
     targets = [
-        root / "papers" / "paper-05-self-orion" / "evidence" / "CLAIM_LEDGER_V1.md",
-        root / "papers" / "paper-05-self-orion" / "evidence" / "CLAIM_LEDGER_V1.json",
-        root / "papers" / "paper-05-self-orion" / "JOURNAL_READINESS.md",
-        root / "papers" / "paper-05-self-orion" / "manuscript" / "main.tex",
-        *sorted((root / "papers" / "paper-05-self-orion" / "manuscript" / "sections").glob("*.tex")),
-        *sorted((root / "papers" / "paper-05-self-orion" / "evidence" / "tables").glob("*.md")),
+        root / "papers" / "orion-15-self-orion" / "evidence" / "CLAIM_LEDGER_V1.md",
+        root / "papers" / "orion-15-self-orion" / "evidence" / "CLAIM_LEDGER_V1.json",
+        root / "papers" / "orion-15-self-orion" / "JOURNAL_READINESS.md",
+        root / "papers" / "orion-15-self-orion" / "manuscript" / "main.tex",
+        *sorted((root / "papers" / "orion-15-self-orion" / "manuscript" / "sections").glob("*.tex")),
+        *sorted((root / "papers" / "orion-15-self-orion" / "evidence" / "tables").glob("*.md")),
     ]
     for path in targets:
         if not path.exists():

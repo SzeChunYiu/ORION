@@ -1,0 +1,48 @@
+{
+  "atlas": "orion.p3.cross-domain-atlas.v1",
+  "freeze_version": "v1",
+  "frozen_at": "2026-08-17T00:00:00+00:00",
+  "freeze_by": "p3-gold-atlas (papers/orion-13-global-knowledge-portrait/gold)",
+  "sample_count": 32,
+  "discipline_coverage": {
+    "biomed": 8,
+    "physics": 8,
+    "social": 8,
+    "climate": 8
+  },
+  "case_family_coverage": {
+    "different_name_same_referent": 4,
+    "genuine_plural_obstruction": 4,
+    "polarity_modality_attribution_context": 4,
+    "same_construct_different_measurement": 4,
+    "same_entity_different_temporal_state": 4,
+    "same_name_different_referent": 4,
+    "valid_invalid_literature_bridge": 4,
+    "valid_invalid_representation_mapping": 4
+  },
+  "integration_verdict_distribution": {
+    "GLUE_ALLOWED": 24,
+    "OBSTRUCTION": 4,
+    "PLURAL_VIEW": 4
+  },
+  "schema_validation": {
+    "records_validated": 32,
+    "errors": 0,
+    "schema": "orion.p3.annotation.v1",
+    "schema_file": "protocol/ANNOTATION_SCHEMA_V1.json"
+  },
+  "source_span_status": {
+    "document_id_prefixes": ["pmc", "arxiv", "socarxiv", "essd"],
+    "text_hash_prefixes": ["seed"],
+    "note": "All 64 source spans carry SEED placeholder document IDs and seed: prefixed placeholder text hashes. Verified open-access spans are required before real-world construct validity can be claimed."
+  },
+  "two_annotator_status": {
+    "annotator_a_records_on_disk": 0,
+    "annotator_b_records_on_disk": 0,
+    "annotation_round_used": "ADJUDICATION",
+    "annotator_id": "seed-to-gold-v1",
+    "independent_labels_exist": false,
+    "coordinate_agreement_computable": false,
+    "note": "Two independent initial labels on a substantial shared subset are NOT available. annotation_agreement_by_coordinate therefore cannot be computed on a real corpus. Per owner governance decision on issue #158, coordinates requiring independent labelling remain CANNOT_CHECK and are recorded in issue #100 as an external blocker. No manufactured second annotator was created."
+  }
+}

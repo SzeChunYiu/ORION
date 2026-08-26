@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 SCRIPT = Path(
-    "papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_7.py"
+    "papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_7.py"
 )
 
 
@@ -22,7 +22,7 @@ def test_table_p2_7_matches_source_probe_json_files() -> None:
 
 def test_table_p2_7_labels_not_claimed_items() -> None:
     table = Path(
-        "papers/paper-02-open-world-scientific-discovery/protocol/TABLE_P2-7_wide_deep_comparison.md"
+        "papers/orion-12-open-world-scientific-discovery/protocol/TABLE_P2-7_wide_deep_comparison.md"
     )
     text = table.read_text(encoding="utf-8")
     assert "Not claimed:" in text

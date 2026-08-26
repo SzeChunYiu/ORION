@@ -7,8 +7,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-RENDER = ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "scripts" / "render_offline_results.py"
-REGENERATE = ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "scripts" / "run_offline_companion.py"
+RENDER = ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "scripts" / "render_offline_results.py"
+REGENERATE = ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "scripts" / "run_offline_companion.py"
 
 
 def test_offline_failure_table_and_figure_are_generated_from_result_summary() -> None:

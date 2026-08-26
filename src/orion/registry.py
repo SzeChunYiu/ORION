@@ -6,10 +6,10 @@ Q_SERIES_PUBLICATION_SPEC_ID = "ORION.QSeriesFinalPublicationSpec.v1"
 Q_SERIES_SYNC_EPOCH = "2026-08-22-q-series-recursive-v2"
 Q_SERIES_PAPER_IDS = ("Q1", "Q2", "Q3", "Q4")
 Q_SERIES_CANONICAL_MANUSCRIPTS = (
-    "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
-    "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3_REFINED.md",
-    "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3_REFINED.md",
-    "papers/Q-paper-04-typed-state/MANUSCRIPT_V3_REFINED.md",
+    "papers/orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
+    "papers/orion-06-recursive-recovery/MANUSCRIPT_V3_REFINED.md",
+    "papers/orion-07-dual-instrument/MANUSCRIPT_V3_REFINED.md",
+    "papers/orion-08-typed-state/MANUSCRIPT_V3_REFINED.md",
 )
 Q3_HARNESS_PUBLICATION_CONTRACT_ID = "ORION.Q3.HarnessPublicationContract.v1"
 

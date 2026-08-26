@@ -12,7 +12,7 @@ from typing import Any
 
 SCHEMA = "ORION.P14D.ExternalAcquisitionPreflight.v1"
 BLOCKED_TERMINAL = "P14D_EXTERNAL_ACQUISITION_BLOCKED"
-INPUT_DIRECTORY = Path("papers/paper-14-orion-rse/p14d_external_inputs")
+INPUT_DIRECTORY = Path("papers/orion-24-orion-rse/p14d_external_inputs")
 
 REQUIRED_ARTIFACTS = (
     "packet_register.json",

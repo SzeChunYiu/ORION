@@ -16,7 +16,7 @@ A new paper reopens scientific content only if it:
 
 Metadata updates, adjacent methods, citations that improve context, or a new publication venue for an already-absorbed donor trigger **citation refresh only**, not new experiments.
 
-## Q1 search lanes
+## ORION-01 search lanes
 
 ### Exact residual query families
 - `TARE auxiliary anticommuting frame optimization exact support bound Tag Restore`
@@ -33,7 +33,7 @@ A primary work proving an equal/stronger all-n support-≤2 closure for the same
 ### Citation-only trigger
 New TARE implementation benchmarks, hardware mappings, or Tag heuristics that do not prove/refute the same closure statement.
 
-## Q2 search lanes
+## ORION-02 search lanes
 
 - `scientific agent negative result successor hypothesis revision research state`
 - `autonomous science failure-driven research question generation preregistration`
@@ -47,9 +47,9 @@ Mandatory parents to recheck:
 - SciAgentArena;
 - AI Scientist / current end-to-end autonomous-science systems.
 
-Reopen trigger: a prior/current system with an explicit evidence-bound **disposition → donor-first-refusal → prospectively frozen successor** protocol matching or subsuming Q2's residual.
+Reopen trigger: a prior/current system with an explicit evidence-bound **disposition → donor-first-refusal → prospectively frozen successor** protocol matching or subsuming ORION-02's residual.
 
-## Q3 search lanes
+## ORION-03 search lanes
 
 - `scientific agent agreement benchmark unresolved research question deferred scoring`
 - `inter-agent scientific diagnosis agreement future outcome`
@@ -61,9 +61,9 @@ Mandatory parents:
 - SciAgentArena;
 - MLGym and related task-grounded research-agent evaluations.
 
-Q3 remains scientifically open regardless of freshness until its prospective multi-instance evidence gate closes.
+ORION-03 remains scientifically open regardless of freshness until its prospective multi-instance evidence gate closes.
 
-## Q4 search lanes
+## ORION-04 search lanes
 
 - `LLM agent stale memory invalidation scope dependency provenance`
 - `agent context governance version provenance state decision`
@@ -76,9 +76,9 @@ Mandatory parents:
 - database/workflow provenance;
 - value-of-information / active decision literature.
 
-Reopen trigger: a matched-information study already showing the same multi-responsibility typed/scope mechanism at equal/stronger scope, or evidence that one of Q4's purportedly isolated controls does not actually hold information constant.
+Reopen trigger: a matched-information study already showing the same multi-responsibility typed/scope mechanism at equal/stronger scope, or evidence that one of ORION-04's purportedly isolated controls does not actually hold information constant.
 
-## QG1 search lanes
+## ORION-09 search lanes
 
 - `instance space analysis quantum compiler algorithm selection`
 - `quantum compilation phase diagram objective regime exact counterexample`
@@ -92,7 +92,7 @@ Mandatory conceptual parents:
 
 Reopen trigger: prior/current work already defining the same exact regime-geometry object with trade witnesses + intrinsic support/proof ceiling + objective proof region + boundary identifiability at equal/stronger scope, or a counterexample to a V3 cross-family headline.
 
-## QG2 search lanes
+## ORION-10 search lanes
 
 - `static quantum program cost analysis certified exact resource forecast`
 - `quantum compiler static cost estimator exact upper bound`

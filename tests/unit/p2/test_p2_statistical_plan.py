@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "protocol"
+PAPER = ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "protocol"
 PROTOCOL_PATH = PAPER / "PROTOCOL_V1.json"
 PLAN_PATH = PAPER / "STATISTICAL_PLAN_V1.json"
 MEASUREMENT_PATH = PAPER / "MEASUREMENT_PLAN_V1.md"

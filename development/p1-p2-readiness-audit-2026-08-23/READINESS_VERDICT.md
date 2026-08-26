@@ -45,15 +45,15 @@ wide title-level claims at a top-tier standard.
 P2's title-level object is a guarded vector over discovery, scientific utility,
 future optionality, false closure, valid yield, and cost. Those coordinates are
 defined in
-`papers/paper-02-open-world-scientific-discovery/manuscript/sections/acquisition_authority-envelope.tex:39-70`,
+`papers/orion-12-open-world-scientific-discovery/manuscript/sections/acquisition_authority-envelope.tex:39-70`,
 but no completed study measures them jointly on the same naturalistic worlds.
 The manuscript instead combines an underpowered controlled recall result, a
 7/229 external acquisition ceiling, and a separate authored 400-contract
 closure witness
-(`papers/paper-02-open-world-scientific-discovery/manuscript/main.tex:52-68`).
+(`papers/orion-12-open-world-scientific-discovery/manuscript/main.tex:52-68`).
 It explicitly states that the 768-cluster joint successor lacks worlds,
 comparator identities, and independent custody
-(`papers/paper-02-open-world-scientific-discovery/manuscript/main.tex:226-232,265-271`).
+(`papers/orion-12-open-world-scientific-discovery/manuscript/main.tex:226-232,265-271`).
 
 **Why this blocks top tier:** acquisition and authority remain two evidence
 stories under one formal envelope, not one demonstrated scientific result.
@@ -69,11 +69,11 @@ source-disjoint wave.
 P1 reports exact success in mechanical and authored contract worlds, but the
 paper itself states that those results do not establish natural mixed-fibre
 prevalence or reliable inference of orders and gates
-(`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:25-35`).
+(`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:25-35`).
 The provider-diverse frame contains 16 metadata candidates, yet it opened no
 case content, left rights unresolved for all 16, assessed eligibility for 0/16,
 and remains far from the required 896 clusters
-(`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:45-65`;
+(`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:45-65`;
 `development/provider-diverse-metadata-census-2026-08-23/DEVELOPMENT_REPORT.md:176-192`).
 
 **Why this blocks top tier:** the title generalizes across scientific changes,
@@ -92,11 +92,11 @@ The current source selection, case construction, execution, scoring, proof
 review, and reproduction are repository-held. P1 correctly calls its
 reproduction “local implementation separation, not external evaluation
 authority”
-(`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/08-conclusion.tex:23-31`),
+(`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/08-conclusion.tex:23-31`),
 and the active-theory review explicitly says it is same-repository only
 (`development/active-identification-theory-review-2026-08-23/ADVERSARIAL_REVIEW.md:3-6`).
 P2 likewise lacks independently separated evaluator/gold custody
-(`papers/paper-02-open-world-scientific-discovery/manuscript/main.tex:226-232`).
+(`papers/orion-12-open-world-scientific-discovery/manuscript/main.tex:226-232`).
 
 **Why this blocks top-tier empirical authority:** code-path separation detects
 implementation mistakes; it does not supply outcome-independent source choice,
@@ -164,12 +164,12 @@ acquisition--authority campaign in blocker 1.
 P1's historical/local suite admits direct shortcuts: perfect fixed-phrase and
 filename separation, singleton attribution rules for half the cases, and a
 blind responder solving half the suite
-(`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:154-180`;
-`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/05-evaluation.tex:161-178`).
+(`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:154-180`;
+`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/05-evaluation.tex:161-178`).
 The powered and 400-contract successors are stronger exact mechanism witnesses,
 but they still supply the responsibility relation and action vocabulary by
 construction
-(`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:78-91`).
+(`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:78-91`).
 
 **Why this blocks top tier:** a reviewer can attribute the perfect ceilings to
 generator/interface alignment rather than natural responsibility inference.
@@ -184,7 +184,7 @@ the licensing relation actually splits otherwise identical donor fibres.
 P1 has candidate external systems but no lawful R7 arm: Agent Laboratory and AI
 Scientist-v2 do not consume the byte-equivalent dossier/action interface or emit
 the protected responsibility decision under matched resources
-(`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:67-76`;
+(`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:67-76`;
 `development/comparator-binding-harness-2026-08-23/SCIENTIFIC_REPORT.md:62-66`).
 P2 has a runnable Apache-2.0 SIEVE revision, but only a stub fixture; its native
 answer/end/error/timeout trajectory is not a task-closure terminal
@@ -202,10 +202,10 @@ The factor-through-an-interface/Bayes-impurity lemma is repeated across the
 programme and is classical decision-sufficiency substrate, not five independent
 novel results. P1 still headlines factorization and universal antichain
 representation in its abstract
-(`papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.tex:40-63`).
+(`papers/orion-11-recursive-epistemic-reconstruction/manuscript/main.tex:40-63`).
 The latter is a permissive representation by upward closure, not a deep
 universality theorem
-(`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/02a-minimal-escalation-theory.tex:357-374`).
+(`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/02a-minimal-escalation-theory.tex:357-374`).
 The new finite active-identification material is mathematically sound but mapped
 to POMDP policy vectors, robust/minimax decision theory, rectangularity,
 controlled sensing, and adaptive submodularity; its same-repository review
@@ -229,7 +229,7 @@ that predicts a new protected contrast.
 P2 names (D,U,V,F,Y,K) but does not yet provide independently validated,
 observable measurements for scientific utility, future-option value, or the
 compatible-world/obligation coverage needed by robust closure
-(`papers/paper-02-open-world-scientific-discovery/manuscript/sections/acquisition_authority-envelope.tex:39-70,291-325`).
+(`papers/orion-12-open-world-scientific-discovery/manuscript/sections/acquisition_authority-envelope.tex:39-70,291-325`).
 The paper correctly states that registry completeness is not implied by
 adversarial realizability. No empirical registry-completeness audit exists.
 
@@ -240,10 +240,10 @@ use the same protected units for acquisition and closure.
 ### 9. `[B] P2.MANUSCRIPT_AND_LEDGER_DO_NOT_YET_CONTAIN_SYNERGY_CHAIN`
 
 At audit time, neither the P2 manuscript tree nor
-`papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V2.md`
+`papers/orion-12-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V2.md`
 contains “SYNERGY” or any of the new SYNERGY terminals. The current ledger still
 ends its empirical authority at `P2_NARROWED` and the earlier V2 non-promotion
-(`papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V2.md:1-18,44-68`).
+(`papers/orion-12-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V2.md:1-18,44-68`).
 
 **Why this matters:** submitting the current PDF would omit the most informative
 new real-data evidence: a positive average effect with failed harm/replication
@@ -257,12 +257,12 @@ freeze as an outcome.
 
 ### 10. `[C] P1.READINESS_TERMINOLOGY_OVERSTATES_INDEPENDENCE`
 
-`papers/paper-01-recursive-epistemic-reconstruction/JOURNAL_READINESS.md:150-166`
+`papers/orion-11-recursive-epistemic-reconstruction/JOURNAL_READINESS.md:150-166`
 calls the same-repository reproduction “independent” and declares the bounded
 paper `PEER_REVIEW_READY`, while the manuscript correctly calls it local
 code-path separation rather than external verification
-(`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/05b-necessity-successor.tex:92-102`;
-`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/08-conclusion.tex:23-31`).
+(`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/05b-necessity-successor.tex:92-102`;
+`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/08-conclusion.tex:23-31`).
 
 **Closure condition:** reserve “independent” and “external peer review” for
 owner-separated work. The current accurate phrase is “separate same-repository

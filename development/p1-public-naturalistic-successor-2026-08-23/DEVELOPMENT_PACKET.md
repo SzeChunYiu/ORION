@@ -21,7 +21,7 @@ evidence after strong donor mechanisms receive the same information and actions.
 The current manuscript states that its formal generality does not establish how
 often mixed decision fibres occur in natural work or whether a language model can
 identify the required order and hard gates
-(`papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:25-35`).
+(`papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/07-limitations.tex:25-35`).
 
 The current evidence also fixes the exact blockers:
 

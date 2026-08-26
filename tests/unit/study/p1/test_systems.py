@@ -1005,7 +1005,7 @@ def test_suite_shaped_controls_carry_closures_without_inviting_a_reopen():
 FROZEN_SUITE = (
     Path(__file__).resolve().parents[4]
     / "papers"
-    / "paper-01-recursive-epistemic-reconstruction"
+    / "orion-11-recursive-epistemic-reconstruction"
     / "protocol"
     / "cases"
 )

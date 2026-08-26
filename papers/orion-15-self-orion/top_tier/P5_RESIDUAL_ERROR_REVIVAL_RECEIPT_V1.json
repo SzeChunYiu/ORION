@@ -1,0 +1,157 @@
+{
+  "schema_version": "orion.revival-receipt.v1",
+  "paper_id": "P5",
+  "lane": "NR-01",
+  "date": "2026-08-23",
+  "receipt_id": "P5_RESIDUAL_ERROR_REVIVAL_RECEIPT_V1",
+  "source_negative": {
+    "claim_id": "P5.glm52_attribution",
+    "verification_record": "research/verification/records/P5.glm-5.2-attribution-21-24.json",
+    "historical_accuracy": 0.875,
+    "historical_correct": 21,
+    "historical_standard_macro_f1": 0.8726190476190476,
+    "residual_errors": [
+      {
+        "case_id": "P5-HC-002",
+        "gold": "RETRIEVAL_MISS",
+        "v1_attributed": "REPRESENTATION_GAP"
+      },
+      {
+        "case_id": "P5-HC-012",
+        "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+        "v1_attributed": "IMPLEMENTATION_BUG"
+      },
+      {
+        "case_id": "P5-HC-018",
+        "gold": "REPRESENTATION_GAP",
+        "v1_attributed": "METHOD_BASIS_GAP"
+      }
+    ]
+  },
+  "failure_attribution_stage": "attribution_mechanism",
+  "genuinely_undecidable_cases": [],
+  "common_root_cause": "V1 instrument licenses free-form causal re-derivation that overrides evidence stated in the case text; the three lost cases are exactly those whose sealed competitor family is the more deeply-causal attractor.",
+  "lever": {
+    "name": "V2_LICENSED_EVIDENCE_STAGED_ATTRIBUTION",
+    "protocol_path": "papers/orion-15-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json",
+    "protocol_sha256": "5d4d0fa3f457e4e1db9934068e5541743844fc5b0862a144701cf6a66f41268b",
+    "protocol_byte_frozen_at_observed_tree": true,
+    "protocol_and_outcomes_first_appear_in_same_commit": true,
+    "independent_pre_outcome_preregistration": "CANNOT_CHECK",
+    "design": "Stage A model extraction (verbatim-quote-backed failing_subject / stated_cause / working_failing_delta / stated_code_defect over a 9-value locus vocabulary restating the 8 published family definitions) + Stage B deterministic rules R1-R6",
+    "case_specific_rules": false,
+    "family_pair_specific_rules": false
+  },
+  "rerun": {
+    "driver": "scripts/run_p5_glm_attribution_v2.py",
+    "suite_path": "papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json",
+    "suite_sha256": "1c3650a62b4432eba60ec17a44dd3e47beedeb266e64e3e96ae593fbbc4e2747",
+    "suite_unchanged_from_verification_record": true,
+    "suite_sha256_matches_verification_record": true,
+    "v1_prompt_sha256": "4ff4591f68a95a9fc1e98de048ed628e62f0af9b9bf60f1acdc14bdbc8e1bea8",
+    "requested_model": "glm-5.2",
+    "served_model": "glm-5.3",
+    "temperature": 0.0,
+    "arms": {
+      "control_v1_replay": {
+        "correct": 21,
+        "accuracy": 0.875,
+        "standard_macro_f1": 0.8726190476190476,
+        "reproduces_historical_exactly": true,
+        "errors": [
+          {
+            "case_id": "P5-HC-002",
+            "gold": "RETRIEVAL_MISS",
+            "attributed": "REPRESENTATION_GAP"
+          },
+          {
+            "case_id": "P5-HC-012",
+            "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+            "attributed": "IMPLEMENTATION_BUG"
+          },
+          {
+            "case_id": "P5-HC-018",
+            "gold": "REPRESENTATION_GAP",
+            "attributed": "METHOD_BASIS_GAP"
+          }
+        ]
+      },
+      "treatment_v2": {
+        "correct": 24,
+        "accuracy": 1.0,
+        "standard_macro_f1": 1.0,
+        "cannot_distinguish": [],
+        "runtime_or_parse_errors": [],
+        "rule_frequencies": {
+          "R1_conflict": 0,
+          "R2_stated_code_defect": 3,
+          "R3_stated_cause": 10,
+          "R4_working_failing_delta": 1,
+          "R5_failing_subject": 10,
+          "R6_no_licensed_evidence": 0
+        },
+        "resolved_error_cases": [
+          {
+            "case_id": "P5-HC-002",
+            "via_rule": "R5_failing_subject",
+            "gold": "RETRIEVAL_MISS",
+            "attributed": "RETRIEVAL_MISS"
+          },
+          {
+            "case_id": "P5-HC-012",
+            "via_rule": "R4_working_failing_delta",
+            "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+            "attributed": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE"
+          },
+          {
+            "case_id": "P5-HC-018",
+            "via_rule": "R3_stated_cause",
+            "gold": "REPRESENTATION_GAP",
+            "attributed": "REPRESENTATION_GAP"
+          }
+        ],
+        "previously_correct_degraded": 0
+      }
+    },
+    "extraction_audit": {
+      "out_of_vocabulary_loci": 0,
+      "extraction_flags": 0,
+      "non_verbatim_quotes": 0,
+      "method": "every quote field checked as verbatim substring of the case visible_symptom + candidate_visible_context; locus vocabulary membership enforced"
+    }
+  },
+  "before_after": {
+    "before_accuracy": 0.875,
+    "after_accuracy": 1.0,
+    "before_standard_macro_f1": 0.8726190476190476,
+    "after_standard_macro_f1": 1.0,
+    "control_arm_pins_instrument_not_model_version": true
+  },
+  "remains_open": [
+    "blind / fresh-transfer attribution capability NOT certified (gold labels colocated in-repo; fresh-transfer campaign lane unchanged)",
+    "V1 21/24 remains the published unstructured-instrument measurement; nothing relabeled",
+    "V1 macro-F1 publication discrepancy (0.875 vs 0.872619) remains documented in the verification record",
+    "P5-RD-01/02/03 interventional successors remain DESIGNED_NOT_EXECUTED",
+    "single run, temperature 0, no cross-restart variance estimate; control-arm exact reproduction is the available replicability evidence"
+  ],
+  "authority_boundary": [
+    "does not claim the model gained attribution capability: the model now extracts, deterministic code diagnoses",
+    "does not overturn the historical negative; V1 results immutable, V2 evidence in a new directory",
+    "does not certify performance outside the frozen 24-case suite, on fresh cases, other serving conditions, or other models",
+    "does not grant scientific authority for the hidden-cause construct; instrument-stage engineering revival only"
+  ],
+  "terminal": "P5_ATTRIBUTION_INSTRUMENT_V2_TREATMENT_24_24__INSTRUMENT_STAGE_POSITIVE",
+  "landing": {
+    "branch": "revive/p5-residuals-nr01",
+    "pr": null,
+    "note": "no PR opened: NR-01 transferred to codex lane by operator directive 2026-08-23 (commit 2f247aaa); pushed branch is the handoff artifact for the codex lane / orchestrator"
+  },
+  "artifact_sha256": {
+    "protocol": "5d4d0fa3f457e4e1db9934068e5541743844fc5b0862a144701cf6a66f41268b",
+    "driver": "cc154be15ba825b6449b857814e9af973c386f04ea08ee30412060dc89c87594",
+    "results_control": "4db13369647e0564929f8805d28eea5ac12282b0d1203dfd2b6cd40bd0b0527e",
+    "results_treatment": "1659e9d68be155babb00a0f5500eedf33ca71dd8e213997cbeedd4acb1ed64d1",
+    "run_report": "79e6d070017e5c3d5e8afbbd88a3508afdb973df061d4f5b54fc0618c23913a1",
+    "receipt_md": "f3b3a487484d3b5f9fd2b4316dc9d4ad0b96490fea70820eb61773fbd3b28755"
+  }
+}

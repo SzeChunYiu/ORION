@@ -28,7 +28,7 @@ jobs:
       - name: Render and audit P2 exact head
         run: |
           set -euo pipefail
-          cd papers/paper-02-open-world-scientific-discovery/manuscript
+          cd papers/orion-12-open-world-scientific-discovery/manuscript
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
           ! grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log

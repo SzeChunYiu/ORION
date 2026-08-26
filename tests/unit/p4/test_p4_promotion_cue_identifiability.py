@@ -49,12 +49,12 @@ from orion.study.p4 import (
 )
 
 ROOT = Path(__file__).resolve().parents[3]
-HOST = ROOT / "papers" / "paper-04-verified-scientific-discovery" / "host"
+HOST = ROOT / "papers" / "orion-14-verified-scientific-discovery" / "host"
 GENERATOR = HOST / "generate_protected_cases.py"
 METRICS = (
     ROOT
     / "papers"
-    / "paper-04-verified-scientific-discovery"
+    / "orion-14-verified-scientific-discovery"
     / "evidence"
     / "protected_v2"
     / "PUBLICATION_METRICS_V2.json"

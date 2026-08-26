@@ -182,7 +182,7 @@ class TestTheCommittedCampaigns:
         # scorer, this module's finding loses its footing and should fail here.
         scorer = (
             REPO_ROOT
-            / "papers/paper-02-open-world-scientific-discovery/scripts/score_wide_comparison.py"
+            / "papers/orion-12-open-world-scientific-discovery/scripts/score_wide_comparison.py"
         ).read_text(encoding="utf-8")
         assert "absent measurement wearing the costume of a number" in scorer
         assert cr.SAMPLED_FAMILY_MARKER in scorer

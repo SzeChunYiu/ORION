@@ -1,0 +1,108 @@
+{
+  "artifact_hash": "7b40757e257ecdbcbc5be6858b9b9f37d211f0aaad5872b573756656a6c3fb98",
+  "blocked_on": [
+    "workflow_omits_frozen_packet_binding",
+    "workflow_does_not_load_LIVE_TRIAL_PACKET_V1",
+    "corpus_revision_UNBOUND",
+    "no_result_bearing_trial_on_closure_subject"
+  ],
+  "canonical_registry_elected": false,
+  "divergence": {
+    "baseline_id": [
+      "simple_llm_retrieval_baseline.v1",
+      "simple-llm-retrieval-baseline-v1"
+    ],
+    "deep_task_id": [
+      "P5.LIVE.DEEP.flat-round-without-lineage",
+      "phase2:deep:mos2-screening-exciton"
+    ],
+    "evaluation_epoch_id": [
+      "P5.shadow-live-research.epoch-1",
+      "env:ORION_PHASE2_EVALUATION_EPOCH_ID_or_github-actions-<run_id>-attempt-<n>"
+    ],
+    "reasoner_model_env_var": [
+      "ORION_P5_REASONER_MODEL",
+      "ORION_PHASE2_REASONER_MODEL"
+    ],
+    "resource_budget_units": [
+      24.0,
+      32.0
+    ],
+    "wide_task_id": [
+      "P5.LIVE.WIDE.stopping-rule-source-families",
+      "phase2:wide:microglia-complement-cross-disease"
+    ]
+  },
+  "does_not_authorize": [
+    "ticking empirical #8 trial boxes",
+    "launching p5-phase2-live-execution",
+    "electing live_packet.py or phase2_preflight.py as the canonical Phase-2 subject",
+    "editing p5_phase2_live_execution.yml (that path launches a live run)"
+  ],
+  "empirical_authority": "CANNOT_CHECK",
+  "fail_closed_gate": {
+    "divergence_escalation_commit": "86e8f15f2406ae32ef271364e10f9cc40e03a3b2",
+    "issue": "SzeChunYiu/ORION#277",
+    "merge_commit": "8aaa9e64becefbdf6efc39fe24c05abdc1c52f7b",
+    "pr": 289,
+    "status": "merged_on_origin_main",
+    "workflow_passes_frozen_packet": false,
+    "workflow_would_block_if_packet_attached": "CANNOT_CHECK",
+    "workflow_would_block_without_packet": "BIND_FROZEN_PACKET"
+  },
+  "failure_class": "FROZEN_ARTIFACT_NOT_CONSULTED_BY_EXECUTION",
+  "frozen_packet": {
+    "baseline_id": "simple_llm_retrieval_baseline.v1",
+    "blob_sha": "198347b9e06c2e517b7cafa40d38614240c5d115",
+    "corpus_revision": "UNBOUND",
+    "declared_command": "python -m orion.self_orion.live_packet --live",
+    "evaluation_epoch_id": "P5.shadow-live-research.epoch-1",
+    "freeze_commit": "937fe2130405f697800d28dac8e2264b1333b753",
+    "packet_fingerprint": "53f99a2c7e6cfdd74cf5b10a62ba273bc911999b5719cf700eda64044f917e48",
+    "packet_id": "P5.shadow-live-research.v1",
+    "path": "papers/orion-15-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json",
+    "reasoner_model_env_var": "ORION_P5_REASONER_MODEL",
+    "resource_budget_units": 24.0,
+    "task_ids": [
+      "P5.LIVE.DEEP.flat-round-without-lineage",
+      "P5.LIVE.WIDE.stopping-rule-source-families"
+    ]
+  },
+  "issue": "SzeChunYiu/ORION#8",
+  "live_trial_launched": false,
+  "observed_at_commit": "5a9a35b53b7f01000ed5f001c16da9492212549b",
+  "outcome_accessed": false,
+  "prior_receipt_commit": "45a3aedca6bce0220066d729b4e6bf6c4550eda7",
+  "reason": "The published LIVE_TRIAL_PACKET_V1.json and the merged p5-phase2-live-execution workflow still name two different task registries. Issue #277 / PR #289 has merged: assess_phase2_preflight now fail-closes on identity and reports CANNOT_CHECK on registry divergence without electing either side. The workflow still constructs Phase2ClosurePreflight without frozen_packet, so the published packet is not consulted by execution. This lane does not edit the workflow YAML (that path launches a live run) and does not silently adopt a registry. Launching the current workflow would block at BIND_FROZEN_PACKET, not produce a bound #8 trial.",
+  "reopen_when": [
+    "the merged workflow passes FrozenPacketBinding.from_packet_document(LIVE_TRIAL_PACKET_V1.json) without launching an unbound run",
+    "governance binds one registry, or the two registries are made identical pre-outcome",
+    "corpus_revision is bound to the exact Phase-2 closure subject",
+    "a result-bearing wide+deep trial and matched baseline are merged on that subject"
+  ],
+  "schema": "orion.p5.issue8-packet-execution-binding-receipt.v1",
+  "status": "CANNOT_CHECK",
+  "supersedes": {
+    "observed_at_commit": "cfeff0b0e5efa41e283b1166b14f7537923d46d7",
+    "preflight_blob_sha": "16ae0a2dc7bb84445c30021206937d3c9fcfb405",
+    "why": "The #277 fail-closed repair rewrote phase2_preflight.py after this receipt was issued. The divergence it records is unchanged; only the observed bytes moved, so the receipt is re-observed rather than left pointing at a blob the tree no longer has."
+  },
+  "workflow_registry": {
+    "baseline_id": "simple-llm-retrieval-baseline-v1",
+    "evaluation_epoch_id": "env:ORION_PHASE2_EVALUATION_EPOCH_ID_or_github-actions-<run_id>-attempt-<n>",
+    "loads_published_packet": false,
+    "packet_constructor": "orion.self_orion.phase2_preflight.build_frozen_live_trial_packet",
+    "passes_frozen_packet": false,
+    "preflight_blob_sha": "71842f661d229f223bfc0d1ee30e525f01a36628",
+    "preflight_path": "src/orion/self_orion/phase2_preflight.py",
+    "protocol_id": "phase2-shadow-closure-v1",
+    "reasoner_model_env_var": "ORION_PHASE2_REASONER_MODEL",
+    "resource_budget_units": 32.0,
+    "task_ids": [
+      "phase2:deep:mos2-screening-exciton",
+      "phase2:wide:microglia-complement-cross-disease"
+    ],
+    "workflow_blob_sha": "8bbc5884cde50dc84bb8f3b477cfdb29fe9845f9",
+    "workflow_path": ".github/workflows/p5_phase2_live_execution.yml"
+  }
+}

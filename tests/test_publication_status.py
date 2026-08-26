@@ -96,7 +96,7 @@ def test_p2_readiness_rests_on_an_unambiguous_terminal_line():
     """
     module = _load_module()
     readiness = (
-        ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "JOURNAL_READINESS.md"
+        ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "JOURNAL_READINESS.md"
     ).read_text(encoding="utf-8")
     terminal = module.parse_journal_readiness_terminal(readiness)
     assert terminal == "PEER_REVIEW_READY", (

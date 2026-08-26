@@ -244,7 +244,7 @@ def test_the_shipped_status_artifact_reports_zero_of_1344():
     payload = json.loads(
         (
             REPO_ROOT
-            / "papers/paper-09-structured-epistemic-learning/evidence/"
+            / "papers/orion-19-structured-epistemic-learning/evidence/"
             "P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json"
         ).read_text(encoding="utf-8")
     )

@@ -23,13 +23,13 @@ These PDFs are not submission packages and grant no venue compliance. They exist
 
 ## Papers
 
-- Q1 V3
-- Q2 V3
-- Q4 V3
-- QG1 V3
-- QG2 V3
+- ORION-01 V3
+- ORION-02 V3
+- ORION-04 V3
+- ORION-09 V3
+- ORION-10 V3
 
-Q3 is excluded because no final scientific results manuscript is authorized.
+ORION-03 is excluded because no final scientific results manuscript is authorized.
 
 ## Evidence boundary
 

@@ -4,7 +4,7 @@ on:
   push:
     branches: [shadow/p4-issue101-results]
     paths:
-      - 'papers/paper-04-verified-scientific-discovery/submission/BUILD_TRIGGER_V1.txt'
+      - 'papers/orion-14-verified-scientific-discovery/submission/BUILD_TRIGGER_V1.txt'
 
 permissions:
   contents: read
@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cd papers/paper-04-verified-scientific-discovery
+          cd papers/orion-14-verified-scientific-discovery
           python reproducibility/replay_public.py
           python reproducibility/integrate_publication.py
           git diff --exit-code \
@@ -60,7 +60,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          DIR=papers/paper-04-verified-scientific-discovery/figures
+          DIR=papers/orion-14-verified-scientific-discovery/figures
           for svg in "$DIR"/p4_1_authority_pipeline.svg "$DIR"/p4_2_false_promotion.svg "$DIR"/p4_3_coverage_frontier.svg "$DIR"/p4_4_detection_by_attack.svg "$DIR"/p4_5_attribution_vs_support.svg "$DIR"/p4_6_cost_false_promotion.svg; do
             test -s "$svg"
             rsvg-convert -f pdf -o "${svg%.svg}.pdf" "$svg"
@@ -70,7 +70,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cd papers/paper-04-verified-scientific-discovery/manuscript
+          cd papers/orion-14-verified-scientific-discovery/manuscript
           rm -f main.aux main.bbl main.blg main.log main.out main.toc main.pdf
           pdflatex -interaction=nonstopmode -halt-on-error main.tex
           if grep -q '\\citation' main.aux; then bibtex main; fi
@@ -86,7 +86,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          PAPER=papers/paper-04-verified-scientific-discovery
+          PAPER=papers/orion-14-verified-scientific-discovery
           mkdir -p "$RUNNER_TEMP/p4-final"
           cp "$PAPER/manuscript/main.pdf" "$RUNNER_TEMP/p4-final/ORION-P4-final.pdf"
           pdftotext "$RUNNER_TEMP/p4-final/ORION-P4-final.pdf" "$RUNNER_TEMP/p4-final/ORION-P4-final.txt"
@@ -94,7 +94,7 @@ jobs:
           python - <<'PY'
           import hashlib, json, re, os
           from pathlib import Path
-          paper = Path('papers/paper-04-verified-scientific-discovery')
+          paper = Path('papers/orion-14-verified-scientific-discovery')
           out = Path(os.environ['RUNNER_TEMP'])/'p4-final'
           pdf = out/'ORION-P4-final.pdf'
           text = (out/'ORION-P4-final.txt').read_text(errors='replace')
@@ -172,9 +172,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cp papers/paper-04-verified-scientific-discovery/protocol/THREAT_MODEL_V1.md "$RUNNER_TEMP/p4-final/"
-          cp papers/paper-04-verified-scientific-discovery/evidence/PROTECTED_CLAIM_LEDGER_V1.md "$RUNNER_TEMP/p4-final/"
-          cp papers/paper-04-verified-scientific-discovery/manuscript/bibliography.bib "$RUNNER_TEMP/p4-final/"
+          cp papers/orion-14-verified-scientific-discovery/protocol/THREAT_MODEL_V1.md "$RUNNER_TEMP/p4-final/"
+          cp papers/orion-14-verified-scientific-discovery/evidence/PROTECTED_CLAIM_LEDGER_V1.md "$RUNNER_TEMP/p4-final/"
+          cp papers/orion-14-verified-scientific-discovery/manuscript/bibliography.bib "$RUNNER_TEMP/p4-final/"
 
       - uses: actions/upload-artifact@v4
         with:

@@ -1,7 +1,7 @@
 """P11G's hostile tree decoder, registered so its defeat can be asked what it measured.
 
 The shipped runner is loaded and driven, never re-implemented:
-``papers/paper-11-state-as-computation/run_p11g_deterministic_tree_decoder_v1.py``
+``papers/orion-21-state-as-computation/run_p11g_deterministic_tree_decoder_v1.py``
 supplies the seed, the cells, the training grid, the parity bank and the
 per-query estimator seeds, and :func:`measure` replays its RNG stream draw for
 draw with only the decoder, its resource envelope and the columns it is shown
@@ -99,7 +99,7 @@ from orion.programme.terminal_responsiveness import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER_DIR = REPO_ROOT / "papers/paper-11-state-as-computation"
+PAPER_DIR = REPO_ROOT / "papers/orion-21-state-as-computation"
 P11G_RUNNER = PAPER_DIR / "run_p11g_deterministic_tree_decoder_v1.py"
 P11G_RECEIPT = PAPER_DIR / "P11G_DETERMINISTIC_TREE_DECODER_RESULT_V1.json"
 P11G_PROTOCOL = PAPER_DIR / "P11G_DETERMINISTIC_TREE_DECODER_PROTOCOL_V1.md"
@@ -111,7 +111,7 @@ P11E_PROTOCOL = PAPER_DIR / "P11E_SEEDED_SPARSE_REPLICATION_PROTOCOL_V1.md"
 
 #: Where the arm axis P11G's receipt carries with one value is declared. The
 #: adjudication reclassifies P11G's claim authority without editing a frozen
-#: byte, the way ``papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_
+#: byte, the way ``papers/orion-24-orion-rse/P14_GATE_ATTAINABILITY_
 #: ADJUDICATION_V1.md`` did for P14A.
 ARM_PLACEMENT_ADJUDICATION = PAPER_DIR / "P11G_ARM_PLACEMENT_ADJUDICATION_V1.md"
 

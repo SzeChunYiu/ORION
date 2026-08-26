@@ -3,30 +3,30 @@ name: p3-manuscript-audit
 on:
   pull_request:
     paths:
-      - 'papers/paper-03-global-knowledge-portrait/manuscript/**'
-      - 'papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md'
-      - 'papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md'
-      - 'papers/paper-03-global-knowledge-portrait/SCOPED_PUBLICATION_TRACK_V1.md'
-      - 'papers/paper-03-global-knowledge-portrait/journal_package/**'
-      - 'papers/paper-03-global-knowledge-portrait/evidence/PEER_REVIEW_READY_SCOPED_V1.md'
-      - 'papers/paper-03-global-knowledge-portrait/evidence/method-structure/**'
-      - 'papers/paper-03-global-knowledge-portrait/REPRODUCE.md'
-      - 'papers/paper-03-global-knowledge-portrait/README.md'
+      - 'papers/orion-13-global-knowledge-portrait/manuscript/**'
+      - 'papers/orion-13-global-knowledge-portrait/CLAIM_LEDGER_V1.md'
+      - 'papers/orion-13-global-knowledge-portrait/CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md'
+      - 'papers/orion-13-global-knowledge-portrait/SCOPED_PUBLICATION_TRACK_V1.md'
+      - 'papers/orion-13-global-knowledge-portrait/journal_package/**'
+      - 'papers/orion-13-global-knowledge-portrait/evidence/PEER_REVIEW_READY_SCOPED_V1.md'
+      - 'papers/orion-13-global-knowledge-portrait/evidence/method-structure/**'
+      - 'papers/orion-13-global-knowledge-portrait/REPRODUCE.md'
+      - 'papers/orion-13-global-knowledge-portrait/README.md'
       - 'research/publication/publication_status.json'
       - 'tests/test_publication_status.py'
       - '.github/workflows/p3-manuscript-audit.yml'
   push:
     branches: [main]
     paths:
-      - 'papers/paper-03-global-knowledge-portrait/manuscript/**'
-      - 'papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md'
-      - 'papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md'
-      - 'papers/paper-03-global-knowledge-portrait/SCOPED_PUBLICATION_TRACK_V1.md'
-      - 'papers/paper-03-global-knowledge-portrait/journal_package/**'
-      - 'papers/paper-03-global-knowledge-portrait/evidence/PEER_REVIEW_READY_SCOPED_V1.md'
-      - 'papers/paper-03-global-knowledge-portrait/evidence/method-structure/**'
-      - 'papers/paper-03-global-knowledge-portrait/REPRODUCE.md'
-      - 'papers/paper-03-global-knowledge-portrait/README.md'
+      - 'papers/orion-13-global-knowledge-portrait/manuscript/**'
+      - 'papers/orion-13-global-knowledge-portrait/CLAIM_LEDGER_V1.md'
+      - 'papers/orion-13-global-knowledge-portrait/CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md'
+      - 'papers/orion-13-global-knowledge-portrait/SCOPED_PUBLICATION_TRACK_V1.md'
+      - 'papers/orion-13-global-knowledge-portrait/journal_package/**'
+      - 'papers/orion-13-global-knowledge-portrait/evidence/PEER_REVIEW_READY_SCOPED_V1.md'
+      - 'papers/orion-13-global-knowledge-portrait/evidence/method-structure/**'
+      - 'papers/orion-13-global-knowledge-portrait/REPRODUCE.md'
+      - 'papers/orion-13-global-knowledge-portrait/README.md'
       - 'research/publication/publication_status.json'
       - 'tests/test_publication_status.py'
       - '.github/workflows/p3-manuscript-audit.yml'
@@ -65,7 +65,7 @@ jobs:
           import sys
           from pathlib import Path
 
-          paper = Path('papers/paper-03-global-knowledge-portrait')
+          paper = Path('papers/orion-13-global-knowledge-portrait')
           root = paper / 'manuscript'
           main_text = (root / 'main.tex').read_text(encoding='utf-8')
           tex_files = [root / 'main.tex', *sorted((root / 'sections').glob('*.tex'))]
@@ -195,11 +195,11 @@ jobs:
           PY
 
       - name: Verify tracked journal package checksums
-        working-directory: papers/paper-03-global-knowledge-portrait
+        working-directory: papers/orion-13-global-knowledge-portrait
         run: sha256sum -c journal_package/SHA256SUMS
 
       - name: Compile canonical scoped PDF
-        working-directory: papers/paper-03-global-knowledge-portrait/manuscript
+        working-directory: papers/orion-13-global-knowledge-portrait/manuscript
         run: |
           set -euo pipefail
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
@@ -213,8 +213,8 @@ jobs:
       - name: Verify current rebuild and superseded historical package authority
         run: |
           set -euo pipefail
-          rebuilt='papers/paper-03-global-knowledge-portrait/manuscript/main.pdf'
-          tracked='papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf'
+          rebuilt='papers/orion-13-global-knowledge-portrait/manuscript/main.pdf'
+          tracked='papers/orion-13-global-knowledge-portrait/journal_package/manuscript.pdf'
           test -s "$rebuilt"
           test -s "$tracked"
           pdftotext "$rebuilt" /tmp/p3-rebuilt.txt
@@ -225,7 +225,7 @@ jobs:
           import json
           from pathlib import Path
 
-          package = Path('papers/paper-03-global-knowledge-portrait/journal_package')
+          package = Path('papers/orion-13-global-knowledge-portrait/journal_package')
           manifest = json.loads((package / 'MANIFEST.json').read_text(encoding='utf-8'))
           state = json.loads((package / 'RENDER_CLOSURE_STATE.json').read_text(encoding='utf-8'))
           authority = manifest.get('package_authority') or {}
@@ -295,5 +295,5 @@ jobs:
           path: |
             /tmp/p3-manuscript-audit.json
             /tmp/p3-pdfinfo.txt
-            papers/paper-03-global-knowledge-portrait/manuscript/main.pdf
-            papers/paper-03-global-knowledge-portrait/manuscript/main.log
+            papers/orion-13-global-knowledge-portrait/manuscript/main.pdf
+            papers/orion-13-global-knowledge-portrait/manuscript/main.log

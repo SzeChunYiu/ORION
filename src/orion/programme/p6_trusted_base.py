@@ -63,7 +63,7 @@ def _imports(path: Path) -> set[str]:
 def derive(root: Path | None = None) -> tuple[set[str], set[str]]:
     """Return (orion modules, external non-stdlib) P6's formal code depends on."""
     root = root or Path(__file__).resolve().parents[3]
-    formal = root / "papers/paper-06-formal-epistemic-structures-and-mechanics/formal"
+    formal = root / "papers/orion-16-formal-epistemic-structures-and-mechanics/formal"
     if not formal.is_dir():
         raise FileNotFoundError(formal)
     src = root / "src"

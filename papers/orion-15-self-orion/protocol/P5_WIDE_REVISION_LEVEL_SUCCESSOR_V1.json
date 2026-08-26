@@ -1,0 +1,80 @@
+{
+  "schema_version": "orion.p5.wide-revision-level-successor.v1",
+  "paper_id": "P5",
+  "claim_id": "P5.REVISION_LEVEL.WIDE.V1",
+  "protocol_status": "PROSPECTIVE_LOCAL_PREFLIGHT_COMPLETE__EXTERNAL_PROJECT_PANEL_AND_CUSTODY_REQUIRED",
+  "outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "historical_results_immutable": true,
+  "successor_of": ["P5.GLM52.ATTRIBUTION.DIAGNOSTIC", "P5.self-orion-v3.revision-level.v1"],
+  "material_change": "The successor uses source-disjoint project/issue families, same-visible-symptom blocking, all eight bounded revision classes, six fixed comparators, and protected fresh-transfer evaluation.",
+  "design": {
+    "independent_unit": "source_disjoint_project_issue_family_cluster",
+    "not_independent_units": ["issue_comment", "candidate_edit", "test", "rerun", "metric_cell", "revision_class"],
+    "stratum_count": 64,
+    "units_per_stratum": 12,
+    "planned_independent_units": 768,
+    "domain_count": 8,
+    "revision_classes": [
+      "EVIDENCE_REPAIR",
+      "MEASUREMENT_REPAIR",
+      "WITHIN_CLASS_MODEL_REPAIR",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_REGIME_REPAIR",
+      "EXECUTION_REPAIR",
+      "EVALUATOR_REPAIR",
+      "UNRESOLVED"
+    ],
+    "same_visible_symptom_blocking_required": true,
+    "primary_endpoint": "correct_minimal_revision_with_preservation_and_fresh_transfer_success",
+    "protected_fresh_transfer_and_harm_gates_noncompensatory": true,
+    "project_issue_family_source_disjointness_required": true
+  },
+  "power": {
+    "method": "SIDAK_EXACT_MAX_T_UNDER_DECLARED_INDEPENDENT_CONTRAST_PLANNING_MODEL",
+    "planned_independent_units": 768,
+    "comparator_count": 6,
+    "planning_delta": 0.15,
+    "superiority_margin": 0.05,
+    "planning_discordance": 0.4,
+    "familywise_alpha": 0.05,
+    "target_joint_power": 0.9,
+    "protected_predecessor_outcomes_used_for_calibration": false,
+    "analysis_unit": "project_issue_family_cluster",
+    "multiplicity_family": "all_six_frozen_primary_comparators_for_the_global_minimal_revision_endpoint",
+    "claim_logic": "intersection_all_contrasts_and_every_noncompensatory_harm_gate_must_pass"
+  },
+  "local_bindings": [
+    {
+      "binding_id": "V3_PROSPECTIVE_PROTOCOL",
+      "path": "papers/orion-15-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json",
+      "sha256": "93d6ec04ecc890ff43037ea31da65acdf8882276503df9749bbbbd84827b674f"
+    },
+    {
+      "binding_id": "V3_FAIL_CLOSED_PREFLIGHT",
+      "path": "src/orion/study/p5/revision_level_v3_preflight.py",
+      "sha256": "4a2def0ed567f157adcff40516db69d49a3005517936a86448854f72398869fe"
+    },
+    {
+      "binding_id": "BASELINE_STRUCTURAL_BINDING_LEDGER",
+      "path": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json",
+      "sha256": "b09e9a69d6864938cb581b77590c09a697ea8d8ea18811524ba05ef39beafdbf"
+    }
+  ],
+  "external_bindings_required": [
+    "M_OPEN_ONLY_SOURCE_GROUNDED_STRUCTURAL_BINDING",
+    "SOURCE_DISJOINT_PROTECTED_PROJECT_ISSUE_PANEL",
+    "FINAL_SPLIT_COMMITMENT",
+    "INDEPENDENT_PROTECTED_EVALUATOR_AND_FRESH_TRANSFER_EVALUATOR",
+    "SUBJECT_CANDIDATE_BASELINE_AND_EPOCH_IDENTITIES",
+    "EXTERNAL_RESULT_VERIFIER_CUSTODY"
+  ],
+  "missing_external_terminal": "P5_WIDE_REVISION_LEVEL_CANNOT_CHECK_EXTERNAL_BINDINGS",
+  "possible_scientific_terminals_after_execution": [
+    "P5_WIDE_REVISION_LEVEL_DISCRIMINATION_SUPPORTED",
+    "P5_WIDE_REVISION_LEVEL_NO_INCREMENTAL_VALUE",
+    "P5_WIDE_REVISION_LEVEL_HARMFUL_REFUTED",
+    "P5_WIDE_REVISION_LEVEL_CANNOT_CHECK"
+  ],
+  "current_terminal": "P5_WIDE_READY_FOR_EXTERNAL_PROJECT_PANEL_NOT_A_SCIENTIFIC_RESULT"
+}

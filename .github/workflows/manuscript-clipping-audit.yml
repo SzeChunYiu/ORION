@@ -90,7 +90,7 @@ jobs:
         run: |
           set -euo pipefail
           shopt -s nullglob
-          entries=(papers/paper-??-*/manuscript/main.tex)
+          entries=(papers/orion-??-*/manuscript/main.tex)
           test "${#entries[@]}" -eq 15 || {
             echo "::error::expected 15 P1-P15 manuscript entry points, found ${#entries[@]}"
             exit 1
@@ -129,7 +129,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git diff --exit-code -- ':(glob)papers/paper-??-*/manuscript/main.pdf' || {
+          git diff --exit-code -- ':(glob)papers/orion-??-*/manuscript/main.pdf' || {
             echo '::error::tracked manuscript PDF bytes are stale relative to the clean pinned rebuild'
             exit 1
           }
@@ -141,5 +141,5 @@ jobs:
           if-no-files-found: error
           retention-days: 30
           path: |
-            papers/paper-??-*/manuscript/main.pdf
-            papers/paper-??-*/manuscript/main.log
+            papers/orion-??-*/manuscript/main.pdf
+            papers/orion-??-*/manuscript/main.log

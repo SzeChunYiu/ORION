@@ -3,17 +3,17 @@ name: p9-unified-resource-ledger-v2
 on:
   pull_request:
     paths:
-      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_UNIFIED_RESOURCE_LEDGER_PROTOCOL_V2.md'
-      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_UNIFIED_RESOURCE_LEDGER_RESULT_RECEIPT_V2.md'
-      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_PROTOCOL_V1.md'
-      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_RESULT_RECEIPT_V1.md'
-      - 'papers/paper-09-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py'
-      - 'papers/paper-09-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v2.py'
-      - 'papers/paper-09-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v2.py'
-      - 'papers/paper-09-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json'
-      - 'papers/paper-09-structured-epistemic-learning/build_evidence_summary.py'
-      - 'papers/paper-09-structured-epistemic-learning/build_result_macros.py'
-      - 'papers/paper-09-structured-epistemic-learning/build_headline_tables.py'
+      - 'papers/orion-19-structured-epistemic-learning/top_tier/P9_UNIFIED_RESOURCE_LEDGER_PROTOCOL_V2.md'
+      - 'papers/orion-19-structured-epistemic-learning/top_tier/P9_UNIFIED_RESOURCE_LEDGER_RESULT_RECEIPT_V2.md'
+      - 'papers/orion-19-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_PROTOCOL_V1.md'
+      - 'papers/orion-19-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_RESULT_RECEIPT_V1.md'
+      - 'papers/orion-19-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py'
+      - 'papers/orion-19-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v2.py'
+      - 'papers/orion-19-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v2.py'
+      - 'papers/orion-19-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json'
+      - 'papers/orion-19-structured-epistemic-learning/build_evidence_summary.py'
+      - 'papers/orion-19-structured-epistemic-learning/build_result_macros.py'
+      - 'papers/orion-19-structured-epistemic-learning/build_headline_tables.py'
       - '.github/workflows/p9-unified-resource-ledger-v2.yml'
   workflow_dispatch:
 permissions:
@@ -28,16 +28,16 @@ jobs:
       - name: Install frozen scientific dependencies
         run: python -m pip install 'numpy==2.3.2' 'scikit-learn==1.7.1'
       - name: Build unified I/A/C/M resource ledger V2 (re-executes frozen causal diagnostic)
-        run: python papers/paper-09-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v2.py | tee p9_unified_resource_ledger_v2.json
+        run: python papers/orion-19-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v2.py | tee p9_unified_resource_ledger_v2.json
       - name: Verify deterministic byte replay
         run: |
-          python papers/paper-09-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v2.py > p9_unified_resource_ledger_v2_rerun.json
+          python papers/orion-19-structured-epistemic-learning/top_tier/build_unified_resource_ledger_v2.py > p9_unified_resource_ledger_v2_rerun.json
           cmp p9_unified_resource_ledger_v2.json p9_unified_resource_ledger_v2_rerun.json
       - name: Run independent ledger audit V2
-        run: python papers/paper-09-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v2.py p9_unified_resource_ledger_v2.json | tee p9_unified_resource_ledger_independent_v2.json
+        run: python papers/orion-19-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v2.py p9_unified_resource_ledger_v2.json | tee p9_unified_resource_ledger_independent_v2.json
       - name: Cross-check the frozen causal diagnostic still executes to its frozen terminal
         run: |
-          python papers/paper-09-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py > p9_causal_diagnostic_v1_rerun.json
+          python papers/orion-19-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py > p9_causal_diagnostic_v1_rerun.json
           python - <<'PY'
           import json
           c=json.load(open('p9_causal_diagnostic_v1_rerun.json'))
@@ -74,16 +74,16 @@ jobs:
       # receipt are committed); from the receipt commit onward this regenerates
       # the summary from the committed ledger and publishes it for committing.
       - name: Regenerate official evidence summary under the unified ledger
-        if: hashFiles('papers/paper-09-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json') != ''
+        if: hashFiles('papers/orion-19-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json') != ''
         run: |
-          python papers/paper-09-structured-epistemic-learning/build_evidence_summary.py
-          python papers/paper-09-structured-epistemic-learning/build_result_macros.py
-          python papers/paper-09-structured-epistemic-learning/build_headline_tables.py
+          python papers/orion-19-structured-epistemic-learning/build_evidence_summary.py
+          python papers/orion-19-structured-epistemic-learning/build_result_macros.py
+          python papers/orion-19-structured-epistemic-learning/build_headline_tables.py
       - uses: actions/upload-artifact@v4
-        if: hashFiles('papers/paper-09-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json') != ''
+        if: hashFiles('papers/orion-19-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json') != ''
         with:
           name: p9-evidence-summary-v2
           path: |
-            papers/paper-09-structured-epistemic-learning/evidence/OFFICIAL_EVIDENCE_SUMMARY_V1.json
-            papers/paper-09-structured-epistemic-learning/evidence/HEADLINE_TABLES_V1.json
-            papers/paper-09-structured-epistemic-learning/evidence/HEADLINE_TABLES_V1.md
+            papers/orion-19-structured-epistemic-learning/evidence/OFFICIAL_EVIDENCE_SUMMARY_V1.json
+            papers/orion-19-structured-epistemic-learning/evidence/HEADLINE_TABLES_V1.json
+            papers/orion-19-structured-epistemic-learning/evidence/HEADLINE_TABLES_V1.md

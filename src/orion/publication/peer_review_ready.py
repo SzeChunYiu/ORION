@@ -348,7 +348,7 @@ def evaluate_paper(paper_root: Path, readiness_text: str | None = None) -> Paper
     h1_powered: bool | None = None
     p1_successor_valid: bool | None = None
 
-    if paper_id == "P1" or paper_root.name == "paper-01-recursive-epistemic-reconstruction":
+    if paper_id == "P1" or paper_root.name == "orion-11-recursive-epistemic-reconstruction":
         h1_verdict, h1_powered = _p1_h1_status(paper_root)
         successor_blockers = p1_successor_blockers(paper_root)
         p1_successor_valid = not successor_blockers

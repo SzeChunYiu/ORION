@@ -15,9 +15,9 @@ ROOT = HERE.parents[1]
 
 PROTOCOLS = {
     "P1": ROOT / "research/claim_expansion/p1/gpt_r7/R7A_MAXT_POWER_AMENDMENT_V2.json",
-    "P2": ROOT / "papers/paper-02-open-world-scientific-discovery/protocol/P2_TASK_WORLD_SUCCESSOR_V2.json",
-    "P3": ROOT / "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json",
-    "P5": ROOT / "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json",
+    "P2": ROOT / "papers/orion-12-open-world-scientific-discovery/protocol/P2_TASK_WORLD_SUCCESSOR_V2.json",
+    "P3": ROOT / "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json",
+    "P5": ROOT / "papers/orion-15-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json",
 }
 
 

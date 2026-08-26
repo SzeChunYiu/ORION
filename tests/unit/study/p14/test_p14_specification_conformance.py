@@ -1,7 +1,7 @@
 """P14C's published positive, asked what P14A's negative could not be asked.
 
 Every number pinned here was read off the shipped artifacts
-``papers/paper-14-orion-rse/P14C_ADJUDICATION_CASES_V1.json``,
+``papers/orion-24-orion-rse/P14C_ADJUDICATION_CASES_V1.json``,
 ``run_p14c_specification_separated_governance_v1.py``,
 ``P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json`` and
 ``P14C_PROTOCOL_ADJUDICATION_V2.json``, or produced by driving that runner's own

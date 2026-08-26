@@ -11,7 +11,7 @@ from orion.study.p2.freeze import load_suite, verify
 from orion.study.p2.offline_analysis import run_offline_companion
 from orion.study.p2.offline_mechanisms import build_offline_mechanism_projection
 
-PAPER = Path("papers/paper-02-open-world-scientific-discovery")
+PAPER = Path("papers/orion-12-open-world-scientific-discovery")
 MANIFEST = PAPER / "protocol" / "OFFLINE_RUN_MANIFEST_V1.json"
 MANIFEST_SHA = PAPER / "protocol" / "OFFLINE_RUN_MANIFEST_V1.sha256"
 EXPECTED = PAPER / "evidence" / "offline_results" / "OFFLINE_MECHANISMS_V1.json"

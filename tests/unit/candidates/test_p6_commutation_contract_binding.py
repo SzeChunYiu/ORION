@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 CHECKER = (
     ROOT
-    / "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/"
+    / "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/"
     "check_commutation_contract_binding_v1.py"
 )
 

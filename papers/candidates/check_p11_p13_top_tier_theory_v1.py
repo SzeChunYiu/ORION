@@ -253,9 +253,9 @@ def p13_checks() -> dict:
 
 def assert_manuscript_markers() -> None:
     required = {
-        "papers/paper-11-state-as-computation/TOP_TIER_THEORY_V1.md": ["T11.1", "T11.2", "T11.3"],
-        "papers/paper-12-adaptive-state-reasoning/TOP_TIER_THEORY_V1.md": ["T12.1", "T12.2", "T12.3"],
-        "papers/paper-13-responsibility-carrying-state/TOP_TIER_THEORY_V1.md": ["T13.1", "T13.2", "T13.3"],
+        "papers/orion-21-state-as-computation/TOP_TIER_THEORY_V1.md": ["T11.1", "T11.2", "T11.3"],
+        "papers/orion-22-adaptive-state-reasoning/TOP_TIER_THEORY_V1.md": ["T12.1", "T12.2", "T12.3"],
+        "papers/orion-23-responsibility-carrying-state/TOP_TIER_THEORY_V1.md": ["T13.1", "T13.2", "T13.3"],
         "papers/candidates/RESOURCE_LOCATION_SEMANTICS_V1.md": ["Resource vector", "P11 ownership", "P12 ownership", "P13 ownership"],
     }
     for path, markers in required.items():

@@ -1,0 +1,926 @@
+{
+  "ablation_panels": [
+    {
+      "ablations": {
+        "force_compatibility_without_obstruction": {
+          "intervals": {
+            "accuracy_ablation_minus_full": [
+              -0.25,
+              -0.03125
+            ],
+            "false_merge_ablation_minus_full": [
+              0.03125,
+              0.25
+            ],
+            "false_split_ablation_minus_full": [
+              0.0,
+              0.0
+            ]
+          },
+          "moves_nothing": false
+        },
+        "remove_construct": {
+          "intervals": {
+            "accuracy_ablation_minus_full": [
+              0.0,
+              0.0
+            ],
+            "false_merge_ablation_minus_full": [
+              0.0,
+              0.0
+            ],
+            "false_split_ablation_minus_full": [
+              0.0,
+              0.0
+            ]
+          },
+          "moves_nothing": true
+        },
+        "remove_measurement": {
+          "intervals": {
+            "accuracy_ablation_minus_full": [
+              0.0,
+              0.0
+            ],
+            "false_merge_ablation_minus_full": [
+              0.0,
+              0.0
+            ],
+            "false_split_ablation_minus_full": [
+              0.0,
+              0.0
+            ]
+          },
+          "moves_nothing": true
+        },
+        "remove_modality_polarity_attribution_discourse": {
+          "intervals": {
+            "accuracy_ablation_minus_full": [
+              -0.25,
+              -0.03125
+            ],
+            "false_merge_ablation_minus_full": [
+              0.03125,
+              0.25
+            ],
+            "false_split_ablation_minus_full": [
+              0.0,
+              0.0
+            ]
+          },
+          "moves_nothing": false
+        },
+        "remove_referent": {
+          "intervals": {
+            "accuracy_ablation_minus_full": [
+              0.0,
+              0.0
+            ],
+            "false_merge_ablation_minus_full": [
+              0.0,
+              0.0
+            ],
+            "false_split_ablation_minus_full": [
+              0.0,
+              0.0
+            ]
+          },
+          "moves_nothing": true
+        },
+        "remove_temporal_context": {
+          "intervals": {
+            "accuracy_ablation_minus_full": [
+              0.0,
+              0.0
+            ],
+            "false_merge_ablation_minus_full": [
+              0.0,
+              0.0
+            ],
+            "false_split_ablation_minus_full": [
+              0.0,
+              0.0
+            ]
+          },
+          "moves_nothing": true
+        }
+      },
+      "active_ablations": [
+        "force_compatibility_without_obstruction",
+        "remove_modality_polarity_attribution_discourse"
+      ],
+      "artifact": "papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1/ANALYSIS.json",
+      "inert_ablations": [
+        "remove_construct",
+        "remove_measurement",
+        "remove_referent",
+        "remove_temporal_context"
+      ],
+      "paper_id": "P3",
+      "readable": true,
+      "reading": "4 of 6 ablations move none of the reported metrics, with a zero-width interval on every one. That is a statement about the corpus, not about the coordinates: it contains no case where those coordinates are consulted, so removing them cannot be observed to cost anything. It is not evidence that they are dispensable, and the opposite reading is not available from this artifact."
+    }
+  ],
+  "arms_that_cannot_differ": [
+    "P13: PROVENANCE_ONLY == UNQUALIFIED",
+    "P1: cost_greedy_repair == immediate_outcome_flip_repair",
+    "P1: orion_mutation_necessity == orion_with_unlimited_intervention_budget",
+    "P4: claimbench-sciclaimhunt-scientific-evidence == pooled-evidence-nli-support"
+  ],
+  "control": {
+    "guard_rate": {
+      "at_extreme": null,
+      "detail": "3 distinct values across 3 systems",
+      "distinct_values": 3,
+      "metric": "guard_rate",
+      "resolution": "DISCRIMINATES",
+      "values": {
+        "system_a": 0.91,
+        "system_b": 0.84,
+        "system_c": 0.88
+      }
+    },
+    "outcome_rate": {
+      "at_extreme": null,
+      "detail": "3 distinct values across 3 systems",
+      "distinct_values": 3,
+      "metric": "outcome_rate",
+      "resolution": "DISCRIMINATES",
+      "values": {
+        "system_a": 0.12,
+        "system_b": 0.47,
+        "system_c": 0.63
+      }
+    }
+  },
+  "control_is_clean": true,
+  "date": "2026-08-22",
+  "hypotheses_settled_before_any_system_ran": [
+    "P4 H2 (PUBLICATION_METRICS_V2.json): declared PASS on clean_coverage, which is saturated",
+    "P4 H3 (PUBLICATION_METRICS_V2.json): declared NOT_SUPPORTED on correct_cannot_check_rate, which is saturated",
+    "P4 H2 (PANEL_V3.json): declared PASS on clean_coverage, which is saturated"
+  ],
+  "not_licensed": [
+    "any claim that a saturated metric is the wrong metric; a benchmark on which every system is perfect may measure something real that is simply easy, and settling that needs a system that fails, which these panels do not contain",
+    "any claim about H1, whose metric discriminates across the panel and whose interval is earned",
+    "any claim that two indistinguishable arms are a defect; an ablation that coincides with its own base is a null result and is the finding, while two comparators that coincide overstate breadth -- the check cannot tell them apart and does not try",
+    "any claim that the panels' verdicts were recorded dishonestly; each is what its stated rule produces on its stated metric -- what is established is that two of them could not have been anything else"
+  ],
+  "panels": [
+    {
+      "artifact": "papers/orion-14-verified-scientific-discovery/evidence/protected_v2/PUBLICATION_METRICS_V2.json",
+      "hypotheses": {
+        "H1": {
+          "decided_on": "false_promotion_rate",
+          "declared_ci95": [
+            -0.5527777777777778,
+            -0.44722222222222224
+          ],
+          "declared_status": "PASS",
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        },
+        "H2": {
+          "decided_on": "clean_coverage",
+          "declared_ci95": [
+            0.0,
+            0.0
+          ],
+          "declared_status": "PASS",
+          "metric_resolution": "SATURATED",
+          "verdict_could_have_differed": false
+        },
+        "H3": {
+          "decided_on": "correct_cannot_check_rate",
+          "declared_ci95": [
+            0.0,
+            0.0
+          ],
+          "declared_status": "NOT_SUPPORTED",
+          "metric_resolution": "SATURATED",
+          "verdict_could_have_differed": false
+        }
+      },
+      "indistinguishable_arms": [],
+      "metrics": {
+        "clean_coverage": {
+          "at_extreme": 1.0,
+          "detail": "all 11 systems score 1.0 at the metric's ceiling; any hypothesis decided on this metric is settled before a system runs, and its verdict records the benchmark rather than the systems",
+          "distinct_values": 1,
+          "metric": "clean_coverage",
+          "resolution": "SATURATED",
+          "values": {
+            "ORION": 1.0,
+            "attributionbench-multisource-attribution": 1.0,
+            "citation-presence-format": 1.0,
+            "claim-level-auditability-provenance": 1.0,
+            "claimbench-sciclaimhunt-scientific-evidence": 1.0,
+            "deepsciverify-abstract-to-full-escalation": 1.0,
+            "fire-iterative-retrieve-or-verify": 1.0,
+            "pooled-evidence-nli-support": 1.0,
+            "provenai-citation-fidelity-influence": 1.0,
+            "provenanceguard-style-source-routing": 1.0,
+            "rewardhackingagents-search-contamination": 1.0
+          }
+        },
+        "clean_false_negative_count": {
+          "at_extreme": 0.0,
+          "detail": "all 11 systems score 0.0 at the metric's floor; any hypothesis decided on this metric is settled before a system runs, and its verdict records the benchmark rather than the systems",
+          "distinct_values": 1,
+          "metric": "clean_false_negative_count",
+          "resolution": "SATURATED",
+          "values": {
+            "ORION": 0.0,
+            "attributionbench-multisource-attribution": 0.0,
+            "citation-presence-format": 0.0,
+            "claim-level-auditability-provenance": 0.0,
+            "claimbench-sciclaimhunt-scientific-evidence": 0.0,
+            "deepsciverify-abstract-to-full-escalation": 0.0,
+            "fire-iterative-retrieve-or-verify": 0.0,
+            "pooled-evidence-nli-support": 0.0,
+            "provenai-citation-fidelity-influence": 0.0,
+            "provenanceguard-style-source-routing": 0.0,
+            "rewardhackingagents-search-contamination": 0.0
+          }
+        },
+        "correct_cannot_check_rate": {
+          "at_extreme": 1.0,
+          "detail": "all 11 systems score 1.0 at the metric's ceiling; any hypothesis decided on this metric is settled before a system runs, and its verdict records the benchmark rather than the systems",
+          "distinct_values": 1,
+          "metric": "correct_cannot_check_rate",
+          "resolution": "SATURATED",
+          "values": {
+            "ORION": 1.0,
+            "attributionbench-multisource-attribution": 1.0,
+            "citation-presence-format": 1.0,
+            "claim-level-auditability-provenance": 1.0,
+            "claimbench-sciclaimhunt-scientific-evidence": 1.0,
+            "deepsciverify-abstract-to-full-escalation": 1.0,
+            "fire-iterative-retrieve-or-verify": 1.0,
+            "pooled-evidence-nli-support": 1.0,
+            "provenai-citation-fidelity-influence": 1.0,
+            "provenanceguard-style-source-routing": 1.0,
+            "rewardhackingagents-search-contamination": 1.0
+          }
+        },
+        "false_promotion_rate": {
+          "at_extreme": null,
+          "detail": "6 distinct values across 11 systems",
+          "distinct_values": 6,
+          "metric": "false_promotion_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ORION": 0.0,
+            "attributionbench-multisource-attribution": 0.6666666666666666,
+            "citation-presence-format": 0.9166666666666666,
+            "claim-level-auditability-provenance": 0.6666666666666666,
+            "claimbench-sciclaimhunt-scientific-evidence": 0.9166666666666666,
+            "deepsciverify-abstract-to-full-escalation": 0.5833333333333334,
+            "fire-iterative-retrieve-or-verify": 0.8333333333333334,
+            "pooled-evidence-nli-support": 0.9166666666666666,
+            "provenai-citation-fidelity-influence": 0.5,
+            "provenanceguard-style-source-routing": 0.5833333333333334,
+            "rewardhackingagents-search-contamination": 0.5833333333333334
+          }
+        },
+        "mean_latency_seconds": {
+          "at_extreme": null,
+          "detail": "11 distinct values across 11 systems",
+          "distinct_values": 11,
+          "metric": "mean_latency_seconds",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ORION": 0.0029735870161904762,
+            "attributionbench-multisource-attribution": 5.811598095238095e-06,
+            "citation-presence-format": 9.086880952380952e-07,
+            "claim-level-auditability-provenance": 3.279472857142857e-06,
+            "claimbench-sciclaimhunt-scientific-evidence": 4.890782380952381e-06,
+            "deepsciverify-abstract-to-full-escalation": 7.395215238095238e-06,
+            "fire-iterative-retrieve-or-verify": 6.858790476190477e-06,
+            "pooled-evidence-nli-support": 4.917400952380952e-06,
+            "provenai-citation-fidelity-influence": 3.3526642857142856e-06,
+            "provenanceguard-style-source-routing": 3.7402061904761905e-06,
+            "rewardhackingagents-search-contamination": 7.246050476190476e-06
+          }
+        },
+        "resource_units": {
+          "at_extreme": null,
+          "detail": "8 distinct values across 11 systems",
+          "distinct_values": 8,
+          "metric": "resource_units",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ORION": 9.0,
+            "attributionbench-multisource-attribution": 3.0,
+            "citation-presence-format": 1.0,
+            "claim-level-auditability-provenance": 5.0,
+            "claimbench-sciclaimhunt-scientific-evidence": 4.0,
+            "deepsciverify-abstract-to-full-escalation": 6.5,
+            "fire-iterative-retrieve-or-verify": 6.0,
+            "pooled-evidence-nli-support": 2.0,
+            "provenai-citation-fidelity-influence": 5.0,
+            "provenanceguard-style-source-routing": 5.0,
+            "rewardhackingagents-search-contamination": 5.0
+          }
+        },
+        "source_attribution_accuracy": {
+          "at_extreme": null,
+          "detail": "2 distinct values across 11 systems",
+          "distinct_values": 2,
+          "metric": "source_attribution_accuracy",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ORION": 1.0,
+            "attributionbench-multisource-attribution": 1.0,
+            "citation-presence-format": 0.7692307692307693,
+            "claim-level-auditability-provenance": 0.7692307692307693,
+            "claimbench-sciclaimhunt-scientific-evidence": 0.7692307692307693,
+            "deepsciverify-abstract-to-full-escalation": 1.0,
+            "fire-iterative-retrieve-or-verify": 1.0,
+            "pooled-evidence-nli-support": 0.7692307692307693,
+            "provenai-citation-fidelity-influence": 1.0,
+            "provenanceguard-style-source-routing": 1.0,
+            "rewardhackingagents-search-contamination": 0.7692307692307693
+          }
+        },
+        "support_contradiction_f1": {
+          "at_extreme": null,
+          "detail": "2 distinct values across 11 systems",
+          "distinct_values": 2,
+          "metric": "support_contradiction_f1",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ORION": 1.0,
+            "attributionbench-multisource-attribution": 1.0,
+            "citation-presence-format": 1.0,
+            "claim-level-auditability-provenance": 0.96,
+            "claimbench-sciclaimhunt-scientific-evidence": 1.0,
+            "deepsciverify-abstract-to-full-escalation": 0.96,
+            "fire-iterative-retrieve-or-verify": 0.96,
+            "pooled-evidence-nli-support": 1.0,
+            "provenai-citation-fidelity-influence": 0.96,
+            "provenanceguard-style-source-routing": 0.96,
+            "rewardhackingagents-search-contamination": 1.0
+          }
+        }
+      },
+      "paper_id": "P4",
+      "readable": true,
+      "systems": 11
+    },
+    {
+      "artifact": "research/campaigns/2026-08-21-p4-battery-v3-identifiable/PANEL_V3.json",
+      "hypotheses": {
+        "H1": {
+          "decided_on": "false_promotion_rate",
+          "declared_ci95": [
+            -0.55,
+            -0.45
+          ],
+          "declared_status": "PASS",
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        },
+        "H2": {
+          "decided_on": "clean_coverage",
+          "declared_ci95": [
+            0.0,
+            0.0
+          ],
+          "declared_status": "PASS",
+          "metric_resolution": "SATURATED",
+          "verdict_could_have_differed": false
+        },
+        "H3": {
+          "decided_on": "correct_cannot_check_rate",
+          "declared_ci95": [
+            1.0,
+            1.0
+          ],
+          "declared_status": "SUPPORTED",
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        }
+      },
+      "indistinguishable_arms": [
+        [
+          "claimbench-sciclaimhunt-scientific-evidence",
+          "pooled-evidence-nli-support"
+        ]
+      ],
+      "metrics": {
+        "clean_coverage": {
+          "at_extreme": 1.0,
+          "detail": "all 11 systems score 1.0 at the metric's ceiling; any hypothesis decided on this metric is settled before a system runs, and its verdict records the benchmark rather than the systems",
+          "distinct_values": 1,
+          "metric": "clean_coverage",
+          "resolution": "SATURATED",
+          "values": {
+            "ORION": 1.0,
+            "attributionbench-multisource-attribution": 1.0,
+            "citation-presence-format": 1.0,
+            "claim-level-auditability-provenance": 1.0,
+            "claimbench-sciclaimhunt-scientific-evidence": 1.0,
+            "deepsciverify-abstract-to-full-escalation": 1.0,
+            "fire-iterative-retrieve-or-verify": 1.0,
+            "pooled-evidence-nli-support": 1.0,
+            "provenai-citation-fidelity-influence": 1.0,
+            "provenanceguard-style-source-routing": 1.0,
+            "rewardhackingagents-search-contamination": 1.0
+          }
+        },
+        "correct_cannot_check": {
+          "at_extreme": null,
+          "detail": "3 distinct values across 11 systems",
+          "distinct_values": 3,
+          "metric": "correct_cannot_check",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ORION": 30.0,
+            "attributionbench-multisource-attribution": 0.0,
+            "citation-presence-format": 0.0,
+            "claim-level-auditability-provenance": 0.0,
+            "claimbench-sciclaimhunt-scientific-evidence": 0.0,
+            "deepsciverify-abstract-to-full-escalation": 15.0,
+            "fire-iterative-retrieve-or-verify": 0.0,
+            "pooled-evidence-nli-support": 0.0,
+            "provenai-citation-fidelity-influence": 0.0,
+            "provenanceguard-style-source-routing": 0.0,
+            "rewardhackingagents-search-contamination": 0.0
+          }
+        },
+        "correct_cannot_check_rate": {
+          "at_extreme": null,
+          "detail": "3 distinct values across 11 systems",
+          "distinct_values": 3,
+          "metric": "correct_cannot_check_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ORION": 1.0,
+            "attributionbench-multisource-attribution": 0.0,
+            "citation-presence-format": 0.0,
+            "claim-level-auditability-provenance": 0.0,
+            "claimbench-sciclaimhunt-scientific-evidence": 0.0,
+            "deepsciverify-abstract-to-full-escalation": 0.5,
+            "fire-iterative-retrieve-or-verify": 0.0,
+            "pooled-evidence-nli-support": 0.0,
+            "provenai-citation-fidelity-influence": 0.0,
+            "provenanceguard-style-source-routing": 0.0,
+            "rewardhackingagents-search-contamination": 0.0
+          }
+        },
+        "false_promotion_rate": {
+          "at_extreme": null,
+          "detail": "9 distinct values across 11 systems",
+          "distinct_values": 9,
+          "metric": "false_promotion_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ORION": 0.0,
+            "attributionbench-multisource-attribution": 0.7083333333333334,
+            "citation-presence-format": 1.0,
+            "claim-level-auditability-provenance": 0.6666666666666666,
+            "claimbench-sciclaimhunt-scientific-evidence": 0.9583333333333334,
+            "deepsciverify-abstract-to-full-escalation": 0.625,
+            "fire-iterative-retrieve-or-verify": 0.875,
+            "pooled-evidence-nli-support": 0.9583333333333334,
+            "provenai-citation-fidelity-influence": 0.5,
+            "provenanceguard-style-source-routing": 0.5833333333333334,
+            "rewardhackingagents-search-contamination": 0.625
+          }
+        },
+        "false_promotions": {
+          "at_extreme": null,
+          "detail": "9 distinct values across 11 systems",
+          "distinct_values": 9,
+          "metric": "false_promotions",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ORION": 0.0,
+            "attributionbench-multisource-attribution": 255.0,
+            "citation-presence-format": 360.0,
+            "claim-level-auditability-provenance": 240.0,
+            "claimbench-sciclaimhunt-scientific-evidence": 345.0,
+            "deepsciverify-abstract-to-full-escalation": 225.0,
+            "fire-iterative-retrieve-or-verify": 315.0,
+            "pooled-evidence-nli-support": 345.0,
+            "provenai-citation-fidelity-influence": 180.0,
+            "provenanceguard-style-source-routing": 210.0,
+            "rewardhackingagents-search-contamination": 225.0
+          }
+        }
+      },
+      "paper_id": "P4",
+      "readable": true,
+      "systems": 11
+    },
+    {
+      "artifact": "papers/orion-23-responsibility-carrying-state/P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json",
+      "hypotheses": {
+        "H1": {
+          "decided_on": "unsafe_reuse_rate",
+          "declared_ci95": [
+            null,
+            null
+          ],
+          "declared_status": null,
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        },
+        "H2": {
+          "decided_on": "verified_correct_rate",
+          "declared_ci95": [
+            null,
+            null
+          ],
+          "declared_status": null,
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        },
+        "H3": {
+          "decided_on": "mean_cost",
+          "declared_ci95": [
+            null,
+            null
+          ],
+          "declared_status": null,
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        }
+      },
+      "indistinguishable_arms": [
+        [
+          "PROVENANCE_ONLY",
+          "UNQUALIFIED"
+        ]
+      ],
+      "metrics": {
+        "cannot_check_count": {
+          "at_extreme": null,
+          "detail": "fewer than two systems report this metric, so it has no panel to vary over",
+          "distinct_values": 1,
+          "metric": "cannot_check_count",
+          "resolution": "CANNOT_CHECK",
+          "values": {
+            "RCS": 237.0
+          }
+        },
+        "correct_cannot_check_rate": {
+          "at_extreme": null,
+          "detail": "fewer than two systems report this metric, so it has no panel to vary over",
+          "distinct_values": 1,
+          "metric": "correct_cannot_check_rate",
+          "resolution": "CANNOT_CHECK",
+          "values": {
+            "RCS": 1.0
+          }
+        },
+        "mean_cost": {
+          "at_extreme": null,
+          "detail": "4 distinct values across 5 systems",
+          "distinct_values": 4,
+          "metric": "mean_cost",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ALWAYS_RAW": 5.731892903645833,
+            "CONFIDENCE_ONLY": 1.858154296875,
+            "PROVENANCE_ONLY": 1.0,
+            "RCS": 2.8747151692708335,
+            "UNQUALIFIED": 1.0
+          }
+        },
+        "unnecessary_reopen_rate": {
+          "at_extreme": null,
+          "detail": "2 distinct values across 2 systems",
+          "distinct_values": 2,
+          "metric": "unnecessary_reopen_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ALWAYS_RAW": 0.5743815104166666,
+            "RCS": 0.0
+          }
+        },
+        "unsafe_reuse_rate": {
+          "at_extreme": null,
+          "detail": "3 distinct values across 5 systems",
+          "distinct_values": 3,
+          "metric": "unsafe_reuse_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ALWAYS_RAW": 0.0,
+            "CONFIDENCE_ONLY": 0.215576171875,
+            "PROVENANCE_ONLY": 0.3961588541666667,
+            "RCS": 0.0,
+            "UNQUALIFIED": 0.3961588541666667
+          }
+        },
+        "verified_correct_rate": {
+          "at_extreme": null,
+          "detail": "4 distinct values across 5 systems",
+          "distinct_values": 4,
+          "metric": "verified_correct_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "ALWAYS_RAW": 0.9512532552083334,
+            "CONFIDENCE_ONLY": 0.9657389322916666,
+            "PROVENANCE_ONLY": 0.9248046875,
+            "RCS": 0.980712890625,
+            "UNQUALIFIED": 0.9248046875
+          }
+        }
+      },
+      "paper_id": "P13",
+      "readable": true,
+      "systems": 5
+    },
+    {
+      "artifact": "research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json",
+      "hypotheses": {
+        "H1": {
+          "decided_on": "hidden_shift_protected_root_task_success_rate",
+          "declared_ci95": [
+            null,
+            null
+          ],
+          "declared_status": null,
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        },
+        "H2": {
+          "decided_on": "negative_control_unnecessary_high_level_reframe_rate",
+          "declared_ci95": [
+            null,
+            null
+          ],
+          "declared_status": null,
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        },
+        "H3": {
+          "decided_on": "protected_root_task_success_rate",
+          "declared_ci95": [
+            null,
+            null
+          ],
+          "declared_status": null,
+          "metric_resolution": "DISCRIMINATES",
+          "verdict_could_have_differed": true
+        }
+      },
+      "indistinguishable_arms": [
+        [
+          "cost_greedy_repair",
+          "immediate_outcome_flip_repair"
+        ],
+        [
+          "orion_mutation_necessity",
+          "orion_with_unlimited_intervention_budget"
+        ]
+      ],
+      "metrics": {
+        "forbidden_high_level_mutation_rate": {
+          "at_extreme": null,
+          "detail": "7 distinct values across 14 systems",
+          "distinct_values": 7,
+          "metric": "forbidden_high_level_mutation_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "active_voi_repair_parent": 0.0,
+            "car_like_causal_replay": 0.8206106870229007,
+            "causalflow_minimal_counterfactual_parent": 0.8213046495489243,
+            "cost_greedy_repair": 0.8213046495489243,
+            "darc_r2act_dependency_parent": 0.2376821651630812,
+            "immediate_outcome_flip_repair": 0.8213046495489243,
+            "orion_mutation_necessity": 0.0,
+            "orion_with_unlimited_intervention_budget": 0.0,
+            "orion_without_KWM_level_ordering": 0.4108258154059681,
+            "orion_without_dependency_impact_binding": 0.0,
+            "orion_without_lower_level_exclusion": 0.4170714781401804,
+            "orion_without_protected_sibling_check": 0.0,
+            "reflect_like_replay": 0.8334489937543372,
+            "static_no_reframe": 0.0
+          }
+        },
+        "hidden_shift_n": {
+          "at_extreme": null,
+          "detail": "all 14 systems score 480.0 at 480.0; any hypothesis decided on this metric is settled before a system runs, and its verdict records the benchmark rather than the systems",
+          "distinct_values": 1,
+          "metric": "hidden_shift_n",
+          "resolution": "SATURATED",
+          "values": {
+            "active_voi_repair_parent": 480.0,
+            "car_like_causal_replay": 480.0,
+            "causalflow_minimal_counterfactual_parent": 480.0,
+            "cost_greedy_repair": 480.0,
+            "darc_r2act_dependency_parent": 480.0,
+            "immediate_outcome_flip_repair": 480.0,
+            "orion_mutation_necessity": 480.0,
+            "orion_with_unlimited_intervention_budget": 480.0,
+            "orion_without_KWM_level_ordering": 480.0,
+            "orion_without_dependency_impact_binding": 480.0,
+            "orion_without_lower_level_exclusion": 480.0,
+            "orion_without_protected_sibling_check": 480.0,
+            "reflect_like_replay": 480.0,
+            "static_no_reframe": 480.0
+          }
+        },
+        "hidden_shift_protected_root_task_success_rate": {
+          "at_extreme": null,
+          "detail": "4 distinct values across 14 systems",
+          "distinct_values": 4,
+          "metric": "hidden_shift_protected_root_task_success_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "active_voi_repair_parent": 0.49375,
+            "car_like_causal_replay": 0.4895833333333333,
+            "causalflow_minimal_counterfactual_parent": 0.49375,
+            "cost_greedy_repair": 0.49375,
+            "darc_r2act_dependency_parent": 0.49375,
+            "immediate_outcome_flip_repair": 0.49375,
+            "orion_mutation_necessity": 1.0,
+            "orion_with_unlimited_intervention_budget": 1.0,
+            "orion_without_KWM_level_ordering": 1.0,
+            "orion_without_dependency_impact_binding": 0.0,
+            "orion_without_lower_level_exclusion": 1.0,
+            "orion_without_protected_sibling_check": 0.49375,
+            "reflect_like_replay": 0.49375,
+            "static_no_reframe": 0.0
+          }
+        },
+        "mean_dependency_reopen_f1": {
+          "at_extreme": null,
+          "detail": "3 distinct values across 14 systems",
+          "distinct_values": 3,
+          "metric": "mean_dependency_reopen_f1",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "active_voi_repair_parent": 0.9156835530881332,
+            "car_like_causal_replay": 1.0,
+            "causalflow_minimal_counterfactual_parent": 1.0,
+            "cost_greedy_repair": 1.0,
+            "darc_r2act_dependency_parent": 0.9156835530881332,
+            "immediate_outcome_flip_repair": 1.0,
+            "orion_mutation_necessity": 1.0,
+            "orion_with_unlimited_intervention_budget": 1.0,
+            "orion_without_KWM_level_ordering": 1.0,
+            "orion_without_dependency_impact_binding": 0.8334489937543372,
+            "orion_without_lower_level_exclusion": 1.0,
+            "orion_without_protected_sibling_check": 1.0,
+            "reflect_like_replay": 1.0,
+            "static_no_reframe": 0.8334489937543372
+          }
+        },
+        "mean_spent_budget": {
+          "at_extreme": null,
+          "detail": "10 distinct values across 14 systems",
+          "distinct_values": 10,
+          "metric": "mean_spent_budget",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "active_voi_repair_parent": 2.5832755031228314,
+            "car_like_causal_replay": 4.0,
+            "causalflow_minimal_counterfactual_parent": 4.0,
+            "cost_greedy_repair": 1.0131852879944483,
+            "darc_r2act_dependency_parent": 1.7585010409437891,
+            "immediate_outcome_flip_repair": 1.0131852879944483,
+            "orion_mutation_necessity": 1.8341429562803608,
+            "orion_with_unlimited_intervention_budget": 1.8341429562803608,
+            "orion_without_KWM_level_ordering": 2.0829285218598197,
+            "orion_without_dependency_impact_binding": 1.8341429562803608,
+            "orion_without_lower_level_exclusion": 1.5006939625260236,
+            "orion_without_protected_sibling_check": 1.7498265093684942,
+            "reflect_like_replay": 1.0,
+            "static_no_reframe": 0.0
+          }
+        },
+        "n": {
+          "at_extreme": null,
+          "detail": "all 14 systems score 2882.0 at 2882.0; any hypothesis decided on this metric is settled before a system runs, and its verdict records the benchmark rather than the systems",
+          "distinct_values": 1,
+          "metric": "n",
+          "resolution": "SATURATED",
+          "values": {
+            "active_voi_repair_parent": 2882.0,
+            "car_like_causal_replay": 2882.0,
+            "causalflow_minimal_counterfactual_parent": 2882.0,
+            "cost_greedy_repair": 2882.0,
+            "darc_r2act_dependency_parent": 2882.0,
+            "immediate_outcome_flip_repair": 2882.0,
+            "orion_mutation_necessity": 2882.0,
+            "orion_with_unlimited_intervention_budget": 2882.0,
+            "orion_without_KWM_level_ordering": 2882.0,
+            "orion_without_dependency_impact_binding": 2882.0,
+            "orion_without_lower_level_exclusion": 2882.0,
+            "orion_without_protected_sibling_check": 2882.0,
+            "reflect_like_replay": 2882.0,
+            "static_no_reframe": 2882.0
+          }
+        },
+        "negative_control_n": {
+          "at_extreme": null,
+          "detail": "all 14 systems score 2402.0 at 2402.0; any hypothesis decided on this metric is settled before a system runs, and its verdict records the benchmark rather than the systems",
+          "distinct_values": 1,
+          "metric": "negative_control_n",
+          "resolution": "SATURATED",
+          "values": {
+            "active_voi_repair_parent": 2402.0,
+            "car_like_causal_replay": 2402.0,
+            "causalflow_minimal_counterfactual_parent": 2402.0,
+            "cost_greedy_repair": 2402.0,
+            "darc_r2act_dependency_parent": 2402.0,
+            "immediate_outcome_flip_repair": 2402.0,
+            "orion_mutation_necessity": 2402.0,
+            "orion_with_unlimited_intervention_budget": 2402.0,
+            "orion_without_KWM_level_ordering": 2402.0,
+            "orion_without_dependency_impact_binding": 2402.0,
+            "orion_without_lower_level_exclusion": 2402.0,
+            "orion_without_protected_sibling_check": 2402.0,
+            "reflect_like_replay": 2402.0,
+            "static_no_reframe": 2402.0
+          }
+        },
+        "negative_control_unnecessary_high_level_reframe_rate": {
+          "at_extreme": null,
+          "detail": "7 distinct values across 14 systems",
+          "distinct_values": 7,
+          "metric": "negative_control_unnecessary_high_level_reframe_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "active_voi_repair_parent": 0.0,
+            "car_like_causal_replay": 0.9845961698584513,
+            "causalflow_minimal_counterfactual_parent": 0.985428809325562,
+            "cost_greedy_repair": 0.985428809325562,
+            "darc_r2act_dependency_parent": 0.2851790174854288,
+            "immediate_outcome_flip_repair": 0.985428809325562,
+            "orion_mutation_necessity": 0.0,
+            "orion_with_unlimited_intervention_budget": 0.0,
+            "orion_without_KWM_level_ordering": 0.4929225645295587,
+            "orion_without_dependency_impact_binding": 0.0,
+            "orion_without_lower_level_exclusion": 0.5004163197335554,
+            "orion_without_protected_sibling_check": 0.0,
+            "reflect_like_replay": 1.0,
+            "static_no_reframe": 0.0
+          }
+        },
+        "protected_root_task_success_rate": {
+          "at_extreme": null,
+          "detail": "9 distinct values across 14 systems",
+          "distinct_values": 9,
+          "metric": "protected_root_task_success_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "active_voi_repair_parent": 0.9156835530881332,
+            "car_like_causal_replay": 0.09437890353920889,
+            "causalflow_minimal_counterfactual_parent": 0.09437890353920889,
+            "cost_greedy_repair": 0.09437890353920889,
+            "darc_r2act_dependency_parent": 0.678001387925052,
+            "immediate_outcome_flip_repair": 0.09437890353920889,
+            "orion_mutation_necessity": 1.0,
+            "orion_with_unlimited_intervention_budget": 1.0,
+            "orion_without_KWM_level_ordering": 0.5891741845940319,
+            "orion_without_dependency_impact_binding": 0.8334489937543372,
+            "orion_without_lower_level_exclusion": 0.16655100624566274,
+            "orion_without_protected_sibling_check": 0.9156835530881332,
+            "reflect_like_replay": 0.08223455933379598,
+            "static_no_reframe": 0.0
+          }
+        },
+        "protected_sibling_regression_rate": {
+          "at_extreme": null,
+          "detail": "5 distinct values across 14 systems",
+          "distinct_values": 5,
+          "metric": "protected_sibling_regression_rate",
+          "resolution": "DISCRIMINATES",
+          "values": {
+            "active_voi_repair_parent": 0.0,
+            "car_like_causal_replay": 0.4951422623178348,
+            "causalflow_minimal_counterfactual_parent": 0.49479528105482307,
+            "cost_greedy_repair": 0.49479528105482307,
+            "darc_r2act_dependency_parent": 0.0,
+            "immediate_outcome_flip_repair": 0.49479528105482307,
+            "orion_mutation_necessity": 0.0,
+            "orion_with_unlimited_intervention_budget": 0.0,
+            "orion_without_KWM_level_ordering": 0.0,
+            "orion_without_dependency_impact_binding": 0.0,
+            "orion_without_lower_level_exclusion": 0.0,
+            "orion_without_protected_sibling_check": 0.08431644691186677,
+            "reflect_like_replay": 0.5006939625260236,
+            "static_no_reframe": 0.0
+          }
+        }
+      },
+      "paper_id": "P1",
+      "readable": true,
+      "systems": 14
+    }
+  ],
+  "record": "PANEL_RESOLUTION",
+  "schema_version": "orion.programme.panel-resolution.v1",
+  "untestable_coordinates": [
+    "P3: remove_construct",
+    "P3: remove_measurement",
+    "P3: remove_referent",
+    "P3: remove_temporal_context"
+  ],
+  "what_this_establishes": "P4's protected panel decides three hypotheses from per-system rates, and in the published V2 panel two of the three rest on metrics every system scores identically. clean_coverage is exactly 1.0 for all eleven systems, so the non-inferiority hypothesis decided on it reports [0.0, 0.0] and PASS -- a guard no system in the panel can fail. correct_cannot_check_rate is also 1.0 for all eleven, so the hypothesis decided on it reports [0.0, 0.0] and NOT_SUPPORTED -- a negative that records the benchmark rather than the systems. Only false_promotion_rate discriminates, ranging 0.0 to 0.917, and the hypothesis decided on it separates with a real interval. The later V3 panel repairs one of the two: correct_cannot_check_rate varies there, while clean_coverage remains saturated at 1.0 across every system. Saturation is distinguished from separation rather than merged with it: a panel split between a metric's floor and its ceiling also yields a zero-width interval, and that one is the strongest thing the metric can say. The same question put to P3's ablation panel finds four of its six ablations moving none of accuracy, false merge or false split, each with a zero-width interval: the corpus contains no case where those coordinates are consulted, so removing them cannot be observed to cost anything. Neither paper is caught out by this. P4's manuscript states its saturation in prose with the same counts and calls H2 and H3 design limits rather than comparative findings, and P3's states that removing referent, construct, measurement or temporal context has zero measured effect and preserves those zeros as coverage limitations. What this adds is that both limits become executable and ledger-visible rather than remaining paragraphs a reader has to find. P1's confirmatory panel is registered alongside them and comes out clean on all three of its metrics: protected success ranges from 0.0 to 1.0 across fourteen arms and the unnecessary-reframe rate on the negative controls ranges from 0.0 to 1.0, so its zero-width pairwise interval is two arms tying on a metric that moves rather than a metric that cannot. That case is carried deliberately -- a sweep visiting only the panels it already suspects reports the suspicion."
+}

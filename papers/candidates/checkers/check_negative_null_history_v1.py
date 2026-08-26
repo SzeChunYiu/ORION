@@ -11,9 +11,9 @@ import subprocess
 from pathlib import Path
 
 PAPERS = {
-    "P6": Path("papers/paper-06-formal-epistemic-structures-and-mechanics"),
-    "P7": Path("papers/paper-07-epistemic-navigation-open-worlds"),
-    "P8": Path("papers/paper-08-epistemic-authority-autonomous-science"),
+    "P6": Path("papers/orion-16-formal-epistemic-structures-and-mechanics"),
+    "P7": Path("papers/orion-17-epistemic-navigation-open-worlds"),
+    "P8": Path("papers/orion-18-epistemic-authority-autonomous-science"),
 }
 ALLOWED_TERMINALS = {"NEGATIVE_EQUIVALENCE_THEOREM", "MATCH_IS_NOT_NECESSARY"}
 

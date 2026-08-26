@@ -31,7 +31,7 @@ import json
 import sys
 from pathlib import Path
 
-PAPER_DIR = Path(__file__).resolve().parents[3] / "papers" / "paper-03-global-knowledge-portrait"
+PAPER_DIR = Path(__file__).resolve().parents[3] / "papers" / "orion-13-global-knowledge-portrait"
 MANIFEST_PATH = PAPER_DIR / "gold" / "OAEI_TRACK_LICENSE_MANIFEST_V1.json"
 FREEZE_PATH = PAPER_DIR / "protocol" / "OAEI_MULTI_CASE_ANALYSIS_FREEZE_V1.json"
 CHECKER_PATH = PAPER_DIR / "gold" / "check_oaei_track_license_manifest_v1.py"

@@ -12,8 +12,8 @@ import json
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-ARTIFACT = REPO_ROOT / "papers/paper-10-structured-problem-solving/protocol/P10_DOMAIN_SOURCE_FREEZE_V1.json"
-CHECKER = REPO_ROOT / "papers/paper-10-structured-problem-solving/protocol/check_p10_domain_source_freeze_v1.py"
+ARTIFACT = REPO_ROOT / "papers/orion-20-structured-problem-solving/protocol/P10_DOMAIN_SOURCE_FREEZE_V1.json"
+CHECKER = REPO_ROOT / "papers/orion-20-structured-problem-solving/protocol/check_p10_domain_source_freeze_v1.py"
 
 _spec = importlib.util.spec_from_file_location("p10_domain_source_freeze_checker", CHECKER)
 checker = importlib.util.module_from_spec(_spec)

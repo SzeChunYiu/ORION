@@ -33,7 +33,7 @@ or in the non-anonymous post-acceptance archive.
 ## Q1 structure
 
 ```text
-Q-paper-01-tare-expressivity/
+orion-05-tare-expressivity/
   main.tex
   sections/01_introduction.tex
   sections/02_problem_and_objective.tex
@@ -57,7 +57,7 @@ definitions. The machine checker corroborates the proof; it does not replace it.
 ## Q2 structure
 
 ```text
-Q-paper-02-recursive-recovery/
+orion-06-recursive-recovery/
   main.tex
   sections/01_introduction.tex
   sections/02_related_work.tex
@@ -83,7 +83,7 @@ if predeclared.
 ## Q3 structure
 
 ```text
-Q-paper-03-dual-instrument/
+orion-07-dual-instrument/
   main.tex
   sections/01_introduction.tex
   sections/02_measurement_problem.tex
@@ -109,7 +109,7 @@ bound.
 ## Q4 structure
 
 ```text
-Q-paper-04-typed-state/
+orion-08-typed-state/
   main.tex
   sections/01_introduction.tex
   sections/02_classical_theory_and_donors.tex

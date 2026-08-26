@@ -1,0 +1,92 @@
+{
+  "schema_version": "orion.p9.t4s-protocol-freeze.v1",
+  "protocol_id": "P9.D1T4S.INVARIANT_PROFILE_ROBUSTNESS",
+  "frozen_date": "2026-08-24",
+  "lifecycle_state": "FROZEN_PRE_OUTCOME",
+  "positive_authority_granted": false,
+  "outcome_artifact": null,
+  "historical_predecessor": {
+    "claim_id": "P9.U.T4",
+    "terminal": "P9_T4_HOSTILE_ATTACK_PREVAILED",
+    "immutable": true,
+    "result": "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
+    "succeeded_component": "FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_SERIALIZED_BAG"
+  },
+  "gate_served": "P9-U-T4-successor",
+  "freeze_document": "papers/orion-19-structured-epistemic-learning/protocol/P9_U_T4_SUCCESSOR_INVARIANT_PROFILE_FREEZE_2026-08-24.md",
+  "expected_result_artifact": "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T4_SUCCESSOR_INVARIANT_PROFILE_RESULT_2026-08-24.json",
+  "claim_scope": "BOUNDED_D1_ONLY. Whatever this study returns is a statement about the D1 v1.2 classical-learner benchmark on its 128-case held-out-domain protected split and about nothing else. It licenses no statement about any language model, any scale, any second model family, or the successor experiment of issue #618.",
+  "attribution_of_predecessor_defeat": {
+    "one_stage": "answer_determination_numerics",
+    "diagnostic": "src/orion/study/p9/t4_defeat_diagnosis.py",
+    "mechanism": "the semantic orbit is information-neutral for TYPED_SERIALIZED_BAG (design matrices bitwise-equal up to one column permutation; renaming back reproduces the base fit bitwise), and on the same base feature dicts with no attack present, different multiclass solver families and pure column-order renamings each move 32 protected answers with equal training fit, on a matrix of rank 88 of 150 columns with 318 duplicate column pairs"
+  },
+  "parameters": {
+    "arm_id": "TYPED_INVARIANT_PROFILE_BAG",
+    "representation_module": "src/orion/study/p9/invariant_profile_representation.py",
+    "information_source": "the TYPED_SERIALIZED_BAG token multiset and sequence length; no label is read",
+    "corpus": "train-union-dev serialized-bag feature dicts of the dataset variant being run; no protected-split instance enters the corpus",
+    "initial_colour": "sha256('<path>|df=<df>')[:16], df = number of corpus instances containing the token; the raw value string never enters any colour",
+    "refinement_rounds": 2,
+    "refinement_colour": "sha256('<old colour>|<canonical neighbourhood>')[:16]; neighbourhood = multiset of co-present token colours over corpus instances, self excluded, canonicalized as ','.join(sorted(f'{colour}x{count}'))",
+    "features": "{'sequence_length': n} plus 'prof:<colour>' = 1.0 per distinct corpus token present; corpus-absent tokens map to 'prof:unseen:<path>' (zero on every training row by construction)",
+    "model_grid": "frozen d1_experiment.model_specs(); selection by (-dev_accuracy, complexity_rank, config_id); frozen run_arm public extension point; v1.2 runtime adapter (lbfgs logistic path)",
+    "dataset_variants": ["BASE", "EQUAL_LENGTH", "SEMANTIC_ORBIT", "ORDER_PERMUTATION"],
+    "dataset_source": "frozen build_datasets() with the shipped manifest digest re-verified",
+    "frozen_battery_rerun": [
+      "invariance_component FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_INVARIANT_PROFILE_BAG (verbatim)",
+      "invariance_component FP-3_ORDER_REMINT_INVARIANCE::TYPED_INVARIANT_PROFILE_BAG (verbatim)"
+    ],
+    "companion_raw_guards": {
+      "machinery": "frozen GuardExercise + assess_guard(max_violation_rate=0.0)",
+      "opportunities": "protected cases whose raw serialized token multiset differs between BASE and the variant",
+      "violations": "protected answers that differ between the successor's BASE and variant runs",
+      "transforms": ["SEMANTIC_ORBIT", "ORDER_PERMUTATION", "EQUAL_LENGTH"],
+      "required_semantic_orbit_denominator": 128
+    },
+    "stability_battery": {
+      "solver_families": ["lbfgs", "newton-cg", "sag"],
+      "logistic_hyperparameters": "C per frozen grid, max_iter=2000, random_state=2711",
+      "column_orders": ["identity", "reversed", "seeded_shuffle_rng_20260824"],
+      "renaming_rule": "zero-padded k%04d keys over the train vocabulary; test-only keys keep their names",
+      "scope": "the whole frozen selection loop re-run under each probe, selection included",
+      "identity_probe_must_reproduce_frozen_run_arm": true
+    },
+    "endpoints": {
+      "E-INV": "every companion guard holds with 0 violations over its denominator; SEMANTIC_ORBIT denominator must be 128",
+      "E-STAB": "every stability probe changes 0 protected answers",
+      "E-PERF": "BASE accuracy >= 0.75 - 1/128 = 0.7421875 and more than one distinct protected prediction"
+    },
+    "terminals": {
+      "revived": "P9_T4_SUCCESSOR_REVIVED_STABLE (E-INV and E-STAB and E-PERF)",
+      "level_not_recovered": "P9_T4_SUCCESSOR_INVARIANT_BUT_LEVEL_NOT_RECOVERED (E-INV and E-STAB and not E-PERF)",
+      "defect": "P9_T4_SUCCESSOR_CANONICALIZATION_DEFECT (not E-INV or not E-STAB)"
+    }
+  },
+  "preconditions": [
+    "PC-1 DATASET FIDELITY: the regenerated dataset reproduces the shipped manifest digest",
+    "PC-2 FROZEN MODULE INTEGRITY: the frozen hostile_representation_attacks twin digest verifies before anything runs",
+    "PC-3 NO FROZEN ARTIFACT MODIFIED: only additive files under src/orion/study/p9/, protocol/, evidence/"
+  ],
+  "anti_tuning": "K, hash, corpus, probes, endpoints and thresholds are fixed by this freeze before the first successor outcome exists; one execution; implementation defects land as a new dated freeze appendix, never as a parameter edit",
+  "independent_checker": {
+    "module": "src/orion/study/p9/invariant_profile_checker.py",
+    "differences": [
+      "raw tokens re-derived from instance.model_payload(D1View.TYPED_SERIALIZED)['sequence']",
+      "base-orbit correspondence verified through frozen build_orbit_map ground truth",
+      "stability re-probed with a hand-built dense design matrix (no DictVectorizer, no Pipeline)",
+      "guard denominators and violations recomputed from raw payloads and recorded predictions"
+    ],
+    "disagreement_is": "a defect, not a tie to break"
+  },
+  "environment_boundary": {
+    "successor_runs_against": "D1 v1.2, the only representation contrast P9 publishes",
+    "execution_environment_recorded_in_receipt": true
+  },
+  "missing_run_policy": "FAIL_CLOSED_NO_PASS",
+  "success_terminal": "P9_T4_SUCCESSOR_REVIVED_STABLE",
+  "failure_terminals": [
+    "P9_T4_SUCCESSOR_INVARIANT_BUT_LEVEL_NOT_RECOVERED",
+    "P9_T4_SUCCESSOR_CANONICALIZATION_DEFECT"
+  ]
+}

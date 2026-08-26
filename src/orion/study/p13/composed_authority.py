@@ -20,7 +20,7 @@ V2_SCHEMA = "ORION.P13.ActiveClaimAuthority.v2"
 V2_ACTIVE_TERMINAL = "P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED"
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER = REPO_ROOT / "papers/paper-13-responsibility-carrying-state"
+PAPER = REPO_ROOT / "papers/orion-23-responsibility-carrying-state"
 RUNNER = PAPER / "run_p13c_composed_safety_efficacy_v1.py"
 PATHS = {
     "historical_p13b_authority": PAPER / "P13_ACTIVE_CLAIM_AUTHORITY_V2.json",

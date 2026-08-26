@@ -70,7 +70,7 @@ completion. A plural portrait may be identified; unresolved state is not.
 ## 3. Formal claim stack
 
 The additive ledger is
-`papers/paper-03-global-knowledge-portrait/THEORY_CLAIM_LEDGER_V1.md`.
+`papers/orion-13-global-knowledge-portrait/THEORY_CLAIM_LEDGER_V1.md`.
 
 ### 3.1 Fibre criterion (`P3.EPE.T1`)
 
@@ -355,18 +355,18 @@ The wider theory fails or must change if any of the following occurs:
 
 ## 11. Files changed in this ascent
 
-- `papers/paper-03-global-knowledge-portrait/manuscript/main.tex`
-- `papers/paper-03-global-knowledge-portrait/manuscript/bibliography.bib`
-- `papers/paper-03-global-knowledge-portrait/manuscript/sections/00-abstract.tex`
-- `papers/paper-03-global-knowledge-portrait/manuscript/sections/10-introduction.tex`
-- `papers/paper-03-global-knowledge-portrait/manuscript/sections/20-related-work.tex`
-- `papers/paper-03-global-knowledge-portrait/manuscript/sections/30-method.tex`
-- `papers/paper-03-global-knowledge-portrait/manuscript/sections/36-partial-identification-theory.tex`
-- `papers/paper-03-global-knowledge-portrait/manuscript/sections/56-p3x-successor.tex`
-- `papers/paper-03-global-knowledge-portrait/manuscript/sections/06-results.tex`
-- `papers/paper-03-global-knowledge-portrait/manuscript/sections/07-limitations.tex`
-- `papers/paper-03-global-knowledge-portrait/manuscript/sections/08-conclusion.tex`
-- `papers/paper-03-global-knowledge-portrait/THEORY_CLAIM_LEDGER_V1.md`
+- `papers/orion-13-global-knowledge-portrait/manuscript/main.tex`
+- `papers/orion-13-global-knowledge-portrait/manuscript/bibliography.bib`
+- `papers/orion-13-global-knowledge-portrait/manuscript/sections/00-abstract.tex`
+- `papers/orion-13-global-knowledge-portrait/manuscript/sections/10-introduction.tex`
+- `papers/orion-13-global-knowledge-portrait/manuscript/sections/20-related-work.tex`
+- `papers/orion-13-global-knowledge-portrait/manuscript/sections/30-method.tex`
+- `papers/orion-13-global-knowledge-portrait/manuscript/sections/36-partial-identification-theory.tex`
+- `papers/orion-13-global-knowledge-portrait/manuscript/sections/56-p3x-successor.tex`
+- `papers/orion-13-global-knowledge-portrait/manuscript/sections/06-results.tex`
+- `papers/orion-13-global-knowledge-portrait/manuscript/sections/07-limitations.tex`
+- `papers/orion-13-global-knowledge-portrait/manuscript/sections/08-conclusion.tex`
+- `papers/orion-13-global-knowledge-portrait/THEORY_CLAIM_LEDGER_V1.md`
 - `development/p3-scientific-ascent-2026-08-23/DEVELOPMENT_PACKET.md`
 
 ## 12. Current publication judgment

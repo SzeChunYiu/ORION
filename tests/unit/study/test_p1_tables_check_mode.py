@@ -22,7 +22,7 @@ import pytest
 from orion.study.p1 import tables
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers" / "paper-01-recursive-epistemic-reconstruction"
+PAPER = ROOT / "papers" / "orion-11-recursive-epistemic-reconstruction"
 RESULTS = PAPER / "results"
 ARCHIVE = RESULTS / "raw" / "test_scored.jsonl"
 T2_JSON = f"{tables.TABLE_T2}.json"

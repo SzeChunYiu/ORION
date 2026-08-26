@@ -27,7 +27,7 @@ def included_files() -> list[Path]:
         ROOT / "framework",
         ROOT / "results",
         PAPERS / "paper-xx-executable-research-core",
-        PAPERS / "paper-xx-content-bound-math-evaluation",
+        PAPERS / "archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation",
     ]
     # Build output only. This used to be an allowlist of eight suffixes, which
     # silently dropped whatever did not appear on it: a Lean toolchain pin and a
@@ -41,10 +41,10 @@ def included_files() -> list[Path]:
     # the overlay only and must stay absent from this SHA256 manifest, whose V2
     # closure check requires exactly the five superseded legacy P10 paths.
     v2_additive = {
-        "paper-xx-content-bound-math-evaluation/P10_REVIEW_EXPANSION_BOUNDARY.md",
-        "paper-xx-content-bound-math-evaluation/REVIEW_PACKAGE_STATUS_2026-08-20.md",
-        "paper-xx-content-bound-math-evaluation/analyze_module_robustness_v1.py",
-        "paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json",
+        "archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/P10_REVIEW_EXPANSION_BOUNDARY.md",
+        "archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/REVIEW_PACKAGE_STATUS_2026-08-20.md",
+        "archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/analyze_module_robustness_v1.py",
+        "archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json",
     }
     files = [
         path
@@ -73,7 +73,7 @@ def included_files() -> list[Path]:
             ROOT / "VERIFY_LOCAL_CLOSURE_V2.sh",
             ROOT / "generate_publication_manifest.py",
             PAPERS
-            / "paper-08-epistemic-authority-autonomous-science"
+            / "orion-18-epistemic-authority-autonomous-science"
             / "benchmark"
             / "P9_GOVERNED_CAPABILITY_COMPANION.md",
             CANDIDATES / "P6_P10_ISSUE_RECONCILIATION_2026-08-18.md",

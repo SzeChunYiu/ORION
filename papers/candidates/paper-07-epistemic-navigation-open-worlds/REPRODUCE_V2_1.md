@@ -1,4 +1,4 @@
-# P7 reproduce V2.1
+# ORION-17 reproduce V2.1
 
 Run from repository root:
 
@@ -10,8 +10,8 @@ PYTHONPATH=src python papers/candidates/paper-07-epistemic-navigation-open-world
 Expected sentinels:
 
 ```text
-P7 THEORY CLOSURE V2: PASS
-P7 CONTRACT MANIFEST V2: PASS
+ORION-17 THEORY CLOSURE V2: PASS
+ORION-17 CONTRACT MANIFEST V2: PASS
 ```
 
 The first command checks the closed theorems/countermodels, including all 64 transport-coordinate combinations. The second executes all 8 frozen prospective contract cases, including harmful-reframe and non-retrieval experimental-design transfer controls.

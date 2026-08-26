@@ -1,0 +1,58 @@
+{
+  "schema_version": "orion.p9.ut3-execution-gap.v1",
+  "record": "P9_U_T3_EXECUTION_GAP",
+  "date": "2026-08-23",
+  "authority_scope": "GAP_ANALYSIS_ONLY",
+  "cells_executed_by_this_record": 0,
+  "grants": "Nothing. The grid's terminal remains BLOCKED and its verdict remains T3_GRID_DECLARED_NO_CELL_EXECUTED.",
+  "why_this_exists": "The programme ledger files P9.T3.FRONTIER.EXECUTION as an EXTERNAL_EVIDENCE_BLOCKER requiring checkpoint, runtime and compute custody, and the acquisition audit initially read that as a download away from execution. Both are incomplete: the code that would run a cell does not exist.",
+  "what_the_freeze_already_provides": {
+    "grid_declared_before_outcomes": true,
+    "declared_cell_count": 1344,
+    "cell_key_format": "k{k}|{representation}|{family}|{scale}|C{budget}|{block}",
+    "axes": "4 relational complexities x 7 representations x 6 scale points x 4 inference budgets x 2 domain blocks, at a fixed sample budget of 4",
+    "parameters_sha256": "sha256:33138930449fda9a77c99a325f6c9ca2c13b58291218beb94704ea045334fe8c",
+    "analysis_side_complete": "orion.study.p9.frontier_grid reads an outcome file and computes scale and compute frontiers, the on-grid rule, Holm-Bonferroni multiplicity and the crossing verdicts. It forbids extrapolation and interpolation and treats any declared cell absent from the outcome file as CANNOT_CHECK."
+  },
+  "what_does_not_exist": [
+    {
+      "missing": "the seven representations",
+      "names": [
+        "FLAT_TEXT_SERIALIZATION",
+        "REVERSIBLE_INDEXED_SERIALIZATION",
+        "TYPED_TUPLE_SET",
+        "TYPED_GRAPH_STATE",
+        "QUERY_MATCHED_INTERFACE",
+        "LENGTH_ONLY_CONTROL",
+        "ARCHITECTURE_PRIOR_CONTROL"
+      ],
+      "evidence": "Each name occurs only in the freeze document, in frontier_grid.py's declared axes, and in the status artifact. No serializer, no round-trip check, and no control construction exists anywhere in src/, papers/ or research/."
+    },
+    {
+      "missing": "the per-cell task items",
+      "evidence": "An EXECUTED cell must carry n_items and n_verified_correct. Nothing in the repository generates items at a given relational complexity k for the FORMAL_RELATIONAL and NON_FORMAL_PROCEDURAL blocks, and nothing verifies an answer to produce a verified count."
+    },
+    {
+      "missing": "the cell runner",
+      "evidence": "The freeze names orion.study.p9.frontier_grid as its runner, but that module's CLI takes --outcomes as an INPUT, documented as 'an outcome file for the declared cells; omit while none exists'. Nothing in the repository emits P9.UT3FrontierGridOutcomes.v1."
+    }
+  ],
+  "what_is_genuinely_available": {
+    "checkpoints": "All six declared ladder points resolve live. Qwen2.5 0.5B, 1.5B and 7B are Apache-2.0 and ungated; Qwen2.5-3B is ungated under a research licence; Llama-3.2 1B and 3B are gated=manual, free but requiring an accepted licence on an account.",
+    "compute": "the researcher's own",
+    "so": "the acquisition half of the blocker is real but small; the construction half is the work."
+  },
+  "build_order": [
+    "1. Item generator: produce items at each k for both domain blocks, each with a machine-checkable answer, so a verified count has a denominator that was fixed before any model saw it.",
+    "2. Representations: implement the seven, with the round-trip property the reversible one names, and with the two controls constructed so they cannot smuggle the signal the typed representations carry.",
+    "3. Runner: walk one cell, emit n_items and n_verified_correct, and mark every cell it did not run NOT_RUN, INFEASIBLE_RESOURCE or INFEASIBLE_CONTEXT with counts omitted.",
+    "4. Only then acquire checkpoints and execute."
+  ],
+  "prohibition": {
+    "rule": "No stub, mock or partial output may be written to the freeze's expected_result_artifact path.",
+    "path": "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json",
+    "why": "frontier_grid.py will compute a verdict from whatever outcome file it is handed, and the grid is a prospectively frozen gate. A stub reaching that path produces a fabricated result against a frozen claim. Development outputs go somewhere else and are labelled non-authoritative in-band.",
+    "reinforced_by": "the contract's own rule that a cell which did not run must omit its counts, because a number attached to a cell that did not run is the failure it exists to prevent"
+  },
+  "reclassification": "Not externally blocked, and not one download from execution either. LOCALLY_UNEXECUTED with a substantial construction precondition."
+}

@@ -1,4 +1,4 @@
-# P10 candidate — Content-Bound Mathematical Evaluation
+# ORION-20 candidate — Content-Bound Mathematical Evaluation
 
 **Status:** SCRIPTS AND RESULTS LANDED / HEADLINE RESULT IS A NULL / NO MANUSCRIPT / NOVELTY `CANNOT_CHECK`
 **Shared lane:** `../orion-learning-machine/`
@@ -11,9 +11,9 @@ When an agent claims a mathematical result, what has to be bound so the claim ca
 
 `FrozenMathTask` (`../orion-learning-machine/framework/orion_learning_machine/math_eval.py`) is a content-bound evaluation subject: the task statement, its source, and the source revision hash together into `statement_sha256`, so an attempt is bound to the exact statement it answered and a later edit to the statement is detectable.
 
-The module states its own limit: *"P10 uses this as an evaluation harness only; theorem correctness and claim authority remain outside P10."* The harness binds identity. It does not decide whether a proof is right.
+The module states its own limit: *"ORION-20 uses this as an evaluation harness only; theorem correctness and claim authority remain outside ORION-20."* The harness binds identity. It does not decide whether a proof is right.
 
-`bind_verifier_receipt` attaches an external verifier's decision to an attempt without the harness adjudicating it — the same shape as P4's protected evaluator boundary.
+`bind_verifier_receipt` attaches an external verifier's decision to an attempt without the harness adjudicating it — the same shape as ORION-14's protected evaluator boundary.
 
 ## Evidence that exists
 
@@ -44,13 +44,13 @@ That is a real negative result on real source, and it is the most informative th
 
 ## Ownership boundary
 
-- **P4** owns protected scientific-authority promotion and independent verification. P10's `bind_verifier_receipt` defers to that boundary rather than replacing it.
-- **P8** owns the authority calculus.
-- P10's object is narrower than either: content-binding an evaluation subject so an attempt cannot be silently re-pointed at a different statement.
+- **ORION-14** owns protected scientific-authority promotion and independent verification. ORION-20's `bind_verifier_receipt` defers to that boundary rather than replacing it.
+- **ORION-18** owns the authority calculus.
+- ORION-20's object is narrower than either: content-binding an evaluation subject so an attempt cannot be silently re-pointed at a different statement.
 
 ### Explicit nonclaims
 
-P10 does not claim novelty for autoformalization, Lean/Mathlib tooling, theorem-prover benchmarks, tactic prediction, premise selection, or proof-step evaluation. It makes no claim about the correctness of any theorem in the corpus.
+ORION-20 does not claim novelty for autoformalization, Lean/Mathlib tooling, theorem-prover benchmarks, tactic prediction, premise selection, or proof-step evaluation. It makes no claim about the correctness of any theorem in the corpus.
 
 ## What does not exist yet
 

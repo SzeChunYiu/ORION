@@ -8,11 +8,11 @@ from pathlib import Path
 import pytest
 
 RUNNER_PATH = Path(
-    "papers/paper-02-open-world-scientific-discovery/scripts/"
+    "papers/orion-12-open-world-scientific-discovery/scripts/"
     "run_autoresearchbench_wide_openaire_matched.py"
 )
 ANALYZER_PATH = Path(
-    "papers/paper-02-open-world-scientific-discovery/scripts/"
+    "papers/orion-12-open-world-scientific-discovery/scripts/"
     "analyze_autoresearchbench_wide_openaire_matched.py"
 )
 

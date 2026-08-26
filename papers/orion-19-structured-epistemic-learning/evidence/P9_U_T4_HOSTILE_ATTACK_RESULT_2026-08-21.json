@@ -1,0 +1,2466 @@
+{
+  "arms": {
+    "BASE": {
+      "LENGTH_ONLY": {
+        "accuracy": 0.75,
+        "arm_id": "LENGTH_ONLY",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.8333333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate presence and cardinality for each side separately, with no value identity, no cross-side comparison and no unknown flag",
+        "trivial_floor": 0.5
+      },
+      "LENGTH_RELATIONAL": {
+        "accuracy": 0.875,
+        "arm_id": "LENGTH_RELATIONAL",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 112,
+        "departure_errors": 16,
+        "departures": 80,
+        "dev_accuracy": 0.8333333333333334,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.8611111111111112,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            48
+          ],
+          [
+            "OBSTRUCTION",
+            48
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "cross-side agreement of presence and of cardinality only, with no value identity, no absolute cardinality and no unknown flag",
+        "trivial_floor": 0.5
+      },
+      "SERIALIZED_INDEXED": {
+        "accuracy": 0.75,
+        "arm_id": "SERIALIZED_INDEXED",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical path=value token bag with every string value replaced by its index in that instance's sorted atom alphabet; reversible, adds no comparison operator",
+        "trivial_floor": 0.5
+      },
+      "SERIALIZED_PATHONLY": {
+        "accuracy": 0.71875,
+        "arm_id": "SERIALIZED_PATHONLY",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 92,
+        "departure_errors": 4,
+        "departures": 36,
+        "dev_accuracy": 0.8333333333333334,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.46527777777777785,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            4
+          ],
+          [
+            "OBSTRUCTION",
+            92
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical token bag with every string value replaced by one constant marker; strictly less information than the serialized arm and a domain-independent vocabulary",
+        "trivial_floor": 0.5
+      },
+      "TRANSCRIPT_BAG": {
+        "accuracy": 0.25,
+        "arm_id": "TRANSCRIPT_BAG",
+        "config_id": "logistic-C0.1",
+        "constant": true,
+        "correct": 32,
+        "departure_errors": 0,
+        "departures": 0,
+        "dev_accuracy": 0.3333333333333333,
+        "distinct_predictions": 1,
+        "eval_cases": 128,
+        "informedness": 0.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            128
+          ]
+        ],
+        "prior_of_emitted": 0.25,
+        "resolution": 0.0078125,
+        "response_definition": "reminted surface action tokens and their counts for both sides of the pair; the tokens are minted from the split seed and are disjoint between train and the protected domain",
+        "trivial_floor": 0.5
+      },
+      "TYPED_RELATIONAL": {
+        "accuracy": 1.0,
+        "arm_id": "TYPED_RELATIONAL",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 128,
+        "departure_errors": 0,
+        "departures": 64,
+        "dev_accuracy": 1.0,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 1.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate value equality and unknown flag across the two sides, plus each side's coordinate cardinality",
+        "trivial_floor": 0.5
+      },
+      "TYPED_SERIALIZED_BAG": {
+        "accuracy": 0.75,
+        "arm_id": "TYPED_SERIALIZED_BAG",
+        "config_id": "logistic-C1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "a bag of canonical path=value tokens over the same typed payload, with held-out-domain values verbatim",
+        "trivial_floor": 0.5
+      },
+      "UNTYPED_PAIR": {
+        "accuracy": 0.90625,
+        "arm_id": "UNTYPED_PAIR",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 116,
+        "departure_errors": 12,
+        "departures": 76,
+        "dev_accuracy": 0.875,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.8958333333333334,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            44
+          ],
+          [
+            "OBSTRUCTION",
+            52
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate presence, unknown flag and cardinality for both sides, plus whether the dependency topologies agree",
+        "trivial_floor": 0.5
+      }
+    },
+    "EQUAL_LENGTH": {
+      "LENGTH_ONLY": {
+        "accuracy": 0.75,
+        "arm_id": "LENGTH_ONLY",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.6666666666666666,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate presence and cardinality for each side separately, with no value identity, no cross-side comparison and no unknown flag",
+        "trivial_floor": 0.5
+      },
+      "LENGTH_RELATIONAL": {
+        "accuracy": 0.75,
+        "arm_id": "LENGTH_RELATIONAL",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.6666666666666666,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "cross-side agreement of presence and of cardinality only, with no value identity, no absolute cardinality and no unknown flag",
+        "trivial_floor": 0.5
+      },
+      "SERIALIZED_INDEXED": {
+        "accuracy": 0.75,
+        "arm_id": "SERIALIZED_INDEXED",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical path=value token bag with every string value replaced by its index in that instance's sorted atom alphabet; reversible, adds no comparison operator",
+        "trivial_floor": 0.5
+      },
+      "SERIALIZED_PATHONLY": {
+        "accuracy": 0.5,
+        "arm_id": "SERIALIZED_PATHONLY",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 64,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.6666666666666666,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.4444444444444444,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical token bag with every string value replaced by one constant marker; strictly less information than the serialized arm and a domain-independent vocabulary",
+        "trivial_floor": 0.5
+      },
+      "TRANSCRIPT_BAG": {
+        "accuracy": 0.25,
+        "arm_id": "TRANSCRIPT_BAG",
+        "config_id": "logistic-C0.1",
+        "constant": true,
+        "correct": 32,
+        "departure_errors": 0,
+        "departures": 0,
+        "dev_accuracy": 0.3333333333333333,
+        "distinct_predictions": 1,
+        "eval_cases": 128,
+        "informedness": 0.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            128
+          ]
+        ],
+        "prior_of_emitted": 0.25,
+        "resolution": 0.0078125,
+        "response_definition": "reminted surface action tokens and their counts for both sides of the pair; the tokens are minted from the split seed and are disjoint between train and the protected domain",
+        "trivial_floor": 0.5
+      },
+      "TYPED_RELATIONAL": {
+        "accuracy": 1.0,
+        "arm_id": "TYPED_RELATIONAL",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 128,
+        "departure_errors": 0,
+        "departures": 64,
+        "dev_accuracy": 1.0,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 1.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate value equality and unknown flag across the two sides, plus each side's coordinate cardinality",
+        "trivial_floor": 0.5
+      },
+      "TYPED_SERIALIZED_BAG": {
+        "accuracy": 0.75,
+        "arm_id": "TYPED_SERIALIZED_BAG",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "a bag of canonical path=value tokens over the same typed payload, with held-out-domain values verbatim",
+        "trivial_floor": 0.5
+      },
+      "UNTYPED_PAIR": {
+        "accuracy": 0.609375,
+        "arm_id": "UNTYPED_PAIR",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 78,
+        "departure_errors": 0,
+        "departures": 46,
+        "dev_accuracy": 0.7083333333333334,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.5659722222222222,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            82
+          ],
+          [
+            "OBSTRUCTION",
+            14
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate presence, unknown flag and cardinality for both sides, plus whether the dependency topologies agree",
+        "trivial_floor": 0.5
+      }
+    },
+    "ORDER_PERMUTATION": {
+      "LENGTH_ONLY": {
+        "accuracy": 0.75,
+        "arm_id": "LENGTH_ONLY",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.8333333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate presence and cardinality for each side separately, with no value identity, no cross-side comparison and no unknown flag",
+        "trivial_floor": 0.5
+      },
+      "LENGTH_RELATIONAL": {
+        "accuracy": 0.875,
+        "arm_id": "LENGTH_RELATIONAL",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 112,
+        "departure_errors": 16,
+        "departures": 80,
+        "dev_accuracy": 0.8333333333333334,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.8611111111111112,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            48
+          ],
+          [
+            "OBSTRUCTION",
+            48
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "cross-side agreement of presence and of cardinality only, with no value identity, no absolute cardinality and no unknown flag",
+        "trivial_floor": 0.5
+      },
+      "SERIALIZED_INDEXED": {
+        "accuracy": 0.75,
+        "arm_id": "SERIALIZED_INDEXED",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical path=value token bag with every string value replaced by its index in that instance's sorted atom alphabet; reversible, adds no comparison operator",
+        "trivial_floor": 0.5
+      },
+      "SERIALIZED_PATHONLY": {
+        "accuracy": 0.71875,
+        "arm_id": "SERIALIZED_PATHONLY",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 92,
+        "departure_errors": 4,
+        "departures": 36,
+        "dev_accuracy": 0.8333333333333334,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.46527777777777785,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            4
+          ],
+          [
+            "OBSTRUCTION",
+            92
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical token bag with every string value replaced by one constant marker; strictly less information than the serialized arm and a domain-independent vocabulary",
+        "trivial_floor": 0.5
+      },
+      "TRANSCRIPT_BAG": {
+        "accuracy": 0.25,
+        "arm_id": "TRANSCRIPT_BAG",
+        "config_id": "logistic-C0.1",
+        "constant": true,
+        "correct": 32,
+        "departure_errors": 0,
+        "departures": 0,
+        "dev_accuracy": 0.3333333333333333,
+        "distinct_predictions": 1,
+        "eval_cases": 128,
+        "informedness": 0.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            128
+          ]
+        ],
+        "prior_of_emitted": 0.25,
+        "resolution": 0.0078125,
+        "response_definition": "reminted surface action tokens and their counts for both sides of the pair; the tokens are minted from the split seed and are disjoint between train and the protected domain",
+        "trivial_floor": 0.5
+      },
+      "TYPED_RELATIONAL": {
+        "accuracy": 1.0,
+        "arm_id": "TYPED_RELATIONAL",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 128,
+        "departure_errors": 0,
+        "departures": 64,
+        "dev_accuracy": 1.0,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 1.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate value equality and unknown flag across the two sides, plus each side's coordinate cardinality",
+        "trivial_floor": 0.5
+      },
+      "TYPED_SERIALIZED_BAG": {
+        "accuracy": 0.75,
+        "arm_id": "TYPED_SERIALIZED_BAG",
+        "config_id": "logistic-C1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "a bag of canonical path=value tokens over the same typed payload, with held-out-domain values verbatim",
+        "trivial_floor": 0.5
+      },
+      "UNTYPED_PAIR": {
+        "accuracy": 0.90625,
+        "arm_id": "UNTYPED_PAIR",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 116,
+        "departure_errors": 12,
+        "departures": 76,
+        "dev_accuracy": 0.875,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.8958333333333334,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            44
+          ],
+          [
+            "OBSTRUCTION",
+            52
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate presence, unknown flag and cardinality for both sides, plus whether the dependency topologies agree",
+        "trivial_floor": 0.5
+      }
+    },
+    "SEMANTIC_ORBIT": {
+      "LENGTH_ONLY": {
+        "accuracy": 0.75,
+        "arm_id": "LENGTH_ONLY",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.8333333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate presence and cardinality for each side separately, with no value identity, no cross-side comparison and no unknown flag",
+        "trivial_floor": 0.5
+      },
+      "LENGTH_RELATIONAL": {
+        "accuracy": 0.875,
+        "arm_id": "LENGTH_RELATIONAL",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 112,
+        "departure_errors": 16,
+        "departures": 80,
+        "dev_accuracy": 0.8333333333333334,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.8611111111111112,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            48
+          ],
+          [
+            "OBSTRUCTION",
+            48
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "cross-side agreement of presence and of cardinality only, with no value identity, no absolute cardinality and no unknown flag",
+        "trivial_floor": 0.5
+      },
+      "SERIALIZED_INDEXED": {
+        "accuracy": 0.75,
+        "arm_id": "SERIALIZED_INDEXED",
+        "config_id": "logistic-C1",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical path=value token bag with every string value replaced by its index in that instance's sorted atom alphabet; reversible, adds no comparison operator",
+        "trivial_floor": 0.5
+      },
+      "SERIALIZED_PATHONLY": {
+        "accuracy": 0.71875,
+        "arm_id": "SERIALIZED_PATHONLY",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 92,
+        "departure_errors": 4,
+        "departures": 36,
+        "dev_accuracy": 0.8333333333333334,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.46527777777777785,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            4
+          ],
+          [
+            "OBSTRUCTION",
+            92
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical token bag with every string value replaced by one constant marker; strictly less information than the serialized arm and a domain-independent vocabulary",
+        "trivial_floor": 0.5
+      },
+      "TRANSCRIPT_BAG": {
+        "accuracy": 0.25,
+        "arm_id": "TRANSCRIPT_BAG",
+        "config_id": "logistic-C0.1",
+        "constant": true,
+        "correct": 32,
+        "departure_errors": 0,
+        "departures": 0,
+        "dev_accuracy": 0.3333333333333333,
+        "distinct_predictions": 1,
+        "eval_cases": 128,
+        "informedness": 0.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            128
+          ]
+        ],
+        "prior_of_emitted": 0.25,
+        "resolution": 0.0078125,
+        "response_definition": "reminted surface action tokens and their counts for both sides of the pair; the tokens are minted from the split seed and are disjoint between train and the protected domain",
+        "trivial_floor": 0.5
+      },
+      "TYPED_RELATIONAL": {
+        "accuracy": 1.0,
+        "arm_id": "TYPED_RELATIONAL",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 128,
+        "departure_errors": 0,
+        "departures": 64,
+        "dev_accuracy": 1.0,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 1.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate value equality and unknown flag across the two sides, plus each side's coordinate cardinality",
+        "trivial_floor": 0.5
+      },
+      "TYPED_SERIALIZED_BAG": {
+        "accuracy": 0.5,
+        "arm_id": "TYPED_SERIALIZED_BAG",
+        "config_id": "logistic-C1",
+        "constant": true,
+        "correct": 64,
+        "departure_errors": 0,
+        "departures": 0,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 1,
+        "eval_cases": 128,
+        "informedness": 0.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            128
+          ]
+        ],
+        "prior_of_emitted": 0.5,
+        "resolution": 0.0078125,
+        "response_definition": "a bag of canonical path=value tokens over the same typed payload, with held-out-domain values verbatim",
+        "trivial_floor": 0.5
+      },
+      "UNTYPED_PAIR": {
+        "accuracy": 0.90625,
+        "arm_id": "UNTYPED_PAIR",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 116,
+        "departure_errors": 12,
+        "departures": 76,
+        "dev_accuracy": 0.875,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.8958333333333334,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            44
+          ],
+          [
+            "OBSTRUCTION",
+            52
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate presence, unknown flag and cardinality for both sides, plus whether the dependency topologies agree",
+        "trivial_floor": 0.5
+      }
+    }
+  },
+  "attacked_result": {
+    "artifact": "research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json",
+    "shipped_dataset_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c"
+  },
+  "claim_scope": "BOUNDED_D1_ONLY. Whatever this study returns is a statement about the D1 v1.2 classical-learner benchmark on its 128-case held-out-domain protected split and about nothing else. It licenses no statement about any language model, any scale, any second model family, or the successor experiment of issue #618.",
+  "component_census": {
+    "attacks_succeeded": 1,
+    "cannot_check_ids": [
+      "FP-2_SEMANTIC_ORBIT_INVARIANCE::TRANSCRIPT_BAG",
+      "FP-2_SEMANTIC_ORBIT_INVARIANCE::UNTYPED_PAIR",
+      "FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_RELATIONAL",
+      "FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_ONLY",
+      "FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_RELATIONAL",
+      "FP-2_SEMANTIC_ORBIT_INVARIANCE::SERIALIZED_PATHONLY",
+      "FP-3_ORDER_REMINT_INVARIANCE::TRANSCRIPT_BAG",
+      "FP-3_ORDER_REMINT_INVARIANCE::UNTYPED_PAIR",
+      "FP-3_ORDER_REMINT_INVARIANCE::TYPED_RELATIONAL",
+      "FP-3_ORDER_REMINT_INVARIANCE::TYPED_SERIALIZED_BAG",
+      "FP-3_ORDER_REMINT_INVARIANCE::LENGTH_ONLY",
+      "FP-3_ORDER_REMINT_INVARIANCE::LENGTH_RELATIONAL",
+      "FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_INDEXED",
+      "FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_PATHONLY"
+    ],
+    "components": 21,
+    "components_cannot_check": 14,
+    "succeeded_ids": [
+      "FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_SERIALIZED_BAG"
+    ]
+  },
+  "components": [
+    {
+      "attack_succeeded": false,
+      "component_id": "RL-1_LENGTH_ONLY_SUFFICIENT",
+      "denominator": "128 protected cases",
+      "detail": "LENGTH_ONLY 0.75 vs TYPED_RELATIONAL 1.0 (tolerance 0.0078125); length does not reach it",
+      "hypothesis": "H_LEN",
+      "numbers": {
+        "challenger_accuracy": 0.75,
+        "challenger_distinct_predictions": 2,
+        "challenger_informedness": 0.5,
+        "fraction_of_typed_above_floor_reached_by_length": 0.5,
+        "tolerance": 0.0078125,
+        "trivial_floor": 0.5,
+        "typed_accuracy": 1.0
+      },
+      "outcome": "PASS",
+      "statement": "LENGTH_ONLY reaches TYPED_RELATIONAL accuracy within one case"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "RL-2_LENGTH_RELATIONAL_SUFFICIENT",
+      "denominator": "128 protected cases",
+      "detail": "LENGTH_RELATIONAL 0.875 vs TYPED_RELATIONAL 1.0 (tolerance 0.0078125); length does not reach it",
+      "hypothesis": "H_LEN",
+      "numbers": {
+        "challenger_accuracy": 0.875,
+        "challenger_distinct_predictions": 3,
+        "challenger_informedness": 0.8611111111111112,
+        "fraction_of_typed_above_floor_reached_by_length": 0.75,
+        "tolerance": 0.0078125,
+        "trivial_floor": 0.5,
+        "typed_accuracy": 1.0
+      },
+      "outcome": "PASS",
+      "statement": "LENGTH_RELATIONAL reaches TYPED_RELATIONAL accuracy within one case"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "RL-3_EQUAL_LENGTH_CONTROL",
+      "denominator": "128 protected cases on the equal-length control",
+      "detail": "TYPED_RELATIONAL holds 1.0 on the equal-length control (base 1.0); removing the cardinality cue does not remove its decision",
+      "hypothesis": "H_LEN",
+      "numbers": {
+        "base_typed_accuracy": 1.0,
+        "control_distinct_predictions": 3,
+        "control_informedness": 1.0,
+        "control_trivial_floor": 0.5,
+        "control_typed_accuracy": 1.0,
+        "unchanged_floor": 0.95
+      },
+      "outcome": "PASS",
+      "statement": "the typed arm collapses when corruption no longer changes cardinality"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-1a_INDEXED_REFORMAT_CLOSES_GAP",
+      "denominator": "32 departures over 128 protected cases",
+      "detail": "TYPED_SERIALIZED_BAG gap 0.25 -> SERIALIZED_INDEXED gap 0.25 (0.5 of the base gap is 0.125); the reformat does not account for the gap",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "base_arm_accuracy": 0.75,
+        "base_gap": 0.25,
+        "reformat_gap": 0.25,
+        "reformatted_accuracy": 0.75,
+        "reformatted_departures": 32,
+        "reformatted_distinct_predictions": 2,
+        "reformatted_informedness": 0.5,
+        "threshold_gap": 0.125,
+        "typed_accuracy": 1.0
+      },
+      "outcome": "PASS",
+      "statement": "SERIALIZED_INDEXED closes at least half of the TYPED_SERIALIZED_BAG gap to TYPED_RELATIONAL with no comparison operator and no added information"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-1b_PATHONLY_REFORMAT_CLOSES_GAP",
+      "denominator": "36 departures over 128 protected cases",
+      "detail": "TYPED_SERIALIZED_BAG gap 0.25 -> SERIALIZED_PATHONLY gap 0.28125 (0.5 of the base gap is 0.125); the reformat does not account for the gap",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "base_arm_accuracy": 0.75,
+        "base_gap": 0.25,
+        "reformat_gap": 0.28125,
+        "reformatted_accuracy": 0.71875,
+        "reformatted_departures": 36,
+        "reformatted_distinct_predictions": 3,
+        "reformatted_informedness": 0.46527777777777785,
+        "threshold_gap": 0.125,
+        "typed_accuracy": 1.0
+      },
+      "outcome": "PASS",
+      "statement": "SERIALIZED_PATHONLY closes at least half of the TYPED_SERIALIZED_BAG gap to TYPED_RELATIONAL with no comparison operator and no added information"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::TRANSCRIPT_BAG",
+      "denominator": "0 opportunities (protected cases whose input to TRANSCRIPT_BAG changed under the symbol-remint semantic orbit transform)",
+      "detail": "TRANSCRIPT_BAG had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::TRANSCRIPT_BAG (protected cases whose input to TRANSCRIPT_BAG changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "TRANSCRIPT_BAG had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::TRANSCRIPT_BAG (protected cases whose input to TRANSCRIPT_BAG changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "TRANSCRIPT_BAG",
+              "exercised": false,
+              "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::TRANSCRIPT_BAG",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to TRANSCRIPT_BAG changed under the symbol-remint semantic orbit transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::TRANSCRIPT_BAG",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.25,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.25
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "TRANSCRIPT_BAG's protected predictions move under the meaning-preserving symbol-remint semantic orbit rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::UNTYPED_PAIR",
+      "denominator": "0 opportunities (protected cases whose input to UNTYPED_PAIR changed under the symbol-remint semantic orbit transform)",
+      "detail": "UNTYPED_PAIR had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::UNTYPED_PAIR (protected cases whose input to UNTYPED_PAIR changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "UNTYPED_PAIR had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::UNTYPED_PAIR (protected cases whose input to UNTYPED_PAIR changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "UNTYPED_PAIR",
+              "exercised": false,
+              "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::UNTYPED_PAIR",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to UNTYPED_PAIR changed under the symbol-remint semantic orbit transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::UNTYPED_PAIR",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.90625,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.90625
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "UNTYPED_PAIR's protected predictions move under the meaning-preserving symbol-remint semantic orbit rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_RELATIONAL",
+      "denominator": "0 opportunities (protected cases whose input to TYPED_RELATIONAL changed under the symbol-remint semantic orbit transform)",
+      "detail": "TYPED_RELATIONAL had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_RELATIONAL (protected cases whose input to TYPED_RELATIONAL changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "TYPED_RELATIONAL had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_RELATIONAL (protected cases whose input to TYPED_RELATIONAL changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "TYPED_RELATIONAL",
+              "exercised": false,
+              "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_RELATIONAL",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to TYPED_RELATIONAL changed under the symbol-remint semantic orbit transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_RELATIONAL",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 1.0,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 1.0
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "TYPED_RELATIONAL's protected predictions move under the meaning-preserving symbol-remint semantic orbit rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": true,
+      "component_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_SERIALIZED_BAG",
+      "denominator": "128 opportunities (every protected case, because the symbol-remint semantic orbit transform changed the arm's fitted input and the model itself therefore differs)",
+      "detail": "TYPED_SERIALIZED_BAG: 32 violations in 128 opportunities is rate 0.25, above 0.0",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "TYPED_SERIALIZED_BAG: 32 violations in 128 opportunities is rate 0.25, above 0.0",
+          "exercises": [
+            {
+              "arm_id": "TYPED_SERIALIZED_BAG",
+              "exercised": true,
+              "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_SERIALIZED_BAG",
+              "opportunities": 128,
+              "opportunity_definition": "every protected case, because the symbol-remint semantic orbit transform changed the arm's fitted input and the model itself therefore differs",
+              "resolution": 0.0078125,
+              "violation_rate": 0.25,
+              "violations": 32
+            }
+          ],
+          "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_SERIALIZED_BAG",
+          "outcome": "FAIL",
+          "reason": "VIOLATED"
+        },
+        "base_accuracy": 0.75,
+        "dev_features_changed": true,
+        "protected_feature_dicts_changed": 128,
+        "protected_predictions_changed": 32,
+        "train_features_changed": true,
+        "transformed_accuracy": 0.5
+      },
+      "outcome": "FAIL",
+      "statement": "TYPED_SERIALIZED_BAG's protected predictions move under the meaning-preserving symbol-remint semantic orbit rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_ONLY",
+      "denominator": "0 opportunities (protected cases whose input to LENGTH_ONLY changed under the symbol-remint semantic orbit transform)",
+      "detail": "LENGTH_ONLY had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_ONLY (protected cases whose input to LENGTH_ONLY changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "LENGTH_ONLY had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_ONLY (protected cases whose input to LENGTH_ONLY changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "LENGTH_ONLY",
+              "exercised": false,
+              "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_ONLY",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to LENGTH_ONLY changed under the symbol-remint semantic orbit transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_ONLY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.75,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.75
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "LENGTH_ONLY's protected predictions move under the meaning-preserving symbol-remint semantic orbit rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_RELATIONAL",
+      "denominator": "0 opportunities (protected cases whose input to LENGTH_RELATIONAL changed under the symbol-remint semantic orbit transform)",
+      "detail": "LENGTH_RELATIONAL had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_RELATIONAL (protected cases whose input to LENGTH_RELATIONAL changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "LENGTH_RELATIONAL had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_RELATIONAL (protected cases whose input to LENGTH_RELATIONAL changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "LENGTH_RELATIONAL",
+              "exercised": false,
+              "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_RELATIONAL",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to LENGTH_RELATIONAL changed under the symbol-remint semantic orbit transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::LENGTH_RELATIONAL",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.875,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.875
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "LENGTH_RELATIONAL's protected predictions move under the meaning-preserving symbol-remint semantic orbit rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::SERIALIZED_INDEXED",
+      "denominator": "128 opportunities (every protected case, because the symbol-remint semantic orbit transform changed the arm's fitted input and the model itself therefore differs)",
+      "detail": "SERIALIZED_INDEXED: 0 violations in 128 opportunities (every protected case, because the symbol-remint semantic orbit transform changed the arm's fitted input and the model itself therefore differs)",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "SERIALIZED_INDEXED: 0 violations in 128 opportunities (every protected case, because the symbol-remint semantic orbit transform changed the arm's fitted input and the model itself therefore differs)",
+          "exercises": [
+            {
+              "arm_id": "SERIALIZED_INDEXED",
+              "exercised": true,
+              "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::SERIALIZED_INDEXED",
+              "opportunities": 128,
+              "opportunity_definition": "every protected case, because the symbol-remint semantic orbit transform changed the arm's fitted input and the model itself therefore differs",
+              "resolution": 0.0078125,
+              "violation_rate": 0.0,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::SERIALIZED_INDEXED",
+          "outcome": "PASS",
+          "reason": "HELD_UNDER_EXERCISE"
+        },
+        "base_accuracy": 0.75,
+        "dev_features_changed": true,
+        "protected_feature_dicts_changed": 128,
+        "protected_predictions_changed": 0,
+        "train_features_changed": true,
+        "transformed_accuracy": 0.75
+      },
+      "outcome": "PASS",
+      "statement": "SERIALIZED_INDEXED's protected predictions move under the meaning-preserving symbol-remint semantic orbit rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::SERIALIZED_PATHONLY",
+      "denominator": "0 opportunities (protected cases whose input to SERIALIZED_PATHONLY changed under the symbol-remint semantic orbit transform)",
+      "detail": "SERIALIZED_PATHONLY had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::SERIALIZED_PATHONLY (protected cases whose input to SERIALIZED_PATHONLY changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "SERIALIZED_PATHONLY had 0 opportunities to violate FP-2_SEMANTIC_ORBIT_INVARIANCE::SERIALIZED_PATHONLY (protected cases whose input to SERIALIZED_PATHONLY changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "SERIALIZED_PATHONLY",
+              "exercised": false,
+              "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::SERIALIZED_PATHONLY",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to SERIALIZED_PATHONLY changed under the symbol-remint semantic orbit transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-2_SEMANTIC_ORBIT_INVARIANCE::SERIALIZED_PATHONLY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.71875,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.71875
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "SERIALIZED_PATHONLY's protected predictions move under the meaning-preserving symbol-remint semantic orbit rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-3_ORDER_REMINT_INVARIANCE::TRANSCRIPT_BAG",
+      "denominator": "0 opportunities (protected cases whose input to TRANSCRIPT_BAG changed under the sequence-order remint transform)",
+      "detail": "TRANSCRIPT_BAG had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::TRANSCRIPT_BAG (protected cases whose input to TRANSCRIPT_BAG changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "TRANSCRIPT_BAG had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::TRANSCRIPT_BAG (protected cases whose input to TRANSCRIPT_BAG changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "TRANSCRIPT_BAG",
+              "exercised": false,
+              "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::TRANSCRIPT_BAG",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to TRANSCRIPT_BAG changed under the sequence-order remint transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::TRANSCRIPT_BAG",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.25,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.25
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "TRANSCRIPT_BAG's protected predictions move under the meaning-preserving sequence-order remint rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-3_ORDER_REMINT_INVARIANCE::UNTYPED_PAIR",
+      "denominator": "0 opportunities (protected cases whose input to UNTYPED_PAIR changed under the sequence-order remint transform)",
+      "detail": "UNTYPED_PAIR had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::UNTYPED_PAIR (protected cases whose input to UNTYPED_PAIR changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "UNTYPED_PAIR had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::UNTYPED_PAIR (protected cases whose input to UNTYPED_PAIR changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "UNTYPED_PAIR",
+              "exercised": false,
+              "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::UNTYPED_PAIR",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to UNTYPED_PAIR changed under the sequence-order remint transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::UNTYPED_PAIR",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.90625,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.90625
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "UNTYPED_PAIR's protected predictions move under the meaning-preserving sequence-order remint rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-3_ORDER_REMINT_INVARIANCE::TYPED_RELATIONAL",
+      "denominator": "0 opportunities (protected cases whose input to TYPED_RELATIONAL changed under the sequence-order remint transform)",
+      "detail": "TYPED_RELATIONAL had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::TYPED_RELATIONAL (protected cases whose input to TYPED_RELATIONAL changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "TYPED_RELATIONAL had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::TYPED_RELATIONAL (protected cases whose input to TYPED_RELATIONAL changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "TYPED_RELATIONAL",
+              "exercised": false,
+              "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::TYPED_RELATIONAL",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to TYPED_RELATIONAL changed under the sequence-order remint transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::TYPED_RELATIONAL",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 1.0,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 1.0
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "TYPED_RELATIONAL's protected predictions move under the meaning-preserving sequence-order remint rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-3_ORDER_REMINT_INVARIANCE::TYPED_SERIALIZED_BAG",
+      "denominator": "0 opportunities (protected cases whose input to TYPED_SERIALIZED_BAG changed under the sequence-order remint transform)",
+      "detail": "TYPED_SERIALIZED_BAG had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::TYPED_SERIALIZED_BAG (protected cases whose input to TYPED_SERIALIZED_BAG changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "TYPED_SERIALIZED_BAG had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::TYPED_SERIALIZED_BAG (protected cases whose input to TYPED_SERIALIZED_BAG changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "TYPED_SERIALIZED_BAG",
+              "exercised": false,
+              "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::TYPED_SERIALIZED_BAG",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to TYPED_SERIALIZED_BAG changed under the sequence-order remint transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::TYPED_SERIALIZED_BAG",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.75,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.75
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "TYPED_SERIALIZED_BAG's protected predictions move under the meaning-preserving sequence-order remint rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-3_ORDER_REMINT_INVARIANCE::LENGTH_ONLY",
+      "denominator": "0 opportunities (protected cases whose input to LENGTH_ONLY changed under the sequence-order remint transform)",
+      "detail": "LENGTH_ONLY had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::LENGTH_ONLY (protected cases whose input to LENGTH_ONLY changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "LENGTH_ONLY had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::LENGTH_ONLY (protected cases whose input to LENGTH_ONLY changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "LENGTH_ONLY",
+              "exercised": false,
+              "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::LENGTH_ONLY",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to LENGTH_ONLY changed under the sequence-order remint transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::LENGTH_ONLY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.75,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.75
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "LENGTH_ONLY's protected predictions move under the meaning-preserving sequence-order remint rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-3_ORDER_REMINT_INVARIANCE::LENGTH_RELATIONAL",
+      "denominator": "0 opportunities (protected cases whose input to LENGTH_RELATIONAL changed under the sequence-order remint transform)",
+      "detail": "LENGTH_RELATIONAL had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::LENGTH_RELATIONAL (protected cases whose input to LENGTH_RELATIONAL changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "LENGTH_RELATIONAL had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::LENGTH_RELATIONAL (protected cases whose input to LENGTH_RELATIONAL changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "LENGTH_RELATIONAL",
+              "exercised": false,
+              "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::LENGTH_RELATIONAL",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to LENGTH_RELATIONAL changed under the sequence-order remint transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::LENGTH_RELATIONAL",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.875,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.875
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "LENGTH_RELATIONAL's protected predictions move under the meaning-preserving sequence-order remint rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_INDEXED",
+      "denominator": "0 opportunities (protected cases whose input to SERIALIZED_INDEXED changed under the sequence-order remint transform)",
+      "detail": "SERIALIZED_INDEXED had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_INDEXED (protected cases whose input to SERIALIZED_INDEXED changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "SERIALIZED_INDEXED had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_INDEXED (protected cases whose input to SERIALIZED_INDEXED changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "SERIALIZED_INDEXED",
+              "exercised": false,
+              "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_INDEXED",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to SERIALIZED_INDEXED changed under the sequence-order remint transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_INDEXED",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.75,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.75
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "SERIALIZED_INDEXED's protected predictions move under the meaning-preserving sequence-order remint rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_PATHONLY",
+      "denominator": "0 opportunities (protected cases whose input to SERIALIZED_PATHONLY changed under the sequence-order remint transform)",
+      "detail": "SERIALIZED_PATHONLY had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_PATHONLY (protected cases whose input to SERIALIZED_PATHONLY changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "SERIALIZED_PATHONLY had 0 opportunities to violate FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_PATHONLY (protected cases whose input to SERIALIZED_PATHONLY changed under the sequence-order remint transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "SERIALIZED_PATHONLY",
+              "exercised": false,
+              "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_PATHONLY",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to SERIALIZED_PATHONLY changed under the sequence-order remint transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "FP-3_ORDER_REMINT_INVARIANCE::SERIALIZED_PATHONLY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.71875,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.71875
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "SERIALIZED_PATHONLY's protected predictions move under the meaning-preserving sequence-order remint rewrite, so its score is partly a property of the format"
+    }
+  ],
+  "contrast_eligibility": {
+    "eligible_for_attack": [
+      "typed_minus_same_information_serialized",
+      "typed_minus_untyped"
+    ],
+    "not_eligible": {
+      "typed_minus_transcript": "COMPARATOR_CONSTANT"
+    },
+    "rule": "an attack cannot fail against a margin that was never measured; a contrast whose comparator answered with one label is CANNOT_CHECK for the attack as well"
+  },
+  "contrasts": {
+    "typed_minus_same_information_serialized": {
+      "assessment": {
+        "detail": "TYPED_SERIALIZED_BAG: 0 violations in 32 opportunities (protected cases on which TYPED_SERIALIZED_BAG answered something other than its own most frequent answer, so its score is a response to the case rather than a tally of the split's label prior)",
+        "exercises": [
+          {
+            "arm_id": "TYPED_SERIALIZED_BAG",
+            "exercised": true,
+            "guard_id": "typed_minus_same_information_serialized",
+            "opportunities": 32,
+            "opportunity_definition": "protected cases on which TYPED_SERIALIZED_BAG answered something other than its own most frequent answer, so its score is a response to the case rather than a tally of the split's label prior",
+            "resolution": 0.03125,
+            "violation_rate": 0.0,
+            "violations": 0
+          }
+        ],
+        "guard_id": "typed_minus_same_information_serialized",
+        "outcome": "PASS",
+        "reason": "HELD_UNDER_EXERCISE"
+      },
+      "comparator": {
+        "accuracy": 0.75,
+        "arm_id": "TYPED_SERIALIZED_BAG",
+        "constant": false,
+        "correct": 96,
+        "departure_errors": 0,
+        "departures": 32,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "a bag of canonical path=value tokens over the same typed payload, with held-out-domain values verbatim",
+        "trivial_floor": 0.5
+      },
+      "detail": "typed_minus_same_information_serialized: TYPED_SERIALIZED_BAG departed from its most frequent answer on 32/128 protected cases, and TYPED_RELATIONAL scores 1.0 against a trivial floor of 0.5",
+      "earned_margin": 0.25,
+      "informedness_margin": 0.5,
+      "label": "typed_minus_same_information_serialized",
+      "outcome": "PASS",
+      "prior_supplied": 0.0,
+      "published_margin": 0.25,
+      "reason": "COMPARATOR_RESPONDED",
+      "treated": {
+        "accuracy": 1.0,
+        "arm_id": "TYPED_RELATIONAL",
+        "constant": false,
+        "correct": 128,
+        "departure_errors": 0,
+        "departures": 64,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 1.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate value equality and unknown flag across the two sides, plus each side's coordinate cardinality",
+        "trivial_floor": 0.5
+      }
+    },
+    "typed_minus_transcript": {
+      "assessment": {
+        "detail": "TRANSCRIPT_BAG had 0 opportunities to violate typed_minus_transcript (protected cases on which TRANSCRIPT_BAG answered something other than its own most frequent answer, so its score is a response to the case rather than a tally of the split's label prior); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+        "exercises": [
+          {
+            "arm_id": "TRANSCRIPT_BAG",
+            "exercised": false,
+            "guard_id": "typed_minus_transcript",
+            "opportunities": 0,
+            "opportunity_definition": "protected cases on which TRANSCRIPT_BAG answered something other than its own most frequent answer, so its score is a response to the case rather than a tally of the split's label prior",
+            "resolution": null,
+            "violation_rate": null,
+            "violations": 0
+          }
+        ],
+        "guard_id": "typed_minus_transcript",
+        "outcome": "CANNOT_CHECK",
+        "reason": "NEVER_EXERCISED"
+      },
+      "comparator": {
+        "accuracy": 0.25,
+        "arm_id": "TRANSCRIPT_BAG",
+        "constant": true,
+        "correct": 32,
+        "departure_errors": 0,
+        "departures": 0,
+        "distinct_predictions": 1,
+        "eval_cases": 128,
+        "informedness": 0.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            128
+          ]
+        ],
+        "prior_of_emitted": 0.25,
+        "resolution": 0.0078125,
+        "response_definition": "reminted surface action tokens and their counts for both sides of the pair; the tokens are minted from the split seed and are disjoint between train and the protected domain",
+        "trivial_floor": 0.5
+      },
+      "detail": "typed_minus_transcript: TRANSCRIPT_BAG answered 'ALIGNED' on all 128 protected cases, so its accuracy is identically prior(ALIGNED) = 0.25 and the published margin is a statistic of the split's label distribution",
+      "earned_margin": 0.5,
+      "informedness_margin": 1.0,
+      "label": "typed_minus_transcript",
+      "outcome": "CANNOT_CHECK",
+      "prior_supplied": 0.25,
+      "published_margin": 0.75,
+      "reason": "COMPARATOR_CONSTANT",
+      "treated": {
+        "accuracy": 1.0,
+        "arm_id": "TYPED_RELATIONAL",
+        "constant": false,
+        "correct": 128,
+        "departure_errors": 0,
+        "departures": 64,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 1.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate value equality and unknown flag across the two sides, plus each side's coordinate cardinality",
+        "trivial_floor": 0.5
+      }
+    },
+    "typed_minus_untyped": {
+      "assessment": {
+        "detail": "UNTYPED_PAIR: 12 violations in 76 opportunities (protected cases on which UNTYPED_PAIR answered something other than its own most frequent answer, so its score is a response to the case rather than a tally of the split's label prior)",
+        "exercises": [
+          {
+            "arm_id": "UNTYPED_PAIR",
+            "exercised": true,
+            "guard_id": "typed_minus_untyped",
+            "opportunities": 76,
+            "opportunity_definition": "protected cases on which UNTYPED_PAIR answered something other than its own most frequent answer, so its score is a response to the case rather than a tally of the split's label prior",
+            "resolution": 0.013157894736842105,
+            "violation_rate": 0.15789473684210525,
+            "violations": 12
+          }
+        ],
+        "guard_id": "typed_minus_untyped",
+        "outcome": "PASS",
+        "reason": "HELD_UNDER_EXERCISE"
+      },
+      "comparator": {
+        "accuracy": 0.90625,
+        "arm_id": "UNTYPED_PAIR",
+        "constant": false,
+        "correct": 116,
+        "departure_errors": 12,
+        "departures": 76,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 0.8958333333333334,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            44
+          ],
+          [
+            "OBSTRUCTION",
+            52
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate presence, unknown flag and cardinality for both sides, plus whether the dependency topologies agree",
+        "trivial_floor": 0.5
+      },
+      "detail": "typed_minus_untyped: UNTYPED_PAIR departed from its most frequent answer on 76/128 protected cases, and TYPED_RELATIONAL scores 1.0 against a trivial floor of 0.5",
+      "earned_margin": 0.09375,
+      "informedness_margin": 0.10416666666666663,
+      "label": "typed_minus_untyped",
+      "outcome": "PASS",
+      "prior_supplied": 0.0,
+      "published_margin": 0.09375,
+      "reason": "COMPARATOR_RESPONDED",
+      "treated": {
+        "accuracy": 1.0,
+        "arm_id": "TYPED_RELATIONAL",
+        "constant": false,
+        "correct": 128,
+        "departure_errors": 0,
+        "departures": 64,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 1.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate value equality and unknown flag across the two sides, plus each side's coordinate cardinality",
+        "trivial_floor": 0.5
+      }
+    }
+  },
+  "date": "2026-08-21",
+  "detail": "1 hostile components succeeded against D1: TYPED_SERIALIZED_BAG: 32 violations in 128 opportunities is rate 0.25, above 0.0",
+  "environment_boundary": {
+    "attacks_run_against": "D1 v1.2, the only representation contrast P9 publishes",
+    "open_weight_checkpoint_present": false,
+    "outbound_provider_access": "proxy returns 403 to CONNECT for external providers",
+    "successor_llm_run_exists": false
+  },
+  "freeze_document": "papers/orion-19-structured-epistemic-learning/protocol/P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE_2026-08-21.md",
+  "gate_served": "P9-U-T4",
+  "outcome": "FAIL",
+  "parameters_sha256": "sha256:3a4c8a1e4211e8032ab3bbee0f9bb16f0d1f626b42f9c96c6b40cf0f115e18eb",
+  "preconditions": {
+    "PC-1_DATASET_FIDELITY": {
+      "detail": "the regenerated dataset must be the one P9 shipped, not a local lookalike",
+      "expected": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+      "observed": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+      "passed": true
+    },
+    "PC-2_GOLD_PRESERVATION": {
+      "detail": "a transform that moves a label is a different benchmark, not a control",
+      "passed": true,
+      "rows": [
+        {
+          "instances_compared": 512,
+          "labels_changed": 0,
+          "variant": "EQUAL_LENGTH"
+        },
+        {
+          "instances_compared": 512,
+          "labels_changed": 0,
+          "variant": "SEMANTIC_ORBIT"
+        },
+        {
+          "instances_compared": 512,
+          "labels_changed": 0,
+          "variant": "ORDER_PERMUTATION"
+        }
+      ]
+    },
+    "PC-3_CARDINALITY_MATCH": {
+      "cardinality_or_presence_mismatches": 0,
+      "coordinate_side_comparisons": 1536,
+      "corrupted_instances": 192,
+      "detail": "on the equal-length control every corrupted instance must present the same presence and cardinality on both sides of every coordinate",
+      "passed": true
+    },
+    "PC-4_ORBIT_BIJECTIVITY": {
+      "atoms": 220,
+      "detail": "a non-injective remint destroys information and is not a semantic orbit",
+      "distinct_images": 220,
+      "passed": true
+    },
+    "PC-5_INDEX_REVERSIBILITY": {
+      "detail": "the reformat must be shown to add and to remove nothing",
+      "failures": 0,
+      "instances_checked": 512,
+      "passed": true
+    },
+    "PC-6_LABEL_VARIETY": {
+      "detail": "a split whose gold never varies cannot separate any two arms",
+      "distinct_gold_labels": [
+        "ALIGNED",
+        "OBSTRUCTION",
+        "UNRESOLVED"
+      ],
+      "passed": true,
+      "protected_cases": 128
+    },
+    "RT_SAME_INFORMATION_ROUND_TRIP": {
+      "detail": "the serialized view is claimed to carry the same information as the typed view; this decodes every instance's token list back to the typed payload and compares it",
+      "failures": 0,
+      "instances_checked": 512,
+      "passed": true
+    }
+  },
+  "record": "P9_U_T4_HOSTILE_ATTACK_RESULT",
+  "schema_version": "orion.p9.ut4-hostile-representation-attack-result.v1",
+  "terminal_disposition": "P9-U-T4 stays BLOCKED whatever this returns. The gate guards the successor direct-LLM result, which has no outcome. This work can only subtract: if an attack succeeds, the D1 representation reading is narrowed or withdrawn; if none succeeds, the sentence earned is only that on D1 these two alternatives do not account for the margin against the one comparator that answered.",
+  "verdict": "T4_ATTACK_SUCCEEDED"
+}

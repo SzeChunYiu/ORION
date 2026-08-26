@@ -1,7 +1,7 @@
 """P14B's published positive, asked how many of its eight gates could have said no.
 
 Every number pinned here was read off the shipped artifacts
-``papers/paper-14-orion-rse/run_p14b_balanced_governance_v1.py`` and
+``papers/orion-24-orion-rse/run_p14b_balanced_governance_v1.py`` and
 ``P14B_BALANCED_GOVERNANCE_RESULT_RECEIPT_V1.json``, or produced by driving that
 generator's own ``gold``, ``policy`` and ``case_for``.
 

@@ -38,7 +38,7 @@ jobs:
 
       - name: Prepare gold-blind Wide split
         run: |
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
             --full /tmp/p2-wide-bounded/AutoResearchBench.jsonl \
             --public /tmp/p2-wide-bounded/wide_public.jsonl \
             --gt /tmp/p2-wide-bounded/wide_gt.jsonl \
@@ -46,7 +46,7 @@ jobs:
 
       - name: Run frozen matched 24-task comparison
         run: |
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_comparison.py \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_comparison.py \
             --public /tmp/p2-wide-bounded/wide_public.jsonl \
             --out-dir /tmp/p2-wide-bounded/run \
             --systems wide_lexical_arxiv,wide_governed_multiroute \
@@ -138,6 +138,6 @@ jobs:
             /tmp/p2-wide-bounded/run/trace_*.json
             /tmp/p2-wide-bounded/run/eval_*.json
             /tmp/p2-wide-bounded/run/P2_V2_WIDE_BOUNDED_MATCHED_RESULT.json
-            papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_WIDE_BOUNDED_MATCHED_FREEZE_2026-08-18.json
+            papers/orion-12-open-world-scientific-discovery/protocol/P2_V2_WIDE_BOUNDED_MATCHED_FREEZE_2026-08-18.json
           if-no-files-found: warn
           retention-days: 30

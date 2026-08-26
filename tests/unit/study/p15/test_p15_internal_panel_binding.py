@@ -7,7 +7,7 @@ from hashlib import sha1
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-15-orion-research-harness"
+PAPER = ROOT / "papers/orion-25-orion-research-harness"
 BINDING = PAPER / "P15_INTERNAL_PANEL_EVIDENCE_BINDING_V1.json"
 FAILURE_LEDGER = PAPER / "P15_FAILURE_LEDGER_V1.md"
 

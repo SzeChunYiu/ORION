@@ -22,7 +22,7 @@ from orion.study.p2.runner import execute
 
 SEED = 20260816
 MANIFEST_HASH = "0" * 64
-PROTOCOL = Path("papers/paper-02-open-world-scientific-discovery/protocol/PROTOCOL_V1.json")
+PROTOCOL = Path("papers/orion-12-open-world-scientific-discovery/protocol/PROTOCOL_V1.json")
 
 
 @functools.cache

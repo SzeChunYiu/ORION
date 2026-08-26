@@ -1,6 +1,6 @@
 # Q3 refinement round 1 — foundation, analogue calibration and review preflight
 
-**Frozen manuscript:** `papers/Q-paper-03-dual-instrument/MANUSCRIPT_V2.md`  
+**Frozen manuscript:** `papers/orion-07-dual-instrument/MANUSCRIPT_V2.md`  
 **Stretch:** Nature Computational Science  
 **Fallback:** npj Artificial Intelligence  
 **Relevant npj AI Collection:** “From Theory to Application: Advances in Multi-Agent Systems/Frameworks” (open; deadline 26 Mar 2027 as checked 2026-08-22)  

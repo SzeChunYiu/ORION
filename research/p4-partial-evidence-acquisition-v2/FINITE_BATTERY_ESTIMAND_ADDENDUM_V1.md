@@ -4,7 +4,7 @@
 the frozen `P4.protected-authority.v2` publication artifact.
 
 **Frozen source:**
-`papers/paper-04-verified-scientific-discovery/JOURNAL_READINESS.md`, SHA-256
+`papers/orion-14-verified-scientific-discovery/JOURNAL_READINESS.md`, SHA-256
 `3d9a461eceaf8be410de4852beed70d26a74f0861698ffd0b094347b03ba0126`.
 
 ## Interval interpretation

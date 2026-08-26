@@ -77,7 +77,7 @@ from orion.programme.records import Outcome
 from orion.study.p14 import governance_gates as p14a
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER = REPO_ROOT / "papers/paper-14-orion-rse"
+PAPER = REPO_ROOT / "papers/orion-24-orion-rse"
 P14C_SCRIPT = PAPER / "run_p14c_specification_separated_governance_v1.py"
 P14C_CASES = PAPER / "P14C_ADJUDICATION_CASES_V1.json"
 P14C_RECEIPT = PAPER / "P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json"

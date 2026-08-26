@@ -273,9 +273,9 @@ def run_audit(root: Path) -> BoundaryAudit:
     worst = EXIT_PASS
 
     try:
-        p5 = json.loads((root / "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.json").read_text(encoding="utf-8"))
+        p5 = json.loads((root / "papers/orion-15-self-orion/evidence/CLAIM_LEDGER_V1.json").read_text(encoding="utf-8"))
         p10 = json.loads(
-            (root / "papers/paper-10-structured-problem-solving/P10_ACTIVE_CLAIM_AUTHORITY_V1.json").read_text(
+            (root / "papers/orion-20-structured-problem-solving/P10_ACTIVE_CLAIM_AUTHORITY_V1.json").read_text(
                 encoding="utf-8"
             )
         )

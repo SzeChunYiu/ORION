@@ -9,7 +9,7 @@ from typing import Any
 
 SCHEMA = "ORION.P3.PartialObservationLifecycle.v1"
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-03-global-knowledge-portrait"
+PAPER = ROOT / "papers/orion-13-global-knowledge-portrait"
 
 ROWS = (
     (

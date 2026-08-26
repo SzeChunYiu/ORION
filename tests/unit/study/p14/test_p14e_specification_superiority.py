@@ -2,7 +2,7 @@
 they are attainable, under the specification separation P14B lacked.
 
 Every number pinned here was read off the shipped artifacts
-``papers/paper-14-orion-rse/P14E_ADJUDICATION_RULES_V1.json``,
+``papers/orion-24-orion-rse/P14E_ADJUDICATION_RULES_V1.json``,
 ``run_p14e_specification_separated_superiority_v1.py`` and
 ``P14E_SUPERIORITY_RESULT_V1.json``, or produced by driving that runner's own
 ``Adjudicator``, ``full_policy`` and ``facts_only``.
@@ -15,7 +15,7 @@ import itertools
 import json
 from pathlib import Path
 
-PAPER_DIR = Path(__file__).parents[4] / "papers" / "paper-14-orion-rse"
+PAPER_DIR = Path(__file__).parents[4] / "papers" / "orion-24-orion-rse"
 RUNNER_PATH = PAPER_DIR / "run_p14e_specification_separated_superiority_v1.py"
 RULES_PATH = PAPER_DIR / "P14E_ADJUDICATION_RULES_V1.json"
 RESULT_PATH = PAPER_DIR / "P14E_SUPERIORITY_RESULT_V1.json"

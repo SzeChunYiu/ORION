@@ -18,7 +18,7 @@ positive, which is why the second pass exists.
 
 Ran and reported a genuine integrity failure
 
-- `Q-paper-03-dual-instrument/check_q3_completion.py` (exit 1)
+- `orion-07-dual-instrument/check_q3_completion.py` (exit 1)
   - Q3_COMPLETION_CHECK=FAIL
 - `candidates/paper-10-content-bound-math-evaluation/check_p11_peer_review_ready.py` (exit 1)
   - P11_PEER_REVIEW_READY: FAIL: forbidden overclaim matched: discover(?:s|ed)? reus
@@ -26,14 +26,14 @@ Ran and reported a genuine integrity failure
   - Q_QG_PUBLICATION_CHECK=FAIL
 - `check_q_qg_science_manifests.py` (exit 1)
   - Q_QG_SCIENCE_MANIFEST_CHECK=FAIL
-- `paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py` (exit 1)
+- `orion-12-open-world-scientific-discovery/scripts/check_claim_ledger.py` (exit 1)
   - VIOLATION UNLEDGERED_CLAIM: region 'conclusion' asserts an outcome with no ledge
-- `paper-02-open-world-scientific-discovery/scripts/check_claim_ledger_v1.py` (exit 1)
+- `orion-12-open-world-scientific-discovery/scripts/check_claim_ledger_v1.py` (exit 1)
   - VIOLATION UNLEDGERED_CLAIM: region 'conclusion' asserts an outcome with no ledge
-- `paper-04-verified-scientific-discovery/protocol/check_verdict_leak_v1.py` (exit 1)
+- `orion-14-verified-scientific-discovery/protocol/check_verdict_leak_v1.py` (exit 1)
   - VERDICT LEAK CHECK: FAIL — 3/39 cases state the verdict
-- `paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/check_p6_cleanroom_replay_v1.py` (exit 1)
-  -   FAIL every contract/manifest digest recomputes ['papers/paper-06-formal-episte
+- `orion-16-formal-epistemic-structures-and-mechanics/evidence/independent/check_p6_cleanroom_replay_v1.py` (exit 1)
+  -   FAIL every contract/manifest digest recomputes ['papers/orion-16-formal-epistemic-structures-and-mechanics
 
 ### ERROR — 13
 
@@ -43,27 +43,27 @@ Cannot run — missing subject artifact or import error
   - Traceback (most recent call last):
 - `candidates/paper-10-content-bound-math-evaluation/check_technical_note_ready.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-06-formal-epistemic-structures-and-mechanics/formal/check_certificate_lifting_scope_smt_v1.py` (exit 1)
+- `orion-16-formal-epistemic-structures-and-mechanics/formal/check_certificate_lifting_scope_smt_v1.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-09-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v1.py` (exit 1)
+- `orion-19-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v1.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-09-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v2.py` (exit 1)
+- `orion-19-structured-epistemic-learning/top_tier/check_unified_resource_ledger_v2.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-11-state-as-computation/top_tier/check_decoder_attacks_independent_v1.py` (exit 1)
+- `orion-21-state-as-computation/top_tier/check_decoder_attacks_independent_v1.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-11-state-as-computation/top_tier/check_donor_comparator_independent_v1.py` (exit 1)
+- `orion-21-state-as-computation/top_tier/check_donor_comparator_independent_v1.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-11-state-as-computation/top_tier/check_query_family_phase_independent_v1.py` (exit 1)
+- `orion-21-state-as-computation/top_tier/check_query_family_phase_independent_v1.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-12-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py` (exit 1)
+- `orion-22-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-12-adaptive-state-reasoning/top_tier/check_transfer_allocation_independent_v1.py` (exit 1)
+- `orion-22-adaptive-state-reasoning/top_tier/check_transfer_allocation_independent_v1.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v1.py` (exit 1)
+- `orion-25-orion-research-harness/top_tier/check_attestation_composition_independent_v1.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-15-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py` (exit 1)
+- `orion-25-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py` (exit 1)
   - Traceback (most recent call last):
-- `paper-15-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py` (exit 1)
+- `orion-25-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py` (exit 1)
   - Traceback (most recent call last):
 
 ### OTHER — 4
@@ -71,10 +71,10 @@ Cannot run — missing subject artifact or import error
 Non-zero exit without a matched message
 
 - `candidates/checkers/check_p9_p10_claim_boundary.py` (exit 1)
-- `paper-02-open-world-scientific-discovery/scripts/check_manuscript_typography.py` (exit 2)
+- `orion-12-open-world-scientific-discovery/scripts/check_manuscript_typography.py` (exit 2)
   - check_manuscript_typography.py: error: the following arguments are required: --l
-- `paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py` (exit 1)
-- `paper-12-adaptive-state-reasoning/top_tier/check_p12_price_aware_successor_independent_v1.py` (exit 1)
+- `orion-12-open-world-scientific-discovery/scripts/check_p2_v2.py` (exit 1)
+- `orion-22-adaptive-state-reasoning/top_tier/check_p12_price_aware_successor_independent_v1.py` (exit 1)
 
 ## The finding that matters most
 

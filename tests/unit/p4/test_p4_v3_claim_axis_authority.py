@@ -8,7 +8,7 @@ from pathlib import Path
 from orion.study.p4 import assess_claim_axis
 
 ROOT = Path(__file__).resolve().parents[3]
-P4 = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+P4 = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 REGISTER = P4 / "evidence" / "protected_v3" / "IDENTIFIABILITY_V3.json"
 ADJUDICATION = P4 / "evidence" / "audit" / "P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json"
 

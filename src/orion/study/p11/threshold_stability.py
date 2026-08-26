@@ -56,7 +56,7 @@ SCHEMA_VERSION = "orion.p11.threshold-stability.v1"
 #: The frozen P11C runner. Its construction is reused verbatim; only the master
 #: seed varies, and only the L1 arm is scored.
 FROZEN_RUNNER = (
-    "papers/paper-11-state-as-computation/run_p11c_stronger_decoder_attack_v1.py"
+    "papers/orion-21-state-as-computation/run_p11c_stronger_decoder_attack_v1.py"
 )
 
 #: What the two frozen runs observed, so the sweep is compared against them

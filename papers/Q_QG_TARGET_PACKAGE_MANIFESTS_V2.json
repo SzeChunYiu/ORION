@@ -15,7 +15,7 @@
   },
   "packages": {
     "Q1_Quantum": {
-      "scientific_master": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
+      "scientific_master": "papers/archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
       "wrapper_workflow": ".github/workflows/q1-qg2-quantum-preprint.yml",
       "artifact": "q1-qg2-quantum-preprint-packages",
       "artifact_subtree": "Q1",
@@ -24,7 +24,7 @@
       "submission_terminal": "BLOCKED_AUTHOR_INPUT"
     },
     "Q2_AIJ": {
-      "scientific_master": "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md",
+      "scientific_master": "papers/orion-06-recursive-recovery/MANUSCRIPT_V3.md",
       "wrapper_workflow": ".github/workflows/q2-aij-package.yml",
       "artifact": "q2-aij-preflight-package",
       "required_figure_stems": ["Q2_declared_denominator_v2"],
@@ -32,7 +32,7 @@
       "submission_terminal": "BLOCKED_AUTHOR_INPUT"
     },
     "Q3_TMLR": {
-      "scientific_master": "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md",
+      "scientific_master": "papers/orion-07-dual-instrument/MANUSCRIPT_V3.md",
       "wrapper_workflow": ".github/workflows/q3-tmlr-package.yml",
       "artifact": "q3-tmlr-review-package",
       "official_style_commit": "7bf90efe3a0debbba703c05c43f3ff7e4d4a2992",
@@ -43,7 +43,7 @@
       "submission_terminal": "BLOCKED_AUTHOR_INPUT"
     },
     "Q4_TMLR": {
-      "scientific_master": "papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md",
+      "scientific_master": "papers/orion-08-typed-state/MANUSCRIPT_V3.md",
       "wrapper_workflow": ".github/workflows/q4-tmlr-package.yml",
       "artifact": "q4-tmlr-review-package",
       "official_style_commit": "7bf90efe3a0debbba703c05c43f3ff7e4d4a2992",
@@ -59,7 +59,7 @@
       "submission_terminal": "BLOCKED_AUTHOR_INPUT"
     },
     "QG1_PRX": {
-      "scientific_master": "papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md",
+      "scientific_master": "papers/orion-09-compilation-regime-geometry/MANUSCRIPT_V3.md",
       "wrapper_workflow": ".github/workflows/qg1-prx-preflight-v2.yml",
       "artifact": "qg1-prx-preflight-v2-package",
       "required_figure_stems": [
@@ -71,7 +71,7 @@
       "superseded_workflow": ".github/workflows/qg1-prx-preflight.yml"
     },
     "QG2_Quantum": {
-      "scientific_master": "papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md",
+      "scientific_master": "papers/orion-10-certified-static-forecasting/MANUSCRIPT_V3.md",
       "wrapper_workflow": ".github/workflows/q1-qg2-quantum-preprint.yml",
       "artifact": "q1-qg2-quantum-preprint-packages",
       "artifact_subtree": "QG2",

@@ -1,0 +1,212 @@
+{
+ "schema": "P12.PriceAwareSuccessorResult.v1",
+ "lane": "NR-13",
+ "study": "P12_PRICE_AWARE_SUCCESSOR_V1",
+ "paper_dir": "papers/orion-22-adaptive-state-reasoning/top_tier",
+ "branch": "revive/p12-price-aware-nr13",
+ "date": "2026-08-24",
+ "protocol_prereg": {
+  "file": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_PROTOCOL_PREREG_V1.json",
+  "sha256": "db6fda439725623362c5a45b21b97bb73a33f26e0d4a2c61e226ce746d378b54",
+  "commit": "44d97948f53046e0a9a4d467e129f509d2a4e49e",
+  "note": "committed and pushed before the successor selector existed"
+ },
+ "negative_being_revived": {
+  "verdicts_before": {
+   "price_axis": "BROKEN",
+   "distribution_shift_axis": "BROKEN"
+  },
+  "source_receipt": "P12_ROBUSTNESS_STRESS_RESULT_RECEIPT_V1",
+  "source_pr": 1006
+ },
+ "successor": {
+  "name": "P12_PRICE_AWARE_ALLOCATOR_V1",
+  "rule": "exact 0/1-knapsack argmin of the charged objective on the published charge-ledger certificates and price vector (d[s] = p_build*declared[s] - p_serve*(reason_cert[s]-state_cert[s])); DP over integer declared weights; ties prefer not-taking; no multiplicity threshold",
+  "new_free_parameters": 0,
+  "module": "papers/orion-22-adaptive-state-reasoning/top_tier/p12_price_aware_allocator_v1.py",
+  "module_sha256": "5c33220de6b55755b12431815320f7cfa26cc22e6daa8d3c28ddc0461621c31c",
+  "readable_surface": [
+   "sid",
+   "declared_cost",
+   "reason_serve_certificate",
+   "state_serve_certificate",
+   "B_budget",
+   "p_build",
+   "p_serve"
+  ]
+ },
+ "before_after": {
+  "original_allocator_positive_cells": 45,
+  "original_allocator_positive_cells_by_set_regime": {
+   "V1_9": {
+    "FLAT": 0,
+    "MEM2X": 0,
+    "CMP2X": 1,
+    "MEM4X": 2,
+    "CMP4X": 3
+   },
+   "EXPANDED_27": {
+    "FLAT": 6,
+    "MEM2X": 5,
+    "CMP2X": 8,
+    "MEM4X": 10,
+    "CMP4X": 10
+   }
+  },
+  "successor_positive_cells": 0,
+  "successor_positive_cells_list": [],
+  "total_priced_regret_mass": {
+   "before": {
+    "FLAT": 779,
+    "MEM2X": 416,
+    "CMP2X": 2378,
+    "MEM4X": 3210,
+    "CMP4X": 5846
+   },
+   "after": {
+    "FLAT": 0,
+    "MEM2X": 0,
+    "CMP2X": 0,
+    "MEM4X": 0,
+    "CMP4X": 0
+   }
+  },
+  "verdicts_before": {
+   "price_axis": "BROKEN",
+   "distribution_shift_axis": "BROKEN"
+  },
+  "verdicts_after": {
+   "price_axis": "ROBUST",
+   "distribution_shift_axis": "ROBUST"
+  }
+ },
+ "success_criteria": {
+  "SC1_FLAT_replication_constraint": {
+   "ok": true,
+   "successor_flat_regrets_v1_9": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "successor_minus_original_flat_realized_v1_9": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "SC2_price_axis": {
+   "ok": true
+  },
+  "SC3_shift_axis": {
+   "ok": true
+  },
+  "SC4_two_implementations": {
+   "checker": "papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_price_aware_successor_independent_v1.py",
+   "checker_sha256": "3e8d2b8414338404075fee55dc730b890481cd517f1b0cd6b36575b0615688d4",
+   "implementation_A": "frozen V1 engines + 0/1-knapsack DP (prefer-not-take ties)",
+   "implementation_B": "independent checker engines (full-rescan UP / bidirectional BFS / exhaustive knapsack truth) + exhaustive subset enumeration (first-mask ties)",
+   "cells_cross_checked": {
+    "case_regime_cells": 180,
+    "joint_mix_regime_cells": 15
+   },
+   "discrepancy_count": 0,
+   "tie_divergences_allowed": [],
+   "terminal": "P12_PRICE_AWARE_SUCCESSOR_SECOND_CHECKER_GREEN"
+  },
+  "SC5_successor_surface_audit": {
+   "audit": "papers/orion-22-adaptive-state-reasoning/top_tier/audit_p12_price_aware_successor_surface_v1.py",
+   "audit_sha256": "179586aa1a3ba46948adecbbf08cd6f4491cc786647677148de17fd3a900467b",
+   "static_axis_ok": true,
+   "dynamic_stripped_and_decoy_input_ok": true,
+   "dynamic_ledger_regime_checks": 195,
+   "self_validation_valid": true,
+   "terminal": "P12_PRICE_AWARE_SUCCESSOR_SURFACE_AUDIT_GREEN"
+  },
+  "SC6_price_responsiveness_liveness": {
+   "ok": true,
+   "variant_cells": [
+    "V1_9:SAT_PROPAGATION:SAT_T2_NONBENEFICIAL",
+    "V1_9:SAT_PROPAGATION:SAT_T3_BUDGET_RACE",
+    "V1_9:PATH_PLANNING:PATH_T3_BUDGET_RACE",
+    "V1_9:KNAPSACK:KNAP_T1_BENEFICIAL",
+    "V1_9:KNAPSACK:KNAP_T2_NONBENEFICIAL",
+    "EXPANDED_27:SAT_PROPAGATION:SAT_T2_NONBENEFICIAL",
+    "EXPANDED_27:SAT_PROPAGATION:SAT_T3_BUDGET_RACE",
+    "EXPANDED_27:SAT_PROPAGATION:SAT_T4_TAU_EDGE",
+    "EXPANDED_27:SAT_PROPAGATION:SAT_T5_TAU_EXACT",
+    "EXPANDED_27:SAT_PROPAGATION:SAT_T9_MIXED",
+    "EXPANDED_27:PATH_PLANNING:PATH_T3_BUDGET_RACE",
+    "EXPANDED_27:PATH_PLANNING:PATH_T4_TAU_EDGE",
+    "EXPANDED_27:PATH_PLANNING:PATH_T5_TAU_EXACT",
+    "EXPANDED_27:PATH_PLANNING:PATH_T6_TIE_RACE",
+    "EXPANDED_27:PATH_PLANNING:PATH_T8_MANY_SMALL",
+    "EXPANDED_27:PATH_PLANNING:PATH_T9_MIXED",
+    "EXPANDED_27:KNAPSACK:KNAP_T1_BENEFICIAL",
+    "EXPANDED_27:KNAPSACK:KNAP_T2_NONBENEFICIAL",
+    "EXPANDED_27:KNAPSACK:KNAP_T4_TAU_EDGE",
+    "EXPANDED_27:KNAPSACK:KNAP_T5_TAU_EXACT",
+    "EXPANDED_27:KNAPSACK:KNAP_T6_TIE_RACE",
+    "EXPANDED_27:KNAPSACK:KNAP_T8_MANY_SMALL",
+    "EXPANDED_27:KNAPSACK:KNAP_T9_MIXED",
+    "B2:JOINT_KNAP_HEAVY",
+    "B2:JOINT_PATH_HEAVY"
+   ]
+  }
+ },
+ "coverage": {
+  "regimes": [
+   "FLAT",
+   "MEM2X",
+   "CMP2X",
+   "MEM4X",
+   "CMP4X"
+  ],
+  "v1_case_regime_cells": 45,
+  "expanded_case_regime_cells": 135,
+  "b1_mixes": 4,
+  "b2_joint_mixes": 3
+ },
+ "tie_census": {
+  "tie_cell_count": 1,
+  "tie_cells": [
+   "EXPANDED_27:SAT_PROPAGATION:SAT_T6_TIE_RACE:MEM4X(n=2)"
+  ]
+ },
+ "gates": {
+  "RG1_exact_outputs_all_arms_all_regimes": true,
+  "RG3_coverage_complete": true,
+  "flat_direct_accounting_consistent": true
+ },
+ "runner": {
+  "script": "papers/orion-22-adaptive-state-reasoning/top_tier/run_p12_price_aware_successor_v1.py",
+  "sha256": "7d7e86936f3172acc412d399fde2402bc1174ce0331365bb3eed9759b6a5e064",
+  "determinism_note": "stdlib-only, pool-hash-verified inputs; the full per-cell JSON (744KB) is exactly regenerable by running the committed runner; only this compact result is committed"
+ },
+ "frozen_pool_unchanged": {
+  "v1_cases_sha256": "7694b3cffc8ff3c4f9ac93f49bf9cb0c4857921ba003199f82c463c2ef0606d4",
+  "expanded_cases_sha256": "f5ff1ebcb959fad54d52e5e0c68b1b56bc463394cde2376a6cf18cb86cd847ca",
+  "frozen_engines_sha256": "134b9ce97e41b691e8d7d780bcbfe9a52d2fd6d02b2f173bd9b7bc543007cdd9",
+  "stress_runner_sha256": "2f233bf3e9fd6c7c11a5cd1d5f430a6e436139030227e228cfef4d6068c7ebb6",
+  "independent_checker_sha256": "0d5d5ac4aef7552f3fcb41fe41d136cfffd0bde9c9b8dbe3625c66acd3225f2d"
+ },
+ "terminal": "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED",
+ "non_claims": [
+  "no claim that the successor is a FORWARD-TIME allocator: it reads the charging environment's published per-structure serve-charge certificates (the P9-style resource ledger the runner compiles anyway). The revived statement is information-theoretic and construction-level: the V1 regret was entirely an objective/information mismatch in the selection rule; given the charger's own published ledger and prices, exact budgeted optimization of the charged objective attains zero priced regret on the frozen pool in every regime and mix. Deployable allocation without charge measurement remains open and is the named next lever.",
+  "no re-tuning of the original allocator, the pools, the regimes, the budget or any V1 file",
+  "no upgrade, widening or retraction of the landed P12B equal-action complementarity authority",
+  "the ORACLE_LOCATION arm stays hindsight-diagnostic; the successor is compared AGAINST it, never identified with it (different algorithm: DP knapsack + published-ledger surface vs exhaustive enumeration)",
+  "no claim about pools, prices or workloads outside the frozen 27+9 cases, 5 regimes and 7 mixes"
+ ]
+}

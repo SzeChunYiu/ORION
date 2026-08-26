@@ -6,7 +6,7 @@ from pathlib import Path
 from orion.study.p5_attribution_publication import PRESERVED_ERRORS, generate
 
 ROOT = Path(__file__).resolve().parents[3]
-RESULTS = ROOT / "papers" / "paper-05-self-orion" / "evidence" / "glm-5.2-attribution" / "results.jsonl"
+RESULTS = ROOT / "papers" / "orion-15-self-orion" / "evidence" / "glm-5.2-attribution" / "results.jsonl"
 
 
 def _rows() -> list[dict[str, object]]:

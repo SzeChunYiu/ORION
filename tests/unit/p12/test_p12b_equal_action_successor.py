@@ -23,7 +23,7 @@ from orion.study.p12.successor_authority import (
 )
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers/paper-12-adaptive-state-reasoning"
+PAPER = ROOT / "papers/orion-22-adaptive-state-reasoning"
 HISTORICAL_RESULT = PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json"
 RESULT = PAPER / "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json"
 AUTHORITY = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V3.json"

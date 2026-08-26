@@ -21,7 +21,7 @@ matplotlib = pytest.importorskip("matplotlib")
 
 
 ROOT = Path(__file__).resolve().parent.parent
-PAPER = ROOT / "papers" / "paper-01-recursive-epistemic-reconstruction"
+PAPER = ROOT / "papers" / "orion-11-recursive-epistemic-reconstruction"
 SCRIPT = PAPER / "scripts" / "make_figures.py"
 FIGURES_DIR = PAPER / "results" / "figures"
 MANIFEST = FIGURES_DIR / "manifest.json"

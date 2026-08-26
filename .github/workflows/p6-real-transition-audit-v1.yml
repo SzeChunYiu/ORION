@@ -3,11 +3,11 @@ name: p6-real-transition-audit-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/P6_REAL_TRANSITION_AUDIT_PROTOCOL_V1.md'
-      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_cases_v1.json'
-      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_gold_v1.json'
-      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py'
-      - 'papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py'
+      - 'papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/P6_REAL_TRANSITION_AUDIT_PROTOCOL_V1.md'
+      - 'papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_cases_v1.json'
+      - 'papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_gold_v1.json'
+      - 'papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py'
+      - 'papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py'
       - '.github/workflows/p6-real-transition-audit-v1.yml'
   workflow_dispatch:
 permissions:
@@ -20,13 +20,13 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - name: Execute heterogeneous real transition audit
-        run: python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py | tee p6_real_transition_audit_v1.json
+        run: python papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py | tee p6_real_transition_audit_v1.json
       - name: Verify deterministic primary replay
         run: |
-          python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py > p6_real_transition_audit_v1_rerun.json
+          python papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py > p6_real_transition_audit_v1_rerun.json
           cmp p6_real_transition_audit_v1.json p6_real_transition_audit_v1_rerun.json
       - name: Execute independent defect-set verifier
-        run: python papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py | tee p6_real_transition_audit_independent_v1.json
+        run: python papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py | tee p6_real_transition_audit_independent_v1.json
       - name: Verify cross-implementation authority
         run: |
           python - <<'PY'

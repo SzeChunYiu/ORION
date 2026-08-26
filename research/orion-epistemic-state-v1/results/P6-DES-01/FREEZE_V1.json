@@ -96,37 +96,37 @@
   "native_checks": [
     {
       "id": "real_transition_primary",
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py",
       "timeout_seconds": 120
     },
     {
       "id": "real_transition_second",
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py",
       "timeout_seconds": 120
     },
     {
       "id": "ets_primary",
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_top_tier_v1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_ets_top_tier_v1.py",
       "timeout_seconds": 120
     },
     {
       "id": "ets_second",
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_independent_v1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_ets_independent_v1.py",
       "timeout_seconds": 120
     },
     {
       "id": "finite_models",
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py",
       "timeout_seconds": 300
     },
     {
       "id": "theory_closure",
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py",
       "timeout_seconds": 300
     },
     {
       "id": "refutation_audit",
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py",
       "timeout_seconds": 300
     }
   ],
@@ -165,11 +165,11 @@
   "schema": "orion.p6-des.freeze.v1",
   "source_bindings": {
     "active_authority": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/P6_ACTIVE_CLAIM_AUTHORITY_V1.json",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/P6_ACTIVE_CLAIM_AUTHORITY_V1.json",
       "sha256": "b3c2b21acc164a2397549240956e701b74e12e49773ededdf693f3f7b70a19b6"
     },
     "assumption_countermodels": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.jsonl",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.jsonl",
       "sha256": "9d62d23d767d1a3ec6aa8f58489d86eca7782e8c1df2a5fb155bbdf28b0de284"
     },
     "backlog": {
@@ -181,23 +181,23 @@
       "sha256": "2fc2d7ed8d5d415230fce48e7d2c4203f1bb09c79d16f9c934c54553ec9d4e05"
     },
     "ets_cases": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/ets_cases_v1.jsonl",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/ets_cases_v1.jsonl",
       "sha256": "8868875a7d7e9db376543fe466409adf3b2f02bd03885c9fe3803d9c6b5d2ae2"
     },
     "ets_gold": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/ets_gold_v1.json",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/ets_gold_v1.json",
       "sha256": "57cc7707cc24a243bf0c40f2908fc316e4d2f24272f6b30554ffabceacbdec16"
     },
     "ets_primary_checker": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_top_tier_v1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_ets_top_tier_v1.py",
       "sha256": "8f1cf48a75f4f60f1834d2e425120af2c1a22f0386184478c067f3f0491f8edb"
     },
     "ets_protocol": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/P6_ETS_PROTOCOL_V1.md",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/P6_ETS_PROTOCOL_V1.md",
       "sha256": "416406b58a67cc76b7fe115a4adfcd3b72d90e482c1c0642c46a9158ef5e3b81"
     },
     "ets_second_checker": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_ets_independent_v1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_ets_independent_v1.py",
       "sha256": "b35d060573b9ffffe22e13eb163fdea221cd6da85d3b62aae32d61e522bb9d3b"
     },
     "executor_prompt": {
@@ -205,15 +205,15 @@
       "sha256": "7bfec2efb288225329c48c9bd1be096423e50fb4d4a059943272ca0ed7cbb2ce"
     },
     "finite_model_checker": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py",
       "sha256": "00d0d3e7fbd431a8b4fc6fb1234a5168549dadb452333c183ebbff995d76ea34"
     },
     "historical_revalidation_result": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/revalidation/P6_REVALIDATION_COMPARISON_V1.json",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/revalidation/P6_REVALIDATION_COMPARISON_V1.json",
       "sha256": "bb8792c4275d4cb318d4fc5c8d7304fb6cfa7acf9aa6dc3746b2d19936b778dd"
     },
     "historical_revalidation_runner": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/revalidation/compare_p6_revalidation_v1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/revalidation/compare_p6_revalidation_v1.py",
       "sha256": "0d84df9c584aeb90585c0cb4c56dd81a6bae95b101a718faac83ca6bf86e87db"
     },
     "implementation_runner": {
@@ -229,35 +229,35 @@
       "sha256": "19a97b88c1ec49d014c6352ec8cd2ae4da0da57851f206589d36dfe9849175ce"
     },
     "real_transition_cases": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_cases_v1.json",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_cases_v1.json",
       "sha256": "1c75ca9980c0539a2e2afe78c2538173508460191805c6fe2b8854717feaac97"
     },
     "real_transition_gold": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_gold_v1.json",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_gold_v1.json",
       "sha256": "be7210be8c2407b630f7b7053ec556b4abd8e17535e0c45ac80077740edb34df"
     },
     "real_transition_primary_checker": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/run_real_transition_audit_v1.py",
       "sha256": "c50d04557cc3b34ae0483b8031c75d651d921ff514c85952bd39b06a7101a0fe"
     },
     "real_transition_protocol": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/P6_REAL_TRANSITION_AUDIT_PROTOCOL_V1.md",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/P6_REAL_TRANSITION_AUDIT_PROTOCOL_V1.md",
       "sha256": "bed210611bd7b3feb72e842594d11b8b44a7898c142d15f446f69a468268ac14"
     },
     "real_transition_second_checker": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py",
       "sha256": "698f49ca952f59ec015ff50aafec9f78a44c4a17481723dcede4a3b5e4c8c4db"
     },
     "refutation_audit": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py",
       "sha256": "edbfffd51c6c591cf8bb7f21771de48023d0fd8445e0cf0a176e218f82a92f3c"
     },
     "successor_manuscript": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/TOP_TIER_DYNAMIC_EPISTEMIC_MANUSCRIPT_V1.md",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/TOP_TIER_DYNAMIC_EPISTEMIC_MANUSCRIPT_V1.md",
       "sha256": "5d4694b832de379c94009e88e7394c8faa96d040247eb024afd1c76e08835eb1"
     },
     "theory_closure_checker": {
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py",
       "sha256": "03c86bdfa75ebd5c0c54dc9a52b04bc5367c848a347a07bed6cb7f56c7c01391"
     }
   },

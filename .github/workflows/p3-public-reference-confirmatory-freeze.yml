@@ -55,7 +55,7 @@ jobs:
             --muse-root "$PWD/upstream/MUSE/dataset/human_Expert_annotations" \
             --scifact-claims "$PWD/upstream/SciFact/data/claims_train.jsonl" \
             --scischema-root "$PWD/upstream/SciSchema/schemas" \
-            --exclude-cases "$PWD/papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl" \
+            --exclude-cases "$PWD/papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl" \
             --offset 32 \
             --target-n 32 \
             --out "$PWD/artifacts/holdout"

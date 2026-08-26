@@ -14,7 +14,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery"
+PAPER = ROOT / "papers" / "orion-12-open-world-scientific-discovery"
 PROTOCOL_PATH = PAPER / "protocol" / "PROTOCOL_V1.json"
 AUDIT_PATH = PAPER / "protocol" / "EXTERNAL_ACCESS_AUDIT_V1.json"
 TABLE_PATH = PAPER / "protocol" / "TABLE_P2-1_freeze_manifest.md"

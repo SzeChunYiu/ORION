@@ -1,4 +1,4 @@
-# P6 formal core V2.1 — normative closure
+# ORION-16 formal core V2.1 — normative closure
 
 **Supersedes:** `FORMAL_CORE_V2.md` where the two differ.  
 **Theory terminal:** `CLOSED_V2_1`  
@@ -93,7 +93,7 @@ Full reset is uniformly sound under the same premises but strictly non-minimal w
 
 ### Boundary
 
-No claim is made that a real ORION dependency graph is exact or that its admissible semantics class is affected-realizable. Those are empirical/modeling obligations. Where realizability is unknown, P6 retains the safety theorem but not the minimality conclusion.
+No claim is made that a real ORION dependency graph is exact or that its admissible semantics class is affected-realizable. Those are empirical/modeling obligations. Where realizability is unknown, ORION-16 retains the safety theorem but not the minimality conclusion.
 
 ## 4. Preservation certificates under conservative graphs
 
@@ -166,9 +166,9 @@ The following V2 results remain normative and unchanged:
 5. a hidden-read counterexample;
 6. preservation/revalidation boundary for directly changed certified roots.
 
-The earlier V2 checker remains useful but V2.1 is the normative P6 closure checker.
+The earlier V2 checker remains useful but V2.1 is the normative ORION-16 closure checker.
 
-## 8. Final P6 theorem terminal
+## 8. Final ORION-16 theorem terminal
 
 - `P6_SAFETY_THEORY = CLOSED_V2_1`
 - `P6_MINIMALITY = CLOSED_UNDER_AFFECTED_REALIZABILITY`

@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.scientific-discrepancy.v1",
+  "discrepancy_id": "P5.D1.macro-f1-definition",
+  "paper_id": "P5",
+  "claim_id": "P5.glm52_attribution",
+  "issue": 324,
+  "severity": "MEDIUM",
+  "type": "METRIC_DEFINITION",
+  "original_artifact": {
+    "path": "papers/orion-15-self-orion/evidence/glm-5.2-attribution/report.json",
+    "sha256": "13ac651d00513b737023c309eab3ed3bde7adcc5f9612d146705d1d4a0877eca",
+    "preserved_unchanged": true,
+    "supersession_status": "HISTORICAL_AGGREGATE"
+  },
+  "independent_verifier": {
+    "record": "research/verification/records/P5.glm-5.2-attribution-21-24.json",
+    "scorer_sha256": "c867cc5be6cc55f80750053c54c2e19bd3a60d2a0ddd3756a551b6d388648c56"
+  },
+  "differing_fields": {
+    "published_report_macro_f1": 0.875,
+    "independent_standard_macro_f1": 0.8726190476190476,
+    "root_cause": "report.json per-family f1 copied recall and ignored false positives into a family"
+  },
+  "shared_facts": {
+    "eligible_cases": 24,
+    "correct_attributions": 21,
+    "incorrect_attributions": 3,
+    "accuracy": 0.875,
+    "immutable_error_case_ids": [
+      "P5-HC-002",
+      "P5-HC-012",
+      "P5-HC-018"
+    ]
+  },
+  "adjudication": {
+    "procedure": "Recompute one-vs-rest TP/FP/FN for every hidden-cause family directly from immutable results.jsonl and suite gold; derive precision, recall and F1; preserve report.json unchanged.",
+    "hostile_control": "A planted false positive into a family with perfect recall must reduce that family's F1 below recall.",
+    "corrected_macro_precision": 0.8958333333333334,
+    "corrected_macro_recall": 0.875,
+    "corrected_macro_f1": 0.8726190476190476
+  },
+  "corrected_current_artifacts": [
+    "papers/orion-15-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json",
+    "papers/orion-15-self-orion/evidence/TABLE_P5_3_HIDDEN_CAUSE_ATTRIBUTION.json"
+  ],
+  "authority": {
+    "empirical_authority": "ATTRIBUTION_DIAGNOSIS_ONLY",
+    "promotion_terminal": null,
+    "self_authorizing": false,
+    "note": "Metric repair does not change raw labels, 21/24 accuracy, residual errors, or authorize self-improvement/fresh-transfer claims."
+  },
+  "repair_branch": "shadow/chatgpt-p5-discrepancy-d1-2026-08-18",
+  "post_repair_independent_verification": "PENDING_RERUN_283",
+  "final_state": "REPAIRED_PENDING_INDEPENDENT_REVERIFY"
+}

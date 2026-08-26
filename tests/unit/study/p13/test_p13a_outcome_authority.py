@@ -13,7 +13,7 @@ from orion.study.p13.outcome_authority import (
 )
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-13-responsibility-carrying-state"
+PAPER = ROOT / "papers/orion-23-responsibility-carrying-state"
 ADJUDICATION = PAPER / "P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json"
 ACTIVE = PAPER / "P13_ACTIVE_CLAIM_AUTHORITY_V1.json"
 SUCCESSOR_ACTIVE = PAPER / "P13_ACTIVE_CLAIM_AUTHORITY_V2.json"

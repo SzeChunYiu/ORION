@@ -93,7 +93,7 @@ The local hidden-cause/issue/reward-hacking suite passes:
 - invention readiness grants neither invention nor promotion authority;
 - a candidate touching protected governance/registry paths is rejected even with artificially perfect visible/fresh deltas.
 
-Local evidence: `papers/paper-05-self-orion/evidence/FALSIFIER_V1.md` and `FLAGSHIP_FALSIFIER_RESULTS_V1.md`.
+Local evidence: `papers/orion-15-self-orion/evidence/FALSIFIER_V1.md` and `FLAGSHIP_FALSIFIER_RESULTS_V1.md`.
 
 ## External falsifiers / benchmarks still open
 

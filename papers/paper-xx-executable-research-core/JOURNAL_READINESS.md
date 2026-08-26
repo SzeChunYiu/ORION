@@ -1,6 +1,6 @@
-# P9 merged-evidence readiness — 2026-08-18
+# ORION-19 merged-evidence readiness — 2026-08-18
 
-P9 is **peer-review ready as a merged P8/programme evidence object**, not as a
+ORION-19 is **peer-review ready as a merged ORION-18/programme evidence object**, not as a
 standalone paper.
 
 | Gate | Receipt | Status |
@@ -14,8 +14,8 @@ standalone paper.
 | Framework tests | Capability/authority, donor, ledger, planner and content-binding suite | `PASS` (33/33 on closure branch) |
 | Constructive saturation | Eight primary donors, each with extraction plus adoption/defer receipt | `PASS_BOUNDED` |
 | Strong configured selector | AutoFolio-class comparison | `NOT_RUN`; blocks standalone superiority only |
-| Independent standalone residual | Routing/abstention absorbed; authority separation owned by P8 | `NO_RESIDUAL` |
-| Terminal artifact | Claim ledger, merge disposition and P8 companion | `PASS` |
+| Independent standalone residual | Routing/abstention absorbed; authority separation owned by ORION-18 | `NO_RESIDUAL` |
+| Terminal artifact | Claim ledger, merge disposition and ORION-18 companion | `PASS` |
 
 ## Reviewer-facing limit
 

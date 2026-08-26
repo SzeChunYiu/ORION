@@ -30,7 +30,7 @@ def test_manifest_recovery_preserves_duplicate_bound_path_lines() -> None:
   "bound_files": [
     {
       "path": "tests/unit/candidates/test_p6_formal_refutation_capacity.py",
-      "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/P6_ETS_PROTOCOL_V1.md",
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/P6_ETS_PROTOCOL_V1.md",
       "role": null
     }
   ],
@@ -46,5 +46,5 @@ def test_manifest_recovery_preserves_duplicate_bound_path_lines() -> None:
     assert first["bound_files"][0]["path"].endswith("P6_ETS_PROTOCOL_V1.md")
     assert recovered == [
         "tests/unit/candidates/test_p6_formal_refutation_capacity.py",
-        "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier/P6_ETS_PROTOCOL_V1.md",
+        "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/P6_ETS_PROTOCOL_V1.md",
     ]

@@ -12,16 +12,16 @@ from pathlib import Path
 
 
 PAPER_SPECS: tuple[tuple[int, str, str], ...] = (
-    (6, "paper-06-formal-epistemic-structures-and-mechanics", "Epistemic Transition"),
-    (7, "paper-07-epistemic-navigation-open-worlds", "Regime Transport"),
-    (8, "paper-08-epistemic-authority-autonomous-science", "Scientific authorization"),
-    (9, "paper-09-structured-epistemic-learning", "Representation Accessibility"),
-    (10, "paper-10-structured-problem-solving", "Obstruction-Certified Method Expansion"),
-    (11, "paper-11-state-as-computation", "computational placement"),
-    (12, "paper-12-adaptive-state-reasoning", "Resource-Location Metareasoning"),
-    (13, "paper-13-responsibility-carrying-state", "Responsibility-Scoped"),
-    (14, "paper-14-orion-rse", "Scientific Governance"),
-    (15, "paper-15-orion-research-harness", "Scientific Execution Integrity"),
+    (6, "orion-16-formal-epistemic-structures-and-mechanics", "Epistemic Transition"),
+    (7, "orion-17-epistemic-navigation-open-worlds", "Regime Transport"),
+    (8, "orion-18-epistemic-authority-autonomous-science", "Scientific authorization"),
+    (9, "orion-19-structured-epistemic-learning", "Representation Accessibility"),
+    (10, "orion-20-structured-problem-solving", "Obstruction-Certified Method Expansion"),
+    (11, "orion-21-state-as-computation", "computational placement"),
+    (12, "orion-22-adaptive-state-reasoning", "Resource-Location Metareasoning"),
+    (13, "orion-23-responsibility-carrying-state", "Responsibility-Scoped"),
+    (14, "orion-24-orion-rse", "Scientific Governance"),
+    (15, "orion-25-orion-research-harness", "Scientific Execution Integrity"),
 )
 
 PROGRAMME_FILE = Path("papers/TOP_TIER_PROMOTION_PROGRAM_V1.md")

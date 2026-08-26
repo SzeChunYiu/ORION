@@ -1,0 +1,416 @@
+{
+  "core": {
+    "authority_boundary": "registered_composed_finite_world_randomized",
+    "claim_id": "P13C_COMPOSED_SAFETY_EFFICACY",
+    "counts": {
+      "adversary_forced_reopens_authenticated": 2349,
+      "corrupted_certificates_rejected": 2457,
+      "corrupted_episodes": 2457,
+      "episodes": 12288,
+      "valid_certificates": 9831
+    },
+    "environment": {
+      "python_implementation": "CPython",
+      "python_version": "3.13.12"
+    },
+    "episode_design": {
+      "corruption_schedule": "global episode index i corrupted iff i%5==4; world=WORLDS[(i//5)%4]",
+      "costs": {
+        "CANNOT_CHECK": 0.5,
+        "REOPEN": 6.0,
+        "REUSE": 1.0
+      },
+      "episodes_per_family": 512,
+      "form_class": [
+        "Z1",
+        "Z2",
+        "Z3",
+        "Z4",
+        "Z5",
+        "Z6"
+      ],
+      "n_families": 24,
+      "recover_p": 0.95,
+      "rng": "stdlib random.Random (distribution-identical to parent numpy stream)",
+      "seed": 2026082113,
+      "tasks": [
+        "PREDICT",
+        "DECIDE",
+        "INTERVENE",
+        "VERIFY",
+        "REPAIR"
+      ],
+      "total_episodes": 12288
+    },
+    "gold_consistency": {
+      "exact_matrix": {
+        "Z1": {
+          "DECIDE": true,
+          "INTERVENE": true,
+          "PREDICT": true,
+          "REPAIR": false,
+          "VERIFY": true
+        },
+        "Z2": {
+          "DECIDE": true,
+          "INTERVENE": true,
+          "PREDICT": true,
+          "REPAIR": true,
+          "VERIFY": true
+        },
+        "Z3": {
+          "DECIDE": true,
+          "INTERVENE": true,
+          "PREDICT": true,
+          "REPAIR": true,
+          "VERIFY": true
+        },
+        "Z4": {
+          "DECIDE": true,
+          "INTERVENE": false,
+          "PREDICT": true,
+          "REPAIR": false,
+          "VERIFY": false
+        },
+        "Z5": {
+          "DECIDE": true,
+          "INTERVENE": false,
+          "PREDICT": true,
+          "REPAIR": false,
+          "VERIFY": false
+        },
+        "Z6": {
+          "DECIDE": true,
+          "INTERVENE": false,
+          "PREDICT": true,
+          "REPAIR": true,
+          "VERIFY": false
+        }
+      },
+      "matrix_matches_gold": true,
+      "parent_embedding_ok": true,
+      "support_sets": {
+        "Z1": [
+          "DECIDE",
+          "INTERVENE",
+          "PREDICT",
+          "VERIFY"
+        ],
+        "Z2": [
+          "DECIDE",
+          "INTERVENE",
+          "PREDICT",
+          "REPAIR",
+          "VERIFY"
+        ],
+        "Z3": [
+          "DECIDE",
+          "INTERVENE",
+          "PREDICT",
+          "REPAIR",
+          "VERIFY"
+        ],
+        "Z4": [
+          "DECIDE",
+          "PREDICT"
+        ],
+        "Z5": [
+          "DECIDE",
+          "PREDICT"
+        ],
+        "Z6": [
+          "DECIDE",
+          "PREDICT",
+          "REPAIR"
+        ]
+      }
+    },
+    "gold_spec": "papers/orion-23-responsibility-carrying-state/P13C_COMPOSED_GOLD_SPEC_V1.json",
+    "gold_spec_sha256": "5a92829a6216d28f50056eee31256986fa9b5061bf57ff7abe6a55fa76e8e7a7",
+    "paper_id": "P13",
+    "parent_form_subpanel": {
+      "ALWAYS_RAW": {
+        "cannot_expected": 0,
+        "cannot_total": 0,
+        "correct": 3146,
+        "cost": 18964.0,
+        "unnecessary_reopen": 0,
+        "unsafe": 0
+      },
+      "AUTHENTICATED_RCS": {
+        "cannot_expected": 0,
+        "cannot_total": 0,
+        "correct": 3259,
+        "cost": 9450.5,
+        "unnecessary_reopen": 0,
+        "unsafe": 0
+      },
+      "episodes": 3322
+    },
+    "protocol": "papers/orion-23-responsibility-carrying-state/P13C_COMPOSED_SAFETY_EFFICACY_PROTOCOL_V1.md",
+    "protocol_sha256": "ef99bfb997e858cfda467a381568be6509eba94e4899b6f969059afda38b2d0f",
+    "schema": "ORION.P13C.ComposedSafetyEfficacy.Core.v1",
+    "subject_identity": {
+      "certificate_machinery": "src/orion/study/p13/authenticated_successor.py (imported unchanged)",
+      "current_epoch": 2,
+      "trusted_issuer": "ORION_P13B_TRUST_ROOT_V1",
+      "validator": "issuer_subject_epoch_mapping_witness_digest_v1"
+    },
+    "totals": {
+      "ALWAYS_RAW": {
+        "cannot_expected": 0,
+        "cannot_total": 584,
+        "correct": 11704,
+        "cost": 70516.0,
+        "unnecessary_reopen": 8232,
+        "unsafe": 0
+      },
+      "AUTHENTICATED_RCS": {
+        "cannot_expected": 254,
+        "cannot_total": 254,
+        "correct": 12034,
+        "cost": 37996.0,
+        "unnecessary_reopen": 1695,
+        "unsafe": 0
+      },
+      "CONFIDENCE_ONLY": {
+        "cannot_expected": 0,
+        "cannot_total": 89,
+        "correct": 11970,
+        "cost": 21098.5,
+        "unnecessary_reopen": 0,
+        "unsafe": 1789
+      },
+      "UNQUALIFIED": {
+        "cannot_expected": 0,
+        "cannot_total": 0,
+        "correct": 11509,
+        "cost": 12288.0,
+        "unnecessary_reopen": 0,
+        "unsafe": 3649
+      },
+      "UNVERIFIED_RCS": {
+        "cannot_expected": 0,
+        "cannot_total": 169,
+        "correct": 12050,
+        "cost": 28608.5,
+        "unnecessary_reopen": 123,
+        "unsafe": 330
+      }
+    },
+    "unverified_by_world": {
+      "FORGED_SUPPORT": {
+        "episodes": 614,
+        "unnecessary_reopen": 0,
+        "unsafe": 66
+      },
+      "OMITTED_SUPPORT": {
+        "episodes": 615,
+        "unnecessary_reopen": 123,
+        "unsafe": 0
+      },
+      "OVERBROAD_SUPPORT": {
+        "episodes": 614,
+        "unnecessary_reopen": 0,
+        "unsafe": 87
+      },
+      "STALE_EPOCH": {
+        "episodes": 614,
+        "unnecessary_reopen": 0,
+        "unsafe": 177
+      }
+    },
+    "valid_panel": {
+      "ALWAYS_RAW": {
+        "cannot_expected": 0,
+        "cannot_total": 476,
+        "correct": 9355,
+        "cost": 56368.0,
+        "unnecessary_reopen": 6537,
+        "unsafe": 0
+      },
+      "AUTHENTICATED_RCS": {
+        "cannot_expected": 0,
+        "cannot_total": 146,
+        "correct": 9685,
+        "cost": 23848.0,
+        "unnecessary_reopen": 0,
+        "unsafe": 0
+      },
+      "CONFIDENCE_ONLY": {
+        "cannot_expected": 0,
+        "cannot_total": 74,
+        "correct": 9567,
+        "cost": 17049.0,
+        "unnecessary_reopen": 0,
+        "unsafe": 1439
+      },
+      "UNQUALIFIED": {
+        "cannot_expected": 0,
+        "cannot_total": 0,
+        "correct": 9199,
+        "cost": 9831.0,
+        "unnecessary_reopen": 0,
+        "unsafe": 2964
+      },
+      "UNVERIFIED_RCS": {
+        "cannot_expected": 0,
+        "cannot_total": 146,
+        "correct": 9685,
+        "cost": 23848.0,
+        "unnecessary_reopen": 0,
+        "unsafe": 0
+      }
+    }
+  },
+  "gates": {
+    "G10_parent_form_subpanel_reproduces_p13a_gates": true,
+    "G11_byte_identical_replay": true,
+    "G1_gold_spec_matches_p13a_truth_model": true,
+    "G2_authenticated_zero_unsafe_reuse_overall": true,
+    "G3_authenticated_zero_unnecessary_reopen_valid_panel": true,
+    "G4_authenticated_correct_noninferior_always_raw_0_01": true,
+    "G5_authenticated_correct_noninferior_unverified_0_01": true,
+    "G6_authenticated_cost_le_0_70_always_raw_overall": true,
+    "G7_every_scheduled_corruption_rejected": true,
+    "G8_unverified_live_violations_each_world": true,
+    "G9_authenticated_cannot_check_exact": true
+  },
+  "replay": {
+    "byte_identical": true,
+    "first_core_sha256": "645961cf01afe15f1b5976244b76b846c31d3c6119af4fbbc031e4b2a3611e57",
+    "fresh_python_subprocesses": 2,
+    "second_core_sha256": "645961cf01afe15f1b5976244b76b846c31d3c6119af4fbbc031e4b2a3611e57"
+  },
+  "schema": "ORION.P13C.ComposedSafetyEfficacy.Result.v1",
+  "subpanel_cost_ratio_vs_always_raw": 0.49833895802573297,
+  "summary": {
+    "arms": {
+      "ALWAYS_RAW": {
+        "cannot_check": 584,
+        "mean_cost": 5.738606770833333,
+        "unnecessary_reopen": 8232,
+        "unnecessary_reopen_rate": 0.669921875,
+        "unsafe_reuse": 0,
+        "unsafe_reuse_rate": 0.0,
+        "verified_correct": 11704,
+        "verified_correct_rate": 0.9524739583333334
+      },
+      "AUTHENTICATED_RCS": {
+        "cannot_check": 254,
+        "mean_cost": 3.0921223958333335,
+        "unnecessary_reopen": 1695,
+        "unnecessary_reopen_rate": 0.137939453125,
+        "unsafe_reuse": 0,
+        "unsafe_reuse_rate": 0.0,
+        "verified_correct": 12034,
+        "verified_correct_rate": 0.9793294270833334
+      },
+      "CONFIDENCE_ONLY": {
+        "cannot_check": 89,
+        "mean_cost": 1.7170003255208333,
+        "unnecessary_reopen": 0,
+        "unnecessary_reopen_rate": 0.0,
+        "unsafe_reuse": 1789,
+        "unsafe_reuse_rate": 0.14558919270833334,
+        "verified_correct": 11970,
+        "verified_correct_rate": 0.97412109375
+      },
+      "UNQUALIFIED": {
+        "cannot_check": 0,
+        "mean_cost": 1.0,
+        "unnecessary_reopen": 0,
+        "unnecessary_reopen_rate": 0.0,
+        "unsafe_reuse": 3649,
+        "unsafe_reuse_rate": 0.2969563802083333,
+        "verified_correct": 11509,
+        "verified_correct_rate": 0.9366048177083334
+      },
+      "UNVERIFIED_RCS": {
+        "cannot_check": 169,
+        "mean_cost": 2.3281656901041665,
+        "unnecessary_reopen": 123,
+        "unnecessary_reopen_rate": 0.010009765625,
+        "unsafe_reuse": 330,
+        "unsafe_reuse_rate": 0.02685546875,
+        "verified_correct": 12050,
+        "verified_correct_rate": 0.9806315104166666
+      }
+    },
+    "unverified_by_world": {
+      "FORGED_SUPPORT": {
+        "episodes": 614,
+        "unnecessary_reopen": 0,
+        "unsafe": 66
+      },
+      "OMITTED_SUPPORT": {
+        "episodes": 615,
+        "unnecessary_reopen": 123,
+        "unsafe": 0
+      },
+      "OVERBROAD_SUPPORT": {
+        "episodes": 614,
+        "unnecessary_reopen": 0,
+        "unsafe": 87
+      },
+      "STALE_EPOCH": {
+        "episodes": 614,
+        "unnecessary_reopen": 0,
+        "unsafe": 177
+      }
+    },
+    "valid_panel": {
+      "ALWAYS_RAW": {
+        "cannot_check": 476,
+        "mean_cost": 5.733699521920456,
+        "unnecessary_reopen": 6537,
+        "unnecessary_reopen_rate": 0.6649374427830332,
+        "unsafe_reuse": 0,
+        "unsafe_reuse_rate": 0.0,
+        "verified_correct": 9355,
+        "verified_correct_rate": 0.9515817312582646
+      },
+      "AUTHENTICATED_RCS": {
+        "cannot_check": 146,
+        "mean_cost": 2.425795951581731,
+        "unnecessary_reopen": 0,
+        "unnecessary_reopen_rate": 0.0,
+        "unsafe_reuse": 0,
+        "unsafe_reuse_rate": 0.0,
+        "verified_correct": 9685,
+        "verified_correct_rate": 0.9851490184111484
+      },
+      "CONFIDENCE_ONLY": {
+        "cannot_check": 74,
+        "mean_cost": 1.7342081171803478,
+        "unnecessary_reopen": 0,
+        "unnecessary_reopen_rate": 0.0,
+        "unsafe_reuse": 1439,
+        "unsafe_reuse_rate": 0.14637371579696878,
+        "verified_correct": 9567,
+        "verified_correct_rate": 0.973146170277693
+      },
+      "UNQUALIFIED": {
+        "cannot_check": 0,
+        "mean_cost": 1.0,
+        "unnecessary_reopen": 0,
+        "unnecessary_reopen_rate": 0.0,
+        "unsafe_reuse": 2964,
+        "unsafe_reuse_rate": 0.301495270064083,
+        "verified_correct": 9199,
+        "verified_correct_rate": 0.9357135591496287
+      },
+      "UNVERIFIED_RCS": {
+        "cannot_check": 146,
+        "mean_cost": 2.425795951581731,
+        "unnecessary_reopen": 0,
+        "unnecessary_reopen_rate": 0.0,
+        "unsafe_reuse": 0,
+        "unsafe_reuse_rate": 0.0,
+        "verified_correct": 9685,
+        "verified_correct_rate": 0.9851490184111484
+      }
+    }
+  },
+  "terminal": "P13C_COMPOSED_SAFETY_EFFICACY_SUPPORTED"
+}

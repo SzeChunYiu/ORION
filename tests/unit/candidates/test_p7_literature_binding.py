@@ -24,7 +24,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-P7 = ROOT / "papers" / "paper-07-epistemic-navigation-open-worlds"
+P7 = ROOT / "papers" / "orion-17-epistemic-navigation-open-worlds"
 LITERATURE = P7 / "evidence" / "literature"
 MANUSCRIPT = P7 / "manuscript" / "FINAL.md"
 

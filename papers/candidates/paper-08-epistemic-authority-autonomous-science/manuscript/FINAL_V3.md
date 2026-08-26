@@ -10,9 +10,9 @@ V3 preserves the V2.1 blocker, coercion, revocation and typed-discharge semantic
 
 ## Replacement abstract for V3
 
-Autonomous scientific systems increasingly operate under strong local authority mechanisms. Agent-governance work provides evidence-backed permission graphs, proof-carrying action certificates, cryptographic delegation provenance, deterministic authority narrowing, accumulated principal-chain authorization, typed verifier certificates and heterogeneous authorization-evidence chains. Scientific-agent systems separately provide evidence-bound release gates, claim-to-evidence verification, contract-governed research artifacts, evidence-calibrated claim adjudication and evidence-ledger review. P8 treats all of these mechanisms as donor-owned local authorities rather than claiming generic authorization or scientific verification as new.
+Autonomous scientific systems increasingly operate under strong local authority mechanisms. Agent-governance work provides evidence-backed permission graphs, proof-carrying action certificates, cryptographic delegation provenance, deterministic authority narrowing, accumulated principal-chain authorization, typed verifier certificates and heterogeneous authorization-evidence chains. Scientific-agent systems separately provide evidence-bound release gates, claim-to-evidence verification, contract-governed research artifacts, evidence-calibrated claim adjudication and evidence-ledger review. ORION-18 treats all of these mechanisms as donor-owned local authorities rather than claiming generic authorization or scientific verification as new.
 
-The remaining problem is compositional: when may a local authorization, delegation, verifier, claim-evidence or release verdict establish a different target scientific obligation? P8 introduces a bounded **scientific-authority lifting and composition calculus** over thirteen donor families. The target obligation is typed by `(domain, kind, scope, content, epoch)`. Native donor authority is conserved. Scientific authority propagates across heterogeneous chains only when the scientific type is preserved or narrowed, or when an explicit subject/epoch-bound protected coercion supplies a complete bridge. Blockers use three states: `REFUTED`, `UNDETERMINED`, and `ESTABLISHED`, with `UNDETERMINED` yielding `CANNOT_CHECK` rather than silently disappearing. Alternative complete support families make revocation exact: invalidating one route preserves authority when another complete independent route survives, while destroying all complete routes removes discharge. Action or release permission and scientific support are explicitly non-inverse relations.
+The remaining problem is compositional: when may a local authorization, delegation, verifier, claim-evidence or release verdict establish a different target scientific obligation? ORION-18 introduces a bounded **scientific-authority lifting and composition calculus** over thirteen donor families. The target obligation is typed by `(domain, kind, scope, content, epoch)`. Native donor authority is conserved. Scientific authority propagates across heterogeneous chains only when the scientific type is preserved or narrowed, or when an explicit subject/epoch-bound protected coercion supplies a complete bridge. Blockers use three states: `REFUTED`, `UNDETERMINED`, and `ESTABLISHED`, with `UNDETERMINED` yielding `CANNOT_CHECK` rather than silently disappearing. Alternative complete support families make revocation exact: invalidating one route preserves authority when another complete independent route survives, while destroying all complete routes removes discharge. Action or release permission and scientific support are explicitly non-inverse relations.
 
 The final X4 finite model covers 39,936 exact authority states across thirteen donor families. It has zero donor-conservativity violations and zero mismatches with an ideal equally typed decentralized product. It contains 65 minimal scientific-type separation witnesses, 65 protected-coercion successes and 65 matched unprotected countermodels, the three-state blocker law for all thirteen donor families, 26 single-support-family revocation survivals and 13 all-support-family blocks, plus 169 heterogeneous ordered-chain composition successes and 169 matched scientific-authority-widening countermodels. A second implementation independently reproduces the canonical enumeration. The result is a bounded cross-domain scientific-authority composition semantics, not generic authorization, local scientific verification, deployed-agent superiority, or a claim of centralized expressive advantage.
 
@@ -22,19 +22,19 @@ V3 explicitly imports the strongest useful structure from two neighboring layers
 
 ### Action, delegation, and authorization donors
 
-P8 reuses evidence-backed permission graphs and external deterministic authorizers; runtime-neutral action certificates carrying action identity, approvals, runtime and outcome receipts; append-only human-to-agent delegation provenance; authority-narrowing and cascade-containment rules; principal-chain composition with bounded scope; typed verifier certificates; heterogeneous authorization-evidence chains; and generic cross-domain authority relations.
+ORION-18 reuses evidence-backed permission graphs and external deterministic authorizers; runtime-neutral action certificates carrying action identity, approvals, runtime and outcome receipts; append-only human-to-agent delegation provenance; authority-narrowing and cascade-containment rules; principal-chain composition with bounded scope; typed verifier certificates; heterogeneous authorization-evidence chains; and generic cross-domain authority relations.
 
-These mechanisms answer important local questions such as whether an action is permitted, whether a delegation is valid, whether required evidence certificates are present, or whether heterogeneous authorization receipts jointly satisfy an action policy. P8 claims none of those mechanisms as its own.
+These mechanisms answer important local questions such as whether an action is permitted, whether a delegation is valid, whether required evidence certificates are present, or whether heterogeneous authorization receipts jointly satisfy an action policy. ORION-18 claims none of those mechanisms as its own.
 
 ### Scientific claim, release, and adjudication donors
 
-P8 also reuses domain scientific harnesses that separate semantic from scientific authority and authorize evidence-bound release; claim-to-evidence chains with deterministic grounding and verification; persistent contract-governed research artifacts; evidence-calibrated claim adjudication; and evidence-ledger review that routes unsupported, contradicted, or mixed-evidence claims back for revision.
+ORION-18 also reuses domain scientific harnesses that separate semantic from scientific authority and authorize evidence-bound release; claim-to-evidence chains with deterministic grounding and verification; persistent contract-governed research artifacts; evidence-calibrated claim adjudication; and evidence-ledger review that routes unsupported, contradicted, or mixed-evidence claims back for revision.
 
-These donors establish that scientific claim validation/release can itself be externalized and governed. P8 therefore does not claim novelty merely for separating a model's fluent answer from a scientific release decision.
+These donors establish that scientific claim validation/release can itself be externalized and governed. ORION-18 therefore does not claim novelty merely for separating a model's fluent answer from a scientific release decision.
 
 ### The remaining composition problem
 
-The donor mechanisms are powerful but heterogeneous. Their local verdicts concern different objects: an action, a delegation, a receipt chain, a verifier predicate, a claim-evidence packet, a research artifact, or a domain-specific release decision. P8's V3 object is the common relation that governs when such a local authority object is entitled to discharge a target scientific obligation of another type or scope.
+The donor mechanisms are powerful but heterogeneous. Their local verdicts concern different objects: an action, a delegation, a receipt chain, a verifier predicate, a claim-evidence packet, a research artifact, or a domain-specific release decision. ORION-18's V3 object is the common relation that governs when such a local authority object is entitled to discharge a target scientific obligation of another type or scope.
 
 ## Scientific-discharge type and lifted terminal
 
@@ -42,7 +42,7 @@ The complete scientific-discharge type is
 
 `tau = (domain, kind, scope, content, epoch)`.
 
-Let `D(a)` denote the native authority, verification, adjudication, or release verdict of donor object `a`. P8 does not rewrite `D`.
+Let `D(a)` denote the native authority, verification, adjudication, or release verdict of donor object `a`. ORION-18 does not rewrite `D`.
 
 The bounded lifted state additionally contains:
 
@@ -113,7 +113,7 @@ Valid composition of authorization receipts, canonical action or subject binding
 
 ## Theorem V3.10 — ideal decentralized-product equivalence
 
-A decentralized donor product supplied with the exact same scientific type, narrowing, blocker, support-family, coercion, and composition rules agrees extensionally with P8. The contribution is therefore the explicit common scientific-discharge calculus, not centralized expressive power.
+A decentralized donor product supplied with the exact same scientific type, narrowing, blocker, support-family, coercion, and composition rules agrees extensionally with ORION-18. The contribution is therefore the explicit common scientific-discharge calculus, not centralized expressive power.
 
 ## Final donor envelope and literature fixed point
 
@@ -142,9 +142,9 @@ Final X4 enumeration:
 
 A separate checker independently reconstructs the final enumeration.
 
-## Wider P8 claim
+## Wider ORION-18 claim
 
-> P8 composes modern action authorization, delegation provenance, heterogeneous authorization receipts, cross-domain authority relations, typed verifier certificates, scientific release gates, claim-evidence chains, research harnesses, claim adjudication and evidence-ledger review into a common scientific-discharge calculus. Local donor authority remains intact, while authority to establish a scientific conclusion propagates only through typed non-widening chains or protected coercions, fail-closed blocker semantics and surviving complete support families.
+> ORION-18 composes modern action authorization, delegation provenance, heterogeneous authorization receipts, cross-domain authority relations, typed verifier certificates, scientific release gates, claim-evidence chains, research harnesses, claim adjudication and evidence-ledger review into a common scientific-discharge calculus. Local donor authority remains intact, while authority to establish a scientific conclusion propagates only through typed non-widening chains or protected coercions, fail-closed blocker semantics and surviving complete support families.
 
 This is deliberately wider than the V2.1 slogan that generic permission differs from scientific permission. The local authority mechanisms are absorbed; the paper's contribution is the cross-domain composition/lifting relation among them.
 
@@ -154,8 +154,8 @@ V3 does not claim novelty for any of the thirteen donor mechanisms, universal mi
 
 ## Replacement conclusion for V3
 
-P8's strongest form is a composition theory rather than another authorization gate. Modern agent systems already provide serious local authority: permission graphs, proof-carrying actions, delegation chains, typed verifier certificates, receipt composition, domain scientific release, claim-evidence verification, research harnesses, and evidence-ledger adjudication. ORION should use those mechanisms rather than rebuild weaker versions of them.
+ORION-18's strongest form is a composition theory rather than another authorization gate. Modern agent systems already provide serious local authority: permission graphs, proof-carrying actions, delegation chains, typed verifier certificates, receipt composition, domain scientific release, claim-evidence verification, research harnesses, and evidence-ledger adjudication. ORION should use those mechanisms rather than rebuild weaker versions of them.
 
-The missing interface is the authority relation between these local judgments and a target scientific obligation that may differ in domain, kind, scope, content, or epoch. P8 makes that relation explicit. Scientific authority is non-widening by default, transformable only by protected coercion, fail-closed under unresolved blockers, exactly revocable across alternative complete support families, and compositionally reusable across heterogeneous donor systems. An equally typed decentralized implementation has the same expressive power, which keeps the contribution architectural and semantic rather than brand-dependent.
+The missing interface is the authority relation between these local judgments and a target scientific obligation that may differ in domain, kind, scope, content, or epoch. ORION-18 makes that relation explicit. Scientific authority is non-widening by default, transformable only by protected coercion, fail-closed under unresolved blockers, exactly revocable across alternative complete support families, and compositionally reusable across heterogeneous donor systems. An equally typed decentralized implementation has the same expressive power, which keeps the contribution architectural and semantic rather than brand-dependent.
 
 **Current science terminal:** `P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT`.

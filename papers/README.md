@@ -8,11 +8,11 @@ ORION has **exactly five numbered flagship papers**. A paper identity is determi
 
 | Canonical ID | Flagship paper | Canonical directory |
 |---|---|---|
-| ORION-P1 | Recursive Epistemic Reconstruction | `paper-01-recursive-epistemic-reconstruction/` |
-| ORION-P2 | Open-World Scientific Knowledge Discovery | `paper-02-open-world-scientific-discovery/` |
-| ORION-P3 | Global Knowledge Portrait | `paper-03-global-knowledge-portrait/` |
-| ORION-P4 | Verified Scientific Discovery | `paper-04-verified-scientific-discovery/` |
-| ORION-P5 | Self-ORION | `paper-05-self-orion/` |
+| ORION-ORION-11 | Recursive Epistemic Reconstruction | `orion-11-recursive-epistemic-reconstruction/` |
+| ORION-ORION-12 | Open-World Scientific Knowledge Discovery | `orion-12-open-world-scientific-discovery/` |
+| ORION-ORION-13 | Global Knowledge Portrait | `orion-13-global-knowledge-portrait/` |
+| ORION-ORION-14 | Verified Scientific Discovery | `orion-14-verified-scientific-discovery/` |
+| ORION-ORION-15 | Self-ORION | `orion-15-self-orion/` |
 
 The active `papers/` tree contains those five flagship paper directories, publication synchronization/alias files, and the candidate paper packages listed below. Historical redirect directories and the former `shadow-mechanics-v1/` paper-like path have been removed. Their mappings are recorded in `PAPER_ALIASES.md` and remain recoverable from Git history.
 
@@ -22,22 +22,22 @@ The candidate paper packages live directly under `papers/`, **one directory per 
 
 | Identity | Directory | Issue |
 |---|---|---|
-| ORION-P6 | `paper-06-formal-epistemic-structures-and-mechanics/` | #654 |
-| ORION-P7 | `paper-07-epistemic-navigation-open-worlds/` | #655 |
-| ORION-P8 | `paper-08-epistemic-authority-autonomous-science/` | #656 |
-| ORION-P9 | `paper-09-structured-epistemic-learning/` | #662 |
-| ORION-P10 | `paper-10-structured-problem-solving/` | #663 |
-| ORION-P11 | `paper-11-state-as-computation/` | #471 |
-| ORION-P12 | `paper-12-adaptive-state-reasoning/` | #665 |
-| ORION-P13 | `paper-13-responsibility-carrying-state/` | #666 |
-| ORION-P14 | `paper-14-orion-rse/` | #669 |
-| ORION-P15 | `paper-15-orion-research-harness/` | none yet |
+| ORION-ORION-16 | `orion-16-formal-epistemic-structures-and-mechanics/` | #654 |
+| ORION-ORION-17 | `orion-17-epistemic-navigation-open-worlds/` | #655 |
+| ORION-ORION-18 | `orion-18-epistemic-authority-autonomous-science/` | #656 |
+| ORION-ORION-19 | `orion-19-structured-epistemic-learning/` | #662 |
+| ORION-ORION-20 | `orion-20-structured-problem-solving/` | #663 |
+| ORION-ORION-21 | `orion-21-state-as-computation/` | #471 |
+| ORION-ORION-22 | `orion-22-adaptive-state-reasoning/` | #665 |
+| ORION-ORION-23 | `orion-23-responsibility-carrying-state/` | #666 |
+| ORION-ORION-24 | `orion-24-orion-rse/` | #669 |
+| ORION-ORION-25 | `orion-25-orion-research-harness/` | none yet |
 
 Three further directories under `papers/` are **not paper identities**:
 
-- `orion-learning-machine/` — the shared P9/P10 lane: framework, experiments and committed results that the two vacated candidates below cite. Authority `LOCAL_REPRODUCIBLE_CORE_ONLY`. Recorded in `SHARED_LANES`.
-- `paper-xx-executable-research-core/` — was P9; terminal `MERGED INTO P8/PROGRAMME`, no standalone manuscript.
-- `paper-xx-content-bound-math-evaluation/` — was P10; terminal `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`.
+- `orion-learning-machine/` — the shared ORION-19/ORION-20 lane: framework, experiments and committed results that the two vacated candidates below cite. Authority `LOCAL_REPRODUCIBLE_CORE_ONLY`. Recorded in `SHARED_LANES`.
+- `paper-xx-executable-research-core/` — was ORION-19; terminal `MERGED INTO ORION-18/PROGRAMME`, no standalone manuscript.
+- `archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/` — was ORION-20; terminal `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`.
 
 The `paper-xx-` prefix vacates the number while keeping the record that each was a paper candidate. Neither is deleted: both hold results that live tests and other papers cite. See `PAPER_ALIASES.md` and `VACATED_PAPER_NUMBERS` in `src/orion/programme/superiority_terminals.py`.
 
@@ -80,27 +80,27 @@ No flagship headline claim is widened by this result. `JReach_B(F,x,C|kappa)`, m
 Canonical synchronization files:
 
 - `RSE_VERIFIED_SUCCESSOR_HANDOFF_V1.md` — paper-tree boundary;
-- `research/paper-programme-v1/RSE_P1_P10_HANDOFF_2026-08-20.md` — P1–P10 ownership map;
+- `research/paper-programme-v1/RSE_P1_P10_HANDOFF_2026-08-20.md` — ORION-11–ORION-20 ownership map;
 - `research/extensions/meta-orion-recursive-scientific-evolution/FORMAL_VERIFICATION_CLOSURE_V1.md` — executable theorem/definition disposition after final CI binding.
 
 ## ORION-Q publication wave — final internal spec 2026-08-22
 
-The closed ORION-Q programme has a separate four-paper publication wave. These packages are **not** part of the numbered P1–P15 identity system above.
+The closed ORION-Q programme has a separate four-paper publication wave. These packages are **not** part of the numbered ORION-11–ORION-25 identity system above.
 
 The machine-readable publication contract is `Q_SERIES_FINAL_SPEC_V1.json`; the human readiness record is `Q_SERIES_FINAL_READINESS_2026-08-22.md`. Canonical publication bytes are protected by `Q_SERIES_CONTENT_BINDING_V1.json`, and the framework/harness checks are defined in `src/orion/programme/q_series_sync.py` and `packages/orion-research-harness/src/orion_research_harness/publication_contract.py`.
 
 | Q paper | Role | Canonical manuscript | Current bounded internal status |
 |---|---|---|---|
-| `Q-paper-01-tare-expressivity/` | quantum-compilation mathematics | `MANUSCRIPT_SUBMISSION_DRAFT.md` | sharp `kappa_R6M=2` theorem package complete; journal formatting/upload work remains |
-| `Q-paper-02-recursive-recovery/` | negative-result recovery methodology | `MANUSCRIPT_V2.md` | complete single-programme case study; cross-domain protocol is optional successor research |
-| `Q-paper-03-dual-instrument/` | scientific decision instruments / deferred scoring | `MANUSCRIPT_V2.md` | complete systems/benchmark-definition paper with one V0 measurement; calibration study deferred |
-| `Q-paper-04-typed-state/` | typed/scoped epistemic state under partial knowledge | `MANUSCRIPT_V2.md` | complete exact-synthetic mechanism/benchmark paper; real-domain study deferred |
+| `orion-05-tare-expressivity/` | quantum-compilation mathematics | `MANUSCRIPT_SUBMISSION_DRAFT.md` | sharp `kappa_R6M=2` theorem package complete; journal formatting/upload work remains |
+| `orion-06-recursive-recovery/` | negative-result recovery methodology | `MANUSCRIPT_V2.md` | complete single-programme case study; cross-domain protocol is optional successor research |
+| `orion-07-dual-instrument/` | scientific decision instruments / deferred scoring | `MANUSCRIPT_V2.md` | complete systems/benchmark-definition paper with one V0 measurement; calibration study deferred |
+| `orion-08-typed-state/` | typed/scoped epistemic state under partial knowledge | `MANUSCRIPT_V2.md` | complete exact-synthetic mechanism/benchmark paper; real-domain study deferred |
 
 Each Q directory now carries a `REPRODUCE.md` and `SUBMISSION_PACKAGE.md` in addition to its canonical manuscript/ledger materials.
 
-The owner elected to skip a separate external quantum-expert pre-review for Q1. The final spec records `SKIPPED_BY_OWNER`; this is not encoded as a scientific PASS and does not create external novelty/quantum authority.
+The owner elected to skip a separate external quantum-expert pre-review for ORION-01. The final spec records `SKIPPED_BY_OWNER`; this is not encoded as a scientific PASS and does not create external novelty/quantum authority.
 
-### Q1 theorem status
+### ORION-01 theorem status
 
 For the frozen R6M shared-Tag TARE-M2 grammar/support-count objective:
 

@@ -1,6 +1,6 @@
 # Q2 refinement round 2 — closure review on V3
 
-**Frozen manuscript:** `papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3_REFINED.md`  
+**Frozen manuscript:** `papers/orion-06-recursive-recovery/MANUSCRIPT_V3_REFINED.md`  
 **Stretch after comparative validation:** Nature Computational Science  
 **Current target:** npj Artificial Intelligence / comparable AI-for-science methods venue
 

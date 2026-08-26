@@ -35,7 +35,7 @@ from orion.transfer.v2 import p8_method_authority as authority
 X4_RESULT = p8.REPO_ROOT / "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
 REAL_DISCHARGE_GOLD = (
     p8.REPO_ROOT
-    / "papers/paper-08-epistemic-authority-autonomous-science/top_tier/"
+    / "papers/orion-18-epistemic-authority-autonomous-science/top_tier/"
     "p8_real_evidence_discharge_gold_v1.json"
 )
 

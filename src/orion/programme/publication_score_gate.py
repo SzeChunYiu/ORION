@@ -26,7 +26,7 @@ EXIT_UNGATED_CLAIM = 2
 EXIT_CANNOT_CHECK = 3
 
 #: The papers the rule names.
-GATED_PAPERS = ("paper-01", "paper-02", "paper-03", "paper-04")
+GATED_PAPERS = ("orion-11", "orion-12", "orion-13", "orion-14")
 
 #: A score claim: a publication/readiness score at or above the bar.
 SCORE_CLAIM = re.compile(

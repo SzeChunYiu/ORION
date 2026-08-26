@@ -1,12 +1,12 @@
 # Donor-complete ORION envelope V1
 
 **Date:** 2026-08-18  
-**Programme:** P6–P8 theory closure  
+**Programme:** ORION-16–ORION-18 theory closure  
 **Rule:** engulf before narrowing.
 
 ## 1. Purpose
 
-The P6–P8 programme does not treat nearest work as a boundary that ORION must avoid. Strong prior mechanisms are treated as **donors**. ORION should absorb each donor's useful structure faithfully, preserve its native judgments in the donor's own regime, and then test whether a common envelope yields new cross-structure theorems, safer composition, broader task coverage, lower inconsistency, or better auditability.
+The ORION-16–ORION-18 programme does not treat nearest work as a boundary that ORION must avoid. Strong prior mechanisms are treated as **donors**. ORION should absorb each donor's useful structure faithfully, preserve its native judgments in the donor's own regime, and then test whether a common envelope yields new cross-structure theorems, safer composition, broader task coverage, lower inconsistency, or better auditability.
 
 A donor is not "beaten" merely because ORION contains more fields. The comparison hierarchy is:
 
@@ -20,7 +20,7 @@ Only levels 3–5 can support a claim that integration matters.
 
 ## 2. Common envelope
 
-The shared P6–P8 object is
+The shared ORION-16–ORION-18 object is
 
 \[
 \mathcal E=(S,\mathsf{Eff},\mathsf{Dep},\mathsf{Prov},\mathsf{Obl},\mathsf{Auth},\mathsf{Rep},\mathsf{Goal},\mathsf{Hist},\mathsf{Inv}),
@@ -71,7 +71,7 @@ P_3\not\Rightarrow P_4.
 
 The scientific task of the envelope is to state the explicit transport/coercion witnesses required for any valid upward step.
 
-## 4. P6 donor engulfing
+## 4. ORION-16 donor engulfing
 
 ### 4.1 Truth-maintenance / ATMS
 
@@ -102,7 +102,7 @@ The scientific task of the envelope is to state the explicit transport/coercion 
 
 **Composite-only pressure**
 - from-scratch computational consistency does not entail preservation of scientific certification or commit authority;
-- P6 typed-erasure separation constructs equal bare computations with different admissibility.
+- ORION-16 typed-erasure separation constructs equal bare computations with different admissibility.
 
 ### 4.3 Effect systems / ETAS
 
@@ -134,7 +134,7 @@ The scientific task of the envelope is to state the explicit transport/coercion 
 - an effect may be security-authorized while its scientific obligation is unresolved;
 - revoking scientific evidence can invalidate a scientific certificate even when the generic action permission remains valid.
 
-## 5. P7 donor engulfing
+## 5. ORION-17 donor engulfing
 
 ### 5.1 Fixed graph / Search-on-Graph
 
@@ -170,7 +170,7 @@ The scientific task of the envelope is to state the explicit transport/coercion 
 - conditions preserving plans/reachability or generalized-planning solutions.
 
 **ORION embedding**
-- established abstraction-preservation facts instantiate the relevant components of the P7 transport witness `Pi`.
+- established abstraction-preservation facts instantiate the relevant components of the ORION-17 transport witness `Pi`.
 
 **Composite-only pressure**
 - plan preservation does not automatically preserve evidence identity, scientific coverage, goal meaning or closure authority.
@@ -215,7 +215,7 @@ The scientific task of the envelope is to state the explicit transport/coercion 
 - not every model update licenses a topology change;
 - evidence/closure transport depends on which semantic distinctions and obligation predicates changed.
 
-## 6. P8 donor engulfing
+## 6. ORION-18 donor engulfing
 
 ### 6.1 Authorization / trust management / proof-carrying authorization
 
@@ -343,7 +343,7 @@ A gain in one coordinate cannot compensate for violating a protected safety/scie
 
 ## 10. Theory-completion rule
 
-P6, P7 and P8 may each close their mathematical theory while this envelope remains under experimental pressure. Literature overlap is not a reason to remove a donor mechanism from ORION. It is a reason to:
+ORION-16, ORION-17 and ORION-18 may each close their mathematical theory while this envelope remains under experimental pressure. Literature overlap is not a reason to remove a donor mechanism from ORION. It is a reason to:
 
 1. acknowledge ownership;
 2. embed it faithfully;

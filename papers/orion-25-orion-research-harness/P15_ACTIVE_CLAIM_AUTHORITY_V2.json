@@ -1,0 +1,45 @@
+{
+  "schema": "ORION.P15.ActiveClaimAuthority.v2",
+  "paper_id": "P15",
+  "active_terminal": "P15_PROSPECTIVE_ACQUISITION_PROTOCOL_FROZEN",
+  "lifecycle_state": "PROSPECTIVE_ACQUISITION_PROTOCOL_FROZEN",
+  "scientific_result_state": "NO_SCIENTIFIC_RESULT",
+  "active_hypothesis": null,
+  "active_empirical_claim": null,
+  "promotion_allowed": false,
+  "historical_authority": {
+    "artifact": "papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json",
+    "sha256": "1d023194cf2fc9fe0fb9399322d30f13be162343ed99afa93eadea318059d05e"
+  },
+  "acquisition_authority": {
+    "campaign_id": "P15A",
+    "terminal": "P15A_ACQUISITION_BLOCKED_NO_SCIENTIFIC_RESULT",
+    "execution_authorized": false,
+    "protocol": {
+      "artifact": "papers/orion-25-orion-research-harness/P15A_RESEARCH_HARNESS_ACQUISITION_PROTOCOL_V1.md",
+      "sha256": "315ca80bf38b43dc3ccf753b67e0606563b37699a4aa8c086b8b88c2baaea2fa"
+    },
+    "preflight": {
+      "artifact": "papers/orion-25-orion-research-harness/P15A_ACQUISITION_PREFLIGHT_V1.json",
+      "sha256": "8fe16aba495bfdca1cfefc8d32373e3ed3af7a40b26e4357eb6960b679c75327"
+    },
+    "validator": {
+      "artifact": "src/orion/study/p15/acquisition.py",
+      "sha256": "d933d987835b3645dd3994f972c1aad65d44551c272788bdf54b542cfac2d45e"
+    },
+    "protected_inputs_verified": false
+  },
+  "authorized_claim": "P15 has a prospectively frozen, fail-closed acquisition contract for a future protected harness evaluation; no scientific execution or result exists.",
+  "forbidden_states": [
+    "SUPPORTED_EMPIRICAL",
+    "SUPERIORITY_SUPPORTED",
+    "EXTERNAL_VALIDATION_COMPLETE"
+  ],
+  "remaining_external_requirements": [
+    "programme_paper_issue",
+    "donor_matrix",
+    "estimand_and_comparator",
+    "protected_fault_injection_corpus",
+    "independent_evaluator_custody"
+  ]
+}

@@ -1,6 +1,6 @@
 """P6's two graph checkers, and the refutation capacity they now have.
 
-`papers/paper-06-.../formal/check_finite_models.py::check_reopening` and
+`papers/orion-16-.../formal/check_finite_models.py::check_reopening` and
 `check_theory_closure_v2_1.py::check_root_inclusive_safety` are the two places
 where P6's formal core asserts something about a reopening operator. Until
 2026-08-22 their assertions were `(A \\ B) & B == {}`, `x == x`, `A <= A | B` and
@@ -45,7 +45,7 @@ from orion.programme.refutation_capacity import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-FORMAL = REPO_ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/formal"
+FORMAL = REPO_ROOT / "papers/orion-16-formal-epistemic-structures-and-mechanics/formal"
 
 #: The signature `REPRODUCE.md` publishes for the primary deterministic checker.
 FINITE_MODEL_SIGNATURE = (
@@ -105,14 +105,14 @@ def _run(relative_path: str) -> str:
 
 def test_the_finite_model_signature_is_byte_for_byte_what_reproduce_publishes() -> None:
     output = _run(
-        "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py"
+        "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py"
     )
     assert output.splitlines() == list(FINITE_MODEL_SIGNATURE)
 
 
 def test_the_theory_closure_signature_is_unchanged() -> None:
     output = _run(
-        "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/"
+        "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/"
         "check_theory_closure_v2_1.py"
     )
     lines = output.splitlines()

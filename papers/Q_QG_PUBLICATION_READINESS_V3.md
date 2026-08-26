@@ -10,22 +10,22 @@ This ledger separates **scientific-content closure** from **submission-package c
 
 | Paper | Final scientific draft | Scientific-content terminal | Package terminal | Current primary target |
 |---|---|---|---|---|
-| Q1 | `Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md` | `Q1_CONTENT_READY__NO_NEW_SCIENCE_REQUIRED` | `PACKAGE_OPEN` | Quantum |
-| Q2 | `Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md` | `Q2_CONTENT_READY__DECLARED_51_RECEIPT_DENOMINATOR_BOUND__NO_NEW_SCIENCE_REQUIRED` | `PACKAGE_OPEN` | Artificial Intelligence (AIJ); TMLR fallback |
-| Q3 | `Q-paper-03-dual-instrument/MANUSCRIPT_V3.md` | `Q3_PROSPECTIVE_CASE_SERIES_COMPLETE__N3_VALID__AGREEMENT_NOT_VALIDATION_COUNTEREXAMPLE_OBSERVED__NO_RELIABILITY_GENERALIZATION` | `PACKAGE_OPEN` | TMLR |
-| Q4 | `Q-paper-04-typed-state/MANUSCRIPT_V3.md` | `Q4_CONTENT_READY__NO_NEW_SCIENCE_REQUIRED` | `PACKAGE_OPEN` | TMLR |
-| QG1 | `QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md` | `QG1_CONTENT_READY_AFTER_POSTCUT_REFRESH__NO_NEW_SCIENCE_REQUIRED` | `PACKAGE_OPEN` | PRX Quantum stretch; Quantum fallback |
-| QG2 | `QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md` | `QG2_CONTENT_READY__NO_NEW_SCIENCE_REQUIRED` | `PACKAGE_OPEN` | Quantum recommended primary; QST transfer/stretch |
+| ORION-01 | `orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md` | `Q1_CONTENT_READY__NO_NEW_SCIENCE_REQUIRED` | `PACKAGE_OPEN` | Quantum |
+| ORION-02 | `orion-06-recursive-recovery/MANUSCRIPT_V3.md` | `Q2_CONTENT_READY__DECLARED_51_RECEIPT_DENOMINATOR_BOUND__NO_NEW_SCIENCE_REQUIRED` | `PACKAGE_OPEN` | Artificial Intelligence (AIJ); TMLR fallback |
+| ORION-03 | `orion-07-dual-instrument/MANUSCRIPT_V3.md` | `Q3_PROSPECTIVE_CASE_SERIES_COMPLETE__N3_VALID__AGREEMENT_NOT_VALIDATION_COUNTEREXAMPLE_OBSERVED__NO_RELIABILITY_GENERALIZATION` | `PACKAGE_OPEN` | TMLR |
+| ORION-04 | `orion-08-typed-state/MANUSCRIPT_V3.md` | `Q4_CONTENT_READY__NO_NEW_SCIENCE_REQUIRED` | `PACKAGE_OPEN` | TMLR |
+| ORION-09 | `orion-09-compilation-regime-geometry/MANUSCRIPT_V3.md` | `QG1_CONTENT_READY_AFTER_POSTCUT_REFRESH__NO_NEW_SCIENCE_REQUIRED` | `PACKAGE_OPEN` | PRX Quantum stretch; Quantum fallback |
+| ORION-10 | `orion-10-certified-static-forecasting/MANUSCRIPT_V3.md` | `QG2_CONTENT_READY__NO_NEW_SCIENCE_REQUIRED` | `PACKAGE_OPEN` | Quantum recommended primary; QST transfer/stretch |
 
-## Q3 scientific closure
+## ORION-03 scientific closure
 
-Q3 is no longer an open science lane.
+ORION-03 is no longer an open science lane.
 
 The original QG-7d/QG-15c expansion slots were conservatively retired as contaminated after result-oriented remote successor refs became visible before Lane-A/Lane-B freeze. They remain visible in the audit history and were not retrospectively scored.
 
 Two clean replacement frontier questions were frozen before their scientific analyzers existed:
 
-### Q3-R1 / QG-19
+### ORION-03-R1 / QG-19
 
 - question: R6M support-two behavior just outside the central QG8 sufficient-cone face;
 - frozen objective: `O19=(t_nc=4,t_c=3,t_tag=2,t_r=2,rho=0)`;
@@ -35,7 +35,7 @@ Two clean replacement frontier questions were frozen before their scientific ana
 - both diagnoses and moves align under the prospectively frozen map;
 - this finite result does not enlarge the all-n QG8 cone.
 
-### Q3-R2 / QG-20
+### ORION-03-R2 / QG-20
 
 - question: whether SixLCU's theorem-grade P0 incumbent boundary transfers under `O20=2*SELECT+PREP+WIDTH`;
 - both instruments independently froze `S1_P0_BOUNDARY_OBJECTIVE_SCOPED` and `N1_COMPLETE_REWEIGHTED_CENSUS`;
@@ -44,17 +44,17 @@ Two clean replacement frontier questions were frozen before their scientific ana
 - terminal: `QG20_P0_ZERO_MISMATCH_ON_COMPLETE_N1_N2`;
 - under the frozen deferred map, both **diagnoses are misaligned** but both selected moves are aligned.
 
-Thus Q3 contains a prospectively scored case in which **inter-instrument agreement did not imply diagnostic correctness**. That negative result is retained as the manuscript centerpiece.
+Thus ORION-03 contains a prospectively scored case in which **inter-instrument agreement did not imply diagnostic correctness**. That negative result is retained as the manuscript centerpiece.
 
 ### Three valid units / no reliability promotion
 
 The final valid question units are:
 
 1. V0 — agreement plus later R6P/R6Q deferred alignment;
-2. Q3-R1 — agreement + diagnosis alignment + move alignment;
-3. Q3-R2 — agreement + diagnosis **misalignment** + move alignment.
+2. ORION-03-R1 — agreement + diagnosis alignment + move alignment;
+3. ORION-03-R2 — agreement + diagnosis **misalignment** + move alignment.
 
-The unit is one frontier question. No receipt, DP row, partition or model call inflates `n`. With `n_valid=3`, Q3 does not report kappa, a reliability rate, a generalized accuracy probability or a confidence interval.
+The unit is one frontier question. No receipt, DP row, partition or model call inflates `n`. With `n_valid=3`, ORION-03 does not report kappa, a reliability rate, a generalized accuracy probability or a confidence interval.
 
 ### Replay / custody
 
@@ -69,24 +69,24 @@ The unit is one frontier question. No receipt, DP row, partition or model call i
 - D2/D3 are accepted fail-closed instrument limitations;
 - aggregate reliability authority remains false.
 
-See `Q-paper-03-dual-instrument/Q3_COMPLETION_RECEIPT_V3.md`.
+See `orion-07-dual-instrument/Q3_COMPLETION_RECEIPT_V3.md`.
 
-### Q3 novelty boundary
+### ORION-03 novelty boundary
 
 Fresh hostile search explicitly subtracts:
 - generic delayed-ground-truth agreement gating;
 - generic LLM-judge validation/meta-evaluation;
 - generic scientific-agent/open-ended research benchmarking.
 
-Q3's candidate residual is narrower: heterogeneous host/LLM and typed non-LLM decisions are separately frozen on live unresolved scientific frontier questions before successor results exist, contamination is retained, and later independently generated scientific outcomes score responsibility and next-move coordinates separately. No `first` claim is authorized.
+ORION-03's candidate residual is narrower: heterogeneous host/LLM and typed non-LLM decisions are separately frozen on live unresolved scientific frontier questions before successor results exist, contamination is retained, and later independently generated scientific outcomes score responsibility and next-move coordinates separately. No `first` claim is authorized.
 
-### Q3 D2/D3
+### ORION-03 D2/D3
 
 D2 and D3 are bound as accepted limitations rather than silently repaired. If triggered in an outcome-bearing instance, the instance fails closed as instrument-invalid/CANNOT_CHECK and is not repaired in place. None of the three valid units triggered them.
 
-No new Q3 scientific experiment is currently required for the bounded manuscript claim.
+No new ORION-03 scientific experiment is currently required for the bounded manuscript claim.
 
-## Why Q1 is content-ready
+## Why ORION-01 is content-ready
 
 Closed scientific repairs:
 - current TARE full text was read and donor freedoms/Tag optimization explicitly subtracted;
@@ -96,7 +96,7 @@ Closed scientific repairs:
 - later QG closed-form refutations are presented as taxonomy refinement inside the support-two envelope;
 - no support-three necessity or universal two-trade claim remains.
 
-## Why Q2 is content-ready
+## Why ORION-02 is content-ready
 
 Closed scientific/method repairs:
 - ScientistOne/ScienceAgentBench/AstaBench/SciAgentArena donor territory explicitly subtracted;
@@ -106,18 +106,18 @@ Closed scientific/method repairs:
 - graph has 13 asserted successor edges and preserves standalone negatives without invented causal edges;
 - validator binds graph and denominator to the publication cut.
 
-## Why Q4 is content-ready
+## Why ORION-04 is content-ready
 
 Closed scientific repairs:
-- STALE-style semantic memory invalidation separated from Q4 scope invalidation;
+- STALE-style semantic memory invalidation separated from ORION-04 scope invalidation;
 - ContextNest/provenance/version governance treated as donor infrastructure;
-- P13 owns general responsibility-scoped sufficiency theory;
-- Q4 retains only exact-synthetic matched-information mechanism evidence;
+- ORION-23 owns general responsibility-scoped sufficiency theory;
+- ORION-04 retains only exact-synthetic matched-information mechanism evidence;
 - no cross-world pooled statistic;
 - finite-chain security/LLM-proxy overclaims removed;
 - first-right-of-refusal negative/tie results remain central.
 
-## Why QG1 is content-ready
+## Why ORION-09 is content-ready
 
 Post-cut freshness review imported the science that materially changed the cross-family synthesis:
 - R6I all-n support1 theorem and exact `kappa_R6I=1`;
@@ -127,7 +127,7 @@ Post-cut freshness review imported the science that materially changed the cross
 - Instance Space Analysis remains the primary conceptual parent;
 - QG17 result is excluded because none is committed on the refresh cut.
 
-## Why QG2 is content-ready
+## Why ORION-10 is content-ready
 
 Closed scientific repairs:
 - Qet/Qualtran/resource-estimation donors own generic static cost analysis;

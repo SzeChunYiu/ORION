@@ -1,4 +1,4 @@
-# P6–P8 canonical bibliography V2
+# ORION-16–ORION-18 canonical bibliography V2
 
 **Date:** 2026-08-18  
 **Purpose:** normalized source identities for the V2 theory manuscripts and final submission conversion.
@@ -61,7 +61,7 @@ The list is intentionally wider than any one manuscript. It preserves donor owne
 
 ## Terminology note
 
-“Authority laundering” is already used in 2026 agent/delegation/AI governance contexts and in adversarial-ML work. P8 claims no ownership of the term. Its formal contribution is the scientific discharge/coercion interface and associated theorems.
+“Authority laundering” is already used in 2026 agent/delegation/AI governance contexts and in adversarial-ML work. ORION-18 claims no ownership of the term. Its formal contribution is the scientific discharge/coercion interface and associated theorems.
 
 ## Submission rule
 

@@ -1,0 +1,842 @@
+{
+  "core": {
+    "claim_id": "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY",
+    "environment": {
+      "numpy_version": "2.5.2",
+      "python_implementation": "CPython",
+      "python_version": "3.12.13",
+      "uv_lock_path": "uv.lock",
+      "uv_lock_sha256": "4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"
+    },
+    "families": [
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 762,
+          "STATE_SIGNAL": 767,
+          "TWO_SIGNAL": 1023
+        },
+        "delta_vs_stronger_one_signal": 0.25,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.744140625,
+          "STATE_SIGNAL": 0.7490234375,
+          "TWO_SIGNAL": 0.9990234375
+        },
+        "family_rng_block": 0,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.2
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 655,
+          "STATE_SIGNAL": 667,
+          "TWO_SIGNAL": 964
+        },
+        "delta_vs_stronger_one_signal": 0.2900390625,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.6396484375,
+          "STATE_SIGNAL": 0.6513671875,
+          "TWO_SIGNAL": 0.94140625
+        },
+        "family_rng_block": 1,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.4
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 558,
+          "STATE_SIGNAL": 556,
+          "TWO_SIGNAL": 825
+        },
+        "delta_vs_stronger_one_signal": 0.2607421875,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.544921875,
+          "STATE_SIGNAL": 0.54296875,
+          "TWO_SIGNAL": 0.8056640625
+        },
+        "family_rng_block": 2,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.6
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 488,
+          "STATE_SIGNAL": 501,
+          "TWO_SIGNAL": 721
+        },
+        "delta_vs_stronger_one_signal": 0.21484375,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.4765625,
+          "STATE_SIGNAL": 0.4892578125,
+          "TWO_SIGNAL": 0.7041015625
+        },
+        "family_rng_block": 3,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.8
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 766,
+          "STATE_SIGNAL": 764,
+          "TWO_SIGNAL": 1024
+        },
+        "delta_vs_stronger_one_signal": 0.251953125,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.748046875,
+          "STATE_SIGNAL": 0.74609375,
+          "TWO_SIGNAL": 1.0
+        },
+        "family_rng_block": 4,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.2
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 662,
+          "STATE_SIGNAL": 659,
+          "TWO_SIGNAL": 948
+        },
+        "delta_vs_stronger_one_signal": 0.279296875,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.646484375,
+          "STATE_SIGNAL": 0.6435546875,
+          "TWO_SIGNAL": 0.92578125
+        },
+        "family_rng_block": 5,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.4
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 558,
+          "STATE_SIGNAL": 563,
+          "TWO_SIGNAL": 826
+        },
+        "delta_vs_stronger_one_signal": 0.2568359375,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.544921875,
+          "STATE_SIGNAL": 0.5498046875,
+          "TWO_SIGNAL": 0.806640625
+        },
+        "family_rng_block": 6,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.6
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 454,
+          "STATE_SIGNAL": 461,
+          "TWO_SIGNAL": 694
+        },
+        "delta_vs_stronger_one_signal": 0.2275390625,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.443359375,
+          "STATE_SIGNAL": 0.4501953125,
+          "TWO_SIGNAL": 0.677734375
+        },
+        "family_rng_block": 7,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.8
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 763,
+          "STATE_SIGNAL": 759,
+          "TWO_SIGNAL": 1023
+        },
+        "delta_vs_stronger_one_signal": 0.25390625,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.7451171875,
+          "STATE_SIGNAL": 0.7412109375,
+          "TWO_SIGNAL": 0.9990234375
+        },
+        "family_rng_block": 8,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.2
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 653,
+          "STATE_SIGNAL": 671,
+          "TWO_SIGNAL": 961
+        },
+        "delta_vs_stronger_one_signal": 0.283203125,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.6376953125,
+          "STATE_SIGNAL": 0.6552734375,
+          "TWO_SIGNAL": 0.9384765625
+        },
+        "family_rng_block": 9,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.4
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 555,
+          "STATE_SIGNAL": 556,
+          "TWO_SIGNAL": 823
+        },
+        "delta_vs_stronger_one_signal": 0.2607421875,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.5419921875,
+          "STATE_SIGNAL": 0.54296875,
+          "TWO_SIGNAL": 0.8037109375
+        },
+        "family_rng_block": 10,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.6
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 510,
+          "STATE_SIGNAL": 488,
+          "TWO_SIGNAL": 727
+        },
+        "delta_vs_stronger_one_signal": 0.2119140625,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.498046875,
+          "STATE_SIGNAL": 0.4765625,
+          "TWO_SIGNAL": 0.7099609375
+        },
+        "family_rng_block": 11,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.8
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 765,
+          "STATE_SIGNAL": 764,
+          "TWO_SIGNAL": 1023
+        },
+        "delta_vs_stronger_one_signal": 0.251953125,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.7470703125,
+          "STATE_SIGNAL": 0.74609375,
+          "TWO_SIGNAL": 0.9990234375
+        },
+        "family_rng_block": 12,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.2
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 660,
+          "STATE_SIGNAL": 658,
+          "TWO_SIGNAL": 979
+        },
+        "delta_vs_stronger_one_signal": 0.3115234375,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.64453125,
+          "STATE_SIGNAL": 0.642578125,
+          "TWO_SIGNAL": 0.9560546875
+        },
+        "family_rng_block": 13,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.4
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 570,
+          "STATE_SIGNAL": 565,
+          "TWO_SIGNAL": 828
+        },
+        "delta_vs_stronger_one_signal": 0.251953125,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.556640625,
+          "STATE_SIGNAL": 0.5517578125,
+          "TWO_SIGNAL": 0.80859375
+        },
+        "family_rng_block": 14,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.6
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 504,
+          "STATE_SIGNAL": 496,
+          "TWO_SIGNAL": 736
+        },
+        "delta_vs_stronger_one_signal": 0.2265625,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.4921875,
+          "STATE_SIGNAL": 0.484375,
+          "TWO_SIGNAL": 0.71875
+        },
+        "family_rng_block": 15,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.8
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 762,
+          "STATE_SIGNAL": 763,
+          "TWO_SIGNAL": 1024
+        },
+        "delta_vs_stronger_one_signal": 0.2548828125,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.744140625,
+          "STATE_SIGNAL": 0.7451171875,
+          "TWO_SIGNAL": 1.0
+        },
+        "family_rng_block": 16,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.2
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 664,
+          "STATE_SIGNAL": 653,
+          "TWO_SIGNAL": 961
+        },
+        "delta_vs_stronger_one_signal": 0.2900390625,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.6484375,
+          "STATE_SIGNAL": 0.6376953125,
+          "TWO_SIGNAL": 0.9384765625
+        },
+        "family_rng_block": 17,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.4
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 550,
+          "STATE_SIGNAL": 545,
+          "TWO_SIGNAL": 814
+        },
+        "delta_vs_stronger_one_signal": 0.2578125,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.537109375,
+          "STATE_SIGNAL": 0.5322265625,
+          "TWO_SIGNAL": 0.794921875
+        },
+        "family_rng_block": 18,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.6
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 507,
+          "STATE_SIGNAL": 474,
+          "TWO_SIGNAL": 708
+        },
+        "delta_vs_stronger_one_signal": 0.1962890625,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.4951171875,
+          "STATE_SIGNAL": 0.462890625,
+          "TWO_SIGNAL": 0.69140625
+        },
+        "family_rng_block": 19,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.8
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 762,
+          "STATE_SIGNAL": 759,
+          "TWO_SIGNAL": 1024
+        },
+        "delta_vs_stronger_one_signal": 0.255859375,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.744140625,
+          "STATE_SIGNAL": 0.7412109375,
+          "TWO_SIGNAL": 1.0
+        },
+        "family_rng_block": 20,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.2
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 650,
+          "STATE_SIGNAL": 648,
+          "TWO_SIGNAL": 959
+        },
+        "delta_vs_stronger_one_signal": 0.3017578125,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.634765625,
+          "STATE_SIGNAL": 0.6328125,
+          "TWO_SIGNAL": 0.9365234375
+        },
+        "family_rng_block": 21,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.4
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 577,
+          "STATE_SIGNAL": 564,
+          "TWO_SIGNAL": 843
+        },
+        "delta_vs_stronger_one_signal": 0.259765625,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.5634765625,
+          "STATE_SIGNAL": 0.55078125,
+          "TWO_SIGNAL": 0.8232421875
+        },
+        "family_rng_block": 22,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.6
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 499,
+          "STATE_SIGNAL": 518,
+          "TWO_SIGNAL": 721
+        },
+        "delta_vs_stronger_one_signal": 0.1982421875,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.4873046875,
+          "STATE_SIGNAL": 0.505859375,
+          "TWO_SIGNAL": 0.7041015625
+        },
+        "family_rng_block": 23,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.8
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 762,
+          "STATE_SIGNAL": 766,
+          "TWO_SIGNAL": 1024
+        },
+        "delta_vs_stronger_one_signal": 0.251953125,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.744140625,
+          "STATE_SIGNAL": 0.748046875,
+          "TWO_SIGNAL": 1.0
+        },
+        "family_rng_block": 24,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.2
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 662,
+          "STATE_SIGNAL": 669,
+          "TWO_SIGNAL": 960
+        },
+        "delta_vs_stronger_one_signal": 0.2841796875,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.646484375,
+          "STATE_SIGNAL": 0.6533203125,
+          "TWO_SIGNAL": 0.9375
+        },
+        "family_rng_block": 25,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.4
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 565,
+          "STATE_SIGNAL": 535,
+          "TWO_SIGNAL": 821
+        },
+        "delta_vs_stronger_one_signal": 0.25,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.5517578125,
+          "STATE_SIGNAL": 0.5224609375,
+          "TWO_SIGNAL": 0.8017578125
+        },
+        "family_rng_block": 26,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.6
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 491,
+          "STATE_SIGNAL": 491,
+          "TWO_SIGNAL": 705
+        },
+        "delta_vs_stronger_one_signal": 0.208984375,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.4794921875,
+          "STATE_SIGNAL": 0.4794921875,
+          "TWO_SIGNAL": 0.6884765625
+        },
+        "family_rng_block": 27,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.8
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 762,
+          "STATE_SIGNAL": 759,
+          "TWO_SIGNAL": 1024
+        },
+        "delta_vs_stronger_one_signal": 0.255859375,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.744140625,
+          "STATE_SIGNAL": 0.7412109375,
+          "TWO_SIGNAL": 1.0
+        },
+        "family_rng_block": 28,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.2
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 670,
+          "STATE_SIGNAL": 659,
+          "TWO_SIGNAL": 966
+        },
+        "delta_vs_stronger_one_signal": 0.2890625,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.654296875,
+          "STATE_SIGNAL": 0.6435546875,
+          "TWO_SIGNAL": 0.943359375
+        },
+        "family_rng_block": 29,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.4
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 552,
+          "STATE_SIGNAL": 569,
+          "TWO_SIGNAL": 840
+        },
+        "delta_vs_stronger_one_signal": 0.2646484375,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.5390625,
+          "STATE_SIGNAL": 0.5556640625,
+          "TWO_SIGNAL": 0.8203125
+        },
+        "family_rng_block": 30,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.6
+      },
+      {
+        "correct_counts": {
+          "REASON_SIGNAL": 499,
+          "STATE_SIGNAL": 500,
+          "TWO_SIGNAL": 728
+        },
+        "delta_vs_stronger_one_signal": 0.22265625,
+        "exact_allocation_rates": {
+          "REASON_SIGNAL": 0.4873046875,
+          "STATE_SIGNAL": 0.48828125,
+          "TWO_SIGNAL": 0.7109375
+        },
+        "family_rng_block": 31,
+        "regime_counts": {
+          "ACCESS": 256,
+          "BOTH": 256,
+          "EASY": 256,
+          "REASON": 256
+        },
+        "sigma": 0.8
+      }
+    ],
+    "families_per_sigma": 8,
+    "fixed_sigma_strata": [
+      0.2,
+      0.4,
+      0.6,
+      0.8
+    ],
+    "independent_unit": "family_rng_block",
+    "locked_environment_revalidation": "papers/orion-22-adaptive-state-reasoning/P12B_LOCKED_ENVIRONMENT_REVALIDATION_V1_1.md",
+    "locked_environment_revalidation_sha256": "5ae7e19b9dc903b34de09ab7b9952734e864f30c0cc2983e3a8e3656f362a8c1",
+    "master_seed": 2026082312,
+    "n_independent_units": 32,
+    "paper_id": "P12",
+    "preflight": "papers/orion-22-adaptive-state-reasoning/P12B_PREFLIGHT_ATTAINABILITY_V1_1.json",
+    "preflight_sha256": "6046ec0134fe153c0a596de59650ef95831ec6c549ce68d9d211880547dd8b9d",
+    "protocol": "papers/orion-22-adaptive-state-reasoning/P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_PROTOCOL_V1.md",
+    "protocol_amendment": "papers/orion-22-adaptive-state-reasoning/P12B_PROTOCOL_AMENDMENT_V1_1.md",
+    "protocol_amendment_sha256": "4c3422390190d5124289419b75c4c9eadc141fe524fdbebce50ffac1636536fa",
+    "protocol_sha256": "a44870bea56ea0c94c1b0dec15f3f11961e9371c1f3fedbda3048c654210cb09",
+    "schema": "ORION.P12B.EqualActionSignalComplementarity.Core.v1.1",
+    "subject_identity": {
+      "arms": {
+        "REASON_SIGNAL": {
+          "action_set": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "observation_fields": [
+            "reason_signal"
+          ],
+          "policy": "nearest_visible_coordinate_table_tie_v1"
+        },
+        "STATE_SIGNAL": {
+          "action_set": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "observation_fields": [
+            "state_signal"
+          ],
+          "policy": "nearest_visible_coordinate_table_tie_v1"
+        },
+        "TWO_SIGNAL": {
+          "action_set": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "observation_fields": [
+            "state_signal",
+            "reason_signal"
+          ],
+          "policy": "nearest_squared_euclidean_v1"
+        }
+      },
+      "budget": 2,
+      "exact_action_set": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "technical_episodes_per_unit": 1024
+  },
+  "gates": {
+    "balanced_regimes_in_all_families": true,
+    "budget_two_respected": true,
+    "byte_identical_replay": true,
+    "every_family_delta_gt_0": true,
+    "every_sigma_stratum_mean_ge_0_12": true,
+    "identical_four_action_sets": true,
+    "locked_environment_identity_matches_v1_1": true,
+    "mean_delta_ge_0_15": true,
+    "stratified_family_bootstrap_lower_ge_0_12": true,
+    "withheld_signals_absent_from_typed_observations": true
+  },
+  "replay": {
+    "byte_identical": true,
+    "first_core_sha256": "6c47a46d07e13f8380611d310f134affc73360e7b0713c35cbddc076693538e7",
+    "fresh_python_subprocesses": 2,
+    "second_core_sha256": "6c47a46d07e13f8380611d310f134affc73360e7b0713c35cbddc076693538e7"
+  },
+  "schema": "ORION.P12B.EqualActionSignalComplementarity.Result.v1.1",
+  "summary": {
+    "mean_delta_by_sigma": {
+      "0.2": 0.2532958984375,
+      "0.4": 0.2911376953125,
+      "0.6": 0.2578125,
+      "0.8": 0.21337890625
+    },
+    "mean_delta_vs_stronger_one_signal": 0.25390625,
+    "minimum_family_delta": 0.1962890625,
+    "n_independent_family_rng_blocks": 32,
+    "stratified_family_bootstrap_95ci": [
+      0.251220703125,
+      0.25665283203125
+    ],
+    "unstratified_family_bootstrap_95ci_sensitivity": [
+      0.243865966796875,
+      0.26367263793945306
+    ]
+  },
+  "terminal": "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_SUPPORTED"
+}

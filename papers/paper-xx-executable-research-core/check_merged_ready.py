@@ -66,7 +66,7 @@ def main() -> None:
     require_text(HERE / "README.md", "MERGED INTO P8/PROGRAMME", "0.7143")
     require_text(
         CANDIDATES
-        / "paper-08-epistemic-authority-autonomous-science"
+        / "orion-18-epistemic-authority-autonomous-science"
         / "benchmark"
         / "P9_GOVERNED_CAPABILITY_COMPANION.md",
         "authorizes_execution=False",

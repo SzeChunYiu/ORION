@@ -31,11 +31,11 @@ from scientific_result_verification import (
     write_record,
 )
 
-PAPER4 = Path("papers/paper-04-verified-scientific-discovery")
-PAPER3 = Path("papers/paper-03-global-knowledge-portrait")
-PAPER2 = Path("papers/paper-02-open-world-scientific-discovery")
-PAPER5 = Path("papers/paper-05-self-orion")
-PAPER1 = Path("papers/paper-01-recursive-epistemic-reconstruction")
+PAPER4 = Path("papers/orion-14-verified-scientific-discovery")
+PAPER3 = Path("papers/orion-13-global-knowledge-portrait")
+PAPER2 = Path("papers/orion-12-open-world-scientific-discovery")
+PAPER5 = Path("papers/orion-15-self-orion")
+PAPER1 = Path("papers/orion-11-recursive-epistemic-reconstruction")
 
 
 def git_sha(root: Path, rev: str = "HEAD") -> str:

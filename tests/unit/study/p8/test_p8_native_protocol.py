@@ -18,7 +18,7 @@ from pathlib import Path
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER = REPO_ROOT / "papers/paper-08-epistemic-authority-autonomous-science"
+PAPER = REPO_ROOT / "papers/orion-18-epistemic-authority-autonomous-science"
 TWIN = PAPER / "formal/P8_NATIVE_CROSS_SYSTEM_PROTOCOL_2026-08-24.json"
 DOC = PAPER / "formal/P8_NATIVE_CROSS_SYSTEM_PROTOCOL_V1.md"
 CHECKER = PAPER / "formal/check_p8_native_protocol_binding_v1.py"

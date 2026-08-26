@@ -15,17 +15,17 @@ Date: 2026-08-21
 
 ## Superseded exploratory layout
 
-`papers/build_q_qg_figures.py` and `.github/workflows/q-qg-figures.yml` are retained as development history only. Their grouped subplot layouts have **no publication authority** and must not be included in target packages.
+`papers/archive/2026-08-pre-unification/build_q_qg_figures.py` and `.github/workflows/q-qg-figures.yml` are retained as development history only. Their grouped subplot layouts have **no publication authority** and must not be included in target packages.
 
 ## V2 plot set
 
-### Q1
+### ORION-01
 - `Q1_counterexamples_and_support_ceiling_v2`
 
-### Q2
+### ORION-02
 - `Q2_declared_denominator_v2`
 
-### Q4
+### ORION-04
 - `Q4_N4A_typed_prior`
 - `Q4_N4B_scoped_reopening`
 - `Q4_N4C_targeted_verification`
@@ -33,11 +33,11 @@ Date: 2026-08-21
 - `Q4_N4E_decision_coupled`
 - `Q4_N4F3_remint_transport`
 
-### QG1
+### ORION-09
 - `QG1_R6I_support_bound_hierarchy_v2`
 - `QG1_QG16_certificate_cone_slice_v2`
 
-### QG2
+### ORION-10
 - `QG2_registered_comparison_counts_v2`
 - `QG2_exact_counterexample_repair_v2`
 

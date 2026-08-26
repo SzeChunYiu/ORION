@@ -31,7 +31,7 @@ from orion.study.p1.systems import SystemTrace
 ROOT = Path(__file__).resolve().parents[4]
 SCORED = (
     ROOT
-    / "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl"
+    / "papers/orion-11-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl"
 )
 SUITE = "fingerprint-under-test"
 

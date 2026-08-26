@@ -25,7 +25,7 @@ observed digest mismatches and 14 license exclusions. The terminal is
 ```text
 python development/p13-p14-live-git-acquisition-v1/check_live_git_acquisition_result_v1.py
 pytest -q tests/unit/study/p14/test_p13_p14_live_git_acquisition_result_v1.py
-python papers/paper-13-responsibility-carrying-state/check_p13_p14_pinned_corpus_v1.py
+python papers/orion-23-responsibility-carrying-state/check_p13_p14_pinned_corpus_v1.py
 ```
 
 ## Authority boundary

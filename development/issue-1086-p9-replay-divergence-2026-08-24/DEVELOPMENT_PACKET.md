@@ -41,7 +41,7 @@ claimed.
 ## Verification
 
 ```bash
-python papers/paper-09-structured-epistemic-learning/top_tier/replay_d1v1_2_pinned.py --require-attractor ARCHIVE_MATCH
-python papers/paper-09-structured-epistemic-learning/top_tier/check_d1v1_2_pinned_replay_v1.py
+python papers/orion-19-structured-epistemic-learning/top_tier/replay_d1v1_2_pinned.py --require-attractor ARCHIVE_MATCH
+python papers/orion-19-structured-epistemic-learning/top_tier/check_d1v1_2_pinned_replay_v1.py
 python -m pytest -q tests/unit/study/p9/test_p9_d1v1_2_pinned_replay.py
 ```

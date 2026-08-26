@@ -1,0 +1,58 @@
+{
+  "authority": "PORTFOLIO_EDITORIAL_DISPOSITION_ONLY__NO_NEW_SCIENTIFIC_AUTHORITY",
+  "bound_manuscripts": {
+    "p13": "papers/orion-23-responsibility-carrying-state/MANUSCRIPT.md (section 8.1)",
+    "p14": "papers/orion-24-orion-rse/MANUSCRIPT.md (section 9, scope-binding subsection)"
+  },
+  "broader_claims_examples": [
+    "that retaining or reopening state is the correct governance decision for real organizations",
+    "social-responsibility superiority of RCS over alternatives"
+  ],
+  "broader_claims_require": [
+    "two independent experts",
+    "tie-break/custodian"
+  ],
+  "broader_claims_status": "CANNOT_CHECK",
+  "consolidated_scope": "machine_verifiable_lifecycle_contract_safety",
+  "decision_id": "D7",
+  "disposition": "CONSOLIDATE_LIFECYCLE_CONTRACT_SAFETY",
+  "external_campaign_requirement": "30-50 pinned repositories from >=5 unrelated organizations; never ORION as external subject",
+  "external_campaign_state": "ACQUISITION_PILOT_FROZEN__EXTERNAL_CAMPAIGN_OPEN",
+  "external_campaign_protocol": "development/p13-p14-public-lifecycle-v1/P13_P14_PUBLIC_LIFECYCLE_PROTOCOL_V1.json",
+  "external_campaign_protocol_sha256": "5c92ad6bcfb08a1b5ee1cb1d59329f67af25f220ca6d6c3c3b726c64744fc3be",
+  "external_campaign_protocol_file_sha256": "49f56742c932a51829964a332f780a999483e2a21351f596c683e4abd97da88c",
+  "external_campaign_runner": "development/p13-p14-public-lifecycle-v1/run_p13_p14_public_lifecycle_v1.py",
+  "external_campaign_runner_sha256": "cc0c54bdc610e627bdda2974f2322e49a35bfd07fea239e5d2b44e30e2df18ac",
+  "external_campaign_repository_count": 30,
+  "external_campaign_organization_count": 26,
+  "external_campaign_result": "NOT_CREATED",
+  "external_campaign_issue_gate": "OPEN",
+  "objective_gold_authority": "CANNOT_CHECK_UNTIL_LIVE_GIT_ACQUISITION",
+  "repository_bootstrap_inference": "NOT_AUTHORIZED",
+  "gold_derivation_rule_artifact": "papers/orion-23-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md",
+  "gold_derivation_rule_sha256": "3656565539ea89742dd0f876347ba0b7ec918dfe605d95ab691c5323b77f8ce9",
+  "gold_objective_fact_classes": [
+    "object/hash existence",
+    "ancestry",
+    "tag/signature",
+    "test exit",
+    "timestamp order"
+  ],
+  "issue": 1086,
+  "machine_verifiable_layer_includes": [
+    "certificate validation",
+    "responsibility-scoped reuse decisions",
+    "reopen semantics",
+    "corruption rejection",
+    "registered benchmark gates"
+  ],
+  "p14_separate_75_paper": false,
+  "papers": [
+    "P13",
+    "P14"
+  ],
+  "schema": "ORION.P13P14.LifecycleConsolidationScope.v1",
+  "scientific_authority_delta": "NONE",
+  "source_disposition_artifact": "papers/ISSUE_1086_PORTFOLIO_DISPOSITION_V1.json",
+  "source_disposition_sha256": "5187b1eba4179c0d79dc8c32b8109afa22b4fcc0d1a0bdac75858ba043ea9359"
+}

@@ -13,7 +13,7 @@ SCHEMA = "ORION.P13.ActiveClaimAuthority.v2"
 ACTIVE_TERMINAL = "P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED"
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER = REPO_ROOT / "papers/paper-13-responsibility-carrying-state"
+PAPER = REPO_ROOT / "papers/orion-23-responsibility-carrying-state"
 PATHS = {
     "historical_p13a_authority": PAPER / "P13_ACTIVE_CLAIM_AUTHORITY_V1.json",
     "p13b_protocol": PAPER / "P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_PROTOCOL_V1.md",

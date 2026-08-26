@@ -2,9 +2,9 @@
 
 Status: **post-outcome evidence binding; no authority widening**
 
-This ledger binds protected executions that completed after the P6–P15 upward-claim promotion contracts were frozen. A workflow's technical success is not itself a positive scientific result. Positive, negative, null and `CANNOT_CHECK` outcomes are recorded symmetrically.
+This ledger binds protected executions that completed after the ORION-16–ORION-25 upward-claim promotion contracts were frozen. A workflow's technical success is not itself a positive scientific result. Positive, negative, null and `CANNOT_CHECK` outcomes are recorded symmetrically.
 
-## P6 — Epistemic Transition Systems
+## ORION-16 — Epistemic Transition Systems
 
 Terminal: `P6_ETS_BOUNDED_EXECUTABLE_POSITIVE`
 
@@ -29,11 +29,11 @@ Executable theory layer:
 
 Allowed claim movement: a bounded executable ETS separation exists on the frozen interface and in three finite transition-family instantiations. This is not universal superiority over actual dependency/provenance/policy systems. Broad real-system replication and stronger independent theorem/checker authority remain open.
 
-## P7 — Scientific Regime Transport
+## ORION-17 — Scientific Regime Transport
 
 Terminal: `P7_TOP_TIER_THEORY_V1_GREEN`
 
-Shared protected workflow run with P8: `32645458338`; artifact id `9494737270`; artifact ZIP SHA-256 `63c099f0b67090649975d82759c688f43a96dbb2890f61df57ab805dc2d9e40d`; deterministic byte replay GREEN.
+Shared protected workflow run with ORION-18: `32645458338`; artifact id `9494737270`; artifact ZIP SHA-256 `63c099f0b67090649975d82759c688f43a96dbb2890f61df57ab805dc2d9e40d`; deterministic byte replay GREEN.
 
 The independent bounded checker verifies:
 
@@ -44,11 +44,11 @@ The independent bounded checker verifies:
 
 Allowed claim movement: bounded T7.1–T7.3 scientific-closure/obligation-transport counterexamples are earned. The result does not complete the non-synthetic formal/version + research/agent regime-change evaluation.
 
-## P8 — Scientific Authorization Beyond Action Authorization
+## ORION-18 — Scientific Authorization Beyond Action Authorization
 
 Terminal: `P8_TOP_TIER_THEORY_V1_GREEN`
 
-The shared P7/P8 artifact above also verifies:
+The shared ORION-17/ORION-18 artifact above also verifies:
 
 - identical donor action-authorization facts can permit both actions while the scientific judgments are respectively `AUTHORIZED` and `DENIED`;
 - unknown scientific target/evidence typing yields `CANNOT_CHECK`;
@@ -58,11 +58,11 @@ The shared P7/P8 artifact above also verifies:
 
 Allowed claim movement: bounded T8.1–T8.3 separation/coercion/revocation semantics are earned. External formal, empirical and evidence-based agent-action domains with independent scientific authority remain open.
 
-## P9 — representation accessibility
+## ORION-19 — representation accessibility
 
 ### Real-data accessibility intervention — SUPPORTED, bounded
 
-Frozen study: `papers/paper-09-structured-epistemic-learning/top_tier/P9_REAL_ACCESSIBILITY_SCALING_PROTOCOL_V1.md`
+Frozen study: `papers/orion-19-structured-epistemic-learning/top_tier/P9_REAL_ACCESSIBILITY_SCALING_PROTOCOL_V1.md`
 
 Terminal: `P9_REAL_ACCESSIBILITY_SCALING_V1_SUPPORTED`
 
@@ -113,7 +113,7 @@ Immutable source JSON SHA-256 values:
 
 Recovery artifact id: `9495185874`; artifact ZIP SHA-256: `79a1c8eac67128013b36a95cd2e51e8ab59fd7efd120d09ff550518c0781b940`.
 
-Allowed claim movement: **do not claim a monotone LLM-size structure-accessibility law for this protected Qwen family.** P9's higher claim must be access-class- and system-conditional. The real-data causal accessibility result survives; the proposed universal Qwen scaling frontier does not.
+Allowed claim movement: **do not claim a monotone LLM-size structure-accessibility law for this protected Qwen family.** ORION-19's higher claim must be access-class- and system-conditional. The real-data causal accessibility result survives; the proposed universal Qwen scaling frontier does not.
 
 ### Publication integration — GREEN
 
@@ -126,7 +126,7 @@ Two repository-root conformance defects in the publication regeneration chain we
 
 Publication integration success does not upgrade the scientific claim beyond the positive/negative results above.
 
-## P10 — obstruction-certified method expansion
+## ORION-20 — obstruction-certified method expansion
 
 Terminal: `P10_OCME_FORMAL_NONVACUITY_V1_GREEN`
 
@@ -149,7 +149,7 @@ Allowed claim movement: OCME is a falsifiable formal object with exact obstructi
 
 The older native-Lean PR #618 lane remains `CANNOT_CHECK_NATIVE_STATE_COVERAGE`: the frozen eligibility contract produced zero eligible transitions out of 11,842 extracted transitions. Extraction success is not scientific permission to relax coverage rules post hoc.
 
-## P11 — state as computation
+## ORION-21 — state as computation
 
 ### Real learned compiler — SUPPORTED, bounded
 
@@ -171,7 +171,7 @@ State/compiler compression and accuracy:
 
 Allowed claim movement: a non-oracle learned compiler can reduce task-state dimension substantially while satisfying the frozen near-performance criterion on two real datasets. This is not yet a universal compiler theorem and does not by itself establish a model-capacity substitution law beyond the measured state/model-resource proxies.
 
-## P12 — resource-location metareasoning
+## ORION-22 — resource-location metareasoning
 
 ### Verifier-backed SAT study — SUPPORTED
 
@@ -198,7 +198,7 @@ The low-unit easy family is the required anti-preprocessing control: adaptive me
 
 Allowed claim movement: on this verifier-backed frozen SAT family, *where* computation is spent is causally consequential; the preregistered structural signal selects the per-case optimal resource location with zero observed oracle regret. Cross-domain generality remains unearned.
 
-## P13 — responsibility-carrying state
+## ORION-23 — responsibility-carrying state
 
 ### Real responsibility-shift study — SUPPORTED
 
@@ -226,13 +226,13 @@ The raw-vs-compact exact-digit accuracy gap is `0.7323316639`, demonstrating tha
 
 Allowed claim movement: responsibility-scoped support, not confidence or provenance alone, determines safe reuse in this real-data responsibility shift. RCS matches always-raw accuracy while avoiding half of raw-state reads in the frozen alternating-responsibility design. Broader domains and independent replications remain pending.
 
-## P14 — governance as a research-decision machine
+## ORION-24 — governance as a research-decision machine
 
 The machine-readable blinded external-evaluation contract is GREEN (`P14_EXTERNAL_GOVERNANCE_CONTRACT_V1_GREEN`). Candidate-visible packet schema and hidden decision schema are separated; the protocol requires same-evidence paired comparison, at least 60 packets over at least three domains, independent authority, and a useful-discovery anti-abstention condition.
 
 Allowed claim movement: the external study is executable and fail-closed. It does **not** supply the independent scientific authority it requires. The protected >=60-packet, >=3-domain, same-evidence paired evaluation with independent adjudication remains `CANNOT_CHECK` until external candidate outputs and judgments exist.
 
-## P15 — Scientific Execution Integrity
+## ORION-25 — Scientific Execution Integrity
 
 Terminal: `P15_SEI_BOUNDED_FAULT_V1_GREEN`
 
@@ -261,6 +261,6 @@ Allowed claim movement: the execution-integrity/replay/agreement -> scientific-v
 
 ## Portfolio consequence
 
-The strongest newly earned empirical authority is concentrated in P9 real-data accessibility, P11 learned compilation, P12 verifier-backed resource allocation and P13 responsibility-scoped reuse. P6/P7/P8/P10/P15 now have bounded executable/formal objects rather than only prospective prose. P9's Qwen scaling hypothesis is an authoritative negative and must narrow, not enlarge, the manuscript. P14's remaining gap is deliberately external rather than an internal implementation omission.
+The strongest newly earned empirical authority is concentrated in ORION-19 real-data accessibility, ORION-21 learned compilation, ORION-22 verifier-backed resource allocation and ORION-23 responsibility-scoped reuse. ORION-16/ORION-17/ORION-18/ORION-20/ORION-25 now have bounded executable/formal objects rather than only prospective prose. ORION-19's Qwen scaling hypothesis is an authoritative negative and must narrow, not enlarge, the manuscript. ORION-24's remaining gap is deliberately external rather than an internal implementation omission.
 
 No row in this ledger grants `TOP_TIER_SUBMISSION_READY` by itself. Promotion remains paper-specific and requires the corresponding frozen gate, donor-complete novelty boundary, independent-authority conditions where required, and final submission-byte binding.

@@ -10,8 +10,8 @@
 This protocol applies to **every change that produces or restructures manuscript
 content**, in *any* lane (`shadow/*`, `claude/*`, `codex/*`, takeover branches):
 
-- New manuscripts: P1–P18 and successors, the Q/QG series, the theory lanes
-  (A+B, C, D, NQ, NP and their post-rename targets), `papers/candidates/*`.
+- New manuscripts: ORION-11–P18 and successors, the Q/QG series, the theory lanes
+  (A+B, C, D, ORION-04, NP and their post-rename targets), `papers/candidates/*`.
 - **Rewrites, refactors, restructures, and polishing of existing manuscripts**
   — a section edit, abstract rewrite, related-work rebuild, figure remake,
   citation pass, or top-tier promotion pass is "writing a paper" under this rule.

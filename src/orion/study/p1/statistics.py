@@ -1,6 +1,6 @@
 """Frozen statistical procedures for the ORION-P1 hidden-formulation study.
 
-Every procedure here is fixed by `papers/paper-01-recursive-epistemic-reconstruction/
+Every procedure here is fixed by `papers/orion-11-recursive-epistemic-reconstruction/
 protocol/PROTOCOL_V1.json` (`statistics` block, `protocol_status: DESIGN_FROZEN`):
 
 * Wilson 95% score intervals for standalone binary rates;

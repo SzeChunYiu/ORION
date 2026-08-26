@@ -12,7 +12,7 @@ frontier off it. It is deliberately written while **no cell has an outcome**:
 that is what makes the definition a prediction. A grid written after a crossing
 is visible is a drawing of the crossing.
 
-Protocol: ``papers/paper-09-structured-epistemic-learning/protocol/
+Protocol: ``papers/orion-19-structured-epistemic-learning/protocol/
 P9_U_T3_FRONTIER_GRID_FREEZE_2026-08-21.md`` and its JSON twin. The runner
 recomputes the twin's parameter digest from its own constants and refuses to run
 on a mismatch.
@@ -59,11 +59,11 @@ RESULT_SCHEMA_VERSION = "orion.p9.ut3-frontier-grid-status.v1"
 OUTCOME_SCHEMA_VERSION = "P9.UT3FrontierGridOutcomes.v1"
 
 FREEZE_DOCUMENT = (
-    "papers/paper-09-structured-epistemic-learning/protocol/"
+    "papers/orion-19-structured-epistemic-learning/protocol/"
     "P9_U_T3_FRONTIER_GRID_FREEZE_2026-08-21.md"
 )
 FREEZE_TWIN = (
-    "papers/paper-09-structured-epistemic-learning/protocol/"
+    "papers/orion-19-structured-epistemic-learning/protocol/"
     "P9_U_T3_FRONTIER_GRID_FREEZE_2026-08-21.json"
 )
 
@@ -187,7 +187,7 @@ def probe_environment(repo_root: Path) -> dict[str, object]:
 
     The provider half is not left as an assertion either. It was measured once and
     recorded, dated and with its method, in
-    ``papers/paper-09-structured-epistemic-learning/evidence/
+    ``papers/orion-19-structured-epistemic-learning/evidence/
     P9_U_T3_ACQUISITION_REACHABILITY_2026-08-22.json``: every host distributing
     open-weight checkpoints is unreachable through this environment's proxy while
     the python package index is reachable. So a runtime could be installed and the
@@ -219,7 +219,7 @@ def probe_environment(repo_root: Path) -> dict[str, object]:
         "grid_executable_here": executable,
         "outbound_provider_access": (
             "not probed here; measured once and recorded in "
-            "papers/paper-09-structured-epistemic-learning/evidence/"
+            "papers/orion-19-structured-epistemic-learning/evidence/"
             "P9_U_T3_ACQUISITION_REACHABILITY_2026-08-22.json"
         ),
         "why": (

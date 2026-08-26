@@ -3,8 +3,8 @@ name: p9-qwen-618-recovery-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-09-structured-epistemic-learning/top_tier/P9_QWEN_618_RECOVERY_PROTOCOL_V1.md'
-      - 'papers/paper-09-structured-epistemic-learning/top_tier/analyze_qwen_618_recovery_v1.py'
+      - 'papers/orion-19-structured-epistemic-learning/top_tier/P9_QWEN_618_RECOVERY_PROTOCOL_V1.md'
+      - 'papers/orion-19-structured-epistemic-learning/top_tier/analyze_qwen_618_recovery_v1.py'
       - '.github/workflows/p9-qwen-618-recovery-v1.yml'
   workflow_dispatch:
 
@@ -58,12 +58,12 @@ jobs:
           PY
       - name: Run exact frozen cross-size analyzer
         run: |
-          python papers/paper-09-structured-epistemic-learning/top_tier/analyze_qwen_618_recovery_v1.py \
+          python papers/orion-19-structured-epistemic-learning/top_tier/analyze_qwen_618_recovery_v1.py \
             --inputs recovered-inputs/p9-llm-0.5B.json recovered-inputs/p9-llm-1.5B.json recovered-inputs/p9-llm-3B.json \
             --output P9_QWEN_618_RECOVERED_ANALYSIS_V1.json
       - name: Verify deterministic replay
         run: |
-          python papers/paper-09-structured-epistemic-learning/top_tier/analyze_qwen_618_recovery_v1.py \
+          python papers/orion-19-structured-epistemic-learning/top_tier/analyze_qwen_618_recovery_v1.py \
             --inputs recovered-inputs/p9-llm-0.5B.json recovered-inputs/p9-llm-1.5B.json recovered-inputs/p9-llm-3B.json \
             --output P9_QWEN_618_RECOVERED_ANALYSIS_V1_RERUN.json >/dev/null
           cmp P9_QWEN_618_RECOVERED_ANALYSIS_V1.json P9_QWEN_618_RECOVERED_ANALYSIS_V1_RERUN.json

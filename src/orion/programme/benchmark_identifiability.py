@@ -9,7 +9,7 @@ measurement of the competence and becomes a measurement of who happened to look
 at the cue.
 
 P4 is the live example, measured both ways on the 420-case mechanical-gold
-battery emitted by ``papers/paper-04-verified-scientific-discovery/host/
+battery emitted by ``papers/orion-14-verified-scientific-discovery/host/
 generate_protected_cases.py``:
 
 - Under the V1 ``INSUFFICIENT_EVIDENCE`` construction, ``len(evidence) == 0``

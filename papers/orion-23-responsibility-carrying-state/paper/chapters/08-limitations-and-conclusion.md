@@ -1,0 +1,7 @@
+# Limitations and conclusion
+
+Responsibilities are discrete and known in the controlled world; real systems may have ambiguous or compositional responsibilities. Exact sufficiency is strong; approximate support needs frozen tolerances and calibrated witnesses. The contract is only as reliable as external witness and recovery metadata. Resource costs are controlled units, not measured real latency/tokens/IO. High-risk domains may rationally choose always-raw. The paper has not yet demonstrated verifier-backed Lean repair/diagnosis or blinded scientific-workflow responsibility shifts, and certificate transport/revocation under real semantic version changes remains an external validation gate.
+
+Sufficiency is a contract over future responsibility, not an intrinsic property of compact representation. ORION-23 makes that boundary explicit, preserves a preregistered historical failure, replaces its indirect sentinel with exact equivalence-class semantics, and shows in an independent protected benchmark that responsibility-carrying state can eliminate unsafe compact reuse without paying the cost of always reopening raw evidence. Confidence and provenance remain useful signals, but neither specifies what distinctions state supports.
+
+**A compact state becomes safely reusable only when its authority is scoped to a named responsibility and its reopen conditions are explicit.**

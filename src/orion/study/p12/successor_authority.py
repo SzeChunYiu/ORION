@@ -22,7 +22,7 @@ SCHEMA = "ORION.P12.ActiveClaimAuthority.v4"
 ACTIVE_TERMINAL = "P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED"
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER = REPO_ROOT / "papers/paper-12-adaptive-state-reasoning"
+PAPER = REPO_ROOT / "papers/orion-22-adaptive-state-reasoning"
 PATHS = {
     "historical_p12a_authority": PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V1.json",
     "previous_p12b_authority": PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V2.json",

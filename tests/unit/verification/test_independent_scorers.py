@@ -58,7 +58,7 @@ def test_p4_planted_denominator_mutation_fails_h1():
 
 def test_p3_independent_mapping_on_confirmatory_gold():
     gold = ROOT / (
-        "papers/paper-03-global-knowledge-portrait/gold/adjudicated/"
+        "papers/orion-13-global-knowledge-portrait/gold/adjudicated/"
         "public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl"
     )
     cases = [json.loads(line) for line in gold.read_text().splitlines() if line.strip()]
@@ -74,12 +74,12 @@ def test_p3_independent_mapping_on_confirmatory_gold():
 
 def test_p5_independent_rescore_21_of_24():
     suite = json.loads(
-        (ROOT / "papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json").read_text()
+        (ROOT / "papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json").read_text()
     )
     rows = [
         json.loads(line)
         for line in (
-            ROOT / "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl"
+            ROOT / "papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl"
         ).read_text().splitlines()
         if line.strip()
     ]
@@ -97,7 +97,7 @@ def test_p5_independent_rescore_21_of_24():
 def test_p2_aggregate_arithmetic_and_record_count():
     summary = json.loads(
         (
-            ROOT / "papers/paper-02-open-world-scientific-discovery/evidence/offline_results/RESULTS_SUMMARY_V1.json"
+            ROOT / "papers/orion-12-open-world-scientific-discovery/evidence/offline_results/RESULTS_SUMMARY_V1.json"
         ).read_text()
     )
     scored = score_p2_aggregates(summary)
@@ -109,7 +109,7 @@ def test_p2_aggregate_arithmetic_and_record_count():
 
 
 def test_p1_h1_remains_not_supported():
-    path = ROOT / "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl"
+    path = ROOT / "papers/orion-11-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl"
     rows = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
     scored = score_p1_h1(rows)
     assert scored["orion_successes"] == 1

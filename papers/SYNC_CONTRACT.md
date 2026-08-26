@@ -81,7 +81,7 @@ Such states explain why the obligation remains unresolved. They are not task-com
 
 ## ORION-Q publication synchronization — recursive V3 epoch
 
-The closed ORION-Q programme now uses sync epoch `2026-08-22-q-series-recursive-v2`. Q1-Q4 were recursively rebuilt with the pinned `academic-paper-skills` donor and an ORION harness controller that separates manuscript quality, exact venue fit, scientific evidence blockers, claim narrowing and target transfer.
+The closed ORION-Q programme now uses sync epoch `2026-08-22-q-series-recursive-v2`. ORION-01-ORION-04 were recursively rebuilt with the pinned `academic-paper-skills` donor and an ORION harness controller that separates manuscript quality, exact venue fit, scientific evidence blockers, claim narrowing and target transfer.
 
 Canonical objects:
 
@@ -92,10 +92,10 @@ Canonical objects:
 - `packages/orion-research-harness/src/orion_research_harness/paper_refinement.py` — typed paper/referee/concern/terminal controller;
 - `src/orion/programme/q_series_sync.py` — executable semantic/evidence/readiness-boundary checker;
 - `papers/Q_SERIES_CONTENT_BINDING_V1.json` + `src/orion/programme/q_series_content_binding.py` — epoch-bound Git-blob drift guard over canonical V3 papers, V3 ledgers, review verdicts and load-bearing publication analyses;
-- `src/orion/programme/content_binding_coverage.py` — repository-wide survey that recognizes Q1-Q4's cross-paper canonical binding;
-- `packages/orion-research-harness/src/orion_research_harness/publication_contract.py` — Q3's original receipt/campaign harness contract;
-- `packages/orion-research-harness/src/orion_research_harness/frontier_benchmark.py` — Q3 frontier-item / instrument-decision / deferred-score contract;
-- `.github/workflows/q-series-publication-sync.yml` — push/PR gate that runs framework/binding, paper-refinement, Q3 frontier, Q1 proof-sanity and Q4 paired-analysis reproductions.
+- `src/orion/programme/content_binding_coverage.py` — repository-wide survey that recognizes ORION-01-ORION-04's cross-paper canonical binding;
+- `packages/orion-research-harness/src/orion_research_harness/publication_contract.py` — ORION-03's original receipt/campaign harness contract;
+- `packages/orion-research-harness/src/orion_research_harness/frontier_benchmark.py` — ORION-03 frontier-item / instrument-decision / deferred-score contract;
+- `.github/workflows/q-series-publication-sync.yml` — push/PR gate that runs framework/binding, paper-refinement, ORION-03 frontier, ORION-01 proof-sanity and ORION-04 paired-analysis reproductions.
 
 `src/orion/registry.py` carries the shared Q-series sync epoch and canonical V3 manuscript identities. A material publication-contract change must update registry, framework snapshot, final spec, content binding, affected manuscript/ledger and relevant harness/test surfaces together.
 
@@ -115,26 +115,26 @@ Internal scores are prioritization/debugging signals only. A `READY_FOR_SCOPED_T
 
 The final spec intentionally does not give all four papers the same terminal.
 
-- Q1: internally clears PRX Quantum scoped preflight and npj Quantum Information fallback for the sharp theorem.
-- Q2: scoped methodology/case-study paper is internally ready for an npj-level AI-for-science attempt with positioning risk; Nature Computational Science general-method framing remains evidence-blocked.
-- Q3: systems/benchmark contract is technically refined, but predictive/calibration impact remains evidence-blocked at one prospective item; systems checks cannot promote it.
-- Q4: exact-synthetic matched-information benchmark is internally ready for a scoped npj-level attempt with positioning risk; Nature Machine Intelligence real-agent framing remains evidence-blocked pending real transfer.
+- ORION-01: internally clears PRX Quantum scoped preflight and npj Quantum Information fallback for the sharp theorem.
+- ORION-02: scoped methodology/case-study paper is internally ready for an npj-level AI-for-science attempt with positioning risk; Nature Computational Science general-method framing remains evidence-blocked.
+- ORION-03: systems/benchmark contract is technically refined, but predictive/calibration impact remains evidence-blocked at one prospective item; systems checks cannot promote it.
+- ORION-04: exact-synthetic matched-information benchmark is internally ready for a scoped npj-level attempt with positioning risk; Nature Machine Intelligence real-agent framing remains evidence-blocked pending real transfer.
 
 Changing one of those blockers requires the corresponding new evidence and a new sync epoch/spec, not an editorial rewrite.
 
 ### Q-series content-binding rule
 Absorbing a nearest mechanism may shrink or eliminate the ORION claim; that is a successful research outcome. When nearest work subsumes the claim, the result should be represented as a verified negative/donor-subsumption outcome and assimilated rather than ignored.
 
-P6-P8 use per-directory `SHA256SUMS`/manifest bindings; Q1-Q4 use a cross-paper binding over the canonical publication package. Historical drafts remain provenance and may stay outside the canonical binding. Canonical V3 manuscripts, V3 ledgers, nearest-work/figure contracts, review verdicts and secondary publication analyses may not drift silently.
+ORION-16-ORION-18 use per-directory `SHA256SUMS`/manifest bindings; ORION-01-ORION-04 use a cross-paper binding over the canonical publication package. Historical drafts remain provenance and may stay outside the canonical binding. Canonical V3 manuscripts, V3 ledgers, nearest-work/figure contracts, review verdicts and secondary publication analyses may not drift silently.
 
 ### Owner-skipped external expert review
 
-The owner elected not to require a separate external quantum-expert pre-review for Q1. The final spec records this as `SKIPPED_BY_OWNER`. The sync checker rejects any attempt to encode that skip as a scientific pass. Journal peer review remains external scrutiny if the paper is submitted.
+The owner elected not to require a separate external quantum-expert pre-review for ORION-01. The final spec records this as `SKIPPED_BY_OWNER`. The sync checker rejects any attempt to encode that skip as a scientific pass. Journal peer review remains external scrutiny if the paper is submitted.
 
 ### Successor-study rule
 A green repository/CI run may support the first level only. A paper cannot be marked externally validated or publication-ready while its external gate is unresolved or negative relative to the required promotion conjunction. `FlagshipEvidenceState.publication_ready` requires both levels to pass for all registered flagship papers.
 
-Q2's cross-domain comparison, Q3's multi-frontier series and Q4's real-domain matched-information study remain registered successor research. They are required only for claims that exceed the current scoped terminals. They must never be described as executed until prospective evidence actually exists.
+ORION-02's cross-domain comparison, ORION-03's multi-frontier series and ORION-04's real-domain matched-information study remain registered successor research. They are required only for claims that exceed the current scoped terminals. They must never be described as executed until prospective evidence actually exists.
 
 ## Nearest-work rule
 

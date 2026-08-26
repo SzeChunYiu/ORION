@@ -4,7 +4,7 @@ import importlib.util
 from pathlib import Path
 
 SCRIPT = Path(
-    "papers/paper-02-open-world-scientific-discovery/scripts/run_metasyn_keyless.py"
+    "papers/orion-12-open-world-scientific-discovery/scripts/run_metasyn_keyless.py"
 )
 
 

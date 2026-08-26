@@ -7,8 +7,8 @@ from hashlib import sha256
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-14-orion-rse"
-P13_PAPER = ROOT / "papers/paper-13-responsibility-carrying-state"
+PAPER = ROOT / "papers/orion-24-orion-rse"
+P13_PAPER = ROOT / "papers/orion-23-responsibility-carrying-state"
 SCOPE_BINDING = P13_PAPER / "P13_P14_CONSOLIDATION_SCOPE_BINDING_V1.json"
 GOLD_RULE = P13_PAPER / "P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md"
 

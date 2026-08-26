@@ -1,0 +1,895 @@
+{
+  "arms": {
+    "BASE": {
+      "SERIALIZED_CANONICAL": {
+        "accuracy": 0.75,
+        "arm_id": "SERIALIZED_CANONICAL",
+        "config_id": "logistic-C1",
+        "constant": false,
+        "correct": 96,
+        "dataset": "BASE",
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical path=value token bag as TYPED_SERIALIZED_BAG with every string leaf value replaced by the corpus-wide occurrence-footprint class symbol of its atom; a quotient by the renaming group, with no comparison operator added",
+        "trivial_floor": 0.5
+      },
+      "SERIALIZED_INDEXED": {
+        "accuracy": 0.75,
+        "arm_id": "SERIALIZED_INDEXED",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 96,
+        "dataset": "BASE",
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical path=value token bag with every string value replaced by its index in that instance's sorted atom alphabet; reversible, adds no comparison operator",
+        "trivial_floor": 0.5
+      },
+      "TYPED_RELATIONAL": {
+        "accuracy": 1.0,
+        "arm_id": "TYPED_RELATIONAL",
+        "config_id": "logistic-C0.1",
+        "constant": false,
+        "correct": 128,
+        "dataset": "BASE",
+        "departure_errors": 0,
+        "departures": 64,
+        "dev_accuracy": 1.0,
+        "distinct_predictions": 3,
+        "eval_cases": 128,
+        "informedness": 1.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "per-coordinate value equality and unknown flag across the two sides, plus each side's coordinate cardinality",
+        "trivial_floor": 0.5
+      },
+      "TYPED_SERIALIZED_BAG": {
+        "accuracy": 0.5,
+        "arm_id": "TYPED_SERIALIZED_BAG",
+        "config_id": "logistic-C1",
+        "constant": true,
+        "correct": 64,
+        "dataset": "BASE",
+        "departure_errors": 0,
+        "departures": 0,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 1,
+        "eval_cases": 128,
+        "informedness": 0.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            128
+          ]
+        ],
+        "prior_of_emitted": 0.5,
+        "resolution": 0.0078125,
+        "response_definition": "a bag of canonical path=value tokens over the same typed payload, with held-out-domain values verbatim",
+        "trivial_floor": 0.5
+      }
+    },
+    "BIJECTION_1": {
+      "SERIALIZED_CANONICAL": {
+        "accuracy": 0.75,
+        "arm_id": "SERIALIZED_CANONICAL",
+        "config_id": "logistic-C1",
+        "constant": false,
+        "correct": 96,
+        "dataset": "BIJECTION_1",
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical path=value token bag as TYPED_SERIALIZED_BAG with every string leaf value replaced by the corpus-wide occurrence-footprint class symbol of its atom; a quotient by the renaming group, with no comparison operator added",
+        "trivial_floor": 0.5
+      }
+    },
+    "BIJECTION_2": {
+      "SERIALIZED_CANONICAL": {
+        "accuracy": 0.75,
+        "arm_id": "SERIALIZED_CANONICAL",
+        "config_id": "logistic-C1",
+        "constant": false,
+        "correct": 96,
+        "dataset": "BIJECTION_2",
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical path=value token bag as TYPED_SERIALIZED_BAG with every string leaf value replaced by the corpus-wide occurrence-footprint class symbol of its atom; a quotient by the renaming group, with no comparison operator added",
+        "trivial_floor": 0.5
+      }
+    },
+    "BIJECTION_3": {
+      "SERIALIZED_CANONICAL": {
+        "accuracy": 0.75,
+        "arm_id": "SERIALIZED_CANONICAL",
+        "config_id": "logistic-C1",
+        "constant": false,
+        "correct": 96,
+        "dataset": "BIJECTION_3",
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical path=value token bag as TYPED_SERIALIZED_BAG with every string leaf value replaced by the corpus-wide occurrence-footprint class symbol of its atom; a quotient by the renaming group, with no comparison operator added",
+        "trivial_floor": 0.5
+      }
+    },
+    "SEMANTIC_ORBIT": {
+      "SERIALIZED_CANONICAL": {
+        "accuracy": 0.75,
+        "arm_id": "SERIALIZED_CANONICAL",
+        "config_id": "logistic-C1",
+        "constant": false,
+        "correct": 96,
+        "dataset": "ORBIT_FROZEN",
+        "departure_errors": 0,
+        "departures": 32,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 2,
+        "eval_cases": 128,
+        "informedness": 0.5,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            96
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prior_of_emitted": null,
+        "resolution": 0.0078125,
+        "response_definition": "the same canonical path=value token bag as TYPED_SERIALIZED_BAG with every string leaf value replaced by the corpus-wide occurrence-footprint class symbol of its atom; a quotient by the renaming group, with no comparison operator added",
+        "trivial_floor": 0.5
+      },
+      "TYPED_SERIALIZED_BAG": {
+        "accuracy": 0.5,
+        "arm_id": "TYPED_SERIALIZED_BAG",
+        "config_id": "logistic-C1",
+        "constant": true,
+        "correct": 64,
+        "dataset": "SEMANTIC_ORBIT",
+        "departure_errors": 0,
+        "departures": 0,
+        "dev_accuracy": 0.9583333333333334,
+        "distinct_predictions": 1,
+        "eval_cases": 128,
+        "informedness": 0.0,
+        "label_counts": [
+          [
+            "ALIGNED",
+            32
+          ],
+          [
+            "OBSTRUCTION",
+            64
+          ],
+          [
+            "UNRESOLVED",
+            32
+          ]
+        ],
+        "prediction_counts": [
+          [
+            "OBSTRUCTION",
+            128
+          ]
+        ],
+        "prior_of_emitted": 0.5,
+        "resolution": 0.0078125,
+        "response_definition": "a bag of canonical path=value tokens over the same typed payload, with held-out-domain values verbatim",
+        "trivial_floor": 0.5
+      }
+    }
+  },
+  "attacked_result": {
+    "artifact": "research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json",
+    "dataset_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+    "frozen_fp2_opportunities": 128,
+    "frozen_fp2_violations_on_serialized_bag": 32
+  },
+  "bijection_census": {
+    "BIJECTION_1": {
+      "atoms": 220,
+      "injective": true,
+      "salt": "p9-nr05-bijection-2026-08-23|1"
+    },
+    "BIJECTION_2": {
+      "atoms": 220,
+      "injective": true,
+      "salt": "p9-nr05-bijection-2026-08-23|2"
+    },
+    "BIJECTION_3": {
+      "atoms": 220,
+      "injective": true,
+      "salt": "p9-nr05-bijection-2026-08-23|3"
+    },
+    "ORBIT_FROZEN": {
+      "atoms": 220,
+      "injective": true,
+      "salt": "p9-t4-orbit-2026-08-21"
+    }
+  },
+  "claim_scope": "BOUNDED_D1_ONLY. Whatever this study returns is a statement about the D1 v1.2 classical-learner benchmark on its 128-case held-out-domain protected split and about nothing else. It licenses no statement about any language model, any scale, any second model family, or the successor experiment of issue #618.",
+  "components": [
+    {
+      "attack_succeeded": true,
+      "component_id": "C-1_QUOTIENT_INVARIANCE",
+      "denominator": "2048 opportunities (corpus instances (512 per bijection) whose raw serialized stream changed under a registered bijection, pooled over the four registered bijections; violations are instances of those whose canonicalized stream changed)",
+      "detail": "SERIALIZED_CANONICAL: 257 violations in 2048 opportunities is rate 0.12548828125, above 0.0",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "SERIALIZED_CANONICAL: 257 violations in 2048 opportunities is rate 0.12548828125, above 0.0",
+          "exercises": [
+            {
+              "arm_id": "SERIALIZED_CANONICAL",
+              "exercised": true,
+              "guard_id": "C-1_QUOTIENT_INVARIANCE",
+              "opportunities": 2048,
+              "opportunity_definition": "corpus instances (512 per bijection) whose raw serialized stream changed under a registered bijection, pooled over the four registered bijections; violations are instances of those whose canonicalized stream changed",
+              "resolution": 0.00048828125,
+              "violation_rate": 0.12548828125,
+              "violations": 257
+            }
+          ],
+          "guard_id": "C-1_QUOTIENT_INVARIANCE",
+          "outcome": "FAIL",
+          "reason": "VIOLATED"
+        },
+        "per_bijection": [
+          {
+            "bijection": "ORBIT_FROZEN",
+            "canonical_stream_changed_among_those": 53,
+            "canonical_stream_changed_outside_opportunities": 0,
+            "instances_compared": 512,
+            "raw_stream_changed": 512,
+            "refit_consequence": {
+              "accuracy_identical": true,
+              "config_id_identical": true,
+              "dev_features_identical": true,
+              "protected_predictions_identical": true,
+              "test_features_identical": true,
+              "train_features_identical": true
+            }
+          },
+          {
+            "bijection": "BIJECTION_1",
+            "canonical_stream_changed_among_those": 61,
+            "canonical_stream_changed_outside_opportunities": 0,
+            "instances_compared": 512,
+            "raw_stream_changed": 512,
+            "refit_consequence": {
+              "accuracy_identical": true,
+              "config_id_identical": true,
+              "dev_features_identical": true,
+              "protected_predictions_identical": true,
+              "test_features_identical": true,
+              "train_features_identical": true
+            }
+          },
+          {
+            "bijection": "BIJECTION_2",
+            "canonical_stream_changed_among_those": 77,
+            "canonical_stream_changed_outside_opportunities": 0,
+            "instances_compared": 512,
+            "raw_stream_changed": 512,
+            "refit_consequence": {
+              "accuracy_identical": true,
+              "config_id_identical": true,
+              "dev_features_identical": true,
+              "protected_predictions_identical": true,
+              "test_features_identical": true,
+              "train_features_identical": true
+            }
+          },
+          {
+            "bijection": "BIJECTION_3",
+            "canonical_stream_changed_among_those": 66,
+            "canonical_stream_changed_outside_opportunities": 0,
+            "instances_compared": 512,
+            "raw_stream_changed": 512,
+            "refit_consequence": {
+              "accuracy_identical": true,
+              "config_id_identical": true,
+              "dev_features_identical": true,
+              "protected_predictions_identical": true,
+              "test_features_identical": true,
+              "train_features_identical": true
+            }
+          }
+        ],
+        "pooled_opportunities": 2048,
+        "pooled_violations": 257,
+        "stray_canonical_changes": 0
+      },
+      "outcome": "FAIL",
+      "statement": "SERIALIZED_CANONICAL's canonicalized corpus moves under a registered value-alphabet bijection, so the hardening does not factor through the renaming group"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "C-2i_FROZEN_FP2_ON_SERIALIZED_BAG",
+      "denominator": "128 opportunities (every protected case, because the symbol-remint semantic orbit transform changed the arm's fitted input and the model itself therefore differs)",
+      "detail": "TYPED_SERIALIZED_BAG: 0 violations in 128 opportunities (every protected case, because the symbol-remint semantic orbit transform changed the arm's fitted input and the model itself therefore differs)",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "TYPED_SERIALIZED_BAG: 0 violations in 128 opportunities (every protected case, because the symbol-remint semantic orbit transform changed the arm's fitted input and the model itself therefore differs)",
+          "exercises": [
+            {
+              "arm_id": "TYPED_SERIALIZED_BAG",
+              "exercised": true,
+              "guard_id": "C-2i_FROZEN_FP2_ON_SERIALIZED_BAG",
+              "opportunities": 128,
+              "opportunity_definition": "every protected case, because the symbol-remint semantic orbit transform changed the arm's fitted input and the model itself therefore differs",
+              "resolution": 0.0078125,
+              "violation_rate": 0.0,
+              "violations": 0
+            }
+          ],
+          "guard_id": "C-2i_FROZEN_FP2_ON_SERIALIZED_BAG",
+          "outcome": "PASS",
+          "reason": "HELD_UNDER_EXERCISE"
+        },
+        "base_accuracy": 0.5,
+        "dev_features_changed": true,
+        "protected_feature_dicts_changed": 128,
+        "protected_predictions_changed": 0,
+        "train_features_changed": true,
+        "transformed_accuracy": 0.5
+      },
+      "outcome": "PASS",
+      "statement": "TYPED_SERIALIZED_BAG's protected predictions move under the meaning-preserving symbol-remint semantic orbit rewrite, so its score is partly a property of the format"
+    },
+    {
+      "attack_succeeded": true,
+      "component_id": "C-2ii_C1_GUARD_ON_SERIALIZED_INDEXED",
+      "denominator": "512 opportunities (corpus instances whose raw serialized stream changed under the frozen orbit; violations are instances of those whose per-instance sorted-order indexed stream changed)",
+      "detail": "SERIALIZED_INDEXED: 512 violations in 512 opportunities is rate 1.0, above 0.0",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "SERIALIZED_INDEXED: 512 violations in 512 opportunities is rate 1.0, above 0.0",
+          "exercises": [
+            {
+              "arm_id": "SERIALIZED_INDEXED",
+              "exercised": true,
+              "guard_id": "C-2ii_C1_GUARD_ON_SERIALIZED_INDEXED",
+              "opportunities": 512,
+              "opportunity_definition": "corpus instances whose raw serialized stream changed under the frozen orbit; violations are instances of those whose per-instance sorted-order indexed stream changed",
+              "resolution": 0.001953125,
+              "violation_rate": 1.0,
+              "violations": 512
+            }
+          ],
+          "guard_id": "C-2ii_C1_GUARD_ON_SERIALIZED_INDEXED",
+          "outcome": "FAIL",
+          "reason": "VIOLATED"
+        },
+        "opportunities": 512,
+        "violations": 512
+      },
+      "outcome": "FAIL",
+      "statement": "the C-1 guard, applied to the indexed arm's per-instance sorted-order canonicalization, flags it under the frozen orbit"
+    },
+    {
+      "attack_succeeded": true,
+      "component_id": "C-3_MARGIN_SURVIVAL",
+      "denominator": "32 departures over 128 protected cases",
+      "detail": "TYPED_SERIALIZED_BAG gap 0.5 -> SERIALIZED_CANONICAL gap 0.25 (0.5 of the base gap is 0.25); canonicalization closes at least half the gap; the serialized margin was format",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "base_gap": 0.5,
+        "canonical_accuracy": 0.75,
+        "canonical_departures": 32,
+        "canonical_distinct_predictions": 2,
+        "canonical_gap": 0.25,
+        "canonical_informedness": 0.5,
+        "contrast_margin": {
+          "assessment": {
+            "detail": "SERIALIZED_CANONICAL: 0 violations in 32 opportunities (protected cases on which SERIALIZED_CANONICAL answered something other than its own most frequent answer, so its score is a response to the case rather than a tally of the split's label prior)",
+            "exercises": [
+              {
+                "arm_id": "SERIALIZED_CANONICAL",
+                "exercised": true,
+                "guard_id": "typed_minus_same_information_serialized_canonical",
+                "opportunities": 32,
+                "opportunity_definition": "protected cases on which SERIALIZED_CANONICAL answered something other than its own most frequent answer, so its score is a response to the case rather than a tally of the split's label prior",
+                "resolution": 0.03125,
+                "violation_rate": 0.0,
+                "violations": 0
+              }
+            ],
+            "guard_id": "typed_minus_same_information_serialized_canonical",
+            "outcome": "PASS",
+            "reason": "HELD_UNDER_EXERCISE"
+          },
+          "comparator": {
+            "accuracy": 0.75,
+            "arm_id": "SERIALIZED_CANONICAL",
+            "constant": false,
+            "correct": 96,
+            "departure_errors": 0,
+            "departures": 32,
+            "distinct_predictions": 2,
+            "eval_cases": 128,
+            "informedness": 0.5,
+            "label_counts": [
+              [
+                "ALIGNED",
+                32
+              ],
+              [
+                "OBSTRUCTION",
+                64
+              ],
+              [
+                "UNRESOLVED",
+                32
+              ]
+            ],
+            "prediction_counts": [
+              [
+                "OBSTRUCTION",
+                96
+              ],
+              [
+                "UNRESOLVED",
+                32
+              ]
+            ],
+            "prior_of_emitted": null,
+            "resolution": 0.0078125,
+            "response_definition": "the same canonical path=value token bag as TYPED_SERIALIZED_BAG with every string leaf value replaced by the corpus-wide occurrence-footprint class symbol of its atom; a quotient by the renaming group, with no comparison operator added",
+            "trivial_floor": 0.5
+          },
+          "detail": "typed_minus_same_information_serialized_canonical: SERIALIZED_CANONICAL departed from its most frequent answer on 32/128 protected cases, and TYPED_RELATIONAL scores 1.0 against a trivial floor of 0.5",
+          "earned_margin": 0.25,
+          "informedness_margin": 0.5,
+          "label": "typed_minus_same_information_serialized_canonical",
+          "outcome": "PASS",
+          "prior_supplied": 0.0,
+          "published_margin": 0.25,
+          "reason": "COMPARATOR_RESPONDED",
+          "treated": {
+            "accuracy": 1.0,
+            "arm_id": "TYPED_RELATIONAL",
+            "constant": false,
+            "correct": 128,
+            "departure_errors": 0,
+            "departures": 64,
+            "distinct_predictions": 3,
+            "eval_cases": 128,
+            "informedness": 1.0,
+            "label_counts": [
+              [
+                "ALIGNED",
+                32
+              ],
+              [
+                "OBSTRUCTION",
+                64
+              ],
+              [
+                "UNRESOLVED",
+                32
+              ]
+            ],
+            "prediction_counts": [
+              [
+                "ALIGNED",
+                32
+              ],
+              [
+                "OBSTRUCTION",
+                64
+              ],
+              [
+                "UNRESOLVED",
+                32
+              ]
+            ],
+            "prior_of_emitted": null,
+            "resolution": 0.0078125,
+            "response_definition": "per-coordinate value equality and unknown flag across the two sides, plus each side's coordinate cardinality",
+            "trivial_floor": 0.5
+          }
+        },
+        "min_base_gap": 0.03125,
+        "serialized_accuracy": 0.5,
+        "threshold_gap": 0.25,
+        "typed_accuracy": 1.0
+      },
+      "outcome": "FAIL",
+      "statement": "the typed-minus-TYPED_SERIALIZED_BAG margin survives replacing the serialized arm by SERIALIZED_CANONICAL: the canonicalized arm leaves more than half of the base gap unexplained"
+    },
+    {
+      "attack_succeeded": false,
+      "component_id": "C-4_FROZEN_FP2_ON_SERIALIZED_CANONICAL",
+      "denominator": "0 opportunities (protected cases whose input to SERIALIZED_CANONICAL changed under the symbol-remint semantic orbit transform)",
+      "detail": "SERIALIZED_CANONICAL had 0 opportunities to violate C-4_FROZEN_FP2_ON_SERIALIZED_CANONICAL (protected cases whose input to SERIALIZED_CANONICAL changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "hypothesis": "H_FMT",
+      "numbers": {
+        "assessment": {
+          "detail": "SERIALIZED_CANONICAL had 0 opportunities to violate C-4_FROZEN_FP2_ON_SERIALIZED_CANONICAL (protected cases whose input to SERIALIZED_CANONICAL changed under the symbol-remint semantic orbit transform); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+          "exercises": [
+            {
+              "arm_id": "SERIALIZED_CANONICAL",
+              "exercised": false,
+              "guard_id": "C-4_FROZEN_FP2_ON_SERIALIZED_CANONICAL",
+              "opportunities": 0,
+              "opportunity_definition": "protected cases whose input to SERIALIZED_CANONICAL changed under the symbol-remint semantic orbit transform",
+              "resolution": null,
+              "violation_rate": null,
+              "violations": 0
+            }
+          ],
+          "guard_id": "C-4_FROZEN_FP2_ON_SERIALIZED_CANONICAL",
+          "outcome": "CANNOT_CHECK",
+          "reason": "NEVER_EXERCISED"
+        },
+        "base_accuracy": 0.75,
+        "dev_features_changed": false,
+        "protected_feature_dicts_changed": 0,
+        "protected_predictions_changed": 0,
+        "train_features_changed": false,
+        "transformed_accuracy": 0.75
+      },
+      "outcome": "CANNOT_CHECK",
+      "statement": "SERIALIZED_CANONICAL's protected predictions move under the meaning-preserving symbol-remint semantic orbit rewrite, so its score is partly a property of the format"
+    }
+  ],
+  "date": "2026-08-23",
+  "detail": "a positive control did not fire: the instrument cannot distinguish a hardened arm from a broken one, so this run certifies nothing",
+  "freeze_document": "papers/orion-19-structured-epistemic-learning/protocol/P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.md",
+  "freeze_twin": "papers/orion-19-structured-epistemic-learning/protocol/P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.json",
+  "gate_served": "P9-U-T4",
+  "lever": "footprint-class quotient canonicalization: replace every string leaf value by the canonical symbol of its occurrence-footprint class, computed corpus-wide; the hardened feature map factors through the quotient of the value alphabet by its renaming group",
+  "negative_revived": "T4_ATTACK_SUCCEEDED: the frozen format-prior component FP-2 landed on TYPED_SERIALIZED_BAG (32 of 128 protected answers moved under one bijective renaming of the value alphabet), narrowing the typed-minus-serialized margin",
+  "outcome": "CANNOT_CHECK",
+  "parameters_sha256": "sha256:6ae471199b3d0524231183ccf8960e59116d9e9a231e041d202de5cfda469504",
+  "preconditions": {
+    "V2-PC-1_DATASET_FIDELITY": {
+      "detail": "the regenerated dataset must be the one P9 shipped, not a local lookalike",
+      "expected": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+      "observed": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+      "passed": true
+    },
+    "V2-PC-2_GOLD_PRESERVATION": {
+      "detail": "a bijection that moves a label is a different benchmark, not a control",
+      "passed": true,
+      "rows": [
+        {
+          "instances_compared": 512,
+          "labels_changed": 0,
+          "variant": "ORBIT_FROZEN"
+        },
+        {
+          "instances_compared": 512,
+          "labels_changed": 0,
+          "variant": "BIJECTION_1"
+        },
+        {
+          "instances_compared": 512,
+          "labels_changed": 0,
+          "variant": "BIJECTION_2"
+        },
+        {
+          "instances_compared": 512,
+          "labels_changed": 0,
+          "variant": "BIJECTION_3"
+        }
+      ]
+    },
+    "V2-PC-3_BIJECTIVITY_OF_EVERY_REMINT": {
+      "detail": "a non-injective remint destroys information and is not an orbit bijection",
+      "passed": true,
+      "rows": [
+        {
+          "atoms": 220,
+          "bijection": "ORBIT_FROZEN",
+          "distinct_images": 220
+        },
+        {
+          "atoms": 220,
+          "bijection": "BIJECTION_1",
+          "distinct_images": 220
+        },
+        {
+          "atoms": 220,
+          "bijection": "BIJECTION_2",
+          "distinct_images": 220
+        },
+        {
+          "atoms": 220,
+          "bijection": "BIJECTION_3",
+          "distinct_images": 220
+        }
+      ]
+    },
+    "V2-PC-4_QUOTIENT_CO_PRESENCE": {
+      "class_sizes": [
+        2,
+        2,
+        2,
+        3
+      ],
+      "detail": "the quotient merges only atoms whose bag keys are provably always co-present; any partial presence would make the merge lossy for some row",
+      "member_footprint_mismatches": 0,
+      "multi_member_classes": 4,
+      "partial_presence_instances": 0,
+      "passed": true
+    },
+    "V2-PC-5_ROUND_TRIP_IN_QUOTIENT_FORM": {
+      "detail": "the disclosed information boundary: singleton classes restore byte-exactly, multi-member classes restore to the exact class set, structure tokens are untouched",
+      "instances_checked": 512,
+      "multi_member_class_tokens_restored_to_exact_class": 2944,
+      "passed": true,
+      "restore_failures": 0,
+      "singleton_class_tokens_restored_byte_exact": 6523,
+      "structure_tokens_untouched": 9376,
+      "tokens_checked": 18843
+    },
+    "V2-PC-6_LABEL_VARIETY": {
+      "detail": "a split whose gold never varies cannot separate any two arms",
+      "distinct_gold_labels": [
+        "ALIGNED",
+        "OBSTRUCTION",
+        "UNRESOLVED"
+      ],
+      "passed": true,
+      "protected_cases": 128
+    }
+  },
+  "protected_negative_untouched": "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED is a different claim under a different receipt's authority boundary; this study does not touch, re-run or repair it and uses no language model",
+  "quotient": {
+    "atoms": 222,
+    "classes": 217,
+    "multi_member_classes": [
+      {
+        "atoms": [
+          "non_monotone_response",
+          "target_not_bracketed"
+        ],
+        "symbol": "#46a218f4491f"
+      },
+      {
+        "atoms": [
+          "bracketed_target",
+          "monotone_response",
+          "ordered_domain"
+        ],
+        "symbol": "#819ff774a97c"
+      },
+      {
+        "atoms": [
+          "footprint_unknown",
+          "snapshot_missing"
+        ],
+        "symbol": "#bff92e9c0765"
+      },
+      {
+        "atoms": [
+          "changed_footprint_known",
+          "prior_good_state_available"
+        ],
+        "symbol": "#2fb867383ba2"
+      }
+    ],
+    "protected_atoms": 93,
+    "protected_class_sizes_all_singleton": false
+  },
+  "record": "P9_NR05_REPRESENTATION_HARDENING_RESULT",
+  "revival_lane": "NR-05",
+  "root_cause_stage": "representation stage: the serialized arm's feature map emits value-identity keys, and the frozen learner stack makes the fitted function a function of vocabulary order (alphabetical DictVectorizer columns, tree/RF tie-breaking, OOV key dropping on a held-out domain sharing zero value atoms with train)",
+  "schema_version": "orion.p9.nr05-representation-hardening-result.v1",
+  "terminal_disposition": "P9-U-T4 stays BLOCKED whatever this returns. The gate guards the successor direct-LLM result, which has no outcome. This work can only subtract: if an attack succeeds, the D1 representation reading is narrowed or withdrawn; if none succeeds, the sentence earned is only that on D1 these two alternatives do not account for the margin against the one comparator that answered.",
+  "verdict": "T4V2_GUARD_INVALID",
+  "verdict_inputs": {
+    "freeze_twin": "papers/orion-19-structured-epistemic-learning/protocol/P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.json",
+    "parameters_sha256": "sha256:6ae471199b3d0524231183ccf8960e59116d9e9a231e041d202de5cfda469504"
+  }
+}

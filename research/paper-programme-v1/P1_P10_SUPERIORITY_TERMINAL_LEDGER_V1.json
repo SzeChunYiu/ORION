@@ -109,7 +109,7 @@
           "terminal": "P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION__FROZEN_DETERMINISTIC_HOST_ONLY"
         },
         {
-          "artifact_ref": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
+          "artifact_ref": "papers/orion-14-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
           "grade": "MECHANISM_NON_VACUITY",
           "note": "P1's confirmatory panel checked by the same saturation sweep that found two of P4's three hypotheses resting on metrics no system varies on, and it comes out clean: all three of its registered metrics discriminate across fourteen arms. Protected root-task success ranges from 0.0 to 1.0 and the unnecessary-reframe rate on the 2,402 negative controls also ranges from 0.0 to 1.0, several ablations reaching 0.985 and above. So P1's zero-width pairwise interval -- its own arm and the active-VOI parent both at 1.0 protected success on the controls -- is two arms tying on a metric that moves, not a metric that cannot move. Recorded because a sweep that visits only the panels it already suspects reports the suspicion: this is the case that had to come out clean for the P3 and P4 findings to mean anything. The same sweep also reports two P1 arm pairs that report identical values on every shared metric, and the two readings are different. cost_greedy_repair and immediate_outcome_flip_repair are two of nine runnable arms coinciding, so the arm count overstates the comparator breadth by one. orion_with_unlimited_intervention_budget coinciding with the full arm is not that: removing the intervention budget is one of P1's five registered ablations, and its changing nothing is the result rather than a defect in it -- consistent with the paper's own support vector, which caps mean cost at the strongest parent's plus one unit and finds 1.83 against 4.0. The check reports the fact and does not decide which reading applies. Discharges nothing and refutes nothing.",
           "terminal": "P1_CONFIRMATORY_PANEL_DISCRIMINATES_ON_EVERY_REGISTERED_METRIC"
@@ -123,7 +123,7 @@
           "gate_id": "P2-U-T1",
           "refs": [
             "#650",
-            "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
+            "papers/orion-12-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "SEARCH_OR_EVIDENCE",
           "statement": "The blocker this replaces named PR #733 as in-flight upstream work. #733 was closed unmerged on 2026-08-21, superseded by #752, which also closed unmerged after running. So nothing is in flight, and two completed campaigns now exist whose results the ledger had not recorded. V2 never scored: its repeated-pid crosswalk probe returned HTTP 200 with an empty results array, below its prospectively frozen minimum of one, so acquisition never started. V3 changed the crosswalk encoding, did run all 400 rows, and terminated P2_WIDE_EXTERNAL_V3_CANNOT_CHECK on provider validity: 0.716 against a frozen 0.90. Underneath that correct terminal is a harder finding, measured rather than asserted (P2_COMPARISON_RESOLUTION_2026-08-22). Both completed campaigns ran at the measurement floor. The frozen rule requires an average-IoU delta of 0.03 before superiority is supported, and every arm in both campaigns scores about 0.004, so the entire measured performance of the best arm is smaller than the difference the campaign exists to detect. Deleting a competing arm outright would not reach the threshold. Everything else follows: all 399 paired questions tie, the bootstrap interval is [0.0, 0.0] which reads as the strongest possible equivalence evidence and is instead the signature of an instrument with no resolution, and in V3 three distinct candidate files produced one byte-identical evaluator output. In V1 the three arms shared one candidate digest outright, so that campaign scored a single system against itself three times.",
@@ -134,7 +134,7 @@
           "gate_id": "P2-U-T2",
           "refs": [
             "#650",
-            "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
+            "papers/orion-12-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
           "statement": "This is the terminal the resolution finding matters most to, because a non-inferiority guard is exactly what a degenerate interval would wrongly discharge. Both completed Wide campaigns report a paired interval of [0.0, 0.0] over 399 matched questions with 399 ties, no wins and no losses. Read at face value that is conclusive equivalence. It is instead a zero-width interval over identical differences, which a bootstrap produces at any sample size, and it arises because every arm sits at the measurement floor -- about 0.004 average IoU against a frozen required delta of 0.03. Route-level and task-level closure receipts over a naturalistic arena are still missing, which was the original statement and remains true; what is added is that the instrument that would carry them currently has no resolution, so collecting receipts through it would produce another interval that could not have come out any other way. Three reporting defects travel with both artifacts: they publish the unseeded max_iou_at_k family that the paper's own score_wide_comparison.py excludes by rule, that family decreases in k which a maximum over the top k cannot do, and every runtime total is exactly zero, which is untransported measurement rather than measured cost.",
@@ -182,13 +182,13 @@
           "terminal": "P2_WIDER_ROUTE_AUTHORITY_CLAIM_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_ACQUISITION_CONTRACTS__A3_CANNOT_CHECK"
         },
         {
-          "artifact_ref": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json",
+          "artifact_ref": "papers/orion-12-open-world-scientific-discovery/evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json",
           "grade": "MECHANISM_NON_VACUITY",
           "note": "A candidate successor mechanic (D4_DISCRIMINATIVE_TERM_GATING) mined from the lexical-echo mechanism named in DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json and validated against a prospective freeze on an authored reproduction of that mechanism. It is a predecessor and not evidence for P2-U-T5: the arena is self-authored, so evaluator custody is internal, and PROSPECTIVE_PROTECTED is the only grade that kind of gate admits. It licenses no statement about AutoResearchBench Deep.",
           "terminal": "VALIDATED_ON_CONSTRUCTED_REPRODUCTION__CONSTRUCTED_REPRODUCTION_ONLY"
         },
         {
-          "artifact_ref": "papers/paper-02-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json",
+          "artifact_ref": "papers/orion-12-open-world-scientific-discovery/evidence/audit/P2_COMPARISON_RESOLUTION_2026-08-22.json",
           "grade": "MECHANISM_NON_VACUITY",
           "note": "Asks of each published Wide campaign the question its own result does not: could this have reported anything else. Both answer no. The root check takes its threshold from the campaign's frozen rule rather than inventing one -- every arm's whole average IoU is below the delta the rule requires before superiority is supported -- and the three symptom checks cover identical candidate digests across arms, identical evaluator output across distinct candidates, and an all-ties paired split. Shown to be capable of passing: a control campaign with distinct arms, a mixed paired split, a monotone sampled family and non-zero runtime totals is reported as having resolution, and each check is exercised against a case it must not fire on. Real work and it discharges nothing: it measures the instrument, takes no view on whether the systems are equivalent, and neither refutes nor supports any P2 terminal.",
           "terminal": "BOTH_COMPLETED_WIDE_CAMPAIGNS_RAN_AT_THE_MEASUREMENT_FLOOR"
@@ -243,7 +243,7 @@
           "gate_id": "P3-U-T5",
           "refs": [
             "#651",
-            "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json"
+            "papers/orion-13-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "REPRESENTATION_OR_INTERFACE",
           "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL). A second reading of the same emptiness is now on record and points at what to build (P3_PANEL_RESOLUTION_2026-08-22). Four of the six registered ablations -- remove_construct, remove_measurement, remove_referent, remove_temporal_context -- move none of accuracy, false merge or false split, each with a zero-width interval; only forcing compatibility without the obstruction distinction and removing the modality/polarity/attribution/discourse group move anything. P3's manuscript already says this and preserves those zeros as coverage limitations rather than reading them as dispensability, which is the correct reading and the only one the artifact supports. What the audit adds is that four coordinates are named as untestable on this corpus, executably, rather than in a results paragraph -- so the corpus a successor coordinate would have to be mined from is the one that makes those four consultable, not merely one with false merges in it.",
@@ -261,13 +261,13 @@
           "terminal": "P3_WIDER_SCIENTIFIC_COMPATIBILITY_CLAIM_SUPPORTED__BOUNDED_EXACT_STRUCTURED_CONTRACTS__A3_CANNOT_CHECK"
         },
         {
-          "artifact_ref": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
+          "artifact_ref": "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
           "grade": "CANNOT_CHECK",
           "note": "A prospectively frozen attempt at T5 that came out null, and is filed at grade CANNOT_CHECK because that is what it earned. Its value is the side-finding: P3.OVERRESOLVED_UNRESOLVED_CASE had a zero denominator on every atlas, because no P3 atlas contains a single partially observed pair -- across 9 coordinates and 88 cases every coordinate is observed on both sides or absent on both. Silencing on one side the coordinate that carries the decision gives the guard 12 opportunities where it had 0, and the current system over-resolves 12 of 12, with 8/8 and 28/28 held out. The candidate coordinate itself fails its own pre-declared novelty gate by construction, so it is a third value on the existing axes and not a new identity axis.",
           "terminal": "P3_PARTIAL_OBSERVATION_RESULT__NULL_FOR_T5__OVER_RESOLUTION_GUARD_NO_LONGER_VACUOUS"
         },
         {
-          "artifact_ref": "papers/paper-03-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json",
+          "artifact_ref": "papers/orion-13-global-knowledge-portrait/evidence/audit/P3_PANEL_RESOLUTION_2026-08-22.json",
           "grade": "MECHANISM_NON_VACUITY",
           "note": "The ablation half of the panel resolution audit. Reports which ablations move a reported metric and which move none, and refuses the dispensability reading of a zero delta: an ablation that changes nothing shows the corpus contains no case where the removed coordinate is consulted, which is a statement about the corpus. Four of P3's six are inert and two are not, and the two matter -- without them the finding would be that the corpus measures nothing, which is a different and stronger claim. Reproduces a limitation P3's manuscript already states. Real work and it discharges nothing.",
           "terminal": "FOUR_OF_SIX_P3_COORDINATES_ARE_UNTESTABLE_ON_THIS_CORPUS"
@@ -291,7 +291,7 @@
           "gate_id": "P4-U-T2",
           "refs": [
             "#652",
-            "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json"
+            "papers/orion-14-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
           "statement": "There is no identifiability audit that runs as a gate, and without one no score from this benchmark can be used at all -- that is what H3 taught. What now exists is one leg of it, executable (P4_PANEL_RESOLUTION_2026-08-22): read each metric across every system in a published panel and ask whether it takes more than one value. Run over the V2 panel it reports that two of the three hypotheses are decided on metrics no system varies on -- clean_coverage is exactly 1.0 for all eleven systems, so H2 reports [0.0, 0.0] and PASS, and correct_cannot_check_rate is also 1.0 for all eleven, so H3 reports [0.0, 0.0] and NOT_SUPPORTED. Saturation is not a bias toward optimism: the same panel yields one PASS and one NOT_SUPPORTED from it. Only false_promotion_rate discriminates, over six distinct values, and H1's interval is earned. None of this is new to the paper: P4's manuscript already states it in prose, with the same counts, and already concludes that H2 and H3 'should be read as design limits rather than as comparative findings'. What was missing is that the limitation was a caveat rather than a gate, and that the ledger did not carry it at all. The later identifiable V3 panel repairs correct_cannot_check_rate, which varies there; clean_coverage remains saturated at 1.0 across every system in both constructions.",
@@ -339,7 +339,7 @@
           "terminal": "P4_WIDER_SCIENTIFIC_PROMOTION_AUTHORITY_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK"
         },
         {
-          "artifact_ref": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
+          "artifact_ref": "papers/orion-14-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
           "grade": "MECHANISM_NON_VACUITY",
           "note": "Reads each metric across every system in a published panel and reports whether a hypothesis decided on it could have come out differently. It reproduces, as an executable check, a limitation P4's manuscript already states in prose and with the same counts -- so it discovers nothing about P4 and instead converts a caveat into something a campaign can be refused by, and into something the ledger carries. Distinguishes saturation from separation rather than merging them under 'degenerate interval': a panel split between a metric's floor and its ceiling also yields zero width, and that one is the strongest thing the metric can say, while its width is still not a measure of precision. Carries a control panel whose every metric discriminates, and each check is tested against a case it must not fire on -- an interior saturation, a floor/ceiling split, a missing rate that must not be read as zero, and a one-case rate difference that must not be absorbed as float noise. It also now reports arms that cannot differ, which is a separate question from saturation and fires on panels whose metrics all discriminate. Two of P4's ten comparator mechanisms -- claimbench-sciclaimhunt-scientific-evidence and pooled-evidence-nli-support -- report identical values on every metric they share, so the comparator set is nine distinct policies rather than ten and beating both is beating one. This changes no headline: H1's separation is against the strongest mechanism proxy, which is neither of them. Real work and it discharges nothing.",
           "terminal": "A_STATED_SATURATION_LIMIT_MADE_EXECUTABLE_AND_LEDGER_VISIBLE"
@@ -411,7 +411,7 @@
           "terminal": ""
         },
         {
-          "artifact_ref": "papers/paper-05-self-orion/JOURNAL_READINESS.md",
+          "artifact_ref": "papers/orion-15-self-orion/JOURNAL_READINESS.md",
           "grade": "CANNOT_CHECK",
           "note": "Governed self-improvement benefit, causal-attribution utility, fresh-transfer benefit and integrity advantage all remain CANNOT_CHECK.",
           "terminal": "CANNOT_CHECK"
@@ -455,8 +455,8 @@
       "evidence": [
         {
           "artifact_refs": [
-            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json",
-            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21.json"
+            "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json",
+            "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21.json"
           ],
           "gate_id": "P6-U-T1",
           "grade": "MECHANIZED_THEOREM",
@@ -464,8 +464,8 @@
         },
         {
           "artifact_refs": [
-            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_2026-08-22.json",
-            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_LIFT_INTERPRETATION_2026-08-22.json"
+            "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_2026-08-22.json",
+            "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_LIFT_INTERPRETATION_2026-08-22.json"
           ],
           "gate_id": "P6-U-T2",
           "grade": "MECHANIZED_THEOREM",
@@ -525,7 +525,7 @@
       "evidence": [
         {
           "artifact_refs": [
-            "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json"
+            "papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json"
           ],
           "gate_id": "P7-U-T1",
           "grade": "MECHANIZED_THEOREM",
@@ -533,7 +533,7 @@
         },
         {
           "artifact_refs": [
-            "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json"
+            "papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json"
           ],
           "gate_id": "P7-U-T2",
           "grade": "MECHANIZED_THEOREM",
@@ -587,7 +587,7 @@
       "evidence": [
         {
           "artifact_refs": [
-            "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json"
+            "papers/orion-18-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json"
           ],
           "gate_id": "P8-U-T1",
           "grade": "MECHANIZED_THEOREM",
@@ -595,8 +595,8 @@
         },
         {
           "artifact_refs": [
-            "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json",
-            "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_DONOR_INTERPRETATION_2026-08-22.json"
+            "papers/orion-18-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json",
+            "papers/orion-18-epistemic-authority-autonomous-science/formal/mechanized/P8_DONOR_INTERPRETATION_2026-08-22.json"
           ],
           "gate_id": "P8-U-T2",
           "grade": "MECHANIZED_THEOREM",
@@ -606,7 +606,7 @@
       "paper_id": "P8",
       "predecessor_artifacts": [
         {
-          "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json",
+          "artifact_ref": "papers/orion-18-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json",
           "grade": "CANNOT_CHECK",
           "note": "P8's own receipt audit, run and recorded. Overall FAIL on three findings that are one shape: apparatus that looks like an independent check and cannot disagree. The declared claim ceiling is emitted back verbatim from the sentence injected into it, so it bounds nothing. The declared gold departs from the tables it grades at 0 of 15 points. And the donor axis is inert -- 239,616 sibling pairs differing only in donor family, zero verdict-changing.",
           "terminal": "P8_AUTHORITY_RECEIPT_AUDIT__FAIL"
@@ -658,7 +658,7 @@
           "gate_id": "P9-U-T4",
           "refs": [
             "#662",
-            "papers/paper-09-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json"
+            "papers/orion-19-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
           "statement": "The representation-length and format-prior attacks have now been run, and one of them succeeds. Length does not explain the typed arm; it explains most of the untyped comparator, which drops 0.906 to 0.609 under an equal-token control while typed holds 1.0. Format prior does succeed: TYPED_SERIALIZED_BAG moves 0.75 to 0.50 under a bijection on the value alphabet that preserves every gold label, so the published typed-minus-serialized margin measures which symbols were drawn rather than the information the representation carries. The surviving margin is the one the existing failure record already identified, TYPED_RELATIONAL minus UNTYPED_PAIR at +0.09375, whose both arms are orbit-invariant. A prior question has now been put to the battery that produced that result, and one of its three hostile variants turns out never to have attacked anything (P9_ATTACK_POTENCY_2026-08-22). Fifteen of the twenty-four (variant, arm) cells leave the arm's feature vector unchanged on all 512 instances, and eight of those fifteen are the whole ORDER_PERMUTATION row. That variant's dataset is identical to the base, manifest digest included: it reverses every sequence-valued coordinate and then rebuilds through a normaliser that maps each one to tuple(sorted(set(...))), so the reversal is undone on the following line. The consequence is larger than a wiring bug. Ordering is not representable in MethodRealization at all -- the coordinates the battery names as sequences are stored as sorted sets -- so repairing the wiring would not produce an order attack, and the order-blindness of every feature family follows from the same fact rather than being a separate coincidence. PC-2_GOLD_PRESERVATION reports zero labels changed over 512 instances for that variant, which is trivially true of an identity. EQUAL_LENGTH reaches seven of eight arms on 112 instances each and SEMANTIC_ORBIT reaches two of eight on all 512, so this is a statement about specific cells and not about the battery, which is otherwise careful and already refuses a contrast whose comparator answered with a single label.",
@@ -680,25 +680,25 @@
       "paper_id": "P9",
       "predecessor_artifacts": [
         {
-          "artifact_ref": "papers/paper-09-structured-epistemic-learning/P9_SCIENTIFIC_CLOSURE_RECEIPT_V1.md",
+          "artifact_ref": "papers/orion-19-structured-epistemic-learning/P9_SCIENTIFIC_CLOSURE_RECEIPT_V1.md",
           "grade": "BOUNDED_PROTECTED",
           "note": "Bounded structural-learning result with frozen protocol and result digests. The direct open-weight scaling run #662 asks for is a successor experiment and carries no retroactive authority here.",
           "terminal": "P9_BOUNDED_STRUCTURAL_LEARNING_SUPPORTED"
         },
         {
-          "artifact_ref": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
+          "artifact_ref": "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
           "grade": "CANNOT_CHECK",
           "note": "The two hostile alternatives P9's successor manuscript calls mandatory, run for the first time. The length alternative does not explain the typed arm, but does explain most of the untyped comparator: under an equal-token control the comparator drops 0.906 to 0.609 while typed holds 1.0. The format-prior alternative succeeds: TYPED_SERIALIZED_BAG goes 0.75 to 0.50 under a bijection on the value alphabet that preserves all 512 gold labels, moving 32 of 128 protected predictions, so its published number is a property of which symbols were drawn. 14 of 21 components are CANNOT_CHECK with stated zero denominators, including an order-remint control that is vacuous by construction because D1 sorts every sequence coordinate.",
           "terminal": "T4_ATTACK_SUCCEEDED"
         },
         {
-          "artifact_ref": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json",
+          "artifact_ref": "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json",
           "grade": "ABSENT",
           "note": "The critical-scale and critical-budget grid, defined prospectively: 1344 cells over k, representation family, model, inference budget and domain, read at three thresholds, with S* and C* as the first declared ladder point reaching q and RIGHT_CENSORED otherwise -- no interpolation, extrapolation or fitted exponent. Zero cells executed, so the denominator is 0 of 1344 and the grid reports CANNOT_CHECK rather than an empty grid reported clean.",
           "terminal": "T3_GRID_DECLARED_NO_CELL_EXECUTED"
         },
         {
-          "artifact_ref": "papers/paper-09-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json",
+          "artifact_ref": "papers/orion-19-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json",
           "grade": "MECHANISM_NON_VACUITY",
           "note": "Measures, per (variant, arm) cell of P9's hostile representation battery, how many of the 512 instances have a changed feature vector -- the question the battery does not ask of itself. Fifteen of twenty-four cells are inert and one whole variant is, with its root cause demonstrated rather than argued: the rebuild normalises sequence coordinates to sorted sets, so a reversal does not survive it and neither would a duplicate. The first version of this module asserted the opposite cause -- a real transform meeting order-blind features -- and a test asserting the reordered dataset differs from the base is the only reason the real one was found; that test is kept. Reads only, so the frozen parameter block and the committed result keep their digests and their authority. Real work and it discharges nothing: it refutes no number in the committed result, whose one reported success stands, and it licenses no claim about robustness to reordering, since no ordering was ever presented.",
           "terminal": "ONE_OF_THREE_P9_HOSTILE_VARIANTS_NEVER_CHANGED_ITS_INPUT"
@@ -755,19 +755,19 @@
       "paper_id": "P10",
       "predecessor_artifacts": [
         {
-          "artifact_ref": "papers/paper-xx-content-bound-math-evaluation/README.md",
+          "artifact_ref": "papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/README.md",
           "grade": "BOUNDED_PROTECTED",
           "note": "Bounded technical note: 4,825 corrected trajectories, leave-top-module-out Markov 0.3842 vs unigram 0.2796. Deliberately not a standalone paper.",
           "terminal": "TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME"
         },
         {
-          "artifact_ref": "papers/paper-10-structured-problem-solving/successor/P10_U_MANUSCRIPT.tex",
+          "artifact_ref": "papers/orion-20-structured-problem-solving/successor/P10_U_MANUSCRIPT.tex",
           "grade": "MANUSCRIPT_COMPLETION",
           "note": "Successor manuscript only. Listed so that its reuse against a P10-U terminal fails HC-SUP-PREDECESSOR-REUSE.",
           "terminal": ""
         },
         {
-          "artifact_ref": "papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1.json",
+          "artifact_ref": "papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1.json",
           "grade": "BOUNDED_PROTECTED",
           "note": "The result the README summarises, named directly so the ledger stops pointing at a summary of a summary. Audited here rather than restated. The instrument is sound on every point checked: the leave-top-module-out effect is markov_minus_unigram 0.1046 with a bootstrap 95% interval of [0.0863, 0.1223] that is earned rather than degenerate; the interval is computed over the 26 of 28 blocks that have any transitions, which is correct and is reported as 26 rather than silently as 28 -- the two excluded blocks, Tactic and Util, have zero transitions and would contribute nothing to either side of the ratio; and the order-null p-value is at the resampling floor because the observed 151 cross-module bigram macros fall outside the whole null distribution, whose minimum is 166. Its own standalone_gate reads passes: false on two named conditions, PENDING_SEPARATE_NATIVE_REPLAY and PENDING_CONSTRUCTIVE_SATURATION, and its authority line says REVISION-BOUND SOURCE-PROJECTION EVIDENCE; NO LEAN KERNEL REPLAY. Nothing here is being claimed past that. Real work and it discharges nothing: the terminals it would bear on need the native replay the gate is waiting for.",
           "terminal": "SOURCE_PROJECTION_TRANSFER_MEASURED__NATIVE_REPLAY_PENDING"

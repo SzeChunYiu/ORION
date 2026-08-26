@@ -4,7 +4,7 @@
 authority behind P6.V4.6 --- "320 states, 25 minimal separations, 31 product
 countermodels, 155 full revalidation successes, 1,055 proper-subset failures,
 zero donor-conservativity/ideal-product violations" --- and behind the V4
-headline in ``papers/paper-06-formal-epistemic-structures-and-mechanics/
+headline in ``papers/orion-16-formal-epistemic-structures-and-mechanics/
 README.md``. Its entire theory is one line::
 
     def liftable(native_valid, science):

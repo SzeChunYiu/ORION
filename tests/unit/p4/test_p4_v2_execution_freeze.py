@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-P4 = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+P4 = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 BINDINGS = P4 / "protocol" / "PROTECTED_RUN_BINDINGS_V2.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "p4_protected_campaign_v2.yml"
 TRIGGER = P4 / "host" / "CAMPAIGN_TRIGGER_V2.txt"

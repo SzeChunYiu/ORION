@@ -20,8 +20,8 @@ from pathlib import Path
 
 ROOT = Path("/Users/billy/Desktop/projects/ORION-claude")
 OUT = ROOT / "development/cross-session-empirical-provenance-audit-2026-08-23"
-P1_RAW = ROOT / "papers/paper-01-recursive-epistemic-reconstruction/results/raw"
-P3 = ROOT / "papers/paper-03-global-knowledge-portrait"
+P1_RAW = ROOT / "papers/orion-11-recursive-epistemic-reconstruction/results/raw"
+P3 = ROOT / "papers/orion-13-global-knowledge-portrait"
 P3_GOLD = P3 / "gold"
 P3_FULL = P3 / "evaluation/run-full"
 P3_SMOKE = P3 / "evaluation/run-smoke"
@@ -278,9 +278,9 @@ def main() -> None:
     inventory_paths = [
         P1_RAW / name for name in p1_names
     ] + [
-        ROOT / "papers/paper-01-recursive-epistemic-reconstruction/README.md",
-        ROOT / "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json",
-        ROOT / "papers/paper-01-recursive-epistemic-reconstruction/protocol/EXECUTION_MANIFEST_V1.md",
+        ROOT / "papers/orion-11-recursive-epistemic-reconstruction/README.md",
+        ROOT / "papers/orion-11-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json",
+        ROOT / "papers/orion-11-recursive-epistemic-reconstruction/protocol/EXECUTION_MANIFEST_V1.md",
         P3_GOLD / "combined_gold.json",
         P3_GOLD / "GOLD_ATLAS_FREEZE_V1.json",
         P3_GOLD / "generate_source_texts.py",

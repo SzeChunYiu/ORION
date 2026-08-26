@@ -6,8 +6,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-SCRIPT = ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "scripts" / "comparison_resolution_gate.py"
-AUDIT = ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "evidence" / "audit" / "P2_COMPARISON_RESOLUTION_2026-08-22.json"
+SCRIPT = ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "scripts" / "comparison_resolution_gate.py"
+AUDIT = ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "evidence" / "audit" / "P2_COMPARISON_RESOLUTION_2026-08-22.json"
 
 
 def _load():

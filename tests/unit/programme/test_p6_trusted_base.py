@@ -15,7 +15,7 @@ from orion.programme.p6_trusted_base import (
 
 LIMITS = (
     Path(__file__).resolve().parents[3]
-    / "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/sections/07-limits.tex"
+    / "papers/orion-16-formal-epistemic-structures-and-mechanics/manuscript/sections/07-limits.tex"
 )
 
 

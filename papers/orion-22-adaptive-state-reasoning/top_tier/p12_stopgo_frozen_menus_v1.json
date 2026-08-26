@@ -1,0 +1,243 @@
+{
+  "schema": "ORION.P12.StopGoFrozenMenus.v1",
+  "study_id": "P12_STOPGO_PUBLICDATA_V1",
+  "artifact_class": "FROZEN_PROTOCOL",
+  "results_exist": false,
+  "campaign_executed": false,
+  "labeling_rule": "This artifact is a frozen protocol. It contains no results and must never be cited as evidence of an empirical outcome.",
+  "issue_binding": "SzeChunYiu/ORION#1086 P12: freeze identical state/reasoning action and signal menus; use task family/domain as the inference unit",
+  "protocol_doc": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_STOPGO_FROZEN_MENUS_V1.md",
+  "substrate": {
+    "benchmark": "ScienceAgentBench",
+    "license_rule": "clean-license task families only",
+    "excluded_upstream_license_instances": [3, 32, 46, 53, 54, 84],
+    "exclusion_reason": "instances retain matminer/rasterio upstream terms per issue #1086"
+  },
+  "canonical_action_menu": [
+    {
+      "action_id": "A_RETAIN_MINIMAL",
+      "state_construction_units": 0,
+      "reasoning_units": 0,
+      "charge_units": 0
+    },
+    {
+      "action_id": "A_STATE_MAX",
+      "state_construction_units": 2,
+      "reasoning_units": 0,
+      "charge_units": 2
+    },
+    {
+      "action_id": "A_REASON_MAX",
+      "state_construction_units": 0,
+      "reasoning_units": 2,
+      "charge_units": 2
+    },
+    {
+      "action_id": "A_BALANCED",
+      "state_construction_units": 1,
+      "reasoning_units": 1,
+      "charge_units": 2
+    }
+  ],
+  "action_menu_provenance": "P12B frozen ACTIONS ((0,0),(2,0),(0,2),(1,1)) carried over verbatim",
+  "charging_semantics": {
+    "price_regime": "FLAT",
+    "accounting_owner": "issue #664",
+    "skewed_price_regimes_in_scope": false,
+    "reason": "P12_ROBUSTNESS_STRESS_V1 returned price_axis=BROKEN and distribution_shift_axis=BROKEN; no robustness wording is available to this campaign"
+  },
+  "common_terminal_rule": "every arm emits its final answer through one identical uncharged terminal step (same prompt template, decoding parameters and output contract)",
+  "canonical_signal_menu": [
+    {
+      "signal_id": "S_PENDING_MULTIPLICITY",
+      "definition": "count of pending subtasks/questions declared for the family episode",
+      "pre_outcome": true,
+      "provenance": "transfer-allocator readable surface (V1)"
+    },
+    {
+      "signal_id": "S_DECLARED_MATERIALIZATION_COST",
+      "definition": "declared resource charge of one state-construction unit for the family",
+      "pre_outcome": true,
+      "provenance": "#664 accounting"
+    },
+    {
+      "signal_id": "S_DECLARED_SERVE_EXCHANGE_RATE",
+      "definition": "declared per-serve charge ratio state-serve vs reasoning-step for the family",
+      "pre_outcome": true,
+      "provenance": "NR-13 widened readable surface"
+    },
+    {
+      "signal_id": "S_FAMILY_DIFFICULTY_PRIOR",
+      "definition": "pre-outcome difficulty descriptor from licensed metadata only; exact implementation frozen at campaign prereg before any protected evaluation; gold outcomes forbidden as input",
+      "pre_outcome": true,
+      "provenance": "donor: difficulty-conditioned allocation"
+    }
+  ],
+  "signal_menu_rule": "closed menu; adding, removing or redefining a signal after any campaign data collection is forbidden",
+  "arms": {
+    "ADAPTIVE": {
+      "action_menu": [
+        {
+          "action_id": "A_RETAIN_MINIMAL",
+          "state_construction_units": 0,
+          "reasoning_units": 0,
+          "charge_units": 0
+        },
+        {
+          "action_id": "A_STATE_MAX",
+          "state_construction_units": 2,
+          "reasoning_units": 0,
+          "charge_units": 2
+        },
+        {
+          "action_id": "A_REASON_MAX",
+          "state_construction_units": 0,
+          "reasoning_units": 2,
+          "charge_units": 2
+        },
+        {
+          "action_id": "A_BALANCED",
+          "state_construction_units": 1,
+          "reasoning_units": 1,
+          "charge_units": 2
+        }
+      ],
+      "signal_menu": [
+        "S_PENDING_MULTIPLICITY",
+        "S_DECLARED_MATERIALIZATION_COST",
+        "S_DECLARED_SERVE_EXCHANGE_RATE",
+        "S_FAMILY_DIFFICULTY_PRIOR"
+      ],
+      "readable_signals": [
+        "S_PENDING_MULTIPLICITY",
+        "S_DECLARED_MATERIALIZATION_COST",
+        "S_DECLARED_SERVE_EXCHANGE_RATE",
+        "S_FAMILY_DIFFICULTY_PRIOR"
+      ]
+    },
+    "ONE_SIGNAL_STATE": {
+      "action_menu": [
+        {
+          "action_id": "A_RETAIN_MINIMAL",
+          "state_construction_units": 0,
+          "reasoning_units": 0,
+          "charge_units": 0
+        },
+        {
+          "action_id": "A_STATE_MAX",
+          "state_construction_units": 2,
+          "reasoning_units": 0,
+          "charge_units": 2
+        },
+        {
+          "action_id": "A_REASON_MAX",
+          "state_construction_units": 0,
+          "reasoning_units": 2,
+          "charge_units": 2
+        },
+        {
+          "action_id": "A_BALANCED",
+          "state_construction_units": 1,
+          "reasoning_units": 1,
+          "charge_units": 2
+        }
+      ],
+      "signal_menu": [
+        "S_PENDING_MULTIPLICITY",
+        "S_DECLARED_MATERIALIZATION_COST",
+        "S_DECLARED_SERVE_EXCHANGE_RATE",
+        "S_FAMILY_DIFFICULTY_PRIOR"
+      ],
+      "readable_signals": ["S_PENDING_MULTIPLICITY"],
+      "policy_identity": "landed V1 allocator single readable surface (greedy-by-pending-multiplicity)"
+    },
+    "ONE_SIGNAL_REASON": {
+      "action_menu": [
+        {
+          "action_id": "A_RETAIN_MINIMAL",
+          "state_construction_units": 0,
+          "reasoning_units": 0,
+          "charge_units": 0
+        },
+        {
+          "action_id": "A_STATE_MAX",
+          "state_construction_units": 2,
+          "reasoning_units": 0,
+          "charge_units": 2
+        },
+        {
+          "action_id": "A_REASON_MAX",
+          "state_construction_units": 0,
+          "reasoning_units": 2,
+          "charge_units": 2
+        },
+        {
+          "action_id": "A_BALANCED",
+          "state_construction_units": 1,
+          "reasoning_units": 1,
+          "charge_units": 2
+        }
+      ],
+      "signal_menu": [
+        "S_PENDING_MULTIPLICITY",
+        "S_DECLARED_MATERIALIZATION_COST",
+        "S_DECLARED_SERVE_EXCHANGE_RATE",
+        "S_FAMILY_DIFFICULTY_PRIOR"
+      ],
+      "readable_signals": ["S_FAMILY_DIFFICULTY_PRIOR"],
+      "policy_identity": "strongest donor single-signal policy (difficulty-only reasoning allocation)"
+    }
+  },
+  "strongest_one_signal_selection_rule": "the stronger one-signal arm is selected on a frozen tuning split before protected evaluation; both one-signal arms are reported; selection after seeing protected outcomes is forbidden",
+  "inference_unit": {
+    "primary": "task_family",
+    "aggregation": "domain",
+    "forbidden_units": ["generated_row", "seed", "episode", "individual_instance"]
+  },
+  "campaign_scope_minimums": {
+    "task_families": 20,
+    "domains": 3,
+    "model_families": 2,
+    "satisfied_by_this_artifact": false
+  },
+  "stopgo_gate": {
+    "pass_requires_all": [
+      "adaptive gain >= 3 normalized points over the stronger one-signal arm",
+      "family-block bootstrap 95% lower bound > 0",
+      "positive in >= 2/3 of domains and in every leave-one-domain-out analysis",
+      "max regret <= 2 normalized points"
+    ],
+    "fail_action": "stop the positive complementarity claim and publish the boundary/null result; do not iterate until positive; any successor requires a new preregistered protocol with its own frozen thresholds"
+  },
+  "prior_adverse_evidence": [
+    {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json",
+      "sha256": "c57c6274c752c8be2a495e44730a4c3741be5f7f9aafb6294f14e0846331617e",
+      "terminal": "P12A_SUPERIORITY_AUTHORITY_WITHHELD",
+      "binding_role": "identical budget did not mean identical action capability; comparisons must hold actions symmetric"
+    },
+    {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_ROBUSTNESS_STRESS_RESULT_RECEIPT_V1.md",
+      "sha256": "f79e4d4c249e70e02fc6427b14d5843c41dd9ab26dc9381818d796d08f8ffd08",
+      "terminal": "P12_ROBUSTNESS_STRESS_V1_EXECUTED",
+      "verdicts": {
+        "price_axis": "BROKEN",
+        "distribution_shift_axis": "BROKEN"
+      },
+      "binding_role": "no price- or shift-robustness wording is available to this campaign at any outcome"
+    },
+    {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_RESULT_RECEIPT_V1.md",
+      "sha256": "408372c2a4401907a96056ab9c1b3a137cffec32025c1f14bc3ea356703b20b2",
+      "terminal": "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED",
+      "binding_role": "the only sanctioned revival pattern is a preregistered protocol that widens the readable surface"
+    }
+  ],
+  "p12c_label_note": "No repository artifact, commit, pull request or issue labelled P12C exists; none was invented. The binding prior adverse evidence actually integrated is prior_adverse_evidence above.",
+  "freeze_discipline": {
+    "menus_identical_across_arms": true,
+    "checker": "papers/orion-22-adaptive-state-reasoning/check_p12_stopgo_integration_v1.py",
+    "edit_after_data_collection_forbidden": true,
+    "signal_implementation_freeze_point": "campaign prereg, before any protected evaluation"
+  }
+}

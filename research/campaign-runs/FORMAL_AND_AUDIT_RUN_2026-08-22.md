@@ -156,7 +156,7 @@ its zero violations were a property of the expression.
 
 ## P15 is not a negative result; it has no results
 
-`papers/paper-15-orion-research-harness/` contains one file, a README, and
+`papers/orion-25-orion-research-harness/` contains one file, a README, and
 declares `DIRECTORY_OPENED / NO_PROTECTED_RESULT`. It carries no scientific
 superiority claim and grants no authority, and it says plainly what it still
 needs: a paper issue, a claim ledger, a donor matrix against existing

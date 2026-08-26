@@ -1,7 +1,7 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPER = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+PAPER = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 
 
 def test_method_authority_extension_does_not_rewrite_current_p4_submission():

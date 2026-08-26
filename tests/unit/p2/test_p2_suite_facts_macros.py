@@ -20,7 +20,7 @@ import pytest
 
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery"
+PAPER = ROOT / "papers" / "orion-12-open-world-scientific-discovery"
 MANIFEST = PAPER / "evidence" / "offline_gold" / "MANIFEST.json"
 RESULTS = PAPER / "evidence" / "offline_results" / "RESULTS_SUMMARY_V1.json"
 GENERATED = PAPER / "manuscript" / "generated" / "suite_facts.tex"

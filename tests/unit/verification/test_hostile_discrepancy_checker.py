@@ -56,13 +56,13 @@ def _valid_payload(**overrides: object) -> dict:
         },
         "raw_artifacts": [
             {
-                "path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl",
+                "path": "papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl",
                 "role": "raw_record",
                 "present": True,
                 "sha256": "c" * 64,
             },
             {
-                "path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json",
+                "path": "papers/orion-15-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json",
                 "role": "aggregate",
                 "present": True,
                 "sha256": "c" * 64,
@@ -221,7 +221,7 @@ def test_missing_required_aggregate_cannot_be_verified() -> None:
     payload = _valid_payload(
         raw_artifacts=[
             {
-                "path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json",
+                "path": "papers/orion-15-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json",
                 "role": "missing_required",
                 "present": False,
                 "sha256": "CANNOT_CHECK",
@@ -374,13 +374,13 @@ def test_changed_gold_presented_as_original_rejected() -> None:
     payload = _valid_payload(
         raw_artifacts=[
             {
-                "path": "papers/paper-05-self-orion/evidence/PROTECTED_SUITE_V1.json",
+                "path": "papers/orion-15-self-orion/evidence/PROTECTED_SUITE_V1.json",
                 "role": "gold",
                 "present": True,
                 "sha256": "c" * 64,
             },
             {
-                "path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl",
+                "path": "papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl",
                 "role": "raw_record",
                 "present": True,
                 "sha256": "c" * 64,
@@ -395,13 +395,13 @@ def test_missing_gold_is_a_required_artifact() -> None:
     payload = _valid_payload(
         raw_artifacts=[
             {
-                "path": "papers/paper-05-self-orion/evidence/PROTECTED_SUITE_V1.json",
+                "path": "papers/orion-15-self-orion/evidence/PROTECTED_SUITE_V1.json",
                 "role": "missing_required",
                 "present": False,
                 "sha256": "CANNOT_CHECK",
             },
             {
-                "path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl",
+                "path": "papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl",
                 "role": "raw_record",
                 "present": True,
                 "sha256": "c" * 64,

@@ -1,8 +1,8 @@
-# P6–P8 theory completion terminal V2
+# ORION-16–ORION-18 theory completion terminal V2
 
 **Date:** 2026-08-18  
 **Branch:** `shadow/p6-p8-theory-closure-2026-08-18`  
-**Parent:** donor-widened P6–P8 branch / PR #354  
+**Parent:** donor-widened ORION-16–ORION-18 branch / PR #354  
 **Closure PR:** #361
 
 ## Meaning of `finished`
@@ -15,7 +15,7 @@ For this programme, a paper is **theory-finished** when:
 4. nearest mature and current donor mechanisms are engulfed with explicit ownership rather than excluded to manufacture novelty;
 5. the strongest donor-product baseline is stated;
 6. a final manuscript, sentence-level claim ledger, literature closure, venue path and reproduction command exist;
-7. P1–P5 ownership is not overwritten.
+7. ORION-11–ORION-15 ownership is not overwritten.
 
 `Finished` does **not** mean inventing an empirical result, peer review, or acceptance. Those are external events.
 
@@ -51,7 +51,7 @@ A history-aware typed epistemic mechanic contract with:
 
 ## Donors engulfed
 
-TMS/JTMS/ATMS, self-adjusting/incremental computation, DEL/belief revision, separation/process traces, effect systems/ETAS, FAVA/authorization, provenance, AgentTether, dependency-guided rollback, P1 mechanics/reopening.
+TMS/JTMS/ATMS, self-adjusting/incremental computation, DEL/belief revision, separation/process traces, effect systems/ETAS, FAVA/authorization, provenance, AgentTether, dependency-guided rollback, ORION-11 mechanics/reopening.
 
 ## Terminal
 
@@ -89,13 +89,13 @@ An open-world epistemic atlas with:
 
 ## Donors engulfed
 
-Search-on-Graph/fixed graph navigation, POMDP/belief-space planning, planning abstractions and situation-calculus refinement mappings, schema/lens/ontology transforms, SAGA goal evolution, self-evolving and graph world models, initial orientation, P2 stopping/coverage, exploration-breadth work.
+Search-on-Graph/fixed graph navigation, POMDP/belief-space planning, planning abstractions and situation-calculus refinement mappings, schema/lens/ontology transforms, SAGA goal evolution, self-evolving and graph world models, initial orientation, ORION-12 stopping/coverage, exploration-breadth work.
 
 ## Terminal
 
 `P7_THEORY = FINISHED_V2`
 
-P7 is the strongest independent-paper candidate in the current panel review.
+ORION-17 is the strongest independent-paper candidate in the current panel review.
 
 ---
 
@@ -113,7 +113,7 @@ A full-derivation scientific-authority calculus with:
 - alternative-derivation revocation;
 - commit-time freshness;
 - protected roots;
-- P1–P5 authority-domain embeddings.
+- ORION-11–ORION-15 authority-domain embeddings.
 
 ## Closed results
 
@@ -128,13 +128,13 @@ A full-derivation scientific-authority calculus with:
 
 ## Donors engulfed
 
-Delegation Logic, SecPAL, UCON/ongoing authorization, authorization logic, ETAS, FAVA, AgentBound, authorization propagation, abstention, provenance/execution provenance, origin-bound/non-amplification memory authority, provenance-aware institutional guards, P4/P5 native authority gates.
+Delegation Logic, SecPAL, UCON/ongoing authorization, authorization logic, ETAS, FAVA, AgentBound, authorization propagation, abstention, provenance/execution provenance, origin-bound/non-amplification memory authority, provenance-aware institutional guards, ORION-14/ORION-15 native authority gates.
 
 ## Terminal
 
 `P8_THEORY = FINISHED_V2`
 
-The product-equivalence theorem means P8 does not need to pretend centralization is superior. A separate paper can stand as a scientific-interface/negative-theory result; if future editorial or empirical evidence says that is not substantial enough, the correct disposition is to merge it into P4/programme synthesis without reopening the theory.
+The product-equivalence theorem means ORION-18 does not need to pretend centralization is superior. A separate paper can stand as a scientific-interface/negative-theory result; if future editorial or empirical evidence says that is not substantial enough, the correct disposition is to merge it into ORION-14/programme synthesis without reopening the theory.
 
 ---
 
@@ -177,9 +177,9 @@ The following are intentionally outside the definition of a finished theory:
 
 ## Overall terminal
 
-- `P6 = THEORY_FINISHED_V2`
-- `P7 = THEORY_FINISHED_V2`
-- `P8 = THEORY_FINISHED_V2`
+- `ORION-16 = THEORY_FINISHED_V2`
+- `ORION-17 = THEORY_FINISHED_V2`
+- `ORION-18 = THEORY_FINISHED_V2`
 - `HALF_THEORY = FALSE`
 - `EMPIRICAL_SUPERIORITY = NOT FABRICATED`
 - `ENGULF_BEFORE_NARROWING = ENFORCED`

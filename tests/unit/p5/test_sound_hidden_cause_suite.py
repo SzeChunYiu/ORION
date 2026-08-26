@@ -326,7 +326,7 @@ class TestThePublishedSurfaceCarriesNoOpeningMaterial:
     def test_nothing_under_paper_05_carries_a_generated_case(self) -> None:
         """The sealed half is not in the repository, checked rather than intended."""
 
-        paper = REPO_ROOT / "papers" / "paper-05-self-orion"
+        paper = REPO_ROOT / "papers" / "orion-15-self-orion"
         hits = [
             path
             for path in paper.rglob("*")

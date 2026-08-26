@@ -3,10 +3,10 @@ name: p13-verifier-responsibility-shift-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-13-responsibility-carrying-state/top_tier/P13_VERIFIER_RESPONSIBILITY_SHIFT_PROTOCOL_V1.md'
-      - 'papers/paper-13-responsibility-carrying-state/top_tier/p13_verifier_responsibility_cases_v1.json'
-      - 'papers/paper-13-responsibility-carrying-state/top_tier/run_verifier_responsibility_shift_v1.py'
-      - 'papers/paper-13-responsibility-carrying-state/top_tier/check_verifier_responsibility_shift_independent_v1.py'
+      - 'papers/orion-23-responsibility-carrying-state/top_tier/P13_VERIFIER_RESPONSIBILITY_SHIFT_PROTOCOL_V1.md'
+      - 'papers/orion-23-responsibility-carrying-state/top_tier/p13_verifier_responsibility_cases_v1.json'
+      - 'papers/orion-23-responsibility-carrying-state/top_tier/run_verifier_responsibility_shift_v1.py'
+      - 'papers/orion-23-responsibility-carrying-state/top_tier/check_verifier_responsibility_shift_independent_v1.py'
       - '.github/workflows/p13-verifier-responsibility-shift-v1.yml'
   workflow_dispatch:
 permissions:
@@ -19,16 +19,16 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - name: Execute verifier-backed responsibility shift
-        run: python papers/paper-13-responsibility-carrying-state/top_tier/run_verifier_responsibility_shift_v1.py | tee p13_verifier_responsibility_v1.json
+        run: python papers/orion-23-responsibility-carrying-state/top_tier/run_verifier_responsibility_shift_v1.py | tee p13_verifier_responsibility_v1.json
       - name: Verify primary byte replay
         run: |
-          python papers/paper-13-responsibility-carrying-state/top_tier/run_verifier_responsibility_shift_v1.py > p13_verifier_responsibility_v1_rerun.json
+          python papers/orion-23-responsibility-carrying-state/top_tier/run_verifier_responsibility_shift_v1.py > p13_verifier_responsibility_v1_rerun.json
           cmp p13_verifier_responsibility_v1.json p13_verifier_responsibility_v1_rerun.json
       - name: Execute independent checker
-        run: python papers/paper-13-responsibility-carrying-state/top_tier/check_verifier_responsibility_shift_independent_v1.py | tee p13_verifier_responsibility_independent_v1.json
+        run: python papers/orion-23-responsibility-carrying-state/top_tier/check_verifier_responsibility_shift_independent_v1.py | tee p13_verifier_responsibility_independent_v1.json
       - name: Verify independent replay and agreement
         run: |
-          python papers/paper-13-responsibility-carrying-state/top_tier/check_verifier_responsibility_shift_independent_v1.py > p13_verifier_responsibility_independent_v1_rerun.json
+          python papers/orion-23-responsibility-carrying-state/top_tier/check_verifier_responsibility_shift_independent_v1.py > p13_verifier_responsibility_independent_v1_rerun.json
           cmp p13_verifier_responsibility_independent_v1.json p13_verifier_responsibility_independent_v1_rerun.json
           python - <<'PY'
           import json, math

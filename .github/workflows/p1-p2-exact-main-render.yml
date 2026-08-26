@@ -4,8 +4,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/p1-p2-exact-main-render.yml'
-      - 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/**'
-      - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
+      - 'papers/orion-11-recursive-epistemic-reconstruction/manuscript/**'
+      - 'papers/orion-12-open-world-scientific-discovery/manuscript/**'
   # Publication authority is bound to an exact main SHA, not merely manuscript
   # bytes. Run on every main advance so unrelated merges cannot silently make the
   # latest exact-main render stale. PR renders remain path-filtered diagnostics.
@@ -34,8 +34,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          p1_epoch="$(git -C subject log -1 --format=%ct -- papers/paper-01-recursive-epistemic-reconstruction/manuscript)"
-          p2_epoch="$(git -C subject log -1 --format=%ct -- papers/paper-02-open-world-scientific-discovery/manuscript)"
+          p1_epoch="$(git -C subject log -1 --format=%ct -- papers/orion-11-recursive-epistemic-reconstruction/manuscript)"
+          p2_epoch="$(git -C subject log -1 --format=%ct -- papers/orion-12-open-world-scientific-discovery/manuscript)"
           test -n "$p1_epoch"
           test -n "$p2_epoch"
           {
@@ -101,7 +101,7 @@ jobs:
           set -euo pipefail
           export SOURCE_DATE_EPOCH="$P1_SOURCE_DATE_EPOCH"
           export FORCE_SOURCE_DATE=1
-          cd subject/papers/paper-01-recursive-epistemic-reconstruction/manuscript
+          cd subject/papers/orion-11-recursive-epistemic-reconstruction/manuscript
           pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
           bibtex main
           pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
@@ -140,7 +140,7 @@ jobs:
           set -euo pipefail
           export SOURCE_DATE_EPOCH="$P2_SOURCE_DATE_EPOCH"
           export FORCE_SOURCE_DATE=1
-          cd subject/papers/paper-02-open-world-scientific-discovery/manuscript
+          cd subject/papers/orion-12-open-world-scientific-discovery/manuscript
           latexmk -recorder -pdf -interaction=nonstopmode -halt-on-error main.tex
           python ../scripts/check_manuscript_typography.py --log main.log
           if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
@@ -241,13 +241,13 @@ jobs:
               return record
 
           p1 = bind_input_closure(
-              'papers/paper-01-recursive-epistemic-reconstruction/manuscript',
-              'papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.fls',
+              'papers/orion-11-recursive-epistemic-reconstruction/manuscript',
+              'papers/orion-11-recursive-epistemic-reconstruction/manuscript/main.fls',
               'out/p1/repository-input-closure.json',
           )
           p2 = bind_input_closure(
-              'papers/paper-02-open-world-scientific-discovery/manuscript',
-              'papers/paper-02-open-world-scientific-discovery/manuscript/main.fls',
+              'papers/orion-12-open-world-scientific-discovery/manuscript',
+              'papers/orion-12-open-world-scientific-discovery/manuscript/main.fls',
               'out/p2/repository-input-closure.json',
           )
 
@@ -259,8 +259,8 @@ jobs:
               'render_toolchain_sha256': hashlib.sha256((out / 'render-toolchain.tsv').read_bytes()).hexdigest(),
               # Keep the historical entrypoint hashes, but name them precisely;
               # authority-bearing source provenance is the repository input closure.
-              'p1_entrypoint_sha256': hashlib.sha256(committed_bytes('papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.tex')).hexdigest(),
-              'p2_entrypoint_sha256': hashlib.sha256(committed_bytes('papers/paper-02-open-world-scientific-discovery/manuscript/main.tex')).hexdigest(),
+              'p1_entrypoint_sha256': hashlib.sha256(committed_bytes('papers/orion-11-recursive-epistemic-reconstruction/manuscript/main.tex')).hexdigest(),
+              'p2_entrypoint_sha256': hashlib.sha256(committed_bytes('papers/orion-12-open-world-scientific-discovery/manuscript/main.tex')).hexdigest(),
               'p1_repository_input_closure_sha256': p1['repository_input_closure_sha256'],
               'p2_repository_input_closure_sha256': p2['repository_input_closure_sha256'],
               'p1_repository_input_count': p1['repository_input_count'],

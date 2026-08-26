@@ -2,7 +2,7 @@
 
 Purpose: isolate facts the publication workflow is **not authorized to infer**. All five content-ready papers can continue through scientific/citation/render/target preflight without these values, but final submission authority remains blocked until the applicable fields are explicitly supplied and reviewed by the author(s).
 
-## A. Authorship and affiliations — required for Q1/Q2/QG1/QG2 final non-blind packages
+## A. Authorship and affiliations — required for ORION-01/ORION-02/ORION-09/ORION-10 final non-blind packages
 
 For each paper:
 - final author list in order;
@@ -12,7 +12,7 @@ For each paper:
 - ORCID(s), if authors choose/provide them;
 - any equal-contribution / joint-supervision notes, if genuinely applicable.
 
-Q4/TMLR review package remains anonymous, but the submission system still needs non-public author metadata entered by the submitting author.
+ORION-04/TMLR review package remains anonymous, but the submission system still needs non-public author metadata entered by the submitting author.
 
 **Do not infer authorship from GitHub commits, account identity, conversation history, or prior papers.**
 
@@ -54,7 +54,7 @@ Do not invent an accession/DOI before deposition succeeds.
 
 ## F. Generative-AI assistance declaration
 
-A draft disclosure is included in the Q2 AIJ package. Each target paper requires the author(s) to confirm:
+A draft disclosure is included in the ORION-02 AIJ package. Each target paper requires the author(s) to confirm:
 - which AI systems/tools require disclosure under the current target policy;
 - what roles they played (research assistance, coding, literature search, writing/editing, figure/package generation, etc.);
 - that the submitted declaration accurately reflects actual use.
@@ -74,30 +74,30 @@ If the author intends to seek patent protection for any implementation before pu
 
 ## Paper-specific target metadata
 
-### Q1 / Quantum
+### ORION-01 / Quantum
 - authors/affiliations;
 - archive/licence;
 - any Quantum submission-system classification/keyword choices that require author judgment.
 
-### Q2 / Artificial Intelligence
+### ORION-02 / Artificial Intelligence
 - authors/affiliations/correspondence;
 - funding/COI;
 - confirm generative-AI statement;
 - confirm originality/simultaneous-submission statement;
 - archive/licence.
 
-### Q4 / TMLR
+### ORION-04 / TMLR
 - submission-system author metadata entered separately from anonymous review PDF;
 - archive/licence;
 - confirm current TMLR policy declarations.
 
-### QG1 / PRX Quantum stretch (or Quantum fallback)
+### ORION-09 / PRX Quantum stretch (or Quantum fallback)
 - authors/affiliations;
 - archive/licence;
 - confirm popular-summary/front-matter requirements at actual submission;
 - if PRX broad-impact framing is not author-approved, use Quantum fallback rather than inflating the claim.
 
-### QG2 / Quantum
+### ORION-10 / Quantum
 - authors/affiliations;
 - archive/licence;
 - if author prefers QST despite target-fit risk, confirm the routing decision without changing science.

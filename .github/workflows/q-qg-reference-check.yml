@@ -9,12 +9,12 @@ on:
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_REFERENCE_VERIFICATION_REPORT_V1.md'
       - 'papers/check_q_qg_references.py'
-      - 'papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md'
-      - 'papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md'
-      - 'papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md'
-      - 'papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md'
-      - 'papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md'
-      - 'papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md'
+      - 'papers/orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md'
+      - 'papers/orion-06-recursive-recovery/MANUSCRIPT_V3.md'
+      - 'papers/orion-07-dual-instrument/MANUSCRIPT_V3.md'
+      - 'papers/orion-08-typed-state/MANUSCRIPT_V3.md'
+      - 'papers/orion-09-compilation-regime-geometry/MANUSCRIPT_V3.md'
+      - 'papers/orion-10-certified-static-forecasting/MANUSCRIPT_V3.md'
       - '.github/workflows/q-qg-reference-check.yml'
   push:
     branches:
@@ -26,7 +26,7 @@ on:
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_REFERENCE_VERIFICATION_REPORT_V1.md'
       - 'papers/check_q_qg_references.py'
-      - 'papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md'
+      - 'papers/orion-07-dual-instrument/MANUSCRIPT_V3.md'
       - '.github/workflows/q-qg-reference-check.yml'
 
 permissions:

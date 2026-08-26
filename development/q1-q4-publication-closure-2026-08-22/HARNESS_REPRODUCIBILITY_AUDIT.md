@@ -117,7 +117,7 @@ does not by itself prove an all-n theorem.
 Command:
 
 ```bash
-python3 papers/Q-paper-02-recursive-recovery/check_transition_graph.py
+python3 papers/orion-06-recursive-recovery/check_transition_graph.py
 ```
 
 Output:
@@ -148,9 +148,9 @@ outcome-independence of the denominator.
 Commands:
 
 ```bash
-python3 papers/Q-paper-03-dual-instrument/check_q3_completion.py
-python3 papers/Q-paper-03-dual-instrument/check_q3_result_bindings.py
-python3 papers/Q-paper-03-dual-instrument/replay_q3_v0.py
+python3 papers/orion-07-dual-instrument/check_q3_completion.py
+python3 papers/orion-07-dual-instrument/check_q3_result_bindings.py
+python3 papers/orion-07-dual-instrument/replay_q3_v0.py
 ```
 
 Outputs include:

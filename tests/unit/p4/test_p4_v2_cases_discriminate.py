@@ -29,7 +29,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-P4 = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+P4 = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 CHECKER = P4 / "protocol" / "check_verdict_leak_v1.py"
 V1 = P4 / "protocol" / "ATTACK_MANIFEST_V1.jsonl"
 V2 = P4 / "protocol" / "INSUFFICIENT_EVIDENCE_CASES_V2_PROPOSED.jsonl"

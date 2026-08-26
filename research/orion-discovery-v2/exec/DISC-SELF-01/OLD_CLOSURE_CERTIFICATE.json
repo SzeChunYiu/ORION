@@ -15,7 +15,7 @@
       "evidence": {
         "declared_intent": "Bind a historical record to its frozen digest. Historical authorities are immutable records: they must rebuild from the digests recorded when they were frozen, never from the current working tree (the harness package legitimately evolves after a V1 freeze).",
         "declared_intent_source": "src/orion/study/p15/active_claim_authority.py (_frozen_binding docstring)",
-        "chain_head_confirms_v1_is_superseded": "orion.programme.authority_staleness reports paper-15-orion-research-harness active=P15_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
+        "chain_head_confirms_v1_is_superseded": "orion.programme.authority_staleness reports orion-25-orion-research-harness active=P15_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
         "commits_that_moved_the_artifact_after_the_freeze": [
           {
             "commit": "7b97888f",
@@ -61,9 +61,9 @@
       "status": "CLEAN",
       "exit_code": 0,
       "stdout_tail": [
-        "  paper-12-adaptive-state-reasoning: active=P12_ACTIVE_CLAIM_AUTHORITY_V5.json superseded=4",
-        "  paper-13-responsibility-carrying-state: active=P13_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
-        "  paper-15-orion-research-harness: active=P15_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
+        "  orion-22-adaptive-state-reasoning: active=P12_ACTIVE_CLAIM_AUTHORITY_V5.json superseded=4",
+        "  orion-23-responsibility-carrying-state: active=P13_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
+        "  orion-25-orion-research-harness: active=P15_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
         "AUTHORITY_STALENESS_PASS"
       ],
       "what_it_checks": "whether a surface cites a superseded authority version as current",
@@ -74,7 +74,7 @@
       "status": "CLEAN",
       "scope": "git grep -l diagnostic_inputs over all tracked files",
       "files": [
-        "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json",
+        "papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json",
         "research/development/cannot_check_inventory.json",
         "src/orion/study/p15/active_claim_authority.py"
       ],

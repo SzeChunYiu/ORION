@@ -1,7 +1,7 @@
 """Baseline, reference and successor candidate-generation mechanics.
 
 Five arms over one index, defined by
-`papers/paper-02-open-world-scientific-discovery/protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md`:
+`papers/orion-12-open-world-scientific-discovery/protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md`:
 
 * **B0** `CURRENT_D1_UNWEIGHTED` — the mechanic that produced the negative.
   `arb_runtime.derive_current_vocabulary_query` (rule `D1_CURRENT_VOCABULARY`)

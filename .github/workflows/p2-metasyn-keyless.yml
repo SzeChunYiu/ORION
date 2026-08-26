@@ -42,7 +42,7 @@ jobs:
       - name: Split labels before candidate custody
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_metasyn_keyless.py prepare \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_metasyn_keyless.py prepare \
             --output /tmp/metasyn-run/public_reviews.jsonl \
             --manifest /tmp/metasyn-run/split_manifest.json \
             --dataset THUIR/MetaSyn \
@@ -51,7 +51,7 @@ jobs:
       - name: Run keyless BM25 retrieval and protocol screening
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_metasyn_keyless.py run \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_metasyn_keyless.py run \
             --public-reviews /tmp/metasyn-run/public_reviews.jsonl \
             --results-dir /tmp/metasyn-run/results \
             --manifest /tmp/metasyn-run/run_manifest.json \
@@ -70,7 +70,7 @@ jobs:
             --dataset-revision "$METASYN_DATASET_REV" \
             --id-only \
             --selection-source json
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_metasyn_keyless.py summarize \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_metasyn_keyless.py summarize \
             --split-manifest /tmp/metasyn-run/split_manifest.json \
             --run-manifest /tmp/metasyn-run/run_manifest.json \
             --evaluation /tmp/metasyn-run/official_evaluation.json \

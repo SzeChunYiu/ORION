@@ -1,10 +1,10 @@
-# P8 candidate journal-readiness plan — A Theory of Epistemic Authority for Autonomous Science
+# ORION-18 candidate journal-readiness plan — A Theory of Epistemic Authority for Autonomous Science
 
 **Current terminal:** `CANNOT_CHECK` / not a promoted paper / not peer-review ready.
 
 ## 1. Distinct-object gate
-- [ ] #343 proves P8 is not P4 generalized in vocabulary.
-- [ ] P4's protected scientific-authority contribution is explicitly treated as prior internal ownership.
+- [ ] #343 proves ORION-18 is not ORION-14 generalized in vocabulary.
+- [ ] ORION-14's protected scientific-authority contribution is explicitly treated as prior internal ownership.
 - [ ] cross-capability authority object has a formal discriminator or benchmark value unavailable from independent per-domain gates.
 
 ## 2. Nearest-work closure
@@ -38,7 +38,7 @@
 - [ ] hidden labels/custody frozen before candidate runs where required.
 
 ## 5. Baselines/ablations
-- [ ] existing P1–P5 independent gates.
+- [ ] existing ORION-11–ORION-15 independent gates.
 - [ ] confidence-threshold baseline.
 - [ ] expected-utility baseline.
 - [ ] provenance-only verifier.
@@ -60,7 +60,7 @@
 
 ## 7. Manuscript/reproducibility
 - [x] working markdown draft exists.
-- [ ] full-text related work and exact P4 boundary.
+- [ ] full-text related work and exact ORION-14 boundary.
 - [ ] claim ledger #346 complete.
 - [ ] deterministic benchmark/attack replay under #347.
 - [ ] protected/public artifact split where needed.
@@ -73,4 +73,4 @@
 
 ## Done definition
 
-Promote P8 only if a cross-capability authority calculus provides a distinct formal or empirical advantage beyond P4 and independent capability-specific gates, especially against authority-laundering attacks. Otherwise merge the synthesis into P4/programme theory.
+Promote ORION-18 only if a cross-capability authority calculus provides a distinct formal or empirical advantage beyond ORION-14 and independent capability-specific gates, especially against authority-laundering attacks. Otherwise merge the synthesis into ORION-14/programme theory.

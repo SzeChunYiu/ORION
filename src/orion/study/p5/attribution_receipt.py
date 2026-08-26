@@ -15,9 +15,9 @@ from typing import Any, Mapping
 from orion.study.p5.freeze import ROOT_CAUSES, sha256_json
 
 
-RESULTS_RELPATH = "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl"
-RECEIPT_RELPATH = "papers/paper-05-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json"
-TABLE_RELPATH = "papers/paper-05-self-orion/evidence/TABLE_P5_3_HIDDEN_CAUSE_ATTRIBUTION.json"
+RESULTS_RELPATH = "papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl"
+RECEIPT_RELPATH = "papers/orion-15-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json"
+TABLE_RELPATH = "papers/orion-15-self-orion/evidence/TABLE_P5_3_HIDDEN_CAUSE_ATTRIBUTION.json"
 CAMPAIGN_ID = "p5-glm-5.2-attribution-v1"
 MODEL = "glm-5.2"
 

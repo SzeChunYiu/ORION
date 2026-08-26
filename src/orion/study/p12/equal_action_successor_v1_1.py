@@ -22,7 +22,7 @@ from .equal_action_successor import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER = REPO_ROOT / "papers/paper-12-adaptive-state-reasoning"
+PAPER = REPO_ROOT / "papers/orion-22-adaptive-state-reasoning"
 REVALIDATION = PAPER / "P12B_LOCKED_ENVIRONMENT_REVALIDATION_V1_1.md"
 UV_LOCK = REPO_ROOT / "uv.lock"
 

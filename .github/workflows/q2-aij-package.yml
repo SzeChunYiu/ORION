@@ -3,7 +3,7 @@ name: q2-aij-package
 on:
   pull_request:
     paths:
-      - 'papers/Q-paper-02-recursive-recovery/**'
+      - 'papers/orion-06-recursive-recovery/**'
       - 'papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
@@ -13,7 +13,7 @@ on:
     branches:
       - 'codex/q-qg-nature-skills-publication-closure-20260821'
     paths:
-      - 'papers/Q-paper-02-recursive-recovery/**'
+      - 'papers/orion-06-recursive-recovery/**'
       - 'papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
@@ -42,7 +42,7 @@ jobs:
       - name: Re-run publication integrity and Q2 denominator gates
         run: |
           python papers/check_q_qg_publication.py
-          python papers/Q-paper-02-recursive-recovery/check_transition_graph.py
+          python papers/orion-06-recursive-recovery/check_transition_graph.py
       - name: Generate cited scientific masters
         run: python papers/build_q_qg_cited_masters.py --clean
       - name: Prepare AIJ source and submission auxiliaries
@@ -50,16 +50,16 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p build/q2_aij/source build/q2_aij/rendered
-          python papers/Q-paper-02-recursive-recovery/submission_aij/build_aij_source.py \
+          python papers/orion-06-recursive-recovery/submission_aij/build_aij_source.py \
             --cited-master build/q_qg_cited/Q2/MANUSCRIPT_CITED.md \
-            --highlights papers/Q-paper-02-recursive-recovery/submission_aij/HIGHLIGHTS.txt \
+            --highlights papers/orion-06-recursive-recovery/submission_aij/HIGHLIGHTS.txt \
             --out build/q2_aij/prepared.md
           cp build/q_qg_cited/Q2/references.bib build/q2_aij/source/references.bib
-          cp papers/Q-paper-02-recursive-recovery/submission_aij/aij_pandoc_template.tex \
+          cp papers/orion-06-recursive-recovery/submission_aij/aij_pandoc_template.tex \
             build/q2_aij/source/pandoc_template.tex
-          cp papers/Q-paper-02-recursive-recovery/submission_aij/HIGHLIGHTS.txt build/q2_aij/source/HIGHLIGHTS.txt
-          cp papers/Q-paper-02-recursive-recovery/submission_aij/COVER_LETTER_DRAFT.md build/q2_aij/source/COVER_LETTER_DRAFT.md
-          cp papers/Q-paper-02-recursive-recovery/submission_aij/STATEMENTS_DRAFT.md build/q2_aij/source/STATEMENTS_DRAFT.md
+          cp papers/orion-06-recursive-recovery/submission_aij/HIGHLIGHTS.txt build/q2_aij/source/HIGHLIGHTS.txt
+          cp papers/orion-06-recursive-recovery/submission_aij/COVER_LETTER_DRAFT.md build/q2_aij/source/COVER_LETTER_DRAFT.md
+          cp papers/orion-06-recursive-recovery/submission_aij/STATEMENTS_DRAFT.md build/q2_aij/source/STATEMENTS_DRAFT.md
       - name: Generate elsarticle source
         shell: bash
         run: |

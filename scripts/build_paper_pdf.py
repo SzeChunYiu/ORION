@@ -21,7 +21,7 @@ identified is not evidence of anything -- the same rule the content-binding work
 applies to every other artifact in this repository.
 
 Usage:
-    python scripts/build_paper_pdf.py papers/paper-02-.../MANUSCRIPT.md
+    python scripts/build_paper_pdf.py papers/orion-12-.../MANUSCRIPT.md
     python scripts/build_paper_pdf.py --paper P2
 """
 

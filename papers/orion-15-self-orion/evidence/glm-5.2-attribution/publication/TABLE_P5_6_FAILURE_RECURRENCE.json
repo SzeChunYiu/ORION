@@ -1,0 +1,31 @@
+{
+  "campaign_id": "p5-glm-5.2-attribution-v1",
+  "empirical_authority": "CANNOT_CHECK",
+  "issue": 102,
+  "model": "glm-5.2",
+  "n_cases": 24,
+  "paper_id": "P5",
+  "preserved_attribution_errors": [
+    {
+      "attributed": "REPRESENTATION_GAP",
+      "case_id": "P5-HC-002",
+      "gold": "RETRIEVAL_MISS"
+    },
+    {
+      "attributed": "IMPLEMENTATION_BUG",
+      "case_id": "P5-HC-012",
+      "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE"
+    },
+    {
+      "attributed": "METHOD_BASIS_GAP",
+      "case_id": "P5-HC-018",
+      "gold": "REPRESENTATION_GAP"
+    }
+  ],
+  "reason": "No negative-history on/off rounds are archived. The three attribution errors are preserved identities, not recurrence counts.",
+  "rows": [],
+  "schema_version": "orion.p5.table.failure-recurrence.v1",
+  "source_results": "papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl",
+  "status": "CANNOT_CHECK",
+  "table_id": "P5-6"
+}

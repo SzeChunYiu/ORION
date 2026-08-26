@@ -2,7 +2,7 @@
 
 Every number pinned below either comes from the frozen D1 v1.2 dataset builders
 in :mod:`orion.study.p9.d1`, or from the result artifact this lane produced at
-``papers/paper-09-structured-epistemic-learning/evidence/
+``papers/orion-19-structured-epistemic-learning/evidence/
 P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json``. The dataset-digest assertion is
 the fidelity anchor: a failure here is about P9, not about a local fixture.
 
@@ -29,7 +29,7 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 
 RESULT_PATH = (
     REPO_ROOT
-    / "papers/paper-09-structured-epistemic-learning/evidence/"
+    / "papers/orion-19-structured-epistemic-learning/evidence/"
     "P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json"
 )
 

@@ -1,6 +1,6 @@
 # Q2 refinement round 1 — foundation, analogue calibration and review preflight
 
-**Frozen manuscript:** `papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V2.md`  
+**Frozen manuscript:** `papers/orion-06-recursive-recovery/MANUSCRIPT_V2.md`  
 **Stretch:** Nature Computational Science  
 **Fallback:** npj Artificial Intelligence  
 **Reviewer isolation:** `MUTUAL_BLINDNESS_NOT_GUARANTEED` — independent lenses are recorded separately but were generated in one orchestration context.

@@ -55,11 +55,11 @@ from .invariant_profile_representation import (
 )
 
 FREEZE_DOCUMENT = (
-    "papers/paper-09-structured-epistemic-learning/protocol/"
+    "papers/orion-19-structured-epistemic-learning/protocol/"
     "P9_U_T4_SUCCESSOR_INVARIANT_PROFILE_FREEZE_2026-08-24"
 )
 EXPECTED_RESULT_ARTIFACT = (
-    "papers/paper-09-structured-epistemic-learning/evidence/"
+    "papers/orion-19-structured-epistemic-learning/evidence/"
     "P9_U_T4_SUCCESSOR_INVARIANT_PROFILE_RESULT_2026-08-24.json"
 )
 

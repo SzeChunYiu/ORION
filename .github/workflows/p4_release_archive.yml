@@ -4,14 +4,14 @@ on:
   push:
     branches: [main]
     paths:
-      - 'papers/paper-04-verified-scientific-discovery/submission/RELEASE_TRIGGER_V1.txt'
+      - 'papers/orion-14-verified-scientific-discovery/submission/RELEASE_TRIGGER_V1.txt'
 
 permissions:
   contents: write
 
 env:
   RELEASE_TAG: p4-peer-review-ready-v1
-  PAPER: papers/paper-04-verified-scientific-discovery
+  PAPER: papers/orion-14-verified-scientific-discovery
 
 jobs:
   release:

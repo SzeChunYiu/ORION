@@ -1,7 +1,7 @@
 """P12A's matched-budget arms, and the capability its "matched budget" does not match.
 
 The shipped runner is
-``papers/paper-12-adaptive-state-reasoning/run_p12a_matched_budget_v1.py``. It
+``papers/orion-22-adaptive-state-reasoning/run_p12a_matched_budget_v1.py``. It
 generates 16 families of 512 items, each item drawn from one of four resource
 regimes, and scores five allocation policies against a two-unit budget. Its
 receipt reports ``mean_joint_gain_vs_best_one_axis = 0.334717`` and the terminal

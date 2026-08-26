@@ -3,7 +3,7 @@ name: q4-tmlr-package
 on:
   pull_request:
     paths:
-      - 'papers/Q-paper-04-typed-state/**'
+      - 'papers/orion-08-typed-state/**'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
       - 'papers/build_q_qg_cited_masters.py'
@@ -12,7 +12,7 @@ on:
     branches:
       - 'codex/q-qg-nature-skills-publication-closure-20260821'
     paths:
-      - 'papers/Q-paper-04-typed-state/**'
+      - 'papers/orion-08-typed-state/**'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
       - 'papers/build_q_qg_cited_masters.py'
@@ -50,11 +50,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p build/q4_tmlr/source build/q4_tmlr/rendered
-          python papers/Q-paper-04-typed-state/submission_tmlr/build_tmlr_source.py \
+          python papers/orion-08-typed-state/submission_tmlr/build_tmlr_source.py \
             --cited-master build/q_qg_cited/Q4/MANUSCRIPT_CITED.md \
             --out build/q4_tmlr/q4_tmlr.md
           cp build/q_qg_cited/Q4/references.bib build/q4_tmlr/source/references.bib
-          cp papers/Q-paper-04-typed-state/submission_tmlr/tmlr_pandoc_template.tex \
+          cp papers/orion-08-typed-state/submission_tmlr/tmlr_pandoc_template.tex \
             build/q4_tmlr/source/pandoc_template.tex
       - name: Fetch exact official TMLR style files
         shell: bash

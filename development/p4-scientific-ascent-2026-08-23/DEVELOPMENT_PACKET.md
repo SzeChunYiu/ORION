@@ -1,7 +1,7 @@
 # Paper 4 scientific-ascent packet
 
 **Date:** 2026-08-23  
-**Paper:** `papers/paper-04-verified-scientific-discovery/`  
+**Paper:** `papers/orion-14-verified-scientific-discovery/`  
 **Scope:** scientific content first; no pytest or repository CI was run. Targeted
 P4 PDF rebuild and visual QA followed manuscript integration.
 

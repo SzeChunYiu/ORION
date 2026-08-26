@@ -8,7 +8,7 @@ sampling support is able to produce. A serialized ``false`` cannot tell them
 apart, so a benchmark whose gate was arithmetic before the seed was drawn reads
 exactly like a benchmark that ran and lost.
 
-P14A is the live example, measured both ways. ``papers/paper-14-orion-rse/
+P14A is the live example, measured both ways. ``papers/orion-24-orion-rse/
 run_p14a_controlled_governance_v1.py`` computes its terminal from a live
 conjunction --- it is not the P8 literal ---
 

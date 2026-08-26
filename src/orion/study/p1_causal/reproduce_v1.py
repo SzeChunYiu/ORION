@@ -15,7 +15,7 @@ from orion.study.p1.precision_tier import TierRule
 from orion.study.p1.statistics import paired_bootstrap_difference
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER01 = REPO_ROOT / "papers" / "paper-01-recursive-epistemic-reconstruction"
+PAPER01 = REPO_ROOT / "papers" / "orion-11-recursive-epistemic-reconstruction"
 SCORED = PAPER01 / "results" / "raw" / "test_scored.jsonl"
 RUNS = PAPER01 / "results" / "raw" / "test_runs.jsonl"
 T2_JSON = PAPER01 / "results" / "P1-T2_baseline_ablation_results.json"

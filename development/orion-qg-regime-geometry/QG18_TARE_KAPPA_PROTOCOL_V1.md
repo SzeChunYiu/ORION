@@ -21,7 +21,7 @@ domain size is recorded verbatim in the RESULTS file.
 
 ## 0. The open question this lane closes
 
-`papers/QG-paper-03-intrinsic-support-numbers/MANUSCRIPT_V1.md` (§7 table) records
+`papers/candidates/qg-paper-03-stub/MANUSCRIPT_V1.md` (§7 table) records
 
 | Family | Objective | Support bound | κ status |
 |---|---|---|---|

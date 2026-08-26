@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 
-PAPER_ROOT = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+PAPER_ROOT = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 PROTOCOL_DIR = PAPER_ROOT / "protocol"
 MANUSCRIPT_DIR = PAPER_ROOT / "manuscript"
 PROTOCOLS_DIR = ROOT / "research" / "paper-programme-v1" / "protocols"

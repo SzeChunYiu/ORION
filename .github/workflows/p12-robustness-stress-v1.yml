@@ -2,13 +2,13 @@ name: p12-robustness-stress-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/P12_ROBUSTNESS_PROTOCOL_V2.md'
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/generate_p12_robustness_cases_v1.py'
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/p12_transfer_cases_expanded_v1.json'
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/audit_p12_hidden_parameterization_v1.py'
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py'
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py'
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/run_transfer_allocation_v1.py'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/P12_ROBUSTNESS_PROTOCOL_V2.md'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/generate_p12_robustness_cases_v1.py'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/p12_transfer_cases_expanded_v1.json'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/audit_p12_hidden_parameterization_v1.py'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/run_transfer_allocation_v1.py'
       - '.github/workflows/p12-robustness-stress-v1.yml'
   workflow_dispatch:
 permissions:
@@ -23,8 +23,8 @@ jobs:
           python-version: '3.12'
       - name: Assert frozen-generator byte-identity of the expanded case file
         run: |
-          python papers/paper-12-adaptive-state-reasoning/top_tier/generate_p12_robustness_cases_v1.py > p12_expanded_regen.json
-          cmp papers/paper-12-adaptive-state-reasoning/top_tier/p12_transfer_cases_expanded_v1.json p12_expanded_regen.json
+          python papers/orion-22-adaptive-state-reasoning/top_tier/generate_p12_robustness_cases_v1.py > p12_expanded_regen.json
+          cmp papers/orion-22-adaptive-state-reasoning/top_tier/p12_transfer_cases_expanded_v1.json p12_expanded_regen.json
           python - <<'EOF'
           import json
           d = json.load(open('p12_expanded_regen.json'))
@@ -35,10 +35,10 @@ jobs:
       - name: Execute hidden-parameterization audit
         run: |
           set -o pipefail
-          python papers/paper-12-adaptive-state-reasoning/top_tier/audit_p12_hidden_parameterization_v1.py | tee p12_hidden_parameterization_audit_v1.json
+          python papers/orion-22-adaptive-state-reasoning/top_tier/audit_p12_hidden_parameterization_v1.py | tee p12_hidden_parameterization_audit_v1.json
       - name: Verify audit replay, self-validation and terminal
         run: |
-          python papers/paper-12-adaptive-state-reasoning/top_tier/audit_p12_hidden_parameterization_v1.py > p12_audit_replay.json
+          python papers/orion-22-adaptive-state-reasoning/top_tier/audit_p12_hidden_parameterization_v1.py > p12_audit_replay.json
           cmp p12_hidden_parameterization_audit_v1.json p12_audit_replay.json
           python - <<'EOF'
           import json
@@ -52,10 +52,10 @@ jobs:
       - name: Execute robustness stress runner (5 price regimes, mixes, expansion)
         run: |
           set -o pipefail
-          python papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py | tee p12_robustness_stress_v1.json
+          python papers/orion-22-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py | tee p12_robustness_stress_v1.json
       - name: Verify runner replay, integrity gates and coverage
         run: |
-          python papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py > p12_robustness_replay.json
+          python papers/orion-22-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py > p12_robustness_replay.json
           cmp p12_robustness_stress_v1.json p12_robustness_replay.json
           python - <<'EOF'
           import json
@@ -87,10 +87,10 @@ jobs:
       - name: Execute independent second checker
         run: |
           set -o pipefail
-          python papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py | tee p12_robustness_independent_v1.json
+          python papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py | tee p12_robustness_independent_v1.json
       - name: Verify checker replay and two-implementation agreement
         run: |
-          python papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py > p12_robustness_independent_replay.json
+          python papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py > p12_robustness_independent_replay.json
           cmp p12_robustness_independent_v1.json p12_robustness_independent_replay.json
           python - <<'EOF'
           import json

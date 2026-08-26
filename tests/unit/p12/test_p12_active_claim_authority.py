@@ -15,7 +15,7 @@ from orion.study.p12.active_authority import (
 )
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers/paper-12-adaptive-state-reasoning"
+PAPER = ROOT / "papers/orion-22-adaptive-state-reasoning"
 ADJUDICATION = PAPER / "P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json"
 ACTIVE = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V1.json"
 SUCCESSOR_ACTIVE = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V5.json"

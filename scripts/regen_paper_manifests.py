@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate CONTENT_MANIFEST_V1.json + SHA256SUMS for papers/paper-NN-*.
+"""Regenerate CONTENT_MANIFEST_V1.json + SHA256SUMS for papers/orion-NN-*.
 
 Repairs the 2026-08 seam corruption (two concatenated JSON writes) by
 rebuilding each manifest as a single valid object, preserves all curated
@@ -99,9 +99,9 @@ def parse_tolerant(raw: str) -> tuple[dict, dict, list[str]] | None:
 def paper_dirs(repo: Path, only: set[str] | None) -> list[Path]:
     dirs = []
     for d in sorted((repo / "papers").iterdir()):
-        if not d.is_dir() or not re.fullmatch(r"paper-\d\d-.*", d.name):
+        if not d.is_dir() or not re.fullmatch(r"orion-\d\d-.*", d.name):
             continue
-        if only and d.name[:8] not in only and d.name.split("-")[0][5:] not in only:
+        if only and d.name[:9] not in only and d.name.split("-")[1] not in only:
             continue
         dirs.append(d)
     return dirs
@@ -216,7 +216,7 @@ def main() -> int:
     ap.add_argument(
         "--papers",
         default="",
-        help="comma-separated filter, e.g. paper-06,paper-08 (default: all)",
+        help="comma-separated filter, e.g. orion-16,orion-18 (default: all)",
     )
     ap.add_argument(
         "--include-new",

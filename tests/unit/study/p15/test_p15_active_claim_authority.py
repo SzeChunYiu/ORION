@@ -16,7 +16,7 @@ from orion.study.p15.active_claim_authority import (
 )
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-15-orion-research-harness"
+PAPER = ROOT / "papers/orion-25-orion-research-harness"
 V1_AUTHORITY = PAPER / "P15_ACTIVE_CLAIM_AUTHORITY_V1.json"
 V2_AUTHORITY = PAPER / "P15_ACTIVE_CLAIM_AUTHORITY_V2.json"
 V3_AUTHORITY = PAPER / "P15_ACTIVE_CLAIM_AUTHORITY_V3.json"

@@ -7,11 +7,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPERS = {
-    "P1": ROOT / "papers" / "paper-01-recursive-epistemic-reconstruction",
-    "P2": ROOT / "papers" / "paper-02-open-world-scientific-discovery",
-    "P3": ROOT / "papers" / "paper-03-global-knowledge-portrait",
-    "P4": ROOT / "papers" / "paper-04-verified-scientific-discovery",
-    "P5": ROOT / "papers" / "paper-05-self-orion",
+    "P1": ROOT / "papers" / "orion-11-recursive-epistemic-reconstruction",
+    "P2": ROOT / "papers" / "orion-12-open-world-scientific-discovery",
+    "P3": ROOT / "papers" / "orion-13-global-knowledge-portrait",
+    "P4": ROOT / "papers" / "orion-14-verified-scientific-discovery",
+    "P5": ROOT / "papers" / "orion-15-self-orion",
 }
 
 INPUT_RE = re.compile(r"\\input\{([^}]+)\}")

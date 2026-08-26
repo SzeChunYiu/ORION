@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parents[3]
 GENERATOR = (
     ROOT
     / "papers"
-    / "paper-04-verified-scientific-discovery"
+    / "orion-14-verified-scientific-discovery"
     / "host"
     / "generate_protected_cases.py"
 )

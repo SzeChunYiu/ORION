@@ -31,14 +31,14 @@ Measured by `orion.programme.content_binding_coverage` on this tree:
 
 | directory | files | binding |
 | --- | ---: | --- |
-| `paper-06-formal-epistemic-structures-and-mechanics` | 38 | `SHA256SUMS` + `CONTENT_MANIFEST_V1.json` |
-| `paper-07-epistemic-navigation-open-worlds` | 39 | `SHA256SUMS` + `CONTENT_MANIFEST_V1.json` |
-| `paper-08-epistemic-authority-autonomous-science` | 38 | `SHA256SUMS` + `CONTENT_MANIFEST_V1.json` |
-| `paper-01-recursive-epistemic-reconstruction` | 150 | none |
-| `paper-02-open-world-scientific-discovery` | 268 | none |
-| `paper-03-global-knowledge-portrait` | 143 | none |
-| `paper-04-verified-scientific-discovery` | 86 | none |
-| `paper-05-self-orion` | 89 | none |
+| `orion-16-formal-epistemic-structures-and-mechanics` | 38 | `SHA256SUMS` + `CONTENT_MANIFEST_V1.json` |
+| `orion-17-epistemic-navigation-open-worlds` | 39 | `SHA256SUMS` + `CONTENT_MANIFEST_V1.json` |
+| `orion-18-epistemic-authority-autonomous-science` | 38 | `SHA256SUMS` + `CONTENT_MANIFEST_V1.json` |
+| `orion-11-recursive-epistemic-reconstruction` | 150 | none |
+| `orion-12-open-world-scientific-discovery` | 268 | none |
+| `orion-13-global-knowledge-portrait` | 143 | none |
+| `orion-14-verified-scientific-discovery` | 86 | none |
+| `orion-15-self-orion` | 89 | none |
 | `paper-09` … `paper-15`, `paper-xx-*`, Q and QG series | 587 | none |
 
 The binding that does exist is good. `check_content_binding_v1.bound_paths`

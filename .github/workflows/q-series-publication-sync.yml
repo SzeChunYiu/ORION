@@ -9,10 +9,10 @@ on:
       - 'papers/Q_SERIES_FINAL_READINESS_2026-08-22.md'
       - 'papers/SYNC_CONTRACT.md'
       - 'papers/FRAMEWORK_SNAPSHOT.json'
-      - 'papers/Q-paper-01-tare-expressivity/**'
-      - 'papers/Q-paper-02-recursive-recovery/**'
-      - 'papers/Q-paper-03-dual-instrument/**'
-      - 'papers/Q-paper-04-typed-state/**'
+      - 'papers/orion-05-tare-expressivity/**'
+      - 'papers/orion-06-recursive-recovery/**'
+      - 'papers/orion-07-dual-instrument/**'
+      - 'papers/orion-08-typed-state/**'
       - 'development/q-paper-recursive-refinement/**'
       - 'src/orion/registry.py'
       - 'src/orion/programme/q_series_sync.py'
@@ -44,10 +44,10 @@ on:
       - 'papers/Q_SERIES_FINAL_READINESS_2026-08-22.md'
       - 'papers/SYNC_CONTRACT.md'
       - 'papers/FRAMEWORK_SNAPSHOT.json'
-      - 'papers/Q-paper-01-tare-expressivity/**'
-      - 'papers/Q-paper-02-recursive-recovery/**'
-      - 'papers/Q-paper-03-dual-instrument/**'
-      - 'papers/Q-paper-04-typed-state/**'
+      - 'papers/orion-05-tare-expressivity/**'
+      - 'papers/orion-06-recursive-recovery/**'
+      - 'papers/orion-07-dual-instrument/**'
+      - 'papers/orion-08-typed-state/**'
       - 'development/q-paper-recursive-refinement/**'
       - 'src/orion/registry.py'
       - 'src/orion/programme/q_series_sync.py'
@@ -112,12 +112,12 @@ jobs:
             packages/orion-research-harness/tests/test_frontier_benchmark.py
       - name: Re-run Q1 independent finite-core proof sanity check
         run: |
-          python papers/Q-paper-01-tare-expressivity/independent_human_proof_sanity.py > /tmp/q1-sanity.json
+          python papers/orion-05-tare-expressivity/independent_human_proof_sanity.py > /tmp/q1-sanity.json
           python - <<'PY'
           import json
           from pathlib import Path
 
-          expected = json.loads(Path('papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json').read_text())
+          expected = json.loads(Path('papers/orion-05-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json').read_text())
           actual = json.loads(Path('/tmp/q1-sanity.json').read_text())
           core_keys = (
               'schema',
@@ -137,7 +137,7 @@ jobs:
           PY
       - name: Validate Q3 typed reconstruction of historically prospective V0
         run: |
-          python papers/Q-paper-03-dual-instrument/build_typed_v0_record.py > /tmp/q3-v0.json
+          python papers/orion-07-dual-instrument/build_typed_v0_record.py > /tmp/q3-v0.json
           python - <<'PY'
           import json
           from pathlib import Path
@@ -150,11 +150,11 @@ jobs:
           PY
       - name: Re-run Q4 paired publication analysis
         run: |
-          python papers/Q-paper-04-typed-state/publication_analysis.py > /tmp/q4-publication-analysis.json
+          python papers/orion-08-typed-state/publication_analysis.py > /tmp/q4-publication-analysis.json
           python - <<'PY'
           import json
           from pathlib import Path
-          expected = json.loads(Path('papers/Q-paper-04-typed-state/PUBLICATION_PAIRED_ANALYSIS_V1.json').read_text())
+          expected = json.loads(Path('papers/orion-08-typed-state/PUBLICATION_PAIRED_ANALYSIS_V1.json').read_text())
           actual = json.loads(Path('/tmp/q4-publication-analysis.json').read_text())
           if actual != expected:
               raise SystemExit('Q4 paired publication analysis drifted from the bound result')

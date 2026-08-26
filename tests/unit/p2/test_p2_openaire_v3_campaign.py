@@ -9,7 +9,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery"
+PAPER = ROOT / "papers" / "orion-12-open-world-scientific-discovery"
 RUNNER_PATH = PAPER / "scripts" / "run_autoresearchbench_wide_openaire_matched_v3.py"
 ANALYZER_PATH = PAPER / "scripts" / "analyze_autoresearchbench_wide_openaire_matched_v3.py"
 V3_FREEZE = PAPER / "protocol" / "P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json"

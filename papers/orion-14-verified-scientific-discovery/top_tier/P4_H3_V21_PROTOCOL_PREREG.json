@@ -1,0 +1,77 @@
+{
+  "schema": "orion.p4.h3.v21.prereg.v1",
+  "paper_id": "P4",
+  "revival_lane": "NR-03",
+  "backlog_source": "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md",
+  "negative_being_revived": "P4.H3.V2.SATURATED (CLAIM_LEDGER_V4.md: all eleven V2 panel systems scored correct_cannot_check_rate 1.0; registered H3 comparison NOT_SUPPORTED, effect 0, CI [0,0])",
+  "protocol_id": "P4.H3.metric-degeneration.v21",
+  "preregistered_at_commit": "7f7f91931323cb891c323c898888fa81b86a2ac1",
+  "preregistration_statement": "This file is committed before any V2.1 outcome is computed. The only quantities inspected before this commit are already-published ones (PUBLICATION_METRICS_V2.json per-system false_promotion_rate and correct_cannot_check_rate, and the reconstruction table in research/failures/2026-08-label-recoverable-from-construction-cue/README.md). No per-system false-abstention count, no informedness value, and no V2.1 confidence interval has been computed at preregistration time.",
+
+  "construct": {
+    "name": "abstention competence of the CANNOT_CHECK terminal (unchanged from registered H3)",
+    "v2_measurement": "m(s) = (1/30) * sum over gold-CANNOT_CHECK cases of 1{terminal_s == CANNOT_CHECK} (one-class marginal over the eligible family)",
+    "saturation_recorded": "m(s) = 1.0 for all eleven systems"
+  },
+
+  "root_cause_hypothesis_to_verify": {
+    "cue": "z(case) = 1{candidate_visible.evidence == [] and candidate_visible.retrieval_pool == []}",
+    "claim_1_construction": "On the v1 construction battery, z(case) == 1{gold terminal == CANNOT_CHECK} exactly (the INSUFFICIENT_EVIDENCE family is the only family whose mutation empties both lists).",
+    "claim_2_policy": "Every one of the eleven frozen policies contains an abstention trigger fired whenever z = 1: six pool-emptiness triggers (_attribution, _fire, _claimbench, _reward, _pooled via not _pool(view)), three assigned-object-absence triggers (_provenanceguard, _provenai, _auditability via item is None), one citation-absence trigger (_citation), the deepsci stage-1 trigger (item is None), and the ORION gate aggregate (item is None forces EXACT_CONTENT_BINDING, SOURCE_OWNERSHIP, SEMANTIC_SUPPORT and BEHAVIORAL_INFLUENCE into HardGateState.CANNOT_CHECK with no gate FAIL on the remaining well-formed fields).",
+    "claim_3_saturation_math": "Claims 1+2 imply: on the eligible family F (30 gold-CANNOT_CHECK cases) every policy emits CANNOT_CHECK, so the F-restricted decision vectors are identical across systems and ANY statistic of decisions restricted to F is constant across systems. The published ceiling 1.0 is therefore forced by the data, not produced by the metric's normalization or cap: for any transform phi, phi(m) with m == 1 identically is again constant. De-degeneration requires widening the measurement support, not re-normalizing.",
+    "falsifier": "If any system fails to emit CANNOT_CHECK on some F case, or z disagrees with the gold label on any case, the hypothesis is wrong and the receipt must report the disagreement instead of the planned analysis."
+  },
+
+  "v21_metric": {
+    "name": "informedness of the CANNOT_CHECK terminal over the full frozen battery (Youden J; chance-corrected, constant-predictor-invariant)",
+    "definition": "J_CC(s) = TPR_CC(s) + TNR_CC(s) - 1 where TPR_CC(s) = TP/30 over gold-CANNOT_CHECK cases and TNR_CC(s) = 1 - FA/390 over the 390 gold-non-CANNOT_CHECK cases (60 PROMOTE + 330 BLOCK); TP = # gold-CC cases where s emits CANNOT_CHECK; FA (false abstentions) = # gold-non-CC cases where s emits CANNOT_CHECK.",
+    "measurement_theory_justification": "A binary-terminal instrument measures a competence only chance-corrected over both error directions. J is 0 for every constant predictor (including always-abstain, which scores 1.0 under the V2 one-class marginal), 1 only for exact abstention-set identification, and -1 for perfect inversion. It is computed from the SAME frozen per-case decisions the V2 campaign produced; no case, gold label or policy is changed.",
+    "range": "[-1, 1]",
+    "why_not_a_monotone_transform": "A strictly monotone transform of an identically-constant input is constant; the saturation lives in the F-restricted data, so the fix must read the decisions the V2 marginal discarded (the 390 negative-side abstentions).",
+    "secondary_descriptives": "per-system FA decomposed by gold class (PROMOTE-side vs BLOCK-side false abstentions); abstention-set cardinality |A_s| = 30-hit count + FA."
+  },
+
+  "frozen_inputs": {
+    "generator": "papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py at the preregistration commit, --construction v1 (the construction the published V2 campaign ran against, retained in-repo for reproducibility)",
+    "battery_seed_primary": "nr03-v21-20260823",
+    "battery_seed_invariance_check": "nr03-v21-seedcheck-90f1",
+    "policies": "the eleven frozen implementations: run_baselines.py RUNNERS (nine) + run_baselines_v2.py _deepsci + run_candidate.py evaluate_case (ORION), all at the preregistration commit",
+    "gold": "expected_authority_terminal emitted by the generator's protected manifest (60 PROMOTE, 330 BLOCK, 30 CANNOT_CHECK across 13 families)",
+    "published_reference": "papers/orion-14-verified-scientific-discovery/evidence/protected_v2/PUBLICATION_METRICS_V2.json"
+  },
+
+  "gates": {
+    "GATE_REPRO": {
+      "rule": "On the primary seed, per-system false-promotion counts and correct-CANNOT_CHECK counts must equal the published values exactly: ORION 0/360 FP; provenai-citation-fidelity-influence 180; deepsciverify-abstract-to-full-escalation 210; provenanceguard-style-source-routing 210; rewardhackingagents-search-contamination 210; attributionbench-multisource-attribution 240; claim-level-auditability-provenance 240; fire-iterative-retrieve-or-verify 300; citation-presence-format 330; claimbench-sciclaimhunt-scientific-evidence 330; pooled-evidence-nli-support 330; all eleven 30/30 correct CANNOT_CHECK.",
+      "on_failure": "outcome CANNOT_CHECK for the whole re-run; no V2.1 number is reported"
+    },
+    "GATE_CUE": {
+      "rule": "z must equal 1{gold == CANNOT_CHECK} on all 420 cases of the primary-seed battery; every non-CC case must have a non-empty evidence list AND non-empty pool.",
+      "on_failure": "root-cause hypothesis falsified; report the disagreement"
+    },
+    "GATE_SEED": {
+      "rule": "the invariance-check seed must give the identical per-system (TP, FA, FP) triple for all eleven systems.",
+      "on_failure": "restrict all claims to the primary seed and record the divergence"
+    },
+    "GATE_FAMILY_DECISIONS": {
+      "rule": "on the eligible family every system must emit CANNOT_CHECK on all 30 cases (this re-derives the published 1.0 rather than assuming it).",
+      "on_failure": "root-cause hypothesis falsified"
+    }
+  },
+
+  "registered_comparison": {
+    "pairing": "ORION minus strongest frozen comparator provenai-citation-fidelity-influence (the registered H3 pairing)",
+    "estimand": "delta_J = J_CC(ORION) - J_CC(provenai)",
+    "uncertainty": "case-level paired bootstrap: resample the 420 case indices with replacement jointly for both systems, B = 10000, RNG numpy-free stdlib random.Random(20260823) driving random.choices on the index list; resamples with an empty positive or empty negative side are redrawn; percentile 95% CI",
+    "secondary_pairings": "ORION minus each of the other ten systems, same procedure, same RNG seed restart per pairing",
+    "support_threshold": "ci95_low > 0"
+  },
+
+  "pre_registered_outcomes": {
+    "(a)_SUPPORTED": "delta_J ci95_low > 0: the registered comparison is supportable under V2.1 on the frozen battery; report the ordering and its boundary.",
+    "(b)_INSTRUMENT_NULL": "J_CC(s) = 1.0 for every system: the frozen decisions are identical on the abstention axis; the honest claim is 'systems indistinguishable on this instrument's abstention axis'; the registered comparison is not supportable by ANY abstention-axis metric over these decisions, and the boundary points to the audited V3 construction as the only successor lane.",
+    "(c)_DESCRIPTIVE_ONLY": "J varies across systems but the registered pairing's CI covers 0: report the descriptive ordering, the pairing stays unsupported, and the conversion is the identifiability boundary plus whatever abstention-axis variation does exist."
+  },
+
+  "boundary_pre_registered": "The v1 construction's label is recoverable from the construction cue z (documented in research/failures/2026-08-label-recoverable-from-construction-cue/). Any V2.1 separation is therefore a measurement of how policies realize the cue (over-abstention beyond it), not of evidential competence; and no V2.1 result re-labels the historical P4.H3.V2.SATURATED terminal. Nothing here aggregates a BLOCK-axis quantity into the abstention axis: FA counts only CANNOT_CHECK decisions on gold-non-CC cases, the PROMOTE/BLOCK distinction among non-abstentions is read only through the published reproduction gate."
+}

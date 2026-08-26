@@ -29,19 +29,19 @@ def _run(relative_path: str) -> str:
     ("relative_path", "sentinel"),
     (
         (
-            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py",
+            "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py",
             "P6 THEORY CLOSURE V2.1: PASS",
         ),
         (
-            "papers/paper-07-epistemic-navigation-open-worlds/formal/check_contract_manifest_v2.py",
+            "papers/orion-17-epistemic-navigation-open-worlds/formal/check_contract_manifest_v2.py",
             "P7 CONTRACT MANIFEST V2: PASS",
         ),
         (
-            "papers/paper-08-epistemic-authority-autonomous-science/formal/check_contract_manifest_v2.py",
+            "papers/orion-18-epistemic-authority-autonomous-science/formal/check_contract_manifest_v2.py",
             "P8 CONTRACT MANIFEST V2: PASS",
         ),
         (
-            "papers/paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2_1.py",
+            "papers/orion-18-epistemic-authority-autonomous-science/formal/check_theory_closure_v2_1.py",
             "P8 THEORY CLOSURE V2.1: PASS",
         ),
     ),

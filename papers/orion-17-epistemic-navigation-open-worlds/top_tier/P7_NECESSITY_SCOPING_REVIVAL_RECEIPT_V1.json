@@ -1,0 +1,99 @@
+{
+  "schema": "orion.negative-revival-receipt.v1",
+  "lane": "NR-10",
+  "backlog": "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md",
+  "negative_revived": "MATCH_IS_NOT_NECESSARY (broad necessity reading)",
+  "claim_ledger_row": "P7.V4.8",
+  "history_record": "P7-HIST-002 (immutable)",
+  "ledger_item": "P7.MATCH_NECESSITY.HISTORICAL_LIMITATION",
+  "branch": "revive/p7-necessity-nr10",
+  "date": "2026-08-23",
+  "disposition": {
+    "terminal_status": "P7_NECESSITY_SCOPING_REVIVED__OPAQUE_FRAME_CHARACTERIZED__WITNESS_PRESERVED",
+    "lever_branches_taken": [
+      "construct the frame where necessity holds (primary)",
+      "conditional-claim scoping artifact (ledger row P7.V4.10)"
+    ],
+    "negative_scoped_not_retracted": true,
+    "witness_preserved_as_evidence": true,
+    "v1_conditional_theorem_weakened": false
+  },
+  "one_stage_attribution": "The necessity failure is a failure of the evidence scope of the rule, not of the composition semantics. V1 asked whether the administrative test (match: contract identity + bridge registry) is necessary for the semantic predicate (Total, defined on Demands) to compose. The rule is denied access to Demands; the condition it approximates is defined on Demands. No V1 axiom is wrong; the negative names which question each theorem answers.",
+  "v2_frame": {
+    "protocol": "papers/orion-17-epistemic-navigation-open-worlds/top_tier/P7_NECESSITY_SCOPING_V2_FRAME_PROTOCOL_V1.md",
+    "protocol_committed_before_execution": true,
+    "opaque_scope": "obs = (Tgt t, Src u, bridge table); Demands/Discharged/Fresh/Total not admissible",
+    "witness_aware_scope": "opaque scope + Demands on the two hand-off contracts",
+    "sound": "never licenses a hand-off whose composite fails Total for both-total legs, in any consistent completion",
+    "maximal": "no strictly more permissive sound rule exists"
+  },
+  "verification": {
+    "script": "papers/orion-17-epistemic-navigation-open-worlds/top_tier/run_p7_necessity_scoping_v2.py",
+    "result_json": "papers/orion-17-epistemic-navigation-open-worlds/top_tier/P7_NECESSITY_SCOPING_V2_RESULT_V1.json",
+    "mode": "local deterministic single targeted script; stdlib only; no pytest/suites/xdist/cloning",
+    "python": "3.13.12",
+    "runtime_seconds": 1.622,
+    "source_frame_module": "src/orion/study/p7/composition_calculus_smt.py (_finite_semantic_world construction re-implemented verbatim)",
+    "frames": [
+      {"obligations": 1, "contracts": 2, "transformations": 16, "completions": 40, "leg_checks": 9992, "observations_checked": 64},
+      {"obligations": 2, "contracts": 2, "transformations": 64, "completions": 112, "leg_checks": 428424, "observations_checked": 64},
+      {"obligations": 1, "contracts": 3, "transformations": 36, "completions": 1216, "leg_checks": 1549056, "observations_checked": 4608}
+    ],
+    "verdicts": {
+      "N2_A_witness_preserved": true,
+      "N2_B_match_sound": true,
+      "N2_B_containment_sound": true,
+      "N2_C_containment_necessary": true,
+      "N2_D_conflation": true,
+      "N2_E1_exact_characterization": true,
+      "N2_E1_leg_level_agreement": true,
+      "N2_E2_match_separated": true,
+      "N2_E2_closure_complete_iff_match": true
+    },
+    "all_pre_registered_claims_hold": true
+  },
+  "recovered_necessity_reading": {
+    "exact_opaque_condition": "an opaque observation (a, b, T) is soundly licenseable iff a and b lie in the same connected component of the undirected closure of T (registry-connectivity)",
+    "unique_maximal_sound_opaque_rule": "registry-connectivity",
+    "match_vs_connectivity": "match implies connectivity, strict in general (T={(k0,k1)} licenses k1->k0, match refuses); match = connectivity exactly when T is component-complete",
+    "v1_incompleteness_decomposition": [
+      "opacity proper: unregistered equivalence conflated with genuine failure; unlicensable by any sound opaque rule (N2-D)",
+      "directional bookkeeping: equivalence registered only indirectly; recoverable inside the opaque scope by connectivity (N2-E2)"
+    ],
+    "semantic_exact_condition_unchanged": "containment (V1 CONTAINMENT_IS_THE_EXACT_CONDITION), witness-aware scope"
+  },
+  "checker_validation": {
+    "two_run_disclosure": "First execution reported N2_E2_closure_complete_iff_match=false. Diagnosis: the iff is a table-level statement, the checker had scoped it per observation pair, counting agreeing pairs in a separating table as violations. Checker scoping defect, not a finding; repaired to the pre-registered table-level semantics; re-run green. No theorem statement changed between runs.",
+    "mutation_sensitivity": [
+      {"mutation": "components computed as directed reachability", "fired": ["N2_E1_exact_characterization", "N2_E2_closure_complete_iff_match"]},
+      {"mutation": "singleton components (all contracts separate)", "fired": ["N2_E1_exact_characterization"]},
+      {"mutation": "containment direction flipped", "fired": ["N2_B_containment_sound", "N2_E1_exact_characterization"], "note": "N2_B_match_sound correctly stays green: match soundness rests on bridge-forced equality, not the containment predicate"},
+      {"mutation": "match identity disjunct dropped", "fired": [], "note": "correct: identity disjunct guards the unit law (IDENTITY_NEEDS_A_REFLEXIVE_CONTRACT_TEST), not licensing soundness"}
+    ]
+  },
+  "empirical_correspondence": {
+    "source": "papers/orion-17-epistemic-navigation-open-worlds/top_tier/P7_OBJECTIVE_CHANGE_TRANSPORT_RESULT_RECEIPT_V1.md (PR #1016)",
+    "mapping": {
+      "WITNESS_AWARE_1.0": "witness-aware scope",
+      "VALUE_ONLY_0.3": "opaque-scope rule with evidence coarser than the registry (unsound and sub-maximal)",
+      "ALWAYS_REOPEN_0.1": "sound strictly sub-maximal rule"
+    },
+    "boundary": "that study concerns closure transport under obligation change, not contract hand-off licensing; structural correspondence at the level of the evidence boundary; interpretation, not proof"
+  },
+  "codex_lane_combination": {
+    "branch": "origin/codex/p1-p15-takeover-20260823",
+    "relation": "src/orion/study/p7/ byte-identical between origin/main and the codex takeover branch (git diff empty); this lane builds on and cites that registered module; no rebase; codex tests untouched"
+  },
+  "not_licensed": [
+    "no claim that match or connectivity is semantically necessary; semantic exact condition remains containment",
+    "no weakening of any V1 theorem; witness and countermodel re-exhibited, not replaced",
+    "general (arbitrary-sort) N2-D/E1/E2 statements supported by finite exhaustive sweeps plus protocol-recorded desk derivation (bridge soundness forces equality, hence undirected closure); not re-mechanized in Z3 in this lane; upgrading them to the registered mechanized artifact is the named successor step",
+    "no deployed-agent, empirical or registry-design claim",
+    "no independent formal review beyond same-lane double implementation and mutation sensitivity"
+  ],
+  "binding": {
+    "protocol_sha256": "443388880797d589679a1dc56be6f015c5ccc0785f7fadec061be06ec995351c",
+    "verifier_sha256": "7114202cc5e8a176a039ac09184cd3c7a5ea8660aa31368cffb2c95fcfd2d48d",
+    "result_json_sha256": "745db0c7882a8e68ed25857e87c70f4592f99b39c73a0abe53b82da63a5ac61f"
+  }
+}

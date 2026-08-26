@@ -1,6 +1,6 @@
-# P10 bounded review-package status — 2026-08-20
+# ORION-20 bounded review-package status — 2026-08-20
 
-The completed P10 review package remains scientifically positive at the source-projection level and peer-reviewable as bounded technical evidence. The new review branch adds only:
+The completed ORION-20 review package remains scientifically positive at the source-projection level and peer-reviewable as bounded technical evidence. The new review branch adds only:
 
 - a post-hoc module-wise robustness derivation from frozen V2.1 block receipts;
 - frozen native-state/dependency and later search-expansion protocols;

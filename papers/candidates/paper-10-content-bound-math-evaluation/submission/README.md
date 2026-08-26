@@ -1,6 +1,6 @@
-# ORION-P11 peer-review package
+# ORION-ORION-21 peer-review package
 
-This directory retains the historical `paper-10-content-bound-math-evaluation` path because the original evidence was produced before programme renumbering. Issue #471 assigns that preserved evidence to **ORION-P11 — Content-Bound Mathematical Evaluation**.
+This directory retains the historical `paper-10-content-bound-math-evaluation` path because the original evidence was produced before programme renumbering. Issue #471 assigns that preserved evidence to **ORION-ORION-21 — Content-Bound Mathematical Evaluation**.
 
 ## Submission paper
 
@@ -23,7 +23,7 @@ This directory retains the historical `paper-10-content-bound-math-evaluation` p
 
 ## Historical evidence retained
 
-The following remain authoritative historical artifacts and are not rewritten by the P11 submission package:
+The following remain authoritative historical artifacts and are not rewritten by the ORION-21 submission package:
 
 - `TECHNICAL_NOTE.md`;
 - `CLAIM_LEDGER.md`;

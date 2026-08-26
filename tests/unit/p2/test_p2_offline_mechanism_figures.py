@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 SCRIPT = Path(
-    "papers/paper-02-open-world-scientific-discovery/scripts/render_offline_mechanisms.py"
+    "papers/orion-12-open-world-scientific-discovery/scripts/render_offline_mechanisms.py"
 )
 
 

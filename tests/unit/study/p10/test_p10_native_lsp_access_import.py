@@ -66,7 +66,7 @@ print(module.sha_file(module.MANIFEST))
 
     assert completed.returncode == 0, completed.stderr
     assert completed.stdout.splitlines() == [
-        "papers/paper-xx-content-bound-math-evaluation/benchmark/"
+        "papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/benchmark/"
         "MATHLIB_CORPUS_V2_MANIFEST.json",
         "373e621b918f7a686e4a1eab4f16f4f808b0d735911ca6f5dfc54dd0ac767564",
     ]

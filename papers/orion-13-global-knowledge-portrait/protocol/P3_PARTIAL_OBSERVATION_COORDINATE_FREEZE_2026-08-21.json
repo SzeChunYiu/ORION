@@ -1,0 +1,181 @@
+{
+  "date": "2026-08-21",
+  "expected_probe_artifact": "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-21.jsonl",
+  "expected_result_artifact": "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
+  "gate_served": "P3-U-T5",
+  "gate_statement": "No new identity coordinate has been discovered from failure and prospectively validated.",
+  "known_before_freeze": {
+    "note": "the redactability census was run before this freeze as the construction precondition, so gates G3 and G4 are pre-committed thresholds on an already-characterised construction, not blind predictions; G5, G7 and the roll-up verdicts were unknown",
+    "redactable_pairs": {
+      "coordinate-necessity-v1": {
+        "by_coordinate": {
+          "measurement_ids": 4,
+          "polarity": 6,
+          "temporal_context_ids": 4
+        },
+        "total": 14
+      },
+      "public-reference-v1": {
+        "by_coordinate": {
+          "polarity": 4
+        },
+        "total": 4
+      },
+      "public-reference-v1.1-confirmatory": {
+        "by_coordinate": {
+          "polarity": 6
+        },
+        "total": 6
+      }
+    }
+  },
+  "negative_under_repair": {
+    "audits_reproduced_with": "python -m orion.study.p3.public_reference_audit --cases <atlas>",
+    "false_merge_opportunities": {
+      "coordinate-necessity-v1": 14,
+      "public-reference-v1": 4,
+      "public-reference-v1.1-confirmatory": 6
+    },
+    "false_split_opportunities_orion": {
+      "coordinate-necessity-v1": 42,
+      "public-reference-v1": 28,
+      "public-reference-v1.1-confirmatory": 26
+    },
+    "named_mechanism": "ABSENT_READ_AS_AGREEMENT: compare_meaning has no third value for an unobserved coordinate, so eight coordinates read absence as agreement and modality reads it as a distinct value",
+    "one_sided_absent_coordinates_on_every_atlas": 0,
+    "orion_false_merges_on_every_p3_atlas": 0,
+    "orion_false_splits_on_every_p3_atlas": 0,
+    "overresolved_unresolved_case_denominator_on_every_atlas": 0
+  },
+  "parameters": {
+    "absence_reading_in_compare_meaning": {
+      "assumption_ids": "AGREEMENT",
+      "attribution_id": "AGREEMENT",
+      "construct_ids": "AGREEMENT",
+      "discourse_relation": "AGREEMENT",
+      "measurement_ids": "AGREEMENT",
+      "modality": "DISTINCT_VALUE",
+      "polarity": "AGREEMENT",
+      "referent_ids": "AGREEMENT",
+      "temporal_context_ids": "AGREEMENT"
+    },
+    "absent_values": {
+      "assumption_ids": [],
+      "attribution_id": "",
+      "construct_ids": [],
+      "discourse_relation": "",
+      "measurement_ids": [],
+      "modality": "UNKNOWN",
+      "polarity": "UNKNOWN",
+      "referent_ids": [],
+      "temporal_context_ids": []
+    },
+    "arms": [
+      "A0_orion_current",
+      "A1_observedness_asymmetric",
+      "A2_observedness_strict"
+    ],
+    "candidate_coordinate": {
+      "definition": "a per-coordinate value in {OBSERVED, NOT_OBSERVED} attached to each projection, so that 'this source states no measurement' and 'this source was never assessed for a measurement' are different states of the projection",
+      "is_a_new_identity_axis": false,
+      "mined_from": "silencing one side of the coordinate that carries the decision converts every separation ORION makes into a merge, reported with the same confidence",
+      "name": "observation_status",
+      "why_not": "it is constant across all fully observed pairs, so no two fully observed projections can differ on it; it is a third value on the existing axes, not a new axis"
+    },
+    "claim_scope": "PARTIAL_OBSERVATION_OF_FROZEN_ATLASES_ONLY",
+    "coordinates": [
+      "referent_ids",
+      "construct_ids",
+      "measurement_ids",
+      "temporal_context_ids",
+      "assumption_ids",
+      "attribution_id",
+      "discourse_relation",
+      "polarity",
+      "modality"
+    ],
+    "freeze_document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
+    "gates": {
+      "G1_CONSTRUCTION": {
+        "blocking": true,
+        "statement": "C1-C5 of freeze section 4.4 hold on every probe corpus"
+      },
+      "G2_CHANNEL_OPENED": {
+        "blocking": true,
+        "min_opportunities": 1,
+        "statement": "A0_orion_current's P3.OVERRESOLVED_UNRESOLVED_CASE exercise on PROBE_DERIVATION has opportunities >= 1"
+      },
+      "G3_FAILURE_ON_REAL_CASES": {
+        "blocking": true,
+        "min_violation_rate": 0.9,
+        "primary": true,
+        "statement": "A0_orion_current's over-resolution violation rate on PROBE_DERIVATION >= 0.90"
+      },
+      "G4_HELD_OUT": {
+        "blocking": false,
+        "min_violation_rate": 0.9,
+        "statement": "A0_orion_current's over-resolution violation rate >= 0.90 on PROBE_HELDOUT_REAL and on PROBE_HELDOUT_SYNTHETIC"
+      },
+      "G5_MINING_YIELD": {
+        "blocking": false,
+        "statement": "(a) every failure on an intact corpus has a non-empty discriminating-coordinate set drawn from the nine existing coordinates; (b) every over-resolution on a probe corpus has an empty set"
+      },
+      "G6_HARM_A1": {
+        "blocking": true,
+        "pre_declared_vacuous": true,
+        "statement": "A1_observedness_asymmetric changes 0 decisions on all three intact corpora",
+        "vacuity_note": "the intact corpora contain zero one-sided-absent coordinates, so A1 cannot fire on them; this gate passes for a structural reason and may not be cited as evidence that A1 is safe"
+      },
+      "G7_COST_A2": {
+        "blocking": false,
+        "statement": "report the number and fraction of intact decisions A2_observedness_strict changes and how many destroy a correct answer"
+      },
+      "G8_NOVELTY": {
+        "blocking": true,
+        "fails_by_construction": true,
+        "statement": "a candidate counts as a new identity coordinate only if two fully observed projections can differ on it; observation_status is constant across all fully observed pairs, so this gate fails by construction"
+      }
+    },
+    "intact_sources": {
+      "INTACT_DERIVATION": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "INTACT_HELDOUT_REAL": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "INTACT_HELDOUT_SYNTHETIC": "research/p3-coordinate-necessity-v1/cases.jsonl"
+    },
+    "max_violation_rate": 0.0,
+    "primary_outcome": "P3.OVERRESOLVED_UNRESOLVED_CASE for A0_orion_current on PROBE_DERIVATION, assessed by assess_guard at max_violation_rate = 0.0",
+    "probe_gold": "UNRESOLVED",
+    "probe_of": {
+      "INTACT_DERIVATION": "PROBE_DERIVATION",
+      "INTACT_HELDOUT_REAL": "PROBE_HELDOUT_REAL",
+      "INTACT_HELDOUT_SYNTHETIC": "PROBE_HELDOUT_SYNTHETIC"
+    },
+    "record": "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE",
+    "redactability_conditions": [
+      "observed on both sides",
+      "observed values differ",
+      "parent gold is in NONMERGE_RELATIONS",
+      "compare_meaning reproduces parent gold on the untouched pair"
+    ],
+    "secondary_gold": "PARENT_GOLD",
+    "sides_per_redactable_pair": [
+      "left",
+      "right"
+    ],
+    "verdicts": {
+      "channel": "CHANNEL_OPENED_FAILURE_DEMONSTRATED",
+      "channel_not_opened": "CHANNEL_NOT_OPENED",
+      "construction_failed": "CONSTRUCTION_PRECONDITION_FAILED",
+      "failure_weaker": "FAILURE_WEAKER_THAN_STATED",
+      "heldout": "FAILURE_CARRIES_TO_HELDOUT_STRATA",
+      "no_new_coordinate": "NO_NEW_COORDINATE_DEMANDED_BY_ANY_FAILURE_ON_RECORD",
+      "t5": "T5_NOT_DISCHARGED__CANDIDATE_IS_NOT_A_NEW_IDENTITY_AXIS"
+    }
+  },
+  "parameters_sha256": "28d3e289d3dddddaef142e5756b77a825829836f1eadb900b80e49f985f73691",
+  "prose_freeze": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
+  "record": "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE",
+  "runner": "src/orion/study/p3/partial_observation_probe.py",
+  "schema_version": "orion.p3.partial-observation-coordinate-freeze.v1",
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "unblock_as_written": "Mine each false merge and false split for a candidate discriminating coordinate, then validate it on held-out cases or prove the coordinate unnecessary."
+}

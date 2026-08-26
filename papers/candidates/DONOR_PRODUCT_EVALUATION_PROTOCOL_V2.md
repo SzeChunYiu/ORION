@@ -27,7 +27,7 @@ Primary comparisons require equal capability vectors or an explicit statement th
 
 Budgets for model calls, retrieval actions, verification work and external effects must be matched or normalized.
 
-## 3. P6 comparison ladder
+## 3. ORION-16 comparison ladder
 
 ### Isolated donors
 
@@ -39,7 +39,7 @@ Budgets for model calls, retrieval actions, verification work and external effec
 
 ### Strong product
 
-`P6-PRODUCT` contains dependency maintenance + incremental recomputation + typed effects/residuals + pre-effect authorization + provenance + independent-support preservation.
+`ORION-16-PRODUCT` contains dependency maintenance + incremental recomputation + typed effects/residuals + pre-effect authorization + provenance + independent-support preservation.
 
 ### ORION-only candidate laws to test
 
@@ -59,7 +59,7 @@ Budgets for model calls, retrieval actions, verification work and external effec
 - recomputation cost;
 - proof/audit trace size.
 
-## 4. P7 comparison ladder
+## 4. ORION-17 comparison ladder
 
 ### Isolated donors
 
@@ -72,7 +72,7 @@ Budgets for model calls, retrieval actions, verification work and external effec
 
 ### Strong product
 
-`P7-PRODUCT` contains all of the above plus P2 route/task stopping and provenance-preserving evidence identity.
+`ORION-17-PRODUCT` contains all of the above plus ORION-12 route/task stopping and provenance-preserving evidence identity.
 
 ### ORION-only candidate laws to test
 
@@ -93,7 +93,7 @@ Budgets for model calls, retrieval actions, verification work and external effec
 - resource cost;
 - exploration breadth/concentration as diagnostic, not override.
 
-## 5. P8 comparison ladder
+## 5. ORION-18 comparison ladder
 
 ### Isolated donors
 
@@ -108,9 +108,9 @@ Budgets for model calls, retrieval actions, verification work and external effec
 
 ### Strong product
 
-`P8-PRODUCT` has per-domain typed gates plus a shared full-type coercion registry, commit-time freshness and support-family revocation store.
+`ORION-18-PRODUCT` has per-domain typed gates plus a shared full-type coercion registry, commit-time freshness and support-family revocation store.
 
-By theorem, this ideal product is behaviorally equivalent to the shared P8 calculus when semantics are identical. Therefore **behavioral decision accuracy alone cannot establish P8 superiority over this baseline**.
+By theorem, this ideal product is behaviorally equivalent to the shared ORION-18 calculus when semantics are identical. Therefore **behavioral decision accuracy alone cannot establish ORION-18 superiority over this baseline**.
 
 ### Additional properties allowed to distinguish architectures
 

@@ -1,0 +1,93 @@
+{
+  "schema_version": "orion.p3.oaei-multi-case-analysis-freeze.v1",
+  "protocol_id": "P3.structured-scientific-identity.oaei-multi-case-analysis.v1",
+  "authority": "FROZEN_PRE_EXECUTION_ANALYSIS_CONTRACT__NOT_A_RESULT__NO_ALIGNMENT_SCORING_PERFORMED",
+  "issue": "https://github.com/SzeChunYiu/ORION/issues/1086",
+  "issue_boxes": [
+    "P3 box 2: Use official RDF reference alignments and MELT scoring.",
+    "P3 box 3: Add at least one natural ontology-pair track; bench23 alone is generated from one seed ontology.",
+    "P3 box 4: Compare against LogMap and AML, or mark unavailable arms CANNOT_CHECK.",
+    "P3 box 5: Bootstrap/aggregate by ontology pair or track, not correspondence row."
+  ],
+  "frozen_utc": "2026-08-24T10:20:24Z",
+  "freeze_status": "FROZEN_BEFORE_ANY_OAEI_SCORING",
+  "outcome_accessed": false,
+  "execution_status": "CANNOT_CHECK__NO_OAEI_EXECUTION_IN_REPOSITORY",
+  "license_manifest_binding": "papers/orion-13-global-knowledge-portrait/gold/OAEI_TRACK_LICENSE_MANIFEST_V1.json",
+  "preconditions_at_freeze": {
+    "reference_alignments_opened": false,
+    "dataset_payloads_downloaded": false,
+    "matcher_outputs_opened": false,
+    "melt_executed": false,
+    "note": "Inherited from SOURCE_FAMILY_RIGHTS.json boundary (metadata-only audit) and the licence manifest's download status. This analysis contract therefore froze before any outcome-bearing artifact existed."
+  },
+  "gold_standard_rule": {
+    "rule": "OFFICIAL_RDF_REFERENCE_ALIGNMENTS_ONLY",
+    "detail": "Gold is the official RDF reference alignment shipped with each selected suite (e.g. bench23 per-test refalign.rdf; Conference reference-alignment archive). No third-party, self-constructed or partial-substitute reference may enter scoring.",
+    "substitute_policy": "If a reference cannot be lawfully obtained for a suite, that suite is dropped and recorded CANNOT_CHECK — never replaced by a weaker self-built gold."
+  },
+  "scoring_rule": {
+    "framework": "MELT",
+    "requirement": "REQUIRED",
+    "current_execution_status": "CANNOT_CHECK__NOT_EXECUTED_IN_REPOSITORY",
+    "note": "MELT is MIT-licensed (licence bound in the licence manifest). No MELT run has been performed in this repository; declaring it required here binds the future run, it does not claim one."
+  },
+  "case_composition_rule": {
+    "multi_case_requirement": "The analysis unit is multi-case: bench23 (generated, single seed ontology, systematic alterations) MUST be paired with at least one natural ontology-pair track (Conference ra1 primary candidate; Biodiv secondary) so that conclusions are not readable off one construction process.",
+    "bench23_alone_is_insufficient": true,
+    "natural_pair_blocker": "The natural-pair candidates are licence-blocked (CANNOT_CHECK) in the licence manifest; the analysis may not start until one is unblocked or a lawful alternative natural-pair source is verified. Scoring bench23 alone and generalizing would violate this freeze."
+  },
+  "arms": [
+    {
+      "arm_id": "ORION_FULL_POLICY",
+      "role": "candidate",
+      "status": "DECLARED_NOT_EXECUTED"
+    },
+    {
+      "arm_id": "LOGMAP",
+      "role": "strongest_runnable_baseline",
+      "status": "CANNOT_CHECK__NOT_EXECUTED_IN_REPOSITORY",
+      "public_participation_evidence": {
+        "url": "https://oaei.ontologymatching.org/2025/results/conference/index.html",
+        "fetched_utc": "2026-08-24T10:20:24Z",
+        "page_sha256": "802f5fb341f0dd021ccb1713b2a943a0ed677a408bdb0e54497a6674c79a92d3",
+        "finding": "LogMap (with LogMapLt) is listed among OAEI 2025 Conference participants; the page reports LogMap at F1-measure 0.61 for that track. Exact tool version not bound from the page."
+      }
+    },
+    {
+      "arm_id": "AML",
+      "role": "strongest_runnable_baseline",
+      "status": "CANNOT_CHECK__NOT_EXECUTED_IN_REPOSITORY",
+      "public_participation_evidence": {
+        "url": "https://oaei.ontologymatching.org/2025/results/conference/index.html",
+        "fetched_utc": "2026-08-24T10:20:24Z",
+        "page_sha256": "802f5fb341f0dd021ccb1713b2a943a0ed677a408bdb0e54497a6674c79a92d3",
+        "finding": "AML is listed among OAEI 2025 Conference participants (named alongside Lily and LogMap families in the track discussion). Exact tool version not bound from the page."
+      }
+    }
+  ],
+  "unavailable_arm_policy": "Arms that cannot be executed are recorded CANNOT_CHECK and stay in the report as unavailable; weak proxies are never substituted for an unavailable comparator.",
+  "statistical_unit_rule": {
+    "inference_unit": "ontology pair or track — never the correspondence row",
+    "aggregation": "Per-suite scores are computed first (per ontology pair or track), and all cross-suite statistics aggregate those suite-level scores. Correspondence rows are nested inside suites and treating them as independent units is pseudoreplication.",
+    "interval_method": "paired bootstrap resampling over ontology pairs/tracks (the inference unit)",
+    "reporting_rule": "Any table that reports row-level counts must label them descriptive only and must not attach an interval or significance claim computed at row level."
+  },
+  "pass_gate": {
+    "valid_output_coverage": "valid standard alignment output for 100% of cases",
+    "primary": "macro-F1 advantage >= 0.03 with paired bootstrap lower CI > 0 over the strongest runnable baseline",
+    "alternative": "precision noninferior within 0.01 AND recall gain >= 0.05 with paired bootstrap lower CI > 0",
+    "logical_incoherence": "zero increase in logical incoherence relative to the strongest runnable baseline",
+    "gate_combination": "valid_output_coverage AND (primary OR alternative) AND logical_incoherence"
+  },
+  "open_world_boundary": {
+    "rule": "Incomplete reference alignments do not make every absent entity pair a true negative.",
+    "detail": "Absence from a reference alignment is UNDETERMINED unless an authoritative per-suite contract declares the reference exhaustive over the frozen candidate universe. Global-completeness claims and open-world UNDETERMINED quantification remain bounded to the scored suites.",
+    "inherited_binding": "SOURCE_FAMILY_RIGHTS.json transport_rule: no source receives valid OBSTRUCTION labels from absence without an authoritative exhaustive-reference statement; zero audited families supply one."
+  },
+  "non_bypass_boundaries": [
+    "This freeze is an analysis contract, not a result: no alignment scoring has been performed.",
+    "Changing arms, gates, statistical units or the gold rule after the first OAEI scoring artifact appears is a protocol violation and requires a new versioned freeze with a new identity.",
+    "Execution may start only after the licence manifest's preconditions hold: bench23 SHA-256 computed at download, and a natural-pair track licence-unblocked (or a lawful alternative verified)."
+  ]
+}

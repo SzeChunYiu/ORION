@@ -8,7 +8,7 @@ import pytest
 
 
 ROOT = Path(__file__).resolve().parents[3]
-CHECKER = ROOT / "papers/paper-12-adaptive-state-reasoning/check_p12_lifecycle_integration_v4.py"
+CHECKER = ROOT / "papers/orion-22-adaptive-state-reasoning/check_p12_lifecycle_integration_v4.py"
 
 
 def _module():

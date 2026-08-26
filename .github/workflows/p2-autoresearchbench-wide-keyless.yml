@@ -65,7 +65,7 @@ jobs:
       - name: Split gold before candidate custody
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
             --full /tmp/arb-run/AutoResearchBench.jsonl \
             --public /tmp/arb-run/wide_public.jsonl \
             --gt /tmp/arb-run/wide_gt.jsonl \
@@ -74,7 +74,7 @@ jobs:
       - name: Run gold-blind keyless arXiv candidate
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py run \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py run \
             --public /tmp/arb-run/wide_public.jsonl \
             --output /tmp/arb-run/candidate.jsonl \
             --trace /tmp/arb-run/trace.jsonl \
@@ -89,7 +89,7 @@ jobs:
             --gt-file /tmp/arb-run/wide_gt.jsonl \
             --no-jina \
             --output-file /tmp/arb-run/official_evaluation.json
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py summarize \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py summarize \
             --split-manifest /tmp/arb-run/split_manifest.json \
             --run-manifest /tmp/arb-run/run_manifest.json \
             --evaluation /tmp/arb-run/official_evaluation.json \

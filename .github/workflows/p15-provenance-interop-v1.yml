@@ -3,10 +3,10 @@ name: p15-provenance-interop-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-15-orion-research-harness/top_tier/P15_PROVENANCE_INTEROP_PROTOCOL_V1.md'
-      - 'papers/paper-15-orion-research-harness/top_tier/p15_real_workflow_receipts_v1.json'
-      - 'papers/paper-15-orion-research-harness/top_tier/run_provenance_interop_v1.py'
-      - 'papers/paper-15-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py'
+      - 'papers/orion-25-orion-research-harness/top_tier/P15_PROVENANCE_INTEROP_PROTOCOL_V1.md'
+      - 'papers/orion-25-orion-research-harness/top_tier/p15_real_workflow_receipts_v1.json'
+      - 'papers/orion-25-orion-research-harness/top_tier/run_provenance_interop_v1.py'
+      - 'papers/orion-25-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py'
       - '.github/workflows/p15-provenance-interop-v1.yml'
   workflow_dispatch:
 
@@ -24,17 +24,17 @@ jobs:
       - name: Install current W3C PROV implementation
         run: python -m pip install 'prov==3.1.0'
       - name: Execute PROV and RO-Crate interoperability study
-        run: python papers/paper-15-orion-research-harness/top_tier/run_provenance_interop_v1.py | tee p15_provenance_interop_v1.json
+        run: python papers/orion-25-orion-research-harness/top_tier/run_provenance_interop_v1.py | tee p15_provenance_interop_v1.json
       - name: Verify deterministic primary replay
         run: |
-          python papers/paper-15-orion-research-harness/top_tier/run_provenance_interop_v1.py > p15_provenance_interop_v1_rerun.json
+          python papers/orion-25-orion-research-harness/top_tier/run_provenance_interop_v1.py > p15_provenance_interop_v1_rerun.json
           cmp p15_provenance_interop_v1.json p15_provenance_interop_v1_rerun.json
           echo P15_PROVENANCE_INTEROP_V1_BYTE_REPLAY_GREEN
       - name: Execute independent interoperability verifier
-        run: python papers/paper-15-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py | tee p15_provenance_interop_independent_v1.json
+        run: python papers/orion-25-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py | tee p15_provenance_interop_independent_v1.json
       - name: Verify independent replay and agreement
         run: |
-          python papers/paper-15-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py > p15_provenance_interop_independent_v1_rerun.json
+          python papers/orion-25-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py > p15_provenance_interop_independent_v1_rerun.json
           cmp p15_provenance_interop_independent_v1.json p15_provenance_interop_independent_v1_rerun.json
           python - <<'PY'
           import json

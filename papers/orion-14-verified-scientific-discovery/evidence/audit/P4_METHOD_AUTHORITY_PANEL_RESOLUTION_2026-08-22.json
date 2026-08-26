@@ -1,0 +1,65 @@
+{
+ "schema_version": "orion.programme.panel-resolution.v1",
+ "record": "PANEL_RESOLUTION",
+ "paper_id": "P4",
+ "date": "2026-08-22",
+ "artifact": "papers/orion-14-verified-scientific-discovery/method_authority_extension/METHOD_AUTHORITY_BENCH_SUMMARY_V1.json",
+ "authority": "READS_A_PUBLISHED_PANEL_EDITS_NOTHING",
+ "why_this_exists": "orion.programme.panel_resolution's three registries name seven artifacts between them. Discovering decided panels mechanically finds five across the papers; this one is not in any registry and had never been read. The omission was invisible because a registry lists what it covers and implies nothing about what it does not.",
+ "discovery": {
+  "module": "orion.programme.registry_coverage",
+  "declared_by_registries": 7,
+  "discovered": 5,
+  "unregistered": [
+   "papers/orion-14-verified-scientific-discovery/method_authority_extension/METHOD_AUTHORITY_BENCH_SUMMARY_V1.json",
+   "papers/orion-24-orion-rse/P14B_BALANCED_GOVERNANCE_RESULT_RECEIPT_V1.json"
+  ]
+ },
+ "panel": {
+  "terminal": "P4_METHOD_AUTHORITY_SUPPORTED",
+  "systems": 4,
+  "n_cases": 10,
+  "n_clean_promotable": 3,
+  "n_negative_or_blocked": 7,
+  "metrics": {
+   "clean_promotion_coverage": {
+    "resolution": "SEPARATED_WITHOUT_VARIATION",
+    "distinct_values": 2,
+    "values": {
+     "P4_MethodTransferReceipt_coordinate_product": 1.0,
+     "visible_success_policy": 1.0,
+     "provenance_only_policy": 1.0,
+     "all_deny_policy": 0.0
+    },
+    "detail": "the panel splits between the metric's floor and its ceiling with nothing in between; the separation is real and maximal, but a paired interval over it is zero-width because the difference is constant, so its width is not a measure of precision and must not be read beside an interval earned from variation"
+   },
+   "false_promotion_rate": {
+    "resolution": "SEPARATED_WITHOUT_VARIATION",
+    "distinct_values": 2,
+    "values": {
+     "P4_MethodTransferReceipt_coordinate_product": 0.0,
+     "visible_success_policy": 1.0,
+     "provenance_only_policy": 1.0,
+     "all_deny_policy": 0.0
+    },
+    "detail": "the panel splits between the metric's floor and its ceiling with nothing in between; the separation is real and maximal, but a paired interval over it is zero-width because the difference is constant, so its width is not a measure of precision and must not be read beside an interval earned from variation"
+   }
+  }
+ },
+ "indistinguishable_arms": [
+  [
+   "provenance_only_policy",
+   "visible_success_policy"
+  ]
+ ],
+ "reading": "Both reported metrics come back SEPARATED_WITHOUT_VARIATION: two distinct values each, and both of those the metric's extremes. provenance_only_policy and visible_success_policy are identical on every metric the artifact reports, so a panel of four decides over three. Ten cases, every rate 0.0 or 1.0: the panel has no graded behaviour to read a margin off.",
+ "what_this_does_not_establish": [
+  "that P4_METHOD_AUTHORITY_SUPPORTED is wrong. The coordinate product is the only arm scoring both 0.0 false promotion and 1.0 clean coverage; the three baselines each fail one axis. That is a real separation on this benchmark.",
+  "that a two-valued metric is the wrong metric. A closed synthetic world where the right answer is reachable and the baselines fail is informative; settling whether it is easy needs an arm that is neither perfect nor absent, which this panel does not contain.",
+  "anything about the artifact's own claim ceiling, which already states that the benchmark supports coordinate-separation and anti-laundering semantics only."
+ ],
+ "what_it_does_establish": "The claim rests on a panel with two indistinguishable arms and no metric that varies by more than its endpoints, and until now no instrument had said so. That is a bound on the panel's resolving power, recorded rather than left to be read into the terminal.",
+ "edits": "none. The summary artifact, its terminal and its claim ceiling are untouched.",
+ "mechanism": "orion.programme.registry_coverage",
+ "tests": "tests/unit/programme/test_registry_coverage.py"
+}

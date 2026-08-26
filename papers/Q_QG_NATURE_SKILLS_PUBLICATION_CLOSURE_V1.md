@@ -53,7 +53,7 @@ All triggerable skills in `academic-paper-skills` participate in the programme, 
 | `nature-figure` | Figure contract, evidence-led panel map, publication rendering and final-size visual QA | No deceptive axes/crops/normalization; figure cannot strengthen claim beyond data |
 | `nature-reviewer` | Editorial triage + three mutually blind reviews + post-review synthesis + minimum-sufficient repair map | Review simulation is not a real editorial decision |
 | `nature-polishing` | Language, terminology, numerical, layout and whole-manuscript consistency after science is stable | Polish may never increase causal/general/novelty strength |
-| `nature-experiment-log` | Structured log for any new Q3 or reopened empirical experiment, including raw artifacts/anomalies | Log records execution; it does not self-certify scientific success |
+| `nature-experiment-log` | Structured log for any new ORION-03 or reopened empirical experiment, including raw artifacts/anomalies | Log records execution; it does not self-certify scientific success |
 | `nature-response` | Post-decision reviewer-separated response package, redline consistency and revision QA | Used only after actual editor/reviewer feedback; cannot fabricate comments or changes |
 | `nature-paper2ppt` | Evidence-led talk/journal-club/conference deck after manuscript cut | Presentation is downstream only |
 | `nature-image2ppt` | Object-level recovery of image-only slide material when needed for talks | Reconstructed graphics are presentation artifacts only |
@@ -63,7 +63,7 @@ All triggerable skills in `academic-paper-skills` participate in the programme, 
 
 ## 4. Per-paper foundation state
 
-### Q1 — Exact expressivity / TARE
+### ORION-01 — Exact expressivity / TARE
 
 **Current publication problem:** the manuscript is scientifically stale relative to committed later work. It still frames support-two as finite-domain evidence/open all-n composition and centers a two-trade story that later committed QG work has refined.
 
@@ -71,15 +71,15 @@ All triggerable skills in `academic-paper-skills` participate in the programme, 
 
 **Immediate tasks:** synchronize claim ledger to committed all-n support-two authority; separate support-two theorem from closed-form regime classification; preserve the later fourth-regime counterexample rather than claiming two-trade completeness; update abstract/title only after the evidence table is rebuilt.
 
-### Q2 — Recursive recovery of negative quantum results
+### ORION-02 — Recursive recovery of negative quantum results
 
-**Current publication problem:** methodology manuscript exists, but its publication plan is behind the current programme and the Q1/QG ownership boundary needs tightening.
+**Current publication problem:** methodology manuscript exists, but its publication plan is behind the current programme and the ORION-01/QG ownership boundary needs tightening.
 
 **Publication thesis to test:** prospectively frozen negative-result recovery can produce donor absorption, exact counterexamples, bounded positives, theorems or honest open states without laundering failure into novelty.
 
-**Immediate tasks:** build final claim ledger; refresh receipt index; use Q1/QG as case study rather than duplicate their quantum mathematics; re-run current nearest-work search for autonomous scientific research, preregistration/evidence provenance and negative-result preservation.
+**Immediate tasks:** build final claim ledger; refresh receipt index; use ORION-01/QG as case study rather than duplicate their quantum mathematics; re-run current nearest-work search for autonomous scientific research, preregistration/evidence provenance and negative-result preservation.
 
-### Q3 — Dual-instrument research control
+### ORION-03 — Dual-instrument research control
 
 **Current publication problem:** strong instrument/claim ledger but only one benchmark instance; D2/D3 remain open.
 
@@ -87,7 +87,7 @@ All triggerable skills in `academic-paper-skills` participate in the programme, 
 
 **Immediate tasks:** run 2–3 additional genuinely prospective instances; log them under experiment-log discipline; independently replay every cited receipt; repair or explicitly retain D2/D3; perform submission-date novelty search before claiming the benchmark class is new.
 
-### Q4 — Typed partial-knowledge state
+### ORION-04 — Typed partial-knowledge state
 
 **Current publication problem:** science and claim ledger are substantially complete; remaining work is synthesis, nearest-work pressure, figures, statistics/reporting and submission package.
 
@@ -95,7 +95,7 @@ All triggerable skills in `academic-paper-skills` participate in the programme, 
 
 **Immediate tasks:** lock one central argument; prevent six mini-papers from reading as an unstructured benchmark bundle; preserve donor-absorption and exact-tie negatives; finalize figures and data/code availability; mock-review for synthetic-world overgeneralization.
 
-### QG1 — Compilation regime geometry
+### ORION-09 — Compilation regime geometry
 
 **Current publication problem:** wave-2 science has materially advanced beyond `MANUSCRIPT_V1.md`.
 
@@ -103,7 +103,7 @@ All triggerable skills in `academic-paper-skills` participate in the programme, 
 
 **Immediate tasks:** integrate committed TARE, SixLCU and StabPrep evidence; make objective dependence and boundary-complexity refutations first-class; distinguish theorem-grade cross-family statements from field-definition interpretation; stop before importing open successor branches.
 
-### QG2 — Certified static forecasting
+### ORION-10 — Certified static forecasting
 
 **Current publication problem:** the original forecaster's near-perfect result includes an exact prospective counterexample; later committed correction gives a stronger theorem-backed forecaster. The manuscript should be organized around this scientific sequence rather than hiding it.
 
@@ -154,12 +154,12 @@ When stopped, record current status, remaining problem, reason for stopping, and
 
 ## 8. Cross-paper anti-overlap contracts
 
-- **Q1 owns TARE expressivity mathematics and exact counterexamples/theorems for its frozen grammar.**
-- **Q2 owns the executable negative-result recovery methodology, not Q1's mathematics.**
-- **Q3 owns dual-instrument agreement measurement, not the research-harness systems paper or the quantum result being diagnosed.**
-- **Q4 owns typed/scoped partial-knowledge mechanism-isolation results, not generic VOI/provenance/active learning.**
-- **QG1 owns cross-family regime-geometry theory/field synthesis and boundary/objective structure, not a duplicate TARE result paper.**
-- **QG2 owns certification/forecast authority decomposition and refutation/repair of static forecasting, not the entire regime-geometry programme.**
+- **ORION-01 owns TARE expressivity mathematics and exact counterexamples/theorems for its frozen grammar.**
+- **ORION-02 owns the executable negative-result recovery methodology, not ORION-01's mathematics.**
+- **ORION-03 owns dual-instrument agreement measurement, not the research-harness systems paper or the quantum result being diagnosed.**
+- **ORION-04 owns typed/scoped partial-knowledge mechanism-isolation results, not generic VOI/provenance/active learning.**
+- **ORION-09 owns cross-family regime-geometry theory/field synthesis and boundary/objective structure, not a duplicate TARE result paper.**
+- **ORION-10 owns certification/forecast authority decomposition and refutation/repair of static forecasting, not the entire regime-geometry programme.**
 
 Any paragraph that cannot be assigned uniquely under this map is an overlap warning and must be relocated, cited as companion work, or removed.
 

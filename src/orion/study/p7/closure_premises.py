@@ -3,7 +3,7 @@
 Two artifacts carry P7's formal authority and both are audited here against the
 files on disk rather than against a fixture of this module's own.
 
-``papers/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py``
+``papers/orion-17-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py``
 is what ``REPRODUCE_V2_1.md`` names for the transport theorem --- the paper's C4,
 and what ``manuscript/FORMAL_CORE_V2.md`` calls closing "the V1 logical gap". Its
 theorem was::
@@ -162,7 +162,7 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 
 THEORY_CLOSURE_PATH = (
     REPO_ROOT
-    / "papers/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py"
+    / "papers/orion-17-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py"
 )
 CLOSURE_CARRYING_PATH = (
     REPO_ROOT / "research/claim_expansion/p7/check_p7_x2_closure_carrying.py"

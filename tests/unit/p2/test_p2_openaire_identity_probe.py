@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 SCRIPT = Path(
-    "papers/paper-02-open-world-scientific-discovery/scripts/"
+    "papers/orion-12-open-world-scientific-discovery/scripts/"
     "probe_autoresearchbench_wide_openaire_identity.py"
 )
 

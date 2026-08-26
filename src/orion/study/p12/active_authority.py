@@ -31,7 +31,7 @@ MATCHED_PAIR = ("STATE_SIGNAL_ONLY_MATCHED", "REASON_SIGNAL_ONLY_MATCHED")
 ONE_AXIS = ("ADAPTIVE_STATE_ONLY", "ADAPTIVE_REASON_ONLY")
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER = REPO_ROOT / "papers/paper-12-adaptive-state-reasoning"
+PAPER = REPO_ROOT / "papers/orion-22-adaptive-state-reasoning"
 RESULT = PAPER / "P12A_MATCHED_BUDGET_RESULT_RECEIPT_V1.json"
 REPLAY = PAPER / "P12A_PROTOCOL_ADJUDICATION_V2.json"
 AUDIT = REPO_ROOT / "research/failures/2026-08-handicapped-baseline-unattainable-margin/README.md"
@@ -123,7 +123,7 @@ def build_active_authority(adjudication_sha256: str) -> dict[str, Any]:
         "historical_terminal": SHIPPED_TERMINAL,
         "historical_terminal_authority": "RETAINED_AS_EXECUTION_HISTORY_ONLY",
         "adjudication_artifact": (
-            "papers/paper-12-adaptive-state-reasoning/"
+            "papers/orion-22-adaptive-state-reasoning/"
             "P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json"
         ),
         "adjudication_sha256": adjudication_sha256,

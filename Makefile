@@ -20,7 +20,7 @@ SRC ?= src
 #      without a live provider credential. It is deliberately distinct from
 #      both success and error.
 #
-# See papers/paper-01-recursive-epistemic-reconstruction/REPRODUCE.md.
+# See papers/orion-11-recursive-epistemic-reconstruction/REPRODUCE.md.
 
 # The scored file, not the raw/ directory. load_records() reads every .json/.jsonl
 # under a directory and refuses to skip a record it cannot parse -- deliberately,
@@ -28,8 +28,8 @@ SRC ?= src
 # raw/ also holds test_runs.jsonl, which has no schema_version, so pointing the
 # archive at the directory made `make paper01-results` exit 2 on a clean checkout.
 # results/INTEGRITY_NOTE.md already recorded this; the Makefile did not agree.
-P1_ARCHIVE ?= papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl
-P1_OUT ?= papers/paper-01-recursive-epistemic-reconstruction/results
+P1_ARCHIVE ?= papers/orion-11-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl
+P1_OUT ?= papers/orion-11-recursive-epistemic-reconstruction/results
 P1_BOOTSTRAP_SEED ?= 20260815
 P1_RESAMPLES ?= 10000
 P1_REPEATS ?= 5
@@ -50,7 +50,7 @@ paper01-results:
 		echo "make: paper01-results -> CANNOT_CHECK (exit 3)." >&2 ; \
 		echo "      No publishable numbers exist for ORION-P1 yet. This is not a build failure:" >&2 ; \
 		echo "      it is the honest state of the external evidence until an archived study run" >&2 ; \
-		echo "      lands in $(P1_ARCHIVE). See papers/paper-01-recursive-epistemic-reconstruction/REPRODUCE.md." >&2 ; \
+		echo "      lands in $(P1_ARCHIVE). See papers/orion-11-recursive-epistemic-reconstruction/REPRODUCE.md." >&2 ; \
 	fi ; \
 	exit $$code
 
@@ -78,9 +78,9 @@ conformance:
 
 # --- ORION-P3: public-reference mapping route (issue #100) --------------------
 
-P3_PUBLIC_BUILD_OUT ?= papers/paper-03-global-knowledge-portrait/gold/public-reference
+P3_PUBLIC_BUILD_OUT ?= papers/orion-13-global-knowledge-portrait/gold/public-reference
 P3_PUBLIC_CASES ?= $(P3_PUBLIC_BUILD_OUT)/cases.jsonl
-P3_PUBLIC_EVAL_OUT ?= papers/paper-03-global-knowledge-portrait/evaluation/public-reference-summary.json
+P3_PUBLIC_EVAL_OUT ?= papers/orion-13-global-knowledge-portrait/evaluation/public-reference-summary.json
 P3_PUBLIC_TARGET_N ?= 32
 
 .PHONY: paper03-public-reference-build
@@ -102,7 +102,7 @@ paper03-public-reference:
 		--cases $(P3_PUBLIC_CASES) \
 		--output $(P3_PUBLIC_EVAL_OUT)
 
-P3_PUBLIC_ANALYSIS_OUT ?= papers/paper-03-global-knowledge-portrait/evaluation/public-reference-analysis.json
+P3_PUBLIC_ANALYSIS_OUT ?= papers/orion-13-global-knowledge-portrait/evaluation/public-reference-analysis.json
 
 .PHONY: paper03-public-reference-analysis
 ## Publication analysis: Wilson intervals, paired bootstrap and coordinate ablations.
@@ -111,8 +111,8 @@ paper03-public-reference-analysis:
 		--cases $(P3_PUBLIC_CASES) \
 		--output $(P3_PUBLIC_ANALYSIS_OUT)
 
-P3_CONFIRMATORY_ANALYSIS ?= papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json
-P3_PUBLICATION_OUT ?= papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/publication
+P3_CONFIRMATORY_ANALYSIS ?= papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json
+P3_PUBLICATION_OUT ?= papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/publication
 
 .PHONY: paper03-public-reference-publication
 ## Rebuild the narrow public-reference publication tables/SVGs from immutable confirmatory analysis.
@@ -141,10 +141,10 @@ paper03-public-reference-tests:
 #   2  archive malformed (including a 24-of-24 rewrite or dropped errors)
 #   3  CANNOT_CHECK — archive missing
 
-P5_ARCHIVE ?= papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl
-P5_REPORT ?= papers/paper-05-self-orion/evidence/glm-5.2-attribution/report.json
-P5_OUT ?= papers/paper-05-self-orion/evidence/tables
-P5_TEX ?= papers/paper-05-self-orion/manuscript/tables
+P5_ARCHIVE ?= papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl
+P5_REPORT ?= papers/orion-15-self-orion/evidence/glm-5.2-attribution/report.json
+P5_OUT ?= papers/orion-15-self-orion/evidence/tables
+P5_TEX ?= papers/orion-15-self-orion/manuscript/tables
 
 .PHONY: paper05-results
 paper05-results:

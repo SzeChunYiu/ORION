@@ -249,7 +249,7 @@ def inspect_panel(
 #: and the baseline is wide enough for the threshold to fit inside it.
 PUBLISHED_MARGIN_GATES: tuple[dict[str, Any], ...] = (
     {
-        "artifact": "papers/paper-14-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json",
+        "artifact": "papers/orion-24-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json",
         "paper_id": "P14",
         "systems_key": "summary",
         "gates": (
@@ -271,7 +271,7 @@ PUBLISHED_MARGIN_GATES: tuple[dict[str, Any], ...] = (
     # implementations the protocol admits in the graded slot --- is
     # `orion.study.p14.specification_conformance`.
     {
-        "artifact": "papers/paper-14-orion-rse/"
+        "artifact": "papers/orion-24-orion-rse/"
         "P14C_SPECIFICATION_SEPARATED_RESULT_RECEIPT_V1.json",
         "paper_id": "P14C",
         "systems_key": "summary",
@@ -348,7 +348,7 @@ def margin_is_attainable(
 #: the artifact --- and guessing it is how a saturated guard gets excused.
 PUBLISHED_PANELS: tuple[dict[str, Any], ...] = (
     {
-        "artifact": "papers/paper-04-verified-scientific-discovery/evidence/protected_v2/PUBLICATION_METRICS_V2.json",
+        "artifact": "papers/orion-14-verified-scientific-discovery/evidence/protected_v2/PUBLICATION_METRICS_V2.json",
         "paper_id": "P4",
         "hypothesis_metrics": {
             "H1": "false_promotion_rate",
@@ -366,7 +366,7 @@ PUBLISHED_PANELS: tuple[dict[str, Any], ...] = (
         },
     },
     {
-        "artifact": "papers/paper-13-responsibility-carrying-state/"
+        "artifact": "papers/orion-23-responsibility-carrying-state/"
         "P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json",
         "paper_id": "P13",
         "systems_key": "summary",
@@ -399,7 +399,7 @@ PUBLISHED_PANELS: tuple[dict[str, Any], ...] = (
 #: means the corpus cannot test the coordinate that was removed.
 PUBLISHED_ABLATIONS: tuple[dict[str, Any], ...] = (
     {
-        "artifact": "papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1/ANALYSIS.json",
+        "artifact": "papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1/ANALYSIS.json",
         "paper_id": "P3",
         "block": "ablation_deltas",
         "deltas": (

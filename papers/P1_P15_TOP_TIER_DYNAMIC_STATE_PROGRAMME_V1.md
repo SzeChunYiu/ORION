@@ -1,4 +1,4 @@
-# P1–P15 Dynamic-Epistemic Top-Tier Publication Programme V1
+# ORION-11–ORION-25 Dynamic-Epistemic Top-Tier Publication Programme V1
 
 ## Status
 
@@ -19,20 +19,20 @@ The writing method follows the repository's academic-writing and academic-paper-
 
 | Paper | Top-tier successor | Job |
 |---|---|---|
-| P1 | Responsibility-Conditioned Scientific Reconstruction | `P1-DES-01` |
-| P2 | Open-World Scientific Closure and Structural Jumps | `P2-DES-01` |
-| P3 | Scientific Identity as a Dynamic Gluing Problem | `P3-DES-01` |
-| P4 | Scientific Promotion under Partial Identification | `P4-DES-01` |
-| P5 | Protected Recursive Scientific Improvement | `P5-DES-01` |
-| P6 | Conservative Scientific State Lifting | `P6-DES-01` |
-| P7 | Scientific Regime Transport and Path Dependence | `P7-DES-01` |
-| P8 | A Typed Algebra of Scientific Authority | `P8-DES-01` |
-| P9 | Capability Origin and Numerical Outcome Identity | `P9-DES-01` |
-| P10 | Obstruction-Certified Scientific Invention | `P10-DES-01` |
-| P11 | State Is Computation | `P11-DES-01` |
-| P12 | Dynamic State–Reasoning Co-Design | `P12-DES-01` |
-| P13 | Responsibility-Carrying Scientific State | `P13-DES-01` |
-| P14 | Causal Governance of Scientific Discovery | `P14-DES-01` |
-| P15 | Execution Integrity Is Not Scientific Authority | `P15-DES-01` |
+| ORION-11 | Responsibility-Conditioned Scientific Reconstruction | `ORION-11-DES-01` |
+| ORION-12 | Open-World Scientific Closure and Structural Jumps | `ORION-12-DES-01` |
+| ORION-13 | Scientific Identity as a Dynamic Gluing Problem | `ORION-13-DES-01` |
+| ORION-14 | Scientific Promotion under Partial Identification | `ORION-14-DES-01` |
+| ORION-15 | Protected Recursive Scientific Improvement | `ORION-15-DES-01` |
+| ORION-16 | Conservative Scientific State Lifting | `ORION-16-DES-01` |
+| ORION-17 | Scientific Regime Transport and Path Dependence | `ORION-17-DES-01` |
+| ORION-18 | A Typed Algebra of Scientific Authority | `ORION-18-DES-01` |
+| ORION-19 | Capability Origin and Numerical Outcome Identity | `ORION-19-DES-01` |
+| ORION-20 | Obstruction-Certified Scientific Invention | `ORION-20-DES-01` |
+| ORION-21 | State Is Computation | `ORION-21-DES-01` |
+| ORION-22 | Dynamic State–Reasoning Co-Design | `ORION-22-DES-01` |
+| ORION-23 | Responsibility-Carrying Scientific State | `ORION-23-DES-01` |
+| ORION-24 | Causal Governance of Scientific Discovery | `ORION-24-DES-01` |
+| ORION-25 | Execution Integrity Is Not Scientific Authority | `ORION-25-DES-01` |
 
 The computation lane must not write the papers. It returns result packets. The writing lane will bind results, update claim ledgers, regenerate figures and PDFs, and prepare all fifteen journal submissions.

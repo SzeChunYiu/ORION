@@ -1,4 +1,4 @@
-# Local validation — P6–P8 hostile formal review V1
+# Local validation — ORION-16–ORION-18 hostile formal review V1
 
 **Date:** 2026-08-17  
 **Reviewed programme snapshot:** `999abd4899f3fed906ba024ae8ecd775a69b6560`  
@@ -44,4 +44,4 @@ sha256sum -c \
 These results validate the authored finite implementation and reproduce the
 listed counterexamples. They do not establish the general theorems, novelty,
 faithful donor embedding, empirical transfer, independent review, or promotion
-of P6–P8.
+of ORION-16–ORION-18.

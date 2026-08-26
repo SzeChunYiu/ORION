@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[4]
-SCRIPT = ROOT / "papers/paper-02-open-world-scientific-discovery/diagnose_lexical_echo_reproduction.py"
+SCRIPT = ROOT / "papers/orion-12-open-world-scientific-discovery/diagnose_lexical_echo_reproduction.py"
 
 
 def _module():

@@ -6,12 +6,12 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[4]
-SCRIPT = ROOT / "papers/paper-03-global-knowledge-portrait/measure_atlas_coordinate_opportunity.py"
+SCRIPT = ROOT / "papers/orion-13-global-knowledge-portrait/measure_atlas_coordinate_opportunity.py"
 ARTIFACT = ROOT / (
-    "papers/paper-03-global-knowledge-portrait/gold/adjudicated/"
+    "papers/orion-13-global-knowledge-portrait/gold/adjudicated/"
     "public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl"
 )
-RECEIPT = ROOT / "papers/paper-03-global-knowledge-portrait/evidence/P3_ATLAS_COORDINATE_OPPORTUNITY_2026-08-23.json"
+RECEIPT = ROOT / "papers/orion-13-global-knowledge-portrait/evidence/P3_ATLAS_COORDINATE_OPPORTUNITY_2026-08-23.json"
 
 
 def _module():

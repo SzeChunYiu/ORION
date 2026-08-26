@@ -64,7 +64,7 @@ from orion.programme.gate_attainability import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER_DIR = REPO_ROOT / "papers/paper-11-state-as-computation"
+PAPER_DIR = REPO_ROOT / "papers/orion-21-state-as-computation"
 P11H_RUNNER = PAPER_DIR / "run_p11h_pooled_sparsity_ladder_v1.py"
 P11H_PROTOCOL = PAPER_DIR / "P11H_POOLED_SPARSITY_LADDER_PROTOCOL_V1.md"
 P11H_PREFLIGHT = PAPER_DIR / "P11H_PREFLIGHT_ATTAINABILITY_V1.json"

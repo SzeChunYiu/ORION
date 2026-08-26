@@ -1,0 +1,73 @@
+{
+  "schema": "ORION.P11.NR07.LowWidthGapRevivalReceipt.v1",
+  "paper_id": "P11",
+  "revival_lane": "NR-07",
+  "backlog_row": "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md",
+  "negative_being_revived": {
+    "statement": "P11D sparse-decoder gap unmet at r=3 (low width) while P11.I high-width cells pass at r>=7; the pooled universal attack prevailed",
+    "terminals_touched": [
+      "P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED",
+      "P11D gap gates (threshold ratio >=4x, delta64 >=0.20) not met at low width"
+    ]
+  },
+  "attribution": {
+    "stage": "decoder-capacity (information) limit",
+    "not": [
+      "decoder-mechanism limit: the registered L1 universal attack is already at the information boundary at r=3 — an exact hypothesis-free screening decoder with zero learned parameters and zero hyperparameters matches or beats it on every frozen r=3 reading",
+      "attack-strength artifact: the compiled defence is already perfect (compiled@64 = 1.0 at every r=3 reading), so no decoder-side upgrade on either side can widen the n=64 gap; the gap gates are unattainable against the capacity-augmented pool by arithmetic, not by solver luck"
+    ],
+    "mechanism": {
+      "first_order_correlation": "rho(r) = C(r-1,(r-1)/2)/2^(r-1), exact by pairwise independence of distinct parity columns; inactive columns have correlation exactly 0",
+      "rho_by_r": {"3": 0.5, "5": 0.375, "7": 0.3125, "9": 0.2734375},
+      "support_recovery_requires": "n ~ 1/rho(r)^2 samples: recovering WHICH r of the p bank columns are active is marginal screening, and its cost grows with r",
+      "width_law_no_free_parameters": "n*(r,p) = 2*ln(p)/rho(r)^2",
+      "calibrated_boundary": "n_screen(r,p) = (1+sqrt(2*ln p))^2/rho(r)^2",
+      "consequence_at_r3": "n* in [36.1, 62.2] < 64 at every registered bank geometry -> the active support is recoverable at the smallest registered train size, so the best universal attack is at target by n=128 and the n=64 gap is bounded by what the support has not yet recovered",
+      "consequence_at_r7": "n* in [92.4, 159.2] in (64, 256) -> the defence window is exactly where P11I found it"
+    }
+  },
+  "lever": "capacity branch of the revival doctrine: pre-registered width-conditioned claim with the impossibility argument made precise (proven width bound + capacity-augmented attack pool), rather than a decoder-side mechanism upgrade at low width",
+  "retest": {
+    "executable": "papers/orion-21-state-as-computation/run_nr07_low_width_capacity_bound_v1.py",
+    "result": "papers/orion-21-state-as-computation/NR07_LOW_WIDTH_CAPACITY_BOUND_RESULT_V1.json",
+    "result_sha256": "1882b2fb5938e0e88e1a2a71fcf82bb0d697d0192e271b3ee9e181076bd094de",
+    "replay": "two consecutive full runs byte-identical (stdout cmp equal); all 42 frozen readings replayed exactly (7 frozen seeds x 3 r=3 rungs x screening decoder + published pool joins)",
+    "seeds_replayed": [2026082201, 2026082202, 2026082203, 2026082210, 2026082241, 2026082242, 2026082243],
+    "capacity_augmented_pool": "max(UNIVERSAL_L1, UNIVERSAL_L2, UNIVERSAL_EXTRA_TREES, SPARSE_SCREEN) — strictly stronger than P11H's registered pool",
+    "consequences": {
+      "C1_augmented_reaches_0_95_by_128_everywhere_r3": true,
+      "C1_min_augmented_128": 1.0,
+      "C2_r7_window_survives_capacity_augmented_attack": true,
+      "C2_augmented_below_256_max_r7": 0.94208984375,
+      "C3_max_attainable_delta64_r3": 0.17412109374999996,
+      "C3_delta64_gate_unattainable_at_r3": true,
+      "C3_threshold_ratio_max_r3": 2.0,
+      "C3_ratio_gate_unattainable_at_r3": true
+    },
+    "prediction_record": {
+      "P1_as_preregistered_held": false,
+      "P1_disclosure": "screen@64 range at r=3: 0.7255-1.0; the boundary is in (64,128], not below 64; reported as a miss, boundary statement corrected, nothing tuned",
+      "P2_held": true,
+      "P2_content": "the no-free-parameter law retrodicts the full P11H 15-rung candidate table, including the rejected rows (r=3 attack-wins, r=5 knife-edge n* in [64.2,110.6] straddling 64/128 -> 'unstable', r=7 defence window)",
+      "P3_held": true,
+      "P3_content": "rho closed form validated on frozen test sets: measured active rho within 0.004 of exact; inactive |mean| <= 0.022"
+    },
+    "correction_disclosed": "first-draft Hoeffding certificate wrongly used the range-1 form 2exp(-2 n t^2); for range-2 (plus/minus 1) statistics the correct union bound is n_cert = (8/rho^2)ln(2p/delta) (~338 at p=969, r=3) — a loose sufficient bound only; the load-bearing boundary is the calibrated n_screen law plus exact empirical replay, not the certificate"
+  },
+  "before_after": {
+    "before": "r=3 adverse outcome read as a bare negative (gap unmet, attack prevailed) with the failure stage unattributed; backlog hypothesis only guessed 'gap is width-conditioned'",
+    "after": "r=3 negative is a theorem-shaped capacity fact: both P11D gap gates are unattainable at r=3 against the strongest constructible universal pool (max attainable delta64 = 0.1741 < 0.20; threshold ratio <= 2 < 4); the width law n*(r,p) = 2 ln p / rho(r)^2 explains the entire P11H ladder with no free parameters; and the r=7 positive window is re-verified against a strictly stronger, capacity-augmented attack (max below 256 = 0.9421 < 0.95 over all 21 r=7 readings)",
+    "frozen_bytes_touched": "none — P11H/P11I/P11D protocols, receipts and result JSONs are unedited; this receipt reclassifies the interpretation of the r=3 adverse terminal without moving any published number"
+  },
+  "boundary": {
+    "construction": "majority-of-r of r uniformly drawn active parity columns on a complete C(d,s) parity bank, d in {14,16,17,19}, s in {2,3,4}, r in {3,5,7,9}; train sizes {64,128,256}; bars 0.95 / 0.20 / 4x carried over unedited from P11G/P11H",
+    "width_condition": "the impossibility statement is r-conditioned and bank-width-conditioned: at r=5 the law predicts a knife-edge (n* in [64.2, 110.6]) consistent with P11H's rejection of the r=5 rungs as unstable — not claimed either way here",
+    "bank_width_dependence_at_256": "at r=7 the narrow banks (14,2)/(14,3) come within screening capacity by 256 (screen@256 = 0.9414-1.0) while (19,3) sits at 0.9033-1.0 across the 7 seeds — the 256-edge of the defence window is bank-width-dependent, so the P11I 'below target before 256' wording remains the operative bound",
+    "not_earned": [
+      "no universal nonlinear lower bound — the impossibility is for the registered gap gates on the registered train-size grid against the capacity-augmented pool",
+      "no claim about real agents or learned compilers; construction-synthetic only",
+      "r=5 regime deliberately left open (knife-edge; a dedicated study would need its own frozen protocol)"
+    ],
+    "untouched_lanes": "NR-12 (query-family compile-tolerance, #996/#1016, P11_QUERY_FAMILY_PHASE_*) is a separate lane; its files and ledger sentences are not edited here"
+  }
+}

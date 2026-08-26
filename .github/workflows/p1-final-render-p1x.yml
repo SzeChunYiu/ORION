@@ -28,7 +28,7 @@ jobs:
       - name: Render and audit P1 exact head
         run: |
           set -euo pipefail
-          cd papers/paper-01-recursive-epistemic-reconstruction/manuscript
+          cd papers/orion-11-recursive-epistemic-reconstruction/manuscript
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
           ! grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log

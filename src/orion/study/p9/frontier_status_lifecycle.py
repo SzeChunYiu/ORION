@@ -10,7 +10,7 @@ from typing import Any
 from orion.study.p9.frontier_grid import assess_grid
 
 ROOT = Path(__file__).resolve().parents[4]
-STATUS = ROOT / "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json"
+STATUS = ROOT / "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json"
 SCHEMA = "ORION.P9.T3FrontierStatusMetadataAmendment.v1"
 
 

@@ -316,7 +316,7 @@ def _p3() -> CertificateDraft:
         original_claim_text=original,
         smallest_residual=residual,
         residual_implementation_evidence=(
-            "papers/paper-03-global-knowledge-portrait/evidence/NEAREST_WORK_DISPOSITIONS_V1.md",
+            "papers/orion-13-global-knowledge-portrait/evidence/NEAREST_WORK_DISPOSITIONS_V1.md",
         ),
         discriminating_experiment=DiscriminatingExperiment(
             experiment_id="exp:p3-coordinate-atlas",

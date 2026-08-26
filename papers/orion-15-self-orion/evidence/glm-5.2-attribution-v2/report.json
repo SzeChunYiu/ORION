@@ -1,0 +1,58 @@
+{
+  "campaign_id": "p5-glm-attribution-instrument-v2-nr01",
+  "lane": "NR-01",
+  "protocol_path": "papers/orion-15-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json",
+  "protocol_sha256": "5d4d0fa3f457e4e1db9934068e5541743844fc5b0862a144701cf6a66f41268b",
+  "suite_path": "papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json",
+  "suite_sha256": "1c3650a62b4432eba60ec17a44dd3e47beedeb266e64e3e96ae593fbbc4e2747",
+  "v1_prompt_sha256": "4ff4591f68a95a9fc1e98de048ed628e62f0af9b9bf60f1acdc14bdbc8e1bea8",
+  "requested_model": "glm-5.2",
+  "temperature": 0.0,
+  "timestamp": 1787518967.08879,
+  "arms": {
+    "control": {
+      "n": 24,
+      "scored": 24,
+      "correct": 21,
+      "accuracy": 0.875,
+      "accuracy_over_scored": 0.875,
+      "standard_macro_f1": 0.8726190476190476,
+      "cannot_distinguish": [],
+      "runtime_or_parse_errors": [],
+      "errors_detail": [
+        {
+          "case_id": "P5-HC-002",
+          "gold": "RETRIEVAL_MISS",
+          "attributed": "REPRESENTATION_GAP"
+        },
+        {
+          "case_id": "P5-HC-012",
+          "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+          "attributed": "IMPLEMENTATION_BUG"
+        },
+        {
+          "case_id": "P5-HC-018",
+          "gold": "REPRESENTATION_GAP",
+          "attributed": "METHOD_BASIS_GAP"
+        }
+      ],
+      "served_models": [
+        "glm-5.3"
+      ]
+    },
+    "treatment": {
+      "n": 24,
+      "scored": 24,
+      "correct": 24,
+      "accuracy": 1.0,
+      "accuracy_over_scored": 1.0,
+      "standard_macro_f1": 1.0,
+      "cannot_distinguish": [],
+      "runtime_or_parse_errors": [],
+      "errors_detail": [],
+      "served_models": [
+        "glm-5.3"
+      ]
+    }
+  }
+}

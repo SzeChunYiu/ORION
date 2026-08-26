@@ -1,6 +1,6 @@
 # Q4 refinement round 1 — foundation, analogue calibration and review preflight
 
-**Frozen manuscript:** `papers/Q-paper-04-typed-state/MANUSCRIPT_V2.md`  
+**Frozen manuscript:** `papers/orion-08-typed-state/MANUSCRIPT_V2.md`  
 **Stretch:** Nature Machine Intelligence  
 **Fallback:** npj Artificial Intelligence  
 **Reviewer isolation:** `MUTUAL_BLINDNESS_NOT_GUARANTEED`.

@@ -20,7 +20,7 @@ from orion.study.p7 import exact_containment as ec
 REPO_ROOT = Path(__file__).resolve().parents[4]
 ARTIFACT = (
     REPO_ROOT
-    / "papers/paper-07-epistemic-navigation-open-worlds"
+    / "papers/orion-17-epistemic-navigation-open-worlds"
     / "formal/mechanized/P7_EXACT_CONTAINMENT_MECHANIZED_2026-08-24.json"
 )
 
@@ -135,7 +135,7 @@ class TestTheBinding:
     def test_the_cross_artifact_audit_passes(self) -> None:
         checker_path = (
             REPO_ROOT
-            / "papers/paper-07-epistemic-navigation-open-worlds"
+            / "papers/orion-17-epistemic-navigation-open-worlds"
             / "formal/check_exact_containment_binding_v1.py"
         )
         spec = importlib.util.spec_from_file_location(

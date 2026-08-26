@@ -1,0 +1,204 @@
+{
+  "campaign_id": "p5-glm-5.2-attribution-v1",
+  "confidence_distribution": {
+    "HIGH": 15,
+    "MEDIUM": 9
+  },
+  "confusion_matrix": {
+    "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE": {
+      "attributed_ENVIRONMENT_DEPENDENCY_TOOL_FAILURE": 2,
+      "attributed_IMPLEMENTATION_BUG": 1
+    },
+    "EVALUATOR_METRIC_BUG": {
+      "attributed_EVALUATOR_METRIC_BUG": 3
+    },
+    "IMPLEMENTATION_BUG": {
+      "attributed_IMPLEMENTATION_BUG": 3
+    },
+    "MEASUREMENT_SPECIFICATION_GAP": {
+      "attributed_MEASUREMENT_SPECIFICATION_GAP": 3
+    },
+    "METHOD_BASIS_GAP": {
+      "attributed_METHOD_BASIS_GAP": 3
+    },
+    "REPRESENTATION_GAP": {
+      "attributed_METHOD_BASIS_GAP": 1,
+      "attributed_REPRESENTATION_GAP": 2
+    },
+    "RETRIEVAL_MISS": {
+      "attributed_REPRESENTATION_GAP": 1,
+      "attributed_RETRIEVAL_MISS": 2
+    },
+    "ROUTING_PLANNING_MISS": {
+      "attributed_ROUTING_PLANNING_MISS": 3
+    }
+  },
+  "empirical_authority": "CANNOT_CHECK",
+  "incorrect_cases": [
+    {
+      "attributed": "REPRESENTATION_GAP",
+      "case_id": "P5-HC-002",
+      "confidence": "MEDIUM",
+      "gold": "RETRIEVAL_MISS"
+    },
+    {
+      "attributed": "IMPLEMENTATION_BUG",
+      "case_id": "P5-HC-012",
+      "confidence": "HIGH",
+      "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE"
+    },
+    {
+      "attributed": "METHOD_BASIS_GAP",
+      "case_id": "P5-HC-018",
+      "confidence": "HIGH",
+      "gold": "REPRESENTATION_GAP"
+    }
+  ],
+  "intervention_predictions": {
+    "CANNOT_DETERMINE": 1,
+    "NO": 4,
+    "YES": 19
+  },
+  "issue": 102,
+  "limitations": "Single-model single-run evaluation without repetition confidence intervals. Full campaign requires protected fresh-transfer execution with matched baselines.",
+  "model": "glm-5.2",
+  "n_cases": 24,
+  "paper_id": "P5",
+  "per_family_metrics": {
+    "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE": {
+      "cases": [
+        "P5-HC-010",
+        "P5-HC-011",
+        "P5-HC-012"
+      ],
+      "correct": 2,
+      "f1": 0.8,
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "total": 3,
+      "tp": 2
+    },
+    "EVALUATOR_METRIC_BUG": {
+      "cases": [
+        "P5-HC-013",
+        "P5-HC-014",
+        "P5-HC-015"
+      ],
+      "correct": 3,
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "total": 3,
+      "tp": 3
+    },
+    "IMPLEMENTATION_BUG": {
+      "cases": [
+        "P5-HC-007",
+        "P5-HC-008",
+        "P5-HC-009"
+      ],
+      "correct": 3,
+      "f1": 0.8571428571428571,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.75,
+      "recall": 1.0,
+      "total": 3,
+      "tp": 3
+    },
+    "MEASUREMENT_SPECIFICATION_GAP": {
+      "cases": [
+        "P5-HC-019",
+        "P5-HC-020",
+        "P5-HC-021"
+      ],
+      "correct": 3,
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "total": 3,
+      "tp": 3
+    },
+    "METHOD_BASIS_GAP": {
+      "cases": [
+        "P5-HC-022",
+        "P5-HC-023",
+        "P5-HC-024"
+      ],
+      "correct": 3,
+      "f1": 0.8571428571428571,
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.75,
+      "recall": 1.0,
+      "total": 3,
+      "tp": 3
+    },
+    "REPRESENTATION_GAP": {
+      "cases": [
+        "P5-HC-016",
+        "P5-HC-017",
+        "P5-HC-018"
+      ],
+      "correct": 2,
+      "f1": 0.6666666666666666,
+      "fn": 1,
+      "fp": 1,
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "total": 3,
+      "tp": 2
+    },
+    "RETRIEVAL_MISS": {
+      "cases": [
+        "P5-HC-001",
+        "P5-HC-002",
+        "P5-HC-003"
+      ],
+      "correct": 2,
+      "f1": 0.8,
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "total": 3,
+      "tp": 2
+    },
+    "ROUTING_PLANNING_MISS": {
+      "cases": [
+        "P5-HC-004",
+        "P5-HC-005",
+        "P5-HC-006"
+      ],
+      "correct": 3,
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "total": 3,
+      "tp": 3
+    }
+  },
+  "schema_version": "orion.p5.hidden-cause-attribution.v1",
+  "source_results": "papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl",
+  "status": "ARCHIVED_ATTRIBUTION_ONLY",
+  "summary_metrics": {
+    "accuracy": 0.875,
+    "avg_latency_seconds": 13.036643187204996,
+    "correct_attributions": 21,
+    "errors": 0,
+    "false_method_change_rate": 0.14285714285714285,
+    "incorrect_attributions": 3,
+    "macro_f1": 0.8726190476190476,
+    "total_cases": 24,
+    "total_tokens": 14190
+  },
+  "table_id": "P5-3"
+}

@@ -32,7 +32,7 @@ EXIT_AMBIGUOUS = 2
 EXIT_CANNOT_CHECK = 3
 EXIT_MISSING = 4
 
-CANONICAL = tuple(f"paper-{i:02d}" for i in range(1, 16))
+CANONICAL = tuple(f"orion-{i + 10:02d}" for i in range(1, 16))
 
 #: Names explicitly marked historical are not competing current pointers. P12
 #: writes "`MANUSCRIPT.md` is a historical integrated review snapshot"; counting
@@ -151,7 +151,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  EXACTLY ONE {rec.paper:42s} {marks}")
             exact += 1
     print(f"\nexactly one of each: {exact}   ambiguous: {ambiguous}   absent: {absent}")
-    print("note: paper-13 declares two active authorities by design (V2 for the P13B")
+    print("note: orion-23 declares two active authorities by design (V2 for the P13B")
     print("      leaf, V3 for the composed P13C leaf), stated in V3's own record.")
     print("      That is a design question for #1131, not a README defect.")
     if ambiguous:

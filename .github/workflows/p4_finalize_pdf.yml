@@ -4,7 +4,7 @@ on:
   push:
     branches: [shadow/p4-issue101-results]
     paths:
-      - 'papers/paper-04-verified-scientific-discovery/submission/FINALIZE_PDF_V1.txt'
+      - 'papers/orion-14-verified-scientific-discovery/submission/FINALIZE_PDF_V1.txt'
 
 permissions:
   contents: write
@@ -38,7 +38,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cd papers/paper-04-verified-scientific-discovery
+          cd papers/orion-14-verified-scientific-discovery
           python reproducibility/replay_public.py
           python reproducibility/integrate_publication.py
           git diff --exit-code \
@@ -56,7 +56,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          DIR=papers/paper-04-verified-scientific-discovery/figures
+          DIR=papers/orion-14-verified-scientific-discovery/figures
           for svg in "$DIR"/p4_1_authority_pipeline.svg "$DIR"/p4_2_false_promotion.svg "$DIR"/p4_3_coverage_frontier.svg "$DIR"/p4_4_detection_by_attack.svg "$DIR"/p4_5_attribution_vs_support.svg "$DIR"/p4_6_cost_false_promotion.svg; do
             test -s "$svg"
             rsvg-convert -f pdf -o "${svg%.svg}.pdf" "$svg"
@@ -66,7 +66,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cd papers/paper-04-verified-scientific-discovery/manuscript
+          cd papers/orion-14-verified-scientific-discovery/manuscript
           rm -f main.aux main.bbl main.blg main.log main.out main.toc main.pdf
           pdflatex -interaction=nonstopmode -halt-on-error main.tex
           if grep -q '\\citation' main.aux; then bibtex main; fi
@@ -82,7 +82,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          PAPER=papers/paper-04-verified-scientific-discovery
+          PAPER=papers/orion-14-verified-scientific-discovery
           OUT=$RUNNER_TEMP/p4-final
           mkdir -p "$OUT"
           cp "$PAPER/manuscript/main.pdf" "$OUT/ORION-P4-final.pdf"
@@ -91,7 +91,7 @@ jobs:
           python - <<'PY'
           import hashlib, json, os, re
           from pathlib import Path
-          paper = Path('papers/paper-04-verified-scientific-discovery')
+          paper = Path('papers/orion-14-verified-scientific-discovery')
           out = Path(os.environ['RUNNER_TEMP'])/'p4-final'
           pdf = out/'ORION-P4-final.pdf'
           text = (out/'final.txt').read_text(errors='replace')
@@ -181,7 +181,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          PAPER=papers/paper-04-verified-scientific-discovery
+          PAPER=papers/orion-14-verified-scientific-discovery
           cp "$RUNNER_TEMP/p4-final/ORION-P4-final.pdf" "$PAPER/submission/ORION-P4-final.pdf"
           cp "$RUNNER_TEMP/p4-final/FINAL_PDF_AUDIT_V1.json" "$PAPER/submission/FINAL_PDF_AUDIT_V1.json"
           git config user.name 'github-actions[bot]'

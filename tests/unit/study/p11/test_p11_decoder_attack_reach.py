@@ -1,7 +1,7 @@
 """P11G's survived hostile attack, measured against the worlds its own protocol admits.
 
 Every number pinned here was read off the shipped artifacts
-``papers/paper-11-state-as-computation/P11G_DETERMINISTIC_TREE_DECODER_RESULT_V1.json``,
+``papers/orion-21-state-as-computation/P11G_DETERMINISTIC_TREE_DECODER_RESULT_V1.json``,
 ``run_p11g_deterministic_tree_decoder_v1.py`` and
 ``P11C_STRONGER_DECODER_ATTACK_PROTOCOL_V1.md``, or produced by replaying that
 runner's own RNG stream with the decoder swapped.

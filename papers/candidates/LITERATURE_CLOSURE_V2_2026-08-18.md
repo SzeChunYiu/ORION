@@ -1,4 +1,4 @@
-# P6–P8 literature closure V2 — 2026-08-18
+# ORION-16–ORION-18 literature closure V2 — 2026-08-18
 
 **Status:** nearest-work/parent-field closure for theory V2; not a claim that all literature has been exhaustively enumerated.  
 **Method:** broad parent-field search + current 2025–2026 agent systems + explicit donor assimilation.  
@@ -18,7 +18,7 @@ This ledger closes the **claim boundary**, not universal bibliographic completen
 
 ---
 
-# P6 — Formal Epistemic Structures and Mechanics
+# ORION-16 — Formal Epistemic Structures and Mechanics
 
 ## Foundational parents absorbed
 
@@ -30,7 +30,7 @@ This ledger closes the **claim boundary**, not universal bibliographic completen
 
 **Owned structure:** reasons/justifications, dependency-directed revision, assumption sets, multiple support environments and independent support.
 
-**P6 consequence:** selective dependency repair is donor territory. P6 keeps only the extra scientific-admissibility semantics layered on top.
+**ORION-16 consequence:** selective dependency repair is donor territory. ORION-16 keeps only the extra scientific-admissibility semantics layered on top.
 
 ### Dynamic epistemic logic / belief revision
 
@@ -39,7 +39,7 @@ This ledger closes the **claim boundary**, not universal bibliographic completen
 
 **Owned structure:** epistemic actions and rational state revision.
 
-**P6 consequence:** P6 cannot claim formal state-changing epistemic action in general.
+**ORION-16 consequence:** ORION-16 cannot claim formal state-changing epistemic action in general.
 
 ### Self-adjusting / incremental computation
 
@@ -47,7 +47,7 @@ This ledger closes the **claim boundary**, not universal bibliographic completen
 
 **Owned structure:** dependency-based incremental recomputation and from-scratch consistency targets.
 
-**P6 consequence:** computation repair/reuse is explicitly embedded as a special case. P6's typed-erasure theorem separates computational correctness from scientific certification/admissibility.
+**ORION-16 consequence:** computation repair/reuse is explicitly embedded as a special case. ORION-16's typed-erasure theorem separates computational correctness from scientific certification/admissibility.
 
 ## Current agent-system donors absorbed
 
@@ -75,9 +75,9 @@ Typed memory-to-action dependencies, downstream invalidation, preservation of in
 
 **Owned structure:** selective state repair with independent-support preservation.
 
-## P6 surviving theory object
+## ORION-16 surviving theory object
 
-P6 does **not** survive as “dependency repair + effects.” It survives as:
+ORION-16 does **not** survive as “dependency repair + effects.” It survives as:
 
 > the epistemic admissibility layer over an engulfed repair/effect system: root-inclusive certificate-aware repair, hard scientific-obligation persistence, provenance and scoped commit authority, with a theorem that bare computation/dependency erasure is not fully abstract for scientific admissibility.
 
@@ -85,7 +85,7 @@ No first/only/subsumes language is authorized.
 
 ---
 
-# P7 — Epistemic Navigation in Open Worlds
+# ORION-17 — Epistemic Navigation in Open Worlds
 
 ## Donor families absorbed
 
@@ -138,9 +138,9 @@ No first/only/subsumes language is authorized.
 
 **Owned pressure:** exploration breadth/concentration is a meaningful empirical coordinate, not reducible to final-answer accuracy.
 
-## P7 surviving theory object
+## ORION-17 surviving theory object
 
-P7 does **not** survive as “search where topology changes.” It survives as:
+ORION-17 does **not** survive as “search where topology changes.” It survives as:
 
 > an epistemic-atlas preservation semantics in which fixed-information representation refinement can alter solvability, while evidence preservation is strictly weaker than scientific closure preservation; closure transport requires a complete support/obligation witness, and open/censored obligations remain fail-closed across chart/objective change.
 
@@ -148,7 +148,7 @@ Planning abstraction, schema/lens preservation, goal evolution and world-model u
 
 ---
 
-# P8 — Epistemic Authority for Autonomous Science
+# ORION-18 — Epistemic Authority for Autonomous Science
 
 ## Mature authorization parents absorbed
 
@@ -181,7 +181,7 @@ Transitive delegation, aggregation inference and temporal validity across multi-
 
 Paired act/abstain evaluation and explicit abstention competence.
 
-**Owned structure:** whether agents know when not to act; P8 does not claim abstention itself.
+**Owned structure:** whether agents know when not to act; ORION-18 does not claim abstention itself.
 
 ### ProvenanceGuard — arXiv:2606.18037
 
@@ -215,11 +215,11 @@ Structured multi-agent institutional experiments where provenance-aware executab
 
 ## Terminology collision: “authority laundering”
 
-The phrase is already used in 2026 technical/standards/discussion contexts for agent delegation/scope drift and in other AI authority settings. P8 therefore **does not claim the term**. The manuscript uses the phrase descriptively while locating its formal result in full evidence-to-obligation typing.
+The phrase is already used in 2026 technical/standards/discussion contexts for agent delegation/scope drift and in other AI authority settings. ORION-18 therefore **does not claim the term**. The manuscript uses the phrase descriptively while locating its formal result in full evidence-to-obligation typing.
 
-## P8 surviving theory object
+## ORION-18 surviving theory object
 
-P8 does **not** survive as generic capability-vs-permission, ongoing authorization, provenance-aware governance, multi-authority composition, revocation, or abstention. It survives as:
+ORION-18 does **not** survive as generic capability-vs-permission, ongoing authorization, provenance-aware governance, multi-authority composition, revocation, or abstention. It survives as:
 
 > a typed scientific-discharge interface layered over all of those donors: a source judgment discharges a target scientific obligation only when full domain/kind/scope/content/epoch typing matches directly or through a protected composable coercion; support-family revocation preserves independent derivations; generic permission is weaker than scientific authorization.
 
@@ -241,7 +241,7 @@ P_0\;identity
 \to P_4\;commit authority.
 \]
 
-Prior work owns major mechanisms at every level. The P6–P8 programme studies explicit transport laws and non-implications across levels.
+Prior work owns major mechanisms at every level. The ORION-16–ORION-18 programme studies explicit transport laws and non-implications across levels.
 
 ## Literature terminal
 

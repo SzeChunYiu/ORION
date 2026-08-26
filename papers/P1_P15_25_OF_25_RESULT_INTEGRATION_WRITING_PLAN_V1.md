@@ -1,4 +1,4 @@
-# P1–P15 25-of-25 Computation Ledger Integration and Writing Plan V1
+# ORION-11–ORION-25 25-of-25 Computation Ledger Integration and Writing Plan V1
 
 ## Frozen authority identity
 
@@ -19,8 +19,8 @@ This plan treats every positive, adverse, invalid, censored, donor-unavailable, 
 1. **Legacy-label collisions.** On the declared 144-state class, 4,355 state pairs share a legacy terminal while requiring different actions. This supports a finite non-reconstruction/collision result, not external policy superiority.
 2. **Dynamic update algebra.** Across 768 finite states and 249,216 law cases, replay determinism, idempotence, independent commutation, explicit noncommutation, revocation locality, and no silent authority amplification had zero failures; all six registered mutations were killed.
 3. **Legacy projection compatibility.** Across 2,880 states and 5,760 decision projections, the structured state reproduced every frozen legacy oracle decision while retaining unresolved semantics and exposing non-injective groups.
-4. **Bounded planning advantage.** In the P13 retrospective internal control, dynamic-state planning was correct on 144/144 cases while terminal-only planning was correct on 97/144, leaving 47 retained error/regret rows. This is not a prospective external lifecycle result.
-5. **Bounded dynamic revalidation.** P6 attained an exact bounded positive over 16 pre-existing content-bound transitions from four domains and 64 policy decisions. Exact dynamic revalidation and the ideal support-hypergraph product matched all gold dispositions with zero retained-invalid certificates and zero unnecessary reopening. This does not establish deployed-system, prospective, universal-minimality, external-novelty, or population superiority.
+4. **Bounded planning advantage.** In the ORION-23 retrospective internal control, dynamic-state planning was correct on 144/144 cases while terminal-only planning was correct on 97/144, leaving 47 retained error/regret rows. This is not a prospective external lifecycle result.
+5. **Bounded dynamic revalidation.** ORION-16 attained an exact bounded positive over 16 pre-existing content-bound transitions from four domains and 64 policy decisions. Exact dynamic revalidation and the ideal support-hypergraph product matched all gold dispositions with zero retained-invalid certificates and zero unnecessary reopening. This does not establish deployed-system, prospective, universal-minimality, external-novelty, or population superiority.
 
 ### Programme-level boundaries that must remain visible
 
@@ -36,34 +36,34 @@ This plan treats every positive, adverse, invalid, censored, donor-unavailable, 
 
 | Paper | Exact computation terminal | Writing class now | What may be written | What must not be written |
 |---|---|---|---|---|
-| P1 | `PROTECTED_SCIENCEAGENTBENCH_AND_FRESH_COUNTERFACTUAL_CUSTODY_UNAVAILABLE` | Theory + protected preflight | Formal identifiability/minimum-repair/adoption theory and the exact unavailable-custody boundary | Prospective solve gain, responsibility accuracy, superiority, or external adoption benefit |
-| P2 | `CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE` | Bounded negative/boundary study | Fifty-topic TREC-COVID internal comparison, no licensed structural-jump stratum, and the exact donor/transfer/custody preconditions | Remote-jump value, open-world superiority, global closure, or external transfer |
-| P3 | `P3_MULTI_CASE_LAWFUL_EVALUATION_UNAVAILABLE` | Theory + rights/case-universe preflight | Gluing/obstruction theory and the fact that 20 scheduled cells had zero lawful executions | Multi-case alignment or gluing superiority |
-| P4 | `EXTERNAL_PROMOTION_TERMINAL_GOLD_UNAVAILABLE` | Theory + mechanical execution boundary | Fibre/non-compensation/revocation theory; 900 mechanically executed arm-cases; zero externally terminal-scored cases | Promotion-policy superiority or external false-promotion reduction |
-| P5 | `SWE_BENCH_RIGHTS_AND_PROTECTED_FRESH_ADOPTION_CUSTODY_UNAVAILABLE` | Theory + protected preflight | Reflexive-custody impossibility and exact missing-rights/adoption-custody boundary | Self-improvement benefit, resolved-rate gain, causal credit, or protected adoption superiority |
-| P6 | `EXACT_DYNAMIC_REVALIDATION_STRICTLY_EXTENDS_NATIVE_DEPENDENCY_SELECTION` | Bounded positive methods/theory paper | The exact 16-transition/four-domain result, native-selector failure boundary, full-reset inefficiency, and ideal-product equivalence | Prospective deployed superiority, universal minimality, or external novelty |
-| P7 | `FROZEN_CASE_DENOMINATOR_DRIFT_INVALIDATES_EXECUTION` | Invalid execution + theory | Planned 738 versus observed 736 denominator drift, zero valid cases, and the invalidation rule | Any empirical regime-transport result from this job |
-| P8 | `NATIVE_EQUIVALENCE_REPLAY_INTERNAL_ONLY_EXTERNAL_ADJUDICATION_UNAVAILABLE` | Bounded internal correspondence paper | Forty-four-case native replay and same-programme scientific-gold correspondence | External adjudication, deployed ideal-product equivalence, or universal authority superiority |
-| P9 | `OPEN_WEIGHT_AND_NUMERICAL_BUILD_CUSTODY_UNAVAILABLE` | Theory + acquisition result | Failure-origin/numerical-identity theory and the exact unavailable artifact/custody requirements | Cause accuracy, compute substitution, frontier shift, or terminal-flip prediction |
-| P10 | `P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT` | Theory + input-preflight result | Obstruction-certified invention theory and the 480-case/12,960-cell frozen design with zero eligible execution | Method expansion, invention, primitive minimality, donor-frontier extension, or transfer |
-| P11 | `P11_DATASETS_MODELS_TRANSCRIPTS_NOT_CONTENT_BOUND` | Theory + acquisition audit | State/resource/optionality theory and the eight missing content-bound acquisition requirements | Learned-compiler, real-system, or resource-frontier superiority |
-| P12 | `CANNOT_CHECK_PROTECTED_SUBSTRATE_AND_NONFLAT_SUCCESSOR_NOT_RUN` | Theory + explicit stop/go boundary | Signal/censoring/regret theory and the exact protected-substrate/non-FLAT gap | Task gain, regret improvement, price robustness, domain robustness, or generalization |
-| P13 | `BOUNDED_DYNAMIC_STATE_BEATS_TERMINAL_ONLY__FULL_P13_CONTROL_CANNOT_CHECK` | Bounded positive + external-control gap | 144/144 versus 97/144 planning result, 4,355 collisions, zero dynamic regret, and exact legacy fidelity | Full five-arm dominance, external lifecycle governance, safe-reuse/recovery benefit, or population claim |
-| P14 | `P14D_EXTERNAL_ACQUISITION_BLOCKED` | Theory + external-acquisition preflight | Governance-identifiability theory and zero-execution external-acquisition boundary | Causal governance benefit, false-promotion control, or external reviewer agreement |
-| P15 | `P15_PRODUCTION_HOST_PROCESS_KEY_CUSTODY_AND_CROSS_SITE_REPLAY_CANNOT_CHECK` | Theory + production-transfer boundary | Noninterference theory; frozen 50 cases, 3 images, 2 sites, 7 arms, 3 seeds, 6,300 planned cells, and zero executed because all nine mandatory transfers were absent | Production fault coverage, cross-site replay, overhead, false rejection, or production noninterference |
+| ORION-11 | `PROTECTED_SCIENCEAGENTBENCH_AND_FRESH_COUNTERFACTUAL_CUSTODY_UNAVAILABLE` | Theory + protected preflight | Formal identifiability/minimum-repair/adoption theory and the exact unavailable-custody boundary | Prospective solve gain, responsibility accuracy, superiority, or external adoption benefit |
+| ORION-12 | `CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE` | Bounded negative/boundary study | Fifty-topic TREC-COVID internal comparison, no licensed structural-jump stratum, and the exact donor/transfer/custody preconditions | Remote-jump value, open-world superiority, global closure, or external transfer |
+| ORION-13 | `P3_MULTI_CASE_LAWFUL_EVALUATION_UNAVAILABLE` | Theory + rights/case-universe preflight | Gluing/obstruction theory and the fact that 20 scheduled cells had zero lawful executions | Multi-case alignment or gluing superiority |
+| ORION-14 | `EXTERNAL_PROMOTION_TERMINAL_GOLD_UNAVAILABLE` | Theory + mechanical execution boundary | Fibre/non-compensation/revocation theory; 900 mechanically executed arm-cases; zero externally terminal-scored cases | Promotion-policy superiority or external false-promotion reduction |
+| ORION-15 | `SWE_BENCH_RIGHTS_AND_PROTECTED_FRESH_ADOPTION_CUSTODY_UNAVAILABLE` | Theory + protected preflight | Reflexive-custody impossibility and exact missing-rights/adoption-custody boundary | Self-improvement benefit, resolved-rate gain, causal credit, or protected adoption superiority |
+| ORION-16 | `EXACT_DYNAMIC_REVALIDATION_STRICTLY_EXTENDS_NATIVE_DEPENDENCY_SELECTION` | Bounded positive methods/theory paper | The exact 16-transition/four-domain result, native-selector failure boundary, full-reset inefficiency, and ideal-product equivalence | Prospective deployed superiority, universal minimality, or external novelty |
+| ORION-17 | `FROZEN_CASE_DENOMINATOR_DRIFT_INVALIDATES_EXECUTION` | Invalid execution + theory | Planned 738 versus observed 736 denominator drift, zero valid cases, and the invalidation rule | Any empirical regime-transport result from this job |
+| ORION-18 | `NATIVE_EQUIVALENCE_REPLAY_INTERNAL_ONLY_EXTERNAL_ADJUDICATION_UNAVAILABLE` | Bounded internal correspondence paper | Forty-four-case native replay and same-programme scientific-gold correspondence | External adjudication, deployed ideal-product equivalence, or universal authority superiority |
+| ORION-19 | `OPEN_WEIGHT_AND_NUMERICAL_BUILD_CUSTODY_UNAVAILABLE` | Theory + acquisition result | Failure-origin/numerical-identity theory and the exact unavailable artifact/custody requirements | Cause accuracy, compute substitution, frontier shift, or terminal-flip prediction |
+| ORION-20 | `P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT` | Theory + input-preflight result | Obstruction-certified invention theory and the 480-case/12,960-cell frozen design with zero eligible execution | Method expansion, invention, primitive minimality, donor-frontier extension, or transfer |
+| ORION-21 | `P11_DATASETS_MODELS_TRANSCRIPTS_NOT_CONTENT_BOUND` | Theory + acquisition audit | State/resource/optionality theory and the eight missing content-bound acquisition requirements | Learned-compiler, real-system, or resource-frontier superiority |
+| ORION-22 | `CANNOT_CHECK_PROTECTED_SUBSTRATE_AND_NONFLAT_SUCCESSOR_NOT_RUN` | Theory + explicit stop/go boundary | Signal/censoring/regret theory and the exact protected-substrate/non-FLAT gap | Task gain, regret improvement, price robustness, domain robustness, or generalization |
+| ORION-23 | `BOUNDED_DYNAMIC_STATE_BEATS_TERMINAL_ONLY__FULL_P13_CONTROL_CANNOT_CHECK` | Bounded positive + external-control gap | 144/144 versus 97/144 planning result, 4,355 collisions, zero dynamic regret, and exact legacy fidelity | Full five-arm dominance, external lifecycle governance, safe-reuse/recovery benefit, or population claim |
+| ORION-24 | `P14D_EXTERNAL_ACQUISITION_BLOCKED` | Theory + external-acquisition preflight | Governance-identifiability theory and zero-execution external-acquisition boundary | Causal governance benefit, false-promotion control, or external reviewer agreement |
+| ORION-25 | `P15_PRODUCTION_HOST_PROCESS_KEY_CUSTODY_AND_CROSS_SITE_REPLAY_CANNOT_CHECK` | Theory + production-transfer boundary | Noninterference theory; frozen 50 cases, 3 images, 2 sites, 7 arms, 3 seeds, 6,300 planned cells, and zero executed because all nine mandatory transfers were absent | Production fault coverage, cross-site replay, overhead, false rejection, or production noninterference |
 
 ## Writing sequence
 
 ### Wave A — write immediately from attained evidence
 
-1. **P6:** full bounded methods/theory rewrite with the 16-transition/four-domain result as the empirical spine.
-2. **P13:** full bounded dynamic-state paper using the collision, projection, update-algebra, and 144-state planning-control results.
-3. **P2:** rewrite as a negative/boundary result about local saturation, unattained structural-jump licensing, and missing donor/transfer authority.
-4. **P8:** bounded internal correspondence/non-amplification paper; external adjudication remains an explicit future gate.
+1. **ORION-16:** full bounded methods/theory rewrite with the 16-transition/four-domain result as the empirical spine.
+2. **ORION-23:** full bounded dynamic-state paper using the collision, projection, update-algebra, and 144-state planning-control results.
+3. **ORION-12:** rewrite as a negative/boundary result about local saturation, unattained structural-jump licensing, and missing donor/transfer authority.
+4. **ORION-18:** bounded internal correspondence/non-amplification paper; external adjudication remains an explicit future gate.
 
 ### Wave B — theory-complete manuscripts with result-bound blocked sections
 
-P1, P3, P4, P5, P7, P9, P10, P11, P12, P14, and P15 retain their full theoretical contribution, but their Results sections must state exactly why the intended empirical terminal was not evaluated or was invalidated. No future-tense experiment promise may be written as an attained result.
+ORION-11, ORION-13, ORION-14, ORION-15, ORION-17, ORION-19, ORION-20, ORION-21, ORION-22, ORION-24, and ORION-25 retain their full theoretical contribution, but their Results sections must state exactly why the intended empirical terminal was not evaluated or was invalidated. No future-tense experiment promise may be written as an attained result.
 
 ## Atomic claim statuses for the writing pipeline
 

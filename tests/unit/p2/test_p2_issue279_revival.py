@@ -23,7 +23,7 @@ from orion.study.p2.one_stage_attribution import (
 )
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery"
+PAPER = ROOT / "papers" / "orion-12-open-world-scientific-discovery"
 EMIT = PAPER / "scripts" / "emit_issue279_revival_receipts.py"
 PROTOCOL_V1 = PAPER / "protocol" / "PROTOCOL_V1.json"
 PROTOCOL_V2 = PAPER / "protocol" / "P2_V2_CANDIDATE_GENERATION_DISCRIMINATOR_V1.json"

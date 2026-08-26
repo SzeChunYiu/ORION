@@ -28,7 +28,7 @@ The article describes six core ISA stages: collect feature/performance metadata;
 It names PRELIM, SIFTED, PILOT and CLOISTER as core construction methods.
 
 ## 08. Essential formulas
-Full formulas exist in the source, but QG1 does not need to reproduce ISA mathematics. The key conceptual variables are instance features `F`, algorithm performance `Y`, projected coordinates and good-performance footprints.
+Full formulas exist in the source, but ORION-09 does not need to reproduce ISA mathematics. The key conceptual variables are instance features `F`, algorithm performance `Y`, projected coordinates and good-performance footprints.
 
 ## 09. Experiment-to-claim evidence
 The tutorial presents a timetabling case study and describes multi-domain use. The article's claim is methodological: ISA reveals structural performance relationships and benchmark gaps that averages can hide.
@@ -43,13 +43,13 @@ ISA already owns broad claims that:
 - feature insufficiency can motivate adding features;
 - benchmark gaps can be filled by generating instances.
 
-QG1 may not present those ideas as new simply because its application is quantum compilation.
+ORION-09 may not present those ideas as new simply because its application is quantum compilation.
 
 ## 12. Author-stated limitations
 The article emphasizes that insight quality depends on metadata quality, instance diversity and whether selected features adequately capture performance variation. It explicitly discusses adding features when predictions remain contradictory.
 
 ## 13. Critical analysis
-This paper is a **stronger novelty threat to QG1 than a generic quantum-compilation paper** because QG1's vocabulary of “regions,” “structural predicates” and “feature failure” overlaps conceptually with ISA. QG1 survives only if it clearly identifies additional exact compiler objects: feasible transformation witnesses, theorem/tightness authority, proof-derived versus intrinsic support, objective certificate cones and exact mixed-cell representation refutations.
+This paper is a **stronger novelty threat to ORION-09 than a generic quantum-compilation paper** because ORION-09's vocabulary of “regions,” “structural predicates” and “feature failure” overlaps conceptually with ISA. ORION-09 survives only if it clearly identifies additional exact compiler objects: feasible transformation witnesses, theorem/tightness authority, proof-derived versus intrinsic support, objective certificate cones and exact mixed-cell representation refutations.
 
 ## 14. Learned knowledge
 ISA itself treats feature insufficiency as a meaningful diagnostic and iteratively augments features. Therefore QG15c-style vocabulary enlargement is not novel in the generic sense. The potentially new part is an exact compiler setting where mixed cells prove **zero error impossible within the frozen vocabulary**, combined with exact compiler witness/theorem structure.
@@ -63,6 +63,6 @@ Rice algorithm selection; algorithm portfolios; benchmark design; automated feat
 - Study whether theorem-derived structural coordinates improve ISA boundary determination in compiler families.
 
 ## ORION claim effect
-**Mandatory parent status:** ISA must be named as QG1's primary conceptual ancestor.  
-**Claims removed from QG1 novelty:** generic feature→performance mapping, algorithm footprints, benchmark-gap discovery, and feature augmentation.  
+**Mandatory parent status:** ISA must be named as ORION-09's primary conceptual ancestor.  
+**Claims removed from ORION-09 novelty:** generic feature→performance mapping, algorithm footprints, benchmark-gap discovery, and feature augmentation.  
 **Residual preserved:** exact/witness-carrying compiler expressivity, theorem/tightness separation, objective certificate regions, and frozen-vocabulary impossibility results.

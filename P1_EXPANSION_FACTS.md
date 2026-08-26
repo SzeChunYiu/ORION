@@ -17,7 +17,7 @@ The P1 live-provider campaign has a **critical power deficit**: at n=48 cases, t
 ### Case Counts
 - **PILOT split**: 18 cases (p1-c001 through p1-c018)
 - **TEST split**: 48 cases (p1-c101 through p1-c148)
-- **Location**: `papers/paper-01-recursive-epistemic-reconstruction/protocol/cases/`
+- **Location**: `papers/orion-11-recursive-epistemic-reconstruction/protocol/cases/`
 
 ### Achieved Tier (n=48)
 ```
@@ -67,7 +67,7 @@ To reach each tier from n=48:
 **Entry point**: `src/orion/study/p1/run_trial.py`
 - Invoked with: `python3 -m orion.study.p1.run_trial --split TEST --live`
 - Requires: `PHASE2_LLM_PROVIDER_API_KEY` environment variable
-- Output: `papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl`
+- Output: `papers/orion-11-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl`
 
 **NOT a GitHub Actions workflow** (unlike P2/P4/P5). P1 runs via Python script.
 
@@ -76,7 +76,7 @@ To reach each tier from n=48:
 ## FACT 5: Case Structure — NO GENERATOR EXISTS
 
 ### Case Schema
-**Source**: `papers/paper-01-recursive-epistemic-reconstruction/protocol/HIDDEN_SHIFT_CASE_SCHEMA_V1.json`
+**Source**: `papers/orion-11-recursive-epistemic-reconstruction/protocol/HIDDEN_SHIFT_CASE_SCHEMA_V1.json`
 
 Each case requires:
 - `case_id`: Unique identifier (e.g., "p1-c101")
@@ -149,8 +149,8 @@ The study should:
 ## Citations
 
 - **Precision tier rule**: `src/orion/study/p1/precision_tier.py:35-91`
-- **Prospective power analysis**: `papers/paper-01-recursive-epistemic-reconstruction/protocol/PROSPECTIVE_POWER_V1.md:1-98`
-- **Protocol**: `papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json:1-131`
-- **Case schema**: `papers/paper-01-recursive-epistemic-reconstruction/protocol/HIDDEN_SHIFT_CASE_SCHEMA_V1.json:1-28`
-- **Cases directory**: `papers/paper-01-recursive-epistemic-reconstruction/protocol/cases/test/`
+- **Prospective power analysis**: `papers/orion-11-recursive-epistemic-reconstruction/protocol/PROSPECTIVE_POWER_V1.md:1-98`
+- **Protocol**: `papers/orion-11-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json:1-131`
+- **Case schema**: `papers/orion-11-recursive-epistemic-reconstruction/protocol/HIDDEN_SHIFT_CASE_SCHEMA_V1.json:1-28`
+- **Cases directory**: `papers/orion-11-recursive-epistemic-reconstruction/protocol/cases/test/`
 - **Execution entry point**: `src/orion/study/p1/run_trial.py:1-167`

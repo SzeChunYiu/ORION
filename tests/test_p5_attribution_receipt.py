@@ -23,9 +23,9 @@ from orion.study.p5.attribution_receipt import (
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / RESULTS_RELPATH
-REPORT = ROOT / "papers/paper-05-self-orion/evidence/glm-5.2-attribution/report.json"
-RECEIPT = ROOT / "papers/paper-05-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json"
-TABLE = ROOT / "papers/paper-05-self-orion/evidence/TABLE_P5_3_HIDDEN_CAUSE_ATTRIBUTION.json"
+REPORT = ROOT / "papers/orion-15-self-orion/evidence/glm-5.2-attribution/report.json"
+RECEIPT = ROOT / "papers/orion-15-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json"
+TABLE = ROOT / "papers/orion-15-self-orion/evidence/TABLE_P5_3_HIDDEN_CAUSE_ATTRIBUTION.json"
 HISTORICAL_REPORT_SHA256 = "13ac651d00513b737023c309eab3ed3bde7adcc5f9612d146705d1d4a0877eca"
 
 

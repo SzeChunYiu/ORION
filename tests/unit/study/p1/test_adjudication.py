@@ -49,7 +49,7 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 RUBRIC_PATH = (
     REPO_ROOT
     / "papers"
-    / "paper-01-recursive-epistemic-reconstruction"
+    / "orion-11-recursive-epistemic-reconstruction"
     / "protocol"
     / "ADJUDICATION_RUBRIC_V1.md"
 )

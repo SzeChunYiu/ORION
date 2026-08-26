@@ -64,9 +64,9 @@ PACKAGE_DECLARATION = CANDIDATES_DIR / "CURRENT_PACKAGE_V2_1.md"
 #: Directory names are long enough that inlining them breaks the 100-column
 #: limit at almost every use site.
 CANDIDATE_DIRS = {
-    "P6": PAPERS_DIR / "paper-06-formal-epistemic-structures-and-mechanics",
-    "P7": PAPERS_DIR / "paper-07-epistemic-navigation-open-worlds",
-    "P8": PAPERS_DIR / "paper-08-epistemic-authority-autonomous-science",
+    "P6": PAPERS_DIR / "orion-16-formal-epistemic-structures-and-mechanics",
+    "P7": PAPERS_DIR / "orion-17-epistemic-navigation-open-worlds",
+    "P8": PAPERS_DIR / "orion-18-epistemic-authority-autonomous-science",
 }
 
 # Successor artifacts are deliberately outside the frozen V1 package identity.
@@ -603,7 +603,7 @@ def check_binding(repo_root: Path, candidate_id: str) -> BindingReport:
     # `subject_commit` and its status are generation provenance: HEAD moves on
     # every commit, so comparing them would red-line every commit that did not
     # regenerate the manifest. Byte authority comes from the digests below.
-    # This follows papers/paper-01-.../scripts/make_mechanical_arm_case_table.py.
+    # This follows papers/orion-11-.../scripts/make_mechanical_arm_case_table.py.
     provenance = {"subject_commit", "subject_commit_status", "subject_commit_blocker",
                   "subject_commit_unbound_paths"}
     for key in sorted(set(derived) - provenance):

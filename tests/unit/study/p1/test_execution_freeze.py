@@ -149,7 +149,7 @@ def test_evaluator_hash_is_computed_from_rubric_content() -> None:
     assert len(manifest.evaluator_hash) == 64
 
     # Should match the rubric file hash
-    rubric_path = REPO / "papers/paper-01-recursive-epistemic-reconstruction/protocol/ADJUDICATION_RUBRIC_V1.md"
+    rubric_path = REPO / "papers/orion-11-recursive-epistemic-reconstruction/protocol/ADJUDICATION_RUBRIC_V1.md"
     if rubric_path.exists():
         import hashlib
 

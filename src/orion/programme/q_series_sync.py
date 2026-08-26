@@ -131,7 +131,7 @@ def validate_q_series_sync(repo_root: Path) -> QSeriesSyncReport:
     )
     sanity = _load_json(
         repo_root
-        / "papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json"
+        / "papers/orion-05-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json"
     )
     if sanity.get("status") != "PASS" or sanity.get("orion_quantum_imports") is not False:
         raise ValueError("Q1 independent sanity record no longer has the declared bounded PASS")
@@ -237,7 +237,7 @@ def validate_q_series_sync(repo_root: Path) -> QSeriesSyncReport:
     )
     if "does not claim real scientific-agent effectiveness" not in q4_text:
         raise ValueError("Q4 manuscript lost the real-agent transfer boundary")
-    paired = _load_json(repo_root / "papers/Q-paper-04-typed-state/PUBLICATION_PAIRED_ANALYSIS_V1.json")
+    paired = _load_json(repo_root / "papers/orion-08-typed-state/PUBLICATION_PAIRED_ANALYSIS_V1.json")
     stale = paired["studies"]["N4_B"]["STALE_MATTERS"]["scoped_vs_never_mean_round_utility"]
     waste = paired["studies"]["N4_B"]["REOPEN_WASTEFUL"]["scoped_vs_never_mean_round_utility"]
     for label, row in (("STALE_MATTERS", stale), ("REOPEN_WASTEFUL", waste)):

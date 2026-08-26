@@ -4,7 +4,7 @@ The shipped generator is loaded and driven, never re-implemented: ``main()``'s
 aggregation is replayed here with the sampling support lifted out as a parameter
 and every other line of it --- the case generator, the gold adjudication, the
 nine arms, the seven gates, the terminal expression --- taken from
-``papers/paper-14-orion-rse/run_p14a_controlled_governance_v1.py`` itself.
+``papers/orion-24-orion-rse/run_p14a_controlled_governance_v1.py`` itself.
 :func:`shipped_bench` reproduces the committed
 ``full_result_sha256`` byte for byte, so a failure reported from here is about
 P14A and not about a local fixture written to fail.
@@ -73,9 +73,9 @@ from orion.programme.terminal_responsiveness import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-P14A_SCRIPT = REPO_ROOT / "papers/paper-14-orion-rse/run_p14a_controlled_governance_v1.py"
+P14A_SCRIPT = REPO_ROOT / "papers/orion-24-orion-rse/run_p14a_controlled_governance_v1.py"
 P14A_RECEIPT = (
-    REPO_ROOT / "papers/paper-14-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json"
+    REPO_ROOT / "papers/orion-24-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json"
 )
 
 #: The terminal the shipped receipt publishes.

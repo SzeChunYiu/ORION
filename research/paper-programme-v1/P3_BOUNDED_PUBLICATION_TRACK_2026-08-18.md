@@ -9,7 +9,7 @@ This is a scope decision, not a new positive result. It prevents two opposite er
 - **overclaiming:** treating a bounded already-structured mapping result as unrestricted cross-domain scientific integration;
 - **overblocking:** making a much larger expert-atlas generalization study a prerequisite for publishing a narrower result that already has a disjoint confirmatory surface.
 
-The machine-readable companion is `papers/paper-03-global-knowledge-portrait/evidence/P3_BOUNDED_PUBLICATION_TRACK_V1.json`.
+The machine-readable companion is `papers/orion-13-global-knowledge-portrait/evidence/P3_BOUNDED_PUBLICATION_TRACK_V1.json`.
 
 ## Evidence boundary
 
@@ -45,7 +45,7 @@ A P3-specific task may be closed when it exists only to require the expert atlas
 Run:
 
 ```bash
-python papers/paper-03-global-knowledge-portrait/scripts/check_bounded_publication_track.py
+python papers/orion-13-global-knowledge-portrait/scripts/check_bounded_publication_track.py
 ```
 
 The guard fails if the confirmatory numbers drift, the expert-atlas follow-up is erased or silently becomes a blocker without a claim change, required nonclaims disappear, the record tries to self-authorize readiness/novelty/generality, or the canonical P3 publication substrate is absent.

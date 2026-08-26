@@ -1,7 +1,7 @@
-# Reproduce the bounded P9/P10 closure
+# Reproduce the bounded ORION-19/ORION-20 closure
 
 **Papers:** `../paper-xx-executable-research-core/` and
-`../paper-xx-content-bound-math-evaluation/`
+`../archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/`
 
 **Authority:** `LOCAL_REPRODUCIBLE_CORE_ONLY`. Identity, deterministic outputs
 and local hostile gates are in scope. External novelty, theorem-statement
@@ -14,7 +14,7 @@ faithfulness, scientific authority and journal acceptance are not.
 ```
 
 This checks the current publication manifest, all shared framework tests, the
-P9 merged-evidence gate and the P10 merged technical-note gate. It supersedes
+ORION-19 merged-evidence gate and the ORION-20 merged technical-note gate. It supersedes
 the unavailable delivered `LOCAL_CORE_COMPLETE` assertion, which referenced
 missing `CLOSURE_MANIFEST.json` and
 `closure_logs/FROZEN_SHA256SUMS.txt`. The exact replacement authority and its
@@ -40,9 +40,9 @@ ASlib replay also requires NumPy/scikit-learn.
 The script runs the current closure plus deterministic phase 0, corrected phase
 1 V2 and archival phase 2A. It intentionally does not call the legacy Phase-2B
 runner: `HF_MATHLIB_TACTICS_SAMPLE.json` was not delivered, so that question is
-removed from the P10 technical note and retained only as a triggered follow-up.
+removed from the ORION-20 technical note and retained only as a triggered follow-up.
 
-## Public P9 discriminator
+## Public ORION-19 discriminator
 
 ```bash
 python ../paper-xx-executable-research-core/benchmark/test_aslib_v1.py
@@ -50,26 +50,26 @@ python ../paper-xx-executable-research-core/benchmark/run_aslib_v1.py
 python ../paper-xx-executable-research-core/check_merged_ready.py
 ```
 
-The source-pinned `SAT11-HAND-ALGO` output is deterministic. P9 closes as a
-merged P8/programme evidence object, not a standalone routing novelty claim.
+The source-pinned `SAT11-HAND-ALGO` output is deterministic. ORION-19 closes as a
+merged ORION-18/programme evidence object, not a standalone routing novelty claim.
 
-## Programme-scale P10 study
+## Programme-scale ORION-20 study
 
 ```bash
-python ../paper-xx-content-bound-math-evaluation/benchmark/check_mathlib_corpus_v2.py
-python ../paper-xx-content-bound-math-evaluation/benchmark/test_mathlib_transfer_v2_1.py
-python ../paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
+python ../archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/benchmark/check_mathlib_corpus_v2.py
+python ../archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/benchmark/test_mathlib_transfer_v2_1.py
+python ../archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
 ```
 
 The native replay requires the exact Mathlib commit and Lean 4.34.0-rc1; its
-command and runtime-adapter boundary are documented in P10's
+command and runtime-adapter boundary are documented in ORION-20's
 `JOURNAL_READINESS.md`. The stored receipts claim native acceptance only for the
 eight prospectively selected audit subjects.
 
 ## Supported terminals
 
-- P9: `MERGE_P9_INTO_P8_PROGRAMME`.
-- P10: `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`.
+- ORION-19: `MERGE_P9_INTO_P8_PROGRAMME`.
+- ORION-20: `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`.
 
 Neither terminal promotes capability, a digest or a Lean exit status into
 execution authority, theorem faithfulness or scientific truth.

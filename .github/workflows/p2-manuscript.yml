@@ -3,15 +3,15 @@ name: p2-manuscript
 on:
   pull_request:
     paths:
-      - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
-      - 'papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS.md'
-      - 'papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS_V2.md'
-      - 'papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V2.md'
-      - 'papers/paper-02-open-world-scientific-discovery/notes/submission/**'
-      - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_*'
-      - 'papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py'
-      - 'papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py'
-      - 'papers/paper-02-open-world-scientific-discovery/tests/test_p2_v2.py'
+      - 'papers/orion-12-open-world-scientific-discovery/manuscript/**'
+      - 'papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS.md'
+      - 'papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS_V2.md'
+      - 'papers/orion-12-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V2.md'
+      - 'papers/orion-12-open-world-scientific-discovery/notes/submission/**'
+      - 'papers/orion-12-open-world-scientific-discovery/protocol/P2_*'
+      - 'papers/orion-12-open-world-scientific-discovery/scripts/check_claim_ledger.py'
+      - 'papers/orion-12-open-world-scientific-discovery/scripts/check_p2_v2.py'
+      - 'papers/orion-12-open-world-scientific-discovery/tests/test_p2_v2.py'
       - '.github/workflows/p2-manuscript.yml'
   workflow_dispatch:
 
@@ -32,11 +32,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate immutable V1 claim bindings
-        run: python papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
+        run: python papers/orion-12-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
       - name: Validate V2 widening contract
-        run: python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py
+        run: python papers/orion-12-open-world-scientific-discovery/scripts/check_p2_v2.py
       - name: Run V2 contract tests
-        run: python -m unittest discover -s papers/paper-02-open-world-scientific-discovery/tests -p 'test_p2_v2.py'
+        run: python -m unittest discover -s papers/orion-12-open-world-scientific-discovery/tests -p 'test_p2_v2.py'
 
   compile:
     runs-on: ubuntu-latest
@@ -44,7 +44,7 @@ jobs:
     needs: validate-v2
     defaults:
       run:
-        working-directory: papers/paper-02-open-world-scientific-discovery/manuscript
+        working-directory: papers/orion-12-open-world-scientific-discovery/manuscript
     steps:
       - uses: actions/checkout@v4
 
@@ -81,10 +81,10 @@ jobs:
         with:
           name: p2-manuscript-review-${{ github.sha }}
           path: |
-            papers/paper-02-open-world-scientific-discovery/manuscript/main.pdf
-            papers/paper-02-open-world-scientific-discovery/manuscript/main.log
-            papers/paper-02-open-world-scientific-discovery/manuscript/main.bbl
-            papers/paper-02-open-world-scientific-discovery/manuscript/P2_MANUSCRIPT_PDFINFO.txt
-            papers/paper-02-open-world-scientific-discovery/manuscript/P2_MANUSCRIPT_WARNINGS.txt
+            papers/orion-12-open-world-scientific-discovery/manuscript/main.pdf
+            papers/orion-12-open-world-scientific-discovery/manuscript/main.log
+            papers/orion-12-open-world-scientific-discovery/manuscript/main.bbl
+            papers/orion-12-open-world-scientific-discovery/manuscript/P2_MANUSCRIPT_PDFINFO.txt
+            papers/orion-12-open-world-scientific-discovery/manuscript/P2_MANUSCRIPT_WARNINGS.txt
           if-no-files-found: error
           retention-days: 30

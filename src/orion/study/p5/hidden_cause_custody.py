@@ -1,6 +1,6 @@
 """What actually protects P5's hidden-cause suite, measured rather than declared.
 
-The suite at ``papers/paper-05-self-orion/evidence/hidden-cause-suite/
+The suite at ``papers/orion-15-self-orion/evidence/hidden-cause-suite/
 PROTECTED_SUITE_V1.json`` is the only battery P5 has run. Its 24 cases carry the
 protected root cause the candidate must diagnose, and three separate devices are
 supposed to keep that label away from the candidate:
@@ -108,7 +108,7 @@ from orion.study.p5.freeze import (
     sha256_json,
 )
 
-SHIPPED_SUITE_PATH = "papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json"
+SHIPPED_SUITE_PATH = "papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json"
 
 CUSTODY_ID = "p5-hidden-cause-root-cause-commitment"
 BENCHMARK_ID = "p5-hidden-cause-suite"

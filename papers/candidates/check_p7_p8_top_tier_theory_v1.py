@@ -197,8 +197,8 @@ def p8_checks() -> dict:
 
 def check_markers() -> None:
     files = {
-        "papers/paper-07-epistemic-navigation-open-worlds/TOP_TIER_THEORY_V1.md": ("T7.1", "T7.2", "T7.3"),
-        "papers/paper-08-epistemic-authority-autonomous-science/TOP_TIER_THEORY_V1.md": ("T8.1", "T8.2", "T8.3"),
+        "papers/orion-17-epistemic-navigation-open-worlds/TOP_TIER_THEORY_V1.md": ("T7.1", "T7.2", "T7.3"),
+        "papers/orion-18-epistemic-authority-autonomous-science/TOP_TIER_THEORY_V1.md": ("T8.1", "T8.2", "T8.3"),
     }
     for path, markers in files.items():
         text = (ROOT / path).read_text()

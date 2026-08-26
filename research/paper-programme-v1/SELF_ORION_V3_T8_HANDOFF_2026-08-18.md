@@ -28,7 +28,7 @@ Thus the latest paper work does **not** justify reopening ready packages. T8 is 
 - `research/self-orion-v3/development/run_development_panel_v1.py`
 - `research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V1.json`
 - `research/self-orion-v3/run_confirmatory_preflight_v1.py`
-- `papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json`
+- `papers/orion-15-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json`
 - `research/extensions/p6-higher-order-epistemic-mechanics/T8_EXPERIMENT_BRIDGE_V1.md`
 
 ## What may be updated in P5 now

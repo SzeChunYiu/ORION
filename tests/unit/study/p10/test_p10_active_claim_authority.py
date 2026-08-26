@@ -11,7 +11,7 @@ from orion.study.p10.active_claim_authority import (
 )
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-10-structured-problem-solving"
+PAPER = ROOT / "papers/orion-20-structured-problem-solving"
 AUTHORITY = PAPER / "P10_ACTIVE_CLAIM_AUTHORITY_V1.json"
 
 

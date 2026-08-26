@@ -1,4 +1,4 @@
-# P8 reproduce V2.1
+# ORION-18 reproduce V2.1
 
 Run from repository root:
 
@@ -11,9 +11,9 @@ PYTHONPATH=src python papers/candidates/paper-08-epistemic-authority-autonomous-
 Expected sentinels:
 
 ```text
-P8 THEORY CLOSURE V2: PASS
-P8 THEORY CLOSURE V2.1: PASS
-P8 CONTRACT MANIFEST V2: PASS
+ORION-18 THEORY CLOSURE V2: PASS
+ORION-18 THEORY CLOSURE V2.1: PASS
+ORION-18 CONTRACT MANIFEST V2: PASS
 ```
 
 The theorem checker covers full 5x5 domain typing, exact coercion composition, support-family revocation, terminal distinctions, finite blocker cases, 160 shared/product equivalence cases, positive coercion, epoch and self-promotion boundaries.

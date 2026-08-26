@@ -1,0 +1,435 @@
+{
+  "schema_version": "orion.p2.statistical-plan.v1",
+  "paper_id": "P2",
+  "plan_id": "P2.statistical-plan.v1",
+  "binds_protocol_id": "P2.open-world-discovery.v1",
+  "plan_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "authority": "Additive to papers/orion-12-open-world-scientific-discovery/protocol/PROTOCOL_V1.json. This plan may only be stricter than research/paper-programme-v1/protocols/ANALYSIS_STANDARD_V1.md; every strictness delta is listed under stricter_than_analysis_standard.",
+
+  "primary_bearing_families": {
+    "autoresearchbench_deep": {
+      "family_primary": "deep_official_success",
+      "direction": "higher_better",
+      "scale": "unit_interval",
+      "superiority_margin": 0.03,
+      "comparator": "strongest_matched_baseline_on_this_family",
+      "tested_once": true
+    },
+    "autoresearchbench_wide": {
+      "family_primary": "wide_official_iou",
+      "direction": "higher_better",
+      "scale": "unit_interval",
+      "superiority_margin": 0.03,
+      "comparator": "strongest_matched_baseline_on_this_family",
+      "tested_once": true
+    },
+    "offline_complete_gold": {
+      "family_primary": "complete_gold_recall",
+      "direction": "higher_better",
+      "scale": "unit_interval",
+      "superiority_margin": 0.03,
+      "comparator": "strongest_matched_baseline_on_this_family",
+      "tested_once": true
+    }
+  },
+
+  "non_primary_bearing_families": {
+    "sage_scientific_retrieval": {
+      "carries_confirmatory_primary": false,
+      "role": "lexical_baseline_promotion_gate",
+      "note": "SAGE evidence is that a strong in-call lexical baseline is competitive. This family exists to run bm25_keyword as a gate, not as a straw man."
+    },
+    "metasyn_retrieval_screening": {
+      "carries_confirmatory_primary": false,
+      "role": "screening_stage_recall_and_false_negatives",
+      "note": "Retrieval eligibility and screening are separate stages; screening_recall and false_negative_count are reported here as secondary."
+    }
+  },
+
+  "primary_safety_guard": {
+    "metric": "premature_task_closure_rate",
+    "direction": "lower_better",
+    "rule": "non_inferiority",
+    "margin": 0.02,
+    "margin_ref": "margins.safety_guard_margin_delta_safety",
+    "comparator": "strongest_matched_baseline_on_the_same_family",
+    "binding": "A family primary cannot be promoted unless the safety guard passes on that family. The guard is tested once per primary-bearing family in its frozen direction and is not part of any Holm family.",
+    "cannot_check_rule": "If the family's gold denominator is incomplete for a task, that task's guard value is CANNOT_CHECK. CANNOT_CHECK is never scored as 0 and never contributes to a pass."
+  },
+
+  "margins": {
+    "superiority_margin_delta_sup": 0.03,
+    "superiority_margin_justification": "Adopted verbatim from PROTOCOL_V1.json statistics.practical_margin design target (+0.03 absolute on [0,1] scales). Adopted rather than replaced because the protocol is DESIGN_FROZEN and the margin was set outcome-blind; changing it here would be a post-hoc loosening even though no outcome exists yet.",
+    "safety_guard_margin_delta_safety": 0.02,
+    "safety_guard_margin_justification": "Stricter than the protocol's prose 'not worse'. A point-estimate comparison lets sampling noise pass as safety; an explicit non-inferiority margin forces the interval to carry the claim. 0.02 is below delta_sup so a recall gain can never be bought with a larger closure regression than the gain itself.",
+    "non_inferiority_margin_delta_ni": 0.01,
+    "non_inferiority_margin_justification": "Deliberately stricter than delta_sup. A non-inferiority route is a weaker, narrower claim than superiority, so it must clear a tighter equivalence band; otherwise 'we did not lose much' becomes easier to claim than 'we won'.",
+    "all_margins_are_decision_thresholds_not_predictions": true
+  },
+
+  "non_inferiority_rule": {
+    "applies_when": "ORION's claimed value on a primary-bearing family is safety and coverage at bounded extra cost rather than a raw improvement in the family primary.",
+    "direction": "ORION minus strongest matched baseline on the family primary, in the family primary's declared direction.",
+    "margin": 0.01,
+    "margin_ref": "margins.non_inferiority_margin_delta_ni",
+    "pass_condition": "Paired percentile bootstrap 95% CI lower bound of the difference > -delta_ni, in the declared direction. The numeric value of delta_ni is held once, in margins.non_inferiority_margin_delta_ni, and is never restated as a literal in prose.",
+    "additional_required_conditions": [
+      "strict improvement on premature_task_closure_rate: 95% CI upper bound of (ORION minus comparator) < 0",
+      "SAGE lexical gate passed on the same family in the same call",
+      "cost admissibility satisfied on every capped resource",
+      "no unresolved open route obligation on any task counted toward the claim"
+    ],
+    "cost_admissibility": {
+      "rule": "For each of wallclock_seconds, query_count, model_tokens and tool_calls, ORION's median consumed value per task must be <= cost_ratio_ceiling times the strongest matched baseline's median consumed value on the same family, and both systems must be inside the frozen family cap.",
+      "cost_ratio_ceiling": 1.25,
+      "justification": "Non-inferiority at unbounded cost is not a scientific result. Matched budgets cap the maximum; this ratio caps the actual consumption so an equivalence claim cannot be bought by spending the whole budget while the baseline spends a fraction of it.",
+      "inadmissible_outside_matched_budget": true
+    },
+    "claim_language_constraint": "A passing non-inferiority result licenses only the narrower claim (comparable discovery at bounded extra cost with lower premature closure). It never licenses a superiority claim and never appears as a headline improvement."
+  },
+
+  "promotion_gates": {
+    "sage_lexical_gate": {
+      "baseline": "bm25_keyword",
+      "rule": "On every primary-bearing family, ORION must beat bm25_keyword on the family primary under the same call budget, with a paired bootstrap 95% CI lower bound of the difference > 0.",
+      "status": "structural_gate_not_optional",
+      "justification": "SAGE (arXiv:2602.05975) reports strong lexical retrieval as a competitive baseline. Failing this gate means the discovery claim is withdrawn for that family regardless of how ORION compares to other baselines."
+    },
+    "budget_compliance_gate": {
+      "rule": "Every system counted in a promotion must be inside the frozen family caps, with cap adherence verifiable from the run manifest resource_limits and the emitted cost fields."
+    },
+    "contamination_gate": {
+      "rule": "Tasks carrying a contamination flag are retained and reported, but a family whose contaminated fraction exceeds 0.10 cannot carry a promoted primary claim; it is reported separately."
+    }
+  },
+
+  "uncertainty": {
+    "standalone_binary_rates": {"estimator": "wilson_interval", "confidence": 0.95},
+    "paired_differences": {
+      "estimator": "paired_bootstrap_difference_ci",
+      "resamples": 10000,
+      "confidence": 0.95,
+      "analysis_seed": 20260816,
+      "seed_is_recorded_in_artifact": true
+    },
+    "always_report": ["point_estimate", "interval", "absolute_effect_size", "n", "aggregation_unit"],
+    "p_values_alone_are_insufficient": true,
+    "worst_family_reporting_required": true,
+    "library": "research/paper-programme-v1/protocols/publication_stats.py",
+    "reimplementation_forbidden": true
+  },
+
+  "pairing_and_repeats": {
+    "pairing_key": "task_id",
+    "pairing_requirement": "Comparisons across systems are paired at the task level. A task is admissible for a paired comparison only if every compared system has a retained observation for it.",
+    "pairwise_complete_deletion": {
+      "rule": "If a task is excluded for one system, that task's observation is dropped for every system in the comparison.",
+      "justification": "Asymmetric deletion makes the paired bootstrap invalid and lets a system launder its own failures into a smaller, easier denominator."
+    },
+    "stochastic_repeats": 3,
+    "repeat_nesting": "Repeats nest within (task, system). A repeat is never counted as an independent task and never enters N.",
+    "repeat_collapse_rule": "mean",
+    "repeat_collapse_binary_rule": "mean_of_indicator",
+    "collapse_before_bootstrap": true,
+    "forbidden_collapse_rules": ["best_of_n", "max", "any_success", "first_success", "analyst_selected_run"],
+    "forbidden_collapse_justification": "Best-of-N converts variance into apparent capability and is the single cheapest way to fabricate an improvement without touching the data."
+  },
+
+  "multiplicity": {
+    "primary": "Each family primary is tested once, in its frozen direction, against its frozen margin. The primary safety guard is tested once per primary-bearing family. Neither enters a Holm family.",
+    "correction": "holm",
+    "holm_families": [
+      {"family_id": "H2_route_diversity", "hypothesis": "P2.H2", "metrics": ["unique_relevant_per_route", "route_overlap_content_digest", "marginal_relevant_gain"], "test_count": 3},
+      {"family_id": "H3_stopping", "hypothesis": "P2.H3", "metrics": ["route_stop_false_positive_rate", "route_stop_false_negative_rate"], "test_count": 2},
+      {"family_id": "H4_question_conditioned_memory", "hypothesis": "P2.H4", "metrics": ["legitimate_reread_rate", "duplicate_processing_rate"], "test_count": 2},
+      {"family_id": "H1b_retrieval_quality", "hypothesis": "P2.H1", "metrics": ["precision", "screening_recall", "false_negative_count"], "test_count": 3}
+    ],
+    "non_inferential_metrics": ["wallclock_seconds", "query_count", "model_tokens", "tool_calls"],
+    "non_inferential_justification": "Cost metrics are budget-compliance checks and descriptive cost reporting. Treating them as hypotheses would inflate the Holm family sizes and let a cost 'win' pose as a scientific result.",
+    "exploratory_never_promoted": true
+  },
+
+  "precision_plan": {
+    "planning_function": "publication_stats.required_n_for_proportion_half_width",
+    "assumed_p_policy": "0.5 always",
+    "assumed_p_justification": "0.5 maximizes binomial variance and is therefore conservative. It is also a conservative bound for the mean of any variable bounded in [0,1] (maximum variance 0.25 at the two-point distribution), which covers per-task IoU and per-task recall as well as binary success. Assuming a smaller p to shrink N would be anticipating an outcome.",
+    "paired_difference_caveat": "These bounds size a standalone rate. A paired difference of two [0,1] variables has variance up to 4x that of a single rate under worst-case anticorrelation, so the achieved paired half-width is reported from the observed bootstrap and is never assumed from this table.",
+    "precision_tiers": [
+      {"tier": "TIER_A_full", "half_width": 0.03, "assumed_p": 0.5, "required_n": 1068},
+      {"tier": "TIER_B_committed", "half_width": 0.05, "assumed_p": 0.5, "required_n": 385},
+      {"tier": "TIER_C_reduced", "half_width": 0.075, "assumed_p": 0.5, "required_n": 171},
+      {"tier": "TIER_D_minimum_inferential", "half_width": 0.10, "assumed_p": 0.5, "required_n": 97}
+    ],
+    "family_n_policy": {
+      "offline_complete_gold": {
+        "n_is_host_owned": true,
+        "committed_tier": "TIER_B_committed",
+        "committed_half_width": 0.05,
+        "committed_required_n": 385,
+        "shortfall_rule": "If the assembled complete-gold corpus reaches fewer than 385 tasks, the achieved tier is recorded in the run manifest and the family is labelled with that tier. Below TIER_D (n < 97) the family is DESCRIPTIVE_ONLY and cannot carry a promoted primary claim."
+      },
+      "autoresearchbench_deep": {"n_is_fixed_by_benchmark": true, "n_at_design_freeze": "UNBOUND", "rule": "N is whatever the frozen benchmark split provides. The achieved half-width is computed from that N via the tier table and reported in the results caption. A family whose achieved half-width exceeds delta_sup (0.03) is reported UNDERPOWERED and its primary result is reported with that label attached."},
+      "autoresearchbench_wide": {"n_is_fixed_by_benchmark": true, "n_at_design_freeze": "UNBOUND", "rule": "Same as autoresearchbench_deep."},
+      "sage_scientific_retrieval": {"n_is_fixed_by_benchmark": true, "n_at_design_freeze": "UNBOUND", "rule": "Gate family; achieved precision reported, no primary."},
+      "metasyn_retrieval_screening": {"n_is_fixed_by_benchmark": true, "n_at_design_freeze": "UNBOUND", "rule": "Secondary family; achieved precision reported, no primary."}
+    },
+    "underpowered_label_is_mandatory": true
+  },
+
+  "matched_budget_policy": {
+    "principle": "Caps are per benchmark family and identical for every system in that family, including every baseline and every ablation. Caps are written into the run manifest resource_limits before any final outcome is accessed.",
+    "capped_resources": ["query_count", "tool_calls", "model_tokens", "wallclock_seconds"],
+    "cap_derivation_rule": "For each family and each capped resource, the per-task cap is the maximum consumption observed by any baseline during the declared pilot/debug phase, rounded up to the next value in the frozen ladder, and never above the absolute ceiling below. Pilot tasks do not enter the final test.",
+    "frozen_ladder": {
+      "query_count": [10, 20, 40, 80, 120, 200],
+      "tool_calls": [20, 40, 80, 160, 260, 400],
+      "model_tokens": [100000, 250000, 500000, 1000000, 2000000],
+      "wallclock_seconds": [300, 600, 1200, 1800, 3600]
+    },
+    "absolute_ceiling_per_task": {"query_count": 200, "tool_calls": 400, "model_tokens": 2000000, "wallclock_seconds": 3600},
+    "cap_hit_rule": {
+      "outcome": "RETAINED",
+      "behaviour": "A system that reaches a cap mid-task is stopped at the cap. Its partial result is scored as-is: items already found count, and the task is recorded as not closed.",
+      "failure_class": "TRUNCATED_AT_CAP",
+      "closure_accounting": "A truncated task did not declare closure, so it is excluded from the premature_task_closure_rate denominator and reported separately as truncation_rate. Truncation is never scored as safe stopping.",
+      "discarding_truncated_runs_is_forbidden": true
+    },
+    "budget_matching_verification": "Every result record carries its consumed cost. A family in which any system's cap differs from another's is INVALID and cannot be reported."
+  },
+
+  "exclusion_policy": {
+    "symmetric": true,
+    "predeclared": true,
+    "retained_always": [
+      "candidate_caused_failure",
+      "malformed_output",
+      "agent_timeout",
+      "abstention",
+      "empty_result_set",
+      "provider_unavailability",
+      "transport_failure",
+      "rate_limit",
+      "cap_truncation",
+      "contamination_flagged_case",
+      "cannot_check_outcome"
+    ],
+    "excludable_only": {
+      "class": "host_infrastructure_outage",
+      "definition": "An outage of the evaluation harness or its host, not of the candidate system and not of an external provider.",
+      "conditions": [
+        "documented by an out-of-band incident record with start and end timestamps",
+        "affects the task identically for every system in the comparison",
+        "declared before any outcome for that task is inspected",
+        "applied by pairwise-complete deletion across all systems"
+      ],
+      "visible_in_archive": true,
+      "archive_fields": ["incident_id", "reason", "affected_task_ids", "declared_before_outcome_access"]
+    },
+    "exclusion_budget": {
+      "max_excluded_fraction_per_family": 0.05,
+      "over_budget_consequence": "The family is reported COMPROMISED and cannot carry a promoted primary claim."
+    },
+    "provider_unavailability_is_not_evidence_of_absence": true
+  },
+
+  "decision_rule": {
+    "evaluated_per_primary_bearing_family": true,
+    "outcomes": [
+      {
+        "id": "PROMOTE_SUPERIORITY",
+        "conditions": [
+          "paired bootstrap 95% CI lower bound of (ORION minus strongest matched baseline) on the family primary > 0.03 in the declared direction",
+          "primary safety guard passes on this family (non-inferiority at 0.02 on premature_task_closure_rate)",
+          "SAGE lexical gate passed on this family",
+          "budget compliance gate passed",
+          "contamination gate passed",
+          "family not labelled DESCRIPTIVE_ONLY or COMPROMISED"
+        ],
+        "licenses": "The H1 superiority claim for this family."
+      },
+      {
+        "id": "PROMOTE_NON_INFERIORITY_WITH_SAFETY",
+        "conditions": ["non_inferiority_rule.pass_condition and all non_inferiority_rule.additional_required_conditions"],
+        "licenses": "The narrower safety/coverage-at-bounded-cost claim for this family only."
+      },
+      {
+        "id": "SHRINK",
+        "trigger": "Neither PROMOTE outcome is reached on a family.",
+        "required_action": "Record H1 as NOT_SUPPORTED for that family, report the null with its interval, and narrow the manuscript claim to the mechanisms that are actually demonstrated (route governance, question-conditioned read state, typed stopping, coverage refusal) without any external discovery-benefit claim.",
+        "forbidden_action": "Reporting a null as a success, substituting a different metric, restricting to a post-hoc subgroup, or promoting an exploratory metric."
+      },
+      {
+        "id": "REFRAME",
+        "trigger": "ORION fails the SAGE lexical gate on a primary-bearing family.",
+        "required_action": "Withdraw the discovery claim for that family regardless of every other comparison, and state in the manuscript that a same-call strong lexical baseline was not beaten."
+      },
+      {
+        "id": "CANNOT_CHECK",
+        "trigger": "The family's denominator-validity condition fails, or unresolved open route obligations bear on the outcome, or the evaluator/gold custody condition is unmet.",
+        "required_action": "Report the family as CANNOT_CHECK. CANNOT_CHECK never counts toward a promotion and is never scored as 0 or as safety."
+      }
+    ],
+    "if_orion_does_not_beat_simple_retrieval": "The correct outcome is SHRINK or REFRAME. A null result is reported as a null. Under no condition is a null presented as support for the discovery claim.",
+    "forbidden_after_outcome_access": [
+      "changing any margin",
+      "changing the comparator",
+      "changing the family primary",
+      "adding or dropping a baseline or ablation",
+      "promoting an exploratory metric to secondary or primary",
+      "changing the repeat collapse rule",
+      "changing the exclusion rule",
+      "re-running with a different seed and reporting the better run"
+    ],
+    "any_such_change_requires": "a new protocol version; the prior protocol and run remain immutable evidence"
+  },
+
+  "baselines": {
+    "bm25_keyword": {"applies_to": ["autoresearchbench_deep", "autoresearchbench_wide", "sage_scientific_retrieval", "metasyn_retrieval_screening", "offline_complete_gold"], "role": "promotion_gate", "gate_id": "sage_lexical_gate"},
+    "dense_retrieval": {"applies_to": ["autoresearchbench_deep", "autoresearchbench_wide", "sage_scientific_retrieval", "metasyn_retrieval_screening", "offline_complete_gold"], "role": "comparator"},
+    "sparse_dense_hybrid": {"applies_to": ["autoresearchbench_deep", "autoresearchbench_wide", "sage_scientific_retrieval", "metasyn_retrieval_screening", "offline_complete_gold"], "role": "comparator"},
+    "one_pass_rag": {"applies_to": ["autoresearchbench_deep", "autoresearchbench_wide", "offline_complete_gold"], "role": "comparator"},
+    "agentic_single_route": {"applies_to": ["autoresearchbench_deep", "autoresearchbench_wide", "offline_complete_gold"], "role": "comparator"},
+    "protocol_driven_systematic_review": {"applies_to": ["metasyn_retrieval_screening", "offline_complete_gold"], "role": "comparator", "note": "AgentSLR-like; run only where runnable, per JOURNAL_READINESS section 4. Applicability is per-family; a family where it is not runnable records NOT_RUNNABLE with a reason and does not fabricate a run."},
+    "strongest_matched_baseline_definition": "Within a family, the baseline with the highest point estimate on that family's primary among the baselines that ran under the frozen cap. Selected from the frozen baseline set only; the selection is reported."
+  },
+
+  "ablations": {
+    "no_route_independence_check": {"hypothesis": "P2.H2", "predeclared_expected_direction": "degrades_or_neutral", "primary_readout": "unique_relevant_per_route"},
+    "no_question_conditioned_read_ledger": {"hypothesis": "P2.H4", "predeclared_expected_direction": "degrades_or_neutral", "primary_readout": "duplicate_processing_rate"},
+    "route_stop_can_close_task": {"hypothesis": "P2.H3", "predeclared_expected_direction": "degrades_or_neutral", "primary_readout": "premature_task_closure_rate"},
+    "no_unavailable_route_open_state": {"hypothesis": "P2.H3", "predeclared_expected_direction": "degrades_or_neutral", "primary_readout": "premature_task_closure_rate"},
+    "coverage_diagnostic_controls_stopping": {"hypothesis": "P2.H3", "predeclared_expected_direction": "degrades_or_raises_safety_flag", "ablation_class": "negative_safety_ablation", "primary_readout": "premature_task_closure_rate", "note": "This ablation is designed to be harmful. An improvement here is a finding about the diagnostic, not a licence to adopt it for stopping."},
+    "no_content_identity_dedup": {"hypothesis": "P2.H2", "predeclared_expected_direction": "inflates_coverage_counts", "primary_readout": "route_overlap_content_digest", "note": "Expected to inflate apparent unique coverage rather than to degrade it; the readout is the inflation, not a score drop."}
+  },
+
+  "metric_registry": {
+    "deep_official_success": {"role": "family_primary", "family": "autoresearchbench_deep", "direction": "higher_better", "scale": "unit_interval", "statistical_unit": "benchmark task", "denominator_validity": "official_evaluator_custody", "degrades_to": "unofficial_reimplementation_score_not_comparable", "estimator": "paired_bootstrap_difference_ci", "required_binding_ids": ["B1", "B12", "B13"]},
+    "wide_official_iou": {"role": "family_primary", "family": "autoresearchbench_wide", "direction": "higher_better", "scale": "unit_interval", "statistical_unit": "benchmark topic", "denominator_validity": "official_evaluator_custody", "degrades_to": "unofficial_reimplementation_score_not_comparable", "estimator": "paired_bootstrap_difference_ci", "required_binding_ids": ["B1", "B12", "B13"]},
+    "complete_gold_recall": {"role": "family_primary", "family": "offline_complete_gold", "direction": "higher_better", "scale": "unit_interval", "statistical_unit": "task", "denominator_validity": "complete_gold_required", "degrades_to": "recall_at_judged_pool_self_referential", "estimator": "paired_bootstrap_difference_ci", "required_binding_ids": ["B1", "B5", "B6", "B12"]},
+    "premature_task_closure_rate": {"role": "primary_safety_guard", "family": "all_primary_bearing", "direction": "lower_better", "scale": "unit_interval", "statistical_unit": "closed task", "denominator_validity": "complete_gold_required", "degrades_to": "cannot_check", "estimator": "wilson_interval_and_paired_bootstrap_difference_ci", "oracle_id": "O2", "required_binding_ids": ["B5", "B9", "B10", "B11"]},
+    "precision": {"role": "secondary", "holm_family": "H1b_retrieval_quality", "direction": "higher_better", "scale": "unit_interval", "statistical_unit": "task", "denominator_validity": "full_judgement_of_returned_set", "degrades_to": "precision_over_judged_subset_upward_biased", "estimator": "paired_bootstrap_difference_ci", "required_binding_ids": ["B4", "B6"]},
+    "screening_recall": {"role": "secondary", "holm_family": "H1b_retrieval_quality", "direction": "higher_better", "scale": "unit_interval", "statistical_unit": "review topic", "denominator_validity": "complete_include_set_required", "degrades_to": "cannot_check", "estimator": "paired_bootstrap_difference_ci", "required_binding_ids": ["B4", "B6"]},
+    "false_negative_count": {"role": "secondary", "holm_family": "H1b_retrieval_quality", "direction": "lower_better", "scale": "count", "statistical_unit": "task", "denominator_validity": "identical_and_complete_gold_required", "degrades_to": "misses_relative_to_pool_shrinks_with_pool", "estimator": "paired_bootstrap_difference_ci", "required_binding_ids": ["B5", "B6"], "note": "A count is only comparable across systems that share an identical complete gold set. The rate form (1 - recall) is reported alongside it for any cross-family reading."},
+    "unique_relevant_per_route": {"role": "secondary", "holm_family": "H2_route_diversity", "direction": "higher_better", "scale": "count", "statistical_unit": "route within task", "denominator_validity": "merged_identity_required", "degrades_to": "inflated_by_route_count", "estimator": "paired_bootstrap_difference_ci", "required_binding_ids": ["B4", "B6", "B7"]},
+    "route_overlap_content_digest": {"role": "secondary", "holm_family": "H2_route_diversity", "direction": "context_dependent_reported_not_optimized", "scale": "unit_interval", "statistical_unit": "route pair within task", "denominator_validity": "merged_identity_required", "degrades_to": "understated_overlap_from_unmerged_ids", "estimator": "bootstrap_mean_ci", "required_binding_ids": ["B4", "B7"]},
+    "marginal_relevant_gain": {"role": "secondary", "holm_family": "H2_route_diversity", "direction": "higher_better", "scale": "count", "statistical_unit": "route within task", "denominator_validity": "merged_identity_required", "degrades_to": "order_dependent_first_finder_artifact", "estimator": "paired_bootstrap_difference_ci", "required_binding_ids": ["B4", "B6", "B7"]},
+    "route_stop_false_positive_rate": {"role": "secondary", "holm_family": "H3_stopping", "direction": "lower_better", "scale": "unit_interval", "statistical_unit": "route stop event", "denominator_validity": "complete_gold_and_route_reachability_required", "degrades_to": "cannot_check", "estimator": "wilson_interval_and_paired_bootstrap_difference_ci", "oracle_id": "O1", "required_binding_ids": ["B2", "B3", "B5", "B8", "B11"]},
+    "route_stop_false_negative_rate": {"role": "secondary", "holm_family": "H3_stopping", "direction": "lower_better", "scale": "unit_interval", "statistical_unit": "route that reached the oracle exhaustion point", "denominator_validity": "complete_gold_and_route_reachability_required", "degrades_to": "cannot_check", "estimator": "wilson_interval_and_paired_bootstrap_difference_ci", "oracle_id": "O1", "required_binding_ids": ["B2", "B3", "B5", "B8", "B11"]},
+    "legitimate_reread_rate": {"role": "secondary", "holm_family": "H4_question_conditioned_memory", "direction": "higher_better", "scale": "unit_interval", "statistical_unit": "read encounter whose decision is CONTENT_CHANGED, NEW_SCHEMA or NEW_FRAME", "denominator_validity": "encounter_stream_required", "degrades_to": "unmeasurable_suppression_invisible", "estimator": "wilson_interval_and_paired_bootstrap_difference_ci", "oracle_id": "O3", "required_binding_ids": ["B14", "B15"]},
+    "duplicate_processing_rate": {"role": "secondary", "holm_family": "H4_question_conditioned_memory", "direction": "lower_better", "scale": "unit_interval", "statistical_unit": "read encounter whose decision is ALREADY_READ", "denominator_validity": "encounter_stream_required", "degrades_to": "undercounted_without_identity_merge", "estimator": "wilson_interval_and_paired_bootstrap_difference_ci", "oracle_id": "O3", "required_binding_ids": ["B14", "B15"]},
+    "wallclock_seconds": {"role": "secondary_non_inferential", "direction": "lower_better", "scale": "seconds", "statistical_unit": "task", "denominator_validity": "always_valid", "degrades_to": "none", "estimator": "bootstrap_mean_ci", "required_binding_ids": ["B12"]},
+    "query_count": {"role": "secondary_non_inferential", "direction": "lower_better", "scale": "count", "statistical_unit": "task", "denominator_validity": "always_valid", "degrades_to": "none", "estimator": "bootstrap_mean_ci", "required_binding_ids": ["B12"]},
+    "model_tokens": {"role": "secondary_non_inferential", "direction": "lower_better", "scale": "count", "statistical_unit": "task", "denominator_validity": "always_valid", "degrades_to": "none", "estimator": "bootstrap_mean_ci", "required_binding_ids": ["B12"]},
+    "tool_calls": {"role": "secondary_non_inferential", "direction": "lower_better", "scale": "count", "statistical_unit": "task", "denominator_validity": "always_valid", "degrades_to": "none", "estimator": "bootstrap_mean_ci", "required_binding_ids": ["B12"]}
+  },
+
+  "exploratory_diagnostics": {
+    "note": "Defined here so they exist in the frozen plan. They are exploratory by construction and can never be retroactively promoted to secondary or primary.",
+    "truncation_rate": {"direction": "lower_better", "statistical_unit": "task", "definition": "Fraction of tasks in which the system hit a frozen cap before declaring closure."},
+    "unjustified_closure_rate": {"direction": "lower_better", "statistical_unit": "closed task", "definition": "Fraction of closed tasks with at least one unresolved open route obligation at closure time, independent of whether gold items actually remained."},
+    "open_obligation_rate": {"direction": "lower_better", "statistical_unit": "task", "definition": "Fraction of tasks ending with at least one unresolved unavailable-route obligation."},
+    "recall_at_judged_pool": {"direction": "higher_better", "statistical_unit": "task", "definition": "Recall against a pool formed from the union of system outputs. Self-referential; reported for context only and never as a primary."}
+  },
+
+  "oracles": {
+    "O1": {
+      "id": "O1",
+      "name": "route_stop_correctness",
+      "requires_complete_gold": true,
+      "false_positive_definition": "A route stop at attempt index t is a FALSE POSITIVE if, in the complete-gold world, at least marginal_yield_threshold previously-unfound gold-relevant merged sources were still reachable on that route at index t, and the route still held at least min_remaining_budget_units of its route budget.",
+      "false_negative_definition": "A route is a FALSE NEGATIVE if it made more than exhaustion_grace_attempts further attempts after the oracle exhaustion point. The oracle exhaustion point is the earliest attempt index at which zero not-yet-found gold-relevant merged sources remain reachable on that route.",
+      "marginal_yield_threshold": 1,
+      "marginal_yield_unit": "previously-unfound gold-relevant merged source",
+      "min_remaining_budget_units": 1.0,
+      "exhaustion_grace_attempts": 1,
+      "grace_justification": "One confirming attempt after true exhaustion is legitimate evidence-gathering, not waste. Two or more is a failure to read a flat route.",
+      "denominators": {"false_positive_rate": "route stop events", "false_negative_rate": "routes that reached the oracle exhaustion point"},
+      "policy_coupling": "Reachability and residual yield are evaluated under the frozen corpus/index bound in the run manifest, not under live provider state. The route-control policy constants (FrozenRouteControlPolicy.reformulate_after_zero_novelty, switch_after_zero_novelty) are recorded but do not define the oracle; the oracle is gold-defined so a policy change cannot move the truth."
+    },
+    "O2": {
+      "id": "O2",
+      "name": "premature_task_closure",
+      "requires_complete_gold": true,
+      "definition": "A declared task closure is PREMATURE if at least one gold-relevant merged source was still discoverable by at least one admissible route within the system's remaining matched budget at closure time.",
+      "denominator": "tasks in which the system declared closure",
+      "excluded_from_denominator": ["tasks truncated at a cap without declaring closure"],
+      "cannot_check_condition": "the task's gold set is not complete, or an unresolved open route obligation could bear on discoverability",
+      "never_scored_as": "0 when CANNOT_CHECK"
+    },
+    "O3": {
+      "id": "O3",
+      "name": "reread_legitimacy",
+      "requires_complete_gold": false,
+      "mechanism_source": "src/orion/knowledge/identity.py decide_read / ReadDecision",
+      "definition": "For every read encounter the harness recomputes decide_read against the ledger state immediately before the encounter. Legitimate reread states are CONTENT_CHANGED, NEW_SCHEMA and NEW_FRAME. Duplicate processing is an executed read whose decision was ALREADY_READ. UNSEEN encounters are first reads and belong to neither numerator.",
+      "identity_requirement": "source keys are the merged primary ids produced by merge_identities, never raw retrieval identifiers",
+      "legitimate_reread_rate": "executed encounters with a legitimate state / all encounters with a legitimate state",
+      "duplicate_processing_rate": "executed encounters with state ALREADY_READ / all encounters with state ALREADY_READ",
+      "why_encounter_denominator": "An execution-only denominator hides suppression: a system that silently refuses legitimate rereads never executes them, so they vanish from numerator and denominator together and the rate looks healthy. The encounter stream is what makes 'without suppressing legitimate rereads' testable."
+    },
+    "O4": {
+      "id": "O4",
+      "name": "unavailable_route_obligation",
+      "requires_complete_gold": false,
+      "definition": "A route trial with transport_status in RATE_LIMITED, UNAVAILABLE, TIMEOUT or ERROR opens an obligation on that route. The obligation stays open until a later successful trial on the same route with the same query derivation resolves it.",
+      "accounting_rules": [
+        "an open obligation is never counted as route exhaustion",
+        "an open obligation is never counted as evidence of absence",
+        "a task closed with an unresolved obligation is recorded in unjustified_closure_rate and carries an authority flag",
+        "if the obligation could bear on a coverage or stopping metric for that task, that metric is CANNOT_CHECK for that task",
+        "unavailability cases are RETAINED, never excluded"
+      ]
+    }
+  },
+
+  "required_bindings": [
+    {"id": "B1", "field": "result_record.task_id", "type": "string", "meaning": "Stable task key identical across every system, so paired comparison and pairwise-complete deletion are possible.", "metrics_enabled": ["deep_official_success", "wide_official_iou", "complete_gold_recall"]},
+    {"id": "B2", "field": "route_trial.attempt_index", "type": "integer", "meaning": "Zero-based index of the attempt within its route, so a stop or continuation can be located on the route timeline.", "metrics_enabled": ["route_stop_false_positive_rate", "route_stop_false_negative_rate"]},
+    {"id": "B3", "field": "route_trial.consecutive_zero_novelty_before", "type": "integer", "meaning": "Value of RouteControlState.consecutive_zero_novelty immediately before this attempt, in the same currency as FrozenRouteControlPolicy thresholds.", "metrics_enabled": ["route_stop_false_positive_rate", "route_stop_false_negative_rate"]},
+    {"id": "B4", "field": "route_trial.captures[].merged_source_id", "type": "string", "meaning": "Post-merge_identities primary key for the captured work, plus its content_digest. Raw retrieval ids are not acceptable; they make two routes that found one paper look disjoint.", "metrics_enabled": ["precision", "screening_recall", "unique_relevant_per_route", "route_overlap_content_digest", "marginal_relevant_gain"]},
+    {"id": "B5", "field": "oracle.gold_items[]", "type": "array[string]", "meaning": "Complete gold set for the task as merged_source_ids, host-owned and custody-separated from the candidate.", "metrics_enabled": ["complete_gold_recall", "false_negative_count", "premature_task_closure_rate", "route_stop_false_positive_rate", "route_stop_false_negative_rate"]},
+    {"id": "B6", "field": "oracle.gold_set_complete", "type": "boolean", "meaning": "Per-task assertion that the gold denominator is complete. Every complete-denominator metric is CANNOT_CHECK when this is false.", "metrics_enabled": ["complete_gold_recall", "false_negative_count", "screening_recall", "precision", "unique_relevant_per_route", "marginal_relevant_gain"]},
+    {"id": "B7", "field": "route_trial.captures[].content_digest", "type": "string", "meaning": "Content identity of the captured rendition, used for overlap and dedup rather than any source-minted id.", "metrics_enabled": ["route_overlap_content_digest", "unique_relevant_per_route", "marginal_relevant_gain"]},
+    {"id": "B8", "field": "oracle.route_residual_yield", "type": "object[route_id][attempt_index] -> integer", "meaning": "Count of not-yet-found gold-relevant merged sources still reachable on that route at that attempt, under the frozen corpus/index. This is the field the route-stop oracle is computed from.", "metrics_enabled": ["route_stop_false_positive_rate", "route_stop_false_negative_rate"]},
+    {"id": "B9", "field": "task_closure.declared", "type": "boolean", "meaning": "Whether the system declared task closure, with the attempt index or timestamp at which it did. Distinguishes closure from cap truncation.", "metrics_enabled": ["premature_task_closure_rate"]},
+    {"id": "B10", "field": "oracle.task_residual_discoverable_within_budget", "type": "object[task_id][system_id] -> integer", "meaning": "Count of gold-relevant merged sources still discoverable by at least one admissible route within the system's remaining matched budget at its closure time.", "metrics_enabled": ["premature_task_closure_rate"]},
+    {"id": "B11", "field": "route_trial.open_obligation_ids", "type": "array[string]", "meaning": "Identifiers of unresolved unavailability obligations live at this trial, and at task closure time. Drives the CANNOT_CHECK rule and unjustified_closure_rate.", "metrics_enabled": ["premature_task_closure_rate", "route_stop_false_positive_rate", "route_stop_false_negative_rate"]},
+    {"id": "B12", "field": "result_record.cost", "type": "object{wallclock_seconds, query_count, model_tokens, tool_calls}", "meaning": "Consumed resources per (task, system, repeat), for budget compliance, the cost-ratio ceiling and cost reporting.", "metrics_enabled": ["wallclock_seconds", "query_count", "model_tokens", "tool_calls", "deep_official_success", "wide_official_iou"]},
+    {"id": "B13", "field": "result_record.evaluator_hash_and_contamination", "type": "object{evaluator_hash: string, contamination_flagged: boolean, contamination_evidence: string}", "meaning": "Official evaluator identity plus per-task contamination flag, so official-metric validity and the contamination gate are checkable.", "metrics_enabled": ["deep_official_success", "wide_official_iou"]},
+    {"id": "B14", "field": "read_encounter.decision_before_execution", "type": "enum{UNSEEN, ALREADY_READ, CONTENT_CHANGED, NEW_SCHEMA, NEW_FRAME}", "meaning": "decide_read recomputed against the ledger state immediately before the encounter, on the merged source key. One record per presented (merged_source_id, content_digest, schema_version, frame_id), whether or not a read followed.", "metrics_enabled": ["legitimate_reread_rate", "duplicate_processing_rate"]},
+    {"id": "B15", "field": "read_encounter.executed", "type": "boolean", "meaning": "Whether an extraction was actually performed for this encounter. Encounter minus execution is what makes suppression visible.", "metrics_enabled": ["legitimate_reread_rate", "duplicate_processing_rate"]},
+    {"id": "B16", "field": "result_record.repeat_index_and_seed", "type": "object{repeat_index: integer, seed: integer}", "meaning": "Which of the 3 stochastic repeats this record is, and its seed, so repeats collapse by mean within (task, system) and can never be reshuffled into independent tasks.", "metrics_enabled": ["deep_official_success", "wide_official_iou", "complete_gold_recall", "premature_task_closure_rate"]}
+  ],
+
+  "figure_bindings": {
+    "purpose": "PROTOCOL_V1.json freezes which figures and tables exist. This block freezes what each one is allowed to render, so a plot cannot quietly change the metric it shows after outcomes are seen. ANALYSIS_STANDARD_V1 requires every caption to state N, aggregation unit, uncertainty definition and whether the result is primary, secondary or exploratory; the role recorded here is the one the caption must state.",
+    "caption_must_state": ["n", "aggregation_unit", "uncertainty_definition", "role"],
+    "cosmetic_changes_allowed": "Layout changes that do not alter metric selection are permitted and logged. Any change to renders_metrics requires a new protocol version.",
+    "figures": {
+      "P2-1_pipeline": {"kind": "schematic", "role": "schematic", "renders_metrics": [], "note": "Discovery pipeline separating retrieval, screening, route stop and task closure. Carries no result."},
+      "P2-2_recall_cost": {"kind": "result", "role": "family_primary", "renders_metrics": ["deep_official_success", "wide_official_iou", "complete_gold_recall", "wallclock_seconds", "model_tokens", "query_count", "tool_calls"]},
+      "P2-3_cumulative_unique_relevant": {"kind": "result", "role": "secondary", "renders_metrics": ["unique_relevant_per_route", "query_count", "wallclock_seconds"]},
+      "P2-4_route_marginal_gain": {"kind": "result", "role": "secondary", "renders_metrics": ["marginal_relevant_gain", "unique_relevant_per_route"]},
+      "P2-5_route_overlap": {"kind": "result", "role": "secondary", "renders_metrics": ["route_overlap_content_digest"]},
+      "P2-6_stopping_errors": {"kind": "result", "role": "primary_safety_guard", "renders_metrics": ["premature_task_closure_rate", "route_stop_false_positive_rate", "route_stop_false_negative_rate"]},
+      "P2-7_wide_deep": {"kind": "result", "role": "family_primary", "renders_metrics": ["deep_official_success", "wide_official_iou"]}
+    },
+    "tables": {
+      "P2-T1_benchmark_license_freeze_manifest": {"kind": "manifest", "role": "manifest", "renders_metrics": [], "note": "Benchmark, data, license and freeze manifest. Carries no result."},
+      "P2-T2_baseline_ablation_results": {"kind": "result", "role": "family_primary", "renders_metrics": ["deep_official_success", "wide_official_iou", "complete_gold_recall", "premature_task_closure_rate", "precision", "screening_recall", "false_negative_count", "unique_relevant_per_route", "route_overlap_content_digest", "marginal_relevant_gain", "route_stop_false_positive_rate", "route_stop_false_negative_rate", "legitimate_reread_rate", "duplicate_processing_rate", "wallclock_seconds", "query_count", "model_tokens", "tool_calls"], "note": "Full baseline and ablation results with intervals and cost. Every registered metric appears here; per-row role is taken from metric_registry."},
+      "P2-T3_failure_taxonomy": {"kind": "result", "role": "exploratory", "renders_metrics": [], "renders_exploratory": ["truncation_rate", "unjustified_closure_rate", "open_obligation_rate"], "note": "Failure taxonomy: present-but-missed, retrieved-but-unused, screening miss, route starvation, transport failure, premature closure. Exploratory by construction."}
+    }
+  },
+
+  "stricter_than_analysis_standard": [
+    {"id": "S1", "topic": "pairwise_complete_deletion", "standard_says": "infrastructure failures may be excluded under a symmetric predeclared rule", "this_plan_adds": "an exclusion for one system deletes that task for every system in the comparison, plus a 5% per-family exclusion budget above which the family is COMPROMISED"},
+    {"id": "S2", "topic": "repeat_collapse", "standard_says": "repeats nest within task/system", "this_plan_adds": "the collapse function is frozen to the mean and best-of-N, max, any-success and analyst-selected-run are named and forbidden"},
+    {"id": "S3", "topic": "cost_metrics", "standard_says": "silent", "this_plan_adds": "the four cost metrics are declared non-inferential so they cannot inflate Holm families or pose as scientific results"},
+    {"id": "S4", "topic": "non_inferiority_margin", "standard_says": "P2 may use a separately frozen non-inferiority rule", "this_plan_adds": "delta_ni = 0.01 is strictly tighter than delta_sup = 0.03, plus a 1.25x consumed-cost ratio ceiling, so equivalence is harder to claim than superiority"},
+    {"id": "S5", "topic": "cannot_check", "standard_says": "CANNOT_CHECK is an outcome, not missing data", "this_plan_adds": "every incomplete-denominator metric is explicitly CANNOT_CHECK rather than 0, and CANNOT_CHECK can never contribute to a promotion"},
+    {"id": "S6", "topic": "safety_guard", "standard_says": "premature closure not worse", "this_plan_adds": "an explicit non-inferiority test at 0.02 with interval evidence, instead of a point-estimate comparison"},
+    {"id": "S7", "topic": "reread_denominator", "standard_says": "silent", "this_plan_adds": "reread metrics use an encounter denominator rather than an execution denominator, so suppression of legitimate rereads is visible instead of self-concealing"},
+    {"id": "S8", "topic": "assumed_p", "standard_says": "conservative proportion half-width planning bound", "this_plan_adds": "assumed_p is fixed at 0.5 for every family, forbidding a smaller assumed rate that would shrink N by anticipating an outcome"}
+  ]
+}

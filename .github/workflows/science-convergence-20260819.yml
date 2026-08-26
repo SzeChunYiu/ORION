@@ -32,21 +32,21 @@ jobs:
             research/claim_expansion/p2/verify_p2_x_independent.py \
             tests/unit/study/p1_causal/test_p1_x_protocol.py \
             tests/unit/p2/test_p2_claim_ledger.py \
-            papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/06-related-work-boundary.tex \
-            papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS.md \
-            papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md \
-            papers/paper-02-open-world-scientific-discovery/evidence/literature/confidencebasedstop2026.json \
-            papers/paper-02-open-world-scientific-discovery/evidence/literature/donotstopearly2026.json \
-            papers/paper-02-open-world-scientific-discovery/evidence/literature/fetch_literature_evidence.py \
-            papers/paper-02-open-world-scientific-discovery/evidence/literature/icore2026.json \
-            papers/paper-02-open-world-scientific-discovery/evidence/literature/knowplan2026.json \
-            papers/paper-02-open-world-scientific-discovery/evidence/literature/scienceintent2026.json \
-            papers/paper-02-open-world-scientific-discovery/evidence/p2x/P2_X_CLAIM_VALUES_V1.json \
-            papers/paper-02-open-world-scientific-discovery/evidence/p2x/P2_X_INDEPENDENT_VERIFICATION_V1.json \
-            papers/paper-02-open-world-scientific-discovery/evidence/p2x/P2_X_PROTECTED_RESULT_V1.json \
-            papers/paper-02-open-world-scientific-discovery/manuscript/novelty_refresh_2026.bib \
-            papers/paper-02-open-world-scientific-discovery/notes/P2_X_KNOWPLAN_METADATA_CORRECTION_V1.md \
-            papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json
+            papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/06-related-work-boundary.tex \
+            papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS.md \
+            papers/orion-12-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md \
+            papers/orion-12-open-world-scientific-discovery/evidence/literature/confidencebasedstop2026.json \
+            papers/orion-12-open-world-scientific-discovery/evidence/literature/donotstopearly2026.json \
+            papers/orion-12-open-world-scientific-discovery/evidence/literature/fetch_literature_evidence.py \
+            papers/orion-12-open-world-scientific-discovery/evidence/literature/icore2026.json \
+            papers/orion-12-open-world-scientific-discovery/evidence/literature/knowplan2026.json \
+            papers/orion-12-open-world-scientific-discovery/evidence/literature/scienceintent2026.json \
+            papers/orion-12-open-world-scientific-discovery/evidence/p2x/P2_X_CLAIM_VALUES_V1.json \
+            papers/orion-12-open-world-scientific-discovery/evidence/p2x/P2_X_INDEPENDENT_VERIFICATION_V1.json \
+            papers/orion-12-open-world-scientific-discovery/evidence/p2x/P2_X_PROTECTED_RESULT_V1.json \
+            papers/orion-12-open-world-scientific-discovery/manuscript/novelty_refresh_2026.bib \
+            papers/orion-12-open-world-scientific-discovery/notes/P2_X_KNOWPLAN_METADATA_CORRECTION_V1.md \
+            papers/orion-12-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json
       - name: Regenerate non-authorizing derived governance artifacts
         run: |
           set -euo pipefail
@@ -79,12 +79,12 @@ jobs:
             papers/candidates/paper-07-epistemic-navigation-open-worlds/SHA256SUMS \
             papers/candidates/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json \
             papers/candidates/paper-08-epistemic-authority-autonomous-science/SHA256SUMS \
-            papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/06-related-work-boundary.tex \
-            papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS.md \
-            papers/paper-02-open-world-scientific-discovery/evidence \
-            papers/paper-02-open-world-scientific-discovery/manuscript/novelty_refresh_2026.bib \
-            papers/paper-02-open-world-scientific-discovery/notes/P2_X_KNOWPLAN_METADATA_CORRECTION_V1.md \
-            papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json
+            papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/06-related-work-boundary.tex \
+            papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS.md \
+            papers/orion-12-open-world-scientific-discovery/evidence \
+            papers/orion-12-open-world-scientific-discovery/manuscript/novelty_refresh_2026.bib \
+            papers/orion-12-open-world-scientific-discovery/notes/P2_X_KNOWPLAN_METADATA_CORRECTION_V1.md \
+            papers/orion-12-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json
           if git diff --cached --quiet; then
             echo 'Science/governance artifacts already normalized.'
             exit 0

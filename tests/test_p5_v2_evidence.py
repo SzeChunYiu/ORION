@@ -19,13 +19,13 @@ from orion.study.p5.v2_evidence import (
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL_PATH = (
-    ROOT / "papers" / "paper-05-self-orion" / "protocol" / "PROTOCOL_V2.json"
+    ROOT / "papers" / "orion-15-self-orion" / "protocol" / "PROTOCOL_V2.json"
 )
 RUN_SCHEMA_PATH = (
-    ROOT / "papers" / "paper-05-self-orion" / "protocol" / "P5_RUN_MANIFEST_V2_SCHEMA.json"
+    ROOT / "papers" / "orion-15-self-orion" / "protocol" / "P5_RUN_MANIFEST_V2_SCHEMA.json"
 )
 ARCHIVE_SCHEMA_PATH = (
-    ROOT / "papers" / "paper-05-self-orion" / "protocol" / "P5_RESULT_ARCHIVE_V2_SCHEMA.json"
+    ROOT / "papers" / "orion-15-self-orion" / "protocol" / "P5_RESULT_ARCHIVE_V2_SCHEMA.json"
 )
 H64 = "a" * 64
 H64_B = "b" * 64

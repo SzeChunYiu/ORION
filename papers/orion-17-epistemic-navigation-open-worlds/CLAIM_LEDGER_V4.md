@@ -1,0 +1,43 @@
+# ORION-17 claim ledger V4
+
+**Current science manuscript:** `manuscript/FINAL_V4.md`
+**Historical V2 / V3:** retained
+**Terminal:** `P7_CLOSURE_CARRYING_NAVIGATION_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT`
+
+V4 changes the *authority* behind two of V3's rows — ORION-17.V3.5 and ORION-17.V3.7 — and
+adds two: one for the incompleteness the mechanization found in ORION-17's own rule,
+and one for the reading of the donor stack under which the finite composition
+rows are instances. The permitted claims of ORION-17.V3.1–4 and ORION-17.V3.6 are unchanged.
+
+| ID | Permitted claim | Authority | Forbidden upgrade |
+|---|---|---|---|
+| ORION-17.V4.5 | Heterogeneous closure-carrying transforms compose scientifically only under exact intermediate closure-contract binding or a registered equivalence bridge — for chains of any length, over any number of transformations, contracts, closure coordinates and obligations, and for every donor-native validity predicate. | MECHANIZED THEOREM (`formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json`; Z3 over uninterpreted sorts) | Ordinary donor composability is invalid; or that the rule is exact rather than fail-closed. |
+| ORION-17.V4.7 | Exact support: 320 states, 25 minimal separations, 31 nonclosure countermodels, 155 full refinements, 1,055 partial failures, 25 successful compositions, 25 bridge countermodels, zero donor/ideal-product violations. | DETERMINISTIC ARTIFACT + INDEPENDENT AUDIT | Deployed-agent performance or population inference. **Additionally forbidden from V4:** reading any of these counts as independent facts. Neither `carries` nor `compose` takes a donor argument, so every count under a donor loop is repeated by it: 320 is 64 counted five times, 25 minimal separations is 5 counted five times, 155 and 1,055 are 31 and 211 counted five times, and 25 successes and 25 bridge countermodels are one of each counted once per ordered donor pair. Only the 31 nonclosure countermodels are 31 distinct facts, and the `donor_axis` block of the result artifact carries the table. The 25 successes discriminate no reading of the donor stack at all. The 25 bridge countermodels are exactly one frame condition — that no family's target contract is any family's source contract — and two readings that collapse the stack to one and to five distinct hand-offs reproduce both composition counts exactly. |
+| ORION-17.V4.8 | ORION-17's composition rule is **sound but incomplete** against ORION-17's own obligation semantics: matching intermediate contracts suffice for obligation totality to compose but are not necessary, the exact condition being containment of the second leg's source demands in the first leg's target demands. | MECHANIZED THEOREM (same artifact; `MATCH_IS_NOT_NECESSARY`, `CONTAINMENT_IS_THE_EXACT_CONDITION`) | That ORION-17's rule characterises closure composition, or that refusals it issues are always correct refusals. |
+| ORION-17.V4.9 | The five registered donor families are interpretable as a transformation family in that calculus — each with its own source and target obligation contracts, so the intermediate-contract test is computed from the pair rather than supplied — and under three stated frame conditions the published composition rows are ground instances of theorems that hold for a donor stack of any size. The same theorems cover the compositions in which a leg fails to carry; the published enumeration contains none of those. | MECHANIZED THEOREM (`formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json`) | That the interpretation has been checked by anyone outside the producing lane. |
+| ORION-17.V4.10 | Under the evidence boundary ORION-17's rule actually operates in (the opaque scope: hand-off contract identities plus the registered bridge table, with `Demands` inadmissible), the exact condition under which a hand-off between two-total legs is soundly licenseable by **any** opaque rule is registry-connectivity — same connected component of the undirected closure of the bridge table — which is therefore the unique maximal sound opaque rule. Match coincides with it exactly when the registry is component-complete; V1's incompleteness decomposes into two administrative gaps, neither semantic: unregistered equivalence (conflated with genuine failure at the evidence boundary, unlicensable by any sound opaque rule) and directional bookkeeping (equivalence registered only indirectly, recoverable by the connectivity rule). Scoped successor reading of ORION-17.V4.8 (lane NR-10); the V1 witness is preserved as the boundary exhibit. | PRE-REGISTERED FINITE-FRAME VERIFICATION (`top_tier/P7_NECESSITY_SCOPING_V2_FRAME_PROTOCOL_V1.md` + `run_p7_necessity_scoping_v2.py` + `P7_NECESSITY_SCOPING_V2_RESULT_V1.json`; three exhaustive frames, two-implementation agreement, mutation sensitivity, two-run disclosure; receipt `top_tier/P7_NECESSITY_SCOPING_REVIVAL_RECEIPT_V1.md`) | That match — or connectivity — is *semantically* necessary (the semantic exact condition remains containment, ORION-17.V4.8, unchanged); that any of this weakens ORION-17.V4.8 or retracts the witness; that the general arbitrary-sort statements are Z3-mechanized (they are finite-sweep plus protocol-recorded desk derivation); any deployed-agent or registry-design recommendation. |
+| ORION-17.V4.11 | On a frozen synthetic-grounded corpus of 432 navigation-decision opportunities (6 domains x 9 families x 8 seeds, each domain with its own route/censoring/obligation vocabulary; labels sealed by an independently implemented custodian under a commit-then-reveal chain), the atlas navigator's terminal equals the sealed law's terminal on 432/432 instances and 72/72 in every domain (worst-domain accuracy 1.0), its premature-TASK_STOP rate on {CANNOT_CHECK, REFRAME} truths is 0, and it never reframes any of the 72 negative controls, while each donor comparator with a disjoint capability envelope (B0 fixed-chart exhaustive 0.4444, B1 route-pruning 0.5556, B3 representation-change donor 0.2338) is wrong on at least two distinct true-terminal classes and at least 24 instances per domain — donor-complete is not donor-sufficient. Successor claim converting the `ORION-17.OPEN_WORLD.NAVIGATION.EMPIRICAL.V1` external-evidence blocker to a substitute sealed-label campaign; the historical blocker entry is not relabelled. | SUBSTITUTE SEALED-LABEL CAMPAIGN, DUAL INDEPENDENT REVIEW (`evidence/independent/P7_SUBSTITUTE_CAMPAIGN_PROTOCOL_V1.md` frozen before execution; custodian `p7_substitute_custodian_v1.py`, evaluator `p7_substitute_campaign_v1.py`, checker `check_p7_substitute_campaign_v1.py` — three separately implemented units sharing no code; signed receipt `P7_SUBSTITUTE_CAMPAIGN_RECEIPT_V1.json`, all 11 gates true; the checker re-derives labels and predictions with its own algorithms and its `--self-test` catches all six targeted tamper mutations) | Any naturalistic-corpus, live-agent, or deployed-system authority (the corpus is synthetic-grounded by construction and the original external requirement remains separately tracked); reading agreement-on-synthetic-labels as evidence about natural corpora or deployed navigation; relabelling or narrowing the historical `ORION-17.OPEN_WORLD.NAVIGATION.EMPIRICAL.V1` entry. |
+
+## Allowed headline
+
+> ORION-17 provides closure-carrying scientific navigation: mature planning/refinement,
+> counterexample-guided reopening, representation migration, replanning and
+> terminal-commitment mechanisms remain reusable donor transforms, while
+> task-global closure is explicitly transported, selectively refined and composed
+> through typed obligation bridges — with the composition and unit laws proved
+> over uninterpreted sorts rather than enumerated, and the composition rule
+> sound but not complete against its own obligation semantics.
+
+## Boundary
+
+No universal completeness, deployed-agent superiority, universal minimality of
+the five closure coordinates, or inherent centralization advantage. No empirical
+or pipeline claim of any kind: no naturalistic multi-stage corpus exists. No
+independent formal or empirical reproduction has been arranged; the calculus, the
+interpretation and their tests were written in the same lane.
+
+Addendum (ORION-17.V4.11, 2026-08-24): the sentence above predates the substitute
+sealed-label campaign. An independent second implementation of the V4.11
+campaign chain (custodian / evaluator / checker as three code-disjoint units)
+now exists under the substitute protocol; it is synthetic-grounded authority
+only and leaves the no-naturalistic-corpus boundary exactly as stated.

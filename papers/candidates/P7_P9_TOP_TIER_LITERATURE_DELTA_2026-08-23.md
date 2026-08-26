@@ -1,4 +1,4 @@
-# P7–P9 top-tier literature delta — 2026-08-23
+# ORION-17–ORION-19 top-tier literature delta — 2026-08-23
 
 **Programme:** #977  
 **Status:** current promotion-wave pressure test; not the final submission-day refresh.
@@ -9,7 +9,7 @@ A new nearest work does not cause ORION to hide the overlapping mechanism. The m
 
 ---
 
-## P7 — Scientific Regime Transport
+## ORION-17 — Scientific Regime Transport
 
 ### Self-Revising Discovery Systems for Science: A Categorical Framework for Agentic Artificial Intelligence
 
@@ -19,15 +19,15 @@ Current public summaries explicitly model scientific discovery as a verified reg
 
 **Disposition: ADOPT / donor-own.**
 
-P7 must not claim category-theoretic regime change, provenance-preserving artifact transport, or the generic idea that discovery can revise a representational regime.
+ORION-17 must not claim category-theoretic regime change, provenance-preserving artifact transport, or the generic idea that discovery can revise a representational regime.
 
-**Upward consequence:** P7's load-bearing residual becomes transport of *scientific support, closure, outstanding obligations and honest open/censored stopping* when the representation/objective/world regime changes. The donor categorical transport becomes one possible artifact/fact transport layer inside P7's stronger closure witness.
+**Upward consequence:** ORION-17's load-bearing residual becomes transport of *scientific support, closure, outstanding obligations and honest open/censored stopping* when the representation/objective/world regime changes. The donor categorical transport becomes one possible artifact/fact transport layer inside ORION-17's stronger closure witness.
 
 URL: https://arxiv.org/abs/2606.01444
 
 ---
 
-## P8 — Scientific Authorization Beyond Action Authorization
+## ORION-18 — Scientific Authorization Beyond Action Authorization
 
 The August 2026 standards/protocol field is moving quickly. Current pressure includes:
 
@@ -39,9 +39,9 @@ The August 2026 standards/protocol field is moving quickly. Current pressure inc
 
 **Disposition: ADOPT / donor-own.**
 
-P8 must not claim novelty for per-action authorization, evidence-bound authorization, obligation-carrying grants, freshness/verifier separation, signed authority succession, delegation or revocation.
+ORION-18 must not claim novelty for per-action authorization, evidence-bound authorization, obligation-carrying grants, freshness/verifier separation, signed authority succession, delegation or revocation.
 
-**Upward consequence:** even the strongest integrated action-authorization product may answer whether an action is permitted *now* while still lacking the scientific target-obligation semantics required to authorize a theorem/empirical/scientific commitment. P8's discriminator is therefore action authorization versus responsibility-scoped scientific discharge under full `(domain, kind, scope, content, epoch)` typing.
+**Upward consequence:** even the strongest integrated action-authorization product may answer whether an action is permitted *now* while still lacking the scientific target-obligation semantics required to authorize a theorem/empirical/scientific commitment. ORION-18's discriminator is therefore action authorization versus responsibility-scoped scientific discharge under full `(domain, kind, scope, content, epoch)` typing.
 
 URLs:
 - https://www.ietf.org/archive/id/draft-saha-aadp-00.html
@@ -52,7 +52,7 @@ URLs:
 
 ---
 
-## P9 — Representation Accessibility as a Scaling Coordinate
+## ORION-19 — Representation Accessibility as a Scaling Coordinate
 
 ### Same Benchmark, Same Subspace: Task-Selective Convergence in LLM Representations
 
@@ -62,9 +62,9 @@ The paper extracts task readout subspaces from frozen LLM hidden representations
 
 **Disposition: ADOPT / donor-own.**
 
-P9 must not claim that tasks select low-dimensional representational subspaces, that representation geometry can be benchmark-specific across models, or that decoding/access can lag information present in hidden state.
+ORION-19 must not claim that tasks select low-dimensional representational subspaces, that representation geometry can be benchmark-specific across models, or that decoding/access can lag information present in hidden state.
 
-**Upward consequence:** P9 must causally separate four intervention coordinates—semantic information `I`, accessibility `A`, downstream compute `C`, and access/model capacity `M`—and measure the resource crossover at which representation repair versus more model/compute is preferable. The contribution is a protected diagnostic/intervention law, not the existence of task-specific subspaces.
+**Upward consequence:** ORION-19 must causally separate four intervention coordinates—semantic information `I`, accessibility `A`, downstream compute `C`, and access/model capacity `M`—and measure the resource crossover at which representation repair versus more model/compute is preferable. The contribution is a protected diagnostic/intervention law, not the existence of task-specific subspaces.
 
 URL: https://proceedings.mlr.press/v337/kim26g.html
 
@@ -72,7 +72,7 @@ URL: https://proceedings.mlr.press/v337/kim26g.html
 
 ICLR 2026. Structured step/DAG reasoning is direct donor pressure on any claim that structure itself is new.
 
-**Disposition: ADOPT / donor-own.** Structured reasoning representation and step graphs remain comparator mechanisms, not P9 novelty.
+**Disposition: ADOPT / donor-own.** Structured reasoning representation and step graphs remain comparator mechanisms, not ORION-19 novelty.
 
 URL: https://proceedings.iclr.cc/paper_files/paper/2026/hash/ad5b3f324b24c17cdc2f3712298c76bd-Abstract-Conference.html
 
@@ -82,8 +82,8 @@ URL: https://proceedings.iclr.cc/paper_files/paper/2026/hash/ad5b3f324b24c17cdc2
 
 The literature delta **widens the abstraction level while shrinking mechanism ownership**:
 
-- P7: regime change is donor-owned -> scientific closure/obligation transport is tested;
-- P8: rich action authorization is donor-owned -> scientific-discharge authorization is tested;
-- P9: task-selective representation/access effects are donor-owned -> causal resource-location/crossover diagnosis is tested.
+- ORION-17: regime change is donor-owned -> scientific closure/obligation transport is tested;
+- ORION-18: rich action authorization is donor-owned -> scientific-discharge authorization is tested;
+- ORION-19: task-selective representation/access effects are donor-owned -> causal resource-location/crossover diagnosis is tested.
 
 No `FIRST`, `ONLY`, or universal superiority language is authorized by this refresh.

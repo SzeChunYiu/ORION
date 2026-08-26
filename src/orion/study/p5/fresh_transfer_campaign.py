@@ -33,17 +33,17 @@ from typing import Any, Mapping
 
 SCHEMA_VERSION = "orion.p5.fresh-transfer-campaign-preflight.v1"
 RUNBOOK_PATH = (
-    "papers/paper-05-self-orion/protocol/FRESH_TRANSFER_CAMPAIGN_RUNBOOK_V1.md"
+    "papers/orion-15-self-orion/protocol/FRESH_TRANSFER_CAMPAIGN_RUNBOOK_V1.md"
 )
 ATTRIBUTION_RESULTS_PATH = (
-    "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl"
+    "papers/orion-15-self-orion/evidence/glm-5.2-attribution/results.jsonl"
 )
 ATTRIBUTION_REPORT_PATH = (
-    "papers/paper-05-self-orion/evidence/glm-5.2-attribution/report.json"
+    "papers/orion-15-self-orion/evidence/glm-5.2-attribution/report.json"
 )
-PUBLISHED_PACKET_PATH = "papers/paper-05-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json"
+PUBLISHED_PACKET_PATH = "papers/orion-15-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json"
 CHECKBOX_AUDIT_PATH = (
-    "papers/paper-05-self-orion/evidence/ISSUE_159_CHECKBOX_AUDIT_V1.json"
+    "papers/orion-15-self-orion/evidence/ISSUE_159_CHECKBOX_AUDIT_V1.json"
 )
 
 FROZEN_ISSUE8_WIDE_TASK_ID = "P5.LIVE.WIDE.stopping-rule-source-families"
@@ -468,12 +468,12 @@ def refuse_unbound_execution(
 def _verified_structural_files(repo_root: Path) -> dict[str, bool]:
     required = {
         "table_p5_1": repo_root
-        / "papers/paper-05-self-orion/evidence/TABLE_P5_1_NEAREST_WORK.json",
-        "protocol_v2": repo_root / "papers/paper-05-self-orion/protocol/PROTOCOL_V2.json",
+        / "papers/orion-15-self-orion/evidence/TABLE_P5_1_NEAREST_WORK.json",
+        "protocol_v2": repo_root / "papers/orion-15-self-orion/protocol/PROTOCOL_V2.json",
         "negative_history_chain": repo_root
-        / "papers/paper-05-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
+        / "papers/orion-15-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
         "protected_suite_freeze": repo_root
-        / "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
+        / "papers/orion-15-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
         "published_packet": repo_root / PUBLISHED_PACKET_PATH,
         "attribution_results": repo_root / ATTRIBUTION_RESULTS_PATH,
         "attribution_report": repo_root / ATTRIBUTION_REPORT_PATH,
@@ -515,25 +515,25 @@ def audit_issue_159_checkboxes(
             "id": "precondition.nearest_work_substrate",
             "ticked": files["table_p5_1"],
             "verified_on_main": files["table_p5_1"],
-            "evidence": "papers/paper-05-self-orion/evidence/TABLE_P5_1_NEAREST_WORK.json",
+            "evidence": "papers/orion-15-self-orion/evidence/TABLE_P5_1_NEAREST_WORK.json",
         },
         {
             "id": "precondition.staged_acceptance_v2",
             "ticked": files["protocol_v2"],
             "verified_on_main": files["protocol_v2"],
-            "evidence": "papers/paper-05-self-orion/protocol/PROTOCOL_V2.json",
+            "evidence": "papers/orion-15-self-orion/protocol/PROTOCOL_V2.json",
         },
         {
             "id": "precondition.v2_negative_history_chain",
             "ticked": files["negative_history_chain"],
             "verified_on_main": files["negative_history_chain"],
-            "evidence": "papers/paper-05-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
+            "evidence": "papers/orion-15-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
         },
         {
             "id": "precondition.protected_suite_freeze_protocol",
             "ticked": files["protected_suite_freeze"],
             "verified_on_main": files["protected_suite_freeze"],
-            "evidence": "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
+            "evidence": "papers/orion-15-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
         },
         {
             "id": "precondition.final_campaign_identities_frozen",

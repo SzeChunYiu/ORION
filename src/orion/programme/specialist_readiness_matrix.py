@@ -23,25 +23,25 @@ EXIT_CANNOT_CHECK = 3
 
 #: Paper numbers are not one-to-one with directory names: two directories start
 #: paper-02 and two start paper-04. Taking the first alphabetically gives
-#: paper-02-global-knowledge-portrait for P2, which is a different paper, and
+#: archive/2026-08-pre-unification/paper-02-global-knowledge-portrait for P2, which is a different paper, and
 #: the matrix then reports P2 as almost entirely absent. The slug for each
 #: number is taken from the titles #1131 itself declares.
 CANONICAL: tuple[tuple[str, str], ...] = (
-    ("P1", "paper-01-recursive-epistemic-reconstruction"),
-    ("P2", "paper-02-open-world-scientific-discovery"),
-    ("P3", "paper-03-global-knowledge-portrait"),
-    ("P4", "paper-04-verified-scientific-discovery"),
-    ("P5", "paper-05-self-orion"),
-    ("P6", "paper-06-formal-epistemic-structures-and-mechanics"),
-    ("P7", "paper-07-epistemic-navigation-open-worlds"),
-    ("P8", "paper-08-epistemic-authority-autonomous-science"),
-    ("P9", "paper-09-structured-epistemic-learning"),
-    ("P10", "paper-10-structured-problem-solving"),
-    ("P11", "paper-11-state-as-computation"),
-    ("P12", "paper-12-adaptive-state-reasoning"),
-    ("P13", "paper-13-responsibility-carrying-state"),
-    ("P14", "paper-14-orion-rse"),
-    ("P15", "paper-15-orion-research-harness"),
+    ("P1", "orion-11-recursive-epistemic-reconstruction"),
+    ("P2", "orion-12-open-world-scientific-discovery"),
+    ("P3", "orion-13-global-knowledge-portrait"),
+    ("P4", "orion-14-verified-scientific-discovery"),
+    ("P5", "orion-15-self-orion"),
+    ("P6", "orion-16-formal-epistemic-structures-and-mechanics"),
+    ("P7", "orion-17-epistemic-navigation-open-worlds"),
+    ("P8", "orion-18-epistemic-authority-autonomous-science"),
+    ("P9", "orion-19-structured-epistemic-learning"),
+    ("P10", "orion-20-structured-problem-solving"),
+    ("P11", "orion-21-state-as-computation"),
+    ("P12", "orion-22-adaptive-state-reasoning"),
+    ("P13", "orion-23-responsibility-carrying-state"),
+    ("P14", "orion-24-orion-rse"),
+    ("P15", "orion-25-orion-research-harness"),
 )
 
 FIELDS = (

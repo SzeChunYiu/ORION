@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers/paper-12-adaptive-state-reasoning"
+PAPER = ROOT / "papers/orion-22-adaptive-state-reasoning"
 CHECKER = PAPER / "check_p12_stopgo_integration_v1.py"
 MENUS = PAPER / "top_tier/p12_stopgo_frozen_menus_v1.json"
 AUTHORITY_V4 = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V4.json"

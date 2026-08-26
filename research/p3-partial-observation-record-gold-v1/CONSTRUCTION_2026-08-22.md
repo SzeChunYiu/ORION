@@ -4,7 +4,7 @@
 **Protocol id** `P3.partial-observation-record-gold-corpus.v1`
 **Builder** `src/orion/study/p3/partial_observation_record_gold_build.py`
 **Gate served** `G9_HARM_A3` (blocking) of
-`papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.md`
+`papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.md`
 **Derivation rule** `identity:frozen-source-record-relation`
 **Cases** 36. **Synthetic.**
 
@@ -192,8 +192,8 @@ scientific text.
 ```
 python -m orion.study.p3.partial_observation_record_gold_build --repo-root . --write
 python -m orion.study.p3.partial_observation_probe --repo-root . \
-    --output papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_003.json \
-    --probe-output papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_003.jsonl
+    --output papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_003.json \
+    --probe-output papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_003.jsonl
 ```
 
 The probe exits 3: `G5_MINING_YIELD`, `G6_HARM_A1`, `G8_NOVELTY` and

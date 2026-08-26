@@ -16,7 +16,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-MANUSCRIPT = ROOT / "papers/paper-02-open-world-scientific-discovery/manuscript"
+MANUSCRIPT = ROOT / "papers/orion-12-open-world-scientific-discovery/manuscript"
 
 
 def remove_environment(text: str, name: str) -> str:

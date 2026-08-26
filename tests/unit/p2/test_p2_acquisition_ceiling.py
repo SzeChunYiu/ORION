@@ -46,7 +46,7 @@ def _gate(threshold: float, reads: str = "iou_delta") -> PreregisteredGate:
 EVIDENCE = (
     Path(__file__).resolve().parents[3]
     / "papers"
-    / "paper-02-open-world-scientific-discovery"
+    / "orion-12-open-world-scientific-discovery"
     / "evidence"
     / "external_results"
 )

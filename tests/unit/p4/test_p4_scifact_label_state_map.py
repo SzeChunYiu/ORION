@@ -30,7 +30,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-P4 = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+P4 = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 MAP_PATH = P4 / "protocol" / "SCIFACT_LABEL_STATE_MAP_V1.json"
 CHECKER = P4 / "protocol" / "check_scifact_label_state_map_v1.py"
 

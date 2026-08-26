@@ -53,7 +53,7 @@ by component renaming, and no component becomes its own promotion authority.
 
 The 21/24 diagnostic remains descriptive. Its three errors are immutable and
 now seed independent successor studies in
-`papers/paper-05-self-orion/protocol/P5_RESIDUAL_DISCRIMINATOR_SUCCESSORS_V1.json`:
+`papers/orion-15-self-orion/protocol/P5_RESIDUAL_DISCRIMINATOR_SUCCESSORS_V1.json`:
 
 | Successor | Retained collision | Decisive experiment | Non-positive terminals retained |
 | --- | --- | --- | --- |

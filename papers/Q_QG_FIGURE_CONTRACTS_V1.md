@@ -9,7 +9,7 @@ Every proposed display below has a scientific job, a data/evidence source, an au
 
 1. **Evidence role before aesthetics.** Every panel must answer a reader question needed by a headline claim.
 2. **No color-only meaning.** Use labels, shapes, line styles or symbols as redundant encodings.
-3. **No pooled score across incomparable experiments.** Q4 worlds and Q/QG authority classes retain separate scales.
+3. **No pooled score across incomparable experiments.** ORION-04 worlds and Q/QG authority classes retain separate scales.
 4. **Exact counterexamples are visible.** Do not hide one refuting row in an aggregate success rate.
 5. **Negative/donor outcomes stay main-text visible when load-bearing.**
 6. **Theorem/exhaustive/evidenced/forecast-only states use visibly different annotation or panel labels.**
@@ -20,9 +20,9 @@ Every proposed display below has a scientific job, a data/evidence source, an au
 
 ---
 
-# Q1 — Exact Support Ceiling in Shared-Tag TARE Compilation
+# ORION-01 — Exact Support Ceiling in Shared-Tag TARE Compilation
 
-## Figure Q1-1 — Expressivity ladder and authority ladder
+## Figure ORION-01-1 — Expressivity ladder and authority ladder
 
 **Reader question:** What failed, what was repaired, and what is actually closed?
 
@@ -39,7 +39,7 @@ Every proposed display below has a scientific job, a data/evidence source, an au
 
 **Forbidden:** a linear timeline suggesting each later named family is a theorem; drawing `B′/B″` as equivalent to D++.
 
-## Figure Q1-2 — Why support two is the boundary
+## Figure ORION-01-2 — Why support two is the boundary
 
 **Reader question:** Why can support≥3 be reduced while support=2 can survive?
 
@@ -51,7 +51,7 @@ Every proposed display below has a scientific job, a data/evidence source, an au
 
 **Forbidden:** plotting the 688M local R6N configurations as if they are independent statistical samples; calling the class-tuple check the theorem by itself.
 
-## Figure Q1-3 — Two minimal coupling witnesses
+## Figure ORION-01-3 — Two minimal coupling witnesses
 
 **Reader question:** What do the two exact failures physically/structurally look like?
 
@@ -60,7 +60,7 @@ Every proposed display below has a scientific job, a data/evidence source, an au
 
 Use Pauli-support glyphs/qubit columns plus exact cost ledger; no decorative quantum-circuit art unless it corresponds exactly to the frozen grammar.
 
-## Figure Q1-4 — Finite classifier versus theorem
+## Figure ORION-01-4 — Finite classifier versus theorem
 
 **Reader question:** Why does 9,771-panel zero error plus 15/15 prospective confirmation not imply a universal taxonomy?
 
@@ -73,9 +73,9 @@ Use Pauli-support glyphs/qubit columns plus exact cost ledger; no decorative qua
 
 ---
 
-# Q2 — Recursive Recovery of Negative Quantum Research Results
+# ORION-02 — Recursive Recovery of Negative Quantum Research Results
 
-## Figure Q2-1 — Negative-result successor state machine
+## Figure ORION-02-1 — Negative-result successor state machine
 
 **Reader question:** What action is authorized by each disposition?
 
@@ -83,7 +83,7 @@ States: frozen hypothesis → executed result → `{positive, negative, donor-ab
 
 Every transition arrow must name the prerequisite evidence/authority; no self-promotion arrow.
 
-## Figure Q2-2 — Complete eligible successor graph
+## Figure ORION-02-2 — Complete eligible successor graph
 
 **Reader question:** Is the paper showing a cherry-picked success story or the actual registered lineage?
 
@@ -94,7 +94,7 @@ Edge encoding: predeclared successor authority.
 
 **Hard gate:** do not publish this figure until the denominator/eligible-node inventory is machine checked.
 
-## Figure Q2-3 — One lineage, shown losslessly
+## Figure ORION-02-3 — One lineage, shown losslessly
 
 Pick one scientifically representative chain and show:
 - predecessor claim;
@@ -104,9 +104,9 @@ Pick one scientifically representative chain and show:
 - next frozen question;
 - later result.
 
-This is a worked example only; caption must point to Fig Q2-2 for totality.
+This is a worked example only; caption must point to Fig ORION-02-2 for totality.
 
-## Figure Q2-4 — Disposition census
+## Figure ORION-02-4 — Disposition census
 
 Counts of all eligible research nodes by disposition and whether a successor was legally opened.
 
@@ -114,9 +114,9 @@ Counts of all eligible research nodes by disposition and whether a successor was
 
 ---
 
-# Q3 — Dual-Instrument Frontier Research Benchmark
+# ORION-03 — Dual-Instrument Frontier Research Benchmark
 
-## Figure Q3-1 — Prospective benchmark custody
+## Figure ORION-03-1 — Prospective benchmark custody
 
 **Reader question:** What is frozen before the frontier outcome exists?
 
@@ -124,7 +124,7 @@ Show immutable question packet → independent Lane A and Lane B → sealed diag
 
 Keep manifest construction/human authorship visible; do not imply the typed lane is fully autonomous from question construction.
 
-## Figure Q3-2 — Instance-level agreement table/heatmap
+## Figure ORION-03-2 — Instance-level agreement table/heatmap
 
 Only after the additional prospective instances execute.
 Rows = benchmark questions; columns = responsible layer, next move, revision/abstention, deferred outcome alignment.
@@ -133,15 +133,15 @@ Cells must display categorical labels as text/symbols; color is secondary.
 
 **Forbidden:** one aggregate 'accuracy' headline unless the protocol prospectively defines it and n supports it.
 
-## Figure Q3-3 — Disagreement is data
+## Figure ORION-03-3 — Disagreement is data
 
 Show any AGREE/PARTIAL/DISAGREE/CANNOT_CHECK instances with the frozen raw diagnoses beside later outcomes. If all completed instances agree, show the reachable outcome vocabulary and explicitly state the small sample instead of presenting 100% as reliability.
 
 ---
 
-# Q4 — Typed and Scoped Partial Knowledge
+# ORION-04 — Typed and Scoped Partial Knowledge
 
-## Figure Q4-1 — One state thesis, six decision worlds
+## Figure ORION-04-1 — One state thesis, six decision worlds
 
 **Reader question:** What common mechanism is being tested across otherwise different synthetic worlds?
 
@@ -154,7 +154,7 @@ Each spoke names:
 - hostile validity control;
 - primary endpoint.
 
-## Figure Q4-2 — Primary paired results as small multiples
+## Figure ORION-04-2 — Primary paired results as small multiples
 
 Six panels, one per world. Preserve native outcome scale and baseline names; do not normalize into a single meta-score.
 
@@ -165,7 +165,7 @@ Examples:
 
 Every panel shows exact n/episode count and whether numbers are descriptive or have a frozen paired interval.
 
-## Figure Q4-3 — First right of refusal and hostile controls
+## Figure ORION-04-3 — First right of refusal and hostile controls
 
 Reader sees both:
 - mechanisms that win where their typed/scoped distinction matters;
@@ -173,7 +173,7 @@ Reader sees both:
 
 Include N4-F3 `REMINT_UNNECESSARY` exact tie and N1-C ideal-VOI policy tie as first-class panels or callouts.
 
-## Figure Q4-4 — Information parity audit
+## Figure ORION-04-4 — Information parity audit
 
 A matrix: study × information fields × arm, marking identical serialized inputs and the one policy/state interpretation coordinate that differs.
 
@@ -181,9 +181,9 @@ Source: `INFORMATION_PARITY_AND_ARTIFACT_MAP_V2.md` plus future machine-readable
 
 ---
 
-# QG1 — Compilation Regime Geometry
+# ORION-09 — Compilation Regime Geometry
 
-## Figure QG1-1 — Regime-geometry object
+## Figure ORION-09-1 — Regime-geometry object
 
 **Reader question:** What is a regime geometry beyond ordinary algorithm performance mapping?
 
@@ -196,32 +196,32 @@ Five components:
 
 Explicitly place Instance Space Analysis/algorithm selection as parent on the 'feature→performance region' side and mark the residual additions as exact mechanism/witness/authority structure.
 
-## Figure QG1-2 — TARE counterexample ladder inside an all-n support ceiling
+## Figure ORION-09-2 — TARE counterexample ladder inside an all-n support ceiling
 
 Nested family diagram with split, borrow, phantom borrow, split+borrow hybrid; D++ theorem envelope outside. Show QG7c remaining proof link separately from empirical absence of a fifth regime.
 
-## Figure QG1-3 — Objective-indexed phase
+## Figure ORION-09-3 — Objective-indexed phase
 
 Plot the exact QG objective region/cone only from proved inequalities. Label outside-cone points as `certificate does not apply`, not `support2 required`, unless a counterexample independently proves necessity.
 
 Axes/coordinates must correspond to actual cost weights; no arbitrary projection.
 
-## Figure QG1-4 — Boundary representation: SixLCU versus StabPrep
+## Figure ORION-09-4 — Boundary representation: SixLCU versus StabPrep
 
 Left: SixLCU exact one-literal boundary (`maxg2 == -2`) on the stated domain.
 Right: StabPrep identical frozen feature vectors with mixed labels; annotate the irreducible 43/1146 vocabulary-level error floor and 12 mixed cells.
 
 Caption must say **unidentifiable within the frozen feature vocabulary**, not globally information-theoretic.
 
-## Figure QG1-5 — Prospective success and refutation are symmetric outcomes
+## Figure ORION-09-5 — Prospective success and refutation are symmetric outcomes
 
 Show TARE/QG prospective confirmations and StabPrep prospective refutation with digest-before-referee custody. The visual point is falsifiability, not a success scoreboard.
 
 ---
 
-# QG2 — Certified Static Resource Forecasting
+# ORION-10 — Certified Static Resource Forecasting
 
-## Figure QG2-1 — Forecast certificate stack
+## Figure ORION-10-1 — Forecast certificate stack
 
 Layers:
 - constructively proven upper bound;
@@ -231,7 +231,7 @@ Layers:
 
 The original frozen forecast should visually mark which layer is theorem and which is conjectural.
 
-## Figure QG2-2 — 9,546 comparisons and the one decisive counterexample
+## Figure ORION-10-2 — 9,546 comparisons and the one decisive counterexample
 
 Plot predicted versus exact cost for the DP-compared panel with point density/overplot handling, then **explicitly isolate the one `C_DP=10`, `F=11` row**.
 
@@ -239,18 +239,18 @@ Caption: 9,545 exact + 1 refutation; the single exact witness is logically suffi
 
 **Forbidden:** headline '99.99% accurate' without the refutation interpretation.
 
-## Figure QG2-3 — What survives the refutation
+## Figure ORION-10-3 — What survives the refutation
 
 For the counterexample row, show:
 - theorem-backed `C_DP <= F` remains true;
 - support≤2 theorem remains true;
 - old exactness identity fails;
-- old P1 regime predicate becomes false positive;
+- old ORION-11 regime predicate becomes false positive;
 - enlarged B′ / F2 recovers cost 10.
 
 This is the central scientific figure.
 
-## Figure QG2-4 — Runtime/timing as descriptive engineering evidence
+## Figure ORION-10-4 — Runtime/timing as descriptive engineering evidence
 
 If retained, show per-instance cold timing distribution/quantiles by n and the warm-cache control separately. Timing must be labeled non-canonical/descriptive and must not support the theorem.
 

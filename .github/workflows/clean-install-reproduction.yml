@@ -120,8 +120,8 @@ jobs:
           # P5 reports CANNOT_CHECK for the seven tables awaiting its campaign and
           # populates the two it can. That is the honest state, and it is stable
           # across runs -- so it must not change any committed byte either.
-          git diff --exit-code -- papers/paper-03-global-knowledge-portrait \
-            papers/paper-05-self-orion \
+          git diff --exit-code -- papers/orion-13-global-knowledge-portrait \
+            papers/orion-15-self-orion \
             || { echo "::error::P3/P5 regeneration is no longer byte-identical"; exit 1; }
 
       - name: Reproduce P4's tables and prove they are byte-identical
@@ -134,9 +134,9 @@ jobs:
         run: |
           set -euo pipefail
           start=$(date +%s)
-          uv run python papers/paper-04-verified-scientific-discovery/figures/generate_figures.py
+          uv run python papers/orion-14-verified-scientific-discovery/figures/generate_figures.py
           echo "p4 figures+tables elapsed=$(( $(date +%s) - start ))s" >> "$GITHUB_STEP_SUMMARY"
-          git diff --exit-code -- papers/paper-04-verified-scientific-discovery/tables \
+          git diff --exit-code -- papers/orion-14-verified-scientific-discovery/tables \
             || { echo "::error::P4 table regeneration is no longer byte-identical"; exit 1; }
 
       - name: Re-derive the machine-checked artifacts
@@ -149,7 +149,7 @@ jobs:
           uv run python research/paper-programme-v1/journal_package/check_journal_package.py \
             > "${RUNNER_TEMP}/journal-packages.json" \
             || { echo "::error::journal package check failed"; cat "${RUNNER_TEMP}/journal-packages.json"; exit 1; }
-          uv run python papers/paper-01-recursive-epistemic-reconstruction/scripts/make_mechanical_arm_case_table.py --check
+          uv run python papers/orion-11-recursive-epistemic-reconstruction/scripts/make_mechanical_arm_case_table.py --check
           # Nothing above may modify the checkout. If something did, the check
           # that follows it was run against a mutated tree.
           git diff --exit-code || { echo "::error::a derived-artifact check modified the working tree"; exit 1; }

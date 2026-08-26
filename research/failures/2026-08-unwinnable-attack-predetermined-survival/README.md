@@ -321,7 +321,7 @@ to P14A would still miss it.
    `refutation_capacity.axis_sensitivity` measures it and
    `decoder_attack_reach.arm_disclosure_gaps` blocks until the declaration
    exists;
-   `papers/paper-11-state-as-computation/P11G_ARM_PLACEMENT_ADJUDICATION_V1.md`
+   `papers/orion-21-state-as-computation/P11G_ARM_PLACEMENT_ADJUDICATION_V1.md`
    is that declaration for P11G.
 7. Decompose a gap that changes two things at once. P11G compares logistic
    regression on `r` compiled columns against ExtraTrees on the full bank.
@@ -406,7 +406,7 @@ reach — and this one an **adversary no admissible run could lose to**.
 ## Residuals and reopen coordinates
 
 - P11 is not repaired (see Correct response 11). The audit blocks, which is the
-  honest state, and `papers/paper-11-state-as-computation/` is untouched by this
+  honest state, and `papers/orion-21-state-as-computation/` is untouched by this
   work.
 - The unattainability here is a measured register plus a structural upper bound,
   not a closed-form supremum like P14A's. What is proved by execution is that the
@@ -446,7 +446,7 @@ reach — and this one an **adversary no admissible run could lose to**.
 
 ## Successor executed 2026-08-22
 
-This record's residual says "P11 is not repaired… `papers/paper-11-state-as-computation/` is untouched", and correct-response 11 says "Do not repair P11." Both still hold and are the right instruction: **P11G's frozen protocol is untouched, its terminal is permanently unwinnable, and the audit still exits 3 on it.** What has changed is that the question was re-asked under a protocol that could answer it.
+This record's residual says "P11 is not repaired… `papers/orion-21-state-as-computation/` is untouched", and correct-response 11 says "Do not repair P11." Both still hold and are the right instruction: **P11G's frozen protocol is untouched, its terminal is permanently unwinnable, and the audit still exits 3 on it.** What has changed is that the question was re-asked under a protocol that could answer it.
 
 The diagnosis sharpened first. All four of P11G's gates are `THRESHOLD_UNCONDITIONAL`, not `THRESHOLD_UNATTAINABLE` — every admissible world *satisfies* them, which is the opposite failure to P14A's and needs the opposite reading. Two of the four supports are now exact rather than sampled: `no_answer_laundering` is `[0, 0]` because for odd `r ≥ 3` the majority-sign of `r` distinct parity characters equals no single character as a function on `{−1,1}^d`, so the count's only reachable value is 0 against `x ≤ 0`; and the statistic lattice is `1/12288`, on which neither `0.95·12288` nor `0.20·12288` is an integer, so no reachable value can land on a bar.
 

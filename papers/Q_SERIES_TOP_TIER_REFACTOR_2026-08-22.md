@@ -7,18 +7,20 @@
 
 The Q-series should not be four papers competing for the same contribution.
 
+> Local ids ORION-01..ORION-04 in this document are the Q-series papers, globally ORION-05..ORION-08 after the 2026-08-26 naming unification (see `PAPER_ALIASES.md`).
+
 | Paper | Scientific object | Current strongest claim | Current ceiling | Research required before a top-tier general claim |
 |---|---|---|---|---|
-| **Q1** | quantum compilation mathematics | sharp all-`n` R6M support number `kappa=2`, with analytic normal-form proof and exact lower-bound witness | top specialist quantum candidate | external proof audit + submission-date hostile novelty audit + clean reproduction/figures |
-| **Q2** | negative-result recovery methodology | complete receipted case study where donor absorptions/refutations ultimately produce a theorem | strong methods case study | prospective cross-domain recovery study with matched workflow baselines |
-| **Q3** | scientific decision instruments | dual-instrument benchmark definition + one live deferred-scored measurement; malformed-content recovery repaired | systems/benchmark paper | >=20 prospective live frontier decisions across >=3 programmes + deferred calibration/disagreement analysis |
-| **Q4** | typed scientific epistemic state | six exact-synthetic matched-information mechanism studies + two negative/donor bounds | mechanism/benchmark paper | >=100 real scientific decision items across >=3 programmes, including >=30 prospective items if feasible |
+| **ORION-01** | quantum compilation mathematics | sharp all-`n` R6M support number `kappa=2`, with analytic normal-form proof and exact lower-bound witness | top specialist quantum candidate | external proof audit + submission-date hostile novelty audit + clean reproduction/figures |
+| **ORION-02** | negative-result recovery methodology | complete receipted case study where donor absorptions/refutations ultimately produce a theorem | strong methods case study | prospective cross-domain recovery study with matched workflow baselines |
+| **ORION-03** | scientific decision instruments | dual-instrument benchmark definition + one live deferred-scored measurement; malformed-content recovery repaired | systems/benchmark paper | >=20 prospective live frontier decisions across >=3 programmes + deferred calibration/disagreement analysis |
+| **ORION-04** | typed scientific epistemic state | six exact-synthetic matched-information mechanism studies + two negative/donor bounds | mechanism/benchmark paper | >=100 real scientific decision items across >=3 programmes, including >=30 prospective items if feasible |
 
-## 2. Q1 — flagship science paper
+## 2. ORION-01 — flagship science paper
 
 ### Canonical draft
 
-`papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md`
+`papers/orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md`
 
 ### Final scientific thesis
 
@@ -56,17 +58,17 @@ Fallbacks should preserve the same science rather than weaken it: npj Quantum In
 - complete figures from `FIGURES_PLAN_V2.md`;
 - ensure TARE, unitary partitioning, Pauli-frame and BSF compilation are fully donor-credited.
 
-No additional benchmark sweep is required merely to make Q1 publishable. Any new experiment should answer a genuine reviewer-level question, not pad the paper.
+No additional benchmark sweep is required merely to make ORION-01 publishable. Any new experiment should answer a genuine reviewer-level question, not pad the paper.
 
-## 3. Q2 — recovery methodology paper
+## 3. ORION-02 — recovery methodology paper
 
 ### Canonical draft
 
-`papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V2.md`
+`papers/orion-06-recursive-recovery/MANUSCRIPT_V2.md`
 
 ### Residual thesis after the 2026 literature update
 
-Provenance itself is not the novelty. The autonomous-science literature now explicitly treats complete provenance as foundational. Q2 studies the **recovery layer above provenance**:
+Provenance itself is not the novelty. The autonomous-science literature now explicitly treats complete provenance as foundational. ORION-02 studies the **recovery layer above provenance**:
 
 - typed negative/absorbed/mixed/saturated/cannot-check terminals;
 - donor first right of refusal;
@@ -90,13 +92,13 @@ A broad methodology journal should not receive only one self-designed programme.
 
 Measure false-novelty avoidance, productive recoveries, evidence/time cost, stop calibration and final scientific terminal quality.
 
-Until that study is executed, Q2 remains a strong complete case study rather than a universal productivity claim.
+Until that study is executed, ORION-02 remains a strong complete case study rather than a universal productivity claim.
 
-## 4. Q3 — dual-instrument benchmark
+## 4. ORION-03 — dual-instrument benchmark
 
 ### Canonical draft
 
-`papers/Q-paper-03-dual-instrument/MANUSCRIPT_V2.md`
+`papers/orion-07-dual-instrument/MANUSCRIPT_V2.md`
 
 ### Critical current correction
 
@@ -111,17 +113,17 @@ V1 remains historical evidence that the defect was discovered live.
 
 ### Scientific upgrade
 
-Agreement among models/agents is known to be an unreliable correctness proxy when errors are correlated. Q3 should therefore measure **deferred calibration**, not agreement rate.
+Agreement among models/agents is known to be an unreliable correctness proxy when errors are correlated. ORION-03 should therefore measure **deferred calibration**, not agreement rate.
 
 The prospective protocol in `TOP_TIER_UPGRADE_PROTOCOL_2026-08-22.md` requires >=20 live unresolved frontier decisions across >=3 programmes, with AGREE/PARTIAL/DISAGREE/CANNOT_CHECK all admissible and later ALIGNED/MISALIGNED/UNRESOLVED scoring.
 
 A valuable result may be positive or negative. Evidence that agreement fails after controlling shared evidence bias is itself scientifically useful.
 
-## 5. Q4 — typed epistemic state
+## 5. ORION-04 — typed epistemic state
 
 ### Canonical draft
 
-`papers/Q-paper-04-typed-state/MANUSCRIPT_V2.md`
+`papers/orion-08-typed-state/MANUSCRIPT_V2.md`
 
 ### Critical novelty correction
 
@@ -132,7 +134,7 @@ A valuable result may be positive or negative. Evidence that agreement fails aft
 - governed persistent memory;
 - value of information for agents.
 
-Q4 therefore cannot own those primitives broadly.
+ORION-04 therefore cannot own those primitives broadly.
 
 Its residual question is **matched-information scientific decision state**:
 
@@ -148,7 +150,7 @@ The main result should identify **conditions under which typing/scoping helps an
 
 ## 6. No-overlap policy between Q and QG
 
-Q1 owns the closed ORION-Q R6M normal-form theorem and Q-era finite/prospective evidence.
+ORION-01 owns the closed ORION-Q R6M normal-form theorem and Q-era finite/prospective evidence.
 
 QG papers own:
 
@@ -159,7 +161,7 @@ QG papers own:
 - StabPrep feature-indeterminacy results;
 - theorem-mining/general regime-geometry work.
 
-Q1 may cite QG only as later follow-up/known limitation. It must not back-port QG novelty into the Q-era paper.
+ORION-01 may cite QG only as later follow-up/known limitation. It must not back-port QG novelty into the Q-era paper.
 
 ## 7. Research-quality rule going forward
 
@@ -176,18 +178,18 @@ The research programme should optimize for theorem/mechanism/generalization/vali
 
 ## 8. Current readiness snapshot
 
-### Q1
+### ORION-01
 
 **Internally ready for external scientific audit.** The science itself no longer needs a major new Q-era experiment to be a serious paper candidate.
 
-### Q2
+### ORION-02
 
 **Internally rewritten; top-tier generality not yet earned.** Cross-domain research experiment is the missing scientific evidence.
 
-### Q3
+### ORION-03
 
 **Instrument paper improved and defect story repaired; top-tier predictive/calibration claim not yet earned.** The missing object is genuinely prospective multi-frontier data.
 
-### Q4
+### ORION-04
 
 **Synthetic mechanism paper improved; top-tier real-agent claim not yet earned.** The missing object is matched-information real scientific decision validation.

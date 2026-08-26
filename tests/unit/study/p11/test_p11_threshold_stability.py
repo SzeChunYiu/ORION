@@ -18,7 +18,7 @@ from orion.study.p11 import threshold_stability as ts
 REPO_ROOT = Path(__file__).resolve().parents[4]
 ARTIFACT = (
     REPO_ROOT
-    / "papers/paper-11-state-as-computation/evidence/audit"
+    / "papers/orion-21-state-as-computation/evidence/audit"
     / "P11_THRESHOLD_STABILITY_2026-08-22.json"
 )
 
