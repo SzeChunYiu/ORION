@@ -1165,7 +1165,7 @@
     },
     {
       "issue": 927,
-      "title": "[ORION-QG] defect: QG result-file identity/portability",
+      "title": "[ORION-QG] qg3-positive-forecast has no green baseline: stage-1 exceeds the harness 120s capability timeout",
       "lane": "ORION-QG engineering defect",
       "scope_reason": "defect in QG result files; quantum-surface primary",
       "disposition": "LOCAL_REPAIR",
@@ -1173,12 +1173,12 @@
       "has_merged_material_result": true,
       "evidence": [
         {
-          "claim": "replay-closure repair verifying QG result-file integrity post-fix; on main via PR #906 merge 18c1f2d08b",
-          "pr": 934,
-          "pr_state": "CLOSED",
-          "pr_merge_sha": null,
-          "main_add_commit": "18c1f2d08b",
-          "path": "research/extensions/orion-qg/MAX_R4E_REPLAY_CLOSURE.json",
+          "claim": "AMENDED 2026-08-26: prior binding (18c1f2d08b / PR #906 / research/extensions/orion-qg/MAX_R4E_REPLAY_CLOSURE.json) was misbound on all three parts - that commit is the MAX-R4E replay lane touching none of this issue's files, and the named path exists at no tip (0/655 ls-tree basename scan); PR #934 is MERGED (2d6fbe9b9d, QG-35), not CLOSED. Actual repair: PR #941 merge c7783eabc3d4c0d75fe59aaf389b71f9204841e2 (2026-08-23T19:58:40Z, ancestor of frozen base) - STAGE1_TIMEOUT_SECONDS=600 in run_qg3_dual_harness.py, ORION_HARNESS_MAX_PROCESS_TIMEOUT_SECONDS: 600 in orion-qg-qg3.yml, fail-closed BUDGET_EXHAUSTED_CANNOT_CHECK in local_tools.py",
+          "pr": 941,
+          "pr_state": "MERGED",
+          "pr_merge_sha": "c7783eabc3d4c0d75fe59aaf389b71f9204841e2",
+          "main_add_commit": "c7783eabc3d4c0d75fe59aaf389b71f9204841e2",
+          "path": "development/orion-qg-regime-geometry/run_qg3_dual_harness.py",
           "present": {
             "frozen_base": true,
             "origin_main": true
@@ -1193,7 +1193,7 @@
         "transfer": "none",
         "novelty": "n/a"
       },
-      "notes": "FOLLOW-UP (LOCAL_REPAIR): fix merged via replay-closure evidence, but the issue remains open - close it or record the residual verification gap. No unbound scientific claim."
+      "notes": "CLOSED 2026-08-26 as repaired-with-recorded-gap: #941 verified in both trees; post-fix runs 32662946711/32664425793/32665372228 reach the 600 s ceiling and emit honest BUDGET_EXHAUSTED_CANNOT_CHECK (fail-closed by design). Stage-1 runtime measured only as >600 s; no runs after 2026-08-23T20:45Z. Reopen trigger: green baseline becomes a hard requirement."
     },
     {
       "issue": 928,
@@ -1737,16 +1737,16 @@
       "lane": "ORION discovery-v2 / DISC-Q-TRANSFER-01",
       "scope_reason": "quantum structural-donor audit primary subject",
       "disposition": "LOCAL_REPAIR",
-      "issue_terminal": "ISSUE_RESULT_IDENTITY_AMBIGUOUS",
+      "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
       "has_merged_material_result": true,
       "evidence": [
         {
-          "claim": "merged material result = the DISC-Q-TRANSFER-01 execution (advantage does NOT survive transfer), six files delivered under exec/DISC-Q-TRANSFER-01/ by PR #1327",
+          "claim": "AMENDED 2026-08-26: path prefix corrected (repo-root exec/ does not exist). PR #1327 merge 675fcde4fd55468d48ed1c3dec6e00aa64326251 (2026-08-25T12:42:10Z, ancestor of frozen base) delivered six files under research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/: DONOR_FIRST_REFUSAL.md (b9000ee8e2), MATCHED_RESOURCE_RECEIPT.json (14c175a0f7), Q_TRANSFER_CONTRACT_V1.json (f88cd9755d), RELATIONAL_CORRESPONDENCE_WITNESS.json (52a245fa48), TARGET_NATIVE_VALIDATION_RECEIPT.json (0c00203764), disc_q_transfer_01.py (1e7afed13f). Terminal SURFACE_ANALOGY_OR_RESOURCE_ADVANTAGE_ONLY; quantum_authority_transferred: false",
           "pr": 1327,
           "pr_state": "MERGED",
-          "pr_merge_sha": "675fcde4fd5",
-          "main_add_commit": "675fcde4fd5",
-          "path": "exec/DISC-Q-TRANSFER-01/DISC_Q_TRANSFER_01_RECEIPT.json",
+          "pr_merge_sha": "675fcde4fd55468d48ed1c3dec6e00aa64326251",
+          "main_add_commit": "675fcde4fd55468d48ed1c3dec6e00aa64326251",
+          "path": "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/disc_q_transfer_01.py",
           "present": {
             "frozen_base": true,
             "origin_main": true
@@ -1773,7 +1773,7 @@
         "transfer": "negative transfer result is the finding itself",
         "novelty": "CANNOT_CHECK"
       },
-      "notes": "FOLLOW-UP (LOCAL_REPAIR) + ISSUE_RESULT_IDENTITY_AMBIGUOUS: either deliver the named canonical audit/map files or rebind the issue body to the merged exec/DISC-Q-TRANSFER-01 artifact set. Merged evidence and claimed identity diverge."
+      "notes": "CLOSED 2026-08-26 as redirected: the canonical artifacts named in the issue body never existed (absent from both trees, working tree, all 655 tips, empty git log --all) - the delivered DISC-Q-TRANSFER-01 artifact set is the record; honest negative (advantage does not survive oracle charging, donor-subtraction residual empty). Superseded by the discovery-v3 lane (V3-QUANTUM-REMINT-01 carries this NEGATIVE as donor context)."
     },
     {
       "issue": 1389,
@@ -2087,13 +2087,13 @@
     },
     "per_issue_terminal": {
       "COMPUTATIONALLY_GREEN_BOUNDED": 23,
-      "VALID_NEGATIVE_OR_BOUNDARY_RESULT": 14,
+      "VALID_NEGATIVE_OR_BOUNDARY_RESULT": 15,
       "COUNTEREXAMPLE": 1,
       "EXECUTION_PENDING_FRESH_FREEZE": 8,
       "DUPLICATE_OR_SUBSUMED": 1,
       "ENGINEERING_CLOSED": 1,
       "CANNOT_CHECK": 0,
-      "ISSUE_RESULT_IDENTITY_AMBIGUOUS": 3,
+      "ISSUE_RESULT_IDENTITY_AMBIGUOUS": 2,
       "EXTERNAL_AUTHORITY_OR_ACCESS_BLOCKER": 2,
       "COORDINATION_BOUND": 2,
       "PAPER_CANDIDATE_BLOCKED": 1
@@ -2176,5 +2176,5 @@
     ],
     "clean_bound_rate": "41/56"
   },
-  "terminal_justification": "All 56 quantum-scoped open issues dispositioned. 41 carry merged material results bound by PR/merge-SHA/main-adding-commit + file presence at frozen base ef51b7b AND origin/main 926c7529 (extension/development quantum surfaces byte-identical between trees). 15 carry no merged material result: [734, 743, 881, 897, 907, 937, 980, 1359, 1362, 1368, 1389, 1409, 1416, 1418, 1427] - 9 registered-but-unexecuted successor lanes (FROZEN_EXECUTION_SUCCESSOR), 1 unbound outcome receipt (PENDING_ATOMIC_AUDIT #937), 2 external blocker lanes (#1389, #1427) and 3 coordination lanes (#1359, #1368, #1362) with no scientific artifact of their own. No claim fabricates authority: physical/novelty/external axes are CANNOT_CHECK per the freeze ceiling.\nAMENDMENT 2026-08-26: issue #937 discharged PENDING_ATOMIC_AUDIT -> ATOMIC_AUDIT_CONTENT_BOUND (receipt = unexpired CI artifacts of orion-qg-qg37-robust-execution.yml, deterministic replay, result_digest 12bf825a... matches in-tree pins; terminal QG37_ROBUST_CLASS_CONDITIONED_UPPER_BOUND_ONLY, 89/92 exact, classes 39/40/63 upper-bound-only, issue remains OPEN for those classes)."
+  "terminal_justification": "All 56 quantum-scoped open issues dispositioned. 41 carry merged material results bound by PR/merge-SHA/main-adding-commit + file presence at frozen base ef51b7b AND origin/main 926c7529 (extension/development quantum surfaces byte-identical between trees). 15 carry no merged material result: [734, 743, 881, 897, 907, 937, 980, 1359, 1362, 1368, 1389, 1409, 1416, 1418, 1427] - 9 registered-but-unexecuted successor lanes (FROZEN_EXECUTION_SUCCESSOR), 1 unbound outcome receipt (PENDING_ATOMIC_AUDIT #937), 2 external blocker lanes (#1389, #1427) and 3 coordination lanes (#1359, #1368, #1362) with no scientific artifact of their own. No claim fabricates authority: physical/novelty/external axes are CANNOT_CHECK per the freeze ceiling.\nAMENDMENT 2026-08-26: issue #937 discharged PENDING_ATOMIC_AUDIT -> ATOMIC_AUDIT_CONTENT_BOUND (receipt = unexpired CI artifacts of orion-qg-qg37-robust-execution.yml, deterministic replay, result_digest 12bf825a... matches in-tree pins; terminal QG37_ROBUST_CLASS_CONDITIONED_UPPER_BOUND_ONLY, 89/92 exact, classes 39/40/63 upper-bound-only, issue remains OPEN for those classes).\nAMENDMENT 2026-08-26 (2): #927 re-bound to the verified repair (PR #941 c7783eabc; prior binding misbound on all three parts, title corrected); #1306 path prefix corrected to research/orion-discovery-v2/exec/ and terminal resolved to VALID_NEGATIVE_OR_BOUNDARY_RESULT - identity ambiguity count drops to 2."
 }
