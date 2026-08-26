@@ -41,6 +41,27 @@ memory mechanisms as donor-composable.  It cannot be cited as evidence that the
 candidate empirically exceeds that enlarged donor envelope.  Only a protected,
 valid, independently evaluated successor can change that empirical claim.
 
+## P2-DES-01 bounded donor/route discriminator
+
+The later P2-DES-01 execution retains 50/50 public TREC-COVID topics, eight
+policies and 400/400 case--policy rows.  Its frozen saturation predicate
+licensed no structural jump.  Under the frozen internal contrast, the ideal
+donor product had mean recall-at-100 of `0.12465939794629531` versus
+`0.12044117170454913` for the unchanged local/structural policy; the latter was
+harmful on 33 topics, tied on 3 and beneficial on 14.  The material biomedical
+neural donor was unavailable and not substituted; licensed-review transfer,
+reminted cross-domain transfer and independent gold custody were also
+unavailable.
+
+Exact terminal:
+`CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE`.
+
+This is an adverse/null, public-qrels-bounded internal discriminator with no
+full P2 superiority, global closure, transfer, external-independence or
+paper-authority promotion.  Its matched resource observations apply only to the
+frozen same-world contract and cannot be scalarized across changed access,
+world or authority contracts.
+
 ## Final valid V2 development evidence
 
 The authoritative acquisition-development result is:

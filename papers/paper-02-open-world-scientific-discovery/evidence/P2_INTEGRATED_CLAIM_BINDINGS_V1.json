@@ -65,6 +65,29 @@
       "u4_reproduced_review_count": 14,
       "worst_delta_recall_at_10": -0.33333333333333337
     },
+    "p2_des_01": {
+      "case_policy_rows": 400,
+      "claim_ceiling": "Public TREC-COVID qrels-bounded internal comparison only; no full P2 superiority, global closure, transfer, external independence, or paper-authority claim.",
+      "external_independence": "CANNOT_CHECK",
+      "grants_paper_authority": false,
+      "ideal_donor_product_mean_recall_at_100": 0.12465939794629531,
+      "licensed_jump_topic_count": 0,
+      "material_donor_status": "CANNOT_CHECK_UNAVAILABLE_NOT_SUBSTITUTED",
+      "policy_count": 8,
+      "read_budget_per_topic_policy": 100,
+      "source_artifact_ids": [
+        "p2_des_01_binding_packet",
+        "p2_des_01_focused_verification"
+      ],
+      "structural_jump_mean_recall_at_100": 0.12044117170454913,
+      "structural_minus_ideal_mean_recall": -0.004218226241746187,
+      "structural_vs_ideal_beneficial_topic_count": 14,
+      "structural_vs_ideal_harmful_topic_count": 33,
+      "structural_vs_ideal_tied_topic_count": 3,
+      "terminal": "CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE",
+      "topic_count": 50,
+      "transfer_terminal": "CANNOT_CHECK_TRANSFER_WORLDS_UNAVAILABLE"
+    },
     "metric_notation": {
       "continuous_recall_effort_screened_percent": 20,
       "note": "Display constants transcribed from registered estimand strings; definitions, not outcomes.",
@@ -243,6 +266,16 @@
       "bytes": 4740,
       "path": "development/p2-donor-envelopment-v8-2026-08-23/SCIENTIFIC_ADJUDICATION_V8.json",
       "sha256": "fe1f5633a465c0b6d8e21673d867d77e3ccc8fc3af58c86703a25ea3f3d0ec25"
+    },
+    "p2_des_01_binding_packet": {
+      "bytes": 108360,
+      "path": "research/orion-epistemic-state-v1/results/P2-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "sha256": "a5d0d45963a0ac7bc88673ece37e7e018b7b1dc5345479ff8f44c9297307c4d2"
+    },
+    "p2_des_01_focused_verification": {
+      "bytes": 3576,
+      "path": "research/orion-epistemic-state-v1/results/P2-DES-01/FOCUSED_VERIFICATION_V1.json",
+      "sha256": "e2dcfb34761c47bf3afe7c691fadbb3944afeb94c6622bdf03eada005e9aaddd"
     },
     "sieve_preflight": {
       "bytes": 4070,

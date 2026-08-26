@@ -3785,6 +3785,176 @@
         }
       ],
       "support_type": "EXTERNAL_DECLARED_DEVIATION"
+    },
+    {
+      "claim_id": "P2-I-R18",
+      "manuscript_status": "ASSERTED",
+      "note": "Bounded P2-DES-01 denominator and no-licensed-jump finding; internal public-gold discriminator only.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.topic_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.case_policy_rows"
+        }
+      ],
+      "region": "results",
+      "sentence": "A separate P2-DES-01 donor/route discriminator retained 50 topics, eight policies and all 400 case-policy rows; its frozen saturation predicate licensed no structural jump on any topic.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.policy_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.licensed_jump_topic_count"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-I-R19",
+      "manuscript_status": "ASSERTED",
+      "note": "Adverse internal ideal-donor contrast; not material-donor or transfer evidence.",
+      "numeric_bindings": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.read_budget_per_topic_policy"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.ideal_donor_product_mean_recall_at_100"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.structural_jump_mean_recall_at_100"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.structural_vs_ideal_harmful_topic_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.structural_vs_ideal_tied_topic_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.structural_vs_ideal_beneficial_topic_count"
+        }
+      ],
+      "region": "results",
+      "sentence": "On that internal frozen contrast, the internal ideal donor product's mean recall at 100 reads was 0.124659397946 versus 0.120441171705 for the unchanged local/structural policy; the latter was harmful on 33 topics, tied on 3 and beneficial on 14.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.structural_minus_ideal_mean_recall"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-I-R20",
+      "manuscript_status": "ASSERTED",
+      "note": "Exact P2-DES-01 nonpromotion boundary; unavailable material donor, transfer worlds and custody are not imputed.",
+      "numeric_bindings": [],
+      "region": "results",
+      "sentence": "The material biomedical neural donor, licensed or reminted transfer worlds and independent gold custody were not bound, so the result has cannot-check authority and supports only a public-qrels-bounded internal comparison, not full P2 superiority or transfer.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.material_donor_status"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.transfer_terminal"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.external_independence"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.terminal"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-I-L16",
+      "manuscript_status": "ASSERTED",
+      "note": "P2-DES-01 availability and resource-incomparability ceiling.",
+      "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "Its material biomedical neural donor and both transfer worlds were unavailable and not substituted, while external custody remained cannot-check; its resource observations are interpretable only inside the frozen same-world contract and are not comparable across changed access, world or authority contracts.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.material_donor_status"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.transfer_terminal"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.external_independence"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.claim_ceiling"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-I-C26",
+      "manuscript_status": "ASSERTED",
+      "note": "Conclusion-level interpretation of the P2-DES-01 adverse/null discriminator without promotion.",
+      "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "P2-DES-01 adds a bounded adverse/null discriminator: no topic licensed a structural jump, and the internal ideal donor product exceeded the unchanged local policy under the frozen contrast, while material-donor, transfer and independent-custody preconditions remained unavailable.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.licensed_jump_topic_count"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.structural_minus_ideal_mean_recall"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.terminal"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
+    },
+    {
+      "claim_id": "P2-I-C27",
+      "manuscript_status": "ASSERTED",
+      "note": "Explicit paper-level nonpromotion statement for P2-DES-01.",
+      "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "It therefore grants no full-system, transfer or paper-level promotion.",
+      "strength": "CANNOT_CHECK",
+      "support_artifacts": [
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.grants_paper_authority"
+        },
+        {
+          "artifact": "integrated_claims",
+          "key": "facts.p2_des_01.claim_ceiling"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
     }
   ],
   "human_readable_view": "evidence/CLAIM_LEDGER_V1.md",
