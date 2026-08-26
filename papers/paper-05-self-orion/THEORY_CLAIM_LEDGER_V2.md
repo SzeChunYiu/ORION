@@ -1,5 +1,8 @@
 # ORION-P5 theory claim ledger V2
 
+**Current science manuscript:** `manuscript/main.tex`  
+**Active authority:** `P5_ACTIVE_CLAIM_AUTHORITY_V1.json` is a content-bound lane transcription pending author designation; it does not create or enlarge any claim.  
+
 This additive ledger covers the 2026-08-23 scientific-ascent theory. It does
 not replace `evidence/CLAIM_LEDGER_V1.md`, alter the 21/24 diagnostic archive,
 or grant general H1--H4 authority from bounded panel observations.

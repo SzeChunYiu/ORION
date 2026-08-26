@@ -1,7 +1,10 @@
 # Paper 05 — Self-ORION
 
 **Stable ID:** ORION-P5  
-**Status:** `PEER_REVIEW_READY` for the scoped non-self-promotion claim; transferable improvement remains `CANNOT_CHECK`.
+**Status:** `NO_TERMINAL_UNDER_FROZEN_RULES` for the bounded 96-case revision-level panel; H1--H4 and transferable improvement remain `CANNOT_CHECK`, and the current paper is not peer-review ready.  
+**Current science manuscript:** `manuscript/main.tex`.  
+**Current authority:** `P5_ACTIVE_CLAIM_AUTHORITY_V1.json` (lane transcription pending author designation; it adds no authority).  
+**Current readiness:** `JOURNAL_READINESS.md`.
 
 ## Scoped claim
 
@@ -55,4 +58,4 @@ No governed self-improvement claim is authorized until these prospective externa
 
 ## Manuscript
 
-`manuscript/main.tex` is the canonical Paper-V working manuscript. It now contains the failure-learning and protected self-development theory that previously lived in the Shadow Mechanics pseudo-paper.
+`manuscript/main.tex` is the canonical Paper-V working manuscript. It now contains the failure-learning and protected self-development theory that previously lived in the Shadow Mechanics pseudo-paper. Its active transcribed authority is `P5_ACTIVE_CLAIM_AUTHORITY_V1.json`; the current readiness boundary is `JOURNAL_READINESS.md`.
