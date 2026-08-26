@@ -1,0 +1,112 @@
+name: five-paper-r19-c-story-synthesis
+
+on:
+  push:
+    branches:
+      - chatgpt/r19-c-fiberguard-story-synthesis-20260827
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/MANUSCRIPT_C_R19_FIBERGUARD_COMPLETE.md'
+      - 'papers/five-paper-top-tier-r8/C/CLAIM_LEDGER_C_R19.json'
+      - 'papers/five-paper-top-tier-r8/C/THEOREM_EVIDENCE_DAG_C_R19.json'
+      - 'papers/five-paper-top-tier-r8/C/check_fiberguard_story_r19.py'
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_STORY_R19_RESULTS.json'
+      - '.github/workflows/five-paper-r19-c-story-synthesis.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/MANUSCRIPT_C_R19_FIBERGUARD_COMPLETE.md'
+      - 'papers/five-paper-top-tier-r8/C/CLAIM_LEDGER_C_R19.json'
+      - 'papers/five-paper-top-tier-r8/C/THEOREM_EVIDENCE_DAG_C_R19.json'
+      - 'papers/five-paper-top-tier-r8/C/check_fiberguard_story_r19.py'
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_STORY_R19_RESULTS.json'
+      - '.github/workflows/five-paper-r19-c-story-synthesis.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  story-authority-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile and replay story checker twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          script="$root/check_fiberguard_story_r19.py"
+          registered="$root/FIBERGUARD_STORY_R19_RESULTS.json"
+          python -m py_compile "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$registered"
+          grep -qx 'FIBERGUARD_R19_STORY_SYNTHESIS_PASS' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify source stack and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('papers/five-paper-top-tier-r8/C')
+          ledger = json.loads((root / 'CLAIM_LEDGER_C_R19.json').read_text())
+          dag = json.loads((root / 'THEOREM_EVIDENCE_DAG_C_R19.json').read_text())
+          result = json.loads((root / 'FIBERGUARD_STORY_R19_RESULTS.json').read_text())
+
+          assert ledger['source_stack'] == {
+              'R11_static_ASlib': '6f0b9a354c0f71ca744596252c74e2bf8b4a6f5b',
+              'R12_profile_Bellman': '91373ddf3eb17535ea623d0b7998adb307fcd9de',
+              'R13_randomized_adaptive': '6c23a3fe4ccf415bc3a73794878d72583ed48eb2',
+              'R14_heldout_refutation': '29edf9936fe56cd3720d78e6be2542106f2671fd',
+              'R15_certificate_boundary': 'e431e9f187667431858f42e236bd74e57f658c31',
+              'R16_cross_scenario': '6bc502966c6d8f2a7a97db234a4c20216e6feac9',
+              'R17_fallback_alignment': 'f34b61e0051289588eaf144a580dca7bc9b7e707',
+              'R18_relative_route': 'chatgpt/r18-c-relative-route-extension-20260826',
+          }
+          assert len(ledger['claims']) == 14
+          assert len(dag['nodes']) == 20
+          assert len(dag['required_paths_to_conclusion']) == 7
+          assert result['terminal'] == 'FIBERGUARD_R19_STORY_SYNTHESIS_PASS'
+          assert all(result['controls'].values())
+          authority = result['authority']
+          assert authority['internal_theory_story'] == 'COMPLETE'
+          assert authority['paired_route_application'] == 'OPEN'
+          assert authority['external_reproduction'] == 'CANNOT_CHECK'
+          assert authority['specialist_prior_art'] == 'CANNOT_CHECK'
+          assert authority['journal_authority'] is False
+          assert authority['submission_ready'] is False
+          print('FIBERGUARD_R19_AUTHORITY_VALID')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable synthesis artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-story-r19"
+          mkdir -p "$out"
+          cp papers/five-paper-top-tier-r8/C/MANUSCRIPT_C_R19_FIBERGUARD_COMPLETE.md "$out/"
+          cp papers/five-paper-top-tier-r8/C/CLAIM_LEDGER_C_R19.json "$out/"
+          cp papers/five-paper-top-tier-r8/C/THEOREM_EVIDENCE_DAG_C_R19.json "$out/"
+          cp papers/five-paper-top-tier-r8/C/FIBERGUARD_STORY_R19_RESULTS.json "$out/"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-story-r19
+          path: ${{ runner.temp }}/fiberguard-story-r19/
+          if-no-files-found: error
+          retention-days: 30
