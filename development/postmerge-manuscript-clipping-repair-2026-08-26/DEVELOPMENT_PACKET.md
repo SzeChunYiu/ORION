@@ -42,6 +42,28 @@ does not retrospectively grant authority to any manuscript result.
   deindented Python triple-quoted content escaped YAML `run: |` blocks.
 - PR #1026 is merged and issue #101 is closed; both branch-specific one-shot
   workflows have passed the event for which they existed.
+- On 2026-08-26, CI run `32937277155` reopened the startup gate when toolchain
+  verification expected a TeX package that the job had not explicitly
+  installed. The repair explicitly installs and verifies that package without
+  weakening any version pin.
+- On 2026-08-26, CI run `32938157749` built P1--P14, then failed while building
+  P15 because pdfTeX font expansion encountered a non-scalable font. Its P15
+  log also exposed a `21.35846pt` overfull line containing the full artifact
+  ZIP SHA-256.
+  The partial build artifact's geometry audit independently exposed one
+  borderline P7 page-1 line at `+4.0pt`.
+
+### 2026-08-26 reopen resolutions
+
+- Missing PyMuPDF is handled at import time as an explicit fail-closed
+  `CANNOT_CHECK`, never as a silent pass.
+- P7 now places the bold `Formal artifacts:` label on its own line before the
+  two unchanged artifact paths.
+- P15 now uses scalable Latin Modern fonts and applies `\seqsplit` to the exact
+  unchanged artifact ZIP SHA-256 so the receipt remains readable without
+  altering a byte of the identifier.
+- These are toolchain and layout-only repairs. Run `32938157749` remains a
+  negative receipt, and no successor CI run is claimed to have passed here.
 
 ## Bounded saturation assessment
 
