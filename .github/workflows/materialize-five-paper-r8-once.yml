@@ -1,0 +1,62 @@
+name: Materialize five-paper R8 packet once
+
+on:
+  push:
+    branches: [codex/five-paper-r8-materializer-20260826]
+    paths:
+      - 'development/five-paper-r8/payload/part-*'
+      - '.github/workflows/materialize-five-paper-r8-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TARGET_BRANCH: codex/five-paper-top-tier-r8-20260826
+      BASE_COMMIT: 99049ff6dfbdd78590bbdae0d24b9037aae83e3c
+      PAYLOAD_SHA256: 4d0e0500ab56962fcc5ebf57dcc37bc91abec0e36cccb2c97559c43e81e717bc
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reconstruct and verify payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat development/five-paper-r8/payload/part-* | base64 --decode > /tmp/five-paper-r8-payload.tar.gz
+          echo "${PAYLOAD_SHA256}  /tmp/five-paper-r8-payload.tar.gz" | sha256sum -c -
+          mkdir -p /tmp/five-paper-r8-materialized
+          tar -xzf /tmp/five-paper-r8-payload.tar.gz -C /tmp/five-paper-r8-materialized
+          test -f /tmp/five-paper-r8-materialized/papers/five-paper-top-tier-r8/PROGRAMME.md
+          test -f /tmp/five-paper-r8-materialized/.github/workflows/five-paper-r8-harness.yml
+      - name: Materialize onto content-bound target branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "five-paper-r8-materializer"
+          git config user.email "actions@users.noreply.github.com"
+          git fetch origin "${TARGET_BRANCH}"
+          git checkout -B "${TARGET_BRANCH}" "origin/${TARGET_BRANCH}"
+          cp -a /tmp/five-paper-r8-materialized/. .
+          rm -rf development/five-paper-r8/payload
+          rm -f .github/workflows/materialize-five-paper-r8-once.yml
+          python papers/five-paper-top-tier-r8/harness/validate_r8_artifacts.py
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root=Path('.')
+          manifest=json.loads((root/'papers/five-paper-top-tier-r8/MANIFEST_R8.json').read_text())
+          assert manifest['base_commit']=='99049ff6dfbdd78590bbdae0d24b9037aae83e3c'
+          for row in manifest['files']:
+              p=root/row['path']
+              assert p.exists(), row['path']
+              assert len(p.read_bytes())==row['bytes'], row['path']
+              assert hashlib.sha256(p.read_bytes()).hexdigest()==row['sha256'], row['path']
+          print('manifest verification PASS', manifest['file_count'])
+          PY
+          git add .github/workflows/five-paper-r8-harness.yml papers/five-paper-top-tier-r8
+          git commit -m "research: materialize five-paper top-tier R8 programme"
+          git push origin "${TARGET_BRANCH}"
