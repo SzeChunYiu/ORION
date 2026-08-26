@@ -1,0 +1,52 @@
+{
+  "paper_A": {
+    "quotient_chain_unrolling": 134,
+    "regularization_threshold_rows": [
+      {"lambda": 6, "max_change": 19},
+      {"lambda": 7, "max_change": 0},
+      {"lambda": 9, "max_change": -2}
+    ],
+    "status": "PASS"
+  },
+  "paper_B": {
+    "production_basis_blocks": {
+      "A": {"rank": 5, "zero_sum_free": true},
+      "B": {"rank": 5, "zero_sum_free": true}
+    },
+    "product_rows": [
+      {"t": 1, "beta": 5, "kappa": 1, "gap": 4},
+      {"t": 2, "beta": 10, "kappa": 2, "gap": 8},
+      {"t": 3, "beta": 15, "kappa": 3, "gap": 12},
+      {"t": 10, "beta": 50, "kappa": 10, "gap": 40},
+      {"t": 100, "beta": 500, "kappa": 100, "gap": 400}
+    ],
+    "status": "PASS"
+  },
+  "paper_C": {
+    "hostile_conflict_cover_cases": 26880,
+    "mixed_product_t_checked_through": 8,
+    "status": "PASS"
+  },
+  "paper_D": {
+    "chain_projection_comparisons": 2880,
+    "qg5_original_exact": 9545,
+    "qg5_total": 9546,
+    "exact_retraction": [
+      "ORIGINAL_CLOSED_FORM_EXACTNESS",
+      "ORIGINAL_REGIME_LABEL"
+    ],
+    "status": "PASS"
+  },
+  "nonquantum": {
+    "external_refactorization": "PASS",
+    "one_atom_length_rows": {
+      "6,1": [11, 7],
+      "6,2": [12, 6],
+      "7,1": [11, 8],
+      "7,2": [12, 7]
+    },
+    "mixed_quotient_pair": "PASS",
+    "status": "PASS"
+  },
+  "status": "PASS"
+}
