@@ -46,6 +46,14 @@ jobs:
           tar -xzf /tmp/five-paper-r8-payload.tar.gz -C /tmp/five-paper-r8-materialized
           test -f /tmp/five-paper-r8-materialized/papers/five-paper-top-tier-r8/PROGRAMME.md
           test -f /tmp/five-paper-r8-materialized/.github/workflows/five-paper-r8-harness.yml
+      - name: Export committed transport bytes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: five-paper-r8-committed-payload-parts
+          path: development/five-paper-r8/payload/part-*
+          if-no-files-found: error
+          retention-days: 2
       - name: Materialize onto content-bound target branch
         shell: bash
         run: |
