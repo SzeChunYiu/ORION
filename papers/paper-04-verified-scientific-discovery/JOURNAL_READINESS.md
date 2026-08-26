@@ -1,12 +1,6 @@
-# ORION-P4 journal readiness — current boundary with preserved protected-V2 archive
+# ORION-P4 Journal Readiness — final protected V2
 
-**Active authority:** `P4_ACTIVE_CLAIM_AUTHORITY_V1.json` (content-bound lane transcription pending author designation).  
-**Current science terminal:** `P4_WIDER_SCIENTIFIC_PROMOTION_AUTHORITY_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK`.  
-**Current readiness:** not submission-ready: the protected-V2 archive below is historical; external naturalistic adjudication, independent PDF proofread, current-package custody and exact submission-byte binding remain open.  
-**Historical protected-V2 terminal:** `ORION-P4 = PEER_REVIEW_READY` for the exact archived V2 publication subject only; it is not the current V4 paper lifecycle terminal.  
-
-## Preserved protected-V2 readiness archive
-
+**Terminal:** `ORION-P4 = PEER_REVIEW_READY`  
 **Canonical campaign:** `P4.protected-authority.v2` over base protocol `P4.protected-authority.v1`  
 **Publication-authorizing subject:** `f6e51b5c8f905382b8e2f5568d9035fc14241aa1`  
 **Protected campaign:** GitHub Actions run `31976589735`
@@ -106,17 +100,8 @@ Protected gold and raw traces are deliberately absent from the public release.
 
 This is an external submission action, not a scientific or reproducibility readiness blocker. If submission is delayed beyond `2026-08-31`, refresh the nearest-work audit first.
 
-## Historical protected-V2 done definition
+## Done definition
 
 All scientific, custody, reproducibility, manuscript, PDF, literature-saturation, and permanent-archive gates required for peer review are satisfied. Security-by-total-refusal is ruled out by `60/60` clean promotions. The strongest supported statement is bounded to the protected mechanical-gold benchmark and frozen comparator mechanisms.
 
-**Historical archive terminal: `ORION-P4 = PEER_REVIEW_READY` for the exact protected-V2 subject only.**
-
-## Current done definition
-
-The current V4 paper is not submission-ready until its reader-visible current
-source and PDF have independent proofread/custody, its naturalistic scientific
-promotion boundary has externally held eligible outcomes or remains explicitly
-`CANNOT_CHECK`, and an immutable submission package is bound to the exact bytes
-made available to reviewers. The protected-V2 archive cannot discharge those
-current-object gates.
+**`ORION-P4 = PEER_REVIEW_READY`.**

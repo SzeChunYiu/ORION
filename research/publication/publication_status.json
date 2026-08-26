@@ -1,6 +1,6 @@
 {
   "generated_from": {
-    "rule": "Derive each paper from JOURNAL_READINESS.md terminal, PROTOCOL_V1.json freeze state, and claim-ledger CANNOT_CHECK rows. Do not invent PEER_REVIEW_READY."
+    "rule": "Derive each paper from its declared current readiness terminal, PROTOCOL_V1.json freeze state, and claim-ledger CANNOT_CHECK rows. Do not invent PEER_REVIEW_READY."
   },
   "papers": [
     {
@@ -48,8 +48,7 @@
       "status": "BLOCKED",
       "title": "Recursive Epistemic Reconstruction",
       "unbound_execution_bindings": [],
-      "v2_protocol": "research/paper-programme-v2/protocols/P1_V2.json",
-      "v2_protocol_status": "DESIGN_FROZEN",
+      "v2_protocol_status": null,
       "warnings": [
         "papers/paper-01-recursive-epistemic-reconstruction/README.md: README does not record PEER_REVIEW_READY"
       ]
@@ -76,7 +75,16 @@
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R57: CANNOT_CHECK",
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R58: CANNOT_CHECK",
         "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R59: CANNOT_CHECK",
-        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R60: CANNOT_CHECK"
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-R60: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-I-A04: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-I-A05: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-I-C08: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-I-C14: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-I-C20: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-I-L11: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-I-L14: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-I-L15: CANNOT_CHECK",
+        "papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json :: P2-I-R06: CANNOT_CHECK"
       ],
       "claim_ledgers": [
         "papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md",
@@ -111,8 +119,7 @@
         "$.split_hashes",
         "$.subject_revision"
       ],
-      "v2_protocol": "research/paper-programme-v2/protocols/P2_V2.json",
-      "v2_protocol_status": "DESIGN_FROZEN",
+      "v2_protocol_status": null,
       "warnings": [
         "papers/paper-02-open-world-scientific-discovery/README.md: canonical README does not yet record PEER_REVIEW_READY (programme close still wants this; JOURNAL_READINESS remains the scoring terminal)"
       ]
@@ -153,8 +160,7 @@
         "$.split_hashes",
         "$.subject_revision"
       ],
-      "v2_protocol": "research/paper-programme-v2/protocols/P3_V2.json",
-      "v2_protocol_status": "DESIGN_FROZEN",
+      "v2_protocol_status": null,
       "warnings": []
     },
     {
@@ -166,11 +172,14 @@
         "papers/paper-04-verified-scientific-discovery/evidence/CLAIM_LEDGER_V1.md"
       ],
       "issue": 101,
-      "journal_readiness": "papers/paper-04-verified-scientific-discovery/JOURNAL_READINESS.md",
-      "journal_readiness_terminal": "PEER_REVIEW_READY",
-      "missing_artifacts": [],
+      "journal_readiness": "papers/paper-04-verified-scientific-discovery/CURRENT_JOURNAL_READINESS_V1.md",
+      "journal_readiness_terminal": "CANNOT_CHECK",
+      "missing_artifacts": [
+        "papers/paper-04-verified-scientific-discovery/CURRENT_JOURNAL_READINESS_V1.md: current terminal is CANNOT_CHECK, not PEER_REVIEW_READY",
+        "papers/paper-04-verified-scientific-discovery/protocol/PROTOCOL_V1.json: protocol_status=EXECUTION_FROZEN with outcome_accessed=false; V1 protocol has not authorized outcome access"
+      ],
       "notes": [
-        "JOURNAL_READINESS declares PEER_REVIEW_READY and the paper-specific artifact/evidence gate corroborates it."
+        "Artifacts exist and the paper is not PEER_REVIEW_READY; listed missing_artifacts are the blockers."
       ],
       "outcome_accessed": false,
       "paper_id": "P4",
@@ -180,13 +189,12 @@
       "readme": "papers/paper-04-verified-scientific-discovery/README.md",
       "readme_records_peer_review_ready": false,
       "root": "papers/paper-04-verified-scientific-discovery",
-      "status": "PEER_REVIEW_READY",
+      "status": "BLOCKED",
       "title": "Verified Scientific Discovery",
       "unbound_execution_bindings": [],
-      "v2_protocol": "research/paper-programme-v2/protocols/P4_V2.json",
-      "v2_protocol_status": "DESIGN_FROZEN",
+      "v2_protocol_status": null,
       "warnings": [
-        "papers/paper-04-verified-scientific-discovery/README.md: canonical README does not yet record PEER_REVIEW_READY (programme close still wants this; JOURNAL_READINESS remains the scoring terminal)"
+        "papers/paper-04-verified-scientific-discovery/README.md: README does not record PEER_REVIEW_READY"
       ]
     },
     {
@@ -235,8 +243,7 @@
         "$.split_hashes",
         "$.subject_revision"
       ],
-      "v2_protocol": "research/paper-programme-v2/protocols/P5_V2.json",
-      "v2_protocol_status": "DESIGN_FROZEN",
+      "v2_protocol_status": null,
       "warnings": [
         "papers/paper-05-self-orion/README.md: README does not record PEER_REVIEW_READY"
       ]
@@ -247,10 +254,9 @@
     "issue": 97,
     "papers_peer_review_ready": [
       "P2",
-      "P3",
-      "P4"
+      "P3"
     ],
-    "reason": "Issue #97 may close only when P1–P5 are PEER_REVIEW_READY on main. ready=P2,P3,P4; blocked=P1,P5",
+    "reason": "Issue #97 may close only when P1–P5 are PEER_REVIEW_READY on main. ready=P2,P3; blocked=P1,P4,P5",
     "status": "BLOCKED"
   },
   "schema_version": "orion.publication-status.v1"

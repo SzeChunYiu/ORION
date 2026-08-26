@@ -1,8 +1,7 @@
 # P4 verification-axis scientific-ascent ledger V4
 
 **Date:** 2026-08-23  
-**Current science manuscript:** `manuscript/main.tex`  
-**Active authority:** `P4_ACTIVE_CLAIM_AUTHORITY_V1.json` is a content-bound lane transcription pending author designation; it does not create or enlarge any claim.  
+**Manuscript source:** `manuscript/main.tex`  
 **Predecessor ledger:** `CLAIM_LEDGER_V3.md` (preserved)  
 **Rule:** new theory and successor designs receive new identities; no historical terminal is relabeled.
 

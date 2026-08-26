@@ -84,18 +84,27 @@ def test_p4_readme_has_unambiguous_current_pointers() -> None:
     text = (PAPER / "README.md").read_text(encoding="utf-8")
     assert text.count("**Current science manuscript:** `manuscript/main.tex`") == 1
     assert text.count("**Current authority:** `P4_ACTIVE_CLAIM_AUTHORITY_V1.json`") == 1
-    assert text.count("**Current readiness:** `JOURNAL_READINESS.md`") == 1
+    assert text.count("**Current readiness:** `CURRENT_JOURNAL_READINESS_V1.md`") == 1
     assert set(re.findall(r"P4_ACTIVE_CLAIM_AUTHORITY_V\d+\.json", text)) == {
         "P4_ACTIVE_CLAIM_AUTHORITY_V1.json"
     }
 
 
-def test_p4_readiness_marks_peer_review_ready_as_historical_only() -> None:
-    text = (PAPER / "JOURNAL_READINESS.md").read_text(encoding="utf-8")
-    current, archive = text.split("## Preserved protected-V2 readiness archive", 1)
-    assert "**Current readiness:** not submission-ready" in current
-    assert "P4_ACTIVE_CLAIM_AUTHORITY_V1.json" in current
-    assert "Historical protected-V2 terminal" in current
-    assert "PEER_REVIEW_READY" in archive
-    assert "## Current done definition" in archive
-    assert "not submission-ready" in archive.split("## Current done definition", 1)[1]
+def test_p4_readiness_versions_current_state_without_mutating_v2() -> None:
+    historical = PAPER / "JOURNAL_READINESS.md"
+    current = PAPER / "CURRENT_JOURNAL_READINESS_V1.md"
+    assert _sha(historical) == "3d9a461eceaf8be410de4852beed70d26a74f0861698ffd0b094347b03ba0126"
+    text = current.read_text(encoding="utf-8")
+    assert "**Current terminal:** `CANNOT_CHECK`" in text
+    assert "**Current lifecycle:** `CURRENT_PACKAGE_NOT_SUBMISSION_READY`" in text
+    assert "P4_ACTIVE_CLAIM_AUTHORITY_V1.json" in text
+    assert "JOURNAL_READINESS.md" in text
+    assert "historical protected-V2" in text
+
+
+def test_p4_scaffolding_manifest_cannot_claim_peer_review_ready() -> None:
+    manifest = json.loads((PAPER / "journal_package/MANIFEST.json").read_text(encoding="utf-8"))
+    assert manifest["package_status"] == "SCAFFOLDING"
+    assert manifest["declared_paper_terminal"] == (
+        "CANNOT_CHECK__CURRENT_PACKAGE_NOT_SUBMISSION_READY"
+    )

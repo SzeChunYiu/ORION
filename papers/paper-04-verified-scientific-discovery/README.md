@@ -4,7 +4,7 @@
 **Current science:** `SCIENTIFIC_ASCENT_V4_THEORY_INTEGRATED`; external naturalistic execution remains open.  
 **Current science manuscript:** `manuscript/main.tex`.  
 **Current authority:** `P4_ACTIVE_CLAIM_AUTHORITY_V1.json` (lane transcription pending author designation; it adds no authority).  
-**Current readiness:** `JOURNAL_READINESS.md` (current boundary first; the protected-V2 readiness archive is retained inside it as history).  
+**Current readiness:** `CURRENT_JOURNAL_READINESS_V1.md`; `JOURNAL_READINESS.md` is the immutable historical protected-V2 readiness object.
 **Historical specification:** `manuscript/FINAL_V3.md` and `CLAIM_LEDGER_V3.md` remain the preserved pre-ascent record.  
 **PDF boundary:** since 2026-08-24 a fresh render exists in-tree — `manuscript/main.pdf` (26 pages, local tectonic/XeTeX; SHA-256 and source revision bound in `journal_package/MANIFEST.json` `pdf_render_binding`). It supersedes the historical V2 PDF as the current manuscript render; the independent proofread box (`P4.PDF`) remains OPEN.
 
@@ -77,7 +77,8 @@ Still not claimed:
 - current V4 manuscript source: `manuscript/main.tex`;
 - active transcribed claim authority: `P4_ACTIVE_CLAIM_AUTHORITY_V1.json`;
 - current V4 claim ledger: `CLAIM_LEDGER_V4.md`;
-- current readiness boundary and preserved protected-V2 archive: `JOURNAL_READINESS.md`;
+- current readiness boundary: `CURRENT_JOURNAL_READINESS_V1.md`;
+- immutable historical protected-V2 readiness object: `JOURNAL_READINESS.md`;
 - verification-axis theory: `manuscript/sections/02a-verification-axis-identifiability.tex`;
 - preserved V3 science specification and authority: `manuscript/FINAL_V3.md`, `CLAIM_LEDGER_V3.md`;
 - integrated P4-X source section: `submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex`;
