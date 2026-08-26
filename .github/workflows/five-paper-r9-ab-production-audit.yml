@@ -1,0 +1,41 @@
+name: Integrated AB R9 production audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/AB/verify_xor_production_audit_r9.py'
+      - 'papers/five-paper-top-tier-r8/AB/PRODUCTION_*_R9.json'
+      - 'papers/five-paper-top-tier-r8/AB/MOVE_REGISTRY_R9.json'
+      - 'papers/five-paper-top-tier-r8/AB/REALIZATION_MAP_R9.json'
+      - 'papers/five-paper-top-tier-r8/AB/INTERACTION_GRAPH_R9.json'
+      - 'papers/five-paper-top-tier-r8/AB/AB_XOR_PRODUCTION_AUDIT_R9_ADDENDUM.md'
+      - '.github/workflows/five-paper-r9-ab-production-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay production and critical-pair audit
+        run: |
+          set -euo pipefail
+          cp papers/five-paper-top-tier-r8/AB/PRODUCTION_AUDIT_R9_RESULTS.json /tmp/expected.json
+          /usr/bin/time -v python papers/five-paper-top-tier-r8/AB/verify_xor_production_audit_r9.py > /tmp/stdout.json
+          cmp /tmp/expected.json papers/five-paper-top-tier-r8/AB/PRODUCTION_AUDIT_R9_RESULTS.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('/tmp/expected.json').read_text())
+          assert obj['terminal'].startswith('AB_REALIZED_CERTIFICATE_GAP_WITH_COMPLETE_MOVE_AUDIT')
+          assert obj['realization']['weak_terminal_support']==5
+          assert obj['realization']['intrinsic_support']==1
+          assert all(row['local_peak_mismatches']==0 for row in obj['finite_controls'])
+          PY

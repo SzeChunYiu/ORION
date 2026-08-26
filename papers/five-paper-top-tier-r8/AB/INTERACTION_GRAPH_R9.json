@@ -1,0 +1,43 @@
+{
+  "schema": "ORION.AB.InteractionGraphR9.v1",
+  "grammar_id": "F2D5_XOR_AGGREGATION",
+  "vertices": [
+    "DELETE_ZERO",
+    "FUSE_DISTINCT_PAIR"
+  ],
+  "edges": [
+    {
+      "schemas": ["DELETE_ZERO", "DELETE_ZERO"],
+      "overlap_modes": ["disjoint", "partially overlapping", "nested source occurrences"],
+      "joinability": "both successors preserve total XOR and reduce to the same singleton normal form"
+    },
+    {
+      "schemas": ["DELETE_ZERO", "FUSE_DISTINCT_PAIR"],
+      "overlap_modes": ["disjoint", "one fused occurrence in deletion", "both fused occurrences in deletion"],
+      "joinability": "both successors preserve total XOR and reduce to the same singleton normal form"
+    },
+    {
+      "schemas": ["FUSE_DISTINCT_PAIR", "FUSE_DISTINCT_PAIR"],
+      "overlap_modes": ["disjoint pairs", "one shared occurrence"],
+      "joinability": "XOR associativity and commutativity give the same total; both successors reduce to its singleton"
+    }
+  ],
+  "termination": {
+    "measure": "support",
+    "strictly_decreases_under_every_move": true
+  },
+  "normal_form": {
+    "shape": "one singleton",
+    "value": "the nonzero total XOR",
+    "unique": true
+  },
+  "finite_exhaustive_controls": {
+    "dimensions": [2, 3, 4],
+    "maximum_length_by_dimension": "d+1",
+    "states_checked": 14830,
+    "moves_checked": 100310,
+    "local_peaks_checked": 344526,
+    "local_peak_mismatches": 0
+  },
+  "status": "COMPLETE_SCHEMA_GRAPH_AND_BOUNDED_EXHAUSTIVE_LOCAL_PEAK_AUDIT"
+}
