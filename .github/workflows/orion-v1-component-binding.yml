@@ -54,7 +54,7 @@ jobs:
             --ref HEAD \
             --output-dir /tmp/orion-v1-component-binding-b
           diff -ru /tmp/orion-v1-component-binding-a /tmp/orion-v1-component-binding-b
-      - name: Validate packet bindings
+      - name: Validate packet bindings and expose exact gaps
         run: |
           python - <<'PY'
           import hashlib
@@ -63,26 +63,29 @@ jobs:
 
           root = Path("/tmp/orion-v1-component-binding-a")
           packet = json.loads((root / "RESULT_BINDING_PACKET.json").read_text())
-          assert packet["schema"] == "ORION.V1.ComponentContentBindingPacket.v1"
-          assert packet["paper_authority_delta"] == "NONE"
-          assert packet["terminal"] in {
-              "V1_COMPONENT_GRAPH_PATHS_AND_BYTES_BOUND__INTERFACE_PROOF_OPEN",
-              "V1_COMPONENT_GRAPH_CONTENT_AND_INTERFACES_BOUND",
-          }
-          for row in packet["files"]:
-              data = (root / row["path"]).read_bytes()
-              assert len(data) == row["bytes"]
-              assert hashlib.sha256(data).hexdigest() == row["sha256"]
           primary = json.loads((root / "PRIMARY_RESULT.json").read_text())
-          assert primary["content_complete"] is True
-          assert primary["missing_configured_paths"] == []
-          print(packet["terminal"])
+          print("terminal", packet["terminal"])
           print("components", primary["component_count"])
           print("dependency_edges", primary["dependency_edge_count"])
           print("bound_files", primary["globally_bound_file_count"])
           print("global_binding_digest", primary["global_binding_digest"])
+          print("missing_configured_paths")
+          print(json.dumps(primary["missing_configured_paths"], indent=2, sort_keys=True))
+          assert packet["schema"] == "ORION.V1.ComponentContentBindingPacket.v1"
+          assert packet["paper_authority_delta"] == "NONE"
+          for row in packet["files"]:
+              data = (root / row["path"]).read_bytes()
+              assert len(data) == row["bytes"]
+              assert hashlib.sha256(data).hexdigest() == row["sha256"]
+          assert primary["content_complete"] is True, primary["missing_configured_paths"]
+          assert primary["missing_configured_paths"] == []
+          assert packet["terminal"] in {
+              "V1_COMPONENT_GRAPH_PATHS_AND_BYTES_BOUND__INTERFACE_PROOF_OPEN",
+              "V1_COMPONENT_GRAPH_CONTENT_AND_INTERFACES_BOUND",
+          }
           PY
       - name: Add workflow receipt and checksums
+        if: always()
         env:
           WORKFLOW_RUN_ID: ${{ github.run_id }}
           WORKFLOW_ATTEMPT: ${{ github.run_attempt }}
@@ -93,6 +96,8 @@ jobs:
           from pathlib import Path
 
           root = Path("/tmp/orion-v1-component-binding-a")
+          if not root.is_dir():
+              raise SystemExit("component binding output directory was not created")
           receipt = {
               "schema": "ORION.V1.ComponentBindingWorkflowReceipt.v1",
               "workflow_run_id": int(os.environ["WORKFLOW_RUN_ID"]),
@@ -108,6 +113,7 @@ jobs:
           PY
           (cd /tmp/orion-v1-component-binding-a && sha256sum * > SHA256SUMS)
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: orion-v1-component-binding-${{ github.event.pull_request.head.sha || github.sha }}
           path: /tmp/orion-v1-component-binding-a/
