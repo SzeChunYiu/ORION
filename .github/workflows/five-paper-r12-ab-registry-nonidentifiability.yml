@@ -1,0 +1,125 @@
+name: five-paper-r12-ab-registry-nonidentifiability
+
+on:
+  push:
+    branches:
+      - chatgpt/r12-ab-registry-nonidentifiability-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/AB/PRODUCTION_REGISTRY_NONIDENTIFIABILITY_R12.md'
+      - 'papers/five-paper-top-tier-r8/AB/verify_registry_nonidentifiability_r12.py'
+      - '.github/workflows/five-paper-r12-ab-registry-nonidentifiability.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/AB/PRODUCTION_REGISTRY_NONIDENTIFIABILITY_R12.md'
+      - 'papers/five-paper-top-tier-r8/AB/verify_registry_nonidentifiability_r12.py'
+      - '.github/workflows/five-paper-r12-ab-registry-nonidentifiability.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-registry-nonidentifiability:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify content-bound R6M direct optimizer source
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_commit='1e18787841d99d76a3c7661505838d2eca8780db'
+          runner='research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py'
+          protocol='development/orion-q-max-r0/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md'
+          test "$(git rev-parse "$source_commit:$runner")" = 'ead51fc9d03e25acf3d65557cb0f08fd1eb98873'
+          test "$(git rev-parse "$source_commit:$protocol")" = '48214ac16ce956a109cbce39a25d59b77eb95b3a'
+          git show "$source_commit:$runner" > "$RUNNER_TEMP/r6m_runner.py"
+          git show "$source_commit:$protocol" > "$RUNNER_TEMP/r6m_protocol.md"
+          python - <<'PY'
+          import ast
+          import os
+          from pathlib import Path
+
+          runner = Path(os.environ['RUNNER_TEMP']) / 'r6m_runner.py'
+          text = runner.read_text()
+          tree = ast.parse(text)
+          functions = {
+              node.name for node in ast.walk(tree)
+              if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+          }
+          assert {'_local_table', '_solve_config', '_backtrack'} <= functions
+          forbidden_fragments = ('move_registry', 'legal_move', 'successors', 'rewrite_schema')
+          assert not any(fragment in name.lower() for name in functions for fragment in forbidden_fragments)
+          assert 'dp = np.full(PARITY_STATES' in text
+          assert 'dp = (dp[:, None] + cost[XOR512]).min(axis=0)' in text
+          assert 'def _backtrack' in text
+          print('R6M_DIRECT_OPTIMIZER_SOURCE_CLASSIFIED')
+          PY
+
+      - name: Compile and replay theorem verifier twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='papers/five-paper-top-tier-r8/AB/verify_registry_nonidentifiability_r12.py'
+          python -m py_compile "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          grep -q '^AB_REGISTRY_NONIDENTIFIABILITY_R12_PASS ' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify theorem controls and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.AB.RegistryNonidentifiability.R12.v1'
+          assert result['source_base'] == '533a8e15dc20fd875eb442b573fd72eb9264b218'
+          assert result['terminal'] == 'AB_REGISTRY_NONIDENTIFIABILITY_R12_PASS'
+          assert result['exhaustive_registry_total'] == 33866
+          assert all(result['controls'].values())
+          assert result['exhaustive_panel'][-1]['n'] == 6
+          assert result['exhaustive_panel'][-1]['registry_count'] == 32768
+          assert result['unbounded_family'][-1]['ambiguity_gap'] == 31
+          assert result['hidden_edge_controls'][-1]['terminal_complexity_if_absent'] == 32
+          assert result['hidden_edge_controls'][-1]['terminal_complexity_if_present'] == 31
+          authority = result['authority']
+          assert authority['r6m_registry_completeness'] is False
+          assert authority['production_transfer'] is False
+          assert authority['grants_journal_authority'] is False
+          print('AB_REGISTRY_NONIDENTIFIABILITY_RESULT_VERIFIED')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/ab-registry-nonidentifiability-r12"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ab-registry-nonidentifiability-r12
+          path: ${{ runner.temp }}/ab-registry-nonidentifiability-r12/
+          if-no-files-found: error
+          retention-days: 30
