@@ -4,6 +4,7 @@ import copy
 import hashlib
 import importlib.util
 import sys
+import urllib.error
 from pathlib import Path
 from types import ModuleType
 
@@ -11,6 +12,7 @@ import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = REPO_ROOT / "scripts/audit_orion_v1_quantum_identity.py"
+RESULT_DIR = REPO_ROOT / "research/orion-v1-quantum-audit/results/V1-Q-IDENTITY-BIND-01"
 
 
 def _load() -> ModuleType:
@@ -221,3 +223,190 @@ def test_negative_controls_are_rejected(control: str, mutate) -> None:
     mutate(docs)
     with pytest.raises(audit.AuditError, match="."):
         audit.validate_result_documents(docs, expected_numbers={632, 734, 1366})
+
+
+
+def test_compare_propagates_typed_rate_limit_censorship() -> None:
+    audit = _load()
+
+    class CensoredClient:
+        def get(self, url: str):
+            raise audit.RateLimitCensored("secondary limit")
+
+    with pytest.raises(audit.RateLimitCensored, match="secondary limit"):
+        audit._compare_ancestry(
+            CensoredClient(),
+            "https://api.github.com",
+            "SzeChunYiu/ORION",
+            "a" * 40,
+            "b" * 40,
+            lambda path, body: None,
+            [],
+            "hostile",
+        )
+
+
+def test_secondary_403_is_typed_rate_limit_censorship(monkeypatch: pytest.MonkeyPatch) -> None:
+    audit = _load()
+    client = audit.GitHubClient("secret", repository="SzeChunYiu/ORION", retries=1)
+
+    def censored(*args, **kwargs):
+        raise urllib.error.HTTPError(
+            "https://api.github.com/repos/SzeChunYiu/ORION/issues/734",
+            403,
+            "secondary rate limit",
+            {"x-ratelimit-remaining": "42"},
+            None,
+        )
+
+    monkeypatch.setattr(client, "_open", censored)
+    with pytest.raises(audit.RateLimitCensored, match="RATE_LIMIT_CENSORED"):
+        client.get("https://api.github.com/repos/SzeChunYiu/ORION/issues/734")
+
+
+@pytest.mark.parametrize(
+    "url",
+    [
+        "https://attacker.invalid/repos/SzeChunYiu/ORION/issues/734",
+        "http://api.github.com/repos/SzeChunYiu/ORION/issues/734",
+        "https://api.github.com/repos/Other/ORION/issues/734",
+        "https://api.github.com/user",
+        "https://api.github.com/repos/SzeChunYiu/ORION/issues/734/comments?per_page=100&page=1&token=leak",
+    ],
+)
+def test_authenticated_client_rejects_off_scope_url_before_sending_token(
+    url: str, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    audit = _load()
+    sent = False
+
+    def must_not_send(*args, **kwargs):
+        nonlocal sent
+        sent = True
+        raise AssertionError("token-bearing request was sent")
+
+    client = audit.GitHubClient("secret", repository="SzeChunYiu/ORION", retries=1)
+    monkeypatch.setattr(client, "_open", must_not_send)
+    with pytest.raises(audit.AuditError, match="API URL"):
+        client.get(url)
+    assert sent is False
+
+
+def test_off_origin_rel_next_is_rejected_before_second_authenticated_request() -> None:
+    audit = _load()
+    client = audit.GitHubClient(
+        "secret", repository="SzeChunYiu/ORION", retries=1
+    )
+    calls = 0
+
+    class Page:
+        status = 200
+        headers = {
+            "link": '<https://attacker.invalid/steal>; rel="next"',
+            "x-ratelimit-remaining": "4999",
+        }
+
+        def __init__(self, url: str) -> None:
+            self.url = url
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+        def read(self) -> bytes:
+            return b"[]"
+
+        def geturl(self) -> str:
+            return self.url
+
+    def one_page(request, timeout):
+        nonlocal calls
+        calls += 1
+        return Page(request.full_url)
+
+    client._open = one_page
+    with pytest.raises(audit.AuditError, match="API URL"):
+        audit.fetch_all_pages(
+            client,
+            "https://api.github.com/repos/SzeChunYiu/ORION/issues/734/comments?per_page=100&page=1",
+            prefix="raw/comments/000734/page",
+            retain=lambda path, body: None,
+        )
+    assert calls == 1
+
+
+def test_nested_non_objects_fail_closed() -> None:
+    audit = _load()
+    docs = _valid_documents(audit)
+    docs["ISSUE_IDENTITY_LEDGER.json"]["rows"][0]["comment_pages"].append("not-an-object")
+    with pytest.raises(audit.AuditError, match="pagination"):
+        audit.validate_result_documents(docs, expected_numbers={632, 734, 1366})
+
+    docs = _valid_documents(audit)
+    docs["LINKED_PR_COMMIT_LEDGER.json"]["rows"][0]["link_evidence"].append(17)
+    with pytest.raises(audit.AuditError, match="link evidence"):
+        audit.validate_result_documents(docs, expected_numbers={632, 734, 1366})
+
+
+def _committed_documents() -> dict[str, object]:
+    names = (
+        "FREEZE.json",
+        "RAW_MANIFEST.json",
+        "ISSUE_IDENTITY_LEDGER.json",
+        "LINKED_PR_COMMIT_LEDGER.json",
+        "CURRENT_MAIN_PRESENCE_LEDGER.json",
+        "COMMON_CORE_ROUTE_LEDGER.json",
+        "NEGATIVE_CONTROLS.json",
+        "RESOURCE_LEDGER.json",
+        "RESULT_BINDING_PACKET.json",
+    )
+    import json
+    return {name: json.loads((RESULT_DIR / name).read_text()) for name in names}
+
+
+def test_offline_derivation_rejects_coordinated_authored_ledger_tampering() -> None:
+    audit = _load()
+    docs = _committed_documents()
+    derived = audit.derive_evidence_from_raw(RESULT_DIR, docs)
+    audit.validate_rederived_documents(docs, derived)
+
+    mutators = [
+        lambda d: d["ISSUE_IDENTITY_LEDGER.json"]["rows"][0].update(title="forged title"),
+        lambda d: d["ISSUE_IDENTITY_LEDGER.json"]["rows"][0].update(comment_count=999),
+        lambda d: d["ISSUE_IDENTITY_LEDGER.json"]["rows"][0]["comment_pages"].pop(),
+        lambda d: d["LINKED_PR_COMMIT_LEDGER.json"]["rows"][0].update(merge_commit_sha="0" * 40),
+        lambda d: d["CURRENT_MAIN_PRESENCE_LEDGER.json"]["rows"][0].update(current_main_presence="PRESENT_EXACT"),
+        lambda d: d["COMMON_CORE_ROUTE_LEDGER.json"]["rows"][0]["issue_numbers"].pop(),
+    ]
+    for mutate in mutators:
+        tampered = copy.deepcopy(docs)
+        mutate(tampered)
+        with pytest.raises(audit.AuditError, match="raw-derived"):
+            audit.validate_rederived_documents(tampered, derived)
+
+    manifest = copy.deepcopy(docs["RAW_MANIFEST.json"])
+    manifest["responses"].pop()
+    manifest["response_count"] -= 1
+    with pytest.raises(audit.AuditError, match="archive/manifest entry set"):
+        audit.verify_raw_archive(RESULT_DIR, manifest)
+
+
+def test_authoritative_execution_packet_identity_is_machine_bound() -> None:
+    audit = _load()
+    binding = audit.authoritative_packet_binding(REPO_ROOT)
+    assert binding == {
+        "commit": "c1f46469f1cdd2735c7c95d48398a7111a62c4fe",
+        "path": "research/orion-v1-quantum-audit/V1-Q-IDENTITY-BIND-01/EXECUTION_PACKET_V1.json",
+        "git_blob": "05e00e977bdfcae7847e1834ad40d27ceb4d885c",
+        "sha256": "2ef6ee96c338a58d0b49762ce5f9bd103565493d4b666d095b8b096e2831f701",
+    }
+    documents = {
+        "FREEZE.json": {"authoritative_execution_packet": binding},
+        "RESULT_BINDING_PACKET.json": {"authoritative_execution_packet": binding},
+    }
+    audit.validate_authoritative_packet_documents(documents, REPO_ROOT)
+    documents["FREEZE.json"]["authoritative_execution_packet"]["commit"] = "0" * 40
+    with pytest.raises(audit.AuditError, match="packet freeze binding"):
+        audit.validate_authoritative_packet_documents(documents, REPO_ROOT)

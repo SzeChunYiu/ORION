@@ -71,3 +71,17 @@ The committed `NEGATIVE_CONTROLS.json` records the typed rejection for each cont
 ## Scope and non-goals
 
 Allowed changes are restricted to this development packet, the audit script, its unit test, its dedicated workflow, and the new result directory. No `src/orion/**`, paper, existing result, theorem/claim ledger, LUNARC/Slurm, custody/finalizer, or content-binding baseline is modified. No LUNARC job is required or permitted for this packet.
+
+## Independent-review hardening amendment
+
+The first implementation commit `a1eb2204c346e5e1a14fe08a60fe58cc81dcf808` was rejected before push. The retained evidence was not assigned new authority. The repair adds the following fail-closed controls:
+
+- every bearer-token request is restricted before transmission to `https://api.github.com`, the exact `SzeChunYiu/ORION` repository identity (including GitHub's exact numeric repository pagination alias `1335345708`), and the issue/comment/timeline/pull/files/commit/tree/compare endpoints needed by the frozen protocol; redirects are rejected rather than forwarding authorization;
+- every `rel=next` URL passes the same allow-list before a subsequent request; hostile origins, repositories, endpoints, query keys, repeated parameters, and page-size drift are rejected;
+- HTTP 403 and 429 responses are typed `RATE_LIMIT_CENSORED`, including secondary-limit 403 responses whose core limit is nonzero, and compare acquisition cannot convert this terminal into generic `CANNOT_CHECK`;
+- nested page and PR-link evidence must be objects; malformed entries fail closed;
+- offline checking replays all issue/comment/timeline/PR/file/compare/tree bodies from the exact retained raw archive, verifies contiguous `rel=next` chains, and reconstructs all 67 issue rows, 163 issue-to-PR rows, 215 presence rows, 14 common cores, all counts, frozen/current-main identities, drift state, and the terminal before comparing them with the authored ledgers;
+- the exact 332 KiB frozen census artifact is retained as `CENSUS_INPUT.zip` at its packet SHA-256 so census acquisition time, update time, title/body custody, and denominator can also be reconstructed offline;
+- the authoritative execution packet is machine-bound at commit `c1f46469f1cdd2735c7c95d48398a7111a62c4fe`, path `research/orion-v1-quantum-audit/V1-Q-IDENTITY-BIND-01/EXECUTION_PACKET_V1.json`, Git blob `05e00e977bdfcae7847e1834ad40d27ceb4d885c`, and SHA-256 `2ef6ee96c338a58d0b49762ce5f9bd103565493d4b666d095b8b096e2831f701`; both `FREEZE.json` and `RESULT_BINDING_PACKET.json` must match the independently resolved Git object.
+
+The original `RAW_RESPONSES.zip` bytes and all adverse route gaps remain unchanged. This amendment changes validation and binding strength only; it does not change a scientific result or disposition.

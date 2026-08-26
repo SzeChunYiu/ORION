@@ -12,6 +12,8 @@ import hashlib
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 import time
 import urllib.error
@@ -26,6 +28,11 @@ from typing import Any, Callable, Iterable, Mapping, Sequence
 API_VERSION = "2022-11-28"
 USER_AGENT = "ORION-V1-quantum-identity-audit/1"
 PACKET_ID = "V1-Q-IDENTITY-BIND-01"
+PACKET_COMMIT = "c1f46469f1cdd2735c7c95d48398a7111a62c4fe"
+PACKET_PATH = "research/orion-v1-quantum-audit/V1-Q-IDENTITY-BIND-01/EXECUTION_PACKET_V1.json"
+PACKET_GIT_BLOB = "05e00e977bdfcae7847e1834ad40d27ceb4d885c"
+PACKET_SHA256 = "2ef6ee96c338a58d0b49762ce5f9bd103565493d4b666d095b8b096e2831f701"
+EXPECTED_REPOSITORY = "SzeChunYiu/ORION"
 SOURCE_COMMIT = "bf9ee8fa34ffba7531de18e54b58eba4a641601c"
 SOURCE_TREE = "88f8a6c2b24fcec02f2752b78946a7a14652c33c"
 EXPECTED_CENSUS_SHA256 = "115b2ea69dba24bcf1a5959403dc6165ffc4b5b59ad4a5d81fd78ca293f408da"
@@ -83,6 +90,65 @@ PATH_PREFIXES = (
     "src/",
     "tests/",
 )
+REPOSITORY_IDS = {"SzeChunYiu/ORION": 1335345708}
+
+
+def validate_api_url(url: str, repository: str) -> None:
+    """Reject any token-bearing URL outside the frozen repository API surface."""
+    parsed = urllib.parse.urlsplit(url)
+    try:
+        port = parsed.port
+    except ValueError as exc:
+        raise AuditError(f"GitHub API URL port rejected: {url}") from exc
+    if (
+        parsed.scheme != "https"
+        or parsed.hostname != "api.github.com"
+        or port is not None
+        or parsed.username is not None
+        or parsed.password is not None
+        or parsed.fragment
+    ):
+        raise AuditError(f"GitHub API URL origin rejected: {url}")
+    owner, repo = (re.escape(part) for part in repository.split("/", 1))
+    prefix = rf"/repos/{owner}/{repo}/"
+    repository_id = REPOSITORY_IDS.get(repository)
+    id_prefix = rf"/repositories/{repository_id}/" if repository_id is not None else r"(?!)"
+    endpoint_patterns = (
+        rf"{prefix}issues/\d+",
+        rf"{prefix}issues/\d+/(?:comments|timeline)",
+        rf"{prefix}pulls/\d+",
+        rf"{prefix}pulls/\d+/files",
+        rf"{prefix}commits/(?:main|[0-9a-f]{{40}})",
+        rf"{prefix}git/trees/[0-9a-f]{{40}}",
+        rf"{prefix}compare/[0-9a-f]{{40}}\.\.\.[0-9a-f]{{40}}",
+        rf"{id_prefix}pulls/\d+/files",
+        rf"{id_prefix}issues/\d+/(?:comments|timeline)",
+    )
+    matched = next(
+        (index for index, pattern in enumerate(endpoint_patterns) if re.fullmatch(pattern, parsed.path)),
+        None,
+    )
+    if matched is None:
+        raise AuditError(f"GitHub API URL endpoint rejected: {url}")
+    query = urllib.parse.parse_qs(parsed.query, keep_blank_values=True)
+    if any(len(values) != 1 for values in query.values()):
+        raise AuditError(f"GitHub API URL repeated query parameter rejected: {url}")
+    if matched == 0:
+        if query and query != {"identity_audit": ["after"]}:
+            raise AuditError(f"GitHub API URL issue query rejected: {url}")
+    elif matched in {1, 3, 7, 8}:
+        allowed = {"per_page", "page", "after", "before"}
+        if not set(query) <= allowed:
+            raise AuditError(f"GitHub API URL pagination query rejected: {url}")
+        if query.get("per_page") not in (None, ["100"]):
+            raise AuditError(f"GitHub API URL page size rejected: {url}")
+        if "page" in query and not query["page"][0].isdigit():
+            raise AuditError(f"GitHub API URL page number rejected: {url}")
+    elif matched == 5:
+        if query != {"recursive": ["1"]}:
+            raise AuditError(f"GitHub API URL tree query rejected: {url}")
+    elif query:
+        raise AuditError(f"GitHub API URL unexpected query rejected: {url}")
 
 
 class AuditError(RuntimeError):
@@ -91,6 +157,21 @@ class AuditError(RuntimeError):
 
 class RateLimitCensored(AuditError):
     """GitHub rate-limit censorship terminal."""
+
+
+class _RejectRedirects(urllib.request.HTTPRedirectHandler):
+    """Never resend the bearer token after an HTTP redirect."""
+
+    def redirect_request(
+        self,
+        req: urllib.request.Request,
+        fp: Any,
+        code: int,
+        msg: str,
+        headers: Any,
+        newurl: str,
+    ) -> urllib.request.Request | None:
+        raise AuditError(f"authenticated GitHub API redirect rejected: {newurl}")
 
 
 @dataclass(frozen=True)
@@ -106,18 +187,31 @@ class Response:
 
 
 class GitHubClient:
-    def __init__(self, token: str, *, timeout: int = 60, retries: int = 4) -> None:
+    def __init__(
+        self,
+        token: str,
+        *,
+        repository: str,
+        timeout: int = 60,
+        retries: int = 4,
+    ) -> None:
         if not token:
             raise AuditError("GitHub token is required")
         self.token = token
+        self.repository = repository
         self.timeout = timeout
         self.retries = retries
         self.request_count = 0
         self.response_bytes = 0
         self.rate_limit_remaining: list[int] = []
         self._cache: dict[str, Response] = {}
+        self._open = urllib.request.build_opener(_RejectRedirects()).open
+
+    def validate_url(self, url: str) -> None:
+        validate_api_url(url, self.repository)
 
     def get(self, url: str) -> Response:
+        self.validate_url(url)
         if url in self._cache:
             return self._cache[url]
         headers = {
@@ -130,7 +224,7 @@ class GitHubClient:
         for attempt in range(1, self.retries + 1):
             request = urllib.request.Request(url, headers=headers)
             try:
-                with urllib.request.urlopen(request, timeout=self.timeout) as response:
+                with self._open(request, timeout=self.timeout) as response:
                     body = response.read()
                     result = Response(
                         url=response.geturl(),
@@ -138,6 +232,7 @@ class GitHubClient:
                         headers={k.lower(): v for k, v in response.headers.items()},
                         body=body,
                     )
+                    self.validate_url(result.url)
                     self.request_count += 1
                     self.response_bytes += len(body)
                     remaining = result.headers.get("x-ratelimit-remaining")
@@ -150,9 +245,10 @@ class GitHubClient:
                     return result
             except urllib.error.HTTPError as exc:
                 last_error = exc
-                remaining = exc.headers.get("x-ratelimit-remaining") if exc.headers else None
-                if exc.code in {403, 429} and remaining == "0":
-                    raise RateLimitCensored(f"RATE_LIMIT_CENSORED: {url}") from exc
+                if exc.code in {403, 429}:
+                    raise RateLimitCensored(
+                        f"RATE_LIMIT_CENSORED: HTTP {exc.code} for {url}"
+                    ) from exc
                 retryable = exc.code == 429 or 500 <= exc.code < 600
                 if not retryable or attempt == self.retries:
                     break
@@ -216,6 +312,56 @@ def sha256_bytes(value: bytes) -> str:
 def file_record(path: Path, relative: str | None = None) -> dict[str, Any]:
     data = path.read_bytes()
     return {"path": relative or path.name, "bytes": len(data), "sha256": sha256_bytes(data)}
+
+
+def authoritative_packet_binding(repo_root: Path) -> dict[str, str]:
+    """Verify the packet at its authoritative commit/path and return its identities."""
+    revision = f"{PACKET_COMMIT}:{PACKET_PATH}"
+    try:
+        blob = subprocess.check_output(
+            ["git", "-C", str(repo_root), "rev-parse", revision], text=True
+        ).strip()
+        packet_bytes = subprocess.check_output(
+            ["git", "-C", str(repo_root), "show", revision]
+        )
+        computed_blob = subprocess.run(
+            ["git", "-C", str(repo_root), "hash-object", "--stdin"],
+            input=packet_bytes,
+            check=True,
+            capture_output=True,
+            text=False,
+        ).stdout.decode("ascii").strip()
+    except (subprocess.CalledProcessError, OSError) as exc:
+        raise AuditError(
+            f"authoritative execution packet cannot be resolved at {revision}"
+        ) from exc
+    digest = sha256_bytes(packet_bytes)
+    if blob != PACKET_GIT_BLOB or computed_blob != PACKET_GIT_BLOB:
+        raise AuditError(
+            f"authoritative execution packet Git blob mismatch: {blob}/{computed_blob}"
+        )
+    if digest != PACKET_SHA256:
+        raise AuditError(
+            f"authoritative execution packet SHA-256 mismatch: {digest}"
+        )
+    return {
+        "commit": PACKET_COMMIT,
+        "path": PACKET_PATH,
+        "git_blob": PACKET_GIT_BLOB,
+        "sha256": PACKET_SHA256,
+    }
+
+
+def validate_authoritative_packet_documents(
+    documents: Mapping[str, Any], repo_root: Path
+) -> None:
+    expected = authoritative_packet_binding(repo_root)
+    freeze = documents.get("FREEZE.json")
+    result = documents.get("RESULT_BINDING_PACKET.json")
+    if not isinstance(freeze, Mapping) or freeze.get("authoritative_execution_packet") != expected:
+        raise AuditError("authoritative execution packet freeze binding mismatch")
+    if not isinstance(result, Mapping) or result.get("authoritative_execution_packet") != expected:
+        raise AuditError("authoritative execution packet result binding mismatch")
 
 
 def load_json_bytes(value: bytes, label: str) -> Any:
@@ -554,6 +700,8 @@ def _compare_ancestry(client: GitHubClient, api: str, repository: str, ancestor:
     url = f"{api}/repos/{repository}/compare/{urllib.parse.quote(ancestor, safe='')}...{urllib.parse.quote(target, safe='')}"
     try:
         response = client.get(url)
+    except RateLimitCensored:
+        raise
     except AuditError:
         return "CANNOT_CHECK"
     path = f"raw/compare/{label}.json"
@@ -646,7 +794,15 @@ def validate_result_documents(documents: Mapping[str, Any], *, expected_numbers:
             raise AuditError(f"issue #{number}: pull request treated as issue")
         for page_kind in ("comment_pages", "timeline_pages"):
             pages = row.get(page_kind)
-            if not isinstance(pages, list) or not pages or any(not page.get("pagination_complete") for page in pages if isinstance(page, Mapping)):
+            if (
+                not isinstance(pages, list)
+                or not pages
+                or any(
+                    not isinstance(page, Mapping)
+                    or page.get("pagination_complete") is not True
+                    for page in pages
+                )
+            ):
                 raise AuditError(f"issue #{number}: incomplete pagination")
         authority = row.get("authority_ceiling")
         if not isinstance(authority, Mapping) or authority.get("scientific_disposition") != "NONE" or authority.get("paper_authority_delta") != "NONE":
@@ -665,7 +821,9 @@ def validate_result_documents(documents: Mapping[str, Any], *, expected_numbers:
         evidence = row.get("link_evidence") if isinstance(row, Mapping) else None
         if not isinstance(evidence, list) or not evidence:
             raise AuditError("linked PR lacks explicit evidence")
-        if any(item.get("evidence_kind") not in ALLOWED_LINK_EVIDENCE for item in evidence if isinstance(item, Mapping)):
+        if any(not isinstance(item, Mapping) for item in evidence):
+            raise AuditError("linked PR link evidence contains non-object entry")
+        if any(item.get("evidence_kind") not in ALLOWED_LINK_EVIDENCE for item in evidence):
             raise AuditError("lexical issue-number mention accepted as linked PR")
         if row.get("current_main_ancestry") is not True and row.get("current_main_authority"):
             raise AuditError("merge absent from main promoted to current-main authority")
@@ -739,6 +897,531 @@ def _run_negative_controls(documents: Mapping[str, Any], expected_numbers: set[i
     }
 
 
+def _manifest_records(
+    raw_manifest: Mapping[str, Any], repository: str
+) -> dict[str, dict[str, Any]]:
+    records = raw_manifest.get("responses")
+    if not isinstance(records, list) or raw_manifest.get("response_count") != len(records):
+        raise AuditError("raw-derived response count mismatch")
+    by_entry: dict[str, dict[str, Any]] = {}
+    for record in records:
+        if not isinstance(record, dict):
+            raise AuditError("raw-derived response manifest contains non-object entry")
+        entry = record.get("archive_entry")
+        url = record.get("url")
+        headers = record.get("headers")
+        if not isinstance(entry, str) or not isinstance(url, str):
+            raise AuditError("raw-derived response identity missing")
+        if entry in by_entry:
+            raise AuditError(f"raw-derived duplicate response entry: {entry}")
+        validate_api_url(url, repository)
+        if (
+            record.get("status") != 200
+            or type(record.get("bytes")) is not int
+            or not isinstance(record.get("sha256"), str)
+            or not isinstance(headers, dict)
+            or record.get("pagination_complete") is not True
+        ):
+            raise AuditError(f"raw-derived malformed response receipt: {entry}")
+        if any(not isinstance(key, str) or not isinstance(value, str) for key, value in headers.items()):
+            raise AuditError(f"raw-derived malformed response headers: {entry}")
+        by_entry[entry] = record
+    return by_entry
+
+
+def _archive_object(archive: zipfile.ZipFile, entry: str) -> dict[str, Any]:
+    try:
+        value = load_json_bytes(archive.read(entry), entry)
+    except KeyError as exc:
+        raise AuditError(f"raw-derived archive entry missing: {entry}") from exc
+    if not isinstance(value, dict):
+        raise AuditError(f"raw-derived object required: {entry}")
+    return value
+
+
+def _archive_pages(
+    archive: zipfile.ZipFile,
+    records: Mapping[str, dict[str, Any]],
+    *,
+    prefix: str,
+    first_url: str,
+    repository: str,
+) -> tuple[list[Any], list[dict[str, Any]]]:
+    pattern = re.compile(rf"^{re.escape(prefix)}-(\d{{4}})\.json$")
+    indexed = sorted(
+        (int(match.group(1)), entry)
+        for entry in records
+        if (match := pattern.fullmatch(entry))
+    )
+    if not indexed or [index for index, _ in indexed] != list(range(1, len(indexed) + 1)):
+        raise AuditError(f"raw-derived pagination sequence incomplete: {prefix}")
+    page_records = [records[entry] for _, entry in indexed]
+    rows: list[Any] = []
+    expected_url = first_url
+    for offset, ((_, entry), record) in enumerate(zip(indexed, page_records, strict=True)):
+        if record["url"] != expected_url:
+            raise AuditError(
+                f"raw-derived pagination URL mismatch for {entry}: "
+                f"{record['url']} != {expected_url}"
+            )
+        try:
+            page = load_json_bytes(archive.read(entry), entry)
+        except KeyError as exc:
+            raise AuditError(f"raw-derived pagination body missing: {entry}") from exc
+        if not isinstance(page, list):
+            raise AuditError(f"raw-derived pagination page is not an array: {entry}")
+        rows.extend(page)
+        next_url = parse_link_next(record["headers"].get("link"))
+        if next_url is not None:
+            validate_api_url(next_url, repository)
+        if offset + 1 < len(page_records):
+            if next_url != page_records[offset + 1]["url"]:
+                raise AuditError(f"raw-derived rel=next chain broken: {entry}")
+            expected_url = next_url
+        elif next_url is not None:
+            raise AuditError(f"raw-derived final page still advertises rel=next: {entry}")
+    return rows, page_records
+
+
+def _raw_git_tree(
+    archive: zipfile.ZipFile,
+    records: Mapping[str, dict[str, Any]],
+    label: str,
+) -> tuple[str, str, set[str], bool]:
+    commit_entry = f"raw/git/{label}-commit.json"
+    tree_entry = f"raw/git/{label}-tree.json"
+    if commit_entry not in records or tree_entry not in records:
+        raise AuditError(f"raw-derived Git identity missing: {label}")
+    commit = _archive_object(archive, commit_entry)
+    tree = _archive_object(archive, tree_entry)
+    sha = commit.get("sha")
+    tree_identity = (commit.get("commit") or {}).get("tree")
+    tree_sha = tree_identity.get("sha") if isinstance(tree_identity, Mapping) else None
+    entries = tree.get("tree")
+    if not isinstance(sha, str) or not isinstance(tree_sha, str) or not isinstance(entries, list):
+        raise AuditError(f"raw-derived malformed Git identity: {label}")
+    paths = {
+        row.get("path")
+        for row in entries
+        if isinstance(row, Mapping) and isinstance(row.get("path"), str)
+    }
+    return sha, tree_sha, paths, bool(tree.get("truncated"))
+
+
+def _projection(row: Mapping[str, Any], keys: Sequence[str]) -> dict[str, Any]:
+    return {key: row.get(key) for key in keys}
+
+
+def derive_evidence_from_raw(
+    output_dir: Path, documents: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Independently derive all authored ledgers from retained raw response bytes."""
+    raw_manifest = documents.get("RAW_MANIFEST.json")
+    freeze = documents.get("FREEZE.json")
+    if not isinstance(raw_manifest, Mapping) or not isinstance(freeze, Mapping):
+        raise AuditError("raw-derived freeze or manifest missing")
+    repository = freeze.get("repository")
+    if repository != EXPECTED_REPOSITORY:
+        raise AuditError("raw-derived frozen repository identity mismatch")
+    repo_root = output_dir.parents[3]
+    semantic_path = repo_root / "research/orion-v1-quantum-audit/V1_QUANTUM_SEMANTIC_INTAKE_V1.json"
+    semantic = json.loads(semantic_path.read_text(encoding="utf-8"))
+    census_path = output_dir / "CENSUS_INPUT.zip"
+    if not census_path.is_file() or sha256_bytes(census_path.read_bytes()) != EXPECTED_CENSUS_SHA256:
+        raise AuditError("raw-derived frozen census input binding mismatch")
+    census_freeze, census_rows, census_raw, _ = _load_census(census_path, semantic)
+    census_by_number = {row["number"]: row for row in census_rows}
+    intake = _invert_groups(semantic.get("intake_classes", {}), "intake classes")
+    cores = _invert_groups(semantic.get("common_cores", {}), "common cores")
+    expected_numbers = set(intake)
+    if expected_numbers != set(cores) or len(expected_numbers) != EXPECTED_CANDIDATE_COUNT:
+        raise AuditError("raw-derived semantic denominator mismatch")
+    records = _manifest_records(raw_manifest, repository)
+    issue_projections: dict[int, dict[str, Any]] = {}
+    all_refs: dict[int, list[dict[str, Any]]] = {}
+    issue_texts: dict[int, list[tuple[str, str]]] = {}
+
+    with zipfile.ZipFile(output_dir / "RAW_RESPONSES.zip") as archive:
+        names = set(archive.namelist())
+        if len(names) != len(archive.namelist()):
+            raise AuditError("raw-derived archive contains duplicate entries")
+        for entry, record in records.items():
+            if entry not in names:
+                raise AuditError(f"raw-derived response body missing: {entry}")
+            data = archive.read(entry)
+            if len(data) != record["bytes"] or sha256_bytes(data) != record["sha256"]:
+                raise AuditError(f"raw-derived response bytes changed: {entry}")
+
+        current_sha, current_tree_sha, current_tree, current_truncated = _raw_git_tree(
+            archive, records, "current-main"
+        )
+        frozen_sha, frozen_tree_sha, frozen_tree, frozen_truncated = _raw_git_tree(
+            archive, records, "frozen-base-main"
+        )
+
+        for number in sorted(expected_numbers):
+            before_entry = f"raw/issues/{number:06d}-before.json"
+            after_entry = f"raw/issues/{number:06d}-after.json"
+            if before_entry not in records or after_entry not in records:
+                raise AuditError(f"raw-derived issue snapshots missing: #{number}")
+            before = _archive_object(archive, before_entry)
+            after = _archive_object(archive, after_entry)
+            validate_issue_payload(before, number)
+            validate_issue_payload(after, number)
+            census_entry = f"bodies/issues/{number:06d}-census.txt"
+            before_body_entry = f"bodies/issues/{number:06d}-current-before.txt"
+            after_body_entry = f"bodies/issues/{number:06d}-current-after.txt"
+            for entry in (census_entry, before_body_entry, after_body_entry):
+                if entry not in names:
+                    raise AuditError(f"raw-derived issue body custody missing: {entry}")
+            census_body = archive.read(census_entry)
+            before_body = archive.read(before_body_entry)
+            after_body = archive.read(after_body_entry)
+            if before_body != body_bytes(before) or after_body != body_bytes(after):
+                raise AuditError(f"raw-derived issue body custody mismatch: #{number}")
+            if census_body != body_bytes(census_raw[number]):
+                raise AuditError(f"raw-derived census body custody mismatch: #{number}")
+
+            comments, comment_pages = _archive_pages(
+                archive,
+                records,
+                prefix=f"raw/comments/{number:06d}/page",
+                first_url=(
+                    f"https://api.github.com/repos/{repository}/issues/{number}/comments"
+                    "?per_page=100&page=1"
+                ),
+                repository=repository,
+            )
+            timelines, timeline_pages = _archive_pages(
+                archive,
+                records,
+                prefix=f"raw/timeline/{number:06d}/page",
+                first_url=(
+                    f"https://api.github.com/repos/{repository}/issues/{number}/timeline"
+                    "?per_page=100&page=1"
+                ),
+                repository=repository,
+            )
+            comment_identities: list[dict[str, Any]] = []
+            text_sources: list[tuple[str, str]] = [("issue-body", str(before.get("body") or ""))]
+            refs = extract_explicit_pr_references(before.get("body"), repository, "issue-body")
+            for comment in comments:
+                if not isinstance(comment, Mapping):
+                    raise AuditError(f"raw-derived malformed comment: issue #{number}")
+                identity = _comment_identity(comment)
+                comment_identities.append(identity)
+                comment_text = str(comment.get("body") or "")
+                comment_entry = f"bodies/comments/{number:06d}-{identity['comment_id']}.txt"
+                if comment_entry not in names or archive.read(comment_entry) != comment_text.encode("utf-8"):
+                    raise AuditError(f"raw-derived comment body custody mismatch: {comment_entry}")
+                source = f"comment:{identity['comment_id']}"
+                text_sources.append((source, comment_text))
+                refs.extend(extract_explicit_pr_references(comment_text, repository, source))
+            refs.extend(timeline_pr_references(timelines, repository))
+            dedup_refs: dict[tuple[int, str, str], dict[str, Any]] = {}
+            for ref in refs:
+                key = (ref["pr_number"], ref["evidence_kind"], ref["source"])
+                dedup_refs.setdefault(key, ref)
+            refs = [dedup_refs[key] for key in sorted(dedup_refs)]
+            stable = (
+                before.get("updated_at") == after.get("updated_at")
+                and before_body == after_body
+                and before.get("comments") == after.get("comments")
+            )
+            census_match = sha256_bytes(before_body) == sha256_bytes(census_body)
+            intake_class = intake[number]
+            if not stable:
+                identity_status = "UNSTABLE_ISSUE_REVISION_REQUIRES_SUCCESSOR_SNAPSHOT"
+            elif not census_match:
+                identity_status = "CENSUS_BODY_DRIFT_REQUIRES_SUCCESSOR_SNAPSHOT"
+            elif intake_class == "LEXICAL_FALSE_POSITIVE":
+                identity_status = "DIRECT_DENOMINATOR_EXCLUSION__ROW_RETAINED"
+            else:
+                identity_status = "FROZEN_CENSUS_BODY_BOUND__CURRENT_SNAPSHOT_STABLE"
+            issue_projections[number] = {
+                "issue_number": number,
+                "object_kind": "ISSUE",
+                "title": before.get("title"),
+                "url": before.get("html_url"),
+                "state_at_acquisition": before.get("state"),
+                "census_acquired_at_utc": census_freeze.get("acquired_at_utc"),
+                "census_updated_at": census_by_number[number].get("updated_at"),
+                "current_updated_at_before": before.get("updated_at"),
+                "current_updated_at_after": after.get("updated_at"),
+                "census_body_bytes": len(census_body),
+                "census_body_sha256": sha256_bytes(census_body),
+                "current_body_bytes": len(before_body),
+                "current_body_sha256": sha256_bytes(before_body),
+                "issue_snapshot_before": records[before_entry],
+                "issue_snapshot_after": records[after_entry],
+                "comment_count": len(comment_identities),
+                "comments": comment_identities,
+                "comment_pages": comment_pages,
+                "timeline_event_count": len(timelines),
+                "timeline_pages": timeline_pages,
+                "semantic_intake_class": intake_class,
+                "intake_class": intake_class,
+                "common_core_id": cores[number],
+                "explicit_linked_pr_numbers": sorted({ref["pr_number"] for ref in refs}),
+                "identity_status": identity_status,
+                "direct_denominator_exclusion_reason": LEXICAL_EXCLUSION_REASONS.get(number),
+                "next_adjudication_route": _next_route(intake_class),
+                "authority_ceiling": AUTHORITY_CEILING,
+            }
+            all_refs[number] = refs
+            issue_texts[number] = text_sources
+
+        pr_numbers = sorted({ref["pr_number"] for refs in all_refs.values() for ref in refs})
+        pr_objects: dict[int, dict[str, Any]] = {}
+        pr_changed: dict[int, set[str]] = {}
+        pr_ancestry: dict[int, tuple[bool | str, bool | str]] = {}
+        for pr_number in pr_numbers:
+            pr_entry = f"raw/pulls/{pr_number:06d}.json"
+            if pr_entry not in records:
+                raise AuditError(f"raw-derived linked PR body missing: #{pr_number}")
+            pr = _archive_object(archive, pr_entry)
+            if pr.get("number") != pr_number:
+                raise AuditError(f"raw-derived linked PR identity mismatch: #{pr_number}")
+            files, _ = _archive_pages(
+                archive,
+                records,
+                prefix=f"raw/pull-files/{pr_number:06d}/page",
+                first_url=(
+                    f"https://api.github.com/repos/{repository}/pulls/{pr_number}/files"
+                    "?per_page=100&page=1"
+                ),
+                repository=repository,
+            )
+            pr_objects[pr_number] = pr
+            pr_changed[pr_number] = {
+                row.get("filename")
+                for row in files
+                if isinstance(row, Mapping) and isinstance(row.get("filename"), str)
+            }
+            merge_sha = pr.get("merge_commit_sha")
+            if pr.get("merged_at") and isinstance(merge_sha, str):
+                frozen_entry = f"raw/compare/pr-{pr_number:06d}-to-frozen.json"
+                current_entry = f"raw/compare/pr-{pr_number:06d}-to-current.json"
+                if frozen_entry not in records or current_entry not in records:
+                    raise AuditError(f"raw-derived compare receipt missing: PR #{pr_number}")
+                frozen_compare = _archive_object(archive, frozen_entry)
+                current_compare = _archive_object(archive, current_entry)
+                frozen_ancestry = ancestry_from_compare(frozen_compare, merge_sha)
+                current_ancestry = ancestry_from_compare(current_compare, merge_sha)
+            else:
+                frozen_ancestry = False
+                current_ancestry = False
+            pr_ancestry[pr_number] = (frozen_ancestry, current_ancestry)
+
+        linked_rows: list[dict[str, Any]] = []
+        presence_rows: list[dict[str, Any]] = []
+        for number in sorted(expected_numbers):
+            refs_by_pr: dict[int, list[dict[str, Any]]] = {}
+            for ref in all_refs[number]:
+                refs_by_pr.setdefault(ref["pr_number"], []).append(ref)
+            named_paths: set[str] = set()
+            path_sources: dict[str, set[str]] = {}
+            for source, text in issue_texts[number]:
+                for path in extract_named_paths(text):
+                    named_paths.add(path)
+                    path_sources.setdefault(path, set()).add(source)
+            branch_changed: set[str] = set()
+            for pr_number, refs in sorted(refs_by_pr.items()):
+                pr = pr_objects[pr_number]
+                for path in extract_named_paths(pr.get("body")):
+                    named_paths.add(path)
+                    path_sources.setdefault(path, set()).add(f"pull:{pr_number}:body")
+                branch_changed.update(pr_changed[pr_number])
+                frozen_ancestry, current_ancestry = pr_ancestry[pr_number]
+                head = pr.get("head") or {}
+                base = pr.get("base") or {}
+                linked_rows.append({
+                    "issue_number": number,
+                    "pr_number": pr_number,
+                    "link_evidence": sorted(
+                        refs, key=lambda row: (row["evidence_kind"], row["source"])
+                    ),
+                    "pr_state": pr.get("state"),
+                    "draft": pr.get("draft"),
+                    "head_ref": head.get("ref") if isinstance(head, Mapping) else None,
+                    "head_sha": head.get("sha") if isinstance(head, Mapping) else None,
+                    "base_ref": base.get("ref") if isinstance(base, Mapping) else None,
+                    "base_sha": base.get("sha") if isinstance(base, Mapping) else None,
+                    "merged_at": pr.get("merged_at"),
+                    "merge_commit_sha": merge_sha if (merge_sha := pr.get("merge_commit_sha")) else None,
+                    "frozen_base_main_ancestry": frozen_ancestry,
+                    "current_main_ancestry": current_ancestry,
+                    "merge_present_in_current_main": current_ancestry is True,
+                    "current_main_authority": False,
+                    "changed_file_count": len(pr_changed[pr_number]),
+                    "authority_ceiling": AUTHORITY_CEILING,
+                })
+            issue_projections[number]["named_artifact_paths"] = sorted(named_paths)
+            issue_presence = classify_path_presence(
+                named_paths,
+                current_tree,
+                branch_changed=branch_changed,
+                frozen_tree=frozen_tree,
+            )
+            if not issue_presence:
+                issue_presence = [{
+                    "path": None,
+                    "frozen_base_main_presence": "NO_NAMED_REPOSITORY_PATH_IN_BOUND_TEXT",
+                    "current_main_presence": "NO_NAMED_REPOSITORY_PATH_IN_BOUND_TEXT",
+                    "branch_evidence": "NONE",
+                    "classified_as_current_main_evidence": False,
+                }]
+            for row in issue_presence:
+                row.update({
+                    "issue_number": number,
+                    "path_sources": sorted(path_sources.get(row["path"], set())) if row["path"] else [],
+                    "authority_ceiling": AUTHORITY_CEILING,
+                })
+                presence_rows.append(row)
+
+    common_rows = []
+    for core_id, numbers in sorted(semantic["common_cores"].items()):
+        common_rows.append({
+            "common_core_id": core_id,
+            "issue_numbers": sorted(numbers),
+            "semantic_intake_classes": sorted({intake[number] for number in numbers}),
+            "member_routes": {
+                str(number): _next_route(intake[number]) for number in sorted(numbers)
+            },
+            "grouping_scope": "SHARED_ADJUDICATION_ROUTE_ONLY__MEMBER_IDENTITIES_AND_OUTCOMES_REMAIN_ATOMIC",
+            "administrative_mass_closure": False,
+            "source_authority_transfer": "NONE",
+            "authority_ceiling": AUTHORITY_CEILING,
+        })
+    drift = sorted(
+        number
+        for number, row in issue_projections.items()
+        if "DRIFT" in row["identity_status"] or "UNSTABLE" in row["identity_status"]
+    )
+    ancestry_cannot_check = any(
+        row["current_main_ancestry"] == "CANNOT_CHECK"
+        or row["frozen_base_main_ancestry"] == "CANNOT_CHECK"
+        for row in linked_rows
+    )
+    terminal = (
+        "ISSUE_REVISION_DRIFT_REQUIRES_SUCCESSOR_SNAPSHOT"
+        if drift
+        else "CURRENT_MAIN_ANCESTRY_CANNOT_CHECK"
+        if ancestry_cannot_check or current_truncated or frozen_truncated
+        else "V1_QUANTUM_67_ISSUE_IDENTITY_AND_ROUTE_CENSUS_COMPLETE"
+    )
+    return {
+        "expected_numbers": expected_numbers,
+        "issue_rows": issue_projections,
+        "linked_rows": linked_rows,
+        "presence_rows": presence_rows,
+        "common_rows": common_rows,
+        "issues_without_explicit_linked_pr": sorted(
+            expected_numbers - {row["issue_number"] for row in linked_rows}
+        ),
+        "current_sha": current_sha,
+        "current_tree_sha": current_tree_sha,
+        "current_tree_truncated": current_truncated,
+        "frozen_sha": frozen_sha,
+        "frozen_tree_sha": frozen_tree_sha,
+        "frozen_tree_truncated": frozen_truncated,
+        "drift": drift,
+        "terminal": terminal,
+        "acquired_at_utc": raw_manifest.get("acquired_at_utc"),
+        "repository": repository,
+        "census_artifact_id": (semantic.get("census_binding") or {}).get("artifact_id"),
+        "semantic_intake_sha256": sha256_bytes(semantic_path.read_bytes()),
+    }
+
+
+def validate_rederived_documents(
+    documents: Mapping[str, Any], derived: Mapping[str, Any]
+) -> None:
+    issues = documents.get("ISSUE_IDENTITY_LEDGER.json")
+    linked = documents.get("LINKED_PR_COMMIT_LEDGER.json")
+    presence = documents.get("CURRENT_MAIN_PRESENCE_LEDGER.json")
+    common = documents.get("COMMON_CORE_ROUTE_LEDGER.json")
+    freeze = documents.get("FREEZE.json")
+    binding = documents.get("RESULT_BINDING_PACKET.json")
+    if not all(isinstance(doc, Mapping) for doc in (issues, linked, presence, common, freeze, binding)):
+        raise AuditError("raw-derived authored ledgers missing")
+    issue_rows = issues.get("rows")
+    if not isinstance(issue_rows, list) or issues.get("row_count") != len(issue_rows):
+        raise AuditError("raw-derived issue row count mismatch")
+    authored_by_number = {
+        row.get("issue_number"): row for row in issue_rows if isinstance(row, Mapping)
+    }
+    expected_issue_rows = derived["issue_rows"]
+    if set(authored_by_number) != set(expected_issue_rows):
+        raise AuditError("raw-derived issue denominator mismatch")
+    for number, expected in expected_issue_rows.items():
+        actual = authored_by_number[number]
+        if set(actual) != set(expected) or actual != expected:
+            raise AuditError(f"raw-derived issue ledger mismatch: #{number}")
+
+    for label, document, expected_rows in (
+        ("linked PR", linked, derived["linked_rows"]),
+        ("current-main presence", presence, derived["presence_rows"]),
+        ("common-core", common, derived["common_rows"]),
+    ):
+        rows = document.get("rows")
+        if (
+            not isinstance(rows, list)
+            or document.get("row_count") != len(rows)
+            or rows != expected_rows
+        ):
+            raise AuditError(f"raw-derived {label} ledger mismatch")
+    if linked.get("issues_without_explicit_linked_pr") != derived["issues_without_explicit_linked_pr"]:
+        raise AuditError("raw-derived linked PR gap count mismatch")
+    freeze_expected = {
+        "schema": "ORION.V1.QuantumIdentityFreeze.v1",
+        "packet_id": PACKET_ID,
+        "authoritative_execution_packet": authoritative_packet_binding(
+            Path(__file__).resolve().parents[1]
+        ),
+        "acquired_at_utc": derived["acquired_at_utc"],
+        "repository": derived["repository"],
+        "frozen_source_commit": SOURCE_COMMIT,
+        "frozen_source_tree": SOURCE_TREE,
+        "denominator_count": len(derived["expected_numbers"]),
+        "denominator_issue_numbers": sorted(derived["expected_numbers"]),
+        "drift_issue_numbers": derived["drift"],
+        "current_remote_main": derived["current_sha"],
+        "current_remote_main_tree": derived["current_tree_sha"],
+        "frozen_base_main": derived["frozen_sha"],
+        "frozen_base_main_tree": derived["frozen_tree_sha"],
+        "census_artifact_id": derived["census_artifact_id"],
+        "census_artifact_sha256": EXPECTED_CENSUS_SHA256,
+        "semantic_intake_path": (
+            "research/orion-v1-quantum-audit/V1_QUANTUM_SEMANTIC_INTAKE_V1.json"
+        ),
+        "semantic_intake_sha256": derived["semantic_intake_sha256"],
+        "terminal": derived["terminal"],
+        "authority_ceiling": AUTHORITY_CEILING,
+        "non_implications": [
+            "V1_QUANTUM_FRONTIER_AUDIT_CLOSED",
+            "ANY_QUANTUM_ISSUE_SCIENTIFICALLY_CLOSED",
+            "PHYSICAL_QUANTUM_VALIDITY",
+            "QUANTUM_ADVANTAGE",
+            "EXTERNAL_NOVELTY",
+            "P18_MANUSCRIPT_AUTHORIZATION",
+            "ORION_V1_FROZEN",
+        ],
+    }
+    if set(freeze) != set(freeze_expected) or freeze != freeze_expected:
+        raise AuditError("raw-derived freeze ledger mismatch")
+    binding_expected = {
+        "denominator_count": len(derived["expected_numbers"]),
+        "issue_identity_row_count": len(derived["issue_rows"]),
+        "linked_pr_row_count": len(derived["linked_rows"]),
+        "presence_row_count": len(derived["presence_rows"]),
+        "common_core_row_count": len(derived["common_rows"]),
+        "terminal": derived["terminal"],
+    }
+    if _projection(binding, tuple(binding_expected)) != binding_expected:
+        raise AuditError("raw-derived result count ledger mismatch")
+
+
 def verify_raw_archive(output_dir: Path, raw_manifest: Mapping[str, Any]) -> None:
     archive_path = output_dir / "RAW_RESPONSES.zip"
     expected_archive = raw_manifest.get("archive")
@@ -748,29 +1431,62 @@ def verify_raw_archive(output_dir: Path, raw_manifest: Mapping[str, Any]) -> Non
     if any(actual[key] != expected_archive.get(key) for key in ("bytes", "sha256")):
         raise AuditError("raw response archive binding mismatch")
     with zipfile.ZipFile(archive_path) as archive:
-        names = set(archive.namelist())
-        for record in raw_manifest.get("responses", []):
+        listed_names = archive.namelist()
+        names = set(listed_names)
+        if len(names) != len(listed_names):
+            raise AuditError("raw response archive contains duplicate entries")
+        responses = raw_manifest.get("responses")
+        derived_objects = raw_manifest.get("derived_body_objects")
+        if not isinstance(responses, list) or not isinstance(derived_objects, list):
+            raise AuditError("raw response/body manifests must be arrays")
+        if raw_manifest.get("response_count") != len(responses):
+            raise AuditError("raw response count mismatch")
+        if raw_manifest.get("derived_body_object_count") != len(derived_objects):
+            raise AuditError("raw body object count mismatch")
+        response_entries: set[str] = set()
+        for record in responses:
+            if not isinstance(record, Mapping):
+                raise AuditError("raw response manifest contains non-object entry")
             path = record.get("archive_entry")
+            if not isinstance(path, str) or path in response_entries:
+                raise AuditError("raw response manifest path missing or duplicate")
+            response_entries.add(path)
             if path not in names:
                 raise AuditError(f"raw response missing: {path}")
             data = archive.read(path)
             if len(data) != record.get("bytes") or sha256_bytes(data) != record.get("sha256"):
                 raise AuditError(f"raw response bytes changed: {path}")
-        for record in raw_manifest.get("derived_body_objects", []):
+        body_entries: set[str] = set()
+        for record in derived_objects:
+            if not isinstance(record, Mapping):
+                raise AuditError("raw body manifest contains non-object entry")
             path = record.get("archive_entry")
+            if not isinstance(path, str) or path in body_entries:
+                raise AuditError("raw body manifest path missing or duplicate")
+            body_entries.add(path)
             if path not in names:
                 raise AuditError(f"body custody object missing: {path}")
             data = archive.read(path)
             if len(data) != record.get("bytes") or sha256_bytes(data) != record.get("sha256"):
                 raise AuditError(f"body custody bytes changed: {path}")
+        if {name for name in names if name.startswith("raw/")} != response_entries:
+            raise AuditError("raw response archive/manifest entry set mismatch")
+        if {name for name in names if name.startswith("bodies/")} != body_entries:
+            raise AuditError("raw body archive/manifest entry set mismatch")
+        if names != response_entries | body_entries:
+            raise AuditError("raw archive contains unclassified entries")
 
 
 def check_output(output_dir: Path) -> None:
     missing = [name for name in REQUIRED_FILES if not (output_dir / name).is_file()]
+    if not (output_dir / "CENSUS_INPUT.zip").is_file():
+        missing.append("CENSUS_INPUT.zip")
     if missing:
         raise AuditError(f"required outputs missing: {missing}")
     documents = {name: json.loads((output_dir / name).read_text(encoding="utf-8")) for name in REQUIRED_FILES}
     freeze = documents["FREEZE.json"]
+    repo_root = Path(__file__).resolve().parents[1]
+    validate_authoritative_packet_documents(documents, repo_root)
     expected_numbers = set(freeze.get("denominator_issue_numbers", []))
     if len(expected_numbers) != EXPECTED_CANDIDATE_COUNT:
         raise AuditError("freeze denominator is not the frozen 67")
@@ -779,10 +1495,22 @@ def check_output(output_dir: Path) -> None:
     if negative.get("count") != 11 or negative.get("all_rejected") is not True:
         raise AuditError("negative controls incomplete")
     verify_raw_archive(output_dir, documents["RAW_MANIFEST.json"])
+    derived = derive_evidence_from_raw(output_dir, documents)
+    validate_rederived_documents(documents, derived)
     binding = documents["RESULT_BINDING_PACKET.json"]
     bound = binding.get("bound_files")
     if not isinstance(bound, list):
         raise AuditError("result binding file list missing")
+    expected_bound_paths = set(REQUIRED_FILES) - {"RESULT_BINDING_PACKET.json"}
+    expected_bound_paths.update({"CENSUS_INPUT.zip", "RAW_RESPONSES.zip"})
+    if any(
+        not isinstance(record, Mapping) or not isinstance(record.get("path"), str)
+        for record in bound
+    ):
+        raise AuditError("result binding contains malformed file record")
+    bound_paths = [record["path"] for record in bound]
+    if len(bound_paths) != len(set(bound_paths)) or set(bound_paths) != expected_bound_paths:
+        raise AuditError("result binding file set mismatch")
     for record in bound:
         path = output_dir / record["path"]
         actual = file_record(path, record["path"])
@@ -795,6 +1523,11 @@ def check_output(output_dir: Path) -> None:
 def execute(args: argparse.Namespace) -> None:
     started = time.monotonic()
     acquired_at = utc_now()
+    if args.repository != EXPECTED_REPOSITORY:
+        raise AuditError(
+            f"frozen repository mismatch: {args.repository} != {EXPECTED_REPOSITORY}"
+        )
+    packet_binding = authoritative_packet_binding(Path(__file__).resolve().parents[1])
     output_dir = Path(args.output_dir)
     if output_dir.exists():
         for child in output_dir.iterdir():
@@ -803,6 +1536,9 @@ def execute(args: argparse.Namespace) -> None:
             elif child.is_dir():
                 raise AuditError(f"unexpected prior directory in output: {child}")
     output_dir.mkdir(parents=True, exist_ok=True)
+    census_output_path = output_dir / "CENSUS_INPUT.zip"
+    if Path(args.census_zip).resolve() != census_output_path.resolve():
+        shutil.copyfile(args.census_zip, census_output_path)
     semantic_path = Path(args.semantic_intake)
     semantic = json.loads(semantic_path.read_text(encoding="utf-8"))
     census_freeze, census_rows, census_raw, census_manifest = _load_census(Path(args.census_zip), semantic)
@@ -811,7 +1547,7 @@ def execute(args: argparse.Namespace) -> None:
     if len(expected_numbers) != EXPECTED_CANDIDATE_COUNT:
         raise AuditError("quantum candidate denominator mismatch")
     token = os.environ.get(args.github_token_env, "")
-    client = GitHubClient(token)
+    client = GitHubClient(token, repository=args.repository)
     api = "https://api.github.com"
     responses: list[dict[str, Any]] = []
     derived_bodies: list[dict[str, Any]] = []
@@ -1096,6 +1832,7 @@ def execute(args: argparse.Namespace) -> None:
     freeze_doc = {
         "schema": "ORION.V1.QuantumIdentityFreeze.v1",
         "packet_id": PACKET_ID,
+        "authoritative_execution_packet": packet_binding,
         "acquired_at_utc": acquired_at,
         "repository": args.repository,
         "frozen_source_commit": SOURCE_COMMIT,
@@ -1201,11 +1938,12 @@ def execute(args: argparse.Namespace) -> None:
     }
     for name, document in docs.items():
         write_json(output_dir / name, document)
-    bound_names = list(docs) + ["RAW_RESPONSES.zip"]
+    bound_names = list(docs) + ["CENSUS_INPUT.zip", "RAW_RESPONSES.zip"]
     bound_files = [file_record(output_dir / name, name) for name in bound_names]
     result_binding = {
         "schema": "ORION.V1.QuantumIdentityResultBindingPacket.v1",
         "packet_id": PACKET_ID,
+        "authoritative_execution_packet": packet_binding,
         "terminal": terminal,
         "bound_files": bound_files,
         "denominator_count": len(expected_numbers),
