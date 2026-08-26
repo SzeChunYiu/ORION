@@ -1,0 +1,162 @@
+{
+  "authority_ceiling": {
+    "architecture": "OPEN_BOOTSTRAP",
+    "external_novelty": "CANNOT_CHECK",
+    "external_validation": "CANNOT_CHECK",
+    "independent_reproduction": "CANNOT_CHECK",
+    "local_formalism": "PARTIAL_CENSUS_PENDING",
+    "physical_quantum_validity": "CANNOT_CHECK",
+    "publication": "NONE",
+    "quantum_advantage": "CANNOT_CHECK"
+  },
+  "bound_control_plane": {
+    "branch": "shadow/orion-v1-freeze-control-plane-20260826",
+    "branch_head": "ed6aa96485e583fdf47fc483d92702e8928c6a2c",
+    "branch_tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081",
+    "frozen_base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+    "pull_request_checkout_commit": "ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+    "pull_request_checkout_tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081"
+  },
+  "first_actionable_gate_id": "V1-RECEIPT-V3-DEADLINE-MIGRATION-01",
+  "freeze_requirements": {
+    "archived_deadline_protocol_migrated": false,
+    "component_graph_content_bound": false,
+    "current_declared_receipt_v3_hostile_suite_green": true,
+    "external_or_heavy_blockers_explicitly_ledgered": false,
+    "internal_implementation_gaps_zero": false,
+    "live_issue_dispositions_complete": false,
+    "p1_p15_claim_surfaces_finalized": false,
+    "paper_authority_delta": "NONE",
+    "theorem_authority_census_complete": false
+  },
+  "gates": [
+    {
+      "artifact": {
+        "artifact_id": 9598531211,
+        "artifact_name": "orion-v1-receipt-v3-hostile-audit-ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+        "github_artifact_digest": "sha256:5b15eb870fe610181efeabdc386480eedf4cd4e76e476f220cfe6138435fb862",
+        "workflow_run_id": 32946709783
+      },
+      "authority_ceiling": "LOCAL_CONFORMANCE_ONLY_INDEPENDENT_REPRODUCTION_CANNOT_CHECK",
+      "breakdown": {
+        "historical_17_counterexample_suite": 17,
+        "owned_core_and_public_boundary": 73,
+        "wait_reap_signal_and_finalization": 23
+      },
+      "denominator": 113,
+      "gate_id": "RECEIPT_V3_CURRENT_DECLARED_HOSTILE_FRONTIER",
+      "replays": 2,
+      "status": "PASS_LOCAL_CI",
+      "subject_commit": "ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+      "subject_tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081",
+      "terminal": "V1_RECEIPT_V3_CURRENT_DECLARED_HOSTILE_FRONTIER_GREEN"
+    },
+    {
+      "archive_commit": "7d9532a3057b8f66ee0862f64bf8630d8c96ff15",
+      "archive_test_blob": "55b3399b3c732a4b8303799be28ffef2439f0e5b",
+      "archive_test_path": "tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py",
+      "archive_test_sha256": "103c3678e34ea33b7657bec911c8d604b97196bdbf56df40df3f4d2ab8cc051d",
+      "artifact": {
+        "artifact_id": 9598533111,
+        "artifact_name": "orion-v1-receipt-v3-deadline-migration-ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+        "github_artifact_digest": "sha256:208f44b5cd7fcc8ab01f1a1e2ba7cc3dc0825fafbf55fb108b72a2c546490c55",
+        "workflow_run_id": 32946709780
+      },
+      "authority_ceiling": "DIAGNOSTIC_ONLY_CURRENT_RECEIPT_V3_UNCHANGED",
+      "counts": {
+        "errors": 0,
+        "failures": 78,
+        "passed": 42,
+        "skipped": 0
+      },
+      "current_module_blob": "fbf742efaba55dbee442ae721361af18775ec6ee",
+      "current_module_path": "src/orion/kernel/process_receipt.py",
+      "current_module_sha256": "6aa20d8cc15f65abe4077a8fe960b44b61b9ff7c227beb3e2ce39eaa385fb9f7",
+      "denominator": 120,
+      "gate_id": "RECEIPT_V3_ARCHIVED_DEADLINE_PROTOCOL",
+      "next_packet": "research/orion-v1-execution/V1-RECEIPT-V3-DEADLINE-MIGRATION-01/EXECUTION_PACKET_V1.json",
+      "status": "BLOCKED_RED",
+      "terminal": "ARCHIVED_DEADLINE_PROTOCOL_REQUIRES_PROSPECTIVE_MIGRATION"
+    },
+    {
+      "artifact": {
+        "artifact_id": 9598519591,
+        "artifact_name": "orion-v1-open-issue-census-ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+        "github_artifact_digest": "sha256:115b2ea69dba24bcf1a5959403dc6165ffc4b5b59ad4a5d81fd78ca293f408da",
+        "result_binding_packet_sha256": "56566213961beaa10974a786588a33ead6e800c700747f84ba904d96b8afb414",
+        "workflow_run_id": 32946709713
+      },
+      "authority_ceiling": "IDENTITY_CENSUS_ONLY_NO_ISSUE_CLOSURE_OR_SCIENTIFIC_DISPOSITION",
+      "checkout_commit": "2e6b1caf5daae54b110c6f3e5b5075c9bc206c28",
+      "checkout_tree": "8fe8abe4dae535233adc64e2626a7444be85d154",
+      "excluded_pull_request_count": 6,
+      "gate_id": "OPEN_ISSUE_IDENTITY_CENSUS",
+      "open_issue_count": 129,
+      "pagination_complete": true,
+      "quantum_candidate_count": 67,
+      "search_denominator_stable": true,
+      "status": "PASS_ACQUISITION_ONLY",
+      "terminal": "V1_OPEN_ISSUE_CENSUS_COMPLETE"
+    },
+    {
+      "denominator": 129,
+      "gate_id": "LIVE_ISSUE_DISPOSITION_RECONCILIATION",
+      "quantum_candidate_denominator": 67,
+      "status": "BLOCKED",
+      "terminal": "NOT_EARNED",
+      "unclassified_count": "CANNOT_CHECK_UNTIL_LIVE_CENSUS_IS_RECONCILED_WITH_RESULT_AND_DUPLICATE_IDENTITIES"
+    },
+    {
+      "gate_id": "COMPONENT_CONTENT_BINDING",
+      "status": "BLOCKED_PARTIAL_CENSUS",
+      "terminal": "NOT_EARNED"
+    },
+    {
+      "gate_id": "THEOREM_AND_AUTHORITY_CENSUS",
+      "status": "BLOCKED_FAMILY_LEVEL_SEED_ONLY",
+      "terminal": "NOT_EARNED"
+    },
+    {
+      "coordinator_issue": 1367,
+      "gate_id": "P1_P15_EVIDENCE_AND_CLAIM_FINALIZATION",
+      "reason": "PR_1333_BOUND_RESULTS_BUT_EXPLICITLY_DID_NOT_AUTHORIZE_TOP_TIER_OR_SUBMISSION_READINESS",
+      "status": "BLOCKED",
+      "terminal": "NOT_EARNED"
+    },
+    {
+      "completed_success_checks": [
+        "clean-install-reproduction",
+        "p3-manuscript-audit",
+        "p9-paper-package",
+        "p2-manuscript",
+        "p6-p8-candidate-ci",
+        "p9-tmlr-pdf",
+        "orion-research-harness-paper-contract",
+        "p4-tmlr-submission-audit",
+        "manuscript-clipping-audit",
+        "p1-p2-closing-keyword-guard"
+      ],
+      "gate_id": "PR_1365_PDF_CUSTODY_AND_CLIPPING_REPAIR",
+      "head": "4d80fe679bea289a00f19fb5a2ea393fe2fae669",
+      "mergeable": true,
+      "pending_checks_at_snapshot": [
+        "p1-p2-exact-main-render",
+        "ci"
+      ],
+      "status": "PENDING_EXACT_HEAD_CHECKS",
+      "user_supplied_lunarc_evidence": {
+        "authority": "COORDINATION_EVIDENCE_ONLY_NOT_MERGE_AUTHORIZATION",
+        "preserved_failed_exit_code": 12,
+        "preserved_failed_job_id": 3540209,
+        "successful_job_id": 3540214,
+        "successful_terminal": "PR1365_LUNARC_P12_P14_PARAGRAPH_MODE_PASS"
+      }
+    }
+  ],
+  "generated_at_utc": "2026-08-26T08:27:03Z",
+  "orion_v1_frozen": false,
+  "paper_authority_delta": "NONE",
+  "repository": "SzeChunYiu/ORION",
+  "schema": "ORION.V1.FinalGateSummary.v1",
+  "scientific_terminal": "NOT_EARNED"
+}
