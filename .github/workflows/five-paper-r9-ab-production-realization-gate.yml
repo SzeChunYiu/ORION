@@ -1,0 +1,50 @@
+name: Five-paper R9 AB production-realization gate
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/r9-ab-production-realization-gate-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/AB/finite_production_realization_gate_r9.py'
+      - 'papers/five-paper-top-tier-r8/AB/finite_production_realization_gate_r9_v2.py'
+      - 'papers/five-paper-top-tier-r8/AB/verify_finite_production_realization_gate_r9.py'
+      - '.github/workflows/five-paper-r9-ab-production-realization-gate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  realization-gate-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run exact-transfer, waste, and hostile controls
+        run: |
+          python papers/five-paper-top-tier-r8/AB/verify_finite_production_realization_gate_r9.py \
+            | tee /tmp/AB_FINITE_PRODUCTION_REALIZATION_GATE_CONTROLS_R9.stdout
+      - name: Require control terminal and authority ceiling
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('papers/five-paper-top-tier-r8/AB/FINITE_PRODUCTION_REALIZATION_GATE_CONTROLS_R9_RESULTS.json')
+          data = json.loads(p.read_text())
+          assert data['summary'] == {'control_count': 8, 'failures': 0, 'passes': 8, 'status': 'PASS'}
+          assert data['authority']['external_registry_completeness'] is False
+          assert data['authority']['pauli_or_TARE_application_validated'] is False
+          assert data['authority']['grants_journal_authority'] is False
+          PY
+      - name: Archive realization-gate control receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: ab-finite-production-realization-gate-r9
+          path: |
+            papers/five-paper-top-tier-r8/AB/FINITE_PRODUCTION_REALIZATION_GATE_CONTROLS_R9_RESULTS.json
+            /tmp/AB_FINITE_PRODUCTION_REALIZATION_GATE_CONTROLS_R9.stdout
+          if-no-files-found: error
+          retention-days: 30
