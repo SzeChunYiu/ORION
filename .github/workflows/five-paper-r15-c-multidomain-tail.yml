@@ -1,0 +1,143 @@
+name: five-paper-r15-c-multidomain-tail
+
+on:
+  push:
+    branches:
+      - chatgpt/r15-c-multidomain-tail-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_PROTOCOL.md'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15.py'
+      - '.github/workflows/five-paper-r15-c-multidomain-tail.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_PROTOCOL.md'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15.py'
+      - '.github/workflows/five-paper-r15-c-multidomain-tail.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  untouched-multidomain-tail-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install frozen parser dependency
+        run: python -m pip install 'PyYAML==6.0.2'
+
+      - name: Materialize untouched scenario registry
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/aslib_data"
+          git init "$root"
+          git -C "$root" remote add origin https://github.com/coseal/aslib_data.git
+          git -C "$root" config core.sparseCheckout true
+          cat > "$root/.git/info/sparse-checkout" <<'EOF'
+          /ASP-POTASSCO/
+          /CSP-Minizinc-Time-2016/
+          /GRAPHS-2015/
+          EOF
+          git -C "$root" fetch --depth 1 origin 551b22beef8df17de59286b4822ef720e0aa4d6f
+          git -C "$root" checkout --detach FETCH_HEAD
+          test "$(git -C "$root" rev-parse HEAD)" = '551b22beef8df17de59286b4822ef720e0aa4d6f'
+
+      - name: Compile and run hostile self-test
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          python -m py_compile \
+            "$root/fiberguard_aslib_sat12_all_r11.py" \
+            "$root/fiberguard_aslib_transfer_r14.py" \
+            "$root/fiberguard_multidomain_r15.py"
+          python "$root/fiberguard_multidomain_r15.py" --self-test | tee "$RUNNER_TEMP/self-test.json"
+          grep -q '"lexicographic_gate":true' "$RUNNER_TEMP/self-test.json"
+
+      - name: Execute frozen multi-domain audit twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15.py'
+          root="$RUNNER_TEMP/aslib_data"
+          python "$script" --aslib-root "$root" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --aslib-root "$root" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          grep -q '^FIBERGUARD_MULTIDOMAIN_R15_PASS ' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify registry, gates and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.FiberGuard.MultiDomain.R15.v1'
+          assert result['source_parent'] == '002117dbf8a90bc1ef26ba0148e856fbc41fdc6d'
+          assert result['upstream']['commit'] == '551b22beef8df17de59286b4822ef720e0aa4d6f'
+          assert result['upstream']['scenario_registry'] == [
+              'ASP-POTASSCO',
+              'CSP-Minizinc-Time-2016',
+              'GRAPHS-2015',
+          ]
+          assert all(result['controls'].values())
+          assert len(result['scenarios']) == 3
+          assert all(len(scenario['splits']) == 2 for scenario in result['scenarios'])
+          assert all(
+              set(split['arms']) == {
+                  'all_features',
+                  'catastrophe_tail_selected',
+                  'no_features',
+                  'robust_selected',
+              }
+              for scenario in result['scenarios']
+              for split in scenario['splits']
+          )
+          assert result['scientific_terminal'] in {
+              'C_MULTIDOMAIN_CATASTROPHE_TAIL_VALUE_ALL_THREE',
+              'C_MULTIDOMAIN_CATASTROPHE_TAIL_VALUE_TWO_OF_THREE',
+              'C_MULTIDOMAIN_CATASTROPHE_TAIL_VALUE_ONE_OF_THREE',
+              'C_MULTIDOMAIN_CATASTROPHE_TAIL_VALUE_NONE',
+          }
+          authority = result['authority']
+          assert authority['domain_registry_chosen_before_outcomes'] is True
+          assert authority['hash_split_is_family_ground_truth'] is False
+          assert authority['tail_statistic_is_distribution_free_bound'] is False
+          assert authority['learned_selector_claim'] is False
+          assert authority['grants_journal_authority'] is False
+          print('MULTIDOMAIN_R15_RESULT_VERIFIED')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable result artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-multidomain-r15"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/FIBERGUARD_MULTIDOMAIN_R15_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          cp "$RUNNER_TEMP/self-test.json" "$out/SELF_TEST.json"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-multidomain-r15
+          path: ${{ runner.temp }}/fiberguard-multidomain-r15/
+          if-no-files-found: error
+          retention-days: 30
