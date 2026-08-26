@@ -1,0 +1,49 @@
+{
+  "schema": "ORION.FivePaperApplicationsR10.v1",
+  "date": "2026-08-26",
+  "base_branch": "codex/five-paper-top-tier-r8-20260826",
+  "integration_branch": "chatgpt/r10-paper-applications-20260826",
+  "global_rule": "An application claim requires theorem-to-system mapping, a frozen falsifiable experiment, measured external-system evidence, negative/null controls, and a promotion ceiling.",
+  "tasks": [
+    {
+      "paper": "Q1",
+      "issue": 1416,
+      "application": "resource-aware exact TARE/block-encoding compiler",
+      "primary_discriminator": "Does theorem-restricted support<=2 preserve exact optimum while materially changing compile or block-encoding resources?",
+      "required_metrics": ["exact objective", "states/candidates", "wall/cpu", "peak RSS", "Clifford/T/Rz", "CNOT/two-qubit count", "depth", "ancillas", "subnormalization"],
+      "null_terminal": "Q1_NORMAL_FORM_VALUE_ONLY"
+    },
+    {
+      "paper": "AB",
+      "issue": 1385,
+      "application": "e-graph/parity rewrite-registry certificate audit",
+      "primary_discriminator": "Does a weak terminal certificate survive the complete frozen production rewrite registry?",
+      "required_metrics": ["states/e-nodes", "rewrites", "extracted cost", "certificate size", "time", "memory", "collapse count"],
+      "null_terminal": "AB_SEARCH_VALUE_NULL"
+    },
+    {
+      "paper": "C",
+      "issue": 1386,
+      "application": "representation safety for neural solver selection and learned exact optimization",
+      "primary_discriminator": "Does FiberGuard-guided answer/refine/abstain reduce decision loss after feature/inference acquisition cost?",
+      "required_metrics": ["collision prevalence", "near-collision curve", "target loss/regret", "interval width", "feature cost", "total decision cost", "runtime", "leakage"],
+      "null_terminal": "C_REFINEMENT_COST_ERASES_OPERATIONAL_VALUE"
+    },
+    {
+      "paper": "D",
+      "issue": 1387,
+      "application": "origin-bound authorization evidence in MCP/A2A/gateway integration",
+      "primary_discriminator": "Does typed evidence binding prevent a domain-reviewed false authorization caused by coordinate-erased evidence composition?",
+      "required_metrics": ["false authorization", "false denial", "decision latency", "retraction latency", "policy/evidence size", "reviewer agreement"],
+      "null_terminal": "D_TYPED_AND_UNTYPED_EQUIVALENT_ON_REGISTERED_DOMAIN"
+    },
+    {
+      "paper": "NQ",
+      "issues": [1383, 1384],
+      "application": "generalized Noether-number corollaries and proof-producing automated-mathematics benchmark",
+      "primary_discriminator": "After independent D_k replay, which exact beta_k invariant-theory consequences and proof-replay performance claims are licensed?",
+      "required_metrics": ["candidate/orbit counts", "symmetry reduction", "certificate bytes", "partition coverage", "solver time", "peak RSS", "replay time", "disagreement detection"],
+      "null_terminal": "NOVELTY_SUBSUMED_OR_REPLAY_NOT_AUTHORIZED"
+    }
+  ]
+}
