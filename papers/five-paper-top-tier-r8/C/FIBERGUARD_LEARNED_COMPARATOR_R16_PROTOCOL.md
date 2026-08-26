@@ -109,7 +109,7 @@ All forests use:
 - `n_jobs=1`;
 - no hyperparameter search.
 
-The fixed depth/leaf controls avoid the unconstrained memory growth explicitly warned about in the scikit-learn random-forest documentation. Fixed random states make fitting deterministic.
+The fixed depth/leaf controls avoid unconstrained tree growth. Fixed random states make fitting deterministic.
 
 ### RF runtime regression
 
@@ -130,10 +130,9 @@ This optimizes oracle-action classification rather than runtime or total excess 
 For a selected step set:
 
 - take the sorted union of features provided by those steps;
-- convert numeric values to floats;
-- replace each missing numeric value by the outer-training median for that feature;
-- if a feature is missing for the entire outer-training set, use zero;
-- add one missing-indicator column per numeric feature;
+- for a feature whose nonmissing training values are numeric, replace missing/nonfinite values by the outer-training median and add a missing-indicator column;
+- if a numeric feature is missing for the entire outer-training set, use zero;
+- for a nonnumeric feature, one-hot encode only outer-training categories and add explicit unknown and missing columns;
 - add one-hot step-runstatus columns for the fixed categories `ok`, `presolved`, `timeout`, `memout`, `crash`, `other` and `missing`.
 
 No held-out value influences medians, categories, representation selection or model fitting. Constant columns are retained; no outcome-driven feature pruning is performed.
@@ -151,7 +150,7 @@ For every scenario, split and fold:
 5. `rf_regression_all_steps`;
 6. `rf_classification_all_steps`.
 
-The same-step arms pay exactly the FiberGuard-selected step cost. All-step arms pay every feature-step cost. Model fitting time is reported separately and is not added to per-instance decision cost, matching the standard offline-training convention; prediction time is measured descriptively but is not mixed into the historical ASlib runtime unit.
+The same-step arms pay exactly the FiberGuard-selected step cost. All-step arms pay every feature-step cost. Offline model fitting and prediction wall time are not mixed into the historical ASlib runtime unit. GitHub workflow/job accounting remains the engineering resource receipt and is intentionally outside the byte-identical scientific JSON.
 
 ## 7. Frozen outputs
 
@@ -163,9 +162,8 @@ Per scenario/split/arm emit:
 - mean/maximum feature cost;
 - one out-of-fold row per instance;
 - selected steps by fold;
-- train-only matrix dimension and imputation digest;
-- model-class/hyperparameter/random-state digest;
-- model fit and prediction wall time as non-loss engineering metrics.
+- train-only matrix dimension and imputation/encoding digest;
+- model-class/hyperparameter/random-state digest.
 
 ## 8. Precommitted comparator terminals
 
@@ -178,8 +176,9 @@ For two arms `A` and `B` on one split, say `A` failure-aware dominates `B` when:
 A scenario terminal uses both splits:
 
 - `C_FIBERGUARD_DOMINATES_BOTH_SAME_REPRESENTATION_RF` when FiberGuard dominates both same-step RF arms on both splits;
-- `C_RF_REGRESSION_DOMINATES_FIBERGUARD` when same-step regression dominates FiberGuard on both splits;
-- `C_RF_CLASSIFICATION_DOMINATES_FIBERGUARD` when same-step classification dominates FiberGuard on both splits;
+- `C_BOTH_RF_FORMULATIONS_DOMINATE_FIBERGUARD` when both same-step learned formulations dominate FiberGuard on both splits;
+- `C_RF_REGRESSION_DOMINATES_FIBERGUARD` when same-step regression alone dominates FiberGuard on both splits;
+- `C_RF_CLASSIFICATION_DOMINATES_FIBERGUARD` when same-step classification alone dominates FiberGuard on both splits;
 - `C_LEARNED_AND_FIBERGUARD_MIXED_NO_DOMINANCE` otherwise.
 
 The portfolio reports the exact histogram of these terminals. No scenario is removed after outcomes.
