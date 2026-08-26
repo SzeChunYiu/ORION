@@ -1,0 +1,227 @@
+{
+  "authority": {
+    "full_dual_lane_execution": "OPEN",
+    "grants_orion_v1_freeze": false,
+    "grants_paper_authority": false,
+    "independent_reproduction": "CANNOT_CHECK",
+    "local_process_receipt_conformance": "TARGET_OF_THIS_PACKET",
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "coordination": {
+    "executor": "CODEX_SESSION_01a03963-d804-7320-b10a-2b828119df93",
+    "required_codex_branch": "codex/orion-v1-receipt-v3-deadline-p1-20260826",
+    "source_branch": "shadow/orion-v1-receipt-v3-deadline-p1-freeze-20260826"
+  },
+  "frozen_source": {
+    "base_main_commit": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+    "source_commit": "ed6aa96485e583fdf47fc483d92702e8928c6a2c",
+    "source_tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081"
+  },
+  "input_identities": {
+    "current_declared_hostile_suite": {
+      "artifact_id": 9598531211,
+      "artifact_name": "orion-v1-receipt-v3-hostile-audit-ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+      "artifact_sha256": "5b15eb870fe610181efeabdc386480eedf4cd4e76e476f220cfe6138435fb862",
+      "current_subject_commit": "ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+      "current_subject_tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081",
+      "denominator": 113,
+      "denominator_by_file": {
+        "tests/unit/kernel/test_process_receipt_v3.py": 73,
+        "tests/unit/kernel/test_process_receipt_v3_hostile.py": 17,
+        "tests/unit/kernel/test_process_receipt_v3_wait_hostile.py": 23
+      },
+      "historical_hostile_file_sha256": "c183ad2eb56ca5428f557b109b20119c2e84b68c20e00d7396088537b7c3b4b3",
+      "process_receipt_blob": "fbf742efaba55dbee442ae721361af18775ec6ee",
+      "process_receipt_sha256": "6aa20d8cc15f65abe4077a8fe960b44b61b9ff7c227beb3e2ce39eaa385fb9f7",
+      "run_a": "113_PASSED",
+      "run_b": "113_PASSED",
+      "workflow_run_id": 32946709783
+    },
+    "strict_deadline_oracle": {
+      "archive_commit": "7d9532a3057b8f66ee0862f64bf8630d8c96ff15",
+      "archive_module_blob": "fbf742efaba55dbee442ae721361af18775ec6ee",
+      "archive_test_blob": "55b3399b3c732a4b8303799be28ffef2439f0e5b",
+      "archive_test_path": "tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py",
+      "archive_test_sha256": "103c3678e34ea33b7657bec911c8d604b97196bdbf56df40df3f4d2ab8cc051d",
+      "artifact_id": 9598533111,
+      "artifact_name": "orion-v1-receipt-v3-deadline-migration-ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+      "artifact_sha256": "208f44b5cd7fcc8ab01f1a1e2ba7cc3dc0825fafbf55fb108b72a2c546490c55",
+      "denominator": 120,
+      "initial_errors": 0,
+      "initial_failures": 78,
+      "initial_passes": 42,
+      "terminal": "ARCHIVED_DEADLINE_PROTOCOL_REQUIRES_PROSPECTIVE_MIGRATION",
+      "workflow_run_id": 32946709780
+    }
+  },
+  "question": "Can the prospectively frozen 120-test strict absolute-deadline protocol be migrated into Process Receipt V3 while preserving byte-identical legacy receipts and the already-green 113-test current hostile frontier?",
+  "red_census": {
+    "groups": [
+      {
+        "count": 68,
+        "gap_id": "D-P0-CHILD-OCCURRENCE-BINDING",
+        "observed": "ChildIdentityBound exposes only child_pid, process_group_id, and deadline_monotonic_ns; the strict oracle requires invocation_occurrence_id, deadline_binding_hash, and a derived child_occurrence_id."
+      },
+      {
+        "count": 8,
+        "gap_id": "D-P0-STRICT-LEGACY-DIALECT-SEPARATION",
+        "observed": "Strict subjects/invocations accept empty or legacy-only traces that must fail closed, while legacy receipts must remain byte-identical in their own reducer lane."
+      },
+      {
+        "count": 1,
+        "gap_id": "D-P0-RELINK-FAILURE-KNOWLEDGE",
+        "observed": "Strict events are rejected when relinked to the legacy lane, but the failure knowledge/message does not identify the strict-to-legacy authority violation required by the oracle."
+      },
+      {
+        "count": 1,
+        "gap_id": "D-P0-FAILED-SPAWN-COMPLETION-CROSSING",
+        "observed": "A failed PROCESS_START whose post-return observation reaches the deadline does not retain TIMEOUT knowledge while correctly retaining no child and no successful process-start work."
+      }
+    ],
+    "prefix_counts": {
+      "D00": 7,
+      "D04": 15,
+      "D05": 27,
+      "D06": 2,
+      "D07": 4,
+      "D08": 9,
+      "D09": 2,
+      "D10": 3,
+      "D11": 1,
+      "D12": 2,
+      "D14": 6
+    },
+    "rule": "These are the currently visible root groups. After each repair, newly exposed failures must be classified and repaired recursively; the executor may not stop merely because the first 78 failures changed shape."
+  },
+  "implementation_scope": {
+    "allowed_paths": [
+      "development/orion-v1-receipt-v3-deadline-p1-2026-08-26/DEVELOPMENT_PACKET.md",
+      "src/orion/kernel/process_receipt.py",
+      "tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py",
+      "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/**",
+      ".github/workflows/orion-v1-receipt-v3-deadline-p1.yml"
+    ],
+    "exact_copy_rule": "tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py must be copied byte-for-byte from archive blob 55b3399b3c732a4b8303799be28ffef2439f0e5b and retain SHA-256 103c3678e34ea33b7657bec911c8d604b97196bdbf56df40df3f4d2ab8cc051d. Editing the oracle is forbidden.",
+    "forbidden_paths_and_classes": [
+      "tests/unit/kernel/test_process_receipt_v3.py",
+      "tests/unit/kernel/test_process_receipt_v3_hostile.py",
+      "tests/unit/kernel/test_process_receipt_v3_wait_hostile.py",
+      "src/orion/kernel/evidence.py",
+      "papers/**",
+      "existing receipts or negative evidence",
+      "P1 finalizer, Slurm, LUNARC, custody, integrity, and immutable-OID paths",
+      "xfail, skip, timeout widening, denominator reduction, or assertion weakening"
+    ]
+  },
+  "semantic_obligations": {
+    "child_identity_dual_dialect": [
+      "Preserve the original first three ChildIdentityBound positional fields and byte-identical legacy payload behavior when strict coordinates are absent.",
+      "Add a complete all-or-none strict coordinate set containing invocation_occurrence_id, deadline_binding_hash, and child_occurrence_id.",
+      "In the strict lane, derive child_occurrence_id from exact invocation, deadline binding, child PID, process group, and deadline coordinates; do not accept a caller-declared occurrence identity.",
+      "Reject incomplete or contradictory strict coordinates and rederive them during replay."
+    ],
+    "strict_legacy_lane_separation": [
+      "A strict subject and strict materialized invocation cannot build or verify an empty, legacy-only, or unbound-result trace.",
+      "A legacy subject/invocation remains accepted only by the legacy reducer and preserves the frozen P0 hashes and serialization.",
+      "Strict events cannot be relinked into a legacy invocation or reducer, and legacy events cannot gain strict authority by reducer relabeling.",
+      "The strict/legacy discriminator must be derived from the closed subject/invocation coordinates, not a free caller Boolean."
+    ],
+    "process_start_protocol": [
+      "DeadlineBinding is the PRE observation for PROCESS_START.",
+      "ProcessStartCompletion is mandatory POST knowledge for successful and failed start attempts.",
+      "A successful start binds the exact child between attempt and completion; a failed start invents no child.",
+      "Completion-time deadline crossing retains the completed start attempt, latches TIMEOUT, and forbids later MAIN external effects.",
+      "Failed start crossing retains primary start failure plus timeout knowledge, while git_process_starts remains zero."
+    ],
+    "effect_protocol": [
+      "After a strict child exists, every external MAIN effect follows DeadlineAdmission(PRE), one exact effect attempt/result, and DeadlineCompletion(POST).",
+      "Admissions and completions bind exact event-chain positions, invocation, child, deadline, clock-domain occurrence, stage, target, and attempt ordinal.",
+      "EINTR cannot reset the original deadline; selector semantic waits cannot exceed exact remaining time; completion crossing is irreversible.",
+      "POST-before-effect, result-after-crossing, clock regression, forged select arguments, and occurrence relinking fail closed."
+    ]
+  },
+  "execution_protocol": {
+    "commands": [
+      "git status --porcelain=v2 --branch",
+      "test \"$(git rev-parse HEAD)\" = ed6aa96485e583fdf47fc483d92702e8928c6a2c",
+      "test \"$(git rev-parse HEAD^{tree})\" = 1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081",
+      "python -m pip install -e '.[dev,candidates]' --constraint .github/ci-fast-replay-constraints.txt",
+      "mkdir -p .orion-v1-input/deadline .orion-v1-input/current",
+      "gh api repos/SzeChunYiu/ORION/actions/artifacts/9598533111/zip > .orion-v1-input/deadline.zip",
+      "echo '208f44b5cd7fcc8ab01f1a1e2ba7cc3dc0825fafbf55fb108b72a2c546490c55  .orion-v1-input/deadline.zip' | sha256sum -c -",
+      "unzip -q .orion-v1-input/deadline.zip -d .orion-v1-input/deadline",
+      "cp .orion-v1-input/deadline/test_process_receipt_v3_deadline_hostile.py tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py",
+      "echo '103c3678e34ea33b7657bec911c8d604b97196bdbf56df40df3f4d2ab8cc051d  tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py' | sha256sum -c -",
+      "python -m pytest -q --runxfail tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py",
+      "python -m pytest -q --runxfail tests/unit/kernel/test_process_receipt_v3.py tests/unit/kernel/test_process_receipt_v3_hostile.py tests/unit/kernel/test_process_receipt_v3_wait_hostile.py tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py",
+      "PYTHONHASHSEED=0 python -m pytest -q --runxfail tests/unit/kernel/test_process_receipt_v3.py tests/unit/kernel/test_process_receipt_v3_hostile.py tests/unit/kernel/test_process_receipt_v3_wait_hostile.py tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py",
+      "PYTHONHASHSEED=1 python -m pytest -q --runxfail tests/unit/kernel/test_process_receipt_v3.py tests/unit/kernel/test_process_receipt_v3_hostile.py tests/unit/kernel/test_process_receipt_v3_wait_hostile.py tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py",
+      "python -m py_compile src/orion/kernel/process_receipt.py tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py",
+      "git diff --check"
+    ],
+    "recursive_red_green_rule": [
+      "Preserve the exact 120-test oracle before implementation.",
+      "For each visible failure group, retain a minimal failing node id and semantic diagnosis.",
+      "Implement the smallest semantics-preserving repair in process_receipt.py.",
+      "Run the focused node, then the complete deadline oracle, then the complete 233-test combined denominator.",
+      "Any newly exposed RED re-enters the same classification loop; no post-outcome test edit is allowed.",
+      "The two final combined-suite runs must have identical collected node ids and zero failures, errors, skips, xfails, or flaky reruns."
+    ]
+  },
+  "required_outputs": {
+    "directory": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01",
+    "files": [
+      "FREEZE.json",
+      "RAW_MANIFEST.json",
+      "PRIMARY_RESULT.json",
+      "DONOR_RESULT.json",
+      "NEGATIVE_CONTROLS.json",
+      "RESOURCE_LEDGER.json",
+      "TRANSFER_RESULT.json",
+      "RESULT_BINDING_PACKET.json"
+    ],
+    "must_bind": [
+      "source and final commit/tree identities",
+      "process_receipt.py blob and SHA-256 before and after",
+      "all four exact test-file blobs and SHA-256 values",
+      "120-test deadline denominator and 233-test combined denominator node ids",
+      "all intermediate RED classifications and final zero-failure runs",
+      "legacy reference hashes and strict reducer/replay identities",
+      "commands, environment, exit codes, logs, XML reports, byte counts, and SHA-256 values",
+      "authority ceiling and paper_authority_delta=NONE"
+    ]
+  },
+  "acceptance": {
+    "requirements": [
+      "The exact deadline oracle is 120/120 GREEN.",
+      "The current core/public, historical-17, and wait/finalization suites remain 113/113 GREEN.",
+      "The combined denominator is exactly 233 unique node ids and is GREEN in two clean processes with different PYTHONHASHSEED values.",
+      "Legacy P0 receipt/event serialization and frozen reference hashes are byte-identical.",
+      "No test, denominator, timeout, retry cap, work cap, output cap, authority ceiling, or negative receipt is weakened.",
+      "Only allowed paths change."
+    ],
+    "success_terminal": "V1_RECEIPT_V3_DEADLINE_P1_MIGRATED_120_GREEN"
+  },
+  "terminals": {
+    "honest_alternatives": [
+      "STRICT_CHILD_OCCURRENCE_BINDING_COUNTEREXAMPLE",
+      "LEGACY_BYTE_IDENTITY_REGRESSION",
+      "STRICT_LEGACY_DIALECT_COLLISION",
+      "FAILED_SPAWN_TIMEOUT_KNOWLEDGE_GAP",
+      "DEADLINE_EFFECT_PROTOCOL_COUNTEREXAMPLE",
+      "COMBINED_HOSTILE_DENOMINATOR_REGRESSION",
+      "PROSPECTIVE_ORACLE_AMBIGUOUS",
+      "CANNOT_CHECK"
+    ],
+    "non_implications": [
+      "V1_RECEIPT_V3_HOSTILE_FRONTIER_CLOSED",
+      "full dual-lane execution complete",
+      "independent reproduction complete",
+      "ORION V1 frozen",
+      "P15 publication ready"
+    ]
+  },
+  "schema": "ORION.V1.ExecutionPacket.v1",
+  "packet_id": "V1-RECEIPT-V3-DEADLINE-P1-01"
+}
