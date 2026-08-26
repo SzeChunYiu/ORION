@@ -1,0 +1,38 @@
+name: Q1 R10 nine-qubit auxiliary core
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [chatgpt/r10-q1-nine-qubit-active-core-20260826]
+    paths:
+      - 'papers/Q-paper-01-tare-expressivity/Q1_NINE_QUBIT_AUXILIARY_CORE_R10.md'
+      - 'papers/Q-paper-01-tare-expressivity/verify_q1_nine_qubit_core_r10.py'
+      - '.github/workflows/q1-r10-nine-qubit-core.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run finite exact controls
+        run: |
+          set -euo pipefail
+          python papers/Q-paper-01-tare-expressivity/verify_q1_nine_qubit_core_r10.py | tee /tmp/q1-core.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('/tmp/q1-core.json').read_text())
+          assert obj['status']=='PASS'
+          assert [r['enumerated_ordered_pairs'] for r in obj['pair_count_rows']][:3]==[6,120,666]
+          assert obj['tag_projection_failures']==0
+          assert obj['active_core_bound_violations']==0
+          assert obj['minimum_tag_weight_mismatches']==0
+          assert obj['authority']['physical_resource_reduction'] is False
+          PY
