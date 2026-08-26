@@ -1,6 +1,6 @@
 {
-  "schema": "orion.ab.external_optimizer_source_bindings.v1",
-  "frozen_at_utc": "2026-08-26T13:59:02Z",
+  "schema": "orion.ab.external_optimizer_source_bindings.v2",
+  "frozen_at_utc": "2026-08-26T14:14:44Z",
   "candidate": "MQT_QMAP_CLIFFORD_SYNTHESIS",
   "primary_paper": {
     "title": "A SAT Encoding for Optimal Clifford Circuit Synthesis",
@@ -105,5 +105,124 @@
       "JOURNAL_ACCEPTANCE",
       "Q1_EXTENSION"
     ]
+  },
+  "reviewed_hostile_audit": {
+    "commit": "82e94b19b9b79733bd5353cb433e48fe338e4423",
+    "tree": "a81360e61b5c4bfed9a45009f419b77f01735a18",
+    "scientific_subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+    "scientific_subject_tree": "dbf96cce53d21d25584479fb740473293fae75e0",
+    "files": [
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/AB_HOSTILE_THEOREM_REVIEW_R8.md",
+        "git_blob": "b6e3f624ef36b33e48c5d0cb5d65880263f5e078",
+        "sha256": "71c4b2364c9fd41f78df94279d3e9eb474ff36fe1dc67a445343f77d3bfc41b2",
+        "bytes": 10004
+      },
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/artifact/AB_HOSTILE_PREMISE_AUDIT_R8_RESULTS.json",
+        "git_blob": "211bc46373f9dfb020af1058ccd479bcde3814db",
+        "sha256": "03a4a2e2fc76b034db5acf1fd00d869ce4716ab0dc7ceea1e534fae5a8fa1a40",
+        "bytes": 25030
+      },
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/artifact/ab_hostile_premise_audit_r8.py",
+        "git_blob": "e8ed8abdfe4266b28adad12fa1ecb204fd51362f",
+        "sha256": "34b719e232f7537595d647979774cb910dc3c7ebde167fe8b601269f53e660a6",
+        "bytes": 35170
+      },
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/tests/test_ab_hostile_premise_audit_r8.py",
+        "git_blob": "7a164c0d6de9ea9468e57fffd827967abe44682c",
+        "sha256": "8853cc5362c82b7fbe37bd6c1d78c1a9167a8058cf8e26880be323c5e0836cba",
+        "bytes": 5143
+      }
+    ],
+    "cross_audit_terminal": "AB_THEOREM_REPAIR_PARTIAL_PASS__T10_CONVENTION_REQUIRED",
+    "authority_boundary": "Internal hostile-review object only. It does not establish novelty, external significance, runtime or hardware advantage, Q1 authority, journal readiness, or top-tier readiness."
+  },
+  "donor_primary_sources": [
+    {
+      "title": "Logic Minimization Techniques with Applications to Cryptology",
+      "authors": [
+        "Joan Boyar",
+        "Philip Matthews",
+        "Rene Peralta"
+      ],
+      "journal": "Journal of Cryptology",
+      "year": 2013,
+      "volume": 26,
+      "pages": "280-312",
+      "doi": "10.1007/s00145-012-9124-7",
+      "doi_url": "https://doi.org/10.1007/s00145-012-9124-7",
+      "url": "https://link.springer.com/content/pdf/10.1007/s00145-012-9124-7.pdf",
+      "cache_path": "r8-harness-responses/search_raw/boyar_peralta_2012.pdf",
+      "sha256": "d71379d217872301f6b085b3cc2383bc98b14e4413f4fde8c1dcdf1c88cc6d2c",
+      "bytes": 380528,
+      "absorbed_claim": "Unrestricted XOR straight-line programs can be strictly smaller than cancellation-free programs; fixed optimum 4 versus 5 and an asymptotic factor-3/2 lower bound are explicit.",
+      "authority_boundary": "Primary technical source for donor absorption only; it does not implement AB destructive fusion."
+    },
+    {
+      "title": "Cancellation-Free Circuits in Unbounded and Bounded Depth",
+      "authors": [
+        "Magnus Gausdal Find",
+        "Joan Boyar"
+      ],
+      "journal": "Theoretical Computer Science",
+      "year": 2015,
+      "volume": 590,
+      "pages": "17-26",
+      "doi": "10.1016/j.tcs.2014.10.014",
+      "doi_url": "https://doi.org/10.1016/j.tcs.2014.10.014",
+      "arxiv_id": "1305.3041v2",
+      "url": "https://arxiv.org/pdf/1305.3041v2",
+      "cache_path": "r8-harness-responses/search_raw/arxiv_1305.3041.pdf",
+      "sha256": "f551ed1e386663b70ee0fe544c20b9d0fb0db83a031fa9fe777c7dbc1847247a",
+      "bytes": 247527,
+      "absorbed_claim": "Cancellation-free circuits can be asymptotically larger than unrestricted XOR circuits, including at constant depth.",
+      "authority_boundary": "Primary technical source for donor absorption only; it supplies no bidirectional representation, move, terminal, or cost map to AB."
+    }
+  ],
+  "harness_notes_non_authoritative": {
+    "authority": "PROVENANCE_ONLY__NOT_PRIMARY_SOURCE_OR_NOVELTY_MATHEMATICAL_VENUE_JOURNAL_AUTHORITY",
+    "files": [
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.711a71eb817dc4ae98d31891769a76a70bdb78e3c71027a3dd86b40a4ab50173.response.json",
+        "sha256": "ca5554525f1dd21c2aa82f0e04d51168cb6f66045a7ced76b93604948d52a27d",
+        "bytes": 4380
+      },
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.dc6c1dcb885cbf245f5b8b22c63d1756e14816e9e9ca9533daa6fdd5aa5b6dcc.search-plan.json",
+        "sha256": "fc60e94ec359d3d5f836cce606c52c8485b47f17e4e74e72d01992873bda2942",
+        "bytes": 1300
+      },
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.web-round1.json",
+        "sha256": "1e6be097c15e6831394bcf4720215c4457e5b0581601c9ad6128fca4dc355cb4",
+        "bytes": 3853
+      },
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.web-round2-parent.json",
+        "sha256": "d26328454fbce4532cd5355f1a16fce46c8aeb3c7160f50f6c71287ee793fd07",
+        "bytes": 3381
+      },
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.web-round3-omission.json",
+        "sha256": "c39d6748e4980abe3a110297d0d4213ad6de52bae9661738c5d9cce773faae5e",
+        "bytes": 3209
+      },
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.web-round4-fresh.json",
+        "sha256": "eb5b44d4d4ae53c32e35d1ede2f0ec399b44f3fb0983a543d0736f5cb6d7b45d",
+        "bytes": 3146
+      }
+    ]
+  },
+  "integration_patch_binding": {
+    "path": "MINIMAL_SAFE_INTEGRATION_PATCH.diff",
+    "target_commit": "82e94b19b9b79733bd5353cb433e48fe338e4423",
+    "target_tree": "a81360e61b5c4bfed9a45009f419b77f01735a18",
+    "sha256": "0ebe9192f94839585a6d36661ffd0d9ce764a8b5490deb0faf88bfdd4a42d137",
+    "bytes": 12195,
+    "authority": "Narrow proposed manuscript and claim-ledger edits. Apply-check success does not grant theorem, novelty, external, runtime, physical, Q1, venue, or journal authority."
   }
 }

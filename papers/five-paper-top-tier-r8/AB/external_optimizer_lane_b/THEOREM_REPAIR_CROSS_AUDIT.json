@@ -1,0 +1,133 @@
+{
+  "schema": "orion.ab.theorem_repair_cross_audit.v1",
+  "frozen_at_utc": "2026-08-26T14:14:44Z",
+  "reviewed_commit": "82e94b19b9b79733bd5353cb433e48fe338e4423",
+  "reviewed_tree": "a81360e61b5c4bfed9a45009f419b77f01735a18",
+  "scientific_subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+  "scientific_subject_tree": "dbf96cce53d21d25584479fb740473293fae75e0",
+  "terminal": "AB_THEOREM_REPAIR_PARTIAL_PASS__T10_CONVENTION_REQUIRED",
+  "terminal_reason": "The hostile audit identifies the material premise gaps, but its nonempty-alphabet alternative for Theorem 10 is insufficient: a nonempty alphabet can still realize no nonzero kernel sum. An explicit empty-realized-kernel convention is required.",
+  "counterexample": {
+    "id": "T10_NONEMPTY_A_EMPTY_REALIZED_NONZERO_KERNEL_ALPHABET",
+    "H": "C2",
+    "K": "C2",
+    "phi": "identity",
+    "A": [
+      1
+    ],
+    "kernel": [
+      0
+    ],
+    "conclusion": "A is nonempty, but no nonzero kernel sum is realizable; Z_omega is therefore an empty maximum unless the manuscript defines Z_omega=0 for this case."
+  },
+  "objects": [
+    {
+      "id": "AB-T01",
+      "verdict": "PASS_WITH_STATED_BOUNDARIES",
+      "reason": "The hostile counterexamples correctly preserve attainment, persistent sound deletion, and persistent dominance as production premises."
+    },
+    {
+      "id": "AB-T02",
+      "verdict": "REPAIR_VALID",
+      "reason": "Requiring an alphabet containing a nonzero element makes the nonzero-total terminal universe nonempty."
+    },
+    {
+      "id": "AB-T03",
+      "verdict": "PASS_WITH_STATED_BOUNDARIES",
+      "reason": "The realization and irreducibility alternatives are correctly kept as bounded transfer certificates."
+    },
+    {
+      "id": "AB-T04",
+      "verdict": "PASS_WITH_STATED_BOUNDARIES",
+      "reason": "The diagonal C2 direct-sum witness correctly shows why axis separation is material."
+    },
+    {
+      "id": "AB-T05",
+      "verdict": "PASS_WITH_STATED_BOUNDARIES",
+      "reason": "The abstract factorization is sound only with a Cartesian state space, complete semantic supports, and additive size."
+    },
+    {
+      "id": "AB-COR06",
+      "verdict": "PASS_WITH_STATED_BOUNDARIES",
+      "reason": "Terminal-set monotonicity is set-theoretic; soundness remains an interpretation premise."
+    },
+    {
+      "id": "AB-T07",
+      "verdict": "PASS_WITH_STATED_BOUNDARIES",
+      "reason": "The standard independent cyclic-generator assumptions are explicit and necessary."
+    },
+    {
+      "id": "AB-MULTIPLICITY",
+      "verdict": "PASS_FINITE_REFORMULATION_ONLY",
+      "reason": "The multiplicity statement is an exact finite reformulation and carries no algorithmic-complexity conclusion."
+    },
+    {
+      "id": "AB-T08",
+      "verdict": "PASS_WITH_STATED_BOUNDARIES",
+      "reason": "The map must be a homomorphism and the image alphabet must be exactly realized."
+    },
+    {
+      "id": "AB-T09",
+      "verdict": "REPAIR_VALID",
+      "reason": "A nonempty source alphabet suffices for the displayed atom maximum used in the proof."
+    },
+    {
+      "id": "AB-T10",
+      "verdict": "REPAIR_INCOMPLETE",
+      "reason": "Nonempty A does not imply a nonempty realized nonzero-kernel alphabet; Z_omega=0 must be defined when no such sum is realized."
+    },
+    {
+      "id": "AB-T11",
+      "verdict": "PASS_WITH_STATED_BOUNDARIES",
+      "reason": "Nonnegative epsilon is clarifying but redundant for the displayed event-defect conclusion."
+    },
+    {
+      "id": "AB-T12",
+      "verdict": "REPAIR_VALID_WITH_WORDING_CORRECTION",
+      "reason": "The valid statement requires delta>=0, deletion-only descent without reactivation, and support at most z rather than support-z equality."
+    },
+    {
+      "id": "AB-PAULI-R8",
+      "verdict": "PASS_BOUND_SEPARATE_GRAMMAR_ONLY",
+      "reason": "The exact replay remains separate-grammar evidence and grants no novelty, Q1, physical-resource, or journal authority."
+    },
+    {
+      "id": "AB-T13",
+      "verdict": "PASS_INTERNAL_CALIBRATION_ONLY",
+      "reason": "The complete destructive XOR grammar survives the named attacks, but it has no external significance without a faithful realization."
+    },
+    {
+      "id": "AB-T14",
+      "verdict": "REPAIR_VALID_FOR_BLOCKWISE_EXTENSION",
+      "reason": "The fixed-budget asymptotic survives; multiplying ratios additionally requires a Cartesian-product enumerator with local budgets."
+    }
+  ],
+  "donor_absorption": {
+    "broad_claim": "DONOR_ABSORBED",
+    "absorbed_claim": "A stronger XOR/cancellation production language can strictly outperform a restricted cancellation-free language.",
+    "primary_sources": [
+      "10.1007/s00145-012-9124-7",
+      "10.1016/j.tcs.2014.10.014"
+    ],
+    "residual_boundary": "AB fuse removes both operands, whereas an XOR straight-line-program step adds u xor v while retaining reusable operands. No AB-specific external significance is established without a bidirectional representation, move, terminal, and cost map."
+  },
+  "integration_patch": {
+    "path": "MINIMAL_SAFE_INTEGRATION_PATCH.diff",
+    "target_commit": "82e94b19b9b79733bd5353cb433e48fe338e4423",
+    "target_tree": "a81360e61b5c4bfed9a45009f419b77f01735a18",
+    "sha256": "0ebe9192f94839585a6d36661ffd0d9ce764a8b5490deb0faf88bfdd4a42d137",
+    "bytes": 12195,
+    "apply_check": "PASS",
+    "repairs_t10_empty_realized_kernel_case": true,
+    "authority": "PROPOSED_NARROW_MANUSCRIPT_AND_CLAIM_LEDGER_EDIT_ONLY"
+  },
+  "claim_ceiling": {
+    "external_significance": "CANNOT_CHECK",
+    "novelty": "CANNOT_CHECK_FOR_DISTINCT_AB_CONTRACT",
+    "runtime_or_state_volume": "NOT_AUTHORIZED",
+    "physical_or_hardware_advantage": "NOT_AUTHORIZED",
+    "q1_extension": "NOT_AUTHORIZED",
+    "journal_readiness": "NOT_AUTHORIZED"
+  },
+  "adverse_outcomes_preserved": true
+}
