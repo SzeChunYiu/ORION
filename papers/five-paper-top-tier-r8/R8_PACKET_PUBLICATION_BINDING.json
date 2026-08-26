@@ -8,21 +8,20 @@
     "publication_readiness_delta": "NONE",
     "scientific_disposition": "NONE"
   },
-  "contract": "NON_SELF_REFERENTIAL_SUBJECT_PLUS_EXTERNAL_PUBLICATION_BINDING",
-  "packet_publication_binding": {
-    "binding_path": "papers/five-paper-top-tier-r8/R8_PACKET_PUBLICATION_BINDING.json",
-    "mode": "EXTERNAL_SUCCESSOR_RECORD",
+  "binding_architecture": {
+    "binding_record_self_identity_excluded": true,
+    "exact_checkout_resolution_required": true,
+    "packet_publication_is_bound_by_successor_record": true,
+    "reader_returns": "scientific_subject.commit",
+    "scientific_subject_is_distinct_from_packet_publication": true
+  },
+  "packet_publication": {
+    "bytes": 2214,
+    "commit": "a14dfe7872b1d3d814a0f784c359793e8bcadb3c",
+    "git_blob": "549a0d893d17fc5f632ca5084dd92e0f0df54f4b",
     "path": "papers/five-paper-top-tier-r8/R8_PACKET_COMMIT.json",
-    "required_identities": [
-      "commit",
-      "tree",
-      "path",
-      "git_blob",
-      "sha256",
-      "bytes"
-    ],
-    "required_schema": "ORION.FivePaperR8.PacketPublicationBinding.v1",
-    "self_reference_forbidden": true
+    "sha256": "1e445a1627b8027c2fe64c639dace2aadfd9e6dee5040b5ca824f4261b1e90aa",
+    "tree": "e8023f0b11b56d87ccfd222320995468ecabcef8"
   },
   "predecessor_packet": {
     "bytes": 222,
@@ -35,12 +34,7 @@
     "sha256": "f71faaea81e0a36a71a60ba7ad591682dccbe80d9e4082e02a4402e77a9f9129",
     "status": "PRESERVED_AS_HISTORICAL_INVALID_SELF_REFERENCE_ATTEMPT"
   },
-  "reader_contract": {
-    "binding_validation_required_before_output": true,
-    "output": "scientific_subject.commit",
-    "publication_commit_is_not_scientific_subject": true
-  },
-  "schema": "ORION.FivePaperR8.PacketIdentity.v2",
+  "schema": "ORION.FivePaperR8.PacketPublicationBinding.v1",
   "scientific_subject": {
     "commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
     "exact_checkout_required": true,
@@ -49,5 +43,6 @@
     "source_ref": "refs/heads/codex/five-paper-top-tier-r8-20260826",
     "source_ref_observed_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
     "tree": "dbf96cce53d21d25584479fb740473293fae75e0"
-  }
+  },
+  "terminal": "R8_PACKET_SUBJECT_AND_PUBLICATION_IDENTITIES_BOUND"
 }
