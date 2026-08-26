@@ -1,0 +1,54 @@
+name: Five-paper R9 C registered refinement menus
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/r9-c-minimum-refinement-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/solve_registered_refinement_menus_r9.py'
+      - '.github/workflows/five-paper-r9-c-registered-refinement-menus.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  solve-registered-menus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Solve exact and epsilon menus on all registered domains
+        run: |
+          python papers/five-paper-top-tier-r8/C/solve_registered_refinement_menus_r9.py \
+            --output /tmp/REGISTERED_REFINEMENT_MENUS_R9_RESULTS.json \
+            > /tmp/REGISTERED_REFINEMENT_MENUS_R9.stdout
+      - name: Validate authority and domain coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('/tmp/REGISTERED_REFINEMENT_MENUS_R9_RESULTS.json')
+          data = json.loads(p.read_text())
+          assert [row['domain'] for row in data['domains']] == [
+              'GRAPH_COLOURING_N6', 'SET_COVER_U5_M5', 'TWO_CNF_N4_M5'
+          ]
+          assert data['source']['structurally_independent_replay'] is False
+          assert data['authority']['production_feature_costs_validated'] is False
+          assert data['authority']['grants_journal_authority'] is False
+          for domain in data['domains']:
+              assert [row['epsilon'] for row in domain['epsilon_results']] == [0.0, 0.5, 1.0, 2.0]
+              assert all(row['terminal'] in {'EXACT_MENU_FOUND','EPSILON_MENU_FOUND','INFEASIBLE_MENU'} for row in domain['epsilon_results'])
+          PY
+      - name: Archive exact menu application
+        uses: actions/upload-artifact@v4
+        with:
+          name: c-registered-refinement-menus-r9
+          path: |
+            /tmp/REGISTERED_REFINEMENT_MENUS_R9_RESULTS.json
+            /tmp/REGISTERED_REFINEMENT_MENUS_R9.stdout
+          if-no-files-found: error
+          retention-days: 30
