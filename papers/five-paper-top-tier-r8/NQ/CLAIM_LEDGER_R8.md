@@ -13,3 +13,4 @@
 | NQ8-9 | `D_4(C_5^3)=30` or 31. | `OPEN` | No headline claim. |
 | NQ8-10 | Internal dual implementations constitute external independent replication. | `FORBIDDEN` | Clean-room external lane required. |
 | NQ8-11 | Failure to locate prior exact values proves novelty. | `FORBIDDEN` | Specialist audit and peer review required. |
+| NQ8-12 | LUNARC job 3542994 reran the frozen bounded Engine-A checkpoint/resource pilot; all 16 expected-outcome-exposed target calls returned `NEGATIVE`. | `ENGINEERING_PILOT_ONLY`; [`POST_EXECUTION_RECEIPT.json`](lunarc-bounded-pilot-v1/post-execution/job-3542994/POST_EXECUTION_RECEIPT.json) | Scientific and independence terminal `CANNOT_CHECK`; not a full census, independent replay, scientific negative, or two-engine increment. |
