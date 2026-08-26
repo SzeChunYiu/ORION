@@ -9564,7 +9564,7 @@
       "file": "study/p6/certificate_as_dependency_graph.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 554,
+      "lineno": 745,
       "missing_obligation": null,
       "reasons": [
         "baseline_discharged",
@@ -9579,7 +9579,7 @@
         "blocker",
         "outcome",
         "criterion",
-        "a condition is load-bearing only when dropping it yields a countermodel to some theorem on every one of the repeated runs. A theorem that merely stops being provable is not counted, because an unknown return is a fact about the search; and a theorem refuted on some runs but not others is reported separately rather than credited, because the solver's model search on this encoding is not deterministic. A condition whose searches did not settle is reported as undecided rather than as inert: an unknown return is a fact about the search in that direction too, and calling it an inert axiom is a claim the run does not support.",
+        "a condition is load-bearing only when dropping it yields a verified countermodel to its preregistered theorem on every one of the repeated runs. The publication-critical witnesses are explicit finite models, so their verification does not depend on timed model discovery. A theorem that merely stops being provable is not counted, because an unknown return is a fact about the search; and a theorem refuted on some runs but not others is reported separately rather than credited, because the solver's model search on this encoding is not deterministic. A condition whose searches did not settle is reported as undecided rather than as inert: an unknown return is a fact about the search in that direction too, and calling it an inert axiom is a claim the run does not support.",
         "insufficient_evidence_the_countermodel_search_did_not_settle"
       ],
       "role": "EMITS",
@@ -10719,7 +10719,7 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "8a966761677e9fac40bbbe69ed9a382cb2370206",
+  "subject_commit": "cc0b61c7da2d7ac0ccf0e0fe62506c3020025053",
   "total_sites": 722,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 115,
