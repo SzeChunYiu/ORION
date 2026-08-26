@@ -7,5 +7,6 @@ Purpose: build an offline-installable wheel set for the exact ORION and research
 - Verified packet: `ee685107cf537810fe17df67d7a6bd0f4c7a0116`
 - First green harness run: `32968184805`
 - First preserved receipt run: `32968580115`
+- SDK retry: build the harness wheel with the locally built exact-version ORION wheel rather than resolving that private dependency from the public index.
 
 This operational trigger grants no scientific authority.
