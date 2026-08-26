@@ -1,0 +1,42 @@
+{
+  "schema": "ORION.AB.MoveRegistryR9.v1",
+  "grammar_id": "F2D5_XOR_AGGREGATION",
+  "moves": [
+    {
+      "move_id": "DELETE_ZERO",
+      "quantification": "all nonempty proper source submultisets Z with XOR(Z)=0",
+      "preconditions": [
+        "source state is admissible",
+        "Z is nonempty and proper",
+        "XOR(Z)=0"
+      ],
+      "effect": "remove Z",
+      "semantic_effect": "total XOR unchanged",
+      "support_delta": "-|Z|",
+      "objective_effect": "strictly decreases",
+      "weak_language": true,
+      "production_language": true
+    },
+    {
+      "move_id": "FUSE_DISTINCT_PAIR",
+      "quantification": "all occurrences a,b with a != b",
+      "preconditions": [
+        "source state is admissible",
+        "a and b are distinct nonzero letters"
+      ],
+      "effect": "replace a,b by a XOR b",
+      "semantic_effect": "total XOR unchanged",
+      "support_delta": -1,
+      "objective_effect": "strictly decreases",
+      "closure_reason": "a XOR b is nonzero when a != b over F_2^5",
+      "weak_language": false,
+      "production_language": true
+    }
+  ],
+  "omission_audit": {
+    "status": "COMPLETE_BY_FROZEN_GRAMMAR_DEFINITION",
+    "auxiliary_state": false,
+    "global_hidden_moves": false,
+    "cross_component_moves": false
+  }
+}
