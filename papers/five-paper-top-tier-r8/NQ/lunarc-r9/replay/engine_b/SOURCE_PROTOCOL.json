@@ -11,7 +11,8 @@
   "blinded_independence": "NOT_CLAIMED",
   "certificate_policy": {
     "sat": "explicit disjoint occurrence-index bins, independently resummed",
-    "unsat": "CNF-bound DRUP trace; remains CANNOT_CHECK until externally checked"
+    "unsat": "deterministic DIMACS-CNF bytes plus CNF semantic digest and DRUP trace; each UNSAT remains CANNOT_CHECK until externally checked",
+    "external_checker": "source-pinned drat-trim protocol; materialized negative control is engineering-only and does not check a full census bundle"
   },
   "d4_policy": {
     "default": "OPEN",

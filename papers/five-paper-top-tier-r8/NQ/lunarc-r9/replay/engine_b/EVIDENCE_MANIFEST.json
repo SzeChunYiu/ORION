@@ -8,7 +8,7 @@
     {
       "bytes": 1099,
       "path": "NON_OUTCOME_VALIDATION.json",
-      "sha256": "95b3d3c60aefd307711aac8f0f87ec759b4489353a3189902203e501173aaa12"
+      "sha256": "2d8a56af2ee5e13a6e232a463d91a66cabe233e83515f5e05249a354d1fdeb74"
     },
     {
       "bytes": 2059,
@@ -21,9 +21,9 @@
       "sha256": "499a0c10bdc9a18e6f4eccb962d34190ee45e467a0627fe435cb461e75b5f46d"
     },
     {
-      "bytes": 3018,
+      "bytes": 3501,
       "path": "SOURCE_MANIFEST.json",
-      "sha256": "56daf4f1c221d7c5f1713a15ec81538914445d45ef3741729e3355d091ead627"
+      "sha256": "99530f4666af8b27bd43c4c71d7d9b7e7af42791e886bcb2563ac4a1101a2e6f"
     },
     {
       "bytes": 1177,
@@ -61,9 +61,34 @@
       "sha256": "9d68a6d49bee6ed68eb90b054249855c5249f405f6226d384e3fbeab616621bd"
     },
     {
+      "bytes": 5332,
+      "path": "controls/batch_proofs/negative-batch.cnf",
+      "sha256": "5756b2a592ff9b1162f5871a046eac61678b1c7153995fed4e342ca80fd64e0f"
+    },
+    {
       "bytes": 1951,
       "path": "controls/batch_proofs/negative-batch.drup",
       "sha256": "14caaf9679455c8ca0470715411ffcb7071e7b700e830f389a65712f3addf082"
+    },
+    {
+      "bytes": 2723,
+      "path": "controls/external_drup/EXTERNAL_DRUP_CONTROL_RECEIPT.json",
+      "sha256": "98e36365983ac5ed51432f4dae31e08e39c370171c2ae9174f077f9342a2af89"
+    },
+    {
+      "bytes": 922,
+      "path": "controls/external_drup/UNSAT_CONTROL_CERTIFICATE_V2.json",
+      "sha256": "51b599a67718a4a833043c10f3b9c38d17b23d50cf1403412982ef07239c70a7"
+    },
+    {
+      "bytes": 0,
+      "path": "controls/external_drup/negative-batch.drat-trim.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 364,
+      "path": "controls/external_drup/negative-batch.drat-trim.stdout",
+      "sha256": "6061a70584a250f94d94751f0df977d2990953b13c6eb80d439a0e7c0f268ba4"
     },
     {
       "bytes": 1951,
@@ -71,7 +96,7 @@
       "sha256": "14caaf9679455c8ca0470715411ffcb7071e7b700e830f389a65712f3addf082"
     }
   ],
-  "manifest_sha256": "e2598b05cfb0ea034ba51fe58fc172f285658a1eb106e476f2d74096f87f41f4",
+  "manifest_sha256": "ba8286bd9e985d5f4ddac27c34318424a57f7b22a0c8eb5ff6dfd5081db201c7",
   "schema": "ORION.NQ.EngineB.EvidenceManifest.v1",
   "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
 }

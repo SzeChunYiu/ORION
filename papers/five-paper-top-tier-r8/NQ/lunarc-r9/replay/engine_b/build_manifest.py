@@ -22,6 +22,7 @@ SOURCE_PATHS = tuple(
         (
             "BLINDING_DISCLOSURE.json",
             "CERTIFICATE_SCHEMA.json",
+            "EXTERNAL_DRUP_CHECKER_PROTOCOL.json",
             "INPUT_SCHEMA.json",
             "PROOF_OF_COMPLETENESS.md",
             "README.md",
@@ -31,11 +32,13 @@ SOURCE_PATHS = tuple(
             "batch_engine_b.py",
             "build_manifest.py",
             "engine_b.py",
+            "external_drup.py",
             "run_engine_b.py",
             "slurm/job_nq_r8_engine_b.slurm",
             "symmetry.py",
             "tests/test_batch_and_authority.py",
             "tests/test_engine_b_primitives.py",
+            "tests/test_external_drup.py",
             "tests/test_source_packet.py",
             "verify_receipt.py",
         )
@@ -93,8 +96,7 @@ def verify_source_manifest(root: Path, manifest: Mapping[str, Any]) -> None:
         raise SourceManifestMismatch("source manifest subject mismatch")
     files = manifest["files"]
     if type(files) is not list or any(
-        type(record) is not dict or set(record) != {"path", "bytes", "sha256"}
-        for record in files
+        type(record) is not dict or set(record) != {"path", "bytes", "sha256"} for record in files
     ):
         raise SourceManifestMismatch("source manifest file records are invalid")
     paths = [record["path"] for record in files]
@@ -115,9 +117,7 @@ def verify_source_manifest(root: Path, manifest: Mapping[str, Any]) -> None:
         try:
             data = source.read_bytes()
         except OSError as error:
-            raise SourceManifestMismatch(
-                f"source file is unavailable: {path}"
-            ) from error
+            raise SourceManifestMismatch(f"source file is unavailable: {path}") from error
         observed = {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
         if observed != {"bytes": record["bytes"], "sha256": record["sha256"]}:
             raise SourceManifestMismatch(f"source manifest mismatch for {path}")

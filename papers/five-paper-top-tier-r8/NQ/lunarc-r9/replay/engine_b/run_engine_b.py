@@ -26,17 +26,12 @@ def build_fixture_receipt(*, source_manifest_sha256: str) -> dict[str, object]:
             for element in eb.GROUP_ELEMENTS
         ),
         "primitive_inverse_law": all(
-            eb.add(element, eb.negate(element)) == eb.ZERO
-            for element in eb.GROUP_ELEMENTS
+            eb.add(element, eb.negate(element)) == eb.ZERO for element in eb.GROUP_ELEMENTS
         ),
         "positive_control_sat": positive_model is not None,
         "negative_control_unsat": negative_model is None,
-        "positive_matches_slow_reference": eb.has_k_disjoint_zero_sums_bruteforce(
-            positive, 2
-        ),
-        "negative_matches_slow_reference": not eb.has_k_disjoint_zero_sums_bruteforce(
-            negative, 2
-        ),
+        "positive_matches_slow_reference": eb.has_k_disjoint_zero_sums_bruteforce(positive, 2),
+        "negative_matches_slow_reference": not eb.has_k_disjoint_zero_sums_bruteforce(negative, 2),
     }
     if not all(checks.values()):
         raise RuntimeError("an Engine B non-outcome control failed")
@@ -67,9 +62,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=("fixtures", "execute"), required=True)
     parser.add_argument("--subject-commit", required=True)
-    parser.add_argument(
-        "--source-manifest", type=Path, default=root / "SOURCE_MANIFEST.json"
-    )
+    parser.add_argument("--source-manifest", type=Path, default=root / "SOURCE_MANIFEST.json")
     parser.add_argument("--input-root", type=Path)
     parser.add_argument("--input-manifest", type=Path)
     parser.add_argument("--output", type=Path, required=True)
@@ -90,9 +83,7 @@ def main() -> int:
     if args.mode == "fixtures":
         receipt = build_fixture_receipt(source_manifest_sha256=source_digest)
     else:
-        if not all(
-            (args.input_root, args.input_manifest, args.certificates, args.proof_root)
-        ):
+        if not all((args.input_root, args.input_manifest, args.certificates, args.proof_root)):
             raise SystemExit("execute mode requires input and certificate paths")
         input_manifest = json.loads(args.input_manifest.read_text())
         bundle = batch.verify_input_manifest(args.input_root, input_manifest)

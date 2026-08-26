@@ -30,9 +30,7 @@ def _write_bundle(root: Path, *, complete: bool = True) -> tuple[Path, Path]:
         },
     )
     stream = root / "records.jsonl"
-    stream.write_bytes(
-        b"".join(eb.canonical_json_bytes(record) + b"\n" for record in records)
-    )
+    stream.write_bytes(b"".join(eb.canonical_json_bytes(record) + b"\n" for record in records))
     coverage = root / "coverage.json"
     coverage.write_text(
         json.dumps(
@@ -112,9 +110,7 @@ def test_record_parser_rejects_noncanonical_lines_and_duplicate_ids(
 
 def test_fixture_receipt_preserves_open_and_imperfect_blinding_boundaries() -> None:
     receipt = run_engine_b.build_fixture_receipt(source_manifest_sha256="b" * 64)
-    assert (
-        receipt["payload"]["terminal"] == "NQ_ENGINE_B_NON_OUTCOME_FIXTURES_VALIDATED"
-    )
+    assert receipt["payload"]["terminal"] == "NQ_ENGINE_B_NON_OUTCOME_FIXTURES_VALIDATED"
     assert receipt["payload"]["d4_c5_cubed"] == "OPEN"
     assert receipt["payload"]["blinded_independence"] == "NOT_CLAIMED"
     assert receipt["payload"]["full_strata_closed"] is False
@@ -154,6 +150,8 @@ def test_unsat_certificate_binds_proof_without_claiming_it_was_checked(
     tmp_path: Path,
 ) -> None:
     encoded = eb.build_factorization_cnf((1, 4, 1), 2)
+    cnf_path = tmp_path / "r1.cnf"
+    batch.write_dimacs(encoded.cnf, cnf_path)
     proof = b"0\n"
     proof_path = tmp_path / "r1.drup"
     proof_path.write_bytes(proof)
@@ -161,15 +159,19 @@ def test_unsat_certificate_binds_proof_without_claiming_it_was_checked(
         record_id="r1",
         encoded=encoded,
         solver_identity="TEST_SOLVER",
+        cnf_path=cnf_path,
         proof_path=proof_path,
-        proof_root=tmp_path,
+        artifact_root=tmp_path,
     )
+    assert certificate["schema"] == "ORION.NQ.EngineB.UNSATCertificate.v2"
     assert certificate["status"] == "UNSAT_PROOF_EMITTED_REQUIRES_EXTERNAL_CHECK"
+    assert certificate["cnf"]["format"] == "DIMACS_CNF"
+    assert certificate["proof"]["externally_checked"] is False
     batch.verify_unsat_certificate_bindings(
         certificate,
         sequence=encoded.sequence,
         required_bins=2,
-        proof_root=tmp_path,
+        artifact_root=tmp_path,
     )
     proof_path.write_bytes(b"tampered\n")
     with pytest.raises(eb.CertificateMismatch, match="proof"):
@@ -177,7 +179,58 @@ def test_unsat_certificate_binds_proof_without_claiming_it_was_checked(
             certificate,
             sequence=encoded.sequence,
             required_bins=2,
-            proof_root=tmp_path,
+            artifact_root=tmp_path,
+        )
+
+
+def test_unsat_certificate_rejects_semantically_different_dimacs(
+    tmp_path: Path,
+) -> None:
+    encoded = eb.build_factorization_cnf((1, 4, 1), 2)
+    cnf_path = tmp_path / "r1.cnf"
+    cnf_path.write_bytes(batch.dimacs_bytes(encoded.cnf))
+    proof_path = tmp_path / "r1.drup"
+    proof_path.write_bytes(b"0\n")
+    certificate = batch.build_unsat_certificate(
+        record_id="r1",
+        encoded=encoded,
+        solver_identity="TEST_SOLVER",
+        cnf_path=cnf_path,
+        proof_path=proof_path,
+        artifact_root=tmp_path,
+    )
+    cnf_path.write_bytes(b"p cnf 1 1\n1 0\n")
+    with pytest.raises(eb.CertificateMismatch, match="cnf content"):
+        batch.verify_unsat_certificate_bindings(
+            certificate,
+            sequence=encoded.sequence,
+            required_bins=2,
+            artifact_root=tmp_path,
+        )
+
+
+def test_unsat_certificate_cannot_promote_its_status(tmp_path: Path) -> None:
+    encoded = eb.build_factorization_cnf((1, 4, 1), 2)
+    cnf_path = tmp_path / "r1.cnf"
+    batch.write_dimacs(encoded.cnf, cnf_path)
+    proof_path = tmp_path / "r1.drup"
+    proof_path.write_bytes(b"0\n")
+    certificate = batch.build_unsat_certificate(
+        record_id="r1",
+        encoded=encoded,
+        solver_identity="TEST_SOLVER",
+        cnf_path=cnf_path,
+        proof_path=proof_path,
+        artifact_root=tmp_path,
+    )
+    certificate["status"] = "UNSAT_EXTERNALLY_VERIFIED"
+    certificate["certificate_sha256"] = batch._certificate_digest(certificate)
+    with pytest.raises(eb.CertificateMismatch, match="status mismatch"):
+        batch.verify_unsat_certificate_bindings(
+            certificate,
+            sequence=encoded.sequence,
+            required_bins=2,
+            artifact_root=tmp_path,
         )
 
 
@@ -215,9 +268,7 @@ def test_receipt_digest_is_tamper_evident() -> None:
     assert (
         digest
         == hashlib.sha256(
-            eb.canonical_json_bytes(
-                {k: v for k, v in receipt.items() if k != "receipt_sha256"}
-            )
+            eb.canonical_json_bytes({k: v for k, v in receipt.items() if k != "receipt_sha256"})
         ).hexdigest()
     )
     receipt["payload"]["d4_c5_cubed"] = "CLOSED"

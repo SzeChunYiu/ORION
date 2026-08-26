@@ -121,11 +121,7 @@ def _engine_b_record(index: int, sequence: tuple[int, ...]) -> dict[str, Any]:
 
 
 def _reference_record(index: int, sequence: tuple[int, ...]) -> dict[str, Any]:
-    status = (
-        "POSITIVE"
-        if eb.has_k_disjoint_zero_sums_bruteforce(sequence, 2)
-        else "NEGATIVE"
-    )
+    status = "POSITIVE" if eb.has_k_disjoint_zero_sums_bruteforce(sequence, 2) else "NEGATIVE"
     payload = {
         "record_id": f"rank2-prefix-{index:03d}",
         "sequence_sha256": _sha256(list(sequence)),
@@ -145,8 +141,7 @@ def _combine_case_record(
     record_id = f"rank2-prefix-{index:03d}"
     sequence_sha256 = _sha256(list(sequence))
     if any(
-        record.get("record_id") != record_id
-        or record.get("sequence_sha256") != sequence_sha256
+        record.get("record_id") != record_id or record.get("sequence_sha256") != sequence_sha256
         for record in (engine_a, engine_b, reference)
     ):
         raise RuntimeError("independent control-pass identity mismatch")
@@ -190,15 +185,9 @@ def build_control_receipt() -> dict[str, Any]:
     reference_pass = tuple(
         _reference_record(index, sequence) for index, sequence in enumerate(sequences)
     )
-    engine_a_pass_sha256 = _sha256(
-        [record["record_sha256"] for record in engine_a_pass]
-    )
-    engine_b_pass_sha256 = _sha256(
-        [record["record_sha256"] for record in engine_b_pass]
-    )
-    reference_pass_sha256 = _sha256(
-        [record["record_sha256"] for record in reference_pass]
-    )
+    engine_a_pass_sha256 = _sha256([record["record_sha256"] for record in engine_a_pass])
+    engine_b_pass_sha256 = _sha256([record["record_sha256"] for record in engine_b_pass])
+    reference_pass_sha256 = _sha256([record["record_sha256"] for record in reference_pass])
     cases = tuple(
         _combine_case_record(index, sequence, engine_a, engine_b, reference)
         for index, (sequence, engine_a, engine_b, reference) in enumerate(
