@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ORION.NQ.EngineBSmallGroupIndependentOutputR9.schema.json",
+  "title": "Independent Engine-B small-group differential output",
+  "type": "object",
+  "required": [
+    "schema",
+    "input_manifest_sha256",
+    "implementation",
+    "case_results_path",
+    "case_results_sha256",
+    "case_count",
+    "disagreements",
+    "boundary_summary",
+    "terminal",
+    "authority"
+  ],
+  "properties": {
+    "schema": {"const": "ORION.NQ.EngineBSmallGroupIndependentOutputR9.v1"},
+    "input_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "implementation": {
+      "type": "object",
+      "required": [
+        "source_tree_sha256",
+        "language",
+        "solver",
+        "registered_oracle_imported",
+        "registered_zero_sum_masks_imported",
+        "registered_solver_trace_imported",
+        "independence_explanation"
+      ],
+      "properties": {
+        "source_tree_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "language": {"type": "string", "minLength": 1},
+        "solver": {"type": "string", "minLength": 1},
+        "registered_oracle_imported": {"const": false},
+        "registered_zero_sum_masks_imported": {"const": false},
+        "registered_solver_trace_imported": {"const": false},
+        "independence_explanation": {"type": "string", "minLength": 30}
+      },
+      "additionalProperties": true
+    },
+    "case_results_path": {"type": "string", "minLength": 1},
+    "case_results_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "case_count": {"const": 21604},
+    "disagreements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["case_id", "type", "registered_value", "independent_value", "trace_sha256"],
+        "properties": {
+          "case_id": {"type": "string", "minLength": 1},
+          "type": {
+            "enum": [
+              "SEQUENCE_ENCODING",
+              "ZERO_SUM_SUBSETS",
+              "PACKING_NUMBER",
+              "DK_BOUNDARY"
+            ]
+          },
+          "registered_value": {},
+          "independent_value": {},
+          "trace_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "boundary_summary": {
+      "type": "array",
+      "minItems": 22,
+      "items": {
+        "type": "object",
+        "required": [
+          "group",
+          "k",
+          "relation",
+          "sequence_length",
+          "case_count",
+          "independent_minimum_packing",
+          "registered_minimum_packing",
+          "agreement"
+        ],
+        "properties": {
+          "group": {"type": "string"},
+          "k": {"type": "integer", "minimum": 1},
+          "relation": {"enum": ["LOWER", "UPPER"]},
+          "sequence_length": {"type": "integer", "minimum": 1},
+          "case_count": {"type": "integer", "minimum": 1},
+          "independent_minimum_packing": {"type": "integer", "minimum": 0},
+          "registered_minimum_packing": {"type": "integer", "minimum": 0},
+          "agreement": {"type": "boolean"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "terminal": {
+      "enum": [
+        "AGREE_ALL_SMALL_GROUPS",
+        "DISAGREE_SEQUENCE_ENCODING",
+        "DISAGREE_ZERO_SUM_SUBSETS",
+        "DISAGREE_PACKING_NUMBER",
+        "DISAGREE_DK_BOUNDARY",
+        "RESOURCE_EXHAUSTED",
+        "CANNOT_CHECK"
+      ]
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "small_group_differential_only",
+        "independent_C5_3_replay",
+        "D3_C5_3_authority",
+        "D4_C5_3_authority",
+        "grants_journal_authority"
+      ],
+      "properties": {
+        "small_group_differential_only": {"const": true},
+        "independent_C5_3_replay": {"const": false},
+        "D3_C5_3_authority": {"const": false},
+        "D4_C5_3_authority": {"const": false},
+        "grants_journal_authority": {"const": false}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
