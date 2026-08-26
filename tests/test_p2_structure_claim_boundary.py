@@ -11,8 +11,10 @@ def test_structural_extension_does_not_rewrite_current_submission_claim():
         encoding="utf-8"
     )
 
-    assert "ORION-P2 = PEER_REVIEW_READY" in readiness
-    assert "External ORION-vs-baseline superiority remains `CANNOT_CHECK`" in readiness
+    assert "P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY" in readiness
+    assert "External ORION-vs-baseline superiority remains" in readiness
+    assert "`CANNOT_CHECK` and is not claimed" in readiness
     assert "P2_STRUCTURAL_DISCOVERY_SUPPORTED" not in manuscript
-    assert "The already peer-review-ready narrowed P2 manuscript" in extension
+    assert "The bounded narrowed P2 manuscript" in extension
+    assert "historical submission PDF remain immutable historical authority" in extension
     assert "does **not** broaden the current P2 headline" in extension

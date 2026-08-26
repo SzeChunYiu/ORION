@@ -28,6 +28,9 @@ TERMINAL_LINE = re.compile(r"^\*\*(?:Current )?Terminal:\*\*\s*(.+)$", re.IGNORE
 # prevent, and it fails in the inflating direction where nothing downstream
 # would catch it.
 PEER_REVIEW_READY_TOKEN = re.compile(r"PEER_REVIEW_READY(?![A-Za-z0-9_])")
+PACKAGE_NOT_SUBMISSION_READY_TOKEN = re.compile(
+    r"P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY(?![A-Za-z0-9_])"
+)
 READY_DECLARATION = re.compile(r"^\*\*`?ORION-P(?P<n>[1-5])\s*=\s*PEER_REVIEW_READY`?\.\*\*$")
 STATUS_LINE = re.compile(r"^\*\*Status:\*\*\s*(.+)$", re.IGNORECASE)
 
@@ -116,6 +119,7 @@ def parse_journal_readiness_terminal(text: str) -> str | None:
         value = match.group(1)
         ready_match = PEER_REVIEW_READY_TOKEN.search(value)
         cannot_match = re.search(r"\bCANNOT_CHECK\b", value)
+        package_not_ready_match = PACKAGE_NOT_SUBMISSION_READY_TOKEN.search(value)
         negated = re.search(
             r"\bnot\b[^*\n]*(?:PEER_REVIEW_READY(?![A-Za-z0-9_])|peer[- ]review[- ]ready)",
             value,
@@ -123,6 +127,12 @@ def parse_journal_readiness_terminal(text: str) -> str | None:
         )
         conditional = re.search(r"\b(?:when|once|after|until|if)\b", value, re.IGNORECASE)
         if negated or conditional:
+            return "CANNOT_CHECK"
+        # P2 separates its retained bounded scientific endpoint from the
+        # current-package axis.  This exact package terminal is an explicit
+        # non-readiness declaration, so the two-state publication scoreboard
+        # must classify it fail-closed rather than treating it as unparseable.
+        if package_not_ready_match:
             return "CANNOT_CHECK"
         # One machine-scored line must declare one terminal.  A line naming
         # both readiness and CANNOT_CHECK is unresolved and therefore fails

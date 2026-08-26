@@ -1,6 +1,6 @@
 # P2 additive manuscript bridge — structure-conditioned discovery routes
 
-**Status:** additive extension for #406/#407. The already peer-review-ready narrowed P2 manuscript and its current submission PDF remain immutable historical authority. This file is the canonical insertion text for a successor manuscript/version; it does **not** broaden the current P2 headline.
+**Status:** additive extension for #406/#407. The bounded narrowed P2 manuscript and its historical submission PDF remain immutable historical authority; the current package is not submission-ready. This file is the canonical insertion text for a successor manuscript/version; it does **not** broaden the current P2 headline.
 
 ## Structure-conditioned discovery routes
 

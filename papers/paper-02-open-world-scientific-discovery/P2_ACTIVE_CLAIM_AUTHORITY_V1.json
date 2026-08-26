@@ -1,0 +1,57 @@
+{
+  "schema": "ACTIVE_CLAIM_AUTHORITY_V1",
+  "paper_id": "P2",
+  "active_terminal": "P2_NARROWED",
+  "primary_endpoint": "P2_NARROWED",
+  "provenance": {
+    "kind": "LANE_TRANSCRIPTION_PENDING_AUTHOR_DESIGNATION",
+    "note": "Transcribed from the exact bounded terminal already authorized by the current claim ledger, not newly declared. The source line and every reader-facing source used for the transcription are bound below. An author designation supersedes this record; it does not depend on it.",
+    "transcribed_from": {
+      "artifact": "papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V2.md",
+      "line": 5,
+      "sha256": "f1495e21f66cfba6e22fdc0a7bdfa6853282889315fceb389db26fe795391277"
+    },
+    "transcribed_on": "2026-08-26",
+    "issue": "https://github.com/SzeChunYiu/ORION/issues/1131"
+  },
+  "evidence_bindings": {
+    "current_manuscript": {
+      "artifact": "papers/paper-02-open-world-scientific-discovery/manuscript/main.tex",
+      "sha256": "f78e940f3bab763e18d7b10e567686e0a4c67963cb28c8f833d103c34e56597f"
+    },
+    "claim_ledger": {
+      "artifact": "papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V2.md",
+      "sha256": "f1495e21f66cfba6e22fdc0a7bdfa6853282889315fceb389db26fe795391277"
+    },
+    "current_readiness": {
+      "artifact": "papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS.md",
+      "sha256": "73a5a187fbb456c58856b0dc2b5f663253118834983408ac503e9b745eb218dc"
+    }
+  },
+  "submission_readiness": {
+    "state": "NOT_SUBMISSION_READY",
+    "terminal": "P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY",
+    "artifact": "papers/paper-02-open-world-scientific-discovery/journal_package/MANIFEST.json",
+    "sha256": "0d365477276d0e9fabdf8386e0798a441ef3f2bef97e95134265a007932521d0"
+  },
+  "adverse_and_open_boundaries": [
+    "P2_SWIFT_V3_CROSS_REVIEW_CONTROLLER_FAILS_ONE_OR_MORE_PUBLIC_DEVELOPMENT_GATES_REQUIRES_SUCCESSOR",
+    "u4 was better on both endpoints in all five reviews",
+    "CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE",
+    "unavailable routes remain OPEN/CANNOT_CHECK rather than scientific zeros",
+    "resource censoring remains OPEN/CANNOT_CHECK rather than evidence of absence",
+    "external superiority CANNOT_CHECK",
+    "P2_V2_ACQUISITION_NOT_PROMOTED",
+    "P2_WIDE_EXTERNAL_CANNOT_CHECK"
+  ],
+  "forbidden_states": [
+    "P2_EXTERNAL_DISCOVERY_SUPERIORITY_SUPPORTED",
+    "P2_OPEN_WORLD_COMPLETENESS_SUPPORTED",
+    "P2_STRONG_DONOR_TRANSFER_SUPPORTED",
+    "P2_CURRENT_PACKAGE_SUBMISSION_READY",
+    "P2_EXTERNAL_AUTHORITY_CLOSED"
+  ],
+  "lifecycle_state": "ACTIVE_TRANSCRIBED_NOT_AUTHOR_DESIGNATED",
+  "external_validation": "CANNOT_CHECK",
+  "external_validation_note": "The bounded controlled-world, public-development, and exact-contract results do not establish matched external discovery superiority, donor-transfer validity, open-world completeness, independent external authority, or current-package submission readiness. Adverse, null, unavailable-route, invalid-transport, and resource-censored outcomes remain at their exact recorded authority."
+}

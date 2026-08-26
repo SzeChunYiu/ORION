@@ -27,12 +27,12 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from orion.programme.specialist_readiness_matrix import CANONICAL
+
 EXIT_PASS = 0
 EXIT_AMBIGUOUS = 2
 EXIT_CANNOT_CHECK = 3
 EXIT_MISSING = 4
-
-CANONICAL = tuple(f"paper-{i:02d}" for i in range(1, 16))
 
 #: Names explicitly marked historical are not competing current pointers. P12
 #: writes "`MANUSCRIPT.md` is a historical integrated review snapshot"; counting
@@ -97,12 +97,30 @@ def audit_repository(root: Path | None = None) -> list[PaperPointers]:
     if not papers.is_dir():
         raise FileNotFoundError(papers)
     out: list[PaperPointers] = []
-    for prefix in CANONICAL:
-        matches = sorted(d for d in papers.iterdir() if d.is_dir() and d.name.startswith(prefix))
-        if not matches:
-            out.append(PaperPointers(prefix, {k: 0 for k in PATTERNS}, {}, False))
-            continue
-        d = matches[0]
+    for paper_id, canonical_name in CANONICAL:
+        d = papers / canonical_name
+        if not d.is_dir():
+            # Synthetic test trees and incomplete historical checkouts may not
+            # carry the current slug. Preserve the old prefix fallback there,
+            # but never let a retained redirect outrank a present canonical
+            # directory (for example P2's retired paper-02-global-* redirect).
+            prefix = f"paper-{int(paper_id[1:]):02d}"
+            matches = sorted(
+                candidate
+                for candidate in papers.iterdir()
+                if candidate.is_dir() and candidate.name.startswith(prefix)
+            )
+            if not matches:
+                out.append(
+                    PaperPointers(
+                        canonical_name,
+                        {key: 0 for key in PATTERNS},
+                        {},
+                        False,
+                    )
+                )
+                continue
+            d = matches[0]
         readme = d / "README.md"
         if not readme.is_file():
             out.append(PaperPointers(d.name, {k: 0 for k in PATTERNS}, {}, False))

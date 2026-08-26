@@ -1,8 +1,20 @@
 # ORION-P2 journal readiness — narrowed publication track
 
-**Current terminal:** `ORION-P2 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18.
+**Current terminal:** `P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY`.
 
-**Scope of that terminal (not machine-scored, and deliberately adjacent to it):** `P2_NARROWED` remains the scientific scope receipt. External ORION-vs-baseline superiority remains `CANNOT_CHECK` and is **not** part of the ready claim. Nothing about that exclusion has changed; it moved off the terminal line because the scoreboard reads that one line and cannot represent a scoped verdict.
+**Scientific endpoint:** `P2_NARROWED` remains the bounded methods / critical
+system-design ceiling. External ORION-vs-baseline superiority remains
+`CANNOT_CHECK` and is not claimed.
+
+**Current authority:** `P2_ACTIVE_CLAIM_AUTHORITY_V1.json` transcribes that
+already authorized scientific endpoint and binds this readiness surface by
+digest. It is not an author designation, external validation, or submission
+authorization.
+
+The package axis fails closed independently of the scientific endpoint. The
+current manifest is `SUPERSEDED`, names `P2.CURRENT_PACKAGE` as `OPEN`, and sets
+`current_submission_authorized` to false. A historical inspected PDF is
+retained for provenance, but it does not render the current manuscript.
 
 That exclusion is now evidenced rather than only asserted. The four-arm
 TREC-COVID comparison in `external/P2_TREC_COVID_ARMS_V1.json` runs ORION's
@@ -26,9 +38,11 @@ The corpus is BEIR's 171,332-document trec-covid derivative rather than the
 terminal is separately `CANNOT_CHECK` because two of five routes are
 unavailable on this corpus. Both are recorded in the artifact.
 
-The `**Current terminal:**` line is the machine-scored declaration read by `research/publication/scoreboard.py`, which matches only `**Terminal:**` / `**Current terminal:**`. The previous `**Scientific terminal:**` / `**Publication terminal:**` pair carried the same meaning to a human reader and no meaning at all to the scoreboard, which reported this paper as having no scorable terminal.
-
-The terminal line then acquired a second problem, fixed above. It declared `PEER_REVIEW_READY` **and** named the excluded superiority claim as `CANNOT_CHECK` in the same sentence. That reads correctly to a person and is unresolvable for the parser, which treats any `CANNOT_CHECK` on the terminal line as the verdict — fail-closed, and therefore silent. P2 was scored `CANNOT_CHECK` with twelve blockers while its own fail-closed evidence gate (`orion.publication.peer_review_ready.evaluate_paper`) reported `ok=True` with none. The verdict and the scope now occupy separate lines, so the machine reads one claim and the reader still sees both.
+The single `**Current terminal:**` line is the machine-scored package
+declaration read by `research/publication/scoreboard.py`. The scientific
+endpoint and the external-superiority boundary are stated separately so a
+parser cannot collapse bounded scientific authority into package readiness or
+turn unavailable external evidence into either support or a valid null.
 
 Canonical scope receipt: `protocol/P2_NARROWED_PUBLICATION_TERMINAL_2026-08-17.md`.
 Dated nearest-work freeze: `protocol/P2_LITERATURE_ASSIMILATION_FREEZE_2026-08-17.md`.
@@ -128,16 +142,17 @@ Re-open the venue decision if a new external algorithmic superiority result or u
 - [x] source-bound donor assimilation ledger + hostile tests;
 - [x] expiring CI evidence is mirrored in the repository with per-file hashes; a repository-independent DOI is explicitly typed as a filing-time deposit operation and is not fabricated as scientific evidence.
 
-## 8. Mechanical submission gate
+## 8. Mechanical submission gate — current blockers
 
 - [x] target venue selected: IP&M.
 - [x] cover-letter draft is refreshed to the narrowed title/claim; author metadata remains a filing-time human input.
 - [x] supplement plan exists and its claim/evidence inventory is bound in the journal-package manifest.
-- [x] compile the narrowed manuscript and retain the checksummed 21-page PDF in `journal_package/manuscript.pdf`; the same workflow remains runnable in repository CI.
-- [x] run final reference-metadata and figure-legibility audit against that PDF; no unresolved citation/reference or overfull-box warning remains.
-- [x] complete independent final PDF/claim proofread across all rendered pages, figures, tables, abstract, limitations and conclusion.
+- [x] retain the earlier checksummed and visually inspected PDF as historical evidence; do not relabel it as a current render.
+- [ ] build a fresh immutable PDF from the current manuscript and bind the exact input closure.
+- [ ] complete page-level visual, reference, figure-legibility and claim audit on that fresh PDF.
+- [ ] bind the fresh PDF and audit into a current submission package whose manifest explicitly authorizes submission.
 - [x] preserve authorship as an explicit filing-time operation: use the double-anonymous placeholder until the authors supply the title-page metadata; automation does not infer identities.
-- [x] literature refresh is within 14 days on 2026-08-18; re-run only if actual submission occurs after 2026-08-31.
+- [ ] refresh the literature freeze before any submission after 2026-08-31.
 
 ## Issue mapping
 
@@ -145,8 +160,18 @@ Re-open the venue decision if a new external algorithmic superiority result or u
 - #279: close at `CANNOT_CHECK / REFUTED_OR_SHRINK`; external failure is candidate-generation dominated and the paper is explicitly shrunk instead of forcing a V2.
 - #317: close at `P2_NARROWED`; do not claim saturation.
 - #318: P2 consumer tranche is complete (source-bound receipts + hostile validator), but the shared P1/global issue remains open.
-- #99: the bounded publication track now passes section 8 and may close at `PEER_REVIEW_READY`; the maximal external-superiority programme remains explicit future work.
+- #99: the bounded scientific endpoint is retained, but section 8 remains open
+  until a current immutable render, page-level audit, and exact package binding
+  exist; the maximal external-superiority programme remains explicit future
+  work.
 
 ## Done definition
 
-`ORION-P2 = PEER_REVIEW_READY` on the narrowed claim because the manuscript compiles cleanly, reference/figure and independent PDF/claim checks pass, the dated literature state is current for the readiness date, and every unavailable or invalid external authority remains visible as `CANNOT_CHECK`/future work rather than being promoted into support.
+The scientific endpoint is `P2_NARROWED`, while the separate current-package
+terminal is
+`P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY`. The historical
+render and audit are retained without promotion. Submission remains blocked
+until the current source has a fresh immutable PDF, page-level visual and claim
+audit, and exact submission-package binding. Every unavailable or invalid
+external authority remains visible as `CANNOT_CHECK`/future work rather than
+being promoted into support.
