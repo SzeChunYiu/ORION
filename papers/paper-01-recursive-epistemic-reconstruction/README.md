@@ -3,6 +3,16 @@
 **Stable ID:** ORION-P1  
 **Status:** historical bounded V2 `PEER_REVIEW_READY_FOR_FROZEN_MECHANICAL_SUBJECT`; current enlarged manuscript `NOT_SUBMISSION_READY`. The later owner-algebra and V11--V13 programme has 0 certified maps, 720 `CANNOT_CHECK` maps, 0/7 signed external outputs and 0/4 closed authority acts; it does not rewrite the bounded mechanical result.
 
+## Current reader pointers
+
+- **Current manuscript:** `manuscript/main.tex`
+- **Current claim authority:** `P1_ACTIVE_CLAIM_AUTHORITY_V1.json`
+- **Current readiness:** `JOURNAL_READINESS.md`
+
+The authority record transcribes the already reported bounded scientific
+terminal; it is not an author designation, an external validation, or a
+submission authorization.
+
 ## Current package authority
 
 The current status is deliberately split along two axes:
