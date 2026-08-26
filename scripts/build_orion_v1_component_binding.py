@@ -391,7 +391,7 @@ def build_binding(
         "python": sys.version,
         "platform": platform.platform(),
         "git_version": str(_run_git(root, "--version")).strip(),
-        "elapsed_seconds": round(time.monotonic() - started, 6),
+        "elapsed_seconds": "NOT_CONTENT_BOUND",
         "unique_bound_blobs": len({row["blob_oid"] for row in global_rows}),
         "bound_bytes": sum(row["bytes"] for row in global_rows),
     }
