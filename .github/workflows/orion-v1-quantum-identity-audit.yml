@@ -1,0 +1,46 @@
+name: ORION V1 quantum identity audit
+
+on:
+  pull_request:
+    paths:
+      - "development/orion-v1-quantum-identity-bind-2026-08-26/**"
+      - "scripts/audit_orion_v1_quantum_identity.py"
+      - "tests/unit/orion_v1/test_quantum_identity_audit.py"
+      - "research/orion-v1-quantum-audit/results/V1-Q-IDENTITY-BIND-01/**"
+      - ".github/workflows/orion-v1-quantum-identity-audit.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_orion_v1_quantum_identity.py"
+      - "tests/unit/orion_v1/test_quantum_identity_audit.py"
+      - "research/orion-v1-quantum-audit/results/V1-Q-IDENTITY-BIND-01/**"
+      - ".github/workflows/orion-v1-quantum-identity-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  frozen-result-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test runner
+        run: python -m pip install pytest==8.4.1
+      - name: Compile audit
+        run: python -m py_compile scripts/audit_orion_v1_quantum_identity.py
+      - name: Run hostile unit tests
+        run: python -m pytest -q tests/unit/orion_v1/test_quantum_identity_audit.py
+      - name: Verify immutable result bindings
+        run: >-
+          python scripts/audit_orion_v1_quantum_identity.py --check
+          --output-dir research/orion-v1-quantum-audit/results/V1-Q-IDENTITY-BIND-01
+      - name: Enforce patch hygiene
+        run: git diff --check

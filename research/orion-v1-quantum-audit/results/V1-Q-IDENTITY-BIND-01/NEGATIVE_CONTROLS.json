@@ -1,0 +1,71 @@
+{
+  "all_rejected": true,
+  "authority_ceiling": {
+    "external_novelty": "CANNOT_CHECK",
+    "issue_closure_authority": "NONE",
+    "paper_authority_delta": "NONE",
+    "physical_quantum_validity": "CANNOT_CHECK",
+    "quantum_advantage": "CANNOT_CHECK",
+    "scientific_disposition": "NONE"
+  },
+  "controls": [
+    {
+      "control": "accept a lexical issue-number mention as a linked PR without context",
+      "rejection": "lexical issue-number mention accepted as linked PR",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "control": "assign a final scientific disposition from issue prose or checkbox state",
+      "rejection": "issue #632: scientific disposition or paper authority assigned",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "control": "drop #632 or #1366 instead of retaining explicit lexical-false-positive rows",
+      "rejection": "issue identity denominator mismatch",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "control": "duplicate an issue row",
+      "rejection": "duplicate issue identity row",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "control": "promote branch-only result bytes",
+      "rejection": "branch-only result bytes promoted to current-main evidence",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "control": "remove one of the 67 issue rows",
+      "rejection": "issue identity denominator mismatch",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "control": "replace an issue body with same-length different bytes",
+      "rejection": "issue #632: body SHA does not match frozen census (82d3a7d3e3a2aab32cfe075da6d3b6ccc992cde12be32fa37d3846de3ebd1145 != 6bf435f77b0c0c92546c386d9f148d245d37259d918b727848bb12d2b16f3fd8)",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "control": "transfer source quantum authority to a discovery or publication consumer",
+      "rejection": "source quantum authority transferred to consumer",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "control": "treat a merged PR whose merge commit is absent from main as current-main authority",
+      "rejection": "merge absent from main promoted to current-main authority",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "control": "treat a pull request as an issue",
+      "rejection": "issue #632: pull request treated as issue",
+      "status": "PASS_REJECTED"
+    },
+    {
+      "control": "truncate a comment or timeline page",
+      "rejection": "issue #632: incomplete pagination",
+      "status": "PASS_REJECTED"
+    }
+  ],
+  "count": 11,
+  "packet_id": "V1-Q-IDENTITY-BIND-01",
+  "schema": "ORION.V1.QuantumIdentityNegativeControls.v1"
+}
