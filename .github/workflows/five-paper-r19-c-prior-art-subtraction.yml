@@ -1,0 +1,93 @@
+name: five-paper-r19-c-prior-art-subtraction
+
+on:
+  push:
+    branches:
+      - chatgpt/r19-c-fiberguard-story-synthesis-20260827
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R19.md'
+      - 'papers/five-paper-top-tier-r8/C/check_fiberguard_prior_art_r19_v2.py'
+      - 'papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R19_RESULTS.json'
+      - '.github/workflows/five-paper-r19-c-prior-art-subtraction.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R19.md'
+      - 'papers/five-paper-top-tier-r8/C/check_fiberguard_prior_art_r19_v2.py'
+      - 'papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R19_RESULTS.json'
+      - '.github/workflows/five-paper-r19-c-prior-art-subtraction.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  primary-source-subtraction-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile and replay twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          script="$root/check_fiberguard_prior_art_r19_v2.py"
+          registered="$root/PRIOR_ART_MATRIX_C_R19_RESULTS.json"
+          python -m py_compile "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$registered"
+          grep -qx 'FIBERGUARD_R19_PRIOR_ART_SUBTRACTION_PASS' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify fail-closed novelty authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('papers/five-paper-top-tier-r8/C')
+          result = json.loads((root / 'PRIOR_ART_MATRIX_C_R19_RESULTS.json').read_text())
+          assert result['schema'] == 'ORION.FiberGuard.PriorArtMatrix.R19.v2'
+          assert result['source_rows'] == 26
+          assert result['required_primary_source_tokens'] == 12
+          assert result['donor_owned_areas'] == 9
+          assert result['forbidden_novelty_headlines'] == 7
+          assert result['residual_candidate_atoms'] == 6
+          assert all(result['controls'].values())
+          authority = result['authority']
+          assert authority['bounded_primary_source_subtraction'] == 'INTERNAL'
+          assert authority['external_specialist_review'] == 'CANNOT_CHECK'
+          assert authority['novelty'] == 'NOT_ESTABLISHED'
+          assert authority['journal_authority'] is False
+          print('FIBERGUARD_R19_PRIOR_ART_AUTHORITY_VALID')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable prior-art artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-prior-art-r19"
+          mkdir -p "$out"
+          cp papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R19.md "$out/"
+          cp papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R19_RESULTS.json "$out/"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-prior-art-r19
+          path: ${{ runner.temp }}/fiberguard-prior-art-r19/
+          if-no-files-found: error
+          retention-days: 30
