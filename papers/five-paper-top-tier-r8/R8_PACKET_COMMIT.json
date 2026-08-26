@@ -1,6 +1,53 @@
 {
-  "schema": "ORION.FivePaperR8.PacketCommit.v1",
-  "packet_commit": "TO_BE_BOUND_AFTER_MATERIALIZATION",
-  "base_commit": "99049ff6dfbdd78590bbdae0d24b9037aae83e3c",
-  "branch": "codex/five-paper-top-tier-r8-20260826"
+  "authority": {
+    "external_novelty": "CANNOT_CHECK",
+    "grants_execution_authority": false,
+    "grants_lunarc_submission": false,
+    "identity_authority": "ENGINEERING_CUSTODY_ONLY",
+    "paper_authority_delta": "NONE",
+    "publication_readiness_delta": "NONE",
+    "scientific_disposition": "NONE"
+  },
+  "contract": "NON_SELF_REFERENTIAL_SUBJECT_PLUS_EXTERNAL_PUBLICATION_BINDING",
+  "packet_publication_binding": {
+    "binding_path": "papers/five-paper-top-tier-r8/R8_PACKET_PUBLICATION_BINDING.json",
+    "mode": "EXTERNAL_SUCCESSOR_RECORD",
+    "path": "papers/five-paper-top-tier-r8/R8_PACKET_COMMIT.json",
+    "required_identities": [
+      "commit",
+      "tree",
+      "path",
+      "git_blob",
+      "sha256",
+      "bytes"
+    ],
+    "required_schema": "ORION.FivePaperR8.PacketPublicationBinding.v1",
+    "self_reference_forbidden": true
+  },
+  "predecessor_packet": {
+    "bytes": 222,
+    "git_blob": "2712ce1797fcc78d9b5ea9bf533809b2698d106a",
+    "path": "papers/five-paper-top-tier-r8/R8_PACKET_COMMIT.json",
+    "preserved_path": "papers/five-paper-top-tier-r8/R8_PACKET_COMMIT_V1_PRESERVED.json",
+    "publication_commit": "ee685107cf537810fe17df67d7a6bd0f4c7a0116",
+    "publication_tree": "71413511e5739daeadbaf29abdbd95d8fac976e8",
+    "schema": "ORION.FivePaperR8.PacketCommit.v1",
+    "sha256": "f71faaea81e0a36a71a60ba7ad591682dccbe80d9e4082e02a4402e77a9f9129",
+    "status": "PRESERVED_AS_HISTORICAL_INVALID_SELF_REFERENCE_ATTEMPT"
+  },
+  "reader_contract": {
+    "binding_validation_required_before_output": true,
+    "output": "scientific_subject.commit",
+    "publication_commit_is_not_scientific_subject": true
+  },
+  "schema": "ORION.FivePaperR8.PacketIdentity.v2",
+  "scientific_subject": {
+    "commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+    "exact_checkout_required": true,
+    "scope": "Immutable R8 programme snapshot at the latest exact observed remote head; identity binding only.",
+    "source_branch": "codex/five-paper-top-tier-r8-20260826",
+    "source_ref": "refs/heads/codex/five-paper-top-tier-r8-20260826",
+    "source_ref_observed_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+    "tree": "dbf96cce53d21d25584479fb740473293fae75e0"
+  }
 }
