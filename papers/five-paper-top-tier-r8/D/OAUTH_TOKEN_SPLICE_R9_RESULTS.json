@@ -1,0 +1,270 @@
+{
+  "authority": {
+    "general_prevalence": false,
+    "grants_journal_authority": false,
+    "independent_encoding_replay": false,
+    "independent_oauth_domain_review": false,
+    "legal_or_compliance_determination": false,
+    "official_rfc_grounded_protocol_fixture": true,
+    "real_implementation_vulnerability_measurement": false
+  },
+  "case_trace_sha256": "e8f18519b3df6e24a2899e20d36a43c46af1b6912ae968cd9f78d159bc217bfe",
+  "cases": [
+    {
+      "case_id": "CLEAN_BEARER_ADMIN",
+      "expected_authorized": true,
+      "mode": "bearer",
+      "typed_authorized": true,
+      "typed_authorized_coordinates": [
+        "tok:a|iss:trusted|sub:alice|aud:rs1"
+      ],
+      "untyped_authorized": true,
+      "untyped_false_positive": false,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "SAME_TOKEN_FRAGMENTATION_ALLOWED",
+      "expected_authorized": true,
+      "mode": "bearer",
+      "typed_authorized": true,
+      "typed_authorized_coordinates": [
+        "tok:a|iss:trusted|sub:alice|aud:rs1"
+      ],
+      "untyped_authorized": true,
+      "untyped_false_positive": false,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "DECLARED_MULTI_AUDIENCE_ADMIN",
+      "expected_authorized": true,
+      "mode": "bearer",
+      "typed_authorized": true,
+      "typed_authorized_coordinates": [
+        "tok:multi|iss:trusted|sub:alice|aud:rs1+rs2"
+      ],
+      "untyped_authorized": true,
+      "untyped_false_positive": false,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "READ_ONLY_TOKEN",
+      "expected_authorized": false,
+      "mode": "bearer",
+      "typed_authorized": false,
+      "typed_authorized_coordinates": [],
+      "untyped_authorized": false,
+      "untyped_false_positive": false,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID"
+      ]
+    },
+    {
+      "case_id": "AUDIENCE_SCOPE_SPLICE",
+      "expected_authorized": false,
+      "mode": "bearer",
+      "typed_authorized": false,
+      "typed_authorized_coordinates": [],
+      "untyped_authorized": true,
+      "untyped_false_positive": true,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "SUBJECT_SCOPE_SPLICE",
+      "expected_authorized": false,
+      "mode": "bearer",
+      "typed_authorized": false,
+      "typed_authorized_coordinates": [],
+      "untyped_authorized": true,
+      "untyped_false_positive": true,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "ISSUER_SCOPE_SPLICE",
+      "expected_authorized": false,
+      "mode": "bearer",
+      "typed_authorized": false,
+      "typed_authorized_coordinates": [],
+      "untyped_authorized": true,
+      "untyped_false_positive": true,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "EXPIRY_LAUNDERING",
+      "expected_authorized": false,
+      "mode": "bearer",
+      "typed_authorized": false,
+      "typed_authorized_coordinates": [],
+      "untyped_authorized": true,
+      "untyped_false_positive": true,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "REVOCATION_LAUNDERING",
+      "expected_authorized": false,
+      "mode": "bearer",
+      "typed_authorized": false,
+      "typed_authorized_coordinates": [],
+      "untyped_authorized": true,
+      "untyped_false_positive": true,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "CLEAN_DPOP_ADMIN",
+      "expected_authorized": true,
+      "mode": "dpop",
+      "typed_authorized": true,
+      "typed_authorized_coordinates": [
+        "tok:dpop-a|iss:trusted|sub:alice|aud:rs1|key:k1"
+      ],
+      "untyped_authorized": true,
+      "untyped_false_positive": false,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE",
+        "DPOP_CONTEXT_VALID",
+        "DPOP_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "DPOP_KEY_SPLICE",
+      "expected_authorized": false,
+      "mode": "dpop",
+      "typed_authorized": false,
+      "typed_authorized_coordinates": [],
+      "untyped_authorized": true,
+      "untyped_false_positive": true,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE",
+        "DPOP_CONTEXT_VALID",
+        "DPOP_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "DPOP_ATH_SPLICE",
+      "expected_authorized": false,
+      "mode": "dpop",
+      "typed_authorized": false,
+      "typed_authorized_coordinates": [],
+      "untyped_authorized": true,
+      "untyped_false_positive": true,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE",
+        "DPOP_CONTEXT_VALID",
+        "DPOP_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "DPOP_URI_SPLICE",
+      "expected_authorized": false,
+      "mode": "dpop",
+      "typed_authorized": false,
+      "typed_authorized_coordinates": [],
+      "untyped_authorized": true,
+      "untyped_false_positive": true,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE",
+        "DPOP_CONTEXT_VALID",
+        "DPOP_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    },
+    {
+      "case_id": "UNALIGNED_SAME_TOKEN_FRAGMENTS",
+      "expected_authorized": false,
+      "mode": "bearer",
+      "typed_authorized": false,
+      "typed_authorized_coordinates": [],
+      "untyped_authorized": true,
+      "untyped_false_positive": true,
+      "untyped_rule_trace": [
+        "JWT_CORE_VALID",
+        "RS1_ADMIN_ALICE_ENTITLEMENT",
+        "BEARER_AUTHORIZE_RS1_ADMIN_ALICE"
+      ]
+    }
+  ],
+  "content_sha256": "73cb197bbdfd5dafce5ea57f0e51ef8cc7c75f4f1b47f6fc47e3f8db739c5e2c",
+  "controls": {
+    "all_registered_splices_blocked": true,
+    "clean_bearer_authorized": true,
+    "clean_dpop_authorized": true,
+    "read_only_denied": true,
+    "same_token_fragmentation_authorized": true
+  },
+  "domain": "RFC_8707_9068_9449_9700_OAUTH_TOKEN_EVIDENCE_MERGE",
+  "inputs": {
+    "corpus_sha256": "0858ea2bd9aebbeea76ea0f8ec09bb183ecbb5bb0a9bca33778a907ffedad6a9",
+    "registered_source_ids": [
+      "RFC8707",
+      "RFC9068",
+      "RFC9449",
+      "RFC9700"
+    ],
+    "source_registry_sha256": "95080027f627e254ced726aacb89fd38b57e73993416c7665784d3d7a9b9fd11"
+  },
+  "model": {
+    "query": "authorize Alice for the RS1 admin action",
+    "typed": "positive Horn closure evaluated independently per content-bound token/request coordinate",
+    "untyped_baseline": "project coordinates away, union surviving facts, then run the same Horn rules"
+  },
+  "schema": "ORION.TypedAuthority.OAuthTokenSplicingR9.Results.v1",
+  "summary": {
+    "case_count": 14,
+    "independent_formula_agreement_count": 14,
+    "typed_expected_agreement": 14,
+    "typed_false_negative_count": 0,
+    "typed_false_positive_count": 0,
+    "untyped_expected_agreement": 5,
+    "untyped_false_positive_case_ids": [
+      "AUDIENCE_SCOPE_SPLICE",
+      "SUBJECT_SCOPE_SPLICE",
+      "ISSUER_SCOPE_SPLICE",
+      "EXPIRY_LAUNDERING",
+      "REVOCATION_LAUNDERING",
+      "DPOP_KEY_SPLICE",
+      "DPOP_ATH_SPLICE",
+      "DPOP_URI_SPLICE",
+      "UNALIGNED_SAME_TOKEN_FRAGMENTS"
+    ],
+    "untyped_false_positive_count": 9
+  },
+  "terminal": "D_RFC_GROUNDED_TOKEN_SPLICE_CORPUS__TYPED_BLOCKS_ALL_REGISTERED_UNTYPED_FALSE_POSITIVES"
+}
