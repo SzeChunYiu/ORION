@@ -220,6 +220,7 @@
   "des_execution": [
     {
       "claim_ceiling": "PROTECTED_PREFLIGHT_OR_PROSPECTIVE_MATCHED_STUDY_RESULT_ONLY__NO_MODEL_GENERAL_OPEN_ENDED_OR_EXTERNAL_SUPERIORITY_AUTHORITY",
+      "claim_ceiling_source_id": "p1_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P1-DES-01",
       "observed": 0,
@@ -238,6 +239,7 @@
     },
     {
       "claim_ceiling": "Public TREC-COVID qrels-bounded internal comparison only; no full P2 superiority, global closure, transfer, external independence, or paper-authority claim.",
+      "claim_ceiling_source_id": "p2_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P2-DES-01",
       "observed": 400,
@@ -256,6 +258,7 @@
     },
     {
       "claim_ceiling": "RIGHTS_AND_CASE_UNIVERSE_PREFLIGHT_ONLY__PREEXISTING_ONE_CASE_DEVELOPMENT_OUTCOMES_NOT_REUSED_AS_PROSPECTIVE_MULTI_CASE_EVIDENCE",
+      "claim_ceiling_source_id": "p3_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P3-DES-01",
       "observed": 0,
@@ -274,6 +277,7 @@
     },
     {
       "claim_ceiling": "SCIFACT_EXTERNAL_SEMANTIC_COORDINATE_AND_INTERNAL_POLICY_DIVERGENCE_ONLY__NO_INDEPENDENT_PROMOTION_TERMINAL_TRUTH__NO_POLICY_SUPERIORITY",
+      "claim_ceiling_source_id": "p4_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P4-DES-01",
       "observed": 900,
@@ -292,6 +296,7 @@
     },
     {
       "claim_ceiling": "PROTECTED_PREFLIGHT_OR_PROSPECTIVE_MATCHED_STUDY_RESULT_ONLY__NO_GENERAL_SELF_IMPROVEMENT_SUPERIORITY_ADOPTION_OR_EXTERNAL_AUTHORITY",
+      "claim_ceiling_source_id": "p5_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P5-DES-01",
       "observed": 0,
@@ -310,6 +315,7 @@
     },
     {
       "claim_ceiling": "BOUNDED_CONTENT_BOUND_REPLAY_OVER_16_PREEXISTING_REAL_TRANSITIONS_PLUS_INTERNAL_FINITE_CONTROLS__NO_BLINDED_PROSPECTIVE_EXTERNAL_NOVELTY_UNIVERSAL_MINIMALITY_OR_DEPLOYED_SYSTEM_SUPERIORITY_AUTHORITY",
+      "claim_ceiling_source_id": "p6_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P6-DES-01",
       "observed": 16,
@@ -328,6 +334,7 @@
     },
     {
       "claim_ceiling": "INVALID_EXECUTION_RECEIPT_ONLY__NO_REGIME_TRANSPORT_RESULT__NO_EXTERNAL_AUTHORITY",
+      "claim_ceiling_source_id": "p7_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P7-DES-01",
       "observed": 736,
@@ -346,6 +353,7 @@
     },
     {
       "claim_ceiling": "FRESH_NATIVE_BINARY_CONFORMANCE_REPLAY_AND_SAME_PROGRAMME_SCIENTIFIC_GOLD_ONLY__NOT_PROSPECTIVE__NO_EXTERNAL_ADJUDICATION_OR_DEPLOYED_IDEAL_PRODUCT_AUTHORITY",
+      "claim_ceiling_source_id": "p8_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P8-DES-01",
       "observed": 44,
@@ -364,6 +372,7 @@
     },
     {
       "claim_ceiling": "ACQUISITION_AND_PRECONDITION_RESULT_ONLY__NO_OPEN_WEIGHT_FRONTIER_CAUSE_TERMINAL_FLIP_NUMERICAL_IDENTITY_SCALING_LAW_OR_EXTERNAL_SUPERIORITY_AUTHORITY",
+      "claim_ceiling_source_id": "p9_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P9-DES-01",
       "observed": 0,
@@ -382,6 +391,7 @@
     },
     {
       "claim_ceiling": "FROZEN_ACQUISITION_PREFLIGHT_OR_PROTECTED_NATIVE_VERIFIER_RESULT_ONLY__NO_UNRESTRICTED_INVENTION_GENERAL_SUPERIORITY_OR_EXTERNAL_AUTHORITY",
+      "claim_ceiling_source_id": "p10_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P10-DES-01",
       "observed": 0,
@@ -400,6 +410,7 @@
     },
     {
       "claim_ceiling": "ACQUISITION_AUDIT_ONLY__ZERO_SCIENTIFIC_CASES_EXECUTED__NO_REAL_SYSTEM_REPLICATION_OR_RESOURCE_FRONTIER_AUTHORITY",
+      "claim_ceiling_source_id": "p11_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P11-DES-01",
       "observed": 8,
@@ -417,7 +428,8 @@
       "valid_path": "bound_requirements"
     },
     {
-      "claim_ceiling": null,
+      "claim_ceiling": "THEORY_PLUS_STOP_GO_BOUNDARY",
+      "claim_ceiling_source_id": "portfolio_claim_ledger",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P12-DES-01",
       "observed": 0,
@@ -436,6 +448,7 @@
     },
     {
       "claim_ceiling": "RETROSPECTIVE_INTERNAL_144_STATE_ACTION_CONTROL_ONLY__NO_FIVE_ARM_SHARED_PANEL__NO_PROSPECTIVE_EXTERNAL_LIFECYCLE_GOVERNANCE_NOVELTY_OR_POPULATION_AUTHORITY",
+      "claim_ceiling_source_id": "p13_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P13-DES-01",
       "observed": 288,
@@ -454,6 +467,7 @@
     },
     {
       "claim_ceiling": "EXTERNAL_ACQUISITION_PREFLIGHT_ONLY__ZERO_UNSEEN_INCIDENTS_EXECUTED__NO_CAUSAL_GOVERNANCE_OR_EXTERNAL_VALIDATION_AUTHORITY",
+      "claim_ceiling_source_id": "p14_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P14-DES-01",
       "observed": 8,
@@ -472,6 +486,7 @@
     },
     {
       "claim_ceiling": "P15-DES-01 may report only the frozen production study's attained terminal. Missing production transfers preserve all 50 planned cases and 6300 run cells as CANNOT_CHECK and add no production-scale, population, external-replication, site-independence, novelty, adoption or manuscript authority. Existing bounded positive and adverse P15 evidence remains unchanged.",
+      "claim_ceiling_source_id": "p15_des_packet",
       "external_authority_state": "CANNOT_CHECK",
       "job_id": "P15-DES-01",
       "observed": 0,
@@ -491,9 +506,9 @@
   ],
   "evidence_snapshot": {
     "schema": "orion.visualization.evidence-source-set.v1",
-    "source_catalog_sha256": "61f136d13e64efc780666575ea8d9b326d6bfeaed2bf328f93950ddd9d5c2d34",
+    "source_catalog_sha256": "8470318235b61783b6f09ac26b6e70a373fe603588fc0a0d900357e2e0c48575",
     "source_count": 43,
-    "source_set_sha256": "29b878fcf5265758ac8fb81c700e484350cf5987b1bcee38c511ba8cfbf16d1f"
+    "source_set_sha256": "831cbc6ca04cd43c719100ae4088d2b631b31f7f5e560b0324cd479125b5a35e"
   },
   "framework": {
     "edges": [
@@ -7066,7 +7081,7 @@
     {
       "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
       "bytes": 379886,
-      "declared_schema": "orion.des.result-binding-packet.v1",
+      "declared_schema": "orion.p9-des.result-binding-packet.v1",
       "detected_schema": "orion.p9-des.result-binding-packet.v1",
       "fields": [
         "job_id",
@@ -7134,7 +7149,7 @@
         "external_authority_state",
         "paper authority delta",
         "planned/observed/valid denominators",
-        "claim_ceiling"
+        "nonflat_successor_terminal"
       ],
       "id": "p12_des_packet",
       "paper": "P12",

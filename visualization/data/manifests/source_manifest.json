@@ -2,12 +2,12 @@
   "authority_boundary": "REPOSITORY_RECEIPTS_ONLY__NO_EXTERNAL_AUTHORITY_DELTA",
   "evidence_snapshot": {
     "schema": "orion.visualization.evidence-source-set.v1",
-    "source_catalog_sha256": "61f136d13e64efc780666575ea8d9b326d6bfeaed2bf328f93950ddd9d5c2d34",
+    "source_catalog_sha256": "8470318235b61783b6f09ac26b6e70a373fe603588fc0a0d900357e2e0c48575",
     "source_count": 43,
-    "source_set_sha256": "29b878fcf5265758ac8fb81c700e484350cf5987b1bcee38c511ba8cfbf16d1f"
+    "source_set_sha256": "831cbc6ca04cd43c719100ae4088d2b631b31f7f5e560b0324cd479125b5a35e"
   },
   "schema": "orion.visualization.source-manifest.v1",
-  "source_catalog_sha256": "61f136d13e64efc780666575ea8d9b326d6bfeaed2bf328f93950ddd9d5c2d34",
+  "source_catalog_sha256": "8470318235b61783b6f09ac26b6e70a373fe603588fc0a0d900357e2e0c48575",
   "source_count": 43,
   "sources": [
     {
@@ -583,7 +583,7 @@
     {
       "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
       "bytes": 379886,
-      "declared_schema": "orion.des.result-binding-packet.v1",
+      "declared_schema": "orion.p9-des.result-binding-packet.v1",
       "detected_schema": "orion.p9-des.result-binding-packet.v1",
       "fields": [
         "job_id",
@@ -651,7 +651,7 @@
         "external_authority_state",
         "paper authority delta",
         "planned/observed/valid denominators",
-        "claim_ceiling"
+        "nonflat_successor_terminal"
       ],
       "id": "p12_des_packet",
       "paper": "P12",

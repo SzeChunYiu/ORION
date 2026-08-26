@@ -6,6 +6,8 @@ import json
 import os
 from pathlib import Path
 
+import pytest
+
 
 ROOT = Path(__file__).resolve().parents[2]
 VIS = ROOT / "visualization"
@@ -71,6 +73,51 @@ def test_frozen_des_execution_layer_preserves_attempted_valid_and_authority_boun
     assert all(row["external_authority_state"] == "CANNOT_CHECK" for row in rows.values())
     assert all(row["paper_authority_delta"] == "NONE" for row in rows.values())
     assert all(0 <= row["valid"] <= row["observed"] <= row["planned"] for row in rows.values())
+
+
+def test_frozen_des_claim_ceilings_are_non_null_and_source_bound() -> None:
+    atlas = load_atlas()
+    rows = {row["paper"]: row for row in atlas["des_execution"]}
+
+    assert all(
+        isinstance(row["claim_ceiling"], str) and row["claim_ceiling"]
+        for row in rows.values()
+    )
+    assert rows["P12"]["claim_ceiling"] == "THEORY_PLUS_STOP_GO_BOUNDARY"
+    assert rows["P12"]["claim_ceiling_source_id"] == "portfolio_claim_ledger"
+
+
+def test_p9_des_catalog_schema_matches_the_bound_packet() -> None:
+    source = next(
+        row for row in load_atlas()["sources"] if row["id"] == "p9_des_packet"
+    )
+
+    expected = "orion.p9-des.result-binding-packet.v1"
+    assert source["declared_schema"] == expected
+    assert source["detected_schema"] == expected
+
+
+def test_des_source_manifest_rejects_declared_schema_mismatch(tmp_path: Path) -> None:
+    builder = load_script("build_data.py")
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text('{"schema":"actual.schema.v1"}\n', encoding="utf-8")
+    catalog = {
+        "sources": [
+            {
+                "id": "receipt",
+                "paper": "P1",
+                "path": "receipt.json",
+                "schema": "declared.schema.v1",
+                "role": "test receipt",
+                "authority_tier": "TEST_ONLY",
+                "transform_id": "des-coverage-v1",
+                "fields": ["schema"],
+            }
+        ]
+    }
+
+    with pytest.raises(ValueError, match="declared schema mismatch"):
+        builder.source_manifest(tmp_path, catalog)
 
 
 def test_framework_mechanics_layer_retains_finite_counts_failures_and_censoring() -> None:

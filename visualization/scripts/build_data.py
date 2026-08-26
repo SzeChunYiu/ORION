@@ -65,6 +65,17 @@ def source_manifest(
         if path.suffix == ".json":
             payload = read_json(path)
             payloads[entry["id"]] = payload
+        declared = entry["schema"]
+        observed = detected_schema(payload)
+        if (
+            entry["transform_id"] == "des-coverage-v1"
+            and observed is not None
+            and observed != declared
+        ):
+            raise ValueError(
+                f"{entry['id']} declared schema mismatch: "
+                f"catalog={declared!r}, source={observed!r}"
+            )
         records.append(
             {
                 "id": entry["id"],
@@ -72,8 +83,8 @@ def source_manifest(
                 "path": entry["path"],
                 "sha256": sha256(path),
                 "bytes": path.stat().st_size,
-                "declared_schema": entry["schema"],
-                "detected_schema": detected_schema(payload),
+                "declared_schema": declared,
+                "detected_schema": observed,
                 "role": entry["role"],
                 "authority_tier": entry["authority_tier"],
                 "transform_id": entry["transform_id"],
@@ -973,6 +984,23 @@ def normalize_des_execution(payloads: dict[str, Any]) -> list[dict[str, Any]]:
             raise ValueError(f"{paper} must retain paper authority delta NONE")
         if payload.get("external_authority_state") != "CANNOT_CHECK":
             raise ValueError(f"{paper} must retain external authority CANNOT_CHECK")
+        claim_ceiling = payload.get("claim_ceiling")
+        claim_ceiling_source_id = source_id
+        if claim_ceiling is None:
+            ledger_rows = [
+                row
+                for row in payloads["portfolio_claim_ledger"]["papers"]
+                if row.get("job_id") == payload["job_id"]
+            ]
+            if len(ledger_rows) != 1:
+                raise ValueError(f"{paper} lacks one claim-ceiling ledger binding")
+            ledger_row = ledger_rows[0]
+            if ledger_row.get("terminal") != payload["exact_terminal"]:
+                raise ValueError(f"{paper} claim-ceiling ledger terminal mismatch")
+            claim_ceiling = ledger_row.get("writing_class")
+            claim_ceiling_source_id = "portfolio_claim_ledger"
+        if not isinstance(claim_ceiling, str) or not claim_ceiling.strip():
+            raise ValueError(f"{paper} claim ceiling must be a non-empty string")
         rows.append(
             {
                 "paper": paper,
@@ -989,7 +1017,8 @@ def normalize_des_execution(payloads: dict[str, Any]) -> list[dict[str, Any]]:
                 "terminal": payload["exact_terminal"],
                 "external_authority_state": payload["external_authority_state"],
                 "paper_authority_delta": authority_delta,
-                "claim_ceiling": payload.get("claim_ceiling"),
+                "claim_ceiling": claim_ceiling,
+                "claim_ceiling_source_id": claim_ceiling_source_id,
                 "source_id": source_id,
             }
         )
