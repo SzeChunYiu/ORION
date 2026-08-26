@@ -73,10 +73,10 @@ def test_bootstrap_package_validates() -> None:
         "pending_issue_audits": 0,
         "jobs": 8,
         "gaps": 9,
-        "open_internal_gaps": 5,
+        "open_internal_gaps": 4,
         "external_blockers": 3,
         "paper_candidates": 3,
-        "manifest_files": 15,
+        "manifest_files": 16,
     }
 
 

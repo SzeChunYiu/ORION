@@ -1,0 +1,1740 @@
+{
+  "authority_delta": "NONE",
+  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "identity_collisions": [],
+  "mechanization": {
+    "authority": "SAME_PROGRAMME_LEAN_RECONSTRUCTION__INDEPENDENT_EXTERNAL_PROOF_REVIEW_PENDING",
+    "lean_build": "PASS",
+    "lean_build_evidence": "lake build on LUNARC at frozen base, Lean 4.33.0: Build completed successfully (4 jobs); one universe-linter warning; 30 theorem/lemma declarations; no sorry or axiom holes",
+    "lean_project": "research/orion-foundations-v3/formal/lean",
+    "lean_source_present_at_base": true,
+    "lean_toolchain": "leanprover/lean4:v4.33.0",
+    "note": "same-programme mechanization. Independent external proof review remains CANNOT_CHECK and is not granted here."
+  },
+  "proof_status_overclaims": [],
+  "schema": "ORION.V1.TheoremCensus.v1",
+  "summary": {
+    "declared_status": {
+      "PROVED_SCHEMA": 24,
+      "THEORY_COMPLETE_EXECUTION_PENDING": 77
+    },
+    "identity_collisions": 0,
+    "lean_status": {
+      "MECHANIZED_CORE": 21,
+      "MECHANIZED_DEFINITIONAL_COUPLING": 1,
+      "MECHANIZED_FINITE_WITNESSES": 1,
+      "STRUCTURAL_AUDIT_ONLY": 1
+    },
+    "ostc": 24,
+    "ostc_missing_proof_artifact": 0,
+    "paper_level": 77,
+    "proof_status_overclaims": 0,
+    "total": 101
+  },
+  "terminal": "V1_THEOREM_CENSUS_COMPLETE",
+  "theorems": [
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "STRUCTURAL_AUDIT_ONLY",
+      "machine_checked": "The operational and normal-form definitions are distinct source objects and incomplete-proof markers are rejected.",
+      "not_machine_checked": "A meta-theorem that no future operational rule is definitionally equivalent to the desired factorization.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "proof-assistant correspondence",
+      "theorem_id": "OSTC-T0",
+      "title": "Non-tautological operational semantics"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Trace-level donor projection commutes when each registered step commutes.",
+      "not_machine_checked": "Every P1-P15 concrete adapter.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "adapter-by-adapter execution",
+      "theorem_id": "OSTC-T1",
+      "title": "Donor-native conservativity"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Exact iff between decoder existence and target constancy on interface fibres.",
+      "not_machine_checked": "Admissible-construction/no-answer-laundering for every empirical encoder.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "large-domain instances",
+      "theorem_id": "OSTC-T2",
+      "title": "Exact target-sufficiency fibre theorem"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Pointwise fibre score maximization dominates every candidate decoder.",
+      "not_machine_checked": "The prose theorem's full finite probability-mass summation and empirical distribution estimation.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "distributional estimation",
+      "theorem_id": "OSTC-T3",
+      "title": "Exact Bayes risk under an interface"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Derivability under authority-neutral transformed seeds simulates into source derivability.",
+      "not_machine_checked": "Semantic neutrality of every real transformation.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "real workflow attacks",
+      "theorem_id": "OSTC-T4",
+      "title": "No silent scientific-authority amplification"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "A target outside source closure remains outside every neutral transformed closure.",
+      "not_machine_checked": "Completeness of bridge registries in external domains.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "real bridge corpus",
+      "theorem_id": "OSTC-T5",
+      "title": "Bridge necessity"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Every supplied normal-form witness replays to an operational witness in a normalization system.",
+      "not_machine_checked": "Concrete SANF validator correctness for every workflow adapter.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "proof-assistant reconstruction",
+      "theorem_id": "OSTC-T6",
+      "title": "SANF soundness"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Every operational witness extracts to a normal form in a normalization system.",
+      "not_machine_checked": "Applicability of W-dagger assumptions to naturalistic workflows.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "assumption applicability",
+      "theorem_id": "OSTC-T7",
+      "title": "SANF completeness for W-dagger"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_FINITE_WITNESSES",
+      "machine_checked": "One six-factor Boolean witness for omission of each load-bearing factor.",
+      "not_machine_checked": "Universal or cross-class minimality.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "countermodel census",
+      "theorem_id": "OSTC-T8",
+      "title": "Factor independence/minimality for W-dagger"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Two decoders factoring the same target through the same interface agree on all reachable interface values.",
+      "not_machine_checked": "Operational cost/robustness equivalence.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "ideal-product implementations",
+      "theorem_id": "OSTC-T9",
+      "title": "Scientific full abstraction"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Typed certificate composition preserves authority attenuation and source/target identities.",
+      "not_machine_checked": "All heterogeneous scientific bridge laws.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "heterogeneous compositions",
+      "theorem_id": "OSTC-T10",
+      "title": "Certificate composition/coherence"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "A judgment fails exactly when every complete support family contains a revoked token.",
+      "not_machine_checked": "Extraction of all complete support families from deployed workflows.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "production support graphs",
+      "theorem_id": "OSTC-T11",
+      "title": "Exact revocation with alternative support"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Observation-identical worlds with different truth defeat every observation-only decision rule.",
+      "not_machine_checked": "Positive coverage-model calibration.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "positive closure under assumptions",
+      "theorem_id": "OSTC-T12",
+      "title": "Finite-history open-world impossibility"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Function-level transport composition is associative; a mismatch point proves path inequality.",
+      "not_machine_checked": "Every regime-specific coherence square.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "real regime loops",
+      "theorem_id": "OSTC-T13",
+      "title": "Regime transport/path dependence"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Equal intervention signatures for distinct causes defeat exact signature-only decoding.",
+      "not_machine_checked": "Minimum intervention-set NP-hardness reduction.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "factorial campaigns",
+      "theorem_id": "OSTC-T14",
+      "title": "Intervention identifiability"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Old non-reachability and new reachability remain distinct proof objects.",
+      "not_machine_checked": "Completeness of real method-language closures.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "native verifier-backed tasks",
+      "theorem_id": "OSTC-T15",
+      "title": "Method obstruction/expansion"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Natural-number cancellation form of the scalar compilation break-even inequality.",
+      "not_machine_checked": "Vector-resource phase diagrams.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "phase-diagram experiments",
+      "theorem_id": "OSTC-T16",
+      "title": "State/computation placement phase law"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "One signal shared by cases with opposing unique optima forces regret on one case.",
+      "not_machine_checked": "General online-regret rates.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "online transfer",
+      "theorem_id": "OSTC-T17",
+      "title": "Vector allocation/coarsening regret"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Sufficiency for a paired responsibility is equivalent to sufficiency for each coordinate.",
+      "not_machine_checked": "Information-cardinality and communication lower bounds.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "real responsibilities",
+      "theorem_id": "OSTC-T18",
+      "title": "Responsibility-relative sufficiency"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Candidate-visible transcript collisions with different protected truth defeat every internal gate.",
+      "not_machine_checked": "A deployed protected-custody architecture.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "protected self-improvement",
+      "theorem_id": "OSTC-T19",
+      "title": "Reflexive custody impossibility"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "Execution-only maps preserve validity and authority projections.",
+      "not_machine_checked": "Soundness of external bridges from execution facts to scientific validity.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "production fault injection",
+      "theorem_id": "OSTC-T20",
+      "title": "Execution/science noninterference"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "No infinite natural-number rank can strictly decrease at every adopted step.",
+      "not_machine_checked": "Correctness of paper-specific rank functions.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "longitudinal campaigns",
+      "theorem_id": "OSTC-T21",
+      "title": "Governed recursive evolution termination"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_CORE",
+      "machine_checked": "A checked supplied witness establishes existence of a solution.",
+      "not_machine_checked": "The prose theorem's SAT reduction and polynomial/NP-hard complexity bounds.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "formal complexity mechanization",
+      "theorem_id": "OSTC-T22",
+      "title": "Synthesis/checking complexity separation"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "PROVED_SCHEMA",
+      "family": "OSTC",
+      "formal_domain": "W-dagger or theorem-specific declared class",
+      "lean_status": "MECHANIZED_DEFINITIONAL_COUPLING",
+      "machine_checked": "Scientific advance is the conjunction of availability and admission in the formal product definition.",
+      "not_machine_checked": "Empirical independence and prevalence of the two barriers.",
+      "proof_artifact": "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md",
+      "proof_artifact_present": true,
+      "remaining_verification": "cross-paper prediction tournament",
+      "theorem_id": "OSTC-T23",
+      "title": "Coupled scientific advance"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P1-01",
+      "family": "P1",
+      "formal_domain": "minimal responsibility-conditioned epistemic mutation",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T14",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P1::P1-T1",
+      "title": "P1-T1 formulation insufficiency"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P1-01",
+      "family": "P1",
+      "formal_domain": "minimal responsibility-conditioned epistemic mutation",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T14",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P1::P1-T2",
+      "title": "P1-T2 minimal repair"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P1-01",
+      "family": "P1",
+      "formal_domain": "minimal responsibility-conditioned epistemic mutation",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T14",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P1::P1-T3",
+      "title": "P1-T3 attribution identifiability"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P1-01",
+      "family": "P1",
+      "formal_domain": "minimal responsibility-conditioned epistemic mutation",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T14",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P1::P1-T4",
+      "title": "P1-T4 recursive termination"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P1-01",
+      "family": "P1",
+      "formal_domain": "minimal responsibility-conditioned epistemic mutation",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T14",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P1::P1-T5",
+      "title": "P1-T5 protected adoption"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P2-01",
+      "family": "P2",
+      "formal_domain": "assumption-indexed open-world closure",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T12"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P2::P2-T1",
+      "title": "P2-T1 closure impossibility"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P2-01",
+      "family": "P2",
+      "formal_domain": "assumption-indexed open-world closure",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T12"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P2::P2-T2",
+      "title": "P2-T2 bounded-universe closure"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P2-01",
+      "family": "P2",
+      "formal_domain": "assumption-indexed open-world closure",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T12"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P2::P2-T3",
+      "title": "P2-T3 capture-model certificate"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P2-01",
+      "family": "P2",
+      "formal_domain": "assumption-indexed open-world closure",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T12"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P2::P2-T4",
+      "title": "P2-T4 stopping hierarchy"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P3-01",
+      "family": "P3",
+      "formal_domain": "scientific gluing and obstruction",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T9"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P3::P3-T1",
+      "title": "P3-T1 gluing existence"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P3-01",
+      "family": "P3",
+      "formal_domain": "scientific gluing and obstruction",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T9"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P3::P3-T2",
+      "title": "P3-T2 uniqueness"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P3-01",
+      "family": "P3",
+      "formal_domain": "scientific gluing and obstruction",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T9"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P3::P3-T3",
+      "title": "P3-T3 pairwise/global separation"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P3-01",
+      "family": "P3",
+      "formal_domain": "scientific gluing and obstruction",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T9"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P3::P3-T4",
+      "title": "P3-T4 obstruction preservation"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P3-01",
+      "family": "P3",
+      "formal_domain": "scientific gluing and obstruction",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T9"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P3::P3-T5",
+      "title": "P3-T5 representation invariance"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P4-01",
+      "family": "P4",
+      "formal_domain": "authorized scientific full abstraction",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T3",
+        "OSTC-T6",
+        "OSTC-T7"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P4::P4-T1",
+      "title": "P4-T1 evaluator attainability"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P4-01",
+      "family": "P4",
+      "formal_domain": "authorized scientific full abstraction",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T3",
+        "OSTC-T6",
+        "OSTC-T7"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P4::P4-T2",
+      "title": "P4-T2 irreducible target risk"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P4-01",
+      "family": "P4",
+      "formal_domain": "authorized scientific full abstraction",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T3",
+        "OSTC-T6",
+        "OSTC-T7"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P4::P4-T3",
+      "title": "P4-T3 data processing"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P4-01",
+      "family": "P4",
+      "formal_domain": "authorized scientific full abstraction",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T3",
+        "OSTC-T6",
+        "OSTC-T7"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P4::P4-T4",
+      "title": "P4-T4 promotion normal form"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P4-01",
+      "family": "P4",
+      "formal_domain": "authorized scientific full abstraction",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T3",
+        "OSTC-T6",
+        "OSTC-T7"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P4::P4-T5",
+      "title": "P4-T5 nuisance identifiability"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P5-01",
+      "family": "P5",
+      "formal_domain": "protected recursive scientific improvement",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T14",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P5::P5-T1",
+      "title": "P5-T1 reflexive custody impossibility"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P5-01",
+      "family": "P5",
+      "formal_domain": "protected recursive scientific improvement",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T14",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P5::P5-T2",
+      "title": "P5-T2 protected adoption"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P5-01",
+      "family": "P5",
+      "formal_domain": "protected recursive scientific improvement",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T14",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P5::P5-T3",
+      "title": "P5-T3 sequential error control interface"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P5-01",
+      "family": "P5",
+      "formal_domain": "protected recursive scientific improvement",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T14",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P5::P5-T4",
+      "title": "P5-T4 causal credit"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P5-01",
+      "family": "P5",
+      "formal_domain": "protected recursive scientific improvement",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T14",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P5::P5-T5",
+      "title": "P5-T5 termination/history"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P6-01",
+      "family": "P6",
+      "formal_domain": "conservative certificate lifting",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T10",
+        "OSTC-T11",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P6::P6-T1",
+      "title": "P6-T1 exact survival"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P6-01",
+      "family": "P6",
+      "formal_domain": "conservative certificate lifting",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T10",
+        "OSTC-T11",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P6::P6-T2",
+      "title": "P6-T2 selective revalidation"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P6-01",
+      "family": "P6",
+      "formal_domain": "conservative certificate lifting",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T10",
+        "OSTC-T11",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P6::P6-T3",
+      "title": "P6-T3 alternative-support repair"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P6-01",
+      "family": "P6",
+      "formal_domain": "conservative certificate lifting",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T10",
+        "OSTC-T11",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P6::P6-T4",
+      "title": "P6-T4 repair NP-hardness"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P6-01",
+      "family": "P6",
+      "formal_domain": "conservative certificate lifting",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T10",
+        "OSTC-T11",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P6::P6-T5",
+      "title": "P6-T5 mechanic commutation"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P7-01",
+      "family": "P7",
+      "formal_domain": "closure-carrying regime transport",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T10",
+        "OSTC-T13"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P7::P7-T1",
+      "title": "P7-T1 transport soundness"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P7-01",
+      "family": "P7",
+      "formal_domain": "closure-carrying regime transport",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T10",
+        "OSTC-T13"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P7::P7-T2",
+      "title": "P7-T2 coherence"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P7-01",
+      "family": "P7",
+      "formal_domain": "closure-carrying regime transport",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T10",
+        "OSTC-T13"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P7::P7-T3",
+      "title": "P7-T3 path dependence"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P7-01",
+      "family": "P7",
+      "formal_domain": "closure-carrying regime transport",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T10",
+        "OSTC-T13"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P7::P7-T4",
+      "title": "P7-T4 maximal sound abstraction"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P7-01",
+      "family": "P7",
+      "formal_domain": "closure-carrying regime transport",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T10",
+        "OSTC-T13"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P7::P7-T5",
+      "title": "P7-T5 opacity price"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P8-01",
+      "family": "P8",
+      "formal_domain": "typed scientific authority algebra",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T4",
+        "OSTC-T5",
+        "OSTC-T10",
+        "OSTC-T11"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P8::P8-T1",
+      "title": "P8-T1 no amplification"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P8-01",
+      "family": "P8",
+      "formal_domain": "typed scientific authority algebra",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T4",
+        "OSTC-T5",
+        "OSTC-T10",
+        "OSTC-T11"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P8::P8-T2",
+      "title": "P8-T2 permission/discharge separation"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P8-01",
+      "family": "P8",
+      "formal_domain": "typed scientific authority algebra",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T4",
+        "OSTC-T5",
+        "OSTC-T10",
+        "OSTC-T11"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P8::P8-T3",
+      "title": "P8-T3 coercion composition"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P8-01",
+      "family": "P8",
+      "formal_domain": "typed scientific authority algebra",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T4",
+        "OSTC-T5",
+        "OSTC-T10",
+        "OSTC-T11"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P8::P8-T4",
+      "title": "P8-T4 exact revocation"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P8-01",
+      "family": "P8",
+      "formal_domain": "typed scientific authority algebra",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T4",
+        "OSTC-T5",
+        "OSTC-T10",
+        "OSTC-T11"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P8::P8-T5",
+      "title": "P8-T5 decentralized equivalence"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P8-01",
+      "family": "P8",
+      "formal_domain": "typed scientific authority algebra",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T4",
+        "OSTC-T5",
+        "OSTC-T10",
+        "OSTC-T11"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P8::P8-T6",
+      "title": "P8-T6 cycle safety"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P9-01",
+      "family": "P9",
+      "formal_domain": "interventional capability-failure diagnosis",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T3",
+        "OSTC-T14",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P9::P9-T1",
+      "title": "P9-T1 diagnosis identifiability"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P9-01",
+      "family": "P9",
+      "formal_domain": "interventional capability-failure diagnosis",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T3",
+        "OSTC-T14",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P9::P9-T2",
+      "title": "P9-T2 minimum design NP-hardness"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P9-01",
+      "family": "P9",
+      "formal_domain": "interventional capability-failure diagnosis",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T3",
+        "OSTC-T14",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P9::P9-T3",
+      "title": "P9-T3 access deficiency"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P9-01",
+      "family": "P9",
+      "formal_domain": "interventional capability-failure diagnosis",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T3",
+        "OSTC-T14",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P9::P9-T4",
+      "title": "P9-T4 compute non-substitution"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P9-01",
+      "family": "P9",
+      "formal_domain": "interventional capability-failure diagnosis",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T2",
+        "OSTC-T3",
+        "OSTC-T14",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P9::P9-T5",
+      "title": "P9-T5 vector accounting"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P10-01",
+      "family": "P10",
+      "formal_domain": "obstruction-certified method expansion",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T15",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P10::P10-T1",
+      "title": "P10-T1 exact obstruction"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P10-01",
+      "family": "P10",
+      "formal_domain": "obstruction-certified method expansion",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T15",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P10::P10-T2",
+      "title": "P10-T2 semantic expansion"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P10-01",
+      "family": "P10",
+      "formal_domain": "obstruction-certified method expansion",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T15",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P10::P10-T3",
+      "title": "P10-T3 macro rejection"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P10-01",
+      "family": "P10",
+      "formal_domain": "obstruction-certified method expansion",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T15",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P10::P10-T4",
+      "title": "P10-T4 minimal expansion"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P10-01",
+      "family": "P10",
+      "formal_domain": "obstruction-certified method expansion",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T15",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P10::P10-T5",
+      "title": "P10-T5 transfer"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P10-01",
+      "family": "P10",
+      "formal_domain": "obstruction-certified method expansion",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T15",
+        "OSTC-T22"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P10::P10-T6",
+      "title": "P10-T6 synthesis/checking separation"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P11-01",
+      "family": "P11",
+      "formal_domain": "responsibility-relative state/computation/optionality",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T16",
+        "OSTC-T18"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P11::P11-T1",
+      "title": "P11-T1 state lower bound"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P11-01",
+      "family": "P11",
+      "formal_domain": "responsibility-relative state/computation/optionality",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T16",
+        "OSTC-T18"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P11::P11-T2",
+      "title": "P11-T2 break-even"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P11-01",
+      "family": "P11",
+      "formal_domain": "responsibility-relative state/computation/optionality",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T16",
+        "OSTC-T18"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P11::P11-T3",
+      "title": "P11-T3 optionality"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P11-01",
+      "family": "P11",
+      "formal_domain": "responsibility-relative state/computation/optionality",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T16",
+        "OSTC-T18"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P11::P11-T4",
+      "title": "P11-T4 decoder boundary"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P11-01",
+      "family": "P11",
+      "formal_domain": "responsibility-relative state/computation/optionality",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T16",
+        "OSTC-T18"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P11::P11-T5",
+      "title": "P11-T5 phase diagram"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P12-01",
+      "family": "P12",
+      "formal_domain": "online vector scientific metareasoning",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T17"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P12::P12-T1",
+      "title": "P12-T1 exact-certificate optimality"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P12-01",
+      "family": "P12",
+      "formal_domain": "online vector scientific metareasoning",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T17"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P12::P12-T2",
+      "title": "P12-T2 coarsening impossibility"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P12-01",
+      "family": "P12",
+      "formal_domain": "online vector scientific metareasoning",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T17"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P12::P12-T3",
+      "title": "P12-T3 certificate value"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P12-01",
+      "family": "P12",
+      "formal_domain": "online vector scientific metareasoning",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T17"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P12::P12-T4",
+      "title": "P12-T4 robust selection"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P12-01",
+      "family": "P12",
+      "formal_domain": "online vector scientific metareasoning",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T17"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P12::P12-T5",
+      "title": "P12-T5 online regret interface"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P13-01",
+      "family": "P13",
+      "formal_domain": "responsibility lattice and safe reuse",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T11",
+        "OSTC-T13",
+        "OSTC-T18"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P13::P13-T1",
+      "title": "P13-T1 joint sufficient state"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P13-01",
+      "family": "P13",
+      "formal_domain": "responsibility lattice and safe reuse",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T11",
+        "OSTC-T13",
+        "OSTC-T18"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P13::P13-T2",
+      "title": "P13-T2 safe reuse"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P13-01",
+      "family": "P13",
+      "formal_domain": "responsibility lattice and safe reuse",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T11",
+        "OSTC-T13",
+        "OSTC-T18"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P13::P13-T3",
+      "title": "P13-T3 drift transport"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P13-01",
+      "family": "P13",
+      "formal_domain": "responsibility lattice and safe reuse",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T11",
+        "OSTC-T13",
+        "OSTC-T18"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P13::P13-T4",
+      "title": "P13-T4 conditional reissue"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P13-01",
+      "family": "P13",
+      "formal_domain": "responsibility lattice and safe reuse",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T11",
+        "OSTC-T13",
+        "OSTC-T18"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P13::P13-T5",
+      "title": "P13-T5 revocation locality"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P14-01",
+      "family": "P14",
+      "formal_domain": "causal governance and identifiable evaluation",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T13",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P14::P14-T1",
+      "title": "P14-T1 gate attainability"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P14-01",
+      "family": "P14",
+      "formal_domain": "causal governance and identifiable evaluation",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T13",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P14::P14-T2",
+      "title": "P14-T2 policy/gold separation"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P14-01",
+      "family": "P14",
+      "formal_domain": "causal governance and identifiable evaluation",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T13",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P14::P14-T3",
+      "title": "P14-T3 abstention guard"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P14-01",
+      "family": "P14",
+      "formal_domain": "causal governance and identifiable evaluation",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T13",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P14::P14-T4",
+      "title": "P14-T4 negative-history value"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P14-01",
+      "family": "P14",
+      "formal_domain": "causal governance and identifiable evaluation",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T13",
+        "OSTC-T19",
+        "OSTC-T21"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P14::P14-T5",
+      "title": "P14-T5 longitudinal reopening"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P15-01",
+      "family": "P15",
+      "formal_domain": "layered scientific execution integrity",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T9",
+        "OSTC-T20"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P15::P15-T1",
+      "title": "P15-T1 execution/science noninterference"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P15-01",
+      "family": "P15",
+      "formal_domain": "layered scientific execution integrity",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T9",
+        "OSTC-T20"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P15::P15-T2",
+      "title": "P15-T2 receipt indistinguishability"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P15-01",
+      "family": "P15",
+      "formal_domain": "layered scientific execution integrity",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T9",
+        "OSTC-T20"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P15::P15-T3",
+      "title": "P15-T3 attestation boundary"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P15-01",
+      "family": "P15",
+      "formal_domain": "layered scientific execution integrity",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T9",
+        "OSTC-T20"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P15::P15-T4",
+      "title": "P15-T4 threshold trust"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P15-01",
+      "family": "P15",
+      "formal_domain": "layered scientific execution integrity",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T9",
+        "OSTC-T20"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P15::P15-T5",
+      "title": "P15-T5 publication linearizability"
+    },
+    {
+      "authority_delta": "NONE",
+      "declared_status": "THEORY_COMPLETE_EXECUTION_PENDING",
+      "execution_job": "EXEC-P15-01",
+      "family": "P15",
+      "formal_domain": "layered scientific execution integrity",
+      "lean_status": "NOT_APPLICABLE_PAPER_LEVEL",
+      "ostc_dependencies": [
+        "OSTC-T9",
+        "OSTC-T20"
+      ],
+      "proof_artifact": null,
+      "proof_artifact_present": false,
+      "remaining_verification": "bound to the paper's own execution job",
+      "theorem_id": "P15::P15-T6",
+      "title": "P15-T6 provenance invariance"
+    }
+  ]
+}

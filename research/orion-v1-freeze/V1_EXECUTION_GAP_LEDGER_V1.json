@@ -22,11 +22,26 @@
     },
     {
       "blocks_freeze": true,
+      "census_artifact": "research/orion-v1-freeze/V1_THEOREM_CENSUS_V1.json",
+      "census_terminal": "V1_THEOREM_CENSUS_COMPLETE",
       "class": "INTERNAL_LOCAL",
+      "coverage_note": "theorem-ledger coverage.complete stays false while freeze_state is OPEN_BOOTSTRAP; the checker forbids a bootstrap completeness claim, so completeness flips atomically with the FROZEN transition",
       "discharge_job": "V1-THEOREM-CENSUS-01",
       "gap_id": "GAP-INTERNAL-THEOREM-CENSUS",
       "owner": "V1_FREEZE_THEORY_AND_SYSTEM_LANE",
-      "status": "OPEN"
+      "resolution_evidence": {
+        "external_proof_review": "CANNOT_CHECK \u2014 same-programme mechanization only, not independently adjudicated",
+        "identity_collisions": 0,
+        "lean_build": "PASS \u2014 lake build at frozen base on LUNARC, Lean 4.33.0, no sorry/axiom holes",
+        "mechanized_ostc": 23,
+        "ostc": 24,
+        "ostc_missing_proof_artifact": 0,
+        "paper_level": 77,
+        "proof_status_overclaims": 0,
+        "structural_audit_only": 1,
+        "theorems_enumerated": 101
+      },
+      "status": "RESOLVED"
     },
     {
       "blocks_freeze": true,
