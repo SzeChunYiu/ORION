@@ -1,7 +1,18 @@
 # Paper 03 — Global Knowledge Portrait
 
 **Stable ID:** ORION-P3  
-**Status:** `PEER_REVIEW_READY` for the scoped scientific-identity-authority paper.
+**Status:** `SCOPED_STRUCTURED_INTEGRATION_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY`.
+
+## Current reader pointers
+
+- **Current manuscript:** `manuscript/main.tex`
+- **Current claim authority:** `P3_ACTIVE_CLAIM_AUTHORITY_V1.json`
+- **Current readiness:** `JOURNAL_READINESS.md`
+
+The authority record transcribes the already reported bounded scientific
+terminal; it is not an author designation, an external validation, or a
+submission authorization. The retained journal PDF is historical and must not
+be relabelled as the current manuscript.
 
 ## Scoped contribution
 
@@ -19,7 +30,7 @@ The paper absorbs and credits mechanisms from scientific schema/provenance/knowl
 
 ## Explicit nonclaims / future work
 
-The current ready paper does **not** claim:
+The current scoped paper does **not** claim:
 
 - raw-text end-to-end scientific-integration superiority (P3.C7);
 - downstream scientific answer-quality improvement (P3.C8);
@@ -32,10 +43,15 @@ Those are future research questions requiring new prospective evidence; their ab
 ## Reproduction and package
 
 - `JOURNAL_READINESS.md` — exact bounded readiness boundary;
-- `CLAIM_LEDGER_V1.md` and `CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md` — sentence/evidence authority;
+- `CLAIM_LEDGER_V1.md` — sentence/evidence authority and the route to its manuscript map;
 - `REPRODUCE.md` — short deterministic headline reproduction route;
 - `evidence/PEER_REVIEW_READY_SCOPED_V1.md` — scoped terminal attestation;
 - `journal_package/` — venue/package/checksum/PDF audit;
 - `.github/workflows/p3-manuscript-audit.yml` — exact-head static claim/citation/input checks plus converged PDF build.
 
-The `PEER_REVIEW_READY` terminal is consumed only on a final PR head where repository CI and `p3-manuscript-audit` both pass. Author/funding/conflict/DOI/portal fields and confidential journal review remain external submission/post-submission operations.
+The bounded scientific result is retained, but the current package is not
+submission-ready: its manifest is `SUPERSEDED`, the retained PDF renders an
+earlier manuscript, and no page-level visual/claim audit binds a fresh current
+PDF. Repository CI and `p3-manuscript-audit` remain necessary but are not
+sufficient to create submission or external-review authority. Author, funding,
+conflict, DOI and portal fields remain external submission operations.

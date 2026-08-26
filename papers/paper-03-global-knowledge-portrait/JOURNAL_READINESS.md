@@ -14,7 +14,16 @@
 > code availability section, which is where the repository paths and content
 > digests now live.
 
-**Current terminal:** `PEER_REVIEW_READY` for the scoped P3.C5/P3.C9 structured-mapping claim **only on a commit whose repository CI and `p3-manuscript-audit` both succeed**.  
+> **Package-authority correction 2026-08-26.** The scientific audit below is
+> retained, but its former `PEER_REVIEW_READY` label described the historical
+> 20-page package. `journal_package/MANIFEST.json` and
+> `journal_package/RENDER_CLOSURE_STATE.json` now record that package as
+> `SUPERSEDED`: the working manuscript is 45 pages, and no fresh immutable PDF
+> plus page-level visual/claim audit binds it. Passing repository CI and the
+> manuscript audit is necessary but cannot by itself restore submission
+> authority.
+
+**Current terminal:** `SCOPED_STRUCTURED_INTEGRATION_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY`. The scoped P3.C5/P3.C9 and P3.C10/P3.C11 scientific results remain retained; the current submission package does not.
 **Not claimed:** raw-text end-to-end extraction superiority, universal coordinate necessity, expert-atlas adequacy, downstream answer-quality improvement, or general method-learning performance.
 
 ## 1. Scientific object and evidence
@@ -61,14 +70,19 @@
 - [x] independent confirmatory replay exists;
 - [x] journal package has claim ledger, manuscript map, venue decision, cover-letter draft and availability statement;
 - [x] exact-head `p3-manuscript-audit` statically checks citations/inputs/labels/claim boundaries and compiles a converged PDF;
-- [x] exact-head repository CI is required before this terminal is consumed.
+- [x] exact-head repository CI remains required before any future package-readiness promotion, but is not sufficient for that promotion.
 
-## 6. Submission operations, not scientific blockers
+## 6. Current package blockers
+- [ ] render one fresh immutable PDF from the current manuscript source;
+- [ ] complete page-level visual and claim-to-PDF audit on that exact PDF;
+- [ ] bind the current source, render, audit and evidence closure in a new manifest.
+
+## 7. Submission operations after package closure
 - [x] primary scoped venue selected: Semantic Web Journal; fallback: Journal of Web Semantics;
 - [x] final author order/affiliations/CRediT/funding/conflicts/acknowledgements are portal-time host attestations and are not fabricated;
 - [x] permanent archive/DOI is minted only when an actual final deposit exists;
 - [x] no-parallel-submission and current APC/institutional checks are upload-time author/venue operations;
-- [x] confidential external referee review/editorial acceptance occurs after `PEER_REVIEW_READY`.
+- [x] confidential external referee review/editorial acceptance occurs only after a current package is authorized and submitted.
 
 ## Terminal
-`ORION-P3 = PEER_REVIEW_READY` for the scoped P3.C5/P3.C9 paper when the exact subject has green repository CI and green `p3-manuscript-audit`. The broader expert/raw-text programme is future science, not an unfinished hidden prerequisite of this paper.
+`ORION-P3 = SCOPED_STRUCTURED_INTEGRATION_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY`. The broader expert/raw-text programme is future science, not an unfinished hidden prerequisite of this paper; the current render and package binding are separate, still-open submission requirements.
