@@ -1,0 +1,213 @@
+{
+  "authority": {
+    "external_replay": false,
+    "finite_exact_on_complete_unlabeled_n7_atlas": true,
+    "grants_journal_authority": false,
+    "independent_target_solver_agreement": true,
+    "production_prevalence": false
+  },
+  "base_representation": "sorted_degree_sequence_plus_triangle_count",
+  "base_result": {
+    "ambiguous_fibre_count": 58,
+    "endpoint_values": [
+      3,
+      4
+    ],
+    "endpoint_witnesses": [
+      {
+        "atlas_index": 961,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "graph6": "FlZZ?"
+      },
+      {
+        "atlas_index": 964,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "graph6": "FllHo"
+      }
+    ],
+    "fibre_count": 622,
+    "maximum_diameter_fibre_feature": [
+      [
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        5
+      ],
+      5
+    ],
+    "maximum_diameter_fibre_multiplicity": 10,
+    "maximum_fibre_diameter": 1
+  },
+  "content_sha256": "c3fe4de66494e67273cb43161ec131cbf93c2d5ea2d67d802723e16203e77859",
+  "controls": {
+    "complete_graph_has_chromatic_number_7": true,
+    "empty_graph_has_chromatic_number_1": true,
+    "graphlet4_profile_total_induced_subgraphs": 35,
+    "two_exact_chromatic_solvers_per_graph": 1044
+  },
+  "environment_contract": {
+    "atlas_total_graph_count": 1253,
+    "networkx_version": "3.6.1",
+    "seven_vertex_atlas_range": [
+      209,
+      1252
+    ],
+    "seven_vertex_unlabeled_graph_count": 1044
+  },
+  "refinement_results": {
+    "c4_clique_wl_bundle": {
+      "ambiguous_fibre_count": 0,
+      "maximum_fibre_diameter": 0,
+      "refined_fibre_count": 986
+    },
+    "clique_number": {
+      "ambiguous_fibre_count": 18,
+      "maximum_fibre_diameter": 1,
+      "refined_fibre_count": 670
+    },
+    "connected_component_count": {
+      "ambiguous_fibre_count": 57,
+      "maximum_fibre_diameter": 1,
+      "refined_fibre_count": 629
+    },
+    "induced_c4_count": {
+      "ambiguous_fibre_count": 17,
+      "maximum_fibre_diameter": 1,
+      "refined_fibre_count": 773
+    },
+    "induced_graphlet4_profile": {
+      "ambiguous_fibre_count": 0,
+      "maximum_fibre_diameter": 0,
+      "refined_fibre_count": 1034
+    },
+    "one_wl_trace": {
+      "ambiguous_fibre_count": 20,
+      "maximum_fibre_diameter": 1,
+      "refined_fibre_count": 934
+    },
+    "wl_graphlet4_bundle": {
+      "ambiguous_fibre_count": 0,
+      "maximum_fibre_diameter": 0,
+      "refined_fibre_count": 1044
+    }
+  },
+  "registered_discriminators": {
+    "c4_clique_wl_repairs_target_on_complete_n7_atlas": true,
+    "graphlet4_repairs_target_on_complete_n7_atlas": true,
+    "n6_c4_repair_does_not_transfer_to_n7": true,
+    "wl_plus_graphlet4_identifies_every_atlas_graph": true
+  },
+  "schema": "ORION.FiberGuard.GraphAtlasR9.Results.v1",
+  "target": "chromatic_number",
+  "target_distribution": {
+    "1": 1,
+    "2": 87,
+    "3": 579,
+    "4": 318,
+    "5": 52,
+    "6": 6,
+    "7": 1
+  },
+  "terminal": "C_GRAPH_ATLAS_N7_EXACT_REFINEMENT_EXTENSION_PASS"
+}
