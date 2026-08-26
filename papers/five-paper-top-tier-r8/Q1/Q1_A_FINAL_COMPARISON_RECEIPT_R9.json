@@ -1,0 +1,202 @@
+{
+  "authority": {
+    "external_quantum_review": "CANNOT_CHECK",
+    "journal_authority": "CANNOT_CHECK",
+    "mathematical_terminal": "internal_reconstruction_only",
+    "novelty": "CANNOT_CHECK",
+    "production_resource_interpretation": "CANNOT_CHECK"
+  },
+  "comparison": {
+    "adjudication": "equivalent_on_the_frozen_claim_ledger_statement_with_nonmaterial_proof_strength_differences_preserved",
+    "first_disagreement": {
+      "effect_on_frozen_ledger_claim": "NONE",
+      "id": "D01_CLAIM_QUANTIFIER_STRENGTH",
+      "independent_phase1": "existence_of_support_at_most_two_exact_optimum",
+      "registered_proof": "nonincreasing_transform_of_every_feasible_configuration",
+      "relation": "registered_wording_stronger"
+    },
+    "order": [
+      "theorem_quantifier",
+      "deletion_signature_lemma",
+      "feasibility",
+      "restore_inequality",
+      "objective_descent",
+      "global_termination_and_optimum_equality",
+      "sharpness"
+    ],
+    "rows": [
+      {
+        "effect_on_frozen_ledger_claim": "NONE",
+        "id": "D01_CLAIM_QUANTIFIER_STRENGTH",
+        "independent_phase1": "existence_of_support_at_most_two_exact_optimum",
+        "registered_proof": "nonincreasing_transform_of_every_feasible_configuration",
+        "relation": "registered_wording_stronger"
+      },
+      {
+        "effect_on_frozen_ledger_claim": "NONE",
+        "id": "D02_DELETION_CARDINALITY",
+        "independent_phase1": "at_most_3",
+        "registered_proof": "at_most_2",
+        "relation": "registered_lemma_stronger"
+      },
+      {
+        "effect_on_frozen_ledger_claim": "NONE",
+        "id": "D03_SIGNATURE_ENCODING",
+        "independent_phase1": "two_bits_partner_then_tag",
+        "registered_proof": "alpha_beta_partner_then_tag",
+        "relation": "EQUIVALENT"
+      },
+      {
+        "effect_on_frozen_ledger_claim": "NONE",
+        "id": "D04_RESTORE_LOCAL_BOUND",
+        "independent_phase1": "arbitrary_single_donor_change_increase_at_most_2",
+        "registered_proof": "zeroing_induced_pf_to_p_change_increase_at_most_2",
+        "relation": "independent_local_lemma_stronger"
+      },
+      {
+        "effect_on_frozen_ledger_claim": "NONE",
+        "id": "D05_FEASIBILITY",
+        "independent_phase1": "nonidentity_partner_tag_assignment_central_other_blocks_preserved",
+        "registered_proof": "same_parities_nonidentity_and_other_grammar_unchanged",
+        "relation": "EQUIVALENT"
+      },
+      {
+        "effect_on_frozen_ledger_claim": "NONE",
+        "id": "D06_OBJECTIVE_DESCENT",
+        "independent_phase1": "delta_at_most_negative_m_minus_2_times_deleted_count",
+        "registered_proof": "sum_of_2_minus_m_over_deleted_coordinates",
+        "relation": "EQUIVALENT"
+      },
+      {
+        "effect_on_frozen_ledger_claim": "NONE",
+        "id": "D07_GLOBAL_TERMINATION",
+        "independent_phase1": "iterate_from_optimum_using_total_frame_support_measure",
+        "registered_proof": "same_iteration_plus_both_optimum_inequalities",
+        "relation": "EQUIVALENT_ON_FROZEN_CLAIM"
+      },
+      {
+        "effect_on_frozen_ledger_claim": "NONE",
+        "id": "D08_SHARPNESS",
+        "independent_phase1": "explicit_clean_room_n2_enumeration_optima_5_vs_6",
+        "registered_proof": "R6O_exact_counterexample_costs_5_vs_6",
+        "relation": "same_cost_gap_different_evidence_path"
+      }
+    ]
+  },
+  "frozen_terminal_scope": {
+    "lower": "explicit_n2_instance_has_unrestricted_optimum_5_and_support_at_most_1_optimum_6",
+    "not_promoted": [
+      "pointwise_normal_form_as_new_claim_ledger_headline",
+      "runtime_complexity",
+      "production_resource_advantage",
+      "physical_quantum_advantage",
+      "novelty",
+      "venue_acceptance"
+    ],
+    "sharp_threshold": "kappa_R6M=2",
+    "upper": "exact_optimum_exists_with_all_frame_supports_at_most_2_for_every_admitted_finite_n_instance"
+  },
+  "hostile_controls": {
+    "amplitude_dependent_admission": "DEFINITION_AMBIGUITY_OR_SCOPE_MISMATCH",
+    "multiplier_below_two": "EXPECTED_OBJECTIVE_FAILURE",
+    "new_deleted_letter_feasibility_predicate": "SCOPE_MISMATCH",
+    "odd_partner_parity_removed": "EXPECTED_PREMISE_FAILURE",
+    "registered_proof_tamper_rejected": true,
+    "simultaneous_multi_frame_or_tag_repair": "OUTSIDE_RECONSTRUCTED_EXCHANGE"
+  },
+  "independence": {
+    "external_independence": "CANNOT_CHECK",
+    "procedure": "same-program clean-room Phase1 reconstruction committed before frozen registered-proof comparison",
+    "same_program_internal": true
+  },
+  "independent_sharpness_receipt": {
+    "registered_concrete_witness_identity": "CANNOT_CHECK",
+    "registered_result_receipt_read": false,
+    "support_one_optimum": 6,
+    "support_zero_terminal": "INFEASIBLE",
+    "targets": [
+      [
+        "ZI",
+        "XZ"
+      ],
+      [
+        "IX",
+        "IZ"
+      ],
+      [
+        "IZ",
+        "IZ"
+      ]
+    ],
+    "unrestricted_n2_optimum": 5
+  },
+  "phase_order": {
+    "phase_1_commit": "dcf642b091f4a11fcaa97f583cb9e0598c883777",
+    "phase_1_files": [
+      {
+        "bytes": 12009,
+        "git_blob_sha1": "cf6ff8545aae96abe7d8b39bc8e2be89743b0fec",
+        "path": "papers/five-paper-top-tier-r8/Q1/Q1_A_INDEPENDENT_PROOF_DAG_R9.md",
+        "sha256": "090abff81c467af263a141a5e0bc59dd0ed667e9467a85a48450a1f80207a73a"
+      },
+      {
+        "bytes": 10121,
+        "git_blob_sha1": "7924f49344e18e0accceb9b0561a78d67ad8d2ea",
+        "path": "papers/five-paper-top-tier-r8/Q1/Q1_A_PHASE1_RECONSTRUCTION_RECEIPT_R9.json",
+        "sha256": "6b3f851905c1f72c5ecf61c338dd014e6c18b3a67f3ae853dc9e7ed0581b085c"
+      },
+      {
+        "bytes": 4429,
+        "git_blob_sha1": "c82688d62d4557f7a08d8e16d37b46e8c7f89281",
+        "path": "papers/five-paper-top-tier-r8/Q1/test_verify_q1_a_reconstruction_r9.py",
+        "sha256": "b0388cc41ffec305bf1a89002c37d42a29db35c78b29d6b79502882e0421d847"
+      },
+      {
+        "bytes": 18931,
+        "git_blob_sha1": "1854c79781ab8652a4c7852cf5cb978b45764a1d",
+        "path": "papers/five-paper-top-tier-r8/Q1/verify_q1_a_reconstruction_r9.py",
+        "sha256": "8a35ed56c80cea384b24bdec562d027a8c5374753d81a75281ba9c0de664f3f3"
+      }
+    ],
+    "phase_1_terminal": "PHASE1_LOCKED_BEFORE_REGISTERED_PROOF",
+    "phase_2_comparison": {
+      "bytes": 6383,
+      "git_blob_sha1": "e0f33e410d2f3e211f42ccf4fe3f55e434653e77",
+      "path": "papers/five-paper-top-tier-r8/Q1/Q1_A_PHASE2_REGISTERED_PROOF_COMPARISON_R9.md",
+      "sha256": "e5958d99b1df205c00cbd544ab0181083e4650b268bf75284f132c7436052d47"
+    },
+    "registered_proof_first_read": "AFTER_PHASE1_COMMIT"
+  },
+  "residual_gaps": [
+    "no external algebraic reviewer",
+    "no structurally independent Q1-B finite attack adjudicated here",
+    "no Q1-C production-resource map",
+    "no Q1-D current primary-source novelty and independent quantum review",
+    "registered concrete R6O witness identity not checked because result receipts remained forbidden"
+  ],
+  "schema_version": "q1-a-final-comparison-r9-v1",
+  "source_binding": {
+    "base_commit_pr_1428": "1e18787841d99d76a3c7661505838d2eca8780db",
+    "claim_ledger": {
+      "git_blob_sha1": "67459ecca65f160b52af470fe6a2582f6af95ed3",
+      "path": "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V3.md",
+      "sha256": "f278639f2606404be4276f20dc9f17e49e5b7702f906f7a4cb4a4c46074c994a"
+    },
+    "manuscript": {
+      "git_blob_sha1": "6c4c59452397024d96cf6d103f474b7b0a07e536",
+      "path": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
+      "phase1_read_scope": "neutral definitions and feasibility lines 66-107 only",
+      "sha256": "8522ab344c105866798ca64019f2e5bdf75f4c4445c0c6a0525a573a0c2b5377"
+    },
+    "q1_paper_tree_sha1": "d805ae36e6ad0f8844bd12aba32b3efae001dfce",
+    "registered_implementation_tree_sha1": "81c0d03d5f3da35c6f35dfdd6d523ac8f180847c",
+    "registered_proof": {
+      "git_blob_sha1": "a22754e8afef0e9914b75b37f0aee673ccd2ca95",
+      "path": "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md",
+      "phase2_hash_matches": true,
+      "sha256": "ad4f3704cfac4569b74725cb8608ed5f5ba88b847d2d8a2820b3e184d9d1dae6"
+    },
+    "repository": "https://github.com/SzeChunYiu/ORION.git"
+  },
+  "terminal": "PROOF_RECONSTRUCTED_EQUIVALENT"
+}

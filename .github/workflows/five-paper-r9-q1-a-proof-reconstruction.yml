@@ -1,0 +1,33 @@
+name: Q1-A R9 proof reconstruction
+
+on:
+  pull_request:
+    paths:
+      - "papers/five-paper-top-tier-r8/Q1/Q1_A_*"
+      - "papers/five-paper-top-tier-r8/Q1/*q1_a_*r9.py"
+      - "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V3.md"
+      - "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md"
+      - "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md"
+      - ".github/workflows/five-paper-r9-q1-a-proof-reconstruction.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  q1-a-proof-reconstruction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Verify locked Phase-1 receipt
+        run: python papers/five-paper-top-tier-r8/Q1/verify_q1_a_reconstruction_r9.py
+      - name: Test clean-room reconstruction
+        run: python papers/five-paper-top-tier-r8/Q1/test_verify_q1_a_reconstruction_r9.py
+      - name: Verify Phase-2 proof comparison
+        run: python papers/five-paper-top-tier-r8/Q1/verify_q1_a_comparison_r9.py
+      - name: Test registered-proof comparison and hostile controls
+        run: python papers/five-paper-top-tier-r8/Q1/test_verify_q1_a_comparison_r9.py
