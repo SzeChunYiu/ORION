@@ -1,7 +1,7 @@
 # Paper 02 — Open-World Scientific Knowledge Discovery
 
 **Stable ID:** ORION-P2  
-**Status:** `PEER_REVIEW_READY` on the bounded methods / critical system-design claim. Matched external discovery superiority remains `CANNOT_CHECK` and is not claimed.
+**Status:** `P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY`. The bounded methods / critical system-design claim remains the `P2_NARROWED` scientific ceiling. Matched external discovery superiority remains `CANNOT_CHECK` and is not claimed.
 
 ## Scoped claim
 
@@ -16,7 +16,7 @@ read the claims.
 
 | Claim | Evidence | Authority |
 | --- | --- | --- |
-| Discovery is a separable capability from synthesis, and earned route independence with question-framed retrieval is the candidate contribution | scoped methods/system-design argument in this README and `JOURNAL_READINESS.md` | `PEER_REVIEW_READY` on the bounded methods/critical-system-design claim |
+| Discovery is a separable capability from synthesis, and earned route independence with question-framed retrieval is the candidate contribution | scoped methods/system-design argument in this README and `JOURNAL_READINESS.md` | `P2_NARROWED`; this is a bounded scientific claim ceiling, not current-package submission authority |
 | ORION's routing and stopping beat a matched external comparator on discovery | four-arm TREC-COVID study, `external/P2_TREC_COVID_ARMS_V1.json`, 50 official topics under one matched budget | **`CANNOT_CHECK`** — the pass gate fails: recall@100 −0.0177 with bootstrap CI [−0.0273, −0.0091] against a −0.02 margin, and +175.7% reads against a −25% requirement |
 | Multi-route exploration improves top-10 quality | same study: nDCG@10 +0.1488, bootstrap CI [+0.1010, +0.1995], ahead on 42/50 topics | measured, **not a gate criterion**; cannot rescue the row above |
 | ORION's own routing terminal on that corpus | two of five routes unavailable: CITATION has no earned seed, RESTRICTED no provider | `CANNOT_CHECK`, and the arm declines completeness on 50/50 topics where both baselines declare it |
@@ -50,4 +50,10 @@ The ready paper claims governance semantics and bounded controlled mechanism evi
 
 ## Manuscript
 
-`manuscript/main.tex` is the canonical source. The visually audited 21-page review PDF and checksummed package are under `journal_package/`; its Results section preserves failed and non-promoted campaigns instead of inventing benchmark support.
+`manuscript/main.tex` is the canonical source. `journal_package/` retains a
+historical visually audited PDF and checksummed package, but its manifest marks
+that package `SUPERSEDED`, with current submission authority false and
+`P2.CURRENT_PACKAGE` still `OPEN`. The current source requires a fresh immutable
+build, page-level visual and claim audit, and exact package binding before
+submission. The retained Results record preserves failed and non-promoted
+campaigns instead of inventing benchmark support.

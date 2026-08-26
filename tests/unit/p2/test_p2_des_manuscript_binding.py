@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery"
 RESULT = ROOT / "research" / "orion-epistemic-state-v1" / "results" / "P2-DES-01"
 TERMINAL = "CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE"
+PACKAGE_TERMINAL = "P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY"
 
 
 def load(path: Path) -> dict:
@@ -76,3 +77,33 @@ def test_p2_des_is_visible_in_manuscript_and_both_ledgers() -> None:
     assert "P2-DES-01 bounded donor/route discriminator" in normalized_human
     assert TERMINAL in normalized_human
     assert "no full P2 superiority" in normalized_human
+
+
+def test_p2_readiness_surfaces_match_superseded_open_package() -> None:
+    manifest = load(PAPER / "journal_package" / "MANIFEST.json")
+    current_package = next(
+        claim for claim in manifest["claims"] if claim["id"] == "P2.CURRENT_PACKAGE"
+    )
+
+    assert manifest["declared_paper_terminal"] == PACKAGE_TERMINAL
+    assert manifest["package_status"] == "SUPERSEDED"
+    assert current_package["status"] == "OPEN"
+    assert current_package["current_claim"] is True
+
+    readme = (PAPER / "README.md").read_text(encoding="utf-8")
+    assert PACKAGE_TERMINAL in readme
+    assert "PEER_REVIEW_READY" not in readme
+    assert "current submission authority false" in readme
+    assert "`P2.CURRENT_PACKAGE` still `OPEN`" in readme
+
+    historical = (
+        PAPER / "evidence" / "PEER_REVIEW_READY_BOUNDED_V2.md"
+    ).read_text(encoding="utf-8")
+    superseded_marker = (
+        "SUPERSEDED_HISTORICAL_ATTESTATION__NOT_CURRENT_SUBMISSION_AUTHORITY"
+    )
+    historical_terminal = "`ORION-P2 = PEER_REVIEW_READY`"
+    assert superseded_marker in historical
+    assert PACKAGE_TERMINAL in historical
+    assert historical_terminal in historical
+    assert historical.index(superseded_marker) < historical.index(historical_terminal)

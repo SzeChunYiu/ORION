@@ -1,6 +1,13 @@
-# P2 bounded peer-review readiness attestation
+# P2 historical bounded peer-review readiness attestation (superseded)
 
-**Terminal:** `ORION-P2 = PEER_REVIEW_READY`.
+**Current status:** `SUPERSEDED_HISTORICAL_ATTESTATION__NOT_CURRENT_SUBMISSION_AUTHORITY`.
+The current package terminal is
+`P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY`; the package
+manifest marks `P2.CURRENT_PACKAGE` `OPEN`.
+
+**Historical terminal recorded at the time:** `ORION-P2 = PEER_REVIEW_READY`.
+This value is retained for provenance only and is not an active readiness
+declaration for the current source, PDF, or package.
 
 **Claim boundary:** methods / critical system design for fail-closed
 scientific-literature discovery, supported by the frozen 390-task complete-gold
@@ -23,6 +30,8 @@ matched external ORION-vs-baseline discovery-superiority claim is made.
 
 ## Review gate
 
+At the time this historical attestation was recorded:
+
 - the source-bound nearest-work ledger is current through 2026-08-17 and does
   not claim saturation;
 - all result-bearing manuscript sentences pass the machine claim ledger;
@@ -39,3 +48,7 @@ Actual author metadata, final venue upload wrapping, archive DOI minting, and a
 literature refresh if submission occurs after 2026-08-31 are filing operations.
 They cannot be fabricated in a scientific readiness attestation and do not
 expand the bounded claim.
+
+The current revision additionally requires a fresh immutable build, page-level
+visual and claim audit, and exact submission-package binding. Until those
+artifacts exist, the historical review gate above cannot authorize submission.
