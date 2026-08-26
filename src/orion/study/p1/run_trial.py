@@ -26,16 +26,21 @@ EXIT_ERROR = 2
 EXIT_CANNOT_CHECK = 3
 
 
-def _systems(*, live: bool) -> list:
+def _systems(*, live: bool, transcript_path: Path | None = None) -> list:
     """The compared systems.
 
     The live arm is one additional system, not a replacement: the mechanical
     arm still runs, so a live failure degrades the study rather than voiding it.
+
+    `transcript_path` is where the live arm archives its raw completions. A
+    campaign that parses model answers without keeping the text it parsed
+    cannot be audited after the fact — that was half of issue #985 — so the
+    path is wired here rather than left to the caller to remember.
     """
 
     systems = [*baseline_systems(), *orion_systems()]
     if live:
-        systems.append(ProviderBackedSystem())
+        systems.append(ProviderBackedSystem(transcript_path=transcript_path))
     return systems
 
 
@@ -52,7 +57,8 @@ def run(
         return EXIT_ERROR
 
     fingerprint = suite_fingerprint(cases)
-    systems = _systems(live=live)
+    transcript_path = out_root / "raw" / f"{split.value.lower()}_live_transcripts.jsonl"
+    systems = _systems(live=live, transcript_path=transcript_path)
     print(f"split          : {split.value}  ({len(cases)} cases)")
     print(f"suite          : {fingerprint}")
     print(f"systems        : {len(systems)}")
@@ -96,6 +102,8 @@ def run(
 
     archive = run_study(cases, systems, seeds=seeds, archive_path=archive_path)
     print(f"\nran            : {len(archive.records)} records -> {archive_path}")
+    if live:
+        print(f"live transcripts: {transcript_path}")
 
     # The validated reader, not a second local one. run_trial grew its own
     # `_reload` while score_archive already had a reader that checks the full
