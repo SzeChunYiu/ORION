@@ -1,5 +1,7 @@
 # ORION-P3 journal readiness — scoped public-reference paper
 
+**Current terminal:** `CANNOT_CHECK` for current-package submission readiness. Package state: `SCOPED_STRUCTURED_INTEGRATION_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY`. The scoped P3.C5/P3.C9 and P3.C10/P3.C11 scientific results remain retained; the current submission package does not.
+
 > **Annotated 2026-08-22 after the manuscript house-style rewrite.** This
 > checklist records a readiness audit of the manuscript as it stood when the
 > audit was run, and is annotated rather than restated: no gate verdict,
@@ -23,7 +25,6 @@
 > manuscript audit is necessary but cannot by itself restore submission
 > authority.
 
-**Current terminal:** `SCOPED_STRUCTURED_INTEGRATION_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY`. The scoped P3.C5/P3.C9 and P3.C10/P3.C11 scientific results remain retained; the current submission package does not.
 **Not claimed:** raw-text end-to-end extraction superiority, universal coordinate necessity, expert-atlas adequacy, downstream answer-quality improvement, or general method-learning performance.
 
 ## 1. Scientific object and evidence
