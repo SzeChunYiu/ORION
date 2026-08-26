@@ -83,6 +83,7 @@ here. No evaluator outside this lane has checked any of it, which is
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import lru_cache
 from itertools import product
 from typing import Any, Callable
 
@@ -547,10 +548,17 @@ def _witness_world(sig: ChainSignature) -> list[Any]:
     return clauses
 
 
+@lru_cache(maxsize=None)
 def prove_all(
     *, timeout_ms: int = PROOF_TIMEOUT_MS, drop: str | None = None, witness_world: bool = False
 ) -> tuple[ProofResult, ...]:
-    """Discharge every theorem in :data:`THEOREMS` under the interpretation."""
+    """Discharge every theorem in :data:`THEOREMS` under the interpretation.
+
+    Identical queries are immutable, pure proof snapshots. Reuse them within a
+    process so a report does not ask Z3 to re-prove a theorem after its fixture
+    already established it. The cached value retains ``UNKNOWN`` exactly; this
+    avoids load-dependent recomputation without turning a timeout into proof.
+    """
 
     solver = require_z3()
     sig = chain_signature()
@@ -717,6 +725,7 @@ def prove_all(
     return tuple(results)
 
 
+@lru_cache(maxsize=None)
 def prove_chain_ladder(
     *, bound: int = CHAIN_LADDER_BOUND, timeout_ms: int = PROOF_TIMEOUT_MS
 ) -> tuple[ProofResult, ...]:
@@ -727,7 +736,9 @@ def prove_chain_ladder(
     that gets there is the single hand step this development inherits from the
     calculus. Discharging the fully expanded statement at each concrete length
     does not replace the schema; it means a mistake in the expansion shows up
-    here rather than in a reader's trust.
+    here rather than in a reader's trust. As with :func:`prove_all`, an identical
+    query is evaluated once per process and its exact three-valued result is
+    retained.
     """
 
     solver = require_z3()

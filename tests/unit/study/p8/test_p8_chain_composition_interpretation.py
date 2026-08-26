@@ -160,6 +160,32 @@ class TestTheInterpretationIsProved:
             == cci.REFUTATION_TIMEOUT_MS
         )
 
+    def test_identical_proof_queries_are_evaluated_once_per_process(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        # build_report and the CLI repeat the same pure Z3 queries exercised by
+        # the module fixtures.  Re-running them late in a long process can turn
+        # an already-PROVED query into a load-dependent UNKNOWN.  Reuse must
+        # preserve the exact three-valued result, never promote UNKNOWN.
+        original = cci.chain_signature
+        calls = 0
+
+        def counted_signature():
+            nonlocal calls
+            calls += 1
+            return original()
+
+        monkeypatch.setattr(cci, "chain_signature", counted_signature)
+
+        first_proofs = cci.prove_all(timeout_ms=17)
+        second_proofs = cci.prove_all(timeout_ms=17)
+        first_ladder = cci.prove_chain_ladder(bound=1, timeout_ms=17)
+        second_ladder = cci.prove_chain_ladder(bound=1, timeout_ms=17)
+
+        assert second_proofs is first_proofs
+        assert second_ladder is first_ladder
+        assert calls == 2
+
     def test_the_expensive_trust_refutation_runs_first_without_reordering_the_report(
         self,
     ) -> None:
