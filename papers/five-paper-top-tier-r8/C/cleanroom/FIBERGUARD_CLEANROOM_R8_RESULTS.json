@@ -1,0 +1,288 @@
+{
+  "authority": {
+    "clean_room_implementation": true,
+    "grants_novelty_or_journal_authority": false,
+    "independent_external_replay": false
+  },
+  "content_sha256": "f8b45a9dd572ed7c74238b4f464cb4a3110fc34751d57ff3efa5e61c5822ecc3",
+  "domains": [
+    {
+      "domain": "GRAPH_COLOURING_N6",
+      "endpoint_third_checker": "complete color-assignment enumeration",
+      "endpoint_values": [
+        3,
+        4
+      ],
+      "endpoint_witnesses": [
+        {
+          "edge_mask": 6011
+        },
+        {
+          "edge_mask": 6014
+        }
+      ],
+      "fibre_count": 136,
+      "fibre_multiplicity": 720,
+      "generator": {
+        "method": "NetworkX graph atlas representatives exhaustively relabeled",
+        "unique_labeled_masks": 32768,
+        "unlabeled_representatives": 156
+      },
+      "instance_count": 32768,
+      "maximum_fibre_diameter": 1,
+      "refinement_experiment": {
+        "candidate_results": {
+          "clique_number": {
+            "ambiguous_fibre_count": 2,
+            "maximum_fibre_diameter": 1,
+            "refined_fibre_count": 139
+          },
+          "connected_component_count": {
+            "ambiguous_fibre_count": 5,
+            "maximum_fibre_diameter": 1,
+            "refined_fibre_count": 137
+          },
+          "four_cycle_count": {
+            "ambiguous_fibre_count": 0,
+            "maximum_fibre_diameter": 0,
+            "refined_fibre_count": 146
+          }
+        },
+        "collision_guided_result": {
+          "ambiguous_fibre_count": 0,
+          "maximum_fibre_diameter": 0,
+          "refined_fibre_count": 146
+        },
+        "collision_guided_selection": "four_cycle_count",
+        "matched_baseline_result": {
+          "ambiguous_fibre_count": 5,
+          "maximum_fibre_diameter": 1,
+          "refined_fibre_count": 137
+        },
+        "matched_baseline_selection": "connected_component_count",
+        "strict_improvement_over_baseline": true
+      },
+      "representation_feature": [
+        [
+          2,
+          3,
+          3,
+          4,
+          4,
+          4
+        ],
+        5
+      ]
+    },
+    {
+      "domain": "SET_COVER_U5_M5",
+      "endpoint_third_checker": "cardinality-ordered subset enumeration",
+      "endpoint_values": [
+        2,
+        3
+      ],
+      "endpoint_witnesses": [
+        {
+          "sets": [
+            1,
+            3,
+            5,
+            14,
+            26
+          ]
+        },
+        {
+          "sets": [
+            1,
+            3,
+            12,
+            21,
+            22
+          ]
+        }
+      ],
+      "fibre_count": 909,
+      "fibre_multiplicity": 1740,
+      "generator": {
+        "method": "ordered five-subset recursion over nonempty U5 subsets with exact union filter"
+      },
+      "instance_count": 155106,
+      "maximum_fibre_diameter": 1,
+      "refinement_experiment": {
+        "candidate_results": {
+          "element_frequency_multiset": {
+            "ambiguous_fibre_count": 58,
+            "maximum_fibre_diameter": 1,
+            "refined_fibre_count": 1015
+          },
+          "pairwise_union_multiset": {
+            "ambiguous_fibre_count": 0,
+            "maximum_fibre_diameter": 0,
+            "refined_fibre_count": 1511
+          },
+          "triple_intersection_multiset": {
+            "ambiguous_fibre_count": 58,
+            "maximum_fibre_diameter": 1,
+            "refined_fibre_count": 1109
+          }
+        },
+        "collision_guided_result": {
+          "ambiguous_fibre_count": 0,
+          "maximum_fibre_diameter": 0,
+          "refined_fibre_count": 1511
+        },
+        "collision_guided_selection": "pairwise_union_multiset",
+        "matched_baseline_result": {
+          "ambiguous_fibre_count": 58,
+          "maximum_fibre_diameter": 1,
+          "refined_fibre_count": 1015
+        },
+        "matched_baseline_selection": "element_frequency_multiset",
+        "strict_improvement_over_baseline": true
+      },
+      "representation_feature": [
+        [
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "domain": "TWO_CNF_N4_M5",
+      "endpoint_third_checker": "complete truth-table enumeration",
+      "endpoint_values": [
+        0,
+        4
+      ],
+      "endpoint_witnesses": [
+        {
+          "clauses": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              -1
+            ],
+            [
+              3,
+              -1
+            ],
+            [
+              -2,
+              -3
+            ]
+          ]
+        },
+        {
+          "clauses": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              -1
+            ],
+            [
+              -1,
+              -2
+            ]
+          ]
+        }
+      ],
+      "fibre_count": 13032,
+      "fibre_multiplicity": 11,
+      "generator": {
+        "clause_count": 24,
+        "method": "variable-pair/sign clause product with canonical literal-order ranking"
+      },
+      "instance_count": 42504,
+      "maximum_fibre_diameter": 4,
+      "refinement_experiment": {
+        "candidate_results": {
+          "global_clause_sign_type_counts": {
+            "ambiguous_fibre_count": 5888,
+            "maximum_fibre_diameter": 4,
+            "refined_fibre_count": 25912
+          },
+          "labeled_variable_pair_signed_profile": {
+            "ambiguous_fibre_count": 0,
+            "maximum_fibre_diameter": 0,
+            "refined_fibre_count": 42504
+          },
+          "variable_pair_signed_profile_multiset": {
+            "ambiguous_fibre_count": 2468,
+            "maximum_fibre_diameter": 2,
+            "refined_fibre_count": 33322
+          }
+        },
+        "collision_guided_result": {
+          "ambiguous_fibre_count": 0,
+          "maximum_fibre_diameter": 0,
+          "refined_fibre_count": 42504
+        },
+        "collision_guided_selection": "labeled_variable_pair_signed_profile",
+        "matched_baseline_result": {
+          "ambiguous_fibre_count": 5888,
+          "maximum_fibre_diameter": 4,
+          "refined_fibre_count": 25912
+        },
+        "matched_baseline_selection": "global_clause_sign_type_counts",
+        "strict_improvement_over_baseline": true
+      },
+      "representation_feature": [
+        [
+          2,
+          2,
+          2,
+          0,
+          2,
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          1,
+          0,
+          0
+        ]
+      ]
+    }
+  ],
+  "schema": "ORION.FiberGuardR8.CleanRoomReplay.v1",
+  "software": {
+    "networkx_version": "3.6.1"
+  }
+}
