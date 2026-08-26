@@ -3,7 +3,7 @@
 
 Binds ``P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`` across the protocol document, its
 machine-readable twin, the manuscript surfaces, the additive ledger and the
-candidate digest file. The protocol's structure (4 systems, 12 ordered pairs,
+candidate V2 content manifest. The protocol's structure (4 systems, 12 ordered pairs,
 24 case slots, hostile mechanisms) is validated, not just grep-checked: a
 protocol whose slots no longer cover every ordered pair is a different protocol
 and must not keep this contract id. Execution remains ``CANNOT_CHECK`` and the
@@ -27,7 +27,7 @@ CHECKER = f"{PAPER}/formal/check_p8_native_protocol_binding_v1.py"
 FINAL = f"{PAPER}/manuscript/FINAL_V3.md"
 CORE = f"{PAPER}/manuscript/FORMAL_CORE_V2_1.md"
 LEDGER = f"{PAPER}/CLAIM_LEDGER_ADDENDUM_V3.md"
-SUMS = f"{PAPER}/SHA256SUMS"
+MANIFEST = f"{PAPER}/CONTENT_MANIFEST_V2.json"
 
 FILES = (DOC, TWIN, CHECKER, FINAL, CORE, LEDGER)
 
@@ -142,20 +142,28 @@ def audit(root: Path = ROOT) -> dict[str, object]:
             if phrase.lower() not in normalized:
                 errors.append(f"{path} missing bound semantics: {phrase}")
 
-    sums_path = root / SUMS
-    if sums_path.exists():
-        recorded = {}
-        for line in sums_path.read_text(encoding="utf-8").splitlines():
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            digest, _, rest = line.partition("  ")
-            recorded[rest] = digest.lower()
-        for path in (DOC, TWIN, LEDGER):
-            if recorded.get(path) != _sha256(root / path):
-                errors.append(f"SHA256SUMS mismatch or omission: {path}")
+    manifest_path = root / MANIFEST
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        recorded_hashes = {
+            row["path"]: row["sha256"]
+            for row in manifest.get("bound_files", [])
+            if isinstance(row, dict)
+            and isinstance(row.get("path"), str)
+            and isinstance(row.get("sha256"), str)
+        }
+        required_bound = set(FILES)
+        for path in sorted(required_bound - set(recorded_hashes)):
+            errors.append(f"content manifest omits contract artifact: {path}")
+        if manifest.get("subject_commit_status") != "BOUND":
+            errors.append("content manifest subject_commit_status is not BOUND")
+        if manifest.get("subject_commit_unbound_paths") != []:
+            errors.append("content manifest retains unbound contract paths")
+        for path in sorted(required_bound):
+            if recorded_hashes.get(path) != _sha256(root / path):
+                errors.append(f"V2 content-manifest mismatch or omission: {path}")
     else:
-        errors.append(f"missing sums: {SUMS}")
+        errors.append(f"missing manifest: {MANIFEST}")
 
     return {
         "schema": "orion.p8.native-protocol-binding.v1",
