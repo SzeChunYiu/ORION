@@ -1,0 +1,156 @@
+name: five-paper-r18-c-paired-route
+
+on:
+  push:
+    branches:
+      - chatgpt/r18-c-paired-route-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/PAIRED_ROUTE_PROTOCOL_R18.json'
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_PROTOCOL_R18.md'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_paired_route_r18*.py'
+      - '.github/workflows/five-paper-r18-c-paired-route.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  prospective-paired-route-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install frozen runtime dependencies
+        run: >-
+          python -m pip install
+          'numpy==2.1.3'
+          'scikit-learn==1.5.2'
+          'PyYAML==6.0.2'
+
+      - name: Materialize pinned untouched ASlib scenarios
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/aslib_data"
+          git init "$root"
+          git -C "$root" remote add origin https://github.com/coseal/aslib_data.git
+          git -C "$root" config core.sparseCheckout true
+          {
+            printf '/MAXSAT12-PMS/\n'
+            printf '/MAXSAT19-UCMS/\n'
+            printf '/QBF-2016/\n'
+          } > "$root/.git/info/sparse-checkout"
+          git -C "$root" fetch --depth 1 origin 551b22beef8df17de59286b4822ef720e0aa4d6f
+          git -C "$root" checkout --detach FETCH_HEAD
+          test "$(git -C "$root" rev-parse HEAD)" = '551b22beef8df17de59286b4822ef720e0aa4d6f'
+
+      - name: Execute prospectively frozen paired-route audit twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          protocol="$root/PAIRED_ROUTE_PROTOCOL_R18.json"
+          script="$root/fiberguard_paired_route_r18.py"
+          python -m py_compile \
+            "$root/fiberguard_paired_route_r18_sources.py" \
+            "$root/fiberguard_paired_route_r18_data.py" \
+            "$root/fiberguard_paired_route_r18_policy.py" \
+            "$script"
+          python "$script" \
+            --aslib-root "$RUNNER_TEMP/aslib_data" \
+            --protocol "$protocol" \
+            --protocol-commit "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/result-a.json" \
+            --comment-output "$RUNNER_TEMP/comment-a.md" \
+            | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" \
+            --aslib-root "$RUNNER_TEMP/aslib_data" \
+            --protocol "$protocol" \
+            --protocol-commit "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/result-b.json" \
+            --comment-output "$RUNNER_TEMP/comment-b.md" \
+            | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/comment-a.md" "$RUNNER_TEMP/comment-b.md"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+
+      - name: Verify custody, controls, and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.FiberGuard.PairedRoute.R18.v1'
+          binding = result['prospective_binding']
+          assert binding['protocol_execution_commit'] == os.environ['GITHUB_SHA']
+          assert binding['result_absent_from_protocol_inputs'] is True
+          assert result['development']['candidate_count'] == 99
+          assert all(result['controls'].values())
+          assert set(result['scenarios']) == {'MAXSAT12-PMS', 'MAXSAT19-UCMS', 'QBF-2016'}
+          assert all(panel['algorithm_count'] > 1 for panel in result['scenarios'].values())
+          assert result['authority']['paired_certificates'] == 'MARGINAL_UNDER_EXCHANGEABILITY'
+          assert result['authority']['interval_no_harm'] == 'POINTWISE_ON_JOINT_VALIDITY_EVENT'
+          assert result['authority']['worst_case_fibre_safety'] is False
+          assert result['authority']['strongest_algorithm_selection_baseline_complete'] is False
+          assert result['authority']['external_independence'] is False
+          assert result['authority']['production_value'] is False
+          assert result['authority']['grants_journal_authority'] is False
+          allowed = {
+              'FIBERGUARD_R18_PAIRED_ROUTE_PASS_MAXSAT_VALIDATION_AND_QBF_TEST',
+              'FIBERGUARD_R18_MAXSAT_VALIDATION_PASS__QBF_TEST_FAIL',
+              'FIBERGUARD_R18_DEVELOPMENT_ONLY__MAXSAT19_FAIL',
+              'FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE',
+          }
+          assert result['terminal'] in allowed
+          print('R18_PAIRED_ROUTE_RESULT_VERIFIED', result['terminal'])
+          PY
+
+      - name: Publish one content-bound result comment
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          existing="$({
+            gh api --paginate "repos/$GITHUB_REPOSITORY/issues/1386/comments" \
+              --jq ".[] | select(.body | contains(\"$GITHUB_SHA\")) | .id"
+          } | head -n 1)"
+          if [ -z "$existing" ]; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/issues/1386/comments" \
+              -F "body=@$RUNNER_TEMP/comment-a.md" >/dev/null
+          else
+            echo "result comment already exists as $existing"
+          fi
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage complete immutable result artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-paired-route-r18"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/FIBERGUARD_PAIRED_ROUTE_R18_RESULTS.json"
+          cp "$RUNNER_TEMP/comment-a.md" "$out/RESULT_COMMENT.md"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-paired-route-r18-${{ github.sha }}
+          path: ${{ runner.temp }}/fiberguard-paired-route-r18/
+          if-no-files-found: error
+          retention-days: 30
