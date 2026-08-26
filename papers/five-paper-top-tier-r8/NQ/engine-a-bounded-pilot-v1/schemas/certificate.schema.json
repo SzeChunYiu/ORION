@@ -1,0 +1,44 @@
+{
+  "$id": "urn:orion:nq-engine-a:certificate:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bins": {
+      "items": {
+        "items": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "input_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "k": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "nq-engine-a-certificate-v1"
+    },
+    "sequence_length": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "input_sha256",
+    "sequence_length",
+    "k",
+    "bins"
+  ],
+  "title": "NQ Engine A factorization certificate",
+  "type": "object"
+}
