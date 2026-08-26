@@ -1,0 +1,261 @@
+{
+  "environment_receipts": [
+    {
+      "path": "raw/environment.txt",
+      "sha256": "9317f1cec9652af61564a77d7c4df67fb61faa1d2d6772f7aed0b258af5537c6"
+    },
+    {
+      "path": "raw/EXITCODES.txt",
+      "sha256": "9649800fcccee15b3dde943c6ec8b13ede5afb3d025a94769efe5ddd03bb3836"
+    },
+    {
+      "path": "raw/INDEX.txt",
+      "sha256": "b8b2cfd19ad9b1f89c68909642486227cdeaee1562e95cddc5ae45f19de0ad5b"
+    },
+    {
+      "path": "raw/pip-freeze.txt",
+      "sha256": "460388a0468dba2d4684d6001038b288c332ff49845416cb9c2c93652a4a107a"
+    },
+    {
+      "path": "raw/slurm-3544000.log",
+      "sha256": "ebb81cf43cf54128deebed672799cbea256bebb13b162957c32a58900430bc7f"
+    }
+  ],
+  "note_pip_freeze": "script line 'python -m pip freeze' produced an empty file (uv venv carries no pip module); regenerated post-run with 'uv pip freeze' against the same frozen-base venv at orion-v1-redcensus, method recorded here rather than silently replaced",
+  "runs": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "--ignore=tests/unit/p2",
+        "--durations=10"
+      ],
+      "exit_code": 0,
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "path": "raw/fast.xml",
+        "sha256": "206f9701a2a43f4454d3a2410621b2e1a9fe9398369fdf61a097f688fea38637",
+        "skipped": 12,
+        "tests": 6723
+      },
+      "log": {
+        "path": "raw/fast.log",
+        "sha256": "cbd8141181e9fa5a0cfe9030d61f990526cbc57e85e02e5f03f080995bc74121"
+      },
+      "run": "fast",
+      "seconds": 1349
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/unit/p2/test_p2_offline_systems.py",
+        "--splits",
+        "6",
+        "--group",
+        "1",
+        "-n",
+        "auto"
+      ],
+      "exit_code": 0,
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "path": "raw/p2-heavy-1.xml",
+        "sha256": "65134e2630282af57cd7bcd7569224ebe23a572db4f2aa60886186c1cf54790c",
+        "skipped": 0,
+        "tests": 4
+      },
+      "log": {
+        "path": "raw/p2-heavy-1.log",
+        "sha256": "3e7e85617cc2967448d1f12c537fdfc36313d487e7d0318eb1659f565e75f5d4"
+      },
+      "run": "p2-heavy-1",
+      "seconds": 90
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/unit/p2/test_p2_offline_systems.py",
+        "--splits",
+        "6",
+        "--group",
+        "2",
+        "-n",
+        "auto"
+      ],
+      "exit_code": 0,
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "path": "raw/p2-heavy-2.xml",
+        "sha256": "b2bb12d56782ba8e8d92e8008aab5a9ba77384d58b8777ea13f745ee6eb86241",
+        "skipped": 0,
+        "tests": 4
+      },
+      "log": {
+        "path": "raw/p2-heavy-2.log",
+        "sha256": "86511ff90728f5c03fc7d290799269b3ba686d59cf2ae9b43700939b04c29a79"
+      },
+      "run": "p2-heavy-2",
+      "seconds": 91
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/unit/p2/test_p2_offline_systems.py",
+        "--splits",
+        "6",
+        "--group",
+        "3",
+        "-n",
+        "auto"
+      ],
+      "exit_code": 0,
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "path": "raw/p2-heavy-3.xml",
+        "sha256": "8b6759db3c2e5493110ee396042612244b43848c16bfe315b124eee10cff86a7",
+        "skipped": 0,
+        "tests": 4
+      },
+      "log": {
+        "path": "raw/p2-heavy-3.log",
+        "sha256": "907c29168bf4f17376033e5881cdf4045c986461e941520c69164650029c1745"
+      },
+      "run": "p2-heavy-3",
+      "seconds": 95
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/unit/p2/test_p2_offline_systems.py",
+        "--splits",
+        "6",
+        "--group",
+        "4",
+        "-n",
+        "auto"
+      ],
+      "exit_code": 0,
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "path": "raw/p2-heavy-4.xml",
+        "sha256": "dc6a55f5ad105b769c0b13c78918f3769501eac84c173b32eb11f6549974f182",
+        "skipped": 0,
+        "tests": 4
+      },
+      "log": {
+        "path": "raw/p2-heavy-4.log",
+        "sha256": "dc108b7432e3b5e167cb28219198fe8b1d9578a43d464cc3a0043c102d8a5584"
+      },
+      "run": "p2-heavy-4",
+      "seconds": 91
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/unit/p2/test_p2_offline_systems.py",
+        "--splits",
+        "6",
+        "--group",
+        "5",
+        "-n",
+        "auto"
+      ],
+      "exit_code": 0,
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "path": "raw/p2-heavy-5.xml",
+        "sha256": "a3b8b13c825b19269ccab14629a5c38cb9d372236013eff1ddd785fb5e078c83",
+        "skipped": 0,
+        "tests": 4
+      },
+      "log": {
+        "path": "raw/p2-heavy-5.log",
+        "sha256": "65df9c7c0c719f588d3f016d2f964469c3020044c31ad0e01606402a5f07e75c"
+      },
+      "run": "p2-heavy-5",
+      "seconds": 9
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/unit/p2/test_p2_offline_systems.py",
+        "--splits",
+        "6",
+        "--group",
+        "6",
+        "-n",
+        "auto"
+      ],
+      "exit_code": 0,
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "path": "raw/p2-heavy-6.xml",
+        "sha256": "6e5cd5577b7327736d005d360e89e5f84d49a7c11cfda8bdc70c2950b7ca426b",
+        "skipped": 0,
+        "tests": 2
+      },
+      "log": {
+        "path": "raw/p2-heavy-6.log",
+        "sha256": "0d72dd8aaec7264b5f2e23240766c7b1286dc730b1116e0f037e078351fb70ed"
+      },
+      "run": "p2-heavy-6",
+      "seconds": 10
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/unit/p2",
+        "--ignore=tests/unit/p2/test_p2_offline_systems.py",
+        "-n",
+        "auto"
+      ],
+      "exit_code": 0,
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "path": "raw/p2-rest.xml",
+        "sha256": "e5e0105caedc9635880c6d7782696d6bca1651f9e39b9dcde7a5ec80c0d90aac",
+        "skipped": 2,
+        "tests": 668
+      },
+      "log": {
+        "path": "raw/p2-rest.log",
+        "sha256": "a66481b349bba1c41f258c5aaf869418fb45bb844c26e77ed0854d93880c6ffa"
+      },
+      "run": "p2-rest",
+      "seconds": 53
+    }
+  ],
+  "schema": "ORION.V1.RedCensusRawManifest.v1",
+  "slurm_job_id": 3544000
+}

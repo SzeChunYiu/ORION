@@ -1,0 +1,8 @@
+### RUN fast :: python -m pytest -q --ignore=tests/unit/p2 --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/fast.xml -p no:cacheprovider
+### RUN p2-heavy-1 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 1 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-1.xml -p no:cacheprovider
+### RUN p2-heavy-2 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 2 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-2.xml -p no:cacheprovider
+### RUN p2-heavy-3 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 3 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-3.xml -p no:cacheprovider
+### RUN p2-heavy-4 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 4 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-4.xml -p no:cacheprovider
+### RUN p2-heavy-5 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 5 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-5.xml -p no:cacheprovider
+### RUN p2-heavy-6 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 6 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-6.xml -p no:cacheprovider
+### RUN p2-rest :: python -m pytest -q tests/unit/p2 --ignore=tests/unit/p2/test_p2_offline_systems.py -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-rest.xml -p no:cacheprovider

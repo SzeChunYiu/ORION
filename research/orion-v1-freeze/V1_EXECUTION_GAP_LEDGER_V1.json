@@ -60,11 +60,26 @@
     },
     {
       "blocks_freeze": true,
+      "census_artifact": "research/orion-v1-freeze/redcensus-20260826/complete/PRIMARY_RESULT.json",
+      "census_terminal": "V1_RED_CENSUS_COMPLETE",
       "class": "INTERNAL_LOCAL",
       "discharge_job": "V1-RED-CENSUS-01",
       "gap_id": "GAP-INTERNAL-RED-CENSUS",
       "owner": "CODEX_COMPUTATION_SESSION",
-      "status": "OPEN"
+      "resolution_evidence": {
+        "declared_runs": 8,
+        "environment": "python 3.12.13 / numpy 2.5.2 / scipy 1.18.0 / sklearn 1.9.0, ENV BOUND OK",
+        "errors": 0,
+        "exit_zero_runs": 8,
+        "failures": 0,
+        "frozen_base": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+        "packet": "research/orion-v1-freeze/redcensus-20260826/complete/RESULT_BINDING_PACKET.json",
+        "red_classifications": "vacuous: zero reds at the frozen base",
+        "skipped_failing_shard": 0,
+        "slurm_job": 3544000,
+        "total_tests": 7413
+      },
+      "status": "RESOLVED"
     },
     {
       "blocks_freeze": true,

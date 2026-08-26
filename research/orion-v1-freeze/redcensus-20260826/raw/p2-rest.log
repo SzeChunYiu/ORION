@@ -1,0 +1,25 @@
+bringing up nodes...
+bringing up nodes...
+
+....................s................................................... [ 10%]
+........................................................................ [ 21%]
+........................................................................ [ 32%]
+........................................................................ [ 43%]
+........................................................................ [ 53%]
+........................................................................ [ 64%]
+........................................................................ [ 75%]
+........................................................................ [ 86%]
+........................................................................ [ 97%]
+...................                                                      [100%]
+============================= slowest 10 durations =============================
+50.17s call     tests/unit/p2/test_p2_offline_publication_artifacts.py::test_publication_regeneration_command_matches_frozen_archive
+49.42s call     tests/unit/p2/test_p2_offline_mechanisms_snapshot.py::test_offline_mechanism_projection_matches_frozen_snapshot
+48.05s call     tests/unit/p2/test_p2_offline_analysis_snapshot.py::test_offline_archive_is_reproducible_and_matches_committed_snapshot
+47.99s call     tests/unit/p2/test_p2_route_stop_oracle_snapshot.py::test_route_stop_projection_matches_frozen_snapshot
+23.92s call     tests/unit/p2/test_p2_offline_gold_world.py::test_every_gold_work_is_reachable_and_the_map_matches_the_corpus
+11.17s call     tests/unit/p2/test_p2_offline_gold_world.py::test_regeneration_reproduces_the_committed_fingerprint
+11.01s call     tests/unit/p2/test_p2_offline_gold_world.py::test_verify_notices_a_shard_that_no_hash_covers
+6.15s call     tests/unit/p2/test_p2_closure_receipts.py::TestAgainstTheFrozenSystems::test_route_stopping_and_task_closure_separate
+6.10s call     tests/unit/p2/test_p2_closure_receipts.py::TestAgainstTheFrozenSystems::test_mismatched_evaluation_and_trace_are_rejected
+6.09s call     tests/unit/p2/test_p2_closure_receipts.py::TestAgainstTheFrozenSystems::test_orion_declines_to_close_and_is_never_wrong_when_it_does
+666 passed, 2 skipped in 53.35s
