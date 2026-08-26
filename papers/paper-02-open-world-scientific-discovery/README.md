@@ -3,6 +3,16 @@
 **Stable ID:** ORION-P2  
 **Status:** `P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY`. The bounded methods / critical system-design claim remains the `P2_NARROWED` scientific ceiling. Matched external discovery superiority remains `CANNOT_CHECK` and is not claimed.
 
+## Current reader pointers
+
+- **Current manuscript:** `manuscript/main.tex`
+- **Current claim authority:** `P2_ACTIVE_CLAIM_AUTHORITY_V1.json`
+- **Current readiness:** `JOURNAL_READINESS.md`
+
+The authority record transcribes the already authorized `P2_NARROWED`
+scientific endpoint. It is not an author designation, external validation, or
+submission authorization.
+
 ## Scoped claim
 
 ORION studies scientific-literature discovery as a separate capability from synthesis. The candidate contribution is the combination of earned route independence, question-framed read memory, route-vs-task stopping, fail-closed coverage diagnostics and recall-first promotion against strong simple baselines.
@@ -10,9 +20,8 @@ ORION studies scientific-literature discovery as a separate capability from synt
 ## Claim, evidence, authority
 
 One table, so a reader can see what is claimed, what backs it and what governs
-it without reconstructing that from chronology. Packet and version history lives
-in `JOURNAL_READINESS.md` and `JOURNAL_READINESS_V2.md`; it is not needed to
-read the claims.
+it without reconstructing that from chronology. Packet and version history is
+retained in the paper directory; it is not needed to read the current claims.
 
 | Claim | Evidence | Authority |
 | --- | --- | --- |
@@ -46,7 +55,10 @@ Evidence: `evidence/FALSIFIER_V1.md` and `research/paper-programme-v1/FLAGSHIP_F
 - Official SAGE and matched multi-provider Deep superiority remain future-work reopen triggers.
 - Unavailable routes, invalid transport, and resource censoring remain `OPEN/CANNOT_CHECK`, never evidence of absence or scientific zeros.
 
-The ready paper claims governance semantics and bounded controlled mechanism evidence. It does not claim that ORION discovers more literature than simpler systems on the open web.
+The narrowed scientific paper claims governance semantics and bounded
+controlled mechanism evidence. It does not claim that ORION discovers more
+literature than simpler systems on the open web, and the current source does
+not yet have a submission-authorized package.
 
 ## Manuscript
 
