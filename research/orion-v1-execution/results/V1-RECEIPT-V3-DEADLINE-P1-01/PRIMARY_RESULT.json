@@ -1,7 +1,14 @@
 {
   "additional_control": {
     "local_broad_suite": "234_PASSED",
-    "reason": "Darwin exposes waitid WSTOPPED in addition to the frozen Linux 23-node wait suite"
+    "local_broad_time_seconds": 1.566,
+    "reason": "Darwin exposes waitid WSTOPPED in addition to the frozen Linux 23-node wait suite",
+    "separate_hostile_review_regressions": {
+      "denominator": 8,
+      "failures": 0,
+      "frozen_120_and_233_denominators_unchanged": true,
+      "time_seconds": 0.231
+    }
   },
   "authority_ceiling": {
     "full_dual_lane_execution": "OPEN",
@@ -19,14 +26,14 @@
       "failures": 0,
       "skipped": 0,
       "tests": 233,
-      "time_seconds": 1.594
+      "time_seconds": 1.585
     },
     "PYTHONHASHSEED_1": {
       "errors": 0,
       "failures": 0,
       "skipped": 0,
       "tests": 233,
-      "time_seconds": 1.623
+      "time_seconds": 1.576
     }
   },
   "combined_denominator": {
@@ -38,8 +45,8 @@
     },
     "unique": true
   },
-  "implementation_commit": "f076958c0a05cd5a2433ef15ce269667cb5a9b8a",
-  "implementation_tree": "e3a501461845f230ab68d622b1c9a7e2ad49a0dc",
+  "implementation_commit": "73f87baf581865d89f5df492ede27aa9e1171dd6",
+  "implementation_tree": "96ea7388c608ae9ec2cfdba9997134f8909b5a3b",
   "schema": "ORION.V1.ReceiptV3DeadlineP1PrimaryResult.v1",
   "tdd_progression": [
     {
@@ -66,7 +73,7 @@
       "skipped": 0,
       "stage": "DEADLINE_GREEN",
       "tests": 120,
-      "time_seconds": 0.742
+      "time_seconds": 1.184
     }
   ],
   "terminal": "V1_RECEIPT_V3_DEADLINE_P1_MIGRATED_120_GREEN"

@@ -17,6 +17,16 @@
     "publication_authority_delta": "NONE",
     "scientific_authority_delta": "NONE"
   },
+  "hostile_review_tdd": {
+    "frozen_120_and_233_denominators_unchanged": true,
+    "green_denominator": 8,
+    "green_failures": 0,
+    "green_log": "hostile_review_green.log",
+    "red_defects_exposed": 4,
+    "red_log": "hostile_review_red.log"
+  },
+  "implementation_commit": "73f87baf581865d89f5df492ede27aa9e1171dd6",
+  "implementation_tree": "96ea7388c608ae9ec2cfdba9997134f8909b5a3b",
   "oracle_sha256_after": "103c3678e34ea33b7657bec911c8d604b97196bdbf56df40df3f4d2ab8cc051d",
   "oracle_unchanged": true,
   "platform_control": {
@@ -54,5 +64,14 @@
       "passed": 109
     }
   ],
+  "resource_adversity_retained": {
+    "failed_install_attempts": 2,
+    "logs": [
+      "fresh_constrained_install_red_disk.log",
+      "fresh_constrained_install_red_disk_retry2.log"
+    ],
+    "protocol_or_dependency_retuning": false,
+    "reason": "ENOSPC"
+  },
   "schema": "ORION.V1.ReceiptV3DeadlineP1NegativeControls.v1"
 }

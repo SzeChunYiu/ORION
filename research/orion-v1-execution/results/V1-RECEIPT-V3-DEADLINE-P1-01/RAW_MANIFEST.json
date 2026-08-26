@@ -17,6 +17,29 @@
       "result": "42 passed, 78 failed"
     },
     {
+      "exit_code": 1,
+      "expected": true,
+      "name": "hostile_review_red",
+      "result": "4 failed"
+    },
+    {
+      "exit_code": 1,
+      "expected": true,
+      "name": "fresh_constrained_install_red_disk",
+      "result": "ENOSPC"
+    },
+    {
+      "exit_code": 1,
+      "expected": true,
+      "name": "fresh_constrained_install_red_disk_retry2",
+      "result": "ENOSPC"
+    },
+    {
+      "exit_code": 0,
+      "name": "fresh_constrained_install",
+      "result": "editable constrained install succeeded"
+    },
+    {
       "exit_code": 0,
       "name": "deadline_final",
       "result": "120 passed"
@@ -38,6 +61,11 @@
     },
     {
       "exit_code": 0,
+      "name": "hostile_review_green",
+      "result": "8 passed; separate denominator"
+    },
+    {
+      "exit_code": 0,
       "name": "py_compile"
     },
     {
@@ -51,39 +79,44 @@
   ],
   "files": [
     {
-      "bytes": 1603,
+      "bytes": 1743,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/DONOR_RESULT.json",
-      "sha256": "c4a4b96c19e240f4b757144a9d4acb06d1f4be28da7ed29386242dac8c62cf83"
+      "sha256": "66540f07d9efe773ec95972c55342f2e2e5517e74c155686c19fbc6567c8fb09"
     },
     {
-      "bytes": 3360,
+      "bytes": 3551,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/FREEZE.json",
-      "sha256": "0172d0c9efdc0afe994c68710e8921eec394285d4eb7a75ffdc24f831feaed15"
+      "sha256": "b743a3c9344e7e5dea5d866787eaeb09a6ccb77c91a2e0a213af081b22b0cadb"
     },
     {
-      "bytes": 2005,
+      "bytes": 2119,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/FRESH_ENVIRONMENT.json",
+      "sha256": "af9a35808ce5cb63fbe9b65019c37537bfedf6ae917da510730a859a285e939d"
+    },
+    {
+      "bytes": 2665,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/NEGATIVE_CONTROLS.json",
-      "sha256": "0862d2065763cb761f7dd84edcd4394dd5371f9fc4cbad90303b04389ffb4e1d"
+      "sha256": "253a6a9b3f799e1a10f4797337d446b7e653e4ed6bb658c75089bab2ad4ab318"
     },
     {
-      "bytes": 1907,
+      "bytes": 2128,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/PRIMARY_RESULT.json",
-      "sha256": "8e846961d041362073a8b48ff2ca70bf407a1112d474bc86e8123aafc439118a"
+      "sha256": "b2847f4ef0f8591a68fde3ef894d58f08929bd96675a8bccf151fdd4d5b04936"
     },
     {
-      "bytes": 1238,
+      "bytes": 1856,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/RESOURCE_LEDGER.json",
-      "sha256": "a4cf91947d068213b9f01c43af7eac3d0561de7f9ca5f3c35ae508fd0d8ca577"
+      "sha256": "727f413aebcefbb7b71e7da8f9e0402ce5562b383f7c8feab064c46ab7b8f4bc"
     },
     {
-      "bytes": 1233,
+      "bytes": 1758,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/TRANSFER_RESULT.json",
-      "sha256": "3a3259dc53fffc9ad60e514f3293138c6da6755ed6530606a84c46619c486514"
+      "sha256": "d64517b6d6dc6f038bbdaed00434574529912aeeed2034ae2ea6a0484406613d"
     },
     {
       "bytes": 340,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/combined_green_first.log",
-      "sha256": "6dd01ac5ab44d726586f75e9891dfdc468f30415e7f8845511c14a6ea0e32eef"
+      "sha256": "a8685c876c36c81e2a33b98fdaf51783ec9df6047995b51fc25a0d59523e5013"
     },
     {
       "bytes": 340,
@@ -93,22 +126,32 @@
     {
       "bytes": 38474,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/combined_hashseed_0.xml",
-      "sha256": "2db9df3c8eafc1d97aa326a902e5a5cf2e279fa31d397d28db6f7f6756f4115d"
+      "sha256": "944cf1a8a1e0c8eae9c03255dddc87245f4fe94147d40899c7404cd215a61632"
     },
     {
       "bytes": 340,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/combined_hashseed_1.log",
-      "sha256": "9cea807eb630392679a760d73dcb5f9cd02b46255b8b9c236c689718046cb26e"
+      "sha256": "e917f8d7dc4995b9c683bcf5f105660fa3878abbca8efc7ba5a215a4fa53bffd"
     },
     {
       "bytes": 38474,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/combined_hashseed_1.xml",
-      "sha256": "10a22d7b57e9aaaee98724d35b4245866c51f0708a8dc77e39f37b966bfb9029"
+      "sha256": "70fa94ede2e3d1ca8757a59d71ebbf54c24adfeba3095e1ff907b7953ceab15b"
     },
     {
       "bytes": 29067,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/combined_nodeids.txt",
       "sha256": "5b01f98262f36dc0add9ea874e9079fca70183e5a0c554af9f90bb93a79a2994"
+    },
+    {
+      "bytes": 340,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/darwin_broad_234.log",
+      "sha256": "c66af64534e0c8dc1801418ea8d27fc657119dd6838a5b2d385863eef985a64a"
+    },
+    {
+      "bytes": 38656,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/darwin_broad_234.xml",
+      "sha256": "7d3ba2352a0990a5677b245fb50738fc79869fb47218c8d4b2b08e4656ab8a53"
     },
     {
       "bytes": 15280,
@@ -118,17 +161,37 @@
     {
       "bytes": 180,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/deadline_final.log",
-      "sha256": "3623d659306c3fe26bbdae61d75503090d863b73942179e479048bb1d9e1fcb9"
+      "sha256": "1edd6c15fc16a03bf3f87c80c0d960e50dfea47e849e9975b2d358cb2cf19696"
     },
     {
       "bytes": 20339,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/deadline_final.xml",
-      "sha256": "f84aaebff82cd2b4892045dd264e723a3ee7c5446697d74b6040e39cc7bb7f79"
+      "sha256": "2fd941bba62f77c0a5d0a3fd8d33dd0abb53f8d514512ad595e14884b031014c"
     },
     {
       "bytes": 180,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/deadline_green_120.log",
-      "sha256": "5c178ed0163fd456c1ec86b3553243d92d1433e2ad29c6eef9ae3b6dae010623"
+      "sha256": "1edd6c15fc16a03bf3f87c80c0d960e50dfea47e849e9975b2d358cb2cf19696"
+    },
+    {
+      "bytes": 7392,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/fresh_constrained_install.log",
+      "sha256": "94cd65ee8f2dc4121fd971bba1760cfff2ea2d537f7ac330096d09aa563e43b7"
+    },
+    {
+      "bytes": 7090,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/fresh_constrained_install_red_disk.log",
+      "sha256": "a821ae0aee9733da80e1ba44761972e0b89232722e57ba9f927344a75346f24e"
+    },
+    {
+      "bytes": 7090,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/fresh_constrained_install_red_disk_retry2.log",
+      "sha256": "8f85c7bf964f6b3c1f3c6613c317bf0bf86dc320e085e100e38fe1e85bb1d431"
+    },
+    {
+      "bytes": 530,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/fresh_constrained_pip_freeze.txt",
+      "sha256": "0e7b71686ca8236c1b967388522926cb912f6b05c9a865e78a27094cdc9c284f"
     },
     {
       "bytes": 13617,
@@ -139,6 +202,21 @@
       "bytes": 28897,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/frozen_233_nodeids.txt",
       "sha256": "acd90ccf532ee96621e7403f24702143a4638db67ed7d2494c46ea304b758e40"
+    },
+    {
+      "bytes": 98,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/hostile_review_green.log",
+      "sha256": "82469cff4e1df5f2929bd2a6f5a9056a2e1a28f7c4cf9d7c208922ea0c54d799"
+    },
+    {
+      "bytes": 1924,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/hostile_review_green.xml",
+      "sha256": "61d7f7af2b554d86064469bd791b65ada86907a3461d9e830bf06ffac38f7b04"
+    },
+    {
+      "bytes": 27385,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/hostile_review_red.log",
+      "sha256": "6845c3e9dc7d126d0d6c6cf96013bc8d84a5bafca974a323e7e9741ad2c0bf56"
     },
     {
       "bytes": 184705,
@@ -171,13 +249,18 @@
       "sha256": "ac5388a3226a61eb09e22668196e467350e907f709da088c2df0b9b7f2c0c812"
     },
     {
-      "bytes": 407,
+      "bytes": 9078,
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py",
+      "sha256": "d5c322daa5b5b5d6d2f02382e12387dd0fe4bfee20fea11b6a9d205de9813937"
+    },
+    {
+      "bytes": 423,
       "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/verification_hygiene.log",
-      "sha256": "0608f49e5dc6ecd1762af48072cb2bd4c4453efcd244a7840babcf90b0f21223"
+      "sha256": "a83fcfcdb1210da678c2ea198581ed79b9fe0a567946326789fa154f56d64f73"
     }
   ],
-  "implementation_commit": "f076958c0a05cd5a2433ef15ce269667cb5a9b8a",
-  "implementation_tree": "e3a501461845f230ab68d622b1c9a7e2ad49a0dc",
+  "implementation_commit": "73f87baf581865d89f5df492ede27aa9e1171dd6",
+  "implementation_tree": "96ea7388c608ae9ec2cfdba9997134f8909b5a3b",
   "schema": "ORION.V1.ReceiptV3DeadlineP1RawManifest.v1",
   "scope": "all result-directory files present before manifest and binding packet; self and binding packet excluded"
 }

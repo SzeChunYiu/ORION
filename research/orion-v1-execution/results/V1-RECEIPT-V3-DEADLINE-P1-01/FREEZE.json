@@ -25,13 +25,13 @@
     "timeouts_widened": false,
     "work_caps_changed": false
   },
-  "implementation_commit": "f076958c0a05cd5a2433ef15ce269667cb5a9b8a",
-  "implementation_tree": "e3a501461845f230ab68d622b1c9a7e2ad49a0dc",
+  "implementation_commit": "73f87baf581865d89f5df492ede27aa9e1171dd6",
+  "implementation_tree": "96ea7388c608ae9ec2cfdba9997134f8909b5a3b",
   "module_after": {
-    "bytes": 253208,
-    "git_blob": "e6e508947bd4830b06773585dd6a84e18e768f98",
+    "bytes": 257375,
+    "git_blob": "cdc656efd7a2cc107a261d3f759329c3d9a4c926",
     "path": "src/orion/kernel/process_receipt.py",
-    "sha256": "27474da3e12a6082210270b1a96256412eecf3b46a8762fc1734443bedfde36e"
+    "sha256": "47753332cb1ade725207c83142dfb7a115f9e998c0814d9576e0e1e85c142827"
   },
   "module_before": {
     "bytes": 221390,
@@ -50,6 +50,13 @@
   "packet_id": "V1-RECEIPT-V3-DEADLINE-P1-01",
   "required_branch": "codex/orion-v1-receipt-v3-deadline-p1-20260826",
   "schema": "ORION.V1.ReceiptV3DeadlineP1Freeze.v1",
+  "separate_non_frozen_controls": {
+    "hostile_review_regressions": {
+      "denominator": 8,
+      "frozen_120_and_233_denominators_unchanged": true,
+      "result": "8_PASSED"
+    }
+  },
   "source_commit": "ed6aa96485e583fdf47fc483d92702e8928c6a2c",
   "source_tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081",
   "test_files": {

@@ -1,0 +1,94 @@
+Obtaining file:///Users/billy/Documents/Codex/2026-08-25/can-you-connect-to-lunarc-x20/work/orion-v1-receipt-v3-deadline-p1
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Collecting cryptography>=45 (from orion-research-os==0.1.0)
+  Downloading cryptography-50.0.1-cp311-abi3-macosx_11_0_arm64.whl.metadata (4.3 kB)
+Collecting defusedxml>=0.7 (from orion-research-os==0.1.0)
+  Downloading defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+Collecting pytest>=8 (from orion-research-os==0.1.0)
+  Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting pytest-split>=0.9 (from orion-research-os==0.1.0)
+  Downloading pytest_split-0.11.0-py3-none-any.whl.metadata (9.5 kB)
+Collecting pytest-xdist>=3.6 (from orion-research-os==0.1.0)
+  Downloading pytest_xdist-3.8.0-py3-none-any.whl.metadata (3.0 kB)
+Collecting pytest-timeout>=2.3 (from orion-research-os==0.1.0)
+  Downloading pytest_timeout-2.4.0-py3-none-any.whl.metadata (20 kB)
+Collecting pypdf>=6 (from orion-research-os==0.1.0)
+  Downloading pypdf-6.16.2-py3-none-any.whl.metadata (7.5 kB)
+Collecting numpy>=2 (from orion-research-os==0.1.0)
+  Downloading numpy-2.5.2-cp312-cp312-macosx_14_0_arm64.whl.metadata (6.6 kB)
+Collecting scikit-learn>=1.5 (from orion-research-os==0.1.0)
+  Downloading scikit_learn-1.9.0-cp312-cp312-macosx_12_0_arm64.whl.metadata (11 kB)
+Collecting scipy>=1.11 (from orion-research-os==0.1.0)
+  Downloading scipy-1.18.0-cp312-cp312-macosx_14_0_arm64.whl.metadata (62 kB)
+Collecting cffi>=2.0.0 (from cryptography>=45->orion-research-os==0.1.0)
+  Downloading cffi-2.1.1-cp312-cp312-macosx_11_0_arm64.whl.metadata (2.5 kB)
+Collecting pycparser (from cffi>=2.0.0->cryptography>=45->orion-research-os==0.1.0)
+  Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+Collecting iniconfig>=1.0.1 (from pytest>=8->orion-research-os==0.1.0)
+  Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting packaging>=22 (from pytest>=8->orion-research-os==0.1.0)
+  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pluggy<2,>=1.5 (from pytest>=8->orion-research-os==0.1.0)
+  Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting pygments>=2.7.2 (from pytest>=8->orion-research-os==0.1.0)
+  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting execnet>=2.1 (from pytest-xdist>=3.6->orion-research-os==0.1.0)
+  Downloading execnet-2.1.2-py3-none-any.whl.metadata (2.9 kB)
+Collecting joblib>=1.4.0 (from scikit-learn>=1.5->orion-research-os==0.1.0)
+  Downloading joblib-1.5.3-py3-none-any.whl.metadata (5.5 kB)
+Collecting narwhals>=2.0.1 (from scikit-learn>=1.5->orion-research-os==0.1.0)
+  Downloading narwhals-2.25.0-py3-none-any.whl.metadata (15 kB)
+Collecting threadpoolctl>=3.5.0 (from scikit-learn>=1.5->orion-research-os==0.1.0)
+  Downloading threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+Collecting prov>=2.0 (from orion-research-os==0.1.0)
+  Downloading prov-3.1.0-py3-none-any.whl.metadata (4.6 kB)
+Collecting z3-solver>=4.13 (from orion-research-os==0.1.0)
+  Downloading z3_solver-5.1.0.0-py3-none-macosx_13_0_arm64.whl.metadata (777 bytes)
+Downloading cryptography-50.0.1-cp311-abi3-macosx_11_0_arm64.whl (4.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.0/4.0 MB 16.5 MB/s  0:00:00
+Downloading cffi-2.1.1-cp312-cp312-macosx_11_0_arm64.whl (184 kB)
+Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+Downloading numpy-2.5.2-cp312-cp312-macosx_14_0_arm64.whl (5.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 31.1 MB/s  0:00:00
+Downloading pypdf-6.16.2-py3-none-any.whl (385 kB)
+Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 24.2 MB/s  0:00:00
+Downloading pytest_split-0.11.0-py3-none-any.whl (11 kB)
+Downloading pytest_timeout-2.4.0-py3-none-any.whl (14 kB)
+Downloading pytest_xdist-3.8.0-py3-none-any.whl (46 kB)
+Downloading execnet-2.1.2-py3-none-any.whl (40 kB)
+Downloading scikit_learn-1.9.0-cp312-cp312-macosx_12_0_arm64.whl (8.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.3/8.3 MB 22.2 MB/s  0:00:00
+Downloading joblib-1.5.3-py3-none-any.whl (309 kB)
+Downloading narwhals-2.25.0-py3-none-any.whl (467 kB)
+Downloading scipy-1.18.0-cp312-cp312-macosx_14_0_arm64.whl (20.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 20.4/20.4 MB 22.8 MB/s  0:00:00
+Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+Downloading prov-3.1.0-py3-none-any.whl (673 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 673.1/673.1 kB 25.9 MB/s  0:00:00
+Downloading z3_solver-5.1.0.0-py3-none-macosx_13_0_arm64.whl (38.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.8/38.8 MB 24.3 MB/s  0:00:01
+Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+Building wheels for collected packages: orion-research-os
+  Building editable for orion-research-os (pyproject.toml): started
+  Building editable for orion-research-os (pyproject.toml): finished with status 'done'
+  Created wheel for orion-research-os: filename=orion_research_os-0.1.0-0.editable-py3-none-any.whl size=1660 sha256=224d585d343b1a5a87bcba84e0d5971dd7fbe843a4837aed4319c833519f5418
+  Stored in directory: /private/var/folders/0n/mhnk9g6936bb4xts606y27fm0000gn/T/pip-ephem-wheel-cache-ad2oev4p/wheels/55/6e/55/652ee6aa53de326100a608037e588ebd9c4e55c15879b89ca5
+Successfully built orion-research-os
+Installing collected packages: z3-solver, threadpoolctl, pypdf, pygments, pycparser, prov, pluggy, packaging, numpy, narwhals, joblib, iniconfig, execnet, defusedxml, scipy, pytest, cffi, scikit-learn, pytest-xdist, pytest-timeout, pytest-split, cryptography, orion-research-os
+
+Successfully installed cffi-2.1.1 cryptography-50.0.1 defusedxml-0.7.1 execnet-2.1.2 iniconfig-2.3.0 joblib-1.5.3 narwhals-2.25.0 numpy-2.5.2 orion-research-os-0.1.0 packaging-26.3 pluggy-1.6.0 prov-3.1.0 pycparser-3.0 pygments-2.21.0 pypdf-6.16.2 pytest-9.1.1 pytest-split-0.11.0 pytest-timeout-2.4.0 pytest-xdist-3.8.0 scikit-learn-1.9.0 scipy-1.18.0 threadpoolctl-3.6.0 z3-solver-5.1.0.0
+
+[notice] A new release of pip is available: 26.1 -> 26.2.1
+[notice] To update, run: /private/tmp/orion-v1-receipt-v3-hostile-final/bin/python -m pip install --upgrade pip
