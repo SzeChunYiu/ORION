@@ -99,7 +99,7 @@ class TestTheInterpretationIsProved:
             return cg.RefutationSearch.UNDECIDED
 
         monkeypatch.setattr(cg, "prove_all", proved)
-        monkeypatch.setattr(cg, "search_for_a_countermodel", undecided)
+        monkeypatch.setattr(cg, "verify_countermodel_certificate", undecided)
 
         first = cg.frame_conditions_are_load_bearing(timeout_ms=1, repeats=2)
         second = cg.frame_conditions_are_load_bearing(timeout_ms=1, repeats=2)
@@ -107,7 +107,7 @@ class TestTheInterpretationIsProved:
         assert first == second
         assert first is not second
         assert second["outcome"] == Outcome.CANNOT_CHECK.value
-        assert calls == len(cg.FRAME_CONDITION_IDS) * len(cg.THEOREMS) * 2
+        assert calls == len(cg.FRAME_CONDITION_IDS) * 2
 
         first["conditions_left_undecided"].append("caller mutation")
         third = cg.frame_conditions_are_load_bearing(timeout_ms=1, repeats=2)
@@ -115,6 +115,36 @@ class TestTheInterpretationIsProved:
 
 
 class TestTheFrameConditionsCarryTheProof:
+    def test_only_the_pinned_small_countermodel_certificates_are_checked(self) -> None:
+        """Load-bearing evidence is certificate verification, not model discovery."""
+
+        from types import SimpleNamespace
+
+        calls: list[dict] = []
+
+        def proved(**_kwargs):
+            return tuple(SimpleNamespace(theorem=t, discharged=True) for t in cg.THEOREMS)
+
+        def checked(_axioms, _claim, _cert, **kwargs):
+            calls.append(kwargs)
+            return cg.RefutationSearch.COUNTERMODEL
+
+        report = cg._measure_frame_conditions(
+            timeout_ms=1,
+            repeats=2,
+            proof_runner=proved,
+            countermodel_search=checked,
+        )
+
+        assert len(calls) == len(cg.FRAME_CONDITION_IDS) * 2
+        assert [call["certificate"].theorem for call in calls[::2]] == [
+            "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+            "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+            "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+        ]
+        assert [call["certificate"].world_size for call in calls[::2]] == [2, 1, 1]
+        assert report["every_condition_carries_a_theorem"] is True
+
     def test_every_condition_loses_at_least_one_theorem_when_dropped(
         self, load_bearing: dict
     ) -> None:
@@ -122,40 +152,27 @@ class TestTheFrameConditionsCarryTheProof:
         assert load_bearing["every_condition_carries_a_theorem"] is True
 
     @pytest.mark.parametrize(
-        ("condition", "expected_core"),
+        ("condition", "expected_theorem"),
         [
             (
                 "coordinates_support_the_certificate",
-                {
-                    "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
-                    "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED",
-                },
+                "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
             ),
             (
                 "coordinates_do_not_support_each_other",
-                {"CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED"},
+                "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
             ),
             (
                 "the_certificate_is_not_a_coordinate",
-                {
-                    "CERTIFICATE_DAMAGE_REOPENS_NOTHING",
-                    "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
-                    "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
-                    "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED",
-                    "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED",
-                },
+                "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
             ),
         ],
     )
-    def test_which_theorem_each_condition_always_carries(
-        self, condition: str, expected_core: set[str], load_bearing: dict
+    def test_which_explicit_certificate_each_condition_carries(
+        self, condition: str, expected_theorem: str, load_bearing: dict
     ) -> None:
-        # The stable core, not an equality against one run. The edge-restriction
-        # condition refutes between one and three theorems depending on how the
-        # solver's model search goes; exactly one of them falls every time.
         core = set(load_bearing["theorems_refuted_on_every_run"][condition])
-        assert core <= expected_core
-        assert core
+        assert core == {expected_theorem}
 
     def test_a_theorem_that_only_stops_being_provable_is_not_counted(
         self, load_bearing: dict
@@ -179,6 +196,23 @@ class TestTheFrameConditionsCarryTheProof:
         source = inspect.getsource(cg.prove_all)
         assert "refute_in_a_bounded_world" not in source
         assert "REFUTATION_WORLD_SIZE" not in source
+
+    def test_the_explicit_certificates_really_refute_their_named_theorems(self) -> None:
+        for condition, certificate in cg.FRAME_COUNTERMODEL_CERTIFICATES.items():
+            query = next(
+                item for item in cg._drop_queries(condition) if item[0] == certificate.theorem
+            )
+            _theorem, axioms, claim, cert = query
+            assert (
+                cg.verify_countermodel_certificate(
+                    axioms,
+                    claim,
+                    cert,
+                    certificate=certificate,
+                    timeout_ms=1000,
+                )
+                is cg.RefutationSearch.COUNTERMODEL
+            ), condition
 
     def test_an_unknown_condition_is_refused(self) -> None:
         with pytest.raises(ValueError, match="unknown frame condition"):
@@ -220,9 +254,7 @@ class TestThePublishedCountsAreAnInstance:
             module.descendants = lambda node_count, edges, changed: frozenset()
             return module
 
-        monkeypatch.setattr(
-            cg, "load_executable_model", loading_a_broken_model, raising=True
-        )
+        monkeypatch.setattr(cg, "load_executable_model", loading_a_broken_model, raising=True)
         broken = cg.recompute_published_counts(REPO_ROOT)
         assert broken["proper_subset_failures"] == 0
         assert broken["counts_reproduced"] is False
@@ -245,9 +277,7 @@ class TestWhatTheCountsCanAndCannotIdentify:
             "complete_graph",
         }
 
-    def test_every_indistinguishable_graph_is_refuted_by_a_theorem(
-        self, sensitivity: dict
-    ) -> None:
+    def test_every_indistinguishable_graph_is_refuted_by_a_theorem(self, sensitivity: dict) -> None:
         # This is the load-bearing assertion of the module. A variant that
         # escaped both the counts and the theorems would leave the
         # interpretation genuinely under-determined.
@@ -267,13 +297,12 @@ class TestWhatTheCountsCanAndCannotIdentify:
             reopened = model.descendants(width + 1, star, frozenset(damaged))
             assert reopened == frozenset({width}), damaged
 
-    def test_leaving_the_reachability_class_moves_the_count(
-        self, sensitivity: dict
-    ) -> None:
+    def test_leaving_the_reachability_class_moves_the_count(self, sensitivity: dict) -> None:
         variants = sensitivity["variants"]
-        assert variants["one_coordinate_does_not_support_the_certificate"][
-            "proper_subset_failures"
-        ] == 975
+        assert (
+            variants["one_coordinate_does_not_support_the_certificate"]["proper_subset_failures"]
+            == 975
+        )
         for name in ("edges_reversed", "no_support_edges"):
             assert variants[name]["proper_subset_failures"] == 0, name
 
@@ -284,8 +313,9 @@ class TestWhatTheCountsCanAndCannotIdentify:
         # the published result tests nothing about the interpretation.
         for name, variant in sensitivity["variants"].items():
             assert variant["full_restorations"] == 155, name
-        assert "does not depend on the graph" in (
-            sensitivity["the_restoration_count_does_not_discriminate"]
+        assert (
+            "does not depend on the graph"
+            in (sensitivity["the_restoration_count_does_not_discriminate"])
         )
 
 
@@ -296,9 +326,7 @@ class TestTheReport:
         assert report["published_counts"]["counts_reproduced"] is True
         assert report["frame_conditions"]["every_condition_carries_a_theorem"] is True
         assert any("155 tests the interpretation" in item for item in report["not_licensed"])
-        assert any(
-            "identify the star graph" in item for item in report["not_licensed"]
-        )
+        assert any("identify the star graph" in item for item in report["not_licensed"])
         assert any("independent review" in item for item in report["not_licensed"])
 
     def test_the_date_is_supplied_not_read_from_the_clock(self) -> None:
@@ -349,33 +377,26 @@ class TestASearchThatGaveUpIsNotAFinding:
     def _measure(self, monkeypatch, verdict_for) -> dict:
         monkeypatch.setattr(
             cg,
-            "search_for_a_countermodel",
+            "verify_countermodel_certificate",
             lambda axioms, claim, cert, **k: verdict_for(claim),
         )
         return cg.frame_conditions_are_load_bearing(repeats=2)
 
-    def test_a_search_that_gave_up_is_undecided_and_never_inert(
-        self, monkeypatch
-    ) -> None:
-        report = self._measure(
-            monkeypatch, lambda _claim: cg.RefutationSearch.UNDECIDED
-        )
+    def test_a_search_that_gave_up_is_undecided_and_never_inert(self, monkeypatch) -> None:
+        report = self._measure(monkeypatch, lambda _claim: cg.RefutationSearch.UNDECIDED)
 
         assert report["inert_conditions"] == []
         assert report["conditions_left_undecided"] == sorted(cg.FRAME_CONDITION_IDS)
         assert report["outcome"] == Outcome.CANNOT_CHECK.value
         assert report["every_condition_carries_a_theorem"] is False
 
-    def test_a_condition_that_settles_with_no_countermodel_is_inert(
-        self, monkeypatch
-    ) -> None:
-        """The finding the audit is entitled to make, and it must still fire."""
+    def test_a_certificate_that_settles_with_no_countermodel_is_invalid(self, monkeypatch) -> None:
+        """One failed witness cannot be promoted into a finding of inertness."""
 
-        report = self._measure(
-            monkeypatch, lambda _claim: cg.RefutationSearch.NO_COUNTERMODEL
-        )
+        report = self._measure(monkeypatch, lambda _claim: cg.RefutationSearch.NO_COUNTERMODEL)
 
-        assert report["inert_conditions"] == sorted(cg.FRAME_CONDITION_IDS)
+        assert report["inert_conditions"] == []
+        assert report["invalid_countermodel_certificates"] == sorted(cg.FRAME_CONDITION_IDS)
         assert report["conditions_left_undecided"] == []
         assert report["outcome"] == Outcome.FAIL.value
 
@@ -408,6 +429,7 @@ class TestASearchThatGaveUpIsNotAFinding:
         assert inert == []
         assert intermittent == ["c"]
 
-    def test_the_criterion_states_both_directions(self) -> None:
+    def test_the_criterion_preserves_both_non_positive_outcomes(self) -> None:
         report = cg.frame_conditions_are_load_bearing(repeats=1)
-        assert "in that direction too" in report["criterion"]
+        assert "invalid certificate is a failed certificate" in report["criterion"]
+        assert "does not settle is CANNOT_CHECK" in report["criterion"]
