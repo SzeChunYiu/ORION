@@ -363,19 +363,26 @@ def _immutable_results(root: Path, candidate_id: str) -> Assessment:
             _relative(root, checkers),
             "no valid machine-readable result artifact exists under formal/mechanized",
         )
-    local_contracts = sorted(
-        (_paper(root, candidate_id) / "evidence/local").glob(
-            f"{candidate_id}_LOCAL_REPLAY_CONTRACT_V3.json"
+    versioned_contracts: list[tuple[int, Path]] = []
+    for path in (_paper(root, candidate_id) / "evidence/local").glob(
+        f"{candidate_id}_LOCAL_REPLAY_CONTRACT_V*.json"
+    ):
+        match = re.fullmatch(
+            rf"{re.escape(candidate_id)}_LOCAL_REPLAY_CONTRACT_V(\d+)\.json",
+            path.name,
         )
-    )
+        if match is not None:
+            versioned_contracts.append((int(match.group(1)), path))
+    local_contracts = sorted(versioned_contracts)
     if local_contracts:
-        contract_path = local_contracts[0]
+        contract_version, contract_path = local_contracts[-1]
         contract = _load_json(contract_path)
         bound_paths: list[Path] = []
         valid_contract = contract is not None
         if contract is not None:
             valid_contract = valid_contract and (
-                contract.get("schema_version") == "orion.local-replay-contract.v3"
+                contract.get("schema_version")
+                == f"orion.local-replay-contract.v{contract_version}"
                 and contract.get("paper_id") == candidate_id
                 and contract.get("self_authorizing") is True
                 and contract.get("independent_replay") is False
@@ -396,8 +403,10 @@ def _immutable_results(root: Path, candidate_id: str) -> Assessment:
                     and local_lock.is_file()
                     and _sha256_file(local_lock) == lock_digest
                 )
-            for field in ("raw_inputs", "raw_outputs"):
+            for field in ("raw_inputs", "raw_outputs", "historical_predecessors"):
                 artifacts = contract.get(field)
+                if artifacts is None and field == "historical_predecessors":
+                    continue
                 if not isinstance(artifacts, list) or not artifacts:
                     valid_contract = False
                     continue
