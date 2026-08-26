@@ -1,0 +1,137 @@
+name: orion-02-r19-joint-route
+
+on:
+  push:
+    branches:
+      - chatgpt/orion-02-r19-current-main-20260827
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/extensions/r19/**'
+      - '.github/workflows/orion-02-r19-joint-route.yml'
+  pull_request:
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/extensions/r19/**'
+      - '.github/workflows/orion-02-r19-joint-route.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-joint-route-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile and replay twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/extensions/r19'
+          core="$root/fiberguard_joint_route_r19_core.py"
+          script="$root/verify_fiberguard_joint_route_r19.py"
+          registered="$root/JOINT_ROUTE_R19_RESULTS.json"
+          python -m py_compile "$core" "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$registered"
+          grep -q '^FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT_PASS ' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify hostile controls and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.FiberGuard.JointRoute.R19.v1'
+          assert result['source_base_commit'] == 'f34b61e0051289588eaf144a580dca7bc9b7e707'
+          assert result['terminal'] == 'FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT_PASS'
+          assert all(result['controls'].values())
+          random = result['random_exact_checks']
+          assert random['systems'] == 240
+          assert random['joint_profile_enumeration_checks'] == 480
+          assert random['exact_randomized_games'] == 120
+          assert random['pareto_value_checks'] == 600
+          assert random['randomized_policy_support_histogram'] == {
+              '1': 50, '2': 49, '3': 19, '4': 2
+          }
+          assert random['systems_where_diagonal_pairing_changes_lower_image'] == 114
+          invalid = result['invalid_R19_pairing_counterexample']
+          assert invalid['original_randomized_value'] == '35'
+          assert invalid['shortcut_randomized_value'] == '70'
+          assert invalid['lower_image_preserved'] is False
+          joint = result['same_marginals_different_joint_system']
+          assert joint['full_pair_randomized_value'] == '0'
+          assert joint['diagonal_pair_randomized_value'] == '50'
+          assert joint['same_marginals_different_joint_value'] is True
+          assert result['shared_coarsening_ranking_reversal']['ranking_reversed'] is True
+          assert result['acquisition_timing_reversal']['route_ranking_reversed'] is True
+          authority = result['authority']
+          assert authority['replaces_invalid_R19_shortcut'] is True
+          assert authority['paired_ASlib_experiment_executed'] is False
+          assert authority['grants_journal_authority'] is False
+          print('ORION_02_R19_RESULT_VERIFIED')
+          PY
+
+      - name: Verify current-main custody receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+
+          root = Path('papers/orion-02-fiberguard-finite-fibre/extensions/r19')
+          receipt = json.loads((root / 'CURRENT_MAIN_CUSTODY_R19.json').read_text())
+          assert receipt['schema'] == 'ORION.ORION02.CurrentMainCustody.R19.v1'
+          assert receipt['current_main_base'] == '3a1a831786324261ac18a7ad20620f105136b58e'
+          assert receipt['source_head'] == '0879974cfdfb2cccb8d50d1c9ed5f44b165e171f'
+          assert receipt['source_workflow_run'] == 33021028113
+          for name, expected in receipt['git_blobs'].items():
+              path = root / name
+              observed = subprocess.check_output(
+                  ['git', 'rev-parse', f'HEAD:{path.as_posix()}'], text=True
+              ).strip()
+              assert observed == expected, (name, expected, observed)
+          assert receipt['authority']['R18_positive_terminal'] == 'RETRACTED'
+          assert receipt['authority']['paired_ASlib_experiment_executed'] is False
+          assert receipt['authority']['journal_authority'] is False
+          print('ORION_02_R19_CUSTODY_VERIFIED')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/orion-02-r19-joint-route"
+          mkdir -p "$out"
+          root='papers/orion-02-fiberguard-finite-fibre/extensions/r19'
+          cp "$root/JOINT_ROUTE_R19_RESULTS.json" "$out/"
+          cp "$root/CURRENT_MAIN_CUSTODY_R19.json" "$out/"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-02-r19-joint-route
+          path: ${{ runner.temp }}/orion-02-r19-joint-route/
+          if-no-files-found: error
+          retention-days: 30
