@@ -1,0 +1,157 @@
+name: five-paper-r12-d-first-mixing
+
+on:
+  push:
+    branches:
+      - chatgpt/r12-d-first-mixing-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/D/ORIGIN_WITNESS_FIRST_MIXING_R12.md'
+      - 'papers/five-paper-top-tier-r8/D/verify_origin_witness_first_mixing_r12.py'
+      - '.github/workflows/five-paper-r12-d-first-mixing.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/D/ORIGIN_WITNESS_FIRST_MIXING_R12.md'
+      - 'papers/five-paper-top-tier-r8/D/verify_origin_witness_first_mixing_r12.py'
+      - '.github/workflows/five-paper-r12-d-first-mixing.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-first-mixing-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Materialize pinned agentgateway bridge sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/agentgateway"
+          git init "$root"
+          git -C "$root" remote add origin https://github.com/agentgateway/agentgateway.git
+          git -C "$root" config core.sparseCheckout true
+          cat > "$root/.git/info/sparse-checkout" <<'EOF'
+          /crates/agentgateway/src/http/jwt.rs
+          /crates/agentgateway/src/cel/types.rs
+          /crates/agentgateway/src/http/authorization.rs
+          /crates/agentgateway/src/store/binds.rs
+          EOF
+          git -C "$root" fetch --depth 1 origin e136c7458b0fe0f51378dd31ffd60ab2b6939fc2
+          git -C "$root" checkout --detach FETCH_HEAD
+          test "$(git -C "$root" rev-parse HEAD)" = 'e136c7458b0fe0f51378dd31ffd60ab2b6939fc2'
+
+      - name: Verify source blobs and bridge semantics
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/agentgateway"
+          check_blob() {
+            path="$1"; expected="$2"
+            actual="$(git -C "$root" rev-parse "HEAD:$path")"
+            test "$actual" = "$expected" || { echo "$path blob mismatch: $actual != $expected"; exit 1; }
+          }
+          check_blob crates/agentgateway/src/http/jwt.rs 32bd2c61741a3b65971d4b1831965c7e2e98071f
+          check_blob crates/agentgateway/src/cel/types.rs 29680dc3793fd51f1bb20af12ebd4d52a4587fa8
+          check_blob crates/agentgateway/src/http/authorization.rs 30e65076749448cb7b35d47ccf4303add7e6fec8
+          check_blob crates/agentgateway/src/store/binds.rs 203227d5d19ee29848821d72b06a373908ddb3bf
+          ROOT="$root" python - <<'PY'
+          import os
+          from pathlib import Path
+
+          root = Path(os.environ['ROOT'])
+          checks = {
+              'crates/agentgateway/src/http/jwt.rs': [
+                  'let claims = match self.validate_claims(&token)',
+                  'req.extensions_mut().insert(claims);',
+                  'pub struct Claims',
+              ],
+              'crates/agentgateway/src/cel/types.rs': [
+                  'pub jwt: ExtensionOrDirect<\'a, jwt::Claims>',
+                  'pub struct Executor',
+              ],
+              'crates/agentgateway/src/http/authorization.rs': [
+                  'let exec = cel::Executor::new_request(req);',
+                  'pub fn merge(mut self, other: Self) -> Self',
+                  'self.0.extend(other.0);',
+              ],
+              'crates/agentgateway/src/store/binds.rs': [
+                  'pub jwt: RequestPolicy<JwtAuthentication>',
+                  'Authorization composes to avoid erasing a broader deny',
+              ],
+          }
+          for relative, needles in checks.items():
+              text = (root / relative).read_text()
+              for needle in needles:
+                  assert needle in text, (relative, needle)
+          print('AGENTGATEWAY_SINGLE_SLOT_BRIDGE_SOURCES_VERIFIED')
+          PY
+
+      - name: Compile and replay exact verifier twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='papers/five-paper-top-tier-r8/D/verify_origin_witness_first_mixing_r12.py'
+          python -m py_compile "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          grep -q '^TYPED_AUTHORITY_FIRST_MIXING_R12_PASS ' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify theorem controls and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.TypedAuthority.FirstMixing.R12.v1'
+          assert result['source_base'] == 'f6b21c94b9cd372700d7a13ccc229e27637acef9'
+          assert result['terminal'] == 'TYPED_AUTHORITY_FIRST_MIXING_R12_PASS'
+          assert result['exhaustive_panel']['systems'] == 8192
+          assert result['random_panel']['systems'] == 2000
+          assert result['random_panel']['unary_safe_hybrid_atoms'] == 0
+          assert all(result['controls'].values())
+          hostile = result['hostile_controls']
+          assert hostile['cross_token_erasure']['hybrid_atoms'] == [2]
+          assert hostile['alternative_complete_origin']['hybrid_atoms'] == []
+          assert hostile['single_slot_a_authorizes'] is False
+          assert hostile['single_slot_b_authorizes'] is False
+          authority = result['authority']
+          assert authority['agentgateway_whole_system_security'] is False
+          assert authority['deployed_vulnerability'] is False
+          assert authority['grants_journal_authority'] is False
+          print('FIRST_MIXING_R12_RESULT_VERIFIED')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/typed-authority-first-mixing-r12"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/FIRST_MIXING_R12_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: typed-authority-first-mixing-r12
+          path: ${{ runner.temp }}/typed-authority-first-mixing-r12/
+          if-no-files-found: error
+          retention-days: 30
