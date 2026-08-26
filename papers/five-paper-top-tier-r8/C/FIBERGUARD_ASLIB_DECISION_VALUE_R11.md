@@ -73,26 +73,110 @@ For `m=|A|` solvers, the exact value of any deterministic worst fibre is witness
 
 This instantiates the R10 action-regret witness-compression theorem on a real solver portfolio.
 
+## Exact observed result
+
+Workflow run `33003294882` completed successfully and executed the complete audit twice with byte-identical full JSON. The archived full result has SHA-256
+
+`7c0778836101d5fe44b024e302c3fc0848faf5a994fc1e51b80831d82fd5e652`.
+
+The frozen corpus contains 1,614 instances, 31 solvers, 115 raw features, ten feature steps and 513 distinct dependency-closed feature-step representations. The solver table contains 50,034 instance-algorithm measurements, of which 23,086 are `ok` and 26,948 are timeouts under the scenario convention.
+
+The single best solver is `mphaseSATm`, with mean PAR10 `3079.8857496902106`. The virtual-best solver mean is `241.317614622057`, leaving a mean oracle gap of `2838.5681350681534` and confirming substantial portfolio decision value before feature costs are considered.
+
+### No-feature baseline
+
+With no acquired features, all 1,614 instances form one fibre. The exact robust action regret and total excess are both `12000`, the PAR10 ceiling. Mean total excess is `5448.314665427509`, median `582.71`, and p95 `11999.97`.
+
+Although the fibre contains 1,614 states, its exact worst-case value is witnessed by only seven instances. This is a direct empirical instantiation of the action-regret witness-compression theorem.
+
+### All-feature baseline
+
+Using all ten feature steps almost eliminates action ambiguity: robust action-only regret is `11.53`. But acquisition cost is not free. Mean feature cost is `180.4930421313507`, and one instance incurs `16906.55` of recorded aggregate feature acquisition. Consequently the all-feature robust total excess is `16906.55`, *worse* than acquiring no features despite the excellent action-only representation.
+
+This is the key negative control: optimizing prediction/identifiability or action regret alone does not optimize the operational decision objective once information acquisition is charged.
+
+### Exact optimal static representation
+
+Exhaustive search over all 513 dependency-closed representations selects exactly
+
+`{Pre, lobjois}`.
+
+Its measured statistics are:
+
+- mean feature acquisition: `22.74003097893432`;
+- maximum feature acquisition: `1712.0`;
+- 1,595 representation fibres;
+- maximum fibre size: 20;
+- robust action-only regret: `11.529999999999998`;
+- **robust total excess: `1712.0`**;
+- mean total excess: `23.01433705080545`;
+- median total excess: `2.08`;
+- p95 total excess: `16.450000000000045`.
+
+Relative to no features, the exact robust total excess is reduced by `10288`, from `12000` to `1712`, a ratio of `0.14266666666666666`. Relative to all features, it is reduced by `15194.55`. Mean total excess improves by `5425.300328376703` versus no features and by `157.75294299876085` versus all features.
+
+The worst fibre contains 20 instances, yet its exact value is witnessed by only three:
+
+1. `SAT-Race-2010-CNF/software-verification/post/zfcp-2.8-u2-nh.cnf`;
+2. `SAT_Competition2009/CRAFTED/Difficult/contest05/sabharwal/grid-pebbling-sat-grid-pbl-0300.sat05-1341.sat05-1341.reshuffled-07.cnf`;
+3. `SAT_Competition2011/SAT11/application/jarvisalo/smtqfbv-aigs/smtlib-qfbv-aigs-ext_con_032_008_0256-tseitin.cnf`.
+
+The real operational certificate is therefore small even though the underlying corpus is large.
+
+### Exact descriptive frontier
+
+The mean-feature-cost versus robust-action-regret Pareto frontier has only four representations:
+
+1. no features: `(0, 12000)`;
+2. `Pre`: `(6.332831474597274, 11891.99)`;
+3. `Basic + Pre`: `(19.0196468401487, 216.88)`;
+4. `Pre + lobjois`: `(22.74003097893432, 11.53)`.
+
+The frontier exposes a sharp phase change. `Pre` alone is cheap but leaves nearly worst-possible robust action ambiguity; adding `Basic` removes most of that ambiguity; replacing `Basic` with `lobjois` reaches the full all-feature action-regret floor at far lower acquisition cost and far lower robust total excess.
+
+## Scientific interpretation
+
+The primary discriminator is positive: the exact static representation `Pre + lobjois` strictly beats both preregistered extremes under the same-unit robust total-excess objective.
+
+Three conclusions are supported on the frozen corpus:
+
+1. **representation insufficiency is decision-relevant**: no features leave the portfolio at the PAR10 robust ceiling;
+2. **more information is not monotonically better after acquisition cost**: all features minimize ambiguity but have worse robust total cost than no features because one acquisition path is extremely expensive;
+3. **FiberGuard's decision-aware refinement object can identify a sparse operational representation**: two feature steps attain the all-feature robust action-regret floor while reducing robust total excess by more than an order of magnitude relative to both naive extremes.
+
+The result is stronger than a prediction-accuracy demonstration because the target is the downstream solver action and the feature price is the benchmark's measured acquisition time, not an arbitrary regularization coefficient.
+
 ## Registered comparisons
 
-The result record contains:
+The committed result summary records:
 
 - no-feature global robust selector;
 - all-feature-step robust selector;
 - exact best dependency-closed static representation;
-- single-best-solver mean PAR10;
-- virtual-best-solver mean PAR10;
-- the complete representation table;
+- single-best-solver and virtual-best-solver mean PAR10;
+- the complete run's content digest;
 - the mean-feature-cost versus robust-action-regret Pareto frontier;
 - exact worst-fibre compressed witnesses.
 
-The primary discriminator is **worst-case total excess after feature cost**. The mean metrics are secondary descriptive outcomes.
+The complete 513-representation table remains in the content-bound workflow artifact and is reproducible from the pinned external corpus.
 
-## Interpretation gates
+## Remaining top-tier gate
 
-A positive application result requires a strict reduction in robust total excess over both the no-feature and all-feature baselines on the frozen corpus. A null result is scientifically meaningful: it shows that representation ambiguity or solver diversity alone does not imply that feature acquisition has operational value.
+This result closes the **same-corpus operational-value** question. It does not close generalization. Exact equality fibres can become very fine on continuous feature vectors, so a top-tier ML/algorithm-selection claim additionally requires a prospectively frozen train/test or leave-family-out policy in which the representation and solver-decision rule are fit without access to held-out runtimes.
 
-Even a positive result grants only a corpus-complete static decision certificate. It does not establish:
+The next C tranche should therefore use the scenario's registered cross-validation/family metadata where available, or a prospectively committed group split, and compare:
+
+- no features;
+- all features;
+- `Pre + lobjois` frozen from this corpus-complete result;
+- a training-only representation chosen from the 513-step menu;
+- a standard learned algorithm-selection baseline.
+
+The R11 corpus-complete result must not be retuned in response to held-out outcomes.
+
+## Authority boundary
+
+The positive result grants a corpus-complete static decision certificate. It does not establish:
 
 - unseen-instance generalization;
 - learned model accuracy;
@@ -101,10 +185,10 @@ Even a positive result grants only a corpus-complete static decision certificate
 - production deployment value; or
 - journal acceptance.
 
-The adaptive answer/refine/defer controller remains a separate next step after the static same-unit discriminator is frozen.
+The adaptive answer/refine/defer controller remains a separate extension after the static generalization discriminator is frozen.
 
 ## Reproducibility terminal
 
-The workflow must fetch the exact upstream commit, verify every registered Git blob, execute the audit twice, require byte-identical JSON, and archive the result. The only success terminal is
+The workflow fetches the exact upstream commit, verifies every registered Git blob, executes the audit twice, requires byte-identical JSON, verifies fail-closed authority flags and archives the full result. The success terminal is
 
 `FIBERGUARD_ASLIB_SAT12_ALL_PASS`.
