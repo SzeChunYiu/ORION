@@ -25,9 +25,12 @@ jobs:
           set -euo pipefail
           python -m pip install --upgrade pip wheel
           mkdir -p /tmp/r8-sdk/wheels
+          # Build the root package and its dependency closure first. Then build
+          # the harness without asking the public index to resolve the local
+          # exact-version dependency on orion-research-os.
           python -m pip wheel --wheel-dir /tmp/r8-sdk/wheels '.[dev]'
-          python -m pip wheel --wheel-dir /tmp/r8-sdk/wheels 'packages/orion-research-harness[dev]'
-          python -m pip install --no-index --find-links /tmp/r8-sdk/wheels orion-research-harness
+          python -m pip wheel --no-deps --wheel-dir /tmp/r8-sdk/wheels packages/orion-research-harness
+          python -m pip install --no-index --find-links /tmp/r8-sdk/wheels orion-research-os orion-research-harness
           orion-harness mechanics-coverage > /tmp/r8-sdk/mechanics-coverage.json
           orion-harness execution-coverage > /tmp/r8-sdk/execution-coverage.json
       - name: Create canonical first-handoff workspace
