@@ -108,6 +108,81 @@ def test_d2_pair_dp_agrees_with_sat_adjudicator_on_random_multisets() -> None:
         assert dp_clean == cc._sat_two_disjoint_unsat(multiset)
 
 
+def _brute_two_disjoint(multiset: list[int]) -> bool:
+    """Exhaustive ground truth: two disjoint nonempty zero-sum sub-multisets."""
+    from itertools import product as _product
+
+    distinct = sorted(set(multiset))
+    caps = [multiset.count(v) for v in distinct]
+    vectors = [(v // 25, (v % 25) // 5, v % 5) for v in distinct]
+    zero_sums: list[tuple[int, ...]] = []
+    for counts in _product(*[range(c + 1) for c in caps]):
+        if not any(counts):
+            continue
+        total = [0, 0, 0]
+        for count, g in zip(counts, vectors):
+            total[0] += count * g[0]
+            total[1] += count * g[1]
+            total[2] += count * g[2]
+        if all(component % 5 == 0 for component in total):
+            zero_sums.append(counts)
+    for left in zero_sums:
+        for right in zero_sums:
+            if all(a + b <= c for a, b, c in zip(left, right, caps)):
+                return True
+    return False
+
+
+def _pair_verdict(multiset: list[int]) -> str:
+    """Isolate the pair predicate from the Lemma-A board prune."""
+    state = cc._empty_d2_state()
+    for element in sorted(multiset):
+        board_admits = cc._extend(state[0], element, cc.T_D2) is not None
+        extended = cc._extend_d2_state(state, element)
+        if extended is None:
+            return "board" if board_admits is False else "pair"
+        state = extended
+    return "pair" if 0 in state[2] else "clean"
+
+
+def test_pair_dp_regression_classes_from_live_shard_audit() -> None:
+    # 2026-08-27 audit: the pair-DP transitions once extended BOTH sides of a
+    # pair with the single new position and dropped untouched pairs, so it
+    # missed real pairs whose sides complete at different steps (the length-19
+    # leaf below was emitted as a census record) and falsely pruned
+    # equal-sum-pair completions.  Both classes are pinned here.
+    leaf = [1, 1, 1, 1, 5, 5, 5, 5, 6, 6, 6, 25, 25, 25, 25, 26, 26, 26, 30]
+    # two disjoint zero sums: {1x2, 5x2, 6x3} and {1x2, 25x2, 26x3}
+    assert _brute_two_disjoint(leaf)
+    assert _pair_verdict(leaf) == "pair"
+    # [1, 1, 4] has exactly one zero sum ({1, 4}); it must fall to the
+    # Lemma-A board reject, never to a false pair completion.
+    assert not _brute_two_disjoint([1, 1, 4])
+    assert _pair_verdict([1, 1, 4]) == "board"
+    # the false-positive class proper: two copies of one value plus the
+    # negation once completed a phantom pair on both sides at once.
+    assert _pair_verdict([1, 1, 4, 6, 6, 6, 6, 6]) == "board"
+
+
+def test_pair_dp_agrees_with_bruteforce_on_duplicate_heavy_multisets() -> None:
+    # The original 25-draw agreement fixture sampled nearly-distinct
+    # multisets and was structurally blind to both defect classes; this
+    # variant draws small supports with multiplicities up to five, which is
+    # where the transition defects lived.
+    rng = random.Random(20260827)
+    for _ in range(150):
+        support = [rng.randrange(1, 125) for _ in range(rng.randint(2, 6))]
+        multiset = [v for v in support for _ in range(rng.randint(1, 5))]
+        verdict = _pair_verdict(multiset)
+        brute = _brute_two_disjoint(multiset)
+        if verdict == "pair":
+            assert brute, multiset
+        elif verdict == "clean":
+            assert not brute, multiset
+        else:  # board reject: sound for the census regardless of the pair
+            assert cc.zero_sum_lengths(multiset, 6), multiset
+
+
 def test_d2_task_list_partitions_the_normalized_universe() -> None:
     triples = list(cc.iter_seed_triples())
     assert len(triples) == 20

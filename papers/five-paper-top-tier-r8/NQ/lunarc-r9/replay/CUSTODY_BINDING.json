@@ -8,7 +8,7 @@
     "paper_authority_delta": "NONE",
     "science_terminal": "CANNOT_CHECK"
   },
-  "branch": "codex/r9-nq-cleanroom-engine-b-20260826",
+  "branch": "codex/crb-full-manifest-1383-20260826",
   "control_receipt": {
     "case_count": 61,
     "mismatch_count": 0,
@@ -23,12 +23,12 @@
   },
   "engine_b": {
     "full_replay_authorization": {
-      "nonduplication_key": "ca871511dc13db070dc328c2021b1bec3f12ec28c0fd315b1f242cc97abfa94e",
+      "nonduplication_key": "07e8b0389f37d2c890cdc050f0f3db2a13d94002dedd94cfcf8a1ce6c0128384",
       "packet": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/FULL_REPLAY_AUTHORIZATION.json",
       "partition_plan_sha256": "14c04a132c16a738a199587a00bdddc9d50e32bf3437595af5572560baf28029"
     },
     "imports_engine_a": false,
-    "source_manifest_sha256": "b943b1bbd9be254fa16a10ad89b8a42599da2500361f859a2b5428f3e96de124",
+    "source_manifest_sha256": "743437b7f9c02c7db5dcbb0e5fdde2b76fb7737743dbf77681c2e2355a33b513",
     "state_representation": "CNF occurrence-bin variables plus modular prefix-sum automata",
     "symmetry": "fixed span basis plus literal GL(r,5) matrix-action enumeration"
   },
@@ -53,7 +53,7 @@
   "validation": {
     "compileall": "PASS",
     "diff_check": "PASS",
-    "focused_tests": "45 passed",
+    "focused_tests": "72 passed",
     "receipt_verifiers": "PASS",
     "ruff_format": "PASS",
     "ruff_lint": "PASS"

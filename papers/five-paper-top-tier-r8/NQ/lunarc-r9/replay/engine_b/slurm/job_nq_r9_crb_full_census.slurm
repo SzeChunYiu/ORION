@@ -20,7 +20,15 @@
 #   (generation), CANNOT_CHECK_ENVIRONMENT / CANNOT_CHECK_RESOURCE_BOUND
 #   (execution), NQ_ENGINE_B_EXTERNAL_DRUP_CONTROL_REJECTED /
 #   CANNOT_CHECK_EXTERNAL_DRUP_TIMEOUT / CANNOT_CHECK_EXTERNAL_DRUP_BATCH_INCOMPLETE
-#   (external checking).
+#   (external checking), NQ_CR_B_DURABLE_COPY_CORRUPT (durable copy-out).
+#
+# Output layout: all intermediate artifacts, including the per-record CNF and
+# DRUP proof streams (tens of GB), are written node-local under SLURM_TMPDIR
+# and vanish with the node allocation.  Phase 4 copies the sealed proof chain
+# (receipts, manifests, coverage declarations, certificates, batch lines,
+# frozen shards) durably, gzip-compressed, with a raw-byte SHA256SUMS ledger;
+# per-record CNF/DRUP digests are sealed inside the certificates and batch
+# lines, and the artifacts regenerate deterministically from them.
 
 set -euo pipefail
 
@@ -28,7 +36,8 @@ SUBJECT_COMMIT=0c451e862a0eeddac7c673813c4dc499f134b088
 REPOSITORY="${SLURM_SUBMIT_DIR:?submit from the exact repository checkout}"
 AUTHORIZED_COMMIT="${NQ_CRB_AUTHORIZED_COMMIT:?bind the reviewed authorization commit}"
 ENGINE_ROOT="${REPOSITORY}/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b"
-OUTPUT_ROOT="${ENGINE_ROOT}/results/${SLURM_JOB_ID}"
+OUTPUT_ROOT="${SLURM_TMPDIR:?}/nq-crb-output"
+DURABLE_ROOT="${NQ_CRB_DURABLE_ROOT:-${ENGINE_ROOT}/results/${SLURM_JOB_ID}}"
 VENV="${SLURM_TMPDIR:?}/nq-crb-venv"
 DRUP_SOURCE="${SLURM_TMPDIR}/drat-trim-source"
 COVERAGE_ARGUMENT="${ENGINE_ROOT}/docs/plans/2026-08-27-crb-census-coverage-argument.md"
@@ -179,5 +188,96 @@ for SCOPE in "${D2_SCOPE}" "${D3_SCOPE}"; do
     --output "${SCOPE_ROOT}/DRUP_BATCH_RECEIPT.json"
   log "external DRUP batch verified: ${SCOPE}"
 done
+
+# ---------------------------------------------------------------------------
+# Phase 4: durable copy-out of the sealed proof chain.  Exact-copied artifacts
+# (receipts, manifests, coverage declarations) must land byte-identical or the
+# job is terminal.  Large JSONL streams are gzip-copied with a round-trip
+# digest check; a transport failure is recorded as an explicit skip with the
+# raw digest preserved, while a digest mismatch after an intact gzip stream is
+# corruption and terminal.  SHA256SUMS records raw-byte digests.
+# ---------------------------------------------------------------------------
+"${VENV}/bin/python" - "${OUTPUT_ROOT}" "${DURABLE_ROOT}" <<'PY'
+import gzip
+import hashlib
+import json
+import shutil
+import sys
+from pathlib import Path
+
+output_root = Path(sys.argv[1])
+durable_root = Path(sys.argv[2])
+scopes = ("NQ_D2_NORMALIZED_LENGTH_19", "NQ_D3_STRUCTURED_LENGTH_25")
+ledger_path = durable_root / "SHA256SUMS"
+skips_path = durable_root / "SKIPPED_STREAMS.txt"
+
+
+def raw_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def exact_copy(relative: str) -> None:
+    source = output_root / relative
+    destination = durable_root / relative
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    expected = raw_sha256(source)
+    shutil.copyfile(source, destination)
+    if raw_sha256(destination) != expected:
+        raise SystemExit(f"NQ_CR_B_DURABLE_COPY_CORRUPT: {relative}")
+    with ledger_path.open("a", encoding="ascii") as ledger:
+        ledger.write(f"{expected}  {relative}\n")
+
+
+def gzip_copy(relative: str) -> None:
+    source = output_root / relative
+    destination = durable_root / f"{relative}.gz"
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        expected = raw_sha256(source)
+        with source.open("rb") as reader, gzip.open(destination, "wb") as writer:
+            shutil.copyfileobj(reader, writer, 1 << 20)
+    except OSError as error:
+        destination.unlink(missing_ok=True)
+        with skips_path.open("a", encoding="ascii") as skips:
+            skips.write(f"NQ_CR_B_DURABLE_BIG_STREAM_SKIPPED\nstream: {relative}\nerror: {error}\n")
+        print(f"durable copy skipped (transport): {relative}", file=sys.stderr)
+        return
+    roundtrip = hashlib.sha256()
+    with gzip.open(destination, "rb") as reader:
+        for block in iter(lambda: reader.read(1 << 20), b""):
+            roundtrip.update(block)
+    if roundtrip.hexdigest() != expected:
+        raise SystemExit(f"NQ_CR_B_DURABLE_COPY_CORRUPT: {relative}")
+    with ledger_path.open("a", encoding="ascii") as ledger:
+        ledger.write(f"{expected}  {relative}\n")
+
+
+durable_root.mkdir(parents=True, exist_ok=True)
+ledger_path.write_text("", encoding="ascii")
+skips_path.write_text("", encoding="ascii")
+exact_copy("census/census_generation_receipt.json")
+for scope in scopes:
+    exact_copy(f"census/input/{scope}/coverage.json")
+    exact_copy(f"census/input/{scope}/input_manifest.json")
+    exact_copy(f"census/bundle/{scope}/{scope}/SCOPE_MANIFEST.json")
+    gzip_copy(f"census/input/{scope}/records.jsonl")
+    gzip_copy(f"census/candidates/{scope}.candidates.jsonl")
+    for shard in json.loads(
+        (output_root / "census" / "bundle" / scope / scope / "SCOPE_MANIFEST.json").read_text(
+            encoding="utf-8"
+        )
+    )["partitions"]:
+        gzip_copy(f"census/bundle/{scope}/{shard['path']}")
+    exact_copy(f"{scope}/ENGINE_B_RECEIPT.json")
+    gzip_copy(f"{scope}/ENGINE_B_CERTIFICATES.jsonl")
+    gzip_copy(f"{scope}/DRUP_BATCH_LINES.jsonl")
+    exact_copy(f"{scope}/DRUP_BATCH_RECEIPT.json")
+print("durable proof chain copied", flush=True)
+PY
+log "durable chain copied to ${DURABLE_ROOT}"
 
 log "full CR-B replay chain green for job ${SLURM_JOB_ID}"

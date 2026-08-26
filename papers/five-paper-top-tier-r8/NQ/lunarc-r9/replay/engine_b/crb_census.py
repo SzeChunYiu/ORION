@@ -178,13 +178,19 @@ def _extend_d2_state(
     r1_new = {add_row[s] for s in r1}
     r1_new.add(element)
     r1_new |= r1
-    r2_new: set[int] = set()
+    # A fresh position joins exactly one side of an existing pair, starts a
+    # new side against any old sub-multiset, or joins neither side; extending
+    # BOTH sides at once would reuse the single new position twice and is not
+    # a realizable transition, and dropping the untouched pairs would lose
+    # every pair whose two sides complete at different steps.
+    r2_new: set[int] = set(r2)
     add_pair = r2_new.add
     for packed in r2:
         s1, s2 = divmod(packed, 125)
         a = add_row[s1]
+        add_pair(a * 125 + s2 if a <= s2 else s2 * 125 + a)
         b = add_row[s2]
-        add_pair(a * 125 + b if a <= b else b * 125 + a)
+        add_pair(s1 * 125 + b if s1 <= b else b * 125 + s1)
     for s in r1:
         add_pair(element * 125 + s if element <= s else s * 125 + element)
     if 0 in r2_new:
