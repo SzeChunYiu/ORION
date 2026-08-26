@@ -1,0 +1,152 @@
+name: five-paper-r11-d-agentgateway-safe-merge
+
+on:
+  push:
+    branches:
+      - chatgpt/r11-d-agentgateway-safe-merge-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/D/AGENTGATEWAY_ORIGIN_WITNESS_SAFE_MERGE_R11.md'
+      - 'papers/five-paper-top-tier-r8/D/verify_agentgateway_origin_witness_merge_r11.py'
+      - '.github/workflows/five-paper-r11-d-agentgateway-safe-merge.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/D/AGENTGATEWAY_ORIGIN_WITNESS_SAFE_MERGE_R11.md'
+      - 'papers/five-paper-top-tier-r8/D/verify_agentgateway_origin_witness_merge_r11.py'
+      - '.github/workflows/five-paper-r11-d-agentgateway-safe-merge.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-bound-safe-control:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch exact upstream source paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/agentgateway"
+          git init "$root"
+          git -C "$root" remote add origin https://github.com/agentgateway/agentgateway.git
+          git -C "$root" config core.sparseCheckout true
+          cat > "$root/.git/info/sparse-checkout" <<'EOF'
+          /controller/api/v1alpha1/agentgateway/agentgateway_policy_types.go
+          /controller/pkg/agentgateway/policyselection/selector.go
+          /controller/pkg/agentgateway/plugins/traffic_plugin.go
+          /crates/agentgateway/src/store/policy.rs
+          /crates/agentgateway/src/store/binds.rs
+          /crates/agentgateway/src/http/authorization.rs
+          /crates/agentgateway/src/mcp/rbac.rs
+          EOF
+          git -C "$root" fetch --depth 1 origin e136c7458b0fe0f51378dd31ffd60ab2b6939fc2
+          git -C "$root" checkout --detach FETCH_HEAD
+          test "$(git -C "$root" rev-parse HEAD)" = 'e136c7458b0fe0f51378dd31ffd60ab2b6939fc2'
+
+      - name: Verify registered upstream Git blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/agentgateway"
+          check_blob() {
+            path="$1"; expected="$2"
+            actual="$(git -C "$root" rev-parse "HEAD:$path")"
+            test "$actual" = "$expected" || { echo "$path blob mismatch: $actual != $expected"; exit 1; }
+          }
+          check_blob controller/api/v1alpha1/agentgateway/agentgateway_policy_types.go e6274b96aa7e1a2d9d0bdf5c735f34951998ee88
+          check_blob controller/pkg/agentgateway/policyselection/selector.go 7ad08169d525baee6a62e074e334b9f3119213b6
+          check_blob controller/pkg/agentgateway/plugins/traffic_plugin.go 8dac971919257e025155a80c5da22fcd065c6b21
+          check_blob crates/agentgateway/src/store/policy.rs 10f2f00d0e3bd4fb0b38e069d177e547c45425b9
+          check_blob crates/agentgateway/src/store/binds.rs 203227d5d19ee29848821d72b06a373908ddb3bf
+          check_blob crates/agentgateway/src/http/authorization.rs 30e65076749448cb7b35d47ccf4303add7e6fec8
+          check_blob crates/agentgateway/src/mcp/rbac.rs f6c19bdf0fdd889fbf04332a22305a8a568bd86b
+          echo AGENTGATEWAY_SOURCE_BLOBS_VERIFIED
+
+      - name: Verify load-bearing source semantics are still present
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/agentgateway"
+          ROOT="$root" python - <<'PY'
+          import os
+          from pathlib import Path
+          root = Path(os.environ['ROOT'])
+          checks = {
+              'controller/api/v1alpha1/agentgateway/agentgateway_policy_types.go': [
+                  'traffic.jwtAuthentication may not be used with backend.mcp.authentication in the same policy',
+                  'When multiple policies are selected for a given request, they are merged on a field-level basis',
+              ],
+              'controller/pkg/agentgateway/policyselection/selector.go': [
+                  'BestMatchingAgentgatewayPolicy',
+                  'HasHigherPriority',
+                  'sectionExactMatch',
+              ],
+              'controller/pkg/agentgateway/plugins/traffic_plugin.go': [
+                  'translatePolicyInheritance',
+                  'p.Inheritance = inheritance',
+                  'processJWTAuthenticationPolicy',
+              ],
+              'crates/agentgateway/src/store/policy.rs': [
+                  'merge_with_inheritance',
+                  'Gateway -> Listener -> Route -> RouteRule',
+                  'inheritance_locked',
+              ],
+              'crates/agentgateway/src/store/binds.rs': [
+                  'Authorization composes to avoid erasing a broader deny',
+                  'mcp_authorization: match',
+                  'authorization: match',
+              ],
+              'crates/agentgateway/src/http/authorization.rs': [
+                  'Combine two sets so both apply: a deny in either denies, all requires must',
+                  'self.0.extend(other.0)',
+                  'rule_sets.iter().any(|r| r.denies(exec))',
+                  'rule_sets.iter().any(|r| !r.all_requires_match(exec))',
+                  'rule_sets.iter().any(|r| r.allows(exec))',
+              ],
+              'crates/agentgateway/src/mcp/rbac.rs': [
+                  'Combine rule sets so both apply',
+                  'test_backend_policies_merge_composes_mcp_authorization',
+                  'Higher-precedence allow does not erase a base deny',
+                  'assert!(!merged.validate(&res, &cel));',
+              ],
+          }
+          for rel, needles in checks.items():
+              text = (root / rel).read_text()
+              for needle in needles:
+                  assert needle in text, (rel, needle)
+          print('AGENTGATEWAY_LOAD_BEARING_SEMANTICS_VERIFIED')
+          PY
+
+      - name: Exhaust finite Boolean corroboration twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='papers/five-paper-top-tier-r8/D/verify_agentgateway_origin_witness_merge_r11.py'
+          python "$script" --max-origins 8 --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal.txt"
+          python "$script" --max-origins 8 --output "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          grep -q '^AGENTGATEWAY_RULESETS_ORIGIN_WITNESS_SAFE ' "$RUNNER_TEMP/terminal.txt"
+
+      - name: Stage immutable safe-control result
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/agentgateway-safe-merge-r11"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/AGENTGATEWAY_ORIGIN_WITNESS_SAFE_MERGE_R11_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agentgateway-origin-witness-safe-merge-r11
+          path: ${{ runner.temp }}/agentgateway-safe-merge-r11/
+          if-no-files-found: error
+          retention-days: 30
