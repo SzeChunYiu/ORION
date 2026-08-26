@@ -9560,11 +9560,11 @@
     },
     {
       "category": "INSUFFICIENT_EVIDENCE",
-      "context": "frame_conditions_are_load_bearing",
+      "context": "_measure_frame_conditions",
       "file": "study/p6/certificate_as_dependency_graph.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 532,
+      "lineno": 554,
       "missing_obligation": null,
       "reasons": [
         "baseline_discharged",
@@ -10719,7 +10719,7 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "0275924bdb65a230efbb957d81482923d2e9bac9",
+  "subject_commit": "8a966761677e9fac40bbbe69ed9a382cb2370206",
   "total_sites": 722,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 115,

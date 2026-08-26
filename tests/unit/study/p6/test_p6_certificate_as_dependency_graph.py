@@ -57,6 +57,62 @@ class TestTheInterpretationIsProved:
     def test_the_theorem_list_and_the_proofs_agree(self, proofs: tuple) -> None:
         assert [r.theorem.name for r in proofs] == [t.name for t in cg.THEOREMS]
 
+    def test_identical_proof_queries_are_evaluated_once_per_process(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """A later report reuses the exact three-valued proof snapshot."""
+
+        original = cg._queries
+        calls = 0
+
+        def counted_queries(drop=None):
+            nonlocal calls
+            calls += 1
+            return original(drop=drop)
+
+        monkeypatch.setattr(cg, "_queries", counted_queries)
+
+        first = cg.prove_all(timeout_ms=1)
+        second = cg.prove_all(timeout_ms=1)
+
+        assert second is first
+        assert calls == 1
+
+    def test_omitted_and_explicit_proof_defaults_are_the_same_query(self) -> None:
+        assert cg.prove_all() is cg.prove_all(timeout_ms=30000, drop=None)
+
+    def test_identical_frame_queries_reuse_but_do_not_expose_the_snapshot(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Caching keeps CANNOT_CHECK exact and callers cannot mutate the cache."""
+
+        from types import SimpleNamespace
+
+        calls = 0
+
+        def proved(**_kwargs):
+            return tuple(SimpleNamespace(theorem=t, discharged=True) for t in cg.THEOREMS)
+
+        def undecided(*_args, **_kwargs):
+            nonlocal calls
+            calls += 1
+            return cg.RefutationSearch.UNDECIDED
+
+        monkeypatch.setattr(cg, "prove_all", proved)
+        monkeypatch.setattr(cg, "search_for_a_countermodel", undecided)
+
+        first = cg.frame_conditions_are_load_bearing(timeout_ms=1, repeats=2)
+        second = cg.frame_conditions_are_load_bearing(timeout_ms=1, repeats=2)
+
+        assert first == second
+        assert first is not second
+        assert second["outcome"] == Outcome.CANNOT_CHECK.value
+        assert calls == len(cg.FRAME_CONDITION_IDS) * len(cg.THEOREMS) * 2
+
+        first["conditions_left_undecided"].append("caller mutation")
+        third = cg.frame_conditions_are_load_bearing(timeout_ms=1, repeats=2)
+        assert "caller mutation" not in third["conditions_left_undecided"]
+
 
 class TestTheFrameConditionsCarryTheProof:
     def test_every_condition_loses_at_least_one_theorem_when_dropped(
