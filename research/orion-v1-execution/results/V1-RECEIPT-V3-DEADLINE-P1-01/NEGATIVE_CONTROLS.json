@@ -1,0 +1,58 @@
+{
+  "adverse_semantics_retained": [
+    "failed spawn preserves primary start failure and adds timeout knowledge on crossing",
+    "completion crossing is irreversible and forbids later MAIN effects",
+    "read EOF returned at crossing does not grant canonical EOF continuation authority",
+    "legacy and strict dialect relabeling fails closed",
+    "unbound, reused, reordered, and forged strict effect coordinates fail closed",
+    "visible selector EINTR fails under the registered internal-recompute contract"
+  ],
+  "authority_ceiling": {
+    "full_dual_lane_execution": "OPEN",
+    "independent_reproduction": "CANNOT_CHECK",
+    "linux_ci_reproduction": "CANNOT_CHECK_UNTIL_PUSH",
+    "local_process_receipt_conformance": "GREEN",
+    "orion_v1_freeze": "NOT_GRANTED",
+    "paper_authority_delta": "NONE",
+    "publication_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "oracle_sha256_after": "103c3678e34ea33b7657bec911c8d604b97196bdbf56df40df3f4d2ab8cc051d",
+  "oracle_unchanged": true,
+  "platform_control": {
+    "authoritative_linux_denominator": 233,
+    "local_darwin_collected": 234,
+    "local_extra_not_in_linux_artifact": [
+      "tests/unit/kernel/test_process_receipt_v3_wait_hostile.py::test_wait_options_reject_unrequested_job_control_and_unknown_bits[waitid-wstopped]"
+    ],
+    "local_selected": 233,
+    "platform_errno_substitutions": {
+      "darwin_EINPROGRESS": 36,
+      "linux_EINPROGRESS": 115
+    },
+    "schema": "ORION.V1.PlatformNodeIdMapping.v1"
+  },
+  "preserved_red": [
+    {
+      "failed": 78,
+      "log": "initial_deadline_red.log",
+      "passed": 42
+    },
+    {
+      "failed": 59,
+      "log": "red_after_strict_coordinates.log",
+      "passed": 61
+    },
+    {
+      "failed": 1,
+      "log": "red_after_strict_protocol.log",
+      "passed": 119
+    },
+    {
+      "failed": 5,
+      "log": "intermediate_legacy_regression_red.log",
+      "passed": 109
+    }
+  ],
+  "schema": "ORION.V1.ReceiptV3DeadlineP1NegativeControls.v1"
+}

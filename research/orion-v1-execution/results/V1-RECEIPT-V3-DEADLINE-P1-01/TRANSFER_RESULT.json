@@ -1,0 +1,33 @@
+{
+  "authority_ceiling": {
+    "full_dual_lane_execution": "OPEN",
+    "independent_reproduction": "CANNOT_CHECK",
+    "linux_ci_reproduction": "CANNOT_CHECK_UNTIL_PUSH",
+    "local_process_receipt_conformance": "GREEN",
+    "orion_v1_freeze": "NOT_GRANTED",
+    "paper_authority_delta": "NONE",
+    "publication_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "non_implications": [
+    "V1_RECEIPT_V3_HOSTILE_FRONTIER_CLOSED globally",
+    "full dual-lane execution complete",
+    "independent reproduction complete",
+    "ORION V1 frozen",
+    "P15 publication ready"
+  ],
+  "obligations": {
+    "child_identity_dual_dialect": "GREEN",
+    "clock_regression_and_occurrence_relinking": "GREEN",
+    "deadline_crossing_irreversibility": "GREEN",
+    "failed_spawn_crossing_knowledge": "GREEN",
+    "finalize_reserve_after_crossing": "GREEN",
+    "legacy_byte_identity": "GREEN",
+    "process_start_pre_post_protocol": "GREEN",
+    "selector_timeout_exact_encoding": "GREEN",
+    "strict_effect_transaction_protocol": "GREEN",
+    "strict_legacy_lane_separation": "GREEN"
+  },
+  "schema": "ORION.V1.ReceiptV3DeadlineP1TransferResult.v1",
+  "terminal": "CONSERVATIVE_STRICT_DEADLINE_TRANSFER_GREEN_LOCALLY"
+}

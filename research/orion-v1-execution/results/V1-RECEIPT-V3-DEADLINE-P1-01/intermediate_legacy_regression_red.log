@@ -1,0 +1,242 @@
+.....................................................FFFFF.............. [ 63%]
+..........................................                               [100%]
+=================================== FAILURES ===================================
+_ test_deadline_binding_is_self_validated_at_event_and_replay_boundaries[requested] _
+
+forgery = 'requested'
+
+    @pytest.mark.parametrize(
+        "forgery",
+        ("requested", "effective", "source", "commitment"),
+    )
+    def test_deadline_binding_is_self_validated_at_event_and_replay_boundaries(
+        forgery: str,
+    ) -> None:
+        subject, invocation = _strict_subject_and_invocation()
+        outer = process_receipt.OuterDeadlineCommitment(
+            deadline_monotonic_ns=130,
+            clock_domain_occurrence_id=(
+                process_receipt.PROCESS_CLOCK_DOMAIN_OCCURRENCE.clock_domain_occurrence_id
+            ),
+            consumer_invocation_occurrence_id=invocation.invocation_occurrence_id,
+            producer_invocation_occurrence_id=HEX_A,
+            parent_deadline_binding_hash=HEX_B,
+        )
+        binding = process_receipt.DeadlineBinding.from_start_observation(
+            invocation_occurrence_id=invocation.invocation_occurrence_id,
+            started_monotonic_ns=100,
+            requested_timeout_ns=subject.requested_timeout_ns,
+            outer_deadline=outer,
+            clock_domain_occurrence=process_receipt.PROCESS_CLOCK_DOMAIN_OCCURRENCE,
+            clock_contract=process_receipt.PROCESS_CLOCK_CONTRACT,
+            deadline_decoder_identity=process_receipt.PROCESS_DEADLINE_DECODER_IDENTITY,
+        )
+        changes: dict[str, object] = {}
+        if forgery == "requested":
+            changes["requested_deadline_monotonic_ns"] = (
+                binding.requested_deadline_monotonic_ns - 1
+            )
+        elif forgery == "effective":
+            changes["effective_deadline_monotonic_ns"] = (
+                binding.requested_deadline_monotonic_ns
+            )
+        elif forgery == "source":
+            changes["winning_source"] = process_receipt.DeadlineSource.REQUESTED_TIMEOUT
+        else:
+            changes["outer_deadline_commitment_hash"] = "c" * 64
+        forged = _forge_frozen_dataclass(binding, **changes)
+    
+>       with pytest.raises(ValueError, match="deadline|binding|commitment|payload"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3.py:1670: Failed
+_ test_deadline_binding_is_self_validated_at_event_and_replay_boundaries[effective] _
+
+forgery = 'effective'
+
+    @pytest.mark.parametrize(
+        "forgery",
+        ("requested", "effective", "source", "commitment"),
+    )
+    def test_deadline_binding_is_self_validated_at_event_and_replay_boundaries(
+        forgery: str,
+    ) -> None:
+        subject, invocation = _strict_subject_and_invocation()
+        outer = process_receipt.OuterDeadlineCommitment(
+            deadline_monotonic_ns=130,
+            clock_domain_occurrence_id=(
+                process_receipt.PROCESS_CLOCK_DOMAIN_OCCURRENCE.clock_domain_occurrence_id
+            ),
+            consumer_invocation_occurrence_id=invocation.invocation_occurrence_id,
+            producer_invocation_occurrence_id=HEX_A,
+            parent_deadline_binding_hash=HEX_B,
+        )
+        binding = process_receipt.DeadlineBinding.from_start_observation(
+            invocation_occurrence_id=invocation.invocation_occurrence_id,
+            started_monotonic_ns=100,
+            requested_timeout_ns=subject.requested_timeout_ns,
+            outer_deadline=outer,
+            clock_domain_occurrence=process_receipt.PROCESS_CLOCK_DOMAIN_OCCURRENCE,
+            clock_contract=process_receipt.PROCESS_CLOCK_CONTRACT,
+            deadline_decoder_identity=process_receipt.PROCESS_DEADLINE_DECODER_IDENTITY,
+        )
+        changes: dict[str, object] = {}
+        if forgery == "requested":
+            changes["requested_deadline_monotonic_ns"] = (
+                binding.requested_deadline_monotonic_ns - 1
+            )
+        elif forgery == "effective":
+            changes["effective_deadline_monotonic_ns"] = (
+                binding.requested_deadline_monotonic_ns
+            )
+        elif forgery == "source":
+            changes["winning_source"] = process_receipt.DeadlineSource.REQUESTED_TIMEOUT
+        else:
+            changes["outer_deadline_commitment_hash"] = "c" * 64
+        forged = _forge_frozen_dataclass(binding, **changes)
+    
+>       with pytest.raises(ValueError, match="deadline|binding|commitment|payload"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3.py:1670: Failed
+_ test_deadline_binding_is_self_validated_at_event_and_replay_boundaries[source] _
+
+forgery = 'source'
+
+    @pytest.mark.parametrize(
+        "forgery",
+        ("requested", "effective", "source", "commitment"),
+    )
+    def test_deadline_binding_is_self_validated_at_event_and_replay_boundaries(
+        forgery: str,
+    ) -> None:
+        subject, invocation = _strict_subject_and_invocation()
+        outer = process_receipt.OuterDeadlineCommitment(
+            deadline_monotonic_ns=130,
+            clock_domain_occurrence_id=(
+                process_receipt.PROCESS_CLOCK_DOMAIN_OCCURRENCE.clock_domain_occurrence_id
+            ),
+            consumer_invocation_occurrence_id=invocation.invocation_occurrence_id,
+            producer_invocation_occurrence_id=HEX_A,
+            parent_deadline_binding_hash=HEX_B,
+        )
+        binding = process_receipt.DeadlineBinding.from_start_observation(
+            invocation_occurrence_id=invocation.invocation_occurrence_id,
+            started_monotonic_ns=100,
+            requested_timeout_ns=subject.requested_timeout_ns,
+            outer_deadline=outer,
+            clock_domain_occurrence=process_receipt.PROCESS_CLOCK_DOMAIN_OCCURRENCE,
+            clock_contract=process_receipt.PROCESS_CLOCK_CONTRACT,
+            deadline_decoder_identity=process_receipt.PROCESS_DEADLINE_DECODER_IDENTITY,
+        )
+        changes: dict[str, object] = {}
+        if forgery == "requested":
+            changes["requested_deadline_monotonic_ns"] = (
+                binding.requested_deadline_monotonic_ns - 1
+            )
+        elif forgery == "effective":
+            changes["effective_deadline_monotonic_ns"] = (
+                binding.requested_deadline_monotonic_ns
+            )
+        elif forgery == "source":
+            changes["winning_source"] = process_receipt.DeadlineSource.REQUESTED_TIMEOUT
+        else:
+            changes["outer_deadline_commitment_hash"] = "c" * 64
+        forged = _forge_frozen_dataclass(binding, **changes)
+    
+>       with pytest.raises(ValueError, match="deadline|binding|commitment|payload"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3.py:1670: Failed
+_ test_deadline_binding_is_self_validated_at_event_and_replay_boundaries[commitment] _
+
+forgery = 'commitment'
+
+    @pytest.mark.parametrize(
+        "forgery",
+        ("requested", "effective", "source", "commitment"),
+    )
+    def test_deadline_binding_is_self_validated_at_event_and_replay_boundaries(
+        forgery: str,
+    ) -> None:
+        subject, invocation = _strict_subject_and_invocation()
+        outer = process_receipt.OuterDeadlineCommitment(
+            deadline_monotonic_ns=130,
+            clock_domain_occurrence_id=(
+                process_receipt.PROCESS_CLOCK_DOMAIN_OCCURRENCE.clock_domain_occurrence_id
+            ),
+            consumer_invocation_occurrence_id=invocation.invocation_occurrence_id,
+            producer_invocation_occurrence_id=HEX_A,
+            parent_deadline_binding_hash=HEX_B,
+        )
+        binding = process_receipt.DeadlineBinding.from_start_observation(
+            invocation_occurrence_id=invocation.invocation_occurrence_id,
+            started_monotonic_ns=100,
+            requested_timeout_ns=subject.requested_timeout_ns,
+            outer_deadline=outer,
+            clock_domain_occurrence=process_receipt.PROCESS_CLOCK_DOMAIN_OCCURRENCE,
+            clock_contract=process_receipt.PROCESS_CLOCK_CONTRACT,
+            deadline_decoder_identity=process_receipt.PROCESS_DEADLINE_DECODER_IDENTITY,
+        )
+        changes: dict[str, object] = {}
+        if forgery == "requested":
+            changes["requested_deadline_monotonic_ns"] = (
+                binding.requested_deadline_monotonic_ns - 1
+            )
+        elif forgery == "effective":
+            changes["effective_deadline_monotonic_ns"] = (
+                binding.requested_deadline_monotonic_ns
+            )
+        elif forgery == "source":
+            changes["winning_source"] = process_receipt.DeadlineSource.REQUESTED_TIMEOUT
+        else:
+            changes["outer_deadline_commitment_hash"] = "c" * 64
+        forged = _forge_frozen_dataclass(binding, **changes)
+    
+>       with pytest.raises(ValueError, match="deadline|binding|commitment|payload"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3.py:1670: Failed
+______ test_deadline_payload_subclass_cannot_downgrade_to_legacy_identity ______
+
+    def test_deadline_payload_subclass_cannot_downgrade_to_legacy_identity() -> None:
+        subject, invocation = _strict_subject_and_invocation()
+        refusal = process_receipt.DeadlineRefusal.from_checked_add_overflow(
+            invocation_occurrence_id=invocation.invocation_occurrence_id,
+            started_monotonic_ns=(
+                process_receipt.MAX_PROCESS_MONOTONIC_NS - subject.requested_timeout_ns + 1
+            ),
+            requested_timeout_ns=subject.requested_timeout_ns,
+            outer_deadline=None,
+            clock_domain_occurrence=process_receipt.PROCESS_CLOCK_DOMAIN_OCCURRENCE,
+            clock_contract=process_receipt.PROCESS_CLOCK_CONTRACT,
+            deadline_decoder_identity=process_receipt.PROCESS_DEADLINE_DECODER_IDENTITY,
+        )
+    
+        class RefusalSubclass(process_receipt.DeadlineRefusal):
+            pass
+    
+        subclass_payload = RefusalSubclass(
+            **{name: getattr(refusal, name) for name in refusal.__dataclass_fields__}
+        )
+        events = _append((), refusal)
+        object.__setattr__(events[0], "payload", subclass_payload)
+    
+>       with pytest.raises(ValueError, match="exact|payload|closed"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'exact|payload|closed'
+E         Actual message: 'strict invocation requires a deadline-binding trace'
+
+tests/unit/kernel/test_process_receipt_v3.py:1710: AssertionError
+=========================== short test summary info ============================
+FAILED tests/unit/kernel/test_process_receipt_v3.py::test_deadline_binding_is_self_validated_at_event_and_replay_boundaries[requested]
+FAILED tests/unit/kernel/test_process_receipt_v3.py::test_deadline_binding_is_self_validated_at_event_and_replay_boundaries[effective]
+FAILED tests/unit/kernel/test_process_receipt_v3.py::test_deadline_binding_is_self_validated_at_event_and_replay_boundaries[source]
+FAILED tests/unit/kernel/test_process_receipt_v3.py::test_deadline_binding_is_self_validated_at_event_and_replay_boundaries[commitment]
+FAILED tests/unit/kernel/test_process_receipt_v3.py::test_deadline_payload_subclass_cannot_downgrade_to_legacy_identity
+5 failed, 109 passed in 1.10s

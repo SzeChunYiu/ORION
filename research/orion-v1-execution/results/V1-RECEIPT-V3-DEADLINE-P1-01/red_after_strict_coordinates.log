@@ -1,0 +1,2552 @@
+.............FFFFFF.F.................FFFFFFFFFFFF.F.FFFFFFFFF..F.FFFFFF [ 60%]
+FFFFFFFFFF.............FFFFF.FF...........FFFFFF                         [100%]
+=================================== FAILURES ===================================
+_______ test_d00_strict_invocation_rejects_an_empty_trace_as_a_downgrade _______
+
+    def test_d00_strict_invocation_rejects_an_empty_trace_as_a_downgrade() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+    
+>       with pytest.raises(
+            ValueError,
+            match=r"(?i)(?=.*strict)(?=.*(?:binding|trace|dialect))",
+        ):
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1516: Failed
+____ test_d00_strict_invocation_rejects_a_legacy_only_trace_as_a_downgrade _____
+
+    def test_d00_strict_invocation_rejects_a_legacy_only_trace_as_a_downgrade() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        legacy_only_events = _append(
+            (),
+            OperationAttempt.failed(
+                ProcessStage.PROCESS_START,
+                ProcessTarget.PROCESS,
+                kind=FailureKind.NOT_FOUND,
+                mechanism_errno=errno.ENOENT,
+                role=FailureRole.PRIMARY,
+            ),
+        )
+    
+>       with pytest.raises(
+            ValueError,
+            match=r"(?i)(?=.*strict)(?=.*(?:legacy|dialect|binding|trace))",
+        ):
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1537: Failed
+_____________ test_d00_strict_subject_rejects_a_legacy_invocation ______________
+
+    def test_d00_strict_subject_rejects_a_legacy_invocation() -> None:
+        subject = _subject()
+        strict_invocation = _invocation(subject)
+        _binding_value, _child_value, strict_events = _started(
+            subject,
+            strict_invocation,
+        )
+        legacy_invocation = _legacy_invocation(subject)
+    
+>       with pytest.raises(
+            ValueError,
+            match=r"(?i)(?=.*strict)(?=.*(?:legacy|dialect|contract))",
+        ):
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: re.compile('(?i)(?=.*strict)(?=.*(?:legacy|dialect|contract))', re.IGNORECASE)
+E         Actual message: 'deadline prefix is bound to another invocation occurrence'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1553: AssertionError
+_____________ test_d00_legacy_lane_rejects_an_effect_bound_payload _____________
+
+    def test_d00_legacy_lane_rejects_an_effect_bound_payload() -> None:
+        subject = _legacy_subject()
+        invocation = _legacy_invocation(subject)
+        legacy_failed_start = OperationAttempt.failed(
+            ProcessStage.PROCESS_START,
+            ProcessTarget.PROCESS,
+            kind=FailureKind.NOT_FOUND,
+            mechanism_errno=errno.ENOENT,
+            role=FailureRole.PRIMARY,
+        )
+        effect_bound_payload = _forge(
+            legacy_failed_start,
+            effect_occurrence_id=HEX_C,
+            attempt_ordinal=1,
+        )
+        events = _append((), effect_bound_payload)
+    
+>       with pytest.raises(
+            ValueError,
+            match=r"(?i)(?=.*legacy)(?=.*(?:effect|bound|dialect))",
+        ):
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1577: Failed
+____________ test_d00_strict_trace_rejects_an_unbound_legacy_result ____________
+
+    def test_d00_strict_trace_rejects_an_unbound_legacy_result() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_registered_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            START_NS + 4,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(ProcessStage.SELECT, ProcessTarget.SELECTOR, admission),
+        )
+        unbound_result = ReadyBatch((Channel.STATUS,))
+        events = _append(events, unbound_result)
+        events = _append(
+            events,
+            _completion(events, binding, child, admission, START_NS + 5),
+        )
+    
+>       with pytest.raises(
+            ValueError,
+            match=r"(?i)(?=.*strict)(?=.*(?:unbound|effect|dialect))",
+        ):
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1613: Failed
+____ test_d00_verifier_rejects_strict_events_under_legacy_reducer_identity _____
+
+    def test_d00_verifier_rejects_strict_events_under_legacy_reducer_identity() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        _binding_value, _child_value, events = _started(subject, invocation)
+        strict_receipt = build_process_receipt(subject, invocation, events)
+        relabelled = _forge(
+            strict_receipt,
+            reducer_identity=_identity("PROCESS_RECEIPT_LEGACY_REDUCER_IDENTITY"),
+        )
+    
+        verification = verify_process_receipt(relabelled)
+>       assert verification.status is ReplayStatus.REDUCER_IDENTITY_MISMATCH
+E       AssertionError: assert <ReplayStatus.VERIFIED: 'VERIFIED'> is <ReplayStatus.REDUCER_IDENTITY_MISMATCH: 'REDUCER_IDENTITY_MISMATCH'>
+E        +  where <ReplayStatus.VERIFIED: 'VERIFIED'> = ProcessReplayVerification(status=<ReplayStatus.VERIFIED: 'VERIFIED'>, replayed_state=ProcessDerivedState(acquired_pref...sored_effect_occurrences=()), computed_receipt_hash='72774275b051a3e1bbac7c0d1c0f311d8147e2dbd8674925eb196b7ebd7e2364').status
+E        +  and   <ReplayStatus.REDUCER_IDENTITY_MISMATCH: 'REDUCER_IDENTITY_MISMATCH'> = ReplayStatus.REDUCER_IDENTITY_MISMATCH
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1631: AssertionError
+________ test_d00_strict_events_cannot_be_relinked_into_the_legacy_lane ________
+
+    def test_d00_strict_events_cannot_be_relinked_into_the_legacy_lane() -> None:
+        strict_subject = _subject()
+        strict_invocation = _invocation(strict_subject)
+        strict_binding = _binding(strict_invocation)
+        legacy_subject = _legacy_subject()
+        legacy_invocation = _legacy_invocation(legacy_subject)
+        relinked = _append((), strict_binding)
+    
+>       with pytest.raises(
+            ValueError,
+            match=r"(?i)(?=.*strict)(?=.*legacy)",
+        ):
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: re.compile('(?i)(?=.*strict)(?=.*legacy)', re.IGNORECASE)
+E         Actual message: 'deadline prefix is bound to another invocation occurrence'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1667: AssertionError
+_________ test_d04_spawn_cannot_omit_the_prospective_deadline_binding __________
+
+    def test_d04_spawn_cannot_omit_the_prospective_deadline_binding() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        events = _append(
+            (),
+            OperationAttempt.succeeded(ProcessStage.PROCESS_START, ProcessTarget.PROCESS),
+        )
+>       with pytest.raises(ValueError, match="deadline|binding|start|admission"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1896: Failed
+_______ test_d04_generic_timeout_event_cannot_replace_a_deadline_binding _______
+
+    def test_d04_generic_timeout_event_cannot_replace_a_deadline_binding() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        events = _append(
+            (),
+            OperationAttempt.succeeded(ProcessStage.PROCESS_START, ProcessTarget.PROCESS),
+        )
+        events = _append(events, ChildIdentityBound(501, 501, REQUESTED_DEADLINE_NS))
+        events = _append(
+            events,
+            TimeoutObservation(
+                deadline_monotonic_ns=REQUESTED_DEADLINE_NS,
+                observed_monotonic_ns=REQUESTED_DEADLINE_NS,
+                crossed=True,
+                handoff_state=HandoffState.NOT_REACHED,
+            ),
+        )
+>       with pytest.raises(ValueError, match="deadline|binding|occurrence|timeout|strict"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1917: Failed
+______ test_d04_spawn_requires_post_return_completion_after_child_binding ______
+
+    def test_d04_spawn_requires_post_return_completion_after_child_binding() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding = _binding(invocation)
+        events = _append((), binding)
+        events = _append(
+            events,
+            OperationAttempt.succeeded(ProcessStage.PROCESS_START, ProcessTarget.PROCESS),
+        )
+        events = _append(events, _child(binding, invocation))
+>       with pytest.raises(ValueError, match="start|spawn|completion|pending"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1931: Failed
+__________ test_d04_failed_spawn_also_requires_post_return_completion __________
+
+    def test_d04_failed_spawn_also_requires_post_return_completion() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding = _binding(invocation)
+        events = _append((), binding)
+        events = _append(
+            events,
+            OperationAttempt.failed(
+                ProcessStage.PROCESS_START,
+                ProcessTarget.PROCESS,
+                kind=FailureKind.IO,
+                mechanism_errno=errno.EIO,
+                role=FailureRole.PRIMARY,
+            ),
+        )
+    
+>       with pytest.raises(ValueError, match="start|spawn|completion|pending|post"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1951: Failed
+_____ test_d04_failed_spawn_completion_at_deadline_latches_without_a_child _____
+
+    def test_d04_failed_spawn_completion_at_deadline_latches_without_a_child() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding = _binding(invocation)
+        events = _append((), binding)
+        events = _append(
+            events,
+            OperationAttempt.failed(
+                ProcessStage.PROCESS_START,
+                ProcessTarget.PROCESS,
+                kind=FailureKind.IO,
+                mechanism_errno=errno.EIO,
+                role=FailureRole.PRIMARY,
+            ),
+        )
+        completion = _start_completion(
+            events,
+            invocation,
+            binding,
+            None,
+            REQUESTED_DEADLINE_NS,
+        )
+        events = _append(events, completion)
+        state = _reduce_strict(subject, invocation, events)
+    
+        assert state.process_state is process_receipt.ProcessState.NOT_STARTED
+        assert state.child_pid is None and state.process_group_id is None
+        assert state.main_work.git_process_starts == 0
+        assert state.first_primary is not None
+        assert state.first_primary.kind is FailureKind.IO
+>       assert any(
+            occurrence.kind is FailureKind.TIMEOUT
+            for occurrence in state.failure_occurrences
+        )
+E       assert False
+E        +  where False = any(<generator object test_d04_failed_spawn_completion_at_deadline_latches_without_a_child.<locals>.<genexpr> at 0x10a49fac0>)
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1985: AssertionError
+______ test_d04_start_completion_observation_cannot_regress_before_start _______
+
+    def test_d04_start_completion_observation_cannot_regress_before_start() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding = _binding(invocation)
+        events = _append((), binding)
+        events = _append(
+            events,
+            OperationAttempt.failed(
+                ProcessStage.PROCESS_START,
+                ProcessTarget.PROCESS,
+                kind=FailureKind.IO,
+                mechanism_errno=errno.EIO,
+                role=FailureRole.PRIMARY,
+            ),
+        )
+        regressed = _start_completion(
+            events,
+            invocation,
+            binding,
+            None,
+            START_NS - 1,
+        )
+        candidate = _append(events, regressed)
+    
+>       with pytest.raises(
+            ValueError, match="start|completion|monotonic|regress|chronology"
+        ):
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2016: Failed
+_ test_d04_start_completion_chain_coordinates_are_rederived[completion_event_index] _
+
+coordinate = 'completion_event_index'
+
+    @pytest.mark.parametrize(
+        "coordinate",
+        ("completion_event_index", "completion_previous_event_hash"),
+    )
+    def test_d04_start_completion_chain_coordinates_are_rederived(
+        coordinate: str,
+    ) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        prefix = events[:-1]
+        original = events[-1].payload
+        changes = {
+            "completion_event_index": len(prefix) - 1,
+            "completion_previous_event_hash": prefix[-2].event_hash,
+        }
+        moved = _rematerialize_start_completion(
+            original,
+            **{coordinate: changes[coordinate]},
+        )
+        candidate = _append(prefix, moved)
+    
+>       with pytest.raises(ValueError, match="start|completion|event|index|previous|chain"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2044: Failed
+_ test_d04_start_completion_chain_coordinates_are_rederived[completion_previous_event_hash] _
+
+coordinate = 'completion_previous_event_hash'
+
+    @pytest.mark.parametrize(
+        "coordinate",
+        ("completion_event_index", "completion_previous_event_hash"),
+    )
+    def test_d04_start_completion_chain_coordinates_are_rederived(
+        coordinate: str,
+    ) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        prefix = events[:-1]
+        original = events[-1].payload
+        changes = {
+            "completion_event_index": len(prefix) - 1,
+            "completion_previous_event_hash": prefix[-2].event_hash,
+        }
+        moved = _rematerialize_start_completion(
+            original,
+            **{coordinate: changes[coordinate]},
+        )
+        candidate = _append(prefix, moved)
+    
+>       with pytest.raises(ValueError, match="start|completion|event|index|previous|chain"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2044: Failed
+_ test_d04_start_completion_provenance_is_rederived[invocation_occurrence_id] __
+
+coordinate = 'invocation_occurrence_id'
+
+    @pytest.mark.parametrize(
+        "coordinate",
+        (
+            "invocation_occurrence_id",
+            "deadline_binding_hash",
+            "clock_domain_occurrence_id",
+        ),
+    )
+    def test_d04_start_completion_provenance_is_rederived(coordinate: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        _binding_value, _child_value, events = _started(subject, invocation)
+        prefix = events[:-1]
+        original = events[-1].payload
+        moved = _rematerialize_start_completion(original, **{coordinate: HEX_C})
+        candidate = _append(prefix, moved)
+    
+>       with pytest.raises(
+            ValueError,
+            match="start|completion|invocation|binding|clock|occurrence|provenance",
+        ):
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2065: Failed
+___ test_d04_start_completion_provenance_is_rederived[deadline_binding_hash] ___
+
+coordinate = 'deadline_binding_hash'
+
+    @pytest.mark.parametrize(
+        "coordinate",
+        (
+            "invocation_occurrence_id",
+            "deadline_binding_hash",
+            "clock_domain_occurrence_id",
+        ),
+    )
+    def test_d04_start_completion_provenance_is_rederived(coordinate: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        _binding_value, _child_value, events = _started(subject, invocation)
+        prefix = events[:-1]
+        original = events[-1].payload
+        moved = _rematerialize_start_completion(original, **{coordinate: HEX_C})
+        candidate = _append(prefix, moved)
+    
+>       with pytest.raises(
+            ValueError,
+            match="start|completion|invocation|binding|clock|occurrence|provenance",
+        ):
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2065: Failed
+_ test_d04_start_completion_provenance_is_rederived[clock_domain_occurrence_id] _
+
+coordinate = 'clock_domain_occurrence_id'
+
+    @pytest.mark.parametrize(
+        "coordinate",
+        (
+            "invocation_occurrence_id",
+            "deadline_binding_hash",
+            "clock_domain_occurrence_id",
+        ),
+    )
+    def test_d04_start_completion_provenance_is_rederived(coordinate: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        _binding_value, _child_value, events = _started(subject, invocation)
+        prefix = events[:-1]
+        original = events[-1].payload
+        moved = _rematerialize_start_completion(original, **{coordinate: HEX_C})
+        candidate = _append(prefix, moved)
+    
+>       with pytest.raises(
+            ValueError,
+            match="start|completion|invocation|binding|clock|occurrence|provenance",
+        ):
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2065: Failed
+__________ test_d04_successful_spawn_completion_cannot_omit_the_child __________
+
+    def test_d04_successful_spawn_completion_cannot_omit_the_child() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding = _binding(invocation)
+        events = _append((), binding)
+        events = _append(
+            events,
+            OperationAttempt.succeeded(
+                ProcessStage.PROCESS_START,
+                ProcessTarget.PROCESS,
+            ),
+        )
+        completion = _start_completion(events, invocation, binding, None, START_NS)
+        candidate = _append(events, completion)
+>       with pytest.raises(ValueError, match="start|success|child|completion"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2086: Failed
+___ test_d04_spawn_completion_at_deadline_retains_child_and_latches_timeout ____
+
+    def test_d04_spawn_completion_at_deadline_retains_child_and_latches_timeout() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(
+            subject,
+            invocation,
+            completion_ns=REQUESTED_DEADLINE_NS,
+        )
+        state = _reduce_strict(subject, invocation, events)
+    
+        assert state.child_pid == child.child_pid
+        assert state.process_group_id == child.process_group_id
+        assert state.main_work.git_process_starts == 1
+>       assert state.first_primary is not None
+E       AssertionError: assert None is not None
+E        +  where None = ProcessDerivedState(acquired_prefix=(), nonblocking_prefix=(), registered_prefix=(), unregistered_prefix=(), eof_prefi...5969977fd3adbbdf70012bef93add449ee5215fc9e10c7a25a97'), deadline_refusal=None, deadline_censored_effect_occurrences=()).first_primary
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2126: AssertionError
+_____________ test_d05_selector_create_requires_an_admission_event _____________
+
+    def test_d05_selector_create_requires_an_admission_event() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        ghost_admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            START_NS + 1,
+        )
+        events = _append(
+            events,
+            _effect_attempt(
+                ProcessStage.SELECTOR_CREATE,
+                ProcessTarget.SELECTOR,
+                ghost_admission,
+            ),
+        )
+        completion = _completion(
+            events,
+            binding,
+            child,
+            ghost_admission,
+            START_NS + 2,
+        )
+        events = _append(events, completion)
+>       with pytest.raises(ValueError, match="deadline|admission|effect|predecessor"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2208: Failed
+__________________ test_d05_read_requires_an_admission_event ___________________
+
+    def test_d05_read_requires_an_admission_event() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        ghost_admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            START_NS + 6,
+        )
+        events = _append(
+            events,
+            _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                ghost_admission,
+            ),
+        )
+        events = _append(
+            events,
+            _bytes_observed(ghost_admission, Channel.STATUS, b"x", b"x"),
+        )
+        completion = _completion(
+            events,
+            binding,
+            child,
+            ghost_admission,
+            START_NS + 7,
+        )
+        events = _append(events, completion)
+>       with pytest.raises(ValueError, match="deadline|admission|effect|predecessor"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2245: Failed
+_________ test_d05_admission_must_be_the_immediate_attempt_predecessor _________
+
+    def test_d05_admission_must_be_the_immediate_attempt_predecessor() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            START_NS + 1,
+        )
+        events = _append(events, admission)
+        events = _append(events, DescriptorAcquired(Channel.STATUS))
+        events = _append(
+            events,
+            _effect_attempt(
+                ProcessStage.SELECTOR_CREATE,
+                ProcessTarget.SELECTOR,
+                admission,
+            ),
+        )
+        events = _append(
+            events,
+            _completion(events, binding, child, admission, START_NS + 2),
+        )
+>       with pytest.raises(ValueError, match="immediate|admission|predecessor|effect"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2276: Failed
+____________ test_d05_select_outcome_cannot_omit_completion[ready] _____________
+
+outcome = 'ready'
+
+    @pytest.mark.parametrize("outcome", ("ready", "empty", "failed"))
+    def test_d05_select_outcome_cannot_omit_completion(outcome: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_registered_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            START_NS + 4,
+        )
+        events = _append(events, admission)
+        if outcome in {"ready", "empty"}:
+            attempt = _effect_attempt(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                admission,
+            )
+        else:
+            attempt = _effect_attempt(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                admission,
+                failed_kind=FailureKind.IO,
+                mechanism_errno=errno.EIO,
+            )
+        events = _append(events, attempt)
+        if outcome == "ready":
+            events = _append(events, _ready_batch(admission, (Channel.STATUS,)))
+        if outcome == "empty":
+            events = _append(events, _empty_ready(admission))
+>       with pytest.raises(ValueError, match="completion|pending|post|effect"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2314: Failed
+____________ test_d05_select_outcome_cannot_omit_completion[empty] _____________
+
+outcome = 'empty'
+
+    @pytest.mark.parametrize("outcome", ("ready", "empty", "failed"))
+    def test_d05_select_outcome_cannot_omit_completion(outcome: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_registered_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            START_NS + 4,
+        )
+        events = _append(events, admission)
+        if outcome in {"ready", "empty"}:
+            attempt = _effect_attempt(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                admission,
+            )
+        else:
+            attempt = _effect_attempt(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                admission,
+                failed_kind=FailureKind.IO,
+                mechanism_errno=errno.EIO,
+            )
+        events = _append(events, attempt)
+        if outcome == "ready":
+            events = _append(events, _ready_batch(admission, (Channel.STATUS,)))
+        if outcome == "empty":
+            events = _append(events, _empty_ready(admission))
+>       with pytest.raises(ValueError, match="completion|pending|post|effect"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'completion|pending|post|effect'
+E         Actual message: 'successful select requires immediate ReadyBatch'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2314: AssertionError
+____________ test_d05_select_outcome_cannot_omit_completion[failed] ____________
+
+outcome = 'failed'
+
+    @pytest.mark.parametrize("outcome", ("ready", "empty", "failed"))
+    def test_d05_select_outcome_cannot_omit_completion(outcome: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_registered_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            START_NS + 4,
+        )
+        events = _append(events, admission)
+        if outcome in {"ready", "empty"}:
+            attempt = _effect_attempt(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                admission,
+            )
+        else:
+            attempt = _effect_attempt(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                admission,
+                failed_kind=FailureKind.IO,
+                mechanism_errno=errno.EIO,
+            )
+        events = _append(events, attempt)
+        if outcome == "ready":
+            events = _append(events, _ready_batch(admission, (Channel.STATUS,)))
+        if outcome == "empty":
+            events = _append(events, _empty_ready(admission))
+>       with pytest.raises(ValueError, match="completion|pending|post|effect"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2314: Failed
+___________ test_d05_read_outcome_cannot_omit_completion[succeeded] ____________
+
+outcome = 'succeeded'
+
+    @pytest.mark.parametrize("outcome", ("succeeded", "retryable", "failed"))
+    def test_d05_read_outcome_cannot_omit_completion(outcome: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            START_NS + 6,
+        )
+        events = _append(events, admission)
+        if outcome == "succeeded":
+            attempt = _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                admission,
+            )
+            events = _append(events, attempt)
+            events = _append(
+                events,
+                _bytes_observed(admission, Channel.STATUS, b"x", b"x"),
+            )
+        elif outcome == "retryable":
+            attempt = _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                admission,
+                retryable_kind=FailureKind.READINESS_RACE,
+                mechanism_errno=errno.EAGAIN,
+            )
+            events = _append(events, attempt)
+        else:
+            attempt = _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                admission,
+                failed_kind=FailureKind.IO,
+                mechanism_errno=errno.EIO,
+            )
+            events = _append(events, attempt)
+>       with pytest.raises(ValueError, match="completion|pending|post|effect"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2362: Failed
+___________ test_d05_read_outcome_cannot_omit_completion[retryable] ____________
+
+outcome = 'retryable'
+
+    @pytest.mark.parametrize("outcome", ("succeeded", "retryable", "failed"))
+    def test_d05_read_outcome_cannot_omit_completion(outcome: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            START_NS + 6,
+        )
+        events = _append(events, admission)
+        if outcome == "succeeded":
+            attempt = _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                admission,
+            )
+            events = _append(events, attempt)
+            events = _append(
+                events,
+                _bytes_observed(admission, Channel.STATUS, b"x", b"x"),
+            )
+        elif outcome == "retryable":
+            attempt = _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                admission,
+                retryable_kind=FailureKind.READINESS_RACE,
+                mechanism_errno=errno.EAGAIN,
+            )
+            events = _append(events, attempt)
+        else:
+            attempt = _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                admission,
+                failed_kind=FailureKind.IO,
+                mechanism_errno=errno.EIO,
+            )
+            events = _append(events, attempt)
+>       with pytest.raises(ValueError, match="completion|pending|post|effect"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'completion|pending|post|effect'
+E         Actual message: 'retryable attempt lacks RetryObserved'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2362: AssertionError
+_____________ test_d05_read_outcome_cannot_omit_completion[failed] _____________
+
+outcome = 'failed'
+
+    @pytest.mark.parametrize("outcome", ("succeeded", "retryable", "failed"))
+    def test_d05_read_outcome_cannot_omit_completion(outcome: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            START_NS + 6,
+        )
+        events = _append(events, admission)
+        if outcome == "succeeded":
+            attempt = _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                admission,
+            )
+            events = _append(events, attempt)
+            events = _append(
+                events,
+                _bytes_observed(admission, Channel.STATUS, b"x", b"x"),
+            )
+        elif outcome == "retryable":
+            attempt = _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                admission,
+                retryable_kind=FailureKind.READINESS_RACE,
+                mechanism_errno=errno.EAGAIN,
+            )
+            events = _append(events, attempt)
+        else:
+            attempt = _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                admission,
+                failed_kind=FailureKind.IO,
+                mechanism_errno=errno.EIO,
+            )
+            events = _append(events, attempt)
+>       with pytest.raises(ValueError, match="completion|pending|post|effect"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2362: Failed
+_________ test_d05_select_cannot_return_ready_and_empty_for_one_effect _________
+
+    def test_d05_select_cannot_return_ready_and_empty_for_one_effect() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_registered_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            START_NS + 4,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(ProcessStage.SELECT, ProcessTarget.SELECTOR, admission),
+        )
+        events = _append(events, _ready_batch(admission, (Channel.STATUS,)))
+        events = _append(events, _empty_ready(admission))
+        completion = _completion(events, binding, child, admission, START_NS + 5)
+>       with pytest.raises(ValueError, match="exactly one|result|ready|empty"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2443: Failed
+_________ test_d05_unrelated_event_cannot_split_attempt_and_completion _________
+
+    def test_d05_unrelated_event_cannot_split_attempt_and_completion() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            START_NS + 1,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(
+                ProcessStage.SELECTOR_CREATE,
+                ProcessTarget.SELECTOR,
+                admission,
+            ),
+        )
+        events = _append(events, DescriptorAcquired(Channel.STATUS))
+        completion = _completion(events, binding, child, admission, START_NS + 2)
+        events = _append(events, completion)
+>       with pytest.raises(ValueError, match="completion|result|contiguous|effect"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2500: Failed
+_____ test_d05_one_admission_cannot_authorize_two_equal_timestamp_effects ______
+
+    def test_d05_one_admission_cannot_authorize_two_equal_timestamp_effects() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        events, admission, _completion_value = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 1,
+            completion_ns=START_NS + 1,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(
+                ProcessStage.SELECTOR_CREATE,
+                ProcessTarget.SELECTOR,
+                admission,
+            ),
+        )
+        events = _append(
+            events,
+            _completion(events, binding, child, admission, START_NS + 1),
+        )
+>       with pytest.raises(ValueError, match="occurrence|event|reuse|admission|ordinal"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'occurrence|event|reuse|admission|ordinal'
+E         Actual message: 'selector may be created only once'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2531: AssertionError
+____________ test_d05_stage_target_cannot_change_under_an_effect_id ____________
+
+    def test_d05_stage_target_cannot_change_under_an_effect_id() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            START_NS + 1,
+        )
+        events = _append(events, admission)
+        forged = _forge(
+            _effect_attempt(
+                ProcessStage.SELECTOR_CREATE,
+                ProcessTarget.SELECTOR,
+                admission,
+            ),
+            stage=ProcessStage.SELECT,
+        )
+        events = _append(events, forged)
+        events = _append(
+            events,
+            _completion(events, binding, child, admission, START_NS + 2),
+        )
+>       with pytest.raises(
+            ValueError,
+            match=r"(?i)(?=.*stage)(?=.*(?:effect|admission))",
+        ):
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: re.compile('(?i)(?=.*stage)(?=.*(?:effect|admission))', re.IGNORECASE)
+E         Actual message: 'select requires a created selector'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2562: AssertionError
+__________ test_d05_target_only_cannot_change_under_a_read_effect_id ___________
+
+    def test_d05_target_only_cannot_change_under_a_read_effect_id() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            START_NS + 6,
+        )
+        events = _append(events, admission)
+        forged = _forge(
+            _effect_attempt(ProcessStage.READ, ProcessTarget.STATUS, admission),
+            target=ProcessTarget.STDOUT,
+        )
+        events = _append(events, forged)
+        events = _append(
+            events,
+            _bytes_observed(admission, Channel.STATUS, b"x", b"x"),
+        )
+        events = _append(
+            events,
+            _completion(events, binding, child, admission, START_NS + 7),
+        )
+>       with pytest.raises(
+            ValueError,
+            match=r"(?i)(?=.*target)(?=.*(?:effect|admission|occurrence))",
+        ):
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: re.compile('(?i)(?=.*target)(?=.*(?:effect|admission|occurrence))', re.IGNORECASE)
+E         Actual message: 'read requires a pending ready channel'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2596: AssertionError
+_________ test_d05_completion_cannot_move_from_one_effect_to_the_next __________
+
+    def test_d05_completion_cannot_move_from_one_effect_to_the_next() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        events, first, _first_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 1,
+            completion_ns=START_NS + 1,
+        )
+        second = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            START_NS + 2,
+        )
+        events = _append(events, second)
+        events = _append(
+            events,
+            _effect_attempt(ProcessStage.SELECT, ProcessTarget.SELECTOR, second),
+        )
+        events = _append(events, _empty_ready(second))
+        valid_second_completion = _completion(
+            events,
+            binding,
+            child,
+            second,
+            START_NS + 3,
+        )
+        moved = replace(
+            valid_second_completion,
+            effect_occurrence_id=first.effect_occurrence_id,
+            deadline_completion_hash="",
+        )
+        events = _append(events, moved)
+>       with pytest.raises(ValueError, match="completion|effect|occurrence|event"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'completion|effect|occurrence|event'
+E         Actual message: 'successful select requires immediate ReadyBatch'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2645: AssertionError
+_____________ test_d05_result_payload_cannot_move_between_effects ______________
+
+    def test_d05_result_payload_cannot_move_between_effects() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_registered_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            START_NS + 4,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(ProcessStage.SELECT, ProcessTarget.SELECTOR, admission),
+        )
+        moved = _forge(
+            _ready_batch(admission, (Channel.STATUS,)),
+            effect_occurrence_id=HEX_C,
+        )
+        events = _append(events, moved)
+        completion = _completion(events, binding, child, admission, START_NS + 5)
+>       with pytest.raises(ValueError, match="result|ready|effect|occurrence"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2673: Failed
+___________ test_d05_read_result_cannot_move_between_effects[bytes] ____________
+
+result_kind = 'bytes'
+
+    @pytest.mark.parametrize("result_kind", ("bytes", "eof"))
+    def test_d05_read_result_cannot_move_between_effects(result_kind: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            START_NS + 6,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(ProcessStage.READ, ProcessTarget.STATUS, admission),
+        )
+        result = (
+            _bytes_observed(admission, Channel.STATUS, b"x", b"x")
+            if result_kind == "bytes"
+            else _channel_eof(admission, Channel.STATUS)
+        )
+        moved = _forge(result, effect_occurrence_id=HEX_C)
+        events = _append(events, moved)
+        completion = _completion(events, binding, child, admission, START_NS + 7)
+>       with pytest.raises(ValueError, match="result|bytes|EOF|effect|occurrence"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2704: Failed
+____________ test_d05_read_result_cannot_move_between_effects[eof] _____________
+
+result_kind = 'eof'
+
+    @pytest.mark.parametrize("result_kind", ("bytes", "eof"))
+    def test_d05_read_result_cannot_move_between_effects(result_kind: str) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            START_NS + 6,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(ProcessStage.READ, ProcessTarget.STATUS, admission),
+        )
+        result = (
+            _bytes_observed(admission, Channel.STATUS, b"x", b"x")
+            if result_kind == "bytes"
+            else _channel_eof(admission, Channel.STATUS)
+        )
+        moved = _forge(result, effect_occurrence_id=HEX_C)
+        events = _append(events, moved)
+        completion = _completion(events, binding, child, admission, START_NS + 7)
+>       with pytest.raises(ValueError, match="result|bytes|EOF|effect|occurrence"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2704: Failed
+_____ test_d05_later_global_ordinal_cannot_survive_removed_earlier_effect ______
+
+    def test_d05_later_global_ordinal_cannot_survive_removed_earlier_effect() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            START_NS + 1,
+            attempt_ordinal=2,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(
+                ProcessStage.SELECTOR_CREATE,
+                ProcessTarget.SELECTOR,
+                admission,
+            ),
+        )
+        completion = _completion(events, binding, child, admission, START_NS + 1)
+>       with pytest.raises(ValueError, match="ordinal|global|consecutive|effect"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2732: Failed
+________ test_d05_distinct_effects_may_have_equal_monotonic_timestamps _________
+
+    def test_d05_distinct_effects_may_have_equal_monotonic_timestamps() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        events, first, _first_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 1,
+            completion_ns=START_NS + 1,
+        )
+        events, second, _second_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 1,
+            completion_ns=START_NS + 1,
+            result="EMPTY_READY",
+        )
+        events = _append(
+            events,
+            _retry_with_deadline(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                RetryKind.EMPTY_READY,
+                1,
+                second.effect_occurrence_id,
+            ),
+        )
+>       state = _reduce_strict(subject, invocation, events)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2771: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1037: in _reduce_strict
+    return reduce_process_events(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+subject = ProcessCommandSubject(operation=<ProcessOperation.PROTECTED_GIT: 'PROTECTED_GIT'>, logical_argv=('git', 'status', '--p...2f1ea25573ed91b4a48fa56', deadline_decoder_identity='6ca72cf9568bfa3f1b131253faf70d5ef2219b5771289e040379e3dafadcd2fa')
+events = (ProcessLifecycleEvent(event_index=0, previous_event_hash=None, phase=<EventPhase.MAIN: 'MAIN'>, payload=DeadlineBindi...ntries_parsed=0, git_tag_steps=0), event_hash='22ab92b8756968ab4d7b51317c31913ff78defc71cb111c1800c834bdc9d2f77'), ...)
+invocation_occurrence_id = '8e60b2b84a1471eb2f6d42e160dd1423c2d414d5a795fbe35790597327fcace0'
+
+    def reduce_process_events(
+        subject: ProcessCommandSubject,
+        events: tuple[ProcessLifecycleEvent, ...],
+        *,
+        invocation_occurrence_id: str | None = None,
+    ) -> ProcessDerivedState:
+        _validate_process_command_subject(subject)
+        _require_registered_wait_decoder(
+            subject.wait_decoder_identity,
+            subject.wait_supported_signals,
+            subject.wait_nonblocking_option_mask,
+        )
+        if invocation_occurrence_id is not None:
+            _require_hash(invocation_occurrence_id, "invocation_occurrence_id")
+        _require_exact_tuple(events, "events")
+        if len(events) > MAX_PROCESS_EVENT_COUNT:
+            raise ValueError("process event count cap is exceeded")
+    
+        acquired: list[Channel] = []
+        nonblocking: list[Channel] = []
+        registered: list[Channel] = []
+        unregistered: list[Channel] = []
+        eof_seen: set[Channel] = set()
+        retained = {channel: b"" for channel in Channel}
+        acquired_output = {channel: b"" for channel in Channel}
+        observed = {channel: 0 for channel in Channel}
+        channel_states = {channel: ChannelState.UNACQUIRED for channel in Channel}
+        close_dispositions = {
+            channel: CloseDisposition.NOT_ATTEMPTED for channel in Channel
+        }
+        close_attempts = {channel: 0 for channel in Channel}
+        selector_state = SelectorState.UNCREATED
+        process_state = ProcessState.NOT_STARTED
+        child_pid: int | None = None
+        process_group_id: int | None = None
+        pre_root_observation: RootIdentityObservation | None = None
+        post_root_observation: RootIdentityObservation | None = None
+        timeout_observation: TimeoutObservation | None = None
+        deadline_binding: DeadlineBinding | None = None
+        deadline_refusal: DeadlineRefusal | None = None
+        handoff_state = HandoffState.NOT_REACHED
+        exit_state = ExitState.UNOBSERVED
+        returncode: int | None = None
+        termination_signal: int | None = None
+        reap_disposition = ReapDisposition.UNOBSERVED
+        wait_observed = False
+        post_disposition = PostDisposition.UNOBSERVED
+        finalization_state = FinalizationState.NOT_STARTED
+        main_work = ProcessWorkVector.zero()
+        finalize_work = ProcessWorkVector.zero()
+        finalize_indices: list[int] = []
+        retry_counts: dict[tuple[ProcessStage, ProcessTarget, RetryKind], int] = {}
+        successful_select_pending = False
+        ready_pending: set[Channel] = set()
+        successful_read_pending: Channel | None = None
+        retry_pending: tuple[ProcessStage, ProcessTarget, RetryKind] | None = None
+        first_primary: FailureOccurrence | None = None
+        recurrence_signatures: list[str] = []
+        failure_occurrences: list[FailureOccurrence] = []
+        previous_hash: str | None = None
+    
+        def record_derived_failure(
+            event: ProcessLifecycleEvent,
+            *,
+            stage: ProcessStage,
+            target: ProcessTarget,
+            kind: FailureKind,
+            mechanism_errno: int | None,
+            close_disposition: CloseDisposition | None = None,
+            supplied_role: FailureRole | None = None,
+            causal_discriminator: tuple[str, ...] = (),
+        ) -> None:
+            nonlocal first_primary
+            role = FailureRole.PRIMARY if not failure_occurrences else FailureRole.CLEANUP
+            if supplied_role is not None and supplied_role is not role:
+                raise ValueError("supplied failure role contradicts reducer chronology")
+            occurrence, signature = _record_failure(
+                command_subject_hash=subject.command_subject_hash,
+                invocation_occurrence_id=invocation_occurrence_id,
+                event=event,
+                stage=stage,
+                target=target,
+                kind=kind,
+                mechanism_errno=mechanism_errno,
+                role=role,
+                close_disposition=close_disposition,
+                acquired_prefix=tuple(acquired),
+                nonblocking_prefix=tuple(nonblocking),
+                registered_prefix=tuple(registered),
+                process_state=process_state,
+                handoff_state=handoff_state,
+                selector_state=selector_state,
+                causal_discriminator=causal_discriminator,
+            )
+            recurrence_signatures.append(signature)
+            failure_occurrences.append(occurrence)
+            if first_primary is None:
+                first_primary = occurrence
+    
+        for index, event in enumerate(events):
+            if type(event) is not ProcessLifecycleEvent:
+                raise ProcessEventChainError(
+                    "events must contain exact ProcessLifecycleEvent values"
+                )
+            _validate_event_link(event, index, previous_hash)
+            previous_hash = event.event_hash
+    
+            if retry_pending is not None and not isinstance(event.payload, RetryObserved):
+                raise ValueError("retryable attempt requires immediate RetryObserved")
+            if successful_select_pending and not isinstance(event.payload, ReadyBatch):
+>               raise ValueError("successful select requires immediate ReadyBatch")
+E               ValueError: successful select requires immediate ReadyBatch
+
+src/orion/kernel/process_receipt.py:3965: ValueError
+__________ test_d05_retry_decision_does_not_authorize_the_next_effect __________
+
+    def test_d05_retry_decision_does_not_authorize_the_next_effect() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        events, _create, _create_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 1,
+            completion_ns=START_NS + 1,
+        )
+        events, select_admission, _select_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 2,
+            completion_ns=START_NS + 3,
+            result="EMPTY_READY",
+        )
+        events = _append(
+            events,
+            _retry_with_deadline(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                RetryKind.EMPTY_READY,
+                1,
+                select_admission.effect_occurrence_id,
+            ),
+        )
+        events = _append(
+            events,
+            OperationAttempt.succeeded(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                effect_occurrence_id=select_admission.effect_occurrence_id,
+                attempt_ordinal=select_admission.attempt_ordinal,
+            ),
+        )
+        events = _append(events, _empty_ready(select_admission))
+        events = _append(
+            events,
+            _completion(events, binding, child, select_admission, START_NS + 4),
+        )
+>       with pytest.raises(ValueError, match="fresh|admission|effect|retry"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'fresh|admission|effect|retry'
+E         Actual message: 'successful select requires immediate ReadyBatch'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2825: AssertionError
+______ test_d05_internal_cpython_selector_empty_retry_uses_a_fresh_effect ______
+
+    def test_d05_internal_cpython_selector_empty_retry_uses_a_fresh_effect() -> None:
+        timeout_ns = _selector_timeout_ns()
+        quantum_ns = _select_timeout_contract().backend_quantum_ns
+        subject = _subject(requested_timeout_ns=timeout_ns)
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        events, _create, _create_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 1,
+            completion_ns=START_NS + 1,
+        )
+        events, first_select, _first_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 2 * quantum_ns,
+            completion_ns=START_NS + 3 * quantum_ns,
+            result="EMPTY_READY",
+        )
+        events = _append(
+            events,
+            _retry_with_deadline(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                RetryKind.EMPTY_READY,
+                1,
+                first_select.effect_occurrence_id,
+            ),
+        )
+        events, second_select, _second_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 4 * quantum_ns,
+            completion_ns=START_NS + 5 * quantum_ns,
+            result="EMPTY_READY",
+        )
+        events = _append(
+            events,
+            _retry_with_deadline(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                RetryKind.EMPTY_READY,
+                2,
+                second_select.effect_occurrence_id,
+            ),
+        )
+>       state = _reduce_strict(subject, invocation, events)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2887: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1037: in _reduce_strict
+    return reduce_process_events(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+subject = ProcessCommandSubject(operation=<ProcessOperation.PROTECTED_GIT: 'PROTECTED_GIT'>, logical_argv=('git', 'status', '--p...2f1ea25573ed91b4a48fa56', deadline_decoder_identity='6ca72cf9568bfa3f1b131253faf70d5ef2219b5771289e040379e3dafadcd2fa')
+events = (ProcessLifecycleEvent(event_index=0, previous_event_hash=None, phase=<EventPhase.MAIN: 'MAIN'>, payload=DeadlineBindi...ntries_parsed=0, git_tag_steps=0), event_hash='22ab92b8756968ab4d7b51317c31913ff78defc71cb111c1800c834bdc9d2f77'), ...)
+invocation_occurrence_id = '8e60b2b84a1471eb2f6d42e160dd1423c2d414d5a795fbe35790597327fcace0'
+
+    def reduce_process_events(
+        subject: ProcessCommandSubject,
+        events: tuple[ProcessLifecycleEvent, ...],
+        *,
+        invocation_occurrence_id: str | None = None,
+    ) -> ProcessDerivedState:
+        _validate_process_command_subject(subject)
+        _require_registered_wait_decoder(
+            subject.wait_decoder_identity,
+            subject.wait_supported_signals,
+            subject.wait_nonblocking_option_mask,
+        )
+        if invocation_occurrence_id is not None:
+            _require_hash(invocation_occurrence_id, "invocation_occurrence_id")
+        _require_exact_tuple(events, "events")
+        if len(events) > MAX_PROCESS_EVENT_COUNT:
+            raise ValueError("process event count cap is exceeded")
+    
+        acquired: list[Channel] = []
+        nonblocking: list[Channel] = []
+        registered: list[Channel] = []
+        unregistered: list[Channel] = []
+        eof_seen: set[Channel] = set()
+        retained = {channel: b"" for channel in Channel}
+        acquired_output = {channel: b"" for channel in Channel}
+        observed = {channel: 0 for channel in Channel}
+        channel_states = {channel: ChannelState.UNACQUIRED for channel in Channel}
+        close_dispositions = {
+            channel: CloseDisposition.NOT_ATTEMPTED for channel in Channel
+        }
+        close_attempts = {channel: 0 for channel in Channel}
+        selector_state = SelectorState.UNCREATED
+        process_state = ProcessState.NOT_STARTED
+        child_pid: int | None = None
+        process_group_id: int | None = None
+        pre_root_observation: RootIdentityObservation | None = None
+        post_root_observation: RootIdentityObservation | None = None
+        timeout_observation: TimeoutObservation | None = None
+        deadline_binding: DeadlineBinding | None = None
+        deadline_refusal: DeadlineRefusal | None = None
+        handoff_state = HandoffState.NOT_REACHED
+        exit_state = ExitState.UNOBSERVED
+        returncode: int | None = None
+        termination_signal: int | None = None
+        reap_disposition = ReapDisposition.UNOBSERVED
+        wait_observed = False
+        post_disposition = PostDisposition.UNOBSERVED
+        finalization_state = FinalizationState.NOT_STARTED
+        main_work = ProcessWorkVector.zero()
+        finalize_work = ProcessWorkVector.zero()
+        finalize_indices: list[int] = []
+        retry_counts: dict[tuple[ProcessStage, ProcessTarget, RetryKind], int] = {}
+        successful_select_pending = False
+        ready_pending: set[Channel] = set()
+        successful_read_pending: Channel | None = None
+        retry_pending: tuple[ProcessStage, ProcessTarget, RetryKind] | None = None
+        first_primary: FailureOccurrence | None = None
+        recurrence_signatures: list[str] = []
+        failure_occurrences: list[FailureOccurrence] = []
+        previous_hash: str | None = None
+    
+        def record_derived_failure(
+            event: ProcessLifecycleEvent,
+            *,
+            stage: ProcessStage,
+            target: ProcessTarget,
+            kind: FailureKind,
+            mechanism_errno: int | None,
+            close_disposition: CloseDisposition | None = None,
+            supplied_role: FailureRole | None = None,
+            causal_discriminator: tuple[str, ...] = (),
+        ) -> None:
+            nonlocal first_primary
+            role = FailureRole.PRIMARY if not failure_occurrences else FailureRole.CLEANUP
+            if supplied_role is not None and supplied_role is not role:
+                raise ValueError("supplied failure role contradicts reducer chronology")
+            occurrence, signature = _record_failure(
+                command_subject_hash=subject.command_subject_hash,
+                invocation_occurrence_id=invocation_occurrence_id,
+                event=event,
+                stage=stage,
+                target=target,
+                kind=kind,
+                mechanism_errno=mechanism_errno,
+                role=role,
+                close_disposition=close_disposition,
+                acquired_prefix=tuple(acquired),
+                nonblocking_prefix=tuple(nonblocking),
+                registered_prefix=tuple(registered),
+                process_state=process_state,
+                handoff_state=handoff_state,
+                selector_state=selector_state,
+                causal_discriminator=causal_discriminator,
+            )
+            recurrence_signatures.append(signature)
+            failure_occurrences.append(occurrence)
+            if first_primary is None:
+                first_primary = occurrence
+    
+        for index, event in enumerate(events):
+            if type(event) is not ProcessLifecycleEvent:
+                raise ProcessEventChainError(
+                    "events must contain exact ProcessLifecycleEvent values"
+                )
+            _validate_event_link(event, index, previous_hash)
+            previous_hash = event.event_hash
+    
+            if retry_pending is not None and not isinstance(event.payload, RetryObserved):
+                raise ValueError("retryable attempt requires immediate RetryObserved")
+            if successful_select_pending and not isinstance(event.payload, ReadyBatch):
+>               raise ValueError("successful select requires immediate ReadyBatch")
+E               ValueError: successful select requires immediate ReadyBatch
+
+src/orion/kernel/process_receipt.py:3965: ValueError
+_________ test_d05_internal_retry_wrapper_rejects_visible_select_eintr _________
+
+    def test_d05_internal_retry_wrapper_rejects_visible_select_eintr() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        events, _create, _create_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 1,
+            completion_ns=START_NS + 1,
+        )
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            START_NS + 2,
+        )
+        attempt = _effect_attempt(
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            admission,
+            retryable_kind=FailureKind.INTERRUPTED,
+            mechanism_errno=errno.EINTR,
+        )
+        candidate = _append(events, admission)
+        candidate = _append(candidate, attempt)
+        completion = _completion(
+            candidate,
+            binding,
+            child,
+            admission,
+            START_NS + 3,
+        )
+        candidate = _append(candidate, completion)
+        candidate = _append(
+            candidate,
+            _retry_with_deadline(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                RetryKind.INTERRUPTED,
+                1,
+                admission.effect_occurrence_id,
+            ),
+        )
+>       with pytest.raises(
+            ValueError,
+            match="internal|EINTR|visible|wrapper|selector|contract",
+        ):
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'internal|EINTR|visible|wrapper|selector|contract'
+E         Actual message: 'retryable attempt requires immediate RetryObserved'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2944: AssertionError
+__________ test_d05_retry_observation_must_bind_the_completed_effect ___________
+
+    def test_d05_retry_observation_must_bind_the_completed_effect() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        events, _create, _create_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 1,
+            completion_ns=START_NS + 1,
+        )
+        events, admission, _completion_value = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 2,
+            completion_ns=START_NS + 3,
+            result="EMPTY_READY",
+        )
+        retry = _retry_with_deadline(
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            RetryKind.EMPTY_READY,
+            1,
+            admission.effect_occurrence_id,
+        )
+        forged = _forge(retry, effect_occurrence_id=HEX_C)
+>       with pytest.raises(ValueError, match="retry|effect|occurrence"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'retry|effect|occurrence'
+E         Actual message: 'successful select requires immediate ReadyBatch'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:2984: AssertionError
+______ test_d06_child_and_matching_start_completion_forgery_are_rederived ______
+
+    def test_d06_child_and_matching_start_completion_forgery_are_rederived() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding = _binding(invocation)
+        events = _append((), binding)
+        events = _append(
+            events,
+            OperationAttempt.succeeded(ProcessStage.PROCESS_START, ProcessTarget.PROCESS),
+        )
+        real_child = _child(binding, invocation)
+        forged_child = _forge(real_child, child_occurrence_id=HEX_C)
+        forged_events = _append(events, forged_child)
+        forged_events = _append(
+            forged_events,
+            _start_completion(
+                forged_events,
+                invocation,
+                binding,
+                forged_child,
+                START_NS,
+            ),
+        )
+    
+>       with pytest.raises(ValueError, match="child|occurrence|derived|binding"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'child|occurrence|derived|binding'
+E         Actual message: 'process-event payload failed constructor replay validation'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3011: AssertionError
+____________ test_d06_timeout_cannot_move_between_child_occurrences ____________
+
+    def test_d06_timeout_cannot_move_between_child_occurrences() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        timeout = _timeout_observation(
+            binding,
+            child,
+            binding.effective_deadline_monotonic_ns,
+        )
+        moved = _forge(timeout, child_occurrence_id=HEX_C)
+>       with pytest.raises(ValueError, match="child|occurrence|timeout|binding"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3025: Failed
+_________ test_d09_retryable_read_crossing_is_charged_but_cannot_retry _________
+
+    def test_d09_retryable_read_crossing_is_charged_but_cannot_retry() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        events, admission, completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            admission_ns=REQUESTED_DEADLINE_NS - 1,
+            completion_ns=REQUESTED_DEADLINE_NS,
+            retryable_kind=FailureKind.READINESS_RACE,
+            mechanism_errno=errno.EAGAIN,
+        )
+>       state = _reduce_strict(subject, invocation, events)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1037: in _reduce_strict
+    return reduce_process_events(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+subject = ProcessCommandSubject(operation=<ProcessOperation.PROTECTED_GIT: 'PROTECTED_GIT'>, logical_argv=('git', 'status', '--p...2f1ea25573ed91b4a48fa56', deadline_decoder_identity='6ca72cf9568bfa3f1b131253faf70d5ef2219b5771289e040379e3dafadcd2fa')
+events = (ProcessLifecycleEvent(event_index=0, previous_event_hash=None, phase=<EventPhase.MAIN: 'MAIN'>, payload=DeadlineBindi...ntries_parsed=0, git_tag_steps=0), event_hash='e37302666a2803aad06a19801e084d45eb6e94f2ef0303f573692d73856e1e2d'), ...)
+invocation_occurrence_id = '8e60b2b84a1471eb2f6d42e160dd1423c2d414d5a795fbe35790597327fcace0'
+
+    def reduce_process_events(
+        subject: ProcessCommandSubject,
+        events: tuple[ProcessLifecycleEvent, ...],
+        *,
+        invocation_occurrence_id: str | None = None,
+    ) -> ProcessDerivedState:
+        _validate_process_command_subject(subject)
+        _require_registered_wait_decoder(
+            subject.wait_decoder_identity,
+            subject.wait_supported_signals,
+            subject.wait_nonblocking_option_mask,
+        )
+        if invocation_occurrence_id is not None:
+            _require_hash(invocation_occurrence_id, "invocation_occurrence_id")
+        _require_exact_tuple(events, "events")
+        if len(events) > MAX_PROCESS_EVENT_COUNT:
+            raise ValueError("process event count cap is exceeded")
+    
+        acquired: list[Channel] = []
+        nonblocking: list[Channel] = []
+        registered: list[Channel] = []
+        unregistered: list[Channel] = []
+        eof_seen: set[Channel] = set()
+        retained = {channel: b"" for channel in Channel}
+        acquired_output = {channel: b"" for channel in Channel}
+        observed = {channel: 0 for channel in Channel}
+        channel_states = {channel: ChannelState.UNACQUIRED for channel in Channel}
+        close_dispositions = {
+            channel: CloseDisposition.NOT_ATTEMPTED for channel in Channel
+        }
+        close_attempts = {channel: 0 for channel in Channel}
+        selector_state = SelectorState.UNCREATED
+        process_state = ProcessState.NOT_STARTED
+        child_pid: int | None = None
+        process_group_id: int | None = None
+        pre_root_observation: RootIdentityObservation | None = None
+        post_root_observation: RootIdentityObservation | None = None
+        timeout_observation: TimeoutObservation | None = None
+        deadline_binding: DeadlineBinding | None = None
+        deadline_refusal: DeadlineRefusal | None = None
+        handoff_state = HandoffState.NOT_REACHED
+        exit_state = ExitState.UNOBSERVED
+        returncode: int | None = None
+        termination_signal: int | None = None
+        reap_disposition = ReapDisposition.UNOBSERVED
+        wait_observed = False
+        post_disposition = PostDisposition.UNOBSERVED
+        finalization_state = FinalizationState.NOT_STARTED
+        main_work = ProcessWorkVector.zero()
+        finalize_work = ProcessWorkVector.zero()
+        finalize_indices: list[int] = []
+        retry_counts: dict[tuple[ProcessStage, ProcessTarget, RetryKind], int] = {}
+        successful_select_pending = False
+        ready_pending: set[Channel] = set()
+        successful_read_pending: Channel | None = None
+        retry_pending: tuple[ProcessStage, ProcessTarget, RetryKind] | None = None
+        first_primary: FailureOccurrence | None = None
+        recurrence_signatures: list[str] = []
+        failure_occurrences: list[FailureOccurrence] = []
+        previous_hash: str | None = None
+    
+        def record_derived_failure(
+            event: ProcessLifecycleEvent,
+            *,
+            stage: ProcessStage,
+            target: ProcessTarget,
+            kind: FailureKind,
+            mechanism_errno: int | None,
+            close_disposition: CloseDisposition | None = None,
+            supplied_role: FailureRole | None = None,
+            causal_discriminator: tuple[str, ...] = (),
+        ) -> None:
+            nonlocal first_primary
+            role = FailureRole.PRIMARY if not failure_occurrences else FailureRole.CLEANUP
+            if supplied_role is not None and supplied_role is not role:
+                raise ValueError("supplied failure role contradicts reducer chronology")
+            occurrence, signature = _record_failure(
+                command_subject_hash=subject.command_subject_hash,
+                invocation_occurrence_id=invocation_occurrence_id,
+                event=event,
+                stage=stage,
+                target=target,
+                kind=kind,
+                mechanism_errno=mechanism_errno,
+                role=role,
+                close_disposition=close_disposition,
+                acquired_prefix=tuple(acquired),
+                nonblocking_prefix=tuple(nonblocking),
+                registered_prefix=tuple(registered),
+                process_state=process_state,
+                handoff_state=handoff_state,
+                selector_state=selector_state,
+                causal_discriminator=causal_discriminator,
+            )
+            recurrence_signatures.append(signature)
+            failure_occurrences.append(occurrence)
+            if first_primary is None:
+                first_primary = occurrence
+    
+        for index, event in enumerate(events):
+            if type(event) is not ProcessLifecycleEvent:
+                raise ProcessEventChainError(
+                    "events must contain exact ProcessLifecycleEvent values"
+                )
+            _validate_event_link(event, index, previous_hash)
+            previous_hash = event.event_hash
+    
+            if retry_pending is not None and not isinstance(event.payload, RetryObserved):
+>               raise ValueError("retryable attempt requires immediate RetryObserved")
+E               ValueError: retryable attempt requires immediate RetryObserved
+
+src/orion/kernel/process_receipt.py:3963: ValueError
+_______ test_d09_failed_read_crossing_makes_timeout_govern_continuation ________
+
+    def test_d09_failed_read_crossing_makes_timeout_govern_continuation() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        events, _admission_value, completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            admission_ns=REQUESTED_DEADLINE_NS - 1,
+            completion_ns=REQUESTED_DEADLINE_NS,
+            failed_kind=FailureKind.IO,
+            mechanism_errno=errno.EIO,
+        )
+        state = _reduce_strict(subject, invocation, events)
+        assert completion.crossed is True
+        assert state.first_primary is not None
+        assert state.first_primary.kind is FailureKind.IO
+>       assert any(
+            occurrence.kind is FailureKind.TIMEOUT
+            for occurrence in state.failure_occurrences
+        )
+E       assert False
+E        +  where False = any(<generator object test_d09_failed_read_crossing_makes_timeout_govern_continuation.<locals>.<genexpr> at 0x10a679220>)
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3296: AssertionError
+_____________ test_d10_completion_before_its_admission_is_rejected _____________
+
+    def test_d10_completion_before_its_admission_is_rejected() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            START_NS + 20,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(
+                ProcessStage.SELECTOR_CREATE,
+                ProcessTarget.SELECTOR,
+                admission,
+            ),
+        )
+>       with pytest.raises(ValueError, match="clock|regress|monotonic|completion"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3337: Failed
+__________ test_d10_clock_regression_is_rejected_across_effect_checks __________
+
+    def test_d10_clock_regression_is_rejected_across_effect_checks() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        events, _first, _first_completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            admission_ns=START_NS + 20,
+            completion_ns=START_NS + 20,
+        )
+        regressed = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            START_NS + 19,
+        )
+>       with pytest.raises(ValueError, match="clock|regress|monotonic|observation"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3364: Failed
+______ test_d10_clock_domain_occurrence_cannot_change_inside_one_binding _______
+
+    def test_d10_clock_domain_occurrence_cannot_change_inside_one_binding() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            START_NS + 1,
+        )
+        forged = _forge(admission, clock_domain_occurrence_id=HEX_C)
+>       with pytest.raises(ValueError, match="clock|domain|occurrence|binding"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'clock|domain|occurrence|binding'
+E         Actual message: 'process-event payload failed constructor replay validation'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3382: AssertionError
+_ test_d12_timeout_cause_is_derived_from_the_winning_minimum[requested_timeout] _
+
+outer_deadline_ns = None, source_name = 'REQUESTED_TIMEOUT', crossed_ns = 150
+
+    @pytest.mark.parametrize(
+        ("outer_deadline_ns", "source_name", "crossed_ns"),
+        (
+            (None, "REQUESTED_TIMEOUT", REQUESTED_DEADLINE_NS),
+            (START_NS + 30, "OUTER_DEADLINE", START_NS + 30),
+        ),
+        ids=("requested_timeout", "outer_deadline"),
+    )
+    def test_d12_timeout_cause_is_derived_from_the_winning_minimum(
+        outer_deadline_ns: int | None,
+        source_name: str,
+        crossed_ns: int,
+    ) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        outer = (
+            None
+            if outer_deadline_ns is None
+            else _outer_deadline(invocation, outer_deadline_ns)
+        )
+        binding, child, events = _started(
+            subject,
+            invocation,
+            outer_deadline=outer,
+        )
+        state = _reduce_strict(
+            subject,
+            invocation,
+            _append(events, _timeout_observation(binding, child, crossed_ns)),
+        )
+        source = _enum_member("DeadlineSource", source_name)
+        assert state.deadline_binding.winning_source is source
+        assert state.timeout_observation is not None
+        assert state.first_primary is not None
+        assert state.first_primary.kind is FailureKind.TIMEOUT
+>       assert source_name in state.first_primary.causal_discriminator
+E       AssertionError: assert 'REQUESTED_TIMEOUT' in ()
+E        +  where () = FailureOccurrence(event_index=4, phase=<EventPhase.MAIN: 'MAIN'>, stage=<ProcessStage.TIMEOUT: 'TIMEOUT'>, target=<Pro...tion=None, occurrence_hash='c7fb23cb4aed25b3ab2773d8bf432da7c925b2c906b442b27942d2db59288a0c', causal_discriminator=()).causal_discriminator
+E        +    where FailureOccurrence(event_index=4, phase=<EventPhase.MAIN: 'MAIN'>, stage=<ProcessStage.TIMEOUT: 'TIMEOUT'>, target=<Pro...tion=None, occurrence_hash='c7fb23cb4aed25b3ab2773d8bf432da7c925b2c906b442b27942d2db59288a0c', causal_discriminator=()) = ProcessDerivedState(acquired_prefix=(), nonblocking_prefix=(), registered_prefix=(), unregistered_prefix=(), eof_prefi...5969977fd3adbbdf70012bef93add449ee5215fc9e10c7a25a97'), deadline_refusal=None, deadline_censored_effect_occurrences=()).first_primary
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3442: AssertionError
+__ test_d12_timeout_cause_is_derived_from_the_winning_minimum[outer_deadline] __
+
+outer_deadline_ns = 130, source_name = 'OUTER_DEADLINE', crossed_ns = 130
+
+    @pytest.mark.parametrize(
+        ("outer_deadline_ns", "source_name", "crossed_ns"),
+        (
+            (None, "REQUESTED_TIMEOUT", REQUESTED_DEADLINE_NS),
+            (START_NS + 30, "OUTER_DEADLINE", START_NS + 30),
+        ),
+        ids=("requested_timeout", "outer_deadline"),
+    )
+    def test_d12_timeout_cause_is_derived_from_the_winning_minimum(
+        outer_deadline_ns: int | None,
+        source_name: str,
+        crossed_ns: int,
+    ) -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        outer = (
+            None
+            if outer_deadline_ns is None
+            else _outer_deadline(invocation, outer_deadline_ns)
+        )
+        binding, child, events = _started(
+            subject,
+            invocation,
+            outer_deadline=outer,
+        )
+        state = _reduce_strict(
+            subject,
+            invocation,
+            _append(events, _timeout_observation(binding, child, crossed_ns)),
+        )
+        source = _enum_member("DeadlineSource", source_name)
+        assert state.deadline_binding.winning_source is source
+        assert state.timeout_observation is not None
+        assert state.first_primary is not None
+        assert state.first_primary.kind is FailureKind.TIMEOUT
+>       assert source_name in state.first_primary.causal_discriminator
+E       AssertionError: assert 'OUTER_DEADLINE' in ()
+E        +  where () = FailureOccurrence(event_index=4, phase=<EventPhase.MAIN: 'MAIN'>, stage=<ProcessStage.TIMEOUT: 'TIMEOUT'>, target=<Pro...tion=None, occurrence_hash='cb5e3e2e85a1347e6827582c4f0efe805ff6737010f23a9c6655a75ceb490f15', causal_discriminator=()).causal_discriminator
+E        +    where FailureOccurrence(event_index=4, phase=<EventPhase.MAIN: 'MAIN'>, stage=<ProcessStage.TIMEOUT: 'TIMEOUT'>, target=<Pro...tion=None, occurrence_hash='cb5e3e2e85a1347e6827582c4f0efe805ff6737010f23a9c6655a75ceb490f15', causal_discriminator=()) = ProcessDerivedState(acquired_prefix=(), nonblocking_prefix=(), registered_prefix=(), unregistered_prefix=(), eof_prefi...2e41130a6fd51e9afa16050545745294095d1b56d3e2911fa5f8'), deadline_refusal=None, deadline_censored_effect_occurrences=()).first_primary
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3442: AssertionError
+______ test_d14_select_post_crossing_charges_attempt_and_latches_timeout _______
+
+    def test_d14_select_post_crossing_charges_attempt_and_latches_timeout() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_registered_prefix(subject, invocation)
+        before = _reduce_strict(subject, invocation, events)
+        events, admission, completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            admission_ns=REQUESTED_DEADLINE_NS - 1,
+            completion_ns=REQUESTED_DEADLINE_NS,
+            result=(Channel.STATUS,),
+        )
+        state = _reduce_strict(subject, invocation, events)
+        assert completion.crossed is True
+        assert (
+            state.main_work.descriptor_operation_attempts
+            == before.main_work.descriptor_operation_attempts + 1
+        )
+>       assert state.first_primary is not None
+E       AssertionError: assert None is not None
+E        +  where None = ProcessDerivedState(acquired_prefix=(<Channel.STATUS: 'status'>,), nonblocking_prefix=(<Channel.STATUS: 'status'>,), r...5969977fd3adbbdf70012bef93add449ee5215fc9e10c7a25a97'), deadline_refusal=None, deadline_censored_effect_occurrences=()).first_primary
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3565: AssertionError
+___________ test_d14_read_bytes_returned_at_crossing_remain_charged ____________
+
+    def test_d14_read_bytes_returned_at_crossing_remain_charged() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        before = _reduce_strict(subject, invocation, events)
+        events, admission, completion = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            admission_ns=REQUESTED_DEADLINE_NS - 1,
+            completion_ns=REQUESTED_DEADLINE_NS,
+            result=(Channel.STATUS, b"x", b"x"),
+        )
+        state = _reduce_strict(subject, invocation, events)
+    
+        assert completion.crossed is True
+        assert state.status_acquired == before.status_acquired + b"x"
+        assert state.status_retained == before.status_retained + b"x"
+        assert state.main_work.git_control_bytes_observed == (
+            before.main_work.git_control_bytes_observed + 1
+        )
+        assert state.main_work.retained_bytes == before.main_work.retained_bytes + 1
+>       assert state.first_primary is not None
+E       AssertionError: assert None is not None
+E        +  where None = ProcessDerivedState(acquired_prefix=(<Channel.STATUS: 'status'>,), nonblocking_prefix=(<Channel.STATUS: 'status'>,), r...5969977fd3adbbdf70012bef93add449ee5215fc9e10c7a25a97'), deadline_refusal=None, deadline_censored_effect_occurrences=()).first_primary
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3610: AssertionError
+________ test_d14_read_eof_at_crossing_does_not_authorize_canonical_eof ________
+
+    def test_d14_read_eof_at_crossing_does_not_authorize_canonical_eof() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            REQUESTED_DEADLINE_NS - 1,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(ProcessStage.READ, ProcessTarget.STATUS, admission),
+        )
+        events = _append(events, _channel_eof(admission, Channel.STATUS))
+        completion = _completion(
+            events,
+            binding,
+            child,
+            admission,
+            REQUESTED_DEADLINE_NS,
+        )
+        events = _append(events, completion)
+        state = _reduce_strict(subject, invocation, events)
+    
+        assert completion.crossed is True
+>       assert Channel.STATUS not in state.eof_prefix
+E       AssertionError: assert <Channel.STATUS: 'status'> not in (<Channel.STATUS: 'status'>,)
+E        +  where <Channel.STATUS: 'status'> = Channel.STATUS
+E        +  and   (<Channel.STATUS: 'status'>,) = ProcessDerivedState(acquired_prefix=(<Channel.STATUS: 'status'>,), nonblocking_prefix=(<Channel.STATUS: 'status'>,), r...5969977fd3adbbdf70012bef93add449ee5215fc9e10c7a25a97'), deadline_refusal=None, deadline_censored_effect_occurrences=()).eof_prefix
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3647: AssertionError
+___________ test_d14_result_cannot_be_added_after_crossed_completion ___________
+
+    def test_d14_result_cannot_be_added_after_crossed_completion() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_ready_prefix(subject, invocation)
+        admission = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.READ,
+            ProcessTarget.STATUS,
+            REQUESTED_DEADLINE_NS - 1,
+        )
+        events = _append(events, admission)
+        events = _append(
+            events,
+            _effect_attempt(
+                ProcessStage.READ,
+                ProcessTarget.STATUS,
+                admission,
+                retryable_kind=FailureKind.READINESS_RACE,
+                mechanism_errno=errno.EAGAIN,
+            ),
+        )
+        completion = _completion(
+            events,
+            binding,
+            child,
+            admission,
+            REQUESTED_DEADLINE_NS,
+        )
+        events = _append(events, completion)
+        late_bytes = _bytes_observed(admission, Channel.STATUS, b"x", b"x")
+>       with pytest.raises(ValueError, match="completion|result|timeout|effect"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'completion|result|timeout|effect'
+E         Actual message: 'retryable attempt requires immediate RetryObserved'
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3688: AssertionError
+____ test_d14_timeout_latch_is_irreversible_even_with_later_false_admission ____
+
+    def test_d14_timeout_latch_is_irreversible_even_with_later_false_admission() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _started(subject, invocation)
+        events = _append(
+            events,
+            _timeout_observation(binding, child, REQUESTED_DEADLINE_NS),
+        )
+        false_later = _admission(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            REQUESTED_DEADLINE_NS - 1,
+        )
+>       with pytest.raises(ValueError, match="timeout|latched|irreversible|deadline"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3709: Failed
+______ test_d14_finalize_wait_reserve_survives_effect_completion_crossing ______
+
+    def test_d14_finalize_wait_reserve_survives_effect_completion_crossing() -> None:
+        subject = _subject()
+        invocation = _invocation(subject)
+        binding, child, events = _status_registered_prefix(subject, invocation)
+        events, _admission_value, _completion_value = _append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            admission_ns=REQUESTED_DEADLINE_NS - 1,
+            completion_ns=REQUESTED_DEADLINE_NS,
+            result="EMPTY_READY",
+        )
+        events = _append(events, FinalizationBegin(), phase=EventPhase.FINALIZE)
+        events = _append(
+            events,
+            WaitObservation(
+                WaitDisposition.INTERRUPTED,
+                requested_child_pid=child.child_pid,
+                options=0,
+                returned_pid=None,
+                raw_wait_status=None,
+                mechanism_errno=errno.EINTR,
+            ),
+            phase=EventPhase.FINALIZE,
+        )
+        events = _append(
+            events,
+            RetryObserved(
+                ProcessStage.WAIT,
+                ProcessTarget.PROCESS,
+                RetryKind.INTERRUPTED,
+                1,
+            ),
+            phase=EventPhase.FINALIZE,
+        )
+>       state = _reduce_strict(subject, invocation, events)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:3751: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1037: in _reduce_strict
+    return reduce_process_events(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+subject = ProcessCommandSubject(operation=<ProcessOperation.PROTECTED_GIT: 'PROTECTED_GIT'>, logical_argv=('git', 'status', '--p...2f1ea25573ed91b4a48fa56', deadline_decoder_identity='6ca72cf9568bfa3f1b131253faf70d5ef2219b5771289e040379e3dafadcd2fa')
+events = (ProcessLifecycleEvent(event_index=0, previous_event_hash=None, phase=<EventPhase.MAIN: 'MAIN'>, payload=DeadlineBindi...ntries_parsed=0, git_tag_steps=0), event_hash='e37302666a2803aad06a19801e084d45eb6e94f2ef0303f573692d73856e1e2d'), ...)
+invocation_occurrence_id = '8e60b2b84a1471eb2f6d42e160dd1423c2d414d5a795fbe35790597327fcace0'
+
+    def reduce_process_events(
+        subject: ProcessCommandSubject,
+        events: tuple[ProcessLifecycleEvent, ...],
+        *,
+        invocation_occurrence_id: str | None = None,
+    ) -> ProcessDerivedState:
+        _validate_process_command_subject(subject)
+        _require_registered_wait_decoder(
+            subject.wait_decoder_identity,
+            subject.wait_supported_signals,
+            subject.wait_nonblocking_option_mask,
+        )
+        if invocation_occurrence_id is not None:
+            _require_hash(invocation_occurrence_id, "invocation_occurrence_id")
+        _require_exact_tuple(events, "events")
+        if len(events) > MAX_PROCESS_EVENT_COUNT:
+            raise ValueError("process event count cap is exceeded")
+    
+        acquired: list[Channel] = []
+        nonblocking: list[Channel] = []
+        registered: list[Channel] = []
+        unregistered: list[Channel] = []
+        eof_seen: set[Channel] = set()
+        retained = {channel: b"" for channel in Channel}
+        acquired_output = {channel: b"" for channel in Channel}
+        observed = {channel: 0 for channel in Channel}
+        channel_states = {channel: ChannelState.UNACQUIRED for channel in Channel}
+        close_dispositions = {
+            channel: CloseDisposition.NOT_ATTEMPTED for channel in Channel
+        }
+        close_attempts = {channel: 0 for channel in Channel}
+        selector_state = SelectorState.UNCREATED
+        process_state = ProcessState.NOT_STARTED
+        child_pid: int | None = None
+        process_group_id: int | None = None
+        pre_root_observation: RootIdentityObservation | None = None
+        post_root_observation: RootIdentityObservation | None = None
+        timeout_observation: TimeoutObservation | None = None
+        deadline_binding: DeadlineBinding | None = None
+        deadline_refusal: DeadlineRefusal | None = None
+        handoff_state = HandoffState.NOT_REACHED
+        exit_state = ExitState.UNOBSERVED
+        returncode: int | None = None
+        termination_signal: int | None = None
+        reap_disposition = ReapDisposition.UNOBSERVED
+        wait_observed = False
+        post_disposition = PostDisposition.UNOBSERVED
+        finalization_state = FinalizationState.NOT_STARTED
+        main_work = ProcessWorkVector.zero()
+        finalize_work = ProcessWorkVector.zero()
+        finalize_indices: list[int] = []
+        retry_counts: dict[tuple[ProcessStage, ProcessTarget, RetryKind], int] = {}
+        successful_select_pending = False
+        ready_pending: set[Channel] = set()
+        successful_read_pending: Channel | None = None
+        retry_pending: tuple[ProcessStage, ProcessTarget, RetryKind] | None = None
+        first_primary: FailureOccurrence | None = None
+        recurrence_signatures: list[str] = []
+        failure_occurrences: list[FailureOccurrence] = []
+        previous_hash: str | None = None
+    
+        def record_derived_failure(
+            event: ProcessLifecycleEvent,
+            *,
+            stage: ProcessStage,
+            target: ProcessTarget,
+            kind: FailureKind,
+            mechanism_errno: int | None,
+            close_disposition: CloseDisposition | None = None,
+            supplied_role: FailureRole | None = None,
+            causal_discriminator: tuple[str, ...] = (),
+        ) -> None:
+            nonlocal first_primary
+            role = FailureRole.PRIMARY if not failure_occurrences else FailureRole.CLEANUP
+            if supplied_role is not None and supplied_role is not role:
+                raise ValueError("supplied failure role contradicts reducer chronology")
+            occurrence, signature = _record_failure(
+                command_subject_hash=subject.command_subject_hash,
+                invocation_occurrence_id=invocation_occurrence_id,
+                event=event,
+                stage=stage,
+                target=target,
+                kind=kind,
+                mechanism_errno=mechanism_errno,
+                role=role,
+                close_disposition=close_disposition,
+                acquired_prefix=tuple(acquired),
+                nonblocking_prefix=tuple(nonblocking),
+                registered_prefix=tuple(registered),
+                process_state=process_state,
+                handoff_state=handoff_state,
+                selector_state=selector_state,
+                causal_discriminator=causal_discriminator,
+            )
+            recurrence_signatures.append(signature)
+            failure_occurrences.append(occurrence)
+            if first_primary is None:
+                first_primary = occurrence
+    
+        for index, event in enumerate(events):
+            if type(event) is not ProcessLifecycleEvent:
+                raise ProcessEventChainError(
+                    "events must contain exact ProcessLifecycleEvent values"
+                )
+            _validate_event_link(event, index, previous_hash)
+            previous_hash = event.event_hash
+    
+            if retry_pending is not None and not isinstance(event.payload, RetryObserved):
+                raise ValueError("retryable attempt requires immediate RetryObserved")
+            if successful_select_pending and not isinstance(event.payload, ReadyBatch):
+>               raise ValueError("successful select requires immediate ReadyBatch")
+E               ValueError: successful select requires immediate ReadyBatch
+
+src/orion/kernel/process_receipt.py:3965: ValueError
+=========================== short test summary info ============================
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d00_strict_invocation_rejects_an_empty_trace_as_a_downgrade
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d00_strict_invocation_rejects_a_legacy_only_trace_as_a_downgrade
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d00_strict_subject_rejects_a_legacy_invocation
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d00_legacy_lane_rejects_an_effect_bound_payload
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d00_strict_trace_rejects_an_unbound_legacy_result
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d00_verifier_rejects_strict_events_under_legacy_reducer_identity
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d00_strict_events_cannot_be_relinked_into_the_legacy_lane
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_spawn_cannot_omit_the_prospective_deadline_binding
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_generic_timeout_event_cannot_replace_a_deadline_binding
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_spawn_requires_post_return_completion_after_child_binding
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_failed_spawn_also_requires_post_return_completion
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_failed_spawn_completion_at_deadline_latches_without_a_child
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_start_completion_observation_cannot_regress_before_start
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_start_completion_chain_coordinates_are_rederived[completion_event_index]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_start_completion_chain_coordinates_are_rederived[completion_previous_event_hash]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_start_completion_provenance_is_rederived[invocation_occurrence_id]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_start_completion_provenance_is_rederived[deadline_binding_hash]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_start_completion_provenance_is_rederived[clock_domain_occurrence_id]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_successful_spawn_completion_cannot_omit_the_child
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d04_spawn_completion_at_deadline_retains_child_and_latches_timeout
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_selector_create_requires_an_admission_event
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_read_requires_an_admission_event
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_admission_must_be_the_immediate_attempt_predecessor
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_select_outcome_cannot_omit_completion[ready]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_select_outcome_cannot_omit_completion[empty]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_select_outcome_cannot_omit_completion[failed]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_read_outcome_cannot_omit_completion[succeeded]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_read_outcome_cannot_omit_completion[retryable]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_read_outcome_cannot_omit_completion[failed]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_select_cannot_return_ready_and_empty_for_one_effect
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_unrelated_event_cannot_split_attempt_and_completion
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_one_admission_cannot_authorize_two_equal_timestamp_effects
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_stage_target_cannot_change_under_an_effect_id
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_target_only_cannot_change_under_a_read_effect_id
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_completion_cannot_move_from_one_effect_to_the_next
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_result_payload_cannot_move_between_effects
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_read_result_cannot_move_between_effects[bytes]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_read_result_cannot_move_between_effects[eof]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_later_global_ordinal_cannot_survive_removed_earlier_effect
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_distinct_effects_may_have_equal_monotonic_timestamps
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_retry_decision_does_not_authorize_the_next_effect
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_internal_cpython_selector_empty_retry_uses_a_fresh_effect
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_internal_retry_wrapper_rejects_visible_select_eintr
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d05_retry_observation_must_bind_the_completed_effect
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d06_child_and_matching_start_completion_forgery_are_rederived
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d06_timeout_cannot_move_between_child_occurrences
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d09_retryable_read_crossing_is_charged_but_cannot_retry
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d09_failed_read_crossing_makes_timeout_govern_continuation
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d10_completion_before_its_admission_is_rejected
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d10_clock_regression_is_rejected_across_effect_checks
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d10_clock_domain_occurrence_cannot_change_inside_one_binding
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d12_timeout_cause_is_derived_from_the_winning_minimum[requested_timeout]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d12_timeout_cause_is_derived_from_the_winning_minimum[outer_deadline]
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d14_select_post_crossing_charges_attempt_and_latches_timeout
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d14_read_bytes_returned_at_crossing_remain_charged
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d14_read_eof_at_crossing_does_not_authorize_canonical_eof
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d14_result_cannot_be_added_after_crossed_completion
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d14_timeout_latch_is_irreversible_even_with_later_false_admission
+FAILED tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py::test_d14_finalize_wait_reserve_survives_effect_completion_crossing
+59 failed, 61 passed in 1.84s

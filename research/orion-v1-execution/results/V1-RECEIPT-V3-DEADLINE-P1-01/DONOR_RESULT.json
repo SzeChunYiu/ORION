@@ -1,0 +1,37 @@
+{
+  "authority_ceiling": {
+    "full_dual_lane_execution": "OPEN",
+    "independent_reproduction": "CANNOT_CHECK",
+    "linux_ci_reproduction": "CANNOT_CHECK_UNTIL_PUSH",
+    "local_process_receipt_conformance": "GREEN",
+    "orion_v1_freeze": "NOT_GRANTED",
+    "paper_authority_delta": "NONE",
+    "publication_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "current_hostile_donor": {
+    "artifact_id": 9598531211,
+    "artifact_name": "orion-v1-receipt-v3-hostile-audit-ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+    "artifact_sha256": "5b15eb870fe610181efeabdc386480eedf4cd4e76e476f220cfe6138435fb862",
+    "by_file": {
+      "tests/unit/kernel/test_process_receipt_v3.py": 73,
+      "tests/unit/kernel/test_process_receipt_v3_hostile.py": 17,
+      "tests/unit/kernel/test_process_receipt_v3_wait_hostile.py": 23
+    },
+    "denominator": 113,
+    "run_a": "113_PASSED",
+    "run_b": "113_PASSED",
+    "subject_commit": "ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+    "subject_tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081"
+  },
+  "deadline_oracle_donor": {
+    "archive_commit": "7d9532a3057b8f66ee0862f64bf8630d8c96ff15",
+    "denominator": 120,
+    "initial_terminal": "ARCHIVED_DEADLINE_PROTOCOL_REQUIRES_PROSPECTIVE_MIGRATION",
+    "oracle_blob": "55b3399b3c732a4b8303799be28ffef2439f0e5b",
+    "oracle_sha256": "103c3678e34ea33b7657bec911c8d604b97196bdbf56df40df3f4d2ab8cc051d"
+  },
+  "independent_donor_reproduction": "CANNOT_CHECK",
+  "schema": "ORION.V1.ReceiptV3DeadlineP1DonorResult.v1",
+  "transfer_judgment": "CONSERVATIVE_COMPATIBILITY_GREEN_LOCALLY"
+}

@@ -1,0 +1,73 @@
+{
+  "additional_control": {
+    "local_broad_suite": "234_PASSED",
+    "reason": "Darwin exposes waitid WSTOPPED in addition to the frozen Linux 23-node wait suite"
+  },
+  "authority_ceiling": {
+    "full_dual_lane_execution": "OPEN",
+    "independent_reproduction": "CANNOT_CHECK",
+    "linux_ci_reproduction": "CANNOT_CHECK_UNTIL_PUSH",
+    "local_process_receipt_conformance": "GREEN",
+    "orion_v1_freeze": "NOT_GRANTED",
+    "paper_authority_delta": "NONE",
+    "publication_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "combined_clean_processes": {
+    "PYTHONHASHSEED_0": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 233,
+      "time_seconds": 1.594
+    },
+    "PYTHONHASHSEED_1": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 233,
+      "time_seconds": 1.623
+    }
+  },
+  "combined_denominator": {
+    "authoritative_linux_node_ids": 233,
+    "local_platform_mapped_node_ids": 233,
+    "node_id_files": {
+      "authoritative": "frozen_233_nodeids.txt",
+      "local_execution": "local_233_nodeids.txt"
+    },
+    "unique": true
+  },
+  "implementation_commit": "f076958c0a05cd5a2433ef15ce269667cb5a9b8a",
+  "implementation_tree": "e3a501461845f230ab68d622b1c9a7e2ad49a0dc",
+  "schema": "ORION.V1.ReceiptV3DeadlineP1PrimaryResult.v1",
+  "tdd_progression": [
+    {
+      "errors": 0,
+      "failed": 78,
+      "passed": 42,
+      "stage": "FROZEN_ORACLE_RED"
+    },
+    {
+      "errors": 0,
+      "failed": 59,
+      "passed": 61,
+      "stage": "STRICT_COORDINATES_RED"
+    },
+    {
+      "errors": 0,
+      "failed": 1,
+      "passed": 119,
+      "stage": "STRICT_PROTOCOL_RED"
+    },
+    {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "stage": "DEADLINE_GREEN",
+      "tests": 120,
+      "time_seconds": 0.742
+    }
+  ],
+  "terminal": "V1_RECEIPT_V3_DEADLINE_P1_MIGRATED_120_GREEN"
+}

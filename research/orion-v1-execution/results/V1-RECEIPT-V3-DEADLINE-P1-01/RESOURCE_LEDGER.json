@@ -1,0 +1,36 @@
+{
+  "authority_ceiling": {
+    "full_dual_lane_execution": "OPEN",
+    "independent_reproduction": "CANNOT_CHECK",
+    "linux_ci_reproduction": "CANNOT_CHECK_UNTIL_PUSH",
+    "local_process_receipt_conformance": "GREEN",
+    "orion_v1_freeze": "NOT_GRANTED",
+    "paper_authority_delta": "NONE",
+    "publication_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "compute": {
+    "external_scientific_executions": 0,
+    "gpu_jobs_submitted": 0,
+    "local_pytest_processes": "recorded_in_logs",
+    "lunarc_jobs_submitted": 0
+  },
+  "disk_policy": "SPARSE_WORKTREE_NO_OTHER_WORKTREE_DELETION",
+  "environment": {
+    "editable_install_performed": false,
+    "pytest": "9.1.1",
+    "reason": "disk-constrained sparse isolated worktree; compatible recorded environment reused",
+    "reused_venv": "work/orion-execution-takeover/.venv"
+  },
+  "execution_host": {
+    "machine": "arm64",
+    "platform": "macOS-26.4-arm64-arm-64bit",
+    "python": "3.12.13 (main, Mar  3 2026, 12:39:30) [Clang 21.0.0 (clang-2100.0.123.102)]"
+  },
+  "schema": "ORION.V1.ReceiptV3DeadlineP1ResourceLedger.v1",
+  "timings_seconds": {
+    "combined_hashseed_0": 1.594,
+    "combined_hashseed_1": 1.623,
+    "deadline_final": 0.742
+  }
+}
