@@ -1,0 +1,124 @@
+{
+  "schema": "ORION.FiberGuard.ClaimLedger.C.R19.v1",
+  "working_title": "FiberGuard: Exact Representation Certificates and Their Failure at the Inductive Boundary",
+  "source_stack": {
+    "R11_static_ASlib": "6f0b9a354c0f71ca744596252c74e2bf8b4a6f5b",
+    "R12_profile_Bellman": "91373ddf3eb17535ea623d0b7998adb307fcd9de",
+    "R13_randomized_adaptive": "6c23a3fe4ccf415bc3a73794878d72583ed48eb2",
+    "R14_heldout_refutation": "29edf9936fe56cd3720d78e6be2542106f2671fd",
+    "R15_certificate_boundary": "e431e9f187667431858f42e236bd74e57f658c31",
+    "R16_cross_scenario": "6bc502966c6d8f2a7a97db234a4c20216e6feac9",
+    "R17_fallback_alignment": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+    "R18_relative_route": "chatgpt/r18-c-relative-route-extension-20260826"
+  },
+  "claims": [
+    {
+      "id": "C19-T1",
+      "statement": "For a complete finite representation fibre, exact target diameter, deterministic action regret, randomized expected regret, and epsilon-safe action sets are representation-owned quantities.",
+      "authority": "ANALYTIC_FINITE",
+      "status": "ADMITTED",
+      "forbidden_extension": "No unseen-state or richer-representation upper bound follows."
+    },
+    {
+      "id": "C19-T2",
+      "statement": "A deterministic worst-fibre action-regret value has a witness on at most the action count, and minimal unsafe conflicts have size at most the action count.",
+      "authority": "ANALYTIC_FINITE_PLUS_IMPLEMENTATION_CORROBORATION",
+      "status": "ADMITTED",
+      "forbidden_extension": "The witness bound is not a sample-complexity or prevalence result."
+    },
+    {
+      "id": "C19-T3",
+      "statement": "Minimum-cost static exact representation repair is a weighted set-cover problem over induced target-disagreement pairs or minimal action-conflict hyperedges.",
+      "authority": "ANALYTIC_FINITE",
+      "status": "ADMITTED",
+      "forbidden_extension": "Generic set-cover complexity and approximation receive zero novelty credit."
+    },
+    {
+      "id": "C19-T4",
+      "statement": "State-dependent adaptive acquisition is exactly represented by Pareto-pruned statewise loss profiles, while scalar Bellman recursion is universally exact exactly under cell-constant child charges.",
+      "authority": "ANALYTIC_FINITE_PLUS_BYTE_STABLE_REPLAY",
+      "status": "ADMITTED",
+      "forbidden_extension": "A childwise maximum charge is only an upper bound and may select the wrong policy."
+    },
+    {
+      "id": "C19-T5",
+      "statement": "Randomized adaptive value is the minimax value over the convex hull of deterministic policy profiles, with a mixed-tree upper certificate of support at most the fibre size and a dual Bayes-tree lower certificate.",
+      "authority": "ANALYTIC_FINITE_PLUS_EXACT_RATIONAL_REPLAY",
+      "status": "ADMITTED",
+      "forbidden_extension": "Expected-loss improvement is not pathwise, tail, or adaptive-adversary safety."
+    },
+    {
+      "id": "C19-T6",
+      "statement": "Finite training fibres do not certify unseen same-signature states without completeness, a structural extension law, or an explicitly statistical authority class; exact equality coverage and certificate validity are separate quantities.",
+      "authority": "ANALYTIC_IMPOSSIBILITY_PLUS_PROSPECTIVE_REFUTATION",
+      "status": "ADMITTED",
+      "forbidden_extension": "Neighborhood coverage is not an exact certificate without a proved law."
+    },
+    {
+      "id": "C19-T7",
+      "statement": "Safe fallback routing requires paired learned/fallback evidence, correct acquisition timing, pre-acquisition measurability, and a sign margin under any registered transfer drift.",
+      "authority": "ANALYTIC_FINITE_PLUS_HOSTILE_CONTROLS",
+      "status": "ADMITTED",
+      "forbidden_extension": "Marginal learned-action calibration does not certify fallback alignment or transfer."
+    },
+    {
+      "id": "C19-E1",
+      "statement": "The registered R8 finite panels contain exact representation collisions in graph coloring, set cover, and 2-SAT, with refinement successes and failures preserved.",
+      "authority": "INTERNAL_EXACT_CENSUS",
+      "status": "ADMITTED_AT_BOUNDED_DOMAIN_CEILING",
+      "forbidden_extension": "No production prevalence or learned-model error rate follows."
+    },
+    {
+      "id": "C19-E2",
+      "statement": "On the complete seven-vertex graph atlas, the six-vertex C4 repair fails to transfer while graphlet and combined refinements close the registered target ambiguity.",
+      "authority": "INTERNAL_COMPLETE_FINITE_ATLAS",
+      "status": "ADMITTED_AT_BOUNDED_DOMAIN_CEILING",
+      "forbidden_extension": "No asymptotic or large-graph transfer follows."
+    },
+    {
+      "id": "C19-E3",
+      "statement": "On pinned ASlib SAT12-ALL, exhaustive same-corpus evaluation selects Pre plus lobjois with robust total excess 1712, compared with 12000 for no features and 16906.55 for all feature steps.",
+      "authority": "PUBLIC_CORPUS_COMPLETE_TRANSDUCTIVE",
+      "status": "ADMITTED",
+      "forbidden_extension": "No held-out, learned-selector, or cross-scenario authority follows."
+    },
+    {
+      "id": "C19-E4",
+      "statement": "Under prospectively frozen held-out evaluation, exact numeric equality has very low recurrence and poor decision value, refuting its inductive use on SAT12-ALL.",
+      "authority": "PROSPECTIVE_HELDOUT_ADVERSE",
+      "status": "ADMITTED_AND_LOAD_BEARING",
+      "forbidden_extension": "The adverse terminal may not be hidden behind the transductive result."
+    },
+    {
+      "id": "C19-E5",
+      "statement": "A prospectively frozen coarsening improves mean behavior but does not earn the registered robust transfer terminal.",
+      "authority": "PROSPECTIVE_HELDOUT_PARTIAL_OR_ADVERSE",
+      "status": "ADMITTED_WITH_EXACT_TERMINAL_ONLY",
+      "forbidden_extension": "Mean improvement is not robust certificate value."
+    },
+    {
+      "id": "C19-E6",
+      "statement": "Across the frozen SAT16, SAT18, and SAT20 sequence, marginal learned-action calibration can coexist with harmful fallback alignment, including sign reversals across scenarios.",
+      "authority": "PROSPECTIVE_CROSS_SCENARIO_ADVERSE",
+      "status": "ADMITTED_AND_LOAD_BEARING",
+      "forbidden_extension": "Marginal coverage is not selective routing value."
+    },
+    {
+      "id": "C19-E7",
+      "statement": "The R12, R13, R17, and R18 finite verifiers corroborate the exact policy, randomization, alignment, timing, and transfer identities under fail-closed authority flags.",
+      "authority": "INTERNAL_IMPLEMENTATION_CORROBORATION",
+      "status": "ADMITTED",
+      "forbidden_extension": "Same-owner CI is not external reproduction."
+    }
+  ],
+  "paper_terminal": {
+    "internal_theory_story": "COMPLETE",
+    "manuscript_story": "SYNTHESIS_IN_PROGRESS",
+    "paired_route_application": "OPEN",
+    "untouched_non_SAT_or_production_portfolio": "OPEN",
+    "external_reproduction": "CANNOT_CHECK",
+    "current_specialist_prior_art": "CANNOT_CHECK",
+    "journal_authority": false,
+    "submission_ready": false
+  }
+}
