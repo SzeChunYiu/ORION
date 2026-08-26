@@ -11,12 +11,12 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "papers/Q_QG_TARGET_PACKAGE_MANIFESTS_V2.json"
 FIG_AUTH = ROOT / "papers/Q_QG_FIGURE_AUTHORITY_V2.md"
 EXPECTED = {
-    "Q1_Quantum": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
-    "Q2_AIJ": "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md",
-    "Q3_TMLR": "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md",
-    "Q4_TMLR": "papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md",
-    "QG1_PRX": "papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md",
-    "QG2_Quantum": "papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md",
+    "Q1_Quantum": "papers/archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
+    "Q2_AIJ": "papers/orion-06-recursive-recovery/MANUSCRIPT_V3.md",
+    "Q3_TMLR": "papers/orion-07-dual-instrument/MANUSCRIPT_V3.md",
+    "Q4_TMLR": "papers/orion-08-typed-state/MANUSCRIPT_V3.md",
+    "QG1_PRX": "papers/orion-09-compilation-regime-geometry/MANUSCRIPT_V3.md",
+    "QG2_Quantum": "papers/orion-10-certified-static-forecasting/MANUSCRIPT_V3.md",
 }
 
 

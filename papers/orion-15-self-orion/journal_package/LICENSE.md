@@ -1,4 +1,4 @@
-# ORION-P5 package license and restrictions
+# ORION-ORION-15 package license and restrictions
 
 Repository code is Apache-2.0 under the root `LICENSE`; paper text is CC BY 4.0
 under `LICENSE-PAPERS-CC-BY-4.0.txt`. Provider outputs and third-party materials

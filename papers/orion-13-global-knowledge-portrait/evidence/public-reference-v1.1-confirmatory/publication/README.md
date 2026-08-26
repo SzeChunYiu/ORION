@@ -1,4 +1,4 @@
-# P3 public-reference confirmatory publication artifacts
+# ORION-13 public-reference confirmatory publication artifacts
 
 These files are deterministic presentation artifacts generated from the immutable confirmatory analysis in `../CONFIRMATORY_ANALYSIS.json`.
 

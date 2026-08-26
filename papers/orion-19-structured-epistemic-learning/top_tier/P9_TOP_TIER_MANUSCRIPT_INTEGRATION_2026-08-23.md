@@ -1,10 +1,10 @@
-# P9 top-tier manuscript integration — 2026-08-23
+# ORION-19 top-tier manuscript integration — 2026-08-23
 
 This note bridges the historical bounded structural-learning TMLR package to the current causal information/accessibility/computation diagnosis. It changes no frozen scientific result.
 
 ## One-sentence paper identity
 
-**P9 is a causal failure-location paper.** Before spending more compute, determine whether the missing resource is semantic information, accessibility/representation, computation, or unavailable method/coverage.
+**ORION-19 is a causal failure-location paper.** Before spending more compute, determine whether the missing resource is semantic information, accessibility/representation, computation, or unavailable method/coverage.
 
 ## Current evidence hierarchy
 
@@ -81,7 +81,7 @@ But a semantics-preserving global reminting of the symbol alphabet changes the s
 - typed-relational vs untyped-pair remains invariant under the tested orbit and can remain a bounded structural observation;
 - the order-reminting question has no denominator in the frozen corpus and remains `CANNOT_CHECK`.
 
-This negative supports the higher P9 object: diagnose the missing access/representation resource rather than fetishize a particular surface representation.
+This negative supports the higher ORION-19 object: diagnose the missing access/representation resource rather than fetishize a particular surface representation.
 
 ## Abstract replacement target
 
@@ -125,7 +125,7 @@ Remove or revise any language that:
 The strongest final paper needs only a small number of figures:
 
 1. **Causal resource diagram:** I / A / C / M intervention classes and observed diagnosis path.
-2. **Five-family diagnostic table:** gold intervention, P9 diagnosis, generic compute diagnosis, result disposition including CANNOT_CHECK.
+2. **Five-family diagnostic table:** gold intervention, ORION-19 diagnosis, generic compute diagnosis, result disposition including CANNOT_CHECK.
 3. **Resource-vector audit table:** pre-correction hidden work vs corrected V2 accounting, showing the conclusion survives.
 4. **Outcome symmetry figure:** positive real cells + Wine null + Qwen negative + hostile format-prior negative.
 

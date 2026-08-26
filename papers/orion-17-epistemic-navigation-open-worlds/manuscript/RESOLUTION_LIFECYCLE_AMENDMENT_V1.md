@@ -1,4 +1,4 @@
-# P7 resolution-lifecycle amendment V1
+# ORION-17 resolution-lifecycle amendment V1
 
 Date: 2026-08-22
 Status: formal clarification / no novelty or authority claim
@@ -6,7 +6,7 @@ Applies to: `FORMAL_CORE_V1.md`
 
 ## Motivation
 
-P7's formal core correctly distinguishes `route_stop`, `task_stop`, `defer`, `cannot_check`, and `reframe`. This amendment clarifies that `cannot_check` is normally an **active epistemic obligation**, not a passive terminal label.
+ORION-17's formal core correctly distinguishes `route_stop`, `task_stop`, `defer`, `cannot_check`, and `reframe`. This amendment clarifies that `cannot_check` is normally an **active epistemic obligation**, not a passive terminal label.
 
 The clarification is compatible with the stopping-impossibility theorem: the navigator must not fabricate task completion under extension ambiguity, but it should still identify the admissible actions that could reduce the ambiguity.
 
@@ -81,7 +81,7 @@ The corresponding framework object is `ResearchNegativeResult.v1`.
 
 ## Strengthened fail-closed invariant
 
-P7 therefore distinguishes:
+ORION-17 therefore distinguishes:
 
 - `task_stop`: mandatory obligations closed by valid satisfaction/discharge/certificate;
 - `negative`: a target hypothesis/route/claim is refuted or bounded negatively under a valid evidence contract;

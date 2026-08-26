@@ -34,14 +34,14 @@ referenced, not repackaged.
   the archive bundle and the GitHub evidence cut.
 - No accession/DOI is written before deposition succeeds (existing rule retained).
 
-### QG1 target routing — DECIDED
+### ORION-09 target routing — DECIDED
 
 Default route: **Quantum**. PRX Quantum remains a stretch option that may be used
 only if the operator explicitly approves the broader-impact framing at actual
 submission time. No claim is inflated to fit PRX; the contract's fallback rule is
 applied as written.
 
-### QG2 target routing — DECIDED
+### ORION-10 target routing — DECIDED
 
 **Quantum** (primary). Target-fit first; QST is not pursued, per the contract's
 routing-risk warning. Science unchanged.
@@ -61,11 +61,11 @@ own prohibition ("may not be inferred from GitHub/account/conversation history")
   correspondence emails, ORCIDs, equal-contribution notes.
 - B. Funding statement (grant names/numbers or approved absence wording).
 - C. Competing-interests declaration.
-- F. Generative-AI assistance declaration: the workflow may draft it (the Q2 AIJ
+- F. Generative-AI assistance declaration: the workflow may draft it (the ORION-02 AIJ
   draft stands), but only the author(s) can attest accuracy of the actual-use
   statement per each target's policy.
 - G. Originality / simultaneous-submission confirmation.
-- Q1/Q2/Q4 submission-system metadata beyond the routing and licence decisions
+- ORION-01/ORION-02/ORION-04 submission-system metadata beyond the routing and licence decisions
   above (classification/keyword choices requiring author judgment at submission).
 
 ## Effect on the terminal ladder

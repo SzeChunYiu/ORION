@@ -17,12 +17,12 @@ BIBS = [
     ROOT / "papers/Q3_VERIFIED_CURRENT_REFERENCES_V2.bib",
 ]
 FINAL = [
-    ROOT / "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
-    ROOT / "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md",
-    ROOT / "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md",
-    ROOT / "papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md",
-    ROOT / "papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md",
-    ROOT / "papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md",
+    ROOT / "papers/orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
+    ROOT / "papers/orion-06-recursive-recovery/MANUSCRIPT_V3.md",
+    ROOT / "papers/orion-07-dual-instrument/MANUSCRIPT_V3.md",
+    ROOT / "papers/orion-08-typed-state/MANUSCRIPT_V3.md",
+    ROOT / "papers/orion-09-compilation-regime-geometry/MANUSCRIPT_V3.md",
+    ROOT / "papers/orion-10-certified-static-forecasting/MANUSCRIPT_V3.md",
 ]
 ENTRY_RE = re.compile(r"@[A-Za-z]+\s*\{\s*([^,\s]+)\s*,(.*?)\n\}", re.S)
 DOI_RE = re.compile(r"\bdoi\s*=\s*[\{\"]([^}\"]+)", re.I)

@@ -199,9 +199,9 @@ def test_current_closure_is_runnable_and_explicitly_bounded() -> None:
     ("paper", "must_contain"),
     (
         ("paper-xx-executable-research-core", "does not claim novelty"),
-        ("paper-xx-content-bound-math-evaluation", "does not claim novelty"),
+        ("archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation", "does not claim novelty"),
         ("paper-xx-executable-research-core", "CANNOT_CHECK"),
-        ("paper-xx-content-bound-math-evaluation", "CANNOT_CHECK"),
+        ("archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation", "CANNOT_CHECK"),
     ),
 )
 def test_both_candidates_state_their_limits(paper: str, must_contain: str) -> None:

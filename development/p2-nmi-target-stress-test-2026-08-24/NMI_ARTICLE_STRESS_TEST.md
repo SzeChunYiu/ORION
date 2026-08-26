@@ -3,7 +3,7 @@
 **Date:** 2026-08-24  
 **Target used for this stress test:** *Nature Machine Intelligence*, Article  
 **Status:** structural stress test, **not** a submission-readiness claim  
-**Manuscript:** `papers/paper-02-open-world-scientific-discovery/manuscript/main.tex`
+**Manuscript:** `papers/orion-12-open-world-scientific-discovery/manuscript/main.tex`
 
 ## Target profile
 

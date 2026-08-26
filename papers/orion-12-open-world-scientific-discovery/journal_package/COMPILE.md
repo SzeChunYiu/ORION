@@ -1,6 +1,6 @@
-# ORION-P2 compile and audit instructions
+# ORION-ORION-12 compile and audit instructions
 
-From `papers/paper-02-open-world-scientific-discovery/manuscript/`:
+From `papers/orion-12-open-world-scientific-discovery/manuscript/`:
 
 ```bash
 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex

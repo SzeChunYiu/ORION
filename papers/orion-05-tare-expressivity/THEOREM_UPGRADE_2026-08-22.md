@@ -1,4 +1,4 @@
-# Q1 theorem upgrade note — 2026-08-22
+# ORION-01 theorem upgrade note — 2026-08-22
 
 Status: publication-derivation note from already committed ORION-Q receipts. This file introduces **no new experimental data** and grants no novelty or R6 authority. Its purpose is to state consequences of the final closed ORION-Q mathematics that were not yet foregrounded in `MANUSCRIPT_V1.md`.
 
@@ -61,7 +61,7 @@ Thus the theorem and counterexample meet at the same boundary:
 - support `= 2`: genuine coupling trade can be strictly optimal;
 - support `= 1`: insufficient uniformly across the family.
 
-This correspondence should be the conceptual center of the revised Q1 paper.
+This correspondence should be the conceptual center of the revised ORION-01 paper.
 
 ## 3. Normal-form candidate-count corollary
 
@@ -93,7 +93,7 @@ The safe publication claim is therefore:
 
 The sharp support theorem does **not** upgrade the R6Q three-family identity or two-trade predicate to an all-`n` theorem. R6Q itself states that its exactness is machine-evidenced on the frozen finite panels only.
 
-This distinction is especially important because subsequent ORION-QG adversarial work (outside the Q1 claim set) found additional support-two subregimes at higher `n`. Those later results do not affect `kappa_R6M = 2`; they do show that the R6N/R6O two-trade closed form must remain explicitly finite-domain in Q1.
+This distinction is especially important because subsequent ORION-QG adversarial work (outside the ORION-01 claim set) found additional support-two subregimes at higher `n`. Those later results do not affect `kappa_R6M = 2`; they do show that the R6N/R6O two-trade closed form must remain explicitly finite-domain in ORION-01.
 
 The revised paper should therefore separate two statements:
 
@@ -102,7 +102,7 @@ The revised paper should therefore separate two statements:
 
 ## 5. Publication consequence
 
-The Q1 headline should move from
+The ORION-01 headline should move from
 
 > support-two closure on verified domains
 

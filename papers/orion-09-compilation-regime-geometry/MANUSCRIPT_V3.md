@@ -1,6 +1,6 @@
 # Compilation Regime Geometry: Exact Trade Mechanisms, Intrinsic Support, Objective Certificates, and Boundary Identifiability
 
-**ORION-QG1 Manuscript V3 — current-main publication-synthesis draft**  
+**ORION-ORION-09 Manuscript V3 — current-main publication-synthesis draft**  
 Scientific refresh cut: `main@c5ba39fef4f25c46de5fb69bf07f50530f4693ca`  
 Foundation: `PUBLICATION_FOUNDATION_V3.md`  
 Prior draft: `MANUSCRIPT_V2.md`
@@ -23,7 +23,7 @@ These differences motivate the central thesis:
 
 > **A compiler regime should be described by multiple authority-bearing coordinates—intrinsic family expressivity, certified search bounds, elementary trade witnesses, objective-indexed validity, boundary representation, and prospective falsification—rather than by one scalar performance surface.**
 
-This thesis is compatible with ISA rather than competing with it. ISA supplies the mature language of instance-dependent performance footprints. QG1 asks which additional exact compiler objects can explain, delimit or falsify those footprints when the compilation problem permits stronger authority.
+This thesis is compatible with ISA rather than competing with it. ISA supplies the mature language of instance-dependent performance footprints. ORION-09 asks which additional exact compiler objects can explain, delimit or falsify those footprints when the compilation problem permits stronger authority.
 
 ## 2. Regime-geometry record
 
@@ -65,7 +65,7 @@ Throughout the paper we distinguish:
 - forecast-only row;
 - open proof/sharpness link.
 
-Every statement is indexed by its grammar and objective. No result is interpreted as physical quantum advantage. The detailed TARE theorem belongs to Q1; the layered forecast-certification result belongs to QG2. QG1 uses those objects only for cross-family synthesis.
+Every statement is indexed by its grammar and objective. No result is interpreted as physical quantum advantage. The detailed TARE theorem belongs to ORION-01; the layered forecast-certification result belongs to ORION-10. ORION-09 uses those objects only for cross-family synthesis.
 
 ## 4. R6M TARE: intrinsic ceiling two, taxonomy still refinable
 
@@ -218,7 +218,7 @@ Three lessons follow.
 
 ## 11. Relation to Instance Space Analysis and algorithm selection
 
-ISA remains the primary conceptual ancestor for feature-conditioned performance regions. QG1 does not claim that mapping such regions is new.
+ISA remains the primary conceptual ancestor for feature-conditioned performance regions. ORION-09 does not claim that mapping such regions is new.
 
 The additional object introduced here is a **compiler-specific authority decomposition**. A regime record can contain:
 

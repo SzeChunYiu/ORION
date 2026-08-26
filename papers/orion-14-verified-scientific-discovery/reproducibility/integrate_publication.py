@@ -230,7 +230,7 @@ Canonical protected run: `31968809206`; safe bundle artifact ID: `9269235009`.
 Public non-secret replay:
 
 ```bash
-cd papers/paper-04-verified-scientific-discovery
+cd papers/orion-14-verified-scientific-discovery
 python reproducibility/replay_public.py
 ```
 

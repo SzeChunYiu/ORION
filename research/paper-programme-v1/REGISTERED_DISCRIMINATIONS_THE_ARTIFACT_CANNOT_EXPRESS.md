@@ -76,11 +76,11 @@ only by running an expensive campaign and reading a null — after the compute w
 ## Reproduce
 
 ```bash
-PYTHONPATH=src python papers/paper-09-structured-epistemic-learning/verify_order_permutation_is_a_noop_v1.py
-PYTHONPATH=src python papers/paper-09-structured-epistemic-learning/derive_d1v1_3_attainability_v1.py
+PYTHONPATH=src python papers/orion-19-structured-epistemic-learning/verify_order_permutation_is_a_noop_v1.py
+PYTHONPATH=src python papers/orion-19-structured-epistemic-learning/derive_d1v1_3_attainability_v1.py
 python papers/candidates/cross_paper_preservation_v2/check_set_normalization_boundary.py
-python papers/paper-03-global-knowledge-portrait/measure_atlas_coordinate_opportunity.py \
-  papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl
+python papers/orion-13-global-knowledge-portrait/measure_atlas_coordinate_opportunity.py \
+  papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl
 ```
 
 Each exits non-zero when its finding stops holding, and each asserts a no-alarm case so that a

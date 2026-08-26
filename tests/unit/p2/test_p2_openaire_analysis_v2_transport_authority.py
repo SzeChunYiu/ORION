@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 ANALYZER_PATH = Path(
-    "papers/paper-02-open-world-scientific-discovery/scripts/"
+    "papers/orion-12-open-world-scientific-discovery/scripts/"
     "analyze_autoresearchbench_wide_openaire_matched_v2.py"
 )
 

@@ -1,6 +1,6 @@
-# ORION-P1 — reproducing the headline results
+# ORION-ORION-11 — reproducing the headline results
 
-Scope: how to verify the powered P1 v2.2.4 primary and disjoint replication,
+Scope: how to verify the powered ORION-11 v2.2.4 primary and disjoint replication,
 regenerate their publication figure, and retain the historical V1 table path.
 
 **Current state:** the credential-free mechanical successor is
@@ -29,7 +29,7 @@ JSON files:
 
 ```bash
 MPLCONFIGDIR=/tmp/orion-matplotlib uv run python \
-  papers/paper-01-recursive-epistemic-reconstruction/scripts/make_necessity_figure.py --check
+  papers/orion-11-recursive-epistemic-reconstruction/scripts/make_necessity_figure.py --check
 ```
 
 To re-run the independent primary verification from compressed archives, first
@@ -167,7 +167,7 @@ receipt = json.loads(Path(
 assert receipt["passed"] is True
 assert receipt["entry_count"] == 47
 assert receipt["failures"] == []
-print("P1 adapter manifest: 47/47 PASS")
+print("ORION-11 adapter manifest: 47/47 PASS")
 PY
 ```
 
@@ -193,8 +193,8 @@ which is exactly:
 
 ```bash
 PYTHONPATH=src python3 -m orion.study.p1.tables \
-  --archive papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl \
-  --out    papers/paper-01-recursive-epistemic-reconstruction/results \
+  --archive papers/orion-11-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl \
+  --out    papers/orion-11-recursive-epistemic-reconstruction/results \
   --expected-repeats 5 \
   --bootstrap-seed 20260815 \
   --resamples 10000
@@ -207,10 +207,10 @@ Overridable as make variables: `P1_ARCHIVE`, `P1_OUT`, `P1_REPEATS`,
 
 | File | Contents |
 |---|---|
-| `results/P1-T2_baseline_ablation_results.json` / `.md` | system × family: rate with Wilson 95% CI, paired difference against the strongest matched baseline with bootstrap CI, effect size, hypothesis verdict, Holm-corrected secondary family |
-| `results/P1-T3_failure_taxonomy.json` / `.md` | failure modes by frequency with representative **blinded** case ids |
+| `results/ORION-11-T2_baseline_ablation_results.json` / `.md` | system × family: rate with Wilson 95% CI, paired difference against the strongest matched baseline with bootstrap CI, effect size, hypothesis verdict, Holm-corrected secondary family |
+| `results/ORION-11-T3_failure_taxonomy.json` / `.md` | failure modes by frequency with representative **blinded** case ids |
 
-`P1-T1_nearest_work_matrix` is the nearest-work mechanism matrix and is not
+`ORION-11-T1_nearest_work_matrix` is the nearest-work mechanism matrix and is not
 produced by this pipeline.
 
 JSON and markdown only. There is no plotting code in `orion.study.p1` and none
@@ -242,7 +242,7 @@ An archive is refused as `CANNOT_CHECK` when it:
 
 | Input | Where it is bound | Current value |
 |---|---|---|
-| Protocol | `protocol/PROTOCOL_V1.json` (`protocol_status: DESIGN_FROZEN`) | `P1.hidden-formulation.v1` |
+| Protocol | `protocol/PROTOCOL_V1.json` (`protocol_status: DESIGN_FROZEN`) | `ORION-11.hidden-formulation.v1` |
 | Suite fingerprint | `orion.study.p1.cases.suite_fingerprint()`, written into each raw record and into `execution_bindings.dataset_revisions.hidden_shift_suite` | **UNBOUND** |
 | Subject revision | `execution_bindings.subject_revision`, written into each raw record | **UNBOUND** |
 | Model/provider revisions | `execution_bindings.model_provider_revisions` | **UNBOUND** |

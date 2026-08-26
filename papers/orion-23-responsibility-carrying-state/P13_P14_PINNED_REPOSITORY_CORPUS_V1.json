@@ -7,17 +7,17 @@
  "outcome_accessed": false,
  "labeling_rule": "This artifact pins the external repository corpus only. It contains no derived gold, no campaign results and no outcomes, and must never be cited as evidence that any lifecycle-contract campaign ran or passed.",
  "issue_binding": "SzeChunYiu/ORION#1086 P13+P14: 'Use 30-50 pinned repositories from >=5 unrelated organizations; never use ORION as external subject.'",
- "protocol_doc": "papers/paper-13-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.md",
+ "protocol_doc": "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.md",
  "frozen_utc": "2026-08-24T11:11:29+00:00",
  "execution_status": "CANNOT_CHECK__NO_P13_P14_LIFECYCLE_CAMPAIGN_EXECUTION_IN_REPOSITORY",
  "binding": {
   "rule": {
-   "artifact": "papers/paper-13-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md",
+   "artifact": "papers/orion-23-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md",
    "sha256": "3656565539ea89742dd0f876347ba0b7ec918dfe605d95ab691c5323b77f8ce9",
    "relation": "Corpus gold eligibility and every future gold label are governed by the V1 rule of record, bound by hash."
   },
   "derivation_contract": {
-   "artifact": "papers/paper-13-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json",
+   "artifact": "papers/orion-23-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json",
    "sha256": "43af90733fb1a1f7fadd261d1a9ff41fcb20c1ec2e394626be2850ed8f65aed0",
    "relation": "Gold may be derived from these repositories only under the frozen five-fact-class contract, bound by hash."
   }
@@ -923,7 +923,7 @@
  },
  "scientific_authority_delta": "NONE",
  "freeze_discipline": {
-  "checker": "papers/paper-13-responsibility-carrying-state/check_p13_p14_pinned_corpus_v1.py",
+  "checker": "papers/orion-23-responsibility-carrying-state/check_p13_p14_pinned_corpus_v1.py",
   "tests": "tests/unit/study/p13/test_p13_p14_pinned_corpus_v1.py",
   "protocol_freeze_sha_live_recompute": true
  }

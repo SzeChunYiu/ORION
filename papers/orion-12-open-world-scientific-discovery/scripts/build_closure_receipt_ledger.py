@@ -23,7 +23,7 @@ both, and only one of those zeros is a result.
 
 Usage::
 
-    python papers/paper-02-open-world-scientific-discovery/scripts/\
+    python papers/orion-12-open-world-scientific-discovery/scripts/\
 build_closure_receipt_ledger.py [--out PATH] [--systems id,id,...]
 """
 
@@ -59,7 +59,7 @@ from orion.study.p2.gold import EvaluationInputs, evaluate  # noqa: E402
 from orion.study.p2.offline_systems import ALL_SYSTEMS, system_by_id  # noqa: E402
 from orion.study.p2.runner import build_public_index, execute  # noqa: E402
 
-PAPER = REPO_ROOT / "papers" / "paper-02-open-world-scientific-discovery"
+PAPER = REPO_ROOT / "papers" / "orion-12-open-world-scientific-discovery"
 DEV3R = PAPER / "evidence" / "external_results" / "P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18.json"
 SUMMARY_V1 = PAPER / "evidence" / "offline_results" / "RESULTS_SUMMARY_V1.json"
 DEFAULT_OUT = PAPER / "evidence" / "offline_results" / "CLOSURE_RECEIPT_LEDGER_V1.json"

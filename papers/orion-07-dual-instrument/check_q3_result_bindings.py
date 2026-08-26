@@ -3,7 +3,7 @@ from __future__ import annotations
 import hashlib, json, pathlib, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-Q3 = ROOT / "papers/Q-paper-03-dual-instrument"
+Q3 = ROOT / "papers/orion-07-dual-instrument"
 ROWS = [
     ("Q3-R1", Q3/"instances/Q3-R1-QG19", ROOT/"research/extensions/orion-qg/QG19_OUTSIDE_CONE_SHARPNESS_RESULTS.json"),
     ("Q3-R2", Q3/"instances/Q3-R2-QG20", ROOT/"research/extensions/orion-qg/QG20_SIXLCU_OBJECTIVE_SCOPE_RESULTS.json"),

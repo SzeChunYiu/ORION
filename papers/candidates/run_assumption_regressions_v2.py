@@ -30,23 +30,23 @@ PAPERS = ROOT.parent
 SUITES: tuple[dict[str, str], ...] = (
     {
         "name": "P6",
-        "checker": "paper-06-formal-epistemic-structures-and-mechanics/formal/check_assumption_regressions_v2.py",
-        "tests": "paper-06-formal-epistemic-structures-and-mechanics/formal/test_assumption_regressions_v2.py",
-        "cases": "paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.jsonl",
+        "checker": "orion-16-formal-epistemic-structures-and-mechanics/formal/check_assumption_regressions_v2.py",
+        "tests": "orion-16-formal-epistemic-structures-and-mechanics/formal/test_assumption_regressions_v2.py",
+        "cases": "orion-16-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.jsonl",
         "validator": "validate_countermodel_case",
     },
     {
         "name": "P7",
-        "checker": "paper-07-epistemic-navigation-open-worlds/formal/check_benchmark_contracts_v2.py",
-        "tests": "paper-07-epistemic-navigation-open-worlds/formal/test_benchmark_contracts_v2.py",
-        "cases": "paper-07-epistemic-navigation-open-worlds/benchmark/instances_v1.jsonl",
+        "checker": "orion-17-epistemic-navigation-open-worlds/formal/check_benchmark_contracts_v2.py",
+        "tests": "orion-17-epistemic-navigation-open-worlds/formal/test_benchmark_contracts_v2.py",
+        "cases": "orion-17-epistemic-navigation-open-worlds/benchmark/instances_v1.jsonl",
         "validator": "validate_benchmark_case",
     },
     {
         "name": "P8",
-        "checker": "paper-08-epistemic-authority-autonomous-science/formal/check_benchmark_contracts_v2.py",
-        "tests": "paper-08-epistemic-authority-autonomous-science/formal/test_benchmark_contracts_v2.py",
-        "cases": "paper-08-epistemic-authority-autonomous-science/benchmark/authority_cases_v1.jsonl",
+        "checker": "orion-18-epistemic-authority-autonomous-science/formal/check_benchmark_contracts_v2.py",
+        "tests": "orion-18-epistemic-authority-autonomous-science/formal/test_benchmark_contracts_v2.py",
+        "cases": "orion-18-epistemic-authority-autonomous-science/benchmark/authority_cases_v1.jsonl",
         "validator": "validate_authority_case",
     },
 )

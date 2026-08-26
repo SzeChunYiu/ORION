@@ -76,7 +76,7 @@ def test_merged_attribution_archive_is_21_of_24_with_three_immutable_errors() ->
 def test_laundering_24_of_24_is_rejected(tmp_path: Path) -> None:
     src_results = REPO / ATTRIBUTION_RESULTS_PATH
     src_report = REPO / ATTRIBUTION_REPORT_PATH
-    dest = tmp_path / "papers/paper-05-self-orion/evidence/glm-5.2-attribution"
+    dest = tmp_path / "papers/orion-15-self-orion/evidence/glm-5.2-attribution"
     dest.mkdir(parents=True)
     rewritten = []
     for line in src_results.read_text(encoding="utf-8").splitlines():
@@ -232,7 +232,7 @@ def test_checkbox_audit_ticks_only_verified_items_and_preserves_cannot_check() -
 
 
 def test_committed_checkbox_audit_matches_the_live_auditor() -> None:
-    audit_path = REPO / "papers/paper-05-self-orion/evidence/ISSUE_159_CHECKBOX_AUDIT_V1.json"
+    audit_path = REPO / "papers/orion-15-self-orion/evidence/ISSUE_159_CHECKBOX_AUDIT_V1.json"
     committed = json.loads(audit_path.read_text(encoding="utf-8"))
     live = audit_issue_159_checkboxes(repo_root=REPO, environ={})
     assert committed["schema_version"] == live["schema_version"]

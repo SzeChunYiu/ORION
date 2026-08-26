@@ -1,4 +1,4 @@
-# P13 D2 donor-complete baseline result receipt V1
+# ORION-23 D2 donor-complete baseline result receipt V1
 
 **Programme:** #977 · **PR:** #992 · **State:** `EXECUTED_BOUND_ON_GREEN`
 
@@ -6,7 +6,7 @@
 
 | item | value |
 |---|---|
-| protocol (pre-outcome freeze) | `papers/paper-13-responsibility-carrying-state/top_tier/P13_D2_DONOR_BASELINE_PROTOCOL_V1.md` @ `f1d0a2ba` |
+| protocol (pre-outcome freeze) | `papers/orion-23-responsibility-carrying-state/top_tier/P13_D2_DONOR_BASELINE_PROTOCOL_V1.md` @ `f1d0a2ba` |
 | cases (pre-outcome freeze, gold dispositions frozen) | `p13_d2_donor_cases_v1.json` @ `fafee495` (58131 bytes, 48 cases) |
 | runner / checker | @ `4f212b05` / @ `1cf27558` |
 | CI run | `32661218631` (`p13-d2-donor-baseline-v1`), **conclusion=success** |

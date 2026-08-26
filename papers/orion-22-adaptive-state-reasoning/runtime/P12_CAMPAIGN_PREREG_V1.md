@@ -1,4 +1,4 @@
-# P12 stop/go campaign — signal prereg and substrate blocker
+# ORION-22 stop/go campaign — signal prereg and substrate blocker
 
 **Status:** `PREREGISTERED__CAMPAIGN_BLOCKED_ON_SUBSTRATE`
 

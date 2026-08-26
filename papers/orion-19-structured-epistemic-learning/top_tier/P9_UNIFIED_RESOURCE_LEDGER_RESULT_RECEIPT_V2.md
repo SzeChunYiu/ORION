@@ -1,4 +1,4 @@
-# P9 unified I/A/C/M resource-ledger result receipt V2
+# ORION-19 unified I/A/C/M resource-ledger result receipt V2
 
 **Programme:** #977
 **State:** `BOUND_TO_RUN` (filled from the actual workflow run; no local execution)
@@ -9,7 +9,7 @@
 - Workflow: `.github/workflows/p9-unified-resource-ledger-v2.yml`
 - Run: `32664198718` (`https://github.com/SzeChunYiu/ORION/actions/runs/32664198718`), head `c3f2709a5b029b58246d2435cdfdec7ddb454acf`, conclusion `success`
 - Artifact: `p9-unified-resource-ledger-v2`, id `9499807171`, ZIP SHA-256 `67e768a7b9d607c7cd8b6c8e9b4eb52fb4bfdbbff4221225919f8173d1b4bf92` (committed evidence JSON file SHA-256 `efae315e7269c5f3b4ab8ce32402f443f80eb774ecec6aab0f1e879bb09d97a9`, byte-identical to the artifact member)
-- Evidence committed at: `papers/paper-09-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json` (ledger `receipt_sha256` `364b84665f00888527202723164778048c84e1c94f5413f8348dbb87e4668b0a`)
+- Evidence committed at: `papers/orion-19-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json` (ledger `receipt_sha256` `364b84665f00888527202723164778048c84e1c94f5413f8348dbb87e4668b0a`)
 - Secondary artifact members committed byte-identical: `evidence/P9_UNIFIED_RESOURCE_LEDGER_INDEPENDENT_V2.json` (SHA-256 `f644c32fb09666b7e776e7da18b088b1acc502a8368b5287bfc9fa628cda3870`), `evidence/P9_CAUSAL_DIAGNOSTIC_V1_RERUN.json` (SHA-256 `78597facd3e4d377db20a2e6bc12b6f76dd2d8e96bc07094148095cd38df0801`)
 
 ## Terminal
@@ -58,4 +58,4 @@ No quality value, target, registered cost, prediction, protected gold, or protec
 
 ## Authority boundary
 
-Post-outcome accounting for the bounded P9 causal-diagnostic headline only. This receipt does not establish a universal resource exchange rate, does not repair the `D-A` `CANNOT_CHECK` cell, does not convert the wine null into evidence for or against universality, and does not touch the protected Qwen scaling negative (`LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED`, which must not be repaired or re-run).
+Post-outcome accounting for the bounded ORION-19 causal-diagnostic headline only. This receipt does not establish a universal resource exchange rate, does not repair the `D-A` `CANNOT_CHECK` cell, does not convert the wine null into evidence for or against universality, and does not touch the protected Qwen scaling negative (`LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED`, which must not be repaired or re-run).

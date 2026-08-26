@@ -1,4 +1,4 @@
-# P2 claim ledger describes an abstract that no longer exists
+# ORION-12 claim ledger describes an abstract that no longer exists
 
 `check_claim_ledger.py` and `check_claim_ledger_v1.py` both report eight
 `LEDGER_SENTENCE_MISSING` violations. They are correct, and the drift runs in
@@ -7,10 +7,10 @@ quietly repairing.
 
 ## What the ledger still asserts
 
-Five claims bound to `abstract` (`P2-C01`, `P2-C02`, `P2-C03`, `P2-C12`,
-`P2-X20`) and three to `conclusion` (`P2-C04`, `P2-C05`, `P2-X21`).
+Five claims bound to `abstract` (`ORION-12-C01`, `ORION-12-C02`, `ORION-12-C03`, `ORION-12-C12`,
+`ORION-12-X20`) and three to `conclusion` (`ORION-12-C04`, `ORION-12-C05`, `ORION-12-X21`).
 
-`P2-C01` reads:
+`ORION-12-C01` reads:
 
 > In a frozen 390-task complete-gold controlled index, full ORION reaches mean
 > recall 0.979487 versus 0.666667 for the strongest protocol-frozen
@@ -59,7 +59,7 @@ claims had changed.
 
 | artifact | last changed |
 |---|---|
-| `manuscript/main.tex` | `6474c521` 2026-08-24 — "Integrate unified P1-P5 scientific fronts" |
+| `manuscript/main.tex` | `6474c521` 2026-08-24 — "Integrate unified ORION-11-ORION-15 scientific fronts" |
 | `protocol/CLAIM_LEDGER_V1.json` | `7f05258c` 2026-08-24 — "coordinated ledger regen; drop stale abstract duplicate (#1045)" |
 
 The ledger regeneration and the manuscript integration landed the same day,

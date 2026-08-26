@@ -5,7 +5,7 @@
 here, never written. The frozen case suites, their two content fingerprints
 (pilot ``7a50a2d5…``, test ``21b461d8…``), ``cases.py``, ``observation.py``,
 ``contradiction.py`` and every V1 result under
-``papers/paper-01-recursive-epistemic-reconstruction/results/`` are inputs to
+``papers/orion-11-recursive-epistemic-reconstruction/results/`` are inputs to
 this module and are not modified, re-scored or superseded by it. No number
 reported by P1 V1 changes because this file exists. The V2 manifest below lives
 in code, next to the mechanism it binds, precisely so that adding it required

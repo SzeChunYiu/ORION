@@ -1,7 +1,7 @@
-# P8 top-tier theory V1 — Scientific authorization beyond action authorization
+# ORION-18 top-tier theory V1 — Scientific authorization beyond action authorization
 
 **Programme:** #977  
-**Boundary:** per-action permission, obligations, delegation, provenance, freshness and evidence-bound grants are donor-owned. P8's object is whether typed scientific evidence discharges a named target scientific obligation.
+**Boundary:** per-action permission, obligations, delegation, provenance, freshness and evidence-bound grants are donor-owned. ORION-18's object is whether typed scientific evidence discharges a named target scientific obligation.
 
 ## T8.1 — action/scientific authorization separation
 
@@ -86,7 +86,7 @@ Adding an independent valid derivation can restore authorization; adding confide
 
 Current per-action authorization and verifier/freshness standards are explicitly donor-owned, including AADP, principal/verifier binding, AAE and signed succession/authorization evidence recorded in `P7_P9_TOP_TIER_LITERATURE_DELTA_2026-08-23.md`.
 
-P8 therefore cannot use rich evidence-bound action permission as novelty. Its protected discriminator must keep the physical/tool action fixed and vary only whether the scientific target obligation is actually discharged.
+ORION-18 therefore cannot use rich evidence-bound action permission as novelty. Its protected discriminator must keep the physical/tool action fixed and vary only whether the scientific target obligation is actually discharged.
 
 ## Remaining external gate
 

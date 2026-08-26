@@ -1,4 +1,4 @@
-# Q1 mock peer review V2
+# ORION-01 mock peer review V2
 
 **Subject:** `MANUSCRIPT_V2.md`  
 **Method:** three mutually blind reviews, then post-review editor synthesis.  
@@ -14,13 +14,13 @@ The manuscript correctly promotes R6S and demotes the two-trade taxonomy. Howeve
 
 **Repair:** define a short canonical scope label (e.g. `R6M/raw-support`) and attach it to every theorem-level summary/caption. The abstract already states the frozen objective; maintain that discipline in figures/tables.
 
-**Severity:** P1 framing, no new science.
+**Severity:** ORION-11 framing, no new science.
 
 ## Major R1.2 — prove the reader can distinguish support ceiling from Tag support / family cardinality
 
 “Frame support ≤2” could be misread as Tag weight ≤2 or as a bound on number of active blocks. Add one explicit statement defining the support measure used by the theorem and what it does not bound.
 
-**Severity:** P1 clarity/formal definition.
+**Severity:** ORION-11 clarity/formal definition.
 
 ## Minor R1.3 — chemistry
 
@@ -46,13 +46,13 @@ The text summarizes the R6S proof, but a skeptical referee needs to know which s
 
 Do not call a computationally checked finite lemma a proof for arbitrary `n` unless the all-`n` reduction is explicit.
 
-**Severity:** P1 proof-audit blocker.
+**Severity:** ORION-11 proof-audit blocker.
 
 ## Major R2.2 — independent verifier/referee chain should be visible
 
 Add a reproducibility map showing primary exact DP, brute-force bindings, R6S analyzer/protocol, and any independent generic verification used by the companion boundary results. This makes the “exact counterexample” phrase auditable.
 
-**Severity:** P1 package blocker.
+**Severity:** ORION-11 package blocker.
 
 ## Decision
 
@@ -62,9 +62,9 @@ Revision required; no new proof requested if the existing proof/check chain is e
 
 # Reviewer 3 — Novelty / journal editor
 
-## Major R3.1 — current title avoids the stale two-trade overclaim; keep QG1 overlap controlled
+## Major R3.1 — current title avoids the stale two-trade overclaim; keep ORION-09 overlap controlled
 
-The manuscript uses later QG5/QG7 only to delimit Q1, which is appropriate. Do not expand the later trade taxonomy or objective-phase story here. A single compact boundary subsection is enough.
+The manuscript uses later QG5/QG7 only to delimit ORION-01, which is appropriate. Do not expand the later trade taxonomy or objective-phase story here. A single compact boundary subsection is enough.
 
 **Severity:** overlap guard.
 
@@ -74,7 +74,7 @@ The paper credits TARE but the final novelty residual has not yet been stress-te
 
 **Repair:** deep cards for TARE plus 3–5 strongest exact/structural compiler analogues; classify `ADOPT/NOT_SUBSTITUTE/CLOSES_CLAIM` against the exact residual.
 
-**Severity:** P1 pre-submission novelty gate.
+**Severity:** ORION-11 pre-submission novelty gate.
 
 ## Minor R3.3 — contribution class
 
@@ -90,7 +90,7 @@ Potentially strong publishable theory result; novelty finalization pending liter
 
 ## Shared conclusion
 
-All reviewers agree the old scientific problem is repaired: Q1 no longer relies on an obsolete two-trade-completeness story. The current all-`n` support theorem is a coherent publication spine. No reviewer requests another scientific experiment or new theorem.
+All reviewers agree the old scientific problem is repaired: ORION-01 no longer relies on an obsolete two-trade-completeness story. The current all-`n` support theorem is a coherent publication spine. No reviewer requests another scientific experiment or new theorem.
 
 ## Minimum-sufficient repair set
 

@@ -1,16 +1,16 @@
-# P6 reproduce V2.1
+# ORION-16 reproduce V2.1
 
 Run from repository root:
 
 ```bash
-PYTHONPATH=src python papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py
-PYTHONPATH=src python papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py
+PYTHONPATH=src python papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py
+PYTHONPATH=src python papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py
 ```
 
 Normative sentinel:
 
 ```text
-P6 THEORY CLOSURE V2.1: PASS
+ORION-16 THEORY CLOSURE V2.1: PASS
 ```
 
 V2.1 specifically checks:
@@ -26,7 +26,7 @@ V2.1 specifically checks:
 Refutation capacity of the two graph checkers:
 
 ```bash
-PYTHONPATH=src python papers/paper-06-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py
+PYTHONPATH=src python papers/orion-16-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py
 ```
 
 Both `check_reopening` and `check_root_inclusive_safety` asserted set-algebra

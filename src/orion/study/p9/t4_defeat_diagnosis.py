@@ -79,7 +79,7 @@ from .hostile_representation_attacks import (
 
 RECORDED_RESULT = (
     Path(__file__).resolve().parents[4]
-    / "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json"
+    / "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json"
 )
 
 

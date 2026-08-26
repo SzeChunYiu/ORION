@@ -1,6 +1,6 @@
-# Q4 publication foundation V2 — Typed/scoped partial-knowledge state
+# ORION-04 publication foundation V2 — Typed/scoped partial-knowledge state
 
-**Paper:** ORION-Q4  
+**Paper:** ORION-ORION-04  
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 **Evidence base:** six exact-synthetic mechanism-isolation worlds + bounded N1-C/N2-F5B results  
 **Status:** `SCIENCE_COMPLETE_FOR_BOUNDED_SYNTHESIS__MANUSCRIPT_PACKAGE_REBUILD_REQUIRED`
@@ -15,7 +15,7 @@ A mechanism-isolation study asking whether **the type and scope attached to part
 - ContextNest owns substantial versioned/provenanced context-governance machinery beneath retrieval.
 - VOI, active learning, Pareto/interval decision making, provenance, temporal invalidation and retrieval are mature donor primitives.
 
-Q4 therefore does **not** claim any one of those mechanisms in isolation. Its residual is the cross-family result that **typed/scoped state is the load-bearing information boundary under deliberately matched hostile alternatives**, across several distinct downstream responsibilities.
+ORION-04 therefore does **not** claim any one of those mechanisms in isolation. Its residual is the cross-family result that **typed/scoped state is the load-bearing information boundary under deliberately matched hostile alternatives**, across several distinct downstream responsibilities.
 
 ### Claim ceiling
 Exact-synthetic mechanism evidence only. No deployment, real quantum pipeline, real-adversary security, generic LLM-capability, cryptographic, or universal active-learning claim.
@@ -28,7 +28,7 @@ Exact-synthetic mechanism evidence only. No deployment, real quantum pipeline, r
 4. N4-D: full-chain typed transport detects all registered laundering chains at zero false positives in the exact synthetic model; per-hop receipts cannot be forged in that model, so the result is not cryptographic security evidence.
 5. N4-E: decision-coupled probing beats pure information gain and other registered selectors under a shared stopping rule; max-entropy decoys specifically trap information gain.
 6. N4-F3: typed remint/transport beats matched re-derivation and naive carry-forward in the mixed-transport world, with zero invalidation mismatches; when reminting is unnecessary, all arms tie exactly and ORION spends zero remints.
-7. N1-C: typed scoped failure state has a bounded positive effect, but the allocation policy itself is exactly closed by an ideal VOI donor; Q4 must not claim policy novelty there.
+7. N1-C: typed scoped failure state has a bounded positive effect, but the allocation policy itself is exactly closed by an ideal VOI donor; ORION-04 must not claim policy novelty there.
 8. N2-F5B: original-world crossover prediction is donor-absorbed; only the frozen misspecification-robustness edge survives. This negative is part of the paper's first-right-of-refusal evidence.
 9. All cited N-lane receipts replay deterministically under the recorded protocols.
 10. LLM proxy arms are deterministic heuristics, not measurements of real LLM systems.
@@ -138,7 +138,7 @@ Every figure must regenerate from committed result receipts; no hand-transcribed
 The paper is stronger as a single responsibility/type thesis than as six contributions. The invariant is not 'typed data is better'; it is that *the type/scope required depends on the downstream responsibility*.
 
 ### Agent-memory reviewer
-STALE and recent repair work own broad stale-memory invalidation. Q4's N4-B should be one stress world, not a novelty headline.
+STALE and recent repair work own broad stale-memory invalidation. ORION-04's N4-B should be one stress world, not a novelty headline.
 
 ### Decision-theory reviewer
 VOI/active selection is donor machinery. Credit only the constructed information distinction and matched-control result, not VOI itself.
@@ -151,7 +151,7 @@ Do not treat thousands of synthetic episodes as thousands of independent scienti
 
 ## Next gate
 
-Q4 can proceed directly to `MANUSCRIPT_V2` after:
+ORION-04 can proceed directly to `MANUSCRIPT_V2` after:
 
 1. fresh related-work cards for STALE, context governance/versioning and closest VOI/active-selection donors;
 2. one unified figure/result contract is frozen;

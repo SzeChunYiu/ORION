@@ -1,4 +1,4 @@
-# Q1 figures plan V2 — theorem-first submission
+# ORION-01 figures plan V2 — theorem-first submission
 
 The original figure plan was written before R6S. V2 reorganizes the visual story around the sharp theorem `kappa_R6M=2` and uses computation primarily as corroboration/application.
 

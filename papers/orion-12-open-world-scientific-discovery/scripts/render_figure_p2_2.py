@@ -6,9 +6,9 @@ data and never hand-transcribed.
 
 Usage::
 
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/render_figure_p2_2.py            # write
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/render_figure_p2_2.py --check    # verify
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/render_figure_p2_2.py --stdout   # print
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/render_figure_p2_2.py            # write
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/render_figure_p2_2.py --check    # verify
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/render_figure_p2_2.py --stdout   # print
 
 Matplotlib is an optional dependency under the ``plots`` extra.
 Exit codes: 0 ok, 1 drift under ``--check``, 2 missing input.
@@ -126,7 +126,7 @@ def render_tex(trajectory_data: dict) -> str:
     n_tasks = int(trajectory_data["n_tasks"])
 
     add("% GENERATED from evidence/offline_results/OFFLINE_MECHANISMS_V1.json")
-    add("% Regenerate with: papers/paper-02-open-world-scientific-discovery/scripts/render_figure_p2_2.py")
+    add("% Regenerate with: papers/orion-12-open-world-scientific-discovery/scripts/render_figure_p2_2.py")
     add("\\begin{tikzpicture}[x=0.48cm,y=5.0cm]")
 
     # Axes

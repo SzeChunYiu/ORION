@@ -13,9 +13,9 @@ ROOT = Path(__file__).resolve().parents[3]
 PAPERS = ROOT / "papers"
 CAND = PAPERS / "candidates"
 
-P6 = PAPERS / "paper-06-formal-epistemic-structures-and-mechanics" / "submission"
-P7 = PAPERS / "paper-07-epistemic-navigation-open-worlds" / "submission"
-P8 = PAPERS / "paper-08-epistemic-authority-autonomous-science" / "submission"
+P6 = PAPERS / "orion-16-formal-epistemic-structures-and-mechanics" / "submission"
+P7 = PAPERS / "orion-17-epistemic-navigation-open-worlds" / "submission"
+P8 = PAPERS / "orion-18-epistemic-authority-autonomous-science" / "submission"
 
 REQUIRED_PROGRAMME = [
     CAND / "P6_P10_ISSUE_RECONCILIATION_2026-08-18.md",

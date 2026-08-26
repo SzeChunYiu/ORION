@@ -1,6 +1,6 @@
-# P9-U-T4 successor freeze: the invariant-profile representation against the frozen format-prior attack class
+# ORION-19-U-T4 successor freeze: the invariant-profile representation against the frozen format-prior attack class
 
-Protocol id: `P9.D1T4S.INVARIANT_PROFILE_ROBUSTNESS`. Frozen 2026-08-24,
+Protocol id: `ORION-19.D1T4S.INVARIANT_PROFILE_ROBUSTNESS`. Frozen 2026-08-24,
 before any successor outcome was computed. §§1–9 are unchangeable after the
 first successor result exists; a post-run disclosure appendix may be appended.
 

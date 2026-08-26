@@ -1,4 +1,4 @@
-# P2 cover letter — IP&M narrowed-scope draft
+# ORION-12 cover letter — IP&M narrowed-scope draft
 
 **Status:** scientific-scope draft complete; author/affiliation/corresponding-author metadata intentionally absent until supplied by the authors. Primary target: *Information Processing & Management* (IP&M).
 
@@ -44,5 +44,5 @@ The authors
 - Do not add "state-of-the-art", "first", "significantly outperforms", or other superiority language unless a new prospective result and claim-ledger update legitimately support it.
 - Do not turn `CANNOT_CHECK`, provider unavailability, or bounded null probes into positive evidence.
 - Any numeric result added here should be traceable to the claim ledger / archived evidence.
-- Re-run the claim ledger and P2 assimilation checks after substantive manuscript changes.
+- Re-run the claim ledger and ORION-12 assimilation checks after substantive manuscript changes.
 - Apply current IP&M author/submission requirements at upload time; do not guess template, anonymisation, declaration, or metadata requirements from stale instructions.

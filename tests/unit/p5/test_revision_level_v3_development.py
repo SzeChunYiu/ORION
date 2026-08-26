@@ -7,7 +7,7 @@ from orion.study.p5.revision_level_v3_development import derive_development_summ
 
 ROOT = Path(__file__).resolve().parents[3]
 SUITE = ROOT / "research" / "self-orion-v3" / "development" / "PROTECTED_DEVELOPMENT_SUITE_V1.json"
-V1_PROTOCOL = ROOT / "papers" / "paper-05-self-orion" / "protocol" / "PROTOCOL_V1.json"
+V1_PROTOCOL = ROOT / "papers" / "orion-15-self-orion" / "protocol" / "PROTOCOL_V1.json"
 
 
 def test_development_panel_is_evidence_sensitive_but_not_scientific_result() -> None:

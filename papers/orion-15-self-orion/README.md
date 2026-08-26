@@ -1,6 +1,6 @@
 # Paper 05 — Self-ORION
 
-**Stable ID:** ORION-P5  
+**Stable ID:** ORION-ORION-15  
 **Status:** `PEER_REVIEW_READY` for the scoped non-self-promotion claim; transferable improvement remains `CANNOT_CHECK`.
 
 ## Scoped claim

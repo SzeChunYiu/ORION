@@ -9,9 +9,9 @@ into ``evidence/offline_results``.
 
 Examples::
 
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --check
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --stdout
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --write-raw /tmp/p2-offline
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/run_offline_companion.py --check
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/run_offline_companion.py --stdout
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/run_offline_companion.py --write-raw /tmp/p2-offline
 
 ``--write-raw`` writes all 840 normalized result records and all rich per-run
 artifacts.  Those files are regenerable evidence; the committed summary carries

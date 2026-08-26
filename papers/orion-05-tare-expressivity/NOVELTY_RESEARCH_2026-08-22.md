@@ -1,10 +1,10 @@
-# Q1 fresh hostile novelty research — 2026-08-22
+# ORION-01 fresh hostile novelty research — 2026-08-22
 
 Purpose: submission-oriented novelty threat map for the **final closed ORION-Q result**, not a self-grant of novelty. Search date: 2026-08-22. The result remains `NOT_R6` internally until external scientific review.
 
 ## Exact candidate claim searched
 
-The strongest Q1 candidate is now:
+The strongest ORION-01 candidate is now:
 
 > In the frozen three-block shared-one-bit-Tag TARE-M2 compiler grammar with donor-owned all-three Restore factoring and the frozen support-count objective, the smallest uniform frame-support bound containing an optimum for every instance and every qubit count is exactly two: `kappa_R6M = 2`. Support >=3 is exchange-removable without cost increase; an exact n=2 instance proves support one is insufficient.
 
@@ -21,19 +21,19 @@ Secondary claims searched:
 
 Niclas Schillo, Andreas Sturm, Ruediger Quay, **“TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation,”** arXiv:2601.05740 (2026).
 
-TARE introduces the Tag-and-Restore block-encoding primitive, including mutually anticommuting auxiliary Pauli strings, transformation to target Paulis, logarithmic ancilla scaling, and width/depth tradeoffs. Q1 must not claim the primitive, Tag/Restore identity, or the existence/value of auxiliary-frame choices as novel.
+TARE introduces the Tag-and-Restore block-encoding primitive, including mutually anticommuting auxiliary Pauli strings, transformation to target Paulis, logarithmic ancilla scaling, and width/depth tradeoffs. ORION-01 must not claim the primitive, Tag/Restore identity, or the existence/value of auxiliary-frame choices as novel.
 
 ### 2. Anticommuting unitary partitioning — direct conceptual donor
 
 Artur F. Izmaylov, Tzu-Ching Yen, Robert A. Lang, Vladyslav Verteletskyi, **“Unitary Partitioning Approach to the Measurement Problem in the Variational Quantum Eigensolver Method,”** J. Chem. Theory Comput. 16, 190 (2020), DOI: 10.1021/acs.jctc.9b00791.
 
-This literature owns the basic observation that mutually anticommuting Pauli sums can be normalized into unitaries and grouped/implemented as such. Q1 must not present anticommuting grouping or unitary partitioning as new.
+This literature owns the basic observation that mutually anticommuting Pauli sums can be normalized into unitaries and grouped/implemented as such. ORION-01 must not present anticommuting grouping or unitary partitioning as new.
 
 ### 3. Pauli-frame / Pauli-IR compiler optimization — strong adjacent threat
 
 Jennifer Paykin et al., **“PCOAST: A Pauli-based Quantum Circuit Optimization Framework,”** arXiv:2305.10966; IEEE QCE 2023.
 
-PCOAST represents Clifford action through Pauli frames and optimizes Pauli-parameterized circuit structures. It includes local-frame/factor-node support notions and greedy reduction of Pauli support. This is an important terminology/mechanism neighbor: Q1 should distinguish its result as an **exact uniform normal-form theorem for a particular block-encoding grammar**, not as the invention of Pauli-frame reduction.
+PCOAST represents Clifford action through Pauli frames and optimizes Pauli-parameterized circuit structures. It includes local-frame/factor-node support notions and greedy reduction of Pauli support. This is an important terminology/mechanism neighbor: ORION-01 should distinguish its result as an **exact uniform normal-form theorem for a particular block-encoding grammar**, not as the invention of Pauli-frame reduction.
 
 ### 4. High-level BSF Hamiltonian-simulation compilers — current adjacent threat
 
@@ -57,7 +57,7 @@ Yuxin Zhang and Changpeng Shao, **“Low-ancilla block encodings via Hamiltonian
 
 Tongyang Li et al., **“Optimal T Counts under Sparsity: from QROM to State Preparation and Block Encoding,”** arXiv:2607.28260 (2026), proves asymptotically optimal fault-tolerant T-count bounds for sparse QROM/state preparation/block encoding.
 
-These papers do not appear to address the shared-Tag TARE frame-support normal form, but they mean Q1 should **not** be framed as a general block-encoding complexity theorem. Its exact scope must stay compiler-grammar specific.
+These papers do not appear to address the shared-Tag TARE frame-support normal form, but they mean ORION-01 should **not** be framed as a general block-encoding complexity theorem. Its exact scope must stay compiler-grammar specific.
 
 ## Bounded search conclusion
 
@@ -75,7 +75,7 @@ for the frozen shared-Tag TARE-M2 grammar/objective, with:
 2. an exact support-one counterexample proving sharpness;
 3. the weight-two obstruction matching the failure boundary of the proof itself.
 
-This is therefore the claim that deserves the most aggressive formal novelty review and should be the scientific center of Q1.
+This is therefore the claim that deserves the most aggressive formal novelty review and should be the scientific center of ORION-01.
 
 ### Secondary residuals
 

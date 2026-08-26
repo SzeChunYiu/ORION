@@ -1,4 +1,4 @@
-# P7 objective-change transport result receipt V1
+# ORION-17 objective-change transport result receipt V1
 
 **Run:** GitHub Actions `32663143579`  
 **Artifact:** `p7-objective-change-transport-v1`, artifact ID `9499582737`  
@@ -51,6 +51,6 @@ The second implementation (manual scaling, manual confusion accounting, no reuse
 
 ## Scientific disposition
 
-Together with the RO-Crate representation-change and Wine responsibility-change receipts, P7 now has non-synthetic evidence in all three change classes: representation, responsibility/ontology, and objective/world/obligation. Witness-aware transport is `1.0` in each; value-only and always-reopen are each separated in every class.
+Together with the RO-Crate representation-change and Wine responsibility-change receipts, ORION-17 now has non-synthetic evidence in all three change classes: representation, responsibility/ontology, and objective/world/obligation. Witness-aware transport is `1.0` in each; value-only and always-reopen are each separated in every class.
 
 This licenses the bounded claim that witness/evidence-aware closure transport survives all three executed change classes. It does **not** establish universal scientific-regime transport across arbitrary world-model, objective or research-agent changes, independent scientific authority beyond same-workflow two-implementation agreement, or any clinical use; no classifier or medical decision rule is claimed.

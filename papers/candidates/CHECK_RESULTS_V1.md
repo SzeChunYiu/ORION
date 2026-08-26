@@ -1,4 +1,4 @@
-# P6–P8 bounded mathematical check results V1
+# ORION-16–ORION-18 bounded mathematical check results V1
 
 **Date:** 2026-08-17  
 **Environment:** CPython 3.13.5, Linux x86_64  
@@ -6,9 +6,9 @@
 
 The scripts use only Python's standard library and make no network, provider, model, judge, or LLM API call.
 
-## P6
+## ORION-16
 
-Script: `paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py`
+Script: `orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py`
 
 Observed deterministic counts:
 
@@ -21,9 +21,9 @@ Observed deterministic counts:
 
 The enumeration checks implementation-level instances of downstream reopening, unaffected-state preservation, separated commutation and non-escalation. The general claims rely on the proofs in `manuscript/FORMAL_CORE_V1.md`.
 
-## P7
+## ORION-17
 
-Script: `paper-07-epistemic-navigation-open-worlds/formal/check_countermodels.py`
+Script: `orion-17-epistemic-navigation-open-worlds/formal/check_countermodels.py`
 
 Observed deterministic results:
 
@@ -36,9 +36,9 @@ Observed deterministic results:
 - complete preservation-map transfer and incomplete-map reopening fixtures: confirmed;
 - mandatory-open obligation blocks task stop: confirmed.
 
-## P8
+## ORION-18
 
-Script: `paper-08-epistemic-authority-autonomous-science/formal/check_authority_calculus.py`
+Script: `orion-18-epistemic-authority-autonomous-science/formal/check_authority_calculus.py`
 
 Observed deterministic results:
 
@@ -48,12 +48,12 @@ Observed deterministic results:
 - additive evidence counterexamples generated for every finite blocker penalty from 0 through 100: **101**;
 - dependency-grounded revocation propagated to the exact descendant closure;
 - candidate-controlled constant-accept policy authorized externally false candidates;
-- toy P1–P5 authority-gate embeddings represented the intended hard-obligation behavior.
+- toy ORION-11–ORION-15 authority-gate embeddings represented the intended hard-obligation behavior.
 
 ## Limitations and next authority gates
 
 - The scripts were exercised in the active analysis environment, not yet in repository CI.
 - The finite enumerations do not prove unbounded theorems.
-- The P1–P5 embeddings are toy fixtures until checked against exact current registry/protocol decisions.
+- The ORION-11–ORION-15 embeddings are toy fixtures until checked against exact current registry/protocol decisions.
 - No result here establishes novelty or empirical value.
 - Clean GitHub Actions execution, independent reproduction, proof-assistant formalization where useful, and nearest-work saturation remain required.

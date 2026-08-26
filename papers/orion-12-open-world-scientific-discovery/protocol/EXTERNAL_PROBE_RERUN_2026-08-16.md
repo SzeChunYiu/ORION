@@ -1,4 +1,4 @@
-# P2 corrected AutoResearchBench external probe rerun — 2026-08-16
+# ORION-12 corrected AutoResearchBench external probe rerun — 2026-08-16
 
 This rerun follows the released-bundle partition correction: the pinned decrypted AutoResearchBench bundle contains an explicit `type` field with 600 `deep` and 400 `wide` records, while both task families use list-valued `arxiv_id` fields. Candidate custody remains gold-blind.
 

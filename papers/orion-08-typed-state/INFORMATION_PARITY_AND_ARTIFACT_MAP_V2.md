@@ -1,10 +1,10 @@
-# Q4 information-parity and artifact map V2
+# ORION-04 information-parity and artifact map V2
 
-**Purpose:** close Q4 mock-review items E1/E2/E5/E6 and expose the evidence chain without inflating the scientific claim.
+**Purpose:** close ORION-04 mock-review items E1/E2/E5/E6 and expose the evidence chain without inflating the scientific claim.
 
 ## 1. Information-parity definition
 
-For Q4, a comparison satisfies **information parity** when:
+For ORION-04, a comparison satisfies **information parity** when:
 
 1. candidate and comparator operate on the same frozen world realization;
 2. they receive the same candidate-visible primitive facts and protected outcome boundary;
@@ -67,20 +67,20 @@ Specific notes:
 
 Path ellipses in this reviewer guide are shorthand only; the final submission manifest must contain the exact repository-relative strings and content digests.
 
-## 6. P13 internal ownership boundary
+## 6. ORION-23 internal ownership boundary
 
-Q4 uses **downstream responsibility** as an organizing variable for mechanism-isolation experiments: probe, reopen, verify, transport, select experiment, remint/reuse.
+ORION-04 uses **downstream responsibility** as an organizing variable for mechanism-isolation experiments: probe, reopen, verify, transport, select experiment, remint/reuse.
 
-Q4 does **not** claim a general theory that a state certificate should name its supported downstream responsibility. The general responsibility-scoped sufficiency/authority theory and responsibility-carrying-state object are owned by ORION-P13. Q4's contribution is bounded exact-synthetic evidence that different downstream decisions can require different typed/scope distinctions.
+ORION-04 does **not** claim a general theory that a state certificate should name its supported downstream responsibility. The general responsibility-scoped sufficiency/authority theory and responsibility-carrying-state object are owned by ORION-ORION-23. ORION-04's contribution is bounded exact-synthetic evidence that different downstream decisions can require different typed/scope distinctions.
 
-Recommended Q4 wording:
+Recommended ORION-04 wording:
 
-> We use “responsibility” descriptively for the decision consuming state. General responsibility-carrying-state authority is developed separately in ORION-P13 and is not claimed here.
+> We use “responsibility” descriptively for the decision consuming state. General responsibility-carrying-state authority is developed separately in ORION-ORION-23 and is not claimed here.
 
 ## 7. Required manuscript insertions before second review
 
 1. Shared Methods: information-parity definition.
 2. Introduction/Synthesis: supplied-rule versus learned-rule boundary.
 3. Results/captions: descriptive/inferential reporting rule and exact denominators.
-4. Related Work/Discussion: P13 internal ownership sentence.
+4. Related Work/Discussion: ORION-23 internal ownership sentence.
 5. Reproducibility: exact artifact map generated from the final publication cut.

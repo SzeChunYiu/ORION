@@ -1,4 +1,4 @@
-# P13+P14 objective-gold derivation contract (V1)
+# ORION-23+ORION-24 objective-gold derivation contract (V1)
 
 Companion protocol doc for `P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json`
 (schema `ORION.P13P14.ObjectiveGoldDerivationContract.v1`). The JSON is the
@@ -13,7 +13,7 @@ passed.
 
 ## What this freezes
 
-Issue #1086 (consolidated P13+P14) requires: *derive gold only from objective
+Issue #1086 (consolidated ORION-23+ORION-24) requires: *derive gold only from objective
 facts: object/hash existence, ancestry, tag/signature, test exit and timestamp
 order.* This contract turns that requirement into five admissible fact classes,
 each with a single machine-checkable predicate and a closed label set, plus
@@ -43,11 +43,11 @@ exactly as it stands at the bound hash.
 ## Embedded rule of record (verbatim)
 
 ```markdown
-# P13+P14 lifecycle-contract gold-derivation rule (V1)
+# ORION-23+ORION-24 lifecycle-contract gold-derivation rule (V1)
 
 Status: **PROSPECTIVE_PROTOCOL_RULE (additive note)**. As of 2026-08-24 no
 frozen external lifecycle-contract campaign design exists in this repository —
-the frozen P14 external artifacts
+the frozen ORION-24 external artifacts
 (`top_tier/P14_EXTERNAL_GOVERNANCE_PROTOCOL_V1.md`,
 `top_tier/external_v1/P14_EXTERNAL_PILOT_PROTOCOL_V1.md`,
 `P14D_BLINDED_EXTERNAL_VALIDATION_ACQUISITION_PROTOCOL_V1.md`) are
@@ -60,7 +60,7 @@ note is the binding rule of record for any such campaign.
 
 ## Rule
 
-Any external lifecycle-contract campaign conducted for the consolidated P13+P14
+Any external lifecycle-contract campaign conducted for the consolidated ORION-23+ORION-24
 scope (issue #1086 decision D7) must derive gold **only** from objective,
 machine-checkable facts:
 

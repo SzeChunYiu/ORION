@@ -1,13 +1,13 @@
 # Paper 01 — Recursive Epistemic Reconstruction
 
-**Stable ID:** ORION-P1  
+**Stable ID:** ORION-ORION-11  
 **Status:** historical bounded V2 `PEER_REVIEW_READY_FOR_FROZEN_MECHANICAL_SUBJECT`; current enlarged manuscript `NOT_SUBMISSION_READY`. The later owner-algebra and V11--V13 programme has 0 certified maps, 720 `CANNOT_CHECK` maps, 0/7 signed external outputs and 0/4 closed authority acts; it does not rewrite the bounded mechanical result.
 
 ## Current package authority
 
 The current status is deliberately split along two axes:
 
-- **Scientific result:** `P1.NECESSITY.V2.2.4` remains supported only on the
+- **Scientific result:** `ORION-11.NECESSITY.V2.2.4` remains supported only on the
   frozen credential-free mechanical world family. The historical broad H1
   remains `NOT_SUPPORTED`; neither result authorizes model-general,
   naturalistic, or open-ended superiority.

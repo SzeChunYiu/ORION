@@ -57,7 +57,7 @@ support. See `../evidence/literature/README.md`.
   `main.tex` change and no key rename are required.
 - **`metasyn2026`** — claimed title dropped the leading `MetaSyn: A Benchmark
   for`, and the author list omitted Min Zhang. Not previously reported. Fixed.
-- **`knowplan2026`** — the post-P2-X bibliography paired arXiv:2608.06530 with
+- **`knowplan2026`** — the post-ORION-12-X bibliography paired arXiv:2608.06530 with
   the wrong title and authors. The primary record is *KNOWPLAN: Knowledge-Driven
   AI Agents for Smart Degree Pathway Planning*. The key remains mechanism-relevant
   because the paper uses finite atomic catalog obligations plus an explicit
@@ -149,7 +149,7 @@ in absolute points behaves very differently from the same margin on a benchmark
 scored near the middle of the range. Second, the stopping literature does not
 treat a work-reduction number as meaningful on its own — it is only meaningful
 paired with a retained-recall guarantee, which is the same fail-closed shape
-`P2.H3` asserts.
+`ORION-12.H3` asserts.
 
 ---
 

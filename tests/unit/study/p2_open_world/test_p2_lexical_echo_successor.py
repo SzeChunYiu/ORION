@@ -311,7 +311,7 @@ GATE_READ_FIELDS = ("hit_at_1", "hit_at_10")
 # reproduction check that demands it is an unattainable gate rather than a failed
 # one. Four mrr_at_50 values were observed at up to three units in the last
 # place; the smallest gate threshold is 0.01, thirteen orders of magnitude away.
-# See papers/paper-02-open-world-scientific-discovery/
+# See papers/orion-12-open-world-scientific-discovery/
 # P2_LEXICAL_ECHO_REPRODUCTION_DIAGNOSIS_2026-08-23.json.
 MAX_ULPS = 4
 
@@ -420,7 +420,7 @@ def test_archived_probe_artifacts_are_untouched() -> None:
 
     external = (
         REPO_ROOT
-        / "papers/paper-02-open-world-scientific-discovery/evidence/external_results"
+        / "papers/orion-12-open-world-scientific-discovery/evidence/external_results"
     )
     probe = json.loads((external / "AUTORESEARCHBENCH_DEEP_ID_PROBE_V1.json").read_text())
     attribution = json.loads(

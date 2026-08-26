@@ -1,6 +1,6 @@
-# P8 — Scientific Authority Without Authority Laundering
+# ORION-18 — Scientific Authority Without Authority Laundering
 
-**Stable ID:** ORION-P8  
+**Stable ID:** ORION-ORION-18  
 **Current science manuscript:** `manuscript/FINAL_V3.md`  
 **Historical V2/V2.1 submission bytes:** preserved  
 **Current status:** bounded theory + bounded real evidence earned; external scientific adjudication still open.
@@ -13,7 +13,7 @@ How can local authorization, delegation, provenance, verifier certificates, rele
 
 ### General mechanized authority calculus
 
-The mechanized authority calculus proves non-amplification, domain confinement, non-compensatory refusal, defeater monotonicity, epoch isolation and delegation/conversion laws over uninterpreted domains/objects/issuers. The chain interpretation then proves the missing bridge: the conditions P8 places on a donor hop entail the calculus delegation hypotheses, and a chain remains confined to the root donor's scope/domain reach/epoch. The induction schema carries arbitrary finite chain length; solver expansion is corroborated through the stable registered bound.
+The mechanized authority calculus proves non-amplification, domain confinement, non-compensatory refusal, defeater monotonicity, epoch isolation and delegation/conversion laws over uninterpreted domains/objects/issuers. The chain interpretation then proves the missing bridge: the conditions ORION-18 places on a donor hop entail the calculus delegation hypotheses, and a chain remains confined to the root donor's scope/domain reach/epoch. The induction schema carries arbitrary finite chain length; solver expansion is corroborated through the stable registered bound.
 
 `formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json` is the current authority for this bridge.
 
@@ -55,17 +55,17 @@ This is the meaningful composition result. It tests the composition operator, no
 - partial revocation preserves retained support;
 - independent checker and deterministic replay: GREEN.
 
-This is bounded real evidence that the discharge/revocation semantics behave as specified. It is not independent external adjudication of P8's scientific calculus.
+This is bounded real evidence that the discharge/revocation semantics behave as specified. It is not independent external adjudication of ORION-18's scientific calculus.
 
 ## Strongest paper-level claim
 
-> Local action/release authority and scientific-discharge authority are distinct relations. P8 gives a typed, non-amplifying authority calculus in which donor-local verdicts remain intact while scientific discharge propagates only through scope/domain/epoch-confining delegation or explicit protected coercion, with three-valued blocker and support-revocation semantics. The donor-chain interface is formally interpreted into the general calculus and its composition operator is exhaustively stress-tested on a reduced exact state space; a separate 20-case real evidence study has zero false scientific promotion under the registered gold. The historical 169 donor-pair success count is multiplicity of one reflexive composition, not heterogeneous-chain evidence.
+> Local action/release authority and scientific-discharge authority are distinct relations. ORION-18 gives a typed, non-amplifying authority calculus in which donor-local verdicts remain intact while scientific discharge propagates only through scope/domain/epoch-confining delegation or explicit protected coercion, with three-valued blocker and support-revocation semantics. The donor-chain interface is formally interpreted into the general calculus and its composition operator is exhaustively stress-tested on a reduced exact state space; a separate 20-case real evidence study has zero false scientific promotion under the registered gold. The historical 169 donor-pair success count is multiplicity of one reflexive composition, not heterogeneous-chain evidence.
 
 ## Donor boundary
 
-P8 does **not** claim invention of generic authorization, delegation, provenance, typed certificates, release gates, evidence ledgers, cryptographic receipts, or cross-domain authority primitives. Those are absorbed donors.
+ORION-18 does **not** claim invention of generic authorization, delegation, provenance, typed certificates, release gates, evidence ledgers, cryptographic receipts, or cross-domain authority primitives. Those are absorbed donors.
 
-P8's residual object is the scientific **discharge/admission relation above local authority**: which typed evidence and support can authorize a scientific conclusion, how authority narrows across composition, and when missing/undetermined premises force `CANNOT_CHECK`.
+ORION-18's residual object is the scientific **discharge/admission relation above local authority**: which typed evidence and support can authorize a scientific conclusion, how authority narrows across composition, and when missing/undetermined premises force `CANNOT_CHECK`.
 
 ## Remaining top-tier blockers
 
@@ -80,7 +80,7 @@ P8's residual object is the scientific **discharge/admission relation above loca
    and only adjudication by parties outside the programme can separate those.
    The result stands as a specification-conformance result and is reported as
    one.
-2. **Real integrated authorization/evidence donor.** Demonstrate P8's residual scientific-discharge distinction against a strong deployed-style authorization/evidence stack at matched information.
+2. **Real integrated authorization/evidence donor.** Demonstrate ORION-18's residual scientific-discharge distinction against a strong deployed-style authorization/evidence stack at matched information.
 3. **Manuscript correction.** Remove every claim that treats 169 as heterogeneous breadth and replace it with the mechanized interpretation + exhaustive soundness identity.
 4. **Submission closure.** Current nearest-work refresh, clean-environment replay, PDF/clipping/content-binding audit and exact final submission-byte binding.
 

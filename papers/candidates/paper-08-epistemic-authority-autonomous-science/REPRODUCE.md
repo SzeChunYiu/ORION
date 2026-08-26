@@ -1,4 +1,4 @@
-# Reproduce P8 candidate formal results
+# Reproduce ORION-18 candidate formal results
 
 **Candidate:** A Theory of Epistemic Authority for Autonomous Science  
 **Status:** deterministic formal-support path; no cross-domain superiority/novelty authority  
@@ -46,7 +46,7 @@ python papers/candidates/paper-08-epistemic-authority-autonomous-science/formal/
 Expected V2 semantic signature:
 
 ```text
-P8 authority-calculus checks: PASS
+ORION-18 authority-calculus checks: PASS
   cross-domain no-coercion cases: 36
   scope narrowing/widening fixtures: confirmed
   stale-epoch replay rejection: confirmed
@@ -55,7 +55,7 @@ P8 authority-calculus checks: PASS
   post-hoc refusal non-prevention fixture: confirmed
   self-authorization countermodel: confirmed
   clean authorized coverage control: confirmed
-  P1-P5 toy embedding fixtures: confirmed
+  ORION-11-ORION-15 toy embedding fixtures: confirmed
 ```
 
 The 36 domain-pair cases use six toy domains. Without explicit coercions, only same-domain authorization is accepted. This is a finite implementation fixture for the typed derivation rule, not evidence that real coercions are semantically sound.
@@ -93,12 +93,12 @@ Bounded support exists for:
 - post-hoc refusal being non-preventive after irreversible commit;
 - candidate-controlled self-admission countermodel;
 - clean authorized coverage positive control;
-- toy representability of five P1–P5 hard-obligation gate shapes.
+- toy representability of five ORION-11–ORION-15 hard-obligation gate shapes.
 
 They do **not** establish:
 
 - semantic soundness of any real cross-domain coercion;
-- exact P1–P5 decision-equivalent embedding;
+- exact ORION-11–ORION-15 decision-equivalent embedding;
 - faithful ETAS/FAVA/SecPAL/Delegation-Logic embeddings;
 - that cross-domain typing beats independent correct local gates;
 - reduced real unauthorized action without excessive refusal;
@@ -106,11 +106,11 @@ They do **not** establish:
 
 ## 7. Next reproducibility layers
 
-### A. Exact P1–P5 embeddings
-Freeze current native gate fixtures with protocol/registry identities and require decision equivalence under the P8 representation.
+### A. Exact ORION-11–ORION-15 embeddings
+Freeze current native gate fixtures with protocol/registry identities and require decision equivalence under the ORION-18 representation.
 
 ### B. Authorization-donor fixtures
-Encode representative native policy decisions from trust-management/effect/permission systems where specifications/code permit. P8 must preserve those decisions before claiming generalization.
+Encode representative native policy decisions from trust-management/effect/permission systems where specifications/code permit. ORION-18 must preserve those decisions before claiming generalization.
 
 ### C. Cross-domain attack generator
 Create versioned paired cases for:
@@ -130,8 +130,8 @@ Each case needs exact hidden label, effect identity, domain/scope, evidence/gran
 #341 requires labels/evaluator rules not writable by the candidate under test. Freeze evaluator chronology, access telemetry and result hashes prospectively.
 
 ### E. Strong baselines
-Compare against independent P1–P5 gates and strongest feasible effect/permission/authorization donor formulations, not only confidence/scalar/no-policy baselines.
+Compare against independent ORION-11–ORION-15 gates and strongest feasible effect/permission/authorization donor formulations, not only confidence/scalar/no-policy baselines.
 
 ## 8. Claim authority
 
-`CLAIM_LEDGER_V1.md` is the current maximum claim boundary. P8's decisive paper-level result remains `CANNOT_CHECK`: cross-domain composition must add anti-laundering/revocation value beyond already-correct independent gates and mature authorization systems without causing excessive refusal.
+`CLAIM_LEDGER_V1.md` is the current maximum claim boundary. ORION-18's decisive paper-level result remains `CANNOT_CHECK`: cross-domain composition must add anti-laundering/revocation value beyond already-correct independent gates and mature authorization systems without causing excessive refusal.

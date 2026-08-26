@@ -1,4 +1,4 @@
-# P2 open-world acquisition successor — prospective freeze
+# ORION-12 open-world acquisition successor — prospective freeze
 
 - **Record id**: `P2_OPEN_WORLD_ACQUISITION_FREEZE`
 - **Date**: 2026-08-22
@@ -38,7 +38,7 @@ scientific terminal remains `P2_NARROWED`.
 ### 1.1 Why the committed offline gold world is not the new basis
 
 The obvious candidate for a fresh basis was a new seed of
-`papers/paper-02-open-world-scientific-discovery/evidence/offline_gold/`, whose
+`papers/orion-12-open-world-scientific-discovery/evidence/offline_gold/`, whose
 generator `corpus.build_world(seed)` is seed-parameterised. It does not work, and
 the reason is recorded here rather than discovered later by a reader:
 
@@ -179,12 +179,12 @@ arm numbers over it.
 
 | Check | Requirement |
 |---|---|
-| **P1** | every scaffold term's df/N ≥ 0.20 |
-| **P2** | every domain term's df/N ≤ 0.06 |
-| **P3** | every task has ≥ 2 gold records |
-| **P4** | on `distinguishable`, every gold record carries ≥ 3 distinct topic terms and no neighbourhood record carries more than 2 |
-| **P5** | every task's neighbourhood is at least as large as the 20-result cap |
-| **P6** | on `distinguishable`, no gold record carries any of its question's scaffold terms |
+| **ORION-11** | every scaffold term's df/N ≥ 0.20 |
+| **ORION-12** | every domain term's df/N ≤ 0.06 |
+| **ORION-13** | every task has ≥ 2 gold records |
+| **ORION-14** | on `distinguishable`, every gold record carries ≥ 3 distinct topic terms and no neighbourhood record carries more than 2 |
+| **ORION-15** | every task's neighbourhood is at least as large as the 20-result cap |
+| **ORION-16** | on `distinguishable`, no gold record carries any of its question's scaffold terms |
 
 ---
 

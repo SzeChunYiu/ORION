@@ -1,7 +1,7 @@
 {
   "date": "2026-08-21",
-  "expected_probe_artifact": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-21.jsonl",
-  "expected_result_artifact": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
+  "expected_probe_artifact": "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-21.jsonl",
+  "expected_result_artifact": "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
   "gate_served": "P3-U-T5",
   "gate_statement": "No new identity coordinate has been discovered from failure and prospectively validated.",
   "known_before_freeze": {
@@ -94,7 +94,7 @@
       "polarity",
       "modality"
     ],
-    "freeze_document": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
+    "freeze_document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
     "gates": {
       "G1_CONSTRUCTION": {
         "blocking": true,
@@ -137,8 +137,8 @@
       }
     },
     "intact_sources": {
-      "INTACT_DERIVATION": "papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
-      "INTACT_HELDOUT_REAL": "papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "INTACT_DERIVATION": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "INTACT_HELDOUT_REAL": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl",
       "INTACT_HELDOUT_SYNTHETIC": "research/p3-coordinate-necessity-v1/cases.jsonl"
     },
     "max_violation_rate": 0.0,
@@ -172,7 +172,7 @@
     }
   },
   "parameters_sha256": "28d3e289d3dddddaef142e5756b77a825829836f1eadb900b80e49f985f73691",
-  "prose_freeze": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
+  "prose_freeze": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
   "record": "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE",
   "runner": "src/orion/study/p3/partial_observation_probe.py",
   "schema_version": "orion.p3.partial-observation-coordinate-freeze.v1",

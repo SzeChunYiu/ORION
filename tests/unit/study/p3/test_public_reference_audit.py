@@ -29,7 +29,7 @@ from orion.study.p3_public_reference import load_jsonl
 from orion.study.p3_public_reference_analysis import ABLATIONS
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-ATLAS_ROOT = REPO_ROOT / "papers/paper-03-global-knowledge-portrait/gold/adjudicated"
+ATLAS_ROOT = REPO_ROOT / "papers/orion-13-global-knowledge-portrait/gold/adjudicated"
 ATLASES = ("public-reference-v1", "public-reference-v1.1-confirmatory")
 
 # Measured, not assumed: both frozen atlases leave these two coordinates empty

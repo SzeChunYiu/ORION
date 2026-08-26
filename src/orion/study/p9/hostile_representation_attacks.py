@@ -7,7 +7,7 @@ semantic-orbit controls, symbol and order reminting, and same-information
 round-trip validation **as gates rather than as robustness appendices**".
 
 The attacks are named in exactly one place --
-``papers/paper-09-structured-epistemic-learning/successor/P9_U_MANUSCRIPT.tex``
+``papers/orion-19-structured-epistemic-learning/successor/P9_U_MANUSCRIPT.tex``
 -- and nowhere in the repository is any of them implemented, fixtured or run.
 This module runs them.
 
@@ -32,7 +32,7 @@ is nothing for it to explain. So each contrast is re-measured first, and a
 contrast whose comparator was constant is reported ``CANNOT_CHECK`` for the
 attack too rather than being scored as "the attack failed".
 
-Protocol: ``papers/paper-09-structured-epistemic-learning/protocol/
+Protocol: ``papers/orion-19-structured-epistemic-learning/protocol/
 P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE_2026-08-21.md`` and its JSON twin.
 The runner recomputes the twin's parameter digest from its own constants and
 refuses to run on a mismatch, and it reports no arm number at all if a
@@ -82,11 +82,11 @@ from .d1_data_runtime import generate_d1_dataset
 RESULT_SCHEMA_VERSION = "orion.p9.ut4-hostile-representation-attack-result.v1"
 
 FREEZE_DOCUMENT = (
-    "papers/paper-09-structured-epistemic-learning/protocol/"
+    "papers/orion-19-structured-epistemic-learning/protocol/"
     "P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE_2026-08-21.md"
 )
 FREEZE_TWIN = (
-    "papers/paper-09-structured-epistemic-learning/protocol/"
+    "papers/orion-19-structured-epistemic-learning/protocol/"
     "P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE_2026-08-21.json"
 )
 

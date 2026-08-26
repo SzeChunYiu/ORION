@@ -2,7 +2,7 @@
 
 ## Purpose
 
-P8 owns the formal separation between evidence-bearing capability and authority
+ORION-18 owns the formal separation between evidence-bearing capability and authority
 to commit an effect. This companion records an executable and public-data
 instance of the capability side without turning it into a separate novelty
 claim.
@@ -13,13 +13,13 @@ The learning machine retains provenance-bearing mechanics, competence evidence,
 empirical state-effect contracts and an append-only failure ledger. Its
 `CapabilityRoute` returns either a supported mechanic or abstention together
 with every candidate competence estimate. The value is explicitly
-`authorizes_execution=False`; even a successful route must pass through P8's
+`authorizes_execution=False`; even a successful route must pass through ORION-18's
 external authorizer before execution.
 
 This route/abstain structure assimilates the strongest relevant discipline from
 algorithm selection, selective prediction, learned paradigm routing,
 tool-necessity evaluation and capability self-assessment. The full extraction
-and adoption receipts are in P9's dated saturation ledger.
+and adoption receipts are in ORION-19's dated saturation ledger.
 
 ## Public discriminator
 
@@ -48,5 +48,5 @@ worsen relative to the non-abstaining router; those costs remain visible.
 
 The executable protocol, full-precision results, source digests, claim ledger
 and reproduction commands remain under
-`paper-09-executable-research-core/`. P9 closes by merge because its empirical
-object strengthens P8 while no independent paper residual survives saturation.
+`paper-09-executable-research-core/`. ORION-19 closes by merge because its empirical
+object strengthens ORION-18 while no independent paper residual survives saturation.

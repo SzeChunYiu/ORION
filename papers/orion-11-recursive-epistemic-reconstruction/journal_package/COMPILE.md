@@ -1,6 +1,6 @@
-# ORION-P1 compile and visual-verification instructions
+# ORION-ORION-11 compile and visual-verification instructions
 
-From `papers/paper-01-recursive-epistemic-reconstruction/manuscript/`:
+From `papers/orion-11-recursive-epistemic-reconstruction/manuscript/`:
 
 ```bash
 pdflatex -interaction=nonstopmode -halt-on-error main.tex

@@ -1,6 +1,6 @@
 # Discussion and conclusion
 
-P12 reframes test-time scaling as a portfolio of computations. It can be useful
+ORION-22 reframes test-time scaling as a portfolio of computations. It can be useful
 to build state before searching over it, but the correct locus depends on the
 objective and on what cost information is available.
 

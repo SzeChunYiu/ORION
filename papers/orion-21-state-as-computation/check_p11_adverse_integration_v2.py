@@ -10,29 +10,29 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PAPER = ROOT / "papers/paper-11-state-as-computation"
+PAPER = ROOT / "papers/orion-21-state-as-computation"
 AUTHORITY = PAPER / "P11_ACTIVE_CLAIM_AUTHORITY_V2.json"
 AUTHORITY_V1 = PAPER / "P11_ACTIVE_CLAIM_AUTHORITY_V1.json"
 PROTOCOL_SHA = "16147dd984776994279623cde3847bbeb48ec198e8b491d5644c68dc40e1f995"
 COUNTS = {"KNN": 5, "LINEAR": 3, "RBF": 5}
 QUERY_BINDINGS = {
     "query_family_binding": (
-        "papers/paper-11-state-as-computation/top_tier/"
+        "papers/orion-21-state-as-computation/top_tier/"
         "p11_query_family_phase_binding_v1.json",
         "0c944d6215d0f8e993e31685c2fe20f5539558a05aa4d5b8a1caf876c7e36d06",
     ),
     "query_family_independent": (
-        "papers/paper-11-state-as-computation/top_tier/"
+        "papers/orion-21-state-as-computation/top_tier/"
         "p11_query_family_phase_independent_v1.json",
         "b1e92a6be419a26d442fd0e0e6a8026279a70686e3f6b7b09ea64700b8742760",
     ),
     "query_family_primary": (
-        "papers/paper-11-state-as-computation/top_tier/"
+        "papers/orion-21-state-as-computation/top_tier/"
         "p11_query_family_phase_primary_v1.json",
         "9a1f1f9b62955296bcff891f1f93f97af03448d311ae63b62a95d407e3de138f",
     ),
     "query_family_receipt": (
-        "papers/paper-11-state-as-computation/top_tier/"
+        "papers/orion-21-state-as-computation/top_tier/"
         "P11_QUERY_FAMILY_PHASE_RESULT_RECEIPT_V1.md",
         "888d40442275fe0980b127a27a5fdf7ca929bade08c7d8692afdc4d70acb4abc",
     ),

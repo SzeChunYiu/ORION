@@ -1,4 +1,4 @@
-# P12 top-tier theory expansion V1 — resource-location metareasoning
+# ORION-22 top-tier theory expansion V1 — resource-location metareasoning
 
 **Programme:** #977  
 **Boundary:** these are decision-theory results for the registered resource-location abstraction. They do not substitute for the still-required open-weight and verifier-backed replications.

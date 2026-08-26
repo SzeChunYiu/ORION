@@ -121,7 +121,7 @@ def main() -> None:
         "date": "2026-08-22",
         "implementation": (
             "standalone phase-ignored one-qubit Pauli implementation in "
-            "papers/Q-paper-01-tare-expressivity/independent_human_proof_sanity.py"
+            "papers/orion-05-tare-expressivity/independent_human_proof_sanity.py"
         ),
         "orion_quantum_imports": False,
         "restore_lemma": check_restore_lemma(),

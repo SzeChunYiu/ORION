@@ -32,15 +32,15 @@ from orion.programme.records import Outcome
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DIRECT_BOUND_PAPERS = (
-    "paper-06-formal-epistemic-structures-and-mechanics",
-    "paper-07-epistemic-navigation-open-worlds",
-    "paper-08-epistemic-authority-autonomous-science",
+    "orion-16-formal-epistemic-structures-and-mechanics",
+    "orion-17-epistemic-navigation-open-worlds",
+    "orion-18-epistemic-authority-autonomous-science",
 )
 Q_SERIES_BOUND_PAPERS = (
-    "Q-paper-01-tare-expressivity",
-    "Q-paper-02-recursive-recovery",
-    "Q-paper-03-dual-instrument",
-    "Q-paper-04-typed-state",
+    "orion-05-tare-expressivity",
+    "orion-06-recursive-recovery",
+    "orion-07-dual-instrument",
+    "orion-08-typed-state",
 )
 BOUND_PAPERS = DIRECT_BOUND_PAPERS + Q_SERIES_BOUND_PAPERS
 

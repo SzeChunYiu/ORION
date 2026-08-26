@@ -1,4 +1,4 @@
-# P9 causal intervention diagnostic result receipt V1
+# ORION-19 causal intervention diagnostic result receipt V1
 
 **Run:** GitHub Actions `32657074299`  
 **Artifact:** `p9-causal-diagnostic-v1`, artifact ID `9498230317`  
@@ -45,6 +45,6 @@ This cell is not retuned away. It demonstrates that an intervention can be causa
 
 ## Scientific disposition
 
-P9 now has a bounded cross-domain causal diagnostic result rather than only a representation-effect result. The procedure distinguishes information, accessibility and computation failures substantially better than a generic compute-escalation heuristic, eliminates false compute escalation in the five protected families, and has zero intervention-cost regret on the actionable protected cells.
+ORION-19 now has a bounded cross-domain causal diagnostic result rather than only a representation-effect result. The procedure distinguishes information, accessibility and computation failures substantially better than a generic compute-escalation heuristic, eliminates false compute escalation in the five protected families, and has zero intervention-cost regret on the actionable protected cells.
 
 The result is deliberately conditional. It does not establish a universal LLM diagnostic, and the `D-A` protected `CANNOT_CHECK` plus the existing Qwen scaling negative prohibit a universal representation-repair or monotone scaling law.

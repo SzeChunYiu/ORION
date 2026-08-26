@@ -1,7 +1,7 @@
 # DONOR-FIRST REFUSAL -- DISC-Q-TRANSFER-01
 Authority: **target-domain result only**. No quantum authority is transferred; nothing below is a physical, hardware, or quantum-advantage claim.
 ## 1. The donor names its own donors
-QG-paper-03 (`papers/QG-paper-03-intrinsic-support-numbers/MANUSCRIPT_V1.md`, sha256 `f29edbad739e86dd61181e7162c2d579c219d64f765e6b5612c446df9b8a6c2e`) states, in its own words, that it
+QG-paper-03 (`papers/candidates/qg-paper-03-stub/MANUSCRIPT_V1.md`, sha256 `f29edbad739e86dd61181e7162c2d579c219d64f765e6b5612c446df9b8a6c2e`) states, in its own words, that it
 > claims no novelty for finite-field dependence, support sparsification, Pauli symplectic representations, or parametric/polyhedral optimization
 Support sparsification is therefore a **donor discipline, not a transferred contribution**. Any target result that classical sparsification or minimum set cover already delivers must be credited to that donor.
 ## 2. What the strongest donor achieves WITHOUT the transfer

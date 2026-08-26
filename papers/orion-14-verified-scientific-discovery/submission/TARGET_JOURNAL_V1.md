@@ -1,4 +1,4 @@
-# ORION-P4 target journal V1
+# ORION-ORION-14 target journal V1
 
 **Scientific freeze:** protected campaign `31968809206` accepted; H1/H2 passed, H3 not supported.  
 **Target:** **Nature Machine Intelligence**  
@@ -9,7 +9,7 @@
 
 The manuscript's empirical contribution is an AI-systems/evaluation result: a non-compensatory scientific-authority transition combining exact evidence identity, checker admissibility, protected evaluation and fail-closed authority states is tested against source-aware/attribution/retrieve-or-verify/evaluation-integrity baselines under a prospectively frozen hostile campaign. The work is therefore positioned as machine-intelligence methodology and evaluation/security infrastructure, not as a claim of a new scientific fact-checking benchmark or a general philosophy paper.
 
-Nature Machine Intelligence is the first target because its official scope covers research across artificial intelligence, machine learning and robotics, including work on the design, development and broader implications of intelligent systems. The P4 result fits that scope through autonomous/research-agent reliability, evaluation integrity and responsible authority assignment. Editorial fit remains the journal's decision; this file records a target, not an acceptance prediction.
+Nature Machine Intelligence is the first target because its official scope covers research across artificial intelligence, machine learning and robotics, including work on the design, development and broader implications of intelligent systems. The ORION-14 result fits that scope through autonomous/research-agent reliability, evaluation integrity and responsible authority assignment. Editorial fit remains the journal's decision; this file records a target, not an acceptance prediction.
 
 ## Official author sources checked
 

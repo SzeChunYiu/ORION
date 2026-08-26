@@ -1,6 +1,6 @@
-# Novelty Closure Summary — ORION-P4 (V1)
+# Novelty Closure Summary — ORION-ORION-14 (V1)
 
-**Protocol:** P4.protected-authority.v1  
+**Protocol:** ORION-14.protected-authority.v1  
 **Date:** 2026-08-16
 
 ## Residual claim
@@ -19,7 +19,7 @@
 
 **Existing systems** return confidence scores, support verdicts, or attribution labels. Even when they "block" or "abstain," the decision is a threshold on a continuous score (e.g., NLI probability < 0.5 → block).
 
-**ORION-P4** defines authority as a **lattice of registered prerequisites**: content binding, source ownership, semantic support, checker lineage + hostile discrimination, behavioral influence, evaluator integrity, contamination status. Every prerequisite is a discrete gate. When unresolved, the terminal is `CANNOT_CHECK` or `BLOCK` — not a confidence value that can be averaged into a promotion.
+**ORION-ORION-14** defines authority as a **lattice of registered prerequisites**: content binding, source ownership, semantic support, checker lineage + hostile discrimination, behavioral influence, evaluator integrity, contamination status. Every prerequisite is a discrete gate. When unresolved, the terminal is `CANNOT_CHECK` or `BLOCK` — not a confidence value that can be averaged into a promotion.
 
 **Analogy:** This is the difference between score-based authentication ("password similarity > 0.7 → access granted") and multi-factor authentication (password AND token AND biometric → access). The individual factors are not new; the *fail-closed composition* into a protected authority lattice is the residual claim.
 

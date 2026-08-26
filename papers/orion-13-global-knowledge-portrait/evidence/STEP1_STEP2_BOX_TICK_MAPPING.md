@@ -1,4 +1,4 @@
-# ORION-P3 Step 1-2 Box-to-Artifact Mapping (Tick Pass Prep)
+# ORION-ORION-13 Step 1-2 Box-to-Artifact Mapping (Tick Pass Prep)
 
 > **Annotated 2026-08-22 after the manuscript house-style rewrite.** This is a
 > completed audit of the manuscript as it stood when the audit was run, and is
@@ -61,7 +61,7 @@
 
 | # | Box Line | Box Text | Artifact Path | Evidence | Status |
 |---|----------|----------|---------------|----------|--------|
-| 17 | L51 | choose exactly one primary hypothesis | `protocol/PROTOCOL_V1.json` + `manuscript/sections/50-evaluation.tex` | PROTOCOL_V1.json L7-L12 (primary_hypothesis.id="P3.H1", single entry) + 50-evaluation.tex L11-L31 (H1a superiority, H1b non-inferiority) | VERIFIED |
+| 17 | L51 | choose exactly one primary hypothesis | `protocol/PROTOCOL_V1.json` + `manuscript/sections/50-evaluation.tex` | PROTOCOL_V1.json L7-L12 (primary_hypothesis.id="ORION-13.H1", single entry) + 50-evaluation.tex L11-L31 (H1a superiority, H1b non-inferiority) | VERIFIED |
 | 18 | L52 | define practical false-merge safety margin / minimum useful integration benefit | `protocol/PROTOCOL_V1.json` + `manuscript/sections/50-evaluation.tex` | PROTOCOL_V1.json L76 (practical_margin: δ_s=0.05, δ_ni=0.03) + 50-evaluation.tex L15-L31 (H1a: δ_s=0.05, H1b: δ_ni=0.03) | VERIFIED |
 | 19 | L53 | freeze statistical and adjudication plan before final system outputs | `protocol/PROTOCOL_V1.json` + `manuscript/sections/50-evaluation.tex` | PROTOCOL_V1.json L71-L77 (statistics: paired bootstrap, Holm correction) + 50-evaluation.tex L155-L181 (frozen statistical analysis plan) | VERIFIED |
 

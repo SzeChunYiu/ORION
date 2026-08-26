@@ -86,8 +86,8 @@ def check_signature(receipt: dict) -> None:
 def check_custody(receipt: dict) -> None:
     print("[2] digest custody over the frozen bundle")
     facts = receipt["facts"]
-    contract = json.loads((ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/P6_LOCAL_REPLAY_CONTRACT_V3.json").read_text())
-    manifest = json.loads((ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json").read_text())
+    contract = json.loads((ROOT / "papers/orion-16-formal-epistemic-structures-and-mechanics/evidence/local/P6_LOCAL_REPLAY_CONTRACT_V3.json").read_text())
+    manifest = json.loads((ROOT / "papers/orion-16-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json").read_text())
     pairs: list[tuple[str, str]] = []
     for group in ("raw_inputs", "raw_outputs"):
         pairs += [(e["path"], e["sha256"]) for e in contract.get(group, [])]

@@ -1,4 +1,4 @@
-# P7 journal readiness V2
+# ORION-17 journal readiness V2
 
 **Manuscript:** `manuscript/FINAL.md`  
 **Theory:** `CLOSED_V2`  
@@ -21,7 +21,7 @@
 - [x] V2 checker wired into candidate CI.
 - [x] Literature closure rejects generic adaptive-search/topology novelty.
 - [x] Venue path selected.
-- [x] P1/P2 ownership protected.
+- [x] ORION-11/ORION-12 ownership protected.
 
 ## Submission-time checks that are not theory gaps
 
@@ -34,7 +34,7 @@
 
 - no “first topology-changing search agent” claim;
 - no claim that reframing is monotonically beneficial;
-- no claim that planning abstraction/schema evolution/goal evolution are P7 inventions;
+- no claim that planning abstraction/schema evolution/goal evolution are ORION-17 inventions;
 - no empirical claim of beating Search-on-Graph, POMDP planners, SAGA or world-model systems.
 
 The manuscript is theory-complete in its declared preservation/closure scope.

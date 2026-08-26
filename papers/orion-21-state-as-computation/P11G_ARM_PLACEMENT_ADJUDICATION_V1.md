@@ -1,6 +1,6 @@
 # P11G Arm-Placement Adjudication V1
 
-**Paper:** ORION-P11 — State as Computation
+**Paper:** ORION-ORION-21 — State as Computation
 **Issues:** #471, #664, #667
 **Schema:** `ORION.P11G.ArmPlacementAdjudication.v1`
 **Instrument:** `orion.study.p11.decoder_attack_reach`, audited by `python -m orion.study.p11.attack_audit`
@@ -13,7 +13,7 @@ terminal are retained verbatim. `P11G_DETERMINISTIC_TREE_DECODER_GAP_SUPPORTED`
 remains the terminal its frozen gates produced on its frozen seed, both
 fresh-subprocess scientific payloads still have SHA-256
 `a2b0c33ce3c39e54ca1aa400a2b7d52d019fc4503f6cd5eb726c7b8bbe79a7cc`, and no
-published P11 number moves. P11C, P11D, P11E and P11F are untouched.
+published ORION-21 number moves. P11C, P11D, P11E and P11F are untouched.
 
 What changes is the **reading** of that terminal, and one row of the claim
 ledger. P11G's receipt publishes curves for one universal-state arm. The
@@ -123,7 +123,7 @@ value to it, and `>=256` says that without promoting a censored reading to
 
 `refutation_capacity.axis_sensitivity` on the `decoder_arm` axis: **3 values, 3
 comparable pairs, 2 verdict-changing, inert `False`**. This is the mirror of
-P6's donor axis, which was carried with five values and changed nothing, so
+ORION-16's donor axis, which was carried with five values and changed nothing, so
 every count it multiplied was a relabelling. Here the axis changes the terminal
 and is carried once.
 
@@ -134,7 +134,7 @@ what it does not clear is the threshold gate P11G's positive terminal needs.
 
 ### This is not a new measurement, and that is the point
 
-P11's own documents already carry the number. `P11D_NEGATIVE_ROOT_CAUSE_V1.md`
+ORION-21's own documents already carry the number. `P11D_NEGATIVE_ROOT_CAUSE_V1.md`
 records sparse universal thresholds of 128 and 256 and calls the ≥4× claim
 false; P11E replicates the 128/256 pair on a fresh seed; and
 `P11C_EXECUTION_RECEIPT_V1.md` sweeps it — over twenty seeds of the P11C
@@ -142,7 +142,7 @@ construction, `UNIVERSAL_L1` in cell `(17,4,5)` reads `128` in 9 and `256` in
 11, so the conjunction P11C's gate 3 asks for holds in **11 of 20 draws**, and
 the second cell never moves.
 
-What no P11 document stated before this one is that the two facts meet: the arm
+What no ORION-21 document stated before this one is that the two facts meet: the arm
 whose 128 the paper reports as a *negative* result would, placed in P11G's gate,
 print `P11G_DETERMINISTIC_TREE_DECODER_GAP_NOT_MET` on P11G's own bytes. Reading
 `NOT_REACHED through n=1024` as a stronger result than the L1 arm's 128 inverts
@@ -155,7 +155,7 @@ three-row table above. The shipped receipt carries one of the three.
 `arm_disclosure_gaps()` in `orion.study.p11.decoder_attack_reach` recomputes
 every one of those strings from the replayed runner and compares them against
 this file; the audit blocks while any is missing, and blocks again if a future
-P11 receipt publishes another verdict-changing axis with one value.
+ORION-21 receipt publishes another verdict-changing axis with one value.
 
 ## Part 3 — the decomposition, in both directions
 

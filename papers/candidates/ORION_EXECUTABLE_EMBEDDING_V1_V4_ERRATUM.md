@@ -1,4 +1,4 @@
-# P6–P8 executable embedding V1 — V4 covariance erratum
+# ORION-16–ORION-18 executable embedding V1 — V4 covariance erratum
 
 Date: 2026-08-22
 Applies to: `ORION_EXECUTABLE_EMBEDDING_V1.md`
@@ -14,15 +14,15 @@ The original embedding audit was frozen against `0.3.9-shadow`. The V4 paper ↔
 
 Because the candidate checker intentionally treats a framework-version change as a reopening event, this erratum records the semantic review rather than merely changing the pinned version string.
 
-## Effect on P6
+## Effect on ORION-16
 
-P6's prior `PARTIAL` mapping for a universal residual-obligation registry is strengthened. ORION now has a canonical **research resolution obligation** for unresolved judgments. It carries subject identity, unresolved class, reason codes, required objects, next actions, prior attempts/blockers, bounded stop condition, and explicit non-authority ceilings.
+ORION-16's prior `PARTIAL` mapping for a universal residual-obligation registry is strengthened. ORION now has a canonical **research resolution obligation** for unresolved judgments. It carries subject identity, unresolved class, reason codes, required objects, next actions, prior attempts/blockers, bounded stop condition, and explicit non-authority ceilings.
 
-This does **not** make P6's full mechanic calculus redundant. The new object concerns unresolved-research lifecycle; P6 composition, write/read footprints, certificate-aware reopening, chronology, and general admissibility remain distinct.
+This does **not** make ORION-16's full mechanic calculus redundant. The new object concerns unresolved-research lifecycle; ORION-16 composition, write/read footprints, certificate-aware reopening, chronology, and general admissibility remain distinct.
 
 Hard obligations still may live in domain-specific objects. `ResearchResolutionObligation.v1` should not be misrepresented as a universal proof obligation calculus.
 
-## Effect on P7
+## Effect on ORION-17
 
 The prior audit correctly identified `CANNOT_CHECK` and resource-is-not-closure behavior. V4 makes the lifecycle explicit:
 
@@ -30,11 +30,11 @@ The prior audit correctly identified `CANNOT_CHECK` and resource-is-not-closure 
 - a verified extension-ambiguity/non-identifiability result can be represented as `NEGATIVE` rather than being confused with missing evidence;
 - an unresolved obligation cannot include task-stop authority.
 
-This strengthens P7's fail-closed navigation embedding but does not fill the previously identified general chart/objective support-transport gap.
+This strengthens ORION-17's fail-closed navigation embedding but does not fill the previously identified general chart/objective support-transport gap.
 
-## Effect on P8
+## Effect on ORION-18
 
-The new outcome objects do not widen P8 authority. Both resolution obligations and negative-result assimilation are structurally non-authorizing. In particular:
+The new outcome objects do not widen ORION-18 authority. Both resolution obligations and negative-result assimilation are structurally non-authorizing. In particular:
 
 - missing authority/coercion evidence remains unresolved and routes to authority checking;
 - a denied/negative authorization judgment is not softened into missing evidence;
@@ -63,4 +63,4 @@ No class may be silently coerced into another.
 - check their canonical dataclass fields and outcome polarity;
 - confirm resolution obligations cannot self-authorize task stop and negative objects remain non-authorizing.
 
-This remains a schema-correspondence check. It does not prove P6–P8 novelty or full semantic equivalence.
+This remains a schema-correspondence check. It does not prove ORION-16–ORION-18 novelty or full semantic equivalence.

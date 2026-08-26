@@ -1,19 +1,19 @@
-# P6 literature evidence
+# ORION-16 literature evidence
 
-Retrieval records for the works P6's related-work section names, mirroring
-`papers/paper-02-open-world-scientific-discovery/evidence/literature/` and the
-sibling directory under P7.
+Retrieval records for the works ORION-16's related-work section names, mirroring
+`papers/orion-12-open-world-scientific-discovery/evidence/literature/` and the
+sibling directory under ORION-17.
 
-## The gap this addresses, and how it differs from P7's
+## The gap this addresses, and how it differs from ORION-17's
 
-P7's §2.3 asserted what "planning research has long shown" and named **nobody**.
-P6 is in better shape: §2.1–2.5 name Doyle's TMS, de Kleer's ATMS, adaptive
+ORION-17's §2.3 asserted what "planning research has long shown" and named **nobody**.
+ORION-16 is in better shape: §2.1–2.5 name Doyle's TMS, de Kleer's ATMS, adaptive
 functional programming and self-adjusting computation, dynamic epistemic logic
 and AGM, separation and effect systems. The claims are attributed in prose.
 
-What P6 has is a **bibliography gap**, not an attribution gap: named works, zero
+What ORION-16 has is a **bibliography gap**, not an attribution gap: named works, zero
 formal citations, no bibliography, and until now no retrieval records. A reader
-can tell *which* work is meant but cannot check that P6 read it, or which of
+can tell *which* work is meant but cannot check that ORION-16 read it, or which of
 several same-author papers is intended — a live ambiguity for de Kleer, whose
 1986 ATMS work spans multiple parts.
 
@@ -27,7 +27,7 @@ several same-author papers is intended — a live ambiguity for de Kleer, whose
 | `UNVERIFIED_SECONDARY` | identified from indexes or secondary sources; the primary source has **not** been read |
 
 Only `VERIFIED` records may be cited in a manuscript. That rule is enforced by
-`tests/unit/candidates/test_p7_literature_binding.py` for P7 and extended to P6
+`tests/unit/candidates/test_p7_literature_binding.py` for ORION-17 and extended to ORION-16
 here.
 
 **`UNVERIFIED_SECONDARY` is not a soft `VERIFIED`, and the strength of the

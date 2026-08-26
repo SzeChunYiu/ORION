@@ -16,7 +16,7 @@ tactics or proof utility. Exact native Lean audit receipts and mutation controls
 separate source identity, native acceptance and authority. Constructive review
 shows that versioned benchmark packaging, native checking, statement
 faithfulness and tactic mining are mature prior objects. We therefore retain
-the work as a technical note merged into ORION's P4/P8 evaluation programme,
+the work as a technical note merged into ORION's ORION-14/ORION-18 evaluation programme,
 not as a standalone novelty claim.
 
 ## 1. Question and claim boundary
@@ -30,8 +30,8 @@ it. Three assertions are deliberately separate:
 3. **meaning/authority:** this is the intended theorem and supports a scientific
    claim.
 
-P10 implements the first boundary and records the second. It does not decide
-the third; P4/P8 own that authority.
+ORION-20 implements the first boundary and records the second. It does not decide
+the third; ORION-14/ORION-18 own that authority.
 
 ## 2. Frozen source and projection
 
@@ -114,7 +114,7 @@ on ORION are concrete:
   statement meaning or scientific authority.
 
 After absorption, the residual identity/correctness/authority distinction is
-useful but already belongs to P4/P8. The correct terminal is a merged technical
+useful but already belongs to ORION-14/ORION-18. The correct terminal is a merged technical
 note.
 
 ## 7. Limitations and nonclaims

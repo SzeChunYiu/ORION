@@ -1,6 +1,6 @@
 # Responsibility-Carrying State: Auditable Sufficiency, Reopen Contracts, and Safe State Reuse
 
-**ORION-P13 · issue #666 · interface track #668**  
+**ORION-ORION-23 · issue #666 · interface track #668**  
 **Evidence freeze:** 2026-08-21  
 **Submission status:** `P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`; external validation open
 
@@ -40,7 +40,7 @@ Compression, abstraction and state reuse are normally evaluated against a named 
 
 This is not merely an uncertainty problem. A system can be highly confident under its current compact state while the state omits a variable that becomes decisive under a new responsibility. Nor is it merely a provenance problem. Knowing exactly where a state came from does not establish what that state can safely support.
 
-P13 asks:
+ORION-23 asks:
 
 > **Can a compact state carry a machine-checkable responsibility contract that says what it supports, what it omits, what changes invalidate reuse, and whether richer state can be reopened—without forcing every decision to reload raw evidence?**
 
@@ -62,11 +62,11 @@ The paper makes five contributions.
 
 Statistical sufficiency, state abstraction, bisimulation, predictive-state representations and causal abstractions already establish that different tasks can require different retained distinctions. Selective prediction and uncertainty gating already use confidence to decide when to abstain. Provenance and evidence-tracing systems already bind artifacts to their origin. Proof-carrying code and recent proof-carrying agent-action work already attach verifiable certificates to downstream actions. Memory-staleness work already asks when previously stored information ceases to be valid.
 
-P13 claims none of these primitives.
+ORION-23 claims none of these primitives.
 
 ### 2.2 Residual claim
 
-P13 combines a different set of requirements into one operational object:
+ORION-23 combines a different set of requirements into one operational object:
 
 - sufficiency is keyed to a **named downstream responsibility**;
 - the compact state lists unsupported/omitted distinctions;
@@ -84,11 +84,11 @@ Three papers in this programme reason about whether something survives a change,
 and the words overlap enough that the boundaries are worth stating rather than
 leaving to a reader to infer.
 
-**P7 and P13 both say "transport", about different objects.** P7 owns
+**ORION-17 and ORION-23 both say "transport", about different objects.** ORION-17 owns
 closure-carrying transport: given a representation, responsibility/ontology or
 objective change, does a previously established *closure* still hold, and can a
 witness-aware policy tell when it does? Its unit is the closure and its failure
-mode is a false closure. P13 owns responsibility-scoped *reuse*: given a change
+mode is a false closure. ORION-23 owns responsibility-scoped *reuse*: given a change
 of responsibility, may a compact state or an issued support certificate be
 relied on again, and what must be reopened when it may not? Its unit is the
 support relation and its failure mode is unsupported reuse. A closure that
@@ -96,18 +96,18 @@ transports says nothing about whether the state behind it is sufficient for a
 new responsibility, and the digits study here is precisely a case where a state
 is current, provenanced and confident, and still inadequate.
 
-**P13 and P15 both say "certificate", at different layers.** P15 owns the
+**ORION-23 and ORION-25 both say "certificate", at different layers.** ORION-25 owns the
 admission boundary above execution records: an attestation chain can verify
 perfectly and still authorize no scientific claim, which is why its
-full-key-compromise result is reported as a negative. P13 sits above the object
+full-key-compromise result is reported as a negative. ORION-23 sits above the object
 rather than the record: it asks whether the *content* a certificate vouches for
 still supports the responsibility now being asked of it. The two failure modes
-are independent -- P15's holds with the content valid and the custody
-unobserved; P13's holds with the signature perfect and the responsibility
+are independent -- ORION-25's holds with the content valid and the custody
+unobserved; ORION-23's holds with the signature perfect and the responsibility
 changed -- which is why neither result substitutes for the other.
 
-P14's relation is different again and is not a boundary but a consolidation:
-under issue #1086 decision D7, P13 and P14 are consolidated into one
+ORION-24's relation is different again and is not a boundary but a consolidation:
+under issue #1086 decision D7, ORION-23 and ORION-24 are consolidated into one
 machine-verifiable lifecycle-contract safety scope, recorded in §8.1.
 
 
@@ -395,7 +395,7 @@ The RCS object does not certify its own scientific authority. An evaluator can e
 
 Under issue #1086 decision D7 (portfolio disposition
 `papers/ISSUE_1086_PORTFOLIO_DISPOSITION_V1.json`, binding artifact
-`P13_P14_CONSOLIDATION_SCOPE_BINDING_V1.json`), P13 and P14 are consolidated
+`P13_P14_CONSOLIDATION_SCOPE_BINDING_V1.json`), ORION-23 and ORION-24 are consolidated
 as one machine-verifiable lifecycle-contract safety scope. The supported scope
 of this manuscript is exactly the machine-verifiable layer: certificate
 validation, responsibility-scoped reuse decisions, reopen semantics,
@@ -404,7 +404,7 @@ correct-governance or social-responsibility claims — that retaining or
 reopening state is the *correct* governance decision for real organizations —
 remain **CANNOT_CHECK**: they require two independent experts plus a
 tie-break/custodian, which no artifact in this repository provides. On the
-present evidence P14 is not a separate paper at the 75+ bar; any external
+present evidence ORION-24 is not a separate paper at the 75+ bar; any external
 lifecycle-contract campaign must derive gold only from the objective facts
 enumerated in `P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md` and must never
 use ORION itself as an external subject.
@@ -453,7 +453,7 @@ the directions predicted for them in advance.
 
 Recent proof-carrying agent-action work attaches model-agnostic certificates to agent actions and runtime governance. Provenance systems trace evidence and execution. Memory-staleness systems detect that stored state is no longer valid. These donors make it insufficient to claim that “state should carry a certificate.”
 
-P13's discriminating contribution is the **responsibility key** plus **reopen semantics**: a state may be current, well-provenanced and high-confidence yet still be insufficient for a different downstream responsibility. The protected benchmark is designed exactly around that distinction.
+ORION-23's discriminating contribution is the **responsibility key** plus **reopen semantics**: a state may be current, well-provenanced and high-confidence yet still be insufficient for a different downstream responsibility. The protected benchmark is designed exactly around that distinction.
 
 ## 10. Statistical and reproducibility notes
 
@@ -472,14 +472,14 @@ report family/domain-block uncertainty.
 2. Exact sufficiency is strong. Approximate responsibility support needs frozen tolerances and calibrated external witnesses.
 3. The RCS contract is only as reliable as its external witness and recovery metadata.
 4. Resource costs are controlled units rather than measured real latency/tokens/IO.
-5. A very high-risk domain may rationally choose always-raw despite higher cost; P13 does not claim universal reuse dominance.
+5. A very high-risk domain may rationally choose always-raw despite higher cost; ORION-23 does not claim universal reuse dominance.
 6. The paper has not yet demonstrated verifier-backed Lean repair/diagnosis or a blinded scientific-workflow responsibility shift.
 7. Certificate transport/revocation under real semantic version changes needs separate external validation.
 
 ## 12. Conclusion
 
 Sufficiency is a contract over future responsibility, not an intrinsic property
-of a compact representation. P13 makes that exact conditional boundary explicit
+of a compact representation. ORION-23 makes that exact conditional boundary explicit
 and preserves both historical failures and reproducible descriptive evidence.
 P13B shows that the authenticated policy rejects the four registered corruptions
 without unsafe reuse in its locally authored finite panel. It does not establish

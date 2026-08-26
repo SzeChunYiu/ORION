@@ -1,4 +1,4 @@
-# ORION P6–P15 top-tier promotion programme V1
+# ORION ORION-16–ORION-25 top-tier promotion programme V1
 
 **Owner issue:** #977  
 **Date:** 2026-08-23  
@@ -6,7 +6,7 @@
 
 ## 1. Purpose
 
-This programme raises P6–P15 toward top-tier journal submission without protecting novelty by omission or by retreating to progressively smaller claims.
+This programme raises ORION-16–ORION-25 toward top-tier journal submission without protecting novelty by omission or by retreating to progressively smaller claims.
 
 The governing scientific move is:
 
@@ -126,7 +126,7 @@ Shared infrastructure is encouraged, but protected evidence must be paper-disjoi
 
 ### World L — open-weight language/procedural agents
 
-Use for P9, P11, P12 and selected P13/P14 tests. Required properties:
+Use for ORION-19, ORION-21, ORION-22 and selected ORION-23/ORION-24 tests. Required properties:
 
 - exact same-information representation interventions where relevant;
 - model/token/tool accounting;
@@ -135,7 +135,7 @@ Use for P9, P11, P12 and selected P13/P14 tests. Required properties:
 
 ### World V — verifier-backed formal/problem-solving systems
 
-Use for P10–P13 and P15 execution-integrity tests. Required properties:
+Use for ORION-20–ORION-23 and ORION-25 execution-integrity tests. Required properties:
 
 - correctness from an external verifier;
 - verifier-call and search accounting;
@@ -144,7 +144,7 @@ Use for P10–P13 and P15 execution-integrity tests. Required properties:
 
 ### World R — scientific research decisions
 
-Use for P14 and P15, and optionally P6–P8 transfer demonstrations. Required properties:
+Use for ORION-24 and ORION-25, and optionally ORION-16–ORION-18 transfer demonstrations. Required properties:
 
 - hidden research packets with positive/null/negative/subsumed/non-identifiable cases;
 - literature access matched across systems;
@@ -159,22 +159,22 @@ Record at minimum:
 
 `R = (preprocessing/compiler work, state/memory, model compute, inference/search, tool/verifier calls, latency, cache/reuse, recovery/reconstruction)`
 
-P10–P13 should use the same accounting ontology so their results compose without sharing protected outcomes.
+ORION-20–ORION-23 should use the same accounting ontology so their results compose without sharing protected outcomes.
 
 ## 6. Portfolio-level upward synthesis
 
 The intended generalization ladder is:
 
-1. **P6:** what state changes are scientifically admissible?
-2. **P7:** what evidence/closure survives a regime change?
-3. **P8:** what evidence actually authorizes a scientific commitment?
-4. **P9:** is failure caused by missing information, inaccessible representation or missing computation?
-5. **P10:** when is the current method language itself insufficient, and can it be expanded with certified new reach?
-6. **P11:** where should computation be placed between state construction and downstream access/reasoning?
-7. **P12:** where should the next unit of resource be allocated online?
-8. **P13:** for which future responsibilities is a state safe to reuse?
-9. **P14:** how should research claims be generated, tested, retained, subsumed, reopened and promoted?
-10. **P15:** what does the execution substrate prove about attribution/replay, and what scientific validity does it explicitly not prove?
+1. **ORION-16:** what state changes are scientifically admissible?
+2. **ORION-17:** what evidence/closure survives a regime change?
+3. **ORION-18:** what evidence actually authorizes a scientific commitment?
+4. **ORION-19:** is failure caused by missing information, inaccessible representation or missing computation?
+5. **ORION-20:** when is the current method language itself insufficient, and can it be expanded with certified new reach?
+6. **ORION-21:** where should computation be placed between state construction and downstream access/reasoning?
+7. **ORION-22:** where should the next unit of resource be allocated online?
+8. **ORION-23:** for which future responsibilities is a state safe to reuse?
+9. **ORION-24:** how should research claims be generated, tested, retained, subsumed, reopened and promoted?
+10. **ORION-25:** what does the execution substrate prove about attribution/replay, and what scientific validity does it explicitly not prove?
 
 These are separate publication objects but a coherent programme about auditable adaptive scientific intelligence.
 

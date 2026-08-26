@@ -1,4 +1,4 @@
-# P11 selective placement ledger addendum V1
+# ORION-21 selective placement ledger addendum V1
 
 Additive evidence-ledger entry for NR-12 (`research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md`),
 to be folded into `CLAIM_EVIDENCE_LEDGER.md` / `README.md` / `P11_ACTIVE_CLAIM_AUTHORITY_V1.json`

@@ -355,7 +355,7 @@ Budgets never raised. ~40x margin now.
     30 passed in 82.63s
 
 Artifact written:
-    papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/
+    papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/
         P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json
 
     18/18 theorems PROVED
@@ -369,7 +369,7 @@ Artifact written:
 Deliverables:
 1. research/claim_expansion/p7/claude_t1/PROGRESS.md          (this file)
 2. src/orion/study/p7/composition_calculus_smt.py             (ruff clean)
-3. papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/
+3. papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/
        P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json
 4. tests/unit/study/p7/test_p7_composition_calculus_smt.py    (30 passed, ruff clean)
 

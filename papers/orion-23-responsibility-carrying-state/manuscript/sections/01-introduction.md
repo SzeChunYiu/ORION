@@ -4,7 +4,7 @@ Compression, abstraction and state reuse are normally evaluated against a named 
 
 This is not merely an uncertainty problem. A system can be highly confident while state omits a variable that becomes decisive under a new responsibility. Nor is it merely provenance: knowing exactly where state came from does not establish what that state can safely support.
 
-P13 asks:
+ORION-23 asks:
 
 > **Can a compact state carry a machine-checkable responsibility contract that says what it supports, what it omits, what changes invalidate reuse, and whether richer state can be reopened—without forcing every decision to reload raw evidence?**
 

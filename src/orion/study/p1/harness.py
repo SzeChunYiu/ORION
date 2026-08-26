@@ -67,7 +67,7 @@ from .systems import SystemTrace, SystemUnderTest
 PROTOCOL_PATH = (
     Path(__file__).resolve().parents[4]
     / "papers"
-    / "paper-01-recursive-epistemic-reconstruction"
+    / "orion-11-recursive-epistemic-reconstruction"
     / "protocol"
     / "PROTOCOL_V1.json"
 )

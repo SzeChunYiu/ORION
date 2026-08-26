@@ -1,7 +1,7 @@
-# ORION-P3 public-reference run V1 — development pilot record
+# ORION-ORION-13 public-reference run V1 — development pilot record
 
 **Authority:** `DEVELOPMENT_PILOT_ONLY`  
-**Protocol:** `P3.public-reference-mapping.v1`  
+**Protocol:** `ORION-13.public-reference-mapping.v1`  
 **GitHub Actions run:** `32034567843`  
 **ORION revision:** `fce08f7792cb0db41ad14942e33170bbb9406e43`
 
@@ -42,6 +42,6 @@ The pilot selected only `COMPATIBLE` and `CONTRADICTORY` expected relations. Con
 
 ## Prospective correction
 
-The next study is separately frozen as `P3.public-reference-mapping.v1.1`. It requires stable upstream-relative locators and explicit authoritative cases for `DISTINCT_REFERENT`, `DISTINCT_CONSTRUCT`, and `DISTINCT_MEASUREMENT` in addition to compatibility and contradiction controls.
+The next study is separately frozen as `ORION-13.public-reference-mapping.v1.1`. It requires stable upstream-relative locators and explicit authoritative cases for `DISTINCT_REFERENT`, `DISTINCT_CONSTRUCT`, and `DISTINCT_MEASUREMENT` in addition to compatibility and contradiction controls.
 
 No v1 outcome is used to select individual v1.1 cases; only the predeclared structural coverage defects above motivate the new protocol version.

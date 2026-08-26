@@ -49,19 +49,19 @@ The ORION question is what **composes across them**. If a donor product with cor
 
 ### 1.3 Non-contributions
 
-We do not claim novelty for graph search, exploratory search, POMDP planning, learned or symbolic abstraction, schema evolution, bidirectional transformation, objective evolution, world-model revision, initial orientation, route diversification, or the P2 route-versus-task stopping result. The contribution is the scientific preservation layer at their interfaces.
+We do not claim novelty for graph search, exploratory search, POMDP planning, learned or symbolic abstraction, schema evolution, bidirectional transformation, objective evolution, world-model revision, initial orientation, route diversification, or the ORION-12 route-versus-task stopping result. The contribution is the scientific preservation layer at their interfaces.
 
 ## 2. Related work as donor structures
 
 ### 2.1 Fixed graph navigation
 
-Search-on-Graph performs iterative observe-then-navigate reasoning over a knowledge graph rather than requiring a complete path plan in advance. This is a strong fixed-chart donor: the current graph schema is inspected at each step and navigation adapts locally. In P7, this behavior is recovered when atlas transformations are disabled.
+Search-on-Graph performs iterative observe-then-navigate reasoning over a knowledge graph rather than requiring a complete path plan in advance. This is a strong fixed-chart donor: the current graph schema is inspected at each step and navigation adapts locally. In ORION-17, this behavior is recovered when atlas transformations are disabled.
 
 The unresolved issue appears when the representation itself changes. A route result obtained under the old chart can remain valid evidence while its relation to the active scientific obligation changes.
 
 ### 2.2 Partial observability and belief-space planning
 
-POMDP and information-gathering methods supply a principled account of uncertain state, belief update, action cost and value of information. P7 adopts this within-chart machinery where appropriate. It does not replace it.
+POMDP and information-gathering methods supply a principled account of uncertain state, belief update, action cost and value of information. ORION-17 adopts this within-chart machinery where appropriate. It does not replace it.
 
 The additional boundary is scientific completion: low expected information gain, low utility or resource exhaustion may rationally stop further action without establishing that every mandatory scientific obligation is satisfied.
 
@@ -71,11 +71,11 @@ Planning research has long shown that representation and abstraction affect solv
 
 This inheritance is not one-directional, and stating it as though it were would misrepresent the field. Abstraction is not free: hierarchies without a refinement guarantee can make search *exponentially worse*, and any scheme that transports an obligation across a representation change inherits that risk rather than escaping it. The nearest sources for both halves, including the downward refinement property and the negative result, are recorded under  with their retrieval status; only  has been verified against its primary source so far, and only it is cited here.
 
-P7 does not claim the existence or value of abstraction. It asks what else must be preserved when the object being transported is a scientific closure certificate rather than only a plan property.
+ORION-17 does not claim the existence or value of abstraction. It asks what else must be preserved when the object being transported is a scientific closure certificate rather than only a plan property.
 
 ### 2.4 Schema evolution, lenses and ontology mappings
 
-Schema transformation and bidirectional/lens formalisms provide mappings with round-trip or information-preservation laws. Ontology mappings can preserve semantic correspondences under explicit assumptions. These are natural donors for P7's `Rep` transformation layer.
+Schema transformation and bidirectional/lens formalisms provide mappings with round-trip or information-preservation laws. Ontology mappings can preserve semantic correspondences under explicit assumptions. These are natural donors for ORION-17's `Rep` transformation layer.
 
 However, data/semantic preservation is not automatically scientific closure preservation. A transformed objective can impose a different threshold or coverage condition even when the underlying evidence is identical.
 
@@ -83,15 +83,15 @@ However, data/semantic preservation is not automatically scientific closure pres
 
 SAGA explicitly changes scientific objective functions in an outer loop while optimizing under the current objective in an inner loop. This is direct evidence that objective evolution should be treated as a first-class operation rather than an edge inside a fixed search graph.
 
-P7 imports the operation and adds an epistemic constraint: objective change creates a new obligation-transport question. Prior evidence may remain reusable without inheriting the prior `DONE` judgment.
+ORION-17 imports the operation and adds an epistemic constraint: objective change creates a new obligation-transport question. Prior evidence may remain reusable without inheriting the prior `DONE` judgment.
 
 ### 2.6 Evolving world models
 
-Self-Evolving World Models revise deployment-time predictive context from action-transition experience and prediction-observation mismatch. This supplies a strong donor for intra-chart model revision. P7 distinguishes such parameter/model updates from inter-chart changes that alter state distinctions, route identity, ontology, or obligation semantics.
+Self-Evolving World Models revise deployment-time predictive context from action-transition experience and prediction-observation mismatch. This supplies a strong donor for intra-chart model revision. ORION-17 distinguishes such parameter/model updates from inter-chart changes that alter state distinctions, route identity, ontology, or obligation semantics.
 
 ### 2.7 Search coverage and stopping
 
-Open-world and parallel-world benchmarks expose failures in evidence coverage, sufficiency judgment and stopping. ORION Paper II already owns route independence, route-versus-task stopping, and fail-closed treatment of unresolved/censored coverage. P7 conservatively embeds those judgments and studies whether they remain sound after representation or objective change.
+Open-world and parallel-world benchmarks expose failures in evidence coverage, sufficiency judgment and stopping. ORION Paper II already owns route independence, route-versus-task stopping, and fail-closed treatment of unresolved/censored coverage. ORION-17 conservatively embeds those judgments and studies whether they remain sound after representation or objective change.
 
 ## 3. Formal setting
 
@@ -129,7 +129,7 @@ The proof is by indistinguishability: the rule must return the same result in bo
 
 ### Boundary: absence of certificate is not ambiguity
 
-A missing explicit closure certificate is not, by itself, a theorem that the world class contains both a complete and incomplete extension. P7 therefore introduces an **extension-richness** premise when deriving ambiguity from the absence of an excluding constraint.
+A missing explicit closure certificate is not, by itself, a theorem that the world class contains both a complete and incomplete extension. ORION-17 therefore introduces an **extension-richness** premise when deriving ambiguity from the absence of an excluding constraint.
 
 This distinction matters in finite closed worlds: a system may know the universe is complete through a frozen manifest even if no object happens to be labeled “closure certificate.”
 
@@ -143,7 +143,7 @@ A route may be correctly exhausted while another route is censored, unavailable 
 
 without a coverage premise.
 
-P7 carries four terminals:
+ORION-17 carries four terminals:
 
 - `ROUTE_STOP`: local route policy says stop this route;
 - `TASK_STOP`: all mandatory obligations are discharged or covered by valid completeness evidence;
@@ -190,7 +190,7 @@ Sat(e,o')=false.
 
 A minimal example uses evidence `x=5`, an old criterion `x>3`, and a new criterion `x>7`. The evidence remains valid; only the satisfaction semantics changed.
 
-This theorem is central to engulfing goal-evolving systems: an objective generator may legitimately change the goal while the research memory remains valid. P7 adds the rule that the old completion authority does not follow automatically.
+This theorem is central to engulfing goal-evolving systems: an objective generator may legitimately change the goal while the research memory remains valid. ORION-17 adds the rule that the old completion authority does not follow automatically.
 
 ## 8. Support transport across chart change
 
@@ -213,21 +213,21 @@ A valid complete witness transports the certificate to the new chart.
 
 If the witness is incomplete **and** the unresolved part admits two target completions consistent with all established facts—one preserving the certificate and one invalidating it—uniformly retaining closure is unsound. The navigator must reopen or return `CANNOT_CHECK`.
 
-If transport is incomplete but the target model class is not ambiguous, P7 does not invent a counterexample. It returns `CANNOT_CHECK` unless another proof establishes preservation or failure.
+If transport is incomplete but the target model class is not ambiguous, ORION-17 does not invent a counterexample. It returns `CANNOT_CHECK` unless another proof establishes preservation or failure.
 
 ## 9. Donor-complete embeddings
 
 ### 9.1 Search-on-Graph special case
 
-Disable atlas transformations. Chart locations are graph entities, actions are graph hops/queries, and local observation exposes actual outgoing relations. P7 adds no extra behavior when its additional transport dimensions are inert.
+Disable atlas transformations. Chart locations are graph entities, actions are graph hops/queries, and local observation exposes actual outgoing relations. ORION-17 adds no extra behavior when its additional transport dimensions are inert.
 
 ### 9.2 POMDP special case
 
-Let chart state be a belief distribution and action selection be a value-of-information policy. P7 accepts the donor's local action ranking. The only additional condition concerns scientific terminal authority when mandatory obligations remain open.
+Let chart state be a belief distribution and action selection be a value-of-information policy. ORION-17 accepts the donor's local action ranking. The only additional condition concerns scientific terminal authority when mandatory obligations remain open.
 
 ### 9.3 Planning-abstraction special case
 
-A donor proof that an abstraction preserves a reachability or plan property instantiates the corresponding part of P7's preservation witness. P7 does not re-prove the donor's abstraction theorem.
+A donor proof that an abstraction preserves a reachability or plan property instantiates the corresponding part of ORION-17's preservation witness. ORION-17 does not re-prove the donor's abstraction theorem.
 
 ### 9.4 Lens/schema special case
 
@@ -243,9 +243,9 @@ Prediction-model updates with a fixed vocabulary are intra-chart updates. A chan
 
 ## 10. Donor-product super-baseline
 
-The strongest competitor is the integrated product of fixed-graph/POMDP navigation, abstraction mappings, schema transformations, objective evolution, world-model revision, provenance tracking and P2 stopping rules with correct adapters.
+The strongest competitor is the integrated product of fixed-graph/POMDP navigation, abstraction mappings, schema transformations, objective evolution, world-model revision, provenance tracking and ORION-12 stopping rules with correct adapters.
 
-If this product implements the same transport semantics, P7 should **tie it** on behavioral decisions. That does not invalidate the theory; it means the contribution is a common scientific contract rather than extra expressive power.
+If this product implements the same transport semantics, ORION-17 should **tie it** on behavioral decisions. That does not invalidate the theory; it means the contribution is a common scientific contract rather than extra expressive power.
 
 A claim that ORION outperforms the product requires a prospective difference such as fewer inconsistent preservation judgments, lower proof duplication, smaller audit traces, better revocation/reopening precision, or a specific missing cross-module law. The programme will not declare superiority merely because ORION names all components in one tuple.
 
@@ -280,7 +280,7 @@ This distinction prevents a new world-model parameter estimate from triggering u
 
 ### 12.2 Preservation ladder
 
-P7 occupies the middle of a wider ORION preservation ladder:
+ORION-17 occupies the middle of a wider ORION preservation ladder:
 
 - computation/support may be preserved;
 - evidence meaning may be preserved;
@@ -291,10 +291,10 @@ Paper VI formalizes the computation/certification boundary; Paper VIII formalize
 
 ### 12.3 Falsifiers
 
-P7 should be narrowed or merged if:
+ORION-17 should be narrowed or merged if:
 
 - every useful reframe can be represented without loss as an ordinary fixed-state transition and no transport judgment changes;
-- the strongest donor product already provides the same complete evidence/closure preservation semantics and P7 adds no simpler proof, broader integration or measurable engineering benefit;
+- the strongest donor product already provides the same complete evidence/closure preservation semantics and ORION-17 adds no simpler proof, broader integration or measurable engineering benefit;
 - harmful-reframe controls show that the proposed gating mechanism cannot distinguish beneficial from destructive representation changes;
 - empirical open-world evaluations show no improvement on any protected measure while increasing cost or refusal.
 

@@ -306,7 +306,7 @@ def test_cli_writes_only_candidate_and_commitment_outputs(tmp_path: Path) -> Non
 
 
 def _shipped_suite_families() -> list[str]:
-    shipped = Path("papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json")
+    shipped = Path("papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json")
     cases = json.loads(shipped.read_text(encoding="utf-8"))["cases"]
     return [str(case["protected_root_cause"]) for case in cases]
 

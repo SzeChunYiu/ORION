@@ -1,8 +1,8 @@
-# P10 technical-note readiness — 2026-08-18
+# ORION-20 technical-note readiness — 2026-08-18
 
-P10 is targeted at **peer-review-ready merged technical evidence**, not a
+ORION-20 is targeted at **peer-review-ready merged technical evidence**, not a
 standalone submission. Standalone-only venue, cover-letter and PDF gates are
-routed to the P4/P8 manuscript that adopts the note.
+routed to the ORION-14/ORION-18 manuscript that adopts the note.
 
 | Gate | Receipt | Status |
 |---|---|---|
@@ -20,7 +20,7 @@ routed to the P4/P8 manuscript that adopts the note.
 | Strong tactic-mining baseline | TacMiner-class graph/state baseline on identical corpus | `NOT_RUN`; blocks standalone macro novelty only |
 | Phase 2B input | Missing `HF_MATHLIB_TACTICS_SAMPLE.json` | `REMOVED_FROM_NOTE`; follow-up trigger retained |
 | Canonical reviewer artifact | `TECHNICAL_NOTE.md`, `CLAIM_LEDGER.md`, `references.bib` | `PASS` |
-| Independent paper residual | Mature benchmark/tactic/faithfulness objects; remaining boundary owned P4/P8 | `NO_STANDALONE_RESIDUAL` |
+| Independent paper residual | Mature benchmark/tactic/faithfulness objects; remaining boundary owned ORION-14/ORION-18 | `NO_STANDALONE_RESIDUAL` |
 | Standalone venue/template/cover letter/PDF | No standalone manuscript by terminal decision | `N/A_ROUTED_TO_P4_P8` |
 
 ## Reproduction

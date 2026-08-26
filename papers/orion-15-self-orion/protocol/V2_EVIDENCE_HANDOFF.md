@@ -1,6 +1,6 @@
-# P5 V2 execution/evidence handoff
+# ORION-15 V2 execution/evidence handoff
 
-**Protocol:** `P5.hidden-cause-staged-acceptance.v2`  
+**Protocol:** `ORION-15.hidden-cause-staged-acceptance.v2`  
 **Authority:** artifact-integrity handoff only; empirical status remains `CANNOT_CHECK`.
 
 ## 1. Freeze the run manifest before outcome access

@@ -43,7 +43,7 @@ from orion.study.p1.observation import (
 )
 
 CASE_ROOT = Path(__file__).resolve().parents[4] / (
-    "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases"
+    "papers/orion-11-recursive-epistemic-reconstruction/protocol/cases"
 )
 
 

@@ -1,16 +1,16 @@
-# P9 integration-authority receipt V1
+# ORION-19 integration-authority receipt V1
 
 Status: **INTEGRATED ON REVIEW BRANCH; MERGE AUTHORITY STILL EXTERNAL**
 
 Frozen: 2026-08-20
 
-Current integration PR: **#615** — `P9: integrate verified science and bounded TMLR review package`.
+Current integration PR: **#615** — `ORION-19: integrate verified science and bounded TMLR review package`.
 
 Current integration branch: `shadow/p9-peer-review-integration-20260820`.
 
 ## Purpose
 
-This receipt does not rewrite or supersede the historical execution receipts. It records that the result-bearing P9 artifacts already verified on their scientific branches are present unchanged in the current review integration. Historical receipts remain provenance for how the experiments were executed; this receipt is the paper-package authority for reading those immutable artifacts on PR #615.
+This receipt does not rewrite or supersede the historical execution receipts. It records that the result-bearing ORION-19 artifacts already verified on their scientific branches are present unchanged in the current review integration. Historical receipts remain provenance for how the experiments were executed; this receipt is the paper-package authority for reading those immutable artifacts on PR #615.
 
 The receipt grants **no authority to claim that #519 or any other historical donor PR merged**. It also grants no scientific authority beyond the frozen result terminals and independent comparisons below.
 
@@ -87,9 +87,9 @@ This authority means `INTEGRATED_ARTIFACTS_MAY_BE_RENDERED_ON_PR_615`; it does n
 
 ## Claim ceiling
 
-The strongest integrated P9 paper claim remains bounded:
+The strongest integrated ORION-19 paper claim remains bounded:
 
-> On the prospectively controlled synthetic/procedural tasks in the P9 package, exact representation collisions distinguish missing information from model failure; simple learners exploit typed relation/history coordinates but leave a global affine-composition residual that exact inference closes; and typed relational method coordinates transfer on a whole held-out procedural domain beyond transcript, untyped, and same-information serialized controls.
+> On the prospectively controlled synthetic/procedural tasks in the ORION-19 package, exact representation collisions distinguish missing information from model failure; simple learners exploit typed relation/history coordinates but leave a global affine-composition residual that exact inference closes; and typed relational method coordinates transfer on a whole held-out procedural domain beyond transcript, untyped, and same-information serialized controls.
 
 No neural-architecture novelty, general LLM scaling law, natural-science understanding result, or universal representation theorem is authorized by this receipt.
 

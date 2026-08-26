@@ -56,7 +56,7 @@ exceeds its receipt's frozen scope.
   negative, H2O real-Hamiltonian positive on a blob-locked public source, R5 outer
   accounting honest mixed (`FULL_R5_NOT_SUPPORTED`).
 - **R6**: native controller chain (donor closure → interface envelope → method-language
-  growth → P10 candidate) driven by the harness; frozen prospective gate returns
+  growth → ORION-20 candidate) driven by the harness; frozen prospective gate returns
   `R6_EARNED = NO` with the protected subject sealed.
 - **R6 grammar saturation** (this session): R6L donor positive (absorption; floors H4=12,
   N2=12; post-absorption 8/9); R6I, R6K, R6M exact negatives — every optimum collapses onto

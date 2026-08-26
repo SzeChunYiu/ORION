@@ -1,4 +1,4 @@
-# P7 real regime transport protocol V1
+# ORION-17 real regime transport protocol V1
 
 **Programme:** #977  
 **Purpose:** execute Scientific Regime Transport on two qualitatively different non-synthetic regimes: public research-standard evolution and real-data ontology/objective refinement.
@@ -32,9 +32,9 @@ Unchanged controls -> `TRANSPORT` without a special alias witness.
 
 - `VALUE_ONLY`: transports whenever lexical key and payload are unchanged;
 - `ALWAYS_REOPEN`: reopens every version transition;
-- `WITNESS_AWARE` (P7): applies the registered URI/epoch correspondence and fails closed when it is missing/conflicting.
+- `WITNESS_AWARE` (ORION-17): applies the registered URI/epoch correspondence and fails closed when it is missing/conflicting.
 
-This does not claim P7 invented schema/alias migration. A donor given the same complete support/alias witness should become equivalent on this domain; the experiment tests the scientific-closure layer above value preservation.
+This does not claim ORION-17 invented schema/alias migration. A donor given the same complete support/alias witness should become equivalent on this domain; the experiment tests the scientific-closure layer above value preservation.
 
 ## Domain B — Wine fine/coarse ontology and objective change
 

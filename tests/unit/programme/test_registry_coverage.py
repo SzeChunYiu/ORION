@@ -20,7 +20,7 @@ REPO = Path(__file__).resolve().parents[3]
 PAPERS = REPO / "papers"
 METHOD_AUTHORITY = (
     PAPERS
-    / "paper-04-verified-scientific-discovery"
+    / "orion-14-verified-scientific-discovery"
     / "method_authority_extension"
     / "METHOD_AUTHORITY_BENCH_SUMMARY_V1.json"
 )
@@ -121,7 +121,7 @@ def test_the_p14b_gap_this_module_found_is_closed_in_the_adjudication():
     """
 
     adjudication = json.loads(
-        (PAPERS / "paper-14-orion-rse" / "P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json").read_text()
+        (PAPERS / "orion-24-orion-rse" / "P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json").read_text()
     )
     assert "p14a" in adjudication
     assert "p14b" in adjudication

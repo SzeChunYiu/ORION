@@ -183,7 +183,7 @@ A practical implication is that agent-memory evaluation should not be limited to
 
 ## 12. Relation to prior work
 
-Typed/provenance-aware memory, stale-memory revision and governed persistent memory are active topics; VoI is classical and has also been applied directly to agent communication/planning. Q4 therefore makes no priority claim for those primitives.
+Typed/provenance-aware memory, stale-memory revision and governed persistent memory are active topics; VoI is classical and has also been applied directly to agent communication/planning. ORION-04 therefore makes no priority claim for those primitives.
 
 The narrower experimental delta is the **matched-information scientific-decision design**: hold the factual world fixed, perturb whether a declared epistemic relation is represented/used, require a hostile or no-value control, and give a strong donor first right of refusal.
 

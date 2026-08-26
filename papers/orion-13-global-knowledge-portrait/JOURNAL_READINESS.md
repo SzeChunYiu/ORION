@@ -1,4 +1,4 @@
-# ORION-P3 journal readiness — scoped public-reference paper
+# ORION-ORION-13 journal readiness — scoped public-reference paper
 
 > **Annotated 2026-08-22 after the manuscript house-style rewrite.** This
 > checklist records a readiness audit of the manuscript as it stood when the
@@ -9,12 +9,12 @@
 > evaluated code, but the prose names them in plain English -- aligned,
 > related, obstructed, unresolved -- instead of printing the machine tokens.
 > The scoped headline is likewise unchanged, but the body no longer prints the
-> ledger identifiers `P3.C5`/`P3.C9`; the claim-to-section mapping lives in
+> ledger identifiers `ORION-13.C5`/`ORION-13.C9`; the claim-to-section mapping lives in
 > `CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md`. The manuscript also gained a Data and
 > code availability section, which is where the repository paths and content
 > digests now live.
 
-**Current terminal:** `PEER_REVIEW_READY` for the scoped P3.C5/P3.C9 structured-mapping claim **only on a commit whose repository CI and `p3-manuscript-audit` both succeed**.  
+**Current terminal:** `PEER_REVIEW_READY` for the scoped ORION-13.C5/ORION-13.C9 structured-mapping claim **only on a commit whose repository CI and `p3-manuscript-audit` both succeed**.  
 **Not claimed:** raw-text end-to-end extraction superiority, universal coordinate necessity, expert-atlas adequacy, downstream answer-quality improvement, or general method-learning performance.
 
 ## 1. Scientific object and evidence
@@ -27,7 +27,7 @@
 - [x] predeclared confirmatory verdict PASS;
 - [x] force-compatibility/obstruction ablation retained;
 - [x] zero-effect coordinate ablations remain visible and coverage-bounded;
-- [x] independent `ScientificResultVerification.v1` receipt exists for P3.C5.
+- [x] independent `ScientificResultVerification.v1` receipt exists for ORION-13.C5.
 
 ## 2. Structural bridge
 - [x] `MethodStructureProjection.v1` is additive and source-local;
@@ -38,9 +38,9 @@
 - [x] this pilot is explicitly a non-vacuity result, not natural-paper extraction accuracy.
 
 ## 3. Claim boundary
-- [x] P3.C5/P3.C9 are the scoped empirical headline;
-- [x] P3.C7 raw-text/end-to-end superiority is `NOT_CLAIMED / FOLLOW_UP`;
-- [x] P3.C8 downstream answer-quality improvement is `NOT_CLAIMED / FOLLOW_UP`;
+- [x] ORION-13.C5/ORION-13.C9 are the scoped empirical headline;
+- [x] ORION-13.C7 raw-text/end-to-end superiority is `NOT_CLAIMED / FOLLOW_UP`;
+- [x] ORION-13.C8 downstream answer-quality improvement is `NOT_CLAIMED / FOLLOW_UP`;
 - [x] the original expert eight-family atlas is preserved as follow-up science, not relabelled PASS;
 - [x] #280 closed `NARROW_THEORY_CONFIRMED`;
 - [x] #408/#409 closed on bounded structural terminals.
@@ -55,7 +55,7 @@
 ## 5. Manuscript / reproducibility
 - [x] abstract/introduction/results/limitations/conclusion use confirmatory rather than exploratory headline numbers;
 - [x] broad unexecuted expert/raw-text study is described as unexecuted;
-- [x] P3 method-structure sections are retained additively;
+- [x] ORION-13 method-structure sections are retained additively;
 - [x] bibliography/reference metadata repaired and audited;
 - [x] deterministic public-reference evaluation and publication-generation commands exist;
 - [x] independent confirmatory replay exists;
@@ -71,4 +71,4 @@
 - [x] confidential external referee review/editorial acceptance occurs after `PEER_REVIEW_READY`.
 
 ## Terminal
-`ORION-P3 = PEER_REVIEW_READY` for the scoped P3.C5/P3.C9 paper when the exact subject has green repository CI and green `p3-manuscript-audit`. The broader expert/raw-text programme is future science, not an unfinished hidden prerequisite of this paper.
+`ORION-ORION-13 = PEER_REVIEW_READY` for the scoped ORION-13.C5/ORION-13.C9 paper when the exact subject has green repository CI and green `p3-manuscript-audit`. The broader expert/raw-text programme is future science, not an unfinished hidden prerequisite of this paper.

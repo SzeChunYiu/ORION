@@ -1,6 +1,6 @@
 # Recursive Recovery of Negative Quantum Results: A Receipted Longitudinal Study of Scientific Succession
 
-**ORION-Q2 Manuscript V2 — publication-synthesis draft**  
+**ORION-ORION-02 Manuscript V2 — publication-synthesis draft**  
 Publication cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Foundation: `PUBLICATION_FOUNDATION_V2.md`
 
@@ -30,17 +30,17 @@ as an auditable scientific object whose earlier states remain immutable even whe
 
 ### 2.1 Evidence chains and verifiability
 
-ScientistOne (Meng et al., 2026; arXiv:2605.26340) directly addresses verifiability failures in autonomous research through Chain-of-Evidence, score verification, reference verification and method-code alignment. Q2 therefore cannot claim general claim-to-evidence traceability as its novelty.
+ScientistOne (Meng et al., 2026; arXiv:2605.26340) directly addresses verifiability failures in autonomous research through Chain-of-Evidence, score verification, reference verification and method-code alignment. ORION-02 therefore cannot claim general claim-to-evidence traceability as its novelty.
 
 The 2026 survey *Autonomous Research Agents: A Survey of AI Scientists and the Verification Gap* documents weak availability of seeds/traces and novelty verification across existing systems. This motivates verification but does not make verification itself novel here.
 
 ### 2.2 Scientific-agent benchmarks
 
-AstaBench (ICLR 2026) provides a large controlled scientific-research evaluation suite with standardized tools, strong baselines and cost-aware comparisons. ScienceAgentBench similarly evaluates real scientific tasks against validated target outputs. Q2 does not claim rigorous agent benchmarking.
+AstaBench (ICLR 2026) provides a large controlled scientific-research evaluation suite with standardized tools, strong baselines and cost-aware comparisons. ScienceAgentBench similarly evaluates real scientific tasks against validated target outputs. ORION-02 does not claim rigorous agent benchmarking.
 
 ### 2.3 End-to-end automated research
 
-The AI Scientist and related systems already span ideation, experimentation, analysis and manuscript production. Q2 is not an autonomy paper. Its case study can be executed with human/model assistance; the methodological object is the **authority transition between research states**.
+The AI Scientist and related systems already span ideation, experimentation, analysis and manuscript production. ORION-02 is not an autonomy paper. Its case study can be executed with human/model assistance; the methodological object is the **authority transition between research states**.
 
 ### 2.4 Preregistration, provenance and negative results
 
@@ -177,7 +177,7 @@ Negative recovery is not only about counterexamples. In other ORION-Q lanes, can
 
 This is scientifically useful for two reasons. First, it prevents novelty inflation. Second, it changes where the next question should be asked. If a donor already closes a proposed mechanism, subsequent effort moves to a residual the donor does not explain rather than repeatedly renaming the same idea.
 
-Q2 therefore treats “candidate disappears into prior work” as a successful research disposition, even though it is a negative publication result for that candidate.
+ORION-02 therefore treats “candidate disappears into prior work” as a successful research disposition, even though it is a negative publication result for that candidate.
 
 ## 10. What is executable about the method?
 
@@ -190,7 +190,7 @@ The methodology is not a prose philosophy. For each selected chain, the reposito
 - successor protocol identity and chronology;
 - independent verifier/replay where available.
 
-The final Q2 package should expose a compact transition ledger with columns:
+The final ORION-02 package should expose a compact transition ledger with columns:
 
 `predecessor | frozen claim | outcome | responsibility | donor disposition | successor | freeze-after-predecessor? | successor outcome | authority`.
 
@@ -203,21 +203,21 @@ A validator can check simple but consequential invariants:
 5. donor-owned mechanisms receive no candidate novelty credit;
 6. `CANNOT_CHECK` is not converted into numeric failure/success without new evidence.
 
-This is the sense in which Q2's recovery discipline is executable.
+This is the sense in which ORION-02's recovery discipline is executable.
 
 ## 11. Comparison with evidence-chain and benchmarking methods
 
-ScientistOne's Chain-of-Evidence addresses whether claims can be traced to evidence and whether scores/references/method descriptions align. Q2 needs that kind of traceability, but it asks a later question: **once a claim has been correctly traced and found false or unsupported, what successor research transition is licensed?**
+ScientistOne's Chain-of-Evidence addresses whether claims can be traced to evidence and whether scores/references/method descriptions align. ORION-02 needs that kind of traceability, but it asks a later question: **once a claim has been correctly traced and found false or unsupported, what successor research transition is licensed?**
 
-AstaBench and ScienceAgentBench improve rigor by controlling tools, tasks, costs and ground truth. Q2 does not replace such benchmarks. Its case study is about a single evolving research programme where the hypothesis space itself changes after exact counterexamples.
+AstaBench and ScienceAgentBench improve rigor by controlling tools, tasks, costs and ground truth. ORION-02 does not replace such benchmarks. Its case study is about a single evolving research programme where the hypothesis space itself changes after exact counterexamples.
 
-Preregistration prevents some forms of outcome-aware hypothesis editing. Q2 adds a typed successor relation and donor-first-refusal rule so that a preregistered failure becomes an active constraint on what may be tried next.
+Preregistration prevents some forms of outcome-aware hypothesis editing. ORION-02 adds a typed successor relation and donor-first-refusal rule so that a preregistered failure becomes an active constraint on what may be tried next.
 
 These distinctions are conceptual claims and require a fresh submission-date literature review. We therefore avoid claiming that no prior workflow has ever combined similar ideas.
 
 ## 12. Reproducibility / receipt index
 
-A submission-ready Q2 should provide a reviewer-facing receipt index rather than expect readers to browse the full ORION history. Each representative chain should include:
+A submission-ready ORION-02 should provide a reviewer-facing receipt index rather than expect readers to browse the full ORION history. Each representative chain should include:
 
 - source protocol;
 - source result;
@@ -227,7 +227,7 @@ A submission-ready Q2 should provide a reviewer-facing receipt index rather than
 - replay/independent verification;
 - companion paper owning the detailed scientific claim.
 
-Quantum result numbers should be cited minimally in Q2. Q1 owns TARE expressivity mathematics; QG1 owns cross-family regime geometry; QG2 owns certified forecasting. Q2 uses those results only to show the transition discipline.
+Quantum result numbers should be cited minimally in ORION-02. ORION-01 owns TARE expressivity mathematics; ORION-09 owns cross-family regime geometry; ORION-10 owns certified forecasting. ORION-02 uses those results only to show the transition discipline.
 
 ## 13. Limitations
 
@@ -237,7 +237,7 @@ Quantum result numbers should be cited minimally in Q2. Q1 owns TARE expressivit
 
 **Exact/synthetic bias.** Many ORION-Q problems have exact referees or exhaustive finite structure. Negative responsibility is harder to localize in noisy empirical sciences.
 
-**Human/agent involvement.** The process may involve humans and multiple AI systems. Q2 does not claim autonomous methodological governance.
+**Human/agent involvement.** The process may involve humans and multiple AI systems. ORION-02 does not claim autonomous methodological governance.
 
 **Novelty search.** Internal donor searches are bounded and cannot self-certify external novelty. Submission requires a fresh primary-source search over autonomous research methodology, provenance, adaptive/preregistered experimentation and negative-result handling.
 

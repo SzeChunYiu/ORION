@@ -1,11 +1,11 @@
-# P6 candidate journal-readiness plan — Formal Epistemic Structures and Mechanics
+# ORION-16 candidate journal-readiness plan — Formal Epistemic Structures and Mechanics
 
 **Current terminal:** `CANNOT_CHECK` / not a promoted paper / not peer-review ready.
 
 ## 1. Distinct-object gate
-- [ ] #343 proves a non-duplicative residual relative to P1.
+- [ ] #343 proves a non-duplicative residual relative to ORION-11.
 - [ ] exact mapping from proposed formal objects to current ORION registry is complete.
-- [ ] every P1-owned mechanic is marked prior internal ownership, not P6 novelty.
+- [ ] every ORION-11-owned mechanic is marked prior internal ownership, not ORION-16 novelty.
 
 ## 2. Nearest-work closure
 - [ ] dynamic epistemic logic/action-model families dispositioned.
@@ -62,4 +62,4 @@
 
 ## Done definition
 
-Promote P6 only if it yields a formal object/property that is distinct from P1 and prior formal systems, plus either a meaningful theorem/checker result or prospective empirical evidence demonstrating why the extra structure matters. Otherwise merge the useful material into P1 or retain it as a technical companion.
+Promote ORION-16 only if it yields a formal object/property that is distinct from ORION-11 and prior formal systems, plus either a meaningful theorem/checker result or prospective empirical evidence demonstrating why the extra structure matters. Otherwise merge the useful material into ORION-11 or retain it as a technical companion.

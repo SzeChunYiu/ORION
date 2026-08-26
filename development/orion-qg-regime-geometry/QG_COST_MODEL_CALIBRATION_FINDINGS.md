@@ -43,7 +43,7 @@ synthesized rotation) while the central branch is Clifford-dominated.
 
 **Computed and claimed agree, and the disagreement a referee might hope for is
 absent.** The programme never claims O0 is a physical count; it says the
-opposite. `papers/QG-paper-01-.../MANUSCRIPT_V1.md:304-306, 324, 344` states the
+opposite. `papers/archive/2026-08-pre-unification/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V1.md:304-306, 324, 344` states the
 geometry is "a property of the (family, objective) pair", that the R6S
 sufficiency bound is "objective-scoped, not universal", and that "the support-2
 world is the unit-cost objective's". No overclaim found in the referee-facing

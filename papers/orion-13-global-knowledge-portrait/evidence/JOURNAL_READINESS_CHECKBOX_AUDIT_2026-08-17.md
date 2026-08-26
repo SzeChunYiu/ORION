@@ -1,4 +1,4 @@
-# P3 journal-readiness checkbox audit vs `origin/main`
+# ORION-13 journal-readiness checkbox audit vs `origin/main`
 
 **Date:** 2026-08-17  
 **Issue:** #100  
@@ -16,7 +16,7 @@ Method: `git show origin/main:<path>`, SHA-256 of jsonl bytes, `git ls-tree`, Gi
 | `evidence/public-reference-v1/SHA256SUMS` | gold hash line | contains `35f9e39b…54ed8  artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl` | **TICK** custody |
 | `evidence/public-reference-v1.1-confirmatory/SHA256SUMS` | gold hash line | contains `13a76c68…2782b  artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl` | **TICK** custody |
 | `PROVENANCE.env` (both archives) | present, pinned MUSE/SciSchema/SciFact SHAs | both present | **TICK** |
-| `gold/adjudicated/*.json` | 32 eight-family records | 32 `P3.*.gold.json`, annotator `seed-to-gold-v1` | **DO NOT TICK as expert gold** |
+| `gold/adjudicated/*.json` | 32 eight-family records | 32 `ORION-13.*.gold.json`, annotator `seed-to-gold-v1` | **DO NOT TICK as expert gold** |
 | `gold/annotations/annotator-a/` and `annotator-b/` | independent labels | 0 files | **CANNOT_CHECK** |
 
 PR #270 mixed the seed JSON files with the public-reference jsonl when ticking “actual gold labels for all 32 samples (24 core + 8 margin)”. That mix is rejected here.
@@ -32,10 +32,10 @@ PR #270 mixed the seed JSON files with the public-reference jsonl when ticking �
 | 3 Public-reference freeze | jsonl hashes, SHA256SUMS, PROVENANCE.env | seed JSON not promoted |
 | 4 Baselines | flat predicate canonicalization (narrow) | vanilla synthesis, RAG, translation, SCOPE/SCION, schema-contract |
 | 5 Metrics | false merge + false split (public-reference only) | contradiction, recoverability, downstream, IAA, cost |
-| 6 Plots P3-1..P3-7 | — | all original figures/tables; PR3-F1..F3 are substitutes only |
+| 6 Plots ORION-13-1..ORION-13-7 | — | all original figures/tables; PR3-F1..F3 are substitutes only |
 | 7 Manuscript | all except stage-error attribution | stage extraction vs mapping vs integration |
 | 8 Reproducibility | handbook, public-reference gold+provenance, publication scripts, eval path, mapping replay | shareable eight-family spans, baseline prompts, raw portraits |
 
 ## Issue #100 alignment
 
-Steps 1, 2, 3R, 3C and most of Step 8 were already ticked on the issue. This pass does **not** tick original Step 3 case-family / dual-annotator boxes, Step 4 raw-text baselines, Step 6 P3-1..P3-7, Step 10, or any V2 box from later comments.
+Steps 1, 2, 3R, 3C and most of Step 8 were already ticked on the issue. This pass does **not** tick original Step 3 case-family / dual-annotator boxes, Step 4 raw-text baselines, Step 6 ORION-13-1..ORION-13-7, Step 10, or any V2 box from later comments.

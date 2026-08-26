@@ -1,4 +1,4 @@
-# P2 successor mechanic result: lexical-echo-resistant candidate generation
+# ORION-12 successor mechanic result: lexical-echo-resistant candidate generation
 
 - **Record id**: `P2_LEXICAL_ECHO_SUCCESSOR_RESULT`
 - **Date**: 2026-08-21
@@ -9,7 +9,7 @@
 - **World content hash**: `3711a6f7b3997d7a6f24b292ec65fd2b6f56e13cd2161a45c4ca8bf28ed3f534`
 - **Verdict**: `VALIDATED_ON_CONSTRUCTED_REPRODUCTION`
 - **Claim scope**: `CONSTRUCTED_REPRODUCTION_ONLY`
-- **Gate served**: `P2-U-T5`
+- **Gate served**: `ORION-12-U-T5`
 
 The freeze document was written, dated and hashed before the world was generated and before any arm
 was executed. Every threshold below was set there. Nothing was retuned after a number was seen.

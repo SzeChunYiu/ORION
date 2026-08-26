@@ -1,6 +1,6 @@
 """Fetch-and-record literature evidence for ORION Paper II bibliography.
 
-One JSON per bibliography key under papers/paper-02-.../evidence/literature/.
+One JSON per bibliography key under papers/orion-12-.../evidence/literature/.
 Every field is copied from a live fetch; nothing is written from recall.
 """
 from __future__ import annotations

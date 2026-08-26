@@ -1,4 +1,4 @@
-# P2 final saturation audit — inspected bytes rebound; final CI pending
+# ORION-12 final saturation audit — inspected bytes rebound; final CI pending
 
 - Audit date: 2026-08-21
 - Package rebind base: `ca7df1055a43f97eaf8d142a62011c4c261af368`
@@ -29,14 +29,14 @@ squares, figure/table illegibility, or page-edge contact was observed.
 The V3 artifact was minted at `060ed7e6528a592cd3bef3db149b93e94652b2ec`, while
 this rebind starts from `ca7df1055a43f97eaf8d142a62011c4c261af368`. That
 distinction is preserved. The repository compare across that interval contains
-no P1/P2 manuscript-input change; the only P1/P2 changes are durable audit/package
+no ORION-11/ORION-12 manuscript-input change; the only ORION-11/ORION-12 changes are durable audit/package
 text. `RENDER_INPUT_CLOSURE.json` preserves the protected closure itself, so
 authority is transferred by byte identity of the complete tracked TeX input
 closure and exact PDF hash, not by pretending the two Git SHAs are the same.
 
 This PR binds the inspected binary into `journal_package/manuscript.pdf` and
 regenerates `SHA256SUMS` to cover the PDF, source closure, final audit, and every
-other manifest-required file. The PR remains non-terminal until final P2
+other manifest-required file. The PR remains non-terminal until final ORION-12
 manuscript and ordinary repository/package CI succeed and a successor exact-main
 render confirms the same input closure and PDF hash. A changed closure or PDF
 hash reopens the visual/package gate.

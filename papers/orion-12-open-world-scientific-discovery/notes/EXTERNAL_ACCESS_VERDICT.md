@@ -1,4 +1,4 @@
-# P2 external access verdict
+# ORION-12 external access verdict
 
 Record: `../protocol/EXTERNAL_ACCESS_AUDIT_V1.json` (revision 2). Table:
 `../protocol/TABLE_P2-1_freeze_manifest.md` (generated). Logs: `../evidence/access/`.
@@ -64,11 +64,11 @@ arXiv:2604.25256, its GitHub repo, its HuggingFace dataset page — as an ordina
 candidate the answer key. Scan route logs for those three identifiers per query.
 
 Redistribution stays a Section-8 problem (SAGE and AgentSLR are unlicensed at any tree depth, so no
-frozen snapshot of them can ship — their datasets differ; see Table P2-1).
+frozen snapshot of them can ship — their datasets differ; see Table ORION-12-1).
 
 ## Consequence for issue #99 Step 3
 
-Closed: licences and access notes; Table P2-1 generated from records; pinned-revision integrity; and
+Closed: licences and access notes; Table ORION-12-1 generated from records; pinned-revision integrity; and
 — newly — **AutoResearchBench Wide official evaluation is executable here**, which revision 1
 wrongly reported as blocked. Still `CANNOT_CHECK` pending execution: Deep (judge key), MetaSyn
 (compute), AgentSLR (keys + PDFs), and contamination *rates* everywhere. Struck: SAGE.

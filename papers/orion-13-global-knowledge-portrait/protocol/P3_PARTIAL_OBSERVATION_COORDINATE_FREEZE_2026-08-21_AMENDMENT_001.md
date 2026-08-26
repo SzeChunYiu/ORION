@@ -1,4 +1,4 @@
-# P3 Partial-Observation Coordinate Freeze — Amendment 001
+# ORION-13 Partial-Observation Coordinate Freeze — Amendment 001
 
 **Amends** `P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md` and its twin
 `P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.json`.
@@ -179,7 +179,7 @@ by abstaining, and abstention where gold is determinate is
 `ABSTAINED_ON_SEPARABLE` / `ABSTAINED_ON_MERGEABLE`, neither of which is one of
 the four failure kinds; so the only possible intact failure was one `A0` itself
 commits. And `A0` answers every symmetric intact pair correctly, which is the
-published P3 negative. Neither reason survives a partially observed intact pair:
+published ORION-13 negative. Neither reason survives a partially observed intact pair:
 on `D_DECISIVE_ABSENCE`, A0 commits 8 `MERGED_WHERE_GOLD_UNRESOLVED` and 1
 `SEPARATED_WHERE_GOLD_UNRESOLVED`. Part (a) now reports 9 failures, all 9 with an
 empty discriminating-coordinate set, and fails.
@@ -193,7 +193,7 @@ does not fire.
 
 ### 6.4 What is measured on the intact side for the first time
 
-- `P3.OVERRESOLVED_UNRESOLVED_CASE` has a denominator on an **intact** corpus: 15
+- `ORION-13.OVERRESOLVED_UNRESOLVED_CASE` has a denominator on an **intact** corpus: 15
   opportunities, 9 violations by A0, rate 0.6. On the three symmetric corpora it
   remains `CANNOT_CHECK` at 0 of 0, unchanged.
 - The absence-reading split of section 1.2 is measured on authored cases rather
@@ -225,5 +225,5 @@ number over it is evidence about ORION's competence on scientific text.
   opportunities" on the three symmetric intact corpora, and `false_merge` still
   reports "0 opportunities" on every probe corpus. Those remain
   `CANNOT_CHECK`.
-- It does not discharge P3-U-T5. `G8_NOVELTY` fails by construction and the
+- It does not discharge ORION-13-U-T5. `G8_NOVELTY` fails by construction and the
   verdict is unchanged.

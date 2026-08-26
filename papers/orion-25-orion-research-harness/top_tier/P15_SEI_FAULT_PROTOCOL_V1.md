@@ -1,6 +1,6 @@
-# P15 Scientific Execution Integrity fault protocol V1
+# ORION-25 Scientific Execution Integrity fault protocol V1
 
-**Programme:** #977 / P15 issue #979  
+**Programme:** #977 / ORION-25 issue #979  
 **State:** `FROZEN_BEFORE_EXECUTION`  
 **Purpose:** establish bounded executable non-implications between attribution/replay/agreement and scientific validity before any broad systems-superiority claim.
 

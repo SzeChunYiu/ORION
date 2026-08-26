@@ -1,12 +1,12 @@
-# ORION-P3 Public-Reference Gold Authority Policy V1
+# ORION-ORION-13 Public-Reference Gold Authority Policy V1
 
 **Status:** DESIGN_FROZEN, outcome-blind.  
-**Protocol:** `P3.public-reference-mapping.v1`  
+**Protocol:** `ORION-13.public-reference-mapping.v1`  
 **Purpose:** make Paper III executable without commissioning a new expert-annotation team while preserving a hard scientific authority boundary.
 
 ## Decision
 
-The original `P3.cross-domain-atlas.v1` remains unchanged. Its end-to-end expert-gold claim is still the stronger follow-up.
+The original `ORION-13.cross-domain-atlas.v1` remains unchanged. Its end-to-end expert-gold claim is still the stronger follow-up.
 
 The resource-constrained route evaluates the **projection → mapping / GLUE-or-obstruction layer** using labels that already exist in public research artifacts. It is not allowed to turn an LLM guess, lexical heuristic, simulated annotator, or citation-count proxy into final gold.
 

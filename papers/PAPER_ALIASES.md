@@ -1,156 +1,112 @@
-# ORION paper aliases and retired numbering
+# ORION paper alias registry (machine-readable)
 
-This ledger is the single place for historical ORION paper-directory aliases. The active manuscript tree contains only the five canonical numbered paper directories listed in `README.md`.
+Single source of truth for historical ORION paper-directory and paper-id aliases.
+All `old_dir`/`new_dir` values below are relative to `papers/` (no `papers/`
+prefix, so this registry never matches repo-wide old-path gates).
 
-## Canonical identities
+- date: 2026-08-27 (moves executed 2026-08-26)
+- reason: operator naming-unification directive 2026-08-26 — "rename all papers,
+  too many namings like pn and alphabets and others"
+  (`PAPER_PORTFOLIO_REFACTOR_PLAN_V1.md` §2, Wave R0)
+- receipt: `PAPER_RENAME_RECEIPT_V1.json` (schema `ORION.Papers.RenameReceipt.v1`)
+- one flat series `ORION-NN` ↔ directory `orion-NN-<slug>/`; ORION-26..28 are
+  reserved for the future P16/P17/P18 candidates (set at authorization).
 
-| Stable ID | Canonical title | Active directory |
-|---|---|---|
-| ORION-P1 | Recursive Epistemic Reconstruction | `paper-01-recursive-epistemic-reconstruction/` |
-| ORION-P2 | Open-World Scientific Knowledge Discovery | `paper-02-open-world-scientific-discovery/` |
-| ORION-P3 | Global Knowledge Portrait | `paper-03-global-knowledge-portrait/` |
-| ORION-P4 | Verified Scientific Discovery | `paper-04-verified-scientific-discovery/` |
-| ORION-P5 | Self-ORION | `paper-05-self-orion/` |
+```yaml
+schema: ORION.Papers.AliasRegistry.v1
+id_aliases:
+  # old bare id -> new ORION-NN id
+  - {old: NQ,            new: ORION-04}
+  - {old: theory-A,      new: ORION-01}
+  - {old: theory-B,      new: ORION-01}
+  - {old: theory-C,      new: ORION-02}
+  - {old: theory-D,      new: ORION-03}
+  - {old: Q1,            new: ORION-05}
+  - {old: Q2,            new: ORION-06}
+  - {old: Q3,            new: ORION-07}
+  - {old: Q4,            new: ORION-08}
+  - {old: QG1,           new: ORION-09}
+  - {old: QG2,           new: ORION-10}
+  - {old: P1,            new: ORION-11}
+  - {old: P2,            new: ORION-12}
+  - {old: P3,            new: ORION-13}
+  - {old: P4,            new: ORION-14}
+  - {old: P5,            new: ORION-15}
+  - {old: P6,            new: ORION-16}
+  - {old: P7,            new: ORION-17}
+  - {old: P8,            new: ORION-18}
+  - {old: P9,            new: ORION-19}
+  - {old: P10,           new: ORION-20}
+  - {old: P11,           new: ORION-21}
+  - {old: P12,           new: ORION-22}
+  - {old: P13,           new: ORION-23}
+  - {old: P14,           new: ORION-24}
+  - {old: P15,           new: ORION-25}
+dir_aliases:
+  # old_dir -> new_dir, both relative to papers/; archived targets keep old basenames
+  - {old_dir: theory-A-multitag-constraint-rank,          new_dir: orion-01-certificate-realization, kind: merged-into}
+  - {old_dir: theory-B-certificate-complexity,            new_dir: orion-01-certificate-realization, kind: merged-into}
+  - {old_dir: theory-C-low-order-information,             new_dir: orion-02-fiberguard-finite-fibre, kind: renamed}
+  - {old_dir: theory-D-falsification-authority,           new_dir: orion-03-typed-merge-falsification, kind: renamed}
+  - {old_dir: nonquantum-c5cubed-davenport,               new_dir: orion-04-rooted-completion-certificates, kind: renamed}
+  - {old_dir: Q-paper-01-tare-expressivity,               new_dir: orion-05-tare-expressivity, kind: renamed}
+  - {old_dir: Q-paper-02-recursive-recovery,              new_dir: orion-06-recursive-recovery, kind: renamed}
+  - {old_dir: Q-paper-03-dual-instrument,                 new_dir: orion-07-dual-instrument, kind: renamed}
+  - {old_dir: Q-paper-04-typed-state,                     new_dir: orion-08-typed-state, kind: renamed}
+  - {old_dir: QG-paper-01-compilation-regime-geometry,    new_dir: orion-09-compilation-regime-geometry, kind: renamed}
+  - {old_dir: QG-paper-02-certified-static-forecasting,   new_dir: orion-10-certified-static-forecasting, kind: renamed}
+  - {old_dir: paper-01-recursive-epistemic-reconstruction,   new_dir: orion-11-recursive-epistemic-reconstruction, kind: renamed}
+  - {old_dir: paper-02-open-world-scientific-discovery,      new_dir: orion-12-open-world-scientific-discovery, kind: renamed}
+  - {old_dir: paper-03-global-knowledge-portrait,            new_dir: orion-13-global-knowledge-portrait, kind: renamed}
+  - {old_dir: paper-04-verified-scientific-discovery,        new_dir: orion-14-verified-scientific-discovery, kind: renamed}
+  - {old_dir: paper-05-self-orion,                           new_dir: orion-15-self-orion, kind: renamed}
+  - {old_dir: paper-06-formal-epistemic-structures-and-mechanics, new_dir: orion-16-formal-epistemic-structures-and-mechanics, kind: renamed}
+  - {old_dir: paper-07-epistemic-navigation-open-worlds,         new_dir: orion-17-epistemic-navigation-open-worlds, kind: renamed}
+  - {old_dir: paper-08-epistemic-authority-autonomous-science,  new_dir: orion-18-epistemic-authority-autonomous-science, kind: renamed}
+  - {old_dir: paper-09-structured-epistemic-learning,            new_dir: orion-19-structured-epistemic-learning, kind: renamed}
+  - {old_dir: paper-10-structured-problem-solving,               new_dir: orion-20-structured-problem-solving, kind: renamed}
+  - {old_dir: paper-11-state-as-computation,                     new_dir: orion-21-state-as-computation, kind: renamed}
+  - {old_dir: paper-12-adaptive-state-reasoning,                 new_dir: orion-22-adaptive-state-reasoning, kind: renamed}
+  - {old_dir: paper-13-responsibility-carrying-state,            new_dir: orion-23-responsibility-carrying-state, kind: renamed}
+  - {old_dir: paper-14-orion-rse,                                new_dir: orion-24-orion-rse, kind: renamed}
+  - {old_dir: paper-15-orion-research-harness,                   new_dir: orion-25-orion-research-harness, kind: renamed}
+  - {old_dir: QG-paper-03-intrinsic-support-numbers,          new_dir: candidates/qg-paper-03-stub, kind: stub-to-candidates}
+  - {old_dir: paper-02-global-knowledge-portrait,             new_dir: archive/2026-08-pre-unification/paper-02-global-knowledge-portrait, kind: archived}
+  - {old_dir: paper-03-verified-discovery,                    new_dir: archive/2026-08-pre-unification/paper-03-verified-discovery, kind: archived}
+  - {old_dir: paper-04-self-orion,                            new_dir: archive/2026-08-pre-unification/paper-04-self-orion, kind: archived}
+  - {old_dir: paper-xx-content-bound-math-evaluation,         new_dir: archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation, kind: archived}
+file_aliases:
+  # theory-A/B collision files (kept both, prose NOT merged) + archived manuscript cuts
+  - {old: theory-A-multitag-constraint-rank/MANUSCRIPT_V2.md,    new: orion-01-certificate-realization/theory-A-MANUSCRIPT_V2.md}
+  - {old: theory-A-multitag-constraint-rank/CLAIM_LEDGER.md,     new: orion-01-certificate-realization/theory-A-CLAIM_LEDGER.md}
+  - {old: theory-A-multitag-constraint-rank/CLAIM_LEDGER_R2.md,  new: orion-01-certificate-realization/theory-A-CLAIM_LEDGER_R2.md}
+  - {old: theory-B-certificate-complexity/MANUSCRIPT_V2.md,      new: orion-01-certificate-realization/theory-B-MANUSCRIPT_V2.md}
+  - {old: theory-B-certificate-complexity/CLAIM_LEDGER.md,       new: orion-01-certificate-realization/theory-B-CLAIM_LEDGER.md}
+  - {old: theory-B-certificate-complexity/CLAIM_LEDGER_R2.md,    new: orion-01-certificate-realization/theory-B-CLAIM_LEDGER_R2.md}
+  - {old: theory-A-multitag-constraint-rank/MANUSCRIPT_V1.md,    new: archive/2026-08-pre-unification/theory-A-multitag-constraint-rank/MANUSCRIPT_V1.md}
+  - {old: theory-B-certificate-complexity/MANUSCRIPT_V1.md,      new: archive/2026-08-pre-unification/theory-B-certificate-complexity/MANUSCRIPT_V1.md}
+  - {old: Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md, new: orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md, note: canonical Q1 manuscript}
+  - {old: Q-paper-01-tare-expressivity/MANUSCRIPT_V1.md,         new: archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_V1.md}
+  - {old: Q-paper-01-tare-expressivity/MANUSCRIPT_V2.md,         new: archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_V2.md}
+  - {old: Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md,         new: archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md}
+  - {old: Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md, new: archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md}
+archived_root_files:
+  # old papers/<name> -> papers/archive/2026-08-pre-unification/<name>
+  - FIVE_PAPER_REVIEW_SYNTHESIS_2026-08-24.md
+  - FIVE_THEORY_PAPERS_FIGURE_CONTRACTS_2026-08-24.md
+  - Q_QG_VENUE_TARGET_MATRIX_V1.md
+  - Q_QG_PUBLICATION_READINESS_V2.md
+  - Q_QG_TARGET_PACKAGE_MANIFESTS_V1.json
+  - check_q_qg_target_packages.py
+  - build_q_qg_figures.py
+retained_outside_series:
+  # infrastructure / snapshots that intentionally keep their names
+  - paper-xx-executable-research-core   # live ASlib benchmark harness (ORION-02 lane)
+  - candidates/paper-06..paper-14       # preserved pre-refactor candidate snapshots
+  - candidates/qg-paper-03-stub         # QG3 stub (moved from the retired QG-paper-03 dir)
+```
 
-## Removed redirect directories
-
-These paths were transitional redirects created during the five-paper reindexing. They contained no independent manuscript content and are now removed from the working tree.
-
-| Retired path | Historical meaning | Canonical destination |
-|---|---|---|
-| `paper-02-global-knowledge-portrait/` | Global Knowledge Portrait before insertion of the clean-generation discovery paper | `paper-03-global-knowledge-portrait/` |
-| `paper-03-verified-discovery/` | Verified Discovery before the five-paper reindex | `paper-04-verified-scientific-discovery/` |
-| `paper-04-self-orion/` | Self-ORION before the five-paper reindex | `paper-05-self-orion/` |
-
-The deleted redirect READMEs remain recoverable from Git history. No scientific content is lost by removing them.
-
-## Dissolved paper-like technical path
-
-The former `shadow-mechanics-v1/` directory was never assigned ORION-P1..P5 but its title and manuscript layout made it look like a sixth paper. It is now dissolved rather than numbered:
-
-- mechanic-cell representation and recursive self-audit -> **ORION-P1**;
-- failure-to-method learning, challenger governance, protected self-development -> **ORION-P5**;
-- discovery/stopping interfaces -> **ORION-P2**;
-- verification/authority interfaces -> **ORION-P4**;
-- the original Shadow README, manuscript, claim ledger, and evidence packets -> `research/technical-companions/mechanics-of-mechanics-v1/archive/`.
-
-The archive preserves the original bytes and chronology but is not a publication identity.
-
-## P6–P15 identity — one directory per paper
-
-Every paper carries exactly one directory. P6, P7 and P8 always did; P9 and P10 no
-longer sit beside a second `paper-NN-*` directory.
-
-### The two that used to
-
-They were never second versions of P9 and P10. They were a **benchmark package**
-and a **benchmark corpus** that happened to wear paper numbers, and both had
-already been routed elsewhere by a dated decision:
-
-| Directory | Was | Its own terminal |
-|---|---|---|
-| `paper-xx-executable-research-core/` | P9 | `MERGED INTO P8/PROGRAMME`, no standalone manuscript |
-| `paper-xx-content-bound-math-evaluation/` | P10 | `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`, 2026-08-18 |
-
-The `paper-xx-` prefix vacates the number while keeping the record that each was a
-paper candidate. Neither directory was deleted: both hold results that live tests
-and other papers cite.
-
-**Neither could be renumbered into P11–P14.** Not because those numbers are taken,
-but because both are already absorbed — into P8 and P4/P8 respectively — and
-re-absorbing them would contradict a recorded terminal while moving them away from
-the papers that own their subjects. `content-bound-math-evaluation` is not even
-dormant: its `FOLLOW_UPS.md` carries active reopen triggers, and trigger 5 routes
-any surviving positive through P4 and P8.
-
-### Correcting an earlier framing in this file
-
-An earlier revision described these pairs as *active identity* and *retired
-predecessor*. That was the wrong lens and is withdrawn. For P9 it was simply false:
-the live manuscript does not cite `executable-research-core` at all, so there is no
-lineage between them.
-
-What actually distinguishes the directories under `papers/` is **layer**, not
-lineage:
-
-- the **manuscript** — the publication identity, one per paper;
-- the **benchmark** — corpus, results, technical notes, now `paper-xx-` prefixed
-  where it once carried a number;
-- the **shared lane** — `orion-learning-machine/`, the framework and experiments
-  both benchmark packages run on, which is not a paper and now says so in its own
-  README.
-
-### P15
-
-`paper-15-orion-research-harness/` is opened ahead of an issue, as a systems paper
-introducing the ORION research harness and the ORION-Q dual harness. The P-series
-already contains non-claim papers — #669 writes P14 as a methods/evaluation-contract
-paper — so a systems paper is in-series rather than an exception. A programme issue
-assigning this subject a different number would override that.
-
-## P11–P14, and why absorption retires a number rather than renumbering a paper
-
-`#670` assigns four further identities — P11 State as Computation, P12 Adaptive
-State–Reasoning Co-Design, P13 Responsibility-Carrying State, P14 ORION-RSE — whose
-directories arrive with PR #715 as `papers/paper-11-state-as-computation/`,
-`paper-12-adaptive-state-reasoning/`, `paper-13-responsibility-carrying-state/` and
-`paper-14-orion-rse/`. One directory per number; no aliases needed.
-
-The same issue fixes the rule for absorption:
-
-> Research decomposition is fine-grained; publication synthesis is coarse-grained.
-> A research atom does not automatically receive a paper number.
-
-Three research tracks were absorbed under that rule. Each **lost its standalone paper
-numbering** and became a child track; each issue stays open as a falsifiable research
-track:
-
-| Issue | Track | Absorbed into |
-|---|---|---|
-| #664 | accessibility work and representation–computation accounting | P11 |
-| #667 | state optionality: compile, cache, recover or materialize | P11 |
-| #668 | responsibility-carrying state interface and certified reuse | P13 |
-
-**Nothing in P1–P10 was absorbed or renumbered.** `#670` states plainly that
-"P1-U–P8-U remain #649–#656", and P9 and P10 keep their own successor issues #662 and
-#663.
-
-### Why a general renumber is not the way to resolve identity confusion
-
-Recorded here because the question recurs, and because the answer is not a matter of
-taste. As of 2026-08-21 the working tree contains:
-
-- **1,399** files mentioning a paper identity;
-- **374** files carrying a frozen `P<n>_…` terminal string;
-- **55** CI workflows keyed to a paper number;
-- **10** open pull requests from other lanes.
-
-The decisive item is the second. Terminal strings such as
-`P9_BOUNDED_STRUCTURAL_LEARNING_SUPPORTED` and
-`P1_WIDER_ARCHITECTURE_CLAIM_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK`
-are frozen scientific identifiers embedded in evidence artifacts and receipts. A
-renumber leaves exactly two options, and both are bad: leave the terminals stale, so
-the number inside a terminal no longer names its paper; or rewrite frozen evidence,
-which the repository's immutability rules forbid.
-
-That is also the lesson this file already carries from the P1–P5 reindex: *never infer
-current ORION identity from the historical number alone.* The cost of the last
-renumber is why that sentence exists.
-
-So identity confusion is resolved by **making identity explicit**, not by moving
-numbers. The machine-readable registry is `PAPER_DIRECTORIES`,
-`FUTURE_PAPER_DIRECTORIES` and `RETIRED_PAPER_NUMBERING` in
-`src/orion/programme/superiority_terminals.py`, and `HC-SUP-STALE-PAPER-IDENTITY`
-fails on any paper-numbered directory that is neither a registered identity nor a
-recorded predecessor.
-
-## Older RAKL numbering
-
-RAKL used multiple publication-numbering generations before ORION. A bare historical label such as “Paper III” is therefore not a stable identity across repositories or dates.
-
-When resolving migrated material:
-
-1. prefer the manuscript/topic title;
-2. then use its immutable RAKL source path/commit;
-3. map it through `legacy-rakl-map.md` and `provenance/rakl/PAPER_SALVAGE_LEDGER.md`;
-4. never infer current ORION identity from the historical number alone.
+Historical ids inside `research/orion-v1-freeze/` (digest-bound, never edited)
+and inside archived material keep their original spelling; this registry is the
+bridge. Pre-ORION ids such as `paper-01-epistemic-mechanics/` refer to the
+external RAKL repository (`SzeChunYiu/RAKL`) and are NOT part of this mapping.

@@ -1,4 +1,4 @@
-# P13 verifier-backed responsibility shift result receipt V1
+# ORION-23 verifier-backed responsibility shift result receipt V1
 
 **Run:** GitHub Actions `32655587071`  
 **Artifact:** `p13-verifier-responsibility-shift-v1`, artifact ID `9497357999`  
@@ -37,6 +37,6 @@ Every old compact certificate is valid for the old responsibility. Every post-ch
 
 ## Scientific disposition
 
-This result closes a **verifier-backed second-domain responsibility shift** at bounded scope. Together with the existing 17,970-episode handwritten-digits result, P13 now has qualitatively distinct real-data and formal/verifier-backed evidence that state sufficiency is responsibility-relative and that a semantic/epoch change can require reopening despite confidence/provenance continuity.
+This result closes a **verifier-backed second-domain responsibility shift** at bounded scope. Together with the existing 17,970-episode handwritten-digits result, ORION-23 now has qualitatively distinct real-data and formal/verifier-backed evidence that state sufficiency is responsibility-relative and that a semantic/epoch change can require reopening despite confidence/provenance continuity.
 
 It does not establish arbitrary certificate transport under all semantic changes, nor external scientific-authority judgments beyond these exact verifier-backed responsibilities. Those wider claims remain open.

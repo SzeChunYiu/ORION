@@ -1,4 +1,4 @@
-# ORION-P1 package license and restrictions
+# ORION-ORION-11 package license and restrictions
 
 Repository code is licensed under Apache-2.0 by the root `LICENSE`; paper text is
 licensed under CC BY 4.0 by `LICENSE-PAPERS-CC-BY-4.0.txt`. These licences do not

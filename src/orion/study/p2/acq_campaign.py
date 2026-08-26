@@ -38,15 +38,15 @@ from .corpus import sha256_digest
 RESULT_SCHEMA_VERSION = "orion.p2.open-world-acquisition-result.v1"
 
 FREEZE_DOCUMENT = (
-    "papers/paper-02-open-world-scientific-discovery/protocol/"
+    "papers/orion-12-open-world-scientific-discovery/protocol/"
     "P2_OPEN_WORLD_ACQUISITION_FREEZE_2026-08-22.md"
 )
 FREEZE_TWIN = (
-    "papers/paper-02-open-world-scientific-discovery/protocol/"
+    "papers/orion-12-open-world-scientific-discovery/protocol/"
     "P2_OPEN_WORLD_ACQUISITION_FREEZE_2026-08-22.json"
 )
 DEFAULT_OUTPUT = (
-    "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/"
+    "papers/orion-12-open-world-scientific-discovery/evidence/successor_results/"
     "P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json"
 )
 

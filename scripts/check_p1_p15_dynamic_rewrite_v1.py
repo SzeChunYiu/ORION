@@ -5,21 +5,21 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DIRS = [
-    "paper-01-recursive-epistemic-reconstruction",
-    "paper-02-open-world-scientific-discovery",
-    "paper-03-global-knowledge-portrait",
-    "paper-04-verified-scientific-discovery",
-    "paper-05-self-orion",
-    "paper-06-formal-epistemic-structures-and-mechanics",
-    "paper-07-epistemic-navigation-open-worlds",
-    "paper-08-epistemic-authority-autonomous-science",
-    "paper-09-structured-epistemic-learning",
-    "paper-10-structured-problem-solving",
-    "paper-11-state-as-computation",
-    "paper-12-adaptive-state-reasoning",
-    "paper-13-responsibility-carrying-state",
-    "paper-14-orion-rse",
-    "paper-15-orion-research-harness",
+    "orion-11-recursive-epistemic-reconstruction",
+    "orion-12-open-world-scientific-discovery",
+    "orion-13-global-knowledge-portrait",
+    "orion-14-verified-scientific-discovery",
+    "orion-15-self-orion",
+    "orion-16-formal-epistemic-structures-and-mechanics",
+    "orion-17-epistemic-navigation-open-worlds",
+    "orion-18-epistemic-authority-autonomous-science",
+    "orion-19-structured-epistemic-learning",
+    "orion-20-structured-problem-solving",
+    "orion-21-state-as-computation",
+    "orion-22-adaptive-state-reasoning",
+    "orion-23-responsibility-carrying-state",
+    "orion-24-orion-rse",
+    "orion-25-orion-research-harness",
 ]
 ACK = "P1_P15_REWRITE_LANE_ACKNOWLEDGES_25_OF_25_COMPUTATION_LEDGER"
 

@@ -15,7 +15,7 @@ from pathlib import Path
 
 BASE = (
     Path(__file__).resolve().parents[3]
-    / "papers/paper-04-verified-scientific-discovery/protocol"
+    / "papers/orion-14-verified-scientific-discovery/protocol"
 )
 V2 = BASE / "SCIFACT_LABEL_STATE_MAP_V2.json"
 

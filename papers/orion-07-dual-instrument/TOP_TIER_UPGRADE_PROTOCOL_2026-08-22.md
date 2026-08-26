@@ -1,4 +1,4 @@
-# Q3 top-tier upgrade protocol — prospective multi-frontier agreement study
+# ORION-03 top-tier upgrade protocol — prospective multi-frontier agreement study
 
 **Freeze date:** 2026-08-22
 **Status:** research protocol only; no new benchmark outcome is claimed by this file.
@@ -115,7 +115,7 @@ Before collecting the prospective series, run the relevant harness suite on the 
 
 ## 11. Stop rules
 
-- If fewer than 20 prospective items can be admitted/resolved without leakage, retain Q3 as a **benchmark-definition/systems paper**, not a predictive-validity study.
+- If fewer than 20 prospective items can be admitted/resolved without leakage, retain ORION-03 as a **benchmark-definition/systems paper**, not a predictive-validity study.
 - If agreement is not more informative than simple baselines, publish the negative calibration result.
 - If both instruments share frequent correlated errors, treat that as a first-class result and investigate independence rather than adding more agreeable instruments.
 - No post-outcome changes to the normalization/scoring map for an executed item.

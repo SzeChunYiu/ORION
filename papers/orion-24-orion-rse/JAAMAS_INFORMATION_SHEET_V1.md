@@ -1,4 +1,4 @@
-# P14 — JAAMAS submission information sheet (V1)
+# ORION-24 — JAAMAS submission information sheet (V1)
 
 JAAMAS requires a 1–2 page sheet with every submission, and returns submissions
 whose sheet is incomplete or uninformative without review. It asks two questions

@@ -1,10 +1,10 @@
-# P15 manuscript interoperability addendum V1
+# ORION-25 manuscript interoperability addendum V1
 
 This addendum updates `MANUSCRIPT.md` after the prospectively frozen provenance-interoperability study. It does not rewrite the earlier 18-case SEI chronology and does not grant production-systems superiority.
 
 ## Revised contribution statement
 
-P15 now contributes five bounded objects rather than four:
+ORION-25 now contributes five bounded objects rather than four:
 
 1. the five-level execution-to-science separation;
 2. executable H15.1–H15.5 admission invariants;
@@ -51,18 +51,18 @@ The serialization sizes are descriptive only. Hosted wall time is not used as a 
 
 `SEI-DUAL-AGREE-WRONG` remains invalid despite lane agreement. `SEI-DUAL-DISAGREE-VERIFIED` remains scientifically valid when an independent verifier is present despite lane disagreement.
 
-Most importantly for external validity, `REAL-P10-NATIVE-LEAN-CANNOT-CHECK` is a real successfully executed workflow record with complete provenance but insufficient registered scientific coverage. It remains `CANNOT_CHECK` after both provenance imports. Thus the admission boundary is not only a property of synthetic fault records.
+Most importantly for external validity, `REAL-ORION-20-NATIVE-LEAN-CANNOT-CHECK` is a real successfully executed workflow record with complete provenance but insufficient registered scientific coverage. It remains `CANNOT_CHECK` after both provenance imports. Thus the admission boundary is not only a property of synthetic fault records.
 
 ## Revised related-work boundary
 
-W3C PROV, RO-Crate and Workflow Run RO-Crate are now **executed interoperability donors**, not only related-work citations. P15 cedes to them:
+W3C PROV, RO-Crate and Workflow Run RO-Crate are now **executed interoperability donors**, not only related-work citations. ORION-25 cedes to them:
 
 - entity/activity/agent provenance;
 - workflow/run packaging;
 - provenance interchange;
 - step/tool invocation representation.
 
-P15's residual is the typed boundary by which such execution evidence becomes eligible—or remains ineligible—for scientific evidence and claim authority.
+ORION-25's residual is the typed boundary by which such execution evidence becomes eligible—or remains ineligible—for scientific evidence and claim authority.
 
 The paper should therefore avoid sentences implying that existing provenance systems are weak because they lack ORION metadata. The demonstrated point is different: even rich, correctly round-tripped provenance is a lower-layer object from scientific validity.
 

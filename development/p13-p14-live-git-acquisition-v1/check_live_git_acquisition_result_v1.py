@@ -15,16 +15,16 @@ BASE = ROOT / "development/p13-p14-live-git-acquisition-v1"
 RESULT = BASE / "LIVE_GIT_ACQUISITION_RESULT_V1.json"
 PROTOCOL = BASE / "LIVE_GIT_ACQUISITION_PROTOCOL_V1.json"
 RUNNER = BASE / "run_live_git_acquisition_v1.py"
-CORPUS = ROOT / "papers/paper-13-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json"
-CONTRACT = ROOT / "papers/paper-13-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json"
+CORPUS = ROOT / "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json"
+CONTRACT = ROOT / "papers/orion-23-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json"
 EXPECTED_RESULT_SHA256 = "63bf92b65f0bc78e1b2585f36cf59d0fcb129c2d9601a54d70832d7310693c0f"
 EXPECTED_SOURCE_COMMIT = "3d8c01662e64434c736e0179c58fb30469bf42f4"
 EXPECTED_TERMINAL = "P13_P14_LIVE_GIT_ACQUISITION_MINIMUM_NOT_MET__CAMPAIGN_BLOCKED"
 EXPECTED_ARTIFACT_SHA256 = {
     "development/p13-p14-live-git-acquisition-v1/LIVE_GIT_ACQUISITION_PROTOCOL_V1.json": "5b15c29e233912ffa2ef4f722351594e0398b0a1de3461892a21b35f2046babe",
     "development/p13-p14-live-git-acquisition-v1/run_live_git_acquisition_v1.py": "328fe1c9b78e6844ce45c605708c8c81ddb451d3ddca7f65bb3995268e57d056",
-    "papers/paper-13-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json": "368cbfabefb69257d7cbce0de6b82c06c62ce3a7e9bc83a792d01df79e473b9c",
-    "papers/paper-13-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json": "43af90733fb1a1f7fadd261d1a9ff41fcb20c1ec2e394626be2850ed8f65aed0",
+    "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json": "368cbfabefb69257d7cbce0de6b82c06c62ce3a7e9bc83a792d01df79e473b9c",
+    "papers/orion-23-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json": "43af90733fb1a1f7fadd261d1a9ff41fcb20c1ec2e394626be2850ed8f65aed0",
 }
 HEX40 = re.compile(r"[0-9a-f]{40}\Z")
 HEX64 = re.compile(r"[0-9a-f]{64}\Z")

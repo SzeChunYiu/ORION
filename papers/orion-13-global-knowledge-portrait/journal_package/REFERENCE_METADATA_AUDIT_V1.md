@@ -1,7 +1,7 @@
-# ORION-P3 reference metadata audit V1
+# ORION-ORION-13 reference metadata audit V1
 
 **Audit date:** 2026-08-18  
-**Scope:** references used by the scoped P3 manuscript  
+**Scope:** references used by the scoped ORION-13 manuscript  
 **Status:** `CURRENT_METADATA_REPAIRED / SUBMISSION_REFRESH_STILL_REQUIRED`
 
 This audit checks bibliographic identity rather than scientific novelty. It records corrections made before submission packaging and does not replace the required literature-refresh window immediately before actual submission.
@@ -14,7 +14,7 @@ This audit checks bibliographic identity rather than scientific novelty. It reco
 | `biosage2025` | Wrong title and author attribution (`Taylor et al.`). | Svitlana Volkova et al., **Cross-Disciplinary Knowledge Retrieval and Synthesis: A Compound AI Architecture for Scientific Discovery**, arXiv:2511.18298. |
 | `openScholar2024` | Wrong lead author and title wording. | Akari Asai et al., **OpenScholar: Synthesizing Scientific Literature with Retrieval-Augmented LMs**, arXiv:2411.14199. |
 | `llmatch2025` | Truncated/noncanonical title and wrong author attribution. | Sha Wang et al., **LLMATCH: A Unified Schema Matching Framework with Large Language Models**, arXiv:2507.10897. |
-| `adias2026` | Citation existed but the manuscript described ADIAS as schema/prompt integration. ADIAS is an issue-centric agent-design/self-improvement system, not a P3 schema-integration source. | Removed from the P3 manuscript/bibliography. P5 retains ADIAS where it is scientifically relevant. |
+| `adias2026` | Citation existed but the manuscript described ADIAS as schema/prompt integration. ADIAS is an issue-centric agent-design/self-improvement system, not a ORION-13 schema-integration source. | Removed from the ORION-13 manuscript/bibliography. ORION-15 retains ADIAS where it is scientifically relevant. |
 | `raghunathan2022stance` | arXiv:2204.14178 resolves to an algebraic-geometry paper, not a stance survey. | Replaced with Hardalov, Arora, Nakov & Augenstein, **A Survey on Stance Detection for Mis- and Disinformation Identification**, Findings of NAACL 2022, DOI `10.18653/v1/2022.findings-naacl.94`. |
 | `liu2022scholar` | arXiv:2206.05014 resolves to **Building an Icelandic Entity Linking Corpus**, not a scholarly-KG survey. | Replaced with Verma, Bhatia, Harit & Batish, **Scholarly Knowledge Graphs through Structuring Scholarly Communication: A Review**, *Complex & Intelligent Systems* 9, 1059–1095, DOI `10.1007/s40747-022-00806-6`. |
 | `oh2017unified` | Exact title/metadata in the old bibliography could not be verified and was not needed for the scoped argument. | Replaced with Hofer, Obraczka, Saeedi, Köpcke & Rahm, **Construction of Knowledge Graphs: Current State and Challenges**, *Information* 15(8):509 (2024), DOI `10.3390/info15080509`, which directly covers ontology/schema matching, entity resolution, fusion, provenance, and KG construction. |
@@ -40,10 +40,10 @@ This audit checks bibliographic identity rather than scientific novelty. It reco
 Metadata repair alone was insufficient. `manuscript/sections/20-related-work.tex` was rewritten so that:
 
 - MUSE is described as a problem–solution–rationale resource, not as producing one canonical structure per source;
-- SCOPE/SCION are credited for evidence-linked schema induction and optional fusion without claiming their object is identical to P3;
+- SCOPE/SCION are credited for evidence-linked schema induction and optional fusion without claiming their object is identical to ORION-13;
 - ontology matching is credited for equivalence, subsumption, disjointness, and other correspondence relations rather than caricatured as a single equivalence output;
 - stance detection is described as target-relative stance classification, not a binary contradiction oracle;
-- ADIAS is removed from P3 schema integration because it belongs to self-improving agent design;
+- ADIAS is removed from ORION-13 schema integration because it belongs to self-improving agent design;
 - OpenScholar and BioSage are credited for retrieval/synthesis/agent orchestration rather than inaccurately described as single-prompt canonicalization systems.
 
 ## Submission rule

@@ -1,12 +1,12 @@
-# P13 drift-bounded certificate transport protocol V1
+# ORION-23 drift-bounded certificate transport protocol V1
 
 **Programme:** #977
 **State:** `FROZEN_BEFORE_EXECUTION`
-**Purpose:** execute the semantic-change certificate-transport requirement for the P13 maximum claim: certificates issued in one episode regime must be transported to a shifted regime under an explicit, mechanically checkable transport predicate, with gold dispositions frozen before any arm runs.
+**Purpose:** execute the semantic-change certificate-transport requirement for the ORION-23 maximum claim: certificates issued in one episode regime must be transported to a shifted regime under an explicit, mechanically checkable transport predicate, with gold dispositions frozen before any arm runs.
 
 ## Setting
 
-Verifier-backed CNF certificates (same family as the P13 responsibility-shift protocol and the D2 baseline). An issued certificate binds `(model m, formula digest d(F), epoch e, domain tag, registered support)`. The world moves to a shifted formula `W` (clause added, removed, or strengthened). A transport decision must answer: may the certificate be served for the shifted world without full re-verification, or must it be re-issued (or the request refused)?
+Verifier-backed CNF certificates (same family as the ORION-23 responsibility-shift protocol and the D2 baseline). An issued certificate binds `(model m, formula digest d(F), epoch e, domain tag, registered support)`. The world moves to a shifted formula `W` (clause added, removed, or strengthened). A transport decision must answer: may the certificate be served for the shifted world without full re-verification, or must it be re-issued (or the request refused)?
 
 ## Transport predicate (frozen)
 

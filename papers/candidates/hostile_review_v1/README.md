@@ -1,6 +1,6 @@
-# P6–P8 hostile formal review V1
+# ORION-16–ORION-18 hostile formal review V1
 
-This additive package reviews the P6–P8 formal programme at Git snapshot
+This additive package reviews the ORION-16–ORION-18 formal programme at Git snapshot
 `999abd4899f3fed906ba024ae8ecd775a69b6560`. It does not replace the larger
 enumerators already on the candidate branch. It targets gaps those checkers do
 not encode.
@@ -17,14 +17,14 @@ These are analytical roles, not claims of independent human participation.
 
 ## What is checked
 
-### P6
+### ORION-16
 
 - directly changed certified roots are included in the affected closure;
 - preservation certificates are downstream-only, evidence-bearing, change-bound
   and protected-root issued;
 - later computational success cannot erase hard residual obligations.
 
-### P7
+### ORION-17
 
 - the current unconstrained `T -> T'` witness is identified as non-discriminating;
 - a stronger witness keeps latent states, transitions, goals and retained
@@ -33,7 +33,7 @@ These are analytical roles, not claims of independent human participation.
   richness/ambiguity premise;
 - task-stop, route-stop and `CANNOT_CHECK` remain distinct.
 
-### P8
+### ORION-18
 
 - evidence-to-obligation discharge is checked across the full five-by-five
   domain matrix;

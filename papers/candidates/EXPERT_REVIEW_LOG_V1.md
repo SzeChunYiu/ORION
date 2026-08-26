@@ -1,4 +1,4 @@
-# P6–P8 five-role adversarial review log V1
+# ORION-16–ORION-18 five-role adversarial review log V1
 
 **Date:** 2026-08-17  
 **Status:** active internal research review; not independent peer review.  
@@ -12,11 +12,11 @@ The roles below are analytical review functions, not claims that five external h
 2. **Formal-methods engineer (FME)** — executable semantics, finite checking, process/effect models, reproducibility.
 3. **Epistemic-navigation theorist (ENT)** — search/planning/partial-observation/representation-change semantics.
 4. **Authorization/governance logician (AGL)** — permission, delegation, revocation, information flow, custody, authority laundering.
-5. **Scientific editor / novelty auditor (SENA)** — P1–P5 ownership, donor uniqueness, related-work breadth, claim authority and publication boundaries.
+5. **Scientific editor / novelty auditor (SENA)** — ORION-11–ORION-15 ownership, donor uniqueness, related-work breadth, claim authority and publication boundaries.
 
 ---
 
-## Finding R1 — P6 whole-state commutation was over-strong
+## Finding R1 — ORION-16 whole-state commutation was over-strong
 
 ### Initial statement
 Strongly separated deterministic mechanics commute: `tau_n(tau_m(E)) = tau_m(tau_n(E))`.
@@ -43,7 +43,7 @@ Construct a later policy whose result differs by event order; show that current-
 
 ---
 
-## Finding R2 — P7 “no closure certificate” premise was over-strong
+## Finding R2 — ORION-17 “no closure certificate” premise was over-strong
 
 ### Initial statement
 Any finite history lacking a closure certificate has both a complete and an incomplete observationally indistinguishable extension.
@@ -69,38 +69,38 @@ Add a deterministic case with no closure-certificate object but only one admissi
 ETAS supplies typed effects, action traces, residual obligations and policy-constrained commit semantics. FAVA supplies Permission IR, evidence-backed permission graphs and deterministic pre-effect authorization.
 
 ### Role pressure
-- **FL:** P6/P8 must not rederive generic effect or authorization syntax as if new.
+- **FL:** ORION-16/ORION-18 must not rederive generic effect or authorization syntax as if new.
 - **FME:** both systems should be conservative embedding targets; ORION can reuse their strongest machinery.
 - **ENT:** typed effect/permission objects can become route/reframe commit guards but do not solve support transport under a changing atlas.
-- **AGL:** P8's domain typing must be compared directly to these systems and classical trust-management logic.
+- **AGL:** ORION-18's domain typing must be compared directly to these systems and classical trust-management logic.
 - **SENA:** protect donor uniqueness explicitly in abstract/related work/claim ledger.
 
 ### Disposition
 **ADOPT + COMPOSE.** The possible ORION residual moves upward to cross-domain epistemic composition, dependency reopening/revocation and evidence/closure transport.
 
 ### Remaining falsifier
-If ETAS/FAVA or a classical authorization/non-interference encoding directly represents all P8 cross-domain cases without semantic loss, P8 collapses into programme synthesis.
+If ETAS/FAVA or a classical authorization/non-interference encoding directly represents all ORION-18 cross-domain cases without semantic loss, ORION-18 collapses into programme synthesis.
 
 ---
 
 ## Finding R4 — selective reopening/rollback is strongly prior
 
 ### Literature/internal pressure
-P1 already owns reconstruction-specific dependency reopening. TMS/ATMS and current dependency-guided rollback repair supply justification/dependency repair and preservation of unaffected state.
+ORION-11 already owns reconstruction-specific dependency reopening. TMS/ATMS and current dependency-guided rollback repair supply justification/dependency repair and preservation of unaffected state.
 
 ### Role pressure
 - **FL:** the graph-minimality lemma can be formally correct while non-novel.
 - **FME:** benchmark against donor-specific rollback, not only full-reset/no-reset strawmen.
-- **ENT:** in P7, reopening semantics becomes interesting when the representation/objective changes and support transport is partial.
+- **ENT:** in ORION-17, reopening semantics becomes interesting when the representation/objective changes and support transport is partial.
 - **AGL:** the same dependency skeleton may support authority revocation but the semantic terminal differs.
-- **SENA:** native P1 reopening stays `MERGE_EXISTING`; only cross-type/cross-domain composition may survive.
+- **SENA:** native ORION-11 reopening stays `MERGE_EXISTING`; only cross-type/cross-domain composition may survive.
 
 ### Disposition
-**ADOPT / DO NOT CLAIM IN ISOLATION.** Investigate a parameterized dependency-invalidation skeleton across P6/P7/P8.
+**ADOPT / DO NOT CLAIM IN ISOLATION.** Investigate a parameterized dependency-invalidation skeleton across ORION-16/ORION-17/ORION-18.
 
 ---
 
-## Finding R5 — P7 must absorb planning abstraction/representation change
+## Finding R5 — ORION-17 must absorb planning abstraction/representation change
 
 ### Parent-field pressure
 Planning research already studies abstraction, representation-language expressivity, plan-preserving homomorphisms, learned plannable representations and adaptive abstraction.
@@ -113,44 +113,44 @@ Planning research already studies abstraction, representation-language expressiv
 - **SENA:** “dynamic topology” should not be used as a novelty phrase without parent-field comparison.
 
 ### Disposition
-**WIDEN.** P7 becomes an epistemic atlas with partial chart/objective maps and support/closure transport rules.
+**WIDEN.** ORION-17 becomes an epistemic atlas with partial chart/objective maps and support/closure transport rules.
 
 ### Remaining falsifier
-If a standard planning abstraction/homomorphism plus P2 stopping rules reproduces all atlas judgments and benchmark behavior, merge P7 into P1/P2.
+If a standard planning abstraction/homomorphism plus ORION-12 stopping rules reproduces all atlas judgments and benchmark behavior, merge ORION-17 into ORION-11/ORION-12.
 
 ---
 
-## Finding R6 — P8 must absorb trust-management/authorization logic
+## Finding R6 — ORION-18 must absorb trust-management/authorization logic
 
 ### Parent-field pressure
 Delegation Logic frames authorization as proof of compliance. SecPAL supplies logical authorization queries, controlled delegation/revocation and sound/complete/terminating evaluation under stated conditions. Other authorization logics add mechanized proof theory and information-flow constraints.
 
 ### Role pressure
 - **FL:** typed grants, derivations, delegation and revocation are mature logical objects.
-- **FME:** P8 can reuse a trust-management backend rather than inventing one.
+- **FME:** ORION-18 can reuse a trust-management backend rather than inventing one.
 - **ENT:** search/task closure is one authority domain, not the whole authorization problem.
 - **AGL:** cross-domain coercions must be pressure-tested against policy composition and non-interference; default non-fungibility may be standard typed information flow.
-- **SENA:** P8 should be terminated if the cross-domain object is just a renamed authorization logic.
+- **SENA:** ORION-18 should be terminated if the cross-domain object is just a renamed authorization logic.
 
 ### Disposition
-**ADOPT + HOSTILE OVERLAP TEST.** P8's paper-level discriminator is cross-epistemic-domain composition in autonomous-science workflows, not generic authorization.
+**ADOPT + HOSTILE OVERLAP TEST.** ORION-18's paper-level discriminator is cross-epistemic-domain composition in autonomous-science workflows, not generic authorization.
 
 ---
 
-## Finding R7 — P4 already owns local authority laundering
+## Finding R7 — ORION-14 already owns local authority laundering
 
 ### Internal pressure
-P4's current README records a local authority-laundering falsifier for scientific assertion/verification.
+ORION-14's current README records a local authority-laundering falsifier for scientific assertion/verification.
 
 ### Role pressure
-- **FL:** P8 cannot claim the failure class generically from a single-domain restatement.
+- **FL:** ORION-18 cannot claim the failure class generically from a single-domain restatement.
 - **FME:** build cases where producer modules are individually correct and only the *composition* launders authority.
-- **ENT:** route-stop -> task-stop/assertion is a natural cross-domain example, but P2 owns the local route judgment.
+- **ENT:** route-stop -> task-stop/assertion is a natural cross-domain example, but ORION-12 owns the local route judgment.
 - **AGL:** define laundering as a derivational type error across domains absent an explicit sound coercion.
-- **SENA:** use the term “cross-domain authority laundering” in P8, not unqualified “authority laundering” as a headline novelty.
+- **SENA:** use the term “cross-domain authority laundering” in ORION-18, not unqualified “authority laundering” as a headline novelty.
 
 ### Disposition
-**NARROW CLAIM, WIDEN TEST.** P8 keeps cross-domain anti-laundering only.
+**NARROW CLAIM, WIDEN TEST.** ORION-18 keeps cross-domain anti-laundering only.
 
 ---
 
@@ -162,7 +162,7 @@ P4's current README records a local authority-laundering falsifier for scientifi
 ### Role pressure
 - **FL:** false for a bounded finite-dimensional score space; a sufficiently dominant finite penalty can simulate a veto.
 - **FME:** the checker constructs the result only for extensible/unbounded positive evidence.
-- **ENT:** unrelated to P7 except as a stopping-gate caution.
+- **ENT:** unrelated to ORION-17 except as a stopping-gate caution.
 - **AGL:** the useful policy point is semantic explicitness of hard blockers, not a universal impossibility claim.
 - **SENA:** preserve the limitation in abstract/claim ledger.
 
@@ -179,26 +179,26 @@ A representation/objective change may preserve a content-bound observation while
 ### Role pressure
 - **FL:** define separate maps for evidence/support and obligation semantics; one must not imply the other.
 - **FME:** add a fixture where evidence identity is unchanged but closure reopens after goal change.
-- **ENT:** this is a plausible central P7 discriminator across SAGA/world-model/planning-abstraction donors.
+- **ENT:** this is a plausible central ORION-17 discriminator across SAGA/world-model/planning-abstraction donors.
 - **AGL:** any automatic conversion from “valid evidence” to “new-domain closure” is an authority coercion and must be explicit.
 - **SENA:** promising synthesis, but still `FORMAL_CONSEQUENCE/CANNOT_CHECK` for novelty until parent fields are saturated.
 
 ### Disposition
-**KEEP AS CROSS-PAPER HYPOTHESIS.** It links P7 transport to P8 non-fungibility without making either paper own the other's native mechanism.
+**KEEP AS CROSS-PAPER HYPOTHESIS.** It links ORION-17 transport to ORION-18 non-fungibility without making either paper own the other's native mechanism.
 
 ---
 
 ## Finding R10 — repair/reopening and revocation may share one dependency skeleton
 
 ### Synthesis insight
-P6 state reopening, P7 closure reopening and P8 authority revocation all propagate invalidity downstream while attempting to preserve independent support.
+ORION-16 state reopening, ORION-17 closure reopening and ORION-18 authority revocation all propagate invalidity downstream while attempting to preserve independent support.
 
 ### Role pressure
 - **FL:** investigate a parameterized theorem over a dependency relation plus domain-specific validity predicate.
 - **FME:** implement one generic finite enumerator with pluggable terminal semantics.
-- **ENT:** P7 needs `open/CANNOT_CHECK`, not merely deletion.
-- **AGL:** P8 needs alternative derivation support so revoking one path need not revoke a certificate with another valid proof.
-- **SENA:** a common theorem could become P6/programme synthesis rather than three duplicate claims.
+- **ENT:** ORION-17 needs `open/CANNOT_CHECK`, not merely deletion.
+- **AGL:** ORION-18 needs alternative derivation support so revoking one path need not revoke a certificate with another valid proof.
+- **SENA:** a common theorem could become ORION-16/programme synthesis rather than three duplicate claims.
 
 ### Disposition
 **OPEN GENERALIZATION TARGET.** Do not yet assign paper ownership.
@@ -210,8 +210,8 @@ P6 state reopening, P7 closure reopening and P8 authority revocation all propaga
 ### Role pressure
 - **FL:** greater expressivity is not a universal dominance theorem.
 - **FME:** every widened mechanism needs cases where it should remain inactive.
-- **ENT:** P7 must be penalized for unnecessary reframes and useless dispersion.
-- **AGL:** P8 must preserve clean authorized coverage and avoid security-by-total-refusal.
+- **ENT:** ORION-17 must be penalized for unnecessary reframes and useless dispersion.
+- **AGL:** ORION-18 must preserve clean authorized coverage and avoid security-by-total-refusal.
 - **SENA:** positive results without negative controls invite scope inflation.
 
 ### Disposition
@@ -221,17 +221,17 @@ P6 state reopening, P7 closure reopening and P8 authority revocation all propaga
 
 ## Finding R12 — current survival hypotheses
 
-### P6
+### ORION-16
 **Alive but unproven:** donor-faithful history-aware epistemic effect/repair algebra with a genuine composition theorem/transfer result.
 
-**Immediate collapse condition:** all surviving properties reduce to P1 + TMS/effect/process/authorization donors without an additional discriminator.
+**Immediate collapse condition:** all surviving properties reduce to ORION-11 + TMS/effect/process/authorization donors without an additional discriminator.
 
-### P7
+### ORION-17
 **Alive and currently strongest conceptually:** epistemic atlas with representation/objective change, support transport/reopening and fail-closed closure authority.
 
-**Immediate collapse condition:** standard planning abstraction/model revision + P1/P2 reproduces all formal/benchmark behavior.
+**Immediate collapse condition:** standard planning abstraction/model revision + ORION-11/ORION-12 reproduces all formal/benchmark behavior.
 
-### P8
+### ORION-18
 **High conceptual leverage / highest overlap pressure:** typed cross-domain coercion, non-fungibility and dependency revocation across heterogeneous epistemic effects.
 
 **Immediate collapse condition:** standard authorization/non-interference/policy composition directly represents the same cases, or independent domain gates perform equally on cross-domain attacks.

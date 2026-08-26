@@ -26,4 +26,4 @@ Load-bearing proof/evidence:
 
 Earlier `MANUSCRIPT_V1.md`, `MANUSCRIPT_V2.md`, `MANUSCRIPT_SUBMISSION_DRAFT.md`, older ledgers and older figure plans remain provenance snapshots. Do not submit them as the current paper.
 
-ORION-QG results are sequel/follow-up context only and may not be back-ported as Q1-owned novelty.
+ORION-QG results are sequel/follow-up context only and may not be back-ported as ORION-01-owned novelty.

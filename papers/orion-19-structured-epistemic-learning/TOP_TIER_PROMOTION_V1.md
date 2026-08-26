@@ -1,4 +1,4 @@
-# P9 top-tier promotion V1 — Representation Accessibility as a Scaling Coordinate
+# ORION-19 top-tier promotion V1 — Representation Accessibility as a Scaling Coordinate
 
 **Programme:** #977  
 **Existing controlled authority:** `P9_BOUNDED_STRUCTURAL_LEARNING_PEER_REVIEW_READY_PR` remains valid for its bounded package.  
@@ -6,9 +6,9 @@
 
 ## Maximum claim to earn
 
-> **Learning and reasoning scale along at least three separable coordinates: semantic information, representation accessibility and downstream computation.** Increasing model or inference resources is scientifically uninterpretable until these coordinates are disentangled. P9 provides a protected diagnostic methodology and seeks reproducible crossover laws among representation repair, explicit inference and model/compute escalation on real systems.
+> **Learning and reasoning scale along at least three separable coordinates: semantic information, representation accessibility and downstream computation.** Increasing model or inference resources is scientifically uninterpretable until these coordinates are disentangled. ORION-19 provides a protected diagnostic methodology and seeks reproducible crossover laws among representation repair, explicit inference and model/compute escalation on real systems.
 
-P9 does not reclaim graph inductive bias, serialization friction, generic representation-vs-reasoning distinction, domain generalization or a new neural architecture. Those remain donor-owned.
+ORION-19 does not reclaim graph inductive bias, serialization friction, generic representation-vs-reasoning distinction, domain generalization or a new neural architecture. Those remain donor-owned.
 
 ## Upward scientific object
 
@@ -35,7 +35,7 @@ Three protected result families now constrain the higher claim.
 
 **Earned claim:** accessibility can change under an information-preserving representation intervention for a fixed access mechanism, and explicit representation repair can recover that accessibility. The wine cell forbids a universal-dataset statement.
 
-Wine and digits are shared programme infrastructure (wine also carries P7's transport rows and P11's compiler positive cell; digits also carry P11's 64→32 compiler and P13's parity→exact-digit episodes). The frozen quantities owned here are P9's own accessibility measurements: the wine null cell above, and the digits cubic-representation gap plus `D-A` diagnostic — distinct objects from the other papers' endpoints on the same public datasets.
+Wine and digits are shared programme infrastructure (wine also carries ORION-17's transport rows and ORION-21's compiler positive cell; digits also carry ORION-21's 64→32 compiler and ORION-23's parity→exact-digit episodes). The frozen quantities owned here are ORION-19's own accessibility measurements: the wine null cell above, and the digits cubic-representation gap plus `D-A` diagnostic — distinct objects from the other papers' endpoints on the same public datasets.
 
 ### Protected Qwen2.5 model-size/inference sweep — negative
 
@@ -43,7 +43,7 @@ The immutable Qwen2.5 Q4_K_M 0.5B/1.5B/3B outputs originally generated on PR #61
 
 At primary budget 32, `R2_STRUCTURED_STATE - R1_SAME_INFO` is `-0.140625` for 0.5B and `0.0` for both 1.5B and 3B. The positive-delta-every-size gate fails, the largest-model domain-block bootstrap lower bound is not above zero, no smaller-structured substitution is observed, and the aggregate hostile-control gate fails; ORDER is negative at both 0.5B and 3B.
 
-**Required claim subtraction:** P9 must not state or imply a universal monotone law in which larger LLM capacity reveals a stable typed-state accessibility advantage.
+**Required claim subtraction:** ORION-19 must not state or imply a universal monotone law in which larger LLM capacity reveals a stable typed-state accessibility advantage.
 
 ### Causal intervention diagnostic — supported with a protected CANNOT_CHECK cell
 
@@ -53,17 +53,17 @@ The procedure does not assign failure labels from task names. On a probe split i
 
 Across five task families in two qualitatively distinct domains:
 
-- P9 diagnostic accuracy: `0.8` (`4/5`);
+- ORION-19 diagnostic accuracy: `0.8` (`4/5`);
 - generic `UNCERTAINTY_ESCALATE_COMPUTE` heuristic: `0.2` (`1/5`);
 - exact executable tasks: `3/3` correct;
 - digits tasks: `1/2` correct;
-- false compute escalations: `0` for P9 vs `4` for the generic heuristic;
+- false compute escalations: `0` for ORION-19 vs `4` for the generic heuristic;
 - mean registered intervention-cost regret: `0.0`;
 - all actionable predicted interventions reach their frozen protected target.
 
 The four stable diagnoses cover genuine missing information, representation accessibility and downstream computation. The fifth cell is intentionally retained as an instability: on digits task `D-A`, inverse representation repair clears the probe target (`0.9721448 >= 0.965`) but misses the protected target (`0.9555556 < 0.965`), so protected causal gold is `CANNOT_CHECK` while the probe-time diagnostic predicted `ACCESSIBILITY`.
 
-**Earned claim:** P9 now has a bounded cross-domain causal diagnostic showing that intervention response can distinguish information/accessibility/computation failure substantially better than generic compute escalation, while correctly preserving a deployment-instability `CANNOT_CHECK` instead of retuning it away. **Not earned:** a universal LLM diagnostic, a claim that accessibility repair is always preferred, or a universal cross-system scaling law.
+**Earned claim:** ORION-19 now has a bounded cross-domain causal diagnostic showing that intervention response can distinguish information/accessibility/computation failure substantially better than generic compute escalation, while correctly preserving a deployment-instability `CANNOT_CHECK` instead of retuning it away. **Not earned:** a universal LLM diagnostic, a claim that accessibility repair is always preferred, or a universal cross-system scaling law.
 
 Exact authority is bound in `top_tier/P9_CAUSAL_DIAGNOSTIC_RESULT_RECEIPT_V1.md`; the earlier real-data and Qwen receipts remain equally binding.
 
@@ -77,7 +77,7 @@ Executed at bounded scope through the real-data intervention and protected Qwen 
 
 Executed at bounded scope. Failures are diagnosed from prospectively frozen intervention response and protected causal gold rather than post-hoc labels.
 
-Scoping: this diagnostic is an ex-post attribution instrument, not an online policy (P12 owns pre-outcome regret-bounded allocation) and not a placement/optionality law (P11 owns the design-time resource-placement crossover); P9 claims neither placement-optimality nor runtime-allocation semantics.
+Scoping: this diagnostic is an ex-post attribution instrument, not an online policy (ORION-22 owns pre-outcome regret-bounded allocation) and not a placement/optionality law (ORION-21 owns the design-time resource-placement crossover); ORION-19 claims neither placement-optimality nor runtime-allocation semantics.
 
 ### E9.3 — Cross-domain transfer of the diagnostic
 
@@ -125,7 +125,7 @@ The causal study additionally includes the generic compute-escalation heuristic.
 - [x] at least two qualitatively distinct protected diagnostic domains (digits + exact executable);
 - [ ] unified matched full model/inference/representation resource accounting for the final headline;
 - [x] protected model-size and inference-budget comparators executed; their Qwen result is negative and retained;
-- [x] exact preservation of the bounded P9 negative/sufficiency history;
+- [x] exact preservation of the bounded ORION-19 negative/sufficiency history;
 - [x] no universal representation-superiority language, extended to no placement-optimality or online-policy language;
 - [x] second independently implemented diagnostic verifier plus deterministic replay for the causal study;
 - [ ] immediate pre-submission nearest-work refresh and exact final artifact/manuscript binding.

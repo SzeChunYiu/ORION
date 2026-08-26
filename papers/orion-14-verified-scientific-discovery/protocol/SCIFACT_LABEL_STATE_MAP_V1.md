@@ -4,15 +4,15 @@
   prose protocol; where wording differs, the JSON is authoritative.
 - **Frozen (UTC):** 2026-08-24T10:10:46Z
 - **Freeze status:** FROZEN_BEFORE_ANY_SCIFACT_SCORING (`outcome_accessed: false`; zero SciFact
-  outcome artifacts exist under `papers/paper-04-verified-scientific-discovery/evidence/` at freeze
+  outcome artifacts exist under `papers/orion-14-verified-scientific-discovery/evidence/` at freeze
   time).
-- **Issue:** SzeChunYiu/ORION#1086 (P4 boxes 1 and 3).
+- **Issue:** SzeChunYiu/ORION#1086 (ORION-14 boxes 1 and 3).
 - **Checker:** `check_scifact_label_state_map_v1.py` (importable, `run(path) -> int`; distinct
   exit codes for FAIL vs CANNOT_CHECK). **Tests:** `tests/unit/p4/test_p4_scifact_label_state_map.py`.
 
 ## 1. Purpose and authority boundary
 
-This map is the **only** sanctioned adapter from external SciFact gold labels into ORION P4
+This map is the **only** sanctioned adapter from external SciFact gold labels into ORION ORION-14
 semantic-support and authority-terminal states. It is frozen **before** any SciFact scoring so
 that label semantics cannot be tuned to outcomes. It is an adapter, not an adjudicator: it
 creates no external scientific authority and performs no adjudication of its own.
@@ -31,12 +31,12 @@ creates no external scientific authority and performs no adjudication of its own
 
 SciFact expresses per-evidence-document labels `SUPPORT`/`REFUTE` and the derived claim verdict
 `SUPPORT`/`REFUTE`/`NOT_ENOUGH_INFO`. No other external label may enter the semantic-support
-coordinate. The P4 side uses semantic states `SUPPORTED`/`CONTRADICTED`/`INSUFFICIENT`/`UNRESOLVED`
+coordinate. The ORION-14 side uses semantic states `SUPPORTED`/`CONTRADICTED`/`INSUFFICIENT`/`UNRESOLVED`
 and terminals `PROMOTE`/`BLOCK`/`CANNOT_CHECK` (`ATTACK_CASE_SCHEMA_V1.json`).
 
 ## 4. Frozen mapping
 
-| SciFact label | P4 semantic support | Terminal rule |
+| SciFact label | ORION-14 semantic support | Terminal rule |
 |---|---|---|
 | `SUPPORT` | `SUPPORTED` | `PROMOTE_ELIGIBLE__CONDITIONAL_FAIL_CLOSED` — PROMOTE only if ALL promotion obligations discharged; any unresolved obligation → `CANNOT_CHECK`; never `BLOCK` |
 | `REFUTE` | `CONTRADICTED` | `BLOCK_DECISIVE` — maps to `BLOCK` directly; not subject to obligation-based upgrade |
@@ -58,7 +58,7 @@ Applied in order:
 2. **support_requires_no_contradiction** — `SUPPORT` only if ≥1 `SUPPORT` evidence and zero `REFUTE`.
 3. **empty_evidence_is_insufficient** — empty gold evidence set ⇒ `NOT_ENOUGH_INFO`.
 
-## 6. Crossref / Retraction Watch constraint (P4 box 3)
+## 6. Crossref / Retraction Watch constraint (ORION-14 box 3)
 
 Crossref/RW is **coordinate-only, never semantic adjudication**. Allowed uses are exactly:
 

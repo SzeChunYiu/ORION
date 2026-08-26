@@ -1,4 +1,4 @@
-# Q1 reproduction guide
+# ORION-01 reproduction guide
 
 This guide reproduces the **internal evidence package**, not external novelty or journal review.
 
@@ -7,12 +7,12 @@ This guide reproduces the **internal evidence package**, not external novelty or
 From repository root:
 
 ```bash
-python papers/Q-paper-01-tare-expressivity/independent_human_proof_sanity.py
+python papers/orion-05-tare-expressivity/independent_human_proof_sanity.py
 ```
 
 The output should match:
 
-`papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json`
+`papers/orion-05-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json`
 
 Key checks:
 

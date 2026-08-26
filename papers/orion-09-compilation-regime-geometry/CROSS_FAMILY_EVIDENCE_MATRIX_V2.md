@@ -1,6 +1,6 @@
-# QG1 cross-family evidence matrix V2
+# ORION-09 cross-family evidence matrix V2
 
-**Purpose:** source the cross-family synthesis from exact artifacts/authority classes and close the QG1 mock-review reproducibility/ISA-positioning blockers.
+**Purpose:** source the cross-family synthesis from exact artifacts/authority classes and close the ORION-09 mock-review reproducibility/ISA-positioning blockers.
 
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`.
 
@@ -27,7 +27,7 @@ Open/unmerged successor branches (including current QG-9/QG-16/QG-17 stacked wor
 | Global search/sufficiency bound | **`PROVEN_ALL_N`**: R6S `C_DP=C_D++`, every frame support≤2 in R6M/raw-support scope | theorem-grade family boundary / registered structural theorem in QG12 | no strict subextension closes global residue; finite exact Dijkstra plus registered budget/normal-form statements |
 | Closed-form small-family completeness | original two-trade and B′ universal forms **refuted**; B″ closes 10,481 registered instances; QG7c one pinned comm-s2 proof link remains `OPEN` | registered incumbent-exact boundary theorem-grade in current model | no analogous closed-form complete subextension established |
 | Boundary predicate / feature determination | R6Q finite zero-error predicate; later universal extrapolation refuted; exact support theorem independent of predicate | QG15b: exact on 38,760 registered `n=2` instances using one literal `maxg2 == -2` | QG15b: 12 mixed cells in frozen 13-feature vocabulary; irreducible error floor 43/1,146 -> `REPRESENTATION_NONIDENTIFIABLE` in that vocabulary/domain |
-| Objective dependence | QG2 O1 exact counterexamples, including support-three witness; O2 exact constant-shift invariance; QG8 all-`n` support cone in registered weight space | current QG1 publication cut treats objective as fixed for the SixLCU result | current QG1 publication cut treats objective as fixed for StabPrep |
+| Objective dependence | ORION-10 O1 exact counterexamples, including support-three witness; O2 exact constant-shift invariance; QG8 all-`n` support cone in registered weight space | current ORION-09 publication cut treats objective as fixed for the SixLCU result | current ORION-09 publication cut treats objective as fixed for StabPrep |
 | Prospective test | R6R fresh Benzene 15/15 confirmation; QG5 later prospectively generated refuting row for cheaper closed form | no cross-family claim requires a matching prospective panel beyond registered evidence; authority remains as receipt says | QG15 digest-stamped `n=4` forecast **refuted**: regime 100/120; cost 67/120 |
 | Boundary-representation finding | support complexity theorem can be closed even while named regime map remains open | boundary feature-determined/simple in registered vocabulary | natural frozen vocabulary does not determine exact donor boundary |
 | Strongest paper-level role | exact theorem + counterexample-rich first instance | second-family transfer with unusually simple exact boundary | third-family transfer that **refutes simple-boundary motif** |
@@ -64,9 +64,9 @@ Final package must bind exact result/protocol files and pre-outcome stage-1 dige
 
 ## 4. ISA / algorithm-selection parent comparison
 
-QG1 must treat Instance Space Analysis (ISA) and algorithm selection as the closest conceptual parent rather than claiming feature-to-regime mapping itself.
+ORION-09 must treat Instance Space Analysis (ISA) and algorithm selection as the closest conceptual parent rather than claiming feature-to-regime mapping itself.
 
-| Dimension | ISA / algorithm selection | QG1 regime-geometry obligation |
+| Dimension | ISA / algorithm selection | ORION-09 regime-geometry obligation |
 |---|---|---|
 | instance features | central | may be used, but feature representation is itself falsifiable |
 | algorithm performance footprints / regions | central | allowed but not sufficient |
@@ -79,7 +79,7 @@ QG1 must treat Instance Space Analysis (ISA) and algorithm selection as the clos
 | boundary feature insufficiency | feature-selection work can study this | QG15b gives exact mixed-cell contradiction within frozen vocabulary/domain |
 | authority typing (`theorem` vs finite panel vs refutation vs open) | not a universal ISA requirement | mandatory for QG cross-family synthesis |
 
-QG1 must not imply ISA is purely empirical, uninterpretable, or incapable of exact insight. The residual is the **additional exact compiler-mechanism and authority obligations** QG imposes.
+ORION-09 must not imply ISA is purely empirical, uninterpretable, or incapable of exact insight. The residual is the **additional exact compiler-mechanism and authority obligations** QG imposes.
 
 ## 5. Non-comparability rule for raw costs
 

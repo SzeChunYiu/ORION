@@ -28,7 +28,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 SCOREBOARD = ROOT / "research" / "publication" / "scoreboard.py"
 P2_READINESS = (
-    ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "JOURNAL_READINESS.md"
+    ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "JOURNAL_READINESS.md"
 )
 
 

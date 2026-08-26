@@ -92,11 +92,11 @@ coordinate has never had an instance. The channel is closed by construction.
 
 ## Step 3 — freeze written, then run (2026-08-21)
 
-Freeze: `papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md`
+Freeze: `papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md`
 Twin:   same path, `.json`, `parameters_sha256 = 28d3e289d3dddddaef142e5756b77a825829836f1eadb900b80e49f985f73691`
 Runner refuses to execute on digest mismatch (`verify_against_twin`).
 Instrument: `src/orion/study/p3/partial_observation_probe.py`
-Result: `papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json`
+Result: `papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json`
 Probe cases: `.../PROBE_CASES_2026-08-21.jsonl` (48 cases)
 Exit code 3 (FAIL), as designed.
 
@@ -203,11 +203,11 @@ as the correct replacement path. Recorded so it is on the register.
 
 ## FINAL STATE
 
-- Freeze: `papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md`
+- Freeze: `papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md`
 - Twin: same stem, `.json`, `parameters_sha256 = 28d3e289d3dddddaef142e5756b77a825829836f1eadb900b80e49f985f73691`
 - Instrument: `src/orion/study/p3/partial_observation_probe.py`
-- Result: `papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json` (exit 3, FAIL)
-- Probe cases: `papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-21.jsonl` (48)
+- Result: `papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json` (exit 3, FAIL)
+- Probe cases: `papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-21.jsonl` (48)
 - Tests: `tests/unit/study/p3/test_partial_observation_probe.py`
 - No committed P3 result, receipt, atlas or evidence artifact was modified.
   `orion.knowledge.semantics` was not modified.

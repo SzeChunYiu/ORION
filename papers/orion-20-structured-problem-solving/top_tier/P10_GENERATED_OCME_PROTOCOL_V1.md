@@ -1,4 +1,4 @@
-# P10 generated OCME protocol V1
+# ORION-20 generated OCME protocol V1
 
 **Programme:** #977  
 **Purpose:** test the still-open requirement that at least one outside-closure edit be *generated/selected by a preregistered method search* rather than hand-declared from the gold obstruction solution.

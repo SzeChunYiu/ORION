@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[3]
 TRACK = (
     ROOT
     / "papers"
-    / "paper-03-global-knowledge-portrait"
+    / "orion-13-global-knowledge-portrait"
     / "evidence"
     / "P3_BOUNDED_PUBLICATION_TRACK_V1.json"
 )
@@ -81,8 +81,8 @@ def main() -> int:
         _fail("negative/null history preservation disabled")
 
     required_paths = [
-        ROOT / "papers" / "paper-03-global-knowledge-portrait" / "JOURNAL_READINESS.md",
-        ROOT / "papers" / "paper-03-global-knowledge-portrait" / "manuscript" / "main.tex",
+        ROOT / "papers" / "orion-13-global-knowledge-portrait" / "JOURNAL_READINESS.md",
+        ROOT / "papers" / "orion-13-global-knowledge-portrait" / "manuscript" / "main.tex",
         ROOT / "research" / "verification" / "records",
     ]
     missing_paths = [str(path.relative_to(ROOT)) for path in required_paths if not path.exists()]

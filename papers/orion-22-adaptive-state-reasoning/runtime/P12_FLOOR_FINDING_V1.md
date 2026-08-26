@@ -1,4 +1,4 @@
-# P12 first scoring run: the floor was the harness, not the models
+# ORION-22 first scoring run: the floor was the harness, not the models
 
 The first scored run returned `programs_ran: 0` across all 144 episodes, and
 the gate's degeneracy guard fired:

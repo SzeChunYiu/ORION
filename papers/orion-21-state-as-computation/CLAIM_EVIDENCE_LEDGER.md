@@ -1,6 +1,6 @@
-# P11 Claim–Evidence Ledger
+# ORION-21 Claim–Evidence Ledger
 
-**Stable ID:** ORION-P11  
+**Stable ID:** ORION-ORION-21  
 **Issues:** #471, #664, #667  
 **Evidence cut:** 2026-08-22
 
@@ -10,8 +10,8 @@
 |---|---|---|---|
 | fixed exact linear-accessible state needs dimension at least query-family rank | SUPPORTED / EXACT | Theorem 1 | exact theorem for the registered access class |
 | size-`s` parity family needs `binom(d,s)` fixed accessible coordinates | SUPPORTED / EXACT | parity corollary | exact linear-accessible representation result |
-| registered universal/compiled representation ratios are 91×–1820× | SUPPORTED / CONTROLLED | P11 receipt | controlled parity-query cells only |
-| query-conditioned compilation gives 4× to >32× sample-threshold gain against registered dense universal decoder | SUPPORTED / CONTROLLED | P11/P11B receipts | dense-decoder, frozen-cell result |
+| registered universal/compiled representation ratios are 91×–1820× | SUPPORTED / CONTROLLED | ORION-21 receipt | controlled parity-query cells only |
+| query-conditioned compilation gives 4× to >32× sample-threshold gain against registered dense universal decoder | SUPPORTED / CONTROLLED | ORION-21/P11B receipts | dense-decoder, frozen-cell result |
 | P11B/P11D/P11E/P11G do not launder the final answer | SUPPORTED / HOSTILE CONTROL | zero component/negation matches | registered constructions only |
 | compilation retains ≥4× threshold advantage against sparse universal decoding in both hostile cells | **NEGATIVE / FALSE** | P11D terminal | never state this |
 | P11D retains 2× and 4× thresholds against sparse universal decoding | SUPPORTED / CONTROLLED | P11D | original two hostile cells; full JSON replay defect disclosed |
@@ -76,7 +76,7 @@ P11H is the successor the record says is the only thing that can retire the find
 
 Before execution, `assess_threshold_panel` / `require_supported_thresholds` reported panel `PASS` with both hypothesis gates `BOTH_OUTCOMES_REACHABLE`, and `measure_terminal_reach` reported `distinct_terminals` = 2 over the 15 admissible draws, 3 of which clear every gate. On execution the seed drew `(14,2,3)` and `(19,3,3)`, every instrument precondition held, and **both hypothesis gates failed**: `P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED`. The attack could have lost and did not.
 
-Two things follow. The survival claim does not generalise across state width — at `r=3` it is false under P11G's own bars against a pool that includes the paper's own best known attack. And the decomposition goes P11's way harder than P11G's did: at the drawn regimes the decoder-family half of the `n=64` gap is exactly `+0.0000`, so the whole gap is the change of state, and the gap is still only `+0.0506`. Attribution and magnitude are different questions.
+Two things follow. The survival claim does not generalise across state width — at `r=3` it is false under P11G's own bars against a pool that includes the paper's own best known attack. And the decomposition goes ORION-21's way harder than P11G's did: at the drawn regimes the decoder-family half of the `n=64` gap is exactly `+0.0000`, so the whole gap is the change of state, and the gap is still only `+0.0506`. Attribution and magnitude are different questions.
 
 ### P11H → P11I
 
@@ -122,16 +122,16 @@ with the corrected (64, 128] boundary; nothing was tuned.
 
 ## Donor subtraction
 
-- **Predictive V-information:** owns computationally restricted usable information and computation changing usability. P11 owns neither primitive.
+- **Predictive V-information:** owns computationally restricted usable information and computation changing usability. ORION-21 owns neither primitive.
 - **State Design Matters (Wong et al., 2026):** owns empirical evidence that representation/state design changes LLM reasoning and that representation construction can induce useful computation.
 - **QUMem (2026):** owns query-conditioned user-state inference as a current agent-memory primitive.
 - **ACON and context-compression literature:** own learned compression and long-horizon memory/performance trade-offs.
 - **Partial evaluation / knowledge compilation / materialized views:** own upstream computation, specialization and reuse as classical ideas.
-- **Sparse feature selection and nonlinear ensembles:** own decoder-side inductive biases that can search a universal feature bank; P11 treats them as hostile substitutes for compilation, not as ORION primitives.
+- **Sparse feature selection and nonlinear ensembles:** own decoder-side inductive biases that can search a universal feature bank; ORION-21 treats them as hostile substitutes for compilation, not as ORION primitives.
 
 ## Residual novelty
 
-P11's residual is the **placement law between state construction and downstream access**. A universal state can contain every task-relevant coordinate yet force a bounded decoder to discover which coordinates matter. Query-conditioned construction moves that discovery work upstream. Stronger sparse decoding buys part of the work back—as it should. P11H bounds the residual: with all three universal arms pooled, the attack wins at `r=3` and loses at `r=7`. P11I then prospectively replicates the high-width side across nine fresh seed×geometry units, with the attack live in every matched narrow control. NR-07 gives the law its mechanism: the placement axis is the sample cost of discovering which coordinates matter, n ~ 1/ρ(r)², so the boundary is set by the width of the compiled state rather than by any decoder's cleverness. The placement law is therefore about how much query-conditioned state the compiler resolves, not the size of the universal representation. The same upstream specialization has an exact future-query cost when raw/recoverable state is discarded.
+ORION-21's residual is the **placement law between state construction and downstream access**. A universal state can contain every task-relevant coordinate yet force a bounded decoder to discover which coordinates matter. Query-conditioned construction moves that discovery work upstream. Stronger sparse decoding buys part of the work back—as it should. P11H bounds the residual: with all three universal arms pooled, the attack wins at `r=3` and loses at `r=7`. P11I then prospectively replicates the high-width side across nine fresh seed×geometry units, with the attack live in every matched narrow control. NR-07 gives the law its mechanism: the placement axis is the sample cost of discovering which coordinates matter, n ~ 1/ρ(r)², so the boundary is set by the width of the compiled state rather than by any decoder's cleverness. The placement law is therefore about how much query-conditioned state the compiler resolves, not the size of the universal representation. The same upstream specialization has an exact future-query cost when raw/recoverable state is discarded.
 
 ## Strongest authorized headline
 

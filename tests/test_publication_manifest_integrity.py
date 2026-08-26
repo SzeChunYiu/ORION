@@ -8,11 +8,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MODULE_PATH = ROOT / "research" / "paper-programme-v1" / "protocols" / "publication_manifest.py"
 PAPER_PROTOCOLS = [
-    ROOT / "papers" / "paper-01-recursive-epistemic-reconstruction" / "protocol" / "PROTOCOL_V1.json",
-    ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "protocol" / "PROTOCOL_V1.json",
-    ROOT / "papers" / "paper-03-global-knowledge-portrait" / "protocol" / "PROTOCOL_V1.json",
-    ROOT / "papers" / "paper-04-verified-scientific-discovery" / "protocol" / "PROTOCOL_V1.json",
-    ROOT / "papers" / "paper-05-self-orion" / "protocol" / "PROTOCOL_V1.json",
+    ROOT / "papers" / "orion-11-recursive-epistemic-reconstruction" / "protocol" / "PROTOCOL_V1.json",
+    ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "protocol" / "PROTOCOL_V1.json",
+    ROOT / "papers" / "orion-13-global-knowledge-portrait" / "protocol" / "PROTOCOL_V1.json",
+    ROOT / "papers" / "orion-14-verified-scientific-discovery" / "protocol" / "PROTOCOL_V1.json",
+    ROOT / "papers" / "orion-15-self-orion" / "protocol" / "PROTOCOL_V1.json",
 ]
 
 

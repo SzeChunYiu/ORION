@@ -32,9 +32,9 @@ import pytest
 ROOT = Path(__file__).resolve().parents[3]
 CANDIDATES = ROOT / "papers" / "candidates"
 PAPERS = {
-    "P6": "paper-06-formal-epistemic-structures-and-mechanics",
-    "P7": "paper-07-epistemic-navigation-open-worlds",
-    "P8": "paper-08-epistemic-authority-autonomous-science",
+    "P6": "orion-16-formal-epistemic-structures-and-mechanics",
+    "P7": "orion-17-epistemic-navigation-open-worlds",
+    "P8": "orion-18-epistemic-authority-autonomous-science",
 }
 PACKAGE = CANDIDATES / "PEER_REVIEW_READY_PACKAGE.md"
 

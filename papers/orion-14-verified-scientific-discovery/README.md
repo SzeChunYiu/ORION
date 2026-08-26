@@ -1,10 +1,10 @@
 # Paper 04 — Verified Scientific Discovery
 
-**Stable ID:** ORION-P4  
+**Stable ID:** ORION-ORION-14  
 **Current science:** `SCIENTIFIC_ASCENT_V4_THEORY_INTEGRATED`; external naturalistic execution remains open.  
 **Current science manuscript:** `manuscript/main.tex`.  
 **Historical specification:** `manuscript/FINAL_V3.md` and `CLAIM_LEDGER_V3.md` remain the preserved pre-ascent record.  
-**PDF boundary:** since 2026-08-24 a fresh render exists in-tree — `manuscript/main.pdf` (26 pages, local tectonic/XeTeX; SHA-256 and source revision bound in `journal_package/MANIFEST.json` `pdf_render_binding`). It supersedes the historical V2 PDF as the current manuscript render; the independent proofread box (`P4.PDF`) remains OPEN.
+**PDF boundary:** since 2026-08-24 a fresh render exists in-tree — `manuscript/main.pdf` (26 pages, local tectonic/XeTeX; SHA-256 and source revision bound in `journal_package/MANIFEST.json` `pdf_render_binding`). It supersedes the historical V2 PDF as the current manuscript render; the independent proofread box (`ORION-14.PDF`) remains OPEN.
 
 ## Current research question
 
@@ -29,32 +29,32 @@ The publication-authorizing V2 campaign remains immutable:
 - H2 is a non-inferiority guard, not a coverage-superiority result;
 - H3 remains **not supported / non-discriminating** because the original `CANNOT_CHECK` family was saturated by construction.
 
-## P4-X post-saturation successor
+## ORION-14-X post-saturation successor
 
-P4-X raises the comparator standard by granting the strong donor product ordinary provenance, verification, artifact/version, evaluator-custody, epoch and generic-authorization information before testing the scientific-promotion relation.
+ORION-14-X raises the comparator standard by granting the strong donor product ordinary provenance, verification, artifact/version, evaluator-custody, epoch and generic-authorization information before testing the scientific-promotion relation.
 
 Exact protected successor:
 
 - 5 heterogeneous scientific artifact domains × 8 archetypes × 10 protected variants = 400 cases;
-- P4-X: **400/400** correct promotion terminals;
+- ORION-14-X: **400/400** correct promotion terminals;
 - strong donor-complete B1: **250/400**;
 - compensatory B2: **50/400**;
-- ideal fully typed B3: **400/400**, zero mismatches to P4-X;
-- P4-X minus B1: **+0.375**, domain-stratified bootstrap 95% CI **[0.3275,0.4225]**;
-- false P4-X promotions: **0**;
-- clean P4-X promotion rate: **1.0**;
-- positive P4-X–B1 direction in every exact domain;
+- ideal fully typed B3: **400/400**, zero mismatches to ORION-14-X;
+- ORION-14-X minus B1: **+0.375**, domain-stratified bootstrap 95% CI **[0.3275,0.4225]**;
+- false ORION-14-X promotions: **0**;
+- clean ORION-14-X promotion rate: **1.0**;
+- positive ORION-14-X–B1 direction in every exact domain;
 - independent implementation reproduces the protected row digest and arm counts.
 
 ## Donor-engulfment boundary
 
-P4 does **not** claim provenance tracking, source-aware factuality, claim/evidence verification, citation fidelity, evidence influence, evaluator auditing, contamination detection, abstention, assurance cases, evidence-backed permission graphs or generic authorization as atomic novelty. Those are reusable donor mechanisms.
+ORION-14 does **not** claim provenance tracking, source-aware factuality, claim/evidence verification, citation fidelity, evidence influence, evaluator auditing, contamination detection, abstention, assurance cases, evidence-backed permission graphs or generic authorization as atomic novelty. Those are reusable donor mechanisms.
 
-The exact-contract P4-X contribution is the coupling above them:
+The exact-contract ORION-14-X contribution is the coupling above them:
 
 > **Scientific claim promotion is a distinct target-bound authority relation. Successful local evidence, verification and generic authorization cannot compensate for a missing hard scientific-promotion obligation such as claim scope, evidence independence or unresolved scientific authority.**
 
-An information-equivalent typed product with the same scientific coordinates and promotion predicate ties exactly, so P4 makes no inherent expressivity or centralization claim.
+An information-equivalent typed product with the same scientific coordinates and promotion predicate ties exactly, so ORION-14 makes no inherent expressivity or centralization claim.
 
 ## Current empirical claim ceiling
 
@@ -76,7 +76,7 @@ Still not claimed:
 - current V4 claim authority: `CLAIM_LEDGER_V4.md`;
 - verification-axis theory: `manuscript/sections/02a-verification-axis-identifiability.tex`;
 - preserved V3 science specification and authority: `manuscript/FINAL_V3.md`, `CLAIM_LEDGER_V3.md`;
-- integrated P4-X source section: `submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex`;
+- integrated ORION-14-X source section: `submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex`;
 - exact successor science/verification artifacts: `research/claim_expansion/p4/`.
 
 The 768-cluster naturalistic successor remains prospective and has no external-panel outcome. A fresh render of the current V4 sources exists in-tree (`manuscript/main.pdf`, 2026-08-24, local tectonic; see `journal_package/CLAIM_PDF_AUDIT.md`); the independent proofread of it remains OPEN, and the historical V2 release PDF is unchanged.

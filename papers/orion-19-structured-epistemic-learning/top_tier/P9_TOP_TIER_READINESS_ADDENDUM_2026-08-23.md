@@ -1,4 +1,4 @@
-# P9 top-tier readiness addendum — 2026-08-23
+# ORION-19 top-tier readiness addendum — 2026-08-23
 
 This addendum supersedes `JOURNAL_READINESS.md` **only for current top-tier claim selection**. The historical readiness ledger remains an accurate record of the earlier bounded structural-learning package and its exact-head TMLR build.
 

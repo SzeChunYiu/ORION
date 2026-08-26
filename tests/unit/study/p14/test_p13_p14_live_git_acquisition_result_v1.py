@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[4]
 BASE = ROOT / "development/p13-p14-live-git-acquisition-v1"
 CHECKER = BASE / "check_live_git_acquisition_result_v1.py"
 RESULT = BASE / "LIVE_GIT_ACQUISITION_RESULT_V1.json"
-CORPUS = ROOT / "papers/paper-13-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json"
+CORPUS = ROOT / "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json"
 
 
 def load_checker():

@@ -1,6 +1,6 @@
 # Recursive Recovery of Negative Scientific Results: A Fully Receipted Quantum-Computing Case Study
 
-**Manuscript V2 — 2026-08-22.** This version updates the paper through the final closed ORION-Q programme, including R6Q/R6R/R6S and the completed N-lane receipts. `MANUSCRIPT_DRAFT_V1.md` is preserved as the earlier research snapshot. This paper claims a methodology/case study, not the quantum-mathematical novelty owned by Q1.
+**Manuscript V2 — 2026-08-22.** This version updates the paper through the final closed ORION-Q programme, including R6Q/R6R/R6S and the completed N-lane receipts. `MANUSCRIPT_DRAFT_V1.md` is preserved as the earlier research snapshot. This paper claims a methodology/case study, not the quantum-mathematical novelty owned by ORION-01.
 
 ---
 
@@ -94,7 +94,7 @@ R0–R3 established that typed/scoped research state can carry decision informat
 - R0: scoped failure state improves success/cost relative to raw history in synthetic research worlds.
 - R1: typed scoped state perfectly separates the registered operator-arbitration cases.
 - R2: once the same complete typed state is given to a generic learner, transfer is perfect; no ORION-specific policy advantage survives.
-- R3B: local independent receipts have an exact 1/2 ceiling on balanced hostile pairs while joint obligation binding reaches 1.0, but the mechanism is owned by existing ORION P7/P4 binding and is absorbed rather than rebranded as a new method.
+- R3B: local independent receipts have an exact 1/2 ceiling on balanced hostile pairs while joint obligation binding reaches 1.0, but the mechanism is owned by existing ORION ORION-17/ORION-14 binding and is absorbed rather than rebranded as a new method.
 - R3E: protected skill admission leaves a bounded positive in exact-synthetic scope, without establishing real quantum-algorithm invention.
 
 The methodological point is that a positive-looking mechanism can be scientifically useful while still yielding zero novelty after donor subtraction.
@@ -190,7 +190,7 @@ R6S proves no. An `F_2^2` zero-sum subset exchange removes support-three-or-larg
 
 `C_DP = C_D++`.
 
-Together with R6O's exact support-one counterexample, the final Q1 analysis gives the sharp intrinsic support threshold `kappa_R6M = 2`.
+Together with R6O's exact support-one counterexample, the final ORION-01 analysis gives the sharp intrinsic support threshold `kappa_R6M = 2`.
 
 The recovery sequence therefore ends not in “we eventually found something positive,” but in a substantially different object from the original candidate methods: a **normal-form theorem explaining the exact design-space boundary**.
 
@@ -227,7 +227,7 @@ These are bounded mechanism signals, not real-quantum synthesis claims.
 
 Six frozen studies find value in typed/scoped partial-knowledge mechanisms: type-conditioned VOI, scoped reopening, Pareto-targeted verification, full-chain receipt transport, decision-coupled probing and typed remint/transport.
 
-Q4 owns these mechanism claims. For Q2, their methodological role is narrower: they demonstrate that a negative established in a full-information benchmark does not automatically authorize closure after the epistemic contract changes.
+ORION-04 owns these mechanism claims. For ORION-02, their methodological role is narrower: they demonstrate that a negative established in a full-information benchmark does not automatically authorize closure after the epistemic contract changes.
 
 ---
 
@@ -247,7 +247,7 @@ is not a generic property of retrying. Each transition depends on the previous t
 
 ### 6.3 Provenance is necessary but not the claimed novelty
 
-The broader autonomous-science community now explicitly identifies provenance-complete experimentation as foundational. Q2 therefore treats immutable receipts as infrastructure. The research contribution under study is the **recovery layer above provenance**: typed terminals, donor-first subtraction, pre-frozen successors and saturation/lower-bound stop rules.
+The broader autonomous-science community now explicitly identifies provenance-complete experimentation as foundational. ORION-02 therefore treats immutable receipts as infrastructure. The research contribution under study is the **recovery layer above provenance**: typed terminals, donor-first subtraction, pre-frozen successors and saturation/lower-bound stop rules.
 
 ### 6.4 A negative can be more informative than a weak positive
 
@@ -261,7 +261,7 @@ End-to-end AI research automation is already established as a research direction
 
 At the same time, recent evaluations show that current agents can automate substantial research engineering while still failing at open-ended scientific judgment, productive backtracking, evidence revision and research integrity. Work on publication bias in AI-scientist pipelines also emphasizes the danger of systematically losing null results.
 
-Against this landscape, Q2 makes a deliberately narrower contribution. It does not ask whether ORION can conduct all science autonomously. It asks whether a research programme can make **negative-result transitions explicit, prospectively testable and replayable**, and presents one complete programme in which that discipline both suppresses false novelty and yields a later theorem.
+Against this landscape, ORION-02 makes a deliberately narrower contribution. It does not ask whether ORION can conduct all science autonomously. It asks whether a research programme can make **negative-result transitions explicit, prospectively testable and replayable**, and presents one complete programme in which that discipline both suppresses false novelty and yields a later theorem.
 
 A fresh bounded literature map is in `NOVELTY_RESEARCH_2026-08-22.md`.
 
@@ -297,14 +297,14 @@ Until such a study exists, the current paper should be read as a **complete exec
 
 ## 10. Reproducibility
 
-The closure packet binds the final programme status and receipt locations. Q2's `RECEIPT_INDEX_V2.md` lists the result artifacts used by this manuscript, including the final R6O–R6S and N-lane successors absent from the original index.
+The closure packet binds the final programme status and receipt locations. ORION-02's `RECEIPT_INDEX_V2.md` lists the result artifacts used by this manuscript, including the final R6O–R6S and N-lane successors absent from the original index.
 
 The programme's strongest claims are cross-owned rather than duplicated:
 
-- Q1: TARE/R6 mathematical theorem and quantum-compilation interpretation;
-- Q2: negative-result recovery methodology and programme arc;
-- Q3: receipt/harness and dual-instrument benchmark;
-- Q4: typed partial-knowledge mechanism studies.
+- ORION-01: TARE/R6 mathematical theorem and quantum-compilation interpretation;
+- ORION-02: negative-result recovery methodology and programme arc;
+- ORION-03: receipt/harness and dual-instrument benchmark;
+- ORION-04: typed partial-knowledge mechanism studies.
 
 This division prevents a methodological paper from taking scientific novelty credit for results whose mathematical statement belongs elsewhere.
 

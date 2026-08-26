@@ -49,7 +49,7 @@ Future head-to-head comparisons should either:
 
 ## Method
 
-- Used landed evidence at `papers/paper-02-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/`
+- Used landed evidence at `papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/`
 - Analyzed candidate pool sizes from `out/candidates_*.jsonl`
 - Applied strict/relaxed matchers per `run_sage_shortform.py`
 - Restricted to tasks where both systems had >=50 candidates

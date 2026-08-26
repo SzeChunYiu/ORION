@@ -1,4 +1,4 @@
-# P9 causal intervention diagnostic protocol V1
+# ORION-19 causal intervention diagnostic protocol V1
 
 **Programme:** #977  
 **Purpose:** test whether failures can be diagnosed prospectively by one-coordinate intervention response rather than final confidence/accuracy alone.
@@ -21,7 +21,7 @@ This avoids assigning gold diagnosis labels from task names or post-hoc narrativ
 
 `UNCERTAINTY_ESCALATE_COMPUTE` represents a common generic failure heuristic: when base quality is below target, spend downstream compute/model capacity. It always predicts `COMPUTATION`; when base quality already meets target it predicts `NO_INTERVENTION`.
 
-P9 must beat this heuristic on diagnosis accuracy and false compute-escalation rate.
+ORION-19 must beat this heuristic on diagnosis accuracy and false compute-escalation rate.
 
 ## Domain A — non-synthetic handwritten digits
 

@@ -20,11 +20,11 @@ SCHEMA_VERSION = "orion.journal-package.v1"
 ALLOWED_PACKAGE_STATUS = {"SCAFFOLDING", "SUPERSEDED", "SUBMISSION_READY"}
 RENDER_CLOSURE_STATE = "journal_package/RENDER_CLOSURE_STATE.json"
 PAPER_DIRS = {
-    "P1": Path("papers/paper-01-recursive-epistemic-reconstruction"),
-    "P2": Path("papers/paper-02-open-world-scientific-discovery"),
-    "P3": Path("papers/paper-03-global-knowledge-portrait"),
-    "P4": Path("papers/paper-04-verified-scientific-discovery"),
-    "P5": Path("papers/paper-05-self-orion"),
+    "P1": Path("papers/orion-11-recursive-epistemic-reconstruction"),
+    "P2": Path("papers/orion-12-open-world-scientific-discovery"),
+    "P3": Path("papers/orion-13-global-knowledge-portrait"),
+    "P4": Path("papers/orion-14-verified-scientific-discovery"),
+    "P5": Path("papers/orion-15-self-orion"),
 }
 PACKAGE_DOCS = (
     "MANIFEST.json",

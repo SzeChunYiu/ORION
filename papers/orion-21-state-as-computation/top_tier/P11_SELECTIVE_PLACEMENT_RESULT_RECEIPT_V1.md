@@ -1,4 +1,4 @@
-# P11 selective compile-tolerance placement result receipt V1 (NR-12)
+# ORION-21 selective compile-tolerance placement result receipt V1 (NR-12)
 
 **Lane:** NR-12 of `research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md`
 **Protocol (frozen pre-execution, commit `e8d76d93`):** `P11_SELECTIVE_PLACEMENT_PROTOCOL_V1.md`

@@ -1,4 +1,4 @@
-# QG1 mock peer review V2
+# ORION-09 mock peer review V2
 
 **Subject:** `MANUSCRIPT_V2.md`  
 **Mode:** three mutually blind reports + editor synthesis.  
@@ -14,7 +14,7 @@ The manuscript appropriately says three families are not universal. Still, phras
 
 **Repair:** use “regime-geometry framework/template” throughout the first submission. Reserve “field” for Discussion as a proposed research direction, not an empirical fact.
 
-**Severity:** P1 framing.
+**Severity:** ORION-11 framing.
 
 ## Major R1.2 — cost/objective normalization across families
 
@@ -22,7 +22,7 @@ The cross-family table compares families with different frozen structural object
 
 **Repair:** explicitly state that cross-family synthesis compares **authority/structural phenomena**, not numerical cost magnitudes. No cross-family normalized performance score should appear.
 
-**Severity:** P1 interpretation guard.
+**Severity:** ORION-11 interpretation guard.
 
 ## Decision
 
@@ -47,13 +47,13 @@ The manuscript acknowledges ISA well. It should go one step further and organize
 
 Do not imply ISA cannot produce interpretable or exact insights; claim only the additional compiler-mechanism obligations QG imposes.
 
-**Severity:** P1 novelty-positioning blocker.
+**Severity:** ORION-11 novelty-positioning blocker.
 
 ## Major R2.2 — “mixed cells = information-theoretic” wording
 
 Within the **frozen feature vocabulary**, identical vectors with opposite labels give an irreducible classification error. Calling this “information-theoretic” is acceptable only with that qualifier; it is not a lower bound against all representations.
 
-**Severity:** P1 wording.
+**Severity:** ORION-11 wording.
 
 ## Decision
 
@@ -69,13 +69,13 @@ The cross-family table is conceptually strong but not audit-ready. Every cell sh
 
 **Repair:** generate a machine-readable or Markdown `CROSS_FAMILY_EVIDENCE_MATRIX_V2` from the claim ledgers/wave records and use it as the source for the table/figures.
 
-**Severity:** P1 reproducibility blocker.
+**Severity:** ORION-11 reproducibility blocker.
 
 ## Major R3.2 — publication cut must visibly exclude open stacked QG theorem branches
 
 The manuscript mentions open work but a referee inspecting GitHub will see live QG-9/QG-16/QG-17 branches/PRs. State that they are **not part of this evidence cut**, and why: otherwise the submission appears selectively stale.
 
-**Severity:** P1 provenance/authority.
+**Severity:** ORION-11 provenance/authority.
 
 ## Minor R3.3 — prospective failures
 

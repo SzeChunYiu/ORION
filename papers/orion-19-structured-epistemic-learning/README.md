@@ -1,4 +1,4 @@
-# P9 — Structured Epistemic Learning
+# ORION-19 — Structured Epistemic Learning
 
 Working title: **When Structure Is the Model: Causal Information/Accessibility/Computation Diagnosis Under Explicit Resource Accounting**
 
@@ -6,7 +6,7 @@ Target venue: **Transactions on Machine Learning Research (TMLR)**, subject to t
 
 ## Current scientific identity
 
-P9 is no longer a pre-result architecture proposal. Its current top-tier object is a **causal diagnostic of failure location**: when a task fails, distinguish missing semantic information, inaccessible information/representation, insufficient computation, and missing method/coverage rather than escalating model size or compute generically.
+ORION-19 is no longer a pre-result architecture proposal. Its current top-tier object is a **causal diagnostic of failure location**: when a task fails, distinguish missing semantic information, inaccessible information/representation, insufficient computation, and missing method/coverage rather than escalating model size or compute generically.
 
 The strongest current claim is supported by three deliberately mixed outcome classes:
 
@@ -70,7 +70,7 @@ second checker GREEN:
 `evidence/P9_U_T4_SUCCESSOR_INVARIANT_PROFILE_RECEIPT_2026-08-24.md`.
 The frozen defeat itself stands immutable; the retired-margin rule above is unchanged.
 
-This adverse result strengthens the current P9 identity: the paper should diagnose **which resource/representation coordinate matters**, not claim that one serialization is intrinsically superior.
+This adverse result strengthens the current ORION-19 identity: the paper should diagnose **which resource/representation coordinate matters**, not claim that one serialization is intrinsically superior.
 
 ## Strongest paper-level claim
 

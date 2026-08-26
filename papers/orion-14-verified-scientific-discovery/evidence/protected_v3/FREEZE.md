@@ -1,11 +1,11 @@
-# P4 protected battery V3 — prospective freeze
+# ORION-14 protected battery V3 — prospective freeze
 
 **Written 2026-08-21, before the construction was repaired and before any panel
 outcome on the repaired construction was observed.**
 
 This document exists because the change it authorises can make a null result
 positive. `research/failures/2026-08-label-recoverable-from-construction-cue/`
-records that P4's H3 has never been measured: under V1 the `CANNOT_CHECK` family
+records that ORION-14's H3 has never been measured: under V1 the `CANNOT_CHECK` family
 was separable by `len(evidence) == 0`, and under the V2 repair it is separable by
 `len(evidence[0]["content"])`. Repairing the construction gives H3 headroom for
 the first time. A repair chosen after seeing which construction makes H3 come out
@@ -28,7 +28,7 @@ run fails for a mechanical reason (missing input, crash, harness misinvocation)
 the fix is to the invocation, never to the construction.
 
 No committed V2 artefact is edited. `PUBLICATION_METRICS_V2.json` and everything
-else under `papers/paper-04-verified-scientific-discovery/evidence/protected_v2/`
+else under `papers/orion-14-verified-scientific-discovery/evidence/protected_v2/`
 stands as the record of what the cued battery produced. V3 is a new battery with
 its own identity and its own outputs.
 
@@ -37,7 +37,7 @@ its own identity and its own outputs.
 | field | value |
 | --- | --- |
 | construction id | `v3` |
-| generator | `papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py --construction v3` |
+| generator | `papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py --construction v3` |
 | shape | 420 cases, 13 families, gold terminals `{BLOCK: 330, PROMOTE: 60, CANNOT_CHECK: 30}` — unchanged from V1/V2 |
 | custody split | unchanged: FIT = 150 `PUBLIC_*`, EVAL = 270 `PROTECTED_*`, of which 20 are `CANNOT_CHECK` |
 | audit seed | `v3-audit-20260821` |
@@ -58,7 +58,7 @@ known-leaking construction as the default is the defect being repaired.
 The governing principle, stated so it can be checked rather than asserted:
 
 > **Every case in the battery is shape-identical. Families differ only in the
-> values of the fields a P4 hard gate is defined over.**
+> values of the fields a ORION-14 hard gate is defined over.**
 
 Concretely, for every one of the 420 cases:
 
@@ -110,7 +110,7 @@ marker token, `answer.lineage_id` and `checker.lineage_id`, `checker.hostile_pro
 `checker.created_round`, `evaluator.frozen_round`, `evaluator.integrity`,
 `search_trace[*].benchmark_gold_visible`, and `access_requests[*].scope` / `path`.
 Those fields *are* the case. A probe that reads them is a second implementation of
-the P4 task, not a shortcut. Their residual *shapes* (e.g. `len("COMPROMISED")`
+the ORION-14 task, not a shortcut. Their residual *shapes* (e.g. `len("COMPROMISED")`
 vs `len("INTACT")`) are nonetheless left inside the register's reach — see §3
 probe 10 — because including them can only make the audit stricter.
 
@@ -246,7 +246,7 @@ It does not prove there is no shortcut. Three specific limits, stated in advance
 3. **Fields the obligations are defined over are the case, and are not
    shortcuts.** A system that reads `checker.hostile_probe` or compares
    `source_id` to `assigned_source_id` is doing the task. That the battery is
-   mechanical gold — each family is one field state — is a property of P4's
+   mechanical gold — each family is one field state — is a property of ORION-14's
    design, not something this audit can or should condemn.
 
 ## 7. Artefacts this campaign will produce
@@ -268,5 +268,5 @@ is invoked. That ordering is the freeze.
 
 Code changes: `host/generate_protected_cases.py` (the repair, plus
 `--construction`), `src/orion/study/p4/promotion_cues.py` (probes 4–13), and the
-two P4 test modules that pin the leak, which move to pinning it *historically*
+two ORION-14 test modules that pin the leak, which move to pinning it *historically*
 under `--construction v1` / `v2` and pinning the clean register under `v3`.

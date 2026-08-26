@@ -35,11 +35,11 @@ jobs:
           pytest -q tests/unit/publication/test_five_theory_hardening_r2.py
           python -m py_compile \
             papers/verify_five_theory_hardening_r2.py \
-            papers/theory-D-falsification-authority/typed_authority_evaluator.py \
+            papers/orion-03-typed-merge-falsification/typed_authority_evaluator.py \
             tests/unit/publication/test_five_theory_hardening_r2.py
           ! grep -R -n -E 'binary alphabet.*strictly below.*rank|zsf\(H_R;A_R\).*<.*rank|below-rank binary' \
-            papers/theory-A-multitag-constraint-rank \
-            papers/theory-B-certificate-complexity \
+            papers/orion-01-certificate-realization \
+            papers/orion-01-certificate-realization \
             papers/FIVE_PAPER_REVIEW_SYNTHESIS_R2_2026-08-25.md
           git diff --check
       - name: Commit the corrected package and remove transport artifacts
@@ -58,18 +58,18 @@ jobs:
             papers/FIVE_PAPER_FIGURE_CONTRACTS_R2_2026-08-25.md \
             papers/FIVE_THEORY_HARDENING_R2_RESULTS.json \
             papers/verify_five_theory_hardening_r2.py \
-            papers/theory-A-multitag-constraint-rank/MANUSCRIPT_V2.md \
-            papers/theory-A-multitag-constraint-rank/CLAIM_LEDGER_R2.md \
-            papers/theory-B-certificate-complexity/MANUSCRIPT_V2.md \
-            papers/theory-B-certificate-complexity/CLAIM_LEDGER_R2.md \
-            papers/theory-C-low-order-information/MANUSCRIPT_V2.md \
-            papers/theory-C-low-order-information/CLAIM_LEDGER_R2.md \
-            papers/theory-D-falsification-authority/MANUSCRIPT_V2.md \
-            papers/theory-D-falsification-authority/CLAIM_LEDGER_R2.md \
-            papers/theory-D-falsification-authority/typed_authority_evaluator.py \
-            papers/theory-D-falsification-authority/cases/TARE_CASE.json \
-            papers/theory-D-falsification-authority/cases/PAPER_C_CASE.json \
-            papers/theory-D-falsification-authority/cases/NONQUANTUM_CASE.json \
+            papers/orion-01-certificate-realization/theory-A-MANUSCRIPT_V2.md \
+            papers/orion-01-certificate-realization/theory-A-CLAIM_LEDGER_R2.md \
+            papers/orion-01-certificate-realization/theory-B-MANUSCRIPT_V2.md \
+            papers/orion-01-certificate-realization/theory-B-CLAIM_LEDGER_R2.md \
+            papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_V2.md \
+            papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_R2.md \
+            papers/orion-03-typed-merge-falsification/MANUSCRIPT_V2.md \
+            papers/orion-03-typed-merge-falsification/CLAIM_LEDGER_R2.md \
+            papers/orion-03-typed-merge-falsification/typed_authority_evaluator.py \
+            papers/orion-03-typed-merge-falsification/cases/TARE_CASE.json \
+            papers/orion-03-typed-merge-falsification/cases/PAPER_C_CASE.json \
+            papers/orion-03-typed-merge-falsification/cases/NONQUANTUM_CASE.json \
             tests/unit/publication/test_five_theory_hardening_r2.py
           git diff --cached --check
           git commit -m 'fix(theory): correct binary alphabet claim and harden C/D'

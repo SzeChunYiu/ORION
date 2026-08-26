@@ -2,7 +2,7 @@
 
 **Owner:** #977
 
-This rule is normative for the P6–P15 promotion wave.
+This rule is normative for the ORION-16–ORION-25 promotion wave.
 
 ## Rule
 

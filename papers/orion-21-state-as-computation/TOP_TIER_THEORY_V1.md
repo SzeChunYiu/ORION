@@ -1,4 +1,4 @@
-# P11 top-tier theory expansion V1
+# ORION-21 top-tier theory expansion V1
 
 **Programme:** #977  
 **Purpose:** close the general/approximate accessibility and optionality theory obligations without claiming the still-pending real-system replications.
@@ -49,7 +49,7 @@ then
 d\ge r_\epsilon(F).
 \]
 
-Reason: `Phi W` has rank at most `d`; by the Eckart–Young–Mirsky best-rank approximation theorem no rank-`d` matrix can beat the corresponding singular-value tail. EYM is donor mathematics; P11's object is the accessibility interpretation and its empirical placement consequences.
+Reason: `Phi W` has rank at most `d`; by the Eckart–Young–Mirsky best-rank approximation theorem no rank-`d` matrix can beat the corresponding singular-value tail. EYM is donor mathematics; ORION-21's object is the accessibility interpretation and its empirical placement consequences.
 
 This extends the current exact parity/rank substrate to arbitrary finite query matrices and approximate low-rank families.
 
@@ -57,7 +57,7 @@ This extends the current exact parity/rank substrate to arbitrary finite query m
 
 Absolute statements that a sufficient representation 'does not contain the answer' are ill-posed: a state sufficient for exact responsibility necessarily contains enough information to determine that answer under some decoder.
 
-P11 therefore uses a **relative** no-answer-laundering contract.
+ORION-21 therefore uses a **relative** no-answer-laundering contract.
 
 For a frozen trivial decoder class `D0`, compiler `C_q` is non-laundering relative to `D0` for target `f_q` iff:
 
@@ -126,4 +126,4 @@ If raw state is discarded and a regime change occurs with probability `rho_H`, a
 
 ## Scope
 
-These results close theory obligations only. The top-tier P11 claim still requires a learned non-oracle compiler, full real resource accounting and protected real-system replication. Negative decoder attacks remain authoritative evidence about where computation moved.
+These results close theory obligations only. The top-tier ORION-21 claim still requires a learned non-oracle compiler, full real resource accounting and protected real-system replication. Negative decoder attacks remain authoritative evidence about where computation moved.

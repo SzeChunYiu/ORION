@@ -3,8 +3,8 @@ name: p2-openaire-identity-probe
 on:
   pull_request:
     paths:
-      - 'papers/paper-02-open-world-scientific-discovery/scripts/probe_autoresearchbench_wide_openaire_identity.py'
-      - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_OPENAIRE_IDENTITY_PROBE_FREEZE_V1.json'
+      - 'papers/orion-12-open-world-scientific-discovery/scripts/probe_autoresearchbench_wide_openaire_identity.py'
+      - 'papers/orion-12-open-world-scientific-discovery/protocol/P2_OPENAIRE_IDENTITY_PROBE_FREEZE_V1.json'
       - 'research/development/p2-wide-openaire-identity-v1/**'
       - 'tests/unit/p2/test_p2_openaire_identity_probe.py'
       - '.github/workflows/p2-openaire-identity-probe.yml'
@@ -51,7 +51,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
             --full /tmp/p2-openaire-host/AutoResearchBench.jsonl \
             --public /tmp/p2-openaire-host/wide_public.jsonl \
             --gt /tmp/p2-openaire-host/wide_gt_DO_NOT_EXPORT.jsonl \
@@ -108,9 +108,9 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf /tmp/p2-openaire-probe/output
-          python papers/paper-02-open-world-scientific-discovery/scripts/probe_autoresearchbench_wide_openaire_identity.py \
+          python papers/orion-12-open-world-scientific-discovery/scripts/probe_autoresearchbench_wide_openaire_identity.py \
             --public /tmp/p2-openaire-probe/input/wide_public.jsonl \
-            --freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_OPENAIRE_IDENTITY_PROBE_FREEZE_V1.json \
+            --freeze papers/orion-12-open-world-scientific-discovery/protocol/P2_OPENAIRE_IDENTITY_PROBE_FREEZE_V1.json \
             --out-dir /tmp/p2-openaire-probe/output
           test -s /tmp/p2-openaire-probe/output/OPENAIRE_IDENTITY_PROBE_RESULT.json
 
@@ -142,7 +142,7 @@ jobs:
             /tmp/p2-openaire-probe/output/OPENAIRE_IDENTITY_PROBE_RESULT.json
             /tmp/p2-openaire-probe/output/OPENAIRE_IDENTITY_TRACES.jsonl
             /tmp/p2-openaire-probe/output/responses/*.json
-            papers/paper-02-open-world-scientific-discovery/protocol/P2_OPENAIRE_IDENTITY_PROBE_FREEZE_V1.json
+            papers/orion-12-open-world-scientific-discovery/protocol/P2_OPENAIRE_IDENTITY_PROBE_FREEZE_V1.json
             research/development/p2-wide-openaire-identity-v1/README.md
           if-no-files-found: warn
           retention-days: 30

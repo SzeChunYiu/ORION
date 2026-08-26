@@ -1,4 +1,4 @@
-# Q4 mock peer review V2
+# ORION-04 mock peer review V2
 
 **Subject:** `MANUSCRIPT_V2.md`  
 **Review mode:** three mutually blind reports frozen before synthesis  
@@ -22,7 +22,7 @@ The manuscript has a coherent paper-level thesis that was not visible in the six
 
 Then state, per study, which field/rule differs. A compact table is sufficient.
 
-**Severity:** P1 / blocking for a mechanism paper.
+**Severity:** ORION-11 / blocking for a mechanism paper.
 
 ## Major concern R1.2 — separate “typed state” from “known correct rule”
 
@@ -30,7 +30,7 @@ Then state, per study, which field/rule differs. A compact table is sufficient.
 
 **Required repair.** Add one sentence at the start of the synthesis: these studies test the **value of exposing a registered distinction**, not the ability to infer that distinction or prove it correct in natural data.
 
-**Severity:** P1 but text-only.
+**Severity:** ORION-11 but text-only.
 
 ## Minor concern R1.3 — N4-C terminology
 
@@ -54,15 +54,15 @@ The current title and central claim are substantially more defensible than the e
 
 **Required repair.** Replace broad prevalence language with a narrower tension: individual systems often represent some dimensions (time, provenance, confidence), but the paper asks whether different downstream responsibilities require **different explicit scope/type distinctions** under matched information. Include the current donor cluster (STALE, stale-dependency repair, ContextNest) as direct nearest work.
 
-**Severity:** P1 / publication-positioning blocker.
+**Severity:** ORION-11 / publication-positioning blocker.
 
-## Major concern R2.2 — “responsibility” is close to P13 terminology
+## Major concern R2.2 — “responsibility” is close to ORION-23 terminology
 
-**Evidence-backed finding.** Elsewhere in ORION, P13 explicitly develops responsibility-carrying state. Q4 risks internal novelty overlap if it presents responsibility-scoped authority as its own theoretical invention.
+**Evidence-backed finding.** Elsewhere in ORION, ORION-23 explicitly develops responsibility-carrying state. ORION-04 risks internal novelty overlap if it presents responsibility-scoped authority as its own theoretical invention.
 
-**Required repair.** Q4 should state that “downstream responsibility” is an organizing variable for these exact-synthetic experiments, while any general theory/certificate of responsibility-scoped sufficiency belongs to P13. Q4 owns the quantum/research-interface mechanism-isolation evidence.
+**Required repair.** ORION-04 should state that “downstream responsibility” is an organizing variable for these exact-synthetic experiments, while any general theory/certificate of responsibility-scoped sufficiency belongs to ORION-23. ORION-04 owns the quantum/research-interface mechanism-isolation evidence.
 
-**Severity:** P1 internal-overlap blocker.
+**Severity:** ORION-11 internal-overlap blocker.
 
 ## Minor concern R2.3 — title
 
@@ -86,7 +86,7 @@ The manuscript is unusually explicit about synthetic scope and deterministic rep
 
 **Required repair.** In the shared Methods, add a reporting rule: unless a protocol explicitly defines an inferential unit/interval, N4 rates and means are descriptive summaries over frozen generated episodes, not estimates of a natural population parameter.
 
-**Severity:** P1 text/reporting blocker.
+**Severity:** ORION-11 text/reporting blocker.
 
 ## Major concern R3.2 — claim-to-artifact map should be visible to reviewers
 
@@ -94,7 +94,7 @@ The manuscript is unusually explicit about synthetic scope and deterministic rep
 
 **Required repair.** Add a compact Reproducibility table or appendix mapping N4-A..F3/N1-C/N2-F5B to protocol, result receipt, runner and replay ledger. The main prose can remain readable.
 
-**Severity:** P1 package/reproducibility blocker.
+**Severity:** ORION-11 package/reproducibility blocker.
 
 ## Minor concern R3.3 — exact 1.000/0.000 transport result
 
@@ -134,9 +134,9 @@ Owner: Introduction/Related Work.
 Repair: STALE / stale-dependency repair / ContextNest as direct donors; delete any claim that agents broadly carry state untyped.  
 Source: R2.1.
 
-### E4 — P13 internal ownership boundary
+### E4 — ORION-23 internal ownership boundary
 Owner: Introduction/Related Work/Discussion.  
-Repair: Q4 uses downstream responsibility as experimental organization; P13 owns a general responsibility-carrying-state/sufficiency-authority theory.  
+Repair: ORION-04 uses downstream responsibility as experimental organization; ORION-23 owns a general responsibility-carrying-state/sufficiency-authority theory.  
 Source: R2.2.
 
 ### E5 — descriptive/inferential label discipline

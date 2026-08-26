@@ -1,8 +1,8 @@
-# P14 Gate-Attainability Adjudication V1
+# ORION-24 Gate-Attainability Adjudication V1
 
-**Paper:** ORION-P14 — ORION-RSE
+**Paper:** ORION-ORION-24 — ORION-RSE
 **Issue:** #669
-**Schema:** `ORION.P14.GateAttainabilityAdjudication.v1`
+**Schema:** `ORION.ORION-24.GateAttainabilityAdjudication.v1`
 **Receipt:** `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json`
 **Adjudicator:** `verify_p14_gate_attainability_v1.py`
 **Terminal:** `P14A_SUPERIORITY_GATES_UNMEASURABLE__QUESTION_ANSWERED_BY_P14C_AT_UNCHANGED_THRESHOLDS`
@@ -242,7 +242,7 @@ and the successor took the measurement.
 ## Reproduce
 
 ```
-python papers/paper-14-orion-rse/verify_p14_gate_attainability_v1.py
+python papers/orion-24-orion-rse/verify_p14_gate_attainability_v1.py
 python -m orion.study.p14.gate_audit                    # exits 3: P14A blocks
 python -m orion.study.p14.balanced_governance           # exits 3: P14B's count blocks
 python -m orion.study.p14.specification_conformance     # exits 0: P14C passes
@@ -253,7 +253,7 @@ The instruments load the shipped `run_p14a_controlled_governance_v1.py`,
 `run_p14b_balanced_governance_v1.py` and
 `run_p14c_specification_separated_governance_v1.py` from this directory and
 reproduce their committed digests — `3ac625b7…57a28fe`, `784d57e6…d679e66` and
-`74032348…f01a63` — before any verdict is read, so a failure above is about P14
+`74032348…f01a63` — before any verdict is read, so a failure above is about ORION-24
 and not about a local fixture.
 
 ## Failure class

@@ -2,7 +2,7 @@
 
 The custody audit in :mod:`orion.study.p5.hidden_cause_custody` has only one
 artifact to report on, and that artifact is broken:
-``papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json``
+``papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json``
 publishes its labels in plaintext, numbers its opening nonces ``0…01`` through
 ``0…018``, and emits its families in eight consecutive blocks of three. The
 freeze now refuses every one of those nonces, so the *scheme* is repaired --- but
@@ -17,7 +17,7 @@ ordinal.
 What the custody rule requires
 ------------------------------
 
-``papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md`` states the
+``papers/orion-15-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md`` states the
 withheld half under *Custody rule*:
 
     The protected input is held outside challenger write authority. It contains:

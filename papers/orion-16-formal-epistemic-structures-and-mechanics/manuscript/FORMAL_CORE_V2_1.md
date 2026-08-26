@@ -1,4 +1,4 @@
-# P6 formal core V2.1 — normative closure
+# ORION-16 formal core V2.1 — normative closure
 
 **Supersedes:** `FORMAL_CORE_V2.md` where the two differ.  
 **Theory terminal:** `CLOSED_V2_1`  
@@ -93,7 +93,7 @@ Full reset is uniformly sound under the same premises but strictly non-minimal w
 
 ### Boundary
 
-No claim is made that a real ORION dependency graph is exact or that its admissible semantics class is affected-realizable. Those are empirical/modeling obligations. Where realizability is unknown, P6 retains the safety theorem but not the minimality conclusion.
+No claim is made that a real ORION dependency graph is exact or that its admissible semantics class is affected-realizable. Those are empirical/modeling obligations. Where realizability is unknown, ORION-16 retains the safety theorem but not the minimality conclusion.
 
 ## 4. Preservation certificates under conservative graphs
 
@@ -131,7 +131,7 @@ Suppose `m` declares no read of mutable ambient variable `z` but secretly branch
 
 ### Theorem 7 — history-aware commutation under faithful full separation
 
-Stable contract: `P6.COMMUTE.RW_NONINTERFERENCE.V1`.
+Stable contract: `ORION-16.COMMUTE.RW_NONINTERFERENCE.V1`.
 
 Let deterministic admissible `m,n` be read/write-footprint faithful and fully scientifically separated, including authority, provenance, obligations, dependency state, resources and declared external inputs. Whenever both orders are defined,
 
@@ -168,9 +168,9 @@ The following V2 results remain normative and unchanged:
 5. a hidden-read counterexample;
 6. preservation/revalidation boundary for directly changed certified roots.
 
-The earlier V2 checker remains useful but V2.1 is the normative P6 closure checker.
+The earlier V2 checker remains useful but V2.1 is the normative ORION-16 closure checker.
 
-## 8. Final P6 theorem terminal
+## 8. Final ORION-16 theorem terminal
 
 - `P6_SAFETY_THEORY = CLOSED_V2_1`
 - `P6_MINIMALITY = CLOSED_UNDER_AFFECTED_REALIZABILITY`
@@ -182,10 +182,10 @@ The correction strengthens the paper because it distinguishes conservative depen
 
 ## 9. The exact Theorem 7 statement as a kernel proof (2026-08-24)
 
-The SMT contract `P6.COMMUTE.RW_NONINTERFERENCE.V1` of the preceding section
+The SMT contract `ORION-16.COMMUTE.RW_NONINTERFERENCE.V1` of the preceding section
 covers a simplified single-array statement. The manuscript's Theorem 7 says
 more, and it is now machine-checked directly under contract id
-`P6.COMMUTE.EXACT_THEOREM7.V1`
+`ORION-16.COMMUTE.EXACT_THEOREM7.V1`
 (`src/orion/study/p6/commutation_kernel.py`, record
 `formal/mechanized/P6_COMMUTATION_KERNEL_MECHANIZED_2026-08-24.json`):
 

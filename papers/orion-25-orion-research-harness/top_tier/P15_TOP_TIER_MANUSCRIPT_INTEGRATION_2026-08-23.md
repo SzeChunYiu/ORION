@@ -1,10 +1,10 @@
-# P15 top-tier manuscript integration — 2026-08-23
+# ORION-25 top-tier manuscript integration — 2026-08-23
 
 This note bridges the current `MANUSCRIPT.md` (which already contains the bounded SEI fault result) to the later provenance-interoperability and attestation-composition evidence. It changes no scientific terminal.
 
 ## One-sentence paper identity
 
-**P15 defines the scientific evidence-admission boundary above execution provenance and attestation.** Provenance and signatures can make execution attributable, portable, replayable and tamper-evident; they do not, by themselves, establish scientific validity or claim authority.
+**ORION-25 defines the scientific evidence-admission boundary above execution provenance and attestation.** Provenance and signatures can make execution attributable, portable, replayable and tamper-evident; they do not, by themselves, establish scientific validity or claim authority.
 
 ## Revised empirical arc
 
@@ -74,7 +74,7 @@ Required wording:
 
 > A signature verifies a statement under a key. It does not verify key custody, fact truth, scientific validity or claim authority. Those are distinct premises/contracts.
 
-This negative makes the composition result stronger, not weaker: P15 states exactly where cryptographic evidence stops.
+This negative makes the composition result stronger, not weaker: ORION-25 states exactly where cryptographic evidence stops.
 
 ## Abstract replacement target
 
@@ -100,9 +100,9 @@ Add a dedicated attestation subsection. Donor ownership should be explicit:
 - W3C PROV / RO-Crate own provenance representation;
 - content-addressed execution/replay systems own execution reproducibility;
 - Ed25519 / generic attestation systems own cryptographic statement authenticity;
-- P15 owns none of those primitives.
+- ORION-25 owns none of those primitives.
 
-P15's residual is the **non-laundering admission relation between execution evidence and scientific evidence/authority**.
+ORION-25's residual is the **non-laundering admission relation between execution evidence and scientific evidence/authority**.
 
 ## Results section order
 
@@ -119,7 +119,7 @@ Remove or revise current manuscript sentences saying:
 - real-system interoperability remains entirely future work;
 - independent implementation remains entirely future work;
 - cryptographic proof-of-execution/attestation comparison is wholly unexecuted;
-- P15 has only an 18-case semantics/fault study.
+- ORION-25 has only an 18-case semantics/fault study.
 
 Do **not** replace them with:
 
@@ -127,7 +127,7 @@ Do **not** replace them with:
 - "signatures make scientific claims trustworthy";
 - "key custody is verified";
 - "production-scale reliability is established";
-- "P15 is superior to existing provenance/attestation products."
+- "ORION-25 is superior to existing provenance/attestation products."
 
 ## Remaining top-tier experiment
 
@@ -136,7 +136,7 @@ Do not add another small synthetic attestation benchmark. The missing experiment
 - broader process/host failure families (I/O readiness races, cap sentinels, cleanup/reap/finalization, retry accounting, stale publication, timeout/signal classes);
 - larger valid workloads to estimate false rejection;
 - runtime/storage overhead;
-- if possible, one real production provenance/attestation stack as an interoperability/composition comparator, without pretending it provides the scientific layer P15 tests.
+- if possible, one real production provenance/attestation stack as an interoperability/composition comparator, without pretending it provides the scientific layer ORION-25 tests.
 
 ## Submission-day checklist
 
@@ -144,7 +144,7 @@ Do not add another small synthetic attestation benchmark. The missing experiment
 - regenerate claim ledger/figures directly from current receipts;
 - run clean-environment SEI + provenance + attestation replay;
 - refresh provenance/attestation/reproducibility literature immediately before submission;
-- reconcile P13/P15 ownership: P13 owns responsibility-relative state/certificate reuse; P15 owns execution-evidence admission/attestation;
+- reconcile ORION-23/ORION-25 ownership: ORION-23 owns responsibility-relative state/certificate reuse; ORION-25 owns execution-evidence admission/attestation;
 - run PDF clipping/content-binding audits;
 - bind exact manuscript, result receipts, environment and final PDF bytes;
 - keep `promotion_allowed=false` until those final gates are independently closed.

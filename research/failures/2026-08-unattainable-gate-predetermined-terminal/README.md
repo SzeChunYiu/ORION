@@ -334,7 +334,7 @@ seed, thresholds and receipt are retained verbatim and nothing is relabelled
 positive; what the manuscript, the chapter, the README, the readiness report and
 the claim ledger now say is that its evidential disposition is `CANNOT_CHECK` —
 a measurement the frozen protocol could not take, not evidence against the
-governance contract. `papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json`
+governance contract. `papers/orion-24-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json`
 carries the margins, the supremum, the terminal reach and the responsiveness
 measurement beside each other, produced by `verify_p14_gate_attainability_v1.py`
 over instruments that reproduce the committed digest first.

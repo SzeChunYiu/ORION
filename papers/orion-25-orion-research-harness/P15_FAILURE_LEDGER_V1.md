@@ -1,9 +1,9 @@
-# P15 Failure Ledger (V1)
+# ORION-25 Failure Ledger (V1)
 
-**Stable ID:** ORION-P15-FAILURE-LEDGER  
-**Created:** 2026-08-24 (issue #1086 P13–P15 lane)  
+**Stable ID:** ORION-ORION-25-FAILURE-LEDGER  
+**Created:** 2026-08-24 (issue #1086 ORION-23–ORION-25 lane)  
 **Scope:** retained record of blocked, adverse, null and harmful runs and
-boundaries for the P15 research-harness instrument. Threat-model counterpart:
+boundaries for the ORION-25 research-harness instrument. Threat-model counterpart:
 `manuscript/chapters/02-threat-model.tex` (adversary capabilities T7/T8 — a
 host/network/quota/tool failure converted into a scientific datum, and
 inconvenient failures omitted or downgraded). This ledger is the operational
@@ -46,11 +46,11 @@ answer to T8: failures are recorded, not dropped.
   environment/PDF binding.
 - Issue #1086's heavier boxes (>=30 public workloads, >=20 upstream failure
   cases, three locked runtime images; feature-complete shared package with
-  Q3; OSI license and versioned release) are **OPEN**, not satisfied.
+  ORION-03; OSI license and versioned release) are **OPEN**, not satisfied.
 
 ### F4. Retained-run policy
 
-- No external campaign runs exist for P15 to date, so there are no null or
+- No external campaign runs exist for ORION-25 to date, so there are no null or
   harmful external run rows yet; this ledger starts with the internal blocked
   and adverse entries above.
 - Policy: any future null, harmful, reverted or aborted run of this

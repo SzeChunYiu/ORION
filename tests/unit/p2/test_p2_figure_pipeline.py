@@ -17,7 +17,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
 FIGURES = (
-    ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "manuscript" / "figures"
+    ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "manuscript" / "figures"
 )
 MODULE_PATH = FIGURES / "pipeline_figure.py"
 

@@ -21,7 +21,7 @@ precisely rather than left to the number.
 Scientific navigation already has strong donor mechanisms: sound planning
 abstraction and refinement, counterexample-guided refinement, bidirectional
 transformation and migration, world-model replanning, and terminal-commitment
-frameworks. P7 treats these as reusable navigation transforms and asks how
+frameworks. ORION-17 treats these as reusable navigation transforms and asks how
 task-global scientific closure survives them. The answer is a closure-carrying
 navigation semantics in which a donor-valid transformation carries closure only
 through an explicit obligation witness, and in which heterogeneous transforms
@@ -37,7 +37,7 @@ side conditions are named rather than assumed away: the unit law needs the
 contract test to be reflexive, the equational forms of the laws need
 extensionality, and obligation-totality composition needs containment of
 demanded obligations rather than a registered bridge. One consequence is
-negative and is kept: P7's composition rule is provably **incomplete against its
+negative and is kept: ORION-17's composition rule is provably **incomplete against its
 own obligation semantics**, refusing composites whose contracts demand exactly
 the same obligations when no bridge is registered. It is sound and fail-closed,
 not exact.
@@ -48,7 +48,7 @@ family**: each is a transformation with its own source and target obligation
 contracts, and the intermediate-contract test becomes a function of the two
 transformations and of the registered bridge relation rather than a value
 supplied by the caller. Under three frame conditions, twelve further theorems
-are discharged at arbitrary width, and P7's published 25 composition successes
+are discharged at arbitrary width, and ORION-17's published 25 composition successes
 and 25 bridge-mismatch countermodels are recomputed by running the committed
 implementation with the hand-off computed rather than typed.
 
@@ -93,7 +93,7 @@ Under an obligation semantics defined without reference to any composition rule,
 `Total(t) <-> forall o. Demands(Tgt t, o) -> Demands(Src t, o) OR Discharged(t,o)
 OR Fresh(t,o)`, matching intermediate contracts **suffice** for totality to
 compose but are **not necessary**. The exact condition is weaker: containment of
-the second leg's source demands in the first leg's target demands. P7's rule
+the second leg's source demands in the first leg's target demands. ORION-17's rule
 therefore refuses composites that are in fact obligation-total. This is a real
 gap in the paper's own rule and is reported as one.
 
@@ -147,7 +147,7 @@ the facts behind them, and the difference is measurable.
 hand-off is computed rather than typed, a refused composite is one whose
 hand-off does not match, so 25 refusals under an empty registry *is* the
 statement that no family's target contract is any family's source contract. Read
-as a check on the interpretation this is good news: the condition is P7's own
+as a check on the interpretation this is good news: the condition is ORION-17's own
 assertion and not a modelling convenience. Read as a count it is one fact.
 Assignments that violate it return 0, 20 and 21 instead of 25.
 
@@ -164,7 +164,7 @@ visits **1** and **5** distinct hand-offs rather than 25 — precisely the
 multiplier the interpretation is supposed to remove — and the published pair is
 blind to both. What separates them is Theorem V4.6 and the directly measured
 hand-off count, not the counts. A registry that bridged some hand-offs and not
-others would have separated them empirically; P7 shipped no such registry.
+others would have separated them empirically; ORION-17 shipped no such registry.
 
 **The published counts still reach two argument triples, and this is now a fact
 about the registries.** Reproducing 25 successes requires every hand-off bridged
@@ -177,7 +177,7 @@ those rows compose successfully, one per ordered donor pair, because a leg
 carries at exactly one of the 64 (native verdict, closure vector) rows it is
 given — and the per-triple counts are published beside the total rather than
 summarised. That enumeration is not part
-of P7's published result and does not become part of it by being run.
+of ORION-17's published result and does not become part of it by being run.
 
 ## Exhaustive bounded support (unchanged, re-read)
 
@@ -254,7 +254,7 @@ breast-cancer study is a transport experiment over a frozen split: no clinical
 use is claimed and no classifier or medical decision rule is offered.
 
 
-## Wider P7 claim (V4 wording)
+## Wider ORION-17 claim (V4 wording)
 
 > Scientific navigation can reuse mature planning/refinement,
 > counterexample-guided reopening, representation-migration, replanning and
@@ -263,7 +263,7 @@ use is claimed and no classifier or medical decision rule is offered.
 > heterogeneous navigation transforms compose scientifically only when their
 > intermediate closure contracts are correctly bridged — which holds for chains
 > of any length over donor stacks of any size, and is sound but not complete
-> against P7's own obligation semantics.
+> against ORION-17's own obligation semantics.
 
 ## Limits
 
@@ -274,7 +274,7 @@ naturalistic multi-stage pipeline corpus exists, so nothing here is an empirical
 or deployed-agent claim, and the false-closure/recomputation trade-off is not
 measured. No formal or empirical reproduction outside the producing lane has been
 arranged: the calculus, the interpretation and the tests were written in the same
-lane, and independent reproduction remains open. P7's other formal core — the
+lane, and independent reproduction remains open. ORION-17's other formal core — the
 64-state support-transport theorem — is a different model and is untouched here.
 
 **Current science terminal:**
@@ -300,7 +300,7 @@ coordinate additionally requires `Contains(Tgt t, Src u)`. Nothing else in the
 calculus changes, and nothing is typed by a caller or waiting on a registrar:
 the hand-off is a function of the two contracts' obligation content.
 
-Twelve discharges under contract `P7.CONTAIN.EXACT_BRIDGE_RULE.V1`
+Twelve discharges under contract `ORION-17.CONTAIN.EXACT_BRIDGE_RULE.V1`
 (`src/orion/study/p7/exact_containment.py`, receipt
 `formal/mechanized/P7_EXACT_CONTAINMENT_MECHANIZED_2026-08-24.json`, bound by
 `formal/check_exact_containment_binding_v1.py`):

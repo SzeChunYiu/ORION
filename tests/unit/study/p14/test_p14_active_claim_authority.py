@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers" / "paper-14-orion-rse"
+PAPER = ROOT / "papers" / "orion-24-orion-rse"
 ACTIVE = PAPER / "P14_ACTIVE_CLAIM_AUTHORITY_V1.json"
 
 

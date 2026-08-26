@@ -1,4 +1,4 @@
-# P15 provenance interoperability protocol V1
+# ORION-25 provenance interoperability protocol V1
 
 **Programme:** #977  
 **Purpose:** close the real provenance/workflow interoperability gap without confusing provenance fidelity with scientific validity.
@@ -23,7 +23,7 @@ Use the production Python `prov` library (3.x) to construct a PROV document cont
 - `wasAssociatedWith` relation;
 - execution identity/digest/status attributes required for round-trip recovery.
 
-Serialize to PROV-JSON and deserialize through the library. P15 may not use a private side channel to recover execution facts.
+Serialize to PROV-JSON and deserialize through the library. ORION-25 may not use a private side channel to recover execution facts.
 
 ### RO-Crate 1.3 / Workflow Run shape
 

@@ -1,4 +1,4 @@
-# P10 OCME formal non-vacuity protocol V1
+# ORION-20 OCME formal non-vacuity protocol V1
 
 **Programme:** #977  
 **State:** `FROZEN_BEFORE_EXECUTION`  
@@ -90,4 +90,4 @@ Failure of either setting remains a negative result. No search timeout is accept
 
 ## Authority boundary
 
-A GREEN result earns **formal OCME non-vacuity**, not the broad P10 paper terminal. Still pending are strong native solving baselines, at least one generated/non-hand-coded edit, real verifier-backed discovery, matched search/synthesis/evolutionary comparators and independent implementation beyond this checker.
+A GREEN result earns **formal OCME non-vacuity**, not the broad ORION-20 paper terminal. Still pending are strong native solving baselines, at least one generated/non-hand-coded edit, real verifier-backed discovery, matched search/synthesis/evolutionary comparators and independent implementation beyond this checker.

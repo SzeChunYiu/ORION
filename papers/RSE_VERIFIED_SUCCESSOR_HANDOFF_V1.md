@@ -21,8 +21,8 @@ The recursive-scientific-evolution research lane has produced a bounded exact ve
 - a universal ORION scientific-state ontology;
 - a new CEGAR / belief-revision / truth-maintenance theorem;
 - real-world autonomous scientific self-evolution superiority;
-- a new P9 universal typed-state result;
-- a P10 method-invention or self-evolution result;
+- a new ORION-19 universal typed-state result;
+- a ORION-20 method-invention or self-evolution result;
 - self-authorized framework or authority change.
 
 ## Programme synthesis

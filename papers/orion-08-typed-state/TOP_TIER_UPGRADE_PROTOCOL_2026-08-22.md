@@ -1,4 +1,4 @@
-# Q4 top-tier upgrade protocol — real scientific decision-state validation
+# ORION-04 top-tier upgrade protocol — real scientific decision-state validation
 
 **Freeze date:** 2026-08-22
 **Status:** prospective research protocol; no outcome is claimed here.
@@ -11,7 +11,7 @@ The study tests representation/use of knowledge state, not raw model capability.
 
 ## 2. Why a real-domain study is required
 
-The current Q4 suite deliberately uses exact synthetic worlds to isolate mechanisms. That is useful for causal/mechanistic control but does not establish transfer to real scientific workflows. Current 2026 literature already evaluates typed/provenance-aware memory, stale-memory behavior and VoI in real or naturalistic domains. A top-tier Q4 claim therefore requires decisions drawn from actual research records/frontiers.
+The current ORION-04 suite deliberately uses exact synthetic worlds to isolate mechanisms. That is useful for causal/mechanistic control but does not establish transfer to real scientific workflows. Current 2026 literature already evaluates typed/provenance-aware memory, stale-memory behavior and VoI in real or naturalistic domains. A top-tier ORION-04 claim therefore requires decisions drawn from actual research records/frontiers.
 
 ## 3. Primary units of analysis
 
@@ -82,7 +82,7 @@ To isolate state representation from model capability:
 - include deterministic/rule-based arms for decision types where the mechanism can be exactly specified;
 - report interactions between backend and state representation rather than pooling blindly.
 
-Q4 may claim a representation effect only if it survives a strong matched-information baseline, not merely a weak heuristic.
+ORION-04 may claim a representation effect only if it survives a strong matched-information baseline, not merely a weak heuristic.
 
 ## 7. Primary outcomes
 
@@ -151,9 +151,9 @@ Secondary hypotheses:
 ## 12. Stop rules
 
 - If a strong task baseline matches the typed mechanism with identical information, record donor absorption.
-- If benefits appear only on synthetic controls and not real items, publish the negative transfer result; do not promote Q4 as a real-agent paper.
+- If benefits appear only on synthetic controls and not real items, publish the negative transfer result; do not promote ORION-04 as a real-agent paper.
 - If typed representation adds facts rather than structure, invalidate that item for the matched-information analysis.
-- If prospective item count remains too small, Q4 stays a synthetic mechanism/benchmark paper.
+- If prospective item count remains too small, ORION-04 stays a synthetic mechanism/benchmark paper.
 
 ## 13. Top-tier success criterion
 

@@ -1,4 +1,4 @@
-# Q2 submission package
+# ORION-02 submission package
 
 **Current paper type:** executable methodology + complete quantum-computing case study.  
 **Stretch only after future cross-domain validation:** Nature Computational Science-class general methodology claim.  
@@ -14,7 +14,7 @@ A closed research programme can make negative, donor-absorbed, saturated, refute
 
 ## Significance statement
 
-Autonomous-research systems are usually judged by positive end results, which makes negative paths easy to discard or post-hoc reinterpret. Q2 studies the transition layer after a hypothesis fails. The ORION-Q case provides a complete receipted trajectory in which strong donors absorb multiple apparent innovations, proxy wins disappear under stronger accounting, explicit counterexamples break successive closure hypotheses, and the resulting residual is eventually converted into a prospectively tested all-size theorem. The contribution is the executable recovery discipline and its full case-study record—not provenance by itself and not a claim of cross-domain superiority.
+Autonomous-research systems are usually judged by positive end results, which makes negative paths easy to discard or post-hoc reinterpret. ORION-02 studies the transition layer after a hypothesis fails. The ORION-Q case provides a complete receipted trajectory in which strong donors absorb multiple apparent innovations, proxy wins disappear under stronger accounting, explicit counterexamples break successive closure hypotheses, and the resulting residual is eventually converted into a prospectively tested all-size theorem. The contribution is the executable recovery discipline and its full case-study record—not provenance by itself and not a claim of cross-domain superiority.
 
 ## Draft editor pitch
 
@@ -31,7 +31,7 @@ Allowed:
 - complete executable single-programme case study;
 - donor-first negative-result recovery and saturation chronology;
 - preservation of refutations/absorptions rather than post-hoc positive rewriting;
-- final theorem as a scientific outcome owned mathematically by Q1.
+- final theorem as a scientific outcome owned mathematically by ORION-01.
 
 Not allowed:
 
@@ -45,7 +45,7 @@ Not allowed:
 - [x] manuscript updated through R6S and final N-lane receipts;
 - [x] final receipt index extension;
 - [x] novelty/related-work reframing;
-- [x] Q1/Q2 claim ownership separated;
+- [x] ORION-01/ORION-02 claim ownership separated;
 - [x] future cross-domain study frozen but explicitly deferred;
 - [x] reproduction guide;
 - [x] Q-series framework/content sync.

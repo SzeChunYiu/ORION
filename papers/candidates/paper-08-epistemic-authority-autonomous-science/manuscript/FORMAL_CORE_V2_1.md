@@ -1,4 +1,4 @@
-# P8 formal core V2.1 — primitive closure
+# ORION-18 formal core V2.1 — primitive closure
 
 **Supersedes:** `FORMAL_CORE_V2.md` where the two differ.
 **Theory terminal:** `CLOSED_V2_1`

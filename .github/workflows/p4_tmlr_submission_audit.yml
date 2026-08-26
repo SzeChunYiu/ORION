@@ -4,13 +4,13 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'papers/paper-04-verified-scientific-discovery/**'
+      - 'papers/orion-14-verified-scientific-discovery/**'
       - 'tests/unit/p4/test_p4_publication_v2.py'
       - '.github/workflows/p4_tmlr_submission_audit.yml'
   push:
     branches: [main]
     paths:
-      - 'papers/paper-04-verified-scientific-discovery/**'
+      - 'papers/orion-14-verified-scientific-discovery/**'
       - 'tests/unit/p4/test_p4_publication_v2.py'
       - '.github/workflows/p4_tmlr_submission_audit.yml'
 
@@ -47,28 +47,28 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python papers/paper-04-verified-scientific-discovery/figures/generate_figures.py
+          python papers/orion-14-verified-scientific-discovery/figures/generate_figures.py
           for f in p4_2_false_promotion p4_3_coverage_frontier p4_4_detection_by_attack p4_5_attribution_vs_support p4_6_cost_false_promotion; do
-            test -s "papers/paper-04-verified-scientific-discovery/figures/$f.svg"
+            test -s "papers/orion-14-verified-scientific-discovery/figures/$f.svg"
           done
           for f in p4_t1_attack_custody p4_t2_baseline_ablation_results p4_t3_cannot_check_errors; do
-            test -s "papers/paper-04-verified-scientific-discovery/tables/$f.tex"
+            test -s "papers/orion-14-verified-scientific-discovery/tables/$f.tex"
           done
-          git diff --exit-code -- papers/paper-04-verified-scientific-discovery/tables
+          git diff --exit-code -- papers/orion-14-verified-scientific-discovery/tables
 
       - name: Retain regenerated safe publication sources
         uses: actions/upload-artifact@v4
         with:
           name: p4-v2-generated-sources-${{ github.run_id }}
           path: |
-            papers/paper-04-verified-scientific-discovery/figures/p4_2_false_promotion.svg
-            papers/paper-04-verified-scientific-discovery/figures/p4_3_coverage_frontier.svg
-            papers/paper-04-verified-scientific-discovery/figures/p4_4_detection_by_attack.svg
-            papers/paper-04-verified-scientific-discovery/figures/p4_5_attribution_vs_support.svg
-            papers/paper-04-verified-scientific-discovery/figures/p4_6_cost_false_promotion.svg
-            papers/paper-04-verified-scientific-discovery/tables/p4_t1_attack_custody.tex
-            papers/paper-04-verified-scientific-discovery/tables/p4_t2_baseline_ablation_results.tex
-            papers/paper-04-verified-scientific-discovery/tables/p4_t3_cannot_check_errors.tex
+            papers/orion-14-verified-scientific-discovery/figures/p4_2_false_promotion.svg
+            papers/orion-14-verified-scientific-discovery/figures/p4_3_coverage_frontier.svg
+            papers/orion-14-verified-scientific-discovery/figures/p4_4_detection_by_attack.svg
+            papers/orion-14-verified-scientific-discovery/figures/p4_5_attribution_vs_support.svg
+            papers/orion-14-verified-scientific-discovery/figures/p4_6_cost_false_promotion.svg
+            papers/orion-14-verified-scientific-discovery/tables/p4_t1_attack_custody.tex
+            papers/orion-14-verified-scientific-discovery/tables/p4_t2_baseline_ablation_results.tex
+            papers/orion-14-verified-scientific-discovery/tables/p4_t3_cannot_check_errors.tex
           if-no-files-found: error
           retention-days: 7
 
@@ -98,7 +98,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          F=papers/paper-04-verified-scientific-discovery/figures
+          F=papers/orion-14-verified-scientific-discovery/figures
           for stem in p4_2_false_promotion p4_3_coverage_frontier p4_4_detection_by_attack p4_5_attribution_vs_support p4_6_cost_false_promotion; do
             rsvg-convert -w 1440 -o "$F/$stem.png" "$F/$stem.svg"
           done
@@ -108,14 +108,14 @@ jobs:
         run: |
           set -euo pipefail
           BASE=https://raw.githubusercontent.com/JmlrOrg/tmlr-style-file/7bf90efe3a0debbba703c05c43f3ff7e4d4a2992
-          curl -fsSL "$BASE/tmlr.sty" -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.sty
-          curl -fsSL "$BASE/tmlr.bst" -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.bst
+          curl -fsSL "$BASE/tmlr.sty" -o papers/orion-14-verified-scientific-discovery/manuscript/tmlr.sty
+          curl -fsSL "$BASE/tmlr.bst" -o papers/orion-14-verified-scientific-discovery/manuscript/tmlr.bst
 
       - name: Compile anonymous TMLR PDF
         shell: bash
         run: |
           set -euo pipefail
-          cd papers/paper-04-verified-scientific-discovery/manuscript
+          cd papers/orion-14-verified-scientific-discovery/manuscript
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           test -s main.pdf
           if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence' main.log; then exit 1; fi
@@ -124,7 +124,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          PDF=papers/paper-04-verified-scientific-discovery/manuscript/main.pdf
+          PDF=papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
           TXT="$RUNNER_TEMP/p4.txt"
           pdftotext "$PDF" "$TXT"
           grep -q 'Under review as submission to TMLR' "$TXT"
@@ -138,7 +138,7 @@ jobs:
         with:
           name: p4-tmlr-audited-pdf-${{ github.run_id }}
           path: |
-            papers/paper-04-verified-scientific-discovery/manuscript/main.pdf
+            papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
             ${{ runner.temp }}/main.pdf.sha256
             ${{ runner.temp }}/pdfinfo.txt
           if-no-files-found: error

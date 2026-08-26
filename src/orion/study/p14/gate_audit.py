@@ -36,7 +36,7 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 #: Reported, never rolled up. P14A's verdict is retained and still blocks: the
 #: successor re-asks the question, it does not repair the frozen protocol. The
 #: same rule P11's audit follows for P11H.
-ADJUDICATION = Path("papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json")
+ADJUDICATION = Path("papers/orion-24-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json")
 
 
 def adjudication_status(repo_root: Path = REPO_ROOT) -> dict[str, Any]:

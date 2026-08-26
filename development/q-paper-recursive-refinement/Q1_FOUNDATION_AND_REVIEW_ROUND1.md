@@ -1,6 +1,6 @@
 # Q1 refinement round 1 — foundation, analogue calibration and review preflight
 
-**Frozen manuscript:** `papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md`  
+**Frozen manuscript:** `papers/archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md`  
 **Stretch:** PRX Quantum  
 **Fallback:** npj Quantum Information  
 **Academic-method donor:** `ACADEMIC_PAPER_SKILLS_PIN.json`  

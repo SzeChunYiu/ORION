@@ -1,4 +1,4 @@
-# P10 non-blocking reopen triggers
+# ORION-20 non-blocking reopen triggers
 
 These items do not block the merged technical-note terminal.
 
@@ -11,5 +11,5 @@ These items do not block the merged technical-note terminal.
    and test compression plus downstream proof utility on the same corpus.
 4. **Revision robustness:** prospectively freeze at least two later Mathlib
    revisions and test whether the transfer conclusion changes.
-5. **Standalone residual:** route any surviving positive through P4 scientific
-   verification and P8 authority review before novelty language.
+5. **Standalone residual:** route any surviving positive through ORION-14 scientific
+   verification and ORION-18 authority review before novelty language.

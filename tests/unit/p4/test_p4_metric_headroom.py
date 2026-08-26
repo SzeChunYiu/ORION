@@ -25,7 +25,7 @@ from pathlib import Path
 from orion.publication.manuscript_source import assemble
 
 ROOT = Path(__file__).resolve().parents[3]
-P4 = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+P4 = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 METRICS = P4 / "evidence" / "protected_v2" / "PUBLICATION_METRICS_V2.json"
 MANUSCRIPT = P4 / "manuscript" / "main.tex"
 

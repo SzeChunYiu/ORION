@@ -1,4 +1,4 @@
-# P8 formal core V1
+# ORION-18 formal core V1
 
 **Candidate paper:** A Theory of Epistemic Authority for Autonomous Science  
 **Authority:** mathematical working object; novelty not yet authorized  
@@ -206,7 +206,7 @@ An authorization mechanism is pre-effect for effect class `E_f` when every irrev
 ### Proposition 4 (post-hoc abstention is not preventive authorization)
 If an irreversible effect commits before the system emits `DENY` or `CANNOT_CHECK`, the later abstention cannot satisfy pre-effect authorization for that effect.
 
-This is a structural observation. Agentic-abstention work already empirically identifies post-hoc abstention; P8 adopts that failure mode rather than claiming it.
+This is a structural observation. Agentic-abstention work already empirically identifies post-hoc abstention; ORION-18 adopts that failure mode rather than claiming it.
 
 ## 8. Self-promotion boundary
 
@@ -216,38 +216,38 @@ Suppose candidate transformation `m` can rewrite both the predicate deciding its
 #### Proof
 The candidate may choose a constant-accepting predicate or produce candidate-controlled evidence satisfying its own accepting branch. Because no protected external constraint relates admission to the external property, internal acceptance does not imply that property. `\square`
 
-## 9. ORION P1–P5 embeddings
+## 9. ORION ORION-11–ORION-15 embeddings
 
 These embeddings are ownership constraints, not new contributions.
 
-### `REFRAME` — P1
+### `REFRAME` — ORION-11
 Capability: construct a new formulation/search universe.  
 Authority: mutate only coordinates licensed by the responsibility/evidence diagnosis; dependent closures reopen.
 
-### `SEARCH_STOP` — P2
+### `SEARCH_STOP` — ORION-12
 Capability: stop a route or return an answer.  
 Authority: route stop and task stop are distinct; unresolved/censored mandatory obligations block global closure.
 
-### `MAP_MERGE` — P3
+### `MAP_MERGE` — ORION-13
 Capability: propose correspondences or merged constructs.  
 Authority: similarity does not discharge referent/context/measurement/obstruction obligations.
 
-### `ASSERT` — P4
+### `ASSERT` — ORION-14
 Capability: state a claim.  
-Authority: protected, content-bound evidence and independent checks govern scientific-authority promotion. P4 owns this within-domain transition.
+Authority: protected, content-bound evidence and independent checks govern scientific-authority promotion. ORION-14 owns this within-domain transition.
 
-### `SELF_MODIFY` — P5
+### `SELF_MODIFY` — ORION-15
 Capability: generate/compile/replay a self-change.  
-Authority: protected evaluation, fresh transfer, negative-history and non-self-promotion constraints govern admission. P5 owns this within-domain transition.
+Authority: protected evaluation, fresh transfer, negative-history and non-self-promotion constraints govern admission. ORION-15 owns this within-domain transition.
 
 ### Theorem target 6 (conservative gate embedding)
-For each P1–P5 domain, instantiate the general calculus so that on the domain's frozen native cases it reproduces the existing gate decisions exactly.
+For each ORION-11–ORION-15 domain, instantiate the general calculus so that on the domain's frozen native cases it reproduces the existing gate decisions exactly.
 
 Failure to embed a domain faithfully is evidence against the claimed generality.
 
 ## 10. Donor embeddings and protected ownership
 
-P8 explicitly absorbs, but does not relabel:
+ORION-18 explicitly absorbs, but does not relabel:
 
 - **ETAS (arXiv:2607.17780):** typed effects, residual obligations, requested/denied/committed trace semantics, policy safety;
 - **FAVA (arXiv:2607.27267):** evidence-backed permission graphs, deterministic SMT authorization and pre-effect enforcement;
@@ -276,7 +276,7 @@ The deterministic/protected evaluation must include at least:
 11. positive control with an explicitly registered sound cross-domain coercion;
 12. revocation control where an independent trusted derivation should survive.
 
-Strong baselines must include the existing P1–P5 gates and, where implementation permits, FAVA/ETAS-style typed-policy variants rather than scalar confidence strawmen.
+Strong baselines must include the existing ORION-11–ORION-15 gates and, where implementation permits, FAVA/ETAS-style typed-policy variants rather than scalar confidence strawmen.
 
 ## 12. Deterministic checking obligations
 
@@ -288,7 +288,7 @@ The finite checker must verify at least:
 4. revocation propagates through the dependency closure but preserves independent derivations;
 5. a candidate-controlled constant-accept policy defeats internal self-certification;
 6. authority-laundering fixtures fail closed;
-7. conservative P1–P5 embedding fixtures reproduce native toy decisions.
+7. conservative ORION-11–ORION-15 embedding fixtures reproduce native toy decisions.
 
 No LLM API is required.
 
@@ -305,8 +305,8 @@ This core does **not** claim novelty for:
 - provenance-based action guarding;
 - runtime shielding/policy enforcement;
 - capability-versus-permission governance frameworks;
-- P4's protected scientific-authority transition;
-- P5's no-self-promotion/protected-evaluation mechanism.
+- ORION-14's protected scientific-authority transition;
+- ORION-15's no-self-promotion/protected-evaluation mechanism.
 
 The widened candidate residual is:
 
@@ -341,7 +341,7 @@ It does **not** establish:
 - novelty over authorization/deontic/effect-system literature;
 - semantic soundness of every trusted root/coercion;
 - that one shared calculus is better than independent domain gates;
-- that all P1–P5 gates embed without semantic loss;
+- that all ORION-11–ORION-15 gates embed without semantic loss;
 - peer-review readiness or separate-paper status.
 
 Current novelty/promotion terminal remains `CANNOT_CHECK`.

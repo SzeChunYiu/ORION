@@ -1,11 +1,11 @@
-# Q3 prospective frontier-instance experiment log template V1
+# ORION-03 prospective frontier-instance experiment log template V1
 
-Purpose: `nature-experiment-log`-style record for each additional Q3 dual-instrument benchmark instance. This template is frozen before Lane A/Lane B result entry. It must not be retroactively edited to fit an outcome.
+Purpose: `nature-experiment-log`-style record for each additional ORION-03 dual-instrument benchmark instance. This template is frozen before Lane A/Lane B result entry. It must not be retroactively edited to fit an outcome.
 
 ```yaml
 schema: ORIONQ.Q3ProspectiveExperimentLog.v1
-experiment_id: Q3-<instance-id>-<YYYYMMDD>-001
-paper: Q3-dual-instrument
+experiment_id: ORION-03-<instance-id>-<YYYYMMDD>-001
+paper: ORION-03-dual-instrument
 status: PLANNED_UNEXECUTED
 protocol: Q3_ADDITIONAL_PROSPECTIVE_INSTANCES_PROTOCOL_V1.md
 publication_evidence_cut: ca7df1055a43f97eaf8d142a62011c4c261af368
@@ -41,7 +41,7 @@ If a result-bearing scientific outcome is already visible before *both* instrume
 
 `status: CONTAMINATED__INSTANCE_INELIGIBLE_FOR_Q3_PROSPECTIVE_SERIES`
 
-Do not run it as a prospective Q3 instance and do not replace the timestamp/digest after the fact. Freeze a different unresolved frontier question under a new experiment ID.
+Do not run it as a prospective ORION-03 instance and do not replace the timestamp/digest after the fact. Freeze a different unresolved frontier question under a new experiment ID.
 
 ## 2. Immutable shared question packet
 
@@ -105,7 +105,7 @@ Complete only when an independently produced outcome becomes authority-bearing.
 
 - outcome source/receipt:
 - outcome date:
-- outcome produced by Q3 instruments? `NO` required for clean deferred scoring unless protocol explicitly permits otherwise:
+- outcome produced by ORION-03 instruments? `NO` required for clean deferred scoring unless protocol explicitly permits otherwise:
 - exact scientific disposition:
 - evidence/proof boundary:
 - result digest:
@@ -152,7 +152,7 @@ One of:
 - `Q3_INSTANCE_CONTAMINATED__OUTCOME_VISIBLE_BEFORE_INSTRUMENT_FREEZE`
 - `Q3_INSTANCE_INVALID__INSTRUMENT_OR_PROTOCOL_DEFECT`
 
-A completed instance grants **no paper-level reliability/generalization claim**. Paper-level evidence is by frontier question, and Q3's publication gate remains the prospectively frozen multi-instance series.
+A completed instance grants **no paper-level reliability/generalization claim**. Paper-level evidence is by frontier question, and ORION-03's publication gate remains the prospectively frozen multi-instance series.
 
 ## Raw-material archive rule
 

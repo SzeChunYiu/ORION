@@ -1,6 +1,6 @@
-# Q3 reproduction guide
+# ORION-03 reproduction guide
 
-Q3 is currently scoped to a **systems/benchmark-definition paper with one frozen live measurement**.
+ORION-03 is currently scoped to a **systems/benchmark-definition paper with one frozen live measurement**.
 
 ## Harness publication contract
 
@@ -45,4 +45,4 @@ pytest tests/unit/publication/test_framework_snapshot.py \
        tests/unit/publication/test_q_series_content_binding.py
 ```
 
-The >=20-item prospective agreement/calibration protocol is successor research only. No result under that protocol is claimed by Q3 V2.
+The >=20-item prospective agreement/calibration protocol is successor research only. No result under that protocol is claimed by ORION-03 V2.

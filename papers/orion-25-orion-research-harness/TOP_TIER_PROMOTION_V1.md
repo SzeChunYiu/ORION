@@ -1,4 +1,4 @@
-# P15 top-tier promotion V1 — Scientific Execution Integrity
+# ORION-25 top-tier promotion V1 — Scientific Execution Integrity
 
 **Programme:** #977  
 **Existing state:** bounded SEI fault result + real provenance interoperability + claim/evidence ledger + manuscript exist; no universal production-system superiority authority.  
@@ -8,7 +8,7 @@
 
 > **Scientific Execution Integrity (SEI):** execution provenance can establish attribution and replay properties without thereby establishing scientific validity. A fail-closed research harness should make this separation explicit: host/capability failures must never be laundered into scientific evidence, receipts must bind what actually executed, publication must be race-safe and non-coercing, and multi-lane agreement must remain distinct from correctness/validity.
 
-P15 must not compete by claiming provenance, workflow packaging, reproducibility or proof-of-execution in general. Those are donor layers to absorb/interoperate with.
+ORION-25 must not compete by claiming provenance, workflow packaging, reproducibility or proof-of-execution in general. Those are donor layers to absorb/interoperate with.
 
 ## Post-outcome status — 2026-08-23
 
@@ -46,11 +46,11 @@ Exact outcomes:
 - independent second implementation: GREEN;
 - deterministic replay: GREEN.
 
-The real receipt set includes a bounded positive, an authoritative negative, a two-checker formal result, and a native-Lean execution whose stronger scientific claim is `CANNOT_CHECK`. Source papers, per receipt (auditable under `papers/SYNC_CONTRACT.md`): the bounded positive is P6's bounded ETS positive; the authoritative negative is P9's authoritative Qwen negative; the two-checker formal result and the native-Lean `CANNOT_CHECK` execution are P10 artifacts (bounded OCME positive and native-Lean record). The fixtures carry no new scientific authority here; they reuse dispositions already bound by their source receipts. That last case remains `CANNOT_CHECK` after both provenance round trips, demonstrating on a real execution record that provenance completeness is not scientific admission.
+The real receipt set includes a bounded positive, an authoritative negative, a two-checker formal result, and a native-Lean execution whose stronger scientific claim is `CANNOT_CHECK`. Source papers, per receipt (auditable under `papers/SYNC_CONTRACT.md`): the bounded positive is ORION-16's bounded ETS positive; the authoritative negative is ORION-19's authoritative Qwen negative; the two-checker formal result and the native-Lean `CANNOT_CHECK` execution are ORION-20 artifacts (bounded OCME positive and native-Lean record). The fixtures carry no new scientific authority here; they reuse dispositions already bound by their source receipts. That last case remains `CANNOT_CHECK` after both provenance round trips, demonstrating on a real execution record that provenance completeness is not scientific admission.
 
 Bound receipt: `top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md`. Current donor refresh: `top_tier/P15_INTEROP_LITERATURE_DELTA_2026-08-23.md`.
 
-**Earned claim:** the execution-integrity/scientific-validity separation is executable and remains representation-independent when execution evidence is imported from real provenance standards. P15 can sit above, rather than compete with, W3C PROV and RO-Crate: provenance supplies execution evidence; an independent scientific/authority record supplies scientific admission. **Not earned:** universal superiority over cryptographic attestation/proof-of-execution products, large production workflows, or all host/runtime fault distributions.
+**Earned claim:** the execution-integrity/scientific-validity separation is executable and remains representation-independent when execution evidence is imported from real provenance standards. ORION-25 can sit above, rather than compete with, W3C PROV and RO-Crate: provenance supplies execution evidence; an independent scientific/authority record supplies scientific admission. **Not earned:** universal superiority over cryptographic attestation/proof-of-execution products, large production workflows, or all host/runtime fault distributions.
 
 ### Cryptographic attestation composition result (Ed25519, V2)
 
@@ -76,7 +76,7 @@ Exact outcomes (bound in `top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2
 `!= SCIENTIFICALLY_VALID_RESULT`
 `!= AUTHORIZED_SCIENTIFIC_CLAIM`
 
-The top two rungs are not semantics P15 defines: they are externally supplied frozen disposition types, donor-owned by the P6/P8 authorization layer (typing) and the P14 admission layer (decision), with P13-class responsibility-scoped sufficiency likewise entering only as a frozen disposition type. Every scientific disposition in P15's receipts is an imported frozen judgment from its source paper or a deterministic contract — never an output of the provenance layer, which records dispositions and does not decide them.
+The top two rungs are not semantics ORION-25 defines: they are externally supplied frozen disposition types, donor-owned by the ORION-16/ORION-18 authorization layer (typing) and the ORION-24 admission layer (decision), with ORION-23-class responsibility-scoped sufficiency likewise entering only as a frozen disposition type. Every scientific disposition in ORION-25's receipts is an imported frozen judgment from its source paper or a deterministic contract — never an output of the provenance layer, which records dispositions and does not decide them.
 
 The protected fault corpus supplies explicit witnesses for each required bounded non-implication, and the provenance-interoperability study demonstrates that the ladder is not an artifact of a proprietary execution representation.
 
@@ -99,7 +99,7 @@ The protected corpus contains agreement-on-wrong-science and disagreement-with-i
 
 ## Donor/interoperability matrix
 
-P15 explicitly donor-owns rather than reclaims:
+ORION-25 explicitly donor-owns rather than reclaims:
 
 - generic structured logs/event sourcing;
 - W3C PROV entity/activity/agent provenance and exchange;
@@ -155,7 +155,7 @@ The fault corpus has independent frozen gold committed before its checker. The p
 
 ## Strongest hostile attacks
 
-- ordinary provenance plus strict schemas matches every P15 property;
+- ordinary provenance plus strict schemas matches every ORION-25 property;
 - signed receipts provide the same boundary at lower complexity;
 - harness rejects too many valid executions and wins by fail-closed conservatism;
 - receipt completeness is confused with evidence quality;
@@ -181,13 +181,13 @@ The real PROV/RO-Crate result directly addresses the first attack at representat
 - [x] zero false rejection/promotion on the four protected real workflow receipts;
 - [x] explicit counterexamples showing receipt/coverage/agreement `!=` validity;
 - [x] independent frozen gold for the fault corpus and independent second implementation for provenance interoperability;
-- [x] claim/evidence ledger + submission-facing manuscript object + P15 issue (#979);
+- [x] claim/evidence ledger + submission-facing manuscript object + ORION-25 issue (#979);
 - [ ] broader production host/runtime fault campaign beyond the bounded corpus;
 - [x] cryptographic/signed proof-of-execution or attestation comparator if feasible under a frozen contract — executed as the Ed25519 chain-composition arm (run `32664075763`); a production Sigstore/in-toto-class product comparison remains open;
 - [ ] production-scale false-rejection/runtime/storage characterization beyond the current small-corpus serialization measurements;
 - [ ] immediate pre-submission systems/provenance literature refresh;
 - [ ] exact final reproduction/artifact/manuscript binding.
 
-P15 is therefore much closer to a top-tier systems review package: the provenance-interoperability objection is no longer hypothetical, and the signed-attestation objection is answered at bounded scope with its compromise boundary measured rather than assumed. The remaining scientific work is production-scale hostile breadth/cost characterization and a production attestation-product comparison, not proving that the admission layer can coexist with real provenance standards or signed attestations.
+ORION-25 is therefore much closer to a top-tier systems review package: the provenance-interoperability objection is no longer hypothetical, and the signed-attestation objection is answered at bounded scope with its compromise boundary measured rather than assumed. The remaining scientific work is production-scale hostile breadth/cost characterization and a production attestation-product comparison, not proving that the admission layer can coexist with real provenance standards or signed attestations.
 
-If a signed/attested donor product already implements the same independent scientific-admission semantics, P15 should report the equivalence and interoperability result rather than manufacture a proprietary execution-model novelty claim.
+If a signed/attested donor product already implements the same independent scientific-admission semantics, ORION-25 should report the equivalence and interoperability result rather than manufacture a proprietary execution-model novelty claim.

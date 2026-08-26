@@ -12,15 +12,15 @@ V4 preserves the V2.1/V3 theorems and elevates their constructive consequence: s
 
 Autonomous scientific systems increasingly operate inside mature certification machinery: proof of execution, certified proposal–execution traces, portable action and approval receipts, workflow provenance signatures, dependency/effect systems, and attested execution boundaries. These mechanisms can certify that an execution, action, workflow, trace, or provenance relation is valid. A scientifically material change creates a harder question: which of those valid certificates may remain reusable, and what additional evidence is required for the associated scientific claim to retain standing?
 
-P6 introduces a conservative **scientific certificate-lifting semantics**. Donor certificates retain their native validity. Scientific standing is a separate lifted judgment over claim/content binding, measurement semantics, evidence semantics, inferential obligations, and scientific epoch. A material change does not force the system to discard the whole certificate stack: unchanged operational certificates remain reusable, while exactly the affected scientific lift coordinates are revalidated. Conversely, accumulating valid execution, replay, provenance, workflow, and attestation certificates cannot manufacture a missing claim-specific scientific continuity premise without an explicit bridge.
+ORION-16 introduces a conservative **scientific certificate-lifting semantics**. Donor certificates retain their native validity. Scientific standing is a separate lifted judgment over claim/content binding, measurement semantics, evidence semantics, inferential obligations, and scientific epoch. A material change does not force the system to discard the whole certificate stack: unchanged operational certificates remain reusable, while exactly the affected scientific lift coordinates are revalidated. Conversely, accumulating valid execution, replay, provenance, workflow, and attestation certificates cannot manufacture a missing claim-specific scientific continuity premise without an explicit bridge.
 
-The registered formal envelope is exhaustive. Across 320 donor-certificate/scientific-extension states, P6 has **zero donor-conservativity violations** and **zero mismatches with an equally informed ideal donor product**. The model contains 25 one-coordinate lifting separations and 31 certificate-product non-laundering witnesses. More importantly, it contains **155 complete-revalidation restorations** and **1,055 strict-subset countermodels**. The two directions jointly establish the registered repair law: when donor validity and unchanged coordinates remain valid, revalidating the complete affected scientific bridge is **necessary and sufficient** for restoration of scientific standing. An independent implementation reproduces the canonical enumeration and digest.
+The registered formal envelope is exhaustive. Across 320 donor-certificate/scientific-extension states, ORION-16 has **zero donor-conservativity violations** and **zero mismatches with an equally informed ideal donor product**. The model contains 25 one-coordinate lifting separations and 31 certificate-product non-laundering witnesses. More importantly, it contains **155 complete-revalidation restorations** and **1,055 strict-subset countermodels**. The two directions jointly establish the registered repair law: when donor validity and unchanged coordinates remain valid, revalidating the complete affected scientific bridge is **necessary and sufficient** for restoration of scientific standing. An independent implementation reproduces the canonical enumeration and digest.
 
-The resulting contribution is positive and reusable: P6 supplies a scientific lifting layer that composes with strong certificate systems, preserves their valid lower-level assurances, and gives an exact repair criterion after scientifically material change—retain unaffected valid assurance and revalidate the complete affected claim-specific bridge, neither more nor less. The zero-mismatch ideal-product result establishes implementation portability: the semantics can live in ORION or in a correctly enriched donor product without changing the scientific judgment.
+The resulting contribution is positive and reusable: ORION-16 supplies a scientific lifting layer that composes with strong certificate systems, preserves their valid lower-level assurances, and gives an exact repair criterion after scientifically material change—retain unaffected valid assurance and revalidate the complete affected claim-specific bridge, neither more nor less. The zero-mismatch ideal-product result establishes implementation portability: the semantics can live in ORION or in a correctly enriched donor product without changing the scientific judgment.
 
 ## Donor-engulfment architecture
 
-P6 deliberately absorbs the strongest useful structure of modern certificate systems rather than competing against weakened versions.
+ORION-16 deliberately absorbs the strongest useful structure of modern certificate systems rather than competing against weakened versions.
 
 - **Proof-of-execution systems** contribute contract-bound authorization, path compliance, history integrity, and replayable execution attestation.
 - **Certified-trace / proposal-certification-execution systems** contribute a hard separation among generation, certification, and effectful execution.
@@ -28,7 +28,7 @@ P6 deliberately absorbs the strongest useful structure of modern certificate sys
 - **Scientific workflow signature systems** contribute reproducibility contracts, workflow/data provenance, and cryptographic execution signatures.
 - **Certified-purity and attestation systems** contribute structural exclusion of undeclared effects and signed execution assurances.
 
-These donor certificates are admitted directly into the P6 stack. P6's additional object is the **scientific lift interface**: the claim-specific continuity relation that determines when those still-valid certificates continue to support scientific standing after change.
+These donor certificates are admitted directly into the ORION-16 stack. ORION-16's additional object is the **scientific lift interface**: the claim-specific continuity relation that determines when those still-valid certificates continue to support scientific standing after change.
 
 ## 18. Certificate lifting over donor-complete execution and workflow certificates
 
@@ -43,7 +43,7 @@ The five coordinates are a registered theorem instance, not a claim that all sci
 ### Theorem V4.1 — donor conservativity
 Projection from the lifted semantics to the donor certificate preserves the donor-native validity judgment. A valid proof-of-execution, action, workflow, provenance, or attestation certificate remains valid for the object it actually certifies.
 
-This theorem makes P6 additive: scientific certification is layered above donor correctness without redefining it.
+This theorem makes ORION-16 additive: scientific certification is layered above donor correctness without redefining it.
 
 ### Theorem V4.2 — scientific-lifting separation
 For every registered donor-certificate family and every non-inert scientific lift coordinate, there exist two extensions of the same valid donor certificate that differ only on that coordinate and receive different scientific-lifting judgments.
@@ -61,7 +61,7 @@ Suppose a transition changes a nonempty set `S` of load-bearing scientific lift 
 The exhaustive model supplies **155 restoration cases proving sufficiency** and **1,055 strict-subset countermodels proving necessity**. Therefore, within the registered theorem instance, complete affected-coordinate revalidation is necessary and sufficient for restoration of scientific standing. The constructive rule is exact: **retain every unaffected valid certificate and revalidate the complete affected scientific bridge**.
 
 ### Theorem V4.5 — portability across implementations
-An information-equivalent donor product carrying the same scientific coordinates and lift predicate agrees extensionally with P6 on every registered state.
+An information-equivalent donor product carrying the same scientific coordinates and lift predicate agrees extensionally with ORION-16 on every registered state.
 
 The zero-mismatch result is a portability theorem. It establishes that certificate lifting is a reusable scientific semantics rather than an artifact of centralized ORION organization.
 
@@ -95,7 +95,7 @@ The theorem establishes the registered five-coordinate lifting contract and its 
 
 ## Conclusion
 
-P6 establishes a scientific certificate-lifting architecture for dynamic scientific computation. Mature proof-of-execution systems, certified traces, portable action receipts, workflow signatures, provenance, dependency/effect semantics, and execution attestation remain valuable after scientifically material change; they need not be discarded simply because the scientific interpretation moved.
+ORION-16 establishes a scientific certificate-lifting architecture for dynamic scientific computation. Mature proof-of-execution systems, certified traces, portable action receipts, workflow signatures, provenance, dependency/effect semantics, and execution attestation remain valuable after scientifically material change; they need not be discarded simply because the scientific interpretation moved.
 
 The scientific problem is narrower and more actionable: determine which claim-specific continuity coordinates changed, retain every valid lower-level certificate whose subject remained intact, and revalidate the complete affected lift. The exhaustive model gives 155 restoration cases and 1,055 strict-subset countermodels, establishing necessity and sufficiency of complete affected-coordinate repair within the registered finite model while preserving donor verdicts perfectly. The equally typed ideal donor product matches all 320 states, showing that the semantics are portable across implementations.
 

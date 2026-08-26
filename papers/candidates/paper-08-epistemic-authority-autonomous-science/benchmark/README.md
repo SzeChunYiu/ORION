@@ -1,4 +1,4 @@
-# P8 protected cross-capability authority benchmark seed V1
+# ORION-18 protected cross-capability authority benchmark seed V1
 
 `authority_cases_v1.jsonl` freezes 17 paired/hostile case contracts.
 
@@ -22,13 +22,13 @@ The deterministic oracle executes manifest labels. It is not an agent, policy op
 
 ## Required prospective baselines
 
-- the actual independent P1–P5 gate composition;
+- the actual independent ORION-11–ORION-15 gate composition;
 - strong domain-specific rule policies;
 - provenance-only verification;
 - paired abstention policy;
 - expected-utility/scalar policy;
 - a current authorization-language or policy-engine implementation where operationally comparable;
-- full shared P8 calculus and type/coercion/revocation ablations.
+- full shared ORION-18 calculus and type/coercion/revocation ablations.
 
 ## Anti-total-refusal rule
 

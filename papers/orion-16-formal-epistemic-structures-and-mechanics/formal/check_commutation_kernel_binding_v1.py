@@ -20,14 +20,14 @@ ROOT = Path(__file__).resolve().parents[3]
 CONTRACT_ID = "P6.COMMUTE.EXACT_THEOREM7.V1"
 FILES = (
     "src/orion/study/p6/commutation_kernel.py",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_COMMUTATION_KERNEL_MECHANIZED_2026-08-24.json",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/FINAL_V5.md",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/sections/03-general-theorems.tex",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/FORMAL_CORE_V2_1.md",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/submission/AIJ_MANUSCRIPT.tex",
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_COMMUTATION_KERNEL_MECHANIZED_2026-08-24.json",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/manuscript/FINAL_V5.md",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/manuscript/sections/03-general-theorems.tex",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/manuscript/FORMAL_CORE_V2_1.md",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/submission/AIJ_MANUSCRIPT.tex",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md",
 )
-MANIFEST = "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json"
+MANIFEST = "papers/orion-16-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json"
 
 
 def _sha256(path: Path) -> str:

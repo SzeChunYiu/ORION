@@ -32,7 +32,7 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[4]
-PAPER = REPO / "papers/paper-09-structured-epistemic-learning"
+PAPER = REPO / "papers/orion-19-structured-epistemic-learning"
 EVIDENCE = PAPER / "evidence"
 TOP_TIER = PAPER / "top_tier"
 

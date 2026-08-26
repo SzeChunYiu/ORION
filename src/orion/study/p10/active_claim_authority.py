@@ -10,7 +10,7 @@ SCHEMA = "ORION.P10.ActiveClaimAuthority.v1"
 ACTIVE_TERMINAL = "P10_PROSPECTIVE_PROTOCOL_ONLY"
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER = REPO_ROOT / "papers/paper-10-structured-problem-solving"
+PAPER = REPO_ROOT / "papers/orion-20-structured-problem-solving"
 MANUSCRIPT = PAPER / "manuscript/main.tex"
 HYPOTHESES = PAPER / "manuscript/sections/11-primary-hypotheses.tex"
 STATUS = PAPER / "manuscript/sections/16-claim-ladder-and-status.tex"

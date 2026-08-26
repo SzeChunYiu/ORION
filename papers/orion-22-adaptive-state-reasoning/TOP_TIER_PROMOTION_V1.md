@@ -1,4 +1,4 @@
-# P12 top-tier promotion V1 — Resource-Location Metareasoning
+# ORION-22 top-tier promotion V1 — Resource-Location Metareasoning
 
 **Programme:** #977  
 **Existing controlled authority:** `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_MATCHED-BUDGET_SUPERIORITY_RESULT` remains valid.  
@@ -6,7 +6,7 @@
 
 ## Maximum claim to earn
 
-> **Inference scaling has a resource-location problem, not only a resource-amount problem.** Under one end-to-end resource envelope, an adaptive policy should decide whether the next unit of resource is best spent on state construction/acquisition, downstream reasoning/search, verification/tool use, or recovery. P12 derives and validates the conditions under which these loci substitute for or complement one another.
+> **Inference scaling has a resource-location problem, not only a resource-amount problem.** Under one end-to-end resource envelope, an adaptive policy should decide whether the next unit of resource is best spent on state construction/acquisition, downstream reasoning/search, verification/tool use, or recovery. ORION-22 derives and validates the conditions under which these loci substitute for or complement one another.
 
 Adaptive test-time compute, best-of-N/search, context selection, uncertainty allocation and value-of-computation metareasoning are donors.
 
@@ -55,7 +55,7 @@ Move beyond the current two-locus demonstrations. Freeze a resource-location act
 
 Not every domain must expose every action, but unavailable actions must be declared before protected outcomes.
 
-Donor declarations for the action set and allocator framing (per `papers/SYNC_CONTRACT.md`): the recover/reopen-after-unsupported-responsibility action executes P13's reopen/recovery semantics and the regime-change action executes P7's regime-transport semantics — both are consumed as frozen upstream donor interfaces, not re-owned here; P9's ex-post causal diagnostic is cited as the offline upper-information comparator (what an allocator could do with causal gold it must not have), and P11's optionality law is cited as the offline design-time analysis layer that the runtime rule partially observes (P12's query-count signal is P11's horizon parameter observed online). P12's owned object is pre-outcome online marginal allocation under one envelope with oracle-regret semantics — neither the diagnostic nor the placement law.
+Donor declarations for the action set and allocator framing (per `papers/SYNC_CONTRACT.md`): the recover/reopen-after-unsupported-responsibility action executes ORION-23's reopen/recovery semantics and the regime-change action executes ORION-17's regime-transport semantics — both are consumed as frozen upstream donor interfaces, not re-owned here; ORION-19's ex-post causal diagnostic is cited as the offline upper-information comparator (what an allocator could do with causal gold it must not have), and ORION-21's optionality law is cited as the offline design-time analysis layer that the runtime rule partially observes (ORION-22's query-count signal is ORION-21's horizon parameter observed online). ORION-22's owned object is pre-outcome online marginal allocation under one envelope with oracle-regret semantics — neither the diagnostic nor the placement law.
 
 ## Resource vector
 

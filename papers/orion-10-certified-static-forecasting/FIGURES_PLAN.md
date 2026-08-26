@@ -1,4 +1,4 @@
-# Paper QG2 figures plan
+# Paper ORION-10 figures plan
 
 All figures are generated from committed receipts only; no new computation on
 subjects, no DP re-runs. Paths relative to repository root.

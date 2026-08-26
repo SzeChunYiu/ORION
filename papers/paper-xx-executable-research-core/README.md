@@ -1,6 +1,6 @@
-# P9 candidate — Executable Research Core
+# ORION-19 candidate — Executable Research Core
 
-**Status:** MERGED INTO P8/PROGRAMME / PUBLIC DISCRIMINATOR PASSED / NO STANDALONE MANUSCRIPT
+**Status:** MERGED INTO ORION-18/PROGRAMME / PUBLIC DISCRIMINATOR PASSED / NO STANDALONE MANUSCRIPT
 **Shared lane:** `../orion-learning-machine/`
 
 ## Research question
@@ -18,7 +18,7 @@ Can an agent accumulate *capability* — named mechanics, a competence map over 
 | `contracts` | empirical state-effect regularities induced from transitions |
 | `ledger` | append-only retained experience, including failures and `UNKNOWN` |
 
-The module states the boundary in its own docstring: *"None of those components can authorize an external effect. Execution always passes through an authority callback owned outside P9."* That is the same capability/authority split P8 formalizes, instantiated as running code rather than as a calculus.
+The module states the boundary in its own docstring: *"None of those components can authorize an external effect. Execution always passes through an authority callback owned outside ORION-19."* That is the same capability/authority split ORION-18 formalizes, instantiated as running code rather than as a calculus.
 
 ## Evidence that exists
 
@@ -71,19 +71,19 @@ numeric claim from returning.
 
 ## Ownership boundary
 
-- **P8** owns the authority calculus. P9 supplies capability and routes it; it never upgrades capability into authority.
-- **P1** owns responsibility-typed reframing and dependency-directed reopening.
-- **P5** owns protected self-change and no-self-promotion.
-- P9 claims none of those. Its object is the executable core that accumulates capability under those constraints.
+- **ORION-18** owns the authority calculus. ORION-19 supplies capability and routes it; it never upgrades capability into authority.
+- **ORION-11** owns responsibility-typed reframing and dependency-directed reopening.
+- **ORION-15** owns protected self-change and no-self-promotion.
+- ORION-19 claims none of those. Its object is the executable core that accumulates capability under those constraints.
 
-After constructive nearest-work saturation, that object is retained as P8's
+After constructive nearest-work saturation, that object is retained as ORION-18's
 executable/public empirical companion rather than a ninth manuscript. See
 `SATURATION_LEDGER_2026-08-18.md`, `CLAIM_LEDGER.md`,
 `MERGE_DISPOSITION.md`, and `JOURNAL_READINESS.md`.
 
 ### Explicit nonclaims
 
-P9 does not claim novelty for algorithm selection, algorithm portfolios, meta-learning, macro/option discovery, learned schedulers, or competence modelling. Each is a mature field and the phase-0 result is a standard portfolio-routing shape. What is being proposed is the *separation* — accumulation that structurally cannot become permission — not the routing itself.
+ORION-19 does not claim novelty for algorithm selection, algorithm portfolios, meta-learning, macro/option discovery, learned schedulers, or competence modelling. Each is a mature field and the phase-0 result is a standard portfolio-routing shape. What is being proposed is the *separation* — accumulation that structurally cannot become permission — not the routing itself.
 
 ## Deliberate limits
 
@@ -93,9 +93,9 @@ P9 does not claim novelty for algorithm selection, algorithm portfolios, meta-le
   is a named reopen condition.
 - Phase 0 and phase 1 remain synthetic. The public ASlib discriminator is a
   single bounded scenario, not cross-domain evidence.
-- Routing and abstention cannot authorize execution; P8 owns that boundary.
+- Routing and abstention cannot authorize execution; ORION-18 owns that boundary.
 - External authority and multi-scenario selector superiority remain
-  `CANNOT_CHECK` from P9 alone and are not promoted by the merge terminal.
+  `CANNOT_CHECK` from ORION-19 alone and are not promoted by the merge terminal.
 
 ## Reproduce
 

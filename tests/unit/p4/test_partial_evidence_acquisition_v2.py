@@ -30,7 +30,7 @@ from orion.study.p4_partial_evidence.protocol import (
 from orion.study.p4_partial_evidence.reproduce import reproduce_p4_v2_hypotheses
 
 ROOT = Path(__file__).resolve().parents[3]
-P4 = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+P4 = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 FROZEN_HASHES = {
     "evidence/protected_v2/PUBLICATION_METRICS_V2.json": (
         "42c50a01c1d491fbf423aab3d88ec4f44192015e3fa96a78c007524ed19ef81d"

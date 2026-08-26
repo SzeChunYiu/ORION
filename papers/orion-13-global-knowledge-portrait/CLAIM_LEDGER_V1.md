@@ -1,4 +1,4 @@
-# ORION-P3 Claim Ledger V1
+# ORION-ORION-13 Claim Ledger V1
 
 > **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
 > subsequently rewritten so that its claims are about the mapping rule rather
@@ -22,24 +22,24 @@
 
 | ID | Claim | Required artifact | Current authority/status |
 |---|---|---|---|
-| P3.C1 | ORION represents source-local scientific meaning with explicit referent/construct/measurement/context/modality/attribution coordinates. | `src/orion/knowledge/semantics.py`, local semantic tests | **IMPLEMENTED / LOCAL_ENGINEERING** |
-| P3.C2 | ORION can distinguish aligned meanings from distinct referents, constructs, measurements, contextual differences and asserted contradictions. | `compare_meaning` hostile/unit tests | **IMPLEMENTED / LOCAL_ENGINEERING** |
-| P3.C3 | ORION prevents invalid literature bridges when the pivot referent/construct/measurement changes. | `bridge_compatible` tests | **IMPLEMENTED / LOCAL_ENGINEERING** |
-| P3.C4 | Public expert/manual resources can supply externally grounded structured cases without a new paid annotation campaign. | source registry + frozen public-reference gold/manifest | **EXECUTED / EXTERNAL-PUBLIC AUTHORITY** |
-| P3.C5 | On a prospectively execution-frozen public-reference holdout, ORION's typed mapping calculus reduces false merges versus flat predicate canonicalization while remaining non-inferior in false splits to an exact-coordinate conservative control. | `gold/adjudicated/public-reference-v1.1-confirmatory/` + `evidence/public-reference-v1.1-confirmatory/` | **CONFIRMED IN FROZEN NARROW SCOPE** — disjoint n=32; false merge 0.000 vs 0.1875; paired delta -0.1875, 95% CI [-0.34375,-0.0625]; false-split delta 0.000 [0.000,0.000]; predeclared primary verdict PASS |
-| P3.C6 | Every individual semantic-coordinate family has measurable marginal value. | targeted coordinate ablation results on authoritative cases | **PARTIAL ONLY / NOT A SCOPED HEADLINE CLAIM** — obstruction and modality/polarity/attribution/discourse are supported on both public-reference samples; zero effects for referent/construct/measurement/context are coverage-limited and do not license necessity or dispensability claims |
-| P3.C7 | ORION improves raw-text end-to-end scientific integration relative to model/RAG/schema baselines. | original `P3.cross-domain-atlas.v1` expert-gold model run | **NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK** |
-| P3.C8 | ORION improves downstream scientific answer quality. | frozen downstream task and external result artifact | **NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK** |
-| P3.C9 | The public-reference mapping result is independently reproducible and prospectively replicable. | immutable source registry, portable gold manifests, execution-frozen confirmatory manifest, deterministic evaluator, independent replay | **SATISFIED FOR PUBLIC-REFERENCE ROUTE** — primary gold SHA `35f9e39b...54ed8`; disjoint confirmatory gold SHA `13a76c68...2782b`; execution identities frozen before confirmatory outputs |
-| P3.C10 | After granting a strong semantic integration product structured construct, measurement, context, provenance and missingness information, explicit claim-relative scientific identity authority yields correct registered integration decisions across the heterogeneous P3-X contract family. | `research/claim_expansion/p3/P3_X_*` protected freeze/result/verification artifacts; `manuscript/sections/56-p3x-successor.tex` | **SUPPORTED_BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS** — P3-X 400/400, strong semantic product 250/400, canonical matching 50/400; P3-X minus strong product +0.375, 95% domain-stratified bootstrap CI [0.3275,0.4225]; zero false GLUE; clean coverage 1.0 |
-| P3.C11 | An information-equivalent implementation carrying the same scientific-identity coordinates and rule agrees extensionally with P3-X on the registered contract family. | P3-X ideal typed-product arm and independent verification | **PORTABILITY / REPRESENTATION-INDEPENDENCE — SUPPORTED_BOUNDED** — ideal product 400/400 with zero decision mismatches |
+| ORION-13.C1 | ORION represents source-local scientific meaning with explicit referent/construct/measurement/context/modality/attribution coordinates. | `src/orion/knowledge/semantics.py`, local semantic tests | **IMPLEMENTED / LOCAL_ENGINEERING** |
+| ORION-13.C2 | ORION can distinguish aligned meanings from distinct referents, constructs, measurements, contextual differences and asserted contradictions. | `compare_meaning` hostile/unit tests | **IMPLEMENTED / LOCAL_ENGINEERING** |
+| ORION-13.C3 | ORION prevents invalid literature bridges when the pivot referent/construct/measurement changes. | `bridge_compatible` tests | **IMPLEMENTED / LOCAL_ENGINEERING** |
+| ORION-13.C4 | Public expert/manual resources can supply externally grounded structured cases without a new paid annotation campaign. | source registry + frozen public-reference gold/manifest | **EXECUTED / EXTERNAL-PUBLIC AUTHORITY** |
+| ORION-13.C5 | On a prospectively execution-frozen public-reference holdout, ORION's typed mapping calculus reduces false merges versus flat predicate canonicalization while remaining non-inferior in false splits to an exact-coordinate conservative control. | `gold/adjudicated/public-reference-v1.1-confirmatory/` + `evidence/public-reference-v1.1-confirmatory/` | **CONFIRMED IN FROZEN NARROW SCOPE** — disjoint n=32; false merge 0.000 vs 0.1875; paired delta -0.1875, 95% CI [-0.34375,-0.0625]; false-split delta 0.000 [0.000,0.000]; predeclared primary verdict PASS |
+| ORION-13.C6 | Every individual semantic-coordinate family has measurable marginal value. | targeted coordinate ablation results on authoritative cases | **PARTIAL ONLY / NOT A SCOPED HEADLINE CLAIM** — obstruction and modality/polarity/attribution/discourse are supported on both public-reference samples; zero effects for referent/construct/measurement/context are coverage-limited and do not license necessity or dispensability claims |
+| ORION-13.C7 | ORION improves raw-text end-to-end scientific integration relative to model/RAG/schema baselines. | original `ORION-13.cross-domain-atlas.v1` expert-gold model run | **NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK** |
+| ORION-13.C8 | ORION improves downstream scientific answer quality. | frozen downstream task and external result artifact | **NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK** |
+| ORION-13.C9 | The public-reference mapping result is independently reproducible and prospectively replicable. | immutable source registry, portable gold manifests, execution-frozen confirmatory manifest, deterministic evaluator, independent replay | **SATISFIED FOR PUBLIC-REFERENCE ROUTE** — primary gold SHA `35f9e39b...54ed8`; disjoint confirmatory gold SHA `13a76c68...2782b`; execution identities frozen before confirmatory outputs |
+| ORION-13.C10 | After granting a strong semantic integration product structured construct, measurement, context, provenance and missingness information, explicit claim-relative scientific identity authority yields correct registered integration decisions across the heterogeneous ORION-13-X contract family. | `research/claim_expansion/p3/P3_X_*` protected freeze/result/verification artifacts; `manuscript/sections/56-p3x-successor.tex` | **SUPPORTED_BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS** — ORION-13-X 400/400, strong semantic product 250/400, canonical matching 50/400; ORION-13-X minus strong product +0.375, 95% domain-stratified bootstrap CI [0.3275,0.4225]; zero false GLUE; clean coverage 1.0 |
+| ORION-13.C11 | An information-equivalent implementation carrying the same scientific-identity coordinates and rule agrees extensionally with ORION-13-X on the registered contract family. | ORION-13-X ideal typed-product arm and independent verification | **PORTABILITY / REPRESENTATION-INDEPENDENCE — SUPPORTED_BOUNDED** — ideal product 400/400 with zero decision mismatches |
 
 ## Strongest allowed headline
 
 > **Scientific identity is a target-bound authorization relation above representational compatibility. On the registered structured-integration contracts, making that identity relation explicit eliminates the false integrations produced by weaker semantic products while preserving clean integration, and the same decisions are recoverable in an information-equivalent implementation.**
 
-This headline is supported by P3.C5, P3.C10 and P3.C11 together. It does not claim raw-text extraction superiority or downstream answer-quality improvement.
-| P3.C10 | In the separate protected zero-error representation-transition programme, ORION-JUMP adds no incremental value over the verified representation-regime revision parent on either disjoint frozen split; Paper III therefore retains correspondence/preservation/obstruction/reopening semantics while making no distinct representation-invention claim. | `research/extensions/orion-jump-recursive-atoms/zero_error_jump/ZERO_ERROR_JUMP_EXPECTED_V2.json`; merged #598 science tree | **MERGED STRONGEST-PARENT EQUIVALENCE / NEGATIVE OWNERSHIP BOUNDARY** — not pooled with P3/P3-X; no general representation-invention authority |
+This headline is supported by ORION-13.C5, ORION-13.C10 and ORION-13.C11 together. It does not claim raw-text extraction superiority or downstream answer-quality improvement.
+| ORION-13.C10 | In the separate protected zero-error representation-transition programme, ORION-JUMP adds no incremental value over the verified representation-regime revision parent on either disjoint frozen split; Paper III therefore retains correspondence/preservation/obstruction/reopening semantics while making no distinct representation-invention claim. | `research/extensions/orion-jump-recursive-atoms/zero_error_jump/ZERO_ERROR_JUMP_EXPECTED_V2.json`; merged #598 science tree | **MERGED STRONGEST-PARENT EQUIVALENCE / NEGATIVE OWNERSHIP BOUNDARY** — not pooled with ORION-13/ORION-13-X; no general representation-invention authority |
 
 ## Promotion rule
 
@@ -53,12 +53,12 @@ In particular:
 - the initial 32 cases are not pooled into the confirmatory verdict;
 - zero ablation effect on an unsupported/weakly supported coordinate is not evidence that the coordinate is unnecessary;
 - an LLM/proxy/simulated label cannot be cited as gold;
-- P3.C10 may be stated only at the prospectively frozen exact-contract scope; it does not authorize raw-text or deployed ontology claims;
-- P3.C11 is a portability result, not evidence that centralization is uniquely expressive;
-- P3.C7/P3.C8 remain visible as `NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK`; their absence from the scoped headline does not turn missing evidence into PASS;
+- ORION-13.C10 may be stated only at the prospectively frozen exact-contract scope; it does not authorize raw-text or deployed ontology claims;
+- ORION-13.C11 is a portability result, not evidence that centralization is uniquely expressive;
+- ORION-13.C7/ORION-13.C8 remain visible as `NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK`; their absence from the scoped headline does not turn missing evidence into PASS;
 - any future manuscript edit that promotes C7/C8 or universal coordinate necessity reopens the corresponding expert/raw-text/targeted-atlas evidence gate.
-- P3.C7/P3.C8 remain visible as `NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK`; their absence from the scoped submission claim does not turn missing evidence into PASS;
-- the zero-error Jump strongest-parent tie cannot be relabelled as a P3 positive, a universal impossibility of representation invention, or authority to adopt a new representation;
+- ORION-13.C7/ORION-13.C8 remain visible as `NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK`; their absence from the scoped submission claim does not turn missing evidence into PASS;
+- the zero-error Jump strongest-parent tie cannot be relabelled as a ORION-13 positive, a universal impossibility of representation invention, or authority to adopt a new representation;
 - any future manuscript edit that promotes C7/C8, universal coordinate necessity, or a distinct representation-invention mechanism reopens the corresponding evidence gate.
 
 ## Frozen public-reference evidence
@@ -74,4 +74,4 @@ Prospectively frozen disjoint confirmation:
 - `gold/adjudicated/public-reference-v1.1-confirmatory/`;
 - `evidence/public-reference-v1.1-confirmatory/`.
 
-The confirmatory holdout was selected/frozen with zero overlap before confirmatory system outputs, then executed only after the exact gold hash, source revisions, evaluator Git blobs, margins and pass rule were bound in an `EXECUTION_FROZEN` manifest. `P3.C5` is therefore a replicated narrow mapping result. P3-X is a separate prospectively frozen successor and is not pooled into that confirmatory verdict. Together they support the identity-authority headline while leaving C7/C8 explicitly prospective.
+The confirmatory holdout was selected/frozen with zero overlap before confirmatory system outputs, then executed only after the exact gold hash, source revisions, evaluator Git blobs, margins and pass rule were bound in an `EXECUTION_FROZEN` manifest. `ORION-13.C5` is therefore a replicated narrow mapping result. ORION-13-X is a separate prospectively frozen successor and is not pooled into that confirmatory verdict. Together they support the identity-authority headline while leaving C7/C8 explicitly prospective.

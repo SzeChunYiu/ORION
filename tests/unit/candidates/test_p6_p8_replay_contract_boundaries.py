@@ -32,17 +32,17 @@ def _copy_subject(tmp_path: Path, candidate_id: str) -> Path:
 
 EXPECTED_INPUTS = {
     "P6": {
-        "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.source.json",
-        "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.schema.json",
-        "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/certificate_lifting_scope_v1.smt2",
+        "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.source.json",
+        "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.schema.json",
+        "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/certificate_lifting_scope_v1.smt2",
     },
     "P7": {
-        "papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v1.jsonl",
-        "papers/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.schema.json",
+        "papers/orion-17-epistemic-navigation-open-worlds/benchmark/instances_v1.jsonl",
+        "papers/orion-17-epistemic-navigation-open-worlds/benchmark/instances_v2.schema.json",
     },
     "P8": {
-        "papers/paper-08-epistemic-authority-autonomous-science/benchmark/authority_cases_v1.jsonl",
-        "papers/paper-08-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.schema.json",
+        "papers/orion-18-epistemic-authority-autonomous-science/benchmark/authority_cases_v1.jsonl",
+        "papers/orion-18-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.schema.json",
     },
 }
 

@@ -1,4 +1,4 @@
-# P11 external validation — exact requirements for the open issue #1086 boxes
+# ORION-21 external validation — exact requirements for the open issue #1086 boxes
 
 **Status:** CANNOT_CHECK (all three open boxes). This file records, per box, the
 verbatim requirement, why it cannot be checked in the current executing
@@ -13,7 +13,7 @@ and is unchanged by this artifact.
 
 - **Why CANNOT_CHECK now:** the executing environment has no external model
   access — no hosted-model API credentials or egress, and no local model
-  weights in the repository. The repo's `papers/paper-11-state-as-computation/
+  weights in the repository. The repo's `papers/orion-21-state-as-computation/
   evidence/` tree contains audits and receipts, not cached raw LongMemEval
   model transcripts. The LongMemEval dataset and its model-generated session
   histories are a multi-gigabyte download, beyond this lane's stated limits
@@ -68,6 +68,6 @@ prereg — never generated rows or individual cached turns.
 
 Even a full pass validates external utility of query-conditioned state
 construction on these benchmarks and model families. It does not convert the
-controlled-theory boundary results (P11D/P11H/P11-query-family negatives) into
+controlled-theory boundary results (P11D/P11H/ORION-21-query-family negatives) into
 positives, and it does not license any universal compression claim. The
 responsibility-conditioned negative remains binding on any successor.

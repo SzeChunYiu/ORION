@@ -17,7 +17,7 @@ from orion.study.p5.discriminators import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ARTIFACT = ROOT / "papers/paper-05-self-orion/protocol/P5_CAUSAL_DISCRIMINATORS_V1.json"
+ARTIFACT = ROOT / "papers/orion-15-self-orion/protocol/P5_CAUSAL_DISCRIMINATORS_V1.json"
 
 
 def test_three_error_discriminators_are_frozen_before_repair() -> None:

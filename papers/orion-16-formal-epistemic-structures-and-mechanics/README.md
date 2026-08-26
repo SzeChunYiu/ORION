@@ -1,4 +1,4 @@
-# P6 candidate — Formal Epistemic Structures and Mechanics
+# ORION-16 candidate — Formal Epistemic Structures and Mechanics
 
 **Current science:** `SCIENCE_CLOSED_V4`; PDF/typesetting refresh deferred.  
 **Current science manuscript:** `manuscript/FINAL_V5.md`.  
@@ -12,11 +12,11 @@ How can autonomous science reuse the strongest existing execution, workflow, pro
 
 ## Current V4 contribution
 
-P6 now treats modern proof/certificate systems as **donor infrastructure to absorb**. Runtime proof-of-execution, certified traces, portable action/approval receipts, workflow provenance/reproducibility signatures, executor-purity/attestation certificates, dependency maintenance, typed effects and authorization remain donor-owned lower-level objects.
+ORION-16 now treats modern proof/certificate systems as **donor infrastructure to absorb**. Runtime proof-of-execution, certified traces, portable action/approval receipts, workflow provenance/reproducibility signatures, executor-purity/attestation certificates, dependency maintenance, typed effects and authorization remain donor-owned lower-level objects.
 
-The V4 successor contributes a bounded **scientific certificate-lifting semantics** above that donor stack. A lower-level certificate remains valid in its native theory. Preservation of scientific standing requires an explicit lift through registered claim-specific continuity coordinates. If a scientific coordinate changes, P6 keeps unaffected lower-level certificates and requires exact revalidation of the affected scientific bridge rather than rebuilding all provenance/execution evidence from scratch.
+The V4 successor contributes a bounded **scientific certificate-lifting semantics** above that donor stack. A lower-level certificate remains valid in its native theory. Preservation of scientific standing requires an explicit lift through registered claim-specific continuity coordinates. If a scientific coordinate changes, ORION-16 keeps unaffected lower-level certificates and requires exact revalidation of the affected scientific bridge rather than rebuilding all provenance/execution evidence from scratch.
 
-This makes P6 constructive rather than merely subtractive: donor certificates are preserved and composed; their scientific boundary is strengthened.
+This makes ORION-16 constructive rather than merely subtractive: donor certificates are preserved and composed; their scientific boundary is strengthened.
 
 ## Formal result
 
@@ -42,7 +42,7 @@ A separate implementation independently reconstructs the enumeration.
 
 ## Donor boundary
 
-P6 does **not** claim proof of execution, certified traces, proof-carrying agent actions, workflow signatures, purity certificates, provenance, authorization, TMS/ATMS, incremental computation or typed effects as new. If a donor is enriched with the exact same scientific lift coordinates and rules, it ties P6 extensionally.
+ORION-16 does **not** claim proof of execution, certified traces, proof-carrying agent actions, workflow signatures, purity certificates, provenance, authorization, TMS/ATMS, incremental computation or typed effects as new. If a donor is enriched with the exact same scientific lift coordinates and rules, it ties ORION-16 extensionally.
 
 ## Current source map
 

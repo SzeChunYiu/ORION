@@ -18,7 +18,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = "papers/paper-08-epistemic-authority-autonomous-science"
+PAPER = "papers/orion-18-epistemic-authority-autonomous-science"
 CONTRACT_ID = "P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1"
 
 DOC = f"{PAPER}/formal/P8_NATIVE_CROSS_SYSTEM_PROTOCOL_V1.md"

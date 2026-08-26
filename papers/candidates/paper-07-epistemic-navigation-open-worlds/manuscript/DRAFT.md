@@ -1,10 +1,10 @@
 # Epistemic Navigation in Open Worlds
 
-**Working manuscript — candidate P7 — 2026-08-17**
+**Working manuscript — candidate ORION-17 — 2026-08-17**
 
 ## Abstract
 
-Search-oriented agents are commonly evaluated as if they navigate a fixed information space: the agent chooses queries, graph edges, documents or actions until a stopping rule fires. Scientific research is harder. The agent may discover that the original representation, decomposition, measurement scheme or search universe is itself inadequate, so the topology of the epistemic space changes during inquiry. This paper investigates a general theory of **epistemic navigation** for such settings. We distinguish locations, frontiers, routes, censored regions, open obligations, revisit states and stopping authority; separate structural route independence from observed overlap; and treat representation change as a topology-changing operation rather than another edge in a fixed graph. The candidate residual is an evolving-space navigation model with fail-closed stopping under unknown coverage. Novelty remains unestablished pending comparison with graph navigation, exploratory search, information foraging, POMDP-style information acquisition, open-world search agents and P2's existing route-governance theory.
+Search-oriented agents are commonly evaluated as if they navigate a fixed information space: the agent chooses queries, graph edges, documents or actions until a stopping rule fires. Scientific research is harder. The agent may discover that the original representation, decomposition, measurement scheme or search universe is itself inadequate, so the topology of the epistemic space changes during inquiry. This paper investigates a general theory of **epistemic navigation** for such settings. We distinguish locations, frontiers, routes, censored regions, open obligations, revisit states and stopping authority; separate structural route independence from observed overlap; and treat representation change as a topology-changing operation rather than another edge in a fixed graph. The candidate residual is an evolving-space navigation model with fail-closed stopping under unknown coverage. Novelty remains unestablished pending comparison with graph navigation, exploratory search, information foraging, POMDP-style information acquisition, open-world search agents and ORION-12's existing route-governance theory.
 
 ## 1. Introduction
 
@@ -14,7 +14,7 @@ Yet most navigation formalisms begin with a state space. Scientific inquiry some
 
 A researcher who realizes that a phenomenon must be described in another coordinate system, that the wrong parent discipline has been searched, or that an apparent single problem is actually two coupled subproblems has not merely chosen a better path. The set of relevant states, routes and reachable evidence has changed.
 
-P2 already addresses one part of this problem: route independence, route stopping versus task stopping, question-conditioned memory and open/censored search obligations. P7 asks whether these ideas can be generalized beyond literature retrieval into a navigation theory over **evolving epistemic topology**.
+ORION-12 already addresses one part of this problem: route independence, route stopping versus task stopping, question-conditioned memory and open/censored search obligations. ORION-17 asks whether these ideas can be generalized beyond literature retrieval into a navigation theory over **evolving epistemic topology**.
 
 ## 2. Navigation state
 
@@ -41,7 +41,7 @@ A major problem is determining whether two routes are truly different.
 
 Different query strings, APIs or graph labels do not establish independence. Conversely, overlapping content does not prove structural dependence.
 
-P7 therefore distinguishes:
+ORION-17 therefore distinguishes:
 
 - **structural route independence**: routes differ in source/mechanism/coverage assumptions;
 - **observed overlap**: routes happen to return the same content in a run;
@@ -82,7 +82,7 @@ and induces a transformation of locations, frontiers, obligations and route iden
 
 The central technical difficulty is preservation. Some visited evidence and closed obligations remain valid under `T'`; others must be reopened because their interpretation depended on the old representation.
 
-This links P1's responsibility-conditioned reconstruction with P2's route governance. P7 is distinct only if the composition produces a general navigation property that is neither paper's existing contribution alone.
+This links ORION-11's responsibility-conditioned reconstruction with ORION-12's route governance. ORION-17 is distinct only if the composition produces a general navigation property that is neither paper's existing contribution alone.
 
 ## 6. Related-work boundary
 
@@ -90,7 +90,7 @@ Graph and knowledge-graph navigation already provide iterative observe-and-navig
 
 Recent work also raises a broader scientific concern: AI research agents can concentrate exploration around existing literature rather than broadening the scientific search space. This motivates a navigation metric beyond final answer correctness.
 
-P7 cannot claim novelty for exploration, graph navigation or replanning. The hostile question is whether prior work already models **representation-changing navigation with explicit open/censored stopping obligations**.
+ORION-17 cannot claim novelty for exploration, graph navigation or replanning. The hostile question is whether prior work already models **representation-changing navigation with explicit open/censored stopping obligations**.
 
 ## 7. Prospective benchmark
 
@@ -107,7 +107,7 @@ The planned families are:
 7. negative controls where topology change is unnecessary;
 8. a non-retrieval transfer domain.
 
-The topology-change ablation is mandatory. If a fixed-space P2-style navigator performs equivalently, the P7 residual is weakened or refuted.
+The topology-change ablation is mandatory. If a fixed-space ORION-12-style navigator performs equivalently, the ORION-17 residual is weakened or refuted.
 
 ## 8. Metrics
 
@@ -117,8 +117,8 @@ A navigation paper should also report **exploration breadth** and whether the sy
 
 ## 9. Limitations
 
-Many scientific spaces cannot be objectively enumerated. Topology is partly representation-dependent. A benchmark with known hidden structure may reward behaviors that do not transfer to real science. Representation change can be overused to avoid difficult local work. P7 also risks being merely P1+P2 composition; #343 can terminate the candidate on that basis.
+Many scientific spaces cannot be objectively enumerated. Topology is partly representation-dependent. A benchmark with known hidden structure may reward behaviors that do not transfer to real science. Representation change can be overused to avoid difficult local work. ORION-17 also risks being merely ORION-11+ORION-12 composition; #343 can terminate the candidate on that basis.
 
 ## 10. Conclusion
 
-The candidate thesis is that open-world research is not only a problem of choosing paths but of maintaining justified orientation in a space whose structure may itself be wrong. P7 will survive only if an evolving-topology navigation model yields a distinct formal and empirical contribution beyond existing graph/search/planning work and ORION P2.
+The candidate thesis is that open-world research is not only a problem of choosing paths but of maintaining justified orientation in a space whose structure may itself be wrong. ORION-17 will survive only if an evolving-topology navigation model yields a distinct formal and empirical contribution beyond existing graph/search/planning work and ORION ORION-12.

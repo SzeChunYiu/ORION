@@ -33,7 +33,7 @@ The Q/QG portfolio is unusual because many central claims are exact theorems, ex
 
 ---
 
-# Q1 statistics/evidence audit
+# ORION-01 statistics/evidence audit
 
 ## Load-bearing evidence
 
@@ -70,9 +70,9 @@ The Q/QG portfolio is unusual because many central claims are exact theorems, ex
 
 ---
 
-# Q2 statistics/evidence audit
+# ORION-02 statistics/evidence audit
 
-Q2's core object is a process/lineage, so conventional statistical inference may be unnecessary.
+ORION-02's core object is a process/lineage, so conventional statistical inference may be unnecessary.
 
 ## Required denominators
 - total number of eligible predecessor nodes/chains considered;
@@ -84,7 +84,7 @@ Q2's core object is a process/lineage, so conventional statistical inference may
 
 ## Counterfactual/ablation reporting
 
-If Q2 adds a comparison such as “without retained negative history the process repeats a dead end,” define:
+If ORION-02 adds a comparison such as “without retained negative history the process repeats a dead end,” define:
 - unit = registered research node/decision opportunity;
 - predeclared policy variants;
 - outcome = legally selected next move, duplicated search, or invalid promotion.
@@ -93,7 +93,7 @@ Do not invent a p value from a small lineage. Exact case counts and mechanism-le
 
 ---
 
-# Q3 statistics/evidence audit
+# ORION-03 statistics/evidence audit
 
 ## Current state
 
@@ -119,9 +119,9 @@ Use it only as descriptive `x of N questions`, with N prominent. No general agen
 
 ---
 
-# Q4 statistics/evidence audit
+# ORION-04 statistics/evidence audit
 
-Q4 mixes several synthetic study designs; each must keep its own independent unit and scale.
+ORION-04 mixes several synthetic study designs; each must keep its own independent unit and scale.
 
 ## N4-A unknown feasibility / typed VOI
 - independent unit: generated episode (`n=300` paired episodes, per manuscript);
@@ -166,14 +166,14 @@ The existing paired solve-rate delta and bootstrap interval may be reported if r
 
 ## Cross-study synthesis
 
-**Forbidden:** pooling all Q4 episodes/chains into one overall p value or meta-effect.
+**Forbidden:** pooling all ORION-04 episodes/chains into one overall p value or meta-effect.
 **Allowed:** mechanism-level qualitative synthesis plus a table of study-specific effects/denominators.
 
 ---
 
-# QG1 statistics/evidence audit
+# ORION-09 statistics/evidence audit
 
-QG1 combines theorem-grade, exhaustive, finite-panel and prospective evidence.
+ORION-09 combines theorem-grade, exhaustive, finite-panel and prospective evidence.
 
 ## TARE
 - support-two equality: theorem, no p value;
@@ -193,7 +193,7 @@ Three compiler families are **three scientific cases**, not n=3 statistical samp
 
 ---
 
-# QG2 statistics/evidence audit
+# ORION-10 statistics/evidence audit
 
 ## Forecast exactness battery
 
@@ -247,12 +247,12 @@ For every quantitative panel/table include, as applicable:
 - calling matchings or internal checker configurations independent experimental samples;
 - using p values/CI to imply universality of theorem-like claims;
 - hiding an exact counterexample inside an aggregate success percentage;
-- pooling Q4 worlds or QG1 families as if exchangeable samples;
-- Q3 reporting a reliability percentage without enough prospective frontier questions.
+- pooling ORION-04 worlds or ORION-09 families as if exchangeable samples;
+- ORION-03 reporting a reliability percentage without enough prospective frontier questions.
 
-### P1 repairable
-- missing environment/raw timing details in QG2;
-- missing explicit paired unit in Q4 bootstrap reports;
+### ORION-11 repairable
+- missing environment/raw timing details in ORION-10;
+- missing explicit paired unit in ORION-04 bootstrap reports;
 - ratios without absolute effects/denominators;
 - using `significant` to mean scientifically important rather than statistical result.
 

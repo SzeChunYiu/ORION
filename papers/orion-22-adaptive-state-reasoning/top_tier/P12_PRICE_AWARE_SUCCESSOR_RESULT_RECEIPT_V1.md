@@ -1,4 +1,4 @@
-# P12 price-aware successor V1 — result receipt (NR-13 revival)
+# ORION-22 price-aware successor V1 — result receipt (NR-13 revival)
 
 **Study:** `P12_PRICE_AWARE_SUCCESSOR_V1`
 **Lane:** NR-13 (negative-revival backlog)
@@ -135,7 +135,7 @@ unchanged.
 
 - The successor is **not** a forward-time allocator: it reads the charging
   environment's published per-structure serve-charge certificates (the
-  P9-style resource ledger the runner compiles anyway). The revived statement
+  ORION-19-style resource ledger the runner compiles anyway). The revived statement
   is information-theoretic and construction-level: the V1 regret was entirely
   an objective/information mismatch in the selection rule; given the charger's
   own published ledger and prices, exact budgeted optimization of the charged

@@ -1,6 +1,6 @@
 # Responsibility-Carrying State: Auditable Sufficiency, Reopen Contracts, and Safe State Reuse
 
-**ORION publication candidate P13**  
+**ORION publication candidate ORION-23**  
 **Issue:** #666 · child track #668  
 **Manuscript status:** complete current-evidence draft; permanent negative retained, efficacy gate open  
 **Evidence date:** 2026-08-20
@@ -13,13 +13,13 @@ A compact state can be sufficient for one task and unsafe for another. Predictio
 
 State compression is usually evaluated against a named task: prediction accuracy, policy value, reconstruction quality or another objective. Difficulties appear when a compact state is reused after the responsibility changes. A summary adequate for answering a question may omit provenance needed to authorize a scientific claim. A proof-state abstraction adequate for next-tactic prediction may omit a dependency needed to diagnose or repair a failed proof. A control state adequate for one policy may collapse distinctions needed for counterfactual intervention.
 
-The logical fact that prediction, control and intervention can require different state distinctions is donor-owned by statistical sufficiency, predictive state representations, causal abstraction, state abstraction and related literatures. P13 does not claim to invent that distinction. Its narrower question is operational and systems-facing:
+The logical fact that prediction, control and intervention can require different state distinctions is donor-owned by statistical sufficiency, predictive state representations, causal abstraction, state abstraction and related literatures. ORION-23 does not claim to invent that distinction. Its narrower question is operational and systems-facing:
 
 > Can a compact state carry an auditable contract that says what responsibilities it supports, what it intentionally omits, which witness certifies the scope, what raw/richer state can be recovered, and what changes force the system to stop reuse and reopen?
 
 The problem has two parts. First, we need an evaluation that exposes **responsibility shift**: matched performance at a lower rung but divergent performance at a higher rung. Second, we need a reusable state interface that detects the boundary *before* a failure rather than relying on post-hoc confidence.
 
-P13 is built around a five-rung ladder:
+ORION-23 is built around a five-rung ladder:
 
 1. predict/classify;
 2. choose or plan an action;
@@ -45,7 +45,7 @@ The following conceptual territory is prior-owned:
 - capability and authorization systems;
 - raw-history/always-reopen safety baselines.
 
-P13’s proposed residual is the combination of:
+ORION-23’s proposed residual is the combination of:
 
 1. a cross-responsibility benchmark with exact lower-rung equivalence and higher-rung divergence;
 2. a responsibility-carrying state contract with explicit omissions, recoverability and reopen semantics;
@@ -116,7 +116,7 @@ at replicate 92. Therefore the combined frozen gate failed.
 
 The exact finite construction remains valid as mathematics/control structure, but the terminal is negative. The threshold is never edited, and the result is never retrospectively promoted. Any successor must use an independently justified estimand and protocol.
 
-This negative is central to P13’s methods stance: a research programme cannot claim responsibility-aware reuse while silently deleting a preregistered miss.
+This negative is central to ORION-23’s methods stance: a research programme cannot claim responsibility-aware reuse while silently deleting a preregistered miss.
 
 ## 5. Independently frozen successor protocol
 
@@ -252,7 +252,7 @@ Prospectively mutate:
 - evaluator/verifier version;
 - other registered context coordinates.
 
-Gold labels distinguish preserve, transport, reopen, revoke and unresolved outcomes. RCS transport/revocation must compose with ORION P6/P7/P8 semantics rather than creating a second authority system.
+Gold labels distinguish preserve, transport, reopen, revoke and unresolved outcomes. RCS transport/revocation must compose with ORION ORION-16/ORION-17/ORION-18 semantics rather than creating a second authority system.
 
 A certificate is invalid if the compiler or evaluator silently certifies its own scientific authority, if the represented evidence is stale, or if a semantic change is treated as a cosmetic version change.
 
@@ -280,11 +280,11 @@ Responsibilities include:
 - authorize/promote a claim;
 - revise after counterevidence.
 
-Use cases with matched answer surfaces but different provenance, dependency, custody or defeater structure. The P13 system may decide whether its state is sufficient to proceed, but it cannot self-authorize scientific novelty or truth; external evaluators retain that authority.
+Use cases with matched answer surfaces but different provenance, dependency, custody or defeater structure. The ORION-23 system may decide whether its state is sufficient to proceed, but it cannot self-authorize scientific novelty or truth; external evaluators retain that authority.
 
 ### 10.3 Optional non-formal procedural domain
 
-A third domain should involve procedural/control responsibility shifts with exact or independently checkable outcomes. This guards against a P13 effect that is specific to Lean or research-governance vocabulary.
+A third domain should involve procedural/control responsibility shifts with exact or independently checkable outcomes. This guards against a ORION-23 effect that is specific to Lean or research-governance vocabulary.
 
 ## 11. Statistics
 
@@ -346,11 +346,11 @@ Freeze required-same and reopen-on-change coordinates. Mutate them prospectively
 
 ## 14. Discussion
 
-P13 treats reuse as a contract question rather than a confidence question. Confidence estimates how strongly a system believes an output under its current view; it does not, by itself, identify whether the current view omits information required for a different responsibility. Provenance identifies where state came from but does not necessarily state what the state can safely support. A responsibility-carrying contract makes those boundaries explicit and machine-checkable.
+ORION-23 treats reuse as a contract question rather than a confidence question. Confidence estimates how strongly a system believes an output under its current view; it does not, by itself, identify whether the current view omits information required for a different responsibility. Provenance identifies where state came from but does not necessarily state what the state can safely support. A responsibility-carrying contract makes those boundaries explicit and machine-checkable.
 
 The approach is intentionally conservative about authority. A state can carry evidence that it is sufficient for a defined operational responsibility without carrying authority to declare a scientific claim true or novel. This distinction is necessary in research workflows, where a compact summary might support question answering but not claim promotion.
 
-Negative history is equally important. The failed P14A sentinel demonstrates why an auditable research system must separate exact constructions from preregistered empirical gates. The construction can remain informative while the terminal remains negative. P13’s successor must earn a new result without rewriting that history.
+Negative history is equally important. The failed P14A sentinel demonstrates why an auditable research system must separate exact constructions from preregistered empirical gates. The construction can remain informative while the terminal remains negative. ORION-23’s successor must earn a new result without rewriting that history.
 
 ## 15. Limitations
 
@@ -359,7 +359,7 @@ Negative history is equally important. The failed P14A sentinel demonstrates why
 3. Current RCS evidence is only substrate correctness, not efficacy.
 4. Certificate metadata can become expensive or stale; its own resource cost must be counted.
 5. External witness quality is a separate problem and cannot be solved by the RCS container itself.
-6. Always-reopen may remain rational in very high-risk domains; P13 does not require compact reuse to dominate universally.
+6. Always-reopen may remain rational in very high-risk domains; ORION-23 does not require compact reuse to dominate universally.
 7. Real-system Lean/research evaluations are not yet executed.
 
 ## 16. Reproducibility and evidence identity
@@ -374,11 +374,11 @@ Current evidence artifacts on the Frontier V2 branch/PR include:
 - `check_p17_responsibility_carried_state_v1.py`;
 - `P17_SUBSTRATE_CHECK_RECEIPT_V1.md`.
 
-The old numbering is preserved as historical evidence; issue #666 defines the current grouped P13 publication identity.
+The old numbering is preserved as historical evidence; issue #666 defines the current grouped ORION-23 publication identity.
 
 ## 17. Data and code availability
 
-No protected successor efficacy dataset has been executed. The final P13 package must release or identify the exact world generator, frozen splits, responsibility gold, state/certificate schemas, hostile tests and machine-readable resource receipts.
+No protected successor efficacy dataset has been executed. The final ORION-23 package must release or identify the exact world generator, frozen splits, responsibility gold, state/certificate schemas, hostile tests and machine-readable resource receipts.
 
 ## 18. Claim ledger
 
@@ -395,14 +395,14 @@ No protected successor efficacy dataset has been executed. The final P13 package
 
 ## 19. Publication decision
 
-**Current decision:** scientifically coherent current-evidence manuscript with one permanent negative and one GREEN engineering substrate; not yet externally promotable as the full P13 result.
+**Current decision:** scientifically coherent current-evidence manuscript with one permanent negative and one GREEN engineering substrate; not yet externally promotable as the full ORION-23 result.
 
 Minimum promotion requires: independently frozen successor debt result, RCS safety–cost advantage without always-reopen degeneration, certificate transport/revocation evidence, and at least one verifier-backed real-system domain.
 
 ## References and donor notes
 
 1. Classical statistical sufficiency and state-abstraction literatures — final paper requires task-specific canonical sources selected by the external literature pass.
-2. ORION P6/P7/P8 canonical bibliography for dynamic change, authorization, provenance and non-amplification donors.
+2. ORION ORION-16/ORION-17/ORION-18 canonical bibliography for dynamic change, authorization, provenance and non-amplification donors.
 3. Doyle, J. **A Truth Maintenance System.** *Artificial Intelligence* 12(3):231–272 (1979). DOI `10.1016/0004-3702(79)90008-0`.
 4. de Kleer, J. **An Assumption-Based TMS.** *Artificial Intelligence* 28(2):127–162 (1986). DOI `10.1016/0004-3702(86)90080-9`.
 5. Park, J. & Sandhu, R. **The UCONABC Usage Control Model.** *ACM TISSEC* 7(1):128–174 (2004). DOI `10.1145/984334.984339`.

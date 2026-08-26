@@ -1,6 +1,6 @@
-# ORION-P3 prospective atlas protocol
+# ORION-ORION-13 prospective atlas protocol
 
-**Protocol:** `P3.cross-domain-atlas.v1`  
+**Protocol:** `ORION-13.cross-domain-atlas.v1`  
 **Status:** `DESIGN_FROZEN`  
 **Outcome access:** false
 

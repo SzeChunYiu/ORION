@@ -1,4 +1,4 @@
-# P15 build
+# ORION-25 build
 
 Canonical source: `manuscript/main.tex` and the tracked files under
 `manuscript/chapters/`.

@@ -1,8 +1,8 @@
-# P9 unified I/A/C/M resource-ledger protocol V2
+# ORION-19 unified I/A/C/M resource-ledger protocol V2
 
 **Programme:** #977
 **State:** `FROZEN_BEFORE_EXECUTION`
-**Role:** close the P9 gap item *unified resource accounting with an authoritative CI receipt*. V2 supersedes `P9_UNIFIED_RESOURCE_LEDGER_PROTOCOL_V1.md` for execution while keeping its vector schema, field names and information-preservation semantics unchanged.
+**Role:** close the ORION-19 gap item *unified resource accounting with an authoritative CI receipt*. V2 supersedes `P9_UNIFIED_RESOURCE_LEDGER_PROTOCOL_V1.md` for execution while keeping its vector schema, field names and information-preservation semantics unchanged.
 
 ## Audit of the V1 accounting (why V2 exists)
 
@@ -85,7 +85,7 @@ For each of the five task families and each split (probe, protected):
 - `P9_UNIFIED_RESOURCE_LEDGER_V2_SURVIVAL_FAIL`: any survival endpoint fails; the moved cells are named. The frozen causal-diagnostic receipt remains authoritative and unchanged; the failure is the accounting result.
 - `P9_UNIFIED_RESOURCE_LEDGER_V2_CONTRADICTION`: a dominance finding exists; cells named, disclosed in the receipt, frozen outcome unchanged.
 
-A GREEN terminal closes accounting completeness for the bounded P9 causal-diagnostic headline only. It does not establish a universal resource exchange rate, does not repair the `D-A` `CANNOT_CHECK` cell, and does not touch the protected Qwen scaling negative.
+A GREEN terminal closes accounting completeness for the bounded ORION-19 causal-diagnostic headline only. It does not establish a universal resource exchange rate, does not repair the `D-A` `CANNOT_CHECK` cell, and does not touch the protected Qwen scaling negative.
 
 ## Authority boundary
 

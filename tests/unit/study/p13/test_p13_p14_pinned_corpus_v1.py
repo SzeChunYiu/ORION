@@ -22,7 +22,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-13-responsibility-carrying-state"
+PAPER = ROOT / "papers/orion-23-responsibility-carrying-state"
 CORPUS = PAPER / "P13_P14_PINNED_REPOSITORY_CORPUS_V1.json"
 CONTRACT = PAPER / "P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json"
 RULE = PAPER / "P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md"
@@ -53,7 +53,7 @@ def _checker():
 def _pristine_tree(tmp_path: Path) -> tuple[Path, Path, Path]:
     """Copy the four frozen artifacts into a scratch repo root and point the
     checker's REPO_ROOT at it, so mutations never touch the real tree."""
-    module_root = tmp_path / "papers/paper-13-responsibility-carrying-state"
+    module_root = tmp_path / "papers/orion-23-responsibility-carrying-state"
     module_root.mkdir(parents=True)
     for name in BOUND_FILES:
         shutil.copy(PAPER / name, module_root / name)

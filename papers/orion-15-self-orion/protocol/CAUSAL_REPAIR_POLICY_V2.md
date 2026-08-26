@@ -1,8 +1,8 @@
-# P5 causal-repair protocol V2
+# ORION-15 causal-repair protocol V2
 
-**Protocol:** `P5.causal-repair.v2`  
-**Parent:** `P5.hidden-cause-staged-acceptance.v2`  
-**Grandparent:** `P5.hidden-cause-fresh-transfer.v1`  
+**Protocol:** `ORION-15.causal-repair.v2`  
+**Parent:** `ORION-15.hidden-cause-staged-acceptance.v2`  
+**Grandparent:** `ORION-15.hidden-cause-fresh-transfer.v1`  
 **Status:** `DESIGN_FROZEN`  
 **Outcome access:** false  
 **Empirical authority:** `CANNOT_CHECK`

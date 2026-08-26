@@ -1,4 +1,4 @@
-# P3 Partial-Observation Coordinate Freeze — Amendment 004
+# ORION-13 Partial-Observation Coordinate Freeze — Amendment 004
 
 **Amends** `P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md`, its twin,
 Amendment 001 and its twin, Amendment 002 and its twin, and Amendment 003 and its

@@ -1,4 +1,4 @@
-# P14 External Pilot Protocol — V1 (FROZEN)
+# ORION-24 External Pilot Protocol — V1 (FROZEN)
 
 Status: `FROZEN`. This document, the generator, the three packet-spec modules, the
 generated packet/evidence/gold files, and the pilot runner are frozen together.

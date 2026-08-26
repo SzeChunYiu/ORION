@@ -1,4 +1,4 @@
-# Q3 completion receipt V3
+# ORION-03 completion receipt V3
 
 **Date:** 2026-08-22  
 **Branch:** `codex/q-qg-nature-skills-publication-closure-20260821`  
@@ -12,17 +12,17 @@ This receipt records verification state. It grants no R6, novelty, physical-adva
 Valid prospective question units:
 
 1. V0 — post-R6O regime/responsibility diagnosis;
-2. Q3-R1 / QG-19 — outside-cone R6M support-two sharpness probe;
-3. Q3-R2 / QG-20 — reweighted SixLCU P0-boundary census.
+2. ORION-03-R1 / QG-19 — outside-cone R6M support-two sharpness probe;
+3. ORION-03-R2 / QG-20 — reweighted SixLCU P0-boundary census.
 
 Retired contaminated candidate slots, retained in the audit history:
 
-- Q3-V1 / QG-7d;
-- Q3-V2 / QG-15c.
+- ORION-03-V1 / QG-7d;
+- ORION-03-V2 / QG-15c.
 
 ## Replacement science execution
 
-The science workflow verified that the Q3-R1/Q3-R2 pre-outcome agreement commit predated introduction/execution of the QG19/QG20 analyzers. Each scientific analyzer was executed twice and required byte-identical canonical JSON and stdout.
+The science workflow verified that the ORION-03-R1/ORION-03-R2 pre-outcome agreement commit predated introduction/execution of the QG19/QG20 analyzers. Each scientific analyzer was executed twice and required byte-identical canonical JSON and stdout.
 
 ### QG19
 
@@ -59,7 +59,7 @@ Independent semantic replay reconstructs:
 
 Replay digest: `8bd80602ffaf3b8bfbae0df7ad23b9aff0c4e8c3e306ebc49c7ac00c9f8a491d`.
 
-### Q3-R1
+### ORION-03-R1
 
 Pre-outcome relation: `AGREE`.
 Both instruments froze `R1_CERTIFICATE_SILENCE_SHARPNESS_OPEN` and `M1_TARGETED_EXACT_OUTSIDE_CONE_PANEL`.
@@ -71,7 +71,7 @@ Disposition:
 - Lane A move aligned: true;
 - Lane B move aligned: true.
 
-### Q3-R2
+### ORION-03-R2
 
 Pre-outcome relation: `AGREE`.
 Both instruments froze `S1_P0_BOUNDARY_OBJECTIVE_SCOPED` and `N1_COMPLETE_REWEIGHTED_CENSUS`.
@@ -94,11 +94,11 @@ Canonical gates:
 ```text
 Q3_V0_REPLAY=PASS
 Q3_RESULT_BINDINGS=PASS
-Q3-R1_RESULT_SHA256=d373028b926c707cb6dc30a85ce4de1bca9f715ad538f8042fd164fc6d86c728
-Q3-R2_RESULT_SHA256=ff3768fffe9a464c7d170f1f8e0ccf6ba40bf820f345783505789f6449f7d518
+ORION-03-R1_RESULT_SHA256=d373028b926c707cb6dc30a85ce4de1bca9f715ad538f8042fd164fc6d86c728
+ORION-03-R2_RESULT_SHA256=ff3768fffe9a464c7d170f1f8e0ccf6ba40bf820f345783505789f6449f7d518
 Q3_COMPLETION_CHECK=PASS
-VALID_PROSPECTIVE_SERIES=V0,Q3-R1,Q3-R2
-CONTAMINATED_RETIRED_SLOTS=Q3-V1/QG-7d,Q3-V2/QG-15c
+VALID_PROSPECTIVE_SERIES=V0,ORION-03-R1,ORION-03-R2
+CONTAMINATED_RETIRED_SLOTS=ORION-03-V1/QG-7d,ORION-03-V2/QG-15c
 REPLACEMENT_INSTANCES_SCORED=2
 REPLACEMENT_RESULTS_REPLAYED=2
 D2_D3=ACCEPTED_FAIL_CLOSED_LIMITATIONS
@@ -108,10 +108,10 @@ SCIENTIFIC_AUTHORITY=NOT_GRANTED_BY_CHECKER
 
 ## Novelty / reporting boundary
 
-The fresh hostile literature pass cedes generic delayed-ground-truth agreement gating, LLM-judge validation and open-ended scientific-agent benchmarking to current donors. With three valid live-programme units, Q3 does not report kappa, a reliability percentage, a confidence interval or a generalized accuracy claim.
+The fresh hostile literature pass cedes generic delayed-ground-truth agreement gating, LLM-judge validation and open-ended scientific-agent benchmarking to current donors. With three valid live-programme units, ORION-03 does not report kappa, a reliability percentage, a confidence interval or a generalized accuracy claim.
 
 ## Scientific-content terminal
 
 `Q3_PROSPECTIVE_CASE_SERIES_COMPLETE__N3_VALID__AGREEMENT_NOT_VALIDATION_COUNTEREXAMPLE_OBSERVED__NO_RELIABILITY_GENERALIZATION`
 
-Q3 is therefore **scientifically content-ready**. Remaining work is publication/package work only unless a new direct falsifier or donor subsumption appears.
+ORION-03 is therefore **scientifically content-ready**. Remaining work is publication/package work only unless a new direct falsifier or donor subsumption appears.

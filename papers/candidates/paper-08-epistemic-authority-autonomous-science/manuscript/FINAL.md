@@ -52,13 +52,13 @@ This paper takes a deliberately expansionary approach to prior work. Authorizati
 
 ### 2.1 Authorization and trust management
 
-Authorization logics and trust-management systems already formalize policy compliance, delegation, credentials, scope and revocation. P8 imports these structures directly. A grant is not a novel object in this paper.
+Authorization logics and trust-management systems already formalize policy compliance, delegation, credentials, scope and revocation. ORION-18 imports these structures directly. A grant is not a novel object in this paper.
 
 The scientific addition is that some actions carry obligations not reducible to a generic permission predicate. For example, a system may have permission to write a report while still lacking independent evidence needed to label a claim verified.
 
 ### 2.2 Usage control and ongoing authorization
 
-UCON-style usage control treats authorization as ongoing rather than a one-time access decision, incorporates obligations and conditions, and allows attributes to change during use. Modern agent governance similarly emphasizes stale authorization and commit-time validity. P8 therefore cannot claim “continuous authorization” as new.
+UCON-style usage control treats authorization as ongoing rather than a one-time access decision, incorporates obligations and conditions, and allows attributes to change during use. Modern agent governance similarly emphasizes stale authorization and commit-time validity. ORION-18 therefore cannot claim “continuous authorization” as new.
 
 Commit-time freshness is instead a premise of the scientific-authority calculus: a valid scientific authorization must still bind the exact effect, content, scope and epoch immediately before commit.
 
@@ -66,21 +66,21 @@ Commit-time freshness is instead a premise of the scientific-authority calculus:
 
 ETAS tracks typed requested actions, policy-visible traces and residual obligations. FAVA builds evidence-backed permission graphs and checks authorization before effectful execution. These are direct donors for the requested/committed effect distinction and evidence-backed policy evaluation.
 
-P8 asks what happens when the target effect belongs to a different **scientific obligation domain** from the source evidence or authorization judgment.
+ORION-18 asks what happens when the target effect belongs to a different **scientific obligation domain** from the source evidence or authorization judgment.
 
 ### 2.4 Multi-authority propagation
 
-Systems that combine multiple authority sources, propagate authorization across agents/components, or explicitly model revocation and temporal validity are strong donors for P8's cross-module setting. A cross-component path is not itself the contribution.
+Systems that combine multiple authority sources, propagate authorization across agents/components, or explicitly model revocation and temporal validity are strong donors for ORION-18's cross-module setting. A cross-component path is not itself the contribution.
 
-The P8 condition is stricter: the path must establish the full target judgment type, including the scientific-obligation kind and content/scope contract.
+The ORION-18 condition is stricter: the path must establish the full target judgment type, including the scientific-obligation kind and content/scope contract.
 
 ### 2.5 Abstention
 
-Agent-abstention work distinguishes whether agents know when not to act and exposes post-hoc abstention. P8 imports this competence but does not collapse every non-action into “abstain.” `DENIED`, `CANNOT_CHECK`, resource `DEFER`, `ROUTE_STOP` and `TASK_STOP` have different repair semantics.
+Agent-abstention work distinguishes whether agents know when not to act and exposes post-hoc abstention. ORION-18 imports this competence but does not collapse every non-action into “abstain.” `DENIED`, `CANNOT_CHECK`, resource `DEFER`, `ROUTE_STOP` and `TASK_STOP` have different repair semantics.
 
 ### 2.6 Provenance
 
-Source-aware factuality and execution-provenance work show that content and process lineage are independent verification dimensions. P8 treats provenance as typed derivation material. It does not claim provenance itself.
+Source-aware factuality and execution-provenance work show that content and process lineage are independent verification dimensions. ORION-18 treats provenance as typed derivation material. It does not claim provenance itself.
 
 ## 3. Formal authority context
 
@@ -110,7 +110,7 @@ The authority context contains active judgments, hard/soft obligations, grants, 
 
 A weak type discipline can type only the final authorization token while allowing foreign-domain evidence to produce a generic intermediate `SAT`. The laundering has already happened before the final check.
 
-P8 therefore types the entire derivation.
+ORION-18 therefore types the entire derivation.
 
 ### Direct discharge
 
@@ -169,7 +169,7 @@ A plain dependency graph often conflates two structures:
 - `A AND B` are both required;
 - `A OR B` provides two independent complete derivations.
 
-P8 represents an authorization certificate `κ` by a support family
+ORION-18 represents an authorization certificate `κ` by a support family
 
 \[
 \mathcal S(\kappa)=\{S_1,\ldots,S_m\}
@@ -189,41 +189,41 @@ Authorization is bound to the exact proposed effect and the state in which it wi
 
 A later refusal cannot retroactively make an irreversible earlier action safe. A certificate from an old epoch cannot be replayed after a relevant policy/evidence change unless a freshness proof revalidates it.
 
-These are imported constraints from usage-control and modern agent-governance work, not P8 novelty.
+These are imported constraints from usage-control and modern agent-governance work, not ORION-18 novelty.
 
 ## 10. Generic permission is weaker than scientific authority
 
 ### Theorem 4 — generic grant/scientific-discharge separation
 
-There exists a context where a generic permission grant validly authorizes an operation at the security/policy level while the P8 scientific effect remains `CANNOT_CHECK` because a mandatory scientific obligation is unresolved.
+There exists a context where a generic permission grant validly authorizes an operation at the security/policy level while the ORION-18 scientific effect remains `CANNOT_CHECK` because a mandatory scientific obligation is unresolved.
 
 Construction: give the action a valid in-scope generic grant and no blockers; require one scientific obligation—for example independent verification of an assertion—for which the evidence is missing. Generic permission is true, scientific authorization is not.
 
-This is not a criticism of access control. The two policies answer different questions. P8's purpose is to make the interface explicit so success in one cannot silently masquerade as success in the other.
+This is not a criticism of access control. The two policies answer different questions. ORION-18's purpose is to make the interface explicit so success in one cannot silently masquerade as success in the other.
 
-## 11. ORION P1–P5 as embedded authority domains
+## 11. ORION ORION-11–ORION-15 as embedded authority domains
 
-### REFRAME — P1
+### REFRAME — ORION-11
 
 The capability to construct a reframe is separate from responsibility/evidence authority to mutate the relevant formulation coordinate. Dependent closures reopen.
 
-### SEARCH_STOP — P2
+### SEARCH_STOP — ORION-12
 
 Route stop and task stop are different scientific judgments. Censored/open obligations block global completion.
 
-### MAP_MERGE — P3
+### MAP_MERGE — ORION-13
 
 Similarity is not sufficient merge authority. Referent, construct, context, measurement and obstruction obligations remain explicit.
 
-### ASSERT — P4
+### ASSERT — ORION-14
 
 Content-bound support and protected independent checks govern scientific-authority promotion.
 
-### SELF_MODIFY — P5
+### SELF_MODIFY — ORION-15
 
 Replay success is candidate evidence; protected evaluation, fresh transfer, negative history and external attestation govern promotion.
 
-P8 may generalize the interface but must reproduce these native decisions on their frozen cases.
+ORION-18 may generalize the interface but must reproduce these native decisions on their frozen cases.
 
 ## 12. Product-decomposition theorem
 
@@ -239,7 +239,7 @@ The proof is extensional: they evaluate the same typed discharge relation, block
 
 ### Consequence
 
-P8 cannot claim centralization as superior expressivity. The strongest baseline is the ideal donor product.
+ORION-18 cannot claim centralization as superior expressivity. The strongest baseline is the ideal donor product.
 
 A real advantage can only come from something the product lacks or implements inconsistently: an absent cross-domain coercion, mismatched obligation schemas, duplicated policy logic, incomplete global revocation lineage, inconsistent freshness, larger audit/proof burden, or implementation defects.
 
@@ -250,7 +250,7 @@ The programme therefore attempts to engulf all donor structures before deciding 
 The comparison ladder is:
 
 1. each donor-native mechanism;
-2. P8's conservative embedding of that mechanism;
+2. ORION-18's conservative embedding of that mechanism;
 3. the full ORION shared calculus;
 4. the ideal typed donor product;
 5. deliberately naive products exposing common integration mistakes.
@@ -293,11 +293,11 @@ The important unit is not a monolithic “agent confidence.” It is a typed cla
 
 ### 15.2 Engulfing is compatible with honest credit
 
-Absorbing a donor means retaining both its mechanism and its ownership. P8 becomes broader by importing UCON, authorization logics, ETAS/FAVA, multi-authority propagation, provenance and abstention—not by claiming them. The possible contribution is the common scientific-discharge interface and the theorems about how those structures compose.
+Absorbing a donor means retaining both its mechanism and its ownership. ORION-18 becomes broader by importing UCON, authorization logics, ETAS/FAVA, multi-authority propagation, provenance and abstention—not by claiming them. The possible contribution is the common scientific-discharge interface and the theorems about how those structures compose.
 
 ### 15.3 A tie can still be informative
 
-If an ideal donor product ties P8 exactly, the theory has still identified the conditions under which the two architectures are equivalent. The engineering question then becomes whether the shared representation reduces inconsistency or verification cost. If it does not, P8 should merge into the programme synthesis or P4 rather than forcing a separate paper.
+If an ideal donor product ties ORION-18 exactly, the theory has still identified the conditions under which the two architectures are equivalent. The engineering question then becomes whether the shared representation reduces inconsistency or verification cost. If it does not, ORION-18 should merge into the programme synthesis or ORION-14 rather than forcing a separate paper.
 
 ## 16. Limitations and falsifiers
 
@@ -307,7 +307,7 @@ Support-family revocation can be expensive in large proof graphs; this manuscrip
 
 The deterministic checker is small and exact. It does not establish real-agent performance.
 
-The separate-paper hypothesis is falsified if the strongest donor product matches P8 behaviorally and there is no measurable gain in consistency, proof economy, auditability or defect rate. In that case the correct publication disposition is merge/synthesis, while the theory remains complete.
+The separate-paper hypothesis is falsified if the strongest donor product matches ORION-18 behaviorally and there is no measurable gain in consistency, proof economy, auditability or defect rate. In that case the correct publication disposition is merge/synthesis, while the theory remains complete.
 
 ## 17. Conclusion
 
@@ -324,7 +324,7 @@ The typed calculus prevents authority laundering by construction, preserves inde
 3. Ninghui Li, Benjamin N. Grosof, and Joan Feigenbaum. **Delegation Logic: A Logic-Based Approach to Distributed Authorization.** *ACM TISSEC*, 2003.
 4. Huiri Tan et al. **ETAS: An Effect-Typed Language for Agent Systems.** arXiv:2607.17780, 2026.
 5. Yifan Zhang et al. **FAVA: Formal Authorization for Verified Agents with Evidence-Backed Permission Graphs.** arXiv:2607.27267, 2026.
-6. **AgentAbstain.** arXiv:2607.10059, 2026. Paired act/abstain competence is treated as a donor, not a P8 invention.
+6. **AgentAbstain.** arXiv:2607.10059, 2026. Paired act/abstain competence is treated as a donor, not a ORION-18 invention.
 7. **ProvenanceGuard.** arXiv:2606.18037, 2026. Source attribution/provenance is treated as an independent donor dimension.
 8. ORION Papers I–V. Native owners of reframe, search-stop, merge, assertion and self-modification authority gates embedded here.
 

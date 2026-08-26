@@ -73,7 +73,7 @@ def test_a_claim_without_required_artifacts_fails(tmp_path: Path) -> None:
 
 
 def test_an_honest_non_claim_passes_even_without_the_ready_bundle(tmp_path: Path) -> None:
-    paper = tmp_path / "paper-01-recursive-epistemic-reconstruction"
+    paper = tmp_path / "orion-11-recursive-epistemic-reconstruction"
     _write(
         paper / "JOURNAL_READINESS.md",
         "**Current terminal:** `CANNOT_CHECK` / not peer-review ready.\n"
@@ -86,7 +86,7 @@ def test_an_honest_non_claim_passes_even_without_the_ready_bundle(tmp_path: Path
 
 
 def test_a_complete_claim_passes(tmp_path: Path) -> None:
-    paper = tmp_path / "paper-04-verified-scientific-discovery"
+    paper = tmp_path / "orion-14-verified-scientific-discovery"
     _write(paper / "JOURNAL_READINESS.md", "**Terminal:** `ORION-P4 = PEER_REVIEW_READY`\n")
     _write(paper / "manuscript" / "main.tex", "% manuscript\n")
     _write(paper / "evidence" / "CLAIM_LEDGER_V1.md", "# ledger\n")
@@ -131,7 +131,7 @@ def test_p1_h1_on_the_frozen_arm_is_underpowered_and_not_supported() -> None:
 
 
 def test_claiming_p1_ready_without_the_powered_successor_fails(tmp_path: Path) -> None:
-    paper = tmp_path / "repo" / "papers" / "paper-01-recursive-epistemic-reconstruction"
+    paper = tmp_path / "repo" / "papers" / "orion-11-recursive-epistemic-reconstruction"
     _write(paper / "JOURNAL_READINESS.md", "**Terminal:** `ORION-P1 = PEER_REVIEW_READY`\n")
     _write(
         paper / "results" / "P1-T2_baseline_ablation_results.json",
@@ -145,7 +145,7 @@ def test_claiming_p1_ready_without_the_powered_successor_fails(tmp_path: Path) -
 
 
 def test_h1_supported_while_underpowered_fails_even_without_a_ready_claim(tmp_path: Path) -> None:
-    paper = tmp_path / "paper-01-recursive-epistemic-reconstruction"
+    paper = tmp_path / "orion-11-recursive-epistemic-reconstruction"
     _write(
         paper / "JOURNAL_READINESS.md",
         "**Current terminal:** `CANNOT_CHECK` / not peer-review ready.\n",

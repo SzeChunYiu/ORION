@@ -1,6 +1,6 @@
 # Q-paper-03 — Deferred scientific outcome benchmark
 
-The typed Q3 frontier record is exposed with P15's scientific-execution-integrity
+The typed ORION-03 frontier record is exposed with ORION-25's scientific-execution-integrity
 evaluator through `../P15_Q3_SHARED_INSTRUMENT_PACKAGE_V1.json`. The package is
 an in-repository 0.1.0 release candidate and grants no reliability, scientific,
 independent-replay or site-independence authority. Its metadata declares
@@ -17,7 +17,7 @@ files remains `CANNOT_CHECK`.
 
 Current bounded publication claim:
 
-> Q3 defines a content-bound frontier-item / instrument-decision / deferred-score benchmark contract and demonstrates that lifecycle once on the historically prospective V0 quantum frontier. Agreement remains pre-outcome data rather than authority or a correctness score.
+> ORION-03 defines a content-bound frontier-item / instrument-decision / deferred-score benchmark contract and demonstrates that lifecycle once on the historically prospective V0 quantum frontier. Agreement remains pre-outcome data rather than authority or a correctness score.
 
 Current targeting state:
 
@@ -25,7 +25,7 @@ Current targeting state:
 - **npj Artificial Intelligence predictive/calibration claim:** `EVIDENCE_BLOCKED` at one prospective item.
 - **Current benchmark-definition/systems paper:** recursively refined and scientifically coherent, but not promoted to npj-level predictive impact by systems checks alone.
 
-The implementation surface described by the manuscript is machine-bound through the Q3 harness publication contract and the new `frontier_benchmark.py` types. `build_typed_v0_record.py` is explicitly a **retrospective typed representation of an historically prospective item**; it does not create a second prospective data point.
+The implementation surface described by the manuscript is machine-bound through the ORION-03 harness publication contract and the new `frontier_benchmark.py` types. `build_typed_v0_record.py` is explicitly a **retrospective typed representation of an historically prospective item**; it does not create a second prospective data point.
 
 Earlier V1/V2 manuscripts and ledgers remain provenance. `TOP_TIER_UPGRADE_PROTOCOL_2026-08-22.md` is the registered successor required for calibration/predictive claims and has no results yet.
 

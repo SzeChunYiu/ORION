@@ -1,7 +1,7 @@
 \section{Data and code availability}
 \label{sec:availability}
 
-The implementation repository contains the development controller, the protected assurance path, the local hostile falsifier suite, the hidden-cause case suite, the diagnostic attribution archive and the table generator. Every artifact named in the narrative is listed here with its path, so that no repository location has to be carried in the prose. Source, protocols and evidence are version-controlled in the \idt{SzeChunYiu/ORION} repository, under \idt{papers/paper-05-self-orion/}; persistent DOI assignment remains pending publication.
+The implementation repository contains the development controller, the protected assurance path, the local hostile falsifier suite, the hidden-cause case suite, the diagnostic attribution archive and the table generator. Every artifact named in the narrative is listed here with its path, so that no repository location has to be carried in the prose. Source, protocols and evidence are version-controlled in the \idt{SzeChunYiu/ORION} repository, under \idt{papers/orion-15-self-orion/}; persistent DOI assignment remains pending publication.
 
 \subsection*{Preregistration}
 
@@ -243,7 +243,7 @@ Regeneration of every archived result, without executing a live system, is
 make paper05-results
 \end{verbatim}
 
-\noindent which runs \texttt{python -m orion.study.p5.tables}. The command recomputes 21/24 from the raw records, writes the confusion matrix and the residual-error ledger, and writes stubs for the seven tables that have no admissible rows. A rewrite of the archive that hides the three residual errors is refused with an error exit; a missing archive is reported as undetermined under its own distinct exit code rather than as a build failure, so that an absent measurement cannot be read as a failed build or as a negative result. Exact commands are in \idt{papers/paper-05-self-orion/REPRODUCE.md}. Continuous integration regenerates these artifacts on a clean checkout and requires every committed file to be byte-identical to what the command produces.
+\noindent which runs \texttt{python -m orion.study.p5.tables}. The command recomputes 21/24 from the raw records, writes the confusion matrix and the residual-error ledger, and writes stubs for the seven tables that have no admissible rows. A rewrite of the archive that hides the three residual errors is refused with an error exit; a missing archive is reported as undetermined under its own distinct exit code rather than as a build failure, so that an absent measurement cannot be read as a failed build or as a negative result. Exact commands are in \idt{papers/orion-15-self-orion/REPRODUCE.md}. Continuous integration regenerates these artifacts on a clean checkout and requires every committed file to be byte-identical to what the command produces.
 
 \subsection*{Compute and conservative-abstention cost}
 

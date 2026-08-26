@@ -1,6 +1,6 @@
 # P14A Hidden-Gold Research Governance Decision Benchmark V1
 
-**Paper:** ORION-P14 — ORION-RSE  
+**Paper:** ORION-ORION-24 — ORION-RSE  
 **Issue:** #669; programme #670  
 **Protocol:** `ORION.P14A.ResearchGovernanceDecisionBench.v1`  
 **Frozen:** 2026-08-21 before protected execution.
@@ -92,4 +92,4 @@ A positive result authorizes:
 
 > In a preregistered hidden-gold controlled benchmark of scientific admissibility decisions, the full ORION-RSE governance contract achieves lower false-promotion error than positive-only, reflection/checklist, donor-aware and interaction-aware rule baselines without reducing valid residual promotion.
 
-It does not authorize real-agent, cross-domain, longitudinal human-review, or autonomous-scientist superiority. Those remain separate P14 gates.
+It does not authorize real-agent, cross-domain, longitudinal human-review, or autonomous-scientist superiority. Those remain separate ORION-24 gates.

@@ -1,19 +1,19 @@
 # ORION-RSE: Auditable Recursive Governance for Scientific Research Decisions
 
-**ORION publication candidate P14**  
+**ORION publication candidate ORION-24**  
 **Issue:** #669 · parent programme #670  
 **Manuscript status:** complete methods/protocol draft; comparative benchmark terminal not yet earned  
 **Evidence date:** 2026-08-20
 
 ## Abstract
 
-Research agents can generate hypotheses, literature maps, experiments and plausible interpretations faster than they can reliably determine what those outputs scientifically warrant. We present ORION-RSE, a fail-closed research-governance architecture that treats claim promotion as a separate responsibility from research generation. ORION-RSE decomposes claims into falsifiable research atoms, subtracts nearest-work/donor ownership before novelty promotion, freezes protected discriminators and protocols, preserves positive, null, negative, donor-subsumed, interaction-only and non-identifiable outcomes, separates evaluator from scientific authority, stops recursion when no material discriminator remains, and reopens prior decisions when evidence or regime changes. Existing ORION implementation provides a verified substrate for these operations and preserves concrete histories in which an apparent positive was later donor-subsumed and a preregistered near-miss remained negative. These examples motivate the method but do not establish superiority. The paper therefore prospectively specifies a three-tier evaluation: fresh hidden-gold research-decision worlds, blinded realistic research packets across multiple domains, and longitudinal linked rounds testing whether retained negative/subsumed history improves later decisions. ORION-RSE is compared with a raw research agent, reflection/self-critique, multi-agent researcher–reviewer workflows, literature-RAG/experiment planning, preregistration/checklist control and component ablations under matched model, tool and resource budgets. The primary safety endpoint is false scientific promotion/overbroad-claim rate, constrained by prospectively frozen noninferiority on independently accepted useful discovery so blanket abstention cannot win. No protected P14 comparative result exists yet. Accordingly, this manuscript claims an auditable research-machine method and a frozen evaluation contract, not autonomous-scientist superiority.
+Research agents can generate hypotheses, literature maps, experiments and plausible interpretations faster than they can reliably determine what those outputs scientifically warrant. We present ORION-RSE, a fail-closed research-governance architecture that treats claim promotion as a separate responsibility from research generation. ORION-RSE decomposes claims into falsifiable research atoms, subtracts nearest-work/donor ownership before novelty promotion, freezes protected discriminators and protocols, preserves positive, null, negative, donor-subsumed, interaction-only and non-identifiable outcomes, separates evaluator from scientific authority, stops recursion when no material discriminator remains, and reopens prior decisions when evidence or regime changes. Existing ORION implementation provides a verified substrate for these operations and preserves concrete histories in which an apparent positive was later donor-subsumed and a preregistered near-miss remained negative. These examples motivate the method but do not establish superiority. The paper therefore prospectively specifies a three-tier evaluation: fresh hidden-gold research-decision worlds, blinded realistic research packets across multiple domains, and longitudinal linked rounds testing whether retained negative/subsumed history improves later decisions. ORION-RSE is compared with a raw research agent, reflection/self-critique, multi-agent researcher–reviewer workflows, literature-RAG/experiment planning, preregistration/checklist control and component ablations under matched model, tool and resource budgets. The primary safety endpoint is false scientific promotion/overbroad-claim rate, constrained by prospectively frozen noninferiority on independently accepted useful discovery so blanket abstention cannot win. No protected ORION-24 comparative result exists yet. Accordingly, this manuscript claims an auditable research-machine method and a frozen evaluation contract, not autonomous-scientist superiority.
 
 ## 1. Introduction
 
 Scientific research requires more than generating an interesting result. A result must be interpreted relative to prior work, the frozen experimental question, negative and null evidence, alternative explanations, resource limits and the exact authority of the evaluator. Research agents complicate this process because they can produce many plausible claims and experiments quickly. Increased throughput can amplify familiar scientific failure modes: false novelty, claim widening, endpoint drift, donor omission, selective retention of positives, interaction misattribution, stale evidence reuse and confident closure when the evidence cannot decide.
 
-Contemporary autonomous and semi-autonomous research systems already explore literature, generate hypotheses, design experiments, write code and revise scientific artifacts. P14 does not claim that recursive research agents, multi-agent review, reflection, preregistration or scientific-memory systems are new. Its question is narrower:
+Contemporary autonomous and semi-autonomous research systems already explore literature, generate hypotheses, design experiments, write code and revise scientific artifacts. ORION-24 does not claim that recursive research agents, multi-agent review, reflection, preregistration or scientific-memory systems are new. Its question is narrower:
 
 > Does a fail-closed recursive governance contract improve the **quality of scientific research decisions** under matched model, information, tool and compute budgets, without suppressing useful discovery?
 
@@ -26,7 +26,7 @@ The candidate research system cannot grant itself scientific or novelty authorit
 
 ## 2. Donor boundary
 
-P14 absorbs, rather than claims ownership of, the following families:
+ORION-24 absorbs, rather than claims ownership of, the following families:
 
 - autonomous or goal-evolving scientific research agents;
 - literature-RAG and experiment-planning agents;
@@ -130,7 +130,7 @@ Two concrete development histories are especially relevant:
 1. a controlled positive can later be marked donor-subsumed rather than promoted as novelty;
 2. a preregistered near-miss can remain permanently negative rather than being retuned after the result.
 
-These cases demonstrate that the machinery can *represent* disciplined dispositions. They do not establish that ORION-RSE improves scientific decisions relative to strong research-agent baselines. That efficacy question is the protected P14 target.
+These cases demonstrate that the machinery can *represent* disciplined dispositions. They do not establish that ORION-RSE improves scientific decisions relative to strong research-agent baselines. That efficacy question is the protected ORION-24 target.
 
 ## 6. Research question and hypotheses
 
@@ -154,7 +154,7 @@ These are hypotheses, not current results.
 
 ## 7. Benchmark Tier A: hidden-gold research-decision worlds
 
-A fresh generator must be created independently of cases already encoded in ORION’s rules. Earlier P1–P13 episodes may inform design patterns but cannot be direct scoring instances.
+A fresh generator must be created independently of cases already encoded in ORION’s rules. Earlier ORION-11–ORION-23 episodes may inform design patterns but cannot be direct scoring instances.
 
 ### 7.1 Required families
 
@@ -262,7 +262,7 @@ More governance can mean more computation. Therefore every system reports:
 - wall time;
 - external tool calls.
 
-The P11–P14 shared resource schema is used where applicable. If ORION-RSE spends more compute, that overhead is visible; it cannot be hidden as “method.”
+The ORION-21–ORION-24 shared resource schema is used where applicable. If ORION-RSE spends more compute, that overhead is visible; it cannot be hidden as “method.”
 
 ## 12. Endpoints
 
@@ -313,7 +313,7 @@ No p values, margins or sample sizes are inserted into this manuscript before be
 
 ## 14. Hostile controls
 
-A positive P14 result is invalid if:
+A positive ORION-24 result is invalid if:
 
 - benchmark cases are copied from ORION development episodes;
 - evaluator rewards ORION terminology instead of scientific correctness;
@@ -369,7 +369,7 @@ ORION implements the target governance objects and has executable histories demo
 
 ### 16.2 What is not established
 
-There is **no protected P14 comparative benchmark result** showing that ORION-RSE outperforms raw agents, reflection, multi-agent review, literature-RAG or preregistration/checklist workflows. There is no earned effect size, confidence interval or useful-discovery noninferiority result.
+There is **no protected ORION-24 comparative benchmark result** showing that ORION-RSE outperforms raw agents, reflection, multi-agent review, literature-RAG or preregistration/checklist workflows. There is no earned effect size, confidence interval or useful-discovery noninferiority result.
 
 Therefore the current paper is a methods and evaluation-contract manuscript. Any sentence implying empirical superiority is forbidden until the benchmark runs.
 
@@ -411,7 +411,7 @@ The strongest risk is bureaucratic conservatism. A system can trivially lower fa
 
 ## 21. Reproducibility and benchmark release
 
-The final P14 package must release:
+The final ORION-24 package must release:
 
 - benchmark generators and template families;
 - protected split/freeze hashes after evaluation is complete or through a leakage-safe release process;
@@ -426,7 +426,7 @@ Earlier ORION episodes used as design templates must be labeled and excluded fro
 
 ## 22. Data and code availability
 
-Existing ORION governance machinery and verified RSE artifacts are repository code/research records. The fresh P14 benchmark does not yet exist as a protected executed dataset. It must be generated, frozen and released according to the leakage rules above before empirical promotion.
+Existing ORION governance machinery and verified RSE artifacts are repository code/research records. The fresh ORION-24 benchmark does not yet exist as a protected executed dataset. It must be generated, frozen and released according to the leakage rules above before empirical promotion.
 
 ## 23. Claim ledger
 
@@ -454,7 +454,7 @@ Minimum external promotion package:
 - longitudinal negative-history/reopen test;
 - reproducible benchmark/protocol release.
 
-If governance reduces false claims only by suppressing useful discovery or spending substantially more compute, the strongest P14 claim fails and the paper must narrow to the method/components that survive.
+If governance reduces false claims only by suppressing useful discovery or spending substantially more compute, the strongest ORION-24 claim fails and the paper must narrow to the method/components that survive.
 
 ## References and donor notes
 

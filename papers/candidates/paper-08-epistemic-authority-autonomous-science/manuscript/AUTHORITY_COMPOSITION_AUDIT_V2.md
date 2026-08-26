@@ -1,4 +1,4 @@
-# P8 authority-composition audit V2
+# ORION-18 authority-composition audit V2
 
 **Candidate:** A Theory of Epistemic Authority for Autonomous Science  
 **Date:** 2026-08-17  
@@ -6,7 +6,7 @@
 
 ## 1. Scientific discriminator
 
-P8 does not own any of the five native authority gates. It survives only if a shared typed derivation layer detects or prevents invalid **composition** that correct independent P1–P5 gates do not catch, while preserving clean authorized action.
+ORION-18 does not own any of the five native authority gates. It survives only if a shared typed derivation layer detects or prevents invalid **composition** that correct independent ORION-11–ORION-15 gates do not catch, while preserving clean authorized action.
 
 The benchmark therefore attacks both sides:
 
@@ -87,19 +87,19 @@ It tests whether case labels are consistent with the typed non-compensatory refe
 - whether a coercion registry is semantically sound;
 - whether provenance/evidence is authentic;
 - whether revocation arrives at the correct epoch before effect commit;
-- whether P8 improves over actual P1–P5 gates or modern authorization engines.
+- whether ORION-18 improves over actual ORION-11–ORION-15 gates or modern authorization engines.
 
 ## 5. Protected prospective comparison
 
 Mandatory systems include:
 
-1. exact current independent P1–P5 gates;
+1. exact current independent ORION-11–ORION-15 gates;
 2. strong domain-specific rule policies;
 3. provenance-only verifier;
 4. paired abstention policy;
 5. scalar expected-utility/confidence policy;
 6. donor authorization/effect-policy implementation where comparable;
-7. full P8 calculus;
+7. full ORION-18 calculus;
 8. no-type, no-hard-obligation, no-revocation and no-protected-root ablations.
 
 Primary outcomes:
@@ -115,7 +115,7 @@ Primary outcomes:
 
 ## 6. Promotion/failure rule
 
-P8 is a separate paper only if the shared calculus catches cross-domain failures missed by faithful native gates and retains useful authorized coverage. If it merely restates the gates, duplicates generic authorization logic, or wins through over-refusal, it becomes P4/programme synthesis.
+ORION-18 is a separate paper only if the shared calculus catches cross-domain failures missed by faithful native gates and retains useful authorized coverage. If it merely restates the gates, duplicates generic authorization logic, or wins through over-refusal, it becomes ORION-14/programme synthesis.
 
 ## 7. Current terminal
 

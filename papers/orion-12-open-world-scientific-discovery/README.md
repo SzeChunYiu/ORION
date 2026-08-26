@@ -1,6 +1,6 @@
 # Paper 02 — Open-World Scientific Knowledge Discovery
 
-**Stable ID:** ORION-P2  
+**Stable ID:** ORION-ORION-12  
 **Status:** `PEER_REVIEW_READY` on the bounded methods / critical system-design claim. Matched external discovery superiority remains `CANNOT_CHECK` and is not claimed.
 
 ## Scoped claim

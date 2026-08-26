@@ -7,7 +7,7 @@ from pathlib import Path
 from orion.study.p3.partial_observation_lifecycle import build_lifecycle, validate_lifecycle
 
 ROOT = Path(__file__).resolve().parents[4]
-ARTIFACT = ROOT / "papers/paper-03-global-knowledge-portrait/P3_PARTIAL_OBSERVATION_LIFECYCLE_V1.json"
+ARTIFACT = ROOT / "papers/orion-13-global-knowledge-portrait/P3_PARTIAL_OBSERVATION_LIFECYCLE_V1.json"
 
 
 def payload():

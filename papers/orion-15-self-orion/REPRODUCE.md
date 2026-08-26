@@ -1,6 +1,6 @@
-# ORION-P5 reproduction and protected-study handoff
+# ORION-ORION-15 reproduction and protected-study handoff
 
-P5 remains `CANNOT_CHECK` for H1–H4. The only result-bearing archive in the public tree is the diagnostic glm-5.2 attribution JSONL (**21/24**, three residual errors retained). This file documents (a) how to regenerate publication tables from that archive and (b) the host-side transition for a future protected campaign.
+ORION-15 remains `CANNOT_CHECK` for H1–H4. The only result-bearing archive in the public tree is the diagnostic glm-5.2 attribution JSONL (**21/24**, three residual errors retained). This file documents (a) how to regenerate publication tables from that archive and (b) the host-side transition for a future protected campaign.
 
 ## 1. Regenerate tables from archived records (no live provider)
 
@@ -18,8 +18,8 @@ The generator:
 
 - recomputes 21/24 from `evidence/glm-5.2-attribution/results.jsonl`;
 - refuses a 24-of-24 rewrite or dropped residual errors (exit 2);
-- writes Table P5-3 and the residual-error ledger;
-- writes `CANNOT_CHECK` stubs (no numbers) for P5-2, P5-4, P5-5, P5-6, P5-7 and Tables P5-T2/P5-T3;
+- writes Table ORION-15-3 and the residual-error ledger;
+- writes `CANNOT_CHECK` stubs (no numbers) for ORION-15-2, ORION-15-4, ORION-15-5, ORION-15-6, ORION-15-7 and Tables ORION-15-T2/ORION-15-T3;
 - returns exit 3 if the archive is missing.
 
 Targeted tests:
@@ -63,4 +63,4 @@ Run the registered baselines/ablations under matched resources, preserve every f
 
 ## 7. Generate publication outputs only from immutable results
 
-P5-T1 is a literature disposition artifact and may exist before outcomes. Table P5-3 may be regenerated from the diagnostic attribution JSONL. P5-T2/P5-T3 and plots P5-2/P5-4/P5-5/P5-6/P5-7 remain `CANNOT_CHECK` until an immutable external result archive exists. No repository CI, local structural test, replay-only win, diagnostic 21/24 score, or internal readiness state can substitute for the missing protected fresh-transfer evidence.
+ORION-15-T1 is a literature disposition artifact and may exist before outcomes. Table ORION-15-3 may be regenerated from the diagnostic attribution JSONL. ORION-15-T2/ORION-15-T3 and plots ORION-15-2/ORION-15-4/ORION-15-5/ORION-15-6/ORION-15-7 remain `CANNOT_CHECK` until an immutable external result archive exists. No repository CI, local structural test, replay-only win, diagnostic 21/24 score, or internal readiness state can substitute for the missing protected fresh-transfer evidence.

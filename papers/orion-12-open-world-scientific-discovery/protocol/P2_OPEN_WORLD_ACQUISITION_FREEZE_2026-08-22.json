@@ -28,7 +28,7 @@
     "provider_calls_made": 0,
     "provider_status": "export.arxiv.org, arxiv.org and api.openalex.org unreachable from this environment (curl exit code 000)"
   },
-  "expected_result_artifact": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json",
+  "expected_result_artifact": "papers/orion-12-open-world-scientific-discovery/evidence/successor_results/P2_OPEN_WORLD_ACQUISITION_RESULT_2026-08-22.json",
   "mechanics_module": "src/orion/study/p2/acq_mechanics.py",
   "negative_under_repair": {
     "archived_baseline_query_plan": [
@@ -41,9 +41,9 @@
     "mean_candidates_returned": 20.0,
     "provider_requests_per_task": 3.0,
     "read_correction": "the archived baseline was not a naive six-way AND and its result sets were not empty; mean_candidates_returned was 20.0 on every task",
-    "result": "papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18.json",
+    "result": "papers/orion-12-open-world-scientific-discovery/evidence/external_results/P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18.json",
     "selection_loss_observed": "governed_arxiv_raw_gold_hits=7 across 24 tasks while only 4 tasks ended with any hit; e.g. arb-wide-0253 returned a gold arXiv identifier and finished at governed_hit_count=0",
-    "stage_diagnostic": "papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_V2_WIDE_BOUNDED_STAGE_DIAGNOSTIC_2026-08-18.json",
+    "stage_diagnostic": "papers/orion-12-open-world-scientific-discovery/evidence/external_results/P2_V2_WIDE_BOUNDED_STAGE_DIAGNOSTIC_2026-08-18.json",
     "zero_hit_tasks": "19/24 both arms"
   },
   "parameters": {
@@ -52,7 +52,7 @@
       "seed": 20260822
     },
     "claim_scope": "CONSTRUCTED_REPRODUCTION_ONLY__DEVELOPMENT_EVIDENCE",
-    "freeze_document": "papers/paper-02-open-world-scientific-discovery/protocol/P2_OPEN_WORLD_ACQUISITION_FREEZE_2026-08-22.md",
+    "freeze_document": "papers/orion-12-open-world-scientific-discovery/protocol/P2_OPEN_WORLD_ACQUISITION_FREEZE_2026-08-22.md",
     "gates": {
       "G1_REPRODUCTION": {
         "blocking": true,
@@ -365,7 +365,7 @@
     }
   },
   "parameters_sha256": "ad7e4c6afd66943693ae732b2dde9131aa5bddd13b5632dc97c38223149f769a",
-  "prose_freeze": "papers/paper-02-open-world-scientific-discovery/protocol/P2_OPEN_WORLD_ACQUISITION_FREEZE_2026-08-22.md",
+  "prose_freeze": "papers/orion-12-open-world-scientific-discovery/protocol/P2_OPEN_WORLD_ACQUISITION_FREEZE_2026-08-22.md",
   "record": "P2_OPEN_WORLD_ACQUISITION_FREEZE",
   "reopen_rule_satisfied": {
     "claimed": [
@@ -376,7 +376,7 @@
     "not_claimed": [
       "materially_different_external_benchmark_or_authority"
     ],
-    "source": "papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS_V2.md"
+    "source": "papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS_V2.md"
   },
   "runner": "src/orion/study/p2/acq_campaign.py",
   "schema_version": "orion.p2.open-world-acquisition-freeze.v1",

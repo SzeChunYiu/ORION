@@ -1,15 +1,15 @@
-# ORION-P5 glm-5.2 attribution publication tables V1
+# ORION-ORION-15 glm-5.2 attribution publication tables V1
 
 These tables are deterministic presentation artifacts of the archived glm-5.2 hidden-cause *attribution* campaign (n=24, single model, single run). They do not establish protected fresh-transfer improvement, matched baseline/ablation results, specialist-regression trajectories, or intervention-backed repair. Missing campaign axes are recorded as CANNOT_CHECK rather than filled with proxies.
 
-## Table P5-2 — fresh-transfer vs motivating replay
+## Table ORION-15-2 — fresh-transfer vs motivating replay
 
 Status: `CANNOT_CHECK`. Archived rows have no replay/fresh deltas.
 
-## Table P5-3 — hidden-cause attribution confusion
+## Table ORION-15-3 — hidden-cause attribution confusion
 
 Accuracy 21/24 = 0.8750; macro-F1 0.8726.
-Preserved errors: P5-HC-002, P5-HC-012, P5-HC-018.
+Preserved errors: ORION-15-HC-002, ORION-15-HC-012, ORION-15-HC-018.
 
 | Gold family | n | correct | precision | recall | F1 |
 |---|---:|---:|---:|---:|---:|
@@ -24,23 +24,23 @@ Preserved errors: P5-HC-002, P5-HC-012, P5-HC-018.
 
 | Case | Gold | Attributed |
 |---|---|---|
-| `P5-HC-002` | `RETRIEVAL_MISS` | `REPRESENTATION_GAP` |
-| `P5-HC-012` | `ENVIRONMENT_DEPENDENCY_TOOL_FAILURE` | `IMPLEMENTATION_BUG` |
-| `P5-HC-018` | `REPRESENTATION_GAP` | `METHOD_BASIS_GAP` |
+| `ORION-15-HC-002` | `RETRIEVAL_MISS` | `REPRESENTATION_GAP` |
+| `ORION-15-HC-012` | `ENVIRONMENT_DEPENDENCY_TOOL_FAILURE` | `IMPLEMENTATION_BUG` |
+| `ORION-15-HC-018` | `REPRESENTATION_GAP` | `METHOD_BASIS_GAP` |
 
-## Table P5-4 — longitudinal specialist regression
+## Table ORION-15-4 — longitudinal specialist regression
 
 Status: `CANNOT_CHECK`. No improvement-round trajectory is archived.
 
-## Table P5-5 — improvement vs integrity frontier
+## Table ORION-15-5 — improvement vs integrity frontier
 
 Status: `CANNOT_CHECK`. No matched baseline/ablation results are archived.
 
-## Table P5-6 — recognized-failure recurrence
+## Table ORION-15-6 — recognized-failure recurrence
 
 Status: `CANNOT_CHECK`. No negative-history on/off rounds are archived.
 
-## Table P5-7 — attribution-campaign cost
+## Table ORION-15-7 — attribution-campaign cost
 
 Prompt tokens 11081; completion tokens 3109; total 14190; mean latency 13.0366s.
 This is not cost-to-protected-validated-improvement.

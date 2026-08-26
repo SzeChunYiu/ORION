@@ -1,8 +1,8 @@
-# ORION-P4 Protected V2 Result Attestation
+# ORION-ORION-14 Protected V2 Result Attestation
 
 ## Publication-authorizing execution
 
-- Campaign: `P4.protected-authority.v2` over base protocol `P4.protected-authority.v1`
+- Campaign: `ORION-14.protected-authority.v2` over base protocol `ORION-14.protected-authority.v1`
 - Repaired subject: `f6e51b5c8f905382b8e2f5568d9035fc14241aa1`
 - Subject archive SHA-256: `a617a30ba8ebce5f7f89ceca77dbde793a7c43f85b8b01300e8ec1ef40a1e0e4`
 - Hidden split SHA-256: `3fe91b669643fa158f2f64c1e6ab70837afbb9b0582e297f1da6e1c3c696fcd9`

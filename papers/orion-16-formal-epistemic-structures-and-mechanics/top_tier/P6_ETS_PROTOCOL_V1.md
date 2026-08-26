@@ -1,9 +1,9 @@
-# P6 ETS prospective protocol V1
+# ORION-16 ETS prospective protocol V1
 
 **Programme:** #977  
-**Paper:** ORION-P6  
+**Paper:** ORION-ORION-16  
 **Protocol state:** `FROZEN_BEFORE_EXECUTION`  
-**Purpose:** test the top-tier Epistemic Transition Systems claim above the finished V2.1 theory without altering historical P6 results.
+**Purpose:** test the top-tier Epistemic Transition Systems claim above the finished V2.1 theory without altering historical ORION-16 results.
 
 ## Scientific question
 
@@ -33,7 +33,7 @@ The donor-complete comparator receives **exactly the same case record** as ETS a
 - declared footprint audit;
 - preservation certificate and independent-support facts.
 
-It deliberately does not reinterpret responsibility-scoped scientific evidence/obligation fields as generic policy fields. If adding those semantics makes the donor extensionally identical to ETS, the correct result is equivalence, not P6 superiority.
+It deliberately does not reinterpret responsibility-scoped scientific evidence/obligation fields as generic policy fields. If adding those semantics makes the donor extensionally identical to ETS, the correct result is equivalence, not ORION-16 superiority.
 
 ## Frozen families
 
@@ -69,7 +69,7 @@ The gold scientific disposition is frozen separately in `ets_gold_v1.json` befor
 4. obligation/authority laundering false-admissible count;
 5. per-family accuracy.
 
-A P6 positive requires lower unsafe false-admissible rate than the donor comparator **without** increasing unnecessary reopen on the frozen independent-support controls.
+A ORION-16 positive requires lower unsafe false-admissible rate than the donor comparator **without** increasing unnecessary reopen on the frozen independent-support controls.
 
 ## Independent executable theorem obligations
 
@@ -101,4 +101,4 @@ The post-freeze checker must fail if:
 
 ## Authority boundary
 
-This protocol/corpus can close bounded executable ETS obligations only. It does not by itself satisfy P6's requirement for broad external real-system evidence or immediate pre-submission literature refresh.
+This protocol/corpus can close bounded executable ETS obligations only. It does not by itself satisfy ORION-16's requirement for broad external real-system evidence or immediate pre-submission literature refresh.

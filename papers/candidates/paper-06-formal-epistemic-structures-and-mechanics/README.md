@@ -1,4 +1,4 @@
-# P6 candidate — Formal Epistemic Structures and Mechanics
+# ORION-16 candidate — Formal Epistemic Structures and Mechanics
 
 **Status:** `SUBMISSION_CONTENT_COMPLETE`; exact-head CI determines
 `PEER_REVIEW_READY` as specified in `JOURNAL_READINESS_V2_1.md`.
@@ -7,7 +7,7 @@
 
 ## Research question
 
-Can the structural ideas already present in ORION—typed epistemic state, mechanic cells, obligations, authority bounds, dependencies, recursive audit, and selective reopening—be given a compact formal semantics that yields nontrivial properties, executable checks, or transfer value beyond P1's application-specific reconstruction paper?
+Can the structural ideas already present in ORION—typed epistemic state, mechanic cells, obligations, authority bounds, dependencies, recursive audit, and selective reopening—be given a compact formal semantics that yields nontrivial properties, executable checks, or transfer value beyond ORION-11's application-specific reconstruction paper?
 
 ## Scoped contribution
 
@@ -27,11 +27,11 @@ The candidate paper would study well-formed composition, mutation locality, non-
 
 ## Ownership boundary
 
-P1 currently owns mechanic-cell and recursive-audit theory inside Recursive Epistemic Reconstruction. P6 is publishable only if #343 identifies a formal object/property/evaluation that is not merely a more abstract description of P1.
+ORION-11 currently owns mechanic-cell and recursive-audit theory inside Recursive Epistemic Reconstruction. ORION-16 is publishable only if #343 identifies a formal object/property/evaluation that is not merely a more abstract description of ORION-11.
 
 ### Explicit nonclaims
 
-P6 does **not** currently claim novelty for belief revision, dynamic epistemic logic, modular cognitive architectures, state machines, dependency graphs, provenance, reflection, failure attribution, typed process systems, or recursive reasoning individually.
+ORION-16 does **not** currently claim novelty for belief revision, dynamic epistemic logic, modular cognitive architectures, state machines, dependency graphs, provenance, reflection, failure attribution, typed process systems, or recursive reasoning individually.
 
 ## Constructive nearest-work result
 
@@ -50,7 +50,7 @@ typed-erasure separation over that donor-complete envelope.
 ## Evidence
 
 The normative V2.1 core includes theorem premises, countermodels, donor special
-cases, composition boundaries, and deterministic finite checkers. P6 makes no
+cases, composition boundaries, and deterministic finite checkers. ORION-16 makes no
 deployed-agent or donor-product superiority claim.
 
 ## Reviewer artifacts

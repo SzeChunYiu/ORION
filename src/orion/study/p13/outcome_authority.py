@@ -28,7 +28,7 @@ AUTHORITY_TERMINAL = "P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD"
 HISTORICAL_TERMINAL = "P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED"
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER = REPO_ROOT / "papers/paper-13-responsibility-carrying-state"
+PAPER = REPO_ROOT / "papers/orion-23-responsibility-carrying-state"
 RESULT = PAPER / "P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json"
 REPLAY = PAPER / "P13A_PROTOCOL_ADJUDICATION_V2.json"
 
@@ -205,7 +205,7 @@ def build_active_authority(adjudication_sha256: str) -> dict[str, Any]:
         "historical_terminal": HISTORICAL_TERMINAL,
         "historical_terminal_authority": "RETAINED_AS_EXECUTION_HISTORY_ONLY",
         "adjudication_artifact": (
-            "papers/paper-13-responsibility-carrying-state/"
+            "papers/orion-23-responsibility-carrying-state/"
             "P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json"
         ),
         "adjudication_sha256": adjudication_sha256,

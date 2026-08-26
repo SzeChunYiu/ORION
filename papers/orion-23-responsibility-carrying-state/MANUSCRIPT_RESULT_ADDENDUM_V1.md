@@ -1,10 +1,10 @@
-# P13 manuscript result addendum V1 — responsibility-scoped reuse across real-data and verifier-backed shifts
+# ORION-23 manuscript result addendum V1 — responsibility-scoped reuse across real-data and verifier-backed shifts
 
-This addendum updates the submission-facing P13 result story without erasing the historical P14A negative or expanding beyond the current evidence.
+This addendum updates the submission-facing ORION-23 result story without erasing the historical P14A negative or expanding beyond the current evidence.
 
 ## Revised central result
 
-P13 now has two prospectively governed responsibility-shift evaluations with qualitatively different authority:
+ORION-23 now has two prospectively governed responsibility-shift evaluations with qualitatively different authority:
 
 1. a non-synthetic handwritten-digits responsibility change with learned compact state;
 2. an exact verifier-backed CNF responsibility/epoch change with independently checkable correctness and certificate revocation.
@@ -55,7 +55,7 @@ The two studies jointly establish a cross-domain pattern:
 
 ## What remains outside the claim
 
-P13 should not imply that all responsibilities form a total ladder, that every semantic change is captured by the CNF construction, or that P13 supplies scientific truth labels for open-ended research agents.
+ORION-23 should not imply that all responsibilities form a total ladder, that every semantic change is captured by the CNF construction, or that ORION-23 supplies scientific truth labels for open-ended research agents.
 
 A still-broader research-agent responsibility claim would require independent external scientific adjudication. The current paper can instead present the now-earned claim at the higher but defensible level:
 

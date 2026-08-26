@@ -1,9 +1,9 @@
-# P4 protected battery V3 — promoted evidence
+# ORION-14 protected battery V3 — promoted evidence
 
 The four files beside this one are byte-identical copies of
 `research/campaigns/2026-08-21-p4-battery-v3-identifiable/`, promoted into the
-paper on 2026-08-22 so that P4's H3 claim cites evidence the paper's own content
-binding covers. A claim whose artifact lives outside `papers/paper-04-…/` is
+paper on 2026-08-22 so that ORION-14's H3 claim cites evidence the paper's own content
+binding covers. A claim whose artifact lives outside `papers/orion-14-verified-scientific-discovery/` is
 named by `journal_package/MANIFEST.json` and hashed by nothing:
 `journal_package/SHA256SUMS` derives what it hashes from `required_files`, and
 `required_files` paths resolve against the paper root.

@@ -1,8 +1,8 @@
-# P3 scoped peer-review-ready attestation
+# ORION-13 scoped peer-review-ready attestation
 
 Date: 2026-08-18
-Paper: ORION-P3 — Global Knowledge Portrait
-Scope: bounded P3.C5/P3.C9 already-structured public-reference mapping claim only.
+Paper: ORION-ORION-13 — Global Knowledge Portrait
+Scope: bounded ORION-13.C5/ORION-13.C9 already-structured public-reference mapping claim only.
 
 ## Evidence-backed terminal
 
@@ -14,7 +14,7 @@ Scope: bounded P3.C5/P3.C9 already-structured public-reference mapping claim onl
 - paired delta = -0.1875;
 - bootstrap 95% CI = [-0.34375, -0.0625];
 - false-split delta vs exact-coordinate conservative control = 0.000 [0.000, 0.000];
-- independent `ScientificResultVerification.v1` record retained at `research/verification/records/P3.C5.confirmatory-mapping.json`.
+- independent `ScientificResultVerification.v1` record retained at `research/verification/records/ORION-13.C5.confirmatory-mapping.json`.
 
 The additive method-structure pilot is bounded exact-ground-truth non-vacuity evidence only; it is not natural-paper extraction accuracy or general method-learning evidence.
 
@@ -22,8 +22,8 @@ The additive method-structure pilot is bounded exact-ground-truth non-vacuity ev
 
 The terminal does not claim:
 
-- raw-text end-to-end scientific-integration superiority (P3.C7);
-- downstream answer-quality improvement (P3.C8);
+- raw-text end-to-end scientific-integration superiority (ORION-13.C7);
+- downstream answer-quality improvement (ORION-13.C8);
 - completion of the original eight-family expert atlas;
 - universal necessity of every semantic coordinate;
 - general cross-domain method extraction or learning performance.

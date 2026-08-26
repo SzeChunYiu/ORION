@@ -8,11 +8,11 @@ ROOT = Path(__file__).resolve().parents[3]
 VERIFY = ROOT / "papers/verify_five_theory_hardening_r2.py"
 RESULT = ROOT / "papers/FIVE_THEORY_HARDENING_R2_RESULTS.json"
 MANUSCRIPTS = {
-    "A": ROOT / "papers/theory-A-multitag-constraint-rank/MANUSCRIPT_V2.md",
-    "B": ROOT / "papers/theory-B-certificate-complexity/MANUSCRIPT_V2.md",
-    "C": ROOT / "papers/theory-C-low-order-information/MANUSCRIPT_V2.md",
-    "D": ROOT / "papers/theory-D-falsification-authority/MANUSCRIPT_V2.md",
-    "N": ROOT / "papers/nonquantum-c5cubed-davenport/MANUSCRIPT_V2.md",
+    "A": ROOT / "papers/orion-01-certificate-realization/theory-A-MANUSCRIPT_V2.md",
+    "B": ROOT / "papers/orion-01-certificate-realization/theory-B-MANUSCRIPT_V2.md",
+    "C": ROOT / "papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_V2.md",
+    "D": ROOT / "papers/orion-03-typed-merge-falsification/MANUSCRIPT_V2.md",
+    "N": ROOT / "papers/orion-04-rooted-completion-certificates/MANUSCRIPT_V2.md",
 }
 
 
@@ -72,11 +72,11 @@ def test_r2_manuscripts_are_self_contained_and_boundary_explicit():
 
 
 def test_r2_claim_ledgers_forbid_overpromotion():
-    a = (ROOT / "papers/theory-A-multitag-constraint-rank/CLAIM_LEDGER_R2.md").read_text()
-    b = (ROOT / "papers/theory-B-certificate-complexity/CLAIM_LEDGER_R2.md").read_text()
-    c = (ROOT / "papers/theory-C-low-order-information/CLAIM_LEDGER_R2.md").read_text()
-    d = (ROOT / "papers/theory-D-falsification-authority/CLAIM_LEDGER_R2.md").read_text()
-    n = (ROOT / "papers/nonquantum-c5cubed-davenport/CLAIM_LEDGER_R2.md").read_text()
+    a = (ROOT / "papers/orion-01-certificate-realization/theory-A-CLAIM_LEDGER_R2.md").read_text()
+    b = (ROOT / "papers/orion-01-certificate-realization/theory-B-CLAIM_LEDGER_R2.md").read_text()
+    c = (ROOT / "papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_R2.md").read_text()
+    d = (ROOT / "papers/orion-03-typed-merge-falsification/CLAIM_LEDGER_R2.md").read_text()
+    n = (ROOT / "papers/orion-04-rooted-completion-certificates/CLAIM_LEDGER_R2.md").read_text()
     assert "OPEN; NOT CLAIMED" in a
     assert "Every local proof system" in b and "OPEN; NOT CLAIMED" in b
     assert "Common padding is minimal" in c and "OPEN; NOT CLAIMED" in c

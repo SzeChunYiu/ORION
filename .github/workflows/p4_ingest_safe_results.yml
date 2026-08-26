@@ -4,7 +4,7 @@ on:
   push:
     branches: [shadow/p4-issue101-results]
     paths:
-      - 'papers/paper-04-verified-scientific-discovery/evidence/INGEST_SAFE_RESULTS_V1.txt'
+      - 'papers/orion-14-verified-scientific-discovery/evidence/INGEST_SAFE_RESULTS_V1.txt'
 
 permissions:
   contents: write
@@ -70,8 +70,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          DEST=papers/paper-04-verified-scientific-discovery/evidence/protected-campaign-31968809206
-          mkdir -p "$DEST" papers/paper-04-verified-scientific-discovery/figures/data
+          DEST=papers/orion-14-verified-scientific-discovery/evidence/protected-campaign-31968809206
+          mkdir -p "$DEST" papers/orion-14-verified-scientific-discovery/figures/data
           cp "$RUNNER_TEMP/p4-safe/evaluation/campaign_summary.json" "$DEST/CAMPAIGN_SUMMARY_V1.json"
           cp "$RUNNER_TEMP/p4-safe/evaluation/ablation_summary.json" "$DEST/ABLATION_SUMMARY_V1.json"
           cp "$RUNNER_TEMP/p4-safe/evaluation/access_telemetry_summary.json" "$DEST/ACCESS_TELEMETRY_SUMMARY_V1.json"
@@ -83,7 +83,7 @@ jobs:
           import hashlib, json, os
           from pathlib import Path
           repo = Path.cwd()
-          dest = repo/'papers/paper-04-verified-scientific-discovery/evidence/protected-campaign-31968809206'
+          dest = repo/'papers/orion-14-verified-scientific-discovery/evidence/protected-campaign-31968809206'
           summary = json.loads((dest/'CAMPAIGN_SUMMARY_V1.json').read_text())
           ablations = json.loads((dest/'ABLATION_SUMMARY_V1.json').read_text())
           telemetry = json.loads((dest/'ACCESS_TELEMETRY_SUMMARY_V1.json').read_text())
@@ -190,7 +190,7 @@ jobs:
                   'reproducer_lineage_hash': repro['reproducer_lineage_hash'],
               },
           }
-          out = repo/'papers/paper-04-verified-scientific-discovery/figures/data/RESULTS_SUMMARY_V1.json'
+          out = repo/'papers/orion-14-verified-scientific-discovery/figures/data/RESULTS_SUMMARY_V1.json'
           out.write_text(json.dumps(figure_data, indent=2, sort_keys=True)+'\n')
           PY
 
@@ -200,7 +200,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add papers/paper-04-verified-scientific-discovery/evidence/protected-campaign-31968809206 papers/paper-04-verified-scientific-discovery/figures/data/RESULTS_SUMMARY_V1.json
+          git add papers/orion-14-verified-scientific-discovery/evidence/protected-campaign-31968809206 papers/orion-14-verified-scientific-discovery/figures/data/RESULTS_SUMMARY_V1.json
           git diff --cached --quiet && { echo 'nothing to ingest'; exit 1; }
           git commit -m 'data(p4): ingest accepted protected campaign safe bundle'
           git push origin HEAD:shadow/p4-issue101-results

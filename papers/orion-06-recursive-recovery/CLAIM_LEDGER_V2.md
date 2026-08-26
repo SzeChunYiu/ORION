@@ -1,4 +1,4 @@
-# Q2 claim ledger V2
+# ORION-02 claim ledger V2
 
 | ID | Claim | Evidence class | Boundary |
 |---|---|---|---|
@@ -7,7 +7,7 @@
 | Q2V2-C3 | Exact optimization lanes serialized counterexamples and independently checkable witnesses rather than treating failure of closure as an invalid run. | R6N/R6O/QG-linked receipt history | Applies to lanes using exact referees. |
 | Q2V2-C4 | Typed authority/provenance kept capability or orchestration success from self-authorizing a scientific conclusion. | harness/campaign protocols and receipts | Architectural/record claim; not a proof that every scientific conclusion is valid. |
 | Q2V2-C5 | The cited headline receipts can be deterministically replayed or independently reconstructed under their documented contracts. | `RECEIPT_INDEX.md`, replay ledgers | Must be re-run on final submission snapshot. |
-| Q2V2-C6 | The R6 chain demonstrates that a receipts-first process can honestly refuse multiple plausible candidate methods before later locating a bounded residual. | R6L--R6Q history | Methodological case study; Q1 owns the quantum result. |
+| Q2V2-C6 | The R6 chain demonstrates that a receipts-first process can honestly refuse multiple plausible candidate methods before later locating a bounded residual. | R6L--R6Q history | Methodological case study; ORION-01 owns the quantum result. |
 | Q2V2-C7 | N1--N4 show that recursive reopening can end in both donor closure and bounded positives depending on the frozen family. | N-lane receipts | No population-level success rate or general autonomous-science efficacy claim. |
 
 ## Not claimed

@@ -3,7 +3,7 @@
 **Verification date:** 2026-08-18  
 **Primary sources:** current official journal author guides.
 
-## Artificial Intelligence (AIJ) — P6 and P7
+## Artificial Intelligence (AIJ) — ORION-16 and ORION-17
 
 Official guide: `https://www.sciencedirect.com/journal/artificial-intelligence/publish/guide-for-authors`
 
@@ -11,7 +11,7 @@ Official guide: `https://www.sciencedirect.com/journal/artificial-intelligence/p
 
 AIJ accepts regular papers presenting mature, complete research across automated reasoning, knowledge representation, heuristic search, planning/action, multi-agent systems and reasoning under uncertainty. Mathematical papers are welcome but must include accessible high-level motivation, explanatory commentary and implications for AI systems.
 
-**Submission consequence:** P6/P7 retain formal proofs/checkers but their submission sources must foreground the AI problem, donor relations, falsifiers and system implications.
+**Submission consequence:** ORION-16/ORION-17 retain formal proofs/checkers but their submission sources must foreground the AI problem, donor relations, falsifiers and system implications.
 
 ### Required/checked package items
 
@@ -26,13 +26,13 @@ AIJ accepts regular papers presenting mature, complete research across automated
 
 ### Highlights
 
-Elsevier guidance specifies 3–5 concise highlights, each no more than 85 characters. P6 and P7 therefore include separate highlight files.
+Elsevier guidance specifies 3–5 concise highlights, each no more than 85 characters. ORION-16 and ORION-17 therefore include separate highlight files.
 
 ### Review model
 
 The current AIJ guide does not instruct authors to anonymize the regular manuscript. The package therefore keeps a separate title-page file but does not assume double-anonymous review.
 
-## Autonomous Agents and Multi-Agent Systems (JAAMAS) — P8
+## Autonomous Agents and Multi-Agent Systems (JAAMAS) — ORION-18
 
 Official guide: `https://link.springer.com/journal/10458/submission-guidelines`
 
@@ -45,7 +45,7 @@ Every submission must include a 1–2 page information sheet. For a regular pape
 3. the closest work by other authors and the exact relation;
 4. any prior publication of the work and the added value of the journal submission.
 
-An incomplete/uninformative sheet may be returned without review. P8 therefore includes `JAAMAS_INFORMATION_SHEET.md`.
+An incomplete/uninformative sheet may be returned without review. ORION-18 therefore includes `JAAMAS_INFORMATION_SHEET.md`.
 
 ### Manuscript package
 

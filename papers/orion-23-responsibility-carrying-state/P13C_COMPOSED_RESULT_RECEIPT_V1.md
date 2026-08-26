@@ -40,7 +40,7 @@ Registered composed finite world: seeded randomized families, six-form certifica
 ## Replay
 
 ```
-python papers/paper-13-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py
+python papers/orion-23-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py
 ```
 
 Success condition: terminal `P13C_COMPOSED_SAFETY_EFFICACY_SUPPORTED` with all eleven gates green and byte-identical two-subprocess replay. Failure terminal: `P13C_COMPOSED_SAFETY_EFFICACY_GATE_NOT_MET` (exit 1).

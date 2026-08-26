@@ -346,7 +346,7 @@ def main() -> int:
         "lane": "NR-10",
         "source_frame_module": "src/orion/study/p7/composition_calculus_smt.py",
         "source_mechanized_artifact": (
-            "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/"
+            "papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/"
             "P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json"
         ),
         "verdicts": all_verdicts,

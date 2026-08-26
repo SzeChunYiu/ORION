@@ -1,6 +1,6 @@
 # P11C Stronger-Decoder Hostile Attack Protocol V1
 
-**Paper:** ORION-P11 — State as Computation  
+**Paper:** ORION-ORION-21 — State as Computation  
 **Issue:** #471 (with #664 and #667)  
 **Protocol identity:** `ORION.P11C.StrongerDecoderAttack.v1`  
 **Frozen:** 2026-08-21 before protected-seed execution.

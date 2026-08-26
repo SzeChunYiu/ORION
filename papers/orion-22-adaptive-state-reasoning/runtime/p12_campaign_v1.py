@@ -1,7 +1,7 @@
 """P12 stop/go campaign — executes the frozen protocol.
 
-Protocol:  papers/paper-12-adaptive-state-reasoning/top_tier/p12_stopgo_frozen_menus_v1.json
-Prereg:    papers/paper-12-adaptive-state-reasoning/runtime/P12_CAMPAIGN_PREREG_V1.md
+Protocol:  papers/orion-22-adaptive-state-reasoning/top_tier/p12_stopgo_frozen_menus_v1.json
+Prereg:    papers/orion-22-adaptive-state-reasoning/runtime/P12_CAMPAIGN_PREREG_V1.md
 
 The prereg froze the four signal implementations and the three arm policies
 before any outcome existed. Nothing here may redefine them.

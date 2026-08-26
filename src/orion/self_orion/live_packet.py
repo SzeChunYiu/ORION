@@ -81,7 +81,7 @@ from orion.self_orion.live_trial import (
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PROTOCOL_RELATIVE_PATH = (
-    "papers/paper-05-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json"
+    "papers/orion-15-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json"
 )
 PROTOCOL_PATH = REPO_ROOT / PROTOCOL_RELATIVE_PATH
 

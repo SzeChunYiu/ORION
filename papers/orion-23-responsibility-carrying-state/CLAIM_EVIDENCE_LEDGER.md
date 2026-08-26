@@ -1,6 +1,6 @@
-# P13 Claim–Evidence Ledger
+# ORION-23 Claim–Evidence Ledger
 
-**Stable ID:** ORION-P13  
+**Stable ID:** ORION-ORION-23  
 **Issues:** #666, #668
 
 | Claim | Status | Evidence | Maximum authorized wording |
@@ -32,14 +32,14 @@ Current `P13_ACTIVE_CLAIM_AUTHORITY_V2.json` retains the exact core, preserves t
 P13A self-scored failure, and activates the bounded P13B result. Active terminal:
 `P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`.
 Active authority is split. `P13_ACTIVE_CLAIM_AUTHORITY_V1.json` keeps
-`P13.EXACT.RESPONSIBILITY_RELATIVE_SUPPORT` as `SUPPORTED_EXACT` and sets
+`ORION-23.EXACT.RESPONSIBILITY_RELATIVE_SUPPORT` as `SUPPORTED_EXACT` and sets
 `P13A.EMPIRICAL.SAFETY_COST_SUPERIORITY` to `CANNOT_CHECK`. Active terminal:
 `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD`.
 
-**V3 correction (2026-08-24, issue #1086 P13–P15 lane):**
+**V3 correction (2026-08-24, issue #1086 ORION-23–ORION-25 lane):**
 `P13_ACTIVE_CLAIM_AUTHORITY_V3.json` activates the composed P13C leaf on top of
 the unchanged V2 leaves; V2 remains the active authority for the P13B leaf (the
-recursive-resolution ledger continues to pin its P13.B item to V2). V3 active
+recursive-resolution ledger continues to pin its ORION-23.B item to V2). V3 active
 terminal: `P13_CONTROLLED_COMPOSED_SAFETY_EFFICACY_AUTHORITY_SUPPORTED`. V3 adds
 no external authority: the P13C leaf is scoped to the registered composed finite
 world, and `EXTERNAL_VALIDATION`, `REAL_AGENT_SAFETY`,

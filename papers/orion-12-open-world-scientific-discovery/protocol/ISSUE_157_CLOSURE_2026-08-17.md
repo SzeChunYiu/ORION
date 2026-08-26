@@ -1,6 +1,6 @@
 # Issue #157 closure receipt — 2026-08-17
 
-Lane: `cursor/paper-157`. Additive evidence only. Does not mutate P2 V1 and does not fork issue #279 V2 files.
+Lane: `cursor/paper-157`. Additive evidence only. Does not mutate ORION-12 V1 and does not fork issue #279 V2 files.
 
 Machine-readable twin: `evidence/external_results/ISSUE_157_CLOSURE_RECEIPT_V1.json`.
 
@@ -8,7 +8,7 @@ Machine-readable twin: `evidence/external_results/ISSUE_157_CLOSURE_RECEIPT_V1.j
 
 ### Complete-gold 390-task (reproduced)
 
-`python papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --check` exited 0. The original publication projection is preserved byte-for-byte at `evidence/offline_results/RESULTS_SUMMARY_PRE_CANONICAL_VOCABULARY_2026-08-25.json`. Receipt frozen against `main` `09929f208f581cda6985575ca419a7181a1f03ba` (P2 summary hashes unchanged through that commit).
+`python papers/orion-12-open-world-scientific-discovery/scripts/run_offline_companion.py --check` exited 0. The original publication projection is preserved byte-for-byte at `evidence/offline_results/RESULTS_SUMMARY_PRE_CANONICAL_VOCABULARY_2026-08-25.json`. Receipt frozen against `main` `09929f208f581cda6985575ca419a7181a1f03ba` (ORION-12 summary hashes unchanged through that commit).
 
 | Binding | Value |
 | --- | --- |
@@ -47,7 +47,7 @@ A matched keyless run **without** the arXiv API was not executed. Exact blockers
 
 1. **`FROZEN_ADAPTER_REQUIRES_ARXIV`.** `run_autoresearchbench_wide_comparison.py` hardcodes `arxiv_route` in both systems. `orion.study.p2.arb_systems.Backends` exposes only arXiv and OpenAlex.
 2. **`OFFICIAL_SCORER_ARXIV_ID_IOU`.** The official scorer is arXiv-id set IoU. A 3-task OpenAIRE/DBLP/Crossref connectivity probe (no arXiv call; public split hash `af795b78…`; HTTP 200 on 9/9) did not yield a scorer-native identity bridge: OpenAIRE/DBLP 0 arXiv-id regex matches; DBLP empty; Crossref DOIs. The adapter regex over Crossref JSON is a false-positive trap, not a join.
-3. **`NO_ARXIV_MATCHED_RUNNER_ON_MAIN`.** A replacement runner would be P2 V2. Sibling **#279** already has WIP `one_stage_attribution.py` and `emit_issue279_revival_receipts.py` on `cursor/issue-279`. This lane cites those files and does not fork them.
+3. **`NO_ARXIV_MATCHED_RUNNER_ON_MAIN`.** A replacement runner would be ORION-12 V2. Sibling **#279** already has WIP `one_stage_attribution.py` and `emit_issue279_revival_receipts.py` on `cursor/issue-279`. This lane cites those files and does not fork them.
 
 Campaign outputs: `/tmp/paper-157-wide/`. Sanitized probe: `evidence/external_results/ISSUE_157_KEYLESS_BACKEND_PROBE_V1.json`.
 

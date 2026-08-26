@@ -1,4 +1,4 @@
-# Table P2-3 — offline controlled-index failure taxonomy
+# Table ORION-12-3 — offline controlled-index failure taxonomy
 
 **Authority:** `TIER_B_committed`. These are terminal task classifications from the frozen 390-task offline companion after the three deterministic repeats are collapsed within task. They are not external benchmark results; the achieved precision for this family is recorded in `RESULTS_SUMMARY_V1.json` under `achieved_precision`, and no primary is promoted here.
 

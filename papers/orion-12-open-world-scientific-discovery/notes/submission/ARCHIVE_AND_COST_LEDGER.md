@@ -1,4 +1,4 @@
-# P2 permanent archive and reproduction-cost ledger — narrowed track
+# ORION-12 permanent archive and reproduction-cost ledger — narrowed track
 
 Scientific terminal: `P2_NARROWED`.
 
@@ -11,11 +11,11 @@ This ledger separates evidence that is exactly reproducible, evidence that depen
 | Contents | Source | Basis |
 | --- | --- | --- |
 | Frozen synthetic world, tasks and manifest | `evidence/offline_gold/**` | Project-generated synthetic material. |
-| P2 subject code/evaluation harness | `src/orion/study/p2/**` | Repository licence. |
+| ORION-12 subject code/evaluation harness | `src/orion/study/p2/**` | Repository licence. |
 | Publication summaries/tables | `evidence/offline_results/**` | Derived project output. |
 | Protocol/statistical/measurement plans | `protocol/**` | Project-authored. |
 | Claim ledger/checker | `protocol/CLAIM_LEDGER_V1.json`, `scripts/check_claim_ledger.py` | Project-authored integrity layer. |
-| P2 donor-assimilation ledger/checker | `protocol/P2_DONOR_ASSIMILATION_LEDGER_V1.json`, `scripts/check_p2_assimilation.py` | Project-authored source/authority binding. |
+| ORION-12 donor-assimilation ledger/checker | `protocol/P2_DONOR_ASSIMILATION_LEDGER_V1.json`, `scripts/check_p2_assimilation.py` | Project-authored source/authority binding. |
 | MetaSyn bounded probe archive | `evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json` and FN ledger | Project-scored output/content bindings; do not embed upstream restricted data. |
 | AutoResearchBench bounded Wide/Deep archives | committed external-results artifacts | Project outputs under their declared bounded authority; keep upstream benchmark revisions/digests separately. |
 | Manuscript source and generated figures | `manuscript/**` | Project-authored; archive the final compiled source set after the render gate passes. |
@@ -33,7 +33,7 @@ This ledger separates evidence that is exactly reproducible, evidence that depen
 
 ## 2. Reproduction ledger
 
-Commands are run from repository root. `PAPER` abbreviates `papers/paper-02-open-world-scientific-discovery`.
+Commands are run from repository root. `PAPER` abbreviates `papers/orion-12-open-world-scientific-discovery`.
 
 ### Tier 1 — controlled result; local/offline authority
 
@@ -47,7 +47,7 @@ No provider credential or metered API is needed for the frozen controlled campai
 | Verify result-bearing manuscript claims | `python3 $PAPER/scripts/check_claim_ledger.py --check` | 0 | none |
 | Verify donor assimilation | `python3 $PAPER/scripts/check_p2_assimilation.py` | 0 | none |
 | Compile publication PDF | `.github/workflows/p2-manuscript.yml` | package-network only | no scientific provider cost |
-| P2 unit/integrity suite | repository CI / P2 tests | 0 scientific-provider requests | none |
+| ORION-12 unit/integrity suite | repository CI / ORION-12 tests | 0 scientific-provider requests | none |
 
 The record count, task count and all reported headline values come from their bound artifacts, not this prose. Reproduction confirms exact mechanism evidence; it does **not** raise the frozen `TIER_B_committed` result to an inferential superiority claim.
 

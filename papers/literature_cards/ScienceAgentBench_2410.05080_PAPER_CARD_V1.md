@@ -26,7 +26,7 @@ Evaluate agents on 102 tasks extracted from 44 peer-reviewed publications, valid
 The benchmark uses real data-driven discovery tasks in multiple disciplines, expert validation, program execution/evaluation, repeated attempts/frameworks and contamination-mitigation strategies.
 
 ## 08. Essential formulas
-Not central to Q2/Q3 positioning.
+Not central to ORION-02/ORION-03 positioning.
 
 ## 09. Experiment-to-claim evidence
 The primary record reports that the strongest evaluated agent solved only a minority of tasks even with repeated attempts/expert knowledge, motivating caution about end-to-end automation claims.
@@ -46,19 +46,19 @@ ScienceAgentBench already owns substantial territory in:
 The repository/benchmark has continued to evolve, including a 2026 verified benchmark split. Submission-date related-work text should cite the archival ICLR paper and mention later benchmark repairs only if scientifically relevant.
 
 ## 13. Critical analysis
-Q2 is not a benchmark paper and must not claim that decomposed/executable scientific-agent evaluation is new. Q3's residual is likewise not “rigorous scientific-agent evaluation”: it is the different measurement object of pre-outcome agreement/diagnosis between research instruments on an unresolved frontier question, scored only later.
+ORION-02 is not a benchmark paper and must not claim that decomposed/executable scientific-agent evaluation is new. ORION-03's residual is likewise not “rigorous scientific-agent evaluation”: it is the different measurement object of pre-outcome agreement/diagnosis between research instruments on an unresolved frontier question, scored only later.
 
 ## 14. Learned knowledge
 ScienceAgentBench, AstaBench and SciAgentArena form related but distinct evaluation lineages; citations should not use their names interchangeably.
 
 ## 15. Knowledge connections
-AstaBench; SciAgentArena; MLGym; Q2 negative-successor discipline; Q3 dual-instrument benchmark.
+AstaBench; SciAgentArena; MLGym; ORION-02 negative-successor discipline; ORION-03 dual-instrument benchmark.
 
 ## 16. Testable research ideas
-- Add a frontier-diagnosis extension to task-level science benchmarks once Q3 has enough prospective cases.
+- Add a frontier-diagnosis extension to task-level science benchmarks once ORION-03 has enough prospective cases.
 - Compare task-level competence with ability to choose the right next research question after a negative result.
 
 ## ORION claim effect
-**Removed from Q2/Q3 novelty:** rigorous authentic scientific-task evaluation, expert-validated benchmark construction, executable result scoring and contamination-aware evaluation.  
-**Q2 residual:** successor authority after negative disposition.  
-**Q3 residual:** pre-outcome inter-instrument frontier diagnosis/agreement with deferred scoring.
+**Removed from ORION-02/ORION-03 novelty:** rigorous authentic scientific-task evaluation, expert-validated benchmark construction, executable result scoring and contamination-aware evaluation.  
+**ORION-02 residual:** successor authority after negative disposition.  
+**ORION-03 residual:** pre-outcome inter-instrument frontier diagnosis/agreement with deferred scoring.

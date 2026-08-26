@@ -116,7 +116,7 @@ disagrees on 72 states — not by the bounded checker.
 
 ## The general theorems
 
-**Local mechanics (`P6.COMMUTE.RW_NONINTERFERENCE.V1`).** Let deterministic,
+**Local mechanics (`ORION-16.COMMUTE.RW_NONINTERFERENCE.V1`).** Let deterministic,
 admissible mechanics act on a state over uninterpreted coordinate and value
 sorts. Each mechanic must be read-footprint faithful and write-footprint
 faithful. Their write coordinates are distinct, neither mechanic reads the
@@ -251,7 +251,7 @@ actual countermodel removed that error, but an open model search was unstable.
 Bounding discovery to at most four nodes did not remove the instability: CI run
 32927946106 reported the edge restriction only intermittently, and run
 32946736266 returned `unknown` for its known one-node witness under full-suite
-load, cascading to four P6 test failures. Both adverse runs remain failure
+load, cascading to four ORION-16 test failures. Both adverse runs remain failure
 provenance; neither showed the condition inert.
 
 The current measurement no longer discovers a witness. It verifies one pinned,
@@ -271,7 +271,7 @@ model is a failed certificate rather than evidence of inertness.
 
 These certificates establish local logical necessity relative to this
 formalization and theorem set only. They were written and checked in the same
-lane. External or independent validation remains `CANNOT_CHECK` under P6-U-T4;
+lane. External or independent validation remains `CANNOT_CHECK` under ORION-16-U-T4;
 the certificates provide neither empirical evidence nor external scientific
 authority.
 
@@ -390,7 +390,7 @@ exchange is the point of the exercise.
 Theorem 7's full statement — multi-component environments, mechanics that are
 read-footprint faithful and write-footprint faithful over their declared
 footprints, fully scientifically separated — is now checked as a kernel proof
-under contract id `P6.COMMUTE.EXACT_THEOREM7.V1`: 450 rule applications in an
+under contract id `ORION-16.COMMUTE.EXACT_THEOREM7.V1`: 450 rule applications in an
 LCF-style kernel, the serialized log replayed from nothing in a fresh kernel
 (reproducing the exact conclusion, all residual hypotheses inside the theory),
 and a z3 cross-check of the same sentence alongside. The conclusion pairs

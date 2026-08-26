@@ -1,4 +1,4 @@
-# P9 TMLR PDF visual audit — 2026-08-20
+# ORION-19 TMLR PDF visual audit — 2026-08-20
 
 Status: `PASS_VISUAL_REVIEW_BRANCH_ARTIFACT`
 
@@ -38,4 +38,4 @@ Observed:
 
 ## Boundary
 
-This receipt establishes that the exact review-branch PDF artifact passed automated structural checks and a manual visual rendering audit. It does not claim that the branch is already merged to `main`, that TMLR has accepted the submission, or that any stronger LLM/native-Lean result outside the bounded P9 paper has been established.
+This receipt establishes that the exact review-branch PDF artifact passed automated structural checks and a manual visual rendering audit. It does not claim that the branch is already merged to `main`, that TMLR has accepted the submission, or that any stronger LLM/native-Lean result outside the bounded ORION-19 paper has been established.

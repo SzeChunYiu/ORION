@@ -1,6 +1,6 @@
-# QG2 publication foundation V2 — Certified static forecasting with refutation/repair
+# ORION-10 publication foundation V2 — Certified static forecasting with refutation/repair
 
-**Paper:** ORION-QG2  
+**Paper:** ORION-ORION-10  
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 **Status:** `FOUNDATION_REBUILT__MANUSCRIPT_MUST_CENTER_REFUTATION_AND_AUTHORITY_LAYERS`
 
@@ -23,12 +23,12 @@ Quantum programming/resource literature already contains:
 - formal cost-aware quantum program optimization/verification;
 - architecture/hardware-aware resource models.
 
-QG2 therefore does not claim static quantum cost estimation itself. Its residual is the **epistemic structure of a certified compiler forecast**, together with a prospectively retained counterexample and a successor repair that preserves which certificate components remained true.
+ORION-10 therefore does not claim static quantum cost estimation itself. Its residual is the **epistemic structure of a certified compiler forecast**, together with a prospectively retained counterexample and a successor repair that preserves which certificate components remained true.
 
 ### Cross-paper ownership
-- Q1 owns the all-`n` TARE support-two theorem and basic exact counterexamples.
-- QG1 owns the broader regime-geometry / objective / boundary-complexity field synthesis.
-- QG2 owns forecasting/certification, refutation localization and successor forecaster repair.
+- ORION-01 owns the all-`n` TARE support-two theorem and basic exact counterexamples.
+- ORION-09 owns the broader regime-geometry / objective / boundary-complexity field synthesis.
+- ORION-10 owns forecasting/certification, refutation localization and successor forecaster repair.
 
 ## 01 — Research canon
 
@@ -41,7 +41,7 @@ QG2 therefore does not claim static quantum cost estimation itself. Its residual
 7. The counterexample localizes an out-of-own-target-support phantom borrow omitted by the original B family.
 8. QG5b enlarges the borrow family to B′ and uses the theorem-backed exact support-two forecaster `F2=C_D++`; it reproduces zero error on the stated finite panels while retaining the original counterexample in the receipt.
 9. `F2=C_D++` is exact all `n` only because it enumerates the entire theorem-sufficient D++ family; the later **closed-form** identity `min(C_R6L,C_D+,f_B′)` remains finite-domain/conjectural and is subsequently refuted by QG7.
-10. QG7/QG7b therefore belong in QG2 as a second lesson: repairing one closed-form missing family does not authorize universal completeness; the certified D++ forecaster remains exact while cheaper closed forms can continue to fail.
+10. QG7/QG7b therefore belong in ORION-10 as a second lesson: repairing one closed-form missing family does not authorize universal completeness; the certified D++ forecaster remains exact while cheaper closed forms can continue to fail.
 11. Library rows lacking a committed DP receipt remain `FORECAST_ONLY` and grant no verification authority.
 12. Timing data are secondary/non-canonical under the inherited convention and must not be used to overtake the exactness/certificate story.
 13. All `NOT_R6` authority boundaries remain in force.
@@ -61,7 +61,7 @@ QG2 therefore does not claim static quantum cost estimation itself. Its residual
 | cheap B′ closed form is all-`n` complete | QG7 | exact counterexamples | `REFUTED` |
 | B″ closes current frozen panels | QG7b | finite evidence | `SUPPORTED_BOUNDED` |
 | unreceipted library predictions verify their own cost | explicit no-authority field | no verification | `FORECAST_ONLY` |
-| static quantum cost prediction is novel to QG2 | external literature | donor-owned | `DONOR_OWNED` |
+| static quantum cost prediction is novel to ORION-10 | external literature | donor-owned | `DONOR_OWNED` |
 | certificate-layered refutation/repair object is externally novel | fresh search | novelty proposition | `OPEN_UNTIL_SEARCH_CLOSES` |
 
 ## 03 — Argument map
@@ -115,13 +115,13 @@ Report domains and exact benchmark counts. Timing, if retained, is a secondary e
 ### Results 2 — Prospective refutation
 This is the centerpiece. Show `C_DP=10`, `F=11`, the exact target pairs/witness, and a two-column table:
 - survived: upper bound, support≤2 theorem;
-- failed: equality identity, original P1 regime label.
+- failed: equality identity, original ORION-11 regime label.
 
 ### Results 3 — Repair
 Explain B′ and `F2=C_D++`. Make clear which is a cheap closed-form family and which is theorem-backed full support≤2 enumeration. Do not conflate their computational costs.
 
 ### Results 4 — Boundary after repair
-Cite QG7/QG7b to show closed-form incompleteness can recur. Keep detailed fourth-regime theory in QG1; QG2 uses it only to reinforce certificate scope.
+Cite QG7/QG7b to show closed-form incompleteness can recur. Keep detailed fourth-regime theory in ORION-09; ORION-10 uses it only to reinforce certificate scope.
 
 ### Forecast-only table
 Rows without a committed DP receipt remain visually separated and explicitly non-authoritative.

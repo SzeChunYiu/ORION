@@ -1,4 +1,4 @@
-# P12 robustness stress V1 — result receipt
+# ORION-22 robustness stress V1 — result receipt
 
 **Study:** `P12_ROBUSTNESS_STRESS_V1` (protocol `P12_ROBUSTNESS_PROTOCOL_V2.md`, frozen at `9f7a34ca`; expanded 27-case file frozen at `766414f6`)
 **Terminal:** `P12_ROBUSTNESS_STRESS_V1_EXECUTED`

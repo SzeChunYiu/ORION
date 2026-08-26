@@ -1,6 +1,6 @@
 # Hostile decoder substitution
 
-The central alternative explanation is that the universal representation is penalized only because the downstream decoder has the wrong inductive bias. If so, stronger decoder-side search should buy back the compilation advantage. P11 treats that prediction as a mechanism test.
+The central alternative explanation is that the universal representation is penalized only because the downstream decoder has the wrong inductive bias. If so, stronger decoder-side search should buy back the compilation advantage. ORION-21 treats that prediction as a mechanism test.
 
 ## P11D sparse decoder — permanent negative
 

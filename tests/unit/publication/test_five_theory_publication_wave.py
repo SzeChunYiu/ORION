@@ -6,11 +6,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 MANUSCRIPTS = {
-    "A": ROOT / "papers/theory-A-multitag-constraint-rank/MANUSCRIPT_V1.md",
-    "B": ROOT / "papers/theory-B-certificate-complexity/MANUSCRIPT_V1.md",
-    "C": ROOT / "papers/theory-C-low-order-information/MANUSCRIPT_V1.md",
-    "D": ROOT / "papers/theory-D-falsification-authority/MANUSCRIPT_V1.md",
-    "N": ROOT / "papers/nonquantum-c5cubed-davenport/MANUSCRIPT_V1.md",
+    "A": ROOT / "papers/archive/2026-08-pre-unification/theory-A-multitag-constraint-rank/MANUSCRIPT_V1.md",
+    "B": ROOT / "papers/archive/2026-08-pre-unification/theory-B-certificate-complexity/MANUSCRIPT_V1.md",
+    "C": ROOT / "papers/archive/2026-08-pre-unification/theory-C-low-order-information/MANUSCRIPT_V1.md",
+    "D": ROOT / "papers/archive/2026-08-pre-unification/theory-D-falsification-authority/MANUSCRIPT_V1.md",
+    "N": ROOT / "papers/archive/2026-08-pre-unification/nonquantum-c5cubed-davenport/MANUSCRIPT_V1.md",
 }
 
 
@@ -68,11 +68,11 @@ def test_all_five_manuscripts_are_self_contained_and_boundary_explicit():
 
 def test_claim_ledgers_forbid_known_overpromotions():
     ledgers = {
-        "A": ROOT / "papers/theory-A-multitag-constraint-rank/CLAIM_LEDGER.md",
-        "B": ROOT / "papers/theory-B-certificate-complexity/CLAIM_LEDGER.md",
-        "C": ROOT / "papers/theory-C-low-order-information/CLAIM_LEDGER.md",
-        "D": ROOT / "papers/theory-D-falsification-authority/CLAIM_LEDGER.md",
-        "N": ROOT / "papers/nonquantum-c5cubed-davenport/CLAIM_LEDGER.md",
+        "A": ROOT / "papers/orion-01-certificate-realization/theory-A-CLAIM_LEDGER.md",
+        "B": ROOT / "papers/orion-01-certificate-realization/theory-B-CLAIM_LEDGER.md",
+        "C": ROOT / "papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER.md",
+        "D": ROOT / "papers/orion-03-typed-merge-falsification/CLAIM_LEDGER.md",
+        "N": ROOT / "papers/orion-04-rooted-completion-certificates/CLAIM_LEDGER.md",
     }
     assert "OPEN; explicitly not claimed" in ledgers["A"].read_text()
     assert "no unrestricted proof lower bound" in ledgers["B"].read_text().lower()
@@ -84,7 +84,7 @@ def test_claim_ledgers_forbid_known_overpromotions():
 
 
 def test_release_gate_remains_closed_until_all_five_pass_top_tier():
-    review = (ROOT / "papers/FIVE_PAPER_REVIEW_SYNTHESIS_2026-08-24.md").read_text()
+    review = (ROOT / "papers/archive/2026-08-pre-unification/FIVE_PAPER_REVIEW_SYNTHESIS_2026-08-24.md").read_text()
     assert "integration to `main` is blocked" in review
     assert "RIGOROUS_SPECIALIST_MANUSCRIPT__TOP_TIER_GATE_NOT_MET" in review
     assert "draft PR" in review

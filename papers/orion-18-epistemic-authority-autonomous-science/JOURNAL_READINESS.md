@@ -1,4 +1,4 @@
-# P8 candidate journal-readiness plan — A Theory of Epistemic Authority for Autonomous Science
+# ORION-18 candidate journal-readiness plan — A Theory of Epistemic Authority for Autonomous Science
 
 **Current terminal:** computed per commit, not asserted here. See
 `../PEER_REVIEW_READY_PACKAGE.md`, which defines
@@ -11,7 +11,7 @@ PEER_REVIEW_READY := p6-p8-candidate-ci == success AND ci == success
 This line previously read `CANNOT_CHECK / not a promoted paper / not peer-review
 ready`. That was written before the submission package existed and had gone
 stale: it contradicted `JOURNAL_READINESS_V2_1.md`, which already deferred to the
-computed terminal, so the two files in this directory disagreed about P8.
+computed terminal, so the two files in this directory disagreed about ORION-18.
 
 It is deliberately **not** replaced with `PEER_REVIEW_READY`. The package file
 states that it does not hard-code a claim that could become stale after a content
@@ -45,8 +45,8 @@ Present now:
 
 - widened `manuscript/FORMAL_CORE_V1.md` with requested/committed effects, hard obligations, explicit cross-domain coercions, scope/epoch, dependency revocation, protected roots and `CANNOT_CHECK`;
 - `manuscript/DRAFT.md` rewritten around mature authorization/effect/abstention/provenance donors rather than generic capability-permission rhetoric;
-- synchronized `CLAIM_LEDGER_V1.md` restricting P8 to cross-domain results;
-- ownership matrix marking all five within-domain P1–P5 gates as `MERGE_EXISTING`/internal prior ownership;
+- synchronized `CLAIM_LEDGER_V1.md` restricting ORION-18 to cross-domain results;
+- ownership matrix marking all five within-domain ORION-11–ORION-15 gates as `MERGE_EXISTING`/internal prior ownership;
 - donor/parent maps expanded through Delegation Logic, SecPAL, authorization/trust-management logic, deontic/action logic, non-interference, ETAS, FAVA, permission systems, AgentAbstain, provenance and shielding;
 - deterministic authority checker widened with epoch replay, alternate derivation under revocation, post-hoc refusal and clean authorized controls;
 - additive `CHECK_RESULTS_V2.md`;
@@ -54,11 +54,11 @@ Present now:
 - `PROSPECTIVE_EVALUATION_V1.md` with paired cross-domain attacks, valid-coercion controls, strongest donor baseline slots and protected-custody requirements;
 - five-role adversarial review log.
 
-These artifacts do not establish semantic soundness of real coercions, exact P1–P5 embedding, empirical advantage, novelty or peer-review readiness.
+These artifacts do not establish semantic soundness of real coercions, exact ORION-11–ORION-15 embedding, empirical advantage, novelty or peer-review readiness.
 
 ## 1. Distinct-object gate
-- [ ] #343 proves P8 is not P4/programme theory generalized in vocabulary.
-- [x] P4's protected scientific-authority contribution and P5's protected self-change/no-self-promotion contribution are explicitly treated as prior internal ownership.
+- [ ] #343 proves ORION-18 is not ORION-14/programme theory generalized in vocabulary.
+- [x] ORION-14's protected scientific-authority contribution and ORION-15's protected self-change/no-self-promotion contribution are explicitly treated as prior internal ownership.
 - [x] cross-domain authority object has a formal discriminator: locally valid source judgments may not authorize foreign-domain effects without an explicit sound coercion.
 - [ ] that discriminator survives authorization/non-interference/policy-composition parent-field saturation and prospective evaluation.
 
@@ -86,7 +86,7 @@ These artifacts do not establish semantic soundness of real coercions, exact P1�
 - [x] scope/epoch matching is explicit in the executable checker.
 - [x] post-hoc refusal is separated from preventive pre-effect authorization.
 - [ ] semantic soundness conditions for trusted roots/coercions proved for the claimed contract family.
-- [ ] conservative exact P1–P5 embedding proved/checked against native decisions.
+- [ ] conservative exact ORION-11–ORION-15 embedding proved/checked against native decisions.
 - [ ] conservative donor-native ETAS/FAVA/authorization-logic embeddings established where feasible.
 
 ## 4. Protected cross-capability benchmark
@@ -99,7 +99,7 @@ These artifacts do not establish semantic soundness of real coercions, exact P1�
 - [ ] clean authorized controls demonstrate absence of security-by-total-refusal.
 
 ## 5. Baselines/ablations
-- [ ] exact existing P1–P5 independent gates.
+- [ ] exact existing ORION-11–ORION-15 independent gates.
 - [ ] trust-management/authorization-logic adapter where faithful.
 - [ ] ETAS/FAVA-style effect/permission adapters where feasible.
 - [ ] provenance-only verifier.
@@ -124,7 +124,7 @@ These artifacts do not establish semantic soundness of real coercions, exact P1�
 ## 7. Manuscript/reproducibility
 - [x] working markdown draft exists.
 - [x] formal core + synchronized claim ledger exist.
-- [ ] full-text related work with exact P4/P5 and donor boundaries.
+- [ ] full-text related work with exact ORION-14/ORION-15 and donor boundaries.
 - [ ] claim ledger #346 terminal complete (ledger exists but multiple paper-level claims remain `CANNOT_CHECK`).
 - [x] deterministic formal/hostile-check reproduction path documented.
 - [ ] protected benchmark/attack replay under #347.
@@ -138,4 +138,4 @@ These artifacts do not establish semantic soundness of real coercions, exact P1�
 
 ## Done definition
 
-Promote P8 only if a cross-domain epistemic authority calculus provides a distinct formal or empirical result beyond P4/P5, independent capability-specific gates and mature authorization/effect systems—especially on pre-frozen cross-domain laundering/revocation cases—without winning by excessive refusal. Otherwise merge the synthesis into P4/programme theory.
+Promote ORION-18 only if a cross-domain epistemic authority calculus provides a distinct formal or empirical result beyond ORION-14/ORION-15, independent capability-specific gates and mature authorization/effect systems—especially on pre-frozen cross-domain laundering/revocation cases—without winning by excessive refusal. Otherwise merge the synthesis into ORION-14/programme theory.

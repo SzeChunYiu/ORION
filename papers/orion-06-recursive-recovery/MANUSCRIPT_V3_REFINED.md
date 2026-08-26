@@ -194,15 +194,15 @@ This distinction is important. A single deep case study can define and demonstra
 
 ### Provenance and experiment tracking
 
-Complete provenance, versioning and replay are increasingly recognized as foundations for trustworthy autonomous science. Q2 uses those capabilities as prerequisites. Its residual object is the **transition policy after a terminal**, not the invention of provenance.
+Complete provenance, versioning and replay are increasingly recognized as foundations for trustworthy autonomous science. ORION-02 uses those capabilities as prerequisites. Its residual object is the **transition policy after a terminal**, not the invention of provenance.
 
 ### Preregistration and registered reports
 
-Pre-outcome freezing is conceptually aligned with preregistration: outcome-dependent rewriting weakens evidentiary interpretation. Q2 applies freezing at the granularity of iterative research successors and preserves parent terminals rather than claiming to introduce preregistration.
+Pre-outcome freezing is conceptually aligned with preregistration: outcome-dependent rewriting weakens evidentiary interpretation. ORION-02 applies freezing at the granularity of iterative research successors and preserves parent terminals rather than claiming to introduce preregistration.
 
 ### Agent self-reflection and iterative improvement
 
-Agent systems already critique and revise candidate outputs. Q2 differs in what receives authority: a revision cannot overwrite the evidence status of the parent research claim, and a strong donor can terminate a novelty direction even when an agent can continue generating alternatives.
+Agent systems already critique and revise candidate outputs. ORION-02 differs in what receives authority: a revision cannot overwrite the evidence status of the parent research claim, and a strong donor can terminate a novelty direction even when an agent can continue generating alternatives.
 
 ### Negative-result publication and falsification
 

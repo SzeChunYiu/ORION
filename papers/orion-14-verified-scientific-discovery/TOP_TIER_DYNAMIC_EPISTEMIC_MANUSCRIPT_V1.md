@@ -1,4 +1,4 @@
-# P4 Top-Tier Dynamic-Epistemic Manuscript V1
+# ORION-14 Top-Tier Dynamic-Epistemic Manuscript V1
 
 ## Candidate title
 
@@ -7,20 +7,20 @@
 ```text
 status = RESULT_LEDGER_BOUND__EXTERNAL_PROMOTION_GOLD_UNAVAILABLE
 paper_authority_delta = NONE
-job = P4-DES-01
+job = ORION-14-DES-01
 ```
 
 ## Abstract
 
-Evidence strength, target identifiability, coverage, responsibility, defeaters, support families, verification, custody, and authority are different scientific objects. P4 models them as a heterogeneous dynamic state and derives promotion terminals only as decision projections. It absorbs statistical sufficiency, Blackwell comparison, claim verification, selective prediction, abstention, provenance, and retraction systems. We prove exact fibre sufficiency, fibrewise irreducible promotion risk, no compensatory promotion, exact dynamic revocation, and legacy-terminal non-reconstruction. The frozen successor registered 300 cases and 1,500 arm-cases. Nine hundred arm-cases were mechanically executed, but no case had independently held scientific promotion-terminal gold and 600 arm-cases remained unavailable. The execution therefore establishes a mechanical and semantic-coordinate study boundary, not false-promotion reduction or policy superiority. A top-tier empirical claim remains contingent on externally held terminal truth, while the formal non-compensation and revocation results stand independently.
+Evidence strength, target identifiability, coverage, responsibility, defeaters, support families, verification, custody, and authority are different scientific objects. ORION-14 models them as a heterogeneous dynamic state and derives promotion terminals only as decision projections. It absorbs statistical sufficiency, Blackwell comparison, claim verification, selective prediction, abstention, provenance, and retraction systems. We prove exact fibre sufficiency, fibrewise irreducible promotion risk, no compensatory promotion, exact dynamic revocation, and legacy-terminal non-reconstruction. The frozen successor registered 300 cases and 1,500 arm-cases. Nine hundred arm-cases were mechanically executed, but no case had independently held scientific promotion-terminal gold and 600 arm-cases remained unavailable. The execution therefore establishes a mechanical and semantic-coordinate study boundary, not false-promotion reduction or policy superiority. A top-tier empirical claim remains contingent on externally held terminal truth, while the formal non-compensation and revocation results stand independently.
 
 ## Theory
 
-- `P4-T1`: zero-error promotion exists iff the correct terminal is constant on each representation fibre.
-- `P4-T2`: minimum error equals the fibrewise Bayes risk.
-- `P4-T3`: evidence cannot compensate for non-identifiability, hard defeaters, or missing authority.
-- `P4-T4`: new defeaters and epochs revoke exactly dependent support families.
-- `P4-T5`: categorical terminal projections have no faithful inverse on non-singleton decision fibres.
+- `ORION-14-T1`: zero-error promotion exists iff the correct terminal is constant on each representation fibre.
+- `ORION-14-T2`: minimum error equals the fibrewise Bayes risk.
+- `ORION-14-T3`: evidence cannot compensate for non-identifiability, hard defeaters, or missing authority.
+- `ORION-14-T4`: new defeaters and epochs revoke exactly dependent support families.
+- `ORION-14-T5`: categorical terminal projections have no faithful inverse on non-singleton decision fibres.
 
 ## Better model
 
@@ -28,7 +28,7 @@ No global ORION confidence score is allowed. Hard gates determine admissibility;
 
 ## Decisive computation
 
-`P4-DES-01`: V2 eleven-system rescore, SciFact/Crossref, fibre-collision worlds, leakage probes, resource ledger, and independent replay. Intended positive terminal: `DYNAMIC_NONCOMPENSATORY_PROMOTION_STRICTLY_EXTENDS_EVIDENCE_AUTHORIZATION_BASELINES`.
+`ORION-14-DES-01`: V2 eleven-system rescore, SciFact/Crossref, fibre-collision worlds, leakage probes, resource ledger, and independent replay. Intended positive terminal: `DYNAMIC_NONCOMPENSATORY_PROMOTION_STRICTLY_EXTENDS_EVIDENCE_AUTHORIZATION_BASELINES`.
 
 ## Authoritative computation disposition
 

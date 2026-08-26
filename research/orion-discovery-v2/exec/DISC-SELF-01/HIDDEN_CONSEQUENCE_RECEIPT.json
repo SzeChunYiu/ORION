@@ -49,8 +49,8 @@
     {
       "proposal_id": "SELF-01-P3",
       "first_order": [
-        "rewrites papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json, changing its bytes",
-        "invalidates the papers/paper-15-orion-research-harness/SHA256SUMS line that records 1d023194cf2fc9fe0fb9399322d30f13be162343ed99afa93eadea318059d05e for that binder",
+        "rewrites papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json, changing its bytes",
+        "invalidates the papers/orion-25-orion-research-harness/SHA256SUMS line that records 1d023194cf2fc9fe0fb9399322d30f13be162343ed99afa93eadea318059d05e for that binder",
         "breaks tests/unit/study/p15/test_p15_active_claim_authority.py::test_historical_methods_authority_still_rebuilds, which asserts the committed V1 equals what src/orion/study/p15/active_claim_authority.py rebuilds",
         "requires editing HARNESS_PACKAGE_V1_SHA256 in src/orion/study/p15/active_claim_authority.py"
       ],
@@ -93,8 +93,8 @@
     {
       "proposal_id": "SELF-01-P4",
       "first_order": [
-        "changes the schema of papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json and therefore its bytes",
-        "invalidates the papers/paper-15-orion-research-harness/SHA256SUMS line recording 1d023194cf2fc9fe0fb9399322d30f13be162343ed99afa93eadea318059d05e",
+        "changes the schema of papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json and therefore its bytes",
+        "invalidates the papers/orion-25-orion-research-harness/SHA256SUMS line recording 1d023194cf2fc9fe0fb9399322d30f13be162343ed99afa93eadea318059d05e",
         "the same schema change would propagate to every other authority binder carrying evidence bindings"
       ],
       "second_order": [

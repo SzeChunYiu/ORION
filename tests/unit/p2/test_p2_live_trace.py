@@ -32,7 +32,7 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 PROTOCOL = (
     REPO_ROOT
     / "papers"
-    / "paper-02-open-world-scientific-discovery"
+    / "orion-12-open-world-scientific-discovery"
     / "protocol"
     / "PROTOCOL_V1.json"
 )

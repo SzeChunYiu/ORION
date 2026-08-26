@@ -1,4 +1,4 @@
-# P9 journal-readiness ledger
+# ORION-19 journal-readiness ledger
 
 Target: **TMLR** after final integration/package verification.
 
@@ -21,7 +21,7 @@ A checked item requires an immutable repository artifact or a linked current ext
 ## Scope/atom gates
 
 - [x] donor saturation #469 closed after two no-material-change rounds.
-- [x] A3 latent reasoning closed not-load-bearing for final P9.
+- [x] A3 latent reasoning closed not-load-bearing for final ORION-19.
 - [x] A5 explicit-inference D0 closed on bounded sufficiency.
 - [x] A6 data closed `EXACT_TRACE_DATA_ONLY`; no natural-paper pseudo-gold.
 - [x] A7 scaling/resource lane closed not-load-bearing because the bounded paper makes no asymptotic/sample/compute-scaling claim.
@@ -42,15 +42,15 @@ A checked item requires an immutable repository artifact or a linked current ext
 - [x] D1 official result compared to independent verifier: zero material discrepancies; durable workflow receipt preserved pending merge authority.
 - [x] M1 result independently verified; one selected-model-family discrepancy was adjudicated as a non-material exact dev tie-break, with zero material discrepancies.
 - [x] A2/A4 result independently verified with zero discrepancies.
-- [x] P9-specific M1 and A2/A4 verification receipts/comments added to shared #283; D1 comparison is independently frozen and will be restamped after raw-result archival/merge.
+- [x] ORION-19-specific M1 and A2/A4 verification receipts/comments added to shared #283; D1 comparison is independently frozen and will be restamped after raw-result archival/merge.
 - [x] D1 post-result novelty pressure found serialization-friction prior work and struck the generic claim; two subsequent changed-vocabulary primary-source rounds produced no further material D1 claim/baseline change.
 - [x] final exact-combination post-result novelty search completed after M1/A2-A4, repeatedly narrowing representation-vs-computation, symbolic-oracle, underspecification and aliasing claims to donor ownership.
-- [x] P9-specific bounded novelty disposition added to shared #287 and frozen in `P9_FINAL_NOVELTY_DISPOSITION_V1.md`.
+- [x] ORION-19-specific bounded novelty disposition added to shared #287 and frozen in `P9_FINAL_NOVELTY_DISPOSITION_V1.md`.
 - [x] standalone-paper residual survives donor subtraction as a bounded diagnostic/benchmark methodology + controlled cross-domain empirical study; no neural-architecture novelty is claimed.
 
 ## Manuscript gates
 
-- [x] additive P9 V2 paper identity separate from historical Learning Machine package.
+- [x] additive ORION-19 V2 paper identity separate from historical Learning Machine package.
 - [x] bounded claim ledger exists.
 - [x] result-independent manuscript core drafted.
 - [x] donor-subtraction bibliography started from primary sources.
@@ -60,7 +60,7 @@ A checked item requires an immutable repository artifact or a linked current ext
 - [ ] official result values inserted only from merged evidence summary.
 - [ ] no `PENDING_OFFICIAL_RECEIPT` markers remain.
 - [ ] abstract/introduction/results/conclusion agree on exact bounded claim.
-- [x] historical P9 V1 evidence clearly separated by package identity/claim ledger.
+- [x] historical ORION-19 V1 evidence clearly separated by package identity/claim ledger.
 - [x] explicit limitations include synthetic/procedural-only scope and deferred natural/causal/binding/LLM tasks.
 - [x] all null/sufficiency/negative findings are retained as first-class design knowledge in the draft package.
 
@@ -73,7 +73,7 @@ A checked item requires an immutable repository artifact or a linked current ext
 - [x] A2/A4 full corrected raw result, hostile controls, execution receipt and independent-verification receipt archived on the scientific branch; A5 already merged/verified.
 - [ ] one short command regenerates headline tables from immutable official artifacts.
 - [ ] dependency/environment statement frozen.
-- [x] P10/P11 contamination/exclusion and P10 negative disposition frozen in `P10_P11_EXCLUSION_DISPOSITION_V1.md`.
+- [x] ORION-20/ORION-21 contamination/exclusion and ORION-20 negative disposition frozen in `P10_P11_EXCLUSION_DISPOSITION_V1.md`.
 - [x] no neural checkpoint is claimed; the final scope explicitly records that neural escalation was not justified.
 
 ## TMLR submission gates
@@ -88,13 +88,13 @@ A checked item requires an immutable repository artifact or a linked current ext
 - [ ] final PDF compiles from clean checkout.
 - [ ] final PDF rendered and visually audited with no clipping/overlap/broken glyphs.
 - [ ] exact-head repository CI green.
-- [ ] exact-head P6-P8 protected gate green after all P9 integrations.
+- [ ] exact-head ORION-16-ORION-18 protected gate green after all ORION-19 integrations.
 
 ## Parent/programme closure
 
 - [ ] #391 reaches `P9_BOUNDED_STRUCTURAL_LEARNING_PEER_REVIEW_READY` only after scientific merge + package/PDF gates.
-- [ ] #393 P1-P11 dashboard updated with final P9 peer-review-ready disposition.
-- [x] refounded P10 structured reasoning closed negative independently; P9 no longer owes a neural checkpoint/protected P10 handoff. Historical content-bound evaluation remains P11.
+- [ ] #393 ORION-11-ORION-21 dashboard updated with final ORION-19 peer-review-ready disposition.
+- [x] refounded ORION-20 structured reasoning closed negative independently; ORION-19 no longer owes a neural checkpoint/protected ORION-20 handoff. Historical content-bound evaluation remains ORION-21.
 
 ## Terminal rule
 

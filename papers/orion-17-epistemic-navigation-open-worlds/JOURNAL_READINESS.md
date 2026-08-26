@@ -1,4 +1,4 @@
-# P7 candidate journal-readiness plan — Epistemic Navigation in Open Worlds
+# ORION-17 candidate journal-readiness plan — Epistemic Navigation in Open Worlds
 
 **Current terminal:** computed per commit, not asserted here. See
 `../PEER_REVIEW_READY_PACKAGE.md`, which defines
@@ -11,7 +11,7 @@ PEER_REVIEW_READY := p6-p8-candidate-ci == success AND ci == success
 This line previously read `CANNOT_CHECK / not a promoted paper / not peer-review
 ready`. That was written before the submission package existed and had gone
 stale: it contradicted `JOURNAL_READINESS_V2_1.md`, which already deferred to the
-computed terminal, so the two files in this directory disagreed about P7.
+computed terminal, so the two files in this directory disagreed about ORION-17.
 
 It is deliberately **not** replaced with `PEER_REVIEW_READY`. The package file
 states that it does not hard-code a claim that could become stale after a content
@@ -47,7 +47,7 @@ Present now:
 - stopping theorem repaired to use **extension ambiguity**, with an explicit richness corollary rather than equating certificate absence with ambiguity;
 - `manuscript/DRAFT.md` rewritten around orientation, chart/objective change and support/closure transport;
 - synchronized `CLAIM_LEDGER_V1.md` preserving the repaired theorem premise;
-- internal ownership matrix marking P1 reframe and P2 route/stop mechanisms as prior internal ownership;
+- internal ownership matrix marking ORION-11 reframe and ORION-12 route/stop mechanisms as prior internal ownership;
 - parent/donor map expanded through planning abstraction/representation languages, POMDPs, goal evolution, world models and exploration breadth;
 - deterministic countermodel checker plus small theorem-boundary falsifier;
 - additive `CHECK_RESULTS_V2.md` with certificate/ambiguity negative control, evidence-vs-closure transport and no-reframe control;
@@ -58,8 +58,8 @@ Present now:
 These artifacts do not establish novelty, benchmark superiority or real-world scientific-navigation completeness.
 
 ## 1. Distinct-object gate
-- [ ] #343 proves P7 is more than P1 representation reconstruction + P2 route-governance terminology.
-- [x] exact P1/P2-owned native mechanics are listed and excluded from P7 novelty in the ownership matrix.
+- [ ] #343 proves ORION-17 is more than ORION-11 representation reconstruction + ORION-12 route-governance terminology.
+- [x] exact ORION-11/ORION-12-owned native mechanics are listed and excluded from ORION-17 novelty in the ownership matrix.
 - [x] the candidate atlas residual has a formal definition and a direct prospective discriminator (support/closure transport across chart/objective change).
 - [ ] the discriminator survives external planning/representation literature saturation.
 
@@ -80,7 +80,7 @@ These artifacts do not establish novelty, benchmark superiority or real-world sc
 
 ## 3. Theory
 - [ ] atlas/chart/navigation definitions frozen after saturation.
-- [x] local route stop/task stop/defer/`CANNOT_CHECK`/reframe are separated formally, with P2 ownership explicit.
+- [x] local route stop/task stop/defer/`CANNOT_CHECK`/reframe are separated formally, with ORION-12 ownership explicit.
 - [x] representation/objective-change operator defines partial maps and support/obligation preservation/reopening conditions.
 - [x] exploration utility is separated from task-completion authority in the current formal core.
 - [x] certificate absence and extension ambiguity are explicitly distinguished.
@@ -107,7 +107,7 @@ These artifacts do not establish novelty, benchmark superiority or real-world sc
 - [ ] Search-on-Graph-style iterative navigator where faithfully implementable.
 - [ ] active-information/POMDP baseline where valid.
 - [ ] planning abstraction/world-model/goal-evolution donor baseline appropriate to each family.
-- [ ] exact P1+P2 native composition baseline.
+- [ ] exact ORION-11+ORION-12 native composition baseline.
 - [ ] resource-matched exploratory baseline where meaningful.
 - [ ] direct no-chart-change ablation.
 - [ ] direct no-censored-obligation ablation.
@@ -142,4 +142,4 @@ These artifacts do not establish novelty, benchmark superiority or real-world sc
 
 ## Done definition
 
-Promote P7 only if atlas-level representation/objective change plus support/closure transport shows a distinct prospectively identified result beyond P1+P2 and strong navigation/planning donors, including a non-retrieval exact-ground-truth transfer test and low unnecessary-reframe behavior. Otherwise merge useful atlas framing into P1/P2/programme theory.
+Promote ORION-17 only if atlas-level representation/objective change plus support/closure transport shows a distinct prospectively identified result beyond ORION-11+ORION-12 and strong navigation/planning donors, including a non-retrieval exact-ground-truth transfer test and low unnecessary-reframe behavior. Otherwise merge useful atlas framing into ORION-11/ORION-12/programme theory.

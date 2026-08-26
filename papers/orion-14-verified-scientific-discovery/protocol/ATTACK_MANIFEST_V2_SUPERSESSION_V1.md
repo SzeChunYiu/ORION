@@ -11,9 +11,9 @@ sentence naming its own terminal:
 
 | case | trailing sentence |
 |---|---|
-| `P4-INSUFFICIENT_EVIDENCE-001` | "The evidence is genuinely insufficient to support the comparative claim." |
-| `P4-INSUFFICIENT_EVIDENCE-002` | "The evidence is insufficient to support the sweeping claim." |
-| `P4-INSUFFICIENT_EVIDENCE-003` | "The evidence is insufficient to support the universal superiority claim." |
+| `ORION-14-INSUFFICIENT_EVIDENCE-001` | "The evidence is genuinely insufficient to support the comparative claim." |
+| `ORION-14-INSUFFICIENT_EVIDENCE-002` | "The evidence is insufficient to support the sweeping claim." |
+| `ORION-14-INSUFFICIENT_EVIDENCE-003` | "The evidence is insufficient to support the universal superiority claim." |
 
 No case in the other twelve families does this. A grep for "insufficient"
 scores all three correctly with no judgment at all.
@@ -63,7 +63,7 @@ distinguishes the two batteries rather than passing everything handed to it.
 metric and no comparison. Re-scoring requires the eleven-system panel.
 
 **V1's `INSUFFICIENT_EVIDENCE` numbers are not corrected by this file.** They
-remain what they were: partly a reading score. P4's H3 reports
+remain what they were: partly a reading score. ORION-14's H3 reports
 `correct_cannot_check_rate = 1.0` across all eleven panel systems with no
 observed variance anywhere in the study, and a leak of this shape is the
 simplest available explanation for a whole-panel ceiling. That reading is not
@@ -76,9 +76,9 @@ be read as measured on a contaminated battery.
 
 This is the third recorded instance of the same failure class:
 
-- **P4 H3** — a saturated metric where `len(evidence) == 0` reproduced the
+- **ORION-14 H3** — a saturated metric where `len(evidence) == 0` reproduced the
   label at 420/420;
-- **P5 hidden-cause suite** — `root_cause_nonce` is the case ordinal in hex,
+- **ORION-15 hidden-cause suite** — `root_cause_nonce` is the case ordinal in hex,
   recorded as `LABEL_RECOVERABLE_FROM_CONSTRUCTION_CUE`;
 - **this** — the label stated in the case's own prose.
 

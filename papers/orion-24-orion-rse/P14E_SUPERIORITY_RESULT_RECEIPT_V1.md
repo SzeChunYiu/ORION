@@ -58,7 +58,7 @@ Not authorized: real-agent, cross-domain, blinded external, longitudinal human-r
 ## Replay
 
 ```
-python papers/paper-14-orion-rse/run_p14e_specification_separated_superiority_v1.py
+python papers/orion-24-orion-rse/run_p14e_specification_separated_superiority_v1.py
 ```
 
 Success condition: terminal `P14E_SPECIFICATION_SEPARATED_SUPERIORITY_SUPPORTED`, all twelve gates green, byte-identical two-subprocess replay. Failure terminal: `P14E_SPECIFICATION_SEPARATED_SUPERIORITY_GATE_NOT_MET` (exit 1).

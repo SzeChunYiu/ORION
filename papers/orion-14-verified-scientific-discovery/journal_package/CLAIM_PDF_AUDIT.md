@@ -1,20 +1,20 @@
-# ORION-P4 independent claim / PDF audit
+# ORION-ORION-14 independent claim / PDF audit
 
 Audit subject: `b7cfaecfb55d9ad6c12fb59374935769ed8d8787`. Not a #283 verification record.
 
 | ID | Claim | Artifact | Status |
 |---|---|---|---|
-| P4.H1 | 0/360 vs 180/360 false promotions; effect -0.50, CI [-0.553,-0.447] | `evidence/protected_v2/PUBLICATION_METRICS_V2.json` | SUPPORTED |
-| P4.H2 | 60/60 clean promotions both systems | same | SUPPORTED |
-| P4.H3 | Superior correct `CANNOT_CHECK` | same (`hypotheses.H3.status`) | **NOT_SUPPORTED** |
-| P4.PDF | Independent final proofread of the current in-tree PDF | no independent proofread artifact | **OPEN** |
+| ORION-14.H1 | 0/360 vs 180/360 false promotions; effect -0.50, CI [-0.553,-0.447] | `evidence/protected_v2/PUBLICATION_METRICS_V2.json` | SUPPORTED |
+| ORION-14.H2 | 60/60 clean promotions both systems | same | SUPPORTED |
+| ORION-14.H3 | Superior correct `CANNOT_CHECK` | same (`hypotheses.H3.status`) | **NOT_SUPPORTED** |
+| ORION-14.PDF | Independent final proofread of the current in-tree PDF | no independent proofread artifact | **OPEN** |
 
 H3 remains a retained null. The paper-declared terminal `PEER_REVIEW_READY` is recorded but this package stays `SCAFFOLDING` until an in-tree or DOI-bound PDF is present. Release SHA `f2ede371…3ccf` is identity evidence for a remote artifact, not a tracked file this checker can hash.
 
-## Addendum, 2026-08-22 — P4.H3 moved off a saturated axis
+## Addendum, 2026-08-22 — ORION-14.H3 moved off a saturated axis
 
 The table above is the audit as it stood at `b7cfaec…`, and its rows are not
-restated. Two things about the `P4.H3` row have since been established, and the
+restated. Two things about the `ORION-14.H3` row have since been established, and the
 manifest now reads differently from it.
 
 **The row's null was not a finding.**
@@ -23,7 +23,7 @@ manifest now reads differently from it.
 `declared_ci95: [0.0, 0.0]`, `verdict_could_have_differed: false`, and lists H3
 under `hypotheses_settled_before_any_system_ran`. All eleven systems scored 1.0.
 The verdict records the benchmark, not the systems. It is retained in the
-manifest as `P4.H3.V2`, still `NOT_SUPPORTED`, because that is what the V2
+manifest as `ORION-14.H3.V2`, still `NOT_SUPPORTED`, because that is what the V2
 construction produced.
 
 **A measurement that could have come out either way now exists.**
@@ -47,7 +47,7 @@ off-claim `BLOCK`/`PROMOTE` axes remain disclosed; this is not a whole-register
 pass.
 
 This addendum is not a new independent audit. `audit_subject_revision` and
-`audit_date` in `MANIFEST.json` are unchanged, and `P4.PDF` remains **OPEN**.
+`audit_date` in `MANIFEST.json` are unchanged, and `ORION-14.PDF` remains **OPEN**.
 
 The V2-scoped documents around this package are left as they are, on purpose.
 `JOURNAL_READINESS.md` is a frozen V2 integrity input — `tests/unit/p4/test_partial_evidence_acquisition_v2.py`
@@ -91,7 +91,7 @@ the PDF as covering it.
 
 **What this does not establish.** This is a render and a mechanical content
 audit by the same session that packaged it — not an independent proofread. The
-`P4.PDF` claim above stays **OPEN** until an independent final proofread of this
+`ORION-14.PDF` claim above stays **OPEN** until an independent final proofread of this
 exact file (by hash) is recorded. `audit_subject_revision` and `audit_date` in
 `MANIFEST.json` are unchanged; the render binding lives in
 `MANIFEST.json` under `pdf_render_binding`.
@@ -121,7 +121,7 @@ confirms the abstract now carries "paired difference 1.0, 95% CI [1.0, 1.0]"
 together with "selects it on 15/30, so the margin against that mechanism is
 0.5" in the same paragraph. Page count is unchanged at 26. The engine-honesty
 and independence caveats of the first addendum apply unchanged: local tectonic
-render, same-session mechanical audit, `P4.PDF` stays OPEN pending an
+render, same-session mechanical audit, `ORION-14.PDF` stays OPEN pending an
 independent proofread of this exact file (by hash).
 
-The local 26-page render and same-session mechanical audit are recorded separately as `P4.LOCAL_RENDER` = **BOUNDED**. They do not satisfy `P4.PDF` or create a submission package.
+The local 26-page render and same-session mechanical audit are recorded separately as `ORION-14.LOCAL_RENDER` = **BOUNDED**. They do not satisfy `ORION-14.PDF` or create a submission package.

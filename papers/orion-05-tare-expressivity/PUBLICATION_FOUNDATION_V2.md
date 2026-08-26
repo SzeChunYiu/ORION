@@ -1,6 +1,6 @@
-# Q1 publication foundation V2 — evidence-first closure
+# ORION-01 publication foundation V2 — evidence-first closure
 
-**Paper:** ORION-Q1 — Shared-Tag TARE expressivity  
+**Paper:** ORION-ORION-01 — Shared-Tag TARE expressivity  
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 **Method:** `researchwrite` foundation → `nature-writing` reconstruction → `nature-reviewer` closure  
 **Status:** `FOUNDATION_REBUILT__MANUSCRIPT_REWRITE_REQUIRED`
@@ -11,13 +11,13 @@
 The frozen R6M shared-one-bit-Tag three-block TARE grammar under the frozen raw support-count objective, together with the exact unrestricted dynamic-programming referee and explicitly defined restricted compilation families.
 
 ### Publication claim ceiling
-Q1 may claim exact theorems and exact counterexamples **only within the grammar/objective named by their receipts**. It may report finite-domain regime predicates, chemistry panels and prospective fresh-subject tests at their recorded scope. It must not claim R6 compiled-resource novelty, full-circuit quantum advantage, other objectives, other grammars, or universal closed-form regime completeness.
+ORION-01 may claim exact theorems and exact counterexamples **only within the grammar/objective named by their receipts**. It may report finite-domain regime predicates, chemistry panels and prospective fresh-subject tests at their recorded scope. It must not claim R6 compiled-resource novelty, full-circuit quantum advantage, other objectives, other grammars, or universal closed-form regime completeness.
 
 ### Cross-paper ownership
-- Q1 owns the TARE expressivity mathematics: support-dominance statements, exact coupling counterexamples, the R6S all-`n` support-two theorem, and the finite/prospective TARE evidence needed to understand those results.
-- QG1 owns the later cross-family concept of compilation regime geometry, additional regime-family discovery, objective dependence, boundary complexity and field-level synthesis.
-- QG2 owns certification/forecast authority decomposition, prospective forecast refutation and forecaster repair.
-- Q2 owns the negative-result recovery methodology, not Q1's mathematical novelty.
+- ORION-01 owns the TARE expressivity mathematics: support-dominance statements, exact coupling counterexamples, the R6S all-`n` support-two theorem, and the finite/prospective TARE evidence needed to understand those results.
+- ORION-09 owns the later cross-family concept of compilation regime geometry, additional regime-family discovery, objective dependence, boundary complexity and field-level synthesis.
+- ORION-10 owns certification/forecast authority decomposition, prospective forecast refutation and forecaster repair.
+- ORION-02 owns the negative-result recovery methodology, not ORION-01's mathematical novelty.
 
 ### Explicit nonclaims
 - no claim that two elementary trades are complete for all `n`;
@@ -30,7 +30,7 @@ Q1 may claim exact theorems and exact counterexamples **only within the grammar/
 
 The following are immutable facts at this publication cut.
 
-1. **Donor ownership.** TARE is donor-owned; Q1's contribution starts after the primitive and donor compilation identities are granted first right of refusal.
+1. **Donor ownership.** TARE is donor-owned; ORION-01's contribution starts after the primitive and donor compilation identities are granted first right of refusal.
 2. **Local support-dominance evidence.** The R6N support-dominance checks report zero violations over their complete stated local domains, including 536,870,912 R6M configurations, 175,616 letterwise F3 configurations and 150,994,944 R6I configurations.
 3. **Trade I exact counterexample.** Weight-one common-anchor closure is false: the registered `n2_b` instance has exact optimum 8 versus donor-family cost 9, explained by Tag-anchor splitting.
 4. **Trade II exact counterexample.** The D+ family is not closed: registered structured-`n=2` instance 16 has exact optimum 5 versus D+ cost 6, realized by the frame-for-Tag borrow.
@@ -74,7 +74,7 @@ TARE exposes a large joint compilation design space. A natural donor-restricted 
 **How much auxiliary support is intrinsically required for an exact optimum in the frozen shared-Tag TARE grammar, and what do exact counterexamples reveal about the failure of simpler restricted families?**
 
 ### Central answer
-The donor's weight-one restrictions are not closed: two explicit coupling mechanisms already produce exact counterexamples. Nevertheless, the unrestricted optimum never needs frame support above two under the frozen raw support objective. This is an all-`n` theorem. Within that support-two world, simple closed-form regime classifiers can still fail; later companion work finds additional support-two configurations, so Q1 deliberately separates the exact support theorem from incomplete regime-family classification.
+The donor's weight-one restrictions are not closed: two explicit coupling mechanisms already produce exact counterexamples. Nevertheless, the unrestricted optimum never needs frame support above two under the frozen raw support objective. This is an all-`n` theorem. Within that support-two world, simple closed-form regime classifiers can still fail; later companion work finds additional support-two configurations, so ORION-01 deliberately separates the exact support theorem from incomplete regime-family classification.
 
 ### Evidence dependency
 1. Define donor grammar/objective and exact referee.
@@ -89,7 +89,7 @@ The donor's weight-one restrictions are not closed: two explicit coupling mechan
 
 ### Strongest alternative interpretations
 - **"This is only donor heuristic tuning."** Response: the headline is an exact all-`n` support theorem plus exact minimal counterexamples, not a heuristic score improvement.
-- **"The two trades are the real theorem."** False: later QG evidence refutes two-trade completeness; Q1 must not make that claim.
+- **"The two trades are the real theorem."** False: later QG evidence refutes two-trade completeness; ORION-01 must not make that claim.
 - **"The all-`n` theorem proves a closed form."** False: it proves the optimum lies in D++, not that a small named union of subfamilies is complete.
 - **"Chemistry success proves practical quantum advantage."** False: the chemistry rows are frozen compiler-cost evidence only.
 
@@ -173,7 +173,7 @@ For this TARE grammar/objective, **support two is an exact all-`n` expressivity 
 ## Expert reconciliation
 
 ### Quantum compilation theorist
-Retain the R6S all-`n` support theorem as Q1's main contribution. Demote all closed-form trade counts to family-specific characterization. QG7 is a refinement inside D++, not a contradiction.
+Retain the R6S all-`n` support theorem as ORION-01's main contribution. Demote all closed-form trade counts to family-specific characterization. QG7 is a refinement inside D++, not a contradiction.
 
 ### Exact-algorithms / formal-methods reviewer
 The theorem scope must quote the R6S grammar/objective boundary exactly. Finite equality receipts cannot be promoted to theorem status; exact counterexamples may refute only the claim whose domain contains them.
@@ -185,7 +185,7 @@ R6R 15/15 remains valid prospective evidence even though later work finds a diff
 Do not manufacture inferential statistics around exhaustive theorem checks or exact counterexamples. Panel proportions and timing are descriptive unless a stochastic sampling design supplies a valid inferential unit.
 
 ### Novelty / journal editor
-The manuscript becomes stronger if it stops selling a brittle two-trade taxonomy and instead sells the exact support ceiling plus counterexample-driven structural understanding. Keep QG1's cross-family field synthesis out of Q1 to prevent self-overlap.
+The manuscript becomes stronger if it stops selling a brittle two-trade taxonomy and instead sells the exact support ceiling plus counterexample-driven structural understanding. Keep ORION-09's cross-family field synthesis out of ORION-01 to prevent self-overlap.
 
 ## Next gate
 

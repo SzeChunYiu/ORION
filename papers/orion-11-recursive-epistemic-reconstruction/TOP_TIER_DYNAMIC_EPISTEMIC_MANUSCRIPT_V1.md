@@ -1,4 +1,4 @@
-# P1 Top-Tier Dynamic-Epistemic Manuscript V1
+# ORION-11 Top-Tier Dynamic-Epistemic Manuscript V1
 
 ## Candidate title
 
@@ -7,7 +7,7 @@
 ```text
 status = RESULT_LEDGER_BOUND__PROTECTED_CUSTODY_BLOCKED
 paper_authority_delta = NONE
-job = P1-DES-01
+job = ORION-11-DES-01
 ```
 
 ## Abstract
@@ -16,15 +16,15 @@ Scientific agents often react to failure by searching longer, reflecting again, 
 
 ## Theory
 
-- `P1-T1 Responsibility identifiability`: exact recovery iff the visible transcript separates responsibility worlds.
-- `P1-T2 Minimum discriminator`: the smallest adequate intervention panel is a minimum separating family.
-- `P1-T3 Minimal repair`: adequate reconstruction covers every load-bearing obstruction; minimum repair is weighted set cover.
-- `P1-T4 Selective reopening`: a claim reopens iff every complete support family intersects a changed coordinate.
-- `P1-T5 Protected adoption`: diagnosis and proposal cannot authorize themselves; fresh transfer, protected assurance, retained negatives, and external adoption are required.
+- `ORION-11-T1 Responsibility identifiability`: exact recovery iff the visible transcript separates responsibility worlds.
+- `ORION-11-T2 Minimum discriminator`: the smallest adequate intervention panel is a minimum separating family.
+- `ORION-11-T3 Minimal repair`: adequate reconstruction covers every load-bearing obstruction; minimum repair is weighted set cover.
+- `ORION-11-T4 Selective reopening`: a claim reopens iff every complete support family intersects a changed coordinate.
+- `ORION-11-T5 Protected adoption`: diagnosis and proposal cannot authorize themselves; fresh transfer, protected assurance, retained negatives, and external adoption are required.
 
 ## Better model
 
-P1 stores the evolving obstruction/repair state rather than a terminal such as `BLOCKED`. The controller first tests information, responsibility, representation, method, and resource hypotheses, then alters only the first unsupported layer. Counterexamples are retained as future proposal constraints.
+ORION-11 stores the evolving obstruction/repair state rather than a terminal such as `BLOCKED`. The controller first tests information, responsibility, representation, method, and resource hypotheses, then alters only the first unsupported layer. Counterexamples are retained as future proposal constraints.
 
 ## Nearest-work absorption and novelty
 
@@ -32,7 +32,7 @@ Absorb model-based debugging, causal diagnosis, abductive reasoning, scientific 
 
 ## Decisive computation
 
-`P1-DES-01`: full ScienceAgentBench plus hidden/counterfactual reformulation tasks. Primary vector: responsible-layer accuracy, solve-rate gain, wrong-layer interventions, decisive-evidence cost, harmful reopening, adoption false positives. Intended positive terminal: `RESPONSIBILITY_CONDITIONED_MINIMAL_RECONSTRUCTION_PROSPECTIVELY_SUPPORTED`.
+`ORION-11-DES-01`: full ScienceAgentBench plus hidden/counterfactual reformulation tasks. Primary vector: responsible-layer accuracy, solve-rate gain, wrong-layer interventions, decisive-evidence cost, harmful reopening, adoption false positives. Intended positive terminal: `RESPONSIBILITY_CONDITIONED_MINIMAL_RECONSTRUCTION_PROSPECTIVELY_SUPPORTED`.
 
 
 **Comparator contract.** The frozen comparison against one-shot, reflection, no-reconstruction, and donor-complete diagnosis agents was planned but unexecuted because protected ScienceAgentBench and fresh counterfactual custody inputs were unavailable.

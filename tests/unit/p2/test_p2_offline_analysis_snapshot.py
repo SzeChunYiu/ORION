@@ -15,7 +15,7 @@ from orion.study.p2.offline_analysis import (
 )
 from orion.study.p2.offline_systems import ALL_SYSTEMS
 
-PAPER = Path("papers/paper-02-open-world-scientific-discovery")
+PAPER = Path("papers/orion-12-open-world-scientific-discovery")
 MANIFEST = PAPER / "protocol" / "OFFLINE_RUN_MANIFEST_V1.json"
 MANIFEST_SHA = PAPER / "protocol" / "OFFLINE_RUN_MANIFEST_V1.sha256"
 EXPECTED = PAPER / "evidence" / "offline_results" / "RESULTS_SUMMARY_V1.json"

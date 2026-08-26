@@ -47,9 +47,9 @@ LOAD_BEARING = (
     "papers/orion-learning-machine/experiments/phase0_solver_ecology/run.py",
     "papers/orion-learning-machine/experiments/phase2_real_source/run_phase2a.py",
     "papers/orion-learning-machine/VERIFY_LOCAL_CLOSURE_V2.sh",
-    "papers/paper-xx-content-bound-math-evaluation/benchmark/corpus/"
+    "papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/benchmark/corpus/"
     "mathlib4_e72c1e277f31/lean-toolchain",
-    "papers/paper-xx-content-bound-math-evaluation/benchmark/native/lean_readlink_self.c",
+    "papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/benchmark/native/lean_readlink_self.c",
 )
 
 #: Was 20, measured 2026-08-21; the ratchet said enrolling a file may only lower
@@ -206,7 +206,7 @@ def test_the_declared_scope_can_never_be_narrower_than_the_generator_enrols() ->
         for path in shipped.shipped_generator_enrolment(REPO_ROOT) - scope
     }
     assert outside == {
-        "papers/paper-08-epistemic-authority-autonomous-science/benchmark/"
+        "papers/orion-18-epistemic-authority-autonomous-science/benchmark/"
         "P9_GOVERNED_CAPABILITY_COMPANION.md",
         "papers/candidates/P6_P10_ISSUE_RECONCILIATION_2026-08-18.md",
     }
@@ -240,12 +240,12 @@ def test_the_published_count_is_mostly_a_vendored_lean_checkout() -> None:
 def test_the_active_p10_identity_carries_no_binding_at_all() -> None:
     """Everything bound belongs to a predecessor or to a shared lane.
 
-    ``papers/paper-10-structured-problem-solving/`` is P10's registered active
+    ``papers/orion-20-structured-problem-solving/`` is P10's registered active
     directory in ``PAPER_DIRECTORIES``. Its single file is named by none of the
     three digest files.
     """
 
-    active = REPO_ROOT / "papers" / "paper-10-structured-problem-solving"
+    active = REPO_ROOT / "papers" / "orion-20-structured-problem-solving"
     files = {path.resolve() for path in active.rglob("*") if path.is_file()}
     assert files, "the active P10 directory is empty; this test has lost its subject"
     named: set[Path] = set()

@@ -20,8 +20,8 @@ Use these words consistently:
 ### Support terminology
 - **support ceiling** = proven upper bound when tightness is not established;
 - **intrinsic support number `kappa`** = smallest proven sufficient support with lower-bound/infeasibility tightness evidence;
-- R6M Q1: all-n support ceiling <=2; do not silently call it intrinsic `kappa=2` unless an independent support1 impossibility result is authorized for the same grammar/objective;
-- R6I QG1 V3: exact `kappa_R6I=1` because support1 sufficiency + support0 infeasibility are both committed.
+- R6M ORION-01: all-n support ceiling <=2; do not silently call it intrinsic `kappa=2` unless an independent support1 impossibility result is authorized for the same grammar/objective;
+- R6I ORION-09 V3: exact `kappa_R6I=1` because support1 sufficiency + support0 infeasibility are both committed.
 
 ### Objective-phase terminology
 - **certificate/proof-validity cone** for QG16;
@@ -36,7 +36,7 @@ Use these words consistently:
 - until an authorized licence is selected, use **publicly inspectable source/repository**, not “ORION is open source.”
 - third-party DUCC data are referenced by source repository/commit/blob; do not imply redistribution rights.
 
-## Q1 final-manuscript sweep
+## ORION-01 final-manuscript sweep
 
 Final target draft: `MANUSCRIPT_V3.md`.
 
@@ -55,7 +55,7 @@ Final target draft: `MANUSCRIPT_V3.md`.
 - add Data/Code Availability text from portfolio audit;
 - include theorem/referee map as table or supplementary manifest.
 
-## Q2 final-manuscript sweep
+## ORION-02 final-manuscript sweep
 
 Current draft: `MANUSCRIPT_V2.md`; publication V3 recommended after graph-validation/benchmark-reference insertion.
 
@@ -72,13 +72,13 @@ Current draft: `MANUSCRIPT_V2.md`; publication V3 recommended after graph-valida
 - if claiming *complete* eligible-transition coverage, add a machine-generated inventory that maps the programme receipt index to inclusion/exclusion reasons; otherwise use “declared publication graph,” not “complete graph”;
 - do not claim the method improves research quality/speed without a controlled policy comparison.
 
-## Q3 final-manuscript sweep
+## ORION-03 final-manuscript sweep
 
 Current manuscript remains V1 plus V2 foundation/prospective protocol; **no final V2/V3 results manuscript is authorized yet**.
 
 ### Closed corrections
 - benchmark parents separated: ScienceAgentBench, AstaBench, SciAgentArena, MLGym.
-- Q3 object stated as pre-outcome inter-instrument diagnosis/agreement on unresolved frontier questions with deferred scoring, not generic task benchmarking.
+- ORION-03 object stated as pre-outcome inter-instrument diagnosis/agreement on unresolved frontier questions with deferred scoring, not generic task benchmarking.
 - two additional prospective questions are frozen without fabricated Lane A/B results.
 
 ### `BLOCKING`
@@ -90,7 +90,7 @@ Current manuscript remains V1 plus V2 foundation/prospective protocol; **no fina
 
 No language polish can close these scientific gates.
 
-## Q4 final-manuscript sweep
+## ORION-04 final-manuscript sweep
 
 Current draft: `MANUSCRIPT_V2.md`; publication V3 recommended for current-donor terminology.
 
@@ -100,15 +100,15 @@ Current draft: `MANUSCRIPT_V2.md`; publication V3 recommended for current-donor 
 - information-parity artifact defines matched visible serialized facts.
 
 ### `MUST_EDIT_FINAL`
-- distinguish **STALE-style memory invalidation** (later evidence conflicts with remembered state) from Q4 N4-B **scope invalidation** (a previously valid failure receipt's dependency coordinates changed);
-- credit ContextNest/provenance/version governance as donor infrastructure; Q4 asks how typed/scoped facts change decisions, not how to build the context store;
-- explicitly separate Q4 bounded experiment from P13's general responsibility-scoped sufficiency theory;
+- distinguish **STALE-style memory invalidation** (later evidence conflicts with remembered state) from ORION-04 N4-B **scope invalidation** (a previously valid failure receipt's dependency coordinates changed);
+- credit ContextNest/provenance/version governance as donor infrastructure; ORION-04 asks how typed/scoped facts change decisions, not how to build the context store;
+- explicitly separate ORION-04 bounded experiment from ORION-23's general responsibility-scoped sufficiency theory;
 - do not pool six worlds into one effect/p value;
 - use `2.3x` N4-C ratio only beside absolute regrets;
 - N4-D 200 hostile/200 honest chains are a constructed finite battery, not a population security estimate;
 - call LLM proxy arms deterministic heuristics, never real LLM measurements.
 
-## QG1 final-manuscript sweep
+## ORION-09 final-manuscript sweep
 
 Final target draft: `MANUSCRIPT_V3.md` on refresh cut `c5ba39f...`.
 
@@ -127,7 +127,7 @@ Final target draft: `MANUSCRIPT_V3.md` on refresh cut `c5ba39f...`.
 - add exact citations to ISA/Rice and donor compiler families;
 - preserve different authority types in the cross-family table; no pooled family success rate.
 
-## QG2 final-manuscript sweep
+## ORION-10 final-manuscript sweep
 
 Current draft: `MANUSCRIPT_V2.md`; publication V3 recommended to foreground current static-analysis donor language.
 
@@ -148,12 +148,12 @@ Current draft: `MANUSCRIPT_V2.md`; publication V3 recommended to foreground curr
 
 | Object | Owner paper | Neighbor nonclaim |
 |---|---|---|
-| R6M all-n support2 expressivity | Q1 | QG1 cites as one regime-geometry case |
-| negative-result successor governance | Q2 | Q3 is measurement benchmark, not governance method |
-| frontier dual-instrument agreement | Q3 | Q2/QG outcomes supply deferred cases only |
-| matched-information typed/scoped state experiments | Q4 | P13 owns general responsibility-scoped sufficiency theory |
-| cross-family regime-geometry framework | QG1 | Q1/QG2 own detailed theorem/forecast objects |
-| layered static forecast certificate + refutation/repair | QG2 | QG1 may use as regime-geometry example only |
+| R6M all-n support2 expressivity | ORION-01 | ORION-09 cites as one regime-geometry case |
+| negative-result successor governance | ORION-02 | ORION-03 is measurement benchmark, not governance method |
+| frontier dual-instrument agreement | ORION-03 | ORION-02/QG outcomes supply deferred cases only |
+| matched-information typed/scoped state experiments | ORION-04 | ORION-23 owns general responsibility-scoped sufficiency theory |
+| cross-family regime-geometry framework | ORION-09 | ORION-01/ORION-10 own detailed theorem/forecast objects |
+| layered static forecast certificate + refutation/repair | ORION-10 | ORION-09 may use as regime-geometry example only |
 
 ## Submission-language cleanup pass
 
@@ -167,9 +167,9 @@ After the `MUST_EDIT_FINAL` scientific/content changes above, then apply sentenc
 
 ## Sweep status
 
-- Q1 V3: content-consistency pass complete; target package/citations/figures remain.
-- Q2 V2: requires graph-denominator wording + benchmark citations before final polish.
-- Q3: scientific BLOCK remains.
-- Q4 V2: current-donor terminology update required before final polish.
-- QG1 V3: freshness/content consistency complete; updated figures + target-aware review remain.
-- QG2 V2: static-analysis donor integration required before final polish.
+- ORION-01 V3: content-consistency pass complete; target package/citations/figures remain.
+- ORION-02 V2: requires graph-denominator wording + benchmark citations before final polish.
+- ORION-03: scientific BLOCK remains.
+- ORION-04 V2: current-donor terminology update required before final polish.
+- ORION-09 V3: freshness/content consistency complete; updated figures + target-aware review remain.
+- ORION-10 V2: static-analysis donor integration required before final polish.

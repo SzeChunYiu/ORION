@@ -29,9 +29,9 @@ FORBIDDEN_P13_PHRASES = (
 )
 
 ROOT = Path(__file__).resolve().parents[2]
-P13 = ROOT / "papers/paper-13-responsibility-carrying-state"
-P14 = ROOT / "papers/paper-14-orion-rse"
-P15 = ROOT / "papers/paper-15-orion-research-harness"
+P13 = ROOT / "papers/orion-23-responsibility-carrying-state"
+P14 = ROOT / "papers/orion-24-orion-rse"
+P15 = ROOT / "papers/orion-25-orion-research-harness"
 
 
 def _text(path: Path) -> str:
@@ -352,9 +352,9 @@ def audit(root: Path | None = None) -> dict[str, Any]:
     global ROOT, P13, P14, P15  # noqa: PLW0603
     if root is not None:
         ROOT = root
-        P13 = ROOT / "papers/paper-13-responsibility-carrying-state"
-        P14 = ROOT / "papers/paper-14-orion-rse"
-        P15 = ROOT / "papers/paper-15-orion-research-harness"
+        P13 = ROOT / "papers/orion-23-responsibility-carrying-state"
+        P14 = ROOT / "papers/orion-24-orion-rse"
+        P15 = ROOT / "papers/orion-25-orion-research-harness"
 
     errors: list[str] = []
     for check in (

@@ -1,8 +1,8 @@
-# P7 necessity-scoping V2 frame protocol V1
+# ORION-17 necessity-scoping V2 frame protocol V1
 
 **Revival lane:** NR-10 (`research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md`)
-**Negative under revival:** `MATCH_IS_NOT_NECESSARY` (P7.V4.8 / P7-HIST-002 / ledger item
-`P7.MATCH_NECESSITY.HISTORICAL_LIMITATION`)
+**Negative under revival:** `MATCH_IS_NOT_NECESSARY` (ORION-17.V4.8 / ORION-17-HIST-002 / ledger item
+`ORION-17.MATCH_NECESSITY.HISTORICAL_LIMITATION`)
 **Pre-registration:** this file is committed before the verification script is executed. The
 frame, the theorems, the falsifiers and the decision rule below are frozen now. The script
 is run once; its output is reported whatever it says.
@@ -13,7 +13,7 @@ The registered mechanized frame
 (`src/orion/study/p7/composition_calculus_smt.py`, artifact
 `formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json`) has two layers:
 
-- **Checked layer.** `Match(a, b) := a = b \/ Bridge(a, b)` — P7's T5 test, an
+- **Checked layer.** `Match(a, b) := a = b \/ Bridge(a, b)` — ORION-17's T5 test, an
   *administrative* test over contract identity and the registered bridge table.
 - **Semantic layer.** `Total(t) <-> forall o. Demands(Tgt t, o) -> Demands(Src t, o) \/
   Discharged(t, o) \/ Fresh(t, o)`, with bridge soundness
@@ -40,7 +40,7 @@ pre-registered:
 - **Opaque scope (the registered default).** `obs(t, u) = (Tgt t, Src u, Bridge)` — the
   contract identities at the hand-off and the full registered bridge table. `Demands`,
   `Discharged`, `Fresh` and `Total` are **not admissible evidence**. This is the scope
-  P7's fail-closed rule actually operates in.
+  ORION-17's fail-closed rule actually operates in.
 - **Witness-aware scope.** `obs` additionally admits `Demands` restricted to the two
   hand-off contracts (equivalently: the containment predicate
   `forall o. Demands(Src u, o) -> Demands(Tgt t, o)`).
@@ -117,7 +117,7 @@ module) and then:
 - N2-E1 is **REFUTED** if any observation's sound-licenseability disagrees with
    registry-connectivity — in either direction. That would mean the opaque-scope
    characterization is wrong and the revival falls back to the claim-boundary artifact
-   alone (P7.V4.8 rewrite with the witness as the boundary exhibit, no new necessity
+   alone (ORION-17.V4.8 rewrite with the witness as the boundary exhibit, no new necessity
    claim).
 - N2-E2 is **REFUTED** if no observation separates match from connectivity, or if the
   match/connectivity agreement ever disagrees with component-completeness of `T`.
@@ -138,5 +138,5 @@ finding.
   `CONTAINMENT_IS_THE_EXACT_CONDITION`) is re-verified verbatim; nothing is weakened.
 - The V1 witness is preserved as evidence and re-exhibited (N2-A); the V2 reading names
   it the *price of the evidence boundary* rather than retracting it.
-- The negative-null-history record `P7-HIST-002` stays immutable; this lane adds a
+- The negative-null-history record `ORION-17-HIST-002` stays immutable; this lane adds a
   scoped successor reading, it does not relabel the negative.

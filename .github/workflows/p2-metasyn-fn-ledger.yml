@@ -41,7 +41,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p /tmp/metasyn-fn
-          python papers/paper-02-open-world-scientific-discovery/scripts/derive_metasyn_fn_ledger.py \
+          python papers/orion-12-open-world-scientific-discovery/scripts/derive_metasyn_fn_ledger.py \
             --evaluation /tmp/metasyn-source/official_evaluation.json \
             --dataset THUIR/MetaSyn \
             --dataset-revision c8fa07d89c44093d623f9a213c6bf070f40ab960 \
@@ -55,7 +55,7 @@ jobs:
           from pathlib import Path
 
           generated = json.loads(Path('/tmp/metasyn-fn/METASYN_SCREENING_FN_LEDGER_V1.json').read_text())
-          committed = json.loads(Path('papers/paper-02-open-world-scientific-discovery/evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json').read_text())
+          committed = json.loads(Path('papers/orion-12-open-world-scientific-discovery/evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json').read_text())
           if committed != generated:
               raise SystemExit('committed MetaSyn FN ledger differs from fresh evaluator-side derivation')
           print('METASYN_FN_LEDGER_SNAPSHOT=GREEN')

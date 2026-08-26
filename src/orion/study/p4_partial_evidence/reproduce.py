@@ -12,7 +12,7 @@ FOLLOWUP_PROTOCOL_ID = "P4.partial-evidence-acquisition.v2"
 FROZEN_P4_CAMPAIGN_ID = "P4.protected-authority.v2"
 
 _REPO = Path(__file__).resolve().parents[4]
-_P4 = _REPO / "papers" / "paper-04-verified-scientific-discovery"
+_P4 = _REPO / "papers" / "orion-14-verified-scientific-discovery"
 _METRICS = _P4 / "evidence" / "protected_v2" / "PUBLICATION_METRICS_V2.json"
 _FAMILY = _P4 / "evidence" / "protected_v2" / "FAMILY_CONTRAST_V2.json"
 _READINESS = _P4 / "JOURNAL_READINESS.md"

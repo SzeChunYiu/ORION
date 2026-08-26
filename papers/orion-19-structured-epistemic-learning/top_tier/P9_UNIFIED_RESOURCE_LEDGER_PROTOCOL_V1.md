@@ -1,13 +1,13 @@
-# P9 unified I/A/C/M resource-ledger protocol V1
+# ORION-19 unified I/A/C/M resource-ledger protocol V1
 
 **Programme:** #977  
-**Role:** post-outcome accounting completion for already-frozen P9 intervention studies; this protocol may not change any scientific outcome, quality target, intervention choice or protected disposition.
+**Role:** post-outcome accounting completion for already-frozen ORION-19 intervention studies; this protocol may not change any scientific outcome, quality target, intervention choice or protected disposition.
 
 ## Purpose
 
-P9's higher claim separates semantic information (`I`), representation accessibility (`A`), downstream computation (`C`) and access/model mechanism (`M`). The scientific comparisons are not publication-ready if one intervention appears cheaper only because transformation, fit, model-state or inference work is omitted.
+ORION-19's higher claim separates semantic information (`I`), representation accessibility (`A`), downstream computation (`C`) and access/model mechanism (`M`). The scientific comparisons are not publication-ready if one intervention appears cheaper only because transformation, fit, model-state or inference work is omitted.
 
-This accounting pass therefore binds a common **vector schema** to the frozen P9 causal-diagnostic cells. It explicitly forbids a post-hoc scalar cost across heterogeneous domains.
+This accounting pass therefore binds a common **vector schema** to the frozen ORION-19 causal-diagnostic cells. It explicitly forbids a post-hoc scalar cost across heterogeneous domains.
 
 ## Frozen source authority
 
@@ -19,7 +19,7 @@ The accounting script must reproduce the exact train/probe/protected splits and 
 - protected causal gold;
 - predicted intervention;
 - the `D-A` protected `CANNOT_CHECK` cell;
-- the Qwen negative or earlier P9 results.
+- the Qwen negative or earlier ORION-19 results.
 
 ## Unified vector
 
@@ -50,7 +50,7 @@ The ledger must explicitly mark whether an intervention changes semantic informa
 
 ## Matchability rule
 
-Comparisons are reported as vectors or constrained slices. P9 may say one intervention uses less of a named coordinate only when every other materially relevant changed coordinate is shown. It may not derive a universal scalar ranking from these proxies.
+Comparisons are reported as vectors or constrained slices. ORION-19 may say one intervention uses less of a named coordinate only when every other materially relevant changed coordinate is shown. It may not derive a universal scalar ranking from these proxies.
 
 ## Positive accounting terminal
 
@@ -66,4 +66,4 @@ Comparisons are reported as vectors or constrained slices. P9 may say one interv
 - deterministic replay;
 - a second checker verifies vector completeness and the information-preservation constraints from the emitted ledger.
 
-A GREEN terminal closes accounting completeness for the bounded P9 causal-diagnostic headline only. It does not establish that heterogeneous resource coordinates admit one universal exchange rate.
+A GREEN terminal closes accounting completeness for the bounded ORION-19 causal-diagnostic headline only. It does not establish that heterogeneous resource coordinates admit one universal exchange rate.

@@ -1,8 +1,8 @@
-# Q3 additional prospective benchmark instances — protocol V1
+# ORION-03 additional prospective benchmark instances — protocol V1
 
 **Frozen:** 2026-08-21  
 **Publication-cut evidence base:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
-**Purpose:** satisfy Q3's pre-existing requirement for 2–3 additional unresolved-frontier instances without retrospective scoring.  
+**Purpose:** satisfy ORION-03's pre-existing requirement for 2–3 additional unresolved-frontier instances without retrospective scoring.  
 **Authority:** protocol only; no scientific or publication positive follows until both lanes execute and deferred outcomes later exist.
 
 ## 1. Global contract
@@ -24,7 +24,7 @@ No agreement, alignment, or number of matching cases confers authority on the un
 
 ---
 
-# Instance Q3-V1 — QG-7d last-link diagnosis
+# Instance ORION-03-V1 — QG-7d last-link diagnosis
 
 ## Frozen unresolved state
 
@@ -77,7 +77,7 @@ The later outcome may support multiple secondary interpretations; primary alignm
 
 ---
 
-# Instance Q3-V2 — QG-15c StabPrep boundary representation
+# Instance ORION-03-V2 — QG-15c StabPrep boundary representation
 
 ## Frozen unresolved state
 
@@ -144,4 +144,4 @@ All files must bind exact input/result digests and report intervention/anomaly h
 
 ## 3. Series reporting rule
 
-The final Q3 paper reports V0, V1 and V2 together. If only one of V1/V2 executes validly before submission, the manuscript remains a benchmark-definition/case-series paper and states the missing instance. No denominator is reduced by deleting disagreement, `CANNOT_CHECK`, or an unaligned deferred outcome.
+The final ORION-03 paper reports V0, V1 and V2 together. If only one of V1/V2 executes validly before submission, the manuscript remains a benchmark-definition/case-series paper and states the missing instance. No denominator is reduced by deleting disagreement, `CANNOT_CHECK`, or an unaligned deferred outcome.

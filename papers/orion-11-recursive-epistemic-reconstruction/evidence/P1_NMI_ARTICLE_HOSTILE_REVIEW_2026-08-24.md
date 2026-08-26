@@ -24,7 +24,7 @@ below are same-context lenses, not mutually blind external reviews.
 
 ## NMI criteria card
 
-| Criterion | NMI Article contract | Current P1 readout |
+| Criterion | NMI Article contract | Current ORION-11 readout |
 |---|---|---|
 | Abstract | at most 150 words, unreferenced | **Pass: 146 words** |
 | Main text | at most 3,500 words, excluding abstract, Methods, references and legends | **Fail: about 14.0k words**. A conservative core-section audit gives 13,992 words after excluding the explicit historical Methods file, availability, references and display environments; exact allocation may change the count but not the fourfold mismatch |
@@ -39,7 +39,7 @@ below are same-context lenses, not mutually blind external reviews.
 **Posture:** `central_case_requires_new_decisive_evidence` plus
 `scope_or_article_type_mismatch`.
 
-P1 contains a coherent finite mechanism claim: typed
+ORION-11 contains a coherent finite mechanism claim: typed
 responsibility-to-authority licensing matters on registered mechanical worlds
 and authored exact contracts, while an information-equivalent product ties.
 The manuscript also preserves the historical failed broad hypothesis. These are
@@ -73,7 +73,7 @@ cases.
 #### R1-M2. The historical H1 must remain negative and separate
 
 The historical test set has 48 cases (the full authored suite is 18 pilot plus
-48 test, hence 66 total). P1.H1 remains `NOT_SUPPORTED`: the subject and
+48 test, hence 66 total). ORION-11.H1 remains `NOT_SUPPORTED`: the subject and
 strongest matched baseline each achieve 1/48 root successes, the study is
 underpowered, and template/path shortcuts affect 33/66 authored cases. The
 v2.2.4 successor is narrower and cannot supersede or pool with H1.

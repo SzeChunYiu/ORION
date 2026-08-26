@@ -1,12 +1,12 @@
-# P15 — Scientific Execution Integrity
+# ORION-25 — Scientific Execution Integrity
 
-The installable P15 evaluator is composed with Q3's typed frontier records in
+The installable ORION-25 evaluator is composed with ORION-03's typed frontier records in
 `../P15_Q3_SHARED_INSTRUMENT_PACKAGE_V1.json`. This is an in-repository 0.1.0
 release candidate under Apache-2.0, not an external release or a new scientific
 result. Independent replay, public runtime evidence and site independence remain
 `CANNOT_CHECK`.
 
-**Stable ID:** ORION-P15  
+**Stable ID:** ORION-ORION-25  
 **Paper issue:** #979  
 **Promotion programme:** #977  
 **Current lifecycle:** `BOUNDED_SCIENTIFIC_RESULT_EARNED`  
@@ -32,7 +32,7 @@ full valid workload is `0/11` chain-layer and `0/5` disposition-level. Evidence:
 Production Sigstore/in-toto-class comparator work, hardware-backed custody and
 production-scale characterization remain open; C15.5 superiority stays `CANNOT_CHECK`.
 
-P15 is the systems paper for **Scientific Execution Integrity (SEI)**: what execution receipts, provenance records, replay, lane agreement and cryptographic attestations can establish—and what they still cannot establish—about a scientific claim.
+ORION-25 is the systems paper for **Scientific Execution Integrity (SEI)**: what execution receipts, provenance records, replay, lane agreement and cryptographic attestations can establish—and what they still cannot establish—about a scientific claim.
 
 The core separation is:
 
@@ -74,7 +74,7 @@ Across 22 cases (18 hostile SEI cases + 4 real ORION workflow receipts):
 - real-receipt false promotion: **0**;
 - structurally independent implementation: GREEN.
 
-This establishes that P15's scientific-admission layer does not require a proprietary provenance format. Provenance carries execution facts; the separate scientific/authority record decides whether those facts license a claim.
+This establishes that ORION-25's scientific-admission layer does not require a proprietary provenance format. Provenance carries execution facts; the separate scientific/authority record decides whether those facts license a claim.
 
 ### 3. Chained Ed25519 attestation composition
 
@@ -117,17 +117,17 @@ This negative boundary is part of the result, not a defect to tune away.
 
 > At bounded scope, execution integrity, provenance representation, cryptographic attestation, scientific validity and claim authority are distinct layers. SEI prevents execution/replay/agreement evidence from self-authorizing science on the frozen fault corpus; that separation survives W3C PROV and RO-Crate/Workflow-Run transport; and a three-link Ed25519 chain detects the registered non-compromise tamper/replay attacks with zero observed false rejection while explicitly failing under full key compromise, where signature validity has no authority over fact truth.
 
-## What P15 does not own
+## What ORION-25 does not own
 
-P15 does not claim generic provenance, W3C PROV, RO-Crate, cryptographic signatures, content addressing or deterministic replay as new primitives. Those are donors.
+ORION-25 does not claim generic provenance, W3C PROV, RO-Crate, cryptographic signatures, content addressing or deterministic replay as new primitives. Those are donors.
 
-P15's residual object is the **scientific evidence-admission boundary above those primitives**: which execution facts are attributable/replayable/attested, which scientific validity/authority facts remain separate, and how failure of one layer is prevented from laundering into another.
+ORION-25's residual object is the **scientific evidence-admission boundary above those primitives**: which execution facts are attributable/replayable/attested, which scientific validity/authority facts remain separate, and how failure of one layer is prevented from laundering into another.
 
 ## Historical lifecycle
 
 The old lifecycle records are preserved and remain reproducible:
 
-- `P15_ACTIVE_CLAIM_AUTHORITY_V1.json` — methods-only state before a P15 protected result existed;
+- `P15_ACTIVE_CLAIM_AUTHORITY_V1.json` — methods-only state before a ORION-25 protected result existed;
 - `P15_ACTIVE_CLAIM_AUTHORITY_V2.json` — prospectively frozen acquisition state before protected execution;
 - `P15_ACTIVE_CLAIM_AUTHORITY_V3.json` — **current** bounded scientific authority after SEI + provenance interoperability + attestation composition.
 
@@ -146,7 +146,7 @@ The earlier `NO_SCIENTIFIC_RESULT` states are historical, not current. They are 
 - `top_tier/P15_INTEROP_LITERATURE_DELTA_2026-08-23.md`;
 - `top_tier/P15_NEAREST_WORK_DELTA_2026-08-23.md`.
 
-The shared P15+Q3 package surface is bound by
+The shared ORION-25+ORION-03 package surface is bound by
 `../P15_Q3_SHARED_INSTRUMENT_PACKAGE_V1.json`. It emits only `DECLARED_*`
 science labels from caller-supplied booleans and binds the complete execution
 record digest. Its Apache-2.0 expression is mechanically declared; rights-holder

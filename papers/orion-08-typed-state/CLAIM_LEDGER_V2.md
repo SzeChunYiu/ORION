@@ -1,4 +1,4 @@
-# Paper Q4 claim ledger V2 — typed epistemic state for scientific decisions
+# Paper ORION-04 claim ledger V2 — typed epistemic state for scientific decisions
 
 **Date:** 2026-08-22
 **Manuscript:** `MANUSCRIPT_V2.md`
@@ -15,7 +15,7 @@ V1's receipt-backed numerical claims remain valid within their exact-synthetic s
 | Q4V2-6 | N4-F3: typed remint/transport beats matched-budget re-derivation in the mixed regime, commits zero failures, and ties all correct arms exactly in the remint-unnecessary regime. | `N4_F3_REMINT_TRANSPORT_RESULTS.json` | EXACT-SYNTHETIC MECHANISM EVIDENCE |
 | Q4V2-7 | N1-C bounds policy novelty: typed scoped failure **state** improves over unscoped state, but the ideal VoI donor matches the allocation policy exactly. | `N1_C_COSTLY_VERIFICATION_RESULTS.json` | DONOR-BOUNDED POSITIVE |
 | Q4V2-8 | N2-F5B bounds crossover novelty: the stronger model-selection donor absorbs the original well-specified-world residual; candidate advantage remains only on the frozen misspecified world. | `N2_F5B_DONOR_COMPARISON_RESULTS.json` | MIXED / DONOR-ABSORBED ORIGINAL CLAIM |
-| Q4V2-9 | Current literature already contains typed/provenance-aware memory (e.g. MemIR), stale-memory benchmarks (STALE), and agentic VoI (ACL 2026). Q4 therefore makes no broad novelty claim for those primitives. | `NOVELTY_RESEARCH_2026-08-22.md` | RELATED-WORK BOUNDARY |
+| Q4V2-9 | Current literature already contains typed/provenance-aware memory (e.g. MemIR), stale-memory benchmarks (STALE), and agentic VoI (ACL 2026). ORION-04 therefore makes no broad novelty claim for those primitives. | `NOVELTY_RESEARCH_2026-08-22.md` | RELATED-WORK BOUNDARY |
 | Q4V2-10 | The residual synthesis is a hypothesis about **matched-information scientific decision state**: explicit applicability/provenance/uncertainty/transport/decision-role bindings can be load-bearing even when visible facts are held fixed. | synthesis of C1-C8 | MECHANISTIC INTERPRETATION, SYNTHETIC SCOPE |
 | Q4V2-11 | A prospective real-domain validation protocol is frozen for >=100 research-decision items across >=3 programmes, aiming for >=30 genuinely unresolved items if feasible. No result exists under it yet. | `TOP_TIER_UPGRADE_PROTOCOL_2026-08-22.md` | REGISTERED RESEARCH ONLY |
 

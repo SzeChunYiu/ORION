@@ -1,6 +1,6 @@
 # Q3 refinement round 2 — closure review on V3
 
-**Frozen manuscript:** `papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3_REFINED.md`  
+**Frozen manuscript:** `papers/orion-07-dual-instrument/MANUSCRIPT_V3_REFINED.md`  
 **Stretch after multi-item validation:** Nature Computational Science  
 **Potential fallback after multi-item validation:** npj Artificial Intelligence  
 **Current honest contribution:** benchmark-definition / research-instrument systems paper

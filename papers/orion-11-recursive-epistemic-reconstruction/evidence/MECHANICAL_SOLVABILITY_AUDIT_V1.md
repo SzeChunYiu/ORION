@@ -1,4 +1,4 @@
-# Mechanical Solvability Audit V1 — ORION-P1 hidden-shift suite
+# Mechanical Solvability Audit V1 — ORION-ORION-11 hidden-shift suite
 
 Machine-readable companion: `mechanical_solvability_audit_v1.json`.
 

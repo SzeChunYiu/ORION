@@ -3,7 +3,7 @@ name: p9-tmlr-pdf
 on:
   pull_request:
     paths:
-      - 'papers/paper-09-structured-epistemic-learning/**'
+      - 'papers/orion-19-structured-epistemic-learning/**'
       - 'research/extensions/p9-structured-neural/**'
       - 'src/orion/study/p9/**'
       - 'tests/test_p9_*.py'
@@ -35,10 +35,10 @@ jobs:
             texlive-latex-base texlive-latex-extra texlive-fonts-recommended \
             texlive-bibtex-extra lmodern poppler-utils
       - name: Build fail-closed TMLR PDF
-        run: bash papers/paper-09-structured-epistemic-learning/build_tmlr_pdf.sh
+        run: bash papers/orion-19-structured-epistemic-learning/build_tmlr_pdf.sh
       - name: PDF structural and anonymity smoke
         run: |
-          PDF=papers/paper-09-structured-epistemic-learning/manuscript/main.pdf
+          PDF=papers/orion-19-structured-epistemic-learning/manuscript/main.pdf
           test -s "$PDF"
           pdfinfo "$PDF" | tee /tmp/p9-pdfinfo.txt
           pdftotext "$PDF" /tmp/p9-paper.txt
@@ -58,8 +58,8 @@ jobs:
         with:
           name: p9-tmlr-pdf-${{ github.sha }}
           path: |
-            papers/paper-09-structured-epistemic-learning/manuscript/main.pdf
-            papers/paper-09-structured-epistemic-learning/manuscript/main.log
-            papers/paper-09-structured-epistemic-learning/evidence/OFFICIAL_EVIDENCE_SUMMARY_V1.json
-            papers/paper-09-structured-epistemic-learning/evidence/D1_PAIRED_EFFECTS_V1.json
+            papers/orion-19-structured-epistemic-learning/manuscript/main.pdf
+            papers/orion-19-structured-epistemic-learning/manuscript/main.log
+            papers/orion-19-structured-epistemic-learning/evidence/OFFICIAL_EVIDENCE_SUMMARY_V1.json
+            papers/orion-19-structured-epistemic-learning/evidence/D1_PAIRED_EFFECTS_V1.json
           if-no-files-found: error

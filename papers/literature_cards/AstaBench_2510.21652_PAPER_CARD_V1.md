@@ -39,26 +39,26 @@ Large controlled benchmark comparison. The main conclusion is that progress is u
 Scientific-agent evaluation requires controlled environment/tooling, strong baselines, cost awareness and task breadth; performance should be evaluated on standardized problems rather than anecdotal agent demos.
 
 ## 11. Conclusion boundaries
-AstaBench owns substantial territory in **task-grounded, controlled scientific-agent benchmarking**. It does not, from the source record inspected here, define Q3's proposed object: pre-outcome agreement between two differently governed research instruments on a frontier question that lacks available ground truth, followed by deferred scoring after independent research outcomes arrive.
+AstaBench owns substantial territory in **task-grounded, controlled scientific-agent benchmarking**. It does not, from the source record inspected here, define ORION-03's proposed object: pre-outcome agreement between two differently governed research instruments on a frontier question that lacks available ground truth, followed by deferred scoring after independent research outcomes arrive.
 
 ## 12. Author-stated limitations
 Not fully assessable from abstract record. Full paper must be read before asserting details about benchmark leakage, statistical methodology or specific task categories beyond primary metadata.
 
 ## 13. Critical analysis
-Q3 cannot claim novelty for reproducible research-agent tools, cost-controlled evaluation, strong baselines, holistic science tasks or standardized interfaces. Its residual must be **orthogonal to task-benchmark accuracy**: a prospective measurement of whether two instruments independently localize the same unresolved research responsibility/next move before the frontier resolves.
+ORION-03 cannot claim novelty for reproducible research-agent tools, cost-controlled evaluation, strong baselines, holistic science tasks or standardized interfaces. Its residual must be **orthogonal to task-benchmark accuracy**: a prospective measurement of whether two instruments independently localize the same unresolved research responsibility/next move before the frontier resolves.
 
 ## 14. Learned knowledge
-Q3 should present AstaBench as a parent/neighbor, not as an inferior benchmark. The distinction is the availability of ground truth and the unit of evaluation: benchmark task performance versus inter-instrument frontier diagnosis with deferred outcome evidence.
+ORION-03 should present AstaBench as a parent/neighbor, not as an inferior benchmark. The distinction is the availability of ground truth and the unit of evaluation: benchmark task performance versus inter-instrument frontier diagnosis with deferred outcome evidence.
 
 ## 15. Knowledge connections
-MLGym; SciAgentArena; AI Scientist; Q3 dual instrument; research process evaluation; deferred prediction/forecast scoring.
+MLGym; SciAgentArena; AI Scientist; ORION-03 dual instrument; research process evaluation; deferred prediction/forecast scoring.
 
 ## 16. Testable research ideas
-- Embed Q3 frontier questions as a new AstaBench-like task family once enough prospective cases exist.
+- Embed ORION-03 frontier questions as a new AstaBench-like task family once enough prospective cases exist.
 - Compare whether instrument agreement predicts eventual research disposition independently of task-level agent competence.
-- Use standardized Asta tools as a controlled Lane-A host while keeping Q3's authority rules unchanged.
+- Use standardized Asta tools as a controlled Lane-A host while keeping ORION-03's authority rules unchanged.
 
 ## ORION claim effect
-**Removed from Q3 novelty:** controlled/reproducible scientific-agent benchmarking, cost/tool matching, broad task suites.  
-**Q3 residual:** pre-outcome inter-instrument diagnosis/agreement on unresolved frontier questions with deferred receipt-bound scoring.  
+**Removed from ORION-03 novelty:** controlled/reproducible scientific-agent benchmarking, cost/tool matching, broad task suites.  
+**ORION-03 residual:** pre-outcome inter-instrument diagnosis/agreement on unresolved frontier questions with deferred receipt-bound scoring.  
 **Publication consequence:** a small prospective case series is mandatory; one V0 example cannot support reliability/generalization.

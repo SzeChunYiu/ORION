@@ -3,7 +3,7 @@ name: p12-verifier-resource-location-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/**'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/**'
       - '.github/workflows/p12-verifier-resource-location-v1.yml'
   workflow_dispatch:
 
@@ -19,10 +19,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Execute frozen verifier-backed resource-location study
-        run: python papers/paper-12-adaptive-state-reasoning/top_tier/run_verifier_resource_location_v1.py | tee p12_verifier_resource_location_v1.json
+        run: python papers/orion-22-adaptive-state-reasoning/top_tier/run_verifier_resource_location_v1.py | tee p12_verifier_resource_location_v1.json
       - name: Execute deterministic replay
         run: |
-          python papers/paper-12-adaptive-state-reasoning/top_tier/run_verifier_resource_location_v1.py > p12_verifier_resource_location_v1_rerun.json
+          python papers/orion-22-adaptive-state-reasoning/top_tier/run_verifier_resource_location_v1.py > p12_verifier_resource_location_v1_rerun.json
           cmp p12_verifier_resource_location_v1.json p12_verifier_resource_location_v1_rerun.json
           echo P12_VERIFIER_RESOURCE_LOCATION_V1_BYTE_REPLAY_GREEN
       - uses: actions/upload-artifact@v4

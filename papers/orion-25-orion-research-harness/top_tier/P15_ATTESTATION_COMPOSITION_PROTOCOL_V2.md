@@ -1,6 +1,6 @@
-# P15 cryptographic attestation chain-composition protocol V2
+# ORION-25 cryptographic attestation chain-composition protocol V2
 
-**Programme:** #977 / P15 issue #979
+**Programme:** #977 / ORION-25 issue #979
 **Purpose:** extend the V1 single-attestation study to **composed attestation chains** — multiple signed attestations (execution facts, environment facts, publication facts) in which each attestation signs the digest of the previous link — and measure which integrity properties compose, which attacks are detected, and which cannot be detected at this layer at all.
 
 ## Freeze chronology
@@ -15,9 +15,9 @@ For every case the composer emits exactly three links, each canonical JSON (`sor
 2. **environment link** — payload `{"role":"environment","previous_digest":d1,"facts":<declared environment record>}`;
 3. **publication link** — payload `{"role":"publication","previous_digest":d2,"facts":<publication record>}`.
 
-`GENESIS = sha256(b"P15-ATTESTATION-COMPOSITION-V2-GENESIS")`. `di = sha256(canonical({"payload":payload_i,"signature":sig_i_hex,"public_key_hex":pk_i_hex}))`: the chained digest covers the previous link's payload, signature **and** public key, so neither bytes nor key substitution can escape the chain.
+`GENESIS = sha256(b"ORION-25-ATTESTATION-COMPOSITION-V2-GENESIS")`. `di = sha256(canonical({"payload":payload_i,"signature":sig_i_hex,"public_key_hex":pk_i_hex}))`: the chained digest covers the previous link's payload, signature **and** public key, so neither bytes nor key substitution can escape the chain.
 
-Role keys are distinct per case and role, derived from `sha256(b"P15-ATTESTATION-COMPOSITION-V2-KEY-"+role+b"-"+case_id)` as fixed test-only seeds. This is a composition-semantics experiment, **not** a key-management or hardware-attestation claim.
+Role keys are distinct per case and role, derived from `sha256(b"ORION-25-ATTESTATION-COMPOSITION-V2-KEY-"+role+b"-"+case_id)` as fixed test-only seeds. This is a composition-semantics experiment, **not** a key-management or hardware-attestation claim.
 
 The declared environment record contains only fixture-declared constants (runner class label, OS image label, pinned Python version, tool id, input/output digests). The publication record contains claimed execution/occurrence identity, reap/finalization/cleanup/retry/coverage flags and a deterministic artifact URI. Runner-observed versions are recorded in the receipt as unsigned transport metadata only.
 

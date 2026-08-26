@@ -1,8 +1,8 @@
-# P8 native cross-system execution protocol V1
+# ORION-18 native cross-system execution protocol V1
 
-**Contract:** `P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`
+**Contract:** `ORION-18.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`
 **Date frozen:** 2026-08-24
-**Issue #1086 P8 box:** "Execute actual type-distinct native systems and ideal
+**Issue #1086 ORION-18 box:** "Execute actual type-distinct native systems and ideal
 typed-product baseline. Cover every ordered cross-system pair with clean and
 hostile cases." (DENIED-vs-CANNOT_CHECK calibration is already separate, done in
 #1096; this protocol presupposes it and does not re-derive it.)
@@ -16,7 +16,7 @@ protocol is simulated, and no native-looking output has been produced.
 
 ## 1. Why a protocol, not a run
 
-The P8 box asks for an *execution*: actual native systems, actually run, every
+The ORION-18 box asks for an *execution*: actual native systems, actually run, every
 ordered pair, clean and hostile. An execution cannot be honestly reported from
 a checkout that has none of the binaries. The two failure modes this document
 exists to prevent are (a) silently narrowing the box to whatever the local
@@ -30,7 +30,7 @@ re-deciding scope.
 ## 2. The four type-distinct native systems
 
 The issue names the sources: OPA/Rego, Cedar, in-toto/SLSA, Sigstore. They are
-type-distinct in exactly the sense P8's calculus needs: each one grounds
+type-distinct in exactly the sense ORION-18's calculus needs: each one grounds
 authorization in a *different evidence type*, so a hand-off between any two is a
 genuine cross-type transport rather than a re-labelling.
 
@@ -43,8 +43,8 @@ genuine cross-type transport rather than a re-labelling.
 
 ## 3. The ideal typed-product baseline
 
-The baseline is the P8 authority calculus's typed derivation (contract
-`P8.AUTHORITY.TERMINALS.V1`, #1096): each system's native verdict is first
+The baseline is the ORION-18 authority calculus's typed derivation (contract
+`ORION-18.AUTHORITY.TERMINALS.V1`, #1096): each system's native verdict is first
 coerced into the calculus's terminal set `AUTHORIZED | DENIED | CANNOT_CHECK`,
 and the *ideal* verdict for a chain is the componentwise typed product, with no
 cross-system coercion other than the calculus's declared ones. "Ideal" means
@@ -60,18 +60,18 @@ part of the freeze.
 
 | # | pair | clean case id | hostile case id | hostile mechanism (laundering family) |
 |---|------|---------------|-----------------|----------------------------------------|
-| 1 | `OPA`→`CDR` | `P8.NC.OPA_CDR.CLEAN`  | `P8.NC.OPA_CDR.HOSTILE`  | untyped policy allow presented as a typed action permit: type-confused principal |
-| 2 | `CDR`→`OPA` | `P8.NC.CDR_OPA.CLEAN`  | `P8.NC.CDR_OPA.HOSTILE`  | schema-typed entity name reused as an untyped Rego role string: role-name collision |
-| 3 | `OPA`→`ITT` | `P8.NC.OPA_ITT.CLEAN`  | `P8.NC.OPA_ITT.HOSTILE`  | allow decision replayed as a step fulfillment: no artifact-digest binding |
-| 4 | `ITT`→`OPA` | `P8.NC.ITT_OPA.CLEAN`  | `P8.NC.ITT_OPA.HOSTILE`  | attestation fed as policy input although not signed for this consumer |
-| 5 | `OPA`→`SIG` | `P8.NC.OPA_SIG.CLEAN`  | `P8.NC.OPA_SIG.HOSTILE`  | policy grant presented as a signing identity: no keyless identity proof |
-| 6 | `SIG`→`OPA` | `P8.NC.SIG_OPA.CLEAN`  | `P8.NC.SIG_OPA.HOSTILE`  | certificate SAN presented as a policy principal outside its scope |
-| 7 | `CDR`→`ITT` | `P8.NC.CDR_ITT.CLEAN`  | `P8.NC.CDR_ITT.HOSTILE`  | typed permit presented as a layout step completion: no link metadata |
-| 8 | `ITT`→`CDR` | `P8.NC.ITT_CDR.CLEAN`  | `P8.NC.ITT_CDR.HOSTILE`  | unverified link fields forged into Cedar entity attributes |
-| 9 | `CDR`→`SIG` | `P8.NC.CDR_SIG.CLEAN`  | `P8.NC.CDR_SIG.HOSTILE`  | policy-local principal presented as a signature identity |
-| 10 | `SIG`→`CDR` | `P8.NC.SIG_CDR.CLEAN`  | `P8.NC.SIG_CDR.HOSTILE`  | cosign identity presented as an entity the schema does not declare |
-| 11 | `ITT`→`SIG` | `P8.NC.ITT_SIG.CLEAN`  | `P8.NC.ITT_SIG.HOSTILE`  | attestation bundle presented as a signature over the artifact bytes |
-| 12 | `SIG`→`ITT` | `P8.NC.SIG_ITT.CLEAN`  | `P8.NC.SIG_ITT.HOSTILE`  | artifact signature presented as a step-execution link |
+| 1 | `OPA`→`CDR` | `ORION-18.NC.OPA_CDR.CLEAN`  | `ORION-18.NC.OPA_CDR.HOSTILE`  | untyped policy allow presented as a typed action permit: type-confused principal |
+| 2 | `CDR`→`OPA` | `ORION-18.NC.CDR_OPA.CLEAN`  | `ORION-18.NC.CDR_OPA.HOSTILE`  | schema-typed entity name reused as an untyped Rego role string: role-name collision |
+| 3 | `OPA`→`ITT` | `ORION-18.NC.OPA_ITT.CLEAN`  | `ORION-18.NC.OPA_ITT.HOSTILE`  | allow decision replayed as a step fulfillment: no artifact-digest binding |
+| 4 | `ITT`→`OPA` | `ORION-18.NC.ITT_OPA.CLEAN`  | `ORION-18.NC.ITT_OPA.HOSTILE`  | attestation fed as policy input although not signed for this consumer |
+| 5 | `OPA`→`SIG` | `ORION-18.NC.OPA_SIG.CLEAN`  | `ORION-18.NC.OPA_SIG.HOSTILE`  | policy grant presented as a signing identity: no keyless identity proof |
+| 6 | `SIG`→`OPA` | `ORION-18.NC.SIG_OPA.CLEAN`  | `ORION-18.NC.SIG_OPA.HOSTILE`  | certificate SAN presented as a policy principal outside its scope |
+| 7 | `CDR`→`ITT` | `ORION-18.NC.CDR_ITT.CLEAN`  | `ORION-18.NC.CDR_ITT.HOSTILE`  | typed permit presented as a layout step completion: no link metadata |
+| 8 | `ITT`→`CDR` | `ORION-18.NC.ITT_CDR.CLEAN`  | `ORION-18.NC.ITT_CDR.HOSTILE`  | unverified link fields forged into Cedar entity attributes |
+| 9 | `CDR`→`SIG` | `ORION-18.NC.CDR_SIG.CLEAN`  | `ORION-18.NC.CDR_SIG.HOSTILE`  | policy-local principal presented as a signature identity |
+| 10 | `SIG`→`CDR` | `ORION-18.NC.SIG_CDR.CLEAN`  | `ORION-18.NC.SIG_CDR.HOSTILE`  | cosign identity presented as an entity the schema does not declare |
+| 11 | `ITT`→`SIG` | `ORION-18.NC.ITT_SIG.CLEAN`  | `ORION-18.NC.ITT_SIG.HOSTILE`  | attestation bundle presented as a signature over the artifact bytes |
+| 12 | `SIG`→`ITT` | `ORION-18.NC.SIG_ITT.CLEAN`  | `ORION-18.NC.SIG_ITT.HOSTILE`  | artifact signature presented as a step-execution link |
 
 ### 4.1 Clean case template
 
@@ -112,7 +112,7 @@ finding*; findings are never discarded, only classed.
 
 ```
 {
-  "case_id": "P8.NC.<PAIR>.<CLEAN|HOSTILE>",
+  "case_id": "ORION-18.NC.<PAIR>.<CLEAN|HOSTILE>",
   "pair": {"emitter": "OPA", "consumer": "CDR"},
   "class": "clean" | "hostile",
   "mechanism": "<hostile mechanisms only>",
@@ -128,7 +128,7 @@ finding*; findings are never discarded, only classed.
 
 ## 7. Acceptance criteria and prohibited inference
 
-The P8 box is discharged by an execution only when: all twenty-four slots carry
+The ORION-18 box is discharged by an execution only when: all twenty-four slots carry
 records produced by the pinned binaries; zero hostile slots coerce to
 `AUTHORIZED`; every divergence is classed; and the results file is committed.
 
@@ -141,4 +141,4 @@ partial run (some pairs) as coverage of "every ordered cross-system pair".
 The machine-readable twin of this document is
 `formal/P8_NATIVE_CROSS_SYSTEM_PROTOCOL_2026-08-24.json`; the cross-artifact
 binding is enforced by `formal/check_p8_native_protocol_binding_v1.py`
-(contract `P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`).
+(contract `ORION-18.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`).

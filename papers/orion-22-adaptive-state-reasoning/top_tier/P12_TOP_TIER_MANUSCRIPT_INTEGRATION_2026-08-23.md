@@ -1,10 +1,10 @@
-# P12 top-tier manuscript integration — 2026-08-23
+# ORION-22 top-tier manuscript integration — 2026-08-23
 
 This note is the manuscript-facing bridge from the historical P12A/P12B paper to the current top-tier resource-location object. It changes no scientific terminal and grants no submission authority by itself.
 
 ## One-sentence paper identity
 
-**P12 studies where test-time computation should be spent, not merely how much should be spent.** State construction and downstream reasoning are competing resource loci; a single frozen q/c/B allocator transfers unchanged across three exact domains and avoids complementary fixed-locus failures.
+**ORION-22 studies where test-time computation should be spent, not merely how much should be spent.** State construction and downstream reasoning are competing resource loci; a single frozen q/c/B allocator transfers unchanged across three exact domains and avoids complementary fixed-locus failures.
 
 ## Primary evidence that must carry the revised paper
 
@@ -36,7 +36,7 @@ Authoritative result:
 
 Across all nine cases, every arm returns the independently verified exact task output. The scientific discriminator is resource cost/regret, not correctness laundering. The independent checker uses different algorithms for all three domains and agrees on truth, allocator choice and regret.
 
-Every arm/case also emits the shared P9-compatible vector:
+Every arm/case also emits the shared ORION-19-compatible vector:
 
 `R = (I_sem, A_dim, A_transform, M_state, C_fit, C_infer, C_explicit, R_registered)`.
 
@@ -53,7 +53,7 @@ Do not finalize the robustness sentence until the frozen robustness receipt is b
 1. Keep the motivating contrast between access-limited and reasoning-limited tasks.
 2. Move P12A/P12B from "main result" to "why matched capability is required."
 3. Add the stronger question: **can the same allocation law transfer without domain-specific tuning?**
-4. Make donor subtraction explicit: adaptive test-time compute owns dynamic reasoning amount; retrieval/compression owns dynamic state construction; P12's residual is joint **locus allocation under one resource boundary**.
+4. Make donor subtraction explicit: adaptive test-time compute owns dynamic reasoning amount; retrieval/compression owns dynamic state construction; ORION-22's residual is joint **locus allocation under one resource boundary**.
 5. State that heterogeneous charged units are not scalarized across domains; zero regret is evaluated within each domain's registered unit.
 
 ## Results section order
@@ -62,7 +62,7 @@ Do not finalize the robustness sentence until the frozen robustness receipt is b
 2. Verifier-backed SAT locus evidence.
 3. Procedural path-planning locus evidence.
 4. **Unchanged allocator transfer** as the main section.
-5. Vector resource accounting / P9 composition.
+5. Vector resource accounting / ORION-19 composition.
 6. Robustness stress result once bound.
 7. Limitations and nonclaims.
 
@@ -103,8 +103,8 @@ Use only the wording earned by its exact verdict. Do not translate a finite stre
 
 - bind the robustness receipt or state the unresolved result explicitly;
 - refresh nearest adaptive test-time-compute / resource-rational / state-construction donors;
-- reconcile P11/P12 ownership: P11 owns placement across representation construction/query families; P12 owns allocation of resource across loci under a shared budget;
-- reconcile P9/P12 accounting: cite the shared vector schema without claiming scalar exchangeability;
+- reconcile ORION-21/ORION-22 ownership: ORION-21 owns placement across representation construction/query families; ORION-22 owns allocation of resource across loci under a shared budget;
+- reconcile ORION-19/ORION-22 accounting: cite the shared vector schema without claiming scalar exchangeability;
 - clean-environment replay of the main transfer and robustness artifacts;
 - regenerate figures/tables from bound receipts;
 - remove duplicate historical status blocks in `MANUSCRIPT.md`;

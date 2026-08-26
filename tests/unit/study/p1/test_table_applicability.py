@@ -13,7 +13,7 @@ from orion.study.p1.metrics import BinaryRate
 ROOT = Path(__file__).resolve().parents[4]
 P1_T2 = (
     ROOT
-    / "papers/paper-01-recursive-epistemic-reconstruction/results/"
+    / "papers/orion-11-recursive-epistemic-reconstruction/results/"
     "P1-T2_baseline_ablation_results.json"
 )
 P1_CORRECTION = P1_T2.with_name("P1-T2_STATUS_ONTOLOGY_CORRECTION_V1.json")

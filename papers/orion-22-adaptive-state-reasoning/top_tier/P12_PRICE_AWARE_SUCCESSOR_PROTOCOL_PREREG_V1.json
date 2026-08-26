@@ -2,7 +2,7 @@
   "schema": "P12.PriceAwareSuccessorProtocolPrereg.v1",
   "lane": "NR-13",
   "study": "P12_PRICE_AWARE_SUCCESSOR_V1",
-  "paper_dir": "papers/paper-12-adaptive-state-reasoning/top_tier",
+  "paper_dir": "papers/orion-22-adaptive-state-reasoning/top_tier",
   "registered_date": "2026-08-24",
   "registration_order": [
     "1. this prereg is committed and pushed BEFORE the successor selector is implemented or its battery is executed",
@@ -30,27 +30,27 @@
   "frozen_pool_identity": {
     "note": "byte-identical to the original stress battery; nothing is regenerated, re-tuned or extended",
     "v1_cases": {
-      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/p12_transfer_cases_v1.json",
+      "path": "papers/orion-22-adaptive-state-reasoning/top_tier/p12_transfer_cases_v1.json",
       "sha256": "7694b3cffc8ff3c4f9ac93f49bf9cb0c4857921ba003199f82c463c2ef0606d4"
     },
     "expanded_cases": {
-      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/p12_transfer_cases_expanded_v1.json",
+      "path": "papers/orion-22-adaptive-state-reasoning/top_tier/p12_transfer_cases_expanded_v1.json",
       "sha256": "f5ff1ebcb959fad54d52e5e0c68b1b56bc463394cde2376a6cf18cb86cd847ca"
     },
     "generator": {
-      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/generate_p12_robustness_cases_v1.py",
+      "path": "papers/orion-22-adaptive-state-reasoning/top_tier/generate_p12_robustness_cases_v1.py",
       "sha256": "b393bc66671302da16d8cd092d3a8569cf4587c6a50b3aa7d840a10b24d10438"
     },
     "frozen_v1_engines": {
-      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/run_transfer_allocation_v1.py",
+      "path": "papers/orion-22-adaptive-state-reasoning/top_tier/run_transfer_allocation_v1.py",
       "sha256": "134b9ce97e41b691e8d7d780bcbfe9a52d2fd6d02b2f173bd9b7bc543007cdd9"
     },
     "original_stress_runner": {
-      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py",
+      "path": "papers/orion-22-adaptive-state-reasoning/top_tier/run_p12_robustness_v1.py",
       "sha256": "2f233bf3e9fd6c7c11a5cd1d5f430a6e436139030227e228cfef4d6068c7ebb6"
     },
     "original_independent_checker": {
-      "path": "papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py",
+      "path": "papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_robustness_independent_v1.py",
       "sha256": "0d5d5ac4aef7552f3fcb41fe41d136cfffd0bde9c9b8dbe3625c66acd3225f2d"
     },
     "regimes": [

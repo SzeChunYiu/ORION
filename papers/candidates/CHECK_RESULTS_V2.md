@@ -1,15 +1,15 @@
-# P6–P8 bounded mathematical check results V2
+# ORION-16–ORION-18 bounded mathematical check results V2
 
 **Date:** 2026-08-17  
 **Environment:** CPython 3.13.5, Linux 6.18.35 x86_64 / glibc 2.41  
 **Authority:** local deterministic support only; clean-CI/independent reproduction remains open  
 **Relationship to V1:** additive successor. V1 is retained unchanged as historical evidence.
 
-The synchronization pass repaired theorem boundaries in P6/P7 and widened P8 timing/revocation cases. The updated checker logic was rerun in the active analysis environment. No network, provider, model, judge or LLM API was used by the checker logic.
+The synchronization pass repaired theorem boundaries in ORION-16/ORION-17 and widened ORION-18 timing/revocation cases. The updated checker logic was rerun in the active analysis environment. No network, provider, model, judge or LLM API was used by the checker logic.
 
-## P6 — history-aware effect/repair checks
+## ORION-16 — history-aware effect/repair checks
 
-Script: `paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py`
+Script: `orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py`
 
 Observed deterministic counts retained from the exhaustive bounded core:
 
@@ -28,9 +28,9 @@ New V2 boundary fixtures:
 
 The commutation result is **not** evidence of whole-state equality. Audit chronology is intentionally retained.
 
-## P7 — extension ambiguity and atlas-transport checks
+## ORION-17 — extension ambiguity and atlas-transport checks
 
-Script: `paper-07-epistemic-navigation-open-worlds/formal/check_countermodels.py`
+Script: `orion-17-epistemic-navigation-open-worlds/formal/check_countermodels.py`
 
 Observed deterministic results:
 
@@ -46,9 +46,9 @@ Observed deterministic results:
 
 The first result applies to the deliberately rich constructed admissible class; it is not a claim that every certificate-free model class is extension-ambiguous.
 
-## P8 — cross-domain authority, timing and revocation checks
+## ORION-18 — cross-domain authority, timing and revocation checks
 
-Script: `paper-08-epistemic-authority-autonomous-science/formal/check_authority_calculus.py`
+Script: `orion-18-epistemic-authority-autonomous-science/formal/check_authority_calculus.py`
 
 Observed deterministic results:
 
@@ -62,7 +62,7 @@ Observed deterministic results:
 - post-hoc refusal after an irreversible commit is non-preventive: confirmed;
 - candidate-controlled constant-accept admission countermodel: confirmed;
 - clean authorized action with all hard obligations satisfied remains allowed: confirmed;
-- P1–P5 toy embedding vocabulary remains representable.
+- ORION-11–ORION-15 toy embedding vocabulary remains representable.
 
 ## Interpretation
 
@@ -70,7 +70,7 @@ V2 strengthens the executable correspondence between the claim ledgers and curre
 
 - unbounded theorem correctness;
 - semantic soundness of real cross-domain coercions;
-- exact P1–P5 decision equivalence;
+- exact ORION-11–ORION-15 decision equivalence;
 - donor-faithful embeddings;
 - empirical advantage;
 - novelty or publication readiness.
@@ -79,7 +79,7 @@ V2 strengthens the executable correspondence between the claim ledgers and curre
 
 1. run the repository scripts themselves in clean GitHub Actions rather than only active analysis/local environments;
 2. capture immutable stdout/result hashes;
-3. add exhaustive bounded generation for P7/P8 dimensions beyond the current fixtures;
-4. map P1–P5 exact protocol decisions into executable fixtures;
+3. add exhaustive bounded generation for ORION-17/ORION-18 dimensions beyond the current fixtures;
+4. map ORION-11–ORION-15 exact protocol decisions into executable fixtures;
 5. add donor-native ETAS/FAVA/planning/rollback fixtures where licensing/code permits;
 6. independently replay and attest the results.

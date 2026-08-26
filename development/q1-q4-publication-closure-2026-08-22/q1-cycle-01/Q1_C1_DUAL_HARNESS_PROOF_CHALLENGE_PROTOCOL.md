@@ -95,9 +95,9 @@ inside another lane's mutable worktree. SHA-256 digests are:
 | `37cfd64201312e4c7e670e2beefede0961c7dd6a4cd1e3bb2f1fb74afbdf8c17` | `research/extensions/orion-q/max_r6o_enlarged_tag_donor_closure.py` |
 | `e40e7a948061b9e4b647ba091c04a73b39cffa619ca829bbf4cef4beacdad352` | `research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json` |
 | `bb8a9d32176c5e13c4ce270b1f83a091b57ed6e00fe55e851bc6dee10027c602` | `development/orion-q-max-r0/MAX_R6S_ALL_N_COMPOSITION_PROTOCOL.md` |
-| `b44c8b39363cdde2604c5cba7e8998bc34621623639a78007e78a856659ed171` | `papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md` |
-| `3e9494a68ded5b482d17fc0738c9b4bbd54df389a29de95bfec341e17b6b5ed1` | `papers/Q-paper-01-tare-expressivity/PROOF_AND_EVIDENCE_MAP_V2.md` |
-| `94e07f841b58a0274c2503d89b011b117636f2e534c2439bd9f00a6aebd368f3` | `papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md` |
+| `b44c8b39363cdde2604c5cba7e8998bc34621623639a78007e78a856659ed171` | `papers/archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md` |
+| `3e9494a68ded5b482d17fc0738c9b4bbd54df389a29de95bfec341e17b6b5ed1` | `papers/orion-05-tare-expressivity/PROOF_AND_EVIDENCE_MAP_V2.md` |
+| `94e07f841b58a0274c2503d89b011b117636f2e534c2439bd9f00a6aebd368f3` | `papers/orion-05-tare-expressivity/CLAIM_LEDGER_V2.md` |
 | `bfe497e0c16cde06431799a5a7f1e260757c9744402f40b16c2cff76643dcec7` | `packages/orion-research-harness/pyproject.toml` |
 | `62c5d787f3b411f54def8ec61584a8ec3a182003c0fbc013e1e396f37735a465` | `uv.lock` |
 

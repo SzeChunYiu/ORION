@@ -1,4 +1,4 @@
-# Q3 figure contract — V3
+# ORION-03 figure contract — V3
 
 ## Figure 1 — Frontier decision benchmark lifecycle
 

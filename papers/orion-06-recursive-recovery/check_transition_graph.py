@@ -13,7 +13,7 @@ import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-BASE = ROOT / "papers/Q-paper-02-recursive-recovery"
+BASE = ROOT / "papers/orion-06-recursive-recovery"
 GRAPH_PATH = BASE / "Q2_TRANSITION_GRAPH_V2.json"
 INVENTORY_PATH = BASE / "Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json"
 EVIDENCE_CUT = "ca7df1055a43f97eaf8d142a62011c4c261af368"

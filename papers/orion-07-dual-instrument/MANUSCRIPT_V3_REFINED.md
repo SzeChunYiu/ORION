@@ -163,15 +163,15 @@ This is not a security boundary and does not make the host trustworthy. Its benc
 
 ### Static task benchmarks
 
-Conventional agent benchmarks compare an output against ground truth available to the evaluator at task time. Q3 instead admits live research questions whose resolution is intentionally absent at freeze.
+Conventional agent benchmarks compare an output against ground truth available to the evaluator at task time. ORION-03 instead admits live research questions whose resolution is intentionally absent at freeze.
 
 ### Self-consistency and multi-agent debate
 
-These methods commonly use repeated/model-to-model answers or debate to improve performance or estimate confidence. Q3 does not allow instruments to negotiate before measurement and does not interpret agreement as a score.
+These methods commonly use repeated/model-to-model answers or debate to improve performance or estimate confidence. ORION-03 does not allow instruments to negotiate before measurement and does not interpret agreement as a score.
 
 ### Provenance and autonomous-science infrastructure
 
-Provenance is a prerequisite for freezing the pre-outcome decision and later evidence. Q3 does not claim provenance itself. Its benchmark object is the **temporal coupling of independently recorded decision and deferred scientific score**.
+Provenance is a prerequisite for freezing the pre-outcome decision and later evidence. ORION-03 does not claim provenance itself. Its benchmark object is the **temporal coupling of independently recorded decision and deferred scientific score**.
 
 ### Multi-agent systems/frameworks
 
@@ -213,7 +213,7 @@ It does not establish reliability, calibrated agreement, statistical independenc
 
 ## Code and benchmark availability
 
-The harness implementation, Q3 publication contract, frontier benchmark record types, V0 protocol/results, invalid-content recovery regression tests and reproduction instructions are committed in the ORION repository. Before journal publication, these artifacts should be tagged/deposited with a permanent identifier and the DOI inserted here.
+The harness implementation, ORION-03 publication contract, frontier benchmark record types, V0 protocol/results, invalid-content recovery regression tests and reproduction instructions are committed in the ORION repository. Before journal publication, these artifacts should be tagged/deposited with a permanent identifier and the DOI inserted here.
 
 ## AI-assisted research and writing disclosure
 

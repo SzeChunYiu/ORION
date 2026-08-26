@@ -1,4 +1,4 @@
-# P6 formal core V2 corrections
+# ORION-16 formal core V2 corrections
 
 **Candidate:** Formal Epistemic Structures and Mechanics  
 **Date:** 2026-08-17  
@@ -159,11 +159,11 @@ The bounded artifacts support the theorem wording but do not prove the unbounded
 
 ## 8. Claim boundary
 
-P6 may currently claim that the corrected formal object and proofs/checks exist. It may not claim that:
+ORION-16 may currently claim that the corrected formal object and proofs/checks exist. It may not claim that:
 
 - dependency graphs are exact in ORION;
 - selective reopening is novel;
 - footprint fidelity has been established for every ORION mechanic;
 - the calculus is a conservative embedding of all donors;
 - the formal structure improves real scientific systems;
-- P6 is a distinct publishable paper.
+- ORION-16 is a distinct publishable paper.

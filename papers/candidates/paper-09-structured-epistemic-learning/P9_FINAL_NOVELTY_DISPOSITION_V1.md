@@ -1,14 +1,14 @@
-# P9 final novelty disposition V1
+# ORION-19 final novelty disposition V1
 
 Date: 2026-08-19
 
 Terminal: **`P9_BOUNDED_STANDALONE_RESIDUAL_SURVIVES`**
 
-This is a bounded publication/novelty disposition, not a claim that P9 invents a new neural architecture or a new general theory of representation.
+This is a bounded publication/novelty disposition, not a claim that ORION-19 invents a new neural architecture or a new general theory of representation.
 
 ## Final evidence object
 
-The surviving P9 contribution is the combined, prospectively controlled study design and result package:
+The surviving ORION-19 contribution is the combined, prospectively controlled study design and result package:
 
 1. construct exact hostile pairs whose restricted model-visible fingerprints can collide while protected targets differ;
 2. compute the empirical deterministic ceiling induced by each frozen view, using it as a diagnostic bound rather than a theorem novelty claim;
@@ -24,11 +24,11 @@ The surviving P9 contribution is the combined, prospectively controlled study de
 - A5: exact payload-only affine composition closes the D0 gluing operation at 1.0 once local map values are visible.
 - A2/A4: typed relation semantics and admitted scoped failure history are load-bearing coordinates on their D0 hostile pairs, but explicit payload-only inference is sufficient.
 - D1 whole-domain transfer: typed relational = 1.0, untyped pair = 0.90625, same-information typed serialization = 0.5, transcript = 0.25 on the protected transactional-workflows domain; typed relational remains 1.0 on protected double corruptions and `UNRESOLVED`.
-- No P9 result grants scientific, novelty, execution or adoption authority.
+- No ORION-19 result grants scientific, novelty, execution or adoption authority.
 
 ## Donor-owned / struck claims
 
-P9 does **not** claim novelty for:
+ORION-19 does **not** claim novelty for:
 
 - relational/graph inductive bias or typed graph attention;
 - local/sheaf representations or learnable transport maps;
@@ -58,13 +58,13 @@ Material contractions included:
 - missing-information / unsolvability benchmarks in 2025–2026: own explicit recognition of underspecified or unsolvable tasks.
 - state/observation aliasing and minimal/action-sufficient representation literature: own the broad collision/sufficiency concepts.
 
-After those contractions, two changed-vocabulary rounds (including observational aliasing / feature-collision / transferability terminology) produced no source that duplicated the final combined P9 protocol or the exact protected D1 evidence object. The stop condition is therefore boundedly satisfied; this is not a claim of exhaustive literature knowledge for all future time.
+After those contractions, two changed-vocabulary rounds (including observational aliasing / feature-collision / transferability terminology) produced no source that duplicated the final combined ORION-19 protocol or the exact protected D1 evidence object. The stop condition is therefore boundedly satisfied; this is not a claim of exhaustive literature knowledge for all future time.
 
 ## Why standalone rather than technical note
 
 The final object is no longer a neural-architecture paper, but it remains a coherent machine-learning study with an independently useful conclusion:
 
-> Increasing model complexity is scientifically uninterpretable until representation identifiability and explicit computational closure have been separated; in the frozen P9 study, typed method coordinates transfer across a whole procedural domain while the only classical-learning residual is an exact composition already closed by deterministic inference.
+> Increasing model complexity is scientifically uninterpretable until representation identifiability and explicit computational closure have been separated; in the frozen ORION-19 study, typed method coordinates transfer across a whole procedural domain while the only classical-learning residual is an exact composition already closed by deterministic inference.
 
 This result is broader than a reproduction log and narrower than a universal theory. It supplies a reusable experimental methodology, exact hostile benchmark families, negative/sufficiency results, and a controlled cross-domain positive.
 
@@ -72,26 +72,26 @@ TMLR is a suitable target because its current scope explicitly includes experime
 
 ## Originality boundary against other ORION papers
 
-P9 consumes P1/P3/P6/P8 structural objects but does not re-own or republish their claims:
+ORION-19 consumes ORION-11/ORION-13/ORION-16/ORION-18 structural objects but does not re-own or republish their claims:
 
-- P1 owns method realization / responsibility-typed reframing;
-- P3 owns source-local projections, representation mappings and plural alignment;
-- P6 owns method-fibre/composition/preservation mathematics;
-- P8 owns authority;
-- P9 owns only the learning/evaluation study over those bounded representations.
+- ORION-11 owns method realization / responsibility-typed reframing;
+- ORION-13 owns source-local projections, representation mappings and plural alignment;
+- ORION-16 owns method-fibre/composition/preservation mathematics;
+- ORION-18 owns authority;
+- ORION-19 owns only the learning/evaluation study over those bounded representations.
 
-The final manuscript must not reuse archival text, figures or results from sibling papers. Any overlap is limited to credited definitions/interfaces needed to state the P9 benchmark, with new P9 experiments/results and independent prose.
+The final manuscript must not reuse archival text, figures or results from sibling papers. Any overlap is limited to credited definitions/interfaces needed to state the ORION-19 benchmark, with new ORION-19 experiments/results and independent prose.
 
 ## Allowed final paper claim
 
-P9 may claim a **bounded structural-learning/evaluation result**:
+ORION-19 may claim a **bounded structural-learning/evaluation result**:
 
 - exact view restrictions expose when a protected target is non-identifying;
 - simple learning reaches several exact ceilings and exposes a global-composition residual on an information-sufficient view;
 - exact explicit inference closes that residual without neural escalation;
 - typed relational method-coordinate representation transfers on the protected whole-domain D1 study beyond weaker and same-information serialized controls.
 
-P9 may not claim universal superiority of explicit structure, universal compositional generalization, a new neural reasoner, natural-science understanding, LLM improvement, causal discovery, method invention, or scientific authority.
+ORION-19 may not claim universal superiority of explicit structure, universal compositional generalization, a new neural reasoner, natural-science understanding, LLM improvement, causal discovery, method invention, or scientific authority.
 
 ## Reopen triggers
 

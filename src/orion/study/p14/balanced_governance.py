@@ -10,7 +10,7 @@ example: the paper that *invented*
 --- that the instrument was never pointed at. This module points it.
 
 The shipped generator is loaded and driven, never re-implemented:
-``papers/paper-14-orion-rse/run_p14b_balanced_governance_v1.py``'s ``main()``
+``papers/orion-24-orion-rse/run_p14b_balanced_governance_v1.py``'s ``main()``
 aggregation is replayed here with one thing lifted out as a parameter --- which
 implementation occupies the graded ``ORION_RSE_FULL`` slot --- and every other
 line of it, the stratified case generator, the gold adjudication, the nine arms,
@@ -122,7 +122,7 @@ from orion.programme.records import Outcome
 from orion.programme.refutation_capacity import ModelPoint, TheoryDivergence, divergence_of
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-PAPER = REPO_ROOT / "papers/paper-14-orion-rse"
+PAPER = REPO_ROOT / "papers/orion-24-orion-rse"
 P14B_SCRIPT = PAPER / "run_p14b_balanced_governance_v1.py"
 P14B_RECEIPT = PAPER / "P14B_BALANCED_GOVERNANCE_RESULT_RECEIPT_V1.json"
 

@@ -27,10 +27,10 @@ SUBMISSION_AUTHORITY=NOT_GRANTED_BY_THIS_CHECK
 Interpretation:
 - the publication branch modified no frozen scientific receipt/protocol path;
 - final scientific manuscripts are the five V3 drafts named above;
-- QG1 alone uses the separately adjudicated current-main refresh cut;
-- Q3 remains intentionally scientifically blocked.
+- ORION-09 alone uses the separately adjudicated current-main refresh cut;
+- ORION-03 remains intentionally scientifically blocked.
 
-## 2. Q2 declared-denominator / successor-graph validator
+## 2. ORION-02 declared-denominator / successor-graph validator
 
 Canonical stdout:
 
@@ -48,8 +48,8 @@ SCIENTIFIC_CAUSALITY_AUTHORITY=NOT_GRANTED_BY_VALIDATOR
 ```
 
 Interpretation:
-- Q2's 51-receipt declared publication universe is fully partitioned 23/28;
-- all 51 receipts are bound to the frozen Q2 publication cut;
+- ORION-02's 51-receipt declared publication universe is fully partitioned 23/28;
+- all 51 receipts are bound to the frozen ORION-02 publication cut;
 - the graph has 13 asserted successor edges and retains 7 named negative/absorbed nodes without an invented successor;
 - validator explicitly does not self-certify scientific causality.
 
@@ -69,7 +69,7 @@ SCIENTIFIC_AUTHORITY=UNCHANGED_BY_MANIFEST
 
 All 34 load-bearing science artifacts resolved to a 40-character git blob ID at the paper's declared scientific cut.
 
-### Q1 — 10 bound science artifacts
+### ORION-01 — 10 bound science artifacts
 
 - R6N support-dominance/counterexample history — blob `09d50f810a19d42b161311db85fc3d59ea1a69cf`
 - R6O enlarged-Tag donor/counterexample — `ac4f3f677b632d6162eb0da3e89514f73ad684ce`
@@ -82,7 +82,7 @@ All 34 load-bearing science artifacts resolved to a 40-character git blob ID at 
 - QG7b finite hybrid-family repair — `c5c84c0b0c4c16e99925c41c3eed94263a4eba93`
 - QG7c partial classification proof — `235ed02a7d19e749cf75623ac6b7ccce5887518a`
 
-### Q4 — 8 bound science artifacts
+### ORION-04 — 8 bound science artifacts
 
 - N4-A typed VOI — `beedee22e5e2ad8c5899339816223fd28e8efdf2`
 - N4-B scoped reopening — `2e1680896019aeb77306e4c6d334d7b73becaa1c`
@@ -93,7 +93,7 @@ All 34 load-bearing science artifacts resolved to a 40-character git blob ID at 
 - N1-C typed-failure-state donor control — `f3e2e1a3e562a44f81c01f8ef0a32dc657b7e081`
 - N2-F5B donor absorption — `570208578d9af41f28e39bd9a4b62ee7fe6d059c`
 
-### QG1 — 11 bound science artifacts
+### ORION-09 — 11 bound science artifacts
 
 - R6S all-n R6M support theorem — `e7949b35e7010ae9b24d9f69a35f210fa7f55c13`
 - QG5 exact counterexample — `36fc6b6b032eff3321e0befa8a5c809733242e16`
@@ -107,7 +107,7 @@ All 34 load-bearing science artifacts resolved to a 40-character git blob ID at 
 - QG16 R6I objective support-one certificate cone — `bda3b7cbda2a1a992d6e2ebba01f1f429dbf688e`
 - QG6 syndrome-dimension safe ceiling — `ec181174662a501ab1aef9a2c54c14e022035cbf`
 
-### QG2 — 5 bound science artifacts
+### ORION-10 — 5 bound science artifacts
 
 - QG5 original forecast + exact counterexample — `36fc6b6b032eff3321e0befa8a5c809733242e16`
 - QG5b separately frozen repair / theorem-backed forecaster — `10717f4f84d79297d2f60f1250f3b81a16a75741`
@@ -118,9 +118,9 @@ All 34 load-bearing science artifacts resolved to a 40-character git blob ID at 
 ## 4. What this receipt closes
 
 - publication-branch science-mutation concern: **closed for this audited head**;
-- Q2 selection-denominator/cherry-picking reproducibility concern: **closed for declared 51-receipt universe**;
+- ORION-02 selection-denominator/cherry-picking reproducibility concern: **closed for declared 51-receipt universe**;
 - paper-specific load-bearing artifact identity: **closed for 34 science artifacts**;
-- Q1/Q2/Q4/QG1/QG2 content-ready claim remains consistent with V3 readiness ledger.
+- ORION-01/ORION-02/ORION-04/ORION-09/ORION-10 content-ready claim remains consistent with V3 readiness ledger.
 
 ## 5. What remains open
 
@@ -131,6 +131,6 @@ All 34 load-bearing science artifacts resolved to a 40-character git blob ID at 
 - archive DOI/permanent identifier;
 - explicit repository/code/data licence(s);
 - author/funding/competing-interest metadata;
-- Q3 prospective scientific executions.
+- ORION-03 prospective scientific executions.
 
 Any later edit to a final manuscript/package requires re-running the same fail-closed workflow before package authority can advance.

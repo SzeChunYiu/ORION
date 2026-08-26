@@ -36,8 +36,8 @@ CANDIDATES = ROOT / "papers" / "candidates"
 #: and no records, so a reader cannot tell which of several same-author papers
 #: is meant. The binding rule is identical for both, so it lives in one place.
 PAPERS = {
-    "P6": CANDIDATES / "paper-06-formal-epistemic-structures-and-mechanics",
-    "P7": CANDIDATES / "paper-07-epistemic-navigation-open-worlds",
+    "P6": CANDIDATES / "orion-16-formal-epistemic-structures-and-mechanics",
+    "P7": CANDIDATES / "orion-17-epistemic-navigation-open-worlds",
 }
 P7 = PAPERS["P7"]
 LITERATURE = P7 / "evidence" / "literature"

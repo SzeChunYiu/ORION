@@ -1,12 +1,12 @@
-# ORION-P5 compile instructions
+# ORION-ORION-15 compile instructions
 
-From `papers/paper-05-self-orion/`, render the tracked SVG figure first:
+From `papers/orion-15-self-orion/`, render the tracked SVG figure first:
 
 ```bash
 rsvg-convert -f pdf -o figures/p5_1_governed_development_loop.pdf figures/p5_1_governed_development_loop.svg
 ```
 
-Then build from `papers/paper-05-self-orion/manuscript/`:
+Then build from `papers/orion-15-self-orion/manuscript/`:
 
 ```bash
 mkdir -p /tmp/orion-p5-build

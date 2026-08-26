@@ -1,11 +1,11 @@
-# P2 successor-mechanic freeze: lexical-echo-resistant candidate generation
+# ORION-12 successor-mechanic freeze: lexical-echo-resistant candidate generation
 
 - **Record id**: `P2_LEXICAL_ECHO_SUCCESSOR_FREEZE`
 - **Date frozen**: 2026-08-21
 - **Status at freeze time**: written before any corpus was generated, any mechanic was executed, and
   any outcome was observed. Every constant below was chosen from the *named mechanism* in the stage
   attribution, not from a result. Nothing had been run when this file was written.
-- **Gate served**: `P2-U-T5` — *"A negative/tied family has generated and validated at least one
+- **Gate served**: `ORION-12-U-T5` — *"A negative/tied family has generated and validated at least one
   stronger successor search mechanic."* (`src/orion/programme/superiority_terminals.py`,
   `research/paper-programme-v1/P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1.json`, issue #650)
 - **Machine-readable twin**: `P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.json`. It carries the same
@@ -222,7 +222,7 @@ breakdowns, the median rank of the target, and the median rank of the best echo 
 
 **Verdict rule, fixed now:** the successor is called
 **`VALIDATED_ON_CONSTRUCTED_REPRODUCTION`** iff G1 **and** G2 **and** G3 all pass. Any other
-combination gets its own verdict string and **no** successor claim is entered against `P2-U-T5`.
+combination gets its own verdict string and **no** successor claim is entered against `ORION-12-U-T5`.
 
 ## 6. Anti-tuning commitments
 
@@ -236,7 +236,7 @@ combination gets its own verdict string and **no** successor claim is entered ag
 3. If an arm's number is disappointing, the number is reported. No parameter in §3–§5 is changed
    after an outcome is seen. If any parameter is ever changed, this file is superseded by a new dated
    freeze that states what changed and why, and the old result stands beside the new one.
-4. No existing P2 result, receipt, or archived probe artifact is modified by this work. Only new
+4. No existing ORION-12 result, receipt, or archived probe artifact is modified by this work. Only new
    files are added.
 
 ## 7. Outputs this freeze commits to producing
@@ -244,5 +244,5 @@ combination gets its own verdict string and **no** successor claim is entered ag
 - `src/orion/study/p2/echo_world.py` — the constructed world and its tasks
 - `src/orion/study/p2/echo_mechanics.py` — B0, B1, S1, A1, A2 and the metrics
 - `src/orion/study/p2/echo_campaign.py` — the runner (`main(argv)`, `argv` required)
-- `papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json`
+- `papers/orion-12-open-world-scientific-discovery/evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json`
 - `tests/unit/study/p2_open_world/test_p2_lexical_echo_successor.py`

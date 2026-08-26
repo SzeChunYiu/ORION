@@ -1,4 +1,4 @@
-# ORION-P3 scoped publication track V2
+# ORION-ORION-13 scoped publication track V2
 
 **Status:** `SCOPED_IDENTITY_AUTHORITY_TRACK_SELECTED`  
 **Selection update:** 2026-08-20  
@@ -9,8 +9,8 @@
 
 The current submission candidate is a scoped **scientific-identity-authority** paper combining two separate evidence lanes that are not pooled:
 
-1. the already-replicated public-reference projection-to-mapping / obstruction result (`P3.C5`, `P3.C9`); and
-2. the separately prospectively frozen P3-X exact-contract successor (`P3.C10`, `P3.C11`).
+1. the already-replicated public-reference projection-to-mapping / obstruction result (`ORION-13.C5`, `ORION-13.C9`); and
+2. the separately prospectively frozen ORION-13-X exact-contract successor (`ORION-13.C10`, `ORION-13.C11`).
 
 The unexecuted raw-text expert atlas and downstream answer-quality questions remain follow-up. This is a claim expansion authorized by a new protected successor result, not a conversion of missing evidence into PASS.
 
@@ -20,11 +20,11 @@ The unexecuted raw-text expert atlas and downstream answer-quality questions rem
 
 The covered obstruction/compatibility ablation remains secondary evidence: forcing compatibility increased false merges by +0.1875 [0.0625, 0.34375].
 
-## Empirical headline lane 2 — P3-X scientific identity authority
+## Empirical headline lane 2 — ORION-13-X scientific identity authority
 
 The separately frozen 400-case successor grants the strongest comparator structured construct, measurement, context, provenance and missingness information and tests whether representational compatibility is sufficient authority for scientific identity.
 
-> P3-X reaches **400/400** exact integration decisions versus **250/400** for the strong semantic product and **50/400** for canonical matching. P3-X minus the strong product is **+0.375**, domain-stratified bootstrap 95% CI **[0.3275, 0.4225]**, with zero false GLUE decisions and clean-merge coverage 1.0. An information-equivalent typed product carrying the same scientific-identity relation also reaches **400/400** with zero decision mismatches.
+> ORION-13-X reaches **400/400** exact integration decisions versus **250/400** for the strong semantic product and **50/400** for canonical matching. ORION-13-X minus the strong product is **+0.375**, domain-stratified bootstrap 95% CI **[0.3275, 0.4225]**, with zero false GLUE decisions and clean-merge coverage 1.0. An information-equivalent typed product carrying the same scientific-identity relation also reaches **400/400** with zero decision mismatches.
 
 Paper-local binding: `evidence/P3_X_RESULT_RECEIPT_V1.md`.
 
@@ -38,13 +38,13 @@ The ideal-product tie is an implementation-portability result, not a centralized
 
 The scoped paper does **not** claim:
 
-- P3.C7 raw-text end-to-end integration superiority;
-- P3.C8 downstream answer-quality improvement;
+- ORION-13.C7 raw-text end-to-end integration superiority;
+- ORION-13.C8 downstream answer-quality improvement;
 - executed dual-annotator/expert eight-family raw-text gold;
 - recoverability of generated portraits as an externally validated downstream result;
 - necessity or dispensability of every semantic coordinate from zero-effect ablations;
 - that obstruction, provenance, schema alignment, lenses, or cycle consistency are individually novel;
-- deployed ontology/schema-engine generality from the exact P3-X contracts.
+- deployed ontology/schema-engine generality from the exact ORION-13-X contracts.
 
 Those remain separate follow-up science with their own prospective evidence requirements.
 
@@ -55,18 +55,18 @@ Those remain separate follow-up science with their own prospective evidence requ
 - confirmatory primary PASS under predeclared false-merge and false-split rules;
 - immutable confirmatory analysis and publication artifacts;
 - independent confirmatory reproduction / evaluator agreement;
-- programme verification record under #283 for P3.C5;
-- prospectively frozen 400-case P3-X result with 400/400 exact P3-X decisions versus 250/400 and 50/400 comparators;
-- independent P3-X reconstruction with the same canonical-row digest and counts and no B3 mismatches;
+- programme verification record under #283 for ORION-13.C5;
+- prospectively frozen 400-case ORION-13-X result with 400/400 exact ORION-13-X decisions versus 250/400 and 50/400 comparators;
+- independent ORION-13-X reconstruction with the same canonical-row digest and counts and no B3 mismatches;
 - ideal-product equality establishing portability at the registered decision scope.
 
 ## Scoped submission closure
 
-The scientific claim surface is complete when the exact final manuscript source, all included source fragments, claim ledger and P3-X receipt are bound to one rebuilt journal PDF and pass the manuscript/citation/claim audit together. Venue-specific author declarations, cover-letter finalization, permanent deposit and a submission-date literature refresh remain upload-time operations rather than scientific evidence gates.
+The scientific claim surface is complete when the exact final manuscript source, all included source fragments, claim ledger and ORION-13-X receipt are bound to one rebuilt journal PDF and pass the manuscript/citation/claim audit together. Venue-specific author declarations, cover-letter finalization, permanent deposit and a submission-date literature refresh remain upload-time operations rather than scientific evidence gates.
 
 ## Follow-up science — non-blocking for this scoped claim
 
-- original `P3.cross-domain-atlas.v1`: raw-text extraction and full expert eight-family construct validity;
+- original `ORION-13.cross-domain-atlas.v1`: raw-text extraction and full expert eight-family construct validity;
 - downstream synthesis/answer-quality evaluation;
 - live ontology/schema-engine transfer beyond the registered exact contracts;
 - expert agreement and recoverability studies on generated global portraits.

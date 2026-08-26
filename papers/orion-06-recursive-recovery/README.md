@@ -17,7 +17,7 @@ Current targeting state:
 - **Nature Computational Science general-method claim:** `EVIDENCE_BLOCKED` pending the frozen cross-domain comparative study.
 - **npj Artificial Intelligence / comparable AI-for-science methods venue:** internally ready for the narrower methodology/case-study claim with positioning risk.
 
-Q1 owns the quantum-compilation theorem itself. Q2 owns the recovery methodology and programme trace.
+ORION-01 owns the quantum-compilation theorem itself. ORION-02 owns the recovery methodology and programme trace.
 
 `MANUSCRIPT_DRAFT_V1.md`, `MANUSCRIPT_V2.md`, and the original August-21 publication plan are historical snapshots. `TOP_TIER_UPGRADE_PROTOCOL_2026-08-22.md` remains registered successor research; no outcome exists under it.
 

@@ -1,23 +1,23 @@
-# P6 heterogeneous real transition audit protocol V1
+# ORION-16 heterogeneous real transition audit protocol V1
 
 **Programme:** #977  
-**Purpose:** move P6 beyond finite family labels by testing ETS admission on real research-system transitions whose underlying facts/receipts are owned by other standards or ORION papers.
+**Purpose:** move ORION-16 beyond finite family labels by testing ETS admission on real research-system transitions whose underlying facts/receipts are owned by other standards or ORION papers.
 
 ## Ownership boundary
 
-P6 does not re-score P7/P9/P10/P15 science. Their public standards and immutable receipts are upstream facts. P6 owns only the transition judgment:
+ORION-16 does not re-score ORION-17/ORION-19/ORION-20/ORION-25 science. Their public standards and immutable receipts are upstream facts. ORION-16 owns only the transition judgment:
 
 `may the pre-transition scientific state/certificate be committed or reused after this state change, or must it reopen/deny/CANNOT_CHECK?`
 
 ## Freeze chronology
 
-This protocol and a separate transition/gold table are committed before the P6 real-transition checker. Source paths/tokens refer to already existing immutable paper receipts or public-standard source records. If a source token is absent, the study fails closed rather than silently substituting a new source.
+This protocol and a separate transition/gold table are committed before the ORION-16 real-transition checker. Source paths/tokens refer to already existing immutable paper receipts or public-standard source records. If a source token is absent, the study fails closed rather than silently substituting a new source.
 
 ## Real transition families
 
 ### A. Public representation standard — RO-Crate 1.2 -> 1.3
 
-Upstream source: P7's frozen public-source record for the four real Bioschemas canonical-URI changes.
+Upstream source: ORION-17's frozen public-source record for the four real Bioschemas canonical-URI changes.
 
 Cases:
 
@@ -26,11 +26,11 @@ Cases:
 - conflicting/wrong correspondence -> `REOPEN`;
 - unchanged Schema.org control -> `ADMISSIBLE` without special revalidation.
 
-P6 does not claim schema migration novelty; P7 owns regime transport. P6 asks whether a state transition may preserve scientific commitment after the upstream transport result.
+ORION-16 does not claim schema migration novelty; ORION-17 owns regime transport. ORION-16 asks whether a state transition may preserve scientific commitment after the upstream transport result.
 
-### B. Real model-analysis artifact recovery — P9 Qwen
+### B. Real model-analysis artifact recovery — ORION-19 Qwen
 
-Upstream source: P9 execution ledger/Qwen recovery protocol.
+Upstream source: ORION-19 execution ledger/Qwen recovery protocol.
 
 Cases:
 
@@ -39,7 +39,7 @@ Cases:
 - analyzer/threshold changed after protected outcome -> `REOPEN`;
 - attempted widening from protected Qwen family to all LLMs -> `DENIED` at commit-authority layer.
 
-### C. Real verifier pipeline coverage — P10 native Lean
+### C. Real verifier pipeline coverage — ORION-20 native Lean
 
 Upstream source: `P10_NATIVE_LEAN_CANNOT_CHECK_HANDOFF_V1.md`.
 
@@ -50,7 +50,7 @@ Cases:
 - post-hoc relaxation of eligibility to manufacture positive coverage -> `REOPEN`;
 - successful process receipt with scientific coverage unknown -> `CANNOT_CHECK`.
 
-### D. Real provenance representation change — P15 PROV/RO-Crate import
+### D. Real provenance representation change — ORION-25 PROV/RO-Crate import
 
 Upstream source: `P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md`.
 
@@ -101,8 +101,8 @@ Missing evidence/coverage yields `CANNOT_CHECK`; invalidated evidence/obligation
 - at least one real admissible transition is preserved in each family that contains a positive control;
 - EXECUTION_PROVENANCE_POLICY makes at least one unsafe admissible error in at least three of four families;
 - ETS makes zero unsafe admissions and zero unnecessary reopens on admissible controls;
-- all P10/P15 `CANNOT_CHECK` boundaries remain fail closed;
+- all ORION-20/ORION-25 `CANNOT_CHECK` boundaries remain fail closed;
 - authority widening is denied rather than repaired by confidence/provenance;
 - deterministic replay and independent checker agreement.
 
-A positive establishes heterogeneous real research-transition evidence for the ETS separation. It does not prove universal superiority over arbitrary future donor systems or replace P7/P8's own transport/authorization claims.
+A positive establishes heterogeneous real research-transition evidence for the ETS separation. It does not prove universal superiority over arbitrary future donor systems or replace ORION-17/ORION-18's own transport/authorization claims.

@@ -1,17 +1,17 @@
 # Adaptive State–Reasoning Co-Design under Matched Total Compute
 
-**ORION publication candidate P12**  
+**ORION publication candidate ORION-22**  
 **Issue:** #665 · shared accounting owner #664  
 **Manuscript status:** complete protocol/theory draft; protected empirical terminal not yet earned  
 **Evidence date:** 2026-08-20
 
 ## Abstract
 
-Test-time scaling usually asks how much additional reasoning, search or sampling a system should perform. P11 motivates a second test-time action: spend computation to construct a more accessible state before reasoning. P12 studies the resulting two-axis decision problem under one matched total resource boundary. We formalize state-construction budget and downstream reasoning/search budget as jointly allocatable resources, define a full factorial of fixed/adaptive state and fixed/adaptive reasoning policies, and require every arm to pay the same compiler, state, model, search, verifier, cache and recovery costs. A simple controlled existence construction shows that when task families contain prospectively distinguishable access-limited and reasoning-limited regimes, no state-only or reasoning-only adaptive policy can be optimal on both, whereas a joint policy can allocate the same total budget to the resource that has value in the current regime. This proposition establishes possibility, not an empirical advantage. The protected P12 benchmark is therefore designed as a crossed grid of access difficulty and reasoning depth with family holdout, matched budgets, oracle regret, time-to-first-verified-solution and regime-specific reporting. The strongest paper claim will be earned only if a frozen joint allocator strictly improves the verified quality–resource Pareto frontier over both one-axis adaptive baselines and survives at least one real LLM or verifier-backed search domain. At present no protected joint-allocation outcome exists; this manuscript records the full theory, protocol, negative-result logic and promotion conditions without inventing results.
+Test-time scaling usually asks how much additional reasoning, search or sampling a system should perform. ORION-21 motivates a second test-time action: spend computation to construct a more accessible state before reasoning. ORION-22 studies the resulting two-axis decision problem under one matched total resource boundary. We formalize state-construction budget and downstream reasoning/search budget as jointly allocatable resources, define a full factorial of fixed/adaptive state and fixed/adaptive reasoning policies, and require every arm to pay the same compiler, state, model, search, verifier, cache and recovery costs. A simple controlled existence construction shows that when task families contain prospectively distinguishable access-limited and reasoning-limited regimes, no state-only or reasoning-only adaptive policy can be optimal on both, whereas a joint policy can allocate the same total budget to the resource that has value in the current regime. This proposition establishes possibility, not an empirical advantage. The protected ORION-22 benchmark is therefore designed as a crossed grid of access difficulty and reasoning depth with family holdout, matched budgets, oracle regret, time-to-first-verified-solution and regime-specific reporting. The strongest paper claim will be earned only if a frozen joint allocator strictly improves the verified quality–resource Pareto frontier over both one-axis adaptive baselines and survives at least one real LLM or verifier-backed search domain. At present no protected joint-allocation outcome exists; this manuscript records the full theory, protocol, negative-result logic and promotion conditions without inventing results.
 
 ## 1. Introduction
 
-A growing class of inference systems allocates more computation to difficult test items: longer chains of reasoning, more samples, larger search trees, repeated verification or other forms of test-time scaling. This literature owns the primitive that computation should be allocated adaptively rather than uniformly. Separately, context selection, state design, retrieval and compression systems adapt what information a model sees. P12 does not claim either primitive.
+A growing class of inference systems allocates more computation to difficult test items: longer chains of reasoning, more samples, larger search trees, repeated verification or other forms of test-time scaling. This literature owns the primitive that computation should be allocated adaptively rather than uniformly. Separately, context selection, state design, retrieval and compression systems adapt what information a model sees. ORION-22 does not claim either primitive.
 
 The scientific question is whether these actions should be optimized **together under one budget**. A task may be difficult because its relevant structure is poorly exposed in the current state, because substantial reasoning remains even after the relevant structure is exposed, because both are difficult, or because neither is. Spending all marginal compute on reasoning is wasteful in an access-limited task; spending it all on state restructuring is wasteful when the state is already sufficient but the search depth is large.
 
@@ -27,7 +27,7 @@ Both stages consume resources. The allocator must decide prospectively—using o
 4. joint adaptive state + adaptive reasoning/search;
 5. oracle joint allocator as a diagnostic ceiling.
 
-P12 is deliberately fail-closed. A positive average that comes from extra total compute, protected-outcome tuning, arbitrary scalar weights or hidden compiler work is invalid. If joint allocation does not improve the frontier, that negative is the paper’s result.
+ORION-22 is deliberately fail-closed. A positive average that comes from extra total compute, protected-outcome tuning, arbitrary scalar weights or hidden compiler work is invalid. If joint allocation does not improve the frontier, that negative is the paper’s result.
 
 ## 2. Donor boundary
 
@@ -40,7 +40,7 @@ Prior work already owns:
 - compute-optimal allocation and anytime reasoning;
 - oracle per-item budget allocation as an analysis device.
 
-P11 additionally establishes a controlled basis for treating state construction as a costed inference action. P12’s residual is therefore:
+ORION-21 additionally establishes a controlled basis for treating state construction as a costed inference action. ORION-22’s residual is therefore:
 
 > Under one explicit resource boundary, when do state construction and downstream reasoning substitute for one another, when are they complementary, and can a frozen policy identify those regimes prospectively?
 
@@ -87,7 +87,7 @@ More generally, if `P(A)=p`, the best state-only policy achieves at most `p`, th
 
 ### Interpretation
 
-The proposition is not scientifically surprising; rational metareasoning already predicts that different computations can have different values in different states. Its role is to prevent a weaker P12 design in which all tasks favor the same resource and joint allocation has no meaningful discriminator. The empirical problem is harder: construct prospectively frozen regimes, expose imperfect but fair pre-outcome signals, charge all resource axes, learn a policy on development families and test whether the value survives held-out families and real systems.
+The proposition is not scientifically surprising; rational metareasoning already predicts that different computations can have different values in different states. Its role is to prevent a weaker ORION-22 design in which all tasks favor the same resource and joint allocation has no meaningful discriminator. The empirical problem is harder: construct prospectively frozen regimes, expose imperfect but fair pre-outcome signals, charge all resource axes, learn a policy on development families and test whether the value survives held-out families and real systems.
 
 ## 5. Controlled benchmark design
 
@@ -169,13 +169,13 @@ The statistical plan follows the manuscript-statistics rules of transparent unit
 
 ### 8.1 Open-weight LLM/procedural tasks
 
-Consume the same-information P9-U task family when runtime is available. State choices should include a raw/serialized view, structured state and one P11-style compiled view if its semantics can be certified. Reasoning budgets should be a small frozen generation/search grid. The key question is whether compile-first can allow a smaller or shorter-reasoning configuration to match or beat think-more-only at the same total resource cost.
+Consume the same-information ORION-19-U task family when runtime is available. State choices should include a raw/serialized view, structured state and one ORION-21-style compiled view if its semantics can be certified. Reasoning budgets should be a small frozen generation/search grid. The key question is whether compile-first can allow a smaller or shorter-reasoning configuration to match or beat think-more-only at the same total resource cost.
 
 Model-scale sweeps are secondary; a scale increase cannot be used to give only one arm more total compute.
 
 ### 8.2 Formal/verifier-backed search
 
-If P10-U native state passes its source/coverage gates, compare history-only state, native proof state and a dependency-aware compiled state while varying tactic/search/verifier-call budget. Exact Lean verification is the final success measure.
+If ORION-20-U native state passes its source/coverage gates, compare history-only state, native proof state and a dependency-aware compiled state while varying tactic/search/verifier-call budget. Exact Lean verification is the final success measure.
 
 If the native-state gate is negative, retain that result and switch to another exact verifier-backed procedural/search domain. Do not weaken the paper’s real-system requirement or silently replace a negative Lean result with a different claim.
 
@@ -184,13 +184,13 @@ If the native-state gate is negative, retain that result and switch to another e
 ### 9.1 What is earned
 
 - The shared resource-accounting schema is specified.
-- P11 provides controlled evidence that state construction can materially change accessible representation/sample burden.
-- The frozen P12/Dual-Scaling protocol defines matched arms and a positive terminal requiring strict `joint_gain` at prespecified controlled budgets plus a real-system gate for any cross-domain claim.
+- ORION-21 provides controlled evidence that state construction can materially change accessible representation/sample burden.
+- The frozen ORION-22/Dual-Scaling protocol defines matched arms and a positive terminal requiring strict `joint_gain` at prespecified controlled budgets plus a real-system gate for any cross-domain claim.
 - Proposition 1 shows by construction that heterogeneous access-limited and reasoning-limited regimes can create strict value for joint allocation.
 
 ### 9.2 What is **not** earned
 
-There is currently **no protected P12 empirical joint-allocation result**. No value for `joint_gain`, no confidence interval, no real-system crossover and no learned-policy superiority claim is authorized.
+There is currently **no protected ORION-22 empirical joint-allocation result**. No value for `joint_gain`, no confidence interval, no real-system crossover and no learned-policy superiority claim is authorized.
 
 This negative/unknown state is first-class. The manuscript will not contain a synthetic “expected results” section written in the grammatical past tense.
 
@@ -233,11 +233,11 @@ The goal is to eliminate alternative explanations and design failures through ne
 
 ## 12. Discussion
 
-P12 reframes test-time inference as a portfolio of computations rather than a single “reasoning token” axis. This matters because upstream state construction and downstream reasoning can be substitutes, complements, or irrelevant depending on the source of difficulty.
+ORION-22 reframes test-time inference as a portfolio of computations rather than a single “reasoning token” axis. This matters because upstream state construction and downstream reasoning can be substitutes, complements, or irrelevant depending on the source of difficulty.
 
 The framing also prevents an important accounting error. Prompt shortening, retrieval, parsing, summarization and compilation can reduce downstream tokens while consuming substantial upstream work. Calling the downstream trace cheaper without charging that work is not a compute improvement. Conversely, a state transformation that is expensive once but reusable across a long horizon may be valuable after amortization. The correct comparison therefore depends on a declared decision contract or a Pareto surface, not an arbitrary universal exchange rate between tokens, bytes, verifier calls and wall time.
 
-A successful P12 would not imply that every task needs a learned allocator. Simple threshold rules may be sufficient in stable regimes. Nor would it imply that state and reasoning are always substitutes; some tasks may require both. The scientifically useful outcome is a prospective regime map and allocation rule whose failures are visible.
+A successful ORION-22 would not imply that every task needs a learned allocator. Simple threshold rules may be sufficient in stable regimes. Nor would it imply that state and reasoning are always substitutes; some tasks may require both. The scientifically useful outcome is a prospective regime map and allocation rule whose failures are visible.
 
 ## 13. Limitations
 
@@ -245,25 +245,25 @@ A successful P12 would not imply that every task needs a learned allocator. Simp
 2. The controlled benchmark risks encoding its own desired regime geometry; oracle-intervention checks must verify the generator before policy training.
 3. Real resource units are heterogeneous and should not be collapsed into a scalar without a legitimate downstream cost vector.
 4. Policy generalization across task families/domains is untested.
-5. P12 depends on accurate compiler accounting from #664 and real-system runtime availability.
+5. ORION-22 depends on accurate compiler accounting from #664 and real-system runtime availability.
 6. Adaptive policies can exploit leakage in difficulty signals; all signals need protected-outcome independence checks.
 7. The current paper is not submission-ready until a protected empirical terminal and at least one real-system validation exist.
 
 ## 14. Reproducibility
 
-Current frozen protocol substrate is recorded in the Frontier V2 branch/PR as `P13_DUAL_SCALING_PROTOCOL_V1.md`; numbering there predates the grouped publication remap and corresponds to the present P12 scientific question. The publication issue #665 and #670 supersede the old standalone numbering while preserving bytes and history.
+Current frozen protocol substrate is recorded in the Frontier V2 branch/PR as `P13_DUAL_SCALING_PROTOCOL_V1.md`; numbering there predates the grouped publication remap and corresponds to the present ORION-22 scientific question. The publication issue #665 and #670 supersede the old standalone numbering while preserving bytes and history.
 
 Every future run must emit `ORION.P11P14.ResourceReceipt.v1` records and preserve protected splits, policy versions, seeds, model identities and verifier/tool versions.
 
 ## 15. Data and code availability
 
-No P12 protected result dataset exists yet. Controlled generators and real-system task splits must be committed/versioned before protected execution. Evaluation code and machine-readable receipts should be released with the final paper package.
+No ORION-22 protected result dataset exists yet. Controlled generators and real-system task splits must be committed/versioned before protected execution. Evaluation code and machine-readable receipts should be released with the final paper package.
 
 ## 16. Claim ledger
 
 | Claim | Status | Evidence required/available | Forbidden widening |
 |---|---|---|---|
-| state construction and reasoning are distinct allocatable actions | DEFINITION / P11-supported framing | P11 + resource schema | empirical joint advantage |
+| state construction and reasoning are distinct allocatable actions | DEFINITION / ORION-21-supported framing | ORION-21 + resource schema | empirical joint advantage |
 | heterogeneous regimes can make joint allocation strictly valuable | CONTROLLED EXISTENCE PROPOSITION | Proposition 1 | real-task law |
 | frozen factorial is compute matched | PROTOCOL CLAIM | accounting audit required | assumed fairness |
 | learned joint allocator beats both one-axis baselines | OPEN | protected controlled experiment | may not be stated now |
@@ -272,7 +272,7 @@ No P12 protected result dataset exists yet. Controlled generators and real-syste
 
 ## 17. Publication decision
 
-**Current decision:** complete theory/protocol manuscript, empirical gate open. P12 should not be externally promoted on this package alone.
+**Current decision:** complete theory/protocol manuscript, empirical gate open. ORION-22 should not be externally promoted on this package alone.
 
 Minimum promotion package: independently replicated controlled joint-allocation advantage, exact matched-total-budget audit, one real-system validation, donor-complete baselines and task-family/domain holdout.
 
@@ -282,7 +282,7 @@ The strongest headline is earned only if a frozen joint policy prospectively ide
 
 1. Russell, S. J. & Wefald, E. **Do the Right Thing: Studies in Limited Rationality.** MIT Press, 1991. [Foundational metareasoning donor; final edition metadata to verify.]
 2. ORION Frontier V2 Nearest-Work Ledger (2026-08-20), adaptive test-time compute and dynamic context-selection donor sections.
-3. P11 manuscript in this package for state-construction theory and controlled accessibility evidence.
+3. ORION-21 manuscript in this package for state-construction theory and controlled accessibility evidence.
 
 ### Citation integrity note
 

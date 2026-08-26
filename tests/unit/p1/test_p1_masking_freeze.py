@@ -8,7 +8,7 @@ from pathlib import Path
 
 FREEZE = (
     Path(__file__).resolve().parents[3]
-    / "papers/paper-01-recursive-epistemic-reconstruction/masking/P1_MASKING_FREEZE_V1.json"
+    / "papers/orion-11-recursive-epistemic-reconstruction/masking/P1_MASKING_FREEZE_V1.json"
 )
 
 

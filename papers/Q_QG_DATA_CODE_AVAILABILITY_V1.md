@@ -17,7 +17,7 @@ The repository already contains, at stable paths:
 - independent/generic verifiers for major QG lanes;
 - replay-verification ledgers for the N-lanes;
 - manuscript claim ledgers and proof/evidence maps;
-- pinned external-source commit/blob identities for public DUCC Hamiltonian material used by Q1/QG2.
+- pinned external-source commit/blob identities for public DUCC Hamiltonian material used by ORION-01/ORION-10.
 
 ### What is not yet publication-complete
 
@@ -41,7 +41,7 @@ Before first submission of any Q/QG paper, create one immutable archive release 
 
 Do not invent the DOI or licence in manuscripts before that release exists.
 
-## Q1 — Exact Support Ceiling in Shared-Tag TARE Compilation
+## ORION-01 — Exact Support Ceiling in Shared-Tag TARE Compilation
 
 ### Data availability — ready-to-paste draft
 
@@ -51,14 +51,14 @@ Do not invent the DOI or licence in manuscripts before that release exists.
 
 > The exact dynamic-programming referees, theorem/checker scripts, protocol files and independent verification code used in this study are available in the accompanying repository at the publication commit identified in the reproducibility statement. The repository is publicly inspectable. An explicit reuse licence and permanent archival identifier will be reported in the final submitted version once the publication release is deposited.
 
-### Q1 FAIR/reproducibility blockers
+### ORION-01 FAIR/reproducibility blockers
 - [ ] choose and record project/code licence;
 - [ ] archive exact publication cut and insert DOI/permalink;
 - [ ] paper-specific manifest covering R6N/R6O/R6P/R6Q/R6R/R6S plus cited QG boundary receipts;
 - [ ] exact replay commands from clean environment;
 - [ ] cite public DUCC source repository/commit without implying redistribution rights.
 
-## Q2 — Recursive Recovery of Negative Quantum Research Results
+## ORION-02 — Recursive Recovery of Negative Quantum Research Results
 
 ### Data availability — ready-to-paste draft
 
@@ -68,13 +68,13 @@ Do not invent the DOI or licence in manuscripts before that release exists.
 
 > Code implementing the relevant research harness, typed campaign controller, receipt validation and the quantum-programme analyzers is available in the accompanying repository at the stated publication commit. The final version will cite a permanent archive and explicit reuse licence once deposited.
 
-### Q2 blockers
+### ORION-02 blockers
 - [ ] release a complete eligible-chain manifest so the successor graph cannot be read as a selected anecdotal subset;
 - [ ] add a schema/checker that validates transition-graph edges against source receipts;
 - [ ] choose project licence and archive DOI;
 - [ ] distinguish instrument code used to produce the case study from post-hoc publication-synthesis code.
 
-## Q3 — Dual-Instrument Frontier Research Benchmark
+## ORION-03 — Dual-Instrument Frontier Research Benchmark
 
 ### Data availability — draft, **not yet final**
 
@@ -84,14 +84,14 @@ Do not invent the DOI or licence in manuscripts before that release exists.
 
 > The research harness and typed non-LLM campaign-controller implementations used by the benchmark are publicly inspectable in the accompanying repository. The final release will bind the exact implementations and replay commands used for every benchmark instance, together with a permanent archive and reuse licence.
 
-### Q3 blockers
+### ORION-03 blockers
 - [ ] execute the already frozen additional prospective instances before publication;
 - [ ] bind exact Lane A/Lane B implementation digests for each instance;
 - [ ] independent replay of every included receipt;
 - [ ] final disposition of instrument defects D2/D3;
 - [ ] project licence and archive DOI.
 
-## Q4 — Typed and Scoped Partial Knowledge
+## ORION-04 — Typed and Scoped Partial Knowledge
 
 ### Data availability — ready-to-paste draft
 
@@ -101,12 +101,12 @@ Do not invent the DOI or licence in manuscripts before that release exists.
 
 > The deterministic world generators, candidate and baseline policies, evaluation gates and replay-verification scripts are available in the accompanying repository. Each study can be regenerated from its frozen protocol and source code. The final release will specify the exact reuse licence and permanent archive identifier.
 
-### Q4 blockers
+### ORION-04 blockers
 - [ ] one-command aggregate reproduction entry point over N4-A/B/C/D/E/F3 plus N1-C/N2-F5B;
 - [ ] machine-readable parity manifest stating which serialized information is identical across compared arms;
 - [ ] project licence and archive DOI.
 
-## QG1 — Compilation Regime Geometry
+## ORION-09 — Compilation Regime Geometry
 
 ### Data availability — ready-to-paste draft
 
@@ -116,13 +116,13 @@ Do not invent the DOI or licence in manuscripts before that release exists.
 
 > Analyzer and independent-verifier implementations for the reported compiler families are available in the accompanying repository at the publication commit. The final article will cite a permanent archival snapshot and explicit reuse licence.
 
-### QG1 blockers
+### ORION-09 blockers
 - [ ] paper-specific cross-family manifest with exact path/digest per theorem, finite-domain result and prospective refutation;
 - [ ] deterministic figure/table regeneration scripts;
 - [ ] licence and archive DOI;
 - [ ] do not package unmerged successor outcomes into the frozen publication release unless the paper is formally reopened and re-adjudicated.
 
-## QG2 — Certified Static Resource Forecasting
+## ORION-10 — Certified Static Resource Forecasting
 
 ### Data availability — ready-to-paste draft
 
@@ -132,7 +132,7 @@ Do not invent the DOI or licence in manuscripts before that release exists.
 
 > The static forecaster, exact support-two family evaluator, unrestricted referee bindings and independent witness-verification code are available in the accompanying repository. The final article will cite the exact publication commit, permanent archive and explicit reuse licence.
 
-### QG2 blockers
+### ORION-10 blockers
 - [ ] executable `ForecastCertificate` serialization/checker bound to the manuscript schema;
 - [ ] clean benchmark regeneration that separates theorem authority from empirical timing;
 - [ ] licence and archive DOI;

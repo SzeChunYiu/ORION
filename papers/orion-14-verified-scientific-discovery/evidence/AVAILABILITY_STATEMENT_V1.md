@@ -1,4 +1,4 @@
-# ORION-P4 Data and Code Availability — protected V2
+# ORION-ORION-14 Data and Code Availability — protected V2
 
 The publication-authorizing repaired-subject campaign is GitHub Actions run `31976589735`.
 

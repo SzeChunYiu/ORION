@@ -1,4 +1,4 @@
-# P7 real regime transport result receipt V1
+# ORION-17 real regime transport result receipt V1
 
 **Run:** GitHub Actions `32657074362`  
 **Artifact:** `p7-real-regime-transport-v1`, artifact ID `9498189106`  
@@ -42,6 +42,6 @@ There are `119` ambiguous coarse-0 examples, and the sequential support-history 
 
 ## Scientific disposition
 
-P7 now has non-synthetic evidence in two qualitatively distinct regime-change domains: a real evolving public standard and a real observed dataset with ontology/responsibility coarsening/refinement. The result supports the claim that value preservation alone is weaker than evidence/support/closure transport, while always reopening is unnecessarily conservative.
+ORION-17 now has non-synthetic evidence in two qualitatively distinct regime-change domains: a real evolving public standard and a real observed dataset with ontology/responsibility coarsening/refinement. The result supports the claim that value preservation alone is weaker than evidence/support/closure transport, while always reopening is unnecessarily conservative.
 
 This result does **not** establish universal scientific-regime transport across arbitrary world-model, objective or research-agent changes. Those broader claims remain subject to the final manuscript scope and donor refresh.

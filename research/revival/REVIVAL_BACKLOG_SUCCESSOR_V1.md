@@ -24,7 +24,7 @@ Verified on the parent worktree after fast-forward to current `main`:
 3. **Margin relaxation after outcome access is forbidden** as a confirmatory revival lever. #272 already removed that path; keep it removed.
 4. **P5 local attribution is 21 correct of 24**, with three adjacent-level errors. That is diagnosis evidence for #282, not a 24-of-24 terminal and not fresh-transfer evidence.
 
-Deep probe stage attribution **is** on `main` after #266: `papers/paper-02-open-world-scientific-discovery/evidence/external_results/DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json`. Candidate generation remains the failing stage; revival is corrected retrieval, not re-scoring.
+Deep probe stage attribution **is** on `main` after #266: `papers/orion-12-open-world-scientific-discovery/evidence/external_results/DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json`. Candidate generation remains the failing stage; revival is corrected retrieval, not re-scoring.
 
 ## What this programme still owns
 

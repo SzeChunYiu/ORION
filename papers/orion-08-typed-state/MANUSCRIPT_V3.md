@@ -1,6 +1,6 @@
 # Typed and Scoped Partial-Knowledge State for Research Decisions
 
-**ORION-Q4 Manuscript V3 — donor-synchronized publication draft**  
+**ORION-ORION-04 Manuscript V3 — donor-synchronized publication draft**  
 Scientific cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Claim authority: `CLAIM_LEDGER.md`, `PUBLICATION_FOUNDATION_V2.md`  
 Parity/artifact contract: `INFORMATION_PARITY_AND_ARTIFACT_MAP_V2.md`
@@ -13,7 +13,7 @@ Research agents act not only on facts about the world but on partial knowledge a
 
 A long-running research process accumulates more than observations. It accumulates state about its own knowledge: an interface is unknown but belongs to a particular class; a prior attempt failed under a named representation and access contract; a cost is an interval rather than a point; a certificate was transported through multiple edits; or a representation changed after a failure/certificate was recorded.
 
-Many underlying ingredients are mature. Value-of-information methods ask which measurement is worth purchasing. Database and workflow provenance track how results were derived. Agent memory systems increasingly detect and revise stale state. Context-governance systems track versions, provenance, selectors and artifact identity. Q4 does not claim any of these primitives as new.
+Many underlying ingredients are mature. Value-of-information methods ask which measurement is worth purchasing. Database and workflow provenance track how results were derived. Agent memory systems increasingly detect and revise stale state. Context-governance systems track versions, provenance, selectors and artifact identity. ORION-04 does not claim any of these primitives as new.
 
 Two current donors are especially important.
 
@@ -21,7 +21,7 @@ Two current donors are especially important.
 
 **ContextNest** instead treats provenance, version identity and deterministic context selection as governance infrastructure beneath retrieval. A relevant artifact can be stale, unapproved or impossible to reconstruct even when retrieval itself works.
 
-Q4 studies a narrower object than either. We assume the compared non-oracle policies receive the same serialized facts and ask whether explicit **type/scope fields change a registered downstream responsibility**. In N4-B, for example, the old failure need not become false because later evidence contradicts it; it becomes potentially inapplicable because one of the exact context coordinates on which that receipt depended changed. We call this **scope invalidation**, not stale-memory detection.
+ORION-04 studies a narrower object than either. We assume the compared non-oracle policies receive the same serialized facts and ask whether explicit **type/scope fields change a registered downstream responsibility**. In N4-B, for example, the old failure need not become false because later evidence contradicts it; it becomes potentially inapplicable because one of the exact context coordinates on which that receipt depended changed. We call this **scope invalidation**, not stale-memory detection.
 
 The same distinction recurs across the other worlds. A high-entropy unknown can be decision-irrelevant. A certificate can be locally valid yet unsupported as a full chain. An interval can be large yet unable to change the preferred option. A representation edit can invalidate one receipt while leaving another transportable.
 
@@ -123,15 +123,15 @@ N2-F5B compares a candidate predictor with a model-selection donor. They tie at 
 
 These negatives are central because they show that the methodology can return “donor sufficient” rather than forcing every study into a typed-state win.
 
-## 10. Relation to provenance/context governance and P13
+## 10. Relation to provenance/context governance and ORION-23
 
-Q4 assumes that relevant context can be identified, serialized and compared under exact synthetic rules. **ContextNest** and database/workflow provenance research own substantial infrastructure for version identity, provenance, deterministic selection and reconstructable history. Q4 does not replace that layer.
+ORION-04 assumes that relevant context can be identified, serialized and compared under exact synthetic rules. **ContextNest** and database/workflow provenance research own substantial infrastructure for version identity, provenance, deterministic selection and reconstructable history. ORION-04 does not replace that layer.
 
 Its question sits downstream:
 
 > **once trustworthy state is available, which distinctions in that state are required by the next responsibility?**
 
-The paper is also narrower than ORION P13. P13 develops a general theory/contract of **responsibility-scoped sufficiency and recovery**. Q4 supplies bounded exact-synthetic mechanism-isolation evidence for several decisions that motivate such a theory. Q4 therefore does not claim the general principle “sufficiency is responsibility-scoped” as its unique theoretical novelty; it provides controlled experimental support/examples for specific responsibility/state distinctions.
+The paper is also narrower than ORION ORION-23. ORION-23 develops a general theory/contract of **responsibility-scoped sufficiency and recovery**. ORION-04 supplies bounded exact-synthetic mechanism-isolation evidence for several decisions that motivate such a theory. ORION-04 therefore does not claim the general principle “sufficiency is responsibility-scoped” as its unique theoretical novelty; it provides controlled experimental support/examples for specific responsibility/state distinctions.
 
 ## 11. Cross-study synthesis
 
@@ -170,13 +170,13 @@ The repository is publicly inspectable. A final article may describe code/data a
 
 **Rules/types are supplied.** The experiments generally assume the relevant type/scope facts are present in the state. They do not show that an agent can learn correct responsibility types automatically.
 
-**Current donors are broad.** STALE, ContextNest, VOI, active learning and provenance already own major primitives. Q4's residual is the controlled matched-information mechanism evidence.
+**Current donors are broad.** STALE, ContextNest, VOI, active learning and provenance already own major primitives. ORION-04's residual is the controlled matched-information mechanism evidence.
 
 **Constructed hostile regimes.** Hostile controls are intentionally designed to exercise the target distinction; they are not prevalence estimates.
 
 **No cryptographic claim.** Hash/receipt objects in N4-D are synthetic provenance mechanisms, not proof of security against real attackers.
 
-**P13 ownership.** General responsibility-scoped sufficiency/recovery theory belongs to P13; Q4 is bounded empirical/mechanism evidence.
+**ORION-23 ownership.** General responsibility-scoped sufficiency/recovery theory belongs to ORION-23; ORION-04 is bounded empirical/mechanism evidence.
 
 **No single universal mechanism.** The six worlds need different type/scope coordinates because the downstream responsibilities differ.
 
@@ -184,9 +184,9 @@ The repository is publicly inspectable. A final article may describe code/data a
 
 A useful state representation is not defined only by how much information it stores. It is defined by which distinctions survive long enough to matter for the next decision.
 
-Q4's strongest examples are cases where a superficially reasonable scalarization loses that structure. “Changed” is weaker than “a coordinate inside the receipt's dependency scope changed.” “Uncertain” is weaker than “uncertainty can reverse the decision.” “Last hop valid” is weaker than “the full support chain remains valid.” “High entropy” is weaker than “worth probing for the current choice.”
+ORION-04's strongest examples are cases where a superficially reasonable scalarization loses that structure. “Changed” is weaker than “a coordinate inside the receipt's dependency scope changed.” “Uncertain” is weaker than “uncertainty can reverse the decision.” “Last hop valid” is weaker than “the full support chain remains valid.” “High entropy” is weaker than “worth probing for the current choice.”
 
-This interpretation complements rather than competes with current agent-memory and context-governance work. Those systems help maintain trustworthy, current state. Q4 tests the next layer: **how the responsibility consuming that state determines which distinctions must remain explicit.**
+This interpretation complements rather than competes with current agent-memory and context-governance work. Those systems help maintain trustworthy, current state. ORION-04 tests the next layer: **how the responsibility consuming that state determines which distinctions must remain explicit.**
 
 The first-right-of-refusal negatives matter just as much. When an ideal VOI donor already has the typed facts, the candidate allocation policy earns no novelty. When model selection closes an original prediction residual, the paper retains the donor tie. This is evidence that the experimental discipline is capable of subtracting mechanisms rather than only accumulating wins.
 

@@ -1,10 +1,10 @@
-# Q1 proof and evidence map V2
+# ORION-01 proof and evidence map V2
 
-**Purpose:** close Q1 mock-review items R1.1–R2.2 by making theorem scope, proof obligations and exact-referee lineage reviewer-auditable.
+**Purpose:** close ORION-01 mock-review items R1.1–R2.2 by making theorem scope, proof obligations and exact-referee lineage reviewer-auditable.
 
 ## Canonical scope label
 
-Throughout Q1, use:
+Throughout ORION-01, use:
 
 > **R6M/raw-support scope** = the frozen three-block TARE-M2, shared-one-bit-Tag R6M grammar with donor-owned all-three Restore common-factor rule, under the frozen raw support-count objective with multipliers 4 (non-central) / 2 (central).
 

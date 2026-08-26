@@ -1,6 +1,6 @@
 # Formal Epistemic Structures and Mechanics
 
-**Working manuscript — candidate P6 — 2026-08-17**
+**Working manuscript — candidate ORION-16 — 2026-08-17**
 
 ## Abstract
 
@@ -12,7 +12,7 @@ A research agent does more than transform text. It maintains a changing represen
 
 Contemporary language-agent architectures make many of these elements visible as modules—memory, planning, reflection, tools, verification—but module names do not by themselves specify control semantics. Two systems can both contain a planner and a critic while differing radically in what either component is allowed to change after failure.
 
-ORION's existing papers expose this control problem repeatedly. P1 distinguishes knowledge, epistemic/world obligations and mechanics while using responsibility to decide whether a failure licenses reformulation. P2 distinguishes route exhaustion from task closure. P3 separates semantic similarity from authorized integration. P4 separates evidence accumulation from scientific-authority promotion. P5 separates successful modification from authorization to self-promote.
+ORION's existing papers expose this control problem repeatedly. ORION-11 distinguishes knowledge, epistemic/world obligations and mechanics while using responsibility to decide whether a failure licenses reformulation. ORION-12 distinguishes route exhaustion from task closure. ORION-13 separates semantic similarity from authorized integration. ORION-14 separates evidence accumulation from scientific-authority promotion. ORION-15 separates successful modification from authorization to self-promote.
 
 This manuscript asks whether there is a formal substrate beneath these examples.
 
@@ -67,7 +67,7 @@ Let `D(x)` denote the transitive downstream dependency set of a changed state el
 
 subject to provenance and authority conditions.
 
-The difficult part is not graph reachability. It is deciding **which change is epistemically licensed** and therefore which dependency relation is relevant. P1 currently owns the empirical reconstruction version of this idea; P6 requires a more general formal property or should be merged into P1.
+The difficult part is not graph reachability. It is deciding **which change is epistemically licensed** and therefore which dependency relation is relevant. ORION-11 currently owns the empirical reconstruction version of this idea; ORION-16 requires a more general formal property or should be merged into ORION-11.
 
 ## 5. Candidate invariants
 
@@ -85,7 +85,7 @@ These are candidate properties, not established theorems.
 
 ## 6. Relationship to prior work
 
-P6 sits under heavy prior-work pressure. Dynamic epistemic logic already models knowledge-changing actions and model transformations. AGM and later belief-revision theory formalize expansion, contraction and revision. Truth-maintenance and dependency-directed systems study dependency-aware revision. Hyperintensional approaches weaken idealized equivalence assumptions. Separation and process logics provide tools for local state ownership and compositional reasoning. Cognitive-architecture work and CoALA provide modular descriptions of language agents. Recent mechanism-level reviews explicitly reconstruct agent systems in terms such as state, control, transition, persistence, failure, learning and resource governance.
+ORION-16 sits under heavy prior-work pressure. Dynamic epistemic logic already models knowledge-changing actions and model transformations. AGM and later belief-revision theory formalize expansion, contraction and revision. Truth-maintenance and dependency-directed systems study dependency-aware revision. Hyperintensional approaches weaken idealized equivalence assumptions. Separation and process logics provide tools for local state ownership and compositional reasoning. Cognitive-architecture work and CoALA provide modular descriptions of language agents. Recent mechanism-level reviews explicitly reconstruct agent systems in terms such as state, control, transition, persistence, failure, learning and resource governance.
 
 Therefore the paper cannot claim novelty for formalizing change, modules or dependencies.
 
@@ -111,8 +111,8 @@ An empirical positive must route through #283; novelty must route through #287.
 
 ## 8. Limitations
 
-The formalism may prove to be an explanatory notation rather than a novel calculus. Mapping messy language-agent execution to typed state may require judgment. Formal safety properties do not imply scientific correctness. Bounded model checking does not establish correctness at unrestricted recursion depth. P1 may remain the proper home if the only useful results are reconstruction-specific.
+The formalism may prove to be an explanatory notation rather than a novel calculus. Mapping messy language-agent execution to typed state may require judgment. Formal safety properties do not imply scientific correctness. Bounded model checking does not establish correctness at unrestricted recursion depth. ORION-11 may remain the proper home if the only useful results are reconstruction-specific.
 
 ## 9. Conclusion
 
-The candidate thesis is that reliable autonomous research requires explicit semantics not only for knowledge but for the **mechanics that are allowed to change knowledge and problem structure**. P6 will be retained only if that thesis yields a distinct formal residual, nontrivial properties, and evidence beyond a restatement of existing ORION papers or classical belief-change formalisms.
+The candidate thesis is that reliable autonomous research requires explicit semantics not only for knowledge but for the **mechanics that are allowed to change knowledge and problem structure**. ORION-16 will be retained only if that thesis yields a distinct formal residual, nontrivial properties, and evidence beyond a restatement of existing ORION papers or classical belief-change formalisms.

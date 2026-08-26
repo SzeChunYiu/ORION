@@ -25,10 +25,10 @@ from orion.study.p5.causal_repair import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL = ROOT / "papers/paper-05-self-orion/protocol/PROTOCOL_CAUSAL_REPAIR_V2.json"
-POLICY = ROOT / "papers/paper-05-self-orion/protocol/CAUSAL_REPAIR_POLICY_V2.md"
-V1 = ROOT / "papers/paper-05-self-orion/protocol/PROTOCOL_V1.json"
-V2 = ROOT / "papers/paper-05-self-orion/protocol/PROTOCOL_V2.json"
+PROTOCOL = ROOT / "papers/orion-15-self-orion/protocol/PROTOCOL_CAUSAL_REPAIR_V2.json"
+POLICY = ROOT / "papers/orion-15-self-orion/protocol/CAUSAL_REPAIR_POLICY_V2.md"
+V1 = ROOT / "papers/orion-15-self-orion/protocol/PROTOCOL_V1.json"
+V2 = ROOT / "papers/orion-15-self-orion/protocol/PROTOCOL_V2.json"
 
 
 def _load(path: Path) -> dict:

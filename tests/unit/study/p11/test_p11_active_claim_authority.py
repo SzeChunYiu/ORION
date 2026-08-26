@@ -14,7 +14,7 @@ from orion.study.p11.active_claim_authority import (
 )
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-11-state-as-computation"
+PAPER = ROOT / "papers/orion-21-state-as-computation"
 AUTHORITY = PAPER / "P11_ACTIVE_CLAIM_AUTHORITY_V2.json"
 AUTHORITY_V1 = PAPER / "P11_ACTIVE_CLAIM_AUTHORITY_V1.json"
 

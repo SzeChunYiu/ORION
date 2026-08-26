@@ -1,6 +1,6 @@
-# QG1 — Compilation regime geometry
+# ORION-09 — Compilation regime geometry
 
-**Stable ID:** ORION-QG-P1  
+**Stable ID:** ORION-QG-ORION-11  
 **Canonical manuscript:** `manuscript/main.tex`  
 **Status:** `INTERNAL_REVIEW_PASS__PROGRAMME_SYNTHESIS / SUBMISSION_GATES_OPEN`
 

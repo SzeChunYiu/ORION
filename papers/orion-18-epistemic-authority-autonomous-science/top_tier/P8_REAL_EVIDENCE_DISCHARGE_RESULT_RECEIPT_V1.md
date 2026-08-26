@@ -1,4 +1,4 @@
-# P8 real evidence scientific-discharge result receipt V1
+# ORION-18 real evidence scientific-discharge result receipt V1
 
 **Run:** GitHub Actions `32659749882` (pull_request, head `2b336d07273d11a99148cceaffa7d1a6d69e650f`, started 2026-08-23T18:58:38Z, conclusion `success`)  
 **Artifact:** `p8-real-evidence-discharge-v1`, artifact ID `9498475873`  
@@ -38,6 +38,6 @@ Across the `20` frozen real-domain cases (`5` per domain: empirical, formal, mul
 
 ## Scientific disposition
 
-P8 now has a machine-checked, replay-stable, independently corroborated discharge result on frozen real-domain cases: support revocation semantics (full-block, partial-preserve) and action/scientific separation behave exactly as the epistemic-authority calculus specifies, with zero false promotions in all four domains.
+ORION-18 now has a machine-checked, replay-stable, independently corroborated discharge result on frozen real-domain cases: support revocation semantics (full-block, partial-preserve) and action/scientific separation behave exactly as the epistemic-authority calculus specifies, with zero false promotions in all four domains.
 
-This result does **not** establish autonomous scientific authority in the wild, does not constitute external adjudication of P8's calculus, and does not by itself move P8 to `TOP_TIER_SUBMISSION_READY`. External evaluation and manuscript-level claim scoping remain open per the promotion programme (#977).
+This result does **not** establish autonomous scientific authority in the wild, does not constitute external adjudication of ORION-18's calculus, and does not by itself move ORION-18 to `TOP_TIER_SUBMISSION_READY`. External evaluation and manuscript-level claim scoping remain open per the promotion programme (#977).

@@ -7,8 +7,8 @@ failure ledger from the Deep 0.000 archive plus the archived Wide probe.
 
 Examples::
 
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/emit_issue279_revival_receipts.py --check
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/emit_issue279_revival_receipts.py --write
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/emit_issue279_revival_receipts.py --check
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/emit_issue279_revival_receipts.py --write
 """
 
 from __future__ import annotations
@@ -72,13 +72,13 @@ python /tmp/arb-upstream/decrypt_benchmark.py \\
   --input-file /tmp/arb-run/AutoResearchBench.jsonl.obf.json \\
   --output-file /tmp/arb-run/AutoResearchBench.jsonl
 # expected sha256(AutoResearchBench.jsonl) == db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6
-python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \\
+python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \\
   --full /tmp/arb-run/AutoResearchBench.jsonl \\
   --public /tmp/arb-run/wide_public.jsonl \\
   --gt /tmp/arb-run/wide_gt.jsonl \\
   --manifest /tmp/arb-run/split_manifest.json
 # 2. Frozen matched two-system runner (BLOCKED on this lane: arXiv API).
-python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_comparison.py \\
+python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_comparison.py \\
   --public /tmp/arb-run/wide_public.jsonl \\
   --out-dir /tmp/p2-wide-matched
 # Expected N = 399 distinct Wide tasks (400 released rows, 1 duplicate collapsed).
@@ -192,7 +192,7 @@ def build_reproduction_receipt(
         "regeneration": regeneration
         or {
             "command": (
-                "python papers/paper-02-open-world-scientific-discovery/scripts/"
+                "python papers/orion-12-open-world-scientific-discovery/scripts/"
                 "run_offline_companion.py --check"
             ),
             "verified": False,
@@ -465,7 +465,7 @@ def check_all(payloads: dict[str, dict[str, Any]]) -> int:
 def stamp_regeneration(match: bool, note: str) -> dict[str, Any]:
     return {
         "command": (
-            "python papers/paper-02-open-world-scientific-discovery/scripts/"
+            "python papers/orion-12-open-world-scientific-discovery/scripts/"
             "run_offline_companion.py --check"
         ),
         "verified": True,

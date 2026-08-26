@@ -1,4 +1,4 @@
-# P12 transfer allocation result receipt V1
+# ORION-22 transfer allocation result receipt V1
 
 **Run:** GitHub Actions `32661332687` (pull_request, head `aedcaf9321aa2b9cc9acca63267eb5e8eea1ae3e`, conclusion `success`)  
 **Artifact:** `p12-transfer-allocation-v1`, artifact ID `9498946866`  
@@ -32,10 +32,10 @@ The allocator is never worse than either fixed policy and matches `ORACLE_LOCATI
 
 ## Scientific disposition
 
-P12 now has a machine-checked, replay-stable, independently corroborated result showing that a single frozen q/c/B allocation rule — unchanged across domains — attains oracle-equal location decisions under heterogeneous charged units, with complete resource-vector accounting.
+ORION-22 now has a machine-checked, replay-stable, independently corroborated result showing that a single frozen q/c/B allocation rule — unchanged across domains — attains oracle-equal location decisions under heterogeneous charged units, with complete resource-vector accounting.
 
-This result does **not** certify P6-style generality beyond the frozen 9-case set, does not establish robustness to price (`c`) miscalibration or distribution shift, and does not by itself move P12 to `TOP_TIER_SUBMISSION_READY`. Robustness (price/shift stress) and hidden-parameter audit remain open per the P12 gap list.
+This result does **not** certify ORION-16-style generality beyond the frozen 9-case set, does not establish robustness to price (`c`) miscalibration or distribution shift, and does not by itself move ORION-22 to `TOP_TIER_SUBMISSION_READY`. Robustness (price/shift stress) and hidden-parameter audit remain open per the ORION-22 gap list.
 
 ## Provenance note
 
-The original PR head (`aedcaf93`) carried a stale pre-integration stack; this branch is a re-cut onto current `main` containing only the five files of the P12 transfer suite plus this receipt. The full original stack is preserved at `archive/p12-transfer-pre-recut-aedcaf93`. The gate run above executed on the original head `aedcaf93`, whose suite files are byte-identical to the five re-cut files (verified by blob comparison: `148` of the PR's `154` added files were already on `main` unchanged; the suite files' only divergence from `main` is that they were not yet on it).
+The original PR head (`aedcaf93`) carried a stale pre-integration stack; this branch is a re-cut onto current `main` containing only the five files of the ORION-22 transfer suite plus this receipt. The full original stack is preserved at `archive/p12-transfer-pre-recut-aedcaf93`. The gate run above executed on the original head `aedcaf93`, whose suite files are byte-identical to the five re-cut files (verified by blob comparison: `148` of the PR's `154` added files were already on `main` unchanged; the suite files' only divergence from `main` is that they were not yet on it).

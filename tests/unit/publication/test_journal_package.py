@@ -56,7 +56,7 @@ def test_p1_current_claim_query_excludes_immutable_negative_history() -> None:
 
 
 def test_p1_narrow_successor_cannot_launder_historical_h1(tmp_path: Path) -> None:
-    paper = tmp_path / "paper-01-recursive-epistemic-reconstruction"
+    paper = tmp_path / "orion-11-recursive-epistemic-reconstruction"
     shutil.copytree(ROOT / PAPER_DIRS["P1"], paper, ignore=shutil.ignore_patterns("__pycache__"))
     manifest_path = paper / "journal_package" / "MANIFEST.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -276,7 +276,7 @@ def test_consumes_scientific_result_verification_when_present(tmp_path: Path) ->
 
 
 def test_p1_h1_rewrite_to_supported_fails(tmp_path: Path) -> None:
-    paper = tmp_path / "paper-01-recursive-epistemic-reconstruction"
+    paper = tmp_path / "orion-11-recursive-epistemic-reconstruction"
     shutil.copytree(ROOT / PAPER_DIRS["P1"], paper, ignore=shutil.ignore_patterns("__pycache__"))
     manifest_path = paper / "journal_package" / "MANIFEST.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))

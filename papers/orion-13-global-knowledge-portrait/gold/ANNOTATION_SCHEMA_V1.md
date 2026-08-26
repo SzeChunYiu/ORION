@@ -1,6 +1,6 @@
-# ORION-P3: Annotation schema and handbook V1
+# ORION-ORION-13: Annotation schema and handbook V1
 
-**Status:** DESIGN_FROZEN (before gold annotation). Part of `P3.cross-domain-atlas.v1`.
+**Status:** DESIGN_FROZEN (before gold annotation). Part of `ORION-13.cross-domain-atlas.v1`.
 
 **Related:** ANNOTATION_SCHEMA_V1.json (machine-readable schema), ANNOTATION_HANDBOOK_V1.md (annotator reference), ADJUDICATION_POLICY_V1.md, DISCIPLINE_SELECTION_V1.md, Issue #158.
 
@@ -127,7 +127,7 @@ Annotators must:
 - Hold or be pursuing a postgraduate degree in a relevant scientific discipline
 - Have familiarity with the annotation schema and handbook (assessed by a
   practice round on 4 held-out samples before the main annotation)
-- Not be authors of the ORION system or any P3 baseline
+- Not be authors of the ORION system or any ORION-13 baseline
 - Not have inspected any evaluated-system outputs at the time of annotation
 
 ### 4.3 Practice round
@@ -238,7 +238,7 @@ general annotator. Specific triggers:
 Domain experts are:
 - Active researchers in the relevant discipline (publication record in the
   last 5 years)
-- Not authors of the ORION system or any P3 baseline
+- Not authors of the ORION system or any ORION-13 baseline
 - Not involved in the annotation of the same case
 - Compensated for their time (rate per case, not per result)
 

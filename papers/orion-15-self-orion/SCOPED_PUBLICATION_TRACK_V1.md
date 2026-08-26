@@ -1,11 +1,11 @@
-# ORION-P5 scoped publication track V1
+# ORION-ORION-15 scoped publication track V1
 
 **Status:** `SCOPED_NON_SELF_PROMOTION_TRACK_SELECTED`  
 **Date:** 2026-08-20
 
 ## Paper identity
 
-The current P5 paper is **not** a performance paper claiming that Self-ORION already improves itself better than DGM-, ADAS-, AlphaEvolve- or other self-improving-agent baselines. That prospective campaign remains separately frozen and `CANNOT_CHECK`.
+The current ORION-15 paper is **not** a performance paper claiming that Self-ORION already improves itself better than DGM-, ADAS-, AlphaEvolve- or other self-improving-agent baselines. That prospective campaign remains separately frozen and `CANNOT_CHECK`.
 
 The scoped paper studies a different scientific object that is already implemented and auditable:
 
@@ -43,13 +43,13 @@ This scoped paper does not claim:
 - successful protected transfer of a self-generated method change;
 - that 21/24 attribution is sufficient causal accuracy for autonomous self-improvement;
 - that the protected evaluator is immune to unknown gaming strategies;
-- that P5 invented self-improving agents, evolutionary program search, issue-state memory, causal failure attribution or evaluator integrity.
+- that ORION-15 invented self-improving agents, evolutionary program search, issue-state memory, causal failure attribution or evaluator integrity.
 
 ## Strongest scoped conclusion
 
 > **Fallible self-diagnosis and method proposal can be structurally non-self-authorizing: within the registered Self-ORION architecture, internal reasoning can determine what should be investigated or proposed next without obtaining authority to promote that proposal into the adopted scientific method.**
 
-This is the P5 instance of ORION's broader scientific-status-transition programme: locally valid or fallible internal objects may guide research, but changing the standing of a different scientific object requires a separate protected transition.
+This is the ORION-15 instance of ORION's broader scientific-status-transition programme: locally valid or fallible internal objects may guide research, but changing the standing of a different scientific object requires a separate protected transition.
 
 ## Follow-up performance science
 

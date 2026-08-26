@@ -1,7 +1,7 @@
 """P7's shipped closure checkers, measured against the premises they are handed.
 
 Every number pinned here was read off the shipped artifacts
-``papers/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py``,
+``papers/orion-17-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py``,
 ``research/claim_expansion/p7/check_p7_x2_closure_carrying.py`` and
 ``research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json``, or off a
 run of the checkers that produced them.
@@ -348,7 +348,7 @@ def test_the_reproduction_note_reports_the_authority_the_check_now_has() -> None
 
     note = (
         premises.REPO_ROOT
-        / "papers/paper-07-epistemic-navigation-open-worlds/REPRODUCE_V2_1.md"
+        / "papers/orion-17-epistemic-navigation-open-worlds/REPRODUCE_V2_1.md"
     ).read_text()
 
     assert "theory_closure_terminal: PASS" in note

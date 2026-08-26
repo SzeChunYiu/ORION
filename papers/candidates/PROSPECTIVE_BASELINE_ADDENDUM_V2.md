@@ -1,4 +1,4 @@
-# P6–P8 prospective baseline addendum V2
+# ORION-16–ORION-18 prospective baseline addendum V2
 
 **Date:** 2026-08-17  
 **Relationship:** additive to each paper's `PROSPECTIVE_EVALUATION_V1.md`.  
@@ -6,21 +6,21 @@
 
 The second breadth pass found mature parent fields that make several earlier baselines too weak. These additions are mandatory before a broad candidate-paper claim.
 
-## P6 baseline additions
+## ORION-16 baseline additions
 
 ### B5 — self-adjusting / incremental change-propagation baseline
 Represent the computation or workflow with an explicit dynamic dependence graph and propagate changes only through affected computation, preserving reusable unaffected work.
 
-**Purpose:** prevent P6 from winning merely because it has dependency-aware incremental repair.
+**Purpose:** prevent ORION-16 from winning merely because it has dependency-aware incremental repair.
 
 **Required comparison families:**
 - dependency-only mutation/recompute;
 - independent-support preservation;
 - repeated local changes with reusable prior computation.
 
-**P6 can only add value if:** a case requires a distinct epistemic terminal or constraint—e.g. unauthorized commit, unresolved hard obligation, certification reopening, content/provenance condition, or chronology-sensitive audit—that the faithful incremental-computation baseline is not designed to decide.
+**ORION-16 can only add value if:** a case requires a distinct epistemic terminal or constraint—e.g. unauthorized commit, unresolved hard obligation, certification reopening, content/provenance condition, or chronology-sensitive audit—that the faithful incremental-computation baseline is not designed to decide.
 
-## P7 baseline additions
+## ORION-17 baseline additions
 
 ### B5 — schema/specification-preserving transformation
 A transformation baseline that preserves the frozen semantic/specification properties defined by the source/target schema model.
@@ -34,16 +34,16 @@ A transformation/reconstruction baseline that retains sufficient provenance to r
 ### B8 — conceptual/signature or ontology-revision baseline
 A donor representation where the vocabulary/signature/interpretation changes explicitly rather than only values in a fixed schema.
 
-**Purpose:** prevent P7 from winning merely because it can map old states into a changed representation.
+**Purpose:** prevent ORION-17 from winning merely because it can map old states into a changed representation.
 
-**P7 can only add value if:** the frozen case separates:
+**ORION-17 can only add value if:** the frozen case separates:
 
 1. successful representation/data/evidence transport, from
 2. successful **scientific obligation/closure transport**.
 
 The key matched pair should preserve the same content-bound evidence in both cases while changing whether the old closure remains authorized under the target objective/ontology.
 
-## P8 baseline additions
+## ORION-18 baseline additions
 
 ### B7 — proof-carrying / linear authorization
 Authorization is granted only when a valid formal proof/credential exists under the frozen policy.
@@ -66,9 +66,9 @@ A typed-flow baseline prevents judgments/information from crossing forbidden dom
 ### B13 — policy-state serializable concurrent governance
 A stateful-agent baseline in which the committed effect must be authorized against the policy state immediately preceding commit, preventing stale authorization under concurrency.
 
-**Purpose:** prevent P8 from winning merely because judgments are typed, proof-bearing, stateful, epoch-bound or prohibited from arbitrary cross-domain flow.
+**Purpose:** prevent ORION-18 from winning merely because judgments are typed, proof-bearing, stateful, epoch-bound or prohibited from arbitrary cross-domain flow.
 
-**P8 can only add value if:** the target action's hard **scientific epistemic obligation semantics** matter. A valid source judgment must fail to discharge a target obligation even when ordinary policy-flow/state freshness is correct; an explicit P8 coercion may succeed only when it proves the target obligation is actually discharged without semantic weakening.
+**ORION-18 can only add value if:** the target action's hard **scientific epistemic obligation semantics** matter. A valid source judgment must fail to discharge a target obligation even when ordinary policy-flow/state freshness is correct; an explicit ORION-18 coercion may succeed only when it proves the target obligation is actually discharged without semantic weakening.
 
 ## Cross-paper matched discriminator
 

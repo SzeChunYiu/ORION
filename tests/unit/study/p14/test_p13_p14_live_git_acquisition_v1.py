@@ -67,7 +67,7 @@ def test_license_path_is_extracted_without_traversal():
 
 def test_ineligible_entry_is_retained_without_git_execution(tmp_path):
     runner = load_runner()
-    corpus = json.loads((ROOT / "papers/paper-13-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json").read_text())
+    corpus = json.loads((ROOT / "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json").read_text())
     entry = next(row for row in corpus["entries"] if row["gold_eligible"] is False)
     result = runner.acquire(entry, tmp_path, 1)
     assert result["status"] == "EXCLUDED_LICENSE_CANNOT_CHECK"

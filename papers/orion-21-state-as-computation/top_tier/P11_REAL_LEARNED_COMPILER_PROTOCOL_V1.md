@@ -1,4 +1,4 @@
-# P11 real learned-compiler protocol V1
+# ORION-21 real learned-compiler protocol V1
 
 **Programme:** #977  
 **State:** `FROZEN_BEFORE_EXECUTION`  
@@ -93,7 +93,7 @@ For each fold, report the one-time compiler-fit proxy and the per-example compil
 - compile cost is treated as free;
 - only positive datasets are reported;
 - accuracy non-inferiority hides large class-specific failure: report per-class accuracy/recall tables;
-- feature selection is rebranded as P11 novelty.
+- feature selection is rebranded as ORION-21 novelty.
 
 ## Frozen terminal
 

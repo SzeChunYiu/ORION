@@ -5,7 +5,7 @@
 
 ## Result
 
-The P6–P8 donor-complete programme now has a precise two-level result.
+The ORION-16–ORION-18 donor-complete programme now has a precise two-level result.
 
 ### Level 1 — strict separation from isolated donors
 
@@ -18,19 +18,19 @@ Therefore no deterministic rule restricted to that isolated donor projection can
 
 The joint ORION envelope includes the missing decision-relevant coordinate and separates the pair.
 
-#### P6
+#### ORION-16
 
 Same bare transition/dependency/incremental-computation view; different hard scientific-obligation state. Gold decisions differ (`AUTHORIZED` versus `CANNOT_CHECK`).
 
 **Interpretation:** correct computation/repair alone cannot decide scientific admissibility.
 
-#### P7
+#### ORION-17
 
 Same fixed-chart history, route state and content-valid evidence; different transformed scientific obligation. Gold decisions differ (`TASK_STOP` versus `CONTINUE`).
 
 **Interpretation:** navigation/evidence validity alone cannot decide post-transform scientific closure.
 
-#### P8
+#### ORION-18
 
 Same generic principal/effect/grant/blocker state; different target scientific-discharge state. Gold decisions differ (`AUTHORIZED` versus `CANNOT_CHECK`).
 
@@ -42,7 +42,7 @@ Same generic principal/effect/grant/blocker state; different target scientific-d
 
 If the donor product is upgraded to expose the same joint coordinates and implements the same transport/coercion/revocation laws, it is no longer the isolated projection addressed above.
 
-P8 formally proves shared/product behavioral equivalence under identical semantics. The programme-wide donor envelope likewise expects an ideal product to tie ORION on the frozen finite decisions.
+ORION-18 formally proves shared/product behavioral equivalence under identical semantics. The programme-wide donor envelope likewise expects an ideal product to tie ORION on the frozen finite decisions.
 
 Therefore:
 

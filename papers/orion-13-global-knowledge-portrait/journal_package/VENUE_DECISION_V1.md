@@ -1,4 +1,4 @@
-# ORION-P3 scoped venue decision V1
+# ORION-ORION-13 scoped venue decision V1
 
 **Checked:** 2026-08-18  
 **Track:** `SCOPED_PUBLICATION_TRACK_V1.md`  
@@ -11,7 +11,7 @@
 Why it fits the scoped scientific object:
 
 - the journal explicitly accepts full original research on Semantic Web topics and the use of semantic technologies outside the World Wide Web;
-- the P3 object is a typed scientific semantic-integration method with provenance, mapping, obstruction/pluralism, and reproducible external mapping evidence;
+- the ORION-13 object is a typed scientific semantic-integration method with provenance, mapping, obstruction/pluralism, and reproducible external mapping evidence;
 - its author guidance emphasizes evaluation detail sufficient for replication and asks authors to provide critical evaluation data/software at a stable long-term URL whenever feasible;
 - the current review process is open and transparent, so manuscript claims and artifact boundaries should be prepared for public scrutiny.
 
@@ -33,7 +33,7 @@ Official sources checked:
 
 **Disposition:** `FALLBACK`.
 
-The current official scope describes an interdisciplinary venue at the intersection of Semantic Web, Knowledge Graphs, and AI, including theoretical and applied work. This is also compatible with the scoped P3 semantic-integration object. Re-check the current Guide for Authors, article-processing charges, template, and open-science requirements immediately before a fallback submission.
+The current official scope describes an interdisciplinary venue at the intersection of Semantic Web, Knowledge Graphs, and AI, including theoretical and applied work. This is also compatible with the scoped ORION-13 semantic-integration object. Re-check the current Guide for Authors, article-processing charges, template, and open-science requirements immediately before a fallback submission.
 
 Official source checked:
 
@@ -41,7 +41,7 @@ Official source checked:
 
 ## Not primary — TMLR
 
-TMLR's current scope centers computational/mathematical principles enabling intelligence through learning. It accepts careful analytical/evaluation work and explicitly permits claim reduction when evidence is narrower, but P3's scoped contribution is semantic integration rather than a learning result. Keep TMLR as a possible re-evaluation route only if the manuscript's final scientific object becomes substantially learning/evaluation centered.
+TMLR's current scope centers computational/mathematical principles enabling intelligence through learning. It accepts careful analytical/evaluation work and explicitly permits claim reduction when evidence is narrower, but ORION-13's scoped contribution is semantic integration rather than a learning result. Keep TMLR as a possible re-evaluation route only if the manuscript's final scientific object becomes substantially learning/evaluation centered.
 
 Official sources checked:
 
@@ -54,9 +54,9 @@ Official sources checked:
 - [ ] convert the scoped manuscript to the current primary-venue submission format without changing scientific content;
 - [ ] produce one compiled PDF containing all submission figures/tables;
 - [ ] freeze a stable public replication/archive URL for the public-reference evidence and code, or state exact restrictions;
-- [ ] finish a cover letter identifying the submission as a full research paper and summarizing the bounded P3.C5/P3.C9 contribution;
+- [ ] finish a cover letter identifying the submission as a full research paper and summarizing the bounded ORION-13.C5/ORION-13.C9 contribution;
 - [ ] complete author/contribution/funding/conflict/acknowledgement fields from host-authoritative information;
 - [ ] re-check APC/institutional agreement before submission;
 - [ ] run the required current-literature refresh inside 14 days of the actual submission date.
 
-A venue decision does not promote P3.C7/P3.C8 or close #100 by itself.
+A venue decision does not promote ORION-13.C7/ORION-13.C8 or close #100 by itself.

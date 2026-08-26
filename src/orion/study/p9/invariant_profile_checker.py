@@ -55,7 +55,7 @@ from .invariant_profile_representation import (
 
 RESULT_ARTIFACT = (
     Path(__file__).resolve().parents[4]
-    / "papers/paper-09-structured-epistemic-learning/evidence/"
+    / "papers/orion-19-structured-epistemic-learning/evidence/"
     "P9_U_T4_SUCCESSOR_INVARIANT_PROFILE_RESULT_2026-08-24.json"
 )
 

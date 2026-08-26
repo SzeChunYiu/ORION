@@ -47,7 +47,7 @@ from orion.study.p12.gate_theories import (
 RECEIPT = (
     Path(__file__).resolve().parents[3]
     / "papers"
-    / "paper-12-adaptive-state-reasoning"
+    / "orion-22-adaptive-state-reasoning"
     / "P12A_MATCHED_BUDGET_RESULT_RECEIPT_V1.json"
 )
 

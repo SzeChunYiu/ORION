@@ -1,4 +1,4 @@
-# P11 decoder-attack frontier result receipt V1
+# ORION-21 decoder-attack frontier result receipt V1
 
 **Run:** GitHub Actions `32661293913 (conclusion: success)`  
 **Artifact:** `p11-decoder-attack-v1`, artifact ID `9498921681`  

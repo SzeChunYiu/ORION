@@ -11,7 +11,7 @@ from orion.study.p15.acquisition import (
 )
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-15-orion-research-harness"
+PAPER = ROOT / "papers/orion-25-orion-research-harness"
 
 
 def test_committed_preflight_matches_absent_protected_inputs() -> None:

@@ -12,7 +12,7 @@ The first instrument is a receipt-replay research harness driven by a tool-capab
 
 Benchmark V0 was executed on an unresolved quantum-compilation frontier. Both instruments independently diagnosed the representation/regime-characterization layer and selected regime characterization as the next move; the typed controller additionally withheld a representation revision because its obligation remained unresolved. Later exact R6P/R6Q results were scored `ALIGNED` to the selected move. This is one first measurement, not an estimate of reliability. The live instrument use also exposed malformed-successful-receipt defects. Current main now maps invalid reasoner content to structured host-capability failure and provides explicit reason-bound archival of successful-but-invalid receipts, with regression tests showing that the deterministic identity can be safely re-serviced while the original bytes remain auditable.
 
-Current multi-agent literature makes clear that agreement itself is only a weak and regime-dependent signal. We therefore preregister a stronger study requiring at least 20 live frontier decisions across multiple research programmes, deferred scoring, explicit disagreement and cannot-check analysis, and shared-bias controls. Q3's contribution is the benchmark and instrument contract that makes such a prospective measurement possible, not a claim that consensus confers scientific truth.
+Current multi-agent literature makes clear that agreement itself is only a weak and regime-dependent signal. We therefore preregister a stronger study requiring at least 20 live frontier decisions across multiple research programmes, deferred scoring, explicit disagreement and cannot-check analysis, and shared-bias controls. ORION-03's contribution is the benchmark and instrument contract that makes such a prospective measurement possible, not a claim that consensus confers scientific truth.
 
 ---
 
@@ -125,7 +125,7 @@ This is scientifically useful as a demonstration because the later outcome did n
 
 Cross-model and multi-agent studies now provide a strong cautionary baseline. Agreement can correlate with correctness while remaining too weak or biased to serve as standalone confidence; multiple agents can share the same misconception, training-data artifact or option prior. Debate also does not reliably dominate simpler self-consistency/ensemble baselines.
 
-Q3 therefore does not propose “agreement” as a confidence score. Instead it makes agreement/disagreement an independently frozen explanatory variable whose relationship to later scientific resolution must be measured.
+ORION-03 therefore does not propose “agreement” as a confidence score. Instead it makes agreement/disagreement an independently frozen explanatory variable whose relationship to later scientific resolution must be measured.
 
 The important quantities for a multi-item study are closer to
 
@@ -159,19 +159,19 @@ The study records:
 - shared-bias/adversarial controls;
 - dependence of the typed controller on manifest coverage.
 
-If the series cannot be collected without outcome leakage, Q3 remains a systems/benchmark-definition paper rather than being promoted to a predictive-validity study.
+If the series cannot be collected without outcome leakage, ORION-03 remains a systems/benchmark-definition paper rather than being promoted to a predictive-validity study.
 
 ---
 
 ## 8. Related work boundary
 
-**Multi-agent debate and self-consistency.** Existing work asks whether multiple model responses/debate improve answer quality or whether their agreement estimates confidence. Q3 differs because instruments do not negotiate before recording the measurement and because scientific scoring is deferred until later work creates evidence.
+**Multi-agent debate and self-consistency.** Existing work asks whether multiple model responses/debate improve answer quality or whether their agreement estimates confidence. ORION-03 differs because instruments do not negotiate before recording the measurement and because scientific scoring is deferred until later work creates evidence.
 
-**Calibrated multi-agent verification.** Recent work explicitly controls hallucination risk when consensus can be correlated. This motivates Q3's refusal to treat consensus as authority.
+**Calibrated multi-agent verification.** Recent work explicitly controls hallucination risk when consensus can be correlated. This motivates ORION-03's refusal to treat consensus as authority.
 
-**Research provenance.** Contemporary autonomous-science work increasingly treats provenance-complete experimentation as necessary for trust. Q3 uses provenance as infrastructure to preserve the temporal ordering of frontier decision and later score; it does not claim the general concept of research provenance.
+**Research provenance.** Contemporary autonomous-science work increasingly treats provenance-complete experimentation as necessary for trust. ORION-03 uses provenance as infrastructure to preserve the temporal ordering of frontier decision and later score; it does not claim the general concept of research provenance.
 
-**Agent benchmarks.** Most agent evaluations score against pre-existing ground truth. Q3 instead targets live research questions where the ground truth is intentionally absent at decision time.
+**Agent benchmarks.** Most agent evaluations score against pre-existing ground truth. ORION-03 instead targets live research questions where the ground truth is intentionally absent at decision time.
 
 A bounded literature map is recorded in `NOVELTY_RESEARCH_2026-08-22.md`.
 

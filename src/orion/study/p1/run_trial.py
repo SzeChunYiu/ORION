@@ -18,8 +18,8 @@ from .provider import CREDENTIAL_ENV_VAR, ProviderBackedSystem, credential_prese
 from .score_archive import read_runs, score_archive
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-CASES_ROOT = REPO_ROOT / "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases"
-RESULTS_ROOT = REPO_ROOT / "papers/paper-01-recursive-epistemic-reconstruction/results"
+CASES_ROOT = REPO_ROOT / "papers/orion-11-recursive-epistemic-reconstruction/protocol/cases"
+RESULTS_ROOT = REPO_ROOT / "papers/orion-11-recursive-epistemic-reconstruction/results"
 
 EXIT_OK = 0
 EXIT_ERROR = 2

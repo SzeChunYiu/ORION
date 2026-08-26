@@ -79,7 +79,7 @@ exact optimum is attained by some configuration whose structural generators each
 have global support ≤ B. Support bounds convert an unrestricted optimization over
 an unbounded index set into a finite enumerable search, and they are what makes a
 DP-free static forecaster possible at all (companion paper,
-`papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V1.md`, Section 2.2).
+`papers/archive/2026-08-pre-unification/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V1.md`, Section 2.2).
 The trouble is that a support bound is a property of a *proof*, not of a family.
 Two theorems about neighbouring grammars here report B = 2 and B = 5: the R6M
 three-block shared-one-bit-Tag grammar closes at support 2 for every n
@@ -415,7 +415,7 @@ receipt spells out what "outside" means:
 No row above is a claim that support 2 is required at O_tag_out, O_restore_out or
 O_nc_out; nothing has been proved about κ there at all. The protocol made this a
 standing condition of native acceptance, not an afterthought
-(`QG16_R6I_SUPPORT1_PHASE_PROTOCOL_V1.md`, P6 and "Native ORION-Q").
+(`QG16_R6I_SUPPORT1_PHASE_PROTOCOL_V1.md`, ORION-16 and "Native ORION-Q").
 
 ### 5.2 QG-8: the R6M support-2 cone, and an outside control with teeth
 

@@ -1,6 +1,6 @@
 # Compilation Regime Geometry: Exact Trade Mechanisms, Objective Phases, and Boundary Identifiability Across Quantum Compiler Families
 
-**ORION-QG1 Manuscript V2 — publication-synthesis draft**  
+**ORION-ORION-09 Manuscript V2 — publication-synthesis draft**  
 Publication cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Claim authority: `CLAIM_LEDGER.md`, `PUBLICATION_FOUNDATION_V2.md`, committed QG wave-1/wave-2 receipts
 
@@ -81,7 +81,7 @@ All QG receipts used here retain `NOT_R6`: the programme does not claim physical
 
 ## 4. Family I: TARE — exact support ceiling, expanding trade basis
 
-The first regime-geometry instance is the R6M shared-Tag TARE grammar under the frozen raw support-count objective. Detailed mathematics is owned by companion Q1; here we use only the elements needed for the cross-family object.
+The first regime-geometry instance is the R6M shared-Tag TARE grammar under the frozen raw support-count objective. Detailed mathematics is owned by companion ORION-01; here we use only the elements needed for the cross-family object.
 
 ### 4.1 Donor region and first two trades
 
@@ -123,11 +123,11 @@ This distinction is characteristic of regime geometry: exact support complexity 
 
 ## 5. Objective geometry: the phase map belongs to `(family, objective)`
 
-An apparent compiler regime can be an artifact of the objective used to price configurations. QG2 explicitly reweights the TARE structural objective.
+An apparent compiler regime can be an artifact of the objective used to price configurations. ORION-10 explicitly reweights the TARE structural objective.
 
 ### 5.1 O1: support-two world breaks
 
-Under the registered O1 weights, chemistry donor exactness disappears on all 30 recorded matchings. The original two-trade identity fails on 4,484 structured-`n=2` instances. More importantly, QG2 records an exact `NEW_SUPPORT3` witness in which a support-three construction has cost 11 while the best support-two construction costs 13 and the simpler D+ family costs 23.
+Under the registered O1 weights, chemistry donor exactness disappears on all 30 recorded matchings. The original two-trade identity fails on 4,484 structured-`n=2` instances. More importantly, ORION-10 records an exact `NEW_SUPPORT3` witness in which a support-three construction has cost 11 while the best support-two construction costs 13 and the simpler D+ family costs 23.
 
 Thus the R6S support-two theorem is **objective-scoped**. It is exact under the unit/raw-support objective and not a universal property of the grammar under arbitrary weights.
 
@@ -208,7 +208,7 @@ The table is intentionally heterogeneous. A theorem in TARE is not “equivalent
 
 ## 9. Relation to Instance Space Analysis and algorithm selection
 
-ISA explicitly studies how instance features relate to algorithm performance and constructs regions/footprints in which algorithms are strong or weak. It supports algorithm selection and has been applied to quantum optimization, including QAOA parameter initialization. QG1 therefore cannot claim novelty for the broad sentence “instance structure determines which method works.”
+ISA explicitly studies how instance features relate to algorithm performance and constructs regions/footprints in which algorithms are strong or weak. It supports algorithm selection and has been applied to quantum optimization, including QAOA parameter initialization. ORION-09 therefore cannot claim novelty for the broad sentence “instance structure determines which method works.”
 
 The difference is in the scientific object and evidence.
 
@@ -220,11 +220,11 @@ Third, objective dependence can be proved or refuted by exact resource vectors/c
 
 Fourth, the feature representation itself is attacked. The StabPrep mixed cells show that a particular natural feature vocabulary cannot decide the exact boundary regardless of classifier complexity.
 
-ISA is therefore a direct conceptual donor and a natural comparison framework; QG1's residual lies in **exact mechanistic characterization, proof/counterexample authority, and representation-level boundary falsification**.
+ISA is therefore a direct conceptual donor and a natural comparison framework; ORION-09's residual lies in **exact mechanistic characterization, proof/counterexample authority, and representation-level boundary falsification**.
 
 ## 10. Relation to quantum compilation and resource estimation
 
-Modern quantum compiler work includes exact and heuristic circuit synthesis, hardware-aware mapping, Pauli/circuit optimization, and compilation-driven logical/physical resource estimation. These systems often optimize broader cost stacks than the structural objectives used here. QG1 does not claim a universal quantum compiler or full-resource phase diagram.
+Modern quantum compiler work includes exact and heuristic circuit synthesis, hardware-aware mapping, Pauli/circuit optimization, and compilation-driven logical/physical resource estimation. These systems often optimize broader cost stacks than the structural objectives used here. ORION-09 does not claim a universal quantum compiler or full-resource phase diagram.
 
 Instead, each family is intentionally small enough that its structural optimum can be refereed exactly or bounded tightly. This permits a different kind of result: a theorem/counterexample map explaining **why a restricted compilation family is or is not sufficient**.
 
@@ -232,7 +232,7 @@ Instead, each family is intentionally small enough that its structural optimum c
 
 The paper must ship a cross-family evidence manifest. At minimum it should bind:
 
-- TARE R6S/QG2/QG7/QG7b/QG7c receipts and protocols;
+- TARE R6S/ORION-10/QG7/QG7b/QG7c receipts and protocols;
 - SixLCU QG12/QG15b receipts;
 - StabPrep QG15/QG15b exact-state and prospective receipts;
 - independent generic verifier results where registered;

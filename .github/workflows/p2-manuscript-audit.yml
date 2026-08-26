@@ -17,7 +17,7 @@ on:
       - chatgpt/p2-remaining-closure
       - main
     paths:
-      - 'papers/paper-02-open-world-scientific-discovery/**'
+      - 'papers/orion-12-open-world-scientific-discovery/**'
       - 'research/paper-programme-v1/journal_package/check_journal_package.py'
       - 'research/publication/scoreboard.py'
       - 'research/publication/publication_status.schema.json'
@@ -57,9 +57,9 @@ jobs:
       - name: Validate P2 claim ledger and assimilation boundaries
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
-          python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_assimilation.py
-          python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py
+          python papers/orion-12-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
+          python papers/orion-12-open-world-scientific-discovery/scripts/check_p2_assimilation.py
+          python papers/orion-12-open-world-scientific-discovery/scripts/check_p2_v2.py
 
       - name: Validate publication schema, readiness, and scoreboard
         env:
@@ -69,8 +69,8 @@ jobs:
           python -m json.tool research/publication/publication_status.schema.json >/dev/null
           python -m json.tool research/publication/publication_status.json >/dev/null
           python research/publication/scoreboard.py --check
-          grep -q 'CANNOT_CHECK' papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS.md
-          grep -q 'CANNOT_CHECK' papers/paper-02-open-world-scientific-discovery/protocol/EXTERNAL_ACCESS_AUDIT_V1.json
+          grep -q 'CANNOT_CHECK' papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS.md
+          grep -q 'CANNOT_CHECK' papers/orion-12-open-world-scientific-discovery/protocol/EXTERNAL_ACCESS_AUDIT_V1.json
 
       - name: Validate P1-P5 native boundary embedding
         env:
@@ -91,7 +91,7 @@ jobs:
           import json, re
           from pathlib import Path
 
-          paper = Path('papers/paper-02-open-world-scientific-discovery')
+          paper = Path('papers/orion-12-open-world-scientific-discovery')
           root = paper / 'manuscript'
           evidence = paper / 'evidence' / 'literature'
           tex_files = [root / 'main.tex', *sorted((root / 'sections').glob('*.tex'))]
@@ -150,7 +150,7 @@ jobs:
           PY
 
       - name: Compile canonical PDF
-        working-directory: papers/paper-02-open-world-scientific-discovery/manuscript
+        working-directory: papers/orion-12-open-world-scientific-discovery/manuscript
         run: |
           set -euo pipefail
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
@@ -171,5 +171,5 @@ jobs:
           path: |
             /tmp/p2-manuscript-audit.json
             /tmp/p2-pdfinfo.txt
-            papers/paper-02-open-world-scientific-discovery/manuscript/main.pdf
-            papers/paper-02-open-world-scientific-discovery/manuscript/main.log
+            papers/orion-12-open-world-scientific-discovery/manuscript/main.pdf
+            papers/orion-12-open-world-scientific-discovery/manuscript/main.log

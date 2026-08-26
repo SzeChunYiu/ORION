@@ -44,7 +44,7 @@ SCHEMA_VERSION = "orion.p6.separation-calculus-smt.v1"
 COMMUTATION_CONTRACT_ID = "P6.COMMUTE.RW_NONINTERFERENCE.V1"
 
 EXECUTABLE_MODEL = (
-    "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py"
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py"
 )
 
 

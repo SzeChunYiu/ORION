@@ -1,4 +1,4 @@
-# Q4 submission package
+# ORION-04 submission package
 
 **Current paper type:** exact-synthetic mechanism-isolation + reusable benchmark suite.  
 **Future higher-claim path:** the preregistered real scientific-decision study.
@@ -17,7 +17,7 @@ Across six prospectively frozen exact-synthetic studies in which visible informa
 
 ## Significance statement
 
-Agent-memory systems increasingly expose provenance, stale-state handling and value-of-information mechanisms, so the important question is no longer whether such primitives exist. Q4 isolates whether *scientific decision state* changes outcomes when the facts themselves are held fixed. Six controlled worlds separately test type-conditioned priors, scope-bound reopening, Pareto-targeted verification, full-chain transport obligations, decision-coupled acquisition and representation-remint status. Exact donor and no-value controls prevent the paper from turning those effects into a universal typed-memory or policy claim.
+Agent-memory systems increasingly expose provenance, stale-state handling and value-of-information mechanisms, so the important question is no longer whether such primitives exist. ORION-04 isolates whether *scientific decision state* changes outcomes when the facts themselves are held fixed. Six controlled worlds separately test type-conditioned priors, scope-bound reopening, Pareto-targeted verification, full-chain transport obligations, decision-coupled acquisition and representation-remint status. Exact donor and no-value controls prevent the paper from turning those effects into a universal typed-memory or policy claim.
 
 ## Editor pitch
 

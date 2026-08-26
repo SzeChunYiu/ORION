@@ -13,9 +13,9 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 SOURCE_PATHS = [
     "research/claim_expansion/p1/gpt_r7/R7A_MAXT_POWER_AMENDMENT_V2.json",
-    "papers/paper-02-open-world-scientific-discovery/protocol/P2_TASK_WORLD_SUCCESSOR_V2.json",
-    "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json",
-    "papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json",
+    "papers/orion-12-open-world-scientific-discovery/protocol/P2_TASK_WORLD_SUCCESSOR_V2.json",
+    "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json",
+    "papers/orion-15-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json",
 ]
 
 

@@ -1,4 +1,4 @@
-# ORION-P5 claim ledger V1
+# ORION-ORION-15 claim ledger V1
 
 > **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
 > subsequently rewritten so that its claims are about the mechanism rather than
@@ -19,9 +19,9 @@ Every abstract, results, limitations and conclusion claim in this revision maps 
 | Abstract | Local hostile tests establish implementation and governance semantics only. | IMPLEMENTED CONTRACT | `evidence/FALSIFIER_V1.md` | `SUPPORTED` |
 | Abstract | Governed self-improvement on fresh development tasks remains `CANNOT_CHECK`. | EXTERNAL NOT EXECUTED | `protocol/PROTOCOL_V1.json` `execution_bindings=UNBOUND` | `SUPPORTED` |
 | Abstract | Diagnostic glm-5.2 hidden-cause attribution scores 21/24 with three residual errors retained; this does not establish transferable self-improvement. | DESCRIPTIVE ONLY | `evidence/glm-5.2-attribution/results.jsonl` | `SUPPORTED` |
-| Results | Raw-record accuracy is 21/24 with Wilson 95% interval in Table P5-3. | DESCRIPTIVE ONLY | `evidence/tables/P5-3_cause_confusion.json` | `SUPPORTED` |
-| Results | Residual errors are `P5-HC-002` (RETRIEVAL_MISS → REPRESENTATION_GAP), `P5-HC-012` (ENVIRONMENT_DEPENDENCY_TOOL_FAILURE → IMPLEMENTATION_BUG), `P5-HC-018` (REPRESENTATION_GAP → METHOD_BASIS_GAP). | DESCRIPTIVE ONLY; FAILURES RETAINED | `evidence/tables/P5-ATTRIBUTION_RESIDUAL_ERRORS.json` | `SUPPORTED` |
-| Results | Figures/tables P5-2, P5-4, P5-5, P5-6, P5-7 and Tables P5-T2/P5-T3 remain `CANNOT_CHECK`. | EXTERNAL NOT EXECUTED | `evidence/tables/INDEX.json` | `SUPPORTED` |
+| Results | Raw-record accuracy is 21/24 with Wilson 95% interval in Table ORION-15-3. | DESCRIPTIVE ONLY | `evidence/tables/ORION-15-3_cause_confusion.json` | `SUPPORTED` |
+| Results | Residual errors are `ORION-15-HC-002` (RETRIEVAL_MISS → REPRESENTATION_GAP), `ORION-15-HC-012` (ENVIRONMENT_DEPENDENCY_TOOL_FAILURE → IMPLEMENTATION_BUG), `ORION-15-HC-018` (REPRESENTATION_GAP → METHOD_BASIS_GAP). | DESCRIPTIVE ONLY; FAILURES RETAINED | `evidence/tables/ORION-15-ATTRIBUTION_RESIDUAL_ERRORS.json` | `SUPPORTED` |
+| Results | Figures/tables ORION-15-2, ORION-15-4, ORION-15-5, ORION-15-6, ORION-15-7 and Tables ORION-15-T2/ORION-15-T3 remain `CANNOT_CHECK`. | EXTERNAL NOT EXECUTED | `evidence/tables/INDEX.json` | `SUPPORTED` |
 | Claim boundary | The prospective V3 substrate can keep revision responsibility ambiguous/unresolved, require registered interface checks before broader revision consideration, and nominate only a non-authoritative candidate mechanic; it grants no adoption, promotion or merge authority. | IMPLEMENTED FORMAL CONTRACT ONLY; NO EMPIRICAL VALUE CLAIM | `src/orion/transfer/v2/epistemic_responsibility.py`; `src/orion/transfer/v2/interface_adequacy.py`; `src/orion/self_orion/revision_gate.py` | `SUPPORTED` |
 | Claim boundary | Successor T4–T6 formal mechanics can prioritize hard computation obligations over scalar value, restrict model/claim use to an evidence-bound validity envelope without certifying correctness, distinguish correlated from bounded-independent social reports using registered provenance, and keep hidden contribution credit unresolved. None grants scientific, revision, adoption or publication authority. | IMPLEMENTED FORMAL CONTRACT ONLY; NO EMPIRICAL VALUE CLAIM | `src/orion/transfer/v2/epistemic_computation.py`; `src/orion/transfer/v2/uncertainty_containment.py`; `src/orion/transfer/v2/social_evidence.py` | `SUPPORTED` |
 | Claim boundary | T7 deterministically composes the registered responsibility/revision, computation, containment and social-evidence reports into a read-only next-step recommendation while preserving hard-obligation precedence and denying scientific, revision, adoption, promotion, merge and global-task-stop authority. | IMPLEMENTED FORMAL CONTRACT ONLY; NO EMPIRICAL VALUE CLAIM | `src/orion/self_orion/epistemic_control.py`; `research/extensions/p6-higher-order-epistemic-mechanics/T7_COUNTERMODEL_SUMMARY_V1.json` | `SUPPORTED` |
@@ -92,7 +92,7 @@ preflight had 102 blocker instances and 0/6 execution-ready.
 The native parser preserves exact SWE-agent exit status, hashes rather than
 reproduces submission bytes, refuses protected/evaluator-side keys and emits
 only `UNRESOLVED` at the revision-class layer. The isolated wrapper refuses
-execution while any field is unbound. No comparator/model, substantive P5
+execution while any field is unbound. No comparator/model, substantive ORION-15
 case, protected scorer, gold patch, protected test, performance outcome or
 superiority result was executed or disclosed. Exact terminal:
 `P5_C1_V4_SWE_AGENT_NATIVE_PARSER_AND_ISOLATION_POLICY_BOUND__TWELVE_C1_FIELDS_BLOCKING__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK`.
@@ -112,7 +112,7 @@ The authoritative paper-linked commit/tree/archive are byte-addressed, but the
 complete non-truncated tree has zero `benchmark/` paths although the native
 trial runner requires `benchmark/claw-eval/runner/benchmark.py`. The CLI help
 surface loads and its no-gateway error path is retained; full native execution
-remains `CANNOT_CHECK`. No model, benchmark, substantive P5 case, protected
+remains `CANNOT_CHECK`. No model, benchmark, substantive ORION-15 case, protected
 scorer, performance outcome or superiority result was executed or disclosed.
 Exact terminal:
 `P5_C2_V4_MOSS_NATIVE_PARSER_DEPENDENCY_LOCKS_FALLBACK_AND_WALLCLOCK_BOUND__FOURTEEN_C2_FIELDS_BLOCKING__RELEASED_BENCHMARK_RUNTIME_ABSENT__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK`.
@@ -132,7 +132,7 @@ byte-addressed. The 23 dependency declarations have zero exact pins and no
 lockfile, so declaration hashes are not promoted into a resolved dependency
 lock. The parser preserves native status and patch identity but always emits
 `UNRESOLVED`; argparse, timeout, mutable-environment and untrusted-code defects
-remain. No DGM, model, task, benchmark, Docker container, substantive P5 case,
+remain. No DGM, model, task, benchmark, Docker container, substantive ORION-15 case,
 protected scorer, performance outcome or superiority result was executed or
 disclosed. Exact terminal:
 `P5_C3_V4_DGM_SOURCE_NATIVE_PARSER_EMPTY_FALLBACK_AND_OUTER_WALLCLOCK_BOUND__UNPINNED_DEPENDENCIES_NOT_MISLABELED_AS_LOCK__FIFTEEN_C3_FIELDS_BLOCKING__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK`.
@@ -152,7 +152,7 @@ byte-addressed. Four VCS dependencies remain unpinned; bundled task data have
 no component licence/NOTICE files under `data/`; the mutable host-networked
 container path does not isolate provider keys. The parser distinguishes native
 empty/partial/error/artifact states but always emits `UNRESOLVED`. No ADIAS
-model, domain, benchmark, task episode, substantive P5 case, protected scorer,
+model, domain, benchmark, task episode, substantive ORION-15 case, protected scorer,
 performance outcome or superiority result was executed or disclosed. Exact
 terminal:
 `P5_C4_V4_ADIAS_SOURCE_TREE_NATIVE_PARSER_EMPTY_FALLBACK_AND_WALLCLOCK_BOUND__FIFTEEN_C4_FIELDS_BLOCKING__DEPENDENCY_LOCK_TASK_RIGHTS_ISOLATION_AND_CUSTODY_UNBOUND__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK`.
@@ -172,10 +172,10 @@ execution-ready.
 The source/tree/prefixed-Git-archive, 113-blob metadata and root licence/NOTICE
 are byte-addressed. The official metric-only loop regenerates hosted solver
 outputs and evaluates, persists and prints `eval_locked` every round. The tree
-contains no frozen split/result payload and no P5 dossier/eight-class task
+contains no frozen split/result payload and no ORION-15 dossier/eight-class task
 surface; exact service/resource rights and external one-shot custody remain
 unbound. The six native-shaped parser fixtures contain no substantive case and
-license no raw native singleton. No model, benchmark, P5 task, protected scorer,
+license no raw native singleton. No model, benchmark, ORION-15 task, protected scorer,
 performance outcome or superiority result was executed or disclosed. Exact
 terminal:
 `P5_C5_V4_DOUBLE_RATCHET_SOURCE_PARSER_ISOLATION_FALLBACK_WALLCLOCK_COMPUTE_AND_DEPENDENCY_LOCK_BOUND__TWELVE_C5_FIELDS_BLOCKING__OFFICIAL_RUNNER_REGENERATES_SOLVER_OUTPUTS_AND_REPORTS_DEVELOPMENT_LOCKED_EACH_ROUND__ZERO_OF_SIX_PANEL_READY__PERFORMANCE_AND_SUPERIORITY_CANNOT_CHECK`.
@@ -192,7 +192,7 @@ wallclock with 120-second termination grace. C6 is 5/21 bound and 16/21
 blocking. With C1/C5 at 12, C2 at 14 and C3/C4 at 15, the current merged
 preflight has 84 blocker instances and 0/6 execution-ready.
 
-The exact 2,122-file source tree is bound, but ScienceClaw has no native P5
+The exact 2,122-file source tree is bound, but ScienceClaw has no native ORION-15
 revision selector, nominal `--dry-run` first executes the investigation, and
 its deep-to-simple, shield-to-direct, text-to-chat, rule/keyword,
 skill-selection and dependency-install fallbacks have no close-all flag. The
@@ -368,12 +368,12 @@ These three rows are incorrect attributions. They are not retries, exclusions, o
 
 | case_id | gold | attributed | confidence |
 | --- | --- | --- | --- |
-| P5-HC-002 | RETRIEVAL_MISS | REPRESENTATION_GAP | MEDIUM |
-| P5-HC-012 | ENVIRONMENT_DEPENDENCY_TOOL_FAILURE | IMPLEMENTATION_BUG | HIGH |
-| P5-HC-018 | REPRESENTATION_GAP | METHOD_BASIS_GAP | HIGH |
+| ORION-15-HC-002 | RETRIEVAL_MISS | REPRESENTATION_GAP | MEDIUM |
+| ORION-15-HC-012 | ENVIRONMENT_DEPENDENCY_TOOL_FAILURE | IMPLEMENTATION_BUG | HIGH |
+| ORION-15-HC-018 | REPRESENTATION_GAP | METHOD_BASIS_GAP | HIGH |
 
 ## Promotion rule
 
 No row marked `CANNOT_CHECK` may be rewritten as positive evidence. The 21/24 attribution result is descriptive-only and does not support H1–H4. The V3 T1–T7 mechanics are implementation/formal contracts, the development fixture is instrumentation, and the later 96-case execution must retain its no-terminal result: a selected computation or revision candidate, an in-scope containment result, a bounded social-independence state, a development-panel score or a bounded secondary check still requires external transfer, protected assurance and external host disposition before any general self-improvement or superiority claim. A stale perfect-score report is an `EXECUTION_IDENTITY_BOUNDARY_MIXUP`-class failure (`research/failures/2026-08-p5-live-artifact-branch-identity-mismatch/`) and is refused by `python -m orion.study.p5.tables`.
 
-The original P5 V1 execution bindings and the broad 768-cluster campaign remain unbound or unexecuted. The additive V3 panel is frozen and executed, but it closes with `NO_TERMINAL_UNDER_FROZEN_RULES` and `grants_scientific_authority=false`.
+The original ORION-15 V1 execution bindings and the broad 768-cluster campaign remain unbound or unexecuted. The additive V3 panel is frozen and executed, but it closes with `NO_TERMINAL_UNDER_FROZEN_RULES` and `grants_scientific_authority=false`.

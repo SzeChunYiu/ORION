@@ -1,4 +1,4 @@
-# QG2 claim ledger V2
+# ORION-10 claim ledger V2
 
 | ID | Claim | Evidence | Status / boundary |
 |---|---|---|---|

@@ -1,4 +1,4 @@
-# P6–P8 submission package V2
+# ORION-16–ORION-18 submission package V2
 
 **Date:** 2026-08-18  
 **Scope:** theory-complete candidate manuscripts.
@@ -70,7 +70,7 @@ The three papers are linked by a preservation ladder:
 4. target scientific-obligation discharge;
 5. commit authority.
 
-P6 studies the computation-to-certification boundary, P7 the evidence-to-closure boundary across changing representations, and P8 the obligation-to-authority boundary across effect domains.
+ORION-16 studies the computation-to-certification boundary, ORION-17 the evidence-to-closure boundary across changing representations, and ORION-18 the obligation-to-authority boundary across effect domains.
 
 Strong prior mechanisms at every level are **engulfed** as donors. The programme does not delete them to create artificial novelty. Future performance claims must compare with an ideal integrated donor product under the frozen donor-product evaluation protocol.
 

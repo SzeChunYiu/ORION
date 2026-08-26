@@ -182,7 +182,7 @@ The correct conclusion is therefore about **state as decision information**, not
 
 N2-F5 initially appears to leave a predictive residual. A stronger model-selection donor later ties the candidate exactly on the original well-specified world. The candidate stays ahead only on the frozen misspecified world.
 
-This prevents a broader extrapolation claim from leaking into Q4.
+This prevents a broader extrapolation claim from leaking into ORION-04.
 
 ---
 
@@ -208,19 +208,19 @@ The synthetic worlds deliberately isolate these failure modes. They do not show 
 
 ### Typed/provenance-aware memory
 
-MemIR and other 2026 memory architectures already make evidence role and provenance explicit. Q4 therefore makes no priority claim for typed memory itself.
+MemIR and other 2026 memory architectures already make evidence role and provenance explicit. ORION-04 therefore makes no priority claim for typed memory itself.
 
 ### Stale memory and state revision
 
-STALE and follow-up work measure whether long-term agents detect/update invalidated memories. Q4's scope-bound failure-reopening experiment is related but asks a more specific dependency question: which context coordinates actually licensed the old failure?
+STALE and follow-up work measure whether long-term agents detect/update invalidated memories. ORION-04's scope-bound failure-reopening experiment is related but asks a more specific dependency question: which context coordinates actually licensed the old failure?
 
 ### Value of information
 
-VoI is classical and ACL 2026 applies it directly to agent clarification. Q4 uses VoI as a donor/planning primitive and asks whether typed scientific state changes its inputs/outcomes.
+VoI is classical and ACL 2026 applies it directly to agent clarification. ORION-04 uses VoI as a donor/planning primitive and asks whether typed scientific state changes its inputs/outcomes.
 
 ### Governed/versioned agent memory
 
-Current work increasingly treats memory scope, provenance, temporal supersession and policy as systems/database concerns. Q4 is not a competing persistent-memory architecture; it is a controlled decision-mechanism suite.
+Current work increasingly treats memory scope, provenance, temporal supersession and policy as systems/database concerns. ORION-04 is not a competing persistent-memory architecture; it is a controlled decision-mechanism suite.
 
 A bounded map is recorded in `NOVELTY_RESEARCH_2026-08-22.md`.
 

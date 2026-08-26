@@ -1,4 +1,4 @@
-# P8 journal readiness V2.1
+# ORION-18 journal readiness V2.1
 
 **Theory manuscript:** `manuscript/FINAL.md`  
 **Submission manuscript:** `submission/JAAMAS_MANUSCRIPT.tex`  
@@ -42,8 +42,8 @@
 
 ## Computed final gate
 
-P8 is `PEER_REVIEW_READY` exactly when both `p6-p8-candidate-ci` and repository `ci` are successful on the same PR head. Any manuscript/source change reopens this terminal until the changed head is retested.
+ORION-18 is `PEER_REVIEW_READY` exactly when both `p6-p8-candidate-ci` and repository `ci` are successful on the same PR head. Any manuscript/source change reopens this terminal until the changed head is retested.
 
-P8 does not claim generic authorization, delegation/revocation, exact-artifact binding, stale-obligation tracking, pre-commit authorization, or the broad principle that context/evidence is not authority. Its submission residual is target scientific-obligation discharge across epistemic domains, full-type protected coercion composition, support-family revocation, and the shared/product equivalence negative theorem.
+ORION-18 does not claim generic authorization, delegation/revocation, exact-artifact binding, stale-obligation tracking, pre-commit authorization, or the broad principle that context/evidence is not authority. Its submission residual is target scientific-obligation discharge across epistemic domains, full-type protected coercion composition, support-family revocation, and the shared/product equivalence negative theorem.
 
 An empirical superiority claim over the ideal donor product is not made. Private funding, competing-interest and optional ORCID attestations are not inferred; see #377. External peer review is a later event; see #378.

@@ -1,4 +1,4 @@
-# P10 Mathlib transfer V2 — invalidated result
+# ORION-20 Mathlib transfer V2 — invalidated result
 
 The generated `MATHLIB_TRANSFER_V2` artifacts are retained as negative history
 and support **no scientific claim**.

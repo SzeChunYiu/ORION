@@ -1,4 +1,4 @@
-# P11 query-family phase ledger addendum V1
+# ORION-21 query-family phase ledger addendum V1
 
 Additive evidence-ledger entry for the ten-responsibility query-family/phase
 experiment (programme #977 gap wave). `CLAIM_EVIDENCE_LEDGER.md`,
@@ -14,7 +14,7 @@ folded into the central ledger/README in the post-#993 integration pass
 - **Prior observation (reconciled 2026-08-23):** the earlier harness `p11-query-family-phase-v1.yml` (#978) executed the same frozen runner on PR #994's head `aedcaf93` — run `32661332644`, conclusion FAILURE at 2026-08-23T19:31:51Z. The failure is the runner's own `assert positive` firing after full completion, i.e. the same preregistered negative, NOT a harness/dependency defect (identical pinned env and runner blob `7b5d13fe…`; no artifacts were captured and the log's assert message was truncated, so it cannot serve as the bound receipt). Runs `32661332644` (first observation) → `32663348906` (authoritative binding) → `32664737225` (final-head re-verification) form the execution chain.
 - **Terminal:** `P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET` — the preregistered 8/10 aggregate quality bar fails in every access class (LINEAR 3/10, RBF 5/10, KNN 5/10) while both frozen resource identities hold exactly (memory crossover U<=4; linear break-even growth 1917..19169).
 - **Receipt:** `P11_QUERY_FAMILY_PHASE_RESULT_RECEIPT_V1.md` (+ raw JSONs: `p11_query_family_phase_primary_v1.json` sha `9a1f1f9b…`, `p11_query_family_phase_independent_v1.json` sha `b1e92a6b…`, `p11_query_family_phase_binding_v1.json` sha `0c944d62…`) in this directory.
-- **Claim impact:** bounds the P11 "compile/cache/materialize as a placement win" narrative — the single-responsibility learned-compiler result does not generalize across a ten-query family on digits; compile-tolerance is a per-(responsibility x access-class) property held by at most 5/10 family members. The resource/phase-diagram identities themselves are *confirmed*, not damaged. Any manuscript sentence claiming family-scale compilation support on non-synthetic data must be removed or conditioned on "small (U<=4) and individually compile-tolerant responsibility sets".
+- **Claim impact:** bounds the ORION-21 "compile/cache/materialize as a placement win" narrative — the single-responsibility learned-compiler result does not generalize across a ten-query family on digits; compile-tolerance is a per-(responsibility x access-class) property held by at most 5/10 family members. The resource/phase-diagram identities themselves are *confirmed*, not damaged. Any manuscript sentence claiming family-scale compilation support on non-synthetic data must be removed or conditioned on "small (U<=4) and individually compile-tolerant responsibility sets".
 - **Retune policy:** none performed; preregistered thresholds (0.02 per-query tolerance, 8/10 aggregate rule, frozen U/H grids) untouched; the negative is retained and characterized, per programme rule.
 
 ## What closes / what opens

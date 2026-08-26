@@ -1,4 +1,4 @@
-# P8 reproduce V2
+# ORION-18 reproduce V2
 
 Run from repository root on the V2 theory-closure branch or descendant.
 
@@ -9,7 +9,7 @@ PYTHONPATH=src python papers/candidates/paper-08-epistemic-authority-autonomous-
 Expected sentinel:
 
 ```text
-P8 THEORY CLOSURE V2: PASS
+ORION-18 THEORY CLOSURE V2: PASS
 ```
 
 Expected bounded counts:

@@ -45,9 +45,9 @@ def sha256(path: Path) -> str:
 @pytest.mark.parametrize(
     "path",
     [
-        "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/generate_assumption_countermodels_v2.py",
-        "papers/paper-07-epistemic-navigation-open-worlds/benchmark/generate_instances_v2.py",
-        "papers/paper-08-epistemic-authority-autonomous-science/benchmark/generate_authority_cases_v2.py",
+        "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/generate_assumption_countermodels_v2.py",
+        "papers/orion-17-epistemic-navigation-open-worlds/benchmark/generate_instances_v2.py",
+        "papers/orion-18-epistemic-authority-autonomous-science/benchmark/generate_authority_cases_v2.py",
     ],
 )
 def test_generators_reproduce_committed_bytes(path: str) -> None:
@@ -92,7 +92,7 @@ def test_generator_cannot_use_target_as_source(tmp_path: Path) -> None:
 def test_p7_trace_has_nonzero_explicit_opportunities() -> None:
     path = (
         ROOT
-        / "papers/paper-07-epistemic-navigation-open-worlds/benchmark/navigation_trace_v2.json"
+        / "papers/orion-17-epistemic-navigation-open-worlds/benchmark/navigation_trace_v2.json"
     )
     payload = json.loads(path.read_text(encoding="utf-8"))
     assert payload["authority_scope"] == "REFERENCE_POLICY_PREFLIGHT_ONLY"
@@ -106,7 +106,7 @@ def test_p7_trace_has_nonzero_explicit_opportunities() -> None:
 def test_p7_zero_opportunity_trace_cannot_pass() -> None:
     module = load_script(
         ROOT
-        / "papers/paper-07-epistemic-navigation-open-worlds/benchmark/generate_instances_v2.py",
+        / "papers/orion-17-epistemic-navigation-open-worlds/benchmark/generate_instances_v2.py",
         "p7_generate_v2_hostile",
     )
     with pytest.raises(ValueError, match="zero or missing"):
@@ -116,7 +116,7 @@ def test_p7_zero_opportunity_trace_cannot_pass() -> None:
 def test_p8_attack_denominator_and_local_authority_boundary() -> None:
     path = (
         ROOT
-        / "papers/paper-08-epistemic-authority-autonomous-science/evidence/local/"
+        / "papers/orion-18-epistemic-authority-autonomous-science/evidence/local/"
         "cross_capability_attack_replay_result_v2.json"
     )
     payload = json.loads(path.read_text(encoding="utf-8"))
@@ -131,7 +131,7 @@ def test_p8_attack_denominator_and_local_authority_boundary() -> None:
 def test_p8_zero_attack_opportunities_cannot_pass() -> None:
     module = load_script(
         ROOT
-        / "papers/paper-08-epistemic-authority-autonomous-science/benchmark/"
+        / "papers/orion-18-epistemic-authority-autonomous-science/benchmark/"
         "generate_authority_cases_v2.py",
         "p8_generate_v2_hostile",
     )
@@ -152,9 +152,9 @@ def test_negative_history_is_content_bound() -> None:
 
 def test_frozen_v1_manifests_were_not_rewritten() -> None:
     expected = {
-        "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json": "016d8ee46206ebf6c44cf70f6e7e9f05a6961cb0c424f65d2d81598d991cf77d",
-        "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json": "adef933fd91dcbfb8b3c81527eeb728a0758d595dd855d34a54265c52f257777",
-        "papers/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json": "58d472f1d2806238d75cd6fe958a620c151566f966ce21863af0d58d141ca624",
+        "papers/orion-16-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json": "016d8ee46206ebf6c44cf70f6e7e9f05a6961cb0c424f65d2d81598d991cf77d",
+        "papers/orion-17-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json": "adef933fd91dcbfb8b3c81527eeb728a0758d595dd855d34a54265c52f257777",
+        "papers/orion-18-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json": "58d472f1d2806238d75cd6fe958a620c151566f966ce21863af0d58d141ca624",
     }
     assert {path: sha256(ROOT / path) for path in expected} == expected
 
@@ -181,7 +181,7 @@ def test_p9_p10_protocols_validate_but_execution_stays_blocked() -> None:
 def test_p9_locked_environment_reproduction_failure_is_append_only() -> None:
     path = (
         ROOT
-        / "papers/paper-09-structured-epistemic-learning/evidence/"
+        / "papers/orion-19-structured-epistemic-learning/evidence/"
         "P9_D1V1_2_LOCKED_ENV_REPRODUCTION_2026-08-23.json"
     )
     payload = json.loads(path.read_text(encoding="utf-8"))

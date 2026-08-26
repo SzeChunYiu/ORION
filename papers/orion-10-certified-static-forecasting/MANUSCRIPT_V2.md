@@ -1,6 +1,6 @@
 # Certified Static Forecasting for Quantum Compilation: What Survives a Counterexample?
 
-**ORION-QG2 Manuscript V2 — publication-synthesis draft**  
+**ORION-ORION-10 Manuscript V2 — publication-synthesis draft**  
 Publication cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Claim authority: `CLAIM_LEDGER.md` + `PUBLICATION_FOUNDATION_V2.md`
 
@@ -155,9 +155,9 @@ Later companion work deliberately attacks B′ and finds 64 exact fourth-regime 
 
 The new witness shape combines a weight-two Tag with a phantom borrow. A separately frozen `B″` family closes the registered finite hostile panels, including 10,481 instances with no fifth-configuration candidates. Yet the all-`n` closed-form identity remains open because one consolidation link remains unproved in the current publication cut.
 
-For QG2 this companion result has one role: it demonstrates that **repairing one failed closed form does not upgrade the repaired closed form to theorem status**. The support-two forecaster `F2=C_Dxx` remains exact because its authority comes from the theorem; the interpretability-oriented named-family minimum remains subject to further refutation.
+For ORION-10 this companion result has one role: it demonstrates that **repairing one failed closed form does not upgrade the repaired closed form to theorem status**. The support-two forecaster `F2=C_Dxx` remains exact because its authority comes from the theorem; the interpretability-oriented named-family minimum remains subject to further refutation.
 
-The detailed fourth-regime mathematics belongs to companion QG1.
+The detailed fourth-regime mathematics belongs to companion ORION-09.
 
 ## 9. Verified forecasts versus forecast-only library rows
 
@@ -174,11 +174,11 @@ A final publication table should preserve this status column. Unverified rows mu
 
 Static and analytical cost models are well established in quantum programming. Work on control-flow T-complexity derives program-level cost formulas that avoid repeatedly compiling large circuits. Compilation-driven resource-estimation systems translate logical programs through architecture assumptions to estimate fault-tolerant cost. Relationally verified optimizers combine semantic verification with multi-objective cost models. These systems solve broader or different problems than the narrow TARE structural objective studied here.
 
-Accordingly, QG2 does not claim that predicting quantum cost without full compilation is new. The narrower contribution is the **authority decomposition of one exact compiler-family forecast and the scientific handling of its refutation**:
+Accordingly, ORION-10 does not claim that predicting quantum cost without full compilation is new. The narrower contribution is the **authority decomposition of one exact compiler-family forecast and the scientific handling of its refutation**:
 
 `feasible bound -> theorem-backed restriction -> finite/conjectural closed form -> prospective counterexample -> localized successor freeze`.
 
-That sequence also distinguishes QG2 from generic machine-learning cost predictors. The central outcome is not predictive `R^2` or average error. It is a proof/refutation structure in which a single exact mismatch determines which formal statement survives.
+That sequence also distinguishes ORION-10 from generic machine-learning cost predictors. The central outcome is not predictive `R^2` or average error. It is a proof/refutation structure in which a single exact mismatch determines which formal statement survives.
 
 ## 11. Statistics and timing
 
@@ -199,7 +199,7 @@ The protocols under `development/orion-qg-regime-geometry/` bind the forecast de
 
 ## 13. Limitations
 
-**Frozen structural objective.** The exact theorem and forecasts concern the registered R6M raw support-count objective, not a physical hardware cost. QG2 does not estimate full fault-tolerant runtime, qubit footprint or error rate.
+**Frozen structural objective.** The exact theorem and forecasts concern the registered R6M raw support-count objective, not a physical hardware cost. ORION-10 does not estimate full fault-tolerant runtime, qubit footprint or error rate.
 
 **Compiler family.** Results do not transfer automatically to other TARE grammars, Tag ranks or compiler families.
 
@@ -226,7 +226,7 @@ This is a stronger scientific object than an accuracy number. It turns refutatio
 
 The later B′/B″ sequence also shows why theorem authority and model convenience should remain separate. Small named families are attractive because they are interpretable and cheap. But whenever their completeness is not proved, a fresh counterexample must remain a legitimate outcome. The full theorem-sufficient family can provide exactness even while the search for a simpler closed form continues.
 
-A broader implication is that resource-estimation systems may benefit from reporting **why** a number is trustworthy, not only the number itself. In a general compiler this could mean separating semantic invariants, safe upper bounds, calibrated empirical models and unverified extrapolations. QG2 demonstrates that principle only in one narrow exact family; extending it is future work.
+A broader implication is that resource-estimation systems may benefit from reporting **why** a number is trustworthy, not only the number itself. In a general compiler this could mean separating semantic invariants, safe upper bounds, calibrated empirical models and unverified extrapolations. ORION-10 demonstrates that principle only in one narrow exact family; extending it is future work.
 
 ## 15. Conclusion
 

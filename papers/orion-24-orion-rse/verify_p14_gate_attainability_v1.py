@@ -35,7 +35,7 @@ remains ``P14B_BALANCED_GOVERNANCE_SUPERIORITY_SUPPORTED`` verbatim under its
 standing ``P14B_NON_AUTHORITATIVE_PROTOCOL_MISMATCH`` downgrade, and P14C's
 stands as published.
 
-    python papers/paper-14-orion-rse/verify_p14_gate_attainability_v1.py
+    python papers/orion-24-orion-rse/verify_p14_gate_attainability_v1.py
 
 Exits ``1`` when the adjudication does not reach its positive terminal.
 """

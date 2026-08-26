@@ -1,18 +1,18 @@
-# P7 reproduce V2.1
+# ORION-17 reproduce V2.1
 
 Run from repository root:
 
 ```bash
-PYTHONPATH=src python papers/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py
-PYTHONPATH=src python papers/paper-07-epistemic-navigation-open-worlds/formal/check_contract_manifest_v2.py
+PYTHONPATH=src python papers/orion-17-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py
+PYTHONPATH=src python papers/orion-17-epistemic-navigation-open-worlds/formal/check_contract_manifest_v2.py
 ```
 
 Expected sentinels:
 
 ```text
-P7 THEORY CLOSURE V2: PASS
+ORION-17 THEORY CLOSURE V2: PASS
 theory_closure_terminal: PASS
-P7 CONTRACT MANIFEST V2: PASS
+ORION-17 CONTRACT MANIFEST V2: PASS
 ```
 
 The first command checks the closed theorems/countermodels. Its `PASS` banner reports assertion status only — every finite witness in the file held — and `theory_closure_terminal` is the verdict on what those witnesses establish.
@@ -43,10 +43,10 @@ reads the clock.
 
 ```bash
 PYTHONPATH=src python -m orion.study.p7.composition_calculus_smt --repo-root . \
-  --output papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json
+  --output papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json
 PYTHONPATH=src python -m orion.study.p7.donor_stack_as_transformation_family --repo-root . \
   --date 2026-08-22 \
-  --output papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json
+  --output papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json
 ```
 
 Both exit `0` only when every theorem is `PROVED`; `UNKNOWN` is not a pass, and a

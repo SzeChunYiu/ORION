@@ -349,7 +349,7 @@ def test_the_task_family_stays_inside_the_frozen_protocol(suite) -> None:
         (
             REPO_ROOT
             / "papers"
-            / "paper-02-open-world-scientific-discovery"
+            / "orion-12-open-world-scientific-discovery"
             / "protocol"
             / "PROTOCOL_V1.json"
         ).read_text(encoding="utf-8")

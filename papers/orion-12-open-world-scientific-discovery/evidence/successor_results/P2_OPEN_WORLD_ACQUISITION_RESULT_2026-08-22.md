@@ -1,4 +1,4 @@
-# P2 open-world acquisition successor result — reproduction failed, no candidate claim
+# ORION-12 open-world acquisition successor result — reproduction failed, no candidate claim
 
 - **Record id**: `P2_OPEN_WORLD_ACQUISITION_RESULT`
 - **Date**: 2026-08-22

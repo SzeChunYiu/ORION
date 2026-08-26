@@ -1,4 +1,4 @@
-# Reproduce the P6–P15 promotion contract audit
+# Reproduce the ORION-16–ORION-25 promotion contract audit
 
 From repository root:
 

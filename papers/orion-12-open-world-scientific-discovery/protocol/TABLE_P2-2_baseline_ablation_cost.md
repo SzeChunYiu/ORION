@@ -1,8 +1,8 @@
-# Table P2-2: Baselines and ablations with cost metrics
+# Table ORION-12-2: Baselines and ablations with cost metrics
 
 <!-- GENERATED FILE - DO NOT EDIT BY HAND.
      Regenerate with:
-       python3 papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_2.py
+       python3 papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_2.py
      Sources: evidence/offline_results/RESULTS_SUMMARY_V1.json
               protocol/OFFLINE_RUN_MANIFEST_V1.json -->
 

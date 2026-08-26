@@ -34,20 +34,20 @@ A repair that changes scientific prose/data invalidates the prior scientific/pac
 
 ## Required artifact identities
 
-### Q1 / Quantum preflight
+### ORION-01 / Quantum preflight
 Workflow: `q1-qg2-quantum-preprint`
 Artifact: `q1-qg2-quantum-preprint-packages`
-Subtree: `Q1/`
+Subtree: `ORION-01/`
 
 Current audit terminal: `PENDING_ARTIFACT_INSPECTION`
 
-### Q2 / AIJ preflight
+### ORION-02 / AIJ preflight
 Workflow: `q2-aij-package`
 Artifact: `q2-aij-preflight-package`
 
 Current audit terminal: `PENDING_ARTIFACT_INSPECTION`
 
-### Q4 / TMLR review package
+### ORION-04 / TMLR review package
 Workflow: `q4-tmlr-package`
 Artifact: `q4-tmlr-review-package`
 
@@ -55,7 +55,7 @@ Mandatory additional check: anonymous source/PDF must expose no author identity.
 
 Current audit terminal: `PENDING_ARTIFACT_INSPECTION`
 
-### QG1 / PRX Quantum preflight V2
+### ORION-09 / PRX Quantum preflight V2
 Workflow: `qg1-prx-preflight-v2`
 Artifact: `qg1-prx-preflight-v2-package`
 
@@ -63,10 +63,10 @@ The older `qg1-prx-preflight` two-column assertion is development history only a
 
 Current audit terminal: `PENDING_ARTIFACT_INSPECTION`
 
-### QG2 / Quantum preflight
+### ORION-10 / Quantum preflight
 Workflow: `q1-qg2-quantum-preprint`
 Artifact: `q1-qg2-quantum-preprint-packages`
-Subtree: `QG2/`
+Subtree: `ORION-10/`
 
 Current audit terminal: `PENDING_ARTIFACT_INSPECTION`
 

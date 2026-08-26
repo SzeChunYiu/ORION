@@ -1,4 +1,4 @@
-# P6 reproduce V2
+# ORION-16 reproduce V2
 
 Run from repository root on the theory-closure branch or any descendant containing V2.
 
@@ -9,7 +9,7 @@ PYTHONPATH=src python papers/candidates/paper-06-formal-epistemic-structures-and
 Expected sentinel:
 
 ```text
-P6 THEORY CLOSURE V2: PASS
+ORION-16 THEORY CLOSURE V2: PASS
 ```
 
 Expected bounded counts include:

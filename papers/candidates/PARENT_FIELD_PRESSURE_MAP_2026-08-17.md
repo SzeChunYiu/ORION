@@ -1,4 +1,4 @@
-# P6–P8 parent-field pressure map — 2026-08-17
+# ORION-16–ORION-18 parent-field pressure map — 2026-08-17
 
 **Status:** broad research map, not a completed systematic review.  
 **Purpose:** maximize width before narrowing. Every field below is treated as a possible donor/parent whose strongest mechanism must be learned before ORION claims a generalization.  
@@ -10,7 +10,7 @@ For each parent field we ask:
 
 1. What formal object does the field already own?
 2. What invariants/theorems or engineering mechanisms are mature there?
-3. Which P6/P7/P8 object is merely an embedding of that work?
+3. Which ORION-16/ORION-17/ORION-18 object is merely an embedding of that work?
 4. What cross-field interaction remains unresolved after faithful embedding?
 5. What falsifier would collapse the ORION generalization back into the parent field?
 
@@ -18,7 +18,7 @@ The programme intentionally searches *outward* rather than only for papers using
 
 ---
 
-# Part I — P6 parent fields: state change, effects, dependency, process, repair
+# Part I — ORION-16 parent fields: state change, effects, dependency, process, repair
 
 ## A. Dynamic epistemic and action logics
 
@@ -29,7 +29,7 @@ The programme intentionally searches *outward* rather than only for papers using
 - dynamic operators with proof systems and expressivity results.
 
 ### ORION consequence
-P6 cannot claim formal semantics for knowledge-changing action. An epistemic mechanic must be broader than an action model only where its obligations, authority, provenance, retained history or dependency repair change the composition problem.
+ORION-16 cannot claim formal semantics for knowledge-changing action. An epistemic mechanic must be broader than an action model only where its obligations, authority, provenance, retained history or dependency repair change the composition problem.
 
 ### Key donor routes
 - van Ditmarsch, van der Hoek, Kooi, *Dynamic Epistemic Logic*;
@@ -45,7 +45,7 @@ P6 cannot claim formal semantics for knowledge-changing action. An epistemic mec
 - belief-base change where deductive closure is not assumed.
 
 ### ORION consequence
-Belief change is one mechanic family. P6 needs typed non-belief coordinates—representations, methods, authority, evidence identity, obligations, resource state—or it collapses into belief revision.
+Belief change is one mechanic family. ORION-16 needs typed non-belief coordinates—representations, methods, authority, evidence identity, obligations, resource state—or it collapses into belief revision.
 
 ## C. Truth-maintenance, assumption-based truth maintenance and dependency-directed backtracking
 
@@ -55,7 +55,7 @@ Belief change is one mechanic family. P6 needs typed non-belief coordinates—re
 - maintained consistency and dependency-based repair.
 
 ### ORION consequence
-Selective reopening is not a novelty claim. P6 must test whether a common repair semantics covers heterogeneous state/effects and authority-bearing commits while preserving independently supported state.
+Selective reopening is not a novelty claim. ORION-16 must test whether a common repair semantics covers heterogeneous state/effects and authority-bearing commits while preserving independently supported state.
 
 ## D. Separation logic, epistemic separation logic and frame reasoning
 
@@ -66,7 +66,7 @@ Selective reopening is not a novelty claim. P6 must test whether a common repair
 - epistemic/action-model extensions such as AMSL.
 
 ### ORION consequence
-Read/write separation and commutation are parent patterns. P6's current useful refinement is that current scientific state may commute while ordered audit history remains distinct; the theorem should therefore use projection/trace equivalence rather than whole-state equality.
+Read/write separation and commutation are parent patterns. ORION-16's current useful refinement is that current scientific state may commute while ordered audit history remains distinct; the theorem should therefore use projection/trace equivalence rather than whole-state equality.
 
 ## E. Process calculi, Petri nets, workflow nets and temporal/concurrent systems
 
@@ -77,7 +77,7 @@ Read/write separation and commutation are parent patterns. P6's current useful r
 - event structures and independent-event equivalence.
 
 ### ORION consequence
-P6 must not rediscover concurrency theory. If the mechanic algebra becomes a process calculus with epistemic labels, novelty requires a genuinely new epistemic/authority/repair property or application-level result.
+ORION-16 must not rediscover concurrency theory. If the mechanic algebra becomes a process calculus with epistemic labels, novelty requires a genuinely new epistemic/authority/repair property or application-level result.
 
 ## F. Effect systems and algebraic effects
 
@@ -91,7 +91,7 @@ P6 must not rediscover concurrency theory. If the mechanic algebra becomes a pro
 ETAS (arXiv:2607.17780) already makes agent actions, typed memory, approvals, policies and traces semantic program elements and tracks requested/handled/denied/committed effects plus residual obligations.
 
 ### ORION consequence
-P6 cannot claim effect typing. It must show what changes when an effect has epistemic dependencies whose prior certificates reopen after commit.
+ORION-16 cannot claim effect typing. It must show what changes when an effect has epistemic dependencies whose prior certificates reopen after commit.
 
 ## G. Authorization/trust-management logics
 
@@ -108,7 +108,7 @@ P6 cannot claim effect typing. It must show what changes when an effect has epis
 - flow-limited authorization/information-flow combinations.
 
 ### ORION consequence
-Authority tokens and scoped grants are not P6 novelty. They are imported constraints on admissible mechanic commits; P8 owns the cross-domain authorization question.
+Authority tokens and scoped grants are not ORION-16 novelty. They are imported constraints on admissible mechanic commits; ORION-18 owns the cross-domain authorization question.
 
 ## H. Provenance, audit logic and accountable computation
 
@@ -119,7 +119,7 @@ Authority tokens and scoped grants are not P6 novelty. They are imported constra
 - policy justification after actions.
 
 ### ORION consequence
-Retained history/provenance cannot be claimed in isolation. P6 must specify why provenance participates in reopening, conservative composition or recursive audit.
+Retained history/provenance cannot be claimed in isolation. ORION-16 must specify why provenance participates in reopening, conservative composition or recursive audit.
 
 ## I. Program repair, fault localization and dependency-guided rollback
 
@@ -128,7 +128,7 @@ Retained history/provenance cannot be claimed in isolation. P6 must specify why 
 - Dependency-Guided Rollback Repair (arXiv:2608.10502): typed memory-to-action graph, downstream repair, preservation of independently supported state, selective replay.
 
 ### ORION consequence
-P6 must not claim selective rollback. The stronger hypothesis is cross-type repair conservation under epistemic effects/authority and explicit residual obligations.
+ORION-16 must not claim selective rollback. The stronger hypothesis is cross-type repair conservation under epistemic effects/authority and explicit residual obligations.
 
 ## J. Cognitive architectures and language-agent architectures
 
@@ -137,11 +137,11 @@ P6 must not claim selective rollback. The stronger hypothesis is cross-type repa
 - mechanism-level architecture review (arXiv:2607.23942).
 
 ### ORION consequence
-Modules/state/control/failure/resource governance are architectural prior art. P6 needs a formal contract property, not a new list of modules.
+Modules/state/control/failure/resource governance are architectural prior art. ORION-16 needs a formal contract property, not a new list of modules.
 
 ---
 
-# Part II — P7 parent fields: navigation, abstraction, representation and changing objectives
+# Part II — ORION-17 parent fields: navigation, abstraction, representation and changing objectives
 
 ## A. Classical graph search and knowledge-graph navigation
 
@@ -149,7 +149,7 @@ Modules/state/control/failure/resource governance are architectural prior art. P
 Search-on-Graph (arXiv:2510.08825) supplies iterative observe-then-navigate reasoning in a fixed KG representation.
 
 ### ORION consequence
-Ordinary graph navigation is the fixed-chart special case of P7.
+Ordinary graph navigation is the fixed-chart special case of ORION-17.
 
 ## B. Exploratory search and information foraging
 
@@ -160,7 +160,7 @@ Ordinary graph navigation is the fixed-chart special case of P7.
 - reformulation during search.
 
 ### ORION consequence
-P7 cannot claim that search is exploratory or queries evolve. It must formalize authority/transport when the *representation or objective semantics* change.
+ORION-17 cannot claim that search is exploratory or queries evolve. It must formalize authority/transport when the *representation or objective semantics* change.
 
 ## C. POMDPs, belief-space planning and active information acquisition
 
@@ -171,7 +171,7 @@ P7 cannot claim that search is exploratory or queries evolve. It must formalize 
 - value of information and policy optimization.
 
 ### ORION consequence
-P7 should adopt belief-state machinery where appropriate. Utility/information value governs action choice; it does not by itself establish scientific task closure.
+ORION-17 should adopt belief-state machinery where appropriate. Utility/information value governs action choice; it does not by itself establish scientific task closure.
 
 ## D. Planning abstractions, representation languages and homomorphisms
 
@@ -179,7 +179,7 @@ P7 should adopt belief-state machinery where appropriate. Utility/information va
 Planning research has long studied abstraction and the consequences of the representation language itself. Work on planning-domain descriptions shows that abstraction can make a solvable real problem unsolvable, introduce incorrect solutions, or exceed a formalism's expressivity. Plan-preserving homomorphisms and sound/complete abstraction methods provide formal maps between planning representations.
 
 ### ORION consequence
-P7 cannot claim novelty for changing or abstracting the state representation. The live object is a partial **support/obligation transport map** that determines which epistemic closures survive a chart change.
+ORION-17 cannot claim novelty for changing or abstracting the state representation. The live object is a partial **support/obligation transport map** that determines which epistemic closures survive a chart change.
 
 ### Representative routes
 - planning-domain representation/expressivity work;
@@ -195,7 +195,7 @@ P7 cannot claim novelty for changing or abstracting the state representation. Th
 - abstraction learned from observations/language.
 
 ### ORION consequence
-A learned new state space is not P7 novelty. P7 must track evidence/closure identity through the representation change or explicitly reopen what cannot be transported.
+A learned new state space is not ORION-17 novelty. ORION-17 must track evidence/closure identity through the representation change or explicitly reopen what cannot be transported.
 
 ## F. Model learning and self-evolving world models
 
@@ -203,7 +203,7 @@ A learned new state space is not P7 novelty. P7 must track evidence/closure iden
 Self-Evolving World Models (arXiv:2606.30639) revise deployment-time world models from prediction/observation mismatch and use structured memory/selective foresight.
 
 ### ORION consequence
-P7 distinguishes **intra-chart model revision** from **inter-chart representation change**. Not every updated transition model is a new topology.
+ORION-17 distinguishes **intra-chart model revision** from **inter-chart representation change**. Not every updated transition model is a new topology.
 
 ## G. Graph world models and dynamic relational representations
 
@@ -211,7 +211,7 @@ P7 distinguishes **intra-chart model revision** from **inter-chart representatio
 Graph World Models (arXiv:2604.27895) emphasize structured graph representations and dynamic graph adaptation.
 
 ### ORION consequence
-P7 cannot claim "the graph changes." It must specify what semantic/evidential obligations govern graph/chart transformation.
+ORION-17 cannot claim "the graph changes." It must specify what semantic/evidential obligations govern graph/chart transformation.
 
 ## H. Goal recognition, goal change and objective evolution
 
@@ -219,7 +219,7 @@ P7 cannot claim "the graph changes." It must specify what semantic/evidential ob
 SAGA (arXiv:2512.21782) explicitly evolves scientific objective functions in an outer loop while optimizing inside the current objective.
 
 ### ORION consequence
-Objective evolution is a donor mechanism. P7's potential theorem is that evidence identity can remain valid while the old *closure judgment* fails to transport because the obligation's satisfaction meaning changed.
+Objective evolution is a donor mechanism. ORION-17's potential theorem is that evidence identity can remain valid while the old *closure judgment* fails to transport because the obligation's satisfaction meaning changed.
 
 ## I. Initial orientation and scope revelation
 
@@ -227,7 +227,7 @@ Objective evolution is a donor mechanism. P7's potential theorem is that evidenc
 The Initial Exploration Problem (arXiv:2602.21066) treats scope uncertainty, ontology opacity and query incapacity at first encounter with a knowledge graph.
 
 ### ORION consequence
-Orientation becomes an explicit obligation prior to ordinary route ranking in some charts. P7 cannot claim the phenomenon itself.
+Orientation becomes an explicit obligation prior to ordinary route ranking in some charts. ORION-17 cannot claim the phenomenon itself.
 
 ## J. Search-agent coverage and stopping
 
@@ -235,10 +235,10 @@ Orientation becomes an explicit obligation prior to ordinary route ranking in so
 Mind-ParaWorld / MPW-Bench (arXiv:2603.04751) supplies dynamic hidden worlds with atomic ground truth and highlights evidence collection/coverage, sufficiency and when-to-stop failures.
 
 ### Internal owner
-P2 already owns route/task stopping and fail-closed open/censored coverage.
+ORION-12 already owns route/task stopping and fail-closed open/censored coverage.
 
 ### ORION consequence
-P7 only keeps stopping as an invariant that must remain valid across chart/objective change.
+ORION-17 only keeps stopping as an invariant that must remain valid across chart/objective change.
 
 ## K. Scientific exploration breadth
 
@@ -246,11 +246,11 @@ P7 only keeps stopping as an invariant that must remain valid across chart/objec
 *AI Research Agents Narrow Scientific Exploration* (arXiv:2605.27905) supplies direct empirical pressure to measure concentration/breadth, not only final answer success.
 
 ### ORION consequence
-P7 should measure useful region discovery and concentration, while including negative controls against useless dispersion.
+ORION-17 should measure useful region discovery and concentration, while including negative controls against useless dispersion.
 
 ---
 
-# Part III — P8 parent fields: permission, evidence, delegation, abstention and revocation
+# Part III — ORION-18 parent fields: permission, evidence, delegation, abstention and revocation
 
 ## A. Deontic, input/output and action logics
 
@@ -260,7 +260,7 @@ P7 should measure useful region discovery and concentration, while including neg
 - action-conditioned norms.
 
 ### ORION consequence
-P8 cannot claim formal obligation/permission as a new object.
+ORION-18 cannot claim formal obligation/permission as a new object.
 
 ## B. Trust management and authorization logics
 
@@ -274,7 +274,7 @@ Policies/credentials become logical clauses; authorization is a logical query; r
 Further authorization-logics work supplies proof theory, belief/Kripke semantics, mechanized soundness and information-flow constraints.
 
 ### ORION consequence
-P8's typed grants, delegation, revocation and proof derivations are inherited machinery. The candidate only survives if **cross-epistemic-domain authority transport** creates a different composition problem.
+ORION-18's typed grants, delegation, revocation and proof derivations are inherited machinery. The candidate only survives if **cross-epistemic-domain authority transport** creates a different composition problem.
 
 ## C. Effectful-agent authorization
 
@@ -285,7 +285,7 @@ Typed effects + policy-constrained traces + residual obligations.
 Permission IR + evidence-backed permission graph + deterministic SMT authorization immediately before effectful actions.
 
 ### ORION consequence
-These are strongest modern systems donors. P8 must conservatively embed their native decisions before claiming broader scientific authority composition.
+These are strongest modern systems donors. ORION-18 must conservatively embed their native decisions before claiming broader scientific authority composition.
 
 ## D. User-permission specification and runtime policy systems
 
@@ -303,7 +303,7 @@ Generic "agents should ask permission" or "policies should be machine readable" 
 AgentAbstain (arXiv:2607.10059) separates should-act from should-abstain and identifies post-hoc abstention.
 
 ### ORION consequence
-P8 must distinguish `DENY`, `UNAUTHORIZED`, `REVOKED`, resource `DEFER`, and `CANNOT_CHECK` rather than calling all non-actions abstention.
+ORION-18 must distinguish `DENY`, `UNAUTHORIZED`, `REVOKED`, resource `DEFER`, and `CANNOT_CHECK` rather than calling all non-actions abstention.
 
 ## F. Provenance and source-aware factuality
 
@@ -312,7 +312,7 @@ P8 must distinguish `DENY`, `UNAUTHORIZED`, `REVOKED`, resource `DEFER`, and `CA
 - execution-provenance survey (arXiv:2606.04990).
 
 ### ORION consequence
-Support, source ownership and process lineage are non-fungible evidence dimensions. P8 uses them in derivations/revocation rather than claiming provenance itself.
+Support, source ownership and process lineage are non-fungible evidence dimensions. ORION-18 uses them in derivations/revocation rather than claiming provenance itself.
 
 ## G. Runtime shielding and behavioral bounds
 
@@ -328,7 +328,7 @@ Cross-domain scientific authority should be compared with behavior-bound enforce
 Audit-logics distinguish ex-ante enforcement from ex-post justification/accountability.
 
 ### ORION consequence
-P8 should model timing explicitly: an irreversible action followed by a correct refusal/audit finding is not equivalent to pre-effect authorization.
+ORION-18 should model timing explicitly: an irreversible action followed by a correct refusal/audit finding is not equivalent to pre-effect authorization.
 
 ## I. Non-interference and information-flow security
 
@@ -337,7 +337,7 @@ P8 should model timing explicitly: an irreversible action followed by a correct 
 - security properties compositional across principals/domains.
 
 ### ORION consequence
-P8's "authority non-fungibility" should be pressure-tested against non-interference-style formulations. If cross-domain anti-laundering is just standard information-flow typing, the paper must say so and absorb it.
+ORION-18's "authority non-fungibility" should be pressure-tested against non-interference-style formulations. If cross-domain anti-laundering is just standard information-flow typing, the paper must say so and absorb it.
 
 ---
 
@@ -353,25 +353,25 @@ These are not novelty claims. They are synthesis hypotheses that must survive th
 
 may serve as a common *interchange structure* across update logic, effect systems, dependency repair, navigation and authorization.
 
-**Falsifier:** if faithful donor embeddings require unrelated ad-hoc semantics with no reusable theorem, the common structure is merely a taxonomy and should not be a P6 theorem claim.
+**Falsifier:** if faithful donor embeddings require unrelated ad-hoc semantics with no reusable theorem, the common structure is merely a taxonomy and should not be a ORION-16 theorem claim.
 
 ## H2. Evidence is portable more often than closure
 
 Across representation/objective changes, a content-bound observation may remain true while the old obligation it satisfied changes meaning.
 
-**P7 discriminator:** retain evidence identity but reopen closure when the obligation-support map is incomplete.
+**ORION-17 discriminator:** retain evidence identity but reopen closure when the obligation-support map is incomplete.
 
 ## H3. Authority is non-fungible by default
 
 A valid judgment in one effect domain should not authorize a different effect domain unless an explicit sound coercion exists.
 
-**P8 discriminator:** construct compositions in which all producing modules are locally correct but an untyped composition accepts an invalid downstream action.
+**ORION-18 discriminator:** construct compositions in which all producing modules are locally correct but an untyped composition accepts an invalid downstream action.
 
 **Parent-field challenge:** determine whether this is merely authorization typing/non-interference under new names.
 
 ## H4. Repair and revocation share a dependency skeleton
 
-State reopening (P6/P7) and authorization revocation (P8) both propagate invalidation along dependency relations while preserving independent support.
+State reopening (ORION-16/ORION-17) and authorization revocation (ORION-18) both propagate invalidation along dependency relations while preserving independent support.
 
 **Discriminator:** define a common dependency invalidation theorem and then show domain-specific semantics are instances without erasing their distinct terminals.
 
@@ -385,14 +385,14 @@ Independent effects may commute on current state yet differ in audit chronology,
 
 # Part V — immediate saturation priorities
 
-## P6
-1. authorization/non-interference logic versus P6/P8 domain typing;
+## ORION-16
+1. authorization/non-interference logic versus ORION-16/ORION-18 domain typing;
 2. effect systems + dependency repair composition;
 3. workflow/process/event-structure literature for history-aware commutation;
 4. TMS/ATMS exact minimality/reopening theorems;
 5. provenance-aware repair and incremental computation.
 
-## P7
+## ORION-17
 1. planning abstraction/homomorphism literature;
 2. representation-change and adaptive abstraction planning;
 3. nonstationary/POMDP model-class change;
@@ -400,7 +400,7 @@ Independent effects may commute on current state yet differ in audit chronology,
 5. ontology evolution and schema mapping with preservation conditions;
 6. scientific search breadth and open-ended exploration.
 
-## P8
+## ORION-18
 1. authorization-logic policy composition;
 2. non-interference/information-flow typing;
 3. delegation/revocation proof systems;

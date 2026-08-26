@@ -17,7 +17,7 @@ from orion.study.p3_public_reference_confirmatory import analyze_confirmatory
 from orion.study.p3_public_reference_publication import generate
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-PAPER03 = REPO_ROOT / "papers" / "paper-03-global-knowledge-portrait"
+PAPER03 = REPO_ROOT / "papers" / "orion-13-global-knowledge-portrait"
 CONFIRMATORY_GOLD = (
     PAPER03 / "gold" / "adjudicated" / "public-reference-v1.1-confirmatory" / "PUBLIC_REFERENCE_GOLD_V1.jsonl"
 )

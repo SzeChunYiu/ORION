@@ -11,11 +11,11 @@ from orion.self_orion.subject_binding import RepositorySubjectAttestation
 PAPER_PROGRAMME_SNAPSHOT_SCHEMA = "Phase2PaperProgrammeSnapshot.v1"
 REQUIRED_PHASE2_PAPER_PROGRAMME_PREFIXES = (
     "research/paper-programme-v1/",
-    "papers/paper-01-recursive-epistemic-reconstruction/",
-    "papers/paper-02-open-world-scientific-discovery/",
-    "papers/paper-03-global-knowledge-portrait/",
-    "papers/paper-04-verified-scientific-discovery/",
-    "papers/paper-05-self-orion/",
+    "papers/orion-11-recursive-epistemic-reconstruction/",
+    "papers/orion-12-open-world-scientific-discovery/",
+    "papers/orion-13-global-knowledge-portrait/",
+    "papers/orion-14-verified-scientific-discovery/",
+    "papers/orion-15-self-orion/",
 )
 
 

@@ -1,6 +1,6 @@
-# Q4 reproduction guide
+# ORION-04 reproduction guide
 
-Q4 is currently scoped to six **exact-synthetic matched-information mechanism studies** plus donor/negative bounds. It is not a real-agent deployment claim.
+ORION-04 is currently scoped to six **exact-synthetic matched-information mechanism studies** plus donor/negative bounds. It is not a real-agent deployment claim.
 
 ## Primary six-study suite
 
@@ -31,14 +31,14 @@ all under `research/extensions/orion-q/nlanes/`.
 The publication analysis does **not** change any frozen protocol, seed, generator, arm, primary metric, gate or terminal. It rebuilds the original stochastic episodes and reports paired treatment/comparator differences with deterministic percentile-bootstrap intervals.
 
 ```bash
-python papers/Q-paper-04-typed-state/publication_analysis.py > /tmp/q4-publication-analysis.json
+python papers/orion-08-typed-state/publication_analysis.py > /tmp/q4-publication-analysis.json
 python - <<'PY'
 import json
 from pathlib import Path
-expected = json.loads(Path('papers/Q-paper-04-typed-state/PUBLICATION_PAIRED_ANALYSIS_V1.json').read_text())
+expected = json.loads(Path('papers/orion-08-typed-state/PUBLICATION_PAIRED_ANALYSIS_V1.json').read_text())
 actual = json.loads(Path('/tmp/q4-publication-analysis.json').read_text())
 assert actual == expected
-print('Q4 publication paired analysis: MATCH')
+print('ORION-04 publication paired analysis: MATCH')
 PY
 ```
 

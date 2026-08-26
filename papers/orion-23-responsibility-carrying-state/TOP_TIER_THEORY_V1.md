@@ -1,4 +1,4 @@
-# P13 top-tier theory expansion V1 — responsibility-scoped support and certified reuse
+# ORION-23 top-tier theory expansion V1 — responsibility-scoped support and certified reuse
 
 **Programme:** #977  
 **Boundary:** exact support, transport/revocation and approximate calibration theory only. Real verifier-backed and research-agent responsibility shifts remain separate promotion gates.
@@ -29,7 +29,7 @@ Define `r2 >= r1` only when the gold partition induced by `G_r2` refines the par
 
 If `r2 >= r1` and `S` supports `r2`, then `S` supports `r1`.
 
-The converse need not hold. If neither gold partition refines the other, responsibilities are incomparable and P13 must preserve the partial order rather than force a ladder.
+The converse need not hold. If neither gold partition refines the other, responsibilities are incomparable and ORION-23 must preserve the partial order rather than force a ladder.
 
 ## T13.2 — certificate transport and revocation
 
@@ -90,8 +90,8 @@ If an exact/approximate responsibility certificate authorizes reuse only within 
 - **unsafe reuse:** reusing state after a responsibility/semantic change not covered by the certificate;
 - **always-reopen degeneration:** discarding compact state even when the certificate remains valid.
 
-The empirical P13 top-tier claim requires demonstrating an interior point with lower unsafe reuse than unqualified/confidence/provenance baselines and lower resource cost than always-raw/reopen.
+The empirical ORION-23 top-tier claim requires demonstrating an interior point with lower unsafe reuse than unqualified/confidence/provenance baselines and lower resource cost than always-raw/reopen.
 
 ## Cross-paper boundary
 
-P13 consumes P6/P7/P8 transition/transport/authority interfaces only as frozen upstream semantics. P13's owned object is whether a specific state supports a named responsibility and whether that support/recovery contract survives a state/evidence/context change.
+ORION-23 consumes ORION-16/ORION-17/ORION-18 transition/transport/authority interfaces only as frozen upstream semantics. ORION-23's owned object is whether a specific state supports a named responsibility and whether that support/recovery contract survives a state/evidence/context change.

@@ -1,4 +1,4 @@
-# Q2 figure contract — V3
+# ORION-02 figure contract — V3
 
 ## Figure 1 — Negative-result recovery state machine
 
@@ -54,5 +54,5 @@ This table should appear in main text even if Figure 3 is supplementary.
 ## Main-text discipline
 
 - Detailed R0–R5 chronology belongs in Supplementary Information or the receipt-index dataset.
-- Q1 owns the mathematical proof details of R6S; Q2 should show only the result needed to demonstrate the recovery endpoint.
+- ORION-01 owns the mathematical proof details of R6S; ORION-02 should show only the result needed to demonstrate the recovery endpoint.
 - Receipt filenames should be in Methods/Data Availability/SI, not inside the visual argument.

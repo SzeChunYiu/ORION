@@ -1,4 +1,4 @@
-# P2 target-journal scope check — 2026-08-17
+# ORION-12 target-journal scope check — 2026-08-17
 
 Scientific terminal: `P2_NARROWED`.
 Scope decision supersedes the earlier TMLR/IP&M conflict for the narrowed claim surface.
@@ -28,7 +28,7 @@ This is a scope decision, not a statement about acceptance likelihood.
 
 ## Why JASIST remains fallback
 
-JASIST is a plausible home for methodological innovation, but the current P2 evidence is strongest as controlled retrieval-governance/methods work and does not include a user/use study. A larger information-science/use-oriented reframe would make that venue more natural.
+JASIST is a plausible home for methodological innovation, but the current ORION-12 evidence is strongest as controlled retrieval-governance/methods work and does not include a user/use study. A larger information-science/use-oriented reframe would make that venue more natural.
 
 ## Scope-preserving claim boundary
 

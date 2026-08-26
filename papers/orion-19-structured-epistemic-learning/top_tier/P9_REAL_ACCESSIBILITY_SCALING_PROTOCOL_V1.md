@@ -1,14 +1,14 @@
-# P9 real accessibility scaling protocol V1
+# ORION-19 real accessibility scaling protocol V1
 
 **Programme:** #977  
 **State:** `FROZEN_BEFORE_EXECUTION`  
-**Purpose:** add a non-synthetic real-data intervention to the bounded P9 package while preserving all historical negative/sufficiency results.
+**Purpose:** add a non-synthetic real-data intervention to the bounded ORION-19 package while preserving all historical negative/sufficiency results.
 
 ## Scientific discriminator
 
 Can two interfaces carry the same semantic information yet impose materially different downstream resource/capacity requirements, and can a representation repair close that deficit more cheaply than model/access-mechanism escalation?
 
-This is a real supervised-learning accessibility study, not yet the open-weight LLM + verifier-backed two-domain terminal required for the broadest P9 claim.
+This is a real supervised-learning accessibility study, not yet the open-weight LLM + verifier-backed two-domain terminal required for the broadest ORION-19 claim.
 
 ## Frozen datasets
 
@@ -45,7 +45,7 @@ Freeze three deterministic access mechanisms:
 
 Random forest seeds are fixed by `(2026082300 + dataset_index*100 + fold_index)` and shared across representations inside the fold.
 
-Trees are included because monotone feature transformations preserve per-feature ordering, making them a strong access-mechanism attack on a linear accessibility effect. P9 does not assume they will lose.
+Trees are included because monotone feature transformations preserve per-feature ordering, making them a strong access-mechanism attack on a linear accessibility effect. ORION-19 does not assume they will lose.
 
 ## Resource accounting
 
@@ -106,8 +106,8 @@ If no dataset meets the preregistered `0.02` gap, retain `P9_REAL_ACCESSIBILITY_
 - no result-dependent dataset removal;
 - no wall-clock scalar used to claim efficiency;
 - `LOSSY` never described as same-information;
-- P9 bounded historical results remain unchanged.
+- ORION-19 bounded historical results remain unchanged.
 
 ## Authority boundary
 
-A positive here establishes a non-synthetic classical-learning accessibility/capacity crossover only. The broad P9 top-tier terminal still requires a second qualitatively different real domain, preferably open-weight procedural/agent and verifier-backed formal/search tasks, plus immediate submission-day literature refresh.
+A positive here establishes a non-synthetic classical-learning accessibility/capacity crossover only. The broad ORION-19 top-tier terminal still requires a second qualitatively different real domain, preferably open-weight procedural/agent and verifier-backed formal/search tasks, plus immediate submission-day literature refresh.

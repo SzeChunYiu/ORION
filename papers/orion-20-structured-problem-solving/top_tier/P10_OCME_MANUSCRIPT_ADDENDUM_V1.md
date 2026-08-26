@@ -1,6 +1,6 @@
-# P10 manuscript addendum V1 — formal and generated OCME results
+# ORION-20 manuscript addendum V1 — formal and generated OCME results
 
-This addendum supersedes only the outcome/status layer of `successor/P10_U_MANUSCRIPT.tex`. It does not rewrite historical P10/P9 negatives, the native-Lean `CANNOT_CHECK`, or claim unrestricted autonomous method invention.
+This addendum supersedes only the outcome/status layer of `successor/P10_U_MANUSCRIPT.tex`. It does not rewrite historical ORION-20/ORION-19 negatives, the native-Lean `CANNOT_CHECK`, or claim unrestricted autonomous method invention.
 
 ## Result 1 — exact OCME non-vacuity
 
@@ -52,17 +52,17 @@ The old language is rational affine functions on `{-4,...,4}`. The generator rec
 
 Canonical authority: `P10_GENERATED_OCME_RESULT_RECEIPT_V1.md`.
 
-## What P10 may now claim
+## What ORION-20 may now claim
 
-P10 may state:
+ORION-20 may state:
 
 > **Obstruction-certified method-space expansion can be generated under prospectively frozen exact method-language models.** An origin-only search can select semantics that are independently outside the old closure and that create verified held-out reach; stronger search, synthesis or evolutionary recombination restricted to the old closure is formally unable to recover those targets.
 
 This is materially stronger than saying OCME is only a definition or that hand-picked outside-closure primitives exist.
 
-## What P10 may not yet claim
+## What ORION-20 may not yet claim
 
-P10 may not state that it has established unrestricted autonomous mathematical invention. The candidate grammars and wrapper/composition templates were supplied prospectively. Native theorem-proving/problem-solving method spaces are far larger than these finite grammars.
+ORION-20 may not state that it has established unrestricted autonomous mathematical invention. The candidate grammars and wrapper/composition templates were supplied prospectively. Native theorem-proving/problem-solving method spaces are far larger than these finite grammars.
 
 The prior native-Lean run remains `CANNOT_CHECK_NATIVE_STATE_COVERAGE` because its frozen eligibility contract admitted zero eligible transitions. That negative cannot be removed by relaxing the contract after seeing the outcome.
 
@@ -74,7 +74,7 @@ The hard remaining bridge is **native verifier-backed OCME after donor first ref
 - retrieval/premise selection;
 - proof repair and failure-triggered intervention;
 - tactic/macro/library mining;
-- representation/accessibility repair from P9/P11;
+- representation/accessibility repair from ORION-19/ORION-21;
 - synthesis;
 - evolutionary method/code search;
 - exact verifier authority;

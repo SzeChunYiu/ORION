@@ -1,4 +1,4 @@
-# ORION-P3 Public-Reference Pilot — Authority Correction V1
+# ORION-ORION-13 Public-Reference Pilot — Authority Correction V1
 
 **Status:** CORRECTION / supersedes the authority interpretation in `PUBLIC_REFERENCE_PILOT_V1.md` while retaining that document as development history.
 

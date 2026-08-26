@@ -1,4 +1,4 @@
-# Reproduce P7 candidate formal results
+# Reproduce ORION-17 candidate formal results
 
 **Candidate:** Epistemic Navigation in Open Worlds  
 **Status:** deterministic formal-support path; no novelty/benchmark-superiority authority  
@@ -40,13 +40,13 @@ uname -a
 From repository root:
 
 ```bash
-python papers/paper-07-epistemic-navigation-open-worlds/formal/check_countermodels.py
+python papers/orion-17-epistemic-navigation-open-worlds/formal/check_countermodels.py
 ```
 
 Expected V2 semantic signature:
 
 ```text
-P7 deterministic countermodels: PASS
+ORION-17 deterministic countermodels: PASS
   extension-ambiguous complete/incomplete pairs: 8
   certificate-absence != extension-ambiguity counterexample: confirmed
   route-stop/task-stop counterexample: confirmed
@@ -72,7 +72,7 @@ This smaller script makes the theorem-boundary cases easy to inspect, including 
 
 ```bash
 mkdir -p /tmp/orion-p7-repro
-python papers/paper-07-epistemic-navigation-open-worlds/formal/check_countermodels.py \
+python papers/orion-17-epistemic-navigation-open-worlds/formal/check_countermodels.py \
   | tee /tmp/orion-p7-repro/check_countermodels.stdout.txt
 python papers/candidates/checkers/p7_finite_falsifiers_v1.py \
   | tee /tmp/orion-p7-repro/p7_finite_falsifiers_v1.stdout.txt
@@ -101,16 +101,16 @@ They do **not** establish:
 - that real scientific spaces admit faithful atlas charts/maps;
 - that orientation/route-independence contracts can be identified reliably;
 - donor-faithful planning abstraction/homomorphism embeddings;
-- novelty beyond P1+P2 and parent planning/search theory;
+- novelty beyond ORION-11+ORION-12 and parent planning/search theory;
 - peer-review readiness.
 
 ## 7. Next reproducibility layers
 
-### A. Exact P1/P2 embeddings
+### A. Exact ORION-11/ORION-12 embeddings
 Freeze native reframe, route-independence, route-stop/task-stop and censored-obligation decision fixtures and require exact decision equivalence under the atlas representation when chart transformations are inactive.
 
 ### B. Planning-abstraction donor fixtures
-Implement small plan-preserving map/homomorphism cases from formal planning literature and test that P7 adds no new verdict when its support/obligation dimensions are inert.
+Implement small plan-preserving map/homomorphism cases from formal planning literature and test that ORION-17 adds no new verdict when its support/obligation dimensions are inert.
 
 ### C. Atlas generator
 Build a versioned generator with explicit seeds/schema for:

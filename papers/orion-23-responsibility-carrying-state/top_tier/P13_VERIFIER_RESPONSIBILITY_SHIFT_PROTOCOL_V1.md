@@ -1,4 +1,4 @@
-# P13 verifier-backed responsibility shift protocol V1
+# ORION-23 verifier-backed responsibility shift protocol V1
 
 **Programme:** #977
 
@@ -27,7 +27,7 @@ The old compact certificate is current/provenanced for epoch E but is not suppor
 
 ## Frozen cases
 
-The case file registers variable count, fixed-variable pattern, free variable, old model and added clause. Cases are committed before runner/scorer code. Protected cases are disjoint from P12 SAT resource-location instances.
+The case file registers variable count, fixed-variable pattern, free variable, old model and added clause. Cases are committed before runner/scorer code. Protected cases are disjoint from ORION-22 SAT resource-location instances.
 
 ## Exact authority
 

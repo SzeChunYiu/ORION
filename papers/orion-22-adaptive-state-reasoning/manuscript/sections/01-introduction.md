@@ -4,7 +4,7 @@ Test-time computation has become an explicit design variable in modern reasoning
 
 But difficulty itself has more than one source. Some tasks are difficult because the relevant structure is poorly exposed in the current representation. Others are difficult because substantial search or reasoning remains even after the right structure is visible. If a system spends all marginal budget on reasoning in an access-limited task, it reasons harder over the wrong state. If it spends all marginal budget on state construction in a reasoning-limited task, it repeatedly reorganizes information that was already accessible.
 
-P12 asks:
+ORION-22 asks:
 
 > **Under one matched total budget, when should a system spend computation changing state, when should it spend computation reasoning over state, and can a prospective policy learn or exploit the difference?**
 

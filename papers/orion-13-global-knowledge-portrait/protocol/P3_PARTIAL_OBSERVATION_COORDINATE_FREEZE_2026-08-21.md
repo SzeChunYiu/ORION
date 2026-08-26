@@ -1,4 +1,4 @@
-# P3 freeze: the partial-observation failure channel and the coordinate it mines
+# ORION-13 freeze: the partial-observation failure channel and the coordinate it mines
 
 - **Record id**: `P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE`
 - **Date frozen**: 2026-08-21
@@ -7,7 +7,7 @@
   structure of the frozen atlases and the text of `orion.knowledge.semantics.compare_meaning`, not
   from any arm result. What *had* been run when this file was written is stated verbatim in §2 and
   §3.2 so that nothing here can be read as a prediction that was really a memory.
-- **Gate served**: `P3-U-T5` — *"No new identity coordinate has been discovered from failure and
+- **Gate served**: `ORION-13-U-T5` — *"No new identity coordinate has been discovered from failure and
   prospectively validated."* Unblock as written in the ledger: *"Mine each false merge and false
   split for a candidate discriminating coordinate, then validate it on held-out cases or prove the
   coordinate unnecessary."*
@@ -15,7 +15,7 @@
   the same parameter block plus its sha256. The runner recomputes that digest from its own constants
   and refuses to execute on a mismatch.
 - **Verdict on T5 fixed in advance**: see §7 gate **G8**. This study is pre-committed to *not*
-  discharging P3-U-T5, whatever its numbers turn out to be. The reason is structural and is stated
+  discharging ORION-13-U-T5, whatever its numbers turn out to be. The reason is structural and is stated
   now, before any number exists.
 
 ---
@@ -26,19 +26,19 @@ T5's unblock instruction presupposes a non-empty set of ORION false merges and f
 is none. Measured with `orion.study.p3.public_reference_audit`, the same instrument on all three
 atlases that exist:
 
-| atlas | n | ORION decisions | `P3.FALSE_SCIENTIFIC_MERGE` | `P3.FALSE_SCIENTIFIC_SPLIT` | `P3.OVERRESOLVED_UNRESOLVED_CASE` |
+| atlas | n | ORION decisions | `ORION-13.FALSE_SCIENTIFIC_MERGE` | `ORION-13.FALSE_SCIENTIFIC_SPLIT` | `ORION-13.OVERRESOLVED_UNRESOLVED_CASE` |
 |---|---|---|---|---|---|
 | `gold/adjudicated/public-reference-v1` | 32 | 28 `MERGED_CORRECTLY`, 4 `SEPARATED_CORRECTLY` | PASS, 0 of 4 | CANNOT_CHECK `COMPARATOR_NEVER_EXERCISED` | CANNOT_CHECK `NEVER_EXERCISED`, **0 of 0** |
 | `gold/adjudicated/public-reference-v1.1-confirmatory` | 32 | 26 `MERGED_CORRECTLY`, 6 `SEPARATED_CORRECTLY` | PASS, 0 of 6 | CANNOT_CHECK, same | CANNOT_CHECK, **0 of 0** |
 | `research/p3-coordinate-necessity-v1/cases.jsonl` | 56 | 42 `MERGED_CORRECTLY`, 14 `SEPARATED_CORRECTLY` | PASS, 0 of 14 | CANNOT_CHECK, ORION 0 of 42 | CANNOT_CHECK, **0 of 0** |
 
-**ORION commits zero false merges and zero false splits on every atlas P3 owns.** Mining an empty
+**ORION commits zero false merges and zero false splits on every atlas ORION-13 owns.** Mining an empty
 set yields nothing. That is the real reason T5 is blocked, and it cannot be repaired by mining
 harder.
 
 The one failure channel that *could* produce a candidate coordinate is over-resolution — a system
 asserting a relation that the available coordinates do not determine. Its guard,
-`P3.OVERRESOLVED_UNRESOLVED_CASE`, has a **zero denominator on every atlas**: no P3 atlas contains a
+`ORION-13.OVERRESOLVED_UNRESOLVED_CASE`, has a **zero denominator on every atlas**: no ORION-13 atlas contains a
 single gold-`UNRESOLVED` case. Zero violations out of zero opportunities is an absent measurement,
 and `orion.programme.guard_exercise.assess_guard` already says so — it returns `CANNOT_CHECK`, and
 `GuardAssessment.__post_init__` refuses to let a vacuity reason yield `PASS`. The three-valued
@@ -49,7 +49,7 @@ machinery is sound; what is missing is a case.
 Census over all 9 coordinates of `ScientificMeaningProjection` across all 88 cases in the three
 atlases (run before this freeze; the numbers are in §2):
 
-> **No P3 atlas contains a single partially-observed pair.** Every coordinate is either observed on
+> **No ORION-13 atlas contains a single partially-observed pair.** Every coordinate is either observed on
 > *both* sides of the pair or absent on *both* sides. The count of coordinates observed on exactly
 > one side is zero, in every atlas, for every coordinate.
 
@@ -57,7 +57,7 @@ atlases (run before this freeze; the numbers are in §2):
 `left.X and right.X and left.X != right.X` guards, all fall through when either side is empty; so
 does the polarity contradiction test, which requires both polarities to be known. A corpus with no
 partially-observed pair therefore never exercises that reading. The absent-means-agreement branch of
-the identity rule has never been tested by P3's evidence.
+the identity rule has never been tested by ORION-13's evidence.
 
 ### 1.2 The defect in the rule, stated before any measurement
 
@@ -199,7 +199,7 @@ these fails on any corpus:
   on the untouched parent.
 - **C5** every probe case's gold is `UNRESOLVED`.
 
-This is the P2 `echo_campaign` discipline: a world that lacks the intended structure is not the
+This is the ORION-12 `echo_campaign` discipline: a world that lacks the intended structure is not the
 world under study, and no arm number over it means anything.
 
 ## 5. Arms
@@ -230,14 +230,14 @@ Mined from the failure in §1.2, and named now:
 
 ## 7. Primary outcome, secondary outcomes, and pre-committed gates
 
-**Primary outcome.** `P3.OVERRESOLVED_UNRESOLVED_CASE` for arm `A0_orion_current` on
+**Primary outcome.** `ORION-13.OVERRESOLVED_UNRESOLVED_CASE` for arm `A0_orion_current` on
 `PROBE_DERIVATION`, as a `GuardExercise` (opportunities, violations) assessed by
 `orion.programme.guard_exercise.assess_guard` at `max_violation_rate = 0.0`. The guard's opportunity
 definition, decision taxonomy and denominator rule are reused from
 `orion.study.p3.identity_opportunity` unchanged.
 
 **Secondary outcomes, all reported whichever way they fall.** The same guard for A1 and A2 on all
-three probes; `P3.FALSE_SCIENTIFIC_MERGE` for every arm on every corpus; the `PARENT_GOLD` scoring
+three probes; `ORION-13.FALSE_SCIENTIFIC_MERGE` for every arm on every corpus; the `PARENT_GOLD` scoring
 of §3.2; the full `IdentityDecisionKind` census per arm per corpus; and the mining census of §7.1.
 
 ### 7.1 The mining census — T5's instruction, executed
@@ -258,13 +258,13 @@ in the representation can discriminate.
 | Gate | Statement | Consequence if it fails |
 |---|---|---|
 | **G1 CONSTRUCTION** | C1–C5 of §4.4 hold on every corpus | Abort. `CONSTRUCTION_PRECONDITION_FAILED`, no arm numbers reported. |
-| **G2 CHANNEL_OPENED** | A0's `P3.OVERRESOLVED_UNRESOLVED_CASE` exercise on `PROBE_DERIVATION` has `opportunities >= 1` | The channel is still closed; the study reports that it failed to open it and makes no further claim. |
+| **G2 CHANNEL_OPENED** | A0's `ORION-13.OVERRESOLVED_UNRESOLVED_CASE` exercise on `PROBE_DERIVATION` has `opportunities >= 1` | The channel is still closed; the study reports that it failed to open it and makes no further claim. |
 | **G3 FAILURE_ON_REAL_CASES** *(primary)* | A0's over-resolution violation rate on `PROBE_DERIVATION` **>= 0.90** | The failure is weaker than §1.2 claims and is reported as weaker, with no retuning. |
 | **G4 HELD_OUT** | A0's over-resolution violation rate **>= 0.90** on `PROBE_HELDOUT_REAL` **and** on `PROBE_HELDOUT_SYNTHETIC` | The failure does not carry to the held-out coordinate strata; reported as stratum-specific. |
 | **G5 MINING_YIELD** | (a) every failure on an **intact** corpus has a non-empty `discriminating_coordinates` set drawn entirely from the nine existing coordinates; (b) every over-resolution on a **probe** corpus has an **empty** set | On (a) failing: some intact failure demands a coordinate ORION lacks, and that coordinate — not `observation_status` — is the T5 candidate, which this freeze does not cover and which must get its own dated freeze. On (b) failing: some probe failure is discriminable by an existing coordinate and the probe is not isolating the partial-observation mechanism. |
 | **G6 HARM_A1** | A1 changes **0** decisions on all three intact corpora | Blocking for any A1 adoption claim. **Pre-declared vacuous**: §1.1 already established that the intact corpora contain zero one-sided-absent coordinates, so A1 *cannot* fire on them and this gate passes for a structural reason. It is recorded as `VACUOUS` and **may not be cited as evidence that A1 is safe.** It is stated here only so the vacuity is on the record rather than discovered later as a pass. |
 | **G7 COST_A2** *(reported, non-blocking)* | number and fraction of intact decisions A2 changes, and how many of those destroy a correct answer | No failure condition — this gate exists to publish a cost. |
-| **G8 NOVELTY** *(blocking for T5, decided a priori)* | a candidate counts as a **new identity coordinate** only if two **fully observed** projections can differ on it | `observation_status` is by definition constant across all fully-observed pairs, so **G8 fails by construction**. Recorded now: **this study does not discharge P3-U-T5.** |
+| **G8 NOVELTY** *(blocking for T5, decided a priori)* | a candidate counts as a **new identity coordinate** only if two **fully observed** projections can differ on it | `observation_status` is by definition constant across all fully-observed pairs, so **G8 fails by construction**. Recorded now: **this study does not discharge ORION-13-U-T5.** |
 
 ### 7.3 Verdict rules, fixed now
 
@@ -289,17 +289,17 @@ in the representation can discriminate.
 3. If a number is disappointing, the number is reported. No parameter above is changed after an
    outcome is seen. If any parameter is ever changed, this file is superseded by a new dated freeze
    that states what changed and why, and the old result stands beside the new one.
-4. No existing P3 result, receipt, atlas or evidence artifact is modified. Only new files are added.
+4. No existing ORION-13 result, receipt, atlas or evidence artifact is modified. Only new files are added.
 5. A verdict that turns a `CANNOT_CHECK` into a `PASS` is treated as a warning sign, not a success.
    The intended movement of this study is `CANNOT_CHECK -> FAIL`: a blocker replaced by a
-   demonstrated failure is a subtraction from what P3 claims, which is the only direction a repair
+   demonstrated failure is a subtraction from what ORION-13 claims, which is the only direction a repair
    may go.
 
 ## 9. Outputs this freeze commits to producing
 
 - `src/orion/study/p3/partial_observation_probe.py` — probe construction, the three arms, the
   gates, and the runner (`main(argv)`, `argv` required, with a `__main__` guard)
-- `papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json`
-- `papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-21.jsonl`
+- `papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json`
+- `papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-21.jsonl`
 - `tests/unit/study/p3/test_partial_observation_probe.py`
 - `research/claim_expansion/p3/claude_t5/PROGRESS.md` — the working record

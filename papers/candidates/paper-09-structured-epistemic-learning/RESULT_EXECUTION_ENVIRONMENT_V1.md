@@ -1,4 +1,4 @@
-# P9 result-execution environment V1
+# ORION-19 result-execution environment V1
 
 Date bound: 2026-08-19
 
@@ -35,7 +35,7 @@ These auxiliary packages are not described as scientific model components.
 
 ## M1
 
-Scientific protocol: `P9.M1Protocol.v1.3`.
+Scientific protocol: `ORION-19.M1Protocol.v1.3`.
 
 Official result run: `32263768718`, job `96103106194`.
 
@@ -48,7 +48,7 @@ Result digest: `sha256:01e1b62da27b424d453c63b798a5cbb13a915a4546b8ced68fcf84c32
 
 ## D1
 
-Scientific protocol: `P9.D1MethodTransferProtocol.v1.2`.
+Scientific protocol: `ORION-19.D1MethodTransferProtocol.v1.2`.
 
 Original official result run: `32235110762`.
 

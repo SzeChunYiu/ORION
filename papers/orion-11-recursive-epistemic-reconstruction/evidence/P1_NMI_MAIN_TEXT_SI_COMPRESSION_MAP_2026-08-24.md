@@ -1,9 +1,9 @@
-# P1 NMI main-text versus Methods/SI compression map
+# ORION-11 NMI main-text versus Methods/SI compression map
 
 **Date:** 2026-08-24  
 **Purpose:** preserve the scientific evidence allocation before any destructive
 compression from roughly 14.0k core words to the NMI Article limit of 3,500.
-This is a projection plan, not a claim that P1 is NMI-ready.
+This is a projection plan, not a claim that ORION-11 is NMI-ready.
 
 ## Non-negotiable main-text evidence
 
@@ -12,7 +12,7 @@ This is a projection plan, not a claim that P1 is NMI-ready.
 2. The v2.2.4 primary and disjoint mechanical results, including 2,882 worlds,
    480 hidden shifts, 2,402 controls, parent contrasts and safety gates.
 3. The 400-contract result **and** the information-equivalent 400/400 tie.
-4. Historical P1.H1: 48-case test, 1/48 versus 1/48, `NOT_SUPPORTED`, not pooled
+4. Historical ORION-11.H1: 48-case test, 1/48 versus 1/48, `NOT_SUPPORTED`, not pooled
    with the successor. The 66 denominator is pilot plus test and is used only
    for the authored-suite diagnostics.
 5. The naturalistic authority state: 117,649 total maps, 116,929 rejected, 720
@@ -61,11 +61,11 @@ Current usage is five of six displays: two figures and three tables.
 
 | Display | NMI projection |
 |---|---|
-| Figure P1-7, necessity replication | retain in main Results |
-| Table P1-T4, primary/replication gates | retain in main Results |
-| Figure P1-1, protocol diagram | move to online Methods/SI |
-| Table P1-T2, historical baseline/ablation | move to SI; summarize 1/48 versus 1/48 in main text |
-| Table P1-T3, historical failure taxonomy | move to SI; retain only conclusion-changing shortcut/abstention facts in main text |
+| Figure ORION-11-7, necessity replication | retain in main Results |
+| Table ORION-11-T4, primary/replication gates | retain in main Results |
+| Figure ORION-11-1, protocol diagram | move to online Methods/SI |
+| Table ORION-11-T2, historical baseline/ablation | move to SI; summarize 1/48 versus 1/48 in main text |
+| Table ORION-11-T3, historical failure taxonomy | move to SI; retain only conclusion-changing shortcut/abstention facts in main text |
 
 This leaves two main-text displays and room for one future naturalistic result
 display if and only if that study is executed prospectively.

@@ -18,7 +18,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery"
+PAPER = ROOT / "papers" / "orion-12-open-world-scientific-discovery"
 CHECKER = PAPER / "scripts" / "check_claim_ledger.py"
 LEDGER_RELATIVE = Path("protocol") / "CLAIM_LEDGER_V1.json"
 

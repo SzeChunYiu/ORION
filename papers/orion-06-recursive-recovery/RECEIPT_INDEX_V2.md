@@ -31,4 +31,4 @@ Before external release/submission:
 1. regenerate SHA-256 for all 47 committed receipt bytes on one clean checkout;
 2. replay every runnable receipt or bind the existing independent replay ledger where the heavy computation is intentionally not rerun;
 3. verify no manuscript number is sourced only from a historical draft rather than a committed receipt;
-4. keep Q1's mathematical claim ownership separate from Q2's methodology claim ownership.
+4. keep ORION-01's mathematical claim ownership separate from ORION-02's methodology claim ownership.

@@ -285,14 +285,14 @@ def main() -> int:
     if len(sys.argv) > 1:
         suite_path = Path(sys.argv[1])
     else:
-        suite_path = Path("papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json")
+        suite_path = Path("papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json")
 
     if not suite_path.exists():
         print(f"Error: Suite file not found: {suite_path}", file=sys.stderr)
         return 1
 
     # Output paths
-    output_dir = Path("papers/paper-05-self-orion/evidence/glm-5.2-attribution")
+    output_dir = Path("papers/orion-15-self-orion/evidence/glm-5.2-attribution")
     output_dir.mkdir(parents=True, exist_ok=True)
     results_path = output_dir / "results.jsonl"
     report_path = output_dir / "report.json"

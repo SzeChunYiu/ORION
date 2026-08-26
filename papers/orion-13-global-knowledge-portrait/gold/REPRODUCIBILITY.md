@@ -1,4 +1,4 @@
-# ORION-P3 Reproducibility Package
+# ORION-ORION-13 Reproducibility Package
 
 **Status:** PREPARED (not yet finalized — gold study not yet executed)
 
@@ -40,8 +40,8 @@ This document enumerates every artifact required to independently reproduce the 
 
 ## 5. Manuscript
 
-- [ ] **Canonical manuscript:** `papers/paper-03-global-knowledge-portrait/manuscript/main.tex` — 8 sections (DONE)
-- [ ] **Bibliography:** `papers/paper-03-global-knowledge-portrait/manuscript/bibliography.bib` — 20+ entries (DONE)
+- [ ] **Canonical manuscript:** `papers/orion-13-global-knowledge-portrait/manuscript/main.tex` — 8 sections (DONE)
+- [ ] **Bibliography:** `papers/orion-13-global-knowledge-portrait/manuscript/bibliography.bib` — 20+ entries (DONE)
 - [ ] **Claim ledger:** Every headline claim mapped to an artifact (PENDING — results section tied to frozen artifacts)
 
 ## 6. Data licensing

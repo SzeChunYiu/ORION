@@ -15,7 +15,7 @@ from orion.programme.specialist_readiness_matrix import (
 
 ARTIFACT = (
     Path(__file__).resolve().parents[3]
-    / "papers/paper-15-orion-research-harness/matrix/P1_P15_SPECIALIST_READINESS_MATRIX_V1.json"
+    / "papers/orion-25-orion-research-harness/matrix/P1_P15_SPECIALIST_READINESS_MATRIX_V1.json"
 )
 
 REQUIRED = {
@@ -57,8 +57,8 @@ def test_paper_numbers_map_to_the_intended_directories() -> None:
     Taking the first alphabetically silently reports a different paper.
     """
     slugs = dict(CANONICAL)
-    assert slugs["P2"] == "paper-02-open-world-scientific-discovery"
-    assert slugs["P4"] == "paper-04-verified-scientific-discovery"
+    assert slugs["P2"] == "orion-12-open-world-scientific-discovery"
+    assert slugs["P4"] == "orion-14-verified-scientific-discovery"
     live = build()
     assert live["papers"]["P2"]["directory"] == slugs["P2"]
     assert live["papers"]["P4"]["directory"] == slugs["P4"]

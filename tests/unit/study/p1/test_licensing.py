@@ -85,14 +85,14 @@ REPO_ROOT = Path(__file__).resolve().parents[4]
 CASES_ROOT = (
     REPO_ROOT
     / "papers"
-    / "paper-01-recursive-epistemic-reconstruction"
+    / "orion-11-recursive-epistemic-reconstruction"
     / "protocol"
     / "cases"
 )
 PROTOCOL_JSON = (
     REPO_ROOT
     / "papers"
-    / "paper-01-recursive-epistemic-reconstruction"
+    / "orion-11-recursive-epistemic-reconstruction"
     / "protocol"
     / "PROTOCOL_V1.json"
 )

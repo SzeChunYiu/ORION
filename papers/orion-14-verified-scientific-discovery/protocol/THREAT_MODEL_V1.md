@@ -1,4 +1,4 @@
-# ORION-P4 threat model V1
+# ORION-ORION-14 threat model V1
 
 ## Protected object
 

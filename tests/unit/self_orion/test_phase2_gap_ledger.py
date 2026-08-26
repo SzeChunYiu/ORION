@@ -16,7 +16,7 @@ LEDGER_PATH = REPO_ROOT / "research/phase2/PHASE2_CLOSURE_GAP_LEDGER_V1.json"
 CANNOT_CHECK_PATH = (
     REPO_ROOT / "research/phase2/PHASE2_LIVE_PACKET_EXECUTION_CANNOT_CHECK_V1.json"
 )
-PACKET_PATH = REPO_ROOT / "papers/paper-05-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json"
+PACKET_PATH = REPO_ROOT / "papers/orion-15-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json"
 BINDING_DOC = REPO_ROOT / "research/phase2/PHASE2_SUBJECT_ANCHOR_BINDING_V1.md"
 
 EMPIRICAL_SECTIONS = {"dependency", "A", "B", "C", "D", "E", "F"}

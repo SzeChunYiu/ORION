@@ -20,7 +20,7 @@ from orion.study.p11.wide_panel_revalidation import (
 import pytest
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers" / "paper-11-state-as-computation"
+PAPER = ROOT / "papers" / "orion-21-state-as-computation"
 RUNNER = PAPER / "run_p11i_wide_high_width_replication_v1.py"
 PROTOCOL = PAPER / "P11I_WIDE_HIGH_WIDTH_REPLICATION_PROTOCOL_V1.md"
 PREFLIGHT = PAPER / "P11I_PREFLIGHT_ATTAINABILITY_V1.json"

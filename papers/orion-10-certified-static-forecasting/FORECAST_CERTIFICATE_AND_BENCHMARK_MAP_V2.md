@@ -1,6 +1,6 @@
-# QG2 forecast certificate and benchmark map V2
+# ORION-10 forecast certificate and benchmark map V2
 
-**Purpose:** close QG2 mock-review items R1.1–R3.3 by formalizing forecast authority, executable/theorem binding, benchmark denominators and verified-vs-forecast-only display rules.
+**Purpose:** close ORION-10 mock-review items R1.1–R3.3 by formalizing forecast authority, executable/theorem binding, benchmark denominators and verified-vs-forecast-only display rules.
 
 ## 1. Reporting object
 
@@ -147,13 +147,13 @@ If retained:
 
 QG7/QG7c leave one all-`n` consolidation link open for a small named-family identity such as `min(C_D+,f_B′,f_B″)`.
 
-This is **not** an unresolved exactness gate for QG2 because:
+This is **not** an unresolved exactness gate for ORION-10 because:
 
 - the full support-two family D++ is already theorem-sufficient all `n` under R6M/raw-support scope;
 - `F2` computes the D++ family minimum rather than relying on the smallest named closed form;
 - the open question is about interpretability/computational simplification of the exact family, not whether `F2`'s mathematical target equals `C_DP`.
 
-QG2 must therefore state:
+ORION-10 must therefore state:
 
 > exact static forecasting via D++ is closed in scope; finding the smallest explanatory closed form remains companion open science.
 

@@ -1,4 +1,4 @@
-# P6–P8 peer-review submission package
+# ORION-16–ORION-18 peer-review submission package
 
 **Date:** 2026-08-18  
 **Scientific base:** theory package merged by #375.  
@@ -30,7 +30,7 @@ multiply-defined references/citations, and archives the exact-head PDFs plus a
 hash receipt. The repository-wide `ci` workflow independently runs the full
 project `pytest -q` suite.
 
-When those predicates hold on one immutable head, the repository terminal for P6, P7 and P8 is `PEER_REVIEW_READY`. A later content change invalidates the terminal until the new head passes both checks again.
+When those predicates hold on one immutable head, the repository terminal for ORION-16, ORION-17 and ORION-18 is `PEER_REVIEW_READY`. A later content change invalidates the terminal until the new head passes both checks again.
 
 `PEER_REVIEW_READY` means ready for external editorial/referee evaluation. It does not mean `PEER_REVIEWED`, `ACCEPTED`, `FLAGSHIP_PROMOTED`, or `EMPIRICALLY_SUPERIOR`.
 
@@ -45,35 +45,35 @@ When those predicates hold on one immutable head, the repository terminal for P6
 - `tests/unit/candidates/test_p6_p8_peer_review_ready.py` — submission gate test.
 - `.github/workflows/p6-p8-candidate-ci.yml` — fast theory + submission gate wiring.
 
-## P6 — Artificial Intelligence
+## ORION-16 — Artificial Intelligence
 
-- editable source: `paper-06-formal-epistemic-structures-and-mechanics/submission/AIJ_MANUSCRIPT.tex`
-- highlights: `paper-06-formal-epistemic-structures-and-mechanics/submission/HIGHLIGHTS.txt`
-- cover letter: `paper-06-formal-epistemic-structures-and-mechanics/submission/COVER_LETTER.md`
-- normative theory: `paper-06-formal-epistemic-structures-and-mechanics/manuscript/FORMAL_CORE_V2_1.md`
-- claim authority: `paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V2_1.md` plus programme submission ledger;
-- reproduce: `paper-06-formal-epistemic-structures-and-mechanics/REPRODUCE_V2_1.md`.
+- editable source: `orion-16-formal-epistemic-structures-and-mechanics/submission/AIJ_MANUSCRIPT.tex`
+- highlights: `orion-16-formal-epistemic-structures-and-mechanics/submission/HIGHLIGHTS.txt`
+- cover letter: `orion-16-formal-epistemic-structures-and-mechanics/submission/COVER_LETTER.md`
+- normative theory: `orion-16-formal-epistemic-structures-and-mechanics/manuscript/FORMAL_CORE_V2_1.md`
+- claim authority: `orion-16-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V2_1.md` plus programme submission ledger;
+- reproduce: `orion-16-formal-epistemic-structures-and-mechanics/REPRODUCE_V2_1.md`.
 
-## P7 — Artificial Intelligence
+## ORION-17 — Artificial Intelligence
 
-- editable source: `paper-07-epistemic-navigation-open-worlds/submission/AIJ_MANUSCRIPT.tex`
-- highlights: `paper-07-epistemic-navigation-open-worlds/submission/HIGHLIGHTS.txt`
-- cover letter: `paper-07-epistemic-navigation-open-worlds/submission/COVER_LETTER.md`
-- normative theory: `paper-07-epistemic-navigation-open-worlds/manuscript/FORMAL_CORE_V2.md`
-- frozen contract manifest: `paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.jsonl`
-- claim authority: `paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_V2.md` plus programme submission ledger;
-- reproduce: `paper-07-epistemic-navigation-open-worlds/REPRODUCE_V2_1.md`.
+- editable source: `orion-17-epistemic-navigation-open-worlds/submission/AIJ_MANUSCRIPT.tex`
+- highlights: `orion-17-epistemic-navigation-open-worlds/submission/HIGHLIGHTS.txt`
+- cover letter: `orion-17-epistemic-navigation-open-worlds/submission/COVER_LETTER.md`
+- normative theory: `orion-17-epistemic-navigation-open-worlds/manuscript/FORMAL_CORE_V2.md`
+- frozen contract manifest: `orion-17-epistemic-navigation-open-worlds/benchmark/instances_v2.jsonl`
+- claim authority: `orion-17-epistemic-navigation-open-worlds/CLAIM_LEDGER_V2.md` plus programme submission ledger;
+- reproduce: `orion-17-epistemic-navigation-open-worlds/REPRODUCE_V2_1.md`.
 
-## P8 — Autonomous Agents and Multi-Agent Systems
+## ORION-18 — Autonomous Agents and Multi-Agent Systems
 
-- editable source: `paper-08-epistemic-authority-autonomous-science/submission/JAAMAS_MANUSCRIPT.tex`
-- mandatory information sheet: `paper-08-epistemic-authority-autonomous-science/submission/JAAMAS_INFORMATION_SHEET.md`
-- cover letter: `paper-08-epistemic-authority-autonomous-science/submission/COVER_LETTER.md`
-- normative theory: `paper-08-epistemic-authority-autonomous-science/manuscript/FORMAL_CORE_V2.md`
+- editable source: `orion-18-epistemic-authority-autonomous-science/submission/JAAMAS_MANUSCRIPT.tex`
+- mandatory information sheet: `orion-18-epistemic-authority-autonomous-science/submission/JAAMAS_INFORMATION_SHEET.md`
+- cover letter: `orion-18-epistemic-authority-autonomous-science/submission/COVER_LETTER.md`
+- normative theory: `orion-18-epistemic-authority-autonomous-science/manuscript/FORMAL_CORE_V2.md`
   plus superseding primitive closure `manuscript/FORMAL_CORE_V2_1.md`
-- frozen authority manifest: `paper-08-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.jsonl`
-- claim authority: `paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V2.md` plus programme submission ledger;
-- reproduce: `paper-08-epistemic-authority-autonomous-science/REPRODUCE_V2_1.md`.
+- frozen authority manifest: `orion-18-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.jsonl`
+- claim authority: `orion-18-epistemic-authority-autonomous-science/CLAIM_LEDGER_V2.md` plus programme submission ledger;
+- reproduce: `orion-18-epistemic-authority-autonomous-science/REPRODUCE_V2_1.md`.
 
 ## Author/correspondence metadata used in the package
 

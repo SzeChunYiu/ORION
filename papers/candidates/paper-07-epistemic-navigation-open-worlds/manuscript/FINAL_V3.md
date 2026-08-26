@@ -6,13 +6,13 @@
 **Successor evidence:** `research/claim_expansion/p7/P7_X2_*`  
 **Science terminal:** `P7_CLOSURE_CARRYING_NAVIGATION_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT`
 
-V3 preserves the original P7 stopping/transport theory and widens its interpretation constructively by absorbing mature planning, refinement, representation-migration and completion mechanisms into a closure-carrying navigation architecture.
+V3 preserves the original ORION-17 stopping/transport theory and widens its interpretation constructively by absorbing mature planning, refinement, representation-migration and completion mechanisms into a closure-carrying navigation architecture.
 
 ## Replacement abstract for V3
 
-Scientific navigation already has strong donor mechanisms. Planning theory supplies sound abstraction/refinement; counterexample-guided refinement reopens spurious abstractions; bidirectional transformations and migration systems preserve representation structure through round-trip/trace relations; world-model systems replan after state change; and recent completion work separates achieved world state from an agent's terminal commitment. P7 treats these as reusable navigation transforms rather than as competing novelty claims.
+Scientific navigation already has strong donor mechanisms. Planning theory supplies sound abstraction/refinement; counterexample-guided refinement reopens spurious abstractions; bidirectional transformations and migration systems preserve representation structure through round-trip/trace relations; world-model systems replan after state change; and recent completion work separates achieved world state from an agent's terminal commitment. ORION-17 treats these as reusable navigation transforms rather than as competing novelty claims.
 
-The remaining scientific problem is how task-global closure survives such transforms. P7 introduces a bounded **closure-carrying navigation semantics**: a donor-valid transformation carries scientific task closure only through an explicit obligation witness. In the registered theorem instance the carrier tracks obligation totality, ambiguity, material frontier resolution, objective/question semantic continuity, and closure epoch. A valid planning refinement, representation round trip, replan or terminal commitment can therefore remain valid in its native theory while failing to inherit scientific task closure. Conversely, a transport failure need not discard the donor transform: the failed closure coordinates become a targeted refinement/reopen problem, extending counterexample-guided refinement from state abstraction to closure obligations. Closure-carrying transforms compose across heterogeneous mechanisms only when the intermediate obligation contract is exactly bound or explicitly bridged.
+The remaining scientific problem is how task-global closure survives such transforms. ORION-17 introduces a bounded **closure-carrying navigation semantics**: a donor-valid transformation carries scientific task closure only through an explicit obligation witness. In the registered theorem instance the carrier tracks obligation totality, ambiguity, material frontier resolution, objective/question semantic continuity, and closure epoch. A valid planning refinement, representation round trip, replan or terminal commitment can therefore remain valid in its native theory while failing to inherit scientific task closure. Conversely, a transport failure need not discard the donor transform: the failed closure coordinates become a targeted refinement/reopen problem, extending counterexample-guided refinement from state abstraction to closure obligations. Closure-carrying transforms compose across heterogeneous mechanisms only when the intermediate obligation contract is exactly bound or explicitly bridged.
 
 An exhaustive finite model evaluates 320 donor-transform/closure states with zero donor-conservativity and zero ideal-product mismatches. It contains 25 minimal one-coordinate closure separations, 31 donor-product nonclosure countermodels, 155 exact closure-refinement successes, 1,055 failures of proper-subset refinement, 25 heterogeneous transform-pair composition successes and 25 bridge-mismatch composition countermodels. An independent implementation reproduces the canonical enumeration. The result is a bounded compositional scientific-closure architecture over absorbed navigation mechanisms, not generic planning, stopping, representation change or deployed-agent superiority.
 
@@ -27,7 +27,7 @@ V3 explicitly imports rather than subtracts the strongest adjacent mechanisms.
 - **Terminal-commitment frameworks** contribute an independent representation of world completion versus an agent's decision to terminate/report.
 - **Closure-contract work** contributes explicit semantic/evidentiary/procedural/institutional completion conditions and the distinction between misclosure and undersearch.
 
-P7's contribution is to make the scientific closure contract itself a transported object across these mechanisms.
+ORION-17's contribution is to make the scientific closure contract itself a transported object across these mechanisms.
 
 ## 17. Closure-carrying transforms
 
@@ -63,7 +63,7 @@ This is the constructive improvement over the donors: a closure failure becomes 
 Two closure-carrying transforms compose only when the target obligation contract produced by the first is exactly the source obligation contract consumed by the second, or when a registered bridge proves them equivalent. Donor-visible composability alone does not establish closure composability.
 
 ### Theorem V3.6 — ideal-product equivalence
-An information-equivalent donor stack carrying the same closure coordinates, bridge rules and composition predicate ties P7 extensionally. P7 therefore claims a reusable closure-carrying interface, not inherent centralization or expressive superiority.
+An information-equivalent donor stack carrying the same closure coordinates, bridge rules and composition predicate ties ORION-17 extensionally. ORION-17 therefore claims a reusable closure-carrying interface, not inherent centralization or expressive superiority.
 
 ## Exhaustive bounded support
 
@@ -83,7 +83,7 @@ Exact enumeration:
 
 A second checker independently reproduces these counts and the canonical digest.
 
-## Wider P7 claim
+## Wider ORION-17 claim
 
 > Scientific navigation can reuse mature planning/refinement, counterexample-guided reopening, representation-migration, replanning and terminal-commitment machinery while carrying task-global closure as an explicit obligation object; closure-transport defects can be selectively refined, and heterogeneous navigation transforms compose scientifically only when their intermediate closure contracts are correctly bridged.
 
@@ -95,7 +95,7 @@ The registered closure coordinates are a bounded formal instance, not claimed un
 
 ## Replacement conclusion for V3
 
-P7's strongest interpretation is not that existing navigation systems fail. Their strongest mechanisms become the substrate. Sound planning refinement tells us when a coarse plan maps safely to a concrete one; CEGAR tells us how to refine spurious abstractions; bidirectional transformations tell us how representations can round-trip; replanning handles changed worlds; terminal-commitment systems keep achieved state separate from the decision to stop. P7 adds the missing scientific carrier that makes these mechanisms composable at the level of task closure.
+ORION-17's strongest interpretation is not that existing navigation systems fail. Their strongest mechanisms become the substrate. Sound planning refinement tells us when a coarse plan maps safely to a concrete one; CEGAR tells us how to refine spurious abstractions; bidirectional transformations tell us how representations can round-trip; replanning handles changed worlds; terminal-commitment systems keep achieved state separate from the decision to stop. ORION-17 adds the missing scientific carrier that makes these mechanisms composable at the level of task closure.
 
 The result is a navigation architecture in which closure is not recomputed from scratch after every representation change and is not silently inherited from ordinary preservation either. It is transported explicitly, selectively refined when broken, and composed through typed intermediate contracts. An equally informed donor product ties, so the contribution is the closure-carrying abstraction and its bridge/refinement laws rather than centralized implementation.
 

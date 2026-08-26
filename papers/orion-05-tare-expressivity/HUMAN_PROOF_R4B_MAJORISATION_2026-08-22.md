@@ -131,4 +131,4 @@ The publication-safe statement is:
 
 > For the equal-cardinality split-TARE normalization objective `sqrt(m) * sum_g ||c_g||_2`, sorting coefficient magnitudes and grouping contiguously is optimal by a direct majorization/Schur-concavity argument.
 
-Do **not** claim the majorization technique itself as new. Before presenting the TARE specialization as a novelty item, perform a conventional nearest-work search in clustering/partitioning/majorization literature. Q1 should currently use this as supporting mathematics, not as the flagship novelty claim.
+Do **not** claim the majorization technique itself as new. Before presenting the TARE specialization as a novelty item, perform a conventional nearest-work search in clustering/partitioning/majorization literature. ORION-01 should currently use this as supporting mathematics, not as the flagship novelty claim.

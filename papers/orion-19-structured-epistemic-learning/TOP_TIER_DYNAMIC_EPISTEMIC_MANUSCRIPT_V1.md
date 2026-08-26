@@ -1,4 +1,4 @@
-# P9 Top-Tier Dynamic-Epistemic Manuscript V1
+# ORION-19 Top-Tier Dynamic-Epistemic Manuscript V1
 
 ## Candidate title
 
@@ -7,28 +7,28 @@
 ```text
 status = RESULT_LEDGER_BOUND__OPEN_WEIGHT_AND_BUILD_CUSTODY_UNAVAILABLE
 paper_authority_delta = NONE
-job = P9-DES-01
+job = ORION-19-DES-01
 ```
 
 ## Abstract
 
-Final performance does not reveal whether a system lacks information, cannot access available structure, lacks compute or model capacity, is trapped inside an inadequate method language, or entered a different numerical attractor. P9 defines a dynamic capability state and uses interventions to identify these causes when possible. It absorbs representation learning, probing, causal diagnosis, scaling, test-time compute, and reproducible numerical computing. We prove observational non-identifiability, intervention-signature identification, accessibility deficiency, version-manifest insufficiency for claim-level numerical identity, and a minimum execution-certificate target. The frozen successor specified 1,344 open-weight model cells and 12 numerical-build cells, but none was executable because exact checkpoints, weights, representations, task generators, strong donor implementations, numerical builds, and independently held terminal gold were not transferred under content-bound custody. The result is therefore an acquisition and precondition theorem in executable form, not an estimate of cause accuracy, compute substitution, frontier shift, or numerical-terminal predictability.
+Final performance does not reveal whether a system lacks information, cannot access available structure, lacks compute or model capacity, is trapped inside an inadequate method language, or entered a different numerical attractor. ORION-19 defines a dynamic capability state and uses interventions to identify these causes when possible. It absorbs representation learning, probing, causal diagnosis, scaling, test-time compute, and reproducible numerical computing. We prove observational non-identifiability, intervention-signature identification, accessibility deficiency, version-manifest insufficiency for claim-level numerical identity, and a minimum execution-certificate target. The frozen successor specified 1,344 open-weight model cells and 12 numerical-build cells, but none was executable because exact checkpoints, weights, representations, task generators, strong donor implementations, numerical builds, and independently held terminal gold were not transferred under content-bound custody. The result is therefore an acquisition and precondition theorem in executable form, not an estimate of cause accuracy, compute substitution, frontier shift, or numerical-terminal predictability.
 
 ## Theory
 
-- `P9-T1`: performance alone generally does not identify failure origin.
-- `P9-T2`: a cause is identifiable iff its permitted intervention signature differs from every competitor.
-- `P9-T3`: equal semantic information can impose different decoder and compute requirements.
-- `P9-T4`: a version manifest is insufficient when equal manifests yield different claim terminals.
-- `P9-T5`: the minimum numerical identity is the smallest feature set predicting or preventing all registered terminal flips.
+- `ORION-19-T1`: performance alone generally does not identify failure origin.
+- `ORION-19-T2`: a cause is identifiable iff its permitted intervention signature differs from every competitor.
+- `ORION-19-T3`: equal semantic information can impose different decoder and compute requirements.
+- `ORION-19-T4`: a version manifest is insufficient when equal manifests yield different claim terminals.
+- `ORION-19-T5`: the minimum numerical identity is the smallest feature set predicting or preventing all registered terminal flips.
 
 ## Ideal donor comparison
 
-The ideal donor product receives the same semantic information, representation, tools, model family, inference budget, numerical builds, and execution fingerprints. P9 must reproduce every donor frontier point and strictly extend at least one claim-relevant diagnosis or terminal-stability coordinate; otherwise the result is donor equivalence or a boundary theorem.
+The ideal donor product receives the same semantic information, representation, tools, model family, inference budget, numerical builds, and execution fingerprints. ORION-19 must reproduce every donor frontier point and strictly extend at least one claim-relevant diagnosis or terminal-stability coordinate; otherwise the result is donor equivalence or a boundary theorem.
 
 ## Decisive computation
 
-`P9-DES-01`: model family × representation × inference budget × numerical build/provider matrix. Endpoints: cause accuracy, frontier shift, compute substitution, held-out terminal-flip prediction, and cost. Intended positive terminal: `CAPABILITY_ORIGIN_AND_NUMERICAL_TERMINAL_IDENTITY_PROSPECTIVELY_IDENTIFIED`.
+`ORION-19-DES-01`: model family × representation × inference budget × numerical build/provider matrix. Endpoints: cause accuracy, frontier shift, compute substitution, held-out terminal-flip prediction, and cost. Intended positive terminal: `CAPABILITY_ORIGIN_AND_NUMERICAL_TERMINAL_IDENTITY_PROSPECTIVELY_IDENTIFIED`.
 
 ## Authoritative computation disposition
 

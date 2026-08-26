@@ -1,4 +1,4 @@
-# Q1 claim ledger V3 — recursively refined publication claim
+# ORION-01 claim ledger V3 — recursively refined publication claim
 
 **Canonical manuscript:** `MANUSCRIPT_V3_REFINED.md`  
 **Internal review:** `development/q-paper-recursive-refinement/Q1_REVIEW_ROUND2.md`

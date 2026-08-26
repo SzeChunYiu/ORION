@@ -1,6 +1,6 @@
-# ORION-P3 gold corpus design V1
+# ORION-ORION-13 gold corpus design V1
 
-**Status:** DESIGN_FROZEN (outcome-blind). Part of `P3.cross-domain-atlas.v1`.
+**Status:** DESIGN_FROZEN (outcome-blind). Part of `ORION-13.cross-domain-atlas.v1`.
 
 ## Discipline selection rationale
 

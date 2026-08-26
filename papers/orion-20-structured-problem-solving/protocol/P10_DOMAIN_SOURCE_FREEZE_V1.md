@@ -1,8 +1,8 @@
-# P10 Domain/Source Freeze V1 (FROZEN — NOT EXECUTED)
+# ORION-20 Domain/Source Freeze V1 (FROZEN — NOT EXECUTED)
 
-- Schema: `ORION.P10.DomainSourceFreeze.v1` (machine form: `P10_DOMAIN_SOURCE_FREEZE_V1.json`)
+- Schema: `ORION.ORION-20.DomainSourceFreeze.v1` (machine form: `P10_DOMAIN_SOURCE_FREEZE_V1.json`)
 - Study: `P10_H1_H6_WIDE_MULTI_DOMAIN_V1`
-- Issue binding: SzeChunYiu/ORION#1086, P10 box 1 ("Populate the frozen design") plus per-box verdicts for boxes 2-4
+- Issue binding: SzeChunYiu/ORION#1086, ORION-20 box 1 ("Populate the frozen design") plus per-box verdicts for boxes 2-4
 - Frozen: 2026-08-24T10:45:00Z
 - Execution status: `CANNOT_CHECK__NO_P10_EXECUTION_IN_REPOSITORY`
 
@@ -12,7 +12,7 @@
 
 ## Relation to the H1-H6 freeze
 
-Bound artifact: `papers/paper-10-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json`
+Bound artifact: `papers/orion-20-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json`
 (sha256 `8e32c2bee514d246bcd503fc2f0ef078bcc52adb7f40abdbcb642b703aec355c`, live-recomputed by the checker).
 
 This artifact supplies the **domain/source/licence layer** of `required_inputs[0].protected_task_manifest`
@@ -88,6 +88,6 @@ machine-checked edits in the repository are the exact-setting toy/formal cases a
 
 ## Freeze discipline
 
-- Checker: `papers/paper-10-structured-problem-solving/protocol/check_p10_domain_source_freeze_v1.py`
+- Checker: `papers/orion-20-structured-problem-solving/protocol/check_p10_domain_source_freeze_v1.py`
 - Tests: `tests/unit/p10/test_p10_domain_source_freeze.py`
 - The checker live-recomputes the H1-H6 protocol freeze sha256 against disk on every run.

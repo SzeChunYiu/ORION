@@ -1,8 +1,8 @@
-# Q1 nearest-work theorem-delta table — V3
+# ORION-01 nearest-work theorem-delta table — V3
 
-**Purpose:** positioning aid for the recursively refined Q1 manuscript. This is not a novelty certificate. Exact bibliographic metadata must be refreshed immediately before submission.
+**Purpose:** positioning aid for the recursively refined ORION-01 manuscript. This is not a novelty certificate. Exact bibliographic metadata must be refreshed immediately before submission.
 
-| Nearest work / literature route | What it already owns | What Q1 does **not** claim | Residual Q1 theorem delta |
+| Nearest work / literature route | What it already owns | What ORION-01 does **not** claim | Residual ORION-01 theorem delta |
 |---|---|---|---|
 | Schillo, Sturm & Quay, TARE (2026) | Tag-and-Restore block encoding, auxiliary mutually anticommuting Pauli representation, Tag/Restore construction and its compiler degrees of freedom | invention of TARE, Tag, Restore, auxiliary anticommuting frames, or the existence of frame optimization | exact optimum-support complexity of the declared three-block shared-Tag TARE-M2 optimization family; all-`n` support-two sufficiency plus exact support-one impossibility |
 | Unitary partitioning / anticommuting Pauli grouping | normalized unitaries formed from mutually anticommuting Pauli sets; related grouping/factoring constructions | anticommuting-unitary principle or Pauli grouping as a new primitive | a sharp **uniform normal-form threshold for an optimum under a coupled frame/Tag/Restore objective**, not merely construction of an anticommuting group |
@@ -18,7 +18,7 @@ The strongest bounded novelty candidate is:
 
 > For the frozen three-block shared-one-bit-Tag TARE-M2 grammar under the declared support-count objective, the smallest uniform frame-support cap guaranteed to contain an exact optimum for every admitted instance and every qubit count is exactly two.
 
-Equivalently, Q1 must defend the combined object
+Equivalently, ORION-01 must defend the combined object
 
 `all-n support-two upper bound + complete support-one lower-bound counterexample + mechanism/proof-obstruction correspondence`.
 
@@ -26,4 +26,4 @@ A paper that only reduced Pauli support, only optimized a finite TARE panel, or 
 
 ## Search / claim rule
 
-The manuscript may say that bounded searches did not locate an equivalent theorem. It may not say `first ever`, `nobody studied this`, or `proven novel`. If a prior equivalent is found, narrow or absorb the Q1 claim before submission.
+The manuscript may say that bounded searches did not locate an equivalent theorem. It may not say `first ever`, `nobody studied this`, or `proven novel`. If a prior equivalent is found, narrow or absorb the ORION-01 claim before submission.

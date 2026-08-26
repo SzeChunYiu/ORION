@@ -1,4 +1,4 @@
-# ORION-P4 V2 Reproducibility
+# ORION-ORION-14 V2 Reproducibility
 
 ## Exact identities
 
@@ -11,7 +11,7 @@
 ## Safe replay
 
 ```bash
-python papers/paper-04-verified-scientific-discovery/figures/generate_figures.py
+python papers/orion-14-verified-scientific-discovery/figures/generate_figures.py
 pytest -q tests/unit/p4/test_p4_publication_v2.py tests/unit/p4/test_p4_v2_execution_freeze.py
 ```
 

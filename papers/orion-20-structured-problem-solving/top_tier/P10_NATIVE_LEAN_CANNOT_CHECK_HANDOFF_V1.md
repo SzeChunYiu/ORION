@@ -1,9 +1,9 @@
-# P10 native-Lean protected runtime handoff V1
+# ORION-20 native-Lean protected runtime handoff V1
 
 **Source programme:** PR #618 / issue #618 lane  
 **Source run:** GitHub Actions `32346652258`  
 **Disposition:** `CANNOT_CHECK_NATIVE_STATE_COVERAGE`  
-**Purpose:** preserve the stronger real verifier-backed native-state attempt as authority-bearing negative/coverage evidence for the top-tier P10 programme.
+**Purpose:** preserve the stronger real verifier-backed native-state attempt as authority-bearing negative/coverage evidence for the top-tier ORION-20 programme.
 
 ## What executed
 
@@ -27,7 +27,7 @@ The cross-revision analysis therefore also lacked a valid complete winner/transi
 
 This is **not** a timeout, a model failure, or evidence that native proof state is unhelpful. It is a coverage failure under the prospectively frozen eligibility contract: the extraction produced substantial partial trace information, but no transition simultaneously satisfied the prerequisites required for the registered native-state comparison.
 
-P10 must therefore not:
+ORION-20 must therefore not:
 
 - relax the eligibility rule after seeing the zero count;
 - promote partial premise/tactic/state coverage as if it were the registered full native-state experiment;
@@ -38,7 +38,7 @@ The correct terminal remains `CANNOT_CHECK`.
 
 ## Consequence for the top-tier programme
 
-P10 now has two complementary authority objects:
+ORION-20 now has two complementary authority objects:
 
 1. `P10_OCME_FORMAL_NONVACUITY_V1_GREEN` — exact bounded OCME non-vacuity in two formal languages;
 2. `CANNOT_CHECK_NATIVE_STATE_COVERAGE` — the stronger native-Lean empirical lane did not satisfy its own eligibility contract.
@@ -47,8 +47,8 @@ The next native verifier-backed study must be a **new prospectively frozen succe
 
 ## Upward claim consequence
 
-The negative sharpens P10's central separation:
+The negative sharpens ORION-20's central separation:
 
 > failure to obtain adequate native evidence is an **evidence/accessibility deficit**, not scientific authority to escalate search, change representation, or invent a method language.
 
-Only after P9/P11 accessibility/state routes and strong prover/search/repair/synthesis/evolutionary routes receive first refusal may a real OCME gate classify a surviving target as method-language limited.
+Only after ORION-19/ORION-21 accessibility/state routes and strong prover/search/repair/synthesis/evolutionary routes receive first refusal may a real OCME gate classify a surviving target as method-language limited.

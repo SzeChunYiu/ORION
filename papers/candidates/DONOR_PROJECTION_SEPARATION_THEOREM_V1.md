@@ -55,7 +55,7 @@ Because the donor projections are equal, deterministic `g_i` must return the sam
 
 This is a standard indistinguishability argument. The contribution is the explicit cross-donor instantiation, not the mathematical trick.
 
-## 3. P6 instantiation — computation/repair versus scientific admissibility
+## 3. ORION-16 instantiation — computation/repair versus scientific admissibility
 
 Construct two mechanic states with identical bare transition, dependency projection and incremental-computation status:
 
@@ -73,9 +73,9 @@ F(\omega_1)=CANNOT\_CHECK.
 
 Therefore no rule observing only the bare repair/computation projection can decide scientific admissibility correctly on both.
 
-This is the cross-donor reading of P6's typed-erasure separation theorem.
+This is the cross-donor reading of ORION-16's typed-erasure separation theorem.
 
-## 4. P7 instantiation — navigation evidence versus transformed closure
+## 4. ORION-17 instantiation — navigation evidence versus transformed closure
 
 Construct two inquiry states with identical fixed-chart navigation history, retrieved evidence identity/value, route status and resource state. Let the only difference be the active scientific obligation after an authorized objective transformation:
 
@@ -94,7 +94,7 @@ Hence fixed navigation plus evidence validity alone cannot determine post-transf
 
 An objective-evolution donor alone has the dual insufficiency if it sees the new objective but not whether the relevant content-bound evidence/coverage premises are available. The combined atlas state separates both.
 
-## 5. P8 instantiation — generic permission versus scientific discharge
+## 5. ORION-18 instantiation — generic permission versus scientific discharge
 
 Construct two requests with identical generic authorization facts:
 
@@ -159,7 +159,7 @@ This is the correct target for the ORION programme:
 
 ## 8. Executable witness
 
-`checkers/check_donor_projection_separation_v1.py` freezes the P6, P7 and P8 indistinguishable-pair constructions and verifies that every isolated rule is forced to make the same decision within each pair while the gold terminals differ. It also verifies that the joint envelope coordinates separate the pairs.
+`checkers/check_donor_projection_separation_v1.py` freezes the ORION-16, ORION-17 and ORION-18 indistinguishable-pair constructions and verifies that every isolated rule is forced to make the same decision within each pair while the gold terminals differ. It also verifies that the joint envelope coordinates separate the pairs.
 
 ## 9. Claim boundary
 

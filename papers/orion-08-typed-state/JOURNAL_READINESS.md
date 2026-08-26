@@ -1,14 +1,14 @@
-# Q4 journal-readiness record
+# ORION-04 journal-readiness record
 
 **Current terminal:** `INTERNAL_REVIEW_PASS__EXACT_SYNTHETIC_MECHANISM_CLAIM / SUBMISSION_GATES_OPEN`.
 
 ## Review cycle 1 — findings
 
-- **Q4-R1, major:** V1 mixed common Methods with six repeated study narratives, obscuring what was held constant across families.
-- **Q4-R2, major:** the synthesis section was numerically dense enough to blur the difference between matched-information mechanism isolation and external validity.
-- **Q4-R3, major:** no conventional Related Work section separated the claimed typed-state residual from generic VOI, robust optimization, provenance, verification, and active-learning parents.
-- **Q4-R4, moderate:** negative results were present but arrived late, making them look defensive rather than part of the prespecified outcome space.
-- **Q4-R5, moderate:** reproducibility was strong but not organized as a reviewer-verifiable sequence.
+- **ORION-04-R1, major:** V1 mixed common Methods with six repeated study narratives, obscuring what was held constant across families.
+- **ORION-04-R2, major:** the synthesis section was numerically dense enough to blur the difference between matched-information mechanism isolation and external validity.
+- **ORION-04-R3, major:** no conventional Related Work section separated the claimed typed-state residual from generic VOI, robust optimization, provenance, verification, and active-learning parents.
+- **ORION-04-R4, moderate:** negative results were present but arrived late, making them look defensive rather than part of the prespecified outcome space.
+- **ORION-04-R5, moderate:** reproducibility was strong but not organized as a reviewer-verifiable sequence.
 
 ## Repairs
 

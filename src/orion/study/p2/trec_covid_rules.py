@@ -220,7 +220,7 @@ def resolve_rejudged(
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--pin", type=Path, default=Path("papers/paper-02-open-world-scientific-discovery/protocol/P2_TREC_COVID_ROUND5_SOURCE_PIN_V1.json"))
+    parser.add_argument("--pin", type=Path, default=Path("papers/orion-12-open-world-scientific-discovery/protocol/P2_TREC_COVID_ROUND5_SOURCE_PIN_V1.json"))
     args = parser.parse_args(argv)
     import json
 

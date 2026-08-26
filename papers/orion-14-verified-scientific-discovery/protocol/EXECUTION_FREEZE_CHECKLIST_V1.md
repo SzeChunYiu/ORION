@@ -1,6 +1,6 @@
-# Execution Freeze Checklist — ORION-P4 (V1)
+# Execution Freeze Checklist — ORION-ORION-14 (V1)
 
-**Protocol:** P4.protected-authority.v1  
+**Protocol:** ORION-14.protected-authority.v1  
 **Status:** `EXECUTION_FROZEN` / launch authorized by signed green freeze attestation  
 **Promotion criteria:** all 12 items below are evidenced before the publication-authorizing candidate run starts.
 

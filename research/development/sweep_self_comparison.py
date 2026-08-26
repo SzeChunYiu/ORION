@@ -31,7 +31,7 @@ from orion.programme.self_comparison_scan import scan_paths
 #: reader would look for its code; an empty set means the scope is undetermined,
 #: which is a reason to withhold a clean verdict rather than to issue one.
 ROOT_PATTERNS = (
-    "papers/paper-{nn}-*",
+    "papers/orion-{nn}-*",
     "research/claim_expansion/p{n}",
     "src/orion/study/p{n}",
     "research/extensions/p{n}-*",
@@ -43,7 +43,7 @@ ROOT_PATTERNS = (
 
 #: Papers whose subject is not under ``papers/``. P15 is a systems paper about
 #: the harness package, and its README names that package as what it covers, so
-#: scanning only ``papers/paper-15-*`` would produce a clean verdict over a
+#: scanning only ``papers/orion-25-*`` would produce a clean verdict over a
 #: directory containing one README --- the vacuous shape this sweep exists to
 #: refuse.
 EXTRA_ROOTS: dict[int, tuple[str, ...]] = {

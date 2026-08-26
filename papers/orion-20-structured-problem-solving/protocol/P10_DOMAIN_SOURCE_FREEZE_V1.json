@@ -7,11 +7,11 @@
   "outcome_accessed": false,
   "labeling_rule": "This artifact is a frozen protocol. It contains no results and must never be cited as evidence of an empirical outcome. Domain and source commitments recorded here are minimums to be satisfied by a future lawful execution, not counts of anything executed.",
   "issue_binding": "SzeChunYiu/ORION#1086 P10: populate the frozen design — four domains, 100 tasks/domain, 80 known-method controls; evaluate execution boxes; CANNOT_CHECK with precise reasons, never silent skips",
-  "protocol_doc": "papers/paper-10-structured-problem-solving/protocol/P10_DOMAIN_SOURCE_FREEZE_V1.md",
+  "protocol_doc": "papers/orion-20-structured-problem-solving/protocol/P10_DOMAIN_SOURCE_FREEZE_V1.md",
   "frozen_utc": "2026-08-24T10:45:00Z",
   "execution_status": "CANNOT_CHECK__NO_P10_EXECUTION_IN_REPOSITORY",
   "protocol_freeze_binding": {
-    "artifact": "papers/paper-10-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json",
+    "artifact": "papers/orion-20-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json",
     "sha256": "8e32c2bee514d246bcd503fc2f0ef078bcc52adb7f40abdbcb642b703aec355c",
     "relation": "This artifact supplies the domain/source/license layer under the frozen H1-H6 design. It does not modify, reinterpret or discharge any H1-H6 gate. Where the two disagree, the H1-H6 freeze wins.",
     "inputs_discharged_by_this_artifact": [],
@@ -57,7 +57,7 @@
         }
       ],
       "native_arm_prior": {
-        "artifact": "papers/paper-10-structured-problem-solving/top_tier/P10_NATIVE_LEAN_CANNOT_CHECK_HANDOFF_V1.md",
+        "artifact": "papers/orion-20-structured-problem-solving/top_tier/P10_NATIVE_LEAN_CANNOT_CHECK_HANDOFF_V1.md",
         "sha256": "add09b2c0b1f32cb2010750b5e8dc8c71fe3ab522799056819005aac402e0ce3",
         "binding_role": "the native Lean arm carries a recorded CANNOT_CHECK handoff; this freeze does not clear it"
       }
@@ -200,11 +200,11 @@
       "reason": "No H1-H6 execution has produced candidate edits; the only machine-checked edits in the repository are the frozen-toy GF(2) and formal-setting cases already receipted in top_tier/, which are not domain tasks.",
       "prior_receipts": [
         {
-          "artifact": "papers/paper-10-structured-problem-solving/top_tier/P10_OCME_FORMAL_NONVACUITY_PROTOCOL_V1.md",
+          "artifact": "papers/orion-20-structured-problem-solving/top_tier/P10_OCME_FORMAL_NONVACUITY_PROTOCOL_V1.md",
           "sha256": "8473bd78c083886460221edd6d9526176df1e5f198de7a7eb41c8087343a6b8c"
         },
         {
-          "artifact": "papers/paper-10-structured-problem-solving/top_tier/P10_OCME_FORMAL_RESULT_RECEIPT_V1.md",
+          "artifact": "papers/orion-20-structured-problem-solving/top_tier/P10_OCME_FORMAL_RESULT_RECEIPT_V1.md",
           "sha256": "3f83788097d3dc0109f74faf91f7c84e88cc32dd9eefdbad1f6fd273682d0351"
         }
       ]
@@ -218,13 +218,13 @@
   },
   "prior_adverse_evidence": [
     {
-      "artifact": "papers/paper-10-structured-problem-solving/evidence/P10_H1_H6_PROSPECTIVE_ATTAINABILITY_2026-08-23.json",
+      "artifact": "papers/orion-20-structured-problem-solving/evidence/P10_H1_H6_PROSPECTIVE_ATTAINABILITY_2026-08-23.json",
       "sha256": "4188a41fd28e79bee221a34a0c16fbda99851278c701c165586f89edd92b17a8",
       "terminal": "PROSPECTIVE_OUTCOME_BLIND_ONLY",
       "binding_role": "attainability receipt discharges one required input and grants nothing; execution stays unauthorized"
     },
     {
-      "artifact": "papers/paper-10-structured-problem-solving/top_tier/P10_GENERATED_OCME_RESULT_RECEIPT_V1.md",
+      "artifact": "papers/orion-20-structured-problem-solving/top_tier/P10_GENERATED_OCME_RESULT_RECEIPT_V1.md",
       "sha256": "0a3062bcc20c6fc553d079d4d749100160b43349d649cb22d6eca18acdc1dafd",
       "terminal": "P10_GENERATED_OCME_EXECUTED__EXACT_SETTING_ONLY",
       "binding_role": "the only executed OCME evidence is exact-setting toy closures; it cannot stand in for domain-task outside-closure expansion"
@@ -238,7 +238,7 @@
     "No weak proxy may replace an unavailable comparator arm; unavailable arms stay CANNOT_CHECK in every report."
   ],
   "freeze_discipline": {
-    "checker": "papers/paper-10-structured-problem-solving/protocol/check_p10_domain_source_freeze_v1.py",
+    "checker": "papers/orion-20-structured-problem-solving/protocol/check_p10_domain_source_freeze_v1.py",
     "tests": "tests/unit/p10/test_p10_domain_source_freeze.py",
     "protocol_freeze_sha_live_recompute": true
   }

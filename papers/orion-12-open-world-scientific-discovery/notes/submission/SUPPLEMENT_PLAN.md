@@ -1,4 +1,4 @@
-# P2 supplement plan — narrowed IP&M track
+# ORION-12 supplement plan — narrowed IP&M track
 
 Scientific terminal: `P2_NARROWED`.
 Primary target: *Information Processing & Management* (IP&M).
@@ -45,7 +45,7 @@ Figures/tables should be shipped from their committed/generated sources only aft
 | `protocol/MEASUREMENT_PLAN_V1.md` | How are metrics and non-emission conditions defined? |
 | `protocol/EXTERNAL_ACCESS_AUDIT_V1.json` | Which external authorities were runnable, blocked or unavailable? |
 | `protocol/CLAIM_LEDGER_V1.json` + `scripts/check_claim_ledger.py` | Which result-bearing manuscript sentence is bound to which evidence? |
-| `protocol/P2_DONOR_ASSIMILATION_LEDGER_V1.json` + `scripts/check_p2_assimilation.py` | Which current donor mechanic removes/narrows P2 novelty, and can source/authority rebranding be detected? |
+| `protocol/P2_DONOR_ASSIMILATION_LEDGER_V1.json` + `scripts/check_p2_assimilation.py` | Which current donor mechanic removes/narrows ORION-12 novelty, and can source/authority rebranding be detected? |
 | `protocol/P2_NARROWED_PUBLICATION_TERMINAL_2026-08-17.md` | Why does the paper stop at a narrowed claim rather than fabricate unavailable matched superiority? |
 
 ## 4. Future-work / reopen items — visible, not publication blockers
@@ -72,10 +72,10 @@ Per `protocol/TABLE_P2-1_freeze_manifest.md`:
 
 ## 6. Pre-submission package checklist
 
-1. `python3 papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --check` exits 0.
+1. `python3 papers/orion-12-open-world-scientific-discovery/scripts/run_offline_companion.py --check` exits 0.
 2. Publication summary/mechanism/route-stop/table render checks exit 0.
-3. `python3 papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --check` exits 0; review any known-defect notes rather than suppressing them.
-4. `python3 papers/paper-02-open-world-scientific-discovery/scripts/check_p2_assimilation.py` exits 0.
+3. `python3 papers/orion-12-open-world-scientific-discovery/scripts/check_claim_ledger.py --check` exits 0; review any known-defect notes rather than suppressing them.
+4. `python3 papers/orion-12-open-world-scientific-discovery/scripts/check_p2_assimilation.py` exits 0.
 5. `.github/workflows/p2-manuscript.yml` compiles the final manuscript and rejects unresolved citations/references; retain the PDF/log artifact for review.
 6. Visually inspect every rendered page/figure and resolve clipping, overflow, broken glyphs or unreadable labels.
 7. Repeat the primary-source nearest-work search within 14 days of the actual submission date. New material that changes the residual claim/baseline reopens the novelty gate.

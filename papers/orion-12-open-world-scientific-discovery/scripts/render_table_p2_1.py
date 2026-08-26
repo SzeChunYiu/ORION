@@ -6,9 +6,9 @@ hand-transcribed, per rule 7 of ``research/paper-programme-v1/protocols/README.m
 
 Usage::
 
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_1.py            # write
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_1.py --check    # verify
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_1.py --stdout   # print
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_1.py            # write
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_1.py --check    # verify
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_1.py --stdout   # print
 
 Standard library only. Exit codes: 0 ok, 1 drift under ``--check``, 2 missing input.
 """
@@ -74,7 +74,7 @@ def render(audit: dict) -> str:
     add("")
     add("<!-- GENERATED FILE - DO NOT EDIT BY HAND.")
     add("     Regenerate with:")
-    add("       python3 papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_1.py")
+    add("       python3 papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_1.py")
     add("     Source of record: protocol/EXTERNAL_ACCESS_AUDIT_V1.json -->")
     add("")
     add(f"Audit performed `{audit['audit_timestamp_utc']}` - `{audit['audit_completed_utc']}`.")

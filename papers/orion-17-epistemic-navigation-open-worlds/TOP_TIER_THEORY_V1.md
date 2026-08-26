@@ -1,7 +1,7 @@
-# P7 top-tier theory V1 — Scientific Regime Transport
+# ORION-17 top-tier theory V1 — Scientific Regime Transport
 
 **Programme:** #977  
-**Boundary:** this file raises the formal object above generic schema/category/regime transport. Artifact/fact transport mechanisms are donor-owned; P7 owns the conditions for transporting scientific support, closure, obligations and honest stopping.
+**Boundary:** this file raises the formal object above generic schema/category/regime transport. Artifact/fact transport mechanisms are donor-owned; ORION-17 owns the conditions for transporting scientific support, closure, obligations and honest stopping.
 
 ## T7.1 — regime-change object and preservation ladder
 
@@ -83,7 +83,7 @@ This is an indistinguishability result, not a claim that open-world research can
 
 Category-theoretic regime transition and provenance-preserving artifact transport are explicitly donor-owned, including the 2026 categorical self-revising discovery framework recorded in `P7_P9_TOP_TIER_LITERATURE_DELTA_2026-08-23.md`.
 
-P7's higher object is the preservation/non-preservation of scientific closure and obligations *over* such regime mappings.
+ORION-17's higher object is the preservation/non-preservation of scientific closure and obligations *over* such regime mappings.
 
 ## Remaining external gate
 

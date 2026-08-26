@@ -70,12 +70,12 @@ For each pair define
 
 `g_ij=4f({i,j})-(w_i+w_j)`.
 
-Let `P4(m)` require:
+Let `ORION-14(m)` require:
 
 1. `g_ij<=0` for every pair;
 2. `g_ij+g_kl+1<=0` for every two disjoint pairs.
 
-**Theorem 1.** For every `m>=5`, `min_Pi C(Pi)=C_U` if and only if `P4(m)` holds.
+**Theorem 1.** For every `m>=5`, `min_Pi C(Pi)=C_U` if and only if `ORION-14(m)` holds.
 
 The proof derives the exact partition gain. Matching or cycle sums of pair inequalities control every block of size at least three; integrality prevents two disjoint pair blocks from simultaneously attaining zero gain; the exceptional one-block formula is bounded separately; and every failed clause supplies its own witness partition.
 
@@ -87,7 +87,7 @@ satisfies all two clause families but has `C_U=27` and one-block cost `23`. Henc
 
 ## 4. Complete pair information: one fiber, two optima
 
-For each `t>=1`, construct `t` disjoint five-term gadgets. The two families `A_t,B_t` have the same ordered term weights and every labeled pair common-factor count, hence the same pair-gain matrix. Both violate `P4` and strictly beat unary.
+For each `t>=1`, construct `t` disjoint five-term gadgets. The two families `A_t,B_t` have the same ordered term weights and every labeled pair common-factor count, hence the same pair-gain matrix. Both violate `ORION-14` and strictly beat unary.
 
 Exact decomposition gives
 

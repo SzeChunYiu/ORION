@@ -1,18 +1,18 @@
-# P8 real evidence-discharge protocol V1
+# ORION-18 real evidence-discharge protocol V1
 
 **Programme:** #977  
 **Purpose:** test scientific authorization on real, independently bound evidence objects from other ORION papers rather than hand-built scientific labels.
 
 ## Authority separation
 
-P8 does not decide whether P9/P10/P13/P15 results are scientifically valid. The source paper receipts/ledgers do. P8 receives:
+ORION-18 does not decide whether ORION-19/ORION-20/ORION-23/ORION-25 results are scientifically valid. The source paper receipts/ledgers do. ORION-18 receives:
 
 - generic action authorization facts;
 - provenance/source/scope/epoch facts;
 - a proposed scientific commitment;
 - the bounded authority exported by the source receipt.
 
-Gold scientific disposition is frozen in a separate file before the P8 checker and must be traceable to a named source receipt/claim boundary. Candidate P8 logic may determine whether a registered obligation is discharged, but may not rewrite source scientific authority.
+Gold scientific disposition is frozen in a separate file before the ORION-18 checker and must be traceable to a named source receipt/claim boundary. Candidate ORION-18 logic may determine whether a registered obligation is discharged, but may not rewrite source scientific authority.
 
 ## Generic action-authorization comparator
 
@@ -28,7 +28,7 @@ Therefore a donor-complete *action* authorization layer returns `ACTION_PERMITTE
 
 ## Real evidence domains
 
-### Formal/method claim — P10
+### Formal/method claim — ORION-20
 
 Use:
 
@@ -43,9 +43,9 @@ Protected commitments include:
 - native Lean superiority claim under zero eligible transitions;
 - hand-declared non-vacuity receipt used to claim generated-method authority (stale/insufficient scope).
 
-### Empirical/model claim — P9
+### Empirical/model claim — ORION-19
 
-Use programme/P9 receipts for:
+Use programme/ORION-19 receipts for:
 
 - real-data accessibility positive with wine null retained;
 - protected Qwen scaling negative `LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED`.
@@ -56,7 +56,7 @@ Protected commitments include:
 - universal monotone Qwen size-scaling claim contradicted by protected evidence;
 - claim that the Qwen experiment supports a positive scaling frontier.
 
-### Systems/provenance claim — P15
+### Systems/provenance claim — ORION-25
 
 Use:
 
@@ -70,7 +70,7 @@ Protected commitments include:
 - claim that provenance completeness itself proves scientific validity;
 - old bounded fault receipt used alone to claim later real provenance interoperability.
 
-### Multiple-support/revocation claim — P13
+### Multiple-support/revocation claim — ORION-23
 
 Use:
 
@@ -118,10 +118,10 @@ Confidence or generic action permission may not override these dispositions.
 - generic action authorization remains `ACTION_PERMITTED` for every case;
 - scientific-discharge logic exactly matches frozen gold on all cases;
 - at least one `AUTHORIZED`, one `DENIED`, and one `CANNOT_CHECK` occurs in each of formal/empirical/systems domains where registered;
-- partial support revocation preserves the P13 claim while a surviving support exists;
-- revoking all P13 supports removes authorization;
+- partial support revocation preserves the ORION-23 claim while a surviving support exists;
+- revoking all ORION-23 supports removes authorization;
 - confidence does not override a hard scope/type mismatch;
 - zero false scientific promotion;
 - deterministic replay and a structurally independent checker agree.
 
-A positive establishes real evidence-conditioned scientific authorization across formal, empirical and systems evidence objects. It does not establish that P8 itself judges scientific truth, nor does it claim generic action authorization/delegation/provenance as new.
+A positive establishes real evidence-conditioned scientific authorization across formal, empirical and systems evidence objects. It does not establish that ORION-18 itself judges scientific truth, nor does it claim generic action authorization/delegation/provenance as new.

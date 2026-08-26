@@ -1,6 +1,6 @@
-# Freeze Manifest — ORION-P4 (V1)
+# Freeze Manifest — ORION-ORION-14 (V1)
 
-**Protocol:** P4.protected-authority.v1  
+**Protocol:** ORION-14.protected-authority.v1  
 **Status:** DESIGN_FROZEN  
 **Frozen by:** Protocol metrics agent (claude/p4-protocol-metrics)  
 **Date:** 2026-08-16
@@ -11,8 +11,8 @@
 |---|---|
 | `protocol_status` | `DESIGN_FROZEN` |
 | `outcome_accessed` | `false` |
-| `protocol_id` | `P4.protected-authority.v1` |
-| `paper_id` | `P4` |
+| `protocol_id` | `ORION-14.protected-authority.v1` |
+| `paper_id` | `ORION-14` |
 
 **Invariant:** The protocol design is frozen. No hypothesis, task family, baseline, ablation, metric, exclusion rule, statistical rule, safety margin, evaluator identity, or access policy may be changed without creating a new V2 protocol.
 

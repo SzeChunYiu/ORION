@@ -13,7 +13,7 @@ from orion.study.p13.composed_authority import (
 )
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-13-responsibility-carrying-state"
+PAPER = ROOT / "papers/orion-23-responsibility-carrying-state"
 V3_AUTHORITY = PAPER / "P13_ACTIVE_CLAIM_AUTHORITY_V3.json"
 REPLAY_SHA = "645961cf01afe15f1b5976244b76b846c31d3c6119af4fbbc031e4b2a3611e57"
 

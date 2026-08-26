@@ -1,4 +1,4 @@
-# P6 candidate journal-readiness plan — Formal Epistemic Structures and Mechanics
+# ORION-16 candidate journal-readiness plan — Formal Epistemic Structures and Mechanics
 
 **Current terminal:** computed per commit, not asserted here. See
 `../PEER_REVIEW_READY_PACKAGE.md`, which defines
@@ -11,7 +11,7 @@ PEER_REVIEW_READY := p6-p8-candidate-ci == success AND ci == success
 This line previously read `CANNOT_CHECK / not a promoted paper / not peer-review
 ready`. That was written before the submission package existed and had gone
 stale: it contradicted `JOURNAL_READINESS_V2_1.md`, which already deferred to the
-computed terminal, so the two files in this directory disagreed about P6.
+computed terminal, so the two files in this directory disagreed about ORION-16.
 
 It is deliberately **not** replaced with `PEER_REVIEW_READY`. The package file
 states that it does not hard-code a claim that could become stale after a content
@@ -46,7 +46,7 @@ Present now:
 - widened `manuscript/FORMAL_CORE_V1.md` with repaired history-aware commutation boundary;
 - widened `manuscript/DRAFT.md`;
 - `CLAIM_LEDGER_V1.md` synchronized to the current formal core;
-- `P1_P5_OWNERSHIP_MATRIX_V1.md` marking native P1 mechanic/reopening/audit ownership;
+- `P1_P5_OWNERSHIP_MATRIX_V1.md` marking native ORION-11 mechanic/reopening/audit ownership;
 - donor/parent pressure maps including DEL/AGM/TMS/separation/effects/authorization/repair/agent architecture;
 - exhaustive bounded `formal/check_finite_models.py` plus small theorem-boundary checker;
 - `CHECK_RESULTS_V1.md` retained and additive `CHECK_RESULTS_V2.md` recorded;
@@ -57,9 +57,9 @@ Present now:
 None of these artifacts closes external novelty, exact donor embedding, clean CI, protected evaluation or independent scholarly review.
 
 ## 1. Distinct-object gate
-- [ ] #343 proves a non-duplicative residual relative to P1.
+- [ ] #343 proves a non-duplicative residual relative to ORION-11.
 - [ ] exact mapping from proposed formal objects to current ORION registry is complete.
-- [x] every P1-owned mechanic is marked prior internal ownership, not P6 novelty.
+- [x] every ORION-11-owned mechanic is marked prior internal ownership, not ORION-16 novelty.
 
 ## 2. Nearest-work closure
 - [ ] dynamic epistemic logic/action-model families dispositioned with atomic mechanism receipts.
@@ -85,7 +85,7 @@ None of these artifacts closes external novelty, exact donor embedding, clean CI
 
 ## 4. Executable correspondence
 - [ ] selected ORION mechanics encoded with exact current protocol/registry identities.
-- [ ] P1 native decisions reproduced exactly by conservative embedding fixtures.
+- [ ] ORION-11 native decisions reproduced exactly by conservative embedding fixtures.
 - [ ] donor-native update/rollback/effect/authorization decisions reproduced by conservative embeddings where feasible.
 - [ ] mapping coverage/gaps reported.
 - [x] deterministic checker/model enumerator archived in the candidate tree.
@@ -98,7 +98,7 @@ None of these artifacts closes external novelty, exact donor embedding, clean CI
 - [ ] primary outcome and practical margin frozen.
 - [ ] selective reopening compared with strongest dependency-repair donor representation where scientifically relevant.
 - [ ] direct test of added authority/residual-obligation/history structure beyond donor-native baselines.
-- [ ] at least one non-P1 cross-domain transfer family executed.
+- [ ] at least one non-ORION-11 cross-domain transfer family executed.
 - [ ] negative/null cases preserved in immutable raw results.
 - [ ] every empirical positive has #283 verification.
 
@@ -117,7 +117,7 @@ None of these artifacts closes external novelty, exact donor embedding, clean CI
 - [x] deterministic regeneration command documented in `REPRODUCE.md`.
 - [x] V1 and additive V2 result ledgers preserve theorem-boundary history.
 - [ ] immutable stdout/hash manifest produced in clean CI.
-- [ ] machine-readable donor/P1 embedding fixtures archived.
+- [ ] machine-readable donor/ORION-11 embedding fixtures archived.
 - [ ] independent replay/attestation.
 - [ ] permanent archive after promotion authority stabilizes.
 
@@ -129,4 +129,4 @@ None of these artifacts closes external novelty, exact donor embedding, clean CI
 
 ## Done definition
 
-Promote P6 only if it yields a formal object/property that is distinct from P1 and prior formal systems, with conservative donor embeddings and either a nontrivial surviving theorem or prospective cross-domain evidence showing why the coupled structure matters. Otherwise merge useful material into P1/P5/programme theory or retain it as a technical companion.
+Promote ORION-16 only if it yields a formal object/property that is distinct from ORION-11 and prior formal systems, with conservative donor embeddings and either a nontrivial surviving theorem or prospective cross-domain evidence showing why the coupled structure matters. Otherwise merge useful material into ORION-11/ORION-15/programme theory or retain it as a technical companion.

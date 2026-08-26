@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers/paper-11-state-as-computation"
+PAPER = ROOT / "papers/orion-21-state-as-computation"
 REQUIREMENTS = PAPER / "P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md"
 MANIFEST = PAPER / "CONTENT_MANIFEST_V1.json"
 
@@ -39,4 +39,4 @@ def test_requirements_bound_in_readme_and_manifest():
     assert "P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md" in readme
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     bound = {entry.get("path") for entry in manifest.get("bound_files", [])}
-    assert "papers/paper-11-state-as-computation/P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md" in bound
+    assert "papers/orion-21-state-as-computation/P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md" in bound

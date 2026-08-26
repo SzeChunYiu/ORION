@@ -7,8 +7,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/p2-wide-openaire-v3-transport.yml'
-      - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json'
-      - 'papers/paper-02-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py'
+      - 'papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json'
+      - 'papers/orion-12-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py'
       - 'tests/unit/p2/test_p2_openaire_v3_v4_transport.py'
   workflow_dispatch:
 
@@ -28,15 +28,15 @@ jobs:
         run: python -m pip install -e '.[dev]'
       - name: Prove frozen V3 transport and hostile custody cases before network outcome
         run: |
-          python -m py_compile papers/paper-02-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py
+          python -m py_compile papers/orion-12-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py
           pytest -q tests/unit/p2/test_p2_openaire_v3_v4_transport.py
       - name: Execute gold-blind V4 DOI-filter transport prerequisite
         shell: bash
         run: |
           set -euo pipefail
           rm -rf /tmp/p2-wide-v3-transport
-          python papers/paper-02-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py \
-            --freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json \
+          python papers/orion-12-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py \
+            --freeze papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json \
             --out-dir /tmp/p2-wide-v3-transport
       - name: Upload raw-first V3 transport evidence even on failure
         if: always()

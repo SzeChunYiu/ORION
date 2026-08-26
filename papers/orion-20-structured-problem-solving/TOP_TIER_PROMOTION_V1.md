@@ -1,4 +1,4 @@
-# P10 top-tier promotion V1 — Obstruction-Certified Method Expansion
+# ORION-20 top-tier promotion V1 — Obstruction-Certified Method Expansion
 
 **Programme:** #977  
 **Existing state:** exact hand-declared OCME non-vacuity and generated finite OCME are earned; historical negative/donor-closed evidence remains immutable.  
@@ -84,11 +84,11 @@ The **broad native problem-solving claim** still requires matched real donor sys
 - tactic/macro/library mining;
 - program synthesis;
 - evolutionary code/method search;
-- P9 representation repair without method expansion;
+- ORION-19 representation repair without method expansion;
 - search-more / compute-more controls;
 - ORION structured workspace with method language frozen.
 
-Ladder position: P9 repairs access to a fixed method space; P10 certifies that the method space itself is insufficient (hence P9-repair appears in the refused-donor list above). P11's compilation stays within the registered method basis (`KNOWN_COMPOSITION` in P10's terms); only an outside-closure edit changes the basis — the two expansions are distinct operations, per `papers/SYNC_CONTRACT.md`.
+Ladder position: ORION-19 repairs access to a fixed method space; ORION-20 certifies that the method space itself is insufficient (hence ORION-19-repair appears in the refused-donor list above). ORION-21's compilation stays within the registered method basis (`KNOWN_COMPOSITION` in ORION-20's terms); only an outside-closure edit changes the basis — the two expansions are distinct operations, per `papers/SYNC_CONTRACT.md`.
 
 A native result requires verified correctness, not tactic prediction/evaluator score alone.
 
@@ -163,13 +163,13 @@ The finite generated study directly defeats search/synthesis/evolution-within-ol
 - [x] at least one non-hand-coded generated outside-closure edit (two generated selections now pass);
 - [x] exact proof that old-language search/synthesis/evolution cannot solve the promoted finite targets;
 - [x] independent two-implementation reproduction for both formal non-vacuity and generated OCME;
-- [x] complete retention of historical P10 negatives and native-coverage `CANNOT_CHECK`;
+- [x] complete retention of historical ORION-20 negatives and native-coverage `CANNOT_CHECK`;
 - [ ] donor-complete Stage-1 benchmark in a native verifier-backed problem-solving setting;
 - [ ] native search/repair/retrieval/synthesis/evolutionary first-refusal failure at matched resources if native superiority remains in the final headline;
 - [ ] broad native transfer beyond prospectively supplied finite grammars if the final headline says open-ended autonomous method invention;
 - [ ] immediate pre-submission theorem-proving/synthesis/evolutionary literature saturation;
 - [ ] manuscript/result binding updated to include generated OCME and all surviving negatives.
 
-P10 has therefore crossed from “formal definition/non-vacuity” to a real **generated obstruction-certified expansion result**. What remains is not another toy positive; it is the hard bridge from finite exact method-language generation to native verifier-backed theorem-proving/problem-solving with genuinely strong donors.
+ORION-20 has therefore crossed from “formal definition/non-vacuity” to a real **generated obstruction-certified expansion result**. What remains is not another toy positive; it is the hard bridge from finite exact method-language generation to native verifier-backed theorem-proving/problem-solving with genuinely strong donors.
 
-If the native donor products close the residual, P10 must report that boundary/equivalence rather than weaken the definition of expansion.
+If the native donor products close the residual, ORION-20 must report that boundary/equivalence rather than weaken the definition of expansion.

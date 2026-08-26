@@ -8,7 +8,7 @@ Status: `DESIGN_FROZEN`. Execution requires the preconditions in §9 and an expl
 
 ## 1. Standing
 
-The live campaign is the open-world half of P2: it measures behaviour against real
+The live campaign is the open-world half of ORION-12: it measures behaviour against real
 indices, while the frozen offline complete-gold world measures mechanism against a
 known denominator. Neither substitutes for the other. Live results are reported
 alongside, never in place of, the offline table, and provider mutability is reported

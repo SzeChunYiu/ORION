@@ -1,6 +1,6 @@
 # Experimental evidence index
 
-P12's experimental artifacts remain at the package root so committed evidence hashes and review links do not move:
+ORION-22's experimental artifacts remain at the package root so committed evidence hashes and review links do not move:
 
 - `../P12A_MATCHED_BUDGET_JOINT_ALLOCATION_PROTOCOL_V1.md`
 - `../run_p12a_matched_budget_v1.py`

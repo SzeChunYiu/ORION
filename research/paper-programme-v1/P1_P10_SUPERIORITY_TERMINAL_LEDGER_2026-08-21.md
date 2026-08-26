@@ -246,12 +246,12 @@ promotion `HC-SUP-POST-HOC-FREEZE` exists to refuse.
   derivation was refused because the finite result it derived exercised its own
   composition rule at two of eight argument triples — and the record of what its
   published counts do and do not carry is in
-  `papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json`.
+  `papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json`.
   P8's second gate needed a second object: its 3,072-state model was already an
   instance, but its 169 heterogeneous chain compositions were not, and the same
   kind of instrumentation found the shipped chain loop ignoring both of its
   donor variables. What that leaves the number carrying is in
-  `papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json`.
+  `papers/orion-18-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json`.
 - **P9 #662** — the direct open-weight scaling run and its second family. The
   scope gate already passes.
 - **P10 #663** — native-state extraction and verified solve benefit. The scope

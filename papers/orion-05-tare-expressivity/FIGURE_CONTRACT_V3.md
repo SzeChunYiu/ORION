@@ -1,4 +1,4 @@
-# Q1 figure contract — V3
+# ORION-01 figure contract — V3
 
 This contract follows the journal-aware figure workflow from the pinned `academic-paper-skills` repository. It defines scientific roles before visual styling. It is not a production-format specification; exact dimensions/fonts/export rules are resolved only after the target journal/article type is fixed.
 

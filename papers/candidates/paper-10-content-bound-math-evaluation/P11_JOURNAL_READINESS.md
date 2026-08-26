@@ -1,12 +1,12 @@
-# ORION-P11 peer-review readiness
+# ORION-ORION-21 peer-review readiness
 
-**Programme identity:** ORION-P11 — Content-Bound Mathematical Evaluation (#471)  
+**Programme identity:** ORION-ORION-21 — Content-Bound Mathematical Evaluation (#471)  
 **Submission title:** *Bytes, Builds, and Meaning: Content-Bound Evaluation for Evolving Lean Repositories*  
 **Target venue family:** Journal of Automated Reasoning / peer-reviewed automated-reasoning venue; final portal metadata remains author-controlled.  
 **Scientific terminal:** `P11_BOUNDED_EVALUATION_METHODS_PAPER`  
 **Package terminal:** `PEER_REVIEW_READY` when the exact PR head passes repository CI and `check_p11_peer_review_ready.py`.
 
-This terminal does **not** reopen the unsupported broad V3 empirical claim. It turns the existing immutable P11 evidence into a complete, bounded methods/experience paper.
+This terminal does **not** reopen the unsupported broad V3 empirical claim. It turns the existing immutable ORION-21 evidence into a complete, bounded methods/experience paper.
 
 ## Scientific closure
 
@@ -34,11 +34,11 @@ This terminal does **not** reopen the unsupported broad V3 empirical claim. It t
 - [x] Cover-letter draft.
 - [x] Declarations interface that does not invent funding, ORCID, institutional or competing-interest attestations.
 - [x] Deterministic package linter.
-- [x] Prospective P11 V3 protocol kept as future work, not mixed into current results.
+- [x] Prospective ORION-21 V3 protocol kept as future work, not mixed into current results.
 
 ## Explicit nonclaims
 
-P11 does not claim:
+ORION-21 does not claim:
 
 - reusable tactic discovery;
 - downstream proof-search improvement;

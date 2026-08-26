@@ -1,4 +1,4 @@
-# Table P2-S1 — Complete-gold route-stop oracle replay
+# Table ORION-12-S1 — Complete-gold route-stop oracle replay
 
 **Authority:** `TIER_B_committed`; 390 frozen tasks. Deterministic repeat seeds were checked for identical route/stop traces and collapsed within task before counting denominators. The authority is an achieved precision tier, not a promoted primary claim.
 

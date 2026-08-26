@@ -3,7 +3,7 @@
 - **Canonical artifact:** `OAEI_MULTI_CASE_ANALYSIS_FREEZE_V1.json` (same directory). JSON is authoritative.
 - **Frozen (UTC):** 2026-08-24T10:20:24Z — `FROZEN_BEFORE_ANY_OAEI_SCORING`, `outcome_accessed: false`,
   `execution_status: CANNOT_CHECK__NO_OAEI_EXECUTION_IN_REPOSITORY`.
-- **Issue:** SzeChunYiu/ORION#1086 (P3 boxes 2, 3, 4, 5; box 1 is carried by the licence manifest).
+- **Issue:** SzeChunYiu/ORION#1086 (ORION-13 boxes 2, 3, 4, 5; box 1 is carried by the licence manifest).
 - **Licence manifest binding:** `../gold/OAEI_TRACK_LICENSE_MANIFEST_V1.json`. No reference alignment,
   dataset payload or matcher output was opened before this freeze; MELT has not been executed here.
 

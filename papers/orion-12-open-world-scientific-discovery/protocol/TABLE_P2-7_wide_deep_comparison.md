@@ -1,8 +1,8 @@
-# Table P2-7: AutoResearchBench Wide vs Deep external performance comparison
+# Table ORION-12-7: AutoResearchBench Wide vs Deep external performance comparison
 
 <!-- GENERATED FILE - DO NOT EDIT BY HAND.
      Regenerate with:
-       python3 papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_7.py
+       python3 papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_7.py
      Sources: evidence/external_results/AUTORESEARCHBENCH_WIDE_KEYLESS_PROBE_V1.json
               evidence/external_results/AUTORESEARCHBENCH_DEEP_ID_PROBE_V1.json -->
 

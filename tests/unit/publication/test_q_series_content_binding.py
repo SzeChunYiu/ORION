@@ -33,8 +33,8 @@ def test_canonical_q_series_publication_bytes_match_recursive_v3_binding():
 
 
 def test_noncanonical_q1_constraint_rank_draft_is_not_promoted_by_the_binding():
-    legacy_path = "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md"
-    canonical_path = "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md"
+    legacy_path = "papers/archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md"
+    canonical_path = "papers/orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md"
     bound_paths = {
         str(row["path"]) for row in load_q_series_content_binding(REPO_ROOT)["files"]
     }
@@ -53,7 +53,7 @@ def test_noncanonical_q1_constraint_rank_draft_is_not_promoted_by_the_binding():
 
 def test_legacy_publication_tokens_retain_scopes_and_adverse_q3_terminal():
     q1 = (
-        REPO_ROOT / "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md"
+        REPO_ROOT / "papers/orion-05-tare-expressivity/CLAIM_LEDGER_V2.md"
     ).read_text(encoding="utf-8")
     assert "`PROVEN-ALL-N` **only within the frozen R6M grammar/objective**" in q1
     assert "`PROSPECTIVE-BOUNDED`: one frozen public subject and 15 matchings" in q1
@@ -61,7 +61,7 @@ def test_legacy_publication_tokens_retain_scopes_and_adverse_q3_terminal():
     assert "No internal authority string grants novelty or physical quantum advantage" in q1
 
     q3 = (
-        REPO_ROOT / "papers/Q-paper-03-dual-instrument/CLAIM_LEDGER_V2.md"
+        REPO_ROOT / "papers/orion-07-dual-instrument/CLAIM_LEDGER_V2.md"
     ).read_text(encoding="utf-8")
     terminal = (
         "Q3_PROSPECTIVE_CASE_SERIES_COMPLETE__N3_VALID__"

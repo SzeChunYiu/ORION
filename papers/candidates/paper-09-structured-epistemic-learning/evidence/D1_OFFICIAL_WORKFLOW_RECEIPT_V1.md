@@ -1,10 +1,10 @@
-# P9 D1 official workflow receipt V1 — pending merge authority
+# ORION-19 D1 official workflow receipt V1 — pending merge authority
 
-This receipt preserves the completed official D1 workflow result before its Actions artifact expires. It is **not yet a merged-evidence authorization**: PR #519 must still pass its exact-head repository and protected P6–P8 gates and merge before the manuscript evidence builder may promote these numbers.
+This receipt preserves the completed official D1 workflow result before its Actions artifact expires. It is **not yet a merged-evidence authorization**: PR #519 must still pass its exact-head repository and protected ORION-16–ORION-18 gates and merge before the manuscript evidence builder may promote these numbers.
 
 ## Execution identity
 
-- PR: #519 — `P9 D1: exact whole-domain method-structure transfer`;
+- PR: #519 — `ORION-19 D1: exact whole-domain method-structure transfer`;
 - result-bearing head: `b82451da53bebd095b5a5b225781cef209c8339b`;
 - workflow: `p9-d1-method-transfer`;
 - workflow run: `32235110762`;
@@ -67,4 +67,4 @@ This does **not** establish:
 
 `OFFICIAL_WORKFLOW_GREEN__MERGE_AUTHORITY_PENDING`.
 
-Do not replace the D1 `PENDING_OFFICIAL_RECEIPT` manuscript placeholders from this receipt alone. Promotion requires #519 merged at the same scientific content, followed by the final P9 evidence builder / independent verification / novelty gates.
+Do not replace the D1 `PENDING_OFFICIAL_RECEIPT` manuscript placeholders from this receipt alone. Promotion requires #519 merged at the same scientific content, followed by the final ORION-19 evidence builder / independent verification / novelty gates.

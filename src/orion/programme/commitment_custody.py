@@ -14,7 +14,7 @@ both 64 hex characters, both unique across a suite, both non-zero. The only
 question that separates them is whether a cheap enumeration opens the digest,
 and that question has to be *run*.
 
-P5 is the live example. ``papers/paper-05-self-orion/protocol/
+P5 is the live example. ``papers/orion-15-self-orion/protocol/
 PROTECTED_SUITE_FREEZE_V1.md`` states the defence in as many words --- "a raw
 SHA-256 of ``protected_root_cause`` would be unsafe because the label has only
 eight possible values and can be enumerated. The manifest therefore commits to

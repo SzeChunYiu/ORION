@@ -1,14 +1,14 @@
-# QG2 journal-readiness record
+# ORION-10 journal-readiness record
 
 **Current terminal:** `INTERNAL_REVIEW_PASS__LAYERED_CERTIFICATE_CLAIM / SUBMISSION_GATES_OPEN`.
 
 ## Review cycle 1 — blockers found
 
-- **QG2-R1, blocking:** V1 ended with the QG-5 counterexample even though QG-5b subsequently constructed a theorem-backed exact F2 forecaster and closed that observed cost gap.
-- **QG2-R2, blocking:** a repair based on enlarged borrow `B'` could be read as globally complete, but QG-7 later finds 64 exact hybrid configurations outside `B'`.
-- **QG2-R3, major:** V1 coupled three different certificate questions: is the cost exact, is the regime label/explanation exact, and did a finite benchmark match the referee?
-- **QG2-R4, major:** the old prose risked making empirical zero error the source of exactness even though R6S is the stronger all-`n` warrant for F2.
-- **QG2-R5, moderate:** timing/forecast convenience could distract from the scientific point and is implementation-dependent across the closed-form and support-two evaluators.
+- **ORION-10-R1, blocking:** V1 ended with the QG-5 counterexample even though QG-5b subsequently constructed a theorem-backed exact F2 forecaster and closed that observed cost gap.
+- **ORION-10-R2, blocking:** a repair based on enlarged borrow `B'` could be read as globally complete, but QG-7 later finds 64 exact hybrid configurations outside `B'`.
+- **ORION-10-R3, major:** V1 coupled three different certificate questions: is the cost exact, is the regime label/explanation exact, and did a finite benchmark match the referee?
+- **ORION-10-R4, major:** the old prose risked making empirical zero error the source of exactness even though R6S is the stronger all-`n` warrant for F2.
+- **ORION-10-R5, moderate:** timing/forecast convenience could distract from the scientific point and is implementation-dependent across the closed-form and support-two evaluators.
 
 ## Repairs
 

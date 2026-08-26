@@ -8,7 +8,7 @@ import pytest
 
 
 ROOT = Path(__file__).resolve().parents[3]
-CHECKER = ROOT / "papers/paper-11-state-as-computation/check_p11_adverse_integration_v2.py"
+CHECKER = ROOT / "papers/orion-21-state-as-computation/check_p11_adverse_integration_v2.py"
 
 
 def _module():

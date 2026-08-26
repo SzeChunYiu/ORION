@@ -3,10 +3,10 @@ name: p12-procedural-path-allocation-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/P12_PROCEDURAL_PATH_ALLOCATION_PROTOCOL_V1.md'
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/p12_procedural_path_cases_v1.json'
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/run_procedural_path_allocation_v1.py'
-      - 'papers/paper-12-adaptive-state-reasoning/top_tier/check_procedural_path_allocation_independent_v1.py'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/P12_PROCEDURAL_PATH_ALLOCATION_PROTOCOL_V1.md'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/p12_procedural_path_cases_v1.json'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/run_procedural_path_allocation_v1.py'
+      - 'papers/orion-22-adaptive-state-reasoning/top_tier/check_procedural_path_allocation_independent_v1.py'
       - '.github/workflows/p12-procedural-path-allocation-v1.yml'
   workflow_dispatch:
 permissions:
@@ -19,10 +19,10 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - name: Execute procedural resource-location study
-        run: python papers/paper-12-adaptive-state-reasoning/top_tier/run_procedural_path_allocation_v1.py | tee p12_procedural_path_allocation_v1.json
+        run: python papers/orion-22-adaptive-state-reasoning/top_tier/run_procedural_path_allocation_v1.py | tee p12_procedural_path_allocation_v1.json
       - name: Verify deterministic primary replay and exact gates
         run: |
-          python papers/paper-12-adaptive-state-reasoning/top_tier/run_procedural_path_allocation_v1.py > p12_procedural_path_allocation_v1_rerun.json
+          python papers/orion-22-adaptive-state-reasoning/top_tier/run_procedural_path_allocation_v1.py > p12_procedural_path_allocation_v1_rerun.json
           cmp p12_procedural_path_allocation_v1.json p12_procedural_path_allocation_v1_rerun.json
           python - <<'PY'
           import json
@@ -36,10 +36,10 @@ jobs:
           print('P12_PROCEDURAL_PATH_ALLOCATION_V1_BYTE_REPLAY_GREEN')
           PY
       - name: Execute independent Dijkstra verifier
-        run: python papers/paper-12-adaptive-state-reasoning/top_tier/check_procedural_path_allocation_independent_v1.py | tee p12_procedural_path_allocation_independent_v1.json
+        run: python papers/orion-22-adaptive-state-reasoning/top_tier/check_procedural_path_allocation_independent_v1.py | tee p12_procedural_path_allocation_independent_v1.json
       - name: Verify independent replay and scientific-locus agreement
         run: |
-          python papers/paper-12-adaptive-state-reasoning/top_tier/check_procedural_path_allocation_independent_v1.py > p12_procedural_path_allocation_independent_v1_rerun.json
+          python papers/orion-22-adaptive-state-reasoning/top_tier/check_procedural_path_allocation_independent_v1.py > p12_procedural_path_allocation_independent_v1_rerun.json
           cmp p12_procedural_path_allocation_independent_v1.json p12_procedural_path_allocation_independent_v1_rerun.json
           python - <<'PY'
           import json

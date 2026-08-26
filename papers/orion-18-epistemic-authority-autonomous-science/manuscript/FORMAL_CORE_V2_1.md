@@ -1,4 +1,4 @@
-# P8 formal core V2.1 — primitive closure
+# ORION-18 formal core V2.1 — primitive closure
 
 **Supersedes:** `FORMAL_CORE_V2.md` where the two differ.
 **Theory terminal:** `CLOSED_V2_1`
@@ -242,8 +242,8 @@ respectively, and it does not weaken §10's product-decomposition result.
 
 ## Addendum (2026-08-24): native cross-system execution protocol
 
-The P8 native-execution box is frozen as contract
-`P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1` (protocol document plus machine-readable
+The ORION-18 native-execution box is frozen as contract
+`ORION-18.NATIVE.CROSS_SYSTEM_PROTOCOL.V1` (protocol document plus machine-readable
 twin plus binding checker under `formal/`): twelve ordered cross-system pairs
 over OPA/Rego, Cedar, in-toto/SLSA and Sigstore, clean and hostile cases for
 every pair, ideal typed-product baseline. The protocol **is not executed**:

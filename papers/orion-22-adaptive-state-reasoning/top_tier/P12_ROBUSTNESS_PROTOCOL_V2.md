@@ -1,10 +1,10 @@
-# P12 robustness stress protocol V2 (price regimes, distribution shift, hidden-parameterization audit)
+# ORION-22 robustness stress protocol V2 (price regimes, distribution shift, hidden-parameterization audit)
 
-**Programme:** #977 (stacked on the P12 transfer study V1, PR #994 — this
+**Programme:** #977 (stacked on the ORION-22 transfer study V1, PR #994 — this
 protocol reuses that study's frozen allocator, cost engines and case file
 **byte-for-byte, additively**; no V1 file is edited).
 
-**Purpose:** close the two remaining P12 robustness gaps named in the
+**Purpose:** close the two remaining ORION-22 robustness gaps named in the
 top-tier promotion review — (a) *robustness under altered resource prices and
 task-distribution shift*, and (b) *mechanical confirmation that the allocator
 harbours no domain-specific hidden parameterization*.
@@ -149,7 +149,7 @@ reported as a boundary characterization of the frozen rule.
 
 A static + dynamic audit (`audit_p12_hidden_parameterization_v1.py`) of the
 **frozen V1 runner** must confirm the allocator consumes ONLY the unified
-P9-compatible signal surface and nothing domain-specific:
+ORION-19-compatible signal surface and nothing domain-specific:
 
 1. **AST reachability:** from the allocator entry point
    (`allocator_selection`) build the transitive closure over function calls
@@ -205,7 +205,7 @@ in the evidence summary and receipt exactly as the runs produce them.
 
 This study does not tune or repair the allocator (any positive-regret cell
 is reported, not patched); does not claim a universal price-robustness
-theorem; does not convert the P9 vector into one scalar exchange rate; and
+theorem; does not convert the ORION-19 vector into one scalar exchange rate; and
 does not promote the allocator to any runtime authority. The joint-mix
 oracle remains hindsight diagnostic. S2 priced-budget violations are
 characterization, not gates.

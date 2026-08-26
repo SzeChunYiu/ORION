@@ -1,4 +1,4 @@
-# P12 selection-sufficiency theorem V1
+# ORION-22 selection-sufficiency theorem V1
 
 **Status:** theorem/falsification contract, frozen before the new abstract-state checker is executed on this branch.
 

@@ -1,4 +1,4 @@
-# Paper QG1 figures plan
+# Paper ORION-09 figures plan
 
 All figures are generated from committed receipts only; no new computation on
 subjects. Paths relative to repository root.
@@ -9,9 +9,9 @@ subjects. Paths relative to repository root.
    underneath (freeze → exact implementation → hostile gates → receipts →
    double-run replay), annotated with the TARE and SixLCU stage outcomes side by
    side (TARE: dominance PASSED with declared gap / two trades / support-2 →
-   R6S theorem / exact P1 / R6R+QG-3 confirmed; SixLCU: dominance REFUTED at 30
+   R6S theorem / exact ORION-11 / R6R+QG-3 confirmed; SixLCU: dominance REFUTED at 30
    columns / trades generic / no strict sub-extension / exact P0 / forecast
-   slot open). Sources: `papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V1.md`;
+   slot open). Sources: `papers/archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_V1.md`;
    `research/extensions/orion-qg/QG4_SECOND_FAMILY_RESULTS.json`
    (`stage_outcomes`).
 

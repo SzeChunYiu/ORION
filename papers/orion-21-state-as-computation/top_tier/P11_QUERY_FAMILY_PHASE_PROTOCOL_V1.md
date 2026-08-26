@@ -1,7 +1,7 @@
-# P11 query-family placement/optionality phase protocol V1
+# ORION-21 query-family placement/optionality phase protocol V1
 
 **Programme:** #977  
-**Purpose:** attack the remaining P11 claims with a stronger access-class comparison, explicit compiler cost, query diversity and a prospective compile/cache/materialize phase diagram on non-synthetic data.
+**Purpose:** attack the remaining ORION-21 claims with a stronger access-class comparison, explicit compiler cost, query diversity and a prospective compile/cache/materialize phase diagram on non-synthetic data.
 
 ## Chronology
 
@@ -29,7 +29,7 @@ For each query `q_j` and fold:
 - archive selected feature indices;
 - no test label or future-query outcome is visible to compiler selection.
 
-The selector is donor-owned feature selection, not P11 novelty.
+The selector is donor-owned feature selection, not ORION-21 novelty.
 
 ## Access/decoder attacks
 

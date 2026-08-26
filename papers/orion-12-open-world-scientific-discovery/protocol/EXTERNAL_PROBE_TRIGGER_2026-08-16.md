@@ -1,4 +1,4 @@
-# P2 credential-free external probe trigger — 2026-08-16
+# ORION-12 credential-free external probe trigger — 2026-08-16
 
 This commit intentionally starts two result-bearing external campaigns from the same tested branch head:
 

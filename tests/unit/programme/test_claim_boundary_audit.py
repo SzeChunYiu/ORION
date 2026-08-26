@@ -26,8 +26,8 @@ from orion.programme.claim_boundary_audit import (
     scan_bypass_claims,
 )
 
-P5 = "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.json"
-P10 = "papers/paper-10-structured-problem-solving/P10_ACTIVE_CLAIM_AUTHORITY_V1.json"
+P5 = "papers/orion-15-self-orion/evidence/CLAIM_LEDGER_V1.json"
+P10 = "papers/orion-20-structured-problem-solving/P10_ACTIVE_CLAIM_AUTHORITY_V1.json"
 BACKLOG = "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.json"
 
 

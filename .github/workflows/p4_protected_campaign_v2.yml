@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'papers/paper-04-verified-scientific-discovery/host/CAMPAIGN_TRIGGER_V2.txt'
+      - 'papers/orion-14-verified-scientific-discovery/host/CAMPAIGN_TRIGGER_V2.txt'
 
 permissions:
   contents: read
@@ -43,8 +43,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          TRIGGER='papers/paper-04-verified-scientific-discovery/host/CAMPAIGN_TRIGGER_V2.txt'
-          BINDINGS='papers/paper-04-verified-scientific-discovery/protocol/PROTECTED_RUN_BINDINGS_V2.json'
+          TRIGGER='papers/orion-14-verified-scientific-discovery/host/CAMPAIGN_TRIGGER_V2.txt'
+          BINDINGS='papers/orion-14-verified-scientific-discovery/protocol/PROTECTED_RUN_BINDINGS_V2.json'
           WORKFLOW='.github/workflows/p4_protected_campaign_v2.yml'
           FREEZE_SHA=$(awk -F= '$1=="freeze_merge"{print $2}' "$TRIGGER")
           FREEZE_CI_RUN=$(awk -F= '$1=="freeze_exact_main_ci_run"{print $2}' "$TRIGGER")
@@ -59,7 +59,7 @@ jobs:
           from pathlib import Path
           commit = json.loads((Path(os.environ['RUNNER_TEMP'])/'freeze-commit.json').read_text())
           ci = json.loads((Path(os.environ['RUNNER_TEMP'])/'freeze-ci.json').read_text())
-          freeze = os.popen("awk -F= '$1==\"freeze_merge\"{print $2}' papers/paper-04-verified-scientific-discovery/host/CAMPAIGN_TRIGGER_V2.txt").read().strip()
+          freeze = os.popen("awk -F= '$1==\"freeze_merge\"{print $2}' papers/orion-14-verified-scientific-discovery/host/CAMPAIGN_TRIGGER_V2.txt").read().strip()
           assert commit['sha'] == freeze
           assert commit['commit']['verification']['verified'] is True
           assert commit['commit']['verification']['reason'] == 'valid'
@@ -70,15 +70,15 @@ jobs:
 
           git cat-file -e "${FREEZE_SHA}^{commit}"
           git diff --exit-code "$FREEZE_SHA" -- "$BINDINGS" "$WORKFLOW" \
-            papers/paper-04-verified-scientific-discovery/host/run_baselines_v2.py \
-            papers/paper-04-verified-scientific-discovery/host/evaluate_campaign_v2.py \
-            papers/paper-04-verified-scientific-discovery/host/independent_reproduce_v2.py \
-            papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json
+            papers/orion-14-verified-scientific-discovery/host/run_baselines_v2.py \
+            papers/orion-14-verified-scientific-discovery/host/evaluate_campaign_v2.py \
+            papers/orion-14-verified-scientific-discovery/host/independent_reproduce_v2.py \
+            papers/orion-14-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json
 
           python - <<'PY'
           import json, os
           from pathlib import Path
-          b = json.loads(Path('papers/paper-04-verified-scientific-discovery/protocol/PROTECTED_RUN_BINDINGS_V2.json').read_text())
+          b = json.loads(Path('papers/orion-14-verified-scientific-discovery/protocol/PROTECTED_RUN_BINDINGS_V2.json').read_text())
           assert b['status'] == 'EXECUTION_FROZEN'
           assert b['outcome_accessed'] is False
           assert b['campaign_execution_authorized'] is False
@@ -98,17 +98,17 @@ jobs:
           import hashlib
           from pathlib import Path
           files = [
-              'papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_candidate.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_baselines.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_baselines_v2.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_ablations.py',
-              'papers/paper-04-verified-scientific-discovery/host/evaluate_campaign.py',
-              'papers/paper-04-verified-scientific-discovery/host/evaluate_campaign_v2.py',
-              'papers/paper-04-verified-scientific-discovery/host/evaluate_ablations.py',
-              'papers/paper-04-verified-scientific-discovery/host/independent_reproduce.py',
-              'papers/paper-04-verified-scientific-discovery/host/independent_reproduce_v2.py',
-              'papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json',
+              'papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_candidate.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_baselines.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_baselines_v2.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_ablations.py',
+              'papers/orion-14-verified-scientific-discovery/host/evaluate_campaign.py',
+              'papers/orion-14-verified-scientific-discovery/host/evaluate_campaign_v2.py',
+              'papers/orion-14-verified-scientific-discovery/host/evaluate_ablations.py',
+              'papers/orion-14-verified-scientific-discovery/host/independent_reproduce.py',
+              'papers/orion-14-verified-scientific-discovery/host/independent_reproduce_v2.py',
+              'papers/orion-14-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json',
           ]
           digest = hashlib.sha256()
           for name in files:
@@ -120,7 +120,7 @@ jobs:
           PY
           )
           test "$ACTUAL_HARNESS" = "$HARNESS_SHA256"
-          test "$(sha256sum papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json | awk '{print $1}')" = "$BASELINE_CONFIG_SHA256"
+          test "$(sha256sum papers/orion-14-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json | awk '{print $1}')" = "$BASELINE_CONFIG_SHA256"
 
       - name: Download only V2 candidate-visible host artifact
         shell: bash
@@ -195,7 +195,7 @@ jobs:
           for i in 1 2 3 4 5; do
             strace -ff -o "$RUNNER_TEMP/candidate/telemetry/orion-${i}" -e trace=%file,%network \
               env -u GH_TOKEN -u GITHUB_TOKEN \
-              python papers/paper-04-verified-scientific-discovery/host/run_candidate.py \
+              python papers/orion-14-verified-scientific-discovery/host/run_candidate.py \
                 "$RUNNER_TEMP/handoff/candidate_manifest.jsonl" "$RUNNER_TEMP/candidate/orion-${i}.jsonl"
           done
           if grep -R -E 'protected_manifest|protected_gold|p4-v2-host-prep-protected' "$RUNNER_TEMP/candidate/telemetry"; then exit 1; fi
@@ -242,11 +242,11 @@ jobs:
           for i in 1 2 3 4 5; do
             strace -ff -o "$RUNNER_TEMP/comparators/telemetry/baselines-${i}" -e trace=%file,%network \
               env -u GH_TOKEN -u GITHUB_TOKEN \
-              python papers/paper-04-verified-scientific-discovery/host/run_baselines_v2.py \
+              python papers/orion-14-verified-scientific-discovery/host/run_baselines_v2.py \
                 "$RUNNER_TEMP/handoff/candidate_manifest.jsonl" "$RUNNER_TEMP/comparators/baselines-${i}.jsonl"
             strace -ff -o "$RUNNER_TEMP/comparators/telemetry/ablations-${i}" -e trace=%file,%network \
               env -u GH_TOKEN -u GITHUB_TOKEN \
-              python papers/paper-04-verified-scientific-discovery/host/run_ablations.py \
+              python papers/orion-14-verified-scientific-discovery/host/run_ablations.py \
                 "$RUNNER_TEMP/handoff/candidate_manifest.jsonl" "$RUNNER_TEMP/comparators/ablations-${i}.jsonl"
           done
           if grep -R -E 'protected_manifest|protected_gold|p4-v2-host-prep-protected' "$RUNNER_TEMP/comparators/telemetry"; then exit 1; fi
@@ -340,11 +340,11 @@ jobs:
             ARGS+=(--baseline-output "$RUNNER_TEMP/comparators/baselines-${i}.jsonl")
             AARGS+=(--ablation-output "$RUNNER_TEMP/comparators/ablations-${i}.jsonl")
           done
-          python papers/paper-04-verified-scientific-discovery/host/evaluate_campaign_v2.py \
+          python papers/orion-14-verified-scientific-discovery/host/evaluate_campaign_v2.py \
             --protected-manifest "$RUNNER_TEMP/protected/protected_manifest.jsonl" \
             --run-manifest "$RUNNER_TEMP/protected/RUN_MANIFEST_V1.json" \
             --output-dir "$RUNNER_TEMP/evaluation" --campaign-run-id "$GITHUB_RUN_ID" "${ARGS[@]}"
-          python papers/paper-04-verified-scientific-discovery/host/evaluate_ablations.py \
+          python papers/orion-14-verified-scientific-discovery/host/evaluate_ablations.py \
             --protected-manifest "$RUNNER_TEMP/protected/protected_manifest.jsonl" \
             --run-manifest "$RUNNER_TEMP/protected/RUN_MANIFEST_V1.json" \
             --output-dir "$RUNNER_TEMP/ablation-evaluation" "${AARGS[@]}"
@@ -428,7 +428,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python papers/paper-04-verified-scientific-discovery/host/independent_reproduce_v2.py \
+          python papers/orion-14-verified-scientific-discovery/host/independent_reproduce_v2.py \
             --protected-manifest "$RUNNER_TEMP/protected/protected_manifest.jsonl" \
             --orion-output "$RUNNER_TEMP/candidate/orion-1.jsonl" \
             --baseline-output "$RUNNER_TEMP/comparators/baselines-1.jsonl" \

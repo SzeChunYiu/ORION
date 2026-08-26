@@ -1,18 +1,18 @@
-# P10 module-negative revival receipt (NR-02) — V1
+# ORION-20 module-negative revival receipt (NR-02) — V1
 
 **Lane:** NR-02 of `research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md`
 (negative: per-module Markov-minus-unigram deltas Control −0.033333,
 CategoryTheory −0.005780 against a pooled +0.104628).
 
 **Scope note.** The module-robustness analysis and its frozen data belong to the
-Mathlib source-transfer P10 technical note,
-`papers/paper-xx-content-bound-math-evaluation/` (self-identified P10; the
-present `paper-10-structured-problem-solving/` directory is its prospective
+Mathlib source-transfer ORION-20 technical note,
+`papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/` (self-identified ORION-20; the
+present `orion-20-structured-problem-solving/` directory is its prospective
 successor). This receipt is filed here because the revival backlog registers the
-lane against the current P10 slot. Canonical machine artifact and generator:
+lane against the current ORION-20 slot. Canonical machine artifact and generator:
 
-- `papers/paper-xx-content-bound-math-evaluation/analyze_module_negative_revival_v2.py`
-- `papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_MODULE_NEGATIVE_REVIVAL_V2.json`
+- `papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/analyze_module_negative_revival_v2.py`
+- `papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/results/MATHLIB_MODULE_NEGATIVE_REVIVAL_V2.json`
 - frozen inputs: `results/MATHLIB_TRANSFER_V2_1.json`, `benchmark/MATHLIB_CORPUS_V2_MANIFEST.json`,
   in-repo corpus `benchmark/corpus/mathlib4_e72c1e277f31/`
 

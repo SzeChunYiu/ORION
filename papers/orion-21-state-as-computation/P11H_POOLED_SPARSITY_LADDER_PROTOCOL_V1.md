@@ -1,6 +1,6 @@
 # P11H Pooled Universal-Decoder Successor Protocol V1
 
-**Paper:** ORION-P11 — State as Computation
+**Paper:** ORION-ORION-21 — State as Computation
 **Issues:** #471, #664, #667
 **Protocol:** `ORION.P11H.PooledSparsityLadderAttack.v1`
 **Executable:** `run_p11h_pooled_sparsity_ladder_v1.py`
@@ -23,7 +23,7 @@ P11H is that successor. **Nothing frozen is edited.** P11C, P11D, P11E, P11F and
 P11G keep their protocols, seeds, arms, thresholds, receipts and terminals
 verbatim; the P11G scientific payload still digests to
 `a2b0c33ce3c39e54ca1aa400a2b7d52d019fc4503f6cd5eb726c7b8bbe79a7cc`; no published
-P11 number moves. P11H is a new identity with its own seed and its own claim
+ORION-21 number moves. P11H is a new identity with its own seed and its own claim
 authority, exactly as P11G was to P11F.
 
 P11H answers all four requirements `P11G_ARM_PLACEMENT_ADJUDICATION_V1.md` lists
@@ -279,6 +279,6 @@ evidence about the arm placed in its gate.
 
 ```
 python -m orion.study.p11.successor_reach                  # the pre-run preflight
-python papers/paper-11-state-as-computation/run_p11h_pooled_sparsity_ladder_v1.py
+python papers/orion-21-state-as-computation/run_p11h_pooled_sparsity_ladder_v1.py
 python -m pytest tests/unit/study/p11
 ```

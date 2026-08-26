@@ -1,4 +1,4 @@
-# Q1 submission package
+# ORION-01 submission package
 
 **Primary target:** PRX Quantum (stretch)  
 **Fallbacks:** npj Quantum Information; Quantum; another strong quantum-information/quantum-algorithms venue according to editor fit.

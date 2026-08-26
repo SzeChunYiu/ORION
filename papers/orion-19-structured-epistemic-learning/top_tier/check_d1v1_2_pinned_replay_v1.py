@@ -178,12 +178,12 @@ def main() -> int:
             failures.append(f"SHA256SUMS hash mismatch for {rel}")
         n_sum += 1
     expected_bound = {
-        "papers/paper-09-structured-epistemic-learning/top_tier/replay_d1v1_2_pinned.py",
-        "papers/paper-09-structured-epistemic-learning/top_tier/demonstrate_d1v1_2_build_toggle.py",
-        "papers/paper-09-structured-epistemic-learning/top_tier/check_d1v1_2_pinned_replay_v1.py",
-        "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_BINARY_BUILD_TOGGLE_2026-08-24.json",
-        "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_PINNED_REPLAY_R1_2026-08-24.json",
-        "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_PINNED_REPLAY_R2_2026-08-24.json",
+        "papers/orion-19-structured-epistemic-learning/top_tier/replay_d1v1_2_pinned.py",
+        "papers/orion-19-structured-epistemic-learning/top_tier/demonstrate_d1v1_2_build_toggle.py",
+        "papers/orion-19-structured-epistemic-learning/top_tier/check_d1v1_2_pinned_replay_v1.py",
+        "papers/orion-19-structured-epistemic-learning/evidence/P9_D1V1_2_BINARY_BUILD_TOGGLE_2026-08-24.json",
+        "papers/orion-19-structured-epistemic-learning/evidence/P9_D1V1_2_PINNED_REPLAY_R1_2026-08-24.json",
+        "papers/orion-19-structured-epistemic-learning/evidence/P9_D1V1_2_PINNED_REPLAY_R2_2026-08-24.json",
     }
     listed = {
         line.strip().partition("  ")[2]

@@ -1,4 +1,4 @@
-# QG1 cross-family evidence matrix V3
+# ORION-09 cross-family evidence matrix V3
 
 Refresh cut: `main@c5ba39fef4f25c46de5fb69bf07f50530f4693ca`
 Purpose: reviewer-facing authority map for `MANUSCRIPT_V3.md`.
@@ -30,7 +30,7 @@ QG16 proves where the support1 normalization certificate works. Its receipt expl
 The table is a typed comparison, not a meta-analysis. Complete finite state graphs, all-n theorems, exact counterexamples and prospective panels have different authority.
 
 ### 5. Instance Space Analysis is the parent, not the residual
-Feature-dependent footprints and algorithm selection are donor-owned. QG1's residual is the extra exact compiler structure shown above: transformation witnesses, theorem/tightness separation, proof-validity cones and representation-level mixed-cell refutations.
+Feature-dependent footprints and algorithm selection are donor-owned. ORION-09's residual is the extra exact compiler structure shown above: transformation witnesses, theorem/tightness separation, proof-validity cones and representation-level mixed-cell refutations.
 
 ## Load-bearing V3 source additions
 

@@ -1,12 +1,12 @@
-# ORION-P1 Prospective Power / Precision Analysis V1
+# ORION-ORION-11 Prospective Power / Precision Analysis V1
 
-**Provenance.** This document is bound to protocol `P1.hidden-formulation.v1.1`
+**Provenance.** This document is bound to protocol `ORION-11.hidden-formulation.v1.1`
 (DESIGN_FROZEN, `outcome_accessed: false`). All case counts are derived from the
 frozen suite at the hashes below. No outcome data has been inspected.
 
 | Field | Value |
 |-------|-------|
-| Analysis id | `P1.prospective-power.v1` |
+| Analysis id | `ORION-11.prospective-power.v1` |
 | Status | `FROZEN_ANALYSIS` |
 | Suite PILOT | `7a50a2d5025beb7dea4835911fa7dbf4a191431447397c73939c276b71dc49b5` (18 cases) |
 | Suite TEST | `21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420` (48 cases) |
@@ -220,7 +220,7 @@ precision: a 0.10 F1 improvement is detectable at >80% power.
 The 66 cases distribute across dependency depths 0–3. Per-depth precision
 is limited (e.g., 6 cases at depth 3 on TEST). H4 is reported as a
 descriptive trend (trace fidelity and invariant violation rate versus
-depth, Figure P1-6), not a formal hypothesis test.
+depth, Figure ORION-11-6), not a formal hypothesis test.
 
 ---
 

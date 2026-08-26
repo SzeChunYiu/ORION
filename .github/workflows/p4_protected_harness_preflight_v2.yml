@@ -4,10 +4,10 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'papers/paper-04-verified-scientific-discovery/host/run_baselines_v2.py'
-      - 'papers/paper-04-verified-scientific-discovery/host/evaluate_campaign_v2.py'
-      - 'papers/paper-04-verified-scientific-discovery/host/independent_reproduce_v2.py'
-      - 'papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json'
+      - 'papers/orion-14-verified-scientific-discovery/host/run_baselines_v2.py'
+      - 'papers/orion-14-verified-scientific-discovery/host/evaluate_campaign_v2.py'
+      - 'papers/orion-14-verified-scientific-discovery/host/independent_reproduce_v2.py'
+      - 'papers/orion-14-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json'
       - '.github/workflows/p4_protected_harness_preflight_v2.yml'
       - '.github/workflows/p4_host_prepare_v2.yml'
 
@@ -55,17 +55,17 @@ jobs:
           import hashlib
           from pathlib import Path
           files = [
-              'papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_candidate.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_baselines.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_baselines_v2.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_ablations.py',
-              'papers/paper-04-verified-scientific-discovery/host/evaluate_campaign.py',
-              'papers/paper-04-verified-scientific-discovery/host/evaluate_campaign_v2.py',
-              'papers/paper-04-verified-scientific-discovery/host/evaluate_ablations.py',
-              'papers/paper-04-verified-scientific-discovery/host/independent_reproduce.py',
-              'papers/paper-04-verified-scientific-discovery/host/independent_reproduce_v2.py',
-              'papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json',
+              'papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_candidate.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_baselines.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_baselines_v2.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_ablations.py',
+              'papers/orion-14-verified-scientific-discovery/host/evaluate_campaign.py',
+              'papers/orion-14-verified-scientific-discovery/host/evaluate_campaign_v2.py',
+              'papers/orion-14-verified-scientific-discovery/host/evaluate_ablations.py',
+              'papers/orion-14-verified-scientific-discovery/host/independent_reproduce.py',
+              'papers/orion-14-verified-scientific-discovery/host/independent_reproduce_v2.py',
+              'papers/orion-14-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json',
           ]
           digest = hashlib.sha256()
           for name in files:
@@ -76,8 +76,8 @@ jobs:
           print(digest.hexdigest())
           PY
           )
-          BASELINE_HASH=$(sha256sum papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json | awk '{print $1}')
-          python papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py \
+          BASELINE_HASH=$(sha256sum papers/orion-14-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json | awk '{print $1}')
+          python papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py \
             --seed 'PUBLIC-P4-V2-PREFLIGHT-NOT-PUBLICATION-EVIDENCE' \
             --output-dir "$RUNNER_TEMP/prep" \
             --subject-commit "$SUBJECT_COMMIT" \
@@ -100,7 +100,7 @@ jobs:
           assert all(set(row) == {'case_id', 'candidate_visible'} for row in rows)
           blob = (root/'candidate_manifest.jsonl').read_text()
           assert not any(token in blob for token in ('protected_gold','attack_family','custody_class','expected_authority_terminal'))
-          cfg = json.loads(Path('papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json').read_text())
+          cfg = json.loads(Path('papers/orion-14-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json').read_text())
           assert len(cfg['panel_baseline_ids']) == 7
           assert len(cfg['baselines']) == 10
           assert len(cfg['ablations']) == 8
@@ -112,11 +112,11 @@ jobs:
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/outputs"
           for i in 1 2 3 4 5; do
-            python papers/paper-04-verified-scientific-discovery/host/run_candidate.py \
+            python papers/orion-14-verified-scientific-discovery/host/run_candidate.py \
               "$RUNNER_TEMP/prep/candidate_manifest.jsonl" "$RUNNER_TEMP/outputs/orion-${i}.jsonl"
-            python papers/paper-04-verified-scientific-discovery/host/run_baselines_v2.py \
+            python papers/orion-14-verified-scientific-discovery/host/run_baselines_v2.py \
               "$RUNNER_TEMP/prep/candidate_manifest.jsonl" "$RUNNER_TEMP/outputs/baselines-${i}.jsonl"
-            python papers/paper-04-verified-scientific-discovery/host/run_ablations.py \
+            python papers/orion-14-verified-scientific-discovery/host/run_ablations.py \
               "$RUNNER_TEMP/prep/candidate_manifest.jsonl" "$RUNNER_TEMP/outputs/ablations-${i}.jsonl"
           done
 
@@ -130,12 +130,12 @@ jobs:
             ARGS+=(--baseline-output "$RUNNER_TEMP/outputs/baselines-${i}.jsonl")
             ABLATION_ARGS+=(--ablation-output "$RUNNER_TEMP/outputs/ablations-${i}.jsonl")
           done
-          python papers/paper-04-verified-scientific-discovery/host/evaluate_campaign_v2.py \
+          python papers/orion-14-verified-scientific-discovery/host/evaluate_campaign_v2.py \
             --protected-manifest "$RUNNER_TEMP/prep/protected_manifest.jsonl" \
             --run-manifest "$RUNNER_TEMP/prep/RUN_MANIFEST_V1.json" \
             --output-dir "$RUNNER_TEMP/evaluation" \
             --campaign-run-id "v2-preflight-${GITHUB_RUN_ID}" "${ARGS[@]}"
-          python papers/paper-04-verified-scientific-discovery/host/evaluate_ablations.py \
+          python papers/orion-14-verified-scientific-discovery/host/evaluate_ablations.py \
             --protected-manifest "$RUNNER_TEMP/prep/protected_manifest.jsonl" \
             --run-manifest "$RUNNER_TEMP/prep/RUN_MANIFEST_V1.json" \
             --output-dir "$RUNNER_TEMP/ablation-evaluation" "${ABLATION_ARGS[@]}"
@@ -144,7 +144,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python papers/paper-04-verified-scientific-discovery/host/independent_reproduce_v2.py \
+          python papers/orion-14-verified-scientific-discovery/host/independent_reproduce_v2.py \
             --protected-manifest "$RUNNER_TEMP/prep/protected_manifest.jsonl" \
             --orion-output "$RUNNER_TEMP/outputs/orion-1.jsonl" \
             --baseline-output "$RUNNER_TEMP/outputs/baselines-1.jsonl" \

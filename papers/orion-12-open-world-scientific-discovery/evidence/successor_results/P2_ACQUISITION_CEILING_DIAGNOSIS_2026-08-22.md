@@ -1,11 +1,11 @@
-# P2: the threshold the negative was measured against was not one the system could pass
+# ORION-12: the threshold the negative was measured against was not one the system could pass
 
 **Date:** 2026-08-22
 **Authority:** diagnosis of a frozen negative, not a revision of it
 **Promotion:** forbidden. The frozen verdict stands exactly as issued. What
 changes is what that verdict is evidence *about*.
 **Gates:** `orion.programme.gate_attainability`, `orion.programme.attainable_margin`
- — both pre-existing. P2 never ran either.
+ — both pre-existing. ORION-12 never ran either.
 **Ceiling constructor:** `orion.study.p2.acquisition_ceiling`
 **Tests:** `tests/unit/p2/test_p2_acquisition_ceiling.py`
 
@@ -126,7 +126,7 @@ question, arms differing in a way the claim does not name, and it was written
 for P12A, whose baseline could not express two of the four allocations it was
 scored on.
 
-P2 is the same two defects, in a paper that shipped a negative without running
+ORION-12 is the same two defects, in a paper that shipped a negative without running
 either check. The gate was frozen against a threshold nobody bounded, and the
 arms were matched on a predicate that compared the wrong quantity.
 

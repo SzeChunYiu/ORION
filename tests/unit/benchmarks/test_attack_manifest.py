@@ -15,7 +15,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
-PROTOCOL = ROOT / "papers" / "paper-04-verified-scientific-discovery" / "protocol"
+PROTOCOL = ROOT / "papers" / "orion-14-verified-scientific-discovery" / "protocol"
 MANIFEST = PROTOCOL / "ATTACK_MANIFEST_V1.jsonl"
 CUSTODY = PROTOCOL / "CUSTODY_MANIFEST_V1.json"
 SCHEMA = PROTOCOL / "ATTACK_CASE_SCHEMA_V1.json"

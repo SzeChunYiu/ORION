@@ -31,14 +31,14 @@
     },
     "lever": {
       "kind": "pre-registered transport-mechanism upgrade",
-      "protocol": "papers/paper-09-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_PROTOCOL_V2.md",
+      "protocol": "papers/orion-19-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_PROTOCOL_V2.md",
       "protocol_sha256": "a6742ad73a79a4a67d7cf0faaf423f311244a996f3e8dd73da7a2197f5d19f1a",
       "mechanism": "ensemble-level transport: mean accuracy over R=24 frozen stratified partition re-draws (seeds 20261101+k / 20261201+k), full per-arm pipeline per draw; cells/targets/costs/access classes unchanged",
       "registered_before_any_v2_outcome": true
     },
     "retest": {
-      "runner": "papers/paper-09-structured-epistemic-learning/top_tier/run_causal_diagnostic_transport_v2.py",
-      "evidence": "papers/paper-09-structured-epistemic-learning/evidence/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_RUN.json",
+      "runner": "papers/orion-19-structured-epistemic-learning/top_tier/run_causal_diagnostic_transport_v2.py",
+      "evidence": "papers/orion-19-structured-epistemic-learning/evidence/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_RUN.json",
       "receipt_sha256": "662b772a3b6a929b8afe5112bfff28c10b0d4709e018abf4755391bbd6495ab2",
       "before": {
         "diagnostic_accuracy": 0.8,
@@ -89,8 +89,8 @@
     },
     "lever": "pin the replay channel to the archive-matching numerical stack",
     "retest": {
-      "runner": "papers/paper-09-structured-epistemic-learning/top_tier/revive_p9_nr06_replay_consistency.py",
-      "evidence": "papers/paper-09-structured-epistemic-learning/evidence/P9_D1V1_2_ARCHIVE_NUMERICAL_REPLAY_CONSISTENCY_2026-08-23.json",
+      "runner": "papers/orion-19-structured-epistemic-learning/top_tier/revive_p9_nr06_replay_consistency.py",
+      "evidence": "papers/orion-19-structured-epistemic-learning/evidence/P9_D1V1_2_ARCHIVE_NUMERICAL_REPLAY_CONSISTENCY_2026-08-23.json",
       "evidence_sha256": "ff83c23e436d249d99ddefe0b34ac1cc2a66747d920dfbec012a3b6a7369bdb4",
       "agreement": {
         "dataset_digest_equal": true,

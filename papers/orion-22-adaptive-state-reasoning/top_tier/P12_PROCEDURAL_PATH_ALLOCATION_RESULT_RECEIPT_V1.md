@@ -1,4 +1,4 @@
-# P12 procedural path-allocation result receipt V1
+# ORION-22 procedural path-allocation result receipt V1
 
 **Run:** GitHub Actions `32657074186`  
 **Artifact:** `p12-procedural-path-allocation-v1`, artifact ID `9498183456`  
@@ -32,6 +32,6 @@ The non-beneficial regime is explicit: for one- or two-query cases, state materi
 
 ## Scientific disposition
 
-Together with the existing verifier-backed SAT result, P12 now has two qualitatively distinct executable domains showing the same higher phenomenon: fixed total resources are not enough to characterize performance; **where** the computation is placed can change the verified quality-cost frontier, and a pre-outcome signal can select the useful locus.
+Together with the existing verifier-backed SAT result, ORION-22 now has two qualitatively distinct executable domains showing the same higher phenomenon: fixed total resources are not enough to characterize performance; **where** the computation is placed can change the verified quality-cost frontier, and a pre-outcome signal can select the useful locus.
 
 This does not establish universal allocation optimality or an open-weight LLM result. It does materially strengthen the cross-domain Resource-Location Metareasoning claim beyond the original scalar controlled world.

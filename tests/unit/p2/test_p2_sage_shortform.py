@@ -15,7 +15,7 @@ from pathlib import Path
 
 import pytest
 
-SCRIPT = Path("papers/paper-02-open-world-scientific-discovery/scripts/run_sage_shortform.py")
+SCRIPT = Path("papers/orion-12-open-world-scientific-discovery/scripts/run_sage_shortform.py")
 
 
 def _module():

@@ -1,4 +1,4 @@
-# P11 cover letter draft
+# ORION-21 cover letter draft
 
 Dear Editors,
 

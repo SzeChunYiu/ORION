@@ -1,4 +1,4 @@
-# P5 hidden-cause fresh-transfer campaign runbook V1
+# ORION-15 hidden-cause fresh-transfer campaign runbook V1
 
 Frozen 2026-08-17 against `origin/main`. This runbook does **not** launch
 providers, does **not** mint empirical credit, and does **not** recommend host
@@ -32,9 +32,9 @@ because the merged workflow still does not execute the frozen `#8` packet.
 
 | Binding | Frozen `#8` packet | In-source execution registry |
 |---|---|---|
-| WIDE | `P5.LIVE.WIDE.stopping-rule-source-families` | `phase2:wide:microglia-complement-cross-disease` |
-| DEEP | `P5.LIVE.DEEP.flat-round-without-lineage` | `phase2:deep:mos2-screening-exciton` |
-| Epoch | `P5.shadow-live-research.epoch-1` | per-run `github-actions-<run_id>-attempt-<n>` |
+| WIDE | `ORION-15.LIVE.WIDE.stopping-rule-source-families` | `phase2:wide:microglia-complement-cross-disease` |
+| DEEP | `ORION-15.LIVE.DEEP.flat-round-without-lineage` | `phase2:deep:mos2-screening-exciton` |
+| Epoch | `ORION-15.shadow-live-research.epoch-1` | per-run `github-actions-<run_id>-attempt-<n>` |
 | Budget | `24.0` | `32` |
 
 These are two pairs of research problems in different fields. Silently adopting
@@ -46,21 +46,21 @@ either registry would settle an authority question by fiat. The preflight names
 The merged GLM-5.2 attribution archive is **not** fresh-transfer evidence. It is
 the diagnosis seed later campaigns must start from:
 
-- path: `papers/paper-05-self-orion/evidence/glm-5.2-attribution/`
+- path: `papers/orion-15-self-orion/evidence/glm-5.2-attribution/`
 - model: `glm-5.2`
 - `21/24 = 0.875` correct, macro-F1 `0.8726`
 - transport/execution errors: `0`
 - immutable misclassifications:
-  1. `P5-HC-002`: `RETRIEVAL_MISS -> REPRESENTATION_GAP`
-  2. `P5-HC-012`: `ENVIRONMENT_DEPENDENCY_TOOL_FAILURE -> IMPLEMENTATION_BUG`
-  3. `P5-HC-018`: `REPRESENTATION_GAP -> METHOD_BASIS_GAP`
+  1. `ORION-15-HC-002`: `RETRIEVAL_MISS -> REPRESENTATION_GAP`
+  2. `ORION-15-HC-012`: `ENVIRONMENT_DEPENDENCY_TOOL_FAILURE -> IMPLEMENTATION_BUG`
+  3. `ORION-15-HC-018`: `REPRESENTATION_GAP -> METHOD_BASIS_GAP`
 
 A 24/24 rewrite, deletion of those three rows, or substitution of the unbound
 `#212` 24/24 comment is a `CANNOT_CHECK` blocker, not an improvement.
 
 ## Credential names (never log values)
 
-From `papers/paper-05-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json`:
+From `papers/orion-15-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json`:
 
 ```text
 OPENAI_API_KEY
@@ -115,7 +115,7 @@ provider.
 ```bash
 PYTHONPATH=src pytest -q tests/test_p5_fresh_transfer_campaign_preflight.py
 PYTHONPATH=src python -m orion.study.p5.fresh_transfer_campaign \
-  --write-audit papers/paper-05-self-orion/evidence/ISSUE_159_CHECKBOX_AUDIT_V1.json
+  --write-audit papers/orion-15-self-orion/evidence/ISSUE_159_CHECKBOX_AUDIT_V1.json
 ```
 
 The checkbox audit ticks only items independently verified on the inspected

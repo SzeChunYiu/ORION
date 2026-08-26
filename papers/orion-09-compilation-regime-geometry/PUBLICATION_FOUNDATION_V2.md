@@ -1,6 +1,6 @@
-# QG1 publication foundation V2 — Compilation regime geometry
+# ORION-09 publication foundation V2 — Compilation regime geometry
 
-**Paper:** ORION-QG1  
+**Paper:** ORION-ORION-09  
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 **Evidence waves included:** committed wave 1 + committed wave 2 only  
 **Excluded:** open/unmerged QG-9/QG-16/QG-17 successor branches unless the publication cut is explicitly advanced  
@@ -24,12 +24,12 @@ A **compilation regime geometry** for a compiler family/objective is a structure
 - QAOA work has already applied ISA to quantum-algorithm parameter/initialization performance across instance classes.
 - Quantum compilation/resource-estimation literature already owns resource-aware compiler optimization, architecture-aware compilation and empirical profiling.
 
-QG1 therefore does **not** claim that feature-dependent performance regions or algorithm selection are new. Its residual is the **exact mechanistic regime object for compiler-family expressivity**, where boundaries can be theorem-grade, counterexample-defined or proven non-identifiable in a frozen vocabulary.
+ORION-09 therefore does **not** claim that feature-dependent performance regions or algorithm selection are new. Its residual is the **exact mechanistic regime object for compiler-family expressivity**, where boundaries can be theorem-grade, counterexample-defined or proven non-identifiable in a frozen vocabulary.
 
 ### Cross-paper ownership
-- Q1 owns the detailed TARE support theorem/counterexamples.
-- QG1 uses TARE only as the first regime-geometry instance and owns the cross-family synthesis.
-- QG2 owns static forecasting/certification and its refutation/repair sequence.
+- ORION-01 owns the detailed TARE support theorem/counterexamples.
+- ORION-09 uses TARE only as the first regime-geometry instance and owns the cross-family synthesis.
+- ORION-10 owns static forecasting/certification and its refutation/repair sequence.
 
 ## 01 — Research canon
 
@@ -67,14 +67,14 @@ QG1 therefore does **not** claim that feature-dependent performance regions or a
 | original TARE two-trade map is complete all `n` | QG5/QG7 | exact counterexamples | `REFUTED` |
 | four registered TARE trade configurations suffice on current finite hostile panels | QG7b | finite exact/machine evidence | `SUPPORTED_BOUNDED`; all-`n` classification open |
 | high-Tag weights are unnecessary in current classification chain | QG7c | all-`n` exchange component | theorem component; pinned comm-s2 link open |
-| regime geometry depends on objective | QG2 O1/O2 | exact counterexamples + constant-shift theorem | `SUPPORTED` for registered objectives |
+| regime geometry depends on objective | ORION-10 O1/O2 | exact counterexamples + constant-shift theorem | `SUPPORTED` for registered objectives |
 | TARE support-two phase has an objective cone | QG8 | machine-checked theorem | exact stated cone; global sharpness separate |
 | SixLCU boundary is simple/feature-determined | QG12/QG15b | exact theorem/domain classification | `SUPPORTED` in registered model/vocabulary |
 | StabPrep template transfers | QG15 | exact Dijkstra finite states + prospective holdout | `SUPPORTED_BOUNDED` through registered `n` |
 | StabPrep donor-exact boundary is low-order in natural features | QG15/QG15b | exact mixed feature cells | `REFUTED` |
 | StabPrep boundary is determined by frozen 13-feature vocabulary at any complexity | QG15b | mixed-cell lower bound | `REFUTED` on frozen vocabulary/domain |
 | every compiler family has a simple exact regime predicate | StabPrep | counterexample to field motif | `REFUTED` |
-| ISA/algorithm-selection feature maps are novel to QG1 | external donor literature | prior art | `DONOR_OWNED` |
+| ISA/algorithm-selection feature maps are novel to ORION-09 | external donor literature | prior art | `DONOR_OWNED` |
 | exact mechanistic regime-geometry template is externally novel | fresh search + paper cards | novelty proposition | `OPEN_UNTIL_SEARCH_CLOSES` |
 
 ## 03 — Argument map
@@ -98,7 +98,7 @@ Three registered families support a common investigative template—donor region
 7. Synthesize what transfers and what does not.
 
 ### Strongest alternative interpretation
-**"This is Instance Space Analysis with hand-written features."** QG1 must distinguish empirical performance footprints from its exact mechanistic objects: explicit feasible-family containments, machine-checked support/budget theorems, exact counterexamples/witnesses, objective-phase conditions and lower bounds showing feature non-identifiability in a frozen vocabulary. ISA remains a required donor/analogue field.
+**"This is Instance Space Analysis with hand-written features."** ORION-09 must distinguish empirical performance footprints from its exact mechanistic objects: explicit feasible-family containments, machine-checked support/budget theorems, exact counterexamples/witnesses, objective-phase conditions and lower bounds showing feature non-identifiability in a frozen vocabulary. ISA remains a required donor/analogue field.
 
 ### Durable conclusion
 The transferable contribution is not a universal phase diagram. It is a disciplined way to ask which compiler choices are exactly necessary, which structural trades delimit donor optimality, how the answer changes with objective, and whether the boundary is even representable in the natural feature language.
@@ -106,7 +106,7 @@ The transferable contribution is not a universal phase diagram. It is a discipli
 ## 04 — Section contracts
 
 ### Title / Abstract
-Headline cross-family transfer **and** the major negative: boundary simplicity does not transfer. Avoid presenting QG1 as a TARE sequel.
+Headline cross-family transfer **and** the major negative: boundary simplicity does not transfer. Avoid presenting ORION-09 as a TARE sequel.
 
 ### Introduction
 Position against:
@@ -120,7 +120,7 @@ Research gap is exact *mechanistic* regime characterization and falsifiable cros
 Treat 'regime geometry' as a definition/framework unless a specific theorem is cited. Do not turn the definition itself into novelty evidence.
 
 ### TARE Result
-Compress Q1 mathematics; cite companion. Show only the evidence needed for the field object: exact support ceiling, trade ladder, objective dependence and current open closed-form link.
+Compress ORION-01 mathematics; cite companion. Show only the evidence needed for the field object: exact support ceiling, trade ladder, objective dependence and current open closed-form link.
 
 ### SixLCU Result
 Show second-family transfer and exact boundary theorem. Explain why its boundary is simple under the registered features.
@@ -168,10 +168,10 @@ not:
 ## Expert reconciliation
 
 ### Quantum-compilation theorist
-Do not seek one universal trade taxonomy. QG1 is strongest when the objective/family dependence is an empirical/theoretical result rather than an embarrassment.
+Do not seek one universal trade taxonomy. ORION-09 is strongest when the objective/family dependence is an empirical/theoretical result rather than an embarrassment.
 
 ### Algorithm-selection / ISA reviewer
-ISA is direct conceptual prior art for feature-to-performance regions. QG1 must articulate exact mathematical mechanisms/witnesses and boundary non-identifiability as the differentiator.
+ISA is direct conceptual prior art for feature-to-performance regions. ORION-09 must articulate exact mathematical mechanisms/witnesses and boundary non-identifiability as the differentiator.
 
 ### Formal-methods reviewer
 Each cross-family cell needs authority typing. The phrase 'theorem' cannot leak from TARE or SixLCU into StabPrep finite-state evidence.

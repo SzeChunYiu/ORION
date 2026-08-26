@@ -7,7 +7,7 @@ from typing import Any
 
 SCHEMA = "ORION.P15A.AcquisitionPreflight.v1"
 BLOCKED_TERMINAL = "P15A_ACQUISITION_BLOCKED_NO_SCIENTIFIC_RESULT"
-INPUT_DIRECTORY = Path("papers/paper-15-orion-research-harness/p15a_protected_inputs")
+INPUT_DIRECTORY = Path("papers/orion-25-orion-research-harness/p15a_protected_inputs")
 
 REQUIRED_ARTIFACTS = (
     "programme_paper_issue.json",

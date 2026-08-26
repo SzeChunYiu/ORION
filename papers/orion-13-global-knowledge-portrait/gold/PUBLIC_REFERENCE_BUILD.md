@@ -1,6 +1,6 @@
-# ORION-P3 Public-Reference Atlas — zero-budget build path
+# ORION-ORION-13 Public-Reference Atlas — zero-budget build path
 
-**Protocol:** `P3.public-reference-mapping.v1`  
+**Protocol:** `ORION-13.public-reference-mapping.v1`  
 **Goal:** produce a real, externally grounded mapping atlas without paying for a new annotation campaign.
 
 ## Inputs

@@ -83,7 +83,7 @@ SCOPE_ROOTS: tuple[str, ...] = (
     f"{LANE}/framework",
     f"{LANE}/results",
     "papers/paper-xx-executable-research-core",
-    "papers/paper-xx-content-bound-math-evaluation",
+    "papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation",
     LANE,
 )
 
@@ -233,7 +233,7 @@ def manifest_entry_origin(repo_root: Path) -> dict[str, int]:
             origins["vendored_lean_corpus"] += 1
         elif "benchmark/aslib_" in relative:
             origins["vendored_aslib_scenario"] += 1
-        elif relative.startswith("../paper-xx-content-bound-math-evaluation"):
+        elif relative.startswith("../archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation"):
             origins["p10_predecessor_authored"] += 1
         elif relative.startswith("../paper-xx-executable-research-core"):
             origins["p9_predecessor_authored"] += 1

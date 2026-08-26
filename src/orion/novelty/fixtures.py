@@ -381,7 +381,7 @@ def broad_claim_narrow_residual_draft() -> CertificateDraft:
             ),
         ),
         residual_implementation_evidence=(
-            "papers/paper-03-global-knowledge-portrait/evidence/NEAREST_WORK_DISPOSITIONS_V1.md",
+            "papers/orion-13-global-knowledge-portrait/evidence/NEAREST_WORK_DISPOSITIONS_V1.md",
         ),
         discriminating_experiment=DiscriminatingExperiment(
             experiment_id="exp:obstruction-atlas",

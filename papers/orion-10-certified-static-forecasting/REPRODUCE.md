@@ -1,4 +1,4 @@
-# QG2 — reproducing the forecast/certificate chain
+# ORION-10 — reproducing the forecast/certificate chain
 
 ## 1. Baseline closed-form forecaster and prospective evidence
 

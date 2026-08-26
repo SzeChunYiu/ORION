@@ -1,4 +1,4 @@
-# P2 V2 donor-composition matrix — 2026-08-17
+# ORION-12 V2 donor-composition matrix — 2026-08-17
 
 Status: **PROSPECTIVE DESIGN ARTIFACT**
 Parent: `P2_V2_WIDENING_FREEZE_2026-08-17.md`

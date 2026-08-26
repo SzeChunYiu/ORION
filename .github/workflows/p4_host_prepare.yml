@@ -4,7 +4,7 @@ on:
   push:
     branches: [shadow/p4-issue101-protected-closure]
     paths:
-      - 'papers/paper-04-verified-scientific-discovery/host/PREP_TRIGGER_V1.txt'
+      - 'papers/orion-14-verified-scientific-discovery/host/PREP_TRIGGER_V1.txt'
 
 permissions:
   contents: read
@@ -34,14 +34,14 @@ jobs:
           import hashlib
           from pathlib import Path
           files = [
-              'papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_candidate.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_baselines.py',
-              'papers/paper-04-verified-scientific-discovery/host/run_ablations.py',
-              'papers/paper-04-verified-scientific-discovery/host/evaluate_campaign.py',
-              'papers/paper-04-verified-scientific-discovery/host/evaluate_ablations.py',
-              'papers/paper-04-verified-scientific-discovery/host/independent_reproduce.py',
-              'papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V1.json',
+              'papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_candidate.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_baselines.py',
+              'papers/orion-14-verified-scientific-discovery/host/run_ablations.py',
+              'papers/orion-14-verified-scientific-discovery/host/evaluate_campaign.py',
+              'papers/orion-14-verified-scientific-discovery/host/evaluate_ablations.py',
+              'papers/orion-14-verified-scientific-discovery/host/independent_reproduce.py',
+              'papers/orion-14-verified-scientific-discovery/host/BASELINE_CONFIGS_V1.json',
           ]
           digest = hashlib.sha256()
           for name in files:
@@ -52,10 +52,10 @@ jobs:
           print(digest.hexdigest())
           PY
           )
-          BASELINE_HASH=$(sha256sum papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V1.json | awk '{print $1}')
+          BASELINE_HASH=$(sha256sum papers/orion-14-verified-scientific-discovery/host/BASELINE_CONFIGS_V1.json | awk '{print $1}')
           EPOCH=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           SECRET_SEED=$(openssl rand -hex 32)
-          python papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py \
+          python papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py \
             --seed "$SECRET_SEED" \
             --output-dir "$RUNNER_TEMP/p4-host-prep" \
             --subject-commit "$SUBJECT" \
@@ -97,7 +97,7 @@ jobs:
           cp "$RUNNER_TEMP/p4-host-prep/candidate_manifest.jsonl" "$RUNNER_TEMP/p4-public-handoff/"
           cp "$RUNNER_TEMP/p4-host-prep/RUN_MANIFEST_V1.json" "$RUNNER_TEMP/p4-public-handoff/"
           cp "$RUNNER_TEMP/p4-host-prep/host_prep_summary.json" "$RUNNER_TEMP/p4-public-handoff/"
-          cp papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V1.json "$RUNNER_TEMP/p4-public-handoff/"
+          cp papers/orion-14-verified-scientific-discovery/host/BASELINE_CONFIGS_V1.json "$RUNNER_TEMP/p4-public-handoff/"
 
       - name: Print safe freeze summary
         shell: bash

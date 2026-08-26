@@ -1,4 +1,4 @@
-# P10 OCME formal non-vacuity result receipt V1
+# ORION-20 OCME formal non-vacuity result receipt V1
 
 **Primary run:** GitHub Actions `32645458392`  
 **Two-checker run:** GitHub Actions `32653800366`  
@@ -50,6 +50,6 @@ Both implementations agree exactly on:
 
 ## Scientific disposition
 
-P10 now has an executable **formal OCME non-vacuity object with independent two-implementation verification**. This does **not** establish autonomous method invention: the candidate edits were frozen explicitly before execution and were not discovered by ORION. Nor does it establish donor-complete native theorem-proving superiority.
+ORION-20 now has an executable **formal OCME non-vacuity object with independent two-implementation verification**. This does **not** establish autonomous method invention: the candidate edits were frozen explicitly before execution and were not discovered by ORION. Nor does it establish donor-complete native theorem-proving superiority.
 
-The broad P10 top-tier gate remains open for generated/non-hand-coded edits, strong native verifier-backed solving, donor-complete search/repair/synthesis/evolutionary comparators at matched resources, qualifying broader verifier-backed settings and immediate submission-day literature saturation.
+The broad ORION-20 top-tier gate remains open for generated/non-hand-coded edits, strong native verifier-backed solving, donor-complete search/repair/synthesis/evolutionary comparators at matched resources, qualifying broader verifier-backed settings and immediate submission-day literature saturation.

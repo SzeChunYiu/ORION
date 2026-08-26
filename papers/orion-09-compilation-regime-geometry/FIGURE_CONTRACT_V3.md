@@ -1,4 +1,4 @@
-# QG1 main-figure contract V3
+# ORION-09 main-figure contract V3
 
 Scientific refresh cut: `main@c5ba39fef4f25c46de5fb69bf07f50530f4693ca`
 Target routing: PRX Quantum stretch / Quantum fallback.

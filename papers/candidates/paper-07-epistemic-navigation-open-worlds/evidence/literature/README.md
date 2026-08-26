@@ -1,7 +1,7 @@
-# P7 literature evidence
+# ORION-17 literature evidence
 
 Retrieval records for the sources cited in `manuscript/FINAL.md`, mirroring
-`papers/paper-02-open-world-scientific-discovery/evidence/literature/`.
+`papers/orion-12-open-world-scientific-discovery/evidence/literature/`.
 
 ## Why this directory exists
 
@@ -10,9 +10,9 @@ Section 2.3 opened with a claim about a body of work and cited none of it:
 > Planning research has long shown that representation and abstraction affect
 > solvability, search complexity and solution preservation.
 
-A grep across P7 for the obvious sources — Knoblock, Bacchus, Sacerdoti, CEGAR,
+A grep across ORION-17 for the obvious sources — Knoblock, Bacchus, Sacerdoti, CEGAR,
 "change of representation" — returned zero hits. That is a desk-reject
-independent of whether P7's own contribution is novel: a reviewer does not have
+independent of whether ORION-17's own contribution is novel: a reviewer does not have
 to dispute the contribution to object that the related-work section
 characterises a field without a reference.
 

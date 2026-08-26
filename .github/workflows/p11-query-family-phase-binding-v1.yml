@@ -3,13 +3,13 @@ name: p11-query-family-phase-binding-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-11-state-as-computation/top_tier/P11_QUERY_FAMILY_PHASE_PROTOCOL_V1.md'
-      - 'papers/paper-11-state-as-computation/top_tier/run_query_family_phase_v1.py'
-      - 'papers/paper-11-state-as-computation/top_tier/check_query_family_phase_independent_v1.py'
+      - 'papers/orion-21-state-as-computation/top_tier/P11_QUERY_FAMILY_PHASE_PROTOCOL_V1.md'
+      - 'papers/orion-21-state-as-computation/top_tier/run_query_family_phase_v1.py'
+      - 'papers/orion-21-state-as-computation/top_tier/check_query_family_phase_independent_v1.py'
       - '.github/workflows/p11-query-family-phase-binding-v1.yml'
-      - 'papers/paper-11-state-as-computation/top_tier/p11_query_family_phase_primary_v1.json'
-      - 'papers/paper-11-state-as-computation/top_tier/p11_query_family_phase_independent_v1.json'
-      - 'papers/paper-11-state-as-computation/top_tier/p11_query_family_phase_binding_v1.json'
+      - 'papers/orion-21-state-as-computation/top_tier/p11_query_family_phase_primary_v1.json'
+      - 'papers/orion-21-state-as-computation/top_tier/p11_query_family_phase_independent_v1.json'
+      - 'papers/orion-21-state-as-computation/top_tier/p11_query_family_phase_binding_v1.json'
   workflow_dispatch:
 permissions:
   contents: read
@@ -25,7 +25,7 @@ jobs:
       - name: Execute frozen query-family study (verdict-agnostic capture)
         run: |
           set +e
-          python papers/paper-11-state-as-computation/top_tier/run_query_family_phase_v1.py \
+          python papers/orion-21-state-as-computation/top_tier/run_query_family_phase_v1.py \
             > p11_query_family_phase_primary_v1.json 2> p11_query_family_phase_primary_v1.stderr
           echo $? > p11_query_family_phase_primary_v1.exit
           set -e
@@ -43,7 +43,7 @@ jobs:
       - name: Byte-replay determinism (verdict-agnostic)
         run: |
           set +e
-          python papers/paper-11-state-as-computation/top_tier/run_query_family_phase_v1.py \
+          python papers/orion-21-state-as-computation/top_tier/run_query_family_phase_v1.py \
             > p11_query_family_phase_primary_v1_rerun.json 2>/dev/null
           echo $? > p11_query_family_phase_primary_v1_rerun.exit
           set -e
@@ -53,7 +53,7 @@ jobs:
       - name: Execute structurally independent verifier (verdict-agnostic capture)
         run: |
           set +e
-          python papers/paper-11-state-as-computation/top_tier/check_query_family_phase_independent_v1.py \
+          python papers/orion-21-state-as-computation/top_tier/check_query_family_phase_independent_v1.py \
             > p11_query_family_phase_independent_v1.json 2> p11_query_family_phase_independent_v1.stderr
           echo $? > p11_query_family_phase_independent_v1.exit
           set -e

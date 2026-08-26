@@ -1325,7 +1325,7 @@ def test_the_q_paper_namespace_is_out_of_scope(tmp_path: Path) -> None:
         (tmp_path / entry.active).mkdir(parents=True, exist_ok=True)
         for directory, _ in entry.retired:
             (tmp_path / directory).mkdir(parents=True, exist_ok=True)
-    q = tmp_path / "papers" / "Q-paper-01-tare-expressivity"
+    q = tmp_path / "papers" / "orion-05-tare-expressivity"
     q.mkdir()
     (q / "CLAIM_LEDGER.md").write_text("q", encoding="utf-8")
     assert paper_identity_findings(tmp_path) == ()
@@ -1335,7 +1335,7 @@ def test_future_identities_are_registered_under_both_layouts() -> None:
     """PR #715 was authored pre-refactor; either landing order must be clean."""
 
     for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items():
-        assert directory.startswith("papers/paper-1")
+        assert directory.startswith("papers/orion-2")
         assert directory in REGISTERED_PAPER_DIRECTORIES
         legacy = directory.replace("papers/", "papers/candidates/", 1)
         assert legacy in REGISTERED_PAPER_DIRECTORIES
@@ -1411,7 +1411,7 @@ def test_split_paper_identity_fails(tmp_path: Path) -> None:
 
 def test_split_identity_ignores_empty_and_residue_directories(tmp_path: Path) -> None:
     (tmp_path / "papers" / "candidates").mkdir(parents=True)
-    slug = "paper-11-state-as-computation"
+    slug = "orion-21-state-as-computation"
     live = tmp_path / "papers" / slug
     live.mkdir()
     (live / "README.md").write_text("here", encoding="utf-8")

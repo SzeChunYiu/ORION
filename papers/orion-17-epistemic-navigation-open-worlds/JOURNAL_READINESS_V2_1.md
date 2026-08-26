@@ -1,4 +1,4 @@
-# P7 journal readiness V2.1
+# ORION-17 journal readiness V2.1
 
 **Theory manuscript:** `manuscript/FINAL.md`  
 **Submission manuscript:** `submission/AIJ_MANUSCRIPT.tex`  
@@ -60,8 +60,8 @@ is not weakened here.
 
 ## Computed final gate
 
-P7 is `PEER_REVIEW_READY` exactly when both `p6-p8-candidate-ci` and repository `ci` are successful on the same PR head. Any manuscript/source change reopens this terminal until the changed head is retested.
+ORION-17 is `PEER_REVIEW_READY` exactly when both `p6-p8-candidate-ci` and repository `ci` are successful on the same PR head. Any manuscript/source change reopens this terminal until the changed head is retested.
 
-P7 does not claim representation/regime transport, planning abstraction, P1 reframing or P2 route/task stopping. Its submission residual is scientific evidence/closure/obligation transport under representation/objective change, coupled to honest open/censored stopping.
+ORION-17 does not claim representation/regime transport, planning abstraction, ORION-11 reframing or ORION-12 route/task stopping. Its submission residual is scientific evidence/closure/obligation transport under representation/objective change, coupled to honest open/censored stopping.
 
 A later live-agent benchmark can strengthen the paper but is not required to establish the formal submission claims. Private funding, competing-interest and optional ORCID attestations are not inferred; see #377. External peer review is a later event; see #378.

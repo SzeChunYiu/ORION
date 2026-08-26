@@ -3,25 +3,25 @@
   "lane": "NR-03",
   "backlog": "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md",
   "negative_revived": "P4.H3.V2.SATURATED",
-  "claim_ledger_entry": "papers/paper-04-verified-scientific-discovery/CLAIM_LEDGER_V4.md#P4.H3.V2.SATURATED",
+  "claim_ledger_entry": "papers/orion-14-verified-scientific-discovery/CLAIM_LEDGER_V4.md#P4.H3.V2.SATURATED",
   "saturated_quantity": "correct_cannot_check_rate (registered H3 metric, one-class marginal over the 30 gold-CANNOT_CHECK cases)",
   "registered_at": [
-    "papers/paper-04-verified-scientific-discovery/protocol/STATISTICAL_ANALYSIS_PLAN_V1.md:28",
-    "papers/paper-04-verified-scientific-discovery/protocol/STATISTICAL_ANALYSIS_PLAN_V1.md:32",
-    "papers/paper-04-verified-scientific-discovery/protocol/PROTOCOL_V1.json (P4.H3)"
+    "papers/orion-14-verified-scientific-discovery/protocol/STATISTICAL_ANALYSIS_PLAN_V1.md:28",
+    "papers/orion-14-verified-scientific-discovery/protocol/STATISTICAL_ANALYSIS_PLAN_V1.md:32",
+    "papers/orion-14-verified-scientific-discovery/protocol/PROTOCOL_V1.json (P4.H3)"
   ],
   "date": "2026-08-23",
   "prereg": {
-    "protocol_file": "papers/paper-04-verified-scientific-discovery/top_tier/P4_H3_V21_PROTOCOL_PREREG.json",
+    "protocol_file": "papers/orion-14-verified-scientific-discovery/top_tier/P4_H3_V21_PROTOCOL_PREREG.json",
     "original_orphan_commit": "dc8ec570",
     "original_author_date": "2026-08-23T23:00:20+02:00",
     "computed_after_prereg": true,
     "ordering_evidence": "orphan commit timestamp precedes all outcome computation; re-landed verbatim with original author date"
   },
   "artifacts": {
-    "computation": "papers/paper-04-verified-scientific-discovery/top_tier/nr03_v21_informedness.py",
-    "results": "papers/paper-04-verified-scientific-discovery/top_tier/P4_H3_V21_RESULTS_V1.json",
-    "receipt_md": "papers/paper-04-verified-scientific-discovery/top_tier/P4_H3_METRIC_DEGENERATION_REVIVAL_RECEIPT_V1.md"
+    "computation": "papers/orion-14-verified-scientific-discovery/top_tier/nr03_v21_informedness.py",
+    "results": "papers/orion-14-verified-scientific-discovery/top_tier/P4_H3_V21_RESULTS_V1.json",
+    "receipt_md": "papers/orion-14-verified-scientific-discovery/top_tier/P4_H3_METRIC_DEGENERATION_REVIVAL_RECEIPT_V1.md"
   },
   "saturation_root_cause": {
     "cue": "z(case) = 1{evidence == [] and retrieval_pool == []}",

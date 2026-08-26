@@ -1,6 +1,6 @@
 # State as Computation: Moving Structural Search between Representation Construction and Downstream Reasoning
 
-**ORION P11 — peer-review manuscript**  
+**ORION ORION-21 — peer-review manuscript**  
 **Issues:** #471, #664, #667  
 **Evidence cut:** 21 August 2026
 
@@ -12,7 +12,7 @@ Reasoning systems are commonly compared as if the state presented to the downstr
 
 A system can possess all information required for a task and still make that information expensive for a bounded learner or reasoner to use. Computationally usable information formalizes one version of this observation. Partial evaluation and knowledge compilation move work upstream. Materialized views trade preprocessing and storage for later query cost. Current agent systems retrieve, compress, summarize, or restructure context before generation. Recent LLM evidence also shows that state design itself can materially change dynamic reasoning while model parameters remain fixed.
 
-Those results make several weak novelty claims untenable. P11 does **not** claim that representation matters, that computation can create usable information, that query-conditioned memory is new, or that compression can reduce downstream cost. The unresolved systems question is instead a resource-placement question:
+Those results make several weak novelty claims untenable. ORION-21 does **not** claim that representation matters, that computation can create usable information, that query-conditioned memory is new, or that compression can reduce downstream cost. The unresolved systems question is instead a resource-placement question:
 
 > **When task-relevant structure can be discovered either while constructing state or later by a decoder/search process, where is the computation paid, how much downstream burden can be removed, and what future optionality is lost by specialization?**
 
@@ -33,7 +33,7 @@ The strongest conclusion is mechanistic rather than universal: **representation 
 
 Predictive `V`-information already establishes that computational constraints change what information is usable and that computation can transform unusable information into usable information. Classical partial evaluation specializes programs to known inputs. Knowledge compilation and database materialization move computation upstream for later reuse. Feature selection and sparse models search for relevant coordinates inside a larger representation. Query-conditioned memory and retrieval systems condition state on the current task. Long-horizon context-compression systems explicitly optimize memory/performance trade-offs. Wong et al. provide direct current evidence that state representation and the act of construction can change LLM reasoning.
 
-P11 therefore subtracts all of those primitives from its novelty claim.
+ORION-21 therefore subtracts all of those primitives from its novelty claim.
 
 ### 2.2 Residual contribution
 
@@ -83,7 +83,7 @@ Distinct parity characters are orthogonal. A fixed exact linear-accessible repre
 
 ## 4. Dense controlled studies
 
-### 4.1 P11 confirmatory study
+### 4.1 ORION-21 confirmatory study
 
 The confirmatory experiment compares raw linear input, a fixed universal parity bank, and query-conditioned compiled state over a frozen train-size grid.
 
@@ -94,7 +94,7 @@ The confirmatory experiment compares raw linear input, a fixed universal parity 
 | 18 | 3 | 816 | 1 | 816× | 32 | 1024 |
 | 20 | 3 | 1140 | 1 | 1140× | 32 | 1024 |
 
-At `n=1024`, compiled accuracy is 1.0 in every cell. The corresponding universal accuracies are 1.0000, 0.8455, 0.9915 and 0.9469. Raw linear remains near chance. The canonical P11 replay is byte-identical across fresh processes.
+At `n=1024`, compiled accuracy is 1.0 in every cell. The corresponding universal accuracies are 1.0000, 0.8455, 0.9915 and 0.9469. Raw linear remains near chance. The canonical ORION-21 replay is byte-identical across fresh processes.
 
 The result is consistent with a structural-search interpretation: the decisive coordinates exist in the universal bank, but a bounded dense decoder must identify them among many irrelevant candidates.
 
@@ -113,7 +113,7 @@ No compiled component equals or negates the final label. The high-dimensional ce
 
 ## 5. Hostile decoder substitution
 
-The central alternative explanation is direct: perhaps the universal representation is penalized only because the downstream decoder has the wrong inductive bias. If so, stronger decoder-side search should buy back the compilation advantage. P11 treats that prediction as a mechanism test.
+The central alternative explanation is direct: perhaps the universal representation is penalized only because the downstream decoder has the wrong inductive bias. If so, stronger decoder-side search should buy back the compilation advantage. ORION-21 treats that prediction as a mechanism test.
 
 ### 5.1 P11D sparse decoder — permanent negative
 
@@ -292,7 +292,7 @@ These are exact workload-model results, not universal agent-memory laws.
 
 ## 8. Accessibility-work accounting
 
-Any comparison that treats representation construction as free is invalid. The P11 resource receipt therefore keeps separate coordinates for:
+Any comparison that treats representation construction as free is invalid. The ORION-21 resource receipt therefore keeps separate coordinates for:
 
 - compiler/preprocessing operations and latency;
 - constructed-state bytes/tokens and memory traffic;
@@ -311,7 +311,7 @@ The paper's controlled experiments use prospectively frozen seeds, cell grids, t
 
 The evidence history is intentionally append-only in scientific meaning:
 
-1. P11/P11B establish dense and no-answer-laundering controlled gaps.
+1. ORION-21/P11B establish dense and no-answer-laundering controlled gaps.
 2. P11D fails its stronger sparse-decoder gate.
 3. P11E independently reproduces the surviving sparse residual with deterministic estimator seeds.
 4. P11C, after an amendment that vectorized only its parity-bank evaluation, executes to completion twice at `P11C_STRONGER_DECODER_GAP_SUPPORTED`; its pooled ≥4× gate passes at exactly the boundary and the boundary comes up in 11 of 20 draws of the same construction, so it settles nothing and carries no claim authority.
@@ -324,7 +324,7 @@ The authoritative P11E payload SHA is `1097d94bef1132d4dfa5d01176a9fcfcfebc46de8
 
 Predictive `V`-information provides the closest information-theoretic parent by making usable information relative to a computational family. Partial evaluation and knowledge compilation provide the closest upstream-computation parents. Materialized views and multi-query optimization provide clear reuse/crossover analogues. Modern query-conditioned memory, retrieval and context-compression systems demonstrate practical task-conditioned state construction. Wong et al. provide direct current evidence that state design changes dynamic LLM reasoning. Sparse estimators and nonlinear ensembles provide natural downstream substitutes by searching over universal features.
 
-P11's residual is not any of those primitives in isolation. It is the experimentally attacked relation between **where structure is exposed, how much discovery work remains downstream, what that exposure costs, and what future options it destroys or preserves**.
+ORION-21's residual is not any of those primitives in isolation. It is the experimentally attacked relation between **where structure is exposed, how much discovery work remains downstream, what that exposure costs, and what future options it destroys or preserves**.
 
 ## 11. Limitations and falsifiers
 
@@ -351,7 +351,7 @@ The protocol-correction history matters for the same reason. A research programm
 
 ## 13. Conclusion
 
-P11 establishes a controlled theory/systems result about computational placement. Fixed linear-accessible state must scale with query-family rank; task-conditioned construction can expose a smaller task-facing state; and a width-conditioned `r=7` result survives the registered pooled attack. The adverse digits study prevents promotion to family-scale compilation support: only 3/10 responsibilities pass under linear access and 5/10 under each stronger access class. Exact workload laws quantify the future-query cost of specialization.
+ORION-21 establishes a controlled theory/systems result about computational placement. Fixed linear-accessible state must scale with query-family rank; task-conditioned construction can expose a smaller task-facing state; and a width-conditioned `r=7` result survives the registered pooled attack. The adverse digits study prevents promotion to family-scale compilation support: only 3/10 responsibilities pass under linear access and 5/10 under each stronger access class. Exact workload laws quantify the future-query cost of specialization.
 
 The resulting principle is stronger than “representation matters” and more precise than “compression helps”:
 
@@ -359,7 +359,7 @@ The resulting principle is stronger than “representation matters” and more p
 
 ## Data and code availability
 
-All protocols, runners, result receipts, negative dispositions, correction artifacts and claim ledgers used for the controlled result are versioned in `papers/paper-11-state-as-computation/` and the linked ORION frontier evidence tree. The paper intentionally retains failed and non-authoritative runs alongside authoritative successors.
+All protocols, runners, result receipts, negative dispositions, correction artifacts and claim ledgers used for the controlled result are versioned in `papers/orion-21-state-as-computation/` and the linked ORION frontier evidence tree. The paper intentionally retains failed and non-authoritative runs alongside authoritative successors.
 
 ## References
 

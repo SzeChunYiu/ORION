@@ -1,6 +1,6 @@
-# P11 — State as Computation
+# ORION-21 — State as Computation
 
-**Stable ID:** ORION-P11  
+**Stable ID:** ORION-ORION-21  
 **Paper issue:** #471  
 **Shared tracks:** #664 accessibility-work accounting · #667 state optionality  
 **Programme:** #670
@@ -44,7 +44,7 @@ Historical failures remain first-class artifacts. P11D, P11H and the ten-respons
 - `CLAIM_EVIDENCE_LEDGER.md` — claim authority and donor subtraction
 - `PEER_REVIEW_READINESS.md` — five-lens hostile review/checklist
 - `REVIEWER_SUMMARY.md` and `PR_SCOPE.md`
-- P11/P11B/P11C/P11D/P11E/P11F/P11G/P11H/P11I protocols and harnesses — full evidence history
+- ORION-21/P11B/P11C/P11D/P11E/P11F/P11G/P11H/P11I protocols and harnesses — full evidence history
 - `top_tier/P11_DONOR_COMPARATOR_RESULT_RECEIPT_V1.md` — donor-complete selection-principle comparison
 - `top_tier/P11_DECODER_ATTACK_RESULT_RECEIPT_V1.md` — exact decoder-family frontier
 - `top_tier/P11_QUERY_FAMILY_PHASE_RESULT_RECEIPT_V1.md` — bound ten-responsibility negative and phase boundary

@@ -12,9 +12,9 @@ from .precision_tier import TierRule
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[4]
 PROTOCOL_PATH = (
-    REPO_ROOT / "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json"
+    REPO_ROOT / "papers/orion-11-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json"
 )
-CASES_ROOT = REPO_ROOT / "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases"
+CASES_ROOT = REPO_ROOT / "papers/orion-11-recursive-epistemic-reconstruction/protocol/cases"
 
 #: Modules whose content decides what a number means. Their hash is part of the
 #: execution identity: the same archive scored by different statistics is a
@@ -122,7 +122,7 @@ def _evaluator_hash(repo_root: pathlib.Path) -> str:
     """Content hash of the adjudication rubric, which defines the gold standard."""
     rubric_path = (
         repo_root
-        / "papers/paper-01-recursive-epistemic-reconstruction/protocol/ADJUDICATION_RUBRIC_V1.md"
+        / "papers/orion-11-recursive-epistemic-reconstruction/protocol/ADJUDICATION_RUBRIC_V1.md"
     )
     if not rubric_path.is_file():
         return ""

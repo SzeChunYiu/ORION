@@ -34,7 +34,7 @@ What it does, in order:
 
 Run from the repository root:
 
-    python papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/independent/p6_cleanroom_replay_v1.py
+    python papers/orion-16-formal-epistemic-structures-and-mechanics/evidence/independent/p6_cleanroom_replay_v1.py
 
 Requires z3 for the cross-check leg only (``--no-z3`` skips that leg and
 records it as skipped rather than passing it silently).
@@ -478,7 +478,7 @@ def main(argv=None) -> int:
             "imports_shared_with_local_unit": [],
             "notes": [
                 "no import of papers.candidates.reproducibility_generators_v3",
-                "no import of any papers/paper-06-*/formal module",
+                "no import of any papers/orion-16-*/formal module",
                 "no make target executed; own serializer, schema walk, six decision procedures, and enumeration solver",
             ],
         },

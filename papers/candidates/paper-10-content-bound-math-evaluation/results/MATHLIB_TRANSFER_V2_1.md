@@ -1,4 +1,4 @@
-# P10 programme-scale Mathlib transfer result V2.1
+# ORION-20 programme-scale Mathlib transfer result V2.1
 
 > Generated from the frozen v2 protocol and exact corpus manifest. The JSON
 > result and null-distribution files are the machine-readable sources of truth.

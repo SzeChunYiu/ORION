@@ -1,7 +1,7 @@
-# ORION-P4 Novelty Audit V1
+# ORION-ORION-14 Novelty Audit V1
 
 **Date:** 2026-08-16  
-**Protocol:** P4.protected-authority.v1  
+**Protocol:** ORION-14.protected-authority.v1  
 **Status:** DESIGN_FROZEN
 
 Each system receives a disposition: **ADOPT** (mechanism absorbed as baseline), **ADAPT** (mechanism modified and composed), **COMPOSE** (mechanism reused in a different role), **DEFER** (future integration), or **REJECT** (not applicable).

@@ -39,10 +39,10 @@ jobs:
         run: |
           set -euo pipefail
           git merge-base --is-ancestor 85bb1bc013b8148e2e2d9664cabd17e8bbd7b1a1 HEAD
-          test -f papers/Q-paper-03-dual-instrument/instances/Q3-R1-QG19/PREOUTCOME_AGREEMENT.json
-          test -f papers/Q-paper-03-dual-instrument/instances/Q3-R2-QG20/PREOUTCOME_AGREEMENT.json
-          grep -Fq '"scientific_outcome_accessed": false' papers/Q-paper-03-dual-instrument/instances/Q3-R1-QG19/PREOUTCOME_AGREEMENT.json
-          grep -Fq '"scientific_outcome_accessed": false' papers/Q-paper-03-dual-instrument/instances/Q3-R2-QG20/PREOUTCOME_AGREEMENT.json
+          test -f papers/orion-07-dual-instrument/instances/Q3-R1-QG19/PREOUTCOME_AGREEMENT.json
+          test -f papers/orion-07-dual-instrument/instances/Q3-R2-QG20/PREOUTCOME_AGREEMENT.json
+          grep -Fq '"scientific_outcome_accessed": false' papers/orion-07-dual-instrument/instances/Q3-R1-QG19/PREOUTCOME_AGREEMENT.json
+          grep -Fq '"scientific_outcome_accessed": false' papers/orion-07-dual-instrument/instances/Q3-R2-QG20/PREOUTCOME_AGREEMENT.json
       - name: Execute QG19 twice
         shell: bash
         run: |

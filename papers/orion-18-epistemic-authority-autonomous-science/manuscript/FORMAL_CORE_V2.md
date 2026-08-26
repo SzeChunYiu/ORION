@@ -1,4 +1,4 @@
-# P8 formal core V2 — closed theory
+# ORION-18 formal core V2 — closed theory
 
 **Candidate paper:** A Theory of Epistemic Authority for Autonomous Science  
 **Theory terminal:** `CLOSED_V2`  
@@ -217,7 +217,7 @@ If an irreversible effect commits at epoch `t` and a blocker/refusal is discover
 
 An authorization certificate at epoch `t` is not valid for a request at `t'` when any premise named by its freshness contract may have changed and no freshness/revalidation proof is supplied.
 
-These propositions are parented by ongoing/commit-time authorization work; P8 uses them as constraints rather than novelty claims.
+These propositions are parented by ongoing/commit-time authorization work; ORION-18 uses them as constraints rather than novelty claims.
 
 ## 9. Protected roots and self-promotion
 
@@ -233,7 +233,7 @@ If a candidate controls its own admission predicate and all evidence seen by tha
 
 The candidate can choose a constant-accepting predicate or manufacture evidence satisfying its own acceptance branch. `\square`
 
-This embeds P5's protected external-attestation boundary rather than replacing it.
+This embeds ORION-15's protected external-attestation boundary rather than replacing it.
 
 ## 10. Product decomposition theorem
 
@@ -253,7 +253,7 @@ For every request `e`, evidence context `\Gamma` and coercion/revocation state, 
 
 Both implementations evaluate the same finite conjunction: each hard obligation is discharged by the same direct/coercion relation; the same blockers, grants and freshness facts are consulted; and revocation validity is computed from the same support families. Domain partitioning changes code organization but none of the premises or inference rules. Therefore the decisions are extensionally equal for every input. `\square`
 
-### Corollary 8.1 — centralization is not P8's contribution
+### Corollary 8.1 — centralization is not ORION-18's contribution
 
 Any empirical claim that a shared calculus outperforms independent gates must compare against a product baseline with the same typed cross-domain registry and global revocation semantics. Weak independent scalar thresholds are not a sufficient baseline.
 
@@ -271,7 +271,7 @@ A scientific discharge interface explicitly binds an action/effect to the target
 
 ### Theorem 9 — generic grant does not entail scientific discharge
 
-There exist contexts in which a valid generic permission grant covers effect `e` but a mandatory scientific obligation for `e` is not discharged; therefore generic authorization alone does not imply `AUTHORIZED` under the P8 scientific rule.
+There exist contexts in which a valid generic permission grant covers effect `e` but a mandatory scientific obligation for `e` is not discharged; therefore generic authorization alone does not imply `AUTHORIZED` under the ORION-18 scientific rule.
 
 #### Proof by construction
 
@@ -279,21 +279,21 @@ Give `e` a valid in-scope grant and no blockers. Let `O_h(e)` contain one scient
 
 This theorem states a separation of policy layers, not that security authorization systems are defective: the additional obligation exists because the scientific effect semantics demand it.
 
-## 12. ORION P1–P5 embeddings
+## 12. ORION ORION-11–ORION-15 embeddings
 
-P8 treats the five existing gates as protected special cases:
+ORION-18 treats the five existing gates as protected special cases:
 
-- `REFRAME`: P1 responsibility and dependent-reopening authority;
-- `SEARCH_STOP`: P2 route/task stopping and censored/open coverage;
-- `MAP_MERGE`: P3 referent/context/construct/measurement compatibility;
-- `ASSERT`: P4 protected content-bound evidence and independent verification;
-- `SELF_MODIFY`: P5 protected evaluator, fresh transfer, negative history and no-self-promotion.
+- `REFRAME`: ORION-11 responsibility and dependent-reopening authority;
+- `SEARCH_STOP`: ORION-12 route/task stopping and censored/open coverage;
+- `MAP_MERGE`: ORION-13 referent/context/construct/measurement compatibility;
+- `ASSERT`: ORION-14 protected content-bound evidence and independent verification;
+- `SELF_MODIFY`: ORION-15 protected evaluator, fresh transfer, negative history and no-self-promotion.
 
-The existing candidate branch includes executable selected native-decision fixtures calling live ORION implementations. P8's formal claim is conservative: a domain instantiation is acceptable only if it reproduces the native gate decisions; otherwise the supposed generalization is wrong.
+The existing candidate branch includes executable selected native-decision fixtures calling live ORION implementations. ORION-18's formal claim is conservative: a domain instantiation is acceptable only if it reproduces the native gate decisions; otherwise the supposed generalization is wrong.
 
 ## 13. Donor ownership
 
-P8 does not claim novelty for:
+ORION-18 does not claim novelty for:
 
 - deontic/action/input-output logics;
 - authorization/query logics, delegation and revocation;
@@ -304,9 +304,9 @@ P8 does not claim novelty for:
 - commit-time/stale-authorization control;
 - abstention/selective prediction;
 - provenance/source-aware factuality and execution provenance;
-- P4 scientific-authority promotion or P5 no-self-promotion.
+- ORION-14 scientific-authority promotion or ORION-15 no-self-promotion.
 
-These are donors or parent fields. The P8 object is the explicit type discipline at the **interfaces between heterogeneous scientific obligation domains**.
+These are donors or parent fields. The ORION-18 object is the explicit type discipline at the **interfaces between heterogeneous scientific obligation domains**.
 
 ## 14. Executable support
 
@@ -324,7 +324,7 @@ These are donors or parent fields. The P8 object is the explicit type discipline
 
 ## 15. Completed residual
 
-The theory-complete P8 object is
+The theory-complete ORION-18 object is
 
 \[
 \boxed{
@@ -355,4 +355,4 @@ There are no remaining mathematical `THEOREM TARGET` placeholders in V2.
 - `P8_NOVELTY = CANNOT_CHECK_UNTIL_LITERATURE_CLOSURE`
 - `P8_SEPARATE_PAPER = CANNOT_CHECK_UNTIL_STRONG_BASELINE_DISCRIMINATOR`
 
-If the strong typed-product baseline remains behaviorally equivalent in all relevant evaluations, the correct scientific disposition is to merge P8 into P4/programme synthesis while retaining this theory as the general interface theorem. That is a completed result, not a failed theory.
+If the strong typed-product baseline remains behaviorally equivalent in all relevant evaluations, the correct scientific disposition is to merge ORION-18 into ORION-14/programme synthesis while retaining this theory as the general interface theorem. That is a completed result, not a failed theory.

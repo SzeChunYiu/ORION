@@ -1,10 +1,10 @@
-# Q4 fresh novelty research — 2026-08-22
+# ORION-04 fresh novelty research — 2026-08-22
 
 Purpose: hostile related-work/novelty map for the typed-state paper. This is a bounded search statement, not a novelty certificate.
 
 ## Major positioning change
 
-The 2026 literature makes several primitives in Q4 **non-novel in the broad**:
+The 2026 literature makes several primitives in ORION-04 **non-novel in the broad**:
 
 - typed/provenance-aware agent memory;
 - stale-memory detection/update;
@@ -12,7 +12,7 @@ The 2026 literature makes several primitives in Q4 **non-novel in the broad**:
 - value-of-information for agent information acquisition;
 - governed/versioned persistent memory.
 
-Q4 should therefore not be sold as “typed memory for agents.” Its residual question is narrower and more experimentally testable:
+ORION-04 should therefore not be sold as “typed memory for agents.” Its residual question is narrower and more experimentally testable:
 
 > **When a scientific decision-maker receives the same visible partial information, does explicitly typed/scoped epistemic state change decision quality compared with consuming the same information as an untyped or decision-agnostic memory?**
 
@@ -26,7 +26,7 @@ Zhengda Jin et al., **“Mitigating Provenance-Role Collapse in Long-Term Agents
 
 MemIR explicitly argues that flat unstructured agent memory causes provenance-role collapse and introduces a typed intermediate representation separating evidence, retrieval cues and truth-bearing claims, with provenance-scoped utilization. It reports gains on LoCoMo and BEAM-100K.
 
-This is a direct threat to broad Q4 language such as “typing agent memory is new.” Q4's differentiation must come from **scientific decision state, matched-information ablations, scoped failure applicability/transport obligations, and decision-coupled acquisition**, not from typed memory per se.
+This is a direct threat to broad ORION-04 language such as “typing agent memory is new.” ORION-04's differentiation must come from **scientific decision state, matched-information ablations, scoped failure applicability/transport obligations, and decision-coupled acquisition**, not from typed memory per se.
 
 ### Stale-memory revision
 
@@ -34,23 +34,23 @@ Hanxiang Chao et al., **“STALE: Can LLM Agents Know When Their Memories Are No
 
 Haofei Sun and Lin He, **“When Memory Updates but Behavior Does Not: Repairing Implicit Stale Dependencies in Personalized Agent Responses,”** arXiv:2608.01619 (2026), further studies state-to-draft auditing and stale-dependency repair.
 
-Therefore Q4's stale-receipt study should be framed specifically around **scope-bound scientific failure applicability** and exact matched-information controls, not general stale-memory handling.
+Therefore ORION-04's stale-receipt study should be framed specifically around **scope-bound scientific failure applicability** and exact matched-information controls, not general stale-memory handling.
 
 ### Value of information is an established decision-theoretic agent tool
 
 Yijiang River Dong et al., **“Value of Information: A Framework for Human–Agent Communication,”** ACL 2026, applies classical VoI to agent clarification decisions across multiple real domains.
 
-VoI itself is classical and agentic VoI is now explicit in current literature. Q4's N4-A/N1-C results can test how **typed priors/scoped state alter VoI decisions**, but cannot claim to introduce VoI-based agents.
+VoI itself is classical and agentic VoI is now explicit in current literature. ORION-04's N4-A/N1-C results can test how **typed priors/scoped state alter VoI decisions**, but cannot claim to introduce VoI-based agents.
 
 ### Provenance-grounded / governed persistent memory
 
 2026 work including Eywa, governed shared-memory architectures, bitemporal/typed memory operators, and emerging persistent-memory specifications already treats scope, temporal supersession, provenance, versioning and validation state as first-class agent-memory concepts.
 
-Q4 should not claim these database/governance primitives in general.
+ORION-04 should not claim these database/governance primitives in general.
 
 ## Residual contribution that still looks defensible
 
-The present Q4 evidence remains distinctive in combination:
+The present ORION-04 evidence remains distinctive in combination:
 
 1. **same visible facts, different epistemic representation/policy** rather than an information-asymmetry comparison;
 2. multiple scientific-decision primitives tested under one frozen first-right-of-refusal discipline;
@@ -64,7 +64,7 @@ This package is better described as **typed epistemic mechanics for research dec
 
 ## Current publication ceiling
 
-The synthetic suite provides good mechanism isolation but is not enough for a top-tier claim about scientific agents. The closest literatures now include real-domain memory/VoI benchmarks, so Q4 requires a real research-decision validation layer.
+The synthetic suite provides good mechanism isolation but is not enough for a top-tier claim about scientific agents. The closest literatures now include real-domain memory/VoI benchmarks, so ORION-04 requires a real research-decision validation layer.
 
 A top-tier successor should ask the same matched-information question on prospectively frozen **real scientific decisions**, preferably across multiple programmes and at least one external/open corpus.
 

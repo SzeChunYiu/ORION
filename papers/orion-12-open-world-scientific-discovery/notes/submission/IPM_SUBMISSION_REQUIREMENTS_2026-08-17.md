@@ -14,8 +14,8 @@ Authoritative source: current ScienceDirect *Information Processing & Management
 
 - Abstract: concise/factual and **no more than 250 words**.
 - Keywords: **1–7**, in English.
-- Current P2 abstract is approximately 220 words after LaTeX-command normalization.
-- Current P2 manuscript has 6 English keywords.
+- Current ORION-12 abstract is approximately 220 words after LaTeX-command normalization.
+- Current ORION-12 manuscript has 6 English keywords.
 
 ## Double-anonymized title page
 
@@ -43,9 +43,9 @@ The live submission checklist additionally asks for corresponding-author phone/c
 
 The current IP&M guide requires authors to declare generative-AI use in manuscript preparation. The disclosure is placed in a new section before the references. AI tools may not be listed as authors. Human authors remain responsible for verifying, editing and taking responsibility for the final content.
 
-This P2 closure lane used OpenAI ChatGPT for research support, source checking, code/manuscript review and submission-package preparation. A truthful disclosure draft is stored in `GENERATIVE_AI_DECLARATION_DRAFT.md`; the human authors must review/approve the wording before submission.
+This ORION-12 closure lane used OpenAI ChatGPT for research support, source checking, code/manuscript review and submission-package preparation. A truthful disclosure draft is stored in `GENERATIVE_AI_DECLARATION_DRAFT.md`; the human authors must review/approve the wording before submission.
 
-## P2 compliance status
+## ORION-12 compliance status
 
 | Requirement | Status |
 | --- | --- |

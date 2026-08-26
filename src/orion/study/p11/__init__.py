@@ -1,7 +1,7 @@
 """P11 instruments that make a survived hostile attack report what it measured.
 
 P11G is the paper's hostile nonlinear evidence, scoped by
-``papers/paper-11-state-as-computation/P11G_ARM_PLACEMENT_ADJUDICATION_V1.md``
+``papers/orion-21-state-as-computation/P11G_ARM_PLACEMENT_ADJUDICATION_V1.md``
 to the arm it names after the measurements below. Its
 terminal is a live conjunction, its seed is published, its estimator seeds are
 pinned, and a two-subprocess byte-identical replay sits inside the terminal

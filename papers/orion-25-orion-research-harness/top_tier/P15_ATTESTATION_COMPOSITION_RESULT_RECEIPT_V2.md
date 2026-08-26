@@ -1,4 +1,4 @@
-# P15 Ed25519 attestation-composition result receipt V2
+# ORION-25 Ed25519 attestation-composition result receipt V2
 
 **Run:** GitHub Actions `32664075763` (branch `claude/gap-p15-attestation-20260823`, head `66f490d1821232e11bc8b07516b69cc6bf337be8`)  
 **Artifact:** `p15-attestation-composition-v2`, artifact ID `9499830847`  
@@ -24,7 +24,7 @@
 
 ## Corpus
 
-`22` cases total: `18` frozen hostile SEI fault cases + `4` real ORION workflow receipts (P6 ETS positive, P9 Qwen negative, P10 OCME positive, P10 native-Lean `CANNOT_CHECK`). Each case is composed into a three-link chain (execution → environment → publication), each link an Ed25519 signature over `previous_digest || role || facts`, genesis `sha256("P15-ATTESTATION-COMPOSITION-V2-GENESIS")`. Role keys are derived per `(role, case_id)` seeds; no scientific-contract or claim-authority field enters any signed payload.
+`22` cases total: `18` frozen hostile SEI fault cases + `4` real ORION workflow receipts (ORION-16 ETS positive, ORION-19 Qwen negative, ORION-20 OCME positive, ORION-20 native-Lean `CANNOT_CHECK`). Each case is composed into a three-link chain (execution → environment → publication), each link an Ed25519 signature over `previous_digest || role || facts`, genesis `sha256("ORION-25-ATTESTATION-COMPOSITION-V2-GENESIS")`. Role keys are derived per `(role, case_id)` seeds; no scientific-contract or claim-authority field enters any signed payload.
 
 ## Composition result (from the actual artifact)
 
@@ -56,7 +56,7 @@ Under full key-set compromise the composed signature layer detects nothing (`0/6
 - `CHAIN_AS_SCIENCE` (hostile collapse of the chain into the admission decision): false-promotes `AUTHORIZED_SCIENCE` in `6/6`.
 - `CHAIN_PLUS_SEI`: also false-promotes `6/6` — key custody is an **unregistered premise** inherited by the SEI layer, since the forged execution facts satisfy all 16 integrity conjuncts.
 
-Base-corpus hostile collapse additionally false-promotes `6` execution-valid cases whose gold dispositions are `VALID_BUT_NOT_AUTHORIZED` / `INVALID_SCIENCE` / `CANNOT_CHECK` (5 fault + `REAL-P10-NATIVE-LEAN-CANNOT-CHECK`), for the `12` total above.
+Base-corpus hostile collapse additionally false-promotes `6` execution-valid cases whose gold dispositions are `VALID_BUT_NOT_AUTHORIZED` / `INVALID_SCIENCE` / `CANNOT_CHECK` (5 fault + `REAL-ORION-20-NATIVE-LEAN-CANNOT-CHECK`), for the `12` total above.
 
 ## False-rejection check over the full valid workload
 
@@ -76,6 +76,6 @@ The independent checker (`check_attestation_composition_independent_v2.py`, shar
 
 ## Scientific disposition
 
-P15 now demonstrates that a multi-attestation Ed25519 composition over execution, environment and publication facts composes and fails closed under truncation, substitution, splicing, reordering, replay and stale-state presentation — at bounded scope, on the frozen 22-case corpus. The negative result is load-bearing: the composed chain adds ATTRIBUTABLE/tamper-evident execution records, not scientific validity, and a full key-set compromise is invisible to it; collapsing the chain into scientific admission false-promotes 12 cases while a properly scoped cryptographic-only reading correctly returns `CANNOT_CHECK`. Attestation donors therefore sit strictly below the scientific-admission layer; they are neither a replacement nor a sufficient premise for it.
+ORION-25 now demonstrates that a multi-attestation Ed25519 composition over execution, environment and publication facts composes and fails closed under truncation, substitution, splicing, reordering, replay and stale-state presentation — at bounded scope, on the frozen 22-case corpus. The negative result is load-bearing: the composed chain adds ATTRIBUTABLE/tamper-evident execution records, not scientific validity, and a full key-set compromise is invisible to it; collapsing the chain into scientific admission false-promotes 12 cases while a properly scoped cryptographic-only reading correctly returns `CANNOT_CHECK`. Attestation donors therefore sit strictly below the scientific-admission layer; they are neither a replacement nor a sufficient premise for it.
 
 This closes the attestation-composition and false-rejection gaps for the tested scope. It does not establish hardware-backed key custody, external timestamping authorities, production KMS/HSM deployment, or resistance to compromises of the signing infrastructure itself.

@@ -1,14 +1,14 @@
-# ORION-P1 journal-readiness plan — Recursive Epistemic Reconstruction
+# ORION-ORION-11 journal-readiness plan — Recursive Epistemic Reconstruction
 
 > **Authority correction 2026-08-24.** This checklist preserves the scientific
 > audit and its historical negative evidence, but it no longer promotes that
 > audit into current submission-package authority. Two rows refer to the
-> removed nearest-work mechanism matrix (Table P1-1 / P1-T1); its content is
+> removed nearest-work mechanism matrix (Table ORION-11-1 / ORION-11-T1); its content is
 > now prose in Related work, while the unchanged matrix remains archived as
 > `evidence/NEAREST_WORK_MATRIX_V2.md`. Historical package-readiness statements
 > below are read subject to the current two-axis terminal and blockers.
 
-**Current terminal:** `CANNOT_CHECK` for submission readiness. The bounded mechanical claim is `SUPPORTED`, and that is unchanged; what cannot be checked is the enlarged manuscript and journal package, which are `NOT_SUBMISSION_READY` (`journal_package/MANIFEST.json` status `SUPERSEDED`). The previous wording stated both facts but named neither scoreboard status, so `research/publication/scoreboard.py` read the line as unparseable and P1 declared no scorable terminal at all. An unscorable paper is not a neutral state: it is absent from the one place the programme reads readiness from.
+**Current terminal:** `CANNOT_CHECK` for submission readiness. The bounded mechanical claim is `SUPPORTED`, and that is unchanged; what cannot be checked is the enlarged manuscript and journal package, which are `NOT_SUBMISSION_READY` (`journal_package/MANIFEST.json` status `SUPERSEDED`). The previous wording stated both facts but named neither scoreboard status, so `research/publication/scoreboard.py` read the line as unparseable and ORION-11 declared no scorable terminal at all. An unscorable paper is not a neutral state: it is absent from the one place the programme reads readiness from.
 **Already present:** scoped manuscript, explicit K/W/M formulation, mechanic-cell self-audit, hidden-shift local falsifier, negative controls, local failure/repair record.
 
 The bounded result and the package are different authorities. The primary and
@@ -24,11 +24,11 @@ naturalistic, and open-ended superiority are not claimed.
 - [x] Compare against SciAgentArena (arXiv:2606.12736) as an external scientific-agent task source where compatible.
 - [x] Re-run function-only and parent-discipline search for problem reformulation, model revision, adaptive planning, requirements/dependency invalidation and rational metareasoning.
 - [x] Rewrite the novelty sentence so it claims only the smallest surviving composition: explicit K/W/M separation + typed responsibility-targeted reframe + dependency-directed reopening + recursive mechanic audit.
-- [x] Decide whether each of P1.D1–P1.D4 survives as an independent delta or only as part of the composition.
+- [x] Decide whether each of ORION-11.D1–ORION-11.D4 survives as an independent delta or only as part of the composition.
 
 **Status:** Section 1 COMPLETE. The 36-row matrix plus donor-assimilation rounds A--H engulf active diagnosis, counterfactual minimal repair, diagnosis-to-recovery admission, dependency rollback, causal-context slicing and certificate enforcement. The tested residual is the science-specific protected necessity composition, not any donor-owned ingredient. See `manuscript/sections/06-related-work-boundary.tex` and `research/revival/p1/P1_DONOR_ENGULFMENT_V1.json`.
 
-**Open checks before submission:** (1) MAST's 14 individual mode names retrieved — none targets a formulation coordinate; P1.D2 narrowing does not tighten further. (2) Surfaced-but-unfetched failure-attribution cluster (TRAIL, AEGIS, AgenTracer, ErrorProbe, REFLECT, AgentErrorBench, AgentRx, span-level/DRIFT) read in full — none attaches a permission to modify formulation/search universe; P1.D2 verdict safe against this family. Both documented in §06 and the matrix. (3) SCION checkpoint-failure semantics unresolved — changes no verdict but must be closed before submission. (4) Fresh literature-closure pass required before submission.
+**Open checks before submission:** (1) MAST's 14 individual mode names retrieved — none targets a formulation coordinate; ORION-11.D2 narrowing does not tighten further. (2) Surfaced-but-unfetched failure-attribution cluster (TRAIL, AEGIS, AgenTracer, ErrorProbe, REFLECT, AgentErrorBench, AgentRx, span-level/DRIFT) read in full — none attaches a permission to modify formulation/search universe; ORION-11.D2 verdict safe against this family. Both documented in §06 and the matrix. (3) SCION checkpoint-failure semantics unresolved — changes no verdict but must be closed before submission. (4) Fresh literature-closure pass required before submission.
 
 ## 2. Primary hypotheses to freeze prospectively
 
@@ -43,7 +43,7 @@ naturalistic, and open-ended superiority are not claimed.
 - [x] Freeze one primary hypothesis (recommended H1) and treat H2–H4 as secondary/mechanistic.
 - [x] Predefine minimum practically meaningful effect/equivalence margins before running the final test.
 
-**Status:** COMPLETE. Historical `P1.hidden-formulation.v1.1` remains frozen and underpowered. The powered successor `P1.epistemic-mutation-necessity.v2.2.4` prospectively freezes three co-primary strong parents, a +0.10 hidden-shift margin against each, 480 hidden shifts, 2402 controls, all safety/non-regression/cost gates, primary seed `202608172211`, and disjoint replication seed `202608172212`.
+**Status:** COMPLETE. Historical `ORION-11.hidden-formulation.v1.1` remains frozen and underpowered. The powered successor `ORION-11.epistemic-mutation-necessity.v2.2.4` prospectively freezes three co-primary strong parents, a +0.10 hidden-shift margin against each, 480 hidden shifts, 2402 controls, all safety/non-regression/cost gates, primary seed `202608172211`, and disjoint replication seed `202608172212`.
 
 ## 3. External benchmark construction
 
@@ -124,17 +124,17 @@ Statistics:
 
 Freeze plotting code/spec before final outcome analysis.
 
-- [x] **Figure P1-1:** benchmark protocol diagram showing hidden cause, observable trace, allowed interventions and protected labels. (`manuscript/figures/P1-1_protocol_diagram.pdf`, 49.1K)
-- [x] **Figure P1-2:** root success by task family and baseline with uncertainty intervals. (`results/figures/P1-2_main_outcome.pdf`, 19.3K)
-- [x] **Figure P1-3:** false-reframe rate vs hidden-shift success (selectivity frontier). (`results/figures/P1-3_selectivity_frontier.pdf`, 17.4K)
-- [x] **Figure P1-4:** reopen precision/recall or F1 by dependency depth. (`results/figures/P1-4_reopening.pdf`, 31.7K)
-- [x] **Figure P1-5:** cost-to-success / success-cost Pareto frontier. (`results/figures/P1-5_efficiency.pdf`, 17.3K)
-- [x] **Figure P1-6:** invariant/trace error vs recursion depth. (`results/figures/P1-6_recursion_stability.pdf`, 24.1K)
-- [x] **Table P1-1:** nearest-work mechanism matrix. (`manuscript/tables/P1-T1_nearest_work.tex`, 11.9K; `\input` at `manuscript/sections/06-related-work-boundary.tex:35`, `\ref{tab:P1-T1}` at :7)
-- [x] **Table P1-2:** full ablation table with delta and confidence interval. (`results/P1-T2_baseline_ablation_results.md`, 23.3K)
-- [x] **Table P1-3:** failure taxonomy with representative blinded cases. (`results/P1-T3_failure_taxonomy.md`, 5.0K)
+- [x] **Figure ORION-11-1:** benchmark protocol diagram showing hidden cause, observable trace, allowed interventions and protected labels. (`manuscript/figures/ORION-11-1_protocol_diagram.pdf`, 49.1K)
+- [x] **Figure ORION-11-2:** root success by task family and baseline with uncertainty intervals. (`results/figures/ORION-11-2_main_outcome.pdf`, 19.3K)
+- [x] **Figure ORION-11-3:** false-reframe rate vs hidden-shift success (selectivity frontier). (`results/figures/ORION-11-3_selectivity_frontier.pdf`, 17.4K)
+- [x] **Figure ORION-11-4:** reopen precision/recall or F1 by dependency depth. (`results/figures/ORION-11-4_reopening.pdf`, 31.7K)
+- [x] **Figure ORION-11-5:** cost-to-success / success-cost Pareto frontier. (`results/figures/ORION-11-5_efficiency.pdf`, 17.3K)
+- [x] **Figure ORION-11-6:** invariant/trace error vs recursion depth. (`results/figures/ORION-11-6_recursion_stability.pdf`, 24.1K)
+- [x] **Table ORION-11-1:** nearest-work mechanism matrix. (`manuscript/tables/ORION-11-T1_nearest_work.tex`, 11.9K; `\input` at `manuscript/sections/06-related-work-boundary.tex:35`, `\ref{tab:ORION-11-T1}` at :7)
+- [x] **Table ORION-11-2:** full ablation table with delta and confidence interval. (`results/ORION-11-T2_baseline_ablation_results.md`, 23.3K)
+- [x] **Table ORION-11-3:** failure taxonomy with representative blinded cases. (`results/ORION-11-T3_failure_taxonomy.md`, 5.0K)
 
-**Status:** 11/11 done. The historical six figures and three tables remain. Figure P1-7 and Table P1-4 add the powered primary/replication rates, strongest-parent paired intervals, and mechanism ablations; both are generated or transcribed from hash-bound result JSON and integrated with labels/references.
+**Status:** 11/11 done. The historical six figures and three tables remain. Figure ORION-11-7 and Table ORION-11-4 add the powered primary/replication rates, strongest-parent paired intervals, and mechanism ablations; both are generated or transcribed from hash-bound result JSON and integrated with labels/references.
 
 ## 7. Manuscript work still missing
 
@@ -151,7 +151,7 @@ Freeze plotting code/spec before final outcome analysis.
 **Status:** COMPLETE. The abstract, successor methods/results, nearest-work boundary, limitations, conclusion, reproducibility contract, claim ledger, exact table, and generated figure now report the powered primary and disjoint replication without erasing historical V1 negative evidence.
 
 **What those two runs are evidence about.** Both are runs of a frozen
-generator. `P1.epistemic-mutation-necessity.v2.2.4` fixes the case generator
+generator. `ORION-11.epistemic-mutation-necessity.v2.2.4` fixes the case generator
 before either seed is drawn, so the primary run at seed `202608172211` and the
 disjoint replication at `202608172212` differ in sampling and in nothing else.
 They are therefore mechanism evidence: they establish how the registered
@@ -197,7 +197,7 @@ externally held handoff does not make its bytes repository-available.
 
 The **bounded scientific result** is retained when its frozen claim, negative
 history, independent recomputation, and scope ceiling remain intact. That
-condition is satisfied for `P1.NECESSITY.V2.2.4` and does not authorize broader
+condition is satisfied for `ORION-11.NECESSITY.V2.2.4` and does not authorize broader
 superiority.
 
 The **current submission package** is ready only after the current source has a
@@ -208,15 +208,15 @@ satisfied.
 
 ## Historical scientific completion record
 
-1. ~~**Figure P1-1 (protocol diagram):**~~ DONE — `manuscript/figures/P1-1_protocol_diagram.pdf`, included in §05a-methods.
-2. ~~**Table P1-1 (nearest-work matrix):**~~ DONE — `manuscript/tables/P1-T1_nearest_work.tex`, included via `\input` in §06.
+1. ~~**Figure ORION-11-1 (protocol diagram):**~~ DONE — `manuscript/figures/ORION-11-1_protocol_diagram.pdf`, included in §05a-methods.
+2. ~~**Table ORION-11-1 (nearest-work matrix):**~~ DONE — `manuscript/tables/ORION-11-T1_nearest_work.tex`, included via `\input` in §06.
 3. ~~**Figure/table LaTeX infrastructure:**~~ DONE — graphicx/booktabs/tabularx/caption/longtable/array/ragged2e in `main.tex`; figures + tables all `\label`/`\ref`-linked; manuscript compiles clean.
-4. ~~**MAST mode-name check:**~~ DONE — all 14 mode names retrieved from full text (Appendix A); none targets a formulation/search-universe/representation/decomposition/measurement coordinate; P1.D2 not narrowed further. Recorded in §06 and the matrix. No remaining open check can move the P1.D2 verdict.
-5. ~~**Surfaced-but-unfetched cluster:**~~ DONE — TRAIL, AEGIS, AgenTracer, AgentErrorBench, ErrorProbe, AgentRx, REFLECT and span-level/DRIFT all retrieved and read; none attaches a permission to modify the formulation or search universe on the basis of the diagnosed error type; P1.D2 safe against the failure-attribution family. Recorded in §06 and the matrix.
+4. ~~**MAST mode-name check:**~~ DONE — all 14 mode names retrieved from full text (Appendix A); none targets a formulation/search-universe/representation/decomposition/measurement coordinate; ORION-11.D2 not narrowed further. Recorded in §06 and the matrix. No remaining open check can move the ORION-11.D2 verdict.
+5. ~~**Surfaced-but-unfetched cluster:**~~ DONE — TRAIL, AEGIS, AgenTracer, AgentErrorBench, ErrorProbe, AgentRx, REFLECT and span-level/DRIFT all retrieved and read; none attaches a permission to modify the formulation or search universe on the basis of the diagnosed error type; ORION-11.D2 safe against the failure-attribution family. Recorded in §06 and the matrix.
 
 **Retained scientific checks:**
 6. **SCION checkpoint-failure semantics:** DONE — full paper text read (pdftotext via extracted PDF). SCION's failure handling is two-layer: precompiled fallback conditions in the REP, and a runtime rollback mechanism where critic checkpoints trigger rollback/branch-termination/re-routing/resource-reallocation on procedural anomalies (drift, hallucination, unproductive branch, constraint violation). No dependency-directed reopening of completed dependent stages conditional on a responsibility *type* — that residual trigger remains ORION-specific. Gap closed; no verdict change (EviGraph already establishes dependency-directed reopening).
-7. ~~**Fresh literature-closure pass:**~~ DONE — 8 papers from the 2608 cs.AI series surfaced and checked (AgentRewind 2608.14380, ScienceFlow 2608.14354, Demystifying Agent Skills 2608.14036, Drift Diagnosis 2608.14109, Wrong but Useful 2608.14375, Session Handover 2608.14528, SAFARI 2608.14339, Past and Future of AI Scientists 2608.14407). None attaches a responsibility-typed reformulation/authority licence; P1.D2 unaffected. AgentRewind and ScienceFlow (state recovery/re-anchoring without a typed responsibility→authority gate) added as DEFER rows in the matrix (36 rows total). SCION bib-title correction already applied. Documented in §06, the matrix, its JSON twin, and the LaTeX table.
+7. ~~**Fresh literature-closure pass:**~~ DONE — 8 papers from the 2608 cs.AI series surfaced and checked (AgentRewind 2608.14380, ScienceFlow 2608.14354, Demystifying Agent Skills 2608.14036, Drift Diagnosis 2608.14109, Wrong but Useful 2608.14375, Session Handover 2608.14528, SAFARI 2608.14339, Past and Future of AI Scientists 2608.14407). None attaches a responsibility-typed reformulation/authority licence; ORION-11.D2 unaffected. AgentRewind and ScienceFlow (state recovery/re-anchoring without a typed responsibility→authority gate) added as DEFER rows in the matrix (36 rows total). SCION bib-title correction already applied. Documented in §06, the matrix, its JSON twin, and the LaTeX table.
 
 ## Current submission blockers
 

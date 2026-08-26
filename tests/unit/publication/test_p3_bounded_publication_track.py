@@ -10,7 +10,7 @@ def test_p3_bounded_publication_track_guard() -> None:
     checker = (
         root
         / "papers"
-        / "paper-03-global-knowledge-portrait"
+        / "orion-13-global-knowledge-portrait"
         / "scripts"
         / "check_bounded_publication_track.py"
     )

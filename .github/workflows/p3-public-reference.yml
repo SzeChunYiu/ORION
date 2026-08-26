@@ -7,8 +7,8 @@ on:
       - '.github/workflows/p3-public-reference.yml'
       - 'src/orion/study/p3_public_reference*.py'
       - 'tests/unit/study/test_p3_public_reference*.py'
-      - 'papers/paper-03-global-knowledge-portrait/gold/PUBLIC_REFERENCE_*'
-      - 'papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_*'
+      - 'papers/orion-13-global-knowledge-portrait/gold/PUBLIC_REFERENCE_*'
+      - 'papers/orion-13-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_*'
 
 permissions:
   contents: write
@@ -121,8 +121,8 @@ jobs:
             src/orion/study/p3_public_reference_build.py \
             src/orion/study/p3_public_reference_analysis.py \
             src/orion/study/p3_public_reference_freeze.py \
-            papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_PROTOCOL_V1.json \
-            papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_GOLD_V1.md)
+            papers/orion-13-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_PROTOCOL_V1.json \
+            papers/orion-13-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_GOLD_V1.md)
           {
             echo "ORION_EVALUATOR_SHA=$evaluator_sha"
             echo "MUSE_SHA=f7a40317db46145d0c90b221311d8324db5da1b9"
@@ -137,8 +137,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gold_dir=papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1
-          evidence_dir=papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1
+          gold_dir=papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1
+          evidence_dir=papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1
           mkdir -p "$gold_dir" "$evidence_dir"
           cp artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl "$gold_dir/"
           cp artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json "$gold_dir/"

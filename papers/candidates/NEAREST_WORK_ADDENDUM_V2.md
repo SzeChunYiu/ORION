@@ -1,10 +1,10 @@
-# P6–P8 nearest-work pressure addendum V2
+# ORION-16–ORION-18 nearest-work pressure addendum V2
 
 **Search/review date:** 2026-08-17  
 **Status:** targeted formal-methods addendum; not literature saturation  
 **Rule:** these works remove broad claim territory. They do not establish that the surviving ORION composition is novel.
 
-## 1. P6 — additional formal-methods pressure
+## 1. ORION-16 — additional formal-methods pressure
 
 ### Hoare-style contracts
 
@@ -12,7 +12,7 @@ C. A. R. Hoare, “An Axiomatic Basis for Computer Programming,” *Communicatio
 
 **Donor mechanism:** pre/postcondition and invariant reasoning about state-transforming programs.
 
-**Contraction:** P6 cannot claim novelty for specifying mechanics by preconditions, transitions and postconditions/invariants.
+**Contraction:** ORION-16 cannot claim novelty for specifying mechanics by preconditions, transitions and postconditions/invariants.
 
 ### Separation/local reasoning
 
@@ -22,7 +22,7 @@ Hans van Ditmarsch, Didier Galmiche and Marta Gawek, “An Epistemic Separation 
 
 **Donor mechanisms:** local reasoning/frame-style preservation; explicit combination of epistemic/action-model dynamics with separation structure.
 
-**Contraction:** read/write locality, frame preservation, resource separation and epistemic action composition are not P6 novelty individually. P6 commutation must state footprint fidelity and distinguish current scientific projection from ordered audit history.
+**Contraction:** read/write locality, frame preservation, resource separation and epistemic action composition are not ORION-16 novelty individually. ORION-16 commutation must state footprint fidelity and distinguish current scientific projection from ordered audit history.
 
 ### Truth maintenance and multiple contexts
 
@@ -32,9 +32,9 @@ Johan de Kleer, “An Assumption-based TMS,” *Artificial Intelligence* 28(2), 
 
 **Donor mechanisms:** recorded justifications, dependency-directed revision/backtracking, assumption sets, inconsistent/multiple contexts and preservation of alternatives.
 
-**Contraction:** dependency graphs, selective invalidation, explanation lineage and multiple epistemic contexts are established. P6's minimal-reopening theorem is supporting structure and must not be sold as the paper's novelty.
+**Contraction:** dependency graphs, selective invalidation, explanation lineage and multiple epistemic contexts are established. ORION-16's minimal-reopening theorem is supporting structure and must not be sold as the paper's novelty.
 
-### P6 residual after this addendum
+### ORION-16 residual after this addendum
 
 Only the coupled object remains testable:
 
@@ -42,7 +42,7 @@ Only the coupled object remains testable:
 
 Even this remains `CANNOT_CHECK` until full-text mechanism saturation and conservative donor embeddings close.
 
-## 2. P7 — result of this targeted pass
+## 2. ORION-17 — result of this targeted pass
 
 The current V1 ledgers already cover graph navigation, open-world search-agent evaluation, POMDP/information gathering, initial orientation, world-model/objective revision and scientific-exploration concentration.
 
@@ -52,7 +52,7 @@ This targeted formal-methods pass found **no new source that collapses the exact
 
 Required next search lanes remain historical problem reformulation, representation-changing planning, scientific model-space revision, institutions/frames in philosophy of science, and formal transport of evidence across ontology/objective change.
 
-## 3. P8 — additional authorization-logic pressure
+## 3. ORION-18 — additional authorization-logic pressure
 
 ### SecPAL
 
@@ -76,7 +76,7 @@ Owen Arden et al., “A Calculus for Flow-Limited Authorization,” arXiv:`2104.
 
 ETAS, arXiv:`2607.17780`, already supplies typed effects, requested/handled/denied/committed event distinctions, residual obligations, trace policies and policy-safety results for agent systems.
 
-**Contraction:** P8 cannot claim generic typed permissions, delegation, revocation, dynamic authorization, evidence-bearing policy or request/commit separation. Its only permissible residual is cross-**epistemic-domain** non-fungibility/coercion tested against faithful strong policy and P1–P5 baselines.
+**Contraction:** ORION-18 cannot claim generic typed permissions, delegation, revocation, dynamic authorization, evidence-bearing policy or request/commit separation. Its only permissible residual is cross-**epistemic-domain** non-fungibility/coercion tested against faithful strong policy and ORION-11–ORION-15 baselines.
 
 ## 4. Literature authority
 

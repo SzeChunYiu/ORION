@@ -1,7 +1,7 @@
 """Candidate-generation mechanics for the open-world acquisition successor study.
 
 Six arms over one synthetic provider, defined by
-`papers/paper-02-open-world-scientific-discovery/protocol/P2_OPEN_WORLD_ACQUISITION_FREEZE_2026-08-22.md`.
+`papers/orion-12-open-world-scientific-discovery/protocol/P2_OPEN_WORLD_ACQUISITION_FREEZE_2026-08-22.md`.
 
 Why another mechanics module when `echo_mechanics` exists
 --------------------------------------------------------

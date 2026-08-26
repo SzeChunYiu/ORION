@@ -28,5 +28,5 @@ PY
 
 PYTHONPATH=framework python -m pytest -q framework/tests
 python ../paper-xx-executable-research-core/check_merged_ready.py
-python ../paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
+python ../archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
 printf 'P9/P10 bounded local closure: PASS\n'

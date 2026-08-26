@@ -10,7 +10,7 @@ zero-hit to candidate generation and names the mechanism:
 This module builds the smallest world in which that sentence is literally true,
 so a successor mechanic can be measured against the mechanism rather than
 against a story about it. Every parameter is fixed by
-`papers/paper-02-open-world-scientific-discovery/protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md`
+`papers/orion-12-open-world-scientific-discovery/protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md`
 and hashed into its JSON twin; `PARAMETERS` below is the block that gets hashed.
 
 Three properties of the real failure are carried over, and each one is a design

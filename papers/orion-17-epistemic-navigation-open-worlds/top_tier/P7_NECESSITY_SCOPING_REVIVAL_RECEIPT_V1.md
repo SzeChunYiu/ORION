@@ -1,17 +1,17 @@
-# P7 necessity-scoping revival receipt V1
+# ORION-17 necessity-scoping revival receipt V1
 
 **Lane:** NR-10 of `research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md`
 **Branch:** `revive/p7-necessity-nr10` (draft PR, not merged)
 **Negative revived:** `MATCH_IS_NOT_NECESSARY` for the broader necessity reading
-(P7.V4.8; history record `P7-HIST-002`, immutable; ledger item
-`P7.MATCH_NECESSITY.HISTORICAL_LIMITATION`)
+(ORION-17.V4.8; history record `ORION-17-HIST-002`, immutable; ledger item
+`ORION-17.MATCH_NECESSITY.HISTORICAL_LIMITATION`)
 **Terminal:** `P7_NECESSITY_SCOPING_REVIVED__OPAQUE_FRAME_CHARACTERIZED__WITNESS_PRESERVED`
 
 ## Disposition
 
 The negative is **scoped, not retracted**. Both backlog lever branches were taken: the
 frame in which a necessity reading holds was constructed and verified (primary), and the
-claim boundary was rewritten around it (P7.V4.10 below). The V1 witness is preserved
+claim boundary was rewritten around it (ORION-17.V4.10 below). The V1 witness is preserved
 unchanged as the boundary exhibit.
 
 ## One-stage attribution
@@ -30,7 +30,7 @@ theorem is weakened — the negative names which question each theorem answers.
 **licensing rule** is a function from an admissible observation to `{LICENSE, REFUSE}`;
 **sound** = never licenses a composite that is not total when both legs are; **maximal**
 = no strictly more permissive rule is sound. Two scopes: the **opaque scope** (contract
-identities + the full bridge table — what P7's fail-closed rule actually sees) and the
+identities + the full bridge table — what ORION-17's fail-closed rule actually sees) and the
 **witness-aware scope** (adds `Demands` on the hand-off contracts).
 
 ## Results (single targeted script, stdlib only, no suites)
@@ -101,11 +101,11 @@ All pre-registered claims hold (`ALL_PRE_REGISTERED_CLAIMS_HOLD`, 1.6 s):
 
 ## Claim-boundary artifact (ledger row added)
 
-`CLAIM_LEDGER_V4.md` gains P7.V4.10: in the evidence-bounded frame, the exact sound
+`CLAIM_LEDGER_V4.md` gains ORION-17.V4.10: in the evidence-bounded frame, the exact sound
 opaque licensing condition is registry-connectivity; match coincides with it exactly
 under component-complete registries; the V1 incompleteness decomposes into opacity
 proper and directional bookkeeping. Forbidden upgrade stated there: reading any of this
-as match being necessary for the semantics, or as weakening P7.V4.8.
+as match being necessary for the semantics, or as weakening ORION-17.V4.8.
 
 ## Empirical correspondence (interpretive; boundary disclosed)
 

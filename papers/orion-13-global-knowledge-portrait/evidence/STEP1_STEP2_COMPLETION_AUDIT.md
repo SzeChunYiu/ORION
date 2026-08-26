@@ -1,4 +1,4 @@
-# ORION-P3 Step 1-2 Completion Audit
+# ORION-ORION-13 Step 1-2 Completion Audit
 
 > **Annotated 2026-08-22 after the manuscript house-style rewrite.** This is a
 > completed audit of the manuscript as it stood when the audit was run, and is
@@ -114,6 +114,6 @@ The work is distributed across:
 ## References
 
 - Issue #100: `https://github.com/SzeChunYiu/ORION/issues/100`
-- Protocol: `protocol/PROTOCOL_V1.json` (frozen as P3.cross-domain-atlas.v1)
+- Protocol: `protocol/PROTOCOL_V1.json` (frozen as ORION-13.cross-domain-atlas.v1)
 - Evidence: `evidence/NEAREST_WORK_DISPOSITIONS_V1.md` (comprehensive dispositions)
 - Manuscript: `manuscript/sections/20-related-work.tex`, `manuscript/sections/50-evaluation.tex`

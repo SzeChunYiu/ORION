@@ -6,7 +6,7 @@ from pathlib import Path
 from orion.study.p9.frontier_status_lifecycle import build_amendment
 
 ROOT = Path(__file__).resolve().parents[4]
-ARTIFACT = ROOT / "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_METADATA_AMENDMENT_2026-08-22.json"
+ARTIFACT = ROOT / "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_METADATA_AMENDMENT_2026-08-22.json"
 
 
 def test_metadata_amendment_replays_exactly() -> None:

@@ -1,8 +1,8 @@
-# P3 Gold Atlas — Construction Methodology (V1)
+# ORION-13 Gold Atlas — Construction Methodology (V1)
 
 ## Status: SEED-PLACEHOLDER
 
-This document describes how the P3 cross-domain annotation gold atlas was constructed.
+This document describes how the ORION-13 cross-domain annotation gold atlas was constructed.
 It is a companion to the **[GOLD_ATLAS_FREEZE_V1.json](GOLD_ATLAS_FREEZE_V1.json)** freeze manifest.
 
 ---

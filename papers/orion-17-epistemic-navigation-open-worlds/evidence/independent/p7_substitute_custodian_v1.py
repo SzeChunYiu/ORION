@@ -27,7 +27,7 @@ What it does:
 
 Run from the repository root (commit phase):
 
-    python papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/p7_substitute_custodian_v1.py
+    python papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/p7_substitute_custodian_v1.py
 
 The reveal file is written by the campaign unit at adjudication time and must
 hash exactly to ``labels_payload_digest`` committed here.
@@ -299,13 +299,13 @@ def main() -> int:
         "commit_date": "2026-08-24",
         "paper_id": "P7",
         "custodian_unit": "p7_substitute_custodian_v1",
-        "protocol_path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CAMPAIGN_PROTOCOL_V1.md",
+        "protocol_path": "papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CAMPAIGN_PROTOCOL_V1.md",
         "protocol_sha256": _digest(PROTOCOL.read_bytes()),
-        "corpus_path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CORPUS_V1.jsonl",
+        "corpus_path": "papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CORPUS_V1.jsonl",
         "corpus_sha256": _digest(corpus_bytes),
         "corpus_rows": len(public_rows),
         "labels_payload_digest": labels_payload_digest,
-        "labels_reveal_path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_LABELS_REVEALED_V1.json",
+        "labels_reveal_path": "papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_LABELS_REVEALED_V1.json",
         "generator": {
             "stem": SEED_STEM,
             "determinism": "sha256 domain streams; no PRNG library; version-stable bytes",

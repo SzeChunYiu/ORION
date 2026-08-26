@@ -1,4 +1,4 @@
-# Q3 submission package
+# ORION-03 submission package
 
 **Current paper type:** research-systems architecture + benchmark definition + one frozen live measurement.  
 **Future higher-claim path:** the preregistered >=20-item multi-frontier deferred-scoring series.
@@ -13,7 +13,7 @@ ORION implements two materially different research-decision instruments on a com
 
 ## Significance statement
 
-Research-agent benchmarks typically assume ground truth already exists. Q3 targets the setting where a scientific question is unresolved at decision time. It preserves two instruments' diagnoses and moves before the later evidence exists, treats disagreement as valid data, and separates the decision record from deferred outcome scoring. The first live use also exposed a deterministic-identity failure mode for successful-but-malformed receipts; current main now maps invalid reasoner content to structured failure and preserves invalid receipt bytes under explicit audited archival before retry.
+Research-agent benchmarks typically assume ground truth already exists. ORION-03 targets the setting where a scientific question is unresolved at decision time. It preserves two instruments' diagnoses and moves before the later evidence exists, treats disagreement as valid data, and separates the decision record from deferred outcome scoring. The first live use also exposed a deterministic-identity failure mode for successful-but-malformed receipts; current main now maps invalid reasoner content to structured failure and preserves invalid receipt bytes under explicit audited archival before retry.
 
 ## Editor pitch
 
@@ -23,7 +23,7 @@ We introduce a replayable host-capability research harness, a typed non-LLM camp
 
 `packages/orion-research-harness/src/orion_research_harness/publication_contract.py`
 
-binds the Q3 paper to current implementation and is tested by:
+binds the ORION-03 paper to current implementation and is tested by:
 
 `packages/orion-research-harness/tests/test_publication_contract.py`.
 

@@ -262,7 +262,7 @@ The finite R6Q classifier initially suggested a small trade taxonomy. Later QG c
 
 ### The next scientific question is objective dependence
 
-Our proof uses the frozen support-count weights. Hardware projections can change the value of a frame refund relative to Restore/Tag cost. Determining the objective regions in which the normal form survives is therefore a separate problem; later work studies that question and is not back-ported as a Q1 claim.
+Our proof uses the frozen support-count weights. Hardware projections can change the value of a frame refund relative to Restore/Tag cost. Determining the objective regions in which the normal form survives is therefore a separate problem; later work studies that question and is not back-ported as a ORION-01 claim.
 
 ---
 
@@ -287,8 +287,8 @@ The exact protocols, result receipts, analytic proof notes, independent finite-c
 - `research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json`;
 - `research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json`;
 - `development/orion-q-max-r0/MAX_R6O_ENLARGED_TAG_DONOR_PROTOCOL.md`;
-- `papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md`;
-- `papers/Q-paper-01-tare-expressivity/independent_human_proof_sanity.py`.
+- `papers/orion-05-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md`;
+- `papers/orion-05-tare-expressivity/independent_human_proof_sanity.py`.
 
 `REPRODUCE.md` gives the intended clean-checkout reproduction route. Before archival publication, the cited code/results should be tagged or deposited in a DOI-minting repository and the permanent identifier inserted here.
 

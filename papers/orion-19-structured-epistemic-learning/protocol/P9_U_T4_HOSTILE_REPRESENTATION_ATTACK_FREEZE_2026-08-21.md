@@ -1,4 +1,4 @@
-# P9-U-T4 freeze: running the representation-length and format-prior attacks
+# ORION-19-U-T4 freeze: running the representation-length and format-prior attacks
 
 - **Record id**: `P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE`
 - **Date frozen**: 2026-08-21
@@ -9,7 +9,7 @@
   `research/failures/2026-08-unresponsive-comparator-prior-valued-margin/README.md`. Every
   threshold below is chosen from the split's resolution or from the meaning of the alternative
   being tested, never from a result of this study.
-- **Gate served**: `P9-U-T4` — *"representation-length and format-prior attacks fail"*
+- **Gate served**: `ORION-19-U-T4` — *"representation-length and format-prior attacks fail"*
   (`src/orion/programme/superiority_terminals.py:427-433`,
   `research/paper-programme-v1/P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1.json`, issue #662).
 - **Ledger blocker being addressed**: "The representation-length and format-prior attacks are
@@ -28,7 +28,7 @@
 ## 1. Where the attacks are named, and what they are attacking
 
 The two attacks exist only as names. They are written down in exactly one place —
-`papers/paper-09-structured-epistemic-learning/successor/P9_U_MANUSCRIPT.tex`:
+`papers/orion-19-structured-epistemic-learning/successor/P9_U_MANUSCRIPT.tex`:
 
 > "Equal-token/length controls, order/symbol reminting, semantic-orbit controls and exact
 > information checks are mandatory." (§ Frozen factorial design)
@@ -43,13 +43,13 @@ A repository-wide grep over `*.py`, `*.md`, `*.tex` and `*.json` finds no runner
 result and no fixture for any of them. They have been named and not run.
 
 **What they are attacking.** The successor experiment those attacks were written for — the frozen
-Qwen2.5 0.5B/1.5B/3B same-information run of issue #618 — **does not exist**; `P9-U-T1` is blocked
+Qwen2.5 0.5B/1.5B/3B same-information run of issue #618 — **does not exist**; `ORION-19-U-T1` is blocked
 on it, no open-weight checkpoint is present in this repository, and this environment's proxy
 refuses outbound CONNECT to model and metadata providers. The attacks cannot be run against a
 result that has no outcome, and this freeze does not pretend otherwise.
 
-The attacks *can* be run against the one representation contrast P9 actually publishes: **D1**,
-protocol `P9.D1MethodTransferProtocol.v1.2`, shipped as
+The attacks *can* be run against the one representation contrast ORION-19 actually publishes: **D1**,
+protocol `ORION-19.D1MethodTransferProtocol.v1.2`, shipped as
 `research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json`
 (`result_digest sha256:34003fb8…`, `dataset_manifest_digest sha256:27752984…`). The sentence under
 attack is `manuscript/main.tex`'s reading of that result:
@@ -64,12 +64,12 @@ attack is `manuscript/main.tex`'s reading of that result:
 > else. It licenses **no** statement about any language model, any scale, any second family, or
 > the successor experiment of issue #618.
 
-**Anti-promotion commitment, fixed now.** `P9-U-T4` stays **BLOCKED** whatever this study returns.
+**Anti-promotion commitment, fixed now.** `ORION-19-U-T4` stays **BLOCKED** whatever this study returns.
 This work can only *subtract*: if an attack succeeds, the D1 representation reading is narrowed or
 withdrawn. If no attack succeeds, the only sentence earned is *"on D1, these two alternatives do
 not account for the margin against the one comparator that answered"* — which is not the terminal,
 because the terminal is about a result that does not yet exist. No result of this study may be
-entered against `P9-U-T4` as a discharge.
+entered against `ORION-19-U-T4` as a discharge.
 
 ## 3. What is already known, and what it does to the gate
 
@@ -88,7 +88,7 @@ and are `CANNOT_CHECK` under `orion.programme.comparator_response.measure_contra
 
 **Consequence, fixed now:** *an attack cannot fail against a margin that was never measured.* A
 hostile alternative is a competing explanation of an effect; where there is no measured effect
-there is nothing for it to explain and nothing for it to be refuted by. So `P9-U-T4` is evaluated
+there is nothing for it to explain and nothing for it to be refuted by. So `ORION-19-U-T4` is evaluated
 **per contrast, three-valued**, and any contrast whose comparator is constant returns
 `CANNOT_CHECK` for the attack as well. Reporting "the length attack failed" over
 `typed − transcript` would be exactly the vacuous-guard substitution this programme has recorded
@@ -131,7 +131,7 @@ The run aborts and reports `T4_CONSTRUCTION_FAILED` — with no arm accuracy any
 
 | id | precondition | why |
 |---|---|---|
-| **PC-1 DATASET FIDELITY** | the locally regenerated D1 v1.2 dataset reproduces the shipped `dataset_manifest_digest` `sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c` | the attacks must be run on P9's dataset, not on a local lookalike |
+| **PC-1 DATASET FIDELITY** | the locally regenerated D1 v1.2 dataset reproduces the shipped `dataset_manifest_digest` `sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c` | the attacks must be run on ORION-19's dataset, not on a local lookalike |
 | **PC-2 GOLD PRESERVATION** | every derived dataset variant (equal-length control, semantic orbit, order permutation) reproduces the gold label of every one of the 512 instances, position for position | a transform that moves a label is a different benchmark, not a control |
 | **PC-3 CARDINALITY MATCH** | in the equal-length control, for every instance, every comparison coordinate and both sides: the coordinate's cardinality and presence are identical to the *unmutated* analogue's | otherwise it is not an equal-length control |
 | **PC-4 ORBIT BIJECTIVITY** | the symbol remint is injective on the atom alphabet (no two distinct atoms map to one symbol) | a non-injective remint destroys information and would not be a semantic orbit |
@@ -252,7 +252,7 @@ verdict:
 | `T4_ATTACKS_UNEXERCISED` | `CANNOT_CHECK` | no component succeeded, but at least one component is `CANNOT_CHECK` |
 | `T4_ATTACKS_DID_NOT_SUCCEED_ON_D1` | `PASS` | every component ran with a non-zero denominator and none succeeded |
 
-`T4_ATTACKS_DID_NOT_SUCCEED_ON_D1` is a `PASS` **of this instrument on D1**, not of `P9-U-T4`
+`T4_ATTACKS_DID_NOT_SUCCEED_ON_D1` is a `PASS` **of this instrument on D1**, not of `ORION-19-U-T4`
 (§2). The runner exits `0` on `PASS`, `3` on `FAIL`, `4` on `CANNOT_CHECK`.
 
 ## 10. Anti-tuning commitments
@@ -265,7 +265,7 @@ verdict:
    No second seed, no re-draw, no alternative corruption rule.
 3. If an attack succeeds, that is the finding and it is reported as the finding. No threshold is
    moved, no arm is dropped, and no variant of an attack that the claim survives is searched for.
-4. No existing P9 result, receipt, protocol or evidence artifact is modified. Only new files are
+4. No existing ORION-19 result, receipt, protocol or evidence artifact is modified. Only new files are
    added.
 
 ---

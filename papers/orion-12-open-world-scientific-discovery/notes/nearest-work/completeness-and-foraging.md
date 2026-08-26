@@ -91,6 +91,6 @@ and information scent as the mechanism behind marginal-gain estimates.
 **ORION delta under test:** does treating route-level flatness as a
 patch-leaving decision with no task-level authority change premature task
 closure, relative to a system in which a flat route may certify completeness?
-Open question. Together with family 12 this is the pair that `P2.D4`
+Open question. Together with family 12 this is the pair that `ORION-12.D4`
 (coverage refusal) composes: foraging says the route may leave, capture-recapture
 says the estimate is unavailable, and neither licenses closure.

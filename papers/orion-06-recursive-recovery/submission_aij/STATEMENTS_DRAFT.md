@@ -1,4 +1,4 @@
-# Q2 / AIJ statements draft
+# ORION-02 / AIJ statements draft
 
 This file is a submission-preparation aid. Fields depending on authors, institutions, funding, conflicts, licences, or journal policy remain **AUTHOR INPUT REQUIRED** and may not be inferred by the publication workflow.
 

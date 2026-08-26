@@ -1,4 +1,4 @@
-# P12 certificate-necessity theorem V1
+# ORION-22 certificate-necessity theorem V1
 
 **Status:** theorem/falsification contract, frozen BEFORE the necessity checker is executed on this branch. This is the next upward step named by `P12_SELECTION_SUFFICIENCY_THEOREM_V1.md` §7 and by its result receipt's authority boundary: the parent law proved that exact additive charge certificates are **sufficient**; this study asks and answers the converse — are they **necessary**?
 

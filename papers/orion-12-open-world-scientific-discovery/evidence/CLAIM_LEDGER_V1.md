@@ -1,4 +1,4 @@
-# P2 claim ledger V1
+# ORION-12 claim ledger V1
 
 > **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
 > subsequently rewritten so that its claims are about the mechanism rather than
@@ -48,9 +48,9 @@ This ledger is intentionally narrower than the original paper ambition. A row is
 | Conclusion | The frozen controlled experiment supports the governance mechanisms and MetaSyn supplies completed bounded external retrieval/screening evidence; matched external discovery/stopping superiority remains open. | Offline result + bounded external probe | Historical pre-migration results summary + MetaSyn result/FN ledger | `SUPPORTED` |
 
 
-| P2-X A1 | On 400 protected exact heterogeneous acquisition contracts, P2-X achieves 400/400 exact closure decisions versus 250/400 for the donor-complete available-route product; paired difference 0.375, 95% CI [0.3275, 0.4225], zero false task closures. | Protected exact P2-X result + independent verification; bounded contract only | `evidence/p2x/P2_X_PROTECTED_RESULT_V1.json`; `evidence/p2x/P2_X_INDEPENDENT_VERIFICATION_V1.json` | `SUPPORTED` |
-| P2-X A2 | Route-local acquisition success and task-global scientific closure are distinct authority relations when material routes remain unresolved; an ideal product given identical semantics ties 400/400. | Protected exact P2-X result; no inherent-expressivity claim | same P2-X result/verification + `research/claim_expansion/p2/P2_X_CLAIM_EXPANSION_LEDGER_V1.md` | `SUPPORTED` |
-| P2-X A3 | The same closure-authority layer improves safe stopping across genuinely different retrieval engines/providers/open-ended tasks. | No independent retriever implementations or new live multi-provider campaign | P2-X explicitly leaves deployed/retrieval-engine generality untested | `CANNOT_CHECK` |
+| ORION-12-X A1 | On 400 protected exact heterogeneous acquisition contracts, ORION-12-X achieves 400/400 exact closure decisions versus 250/400 for the donor-complete available-route product; paired difference 0.375, 95% CI [0.3275, 0.4225], zero false task closures. | Protected exact ORION-12-X result + independent verification; bounded contract only | `evidence/p2x/P2_X_PROTECTED_RESULT_V1.json`; `evidence/p2x/P2_X_INDEPENDENT_VERIFICATION_V1.json` | `SUPPORTED` |
+| ORION-12-X A2 | Route-local acquisition success and task-global scientific closure are distinct authority relations when material routes remain unresolved; an ideal product given identical semantics ties 400/400. | Protected exact ORION-12-X result; no inherent-expressivity claim | same ORION-12-X result/verification + `research/claim_expansion/p2/P2_X_CLAIM_EXPANSION_LEDGER_V1.md` | `SUPPORTED` |
+| ORION-12-X A3 | The same closure-authority layer improves safe stopping across genuinely different retrieval engines/providers/open-ended tasks. | No independent retriever implementations or new live multi-provider campaign | ORION-12-X explicitly leaves deployed/retrieval-engine generality untested | `CANNOT_CHECK` |
 
 ## Promotion rule
 

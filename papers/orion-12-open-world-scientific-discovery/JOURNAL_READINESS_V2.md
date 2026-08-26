@@ -17,13 +17,13 @@ run-conditional acquisition ceiling, closure factorization, the
 indistinguishable-world error lower bound and a contract-relative maximally
 permissive authority completion.  This theoretical ascent does **not** change
 the empirical terminal.  Cross-arena superiority remains the untested
-`P2-H-ENVELOPE-768` hypothesis bound to the frozen 768-cluster successor and its
+`ORION-12-H-ENVELOPE-768` hypothesis bound to the frozen 768-cluster successor and its
 still-missing external worlds, comparator reproductions and independent custody.
 
 ## Completed widening infrastructure
 
 - [x] original thesis **Acquisition Is Not Closure** retained as the first layer of the wider acquisition--authority envelope;
-- [x] donor-composable architecture section and Figure P2-7;
+- [x] donor-composable architecture section and Figure ORION-12-7;
 - [x] 2026 nearest-work donor matrix covering SAGE, AgentIR, SIEVE, bibliography expansion, HALT, MiCP/conformal stopping, Search-R1, DeepControl, decision-theoretic stopping and stage-separated evaluation;
 - [x] prospectively frozen widening protocol;
 - [x] machine-readable V2 system/baseline registry;
@@ -31,7 +31,7 @@ still-missing external worlds, comparator reproductions and independent custody.
 - [x] machine-readable claim-promotion state;
 - [x] prospective V2 claim ledger;
 - [x] fail-closed V2 validator and contract tests;
-- [x] P2 manuscript CI gated first on immutable V1 claim-ledger validation, then V2 validator/tests, then LaTeX build;
+- [x] ORION-12 manuscript CI gated first on immutable V1 claim-ledger validation, then V2 validator/tests, then LaTeX build;
 - [x] result-bearing manuscript sentences kept inside the immutable V1 evidence contract while the architectural framing is widened;
 - [x] real scorer-native AutoResearchBench Wide development campaign executed under matched budgets;
 - [x] V2 Wide candidate-identity harness defect discovered and explicitly invalidated rather than hidden;

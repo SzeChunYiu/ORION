@@ -1,4 +1,4 @@
-# QG1 publication foundation V3 — current-main refresh
+# ORION-09 publication foundation V3 — current-main refresh
 
 **Paper:** Compilation Regime Geometry  
 **Refresh cut:** `main@c5ba39fef4f25c46de5fb69bf07f50530f4693ca`  
@@ -9,7 +9,7 @@ This file is a `researchwrite` foundation update. It grants no novelty or submis
 
 ## 00 Scope
 
-QG1 is the cross-family framework/synthesis paper for exact/falsifiable **compilation regime geometry**. It does not own the detailed TARE R6M theorem (Q1), the negative-result methodology (Q2), or the layered forecast-certificate paper (QG2).
+ORION-09 is the cross-family framework/synthesis paper for exact/falsifiable **compilation regime geometry**. It does not own the detailed TARE R6M theorem (ORION-01), the negative-result methodology (ORION-02), or the layered forecast-certificate paper (ORION-10).
 
 The V3 refresh is deliberately narrow. It imports only three current-main result objects that change the framework story:
 
@@ -26,7 +26,7 @@ QG17 has a protocol/code path but no committed result receipt on the refresh cut
 - R6S proves `C_DP = C_D++` all n for the frozen R6M grammar/raw support-count objective.
 - Intrinsic support ceiling in that family is at most 2; the registered support-two borrow boundary is real.
 - Later QG5/QG7 work refines the **named subfamily taxonomy inside D++**; it does not refute the support-two theorem.
-- Objective reweighting can invalidate the unit-objective support-two world; QG2/O1 supplies an exact support-three counterexample.
+- Objective reweighting can invalidate the unit-objective support-two world; ORION-10/O1 supplies an exact support-three counterexample.
 
 ### B. R6I rank-2 dependent-triple family — NEW load-bearing V3 fact
 
@@ -92,14 +92,14 @@ QG6 carries no novelty authority and is not presented as a new universal compile
 
 ### G. Conceptual parent
 
-Instance Space Analysis / algorithm selection already owns feature-to-performance regions and algorithm footprints. QG1's residual must be framed around exact compiler expressivity, witness mechanisms, proof/authority layers, objective-indexed certificates and representation falsifiability.
+Instance Space Analysis / algorithm selection already owns feature-to-performance regions and algorithm footprints. ORION-09's residual must be framed around exact compiler expressivity, witness mechanisms, proof/authority layers, objective-indexed certificates and representation falsifiability.
 
 ## 02 Evidence table
 
 | Candidate claim | Evidence | Strength | V3 status | Risk |
 |---|---|---|---|---|
 | Regime geometry is a reusable investigative template | TARE/R6I/SixLCU/StabPrep cases | cross-case synthesis | bounded framework claim | three families do not prove universal field law |
-| R6M support ceiling is 2 under unit/raw support objective | R6S | all-n theorem | retain | detailed theorem belongs Q1 |
+| R6M support ceiling is 2 under unit/raw support objective | R6S | all-n theorem | retain | detailed theorem belongs ORION-01 |
 | R6I intrinsic support number is exactly 1 under unit objective | QG9 V6 | all-n theorem + support0 infeasible | **new headline evidence** | grammar-specific |
 | R6I support-1 theorem has an objective-indexed validity cone | QG16 | all-n theorem inside cone | **new headline evidence** | outside cone not necessity |
 | syndrome dimension d can provide safe support ceiling d under named conditions | QG6 meta-theorem | machine-checked/analytic under conditions | framework evidence | may be loose; R6I 5 vs intrinsic 1 |
@@ -134,7 +134,7 @@ The current cases show why all six are needed:
 
 ### Strongest alternative explanation
 
-“QG1 is merely Instance Space Analysis with quantum examples.”
+“ORION-09 is merely Instance Space Analysis with quantum examples.”
 
 **Response:** treat ISA as the primary parent, then show the additional exact objects that ISA performance footprints do not by themselves provide: witness-level compiler transformations, theorem versus finite-panel authority, intrinsic versus proof-system support, exact objective cones and mixed-cell representation refutations.
 
@@ -165,7 +165,7 @@ Must define distinction between:
 - feature-based boundary representation.
 
 ### R6M section
-Use detailed mathematics sparingly and route theorem ownership to Q1.
+Use detailed mathematics sparingly and route theorem ownership to ORION-01.
 
 ### R6I section
 Make the post-cut scientific sequence visible:
@@ -197,8 +197,8 @@ Use consistently:
 
 **Algorithm-selection reviewer:** ISA must remain primary conceptual ancestor; V3 is stronger precisely because it explains what additional exact compiler objects are being tracked.
 
-**Editor lens:** the new R6I result improves QG1's conceptual coherence enough to justify reopening V2 once. Further QG17/QG7d work should not be chased unless it changes a headline boundary under the freshness rule.
+**Editor lens:** the new R6I result improves ORION-09's conceptual coherence enough to justify reopening V2 once. Further QG17/QG7d work should not be chased unless it changes a headline boundary under the freshness rule.
 
 ## Stopping rule after V3
 
-After integrating these three current-main objects, **stop reopening QG1 for new QG theorem lanes** unless a later result falsifies a V3 headline or changes the nearest-work boundary. QG17 sharpness, QG7d closure and further support ladders are successor research, not automatic manuscript dependencies.
+After integrating these three current-main objects, **stop reopening ORION-09 for new QG theorem lanes** unless a later result falsifies a V3 headline or changes the nearest-work boundary. QG17 sharpness, QG7d closure and further support ladders are successor research, not automatic manuscript dependencies.

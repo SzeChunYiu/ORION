@@ -1,7 +1,7 @@
 """P14A's published negative, measured against the worlds its own protocol admits.
 
 Every number pinned here was read off the shipped artifacts
-``papers/paper-14-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json``
+``papers/orion-24-orion-rse/P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json``
 and ``run_p14a_controlled_governance_v1.py``, or produced by driving that
 generator's own ``gold``, ``policy`` and ``make_case``.
 """
@@ -31,7 +31,7 @@ from orion.study.p14.gate_audit import audit_p14a_governance_terminal, main, rep
 P14A_SUCCESSOR_CLOSURE = (
     p14.REPO_ROOT
     / "papers"
-    / "paper-14-orion-rse"
+    / "orion-24-orion-rse"
     / "top_tier"
     / "P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1.json"
 )

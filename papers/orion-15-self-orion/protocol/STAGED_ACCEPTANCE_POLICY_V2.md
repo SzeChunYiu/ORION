@@ -1,12 +1,12 @@
-# P5 staged candidate acceptance policy V2
+# ORION-15 staged candidate acceptance policy V2
 
-**Protocol:** `P5.hidden-cause-staged-acceptance.v2`  
-**Parent:** `P5.hidden-cause-fresh-transfer.v1`  
+**Protocol:** `ORION-15.hidden-cause-staged-acceptance.v2`  
+**Parent:** `ORION-15.hidden-cause-fresh-transfer.v1`  
 **Status:** `DESIGN_FROZEN`  
 **Outcome access:** false  
 **Empirical authority:** `CANNOT_CHECK`
 
-This policy freezes the prospective P5 V2 acceptance experiment. It does not modify V1 and cannot authorize execution, promotion, or merge.
+This policy freezes the prospective ORION-15 V2 acceptance experiment. It does not modify V1 and cannot authorize execution, promotion, or merge.
 
 ## Required order
 
@@ -19,7 +19,7 @@ The normal promotion path is:
 - **FRESH** checks an independent fresh-transfer split that is not recycled as development feedback.
 - **PROTECTED** checks the exact candidate under independently custodied evaluator/holdout authority.
 
-The runtime mechanism is `orion.transfer.staging.MultiStageCandidateGate`, wrapped by the append-only V2 P5 receipt/history surface.
+The runtime mechanism is `orion.transfer.staging.MultiStageCandidateGate`, wrapped by the append-only V2 ORION-15 receipt/history surface.
 
 ## Non-compensatory decision semantics
 
@@ -27,13 +27,13 @@ The runtime mechanism is `orion.transfer.staging.MultiStageCandidateGate`, wrapp
 2. If no known harm/FAIL exists, any known `CANNOT_CHECK` yields `CANNOT_CHECK`.
 3. Otherwise, missing required stages yield `IN_PROGRESS`.
 4. Only PASS at all four stages yields `RECOMMEND_HOST_PROMOTION`.
-5. No P5 receipt can grant self-merge or candidate-controlled promotion.
+5. No ORION-15 receipt can grant self-merge or candidate-controlled promotion.
 
 These precedence rules are deliberate: late harm must not be hidden by missing earlier evidence, and replay gain must never compensate fresh or protected failure.
 
 ## Anytime-valid acceptance
 
-PACE-style anytime-valid/e-process commit testing is **prior art**, not a P5 novelty. When a stage repeatedly compares noisy paired outcomes under adaptive proposals, V2 requires either:
+PACE-style anytime-valid/e-process commit testing is **prior art**, not a ORION-15 novelty. When a stage repeatedly compares noisy paired outcomes under adaptive proposals, V2 requires either:
 
 - a prospectively frozen anytime-valid paired acceptor with a fixed error budget; or
 - a documented stronger/equivalent rule whose configuration is content-bound before outcome access.

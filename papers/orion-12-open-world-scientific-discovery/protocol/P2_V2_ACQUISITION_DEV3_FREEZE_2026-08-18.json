@@ -5,7 +5,7 @@
   "authority": "FINAL_ACQUISITION_DEVELOPMENT_ITERATION",
   "reason": "Earlier V2 Wide development scores are superseded for system selection because arXiv-looking identifiers were regex-extracted from the complete Atom feed. Dev-2 additionally exposed generic/function-word query anchors and same-backend agreement-first ranking that could discard raw gold. Dev-3 corrects only these diagnosed classes.",
   "implementation": {
-    "path": "papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev3.py",
+    "path": "papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev3.py",
     "blob_sha": "4d2c6d08efa3cd79139968a439c4e08644b196d8",
     "candidate_identity_rule": "Only parsed Atom entry identities may enter scorer candidates; returned scorer IDs must not exceed max_results.",
     "same_backend_query_agreement_is_route_independence": false

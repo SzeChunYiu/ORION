@@ -8,7 +8,7 @@ evidence is unresolved rather than passing. This module **stages** that
 primitive; it does not restate it.
 
 Stages, in the shape the P5 programme already uses
-(`papers/paper-05-self-orion/protocol/FRESH_TRANSFER_POLICY_V1.md`):
+(`papers/orion-15-self-orion/protocol/FRESH_TRANSFER_POLICY_V1.md`):
 
 ===============  =========  ==============================================
 stage            #141 name  refuses

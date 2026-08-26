@@ -1,4 +1,4 @@
-# ORION-P2 offline complete-gold world V1
+# ORION-ORION-12 offline complete-gold world V1
 
 **Artifact:** `../evidence/offline_gold/` (`world-000.json`, `world-001.json`,
 `topics.json`, `tasks-000.json`, `tasks-001.json`, `MANIFEST.json`)
@@ -46,7 +46,7 @@ marginal route gain and fail-closed coverage measurable rather than decorative.
 
 **Route identity.** `LEXICAL` and `REFORMULATION` share the backend
 `index:lexical` with different query derivations — nominally distinct routes over
-one index, which is the negative case P2.H2 needs and what reformulating a query
+one index, which is the negative case ORION-12.H2 needs and what reformulating a query
 against the same index actually is. The other three hit distinct backends and can
 earn independence under `orion.knowledge.routes.assess_pair`.
 

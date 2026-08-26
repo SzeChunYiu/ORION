@@ -1,4 +1,4 @@
-# P13 Peer-Review Readiness Report
+# ORION-23 Peer-Review Readiness Report
 
 Authority here is split by sub-claim: the two decisions below govern P13B and
 P13A respectively, and neither overrides the other.

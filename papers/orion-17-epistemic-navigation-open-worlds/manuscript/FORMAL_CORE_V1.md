@@ -1,4 +1,4 @@
-# P7 formal core V1
+# ORION-17 formal core V1
 
 **Candidate paper:** Epistemic Navigation in Open Worlds  
 **Authority:** mathematical working object; novelty not yet authorized  
@@ -22,7 +22,7 @@ where:
 - `\Omega` is a set of task obligations/objectives whose satisfaction conditions are expressed in the chart;
 - `\mathcal C` records route/coverage/censoring contracts known in that chart.
 
-The word *chart* is deliberate. A chart may be a graph, hypergraph, transition system, belief-state abstraction, ontology, objective representation, or another structure with a reachability/obligation semantics. P7 does not assume a topological-space structure unless introduced explicitly.
+The word *chart* is deliberate. A chart may be a graph, hypergraph, transition system, belief-state abstraction, ontology, objective representation, or another structure with a reachability/obligation semantics. ORION-17 does not assume a topological-space structure unless introduced explicitly.
 
 ### Definition 2 (epistemic atlas)
 An **epistemic atlas** is
@@ -96,7 +96,7 @@ Examples may include a complete finite manifest, exhaustive content-bound index 
 Low expected utility, repeated empty responses, budget exhaustion and local route saturation are not closure certificates by themselves.
 
 ### Important logical boundary
-Absence of a closure certificate does **not by itself** imply extension ambiguity in every possible world class. A model class may be complete for other reasons not represented as a certificate. P7 therefore states the impossibility theorem on extension ambiguity directly and treats certificate absence as a practical sufficient route only under an explicit richness premise.
+Absence of a closure certificate does **not by itself** imply extension ambiguity in every possible world class. A model class may be complete for other reasons not represented as a certificate. ORION-17 therefore states the impossibility theorem on extension ambiguity directly and treats certificate absence as a practical sufficient route only under an explicit richness premise.
 
 ## 3. Impossibility of unlicensed open-world stopping
 
@@ -140,7 +140,7 @@ There exists a navigation state in which every executed route has locally stoppe
 
 without an additional coverage premise.
 
-This local/global distinction is P2-owned in ORION. P7 embeds it; it does not relabel it.
+This local/global distinction is ORION-12-owned in ORION. ORION-17 embeds it; it does not relabel it.
 
 ## 5. Orientation and initial exploration
 
@@ -172,7 +172,7 @@ There exist structurally dependent routes with `Y_1\cap Y_2=\varnothing`.
 ### Consequence
 Content overlap is a behavior metric, not an authority proof for route independence.
 
-Again, the route-governance core is P2-owned; P7 needs atlas/reframe transfer to remain distinct.
+Again, the route-governance core is ORION-12-owned; ORION-17 needs atlas/reframe transfer to remain distinct.
 
 ## 7. Chart-changing reframes
 
@@ -209,7 +209,7 @@ There exists a family of tasks for which every policy restricted to an initial c
 Choose `T` such that the reachability closure of start state `s` contains no state satisfying goal predicate `g`. Any fixed-chart policy remains inside that closure. Let an admissible reframe map the preserved context into `T'`, in which a newly represented goal state `v_g` satisfying `g` is reachable. The atlas policy applies the reframe and follows the new route. `\square`
 
 ### Limitation
-This theorem is intentionally weak as a novelty result; representation change, replanning, world-model revision and goal evolution are established. P7 requires the stronger coupling of chart/objective change with evidence transport, reopening and stopping authority.
+This theorem is intentionally weak as a novelty result; representation change, replanning, world-model revision and goal evolution are established. ORION-17 requires the stronger coupling of chart/objective change with evidence transport, reopening and stopping authority.
 
 ## 8. Support transport and reopening across reframes
 
@@ -239,8 +239,8 @@ This is a direct assimilation target for SAGA-style goal evolution.
 
 World-model revision systems can be represented as chart updates or chart transitions depending on whether the state vocabulary remains fixed.
 
-- If predictions/transition parameters change while state/objective semantics remain fixed, P7 treats this as **intra-chart model revision**.
-- If the representation introduces/removes state distinctions, route identities, ontology relations or objectives, P7 treats it as **inter-chart atlas evolution**.
+- If predictions/transition parameters change while state/objective semantics remain fixed, ORION-17 treats this as **intra-chart model revision**.
+- If the representation introduces/removes state distinctions, route identities, ontology relations or objectives, ORION-17 treats it as **inter-chart atlas evolution**.
 
 This distinction allows self-evolving world models and dynamic graph world models to be absorbed without calling every model update a topology change.
 
@@ -263,7 +263,7 @@ None of these events by itself changes a mandatory-open obligation into a satisf
 
 ## 11. Donor-faithful embeddings
 
-P7 now treats the following as explicit donor targets:
+ORION-17 now treats the following as explicit donor targets:
 
 - **Search-on-Graph (arXiv:2510.08825):** fixed-chart observe-then-navigate graph traversal;
 - **Mind-ParaWorld (arXiv:2603.04751):** atomic hidden-world evaluation of evidence coverage, sufficiency and stopping;
@@ -273,12 +273,12 @@ P7 now treats the following as explicit donor targets:
 - **Self-Evolving World Models (arXiv:2606.30639):** test-time world-model revision and selective foresight;
 - **Graph World Models (arXiv:2604.27895):** structured world representations and dynamic graph adaptation;
 - **AI Research Agents Narrow Scientific Exploration (arXiv:2605.27905):** empirical scientific-search concentration/breadth pressure;
-- **P2:** route independence, route/task stopping, question-conditioned discovery and open/censored obligations.
+- **ORION-12:** route independence, route/task stopping, question-conditioned discovery and open/censored obligations.
 
 ### Theorem target 9 (conservative donor embedding)
-When P7 atlas transformations are disabled and the donor-specific assumptions hold, the P7 representation should reproduce the donor's native navigation/stop/update judgments rather than invent extra behavior.
+When ORION-17 atlas transformations are disabled and the donor-specific assumptions hold, the ORION-17 representation should reproduce the donor's native navigation/stop/update judgments rather than invent extra behavior.
 
-## 12. Widened P7 residual under test
+## 12. Widened ORION-17 residual under test
 
 The candidate object is now an **open-world epistemic atlas**, not merely a dynamic graph:
 
@@ -347,9 +347,9 @@ This core does **not** claim novelty for:
 - dynamic graph adaptation;
 - autonomous goal/objective evolution;
 - open-world indistinguishability arguments in general;
-- P2's route/task stopping mechanics.
+- ORION-12's route/task stopping mechanics.
 
-The widened candidate residual is the donor-faithful composition of these ideas around representation/objective change, support transport/reopening and non-escalating closure authority. If #337/#352/#343 reduce this to P1+P2 or established planning/search theory with no new theorem/transfer discriminator, P7 should merge rather than survive by terminology.
+The widened candidate residual is the donor-faithful composition of these ideas around representation/objective change, support transport/reopening and non-escalating closure authority. If #337/#352/#343 reduce this to ORION-11+ORION-12 or established planning/search theory with no new theorem/transfer discriminator, ORION-17 should merge rather than survive by terminology.
 
 ## 16. What this formal core establishes now
 
@@ -359,7 +359,7 @@ The core establishes elementary impossibility, separation, expressivity and tran
 - that real scientific state spaces admit faithful charts/maps;
 - that route-independence contracts are practically identifiable;
 - that atlas-changing navigation improves real research;
-- that the generalization is distinct from P1+P2;
+- that the generalization is distinct from ORION-11+ORION-12;
 - peer-review readiness.
 
 Current novelty/promotion terminal remains `CANNOT_CHECK`.

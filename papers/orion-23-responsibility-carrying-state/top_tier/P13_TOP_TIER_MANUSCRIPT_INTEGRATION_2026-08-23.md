@@ -1,10 +1,10 @@
-# P13 top-tier manuscript integration — 2026-08-23
+# ORION-23 top-tier manuscript integration — 2026-08-23
 
 This note is the manuscript-facing bridge from the historical P13A/P13B paper to the current responsibility-carrying-state evidence chain. It does not rewrite frozen outcomes and does not grant external deployment authority.
 
 ## One-sentence paper identity
 
-**P13 studies when scientific state may be reused after the downstream responsibility or evidence regime changes.** Provenance tells where state came from; responsibility support tells what that state is still allowed to answer.
+**ORION-23 studies when scientific state may be reused after the downstream responsibility or evidence regime changes.** Provenance tells where state came from; responsibility support tells what that state is still allowed to answer.
 
 ## Scientific arc the final paper should tell
 
@@ -129,8 +129,8 @@ Otherwise these are follow-ups, not blockers.
 
 - refresh nearest provenance-aware memory, signed-intent, certificate transport and agent-memory donors;
 - integrate the D2 and transport receipts into `CLAIM_EVIDENCE_LEDGER.md` and the manuscript;
-- reconcile P13/P15: P13 owns scientific responsibility support/reuse; P15 owns execution-integrity admission and attestation composition;
-- reconcile P7/P13: P7 owns transport of closure across regimes; P13 owns reuse authority of state/certificates relative to responsibility;
+- reconcile ORION-23/ORION-25: ORION-23 owns scientific responsibility support/reuse; ORION-25 owns execution-integrity admission and attestation composition;
+- reconcile ORION-17/ORION-23: ORION-17 owns transport of closure across regimes; ORION-23 owns reuse authority of state/certificates relative to responsibility;
 - clean-environment replay of digits/CNF/D2/transport studies;
 - regenerate all result tables directly from bound receipts;
 - remove duplicated historical status/strongest-claim blocks in `MANUSCRIPT.md`;

@@ -1,6 +1,6 @@
 # ORION-RSE: Recursive Scientific Governance as a Falsifiable Decision Contract
 
-**ORION-P14 · issue #669 · programme #670**  
+**ORION-ORION-24 · issue #669 · programme #670**  
 **Evidence freeze:** 2026-08-21  
 **Submission status:** peer-review package; controlled governance-conformance superiority supported, external research-agent validation open
 
@@ -277,19 +277,19 @@ authority exists. The active bounded result remains P14C
 
 Under issue #1086 decision D7 (portfolio disposition
 `papers/ISSUE_1086_PORTFOLIO_DISPOSITION_V1.json`, binding artifact
-`papers/paper-13-responsibility-carrying-state/P13_P14_CONSOLIDATION_SCOPE_BINDING_V1.json`),
-P14 is consolidated with P13 into one machine-verifiable lifecycle-contract
+`papers/orion-23-responsibility-carrying-state/P13_P14_CONSOLIDATION_SCOPE_BINDING_V1.json`),
+ORION-24 is consolidated with ORION-23 into one machine-verifiable lifecycle-contract
 safety scope. What this manuscript supports is the machine-verifiable layer:
 specification-separated policy conformance, fail-closed acquisition
 preflights, and the registered governance cases. Broader correct-governance or
 social-responsibility claims — that the governance policy is the *correct* one
 for real organizations — remain **CANNOT_CHECK**: they require two independent
 experts plus a tie-break/custodian, which no artifact in this repository
-provides. On the present evidence P14 is **not** a separate paper at the 75+
+provides. On the present evidence ORION-24 is **not** a separate paper at the 75+
 bar; the external campaign that could change this (30–50 pinned repositories
 from at least five unrelated organizations) is OPEN and must derive gold only
 from the objective facts enumerated in
-`papers/paper-13-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md`
+`papers/orion-23-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md`
 (object/hash existence, ancestry, tag/signature, test exit, timestamp order)
 and must never use ORION itself as an external subject.
 
@@ -316,7 +316,7 @@ Its distinctive mechanism is active negative/subsumed history plus material-reop
 6. Longitudinal value of negative-history retention is not yet demonstrated on realistic scientific work.
 7. Poorly calibrated reopen/materiality criteria could suppress productive risk-taking; useful-discovery noninferiority is therefore mandatory.
 8. No claim of frontier autonomous-research superiority is authorized.
-9. The P14D external-acquisition preflight is blocked (all eight required artifacts absent, no trusted external custody verifier), so no external-validation authority exists; and under issue #1086 decision D7 the paper's supported scope is narrowed to machine-verifiable lifecycle contracts — broader correct-governance and social-responsibility claims are CANNOT_CHECK (two independent experts plus tie-break/custodian required), and P14 is not a separate 75+ paper on the present evidence.
+9. The P14D external-acquisition preflight is blocked (all eight required artifacts absent, no trusted external custody verifier), so no external-validation authority exists; and under issue #1086 decision D7 the paper's supported scope is narrowed to machine-verifiable lifecycle contracts — broader correct-governance and social-responsibility claims are CANNOT_CHECK (two independent experts plus tie-break/custodian required), and ORION-24 is not a separate 75+ paper on the present evidence.
 
 ## 13. Conclusion
 

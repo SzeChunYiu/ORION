@@ -9,8 +9,8 @@ from urllib.parse import parse_qs, urlparse
 import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
-SCRIPT = ROOT / "papers/paper-02-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py"
-FREEZE = ROOT / "papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json"
+SCRIPT = ROOT / "papers/orion-12-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py"
+FREEZE = ROOT / "papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json"
 
 
 def _load():

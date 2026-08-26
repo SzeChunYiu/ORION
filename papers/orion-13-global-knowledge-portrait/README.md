@@ -1,6 +1,6 @@
 # Paper 03 — Global Knowledge Portrait
 
-**Stable ID:** ORION-P3  
+**Stable ID:** ORION-ORION-13  
 **Status:** `PEER_REVIEW_READY` for the scoped scientific-identity-authority paper.
 
 ## Scoped contribution
@@ -11,7 +11,7 @@ The current paper is deliberately narrower than the original eight-family progra
 
 ## Additive method-structure bridge
 
-`MethodStructureProjection.v1` and the cross-domain alignment bridge preserve source-local assumptions, invariants, effects, reconstruction, failure semantics, lineage and explicit unknowns. The frozen small exact-ground-truth pilot is only a non-vacuity discriminator: the typed path reproduces all six pair labels and detects all eight material corruptions. It does not establish general extraction from arbitrary papers or P9 learning performance.
+`MethodStructureProjection.v1` and the cross-domain alignment bridge preserve source-local assumptions, invariants, effects, reconstruction, failure semantics, lineage and explicit unknowns. The frozen small exact-ground-truth pilot is only a non-vacuity discriminator: the typed path reproduces all six pair labels and detects all eight material corruptions. It does not establish general extraction from arbitrary papers or ORION-19 learning performance.
 
 ## Nearest-work boundary
 
@@ -21,8 +21,8 @@ The paper absorbs and credits mechanisms from scientific schema/provenance/knowl
 
 The current ready paper does **not** claim:
 
-- raw-text end-to-end scientific-integration superiority (P3.C7);
-- downstream scientific answer-quality improvement (P3.C8);
+- raw-text end-to-end scientific-integration superiority (ORION-13.C7);
+- downstream scientific answer-quality improvement (ORION-13.C8);
 - completion of the original expert eight-family atlas;
 - universal necessity of every semantic coordinate;
 - general method-learning or cross-domain extraction performance.

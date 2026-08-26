@@ -1,6 +1,6 @@
 # Recursive Recovery of Negative Quantum Results: An Auditable Successor Protocol for Research Programmes
 
-**ORION-Q2 Manuscript V3 — publication draft**  
+**ORION-ORION-02 Manuscript V3 — publication draft**  
 Scientific cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Foundation: `PUBLICATION_FOUNDATION_V2.md`  
 Graph: `Q2_TRANSITION_GRAPH_V2.json`  
@@ -8,17 +8,17 @@ Declared receipt denominator: `Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json`
 
 ## Abstract
 
-Scientific-agent systems increasingly preserve code, evidence chains and execution traces, but provenance alone does not determine what a research programme should do after a prospectively frozen hypothesis is refuted, absorbed by prior work or left `CANNOT_CHECK`. We present a bounded longitudinal case study of an executable **negative-result successor discipline** used in the ORION-Q quantum-compilation programme. Each research node retains its frozen claim, result receipt and disposition. A successor edge is admitted only when the predecessor outcome localizes a scientifically relevant responsibility, the strongest located donor receives first right of refusal, and a new protocol is frozen before its outcome. Later success never rewrites the predecessor. For publication, we define a 51-receipt frozen denominator: the 40 receipts in the original Q2 receipt index plus 11 pre-cut receipts needed to complete the later R6O–R6S/QG lineage. Twenty-three receipts are included as graph nodes and 28 are explicitly excluded with category-level reasons. The graph contains 13 asserted successor edges; seven negative/absorbed nodes are deliberately retained without an invented successor. A fail-closed validator checks the 51-receipt partition, binds every receipt to the publication cut, rejects graph drift or invented edges, and preserves negative-result visibility. Representative chains show restricted-family refutation to targeted family repair, second refutation to stronger support family, finite positive to all-`n` theorem, bounded prospective confirmation followed by later closed-form refutation, and candidate residual to donor absorption. We subtract direct prior art: ScienceAgentBench, AstaBench and SciAgentArena own substantial territory in rigorous scientific-agent evaluation; ScientistOne owns broad claim-to-evidence traceability and integrity auditing. Our narrower object is the **authorized transition from a retained scientific disposition to the next frozen question**. The evidence demonstrates feasibility and auditability in one exact-heavy programme; it does not establish improved scientific productivity, autonomous governance or cross-domain superiority.
+Scientific-agent systems increasingly preserve code, evidence chains and execution traces, but provenance alone does not determine what a research programme should do after a prospectively frozen hypothesis is refuted, absorbed by prior work or left `CANNOT_CHECK`. We present a bounded longitudinal case study of an executable **negative-result successor discipline** used in the ORION-Q quantum-compilation programme. Each research node retains its frozen claim, result receipt and disposition. A successor edge is admitted only when the predecessor outcome localizes a scientifically relevant responsibility, the strongest located donor receives first right of refusal, and a new protocol is frozen before its outcome. Later success never rewrites the predecessor. For publication, we define a 51-receipt frozen denominator: the 40 receipts in the original ORION-02 receipt index plus 11 pre-cut receipts needed to complete the later R6O–R6S/QG lineage. Twenty-three receipts are included as graph nodes and 28 are explicitly excluded with category-level reasons. The graph contains 13 asserted successor edges; seven negative/absorbed nodes are deliberately retained without an invented successor. A fail-closed validator checks the 51-receipt partition, binds every receipt to the publication cut, rejects graph drift or invented edges, and preserves negative-result visibility. Representative chains show restricted-family refutation to targeted family repair, second refutation to stronger support family, finite positive to all-`n` theorem, bounded prospective confirmation followed by later closed-form refutation, and candidate residual to donor absorption. We subtract direct prior art: ScienceAgentBench, AstaBench and SciAgentArena own substantial territory in rigorous scientific-agent evaluation; ScientistOne owns broad claim-to-evidence traceability and integrity auditing. Our narrower object is the **authorized transition from a retained scientific disposition to the next frozen question**. The evidence demonstrates feasibility and auditability in one exact-heavy programme; it does not establish improved scientific productivity, autonomous governance or cross-domain superiority.
 
 ## 1. Introduction
 
-Scientific agents can search literature, write code, execute analyses and draft papers. Evaluation and verification have matured accordingly. **ScienceAgentBench** evaluates executable data-driven scientific tasks sourced from peer-reviewed work. **AstaBench** and **SciAgentArena** broaden controlled scientific-agent evaluation with standardized tools, costs, environments and task families. **ScientistOne** develops a Chain-of-Evidence framework in which claims, scores, references and method descriptions are explicitly audited against source evidence and implementation. These are direct donors. Q2 does not claim novelty for scientific-agent benchmarking, provenance, reproducibility, evidence chains or executable outcome scoring.
+Scientific agents can search literature, write code, execute analyses and draft papers. Evaluation and verification have matured accordingly. **ScienceAgentBench** evaluates executable data-driven scientific tasks sourced from peer-reviewed work. **AstaBench** and **SciAgentArena** broaden controlled scientific-agent evaluation with standardized tools, costs, environments and task families. **ScientistOne** develops a Chain-of-Evidence framework in which claims, scores, references and method descriptions are explicitly audited against source evidence and implementation. These are direct donors. ORION-02 does not claim novelty for scientific-agent benchmarking, provenance, reproducibility, evidence chains or executable outcome scoring.
 
 A different question begins after those controls return an unfavorable scientific outcome.
 
 Suppose a hypothesis was frozen before execution and is then refuted. The programme may discard the run, reinterpret the claim, repeat the same mechanism with a new name, or preserve the negative but fail to use it. None of those choices says which new question is scientifically licensed by the observed failure.
 
-Q2 studies a bounded alternative:
+ORION-02 studies a bounded alternative:
 
 `frozen question -> result -> typed disposition -> responsibility/donor analysis -> frozen successor or stop`.
 
@@ -30,15 +30,15 @@ ORION-Q is a useful case because many claims have exact referees or sharply froz
 
 ### 2.1 Scientific-agent benchmarks
 
-ScienceAgentBench (ICLR 2025) evaluates 102 real data-driven research tasks from 44 peer-reviewed publications with expert validation and executable program-level scoring. AstaBench and SciAgentArena provide additional controlled scientific-research benchmarks and environments. Q2 gives these lines full credit for rigorous task construction, tool/cost control, executable evaluation and benchmark methodology.
+ScienceAgentBench (ICLR 2025) evaluates 102 real data-driven research tasks from 44 peer-reviewed publications with expert validation and executable program-level scoring. AstaBench and SciAgentArena provide additional controlled scientific-research benchmarks and environments. ORION-02 gives these lines full credit for rigorous task construction, tool/cost control, executable evaluation and benchmark methodology.
 
 ### 2.2 Evidence chains
 
-ScientistOne directly owns broad claim-to-evidence traceability, score/reference verification and method-code consistency checking. Q2 assumes scientific states can be bound to evidence; its candidate residual starts only **after** that evidence has produced a disposition.
+ScientistOne directly owns broad claim-to-evidence traceability, score/reference verification and method-code consistency checking. ORION-02 assumes scientific states can be bound to evidence; its candidate residual starts only **after** that evidence has produced a disposition.
 
 ### 2.3 Preregistration/provenance/negative results
 
-Prospective freezing, provenance and publication of negative results are established scientific practices. Q2's candidate residual is their composition with two explicit transition constraints: responsibility-conditioned successor selection and donor first right of refusal. We make no “first” claim.
+Prospective freezing, provenance and publication of negative results are established scientific practices. ORION-02's candidate residual is their composition with two explicit transition constraints: responsibility-conditioned successor selection and donor first right of refusal. We make no “first” claim.
 
 ## 3. Research-state and successor model
 
@@ -67,7 +67,7 @@ Chronological adjacency is not sufficient to create an edge.
 
 ## 4. Frozen denominator and machine-readable graph
 
-A case-study narrative can cherry-pick clean recovery chains unless the selection universe is declared. Q2 therefore freezes a publication denominator in `Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json`.
+A case-study narrative can cherry-pick clean recovery chains unless the selection universe is declared. ORION-02 therefore freezes a publication denominator in `Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json`.
 
 ### 4.1 Declared 51-receipt universe
 
@@ -81,7 +81,7 @@ The inventory partitions these 51 artifacts exactly into:
 - **23 included graph nodes**;
 - **28 explicit exclusions**, grouped as pre-ladder/orthogonal programme results, R6 instrument/control states, or N-lane results not needed for the selected donor-first-refusal examples.
 
-Exclusion means “not a Q2 publication transition node,” not “scientifically unimportant.” The inventory does not claim that all 51 receipts should have a successor.
+Exclusion means “not a ORION-02 publication transition node,” not “scientifically unimportant.” The inventory does not claim that all 51 receipts should have a successor.
 
 ### 4.2 Graph denominator
 
@@ -170,7 +170,7 @@ Other ORION-Q lanes show a distinct succession pattern. A candidate can be match
 
 The graph deliberately includes donor-absorbed/negative nodes even when no successor edge is asserted. Their role is to constrain future work: repeating the same mechanism under new branding is not an admissible novelty route.
 
-## 10. What Q2 demonstrates
+## 10. What ORION-02 demonstrates
 
 The case study establishes three bounded properties.
 
@@ -180,7 +180,7 @@ The case study establishes three bounded properties.
 
 **Negative persistence.** A later repair cannot make a predecessor disappear from the declared denominator/graph.
 
-Q2 does **not** demonstrate faster discovery, better research quality, autonomous governance, general responsibility diagnosis in noisy empirical science, or universal novelty of the transition protocol.
+ORION-02 does **not** demonstrate faster discovery, better research quality, autonomous governance, general responsibility diagnosis in noisy empirical science, or universal novelty of the transition protocol.
 
 Those would require new controlled/cross-domain evidence and are intentionally outside the current claim.
 
@@ -206,11 +206,11 @@ The repository is publicly inspectable, but public visibility is not a reuse lic
 
 **Declared publication universe.** The 51-receipt denominator is a bounded ORION-Q publication selection universe, not every scientific event in ORION or a sample of research generally.
 
-**Selection rule is methodological.** Inclusion/exclusion reasons are explicit, but Q2 does not claim every excluded result could never inform a different successor analysis.
+**Selection rule is methodological.** Inclusion/exclusion reasons are explicit, but ORION-02 does not claim every excluded result could never inform a different successor analysis.
 
 **No productivity outcome.** There is no controlled comparison of discovery time, paper quality or scientific yield against another governance policy.
 
-**Human/AI composition.** Humans and multiple AI systems may participate; Q2 is not an autonomous-agent superiority result.
+**Human/AI composition.** Humans and multiple AI systems may participate; ORION-02 is not an autonomous-agent superiority result.
 
 **External novelty remains empirical.** Internal donor searches/receipts cannot self-certify publication novelty.
 
@@ -218,7 +218,7 @@ The repository is publicly inspectable, but public visibility is not a reuse lic
 
 The successor discipline changes the meaning of “progress.” An exact counterexample can open the right family extension. A donor absorption can close an unproductive novelty route. A finite positive can justify a theorem attempt without being restated as a theorem. A prospectively confirmed case can remain valid after a different instance refutes the broad extrapolation.
 
-This differs from evidence-chain work in locus, not opposition. Evidence chains answer **what supports this claim?** Q2 asks **given the supported disposition, what research transition is now authorized?** Scientific-agent benchmarks ask whether systems solve tasks under controlled conditions. Q2 instead tracks how the research question itself changes after evidence arrives.
+This differs from evidence-chain work in locus, not opposition. Evidence chains answer **what supports this claim?** ORION-02 asks **given the supported disposition, what research transition is now authorized?** Scientific-agent benchmarks ask whether systems solve tasks under controlled conditions. ORION-02 instead tracks how the research question itself changes after evidence arrives.
 
 The 51-receipt denominator and fail-closed graph validator make that case study inspectable rather than anecdotal. They still do not prove that the policy is optimal. That stronger question—whether one successor discipline improves science relative to another—is successor research rather than a hidden assumption of this paper.
 

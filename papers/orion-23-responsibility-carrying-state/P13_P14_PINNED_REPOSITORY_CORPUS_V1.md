@@ -1,11 +1,11 @@
-# P13+P14 pinned repository corpus (V1)
+# ORION-23+ORION-24 pinned repository corpus (V1)
 
 Companion protocol doc for `P13_P14_PINNED_REPOSITORY_CORPUS_V1.json`
 (schema `ORION.P13P14.PinnedRepositoryCorpus.v1`). The JSON is the corpus of
 record.
 
 Status: **FROZEN_CORPUS_PINNING**. This pins the external repository corpus
-required by issue #1086 (consolidated P13+P14): *use 30-50 pinned repositories
+required by issue #1086 (consolidated ORION-23+ORION-24): *use 30-50 pinned repositories
 from >=5 unrelated organizations; never use ORION as external subject.* It
 contains no derived gold and no campaign results, and must never be cited as
 evidence that any campaign ran or passed.

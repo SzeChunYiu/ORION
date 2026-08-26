@@ -1,4 +1,4 @@
-# ORION-P1 journal package
+# ORION-ORION-11 journal package
 
 **Scientific status:** `PEER_REVIEW_READY` for the bounded credential-free
 mechanical mutation-necessity claim. **Package status:** `SUPERSEDED`.
@@ -12,7 +12,7 @@ The protected V3 renderer also binds the complete tracked TeX input closure in
 tree, records that this PDF is `SUPERSEDED`. It is retained as an earlier
 inspected record and must not be relabelled or submitted as the current PDF.
 
-`P1.CURRENT_PACKAGE` is `OPEN`: the enlarged manuscript still lacks a fresh
+`ORION-11.CURRENT_PACKAGE` is `OPEN`: the enlarged manuscript still lacks a fresh
 content-bound PDF and visual audit, immutable public archive/DOI, and
 clean-checkout access to the
 externally held source-native handoff and independent checksum receipt.

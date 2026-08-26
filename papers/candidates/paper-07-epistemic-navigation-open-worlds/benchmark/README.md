@@ -1,4 +1,4 @@
-# P7 evolving-topology benchmark seed V1
+# ORION-17 evolving-topology benchmark seed V1
 
 `instances_v1.jsonl` freezes eight case contracts before any candidate-agent outcomes.
 
@@ -28,9 +28,9 @@ This oracle is not a system baseline. A real evaluation must hide gold topology/
 The mandatory discriminator is a paired non-retrieval study comparing:
 
 - fixed-topology navigation;
-- P2-style route governance;
+- ORION-12-style route governance;
 - ordinary replanning;
 - representation/task reformulation baselines;
-- full P7 topology change.
+- full ORION-17 topology change.
 
 A separate paper requires benefit on topology-change-positive cases without an unacceptable harmful-reframe rate on negative controls.

@@ -26,7 +26,7 @@ from orion.study.p5.tables import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPER = ROOT / "papers" / "paper-05-self-orion"
+PAPER = ROOT / "papers" / "orion-15-self-orion"
 ARCHIVE = PAPER / "evidence" / "glm-5.2-attribution" / "results.jsonl"
 REPORT = PAPER / "evidence" / "glm-5.2-attribution" / "report.json"
 

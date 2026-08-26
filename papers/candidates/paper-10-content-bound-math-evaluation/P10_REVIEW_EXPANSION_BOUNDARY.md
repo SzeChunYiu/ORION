@@ -1,6 +1,6 @@
-# P10 review-expansion boundary — 2026-08-20
+# ORION-20 review-expansion boundary — 2026-08-20
 
-The P10 review surface now has two strictly separated layers.
+The ORION-20 review surface now has two strictly separated layers.
 
 ## Completed positive layer
 

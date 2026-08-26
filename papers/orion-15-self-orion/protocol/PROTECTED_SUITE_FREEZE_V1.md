@@ -1,4 +1,4 @@
-# ORION-P5 protected hidden-cause suite freeze V1
+# ORION-ORION-15 protected hidden-cause suite freeze V1
 
 This procedure is the host-side bridge between the design-frozen protocol and a later `EXECUTION_FROZEN` run. It does **not** publish a hidden-cause benchmark into the repository and it does **not** produce empirical evidence.
 
@@ -178,7 +178,7 @@ How the construction differs, and each difference is one of the three defects na
 
 ### This grants no authority
 
-It is an instrument demonstration and nothing else. The cases carry no authored symptom — a placeholder that says so occupies `visible_symptom` — because writing twenty-four diagnostically valid hidden-cause cases is the campaign lane's work, and inventing them here would manufacture a benchmark rather than demonstrate an instrument. **No hidden-cause campaign has been run against this suite.** It produces no attribution score, promotes no P5 claim, closes no gate, and its report declares `grants_authority: NONE` and `is_scientific_result: false`. The manuscript's 21/24 is a measurement on the *shipped* suite and is unaffected in either direction. The audit's exit status stays the shipped suite's: a demonstration that a sound suite is buildable does not make a broken one less broken.
+It is an instrument demonstration and nothing else. The cases carry no authored symptom — a placeholder that says so occupies `visible_symptom` — because writing twenty-four diagnostically valid hidden-cause cases is the campaign lane's work, and inventing them here would manufacture a benchmark rather than demonstrate an instrument. **No hidden-cause campaign has been run against this suite.** It produces no attribution score, promotes no ORION-15 claim, closes no gate, and its report declares `grants_authority: NONE` and `is_scientific_result: false`. The manuscript's 21/24 is a measurement on the *shipped* suite and is unaffected in either direction. The audit's exit status stays the shipped suite's: a demonstration that a sound suite is buildable does not make a broken one less broken.
 
 ### Two limits of the identifiability instrument, and where this document runs out
 

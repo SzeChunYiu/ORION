@@ -36,15 +36,15 @@ from .echo_world import (
 RESULT_SCHEMA_VERSION = "orion.p2.lexical-echo-successor-result.v1"
 
 FREEZE_DOCUMENT = (
-    "papers/paper-02-open-world-scientific-discovery/protocol/"
+    "papers/orion-12-open-world-scientific-discovery/protocol/"
     "P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md"
 )
 FREEZE_TWIN = (
-    "papers/paper-02-open-world-scientific-discovery/protocol/"
+    "papers/orion-12-open-world-scientific-discovery/protocol/"
     "P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.json"
 )
 DEFAULT_OUTPUT = (
-    "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/"
+    "papers/orion-12-open-world-scientific-discovery/evidence/successor_results/"
     "P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json"
 )
 

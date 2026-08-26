@@ -1,4 +1,4 @@
-# P8 journal readiness V2
+# ORION-18 journal readiness V2
 
 **Manuscript:** `manuscript/FINAL.md`  
 **Theory:** `CLOSED_V2`  
@@ -23,7 +23,7 @@
 - [x] Deterministic V2 reproduction command frozen.
 - [x] V2 checker wired into candidate CI.
 - [x] Venue path selected.
-- [x] P1–P5 ownership protected.
+- [x] ORION-11–ORION-15 ownership protected.
 
 ## Submission-time checks that are not theory gaps
 
@@ -34,9 +34,9 @@
 
 ## Separate-paper criterion
 
-P8 is complete as a **theory paper** because the product-equivalence theorem is itself a valid negative result and the scientific-discharge interface is fully defined.
+ORION-18 is complete as a **theory paper** because the product-equivalence theorem is itself a valid negative result and the scientific-discharge interface is fully defined.
 
-A stronger empirical superiority claim is optional and must compare with an ideal typed donor product. If that product matches P8 on behavior and there is no gain in consistency, proof economy, auditability or defect rate, the publication can be reframed as a theory/interface/negative-result paper or merged into P4/programme synthesis; no theoretical placeholder remains.
+A stronger empirical superiority claim is optional and must compare with an ideal typed donor product. If that product matches ORION-18 on behavior and there is no gain in consistency, proof economy, auditability or defect rate, the publication can be reframed as a theory/interface/negative-result paper or merged into ORION-14/programme synthesis; no theoretical placeholder remains.
 
 ## Claims intentionally excluded
 

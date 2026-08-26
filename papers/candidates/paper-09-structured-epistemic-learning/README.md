@@ -6,7 +6,7 @@ Target venue: **Transactions on Machine Learning Research (TMLR)**, subject to t
 
 ## Identity boundary
 
-This directory is additive. It does **not** replace or rewrite the historical P9 V1 / ORION Learning Machine package under `papers/candidates/orion-learning-machine/` or any earlier P9 candidate directory. Historical routing/competence evidence remains historical and is not evidence for this paper.
+This directory is additive. It does **not** replace or rewrite the historical ORION-19 V1 / ORION Learning Machine package under `papers/candidates/orion-learning-machine/` or any earlier ORION-19 candidate directory. Historical routing/competence evidence remains historical and is not evidence for this paper.
 
 ## Frozen paper thesis
 
@@ -27,7 +27,7 @@ Numbers may be populated only from official exact-head artifacts that are:
 - merged to `main`;
 - reproduced/archived in the repository;
 - compared against the pre-official independent verifier;
-- covered by the final P9 verification receipt under #283.
+- covered by the final ORION-19 verification receipt under #283.
 
 Until then manuscript result macros remain `PENDING_OFFICIAL_RECEIPT`.
 

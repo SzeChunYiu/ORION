@@ -1,6 +1,6 @@
-# P12 Claim–Evidence Ledger
+# ORION-22 Claim–Evidence Ledger
 
-**Stable ID:** ORION-P12  
+**Stable ID:** ORION-ORION-22  
 **Issue:** #665  
 **Accounting owner:** #664
 
@@ -14,8 +14,8 @@
 | protected signals use outcomes | FALSE | construction/protocol | pre-outcome noisy requirements only |
 | V1 runner alone satisfied every protocol gate | **FALSE / CORRECTED** | PR hostile review | replay was omitted from the V1 terminal path |
 | exact frozen runner is byte-identical across two fresh executions | **SUPPORTED / REPLAY-ADJUDICATED** | V2 adjudicator | both SHA-256 = `0194bc094f5696583533af5baae41e7c339902603d3706c8a1d2a78493f98947` |
-| adaptive test-time compute is novel to P12 | FALSE / DONOR-OWNED | current literature | do not claim |
-| dynamic state/context selection is novel to P12 | FALSE / DONOR-OWNED | retrieval/memory/state literature | do not claim |
+| adaptive test-time compute is novel to ORION-22 | FALSE / DONOR-OWNED | current literature | do not claim |
+| dynamic state/context selection is novel to ORION-22 | FALSE / DONOR-OWNED | retrieval/memory/state literature | do not claim |
 | two-axis state–reasoning allocation has controlled superiority under matched total compute | **NOT AUTHORIZED** | `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` | identical budget did not mean identical action capability |
 | two signals improve exact allocation when all arms share the same four actions | **SUPPORTED / CONTROLLED P12B** | `P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json` | mean gain 0.253906 across 32 family RNG blocks; stratified 95% CI [0.251221, 0.256653]; locked CPython 3.12.13 / NumPy 2.5.2 replay |
 | one unchanged q/c/B allocator matches the hindsight location oracle in the registered three-domain transfer battery | **SUPPORTED / BOUNDED INTERNAL EXACT DOMAINS** | `P12_TRANSFER_ALLOCATION_RESULT_RECEIPT_V1.md` | zero regret in 9/9 cases across SAT, path planning and knapsack; no domain-specific parameter |
@@ -61,7 +61,7 @@ The original P12A executable evaluated seven frozen scientific gates but did not
 
 ## Residual novelty
 
-P12's residual is not “adaptive inference.” It is the **resource-locus problem**.
+ORION-22's residual is not “adaptive inference.” It is the **resource-locus problem**.
 P12A motivates that problem but confounds signal count with action capability.
 P12B resolves that controlled comparison by holding the four actions fixed; the
 real-system resource-locus claim remains open.

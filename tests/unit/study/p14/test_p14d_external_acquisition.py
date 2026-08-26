@@ -12,7 +12,7 @@ from orion.study.p14.external_acquisition import (
 )
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-14-orion-rse"
+PAPER = ROOT / "papers/orion-24-orion-rse"
 
 
 def _sha(path: Path) -> str:

@@ -1,14 +1,14 @@
-# P2 additive manuscript bridge — structure-conditioned discovery routes
+# ORION-12 additive manuscript bridge — structure-conditioned discovery routes
 
-**Status:** additive extension for #406/#407. The already peer-review-ready narrowed P2 manuscript and its current submission PDF remain immutable historical authority. This file is the canonical insertion text for a successor manuscript/version; it does **not** broaden the current P2 headline.
+**Status:** additive extension for #406/#407. The already peer-review-ready narrowed ORION-12 manuscript and its current submission PDF remain immutable historical authority. This file is the canonical insertion text for a successor manuscript/version; it does **not** broaden the current ORION-12 headline.
 
 ## Structure-conditioned discovery routes
 
-Open-world scientific discovery is not always well served by topical similarity. A failed method can expose a structural need that is more informative than the target field's vocabulary: preserve an invariant while changing representation; avoid a known failure mode; decompose a global obligation into local obligations; or recover a solution after solving a relaxed/dual problem. P2 therefore admits a route whose query is derived from a versioned structural object rather than from topic terms alone.
+Open-world scientific discovery is not always well served by topical similarity. A failed method can expose a structural need that is more informative than the target field's vocabulary: preserve an invariant while changing representation; avoid a known failure mode; decompose a global obligation into local obligations; or recover a solution after solving a relaxed/dual problem. ORION-12 therefore admits a route whose query is derived from a versioned structural object rather than from topic terms alone.
 
 A `StructuralDiscoveryRoute.v1` binds the originating structural-need digest, derivation kind, backend identity, query-derivation identity, capture identity and exact derived terms. The structural derivation kinds are `METHOD_SIGNATURE`, `FAILURE_SIGNATURE` and `REPRESENTATION_ANALOGY`. They coexist with ordinary topical, citation and entity routes; the label "structural" is not itself evidence that the route is independent or useful.
 
-The route has a deliberately low authority ceiling. It may surface **candidate donors only**. P3 owns source-local method projection/alignment, P6 owns formal structural reduction/equivalence, P4 owns validity/transfer evidence, P8 owns typed authority, and novelty remains external to candidate acquisition. Accordingly a P2 structural-route receipt carries `can_certify_transfer=false`, `can_claim_novelty=false`, and `can_close_task=false`.
+The route has a deliberately low authority ceiling. It may surface **candidate donors only**. ORION-13 owns source-local method projection/alignment, ORION-16 owns formal structural reduction/equivalence, ORION-14 owns validity/transfer evidence, ORION-18 owns typed authority, and novelty remains external to candidate acquisition. Accordingly a ORION-12 structural-route receipt carries `can_certify_transfer=false`, `can_claim_novelty=false`, and `can_close_task=false`.
 
 ### Earned independence still applies
 
@@ -16,7 +16,7 @@ A different structural label does not create another evidential route. For the b
 
 ### False analogy is an explicit failure state
 
-Semantic distance is not creativity evidence. Before a returned donor is even treated as a structural candidate, the bounded checker compares declared assumptions, protected invariants, effects and reconstruction obligations. A candidate that looks structurally attractive but drops a load-bearing assumption is an `OBSTRUCTION`; missing provenance or reconstruction is acquisition-local `UNKNOWN`. A clean match remains only `CANDIDATE`, because P2 cannot certify that the donor-to-target mapping is valid. `UNKNOWN` is deliberately below the scientific-authority layer: if such a candidate is later offered for a scientific claim, P4/P8 determine the corresponding fail-closed authority state rather than P2 minting a second authority terminal.
+Semantic distance is not creativity evidence. Before a returned donor is even treated as a structural candidate, the bounded checker compares declared assumptions, protected invariants, effects and reconstruction obligations. A candidate that looks structurally attractive but drops a load-bearing assumption is an `OBSTRUCTION`; missing provenance or reconstruction is acquisition-local `UNKNOWN`. A clean match remains only `CANDIDATE`, because ORION-12 cannot certify that the donor-to-target mapping is valid. `UNKNOWN` is deliberately below the scientific-authority layer: if such a candidate is later offered for a scientific claim, ORION-14/ORION-18 determine the corresponding fail-closed authority state rather than ORION-12 minting a second authority terminal.
 
 ### Route stop remains local
 
@@ -42,8 +42,8 @@ This extension does not claim that:
 - a surfaced donor transfers correctly to a target;
 - semantic distance implies novelty or creativity;
 - the curated historical pilot predicts open-web retrieval performance;
-- P9 has learned the structural space;
-- P10 can invent methods;
+- ORION-19 has learned the structural space;
+- ORION-20 can invent methods;
 - route or known-library exhaustion proves global absence.
 
-The current P2 publication claim remains exactly the bounded fail-closed discovery/closure claim recorded in `JOURNAL_READINESS.md`.
+The current ORION-12 publication claim remains exactly the bounded fail-closed discovery/closure claim recorded in `JOURNAL_READINESS.md`.

@@ -3,7 +3,7 @@ name: p11-real-learned-compiler-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-11-state-as-computation/top_tier/**'
+      - 'papers/orion-21-state-as-computation/top_tier/**'
       - '.github/workflows/p11-real-learned-compiler-v1.yml'
   workflow_dispatch:
 
@@ -21,10 +21,10 @@ jobs:
       - name: Install frozen scientific dependencies
         run: python -m pip install 'numpy==1.26.4' 'scikit-learn==1.5.2'
       - name: Execute prospective learned-compiler study
-        run: python papers/paper-11-state-as-computation/top_tier/run_real_learned_compiler_v1.py | tee p11_real_learned_compiler_v1.json
+        run: python papers/orion-21-state-as-computation/top_tier/run_real_learned_compiler_v1.py | tee p11_real_learned_compiler_v1.json
       - name: Execute byte-replay run
         run: |
-          python papers/paper-11-state-as-computation/top_tier/run_real_learned_compiler_v1.py > p11_real_learned_compiler_v1_rerun.json
+          python papers/orion-21-state-as-computation/top_tier/run_real_learned_compiler_v1.py > p11_real_learned_compiler_v1_rerun.json
           cmp p11_real_learned_compiler_v1.json p11_real_learned_compiler_v1_rerun.json
           echo P11_REAL_LEARNED_COMPILER_V1_BYTE_REPLAY_GREEN
       - uses: actions/upload-artifact@v4

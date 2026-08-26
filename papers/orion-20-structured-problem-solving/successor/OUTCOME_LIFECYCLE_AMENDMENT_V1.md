@@ -1,12 +1,12 @@
-# P10 outcome-lifecycle amendment V1
+# ORION-20 outcome-lifecycle amendment V1
 
 Date: 2026-08-22
 Status: semantic clarification / no novelty or authority claim
-Applies to: P10 successor OCME / structured problem-solving contract
+Applies to: ORION-20 successor OCME / structured problem-solving contract
 
 ## Why this amendment exists
 
-P10 distinguishes lower-level causes, method-language obstruction, candidate edits, donor comparison, outside-closure verification, transfer, and independent reproduction. The harness implementation exposed an important semantic boundary that should be explicit in the paper contract:
+ORION-20 distinguishes lower-level causes, method-language obstruction, candidate edits, donor comparison, outside-closure verification, transfer, and independent reproduction. The harness implementation exposed an important semantic boundary that should be explicit in the paper contract:
 
 - a missing O0--O6 proof object is **unresolved**;
 - a verified donor subsumption, obstruction, impossibility boundary, or failed frozen transfer is a **negative research result**;
@@ -29,9 +29,9 @@ If one of these route families is missing, the state is `CANNOT_CHECK` with an a
 
 A successful lower-level route is a causal result and closes method-language escalation for that episode.
 
-## P10 unresolved states
+## ORION-20 unresolved states
 
-Examples of P10 `CANNOT_CHECK` include:
+Examples of ORION-20 `CANNOT_CHECK` include:
 
 - a required O1 route has not been executed;
 - obstruction verification is missing or self-certified;
@@ -42,7 +42,7 @@ Examples of P10 `CANNOT_CHECK` include:
 
 Each such state should carry `ResearchResolutionObligation.v1` with the missing object and admissible next action. The harness should try to resolve it when the protocol permits.
 
-## P10 negative states
+## ORION-20 negative states
 
 Examples of genuine negative results include:
 
@@ -57,7 +57,7 @@ Negative assimilation may register donor subsumption, close a candidate branch, 
 
 ## Outcome separation invariant
 
-P10 therefore requires:
+ORION-20 therefore requires:
 
 \[
 \mathsf{missing\ proof\ object}\Rightarrow\mathsf{UNRESOLVED},

@@ -1,8 +1,8 @@
-# ORION-P5 prospective self-improvement protocol
+# ORION-ORION-15 prospective self-improvement protocol
 
 ## V1 — hidden-cause fresh transfer
 
-**Protocol:** `P5.hidden-cause-fresh-transfer.v1`  
+**Protocol:** `ORION-15.hidden-cause-fresh-transfer.v1`  
 **Status:** `DESIGN_FROZEN`  
 **Outcome access:** false
 
@@ -14,14 +14,14 @@ PAST-Bench is reference-pinned to `Gen-Verse/PAST-Bench@f8223517ae7491e776b69793
 
 ## V2 — staged acceptance
 
-**Protocol:** `P5.hidden-cause-staged-acceptance.v2`  
+**Protocol:** `ORION-15.hidden-cause-staged-acceptance.v2`  
 **Status:** `DESIGN_FROZEN`  
 **Outcome access:** false  
 **Parent:** V1, which remains unchanged.
 
 V2 prospectively tests whether the additive `STATIC -> REPLAY -> FRESH -> PROTECTED` non-compensatory gate reduces harmful fresh transfer and false protected acceptance without sacrificing useful protected improvement beyond the frozen non-inferiority margin.
 
-PACE-style anytime-valid commit acceptance, SEA-style certificates and Verifier-as-Gatekeeper are nearest-work/baseline pressure, not standalone P5 novelty. See `PROTOCOL_V2.json` and `STAGED_ACCEPTANCE_POLICY_V2.md`.
+PACE-style anytime-valid commit acceptance, SEA-style certificates and Verifier-as-Gatekeeper are nearest-work/baseline pressure, not standalone ORION-15 novelty. See `PROTOCOL_V2.json` and `STAGED_ACCEPTANCE_POLICY_V2.md`.
 
 V2 execution identities are intentionally `UNBOUND`. Local gate tests and a design freeze do not create an external empirical result.
 
@@ -35,11 +35,11 @@ See `V2_EVIDENCE_HANDOFF.md`. Passing the validator establishes artifact integri
 
 ## Causal-repair V2 — intervention-backed diagnosis plus protected fresh transfer
 
-**Protocol:** `P5.causal-repair.v2`  
+**Protocol:** `ORION-15.causal-repair.v2`  
 **Status:** `DESIGN_FROZEN`  
 **Outcome access:** false  
 **Parent:** staged-acceptance V2, which remains unchanged.
 
-Issue #282 freezes the three GLM-5.2 adjacent-level attribution errors (`P5-HC-002`, `P5-HC-012`, `P5-HC-018`) as discriminator seeds, then requires `STATIC -> DIAGNOSE -> DISCRIMINATE -> CANDIDATE -> REPLAY -> FRESH -> PROTECTED`. Replay gain cannot compensate fresh harm. Missing fresh transfer is `BLOCK`. The only positive terminal remains host-only `RECOMMEND_HOST_PROMOTION`.
+Issue #282 freezes the three GLM-5.2 adjacent-level attribution errors (`ORION-15-HC-002`, `ORION-15-HC-012`, `ORION-15-HC-018`) as discriminator seeds, then requires `STATIC -> DIAGNOSE -> DISCRIMINATE -> CANDIDATE -> REPLAY -> FRESH -> PROTECTED`. Replay gain cannot compensate fresh harm. Missing fresh transfer is `BLOCK`. The only positive terminal remains host-only `RECOMMEND_HOST_PROMOTION`.
 
 See `PROTOCOL_CAUSAL_REPAIR_V2.json`, `CAUSAL_REPAIR_POLICY_V2.md`, and `P5_CAUSAL_DISCRIMINATORS_V1.json`. Attribution replay of the archived 21/24 result is diagnosis-only and does not close the issue.

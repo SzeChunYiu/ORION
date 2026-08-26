@@ -1,10 +1,10 @@
 # A Theory of Epistemic Authority for Autonomous Science
 
-**Working manuscript — candidate P8 — 2026-08-17**
+**Working manuscript — candidate ORION-18 — 2026-08-17**
 
 ## Abstract
 
-Autonomous scientific agents can retrieve evidence, revise formulations, merge representations, assert conclusions and modify their own procedures. Capability alone does not establish that any such transition is justified. Across ORION's current five-paper programme, the same distinction appears repeatedly: a system may be able to reframe without being licensed to alter the problem, able to stop without being licensed to declare closure, able to map without being licensed to merge, able to state a claim without scientific authority, or able to improve on replay without being licensed to promote a self-change. This paper investigates whether these cases admit a reusable **epistemic authority calculus**. The candidate formalism types proposed epistemic actions, required obligations, defeaters, authority sources, refusal/CANNOT_CHECK and revocation. It is explicitly non-compensatory: confidence, utility or success in one dimension cannot automatically offset a missing obligation in another. The central empirical question is whether a shared calculus prevents cross-module authority laundering better than independent capability-specific gates. The candidate is not yet a novelty claim and must survive direct comparison with P4, abstention, provenance/verification, dynamic/deontic logic and agent-governance work.
+Autonomous scientific agents can retrieve evidence, revise formulations, merge representations, assert conclusions and modify their own procedures. Capability alone does not establish that any such transition is justified. Across ORION's current five-paper programme, the same distinction appears repeatedly: a system may be able to reframe without being licensed to alter the problem, able to stop without being licensed to declare closure, able to map without being licensed to merge, able to state a claim without scientific authority, or able to improve on replay without being licensed to promote a self-change. This paper investigates whether these cases admit a reusable **epistemic authority calculus**. The candidate formalism types proposed epistemic actions, required obligations, defeaters, authority sources, refusal/CANNOT_CHECK and revocation. It is explicitly non-compensatory: confidence, utility or success in one dimension cannot automatically offset a missing obligation in another. The central empirical question is whether a shared calculus prevents cross-module authority laundering better than independent capability-specific gates. The candidate is not yet a novelty claim and must survive direct comparison with ORION-14, abstention, provenance/verification, dynamic/deontic logic and agent-governance work.
 
 ## 1. Introduction
 
@@ -20,9 +20,9 @@ Consider five actions:
 
 A model can generate each action. A high confidence score can accompany each action. A local evaluator can even reward each action. None of those facts alone establishes authority.
 
-The ORION programme currently implements authority in domain-specific ways. P1 couples responsibility to reformulation permission. P2 separates route progress from task closure. P3 preserves obstruction when mapping is not authorized. P4 explicitly studies scientific-authority promotion under protected custody. P5 denies self-promotion even after apparent local improvement.
+The ORION programme currently implements authority in domain-specific ways. ORION-11 couples responsibility to reformulation permission. ORION-12 separates route progress from task closure. ORION-13 preserves obstruction when mapping is not authorized. ORION-14 explicitly studies scientific-authority promotion under protected custody. ORION-15 denies self-promotion even after apparent local improvement.
 
-P8 asks whether a common calculus exists above those cases.
+ORION-18 asks whether a common calculus exists above those cases.
 
 ## 2. Capability versus authority
 
@@ -72,7 +72,7 @@ A route may be exhausted or low-value. That can justify reallocating resources w
 Semantic similarity can suggest a cross-source mapping, but merge authority depends on referent, context, measurement, modality and preservation conditions. Obstruction is a legitimate terminal.
 
 ### 4.4 Assertion authority
-P4 already demonstrates a protected, non-escalating scientific-authority transition. P8 treats this as one action domain and must not relabel the P4 contribution as new.
+ORION-14 already demonstrates a protected, non-escalating scientific-authority transition. ORION-18 treats this as one action domain and must not relabel the ORION-14 contribution as new.
 
 ### 4.5 Self-modification authority
 A candidate change can be generated, compiled and locally improved while still lacking authority to promote itself. Fresh transfer, regression limits, negative history and protected evaluation may be mandatory obligations.
@@ -97,13 +97,13 @@ Scientific authority must sometimes be withdrawn.
 
 If evidence supporting an assertion is invalidated, downstream authority should be revoked or reopened. If a mapping's measurement-equivalence assumption fails, integrated conclusions may need demotion. If a self-change later causes harmful transfer, prior promotion authority should not be treated as permanently valid.
 
-P8 therefore requires a revocation operator tied to evidence/provenance dependency rather than confidence decay alone.
+ORION-18 therefore requires a revocation operator tied to evidence/provenance dependency rather than confidence decay alone.
 
 ## 7. Related-work boundary
 
 The candidate sits near several mature areas. Dynamic epistemic logic models informational actions and changing knowledge. Deontic and action logics formalize permission and obligation. Belief-revision systems model non-monotonic change. Selective prediction and abstention study when a system should refuse. Recent AgentAbstain work directly evaluates when tool-using agents should not act. Provenance and scientific-verification systems track whether claims are supported and correctly attributed. Protected-evaluation and benchmark-auditing work separates candidate capability from evaluation authority.
 
-P8 therefore cannot claim novelty for permission, abstention, provenance or non-monotonic revision in isolation.
+ORION-18 therefore cannot claim novelty for permission, abstention, provenance or non-monotonic revision in isolation.
 
 The hostile residual is narrower: a **typed authorization layer shared across heterogeneous epistemic actions**, with non-compensatory obligations, cross-module anti-laundering and revocation, grounded in executable autonomous-science workflows.
 
@@ -115,7 +115,7 @@ The hostile residual is narrower: a **typed authorization layer shared across he
 
 The strongest baseline is not a scalar confidence threshold. We must compare against:
 
-- existing P1–P5 capability-specific gates;
+- existing ORION-11–ORION-15 capability-specific gates;
 - provenance-only verification;
 - an abstention policy;
 - expected-utility authorization;
@@ -124,7 +124,7 @@ The strongest baseline is not a scalar confidence threshold. We must compare aga
 
 Primary outcomes include unauthorized-action rate, unnecessary refusal, clean authorized coverage, authority-laundering rate, correct revocation after defeaters and calibrated CANNOT_CHECK.
 
-If the shared calculus performs no better than independent per-domain gates, P8 should be merged into programme synthesis or P4 rather than published independently.
+If the shared calculus performs no better than independent per-domain gates, ORION-18 should be merged into programme synthesis or ORION-14 rather than published independently.
 
 ## 9. Limitations
 
@@ -132,4 +132,4 @@ Authority is partly normative and task-specific. A shared calculus may become to
 
 ## 10. Conclusion
 
-The candidate thesis is that autonomous science needs a typed answer to a question that capability benchmarks mostly ignore: **what is this system allowed to change, close, combine, assert or promote on the basis of the evidence it actually has?** P8 remains a candidate until it demonstrates a distinct cross-capability object beyond P4 and existing logic, abstention and provenance frameworks.
+The candidate thesis is that autonomous science needs a typed answer to a question that capability benchmarks mostly ignore: **what is this system allowed to change, close, combine, assert or promote on the basis of the evidence it actually has?** ORION-18 remains a candidate until it demonstrates a distinct cross-capability object beyond ORION-14 and existing logic, abstention and provenance frameworks.

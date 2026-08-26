@@ -1,6 +1,6 @@
-# Execution Freeze Checklist — ORION-P4 V2
+# Execution Freeze Checklist — ORION-ORION-14 V2
 
-**Campaign:** `P4.protected-authority.v2` (additive post-repair campaign over base protocol `P4.protected-authority.v1`)  
+**Campaign:** `ORION-14.protected-authority.v2` (additive post-repair campaign over base protocol `ORION-14.protected-authority.v1`)  
 **Lifecycle:** `EXECUTION_FROZEN → EXECUTED → REPRODUCED → ARCHIVED`  
 **Pre-outcome freeze:** outcome access was `false`; post-authorized-run outcome access is recorded only in result artifacts.
 

@@ -1,4 +1,4 @@
-# P7 prospective evaluation V1 — open-world epistemic atlas benchmark
+# ORION-17 prospective evaluation V1 — open-world epistemic atlas benchmark
 
 **Candidate:** Epistemic Navigation in Open Worlds  
 **Status:** protocol draft, **not frozen / not result-bearing**  
@@ -21,12 +21,12 @@ A Search-on-Graph-style adapter where feasible: local observation and iterative 
 POMDP/value-of-information style baseline on families with explicit partial-observation probabilities or finite belief sets.
 
 ### B3 — representation/model-change baseline
-Planning abstraction/world-model/goal-evolution donor adapter appropriate to the family, but without P7's explicit support/closure transport gate.
+Planning abstraction/world-model/goal-evolution donor adapter appropriate to the family, but without ORION-17's explicit support/closure transport gate.
 
-### B4 — P1+P2 composition
+### B4 — ORION-11+ORION-12 composition
 Native ORION reframe responsibility plus route/task stopping/coverage, using exact fixtures once available.
 
-### P7 — atlas navigator
+### ORION-17 — atlas navigator
 Tracks active chart, orientation, routes, obligations, coverage/censoring, partial maps, support transport, reopen/`CANNOT_CHECK` and stopping authority.
 
 A baseline may be `CANNOT_CHECK` if no faithful adapter exists; the reason must be recorded prospectively.
@@ -100,7 +100,7 @@ Structurally diverse routes exist but all additional regions are irrelevant afte
 
 ## 4. Non-retrieval transfer domains
 
-At least two are required for a strong P7 paper claim:
+At least two are required for a strong ORION-17 paper claim:
 
 1. **symbolic scientific design** — representation/objective transformation changes reachable designs;
 2. **dynamic ontology/workflow diagnosis** — a changed state/ontology definition alters reachable diagnoses or interventions.
@@ -109,7 +109,7 @@ Optional third domain:
 
 3. **goal-evolving optimization** — SAGA-style objective change with explicit evidence/closure transport accounting.
 
-Literature retrieval remains useful but does not count as the sole P7 transfer result because P2 owns that domain.
+Literature retrieval remains useful but does not count as the sole ORION-17 transfer result because ORION-12 owns that domain.
 
 ## 5. Instance schema
 
@@ -169,21 +169,21 @@ negative-control flags
 ## 7. Primary hypotheses
 
 ### H1 — fixed-chart conservativity
-On F1/F8/F11/F13, P7 should not improve correctness by gratuitous reframing; it should match strong fixed-chart/donor behavior and report any overhead.
+On F1/F8/F11/F13, ORION-17 should not improve correctness by gratuitous reframing; it should match strong fixed-chart/donor behavior and report any overhead.
 
 ### H2 — extension-aware stopping
-On F3/F5, P7 avoids unauthorized global stopping while preserving local resource-stop decisions.
+On F3/F5, ORION-17 avoids unauthorized global stopping while preserving local resource-stop decisions.
 
 ### H3 — support/closure transport
-On F9/F10, P7 makes the exact retain-evidence/reopen-closure decision more reliably than a representation-change baseline that transports state without explicit support/obligation semantics.
+On F9/F10, ORION-17 makes the exact retain-evidence/reopen-closure decision more reliably than a representation-change baseline that transports state without explicit support/obligation semantics.
 
 ### H4 — representation-required transfer
 On F7 and at least one non-retrieval domain, atlas-enabled navigation succeeds on pre-frozen instances where every admissible fixed-chart policy lacks a solution path.
 
 ### H5 — breadth calibration
-On F12/F13, P7 expands exploration when structurally useful and avoids useless dispersion.
+On F12/F13, ORION-17 expands exploration when structurally useful and avoids useless dispersion.
 
-A separate P7 paper requires H3 or a comparably strong cross-chart result plus non-retrieval transfer. H4 alone is too close to established representation-change expressivity.
+A separate ORION-17 paper requires H3 or a comparably strong cross-chart result plus non-retrieval transfer. H4 alone is too close to established representation-change expressivity.
 
 ## 8. Benchmark construction discipline
 
@@ -201,17 +201,17 @@ Use exhaustive counts for small symbolic families. For sampled larger generators
 
 ## 10. Promotion/failure criteria
 
-### Supports separate P7 candidate
-- distinct cross-chart support/closure transport result beyond P1+P2 and donor baselines;
+### Supports separate ORION-17 candidate
+- distinct cross-chart support/closure transport result beyond ORION-11+ORION-12 and donor baselines;
 - at least one non-retrieval exact-ground-truth transfer family;
 - low unnecessary-reframe rate on negative controls;
 - no novelty dependence on generic graph search, replanning, goal evolution or representation learning.
 
 ### Merge/strike pressure
-- P1+P2 or a planning abstraction/world-model donor reproduces all atlas decisions;
+- ORION-11+ORION-12 or a planning abstraction/world-model donor reproduces all atlas decisions;
 - only benefit is greater search breadth or more frequent reframing;
 - no evidence/closure transport discriminator remains;
-- positive results occur only in retrieval/P2-like tasks.
+- positive results occur only in retrieval/ORION-12-like tasks.
 
 ## 11. Current result authority
 

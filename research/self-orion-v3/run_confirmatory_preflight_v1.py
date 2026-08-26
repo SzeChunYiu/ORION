@@ -13,7 +13,7 @@ from orion.study.p5.revision_level_v3_preflight import (
 )
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_PROTOCOL = ROOT / "papers" / "paper-05-self-orion" / "protocol" / "SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json"
+DEFAULT_PROTOCOL = ROOT / "papers" / "orion-15-self-orion" / "protocol" / "SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json"
 DEFAULT_BASELINES = ROOT / "research" / "self-orion-v3" / "BASELINE_STRUCTURAL_BINDINGS_V2.json"
 
 

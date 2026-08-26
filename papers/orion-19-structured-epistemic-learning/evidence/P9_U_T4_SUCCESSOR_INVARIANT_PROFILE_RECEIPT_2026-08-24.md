@@ -1,10 +1,10 @@
-# P9-U-T4 successor receipt: the format-prior defeat has a stable invariant successor
+# ORION-19-U-T4 successor receipt: the format-prior defeat has a stable invariant successor
 
 - **Date**: 2026-08-24
-- **Gate addressed**: `P9-U-T4-successor` (revival lane for the single succeeded component of the
+- **Gate addressed**: `ORION-19-U-T4-successor` (revival lane for the single succeeded component of the
   frozen T4 campaign, `FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_SERIALIZED_BAG`)
 - **Authority**: `NO_SCIENTIFIC_AUTHORITY_REPRESENTATION_REVIVAL_ONLY`, scope `BOUNDED_D1_ONLY`
-  verbatim from the freeze. `P9-U-T4` itself remains discharged-by-hostile-audit; this work does
+  verbatim from the freeze. `ORION-19-U-T4` itself remains discharged-by-hostile-audit; this work does
   not un-defeat `TYPED_SERIALIZED_BAG` — that defeat stands, immutable.
 - **Artifacts**
   - freeze `protocol/P9_U_T4_SUCCESSOR_INVARIANT_PROFILE_FREEZE_2026-08-24.md` + `.json`
@@ -21,7 +21,7 @@
     `src/orion/study/p9/invariant_profile_checker.py`
   - environment: Python 3.13.12, scikit-learn 1.8.0, scipy 1.17.1, numpy 2.4.4,
     macOS-26.4 arm64
-- **No existing P9 result, receipt, protocol or evidence artifact is modified.** Only new files.
+- **No existing ORION-19 result, receipt, protocol or evidence artifact is modified.** Only new files.
   The frozen attack module's freeze-twin digest was re-verified inside both the runner and the
   checker before anything ran.
 

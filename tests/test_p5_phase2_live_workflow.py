@@ -8,7 +8,7 @@ WORKFLOW = ROOT / ".github" / "workflows" / "p5_phase2_live_execution.yml"
 TRIGGER = (
     ROOT
     / "papers"
-    / "paper-05-self-orion"
+    / "orion-15-self-orion"
     / "phase2"
     / "LIVE_EXECUTION_TRIGGER.txt"
 )

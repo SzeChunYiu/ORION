@@ -1,7 +1,7 @@
-# P3-X protected identity-authority result receipt V1
+# ORION-13-X protected identity-authority result receipt V1
 
 **Status:** `SUPPORTED_BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS`  
-**Purpose:** paper-local binding receipt for the separately frozen P3-X successor; this file does not duplicate or mutate the protected result.
+**Purpose:** paper-local binding receipt for the separately frozen ORION-13-X successor; this file does not duplicate or mutate the protected result.
 
 ## Authoritative source artifacts
 
@@ -9,11 +9,11 @@
   - Git blob SHA: `2a1883d12a44e1f2c164dc7f97709ddf6d5af96e`
   - protected-result authority: `PROTECTED_RESULT_V1`
   - case count: **400**
-  - exact counts: P3-X **400**, B1 strong semantic product **250**, B2 canonical matching **50**, B3 information-equivalent typed product **400**
-  - P3-X minus B1: **+0.375**
+  - exact counts: ORION-13-X **400**, B1 strong semantic product **250**, B2 canonical matching **50**, B3 information-equivalent typed product **400**
+  - ORION-13-X minus B1: **+0.375**
   - domain-stratified bootstrap 95% interval: **[0.3275, 0.4225]**
   - McNemar discordance: **150–0**
-  - P3-X false GLUE decisions: **0**
+  - ORION-13-X false GLUE decisions: **0**
   - clean GLUE rate: **1.0**
   - B3 decision mismatches: **0**
   - canonical rows SHA-256: `255e94cb89f8914ce52b97027f7005c5444380f8b8f64a09807d7954b853011f`

@@ -17,8 +17,8 @@ gate table from the protocol, and writes the signed campaign receipt.
 
 Run from the repository root:
 
-    python papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/p7_substitute_campaign_v1.py --phase predict
-    python papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/p7_substitute_campaign_v1.py --phase adjudicate
+    python papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/p7_substitute_campaign_v1.py --phase predict
+    python papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/p7_substitute_campaign_v1.py --phase adjudicate
 """
 
 from __future__ import annotations

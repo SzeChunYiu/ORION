@@ -1,12 +1,12 @@
-# ORION-P1 Execution Manifest V1
+# ORION-ORION-11 Execution Manifest V1
 
-**Provenance.** This manifest binds the frozen protocol `P1.hidden-formulation.v1.1`
+**Provenance.** This manifest binds the frozen protocol `ORION-11.hidden-formulation.v1.1`
 (DESIGN_FROZEN, `outcome_accessed: false`) to concrete execution bindings.
 Every hash was computed from the repository state at the time of manifest creation.
 
 | Field | Value |
 |-------|-------|
-| Manifest id | `P1.execution-manifest.v1` |
+| Manifest id | `ORION-11.execution-manifest.v1` |
 | Status | `FROZEN_MANIFEST` |
 | Repository fingerprint | `aae1f6826096469a5108469dc00ed424f105674b` (HEAD at manifest creation) |
 | Created | 2026-08-16 |
@@ -197,7 +197,7 @@ All 66 cases use `budget_class: p1_standard_v1`.
 - [ ] **Live arm endpoint is correct.** `ANTHROPIC_BASE_URL` points to the intended Anthropic-compatible gateway.
 - [ ] **Model is `glm-5.2`.** Verify `PROTOCOL_V1.json` → `execution_bindings.subject_model`.
 - [ ] **Resource ceilings are enforced.** `budget_for()` returns the correct `p1_standard_v1` caps.
-- [ ] **Output directory is empty.** `papers/paper-01-recursive-epistemic-reconstruction/results/raw/` contains no prior run records.
+- [ ] **Output directory is empty.** `papers/orion-11-recursive-epistemic-reconstruction/results/raw/` contains no prior run records.
 
 ### Run execution
 
@@ -216,7 +216,7 @@ All 66 cases use `budget_class: p1_standard_v1`.
 - [ ] **Seeds are complete.** Every (case, system) pair has exactly 5 records, one per seed.
 - [ ] **No excluded records.** The `excluded` field is `false` on every record.
 - [ ] **Arm validity check.** `assess_arm_discrimination` returns `permits_system_comparison: true`.
-- [ ] **Tables generated.** `papers/paper-01-recursive-epistemic-reconstruction/results/tables/` contains all expected tables.
+- [ ] **Tables generated.** `papers/orion-11-recursive-epistemic-reconstruction/results/tables/` contains all expected tables.
 
 ---
 

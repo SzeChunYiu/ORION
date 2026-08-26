@@ -1,4 +1,4 @@
-# P6–P8 V2 assumption-regression reproducibility contract
+# ORION-16–ORION-18 V2 assumption-regression reproducibility contract
 
 **Date:** 2026-08-17  
 **Authority:** local deterministic artifact contract  
@@ -66,9 +66,9 @@ Expected result:
 
 | Suite | Unit tests | Named checks | Cases |
 |---|---:|---:|---:|
-| P6 | 10 | 10 | 12 |
-| P7 | 7 | 10 | 8 |
-| P8 | 11 | 9 | 17 |
+| ORION-16 | 10 | 10 | 12 |
+| ORION-17 | 7 | 10 | 8 |
+| ORION-18 | 11 | 9 | 17 |
 | **Total** | **28** | **29** | **37** |
 
 Expected aggregate artifact-set SHA-256:
@@ -77,9 +77,9 @@ Expected aggregate artifact-set SHA-256:
 
 ## 5. Integrity properties
 
-- P6 contains equal numbers of `DETECTED` and `NOT_DETECTED` cases across six hostile kinds; a constant detector cannot pass.
-- P7 requires the target families, four terminal classes, a harmful-reframe control and an explicit non-retrieval transfer case.
-- P8 requires all five domains, clean authorization in each domain, paired blocked cases, all four verdicts, five laundering attacks and a clean registered cross-domain coercion; deny-all cannot pass.
+- ORION-16 contains equal numbers of `DETECTED` and `NOT_DETECTED` cases across six hostile kinds; a constant detector cannot pass.
+- ORION-17 requires the target families, four terminal classes, a harmful-reframe control and an explicit non-retrieval transfer case.
+- ORION-18 requires all five domains, clean authorization in each domain, paired blocked cases, all four verdicts, five laundering attacks and a clean registered cross-domain coercion; deny-all cannot pass.
 - Duplicate case IDs and expected/predicted terminal mismatches fail the run.
 
 ## 6. Clean-environment gate still open

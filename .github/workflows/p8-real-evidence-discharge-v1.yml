@@ -3,11 +3,11 @@ name: p8-real-evidence-discharge-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-08-epistemic-authority-autonomous-science/top_tier/P8_REAL_EVIDENCE_DISCHARGE_PROTOCOL_V1.md'
-      - 'papers/paper-08-epistemic-authority-autonomous-science/top_tier/p8_real_evidence_discharge_cases_v1.json'
-      - 'papers/paper-08-epistemic-authority-autonomous-science/top_tier/p8_real_evidence_discharge_gold_v1.json'
-      - 'papers/paper-08-epistemic-authority-autonomous-science/top_tier/run_real_evidence_discharge_v1.py'
-      - 'papers/paper-08-epistemic-authority-autonomous-science/top_tier/check_real_evidence_discharge_independent_v1.py'
+      - 'papers/orion-18-epistemic-authority-autonomous-science/top_tier/P8_REAL_EVIDENCE_DISCHARGE_PROTOCOL_V1.md'
+      - 'papers/orion-18-epistemic-authority-autonomous-science/top_tier/p8_real_evidence_discharge_cases_v1.json'
+      - 'papers/orion-18-epistemic-authority-autonomous-science/top_tier/p8_real_evidence_discharge_gold_v1.json'
+      - 'papers/orion-18-epistemic-authority-autonomous-science/top_tier/run_real_evidence_discharge_v1.py'
+      - 'papers/orion-18-epistemic-authority-autonomous-science/top_tier/check_real_evidence_discharge_independent_v1.py'
       - '.github/workflows/p8-real-evidence-discharge-v1.yml'
   workflow_dispatch:
 permissions:
@@ -20,13 +20,13 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - name: Execute real evidence scientific-discharge study
-        run: python papers/paper-08-epistemic-authority-autonomous-science/top_tier/run_real_evidence_discharge_v1.py | tee p8_real_evidence_discharge_v1.json
+        run: python papers/orion-18-epistemic-authority-autonomous-science/top_tier/run_real_evidence_discharge_v1.py | tee p8_real_evidence_discharge_v1.json
       - name: Verify deterministic replay
         run: |
-          python papers/paper-08-epistemic-authority-autonomous-science/top_tier/run_real_evidence_discharge_v1.py > p8_real_evidence_discharge_v1_rerun.json
+          python papers/orion-18-epistemic-authority-autonomous-science/top_tier/run_real_evidence_discharge_v1.py > p8_real_evidence_discharge_v1_rerun.json
           cmp p8_real_evidence_discharge_v1.json p8_real_evidence_discharge_v1_rerun.json
       - name: Execute independent source/gold authority checker
-        run: python papers/paper-08-epistemic-authority-autonomous-science/top_tier/check_real_evidence_discharge_independent_v1.py | tee p8_real_evidence_discharge_independent_v1.json
+        run: python papers/orion-18-epistemic-authority-autonomous-science/top_tier/check_real_evidence_discharge_independent_v1.py | tee p8_real_evidence_discharge_independent_v1.json
       - name: Verify candidate against independent authority
         run: |
           python - <<'PY'

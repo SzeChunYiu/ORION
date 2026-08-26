@@ -1,4 +1,4 @@
-# P6 prospective evaluation V1 — discriminating mechanic-contract tests
+# ORION-16 prospective evaluation V1 — discriminating mechanic-contract tests
 
 **Candidate:** Formal Epistemic Structures and Mechanics  
 **Status:** protocol draft, **not frozen / not result-bearing**  
@@ -9,7 +9,7 @@
 
 Does a donor-faithful epistemic mechanic contract add a measurable property beyond simpler or donor-specific representations when state changes have dependencies, hard residual obligations, scoped authority and retained history?
 
-The experiment is **not** designed to show that typed state machines are better than untyped code. It is designed to discriminate the surviving P6 composition hypothesis.
+The experiment is **not** designed to show that typed state machines are better than untyped code. It is designed to discriminate the surviving ORION-16 composition hypothesis.
 
 ## 2. Systems/representations under comparison
 
@@ -22,15 +22,15 @@ Represents states and executable transitions only. No explicit authority, hard r
 Represents support/dependency edges and performs selective downstream invalidation/replay. This baseline should instantiate the strongest feasible TMS/dependency-guided rollback donor semantics for the synthetic family rather than a deliberately weak reset rule.
 
 ### B2 — effect/obligation typing
-Represents requested/committed effect classes and hard residual obligations, following an ETAS-style donor projection where possible, but without P6 dependency repair/epistemic history composition.
+Represents requested/committed effect classes and hard residual obligations, following an ETAS-style donor projection where possible, but without ORION-16 dependency repair/epistemic history composition.
 
 ### B3 — evidence-backed authorization
-Represents scoped permission/evidence requirements using a FAVA-/authorization-logic-style donor projection, but without P6 dependency repair and history-aware composition.
+Represents scoped permission/evidence requirements using a FAVA-/authorization-logic-style donor projection, but without ORION-16 dependency repair and history-aware composition.
 
-### B4 — P1-native mechanic/reopening gate
-Exact P1 fixtures once the conservative embedding is implemented. This is mandatory for P1-like reconstruction cases.
+### B4 — ORION-11-native mechanic/reopening gate
+Exact ORION-11 fixtures once the conservative embedding is implemented. This is mandatory for ORION-11-like reconstruction cases.
 
-### P6 — combined mechanic contract
+### ORION-16 — combined mechanic contract
 Represents typed effects, hard residual obligations, provenance/dependency, scoped commit authority, selective reopening and retained audit history under the current formal core.
 
 A baseline may be omitted only with an explicit `CANNOT_CHECK` reason (e.g. no faithful implementable donor mapping). It must not be silently replaced with a strawman.
@@ -40,7 +40,7 @@ A baseline may be omitted only with an explicit `CANNOT_CHECK` reason (e.g. no f
 ### F1 — dependency-only repair
 A directed acyclic support graph contains one corrupted upstream coordinate. No authority or hard obligation complication exists.
 
-**Purpose:** negative control. P6 should reduce conservatively to dependency repair and should not reopen more state than B1.
+**Purpose:** negative control. ORION-16 should reduce conservatively to dependency repair and should not reopen more state than B1.
 
 ### F2 — authority-bearing mutation
 A transition is computationally valid and dependency-local but lacks authority for one write coordinate.
@@ -85,17 +85,17 @@ A candidate controls its own admission predicate/evidence but not an external pr
 ### F10 — full-reset-sufficient negative control
 All downstream state is dependent on the changed coordinate.
 
-**Purpose:** P6 should not claim a preservation advantage where full reset is already minimal.
+**Purpose:** ORION-16 should not claim a preservation advantage where full reset is already minimal.
 
 ## 4. Cross-domain transfer families from #353
 
-At least three families must be instantiated before any broad P6 claim:
+At least three families must be instantiated before any broad ORION-16 claim:
 
 1. **memory/state repair** — typed memory-to-action dependency and selective replay;
 2. **effectful workflow** — tool/action requests with scoped authorization and residual obligations;
 3. **non-LLM symbolic workflow** — exact state-transition/dependency ground truth.
 
-A fourth P1-like reconstruction family tests conservative internal embedding but does not count as external transfer.
+A fourth ORION-11-like reconstruction family tests conservative internal embedding but does not count as external transfer.
 
 ## 5. Generator schema
 
@@ -154,16 +154,16 @@ For exhaustive finite families, `seed_or_exhaustive_index` is the canonical enum
 ## 7. Primary hypotheses
 
 ### H1 — conservative dependency repair
-On F1, P6 matches the strongest dependency-repair baseline's correct reopen/preserve decisions.
+On F1, ORION-16 matches the strongest dependency-repair baseline's correct reopen/preserve decisions.
 
 ### H2 — hard-obligation/authority discrimination
-On F2/F3, P6 rejects/retains cases that a dependency-only baseline cannot represent without extra policy state.
+On F2/F3, ORION-16 rejects/retains cases that a dependency-only baseline cannot represent without extra policy state.
 
 ### H3 — history distinction
-On F6/F7, P6 preserves both current-state commutation and audit chronology needed by later policy.
+On F6/F7, ORION-16 preserves both current-state commutation and audit chronology needed by later policy.
 
 ### H4 — no universal dominance
-On F1/F10, P6 provides no scientific advantage from extra dimensions that are inactive; overhead is reported rather than hidden.
+On F1/F10, ORION-16 provides no scientific advantage from extra dimensions that are inactive; overhead is reported rather than hidden.
 
 A publishable empirical result requires a discriminator on H2/H3 or a comparable cross-domain result, not merely H1.
 
@@ -172,7 +172,7 @@ A publishable empirical result requires a discriminator on H2/H3 or a comparable
 - freeze generator code and hidden expected labels before running system variants;
 - no hand edits to failing instances after seeing comparative outcomes;
 - retain every negative/null instance and result;
-- report every family, not only families where P6 wins;
+- report every family, not only families where ORION-16 wins;
 - report exact `CANNOT_CHECK` adapter failures;
 - separate implementation bug fixes from result-bearing protocol revisions;
 - any protocol revision after result visibility creates V2 with a new prospective run.
@@ -185,14 +185,14 @@ For sampled larger families, predeclare the sampling distribution, seed set, pri
 
 ## 10. Promotion/failure criteria
 
-### Supports separate P6 candidate
-At least one non-P1 transfer family shows a predeclared composition/repair discriminator that cannot be reproduced by the strongest faithful donor-specific baseline without adding the P6 coupling being tested, while negative controls remain conservative.
+### Supports separate ORION-16 candidate
+At least one non-ORION-11 transfer family shows a predeclared composition/repair discriminator that cannot be reproduced by the strongest faithful donor-specific baseline without adding the ORION-16 coupling being tested, while negative controls remain conservative.
 
 ### Merge/strike pressure
-- P6 matches B1/B2/B3/B4 on every scientifically relevant verdict;
+- ORION-16 matches B1/B2/B3/B4 on every scientifically relevant verdict;
 - differences are only notation/overhead;
 - strongest parent formalism already derives the same composition result;
-- the only positive cases are P1-native reopening/audit mechanisms.
+- the only positive cases are ORION-11-native reopening/audit mechanisms.
 
 ## 11. Current result authority
 

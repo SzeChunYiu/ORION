@@ -3,7 +3,7 @@
 
 Binds ``P7.CONTAIN.EXACT_BRIDGE_RULE.V1`` across the executable, the mechanized
 receipt, the manuscript surfaces, the addendum ledger, the content manifest and
-their V2 content digests --- the same discipline as paper-06's kernel-contract
+their V2 content digests --- the same discipline as orion-16's kernel-contract
 checker. The
 composition calculus's own contract stays bound by its own checkers; this one
 covers the replacement rule only.
@@ -20,16 +20,16 @@ ROOT = Path(__file__).resolve().parents[3]
 CONTRACT_ID = "P7.CONTAIN.EXACT_BRIDGE_RULE.V1"
 FILES = (
     "src/orion/study/p7/exact_containment.py",
-    "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/"
+    "papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/"
     "P7_EXACT_CONTAINMENT_MECHANIZED_2026-08-24.json",
-    "papers/paper-07-epistemic-navigation-open-worlds/formal/"
+    "papers/orion-17-epistemic-navigation-open-worlds/formal/"
     "check_exact_containment_binding_v1.py",
-    "papers/paper-07-epistemic-navigation-open-worlds/manuscript/FINAL_V4.md",
-    "papers/paper-07-epistemic-navigation-open-worlds/manuscript/FORMAL_CORE_V2.md",
-    "papers/paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_ADDENDUM_V3.md",
+    "papers/orion-17-epistemic-navigation-open-worlds/manuscript/FINAL_V4.md",
+    "papers/orion-17-epistemic-navigation-open-worlds/manuscript/FORMAL_CORE_V2.md",
+    "papers/orion-17-epistemic-navigation-open-worlds/CLAIM_LEDGER_ADDENDUM_V3.md",
 )
 MANIFEST = (
-    "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json"
+    "papers/orion-17-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json"
 )
 
 REQUIRED_THEOREMS = (
@@ -137,7 +137,7 @@ def audit(root: Path = ROOT) -> dict[str, object]:
             and isinstance(row.get("sha256"), str)
         }
         bound_paths = set(recorded_hashes)
-        required_bound = {p for p in FILES if p.startswith("papers/paper-07-")}
+        required_bound = {p for p in FILES if p.startswith("papers/orion-17-")}
         for path in sorted(required_bound - bound_paths):
             errors.append(f"content manifest omits contract artifact: {path}")
         if manifest.get("subject_commit_status") != "BOUND":

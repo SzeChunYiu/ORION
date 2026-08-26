@@ -41,7 +41,7 @@ theorem does not talk about.
 Run from the repository root::
 
     PYTHONPATH=src python \\
-      papers/paper-06-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py
+      papers/orion-16-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py
 """
 
 from __future__ import annotations

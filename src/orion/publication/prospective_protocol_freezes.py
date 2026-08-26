@@ -10,11 +10,11 @@ from pathlib import Path
 from typing import Any, Mapping
 
 P9_PROTOCOL = Path(
-    "papers/paper-09-structured-epistemic-learning/protocol/"
+    "papers/orion-19-structured-epistemic-learning/protocol/"
     "P9_D1V1_3_ORDERED_MULTIPLICITY_FREEZE_2026-08-23.json"
 )
 P10_PROTOCOL = Path(
-    "papers/paper-10-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json"
+    "papers/orion-20-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json"
 )
 
 

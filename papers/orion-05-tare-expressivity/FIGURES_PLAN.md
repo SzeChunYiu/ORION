@@ -1,4 +1,4 @@
-# Paper Q1 figures plan
+# Paper ORION-01 figures plan
 
 All figures are generated from committed receipts only; no new computation on
 subjects. Paths relative to repository root.

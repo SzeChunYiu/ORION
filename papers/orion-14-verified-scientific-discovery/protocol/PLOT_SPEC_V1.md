@@ -1,10 +1,10 @@
-# Plot and Table Specification — ORION-P4 (V1)
+# Plot and Table Specification — ORION-ORION-14 (V1)
 
-**Protocol:** P4.protected-authority.v1  
+**Protocol:** ORION-14.protected-authority.v1  
 **Builder:** `publication_svg.py` (bar_chart, heatmap)  
 **Status:** DESIGN_FROZEN
 
-## Figure P4-1: Authority pipeline
+## Figure ORION-14-1: Authority pipeline
 
 **File:** `figures/p4_1_authority_pipeline.svg`  
 **Type:** Process flow diagram (manual — not built by publication_svg.py)
@@ -32,7 +32,7 @@
 \end{figure}
 ```
 
-## Figure P4-2: False authority-promotion rate
+## Figure ORION-14-2: False authority-promotion rate
 
 **File:** `figures/p4_2_false_promotion.svg`  
 **Builder:** `bar_chart`
@@ -73,7 +73,7 @@ bar_chart(
 \end{figure}
 ```
 
-## Figure P4-3: Coverage vs false-promotion frontier
+## Figure ORION-14-3: Coverage vs false-promotion frontier
 
 **File:** `figures/p4_3_coverage_frontier.svg`  
 **Builder:** `bar_chart` (paired bars per system)
@@ -114,7 +114,7 @@ bar_chart(
 \end{figure}
 ```
 
-## Figure P4-4: Detection rate by attack family
+## Figure ORION-14-4: Detection rate by attack family
 
 **File:** `figures/p4_4_detection_by_attack.svg`  
 **Builder:** `heatmap`
@@ -152,7 +152,7 @@ heatmap(
 \end{figure}
 ```
 
-## Figure P4-5: Source accuracy vs semantic support accuracy
+## Figure ORION-14-5: Source accuracy vs semantic support accuracy
 
 **File:** `figures/p4_5_attribution_vs_support.svg`  
 **Builder:** `bar_chart` (grouped bars)
@@ -190,7 +190,7 @@ bar_chart(
 \end{figure}
 ```
 
-## Figure P4-6: Cost vs false-promotion trade-off
+## Figure ORION-14-6: Cost vs false-promotion trade-off
 
 **File:** `figures/p4_6_cost_false_promotion.svg`  
 **Builder:** `bar_chart` (grouped bars)
@@ -228,7 +228,7 @@ bar_chart(
 \end{figure}
 ```
 
-## Table P4-1: Attack battery and custody manifest
+## Table ORION-14-1: Attack battery and custody manifest
 
 **File:** `tables/p4_t1_attack_custody.tex`  
 **Type:** LaTeX table (generated from ATTACK_MANIFEST_V1.jsonl)
@@ -243,7 +243,7 @@ bar_chart(
 
 **Caption:** Attack battery composition, custody distribution, and hidden-label status. All attack labels are hidden from the candidate. Protected-hostile and protected-holdout cases are stored under independent host custody.
 
-## Table P4-2: Baseline and ablation results
+## Table ORION-14-2: Baseline and ablation results
 
 **File:** `tables/p4_t2_baseline_ablation_results.tex`  
 **Type:** LaTeX table
@@ -259,7 +259,7 @@ bar_chart(
 
 **Caption:** Primary and key secondary metrics for all systems. ∆ shows the difference from the full ORION system. Wilson 95% intervals in parentheses. Paired bootstrap CIs for differences.
 
-## Table P4-3: CANNOT_CHECK and error analysis
+## Table ORION-14-3: CANNOT_CHECK and error analysis
 
 **File:** `tables/p4_t3_cannot_check_errors.tex`  
 **Type:** LaTeX table

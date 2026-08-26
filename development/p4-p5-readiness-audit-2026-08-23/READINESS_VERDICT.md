@@ -29,7 +29,7 @@ There are 1,466 exact author strings; 44 repeat across 114 rows, with maximum fr
 
 `development/public-empirical-data-binding-2026-08-23/PUBLIC_SOURCE_BINDINGS.json` pins useful development candidates: SWE-bench Multilingual (300 tasks), SWE-bench Verified (500 tasks but dataset rights `CANNOT_CHECK`), Defects4J (854 active bugs), BugSwarm, and BugsInPy. These sources mostly cover implementation/execution repair and public gold. They do not create protected freshness, an eight-class panel, same-visible-symptom blocks, harm outcomes, or external custody.
 
-The stale MDA `ABSTRACT_ONLY` blocker is superseded. `papers/paper-05-self-orion/protocol/SELF_ORION_V3_MDA_SOURCE_BINDING_AMENDMENT_2026-08-23.json` binds arXiv `2608.09696v3` as a full source-grounded mechanism description. The linked MIT NeuronBench repository is a benchmark, not a solver. The exact replacement terminal is `MDA_V3_FULL_SOURCE_BOUND__OFFICIAL_SOLVER_CODE_NOT_RELEASED`.
+The stale MDA `ABSTRACT_ONLY` blocker is superseded. `papers/orion-15-self-orion/protocol/SELF_ORION_V3_MDA_SOURCE_BINDING_AMENDMENT_2026-08-23.json` binds arXiv `2608.09696v3` as a full source-grounded mechanism description. The linked MIT NeuronBench repository is a benchmark, not a solver. The exact replacement terminal is `MDA_V3_FULL_SOURCE_BOUND__OFFICIAL_SOLVER_CODE_NOT_RELEASED`.
 
 That amendment is additive. The hash-pinned V3 base protocol, structural binding, and public-source preflight still literally retain the old blocker. Current readiness consumers must compose the amendment rather than mutate those historical artifacts or report `ABSTRACT_ONLY` as the operative state.
 
@@ -149,9 +149,9 @@ The primary question is not whether the architecture can run or diagnose 21 of 2
 
 ### P4
 
-- `papers/paper-04-verified-scientific-discovery/CLAIM_LEDGER_V4.md`
-- `papers/paper-04-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V1.json`
-- `papers/paper-04-verified-scientific-discovery/manuscript/sections/06-threat-model-limitations-and-interpretation.tex`
+- `papers/orion-14-verified-scientific-discovery/CLAIM_LEDGER_V4.md`
+- `papers/orion-14-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V1.json`
+- `papers/orion-14-verified-scientific-discovery/manuscript/sections/06-threat-model-limitations-and-interpretation.tex`
 - `development/p4-scientific-ascent-2026-08-23/PUBLIC_NATURALISTIC_SOURCE_AUDIT_V1.md`
 - `development/p4-scientific-ascent-2026-08-23/source_binding/ARXIV_CC_BY_SOURCE_POOL_BINDING_V1.json`
 - `development/p4-scientific-ascent-2026-08-23/source_binding/ARXIV_CC_BY_SOURCE_POOL_VALIDATION_RECEIPT_V1.json`
@@ -159,15 +159,15 @@ The primary question is not whether the architecture can run or diagnose 21 of 2
 
 ### P5
 
-- `papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.json`
-- `papers/paper-05-self-orion/evidence/ISSUE_159_CHECKBOX_AUDIT_V1.json`
-- `papers/paper-05-self-orion/evidence/ISSUE8_PACKET_EXECUTION_BINDING_RECEIPT.json`
-- `papers/paper-05-self-orion/protocol/PROTOCOL_V1.json`
-- `papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json`
-- `papers/paper-05-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json`
-- `papers/paper-05-self-orion/protocol/P5_RESIDUAL_DISCRIMINATOR_SUCCESSORS_V1.json`
-- `papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md`
-- `papers/paper-05-self-orion/protocol/SELF_ORION_V3_MDA_SOURCE_BINDING_AMENDMENT_2026-08-23.json`
+- `papers/orion-15-self-orion/evidence/CLAIM_LEDGER_V1.json`
+- `papers/orion-15-self-orion/evidence/ISSUE_159_CHECKBOX_AUDIT_V1.json`
+- `papers/orion-15-self-orion/evidence/ISSUE8_PACKET_EXECUTION_BINDING_RECEIPT.json`
+- `papers/orion-15-self-orion/protocol/PROTOCOL_V1.json`
+- `papers/orion-15-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json`
+- `papers/orion-15-self-orion/protocol/P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json`
+- `papers/orion-15-self-orion/protocol/P5_RESIDUAL_DISCRIMINATOR_SUCCESSORS_V1.json`
+- `papers/orion-15-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md`
+- `papers/orion-15-self-orion/protocol/SELF_ORION_V3_MDA_SOURCE_BINDING_AMENDMENT_2026-08-23.json`
 - `development/public-empirical-data-binding-2026-08-23/PUBLIC_SOURCE_BINDINGS.json`
 - `development/provider-rights-and-history-successor-2026-08-23/SCIENTIFIC_REPORT.md`
 

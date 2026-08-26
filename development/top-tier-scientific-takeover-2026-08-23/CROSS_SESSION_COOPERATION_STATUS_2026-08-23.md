@@ -21,7 +21,7 @@ external-review receipt.
 - Claude live committed head observed again 2026-08-23:
   `6c4a98d4f777fd20005f011d485b699a55f5d7c1`
 - The three commits after `98bb48b5...` touch only
-  `papers/Q-paper-01-tare-expressivity/` and
+  `papers/orion-05-tare-expressivity/` and
   `papers/Q_SERIES_CONTENT_BINDING_V1.json`; they have no exact-path overlap
   with this P1--P5 wave. Their reported standing is internally sound within
   the stated objective but not novel mathematics, so they grant no P1--P5

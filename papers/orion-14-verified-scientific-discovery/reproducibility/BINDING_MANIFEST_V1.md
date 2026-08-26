@@ -1,8 +1,8 @@
-# ORION-P4 Execution Binding Manifest V1
+# ORION-ORION-14 Execution Binding Manifest V1
 
 ## Current status: `EXECUTION_FROZEN` — launch authorized
 
-Protocol `P4.protected-authority.v1` is bound to one outcome-blind, independently generated campaign. The host prepared the final hidden set **before any candidate execution or protected outcome inspection**. The publication-authorizing campaign must use these exact identities or the run is void.
+Protocol `ORION-14.protected-authority.v1` is bound to one outcome-blind, independently generated campaign. The host prepared the final hidden set **before any candidate execution or protected outcome inspection**. The publication-authorizing campaign must use these exact identities or the run is void.
 
 The execution freeze is now externally attested by a GitHub-verified `main` merge and green CI on that exact commit. The separate launch change may therefore add the campaign marker without changing any frozen scientific identity.
 
@@ -14,7 +14,7 @@ Host run `31967050382` was generated outcome-blind but is **void and never execu
 
 | Binding | Frozen value |
 |---|---|
-| protocol | `P4.protected-authority.v1` |
+| protocol | `ORION-14.protected-authority.v1` |
 | subject Git commit | `46977ea104162c4cf64da8138a4c4759065fe6d4` |
 | subject archive SHA-256 | `4605bfd7d658018a2759ab43d7dd444ab74200adb8f98a8de485677bd09d98c5` |
 | public claim/evidence SHA-256 | `08305b3b895d93c2d34b1fefbab9f18642dbe14030bfb75c3370b27067d29502` |

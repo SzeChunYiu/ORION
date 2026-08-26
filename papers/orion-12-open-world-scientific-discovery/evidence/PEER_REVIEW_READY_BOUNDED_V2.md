@@ -1,6 +1,6 @@
-# P2 bounded peer-review readiness attestation
+# ORION-12 bounded peer-review readiness attestation
 
-**Terminal:** `ORION-P2 = PEER_REVIEW_READY`.
+**Terminal:** `ORION-ORION-12 = PEER_REVIEW_READY`.
 
 **Claim boundary:** methods / critical system design for fail-closed
 scientific-literature discovery, supported by the frozen 390-task complete-gold

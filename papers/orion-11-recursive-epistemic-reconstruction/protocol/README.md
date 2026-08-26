@@ -1,6 +1,6 @@
-# ORION-P1 prospective external protocol
+# ORION-ORION-11 prospective external protocol
 
-**Protocol:** `P1.hidden-formulation.v1`  
+**Protocol:** `ORION-11.hidden-formulation.v1`  
 **Status:** `DESIGN_FROZEN`  
 **Outcome access:** false
 

@@ -36,7 +36,7 @@ PAPER_SPECS: tuple[dict[str, Any], ...] = (
         "paper_id": "P1",
         "issue": 98,
         "title": "Recursive Epistemic Reconstruction",
-        "root": "papers/paper-01-recursive-epistemic-reconstruction",
+        "root": "papers/orion-11-recursive-epistemic-reconstruction",
         "claim_ledgers": (
             "evidence/CLAIM_LEDGER_V1.md",
             "evidence/CLAIM_LEDGER.md",
@@ -46,7 +46,7 @@ PAPER_SPECS: tuple[dict[str, Any], ...] = (
         "paper_id": "P2",
         "issue": 99,
         "title": "Open-World Scientific Knowledge Discovery",
-        "root": "papers/paper-02-open-world-scientific-discovery",
+        "root": "papers/orion-12-open-world-scientific-discovery",
         "claim_ledgers": (
             "evidence/CLAIM_LEDGER_V1.md",
             "protocol/CLAIM_LEDGER_V1.json",
@@ -56,7 +56,7 @@ PAPER_SPECS: tuple[dict[str, Any], ...] = (
         "paper_id": "P3",
         "issue": 100,
         "title": "Global Knowledge Portrait",
-        "root": "papers/paper-03-global-knowledge-portrait",
+        "root": "papers/orion-13-global-knowledge-portrait",
         "claim_ledgers": (
             "CLAIM_LEDGER_V1.md",
         ),
@@ -65,7 +65,7 @@ PAPER_SPECS: tuple[dict[str, Any], ...] = (
         "paper_id": "P4",
         "issue": 101,
         "title": "Verified Scientific Discovery",
-        "root": "papers/paper-04-verified-scientific-discovery",
+        "root": "papers/orion-14-verified-scientific-discovery",
         "claim_ledgers": (
             "evidence/CLAIM_LEDGER_V1.md",
         ),
@@ -74,7 +74,7 @@ PAPER_SPECS: tuple[dict[str, Any], ...] = (
         "paper_id": "P5",
         "issue": 102,
         "title": "Self-ORION",
-        "root": "papers/paper-05-self-orion",
+        "root": "papers/orion-15-self-orion",
         "claim_ledgers": (
             "evidence/CLAIM_LEDGER_V1.md",
             "CLAIM_LEDGER_V1.md",

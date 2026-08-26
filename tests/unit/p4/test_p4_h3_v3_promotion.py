@@ -35,7 +35,7 @@ from pathlib import Path
 from orion.publication.manuscript_source import assemble
 
 ROOT = Path(__file__).resolve().parents[3]
-P4 = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+P4 = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 CAMPAIGN = ROOT / "research" / "campaigns" / "2026-08-21-p4-battery-v3-identifiable"
 
 MANIFEST = P4 / "journal_package" / "MANIFEST.json"

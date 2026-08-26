@@ -1,6 +1,6 @@
 # State as Computation: Query-Conditioned Compilation Trades Representation Rank, Accessibility Work, and Future Optionality
 
-**ORION publication candidate P11**  
+**ORION publication candidate ORION-21**  
 **Issue:** #471 · child tracks #664 and #667  
 **Manuscript status:** complete current-evidence draft; controlled claims earned, real-system promotion gate open  
 **Evidence date:** 2026-08-20
@@ -100,7 +100,7 @@ A direct compiler `C(x,q)=f_q(x)` is an intentionally strong specialization base
 
 ## 4. Controlled experiments
 
-### 4.1 P11 confirmatory design
+### 4.1 ORION-21 confirmatory design
 
 The confirmatory study was frozen after exploratory feasibility and theorem registration. It compares:
 
@@ -111,7 +111,7 @@ The confirmatory study was frozen after exploratory feasibility and theorem regi
 
 The scientific payload excludes nondeterministic wall-clock timing so exact replay can be byte-identical. No seed, learner, threshold or scientific metric was changed by that reproducibility amendment.
 
-### 4.2 P11 confirmatory results
+### 4.2 ORION-21 confirmatory results
 
 Terminal: `P11_QUERY_CONDITIONED_COMPILATION_GAP_SUPPORTED`.
 
@@ -188,7 +188,7 @@ These equations yield an interpretable policy tradeoff:
 
 ### 5.1 Frozen workload result
 
-The deterministic P15 workload evaluation, now absorbed as P11’s optionality track, established the following first grid crossovers at which universal bulk compile work becomes lower than expected cache compile work under uniform demand:
+The deterministic ORION-25 workload evaluation, now absorbed as ORION-21’s optionality track, established the following first grid crossovers at which universal bulk compile work becomes lower than expected cache compile work under uniform demand:
 
 | batch-efficiency beta | first frozen crossover horizon |
 |---:|---:|
@@ -202,7 +202,7 @@ These are exact controlled workload results, not universal agent-memory laws.
 
 ## 6. Accessibility-work accounting
 
-The scientific comparison is invalid if compilation is treated as free. P11 therefore uses the shared `ORION.P11P14.ResourceReceipt.v1` schema with separate coordinates for:
+The scientific comparison is invalid if compilation is treated as free. ORION-21 therefore uses the shared `ORION.P11P14.ResourceReceipt.v1` schema with separate coordinates for:
 
 - compiler/preprocessing operations and latency;
 - state bytes/tokens and memory traffic;
@@ -284,7 +284,7 @@ Authoritative project evidence currently lives on the Frontier V2 research branc
 - `THEOREM_STATE_OPTIONALITY_COVERAGE_V1.md`;
 - `P15_STATE_OPTIONALITY_RESULT_RECEIPT_V1.md`.
 
-Two fresh-process replays are byte-identical for both P11 and P11B. Real-system promotion remains blocked until the specified external experiments execute.
+Two fresh-process replays are byte-identical for both ORION-21 and P11B. Real-system promotion remains blocked until the specified external experiments execute.
 
 ## 12. Data and code availability
 
@@ -296,7 +296,7 @@ Controlled generators, protocols, runners and result receipts are repository art
 |---|---|---|---|
 | fixed exact linear support needs dimension at least query-family rank | EARNED CONTROLLED THEOREM | rank theorem | arbitrary nonlinear lower bound |
 | parity universal vs query-compiled dimension gap | EARNED CONTROLLED THEOREM | parity corollary | total-time lower bound |
-| large finite-sample accessibility gap in frozen cells | EARNED CONTROLLED RESULT | P11 receipt | universal sample-complexity law |
+| large finite-sample accessibility gap in frozen cells | EARNED CONTROLLED RESULT | ORION-21 receipt | universal sample-complexity law |
 | compact benefit without direct answer field | EARNED CONTROLLED RESULT | P11B receipt | all compilers are non-laundering |
 | compile/cache/materialize policy changes with workload | EARNED CONTROLLED WORKLOAD RESULT | optionality receipt | universal memory theorem |
 | learned compiler yields matched-resource advantage | OPEN | E2 | may not be stated as result |
@@ -305,7 +305,7 @@ Controlled generators, protocols, runners and result receipts are repository art
 
 ## 14. Publication decision
 
-**Current decision:** strong controlled/theoretical manuscript, not yet externally promotable as the full P11 paper.
+**Current decision:** strong controlled/theoretical manuscript, not yet externally promotable as the full ORION-21 paper.
 
 Promotion requires: learned/non-oracle compiler; stronger-decoder attack; reproducible full resource accounting; at least one real-system replication; and a final donor/literature delta leaving a coherent residual.
 

@@ -5,7 +5,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/p3-public-reference-confirmatory-eval.yml'
-      - 'papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json'
+      - 'papers/orion-13-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json'
 
 permissions:
   contents: write
@@ -40,13 +40,13 @@ jobs:
           test "$(git hash-object src/orion/study/p3_public_reference_freeze.py)" = b0452d5a17d1e0b70138d9e48bdeb32bc19acb18
           test "$(git hash-object src/orion/study/p3_public_reference_holdout.py)" = 28e64b1f503357882ceefc3a7bc99a277d04eec4
           test "$(git hash-object src/orion/study/p3_public_reference_confirmatory.py)" = f5ac9247a326db6e52601fa66adb0d2584e06051
-          test "$(git hash-object papers/paper-03-global-knowledge-portrait/gold/PUBLIC_REFERENCE_SOURCE_REGISTRY_V1.json)" = 56e6494356776c331d5d271bd935d48ff889f46e
-          test "$(git hash-object papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl)" = 669dbaf5222148e0893d98f4cd15a13dd8eac7d7
-          test "$(sha256sum papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl | cut -d' ' -f1)" = 35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8
+          test "$(git hash-object papers/orion-13-global-knowledge-portrait/gold/PUBLIC_REFERENCE_SOURCE_REGISTRY_V1.json)" = 56e6494356776c331d5d271bd935d48ff889f46e
+          test "$(git hash-object papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl)" = 669dbaf5222148e0893d98f4cd15a13dd8eac7d7
+          test "$(sha256sum papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl | cut -d' ' -f1)" = 35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8
           python - <<'PY'
           import json
           from pathlib import Path
-          p = json.loads(Path('papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json').read_text())
+          p = json.loads(Path('papers/orion-13-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json').read_text())
           assert p['protocol_status'] == 'EXECUTION_FROZEN'
           assert p['confirmatory_outcome_accessed_at_freeze'] is False
           assert p['holdout']['portable_cases_sha256'] == '13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b'
@@ -85,7 +85,7 @@ jobs:
             --muse-root "$PWD/upstream/MUSE/dataset/human_Expert_annotations" \
             --scifact-claims "$PWD/upstream/SciFact/data/claims_train.jsonl" \
             --scischema-root "$PWD/upstream/SciSchema/schemas" \
-            --exclude-cases "$PWD/papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl" \
+            --exclude-cases "$PWD/papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl" \
             --offset 32 --target-n 32 --out "$PWD/artifacts/holdout"
           test "$(sha256sum artifacts/holdout/cases.jsonl | cut -d' ' -f1)" = 79316a561c96ac968bf2598501850bd90deaf1b78501346b0c703663ef794f2b
           PYTHONPATH=src python -m orion.study.p3_public_reference_freeze \
@@ -111,7 +111,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          manifest=papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json
+          manifest=papers/orion-13-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json
           {
             echo "PROTOCOL=P3.public-reference-mapping.v1.1-confirmatory"
             echo "EXECUTION_STATUS=EXECUTED_FROM_EXECUTION_FROZEN_MANIFEST"
@@ -129,8 +129,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gold_dir=papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory
-          evidence_dir=papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory
+          gold_dir=papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory
+          evidence_dir=papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory
           mkdir -p "$gold_dir" "$evidence_dir"
           cp artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl "$gold_dir/"
           cp artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json "$gold_dir/"
@@ -139,7 +139,7 @@ jobs:
           cp artifacts/evaluation/CONFIRMATORY_ANALYSIS.json "$evidence_dir/"
           cp artifacts/evaluation/PROVENANCE.env "$evidence_dir/"
           cp artifacts/evaluation/SHA256SUMS "$evidence_dir/"
-          cp papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json "$evidence_dir/EXECUTION_MANIFEST.json"
+          cp papers/orion-13-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json "$evidence_dir/EXECUTION_MANIFEST.json"
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add "$gold_dir" "$evidence_dir"

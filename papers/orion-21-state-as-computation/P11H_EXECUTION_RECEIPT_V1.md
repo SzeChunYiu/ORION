@@ -1,6 +1,6 @@
 # P11H Execution Receipt V1
 
-**Paper:** ORION-P11 — State as Computation
+**Paper:** ORION-ORION-21 — State as Computation
 **Protocol:** `ORION.P11H.PooledSparsityLadderAttack.v1`
 (`P11H_POOLED_SPARSITY_LADDER_PROTOCOL_V1.md`, frozen 2026-08-22 before the preflight)
 **Executable:** `run_p11h_pooled_sparsity_ladder_v1.py`
@@ -14,7 +14,7 @@
    seed** all written down.
 2. `python -m orion.study.p11.successor_reach --write` → exit `0`,
    `P11H_PREFLIGHT_ATTAINABILITY_V1.json`. **No outcome read.**
-3. `python papers/paper-11-state-as-computation/run_p11h_pooled_sparsity_ladder_v1.py`
+3. `python papers/orion-21-state-as-computation/run_p11h_pooled_sparsity_ladder_v1.py`
    → exit `0`.
 
 The draw was not computed before step 2. That ordering is the whole point: it is
@@ -111,7 +111,7 @@ Same estimator, different columns, inside the linear family
 (`COMPILED_L2 − UNIVERSAL_L2` at `n=64`): **+0.2479** and **+0.4102**.
 
 This is the sharp part of the result, and it cuts both ways at once. The
-decomposition goes P11's way *harder* than P11G's did — at `r=3` the change of
+decomposition goes ORION-21's way *harder* than P11G's did — at `r=3` the change of
 decoder family explains **none** of the gap against the tree arm, against 13.3%
 and 44.6% in P11G's cells, so what gap exists is entirely the change of state.
 And the defence still loses, because at `r=3` the gap is **+0.0506** against a
@@ -161,7 +161,7 @@ is too small to certify.
 
 ```
 python -m orion.study.p11.successor_reach            # exit 0: the preflight passes
-python papers/paper-11-state-as-computation/run_p11h_pooled_sparsity_ladder_v1.py
+python papers/orion-21-state-as-computation/run_p11h_pooled_sparsity_ladder_v1.py
 python -m orion.study.p11.attack_audit               # exit 3: P11G still blocks, permanently
 python -m pytest tests/unit/study/p11
 ```

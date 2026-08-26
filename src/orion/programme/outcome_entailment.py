@@ -6,7 +6,7 @@ did not, and the harm is a restatement of the arm's own decision rule. A rate
 cannot tell them apart, so an arm scored against itself reads exactly like an arm
 that survived pressure.
 
-P13A is the live example. ``papers/paper-13-responsibility-carrying-state/
+P13A is the live example. ``papers/orion-23-responsibility-carrying-state/
 run_p13a_rcs_efficacy_v1.py`` decides the treatment arm's action with::
 
     if arm == "RCS":

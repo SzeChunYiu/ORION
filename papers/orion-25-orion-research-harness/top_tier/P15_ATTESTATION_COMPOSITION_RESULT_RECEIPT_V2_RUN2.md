@@ -1,4 +1,4 @@
-# P15 attestation chain-composition result receipt V2
+# ORION-25 attestation chain-composition result receipt V2
 
 **Run:** GitHub Actions `32665597624`  
 **Artifact:** `p15-attestation-composition-v2`, artifact ID `9500055966`  
@@ -29,7 +29,7 @@ Each case carries a three-link Ed25519 chain:
 
 Each later link signs a digest binding the previous link's payload, signature and public key. The chain therefore tests composition rather than one isolated signature.
 
-Corpus: `22` cases, reusing the bounded P15 execution/provenance fact model. Valid-workload false-rejection endpoints cover `11` cases (7 execution-valid hostile cases + 4 real workflow receipts).
+Corpus: `22` cases, reusing the bounded ORION-25 execution/provenance fact model. Valid-workload false-rejection endpoints cover `11` cases (7 execution-valid hostile cases + 4 real workflow receipts).
 
 ## Protected result
 
@@ -69,10 +69,10 @@ The independent checker explicitly confirms this full-compromise boundary.
 
 ## Scientific disposition
 
-P15 now has three independently tested layers:
+ORION-25 now has three independently tested layers:
 
 1. **Scientific Execution Integrity (SEI):** bounded hostile fault study separates execution validity, scientific validity and claim authority;
 2. **provenance interoperability:** the admission separation survives W3C PROV-JSON and RO-Crate/Workflow-Run representation round trips;
 3. **cryptographic chain composition:** Ed25519 chaining detects truncation, substitution, splice, reorder, replay and stale-chain attacks with zero observed false rejection on the registered valid workload, while correctly exposing full-key compromise as outside what signature validity can establish.
 
-This strengthens P15 from provenance interoperability to provenance-plus-attestation composition. It does **not** establish that signatures prove scientific truth, that key custody is trustworthy, that arbitrary production hosts are covered, or that the registered small corpus establishes production-scale overhead/reliability. Broad host/process fault diversity, production overhead and final clean-environment/submission binding remain open.
+This strengthens ORION-25 from provenance interoperability to provenance-plus-attestation composition. It does **not** establish that signatures prove scientific truth, that key custody is trustworthy, that arbitrary production hosts are covered, or that the registered small corpus establishes production-scale overhead/reliability. Broad host/process fault diversity, production overhead and final clean-environment/submission binding remain open.

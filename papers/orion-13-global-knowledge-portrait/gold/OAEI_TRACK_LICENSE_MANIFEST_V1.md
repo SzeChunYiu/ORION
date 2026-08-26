@@ -2,10 +2,10 @@
 
 - **Canonical artifact:** `OAEI_TRACK_LICENSE_MANIFEST_V1.json` (same directory). JSON is authoritative.
 - **Frozen (UTC):** 2026-08-24T10:20:24Z — `FROZEN_LICENSE_AND_SELECTION_RECORD__EXECUTION_NOT_PERFORMED`, `outcome_accessed: false`.
-- **Issue:** SzeChunYiu/ORION#1086 (P3 boxes 1 and 3).
+- **Issue:** SzeChunYiu/ORION#1086 (ORION-13 boxes 1 and 3).
 - **Checker:** `check_oaei_track_license_manifest_v1.py`; **tests:** `tests/unit/p3/test_p3_oaei_track_license_manifest.py`.
 - **Builds on:** `development/p3-selective-envelope-harm-successor-v4-2026-08-23/SOURCE_FAMILY_RIGHTS.json`
-  (audit `P3.V4.SOURCE.FAMILY.RIGHTS.METADATA_ONLY.2026-08-23`), which opened no dataset payloads,
+  (audit `ORION-13.V4.SOURCE.FAMILY.RIGHTS.METADATA_ONLY.2026-08-23`), which opened no dataset payloads,
   no reference alignments, no matcher outputs, and performed no execution. This manifest inherits
   that boundary.
 
@@ -22,9 +22,9 @@ bench23 record facts bound in the JSON: DOI `10.5281/zenodo.15827289`, created 2
 `bench23.zip` 1,034,779 bytes, published checksum **MD5 only** (`5c70ace8…e762`) — SHA-256 must be
 computed locally at download time before any scoring run. The record description confirms bench23
 is the systematic alteration of **one seed ontology** (bibliographic domain), which is exactly why
-a natural-pair track is mandatory alongside it (P3 box 3).
+a natural-pair track is mandatory alongside it (ORION-13 box 3).
 
-## Exclusions (P3 box 1 rule: exclude UMLS/eClass or registration-restricted unless authorized)
+## Exclusions (ORION-13 box 1 rule: exclude UMLS/eClass or registration-restricted unless authorized)
 
 - **OAEI LargeBio (legacy 2015)** — `EXCLUDED__UMLS_ASSOCIATED_UNAUTHORIZED`: UMLS-derived
   references; SNOMED CT `LICENCE_REQUIRED`; UMLS needs an individual licence/UTS account. Inherited

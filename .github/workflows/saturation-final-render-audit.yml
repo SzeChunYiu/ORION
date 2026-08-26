@@ -38,7 +38,7 @@ jobs:
       - name: Render P1 from saturated source
         run: |
           set -euo pipefail
-          cd papers/paper-01-recursive-epistemic-reconstruction/manuscript
+          cd papers/orion-11-recursive-epistemic-reconstruction/manuscript
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
           ! grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log
@@ -49,10 +49,10 @@ jobs:
       - name: Validate and render P2; compare tracked PDF
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
-          python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py
-          python -m unittest discover -s papers/paper-02-open-world-scientific-discovery/tests -p 'test_p2_v2.py'
-          cd papers/paper-02-open-world-scientific-discovery/manuscript
+          python papers/orion-12-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
+          python papers/orion-12-open-world-scientific-discovery/scripts/check_p2_v2.py
+          python -m unittest discover -s papers/orion-12-open-world-scientific-discovery/tests -p 'test_p2_v2.py'
+          cd papers/orion-12-open-world-scientific-discovery/manuscript
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
           ! grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log
@@ -68,7 +68,7 @@ jobs:
       - name: Render P3 from saturated source
         run: |
           set -euo pipefail
-          cd papers/paper-03-global-knowledge-portrait/manuscript
+          cd papers/orion-13-global-knowledge-portrait/manuscript
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           ! grep -E 'LaTeX Warning: (Citation|Reference).*(undefined)|There were undefined references|undefined citations|multiply defined' main.log
           ! grep -E 'Overfull \\[hv]box' main.log
@@ -80,16 +80,16 @@ jobs:
         run: |
           set -euo pipefail
           pytest -q tests/unit/p4/test_p4_publication_v2.py tests/unit/p4/test_p4_v2_execution_freeze.py
-          python papers/paper-04-verified-scientific-discovery/figures/generate_figures.py
-          F=papers/paper-04-verified-scientific-discovery/figures
+          python papers/orion-14-verified-scientific-discovery/figures/generate_figures.py
+          F=papers/orion-14-verified-scientific-discovery/figures
           for stem in p4_2_false_promotion p4_3_coverage_frontier p4_4_detection_by_attack p4_5_attribution_vs_support p4_6_cost_false_promotion; do
             rsvg-convert -w 1440 -o "$F/$stem.png" "$F/$stem.svg"
           done
-          git diff --exit-code -- papers/paper-04-verified-scientific-discovery/tables
+          git diff --exit-code -- papers/orion-14-verified-scientific-discovery/tables
           BASE=https://raw.githubusercontent.com/JmlrOrg/tmlr-style-file/7bf90efe3a0debbba703c05c43f3ff7e4d4a2992
-          curl -fsSL "$BASE/tmlr.sty" -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.sty
-          curl -fsSL "$BASE/tmlr.bst" -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.bst
-          cd papers/paper-04-verified-scientific-discovery/manuscript
+          curl -fsSL "$BASE/tmlr.sty" -o papers/orion-14-verified-scientific-discovery/manuscript/tmlr.sty
+          curl -fsSL "$BASE/tmlr.bst" -o papers/orion-14-verified-scientific-discovery/manuscript/tmlr.bst
+          cd papers/orion-14-verified-scientific-discovery/manuscript
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
           ! grep -E 'Overfull \\[hv]box' main.log

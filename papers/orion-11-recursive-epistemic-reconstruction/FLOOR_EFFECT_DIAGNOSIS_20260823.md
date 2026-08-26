@@ -1,4 +1,4 @@
-# P1 campaign floor effect — diagnosed: three instrument defects; H1 untested and unrescuable from existing data
+# ORION-11 campaign floor effect — diagnosed: three instrument defects; H1 untested and unrescuable from existing data
 
 Diagnosis run 2026-08-23 over `results/raw/test_scored.jsonl` (2,880 records = 12 × 48 × 5;
 repeats vacuous — 1 of 576 (system,case) pairs shows any across-seed variation, so
@@ -53,14 +53,14 @@ by acting on weak cues full abstains on). Rescoring existing data cannot rescue 
 ## The path that makes H1 testable
 
 The project already designed the fix and never ran it: successor
-**`P1.epistemic-mutation-necessity.v2.2.4`** (DESIGN_FROZEN, execution bindings UNBOUND) —
+**`ORION-11.epistemic-mutation-necessity.v2.2.4`** (DESIGN_FROZEN, execution bindings UNBOUND) —
 480 hidden shifts + 2,400 controls, seed `202608172211`, each world exposing a **public
 intervention menu with a host-side counterfactual response matrix** and a 3-intervention
 budget. Success becomes a property of intervention *policy*, not lexical perception:
 mechanical arms can genuinely differ, credential-free, and the design is pre-powered
 (H1 needs n = 385; frozen 480) with pre-registered margins (≥ 10 pp, paired bootstrap).
 
-**Decision: materialize v2.2.4 as the P1 execution path.** Secondary, cheaper complement
+**Decision: materialize v2.2.4 as the ORION-11 execution path.** Secondary, cheaper complement
 (optional, after): fix `provider.py` to elicit + parse + archive structured traces and run
 the live arm as a *policy pair* (ORION-policy vs strongest-baseline-policy — H1 is a
 contrast), graded against the existing per-case `root_success_rubric` fields, noting

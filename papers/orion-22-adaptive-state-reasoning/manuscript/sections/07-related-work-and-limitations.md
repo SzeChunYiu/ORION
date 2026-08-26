@@ -2,7 +2,7 @@
 
 Strategic test-time-compute allocation, constrained policies and “when to
 think” methods already own adaptive reasoning amount. Retrieval, compression
-and state-construction systems already own dynamic context. P12's residual is
+and state-construction systems already own dynamic context. ORION-22's residual is
 joint **resource-locus allocation** under one receipt, with an equal-action
 capability across signal ablations.
 

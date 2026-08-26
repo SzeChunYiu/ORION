@@ -1,7 +1,7 @@
-# P9-U-T3 / P9-U-T4 receipt: the grid is declared, and one of the two attacks landed
+# ORION-19-U-T3 / ORION-19-U-T4 receipt: the grid is declared, and one of the two attacks landed
 
 - **Date**: 2026-08-21
-- **Gates addressed**: `P9-U-T3`, `P9-U-T4` (issue #662)
+- **Gates addressed**: `ORION-19-U-T3`, `ORION-19-U-T4` (issue #662)
 - **Authority**: `NO_SCIENTIFIC_AUTHORITY_HOSTILE_AUDIT_ONLY`. Neither gate is discharged by this
   work. Both remain **BLOCKED**.
 - **Artifacts**
@@ -13,11 +13,11 @@
   - status `evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json` (exit 4, `CANNOT_CHECK`)
   - instruments `src/orion/study/p9/hostile_representation_attacks.py`,
     `src/orion/study/p9/frontier_grid.py`
-- **No existing P9 result, receipt, protocol or evidence artifact is modified.** Only new files.
+- **No existing ORION-19 result, receipt, protocol or evidence artifact is modified.** Only new files.
 
 ---
 
-## P9-U-T4 — the attacks were named and had never been run. They have now been run.
+## ORION-19-U-T4 — the attacks were named and had never been run. They have now been run.
 
 The two hostile alternatives appear in exactly one place in the repository,
 `successor/P9_U_MANUSCRIPT.tex` ("Equal-token/length controls, order/symbol reminting,
@@ -26,7 +26,7 @@ fixture or result for any of them existed.
 
 They cannot be run against the result they were written for: the frozen Qwen2.5 0.5B/1.5B/3B
 successor run of issue #618 has no outcome, no checkpoint here, and no reachable provider from this
-environment. They were therefore run against the one representation contrast P9 publishes: **D1
+environment. They were therefore run against the one representation contrast ORION-19 publishes: **D1
 v1.2**, regenerated locally to the shipped `dataset_manifest_digest sha256:27752984…`.
 
 ### Verdict: `T4_ATTACK_SUCCEEDED` / `FAIL`
@@ -100,7 +100,7 @@ is true. What the orbit result shows is that carrying the same information is no
 
 ---
 
-## P9-U-T3 — the grid is declared, and it has no outcomes
+## ORION-19-U-T3 — the grid is declared, and it has no outcomes
 
 `T3_GRID_DECLARED_NO_CELL_EXECUTED` / `CANNOT_CHECK`, denominator **0 of 1344**.
 
@@ -120,8 +120,8 @@ would be a weaker proxy wearing the measurement's name.
 
 ## What this licenses, and what it does not
 
-**Does not license.** Nothing here discharges `P9-U-T3` or `P9-U-T4`. Both gates guard the successor
-direct-LLM result, which has no outcome. `P9-U-T1` is still blocked on it.
+**Does not license.** Nothing here discharges `ORION-19-U-T3` or `ORION-19-U-T4`. Both gates guard the successor
+direct-LLM result, which has no outcome. `ORION-19-U-T1` is still blocked on it.
 
 **Licenses, and only this.**
 

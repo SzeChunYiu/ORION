@@ -1,4 +1,4 @@
-# P8-X4 donor reference ledger for later bibliography integration
+# ORION-18-X4 donor reference ledger for later bibliography integration
 
 Date: 2026-08-19
 
@@ -6,7 +6,7 @@ This source ledger records the donor identities used by the V3 science update. I
 
 ## Action / delegation / authorization donors
 
-- **FAVA — Formal Agent Verification Architecture**. arXiv:2607.27267. Contribution used by P8: evidence-backed permission graphs, deterministic authorization and external runtime enforcement.
+- **FAVA — Formal Agent Verification Architecture**. arXiv:2607.27267. Contribution used by ORION-18: evidence-backed permission graphs, deterministic authorization and external runtime enforcement.
 - **Proof-Carrying Agent Actions (PCAA): A Protocol for Evidence-Bound Execution in Agentic Systems**. arXiv:2606.04104. Contribution used: portable action identity, approval/runtime/outcome receipts and replay-ready proof.
 - **Human Delegation Provenance (HDP)**. arXiv:2604.04522. Contribution used: cryptographically verifiable human authorization context propagated through append-only delegation chains.
 - **SentinelAgent**. arXiv:2604.02767. Contribution used: deterministic authority narrowing, policy preservation, forensic reconstructibility, cascade containment and scope/action conformance.
@@ -25,8 +25,8 @@ This source ledger records the donor identities used by the V3 science update. I
 
 ## Additional pressure sources
 
-- **EMILIA Protocol / action-evidence architecture**. Used only as additional pressure that consequential-action evidence architectures compose typed evidence and policy; not a separate P8 ownership claim.
+- **EMILIA Protocol / action-evidence architecture**. Used only as additional pressure that consequential-action evidence architectures compose typed evidence and policy; not a separate ORION-18 ownership claim.
 - **Current autonomous-research verification systematization**. Used as gap pressure that evidence bundles and selected claim gates do not automatically constitute a general full-manuscript scientific release gate; not treated as novelty proof.
 
 ## Ownership statement
-All local mechanisms above remain donor-owned. P8 V3 claims only the bounded cross-domain composition/lifting relation governing when heterogeneous local authority objects may discharge a target scientific obligation.
+All local mechanisms above remain donor-owned. ORION-18 V3 claims only the bounded cross-domain composition/lifting relation governing when heterogeneous local authority objects may discharge a target scientific obligation.

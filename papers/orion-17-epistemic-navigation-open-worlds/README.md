@@ -1,4 +1,4 @@
-# P7 candidate — Epistemic Navigation in Open Worlds
+# ORION-17 candidate — Epistemic Navigation in Open Worlds
 
 **Current science:** `SCIENCE_CLOSED_V3`; PDF/typesetting refresh deferred.  
 **Current science manuscript:** `manuscript/FINAL_V4.md`.  
@@ -13,7 +13,7 @@ How can scientific task closure be preserved, refined or reopened across heterog
 
 ## Current V3 contribution
 
-P7 now treats mature navigation mechanisms as **donor transforms to absorb**:
+ORION-17 now treats mature navigation mechanisms as **donor transforms to absorb**:
 
 - sound planning abstraction/refinement;
 - counterexample-guided refinement/reopen;
@@ -22,7 +22,7 @@ P7 now treats mature navigation mechanisms as **donor transforms to absorb**:
 - explicit achieved-world versus terminal-commitment state;
 - explicit semantic/evidentiary/procedural/institutional closure contracts.
 
-P7 does not replace those mechanisms. It adds a bounded **closure-carrying transform**: donor-native validity is preserved, while task-global scientific closure is transported through an explicit obligation carrier. Failed closure transport becomes a targeted refinement/reopen problem, and heterogeneous transforms compose scientifically only when their intermediate closure contracts are exactly bound or explicitly bridged.
+ORION-17 does not replace those mechanisms. It adds a bounded **closure-carrying transform**: donor-native validity is preserved, while task-global scientific closure is transported through an explicit obligation carrier. Failed closure transport becomes a targeted refinement/reopen problem, and heterogeneous transforms compose scientifically only when their intermediate closure contracts are exactly bound or explicitly bridged.
 
 This is intentionally wider than the older statement that evidence transport is weaker than closure transport. The donor machinery is retained and improved with a compositional scientific closure interface.
 
@@ -48,11 +48,11 @@ A separate implementation independently reconstructs the result.
 
 ## Wider allowed claim
 
-> P7 provides closure-carrying scientific navigation: mature planning/refinement, counterexample-guided reopening, representation migration, replanning and terminal-commitment mechanisms remain reusable donor transforms, while task-global closure is explicitly transported, selectively refined and compositionally carried through typed obligation bridges.
+> ORION-17 provides closure-carrying scientific navigation: mature planning/refinement, counterexample-guided reopening, representation migration, replanning and terminal-commitment mechanisms remain reusable donor transforms, while task-global closure is explicitly transported, selectively refined and compositionally carried through typed obligation bridges.
 
 ## Ownership / donor boundary
 
-P2 retains generic open-world retrieval/search stopping. P7 does **not** claim graph search, planning, abstraction/refinement, CEGAR, round-trip migration, world-model revision, terminal commitment, or generic closure-gap terminology as new. An ideal donor product carrying the exact same scientific closure fields and bridge rules ties P7 extensionally.
+ORION-12 retains generic open-world retrieval/search stopping. ORION-17 does **not** claim graph search, planning, abstraction/refinement, CEGAR, round-trip migration, world-model revision, terminal commitment, or generic closure-gap terminology as new. An ideal donor product carrying the exact same scientific closure fields and bridge rules ties ORION-17 extensionally.
 
 ## Real regime-transport evidence (three change classes)
 

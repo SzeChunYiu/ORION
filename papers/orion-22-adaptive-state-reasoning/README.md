@@ -1,6 +1,6 @@
-# P12 — Adaptive State–Reasoning Co-Design
+# ORION-22 — Adaptive State–Reasoning Co-Design
 
-**Stable ID:** ORION-P12  
+**Stable ID:** ORION-ORION-22  
 **Paper issue:** #665  
 **Shared accounting:** #664  
 **Programme:** #670
@@ -11,7 +11,7 @@
 
 ## Current scientific state
 
-P12 now has three evidence layers that must be read in order.
+ORION-22 now has three evidence layers that must be read in order.
 
 ### 1. Historical comparison correction
 
@@ -61,7 +61,7 @@ Selection-sufficiency and certificate-necessity falsifiers support the exact-cer
 
 ## Stop/go public-data campaign — frozen protocol (not executed)
 
-Issue #1086 (P12 boxes) freezes the protocol for a public-data stop/go campaign
+Issue #1086 (ORION-22 boxes) freezes the protocol for a public-data stop/go campaign
 **before any data collection**. The campaign itself has **not** been executed:
 no runner, datum, score, gate verdict or terminal exists for it, and nothing in
 these artifacts may be cited as evidence of any empirical outcome.
@@ -109,7 +109,7 @@ Manuscript-facing integration notes are in `top_tier/P12_TOP_TIER_MANUSCRIPT_INT
 
 The transfer, robustness, price-aware successor and theorem receipts are content-bound by V4.
 
-Issue #1086 stop/go protocol artifacts (added by the P11/P12 lane):
+Issue #1086 stop/go protocol artifacts (added by the ORION-21/ORION-22 lane):
 
 - `P12_ACTIVE_CLAIM_AUTHORITY_V5.json` (V4 preserved; adds the frozen-campaign leaf)
 - `check_p12_stopgo_integration_v1.py` (fail-closed audit)

@@ -23,7 +23,7 @@ A negative is **INTERMEDIATE**, never terminal. For each negative:
 | **Paper** | P1 — Recursive Epistemic Reconstruction |
 | **Claim ID** | P1.H2 — Unnecessary-reframe non-inferiority at +0.02 margin |
 | **Current Verdict** | `UNDERPOWERED` / `NOT_CERTIFIABLE` |
-| **Evidence Artifact** | `papers/paper-01/protocol/PROSPECTIVE_POWER_V1.md` (48 TEST cases, 16 controls) |
+| **Evidence Artifact** | `papers/orion-11/protocol/PROSPECTIVE_POWER_V1.md` (48 TEST cases, 16 controls) |
 | **One-Stage Attribution** | **Sample size** — The +0.02 margin is 5-7x tighter than the narrowest achievable CI upper bound at n=16 controls. Even with zero unnecessary reframes in both systems (diff=0), the 95% CI upper bound is +0.074 to +0.147. Near-zero power. |
 | **Root Cause** | Protocol design specified an overly tight margin for the available control sample size. The H1 superiority test (32 hidden-shift cases) is adequately powered, but H2's margin is mechanically unreachable. |
 | **Revival Lever** | **Sample expansion ONLY** — Expand controls to 30+ cases (TIER_B, n=385). Margin relaxation is FORBIDDEN (outcome tuning). The frozen +0.02 margin stays. If H2 stays unreachable at full expansion, it is documented as CORRECTED-with-power-analysis, not margin-relaxed. Rationale: p1-expand is already building the assisted +337-case pipeline → n=385 (TIER_B). |
@@ -42,7 +42,7 @@ A negative is **INTERMEDIATE**, never terminal. For each negative:
 | **Paper** | P2 — Open-World Scientific Discovery |
 | **Claim ID** | P2 Deep official LLM title-judge success |
 | **Current Verdict** | `CANNOT_CHECK` — candidate generation failed |
-| **Evidence Artifact** | `papers/paper-02/evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json` (0/600 hits; judge control 9/9 PASS) |
+| **Evidence Artifact** | `papers/orion-12/evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json` (0/600 hits; judge control 9/9 PASS) |
 | **One-Stage Attribution** | **Candidate generation** — The keyless public-arXiv probe's retrieved titles never contain reference titles as substrings. Judge is functional (control passed 9/9). Failing stage is the probe's retrieval/candidate-builder, not the evaluation. |
 | **Root Cause** | **Hypothesis:** The AutoResearchBench Deep task retrieves by **question embedding** from public arXiv rather than by title. Reference papers may be: (1) absent/weakly-indexed in public arXiv search; (2) not surfaced by question-based retrieval; (3) the probe uses the wrong retrieval field for candidate extraction. |
 | **Revival Lever** | **Regenerate candidates with corrected retrieval** — Needle-question lexicon echoing in wrong titles. 36 items shipped empty candidate lists. Revival = fix retrieval (question vs title-based lookup), NOT re-scoring. Judge is already validated. |
@@ -80,7 +80,7 @@ A negative is **INTERMEDIATE**, never terminal. For each negative:
 | **Paper** | P3 — Global Knowledge Portrait |
 | **Claim ID** | End-to-end cross-domain semantic adequacy (raw-text → extraction → mapping → utility) |
 | **Current Verdict** | `CANNOT_CHECK` — deliberately narrowed |
-| **Evidence Artifact** | `papers/paper-03/evidence/PUBLIC_REFERENCE_ROUTE_STATUS_V1.md`; PR #264 merged 2026-08-17 |
+| **Evidence Artifact** | `papers/orion-13/evidence/PUBLIC_REFERENCE_ROUTE_STATUS_V1.md`; PR #264 merged 2026-08-17 |
 | **One-Stage Attribution** | **Scope narrowing** — The 32-case public-reference result (prospectively replicated) supports **only** the structured mapping calculus on already-pinpointed cases. It does NOT establish: raw-text extraction, strongest model/RAG/schema baselines, eight-family construct validity, recoverability of generated portraits, or downstream scientific utility. Those remain `CANNOT_CHECK`. |
 | **Root Cause** | Resource constraints + explicit scope contraction. The zero-budget public-reference route (MUSE/SciFact/SciSchema pins) was executed as a narrower alternative to the original end-to-end protocol. PR #264 generated publication artifacts but explicitly scoped them to the mapping-only result. |
 | **Revival Lever** | **Execute original Step 3 end-to-end study:** <br>1. Build real multi-domain gold dataset (≥3 disciplines, 8 case families) <br>2. Annotate: referent/entity judgment, construct identity, measurement equivalence, temporal/state context, polarity/modality/attribution/discourse, mapping relation, GLUE/OBSTRUCTION/UNRESOLVED, recoverability target <br>3. Run extraction precision/recall evaluation <br>4. Execute nearest strong baselines: long-context synthesis, RAG, flat-schema, SCOPE/SCION, provenance-aware schema-contract <br>5. Run semantic-coordinate ablations <br>6. Evaluate downstream utility (answer correctness using reconstructed portrait) <br>7. Generate P3-1..P3-7 and Tables P3-1..P3-3 |

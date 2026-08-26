@@ -1,4 +1,4 @@
-# Q1 journal-readiness record
+# ORION-01 journal-readiness record
 
 **Current terminal:** `INTERNAL_REVIEW_PASS__BOUNDED_CLAIM / SUBMISSION_GATES_OPEN`.
 
@@ -6,11 +6,11 @@ This record follows the same separation used by Paper 1: manuscript quality, evi
 
 ## Review cycle 1 — blockers found
 
-- **Q1-R1, blocking:** V1 said the all-`n` support-two theorem was open even though R6S is now committed.
-- **Q1-R2, blocking:** V1 elevated a two-trade closed form that QG-5 and QG-7 later refuted at `n=3` and in adversarial hybrid panels.
-- **Q1-R3, major:** Methods and Results were interleaved, making it difficult to distinguish grammar definitions, referee guarantees, finite-domain evidence, and all-`n` theorem status.
-- **Q1-R4, major:** the conclusion/claim boundary was stale relative to QG-5b/QG-7/QG-7b/QG-7c.
-- **Q1-R5, moderate:** programme-history and authority prose interrupted the scientific argument instead of being concentrated in Related Work, Limitations, and Reproducibility.
+- **ORION-01-R1, blocking:** V1 said the all-`n` support-two theorem was open even though R6S is now committed.
+- **ORION-01-R2, blocking:** V1 elevated a two-trade closed form that QG-5 and QG-7 later refuted at `n=3` and in adversarial hybrid panels.
+- **ORION-01-R3, major:** Methods and Results were interleaved, making it difficult to distinguish grammar definitions, referee guarantees, finite-domain evidence, and all-`n` theorem status.
+- **ORION-01-R4, major:** the conclusion/claim boundary was stale relative to QG-5b/QG-7/QG-7b/QG-7c.
+- **ORION-01-R5, moderate:** programme-history and authority prose interrupted the scientific argument instead of being concentrated in Related Work, Limitations, and Reproducibility.
 
 ## Repairs
 

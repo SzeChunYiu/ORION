@@ -216,7 +216,7 @@ def build(out_dir):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--out", required=True, help="output directory (e.g. papers/paper-14-orion-rse/top_tier/external_v1)")
+    ap.add_argument("--out", required=True, help="output directory (e.g. papers/orion-24-orion-rse/top_tier/external_v1)")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
     return build(args.out)

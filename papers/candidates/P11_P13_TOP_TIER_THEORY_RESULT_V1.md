@@ -1,4 +1,4 @@
-# P11–P13 top-tier theory result receipt V1
+# ORION-21–ORION-23 top-tier theory result receipt V1
 
 **Run:** GitHub Actions `32644815784`  
 **Artifact:** `p11-p13-top-tier-theory-v1`, artifact ID `9494570377`  
@@ -6,7 +6,7 @@
 **Replay:** `P11_P13_TOP_TIER_THEORY_V1_BYTE_REPLAY_GREEN`  
 **Programme terminal:** `P11_P13_TOP_TIER_THEORY_V1_GREEN`
 
-## P11 result
+## ORION-21 result
 
 Terminal: `P11_TOP_TIER_THEORY_V1_GREEN`.
 
@@ -20,7 +20,7 @@ Independent finite checks confirmed:
 
 These checks bind the finite witnesses accompanying T11.1–T11.3; they do not replace the still-required learned compiler and real-system resource study.
 
-## P12 result
+## ORION-22 result
 
 Terminal: `P12_TOP_TIER_THEORY_V1_GREEN`.
 
@@ -32,7 +32,7 @@ Independent finite checks confirmed:
 
 This closes the bounded decision-theory sanity layer for T12.1–T12.3. Open-weight, verifier-backed and cross-domain allocator transfer remain external promotion gates.
 
-## P13 result
+## ORION-23 result
 
 Terminal: `P13_TOP_TIER_THEORY_V1_GREEN`.
 

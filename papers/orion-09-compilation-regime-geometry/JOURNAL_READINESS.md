@@ -1,14 +1,14 @@
-# QG1 journal-readiness record
+# ORION-09 journal-readiness record
 
 **Current terminal:** `INTERNAL_REVIEW_PASS__PROGRAMME_SYNTHESIS / SUBMISSION_GATES_OPEN`.
 
 ## Review cycle 1 — blockers found
 
-- **QG1-R1, blocking:** V1 treated the QG-1 R6I support bound `B=5` as the current theorem; QG-9 later proves the all-`n` exact support-1 normal form.
-- **QG1-R2, blocking:** V1 presented `boundary-is-low-order` as a candidate transferable motif after two families; QG-15 later refutes it on StabPrep and QG-15b locates an irreducible feature-information gap.
-- **QG1-R3, blocking:** V1's TARE residual ledger stopped at QG-5/QG-5b and did not reflect QG-7's fourth hybrid configuration or the current one-link-open classification chain.
-- **QG1-R4, major:** wave-1 chronology dominated the paper at the expense of a Methods section defining what a regime map is and what evidence each component requires.
-- **QG1-R5, major:** field-level language risked implying that every exact compiler should possess the same low-order geometry.
+- **ORION-09-R1, blocking:** V1 treated the QG-1 R6I support bound `B=5` as the current theorem; QG-9 later proves the all-`n` exact support-1 normal form.
+- **ORION-09-R2, blocking:** V1 presented `boundary-is-low-order` as a candidate transferable motif after two families; QG-15 later refutes it on StabPrep and QG-15b locates an irreducible feature-information gap.
+- **ORION-09-R3, blocking:** V1's TARE residual ledger stopped at QG-5/QG-5b and did not reflect QG-7's fourth hybrid configuration or the current one-link-open classification chain.
+- **ORION-09-R4, major:** wave-1 chronology dominated the paper at the expense of a Methods section defining what a regime map is and what evidence each component requires.
+- **ORION-09-R5, major:** field-level language risked implying that every exact compiler should possess the same low-order geometry.
 
 ## Repairs
 

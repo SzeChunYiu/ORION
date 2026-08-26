@@ -1,4 +1,4 @@
-# P2 Top-Tier Dynamic-Epistemic Manuscript V1
+# ORION-12 Top-Tier Dynamic-Epistemic Manuscript V1
 
 ## Candidate title
 
@@ -7,20 +7,20 @@
 ```text
 status = RESULT_LEDGER_BOUND__NEGATIVE_BOUNDARY_AND_TRANSFER_CANNOT_CHECK
 paper_authority_delta = NONE
-job = P2-DES-01
+job = ORION-12-DES-01
 ```
 
 ## Abstract
 
-Scientific search has two different problems: deciding what the observed routes justify and deciding where to search next when nearby descriptions cease to add target-relevant structure. P2 models route coverage, source dependence, unresolved mass, obligations, donor residuals, and expected structural gain as a dynamic state. It absorbs open-world retrieval, systematic review, active search, capture–recapture, unseen-species estimation, and optimal stopping. We prove that finite history alone cannot certify unrestricted closure; that closure is assumption- and responsibility-indexed; and that local saturation does not imply global completeness. A remote structural jump is licensed only when a load-bearing obstruction remains, local gain is Pareto-saturated, and a distant source offers non-dominated discriminating value under a typed bridge. In the frozen 50-topic TREC-COVID internal comparison, all 400 policy-topic rows were retained, no task declared closure, and no topic attained the preconditions required to license a structural jump. The registered primary comparison did not support the local ORION policy over the internal ideal donor product, while the material neural donor, licensed transfer worlds, and independent gold custody were unavailable. The empirical result is therefore a boundary result about unattained jump licensing and missing comparison authority, not a remote-search superiority claim.
+Scientific search has two different problems: deciding what the observed routes justify and deciding where to search next when nearby descriptions cease to add target-relevant structure. ORION-12 models route coverage, source dependence, unresolved mass, obligations, donor residuals, and expected structural gain as a dynamic state. It absorbs open-world retrieval, systematic review, active search, capture–recapture, unseen-species estimation, and optimal stopping. We prove that finite history alone cannot certify unrestricted closure; that closure is assumption- and responsibility-indexed; and that local saturation does not imply global completeness. A remote structural jump is licensed only when a load-bearing obstruction remains, local gain is Pareto-saturated, and a distant source offers non-dominated discriminating value under a typed bridge. In the frozen 50-topic TREC-COVID internal comparison, all 400 policy-topic rows were retained, no task declared closure, and no topic attained the preconditions required to license a structural jump. The registered primary comparison did not support the local ORION policy over the internal ideal donor product, while the material neural donor, licensed transfer worlds, and independent gold custody were unavailable. The empirical result is therefore a boundary result about unattained jump licensing and missing comparison authority, not a remote-search superiority claim.
 
 ## Theory
 
-- `P2-T1` finite-history open-world closure impossibility.
-- `P2-T2` assumption-indexed route, family, task, and population closure.
-- `P2-T3` local saturation from target-relevant gain envelopes.
-- `P2-T4` structurally remote jump under unresolved obstruction and non-dominated expected gain.
-- `P2-T5` exact reopening after route, dependence, epoch, or responsibility change.
+- `ORION-12-T1` finite-history open-world closure impossibility.
+- `ORION-12-T2` assumption-indexed route, family, task, and population closure.
+- `ORION-12-T3` local saturation from target-relevant gain envelopes.
+- `ORION-12-T4` structurally remote jump under unresolved obstruction and non-dominated expected gain.
+- `ORION-12-T5` exact reopening after route, dependence, epoch, or responsibility change.
 
 ## Apple principle
 
@@ -28,7 +28,7 @@ Search nearby donors, digest them into typed nodes and hyperedges, measure margi
 
 ## Decisive computation
 
-`P2-DES-01`: equal-budget local and remote search policies. Primary vector: recall, premature closure, source judgments, semantic yield per source, residual shrinkage, and calibrated unresolvedness. Intended positive terminal: `ASSUMPTION_INDEXED_OPEN_WORLD_NAVIGATION_AND_REMOTE_JUMP_VALUE_SUPPORTED`.
+`ORION-12-DES-01`: equal-budget local and remote search policies. Primary vector: recall, premature closure, source judgments, semantic yield per source, residual shrinkage, and calibrated unresolvedness. Intended positive terminal: `ASSUMPTION_INDEXED_OPEN_WORLD_NAVIGATION_AND_REMOTE_JUMP_VALUE_SUPPORTED`.
 
 ## Authoritative computation disposition
 

@@ -1,4 +1,4 @@
-# P9 journal-readiness ledger — review-branch closure
+# ORION-19 journal-readiness ledger — review-branch closure
 
 Target: **TMLR**.
 
@@ -44,7 +44,7 @@ Review-branch integration is not restated as a `main` merge. Main-merge authorit
 
 ## Manuscript gates
 
-- [x] additive P9 paper identity is separate from historical Learning Machine packaging.
+- [x] additive ORION-19 paper identity is separate from historical Learning Machine packaging.
 - [x] bounded claim ledger and result-disposition maps exist.
 - [x] all central prior-work claims required by `audit_final_manuscript.py` are cited in the final manuscript body.
 - [x] official result values are consumed only through the fail-closed generated evidence summary/macros/tables.
@@ -85,26 +85,26 @@ These are robustness/uncertainty descriptions of the original protected endpoint
 - [x] exact-head PDF artifact `9396990591`, archive digest `sha256:983e2cc82c9eb4ee6fa43ba1ea7877715f9bcc2e89639b053f12364702a94441`, renders as 8 pages and passed automated no-overflow/anonymity checks.
 - [x] manual page-by-page rendering audit is recorded in `PDF_VISUAL_AUDIT_2026-08-20.md`; no clipping, overlap or broken glyph was found.
 - [x] exact-head fail-closed paper-package workflow run `32340331731` is green.
-- [x] protected P6-P8 gate was green on the immediately preceding scientific-equivalent head; the current head differs from that science-equivalent state only in PDF packaging/audit receipts.
+- [x] protected ORION-16-ORION-18 gate was green on the immediately preceding scientific-equivalent head; the current head differs from that science-equivalent state only in PDF packaging/audit receipts.
 
 ## Repository-wide CI boundary
 
-The historical ledger required the entire repository CI to be green. That is now **explicitly retired as a P9-owned readiness gate** because the observed global failure is unrelated journal-package hash drift in P1/P2/P4, not P9/P10 science:
+The historical ledger required the entire repository CI to be green. That is now **explicitly retired as a ORION-19-owned readiness gate** because the observed global failure is unrelated journal-package hash drift in ORION-11/ORION-12/ORION-14, not ORION-19/ORION-20 science:
 
-- global run `32338811638`: `3248 passed`, `9 skipped`, `2 failed` in the non-P2 suite;
-- both failures arise from stale P1/P2/P4 journal-package manuscript/bibliography hashes;
-- dedicated issue: `#622`, `Global CI: stale P1/P2/P4 journal-package hashes block unrelated paper branches`.
+- global run `32338811638`: `3248 passed`, `9 skipped`, `2 failed` in the non-ORION-12 suite;
+- both failures arise from stale ORION-11/ORION-12/ORION-14 journal-package manuscript/bibliography hashes;
+- dedicated issue: `#622`, `Global CI: stale ORION-11/ORION-12/ORION-14 journal-package hashes block unrelated paper branches`.
 
-P9 readiness instead requires its fail-closed package/PDF/replay gates plus the protected cross-paper gate. This retirement does not waive a P9-local failure and does not authorize changes to P1/P2/P4 from this branch.
+ORION-19 readiness instead requires its fail-closed package/PDF/replay gates plus the protected cross-paper gate. This retirement does not waive a ORION-19-local failure and does not authorize changes to ORION-11/ORION-12/ORION-14 from this branch.
 
 ## Separate stronger research programme
 
-Direct open-weight LLM structure×scale×compute and native-Lean/P10 experiments are executing separately on PR `#618`. They are **not required** to support this bounded P9 manuscript and may enter its claims only if their prospectively frozen gates pass. A null result there leaves this bounded paper intact.
+Direct open-weight LLM structure×scale×compute and native-Lean/ORION-20 experiments are executing separately on PR `#618`. They are **not required** to support this bounded ORION-19 manuscript and may enter its claims only if their prospectively frozen gates pass. A null result there leaves this bounded paper intact.
 
 ## Parent/programme closure still pending outside this PR
 
 - [ ] merge authority may later promote this exact bounded package to `main` after review/branch policy permits it;
-- [ ] the P1–P11 programme dashboard may then be updated from review-branch-ready to repository-main disposition.
+- [ ] the ORION-11–ORION-21 programme dashboard may then be updated from review-branch-ready to repository-main disposition.
 
 Those are repository/programme authority actions, not unresolved scientific or manuscript evidence gates.
 

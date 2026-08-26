@@ -6,7 +6,7 @@
     "official_rerun_possible": false,
     "provider_status": "arXiv and OpenAlex return CONNECT tunnel failed, response 403 at this proxy"
   },
-  "expected_result_artifact": "papers/paper-02-open-world-scientific-discovery/evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json",
+  "expected_result_artifact": "papers/orion-12-open-world-scientific-discovery/evidence/successor_results/P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json",
   "gate_served": "P2-U-T5",
   "issue_refs": [
     "#650",
@@ -15,16 +15,16 @@
   "negative_under_repair": {
     "deep_tasks": 600,
     "items_with_reference_and_candidates": 564,
-    "judge_control": "papers/paper-02-open-world-scientific-discovery/evidence/external_results/DEEP_JUDGE_CONTROL_2026-08-17.json",
+    "judge_control": "papers/orion-12-open-world-scientific-discovery/evidence/external_results/DEEP_JUDGE_CONTROL_2026-08-17.json",
     "judge_free_recoveries_at_token_overlap_0_5": 8,
     "named_mechanism": "LEXICAL_ECHO: incidental question vocabulary treated as a content term",
-    "probe": "papers/paper-02-open-world-scientific-discovery/evidence/external_results/AUTORESEARCHBENCH_DEEP_ID_PROBE_V1.json",
-    "stage_attribution": "papers/paper-02-open-world-scientific-discovery/evidence/external_results/DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json",
+    "probe": "papers/orion-12-open-world-scientific-discovery/evidence/external_results/AUTORESEARCHBENCH_DEEP_ID_PROBE_V1.json",
+    "stage_attribution": "papers/orion-12-open-world-scientific-discovery/evidence/external_results/DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json",
     "target_hits": 0
   },
   "parameters": {
     "claim_scope": "CONSTRUCTED_REPRODUCTION_ONLY",
-    "freeze_document": "papers/paper-02-open-world-scientific-discovery/protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md",
+    "freeze_document": "papers/orion-12-open-world-scientific-discovery/protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md",
     "gates": {
       "G1_REPRODUCTION": {
         "max_baseline_hit_at_10": 0.05,
@@ -222,7 +222,7 @@
     }
   },
   "parameters_sha256": "032ae39cf5aae787d6dcb8c75732333e6f6c27782c041c63152e9545830f22e3",
-  "prose_freeze": "papers/paper-02-open-world-scientific-discovery/protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md",
+  "prose_freeze": "papers/orion-12-open-world-scientific-discovery/protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md",
   "record": "P2_LEXICAL_ECHO_SUCCESSOR_FREEZE",
   "runner": "src/orion/study/p2/echo_campaign.py",
   "schema_version": "orion.p2.lexical-echo-successor-freeze.v1",

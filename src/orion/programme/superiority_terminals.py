@@ -556,26 +556,26 @@ class PaperDirectories:
 
 
 PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
-    PaperDirectories("P1", "papers/paper-01-recursive-epistemic-reconstruction"),
-    PaperDirectories("P2", "papers/paper-02-open-world-scientific-discovery"),
+    PaperDirectories("P1", "papers/orion-11-recursive-epistemic-reconstruction"),
+    PaperDirectories("P2", "papers/orion-12-open-world-scientific-discovery"),
     PaperDirectories(
         "P3",
-        "papers/paper-03-global-knowledge-portrait",
-        (("papers/paper-02-global-knowledge-portrait", "historical planning redirect to P3"),),
+        "papers/orion-13-global-knowledge-portrait",
+        (("papers/archive/2026-08-pre-unification/paper-02-global-knowledge-portrait", "historical planning redirect to P3"),),
     ),
     PaperDirectories(
         "P4",
-        "papers/paper-04-verified-scientific-discovery",
-        (("papers/paper-03-verified-discovery", "historical planning redirect to P4"),),
+        "papers/orion-14-verified-scientific-discovery",
+        (("papers/archive/2026-08-pre-unification/paper-03-verified-discovery", "historical planning redirect to P4"),),
     ),
     PaperDirectories(
         "P5",
-        "papers/paper-05-self-orion",
-        (("papers/paper-04-self-orion", "historical planning redirect to P5"),),
+        "papers/orion-15-self-orion",
+        (("papers/archive/2026-08-pre-unification/paper-04-self-orion", "historical planning redirect to P5"),),
     ),
     PaperDirectories(
         "P6",
-        "papers/paper-06-formal-epistemic-structures-and-mechanics",
+        "papers/orion-16-formal-epistemic-structures-and-mechanics",
         ((
             "papers/candidates/paper-06-formal-epistemic-structures-and-mechanics",
             "preserved pre-refactor candidate snapshot; the root-level package is active",
@@ -583,7 +583,7 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
     ),
     PaperDirectories(
         "P7",
-        "papers/paper-07-epistemic-navigation-open-worlds",
+        "papers/orion-17-epistemic-navigation-open-worlds",
         ((
             "papers/candidates/paper-07-epistemic-navigation-open-worlds",
             "preserved pre-refactor candidate snapshot; the root-level package is active",
@@ -591,7 +591,7 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
     ),
     PaperDirectories(
         "P8",
-        "papers/paper-08-epistemic-authority-autonomous-science",
+        "papers/orion-18-epistemic-authority-autonomous-science",
         ((
             "papers/candidates/paper-08-epistemic-authority-autonomous-science",
             "preserved pre-refactor candidate snapshot; the root-level package is active",
@@ -599,7 +599,7 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
     ),
     PaperDirectories(
         "P9",
-        "papers/paper-09-structured-epistemic-learning",
+        "papers/orion-19-structured-epistemic-learning",
         (
             (
                 "papers/candidates/paper-09-structured-epistemic-learning",
@@ -613,7 +613,7 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
     ),
     PaperDirectories(
         "P10",
-        "papers/paper-10-structured-problem-solving",
+        "papers/orion-20-structured-problem-solving",
         (
             (
                 "papers/candidates/paper-10-structured-problem-solving",
@@ -621,7 +621,7 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
             ),
             (
                 "papers/candidates/paper-10-content-bound-math-evaluation",
-                "historical candidate later vacated into paper-xx-content-bound-math-evaluation",
+                "historical candidate later vacated into archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation",
             ),
         ),
     ),
@@ -649,7 +649,7 @@ VACATED_PAPER_NUMBERS: tuple[tuple[str, str, str], ...] = (
         "P9 manuscript does not cite it.",
     ),
     (
-        "papers/paper-xx-content-bound-math-evaluation",
+        "papers/archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation",
         "was P10",
         "TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME, decided 2026-08-18. Reopen "
         "triggers remain active; a surviving positive routes through P4 and P8.",
@@ -671,14 +671,14 @@ VACATED_PAPER_NUMBERS: tuple[tuple[str, str, str], ...] = (
 #: directories is the fix, and it is also the honest record: #670 assigned these
 #: numbers before any directory existed.
 FUTURE_PAPER_DIRECTORIES: dict[str, str] = {
-    "P11": "papers/paper-11-state-as-computation",
-    "P12": "papers/paper-12-adaptive-state-reasoning",
-    "P13": "papers/paper-13-responsibility-carrying-state",
-    "P14": "papers/paper-14-orion-rse",
+    "P11": "papers/orion-21-state-as-computation",
+    "P12": "papers/orion-22-adaptive-state-reasoning",
+    "P13": "papers/orion-23-responsibility-carrying-state",
+    "P14": "papers/orion-24-orion-rse",
     # No issue yet. Opened as a systems paper introducing the ORION research
     # harness and the ORION-Q dual harness; registered here so the identity
     # checks do not read a deliberately-opened folder as identity rot.
-    "P15": "papers/paper-15-orion-research-harness",
+    "P15": "papers/orion-25-orion-research-harness",
 }
 
 #: Pre-refactor manuscript snapshots retained after the root-level P11-P14
@@ -702,14 +702,14 @@ FUTURE_RETIRED_PAPER_DIRECTORIES: dict[str, tuple[tuple[str, str], ...]] = {
 #: machine-checkable answer, and so nothing tries to register it as one.
 #:
 #: The subtlety worth keeping: its own ``REPRODUCE.md`` names
-#: ``paper-xx-executable-research-core`` and ``paper-xx-content-bound-math-evaluation``
+#: ``paper-xx-executable-research-core`` and ``archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation``
 #: --- the two *retired predecessors*, not the active P9 and P10. That is exactly
 #: why both predecessors are retained rather than deleted.
 SHARED_LANES: dict[str, str] = {
     "papers/orion-learning-machine": (
         "Shared P9/P10 reproduction lane: framework, experiments and committed "
         "results cited by paper-xx-executable-research-core and "
-        "paper-xx-content-bound-math-evaluation. Authority is "
+        "archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation. Authority is "
         "LOCAL_REPRODUCIBLE_CORE_ONLY. Not a publication identity."
     ),
 }

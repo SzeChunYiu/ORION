@@ -1,15 +1,15 @@
-# P8 prospective evaluation V1 — cross-domain epistemic authority
+# ORION-18 prospective evaluation V1 — cross-domain epistemic authority
 
 **Candidate:** A Theory of Epistemic Authority for Autonomous Science  
 **Status:** protocol draft, **not frozen / not result-bearing**  
 **Owners:** #341, #353; donor constraints from #340/#352  
-**Rule:** P8 is tested against correct local gates and strong authorization/effect donors, not only weak confidence thresholds.
+**Rule:** ORION-18 is tested against correct local gates and strong authorization/effect donors, not only weak confidence thresholds.
 
 ## 1. Research question
 
 Can typed cross-domain authority composition prevent invalid transport, stale authorization and revocation failures that remain possible when domain-specific gates are individually correct, while preserving valid authorized action coverage?
 
-This is the decisive P8 question. If the shared calculus adds no value beyond independent gates or standard authorization/policy composition, P8 should merge into P4/programme synthesis.
+This is the decisive ORION-18 question. If the shared calculus adds no value beyond independent gates or standard authorization/policy composition, ORION-18 should merge into ORION-14/programme synthesis.
 
 ## 2. Domain set
 
@@ -33,7 +33,7 @@ Any valid upstream `PASS/SUCCESS` token can authorize a downstream action.
 
 **Purpose:** hostile lower bound only; never the sole baseline.
 
-### B1 — independent P1–P5 native gates
+### B1 — independent ORION-11–ORION-15 native gates
 Each domain applies its correct current gate but there is no common cross-domain type/coercion layer. This is the **primary internal baseline**.
 
 ### B2 — generic rule-based per-domain policy
@@ -51,7 +51,7 @@ A SecPAL/Delegation-Logic/NAL-like policy encoding where feasible. This is a ser
 ### B6 — effect/permission system adapter
 ETAS/FAVA-style typed effect/permission representation where feasible, with native donor semantics preserved.
 
-### P8 — cross-domain epistemic authority calculus
+### ORION-18 — cross-domain epistemic authority calculus
 Typed judgments, hard obligations, explicit coercions, scope/epoch, dependency lineage, `DENY`/`CANNOT_CHECK`/revocation and protected roots.
 
 Any unavailable donor adapter must be reported as `CANNOT_CHECK` with exact reason.
@@ -103,7 +103,7 @@ A self-change improves on replay but fresh-transfer/protected assurance is unres
 ### F6 — valid cross-domain coercion
 All registered coercion premises, scope and evidence-preservation obligations are satisfied.
 
-**Expected:** P8 must allow the action. This prevents anti-laundering from degenerating into total isolation.
+**Expected:** ORION-18 must allow the action. This prevents anti-laundering from degenerating into total isolation.
 
 ### F7 — unregistered but intuitively plausible coercion
 Judgments are semantically related, but no approved cross-domain rule exists.
@@ -235,16 +235,16 @@ Hidden labels and protected policy must be outside candidate write access in the
 There exist pre-frozen cases where all producer/local gates emit correct native judgments but B1's untyped/interfacial composition permits an invalid downstream action.
 
 ### H2 — anti-laundering without isolation
-P8 reduces invalid cross-domain authorization on H1 cases while maintaining high valid-coercion and same-domain coverage on F6/F13 controls.
+ORION-18 reduces invalid cross-domain authorization on H1 cases while maintaining high valid-coercion and same-domain coverage on F6/F13 controls.
 
 ### H3 — revocation specificity
-P8 invalidates single-path dependent certificates after revocation but preserves/rederives certificates with a complete independent support path.
+ORION-18 invalidates single-path dependent certificates after revocation but preserves/rederives certificates with a complete independent support path.
 
 ### H4 — unknown-state calibration
-P8 distinguishes `CANNOT_CHECK` from `DENY` better than policies that collapse all missing premises into refusal or assume success.
+ORION-18 distinguishes `CANNOT_CHECK` from `DENY` better than policies that collapse all missing premises into refusal or assume success.
 
 ### H5 — donor pressure
-If B5/B6 already achieve the same H1–H4 behavior under a faithful encoding with no P8-specific semantics, the P8 novelty residual contracts or disappears.
+If B5/B6 already achieve the same H1–H4 behavior under a faithful encoding with no ORION-18-specific semantics, the ORION-18 novelty residual contracts or disappears.
 
 H5 is a success condition for honest assimilation, not an inconvenient result to hide.
 
@@ -266,16 +266,16 @@ For deterministic policy engines, exact counts are primary. If LLM/planner layer
 
 ## 12. Promotion/failure criteria
 
-### Supports separate P8 candidate
+### Supports separate ORION-18 candidate
 - H1 is demonstrated on meaningful cross-domain compositions;
-- P8 improves H2/H3/H4 relative to independent gates;
+- ORION-18 improves H2/H3/H4 relative to independent gates;
 - valid authorization coverage remains competitive;
 - the result is not fully reproduced by strongest faithful authorization/effect donor baselines without the proposed cross-epistemic-domain structure.
 
 ### Merge/strike pressure
-- independent P1–P5 gates plus ordinary typed interfaces already eliminate all attacks;
+- independent ORION-11–ORION-15 gates plus ordinary typed interfaces already eliminate all attacks;
 - SecPAL/Delegation-Logic/ETAS/FAVA-style encoding reproduces the full calculus with no additional theorem/transfer value;
-- P8 gains safety only by refusing most valid actions;
+- ORION-18 gains safety only by refusing most valid actions;
 - cross-domain cases are artificial and do not transfer to non-ORION domains.
 
 ## 13. Current result authority

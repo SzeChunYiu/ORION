@@ -89,7 +89,7 @@ reviewed" `cormack2015autonomycal`.
 **Does not measure:** whether a document already reviewed under one question
 must be reviewed again under a different question, extraction schema or content
 version. TAR state is a per-review seen/relevance bit; it has no notion of a
-*changed question*. This is the precise gap ORION's `P2.D2` addresses.
+*changed question*. This is the precise gap ORION's `ORION-12.D2` addresses.
 
 **Reported performance:** the 2015 work eliminates "topic-specific and
 dataset-specific tuning parameters" so that the only user input is "a short

@@ -28,8 +28,8 @@ from typing import Any, Callable
 HERE = Path(__file__).resolve().parent
 REPO_ROOT = HERE.parents[3]
 FREEZE_PATH = HERE / "FREEZE_V1.json"
-TOP_TIER = REPO_ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/top_tier"
-FORMAL = REPO_ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/formal"
+TOP_TIER = REPO_ROOT / "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier"
+FORMAL = REPO_ROOT / "papers/orion-16-formal-epistemic-structures-and-mechanics/formal"
 
 EXPECTED_OUTPUTS = (
     "RAW_MANIFEST_V1.json",

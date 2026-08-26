@@ -1,4 +1,4 @@
-# P10 Claim–Evidence Ledger
+# ORION-20 Claim–Evidence Ledger
 
 **Active authority:** `P10_ACTIVE_CLAIM_AUTHORITY_V1.json`
 
@@ -22,6 +22,6 @@ are absent. Consequently execution is forbidden and all six hypotheses remain
 | H6 cross-domain transfer | PROSPECTIVE, NOT EXECUTED | protected reproduction across multiple independently sampled domains |
 
 The shared `papers/orion-learning-machine/` lane has authority only for its
-local reproducible core. It is implementation input, not a P10 scientific
+local reproducible core. It is implementation input, not a ORION-20 scientific
 result, and it discharges none of H1–H6. Therefore these hypotheses are not
 `CANNOT_CHECK`, `FAIL`, or `PASS`; they have not entered the outcome lifecycle.

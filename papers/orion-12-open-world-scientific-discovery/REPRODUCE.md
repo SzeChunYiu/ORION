@@ -1,14 +1,14 @@
-# Reproduce ORION-P2
+# Reproduce ORION-ORION-12
 
 Run from the repository root with Python 3.12.
 
 ## Claim and protocol gates
 
 ```bash
-python papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
-python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_assimilation.py
-python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py
-python papers/paper-02-open-world-scientific-discovery/scripts/mirror_ci_evidence.py --check
+python papers/orion-12-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
+python papers/orion-12-open-world-scientific-discovery/scripts/check_p2_assimilation.py
+python papers/orion-12-open-world-scientific-discovery/scripts/check_p2_v2.py
+python papers/orion-12-open-world-scientific-discovery/scripts/mirror_ci_evidence.py --check
 ```
 
 These checks fail closed on unledgered result prose, donor/source drift,
@@ -17,10 +17,10 @@ unauthorized V2 promotion, and mutated or missing CI evidence archives.
 ## Controlled headline evidence
 
 ```bash
-python papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --check
-python papers/paper-02-open-world-scientific-discovery/scripts/render_suite_facts.py --check
-python papers/paper-02-open-world-scientific-discovery/scripts/render_offline_mechanisms.py --check
-python papers/paper-02-open-world-scientific-discovery/scripts/render_route_stop_oracle.py --check
+python papers/orion-12-open-world-scientific-discovery/scripts/run_offline_companion.py --check
+python papers/orion-12-open-world-scientific-discovery/scripts/render_suite_facts.py --check
+python papers/orion-12-open-world-scientific-discovery/scripts/render_offline_mechanisms.py --check
+python papers/orion-12-open-world-scientific-discovery/scripts/render_route_stop_oracle.py --check
 ```
 
 The offline companion rebuilds the 390-task × 14-system × 3-repeat projection
@@ -124,7 +124,7 @@ residual evidence.
 ## Manuscript and package
 
 ```bash
-cd papers/paper-02-open-world-scientific-discovery/manuscript
+cd papers/orion-12-open-world-scientific-discovery/manuscript
 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 python ../scripts/check_manuscript_typography.py --log main.log
 cd ..

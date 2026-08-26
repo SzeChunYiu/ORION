@@ -1,6 +1,6 @@
-# ORION-P3: Real three-discipline gold atlas — discipline selection V1
+# ORION-ORION-13: Real three-discipline gold atlas — discipline selection V1
 
-**Status:** DESIGN_FROZEN (before gold annotation). Part of `P3.cross-domain-atlas.v1`.
+**Status:** DESIGN_FROZEN (before gold annotation). Part of `ORION-13.cross-domain-atlas.v1`.
 
 **Related:** CORPUS_DESIGN_V1.md, ANNOTATION_SCHEMA_V1.json, Issue #158.
 
@@ -165,7 +165,7 @@ are explicitly debated and revised: "What is intelligence?" "What is well-being?
 ## 5. Margin discipline: Climate / earth science (climate)
 
 Climate science is retained in the existing corpus (8 samples, 8 case families)
-but is designated as a **margin discipline** for the primary analysis. The P3
+but is designated as a **margin discipline** for the primary analysis. The ORION-13
 primary analysis uses the three core disciplines (biomed, physics, social);
 climate is available for robustness checks, cross-discipline generalisation
 tests, and follow-up.
@@ -205,14 +205,14 @@ climate (margin).
 
 | # | Case family | Biomed | Physics | Social | Climate (margin) |
 |---|---|---|---|---|---|
-| 1 | same_name_different_referent | P3.BIOMED.001 | P3.PHYS.001 | P3.SOCIAL.001 | P3.CLIMATE.001 |
-| 2 | different_name_same_referent | P3.BIOMED.002 | P3.PHYS.002 | P3.SOCIAL.002 | P3.CLIMATE.002 |
-| 3 | same_construct_different_measurement | P3.BIOMED.003 | P3.PHYS.003 | P3.SOCIAL.003 | P3.CLIMATE.003 |
-| 4 | same_entity_different_temporal_state | P3.BIOMED.004 | P3.PHYS.004 | P3.SOCIAL.004 | P3.CLIMATE.004 |
-| 5 | polarity_modality_attribution_context | P3.BIOMED.005 | P3.PHYS.005 | P3.SOCIAL.005 | P3.CLIMATE.005 |
-| 6 | valid_invalid_representation_mapping | P3.BIOMED.006 | P3.PHYS.006 | P3.SOCIAL.006 | P3.CLIMATE.006 |
-| 7 | valid_invalid_literature_bridge | P3.BIOMED.007 | P3.PHYS.007 | P3.SOCIAL.007 | P3.CLIMATE.007 |
-| 8 | genuine_plural_obstruction | P3.BIOMED.008 | P3.PHYS.008 | P3.SOCIAL.008 | P3.CLIMATE.008 |
+| 1 | same_name_different_referent | ORION-13.BIOMED.001 | ORION-13.PHYS.001 | ORION-13.SOCIAL.001 | ORION-13.CLIMATE.001 |
+| 2 | different_name_same_referent | ORION-13.BIOMED.002 | ORION-13.PHYS.002 | ORION-13.SOCIAL.002 | ORION-13.CLIMATE.002 |
+| 3 | same_construct_different_measurement | ORION-13.BIOMED.003 | ORION-13.PHYS.003 | ORION-13.SOCIAL.003 | ORION-13.CLIMATE.003 |
+| 4 | same_entity_different_temporal_state | ORION-13.BIOMED.004 | ORION-13.PHYS.004 | ORION-13.SOCIAL.004 | ORION-13.CLIMATE.004 |
+| 5 | polarity_modality_attribution_context | ORION-13.BIOMED.005 | ORION-13.PHYS.005 | ORION-13.SOCIAL.005 | ORION-13.CLIMATE.005 |
+| 6 | valid_invalid_representation_mapping | ORION-13.BIOMED.006 | ORION-13.PHYS.006 | ORION-13.SOCIAL.006 | ORION-13.CLIMATE.006 |
+| 7 | valid_invalid_literature_bridge | ORION-13.BIOMED.007 | ORION-13.PHYS.007 | ORION-13.SOCIAL.007 | ORION-13.CLIMATE.007 |
+| 8 | genuine_plural_obstruction | ORION-13.BIOMED.008 | ORION-13.PHYS.008 | ORION-13.SOCIAL.008 | ORION-13.CLIMATE.008 |
 
 **Total: 24 core samples (3 disciplines x 8 families), plus 8 margin samples (climate) = 32.**
 
@@ -237,7 +237,7 @@ climate (margin).
 ## 8. Discipline boundaries in the corpus
 
 The 32 samples in the SEED manifest are labelled by discipline, but some
-samples could be argued to straddle boundaries (e.g., P3.CLIMATE.005
+samples could be argued to straddle boundaries (e.g., ORION-13.CLIMATE.005
 involves physical reasoning about global warming that touches physics).
 The discipline label is assigned based on the **primary source venue** of
 the two documents in the pair. This is a pragmatic choice that keeps the

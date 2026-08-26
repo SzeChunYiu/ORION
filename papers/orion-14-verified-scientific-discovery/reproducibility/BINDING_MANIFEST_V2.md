@@ -1,8 +1,8 @@
-# ORION-P4 Protected Campaign V2 Binding Manifest
+# ORION-ORION-14 Protected Campaign V2 Binding Manifest
 
 ## Status: `EXECUTED → REPRODUCED → ARCHIVED`
 
-This additive V2 campaign is the publication-authorizing post-repair run for subject `f6e51b5c8f905382b8e2f5568d9035fc14241aa1`. It uses the base `P4.protected-authority.v1` attack schema/generator but a fresh hidden split, repaired-subject comparator panel, corrected eligible-opportunity counting, and an independent reproducer bound to the repaired subject's seven frozen panel IDs.
+This additive V2 campaign is the publication-authorizing post-repair run for subject `f6e51b5c8f905382b8e2f5568d9035fc14241aa1`. It uses the base `ORION-14.protected-authority.v1` attack schema/generator but a fresh hidden split, repaired-subject comparator panel, corrected eligible-opportunity counting, and an independent reproducer bound to the repaired subject's seven frozen panel IDs.
 
 The earlier V1 protected campaign is retained as valid evidence for its own older subject. The merged 39-case live GLM arm is retained only as exploratory diagnostic evidence and is not used for the V2 headline.
 

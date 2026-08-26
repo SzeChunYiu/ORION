@@ -5,7 +5,7 @@
 > adds only the stop/go campaign leaf; V4 and V3 are retained as historical
 > authorities). This snapshot preserves earlier review history and must not be used as the current submission source.
 
-**ORION-P12 · issue #665 · resource-accounting owner #664**  
+**ORION-ORION-22 · issue #665 · resource-accounting owner #664**  
 **Evidence freeze:** 2026-08-21  
 **Submission status:** `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`; controlled equal-action world
 
@@ -48,7 +48,7 @@ Test-time computation has become an explicit design variable in modern reasoning
 
 But difficulty itself has more than one source. Some tasks are difficult because the relevant structure is poorly exposed in the current representation. Others are difficult because substantial search or reasoning remains even after the right structure is visible. If a system spends all marginal budget on reasoning in an access-limited task, it reasons harder over the wrong state. If it spends all marginal budget on state construction in a reasoning-limited task, it repeatedly reorganizes information that was already accessible.
 
-P12 asks a stronger resource question:
+ORION-22 asks a stronger resource question:
 
 > **Under one matched total budget, when should a system spend computation changing state, when should it spend computation reasoning over state, and can a prospective policy learn or exploit the difference?**
 
@@ -77,11 +77,11 @@ stronger P12B contract: equal budget, equal actions, then a change in signals.
 
 ### 2.1 Adaptive test-time compute is prior-owned
 
-Recent systems allocate inference compute dynamically based on predicted difficulty, value or resource constraints. Bandit formulations, constrained policy optimization, adaptive demonstration/generation strategies and “when to think” policies already own the primitive that different examples deserve different reasoning budgets. P12 therefore does not claim adaptive inference allocation itself.
+Recent systems allocate inference compute dynamically based on predicted difficulty, value or resource constraints. Bandit formulations, constrained policy optimization, adaptive demonstration/generation strategies and “when to think” policies already own the primitive that different examples deserve different reasoning budgets. ORION-22 therefore does not claim adaptive inference allocation itself.
 
 ### 2.2 Dynamic state construction is also prior-owned
 
-Retrieval, compression, context selection, query-conditioned memory and structured-state construction already adapt what a model sees. P11 additionally supplies controlled evidence that construction can change accessibility. P12 does not claim dynamic state selection as a new primitive.
+Retrieval, compression, context selection, query-conditioned memory and structured-state construction already adapt what a model sees. ORION-21 additionally supplies controlled evidence that construction can change accessibility. ORION-22 does not claim dynamic state selection as a new primitive.
 
 ### 2.3 Residual after subtraction
 
@@ -116,13 +116,13 @@ Define
 
 `joint_gain(B) = Q_joint(B) - max(Q_state_only(B), Q_reason_only(B))`.
 
-A positive P12 result requires `joint_gain>0` under the frozen comparison, not merely superiority to a fixed policy.
+A positive ORION-22 result requires `joint_gain>0` under the frozen comparison, not merely superiority to a fixed policy.
 
 ## 4. Why joint allocation can be strictly valuable
 
 Consider a one-unit world containing two prospectively distinguishable regimes. In the access-limited regime success requires spending the unit on state construction; in the reasoning-limited regime success requires spending it on reasoning. A state-only adaptive policy cannot solve the latter and a reasoning-only adaptive policy cannot solve the former. A joint policy that sees the regime signal can spend the same unit at the valuable locus.
 
-This existence argument is elementary and is not the empirical contribution. Its purpose is to identify the condition P12 must test: **heterogeneity in the location of marginal computation value**.
+This existence argument is elementary and is not the empirical contribution. Its purpose is to identify the condition ORION-22 must test: **heterogeneity in the location of marginal computation value**.
 
 ## 5. Protected matched-budget benchmark
 
@@ -245,12 +245,12 @@ The analysis does not pool items as if 8,192 individual trials were independent 
 
 Strategic test-time-compute allocation treats inference budget as a learnable or bandit decision across examples. Constrained policy approaches optimize accuracy under average compute. Adaptive in-context demonstration and generation methods jointly alter conditioning and generation effort. Recent “when to think” work likewise emphasizes selective reasoning to reduce unnecessary inference.
 
-These results sharpen P12's motivation: **adaptive inference is crowded; the
+These results sharpen ORION-22's motivation: **adaptive inference is crowded; the
 novel discriminator must be where the resource can be spent.** P12A does not
 establish strict superiority because its action sets differ. P12B establishes a
 bounded signal-complementarity result after matching the actions; it does not
 establish real-system resource-locus superiority.
-These results strengthen, rather than weaken, P12's motivation: **adaptive inference is crowded; the novel discriminator must be where the resource can be spent.** P12 supplies a budget portfolio containing state construction and reasoning as distinct actions, but P12A does not establish strict superiority over the named one-axis policies: their shipped action sets cap their attainable scores below the joint arm's achieved score. `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` therefore withholds superiority authority pending a capability-matched P12B.
+These results strengthen, rather than weaken, ORION-22's motivation: **adaptive inference is crowded; the novel discriminator must be where the resource can be spent.** ORION-22 supplies a budget portfolio containing state construction and reasoning as distinct actions, but P12A does not establish strict superiority over the named one-axis policies: their shipped action sets cap their attainable scores below the joint arm's achieved score. `P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json` therefore withholds superiority authority pending a capability-matched P12B.
 
 ## 10. Limitations and real-system promotion gate
 
@@ -260,11 +260,11 @@ These results strengthen, rather than weaken, P12's motivation: **adaptive infer
 4. The joint policy is a simple frozen nearest-allocation rule; the paper does not claim it is optimal.
 5. A real-system result must include strong compute-only and state-only adaptive baselines, not merely fixed context and fixed reasoning; P12B remains a constructed allocation world.
 6. A broad superiority claim requires at least one held-out real LLM/procedural domain or verifier-backed search domain under matched end-to-end resource receipts.
-7. If real tasks overwhelmingly favor one resource locus, a simpler one-axis policy may be preferable; P12 predicts this as a regime condition rather than denying it.
+7. If real tasks overwhelmingly favor one resource locus, a simpler one-axis policy may be preferable; ORION-22 predicts this as a regime condition rather than denying it.
 
 ## 11. Discussion
 
-P12 reframes test-time scaling as a **portfolio of computations**. “Think longer” is not the only adaptive action available to an intelligent system. It may be cheaper to parse, retrieve, compile, restructure or recover state so that less downstream search is required. Conversely, when state already exposes the relevant structure, additional preprocessing is wasteful and reasoning should receive the marginal budget.
+ORION-22 reframes test-time scaling as a **portfolio of computations**. “Think longer” is not the only adaptive action available to an intelligent system. It may be cheaper to parse, retrieve, compile, restructure or recover state so that less downstream search is required. Conversely, when state already exposes the relevant structure, additional preprocessing is wasteful and reasoning should receive the marginal budget.
 
 P12A demonstrates the construction but not the key discriminator because equal
 budget did not imply equal action capability. P12B repairs that controlled
@@ -280,7 +280,7 @@ ablations and all work must share one receipt.**
 ## 12. Conclusion
 
 Adaptive inference may need to decide not only **how much** computation to spend
-but **where** to spend it. P12 supplies the formulation and an exact correction
+but **where** to spend it. ORION-22 supplies the formulation and an exact correction
 to its first empirical discriminator, and a positive prospectively frozen
 equal-action successor. The next scientific step is matched real end-to-end
 validation; P12B's constructed world does not substitute for it.
@@ -294,4 +294,4 @@ only after that controlled contrast is sound.
 - Zuo, B., Zhou, D. & Zhu, Y. *Adaptive Test-Time Compute Allocation with Evolving In-Context Demonstrations.* Findings of ACL 2026, 35156–35173. DOI: 10.18653/v1/2026.findings-acl.1754.
 - Zhai, Z., Li, B., Xiao, B., Li, M. & Wang, X. *Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization.* arXiv:2604.14853, 2026.
 - *Learning When to Think: Adaptive Reasoning for Test-Time Compute Allocation.* arXiv:2608.20256, 2026.
-- P11 provides the controlled state-construction basis consumed by this paper; it does not transfer scientific authority to P12.
+- ORION-21 provides the controlled state-construction basis consumed by this paper; it does not transfer scientific authority to ORION-22.

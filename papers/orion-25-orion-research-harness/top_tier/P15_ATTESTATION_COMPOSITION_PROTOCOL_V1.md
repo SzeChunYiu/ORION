@@ -1,4 +1,4 @@
-# P15 cryptographic attestation composition protocol V1
+# ORION-25 cryptographic attestation composition protocol V1
 
 **Programme:** #977  
 **Purpose:** absorb a signed/proof-of-execution donor layer rather than treating cryptographic binding as a weak baseline, and test whether SEI composes above it without confusing signature validity with scientific validity.

@@ -20,7 +20,7 @@ validation or external custody is claimed.
 ## Verification
 
 ```bash
-python papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_commutation_contract_binding_v1.py
+python papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_commutation_contract_binding_v1.py
 python -m pytest -q tests/unit/candidates/test_p6_commutation_contract_binding.py
 python -m pytest -q tests/unit/study/p6/test_p6_separation_calculus_smt.py
 python -m pytest -q tests/unit/study/p8/test_p8_authority_terminals.py

@@ -1,4 +1,4 @@
-# P7 formal core V2 — closed theory
+# ORION-17 formal core V2 — closed theory
 
 **Candidate paper:** Epistemic Navigation in Open Worlds  
 **Theory terminal:** `CLOSED_V2`  
@@ -115,7 +115,7 @@ without a premise establishing that executed routes cover every mandatory obliga
 
 Take one exhausted executed route and a second unexecuted or censored route that alone can reach an open mandatory witness. The first route is correctly stopped while the task is incomplete. `\square`
 
-P2 already owns this local/global stopping distinction in ORION; P7 embeds it as an invariant across chart change.
+ORION-12 already owns this local/global stopping distinction in ORION; ORION-17 embeds it as an invariant across chart change.
 
 ### Definition 8.1 — route identity, equivalence and refinement
 
@@ -179,7 +179,7 @@ Let `S={s_0,s_1}`, `A={a_0,a_1}`. Success from `s_0` requires `a_0`; success fro
 
 The reverse coarsening from `h'` to `h` strictly reduces worst-case solvability in the same construction. Therefore representation change cannot be assumed beneficial merely because it changes topology.
 
-This negative control is mandatory in P7 evaluation.
+This negative control is mandatory in ORION-17 evaluation.
 
 ## 5. Reframes and transport contracts
 
@@ -296,17 +296,17 @@ An orientation obligation requires enough scope, ontology or action-interface in
 
 There exist navigation problems where no route utility is well-defined before an orientation variable is resolved because the action labels themselves do not yet have stable semantics. A scope-revelation step can therefore be epistemically prior to route optimization.
 
-This embeds the Initial Exploration Problem; P7 does not claim orientation as new.
+This embeds the Initial Exploration Problem; ORION-17 does not claim orientation as new.
 
 ## 10. Fixed-chart and planning-abstraction special cases
 
 ### Proposition 9 — fixed-chart navigation
 
-Disable atlas transformations and objective changes. P7 reduces to ordinary navigation over one chart with the same route/action/observation semantics. Graph search and POMDP/belief-space policies can therefore be represented as special cases when their assumptions are supplied.
+Disable atlas transformations and objective changes. ORION-17 reduces to ordinary navigation over one chart with the same route/action/observation semantics. Graph search and POMDP/belief-space policies can therefore be represented as special cases when their assumptions are supplied.
 
 ### Proposition 10 — sound planning abstraction as a transport witness
 
-If a planning abstraction map is sound/complete for the properties used by a P7 obligation and its certificate, those established preservation facts can instantiate the corresponding fields of `\Pi`. P7 does not replace planning abstraction theory; it consumes its preservation result when deciding scientific closure transport.
+If a planning abstraction map is sound/complete for the properties used by a ORION-17 obligation and its certificate, those established preservation facts can instantiate the corresponding fields of `\Pi`. ORION-17 does not replace planning abstraction theory; it consumes its preservation result when deciding scientific closure transport.
 
 ### Proposition 11 — schema/lens preservation as a transport witness
 
@@ -321,7 +321,7 @@ Let `Region(h)` be the set of semantically distinct relevant regions reached by 
 - low breadth can miss relevant regions;
 - high breadth can waste resources without advancing mandatory obligations.
 
-Therefore P7 treats breadth as a diagnostic coordinate, not a scalar objective that can override closure or resource invariants.
+Therefore ORION-17 treats breadth as a diagnostic coordinate, not a scalar objective that can override closure or resource invariants.
 
 ## 12. Executable support
 
@@ -340,7 +340,7 @@ The checker is standard-library only and is mathematical support, not a benchmar
 
 ## 13. Prior-work ownership and final residual
 
-The following are donor or internally owned, not P7 inventions:
+The following are donor or internally owned, not ORION-17 inventions:
 
 - ordinary graph exploration/search and knowledge-graph navigation;
 - exploratory search/information foraging;
@@ -350,10 +350,10 @@ The following are donor or internally owned, not P7 inventions:
 - objective/goal evolution;
 - world-model revision and dynamic graph representations;
 - orientation/initial exploration;
-- P2 route independence and route/task stopping;
+- ORION-12 route independence and route/task stopping;
 - generic scientific-search breadth metrics.
 
-The completed P7 theoretical object is:
+The completed ORION-17 theoretical object is:
 
 \[
 \boxed{

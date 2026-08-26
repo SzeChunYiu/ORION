@@ -1,4 +1,4 @@
-# P2 target-journal scope check — superseded recommendation
+# ORION-12 target-journal scope check — superseded recommendation
 
 **Status:** superseded on 2026-08-17 by
 `protocol/TARGET_JOURNAL_SCOPE_CHECK_2026-08-17.md` after the explicit

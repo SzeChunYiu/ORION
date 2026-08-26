@@ -50,7 +50,7 @@
   ],
   "prohibition": {
     "rule": "No stub, mock or partial output may be written to the freeze's expected_result_artifact path.",
-    "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json",
+    "path": "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json",
     "why": "frontier_grid.py will compute a verdict from whatever outcome file it is handed, and the grid is a prospectively frozen gate. A stub reaching that path produces a fabricated result against a frozen claim. Development outputs go somewhere else and are labelled non-authoritative in-band.",
     "reinforced_by": "the contract's own rule that a cell which did not run must omit its counts, because a number attached to a cell that did not run is the failure it exists to prevent"
   },

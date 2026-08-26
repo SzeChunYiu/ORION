@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers" / "paper-01-recursive-epistemic-reconstruction"
+PAPER = ROOT / "papers" / "orion-11-recursive-epistemic-reconstruction"
 SCRIPT = PAPER / "scripts" / "make_mechanical_arm_case_table.py"
 TABLE = PAPER / "evidence" / "MECHANICAL_ARM_CASE_TABLE_V1.json"
 

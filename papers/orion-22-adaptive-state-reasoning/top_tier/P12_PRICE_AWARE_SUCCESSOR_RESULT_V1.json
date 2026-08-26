@@ -2,11 +2,11 @@
  "schema": "P12.PriceAwareSuccessorResult.v1",
  "lane": "NR-13",
  "study": "P12_PRICE_AWARE_SUCCESSOR_V1",
- "paper_dir": "papers/paper-12-adaptive-state-reasoning/top_tier",
+ "paper_dir": "papers/orion-22-adaptive-state-reasoning/top_tier",
  "branch": "revive/p12-price-aware-nr13",
  "date": "2026-08-24",
  "protocol_prereg": {
-  "file": "papers/paper-12-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_PROTOCOL_PREREG_V1.json",
+  "file": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_PROTOCOL_PREREG_V1.json",
   "sha256": "db6fda439725623362c5a45b21b97bb73a33f26e0d4a2c61e226ce746d378b54",
   "commit": "44d97948f53046e0a9a4d467e129f509d2a4e49e",
   "note": "committed and pushed before the successor selector existed"
@@ -23,7 +23,7 @@
   "name": "P12_PRICE_AWARE_ALLOCATOR_V1",
   "rule": "exact 0/1-knapsack argmin of the charged objective on the published charge-ledger certificates and price vector (d[s] = p_build*declared[s] - p_serve*(reason_cert[s]-state_cert[s])); DP over integer declared weights; ties prefer not-taking; no multiplicity threshold",
   "new_free_parameters": 0,
-  "module": "papers/paper-12-adaptive-state-reasoning/top_tier/p12_price_aware_allocator_v1.py",
+  "module": "papers/orion-22-adaptive-state-reasoning/top_tier/p12_price_aware_allocator_v1.py",
   "module_sha256": "5c33220de6b55755b12431815320f7cfa26cc22e6daa8d3c28ddc0461621c31c",
   "readable_surface": [
    "sid",
@@ -113,7 +113,7 @@
    "ok": true
   },
   "SC4_two_implementations": {
-   "checker": "papers/paper-12-adaptive-state-reasoning/top_tier/check_p12_price_aware_successor_independent_v1.py",
+   "checker": "papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_price_aware_successor_independent_v1.py",
    "checker_sha256": "3e8d2b8414338404075fee55dc730b890481cd517f1b0cd6b36575b0615688d4",
    "implementation_A": "frozen V1 engines + 0/1-knapsack DP (prefer-not-take ties)",
    "implementation_B": "independent checker engines (full-rescan UP / bidirectional BFS / exhaustive knapsack truth) + exhaustive subset enumeration (first-mask ties)",
@@ -126,7 +126,7 @@
    "terminal": "P12_PRICE_AWARE_SUCCESSOR_SECOND_CHECKER_GREEN"
   },
   "SC5_successor_surface_audit": {
-   "audit": "papers/paper-12-adaptive-state-reasoning/top_tier/audit_p12_price_aware_successor_surface_v1.py",
+   "audit": "papers/orion-22-adaptive-state-reasoning/top_tier/audit_p12_price_aware_successor_surface_v1.py",
    "audit_sha256": "179586aa1a3ba46948adecbbf08cd6f4491cc786647677148de17fd3a900467b",
    "static_axis_ok": true,
    "dynamic_stripped_and_decoy_input_ok": true,
@@ -190,7 +190,7 @@
   "flat_direct_accounting_consistent": true
  },
  "runner": {
-  "script": "papers/paper-12-adaptive-state-reasoning/top_tier/run_p12_price_aware_successor_v1.py",
+  "script": "papers/orion-22-adaptive-state-reasoning/top_tier/run_p12_price_aware_successor_v1.py",
   "sha256": "7d7e86936f3172acc412d399fde2402bc1174ce0331365bb3eed9759b6a5e064",
   "determinism_note": "stdlib-only, pool-hash-verified inputs; the full per-cell JSON (744KB) is exactly regenerable by running the committed runner; only this compact result is committed"
  },

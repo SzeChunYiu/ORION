@@ -1,4 +1,4 @@
-# ORION-P5 journal-package snapshot
+# ORION-ORION-15 journal-package snapshot
 
 **Package status:** `SUPERSEDED`; not peer-review ready.  
 **General scientific terminal:** `CANNOT_CHECK`.  
@@ -25,6 +25,6 @@ inventory. The retained PDF received local all-page visual QA, but independent
 external proofread, external custody, broad source-disjoint evaluation,
 permanent archive/DOI, and submission decision remain open.
 
-`P5.CURRENT_PACKAGE` is `OPEN`: a fresh immutable current package PDF and a
+`ORION-15.CURRENT_PACKAGE` is `OPEN`: a fresh immutable current package PDF and a
 page-level visual and claim audit have not been produced. Issue #283 owns
 `ScientificResultVerification.v1`; this snapshot mints no replacement authority.

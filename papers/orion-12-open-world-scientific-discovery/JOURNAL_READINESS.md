@@ -1,6 +1,6 @@
-# ORION-P2 journal readiness — narrowed publication track
+# ORION-ORION-12 journal readiness — narrowed publication track
 
-**Current terminal:** `ORION-P2 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18.
+**Current terminal:** `ORION-ORION-12 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18.
 
 **Scope of that terminal (not machine-scored, and deliberately adjacent to it):** `P2_NARROWED` remains the scientific scope receipt. External ORION-vs-baseline superiority remains `CANNOT_CHECK` and is **not** part of the ready claim. Nothing about that exclusion has changed; it moved off the terminal line because the scoreboard reads that one line and cannot represent a scoped verdict.
 
@@ -28,7 +28,7 @@ unavailable on this corpus. Both are recorded in the artifact.
 
 The `**Current terminal:**` line is the machine-scored declaration read by `research/publication/scoreboard.py`, which matches only `**Terminal:**` / `**Current terminal:**`. The previous `**Scientific terminal:**` / `**Publication terminal:**` pair carried the same meaning to a human reader and no meaning at all to the scoreboard, which reported this paper as having no scorable terminal.
 
-The terminal line then acquired a second problem, fixed above. It declared `PEER_REVIEW_READY` **and** named the excluded superiority claim as `CANNOT_CHECK` in the same sentence. That reads correctly to a person and is unresolvable for the parser, which treats any `CANNOT_CHECK` on the terminal line as the verdict — fail-closed, and therefore silent. P2 was scored `CANNOT_CHECK` with twelve blockers while its own fail-closed evidence gate (`orion.publication.peer_review_ready.evaluate_paper`) reported `ok=True` with none. The verdict and the scope now occupy separate lines, so the machine reads one claim and the reader still sees both.
+The terminal line then acquired a second problem, fixed above. It declared `PEER_REVIEW_READY` **and** named the excluded superiority claim as `CANNOT_CHECK` in the same sentence. That reads correctly to a person and is unresolvable for the parser, which treats any `CANNOT_CHECK` on the terminal line as the verdict — fail-closed, and therefore silent. ORION-12 was scored `CANNOT_CHECK` with twelve blockers while its own fail-closed evidence gate (`orion.publication.peer_review_ready.evaluate_paper`) reported `ok=True` with none. The verdict and the scope now occupy separate lines, so the machine reads one claim and the reader still sees both.
 
 Canonical scope receipt: `protocol/P2_NARROWED_PUBLICATION_TERMINAL_2026-08-17.md`.
 Dated nearest-work freeze: `protocol/P2_LITERATURE_ASSIMILATION_FREEZE_2026-08-17.md`.
@@ -61,12 +61,12 @@ Not claimed:
 - [x] Frozen complete-gold companion: 390 tasks × 14 systems × 3 deterministic repeat seeds = 16,380 normalized records.
 - [x] Full ORION mean recall 0.979487; strongest frozen confirmatory comparator 0.666667; descriptive difference +0.31282.
 - [x] Statistical authority `TIER_B_committed` with the frozen mandatory underpowered label; no offline inferential superiority promotion.
-- [x] Route-stop oracle, task-stop safety analysis, negative ablations, query-count resource axis, Figures P2-1..P2-7 and Tables P2-1..P2-3/P2-S1 generated from archived evidence.
+- [x] Route-stop oracle, task-stop safety analysis, negative ablations, query-count resource axis, Figures ORION-12-1..ORION-12-7 and Tables ORION-12-1..ORION-12-3/ORION-12-S1 generated from archived evidence.
 - [x] MetaSyn official ID-only bounded probe on 86 reviews with stage-separated false-negative ledger.
 - [x] AutoResearchBench Deep bounded official-judge probe retained at 0/600 with judge control 9/9; not relabelled positive.
 - [x] AutoResearchBench Wide bounded credential-free official probe retained as a weak/null stress test; not relabelled matched superiority.
 - [x] OpenAIRE structured-identity discriminator and subsequent 400-row matched campaign retained; the latter remains `P2_WIDE_EXTERNAL_CANNOT_CHECK` after 400 DOI-crosswalk HTTP 400 failures, with all Actions artifacts mirrored before expiry.
-- [x] P2-X post-saturation exact successor retained as bounded A1/A2 evidence: 400/400 P2-X versus 250/400 donor-complete available-route product on 400 exact heterogeneous acquisition contracts; independent verification passes, B3 ideal typed product ties 400/400, and deployed/retrieval-engine generality remains `CANNOT_CHECK`.
+- [x] ORION-12-X post-saturation exact successor retained as bounded A1/A2 evidence: 400/400 ORION-12-X versus 250/400 donor-complete available-route product on 400 exact heterogeneous acquisition contracts; independent verification passes, B3 ideal typed product ties 400/400, and deployed/retrieval-engine generality remains `CANNOT_CHECK`.
 - [x] Claim ledger binds all result-bearing abstract/results/limitations/conclusion sentences to immutable artifacts.
 
 ## 3. External gates — preserved, no longer blocking the narrowed paper
@@ -144,9 +144,9 @@ Re-open the venue decision if a new external algorithmic superiority result or u
 - #157: close after this lane passes CI; all still-open campaign boxes are genuinely unavailable external gates and the manuscript is populated to the final bounded claim.
 - #279: close at `CANNOT_CHECK / REFUTED_OR_SHRINK`; external failure is candidate-generation dominated and the paper is explicitly shrunk instead of forcing a V2.
 - #317: close at `P2_NARROWED`; do not claim saturation.
-- #318: P2 consumer tranche is complete (source-bound receipts + hostile validator), but the shared P1/global issue remains open.
+- #318: ORION-12 consumer tranche is complete (source-bound receipts + hostile validator), but the shared ORION-11/global issue remains open.
 - #99: the bounded publication track now passes section 8 and may close at `PEER_REVIEW_READY`; the maximal external-superiority programme remains explicit future work.
 
 ## Done definition
 
-`ORION-P2 = PEER_REVIEW_READY` on the narrowed claim because the manuscript compiles cleanly, reference/figure and independent PDF/claim checks pass, the dated literature state is current for the readiness date, and every unavailable or invalid external authority remains visible as `CANNOT_CHECK`/future work rather than being promoted into support.
+`ORION-ORION-12 = PEER_REVIEW_READY` on the narrowed claim because the manuscript compiles cleanly, reference/figure and independent PDF/claim checks pass, the dated literature state is current for the readiness date, and every unavailable or invalid external authority remains visible as `CANNOT_CHECK`/future work rather than being promoted into support.

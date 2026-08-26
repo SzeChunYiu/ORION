@@ -23,7 +23,7 @@ Source of truth for both: `research/paper-programme-v1/P1_P10_SUPERIORITY_TERMIN
 
 ## Orientation findings (read-only)
 
-1. The attacks are *named* in `papers/paper-09-structured-epistemic-learning/successor/P9_U_MANUSCRIPT.tex`
+1. The attacks are *named* in `papers/orion-19-structured-epistemic-learning/successor/P9_U_MANUSCRIPT.tex`
    (sections "Frozen factorial design", "Adaptive Access Geometry Discovery", H4):
    "Equal-token/length controls, order/symbol reminting, semantic-orbit controls and
    exact information checks are mandatory"; "tests, in order, whether the cause is
@@ -47,7 +47,7 @@ Source of truth for both: `research/paper-programme-v1/P1_P10_SUPERIORITY_TERMIN
 ## Plan
 
 - Freeze doc + JSON twin (hashed parameter block) under
-  `papers/paper-09-structured-epistemic-learning/protocol/` BEFORE any arm runs.
+  `papers/orion-19-structured-epistemic-learning/protocol/` BEFORE any arm runs.
 - Instruments under `src/orion/study/p9/`.
 - Evidence JSON under `papers/.../evidence/`.
 - Tests under the P9 test convention, each mutation-checked.
@@ -66,7 +66,7 @@ Source of truth for both: `research/paper-programme-v1/P1_P10_SUPERIORITY_TERMIN
 ## Milestone 1 (T3 done except tests) — 2026-08-21
 
 Freeze written **before** any instrument existed:
-- `papers/paper-09-structured-epistemic-learning/protocol/P9_U_T3_FRONTIER_GRID_FREEZE_2026-08-21.md`
+- `papers/orion-19-structured-epistemic-learning/protocol/P9_U_T3_FRONTIER_GRID_FREEZE_2026-08-21.md`
 - `.json` twin, `parameters_sha256 = sha256:33138930449fda9a77c99a325f6c9ca2c13b58291218beb94704ea045334fe8c`
 
 Instrument: `src/orion/study/p9/frontier_grid.py`. `main(argv)` + `__main__` guard.
@@ -228,7 +228,7 @@ Two mutations initially came back GREEN and each exposed a real weakness, both f
 
 ## Milestone 4 — receipt
 
-`papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_T4_HOSTILE_ATTACK_RECEIPT_2026-08-21.md`
+`papers/orion-19-structured-epistemic-learning/evidence/P9_U_T3_T4_HOSTILE_ATTACK_RECEIPT_2026-08-21.md`
 
 ## Not done, deliberately
 

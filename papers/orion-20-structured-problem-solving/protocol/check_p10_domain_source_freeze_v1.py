@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-PROTOCOL_FREEZE_REL = "papers/paper-10-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json"
+PROTOCOL_FREEZE_REL = "papers/orion-20-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json"
 EXPECTED_PROTOCOL_FREEZE_SHA = "8e32c2bee514d246bcd503fc2f0ef078bcc52adb7f40abdbcb642b703aec355c"
 
 EXPECTED_DOMAIN_IDS = {

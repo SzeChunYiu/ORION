@@ -1,4 +1,4 @@
-# P9-U-T3 freeze: the prospective S*(k,q) / C*(k,q) grid
+# ORION-19-U-T3 freeze: the prospective S*(k,q) / C*(k,q) grid
 
 - **Record id**: `P9_U_T3_FRONTIER_GRID_FREEZE`
 - **Date frozen**: 2026-08-21
@@ -6,7 +6,7 @@
   been run against any cell, in this session or anywhere in this repository. That is the property
   that makes this a prediction rather than a description, and it is the reason the freeze is worth
   writing today: a grid written after a crossing is visible is a drawing of the crossing.
-- **Gate served**: `P9-U-T3` — *"scale/compute crossing is on-grid and prospectively defined"*
+- **Gate served**: `ORION-19-U-T3` — *"scale/compute crossing is on-grid and prospectively defined"*
   (`src/orion/programme/superiority_terminals.py:420-426`, issue #662).
 - **Ledger blocker being addressed**: "The critical scale S*(k,q) and critical inference budget
   C*(k,q) grid is not prospectively defined, so a crossing could not be shown to be on-grid rather
@@ -33,7 +33,7 @@ calling the result `S*` would be a weaker proxy dressed as the measurement, and 
 
 So the runner's verdict on today's evidence is fixed in advance and is
 `T3_GRID_DECLARED_NO_CELL_EXECUTED` → `CANNOT_CHECK`, with the denominator printed: **0 of 1344
-declared cells have an outcome.** `P9-U-T3` remains **BLOCKED**. What this freeze removes from the
+declared cells have an outcome.** `ORION-19-U-T3` remains **BLOCKED**. What this freeze removes from the
 blocker is only its first half — the grid now exists, and it exists before any outcome — and the
 runner exists to score it the moment cells are executed.
 
@@ -72,7 +72,7 @@ Five representation families plus two controls, taken from the manuscript's own 
 | `QWEN2_5` | `0.5B` → `1.5B` → `3B` → `7B` |
 | `LLAMA3_2` | `1B` → `3B` |
 
-Two families, as `P9-U-T2` requires. Ladders are **declared here in full**; `S*` may only ever take
+Two families, as `ORION-19-U-T2` requires. Ladders are **declared here in full**; `S*` may only ever take
 a value on its family's ladder.
 
 ### 2.4 `C` — inference budget (4 levels)
@@ -84,12 +84,12 @@ same accounting as required by the manuscript's matched-information section.
 ### 2.5 Domain block (2 levels)
 
 `B ∈ {FORMAL_RELATIONAL, NON_FORMAL_PROCEDURAL}` — one formal and one non-formal procedural
-domain, so that `P9-U-T5`'s block uncertainty is estimable from the same grid rather than assumed.
+domain, so that `ORION-19-U-T5`'s block uncertainty is estimable from the same grid rather than assumed.
 
 ### 2.6 `N` — sample budget: fixed, and out of scope
 
 `N` is **held at 4 in-context examples for every cell**. `N*(k,q)` is explicitly **not** estimated
-by this freeze and no statement about it is licensed by any result over this grid. `P9-U-T3` names
+by this freeze and no statement about it is licensed by any result over this grid. `ORION-19-U-T3` names
 `S*` and `C*` only.
 
 ### 2.7 `q` — verified quality targets
@@ -162,7 +162,7 @@ declare a crossing.
 | `T3_OFF_GRID_CROSSING_CLAIMED` | `FAIL` | a claimed crossing rests on an interpolated, extrapolated, fitted or censored frontier |
 | `T3_CROSSINGS_ON_GRID` | `PASS` | every declared cell is accounted for, at least one crossing test was evaluable, and every crossing claimed is between two on-grid, non-censored, `EXECUTED` ladder points |
 
-`T3_CROSSINGS_ON_GRID` says the crossings are *on-grid*, which is all `P9-U-T3` asks. It says
+`T3_CROSSINGS_ON_GRID` says the crossings are *on-grid*, which is all `ORION-19-U-T3` asks. It says
 nothing about whether a crossing was found: a fully executed grid with zero crossings is
 `T3_CROSSINGS_ON_GRID` with `crossings_found = 0`, and that is a scientific result the freeze
 commits in advance to reporting as one.
@@ -176,7 +176,7 @@ A cell key is the tuple `(k, R, F, S, C, B)` rendered as
 
 ```json
 {
-  "schema": "P9.UT3FrontierGridOutcomes.v1",
+  "schema": "ORION-19.UT3FrontierGridOutcomes.v1",
   "parameters_sha256": "<must equal the freeze twin's>",
   "cells": {
     "k1|TYPED_TUPLE_SET|QWEN2_5|1.5B|C4|FORMAL_RELATIONAL": {
@@ -199,5 +199,5 @@ a cell that reports a quality it did not compute from counts is not admissible. 
    a new dated freeze naming what changed and why, and any result produced under this version
    stands beside the new one.
 3. No cell is dropped for being null, censored, or uninteresting.
-4. No existing P9 result, receipt, protocol or evidence artifact is modified. Only new files are
+4. No existing ORION-19 result, receipt, protocol or evidence artifact is modified. Only new files are
    added.

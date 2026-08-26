@@ -21,7 +21,7 @@ INDEX = RECORDS / "INDEX.json"
 TABLE = (
     ROOT
     / "papers"
-    / "paper-01-recursive-epistemic-reconstruction"
+    / "orion-11-recursive-epistemic-reconstruction"
     / "evidence"
     / "MECHANICAL_ARM_CASE_TABLE_V1.json"
 )

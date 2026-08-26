@@ -1,4 +1,4 @@
-# P12 certificate-necessity theorem — result receipt V1
+# ORION-22 certificate-necessity theorem — result receipt V1
 
 **Terminal:** `P12_CERTIFICATE_NECESSITY_THEOREM_FALSIFIER_GREEN`
 

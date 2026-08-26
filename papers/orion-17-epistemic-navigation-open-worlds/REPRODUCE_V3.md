@@ -1,4 +1,4 @@
-# P7 local replay V3
+# ORION-17 local replay V3
 
 This route reproduces the eight-case **reference-policy preflight** and bounded
 formal checks. It does not execute a navigation agent and is not independent
@@ -13,7 +13,7 @@ Environment lock:
 From the repository root:
 
 ```bash
-make -C papers/paper-07-epistemic-navigation-open-worlds reproduce-v3
+make -C papers/orion-17-epistemic-navigation-open-worlds reproduce-v3
 ```
 
 The generated trace binds eight authored cases and eight evaluated decision

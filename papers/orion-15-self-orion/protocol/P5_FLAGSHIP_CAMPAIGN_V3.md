@@ -1,13 +1,13 @@
-# ORION-P5 flagship campaign V3 — responsibility-gated self-improvement under protected fresh transfer
+# ORION-ORION-15 flagship campaign V3 — responsibility-gated self-improvement under protected fresh transfer
 
 **Status:** prospective research protocol; no result is implied by this document.  
 **Date:** 2026-08-20.  
 **Parent:** #102. Revision-level discriminator lane: #455. Protected verification: #283.  
-**Historical protocols:** additive only; do not overwrite P5 V1/V2 or the immutable 21/24 diagnostic archive.
+**Historical protocols:** additive only; do not overwrite ORION-15 V1/V2 or the immutable 21/24 diagnostic archive.
 
 ## 1. Scientific target
 
-P5 should not compete on the already-crowded claim that agents can self-edit, maintain experience, diagnose failures, or improve a skill library. The strongest current residual is the **decision problem governing when a self-change is scientifically warranted and when an apparently successful change should be refused**.
+ORION-15 should not compete on the already-crowded claim that agents can self-edit, maintain experience, diagnose failures, or improve a skill library. The strongest current residual is the **decision problem governing when a self-change is scientifically warranted and when an apparently successful change should be refused**.
 
 Candidate flagship thesis, to be frozen only after donor saturation and pilot instrumentation:
 
@@ -42,7 +42,7 @@ The final saturation pass must include at least:
 - CausalFlow (`arXiv:2605.25338`) — interventional causal attribution and minimal counterfactual repair;
 - current failure-to-improvement, self-evolving coding-agent, world-model/self-revision and objective-evolution systems already tracked by #102/#455.
 
-For every donor, record `ADOPT/ADAPT/COMPOSE/BASELINE/DEFER`, the exact mechanism absorbed, and the P5 wording that disappears because of the donor. “Uses persistent failures,” “performs causal attribution,” “self-edits,” and “retains skills” are not standalone novelty claims.
+For every donor, record `ADOPT/ADAPT/COMPOSE/BASELINE/DEFER`, the exact mechanism absorbed, and the ORION-15 wording that disappears because of the donor. “Uses persistent failures,” “performs causal attribution,” “self-edits,” and “retains skills” are not standalone novelty claims.
 
 ## 4. Primary experiment A — shared-candidate acceptance tournament
 
@@ -76,8 +76,8 @@ Evaluate at least:
 3. replay + fresh acceptance without protected custody;
 4. PACE/anytime-valid acceptance where applicable;
 5. Ratchet-style outcome-history/lifecycle acceptance;
-6. P5 V1 policy;
-7. P5 V2 `STATIC -> REPLAY -> FRESH -> PROTECTED` policy;
+6. ORION-15 V1 policy;
+7. ORION-15 V2 `STATIC -> REPLAY -> FRESH -> PROTECTED` policy;
 8. full V3 responsibility-gated policy from #455;
 9. oracle responsibility/acceptance ceiling for analysis only;
 10. random/budget-matched selector as a floor.
@@ -228,28 +228,28 @@ Multiplicity and stopping rules are frozen before protected outcomes.
 
 ### Headline figures
 
-**P5-A — Improvement–integrity Pareto frontier.**  
+**ORION-15-A — Improvement–integrity Pareto frontier.**  
 X = protected fresh improvement; Y = harmful/integrity admission rate; point size = cost; one point per policy/system with uncertainty. The desired result is an outward/downward frontier shift, not merely a higher replay score.
 
-**P5-B — Replay gain vs protected fresh gain scatter.**  
+**ORION-15-B — Replay gain vs protected fresh gain scatter.**  
 Each candidate is one point; show the “replay winner / fresh loser” quadrant. Color/facet by accepted/rejected policy decision. This makes selection overfit visually undeniable.
 
-**P5-C — Acceptance precision / selective-risk curve.**  
+**ORION-15-C — Acceptance precision / selective-risk curve.**  
 Protected-valid PPV versus acceptance coverage. Add oracle and random floors. This directly shows whether ORION knows which apparent improvements to trust.
 
-**P5-D — Revision responsibility matrix.**  
+**ORION-15-D — Revision responsibility matrix.**  
 Gold revision level versus selected revision level, plus a second heatmap of **severity distance** so a needless method/objective rewrite is visibly worse than a nearby mistake.
 
-**P5-E — Longitudinal motivating vs fresh performance.**  
+**ORION-15-E — Longitudinal motivating vs fresh performance.**  
 Two trajectories per system across improvement rounds; expose specialist regression instead of plotting only the optimized benchmark.
 
-**P5-F — Recognized-failure recurrence survival curve.**  
+**ORION-15-F — Recognized-failure recurrence survival curve.**  
 Time/rounds until recurrence by negative-history policy.
 
-**P5-G — Integrity attack scoreboard.**  
+**ORION-15-G — Integrity attack scoreboard.**  
 Per attack family: attempted, blocked, falsely accepted, and consequence on protected evaluation.
 
-**P5-H — Cost to one protected valid improvement.**  
+**ORION-15-H — Cost to one protected valid improvement.**  
 Wall time, tokens, tool calls and evaluator calls with uncertainty.
 
 ### Required tables
@@ -319,12 +319,12 @@ Before any final protected outcome:
 - [ ] power/precision simulation archived;
 - [ ] raw-result schema requires null/harmful/blocked retention;
 - [ ] independent #283 replay procedure frozen;
-- [ ] P5/P10/P4/P8 authority boundaries rechecked;
+- [ ] ORION-15/ORION-20/ORION-14/ORION-18 authority boundaries rechecked;
 - [ ] manuscript headline remains prospective until protected data exist.
 
 ## 15. Paper-closing evidence package
 
-A true `ORION-P5 = PEER_REVIEW_READY` terminal should contain:
+A true `ORION-ORION-15 = PEER_REVIEW_READY` terminal should contain:
 
 - exact protected run manifest and content hashes;
 - raw candidate pool and per-policy decisions;

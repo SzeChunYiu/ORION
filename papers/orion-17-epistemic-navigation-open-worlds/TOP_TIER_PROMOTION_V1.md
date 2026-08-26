@@ -1,4 +1,4 @@
-# P7 top-tier promotion V1 — Scientific Regime Transport
+# ORION-17 top-tier promotion V1 — Scientific Regime Transport
 
 **Programme:** #977  
 **Existing controlled authority:** `THEORY_FINISHED_V2` / peer-review package remains valid.  
@@ -6,7 +6,7 @@
 
 ## Maximum claim to earn
 
-> **Scientific Regime Transport:** when representation, ontology, objective, evidence interface or world model changes, scientific support and closure do not automatically transport with reachable facts. P7 characterizes the witnesses required to preserve, revoke or reopen evidence/obligations across regime changes and composes those witnesses across sequential changes while retaining honest open/censored stopping.
+> **Scientific Regime Transport:** when representation, ontology, objective, evidence interface or world model changes, scientific support and closure do not automatically transport with reachable facts. ORION-17 characterizes the witnesses required to preserve, revoke or reopen evidence/obligations across regime changes and composes those witnesses across sequential changes while retaining honest open/censored stopping.
 
 The paper must sit above fixed-graph navigation, POMDP information gathering, schema/lens evolution, planning abstraction, goal evolution and world-model updating. Those are donor mechanisms.
 
@@ -45,7 +45,7 @@ There are `119` ambiguous coarse-0 examples and `119` sequential support-history
 
 **Earned claim:** scientific closure/obligation transport is not implied by ordinary value/schema/regime transport, and this separation now survives in two qualitatively distinct non-synthetic settings: evolving public standards and real observed-data ontology refinement/coarsening. The result also shows that always reopening is unnecessarily conservative. **Not earned:** universal transport across arbitrary objective/world-model/research-agent changes or superiority over a donor-complete lens/abstraction product supplied with equivalent scientific support metadata.
 
-The August 2026 nearest-work delta explicitly donor-owns categorical regime-transition machinery. P7 therefore owns only the higher scientific closure/obligation-transport residual unless later donor saturation collapses that residual.
+The August 2026 nearest-work delta explicitly donor-owns categorical regime-transition machinery. ORION-17 therefore owns only the higher scientific closure/obligation-transport residual unless later donor saturation collapses that residual.
 
 Exact result authority is bound in `top_tier/P7_REAL_REGIME_TRANSPORT_RESULT_RECEIPT_V1.md`.
 
@@ -75,11 +75,11 @@ The bounded checker distinguishes fact/value preservation, evidence-meaning pres
 
 The bounded checker has assumption-invalidation and interface-mismatch counterexamples to naïve witness composition. The wine support-history construction supplies a non-synthetic sequential witness layer with 119 disposition differences.
 
-P7's witnesses consume P6 transition-admissibility certificates as typed inputs that may become uninterpretable under regime change; the certificate layer is donor-owned by P6, and P6's epoch/scope matching conditions are intra-regime (frozen upstream donor per `papers/SYNC_CONTRACT.md`). P7 owns only the regime-level transport decision. The wine coarsening studied here is the map-changes-under-fixed-question dual of P13's responsibility upgrade (question-changes-under-fixed-map); mapping-level transport is P7's object, query-level sufficiency is P13's.
+ORION-17's witnesses consume ORION-16 transition-admissibility certificates as typed inputs that may become uninterpretable under regime change; the certificate layer is donor-owned by ORION-16, and ORION-16's epoch/scope matching conditions are intra-regime (frozen upstream donor per `papers/SYNC_CONTRACT.md`). ORION-17 owns only the regime-level transport decision. The wine coarsening studied here is the map-changes-under-fixed-question dual of ORION-23's responsibility upgrade (question-changes-under-fixed-map); mapping-level transport is ORION-17's object, query-level sufficiency is ORION-23's.
 
 ### T7.3 — Open/censored transport impossibility
 
-The observed-only closed/open pair establishes a finite `0.5` indistinguishability boundary without an external coverage witness. Route-versus-task stopping semantics are consumed as a frozen invariant from P2 (donor, `papers/SYNC_CONTRACT.md`) across chart changes; P7 owns only the transport claim, not the stopping semantics. Generalization to real censored/open research systems remains open.
+The observed-only closed/open pair establishes a finite `0.5` indistinguishability boundary without an external coverage witness. Route-versus-task stopping semantics are consumed as a frozen invariant from ORION-12 (donor, `papers/SYNC_CONTRACT.md`) across chart changes; ORION-17 owns only the transport claim, not the stopping semantics. Generalization to real censored/open research systems remains open.
 
 ## Protected regime-change benchmark
 
@@ -91,7 +91,7 @@ The external benchmark target contains three change classes:
 
 The current wave executes class 1 through RO-Crate standard evolution and class 2 through wine ontology/responsibility refinement. Class 3 remains open.
 
-Wine is shared programme infrastructure (also used by P9's null accessibility cell and P11's compiler positive cell); the frozen quantity owned here is P7's own 712-row wine transport/support-history construction with its 119 disposition differences — a distinct object from P9's accessibility measurements and P11's compiler endpoints on the same public dataset.
+Wine is shared programme infrastructure (also used by ORION-19's null accessibility cell and ORION-21's compiler positive cell); the frozen quantity owned here is ORION-17's own 712-row wine transport/support-history construction with its 119 disposition differences — a distinct object from ORION-19's accessibility measurements and ORION-21's compiler endpoints on the same public dataset.
 
 ### Primary endpoints
 
@@ -110,8 +110,8 @@ A top-tier cross-domain headline requires positive/diagnostic evidence in at lea
 ## Strongest hostile attacks
 
 - representation change alone explains every result;
-- donor abstraction/lens machinery supplied with complete support metadata matches P7;
-- P7 re-owns P2 stopping or P1 reframing;
+- donor abstraction/lens machinery supplied with complete support metadata matches ORION-17;
+- ORION-17 re-owns ORION-12 stopping or ORION-11 reframing;
 - chart/objective changes leak protected labels;
 - claimed route novelty is merely a renamed/refined existing route;
 - sequential transport works only because intermediate invalidation is ignored;
@@ -131,10 +131,10 @@ A top-tier cross-domain headline requires positive/diagnostic evidence in at lea
 - [x] independent bounded theory checker + deterministic replay;
 - [x] second independent implementation + deterministic replay for the real regime study;
 - [x] explicit August-2026 donor boundary that cedes generic regime-transition machinery;
-- [ ] final cross-paper ownership review against P1/P2/P3/P6/P8 at manuscript scope;
+- [ ] final cross-paper ownership review against ORION-11/ORION-12/ORION-13/ORION-16/ORION-18 at manuscript scope;
 - [ ] immediate pre-submission literature refresh;
 - [ ] exact final package replay after all manuscript/evidence changes.
 
 If the final manuscript headline is explicitly limited to representation/ontology regime changes, the third objective/world class is strengthening rather than a logical prerequisite. If the manuscript claims general scientific-regime transport, the third class remains mandatory.
 
-If donor abstraction/lens machinery with complete scientific support metadata becomes extensionally equivalent, P7 must report the equivalence rather than manufacture route novelty.
+If donor abstraction/lens machinery with complete scientific support metadata becomes extensionally equivalent, ORION-17 must report the equivalence rather than manufacture route novelty.

@@ -2,11 +2,11 @@
 
 ## Adaptive test-time compute is prior-owned
 
-Recent systems allocate inference compute dynamically based on predicted difficulty, value or resource constraints. Bandit formulations, constrained policy optimization, adaptive demonstration/generation strategies and “when to think” policies already own the primitive that different examples deserve different reasoning budgets. P12 therefore does not claim adaptive inference allocation itself.
+Recent systems allocate inference compute dynamically based on predicted difficulty, value or resource constraints. Bandit formulations, constrained policy optimization, adaptive demonstration/generation strategies and “when to think” policies already own the primitive that different examples deserve different reasoning budgets. ORION-22 therefore does not claim adaptive inference allocation itself.
 
 ## Dynamic state construction is also prior-owned
 
-Retrieval, compression, context selection, query-conditioned memory and structured-state construction already adapt what a model sees. P11 additionally supplies controlled evidence that construction can change accessibility. P12 does not claim dynamic state selection as a new primitive.
+Retrieval, compression, context selection, query-conditioned memory and structured-state construction already adapt what a model sees. ORION-21 additionally supplies controlled evidence that construction can change accessibility. ORION-22 does not claim dynamic state selection as a new primitive.
 
 ## Residual after subtraction
 

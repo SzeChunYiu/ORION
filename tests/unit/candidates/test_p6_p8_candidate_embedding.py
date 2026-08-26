@@ -46,15 +46,15 @@ def test_candidate_native_embedding_preserves_p1_p5_fixture_decisions() -> None:
     ("relative_path", "sentinel"),
     (
         (
-            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py",
+            "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py",
             "P6 finite-model checks: PASS",
         ),
         (
-            "papers/paper-07-epistemic-navigation-open-worlds/formal/check_countermodels.py",
+            "papers/orion-17-epistemic-navigation-open-worlds/formal/check_countermodels.py",
             "P7 deterministic countermodels: PASS",
         ),
         (
-            "papers/paper-08-epistemic-authority-autonomous-science/formal/check_authority_calculus.py",
+            "papers/orion-18-epistemic-authority-autonomous-science/formal/check_authority_calculus.py",
             "P8 authority-calculus checks: PASS",
         ),
         (
@@ -62,15 +62,15 @@ def test_candidate_native_embedding_preserves_p1_p5_fixture_decisions() -> None:
             "P6-P8 preservation ladder V1: PASS",
         ),
         (
-            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py",
+            "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py",
             "P6 THEORY CLOSURE V2: PASS",
         ),
         (
-            "papers/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py",
+            "papers/orion-17-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py",
             "P7 THEORY CLOSURE V2: PASS",
         ),
         (
-            "papers/paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2.py",
+            "papers/orion-18-epistemic-authority-autonomous-science/formal/check_theory_closure_v2.py",
             "P8 THEORY CLOSURE V2: PASS",
         ),
         (

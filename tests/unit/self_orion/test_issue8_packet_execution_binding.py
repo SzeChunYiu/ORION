@@ -20,7 +20,7 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 RECEIPT_PATH = (
     REPO_ROOT
     / "papers"
-    / "paper-05-self-orion"
+    / "orion-15-self-orion"
     / "evidence"
     / "ISSUE8_PACKET_EXECUTION_BINDING_RECEIPT.json"
 )
@@ -28,14 +28,14 @@ WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "p5_phase2_live_execution.
 RUNBOOK_PATH = (
     REPO_ROOT
     / "papers"
-    / "paper-05-self-orion"
+    / "orion-15-self-orion"
     / "protocol"
     / "ISSUE8_LIVE_TRIAL_RUNBOOK.md"
 )
 TRIGGER_PATH = (
     REPO_ROOT
     / "papers"
-    / "paper-05-self-orion"
+    / "orion-15-self-orion"
     / "phase2"
     / "LIVE_EXECUTION_TRIGGER.txt"
 )

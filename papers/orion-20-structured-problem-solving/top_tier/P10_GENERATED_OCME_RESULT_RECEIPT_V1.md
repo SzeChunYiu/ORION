@@ -1,4 +1,4 @@
-# P10 generated OCME result receipt V1
+# ORION-20 generated OCME result receipt V1
 
 **Run:** GitHub Actions `32655587097`  
 **Artifact:** `p10-generated-ocme-v1`, artifact ID `9497413065`  
@@ -52,6 +52,6 @@ The independent verifier rederives affine exclusion by a separate exact collinea
 
 ## Scientific disposition
 
-P10 now has a prospectively frozen **generated finite OCME positive**, not merely hand-declared non-vacuity. The successful primitive semantics were selected from frozen anonymous grammars using originating tasks only; held-out targets did not participate in selection.
+ORION-20 now has a prospectively frozen **generated finite OCME positive**, not merely hand-declared non-vacuity. The successful primitive semantics were selected from frozen anonymous grammars using originating tasks only; held-out targets did not participate in selection.
 
 This is still not unrestricted autonomous method invention. The candidate grammars and composition/wrapper templates were supplied prospectively by the experiment. The result establishes that obstruction-certified method-space expansion can be generated and transfer under two exact finite method-language models, while broad native Lean/problem-solving superiority and competition with open-ended theorem-proving/program-synthesis/evolution systems remain separate gates.

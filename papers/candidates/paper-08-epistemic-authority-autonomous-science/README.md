@@ -1,4 +1,4 @@
-# P8 candidate — A Theory of Epistemic Authority for Autonomous Science
+# ORION-18 candidate — A Theory of Epistemic Authority for Autonomous Science
 
 **Status:** `SUBMISSION_CONTENT_COMPLETE`; exact-head CI determines
 `PEER_REVIEW_READY` as specified in `JOURNAL_READINESS_V2_1.md`.
@@ -10,7 +10,7 @@ superseding primitive-closure addendum `manuscript/FORMAL_CORE_V2_1.md`.
 
 ## Research question
 
-Can ORION's recurring distinction between **capability** and **authorization** be formalized once across heterogeneous epistemic actions—reframing, stopping, mapping, asserting, and self-modifying—without collapsing into P4's scientific-authority mechanism?
+Can ORION's recurring distinction between **capability** and **authorization** be formalized once across heterogeneous epistemic actions—reframing, stopping, mapping, asserting, and self-modifying—without collapsing into ORION-14's scientific-authority mechanism?
 
 ## Scoped contribution
 
@@ -30,15 +30,15 @@ Potential action domains are typed: `REFRAME`, `SEARCH/STOP`, `MAP/MERGE`, `ASSE
 
 ## Ownership boundary
 
-P4 already owns the empirically validated non-compensatory, non-escalating scientific-authority transition under protected custody. P8 is publishable only if #343 and #340 show that a cross-capability authorization calculus is a distinct scientific object with its own theorem/benchmark value, rather than a general-language restatement of P4.
+ORION-14 already owns the empirically validated non-compensatory, non-escalating scientific-authority transition under protected custody. ORION-18 is publishable only if #343 and #340 show that a cross-capability authorization calculus is a distinct scientific object with its own theorem/benchmark value, rather than a general-language restatement of ORION-14.
 
 ### Explicit nonclaims
 
-P8 does not currently claim novelty for abstention, provenance, verification, deontic logic, belief revision, safety constraints, protected evaluation, or governance individually.
+ORION-18 does not currently claim novelty for abstention, provenance, verification, deontic logic, belief revision, safety constraints, protected evaluation, or governance individually.
 
 ## Constructive nearest-work result
 
-The first pass surfaced AgentAbstain, ProvenanceGuard, the 2026 execution-provenance survey, dynamic epistemic/belief-change logic, and P4's already extensive verification/integrity nearest-work set.
+The first pass surfaced AgentAbstain, ProvenanceGuard, the 2026 execution-provenance survey, dynamic epistemic/belief-change logic, and ORION-14's already extensive verification/integrity nearest-work set.
 
 The hostile novelty question is:
 
@@ -56,7 +56,7 @@ shared-calculus/ideal-product equivalence negative theorem.
 The frozen 17-case manifest contains five clean native-domain cases, paired
 blockers, five cross-domain laundering attacks, `CANNOT_CHECK`, and a positive
 registered coercion. The checker also covers the ideal typed-product comparator;
-P8 makes no empirical superiority claim.
+ORION-18 makes no empirical superiority claim.
 
 ## Reviewer artifacts
 

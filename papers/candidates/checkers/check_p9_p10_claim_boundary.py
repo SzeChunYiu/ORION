@@ -17,14 +17,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_PATHS = (
-    ROOT / "papers" / "paper-01-recursive-epistemic-reconstruction" / "manuscript",
-    ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "manuscript",
-    ROOT / "papers" / "paper-03-global-knowledge-portrait" / "manuscript",
-    ROOT / "papers" / "paper-04-verified-scientific-discovery" / "manuscript",
-    ROOT / "papers" / "paper-05-self-orion" / "manuscript",
-    ROOT / "papers" / "candidates" / "paper-06-formal-epistemic-structures-and-mechanics" / "submission",
-    ROOT / "papers" / "candidates" / "paper-07-epistemic-navigation-open-worlds" / "submission",
-    ROOT / "papers" / "candidates" / "paper-08-epistemic-authority-autonomous-science" / "submission",
+    ROOT / "papers" / "orion-11-recursive-epistemic-reconstruction" / "manuscript",
+    ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "manuscript",
+    ROOT / "papers" / "orion-13-global-knowledge-portrait" / "manuscript",
+    ROOT / "papers" / "orion-14-verified-scientific-discovery" / "manuscript",
+    ROOT / "papers" / "orion-15-self-orion" / "manuscript",
+    ROOT / "papers" / "candidates" / "orion-16-formal-epistemic-structures-and-mechanics" / "submission",
+    ROOT / "papers" / "candidates" / "orion-17-epistemic-navigation-open-worlds" / "submission",
+    ROOT / "papers" / "candidates" / "orion-18-epistemic-authority-autonomous-science" / "submission",
 )
 
 _DIRECTION_RE = re.compile(

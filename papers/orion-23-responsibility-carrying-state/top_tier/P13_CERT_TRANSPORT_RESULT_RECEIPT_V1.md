@@ -1,4 +1,4 @@
-# P13 drift-bounded certificate transport result receipt V1
+# ORION-23 drift-bounded certificate transport result receipt V1
 
 **Programme:** #977 · **PR:** #992 · **State:** `EXECUTED_BOUND_ON_GREEN`
 
@@ -6,7 +6,7 @@
 
 | item | value |
 |---|---|
-| protocol (pre-outcome freeze) | `papers/paper-13-responsibility-carrying-state/top_tier/P13_CERT_TRANSPORT_PROTOCOL_V1.md` @ `16f33a9e` |
+| protocol (pre-outcome freeze) | `papers/orion-23-responsibility-carrying-state/top_tier/P13_CERT_TRANSPORT_PROTOCOL_V1.md` @ `16f33a9e` |
 | cases (pre-outcome freeze, gold dispositions frozen) | `p13_cert_transport_cases_v1.json` @ `46ae7209` (62164 bytes, 60 cases) |
 | runner / checker | @ `a6789c12` / @ `24d199a2` |
 | CI run | `32661218622` (`p13-cert-transport-v1`), **conclusion=success** |

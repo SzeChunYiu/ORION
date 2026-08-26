@@ -1,4 +1,4 @@
-# P6 journal readiness V2.1
+# ORION-16 journal readiness V2.1
 
 **Theory manuscript:** `manuscript/FINAL_V2_1.md`  
 **Submission manuscript:** `submission/AIJ_MANUSCRIPT.tex`  
@@ -34,8 +34,8 @@
 
 ## Computed final gate
 
-P6 is `PEER_REVIEW_READY` exactly when both `p6-p8-candidate-ci` and repository `ci` are successful on the same PR head. Any manuscript/source change reopens this terminal until the changed head is retested.
+ORION-16 is `PEER_REVIEW_READY` exactly when both `p6-p8-candidate-ci` and repository `ci` are successful on the same PR head. Any manuscript/source change reopens this terminal until the changed head is retested.
 
-P6 must not revert to the older statement that support soundness alone proves minimality. Selective reconstruction reopening/P1.D2 remains P1-owned; the submission claim is the scientific-admissibility layer and typed-erasure separation over donor repair/effect/authority mechanisms.
+ORION-16 must not revert to the older statement that support soundness alone proves minimality. Selective reconstruction reopening/ORION-11.D2 remains ORION-11-owned; the submission claim is the scientific-admissibility layer and typed-erasure separation over donor repair/effect/authority mechanisms.
 
 Private funding, competing-interest and optional ORCID attestations are not inferred; see #377. External peer review is a later event; see #378.

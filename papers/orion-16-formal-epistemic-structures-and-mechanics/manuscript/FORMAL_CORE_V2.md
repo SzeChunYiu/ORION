@@ -1,4 +1,4 @@
-# P6 formal core V2 — closed theory
+# ORION-16 formal core V2 — closed theory
 
 **Candidate paper:** Formal Epistemic Structures and Mechanics  
 **Theory terminal:** `CLOSED_V2`  
@@ -123,7 +123,7 @@ This is a minimality result relative to graph-only information, not a claim that
 
 ## 4. Preservation certificates
 
-Dependency reachability can over-approximate semantic invalidation. P6 therefore allows protected evidence that a downstream certification is invariant under the exact change.
+Dependency reachability can over-approximate semantic invalidation. ORION-16 therefore allows protected evidence that a downstream certification is invariant under the exact change.
 
 ### Definition 6 — preservation certificate
 
@@ -294,7 +294,7 @@ Choose a constant-accepting `J'`, or candidate-controlled evidence satisfying an
 
 Let `Erase` map a mechanic contract to its bare computational transition and ordinary dependency graph, deleting hard obligations, commit authority and provenance constraints.
 
-### Theorem 9 — bare transition/dependency semantics is not fully abstract for P6 admissibility
+### Theorem 9 — bare transition/dependency semantics is not fully abstract for ORION-16 admissibility
 
 There exist contracts `m_1,m_2` such that
 
@@ -312,38 +312,38 @@ Give both contracts the same deterministic state transition `0\mapsto1` and the 
 
 A change-propagation or TMS layer can correctly identify which computation/claim is structurally affected without deciding whether a scientifically certified state may remain certified. The latter may additionally depend on obligation, authority and provenance dimensions.
 
-This is P6's formal discriminator from a pure dependency-recomputation semantics; it is not a novelty claim over all richer maintenance logics.
+This is ORION-16's formal discriminator from a pure dependency-recomputation semantics; it is not a novelty claim over all richer maintenance logics.
 
 ## 11. Conservative special cases
 
 ### Proposition 10 — ordinary transition systems
 
-Set hard obligations empty, treat commit authority as universally valid, and make provenance/dependency/history inert. P6 admissibility reduces to the underlying transition relation plus footprint/invariant checks.
+Set hard obligations empty, treat commit authority as universally valid, and make provenance/dependency/history inert. ORION-16 admissibility reduces to the underlying transition relation plus footprint/invariant checks.
 
 ### Proposition 11 — dependency-maintenance special case
 
-With authority/provenance/obligation dimensions inert and no preservation certificates, P6 repair reduces to root-inclusive dependency invalidation `Aff_D(E,X)`.
+With authority/provenance/obligation dimensions inert and no preservation certificates, ORION-16 repair reduces to root-inclusive dependency invalidation `Aff_D(E,X)`.
 
 ### Proposition 12 — self-adjusting computation special case
 
-Represent changeable inputs and derived computations as dependency nodes, and interpret recomputation as an ordinary mechanic with universal authority and no scientific certification obligations. P6's affected-set layer then contains standard dependency-driven change propagation as a special case. P6 does not inherit or claim the efficiency bounds of self-adjusting-computation systems.
+Represent changeable inputs and derived computations as dependency nodes, and interpret recomputation as an ordinary mechanic with universal authority and no scientific certification obligations. ORION-16's affected-set layer then contains standard dependency-driven change propagation as a special case. ORION-16 does not inherit or claim the efficiency bounds of self-adjusting-computation systems.
 
 ### Proposition 13 — effect-system special case
 
-Requested/handled/denied/committed typed effects embed into `Eff_m`, requirements and history. When scientific certification/repair dimensions are inert, the additional P6 coordinates do not change those effect decisions.
+Requested/handled/denied/committed typed effects embed into `Eff_m`, requirements and history. When scientific certification/repair dimensions are inert, the additional ORION-16 coordinates do not change those effect decisions.
 
-These are representation-level conservative embeddings, not claims that P6 subsumes every theorem or implementation detail of each donor field.
+These are representation-level conservative embeddings, not claims that ORION-16 subsumes every theorem or implementation detail of each donor field.
 
 ## 12. Preservation ladder
 
-P6 distinguishes four preservation questions after change:
+ORION-16 distinguishes four preservation questions after change:
 
 1. **computation reuse:** may a previous computation be reused or incrementally repaired?
 2. **evidence preservation:** does a content-bound observation/provenance item remain valid?
 3. **certification preservation:** do the obligations supporting a scientific certificate remain discharged?
 4. **commit authority preservation:** is the next mutation still authorized at the current scope/epoch?
 
-Theorem 9 proves that level 1 does not imply levels 3–4. P7 studies evidence-versus-closure transport across representation change; P8 studies obligation-versus-authority transport.
+Theorem 9 proves that level 1 does not imply levels 3–4. ORION-17 studies evidence-versus-closure transport across representation change; ORION-18 studies obligation-versus-authority transport.
 
 ## 13. Executable support
 
@@ -362,7 +362,7 @@ The checker is standard-library only and is a finite proof-support artifact, not
 
 ## 14. Prior-work ownership and claim boundary
 
-The following are treated as donor or pre-existing mechanisms, not P6 inventions:
+The following are treated as donor or pre-existing mechanisms, not ORION-16 inventions:
 
 - dynamic epistemic/action update logics;
 - AGM and iterated belief revision;
@@ -372,10 +372,10 @@ The following are treated as donor or pre-existing mechanisms, not P6 inventions
 - typed/algebraic effects;
 - authorization, delegation and revocation logics;
 - provenance/audit systems;
-- ORION P1 mechanic cells, recursive audit, responsibility-based reframing and dependency reopening;
+- ORION ORION-11 mechanic cells, recursive audit, responsibility-based reframing and dependency reopening;
 - 2026 agent-specific effect/authorization/repair systems already named in the donor ledger.
 
-The completed P6 theoretical object is therefore:
+The completed ORION-16 theoretical object is therefore:
 
 \[
 \boxed{

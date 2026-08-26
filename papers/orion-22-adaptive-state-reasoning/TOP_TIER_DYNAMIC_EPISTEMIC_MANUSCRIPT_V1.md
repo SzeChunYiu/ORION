@@ -1,4 +1,4 @@
-# P12 Top-Tier Dynamic-Epistemic Manuscript V1
+# ORION-22 Top-Tier Dynamic-Epistemic Manuscript V1
 
 ## Candidate title
 
@@ -7,20 +7,20 @@
 ```text
 status = RESULT_LEDGER_BOUND__PROTECTED_SUBSTRATE_AND_NONFLAT_CANNOT_CHECK
 paper_authority_delta = NONE
-job = P12-DES-01
+job = ORION-22-DES-01
 ```
 
 ## Abstract
 
-Adaptive allocation is scientifically meaningful only when signals vary, policies choose different actions, outcomes are scoreable, and resource ceilings are not mistaken for capability. P12 models informative signals, state/reasoning actions, vector prices, censoring, uncertainty, and regret as a dynamic allocation state. It absorbs metareasoning, budgeted inference, routing, value-of-information, and online regret. We prove signal non-identifiability, policy non-degeneracy, censoring boundaries, coarsened-signal regret, and the requirement for prospectively frozen price and domain shifts. The frozen successor retained 96 clean-license cases across four domains and 24 task families, but no protected substrate execution occurred; exact model/run/repeat denominators were not frozen, and the non-FLAT successor was not given a fresh study identity. Every endpoint therefore remains `CANNOT_CHECK`. The manuscript advances the censoring and vector-budget theory and records the stop/go boundary without claiming task gain, regret reduction, price robustness, or cross-domain adaptation.
+Adaptive allocation is scientifically meaningful only when signals vary, policies choose different actions, outcomes are scoreable, and resource ceilings are not mistaken for capability. ORION-22 models informative signals, state/reasoning actions, vector prices, censoring, uncertainty, and regret as a dynamic allocation state. It absorbs metareasoning, budgeted inference, routing, value-of-information, and online regret. We prove signal non-identifiability, policy non-degeneracy, censoring boundaries, coarsened-signal regret, and the requirement for prospectively frozen price and domain shifts. The frozen successor retained 96 clean-license cases across four domains and 24 task families, but no protected substrate execution occurred; exact model/run/repeat denominators were not frozen, and the non-FLAT successor was not given a fresh study identity. Every endpoint therefore remains `CANNOT_CHECK`. The manuscript advances the censoring and vector-budget theory and records the stop/go boundary without claiming task gain, regret reduction, price robustness, or cross-domain adaptation.
 
 ## Theory
 
-- `P12-T1`: constant signals cannot explain allocation differences.
-- `P12-T2`: complementarity requires attained policy disagreement with fixed and one-signal donors.
-- `P12-T3`: exact cap hits are censored, not incapability.
-- `P12-T4`: observation-equivalent worlds requiring different actions imply positive worst-case regret.
-- `P12-T5`: broad adaptation requires prospectively frozen vector-price and distribution-shift robustness.
+- `ORION-22-T1`: constant signals cannot explain allocation differences.
+- `ORION-22-T2`: complementarity requires attained policy disagreement with fixed and one-signal donors.
+- `ORION-22-T3`: exact cap hits are censored, not incapability.
+- `ORION-22-T4`: observation-equivalent worlds requiring different actions imply positive worst-case regret.
+- `ORION-22-T5`: broad adaptation requires prospectively frozen vector-price and distribution-shift robustness.
 
 ## Ideal donor comparison
 
@@ -28,7 +28,7 @@ All policies receive identical state/reasoning menus, signals, model/tool access
 
 ## Decisive computation
 
-`P12-DES-01`: finish the current real-substrate stop/go unchanged, then run a separately frozen non-FLAT multi-model/domain successor. Endpoints: task gain, regret, cost, domain consistency, censoring, action diversity, and signal contribution. Intended positive terminal: `VECTOR_BUDGET_STATE_REASONING_CODESIGN_SURVIVES_CENSORING_PRICE_AND_DOMAIN_SHIFT`.
+`ORION-22-DES-01`: finish the current real-substrate stop/go unchanged, then run a separately frozen non-FLAT multi-model/domain successor. Endpoints: task gain, regret, cost, domain consistency, censoring, action diversity, and signal contribution. Intended positive terminal: `VECTOR_BUDGET_STATE_REASONING_CODESIGN_SURVIVES_CENSORING_PRICE_AND_DOMAIN_SHIFT`.
 
 ## Authoritative computation disposition
 

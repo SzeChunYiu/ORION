@@ -1,4 +1,4 @@
-# P2 narrowed publication terminal — 2026-08-17
+# ORION-12 narrowed publication terminal — 2026-08-17
 
 Terminal: `P2_NARROWED`
 Publication posture: methods / critical system-design paper; **no matched external ORION-vs-baseline superiority claim**.
@@ -37,7 +37,7 @@ The final paper-level claim is therefore:
 
 1. `FROZEN_ADAPTER_REQUIRES_ARXIV` — the frozen matched Wide runner binds arXiv/OpenAlex routes.
 2. `OFFICIAL_SCORER_ARXIV_ID_IOU` — the official Wide scorer consumes arXiv-id sets; OpenAIRE/DBLP/Crossref do not provide a scorer-native identity bridge in the current protocol.
-3. `NO_ARXIV_MATCHED_RUNNER_ON_MAIN` — replacing the runner is a prospective P2 V2 operation, not a post-outcome V1 patch.
+3. `NO_ARXIV_MATCHED_RUNNER_ON_MAIN` — replacing the runner is a prospective ORION-12 V2 operation, not a post-outcome V1 patch.
 4. official SAGE corpus/evaluator unavailable.
 5. matched multi-provider Deep and final live-provider campaign unavailable under current authority/access.
 
@@ -49,7 +49,7 @@ These are `CANNOT_CHECK`, not scientific zeros.
 - **#279:** scientific terminal `CANNOT_CHECK` / `REFUTED_OR_SHRINK` is satisfied by explicit candidate-generation failure attribution plus the narrowed publication claim; no V2 feature is fabricated merely to clear the issue.
 - **#317:** terminal `P2_NARROWED`; bounded saturation is **not** claimed. The dated literature freeze and reopen rule replace a false fixed-point assertion.
 - **#99:** may become `PEER_REVIEW_READY_NARROWED` only after the IP&M package, reference/figure audit, compiled PDF and independent claim proofread pass. The scientific-result blocker is removed by narrowing; ordinary submission packaging remains a real gate.
-- **#318:** only the P2 consumer lane is advanced by the machine-checkable assimilation ledger. The shared cross-paper issue remains open until its P1/global obligations are satisfied.
+- **#318:** only the ORION-12 consumer lane is advanced by the machine-checkable assimilation ledger. The shared cross-paper issue remains open until its ORION-11/global obligations are satisfied.
 
 ## Venue fit
 
@@ -57,4 +57,4 @@ IP&M is selected over the conflicting TMLR recommendation because the narrowed o
 
 ## Reopen rule
 
-Reopen the P2 scientific terminal if an admissible matched external campaign becomes executable, if a new donor eliminates the authority/censoring residual, or if pre-submission literature refresh changes the required baseline or claim boundary. Reopening may strengthen or further narrow the paper; it may not retroactively relabel archived nulls/blockers as positives.
+Reopen the ORION-12 scientific terminal if an admissible matched external campaign becomes executable, if a new donor eliminates the authority/censoring residual, or if pre-submission literature refresh changes the required baseline or claim boundary. Reopening may strengthen or further narrow the paper; it may not retroactively relabel archived nulls/blockers as positives.

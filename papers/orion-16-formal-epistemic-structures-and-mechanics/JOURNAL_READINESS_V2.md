@@ -1,4 +1,4 @@
-# P6 journal readiness V2
+# ORION-16 journal readiness V2
 
 **Manuscript:** `manuscript/FINAL.md`  
 **Theory:** `CLOSED_V2`  
@@ -21,7 +21,7 @@
 - [x] V2 checker wired into candidate CI.
 - [x] Literature closure rejects broad component novelty.
 - [x] Venue path selected.
-- [x] P1 ownership protected.
+- [x] ORION-11 ownership protected.
 
 ## Submission-time checks that are not theory gaps
 

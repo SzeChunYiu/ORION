@@ -2,7 +2,7 @@
 
 Holds the P4-specific instruments that the scope-general modules in
 :mod:`orion.programme` are parameterised by. The protected V2 campaign itself
-lives under ``papers/paper-04-verified-scientific-discovery/``.
+lives under ``papers/orion-14-verified-scientific-discovery/``.
 """
 
 from orion.study.p4.claim_axis import ClaimAxisAssessment, assess_claim_axis

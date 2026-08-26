@@ -1,4 +1,4 @@
-# P2 V2 maximal-widening freeze — 2026-08-17
+# ORION-12 V2 maximal-widening freeze — 2026-08-17
 
 Status: **FROZEN BEFORE NEW V2 CONFIRMATORY OUTCOME ACCESS**
 Parent issue: #350

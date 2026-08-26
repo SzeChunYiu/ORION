@@ -1,4 +1,4 @@
-# P6–P8 peer-review-ready gate — 2026-08-18
+# ORION-16–ORION-18 peer-review-ready gate — 2026-08-18
 
 **Purpose:** convert the theory-complete package merged by #375 into journal-facing, externally submittable manuscripts without manufacturing peer review or empirical superiority.
 
@@ -21,22 +21,22 @@
 
 ## Current target venues
 
-- P6 — *Artificial Intelligence* (AIJ), regular paper.
-- P7 — *Artificial Intelligence* (AIJ), regular paper.
-- P8 — *Autonomous Agents and Multi-Agent Systems* (JAAMAS), regular paper.
+- ORION-16 — *Artificial Intelligence* (AIJ), regular paper.
+- ORION-17 — *Artificial Intelligence* (AIJ), regular paper.
+- ORION-18 — *Autonomous Agents and Multi-Agent Systems* (JAAMAS), regular paper.
 
 Fallback venues remain as recorded in `VENUE_DECISION_V2.md`; this gate is frozen against the primary venues.
 
 ## Current theory terminals inherited from main
 
-- P6: `THEORY_FINISHED_V2_1`.
-- P7: `THEORY_FINISHED_V2`.
-- P8: `THEORY_FINISHED_V2_1` (`FORMAL_CORE_V2.md` plus its superseding
+- ORION-16: `THEORY_FINISHED_V2_1`.
+- ORION-17: `THEORY_FINISHED_V2`.
+- ORION-18: `THEORY_FINISHED_V2_1` (`FORMAL_CORE_V2.md` plus its superseding
   primitive-closure addendum `FORMAL_CORE_V2_1.md`).
 
 ## Current submission claim terminals after the 2026-08-18 delta
 
-### P6
+### ORION-16
 
 Allowed central claim:
 
@@ -44,7 +44,7 @@ Allowed central claim:
 
 Explicitly donor-owned: TMS/ATMS, self-adjusting computation, selective repair, effect typing, evidence-backed authorization, provenance, dependency-aware decision repair.
 
-### P7
+### ORION-17
 
 Allowed central claim:
 
@@ -52,7 +52,7 @@ Allowed central claim:
 
 Explicitly donor-owned: graph/POMDP navigation, planning abstraction, representation refinement, schema/lens/ontology transport, categorical regime transport, sheaf transport/obstruction, goal/world-model evolution, route/task stopping.
 
-### P8
+### ORION-18
 
 Allowed central claim:
 

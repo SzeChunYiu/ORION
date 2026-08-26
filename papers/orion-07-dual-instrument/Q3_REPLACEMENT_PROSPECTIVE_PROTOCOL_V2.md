@@ -1,4 +1,4 @@
-# Q3 replacement prospective instances — protocol V2
+# ORION-03 replacement prospective instances — protocol V2
 
 **Frozen:** 2026-08-22  
 **Scientific base:** `main@c5ba39fef4f25c46de5fb69bf07f50530f4693ca`  
@@ -11,16 +11,16 @@ This protocol is additive to V1. The original QG-7d and QG-15c slots are retaine
 For both replacements:
 
 1. No `qg19`/`qg20` branch and no `QG19*`/`QG20*` result artifact existed at the contamination check.
-2. Q3 Lane A and Lane B must be frozen in repository commits before any QG19/QG20 scientific analyzer/result is added.
-3. Q3 instruments may read only the scientific base and this protocol; QG19/QG20 result paths are excluded.
-4. The later QG19/QG20 analyzers are independent scientific outcome producers: they must not import or read Q3 lane outputs.
+2. ORION-03 Lane A and Lane B must be frozen in repository commits before any QG19/QG20 scientific analyzer/result is added.
+3. ORION-03 instruments may read only the scientific base and this protocol; QG19/QG20 result paths are excluded.
+4. The later QG19/QG20 analyzers are independent scientific outcome producers: they must not import or read ORION-03 lane outputs.
 5. `AGREE`, `PARTIAL`, `DISAGREE`, and `CANNOT_CHECK` are valid pre-outcome instrument relations.
 6. Deferred scoring uses only the maps below. No denominator reduction is allowed.
-7. Result replay must reproduce the outcome from the scientific analyzer independently of Q3 scoring code.
+7. Result replay must reproduce the outcome from the scientific analyzer independently of ORION-03 scoring code.
 
 ---
 
-# Q3-R1 / QG-19 — outside-cone sharpness probe for R6M support two
+# ORION-03-R1 / QG-19 — outside-cone sharpness probe for R6M support two
 
 ## Frozen scientific state
 
@@ -28,7 +28,7 @@ QG8 proves all-`n` support-two sufficiency for R6M inside
 
 `t_c >= 2*t_r` and `t_nc >= 2*t_r`.
 
-The QG8 receipt explicitly states that **outside the cone the certificate is silent**; it is not evidence that support three is required. QG2 provides a farther-out objective with an exact support-three witness, so global objective-independence is already false, while local sharpness near a cone face remains unresolved.
+The QG8 receipt explicitly states that **outside the cone the certificate is silent**; it is not evidence that support three is required. ORION-10 provides a farther-out objective with an exact support-three witness, so global objective-independence is already false, while local sharpness near a cone face remains unresolved.
 
 ## Frozen objective and panel
 
@@ -73,7 +73,7 @@ The primary scientific event is whether any row has `C_DP < C_Dxx`.
 
 ---
 
-# Q3-R2 / QG-20 — objective scope of the SixLCU P0 boundary
+# ORION-03-R2 / QG-20 — objective scope of the SixLCU P0 boundary
 
 ## Frozen scientific state
 
@@ -136,4 +136,4 @@ After scientific execution:
 
 ## Paper gate
 
-Q3 can become content-ready only after both replacements are validly frozen, both independent outcomes exist, both scores are produced from this map, both scientific results replay, and D2/D3 instrument defects are explicitly disposed. The original contaminated slots remain visible in the series audit.
+ORION-03 can become content-ready only after both replacements are validly frozen, both independent outcomes exist, both scores are produced from this map, both scientific results replay, and D2/D3 instrument defects are explicitly disposed. The original contaminated slots remain visible in the series audit.

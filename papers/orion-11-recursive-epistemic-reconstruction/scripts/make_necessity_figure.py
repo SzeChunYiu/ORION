@@ -11,7 +11,7 @@ from pathlib import Path
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "papers" / "paper-01-recursive-epistemic-reconstruction"
+PAPER = ROOT / "papers" / "orion-11-recursive-epistemic-reconstruction"
 EVIDENCE = ROOT / "research" / "revival" / "p1" / "confirmatory" / "v2.2"
 PRIMARY = EVIDENCE / "primary" / "PRIMARY_RESULT.json"
 REPLICATION = EVIDENCE / "replication" / "REPLICATION_RESULT.json"

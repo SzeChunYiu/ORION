@@ -1,4 +1,4 @@
-# P14 top-tier promotion V1 — Scientific Governance as a Research-Decision Machine
+# ORION-24 top-tier promotion V1 — Scientific Governance as a Research-Decision Machine
 
 **Programme:** #977  
 **Existing controlled authority:** `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_GOVERNANCE-CONFORMANCE_RESULT` remains valid.  
@@ -24,9 +24,9 @@ The external-evaluation substrate is now frozen and machine-checkable:
 
 The current CI terminal is `P14_EXTERNAL_GOVERNANCE_CONTRACT_V1_GREEN`.
 
-**What this earns:** the external benchmark/adjudication interface is executable and fail-closed rather than a prose request for “human review.” **What it does not earn:** any empirical P14 superiority result. The required independent candidate outputs and adjudications do not yet exist, so the top-tier external scientific result remains `CANNOT_CHECK`.
+**What this earns:** the external benchmark/adjudication interface is executable and fail-closed rather than a prose request for “human review.” **What it does not earn:** any empirical ORION-24 superiority result. The required independent candidate outputs and adjudications do not yet exist, so the top-tier external scientific result remains `CANNOT_CHECK`.
 
-The 2026 frontier refresh also narrows the novelty boundary: PaperBench/ReplicatorBench own replication engineering/replicability evaluation, AutoResearchBench and AstaBench own research-agent benchmark families, and shadow evaluations own unpublished-question expert grading. P14 therefore cannot claim “a benchmark for research agents”; its residual target is the causal value of the governance layer under matched research capability.
+The 2026 frontier refresh also narrows the novelty boundary: PaperBench/ReplicatorBench own replication engineering/replicability evaluation, AutoResearchBench and AstaBench own research-agent benchmark families, and shadow evaluations own unpublished-question expert grading. ORION-24 therefore cannot claim “a benchmark for research agents”; its residual target is the causal value of the governance layer under matched research capability.
 
 ## Benchmark object
 
@@ -42,7 +42,7 @@ Build blinded research packets requiring systems to:
 
 Packets must not reveal ORION disposition vocabulary as gold labels to candidate systems.
 
-The adjudication design consumes frozen upstream donor semantics it does not own (per `papers/SYNC_CONTRACT.md`): P6's transition-admissibility/disposition semantics, P7's regime-change reopen semantics and P8's authorization-typing/discharge semantics enter the packet/adjudication design as frozen disposition types, and P5's evaluator-custody/authority-separation rules fix the evaluator-versus-authority split. P14's owned claim is the decision-process result — that this fail-closed governance process reduces false novelty/unsupported widening at matched capability — not authorization-semantics novelty. P15 SEI receipts are admissible as execution-evidence substrate for packet provenance/replay, with their dispositions imported as frozen inputs and never re-adjudicated here.
+The adjudication design consumes frozen upstream donor semantics it does not own (per `papers/SYNC_CONTRACT.md`): ORION-16's transition-admissibility/disposition semantics, ORION-17's regime-change reopen semantics and ORION-18's authorization-typing/discharge semantics enter the packet/adjudication design as frozen disposition types, and ORION-15's evaluator-custody/authority-separation rules fix the evaluator-versus-authority split. ORION-24's owned claim is the decision-process result — that this fail-closed governance process reduces false novelty/unsupported widening at matched capability — not authorization-semantics novelty. ORION-25 SEI receipts are admissible as execution-evidence substrate for packet provenance/replay, with their dispositions imported as frozen inputs and never re-adjudicated here.
 
 The schema/contract for this object is now frozen under `top_tier/`; the substantial packet corpus and external outputs remain to be populated by independent execution.
 

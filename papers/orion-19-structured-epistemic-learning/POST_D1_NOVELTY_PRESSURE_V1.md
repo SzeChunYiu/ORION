@@ -1,4 +1,4 @@
-# P9 post-D1 novelty pressure V1
+# ORION-19 post-D1 novelty pressure V1
 
 This note is a claim-boundary input, not programme-wide novelty authority. It was written after the official D1 workflow result but before final paper promotion and does not alter any frozen experiment.
 
@@ -15,7 +15,7 @@ The typed relational result also reaches `1.00` on protected double corruptions 
 
 ## Claims that current literature already owns
 
-P9 must **not** claim the following as general novelty:
+ORION-19 must **not** claim the following as general novelty:
 
 - relational inductive biases can improve relational/OOD generalization;
 - explicitly relational architectures or bottlenecks can support compositional reasoning;

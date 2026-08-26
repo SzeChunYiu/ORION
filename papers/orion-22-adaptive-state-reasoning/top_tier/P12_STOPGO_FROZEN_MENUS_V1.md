@@ -1,4 +1,4 @@
-# P12 stop/go public-data campaign — frozen action and signal menus V1
+# ORION-22 stop/go public-data campaign — frozen action and signal menus V1
 
 **Artifact class:** FROZEN PROTOCOL — NO RESULTS. The campaign this protocol
 freezes has **not** been executed. No datum, score, gate verdict or terminal
@@ -6,7 +6,7 @@ exists for it, and nothing in this file may be cited as evidence of any
 empirical outcome.
 
 - **Study id (reserved):** `P12_STOPGO_PUBLICDATA_V1`
-- **Bound issue:** SzeChunYiu/ORION#1086, P12 boxes "Freeze identical
+- **Bound issue:** SzeChunYiu/ORION#1086, ORION-22 boxes "Freeze identical
   state/reasoning action and signal menus for adaptive and strongest
   one-signal policies" and "Use task family/domain as the inference unit";
   portfolio disposition D-entry `STRICT_STOP_GO` in

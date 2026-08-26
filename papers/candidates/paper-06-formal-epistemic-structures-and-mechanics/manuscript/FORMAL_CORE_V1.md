@@ -1,4 +1,4 @@
-# P6 formal core V1
+# ORION-16 formal core V1
 
 **Candidate paper:** Formal Epistemic Structures and Mechanics  
 **Authority:** mathematical working object; novelty not yet authorized  
@@ -89,7 +89,7 @@ The event trace distinguishes at least:
 \mathsf{request},\mathsf{allow},\mathsf{deny},\mathsf{cannot\_check},\mathsf{commit},\mathsf{fail},\mathsf{revoke}.
 \]
 
-This request/commit separation is adopted from effect/authorization systems such as ETAS/FAVA; P6 does not claim it as novel.
+This request/commit separation is adopted from effect/authorization systems such as ETAS/FAVA; ORION-16 does not claim it as novel.
 
 ### Definition 6 (admissible mechanic step)
 We write
@@ -147,7 +147,7 @@ Suppose a purportedly uniformly sound strategy leaves some certified `q\in\opera
 Full reset is sound under the same assumptions but is not inclusion-minimal whenever a certified claim exists outside `\operatorname{Desc}_D(X)`.
 
 ### Donor boundary
-Truth-maintenance systems and the 2026 dependency-guided rollback repair work already establish selective dependency repair/preservation in important settings. P6 must therefore generalize across heterogeneous epistemic coordinates/effects/authority-bearing commits or relinquish this as a headline novelty.
+Truth-maintenance systems and the 2026 dependency-guided rollback repair work already establish selective dependency repair/preservation in important settings. ORION-16 must therefore generalize across heterogeneous epistemic coordinates/effects/authority-bearing commits or relinquish this as a headline novelty.
 
 ## 4. Mechanic composition
 
@@ -242,7 +242,7 @@ Suppose candidate mechanic `m` can rewrite both the predicate `J` deciding wheth
 #### Proof
 Choose `J'` as the constant authorization predicate or choose candidate-controlled evidence satisfying an acceptance branch. Since both objects are candidate-writable and no external constraint exists, authorization is reachable independently of the external property. `\square`
 
-P8 owns the general authority calculus; P6 uses this boundary only to state when recursive mechanic audit is structurally unsafe.
+ORION-18 owns the general authority calculus; ORION-16 uses this boundary only to state when recursive mechanic audit is structurally unsafe.
 
 ## 7. `CANNOT_CHECK` and failure semantics
 
@@ -259,7 +259,7 @@ Missing evidence is not evidence of failure, and computational success is not au
 
 ## 8. Donor-faithful embeddings
 
-P6 now treats the following as required embedding targets:
+ORION-16 now treats the following as required embedding targets:
 
 - **Dynamic Epistemic Logic / action models:** informational/update actions;
 - **AGM/iterated revision:** belief-change operators and rationality constraints;
@@ -273,11 +273,11 @@ P6 now treats the following as required embedding targets:
 - **Dependency-Guided Rollback Repair (arXiv:2608.10502):** typed dependency repair, preservation of independently supported state and selective replay.
 
 ### Theorem target 7 (conservative donor embedding)
-For each adopted donor, instantiate the relevant P6 structures so that the donor's native update/allow/rollback/locality judgments are preserved when P6-only dimensions are inert.
+For each adopted donor, instantiate the relevant ORION-16 structures so that the donor's native update/allow/rollback/locality judgments are preserved when ORION-16-only dimensions are inert.
 
 A generalization that changes donor-native verdicts without an explicit stronger premise is rejected as a false embedding.
 
-## 9. Widened P6 object under test
+## 9. Widened ORION-16 object under test
 
 The candidate is no longer merely
 
@@ -324,12 +324,12 @@ Finite enumeration supports the proofs and catches implementation mistakes; it d
 
 ## 11. Cross-domain transfer obligations from #353
 
-P6 must be tested outside the original P1 reconstruction setting on at least:
+ORION-16 must be tested outside the original ORION-11 reconstruction setting on at least:
 
 - finite symbolic workflow/state systems with exact ground truth;
 - persistent-memory/state repair with selective rollback;
 - a tool/agent workflow containing authorization-bearing effects;
-- a negative control where full reset or a plain transition graph is sufficient and P6 should not add complexity.
+- a negative control where full reset or a plain transition graph is sufficient and ORION-16 should not add complexity.
 
 Strong baselines include donor-specific rollback/effect/authorization representations, not only an untyped toy state machine.
 
@@ -348,7 +348,7 @@ This core does **not** claim novelty for:
 - provenance or retained history in isolation;
 - modular cognitive-agent architectures.
 
-The widened candidate residual is the donor-faithful **composition** of these mechanisms around epistemic commit/reopen/recursive-audit semantics. If #334/#352/#343 show that the composition is already established, or if transfer adds no theorem/benchmark discriminator, the formal material should merge into P1/P5 or a technical companion instead of becoming P6.
+The widened candidate residual is the donor-faithful **composition** of these mechanisms around epistemic commit/reopen/recursive-audit semantics. If #334/#352/#343 show that the composition is already established, or if transfer adds no theorem/benchmark discriminator, the formal material should merge into ORION-11/ORION-15 or a technical companion instead of becoming ORION-16.
 
 ## 13. What this formal core establishes now
 
@@ -359,6 +359,6 @@ The proofs establish elementary structural properties of the proposed definition
 - faithful embeddings of every donor;
 - that typed contracts improve real research outcomes;
 - proof-assistant verification;
-- that P6 should remain a separate paper.
+- that ORION-16 should remain a separate paper.
 
 Current novelty/promotion terminal remains `CANNOT_CHECK`.

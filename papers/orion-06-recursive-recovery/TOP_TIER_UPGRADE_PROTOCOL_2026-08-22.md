@@ -1,4 +1,4 @@
-# Q2 top-tier upgrade protocol — cross-domain negative-result recovery
+# ORION-02 top-tier upgrade protocol — cross-domain negative-result recovery
 
 **Freeze date:** 2026-08-22
 **Status:** prospective research protocol. The completed ORION-Q programme is one fixed case study; no cross-domain outcome is claimed yet.
@@ -135,7 +135,7 @@ For prospective B/C programmes, predeclare tool/compute budgets and primary test
 - If RECOVERY lowers false novelty but increases cost without improving terminal quality, report the tradeoff rather than a victory.
 - If DONOR_STOP performs equally on terminal quality, the recursive recovery layer is donor-absorbed for that setting.
 - If NAIVE_ITERATION produces equally good science with no greater claim mutation/false novelty, the proposed recovery discipline is not supported.
-- If cross-domain transfer fails, retain Q2 as a complete quantum case study.
+- If cross-domain transfer fails, retain ORION-02 as a complete quantum case study.
 
 ## 11. Top-tier success criterion
 

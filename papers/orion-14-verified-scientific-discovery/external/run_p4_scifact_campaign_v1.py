@@ -44,7 +44,7 @@ from pathlib import Path
 DATA = Path.home() / "orion-work/scifact/data"
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-MAP = REPO / "papers/paper-04-verified-scientific-discovery/protocol/SCIFACT_LABEL_STATE_MAP_V2.json"
+MAP = REPO / "papers/orion-14-verified-scientific-discovery/protocol/SCIFACT_LABEL_STATE_MAP_V2.json"
 
 OBLIGATIONS = (
     "claim_scope_conformance",

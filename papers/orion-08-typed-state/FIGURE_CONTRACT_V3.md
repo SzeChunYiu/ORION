@@ -1,4 +1,4 @@
-# Q4 figure contract — V3
+# ORION-04 figure contract — V3
 
 ## Figure 1 — Epistemic-binding benchmark taxonomy
 
@@ -58,7 +58,7 @@ This is a conceptual summary, not empirical evidence.
 
 ## Table 1 — Nearest-work and donor subtraction
 
-Use `NEAREST_WORK_MATRIX_V3.md` plus N1-C/N2-F5B negative controls. The table should make clear that typed memory, provenance and VoI are donor-owned; Q4's contribution is the matched-information scientific-decision test suite.
+Use `NEAREST_WORK_MATRIX_V3.md` plus N1-C/N2-F5B negative controls. The table should make clear that typed memory, provenance and VoI are donor-owned; ORION-04's contribution is the matched-information scientific-decision test suite.
 
 ## Visual reporting rules
 

@@ -1,11 +1,11 @@
-# ORION-P1 bounded peer-review-readiness attestation
+# ORION-ORION-11 bounded peer-review-readiness attestation
 
-**Terminal:** `ORION-P1 = PEER_REVIEW_READY`
+**Terminal:** `ORION-ORION-11 = PEER_REVIEW_READY`
 
 This attestation covers only the credential-free mechanical mutation-necessity
 claim reported by the prospectively frozen
-`P1.epistemic-mutation-necessity.v2.2.4` successor. It does not promote or
-rewrite the historical 48-case `P1.H1` result, which remains
+`ORION-11.epistemic-mutation-necessity.v2.2.4` successor. It does not promote or
+rewrite the historical 48-case `ORION-11.H1` result, which remains
 `NOT_SUPPORTED` / `UNDERPOWERED`.
 
 The readiness terminal is authorized by all of the following:

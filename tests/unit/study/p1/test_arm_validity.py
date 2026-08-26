@@ -92,7 +92,7 @@ def test_the_blind_reopen_floor_is_computed_from_the_suite_not_quoted() -> None:
         components: dict[str, list[list[str]]] = {}
         required: dict[str, tuple[str, ...]] = {}
         pattern = (
-            "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases/"
+            "papers/orion-11-recursive-epistemic-reconstruction/protocol/cases/"
             f"{split}/*.json"
         )
         for path in sorted(glob(pattern)):
@@ -174,7 +174,7 @@ def test_no_interaction_between_surfaces_separates_the_families() -> None:
         features: dict[str, list[float]] = {}
         labels: dict[str, str] = {}
         pattern = (
-            "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases/"
+            "papers/orion-11-recursive-epistemic-reconstruction/protocol/cases/"
             f"{split}/*.json"
         )
         for path in sorted(glob(pattern)):
@@ -215,7 +215,7 @@ def _suite_texts():
     from glob import glob
 
     texts, labels = {}, {}
-    pattern = "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases/*/*.json"
+    pattern = "papers/orion-11-recursive-epistemic-reconstruction/protocol/cases/*/*.json"
     for path in sorted(glob(pattern)):
         payload = json.loads(open(path).read())
         texts[payload["case_id"]] = payload["public_prompt"]

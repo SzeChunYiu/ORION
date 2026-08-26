@@ -1,4 +1,4 @@
-# P7 journal readiness V2.1
+# ORION-17 journal readiness V2.1
 
 **Normative manuscript:** `manuscript/FINAL.md`  
 **Formal core:** `manuscript/FORMAL_CORE_V2.md`  

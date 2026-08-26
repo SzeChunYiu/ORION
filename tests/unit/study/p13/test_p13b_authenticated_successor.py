@@ -16,7 +16,7 @@ from orion.study.p13.authenticated_successor import (
 from orion.study.p13.successor_authority import build_active_claim_authority
 
 ROOT = Path(__file__).resolve().parents[4]
-PAPER = ROOT / "papers/paper-13-responsibility-carrying-state"
+PAPER = ROOT / "papers/orion-23-responsibility-carrying-state"
 RESULT = PAPER / "P13B_AUTHENTICATED_CERTIFICATE_CORRUPTION_RESULT_V1.json"
 AUTHORITY = PAPER / "P13_ACTIVE_CLAIM_AUTHORITY_V2.json"
 

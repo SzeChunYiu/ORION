@@ -23,8 +23,8 @@ Define
 
 `joint_gain(B) = Q_joint(B) - max(Q_state_only(B), Q_reason_only(B))`.
 
-A positive P12 result requires `joint_gain>0` under the frozen comparison, not merely superiority to a fixed policy.
+A positive ORION-22 result requires `joint_gain>0` under the frozen comparison, not merely superiority to a fixed policy.
 
 Consider a one-unit world containing two prospectively distinguishable regimes. In the access-limited regime success requires spending the unit on state construction; in the reasoning-limited regime success requires spending it on reasoning. A state-only adaptive policy cannot solve the latter and a reasoning-only adaptive policy cannot solve the former. A joint policy that sees the regime signal can spend the same unit at the valuable locus.
 
-This existence argument is elementary and is not the empirical contribution. Its purpose is to identify the condition P12 must test: **heterogeneity in the location of marginal computation value**.
+This existence argument is elementary and is not the empirical contribution. Its purpose is to identify the condition ORION-22 must test: **heterogeneity in the location of marginal computation value**.

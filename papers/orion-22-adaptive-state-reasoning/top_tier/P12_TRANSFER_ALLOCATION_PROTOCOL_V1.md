@@ -1,11 +1,11 @@
-# P12 unchanged-allocator cross-domain transfer protocol V1
+# ORION-22 unchanged-allocator cross-domain transfer protocol V1
 
 **Programme:** #977
-**Purpose:** close the open P12 transfer gate — one frozen allocator, defined with no domain-specific parameter, applied unchanged across three qualitatively distinct exact domains — and bind the unified I/A/C/M resource-vector ontology to the same study so P9 and P12 accounting compose.
+**Purpose:** close the open ORION-22 transfer gate — one frozen allocator, defined with no domain-specific parameter, applied unchanged across three qualitatively distinct exact domains — and bind the unified I/A/C/M resource-vector ontology to the same study so ORION-19 and ORION-22 accounting compose.
 
 ## Scientific object
 
-The 2025–26 adaptive test-time-compute lane allocates within the reason/inference locus. None of its allocators can transfer across construction/reasoning loci because they possess no second locus. The discriminating evidence for P12's upward claim is therefore not another within-domain win: it is **one unchanged allocation rule exhibiting bounded (target: zero) regret against a per-case hindsight oracle in every domain, while each single-locus restriction policy (the donor family) is strictly suboptimal somewhere**.
+The 2025–26 adaptive test-time-compute lane allocates within the reason/inference locus. None of its allocators can transfer across construction/reasoning loci because they possess no second locus. The discriminating evidence for ORION-22's upward claim is therefore not another within-domain win: it is **one unchanged allocation rule exhibiting bounded (target: zero) regret against a per-case hindsight oracle in every domain, while each single-locus restriction policy (the donor family) is strictly suboptimal somewhere**.
 
 ## Frozen allocator (identical bytes in every domain)
 
@@ -42,14 +42,14 @@ Case files freeze every formula, grid, item set, literal set, start/goal pair, c
 
 ## Unified resource vector
 
-Every arm-case cell emits the P9 ledger field names so P9/P12 accounting compose:
+Every arm-case cell emits the ORION-19 ledger field names so ORION-19/ORION-22 accounting compose:
 
 `R = (I_sem, A_dim, A_transform, M_state, C_fit, C_infer, C_explicit, R_registered)`
 
 - `I_sem`: semantic information coordinates exposed to the arm (clause-literal occurrences / grid edges / item bits);
 - `A_dim`: representation dimension of the materialized or delivered state;
 - `A_transform`: construction/transform touches (watch-index passes, reverse-BFS expansions, DP-table fills);
-- `M_state`: learned model-state coordinates — identically zero; no P12 locus is learned;
+- `M_state`: learned model-state coordinates — identically zero; no ORION-22 locus is learned;
 - `C_fit`: fit touches — identically zero (no learned access mechanism);
 - `C_infer`: per-query serving work (indexed propagation examinations, query BFS expansions, row lookups);
 - `C_explicit`: independent verification operations, reported separately and never hidden;

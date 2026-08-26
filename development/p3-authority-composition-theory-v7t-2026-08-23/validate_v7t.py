@@ -91,7 +91,7 @@ def main() -> None:
     check("new_citation_present", "\\cite{osman2024uncertainty}" in tex)
     check("new_bib_entry_present", "@article{osman2024uncertainty" in (patched / "bibliography.bib").read_text())
     check("patch_does_not_duplicate_v6_results", "Outcome-blind V6 comparator-native preflight" not in patch.read_text())
-    check("terminal_preserved", "P3_V6_TWO_OF_THREE_NATIVE_SMOKE_READY__BERTMAP_PINNED_LOCK_API_INCOMPATIBILITY_CANNOT_CHECK__V5_SCIENTIFIC_READINESS_UNCHANGED_ZERO_OF_THREE" in (ROOT / "work/orion-takeover/papers/paper-03-global-knowledge-portrait/manuscript/sections/06-results.tex").read_text())
+    check("terminal_preserved", "P3_V6_TWO_OF_THREE_NATIVE_SMOKE_READY__BERTMAP_PINNED_LOCK_API_INCOMPATIBILITY_CANNOT_CHECK__V5_SCIENTIFIC_READINESS_UNCHANGED_ZERO_OF_THREE" in (ROOT / "work/orion-takeover/papers/orion-13-global-knowledge-portrait/manuscript/sections/06-results.tex").read_text())
 
     receipt = {
         "schema_version": "orion.p3.authority-composition-theory.validation.v7t",

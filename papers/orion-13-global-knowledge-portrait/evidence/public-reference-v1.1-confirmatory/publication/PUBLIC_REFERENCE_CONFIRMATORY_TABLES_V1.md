@@ -1,4 +1,4 @@
-# ORION-P3 public-reference confirmatory publication tables V1
+# ORION-ORION-13 public-reference confirmatory publication tables V1
 
 Generated deterministically from `CONFIRMATORY_ANALYSIS.json`. Scope: already-structured public-reference mapping only.
 

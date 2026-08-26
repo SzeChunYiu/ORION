@@ -1,4 +1,4 @@
-# P11 decoder-attack frontier protocol V1
+# ORION-21 decoder-attack frontier protocol V1
 
 **Programme:** #977  
 **State:** `FROZEN_BEFORE_EXECUTION`  

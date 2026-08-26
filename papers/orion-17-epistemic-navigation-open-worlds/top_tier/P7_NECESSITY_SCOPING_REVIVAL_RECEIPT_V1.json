@@ -20,7 +20,7 @@
   },
   "one_stage_attribution": "The necessity failure is a failure of the evidence scope of the rule, not of the composition semantics. V1 asked whether the administrative test (match: contract identity + bridge registry) is necessary for the semantic predicate (Total, defined on Demands) to compose. The rule is denied access to Demands; the condition it approximates is defined on Demands. No V1 axiom is wrong; the negative names which question each theorem answers.",
   "v2_frame": {
-    "protocol": "papers/paper-07-epistemic-navigation-open-worlds/top_tier/P7_NECESSITY_SCOPING_V2_FRAME_PROTOCOL_V1.md",
+    "protocol": "papers/orion-17-epistemic-navigation-open-worlds/top_tier/P7_NECESSITY_SCOPING_V2_FRAME_PROTOCOL_V1.md",
     "protocol_committed_before_execution": true,
     "opaque_scope": "obs = (Tgt t, Src u, bridge table); Demands/Discharged/Fresh/Total not admissible",
     "witness_aware_scope": "opaque scope + Demands on the two hand-off contracts",
@@ -28,8 +28,8 @@
     "maximal": "no strictly more permissive sound rule exists"
   },
   "verification": {
-    "script": "papers/paper-07-epistemic-navigation-open-worlds/top_tier/run_p7_necessity_scoping_v2.py",
-    "result_json": "papers/paper-07-epistemic-navigation-open-worlds/top_tier/P7_NECESSITY_SCOPING_V2_RESULT_V1.json",
+    "script": "papers/orion-17-epistemic-navigation-open-worlds/top_tier/run_p7_necessity_scoping_v2.py",
+    "result_json": "papers/orion-17-epistemic-navigation-open-worlds/top_tier/P7_NECESSITY_SCOPING_V2_RESULT_V1.json",
     "mode": "local deterministic single targeted script; stdlib only; no pytest/suites/xdist/cloning",
     "python": "3.13.12",
     "runtime_seconds": 1.622,
@@ -72,7 +72,7 @@
     ]
   },
   "empirical_correspondence": {
-    "source": "papers/paper-07-epistemic-navigation-open-worlds/top_tier/P7_OBJECTIVE_CHANGE_TRANSPORT_RESULT_RECEIPT_V1.md (PR #1016)",
+    "source": "papers/orion-17-epistemic-navigation-open-worlds/top_tier/P7_OBJECTIVE_CHANGE_TRANSPORT_RESULT_RECEIPT_V1.md (PR #1016)",
     "mapping": {
       "WITNESS_AWARE_1.0": "witness-aware scope",
       "VALUE_ONLY_0.3": "opaque-scope rule with evidence coarser than the registry (unsound and sub-maximal)",

@@ -1,4 +1,4 @@
-# P11 top-tier promotion V1 — Computational Placement and State Optionality
+# ORION-21 top-tier promotion V1 — Computational Placement and State Optionality
 
 **Programme:** #977  
 **Existing controlled authority:** `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_THEORY/SYSTEMS_SUPERIORITY_RESULT` remains valid.  
@@ -6,7 +6,7 @@
 
 ## Maximum claim to earn
 
-> **A representation is a computational placement decision.** Structural/search work can be paid during state construction, during downstream access/reasoning, or later through reconstruction after specialization destroys future optionality. P11 characterizes this trade-off theoretically and empirically, and predicts when task-specific compilation, caching, raw retention or universal materialization is resource-optimal.
+> **A representation is a computational placement decision.** Structural/search work can be paid during state construction, during downstream access/reasoning, or later through reconstruction after specialization destroys future optionality. ORION-21 characterizes this trade-off theoretically and empirically, and predicts when task-specific compilation, caching, raw retention or universal materialization is resource-optimal.
 
 Task-conditioned retrieval/memory, feature selection, partial evaluation, knowledge compilation, compression, usable information, sparse access and nonlinear decoders are donor-owned components.
 
@@ -22,7 +22,7 @@ Selected protected means:
 - digits: compiled linear `0.9577050449` vs universal linear `0.9682776230`; compiled forest `0.9666155989` vs universal forest `0.9732869081`;
 - breast cancer: compiled linear `0.9489675516` vs universal linear `0.9753609688`, so this dataset does not satisfy the frozen positive gate.
 
-**Earned claim:** non-oracle task-state compilation can substantially reduce state dimension while retaining near-universal performance on two protected real datasets. These comparisons are movements of P9's accessibility coordinate `A` under matched information `I` (donor-owned coordinate system, `papers/SYNC_CONTRACT.md`); P11's own object is the placement/optionality resource law, not the causal-diagnostic coordinate. This does not yet establish full end-to-end Pareto superiority, a universal compiler law, or the headline smaller-reasoner-vs-larger-universal substitution claim. The optionality law prices the *cost* of retained optionality versus reconstruction; it does not certify the *safety* of reuse, which is owned by P13's responsibility-scoped sufficiency contract. Wine and digits are shared programme infrastructure (P7 transport rows, P9 accessibility cells); the frozen quantities owned here are P11's own compiler endpoints above and the T11.2 parity checker witnesses, which are a separately frozen corpus from P13's parity episodes with no shared protected outcomes.
+**Earned claim:** non-oracle task-state compilation can substantially reduce state dimension while retaining near-universal performance on two protected real datasets. These comparisons are movements of ORION-19's accessibility coordinate `A` under matched information `I` (donor-owned coordinate system, `papers/SYNC_CONTRACT.md`); ORION-21's own object is the placement/optionality resource law, not the causal-diagnostic coordinate. This does not yet establish full end-to-end Pareto superiority, a universal compiler law, or the headline smaller-reasoner-vs-larger-universal substitution claim. The optionality law prices the *cost* of retained optionality versus reconstruction; it does not certify the *safety* of reuse, which is owned by ORION-23's responsibility-scoped sufficiency contract. Wine and digits are shared programme infrastructure (ORION-17 transport rows, ORION-19 accessibility cells); the frozen quantities owned here are ORION-21's own compiler endpoints above and the T11.2 parity checker witnesses, which are a separately frozen corpus from ORION-23's parity episodes with no shared protected outcomes.
 
 Exact execution hashes and artifact identities are bound in `papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md`.
 
@@ -41,7 +41,7 @@ No unrestricted nonlinear/time lower bound may be implied.
 
 ### T11.2 — No-answer-content-leakage condition
 
-Formalize a sufficient condition of no answer-content leakage — compiled state being informative/access-enhancing without containing or trivially encoding (laundering) the final protected answer — as an information-hiding property of compilation. This is distinct from P8's authority laundering, which is a decision-layer confusion owned by P8 (donor, `papers/SYNC_CONTRACT.md`). Include hostile constructions showing why query identity or latent-feature selection can otherwise leak answer content.
+Formalize a sufficient condition of no answer-content leakage — compiled state being informative/access-enhancing without containing or trivially encoding (laundering) the final protected answer — as an information-hiding property of compilation. This is distinct from ORION-18's authority laundering, which is a decision-layer confusion owned by ORION-18 (donor, `papers/SYNC_CONTRACT.md`). Include hostile constructions showing why query identity or latent-feature selection can otherwise leak answer content.
 
 ### T11.3 — Optionality law
 

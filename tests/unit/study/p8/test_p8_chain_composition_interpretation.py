@@ -570,7 +570,7 @@ class TestTheReport:
     def test_the_committed_artifact_matches_what_the_module_computes(self) -> None:
         artifact = (
             REPO_ROOT
-            / "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized"
+            / "papers/orion-18-epistemic-authority-autonomous-science/formal/mechanized"
             / "P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json"
         )
         assert artifact.is_file()

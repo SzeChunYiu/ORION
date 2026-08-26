@@ -3,7 +3,7 @@
 ## Overview
 
 This directory contains the gold-standard annotation dataset for the
-ORION Paper 3 evaluation protocol (`P3.cross-domain-atlas.v1`). The
+ORION Paper 3 evaluation protocol (`ORION-13.cross-domain-atlas.v1`). The
 dataset is used to score all 7 baselines, 8 ablations, and the full
 ORION system against human expert annotations.
 

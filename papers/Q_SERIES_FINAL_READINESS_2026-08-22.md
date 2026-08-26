@@ -7,9 +7,9 @@
 
 This record states what is complete **inside the repository** after recursive evidence-first paper engineering. Internal scores and mock reviews are not journal decisions. Skipped external pre-review, future prospective studies and bounded prior-art searches do not become scientific PASS states.
 
-## Q1 — A Sharp Support-Two Normal Form for Shared-Tag TARE Quantum Compilation
+## ORION-01 — A Sharp Support-Two Normal Form for Shared-Tag TARE Quantum Compilation
 
-**Canonical manuscript:** `papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md`
+**Canonical manuscript:** `papers/orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md`
 
 Scientific core:
 
@@ -26,9 +26,9 @@ Scientific core:
 - npj Quantum Information: `READY_FOR_SCOPED_TARGET` after ordinary submission production.
 - new Q-era experiment required for the present theorem claim: `NO`.
 
-## Q2 — From Negative Results to Theorem
+## ORION-02 — From Negative Results to Theorem
 
-**Canonical manuscript:** `papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3_REFINED.md`
+**Canonical manuscript:** `papers/orion-06-recursive-recovery/MANUSCRIPT_V3_REFINED.md`
 
 Scientific/method core:
 
@@ -46,9 +46,9 @@ Scientific/method core:
 
 The manuscript may not convert the later R6S theorem into causal evidence that the recovery workflow generally improves science.
 
-## Q3 — Deferred Outcome Scoring for Scientific Decision Instruments
+## ORION-03 — Deferred Outcome Scoring for Scientific Decision Instruments
 
-**Canonical manuscript:** `papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3_REFINED.md`
+**Canonical manuscript:** `papers/orion-07-dual-instrument/MANUSCRIPT_V3_REFINED.md`
 
 Systems/benchmark core:
 
@@ -58,7 +58,7 @@ Systems/benchmark core:
 - `CANNOT_CHECK`, `UNRESOLVED` and `INVALIDATED_ITEM` retained;
 - shared-versus-distinct instrument decomposition;
 - historical V0 represented under the later typed schema without pretending the schema existed during the original prospective run;
-- Q3 harness invalid-content recovery remains part of benchmark temporal integrity.
+- ORION-03 harness invalid-content recovery remains part of benchmark temporal integrity.
 
 **Round-two terminal:**
 
@@ -68,9 +68,9 @@ Systems/benchmark core:
 
 The correct evidence upgrade is the already-preregistered multi-frontier series, not retrospective item inflation.
 
-## Q4 — Epistemic Bindings for Scientific Decisions
+## ORION-04 — Epistemic Bindings for Scientific Decisions
 
-**Canonical manuscript:** `papers/Q-paper-04-typed-state/MANUSCRIPT_V3_REFINED.md`
+**Canonical manuscript:** `papers/orion-08-typed-state/MANUSCRIPT_V3_REFINED.md`
 
 Scientific/method core:
 
@@ -95,16 +95,16 @@ The V3 publication wave is executable, not prose-only.
 - `src/orion/registry.py` fixes the recursive V3 epoch and canonical manuscripts.
 - `papers/FRAMEWORK_SNAPSHOT.json` mirrors those identities.
 - `src/orion/programme/q_series_sync.py` verifies theorem evidence, readiness asymmetry and evidence blockers.
-- `papers/Q_SERIES_CONTENT_BINDING_V1.json` binds V3 manuscripts, V3 ledgers, nearest-work/figure contracts, refinement donor/protocol, round-two verdicts and Q4 paired analysis by Git blob identity.
+- `papers/Q_SERIES_CONTENT_BINDING_V1.json` binds V3 manuscripts, V3 ledgers, nearest-work/figure contracts, refinement donor/protocol, round-two verdicts and ORION-04 paired analysis by Git blob identity.
 - `orion_research_harness.paper_refinement` implements evidence-blocking / target-transfer / plateau terminals.
-- `orion_research_harness.frontier_benchmark` implements Q3's typed item/decision/deferred-score contract.
-- `.github/workflows/q-series-publication-sync.yml` runs framework/binding tests, harness refinement/frontier tests, Q1 proof sanity, Q3 typed V0 reconstruction and Q4 paired-analysis reproduction.
+- `orion_research_harness.frontier_benchmark` implements ORION-03's typed item/decision/deferred-score contract.
+- `.github/workflows/q-series-publication-sync.yml` runs framework/binding tests, harness refinement/frontier tests, ORION-01 proof sanity, ORION-03 typed V0 reconstruction and ORION-04 paired-analysis reproduction.
 
 Green software tests can only establish synchronization/reproduction of the declared local surface. They cannot promote novelty, journal acceptance or a claim whose scientific evidence gate is blocked.
 
 ## Release rule
 
-A material change to a canonical V3 manuscript, claim ledger, nearest-work table, figure contract, review terminal, flagship proof, publication analysis, final spec or Q3/Q4 harness contract requires:
+A material change to a canonical V3 manuscript, claim ledger, nearest-work table, figure contract, review terminal, flagship proof, publication analysis, final spec or ORION-03/ORION-04 harness contract requires:
 
 1. re-checking claim/evidence integrity;
 2. re-running the recursive reviewer/target pass if the argument or target changes;

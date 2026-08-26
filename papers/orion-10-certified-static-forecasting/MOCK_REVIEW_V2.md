@@ -1,4 +1,4 @@
-# QG2 mock peer review V2
+# ORION-10 mock peer review V2
 
 **Subject:** `MANUSCRIPT_V2.md`  
 **Method:** three mutually blind reviews, then editor synthesis.  
@@ -18,13 +18,13 @@ Recommended definition:
 
 The manuscript need not change the implementation, but it should give a formal reporting schema and populate it for (i) an exact old-panel row, (ii) the QG5 refuting row, and (iii) an unverified library row.
 
-**Severity:** P1, text/formalization only.
+**Severity:** ORION-11, text/formalization only.
 
 ## Major R1.2 — distinguish theorem-backed exactness of `F2` from runtime implementation correctness
 
 `C_DP=C_D++` is a theorem about the mathematical family. The executable `F2` implementation is exact only if its enumerator faithfully computes the family minimum. The manuscript currently approaches this distinction but should state the implementation binding/checker that connects code output to the theorem object.
 
-**Severity:** P1 reproducibility/formal boundary.
+**Severity:** ORION-11 reproducibility/formal boundary.
 
 ## Decision
 
@@ -38,15 +38,15 @@ Revision required, no new science.
 
 The Related Work section is appropriately cautious, but the title/abstract phrase “quantum compilation” could still be read as broad. The manuscript should say early that the objective is a frozen structural TARE support-count cost, not gate count, T-count, physical qubits or runtime.
 
-**Severity:** P1 framing.
+**Severity:** ORION-11 framing.
 
-## Major R2.2 — the QG7 second refutation must not make QG2 look unfinished
+## Major R2.2 — the QG7 second refutation must not make ORION-10 look unfinished
 
 The manuscript uses later QG7 as evidence that cheap closed forms may fail again. Good. But readers may ask why submit before the latest all-`n` closed-form family is proved.
 
 Recommended response: make the paper's object **certificate-layered forecasting**, for which the absence of a final smallest closed form is not a missing prerequisite because `F2=C_D++` is already theorem-backed exact. The interpretability search is explicitly a companion/open optimization.
 
-**Severity:** P1 argument architecture, no experiment.
+**Severity:** ORION-11 argument architecture, no experiment.
 
 ## Decision
 
@@ -60,19 +60,19 @@ Strong paper after scope clarification.
 
 The manuscript correctly rejects a population-accuracy interpretation. It should nevertheless show where the denominator comes from so the one error cannot be perceived as benchmark cherry-picking. Add a table with structured `n=2`, fresh seeded, chemistry/receipt-bound and other exact comparison counts, plus the protocol/seed/source.
 
-**Severity:** P1 display/reporting.
+**Severity:** ORION-11 display/reporting.
 
 ## Major R3.2 — timing belongs in supplement unless a target journal requires systems evaluation
 
 Because the scientific story is exactness/refutation, cache-sensitive speedup summaries may distract and invite systems-level comparisons that the paper is not designed to support. Default to supplement and retain environment/profiling data there.
 
-**Severity:** P2 editorial.
+**Severity:** ORION-12 editorial.
 
 ## Major R3.3 — unverified forecasts must never enter exactness plots
 
 Keep forecast-only library rows in a separately styled table/figure. A figure combining verified and forecast-only values with the same glyph would be misleading even if the caption explains it.
 
-**Severity:** P1 figure-integrity blocker.
+**Severity:** ORION-11 figure-integrity blocker.
 
 ## Decision
 

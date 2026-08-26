@@ -1,6 +1,6 @@
-# Paper Q1 claim ledger V2 — sharp support-two normal forms
+# Paper ORION-01 claim ledger V2 — sharp support-two normal forms
 
-**Manuscript:** `papers/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md`
+**Manuscript:** `papers/archive/2026-08-pre-unification/Q-paper-01-tare-expressivity/MANUSCRIPT_SUBMISSION_DRAFT.md`
 **Date:** 2026-08-22
 
 Status vocabulary:

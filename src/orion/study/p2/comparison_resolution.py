@@ -372,9 +372,9 @@ def inspect_campaign_result(payload: dict[str, Any]) -> ResolutionReport:
 
 #: Every published P2 Wide campaign result, relative to the repository root.
 CAMPAIGN_RESULTS: tuple[str, ...] = (
-    "papers/paper-02-open-world-scientific-discovery/evidence/external_results/"
+    "papers/orion-12-open-world-scientific-discovery/evidence/external_results/"
     "P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json",
-    "papers/paper-02-open-world-scientific-discovery/evidence/external_results/"
+    "papers/orion-12-open-world-scientific-discovery/evidence/external_results/"
     "P2_WIDE_OPENAIRE_MATCHED_RESULT_V3.json",
 )
 

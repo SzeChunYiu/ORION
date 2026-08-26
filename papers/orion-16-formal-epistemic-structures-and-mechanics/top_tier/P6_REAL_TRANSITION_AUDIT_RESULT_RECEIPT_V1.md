@@ -1,4 +1,4 @@
-# P6 real transition audit result receipt V1
+# ORION-16 real transition audit result receipt V1
 
 **Run:** GitHub Actions `32660765126` (pull_request, head `5ebd4e050950cf0f484c93f1b503218905c85bf3`, conclusion `success`)  
 **Artifact:** `p6-real-transition-audit-v1`, artifact ID `9498743691`  
@@ -30,10 +30,10 @@ Across `16` frozen cases in `4` real-domain families (`4` each: `rocrate-standar
 - donor-only gate (lower layer): `0.4375` accuracy with `9` unsafe false-admissible decisions and `1` authority-laundering decision; unsafe in all `4` families (`3`/`2`/`2`/`2`), `donor_unsafe_family_count: 4`;
 - the independent checker's own lower-layer unsafe counts per family (`3`/`2`/`2`/`2`) agree exactly.
 
-The audit separates real regime-transition admissibility (witness/alias/obligation-aware) from donor-permission-only reasoning across four distinct live programme domains: the public RO-Crate standard transition, P9 artifact recovery, P10 native coverage, and P15 provenance import.
+The audit separates real regime-transition admissibility (witness/alias/obligation-aware) from donor-permission-only reasoning across four distinct live programme domains: the public RO-Crate standard transition, ORION-19 artifact recovery, ORION-20 native coverage, and ORION-25 provenance import.
 
 ## Scientific disposition
 
-P6 now has a machine-checked, replay-stable, independently corroborated audit showing that donor-permission-only reasoning is unsafe in every tested real domain family while the epistemic-transition gate is exact, without becoming unnecessarily conservative (`0` unnecessary reopens).
+ORION-16 now has a machine-checked, replay-stable, independently corroborated audit showing that donor-permission-only reasoning is unsafe in every tested real domain family while the epistemic-transition gate is exact, without becoming unnecessarily conservative (`0` unnecessary reopens).
 
-This result does **not** certify P6's formal structures beyond the frozen 16-case set, does not substitute for theorem-level generalization work already scoped in the promotion programme, and does not by itself move P6 to `TOP_TIER_SUBMISSION_READY`. Manuscript-level claim scoping and donor refresh remain open per #977.
+This result does **not** certify ORION-16's formal structures beyond the frozen 16-case set, does not substitute for theorem-level generalization work already scoped in the promotion programme, and does not by itself move ORION-16 to `TOP_TIER_SUBMISSION_READY`. Manuscript-level claim scoping and donor refresh remain open per #977.

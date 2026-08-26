@@ -106,7 +106,7 @@ jobs:
             --input-file /tmp/p2-wide-v3-recovery/gold/AutoResearchBench.jsonl.obf.json \
             --output-file /tmp/p2-wide-v3-recovery/gold/AutoResearchBench.jsonl
           echo "$PINNED_FULL_BENCHMARK_SHA256  /tmp/p2-wide-v3-recovery/gold/AutoResearchBench.jsonl" | sha256sum -c -
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
             --full /tmp/p2-wide-v3-recovery/gold/AutoResearchBench.jsonl \
             --public /tmp/p2-wide-v3-recovery/gold/public_rederived_not_used_by_candidates.jsonl \
             --gt /tmp/p2-wide-v3-recovery/gold/wide_gt.jsonl \
@@ -147,9 +147,9 @@ jobs:
           PROBE=$(find /tmp/p2-wide-v3-recovery/capture -name transport_probe.json -type f -print -quit)
           RESPONSE=$(find /tmp/p2-wide-v3-recovery/capture -name transport_probe_response.json -type f -print -quit)
           test -n "$PROBE" && test -n "$RESPONSE"
-          python papers/paper-02-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v3.py \
-            --v3-freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json \
-            --v2-freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json \
+          python papers/orion-12-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v3.py \
+            --v3-freeze papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json \
+            --v2-freeze papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json \
             --manifest "$ROOT/SHARED_ACQUISITION_MANIFEST.json" \
             --transport-probe "$PROBE" \
             --transport-probe-response "$RESPONSE" \
@@ -195,7 +195,7 @@ jobs:
             /tmp/p2-wide-v3-recovery/PRE_GOLD_CANDIDATE_HASHES.json
             /tmp/p2-wide-v3-recovery/SOURCE_CUSTODY.json
             /tmp/p2-wide-v3-recovery/gold/split_manifest.json
-            papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json
-            papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json
+            papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json
+            papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json
           if-no-files-found: warn
           retention-days: 30

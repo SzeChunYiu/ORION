@@ -1,4 +1,4 @@
-# P12 verifier-backed resource-location protocol V1
+# ORION-22 verifier-backed resource-location protocol V1
 
 **Programme:** #977  
 **State:** `FROZEN_BEFORE_EXECUTION`  

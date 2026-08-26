@@ -1,4 +1,4 @@
-# P6 top-tier promotion V1 — Epistemic Transition Systems
+# ORION-16 top-tier promotion V1 — Epistemic Transition Systems
 
 **Programme:** #977  
 **Existing controlled authority:** `THEORY_FINISHED_V2_1` / peer-review package remains valid.  
@@ -35,9 +35,9 @@ Build the strongest integrated comparator from:
 - effect/permission constraints;
 - provenance and evidence binding;
 - generic authorization / policy enforcement;
-- existing ORION P1/P4/P8 interfaces only as frozen upstream donors, without re-owning their claims.
+- existing ORION ORION-11/ORION-14/ORION-18 interfaces only as frozen upstream donors, without re-owning their claims.
 
-The baseline must receive the same state, transition and evidence information as P6.
+The baseline must receive the same state, transition and evidence information as ORION-16.
 
 The current bounded donor product receives the same frozen transition facts and deliberately omits only the higher scientific-disposition semantics under test. Broad top-tier authority still requires an actual donor-complete real-system implementation rather than treating this finite comparator as universal.
 
@@ -49,7 +49,7 @@ Define a state transition as a product of at least:
 
 `(computational support, evidence meaning, scientific obligation, authority/commit)`.
 
-The fourth factor is authority/commit status as defined by the P8 layer (frozen upstream donor per `papers/SYNC_CONTRACT.md`), preserved or explicitly reopened by the transition — P6 does not re-own the authorization semantics that determine the status, only the transition-admissibility consequence. The P1/P4/P8 donor declaration above therefore extends from the comparator baseline to the factor definitions themselves.
+The fourth factor is authority/commit status as defined by the ORION-18 layer (frozen upstream donor per `papers/SYNC_CONTRACT.md`), preserved or explicitly reopened by the transition — ORION-16 does not re-own the authorization semantics that determine the status, only the transition-admissibility consequence. The ORION-11/ORION-14/ORION-18 donor declaration above therefore extends from the comparator baseline to the factor definitions themselves.
 
 The finite four-factor factorization/non-implication object is executable and independently reproduced. A broader theorem beyond the frozen finite semantics remains open.
 
@@ -57,7 +57,7 @@ The finite four-factor factorization/non-implication object is executable and in
 
 For transitions `A -> B -> C`, characterize when admissibility certificates compose and when intermediate evidence/obligation transport forces reopening.
 
-The bounded primary checker covers positive composition plus epoch/scope/open-obligation counterexamples, and the independent verifier reconstructs the same protected semantic boundary through different implementation structure. The epoch/scope matching conditions here are intra-regime: they are written within one fixed semantic regime's token vocabulary. Whether support survives when that vocabulary itself is replaced is regime-level transport and is owned by P7, which takes these certificates as typed inputs. A proof-assistant generalization beyond this finite scope remains optional future strengthening, not authority already claimed here.
+The bounded primary checker covers positive composition plus epoch/scope/open-obligation counterexamples, and the independent verifier reconstructs the same protected semantic boundary through different implementation structure. The epoch/scope matching conditions here are intra-regime: they are written within one fixed semantic regime's token vocabulary. Whether support survives when that vocabulary itself is replaced is regime-level transport and is owned by ORION-17, which takes these certificates as typed inputs. A proof-assistant generalization beyond this finite scope remains optional future strengthening, not authority already claimed here.
 
 ### T6.3 — Erasure non-full-abstraction generalization
 
@@ -84,12 +84,12 @@ These are executable transition records, not broad samples of production systems
 
 ## Strongest hostile attacks
 
-- donor product extended with every P6-visible coordinate except P6 terminology;
-- all P6 gains vanish once the donor baseline gets equivalent evidence information;
-- P6 simply duplicates P8 authorization;
-- P6 simply rephrases P1 selective reopening;
-- hidden state gives P6 privileged dependency/evidence information;
-- a safe donor transition is blocked because P6 over-conservatively requires full recomputation;
+- donor product extended with every ORION-16-visible coordinate except ORION-16 terminology;
+- all ORION-16 gains vanish once the donor baseline gets equivalent evidence information;
+- ORION-16 simply duplicates ORION-18 authorization;
+- ORION-16 simply rephrases ORION-11 selective reopening;
+- hidden state gives ORION-16 privileged dependency/evidence information;
+- a safe donor transition is blocked because ORION-16 over-conservatively requires full recomputation;
 - certificate composition silently ignores epoch/context drift.
 
 ## Independent authority
@@ -109,8 +109,8 @@ The bounded corpus now has two independent authority layers: prospectively froze
 - [x] second structurally independent checker reproduces all protected ETS V1 classifications and theorem-summary invariants;
 - [ ] broad real-system replication against actual donor-complete transition products;
 - [ ] theorem generalization beyond the frozen finite ETS V1 scope if the final headline requires it;
-- [ ] cross-paper non-overlap review against P1/P4/P7/P8 at final manuscript scope;
+- [ ] cross-paper non-overlap review against ORION-11/ORION-14/ORION-17/ORION-18 at final manuscript scope;
 - [ ] fresh nearest-work saturation immediately before submission;
-- [x] current P6 package content binding and candidate PDF audit; final top-tier submission-byte binding remains part of the last submission pass.
+- [x] current ORION-16 package content binding and candidate PDF audit; final top-tier submission-byte binding remains part of the last submission pass.
 
 If an actual donor-complete product becomes extensionally equivalent to ETS once given responsibility-scoped evidence/obligation/authority semantics, record the equivalence as the result; do not manufacture residual novelty.

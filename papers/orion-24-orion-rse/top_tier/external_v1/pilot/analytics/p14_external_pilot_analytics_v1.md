@@ -1,4 +1,4 @@
-# P14 external pilot analytics (v1)
+# ORION-24 external pilot analytics (v1)
 
 Wiring check only. All systems NOT_AUTHORITY; co-primary condition PENDING_EXTERNAL.
 

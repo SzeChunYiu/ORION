@@ -1,7 +1,7 @@
 # Paper 2 scientific-ascent packet
 
 Date: 2026-08-23  
-Paper: `papers/paper-02-open-world-scientific-discovery/`  
+Paper: `papers/orion-12-open-world-scientific-discovery/`  
 Working title: **The Acquisition--Authority Envelope for Open-World Scientific Discovery**
 
 ## 1. Scientific diagnosis

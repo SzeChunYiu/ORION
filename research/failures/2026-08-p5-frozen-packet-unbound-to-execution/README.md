@@ -1,7 +1,7 @@
 # P5 frozen live-trial packet is not bound to the merged execution path
 
 **Observed:** 2026-08-17 while discriminating whether issue #8's
-`papers/paper-05-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json` is a valid
+`papers/orion-15-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json` is a valid
 pre-outcome freeze that may now be executed.
 
 **Terminal:** `CANNOT_CHECK` on the packet-to-closure-subject binding, plus a
@@ -28,7 +28,7 @@ better condition than the surrounding issue text suggests.
 
 3. **"Merged GLM-5.2 outcomes make the packet post-outcome."** Refuted — the two
    are different subjects. `evidence/glm-5.2-attribution/report.json` records
-   `suite_path = papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json`,
+   `suite_path = papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json`,
    24 root-cause attribution cases `P5-HC-001`..`P5-HC-024`. The packet's tasks are
    `P5.LIVE.WIDE.stopping-rule-source-families` and
    `P5.LIVE.DEEP.flat-round-without-lineage`. Post-hoc-ness is defined relative to
@@ -74,7 +74,7 @@ terminal rather than a guess.
 
 `.github/workflows/p5_phase2_live_execution.yml` (added `f2d3f44`, 2026-08-17 —
 absent at freeze) is triggered by a push to `main` touching itself or
-`papers/paper-05-self-orion/phase2/LIVE_EXECUTION_TRIGGER.txt` (added `f74e494`).
+`papers/orion-15-self-orion/phase2/LIVE_EXECUTION_TRIGGER.txt` (added `f74e494`).
 It never reads `LIVE_TRIAL_PACKET_V1.json`.
 
 The packet is not an orphan artifact — it is read and protected elsewhere, which

@@ -13,7 +13,7 @@ import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-Q3 = ROOT / "papers/Q-paper-03-dual-instrument"
+Q3 = ROOT / "papers/orion-07-dual-instrument"
 
 PREOUTCOME_ANCHOR = "85bb1bc013b8148e2e2d9664cabd17e8bbd7b1a1"
 ANALYZER_COMMITS = {

@@ -1,4 +1,4 @@
-# P2 claim/PDF audit — retained historical exact render
+# ORION-12 claim/PDF audit — retained historical exact render
 
 Date: 2026-08-21  
 Historical package rebind base: `ca7df1055a43f97eaf8d142a62011c4c261af368`  
@@ -29,4 +29,4 @@ the current inventory and passing CI do not perform that operation. The
 scientific ceiling remains `P2_NARROWED`; external superiority remains
 `CANNOT_CHECK`, and the provider-invalid campaign remains adverse evidence.
 
-`P2.CURRENT_PACKAGE` remains **OPEN** until the fresh immutable PDF and current page-level visual and claim audit exist.
+`ORION-12.CURRENT_PACKAGE` remains **OPEN** until the fresh immutable PDF and current page-level visual and claim audit exist.

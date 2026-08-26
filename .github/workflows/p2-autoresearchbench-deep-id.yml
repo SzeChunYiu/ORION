@@ -83,7 +83,7 @@ jobs:
       - name: Split Deep gold before candidate custody
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py prepare \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py prepare \
             --full /tmp/arb-deep/AutoResearchBench.jsonl \
             --public /tmp/arb-deep/deep_public.jsonl \
             --gt /tmp/arb-deep/deep_gt.jsonl \
@@ -92,7 +92,7 @@ jobs:
       - name: Run gold-blind keyless arXiv candidate
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py run \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py run \
             --public /tmp/arb-deep/deep_public.jsonl \
             --output /tmp/arb-deep/candidate.jsonl \
             --trace /tmp/arb-deep/trace.jsonl \
@@ -102,12 +102,12 @@ jobs:
       - name: Run deterministic exact-ID deviation
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py evaluate \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py evaluate \
             --public /tmp/arb-deep/deep_public.jsonl \
             --gt /tmp/arb-deep/deep_gt.jsonl \
             --candidate /tmp/arb-deep/candidate.jsonl \
             --output /tmp/arb-deep/evaluation.json
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py summarize \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py summarize \
             --split-manifest /tmp/arb-deep/split_manifest.json \
             --run-manifest /tmp/arb-deep/run_manifest.json \
             --evaluation /tmp/arb-deep/evaluation.json \
@@ -118,7 +118,7 @@ jobs:
       - name: Build host-owned official Deep judge input
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py build-official-input \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py build-official-input \
             --public /tmp/arb-deep/deep_public.jsonl \
             --gt /tmp/arb-deep/deep_gt.jsonl \
             --candidate /tmp/arb-deep/candidate.jsonl \
@@ -151,7 +151,7 @@ jobs:
             --api-base "$BASE" \
             --api-key "$KEY" \
             --max-candidates-per-pass 1
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py summarize-official \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py summarize-official \
             --split-manifest /tmp/arb-deep/split_manifest.json \
             --run-manifest /tmp/arb-deep/run_manifest.json \
             --official-input /tmp/arb-deep/official_input.jsonl \

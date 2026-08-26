@@ -14,7 +14,7 @@ Therefore the reported P14B numerical separation is **not a protocol-conforming 
 
 P14B was already downgraded for a separate, stronger circularity concern: the `ORION_RSE_FULL` arm reused the same adjudication function that generated protected gold. This correction adds a second reason that P14B cannot carry external claim authority.
 
-The P14B files and terminal are retained as development/diagnostic history. They are never used as the primary evidence for P14.
+The P14B files and terminal are retained as development/diagnostic history. They are never used as the primary evidence for ORION-24.
 
 ## Successor
 
@@ -27,4 +27,4 @@ P14C does not inherit P14B's nuisance-reminting promise; instead the frozen case
 
 ## Claim rule
 
-Any manuscript, README, claim ledger, PR description, or reviewer summary that mentions P14B must label it as **diagnostic/non-authoritative**. The strongest controlled P14 result is P14C specification-separated governance-contract conformance.
+Any manuscript, README, claim ledger, PR description, or reviewer summary that mentions P14B must label it as **diagnostic/non-authoritative**. The strongest controlled ORION-24 result is P14C specification-separated governance-contract conformance.

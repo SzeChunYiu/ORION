@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
-Q3 = ROOT / "papers/Q-paper-03-dual-instrument"
+Q3 = ROOT / "papers/orion-07-dual-instrument"
 
 
 def canonical(v: Any) -> bytes:

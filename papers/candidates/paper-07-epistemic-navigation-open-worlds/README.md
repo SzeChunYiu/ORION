@@ -1,4 +1,4 @@
-# P7 candidate — Epistemic Navigation in Open Worlds
+# ORION-17 candidate — Epistemic Navigation in Open Worlds
 
 **Status:** `SUBMISSION_CONTENT_COMPLETE`; exact-head CI determines
 `PEER_REVIEW_READY` as specified in `JOURNAL_READINESS_V2_1.md`.
@@ -11,7 +11,7 @@ Can open-world scientific reasoning be modeled as navigation over an epistemic s
 
 ## Scoped contribution
 
-P7 tentatively models navigation state using:
+ORION-17 tentatively models navigation state using:
 
 - current epistemic location/state;
 - frontier and open obligations;
@@ -27,15 +27,15 @@ The main hypothesis is that fixed-space search is insufficient when scientific p
 
 ## Ownership boundary
 
-P2 owns open-world scientific discovery, route independence, question-conditioned memory, route/task stopping and recall-first promotion. P7 survives only if it demonstrates a more general navigation object that transfers beyond retrieval and adds a distinct mechanism—especially **topology-changing reframing**—rather than simply renaming P2 route governance.
+ORION-12 owns open-world scientific discovery, route independence, question-conditioned memory, route/task stopping and recall-first promotion. ORION-17 survives only if it demonstrates a more general navigation object that transfers beyond retrieval and adds a distinct mechanism—especially **topology-changing reframing**—rather than simply renaming ORION-12 route governance.
 
 ### Explicit nonclaims
 
-P7 does not claim novelty for graph search, knowledge-graph navigation, information foraging, POMDP exploration, query diversification, retrieval planning, replanning, or stopping criteria individually.
+ORION-17 does not claim novelty for graph search, knowledge-graph navigation, information foraging, POMDP exploration, query diversification, retrieval planning, replanning, or stopping criteria individually.
 
 ## Constructive nearest-work result
 
-The initial literature pass surfaced Search-on-Graph, Mind-ParaWorld/MPW-Bench, the Initial Exploration Problem in knowledge graphs, and evidence that current AI research agents can narrow rather than broaden scientific exploration. P2 already contains a large nearest-work base in open-world retrieval and stopping.
+The initial literature pass surfaced Search-on-Graph, Mind-ParaWorld/MPW-Bench, the Initial Exploration Problem in knowledge graphs, and evidence that current AI research agents can narrow rather than broaden scientific exploration. ORION-12 already contains a large nearest-work base in open-world retrieval and stopping.
 
 The hostile novelty question is:
 

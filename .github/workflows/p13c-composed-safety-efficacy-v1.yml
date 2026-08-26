@@ -3,17 +3,17 @@ name: p13c-composed-safety-efficacy-v1
 on:
   pull_request:
     paths:
-      - 'papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_SAFETY_EFFICACY_PROTOCOL_V1.md'
-      - 'papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_GOLD_SPEC_V1.json'
-      - 'papers/paper-13-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py'
+      - 'papers/orion-23-responsibility-carrying-state/P13C_COMPOSED_SAFETY_EFFICACY_PROTOCOL_V1.md'
+      - 'papers/orion-23-responsibility-carrying-state/P13C_COMPOSED_GOLD_SPEC_V1.json'
+      - 'papers/orion-23-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py'
       - 'src/orion/study/p13/authenticated_successor.py'
       - '.github/workflows/p13c-composed-safety-efficacy-v1.yml'
   push:
     branches: [main]
     paths:
-      - 'papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_SAFETY_EFFICACY_PROTOCOL_V1.md'
-      - 'papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_GOLD_SPEC_V1.json'
-      - 'papers/paper-13-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py'
+      - 'papers/orion-23-responsibility-carrying-state/P13C_COMPOSED_SAFETY_EFFICACY_PROTOCOL_V1.md'
+      - 'papers/orion-23-responsibility-carrying-state/P13C_COMPOSED_GOLD_SPEC_V1.json'
+      - 'papers/orion-23-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py'
       - 'src/orion/study/p13/authenticated_successor.py'
       - '.github/workflows/p13c-composed-safety-efficacy-v1.yml'
   workflow_dispatch:
@@ -30,13 +30,13 @@ jobs:
       - name: Execute composed safety-efficacy benchmark (two-subprocess replay)
         run: |
           set -euo pipefail
-          python papers/paper-13-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py \
-            --out papers/paper-13-responsibility-carrying-state/p13c_composed_result_ci.json \
+          python papers/orion-23-responsibility-carrying-state/run_p13c_composed_safety_efficacy_v1.py \
+            --out papers/orion-23-responsibility-carrying-state/p13c_composed_result_ci.json \
             > p13c_ci_summary.json
           python - <<'PY'
           import json
           from pathlib import Path
-          p = json.loads(Path('papers/paper-13-responsibility-carrying-state/p13c_composed_result_ci.json').read_text())
+          p = json.loads(Path('papers/orion-23-responsibility-carrying-state/p13c_composed_result_ci.json').read_text())
           assert p['terminal'] == 'P13C_COMPOSED_SAFETY_EFFICACY_SUPPORTED', p['terminal']
           assert all(p['gates'].values()), {k: v for k, v in p['gates'].items() if not v}
           counts = p['core']['counts']
@@ -51,4 +51,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: p13c-composed-safety-efficacy-v1
-          path: papers/paper-13-responsibility-carrying-state/p13c_composed_result_ci.json
+          path: papers/orion-23-responsibility-carrying-state/p13c_composed_result_ci.json

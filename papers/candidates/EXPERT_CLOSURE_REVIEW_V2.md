@@ -1,4 +1,4 @@
-# P6–P8 expert closure review V2
+# ORION-16–ORION-18 expert closure review V2
 
 **Date:** 2026-08-18  
 **Purpose:** adversarial closure review after donor-complete expansion.
@@ -12,11 +12,11 @@ These are analytical review roles used to force independent objections. They are
 3. **Open-world navigation / planning expert** — search, POMDP, representation abstraction/refinement, stopping, goal evolution.
 4. **Authorization / security logician** — grants, usage control, coercions, revocation, non-interference, commit-time policy.
 5. **Experimental-design / measurement expert** — baselines, negative controls, donor-product comparisons, non-compensatory metrics.
-6. **Scientific editor / novelty auditor** — P1–P5 ownership, donor credit, claim ledgers, publication disposition.
+6. **Scientific editor / novelty auditor** — ORION-11–ORION-15 ownership, donor credit, claim ledgers, publication disposition.
 
 ---
 
-# P6 review
+# ORION-16 review
 
 ## Formal epistemologist objection
 
@@ -44,7 +44,7 @@ Read/write disjointness alone does not prove commutation when history, obligatio
 
 Self-adjusting computation, TMS/ATMS and modern dependency-guided rollback already own major change-propagation/repair structures.
 
-**Resolution:** absorbed as donors. P6 adds no generic selective-repair novelty. The discriminating theorem is typed erasure: identical bare computation/dependency semantics may have different scientific admissibility because obligations/authority/provenance differ.
+**Resolution:** absorbed as donors. ORION-16 adds no generic selective-repair novelty. The discriminating theorem is typed erasure: identical bare computation/dependency semantics may have different scientific admissibility because obligations/authority/provenance differ.
 
 **Terminal:** CLOSED WITH DONOR OWNERSHIP.
 
@@ -58,21 +58,21 @@ A preservation rule controlled by the changing mechanic can become self-authoriz
 
 ## Experimental-design objection
 
-P6 can trivially beat a dependency-only baseline by adding fields the baseline never attempts to model.
+ORION-16 can trivially beat a dependency-only baseline by adding fields the baseline never attempts to model.
 
-**Resolution:** donor-complete programme requires comparison against a product containing dependency repair + incremental computation + effect typing + authorization/provenance. P6 superiority is not asserted by the theory manuscript.
+**Resolution:** donor-complete programme requires comparison against a product containing dependency repair + incremental computation + effect typing + authorization/provenance. ORION-16 superiority is not asserted by the theory manuscript.
 
 **Terminal:** THEORY CLOSED; PERFORMANCE OPTIONAL/OPEN.
 
 ## Editorial disposition
 
-P6 is a coherent theory paper if framed as scientific-admissibility semantics over engulfed repair/effect donors, not as the invention of epistemic change or dependency repair.
+ORION-16 is a coherent theory paper if framed as scientific-admissibility semantics over engulfed repair/effect donors, not as the invention of epistemic change or dependency repair.
 
 **Panel recommendation:** KEEP AS INDEPENDENT THEORY CANDIDATE.
 
 ---
 
-# P7 review
+# ORION-17 review
 
 ## Formal epistemologist objection
 
@@ -94,7 +94,7 @@ The old “new topology adds a reachable goal” witness proves only that a larg
 
 Planning abstraction, situation-calculus refinement, schema/lens mappings and generalized-planning abstraction already have sound/complete preservation results.
 
-**Resolution:** engulfed as preservation-certificate suppliers. P7 does not re-prove or claim their plan/data preservation; it asks whether their witness also covers evidence identity, target scientific obligation semantics, coverage/defeaters and task-stop authority.
+**Resolution:** engulfed as preservation-certificate suppliers. ORION-17 does not re-prove or claim their plan/data preservation; it asks whether their witness also covers evidence identity, target scientific obligation semantics, coverage/defeaters and task-stop authority.
 
 **Terminal:** CLOSED WITH DONOR OWNERSHIP.
 
@@ -102,7 +102,7 @@ Planning abstraction, situation-calculus refinement, schema/lens mappings and ge
 
 SAGA and self-evolving world models already change objectives/models.
 
-**Resolution:** absorbed. P7's separation theorem states that identical evidence may survive while new objective satisfaction fails; model updates with unchanged vocabulary are separated from representation/objective changes requiring transport analysis.
+**Resolution:** absorbed. ORION-17's separation theorem states that identical evidence may survive while new objective satisfaction fails; model updates with unchanged vocabulary are separated from representation/objective changes requiring transport analysis.
 
 **Terminal:** CLOSED.
 
@@ -116,19 +116,19 @@ A topology-changing system can manufacture gains by reframing every hard task.
 
 ## Editorial disposition
 
-P7 has the clearest independent scientific object: evidence/closure preservation across changing representations/objectives under open-world stopping constraints.
+ORION-17 has the clearest independent scientific object: evidence/closure preservation across changing representations/objectives under open-world stopping constraints.
 
 **Panel recommendation:** KEEP AS INDEPENDENT THEORY CANDIDATE; HIGHEST SEPARATE-PAPER CONFIDENCE.
 
 ---
 
-# P8 review
+# ORION-18 review
 
 ## Authorization expert objection
 
 Typed authorization, delegation, revocation, ongoing/commit-time authorization, multiple authorities and provenance-aware governance are already mature or rapidly developing.
 
-**Resolution:** absorbed: Delegation Logic, SecPAL, UCON, ETAS, FAVA, AgentBound, authorization propagation, provenance systems, abstention systems and recent provenance/non-amplification guards are donors. P8 does not claim those components.
+**Resolution:** absorbed: Delegation Logic, SecPAL, UCON, ETAS, FAVA, AgentBound, authorization propagation, provenance systems, abstention systems and recent provenance/non-amplification guards are donors. ORION-18 does not claim those components.
 
 **Terminal:** CLOSED WITH BROAD DONOR OWNERSHIP.
 
@@ -174,9 +174,9 @@ A shared calculus may appear better only because independent gates were given we
 
 ## Editorial disposition
 
-P8 is theory-complete. Separate-paper value depends on whether the scientific-discharge interface plus product-equivalence theorem is editorially substantial. A later empirical study may test consistency/proof economy/auditability, but is not required to make the theory logically complete.
+ORION-18 is theory-complete. Separate-paper value depends on whether the scientific-discharge interface plus product-equivalence theorem is editorially substantial. A later empirical study may test consistency/proof economy/auditability, but is not required to make the theory logically complete.
 
-**Panel recommendation:** KEEP AS THEORY/NEGATIVE-RESULT CANDIDATE; MERGE INTO P4/PROGRAMME ONLY IF EDITORIAL OR STRONG-PRODUCT EVALUATION SHOWS NO DISTINCT VALUE.
+**Panel recommendation:** KEEP AS THEORY/NEGATIVE-RESULT CANDIDATE; MERGE INTO ORION-14/PROGRAMME ONLY IF EDITORIAL OR STRONG-PRODUCT EVALUATION SHOWS NO DISTINCT VALUE.
 
 ---
 

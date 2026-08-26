@@ -1,4 +1,4 @@
-# P6–P8 submission claim-authority ledger V1
+# ORION-16–ORION-18 submission claim-authority ledger V1
 
 **Date:** 2026-08-18  
 **Scope:** journal-facing manuscript headlines in PR #382.  
@@ -8,21 +8,21 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 
 ---
 
-## P6 — Formal Epistemic Structures and Mechanics
+## ORION-16 — Formal Epistemic Structures and Mechanics
 
-### P6-S1 — scientific certification is not decided by bare computational semantics
+### ORION-16-S1 — scientific certification is not decided by bare computational semantics
 
 **Submission sentence:** “A separation theorem shows that contracts with identical bare computational/dependency behavior can differ in scientific admissibility when obligations or commit authority differ.”
 
 - status: `FORMAL + LOCALLY_TESTED`;
 - authority: `paper-06.../manuscript/FORMAL_CORE_V2_1.md`, typed-erasure separation theorem; `formal/check_theory_closure_v2.py` and V2.1 checker;
-- scope: existential separation under the P6 contract semantics; not a claim that every donor system omits scientific authorization;
+- scope: existential separation under the ORION-16 contract semantics; not a claim that every donor system omits scientific authorization;
 - nearest-work boundary: TMS/ATMS, self-adjusting computation, ETAS/FAVA, current action-evidence governance are donor-owned;
-- P1 ownership: P1 owns mechanic cells and selective reconstruction reopening including P1.D2;
+- ORION-11 ownership: ORION-11 owns mechanic cells and selective reconstruction reopening including ORION-11.D2;
 - empirical usefulness: `CANNOT_CHECK / NOT CLAIMED`;
-- reopen: materially equivalent prior theorem or counterexample to the P6 separation.
+- reopen: materially equivalent prior theorem or counterexample to the ORION-16 separation.
 
-### P6-S2 — root-inclusive safety
+### ORION-16-S2 — root-inclusive safety
 
 **Submission sentence:** “We prove safe root-inclusive reopening under support-sound dependencies.”
 
@@ -32,7 +32,7 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - nonclaim: minimality does not follow from support soundness alone;
 - reopen: counterexample within theorem assumptions.
 
-### P6-S3 — minimality requires stronger uncertainty semantics
+### ORION-16-S3 — minimality requires stronger uncertainty semantics
 
 **Submission sentence:** “Soundness alone does not imply descendant minimality in the presence of conservative edges; graph-only minimax minimality is recovered under affected realizability.”
 
@@ -42,7 +42,7 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - nonclaim: no assertion that every live ORION dependency edge is realizable/necessary;
 - reopen: stronger donor result or failed compatible-semantics proof.
 
-### P6-S4 — history-aware composition
+### ORION-16-S4 — history-aware composition
 
 **Submission sentence:** “Faithful full scientific separation yields equality of current scientific state while independent audit orders remain equivalent rather than literally equal.”
 
@@ -52,38 +52,38 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - donor boundary: separation/process/effect theories own locality and trace concepts broadly;
 - empirical usefulness: `NOT CLAIMED`.
 
-### P6-S5 — obligation/authority conservation
+### ORION-16-S5 — obligation/authority conservation
 
 **Submission sentence:** “Later computational success cannot silently erase a hard scientific obligation or mint unrooted authority.”
 
 - status: `FORMAL + LOCALLY_TESTED`;
 - authority: hard-obligation persistence and sequential non-escalation results/checker;
 - donor boundary: effect systems and authorization systems own residual obligations and non-escalation broadly;
-- scope: P6 scientific contract composition only.
+- scope: ORION-16 scientific contract composition only.
 
-### P6-S6 — publication-scope claim
+### ORION-16-S6 — publication-scope claim
 
 **Submission sentence:** “The contribution is deliberately scoped to the scientific-admissibility layer over donor mechanisms, not to dependency repair or authorization in general.”
 
 - status: `EXTERNALLY_SCOPED + NONCLAIM`;
-- authority: `LITERATURE_CLOSURE_V2_2026-08-18.md`, `PRE_SUBMISSION_LITERATURE_DELTA_2026-08-18.md`, P1–P5 ownership matrix;
+- authority: `LITERATURE_CLOSURE_V2_2026-08-18.md`, `PRE_SUBMISSION_LITERATURE_DELTA_2026-08-18.md`, ORION-11–ORION-15 ownership matrix;
 - novelty state: broad component novelty `STRUCK`; scoped residual stable on dated two-round search, not timeless novelty proof.
 
 ---
 
-## P7 — Epistemic Navigation in Open Worlds
+## ORION-17 — Epistemic Navigation in Open Worlds
 
-### P7-S1 — extension-ambiguity stopping impossibility
+### ORION-17-S1 — extension-ambiguity stopping impossibility
 
 **Submission sentence:** “History-only task stopping is unsound under observational extension ambiguity.”
 
 - status: `FORMAL + LOCALLY_TESTED`;
 - authority: `paper-07.../manuscript/FORMAL_CORE_V2.md`, stopping theorem and complete/incomplete indistinguishable-pair checker;
 - scope: explicit extension ambiguity; certificate absence alone is not the premise;
-- P2 ownership: route/task stopping and censored/open coverage are P2-owned;
+- ORION-12 ownership: route/task stopping and censored/open coverage are ORION-12-owned;
 - reopen: counterexample under the stated ambiguity premise.
 
-### P7-S2 — fixed-information representation refinement
+### ORION-17-S2 — fixed-information representation refinement
 
 **Submission sentence:** “Representation refinement can strictly increase solvability without adding states, dynamics, actions, goals, or raw sensing.”
 
@@ -93,7 +93,7 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - donor boundary: planning abstraction/representation refinement is mature donor territory;
 - empirical superiority: `NOT CLAIMED`.
 
-### P7-S3 — evidence/closure separation
+### ORION-17-S3 — evidence/closure separation
 
 **Submission sentence:** “Unchanged valid evidence can fail to discharge a transformed scientific obligation.”
 
@@ -103,7 +103,7 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - donor boundary: categorical/sheaf/lens/ontology work owns representation/artifact transport; goal-evolution work owns objective change;
 - surviving object: target scientific closure/obligation transport.
 
-### P7-S4 — closure transport
+### ORION-17-S4 — closure transport
 
 **Submission sentence:** “A complete support-transport witness licenses closure transfer; incomplete target-ambiguous transport requires reopening, while unresolved non-ambiguous cases remain inability-to-check until another proof resolves them.”
 
@@ -112,16 +112,16 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - scope: complete declared support set and target admissible-completion semantics;
 - nonclaim: incomplete witness alone does not imply a falsifying completion.
 
-### P7-S5 — four stopping terminals across reframe
+### ORION-17-S5 — four stopping terminals across reframe
 
 **Submission sentence:** “Route stop, task stop, continuation, and inability-to-check remain distinct across representation/objective changes.”
 
 - status: `FORMAL/CONTRACT + LOCALLY_TESTED`;
 - authority: formal core terminal rules, finite checker, 8 frozen reference contracts;
-- P2 ownership: local/global stopping distinction is not P7 novelty;
-- P7-specific authority: preservation of the distinction under chart/obligation transport.
+- ORION-12 ownership: local/global stopping distinction is not ORION-17 novelty;
+- ORION-17-specific authority: preservation of the distinction under chart/obligation transport.
 
-### P7-S6 — publication-scope claim
+### ORION-17-S6 — publication-scope claim
 
 **Submission sentence:** “The contribution is scientific closure/obligation transport and stopping across representation change, not representation transport itself.”
 
@@ -131,9 +131,9 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 
 ---
 
-## P8 — Epistemic Authority for Autonomous Science
+## ORION-18 — Epistemic Authority for Autonomous Science
 
-### P8-S1 — full evidence-to-obligation typing / anti-laundering
+### ORION-18-S1 — full evidence-to-obligation typing / anti-laundering
 
 **Submission sentence:** “A source judgment may discharge a differently typed target scientific obligation only by exact match or a protected composable coercion.”
 
@@ -144,7 +144,7 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - scope: complete type `(domain, kind, scope, content, epoch)` under rules where only protected coercions change type;
 - nonclaim: registered coercion semantic quality is assumed/protected, not derived by the calculus.
 
-### P8-S2 — non-compensatory hard obligations and terminals
+### ORION-18-S2 — non-compensatory hard obligations and terminals
 
 **Submission sentence:** “Soft confidence/utility cannot substitute for an unresolved hard scientific obligation; AUTHORIZED, DENIED, and CANNOT_CHECK remain distinct.”
 
@@ -155,18 +155,18 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - V2.1 boundary: blocker absence is not refutation; an undetermined blocker is
   `CANNOT_CHECK`, and equal confidence/utility does not determine permission.
 
-### P8-S3 — exact alternative-derivation revocation
+### ORION-18-S3 — exact alternative-derivation revocation
 
 **Submission sentence:** “Revoking one premise invalidates a certificate exactly when every complete sufficient derivation is broken.”
 
 - status: `FORMAL + LOCALLY_TESTED`;
 - authority: support-family revocation theorem/checker;
-- donor boundary: delegation/revocation is mature; P8's formal representation is not claimed as first-of-kind;
+- donor boundary: delegation/revocation is mature; ORION-18's formal representation is not claimed as first-of-kind;
 - scope: enumerated complete sufficient support families.
 - lifecycle boundary: authority is non-monotone under evidence/revocation and
   demotion is forward-only; immutable history is not reusable future authority.
 
-### P8-S4 — generic permission/scientific-discharge separation
+### ORION-18-S4 — generic permission/scientific-discharge separation
 
 **Submission sentence:** “A valid generic action permission can coexist with CANNOT_CHECK for the scientific effect.”
 
@@ -176,7 +176,7 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - surviving distinction: the target scientific obligation kind across heterogeneous epistemic domains;
 - empirical superiority: `NOT CLAIMED`.
 
-### P8-S5 — shared/product equivalence negative theorem
+### ORION-18-S5 — shared/product equivalence negative theorem
 
 **Submission sentence:** “A shared authority calculus is extensionally equivalent to an ideal product of correctly typed domain gates when both implement the same coercion, freshness, blocker, and revocation semantics.”
 
@@ -185,12 +185,12 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - consequence: any sentence asserting inherent superiority from centralization is `STRUCK`;
 - future empirical measures: inconsistency, proof/audit cost, revocation coverage, unnecessary refusal, clean authorized coverage.
 
-### P8-S6 — publication-scope claim
+### ORION-18-S6 — publication-scope claim
 
 **Submission sentence:** “The contribution is scoped to scientific discharge across epistemic domains, not authorization or evidence-bound runtime governance in general.”
 
 - status: `EXTERNALLY_SCOPED + NONCLAIM`;
-- authority: `LITERATURE_CLOSURE_V2_2026-08-18.md`, two-round pre-submission delta, P4/P5 ownership matrix;
+- authority: `LITERATURE_CLOSURE_V2_2026-08-18.md`, two-round pre-submission delta, ORION-14/ORION-15 ownership matrix;
 - donor ownership: UCON/SecPAL, ETAS/FAVA, AgentBound/authorization propagation, provenance/abstention, SAGE-Fin, action-evidence chains;
 - novelty state: broad authorization/evidence-authority novelty `STRUCK`; scoped residual stable on dated two-round search.
 
@@ -201,8 +201,8 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - unsupported `first`/`only`/`superior` publication language: removed/prohibited;
 - formal theorem used as deployed-system efficacy evidence: prohibited;
 - bounded checker used as external generalization: prohibited;
-- P1–P5 mechanism silently reused as P6–P8 novelty: prohibited and mapped above;
-- negative/null evidence: visible (P6 soundness-not-minimality; P7 harmful coarsening/incomplete-transport boundary; P8 shared/product equivalence and over-refusal requirement);
+- ORION-11–ORION-15 mechanism silently reused as ORION-16–ORION-18 novelty: prohibited and mapped above;
+- negative/null evidence: visible (ORION-16 soundness-not-minimality; ORION-17 harmful coarsening/incomplete-transport boundary; ORION-18 shared/product equivalence and over-refusal requirement);
 - empirical superiority over ideal donor product: `CANNOT_CHECK / NOT CLAIMED`.
 
 ## Terminal

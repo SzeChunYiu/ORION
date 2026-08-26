@@ -1,4 +1,4 @@
-# P9 scientific closure receipt V1
+# ORION-19 scientific closure receipt V1
 
 Date: 2026-08-19
 
@@ -26,7 +26,7 @@ Merged exact hostile worlds establish view-relative non-identifiability by direc
 
 Terminal: **`M1_GLOBAL_COMPOSITION_RESIDUAL`**
 
-- scientific protocol: `P9.M1Protocol.v1.3`;
+- scientific protocol: `ORION-19.M1Protocol.v1.3`;
 - result digest: `sha256:01e1b62da27b424d453c63b798a5cbb13a915a4546b8ced68fcf84c32d04d97e`;
 - corpus digest: `sha256:01ae54ca4d8cf423b0ac20bf0e085f1ecdf6cec7a1f142cc09b5df0a90d9cc3a`;
 - SURFACE overall `0.5 / 0.5 ceiling`;
@@ -150,5 +150,5 @@ Before `P9_BOUNDED_STRUCTURAL_LEARNING_PEER_REVIEW_READY`:
 5. synchronize manuscript abstract/introduction/results/conclusion and central citations to the final narrowed claim;
 6. apply current TMLR style and double-blind requirements;
 7. compile final PDF from a clean checkout, render it, and visually inspect every page for clipping/overlap/glyph failures;
-8. exact-head repository CI and protected P6-P8 gate GREEN;
+8. exact-head repository CI and protected ORION-16-ORION-18 gate GREEN;
 9. update #391 and #393 only after those package gates are actually satisfied.

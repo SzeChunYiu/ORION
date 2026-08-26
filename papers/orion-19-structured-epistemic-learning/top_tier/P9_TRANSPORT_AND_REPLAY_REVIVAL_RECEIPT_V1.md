@@ -1,4 +1,4 @@
-# P9 transport + replay revival receipt V1 (NR-04 / NR-06)
+# ORION-19 transport + replay revival receipt V1 (NR-04 / NR-06)
 
 **Programme:** #977 · **Backlog:** `research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md` lanes NR-04, NR-06
 **Discipline:** RAKL revival — attribute to ONE stage, apply the matching lever, re-test. All work local
@@ -86,7 +86,7 @@ vectors equal, TSB accuracy `0.5` with the constant predictor restored.
   (`P9_D1V1_2_DIVERGENCE_ROOT_CAUSE_2026-08-23.json`): the fix restores replay **consistency**, not
   the **validity** of that number as a representation measurement.
 - The scientific repair (order/multiplicity-preserving serialization) stays with the frozen
-  successor `P9.D1V1_3.ORDERED_MULTIPLICITY_ROBUSTNESS` (`PROSPECTIVE_FROZEN_NOT_EXECUTED`;
+  successor `ORION-19.D1V1_3.ORDERED_MULTIPLICITY_ROBUSTNESS` (`PROSPECTIVE_FROZEN_NOT_EXECUTED`;
   protected inputs still absent).
 
 ## Artifacts

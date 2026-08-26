@@ -566,7 +566,7 @@ def _one_step_claim(sig: Signature) -> Any:
 #: implemented rule proves nothing about the implementation, so the two are
 #: compared rather than assumed equal.
 EXECUTABLE_MODEL = (
-    "papers/paper-08-epistemic-authority-autonomous-science/formal/check_authority_calculus.py"
+    "papers/orion-18-epistemic-authority-autonomous-science/formal/check_authority_calculus.py"
 )
 
 

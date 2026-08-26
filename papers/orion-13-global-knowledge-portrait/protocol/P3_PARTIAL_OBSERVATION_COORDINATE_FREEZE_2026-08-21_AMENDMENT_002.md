@@ -1,4 +1,4 @@
-# P3 Partial-Observation Coordinate Freeze — Amendment 002
+# ORION-13 Partial-Observation Coordinate Freeze — Amendment 002
 
 **Amends** `P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md`, its twin
 `P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.json`, and Amendment 001
@@ -145,7 +145,7 @@ this repository is such a corpus. Building one is not a construction task: under
 partial observation the relation is genuinely underdetermined, so an independent
 gold has to come from adjudicators rather than from a rule.
 
-`G10_BENEFIT_A3` (non-blocking). A3's `P3.OVERRESOLVED_UNRESOLVED_CASE`
+`G10_BENEFIT_A3` (non-blocking). A3's `ORION-13.OVERRESOLVED_UNRESOLVED_CASE`
 violation rate is 0.0 on all three probe corpora, so it keeps the benefit A1 was
 reaching for: it still abstains everywhere the frozen probe gold says abstention
 is right. A1 and A2 score the same 0.0, so this is not evidence that A3 is better

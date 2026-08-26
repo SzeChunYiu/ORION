@@ -1,6 +1,6 @@
 """NR-05: representation hardening of the serialized arm against the frozen format-prior attack class.
 
-The frozen T4 campaign (``papers/paper-09-structured-epistemic-learning/
+The frozen T4 campaign (``papers/orion-19-structured-epistemic-learning/
 evidence/P9_U_T3_T4_HOSTILE_ATTACK_RECEIPT_2026-08-21.md``) defeated one narrow
 representation claim: the format-prior component ``FP-2`` moved 32 of 128
 protected answers of ``TYPED_SERIALIZED_BAG`` under one bijective renaming of
@@ -59,7 +59,7 @@ indexing is a canonicalization design that does not annihilate the orbit. If
 either control fails to fire the instrument is invalid and the run certifies
 nothing.
 
-Protocol: ``papers/paper-09-structured-epistemic-learning/protocol/
+Protocol: ``papers/orion-19-structured-epistemic-learning/protocol/
 P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.md`` and its JSON twin. The
 runner recomputes the twin's parameter digest from its own constants and
 refuses to run on a mismatch, and it reports no arm number at all if a
@@ -102,11 +102,11 @@ from .d1 import D1Dataset, D1Instance
 RESULT_SCHEMA_VERSION = "orion.p9.nr05-representation-hardening-result.v1"
 
 FREEZE_DOCUMENT = (
-    "papers/paper-09-structured-epistemic-learning/protocol/"
+    "papers/orion-19-structured-epistemic-learning/protocol/"
     "P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.md"
 )
 FREEZE_TWIN = (
-    "papers/paper-09-structured-epistemic-learning/protocol/"
+    "papers/orion-19-structured-epistemic-learning/protocol/"
     "P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.json"
 )
 

@@ -8,7 +8,7 @@ from pathlib import Path
 
 from orion.study.p2.corpus import sha256_digest
 
-PAPER = Path("papers/paper-02-open-world-scientific-discovery")
+PAPER = Path("papers/orion-12-open-world-scientific-discovery")
 RECEIPT = PAPER / "evidence" / "external_results" / "ISSUE_157_CLOSURE_RECEIPT_V1.json"
 PROBE = PAPER / "evidence" / "external_results" / "ISSUE_157_KEYLESS_BACKEND_PROBE_V1.json"
 SUMMARY = PAPER / "evidence" / "offline_results" / "RESULTS_SUMMARY_V1.json"

@@ -11,7 +11,7 @@ from orion.study.p2.freeze import load_suite, verify
 from orion.study.p2.offline_analysis import run_offline_companion
 from orion.study.p2.offline_route_stop import build_route_stop_projection
 
-PAPER = Path("papers/paper-02-open-world-scientific-discovery")
+PAPER = Path("papers/orion-12-open-world-scientific-discovery")
 MANIFEST = PAPER / "protocol" / "OFFLINE_RUN_MANIFEST_V1.json"
 MANIFEST_SHA = PAPER / "protocol" / "OFFLINE_RUN_MANIFEST_V1.sha256"
 EXPECTED = PAPER / "evidence" / "offline_results" / "ROUTE_STOP_ORACLE_V1.json"

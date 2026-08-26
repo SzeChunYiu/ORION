@@ -1,6 +1,6 @@
-# P15 Scientific Execution Integrity — claim/evidence ledger V1
+# ORION-25 Scientific Execution Integrity — claim/evidence ledger V1
 
-**Paper:** ORION-P15  
+**Paper:** ORION-ORION-25  
 **Programme:** #977  
 **Paper issue:** #979  
 **Current strongest terminal:** `P15_SEI_BOUNDED_FAULT_V1_GREEN`  
@@ -60,7 +60,7 @@
 
 ## C15.6 — interoperability with RO-Crate/PROV and claim-aware observability
 
-**Statement sought.** P15 semantics compose with standard research-object/provenance and claim-aware artifact-lineage representations without requiring a competing metadata layer.
+**Statement sought.** ORION-25 semantics compose with standard research-object/provenance and claim-aware artifact-lineage representations without requiring a competing metadata layer.
 
 **Authority:** `SUPPORTED_BOUNDED` for the composition claim; `CANNOT_CHECK` for
 claim-aware observability. **Updated 2026-08-24:** the prospectively frozen

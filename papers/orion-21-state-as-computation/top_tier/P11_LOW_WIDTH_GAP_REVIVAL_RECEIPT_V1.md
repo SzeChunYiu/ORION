@@ -1,8 +1,8 @@
-# P11 low-width sparse-decoder gap revival receipt V1 (NR-07)
+# ORION-21 low-width sparse-decoder gap revival receipt V1 (NR-07)
 
 **Lane:** NR-07 of `research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md`
-**Executable:** `papers/paper-11-state-as-computation/run_nr07_low_width_capacity_bound_v1.py`
-**Result:** `papers/paper-11-state-as-computation/NR07_LOW_WIDTH_CAPACITY_BOUND_RESULT_V1.json`
+**Executable:** `papers/orion-21-state-as-computation/run_nr07_low_width_capacity_bound_v1.py`
+**Result:** `papers/orion-21-state-as-computation/NR07_LOW_WIDTH_CAPACITY_BOUND_RESULT_V1.json`
 (SHA-256 `1882b2fb5938e0e88e1a2a71fcf82bb0d697d0192e271b3ee9e181076bd094de`)
 **Replay:** two consecutive full runs byte-identical; all readings replay the
 frozen P11H/P11I streams exactly (7 seeds: preflight 2026082201–03, execution
@@ -12,7 +12,7 @@ frozen P11H/P11I streams exactly (7 seeds: preflight 2026082201–03, execution
 ## Negative being revived
 
 P11D's gap gates (universal-vs-compiled threshold ratio ≥ 4×, delta64 ≥ 0.20)
-are unmet at `r=3` while P11.I's high-width cells pass at `r≥7`; the pooled
+are unmet at `r=3` while ORION-21.I's high-width cells pass at `r≥7`; the pooled
 universal attack prevailed at the drawn `r=3` regimes
 (`P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED`). The backlog row asked: is the `r=3`
 failure decoder capacity, decoder mechanism, or an attack-strength artifact?
@@ -60,15 +60,15 @@ decoder), which is strictly stronger than P11H's registered pool.
 | C2: `r=7` window survives the capacity-augmented attack | **true** (max below 256 = 0.9421 < 0.95) |
 | C3: max attainable delta64 at `r=3` | **0.1741 < 0.20** (gate unattainable) |
 | C3: max attainable threshold ratio at `r=3` | **≤ 2 < 4** (gate unattainable) |
-| P2: law retrodicts the full P11H 15-rung candidate table | **held** (incl. rejected rows: `r=5` knife-edge n\* ∈ [64.2, 110.6] → "unstable") |
-| P3: ρ closed form validated on frozen test sets | **held** (active within 0.004; inactive ≤ 0.022) |
-| P1 as pre-registered (screen@64 ≥ 0.95 at every `r=3` rung) | **failed** (range 0.7255–1.0) — disclosed below |
+| ORION-12: law retrodicts the full P11H 15-rung candidate table | **held** (incl. rejected rows: `r=5` knife-edge n\* ∈ [64.2, 110.6] → "unstable") |
+| ORION-13: ρ closed form validated on frozen test sets | **held** (active within 0.004; inactive ≤ 0.022) |
+| ORION-11 as pre-registered (screen@64 ≥ 0.95 at every `r=3` rung) | **failed** (range 0.7255–1.0) — disclosed below |
 
 **Disclosed correction.** The first draft of the certificate wrongly used the
 range-1 Hoeffding form 2exp(−2nt²); for ±1-valued (range-2) statistics the
 correct union bound is n_cert = (8/ρ²)ln(2p/δ) (~338 at p=969, r=3) — a loose
 sufficient bound only. The load-bearing boundary is the calibrated n_screen law
-plus exact empirical replay, not the certificate. The pre-registered P1 also
+plus exact empirical replay, not the certificate. The pre-registered ORION-11 also
 missed (screen@64 ≥ 0.95 predicted; observed floor 0.7255): reported as a miss,
 the boundary statement corrected to (64, 128], nothing tuned.
 

@@ -1,10 +1,10 @@
-# ORION-P3 public-reference gold authority route V1
+# ORION-ORION-13 public-reference gold authority route V1
 
-**Status:** DESIGN_FROZEN, outcome-blind addendum to `P3.public-reference-mapping.v1`.
+**Status:** DESIGN_FROZEN, outcome-blind addendum to `ORION-13.public-reference-mapping.v1`.
 
 ## Purpose
 
-ORION-P3 does not require a newly commissioned paid annotation team if equivalent scientific authority already exists in public human/expert resources. The requirement is stronger and simpler: every scored gold coordinate must be independently authoritative, reproducible, source-addressable, and frozen before evaluated-system outputs.
+ORION-ORION-13 does not require a newly commissioned paid annotation team if equivalent scientific authority already exists in public human/expert resources. The requirement is stronger and simpler: every scored gold coordinate must be independently authoritative, reproducible, source-addressable, and frozen before evaluated-system outputs.
 
 This addendum therefore permits reuse of pinned public human/expert annotations and deterministic transformations of those annotations. It does not permit model consensus, simulated agreement, heuristic proxies, or evaluated-system output to create gold authority.
 

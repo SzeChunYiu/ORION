@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'papers/paper-04-verified-scientific-discovery/submission/ARCHIVE_TRIGGER_V2_SATURATED.txt'
+      - 'papers/orion-14-verified-scientific-discovery/submission/ARCHIVE_TRIGGER_V2_SATURATED.txt'
 
 permissions:
   contents: write
@@ -29,7 +29,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          T='papers/paper-04-verified-scientific-discovery/submission/ARCHIVE_TRIGGER_V2_SATURATED.txt'
+          T='papers/orion-14-verified-scientific-discovery/submission/ARCHIVE_TRIGGER_V2_SATURATED.txt'
           SOURCE=$(awk -F= '$1=="publication_merge"{print $2}' "$T")
           CI_RUN=$(awk -F= '$1=="publication_ci_run"{print $2}' "$T")
           AUDIT_RUN=$(awk -F= '$1=="publication_audit_run"{print $2}' "$T")
@@ -55,7 +55,7 @@ jobs:
           pa=json.loads((root/'pdf-artifact.json').read_text())
           sa=json.loads((root/'safe-artifact.json').read_text())
           t={}
-          for line in Path('papers/paper-04-verified-scientific-discovery/submission/ARCHIVE_TRIGGER_V2_SATURATED.txt').read_text().splitlines():
+          for line in Path('papers/orion-14-verified-scientific-discovery/submission/ARCHIVE_TRIGGER_V2_SATURATED.txt').read_text().splitlines():
               if '=' in line:
                   k,v=line.split('=',1); t[k]=v
           assert t['release_tag']=='orion-p4-v2-peer-review-ready-saturated-2026-08-17'
@@ -78,7 +78,7 @@ jobs:
           test "$(sha256sum "$PDF" | awk '{print $1}')" = "$PDF_SHA"
           cp "$PDF" "$RUNNER_TEMP/ORION_Paper_IV_TMLR_Citation_Saturated_Audited.pdf"
           (cd "$RUNNER_TEMP/safe" && zip -qr "$RUNNER_TEMP/ORION_P4_V2_SafeBundle.zip" .)
-          git archive "$SOURCE" papers/paper-04-verified-scientific-discovery | gzip -n > "$RUNNER_TEMP/ORION_P4_V2_Citation_Saturated_SourceSupplement.tar.gz"
+          git archive "$SOURCE" papers/orion-14-verified-scientific-discovery | gzip -n > "$RUNNER_TEMP/ORION_P4_V2_Citation_Saturated_SourceSupplement.tar.gz"
           sha256sum "$RUNNER_TEMP/ORION_Paper_IV_TMLR_Citation_Saturated_Audited.pdf" "$RUNNER_TEMP/ORION_P4_V2_SafeBundle.zip" "$RUNNER_TEMP/ORION_P4_V2_Citation_Saturated_SourceSupplement.tar.gz" > "$RUNNER_TEMP/RELEASE_SHA256SUMS.txt"
 
       - name: Create immutable citation-saturated GitHub release archive
@@ -87,7 +87,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          SOURCE=$(awk -F= '$1=="publication_merge"{print $2}' papers/paper-04-verified-scientific-discovery/submission/ARCHIVE_TRIGGER_V2_SATURATED.txt)
+          SOURCE=$(awk -F= '$1=="publication_merge"{print $2}' papers/orion-14-verified-scientific-discovery/submission/ARCHIVE_TRIGGER_V2_SATURATED.txt)
           if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             echo "release $TAG already exists; preserving existing archive"
             exit 0
@@ -100,6 +100,6 @@ jobs:
             --repo "$GITHUB_REPOSITORY" \
             --target "$SOURCE" \
             --title 'ORION Paper IV — Protected V2 Citation-Saturated Peer-Review-Ready Archive' \
-            --notes-file papers/paper-04-verified-scientific-discovery/submission/RELEASE_NOTES_V2_SATURATED.md
+            --notes-file papers/orion-14-verified-scientific-discovery/submission/RELEASE_NOTES_V2_SATURATED.md
           gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json tagName,targetCommitish,isDraft,isPrerelease,url > "$RUNNER_TEMP/release.json"
           cat "$RUNNER_TEMP/release.json"

@@ -1,18 +1,18 @@
 {
   "already_known": {
-    "attack_potency_audit": "papers/paper-09-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json",
-    "frozen_t4_freeze": "papers/paper-09-structured-epistemic-learning/protocol/P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE_2026-08-21.json",
-    "frozen_t4_receipt": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_T4_HOSTILE_ATTACK_RECEIPT_2026-08-21.md"
+    "attack_potency_audit": "papers/orion-19-structured-epistemic-learning/evidence/audit/P9_ATTACK_POTENCY_2026-08-22.json",
+    "frozen_t4_freeze": "papers/orion-19-structured-epistemic-learning/protocol/P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE_2026-08-21.json",
+    "frozen_t4_receipt": "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T3_T4_HOSTILE_ATTACK_RECEIPT_2026-08-21.md"
   },
-  "attacks_named_at": "papers/paper-09-structured-epistemic-learning/protocol/P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.md, sections 1-2 (root cause and lever)",
+  "attacks_named_at": "papers/orion-19-structured-epistemic-learning/protocol/P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.md, sections 1-2 (root cause and lever)",
   "date": "2026-08-23",
   "environment_boundary": {
     "language_model_used": false,
     "protected_negative": "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED is out of scope and untouched",
     "successor_llm_run_exists": false
   },
-  "expected_result_artifact": "papers/paper-09-structured-epistemic-learning/evidence/P9_NR05_REPRESENTATION_HARDENING_RESULT_2026-08-23.json",
-  "freeze_document": "papers/paper-09-structured-epistemic-learning/protocol/P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.md",
+  "expected_result_artifact": "papers/orion-19-structured-epistemic-learning/evidence/P9_NR05_REPRESENTATION_HARDENING_RESULT_2026-08-23.json",
+  "freeze_document": "papers/orion-19-structured-epistemic-learning/protocol/P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.md",
   "gate_served": "P9-U-T4 (revival lane; the gate itself stays BLOCKED)",
   "issue_refs": [
     "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md#NR-05"
@@ -61,7 +61,7 @@
       "C-3_MARGIN_SURVIVAL": "on BASE: g = acc(TYPED_RELATIONAL) - acc(TYPED_SERIALIZED_BAG), gc = acc(TYPED_RELATIONAL) - acc(SERIALIZED_CANONICAL); supported iff the canonical arm is non-constant, measure_contrast_margin passes, g >= 4 cases and gc > 0.5 * g",
       "C-4_FROZEN_FP2_READING": "the frozen FP-2 component verbatim on SERIALIZED_CANONICAL under the frozen orbit; expected CANNOT_CHECK / NEVER_EXERCISED by structural invariance, recorded as exactly that and never as a pass"
     },
-    "freeze_document": "papers/paper-09-structured-epistemic-learning/protocol/P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.md",
+    "freeze_document": "papers/orion-19-structured-epistemic-learning/protocol/P9_NR05_REPRESENTATION_HARDENING_FREEZE_2026-08-23.md",
     "lever": "footprint-class quotient canonicalization: replace every string leaf value by the canonical symbol of its occurrence-footprint class, computed corpus-wide; the hardened feature map factors through the quotient of the value alphabet by its renaming group",
     "model_grid": "frozen d1_experiment.model_specs(); selection by (-dev_accuracy, complexity_rank, config_id)",
     "negative_revived": "T4_ATTACK_SUCCEEDED: the frozen format-prior component FP-2 landed on TYPED_SERIALIZED_BAG (32 of 128 protected answers moved under one bijective renaming of the value alphabet), narrowing the typed-minus-serialized margin",

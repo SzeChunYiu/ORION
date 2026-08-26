@@ -1,4 +1,4 @@
-# P9 post-D1 novelty saturation V1
+# ORION-19 post-D1 novelty saturation V1
 
 Scope: nearest-work saturation for the D1/representation-transfer component after the material `serialization friction` contraction. This is an input to shared novelty authority #287, not a programme-wide novelty certificate.
 
@@ -6,7 +6,7 @@ Scope: nearest-work saturation for the D1/representation-transfer component afte
 
 Lo et al. (2026), *When 2D Tasks Meet 1D Serialization: On Serialization Friction in Structured Tasks* (arXiv:2604.27272), directly owns the general principle that preserving underlying entries/content under serialization need not preserve an equally usable representation when load-bearing relations become implicit.
 
-Therefore P9 struck any generic claim that it discovered `same information can perform worse when serialized`. The surviving D1 residual is only its exact method-coordinate/whole-domain protocol and bounded empirical result.
+Therefore ORION-19 struck any generic claim that it discovered `same information can perform worse when serialized`. The surviving D1 residual is only its exact method-coordinate/whole-domain protocol and bounded empirical result.
 
 ## No-material-change round 1 — domain/generalization vocabulary
 
@@ -23,7 +23,7 @@ The round surfaced additional pressure that:
 - domain-relation metadata can improve domain generalization;
 - representation and training-domain diversity jointly affect OOD/compositional generalization.
 
-These are donor-owned general principles already excluded from P9 novelty. No source changed the D1 benchmark object, mandatory controls, or allowed bounded claim.
+These are donor-owned general principles already excluded from ORION-19 novelty. No source changed the D1 benchmark object, mandatory controls, or allowed bounded claim.
 
 Terminal: `NO_MATERIAL_CHANGE_1`.
 
@@ -45,7 +45,7 @@ Close sources strengthen prior ownership of:
 - procedural data inducing transferable reasoning structure;
 - structured process representations outperforming flattened formulations in appropriate domains.
 
-Again, no source duplicates or requires changing the exact P9 D1 combination:
+Again, no source duplicates or requires changing the exact ORION-19 D1 combination:
 
 1. source-grounded exact procedural method coordinates;
 2. reminted/domain-disjoint surface identities;
@@ -70,4 +70,4 @@ This is not a universal representation theorem, a graph-architecture novelty cla
 
 ## Remaining novelty gate
 
-Final P9 novelty authority remains **OPEN** until official M1 and corrected A2/A4 receipts are integrated, because those determine the complete paper contribution (simple-learning residual and explicit-inference/mechanic/failure disposition). After those outcomes, perform a final exact-combination query and post the P9-specific disposition to shared #287 without closing the programme-wide issue.
+Final ORION-19 novelty authority remains **OPEN** until official M1 and corrected A2/A4 receipts are integrated, because those determine the complete paper contribution (simple-learning residual and explicit-inference/mechanic/failure disposition). After those outcomes, perform a final exact-combination query and post the ORION-19-specific disposition to shared #287 without closing the programme-wide issue.

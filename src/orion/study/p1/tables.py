@@ -55,12 +55,12 @@ EXIT_CANNOT_CHECK = 3
 TABLE_T2 = "P1-T2_baseline_ablation_results"
 TABLE_T3 = "P1-T3_failure_taxonomy"
 
-DEFAULT_ARCHIVE = Path("papers/paper-01-recursive-epistemic-reconstruction/results/raw")
-DEFAULT_OUTPUT = Path("papers/paper-01-recursive-epistemic-reconstruction/results")
+DEFAULT_ARCHIVE = Path("papers/orion-11-recursive-epistemic-reconstruction/results/raw")
+DEFAULT_OUTPUT = Path("papers/orion-11-recursive-epistemic-reconstruction/results")
 DEFAULT_BOOTSTRAP_SEED = 20260815
 DEFAULT_REPRESENTATIVES = 3
 DEFAULT_DESIGN_MANIFEST = Path(
-    "papers/paper-01-recursive-epistemic-reconstruction/protocol/P1_TEST_ARCHIVE_DESIGN_V1.json"
+    "papers/orion-11-recursive-epistemic-reconstruction/protocol/P1_TEST_ARCHIVE_DESIGN_V1.json"
 )
 
 SCOPE_ALL = "ALL"

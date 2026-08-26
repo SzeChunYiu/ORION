@@ -1,4 +1,4 @@
-# P12 Peer-Review Readiness Report
+# ORION-22 Peer-Review Readiness Report
 
 **Decision:** CONTROLLED_LIFECYCLE_RESULT_BOUND__PUBLIC_TRANSFER_OPEN
 
@@ -47,5 +47,5 @@ P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json.
 - [ ] family/domain-block inference and leave-one-domain-out analysis
 - [ ] external or protected custody where claimed
 
-No P12C artifact or bound ScienceAgentBench result exists. P12 is not
+No P12C artifact or bound ScienceAgentBench result exists. ORION-22 is not
 top-tier-submission-ready and public-data transfer remains CANNOT_CHECK.

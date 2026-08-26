@@ -18,6 +18,6 @@ inventing the absent `P11J` artifact identity from issue #1086?
 ## Verification
 
 ```bash
-python papers/paper-11-state-as-computation/check_p11_adverse_integration_v2.py
+python papers/orion-21-state-as-computation/check_p11_adverse_integration_v2.py
 python -m pytest -q tests/unit/publication/test_p11_adverse_integration_v2.py
 ```

@@ -27,7 +27,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
-PAPER = ROOT / "papers/paper-12-adaptive-state-reasoning"
+PAPER = ROOT / "papers/orion-22-adaptive-state-reasoning"
 MENUS = PAPER / "top_tier/p12_stopgo_frozen_menus_v1.json"
 MENUS_DOC = PAPER / "top_tier/P12_STOPGO_FROZEN_MENUS_V1.md"
 AUTHORITY = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V5.json"
@@ -43,15 +43,15 @@ CANONICAL_SIGNALS = [
     "S_FAMILY_DIFFICULTY_PRIOR",
 ]
 PRIOR_BINDINGS = {
-    "papers/paper-12-adaptive-state-reasoning/P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json": (
+    "papers/orion-22-adaptive-state-reasoning/P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json": (
         "c57c6274c752c8be2a495e44730a4c3741be5f7f9aafb6294f14e0846331617e",
         "P12A_SUPERIORITY_AUTHORITY_WITHHELD",
     ),
-    "papers/paper-12-adaptive-state-reasoning/top_tier/P12_ROBUSTNESS_STRESS_RESULT_RECEIPT_V1.md": (
+    "papers/orion-22-adaptive-state-reasoning/top_tier/P12_ROBUSTNESS_STRESS_RESULT_RECEIPT_V1.md": (
         "f79e4d4c249e70e02fc6427b14d5843c41dd9ab26dc9381818d796d08f8ffd08",
         "P12_ROBUSTNESS_STRESS_V1_EXECUTED",
     ),
-    "papers/paper-12-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_RESULT_RECEIPT_V1.md": (
+    "papers/orion-22-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_RESULT_RECEIPT_V1.md": (
         "408372c2a4401907a96056ab9c1b3a137cffec32025c1f14bc3ea356703b20b2",
         "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED",
     ),

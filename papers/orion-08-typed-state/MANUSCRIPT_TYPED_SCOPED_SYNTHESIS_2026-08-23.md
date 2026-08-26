@@ -127,7 +127,7 @@ The six positive studies look heterogeneous if described by their algorithms: VO
 
 Thus the paper does not propose one universal type system. It identifies a recurring pattern: **state is sufficient only relative to the responsibility that consumes it.** The exact type/scope fields differ because the downstream responsibility differs.
 
-This interpretation also explains why broad neighboring work is donor-owned rather than contradicted. STALE asks whether a memory is still current; context governance asks which versioned artifacts are eligible and attributable; VOI asks which observation is worth purchasing. Q4 uses these ideas as building blocks and asks whether their relevant distinctions remain necessary under matched-information controls across different responsibilities.
+This interpretation also explains why broad neighboring work is donor-owned rather than contradicted. STALE asks whether a memory is still current; context governance asks which versioned artifacts are eligible and attributable; VOI asks which observation is worth purchasing. ORION-04 uses these ideas as building blocks and asks whether their relevant distinctions remain necessary under matched-information controls across different responsibilities.
 
 ## 11. Reproducibility and reporting
 
@@ -164,9 +164,9 @@ Figures and tables must be regenerated from receipt values rather than copied fr
 
 Three neighboring areas are particularly important.
 
-**Agent memory and state revision.** STALE (Chao et al., 2026, arXiv:2605.06527) makes implicit stale-memory invalidation a direct benchmark problem. Sun and He (2026, arXiv:2608.01619) study repairing implicit stale dependencies by auditing from updated state into drafted behavior. Q4 therefore claims neither stale-memory detection nor belief retirement as a primitive.
+**Agent memory and state revision.** STALE (Chao et al., 2026, arXiv:2605.06527) makes implicit stale-memory invalidation a direct benchmark problem. Sun and He (2026, arXiv:2608.01619) study repairing implicit stale dependencies by auditing from updated state into drafted behavior. ORION-04 therefore claims neither stale-memory detection nor belief retirement as a primitive.
 
-**Context governance and provenance.** ContextNest (Sulpovar et al., 2026, arXiv:2607.02116) formalizes governed, versioned, attributable context selection for autonomous agents. Provenance and version identity are donors here. Q4's bounded residual concerns which scoped distinctions are required by *different downstream responsibilities*, including but not limited to retrieval eligibility.
+**Context governance and provenance.** ContextNest (Sulpovar et al., 2026, arXiv:2607.02116) formalizes governed, versioned, attributable context selection for autonomous agents. Provenance and version identity are donors here. ORION-04's bounded residual concerns which scoped distinctions are required by *different downstream responsibilities*, including but not limited to retrieval eligibility.
 
 **Decision-theoretic information acquisition.** VOI, active learning, robust decision making and Pareto/interval methods are established machinery. Our experiments intentionally give these donors first right of refusal; N1-C demonstrates an exact case where an ideal VOI donor eliminates policy novelty.
 

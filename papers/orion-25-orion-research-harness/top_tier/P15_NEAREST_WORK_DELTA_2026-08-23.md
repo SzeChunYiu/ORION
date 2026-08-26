@@ -1,4 +1,4 @@
-# P15 nearest-work delta — 2026-08-23
+# ORION-25 nearest-work delta — 2026-08-23
 
 **Programme:** #977 / issue #979  
 **Status:** current promotion-wave pressure; final submission refresh still required.
@@ -11,7 +11,7 @@ The work argues that tracing model calls alone is insufficient for autonomous sc
 
 **Disposition: ADOPT / donor-own.**
 
-P15 does not claim novelty for claim-aware artifact lineage, explicit claim-evidence binding, verification-record observability or scientific-agent audit graphs.
+ORION-25 does not claim novelty for claim-aware artifact lineage, explicit claim-evidence binding, verification-record observability or scientific-agent audit graphs.
 
 https://arxiv.org/abs/2608.18312
 
@@ -21,7 +21,7 @@ RO-Crate 1.3 is the current 2026 recommendation for packaging/describing researc
 
 **Disposition: ADOPT / interoperability donor.**
 
-P15 must interoperate with/export to established provenance/research-object representations rather than creating a competing metadata universe.
+ORION-25 must interoperate with/export to established provenance/research-object representations rather than creating a competing metadata universe.
 
 - https://www.researchobject.org/ro-crate/specification/1.3/index.html
 - https://www.researchobject.org/workflow-run-crate/
@@ -34,7 +34,7 @@ The survey treats evidence/tool/memory/environment/action/final-answer relations
 
 **Disposition: ADOPT / donor-own.**
 
-P15 does not claim generic execution provenance, tracing or auditability.
+ORION-25 does not claim generic execution provenance, tracing or auditability.
 
 https://arxiv.org/abs/2606.04990
 
@@ -46,7 +46,7 @@ Recent 2026 work argues that autonomous scientific agents require stronger obser
 
 https://arxiv.org/abs/2607.26064
 
-## P15 upward residual after absorption
+## ORION-25 upward residual after absorption
 
 The surviving higher question is not whether an execution can be traced. It is:
 
@@ -56,7 +56,7 @@ The protected V1 result demonstrates this separation on a frozen 18-case fault m
 
 ## Nonclaims
 
-P15 does not claim first-of-kind status for:
+ORION-25 does not claim first-of-kind status for:
 
 - provenance;
 - experiment/workflow packaging;

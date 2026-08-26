@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 SCRIPT = Path(
-    "papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py"
+    "papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py"
 )
 
 

@@ -1,4 +1,4 @@
-# Reproduce P6 candidate formal results
+# Reproduce ORION-16 candidate formal results
 
 **Candidate:** Formal Epistemic Structures and Mechanics  
 **Status:** deterministic formal-support path; no novelty/empirical-superiority authority  
@@ -52,7 +52,7 @@ python papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/form
 Expected V2 structural signature:
 
 ```text
-P6 finite-model checks: PASS
+ORION-16 finite-model checks: PASS
   DAGs enumerated: 543
   reopening cases: 130320
   scientific-projection separated-commutation cases: 1536
@@ -104,17 +104,17 @@ They do **not** establish:
 - completeness of real dependency graphs;
 - unrestricted proof correctness;
 - donor-faithful embedding of DEL/AGM/TMS/ETAS/FAVA/repair systems;
-- exact P1 registry/protocol correspondence;
+- exact ORION-11 registry/protocol correspondence;
 - empirical advantage;
 - novelty or publication readiness.
 
 ## 7. Next reproducibility layers
 
-### A. Exact P1 embedding
-Freeze current P1 mechanic/reframe/reopening decision fixtures and test decision equivalence under the P6 encoding.
+### A. Exact ORION-11 embedding
+Freeze current ORION-11 mechanic/reframe/reopening decision fixtures and test decision equivalence under the ORION-16 encoding.
 
 ### B. Donor-native fixtures
-Where formal specifications/code permit, construct fixtures reproducing native decisions for effect/authorization/rollback donors before adding P6-only dimensions.
+Where formal specifications/code permit, construct fixtures reproducing native decisions for effect/authorization/rollback donors before adding ORION-16-only dimensions.
 
 ### C. Exhaustive trace semantics
 Replace the two-event history fixture with a bounded event-structure/trace enumerator that distinguishes state projection equality from trace equivalence and chronology-sensitive policies.
@@ -123,7 +123,7 @@ Replace the two-event history fixture with a bounded event-structure/trace enume
 After semantics freeze, select at least one nontrivial theorem—preferably history-aware composition or residual-obligation preservation—for mechanization. Record proof-assistant version and exact proof hash.
 
 ### E. Cross-domain benchmark
-#353 requires an exact-ground-truth non-P1 transfer family plus a negative control and strongest donor-specific baselines.
+#353 requires an exact-ground-truth non-ORION-11 transfer family plus a negative control and strongest donor-specific baselines.
 
 ## 8. Claim authority
 

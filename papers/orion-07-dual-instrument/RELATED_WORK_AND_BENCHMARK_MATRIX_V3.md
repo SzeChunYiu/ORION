@@ -1,17 +1,17 @@
-# Q3 related-work / benchmark-delta matrix — V3
+# ORION-03 related-work / benchmark-delta matrix — V3
 
-| Evaluation pattern | Ground truth available at decision time? | Instruments communicate before measurement? | Agreement itself treated as score? | Deferred scientific evidence can score later? | `CANNOT_CHECK` / unresolved preserved? | Q3 delta |
+| Evaluation pattern | Ground truth available at decision time? | Instruments communicate before measurement? | Agreement itself treated as score? | Deferred scientific evidence can score later? | `CANNOT_CHECK` / unresolved preserved? | ORION-03 delta |
 |---|---:|---:|---:|---:|---:|---|
-| static task benchmark | yes | usually no | no | not needed | sometimes | Q3 admits a frontier whose resolving evidence intentionally does not yet exist |
-| self-consistency | yes/known evaluator target | repeated samples from same or similar model | often used as confidence signal | no | rarely central | Q3 preserves pre-outcome relation but refuses to promote agreement to correctness |
-| multi-agent debate / consensus | usually benchmark truth exists | yes | consensus often affects final answer | no | disagreement often collapsed into final response | Q3 freezes independent decisions before comparison and keeps disagreement observable |
-| ensemble uncertainty / cross-model agreement | usually yes | no | agreement can be a confidence feature | no | possible but not central | Q3 asks whether a frozen relation predicts **later scientific resolution**, not contemporaneous benchmark accuracy |
-| provenance / experiment tracking | not necessarily | not applicable | no | can preserve later evidence | yes | Q3 adds a typed frontier item, scorer rule, instrument decision and deferred alignment object on top of provenance |
-| longitudinal scientific forecasting | future outcome unavailable | forecasters usually independent | aggregate may be scored later | yes | yes | Q3 differs by scoring **scientific next-move/diagnosis decisions** bound to the exact research evidence state and by admitting heterogeneous research-control instruments |
+| static task benchmark | yes | usually no | no | not needed | sometimes | ORION-03 admits a frontier whose resolving evidence intentionally does not yet exist |
+| self-consistency | yes/known evaluator target | repeated samples from same or similar model | often used as confidence signal | no | rarely central | ORION-03 preserves pre-outcome relation but refuses to promote agreement to correctness |
+| multi-agent debate / consensus | usually benchmark truth exists | yes | consensus often affects final answer | no | disagreement often collapsed into final response | ORION-03 freezes independent decisions before comparison and keeps disagreement observable |
+| ensemble uncertainty / cross-model agreement | usually yes | no | agreement can be a confidence feature | no | possible but not central | ORION-03 asks whether a frozen relation predicts **later scientific resolution**, not contemporaneous benchmark accuracy |
+| provenance / experiment tracking | not necessarily | not applicable | no | can preserve later evidence | yes | ORION-03 adds a typed frontier item, scorer rule, instrument decision and deferred alignment object on top of provenance |
+| longitudinal scientific forecasting | future outcome unavailable | forecasters usually independent | aggregate may be scored later | yes | yes | ORION-03 differs by scoring **scientific next-move/diagnosis decisions** bound to the exact research evidence state and by admitting heterogeneous research-control instruments |
 
 ## Current strongest bounded claim
 
-Q3 establishes a reusable measurement contract:
+ORION-03 establishes a reusable measurement contract:
 
 `unresolved frontier + frozen evidence + frozen diagnosis/move coordinates + heterogeneous instrument decisions -> later evidence-bound per-instrument score`.
 
@@ -19,7 +19,7 @@ V0 proves this lifecycle can be executed once on a live quantum-compilation ques
 
 ## What would subsume the contribution
 
-A prior or contemporary benchmark would materially subsume Q3 if it already combines all of the following:
+A prior or contemporary benchmark would materially subsume ORION-03 if it already combines all of the following:
 
 1. scientific research questions genuinely unresolved at item freeze;
 2. exact pre-outcome evidence-state binding;

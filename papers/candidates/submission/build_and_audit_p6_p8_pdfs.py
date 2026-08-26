@@ -34,21 +34,21 @@ MANUSCRIPTS = (
     Manuscript(
         "P6",
         PAPERS
-        / "paper-06-formal-epistemic-structures-and-mechanics"
+        / "orion-16-formal-epistemic-structures-and-mechanics"
         / "submission"
         / "AIJ_MANUSCRIPT.tex",
     ),
     Manuscript(
         "P7",
         PAPERS
-        / "paper-07-epistemic-navigation-open-worlds"
+        / "orion-17-epistemic-navigation-open-worlds"
         / "submission"
         / "AIJ_MANUSCRIPT.tex",
     ),
     Manuscript(
         "P8",
         PAPERS
-        / "paper-08-epistemic-authority-autonomous-science"
+        / "orion-18-epistemic-authority-autonomous-science"
         / "submission"
         / "JAAMAS_MANUSCRIPT.tex",
     ),

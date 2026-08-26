@@ -1,4 +1,4 @@
-# P9 final result disposition map V1
+# ORION-19 final result disposition map V1
 
 Purpose: prevent post-outcome interpretation drift. This map is written while the focused M1 and corrected A2/A4 official executions remain queued. It does not predict a favorable result; it maps sanctioned terminals to issue/paper consequences.
 
@@ -8,7 +8,7 @@ Purpose: prevent post-outcome interpretation drift. This map is written while th
 - A5 transport: `A5_D0_EXPLICIT_INFERENCE_SUFFICIENT` at the bounded affine transport atom.
 - D1: official workflow `D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED`; independent pre-artifact comparison has zero material discrepancies; final merge authority pending integration.
 - A6 data: `EXACT_TRACE_DATA_ONLY`.
-- A3/A7/A8/A9/A10: not load-bearing/deferred for bounded P9.
+- A3/A7/A8/A9/A10: not load-bearing/deferred for bounded ORION-19.
 - D1 novelty: broad relational/OOD and serialization-friction principles donor-owned; exact method-coordinate protocol remains candidate residual.
 
 ## M1 terminal consequences
@@ -48,12 +48,12 @@ Purpose: prevent post-outcome interpretation drift. This map is written while th
 
 ### `M1_LEAKAGE_OR_EVALUATOR_FAILURE`
 
-- P9 headline evidence is invalidated until the exact defect is diagnosed and a versioned pre-new-outcome repair is possible;
+- ORION-19 headline evidence is invalidated until the exact defect is diagnosed and a versioned pre-new-outcome repair is possible;
 - no paper promotion; #391 cannot close peer-review-ready.
 
 ### `CANNOT_CHECK`
 
-- retain D1/A5 positives at their own scope but P9 final standalone terminal is at most technical/narrowed/CANNOT_CHECK depending on whether M1 is load-bearing to the surviving claim.
+- retain D1/A5 positives at their own scope but ORION-19 final standalone terminal is at most technical/narrowed/CANNOT_CHECK depending on whether M1 is load-bearing to the surviving claim.
 
 ## A2/A4 corrected terminal consequences
 

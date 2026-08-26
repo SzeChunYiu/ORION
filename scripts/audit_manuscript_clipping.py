@@ -52,9 +52,9 @@ def discover_current_pdfs(root: Path) -> tuple[list[Path], list[tuple[Path, str]
     """
 
     papers = root / "papers"
-    current = set(papers.glob("paper-??-*/manuscript/main.pdf"))
+    current = set(papers.glob("orion-??-*/manuscript/main.pdf"))
     skipped: list[tuple[Path, str]] = []
-    for pdf in papers.glob("paper-??-*/journal_package/manuscript.pdf"):
+    for pdf in papers.glob("orion-??-*/journal_package/manuscript.pdf"):
         closure = pdf.parent / "RENDER_CLOSURE_STATE.json"
         state = None
         if closure.is_file():

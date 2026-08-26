@@ -1,7 +1,7 @@
-# P11–P14 Resource Accounting Schema V1
+# ORION-21–ORION-24 Resource Accounting Schema V1
 
 **Owner track:** #664  
-**Consumers:** P11 #471, P12 #665, P13 #666, P14 #669 where system overhead is compared  
+**Consumers:** ORION-21 #471, ORION-22 #665, ORION-23 #666, ORION-24 #669 where system overhead is compared  
 **Status:** DRAFT FROZEN WRITING CONTRACT — no outcome-derived weights
 
 ## Principle
@@ -21,7 +21,7 @@ Every evaluated item/episode should emit one machine-readable receipt with at le
 | Field | Meaning | Rule |
 |---|---|---|
 | `episode_id` | protected item identity | immutable, non-semantic identifier |
-| `paper_id` | P11/P12/P13/P14 | required |
+| `paper_id` | ORION-21/ORION-22/ORION-23/ORION-24 | required |
 | `split_id` | train/dev/protected family | no protected-outcome tuning |
 | `system_arm` | exact arm name | preregistered vocabulary |
 | `raw_source_id` | identity/hash of raw evidence/state | required for all transforms |
@@ -84,9 +84,9 @@ Caching is not free preprocessing. Report:
 
 If raw state disappears, compiled-only recoverability must reflect that loss; do not label inaccessible coordinates `recoverable`.
 
-## P12 matched-total-budget audit
+## ORION-22 matched-total-budget audit
 
-P12 arms receive the same total envelope. The protocol must specify which resource dimensions are hard caps and how heterogeneous resources are compared.
+ORION-22 arms receive the same total envelope. The protocol must specify which resource dimensions are hard caps and how heterogeneous resources are compared.
 
 Preferred reporting:
 
@@ -107,7 +107,7 @@ Mandatory arms:
 
 The joint arm cannot receive additional compiler training, cache, verifier calls, retries or search depth unavailable to comparators.
 
-## P13 safety–cost accounting
+## ORION-23 safety–cost accounting
 
 Unsafe reuse can be reduced trivially by always reopening. Therefore report a multi-objective frontier over:
 
@@ -121,7 +121,7 @@ Unsafe reuse can be reduced trivially by always reopening. Therefore report a mu
 
 A positive RCS claim requires improvement over confidence-only/unqualified compact state **without** collapsing to the always-raw/always-reopen corner.
 
-## P14 governance-overhead accounting
+## ORION-24 governance-overhead accounting
 
 ORION-RSE must not win by receiving more research compute. Match or report:
 
@@ -165,7 +165,7 @@ A comparison fails the accounting audit if any of the following occurs:
 {
   "schema": "ORION.P11P14.ResourceReceipt.v1",
   "episode_id": "...",
-  "paper_id": "P12",
+  "paper_id": "ORION-22",
   "split_id": "protected-family-A",
   "system_arm": "JOINT_STATE_REASONING",
   "raw_source_id": "sha256:...",

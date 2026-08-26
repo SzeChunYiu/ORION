@@ -1,4 +1,4 @@
-# P12 procedural path-allocation protocol V1
+# ORION-22 procedural path-allocation protocol V1
 
 **Programme:** #977  
 **Purpose:** test Resource-Location Metareasoning in a second domain qualitatively different from SAT: repeated shortest-path queries on fixed grids.

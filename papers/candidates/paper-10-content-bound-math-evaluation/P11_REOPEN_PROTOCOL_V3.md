@@ -1,11 +1,11 @@
-# ORION-P11 reopen protocol V3 — content-bound longitudinal evaluation and native proof-mechanism transfer
+# ORION-ORION-21 reopen protocol V3 — content-bound longitudinal evaluation and native proof-mechanism transfer
 
-**Status:** prospective reopen protocol; historical P10/P11 bytes and terminals remain immutable.  
+**Status:** prospective reopen protocol; historical ORION-20/ORION-21 bytes and terminals remain immutable.  
 **Date:** 2026-08-20.  
-**Paper identity:** ORION-P11, Content-Bound Mathematical Evaluation (#471).  
+**Paper identity:** ORION-ORION-21, Content-Bound Mathematical Evaluation (#471).  
 **Historical source directory:** this directory retains its original `paper-10-*` path by preservation policy.
 
-## 1. Why P11 must reopen around a new residual
+## 1. Why ORION-21 must reopen around a new residual
 
 The historical technical note already established useful but bounded facts:
 
@@ -18,13 +18,13 @@ The historical technical note already established useful but bounded facts:
 
 It also correctly concluded that **coarse source recurrence is not reusable tactic discovery or proof utility**, and that content-bound benchmark packaging/native checking are not standalone novelty.
 
-P11 should therefore not be “rescued” by rewriting the old result. A standalone reopen needs a new prospective discriminator that simultaneously satisfies the existing reopen triggers:
+ORION-21 should therefore not be “rescued” by rewriting the old result. A standalone reopen needs a new prospective discriminator that simultaneously satisfies the existing reopen triggers:
 
 1. native proof-state/tactic/dependency representation;
 2. TacMiner-class or stronger structural proof baseline;
 3. downstream proof utility under a fixed prover loop;
 4. multiple prospectively frozen later Mathlib revisions;
-5. a residual not already owned by P4/P8/P9/P10 or current proof-mining/version-robustness work.
+5. a residual not already owned by ORION-14/ORION-18/ORION-19/ORION-20 or current proof-mining/version-robustness work.
 
 ## 2. Current prior-work pressure
 
@@ -39,13 +39,13 @@ The final donor pass must structurally absorb at least:
 - **Lean Refactor** (`arXiv:2605.20244`) — version-aware proof refactoring and empirical zero-shot transfer across later Lean/Mathlib releases;
 - current semantic-faithfulness evaluations — compilation/native acceptance is not statement meaning.
 
-After this pressure, neither “version robustness” nor “proof-pattern mining” alone is a P11 residual. The candidate residual below is their **measurement-science composition**: content-bound longitudinal comparability plus native-mechanism utility attribution.
+After this pressure, neither “version robustness” nor “proof-pattern mining” alone is a ORION-21 residual. The candidate residual below is their **measurement-science composition**: content-bound longitudinal comparability plus native-mechanism utility attribution.
 
 ## 3. Candidate strongest thesis
 
 Freeze only after the donor and pilot rounds:
 
-> Longitudinal Lean evaluation becomes scientifically interpretable when every task and result is bound to exact statement/source/dependency/toolchain identity and when proof mechanisms are evaluated from native proof-state/dependency traces rather than source-order proxies. Under this discipline, P11 can distinguish genuine prover/mechanism transfer from benchmark revision drift and test whether learned proof abstractions retain downstream utility across module and repository revisions.
+> Longitudinal Lean evaluation becomes scientifically interpretable when every task and result is bound to exact statement/source/dependency/toolchain identity and when proof mechanisms are evaluated from native proof-state/dependency traces rather than source-order proxies. Under this discipline, ORION-21 can distinguish genuine prover/mechanism transfer from benchmark revision drift and test whether learned proof abstractions retain downstream utility across module and repository revisions.
 
 A stronger empirical form is allowed only if the protected experiment supports it:
 
@@ -120,7 +120,7 @@ Run frozen prover configurations on every admissible snapshot with matched decla
 - a fixed deterministic tactic/search baseline;
 - a fixed retrieval-augmented Lean prover;
 - a strong contemporary theorem-proving agent where exact version binding is feasible;
-- the P11 native-mechanism augmented prover from Experiment B.
+- the ORION-21 native-mechanism augmented prover from Experiment B.
 
 Do not update model weights or prompts after observing later-revision protected outcomes.
 
@@ -173,10 +173,10 @@ Compare the same training/evaluation identities across:
 5. **TacMiner-class tactic-dependence graph mining**;
 6. premise/dependency retrieval baseline;
 7. simple reusable macro/library baseline;
-8. P11 candidate content-bound native-mechanism representation;
+8. ORION-21 candidate content-bound native-mechanism representation;
 9. ablations removing state, dependency edges, revision metadata or content binding.
 
-If a donor architecture wins, absorb it; P11 can still own the longitudinal measurement design if that residual survives.
+If a donor architecture wins, absorb it; ORION-21 can still own the longitudinal measurement design if that residual survives.
 
 ### 6.4 Fixed downstream prover loop
 
@@ -269,7 +269,7 @@ Do not report a pooled “all revisions” score that mixes incompatible task po
 
 ## 11. Figures and tables designed to make the contribution visually obvious
 
-### P11-A — longitudinal score decomposition
+### ORION-21-A — longitudinal score decomposition
 
 For each revision, show naive score change decomposed into:
 
@@ -281,27 +281,27 @@ For each revision, show naive score change decomposed into:
 
 A waterfall or stacked decomposition makes “benchmark changed” versus “prover changed” immediately visible.
 
-### P11-B — naive vs content-bound leaderboard
+### ORION-21-B — naive vs content-bound leaderboard
 
 Two side-by-side rankings or rank trajectories across revisions. Highlight any ranking inversions attributable to comparability drift. If none occur, report the stability result.
 
-### P11-C — revision × module utility heatmap
+### ORION-21-C — revision × module utility heatmap
 
 Cells show native-mechanism proof-success lift over fixed prover. This exposes whether utility is concentrated in a few modules or survives broad transfer.
 
-### P11-D — transfer-retention curve
+### ORION-21-D — transfer-retention curve
 
 X = revision distance/time; Y = retained mechanism lift and raw mechanism survival. Include source-sequence and TacMiner-class baselines.
 
-### P11-E — source recurrence vs native utility scatter
+### ORION-21-E — source recurrence vs native utility scatter
 
 Each candidate pattern/mechanism is a point. X = recurrence/coverage, Y = downstream proof-search utility. This directly tests the historical temptation to equate recurrence with useful tactics.
 
-### P11-F — failure-attribution Sankey
+### ORION-21-F — failure-attribution Sankey
 
 Mechanism/proof failures flow into statement drift, dependency/API drift, toolchain drift, nontransferable mechanism, search failure, or `UNRESOLVED`.
 
-### P11-G — receipt mutation matrix
+### ORION-21-G — receipt mutation matrix
 
 Rows = source/statement/revision/dependency/toolchain/attempt mutation; columns = naive task-id store versus content-bound checker; show which substitutions are detected.
 
@@ -316,10 +316,10 @@ Rows = source/statement/revision/dependency/toolchain/attempt mutation; columns 
 
 ## 12. Negative-result-to-research rule
 
-Historical and new adverse results remain immutable. P11 converts them into new research only through a new frozen discriminator.
+Historical and new adverse results remain immutable. ORION-21 converts them into new research only through a new frozen discriminator.
 
 - **native mechanisms do not outperform source baselines:** investigate whether the historical recurrence is representationally sufficient, or whether the mechanism definition/search loop is wrong; do not call recurrence “utility.”
-- **TacMiner-class baseline matches P11:** absorb TacMiner and narrow P11 to longitudinal content-bound measurement if that part remains useful.
+- **TacMiner-class baseline matches ORION-21:** absorb TacMiner and narrow ORION-21 to longitudinal content-bound measurement if that part remains useful.
 - **cross-revision lift collapses:** localize drift causes and test version adapters in a new registered arm; the collapse itself becomes a maintenance/mechanism-survival result.
 - **naive and content-bound rankings are identical:** retain the robustness result; do not manufacture score drift.
 - **statement equivalence cannot be decided:** mark the lineage `UNRESOLVED/NOT_COMPARABLE` and measure the resulting coverage cost.
@@ -361,7 +361,7 @@ Requires Experiment D.
 
 ### Rung 6 — standalone flagship target
 
-> P11 establishes **content-bound longitudinal evaluation** as a practical measurement layer for evolving formal-proof systems: it binds claims to exact formal environments, separates benchmark drift from solver change, and quantifies the survival and utility of native proof mechanisms across revisions and repositories.
+> ORION-21 establishes **content-bound longitudinal evaluation** as a practical measurement layer for evolving formal-proof systems: it binds claims to exact formal environments, separates benchmark drift from solver change, and quantifies the survival and utility of native proof mechanisms across revisions and repositories.
 
 Rung 6 is the strongest defensible target. It is not granted by the historical note.
 
@@ -382,11 +382,11 @@ Before result-bearing execution:
 - [ ] statistics/margins/multiplicity/denominators frozen;
 - [ ] raw archive requires invalid/null/non-comparable cases;
 - [ ] independent #283 replay plan frozen;
-- [ ] P4/P8 authority boundary and P9/P10 ownership rechecked.
+- [ ] ORION-14/ORION-18 authority boundary and ORION-19/ORION-20 ownership rechecked.
 
 ## 15. Standalone close condition
 
-P11 becomes a standalone paper only if at least one **new prospective residual** survives strong baselines and external verification. The preferred close package is:
+ORION-21 becomes a standalone paper only if at least one **new prospective residual** survives strong baselines and external verification. The preferred close package is:
 
 - Experiment A supported longitudinal comparability result;
 - Experiment B native-mechanism downstream utility over strong baselines;
@@ -396,4 +396,4 @@ P11 becomes a standalone paper only if at least one **new prospective residual**
 - all adverse/null/non-comparable cases retained;
 - fresh novelty/ownership review immediately before submission.
 
-If the native-mechanism residual disappears but the longitudinal measurement result is strong, P11 may still become a narrower evaluation/measurement paper. If both disappear, retain the current technical-note terminal rather than inflating publication count.
+If the native-mechanism residual disappears but the longitudinal measurement result is strong, ORION-21 may still become a narrower evaluation/measurement paper. If both disappear, retain the current technical-note terminal rather than inflating publication count.

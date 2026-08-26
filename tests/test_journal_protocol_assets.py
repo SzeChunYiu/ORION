@@ -11,11 +11,11 @@ PROTOCOL_ROOT = ROOT / "research" / "paper-programme-v1" / "protocols"
 STATS_MODULE = PROTOCOL_ROOT / "publication_stats.py"
 SVG_MODULE = PROTOCOL_ROOT / "publication_svg.py"
 PAPER_PROTOCOLS = {
-    "P1": ROOT / "papers" / "paper-01-recursive-epistemic-reconstruction" / "protocol" / "PROTOCOL_V1.json",
-    "P2": ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "protocol" / "PROTOCOL_V1.json",
-    "P3": ROOT / "papers" / "paper-03-global-knowledge-portrait" / "protocol" / "PROTOCOL_V1.json",
-    "P4": ROOT / "papers" / "paper-04-verified-scientific-discovery" / "protocol" / "PROTOCOL_V1.json",
-    "P5": ROOT / "papers" / "paper-05-self-orion" / "protocol" / "PROTOCOL_V1.json",
+    "P1": ROOT / "papers" / "orion-11-recursive-epistemic-reconstruction" / "protocol" / "PROTOCOL_V1.json",
+    "P2": ROOT / "papers" / "orion-12-open-world-scientific-discovery" / "protocol" / "PROTOCOL_V1.json",
+    "P3": ROOT / "papers" / "orion-13-global-knowledge-portrait" / "protocol" / "PROTOCOL_V1.json",
+    "P4": ROOT / "papers" / "orion-14-verified-scientific-discovery" / "protocol" / "PROTOCOL_V1.json",
+    "P5": ROOT / "papers" / "orion-15-self-orion" / "protocol" / "PROTOCOL_V1.json",
 }
 
 
@@ -123,9 +123,9 @@ def test_execution_frozen_protocol_must_bind_every_identity():
 
 def test_p3_annotation_and_p4_p5_protected_schemas_parse():
     paths = [
-        ROOT / "papers" / "paper-03-global-knowledge-portrait" / "protocol" / "ANNOTATION_SCHEMA_V1.json",
-        ROOT / "papers" / "paper-04-verified-scientific-discovery" / "protocol" / "ATTACK_CASE_SCHEMA_V1.json",
-        ROOT / "papers" / "paper-05-self-orion" / "protocol" / "HIDDEN_CAUSE_CASE_SCHEMA_V1.json",
+        ROOT / "papers" / "orion-13-global-knowledge-portrait" / "protocol" / "ANNOTATION_SCHEMA_V1.json",
+        ROOT / "papers" / "orion-14-verified-scientific-discovery" / "protocol" / "ATTACK_CASE_SCHEMA_V1.json",
+        ROOT / "papers" / "orion-15-self-orion" / "protocol" / "HIDDEN_CAUSE_CASE_SCHEMA_V1.json",
     ]
     for path in paths:
         payload = json.loads(path.read_text(encoding="utf-8"))

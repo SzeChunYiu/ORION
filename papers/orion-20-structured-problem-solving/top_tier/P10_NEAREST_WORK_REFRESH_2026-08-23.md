@@ -1,4 +1,4 @@
-# P10 nearest-work refresh — 2026-08-23
+# ORION-20 nearest-work refresh — 2026-08-23
 
 **Programme:** #977 · **Scope:** immediate pre-submission saturation for the OCME maximum claim · **Method:** three changed-vocabulary search rounds (FunSearch-successor vocabulary; skill-library-invention vocabulary; library-learning/abstraction-growth vocabulary) over the 2025–26 lane.
 

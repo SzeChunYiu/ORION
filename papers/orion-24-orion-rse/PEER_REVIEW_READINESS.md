@@ -1,9 +1,9 @@
-# P14 Peer-Review Readiness Report
+# ORION-24 Peer-Review Readiness Report
 
 **Decision:** `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_GOVERNANCE-CONFORMANCE_RESULT`
 
 **Active authority:** `P14_ACTIVE_CLAIM_AUTHORITY_V1.json` — active claim
-`P14.CURRENT.CONTROLLED_CONFORMANCE`, scientific terminal
+`ORION-24.CURRENT.CONTROLLED_CONFORMANCE`, scientific terminal
 `P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED`, scoped to the
 frozen 28-case seven-implementation register. **`external_validity: OPEN`.**
 

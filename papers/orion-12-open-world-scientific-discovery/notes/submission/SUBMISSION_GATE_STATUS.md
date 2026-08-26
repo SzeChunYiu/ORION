@@ -1,4 +1,4 @@
-# P2 submission gate status — narrowed IP&M track
+# ORION-12 submission gate status — narrowed IP&M track
 
 State as of **2026-08-18**.
 Scientific scope receipt: `P2_NARROWED`.
@@ -49,7 +49,7 @@ The scorer-native identity bridge is now demonstrated, but every DOI-crosswalk r
 | --- | --- | --- |
 | Offline complete-gold regeneration | `DONE` | `scripts/run_offline_companion.py --check`; independent clean-CI reproduction already exists on main. |
 | Result claim binding | `DONE` | `protocol/CLAIM_LEDGER_V1.json`, `scripts/check_claim_ledger.py`; result-bearing abstract/results/limitations/conclusion prose is evidence-bound. |
-| P2 donor assimilation | `DONE` | `protocol/P2_DONOR_ASSIMILATION_LEDGER_V1.json`, `scripts/check_p2_assimilation.py`, hostile tests. |
+| ORION-12 donor assimilation | `DONE` | `protocol/P2_DONOR_ASSIMILATION_LEDGER_V1.json`, `scripts/check_p2_assimilation.py`, hostile tests. |
 | Bounded external result archives | `DONE` | MetaSyn, bounded AutoResearchBench Wide/Deep, and the failed OpenAIRE/Crossref matched campaign are retained with their authority limits and mirrored CI bundles. |
 | Raw final live-provider archive | `DEFERRED / future work` | Not required for the narrowed paper because no live-provider superiority claim is made. Capture machinery remains available for a reopened prospective campaign. |
 | Durable evidence mirror | `DONE` | The expiring MetaSyn and matched OpenAIRE/Crossref Actions artifacts have checksummed repository mirrors. A repository-independent DOI remains a filing operation. |
@@ -67,8 +67,8 @@ External superiority is deliberately **not** on this blocker list. The paper has
 
 ## Issue consequences
 
-- #157 can terminate after branch CI verifies the runnable P2 closure artifacts.
+- #157 can terminate after branch CI verifies the runnable ORION-12 closure artifacts.
 - #279 can terminate at its allowed `CANNOT_CHECK / REFUTED_OR_SHRINK` path.
 - #317 can terminate `P2_NARROWED`; saturation is not claimed.
-- #318's P2 consumer tranche is complete, but the shared issue remains open for non-P2 obligations.
+- #318's ORION-12 consumer tranche is complete, but the shared issue remains open for non-ORION-12 obligations.
 - #99 may close on this bounded `PEER_REVIEW_READY` terminal; maximal external superiority remains a follow-up programme.

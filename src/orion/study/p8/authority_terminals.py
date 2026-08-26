@@ -474,7 +474,7 @@ def principled_gold_responsiveness() -> dict[str, Any]:
 #: Where the paper states its state count. The donor axis is inert, and whether
 #: that is a finding or a defect depends entirely on how the count is reported.
 _STATE_COUNT_CLAIM = (
-    "papers/paper-08-epistemic-authority-autonomous-science/manuscript/FINAL_V3.md"
+    "papers/orion-18-epistemic-authority-autonomous-science/manuscript/FINAL_V3.md"
 )
 
 

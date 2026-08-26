@@ -1,4 +1,4 @@
-# P9 NR-05 freeze: representation hardening of the serialized arm against the frozen format-prior attack class
+# ORION-19 NR-05 freeze: representation hardening of the serialized arm against the frozen format-prior attack class
 
 - **Record id**: `P9_NR05_REPRESENTATION_HARDENING_FREEZE`
 - **Date frozen**: 2026-08-23
@@ -106,9 +106,9 @@ boundary of the hardening, not a defect found after the run.
 > about the D1 v1.2 classical-learner benchmark on its 128-case held-out-domain protected split
 > and about nothing else.
 
-> **Anti-promotion commitment, inherited**: `P9-U-T4` stays **BLOCKED** whatever this returns.
+> **Anti-promotion commitment, inherited**: `ORION-19-U-T4` stays **BLOCKED** whatever this returns.
 > This lane revives a *representation reading* on D1 — the successor claim of §7 — not the gate.
-> The protected negative `LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED` (P9 Qwen scaling) is a
+> The protected negative `LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED` (ORION-19 Qwen scaling) is a
 > different claim under a different receipt's authority boundary; this study does not touch,
 > re-run or repair it, and uses no language model at all.
 
@@ -215,7 +215,7 @@ By `worst_outcome` over every component that reached a verdict:
 | `T4V2_REPRESENTATION_HARDENED_ON_D1` | `PASS` | C-1 clean over a non-zero denominator, C-2 controls fire, C-3 supported |
 
 `T4V2_REPRESENTATION_HARDENED_ON_D1` is a pass **of this instrument on D1**. It licenses only the
-successor claim of §8 and nothing about `P9-U-T4`, any language model, any scale, or the
+successor claim of §8 and nothing about `ORION-19-U-T4`, any language model, any scale, or the
 successor experiment of issue #618. Exit `0` on PASS, `3` on FAIL, `4` on CANNOT_CHECK.
 
 ## 8. The successor claim, fixed now
@@ -242,7 +242,7 @@ is reported as such: the serialized margin does not survive canonicalization and
    second seed, no re-draw, no alternative corruption rule.
 3. The canonicalization design was chosen from the invariance argument of §2 alone, before any
    arm ran. If C-3 fails, that is the finding; no alternative design is tried in this study.
-4. No existing P9 result, receipt, protocol or evidence artifact is modified. Only new files are
+4. No existing ORION-19 result, receipt, protocol or evidence artifact is modified. Only new files are
    added. The frozen T4 instrument is imported, not edited.
 5. Foreign work this study builds on, cited: the frozen T4 freeze/receipt/result (this
    repository, 2026-08-21) and the attack-potency audit of 2026-08-22 (codex lane, merged via

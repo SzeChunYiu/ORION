@@ -1,4 +1,4 @@
-# P12 selection-sufficiency theorem — result receipt V1
+# ORION-22 selection-sufficiency theorem — result receipt V1
 
 **Terminal:** `P12_SELECTION_SUFFICIENCY_THEOREM_FALSIFIER_GREEN`
 
@@ -44,4 +44,4 @@ The real battery supplies 18 direct impossibility witnesses for price-oblivious 
 
 ## Authority boundary
 
-This receipt does **not** establish that exact charge certificates are free, prospective, externally measured, or available in a deployment before materialization. It establishes optimal selection **conditional on** those exact additive certificates. The next P12 study must ask how much prospective/partial cost information is sufficient and must score abstention/coverage so a trivial refuse-all policy cannot count as success.
+This receipt does **not** establish that exact charge certificates are free, prospective, externally measured, or available in a deployment before materialization. It establishes optimal selection **conditional on** those exact additive certificates. The next ORION-22 study must ask how much prospective/partial cost information is sufficient and must score abstention/coverage so a trivial refuse-all policy cannot count as success.

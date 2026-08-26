@@ -1,6 +1,6 @@
-# P1-1 — Protocol diagram
+# ORION-11-1 — Protocol diagram
 
-**Bound to:** protocol `P1.hidden-formulation.v1.1`, suite PILOT `7a50a2d5…` /
+**Bound to:** protocol `ORION-11.hidden-formulation.v1.1`, suite PILOT `7a50a2d5…` /
 TEST `21b461d8…`. Generated from the design, not from outcomes; this figure
 carries no result and is publishable before the final test is run.
 

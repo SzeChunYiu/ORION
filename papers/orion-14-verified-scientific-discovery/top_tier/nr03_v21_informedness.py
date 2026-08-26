@@ -6,7 +6,7 @@ pre-registered protocol in P4_H3_V21_PROTOCOL_PREREG.json: regenerates the v1
 construction battery, re-runs the eleven frozen policies, checks the four
 gates, computes J_CC per system and the registered bootstrap comparison.
 
-Run:  PYTHONPATH=src python3 papers/paper-04-verified-scientific-discovery/top_tier/nr03_v21_informedness.py
+Run:  PYTHONPATH=src python3 papers/orion-14-verified-scientific-discovery/top_tier/nr03_v21_informedness.py
 """
 from __future__ import annotations
 
@@ -19,11 +19,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO / "src"))
 
-HOST = REPO / "papers" / "paper-04-verified-scientific-discovery" / "host"
+HOST = REPO / "papers" / "orion-14-verified-scientific-discovery" / "host"
 PUBLISHED = json.loads(
     (
         REPO
-        / "papers/paper-04-verified-scientific-discovery/evidence/protected_v2/PUBLICATION_METRICS_V2.json"
+        / "papers/orion-14-verified-scientific-discovery/evidence/protected_v2/PUBLICATION_METRICS_V2.json"
     ).read_text(encoding="utf-8")
 )
 

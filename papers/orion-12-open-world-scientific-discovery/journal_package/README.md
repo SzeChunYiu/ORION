@@ -1,6 +1,6 @@
-# ORION-P2 journal package
+# ORION-ORION-12 journal package
 
-**Scientific status:** the bounded `P2.NARROWED` terminal is retained.  
+**Scientific status:** the bounded `ORION-12.NARROWED` terminal is retained.  
 **Package status:** `SUPERSEDED`.  
 **Current submission authority:** `false`.
 
@@ -12,7 +12,7 @@ The protected V3 renderer binds its complete tracked TeX input closure in
 current tree, records that 13 of 31 inputs moved and that the retained PDF is
 `SUPERSEDED`. It must not be relabelled or submitted as the current manuscript.
 
-`P2.CURRENT_PACKAGE` is `OPEN`: the current manuscript lacks a fresh immutable
+`ORION-12.CURRENT_PACKAGE` is `OPEN`: the current manuscript lacks a fresh immutable
 PDF and a page-level visual and claim audit bound to its exact source bytes.
 
 External ORION-vs-baseline superiority remains `CANNOT_CHECK`; the

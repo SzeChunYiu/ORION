@@ -82,7 +82,7 @@ The paper does **not** claim generic provenance, claim-aware observability, dete
 
 ### 2.1 Research-object and workflow provenance
 
-RO-Crate provides a portable research-object packaging and metadata model, while Workflow Run RO-Crate profiles capture execution provenance at multiple granularities, including inputs, outputs, tools, steps and intermediate products. These are appropriate interoperability targets for SEI. P15 does not introduce a competing metadata vocabulary as its contribution.
+RO-Crate provides a portable research-object packaging and metadata model, while Workflow Run RO-Crate profiles capture execution provenance at multiple granularities, including inputs, outputs, tools, steps and intermediate products. These are appropriate interoperability targets for SEI. ORION-25 does not introduce a competing metadata vocabulary as its contribution.
 
 ### 2.2 Agent execution provenance and evidence tracing
 
@@ -90,13 +90,13 @@ Recent agent research connects retrieved evidence, tool calls, memory, observati
 
 ### 2.3 Claim-aware scientific-agent observability
 
-Very recent work makes claims, artifacts, evidence bindings and verification records first-class objects for scientific-agent observability and explicitly proposes complementing conventional telemetry/provenance standards. This closes another tempting but incorrect novelty route for P15: claim-aware lineage itself is donor territory.
+Very recent work makes claims, artifacts, evidence bindings and verification records first-class objects for scientific-agent observability and explicitly proposes complementing conventional telemetry/provenance standards. This closes another tempting but incorrect novelty route for ORION-25: claim-aware lineage itself is donor territory.
 
 ### 2.4 Reproducibility and replication
 
 Reproducibility systems answer whether an execution can be repeated under a declared environment and inputs. Replication and scientific validation may additionally test whether a scientific claim survives independent data, assumptions or evaluators. SEI treats these as distinct contracts. A reproducibility receipt is evidence for one layer, not a universal scientific-success token.
 
-### 2.5 P15 residual
+### 2.5 ORION-25 residual
 
 After donor absorption, the surviving object is the **admission relation** between execution evidence and scientific evidence. We study when an execution result may be admitted, held as invalid, or marked `CANNOT_CHECK`, and when a scientifically valid result still lacks claim-promotion authority.
 
@@ -240,7 +240,7 @@ Fourth, implementation and adjudication must be independent. A second implementa
 
 V1 is a bounded semantic fault model. The 18 cases were authored to exercise known distinctions and therefore cannot estimate natural failure prevalence. The comparator policies are semantic abstractions, not production implementations of RO-Crate, workflow engines or attested-execution systems. The result also assumes that an independent scientific contract can be supplied. In open-ended science, that contract may itself return `CANNOT_CHECK` or require expert adjudication.
 
-SEI also does not solve epistemic authority in general. It merely keeps execution integrity from impersonating scientific validity and keeps scientific validity from impersonating claim authority. The richer scientific-discharge semantics are owned elsewhere in ORION (notably P8), while research-decision governance is studied by P14.
+SEI also does not solve epistemic authority in general. It merely keeps execution integrity from impersonating scientific validity and keeps scientific validity from impersonating claim authority. The richer scientific-discharge semantics are owned elsewhere in ORION (notably ORION-18), while research-decision governance is studied by ORION-24.
 
 ## 10. Conclusion
 

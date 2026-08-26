@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-P4 = ROOT / "papers" / "paper-04-verified-scientific-discovery"
+P4 = ROOT / "papers" / "orion-14-verified-scientific-discovery"
 DEFAULT_REGISTER = P4 / "evidence" / "protected_v3" / "IDENTIFIABILITY_V3.json"
 
 

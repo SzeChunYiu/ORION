@@ -1,4 +1,4 @@
-# P14 external blinded governance protocol V1
+# ORION-24 external blinded governance protocol V1
 
 **Programme:** #977  
 **State:** `FROZEN_EXTERNAL_EXECUTION_INTERFACE`  
@@ -118,7 +118,7 @@ Compute at packet level, then aggregate by domain/family rather than treating ev
 
 ## Co-primary promotion condition
 
-Top-tier P14 empirical promotion requires **both**:
+Top-tier ORION-24 empirical promotion requires **both**:
 
 1. material reduction in false novelty/unsupported widening relative to strongest matched comparator; and
 2. useful-discovery recall no worse than a prospectively frozen non-inferiority margin.
@@ -136,7 +136,7 @@ Primary question: does retained negative history improve later experiment/claim 
 ## Strong hostile attacks
 
 - ORION terminology appears in packet/gold and becomes a label leak;
-- P14 gets stronger web/data access than comparators;
+- ORION-24 gets stronger web/data access than comparators;
 - adjudicators infer system identity from output style;
 - ORION wins by `CANNOT_CHECK`/abstention everywhere;
 - packet authoring encodes ORION rules rather than scientific reality;
@@ -144,11 +144,11 @@ Primary question: does retained negative history improve later experiment/claim 
 - Layer A and Layer B are pooled despite different evidence paths;
 - reviewer model equals candidate model without measured independence;
 - domain weighting selected after outcomes;
-- negative-history tasks are recycled from P14's own development examples.
+- negative-history tasks are recycled from ORION-24's own development examples.
 
 ## Top-tier evidence threshold
 
-The external result may support the broad P14 claim only after:
+The external result may support the broad ORION-24 claim only after:
 
 - >=60 protected packets / >=3 domains;
 - strong matched frontier research workflows;
@@ -158,4 +158,4 @@ The external result may support the broad P14 claim only after:
 - exact output/resource archive and reproducible scoring;
 - immediate pre-submission literature refresh.
 
-Until then P14 retains `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_GOVERNANCE-CONFORMANCE_RESULT`, not `P14_TOP_TIER_SUBMISSION_READY`.
+Until then ORION-24 retains `READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_GOVERNANCE-CONFORMANCE_RESULT`, not `P14_TOP_TIER_SUBMISSION_READY`.

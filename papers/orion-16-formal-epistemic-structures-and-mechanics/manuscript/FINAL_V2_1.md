@@ -11,7 +11,7 @@ Scientific agents change more than propositional belief. They mutate representat
 
 A mechanic declares a faithful semantic read/write interface, hard evidence and authority requirements, typed effects, invariants, emitted obligations, provenance and failure terminals. We prove safe root-inclusive reopening under a support-sound dependency abstraction. We show by counterexample that support soundness alone does **not** imply descendant minimality when conservative/spurious edges are allowed, and give a corrected minimax theorem under an explicit affected-realizability condition. Protected exact-change preservation/revalidation certificates can safely avoid unnecessary invalidation. We further prove history-aware commutation under faithful full scientific separation, sequential authority non-escalation, hard-obligation persistence and a recursive-audit boundary. The main separation theorem shows that two contracts can have identical bare computation/dependency semantics but different scientific admissibility because obligation or commit-authority premises differ.
 
-Deterministic finite checkers exercise all forward DAGs on four ordered nodes under all nonempty changed subsets, spurious-edge and affected-realizability countermodels, footprint-fidelity failures, preservation/revalidation cases, obligation persistence, authority composition and recursive cycles. The contribution is intentionally scoped: dependency repair, incremental computation, typed effects, authorization and provenance remain donor-owned. P6 contributes the scientific-admissibility layer over their composition.
+Deterministic finite checkers exercise all forward DAGs on four ordered nodes under all nonempty changed subsets, spurious-edge and affected-realizability countermodels, footprint-fidelity failures, preservation/revalidation cases, obligation persistence, authority composition and recursive cycles. The contribution is intentionally scoped: dependency repair, incremental computation, typed effects, authorization and provenance remain donor-owned. ORION-16 contributes the scientific-admissibility layer over their composition.
 
 ## 1. Motivation
 
@@ -19,7 +19,7 @@ A computation can be correct yet scientifically unauthorized. A dependency graph
 
 These distinctions become unavoidable in autonomous science because state elements carry different meanings. Some are raw computational values. Others are claims whose standing depends on evidence lineage, coverage, measurement semantics, independent checks or protected evaluation. Treating them all as ordinary mutable state creates a failure mode in which *computational continuity* is silently converted into *epistemic continuity*.
 
-P6 addresses the interface between these layers. It does not replace the donor theories that solve their native problems. It defines the extra contract needed when those mechanisms maintain scientifically certified state.
+ORION-16 addresses the interface between these layers. It does not replace the donor theories that solve their native problems. It defines the extra contract needed when those mechanisms maintain scientifically certified state.
 
 ## 2. Donor-complete stance
 
@@ -27,15 +27,15 @@ The framework explicitly engulfs, rather than excludes, the following parent str
 
 ### Truth maintenance and dependency repair
 
-TMS/JTMS/ATMS provide justifications, dependency-directed revision and multiple support environments. Modern agent repair work similarly uses trajectory or memory-to-action dependencies to localize failure and preserve independent support. P6 therefore claims no novelty for selective invalidation.
+TMS/JTMS/ATMS provide justifications, dependency-directed revision and multiple support environments. Modern agent repair work similarly uses trajectory or memory-to-action dependencies to localize failure and preserve independent support. ORION-16 therefore claims no novelty for selective invalidation.
 
 ### Self-adjusting and incremental computation
 
-Dynamic dependence/change-propagation systems update computations after inputs change and target from-scratch-consistent results. P6 embeds this as the computational repair layer. Its question is what additional facts are needed before reusing a **scientific certificate**, not whether incremental recomputation is useful.
+Dynamic dependence/change-propagation systems update computations after inputs change and target from-scratch-consistent results. ORION-16 embeds this as the computational repair layer. Its question is what additional facts are needed before reusing a **scientific certificate**, not whether incremental recomputation is useful.
 
 ### Epistemic update and belief revision
 
-Dynamic epistemic logic and AGM-style revision already formalize knowledge/belief change. P6 broadens the state signature to non-propositional scientific coordinates but does not claim a new general theory of belief update.
+Dynamic epistemic logic and AGM-style revision already formalize knowledge/belief change. ORION-16 broadens the state signature to non-propositional scientific coordinates but does not claim a new general theory of belief update.
 
 ### Effects, authorization and provenance
 
@@ -45,13 +45,13 @@ The strongest future comparator is therefore not an isolated TMS or effect syste
 
 ### Non-contributions and internal ownership
 
-The per-donor disclaimers above state what P6 does not claim against the external literature. This subsection states the same for the ORION programme, which the donor stance does not cover.
+The per-donor disclaimers above state what ORION-16 does not claim against the external literature. This subsection states the same for the ORION programme, which the donor stance does not cover.
 
-ORION Paper I already owns mechanic cells, recursive audit, responsibility-based reframing and dependency-directed reopening. In particular, `P1.D2` — the surviving P1 delta after Iris (`arXiv:2608.02143`) and ARTS (`arXiv:2606.21891`) narrowed it — is the **licensing relation**: the *type* of responsibility determines the authority to rewrite a formulation/search-universe coordinate, and the rewritten coordinate then scopes reopening. P6 claims none of it.
+ORION Paper I already owns mechanic cells, recursive audit, responsibility-based reframing and dependency-directed reopening. In particular, `ORION-11.D2` — the surviving ORION-11 delta after Iris (`arXiv:2608.02143`) and ARTS (`arXiv:2606.21891`) narrowed it — is the **licensing relation**: the *type* of responsibility determines the authority to rewrite a formulation/search-universe coordinate, and the rewritten coordinate then scopes reopening. ORION-16 claims none of it.
 
-The separation is not a difference of vocabulary. `P1.D2` decides *whether a coordinate may be rewritten and on whose authority*; P6 decides *what must be reopened once something has changed, and whether that set can be minimal*. Each settles a case the other cannot see. Holding the dependency graph `D` and the changed set `X` fixed and varying only the responsibility type leaves `Aff_D(E,X)` unchanged, so P6 returns one answer where `P1.D2` returns two. Conversely, the spurious-edge countermodel of §5 varies the admissible semantics class while holding responsibility type and rewritten coordinate fixed, so `P1.D2` returns one answer where P6's minimality verdict differs.
+The separation is not a difference of vocabulary. `ORION-11.D2` decides *whether a coordinate may be rewritten and on whose authority*; ORION-16 decides *what must be reopened once something has changed, and whether that set can be minimal*. Each settles a case the other cannot see. Holding the dependency graph `D` and the changed set `X` fixed and varying only the responsibility type leaves `Aff_D(E,X)` unchanged, so ORION-16 returns one answer where `ORION-11.D2` returns two. Conversely, the spurious-edge countermodel of §5 varies the admissible semantics class while holding responsibility type and rewritten coordinate fixed, so `ORION-11.D2` returns one answer where ORION-16's minimality verdict differs.
 
-P6 must therefore not restate responsibility-typed authority to rewrite a formulation coordinate; doing so would collapse this paper into `P1.D2` rather than extend it. P5 owns protected self-change promotion and P8 owns the general authority calculus, as noted in §10.
+ORION-16 must therefore not restate responsibility-typed authority to rewrite a formulation coordinate; doing so would collapse this paper into `ORION-11.D2` rather than extend it. ORION-15 owns protected self-change promotion and ORION-18 owns the general authority calculus, as noted in §10.
 
 ## 3. Epistemic mechanic contracts
 
@@ -183,7 +183,7 @@ These laws are especially important after engulfing effect systems and repair sy
 
 Recursive audit terminates when each recursive call decreases a well-founded rank or a cycle detector stops repeated states. Unguarded same-state recursion yields an immediate infinite countermodel.
 
-Recursion also cannot create promotion authority. If a candidate controls both its own admission predicate and all evidence inspected by that predicate, an internally accepting state can be manufactured independently of an external correctness property. P6 uses this only as a boundary; P8 develops the general authority calculus and P5 owns protected self-change promotion inside ORION.
+Recursion also cannot create promotion authority. If a candidate controls both its own admission predicate and all evidence inspected by that predicate, an internally accepting state can be manufactured independently of an external correctness property. ORION-16 uses this only as a boundary; ORION-18 develops the general authority calculus and ORION-15 owns protected self-change promotion inside ORION.
 
 ## 11. Typed-erasure separation
 
@@ -195,11 +195,11 @@ There exist mechanic contracts `m1,m2` with identical erasures but different adm
 
 The minimal construction gives both the same state transition. One has satisfied evidence obligations and valid authority; the other lacks a mandatory premise. Computational semantics is identical, but only the first may commit as a scientifically admissible transition.
 
-This is the core P6 discriminator after donor engulfing. It does **not** say TMS, self-adjusting computation or effect systems fail at their own correctness goals. It says scientific certification adds a distinct semantic layer that those goals do not automatically decide.
+This is the core ORION-16 discriminator after donor engulfing. It does **not** say TMS, self-adjusting computation or effect systems fail at their own correctness goals. It says scientific certification adds a distinct semantic layer that those goals do not automatically decide.
 
 ## 12. Conservative donor embeddings
 
-P6 keeps donor-native mechanisms as special cases.
+ORION-16 keeps donor-native mechanisms as special cases.
 
 - **Ordinary transition system:** scientific obligations/authority/provenance inert.
 - **TMS/dependency maintenance:** certificate status follows dependency invalidation; extra authority/effect dimensions inert.
@@ -228,7 +228,7 @@ These are bounded mathematical consistency checks, not measurements of real scie
 
 ## 14. Cross-paper preservation ladder
 
-P6 sits inside the wider ORION preservation ladder:
+ORION-16 sits inside the wider ORION preservation ladder:
 
 1. identity;
 2. computation/support;
@@ -236,11 +236,11 @@ P6 sits inside the wider ORION preservation ladder:
 4. target scientific-obligation discharge;
 5. commit authority.
 
-P6 establishes that correct computation/support preservation does not automatically establish levels 4–5. P7 studies evidence and closure across representation/objective changes. P8 studies scientific discharge and commit authority across effect domains.
+ORION-16 establishes that correct computation/support preservation does not automatically establish levels 4–5. ORION-17 studies evidence and closure across representation/objective changes. ORION-18 studies scientific discharge and commit authority across effect domains.
 
 ## 15. Falsifiers and empirical path
 
-The theory is complete, but the usefulness of the abstraction remains falsifiable. P6 should lose a separate-paper claim if:
+The theory is complete, but the usefulness of the abstraction remains falsifiable. ORION-16 should lose a separate-paper claim if:
 
 - a donor-complete formalism already proves the same scientific-admissibility result under equivalent semantics;
 - ORION mechanic embeddings require ad hoc exceptions that destroy the common contract;
@@ -251,7 +251,7 @@ The frozen donor-product protocol therefore compares against an integrated repai
 
 ## 16. Conclusion
 
-P6 does not ask ORION to become narrow in order to avoid prior theory. It does the opposite: it engulfs maintenance, incremental computation, epistemic update, effects, authorization and provenance, then identifies the scientific layer their composition still has to respect.
+ORION-16 does not ask ORION to become narrow in order to avoid prior theory. It does the opposite: it engulfs maintenance, incremental computation, epistemic update, effects, authorization and provenance, then identifies the scientific layer their composition still has to respect.
 
 The resulting theory distinguishes safe over-approximation from minimax minimality, requires faithful footprints for composition, separates preservation from revalidation, and proves that computationally identical transitions can differ in scientific admissibility.
 
@@ -259,4 +259,4 @@ The resulting theory distinguishes safe over-approximation from minimax minimali
 
 ## Reference families
 
-Canonical source identities are maintained in `../../CANONICAL_BIBLIOGRAPHY_V2.md`; donor ownership includes Doyle TMS, de Kleer ATMS, AGM/revision, Dynamic Epistemic Logic, adaptive/self-adjusting computation, ETAS, FAVA, AgentTether, dependency-guided rollback repair, provenance/authorization work and ORION P1.
+Canonical source identities are maintained in `../../CANONICAL_BIBLIOGRAPHY_V2.md`; donor ownership includes Doyle TMS, de Kleer ATMS, AGM/revision, Dynamic Epistemic Logic, adaptive/self-adjusting computation, ETAS, FAVA, AgentTether, dependency-guided rollback repair, provenance/authorization work and ORION ORION-11.

@@ -1,7 +1,7 @@
-# P11–P14 Literature Delta — 2026-08-20
+# ORION-21–ORION-24 Literature Delta — 2026-08-20
 
 **Status:** current-search donor subtraction for the publication-candidate package  
-**Scope:** P11 state construction, P12 adaptive state/reasoning allocation, P13 responsibility-safe state reuse, P14 research-agent governance  
+**Scope:** ORION-21 state construction, ORION-22 adaptive state/reasoning allocation, ORION-23 responsibility-safe state reuse, ORION-24 research-agent governance  
 **Search date:** 2026-08-20
 
 ## Search method
@@ -21,7 +21,7 @@ Search concepts included:
 
 The delta is deliberately adversarial: each item is recorded for what it **removes** from ORION’s novelty space before what it supports.
 
-## P11 donor delta
+## ORION-21 donor delta
 
 ### Xu et al. — predictive V-information
 
@@ -29,7 +29,7 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Owns:** computationally restricted usable information and the fact that computation can create predictive V-information.
 
-**Subtraction:** P11 cannot claim that equal Shannon information may differ in usability, or that computation can make information more usable.
+**Subtraction:** ORION-21 cannot claim that equal Shannon information may differ in usability, or that computation can make information more usable.
 
 **Residual:** explicit location/cost of that work across compiler, state, decoder/search, cache/recovery and verifier.
 
@@ -39,7 +39,7 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Owns:** holding model parameters fixed while varying state granularity/structure/grounding and showing material reasoning effects; also explicitly notes that constructing a representation can itself induce useful reasoning.
 
-**Subtraction:** “state representation matters to LLM reasoning” and “construction can induce computation” are not P11 novelty claims.
+**Subtraction:** “state representation matters to LLM reasoning” and “construction can induce computation” are not ORION-21 novelty claims.
 
 **Residual:** theorem-backed query-family rank/accessibility results, non-laundering controls, costed compiler/decoder substitution and optionality phase laws.
 
@@ -59,11 +59,11 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Owns:** optimizing observation/history compression for long-horizon agents and measuring memory/performance tradeoffs.
 
-**Subtraction:** context compression and learned compression policies are not P11 primitives.
+**Subtraction:** context compression and learned compression policies are not ORION-21 primitives.
 
 **Residual:** current accessibility versus future optionality/recoverability plus compiler/cache/materialize accounting.
 
-## P12 donor delta
+## ORION-22 donor delta
 
 ### Strategic Scaling of Test-Time Compute
 
@@ -71,7 +71,7 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Owns:** learned/adaptive allocation of test-time compute across queries under finite resources, including query-difficulty/solvability adaptation.
 
-**Subtraction:** P12 cannot claim adaptive inference-budget allocation.
+**Subtraction:** ORION-22 cannot claim adaptive inference-budget allocation.
 
 ### Adaptive Test-Time Compute Allocation with Evolving In-Context Demonstrations
 
@@ -79,7 +79,7 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Owns:** adaptive placement of test-time compute and adaptive generation conditioning in one inference framework.
 
-**Subtraction:** even “jointly adapt where compute is spent and how generation is performed” is not enough to distinguish P12.
+**Subtraction:** even “jointly adapt where compute is spent and how generation is performed” is not enough to distinguish ORION-22.
 
 ### Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization
 
@@ -89,9 +89,9 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Subtraction:** oracle-regret and learned compute-allocation framing are crowded.
 
-**P12 residual after subtraction:** the allocation variable must include a genuinely distinct, costed **state-construction action** plus downstream reasoning/search, with the compiler’s work/state/cache/recovery charged inside the same total resource boundary. The paper needs held-out regime crossovers and strict superiority over both adaptive-compute-only and adaptive-state-only baselines.
+**ORION-22 residual after subtraction:** the allocation variable must include a genuinely distinct, costed **state-construction action** plus downstream reasoning/search, with the compiler’s work/state/cache/recovery charged inside the same total resource boundary. The paper needs held-out regime crossovers and strict superiority over both adaptive-compute-only and adaptive-state-only baselines.
 
-## P13 donor delta
+## ORION-23 donor delta
 
 ### Safety as Computation — certified answer reuse
 
@@ -99,7 +99,7 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Owns/pressures:** certified reuse, provenance witnesses and pre-materialized reusable answers under a capability-closure view.
 
-**Subtraction:** “certify state/answer reuse” and “attach provenance witnesses to reusable results” are not sufficient novelty claims for P13.
+**Subtraction:** “certify state/answer reuse” and “attach provenance witnesses to reusable results” are not sufficient novelty claims for ORION-23.
 
 **Residual:** responsibility-relative state scope, explicit unsupported responsibilities/omissions, recoverability/reopen semantics under responsibility change, and a safety–cost comparison against confidence/provenance/always-reopen baselines.
 
@@ -109,7 +109,7 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Owns/pressures:** detecting that prior memories become invalid after later observations and measuring downstream behavior under implicit conflicts.
 
-**Subtraction:** stale-memory detection and update-aware memory by themselves are not P13 contributions.
+**Subtraction:** stale-memory detection and update-aware memory by themselves are not ORION-23 contributions.
 
 **Residual:** responsibility-specific sufficiency certificates and reopen decisions that distinguish “state is stale” from “state is current but insufficient for this new responsibility.”
 
@@ -119,7 +119,7 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Owns/pressures:** execution/evidence provenance as a broad accountability layer, including memory lineage, audit and recovery.
 
-**Subtraction:** provenance-bearing state is not P13 novelty.
+**Subtraction:** provenance-bearing state is not ORION-23 novelty.
 
 ### Proof-Carrying Agent Actions
 
@@ -127,11 +127,11 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Owns/pressures:** portable certificate-bearing agent actions and runtime governance.
 
-**Subtraction:** portable certificates and explicit approval/evidence receipts are prior art near P13’s contract language.
+**Subtraction:** portable certificates and explicit approval/evidence receipts are prior art near ORION-23’s contract language.
 
-**P13 residual after subtraction:** the paper must show that a compact state’s certificate is keyed to a **named downstream responsibility** and prospectively prevents unsafe reuse when responsibilities change, with explicit omissions, resource envelope, recovery/reopen conditions and external witness/authority separation. Efficacy must beat confidence-only/provenance-only controls without degenerating to always reopen.
+**ORION-23 residual after subtraction:** the paper must show that a compact state’s certificate is keyed to a **named downstream responsibility** and prospectively prevents unsafe reuse when responsibilities change, with explicit omissions, resource envelope, recovery/reopen conditions and external witness/authority separation. Efficacy must beat confidence-only/provenance-only controls without degenerating to always reopen.
 
-## P14 donor delta
+## ORION-24 donor delta
 
 ### SAGA — autonomous goal-evolving scientific agents
 
@@ -147,16 +147,16 @@ The delta is deliberately adversarial: each item is recorded for what it **remov
 
 **Owns/pressures:** direct comparative evaluation of research agents as scientific search systems, including exploration concentration and proximity to prior work.
 
-**Subtraction:** P14 must not rely on a generic story that research agents need evaluation or may narrow exploration.
+**Subtraction:** ORION-24 must not rely on a generic story that research agents need evaluation or may narrow exploration.
 
 **Residual:** a matched governance intervention whose endpoints are scientific **dispositions**—false promotion/overclaim, donor-subsumption, protocol drift, negative-history use, correct inability-to-check and later-round reopening—subject to useful-discovery noninferiority.
 
 ## Cross-paper consequences
 
-1. **P11 title/claim remains viable only with explicit donor subtraction.** The strong claim is not representation matters, query conditioning, compression or useful information; it is the measured cost/optionality frontier for state construction under bounded downstream access.
-2. **P12 is a crowded allocation paper unless state construction is an independently costed action.** Current adaptive-compute papers already use constrained optimization, oracle allocation, learned policies and adaptive generation.
-3. **P13 must distinguish responsibility scope from staleness, confidence and provenance.** Recent certified-reuse, stale-memory and provenance work makes this a mandatory discriminator, not optional related work.
-4. **P14 must evaluate governance, not recursive research.** Current scientific-agent work already owns recursive/goal-evolving research and direct evaluation of research-agent exploration.
+1. **ORION-21 title/claim remains viable only with explicit donor subtraction.** The strong claim is not representation matters, query conditioning, compression or useful information; it is the measured cost/optionality frontier for state construction under bounded downstream access.
+2. **ORION-22 is a crowded allocation paper unless state construction is an independently costed action.** Current adaptive-compute papers already use constrained optimization, oracle allocation, learned policies and adaptive generation.
+3. **ORION-23 must distinguish responsibility scope from staleness, confidence and provenance.** Recent certified-reuse, stale-memory and provenance work makes this a mandatory discriminator, not optional related work.
+4. **ORION-24 must evaluate governance, not recursive research.** Current scientific-agent work already owns recursive/goal-evolving research and direct evaluation of research-agent exploration.
 
 ## Reference verification status
 

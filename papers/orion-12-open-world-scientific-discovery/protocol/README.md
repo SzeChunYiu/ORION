@@ -1,6 +1,6 @@
-# ORION-P2 prospective discovery protocol
+# ORION-ORION-12 prospective discovery protocol
 
-**Protocol:** `P2.open-world-discovery.v1`  
+**Protocol:** `ORION-12.open-world-discovery.v1`  
 **Status:** `DESIGN_FROZEN`  
 **Outcome access:** false
 

@@ -1,8 +1,8 @@
-# P13 donor-complete provenance-tiered baseline protocol V1
+# ORION-23 donor-complete provenance-tiered baseline protocol V1
 
 **Programme:** #977
 **State:** `FROZEN_BEFORE_EXECUTION`
-**Purpose:** execute the donor-complete comparator requirement (common gate B) for the P13 maximum claim by implementing the strongest form of the D2 donor — provenance-aware tiered agent memory (ICLR 2026, see `P13_NEAREST_WORK_REFRESH_2026-08-23.md` disposition COMPOSE) — as a frozen head-to-head arm against the responsibility-carrying state (RCS) policy on identical episode streams.
+**Purpose:** execute the donor-complete comparator requirement (common gate B) for the ORION-23 maximum claim by implementing the strongest form of the D2 donor — provenance-aware tiered agent memory (ICLR 2026, see `P13_NEAREST_WORK_REFRESH_2026-08-23.md` disposition COMPOSE) — as a frozen head-to-head arm against the responsibility-carrying state (RCS) policy on identical episode streams.
 
 ## Donor-complete D2 specification (frozen, strongest form)
 

@@ -6,9 +6,9 @@ OFFLINE_RUN_MANIFEST_V1.json and never hand-transcribed.
 
 Usage::
 
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_2.py            # write
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_2.py --check    # verify
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_2.py --stdout   # print
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_2.py            # write
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_2.py --check    # verify
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_2.py --stdout   # print
 
 Standard library only. Exit codes: 0 ok, 1 drift under ``--check``, 2 missing input.
 """
@@ -65,7 +65,7 @@ def render(results: dict, manifest: dict) -> str:
     add("")
     add("<!-- GENERATED FILE - DO NOT EDIT BY HAND.")
     add("     Regenerate with:")
-    add("       python3 papers/paper-02-open-world-scientific-discovery/scripts/render_table_p2_2.py")
+    add("       python3 papers/orion-12-open-world-scientific-discovery/scripts/render_table_p2_2.py")
     add("     Sources: evidence/offline_results/RESULTS_SUMMARY_V1.json")
     add("              protocol/OFFLINE_RUN_MANIFEST_V1.json -->")
     add("")

@@ -1,4 +1,4 @@
-# P8 local replay V3
+# ORION-18 local replay V3
 
 This route reproduces the 17-case reference-policy preflight and the five
 registered laundering-attack opportunities. It is local replay: labels are not
@@ -14,7 +14,7 @@ Environment lock:
 From the repository root:
 
 ```bash
-make -C papers/paper-08-epistemic-authority-autonomous-science reproduce-v3
+make -C papers/orion-18-epistemic-authority-autonomous-science reproduce-v3
 ```
 
 The attack receipt must report five registered, five evaluated, and five

@@ -11,7 +11,7 @@
     "selection_rule": "sort by (-dev_accuracy, complexity_rank, config_id)",
     "within_build_determinism_all_sides": true
   },
-  "how_to_reproduce": "python papers/paper-09-structured-epistemic-learning/top_tier/demonstrate_d1v1_2_build_toggle.py --dump-designs <DIR>   # orion-capable build; then the same script --refit <DIR> under a different build of the numerical stack. Side A used /Users/billy/miniforge3/bin/python3.13; sides B and C used /Users/billy/miniforge3/envs/gnn_trading/bin/python and /Users/billy/miniforge3/envs/particle_tracking_python/bin/python.",
+  "how_to_reproduce": "python papers/orion-19-structured-epistemic-learning/top_tier/demonstrate_d1v1_2_build_toggle.py --dump-designs <DIR>   # orion-capable build; then the same script --refit <DIR> under a different build of the numerical stack. Side A used /Users/billy/miniforge3/bin/python3.13; sides B and C used /Users/billy/miniforge3/envs/gnn_trading/bin/python and /Users/billy/miniforge3/envs/particle_tracking_python/bin/python.",
   "mechanistic_finding": "The deciding factor is the binary build of the numerical stack executing lbfgs, beneath the recorded version manifest. Given bit-identical design inputs, bit-identical labels, identical scipy (1.17.1) and scikit-learn (1.8.0) versions, and the identical frozen selection rule selecting logistic-C1 on every side: the conda CPython 3.13.12 / NumPy 2.4.4 stack converges in 480 lbfgs iterations to the coefficient vector whose canary is 494186ed... and reproduces the archived 0.50 with zero per-case flips on all four arms; the conda CPython 3.11.15 / NumPy 2.4.3 stacks (two independently installed envs, bit-identical canaries 9b56df6a...) converge in 439 iterations to a different terminal vector that flips exactly the 32 sub-margin UNRESOLVED-truth protected cases and lands 0.75. Both sides converge cleanly (no warnings) and are exactly deterministic within build. The archived 0.50 and the divergent 0.75 are the two attractor terminals of a degenerate comparator whose decision boundary sits inside a 0.014-wide probability band on 32 of 128 protected cases; last-bit coefficient differences between builds are amplified across that band. Toggling the executing build toggles the number: that is the one-factor reproduction the reopened box demands.",
   "method": {
     "design_dump": {
@@ -29,7 +29,7 @@
         "system": "Darwin"
       }
     },
-    "entry_point": "papers/paper-09-structured-epistemic-learning/top_tier/demonstrate_d1v1_2_build_toggle.py",
+    "entry_point": "papers/orion-19-structured-epistemic-learning/top_tier/demonstrate_d1v1_2_build_toggle.py",
     "phase_1": "--dump-designs DIR under an orion-capable interpreter: regenerate the frozen dataset (seed p9-d1-method-transfer-v1, 48/16/32 per base pair), guard the content digest against the archive, dump per-family design matrices and labels to npz with a canonical bytes digest.",
     "phase_2": "--refit DIR under any numpy+scikit-learn interpreter (no orion import): verify the design digest, mirror _select/_fit with the v1.2 lbfgs contract, predict the protected test set, compare per-case against the archived result, and classify the attractor by numeric canary (full sha256 of the converged serialized-arm coefficient bytes).",
     "why_two_phases": "The divergent-side builds cannot import the orion package; the design dump guarantees both sides consume bit-identical inputs, so the numerical stack is the only variable. np.savez is not byte-deterministic across writes, so the design digest hashes canonical array bytes."

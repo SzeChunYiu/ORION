@@ -1,6 +1,6 @@
-# P13 — Responsibility-Carrying State
+# ORION-23 — Responsibility-Carrying State
 
-**Stable ID:** ORION-P13  
+**Stable ID:** ORION-ORION-23  
 **Paper issue:** #666  
 **RCS interface track:** #668  
 **Programme:** #670

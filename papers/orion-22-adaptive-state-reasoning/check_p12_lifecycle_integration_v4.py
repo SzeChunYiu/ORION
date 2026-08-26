@@ -10,7 +10,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PAPER = ROOT / "papers/paper-12-adaptive-state-reasoning"
+PAPER = ROOT / "papers/orion-22-adaptive-state-reasoning"
 AUTHORITY = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V4.json"
 V3 = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V3.json"
 LIFECYCLE_BINDINGS = {
@@ -108,7 +108,7 @@ def audit(authority_path: Path = AUTHORITY, *, check_package: bool = True) -> di
 
     bindings = authority.get("evidence_bindings", {})
     for key, rel in LIFECYCLE_BINDINGS.items():
-        expected_path = f"papers/paper-12-adaptive-state-reasoning/{rel}"
+        expected_path = f"papers/orion-22-adaptive-state-reasoning/{rel}"
         item = bindings.get(key)
         if not isinstance(item, dict) or item.get("artifact") != expected_path:
             errors.append(f"missing or wrong lifecycle binding: {key}")
@@ -164,7 +164,7 @@ def audit(authority_path: Path = AUTHORITY, *, check_package: bool = True) -> di
             str(AUTHORITY.relative_to(ROOT)),
             str(Path(__file__).resolve().relative_to(ROOT)),
             str((PAPER / "manuscript/main.pdf").relative_to(ROOT)),
-            *(f"papers/paper-12-adaptive-state-reasoning/{v}" for v in LIFECYCLE_BINDINGS.values()),
+            *(f"papers/orion-22-adaptive-state-reasoning/{v}" for v in LIFECYCLE_BINDINGS.values()),
         }
         missing = sorted(required_paths - paths)
         if missing:

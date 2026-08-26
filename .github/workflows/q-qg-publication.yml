@@ -3,12 +3,12 @@ name: q-qg-publication
 on:
   pull_request:
     paths:
-      - 'papers/Q-paper-01-tare-expressivity/**'
-      - 'papers/Q-paper-02-recursive-recovery/**'
-      - 'papers/Q-paper-03-dual-instrument/**'
-      - 'papers/Q-paper-04-typed-state/**'
-      - 'papers/QG-paper-01-compilation-regime-geometry/**'
-      - 'papers/QG-paper-02-certified-static-forecasting/**'
+      - 'papers/orion-05-tare-expressivity/**'
+      - 'papers/orion-06-recursive-recovery/**'
+      - 'papers/orion-07-dual-instrument/**'
+      - 'papers/orion-08-typed-state/**'
+      - 'papers/orion-09-compilation-regime-geometry/**'
+      - 'papers/orion-10-certified-static-forecasting/**'
       - 'papers/literature_cards/**'
       - 'papers/Q_QG_**'
       - 'papers/Q3_VERIFIED_CURRENT_REFERENCES_V2.bib'
@@ -22,12 +22,12 @@ on:
     branches:
       - 'codex/q-qg-nature-skills-publication-closure-20260821'
     paths:
-      - 'papers/Q-paper-01-tare-expressivity/**'
-      - 'papers/Q-paper-02-recursive-recovery/**'
-      - 'papers/Q-paper-03-dual-instrument/**'
-      - 'papers/Q-paper-04-typed-state/**'
-      - 'papers/QG-paper-01-compilation-regime-geometry/**'
-      - 'papers/QG-paper-02-certified-static-forecasting/**'
+      - 'papers/orion-05-tare-expressivity/**'
+      - 'papers/orion-06-recursive-recovery/**'
+      - 'papers/orion-07-dual-instrument/**'
+      - 'papers/orion-08-typed-state/**'
+      - 'papers/orion-09-compilation-regime-geometry/**'
+      - 'papers/orion-10-certified-static-forecasting/**'
       - 'papers/literature_cards/**'
       - 'papers/Q_QG_**'
       - 'papers/Q3_VERIFIED_CURRENT_REFERENCES_V2.bib'
@@ -54,12 +54,12 @@ jobs:
       - name: Run fail-closed Q/QG publication checker
         run: python papers/check_q_qg_publication.py
       - name: Validate Q2 transition graph and frozen denominator
-        run: python papers/Q-paper-02-recursive-recovery/check_transition_graph.py
+        run: python papers/orion-06-recursive-recovery/check_transition_graph.py
       - name: Replay and validate completed Q3 prospective series
         run: |
-          python papers/Q-paper-03-dual-instrument/replay_q3_v0.py
-          python papers/Q-paper-03-dual-instrument/check_q3_result_bindings.py
-          python papers/Q-paper-03-dual-instrument/check_q3_completion.py
+          python papers/orion-07-dual-instrument/replay_q3_v0.py
+          python papers/orion-07-dual-instrument/check_q3_result_bindings.py
+          python papers/orion-07-dual-instrument/check_q3_completion.py
       - name: Validate paper-specific science manifests against frozen cuts
         run: python papers/check_q_qg_science_manifests.py
       - name: Generate cited submission masters from final scientific text

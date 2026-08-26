@@ -3,10 +3,10 @@ name: p2-wide-openaire-matched-v2
 on:
   pull_request:
     paths:
-      - 'papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py'
-      - 'papers/paper-02-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v2.py'
-      - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json'
-      - 'papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json'
+      - 'papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py'
+      - 'papers/orion-12-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v2.py'
+      - 'papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json'
+      - 'papers/orion-12-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json'
       - 'tests/unit/p2/test_p2_openaire_matched_v2.py'
       - 'tests/unit/p2/test_p2_openaire_transport_probe_authority.py'
       - 'tests/unit/p2/test_p2_openaire_analysis_v2_transport_authority.py'
@@ -52,7 +52,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
             --full /tmp/p2-wide-v2-host/AutoResearchBench.jsonl \
             --public /tmp/p2-wide-v2-host/wide_public.jsonl \
             --gt /tmp/p2-wide-v2-host/wide_gt_DO_NOT_EXPORT.jsonl \
@@ -94,8 +94,8 @@ jobs:
       - name: Prove V1 custody plus V2 transport semantics before network outcome
         run: |
           python -m py_compile \
-            papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py \
-            papers/paper-02-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v2.py
+            papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py \
+            papers/orion-12-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v2.py
           pytest -q tests/unit/p2/test_p2_openaire_identity_probe.py
           pytest -q tests/unit/p2/test_p2_openaire_matched.py
           pytest -q tests/unit/p2/test_p2_openaire_matched_v2.py
@@ -110,13 +110,13 @@ jobs:
           python - <<'PY'
           import hashlib, importlib.util, json, sys, urllib.request
           from pathlib import Path
-          path = Path('papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py')
+          path = Path('papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py')
           spec = importlib.util.spec_from_file_location('p2_v2_probe_runner', path)
           assert spec and spec.loader
           runner = importlib.util.module_from_spec(spec)
           sys.modules[spec.name] = runner
           spec.loader.exec_module(runner)
-          freeze = json.loads(Path('papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json').read_text())
+          freeze = json.loads(Path('papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json').read_text())
           transport = freeze['transport_repair_evidence']
           dois = list(transport['probe_dois'])
           min_result_count = transport['probe_min_result_count']
@@ -170,10 +170,10 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf /tmp/p2-wide-v2/capture
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_openaire_matched_v2.py \
             --public /tmp/p2-wide-v2/input/wide_public.jsonl \
-            --freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json \
-            --identity-receipt papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json \
+            --freeze papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json \
+            --identity-receipt papers/orion-12-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json \
             --transport-probe /tmp/p2-wide-v2/transport_probe.json \
             --out-dir /tmp/p2-wide-v2/capture
           test -s /tmp/p2-wide-v2/capture/SHARED_ACQUISITION_MANIFEST.json
@@ -211,8 +211,8 @@ jobs:
             /tmp/p2-wide-v2/transport_probe.json
             /tmp/p2-wide-v2/transport_probe_response.json
             /tmp/p2-wide-v2/input/split_manifest.json
-            papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json
-            papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json
+            papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json
+            papers/orion-12-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json
           if-no-files-found: warn
           retention-days: 30
 
@@ -273,7 +273,7 @@ jobs:
             --input-file /tmp/p2-wide-v2-eval/gold/AutoResearchBench.jsonl.obf.json \
             --output-file /tmp/p2-wide-v2-eval/gold/AutoResearchBench.jsonl
           echo 'db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6  /tmp/p2-wide-v2-eval/gold/AutoResearchBench.jsonl' | sha256sum -c -
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+          python papers/orion-12-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
             --full /tmp/p2-wide-v2-eval/gold/AutoResearchBench.jsonl \
             --public /tmp/p2-wide-v2-eval/gold/public_rederived_not_used_by_candidates.jsonl \
             --gt /tmp/p2-wide-v2-eval/gold/wide_gt.jsonl \
@@ -298,8 +298,8 @@ jobs:
         run: |
           set -euo pipefail
           ROOT=$(cat /tmp/p2-wide-v2-eval/CAPTURE_ROOT.txt)
-          python papers/paper-02-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v2.py \
-            --freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json \
+          python papers/orion-12-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched_v2.py \
+            --freeze papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json \
             --manifest "$ROOT/SHARED_ACQUISITION_MANIFEST.json" \
             --baseline-eval /tmp/p2-wide-v2-eval/results/eval_wide_dual_backend_balanced.json \
             --orion-eval /tmp/p2-wide-v2-eval/results/eval_wide_dual_backend_governed.json \
@@ -343,6 +343,6 @@ jobs:
             /tmp/p2-wide-v2-eval/results/*.json
             /tmp/p2-wide-v2-eval/PRE_GOLD_CANDIDATE_HASHES.json
             /tmp/p2-wide-v2-eval/gold/split_manifest.json
-            papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json
+            papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json
           if-no-files-found: warn
           retention-days: 30

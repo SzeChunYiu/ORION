@@ -1,8 +1,8 @@
-# ORION-P5 journal-readiness plan — Self-ORION
+# ORION-ORION-15 journal-readiness plan — Self-ORION
 
 **Current terminal:** `NO_TERMINAL_UNDER_FROZEN_RULES` for the bounded 96-case revision-level panel; general governed self-improvement benefit remains `CANNOT_CHECK` / **not** peer-review ready.  
 **Audit date:** 2026-08-24 against the current shared worktree, the immutable V11--V13 C2 successor packets and the frozen V3 confirmatory receipt.  
-**Headline empirical records:** historical diagnostic attribution is **21/24** from `evidence/glm-5.2-attribution/results.jsonl`. The three residual errors are named rather than counted, because a retained-but-unnamed error is not a result a reader can check: `P5-HC-002` attributes `RETRIEVAL_MISS` as `REPRESENTATION_GAP` at MEDIUM confidence; `P5-HC-012` attributes `ENVIRONMENT_DEPENDENCY_TOOL_FAILURE` as `IMPLEMENTATION_BUG` at HIGH confidence; `P5-HC-018` attributes `REPRESENTATION_GAP` as `METHOD_BASIS_GAP` at HIGH confidence. Two of the three are HIGH-confidence misattributions, so the failures are not concentrated in the cases the system was least sure about, which is the direction that would have been easier to explain away; the frozen revision-level panel places FULL_T7 at **12/96** with no registered terminal. A stale perfect-score report is refused.
+**Headline empirical records:** historical diagnostic attribution is **21/24** from `evidence/glm-5.2-attribution/results.jsonl`. The three residual errors are named rather than counted, because a retained-but-unnamed error is not a result a reader can check: `ORION-15-HC-002` attributes `RETRIEVAL_MISS` as `REPRESENTATION_GAP` at MEDIUM confidence; `ORION-15-HC-012` attributes `ENVIRONMENT_DEPENDENCY_TOOL_FAILURE` as `IMPLEMENTATION_BUG` at HIGH confidence; `ORION-15-HC-018` attributes `REPRESENTATION_GAP` as `METHOD_BASIS_GAP` at HIGH confidence. Two of the three are HIGH-confidence misattributions, so the failures are not concentrated in the cases the system was least sure about, which is the direction that would have been easier to explain away; the frozen revision-level panel places FULL_T7 at **12/96** with no registered terminal. A stale perfect-score report is refused.
 
 A checked design/protocol item does **not** convert `CANNOT_CHECK` into empirical PASS.
 
@@ -142,17 +142,17 @@ Definitions frozen in protocol. Only diagnostic attribution accuracy is populate
 
 ## 7. Required plots/tables
 
-- [x] **Table P5-1:** nearest-work/novelty disposition matrix.
-- [x] **Figure/Table P5-3:** confusion matrix from archived glm-5.2 JSONL (21/24; three errors retained).
-- [x] residual-error ledger for `P5-HC-002`, `P5-HC-012`, `P5-HC-018`.
-- [ ] **P5-1:** governed development loop figure.
-- [ ] **P5-2:** replay vs fresh scatter — `CANNOT_CHECK` stub only.
-- [ ] **P5-4:** longitudinal specialist regression — `CANNOT_CHECK` stub only.
-- [ ] **P5-5:** improvement vs integrity frontier — `CANNOT_CHECK` stub only.
-- [ ] **P5-6:** cumulative recurrence — `CANNOT_CHECK` stub only.
-- [ ] **P5-7:** cost/time to protected validated improvement — `CANNOT_CHECK` stub only.
-- [ ] **Table P5-2 / P5-T2:** baseline + ablation results — `CANNOT_CHECK` stub only.
-- [ ] **Table P5-3 / P5-T3:** campaign harmful/null interventions — `CANNOT_CHECK` stub only.
+- [x] **Table ORION-15-1:** nearest-work/novelty disposition matrix.
+- [x] **Figure/Table ORION-15-3:** confusion matrix from archived glm-5.2 JSONL (21/24; three errors retained).
+- [x] residual-error ledger for `ORION-15-HC-002`, `ORION-15-HC-012`, `ORION-15-HC-018`.
+- [ ] **ORION-15-1:** governed development loop figure.
+- [ ] **ORION-15-2:** replay vs fresh scatter — `CANNOT_CHECK` stub only.
+- [ ] **ORION-15-4:** longitudinal specialist regression — `CANNOT_CHECK` stub only.
+- [ ] **ORION-15-5:** improvement vs integrity frontier — `CANNOT_CHECK` stub only.
+- [ ] **ORION-15-6:** cumulative recurrence — `CANNOT_CHECK` stub only.
+- [ ] **ORION-15-7:** cost/time to protected validated improvement — `CANNOT_CHECK` stub only.
+- [ ] **Table ORION-15-2 / ORION-15-T2:** baseline + ablation results — `CANNOT_CHECK` stub only.
+- [ ] **Table ORION-15-3 / ORION-15-T3:** campaign harmful/null interventions — `CANNOT_CHECK` stub only.
 
 ## 8. Dependencies #8 and #76
 
@@ -187,7 +187,7 @@ Live rerun in this session: **`CANNOT_CHECK`** (credentials unset; #8 packet `co
 ## 10. Reproducibility/protected artifact
 
 - [x] diagnostic hidden-cause cases archived;
-- [x] scripts regenerate Table P5-3, the residual-error ledger, and honest `CANNOT_CHECK` stubs (`make paper05-results`);
+- [x] scripts regenerate Table ORION-15-3, the residual-error ledger, and honest `CANNOT_CHECK` stubs (`make paper05-results`);
 - [x] clean refusal of a  rewrite that hides residual errors.
 - [ ] frozen execution-grade hidden-cause generator/cases;
 - [ ] motivating/replay/fresh split identities;
@@ -201,4 +201,4 @@ Live rerun in this session: **`CANNOT_CHECK`** (credentials unset; #8 packet `co
 
 ## Done definition
 
-`ORION-P5 = PEER_REVIEW_READY` only when full Self-ORION demonstrates transferable protected improvement against current self-improvement baselines, harmful transfer/integrity outcomes are reported, no self-promotion authority is claimed, and all programme readiness gates pass. The 21/24 diagnostic archive does **not** satisfy that terminal.
+`ORION-ORION-15 = PEER_REVIEW_READY` only when full Self-ORION demonstrates transferable protected improvement against current self-improvement baselines, harmful transfer/integrity outcomes are reported, no self-promotion authority is claimed, and all programme readiness gates pass. The 21/24 diagnostic archive does **not** satisfy that terminal.

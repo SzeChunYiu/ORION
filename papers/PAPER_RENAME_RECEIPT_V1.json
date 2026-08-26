@@ -1,0 +1,139 @@
+{
+  "schema": "ORION.Papers.RenameReceipt.v1",
+  "wave": "R0",
+  "date": "2026-08-27",
+  "plan": "PAPER_PORTFOLIO_REFACTOR_PLAN_V1.md#2",
+  "reason": "operator naming-unification directive 2026-08-26 (one flat ORION-NN series)",
+  "moves_commit": "3b4d56278",
+  "moves": {
+    "renamed_dirs": 25,
+    "merged_into_orion_01": ["theory-A-multitag-constraint-rank", "theory-B-certificate-complexity"],
+    "simple_renames": {
+      "theory-C-low-order-information": "orion-02-fiberguard-finite-fibre",
+      "theory-D-falsification-authority": "orion-03-typed-merge-falsification",
+      "nonquantum-c5cubed-davenport": "orion-04-rooted-completion-certificates",
+      "Q-paper-01-tare-expressivity": "orion-05-tare-expressivity",
+      "Q-paper-02-recursive-recovery": "orion-06-recursive-recovery",
+      "Q-paper-03-dual-instrument": "orion-07-dual-instrument",
+      "Q-paper-04-typed-state": "orion-08-typed-state",
+      "QG-paper-01-compilation-regime-geometry": "orion-09-compilation-regime-geometry",
+      "QG-paper-02-certified-static-forecasting": "orion-10-certified-static-forecasting",
+      "paper-01-recursive-epistemic-reconstruction": "orion-11-recursive-epistemic-reconstruction",
+      "paper-02-open-world-scientific-discovery": "orion-12-open-world-scientific-discovery",
+      "paper-03-global-knowledge-portrait": "orion-13-global-knowledge-portrait",
+      "paper-04-verified-scientific-discovery": "orion-14-verified-scientific-discovery",
+      "paper-05-self-orion": "orion-15-self-orion",
+      "paper-06-formal-epistemic-structures-and-mechanics": "orion-16-formal-epistemic-structures-and-mechanics",
+      "paper-07-epistemic-navigation-open-worlds": "orion-17-epistemic-navigation-open-worlds",
+      "paper-08-epistemic-authority-autonomous-science": "orion-18-epistemic-authority-autonomous-science",
+      "paper-09-structured-epistemic-learning": "orion-19-structured-epistemic-learning",
+      "paper-10-structured-problem-solving": "orion-20-structured-problem-solving",
+      "paper-11-state-as-computation": "orion-21-state-as-computation",
+      "paper-12-adaptive-state-reasoning": "orion-22-adaptive-state-reasoning",
+      "paper-13-responsibility-carrying-state": "orion-23-responsibility-carrying-state",
+      "paper-14-orion-rse": "orion-24-orion-rse",
+      "paper-15-orion-research-harness": "orion-25-orion-research-harness"
+    },
+    "stub_to_candidates": {
+      "QG-paper-03-intrinsic-support-numbers": "candidates/qg-paper-03-stub"
+    },
+    "archived_dirs": [
+      "archive/2026-08-pre-unification/paper-02-global-knowledge-portrait",
+      "archive/2026-08-pre-unification/paper-03-verified-discovery",
+      "archive/2026-08-pre-unification/paper-04-self-orion",
+      "archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation"
+    ],
+    "git_rename_count": 2734,
+    "content_edits_in_moves_commit": 0
+  },
+  "archive": {
+    "root": "archive/2026-08-pre-unification",
+    "archived_files": 525,
+    "archived_manuscript_v1_dirs": 9,
+    "q1_chain_archived": [
+      "MANUSCRIPT_V1.md",
+      "MANUSCRIPT_V2.md",
+      "MANUSCRIPT_V3.md",
+      "MANUSCRIPT_SUBMISSION_DRAFT.md"
+    ],
+    "canonical_q1_manuscript": "orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
+    "canonical_decision_receipt": "ORION05_CANONICAL_MANUSCRIPT_DECISION_V1.md"
+  },
+  "rebind": {
+    "scanned_text_files": 11162,
+    "skipped_binary": 99,
+    "files_path_rebound": 934,
+    "files_id_rebound": 848,
+    "files_changed_total": 1688,
+    "passes": [
+      "A: full old path prefixes -> new paths (longest-first, file-level before dir-level)",
+      "B: bare dir basenames (split-Path code), guarded against candidates/ and 2026-08-pre-unification/ contexts",
+      "C: bare ids P1..P15/Q1..Q4/QG1..QG2/NQ/theory-A..D in papers/**/*.md (word-boundary; plan + aliases docs excluded)"
+    ],
+    "hand_edits": {
+      "files": 29,
+      "replacements": 36,
+      "classes": [
+        "dir-name conventions in live code (regen_paper_manifests, audit_manuscript_clipping, readme_pointers CANONICAL, publication_score_gate GATED_PAPERS, check_exact_containment_binding, superiority FUTURE test)",
+        "CI workflow globs/triggers (manuscript-clipping-audit, top-tier-promotion-contract, q-qg-reference-check)",
+        "elided/short-form references the mechanical passes cannot map",
+        "canonical-Q1 dissenting references (Q_QG_PUBLICATION_READINESS_V3, Q_SERIES_TOP_TIER_REFACTOR) + Q-series local-id disambiguation note"
+      ]
+    },
+    "exclusions": [
+      "research/orion-v1-freeze/",
+      "papers/skills/"
+    ],
+    "retained_untouched": [
+      "paper-xx-executable-research-core (live ASlib benchmark harness; ORION-02 lane)",
+      "candidates/paper-06..paper-14 (preserved pre-refactor snapshots)",
+      "papers/candidates (guarded from bare-name pass)"
+    ]
+  },
+  "digest_pins": {
+    "regenerated": {
+      "files": [
+        "orion-16-formal-epistemic-structures-and-mechanics/SHA256SUMS",
+        "orion-17-epistemic-navigation-open-worlds/SHA256SUMS",
+        "orion-18-epistemic-authority-autonomous-science/SHA256SUMS",
+        "orion-19-structured-epistemic-learning/SHA256SUMS",
+        "orion-20-structured-problem-solving/SHA256SUMS",
+        "orion-21-state-as-computation/SHA256SUMS",
+        "orion-22-adaptive-state-reasoning/SHA256SUMS",
+        "orion-23-responsibility-carrying-state/SHA256SUMS",
+        "orion-24-orion-rse/SHA256SUMS",
+        "orion-25-orion-research-harness/SHA256SUMS"
+      ],
+      "hashes_updated": 384,
+      "verify_after": "926/926 OK (shasum -a 256 -c)",
+      "line_counts_unchanged_from_pre_move_baseline": true
+    },
+    "not_laundered_pre_existing_failures": [
+      "orion-11..15 journal_package/evidence SHA256SUMS (relative-path formats; failing before R0)",
+      "orion-16..18 content_binding_v2/SHA256SUMS pin CONTENT_MANIFEST_V2.json which does not exist on disk (dangling pre-R0)",
+      "candidates/paper-06..08 SHA256SUMS (retired snapshot pins; referenced canonical tree pre-rename)"
+    ]
+  },
+  "verification": {
+    "old_path_gate": {
+      "command": "rg -l 'papers/(paper-|Q-paper-|QG-paper-|theory-[ABCD]-|nonquantum-c5cubed)' --glob '!papers/archive/**' --glob '!research/orion-v1-freeze/**' --glob '!papers/skills/**'",
+      "files_matching": 49,
+      "of_which_retained_harness_only": 3,
+      "of_which_justified_historical": 46,
+      "justified_classes": {
+        "external_RAKL_git_pinned_paths": "publication/ .../paper-0X-... @bd4ce50f in failures/, legacy-rakl-map.md, STEP_VERIFICATION_LITERATURE.md, mechanic-answer-loop/, test_answers.py, DES-CENSUS labels",
+        "signed_receipts": "P6_CLEANROOM_REPLAY_RECEIPT_V1.json (digest-signed payload)",
+        "closed_phase_receipts": "phase2 closure docs, FOREIGN_BRANCH_FOREST_DISPOSITION",
+        "session_logs_and_data_products": "claim_expansion PROGRESS, DISC-IMPACT-01, DES-CENSUS elided quotes",
+        "synthetic_test_fixtures": "paper-99 / paper-99-fake in authority tests",
+        "retained_harness_assertion": "the paper-xx- prefix assertion in test_superiority_gates.py",
+        "dated_skills_snapshot": "development/top-tier-scientific-takeover-2026-08-23 (no CI consumer)"
+      }
+    },
+    "freeze_checker": {
+      "command": "python3 scripts/check_orion_v1_freeze.py --root .",
+      "exit_code": 0,
+      "terminal": "ORION_V1_ARCHITECTURE_AND_LOCAL_FORMALISM_FROZEN components=14 authority_rows=10 issues=159 pending=0 jobs=8 open_internal_gaps=0 manifest_files=18"
+    }
+  }
+}

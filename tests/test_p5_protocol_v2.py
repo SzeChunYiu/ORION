@@ -15,10 +15,10 @@ from orion.transfer.v2.p5 import AppendOnlyCandidateHistory, evaluate_and_archiv
 
 
 ROOT = Path(__file__).resolve().parents[1]
-P5_PROTOCOL = ROOT / "papers" / "paper-05-self-orion" / "protocol"
+P5_PROTOCOL = ROOT / "papers" / "orion-15-self-orion" / "protocol"
 V1 = P5_PROTOCOL / "PROTOCOL_V1.json"
 V2 = P5_PROTOCOL / "PROTOCOL_V2.json"
-TABLE = ROOT / "papers" / "paper-05-self-orion" / "evidence" / "TABLE_P5_1_NEAREST_WORK.json"
+TABLE = ROOT / "papers" / "orion-15-self-orion" / "evidence" / "TABLE_P5_1_NEAREST_WORK.json"
 
 
 def _load(path: Path) -> dict[str, object]:

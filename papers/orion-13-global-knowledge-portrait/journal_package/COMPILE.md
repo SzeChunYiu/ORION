@@ -1,6 +1,6 @@
-# ORION-P3 compile instructions
+# ORION-ORION-13 compile instructions
 
-From `papers/paper-03-global-knowledge-portrait/manuscript/`:
+From `papers/orion-13-global-knowledge-portrait/manuscript/`:
 
 ```bash
 pdflatex main.tex

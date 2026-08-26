@@ -1,4 +1,4 @@
-# P9 causal-diagnostic transport protocol V2 (pre-registered)
+# ORION-19 causal-diagnostic transport protocol V2 (pre-registered)
 
 **Programme:** #977
 **Registration:** frozen before any V2 execution. Stage-1 attribution measurements

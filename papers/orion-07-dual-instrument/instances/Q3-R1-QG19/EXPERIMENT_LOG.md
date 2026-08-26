@@ -1,9 +1,9 @@
-# Q3-R1 / QG-19 experiment log
+# ORION-03-R1 / QG-19 experiment log
 
 ```yaml
 schema: ORIONQ.Q3ProspectiveExperimentLog.v2
-experiment_id: Q3-R1-QG19-20260822-001
-paper: Q3-dual-instrument
+experiment_id: ORION-03-R1-QG19-20260822-001
+paper: ORION-03-dual-instrument
 status: INSTRUMENTS_FROZEN__SCIENTIFIC_OUTCOME_UNOPENED
 protocol: Q3_REPLACEMENT_PROSPECTIVE_PROTOCOL_V2.md
 scientific_base: c5ba39fef4f25c46de5fb69bf07f50530f4693ca

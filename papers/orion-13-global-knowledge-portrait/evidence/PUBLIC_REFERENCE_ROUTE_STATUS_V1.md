@@ -1,8 +1,8 @@
-# ORION-P3 public-reference Step-3 rescue status V1
+# ORION-ORION-13 public-reference Step-3 rescue status V1
 
 **Date:** 2026-08-17  
 **Issue:** #100  
-**Route:** `P3.public-reference-mapping.v1` + disjoint confirmatory `v1.1`
+**Route:** `ORION-13.public-reference-mapping.v1` + disjoint confirmatory `v1.1`
 
 ## Resource-constrained route
 
@@ -48,4 +48,4 @@ Frozen confirmatory gold, execution manifest, summary, analysis, provenance and 
 
 ## Remaining scientific boundary
 
-This is now a prospectively replicated result for the already-structured mapping calculus. It still does **not** establish the original `P3.cross-domain-atlas.v1` end-to-end claims about raw-text extraction, strongest model/RAG/schema baselines, full eight-family construct validity, recoverability of generated portraits, downstream scientific utility, or W-expansion. Those remain `CANNOT_CHECK` until separately frozen evidence exists.
+This is now a prospectively replicated result for the already-structured mapping calculus. It still does **not** establish the original `ORION-13.cross-domain-atlas.v1` end-to-end claims about raw-text extraction, strongest model/RAG/schema baselines, full eight-family construct validity, recoverability of generated portraits, downstream scientific utility, or W-expansion. Those remain `CANNOT_CHECK` until separately frozen evidence exists.

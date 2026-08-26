@@ -1,4 +1,4 @@
-# ORION-P3 Public-Reference Validation Pilot V1
+# ORION-ORION-13 Public-Reference Validation Pilot V1
 
 **Status:** PILOT_COMPLETE
 **Date:** 2026-08-17
@@ -188,8 +188,8 @@ The GO verdict is **conditional** on addressing the following:
 - MUSE: `cohentsofia/MUSE@f7a40317db46145d0c90b221311d8324db5da1b9`
 - SciSchema.org: `https://scischema.org` (accessed 2026-08-17)
 - SciER: EMNLP 2024, HuggingFace dataset
-- ORION-P3 Annotation Schema V1: `ANNOTATION_SCHEMA_V1.json`
-- ORION-P3 Discipline Selection V1: `DISCIPLINE_SELECTION_V1.md`
+- ORION-ORION-13 Annotation Schema V1: `ANNOTATION_SCHEMA_V1.json`
+- ORION-ORION-13 Discipline Selection V1: `DISCIPLINE_SELECTION_V1.md`
 
 ---
 

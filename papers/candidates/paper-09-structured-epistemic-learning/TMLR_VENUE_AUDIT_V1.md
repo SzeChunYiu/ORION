@@ -1,4 +1,4 @@
-# P9 TMLR venue audit V1
+# ORION-19 TMLR venue audit V1
 
 Checked: **2026-08-19** against current official TMLR/JMLR sources.
 
@@ -8,7 +8,7 @@ Checked: **2026-08-19** against current official TMLR/JMLR sources.
 - TMLR Editorial Policies / Action Editor guidance;
 - official JMLR organization repository: `JmlrOrg/tmlr-style-file`.
 
-## Current standard-PDF requirements relevant to P9
+## Current standard-PDF requirements relevant to ORION-19
 
 1. TMLR uses **double-blind review**; the submitted manuscript must be anonymized.
 2. Standard submissions must be **PDF files generated with the TMLR LaTeX stylefile and template**.
@@ -16,16 +16,16 @@ Checked: **2026-08-19** against current official TMLR/JMLR sources.
 4. A submission PDF may include an appendix after references; reviewers are not required to read it.
 5. Supplementary material may include supporting data/code/video, subject to TMLR size/format rules and anonymization; reproducibility-supporting material is explicitly encouraged.
 6. The authors must also comply with TMLR editorial, ethics, conflict, OpenReview-profile and disclosure requirements at submission time.
-7. TMLR also has a newer Beyond-PDF route, but P9 is currently targeting the **standard PDF route**; no interactive-format requirement is introduced.
+7. TMLR also has a newer Beyond-PDF route, but ORION-19 is currently targeting the **standard PDF route**; no interactive-format requirement is introduced.
 
-## P9 package consequence
+## ORION-19 package consequence
 
 Before readiness:
 
 - vendor/use the then-current official `tmlr.sty`/template **without modification**;
 - keep author identity anonymous in the review PDF and supplementary materials;
 - ensure the historical ORION repository/preprints do not create an explicit identity link in the submitted anonymized manuscript;
-- compile the final P9 source through the official style rather than the current drafting `article` wrapper;
+- compile the final ORION-19 source through the official style rather than the current drafting `article` wrapper;
 - include only result artifacts and supplements that are actually accessible/reproducible;
 - run final PDF visual/citation/anonymity checks after all official result values are frozen.
 

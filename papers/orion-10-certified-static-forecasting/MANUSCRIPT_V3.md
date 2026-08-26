@@ -1,6 +1,6 @@
 # Certified Static Forecasting for Quantum Compilation: What Survives a Counterexample?
 
-**ORION-QG2 Manuscript V3 — donor-synchronized publication draft**  
+**ORION-ORION-10 Manuscript V3 — donor-synchronized publication draft**  
 Scientific cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Claim authority: `CLAIM_LEDGER.md`, `PUBLICATION_FOUNDATION_V2.md`  
 Certificate/reporting contract: `FORECAST_CERTIFICATE_AND_BENCHMARK_MAP_V2.md`
@@ -11,7 +11,7 @@ Static quantum-cost analysis and resource estimation are established research ar
 
 ## 1. Introduction
 
-Quantum resource estimation already spans several mature approaches. Qualtran expresses and analyzes compositional algorithm resource requirements. Qet applies automated expected-cost analysis to mixed classical-quantum programs using expectation-transformer semantics. Compilation-driven estimators propagate circuits through architecture/error-correction assumptions. Other verified or cost-aware compiler systems combine semantic correctness with explicit resource objectives. QG2 therefore does **not** claim novelty for static quantum cost analysis, resource upper bounds, or forecasting without full execution.
+Quantum resource estimation already spans several mature approaches. Qualtran expresses and analyzes compositional algorithm resource requirements. Qet applies automated expected-cost analysis to mixed classical-quantum programs using expectation-transformer semantics. Compilation-driven estimators propagate circuits through architecture/error-correction assumptions. Other verified or cost-aware compiler systems combine semantic correctness with explicit resource objectives. ORION-10 therefore does **not** claim novelty for static quantum cost analysis, resource upper bounds, or forecasting without full execution.
 
 The paper asks a different question: **what kind of statement is the forecast?**
 
@@ -188,7 +188,7 @@ A separately frozen B″ family repairs those registered finite witnesses. This 
 - the full `D++` support-two family remains exact all `n` by theorem;
 - smaller named explanatory families remain refutable until their completeness is separately proved.
 
-QG2 does not need the detailed fourth-regime classification; that belongs to QG1. Here it functions as a second falsification test of the same scientific discipline.
+ORION-10 does not need the detailed fourth-regime classification; that belongs to ORION-09. Here it functions as a second falsification test of the same scientific discipline.
 
 ## 9. Forecast-only rows and external subjects
 
@@ -203,13 +203,13 @@ When discussing chemistry transfer, the **subject** is the relevant external sci
 
 ## 10. Relation to current static quantum cost analysis
 
-QG2 is adjacent to but narrower than current static-analysis/resource-estimation work.
+ORION-10 is adjacent to but narrower than current static-analysis/resource-estimation work.
 
 - **Qualtran** provides compositional quantum-algorithm resource analysis.
 - **Qet** automates expected-cost analysis for mixed classical-quantum programs using expectation-transformer semantics and can produce certified upper bounds without repeatedly compiling a full low-level workflow.
 - compilation-driven estimators and hardware-aware tools map programs/circuits to logical or physical resource assumptions.
 
-QG2 therefore gives zero novelty credit to “static quantum cost analysis,” “certified upper bounds” or “resource prediction without full compilation” as generic ideas.
+ORION-10 therefore gives zero novelty credit to “static quantum cost analysis,” “certified upper bounds” or “resource prediction without full compilation” as generic ideas.
 
 Its residual is the exact **authority decomposition and refutation behavior** inside one compiler family:
 
@@ -273,10 +273,10 @@ One exact 10-versus-11 counterexample is enough to destroy the proposed universa
 
 The successor sequence matters too. B′ is frozen only after the witness reveals its missing borrow coordinate. QG7 later refutes B′ with a different support-two shape. Those refutations are not embarrassment to be averaged away; they are the mechanism by which the compact explanatory model becomes more accurate while the theorem-backed exact family remains stable.
 
-This is the distinction QG2 contributes to static compiler forecasting: **bound, theorem, closed form, regime label and forecast-only prediction should be carried as separate authority fields rather than compressed into one confidence score.**
+This is the distinction ORION-10 contributes to static compiler forecasting: **bound, theorem, closed form, regime label and forecast-only prediction should be carried as separate authority fields rather than compressed into one confidence score.**
 
 ## 15. Conclusion
 
 In a frozen shared-Tag TARE compiler family, an initial static closed-form forecaster agrees with 9,545 of 9,546 exact comparisons but is nevertheless universally false: one prospectively generated row has exact cost 10 while the closed form returns 11. Because the forecast is authority-typed, the counterexample does not erase everything. The feasible upper bound survives, the all-`n` support-two theorem survives, the closed-form equality and regime label fail, and the exact witness identifies the missing configuration that a separately frozen successor then admits.
 
-QG2 therefore does not claim a new generic static quantum cost analyzer. It demonstrates a narrower scientific principle in an exact compiler setting: **a static forecast is more useful when it reports which part is proved, which part is only evidenced, and which part remains falsifiable.**
+ORION-10 therefore does not claim a new generic static quantum cost analyzer. It demonstrates a narrower scientific principle in an exact compiler setting: **a static forecast is more useful when it reports which part is proved, which part is only evidenced, and which part remains falsifiable.**

@@ -1,4 +1,4 @@
-# P13 real responsibility-shift protocol V1
+# ORION-23 real responsibility-shift protocol V1
 
 **Programme:** #977  
 **State:** `FROZEN_BEFORE_EXECUTION`  
@@ -114,4 +114,4 @@ In addition to task accuracy, report the fold-level parity error rate and the Ho
 
 ## Authority boundary
 
-A positive establishes a non-synthetic real responsibility-shift/safety-cost result on handwritten digits. The broad top-tier P13 claim still requires a verifier-backed or agent/research workflow, real semantic/version transport of certificates, independent external validation and submission-day donor refresh.
+A positive establishes a non-synthetic real responsibility-shift/safety-cost result on handwritten digits. The broad top-tier ORION-23 claim still requires a verifier-backed or agent/research workflow, real semantic/version transport of certificates, independent external validation and submission-day donor refresh.

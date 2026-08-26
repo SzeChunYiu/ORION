@@ -1,4 +1,4 @@
-# ORION-P4 Claim Ledger — protected V2
+# ORION-ORION-14 Claim Ledger — protected V2
 
 > **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
 > subsequently rewritten so that its claims are about the mechanism rather than
@@ -75,9 +75,9 @@ ceiling of 0.0 — the same register recovers the V1 and V2 `CANNOT_CHECK` label
 1.0. Four registered digest-prefix noise-control residuals on `BLOCK`/`PROMOTE`
 remain disclosed; no whole-register clearance is asserted.
 
-What this does and does not change in the negatives above. `P4.H3` in
+What this does and does not change in the negatives above. `ORION-14.H3` in
 `journal_package/MANIFEST.json` is now SUPPORTED on the V3 artifacts, and the V2
-entry is retained beside it as `P4.H3.V2`. What is claimed is **terminal
+entry is retained beside it as `ORION-14.H3.V2`. What is claimed is **terminal
 expressiveness under a non-compensatory gate lattice — the ability to report an
 inability** — pre-registered in `FREEZE.md` §5 before the panel ran, and not a
 finer-grained scientific judgement: nine of the ten comparators score 0 because

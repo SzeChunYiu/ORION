@@ -1,4 +1,4 @@
-# P6 ETS bounded executable result receipt V1
+# ORION-16 ETS bounded executable result receipt V1
 
 **Protocol:** `P6_ETS_PROTOCOL_V1.md`  
 **Frozen cases:** `ets_cases_v1.jsonl`  
@@ -14,7 +14,7 @@
 
 ## Prospective chronology
 
-The protocol was committed first, then the 18 case facts, then the independent gold dispositions. The primary checker and original workflow were added only afterward. No historical P6 result was relabeled.
+The protocol was committed first, then the 18 case facts, then the independent gold dispositions. The primary checker and original workflow were added only afterward. No historical ORION-16 result was relabeled.
 
 The second checker was added only after the bounded primary result existed. It does not import or execute the primary checker: it evaluates the same frozen case facts and gold through a distinct prioritized defect-set formulation, then independently reconstructs T6.1–T6.3 summary invariants. CI requires the two implementations to agree on every protected classification.
 
@@ -50,6 +50,6 @@ The second verifier reproduces all 18 frozen gold dispositions exactly and match
 
 ## Scientific disposition
 
-This result supports a **bounded executable ETS separation with two-implementation verification** over the frozen interface. It does not establish universal P6 superiority over arbitrary donor systems or a theorem beyond the frozen finite semantics. In particular, if a donor product is extended with responsibility-scoped evidence/obligation/authority semantics until it is extensionally equivalent, the result becomes an equivalence/assimilation result.
+This result supports a **bounded executable ETS separation with two-implementation verification** over the frozen interface. It does not establish universal ORION-16 superiority over arbitrary donor systems or a theorem beyond the frozen finite semantics. In particular, if a donor product is extended with responsibility-scoped evidence/obligation/authority semantics until it is extensionally equivalent, the result becomes an equivalence/assimilation result.
 
-The top-tier P6 terminal remains pending broad external real-system transition evidence, any theorem generalization needed for the final headline, cross-paper overlap review, immediate pre-submission literature saturation and final package binding.
+The top-tier ORION-16 terminal remains pending broad external real-system transition evidence, any theorem generalization needed for the final headline, cross-paper overlap review, immediate pre-submission literature saturation and final package binding.

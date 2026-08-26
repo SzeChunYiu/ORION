@@ -32,12 +32,12 @@
   },
 
   "frozen_inputs": {
-    "generator": "papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py at the preregistration commit, --construction v1 (the construction the published V2 campaign ran against, retained in-repo for reproducibility)",
+    "generator": "papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py at the preregistration commit, --construction v1 (the construction the published V2 campaign ran against, retained in-repo for reproducibility)",
     "battery_seed_primary": "nr03-v21-20260823",
     "battery_seed_invariance_check": "nr03-v21-seedcheck-90f1",
     "policies": "the eleven frozen implementations: run_baselines.py RUNNERS (nine) + run_baselines_v2.py _deepsci + run_candidate.py evaluate_case (ORION), all at the preregistration commit",
     "gold": "expected_authority_terminal emitted by the generator's protected manifest (60 PROMOTE, 330 BLOCK, 30 CANNOT_CHECK across 13 families)",
-    "published_reference": "papers/paper-04-verified-scientific-discovery/evidence/protected_v2/PUBLICATION_METRICS_V2.json"
+    "published_reference": "papers/orion-14-verified-scientific-discovery/evidence/protected_v2/PUBLICATION_METRICS_V2.json"
   },
 
   "gates": {

@@ -1,4 +1,4 @@
-# P7–P8 top-tier theory result receipt V1
+# ORION-17–ORION-18 top-tier theory result receipt V1
 
 **Run:** GitHub Actions `32645458338`  
 **Artifact:** `p7-p8-top-tier-theory-v1`, artifact ID `9494737270`  
@@ -6,7 +6,7 @@
 **Replay:** `P7_P8_TOP_TIER_THEORY_V1_BYTE_REPLAY_GREEN`  
 **Programme terminal:** `P7_P8_TOP_TIER_THEORY_V1_GREEN`
 
-## P7 — Scientific Regime Transport
+## ORION-17 — Scientific Regime Transport
 
 Terminal: `P7_TOP_TIER_THEORY_V1_GREEN`.
 
@@ -17,9 +17,9 @@ The independent checker verified:
 - interface mismatch blocks sequential witness composition;
 - a frozen closed-world/open-world pair with identical observed history has best possible deterministic observed-only accuracy `0.5`; an external coverage witness is required to separate the worlds.
 
-This binds the finite counterexample layer accompanying T7.1–T7.3. It does not satisfy P7's still-open non-synthetic formal/version + research/agent regime-change evaluation.
+This binds the finite counterexample layer accompanying T7.1–T7.3. It does not satisfy ORION-17's still-open non-synthetic formal/version + research/agent regime-change evaluation.
 
-## P8 — Scientific Authorization Beyond Action Authorization
+## ORION-18 — Scientific Authorization Beyond Action Authorization
 
 Terminal: `P8_TOP_TIER_THEORY_V1_GREEN`.
 
@@ -32,8 +32,8 @@ The independent checker verified:
 - revoking source A preserves independent derivation `d2`, while revoking A+B removes all surviving registered support;
 - confidence values up to `1.0` do not compensate for a hard scientific type mismatch.
 
-This closes bounded T8.1–T8.3 witnesses only. P8 still requires protected external formal/empirical/evidence-based agent-action domains with independent scientific authority.
+This closes bounded T8.1–T8.3 witnesses only. ORION-18 still requires protected external formal/empirical/evidence-based agent-action domains with independent scientific authority.
 
 ## Nearest-work boundary
 
-The accompanying August 2026 literature delta explicitly assigns categorical regime-transition machinery to P7 donors and rich per-action evidence/authorization/freshness/delegation machinery to P8 donors. These GREEN terminals therefore support the higher scientific-closure/scientific-discharge layers, not the lower donor-owned mechanisms.
+The accompanying August 2026 literature delta explicitly assigns categorical regime-transition machinery to ORION-17 donors and rich per-action evidence/authorization/freshness/delegation machinery to ORION-18 donors. These GREEN terminals therefore support the higher scientific-closure/scientific-discharge layers, not the lower donor-owned mechanisms.

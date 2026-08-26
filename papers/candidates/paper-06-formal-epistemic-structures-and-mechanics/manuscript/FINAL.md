@@ -54,27 +54,27 @@ We do not claim to invent knowledge-changing actions, belief revision, dependenc
 
 Doyle's Truth Maintenance System records justifications and supports dependency-directed revision; de Kleer's ATMS extends maintenance to assumption sets and multiple environments. These systems establish that explicit dependency structure can support selective retraction and consistency maintenance. Contemporary agent-repair systems carry the same basic insight into execution traces: AgentTether builds a dependency-aware critical-transition graph, and Dependency-Guided Rollback Repair traces memory-to-action dependencies, invalidates downstream unsupported state, preserves independently supported state, and selectively replays affected computation.
 
-P6 therefore does not claim selective repair. Its additional question is what counts as *preservable* when a downstream object is not merely a computation but a scientific certificate with evidence, authority and obligation premises.
+ORION-16 therefore does not claim selective repair. Its additional question is what counts as *preservable* when a downstream object is not merely a computation but a scientific certificate with evidence, authority and obligation premises.
 
 ### 2.2 Self-adjusting and incremental computation
 
-Adaptive functional programming and self-adjusting computation represent execution dependences with dynamic dependence graphs and use change propagation to update a computation after inputs change. Correctness is typically stated against from-scratch recomputation. This is a strong parent for P6's computational repair layer.
+Adaptive functional programming and self-adjusting computation represent execution dependences with dynamic dependence graphs and use change propagation to update a computation after inputs change. Correctness is typically stated against from-scratch recomputation. This is a strong parent for ORION-16's computational repair layer.
 
-P6 explicitly embeds this as a special case by making scientific certification obligations and mutation authority inert. The typed-erasure theorem then identifies the converse limitation: from-scratch computational correctness does not decide certification or commit authority once those dimensions are active.
+ORION-16 explicitly embeds this as a special case by making scientific certification obligations and mutation authority inert. The typed-erasure theorem then identifies the converse limitation: from-scratch computational correctness does not decide certification or commit authority once those dimensions are active.
 
 ### 2.3 Dynamic epistemic logic and belief revision
 
-Dynamic epistemic logic provides semantic models for actions that change knowledge; AGM and its descendants formalize rational belief-state revision. These are direct parents for informational mechanics. P6 does not claim a new theory of belief update. Its state coordinates may include propositions, but also representations, measurements, procedures, provenance identities, resource state and authority-bearing certificates.
+Dynamic epistemic logic provides semantic models for actions that change knowledge; AGM and its descendants formalize rational belief-state revision. These are direct parents for informational mechanics. ORION-16 does not claim a new theory of belief update. Its state coordinates may include propositions, but also representations, measurements, procedures, provenance identities, resource state and authority-bearing certificates.
 
 ### 2.4 Separation, effects and process structure
 
 Separation and process formalisms establish locality, independence, concurrency and trace equivalence. Effect systems track computational effects, and algebraic-effect structures separate requests from handlers. ETAS brings these ideas directly into agent systems, making typed actions and traces semantic elements and retaining residual obligations when static proof is incomplete. FAVA constructs evidence-backed permission graphs and checks permission before effectful execution.
 
-P6 adopts rather than claims these mechanisms. Its composition theorem therefore uses a **full scientific footprint**, not only ordinary read/write state, and its main new separation question concerns the admissibility of scientifically certified effects.
+ORION-16 adopts rather than claims these mechanisms. Its composition theorem therefore uses a **full scientific footprint**, not only ordinary read/write state, and its main new separation question concerns the admissibility of scientifically certified effects.
 
 ### 2.5 Authorization and provenance
 
-Authorization logics, trust management, usage-control systems, provenance models and audit logics already formalize permission, delegation, revocation, lineage and ongoing policy checks. P8 in the ORION programme owns the cross-domain authority theory. P6 uses authority only to constrain mechanic composition and repair.
+Authorization logics, trust management, usage-control systems, provenance models and audit logics already formalize permission, delegation, revocation, lineage and ongoing policy checks. ORION-18 in the ORION programme owns the cross-domain authority theory. ORION-16 uses authority only to constrain mechanic composition and repair.
 
 ## 3. Formal setting
 
@@ -221,9 +221,9 @@ The calculus is designed so that donor mechanisms remain recognizable special ca
 
 **Truth maintenance / dependency repair.** Make authority and obligation dimensions inert and remove preservation certificates. Repair reduces to root-inclusive affected-set invalidation.
 
-**Self-adjusting computation.** Represent input/computation dependencies and make scientific certification universally admissible. Change propagation becomes an ordinary mechanic-maintenance instance; P6 does not inherit complexity or efficiency results it has not proved.
+**Self-adjusting computation.** Represent input/computation dependencies and make scientific certification universally admissible. Change propagation becomes an ordinary mechanic-maintenance instance; ORION-16 does not inherit complexity or efficiency results it has not proved.
 
-**Typed-effect systems.** Embed action effects into `Eff_m`, requirements and trace history; if scientific certification/repair is inert, those extra P6 coordinates do not alter the native effect judgment.
+**Typed-effect systems.** Embed action effects into `Eff_m`, requirements and trace history; if scientific certification/repair is inert, those extra ORION-16 coordinates do not alter the native effect judgment.
 
 This conservative policy is scientifically important: the general formalism is rejected if it requires rewriting a donor's native decision without an explicit stronger premise.
 
@@ -256,7 +256,7 @@ The theory suggests that “preserved after change” is underspecified. At leas
 3. do the obligations supporting a certificate remain discharged?
 4. is the next state mutation still authorized at the present scope and epoch?
 
-P6 formally separates the first from the latter two. Paper VII develops the second-to-third transition across representations/objectives; Paper VIII develops the third-to-fourth authority boundary.
+ORION-16 formally separates the first from the latter two. Paper VII develops the second-to-third transition across representations/objectives; Paper VIII develops the third-to-fourth authority boundary.
 
 ### 12.2 Why this matters for autonomous science
 

@@ -7,7 +7,7 @@ subtraction first, claims bounded to verified domains, negatives as results. Eac
 lists its submission gates — receipts that must exist before it goes out. Venue classes are
 indicative, not commitments.
 
-## Paper Q1 — flagship quantum result
+## Paper ORION-01 — flagship quantum result
 
 **Working title:** *Exact Expressivity of Shared-Tag TARE Compilations: Donor Optimality,
 Two Coupling Trades, and Support-Two Sufficiency*
@@ -42,7 +42,7 @@ Hamiltonian, blob-frozen, predicted before computed) as the paper's strongest ev
 a fresh hostile novelty re-search dated at submission; independent replay of all cited
 receipts (already done once this session).
 
-## Paper Q2 — methodology flagship (draft exists)
+## Paper ORION-02 — methodology flagship (draft exists)
 
 **Working title:** *Recursive Recovery of Negative Quantum Results: a Fully Receipted
 Saturation Study* (current `MANUSCRIPT_DRAFT_V1.md`)
@@ -53,7 +53,7 @@ orchestration; the N1–N4 recoveries (saturation + lower bound; donor absorptio
 residual-confirmed families; six positive partial-knowledge families); and the honest R6
 verdict with the protected subject never opened.
 
-**Novelty claim:** not the quantum mathematics (that is Q1's) but the **executable
+**Novelty claim:** not the quantum mathematics (that is ORION-01's) but the **executable
 negative-recovery methodology with complete receipt provenance** — to our knowledge no
 published autonomous-research or AI-for-science pipeline preserves negatives as
 first-class receipted results, freezes gates before outcomes at this granularity, or ships
@@ -65,9 +65,9 @@ methods" that were donor-equivalent.
 statistical study of the methodology.
 
 **Submission gates:** bind final R6Q/benchmark coordinates; polish RECEIPT_INDEX; decide
-overlap boundary with Q1 (Q2 cites Q1's results as its case study, claims only the method).
+overlap boundary with ORION-01 (ORION-02 cites ORION-01's results as its case study, claims only the method).
 
-## Paper Q3 — instrument + benchmark
+## Paper ORION-03 — instrument + benchmark
 
 **Working title:** *Dual-Instrument Research Control: Host-Capability Receipts, Typed
 Campaign Controllers, and a Controller–Host Agreement Benchmark*
@@ -91,7 +91,7 @@ deferred scoring.
 **Submission gates:** score coordinate 4 once R6P/R6Q land (R6P already aligns); run at
 least 2–3 further question instances to seed the agreement series.
 
-## Paper Q4 — typed epistemic state under partial knowledge
+## Paper ORION-04 — typed epistemic state under partial knowledge
 
 **Working title:** *Typed Partial-Knowledge State for Research Interface Graphs: Six
 First-Right-of-Refusal Studies*
@@ -115,11 +115,11 @@ instantiation to upgrade venue class.
 
 ## Sequencing and shared obligations
 
-1. Q1 leads (strongest standalone result); Q2 follows citing Q1; Q3 and Q4 are independent.
+1. ORION-01 leads (strongest standalone result); ORION-02 follows citing ORION-01; ORION-03 and ORION-04 are independent.
 2. Shared pre-submission obligations for all four: fresh hostile novelty search at
    submission date; independent replay of every cited receipt; claim-ledger per the repo's
    paper conventions (`papers/` claim/evidence ledger format); the protected stretched-N2
-   subject stays sealed unless a new pre-outcome freeze releases it for Q1's prospective
+   subject stays sealed unless a new pre-outcome freeze releases it for ORION-01's prospective
    section.
 3. Authorship/venue decisions are the owner's; this plan fixes content boundaries and
    novelty language so no paper claims what a donor owns or what a receipt does not show.

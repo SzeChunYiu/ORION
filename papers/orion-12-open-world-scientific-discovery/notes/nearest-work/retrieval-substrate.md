@@ -103,4 +103,4 @@ reranking as the mechanism for redundancy control.
 
 **ORION delta under test:** do routes that earn independence contribute more
 unique relevant evidence than nominally distinct routes whose diversity is only
-list-level? Open question, and it is the direct operationalisation of `P2.H2`.
+list-level? Open question, and it is the direct operationalisation of `ORION-12.H2`.

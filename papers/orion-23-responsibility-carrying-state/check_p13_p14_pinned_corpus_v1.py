@@ -26,7 +26,7 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-P13 = "papers/paper-13-responsibility-carrying-state"
+P13 = "papers/orion-23-responsibility-carrying-state"
 RULE_REL = f"{P13}/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md"
 CONTRACT_REL = f"{P13}/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json"
 CONTRACT_DOC_REL = f"{P13}/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.md"

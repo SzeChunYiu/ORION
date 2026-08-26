@@ -1,6 +1,6 @@
 # Self-ORION V3 confirmatory execution result (2026-08-24)
 
-Protocol: `papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json`
+Protocol: `papers/orion-15-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json`
 Receipt: `research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json`
 (schema `orion.p5.revision-level-v3.confirmatory-execution-receipt.v1`)
 
@@ -71,7 +71,7 @@ bounded single-probe session.
 
 No positive authority is granted by this execution: `grants_scientific_authority`
 is false everywhere; scientific authority and peer-review readiness remain with
-the result-verification owner (#283). Successor (P5.H1-H4.V4): expectation sets
+the result-verification owner (#283). Successor (ORION-15.H1-H4.V4): expectation sets
 completable within the bounded protocol plus preservation-conflict cases
 exercising the revision-gate blocking branch, with frozen rules surjective onto
 the outcome space this execution exposed.

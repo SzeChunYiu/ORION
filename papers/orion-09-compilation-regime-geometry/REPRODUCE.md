@@ -1,4 +1,4 @@
-# QG1 — reproduction contract
+# ORION-09 — reproduction contract
 
 Reproduce the **map components**, not merely the final prose synthesis.
 

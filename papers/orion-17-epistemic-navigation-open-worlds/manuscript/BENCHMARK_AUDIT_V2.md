@@ -1,4 +1,4 @@
-# P7 benchmark audit V2 — evolving epistemic topology
+# ORION-17 benchmark audit V2 — evolving epistemic topology
 
 **Candidate:** Epistemic Navigation in Open Worlds  
 **Date:** 2026-08-17  
@@ -6,10 +6,10 @@
 
 ## 1. Discriminator being frozen
 
-P7 survives only if changing the representation/objective chart yields a prospectively identified benefit beyond:
+ORION-17 survives only if changing the representation/objective chart yields a prospectively identified benefit beyond:
 
-- P1 responsibility-triggered reformulation;
-- P2 route governance and fail-closed stopping;
+- ORION-11 responsibility-triggered reformulation;
+- ORION-12 route governance and fail-closed stopping;
 - fixed-graph navigation;
 - ordinary replanning/world-model revision;
 - resource-matched exploratory policies.
@@ -22,14 +22,14 @@ The benchmark must also punish gratuitous reframing and transfer beyond literatu
 
 | ID | Family | Domain | Gold terminal | Purpose |
 |---|---|---|---|---|
-| `P7-HIDDEN-BRANCH-001` | hidden useful branch | retrieval | `TASK_STOP` after obligations | catches premature stop on a low-priority frontier |
-| `P7-UNKNOWN-COVERAGE-001` | unknown coverage | retrieval | `CANNOT_CHECK` | prevents unknown denominator from becoming completeness |
-| `P7-CENSORED-ROUTE-001` | censored route | retrieval | `CANNOT_CHECK` | separates local route stop from global task closure |
-| `P7-REDUNDANT-DIVERSITY-001` | deceptive route diversity | retrieval | `ROUTE_STOP` | withholds independence credit from nominally distinct shared routes |
-| `P7-DEAD-END-REVISIT-001` | dead-end/revisit | graph navigation | `TASK_STOP` after recovery | tests revisit value rather than blind looping |
-| `P7-TOPOLOGY-REFRAME-001` | required topology change | diagnosis | `REFRAME` | fixed chart cannot reach the goal; factorized chart can |
-| `P7-TOPOLOGY-NEGATIVE-001` | unnecessary reframe | diagnosis | `TASK_STOP` without reframe | negative control where evidence acquisition is sufficient and reframe is harmful |
-| `P7-NONRETRIEVAL-EXPERIMENT-001` | required topology change | experimental design | `REFRAME` | mandatory non-retrieval transfer with dependent-conclusion reopening |
+| `ORION-17-HIDDEN-BRANCH-001` | hidden useful branch | retrieval | `TASK_STOP` after obligations | catches premature stop on a low-priority frontier |
+| `ORION-17-UNKNOWN-COVERAGE-001` | unknown coverage | retrieval | `CANNOT_CHECK` | prevents unknown denominator from becoming completeness |
+| `ORION-17-CENSORED-ROUTE-001` | censored route | retrieval | `CANNOT_CHECK` | separates local route stop from global task closure |
+| `ORION-17-REDUNDANT-DIVERSITY-001` | deceptive route diversity | retrieval | `ROUTE_STOP` | withholds independence credit from nominally distinct shared routes |
+| `ORION-17-DEAD-END-REVISIT-001` | dead-end/revisit | graph navigation | `TASK_STOP` after recovery | tests revisit value rather than blind looping |
+| `ORION-17-TOPOLOGY-REFRAME-001` | required topology change | diagnosis | `REFRAME` | fixed chart cannot reach the goal; factorized chart can |
+| `ORION-17-TOPOLOGY-NEGATIVE-001` | unnecessary reframe | diagnosis | `TASK_STOP` without reframe | negative control where evidence acquisition is sufficient and reframe is harmful |
+| `ORION-17-NONRETRIEVAL-EXPERIMENT-001` | required topology change | experimental design | `REFRAME` | mandatory non-retrieval transfer with dependent-conclusion reopening |
 
 ## 3. Reference terminal oracle
 
@@ -61,10 +61,10 @@ A policy that always reframes, always stops or always returns `CANNOT_CHECK` the
 At minimum compare:
 
 1. fixed-topology graph/search policy;
-2. P2-style route governance without chart change;
+2. ORION-12-style route governance without chart change;
 3. ordinary replanning/model-update baseline;
 4. representation-reformulation baseline without support-transport rules;
-5. full P7 atlas policy;
+5. full ORION-17 atlas policy;
 6. no-topology-change, no-censored-obligation and no-transport ablations.
 
 ### Hidden information
@@ -85,7 +85,7 @@ Candidate systems must not receive `topology_change_required`, the target chart,
 
 ### Promotion condition
 
-A separate P7 paper needs a prospectively frozen benefit on topology-positive cases, including the non-retrieval domain, without an unacceptable increase in harmful reframes, premature stopping or cost. Otherwise the framing returns to P1/P2.
+A separate ORION-17 paper needs a prospectively frozen benefit on topology-positive cases, including the non-retrieval domain, without an unacceptable increase in harmful reframes, premature stopping or cost. Otherwise the framing returns to ORION-11/ORION-12.
 
 ## 6. Current terminal
 

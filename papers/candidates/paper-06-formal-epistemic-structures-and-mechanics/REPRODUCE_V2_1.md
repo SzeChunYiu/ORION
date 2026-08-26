@@ -1,4 +1,4 @@
-# P6 reproduce V2.1
+# ORION-16 reproduce V2.1
 
 Run from repository root:
 
@@ -10,7 +10,7 @@ PYTHONPATH=src python papers/candidates/paper-06-formal-epistemic-structures-and
 Normative sentinel:
 
 ```text
-P6 THEORY CLOSURE V2.1: PASS
+ORION-16 THEORY CLOSURE V2.1: PASS
 ```
 
 V2.1 specifically checks:

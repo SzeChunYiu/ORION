@@ -1,4 +1,4 @@
-# P11 query-family placement/phase result receipt V1
+# ORION-21 query-family placement/phase result receipt V1
 
 **Run:** GitHub Actions `32663348906` (workflow `p11-query-family-phase-binding-v1`, conclusion: success)
 **Artifact:** `p11-query-family-phase-binding-v1`, artifact ID `9499617317`
@@ -10,7 +10,7 @@
 ## Exact binding
 
 - protocol SHA-256 (as recorded in both receipts): `16147dd984776994279623cde3847bbeb48ec198e8b491d5644c68dc40e1f995`
-- frozen runner executed byte-for-byte from `papers/paper-11-state-as-computation/top_tier/run_query_family_phase_v1.py` (freeze: #978, commit `9fc55f68`)
+- frozen runner executed byte-for-byte from `papers/orion-21-state-as-computation/top_tier/run_query_family_phase_v1.py` (freeze: #978, commit `9fc55f68`)
 - primary receipt SHA-256: `9a1f1f9b62955296bcff891f1f93f97af03448d311ae63b62a95d407e3de138f`
 - independent receipt SHA-256: `b1e92a6be419a26d442fd0e0e6a8026279a70686e3f6b7b09ea64700b8742760`
 - binding manifest SHA-256: `0c944d6215d0f8e993e31685c2fe20f5539558a05aa4d5b8a1caf876c7e36d06`
@@ -66,7 +66,7 @@ Selection stability (folds): per query, 1–5 distinct 16-coordinate selections 
 
 ## Scientific disposition
 
-`GATE_NOT_MET` — negative retained, no retuning, thresholds as frozen in #978. The earlier single-responsibility learned-compiler placement claim does not extend to a ten-responsibility family on digits; the phase diagram (memory crossover, linear break-even growth, nonzero future-query tax) is confirmed exactly, so the placement question on this domain resolves on the quality axis against compilation at family scale. This is a boundary characterization of the P11 compile/cache/materialize option on digits, not a refutation of the resource identities themselves.
+`GATE_NOT_MET` — negative retained, no retuning, thresholds as frozen in #978. The earlier single-responsibility learned-compiler placement claim does not extend to a ten-responsibility family on digits; the phase diagram (memory crossover, linear break-even growth, nonzero future-query tax) is confirmed exactly, so the placement question on this domain resolves on the quality axis against compilation at family scale. This is a boundary characterization of the ORION-21 compile/cache/materialize option on digits, not a refutation of the resource identities themselves.
 
 ## Reconciliation with prior failed run 32661332644 (added 2026-08-23, post-binding)
 

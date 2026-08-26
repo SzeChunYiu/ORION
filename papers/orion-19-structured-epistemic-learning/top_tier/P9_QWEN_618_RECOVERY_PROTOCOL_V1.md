@@ -1,4 +1,4 @@
-# P9 protected Qwen #618 cross-size analysis recovery protocol V1
+# ORION-19 protected Qwen #618 cross-size analysis recovery protocol V1
 
 **Programme:** #977  
 **Source PR:** #618, branch `shadow/p9-p10-structural-scaling-research-20260820`  
@@ -59,7 +59,7 @@ It freezes:
 - at least one observed smaller-structured/larger-same-information substitution;
 - all frozen hostile controls green.
 
-The producer schema is `P9.LLMGGUFServerRuns.v1`, whose frozen runner explicitly writes `model_scale`; the analyzer consumes the same field. No schema reinterpretation is needed.
+The producer schema is `ORION-19.LLMGGUFServerRuns.v1`, whose frozen runner explicitly writes `model_scale`; the analyzer consumes the same field. No schema reinterpretation is needed.
 
 ## Sole allowed recovery transformation
 
@@ -77,7 +77,7 @@ No JSON content may be edited. No failed/missing row may be regenerated. No Qwen
 
 Before analysis require each JSON:
 
-- schema `P9.LLMGGUFServerRuns.v1`;
+- schema `ORION-19.LLMGGUFServerRuns.v1`;
 - terminal `RUN_COMPLETE_PENDING_CROSS_SIZE_ANALYSIS`;
 - expected `model_scale`;
 - `equivalence_failures == 0`;

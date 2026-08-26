@@ -1,4 +1,4 @@
-# Q1 final exact-statement novelty refresh — 2026-08-22
+# ORION-01 final exact-statement novelty refresh — 2026-08-22
 
 **Status:** bounded literature-search record only. This file does not certify novelty.
 
@@ -24,15 +24,15 @@ The final refresh used broad web/arXiv search with the exact terminology above a
 
 Schillo, Sturm and Quay, **“TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation,”** arXiv:2601.05740 (2026, current v4).
 
-This is the donor for TARE itself. It introduces the Tag-and-Restore construction and the auxiliary mutually anticommuting Pauli representation. Q1 takes zero novelty credit for TARE, Tag/Restore, anticommuting-unitary partitioning, or the existence of auxiliary-frame optimization.
+This is the donor for TARE itself. It introduces the Tag-and-Restore construction and the auxiliary mutually anticommuting Pauli representation. ORION-01 takes zero novelty credit for TARE, Tag/Restore, anticommuting-unitary partitioning, or the existence of auxiliary-frame optimization.
 
 ### Adjacent work located
 
-The search also surfaced established/active work on Pauli-frame and Pauli-string compilation, stabilizer/Clifford normal forms, and support/weight reduction. Those areas therefore cannot be claimed as introduced by Q1. The earlier `NOVELTY_RESEARCH_2026-08-22.md` records the main adjacent routes, including PCOAST and recent Pauli/symplectic compiler work.
+The search also surfaced established/active work on Pauli-frame and Pauli-string compilation, stabilizer/Clifford normal forms, and support/weight reduction. Those areas therefore cannot be claimed as introduced by ORION-01. The earlier `NOVELTY_RESEARCH_2026-08-22.md` records the main adjacent routes, including PCOAST and recent Pauli/symplectic compiler work.
 
 ### Direct equivalent not located
 
-Within this bounded final refresh, no source was located that states or proves an equivalent of the frozen Q1 theorem:
+Within this bounded final refresh, no source was located that states or proves an equivalent of the frozen ORION-01 theorem:
 
 - a uniform all-`n` support cap of two for the declared shared-Tag TARE-M2 grammar/objective;
 - a proof that support >=3 can always be exchanged away while preserving both frame anticommutation and shared-Tag syndrome;

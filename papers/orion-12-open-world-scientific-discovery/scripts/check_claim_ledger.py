@@ -44,8 +44,8 @@ harness error is never reported as a pass -- "could not check" is not "fine".
 
 Examples::
 
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
-    python3 papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --emit-sentences abstract
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
+    python3 papers/orion-12-open-world-scientific-discovery/scripts/check_claim_ledger.py --emit-sentences abstract
 """
 
 from __future__ import annotations

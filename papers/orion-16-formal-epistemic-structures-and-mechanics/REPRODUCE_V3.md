@@ -1,4 +1,4 @@
-# P6 local replay V3
+# ORION-16 local replay V3
 
 This route reproduces the bounded local formal instrument. It is **local
 replay**, not independent replication, empirical lifting, or external custody.
@@ -12,7 +12,7 @@ Environment lock:
 From the repository root:
 
 ```bash
-make -C papers/paper-06-formal-epistemic-structures-and-mechanics reproduce-v3
+make -C papers/orion-16-formal-epistemic-structures-and-mechanics reproduce-v3
 ```
 
 The command validates the versioned schema and generator, binds the append-only
