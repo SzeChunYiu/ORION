@@ -1,0 +1,50 @@
+name: Five-paper R9 NQ CR-B control gate
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/five-paper-r9-nq-crb-control.yml'
+      - 'papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1/**'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/**'
+  push:
+    branches:
+      - codex/r9-nq-cleanroom-engine-b-20260826
+    paths:
+      - '.github/workflows/five-paper-r9-nq-crb-control.yml'
+      - 'papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1/**'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/**'
+
+permissions:
+  contents: read
+
+jobs:
+  crb-rank2-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install frozen control tools
+        run: python -m pip install pytest==8.4.2 ruff==0.15.10
+      - name: Run CR-B lint and format gates
+        run: |
+          ruff check papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay
+          ruff format --check papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay
+      - name: Run focused and hostile controls
+        env:
+          PYTHONPATH: papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay:papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b
+        run: |
+          python -m pytest -q \
+            papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/tests \
+            papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/tests
+          python papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/control_replay.py
+          python papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/verify_control_receipt.py
+          python papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/verify_receipt.py \
+            papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/NON_OUTCOME_VALIDATION.json \
+            --source-manifest papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/SOURCE_MANIFEST.json
+          python papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/build_replay_manifest.py
+          python -m compileall -q papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay
+          git diff --exit-code
