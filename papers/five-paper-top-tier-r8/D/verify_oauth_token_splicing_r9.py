@@ -191,7 +191,20 @@ def main() -> None:
             "source_registry_sha256": hashlib.sha256(source_path.read_bytes()).hexdigest(),
             "registered_source_ids": source_ids,
         },
-        "cases": rows,
+        "case_trace_sha256": digest(rows),
+        "cases": [
+            {
+                "case_id": row["case_id"],
+                "mode": row["mode"],
+                "expected_authorized": row["expected_authorized"],
+                "typed_authorized": row["typed_authorized"],
+                "typed_authorized_coordinates": row["typed_authorized_coordinates"],
+                "untyped_authorized": row["untyped_authorized"],
+                "untyped_false_positive": row["untyped_false_positive"],
+                "untyped_rule_trace": row["untyped_rule_trace"],
+            }
+            for row in rows
+        ],
         "summary": summary,
         "controls": {
             "clean_bearer_authorized": next(
