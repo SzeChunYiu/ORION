@@ -22,38 +22,75 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Reconstruct and verify payload
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
-          import base64, hashlib
+          import base64
+          import hashlib
           from pathlib import Path
-          paths = sorted(Path('development/five-paper-r8/payload').glob('part-*'))
-          raw_parts = []
+
+          payload_dir = Path('development/five-paper-r8/payload')
+          paths = sorted(payload_dir.glob('part-*'))
+          assert [p.name for p in paths] == [f'part-{i:02d}' for i in range(6)]
+
+          expected = {
+              'part-00': (9000, 'f3d6d78caf90d2812ebb35aa22fb15c467cd6e30d28768f2d72bfd7d8e3e4fef'),
+              'part-01': (9000, '655d890afe7c14950366d018810629404772298873898656aad9161569345b02'),
+              'part-02': (9000, '0c0a5e994902085cd61b4095449c1dd8999ee2e15ccdb5a67f6d56b9cec1df92'),
+              'part-03': (18000, '63763bdb856cb93da4745a7bc92275f5718fe97ebd4d8799270e851e7fee2b62'),
+              'part-04': (18000, '870d89c6ad006e3e5d8bfd039c3d0f8fe07fbbf22ed9ce1f116e124f572c0603'),
+              'part-05': (17884, 'eab4f0512685997a47cea9fb683fdd67d991e4348693cb8c4cdaeef6b3b83243'),
+          }
+          known_uploaded = {
+              'part-00': '893f855afacab4ea09d6645f6beb7f9bb34733fb9b6ffb471745c7e58d74b633',
+              'part-04': 'b99c4adecd1a69cc3e4f46691565eec347773ceb5317ffe06ac20f40ffea07fe',
+              'part-05': '6a9ca8d340e79d387f9e783e34a40a681b7335f50b765b2f7c1a1096d3531021',
+          }
+
+          repaired_parts = []
           for path in paths:
-              data = path.read_bytes()
-              print(path.name, len(data), hashlib.sha256(data).hexdigest())
-              raw_parts.append(data)
-          compact = b''.join(b''.join(raw_parts).split())
+              name = path.name
+              data = bytearray(path.read_bytes())
+              before = hashlib.sha256(data).hexdigest()
+              print(name, 'uploaded_bytes', len(data), 'uploaded_sha256', before)
+
+              # The connector transport introduced exactly three independently
+              # diagnosed byte defects. Repair only those known byte strings,
+              # fail closed on every other mismatch, and then verify the
+              # canonical per-part digest before decoding the archive.
+              if name == 'part-00' and before == known_uploaded[name]:
+                  assert len(data) == 9001 and data[-1:] == b'N'
+                  del data[-1]
+              elif name == 'part-04' and before == known_uploaded[name]:
+                  assert len(data) == 18001 and bytes(data[430:433]) == b'ban'
+                  data[430:433] = b'ab'
+              elif name == 'part-05' and before == known_uploaded[name]:
+                  assert len(data) == 17884 and data[9168:9169] == b'O'
+                  data[9168:9169] = b'e'
+
+              expected_len, expected_sha = expected[name]
+              after = hashlib.sha256(data).hexdigest()
+              print(name, 'canonical_bytes', len(data), 'canonical_sha256', after)
+              assert len(data) == expected_len, (name, len(data), expected_len)
+              assert after == expected_sha, (name, after, expected_sha)
+              repaired_parts.append(bytes(data))
+
+          compact = b''.join(b''.join(repaired_parts).split())
           decoded = base64.b64decode(compact, validate=True)
           digest = hashlib.sha256(decoded).hexdigest()
           print('payload bytes', len(decoded), 'sha256', digest)
           assert digest == '4d0e0500ab56962fcc5ebf57dcc37bc91abec0e36cccb2c97559c43e81e717bc', digest
           Path('/tmp/five-paper-r8-payload.tar.gz').write_bytes(decoded)
           PY
+
           mkdir -p /tmp/five-paper-r8-materialized
           tar -xzf /tmp/five-paper-r8-payload.tar.gz -C /tmp/five-paper-r8-materialized
           test -f /tmp/five-paper-r8-materialized/papers/five-paper-top-tier-r8/PROGRAMME.md
           test -f /tmp/five-paper-r8-materialized/.github/workflows/five-paper-r8-harness.yml
-      - name: Export committed transport bytes
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: five-paper-r8-committed-payload-parts
-          path: development/five-paper-r8/payload/part-*
-          if-no-files-found: error
-          retention-days: 2
+
       - name: Materialize onto content-bound target branch
         shell: bash
         run: |
@@ -65,20 +102,25 @@ jobs:
           cp -a /tmp/five-paper-r8-materialized/. .
           rm -rf development/five-paper-r8/payload
           rm -f .github/workflows/materialize-five-paper-r8-once.yml
+
           python papers/five-paper-top-tier-r8/harness/validate_r8_artifacts.py
           python - <<'PY'
-          import hashlib, json
+          import hashlib
+          import json
           from pathlib import Path
-          root=Path('.')
-          manifest=json.loads((root/'papers/five-paper-top-tier-r8/MANIFEST_R8.json').read_text())
-          assert manifest['base_commit']=='99049ff6dfbdd78590bbdae0d24b9037aae83e3c'
+
+          root = Path('.')
+          manifest = json.loads((root / 'papers/five-paper-top-tier-r8/MANIFEST_R8.json').read_text())
+          assert manifest['base_commit'] == '99049ff6dfbdd78590bbdae0d24b9037aae83e3c'
           for row in manifest['files']:
-              p=root/row['path']
-              assert p.exists(), row['path']
-              assert len(p.read_bytes())==row['bytes'], row['path']
-              assert hashlib.sha256(p.read_bytes()).hexdigest()==row['sha256'], row['path']
+              path = root / row['path']
+              assert path.exists(), row['path']
+              payload = path.read_bytes()
+              assert len(payload) == row['bytes'], row['path']
+              assert hashlib.sha256(payload).hexdigest() == row['sha256'], row['path']
           print('manifest verification PASS', manifest['file_count'])
           PY
+
           git add .github/workflows/five-paper-r8-harness.yml papers/five-paper-top-tier-r8
           git commit -m "research: materialize five-paper top-tier R8 programme"
           git push origin "${TARGET_BRANCH}"
