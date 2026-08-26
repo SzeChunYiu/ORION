@@ -1,0 +1,180 @@
+{
+  "authority": {
+    "algorithm_independent_runtime_lower_bound": false,
+    "complete_defined_production_intrinsic_support_1": true,
+    "equivalent_to_full_TARE_or_hardware_compiler": false,
+    "external_significance_review": false,
+    "grants_journal_authority": false,
+    "production_certificate_gap_5_to_1": true,
+    "realized_weak_certificate_budget_5": true
+  },
+  "content_sha256": "322923d63c44b512440f2cdbc77a614ac4f5a165c42e75881e1a22939970a93d",
+  "direct_enumerator_scaling": [
+    {
+      "coordinate_count": 10,
+      "exact_candidate_ratio": 23833131.633440513,
+      "local_nonidentity_labels": 31,
+      "strong_cap_1_candidates": 311,
+      "weak_cap_5_candidates": 7412103938
+    },
+    {
+      "coordinate_count": 20,
+      "exact_candidate_ratio": 722020871.6586151,
+      "local_nonidentity_labels": 31,
+      "strong_cap_1_candidates": 621,
+      "weak_cap_5_candidates": 448374961300
+    },
+    {
+      "coordinate_count": 50,
+      "exact_candidate_ratio": 39246661470.9452,
+      "local_nonidentity_labels": 31,
+      "strong_cap_1_candidates": 1551,
+      "weak_cap_5_candidates": 60871571941436
+    },
+    {
+      "coordinate_count": 100,
+      "exact_candidate_ratio": 696241191258.7863,
+      "local_nonidentity_labels": 31,
+      "strong_cap_1_candidates": 3101,
+      "weak_cap_5_candidates": 2159043934093496
+    },
+    {
+      "coordinate_count": 200,
+      "exact_candidate_ratio": 11716382024617.72,
+      "local_nonidentity_labels": 31,
+      "strong_cap_1_candidates": 6201,
+      "weak_cap_5_candidates": 72653284934654491
+    }
+  ],
+  "finite_controls": [
+    {
+      "alphabet_size": 3,
+      "dimension": 2,
+      "interaction_class_counts": {
+        "DELETE_ZERO--FUSE_DISTINCT_PAIR": 6
+      },
+      "local_peak_mismatches": 0,
+      "local_peaks_checked": 6,
+      "maximum_state_length": 3,
+      "move_schema_counts": {
+        "DELETE_ZERO": 9,
+        "FUSE_DISTINCT_PAIR": 9
+      },
+      "moves_checked": 18,
+      "states_checked": 15,
+      "status": "FINITE_EXACT",
+      "strong_terminal_budget": 1,
+      "weak_terminal_budget": 2,
+      "weak_witness": [
+        1,
+        2
+      ]
+    },
+    {
+      "alphabet_size": 7,
+      "dimension": 3,
+      "interaction_class_counts": {
+        "DELETE_ZERO--DELETE_ZERO": 21,
+        "DELETE_ZERO--FUSE_DISTINCT_PAIR": 630,
+        "FUSE_DISTINCT_PAIR--FUSE_DISTINCT_PAIR": 819
+      },
+      "local_peak_mismatches": 0,
+      "local_peaks_checked": 1470,
+      "maximum_state_length": 4,
+      "move_schema_counts": {
+        "DELETE_ZERO": 245,
+        "FUSE_DISTINCT_PAIR": 672
+      },
+      "moves_checked": 917,
+      "states_checked": 280,
+      "status": "FINITE_EXACT",
+      "strong_terminal_budget": 1,
+      "weak_terminal_budget": 3,
+      "weak_witness": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "alphabet_size": 15,
+      "dimension": 4,
+      "interaction_class_counts": {
+        "DELETE_ZERO--DELETE_ZERO": 7995,
+        "DELETE_ZERO--FUSE_DISTINCT_PAIR": 99750,
+        "FUSE_DISTINCT_PAIR--FUSE_DISTINCT_PAIR": 235305
+      },
+      "local_peak_mismatches": 0,
+      "local_peaks_checked": 343050,
+      "maximum_state_length": 5,
+      "move_schema_counts": {
+        "DELETE_ZERO": 19050,
+        "FUSE_DISTINCT_PAIR": 80325
+      },
+      "moves_checked": 99375,
+      "states_checked": 14535,
+      "status": "FINITE_EXACT",
+      "strong_terminal_budget": 1,
+      "weak_terminal_budget": 4,
+      "weak_witness": [
+        1,
+        2,
+        4,
+        8
+      ]
+    }
+  ],
+  "grammar": {
+    "complete_production_move_registry": [
+      "DELETE_ZERO",
+      "FUSE_DISTINCT_PAIR"
+    ],
+    "completeness_basis": "the production grammar is defined to admit exactly these two universally quantified schemas",
+    "dimension": 5,
+    "objective": "multiset cardinality",
+    "state": "finite multiset of nonzero F_2^5 vectors with nonzero XOR total",
+    "weak_proof_language": [
+      "DELETE_ZERO"
+    ]
+  },
+  "realization": {
+    "certificate_waste": 4,
+    "intrinsic_support": 1,
+    "map": "identity multiset representation",
+    "production_preimage": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "strong_normal_form": [
+      31
+    ],
+    "support_preserved": true,
+    "support_zero_infeasible": true,
+    "weak_irreducible": true,
+    "weak_terminal_support": 5,
+    "weak_terminal_word": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ]
+  },
+  "schema": "ORION.AB.XORProductionAuditR9.Results.v1",
+  "symbolic_audit": {
+    "all_interactions_join_by_unique_normal_form": true,
+    "confluence_reason": "all successors preserve total XOR and reduce to the same singleton",
+    "critical_interaction_classes": [
+      "DELETE_ZERO--DELETE_ZERO",
+      "DELETE_ZERO--FUSE_DISTINCT_PAIR",
+      "FUSE_DISTINCT_PAIR--FUSE_DISTINCT_PAIR"
+    ],
+    "semantic_invariant": "total XOR",
+    "termination_measure": "support strictly decreases under every move",
+    "unique_normal_form": "singleton containing the nonzero total XOR"
+  },
+  "terminal": "AB_REALIZED_CERTIFICATE_GAP_WITH_COMPLETE_MOVE_AUDIT__EXPLICIT_XOR_GRAMMAR"
+}
