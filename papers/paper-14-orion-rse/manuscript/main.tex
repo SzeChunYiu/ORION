@@ -13,6 +13,10 @@
 \ExplSyntaxOn
 \cs_new_protected:Npn \orion_code_span:n #1
   {
+    % A code span can be the first material in a Markdown paragraph.  Enter
+    % horizontal mode before the width probe so the compact-box branch stays
+    % inline instead of becoming a standalone vertical-list box.
+    \mode_leave_vertical:
     \group_begin:
     \tl_if_in:nnTF {#1} { ~ }
       {
