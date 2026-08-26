@@ -1,0 +1,135 @@
+{
+  "as_of": "2026-08-26",
+  "fixture_mapping": {
+    "aud_rs1": [
+      "RFC8707:2-3",
+      "RFC9068:4",
+      "RFC9700:4.10.2"
+    ],
+    "dpop_ath_matches": [
+      "RFC9449:4.3",
+      "RFC9449:7"
+    ],
+    "dpop_key_matches": [
+      "RFC9449:6-7.1"
+    ],
+    "dpop_method_matches": [
+      "RFC9449:4.3"
+    ],
+    "dpop_proof_signature_valid": [
+      "RFC9449:4.3"
+    ],
+    "dpop_token_bound": [
+      "RFC9449:6-7"
+    ],
+    "dpop_uri_matches": [
+      "RFC9449:4.3",
+      "RFC9449:7.1"
+    ],
+    "issuer_trusted": [
+      "RFC9068:4"
+    ],
+    "not_expired": [
+      "RFC9068:4"
+    ],
+    "scope_admin": [
+      "RFC9068:2.2.3"
+    ],
+    "signature_valid": [
+      "RFC9068:4"
+    ],
+    "subject_alice": [
+      "RFC9068:2.2"
+    ],
+    "typ_at_jwt": [
+      "RFC9068:2.1",
+      "RFC9068:4"
+    ]
+  },
+  "interpretation_boundary": {
+    "benchmark_abstraction": "a positive evidence graph whose untyped baseline erases token/request coordinates",
+    "normative_claim": "the registered validation facts must be checked as properties of the presented token/proof context",
+    "not_claimed": [
+      "that a compliant OAuth implementation normally unions arbitrary token claims",
+      "that the synthetic corpus measures real-world vulnerability prevalence",
+      "that the encoding has received independent OAuth working-group adjudication"
+    ]
+  },
+  "schema": "ORION.TypedAuthority.OAuthPolicySourceRegistryR9.v1",
+  "sources": [
+    {
+      "canonical_url": "https://www.rfc-editor.org/rfc/rfc8707.html",
+      "publication": "IETF Standards Track",
+      "published": "2020-02",
+      "registered_requirements": [
+        "access tokens can be audience-restricted to a protected resource",
+        "a token intended for one protected resource must not be treated as valid at another",
+        "scope describes what access is granted while resource/audience identifies where it can be redeemed"
+      ],
+      "source_id": "RFC8707",
+      "title": "Resource Indicators for OAuth 2.0",
+      "used_sections": [
+        "2",
+        "3"
+      ]
+    },
+    {
+      "canonical_url": "https://www.rfc-editor.org/rfc/rfc9068.html",
+      "publication": "IETF Standards Track",
+      "published": "2021-10",
+      "registered_requirements": [
+        "JWT access tokens are explicitly typed and signed",
+        "issuer, expiration, audience, subject, client, issue time, and token identifier are token-associated claims",
+        "scope strings must have meaning for the resources in the token audience",
+        "a resource server must exactly validate issuer and expected audience and reject a mismatching token",
+        "authorization claims are used together with the validated token context",
+        "cross-JWT confusion and ambiguous grants must be prevented"
+      ],
+      "source_id": "RFC9068",
+      "title": "JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens",
+      "used_sections": [
+        "2.1",
+        "2.2",
+        "2.2.3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "canonical_url": "https://www.rfc-editor.org/rfc/rfc9449.html",
+      "publication": "IETF Standards Track",
+      "published": "2023-09",
+      "registered_requirements": [
+        "a resource server verifies that the DPoP proof key matches the key bound to the access token",
+        "the ath claim must match the presented access token",
+        "method and target URI checks belong to the same proof used for the request",
+        "access must not be granted unless all DPoP checks succeed"
+      ],
+      "source_id": "RFC9449",
+      "title": "OAuth 2.0 Demonstrating Proof of Possession (DPoP)",
+      "used_sections": [
+        "4.3",
+        "6",
+        "7",
+        "7.1"
+      ]
+    },
+    {
+      "canonical_url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+      "publication": "IETF Best Current Practice 240",
+      "published": "2025-01",
+      "registered_requirements": [
+        "access tokens should be restricted to intended resources and actions",
+        "resource servers verify that the presented token is meant for the requested resource and action",
+        "audience mismatch requires refusal",
+        "sender-constrained tokens are recommended where appropriate to reduce replay"
+      ],
+      "source_id": "RFC9700",
+      "title": "Best Current Practice for OAuth 2.0 Security",
+      "used_sections": [
+        "2.2",
+        "4.10.2"
+      ]
+    }
+  ]
+}
