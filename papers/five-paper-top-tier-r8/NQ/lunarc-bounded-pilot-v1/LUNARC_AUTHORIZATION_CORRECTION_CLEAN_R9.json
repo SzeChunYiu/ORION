@@ -1,0 +1,94 @@
+{
+  "schema": "ORION.NQ.EngineA.LunarcAuthorizationCorrectionCleanR9.v1",
+  "authorization_id": "NQ-ENGINE-A-CLEAN-R9-ONE-SHOT-20260826",
+  "issued_at_utc": "2026-08-26T00:00:00Z",
+  "scope": {
+    "paper": "NQ",
+    "task": "bounded Engine-A engineering pilot",
+    "scientific_question": "Does the clean transplanted Engine-A package execute under the registered bounded pilot contract and emit its expected engineering receipts?",
+    "not_authorized": [
+      "D3(C5^3) independent scientific replay",
+      "D4(C5^3) closure",
+      "source-level lift-aware obstruction closure",
+      "generalized Davenport promotion",
+      "more than one scheduler submission",
+      "resource escalation",
+      "source or wrapper modification after preflight"
+    ]
+  },
+  "immutable_payload": {
+    "repository": "SzeChunYiu/ORION",
+    "required_ancestor_branch": "chatgpt/r9-nq-engine-a-clean-integration-20260826",
+    "engine_tree_sha": "b64f2188238e5fc869680ca117d241a0a3615349",
+    "lunarc_wrapper_tree_sha": "69f45633c7c632d74fff23771461d7cd0be38933",
+    "submit_script_path": "papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/submit_nq_engine_a_bounded_pilot.sh",
+    "clean_integration_manifest_path": "papers/five-paper-top-tier-r8/NQ/ENGINE_A_CLEAN_INTEGRATION_R9.json",
+    "authorization_validator_path": "papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/validate_clean_lunarc_authorization_r9.py"
+  },
+  "scheduler_envelope": {
+    "system": "LUNARC",
+    "scheduler": "Slurm",
+    "account": "lu2026-2-51",
+    "partition": "scheduler_default",
+    "nodes": 1,
+    "ntasks": 1,
+    "cpus_per_task": 1,
+    "memory_gib": 4,
+    "walltime": "00:30:00",
+    "gpus": 0,
+    "submission_limit": 1
+  },
+  "nonduplication_key": "NQ-ENGINE-A-R9-CLEAN:b64f2188238e5fc869680ca117d241a0a3615349:69f45633c7c632d74fff23771461d7cd0be38933:lu2026-2-51:1node:1task:1cpu:4GiB:00-30-00:attempt-1",
+  "required_preflight": [
+    "authorization validator returns PASS",
+    "the working tree is clean",
+    "the exact engine and wrapper tree SHAs are present under the NQ subtree",
+    "the registered submit script is contained in the authorized wrapper tree",
+    "the LUNARC account is available to the operator",
+    "no receipt exists for the nonduplication key",
+    "sbatch is available",
+    "the operator records the checked-out commit and all tree-to-path bindings"
+  ],
+  "required_submission_command": "bash papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/submit_nq_engine_a_bounded_pilot.sh",
+  "required_receipts": [
+    "checked-out commit SHA",
+    "engine tree path and SHA",
+    "wrapper tree path and SHA",
+    "authorization file SHA256",
+    "submit-script blob SHA",
+    "exact sbatch command",
+    "sbatch stdout and stderr",
+    "Slurm job ID",
+    "scheduler account and effective resource request",
+    "sacct terminal state, exit code, elapsed time, MaxRSS, and allocation",
+    "job stdout and stderr SHA256",
+    "result and manifest SHA256",
+    "nonduplication lock receipt"
+  ],
+  "allowed_terminals": [
+    "PRECHECK_FAILED",
+    "ALREADY_SUBMITTED",
+    "SUBMITTED",
+    "COMPLETED_ENGINEERING_PASS",
+    "COMPLETED_ENGINEERING_FAIL",
+    "TIMEOUT",
+    "OUT_OF_MEMORY",
+    "CANCELLED",
+    "RESOURCE_EXHAUSTED",
+    "CANNOT_CHECK"
+  ],
+  "promotion_ceiling": {
+    "maximum_authority": "bounded engineering execution receipt on the exact authorized payload",
+    "independent_scientific_replay": false,
+    "computer_assisted_proof_authority": false,
+    "D3_or_D4_claim_authority": false,
+    "journal_grade_authority": false
+  },
+  "fail_closed_rules": [
+    "Any tree mismatch terminates PRECHECK_FAILED.",
+    "Any missing account or scheduler capability terminates CANNOT_CHECK.",
+    "Any pre-existing nonduplication receipt terminates ALREADY_SUBMITTED.",
+    "No source patch, wrapper patch, retry, resource increase, or alternate command is authorized by this packet.",
+    "A scheduler success does not promote a mathematical claim."
+  ]
+}
