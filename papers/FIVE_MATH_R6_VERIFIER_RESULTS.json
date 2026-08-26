@@ -1,0 +1,189 @@
+{
+  "nonquantum": {
+    "affine_coset_cap": {
+      "explicit_zero_sum_free_witness_size": 8,
+      "independent_engines_agree": true,
+      "maximum_coset_occupancy": 8,
+      "normalized_nine_sets_checked": 74613,
+      "normalized_survivors": 0,
+      "published_threshold_g_C5xC5": 9
+    },
+    "frontier_status": "five rank-two forms compressed, not eliminated",
+    "plane_singleton_engines_agree": true,
+    "quotient_occupancy": {
+      "nonzero_cosets_occupied_minimum": 3,
+      "outside_plane_minimum": 19,
+      "profiles_plane_cap_1": 139,
+      "profiles_plane_cap_2": 223,
+      "total_quotient_sum_constraint": "n1+2n2+3n3+4n4 = 0 mod 5"
+    },
+    "rank_two_442_plane_rows": [
+      {
+        "allowed_plane_singletons": [
+          [1, 2, 0],
+          [2, 1, 0]
+        ],
+        "normal_form": [1, 1],
+        "outside_plane_lower_bound": 19,
+        "plane_cap": 2
+      },
+      {
+        "allowed_plane_singletons": [[1, 4, 0]],
+        "normal_form": [1, 2],
+        "outside_plane_lower_bound": 20,
+        "plane_cap": 1
+      },
+      {
+        "allowed_plane_singletons": [[1, 1, 0]],
+        "normal_form": [1, 3],
+        "outside_plane_lower_bound": 20,
+        "plane_cap": 1
+      },
+      {
+        "allowed_plane_singletons": [
+          [1, 3, 0],
+          [2, 3, 0]
+        ],
+        "normal_form": [1, 4],
+        "outside_plane_lower_bound": 19,
+        "plane_cap": 2
+      },
+      {
+        "allowed_plane_singletons": [[4, 1, 0]],
+        "normal_form": [2, 3],
+        "outside_plane_lower_bound": 20,
+        "plane_cap": 1
+      }
+    ]
+  },
+  "paper_A": {
+    "automaton_matches_multiplicity_bruteforce": true,
+    "exact_automaton_rows": [
+      {
+        "alphabet": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+        "automaton": {
+          "strict_growth_checks": 12,
+          "terminal_outgoing_transitions": 0,
+          "terminal_subset_sum_count": 7,
+          "visited_states": 8,
+          "witness_letter_indices": [0, 1, 2],
+          "zsf": 3
+        },
+        "brute_zsf": 3,
+        "moduli": [2, 2, 2]
+      },
+      {
+        "alphabet": [[1, 0], [0, 1], [1, 1]],
+        "automaton": {
+          "strict_growth_checks": 32,
+          "terminal_outgoing_transitions": 0,
+          "terminal_subset_sum_count": 7,
+          "visited_states": 14,
+          "witness_letter_indices": [0, 1, 1, 1],
+          "zsf": 4
+        },
+        "brute_zsf": 4,
+        "moduli": [2, 4]
+      },
+      {
+        "alphabet": [[1, 0], [0, 1], [1, 1]],
+        "automaton": {
+          "strict_growth_checks": 35,
+          "terminal_outgoing_transitions": 0,
+          "terminal_subset_sum_count": 8,
+          "visited_states": 16,
+          "witness_letter_indices": [0, 0, 1, 1],
+          "zsf": 4
+        },
+        "brute_zsf": 4,
+        "moduli": [3, 3]
+      }
+    ]
+  },
+  "paper_B": {
+    "abstract_basis_rows": [
+      {"beta_ZSD": 1, "d": 1},
+      {"beta_ZSD": 2, "d": 2},
+      {"beta_ZSD": 3, "d": 3},
+      {"beta_ZSD": 4, "d": 4},
+      {"beta_ZSD": 5, "d": 5},
+      {"beta_ZSD": 6, "d": 6},
+      {"beta_ZSD": 7, "d": 7},
+      {"beta_ZSD": 8, "d": 8},
+      {"beta_ZSD": 9, "d": 9},
+      {"beta_ZSD": 10, "d": 10},
+      {"beta_ZSD": 11, "d": 11},
+      {"beta_ZSD": 12, "d": 12}
+    ],
+    "direct_product_rows": [
+      {"additive_gap": 4, "certificate_budget": 5, "components": 1, "intrinsic_budget": 1},
+      {"additive_gap": 8, "certificate_budget": 10, "components": 2, "intrinsic_budget": 2},
+      {"additive_gap": 12, "certificate_budget": 15, "components": 3, "intrinsic_budget": 3},
+      {"additive_gap": 40, "certificate_budget": 50, "components": 10, "intrinsic_budget": 10},
+      {"additive_gap": 400, "certificate_budget": 500, "components": 100, "intrinsic_budget": 100}
+    ],
+    "production_blocks": {
+      "R6I_A": {
+        "basis": [1, 68, 136, 272, 544],
+        "beta_ZSD": 5,
+        "gap": 4,
+        "kappa_unit": 1,
+        "nonempty_zero_xor_subsets": 0,
+        "rank": 5,
+        "total_xor": 1021
+      },
+      "R6I_B": {
+        "basis": [2, 4, 8, 16, 32],
+        "beta_ZSD": 5,
+        "gap": 4,
+        "kappa_unit": 1,
+        "nonempty_zero_xor_subsets": 0,
+        "rank": 5,
+        "total_xor": 62
+      }
+    },
+    "scope": "rank-only zero-sum-deletion proof class under frozen R6I unit objective"
+  },
+  "paper_C": {
+    "all_proper_interaction_rows": [
+      {
+        "exact_value_gap": 19,
+        "m": 5,
+        "one_block_unique_both_sides": true,
+        "padding_K": 332,
+        "partitions_checked": 52,
+        "proper_marginals_checked": 30,
+        "top_marginal_difference": 1,
+        "trade_mass_per_side": 16
+      },
+      {
+        "exact_value_gap": 23,
+        "m": 6,
+        "one_block_unique_both_sides": true,
+        "padding_K": 783,
+        "partitions_checked": 203,
+        "proper_marginals_checked": 62,
+        "top_marginal_difference": 1,
+        "trade_mass_per_side": 32
+      }
+    ],
+    "exact_identifiability_order": "m-way interaction required on the constructed family"
+  },
+  "paper_D": {
+    "mixed_coordinate_example": {
+      "typed_authority": [],
+      "untyped_reachable": true
+    },
+    "post_refutation_claim_labels": ["POST_OUTCOME", "THEOREM"],
+    "proof_tree_formula_matches_fixed_point": true,
+    "qg5_bound_application": {
+      "benchmark_exact": 9545,
+      "benchmark_total": 9546,
+      "errors": 1,
+      "exact_retraction": ["ORIGINAL_CLOSED_FORM_EXACTNESS", "ORIGINAL_REGIME_LABEL"],
+      "formal_models_checked": 254253,
+      "post_outcome_repair_is_prospective": false
+    }
+  },
+  "status": "PASS"
+}
