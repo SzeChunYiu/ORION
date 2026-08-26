@@ -8,6 +8,11 @@
   "authorization_terminal": "AUTHORIZED_BY_LATER_USER_EXECUTE_INSTRUCTION__BOUNDED_PILOT_ONLY",
   "authorized_at_utc": "2026-08-26T15:29:46Z",
   "authority": "engineering_resource_pilot_only",
+  "correction": {
+    "corrected_at_utc": "2026-08-26T15:34:55Z",
+    "corrects_packet_sha256": "7e42cbb10d40cf9249791af279823338da13205524276dbcaac5b66e3fa89809",
+    "reason": "Pre-submission LUNARC inspection showed that compute is not an active partition; the packet was corrected to the active default CPU partition lu48 before any job was submitted."
+  },
   "bounded_denominator": {
     "candidate_edge_budget_per_invocation": 7,
     "donor_ranges": [
@@ -105,7 +110,7 @@
     "job_name": "nq-ea-pilot",
     "memory_gib": 4,
     "nodes": 1,
-    "partition": "compute",
+    "partition": "lu48",
     "python_module": "Python/3.11.5-GCCcore-13.2.0",
     "tasks": 1,
     "walltime": "00:30:00"
