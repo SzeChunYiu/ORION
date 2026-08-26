@@ -1,0 +1,109 @@
+{
+  "schema": "orion.ab.external_optimizer_source_bindings.v1",
+  "frozen_at_utc": "2026-08-26T13:59:02Z",
+  "candidate": "MQT_QMAP_CLIFFORD_SYNTHESIS",
+  "primary_paper": {
+    "title": "A SAT Encoding for Optimal Clifford Circuit Synthesis",
+    "authors": [
+      "Sarah Schneider",
+      "Lukas Burgholzer",
+      "Robert Wille"
+    ],
+    "doi": "10.1145/3566097.3567929",
+    "doi_url": "https://doi.org/10.1145/3566097.3567929",
+    "arxiv_id": "2208.11713v2",
+    "url": "https://arxiv.org/pdf/2208.11713v2",
+    "sha256": "bea4eea2fc32f6d35b0df4fc68501c93b032083d42a66f90fcab219b0c03c082",
+    "bytes": 880523,
+    "cache_path": "schneider_burgholzer_wille_2023_arxiv_2208.11713v2.pdf",
+    "authority_boundary": "Corrected author paper. It binds the implementation to QMAP commit 6a0d8a2 and narrows the reported evaluation from 27 to 6 qubits; it does not establish an AB realization."
+  },
+  "open_code": {
+    "repository": "https://github.com/munich-quantum-toolkit/qmap",
+    "commit": "6a0d8a2ff411a0e2c9604c71aff80ba633c0d660",
+    "tree": "9a5ad960beb63a0cc23f78b289e629da58b99941",
+    "license": "MIT",
+    "license_file_sha256": "2f6bbcb1f09b63ea6c282ef7a09ef7296aa83e4d86566380c3ba5a84c036593b",
+    "files": [
+      {
+        "path": "include/cliffordsynthesis/encoding/GateEncoder.hpp",
+        "cache_path": "qmap/include/cliffordsynthesis/encoding/GateEncoder.hpp",
+        "sha256": "f29bc98465f092df3676040f3d995a2f5432ea89b56a342b5cb0000dd72d0530",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/include/cliffordsynthesis/encoding/GateEncoder.hpp#L71-L73",
+        "evidence": "Complete seven-entry single-qubit gate inventory."
+      },
+      {
+        "path": "src/cliffordsynthesis/encoding/GateEncoder.cpp",
+        "cache_path": "qmap/src/cliffordsynthesis/encoding/GateEncoder.cpp",
+        "sha256": "fe53ea968267e25b94080f8b0c2540508cfdc6c2b87cb803dff6f6ce9578f955",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/src/cliffordsynthesis/encoding/GateEncoder.cpp#L52-L67",
+        "additional_lines": "L216-L231",
+        "evidence": "Ordered control-target variables and extraction exclusively as CX gates."
+      },
+      {
+        "path": "include/cliffordsynthesis/TargetMetric.hpp",
+        "cache_path": "qmap/include/cliffordsynthesis/TargetMetric.hpp",
+        "sha256": "de43c3362ba2bd1c2037d1e7a5aadd2225c710cfc59a3387822536eb201ffab1",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/include/cliffordsynthesis/TargetMetric.hpp#L17-L26",
+        "evidence": "Frozen target metrics: gates, two-qubit gates, and depth."
+      },
+      {
+        "path": "include/cliffordsynthesis/Tableau.hpp",
+        "cache_path": "qmap/include/cliffordsynthesis/Tableau.hpp",
+        "sha256": "0eded6dd657205a5fc8e99521c669f7f240de4b127832e20d4373ad3922f6a01",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/include/cliffordsynthesis/Tableau.hpp#L45-L60",
+        "evidence": "Tableau constructors fix the object to n or 2n rows for n qubits."
+      },
+      {
+        "path": "src/cliffordsynthesis/Tableau.cpp",
+        "cache_path": "qmap/src/cliffordsynthesis/Tableau.cpp",
+        "sha256": "44f5504a107fd946b0e470418cc92ae4fd789c1c6bff733a5b344b80866bf722",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/src/cliffordsynthesis/Tableau.cpp#L204-L230",
+        "evidence": "Concrete allocation of n or 2n rows, each with 2n binary coordinates plus phase."
+      },
+      {
+        "path": "src/cliffordsynthesis/encoding/TableauEncoder.cpp",
+        "cache_path": "qmap/src/cliffordsynthesis/encoding/TableauEncoder.cpp",
+        "sha256": "235c086646494286b470c4b2832efa02f1bf9dc0bacc36b3509c12e2d0cb3378",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/src/cliffordsynthesis/encoding/TableauEncoder.cpp#L93-L173",
+        "evidence": "Phase-free H, S, Sdg, and CX coordinate actions used by the invariant checker."
+      },
+      {
+        "path": "src/cliffordsynthesis/encoding/MultiGateEncoder.cpp",
+        "cache_path": "qmap/src/cliffordsynthesis/encoding/MultiGateEncoder.cpp",
+        "sha256": "066c08261ac92566fca21e046c2a599ddcff901465b2f6582b7f53b50ea56b76",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/src/cliffordsynthesis/encoding/MultiGateEncoder.cpp#L27-L47",
+        "additional_lines": "L49-L115",
+        "evidence": "Depth encoding permits a compatible set of primitive gates per time step, with exactly one gate role per qubit; each layer is a composition of invertible primitive actions."
+      }
+    ]
+  },
+  "local_ab_contract": {
+    "base_commit": "ee685107cf537810fe17df67d7a6bd0f4c7a0116",
+    "files": [
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/artifact/xor_production_separation_r8.py",
+        "sha256": "379c58e0d4a209a59d738035578879d06db82949b2ae95617ecb5d611bab226f",
+        "evidence": "Frozen weak deletion, strong fusion, and live-fragment objective."
+      },
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/artifact/XOR_PRODUCTION_SEPARATION_R8_RESULTS.json",
+        "sha256": "e2670cf73c30e409f52b6270a5f66a5612856f4093fc3580c1ee4574767283a5",
+        "evidence": "Frozen exhaustive calibration results."
+      }
+    ]
+  },
+  "audit_boundary": {
+    "kind": "SOURCE_LEVEL_CONTRACT_AND_INVARIANT_AUDIT",
+    "upstream_binary_executed": false,
+    "reason_not_executed": "The necessary representation-and-cost faithfulness obligations are refuted before optimizer execution can have AB authority.",
+    "not_authorized": [
+      "EXTERNAL_PRODUCTION_REALIZATION",
+      "RUNTIME_OR_STATE_VOLUME_IMPROVEMENT",
+      "HARDWARE_ADVANTAGE",
+      "NOVELTY",
+      "JOURNAL_ACCEPTANCE",
+      "Q1_EXTENSION"
+    ]
+  }
+}
