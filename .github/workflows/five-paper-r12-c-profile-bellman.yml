@@ -1,0 +1,98 @@
+name: five-paper-r12-c-profile-bellman
+
+on:
+  push:
+    branches:
+      - chatgpt/r12-c-profile-bellman-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_PROFILE_BELLMAN_R12.md'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_profile_bellman_r12_core.py'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_profile_bellman_r12.py'
+      - 'papers/five-paper-top-tier-r8/C/PROFILE_BELLMAN_R12_RESULTS.json'
+      - '.github/workflows/five-paper-r12-c-profile-bellman.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_PROFILE_BELLMAN_R12.md'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_profile_bellman_r12_core.py'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_profile_bellman_r12.py'
+      - 'papers/five-paper-top-tier-r8/C/PROFILE_BELLMAN_R12_RESULTS.json'
+      - '.github/workflows/five-paper-r12-c-profile-bellman.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-profile-bellman-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile and replay twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='papers/five-paper-top-tier-r8/C/verify_fiberguard_profile_bellman_r12.py'
+          registered='papers/five-paper-top-tier-r8/C/PROFILE_BELLMAN_R12_RESULTS.json'
+          core='papers/five-paper-top-tier-r8/C/fiberguard_profile_bellman_r12_core.py'
+          python -m py_compile "$core" "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" > "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$registered"
+          grep -q '^FIBERGUARD_PROFILE_BELLMAN_R12_PASS ' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify controls and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.FiberGuard.ProfileBellman.R12.v1'
+          assert result['source_base_commit'] == '6f0b9a354c0f71ca744596252c74e2bf8b4a6f5b'
+          assert result['terminal'] == 'FIBERGUARD_PROFILE_BELLMAN_R12_PASS'
+          assert all(result['controls'].values())
+          hostile = result['hostile_state_dependent_cost']
+          assert hostile['exact_profile_value'] == 2
+          assert hostile['naive_worst_charge_scalar_value'] == 3
+          assert hostile['exact_root_choice'] == 'refine'
+          assert hostile['naive_root_choice'] == 'act'
+          gap = result['adaptivity_gap_family']
+          assert gap[-1]['best_static_value'] == 10
+          assert gap[-1]['adaptive_value'] == 1
+          assert result['authority']['ASlib_adaptive_experiment_executed'] is False
+          assert result['authority']['grants_journal_authority'] is False
+          print('PROFILE_BELLMAN_R12_RESULT_VERIFIED')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-profile-bellman-r12"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/PROFILE_BELLMAN_R12_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-profile-bellman-r12
+          path: ${{ runner.temp }}/fiberguard-profile-bellman-r12/
+          if-no-files-found: error
+          retention-days: 30
