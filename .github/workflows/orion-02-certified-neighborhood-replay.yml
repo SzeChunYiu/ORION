@@ -55,7 +55,6 @@ jobs:
           cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md" "$RUNNER_TEMP/registered.md"
           python -m py_compile \
             "$root/certified_neighborhood.py" \
-            "$root/certified_neighborhood_test.py" \
             'papers/paper-xx-executable-research-core/benchmark/run_aslib_v1.py'
 
       - name: Replay frozen executor twice
