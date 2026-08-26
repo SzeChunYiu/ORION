@@ -1,0 +1,182 @@
+{
+  "$id": "urn:orion:nq-engine-a:donor-range-manifest:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority": {
+      "const": "engineering_donor_range_only"
+    },
+    "class_entries": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "class_index": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "donor_image_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "donor_images": {
+            "items": {
+              "items": {
+                "items": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "donor_images_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "source_class_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "class_index",
+          "source_class_sha256",
+          "donor_image_count",
+          "donor_images_sha256",
+          "donor_images"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "exposure_markers": {
+      "const": [
+        "EXPECTED_OUTCOME_EXPOSURE",
+        "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+      ]
+    },
+    "full_source_class_coverage": {
+      "type": "boolean"
+    },
+    "global_coverage": {
+      "const": false
+    },
+    "group": {
+      "const": {
+        "d": 3,
+        "p": 5
+      }
+    },
+    "independence_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "normalization_contract_sha256": {
+      "const": "e12641cdb09048134f5e25dd41b7153850261482379c7396e1c5860162ad4008"
+    },
+    "output_record_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "output_records": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "class_index": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "image": {
+            "items": {
+              "items": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "class_index",
+          "image"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "output_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "protocol_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "range": {
+      "items": false,
+      "prefixItems": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "minimum": 1,
+          "type": "integer"
+        }
+      ],
+      "type": "array"
+    },
+    "range_complete": {
+      "const": true
+    },
+    "range_manifest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "nq-engine-a-donor-range-manifest-v1"
+    },
+    "scientific_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "source_class_count": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "source_class_manifest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "terminal": {
+      "const": "RANGE_COMPLETE__NOT_GLOBAL"
+    }
+  },
+  "required": [
+    "schema_version",
+    "terminal",
+    "authority",
+    "independence_terminal",
+    "exposure_markers",
+    "scientific_terminal",
+    "group",
+    "protocol_sha256",
+    "normalization_contract_sha256",
+    "source_class_count",
+    "source_class_manifest_sha256",
+    "range",
+    "range_complete",
+    "full_source_class_coverage",
+    "global_coverage",
+    "class_entries",
+    "output_record_count",
+    "output_sha256",
+    "output_records",
+    "range_manifest_sha256"
+  ],
+  "title": "NQ Engine-A donor class-index range manifest",
+  "type": "object"
+}

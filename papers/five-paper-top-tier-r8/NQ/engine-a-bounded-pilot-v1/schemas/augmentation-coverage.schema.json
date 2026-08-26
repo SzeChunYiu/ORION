@@ -1,0 +1,122 @@
+{
+  "$id": "urn:orion:nq-engine-a:augmentation-coverage:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "CANNOT_CHECK_RESOURCE_BOUND"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "full_target_coverage": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "COMPLETE"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "full_target_coverage": {
+            "const": true
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "candidate_edges": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "canonical_parent_rejections": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "duplicate_children_collapsed": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "exposure_markers": {
+      "const": [
+        "EXPECTED_OUTCOME_EXPOSURE",
+        "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+      ]
+    },
+    "extension_orbit_representatives": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "full_target_coverage": {
+      "type": "boolean"
+    },
+    "independence_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "levels_completed": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "parents_expanded": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "pruned_k_disjoint": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "pruned_short_zero_sum": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "nq-engine-a-augmentation-coverage-v1"
+    },
+    "status": {
+      "enum": [
+        "COMPLETE",
+        "CANNOT_CHECK_RESOURCE_BOUND"
+      ]
+    },
+    "target_length": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "independence_terminal",
+    "exposure_markers",
+    "target_length",
+    "levels_completed",
+    "parents_expanded",
+    "extension_orbit_representatives",
+    "candidate_edges",
+    "canonical_parent_rejections",
+    "duplicate_children_collapsed",
+    "pruned_short_zero_sum",
+    "pruned_k_disjoint",
+    "full_target_coverage"
+  ],
+  "title": "Canonical augmentation fail-closed coverage",
+  "type": "object"
+}

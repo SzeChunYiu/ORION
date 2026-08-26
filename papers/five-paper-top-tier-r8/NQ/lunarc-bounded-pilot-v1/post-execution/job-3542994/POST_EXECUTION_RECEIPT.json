@@ -1,0 +1,94 @@
+{
+  "authority": "engineering_resource_pilot_only",
+  "bundle": {
+    "accounting": {
+      "path": "ACCOUNTING.txt",
+      "sha256": "e8fdba54ca58afaccb4e77a309fc447432406db14bf8acdd441386631cf00047"
+    },
+    "authorization_packet": {
+      "path": "../../LUNARC_AUTHORIZATION_PACKET.json",
+      "sha256": "9d3c06ef2ad4bb1ba4c0e0b1ed6a8c623431758cbd47914aeeb4f8a6d15252bf"
+    },
+    "metadata": {
+      "path": "LUNARC_RUN_METADATA.json",
+      "sha256": "b4e509904be6bc43af11bbb0c5c4e9976737379196b6ef992204f73a47449a89"
+    },
+    "pilot_receipt": {
+      "path": "TARGET_RESOURCE_PILOT_RECEIPT.json",
+      "sha256": "36fee550fc97af941c969f90c0cee65658124e9e285db6cd59e6c317b92a10e9"
+    },
+    "scope": "minimum_post_execution_subset",
+    "submission": {
+      "path": "SUBMISSION.json",
+      "sha256": "067a0accbd324ea507bb64a83ae6eea3d18ada3ad74ae3ece6c5b291a12b7fd4"
+    },
+    "terminal": {
+      "path": "TERMINAL.txt",
+      "sha256": "cd07b82853e512bc1dc0316c4cdbce9f443d4ffc993ff9e53efa2b9c82b450cc"
+    }
+  },
+  "claim_ceiling": "Frozen-source checkpoint and resource replay only; not an independent replay, scientific negative, full census, D2/D3 verification, D4 result, novelty result, or paper/journal authority.",
+  "execution": {
+    "account": "lu2026-2-51",
+    "elapsed": "00:00:15",
+    "exit_code": "0:0",
+    "job_id": "3542994",
+    "job_name": "nq-ea-pilot",
+    "partition": "lu48",
+    "state": "COMPLETED",
+    "terminal": "COMPLETED_ENGINEERING_PILOT_ONLY__CANNOT_CHECK"
+  },
+  "exposure_markers": [
+    "EXPECTED_OUTCOME_EXPOSURE",
+    "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+  ],
+  "forbidden_promotions": [
+    "full_census",
+    "two_engine_pass",
+    "independent_replay",
+    "scientific_negative",
+    "d2_or_d3_verification",
+    "d4_result",
+    "novelty",
+    "paper_or_journal_authority"
+  ],
+  "frozen_bindings": {
+    "authorization_commit": "7f3499ff2d9511139402d0f90c611639fd8067e7",
+    "authorization_packet_sha256": "9d3c06ef2ad4bb1ba4c0e0b1ed6a8c623431758cbd47914aeeb4f8a6d15252bf",
+    "authorization_tree": "ebae087ee100f334f3b4a993a25fbfed191872c6",
+    "non_duplication_key": "5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307",
+    "protocol_sha256": "059970ec26cd0767028a75aae92de70e53fbb0cb9f7439cff7696cc237351f69",
+    "source_commit": "ce3ad440337c1bd413a8e5202c94a67374721403",
+    "source_manifest_sha256": "b343b580411b87028b87af321e0b3ae44add4d066fe695c44cefb0527fac8045",
+    "source_tree": "75230e3fdb53822139817ff744925d63220c193a",
+    "submit_script_commit": "c11e46db77f48c8cb1674cea5a098bec8b2e8f32",
+    "submit_script_git_blob": "ceea80dbb474590471c6169834768493c1fd25ae",
+    "submit_script_sha256": "c8fc3f9173a66b210f9f307cb3a9a1929525e5d457345ab8745c0190c422b403",
+    "submit_script_tree": "57642a99a8ef25a1bc22bc8e35641c964fa5f3f4"
+  },
+  "full_census_executed": false,
+  "independence_terminal": "CANNOT_CHECK",
+  "pilot_observations": {
+    "checkpoint": {
+      "candidate_edges": 255,
+      "invocation_count": 37,
+      "output_record_count": 95,
+      "uninterrupted_restart_byte_identical": true
+    },
+    "pilot_receipt_lunarc_submission_field": null,
+    "pilot_receipt_terminal": "PILOT_EXECUTED_ENGINEERING_ONLY__CANNOT_CHECK",
+    "target_panel": {
+      "case_count": 16,
+      "expected_outcome_exposed": true,
+      "scientific_interpretation": "CANNOT_CHECK",
+      "status_counts": {
+        "CANNOT_CHECK_RESOURCE_BOUND": 0,
+        "NEGATIVE": 16,
+        "POSITIVE": 0
+      }
+    }
+  },
+  "schema_version": "nq-engine-a-lunarc-post-execution-v1",
+  "scientific_terminal": "CANNOT_CHECK",
+  "two_engine_pass_increment": 0
+}
