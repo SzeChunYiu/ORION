@@ -1,0 +1,177 @@
+{
+  "analytic_results": {
+    "certificate_waste": "D(H)-2",
+    "complete_fusion_intrinsic_support": 1,
+    "confluence_reason": "strict termination plus the unique singleton containing the invariant total",
+    "elementary_two_group_family": "for C2^r the weak cap is r, the strong cap is 1, and waste is r-1",
+    "weak_terminal_complexity": "D(H)-1"
+  },
+  "authority": {
+    "all_finite_group_theorem_is_analytic": true,
+    "applies_automatically_to_quantum_or_TARE_grammars": false,
+    "bounded_enumeration_is_implementation_corroboration": true,
+    "complete_fusion_is_a_declared_production_capability": true,
+    "external_replay": false,
+    "grants_journal_authority": false
+  },
+  "bounded_controls": {
+    "group_count": 10,
+    "groups": [
+      {
+        "all_fusion_paths_have_unique_singleton_normal_form": true,
+        "all_moves_preserve_total_and_strictly_reduce_support": true,
+        "certificate_waste": 0,
+        "computed_weak_terminal_maximum": 1,
+        "expected_zero_sum_free_maximum": 1,
+        "group": "C2",
+        "max_enumerated_support": 2,
+        "moduli": [
+          2
+        ],
+        "status": "PASS",
+        "strong_intrinsic_support": 1
+      },
+      {
+        "all_fusion_paths_have_unique_singleton_normal_form": true,
+        "all_moves_preserve_total_and_strictly_reduce_support": true,
+        "certificate_waste": 1,
+        "computed_weak_terminal_maximum": 2,
+        "expected_zero_sum_free_maximum": 2,
+        "group": "C3",
+        "max_enumerated_support": 3,
+        "moduli": [
+          3
+        ],
+        "status": "PASS",
+        "strong_intrinsic_support": 1
+      },
+      {
+        "all_fusion_paths_have_unique_singleton_normal_form": true,
+        "all_moves_preserve_total_and_strictly_reduce_support": true,
+        "certificate_waste": 2,
+        "computed_weak_terminal_maximum": 3,
+        "expected_zero_sum_free_maximum": 3,
+        "group": "C4",
+        "max_enumerated_support": 4,
+        "moduli": [
+          4
+        ],
+        "status": "PASS",
+        "strong_intrinsic_support": 1
+      },
+      {
+        "all_fusion_paths_have_unique_singleton_normal_form": true,
+        "all_moves_preserve_total_and_strictly_reduce_support": true,
+        "certificate_waste": 3,
+        "computed_weak_terminal_maximum": 4,
+        "expected_zero_sum_free_maximum": 4,
+        "group": "C5",
+        "max_enumerated_support": 5,
+        "moduli": [
+          5
+        ],
+        "status": "PASS",
+        "strong_intrinsic_support": 1
+      },
+      {
+        "all_fusion_paths_have_unique_singleton_normal_form": true,
+        "all_moves_preserve_total_and_strictly_reduce_support": true,
+        "certificate_waste": 4,
+        "computed_weak_terminal_maximum": 5,
+        "expected_zero_sum_free_maximum": 5,
+        "group": "C6",
+        "max_enumerated_support": 6,
+        "moduli": [
+          6
+        ],
+        "status": "PASS",
+        "strong_intrinsic_support": 1
+      },
+      {
+        "all_fusion_paths_have_unique_singleton_normal_form": true,
+        "all_moves_preserve_total_and_strictly_reduce_support": true,
+        "certificate_waste": 1,
+        "computed_weak_terminal_maximum": 2,
+        "expected_zero_sum_free_maximum": 2,
+        "group": "C2^2",
+        "max_enumerated_support": 3,
+        "moduli": [
+          2,
+          2
+        ],
+        "status": "PASS",
+        "strong_intrinsic_support": 1
+      },
+      {
+        "all_fusion_paths_have_unique_singleton_normal_form": true,
+        "all_moves_preserve_total_and_strictly_reduce_support": true,
+        "certificate_waste": 2,
+        "computed_weak_terminal_maximum": 3,
+        "expected_zero_sum_free_maximum": 3,
+        "group": "C2^3",
+        "max_enumerated_support": 4,
+        "moduli": [
+          2,
+          2,
+          2
+        ],
+        "status": "PASS",
+        "strong_intrinsic_support": 1
+      },
+      {
+        "all_fusion_paths_have_unique_singleton_normal_form": true,
+        "all_moves_preserve_total_and_strictly_reduce_support": true,
+        "certificate_waste": 3,
+        "computed_weak_terminal_maximum": 4,
+        "expected_zero_sum_free_maximum": 4,
+        "group": "C2^4",
+        "max_enumerated_support": 5,
+        "moduli": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "status": "PASS",
+        "strong_intrinsic_support": 1
+      },
+      {
+        "all_fusion_paths_have_unique_singleton_normal_form": true,
+        "all_moves_preserve_total_and_strictly_reduce_support": true,
+        "certificate_waste": 3,
+        "computed_weak_terminal_maximum": 4,
+        "expected_zero_sum_free_maximum": 4,
+        "group": "C2xC4",
+        "max_enumerated_support": 5,
+        "moduli": [
+          2,
+          4
+        ],
+        "status": "PASS",
+        "strong_intrinsic_support": 1
+      },
+      {
+        "all_fusion_paths_have_unique_singleton_normal_form": true,
+        "all_moves_preserve_total_and_strictly_reduce_support": true,
+        "certificate_waste": 3,
+        "computed_weak_terminal_maximum": 4,
+        "expected_zero_sum_free_maximum": 4,
+        "group": "C3^2",
+        "max_enumerated_support": 5,
+        "moduli": [
+          3,
+          3
+        ],
+        "status": "PASS",
+        "strong_intrinsic_support": 1
+      }
+    ],
+    "normal_form_mismatches": 0,
+    "semantic_preservation_mismatches": 0,
+    "status": "PASS",
+    "support_descent_mismatches": 0,
+    "weak_terminal_mismatches": 0
+  },
+  "schema": "ORION.AB.GeneralFusionSeparationR9.Results.v1",
+  "terminal": "AB_GENERAL_FUSION_SEPARATION__UNBOUNDED_CERTIFICATE_WASTE_THEOREM_AND_BOUNDED_CONTROLS_PASS"
+}
