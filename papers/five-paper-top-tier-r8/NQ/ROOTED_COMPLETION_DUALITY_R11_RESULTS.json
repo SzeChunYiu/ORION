@@ -1,0 +1,144 @@
+{
+  "authority": {
+    "D3_C5_cubed_independently_replayed": false,
+    "D4_C5_cubed_closed": false,
+    "external_novelty_review_complete": false,
+    "finite_controls_exact": true,
+    "generic_block_monoid_novelty_claimed": false,
+    "generic_hypergraph_matching_novelty_claimed": false,
+    "journal_authority": false,
+    "universal_theorem_from_computation": false
+  },
+  "complete_small_panels": {
+    "groups": [
+      {
+        "atom_checks": 4474,
+        "group": "C2",
+        "hereditary_lattice_checks": 30840,
+        "independent_partition_oracle_checks": 90,
+        "maximum_length": 8,
+        "moduli": [2],
+        "residue_zero_free_checks": 954,
+        "rooted_maximum_factorizations": 477,
+        "sequences": 45,
+        "source_maximum_packings": 477
+      },
+      {
+        "atom_checks": 5814,
+        "group": "C3",
+        "hereditary_lattice_checks": 22964,
+        "independent_partition_oracle_checks": 240,
+        "maximum_length": 7,
+        "moduli": [3],
+        "residue_zero_free_checks": 1684,
+        "rooted_maximum_factorizations": 842,
+        "sequences": 120,
+        "source_maximum_packings": 842
+      },
+      {
+        "atom_checks": 4422,
+        "group": "C4",
+        "hereditary_lattice_checks": 14696,
+        "independent_partition_oracle_checks": 420,
+        "maximum_length": 6,
+        "moduli": [4],
+        "residue_zero_free_checks": 1450,
+        "rooted_maximum_factorizations": 725,
+        "sequences": 210,
+        "source_maximum_packings": 725
+      },
+      {
+        "atom_checks": 4724,
+        "group": "C2xC2",
+        "hereditary_lattice_checks": 17124,
+        "independent_partition_oracle_checks": 420,
+        "maximum_length": 6,
+        "moduli": [2, 2],
+        "residue_zero_free_checks": 1404,
+        "rooted_maximum_factorizations": 702,
+        "sequences": 210,
+        "source_maximum_packings": 702
+      }
+    ],
+    "totals": {
+      "atom_checks": 19434,
+      "hereditary_lattice_checks": 85624,
+      "independent_partition_oracle_checks": 1170,
+      "residue_zero_free_checks": 5492,
+      "rooted_maximum_factorizations": 2746,
+      "sequences": 585,
+      "source_maximum_packings": 2746
+    }
+  },
+  "content_sha256": "8a9f81586bae4964adb0b535b841982bcbf58e5eb9dc546ea80cb5c17123375f",
+  "generated_rank_three_controls": {
+    "generated_cases": 300,
+    "hereditary_lattice_checks": 2532,
+    "maximum_length": 9,
+    "rooted_maximum_factorizations": 389,
+    "source_maximum_packings": 389
+  },
+  "rooted_c5_cubed_skeletons": {
+    "conditional_on": {
+      "D3_C5_cubed": 25,
+      "completion_length": 31,
+      "ordinary_D_C5_cubed": 13,
+      "short_free_threshold": 5,
+      "source_length": 30
+    },
+    "rooted_residue_classes": [
+      {
+        "avoiding_atom_length_triples": [[6, 6, 13], [6, 7, 12], [6, 8, 11], [6, 9, 10], [7, 7, 11], [7, 8, 10], [7, 9, 9], [8, 8, 9]],
+        "residue_length": 5,
+        "root_atom_length": 6,
+        "triple_count": 8
+      },
+      {
+        "avoiding_atom_length_triples": [[6, 6, 12], [6, 7, 11], [6, 8, 10], [6, 9, 9], [7, 7, 10], [7, 8, 9], [8, 8, 8]],
+        "residue_length": 6,
+        "root_atom_length": 7,
+        "triple_count": 7
+      },
+      {
+        "avoiding_atom_length_triples": [[6, 6, 11], [6, 7, 10], [6, 8, 9], [7, 7, 9], [7, 8, 8]],
+        "residue_length": 7,
+        "root_atom_length": 8,
+        "triple_count": 5
+      },
+      {
+        "avoiding_atom_length_triples": [[6, 6, 10], [6, 7, 9], [6, 8, 8], [7, 7, 8]],
+        "residue_length": 8,
+        "root_atom_length": 9,
+        "triple_count": 4
+      },
+      {
+        "avoiding_atom_length_triples": [[6, 6, 9], [6, 7, 8], [7, 7, 7]],
+        "residue_length": 9,
+        "root_atom_length": 10,
+        "triple_count": 3
+      },
+      {
+        "avoiding_atom_length_triples": [[6, 6, 8], [6, 7, 7]],
+        "residue_length": 10,
+        "root_atom_length": 11,
+        "triple_count": 2
+      },
+      {
+        "avoiding_atom_length_triples": [[6, 6, 7]],
+        "residue_length": 11,
+        "root_atom_length": 12,
+        "triple_count": 1
+      },
+      {
+        "avoiding_atom_length_triples": [[6, 6, 6]],
+        "residue_length": 12,
+        "root_atom_length": 13,
+        "triple_count": 1
+      }
+    ],
+    "rooted_skeleton_count": 31,
+    "unrooted_skeleton_count": 11
+  },
+  "schema": "ORION.NQ.RootedCompletionDuality.R11.v1",
+  "status": "NQ_ROOTED_COMPLETION_DUALITY_R11_PASS"
+}
