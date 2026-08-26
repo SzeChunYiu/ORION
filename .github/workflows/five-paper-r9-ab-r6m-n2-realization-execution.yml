@@ -1,0 +1,81 @@
+name: Five-paper R9 AB R6M n2 realization execution
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/AB/execute_r6m_n2_production_realization_gate_r9.py'
+      - 'papers/five-paper-top-tier-r8/AB/R6M_N2_PRODUCTION_REALIZATION_CERTIFICATE_R9.json'
+      - 'papers/five-paper-top-tier-r8/AB/R6M_N2_PRODUCTION_REALIZATION_GATE_R9_RESULTS.json'
+      - 'papers/five-paper-top-tier-r8/AB/R6M_N2_PRODUCTION_REALIZATION_GATE_R9_REPORT.md'
+      - 'papers/five-paper-top-tier-r8/AB/finite_production_realization_gate_r9.py'
+      - 'papers/five-paper-top-tier-r8/AB/finite_production_realization_gate_r9_v2.py'
+      - 'development/orion-q-max-r0/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md'
+      - 'development/orion-q-max-r0/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_PROTOCOL.md'
+      - 'research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py'
+      - 'research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json'
+      - 'research/extensions/orion-q/max_r6p_weight2_frame_donor_closure.py'
+      - 'research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json'
+      - 'papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md'
+      - 'papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V3.md'
+      - '.github/workflows/five-paper-r9-ab-r6m-n2-realization-execution.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ab-r6m-n2-realization-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  finite-r6m-n2-fail-closed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact finite-run dependency
+        run: python -m pip install numpy
+      - name: Replay every frozen n2 outer configuration and independent brute evaluator
+        run: |
+          python papers/five-paper-top-tier-r8/AB/execute_r6m_n2_production_realization_gate_r9.py \
+            | tee /tmp/R6M_N2_PRODUCTION_REALIZATION_GATE_R9.stdout
+      - name: Require deterministic adverse terminal and authority ceiling
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('papers/five-paper-top-tier-r8/AB/R6M_N2_PRODUCTION_REALIZATION_GATE_R9_RESULTS.json')
+          data = json.loads(path.read_text())
+          assert data['terminal'] == 'FINITE_PRODUCTION_REALIZATION_CERTIFICATE_REJECTED'
+          assert [row['type'] for row in data['issues']] == ['PRODUCTION_REGISTRY_NOT_DECLARED_COMPLETE']
+          enum = data['execution_receipt']['enumeration']
+          assert enum['outer_configurations'] == 32
+          assert enum['feasible_inner_candidate_evaluations'] == 31_457_280
+          assert enum['all_dp_brute_agree'] is True
+          assert enum['cost_histogram'] == {'6': 8, '7': 20, '8': 4}
+          assert all(row['sha256_match'] and row['git_blob_sha1_match'] for row in data['execution_receipt']['source_bindings'])
+          assert data['authority']['production_application_authority'] is False
+          assert data['authority_boundary']['computed_certificate_waste_interpretable'] is False
+          assert data['authority_boundary']['external_registry_completeness'] is False
+          assert data['authority_boundary']['production_lower_transfer'] is False
+          assert data['authority_boundary']['journal_or_novelty_authority'] is False
+          PY
+      - name: Require committed receipt bytes to reproduce exactly
+        run: |
+          git diff --exit-code -- \
+            papers/five-paper-top-tier-r8/AB/R6M_N2_PRODUCTION_REALIZATION_CERTIFICATE_R9.json \
+            papers/five-paper-top-tier-r8/AB/R6M_N2_PRODUCTION_REALIZATION_GATE_R9_RESULTS.json
+      - name: Archive immutable finite execution receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: ab-r6m-n2-production-realization-r9
+          path: |
+            papers/five-paper-top-tier-r8/AB/R6M_N2_PRODUCTION_REALIZATION_CERTIFICATE_R9.json
+            papers/five-paper-top-tier-r8/AB/R6M_N2_PRODUCTION_REALIZATION_GATE_R9_RESULTS.json
+            /tmp/R6M_N2_PRODUCTION_REALIZATION_GATE_R9.stdout
+          if-no-files-found: error
+          retention-days: 30
