@@ -55,7 +55,9 @@ remains true that no evaluator outside this lane has checked any of it, which is
 
 from __future__ import annotations
 
+from copy import deepcopy
 from enum import Enum
+from functools import lru_cache
 from itertools import combinations
 from typing import Any, Mapping
 
@@ -317,13 +319,25 @@ def _queries(drop: str | None = None) -> list[tuple[Theorem, list[Any], Any, Any
     ]
 
 
-def prove_all(*, timeout_ms: int = 30000, drop: str | None = None) -> tuple[ProofResult, ...]:
-    """Discharge every theorem in :data:`THEOREMS` under the interpretation."""
-
+@lru_cache(maxsize=None)
+def _cached_prove_all(timeout_ms: int, drop: str | None) -> tuple[ProofResult, ...]:
     return tuple(
         discharge(theorem, axioms, claim, timeout_ms=timeout_ms)
         for theorem, axioms, claim, _cert in _queries(drop=drop)
     )
+
+
+def prove_all(*, timeout_ms: int = 30000, drop: str | None = None) -> tuple[ProofResult, ...]:
+    """Discharge every theorem in :data:`THEOREMS` under the interpretation.
+
+    An identical query is one immutable, three-valued proof snapshot per
+    process. Reusing it prevents a later report from asking Z3 to recompute an
+    already observed result under different load. ``UNKNOWN`` is cached exactly;
+    it is never promoted to proof. The public wrapper normalizes omitted and
+    explicit default arguments onto the same cache key.
+    """
+
+    return _cached_prove_all(timeout_ms, drop)
 
 
 def _drop_queries(condition: str) -> list[tuple[str, list[Any], Any, Any]]:
@@ -450,8 +464,12 @@ def classify_frame_conditions(
     return inert, unsettled, intermittent
 
 
-def frame_conditions_are_load_bearing(
-    *, timeout_ms: int = 30000, repeats: int = LOAD_BEARING_REPEATS
+def _measure_frame_conditions(
+    *,
+    timeout_ms: int,
+    repeats: int,
+    proof_runner: Any,
+    countermodel_search: Any,
 ) -> dict[str, Any]:
     """Drop each frame condition and record which theorems are *refuted*.
 
@@ -477,7 +495,11 @@ def frame_conditions_are_load_bearing(
     strictest of the three readings and the only one that does not move.
     """
 
-    baseline = {result.theorem.name for result in prove_all(timeout_ms=timeout_ms) if result.discharged}
+    baseline = {
+        result.theorem.name
+        for result in proof_runner(timeout_ms=timeout_ms)
+        if result.discharged
+    }
 
     always: dict[str, set[str]] = {}
     ever: dict[str, set[str]] = {}
@@ -490,7 +512,7 @@ def frame_conditions_are_load_bearing(
             for name, axioms, claim, cert in _drop_queries(condition):
                 if name not in baseline:
                     continue
-                verdict = search_for_a_countermodel(axioms, claim, cert)
+                verdict = countermodel_search(axioms, claim, cert)
                 if verdict is RefutationSearch.COUNTERMODEL:
                     found.add(name)
                 elif verdict is RefutationSearch.UNDECIDED:
@@ -545,6 +567,46 @@ def frame_conditions_are_load_bearing(
             "claim the run does not support."
         ),
     }
+
+
+@lru_cache(maxsize=None)
+def _cached_frame_conditions(
+    timeout_ms: int,
+    repeats: int,
+    proof_runner: Any,
+    countermodel_search: Any,
+) -> dict[str, Any]:
+    """Cache one exact report for one exact set of query dependencies."""
+
+    return _measure_frame_conditions(
+        timeout_ms=timeout_ms,
+        repeats=repeats,
+        proof_runner=proof_runner,
+        countermodel_search=countermodel_search,
+    )
+
+
+def frame_conditions_are_load_bearing(
+    *, timeout_ms: int = 30000, repeats: int = LOAD_BEARING_REPEATS
+) -> dict[str, Any]:
+    """Return the repeated frame measurement as an isolated snapshot.
+
+    ``build_report`` and the CLI ask the same pure question multiple times in a
+    test process. They reuse the exact first three-valued measurement so a later
+    load-dependent solver search cannot contradict it. The dependency functions
+    participate in the cache key, so hostile tests that replace either runner
+    still exercise a fresh measurement. A deep copy keeps callers from mutating
+    the cached evidence.
+    """
+
+    return deepcopy(
+        _cached_frame_conditions(
+            timeout_ms,
+            repeats,
+            prove_all,
+            search_for_a_countermodel,
+        )
+    )
 
 
 # ---------------------------------------------------------------------------

@@ -6,6 +6,7 @@ committed donor/finite-evidence packets used by the assembled proof have not
 changed, reconstructs the greedy residual-tree arithmetic independently, and
 emits a strict harness token with all authority flags false.
 """
+
 from __future__ import annotations
 
 import hashlib
@@ -42,7 +43,8 @@ REQUIRED_TEXT = {
     ],
     "research/domains/orion-rg/X1B_C15_14PT_NO_SHORT_RAW_CONFIRM_RESULT_2026-08-22.md": [
         "38,376",
-        "failures: **0**",
+        "Failures:",
+        "**0**.",
     ],
     "research/domains/orion-rg/X1B_C15_16PT_RAW_QUOTIENT_RESULT_2026-08-22.md": [
         "packed4 702",
@@ -95,9 +97,7 @@ def check_arithmetic() -> dict[str, object]:
     kernel_davenport = 13
     quotient_thresholds = {1: 7, 2: 11, 3: 15}
 
-    min_removed_blocks = min(
-        m for m in range(n + 1) if n - short_cap * m <= residual_upper
-    )
+    min_removed_blocks = min(m for m in range(n + 1) if n - short_cap * m <= residual_upper)
     possible_counterexample_m = list(range(min_removed_blocks, kernel_davenport))
 
     hard = {}

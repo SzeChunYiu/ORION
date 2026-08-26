@@ -280,7 +280,15 @@ class OrionRuntime:
         evaluation_epoch_id: str = "evaluation:unfrozen",
         split_id: str = "split:unassigned",
     ) -> RuntimeResult:
-        start_state = initial_state or self._solver.initial_state(problem)
+        # Treat only ``None`` as absence so caller-supplied state identity is
+        # never selected by incidental truthiness semantics.
+        start_state = (
+            initial_state
+            if initial_state is not None
+            else self._solver.initial_state(problem)
+        )
+        # Capture the requested endpoint before handing it to the solver.
+        start_state_hash = _state_hash(start_state)
         run_id = uuid4().hex
         producer_process_lineage_hash = self._producer_process_lineage_hash
         evaluator_artifact_hash = self._evaluator_artifact_hash
@@ -322,7 +330,7 @@ class OrionRuntime:
                     + ",".join(unsupported)
                 )
         trace.validate_endpoints(
-            pre_state_hash=_state_hash(start_state),
+            pre_state_hash=start_state_hash,
             post_state_hash=_state_hash(final_state),
         )
         mechanic_episode_ids = self._record_mechanic_episodes(

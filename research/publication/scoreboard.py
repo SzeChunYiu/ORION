@@ -124,15 +124,32 @@ def parse_journal_readiness_terminal(text: str) -> str | None:
         conditional = re.search(r"\b(?:when|once|after|until|if)\b", value, re.IGNORECASE)
         if negated or conditional:
             return "CANNOT_CHECK"
-        # A bounded ready declaration may explain an unresolved external
-        # comparison afterwards.  The declaration wins only when it precedes
-        # that explanatory CANNOT_CHECK; a cannot-check lead-in remains blocked.
-        if ready_match and (
-            cannot_match is None or ready_match.start() < cannot_match.start()
-        ):
+        # One machine-scored line must declare one terminal.  A line naming
+        # both readiness and CANNOT_CHECK is unresolved and therefore fails
+        # closed, irrespective of token order.  Scope qualifications belong on
+        # an adjacent, non-terminal line where they remain visible to readers.
+        if ready_match and cannot_match:
+            return "CANNOT_CHECK"
+        if ready_match:
             return "PEER_REVIEW_READY"
         if cannot_match:
             return "CANNOT_CHECK"
+        return None
+    return None
+
+
+def terminal_line_is_ambiguous(text: str) -> str | None:
+    """Describe a terminal line that names mutually exclusive terminals."""
+    for raw in text.splitlines()[:24]:
+        match = TERMINAL_LINE.match(raw.strip())
+        if not match:
+            continue
+        value = match.group(1)
+        if PEER_REVIEW_READY_TOKEN.search(value) and re.search(r"\bCANNOT_CHECK\b", value):
+            return (
+                "terminal line names both PEER_REVIEW_READY and CANNOT_CHECK: "
+                f"{value}"
+            )
         return None
     return None
 

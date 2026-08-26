@@ -1,11 +1,10 @@
 # ORION-P1 package license and restrictions
 
-Repository-level redistribution terms are `CANNOT_CHECK`: there is no root `LICENSE` file and `pyproject.toml` declares no project license.
+Repository code is licensed under Apache-2.0 by the root `LICENSE`; paper text is
+licensed under CC BY 4.0 by `LICENSE-PAPERS-CC-BY-4.0.txt`. These licences do not
+override third-party terms or provider terms.
 
-Until a root license is added:
-
-- treat this package as an internal research snapshot, not a redistributable journal supplement;
-- do not assume Apache/MIT/CC rights for code, cases, or manuscript text;
-- model-provider terms for any live GLM/Anthropic arm remain those of the provider.
-
-Case definitions under `protocol/cases/` may contain constructed task text. They are not third-party copyrighted papers. External baselines (AREX, SCION, Iris, SciAgentArena) are protocol-matched reimplementations, not redistributed upstream source.
+Case definitions under `protocol/cases/` contain constructed task text, not
+redistributed third-party papers. External baselines are protocol-matched
+reimplementations, not redistributed upstream source. Live provider arms remain
+subject to their providers' terms.

@@ -1,8 +1,8 @@
 {
   "schema_version": "orion.journal-package.v1",
   "paper_id": "P5",
-  "package_status": "SCAFFOLDING",
-  "declared_paper_terminal": "CANNOT_CHECK",
+  "package_status": "SUPERSEDED",
+  "declared_paper_terminal": "CANNOT_CHECK__CURRENT_PACKAGE_NOT_SUBMISSION_READY",
   "audit_subject_revision": "c6c71c6c758aa605fa414ff8eaeb87f1ef4b0672",
   "audit_date": "2026-08-24",
   "issue": 160,
@@ -16,12 +16,8 @@
       "role": "bibliography"
     },
     {
-      "path": "manuscript/main.pdf",
-      "role": "local-working-pdf"
-    },
-    {
       "path": "journal_package/manuscript.pdf",
-      "role": "journal-package-snapshot-pdf"
+      "role": "historical-tectonic-package-pdf"
     },
     {
       "path": "evidence/FALSIFIER_V1.md",
@@ -90,6 +86,162 @@
     {
       "path": "THEORY_CLAIM_LEDGER_V2.md",
       "role": "theory-and-evidence-claim-ledger"
+    },
+    {
+      "path": "journal_package/RENDER_CLOSURE_STATE.json",
+      "role": "generator-derived-current-render-closure-state"
+    },
+    {
+      "path": "../../research/self-orion-v3/confirmatory/run_confirmatory_execution_v1.py",
+      "role": "historical-reproduction-entrypoint"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json",
+      "role": "historical-evidence-record"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/publication/P5_ATTRIBUTION_TABLES_V1.md",
+      "role": "historical-evidence-record"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/publication/README.md",
+      "role": "historical-evidence-record"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/publication/TABLE_P5_2_REPLAY_VS_FRESH.json",
+      "role": "historical-evidence-record"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/publication/TABLE_P5_3_HIDDEN_CAUSE_ATTRIBUTION.json",
+      "role": "historical-evidence-record"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/publication/TABLE_P5_4_LONGITUDINAL.json",
+      "role": "historical-evidence-record"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/publication/TABLE_P5_5_IMPROVEMENT_INTEGRITY_FRONTIER.json",
+      "role": "historical-evidence-record"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/publication/TABLE_P5_6_FAILURE_RECURRENCE.json",
+      "role": "historical-evidence-record"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/publication/TABLE_P5_7_ATTRIBUTION_COST.json",
+      "role": "historical-evidence-record"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/results.jsonl",
+      "role": "historical-evidence-record"
+    },
+    {
+      "path": "figures/p5_1_governed_development_loop.pdf",
+      "role": "historical-rendered-figure-input"
+    },
+    {
+      "path": "figures/p5_1_governed_development_loop.svg",
+      "role": "historical-rendered-figure-input"
+    },
+    {
+      "path": "manuscript/sections/01-scope.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/02-failure-as-knowledge.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/02a-minimal-method-revision-theory.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/03-attribution-issue-state.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/04-challengers-invention.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/04a-recursive-failure-discovery-interface.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/05-change-control.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/06-protected-assurance.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/06a-related-work.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/07-evaluation.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/08-claim-boundary.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/09-results-attribution.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/10-limitations.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/sections/11-ethics-reproducibility.tex",
+      "role": "historical-manuscript-section"
+    },
+    {
+      "path": "manuscript/tables/P5-2_replay_vs_fresh_scatter.tex",
+      "role": "historical-publication-table-input"
+    },
+    {
+      "path": "manuscript/tables/P5-3_cause_confusion.tex",
+      "role": "historical-publication-table-input"
+    },
+    {
+      "path": "manuscript/tables/P5-4_longitudinal_specialist_regression.tex",
+      "role": "historical-publication-table-input"
+    },
+    {
+      "path": "manuscript/tables/P5-5_improvement_integrity_frontier.tex",
+      "role": "historical-publication-table-input"
+    },
+    {
+      "path": "manuscript/tables/P5-6_failure_recurrence.tex",
+      "role": "historical-publication-table-input"
+    },
+    {
+      "path": "manuscript/tables/P5-7_cost_to_validated_improvement.tex",
+      "role": "historical-publication-table-input"
+    },
+    {
+      "path": "manuscript/tables/P5-ATTRIBUTION_RESIDUAL_ERRORS.tex",
+      "role": "historical-publication-table-input"
+    },
+    {
+      "path": "manuscript/tables/P5-T1_nearest_work.tex",
+      "role": "historical-publication-table-input"
+    },
+    {
+      "path": "manuscript/tables/P5-T2_baseline_ablation_results.tex",
+      "role": "historical-publication-table-input"
+    },
+    {
+      "path": "manuscript/tables/P5-T3_harmful_null_interventions.tex",
+      "role": "historical-publication-table-input"
+    },
+    {
+      "path": "top_tier/P5_RESIDUAL_ERROR_REVIVAL_RECEIPT_V1.md",
+      "role": "bounded-result-receipt"
     }
   ],
   "missing_artifacts": [
@@ -110,6 +262,18 @@
       "role": "journal-cover-letter",
       "status": "CANNOT_CHECK",
       "reason": "No cover letter; paper is not PEER_REVIEW_READY."
+    },
+    {
+      "path": "journal_package/current_revision/manuscript.pdf",
+      "role": "current-revision-content-bound-pdf",
+      "status": "CANNOT_CHECK",
+      "reason": "The retained Tectonic PDF is historical, and the newer working pdfTeX render is not a package-authorized replacement."
+    },
+    {
+      "path": "journal_package/current_revision/RENDER_AND_VISUAL_AUDIT.md",
+      "role": "current-revision-render-and-page-level-visual-and-claim-audit",
+      "status": "CANNOT_CHECK",
+      "reason": "No immutable current package build and page-level visual and claim audit are present."
     }
   ],
   "claims": [
@@ -147,14 +311,15 @@
     },
     {
       "id": "P5.PDF",
-      "text": "Tectonic build and local visual inspection completed for all 37 pages.",
+      "text": "The historical 37-page Tectonic PDF and its completed local visual inspection are retained as an earlier package record only; they do not authorize the current working manuscript.",
       "artifacts": [
-        "manuscript/main.pdf",
         "journal_package/manuscript.pdf",
         "journal_package/CLAIM_PDF_AUDIT.md"
       ],
-      "status": "BOUNDED_LOCAL_QA",
-      "boundary": "PDF SHA-256 d5832ca4dd7139b8af3fabb6e693e52afb5ff492e193b241f05616d529122482; independent external proofread and submission-format authority remain open."
+      "status": "BOUNDED",
+      "boundary": "PDF SHA-256 d5832ca4dd7139b8af3fabb6e693e52afb5ff492e193b241f05616d529122482; independent external proofread and submission-format authority remain open.",
+      "lifecycle": "HISTORICAL_IMMUTABLE",
+      "current_claim": false
     },
     {
       "id": "P5.ATTR.V2",
@@ -164,7 +329,7 @@
         "protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json",
         "top_tier/P5_RESIDUAL_ERROR_REVIVAL_DISPOSITION_2026-08-24.json"
       ],
-      "status": "BOUNDED_POST_OUTCOME_INSTRUMENT_DIAGNOSIS_ONLY",
+      "status": "BOUNDED",
       "boundary": "Protocol and outcomes first appear together; independent preregistration chronology, blind/fresh transfer, model-capability gain and superiority are not established."
     },
     {
@@ -175,8 +340,16 @@
         "../../research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json",
         "protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json"
       ],
-      "status": "BOUNDED_NO_TERMINAL",
+      "status": "BOUNDED",
       "boundary": "Constructed frozen panel only; grants_scientific_authority=false; no general H1 or superiority authority."
+    },
+    {
+      "id": "P5.CURRENT_PACKAGE",
+      "text": "The current manuscript has a fresh immutable package PDF and completed page-level visual and claim audit.",
+      "artifacts": [],
+      "status": "OPEN",
+      "lifecycle": "ACTIVE_SUPPORTING",
+      "current_claim": true
     }
   ],
   "scientific_result_verification": {
@@ -192,8 +365,21 @@
     "tool": "tectonic",
     "page_count": 37,
     "pdf_sha256": "d5832ca4dd7139b8af3fabb6e693e52afb5ff492e193b241f05616d529122482",
-    "working_and_package_pdf_byte_identical": true,
+    "working_and_package_pdf_byte_identical": false,
     "local_all_page_visual_qa": "COMPLETE",
-    "independent_external_pdf_proofread": "OPEN"
+    "independent_external_pdf_proofread": "OPEN",
+    "current_working_pdf_sha256": "cf8cdeafdc978d3fe4de1bfac536c31d499af23410dc618a444297fa32531d4a",
+    "current_revision_binding": false,
+    "binding_status": "HISTORICAL_SUPERSEDED",
+    "bridge_rule": "The historical Tectonic PDF is not relabelled or rebound to the newer pdfTeX working render. A fresh immutable package build and page-level visual and claim audit are required."
+  },
+  "package_authority": {
+    "audit_scope": "PACKAGE_AUTHORITY_AND_CLEAN_CHECKOUT_AVAILABILITY_ONLY__NOT_A_RENDER_AUDIT",
+    "current_submission_authorized": false,
+    "scientific_claim_retained": "P5.V3",
+    "historical_pdf_role": "EARLIER_INSPECTED_RECORD_ONLY",
+    "historical_manifest_sha256": "8eef1d27b479623c7f3a7d70e83532eb41329d20743fa7a0726bb08182afd8d9",
+    "authority_precedence": "This manifest and RENDER_CLOSURE_STATE.json govern current package status. Earlier current-PDF language describes the historical Tectonic package and is superseded for the current manuscript.",
+    "private_or_large_payloads_imported": false
   }
 }

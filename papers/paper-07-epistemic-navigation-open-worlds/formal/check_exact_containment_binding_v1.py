@@ -3,7 +3,8 @@
 
 Binds ``P7.CONTAIN.EXACT_BRIDGE_RULE.V1`` across the executable, the mechanized
 receipt, the manuscript surfaces, the addendum ledger, the content manifest and
-SHA256SUMS --- the same discipline as paper-06's kernel-contract checker. The
+their V2 content digests --- the same discipline as paper-06's kernel-contract
+checker. The
 composition calculus's own contract stays bound by its own checkers; this one
 covers the replacement rule only.
 """
@@ -28,9 +29,8 @@ FILES = (
     "papers/paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_ADDENDUM_V3.md",
 )
 MANIFEST = (
-    "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json"
+    "papers/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json"
 )
-SUMS = "papers/paper-07-epistemic-navigation-open-worlds/SHA256SUMS"
 
 REQUIRED_THEOREMS = (
     "REFLEXIVITY_OF_CONTAINMENT",
@@ -129,27 +129,27 @@ def audit(root: Path = ROOT) -> dict[str, object]:
     manifest_path = root / MANIFEST
     if manifest_path.exists():
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        bound_paths = {row["path"] for row in manifest.get("bound_files", [])}
+        recorded_hashes = {
+            row["path"]: row["sha256"]
+            for row in manifest.get("bound_files", [])
+            if isinstance(row, dict)
+            and isinstance(row.get("path"), str)
+            and isinstance(row.get("sha256"), str)
+        }
+        bound_paths = set(recorded_hashes)
         required_bound = {p for p in FILES if p.startswith("papers/paper-07-")}
         for path in sorted(required_bound - bound_paths):
             errors.append(f"content manifest omits contract artifact: {path}")
         if manifest.get("subject_commit_status") != "BOUND":
             errors.append("content manifest subject_commit_status is not BOUND")
+        if manifest.get("subject_commit_unbound_paths") != []:
+            errors.append("content manifest retains unbound contract paths")
+        for path in sorted(required_bound):
+            actual = _sha256(root / path)
+            if recorded_hashes.get(path) != actual:
+                errors.append(f"V2 content-manifest mismatch or omission: {path}")
     else:
         errors.append(f"missing manifest: {MANIFEST}")
-
-    sums_path = root / SUMS
-    if sums_path.exists():
-        recorded = {}
-        for line in sums_path.read_text(encoding="utf-8").splitlines():
-            digest, path = line.split("  ", 1)
-            recorded[path] = digest
-        for path in sorted(p for p in FILES if p.startswith("papers/paper-07-")):
-            actual = _sha256(root / path)
-            if recorded.get(path) != actual:
-                errors.append(f"SHA256SUMS mismatch or omission: {path}")
-    else:
-        errors.append(f"missing sums: {SUMS}")
 
     return {
         "schema": "orion.p7.exact-containment-binding.v1",

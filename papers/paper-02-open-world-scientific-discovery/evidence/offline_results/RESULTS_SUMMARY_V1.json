@@ -46,8 +46,8 @@
     "n_result_records": 16380,
     "n_systems": 14,
     "n_tasks": 390,
-    "raw_artifact_hash_list_digest_sha256": "ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe",
-    "record_digest_sha256": "27b8e55b68a65906fe0971ed2f24a814d31d66a1423d38782bb121c7f06e1525"
+    "raw_artifact_hash_list_digest_sha256": "d851f168faaf50969198180ecc61a6ac361c72556ceeb992f011af307dd00c37",
+    "record_digest_sha256": "c6430a651810f8e7a794aa0c1091794963c43389a1e5080c02c2807a2fc2c574"
   },
   "headline": {
     "orion_minus_strongest_baseline_premature_closure": -1.0,
@@ -56,11 +56,11 @@
   },
   "mechanism_checks": {
     "content_identity_dedup": {
-      "ablated_budget_exhaustion_failures": 145,
-      "ablated_duplicate_processing_rate": 0.101446,
-      "ablated_pass_rate": 0.605128,
+      "ablated_budget_exhaustion_failures": 193,
+      "ablated_duplicate_processing_rate": 0.31453,
+      "ablated_pass_rate": 0.369231,
       "orion_duplicate_processing_rate": 0.0,
-      "orion_pass_rate": 0.817949
+      "orion_pass_rate": 0.666667
     },
     "coverage_diagnostic_non_authority": {
       "ablated_premature_closure_rate": 1.0,
@@ -85,22 +85,21 @@
     },
     "unavailable_route_open_state": {
       "ablated_cannot_check_rate": 0.0,
-      "ablated_premature_closure_failures": 12,
+      "ablated_premature_closure_failures": 71,
       "ablated_unavailable_case_recall": 0.97151,
-      "orion_cannot_check_rate": 0.030769,
+      "orion_cannot_check_rate": 0.182051,
       "orion_unavailable_case_recall": 0.97151
     }
   },
   "schema_version": "orion.p2.offline-publication-summary.v1",
   "systems": {
     "adaptive_multiroute_exploratory": {
-      "cannot_check_rate": 0.033333,
-      "fail_rate": 0.966667,
+      "cannot_check_rate": 0.2,
+      "fail_rate": 0.8,
       "failure_counts": {
-        "NONE": 13,
+        "NONE": 78,
         "premature_closure": 296,
-        "present_but_missed": 16,
-        "transport_failure": 65
+        "present_but_missed": 16
       },
       "invalid_rate": 0.0,
       "mean_complete_gold_recall": 0.774074,
@@ -113,8 +112,8 @@
       "pass_rate": 0.0,
       "premature_task_closure_rate": 0.758974,
       "status_counts": {
-        "CANNOT_CHECK": 13,
-        "FAIL": 377
+        "CANNOT_CHECK": 78,
+        "FAIL": 312
       }
     },
     "agentic_single_route": {
@@ -198,30 +197,30 @@
       }
     },
     "no_content_identity_dedup": {
-      "cannot_check_rate": 0.023077,
-      "fail_rate": 0.371795,
+      "cannot_check_rate": 0.135897,
+      "fail_rate": 0.494872,
       "failure_counts": {
-        "NONE": 245,
-        "budget_exhausted": 145
+        "NONE": 197,
+        "budget_exhausted": 193
       },
       "invalid_rate": 0.0,
-      "mean_complete_gold_recall": 0.952707,
-      "mean_duplicate_processing_rate": 0.101446,
+      "mean_complete_gold_recall": 0.939031,
+      "mean_duplicate_processing_rate": 0.31453,
       "mean_legitimate_reread_count": 1.235897,
       "mean_marginal_relevant_gain_after_first_route": 5.574359,
       "mean_precision": 1.0,
       "mean_route_pair_overlap": 0.007576,
       "mean_routes_used": 4.969231,
-      "pass_rate": 0.605128,
+      "pass_rate": 0.369231,
       "premature_task_closure_rate": 0.0,
       "status_counts": {
-        "CANNOT_CHECK": 9,
-        "FAIL": 145,
-        "PASS": 236
+        "CANNOT_CHECK": 53,
+        "FAIL": 193,
+        "PASS": 144
       }
     },
     "no_question_conditioned_read_ledger": {
-      "cannot_check_rate": 0.030769,
+      "cannot_check_rate": 0.182051,
       "fail_rate": 0.151282,
       "failure_counts": {
         "NONE": 331,
@@ -235,12 +234,12 @@
       "mean_precision": 1.0,
       "mean_route_pair_overlap": 0.007595,
       "mean_routes_used": 4.989744,
-      "pass_rate": 0.817949,
+      "pass_rate": 0.666667,
       "premature_task_closure_rate": 0.0,
       "status_counts": {
-        "CANNOT_CHECK": 12,
+        "CANNOT_CHECK": 71,
         "FAIL": 59,
-        "PASS": 319
+        "PASS": 260
       }
     },
     "no_route_independence_check": {
@@ -265,11 +264,11 @@
     },
     "no_unavailable_route_open_state": {
       "cannot_check_rate": 0.0,
-      "fail_rate": 0.182051,
+      "fail_rate": 0.333333,
       "failure_counts": {
-        "NONE": 319,
+        "NONE": 260,
         "budget_exhausted": 59,
-        "premature_closure": 12
+        "premature_closure": 71
       },
       "invalid_rate": 0.0,
       "mean_complete_gold_recall": 0.979487,
@@ -279,11 +278,11 @@
       "mean_precision": 1.0,
       "mean_route_pair_overlap": 0.007595,
       "mean_routes_used": 4.989744,
-      "pass_rate": 0.817949,
+      "pass_rate": 0.666667,
       "premature_task_closure_rate": 0.0,
       "status_counts": {
-        "FAIL": 71,
-        "PASS": 319
+        "FAIL": 130,
+        "PASS": 260
       }
     },
     "one_pass_rag": {
@@ -307,7 +306,7 @@
       }
     },
     "orion_full": {
-      "cannot_check_rate": 0.030769,
+      "cannot_check_rate": 0.182051,
       "fail_rate": 0.151282,
       "failure_counts": {
         "NONE": 331,
@@ -321,12 +320,12 @@
       "mean_precision": 1.0,
       "mean_route_pair_overlap": 0.007595,
       "mean_routes_used": 4.989744,
-      "pass_rate": 0.817949,
+      "pass_rate": 0.666667,
       "premature_task_closure_rate": 0.0,
       "status_counts": {
-        "CANNOT_CHECK": 12,
+        "CANNOT_CHECK": 71,
         "FAIL": 59,
-        "PASS": 319
+        "PASS": 260
       }
     },
     "protocol_driven_systematic_review": {

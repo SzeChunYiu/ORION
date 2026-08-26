@@ -1,18 +1,14 @@
 {
-  "schema_version": "orion.p2.claim-ledger.p2x-addendum.v1",
-  "base_ledger": "CLAIM_LEDGER_V1.json",
-  "purpose": "Additive human-reviewed binding for P2-X claims promoted after the frozen V1 ledger. The base ledger remains immutable audit history. Operative bindings resolve only inside the paper tree; the bound artifact records source-result blob identities.",
   "artifacts": {
     "p2x_claim_bindings": "evidence/P2_X_CLAIM_BINDINGS_V1.json"
   },
+  "base_ledger": "CLAIM_LEDGER_V1.json",
   "claims": [
     {
       "claim_id": "P2-XA01",
-      "region": "abstract",
-      "manuscript_status": "ASSERTED",
-      "sentence": "A separate post-saturation exact successor isolates unresolved-route authority after strong stopping mechanisms are granted: on 400 protected heterogeneous acquisition contracts, P2-X attains 400/400 exact scientific closure decisions versus 250/400 for a donor-complete available-route product (paired difference 0.375, 95% CI [0.3275,0.4225]), with zero false task closures; an ideal product supplied identical route-authority semantics ties 400/400.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript replaced this older P2-X wording with a shorter conservative synthesis; retained as audit history and not restored. The current synthesis is bound by P2-XC06.",
+      "note": "Promoted P2-X abstract result; exact-contract authority only; offline mechanism evidence remains DESCRIPTIVE under the existing ledger policy.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_bindings",
@@ -59,6 +55,9 @@
           "key": "case_count"
         }
       ],
+      "region": "abstract",
+      "sentence": "A separate post-saturation exact successor isolates unresolved-route authority after strong stopping mechanisms are granted: on 400 protected heterogeneous acquisition contracts, P2-X attains 400/400 exact scientific closure decisions versus 250/400 for a donor-complete available-route product (paired difference 0.375, 95% CI [0.3275,0.4225]), with zero false task closures; an ideal product supplied identical route-authority semantics ties 400/400.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_claim_bindings",
@@ -73,21 +72,21 @@
           "key": "b3_decision_mismatches"
         }
       ],
-      "note": "Promoted P2-X abstract result; exact-contract authority only; offline mechanism evidence remains DESCRIPTIVE under the existing ledger policy."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-XL01",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "Its 400 cases span five acquisition settings and include seed-permuted route order plus non-material unavailable decoys, but route state, route materiality and question-processing state are explicitly supplied rather than inferred from noisy web behavior.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Battery scope and explicit-state limitation.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_bindings",
           "key": "case_count"
         }
       ],
+      "region": "limitations",
+      "sentence": "Its 400 cases span five acquisition settings and include seed-permuted route order plus non-material unavailable decoys, but route state, route materiality and question-processing state are explicitly supplied rather than inferred from noisy web behavior.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_claim_bindings",
@@ -98,21 +97,21 @@
           "key": "independent_verification_case_count"
         }
       ],
-      "note": "Battery scope and explicit-state limitation."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-XL02",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "The 1.000 exact-closure ceiling therefore supports the fail-closed authority rule only on the registered exact contracts.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Bounded exact-contract interpretation of the P2-X ceiling.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_bindings",
           "key": "p2x_rate"
         }
       ],
+      "region": "limitations",
+      "sentence": "The 1.000 exact-closure ceiling therefore supports the fail-closed authority rule only on the registered exact contracts.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_claim_bindings",
@@ -123,16 +122,16 @@
           "key": "independent_verification_ok"
         }
       ],
-      "note": "Bounded exact-contract interpretation of the P2-X ceiling."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-XL03",
-      "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "No independently implemented lexical/dense/reasoning retrievers or new live provider campaign were used to establish retrieval-engine generality, and the ideal-product arm shows that an ideal product given identical unresolved-route semantics is extensionally equivalent.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "note": "Ideal-product equivalence and explicit non-generality boundary.",
       "numeric_bindings": [],
+      "region": "limitations",
+      "sentence": "No independently implemented lexical/dense/reasoning retrievers or new live provider campaign were used to establish retrieval-engine generality, and the ideal-product arm shows that an ideal product given identical unresolved-route semantics is extensionally equivalent.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_claim_bindings",
@@ -143,15 +142,13 @@
           "key": "b3_decision_mismatches"
         }
       ],
-      "note": "Ideal-product equivalence and explicit non-generality boundary."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-XC01",
-      "region": "conclusion",
-      "manuscript_status": "ASSERTED",
-      "sentence": "After donor-complete evidence coverage, decision/utility stopping, finite route certificates, deduplication and question-processing state are granted, P2-X obtains 400/400 exact closure decisions versus 250/400 for an available-route donor product, a paired advantage of 0.375 with 95% CI [0.3275,0.4225], while preserving zero false task closures and perfect clean closure.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript replaced this older P2-X wording with a shorter conservative synthesis; retained as audit history and not restored. The current synthesis is bound by P2-XC06.",
+      "note": "P2-X conclusion headline with non-regression gates; offline mechanism evidence remains DESCRIPTIVE.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_bindings",
@@ -186,6 +183,9 @@
           "key": "ci_upper"
         }
       ],
+      "region": "conclusion",
+      "sentence": "After donor-complete evidence coverage, decision/utility stopping, finite route certificates, deduplication and question-processing state are granted, P2-X obtains 400/400 exact closure decisions versus 250/400 for an available-route donor product, a paired advantage of 0.375 with 95% CI [0.3275,0.4225], while preserving zero false task closures and perfect clean closure.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_claim_bindings",
@@ -200,21 +200,22 @@
           "key": "independent_verification_ok"
         }
       ],
-      "note": "P2-X conclusion headline with non-regression gates; offline mechanism evidence remains DESCRIPTIVE."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-XC02",
-      "region": "conclusion",
-      "manuscript_status": "ASSERTED",
-      "sentence": "The effect is the unresolved-route authority rule: all 150 B1 errors are material unavailable/censored/provider-invalid routes that B1 excludes from the closure denominator.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript replaced this older P2-X wording with a shorter conservative synthesis; retained as audit history and not restored. The current synthesis is bound by P2-XC06.",
+      "note": "Registered failure family behind the B1 difference.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_bindings",
           "key": "b1_errors"
         }
       ],
+      "region": "conclusion",
+      "sentence": "The effect is the unresolved-route authority rule: all 150 B1 errors are material unavailable/censored/provider-invalid routes that B1 excludes from the closure denominator.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_claim_bindings",
@@ -225,15 +226,13 @@
           "key": "independent_verification_ok"
         }
       ],
-      "note": "Registered failure family behind the B1 difference."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-XC03",
-      "region": "conclusion",
-      "manuscript_status": "ASSERTED",
-      "sentence": "An ideal typed product supplied the same semantics ties 400/400.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript replaced this older P2-X wording with a shorter conservative synthesis; retained as audit history and not restored. The current synthesis is bound by P2-XC06.",
+      "note": "Ideal typed product is extensionally tied under identical semantics.",
       "numeric_bindings": [
         {
           "artifact": "p2x_claim_bindings",
@@ -244,6 +243,9 @@
           "key": "case_count"
         }
       ],
+      "region": "conclusion",
+      "sentence": "An ideal typed product supplied the same semantics ties 400/400.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_claim_bindings",
@@ -254,16 +256,17 @@
           "key": "b3_decision_mismatches"
         }
       ],
-      "note": "Ideal typed product is extensionally tied under identical semantics."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-XC04",
-      "region": "conclusion",
-      "manuscript_status": "ASSERTED",
-      "sentence": "Thus the contribution is not generic stopping, generic closure certificates, or inherent expressivity; it is bounded evidence that route-local acquisition stop and task-global scientific closure are distinct authority relations when material routes remain unresolved.",
-      "support_type": "OFFLINE_MECHANISM",
-      "strength": "DESCRIPTIVE",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript replaced this older P2-X wording with a shorter conservative synthesis; retained as audit history and not restored. The current synthesis is bound by P2-XC06.",
+      "note": "Bounded interpretation only; donor-owned generic mechanisms remain non-novel.",
       "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "Thus the contribution is not generic stopping, generic closure certificates, or inherent expressivity; it is bounded evidence that route-local acquisition stop and task-global scientific closure are distinct authority relations when material routes remain unresolved.",
+      "strength": "DESCRIPTIVE",
       "support_artifacts": [
         {
           "artifact": "p2x_claim_bindings",
@@ -278,25 +281,73 @@
           "key": "independent_verification_ok"
         }
       ],
-      "note": "Bounded interpretation only; donor-owned generic mechanisms remain non-novel."
+      "support_type": "OFFLINE_MECHANISM"
     },
     {
       "claim_id": "P2-XC05",
-      "region": "conclusion",
-      "manuscript_status": "ASSERTED",
-      "sentence": "Deployed multi-provider/retrieval-engine generality remains CANNOT_CHECK.",
-      "support_type": "NONE_YET",
-      "strength": "CANNOT_CHECK",
+      "manuscript_status": "NOT_ASSERTED_ARCHIVED_ONLY",
+      "not_asserted_reason": "The integrated 6474c521 manuscript replaced this older P2-X wording with a shorter conservative synthesis; retained as audit history and not restored. The current synthesis is bound by P2-XC06.",
+      "note": "Explicit non-promotion boundary; P2-X exact contracts do not establish deployment generality.",
       "numeric_bindings": [],
+      "region": "conclusion",
+      "sentence": "Deployed multi-provider/retrieval-engine generality remains CANNOT_CHECK.",
+      "strength": "CANNOT_CHECK",
       "support_artifacts": [
         {
           "artifact": "p2x_claim_bindings",
           "key": "external_retrieval_generality"
         }
       ],
-      "note": "Explicit non-promotion boundary; P2-X exact contracts do not establish deployment generality."
+      "support_type": "NONE_YET"
+    },
+    {
+      "claim_id": "P2-XC06",
+      "manuscript_status": "ASSERTED",
+      "note": "Current conservative exact-contract synthesis; bounded mechanism evidence only, not deployed generality or inherent expressivity.",
+      "numeric_bindings": [
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "p2x_correct"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b1_correct"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b3_correct"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "case_count"
+        }
+      ],
+      "region": "conclusion",
+      "sentence": "The exact-contract battery supports the predicted authority distinction--400/400 against 250/400 for a product that drops unresolved material routes--while the information-equivalent product's 400/400 tie confirms that the residual is state sufficiency, not inherent centralized expressivity.",
+      "strength": "DESCRIPTIVE",
+      "support_artifacts": [
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "independent_verification_ok"
+        },
+        {
+          "artifact": "p2x_claim_bindings",
+          "key": "b3_equivalence_pass"
+        }
+      ],
+      "support_type": "OFFLINE_MECHANISM"
     }
   ],
+  "known_defects": [],
   "non_claim_sentences": [],
-  "known_defects": []
+  "purpose": "Additive human-reviewed binding for P2-X claims promoted after the frozen V1 ledger. The base ledger remains immutable audit history. Operative bindings resolve only inside the paper tree; the bound artifact records source-result blob identities.",
+  "schema_version": "orion.p2.claim-ledger.p2x-addendum.v1"
 }

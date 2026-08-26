@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
 from pathlib import Path
 
 PAPERS = {
@@ -19,6 +20,43 @@ ALLOWED_TERMINALS = {"NEGATIVE_EQUIVALENCE_THEOREM", "MATCH_IS_NOT_NECESSARY"}
 
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def historical_source_is_bound(root: Path, source: str, digest: str) -> bool:
+    """Return whether ``source`` has the recorded bytes now or in git history.
+
+    A negative-history row is append-only, while its versioned claim ledger can
+    legitimately gain later, narrower claims.  Requiring the moving worktree
+    file to retain the old digest made an honest ledger extension invalidate the
+    immutable adverse record.  The path plus SHA-256 already identifies the old
+    bytes; git history supplies the missing temporal coordinate without rewriting
+    the history row.
+    """
+
+    source_path = root / source
+    if source_path.is_file() and sha256_file(source_path) == digest:
+        return True
+    try:
+        commits = subprocess.run(
+            ["git", "-C", str(root), "log", "--format=%H", "--", source],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.splitlines()
+    except (OSError, subprocess.CalledProcessError):
+        return False
+    for commit in commits:
+        try:
+            content = subprocess.run(
+                ["git", "-C", str(root), "show", f"{commit}:{source}"],
+                check=True,
+                capture_output=True,
+            ).stdout
+        except (OSError, subprocess.CalledProcessError):
+            continue
+        if hashlib.sha256(content).hexdigest() == digest:
+            return True
+    return False
 
 
 def validate_history(root: Path, paper_id: str) -> list[dict[str, object]]:
@@ -70,7 +108,7 @@ def validate_history(root: Path, paper_id: str) -> list[dict[str, object]]:
             source_path.relative_to(root.resolve())
         except ValueError as exc:
             raise ValueError(f"{path}:{line_number}: source escapes repository") from exc
-        if not source_path.is_file() or sha256_file(source_path) != digest:
+        if not historical_source_is_bound(root, source, digest):
             raise ValueError(f"{path}:{line_number}: stale or missing source binding")
         rows.append(row)
     if not rows:

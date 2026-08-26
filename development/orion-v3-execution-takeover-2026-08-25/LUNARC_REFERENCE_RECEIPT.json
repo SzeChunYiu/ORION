@@ -1,0 +1,83 @@
+{
+  "authority_ceiling": "ENGINEERING_REFERENCE_CHECK_ONLY",
+  "checks": {
+    "compileall": 0,
+    "finite_census": 0,
+    "finite_receipt_byte_comparison": 0,
+    "focused_tests": {
+      "count": 31,
+      "exit_code": 0
+    },
+    "frozen_protocol_hash": 0,
+    "private_environment": 0,
+    "runner_hash": 0,
+    "source_archive_hash": 0,
+    "structure": 0,
+    "takeover_manifest": 0
+  },
+  "environment": {
+    "cryptography": "50.0.0",
+    "defusedxml": "0.7.1",
+    "install_pythonpath": "UNSET",
+    "node": "cx04",
+    "platform": "Linux-5.14.0-687.24.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "pygments": "2.19.2",
+    "pytest": "9.1.1",
+    "python": "3.11.5",
+    "repository_runtime_pythonpath": "source/src"
+  },
+  "evidence": {
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-03/ENGINEERING_REFERENCE_RECEIPT.json": {
+      "bytes": 1333,
+      "sha256": "ab26ac9e160df0cfe0a8e0dfcb09b1d294578e9ab738aaa46e10d284ea8e5282"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-03/PRIVATE_ENVIRONMENT_FREEZE.txt": {
+      "bytes": 175,
+      "sha256": "9e1de4f567c35dc820ff346567003cebff06c2781e89174308e2bcc458804dfd"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-03/REMOTE_FILE_IDENTITIES.txt": {
+      "bytes": 1460,
+      "sha256": "ba97ae9d4f335860a168514b1acbbc073a00c9683fe3e0a1c8cd17ada551b2c8"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-03/logs/reference-3539808.err": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-03/logs/reference-3539808.out": {
+      "bytes": 620,
+      "sha256": "bce2d3c11d529324b8ad832d410472248008363c86148c2346eb4e58290bc3ae"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-03/sacct-3539808.txt": {
+      "bytes": 405,
+      "sha256": "5622e3eee8e72fb58b2ea2c7c5208fce06dd19012c67c18532c0f72843c1b88a"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/lunarc-reference-03/scontrol-3539808.txt": {
+      "bytes": 1793,
+      "sha256": "3c75a58ba934ad5ffb7980fd5fb69dd2c2461b82eb0ebd6aa8476b430323f15b"
+    }
+  },
+  "external_novelty": "CANNOT_CHECK",
+  "job_id": "V3-ENGINEERING-REFERENCE-03",
+  "paper_authority_delta": "NONE",
+  "protocol_sha256": "4d43081c53c543108fb2d484c206dd18b123e5dec73ca5e9a2958f526e53051a",
+  "recorded_at": "2026-08-25T15:41:32Z",
+  "remote_directory": "/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/624063fe5fe2653d871ae341f5471978a0b507e6d3beb716eb63427cec14b693",
+  "scheduler": {
+    "elapsed": "00:00:15",
+    "end_local": "2026-08-25T17:40:17",
+    "exit_code": "0:0",
+    "job_id": "3539808",
+    "node": "cx04",
+    "start_local": "2026-08-25T17:40:02",
+    "state": "COMPLETED"
+  },
+  "scientific_authority": "NONE",
+  "source_archive": {
+    "bytes": 2117152,
+    "sha256": "ec71e6b106b8c4bb1f7ba6bdce2be2154a1aee0ff30f8e73f0008671db9efaf1"
+  },
+  "source_git_sha": "fc1d46c5f63cb992dcf71c765475010f56a3e9fa",
+  "submission_key": "624063fe5fe2653d871ae341f5471978a0b507e6d3beb716eb63427cec14b693",
+  "submitted_at": "2026-08-25T15:40:02Z",
+  "terminal": "ENGINEERING_REFERENCE_CHECK_ONLY_GREEN"
+}

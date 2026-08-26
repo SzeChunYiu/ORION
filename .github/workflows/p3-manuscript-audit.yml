@@ -210,16 +210,74 @@ jobs:
           fi
           pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
 
-      - name: Verify tracked PDF matches rebuilt manuscript content
+      - name: Verify current rebuild and superseded historical package authority
         run: |
           set -euo pipefail
           rebuilt='papers/paper-03-global-knowledge-portrait/manuscript/main.pdf'
           tracked='papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf'
+          test -s "$rebuilt"
           test -s "$tracked"
           pdftotext "$rebuilt" /tmp/p3-rebuilt.txt
-          pdftotext "$tracked" /tmp/p3-tracked.txt
-          cmp /tmp/p3-rebuilt.txt /tmp/p3-tracked.txt
-          test "$(pdfinfo "$rebuilt" | awk '/^Pages:/ {print $2}')" = "$(pdfinfo "$tracked" | awk '/^Pages:/ {print $2}')"
+          test -s /tmp/p3-rebuilt.txt
+          python scripts/write_render_closure_state.py --check
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          package = Path('papers/paper-03-global-knowledge-portrait/journal_package')
+          manifest = json.loads((package / 'MANIFEST.json').read_text(encoding='utf-8'))
+          state = json.loads((package / 'RENDER_CLOSURE_STATE.json').read_text(encoding='utf-8'))
+          authority = manifest.get('package_authority') or {}
+          binding = manifest.get('render_binding') or {}
+          errors = []
+
+          expected_markers = [
+              (manifest, "package_status", "SUPERSEDED"),
+              (authority, "current_submission_authorized", False),
+              (authority, "historical_pdf_role", "EARLIER_INSPECTED_RECORD_ONLY"),
+              (binding, "binding_status", "HISTORICAL_SUPERSEDED"),
+              (binding, "current_revision_binding", False),
+              (state, "state", "SUPERSEDED"),
+              (state, "evidence", "RENDERED_PDF"),
+          ]
+          for record, key, expected in expected_markers:
+              if record.get(key) != expected:
+                  errors.append(f'{key} must be {expected!r}, got {record.get(key)!r}')
+
+          historical_pdf = package / 'manuscript.pdf'
+          historical_sha = hashlib.sha256(historical_pdf.read_bytes()).hexdigest()
+          if binding.get('historical_pdf_sha256') != historical_sha:
+              errors.append('historical PDF digest drifted from render_binding')
+          if binding.get('historical_pdf_pages') != state.get('packaged_pdf_pages'):
+              errors.append('historical PDF page count drifted from render-closure state')
+
+          claims = {
+              claim.get('id'): claim
+              for claim in manifest.get('claims', [])
+              if isinstance(claim, dict)
+          }
+          historical_claim = claims.get('P3.PDF') or {}
+          if (
+              historical_claim.get('status') != 'BOUNDED'
+              or historical_claim.get('lifecycle') != 'HISTORICAL_IMMUTABLE'
+              or historical_claim.get('current_claim') is not False
+          ):
+              errors.append('P3.PDF must remain bounded historical immutable evidence')
+          current_claim = claims.get('P3.CURRENT_PACKAGE') or {}
+          if (
+              current_claim.get('status') != 'OPEN'
+              or current_claim.get('current_claim') is not True
+              or current_claim.get('artifacts') != []
+          ):
+              errors.append('P3.CURRENT_PACKAGE must remain an unsupported active OPEN claim')
+
+          if errors:
+              for error in errors:
+                  print(f'P3_SUPERSEDED_AUTHORITY_ERROR: {error}')
+              raise SystemExit(1)
+          print('P3_HISTORICAL_PACKAGE_SUPERSEDED_CURRENT_BUILD_INSPECTED')
+          PY
 
       - name: Verify package and publication scoreboard
         run: |

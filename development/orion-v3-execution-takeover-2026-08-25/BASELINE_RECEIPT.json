@@ -1,0 +1,78 @@
+{
+  "schema": "orion.discovery.v3.takeover-baseline-receipt.v1",
+  "recorded_at": "2026-08-25T15:10:00Z",
+  "source": {
+    "v3_head": "5f4a83dceffbc783e0df946b22378524b123ec7e",
+    "takeover_head_before_baseline_artifacts": "63ffbf9f",
+    "python": "3.11.15",
+    "uv": "0.11.1"
+  },
+  "local_checks": [
+    {
+      "name": "structural",
+      "command": "PYTHONPATH=src uv run python scripts/check_orion_discovery_v3.py",
+      "exit_code": 0,
+      "terminal": "ORION_DISCOVERY_V3_STRUCTURE_GREEN theorems=22 jobs=11 atoms=25 parents=7",
+      "stdout_sha256": "a3a9393e4120d3c2347bf87f240b06386155d07215d52a07b102e325fde5ead8"
+    },
+    {
+      "name": "hostile",
+      "command": "PYTHONPATH=src uv run python -m pytest -q tests/unit/discovery/test_frontier_dominance.py",
+      "exit_code": 0,
+      "terminal": "14 passed in 0.86s",
+      "stdout_sha256": "0d957499207799712bc92b1c98daa9bb6be3fab65ea0f67a35e725f84d59f571"
+    },
+    {
+      "name": "finite_census",
+      "command": "PYTHONPATH=src uv run python scripts/run_frontier_dominance_census_v1.py",
+      "exit_code": 0,
+      "terminal": "ORION_DISCOVERY_V3_FINITE_REFERENCE_GREEN profile_cells=3136 residual_cells=243",
+      "stdout_sha256": "bb360272e373e497bf4e49e98764843131b187af8a8ca41efce2fa24adaf4b67"
+    },
+    {
+      "name": "receipt_byte_comparison",
+      "command": "cmp expected.json research/orion-discovery-v3/FINITE_REFERENCE_RECEIPT_V1.json",
+      "exit_code": 0
+    },
+    {
+      "name": "compile",
+      "command": "python -m compileall -q src/orion/discovery/frontier_dominance.py scripts/check_orion_discovery_v3.py scripts/run_frontier_dominance_census_v1.py",
+      "exit_code": 0
+    }
+  ],
+  "remote_ci_observations": {
+    "pr": 1326,
+    "v3_verify_run": 32848793725,
+    "v3_verify_job": 97804605414,
+    "v3_verify_exit_code": 2,
+    "root_cause": "The workflow installs pytest only. Importing orion.discovery traverses orion.experience.authority, which imports cryptography, but the workflow never installs the project requirements.",
+    "error": "ModuleNotFoundError: No module named 'cryptography'",
+    "failed_log_sha256": "de54e1ab447bd6ee621c61700aa60edee86974a75d5816c49a5e868e805470ad",
+    "other_pr_runs": [
+      {
+        "run": 32848793452,
+        "scope": "repository CI including P2",
+        "failed_log_sha256": "aeb4b90a402c248e01c1e946d70e53c77c9b93b23acf06e1f0a31c5d21236d35",
+        "classification": "INHERITED_MULTI_FAILURE_SET__ROOT_CAUSES_NOT_YET_ALL_RESOLVED"
+      },
+      {
+        "run": 32848793511,
+        "scope": "engineering conformance",
+        "failed_log_sha256": "b257cca42ce5be3fa2c945d7c8ce7bc77ccd6e85938505c46a38d9edafb4b82f",
+        "classification": "16_FAILED_431_PASSED__ROOT_CAUSES_NOT_YET_ALL_RESOLVED"
+      },
+      {
+        "run": 32848793633,
+        "scope": "matched dual lane",
+        "failed_log_sha256": "c155a998617091d23558b38dd876cb71c03abf1c29408d89e36fe059a4e73ad1",
+        "classification": "FAILED__ROOT_CAUSE_NOT_YET_RESOLVED"
+      }
+    ]
+  },
+  "authority": {
+    "terminal": "LOCAL_ENGINEERING_REFERENCE_GREEN__REMOTE_WORKFLOW_DEPENDENCY_DEFECT",
+    "scientific_authority": "NONE",
+    "paper_authority_delta": "NONE",
+    "external_novelty": "CANNOT_CHECK"
+  }
+}

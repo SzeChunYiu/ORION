@@ -17,7 +17,11 @@ from orion_research_harness.runner import run_problem
 from orion_research_harness.workspace import ResearchWorkspace
 
 SMOKE_CONTENT = {
-    "plan_search": '{"queries":[]}',
+    "plan_search": (
+        '{"queries":[{"query_id":"q:fixture","text":"fixture query",'
+        '"route_id":"route:fixture","route_kind":"PARENT_DISCIPLINE",'
+        '"domain_hint":null}]}'
+    ),
     "reconstruct": '{"summary":"No verified evidence yet."}',
     "diagnose": '{"responsibilities":["EVIDENCE"],"rationale":"Evidence is missing."}',
     "propose_reframe": '{"add_domain_ids":[],"add_representation_ids":[],"note":"No rewrite."}',
@@ -34,6 +38,14 @@ PROBLEM = {
 
 
 def _service(workspace: ResearchWorkspace, request: CapabilityRequest) -> None:
+    if request.capability == "WEB_SEARCH":
+        workspace.ingest_result(
+            request.request_id,
+            success=True,
+            output={"items": []},
+            executor="scripted-smoke",
+        )
+        return
     task = request.payload["task"]
     if task not in SMOKE_CONTENT:
         raise AssertionError(f"unexpected task {task}")

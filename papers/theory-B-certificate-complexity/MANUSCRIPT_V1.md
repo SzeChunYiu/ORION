@@ -156,10 +156,11 @@ The R6I rank-five production result is bound to the committed Paper B B1 source,
 
 1. The lower bound applies to the explicitly defined rank-only zero-XOR deletion language.
 2. It is not a lower bound for every local proof system, every syndrome-preserving proof system, or unrestricted formal verification.
-3. The direct product amplifies the same mechanism; it is not a second independent compiler mechanism.
-4. The polynomial-degree comparison belongs to a direct support enumerator, not to arbitrary algorithms.
-5. Structural support is not a physical T count, runtime or qubit advantage.
-6. External replication and fresh submission-date novelty review remain open.
+3. In particular, the result establishes no unrestricted proof-system lower bound.
+4. The direct product amplifies the same mechanism; it is not a second independent compiler mechanism.
+5. The polynomial-degree comparison belongs to a direct support enumerator, not to arbitrary algorithms.
+6. Structural support is not a physical T count, runtime or qubit advantage.
+7. External replication and fresh submission-date novelty review remain open.
 
 ## 10. Discussion
 

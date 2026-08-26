@@ -210,6 +210,17 @@ def test_p10_rejects_stale_subject_and_laundered_hypothesis() -> None:
         validate_p10(ROOT, laundered)
 
 
+def test_p10_rejects_a_lock_digest_that_only_matches_the_moving_head() -> None:
+    payload = load_protocol(ROOT / P10_PROTOCOL)
+    moving = copy.deepcopy(payload)
+    moving["subject"]["environment_lock_sha256"] = sha256(ROOT / "uv.lock")
+    assert moving["subject"]["environment_lock_sha256"] != payload["subject"][
+        "environment_lock_sha256"
+    ]
+    with pytest.raises(ValueError, match="frozen subject commit"):
+        validate_p10(ROOT, moving)
+
+
 def test_p9_rejects_zero_potency_and_weakened_worst_family_gate() -> None:
     payload = load_protocol(ROOT / P9_PROTOCOL)
     inert = copy.deepcopy(payload)

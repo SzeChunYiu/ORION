@@ -14,8 +14,7 @@ _LOCAL_CAPABILITIES = {"FILE_READ", "FILE_WRITE", "FILE_LIST", "SHELL", "PYTHON"
 _MAX_TEXT_CHARS = 1_000_000
 _MAX_LIST_ENTRIES = 10_000
 _MAX_PROCESS_OUTPUT_BYTES = 100_000
-_DEFAULT_MAX_PROCESS_TIMEOUT_SECONDS = 120
-_MAX_PROCESS_TIMEOUT_OVERRIDE_LIMIT_SECONDS = 600
+_MAX_PROCESS_OUTPUT_OVERRIDE_BYTES = 1_000_000
 _MAX_PROCESS_TIMEOUT_SECONDS = 7_200
 _DRAIN_JOIN_SECONDS = 1.0
 
@@ -29,8 +28,8 @@ _CAPABILITY_PAYLOAD_KEYS = {
     "FILE_READ": frozenset({"path", "max_chars"}),
     "FILE_WRITE": frozenset({"path", "content", "append"}),
     "FILE_LIST": frozenset({"path"}),
-    "SHELL": frozenset({"argv", "cwd", "timeout"}),
-    "PYTHON": frozenset({"code", "cwd", "timeout"}),
+    "SHELL": frozenset({"argv", "cwd", "timeout", "max_output_bytes"}),
+    "PYTHON": frozenset({"code", "cwd", "timeout", "max_output_bytes"}),
 }
 
 
@@ -66,7 +65,9 @@ def _reject_unknown_payload_keys(capability: str, payload: Any) -> None:
 
 
 def _confined(project_root: Path, raw: str | Path) -> Path:
-    candidate = (project_root / raw).resolve() if not Path(raw).is_absolute() else Path(raw).resolve()
+    candidate = (
+        (project_root / raw).resolve() if not Path(raw).is_absolute() else Path(raw).resolve()
+    )
     try:
         common = Path(os.path.commonpath([str(project_root), str(candidate)]))
     except ValueError as exc:
@@ -83,23 +84,6 @@ def _validated_max_chars(value: Any) -> int:
     return max_chars
 
 
-def _process_timeout_ceiling() -> int:
-    raw = os.environ.get("ORION_HARNESS_MAX_PROCESS_TIMEOUT_SECONDS")
-    if raw is None:
-        return _DEFAULT_MAX_PROCESS_TIMEOUT_SECONDS
-    ceiling = int(raw)
-    if not 1 <= ceiling <= _MAX_PROCESS_TIMEOUT_OVERRIDE_LIMIT_SECONDS:
-        raise ValueError(
-            "ORION_HARNESS_MAX_PROCESS_TIMEOUT_SECONDS must be between 1 and "
-            f"{_MAX_PROCESS_TIMEOUT_OVERRIDE_LIMIT_SECONDS}"
-        )
-    return ceiling
-
-
-def _validated_process_timeout(value: Any) -> int:
-    return min(max(int(value), 1), _process_timeout_ceiling())
-
-
 def _read_text_bounded(path: Path, max_chars: int) -> str:
     with path.open("r", encoding="utf-8") as handle:
         value = handle.read(max_chars + 1)
@@ -108,7 +92,13 @@ def _read_text_bounded(path: Path, max_chars: int) -> str:
     return value[:max_chars] + "\n...[truncated additional file content]"
 
 
-def _drain_pipe(pipe: BinaryIO, output: bytearray, total: list[int], *, max_bytes: int = _MAX_PROCESS_OUTPUT_BYTES) -> None:
+def _drain_pipe(
+    pipe: BinaryIO,
+    output: bytearray,
+    total: list[int],
+    *,
+    max_bytes: int = _MAX_PROCESS_OUTPUT_BYTES,
+) -> None:
     try:
         while True:
             chunk = pipe.read(64 * 1024)
@@ -145,7 +135,9 @@ def _terminate_process_tree(process: subprocess.Popen[bytes]) -> None:
         process.kill()
 
 
-def _finish_drainers(process: subprocess.Popen[bytes], threads: tuple[threading.Thread, threading.Thread]) -> None:
+def _finish_drainers(
+    process: subprocess.Popen[bytes], threads: tuple[threading.Thread, threading.Thread]
+) -> None:
     for thread in threads:
         thread.join(timeout=_DRAIN_JOIN_SECONDS)
     if any(thread.is_alive() for thread in threads):
@@ -177,8 +169,8 @@ def _finish_drainers(process: subprocess.Popen[bytes], threads: tuple[threading.
 #: budget from a real negative. `CAPABILITY_FAILED` alone cannot.
 _BUDGET_EXHAUSTED_PREFIX = "BUDGET_EXHAUSTED_CANNOT_CHECK"
 
-_DEFAULT_PROCESS_TIMEOUT_CEILING = 900
-_MAX_PROCESS_TIMEOUT_CEILING = 3600
+_DEFAULT_PROCESS_TIMEOUT_CEILING = _MAX_PROCESS_TIMEOUT_SECONDS
+_MAX_PROCESS_TIMEOUT_CEILING = _MAX_PROCESS_TIMEOUT_SECONDS
 
 
 def _process_timeout_ceiling() -> int:
@@ -186,12 +178,30 @@ def _process_timeout_ceiling() -> int:
 
     raw = os.environ.get("ORION_HARNESS_PROCESS_TIMEOUT_CEILING")
     if raw is None:
+        raw = os.environ.get("ORION_HARNESS_MAX_PROCESS_TIMEOUT_SECONDS")
+    if raw is None:
         return _DEFAULT_PROCESS_TIMEOUT_CEILING
     try:
         value = int(raw)
     except ValueError:
         return _DEFAULT_PROCESS_TIMEOUT_CEILING
     return min(max(value, 1), _MAX_PROCESS_TIMEOUT_CEILING)
+
+
+def _validated_process_timeout(value: Any) -> int:
+    if not isinstance(value, int) or isinstance(value, bool):
+        raise TypeError("process timeout must be an integer")
+    return min(max(value, 1), _process_timeout_ceiling())
+
+
+def _validated_process_output_bytes(value: Any) -> int:
+    if not isinstance(value, int) or isinstance(value, bool):
+        raise TypeError("max_output_bytes must be an integer")
+    if not 1 <= value <= _MAX_PROCESS_OUTPUT_OVERRIDE_BYTES:
+        raise ValueError(
+            f"max_output_bytes must be between 1 and {_MAX_PROCESS_OUTPUT_OVERRIDE_BYTES}"
+        )
+    return value
 
 
 def execute_local(
@@ -228,7 +238,9 @@ def execute_local(
         with os.scandir(path) as iterator:
             for entry in iterator:
                 if len(entries) >= _MAX_LIST_ENTRIES:
-                    raise OverflowError(f"directory exceeds {_MAX_LIST_ENTRIES} entries; narrow the listing scope")
+                    raise OverflowError(
+                        f"directory exceeds {_MAX_LIST_ENTRIES} entries; narrow the listing scope"
+                    )
                 entries.append(entry.name)
         entries.sort()
         return {"path": str(path), "entries": entries}
@@ -240,8 +252,9 @@ def execute_local(
                 "reinitialize with --allow-process-tools to opt in"
             )
         timeout = _validated_process_timeout(payload.get("timeout", 60))
-        timeout = min(max(int(payload.get("timeout", 60)), 1), _MAX_PROCESS_TIMEOUT_SECONDS)
-        timeout = min(max(int(payload.get("timeout", 60)), 1), _process_timeout_ceiling())
+        max_output_bytes = _validated_process_output_bytes(
+            payload.get("max_output_bytes", _MAX_PROCESS_OUTPUT_BYTES)
+        )
         cwd = _confined(root, str(payload.get("cwd", ".")))
         if not cwd.is_dir():
             raise NotADirectoryError(cwd)
@@ -254,36 +267,58 @@ def execute_local(
             argv = [str(value) for value in raw_argv]
 
         process = subprocess.Popen(
-            argv, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-            stdin=subprocess.DEVNULL, start_new_session=(os.name == "posix"),
+            argv,
+            cwd=cwd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            stdin=subprocess.DEVNULL,
+            start_new_session=(os.name == "posix"),
         )
         assert process.stdout is not None and process.stderr is not None
-        stdout_buffer=bytearray();stderr_buffer=bytearray();stdout_total=[0];stderr_total=[0]
-        stdout_thread=threading.Thread(target=_drain_pipe,args=(process.stdout,stdout_buffer,stdout_total),daemon=True)
-        stderr_thread=threading.Thread(target=_drain_pipe,args=(process.stderr,stderr_buffer,stderr_total),daemon=True)
-        threads=(stdout_thread,stderr_thread)
-        for thread in threads: thread.start()
+        stdout_buffer = bytearray()
+        stderr_buffer = bytearray()
+        stdout_total = [0]
+        stderr_total = [0]
+        stdout_thread = threading.Thread(
+            target=_drain_pipe,
+            args=(process.stdout, stdout_buffer, stdout_total),
+            kwargs={"max_bytes": max_output_bytes},
+            daemon=True,
+        )
+        stderr_thread = threading.Thread(
+            target=_drain_pipe,
+            args=(process.stderr, stderr_buffer, stderr_total),
+            kwargs={"max_bytes": max_output_bytes},
+            daemon=True,
+        )
+        threads = (stdout_thread, stderr_thread)
+        for thread in threads:
+            thread.start()
         try:
-            returncode=process.wait(timeout=timeout)
+            returncode = process.wait(timeout=timeout)
         except subprocess.TimeoutExpired:
             _terminate_process_tree(process)
-            try: process.wait(timeout=1)
+            try:
+                process.wait(timeout=1)
             except subprocess.TimeoutExpired:
-                process.kill();process.wait()
-            _finish_drainers(process,threads)
+                process.kill()
+                process.wait()
+            _finish_drainers(process, threads)
             raise
-        _finish_drainers(process,threads)
+        _finish_drainers(process, threads)
         return {
-            "argv":argv,"cwd":str(cwd),"returncode":returncode,
-            "stdout":_render_process_output(stdout_buffer,stdout_total[0],_MAX_PROCESS_OUTPUT_BYTES),
-            "stderr":_render_process_output(stderr_buffer,stderr_total[0],_MAX_PROCESS_OUTPUT_BYTES),
-            "sandboxed":False,
+            "argv": argv,
+            "cwd": str(cwd),
+            "returncode": returncode,
+            "stdout": _render_process_output(stdout_buffer, stdout_total[0], max_output_bytes),
+            "stderr": _render_process_output(stderr_buffer, stderr_total[0], max_output_bytes),
+            "sandboxed": False,
         }
     raise AssertionError(capability)
 
 
 def service_local_request(workspace: ResearchWorkspace, request_id: str):
-    request=workspace.load_request(request_id)
+    request = workspace.load_request(request_id)
     if request.capability not in _LOCAL_CAPABILITIES:
         raise KeyError(f"{request.capability} requires an external host")
     try:
@@ -309,11 +344,30 @@ def service_local_request(workspace: ResearchWorkspace, request_id: str):
             executor="orion-harness-local",
         )
     except Exception as exc:
-        return workspace.ingest_result(request_id,success=False,error=f"{type(exc).__name__}: {exc}",executor="orion-harness-local")
-    if request.capability in {"SHELL","PYTHON"}:
-        returncode=output.get("returncode") if isinstance(output,Mapping) else None
-        if not isinstance(returncode,int):
-            return workspace.ingest_result(request_id,success=False,output=output,error="local process result is missing an integer returncode",executor="orion-harness-local")
-        if returncode!=0:
-            return workspace.ingest_result(request_id,success=False,output=output,error=f"local process exited with status {returncode}",executor="orion-harness-local")
-    return workspace.ingest_result(request_id,success=True,output=output,executor="orion-harness-local")
+        return workspace.ingest_result(
+            request_id,
+            success=False,
+            error=f"{type(exc).__name__}: {exc}",
+            executor="orion-harness-local",
+        )
+    if request.capability in {"SHELL", "PYTHON"}:
+        returncode = output.get("returncode") if isinstance(output, Mapping) else None
+        if not isinstance(returncode, int):
+            return workspace.ingest_result(
+                request_id,
+                success=False,
+                output=output,
+                error="local process result is missing an integer returncode",
+                executor="orion-harness-local",
+            )
+        if returncode != 0:
+            return workspace.ingest_result(
+                request_id,
+                success=False,
+                output=output,
+                error=f"local process exited with status {returncode}",
+                executor="orion-harness-local",
+            )
+    return workspace.ingest_result(
+        request_id, success=True, output=output, executor="orion-harness-local"
+    )

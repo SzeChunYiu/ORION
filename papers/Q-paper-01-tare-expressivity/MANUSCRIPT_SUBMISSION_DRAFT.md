@@ -2,7 +2,19 @@
 
 **Submission-oriented draft — 2026-08-23**
 
-This draft is the current publication-facing Q1 version. It incorporates the final closed ORION-Q results and the analytic proof derivation in `HUMAN_PROOF_R6S_2026-08-22.md`. Earlier manuscript versions remain in the directory as historical snapshots. TARE and all donor-owned primitives are explicitly credited; no internal authority string is treated as external novelty certification.
+> **HISTORICAL, NON-CANONICAL DRAFT.** The current Q1 publication contract
+> names `MANUSCRIPT_V3_REFINED.md` and `CLAIM_LEDGER_V3.md`, not this file.
+> Section 3's abstract constraint-rank theorem and conditional support-`s+1`
+> corollary were never admitted by the V2/V3 claim ledgers. They remain an
+> internal analytic proposal only: no larger-Tag TARE grammar is shown here to
+> satisfy deletion dominance, applications beyond frozen R6M are
+> `CANNOT_CHECK`, and this draft grants no novelty, publication, peer-review,
+> external scientific, or physical-quantum authority.
+> Any later MultiTag generalization is owned separately by
+> `papers/theory-A-multitag-constraint-rank/` and its own claim ledger; it is
+> not back-ported into Q1.
+
+This file is retained as a historical research draft. It incorporates the final closed ORION-Q results and the analytic proof derivation in `HUMAN_PROOF_R6S_2026-08-22.md`. TARE and all donor-owned primitives are explicitly credited; no internal authority string is treated as external novelty certification.
 
 ---
 

@@ -27,5 +27,5 @@ Full ORION records 13 O1 route-stop FP in 1950 route-stop events (0.0067) and 0 
 
 A route-level FP does **not** automatically become a task-level false closure: O4 keeps unresolved unavailable-route evidence open, and full ORION may return `CANNOT_CHECK` instead of asserting task completeness. This is the intended separation between route stopping and task stopping.
 
-Source record digest: `27b8e55b68a65906fe0971ed2f24a814d31d66a1423d38782bb121c7f06e1525`  
-Source rich-artifact hash-list digest: `ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe`
+Source record digest: `c6430a651810f8e7a794aa0c1091794963c43389a1e5080c02c2807a2fc2c574`  
+Source rich-artifact hash-list digest: `d851f168faaf50969198180ecc61a6ac361c72556ceeb992f011af307dd00c37`

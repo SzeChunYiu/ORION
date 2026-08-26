@@ -23,7 +23,6 @@ from orion.programme.content_binding_coverage import (
     inspect_paper,
 )
 from orion.programme.manifest_membership import (
-    ManifestMembershipNotClosed,
     assess_drift,
     assess_membership,
     audit_outcome,
@@ -74,7 +73,7 @@ def test_the_shipped_binding_is_clean_and_its_membership_is_closed(audit) -> Non
     ``FAIL`` is membership --- the enrolled set was chosen by ``included_files()``
     inside the lane the manifest protects, and twenty files inside the same
     declared scope were named by no digest a gate opens. Scope and enrolment now
-    agree at 571, so both verdicts pass and the closure requirement no longer
+    agree at 573, so both verdicts pass and the closure requirement no longer
     raises.
     """
 
@@ -214,10 +213,10 @@ def test_the_declared_scope_can_never_be_narrower_than_the_generator_enrols() ->
 
 
 def test_the_published_count_is_mostly_a_vendored_lean_checkout() -> None:
-    """A passing membership verdict is still not 571 files of P10.
+    """A passing membership verdict is still not 573 files of P10.
 
     463 are Mathlib source and 8 are an ASlib scenario --- material the lane did
-    not write. 518 of the 571 are not in the lane directory at all: they belong to
+    not write. 520 of the 573 are not in the lane directory at all: they belong to
     the two retired ``paper-xx-`` predecessors, whose grade the superiority ledger
     records as discharging no P10-U terminal. Closing the membership gap enlarged
     the authored count from 79 to 96, because seventeen of the newly enrolled
@@ -228,14 +227,14 @@ def test_the_published_count_is_mostly_a_vendored_lean_checkout() -> None:
     origin = shipped.manifest_entry_origin(REPO_ROOT)
     assert origin["vendored_lean_corpus"] == 463
     assert origin["vendored_aslib_scenario"] == 8
-    assert origin["outside_the_lane_directory"] == 518
+    assert origin["outside_the_lane_directory"] == 520
     assert origin["shared_lane"] == 49
     authored = sum(
         origin[name]
         for name in ("p10_predecessor_authored", "p9_predecessor_authored", "shared_lane",
                      "other_papers")
     )
-    assert authored == 96
+    assert authored == 98
 
 
 def test_the_active_p10_identity_carries_no_binding_at_all() -> None:
@@ -281,7 +280,7 @@ def test_the_cli_report_carries_both_denominators_and_no_longer_blocks() -> None
 
     report = audit_p10_publication_binding(REPO_ROOT)
     assert report["outcome"] == "PASS"
-    assert report["files_enrolled"] == 571
+    assert report["files_enrolled"] == 573
     assert report["files_unenrolled"] == 0
     assert report["files_in_scope"] == report["files_enrolled"] + report["files_unenrolled"]
     assert report["drift_verdict"]["outcome"] == "PASS"

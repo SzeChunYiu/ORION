@@ -1,0 +1,151 @@
+{
+  "audit_basis": {
+    "git_sha": "5b6363e4a402dd6c6feb10a6150b531d90b01691",
+    "issue_1329_body": {
+      "bytes": 9196,
+      "retrieved_at": "2026-08-25T15:52:22Z",
+      "sha256": "5d875643d74dfdc6c28551b2ac06305e71690142baa058c98dc6a9b29415f8b2"
+    }
+  },
+  "audited_sources": {
+    "development/donor-envelope-core-v1/P1_SAGE_ENVELOPE_SPEC.md": {
+      "bytes": 5583,
+      "sha256": "4763407f2fb743bbf0583882682d7993d080af2c339641a2e2cdc7ddf5431da9"
+    },
+    "research/orion-discovery-v3/AI_EXECUTOR_PROMPT_V1.md": {
+      "bytes": 3145,
+      "sha256": "7a237dbb7b493ba70119f7465eae31e5909472cbaac9af5665499dee2ee21094"
+    },
+    "research/orion-discovery-v3/ATOMIC_NOVELTY_AND_SUPERIORITY_MAP_V1.json": {
+      "bytes": 15505,
+      "sha256": "115c8963c170b707c4c36c15c9fc40993d125a47354c689ef3565e21ebff2ddf"
+    },
+    "research/orion-discovery-v3/EXECUTION_BACKLOG_V1.json": {
+      "bytes": 10478,
+      "sha256": "756ccc89299cc912d75ddaca7902237265262a4323a523dd483e0c0b33da6884"
+    },
+    "research/orion-discovery-v3/HUMAN_DISCOVERY_PARENT_SOURCE_MAP_V1.json": {
+      "bytes": 9652,
+      "sha256": "adb995bb7036e5ec0f0464a8761f7d16f463aa47b8bd154199982c290ae3e2d7"
+    },
+    "scripts/run_frontier_dominance_census_v1.py": {
+      "bytes": 8734,
+      "sha256": "3e108813675227d45b334e967ee7a93156a9ffd4977340e9d5d8aa973276d954"
+    },
+    "src/orion/knowledge/donor_envelope.py": {
+      "bytes": 10937,
+      "sha256": "9932ca7c02a75abe5ae6decdad5a1bd46d822c63f8021269c60c45f2f03fb8e7"
+    }
+  },
+  "available_non_authorizing_mechanics": [
+    {
+      "artifact": "src/orion/knowledge/donor_envelope.py",
+      "scope": "fail-closed evidence-class gate; it does not execute any V3 donor system"
+    },
+    {
+      "artifact": "scripts/run_frontier_dominance_census_v1.py",
+      "scope": "finite authored reference profiles; it is not an empirical donor comparison"
+    },
+    {
+      "artifact": "development/donor-envelope-core-v1/P1_SAGE_ENVELOPE_SPEC.md",
+      "scope": "theory and hostile-test specification explicitly carrying no empirical or novelty authority"
+    }
+  ],
+  "external_novelty": "CANNOT_CHECK",
+  "job_id": "V3-DONOR-ENVELOPE-01",
+  "observed_donor_scope": {
+    "executable_donor_records_registered_to_job": 0,
+    "ideal_donor_product_records_registered_to_job": 0,
+    "status": "TAXONOMY_ONLY_FOR_THIS_JOB",
+    "taxonomy_label_count": 75,
+    "taxonomy_source_sha256": "115c8963c170b707c4c36c15c9fc40993d125a47354c689ef3565e21ebff2ddf"
+  },
+  "observed_task_scope": {
+    "atomic_map_count": 25,
+    "atomic_map_ids": [
+      "KNOWLEDGE_ACQUISITION",
+      "PROBLEM_DECOMPOSITION",
+      "TYPED_KNOWLEDGE_WEB",
+      "DONOR_COMPOSITION",
+      "STRUCTURAL_TRANSFER",
+      "REPRESENTATION_CHANGE",
+      "ONTOLOGY_AND_QUESTION_INVENTION",
+      "MECHANISM_CONSTRUCTION",
+      "METHOD_LANGUAGE_EXPANSION",
+      "EXPERIMENT_AND_INSTRUMENT_DESIGN",
+      "HYPOTHESIS_EVOLUTION",
+      "AUTONOMOUS_DOMAIN_ANALYSIS",
+      "THEOREM_IDENTIFYING_HARNESS",
+      "PROPOSAL_ORIGIN_AND_CHRONOLOGY",
+      "PROOF_AND_EXPERIMENT_ECONOMY",
+      "RESPONSIBILITY_DIAGNOSIS",
+      "NUMERICAL_OUTCOME_IDENTITY",
+      "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+      "EXECUTION_SCIENCE_NONINTERFERENCE",
+      "NEGATIVE_HISTORY_AND_REOPENING",
+      "SELF_APPLICATION_AND_ADOPTION",
+      "DISCOVERY_TRIANGULATION",
+      "QUANTUM_STACK_RESPONSIBILITY",
+      "OPEN_MORPHOLOGY",
+      "FRONTIER_DOMINANCE"
+    ],
+    "issue_1329_declared_atom_count": 24,
+    "status": "CONFLICTING_DENOMINATOR"
+  },
+  "paper_authority_delta": "NONE",
+  "readiness": "BLOCKED_SPECIFICATION",
+  "remaining_blockers": [
+    "TASK_DENOMINATOR_CONFLICT_ISSUE_24_ATOMS_MAP_25",
+    "EXECUTABLE_DONOR_ARTIFACTS_AND_INTERFACES_MISSING",
+    "IDEAL_DONOR_PRODUCT_COMPOSITION_ARTIFACT_MISSING",
+    "CANDIDATE_AND_INPUT_BUNDLE_ARTIFACTS_MISSING",
+    "EVALUATOR_AND_TASK_MANIFEST_MISSING",
+    "MATCHED_INFORMATION_TOOL_AND_VECTOR_RESOURCE_CONTRACTS_MISSING",
+    "HELDOUT_COUNTERFACTUAL_PROSPECTIVE_PARTITIONS_MISSING",
+    "JOB_SPECIFIC_TERMINALS_NOT_FROZEN"
+  ],
+  "required_protocol_contract": {
+    "content_bound_inputs": [
+      "runner_sha256",
+      "source_archive_sha256",
+      "input_bundle_sha256",
+      "task_manifest_sha256",
+      "candidate_artifact_sha256",
+      "evaluator_sha256",
+      "donor_registry_sha256"
+    ],
+    "donor_record_fields": [
+      "donor_id",
+      "artifact_sha256",
+      "interface_contract_sha256"
+    ],
+    "ideal_product_fields": [
+      "product_id",
+      "component_donor_ids",
+      "composition_runner_sha256",
+      "interface_contract_sha256"
+    ],
+    "matched_contract_fields": [
+      "information_contract_sha256",
+      "tool_contract_sha256",
+      "resource_contract_sha256",
+      "resource_dimensions",
+      "resource_order",
+      "scalarization",
+      "same_candidate_visible_information",
+      "same_tool_access",
+      "donor_first_refusal",
+      "frozen_before_outcomes",
+      "outcomes_accessed"
+    ],
+    "terminal_routes": [
+      "positive",
+      "adverse",
+      "cannot_check"
+    ]
+  },
+  "runnable_on_lunarc": false,
+  "schema": "orion.discovery.v3.donor-envelope-specification-audit.v1",
+  "scientific_authority": "NONE",
+  "terminal": "CANNOT_FREEZE_PROTOCOL__SPECIFICATION_INCOMPLETE"
+}

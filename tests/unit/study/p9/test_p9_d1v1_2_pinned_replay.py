@@ -7,10 +7,12 @@ numerical stack and lands on the other attractor. The same rule applies here.
 
 What this file asserts instead:
 
-* the pinned replay's CONTRACT, on whichever build runs it -- the numeric canary
-  predicts the observed attractor, the dataset content digest is guarded, the
-  knife-edge band is the historical 32, and the attractor is one of the two
-  known values (a third value means something new is going on and must fail);
+* the pinned replay's CONTRACT, on whichever build runs it -- a known numeric
+  canary predicts the observed attractor, while an unregistered canary fails
+  closed with exit 5 instead of being classified after outcome access; the
+  dataset content digest is guarded, the knife-edge band is the historical 32,
+  and the attractor is one of the two known values (a third value means
+  something new is going on and must fail);
 * the two committed receipts R1/R2 are genuinely two clean replays: identical
   deterministic cores, honestly recomputed identical digests, per-case equality
   with the archived result on all four arms;
@@ -48,8 +50,8 @@ def _load_module(name: str, path: Path):
 
 
 @pytest.fixture(scope="module")
-def replay() -> dict:
-    """One pinned replay in this test process's build (~5 s)."""
+def replay_process() -> subprocess.CompletedProcess[str]:
+    """One pinned replay process in this test process's build (~5 s)."""
     proc = subprocess.run(
         [sys.executable, str(TOP_TIER / "replay_d1v1_2_pinned.py")],
         capture_output=True,
@@ -59,29 +61,17 @@ def replay() -> dict:
     )
     if proc.returncode == 3:
         pytest.skip("pinned replay CANNOT_CHECK in this environment")
-    if proc.returncode == 5:
-        # 5 is a DESIGNED outcome, not a crash: the numeric canary did not
-        # predict the attractor this build lands on. The replay still emits a
-        # complete receipt on stdout before returning it.
-        #
-        # Asserting returncode == 0 turned that finding into a fixture ERROR
-        # that took the whole module down and reported it as an exception.
-        # Skipping instead would have been just as wrong in the other
-        # direction: it would silence the canary contract on exactly the
-        # builds where it fails.
-        #
-        # So the payload is returned. The incoherence then surfaces where it
-        # belongs -- as a failure of
-        # test_the_canary_predicts_the_attractor_on_this_build, which asserts
-        # canary_attractor == observed_attractor -- while the dataset-digest
-        # and knife-edge tests stay meaningful, because both measure things
-        # the replay recorded regardless of which attractor it reached.
-        return json.loads(proc.stdout)
-    assert proc.returncode == 0, (
+    assert proc.returncode in (0, 5), (
         f"pinned replay exited {proc.returncode} (0=coherent, 3=cannot-check, "
-        f"4=attractor mismatch, 5=incoherent); stderr: {proc.stderr[-2000:]}"
+        f"5=unknown-canary/third-attractor fail-closed); stderr: {proc.stderr[-2000:]}"
     )
-    return json.loads(proc.stdout)
+    return proc
+
+
+@pytest.fixture(scope="module")
+def replay(replay_process: subprocess.CompletedProcess[str]) -> dict:
+    """The complete receipt emitted for a coherent or fail-closed replay."""
+    return json.loads(replay_process.stdout)
 
 
 def _receipt(name: str) -> dict:
@@ -91,10 +81,21 @@ def _receipt(name: str) -> dict:
 # --- the contract, on whichever build executes -------------------------------
 
 
-def test_the_canary_predicts_the_attractor_on_this_build(replay: dict) -> None:
+def test_the_canary_predicts_the_attractor_on_this_build(
+    replay: dict, replay_process: subprocess.CompletedProcess[str]
+) -> None:
+    """Require a correct known prediction or the executable's UNKNOWN stop."""
     core = replay["core"]
-    assert core["canary_attractor"] == core["observed_attractor"]
     assert core["observed_attractor"] in ("ARCHIVE_MATCH", "DIVERGENT_SIDE")
+    if core["canary_attractor"] == "UNKNOWN":
+        assert replay_process.returncode == 5
+        assert replay["checks"]["canary_predicted_the_observed_attractor"] is False
+        return
+
+    assert core["canary_attractor"] in ("ARCHIVE_MATCH", "DIVERGENT_SIDE")
+    assert core["canary_attractor"] == core["observed_attractor"]
+    assert replay_process.returncode == 0
+    assert replay["checks"]["canary_predicted_the_observed_attractor"] is True
 
 
 def test_the_dataset_content_digest_is_guarded(replay: dict) -> None:

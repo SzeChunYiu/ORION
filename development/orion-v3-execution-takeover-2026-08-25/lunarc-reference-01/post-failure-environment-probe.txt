@@ -1,0 +1,13 @@
+post_failure_login_PYTHONPATH=/sw/easybuild_milan/software/JupyterNotebook/7.2.0-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/JupyterLab/4.2.0-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/jupyter-server/2.14.0-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/BeautifulSoup/4.12.2-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/tornado/6.4-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/PyZMQ/25.1.2-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/PyYAML/6.0.1-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/IPython/8.17.2-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/jedi/0.19.1-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/lxml/4.9.3-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/Python-bundle-PyPI/2023.10-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/virtualenv/20.24.6-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/cryptography/41.0.5-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/cffi/1.15.1-GCCcore-13.2.0/lib/python3.11/site-packages:/sw/easybuild_milan/software/Python/3.11.5-GCCcore-13.2.0/easybuild/python
+private_environment_packages:
+cffi==2.1.1
+cryptography==50.0.0
+pip==23.2.1
+pluggy==1.6.0
+pytest==9.1.1
+setuptools==65.5.0
+private_environment_imports:
+pytest ModuleSpec(name='pytest', loader=<_frozen_importlib_external.SourceFileLoader object at 0x7f2fd6d0b550>, origin='/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a/private-venv/lib/python3.11/site-packages/pytest/__init__.py', submodule_search_locations=['/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a/private-venv/lib/python3.11/site-packages/pytest'])
+pygments None
+cryptography ModuleSpec(name='cryptography', loader=<_frozen_importlib_external.SourceFileLoader object at 0x7f2fd6d09890>, origin='/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a/private-venv/lib/python3.11/site-packages/cryptography/__init__.py', submodule_search_locations=['/projects/hep/fs10/scratch/scyiu/orion_v3_takeover/refcheck/40595c703bdd87de96b8b0e0779b2b153ce5aae2c0fce7d3f2b66a9fe28fb35a/private-venv/lib/python3.11/site-packages/cryptography'])
+defusedxml None

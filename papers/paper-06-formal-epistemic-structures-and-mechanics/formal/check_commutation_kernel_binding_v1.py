@@ -27,8 +27,7 @@ FILES = (
     "papers/paper-06-formal-epistemic-structures-and-mechanics/submission/AIJ_MANUSCRIPT.tex",
     "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md",
 )
-MANIFEST = "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json"
-SUMS = "papers/paper-06-formal-epistemic-structures-and-mechanics/SHA256SUMS"
+MANIFEST = "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json"
 
 
 def _sha256(path: Path) -> str:
@@ -100,21 +99,24 @@ def audit(root: Path = ROOT) -> dict[str, object]:
                 errors.append(f"{path} missing bound semantics: {phrase}")
 
     manifest = json.loads((root / MANIFEST).read_text(encoding="utf-8"))
-    bound_paths = {row["path"] for row in manifest.get("bound_files", [])}
-    required_bound = {path for path in FILES if path.startswith("papers/paper-06-")}
+    recorded_hashes = {
+        row["path"]: row["sha256"]
+        for row in manifest.get("bound_files", [])
+        if isinstance(row, dict)
+        and isinstance(row.get("path"), str)
+        and isinstance(row.get("sha256"), str)
+    }
+    bound_paths = set(recorded_hashes)
+    required_bound = set(FILES)
     for path in sorted(required_bound - bound_paths):
         errors.append(f"content manifest omits contract artifact: {path}")
     if manifest.get("subject_commit_status") != "BOUND":
         errors.append("content manifest subject_commit_status is not BOUND")
 
-    recorded_sums = {}
-    for line in (root / SUMS).read_text(encoding="utf-8").splitlines():
-        digest, path = line.split("  ", 1)
-        recorded_sums[path] = digest
     for path in sorted(required_bound):
         actual = _sha256(root / path)
-        if recorded_sums.get(path) != actual:
-            errors.append(f"SHA256SUMS mismatch or omission: {path}")
+        if recorded_hashes.get(path) != actual:
+            errors.append(f"V2 content-manifest mismatch or omission: {path}")
     return {
         "schema": "orion.p6.commutation-kernel-binding.v1",
         "contract_id": CONTRACT_ID,

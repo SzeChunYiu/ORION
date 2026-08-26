@@ -167,13 +167,17 @@ def _p2() -> tuple[bool, bool, str]:
         seed=1,
         run_manifest_hash="c" * 64,
     )
-    positive = local.record["metrics"]["premature_task_closure"] == 0.0
-    route_audits = local.artifact["evaluation"]["route_stop_audits"]
+    local_evaluation = local.artifact["evaluation"]
+    route_audits = local_evaluation["route_stop_audits"]
     positive = (
-        positive
+        local.record["metrics"]["premature_task_closure"] == 0.0
+        and local_evaluation["closure_declared"] is False
+        and local_evaluation["premature_closure"] is False
         and bool(route_audits)
-        and route_audits[0]["false_positive"] is False
-        and route_audits[0]["cannot_check"] is False
+        and all(
+            audit["false_positive"] is False and audit["cannot_check"] is False
+            for audit in route_audits
+        )
     )
 
     global_claim = execute_p2(
@@ -183,12 +187,22 @@ def _p2() -> tuple[bool, bool, str]:
         seed=1,
         run_manifest_hash="c" * 64,
     )
-    task_evaluation = global_claim.artifact["evaluation"]
+    global_evaluation = global_claim.artifact["evaluation"]
+    oracle_task_residual = global_evaluation["oracle"][
+        "task_residual_discoverable_within_budget"
+    ][task.task_id][global_claim.record["system_id"]]
+    task_residual = global_evaluation["metrics"][
+        "task_residual_discoverable_within_budget"
+    ]
     fail_closed = (
         global_claim.record["status"] == "FAIL"
         and global_claim.record["failure_class"] == "premature_closure"
-        and task_evaluation["premature_closure"] is True
-        and task_evaluation["metrics"]["task_residual_discoverable_within_budget"] > 0
+        and global_evaluation["closure_declared"] is True
+        and global_evaluation["premature_closure"] is True
+        and global_evaluation["closure_cannot_check"] is False
+        and global_evaluation["authority_flags"]["closed_task_as_complete"] is True
+        and oracle_task_residual == task_residual
+        and task_residual > 0
     )
     return positive, fail_closed, "live P2 discovery suite route-stop/task-stop evaluator"
 

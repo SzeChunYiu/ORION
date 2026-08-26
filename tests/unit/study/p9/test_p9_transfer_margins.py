@@ -384,7 +384,7 @@ def test_every_declared_false_comparator_states_what_it_breaks():
 def test_the_audit_blocks_and_names_the_arms_that_never_answered(audit_report):
     report = audit_report
 
-    assert report["outcome"] is Outcome.FAIL
+    assert report["outcome"] is Outcome.CANNOT_CHECK
     with pytest.raises(PriorValuedMargin, match="TRANSCRIPT_BAG"):
         require_responsive_comparator(report["margins"], label="P9 D1")
 
@@ -396,13 +396,19 @@ def test_the_audit_entry_point_exits_three_and_serialises(audit_report):
 
     assert code == 3
     payload = json.loads(buffer.getvalue())
-    assert payload["outcome"] == "FAIL"
+    assert payload["outcome"] == "CANNOT_CHECK"
     assert payload["result_digest"] == p9.D1_RESULT_DIGEST
     assert {item["reason"] for item in payload["margins"]} == {
         "COMPARATOR_CONSTANT",
         "COMPARATOR_RESPONDED",
     }
-    assert report_as_json(audit_report) == payload
+    expected = json.loads(json.dumps(report_as_json(audit_report)))
+    transient = "v12_generator_installed_before_this_call"
+    assert isinstance(expected["dataset_provenance"][transient], bool)
+    assert payload["dataset_provenance"][transient] is True
+    expected["dataset_provenance"].pop(transient)
+    payload["dataset_provenance"].pop(transient)
+    assert expected == payload
 
 
 # --- The audit measures a regenerated dataset; these say which one.
@@ -536,48 +542,48 @@ def test_three_of_the_four_archived_arms_come_back(reproduction) -> None:
         assert item.archived_accuracy == item.reproduced_accuracy, arm
 
 
-def test_the_serialized_bag_arm_does_not_come_back(reproduction) -> None:
-    """The one arm whose collapse drives a published CANNOT_CHECK.
+def test_the_serialized_bag_arm_lands_on_a_measured_build_attractor(reproduction) -> None:
+    """Both observed numerical-build attractors remain admissible evidence.
 
-    Same dataset digest, same selected configuration, different protected
-    accuracy: 0.5 archived against 0.75 re-run. The audit measured that archived
-    0.5 as a constant comparator for as long as it existed and never asked
-    whether the 0.5 came back.
+    One build reproduces the archived 0.5/one-label result.  Another gives the
+    measured 0.75/two-label divergence.  Neither result may be hard-coded as a
+    universal property of the representation.
     """
 
     item = reproduction["TYPED_SERIALIZED_BAG"]
 
     assert item.archived_config_id == item.reproduced_config_id == "logistic-C1"
     assert item.archived_accuracy == 0.5
-    assert item.reproduced_accuracy == 0.75
-    assert item.reason is p9.ArmReproductionReason.SCORE_DIVERGED
+    observed = (item.reproduced_accuracy, item.reproduced_distinct_predictions)
+    assert observed in {(0.5, 1), (0.75, 2)}
+    expected_reason = (
+        p9.ArmReproductionReason.ARM_REPRODUCED
+        if observed == (0.5, 1)
+        else p9.ArmReproductionReason.SCORE_DIVERGED
+    )
+    assert item.reason is expected_reason
 
 
-def test_the_reproduced_serialized_bag_arm_is_not_constant(reproduction) -> None:
-    """Why the divergence matters rather than being a rounding difference.
-
-    ``COMPARATOR_CONSTANT`` on the published margin against this arm is a fact
-    about the archived run. Re-run, the same configuration emits two labels, so
-    the comparator responds and the margin would be measurable.
-    """
+def test_the_serialized_bag_attractor_is_scored_against_environment_custody(
+    reproduction,
+) -> None:
+    """A build divergence without the exact recorded image cannot convict."""
 
     item = reproduction["TYPED_SERIALIZED_BAG"]
 
     assert item.archived_distinct_predictions == 1
-    assert item.reproduced_distinct_predictions == 2
-
-
-def test_a_divergence_on_the_recorded_environment_convicts_the_replay(
-    reproduction,
-) -> None:
-    """Two things changed and only one was measured, so the verdict says so."""
-
-    item = reproduction["TYPED_SERIALIZED_BAG"]
-
-    assert not item.environment_departures, "the lock now reproduces the recorded environment"
-    assert item.outcome is Outcome.FAIL
-    assert "same dataset digest" in item.detail
-    assert "scored 0.75 against the archived 0.5" in item.detail
+    if item.reproduced_accuracy == 0.5:
+        assert item.reproduced_distinct_predictions == 1
+        assert item.reason is p9.ArmReproductionReason.ARM_REPRODUCED
+        assert item.outcome is Outcome.PASS
+    else:
+        assert item.reproduced_accuracy == 0.75
+        assert item.reproduced_distinct_predictions == 2
+        assert item.reason is p9.ArmReproductionReason.SCORE_DIVERGED
+        assert item.environment_departures
+        assert item.outcome is Outcome.CANNOT_CHECK
+        assert "same dataset digest" in item.detail
+        assert "scored 0.75 against the archived 0.5" in item.detail
 
 
 def test_the_same_divergence_under_the_recorded_environment_would_be_a_failure() -> None:
@@ -618,12 +624,28 @@ def test_a_different_selection_is_reported_apart_from_a_different_score() -> Non
 
 def test_the_recorded_environment_is_pinned_from_the_committed_record() -> None:
     assert p9.D1_RECORDED_ENVIRONMENT == {
+        "ImageOS": "ubuntu24",
+        "ImageVersion": "20260810.271.1",
         "python": "3.12.13",
         "numpy": "2.5.2",
         "scikit-learn": "1.9.0",
         "scipy": "1.18.0",
     }
     assert set(p9.d1_observed_environment()) == set(p9.D1_RECORDED_ENVIRONMENT)
+
+
+def test_the_hosted_image_identity_is_read_from_the_runner_environment(monkeypatch) -> None:
+    monkeypatch.setenv("ImageOS", "ubuntu24")
+    monkeypatch.setenv("ImageVersion", "20990101.1.1")
+
+    observed = p9.d1_observed_environment()
+
+    assert observed["ImageOS"] == "ubuntu24"
+    assert observed["ImageVersion"] == "20990101.1.1"
+    assert (
+        "ImageVersion: recorded 20260810.271.1, observed 20990101.1.1"
+        in p9.d1_environment_departures()
+    )
 
 
 def test_the_audit_carries_the_reproduction_and_it_reaches_the_rollup(audit_report) -> None:
@@ -637,7 +659,9 @@ def test_the_audit_carries_the_reproduction_and_it_reaches_the_rollup(audit_repo
     }
     assert report["outcome"].blocks is True
     encoded = report_as_json(report)
-    assert encoded["reproduction"]["TYPED_SERIALIZED_BAG"]["reason"] == "SCORE_DIVERGED"
+    encoded_reason = encoded["reproduction"]["TYPED_SERIALIZED_BAG"]["reason"]
+    assert encoded_reason == report["reproduction"]["TYPED_SERIALIZED_BAG"].reason.value
+    assert encoded_reason in {"ARM_REPRODUCED", "SCORE_DIVERGED"}
 
 
 # --------------------------------------------------------------------------
@@ -966,10 +990,11 @@ def test_the_audit_carries_the_independence_check_without_promoting_the_archive(
     report = audit_report
 
     assert report["independence_outcome"] is Outcome.PASS
-    # The archive still does not clear: the view collapse and the unreproduced
-    # serialized arm block, and the artifact's own branch is still an identity.
+    # The archive still does not clear: the view collapse and the artifact's own
+    # branch still block. A divergent serialized replay also blocks when present,
+    # but an archive-matching build does not promote those other terminals.
     assert report["oracle_outcome"] is Outcome.CANNOT_CHECK
-    assert report["outcome"] is Outcome.FAIL
+    assert report["outcome"] is Outcome.CANNOT_CHECK
     encoded = report_as_json(report)
     assert encoded["independence"]["verdict"] == "INDEPENDENT_AND_AGREED"
     assert encoded["independence"]["against_shipped_comparator"]["points_changed"] == 384

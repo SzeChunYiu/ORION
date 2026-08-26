@@ -1,0 +1,43 @@
+{
+  "authority_ceiling": "ENGINEERING_REFERENCE_CHECK_ONLY",
+  "checks": {
+    "compileall": 0,
+    "finite_census": 0,
+    "finite_receipt_byte_comparison": 0,
+    "frozen_protocol_hash": 0,
+    "hostile_tests": 0,
+    "private_environment": 0,
+    "runner_hash": 0,
+    "structure": 0,
+    "takeover_manifest": 0
+  },
+  "execution_location": "LOCAL_MAC_DRYRUN",
+  "external_novelty": "CANNOT_CHECK",
+  "job_id": "V3-ENGINEERING-REFERENCE-02",
+  "paper_authority_delta": "NONE",
+  "preserved_evidence": {
+    "development/orion-v3-execution-takeover-2026-08-25/local-reference-02/ENGINEERING_REFERENCE_RECEIPT.json": {
+      "bytes": 1313,
+      "sha256": "6d3fca9ad29c502da6d8ff498f412d8e10dcc1ead3ec2d143a082fc2fa3fa548"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/local-reference-02/EXECUTION_PROTOCOL.json": {
+      "bytes": 1363,
+      "sha256": "71d6541cf4e7ca1e5235abc522e3467ac901bc1097366414a5689124e6733e5b"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/local-reference-02/PACKAGE_IDENTITY.json": {
+      "bytes": 750,
+      "sha256": "96fb5c0226821cd214b065bfd0db34d4d78c6b3f2c1db32da4de1024d3d59241"
+    },
+    "development/orion-v3-execution-takeover-2026-08-25/local-reference-02/run_reference.sh": {
+      "bytes": 4310,
+      "sha256": "47d4bb0fa80ac114fd02450f7e72a0665658e1330b8e2836d4ba9c5d92006172"
+    }
+  },
+  "protocol_sha256": "8f382dd2bf8d5ae78a55e495d01d441a503d4223b0fd19942b2f06dcbf610eb6",
+  "remote_submission_status": "NOT_SUBMITTED",
+  "scientific_authority": "NONE",
+  "source_git_sha": "fc1d46c5f63cb992dcf71c765475010f56a3e9fa",
+  "submission_key": "e394eb8a0fe2f46828990cd5fce8293bfdd39cc09fea83f06d4eb5031e47b358",
+  "successor_reason": "The local dry run exposed that the runner verified the source archive against a mutable sidecar rather than directly against inputs.source_archive_sha256 in the frozen protocol. Reference 02 remains immutable and was not submitted; Reference 03 closes that identity boundary under a new protocol.",
+  "terminal": "LOCAL_DRYRUN_ENGINEERING_REFERENCE_GREEN_NOT_SUBMITTED"
+}

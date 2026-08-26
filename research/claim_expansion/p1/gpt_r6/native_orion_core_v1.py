@@ -127,7 +127,23 @@ class FrozenNativeProviderHost:
                         ]
                     }
                 )
-            return json.dumps({"queries": []})
+            # The typed reasoner contract rejects an empty search plan.  The
+            # root diagnostic still receives no evidence because its retrieval
+            # provider is empty, but it must exercise SEARCH before the
+            # fail-closed ABSORB/RECONSTRUCT/DETECT/DIAGNOSE path can run.
+            return json.dumps(
+                {
+                    "queries": [
+                        {
+                            "query_id": "p1-r6-root-query",
+                            "text": "frozen P1-R6 root diagnostic context",
+                            "route_id": "p1-r6-native-root-route",
+                            "route_kind": "CURRENT_VOCABULARY",
+                            "domain_hint": "p1-r6",
+                        }
+                    ]
+                }
+            )
 
         if task == "interpret":
             item = payload["retrieved_item"]

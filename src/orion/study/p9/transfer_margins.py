@@ -45,16 +45,15 @@ reason as well.
 
 The margins above are read off the archive rather than re-run, which raises the
 question of whether the archive comes back. :func:`d1_reproduction_report` calls
-the same entry point the official execution called and compares every arm. Three
-of the four return their selected configuration and their protected accuracy
-exactly. ``TYPED_SERIALIZED_BAG`` does not: same dataset digest, same selected
-``logistic-C1``, protected accuracy 0.75 against the archived 0.5 --- and where
-the archived arm emitted one label on all 128 protected cases, the re-run emits
-two. So ``COMPARATOR_CONSTANT`` on the published margin against that arm is a
-fact about the archived run rather than about the representation. The recorded
-execution environment is not this one, so the verdict is ``CANNOT_CHECK`` with
-the departures named; under the recorded environment the same divergence would
-be a ``FAIL``.
+the same entry point the official execution called and compares every arm. Two
+numerical-build attractors have been observed for ``TYPED_SERIALIZED_BAG`` with
+the same dataset digest and selected ``logistic-C1``: the archived 0.5 with one
+protected label, and 0.75 with two. The former is ``ARM_REPRODUCED``; the latter
+is ``SCORE_DIVERGED``. Neither is promoted into a universal property of the
+representation. In particular, a divergent re-run without the exact recorded
+hosted-runner image is ``CANNOT_CHECK`` with the departure named; the synthetic
+same-custody branch remains a ``FAIL``. ``COMPARATOR_CONSTANT`` on the published
+margin is therefore a fact about the archived run, not representation evidence.
 
 Everything above is measured on a *regenerated* dataset, which raises the
 question of which dataset. Protocol v1.2's dependency-mutation correction is
@@ -793,6 +792,8 @@ def d1_view_collapse() -> dict[str, dict[str, Any]]:
 #: D1 execution lane. A reproduction that disagrees under a *different* environment
 #: has not shown the archive wrong; one that disagrees under this one has.
 D1_RECORDED_ENVIRONMENT: Mapping[str, str] = {
+    "ImageOS": "ubuntu24",
+    "ImageVersion": "20260810.271.1",
     "python": "3.12.13",
     "numpy": "2.5.2",
     "scikit-learn": "1.9.0",
@@ -801,8 +802,9 @@ D1_RECORDED_ENVIRONMENT: Mapping[str, str] = {
 
 
 def d1_observed_environment() -> dict[str, str]:
-    """The versions this process is actually running."""
+    """The recorded environment fields this process can actually observe."""
 
+    import os
     import platform
 
     import numpy
@@ -810,6 +812,8 @@ def d1_observed_environment() -> dict[str, str]:
     import sklearn
 
     return {
+        "ImageOS": os.environ.get("ImageOS", "absent"),
+        "ImageVersion": os.environ.get("ImageVersion", "absent"),
         "python": platform.python_version(),
         "numpy": numpy.__version__,
         "scikit-learn": sklearn.__version__,
@@ -818,7 +822,7 @@ def d1_observed_environment() -> dict[str, str]:
 
 
 def d1_environment_departures() -> tuple[str, ...]:
-    """Which recorded dependency versions this process does not match."""
+    """Which recorded execution-environment fields this process does not match."""
 
     observed = d1_observed_environment()
     return tuple(
@@ -848,10 +852,11 @@ class ArmReproduction:
     """One archived arm, re-run under the frozen protocol and compared.
 
     The audit above measures whether each archived comparator *responded*. It
-    never asked whether the archived numbers come back, and three of P9's four
-    arms do while the fourth does not --- the fourth being the one whose collapse
-    drives a published ``CANNOT_CHECK``. Reading a margin off an archive without
-    that check is trusting a number because it is committed.
+    never asked whether the archived numbers come back. Three of P9's four arms
+    have reproduced on every observed build. The fourth has landed on both the
+    archive-matching and divergent registered attractors; it is also the arm
+    whose collapse drives a published ``CANNOT_CHECK``. Reading a margin off an
+    archive without that check is trusting a number because it is committed.
 
     The verdict is not "the archive is wrong". A disagreement under an
     environment that is not the recorded one is a ``CANNOT_CHECK`` with the

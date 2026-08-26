@@ -1,8 +1,8 @@
 {
   "schema_version": "orion.journal-package.v1",
   "paper_id": "P3",
-  "package_status": "SUBMISSION_READY",
-  "declared_paper_terminal": "P3_SCIENTIFIC_IDENTITY_AUTHORITY_SUPPORTED__SCOPED_STRUCTURED_INTEGRATION",
+  "package_status": "SUPERSEDED",
+  "declared_paper_terminal": "SCOPED_STRUCTURED_INTEGRATION_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY",
   "claim_boundary": "P3_C5_C9_REPLICATED_MAPPING__P3_C10_C11_EXACT_IDENTITY_AUTHORITY__NO_RAW_TEXT_OR_DOWNSTREAM_SUPERIORITY",
   "audit_subject_revision": "6dd510c811deb20a10f722e40d915cb5bda13548",
   "audit_date": "2026-08-20",
@@ -10,7 +10,7 @@
   "required_files": [
     {
       "path": "journal_package/manuscript.pdf",
-      "role": "compiled-and-audited-scoped-identity-authority-manuscript"
+      "role": "historical-compiled-and-audited-scoped-manuscript"
     },
     {
       "path": "manuscript/main.tex",
@@ -131,9 +131,26 @@
     {
       "path": "journal_package/REFERENCE_METADATA_AUDIT_V1.md",
       "role": "reference-metadata-audit"
+    },
+    {
+      "path": "journal_package/RENDER_CLOSURE_STATE.json",
+      "role": "generator-derived-current-render-closure-state"
     }
   ],
-  "missing_artifacts": [],
+  "missing_artifacts": [
+    {
+      "path": "journal_package/current_revision/manuscript.pdf",
+      "role": "current-revision-content-bound-pdf",
+      "status": "CANNOT_CHECK",
+      "reason": "The retained 20-page PDF is historical; no immutable package PDF binds the 45-page current manuscript."
+    },
+    {
+      "path": "journal_package/current_revision/RENDER_AND_VISUAL_AUDIT.md",
+      "role": "current-revision-render-and-page-level-visual-and-claim-audit",
+      "status": "CANNOT_CHECK",
+      "reason": "No page-level visual and claim audit binds a fresh current package PDF."
+    }
+  ],
   "submission_operations": [
     {
       "path": "journal_package/AUTHOR_ATTESTATION_FINAL.md",
@@ -222,12 +239,22 @@
     },
     {
       "id": "P3.PDF",
-      "text": "The tracked identity-authority manuscript PDF is built from the canonical final source and passes the exact-head static citation/input/claim audit plus converged LaTeX compilation.",
+      "text": "The retained 20-page PDF and its claim audit are a historical scoped package record only; they do not render or authorize the 45-page current manuscript.",
       "artifacts": [
         "journal_package/manuscript.pdf",
         "journal_package/CLAIM_PDF_AUDIT.md"
       ],
-      "status": "SUPPORTED"
+      "status": "BOUNDED",
+      "lifecycle": "HISTORICAL_IMMUTABLE",
+      "current_claim": false
+    },
+    {
+      "id": "P3.CURRENT_PACKAGE",
+      "text": "The current manuscript has a fresh immutable package PDF and completed page-level visual and claim audit.",
+      "artifacts": [],
+      "status": "OPEN",
+      "lifecycle": "ACTIVE_SUPPORTING",
+      "current_claim": true
     }
   ],
   "scientific_result_verification": {
@@ -236,5 +263,23 @@
     "records_present": [
       "research/verification/records/P3.C5.confirmatory-mapping.json"
     ]
+  },
+  "package_authority": {
+    "audit_scope": "PACKAGE_AUTHORITY_AND_CLEAN_CHECKOUT_AVAILABILITY_ONLY__NOT_A_RENDER_AUDIT",
+    "current_submission_authorized": false,
+    "scientific_claim_retained": "P3.C10/P3.C11",
+    "historical_pdf_role": "EARLIER_INSPECTED_RECORD_ONLY",
+    "historical_manifest_sha256": "5f8a8d801d1526840343e2b33e9ec7ca9d28f7d813416c52bffe00113e2c9237",
+    "authority_precedence": "This manifest and RENDER_CLOSURE_STATE.json govern current package status. Earlier current-PDF language describes the historical 20-page package and is superseded for the current manuscript.",
+    "private_or_large_payloads_imported": false
+  },
+  "render_binding": {
+    "historical_pdf_sha256": "52ff9d7f33aa62bf0c6493713b10244ee97cc4ebce0a40de8742b48fa312979e",
+    "historical_pdf_pages": 20,
+    "current_working_pdf_sha256": "eabf107ffb3308142046a24029ee599e67cae74c59cbbef795ef1fb12280e132",
+    "current_working_pdf_pages": 45,
+    "current_revision_binding": false,
+    "binding_status": "HISTORICAL_SUPERSEDED",
+    "bridge_rule": "The retained 20-page PDF is not relabelled as the 45-page current manuscript. A fresh immutable build and page-level visual and claim audit are required."
   }
 }

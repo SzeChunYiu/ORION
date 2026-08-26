@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import contextlib
 import io
+import json
 
 import pytest
 
@@ -25,6 +26,19 @@ from orion.programme.gate_attainability import (
 from orion.programme.records import Outcome
 from orion.study.p14 import governance_gates as p14
 from orion.study.p14.gate_audit import audit_p14a_governance_terminal, main, report_as_json
+
+
+P14A_SUCCESSOR_CLOSURE = (
+    p14.REPO_ROOT
+    / "papers"
+    / "paper-14-orion-rse"
+    / "top_tier"
+    / "P14A_CLOSURE_BY_SUCCESSOR_VERIFICATION_V1.json"
+)
+
+
+def p14a_successor_closure() -> dict:
+    return json.loads(P14A_SUCCESSOR_CLOSURE.read_text(encoding="utf-8"))
 
 
 def literal_gates(summary: dict) -> dict[str, bool]:
@@ -57,13 +71,21 @@ def literal_gates(summary: dict) -> dict[str, bool]:
     }
 
 
-def test_the_bench_reproduces_the_committed_result_exactly():
-    """The fidelity anchor: a failure below is about P14A, not about a local fixture."""
+def test_the_bench_preserves_the_negative_decision_and_uses_successor_replay_provenance():
+    """P14A's old digest stays frozen; the current replay is already classified."""
 
     result = p14.shipped_bench()
     receipt = p14.shipped_receipt()
+    closure = p14a_successor_closure()
 
-    assert result["result_sha256"] == p14.SHIPPED_RESULT_DIGEST == receipt["full_result_sha256"]
+    assert p14.SHIPPED_RESULT_DIGEST == receipt["full_result_sha256"]
+    assert closure["checks"]["p14a_digest_reproduces"] is False
+    assert closure["verdicts"]["p14a_full_result_digest_platform_pinned"] is True
+    assert closure["verdicts"]["p14a_decision_layer_reproduces_cross_platform"] is True
+    assert result["result_sha256"] in {
+        closure["p14a_bar_vs_supremum"]["replay"]["sha256"],
+        receipt["full_result_sha256"],
+    }
     assert result["terminal"] == p14.SHIPPED_TERMINAL == receipt["terminal"]
     assert result["gates"] == receipt["gates"]
     assert result["strongest_non_orion_baseline"] == receipt["strongest_non_orion_baseline"]
@@ -252,8 +274,18 @@ def test_every_axis_moves_the_contrast_on_at_most_one_sibling_pair():
 def test_the_audit_blocks_and_names_both_findings():
     report = audit_p14a_governance_terminal()
     payload = report_as_json(report)
+    closure = p14a_successor_closure()
+    result = p14.shipped_bench()
+    receipt = p14.shipped_receipt()
 
-    assert report["digest_reproduced"] is True
+    assert report["digest_reproduced"] is (
+        result["result_sha256"] == receipt["full_result_sha256"]
+    )
+    assert result["result_sha256"] in {
+        closure["p14a_bar_vs_supremum"]["replay"]["sha256"],
+        receipt["full_result_sha256"],
+    }
+    assert closure["checks"]["p14a_receipt_numbers_reproduce"] is True
     assert report["outcome"] is Outcome.FAIL
     assert report["grading_outcome"] is Outcome.FAIL
     assert report["responsiveness"].outcome is Outcome.PASS

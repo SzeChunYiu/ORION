@@ -7,11 +7,16 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 python ../scripts/check_manuscript_typography.py --log main.log
 ```
 
-Then fail if `main.log` contains an undefined citation/reference warning and
-inspect `pdfinfo main.pdf`. The canonical review build is copied byte-for-byte to
-`journal_package/manuscript.pdf` and bound by `SHA256SUMS`.
+Fail if `main.log` contains an undefined citation/reference warning and inspect
+`pdfinfo main.pdf`. This local check does not replace the retained historical
+package or grant package authority.
 
-The evidence-bound review PDF uses the neutral single-column article source.
-The current IP&M CAS wrapper, title page, and final double-anonymization check are
-filing operations performed with author-supplied metadata; they may not change
-scientific claims or silently drop the bounded/failed-result language.
+The current `journal_package/manuscript.pdf` is a retained historical render and
+must not be overwritten or relabelled by an unreviewed local build. A successor
+package requires a fresh immutable build, a new render-input closure, and a
+completed page-level visual and claim audit before its PDF is copied into a new
+current package and bound by `SHA256SUMS`.
+
+The evidence-bound review uses the neutral single-column source. A venue wrapper,
+title page, and final identity-signal review are filing operations and may not
+change claims or drop bounded/adverse language.

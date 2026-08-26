@@ -455,6 +455,15 @@ class DiscoverySession(Protocol):
         """Spend one tool call to extract from an already-retrieved document."""
         ...
 
+    def encounter_read(self, doc_id: str, *, execute: bool) -> ReadOutcome | None:
+        """Record a presented read candidate and whether extraction followed.
+
+        The host recomputes the pre-execution read decision in either branch.
+        ``execute=False`` is the B14/B15 denominator event: it records a
+        suppression without charging read budget or updating the read ledger.
+        """
+        ...
+
     def declare_route_stop(self, route: str, reason: str) -> None:
         """Record abandoning one route. Never closes the task."""
         ...

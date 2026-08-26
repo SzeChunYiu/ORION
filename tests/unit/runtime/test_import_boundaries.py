@@ -77,8 +77,18 @@ def test_harness_import_does_not_eagerly_execute_incomplete_p2_runner() -> None:
     assert completed.returncode == 0, completed.stderr
 
 
-def test_direct_p2_runner_import_preserves_schema_interleaving_as_adverse() -> None:
-    completed = _fresh_import("import orion.study.p2.runner")
+def test_direct_p2_runner_import_uses_canonical_read_decision_boundary() -> None:
+    completed = _fresh_import(
+        """
+from typing import get_type_hints
+from orion.knowledge.identity import ReadDecision
+from orion.study.p2.runner import BudgetedSession
+assert get_type_hints(BudgetedSession._classify_read)["return"] is ReadDecision
+"""
+    )
 
-    assert completed.returncode != 0
-    assert "ReadClassification" in completed.stderr
+    # The 2026-08-24 ReadClassification failure remains recorded in the frozen
+    # containment receipt.  After the separately validated P2 vocabulary
+    # migration, requiring that historical import failure here would regress a
+    # repaired production boundary rather than preserve the adverse evidence.
+    assert completed.returncode == 0, completed.stderr

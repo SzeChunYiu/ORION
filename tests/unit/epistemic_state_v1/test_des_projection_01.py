@@ -25,8 +25,11 @@ SPEC.loader.exec_module(RUNNER)
 
 
 def test_frozen_runner_import_has_no_unrelated_package_dependency():
+    # This is an import-smoke test for the checkout under test, not a replay of
+    # the frozen execution environment.  The latter remains bound below as
+    # evidence and is checked by the runner's fail-closed preconditions.
     completed = subprocess.run(
-        [RUNNER.EXPECTED_EXECUTABLE, str(RUNNER_PATH), "--help"],
+        [sys.executable, str(RUNNER_PATH), "--help"],
         cwd=ROOT,
         check=False,
         capture_output=True,
@@ -34,6 +37,18 @@ def test_frozen_runner_import_has_no_unrelated_package_dependency():
     )
 
     assert completed.returncode == 0, completed.stderr
+
+
+def test_frozen_runtime_identity_remains_bound_as_execution_evidence():
+    freeze = json.loads(RUNNER_PATH.with_name("FREEZE_V1.json").read_text())
+
+    assert RUNNER.EXPECTED_EXECUTABLE == "/opt/homebrew/opt/python@3.14/bin/python3.14"
+    assert RUNNER.EXPECTED_PYTHON == "3.14.6"
+    assert any(
+        RUNNER.EXPECTED_EXECUTABLE in precondition
+        and RUNNER.EXPECTED_PYTHON in precondition
+        for precondition in freeze["hard_preconditions"]
+    )
 
 
 def test_freeze_denominator_matches_cartesian_class():

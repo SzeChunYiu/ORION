@@ -1,4 +1,4 @@
-"""P5 journal tables must recompute 21/24 from raw records and refuse 24/24."""
+"""P5 tables preserve 21/24 and bound the later instrument-only 24/24 result."""
 
 from __future__ import annotations
 
@@ -179,14 +179,34 @@ def test_claim_ledger_preserves_21_of_24_and_cannot_check_h1() -> None:
     assert ledger["hypotheses"]["H2"] == "CANNOT_CHECK"
     assert ledger["hypotheses"]["H3"] == "CANNOT_CHECK"
     assert ledger["hypotheses"]["H4"] == "CANNOT_CHECK"
-    text = json.dumps(ledger)
-    assert "24/24" not in text
+    assert ledger["empirical_authority"] == "CANNOT_CHECK"
+    assert ledger["peer_review_ready"] is False
+    assert ledger["stale_perfect_score_rejected"] is True
+
+    instrument_claims = [claim for claim in ledger["claims"] if claim["claim_id"] == "P5-C21"]
+    assert len(instrument_claims) == 1
+    instrument_claim = instrument_claims[0]
+    assert "21/24" in instrument_claim["sentence"]
+    assert "instrument records 24/24" in instrument_claim["sentence"]
+    assert instrument_claim["support_type"] == (
+        "POST_OUTCOME_PUBLIC_SUITE_INSTRUMENT_DIAGNOSIS_ONLY__"
+        "PREREGISTRATION_CHRONOLOGY_CANNOT_CHECK__"
+        "NO_FRESH_TRANSFER_OR_MODEL_CAPABILITY_CLAIM"
+    )
+    assert "post-outcome 24/24 instrument result is diagnosis-only" in ledger["purpose"]
+    assert "no general scientific authority" in ledger["purpose"]
+
     md = (PAPER / "evidence" / "CLAIM_LEDGER_V1.md").read_text(encoding="utf-8")
     assert "21/24" in md
     assert "P5-HC-002" in md
     assert "P5-HC-012" in md
     assert "P5-HC-018" in md
-    assert "24/24" not in md
+    assert md.count("24/24") == 1
+    assert "## NR-01 attribution-instrument V2 disposition" in md
+    assert "treatment records 24/24" in md
+    assert "independent pre-outcome registration chronology is `CANNOT_CHECK`" in md
+    assert "`POST_OUTCOME_PUBLIC_SUITE_INSTRUMENT_DIAGNOSIS_ONLY`" in md
+    assert "not new model capability, fresh\ntransfer, H1--H4, comparative performance or superiority" in md
 
 
 def test_manuscript_does_not_claim_stale_perfect_score() -> None:
@@ -195,8 +215,32 @@ def test_manuscript_does_not_claim_stale_perfect_score() -> None:
     blob = "\n".join(path.read_text(encoding="utf-8") for path in sections)
     assert "21/24" in blob
     assert "P5-HC-002" in blob
-    assert "24/24" not in blob
     assert "perfect attribution" not in blob.lower()
+
+    result_text = (
+        PAPER / "manuscript" / "sections" / "09-results-attribution.tex"
+    ).read_text(encoding="utf-8")
+    assert result_text.count("24/24") == 1
+    assert "Post-outcome public-suite instrument diagnosis" in result_text
+    assert "instrument returns 24/24" in result_text
+    assert "not evidence that a model acquired new attribution capability" in result_text
+    assert "independent pre-outcome registration chronology is\n\\textsc{CannotCheck}" in result_text
+    assert "H1--H4, protected freshness, comparative\nperformance and superiority remain \\textsf{CANNOT\\_CHECK}" in result_text
+
+    limitation_text = (
+        PAPER / "manuscript" / "sections" / "10-limitations.tex"
+    ).read_text(encoding="utf-8")
+    assert limitation_text.count("24/24") == 2
+    assert "24/24 V2 attribution result is an instrument-stage diagnosis" in limitation_text
+    assert "independent preregistration chronology is therefore \\textsc{CannotCheck}" in limitation_text
+    assert "this result cannot establish model\nimprovement, general attribution accuracy, H1--H4 or superiority" in limitation_text
+
+    other_text = "\n".join(
+        path.read_text(encoding="utf-8")
+        for path in sections
+        if path.name not in {"09-results-attribution.tex", "10-limitations.tex"}
+    )
+    assert "24/24" not in other_text
 
 
 def _brace_balance(text: str) -> int:

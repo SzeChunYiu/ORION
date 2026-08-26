@@ -131,8 +131,11 @@ def test_does_not_fork_scientific_result_verification_schema() -> None:
 
 
 def _copy_p5(tmp_path: Path) -> Path:
-    target = tmp_path / "paper-05-self-orion"
+    repo = tmp_path / "repo"
+    target = repo / PAPER_DIRS["P5"]
+    target.parent.mkdir(parents=True)
     shutil.copytree(P5, target, ignore=shutil.ignore_patterns("__pycache__"))
+    (repo / "research").symlink_to(ROOT / "research", target_is_directory=True)
     return target
 
 

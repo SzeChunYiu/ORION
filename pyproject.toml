@@ -18,7 +18,7 @@ dependencies = [
 
 [project.optional-dependencies]
 # pytest-split shards the suite across CI runners; see .github/workflows/ci.yml.
-dev = ["pytest>=8", "pytest-split>=0.9", "pytest-xdist>=3.6", "orion-research-os[candidates]", "pytest-timeout>=2.3", "orion-research-os[independent-checks]"]
+dev = ["pytest>=8", "pytest-split>=0.9", "pytest-xdist>=3.6", "orion-research-os[candidates]", "orion-research-os[proofs]", "pytest-timeout>=2.3", "orion-research-os[independent-checks]", "pypdf>=6"]
 plots = ["matplotlib>=3.10"]
 # The P9/P10 candidate lane re-derives phase 2A live in CI to prove the committed
 # result still reproduces. That needs numpy: the lane's framework package re-exports

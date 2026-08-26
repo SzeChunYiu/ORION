@@ -74,10 +74,15 @@ class PaperParityOrionSolver(OrionSolver):
         self._last_navigation_plan = plan
         return bound, plan
 
-    def initial_state(self, problem: Problem) -> OrionState:
-        state = super().initial_state(problem)
+    def bind_initial_state(self, problem: Problem, state: OrionState) -> OrionState:
+        """Return the exact navigation-bound state at which tracing starts."""
+
         bound, _ = self._bind_navigation(problem, state)
         return bound
+
+    def initial_state(self, problem: Problem) -> OrionState:
+        state = super().initial_state(problem)
+        return self.bind_initial_state(problem, state)
 
     def solve(
         self,
@@ -86,8 +91,12 @@ class PaperParityOrionSolver(OrionSolver):
         initial_state: OrionState | None = None,
         trace_id: str | None = None,
     ):
-        state = initial_state or super().initial_state(problem)
-        bound, _ = self._bind_navigation(problem, state)
+        state = (
+            initial_state
+            if initial_state is not None
+            else super().initial_state(problem)
+        )
+        bound = self.bind_initial_state(problem, state)
         return super().solve(problem, initial_state=bound, trace_id=trace_id)
 
 

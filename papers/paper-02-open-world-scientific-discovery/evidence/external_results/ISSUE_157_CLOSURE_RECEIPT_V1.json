@@ -24,10 +24,63 @@
     "suite_fingerprint": "2f6936ba52fb12dbee7614b6409fe35ee8f34f443088a11fe5f8916552649c1c",
     "world_content_hash": "f93b1f55c0e0db4f32ed4e4b507a84a51f01d1dd62c28c393296724a82aa89a7",
     "content_hashes": {
-      "results_summary_file_sha256": "ee414173bbc8da7a564d697a1bab280e856891a0750de93f660735772973c03b",
-      "results_summary_canonical_sha256": "fda18102007fb03a6644408ab7df9c34cc79acb4d2793073dc21e0f2fd7c6749",
-      "record_digest_sha256": "27b8e55b68a65906fe0971ed2f24a814d31d66a1423d38782bb121c7f06e1525",
-      "raw_artifact_hash_list_digest_sha256": "ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe"
+      "results_summary_file_sha256": "fccf0740882e173f2992c0b45b98837fd578061d666954f6ec358a354c91135c",
+      "results_summary_canonical_sha256": "36bae2fb33a52567f03bdfe5b93ae300ab531aead7c47245ffe21eec23c0ea2e",
+      "record_digest_sha256": "c6430a651810f8e7a794aa0c1091794963c43389a1e5080c02c2807a2fc2c574",
+      "raw_artifact_hash_list_digest_sha256": "d851f168faaf50969198180ecc61a6ac361c72556ceeb992f011af307dd00c37"
+    },
+    "canonical_vocabulary_reprojection": {
+      "date": "2026-08-25",
+      "authority": "TERMINAL_VOCABULARY_RECLASSIFICATION_ONLY__NO_NEW_SCIENTIFIC_OUTCOME",
+      "previous_content_hashes": {
+        "results_summary_file_sha256": "ee414173bbc8da7a564d697a1bab280e856891a0750de93f660735772973c03b",
+        "results_summary_canonical_sha256": "fda18102007fb03a6644408ab7df9c34cc79acb4d2793073dc21e0f2fd7c6749",
+        "record_digest_sha256": "27b8e55b68a65906fe0971ed2f24a814d31d66a1423d38782bb121c7f06e1525",
+        "raw_artifact_hash_list_digest_sha256": "ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe"
+      },
+      "preserved_scientific_values": {
+        "orion_complete_gold_recall": 0.979487,
+        "orion_premature_task_closure_rate": 0.0,
+        "strongest_confirmatory_baseline_recall": 0.666667
+      },
+      "orion_full_status_counts": {
+        "previous": {"PASS": 319, "CANNOT_CHECK": 12, "FAIL": 59},
+        "canonical": {"PASS": 260, "CANNOT_CHECK": 71, "FAIL": 59}
+      }
+    },
+    "read_encounter_budget_reprojection": {
+      "date": "2026-08-25",
+      "authority": "HOST_BUDGET_CONTRACT_CORRECTION__NO_CLAIM_PROMOTION",
+      "previous_content_hashes": {
+        "results_summary_file_sha256": "73adfc8e8a7951e55c1aa06f4312bbea25e8c42dbe6be8867ae19b0f356c264b",
+        "results_summary_canonical_sha256": "cb098c51f2bacb5328b2cfe5703626f2d1b2faf0be3b0cefff5fb3ca8e857114",
+        "record_digest_sha256": "4722cf82b514d4ebfbea343970d079dff24244f5795584262afa52d26edc4a6f",
+        "raw_artifact_hash_list_digest_sha256": "a88938efb3c0eeefbdb2be6cb27540d8aa5a464edae43fcdebb883faa7ed5760"
+      },
+      "correction": "Every executed or suppressed read encounter now charges the monotone frozen max_reads cap; clearing presentation logs cannot buy budget.",
+      "preserved_scientific_values": {
+        "orion_complete_gold_recall": 0.979487,
+        "orion_premature_task_closure_rate": 0.0,
+        "strongest_confirmatory_baseline_recall": 0.666667
+      },
+      "no_content_identity_dedup_adverse_change": {
+        "previous": {
+          "PASS": 192,
+          "CANNOT_CHECK": 53,
+          "FAIL": 145,
+          "budget_exhaustion_failures": 145,
+          "mean_duplicate_processing_rate": 1.0,
+          "mean_complete_gold_recall": 0.952707
+        },
+        "corrected": {
+          "PASS": 144,
+          "CANNOT_CHECK": 53,
+          "FAIL": 193,
+          "budget_exhaustion_failures": 193,
+          "mean_duplicate_processing_rate": 0.31453,
+          "mean_complete_gold_recall": 0.939031
+        }
+      }
     }
   },
   "deep": {

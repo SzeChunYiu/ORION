@@ -8,7 +8,7 @@ Machine-readable twin: `evidence/external_results/ISSUE_157_CLOSURE_RECEIPT_V1.j
 
 ### Complete-gold 390-task (reproduced)
 
-`python papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --check` exited 0. The publication projection is identical to `evidence/offline_results/RESULTS_SUMMARY_V1.json`. Receipt frozen against `main` `09929f208f581cda6985575ca419a7181a1f03ba` (P2 summary hashes unchanged through that commit).
+`python papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --check` exited 0. The original publication projection is preserved byte-for-byte at `evidence/offline_results/RESULTS_SUMMARY_PRE_CANONICAL_VOCABULARY_2026-08-25.json`. Receipt frozen against `main` `09929f208f581cda6985575ca419a7181a1f03ba` (P2 summary hashes unchanged through that commit).
 
 | Binding | Value |
 | --- | --- |
@@ -22,6 +22,16 @@ Machine-readable twin: `evidence/external_results/ISSUE_157_CLOSURE_RECEIPT_V1.j
 | Record digest | `27b8e55b68a65906fe0971ed2f24a814d31d66a1423d38782bb121c7f06e1525` |
 | Raw artifact hash-list digest | `ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe` |
 | Summary file SHA-256 | `ee414173bbc8da7a564d697a1bab280e856891a0750de93f660735772973c03b` |
+
+The table above is the historical 2026-08-17 receipt. On 2026-08-25 the
+canonical terminal vocabulary was completed: censored transport cases remain
+`CANNOT_CHECK` instead of being encoded by obsolete terminal labels. The
+machine-readable twin now binds the current `RESULTS_SUMMARY_V1.json` hashes
+and carries a `canonical_vocabulary_reprojection` block containing these
+original hashes and the exact 319/12 to 260/71 PASS/`CANNOT_CHECK`
+reclassification. Recall, the strongest-baseline result, premature-closure
+rate, and the no-promotion boundary did not change; this was not a new
+scientific execution.
 
 Targeted tests: `test_p2_offline_analysis_snapshot.py` (3) plus `test_regeneration_reproduces_the_committed_fingerprint` and `test_the_suite_meets_the_frozen_power_commitment` — 5 passed.
 

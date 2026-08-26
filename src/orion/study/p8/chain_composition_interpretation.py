@@ -83,6 +83,7 @@ here. No evaluator outside this lane has checked any of it, which is
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import lru_cache
 from itertools import product
 from typing import Any, Callable
 
@@ -171,6 +172,7 @@ __all__ = [
     "BLOCKER_SEVERITY",
     "CHAIN_LADDER_BOUND",
     "FRAME_CONDITION_IDS",
+    "FRAME_CONDITION_REFUTATION_ORDER",
     "LADDER_BEYOND_THE_BOUND",
     "PROOF_TIMEOUT_MS",
     "PUBLISHED_CHAIN_SUCCESSES",
@@ -388,6 +390,20 @@ FRAME_CONDITION_IDS: tuple[str, ...] = (
     "every_donor_family_is_a_trusted_issuer",
 )
 
+#: Countermodel searches share a Z3 process. The trusted-issuer drop is the
+#: expensive one and became UNKNOWN when it ran after the other seven on a
+#: loaded hosted runner, while the same finite witness is found immediately in
+#: a fresh process. Search it first, but continue to report results in the
+#: canonical :data:`FRAME_CONDITION_IDS` order below.
+FRAME_CONDITION_REFUTATION_ORDER: tuple[str, ...] = (
+    "every_donor_family_is_a_trusted_issuer",
+    *(
+        condition
+        for condition in FRAME_CONDITION_IDS
+        if condition != "every_donor_family_is_a_trusted_issuer"
+    ),
+)
+
 
 def _frame_conditions(sig: ChainSignature, *, drop: str | None = None) -> list[Any]:
     """The interpretation, written as axioms rather than as an encoding.
@@ -532,10 +548,17 @@ def _witness_world(sig: ChainSignature) -> list[Any]:
     return clauses
 
 
+@lru_cache(maxsize=None)
 def prove_all(
     *, timeout_ms: int = PROOF_TIMEOUT_MS, drop: str | None = None, witness_world: bool = False
 ) -> tuple[ProofResult, ...]:
-    """Discharge every theorem in :data:`THEOREMS` under the interpretation."""
+    """Discharge every theorem in :data:`THEOREMS` under the interpretation.
+
+    Identical queries are immutable, pure proof snapshots. Reuse them within a
+    process so a report does not ask Z3 to re-prove a theorem after its fixture
+    already established it. The cached value retains ``UNKNOWN`` exactly; this
+    avoids load-dependent recomputation without turning a timeout into proof.
+    """
 
     solver = require_z3()
     sig = chain_signature()
@@ -702,6 +725,7 @@ def prove_all(
     return tuple(results)
 
 
+@lru_cache(maxsize=None)
 def prove_chain_ladder(
     *, bound: int = CHAIN_LADDER_BOUND, timeout_ms: int = PROOF_TIMEOUT_MS
 ) -> tuple[ProofResult, ...]:
@@ -712,7 +736,9 @@ def prove_chain_ladder(
     that gets there is the single hand step this development inherits from the
     calculus. Discharging the fully expanded statement at each concrete length
     does not replace the schema; it means a mistake in the expansion shows up
-    here rather than in a reader's trust.
+    here rather than in a reader's trust. As with :func:`prove_all`, an identical
+    query is evaluated once per process and its exact three-valued result is
+    retained.
     """
 
     solver = require_z3()
@@ -788,7 +814,7 @@ def frame_conditions_are_load_bearing(
     }
     per_condition: dict[str, list[str]] = {}
     unknowns: dict[str, list[str]] = {}
-    for condition in FRAME_CONDITION_IDS:
+    for condition in FRAME_CONDITION_REFUTATION_ORDER:
         dropped = prove_all(
             timeout_ms=timeout_ms, drop=condition, witness_world=True
         )
@@ -805,6 +831,15 @@ def frame_conditions_are_load_bearing(
         )
         if undecided:
             unknowns[condition] = undecided
+
+    # Stable report order is part of deterministic JSON output; search order is
+    # an operational detail, not a reclassification of the frame conditions.
+    per_condition = {condition: per_condition[condition] for condition in FRAME_CONDITION_IDS}
+    unknowns = {
+        condition: unknowns[condition]
+        for condition in FRAME_CONDITION_IDS
+        if condition in unknowns
+    }
 
     inert = sorted(name for name, refuted in per_condition.items() if not refuted)
     return {

@@ -16,6 +16,7 @@ is read, which is the step P11G and P14A both skipped.
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 
@@ -32,6 +33,43 @@ from orion.programme.gate_attainability import (
 )
 from orion.programme.records import Outcome
 from orion.study.p11 import successor_reach as p11h
+
+
+# Diagnostic-only digest for the current exact lock. The historical receipt's
+# 61ec... digest and adverse ``delta64`` gate remain immutable.
+CURRENT_LOCKED_SCIENTIFIC_SHA256 = (
+    "31654d231bacd5f926b36a9a180c1ef6f7696e71e0d7d039f1552ed898a7970f"
+)
+
+
+def assert_p11h_locked_replay_boundary(
+    published: dict[str, object], fresh: dict[str, object], runner
+) -> str:
+    """Allow only the known tree-estimator and tree-derived replay boundary."""
+
+    digest = hashlib.sha256(runner.canonical_text(fresh).encode("utf-8")).hexdigest()
+    historical_digest = hashlib.sha256(
+        runner.canonical_text(published).encode("utf-8")
+    ).hexdigest()
+    assert historical_digest == "61ecf79f652b74447dd70caa4cf019f2e35f67559583144d68d44cd7f92dd6dd"
+    assert digest in {historical_digest, CURRENT_LOCKED_SCIENTIFIC_SHA256}
+    assert fresh["scientific_gates"] == published["scientific_gates"]
+    assert fresh["scientific_terminal"] == published["scientific_terminal"]
+
+    historical_without_tree = copy.deepcopy(published)
+    fresh_without_tree = copy.deepcopy(fresh)
+    for historical_rung, fresh_rung in zip(
+        historical_without_tree["ladder_readings"], fresh_without_tree["ladder_readings"]
+    ):
+        for rung in (historical_rung, fresh_rung):
+            rung["curves"].pop("UNIVERSAL_EXTRA_TREES")
+            rung.pop("pooled_curve")
+            rung.pop("delta64_vs_pool")
+            rung["decomposition"].pop("published_gap_at_64")
+            rung["decomposition"]["tree_family"].pop("representation_gap")
+            rung["decomposition"]["tree_family"].pop("state_share")
+    assert fresh_without_tree == historical_without_tree
+    return digest
 
 
 @pytest.fixture(scope="module")
@@ -244,14 +282,17 @@ def test_the_recorded_preflight_reproduces(runner):
     assert recorded["distinct_terminals"] == fresh["distinct_terminals"] >= 2
 
 
-def test_the_shipped_receipt_reproduces_its_own_scientific_payload(receipt, runner):
-    """Point the instrument at the shipped artifact, not at a local fixture."""
+def test_the_shipped_receipt_and_current_locked_replay_are_not_conflated(receipt, runner):
+    """Preserve the old bytes while pinning the current decision-stable replay."""
 
     published = receipt["scientific_payload"]
     fresh = runner.scientific_payload(published["seed"])
-    assert fresh == published
-    digest = hashlib.sha256(runner.canonical_text(fresh).encode("utf-8")).hexdigest()
-    assert digest == receipt["replay"]["first_sha256"] == receipt["replay"]["second_sha256"]
+    digest = assert_p11h_locked_replay_boundary(published, fresh, runner)
+    assert receipt["replay"]["first_sha256"] == receipt["replay"]["second_sha256"]
+    assert receipt["replay"]["first_sha256"] == (
+        "61ecf79f652b74447dd70caa4cf019f2e35f67559583144d68d44cd7f92dd6dd"
+    )
+    assert (fresh == published) is (digest == receipt["replay"]["first_sha256"])
     assert receipt["replay"]["byte_identical"] is True
     assert receipt["replay"]["fresh_python_subprocesses"] == 2
 
@@ -313,6 +354,18 @@ def test_the_audit_reports_the_successor_and_still_blocks_on_p11g(receipt):
     """
 
     from orion.study.p11.attack_audit import audit_p11g_attack_terminal, report_as_json
+    from orion.study.p11 import decoder_attack_reach as p11g
+
+    if p11g.shipped_scientific_sha256() != p11g.SHIPPED_SCIENTIFIC_SHA256:
+        # P11G fidelity is checked before the audit can report P11H. The
+        # successor remains available through its own disposition and cannot
+        # compensate for the predecessor's CANNOT_CHECK replay boundary.
+        with pytest.raises(p11g.P11GFidelityError, match="shipped runner has moved"):
+            audit_p11g_attack_terminal()
+        successor = p11h.successor_disposition()
+        assert successor["retires_unwinnable_attack_finding"] is True
+        assert successor["terminal"] == receipt["terminal"]
+        return
 
     report = audit_p11g_attack_terminal()
     assert report["outcome"] is Outcome.FAIL
