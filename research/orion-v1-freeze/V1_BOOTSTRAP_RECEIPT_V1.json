@@ -1,16 +1,21 @@
 {
+  "acquisition_bindings": {
+    "open_issue_census": "research/orion-v1-freeze/census-20260826/complete/OPEN_ISSUES.json",
+    "open_issue_census_terminal": "V1_OPEN_ISSUE_CENSUS_COMPLETE",
+    "open_issue_denominator": 159
+  },
   "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
   "base_tree": "5d5ff0985551b0a94453ea6eaa9925bda3e10fa2",
   "counts": {
     "components": 14,
     "external_blockers": 3,
     "gaps": 9,
-    "issues": 52,
+    "issues": 159,
     "jobs": 8,
     "manifest_files": 13,
     "open_internal_gaps": 6,
     "paper_candidates": 3,
-    "pending_issue_audits": 42,
+    "pending_issue_audits": 149,
     "theorem_authority_rows": 10
   },
   "freeze_state": "OPEN_BOOTSTRAP",
@@ -18,9 +23,8 @@
   "open_conditions": [
     "component content binding incomplete",
     "theorem/authority census incomplete",
-    "complete open-issue denominator unavailable",
-    "42 priority quantum/frontier issues pending atomic audit",
-    "full red/build/checker census not yet executed on the frozen base",
+    "149 of 159 open issues pending atomic audit",
+    "full red/build/checker census not yet executed on frozen base",
     "13 Discovery V3 scientific jobs remain specification-blocked"
   ],
   "paper_authority_delta": "NONE",
