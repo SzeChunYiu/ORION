@@ -22,6 +22,10 @@
       "sha256": "fa11f380fd829fb5d3f86d1a31da4ebf9e1909891fcdb2406b61535949c600d6"
     },
     {
+      "path": "pyproject.toml",
+      "sha256": "b9e8f3fb9cd74baf2c65ef669bc13c99b5a8ed180045a5668c479faf48392aaa"
+    },
+    {
       "path": "uv.lock",
       "sha256": "f48cdb16ee305d2b5f4a3cedf9064bf3e000ac727ca060355f380e27bb34b01c"
     },
@@ -47,7 +51,7 @@
     },
     {
       "path": "tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py",
-      "sha256": "82c2bb3cf3cf77e0961c9f440d920e728d52908fd1b6f395aa16109577f9c004"
+      "sha256": "84a97d7b4afab81854b787c407d5cb711ae68b3986c16a389b5f7c59f773820a"
     },
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/generate_assumption_countermodels_v2.py",
@@ -93,6 +97,11 @@
   "independent_replay": false,
   "one_command": "make -C papers/paper-06-formal-epistemic-structures-and-mechanics reproduce-v4",
   "paper_id": "P6",
+  "python_runtime": {
+    "constraint": ">=3.11",
+    "constraint_source": "pyproject.toml:project.requires-python",
+    "exact_interpreter_pinned": false
+  },
   "raw_inputs": [
     {
       "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/assumption_countermodels_v2.source.json",

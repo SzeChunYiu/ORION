@@ -389,6 +389,7 @@ class TestTheReport:
 
     def test_v4_contract_binds_the_actual_generator_and_authority_ceiling(self) -> None:
         import hashlib
+        import tomllib
 
         path = (
             REPO_ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/"
@@ -403,8 +404,17 @@ class TestTheReport:
         assert payload["external_independent_validation"] == Outcome.CANNOT_CHECK.value
         assert payload["grants_scientific_authority"] == "NONE"
 
+        with (REPO_ROOT / "pyproject.toml").open("rb") as stream:
+            project = tomllib.load(stream)["project"]
+        assert payload["python_runtime"] == {
+            "constraint": project["requires-python"],
+            "constraint_source": "pyproject.toml:project.requires-python",
+            "exact_interpreter_pinned": False,
+        }
+
         entries = {row["path"]: row["sha256"] for row in payload["execution_inputs"]}
         required = {
+            "pyproject.toml",
             "uv.lock",
             "src/orion/study/p6/certificate_as_dependency_graph.py",
             "src/orion/study/p6/reopening_calculus_smt.py",
