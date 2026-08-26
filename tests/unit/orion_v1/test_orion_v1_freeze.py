@@ -64,8 +64,9 @@ def _rehash(root: Path, *relative_paths: Path) -> None:
 
 def test_bootstrap_package_validates() -> None:
     summary = CHECKER.validate(REPO_ROOT)
-    assert summary["checker_terminal"] == "ORION_V1_FREEZE_BOOTSTRAP_GREEN"
-    assert summary["scientific_terminal"] == "NOT_EARNED"
+    assert summary["checker_terminal"] == "ORION_V1_ARCHITECTURE_AND_LOCAL_FORMALISM_FROZEN"
+    assert summary["scientific_terminal"] == "ORION_V1_ARCHITECTURE_AND_LOCAL_FORMALISM_FROZEN"
+    assert summary["freeze_state"] == "FROZEN"
     assert summary["counts"] == {
         "components": 14,
         "theorem_authority_rows": 10,
@@ -76,7 +77,7 @@ def test_bootstrap_package_validates() -> None:
         "open_internal_gaps": 0,
         "external_blockers": 3,
         "paper_candidates": 3,
-        "manifest_files": 17,
+        "manifest_files": 18,
     }
 
 
@@ -149,32 +150,17 @@ def test_quantum_advantage_overclaim_is_rejected(tmp_path: Path) -> None:
 
 def test_forged_final_terminal_is_rejected(tmp_path: Path) -> None:
     root = _copy_control_plane(tmp_path)
-    contract_path = PACKAGE / "ORION_V1_FREEZE_CONTRACT_V1.json"
-    component_path = PACKAGE / "V1_COMPONENT_GRAPH_V1.json"
-    theorem_path = PACKAGE / "V1_THEOREM_AUTHORITY_LEDGER_V1.json"
+    gap_path = PACKAGE / "V1_EXECUTION_GAP_LEDGER_V1.json"
 
-    contract = _read_json(root, contract_path)
-    contract["freeze_state"] = "FROZEN"
-    contract["terminal"] = "ORION_V1_ARCHITECTURE_AND_LOCAL_FORMALISM_FROZEN"
-    contract["terminal_requirements"] = {
-        "architecture_and_local_formalism_frozen": True,
-        "internal_implementation_gaps_zero": True,
-        "unclassified_open_issues_zero": True,
-        "external_or_heavy_blockers_explicitly_ledgered": True,
-        "all_manifest_digests_valid": True,
-        "paper_authority_delta": "NONE",
-    }
-    _write_json(root, contract_path, contract)
+    # The tree is genuinely FROZEN. Reopen an internal gap while the contract
+    # still claims every terminal requirement True: the checker-derived
+    # requirements must diverge from the declared ones and reject the tree.
+    gaps = _read_json(root, gap_path)
+    internal = next(row for row in gaps["gaps"] if row["class"] == "INTERNAL_LOCAL")
+    internal["status"] = "OPEN"
+    _write_json(root, gap_path, gaps)
 
-    components = _read_json(root, component_path)
-    next(row for row in components["nodes"] if row["id"] == "V1_FREEZE_CONTROL_PLANE")["status"] = "FROZEN"
-    _write_json(root, component_path, components)
-
-    theorems = _read_json(root, theorem_path)
-    next(row for row in theorems["entries"] if row["id"] == "V1-AUTH-FREEZE")["status"] = "ORION_V1_ARCHITECTURE_AND_LOCAL_FORMALISM_FROZEN"
-    _write_json(root, theorem_path, theorems)
-
-    _rehash(root, contract_path, component_path, theorem_path)
+    _rehash(root, gap_path)
     with pytest.raises(ValidationError, match="terminal requirements do not equal checker-derived"):
         CHECKER.validate(root)
 

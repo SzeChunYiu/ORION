@@ -1,7 +1,7 @@
 {
   "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
   "coverage": {
-    "complete": false,
+    "complete": true,
     "completion_dependencies": [
       "V1-CENSUS-01",
       "V1-RED-CENSUS-01",
@@ -58,9 +58,9 @@
       "gap_id": "GAP-INTERNAL-THEOREM-CENSUS",
       "owner": "V1_FREEZE_THEORY_AND_SYSTEM_LANE",
       "resolution_evidence": {
-        "external_proof_review": "CANNOT_CHECK \u2014 same-programme mechanization only, not independently adjudicated",
+        "external_proof_review": "CANNOT_CHECK — same-programme mechanization only, not independently adjudicated",
         "identity_collisions": 0,
-        "lean_build": "PASS \u2014 lake build at frozen base on LUNARC, Lean 4.33.0, no sorry/axiom holes",
+        "lean_build": "PASS — lake build at frozen base on LUNARC, Lean 4.33.0, no sorry/axiom holes",
         "mechanized_ostc": 23,
         "ostc": 24,
         "ostc_missing_proof_artifact": 0,

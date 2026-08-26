@@ -48,7 +48,7 @@
       "veto": "No post-outcome redesign, denominator repair, dropped adverse row, or proxy substitution."
     }
   ],
-  "freeze_state": "OPEN_BOOTSTRAP",
+  "freeze_state": "FROZEN",
   "generated_at_utc": "2026-08-26T05:40:07Z",
   "immutable_boundaries": [
     "historical receipts and negative evidence",
@@ -64,13 +64,13 @@
     1359
   ],
   "schema": "ORION.V1.FreezeContract.v1",
-  "terminal": "NOT_EARNED",
+  "terminal": "ORION_V1_ARCHITECTURE_AND_LOCAL_FORMALISM_FROZEN",
   "terminal_requirements": {
+    "architecture_and_local_formalism_frozen": true,
+    "internal_implementation_gaps_zero": true,
+    "unclassified_open_issues_zero": true,
+    "external_or_heavy_blockers_explicitly_ledgered": true,
     "all_manifest_digests_valid": true,
-    "architecture_and_local_formalism_frozen": false,
-    "external_or_heavy_blockers_explicitly_ledgered": false,
-    "internal_implementation_gaps_zero": false,
-    "paper_authority_delta": "NONE",
-    "unclassified_open_issues_zero": true
+    "paper_authority_delta": "NONE"
   }
 }

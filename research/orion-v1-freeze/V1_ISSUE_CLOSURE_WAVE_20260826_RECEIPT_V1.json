@@ -1,0 +1,365 @@
+{
+  "schema": "ORION.V1.IssueClosureWaveReceipt.v1",
+  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "executed_at": "2026-08-26T23:59:00Z",
+  "wave": "V1-CLOSURE-WAVE-01",
+  "counts": {
+    "census_open_issues": 159,
+    "audited_by_sweep": 149,
+    "closed_completed": 29,
+    "closed_superseded": 3,
+    "kept_open": 117
+  },
+  "entries": [
+    {
+      "number": 606,
+      "title_snapshot": "[P9-S3R] Rotate the held-out domain to find the maximal boundary of explicit relation binding",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "The preregistered domain-rotation protocol ran to completion on the protected lane, passed its repeated hostile gate, and was independently replayed green on the dedicated workflow, with child #608 closed.",
+      "evidence_refs": [
+        "issue #606 comment 2026-08-19 (protected-run outcome)",
+        "gh run 32305464205 (workflow p9-s3-domain-rotation-independent) @ SzeChunYiu/ORION",
+        "child issue #608 (state=closed)"
+      ]
+    },
+    {
+      "number": 762,
+      "title_snapshot": "[ORION-QG QG-9] Is rank-2 support five tight? Exact cap-4 witness hunt or stronger all-n bound",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "The issue's offered resolution branch ('stronger all-n bound') was delivered and exceeded: merged PR #830 lands the machine-checked QG-9 ladder through V6 support<=1 for every n, fixing the intrinsic support number kappa_R6I=1 and closing the tightness question outright.",
+      "evidence_refs": [
+        "PR#830 @ beea3034e2c33a8468268e6adef3f77ae385d846 (MERGED 2026-08-21T19:07:11Z)",
+        "issue #762 final comment (2026-08-21T19:07:51Z)",
+        "main: research/extensions/orion-qg/QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json"
+      ]
+    },
+    {
+      "number": 763,
+      "title_snapshot": "[ORION-QG QG-10] Certified interval regime geometry without an exact global referee",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "The issue's own mandated closure route (exact-family interval calibration via child QG-10C #842) was executed on the protected lane and merged, landing a protected-run receipt on main whose terminal answers the ask: certification is sound but incremental interval value is donor-dependent-or-weak, and the programme-closure adjudication preserves that verdict.",
+      "evidence_refs": [
+        "PR #857 (merged 2026-08-23T19:55:19Z) @ 7c50e05152",
+        "development/orion-qg-regime-geometry/QG10C_PROTECTED_RUN_RECEIPT_2026-08-21.json @ main",
+        "child issue #842 (closed, protected terminal)",
+        "PR #861 (merged 2026-08-23T19:55:38Z)"
+      ]
+    },
+    {
+      "number": 777,
+      "title_snapshot": "[ORION-QG QG-13 V2] Prospectively mine a combined-deletion theorem for R6I support-five tightness",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "The issue's disjunctive ask (combined-deletion theorem improving 5->4, OR a minimal algebraic obstruction proving this edit grammar cannot close QG-9) completed on its second branch: the protected QG13V2 obstruction terminal is recorded on main with dual-harness acceptance, delivered by merged preservation-sweep PR #1002.",
+      "evidence_refs": [
+        "issue #777 final comment (2026-08-21T14:09:14Z)",
+        "main: development/orion-qg-regime-geometry/QG13V2_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+        "PR#1002 (MERGED 2026-08-23T20:15:16Z)"
+      ]
+    },
+    {
+      "number": 790,
+      "title_snapshot": "[ORION-QG QG-13 V4 / QG-9] All-n R6I support<=4 theorem via cumulative E2/E3 spectra",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "The issue's terminal was machine-checked and its receipt naming #790 is on main, delivered by the merged branch-forest preservation PR #1002 after the original branch PR #791 closed unmerged.",
+      "evidence_refs": [
+        "#1002 (merged 2026-08-23T20:15:16Z)",
+        "research/extensions/orion-qg/QG13V4_SUPPORT4_RESULTS.json on main via #1002"
+      ]
+    },
+    {
+      "number": 793,
+      "title_snapshot": "[ORION-QG QG-9 T1] Exact n=4 cap-3 witness hunt for R6I support-four tightness",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "The frozen-panel tightness hunt completed with the issue's own pre-registered honest terminal QG9T1_NO_SUPPORT4_TIGHT_WITNESS_IN_FROZEN_PANEL ('witness or bounded negative, no preferred outcome'): all 72 frozen obstruction slots were scanned, 36 valid candidates retained, and every one rejected by a cheaper support<=3 competitor; the sealed results JSON is on main bound to #793 (landed via the merged branch-forest sweep PR #1002 even though the original execution PR #797 was closed unmerged).",
+      "evidence_refs": [
+        "PR#1002 @ 1f545b8d218a9d609b901582dd8afe582c70f6b3 (MERGED)",
+        "artifact on origin/main: research/extensions/orion-qg/QG9T1_SUPPORT4_TIGHTNESS_RESULTS.json"
+      ]
+    },
+    {
+      "number": 801,
+      "title_snapshot": "[ORION-QG QG-9 T2] Counterexample-guided max-margin target synthesis for exact support-four tightness",
+      "verdict": "CLOSE_SUPERSEDED",
+      "reason": "The T2 target-synthesis lane is superseded by the merged QG-9 V6 theorem in the same parent programme (#762): C_DP = C_cap1 for every n implies support<=3 always attains the optimum, so an exact support-four tightness witness — the sole object this issue hunts — is mathematically impossible and the tightness frontier it served is closed.",
+      "evidence_refs": [
+        "PR#830 @ beea3034e2c33a8468268e6adef3f77ae385d846 (MERGED 2026-08-21T19:07:11Z)",
+        "issue #762 final comment (2026-08-21T19:07:51Z)"
+      ]
+    },
+    {
+      "number": 814,
+      "title_snapshot": "[ORION-QG QG-17] Sharpness attack on the R6I support1 objective phase",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #855 froze and executed the corrected QG-17 sharpness attack for #814 and committed the bounded-negative terminal receipt that is on main.",
+      "evidence_refs": [
+        "#855 (merged 2026-08-23T19:55:11Z)",
+        "research/extensions/orion-qg/QG17R_CORRECTED_PHASE_SHARPNESS_RESULTS.json on main"
+      ]
+    },
+    {
+      "number": 868,
+      "title_snapshot": "[ORION-QG QG-22] Minimal hidden-home state quotient for the pinned comm-s2 J5 model",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #940 landed the hidden-home protocol, analyzer, dual harness and CI workflow bound to #868, whose green run asserted the minimal-5-predicate terminal with both instruments accepting.",
+      "evidence_refs": [
+        "#940 (merged 2026-08-23T19:58:25Z)",
+        "development/orion-qg-regime-geometry/run_qg22_dual_harness.py on main; workflow run 32557926208 conclusion=success"
+      ]
+    },
+    {
+      "number": 872,
+      "title_snapshot": "[ORION-QG QG-7e] Close single-pinner PP comm-s2 sector over the full hidden-home environment",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #873 closes the QG-7c PP single-pinner residual over the full 133,349,376-environment hidden-home product, the issue's own comment records the protected GREEN confirmation with the earned terminal, and the sealed receipt is on main bound to #872 (chain/global completeness were explicitly outside QG-7e's scope in the issue body).",
+      "evidence_refs": [
+        "PR#873 @ 0f940845643d318d863cacde17b22f944c808ed7 (MERGED)",
+        "#872 comment 2026-08-22T08:17:43Z",
+        "artifact on origin/main: research/extensions/orion-qg/QG7E_V2_PP_SINGLE_PINNER_RESULTS.json"
+      ]
+    },
+    {
+      "number": 879,
+      "title_snapshot": "[ORION-QG QG-23] Six-coordinate auxiliary-support compactness for irreducible three-block TARE",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #882 executes the prospectively frozen QG-23 theorem from this issue and commits its machine-checked bound, with stronger claims kept false as the issue requires.",
+      "evidence_refs": [
+        "PR #882 (merged 2026-08-23T19:56:29Z)"
+      ]
+    },
+    {
+      "number": 880,
+      "title_snapshot": "[ORION-QG QG-24] Exact all-n TARE as a finite tropical weighted automaton",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #883 executed the frozen QG-24 theorem and committed the all-n tropical-automaton receipt with both-accept true.",
+      "evidence_refs": [
+        "#883 (merged 2026-08-23T19:56:34Z)",
+        "research/extensions/orion-qg/QG24_TROPICAL_WFA_RESULTS.json on main"
+      ]
+    },
+    {
+      "number": 884,
+      "title_snapshot": "[ORION-QG QG-26] Parikh-histogram kernel and finite guarded tropical regime geometry for all-n TARE",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #885 executed the prospectively frozen QG-26 theorem and landed the result artifact whose terminal is exactly the issue's strong intended terminal, with dual-harness acceptance.",
+      "evidence_refs": [
+        "PR#885 @ 9ea1f43a61a824e1dcfae96b6b9df1b1831bae1d (MERGED 2026-08-23T19:56:39Z)",
+        "main: research/extensions/orion-qg/QG26_PARIKH_HISTOGRAM_RESULTS.json"
+      ]
+    },
+    {
+      "number": 886,
+      "title_snapshot": "[ORION-QG QG-27] Bulk-defect law and thermodynamic cost density for all-n TARE",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #887 executes the prospectively frozen QG-27 bulk-defect / thermodynamic-limit compiler theorem from this issue and lands its two-sided all-n cost law.",
+      "evidence_refs": [
+        "PR #887 (merged 2026-08-23T19:56:44Z)"
+      ]
+    },
+    {
+      "number": 888,
+      "title_snapshot": "[ORION-QG QG-28] Exact local-Clifford orbit compression of TARE column-count geometry",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #889 executed the frozen QG-28 theorem for #888 and CI asserts the 715-orbit terminal receipt committed on main.",
+      "evidence_refs": [
+        "#889 (merged 2026-08-23T19:56:48Z)",
+        "research/extensions/orion-qg/QG28_LOCAL_CLIFFORD_ORBIT_RESULTS.json on main"
+      ]
+    },
+    {
+      "number": 890,
+      "title_snapshot": "[ORION-QG QG-29] Six-count defect saturation and universal k<=43 affine crossover on TARE scaling rays",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #891 is the protected QG-29 execution and the issue's own comment records the earned machine-checked terminal, with the sealed receipt on main bound to #890.",
+      "evidence_refs": [
+        "PR#891 @ 4b3d988fb57e22efb589922d49f16a0d4846e425 (MERGED)",
+        "#890 comment 2026-08-23",
+        "artifact on origin/main: research/extensions/orion-qg/QG29_DEFECT_SATURATION_RESULTS.json"
+      ]
+    },
+    {
+      "number": 893,
+      "title_snapshot": "[ORION-QG QG-30] Exact 45-bin bulk coarse-graining and bulk/defect scale separation",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #902 executed the frozen QG-30 theorem and landed the result artifact whose terminal is exactly the issue's intended strong terminal (715->45 compression with the defect information barrier and BULK_DEFECT_SCALE_SEPARATION=true).",
+      "evidence_refs": [
+        "PR#902 @ e97c0319819b8703abcc032d6277ecb81a668178 (MERGED 2026-08-23T19:57:16Z)",
+        "main: research/extensions/orion-qg/QG30_BULK_COARSE_GRAIN_RESULTS.json"
+      ]
+    },
+    {
+      "number": 900,
+      "title_snapshot": "[ORION-RG X1-B] C15 breakthrough target — one-block deficit with p-group kernel",
+      "verdict": "CLOSE_SUPERSEDED",
+      "reason": "The C15 target is donor-owned (Geroldinger–Yang D(C15^3)=43) and the breakthrough lane was explicitly moved to n=45, with successor issue #901 stating it supersedes #900.",
+      "evidence_refs": [
+        "#901 (X1-C, n=45)",
+        "#900 comment (2026-08-22)"
+      ]
+    },
+    {
+      "number": 904,
+      "title_snapshot": "[ORION-QG QG-31] Query-indexed abstraction ladder: 45 bulk classes, 54 defect spectra, 715 local-response classes",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #905 delivered the post-discovery confirmation lane: the protected run is GREEN with the exact 45/54/715 partitions confirmed and the receipt committed to main.",
+      "evidence_refs": [
+        "PR #905 (merged 2026-08-23T19:57:20Z)",
+        "issue #904 comment 2026-08-22 (protected outcome)"
+      ]
+    },
+    {
+      "number": 908,
+      "title_snapshot": "[ORION-Q MAX-R4E-A] Exact authority-indexed abstraction router on real compiler receipts",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #910 delivers the MAX-R4E-A protected execution and the issue's own comment records it protected GREEN with the committed receipt at a named commit; the receipt is on main bound to #908 with the earned Pareto-dominance terminal.",
+      "evidence_refs": [
+        "PR#910 @ 1c1a791da11e44d97c360bafe2a08b2af648b698 (MERGED)",
+        "#908 comment 2026-08-23",
+        "artifact on origin/main: research/extensions/orion-q/MAX_R4EA_AUTHORITY_INDEXED_ROUTER_RESULTS.json"
+      ]
+    },
+    {
+      "number": 914,
+      "title_snapshot": "[ORION-Q MAX-R4E-B0] Prospective held-out TARE transfer: pre-outcome action freeze",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #917 froze the adjudicator before any outcome and the committed MAX-R4EB0 receipt earned the prospective held-out transfer terminal with zero hidden-outcome dependencies and zero false authority.",
+      "evidence_refs": [
+        "#917 (merged 2026-08-23T19:57:38Z)",
+        "research/extensions/orion-qg/MAX_R4EB0_HELDOUT_QG32_RESULTS.json on main"
+      ]
+    },
+    {
+      "number": 915,
+      "title_snapshot": "[ORION-RG X1-F] Exact 3-wise Davenport constant of C5^3 — prove D3=25 or find the first longer obstruction",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "The issue's priority-1 target 'prove exact D_3=25 if true' is delivered by merged PR #925 (exact constants survived the PR's own hostile-literature correction), and the machine-checked result JSON on main is bound to #915 with terminal X1F_EXACT_D3_ESTABLISHED at value 25 with all controls passing.",
+      "evidence_refs": [
+        "PR#925 @ db4b3ab6667937682e7576fa024178886883554c (MERGED)",
+        "artifact on origin/main: research/orion-rg/X1F_D3_C5CUBED_EXACT_RESULTS.json"
+      ]
+    },
+    {
+      "number": 916,
+      "title_snapshot": "[ORION-RG X1-F0] Exact 2-wise Davenport constant of C5^3 — auxiliary inverse gate for D3",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "The ask 'Determine D_2(C_5^3)' (prior interval 20..23) is resolved exactly: merged PR #925 establishes D_2(C_5^3)=20 with machine-checked dual proofs recorded in the X1F0 result artifact bound to this issue.",
+      "evidence_refs": [
+        "PR#925 @ db4b3ab6667937682e7576fa024178886883554c (MERGED 2026-08-22T18:30:23Z)",
+        "main: research/orion-rg/X1F0_D2_C5CUBED_EXACT_RESULTS.json"
+      ]
+    },
+    {
+      "number": 918,
+      "title_snapshot": "[ORION-QG QG-32b] Exact four-probe feasibility above joint bulk+spectrum summaries",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "The exact decision was delivered by the production depth-4 search and independently replicated green via merged PR #929 (the issue's own comment records the replication as GREEN), so the feasibility question is answered exactly.",
+      "evidence_refs": [
+        "PR #929 (merged 2026-08-23T19:57:51Z)",
+        "issue #918 comment (post-result status)"
+      ]
+    },
+    {
+      "number": 920,
+      "title_snapshot": "[ORION-QG QG-33] SixLCU label-vs-value quotient separation on exact improvement cells",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #923 executed the frozen QG-33 computation for #920 and committed the 38760-instance separation receipt with the exact terminal on main; QG-33 is not among the retracted lanes.",
+      "evidence_refs": [
+        "#923 (merged 2026-08-23T19:57:47Z)",
+        "research/extensions/orion-qg/QG33_SIXLCU_LABEL_VALUE_RESULTS.json on main"
+      ]
+    },
+    {
+      "number": 921,
+      "title_snapshot": "[ORION-Q MAX-R4E-B1] Prospective different-family transfer on SixLCU label→value authority",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PRs #922 and #923 deliver the B1 different-family transfer and the issue's own comment records the protected GREEN end-to-end run with the earned terminal and sealed receipt, which is on main bound to #921.",
+      "evidence_refs": [
+        "PR#922 @ 02c5c7f17ef8dd8fa552c71672dcf27912257ce6 (MERGED)",
+        "PR#923 @ b90bc567250e7cffb489d2bf458cc22d956fe8c2 (MERGED)",
+        "#921 comment 2026-08-23",
+        "artifact on origin/main: research/extensions/orion-q/MAX_R4EB1_SIXLCU_LABEL_VALUE_RESULTS.json"
+      ]
+    },
+    {
+      "number": 928,
+      "title_snapshot": "[ORION-QG QG-32c] Independent exact MITM replication of four-probe infeasibility",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "The replication this issue asks for was executed end-to-end green and merged (EXISTS_SEPARATOR_AT_MOST_4=false independently reproduced); the later retraction of the interpretive headline is recorded on main via merged #926 and stands as a comment on this issue, so closing loses no information.",
+      "evidence_refs": [
+        "issue #928 comment 2026-08-22 (replication outcome)",
+        "PR #929 (merged 2026-08-23T19:57:51Z)",
+        "issue #928 comment 2026-08-23 (retraction notice, on main via #926)"
+      ]
+    },
+    {
+      "number": 932,
+      "title_snapshot": "[ORION-QG QG-35] Summary-conditioned fixed probe complexity: fair baseline",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #926 delivered the frozen ask — all 92 class minima computed with dual-harness both-accept and the machine-checked terminal committed on main — and landed the lane's own retraction in the same PR, with the issue's final comment directing retarget-or-close.",
+      "evidence_refs": [
+        "#926 (merged 2026-08-23T18:26:30Z)",
+        "research/extensions/orion-qg/QG35_SUMMARY_CONDITIONED_FIXED_RESULTS.json and development/orion-qg-regime-geometry/QG35_PROTECTED_RUN_RECEIPT_2026-08-22.json on main",
+        "#932 final comment (2026-08-23T18:26:46Z)"
+      ]
+    },
+    {
+      "number": 1003,
+      "title_snapshot": "Close remaining PR #973 Bugbot findings on P1 applicability and inventory footer",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Both Bugbot findings are fixed on current main: the applicability guard now runs before any interval is computed regardless of denominator (landed via merged #949 then #1079 on the p1-applicability-inventory-cleanup branch), and the regenerated cannot_check_inventory.json has a single subject_commit with no duplicate stale footer keys.",
+      "evidence_refs": [
+        "PR #949 (merged 2026-08-23T19:38:00Z) @ 9150be3b",
+        "PR #1079 (merged 2026-08-24T07:53:30Z) @ e5f0865f",
+        "src/orion/study/p1/tables.py @ current main (lines 440-442)",
+        "research/development/cannot_check_inventory.json @ current main"
+      ]
+    },
+    {
+      "number": 1282,
+      "title_snapshot": "[ORION DISCOVERY V1] Theorem-identifying harness, generative reach, and chronology-safe breakthrough programme",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "Merged PR #1280 names this issue as parent programme and completes the V1 theory/harness successor with a green dedicated workflow and zero correspondence violations, after which the issue's own status comment freezes V1 as authoritative and opens only additive V2/V3 successors.",
+      "evidence_refs": [
+        "PR #1280 (merged 2026-08-25T20:49:10Z)",
+        "issue #1282 comment 2026-08-25 (V1 freeze + successor handoff)"
+      ]
+    },
+    {
+      "number": 1308,
+      "title_snapshot": "[DISCOVERY V2 COORDINATION NOTE] Atomic architecture, Q donor integration, and ORION self-application",
+      "verdict": "CLOSE_SUPERSEDED",
+      "reason": "This is a self-described zero-authority coordination mirror whose only purpose was to reflect the V2 successor update into #1282, which happened: #1282's comment records the V2 successor (#1301/#1302, merged) and the note's three separations became the open V2-A/V2-Q/V2-SELF issues #1305/#1306/#1307.",
+      "evidence_refs": [
+        "issue #1308 body (self-description)",
+        "issue #1282 comment 2026-08-25 (where the mirrored content landed)",
+        "PR #1302 (merged 2026-08-25T20:49:58Z)"
+      ]
+    },
+    {
+      "number": 1312,
+      "title_snapshot": "[DISCOVERY V2 EXECUTION] Integrated successor handoff under #1282",
+      "verdict": "CLOSE_COMPLETED",
+      "reason": "This is a pure machine-visible handoff record with no tasks or terminals; everything it records (A00–A18 atomic states, knowledge-web navigation, proof economy, ORION-Q transfer, protected self-application) landed on main via merged PR #1302, and the three successor issues it points to (#1305/#1306/#1307) exist.",
+      "evidence_refs": [
+        "#1302 (merged 2026-08-25T20:49:58Z)",
+        "#1305 / #1306 / #1307"
+      ]
+    }
+  ],
+  "verification": {
+    "method": "4 read-only sweep agents -> mechanical re-verification of every CLOSE verdict: cited PRs confirmed MERGED via gh, artifact paths confirmed present on origin/main via git cat-file, quoted terminals confirmed via git grep on origin/main",
+    "exclusions": [
+      927,
+      937,
+      1034,
+      1306,
+      1357,
+      1358,
+      1359,
+      1360,
+      1361,
+      1362
+    ]
+  },
+  "paper_authority_delta": "NONE",
+  "note": "Ledger dispositions in V1_ISSUE_DISPOSITION_LEDGER_V1.json remain the census snapshot (denominator 159 pinned at acquisition); this receipt is the binding record of the GitHub-state closure wave executed after the census."
+}

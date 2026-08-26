@@ -325,8 +325,7 @@ def papers(data: dict[str, Any], base: str, state: str) -> tuple[int, str]:
         text(row, ("kind",), ident)
         need(isinstance(row.get("minimum_internal_prerequisites"), list) and row["minimum_internal_prerequisites"], f"{ident}: internal prerequisites missing")
         need(isinstance(row.get("top_tier_prerequisites"), list) and row["top_tier_prerequisites"], f"{ident}: top-tier prerequisites missing")
-        if state == "OPEN_BOOTSTRAP":
-            need(row.get("status") == "BLOCKED_NO_MANUSCRIPT_AUTHORIZED", f"{ident}: manuscript authorization is premature")
+        need(row.get("status") == "BLOCKED_NO_MANUSCRIPT_AUTHORIZED", f"{ident}: manuscript authorization is premature (external authority remains CANNOT_CHECK in every freeze state)")
     p18 = next(row for row in values if row["paper_id"] == "P18")
     joined = " ".join(p18["minimum_internal_prerequisites"] + p18["top_tier_prerequisites"])
     for phrase in ("negative twin", "resource accounting", "held-out target-native consequence"):
