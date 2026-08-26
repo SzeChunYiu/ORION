@@ -1,0 +1,42 @@
+name: Typed Authority R9 safe license basis
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/D/SAFE_LICENSE_BASIS_*_R9*'
+      - 'papers/five-paper-top-tier-r8/D/verify_safe_license_basis_r9.py'
+      - '.github/workflows/five-paper-r9-d-safe-license-basis.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay reduction and algorithms
+        run: |
+          set -euo pipefail
+          cp papers/five-paper-top-tier-r8/D/SAFE_LICENSE_BASIS_R9_RESULTS.json /tmp/expected.json
+          /usr/bin/time -v python papers/five-paper-top-tier-r8/D/verify_safe_license_basis_r9.py > /tmp/stdout.json
+          cmp /tmp/expected.json papers/five-paper-top-tier-r8/D/SAFE_LICENSE_BASIS_R9_RESULTS.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('/tmp/expected.json').read_text())
+          assert obj['analytic_results']['decision_complexity']=='NP_COMPLETE'
+          assert obj['exhaustive_controls']['set_systems_checked']==10087
+          assert obj['exhaustive_controls']['reduction_mismatches']==0
+          assert obj['exhaustive_controls']['dp_bruteforce_mismatches']==0
+          assert obj['exhaustive_controls']['greedy_bound_violations']==0
+          assert obj['generated_controls']['instances_checked']==4000
+          assert obj['generated_controls']['mismatches']==0
+          assert obj['forbidden_claim_controls']['safe_optimum']==3
+          assert obj['forbidden_claim_controls']['only_unsafe_cover_is_infeasible']
+          PY

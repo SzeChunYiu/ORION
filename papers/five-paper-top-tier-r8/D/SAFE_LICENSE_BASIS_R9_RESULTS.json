@@ -1,0 +1,113 @@
+{
+  "analytic_results": {
+    "decision_complexity": "NP_COMPLETE",
+    "exact_equivalence": "discard licenses reaching a forbidden claim, then solve set cover on required-claim reachability sets",
+    "exact_parameterized_algorithm": "O(|Lambda| M + |Lambda| 2^m) time and O(2^m) memory after closure construction",
+    "greedy_approximation": "H_m for m required claims",
+    "hardness_restriction": "acyclic depth-one unary rules, singleton caps, no refutations, and no forbidden claims",
+    "membership_certificate": "selected license IDs; each selected projection is checked by linear Horn closure"
+  },
+  "authority": {
+    "analytic_theorem_all_finite_positive_programs": true,
+    "bounded_verifier_corroborates_reduction_and_algorithms": true,
+    "external_complexity_review": false,
+    "grants_journal_authority": false,
+    "real_policy_utility": false
+  },
+  "content_sha256": "a29dab7301292f76b8bb6a6ec69164303bf171e332fb62e1a67088a45484a92c",
+  "exhaustive_controls": {
+    "dp_bruteforce_mismatches": 0,
+    "feasible": 9597,
+    "greedy_bound_violations": 0,
+    "infeasible": 490,
+    "panels": [
+      {
+        "feasible": 1,
+        "infeasible": 1,
+        "maximum_family_size": null,
+        "optimum_histogram": {
+          "1": 1,
+          "INFEASIBLE": 1
+        },
+        "set_systems_checked": 2,
+        "status": "FINITE_EXACT",
+        "universe_size": 1
+      },
+      {
+        "feasible": 5,
+        "infeasible": 3,
+        "maximum_family_size": null,
+        "optimum_histogram": {
+          "1": 4,
+          "2": 1,
+          "INFEASIBLE": 3
+        },
+        "set_systems_checked": 8,
+        "status": "FINITE_EXACT",
+        "universe_size": 2
+      },
+      {
+        "feasible": 109,
+        "infeasible": 19,
+        "maximum_family_size": null,
+        "optimum_histogram": {
+          "1": 64,
+          "2": 44,
+          "3": 1,
+          "INFEASIBLE": 19
+        },
+        "set_systems_checked": 128,
+        "status": "FINITE_EXACT",
+        "universe_size": 3
+      },
+      {
+        "feasible": 9482,
+        "infeasible": 467,
+        "maximum_family_size": 6,
+        "optimum_histogram": {
+          "1": 3473,
+          "2": 5800,
+          "3": 208,
+          "4": 1,
+          "INFEASIBLE": 467
+        },
+        "set_systems_checked": 9949,
+        "status": "FINITE_EXACT",
+        "universe_size": 4
+      }
+    ],
+    "reduction_mismatches": 0,
+    "set_systems_checked": 10087
+  },
+  "forbidden_claim_controls": {
+    "only_unsafe_cover_is_infeasible": true,
+    "optimum_ignoring_forbidden": 2,
+    "safe_optimum": 3,
+    "status": "PASS",
+    "unsafe_filter_changes_optimum": true
+  },
+  "generated_controls": {
+    "feasible": 2968,
+    "infeasible": 1032,
+    "instances_checked": 4000,
+    "maximum_greedy_additive_gap": 1,
+    "mismatches": 0,
+    "seed": 20260826,
+    "status": "DETERMINISTIC_GENERATED_EXACT"
+  },
+  "prior_art_boundary": {
+    "generic_set_cover_hardness_is_not_claimed_as_novel": true,
+    "greedy_harmonic_approximation_is_established": true,
+    "residual_claim": "typed noninterference identifies the operational license-basis problem exactly with safe set cover and supplies typed certificates and fail-closed forbidden filtering",
+    "set_cover_np_completeness_is_established": true
+  },
+  "problem": {
+    "full_map_compression": false,
+    "input": "finite positive typed authority graph, candidate licenses, required and forbidden operational claims, and budget k",
+    "name": "MINIMUM_SAFE_LICENSE_BASIS",
+    "operational_portfolio_compression": true,
+    "question": "is there a set of at most k licenses whose typed closures cover every required claim and no forbidden claim"
+  },
+  "schema": "ORION.TypedAuthority.SafeLicenseBasisR9.Results.v1",
+  "terminal": "D_SAFE_LICENSE_BASIS_NP_COMPLETE__EXACT_SET_COVER_REDUCTION_AND_BOUNDED_AUDIT_PASS"
+}

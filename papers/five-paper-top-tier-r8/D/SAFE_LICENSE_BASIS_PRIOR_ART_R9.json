@@ -1,0 +1,48 @@
+{
+  "schema": "ORION.TypedAuthority.SafeLicenseBasisPriorArtR9.v1",
+  "as_of": "2026-08-26",
+  "sources": [
+    {
+      "source_id": "KARP1972",
+      "title": "Reducibility among Combinatorial Problems",
+      "author": "Richard M. Karp",
+      "year": 1972,
+      "publication": "Complexity of Computer Computations",
+      "pages": "85-103",
+      "doi": "10.1007/978-1-4684-2001-2_9",
+      "used_for": [
+        "classical set-cover NP-completeness boundary"
+      ]
+    },
+    {
+      "source_id": "CHVATAL1979",
+      "title": "A Greedy Heuristic for the Set-Covering Problem",
+      "author": "Vasek Chvatal",
+      "year": 1979,
+      "publication": "Mathematics of Operations Research 4(3), 233-235",
+      "doi": "10.1287/moor.4.3.233",
+      "used_for": [
+        "classical logarithmic/harmonic greedy approximation boundary"
+      ]
+    },
+    {
+      "source_id": "FEIGE1998",
+      "title": "A Threshold of ln n for Approximating Set Cover",
+      "author": "Uriel Feige",
+      "year": 1998,
+      "publication": "Journal of the ACM 45(4), 634-652",
+      "doi": "10.1145/285055.285059",
+      "used_for": [
+        "classical logarithmic approximation-hardness calibration"
+      ]
+    }
+  ],
+  "claim_boundary": {
+    "not_claimed_as_novel": [
+      "set-cover NP-completeness",
+      "greedy harmonic approximation",
+      "generic logarithmic approximation hardness"
+    ],
+    "residual_claim": "coordinatewise typed authority reduces minimum safe operational license-basis selection exactly to set cover after forbidden-coordinate filtering, preserving typed proof ownership"
+  }
+}
