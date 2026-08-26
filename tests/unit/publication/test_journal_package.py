@@ -30,6 +30,21 @@ def test_all_five_packages_pass_on_committed_tree() -> None:
     assert {report.paper_id for report in reports} == {"P1", "P2", "P3", "P4", "P5"}
 
 
+def test_scaffolding_package_cannot_declare_peer_review_ready(tmp_path: Path) -> None:
+    paper = _copy_p5(tmp_path)
+    manifest_path = paper / "journal_package" / "MANIFEST.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["package_status"] = "SCAFFOLDING"
+    manifest["declared_paper_terminal"] = "PEER_REVIEW_READY"
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+    report = check_package("P5", paper)
+    assert any(
+        "SCAFFOLDING package cannot declare PEER_REVIEW_READY" in error
+        for error in report.errors
+    )
+
+
 def test_p1_h1_remains_not_supported() -> None:
     manifest = load_manifest(ROOT / PAPER_DIRS["P1"] / "journal_package")
     h1 = next(claim for claim in manifest["claims"] if claim["id"] == "P1.H1")

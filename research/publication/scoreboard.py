@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Derive and validate the ORION P1–P5 publication scoreboard.
 
-Readiness is computed from repository artifacts (JOURNAL_READINESS.md,
+Readiness is computed from repository artifacts (the paper's declared current
+readiness record, falling back to JOURNAL_READINESS.md,
 claim ledgers, protocol freeze JSON). A paper cannot be labelled
 PEER_REVIEW_READY unless JOURNAL_READINESS declares that terminal and the
 supporting protocol/ledger files exist. This module refuses to invent
@@ -66,6 +67,7 @@ PAPER_SPECS: tuple[dict[str, Any], ...] = (
         "issue": 101,
         "title": "Verified Scientific Discovery",
         "root": "papers/paper-04-verified-scientific-discovery",
+        "journal_readiness": "CURRENT_JOURNAL_READINESS_V1.md",
         "claim_ledgers": (
             "evidence/CLAIM_LEDGER_V1.md",
         ),
@@ -277,7 +279,7 @@ def attestation_paths(paper_root: Path, repo: Path) -> list[str]:
 def derive_paper(spec: dict[str, Any], repo: Path) -> dict[str, Any]:
     paper_id = spec["paper_id"]
     paper_root = repo / spec["root"]
-    jr_path = paper_root / "JOURNAL_READINESS.md"
+    jr_path = paper_root / spec.get("journal_readiness", "JOURNAL_READINESS.md")
     protocol_path = paper_root / "protocol" / "PROTOCOL_V1.json"
     readme_path = paper_root / "README.md"
     v2_path = repo / "research" / "paper-programme-v2" / "protocols" / f"{paper_id}_V2.json"
@@ -310,7 +312,7 @@ def derive_paper(spec: dict[str, Any], repo: Path) -> dict[str, Any]:
     }
 
     if not jr_path.is_file():
-        missing.append(f"{record['journal_readiness']}: JOURNAL_READINESS.md is absent")
+        missing.append(f"{record['journal_readiness']}: current readiness record is absent")
         notes.append("Cannot score the paper without JOURNAL_READINESS.md.")
         return record
 
@@ -460,7 +462,7 @@ def derive_scoreboard(repo: Path | None = None) -> dict[str, Any]:
         "schema_version": SCHEMA_VERSION,
         "generated_from": {
             "rule": (
-                "Derive each paper from JOURNAL_READINESS.md terminal, PROTOCOL_V1.json freeze "
+                "Derive each paper from its declared current readiness terminal, PROTOCOL_V1.json freeze "
                 "state, and claim-ledger CANNOT_CHECK rows. Do not invent PEER_REVIEW_READY."
             )
         },

@@ -43,13 +43,14 @@ def test_committed_scoreboard_matches_derived_artifacts():
 
 
 def test_scoped_readiness_reflects_the_artifacts_not_the_ambition():
-    """Three of five are ready on scoped gates; two are blocked, and honestly so.
+    """Two of five are ready on scoped gates; three are blocked, and honestly so.
 
     This asserted all five until the repository corrected itself past it. P1 and
-    P5 now declare CANNOT_CHECK in their own JOURNAL_READINESS -- P5's frozen
-    96-case panel returned NO_TERMINAL_UNDER_FROZEN_RULES -- and each is missing
-    supporting artifacts the scoreboard requires. The papers were honest; the
-    committed scoreboard and this test were the stale pair.
+    P5 declare CANNOT_CHECK in their current readiness records -- P5's frozen
+    96-case panel returned NO_TERMINAL_UNDER_FROZEN_RULES. P4 now version-separates
+    its current CANNOT_CHECK lifecycle from the immutable protected-V2 readiness
+    archive. The papers were honest; the committed scoreboard and this test were
+    the stale pair.
 
     P3 is ready on its bounded mapping / P3-X identity-authority claim, not the
     unexecuted raw-text/downstream programme. Scoped readiness must not launder
@@ -61,14 +62,14 @@ def test_scoped_readiness_reflects_the_artifacts_not_the_ambition():
     derived = module.derive_scoreboard(ROOT)
     by_id = {paper["paper_id"]: paper for paper in derived["papers"]}
 
-    for paper_id in ("P2", "P3", "P4"):
+    for paper_id in ("P2", "P3"):
         assert by_id[paper_id]["status"] == "PEER_REVIEW_READY", paper_id
         assert by_id[paper_id]["journal_readiness_terminal"] == "PEER_REVIEW_READY"
         assert by_id[paper_id]["attestation_paths"], paper_id
         assert by_id[paper_id]["claim_ledgers"], paper_id
         assert not by_id[paper_id]["missing_artifacts"], paper_id
 
-    for paper_id in ("P1", "P5"):
+    for paper_id in ("P1", "P4", "P5"):
         assert by_id[paper_id]["status"] == "BLOCKED", paper_id
         assert by_id[paper_id]["journal_readiness_terminal"] == "CANNOT_CHECK", paper_id
         assert by_id[paper_id]["missing_artifacts"], (
@@ -76,7 +77,8 @@ def test_scoped_readiness_reflects_the_artifacts_not_the_ambition():
             "block is unactionable"
         )
 
-    assert derived["programme"]["papers_peer_review_ready"] == ["P2", "P3", "P4"]
+    assert by_id["P4"]["journal_readiness"].endswith("CURRENT_JOURNAL_READINESS_V1.md")
+    assert derived["programme"]["papers_peer_review_ready"] == ["P2", "P3"]
     assert derived["programme"]["close_allowed"] is False
     assert derived["programme"]["status"] == "BLOCKED"
 
@@ -259,7 +261,7 @@ def test_every_paper_declares_a_machine_scorable_terminal():
 
     module = _load_module()
     for spec in module.PAPER_SPECS:
-        path = ROOT / spec["root"] / "JOURNAL_READINESS.md"
+        path = ROOT / spec["root"] / spec.get("journal_readiness", "JOURNAL_READINESS.md")
         terminal = module.parse_journal_readiness_terminal(
             path.read_text(encoding="utf-8")
         )

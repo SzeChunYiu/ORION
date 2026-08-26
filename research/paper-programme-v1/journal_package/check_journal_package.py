@@ -230,6 +230,9 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
     package_status = manifest.get("package_status")
     if package_status not in ALLOWED_PACKAGE_STATUS:
         report.errors.append(f"invalid package_status: {manifest.get('package_status')!r}")
+    declared_terminal = manifest.get("declared_paper_terminal")
+    if package_status != "SUBMISSION_READY" and declared_terminal == "PEER_REVIEW_READY":
+        report.errors.append(f"{package_status} package cannot declare PEER_REVIEW_READY")
     revision = manifest.get("audit_subject_revision")
     if not isinstance(revision, str) or not _is_sha(revision, 40):
         report.errors.append("audit_subject_revision must be a 40-character git SHA")
